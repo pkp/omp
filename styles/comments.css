@@ -1,0 +1,55 @@
+/**
+ * comments.css
+ *
+ * Copyright (c) 2003-2008 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * Stylesheet for comment pages. 
+ *
+ * $Id$
+ */
+
+#headerTitle {
+	width: 550px;
+}
+
+#body {
+	width: 550px;
+}
+
+#main {
+	width: 530px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#footerContent {
+	width: 550px;
+}
+
+div.commentTitle {
+
+	font-size: 1em;
+	padding: 0;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #999;
+}
+
+div.comments {
+	font-size: 1em;
+	margin: 0;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+div.commentRole {
+	font-size: 1em;
+}
+
+div.commentDate {
+	font-size: 0.80em;
+}
+
+div.commentNote {
+	font-size: 0.80em;
+}

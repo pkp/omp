@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * email_templates_data.xml
+  *
+  * Copyright (c) 2003-2006 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  * (Norwegian translation from english by Karl Henrik Flyum, Dept. of teacher education and school development, University of Oslo, Norway, 2006-2007)
+  * Email templates data XML file (Norwegian).
+  *
+  * $Id$
+  -->
+
+<data>
+	<table name="email_templates_default_data">
+		<field_default name="locale">no_NO</field_default>
+
+		<!--
+		  *
+		  * General
+		  *
+		  -->
+		<row>
+			<field name="email_key">PASSWORD_RESET_CONFIRM</field>
+			<field name="subject">Fornying av passord bekreftes</field>
+			<field name="body">Vi har mottatt en forespørsel om å få fornyet passordet ditt til nettstedet for {$siteTitle}.
+
+Hvis du ikke har sendt oss en slik forespørsel, kan du beholde det gamle passordet ditt ved å ikke følge denne instruksen: Hvis du ønsker nytt passord, klikk på lenken nedenfor.
+
+Forny passordet: {$url}
+
+{$principalContactSignature}</field>
+			<field name="description">Denne e-posten sendes til registrerte brukere når de melder fra om at de har glemt passordet sitt, eller at de ikke klarer å logge inn. Den gir en URL-lenke brukeren kan følge for å fornye passordet sitt.</field>
+		</row>
+		<row>
+			<field name="email_key">PASSWORD_RESET</field>
+			<field name="subject">Fornying av passord</field>
+			<field name="body">Passordet ditt til nettstedet for {$siteTitle} er nå fornyet. Ta godt vare på brukernavnet og passordet, som du vil trenge for de oppgavene du skal utføre på nettstedet.
+
+Ditt brukernavn: {$username}
+Ditt nye passord: {$password}
+
+{$principalContactSignature}</field>
+			<field name="description">Denne e-posten sendes til en bruker som har fullført fornying av passordet sitt som beskrevet i PASSWORD_RESET_CONFIRM e-posten.</field>
+		</row>
+		<row>
+			<field name="email_key">USER_REGISTER</field>
+			<field name="subject">Du er nå registrert som bruker</field>
+			<field name="body">Takk for at du har registrert deg som bruker av nettstedet for {$journalName}. Ta godt vare på brukernavnet og passordet, som du vil trenge hver gang du skal utføre brukeroppgaver på nettstedet.
+
+Brukernavn: {$username}
+Passord: {$password}
+
+Vennlig hilsen,
+{$principalContactSignature}</field>
+			<field name="description">Denne e-posten sendes for å ønske nyregistrerte brukere velkommen som brukere av nettstedet, og gir dem opplysning om brukernavn og passord.</field>
+		</row>
+	</table>
+</data>
+

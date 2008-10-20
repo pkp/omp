@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * email_templates_data.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Email templates data XML file (English).
+  *
+  * $Id$
+  -->
+
+<data>
+	<table name="email_templates_default_data">
+		<field_default name="locale">vi_VN</field_default>
+
+		<!--
+		  *
+		  * General
+		  *
+		  -->
+		<row>
+			<field name="email_key">PASSWORD_RESET_CONFIRM</field>
+			<field name="subject">Kh?ng ??nh ??i m?t kh?u</field>
+			<field name="body">Chúng tôi nh?n ???c yêu c?u c?a quý v? v? thay ??i m?t kh?u trên website {$siteTitle}.
+
+N?u không ph?i là quý v? yêu c?u thay ??i, vui lòng b? qua email này và m?t kh?u c?a quý v? s? không thay ??i. N?u quý v? mu?n thay ??i m?t kh?u, nh?p chu?t vào ???ng d?n sau:
+
+Thay ??i m?t kh?u c?a tôi: {$url}
+
+{$principalContactSignature}</field>
+			<field name="description">Email này ???c g?i t?i b?n ??c ?ã ??ng ký khi h? thông báo r?ng h? quên m?t kh?u ho?c không th? ??ng nh?p. Email này cung c?p ???ng d?n ?? ng??i dùng có th? truy c?p ?? thay ??i m?t kh?u.</field>
+		</row>
+		<row>
+			<field name="email_key">PASSWORD_RESET</field>
+			<field name="subject">M?t kh?u ?ã thay ??i</field>
+			<field name="body">M?t kh?u c?a quý v? ?ã ???c thay ??i ?? s? d?ng v?i web site {$siteTitle}. Vui lòng gi? l?i bí danh và m?t kh?u này b?i vì nó c?n ?? ??ng nh?p vào t?p chí.
+
+Bí danh: {$username}
+M?t kh?u: {$password}
+
+{$principalContactSignature}</field>
+			<field name="description">Email này ???c g?i t?i b?n ??c khi h? ?ã ??i thành công m?t kh?u c?a mình trong email PASSWORD_RESET_CONFIRM.</field>
+		</row>
+		<row>
+			<field name="email_key">USER_REGISTER</field>
+			<field name="subject">??ng ký m?i</field>
+			<field name="body">C?m ?n quý v? ?ã ??ng ký làm b?n ??c c?a t?p chí {$journalName}. Vui lòng l?u gi? bí danh và m?t kh?u c?a quý v? vì nó c?n ?? ??ng nh?p vào t?p chí này.
+
+Bí danh: {$username}
+M?t kh?u: {$password}
+
+Xin c?m ?n,
+{$principalContactSignature}</field>
+			<field name="description">Email này ???c g?i t?i b?n ??c v?a m?i ??ng ký ?? chào m?ng h? ??n v?i t?p chí và cung c?p cho h? bí danh và m?t kh?u.</field>
+		</row>
+	</table>
+</data>

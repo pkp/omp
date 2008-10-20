@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  * locales.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Locales registry file.
+  *
+  * This file lists all locales available to the system.
+  * (i.e., existing under the locales/ directory)
+  *
+  * $Id$
+  -->
+
+<!DOCTYPE locales SYSTEM "../lib/pkp/dtd/locales.dtd">
+
+<locales>
+	<locale key="de_DE" name="Deutsch (Deutschland)"/>
+	<locale key="en_US" name="English"/>
+	<locale key="el_GR" name="Greek"/>
+	<locale key="es_ES" name="Español (España)"/>
+	<locale key="fr_CA" name="Français (Canada)"/>
+	<locale key="hr_HR" name="Hrvatski"/>
+	<locale key="it_IT" name="Italiano"/>
+	<locale key="ja_JP" name="日本語"/>
+	<locale key="no_NO" name="Norwegian"/>
+	<locale key="pt_BR" name="Português (Brasil)"/>
+	<locale key="ru_RU" name="Russian"/>
+	<locale key="tr_TR" name="Türkiye Türkçesi"/>
+	<locale key="vi_VN" name="Tiếng Việt"/>
+	<locale key="zh_TW" name="繁體中文"/>
+</locales>

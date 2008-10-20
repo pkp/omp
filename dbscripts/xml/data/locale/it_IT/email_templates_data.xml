@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "../../../../../lib/pkp/dtd/xmlData.dtd">
+
+<!--
+  * email_templates_data.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Email templates data XML file (Italian).
+  * Thanks to AePIC Team CILEA.
+  *
+  * $Id$
+  -->
+
+<data>
+	<table name="email_templates_default_data">
+		<field_default name="locale">it_IT</field_default>
+
+		<!--
+		  *
+		  * General
+		  *
+		  -->
+		<row>
+			<field name="email_key">PASSWORD_RESET_CONFIRM</field>
+			<field name="subject">Password Resetta Conferma</field>
+			<field name="body">Abbiamo ricevuto una richiesta di resettare la password per il sito web {$siteTitle}.
+
+Se non hai fatto questa richiesta, si prega di ignorare questa email e la password non sar&#x00E0; modificata. Se desisderi resettare la password, clica sulla URL di sotto.
+
+Resetta la mia password: {$url}
+
+{$principalContactSignature}</field>
+			<field name="description">Questa email viene mandata ad un utente registrato quando questi indica che ha dimenticato la sua password o non riesce a fare il log in. Questa fornisce una URL che possono seguire per resettare la loro password.</field>
+		</row>
+		<row>
+			<field name="email_key">PASSWORD_RESET</field>
+			<field name="subject">Password Reset</field>
+			<field name="body">La tua password &#x00E8; stata resettata con successo per questo sito web {$siteTitle}. Si prega di ricordare questa username e password, dato che &#x00E8; necessaria per tutto il lavoro con il journal.
+
+La tua username: {$username}
+La tua nuova password: {$password}
+
+{$principalContactSignature}</field>
+			<field name="description">Questa email viene mandata ad un utente registrato quando ha resettato la password seguendo il processo descritto nella email PASSWORD_RESETTA_CONFERMA.</field>
+		</row>
+		<row>
+			<field name="email_key">USER_REGISTER</field>
+			<field name="subject">Registrazione nuovo utente</field>
+			<field name="body">Grazie per esserti registrato come utente a  {$journalName}. Si prega di mantenere la username e password, che sono necessarie per tutto il lavoro con questo journal.
+
+Username: {$username}
+Password: {$password}
+
+Grazie,
+{$principalContactSignature}</field>
+			<field name="description">Questa email viene mandata agli utenti appena registrati per dar loro il benvenuto nel sistema e fornirgli una nota della loro username e password.</field>
+		</row>
+		<row>
+			<field name="email_key">USER_VALIDATE</field>
+			<field name="subject">Convalida il tuo account</field>
+			<field name="body">{$userFullName}
+
+Hai creato un account in {$journalName}, ma prima che tu possa usarlo, devi caonvalidare la email del tuo account. Per farlo, segui semplicemente il link qui sotto:
+
+{$activateUrl}
+
+Grazie,
+{$principalContactSignature}</field>
+			<field name="description">Questa email viene spedita a un nuovo utente registrato come benvenuto nel sistema e gli fornisce una nota con il suo nome utente e password.</field>
+		</row>
+	</table>
+</data>

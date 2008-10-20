@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
+
+<!--
+  * locale.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localization strings for the en_US (U.S. English) locale.
+  *
+  * $Id$
+  -->
+ 
+<locale name="en_US" full_name="U.S. English">
+	<!--
+	 * This file is organized into several major sections, separated
+	 * by comments like this one. These sections are called:
+	 *  COMMON - Contains frequently-used words
+	 *  ENTITIES - Contains terms pertaining to the system's major
+	 *             entities, eg: press, monograph
+	 *  INTERFACE - Contains phrases organized by the section of the
+	 *              user interface they appear in.
+	 *  LOG - Contains phrases related to log entries
+	 *  MISC - Entries that don't belong elsewhere.
+	 *  DEFAULT - Default settings for configuration items.
+	-->
+
+	<!-- review froms start -->
+
+	<!-- common -->
+	<message key="common.copy">Copy</message>
+	<message key="common.preview">Preview</message>
+	<message key="common.activate">Activate</message>
+	<message key="common.deactivate">Deactivate</message>
+
+
+
+	<!--
+	 *
+	 * COMMON - This section contains the most frequently-used words
+	 *
+	-->
+
+	<!-- Common Messages -->
+	<message key="common.openMonographPress">Open Monograph Press</message>
+	<message key="common.confirmComplete">Are you sure you wish to mark this task as completed? You may not be able to make changes afterwards.</message>
+	<message key="common.payment">Payment</message>
+	<message key="common.payments">Payments</message>
+	<message key="common.pageHeader.altText">Page Header</message>
+	<message key="common.homePageHeader.altText">Homepage Header</message>
+	<message key="common.pressHomepageImage.altText">Press Homepage Image</message>
+
+
+	<!-- Navigation -->
+	<message key="navigation.pressHelp">Press Help</message>
+	<message key="navigation.archives">Published Works</message>
+	<message key="navigation.current">Upcoming</message>
+	<message key="navigation.otherPresses">Other Presses</message>
+	<message key="navigation.browseByIssue">By Issue</message>
+	<message key="navigation.browseByAuthor">By Author</message>
+	<message key="navigation.infoForAuthors">For Authors</message>
+	<message key="navigation.infoForLibrarians">For Librarians</message>
+	<message key="navigation.competingInterestGuidelines">Competing Interest Guidelines</message>
+	<message key="navigation.infoForAuthors.long">Information For Authors</message>
+	<message key="navigation.infoForLibrarians.long">Information For Librarians</message>
+	
+	<!--
+	 *
+	 * ENTITIES - This section contains terms pertaining to the system's
+	 *            major entities, e.g. Monograph, Press
+	 *
+	-->
+
+	<!-- Common Press Terms -->
+	<message key="press.presses">Presses</message>
+	<message key="press.path">Path</message>
+	<message key="press.press">Press</message>
+
+	<!-- User -->
+	<message key="user.showAllPresses">Show My Presses</message>
+	<message key="user.registerForOtherPresses">Register for Other Presses</message>
+	<message key="user.myPresses">My Presses</message>
+	<message key="user.noRoles.choosePress">Your account is not currently associated with any presses. Please choose a press:</message>
+	<message key="user.noRoles.noRolesForPress">Your account does not currently have any roles for this press. Please choose from the actions below:</message>
+	<message key="user.noRoles.submitArticle">Submit a Proposal</message>
+	<message key="user.noRoles.submitArticleRegClosed">Submit an Article: Author registration is currently disabled.</message>
+	<message key="user.noRoles.regReviewer">Register as a Reviewer</message>
+	<message key="user.noRoles.regReviewerClosed">Register as a Reviewer: Reviewer registration is currently disabled.</message>
+
+	<!-- Roles -->
+	<message key="user.role.manager">Press Manager</message>
+	<message key="user.role.editor">Editor</message>
+	<message key="user.role.sectionEditor">Section Editor</message>
+	<message key="user.role.layoutEditor">Layout Editor</message>
+	<message key="user.role.copyeditor">Copyeditor</message>
+	<message key="user.role.proofreader">Proofreader</message>
+	<message key="user.role.author">Author</message>
+	<message key="user.role.subscriptionManager">Subscription Manager</message>
+	<message key="user.role.managers">Press Managers</message>
+	<message key="user.role.editors">Editors</message>
+	<message key="user.role.sectionEditors">Section Editors</message>
+	<message key="user.role.layoutEditors">Layout Editors</message>
+	<message key="user.role.copyeditors">Copyeditors</message>
+	<message key="user.role.proofreaders">Proofreaders</message>
+	<message key="user.role.authors">Authors</message>
+	<message key="user.role.subscriptionManagers">Subscription Managers</message>
+	
+
+
+	<!--
+	 *
+	 * INTERFACE - Contains phrases organized by the section of the
+	 *             user interface they appear in.
+	 *
+	-->
+
+	<!-- Reader article view -->
+	<message key="reader.subscribersOnly">Subscribers Only</message>
+	<message key="reader.subscriptionRequiredLoginText">Subscription required to access item. To verify subscription, log in to press.</message>  
+	<message key="reader.openAccess">Open Access</message>
+	<message key="reader.subscriptionAccess">Subscription Access</message>
+	<message key="reader.subscriptionOrFeeAccess">Subscription or Fee Access</message>
+
+	<!-- Reader Comments -->
+	<message key="comments.commentsOnArticle">Comments on this article</message>
+	<message key="comments.authenticated"><![CDATA[by <a href="{$publicProfileUrl}" target="_parent">{$userName}</a>]]></message>
+
+	<!-- Site Administration -->
+	<message key="admin.hostedPresses">Hosted Presses</message>
+	
+	<message key="admin.settings.pressRedirect">Press redirect</message>
+	<message key="admin.settings.pressRedirectInstructions">Requests to the main site will be redirected to this press. This may be useful if the site is hosting only a single press, for example.</message>
+	<message key="admin.settings.noPressRedirect">Do not redirect</message>
+	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[To have the contents of all presses hosted on this site indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your site's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.
+<br /><br />
+Note that the OAI interface can be disabled for this site by editing the OJS system configuration. Future versions of OJS will allow the OAI interface to be enabled or disabled for individual presses within the site.]]></message>
+
+	
+	
+	<!-- Languages -->
+	<message key="admin.languages.primaryLocaleInstructions">This will be the default language for the site and any hosted presses.</message>
+	<message key="admin.languages.supportedLocalesInstructions">Select all locales to support on the site. The selected locales will be available for use by all presses hosted on the site, and also appear in a language select menu to appear on each site page (which can be overridden on press-specific pages). If multiple locales are not selected, the language toggle menu will not appear and extended language settings will not be available to presses.</message>
+	<message key="admin.languages.confirmUninstall">Are you sure you want to uninstall this locale? This may affect any hosted presses currently using the locale.</message>
+	<message key="admin.languages.installNewLocalesInstructions">Select any additional locales to install support for in this system. Locales must be installed before they can be used by hosted presses. See the OMP documentation for information on adding support for new languages.</message>
+	<message key="admin.languages.downloadLocales">Download Locales</message>
+	<message key="admin.languages.downloadFailed">The locale download failed. The error message(s) below describe the failure.</message>
+	<message key="admin.languages.localeInstalled">The "{$locale}" locale has been installed. </message>
+	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>Downloading language packs from the Public Knowledge Project web server is not currently available because:</p>
+	<ul>
+		<li>Your server does not have or allow execution of the GNU "tar" utility</li>
+		<li>OJS is unable to modify the locale registry file, typically "registry/locales.xml".</li>
+	</ul>
+<p>Language packs can be manually downloaded from the <a href="http://pkp.sfu.ca">PKP web site</a>.</p>]]></message>
+	<message key="admin.languages.download">Download Locale</message>
+	<message key="admin.languages.download.cannotOpen">Cannot open language descriptor from PKP web site.</message>
+	<message key="admin.languages.download.cannotModifyRegistry">Cannot add the new locale to the locale registry file, typically "registry/locales.xml".</message>
+
+	<message key="admin.auth.ojs">OJS User Database</message>
+	<message key="admin.auth.enableSyncProfiles">Enable user profile synchronization (if supported by this authentication plug-in). User profile information will be automatically updated from the remote source when a user logs in, and profile changes (including password changes) made within OJS will be automatically updated on the remote source. If this option is not enabled OJS profile information will be kept separate from remote source profile information.</message>
+	<message key="admin.auth.enableSyncPasswords">Enable user password modification (if supported by this authentication plug-in). Enabling this option allows users to modify their password from within OJS and to use the OJS "lost password" feature to reset a forgotten password. These functions will be unavailable to users with this authentication source if this option is not enabled.</message>
+	<message key="admin.auth.enableCreateUsers">Enable user creation (if supported by this authentication plug-in). Users created within OJS with this authentication source will be automatically added to the remote authentication source if they do not already exist. Additionally, if this source is the default authentication source, OJS accounts created through user registration will also be added to the remote authentication source.</message>
+	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Specifying a default authentication source other than OJS has the following effects:</p>
+<ul>
+	<li>If a user attempts to register a new account with this site with a username that exists on the authentication source (but not in the OJS database), the registration attempt is only allowed if the supplied password is valid for that user account.</li>
+</ul>]]></message>
+	
+	<!-- System Information -->
+	<message key="admin.systemVersion">OJS Version</message>
+	<message key="admin.systemConfiguration">OJS Configuration</message>
+	<message key="admin.systemConfigurationDescription"><![CDATA[OJS configuration settings from <tt>config.inc.php</tt>.]]></message>
+	<message key="admin.editSystemConfigInstructions"><![CDATA[Use this form to modify your system configuration (the <tt>config.inc.php</tt> file). Click Save to save your new configuration, or "Display" to simply display the updated configuration file and not modify your existing configuration.
+<br /><br />
+<span class="formError">Warning: Modifying these settings can potentially leave your site in an inaccessible state (requiring your configuration file to be manually fixed). It is strongly recommended that you do not make any changes unless you know exactly what you are doing.</span>]]></message>
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTE!</div>
+<p>The system could not automatically overwrite the configuration file. To apply your configuration changes you must open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
+	
+	<message key="admin.presses.pressSettings">Press Settings</message>
+	<message key="admin.presses.noneCreated">No presses have been created.</message>
+	<message key="admin.presses.confirmDelete">Are you sure you want to permanently delete this press and all of its contents?</message>
+	<message key="admin.presses.create">Create Press</message>
+	<message key="admin.presses.createInstructions">You will automatically be enrolled as the manager of this press. After creating a new press, enter it as a manager to continue with its setup and user enrollment.</message>
+	<message key="admin.presses.urlWillBe">The press' URL will be {$sampleUrl}</message>
+	<message key="admin.presses.form.titleRequired">A title is required.</message>
+	<message key="admin.presses.form.pathRequired">A path is required.</message>
+	<message key="admin.presses.form.pathAlphaNumeric">The path can contain only alphanumeric characters, underscores, and hyphens, and must begin and end with an alphanumeric character.</message>
+	<message key="admin.presses.form.pathExists">The selected path is already in use by another press.</message>
+	<message key="admin.presses.enablePressInstructions">Enable this press to appear publicly on the site</message>
+	<message key="admin.presses.pressDescription">Press description</message>
+
+	<!-- Site Administrator Merge Users -->	
+	<message key="admin.mergeUsers">Merge Users</message>
+	<message key="admin.mergeUsers.mergeUser">Merge User</message>
+	<message key="admin.mergeUsers.into.description">Select a user to whom to attribute the previous user's authorships, editing assignments, etc.</message>
+	<message key="admin.mergeUsers.from.description">Select a user to merge into another user account (e.g., when someone has two user accounts). The account selected first will be deleted and its submissions, assignments, etc. will be attributed to the second account.</message>
+	<message key="admin.mergeUsers.allUsers">All Enrolled Users</message>
+	<message key="admin.mergeUsers.confirm">Are you sure you wish to merge the account with the username "{$oldUsername}" into the account with the username "{$newUsername}"? The account with the username "{$oldUsername}" will not exist afterwards. This action is not reversible.</message>
+	<message key="admin.mergerUsers.noneEnrolled">No enrolled users.</message>
+
+	<!-- General plugin information -->
+	<message key="plugins.categories.auth.description">Authorization Plugins allow Open Monograph Press to delegate user authentication tasks to other systems, such as LDAP servers.</message>
+
+
+	<message key="plugins.categories.citationFormats.description">Citation format plugins provide users with various formats in which to access article citations.</message>
+
+
+	<message key="plugins.categories.generic.description">Generic plugins are used to extend Open Monograph Press in a variety of ways that are not supported by the other plugin categories.</message>
+
+	<message key="plugins.categories.implicitAuth">Implicit Authentication Plugins</message>
+	<message key="plugins.categories.implicitAuth.description">Implicit Authentication plugins implement support for authenticating users based on http headers.</message>
+
+
+	<message key="plugins.categories.oaiMetadataFormats">OAI Metadata Format Plugins</message>
+	<message key="plugins.categories.oaiMetadataFormats.description">These format plugins express metadata in OAI communications.</message>
+
+
+	<!-- Setup Step 2 -->
+
+
+	<message key="manager.setup.reviewProcessEmailDescription">Editors send
+	Reviewers the request to review with the submission attached to the email. Reviewers email editors their assent (or regrets), as well as the review and recommendation. Editors enter Reviewers' assent (or regrets), as well as the review and recommendation on the submission's Review page, to record the review process.</message>
+
+
+	<message key="manager.setup.lockssDescription"><![CDATA[Open Monograph Press supports the <a href="http://lockss.stanford.edu/" target="_blank">LOCKSS</a> (Lots of Copies Keep Stuff Safe) system to ensure a secure and permanent archive for the press. LOCKSS is open source software developed at Stanford University Library that enables libraries to preserve selected web presses by regularly polling registered press websites for newly published content and archiving it. Each archive is continually validated against other library caches, and if content is found to be corrupted or lost, the other caches or the press is used to restore it.
+<br /><br />
+Setting up LOCKSS support for Open Monograph Press does not need to take place until after publishing is fully underway, at which point follow these two steps:]]></message>
+	
+	<!-- Setup Step 3 -->
+	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Proposed Creative Commons Copyright Notices</h3>
+<h4>1. Proposed Policy for Presses That Offer Open Access</h4>
+Authors who publish with this press agree to the following terms:
+<ol type="a">
+	<li>Authors retain copyright and grant the press right of first publication with the work simultaneously licensed under a <a target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
+	<li>Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the press' published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
+	<li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_new" href="http://opcit.eprints.org/oacitation-biblio.html">The Effect of Open Access</a>).</li>
+</ol>
+
+<h4>Proposed Policy for Presses That Offer Delayed Open Access</h4>
+Authors who publish with this press agree to the following terms:
+<ol type="a">
+	<li>Authors retain copyright and grant the press right of first publication, with the work [SPECIFY PERIOD OF TIME] after publication simultaneously licensed under a <a target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
+	 <li>Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the press' published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
+	 <li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_new" href="http://opcit.eprints.org/oacitation-biblio.html"> The Effect of Open Access</a>).</li>
+</ol>]]></message>
+	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[Press will use a subject classification system available on the web.<br />
+Title of classification system]]></message>
+	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press' URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+<br /><br />
+Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
+
+	<!-- Setup Step 4 -->
+	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Steps: Submission Queue &gt; Submission Review &gt; Submission Editing &gt; Table of Contents.<br /><br />
+Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Section Editors, go to Editors in Press Management.)]]></message>
+	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>To enable readers to locate online versions of the work cited by an author, the following options are available.</p>
+
+<ol>
+	<li><strong>Add a Reading Tool</strong><p>The Press Manager can add "Find References" to the Reading Tools that accompany published items, which enables readers to paste a reference's title and then search pre-selected scholarly databases for the cited work.</p></li>
+	<li><strong>Embed Links in the References</strong><p>The Layout Editor can add a link to references that can be found online by using the following instructions (which can be edited).</p></li>
+</ol>]]></message>
+
+
+	<!-- People Management -->
+	<message key="manager.people.confirmDisable">Disable this user? This will prevent the user from logging into the system.
+
+You may optionally provide the user with a reason for disabling their account.</message>
+	<message key="manager.people.noAdministrativeRights"><![CDATA[Sorry, you do not have administrative rights over this user. This may be because:
+		<ul>
+			<li>The user is a site administrator</li>
+			<li>The user is active in presses you do not manage</li>
+		</ul>
+	This task must be performed by a site administrator.
+	]]></message>
+
+
+	<!-- Editor -->
+	<message key="editor.submissionReview.notes"><![CDATA[<ol>
+	<li>Highlighted items indicate action is required by editor.</li>
+	<li>"Due" is filled in when reviewer accepts request to review; it displays number of weeks to review's due date or (-) weeks that it is overdue.</li>
+</ol>]]></message>
+
+
+	
+	<!-- Used by editor in submission review / editing -->
+	<message key="editor.article.selectReviewerNotes"><![CDATA[Name links to reviewer's profile.<br/>
+Ratings is out of 5 (Excellent).<br/>
+Weeks refers to average period of time to complete a review.<br/>
+Latest is date of most recently accepted review.<br/>
+Active is how many reviews are currently being considered or underway.]]></message>
+
+
+
+
+
+	
+	
+	<!-- Article Submission Step 3 -->
+	<message key="author.submit.uploadInstructions"><![CDATA[
+<p>To upload a manuscript to this press, complete the following steps.</p>
+<ol>
+<li>On this page, click Browse (or Choose File) which opens a Choose File window for locating the file on the hard drive of your computer.</li>
+<li>Locate the file you wish to submit and highlight it.</li>
+<li>Click Open on the Choose File window, which places the name of the file on this page.</li>
+<li>Click Upload on this page, which uploads the file from the computer to the press' web site and renames it following the press' conventions.</li>
+<li>Once the submission is uploaded, click Save and Continue at the bottom of this page.</li>
+</ol>]]></message>
+	
+	<!-- Login -->
+	<message key="user.login.registerNewAccount">Not a user? Register with this site</message>
+	<message key="user.login.resetPasswordInstructions"><![CDATA[For security reasons, this system emails a reset password to registered users, rather than recalling the 
+current password.<br /><br />Enter your email address below to reset your password. A confirmation will be sent to this email address.]]></message>
+	
+	<!-- Profile -->
+	<message key="user.profile.form.profileImageInvalid">Invalid profile image format or image too big. Accepted formats are .gif, .jpg, or .png, and the image must not exceed 150x150 pixels.</message>
+	
+	<!-- Registration -->
+	<message key="user.register.repeatPassword">Repeat password</message>
+	<message key="user.register.selectPress">Select a press to register with</message>
+	<message key="user.register.noPresses">There are no presses you may register with on this site.</message>
+	<message key="user.register.privacyStatement">Privacy Statement</message>
+	<message key="user.register.alreadyRegisteredOtherPress"><![CDATA[<a href="{$registerUrl}">Click here</a> if you are already registered with this or another press on this site.]]></message>
+	<message key="user.register.notAlreadyRegisteredOtherPress"><![CDATA[<a href="{$registerUrl}">Click here</a> if you are <strong>not</strong> already registered with this or another press on this site.]]></message>
+	<message key="user.register.loginToRegister">Enter your existing username and password to register with this press.</message>
+	<message key="user.register.registrationDisabled">This press is currently not accepting user registrations.</message>
+	<message key="user.register.form.passwordLengthTooShort">The password you entered is not long enough.</message>
+	<message key="user.register.readerDescription">Notified by email on publication of an issue of the press.</message>
+	<message key="user.register.openAccessNotificationDescription">Notified by email when an issue of the press is made open access.</message>
+	<message key="user.register.authorDescription">Able to submit items to the press.</message>
+	<message key="user.register.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the press.</message>
+	<message key="user.register.reviewerDescription">Willing to conduct peer review of submissions to the press. Identify reviewing interests (substantive areas and research methods).</message>
+
+
+
+	<!-- Search -->
+	<message key="search.browseAuthorIndex">Browse Author Index</message>
+	<message key="search.searchFor">Search articles for</message>
+	<message key="search.author">Authors</message>
+	<message key="search.withinPress">Within</message>
+	<message key="search.allPresses">All Presses</message>
+	<message key="search.authorIndex">Browse Author Index</message>
+	<message key="search.authorDetails">Author Details</message>
+	<message key="search.syntaxInstructions"><![CDATA[Search tips: <ul>
+<li>Search terms are case-insensitive</li>
+<li>Common words are ignored</li>
+<li>By default only articles containing <em>all</em> terms in the query are returned (i.e., <em>AND</em> is implied)</li>
+<li>Combine multiple words with <em>OR</em> to find articles containing either term; e.g., <em>education OR research</em></li>
+<li>Use parentheses to create more complex queries; e.g., <em>archive ((press OR conference) NOT theses)</em></li>
+<li>Search for an exact phrase by putting it in quotes; e.g., <em>"open access publishing"</em></li>
+<li>Exclude a word by prefixing it with <strong>-</strong> or <em>NOT</em>; e.g. <em>online -politics</em> or <em>online NOT politics</em></li>
+<li>Use <strong>*</strong> in a term as a wildcard to match any sequence of characters; e.g., <em>soci* morality</em> would match documents containing "sociological" or "societal"</li>
+</ul>]]></message>
+
+	<!-- Interstitial page for PDFs -->
+	<message key="article.pdf.title">Portable Document Format (PDF)</message>
+	<message key="article.pdf.note"><![CDATA[The PDF file you selected should load here, if your Web browser has a PDF reader plug-in installed (for example, a recent version of <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>). Alternatively, the PDF file will download to your computer, where it can also be opened using a PDF reader. If you would like more information about how to print, save, and work with PDFs, Highwire Press provides a helpful <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">Frequently Asked Questions about PDFs</a>.<br /><br />If the file does not download automatically, <a href="{$url}">click here</a>.]]></message>
+	
+	<!-- Interstitial page for non-PDF non-HTML galleys -->
+	<message key="article.nonpdf.title">Article Download</message>
+	<message key="article.nonpdf.note"><![CDATA[The file you selected should begin downloading automatically. If it does not, click the link below. Note that this file may require a special viewer or plugin to view.<br /><br />If the file does not download automatically, <a href="{$url}">click here</a>.]]></message>
+	
+	<!-- Site index -->
+	<message key="site.pressesHosted">Presses hosted on this site</message>
+	<message key="site.pressView">View Press Website</message>
+
+	<!-- Current index -->
+	<message key="current.current">Current</message>
+	<message key="current.noCurrentIssue">No Current Issue</message>
+	<message key="current.noCurrentIssueDesc">This press has not published any issues.</message>
+
+	<!-- Archive index -->
+	<message key="archive.archives">Archives</message>
+	<message key="archive.browse">Browse through the older issues</message>
+	<message key="archive.issueUnavailable">Issue Unavailable</message>
+	
+	<!-- About The Press -->
+	<message key="about.statistics">Statistics</message>
+	<message key="about.pressContact">Press Contact</message>
+	<message key="about.aboutThePress">About the Press</message>
+	<message key="about.editorialTeam">Editorial Team</message>
+	<message key="about.editorialTeam.biography">Biography</message>
+	<message key="about.editorialPolicies">Editorial Policies</message>
+	<message key="about.focusAndScope">Focus and Scope</message>
+	<message key="about.sectionPolicies">Section Policies</message>
+	<message key="about.submissions">Submissions</message>
+	<message key="about.sponsors">Sponsors</message>
+	<message key="about.contributors">Sources of Support</message>
+	<message key="about.onlineSubmissions">Online Submissions</message>
+	<message key="about.onlineSubmissions.haveAccount">Already have a Username/Password for {$pressTitle}?</message>
+	<message key="about.onlineSubmissions.login">Go to Login</message>
+	<message key="about.onlineSubmissions.needAccount">Need a Username/Password?</message>
+	<message key="about.onlineSubmissions.registration">Go to Registration</message>
+	<message key="about.onlineSubmissions.registrationRequired">Registration and login are required to submit items online and to check the status of current submissions.</message>
+	<message key="about.authorGuidelines">Author Guidelines</message>
+	<message key="about.submissionPreparationChecklist">Submission Preparation Checklist</message>
+	<message key="about.submissionPreparationChecklist.description">As part of the submission process, authors are required to check off their submission's compliance with all of the following items, and submissions may be returned to authors that do not adhere to these guidelines.</message>
+	<message key="about.copyrightNotice">Copyright Notice</message>
+	<message key="about.privacyStatement">Privacy Statement</message>
+	<message key="about.authorFees">Author Fees</message>
+	<message key="about.authorFeesMessage">This press charges the following author fees.</message>
+	<message key="about.peerReviewProcess">Peer Review Process</message>
+	<message key="about.publicationFrequency">Publication Frequency</message>
+	<message key="about.openAccessPolicy">Open Access Policy</message>
+	<message key="about.delayedOpenAccess">Delayed Open Access</message>
+	<message key="about.delayedOpenAccessDescription1">The contents of this press will be available in an open access format</message>
+	<message key="about.delayedOpenAccessDescription2">month(s) after an issue is published.</message>
+	<message key="about.authorSelfArchive">Author Self-Archiving</message>
+	<message key="about.archiving">Archiving</message>
+	<message key="about.subscriptions">Subscriptions</message>
+	<message key="about.subscriptionsContact">Subscriptions Contact</message>
+	<message key="about.availableSubscriptionTypes">Subscription Types</message>
+	<message key="about.memberships">Memberships</message>
+	<message key="about.pressSponsorship">Press Sponsorship</message>
+	<message key="about.aboutThisPublishingSystem">About this Publishing System</message>
+	<message key="about.aboutThisPublishingSystem.altText">OMP Editorial and Publishing Process</message>
+	<message key="about.aboutOMPPress"><![CDATA[This press uses Open Monograph Press {$ompVersion}, which is open source press management and publishing software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
+	<message key="about.aboutOMPSite"><![CDATA[This site uses Open Monograph Press {$ompVersion}, which is open source press management and publishing software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
+	
+	<!-- Announcement -->
+
+	<!-- Help -->
+	<message key="help.ompHelp">Open Monograph Press Help</message>
+	<message key="help.ompHelpAbbrev">OMP Help</message>	
+	<message key="help.searchReturnResults">Return to Search Results</message>
+
+
+<!-- Installer -->
+	<message key="installer.ompInstallation">OMP Installation</message>
+	<message key="installer.ompUpgrade">OMP Upgrade</message>
+	<message key="installer.installationInstructions"><![CDATA[<h4>OMP Version {$version}</h4>
+
+<p>Thank you for downloading the Public Knowledge Project's <strong>Open Monograph Press</strong>. Before proceeding, please read the <a href="{$baseUrl}/docs/README">README</a> file included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. If you have bug reports or technical support inquiries about Open Monograph Press, see the <a href="http://pkp.sfu.ca/support/forum">support forum</a> or visit PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>.</p>
+
+<h4>Upgrade</h4>
+
+<p>If you are upgrading an existing installation of OJS 2.x, <a href="{$upgradeUrl}">click here</a> to proceed.</p>
+
+<h4>Recommended system requirements</h4>
+
+<ul>
+	<li><a href="http://www.php.net/" target="_blank">PHP</a> >= {$phpRequiredVersion} (including PHP 5.x); you are currently using PHP {$phpVersion}{$wrongPhpText}</li>
+	<li><a href="http://www.mysql.com/" target="_blank">MySQL</a> >= 3.23.23 (including MySQL 4.x) or <a href="http://www.postgresql.org/" target="_blank">PostgreSQL</a> >= 7.1 (including PostgreSQL 8.x)</li>
+	<li><a href="http://httpd.apache.org/" target="_blank">Apache</a> >= 1.3.2x or >= 2.0.4x or Microsoft IIS 6</li>
+	<li>Operating system: Any OS that supports the above software, including <a href="http://www.linux.org/" target="_blank">Linux</a>, <a href="http://www.bsd.org/" target="_blank">BSD</a>, <a href="http://www.sun.com/" target="_blank">Solaris</a>, <a href="http://www.apple.com/" target="_blank">Mac OS X</a>, <a href="http://www.microsoft.com/">Windows</a></li>
+</ul>
+
+<p>As PKP does not have the resources to test every possible combination of software versions and platforms, no guarantee of correct operation or support is implied.</p>
+
+<p>Changes to these settings can be made after installation by editing the file <tt>config.inc.php</tt> in the base OJS directory, or using the site administration web interface.</p>
+
+<h4>Supported database systems</h4>
+
+<p>OJS has currently only been tested on MySQL and PostgreSQL, although other database management systems supported by <a href="http://adodb.sourceforge.net/" target="_blank">ADOdb</a> may work (in full or partially). Compatibility reports and/or code patches for alternative DBMSs can be sent to the OJS team.</p>
+
+<h4>Pre-Installation Steps</h4>
+
+<p>1. The following files and directories (and their contents) must be made writable:</p>
+<ul>
+	<li><tt>config.inc.php</tt> is writable (optional): {$writable_config}</li>
+	<li><tt>public/</tt> is writable: {$writable_public}</li>
+	<li><tt>cache/</tt> is writable: {$writable_cache}</li>
+	<li><tt>cache/t_cache/</tt> is writable: {$writable_templates_cache}</li>
+	<li><tt>cache/t_compile/</tt> is writable: {$writable_templates_compile}</li>
+	<li><tt>cache/_db</tt> is writable: {$writable_db_cache}</li>
+</ul>
+
+<p>2. A directory to store uploaded files must be created and made writable (see "File Settings" below).</p>
+
+<h4>Manual installation</h4>
+
+<p>Select <strong>Manual Install</strong> to display the SQL statements necessary to create the OJS database schema and initial data so that database installation can be performed manually. This option is useful when debugging installation problems, particularly on unsupported platforms. Note that this installation method will not attempt to create the database or any tables, although the configuration file will still be written with the supplied database settings.</p>]]></message>
+	<message key="installer.upgradeInstructions"><![CDATA[<h4>OJS Version {$version}</h4>
+	
+<p>Thank you for downloading the Public Knowledge Project's <strong>Open Monograph Press</strong>. Before proceeding, please read the <a href="{$baseUrl}/docs/README">README</a> and <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> files included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. If you have bug reports or technical support inquiries about Open Monograph Press, see the <a href="http://pkp.sfu.ca/support/forum">support forum</a> or visit PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>.</p>
+<p>It is <strong>strongly recommended</strong> that you back up your database, files directory, and OJS installation directory before proceeding.</p>
+<p>If you are running in <a href="http://www.php.net/features.safe-mode" target="_blank">PHP Safe Mode</a>, please ensure that the max_execution_time directive in your php.ini configuration file is set to a high limit. If this or any other time limit (e.g. Apache's "Timeout" directive) is reached and the upgrade process is interrupted, manual intervention will be required.</p>]]></message>
+	<message key="installer.localeSettingsInstructions"><![CDATA[For complete Unicode (UTF-8) support, select UTF-8 for all character set settings. Note that this support currently requires a MySQL >= 4.1.1 or PostgreSQL >= 7.1 database server. Please also note that full Unicode support requires PHP >= 4.3.0 compiled with support for the <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> library (enabled by default in most recent PHP installations). You may experience problems using extended character sets if your server does not meet these requirements.
+<br /><br />
+Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]></message>
+	<message key="installer.localeInstructions">The primary language to use for this system. Please consult the OJS documentation if you are interested in support for languages not listed here.</message>
+	<message key="installer.additionalLocalesInstructions">Select any additional languages to support in this system. These languages will be available for use by presses hosted on the site. Additional languages can also be installed at any time from the site administration interface.</message>
+	<message key="installer.filesDirInstructions"><![CDATA[Enter full pathname to an existing directory where uploaded files are to be kept. This directory should not be directly web-accessible. <strong>Please ensure that this directory exists and is writable prior to installation.</strong> Windows path names should use forward slashes, e.g. "C:/mypress/files".]]></message>
+	<message key="installer.databaseSettingsInstructions">OJS requires access to a SQL database to store its data. See the system requirements above for a list of supported databases. In the fields below, provide the settings to be used to connect to the database.</message>
+	<message key="installer.installOJS">Install Open Monograph Press</message>
+	<message key="installer.upgradeOJS">Upgrade Open Monograph Press</message>
+	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Warning:</strong> If installation failed part way through database installation you may need to drop your OJS database or database tables before attempting to reinstall the database.]]></message>
+	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANT!</h4>
+<p>The installer could not automatically overwrite the configuration file. Before attempting to use the system, please open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
+	<message key="installer.manualSQLInstructions"><![CDATA[<h4>Manual installation</h4>
+<p>The SQL statements to create the OJS database schema and initial data are displayed below. Note that the system will be unusable until these statements have been executed manually. You will also have to manually configure the <tt>config.inc.php</tt> configuration file.</p>]]></message>
+	<message key="installer.installationComplete"><![CDATA[<p>Installation of OJS has completed successfully.</p>
+<p>To begin using the system, <a href="{$loginUrl}">login</a> with the username and password entered on the previous page.</p>
+<p>If you wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/ojs/register" target="_new">http://pkp.sfu.ca/ojs/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
+	<message key="installer.upgradeComplete"><![CDATA[<p>Upgrade of OJS to version {$version} has completed successfully.</p>
+<p>Don't forget to set the "installed" setting in your config.inc.php configuration file back to <em>On</em>.</p>
+<p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/ojs/register" target="_new">http://pkp.sfu.ca/ojs/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
+
+
+	<!-- Article Logs -->
+	<message key="log.author.submitted">{$authorName} has entered a new submission, ID {$submissionId}.</message>
+	<message key="log.author.documentRevised">{$authorName} has revised article {$articleId}. The new file ID is {$fileId}.</message>
+	<message key="log.review.reviewerAssigned">{$reviewerName} has been assigned to review submission {$articleId} for review round {$round}.</message>
+	<message key="log.review.reviewerUnassigned">{$reviewerName} has been unassigned from reviewing submission {$articleId} for review round {$round}.</message>
+	<message key="log.review.reviewInitiated">The round {$round} review by {$reviewerName} for submission {$articleId} has been initiated.</message>
+	<message key="log.review.reviewReinitiated">The round {$round} review by {$reviewerName} for submission {$articleId} has been reinitiated.</message>
+	<message key="log.review.reviewCancelled">The round {$round} review by {$reviewerName} for submission {$articleId} has been cancelled.</message>
+	<message key="log.review.reviewCleared">The round {$round} review by {$reviewerName} for submission {$articleId} has been cleared.</message>
+	<message key="log.review.reviewerRated">{$reviewerName} has been rated for the round {$round} review of submission {$articleId}.</message>
+	<message key="log.review.reviewDueDateSet">The due date for the round {$round} review of submission {$articleId} by {$reviewerName} has been set to {$dueDate}.</message>
+	<message key="log.review.reviewRecommendationSet">The recommendation for the round {$round} review of submission {$articleId} by {$reviewerName} has been set.</message>
+	<message key="log.review.reviewRecommendationSetByProxy">The recommendation for the round {$round} review of submission {$articleId} has been set by the editor, {$editorName}, on behalf of the reviewer, {$reviewerName}.</message>
+	<message key="log.review.resubmit">The submission {$articleId} has been resubmitted for review.</message>
+	<message key="log.review.reviewDeclined">{$reviewerName} has declined the round {$round} review for submission {$articleId}.</message>
+	<message key="log.review.reviewAccepted">{$reviewerName} has accepted the round {$round} review for submission {$articleId}.</message>
+	<message key="log.review.reviewDeclinedByProxy">{$userName} has declined the round {$round} review for submission {$articleId} on behalf of {$reviewerName}.</message>
+	<message key="log.review.reviewAcceptedByProxy">{$userName} has accepted the round {$round} review for submission {$articleId} on behalf of {$reviewerName}.</message>
+	<message key="log.review.reviewFileByProxy">The Editor, {$userName}, has uploaded a review file for round {$round} of submission {$articleId} on behalf of the reviewer, {$reviewerName}.</message>
+	<message key="log.review.reviewerFile">A reviewer file has been uploaded.</message>
+	<message key="log.editor.decision">An editor decision ({$decision}) for article {$articleId} was recorded by {$editorName}.</message>
+
+
+	<message key="log.copyedit.initiate">Copyediting on submission {$articleId} has been commenced by {$copyeditorName}.</message>
+	<message key="log.copyedit.copyeditFileSet">The default copyedit file has been chosen.</message>
+	<message key="log.copyedit.initialEditComplete">{$copyeditorName} has completed the initial copy edit of submission {$articleId}.</message>
+	<message key="log.copyedit.finalEditComplete">{$copyeditorName} has completed the final copy edit of submission {$articleId}.</message>
+	<message key="log.copyedit.copyeditorAssigned">{$copyeditorName} has been assigned to copyedit submission {$articleId}.</message>
+	<message key="log.copyedit.copyeditorFile">A copyeditor version of the submission file has been uploaded.</message>
+	<message key="log.copyedit.authorFile">A version of the submission file copyedited by the author has been uploaded.</message>
+
+	<message key="log.layout.layoutEditorAssigned">{$editorName} has been assigned as layout editor for submission {$articleId}.</message>
+	<message key="log.layout.layoutEditorUnassigned">{$editorName} has been unassigned as layout editor for submission {$articleId}.</message>
+	<message key="log.layout.layoutEditComplete">{$editorName} has completed layout editing for submission {$articleId}.</message>
+
+	<message key="log.editor.metadataModified">The metadata for this article was modified by {$editorName}.</message>
+	<message key="log.editor.editorFile">An editor version of the submission file has been uploaded.</message>
+	<message key="log.editor.archived">The submission {$articleId} has been archived.</message>
+	<message key="log.editor.restored">The submission {$articleId} has been restored to the queue.</message>
+	<message key="log.editor.editorAssigned">{$editorName} has been assigned as editor to submission {$articleId}.</message>
+	<message key="log.editor.submissionExpedited">{$editorName} has expedited the editing process for article {$articleId}.</message>
+
+	<message key="log.proofread.assign">{$assignerName} has assigned {$proofreaderName} to proofread submission {$articleId}.</message>
+	<message key="log.proofread.complete">{$proofreaderName} has submitted {$articleId} for scheduling.</message>
+
+	<message key="log.imported">{$userName} has imported article {$articleId}.</message>
+
+
+	<!-- RT Versions -->
+
+	<!-- RT Contexts -->
+
+	<!-- RT Searches -->
+
+	<message key="rt.admin.validateUrls.description"><![CDATA[Possibly invalid URLs for search sites are displayed below.<br/>
+You should manually verify any URLs marked as invalid, as this test is not 100% accurate.<br/>
+Validation may fail on search URLs that require posted form data.]]></message>
+	
+
+	<!--
+	 *
+	 * MISC - Entries that do not belong in the other sections.
+	 *
+	-->
+	<!-- Icons: Default "alt" text -->
+	
+	<!-- Debug messages -->
+	<message key="debug.notes.currencyListLoad">Loaded currency list "{$filename}" from XML</message>
+	<message key="debug.notes.helpMappingLoad">Reloaded XML help mapping file {$filename} in search of {$id}.</message>
+
+	<!--
+	 *
+	 * DEFAULT - Default settings for setup items.
+	 *
+	-->
+	<message key="default.pressSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another press for consideration (or an explanation has been provided in Comments to the Editor).</message>
+	<message key="default.pressSettings.checklist.fileFormat">The submission file is in Microsoft Word, RTF, or WordPerfect document file format.</message>
+	<message key="default.pressSettings.checklist.addressesLinked">Where available, URLs for the references have been provided.</message>
+	<message key="default.pressSettings.checklist.submissionAppearance">The text is single-spaced; uses a 12-point font; employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end.</message>
+	<message key="default.pressSettings.checklist.bibliographicRequirements"><![CDATA[The text adheres to the stylistic and bibliographic requirements outlined in the <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines" target="_new">Author Guidelines</a>, which is found in About the Press.]]></message>
+	<message key="default.pressSettings.checklist.anonymous"><![CDATA[If submitting to a peer-reviewed section of the press, the instructions in <a href="javascript:openHelp('{$indexUrl}/{$pressPath}/help/view/editorial/topic/000044')">Ensuring a Blind Review</a> have been followed.]]></message>
+	<message key="default.pressSettings.privacyStatement">The names and email addresses entered in this press site will be used exclusively for the stated purposes of this press and will not be made available for any other purpose or to any other party.</message>
+	<message key="default.pressSettings.openAccessPolicy">This press provides immediate open access to its content on the principle that making research freely available to the public supports a greater global exchange of knowledge.</message>
+	<message key="default.pressSettings.authorSelfArchivePolicy">This press permits and encourages authors to post items submitted to the press on personal websites or institutional repositories both prior to and after publication, while providing bibliographic details that credit, if applicable, its publication in this press.</message>
+	<message key="default.pressSettings.copyeditInstructions"><![CDATA[The copyediting stage is intended to improve the flow, clarity, grammar, wording, and formatting of the article. It represents the last chance for the author to make any substantial changes to the text, as the next stage is restricted to typos and formatting corrections. 
+
+The file to be copyedited is in Word or .rtf format and therefore can be easily edited as a word processing document. This set of  instructions displayed here proposes two approaches to copyediting. The one is based on Microsoft Word's Track Changes feature and requires that the copyeditor, editor and author have access to this program. A second system, that is software independent, has been borrowed, with permission, from the Harvard Educational Review. The press editor is in a position to modify these instructions, so suggestions can be made to improve the process for this press. 
+
+<h4>Copyediting Systems</h4>
+
+<strong>1. Microsoft Word's Track Changes</strong>
+
+Under Tools in the menu bar, the feature Track Changes enables the copyeditor to make insertions (text appears in color) and deletions (text appears crossed out in color or in the margins as deleted). The copyeditor can post queries to both the author (Author Queries) and to the editor (Editor Queries) by inserting these queries in square brackets. The copyedited version is then uploaded and the editor is notified. The editor then reviews the text and notifies the author. 
+
+The editor and author should leave those changes with which they are satisfied. If further changes are necessary, the editor and author can make changes to the initial insertions or deletions, as well as make new insertions or deletions elsewhere in the text. Authors and editors should respond to each of the queries addressed to them, with responses placed inside the square brackets. 
+
+After the text has been reviewed by editor and author, the copyeditor will make a final pass over the text accepting the changes in preparation for the layout and galley stage. 
+
+
+<strong>2. Harvard Educational Review </strong>
+
+<strong>Instructions for Making Electronic Revisions to the Manuscript</strong>
+
+Please follow the following protocol for making electronic revisions to your manuscript:
+
+<strong>Responding to suggested changes</strong>
+&nbsp; For each of the suggested changes that you accept, unbold the text
+&nbsp; For each of the suggested changes that you do not accept, re-enter the original text and <strong>bold</strong> it
+
+<strong>Making additions and deletions</strong>
+&nbsp; Indicate additions by <strong>bolding</strong> the new text
+&nbsp; Replace deleted sections with: <strong>[deleted text]</strong>
+&nbsp; If you delete a sentence or more, please indicate with a note, e.g., <strong>[deleted 2 sentences]</strong>
+
+<strong>Responding to Queries to the Author (QAs)</strong>
+&nbsp; Keep all QAs intact and bolded within the text. Do not delete them
+&nbsp; To reply to a QA, add a comment after it. Comments should be delimited using:
+<strong>[Comment:</strong>]
+&nbsp; e.g., <strong>[Comment: Expanded discussion of methodology as you suggested]</strong>
+
+<strong>Making comments</strong>
+&nbsp; Use comments to explain organizational changes or major revisions
+&nbsp; e.g., <strong>[Comment: Moved the above paragraph from p. 5 to p. 7]</strong>
+&nbsp; Note: When referring to page numbers, please use the page numbers from the printed copy of the manuscript that was sent to you. This is important since page numbers may change as a document is revised electronically.
+
+<h4>An Illustration of an Electronic Revision</h4>
+
+<strong>The original "manuscript" file</strong>
+
+Before making dramatic departures from the structure and organization of your original manuscript, please check in with the co-chairs of your piece. After you are finished with your revisions, rename the file from AuthorNameQA.doc to AuthorNameQAR.doc (e.g., from LeeQA.doc to LeeQAR.doc). Print out a hardcopy of your manuscript and mail it with a floppy disk containing the completely revised and renamed word processing file.
+
+
+<strong>Manuscript returned to the author with queries and suggestions</strong>
+
+Before making dramatic departures from the structure and organization of <strong>the manuscript that we are returning to you</strong>, please check in with the <strong>editors who are co-chairing</strong> your piece. After you are finished with your revisions, rename the file from AuthorNameQA.doc to AuthorNameQAR.doc (e.g., from LeeQA.doc to LeeQAR.doc). Print out a hardcopy of your manuscript and mail it with a floppy disk containing the completely revised and renamed word processing file. <strong>[QA: In this paragraph, it might help to stress the importance of following carefully the instructions for making electronic revisions. Otherwise the editing process may be slowed considerably]</strong>
+
+<strong>Revised manuscript sent back to HER</strong>
+
+Before making dramatic departures from the structure and organization of the manuscript that we are returning to you, please check in with the editors who are co-chairing your piece. <strong>Please understand that failure to follow the following instructions may significantly delay the publication of your manuscript.</strong>
+
+After you are finished with your revisions, rename the file from AuthorNameQA.doc to AuthorNameQAR.doc (e.g., from LeeQA.doc to LeeQAR.doc). Print out a hardcopy of your manuscript and mail it with a floppy disk containing the <strong>[deleted word]</strong> revised and renamed word processing file. <strong>[QA: In this paragraph, it might help to stress the importance of following carefully the instructions for making electronic revisions. Otherwise the editing process may be slowed considerably] [Comment: I added a sentence in response to your suggestion.]</strong>
+
+<strong>Notes:</strong>
+&bull; Unbolded text indicates acceptance of the suggested changes to the first sentence
+&bull; Sentence added in response to QA. Bold text indicates addition of new text
+&bull; [deleted word] indicates deletion of "completely"
+&bull; Comment contains a reply to the editors' QA]]></message>
+
+	<message key="default.pressSettings.refLinkInstructions"><![CDATA[<h4>To Add Reference Linking to the Layout Process</h4>
+	<p>When turning a submission into HTML or PDF, make sure that all hyperlinks in the submission are active.</p>
+	<h4>A. When the Author Provides a Link with the Reference</h4>
+	<ol>
+	<li>While the submission is still in its word processing format (e.g., Word), add the phrase VIEW ITEM to the end of the reference that has a URL.</li>
+	<li>Turn that phrase into a hyperlink by highlighting it, and using Word's Insert Hyperlink tool and the URL prepared in #2.</li>
+	</ol>
+	<h4>B. Enabling Readers to Search Google Scholar For References</h4>
+	<ol>
+	<li>While the submission is still in its word processing format (e.g., Word), copy the title of the work referenced in the References list (if it appears to be too common a title – e.g., "Peace" – then copy author and title).</li>
+	<li>Paste the reference's title between the %22's, placing a + between each word: http://scholar.google.com/scholar?q=%22PASTE+TITLE+HERE%22&hl=en&lr=&btnG=Search</li>
+	<li>Add the phrase GS SEARCH to the end of each citation in the submission's References list.</li>
+	<li>Turn that phrase into a hyperlink by highlighting it, and using Word's Insert Hyperlink tool and the URL prepared in #2.</li>
+	</ol>
+	<h4>C. Enabling Readers to Search for References with a DOI</h4>
+	<ol>
+	<li>While the submission is still in Word, copy a batch of references into CrossRef Text Query http://www.crossref.org/freeTextQuery/</li>
+	<li>Paste each DOI that the Query provides in the following URL (between = and &): http://www.cmaj.ca/cgi/external_ref?access_num=PASTE DOI#HERE&link_type=DOI</li>
+	<li>Add the phrase CrossRef to the end of each citation in the submission's References list.</li>
+	<li>Turn that phrase into a hyperlink by highlighting the phrase and using Word's Insert Hyperlink tool and the appropriate URL prepared in #2.</li>
+	</ol>]]></message>
+
+	<message key="default.pressSettings.proofingInstructions"><![CDATA[<p>The proofreading stage is intended to catch any errors in the galley's spelling, grammar, and formatting. More substantial changes cannot be made at this stage, unless discussed with the Section Editor. In Layout, click on VIEW PROOF to see the HTML, PDF and other available file formats used in publishing this item.</p>
+<h4>For Spelling and Grammar Errors</h4>
+
+<p>Copy the problem word or groups of words and paste them into the Proofreading Corrections box with "CHANGE-TO" instructions to the editor as follows...</p>
+
+<pre>1. CHANGE...
+then the others
+TO...
+than the others</pre>
+<br />
+<pre>2. CHANGE...
+Malinowsky
+TO...
+Malinowski</pre>
+<br />
+
+<h4>For Formatting Errors</h4>
+
+<p>Describe the location and nature of the problem in the Proofreading Corrections box after typing in the title "FORMATTING" as follows...</p>
+<br />
+<pre>3. FORMATTING
+The numbers in Table 3 are not aligned in the third column.</pre>
+<br />
+<pre>4. FORMATTING
+The paragraph that begins "This last topic..." is not indented.</pre>]]></message>
+	<message key="default.pressSettings.emailSignature"><![CDATA[________________________________________________________________________
+{$pressName}
+{$indexUrl}/{$pressPath}
+]]></message>
+	<message key="default.pressSettings.forReaders"><![CDATA[We encourage readers to sign up for the publishing notification service for this press. Use the <a href="{$indexUrl}/{$pressPath}/user/register">Register</a> link at the top of the homepage for the press. This registration will result in the reader receiving the Table of Contents by email for each new issue of the press. This list also allows the press to claim a certain level of support or readership. See the press' <a href="{$indexUrl}/{$pressPath}/about/submissions#privacyStatement">Privacy Statement</a> which assures readers that their name and email address will not be used for other purposes.]]></message>
+	<message key="default.pressSettings.forAuthors"><![CDATA[Interested in submitting to this press? We recommend that you review the <a href="{$indexUrl}/{$pressPath}/about">About the Press</a> page for the press' section policies, as well as the <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines">Author Guidelines</a>. Authors need to <a href="{$indexUrl}/{$pressPath}/user/register">register</a> with the press prior to submitting, or if already registered can simply <a href="{$indexUrl}/index/login">log in</a> and begin the 5 step process.]]></message>
+	<message key="default.pressSettings.forLibrarians"><![CDATA[We encourage research librarians to list this press among their library's electronic press holdings. As well, it may be worth noting that this press' open source publishing system is suitable for libraries to host for their faculty members to use with presses they are involved in editing (see <a href="http://pkp.sfu.ca/ojs">Open Monograph Press</a>).]]></message>
+	<message key="default.pressSettings.lockssLicense"><![CDATA[This press utilizes the LOCKSS system to create a distributed archiving system among participating libraries and permits those libraries to create permanent archives of the press for purposes of preservation and restoration. <a href="http://lockss.stanford.edu/">More...</a>]]></message>
+	
+	<!-- Default settings for payment items. -->
+	<message key="default.pressSettings.submissionFeeDescription">Authors are required to pay an Article Submission Fee as part of the submission process to contribute to review costs.</message>
+	<message key="default.pressSettings.fastTrackFeeDescription">With the payment of this fee, the review, editorial decision, and author notification on this manuscript is guaranteed to take place within 4 weeks.</message>
+	<message key="default.pressSettings.publicationFeeDescription">If this paper is accepted for publication, you will be asked to pay an Article Publication Fee to cover publications costs.</message>
+	<message key="default.pressSettings.waiverPolicy">If you do not have funds to pay such fees, you will have an opportunity to waive each fee. We do not want fees to prevent the publication of worthy work.</message>
+	<message key="default.pressSettings.purchaseArticleFeeDescription">The payment of this fee will enable you to view, download, and print this article.</message>
+	<message key="default.pressSettings.membershipFeeDescription">The payment of this fee will enroll you as a member in this association for one year and provide you with free access to this press.</message>
+	<message key="default.pressSettings.donationFeeDescription">Donations of any amount to this press are gratefully received and provide a means for the editors to continue to provide a press of the highest quality to its readers.</message>
+</locale>
