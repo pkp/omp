@@ -15,9 +15,9 @@
 // $Id$
 
 
-import('core.Handler');
+import('core.PKPHandler');
 
-class IndexHandler extends Handler {
+class IndexHandler extends PKPHandler {
 
 	/**
 	 * If no press is selected, display list of presses associated with this system.
