@@ -20,7 +20,7 @@
 	
 	<ul>
 		{if $hasOtherJournals}
-		<li><a href="{url press="index" page="user"}">{translate key="plugins.block.user.myPresses"}</a></li>
+		<li><a href="{url context="index" page="user"}">{translate key="plugins.block.user.myPresses"}</a></li>
 		{/if}
 		<li><a href="{url page="user" op="profile"}">{translate key="plugins.block.user.myProfile"}</a></li>
 		<li><a href="{url page="login" op="signOut"}">{translate key="plugins.block.user.logout"}</a></li>

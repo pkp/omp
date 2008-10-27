@@ -23,10 +23,10 @@ import('help.HelpTocDAO');
 import('help.HelpTopic');
 import('help.HelpTopicDAO');
 import('help.HelpTopicSection');
-import('core.Handler');
+import('core.PKPHandler');
 import('help.Help');
 
-class HelpHandler extends Handler {
+class HelpHandler extends PKPHandler {
 
 	/**
 	 * Display help table of contents.

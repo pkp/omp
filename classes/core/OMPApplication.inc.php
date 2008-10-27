@@ -41,7 +41,10 @@ class OMPApplication extends PKPApplication {
 	function getContextDepth() {
 		return 1;
 	}
-
+		
+	function getContextList() {
+		return array('press');
+	}
 	/**
 	 * Get the locale key for the name of this application.
 	 * @return string

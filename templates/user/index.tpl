@@ -21,19 +21,19 @@
 	{assign var="hasRole" value=1}
 	<h4><a href="{url page="user"}">{$siteTitle|escape}</a></h4>
 	<ul class="plain">
-		<li>&#187; <a href="{url press="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
+		<li>&#187; <a href="{url context="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
 		{call_hook name="Templates::User::Index::Site"}
 	</ul>
 {/if}
 
 {foreach from=$userPresses item=press}
 	{assign var="hasRole" value=1}
-	<h4><a href="{url press=$press->getPath() page="user"}">{$press->getPressName()|escape}</a></h4>
+	<h4><a href="{url context=$press->getPath() page="user"}">{$press->getPressName()|escape}</a></h4>
 	<ul class="plain">
 		{assign var="pressId" value=$press->getPressId()}
 		{section name=role loop=$userRoles[$pressId]}
 			{if $userRoles[$pressId][role]->getRolePath() != 'reader'}
-				<li>&#187; <a href="{url press=$press->getPath() page=$userRoles[$pressId][role]->getRolePath()}">{translate key=$userRoles[$pressId][role]->getRoleName()}</a></li>
+				<li>&#187; <a href="{url context=$press->getPath() page=$userRoles[$pressId][role]->getRolePath()}">{translate key=$userRoles[$pressId][role]->getRoleName()}</a></li>
 			{/if}
 		{/section}
 		{call_hook name="Templates::User::Index::Press" press=$press}
@@ -46,14 +46,14 @@
 <ul class="plain">
 	{if $isSiteAdmin && !$hasOtherPresses}
 		{assign var="hasRole" value=1}
-		<li>&#187; <a href="{url press="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
+		<li>&#187; <a href="{url context="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
 	{/if}
 
 	{assign var="pressId" value=$userPress->getPressId()}
 	{section name=role loop=$userRoles[$pressId]}
 		{assign var="hasRole" value=1}
 		{if $userRoles[$pressId][role]->getRolePath() != 'reader'}
-			<li>&#187; <a href="{url press=$userPress->getPath() page=$userRoles[$pressId][role]->getRolePath()}">{translate key=$userRoles[$pressId][role]->getRoleName()}</a></li>
+			<li>&#187; <a href="{url context=$userPress->getPath() page=$userRoles[$pressId][role]->getRolePath()}">{translate key=$userRoles[$pressId][role]->getRoleName()}</a></li>
 		{/if}
 	{/section}
 </ul>
@@ -86,7 +86,7 @@
 		<p>{translate key="user.noRoles.choosePress"}</p>
 		<ul class="plain">
 			{foreach from=$allPresses item=thisPress}
-				<li>&#187; <a href="{url press=$thisPress->getPath() page="user" op="index"}">{$thisPress->getPressName()|escape}</a></li>
+				<li>&#187; <a href="{url context=$thisPress->getPath() page="user" op="index"}">{$thisPress->getPressName()|escape}</a></li>
 			{/foreach}
 		</ul>
 	{/if}{* $currentPress *}
@@ -96,9 +96,9 @@
 <ul class="plain">
 	{if $hasOtherPresses}
 		{if $showAllPresses}
-			<li>&#187; <a href="{url press="index" page="user" op="register"}">{translate key="user.registerForOtherPresses"}</a></li>
+			<li>&#187; <a href="{url context="index" page="user" op="register"}">{translate key="user.registerForOtherPresses"}</a></li>
 		{else}
-			<li>&#187; <a href="{url press="index" page="user"}">{translate key="user.showAllPresses"}</a></li>
+			<li>&#187; <a href="{url context="index" page="user"}">{translate key="user.showAllPresses"}</a></li>
 		{/if}
 	{/if}
 	<li>&#187; <a href="{url page="user" op="profile"}">{translate key="user.editMyProfile"}</a></li>

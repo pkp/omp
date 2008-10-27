@@ -79,103 +79,45 @@ class Request extends PKPRequest {
 	}
 
 	/**
-	 * Build a URL into OMP.
-	 * @param $pressPath string Optional path for Press to use
-	 * @param $page string Optional name of page to invoke
-	 * @param $op string Optional name of operation to invoke
-	 * @param $path mixed Optional string or array of args to pass to handler
-	 * @param $params array Optional set of name => value pairs to pass as user parameters
-	 * @param $anchor string Optional name of anchor to add to URL
-	 * @param $escape boolean Whether or not to escape ampersands for this URL; default false.
+	 * A Generic call to a context-defined path (e.g. a Journal or a Conference's path) 
+	 * @param $contextLevel int (optional) the number of levels of context to return in the path
+	 * @return array of String (each element the path to one context element)
 	 */
-	function url($pressPath = null, $page = null, $op = null, $path = null, $params = null, $anchor = null, $escape = false) {
-		$pathInfoDisabled = !Request::isPathInfoEnabled();
-
-		$amp = $escape?'&amp;':'&';
-		$prefix = $pathInfoDisabled?$amp:'?';
-
-		// Establish defaults for page and op
-		$defaultPage = Request::getRequestedPage();
-		$defaultOp = Request::getRequestedOp();
-
-		// If a Press has been specified, don't supply default
-		// page or op.
-		if ($pressPath) {
-			$pressPath = rawurlencode($pressPath);
-			$defaultPage = null;
-			$defaultOp = null;
-		} else {
-			$press =& Request::getPress();
-			if ($press) $pressPath = $press->getPath();
-			else $pressPath = 'index';
-		}
-
-		// Get overridden base URLs (if available).
-		$overriddenBaseUrl = Config::getVar('general', "base_url[$pressPath]");
-
-		// If a page has been specified, don't supply a default op.
-		if ($page) {
-			$page = rawurlencode($page);
-			$defaultOp = null;
-		} else {
-			$page = $defaultPage;
-		}
-
-		// Encode the op.
-		if ($op) $op = rawurlencode($op);
-		else $op = $defaultOp;
-
-		// Process additional parameters
-		$additionalParams = '';
-		if (!empty($params)) foreach ($params as $key => $value) {
-			if (is_array($value)) foreach($value as $element) {
-				$additionalParams .= $prefix . $key . '%5B%5D=' . rawurlencode($element);
-				$prefix = $amp;
-			} else {
-				$additionalParams .= $prefix . $key . '=' . rawurlencode($value);
-				$prefix = $amp;
-			}
-		}
-
-		// Process anchor
-		if (!empty($anchor)) $anchor = '#' . rawurlencode($anchor);
-		else $anchor = '';
-
-		if (!empty($path)) {
-			if (is_array($path)) $path = array_map('rawurlencode', $path);
-			else $path = array(rawurlencode($path));
-			if (!$page) $page = 'index';
-			if (!$op) $op = 'index';
-		}
-
-		$pathString = '';
-		if ($pathInfoDisabled) {
-			$joiner = $amp . 'path%5B%5D=';
-			if (!empty($path)) $pathString = $joiner . implode($joiner, $path);
-			if (empty($overriddenBaseUrl)) $baseParams = "?press=$pressPath";
-			else $baseParams = '';
-
-			if (!empty($page) || !empty($overriddenBaseUrl)) {
-				$baseParams .= empty($baseParams)?'?':$amp . "page=$page";
-				if (!empty($op)) {
-					$baseParams .= $amp . "op=$op";
-				}
-			}
-		} else {
-			if (!empty($path)) $pathString = '/' . implode('/', $path);
-			if (empty($overriddenBaseUrl)) $baseParams = "/$pressPath";
-			else $baseParams = '';
-
-			if (!empty($page)) {
-				$baseParams .= "/$page";
-				if (!empty($op)) {
-					$baseParams .= "/$op";
-				}
-			}
-		}
-
-		return ((empty($overriddenBaseUrl)?Request::getIndexUrl():$overriddenBaseUrl) . $baseParams . $pathString . $additionalParams . $anchor);
+	function getRequestedContextPath($contextLevel = null) {
+		//there is only one $contextLevel, so no need to check
+		return array(Request::getRequestedPressath());
 	}
+	
+	/**
+	 * A Generic call to a context defining object (e.g. a Journal, a Conference, or a SchedConf)
+	 * @return Press
+	 * @param $level int (optional) the desired context level
+	 */
+	function &getContext($level = 1) {
+		$returner = false;
+		switch ($level) {
+			case 1:
+				$returner =& Request::getPress();
+				break;
+		}
+		return $returner;	
+	}	
+	
+	/**
+	 * Get the object that represents the desired context (e.g. Conference or Journal)
+	 * @param $contextName String specifying the page context 
+	 * @return Press
+	 */
+	function &getContextByName($contextName) {
+		$returner = false;
+		switch ($contextName) {
+			case 'press':
+				$returner =& Request::getPress();
+				break;
+		}
+		return $returner;
+	}
+
 }
 
 ?>
