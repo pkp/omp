@@ -365,7 +365,7 @@ class Validation {
 	 * @return boolean
 	 */
 	function isAuthor($pressId = -1) {
-//		return Validation::isAuthorized(ROLE_ID_AUTHOR, $pressId);
+		return Validation::isAuthorized(ROLE_ID_AUTHOR, $pressId);
 	}
 
 	/**

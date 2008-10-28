@@ -154,26 +154,6 @@ class TemplateManager extends PKPTemplateManager {
 	}
 
 	/**
-	 * Generate a URL into OMP. (This is a wrapper around Request::url to make it available to Smarty templates.)
-	 */
-	function smartyUrl($params, &$smarty) {
-		// Extract the variables named in $paramList, and remove them
-		// from the params array. Variables remaining in params will be
-		// passed along to Request::url as extra parameters.
-		$paramList = array('press', 'page', 'op', 'path', 'anchor', 'escape');
-		foreach ($paramList as $param) {
-			if (isset($params[$param])) {
-				$$param = $params[$param];
-				unset($params[$param]);
-			} else {
-				$$param = null;
-			}
-		}
-
-		return Request::url($press, $page, $op, $path, $params, $anchor, !isset($escape) || $escape);
-	}
-
-	/**
 	 * Display page links for a listing of items that has been
 	 * divided onto multiple pages.
 	 * Usage:

@@ -59,7 +59,7 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = Handler::getRangeInfo('users');
+		$rangeInfo = PKPHandler::getRangeInfo('users');
 
 		if ($roleId) {
 			$users = &$roleDao->getUsersByRoleId($roleId, $press->getPressId(), $searchType, $search, $searchMatch, $rangeInfo);
@@ -172,7 +172,7 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = Handler::getRangeInfo('users');
+		$rangeInfo = PKPHandler::getRangeInfo('users');
 
 		$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
 
@@ -552,7 +552,7 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = Handler::getRangeInfo('users');
+		$rangeInfo = PKPHandler::getRangeInfo('users');
 
 		if ($roleId) {
 			$users = &$roleDao->getUsersByRoleId($roleId, $pressId, $searchType, $search, $searchMatch, $rangeInfo);
@@ -809,7 +809,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Restore original user account after signing in as a user.
 	 */
 	function signOutAsUser() {
-		Handler::validate();
+		PKPHandler::validate();
 
 		$session = &Request::getSession();
 		$signedInAs = $session->getSessionVar('signedInAs');

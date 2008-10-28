@@ -371,6 +371,8 @@ class RoleDAO extends DAO {
 				return 'user.role.siteAdmin' . ($plural ? 's' : '');
 			case ROLE_ID_PRESS_MANAGER:
 				return 'user.role.manager' . ($plural ? 's' : '');
+			case ROLE_ID_AUTHOR:
+				return 'user.role.author' . ($plural ? 's' : '');
 			default:
 				return '';
 		}
@@ -387,6 +389,8 @@ class RoleDAO extends DAO {
 				return 'admin';
 			case ROLE_ID_PRESS_MANAGER:
 				return 'manager';
+			case ROLE_ID_AUTHOR:
+				return 'author';
 			default:
 				return '';
 		}
@@ -403,6 +407,8 @@ class RoleDAO extends DAO {
 				return ROLE_ID_SITE_ADMIN;
 			case 'manager':
 				return ROLE_ID_PRESS_MANAGER;
+			case 'author':
+				return ROLE_ID_AUTHOR;
 			default:
 				return null;
 		}
