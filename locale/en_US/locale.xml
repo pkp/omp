@@ -27,6 +27,7 @@
 	-->
 
 	<!-- review froms start -->
+	<message key="manuscript.submissions">Manuscript Submissions</message>
 
 	<!-- common -->
 	<message key="common.copy">Copy</message>
@@ -136,7 +137,7 @@
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.
 <br /><br />
-Note that the OAI interface can be disabled for this site by editing the OJS system configuration. Future versions of OJS will allow the OAI interface to be enabled or disabled for individual presses within the site.]]></message>
+Note that the OAI interface can be disabled for this site by editing the OMP system configuration. Future versions of OMP will allow the OAI interface to be enabled or disabled for individual presses within the site.]]></message>
 
 	
 	
@@ -151,7 +152,7 @@ Note that the OAI interface can be disabled for this site by editing the OJS sys
 	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>Downloading language packs from the Public Knowledge Project web server is not currently available because:</p>
 	<ul>
 		<li>Your server does not have or allow execution of the GNU "tar" utility</li>
-		<li>OJS is unable to modify the locale registry file, typically "registry/locales.xml".</li>
+		<li>OMP is unable to modify the locale registry file, typically "registry/locales.xml".</li>
 	</ul>
 <p>Language packs can be manually downloaded from the <a href="http://pkp.sfu.ca">PKP web site</a>.</p>]]></message>
 	<message key="admin.languages.download">Download Locale</message>
@@ -429,13 +430,14 @@ current password.<br /><br />Enter your email address below to reset your passwo
 <!-- Installer -->
 	<message key="installer.ompInstallation">OMP Installation</message>
 	<message key="installer.ompUpgrade">OMP Upgrade</message>
+	<message key="installer.installApplication">Install Open Monograph Press</message>
 	<message key="installer.installationInstructions"><![CDATA[<h4>OMP Version {$version}</h4>
 
 <p>Thank you for downloading the Public Knowledge Project's <strong>Open Monograph Press</strong>. Before proceeding, please read the <a href="{$baseUrl}/docs/README">README</a> file included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. If you have bug reports or technical support inquiries about Open Monograph Press, see the <a href="http://pkp.sfu.ca/support/forum">support forum</a> or visit PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>.</p>
 
 <h4>Upgrade</h4>
 
-<p>If you are upgrading an existing installation of OJS 2.x, <a href="{$upgradeUrl}">click here</a> to proceed.</p>
+<p>If you are upgrading an existing installation of OMP 0.x, <a href="{$upgradeUrl}">click here</a> to proceed.</p>
 
 <h4>Recommended system requirements</h4>
 
@@ -448,11 +450,11 @@ current password.<br /><br />Enter your email address below to reset your passwo
 
 <p>As PKP does not have the resources to test every possible combination of software versions and platforms, no guarantee of correct operation or support is implied.</p>
 
-<p>Changes to these settings can be made after installation by editing the file <tt>config.inc.php</tt> in the base OJS directory, or using the site administration web interface.</p>
+<p>Changes to these settings can be made after installation by editing the file <tt>config.inc.php</tt> in the base OMP directory, or using the site administration web interface.</p>
 
 <h4>Supported database systems</h4>
 
-<p>OJS has currently only been tested on MySQL and PostgreSQL, although other database management systems supported by <a href="http://adodb.sourceforge.net/" target="_blank">ADOdb</a> may work (in full or partially). Compatibility reports and/or code patches for alternative DBMSs can be sent to the OJS team.</p>
+<p>OMP has currently only been tested on MySQL and PostgreSQL, although other database management systems supported by <a href="http://adodb.sourceforge.net/" target="_blank">ADOdb</a> may work (in full or partially). Compatibility reports and/or code patches for alternative DBMSs can be sent to the OMP team.</p>
 
 <h4>Pre-Installation Steps</h4>
 
@@ -470,7 +472,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 
 <h4>Manual installation</h4>
 
-<p>Select <strong>Manual Install</strong> to display the SQL statements necessary to create the OJS database schema and initial data so that database installation can be performed manually. This option is useful when debugging installation problems, particularly on unsupported platforms. Note that this installation method will not attempt to create the database or any tables, although the configuration file will still be written with the supplied database settings.</p>]]></message>
+<p>Select <strong>Manual Install</strong> to display the SQL statements necessary to create the OMP database schema and initial data so that database installation can be performed manually. This option is useful when debugging installation problems, particularly on unsupported platforms. Note that this installation method will not attempt to create the database or any tables, although the configuration file will still be written with the supplied database settings.</p>]]></message>
 	<message key="installer.upgradeInstructions"><![CDATA[<h4>OJS Version {$version}</h4>
 	
 <p>Thank you for downloading the Public Knowledge Project's <strong>Open Monograph Press</strong>. Before proceeding, please read the <a href="{$baseUrl}/docs/README">README</a> and <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> files included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. If you have bug reports or technical support inquiries about Open Monograph Press, see the <a href="http://pkp.sfu.ca/support/forum">support forum</a> or visit PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>.</p>
@@ -479,10 +481,10 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="installer.localeSettingsInstructions"><![CDATA[For complete Unicode (UTF-8) support, select UTF-8 for all character set settings. Note that this support currently requires a MySQL >= 4.1.1 or PostgreSQL >= 7.1 database server. Please also note that full Unicode support requires PHP >= 4.3.0 compiled with support for the <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> library (enabled by default in most recent PHP installations). You may experience problems using extended character sets if your server does not meet these requirements.
 <br /><br />
 Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]></message>
-	<message key="installer.localeInstructions">The primary language to use for this system. Please consult the OJS documentation if you are interested in support for languages not listed here.</message>
+	<message key="installer.localeInstructions">The primary language to use for this system. Please consult the OMP documentation if you are interested in support for languages not listed here.</message>
 	<message key="installer.additionalLocalesInstructions">Select any additional languages to support in this system. These languages will be available for use by presses hosted on the site. Additional languages can also be installed at any time from the site administration interface.</message>
 	<message key="installer.filesDirInstructions"><![CDATA[Enter full pathname to an existing directory where uploaded files are to be kept. This directory should not be directly web-accessible. <strong>Please ensure that this directory exists and is writable prior to installation.</strong> Windows path names should use forward slashes, e.g. "C:/mypress/files".]]></message>
-	<message key="installer.databaseSettingsInstructions">OJS requires access to a SQL database to store its data. See the system requirements above for a list of supported databases. In the fields below, provide the settings to be used to connect to the database.</message>
+	<message key="installer.databaseSettingsInstructions">OMP requires access to a SQL database to store its data. See the system requirements above for a list of supported databases. In the fields below, provide the settings to be used to connect to the database.</message>
 	<message key="installer.installOJS">Install Open Monograph Press</message>
 	<message key="installer.upgradeOJS">Upgrade Open Monograph Press</message>
 	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Warning:</strong> If installation failed part way through database installation you may need to drop your OJS database or database tables before attempting to reinstall the database.]]></message>
@@ -490,9 +492,9 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 <p>The installer could not automatically overwrite the configuration file. Before attempting to use the system, please open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
 	<message key="installer.manualSQLInstructions"><![CDATA[<h4>Manual installation</h4>
 <p>The SQL statements to create the OJS database schema and initial data are displayed below. Note that the system will be unusable until these statements have been executed manually. You will also have to manually configure the <tt>config.inc.php</tt> configuration file.</p>]]></message>
-	<message key="installer.installationComplete"><![CDATA[<p>Installation of OJS has completed successfully.</p>
+	<message key="installer.installationComplete"><![CDATA[<p>Installation of OMP has completed successfully.</p>
 <p>To begin using the system, <a href="{$loginUrl}">login</a> with the username and password entered on the previous page.</p>
-<p>If you wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/ojs/register" target="_new">http://pkp.sfu.ca/ojs/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
+<p>If you wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/omp/register" target="_new">http://pkp.sfu.ca/omp/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
 	<message key="installer.upgradeComplete"><![CDATA[<p>Upgrade of OJS to version {$version} has completed successfully.</p>
 <p>Don't forget to set the "installed" setting in your config.inc.php configuration file back to <em>On</em>.</p>
 <p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/ojs/register" target="_new">http://pkp.sfu.ca/ojs/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>

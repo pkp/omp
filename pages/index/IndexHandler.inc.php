@@ -27,8 +27,8 @@ class IndexHandler extends PKPHandler {
 		parent::validate();
 		parent::setupTemplate();
 
-		$templateMgr = &TemplateManager::getManager();
-		$pressDao = &DAORegistry::getDAO('PressDAO');
+		$templateMgr =& TemplateManager::getManager();
+		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$pressPath = Request::getRequestedPressPath();
 		$templateMgr->assign('helpTopicId', 'user.home');
 
@@ -58,8 +58,8 @@ class IndexHandler extends PKPHandler {
 			}*/
 			$templateMgr->display('index/press.tpl');
 		} else {
-			$siteDao = &DAORegistry::getDAO('SiteDAO');
-			$site = &$siteDao->getSite();
+			$siteDao =& DAORegistry::getDAO('SiteDAO');
+			$site =& $siteDao->getSite();
 
 			if ($site->getRedirect() && ($press = $pressDao->getPress($site->getRedirect())) != null) {
 				Request::redirect($press->getPath());
@@ -67,7 +67,7 @@ class IndexHandler extends PKPHandler {
 
 			$templateMgr->assign('intro', $site->getSiteIntro());
 			$templateMgr->assign('pressFilesPath', Request::getBaseUrl() . '/' . Config::getVar('files', 'public_files_dir') . '/presses/');
-			$presses = &$pressDao->getEnabledPresses();
+			$presses =& $pressDao->getEnabledPresses();
 			$templateMgr->assign_by_ref('presses', $presses);
 			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 			$templateMgr->display('index/site.tpl');

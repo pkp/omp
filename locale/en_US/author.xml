@@ -13,6 +13,17 @@
   -->
 
 <locale name="en_US" full_name = "English">
+
+
+
+
+	<message key="author.submission.typeOfWork">Type of Work</message>
+	<message key="author.submission.type.editedVolume">Edited Volume</message>
+	<message key="author.submission.type.authored">Authored Work</message>
+
+
+
+
 	<message key="author.submit">New Submission</message>
 	<message key="author.track">Active Submissions</message>
 	<message key="author.competingInterests"><![CDATA[Competing&nbsp;interests <a target="_new" class="action" href="{$competingInterestGuidelinesUrl}">CI&nbsp;Policy</a>]]></message>

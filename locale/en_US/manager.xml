@@ -295,7 +295,7 @@
 	<message key="manager.setup.pressSetupUpdated">Your press setup has been updated.</message>
 	<message key="manager.setup.pressStyleSheetInvalid">Invalid press stylesheet format. Accepted format is .css.</message>
 	<message key="manager.setup.pressTheme">Press Theme</message>
-	<message key="manager.setup.pressTitle">Press title</message>
+	<message key="manager.setup.pressName">Press name</message>
 	<message key="manager.setup.labelName">Label name</message>
 	<message key="manager.setup.layoutAndGalleys">Layout Editors</message>
 	<message key="manager.setup.layoutInstructions">Layout Instructions</message>

@@ -406,4 +406,481 @@
 		<descr>Data for press email templates.</descr>
 	</table>
 	
+		<!--
+	  *
+	  * TABLE monograph_authors
+	  *
+	  -->
+	<table name="monograph_authors">
+		<field name="author_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="primary_contact" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="volume_editor" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="first_name" type="C2" size="40">
+			<NOTNULL/>
+		</field>
+		<field name="middle_name" type="C2" size="40"/>
+		<field name="last_name" type="C2" size="90">
+			<NOTNULL/>
+		</field>
+		<field name="affiliation" type="C2" size="255"/>
+		<field name="country" type="C2" size="90"/>
+		<field name="email" type="C2" size="90">
+			<NOTNULL/>
+		</field>
+		<field name="url" type="C2" size="255"/>
+		<descr>Author metadata for monographs.</descr>
+		<index name="monograph_authors_monograph_id">
+			<col>monograph_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE monograph_author_settings
+	  *
+	  -->
+	<table name="monograph_author_settings">
+		<field name="author_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Language dependent author metadata.</descr>
+		<index name="monograph_author_settings_author_id">
+			<col>author_id</col>
+		</index>
+		<index name="monograph_author_settings_pkey">
+			<col>author_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE/>
+		</index>
+	</table>
+	
+	<table name="monograph_chapter_settings">
+		<field name="chapter_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Language dependent chapter metadata.</descr>
+		<index name="monograph_chapter_settings_chapter_id">
+			<col>chapter_id</col>
+		</index>
+		<index name="monograph_chapter_settings_pkey">
+			<col>chapter_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE/>
+		</index>
+	</table>
+	<!--
+	  *
+	  * TABLE sections
+	  *
+	  -->
+	<table name="sections">
+		<field name="section_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT />
+		</field>
+		<field name="press_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="review_form_id" type="I8" />
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="editor_restricted" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="meta_indexed" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="meta_reviewed" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="abstracts_not_required" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="hide_title" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="hide_author" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="hide_about" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="disable_comments" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<descr>Monograph Sections.</descr>
+		<index name="sections_press_id">
+			<col>press_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE section_settings
+	  *
+	  -->
+	<table name="section_settings">
+		<field name="section_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Section-specific settings</descr>
+		<index name="section_settings_section_id">
+			<col>section_id</col>
+		</index>
+		<index name="section_settings_pkey">
+			<col>section_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE />
+		</index>
+	</table>
+	<table name="monograph_chapters">
+		<field name="chapter_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT />
+		</field>
+		<field name="author_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL />
+		</field>
+	</table>
+	<!--
+	  *
+	  * TABLE monographs
+	  *
+	  -->
+	<table name="monographs">
+		<field name="monograph_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT />
+		</field>
+		<field name="user_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="press_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="section_id" type="I8" />
+		<field name="edited_volume" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="language" type="C2" size="10">
+			<DEFAULT VALUE="en"/>
+		</field>
+		<field name="comments_to_ed" type="X"/>
+		<field name="date_submitted" type="T"/>
+		<field name="last_modified" type="T"/>
+		<field name="date_status_modified" type="T"/>
+		<field name="status" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="submission_progress" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="current_round" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="submission_file_id" type="I8"/>
+		<field name="revised_file_id" type="I8"/>
+		<field name="review_file_id" type="I8"/>
+		<field name="editor_file_id" type="I8"/>
+		<field name="copyedit_file_id" type="I8"/>
+		<field name="pages" type="C2" size="255"/>
+		<field name="fast_tracked" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="hide_author" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="comments_status" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<descr>Monographs.</descr>
+		<index name="monographs_user_id">
+			<col>user_id</col>
+		</index>
+		<index name="monographs_press_id">
+			<col>press_id</col>
+		</index>
+		<index name="monographs_section_id">
+			<col>section_id</col>
+		</index>
+	</table>
+	<!--
+	  *
+	  * TABLE copyed_assignments
+	  *
+	  -->
+	<table name="copyed_assignments">
+		<field name="copyed_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="copyeditor_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="copyedit_revision" type="I8"/>
+		<field name="date_notified" type="T"/>
+		<field name="date_underway" type="T"/>
+		<field name="date_completed" type="T"/>
+		<field name="date_acknowledged" type="T"/>
+		<field name="date_author_notified" type="T"/>
+		<field name="date_author_underway" type="T"/>
+		<field name="date_author_completed" type="T"/>
+		<field name="date_author_acknowledged" type="T"/>
+		<field name="date_final_notified" type="T"/>
+		<field name="date_final_underway" type="T"/>
+		<field name="date_final_completed" type="T"/>
+		<field name="date_final_acknowledged" type="T"/>
+		<field name="initial_revision" type="I8"/>
+		<field name="editor_author_revision" type="I8"/>
+		<field name="final_revision" type="I8"/>
+		<descr>Copyediting assignments.</descr>
+		<index name="copyed_assignments_monograph_id">
+			<col>monograph_id</col>
+		</index>
+		<index name="copyed_assignments_copyeditor_id">
+			<col>copyeditor_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE series
+	  *
+	  -->
+	<table name="series">
+		<field name="section_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT />
+		</field>
+		<field name="press_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="review_form_id" type="I8" />
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="editor_restricted" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="meta_indexed" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="meta_reviewed" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="abstracts_not_required" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="hide_title" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="hide_author" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="hide_about" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="disable_comments" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<descr>Journal sections.</descr>
+		<index name="seriess_press_id">
+			<col>press_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE series_settings
+	  *
+	  -->
+	<table name="series_settings">
+		<field name="series_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Section-specific settings</descr>
+		<index name="series_settings_series_id">
+			<col>series_id</col>
+		</index>
+		<index name="series_settings_pkey">
+			<col>series_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE />
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE series_editors
+	  *
+	  -->
+	<table name="series_editors">
+		<field name="press_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="series_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="user_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="can_edit" type="I1">
+			<NOTNULL />
+			<DEFAULT VALUE="1" />
+		</field>
+		<field name="can_review" type="I1">
+			<NOTNULL />
+			<DEFAULT VALUE="1" />
+		</field>
+		<descr>Assignments of series editors to series.</descr>
+		<index name="series_editors_press_id">
+			<col>press_id</col>
+		</index>
+		<index name="series_editors_series_id">
+			<col>series_id</col>
+		</index>
+		<index name="series_editors_user_id">
+			<col>user_id</col>
+		</index>
+		<index name="series_editors_pkey">
+			<col>press_id</col>
+			<col>series_id</col>
+			<col>user_id</col>
+			<UNIQUE />
+		</index>
+	</table>
+	<!--
+	  *
+	  * TABLE article_settings
+	  *
+	  -->
+	<table name="monograph_settings">
+		<field name="monograph_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Journal article metadata.</descr>
+		<index name="monograph_settings_monograph_id">
+			<col>article_id</col>
+		</index>
+		<index name="monograph_settings_pkey">
+			<col>monograph_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE/>
+		</index>
+	</table>
+
+	
 </schema>

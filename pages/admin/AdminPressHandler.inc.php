@@ -26,10 +26,10 @@ class AdminPressHandler extends AdminHandler {
 
 		$rangeInfo = PKPHandler::getRangeInfo('presses');
 
-		$pressDao = &DAORegistry::getDAO('PressDAO');
-		$presses = &$pressDao->getPresses($rangeInfo);
+		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$presses =& $pressDao->getPresses($rangeInfo);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('presses', $presses);
 		$templateMgr->assign('helpTopicId', 'site.siteManagement');
 		$templateMgr->display('admin/presses.tpl');
@@ -52,7 +52,7 @@ class AdminPressHandler extends AdminHandler {
 
 		import('admin.form.PressSiteSettingsForm');
 
-		$settingsForm = &new PressSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
+		$settingsForm =& new PressSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
 		if ($settingsForm->isLocaleResubmit()) {
 			$settingsForm->readInputData();
 		} else {
@@ -69,7 +69,7 @@ class AdminPressHandler extends AdminHandler {
 
 		import('admin.form.PressSiteSettingsForm');
 
-		$settingsForm = &new PressSiteSettingsForm(Request::getUserVar('pressId'));
+		$settingsForm =& new PressSiteSettingsForm(Request::getUserVar('pressId'));
 		$settingsForm->readInputData();
 
 		if ($settingsForm->validate()) {
@@ -90,7 +90,7 @@ class AdminPressHandler extends AdminHandler {
 	function deletePress($args) {
 		parent::validate();
 
-		$pressDao = &DAORegistry::getDAO('PressDAO');
+		$pressDao =& DAORegistry::getDAO('PressDAO');
 
 		if (isset($args) && !empty($args) && !empty($args[0])) {
 			$pressId = $args[0];
@@ -98,13 +98,13 @@ class AdminPressHandler extends AdminHandler {
 				// Delete press file tree
 				// FIXME move this somewhere better.
 				import('file.FileManager');
-				$fileManager = &new FileManager();
+				$fileManager =& new FileManager();
 
 				$pressPath = Config::getVar('files', 'files_dir') . '/presses/' . $pressId;
 				$fileManager->rmtree($pressPath);
 
 				import('file.PublicFileManager');
-				$publicFileManager = &new PublicFileManager();
+				$publicFileManager =& new PublicFileManager();
 				$publicFileManager->rmtree($publicFileManager->getPressFilesPath($pressId));
 			}
 		}
@@ -118,8 +118,8 @@ class AdminPressHandler extends AdminHandler {
 	function movePress() {
 		parent::validate();
 
-		$pressDao = &DAORegistry::getDAO('PressDAO');
-		$press = &$pressDao->getPress(Request::getUserVar('pressId'));
+		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$press =& $pressDao->getPress(Request::getUserVar('pressId'));
 
 		if ($press != null) {
 			$press->setSequence($press->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));

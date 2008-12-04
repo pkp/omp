@@ -21,6 +21,8 @@ define('ROLE_ID_SITE_ADMIN',		0x00000001);
 define('ROLE_ID_PRESS_MANAGER',		0x00000010);
 define('ROLE_ID_REVIEWER',		0x00000100);
 define('ROLE_ID_AUTHOR',                0x00001000);
+define('ROLE_ID_EDITOR',                0x00010000);
+define('ROLE_ID_SECTION_EDITOR',	0x00100000);
 
 class Role extends DataObject {
 

@@ -24,7 +24,9 @@ define('ISSUE_DEFAULT', 0);
 define('OPEN_ACCESS', 1);
 define('SUBSCRIPTION', 2);
 
-class Monograph extends DataObject {
+import('submission.Submission');
+
+class Monograph extends Submission {
 	/**
 	 * get monograph id
 	 * @return int
@@ -40,7 +42,25 @@ class Monograph extends DataObject {
 	function setMonographId($monographId) {
 		return $this->setData('monographId', $monographId);
 	}
+	function getChapters() {
 
+		return $this->getData('chapters');
+	}
+	/**
+	 * get user id
+	 * @return int
+	 */
+	function getUserId() {
+		return $this->getData('userId');
+	}
+
+	/**
+	 * set user id
+	 * @param $monographId int
+	 */
+	function setUserId($userId) {
+		return $this->setData('userId', $userId);
+	}
 	/**
 	 * get press id
 	 * @return int
@@ -179,6 +199,105 @@ class Monograph extends DataObject {
 			if (!empty($publicIssueId)) return $publicIssueId;
 		}
 		return $this->getMonographId();
+	}
+	/**
+	 * Get current review round.
+	 * @return int
+	 */
+	function getCurrentRound() {
+		return $this->getData('currentRound');
+	}
+
+	/**
+	 * Set current review round.
+	 * @param $currentRound int
+	 */
+	function setCurrentRound($currentRound) {
+		return $this->setData('currentRound', $currentRound);
+	}
+
+	/**
+	 * Get comments to editor.
+	 * @return string
+	 */
+	function getCommentsToEditor() {
+		return $this->getData('commentsToEditor');
+	}
+
+	/**
+	 * Set comments to editor.
+	 * @param $commentsToEditor string
+	 */
+	function setCommentsToEditor($commentsToEditor) {
+		return $this->setData('commentsToEditor', $commentsToEditor);
+	}
+	/**
+	 * Get editor file id.
+	 * @return int
+	 */
+	function getEditorFileId() {
+		return $this->getData('editorFileId');
+	}
+
+	/**
+	 * Set editor file id.
+	 * @param $editorFileId int
+	 */
+	function setEditorFileId($editorFileId) {
+		return $this->setData('editorFileId', $editorFileId);
+	}
+
+	/**
+	 * Get copyedit file id.
+	 * @return int
+	 */
+	function getCopyeditFileId() {
+		return $this->getData('copyeditFileId');
+	}
+
+	/**
+	 * Set copyedit file id.
+	 * @param $copyeditFileId int
+	 */
+	function setCopyeditFileId($copyeditFileId) {
+		return $this->setData('copyeditFileId', $copyeditFileId);
+	}
+
+	/**
+	 * get expedited
+	 * @return boolean
+	 */
+	function getFastTracked() {
+		return $this->getData('fastTracked');
+	}
+	 
+	/**
+	 * set fastTracked
+	 * @param $fastTracked boolean
+	 */
+	function setFastTracked($fastTracked) {
+		return $this->setData('fastTracked',$fastTracked);
+	}
+	/**
+	 * Return boolean indicating if author should be hidden in issue ToC.
+	 * @return boolean
+	 */
+	function getHideAuthor() {
+		return $this->getData('hideAuthor');
+	}
+
+	/**
+	 * Set if author should be hidden in issue ToC.
+	 * @param $hideAuthor boolean
+	 */
+	function setHideAuthor($hideAuthor) {
+		return $this->setData('hideAuthor', $hideAuthor);
+	}
+	function setEditedVolume($isVolume) {
+		$this->setData('edited_volume', $isVolume);
+	}
+	function getEditedVolume() {
+		$this->getData('edited_volume');
 	}
 }
 

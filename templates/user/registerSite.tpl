@@ -18,7 +18,7 @@
 		<ul>
 		{assign var=notFirstPress value=1}
 	{/if}
-	<li><a href="{url context=$press->getPath() page="user" op="register"}">{$press->getPressName()|escape}</a></li>
+	<li><a href="{url press=$press->getPath() page="user" op="register"}">{$press->getPressName()|escape}</a></li>
 {/iterate}
 {if $presses->wasEmpty()}
 	{translate key="user.register.noPresses"}

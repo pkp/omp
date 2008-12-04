@@ -117,7 +117,20 @@ class Request extends PKPRequest {
 		}
 		return $returner;
 	}
-
+	/**
+	 * Build a URL into OMP.
+	 * @param $pressPath string Optional path for press to use
+	 * @param $page string Optional name of page to invoke
+	 * @param $op string Optional name of operation to invoke
+	 * @param $path mixed Optional string or array of args to pass to handler
+	 * @param $params array Optional set of name => value pairs to pass as user parameters
+	 * @param $anchor string Optional name of anchor to add to URL
+	 * @param $escape boolean Whether or not to escape ampersands for this URL; default false.
+	 */
+	function url($pressPath = null, $page = null, $op = null, $path = null, 
+			$params = null, $anchor = null, $escape = false) {
+		return parent::url(array($pressPath), $page, $op, $path, $params, $anchor, $escape);
+	}
 }
 
 ?>

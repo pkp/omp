@@ -18,9 +18,9 @@
 
 import('i18n.PKPLocale');
 
-define('LOCALE_COMPONENT_OMP_COMMON',	0x00000101);
-define('LOCALE_COMPONENT_OMP_MANAGER',	0x00000102);
-define('LOCALE_COMPONENT_OMP_AUTHOR',   0x00000103);
+define('LOCALE_COMPONENT_APPLICATION_COMMON',	0x00000101);
+define('LOCALE_COMPONENT_OMP_MANAGER',		0x00000102);
+define('LOCALE_COMPONENT_OMP_AUTHOR',   	0x00000103);
 
 class Locale extends PKPLocale {
 	/**
@@ -151,7 +151,7 @@ class Locale extends PKPLocale {
 	function makeComponentMap($locale) {
 		$componentMap = parent::makeComponentMap($locale);
 		$baseDir = "locale/$locale/";
-		$componentMap[LOCALE_COMPONENT_OMP_COMMON] = $baseDir . 'locale.xml';
+		$componentMap[LOCALE_COMPONENT_APPLICATION_COMMON] = $baseDir . 'locale.xml';
 		$componentMap[LOCALE_COMPONENT_OMP_MANAGER] = $baseDir . 'manager.xml';
 		$componentMap[LOCALE_COMPONENT_OMP_AUTHOR] = $baseDir . 'author.xml';
 
