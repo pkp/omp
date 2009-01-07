@@ -29,20 +29,27 @@ class MonographDAO extends DAO {
 	 */
 	function &getMonograph($monographId, $pressId = null) {
 		if (isset($pressId)) {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT m.* FROM monographs m WHERE monograph_id = ? AND press_id = ?',
 				array($monographId, $pressId)
 			);
 		} else {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT m.* FROM monographs m WHERE monograph_id = ?', $monographId
 			);
 		}
 
 		$monograph = null;
 		if ($result->RecordCount() != 0) {
-			$monograph = &$this->_returnMonographFromRow($result->GetRowAssoc(false));
+			$monograph =& $this->_returnMonographFromRow($result->GetRowAssoc(false));
+			$authorDao =& DAORegistry::getDAO('AuthorDAO');
+			$authors =& $authorDao->getAuthorsByMonographId($monograph->getMonographId());
+			$monograph->setAuthors($authors);
+			$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
+			$monographComponents =& $monographComponentDao->getMonographComponents($monograph->getMonographId());
+			$monograph->setMonographComponents($monographComponents);
 		}
+		
 
 		$result->Close();
 		unset($result);
@@ -57,19 +64,19 @@ class MonographDAO extends DAO {
 	 */
 	function &getMonographByPublicMonographId($publicMonographId, $pressId = null) {
 		if (isset($pressId)) {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT m.* FROM monographs m WHERE public_monograph_id = ? AND press_id = ?',
 				array($publicMonographId, $pressId)
 			);
 		} else {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT m.* FROM monographs m WHERE public_monograph_id = ?', $publicMonographId
 			);
 		}
 
 		$monograph = null;
 		if ($result->RecordCount() != 0) {
-			$monograph = &$this->_returnMonographFromRow($result->GetRowAssoc(false));
+			$monograph =& $this->_returnMonographFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -85,8 +92,8 @@ class MonographDAO extends DAO {
 	 * @return Monograph object
 	 */
 	function &getMonographByBestMonographId($monographId, $pressId = null) {
-		$monograph = &$this->getMonographByPublicMonographId($monographId, $pressId);
-		if (!isset($monograph)) $monograph = &$this->getMonographById((int) $monographId, $pressId);
+		$monograph =& $this->getMonographByPublicMonographId($monographId, $pressId);
+		if (!isset($monograph)) $monograph =& $this->getMonographById((int) $monographId, $pressId);
 		return $monograph;
 	}
 
@@ -96,13 +103,13 @@ class MonographDAO extends DAO {
 	 * @return Monograph object
 	 */
 	function &getLastCreatedMonograph($pressId) {
-		$result = &$this->retrieveLimit(
+		$result =& $this->retrieveLimit(
 			'SELECT m.* FROM monographs m WHERE press_id = ? ORDER BY monograph_id DESC', $pressId, 1
 		);
 
 		$monograph = null;
 		if ($result->RecordCount() != 0) {
-			$monograph = &$this->_returnMonographFromRow($result->GetRowAssoc(false));
+			$monograph =& $this->_returnMonographFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -118,35 +125,13 @@ class MonographDAO extends DAO {
 	 * @return Monograph object 
 	 */
 	function &getUpcomingMonographs($pressId, $rangeInfo = null) {
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT m.* FROM monographs m WHERE press_id = ? AND status = ?', array($pressId, MONOGRAPH_STATUS_UPCOMING), $rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnMonographFromRow');
+		$returner =& new DAOResultFactory($result, $this, '_returnMonographFromRow');
 		return $returner;
 	}	
-
-	/**
-	 * creates and returns a monograph object from a row
-	 * @param $row array
-	 * @return Monograph object
-	 */
-	function &_returnMonographFromRow($row) {
-		$monograph = &new Monograph();
-		$monograph->setMonographId($row['monograph_id']);
-		$monograph->setPressId($row['press_id']);
-		$monograph->setUserId($row['user_id']);
-		$monograph->setSubmissionProgress($row['submission_progress']);
-		$monograph->setStatus($row['status']);
-		$monograph->setDatePublished($this->datetimeFromDB($row['date_published']));
-		$monograph->setPublicMonographId($row['public_monograph_id']);
-
-		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
-
-		HookRegistry::call('MonographDAO::_returnMonographFromRow', array(&$monograph, &$row));
-
-		return $monograph;
-	}
 
 	/**
 	 * Get a list of fields for which localized data is supported
@@ -176,16 +161,16 @@ class MonographDAO extends DAO {
 		$monograph->stampModified();
 		$this->update(
 			sprintf('INSERT INTO monographs
-				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, current_round, submission_file_id, revised_file_id, review_file_id, editor_file_id, copyedit_file_id, pages, fast_tracked, hide_author, comments_status)
+				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, current_round, submission_file_id, revised_file_id, review_file_id, editor_file_id, copyedit_file_id, pages, fast_tracked, hide_author, comments_status, edited_volume)
 				VALUES
-				(?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
 				$monograph->getUserId(),
 				$monograph->getPressId(),
 				$monograph->getLanguage(),
 				$monograph->getCommentsToEditor(),
-				$monograph->getStatus() === null ? STATUS_QUEUED : $monograph->getStatus(),
+				$monograph->getStatus() === null ? 1 : $monograph->getStatus(),
 				$monograph->getSubmissionProgress() === null ? 1 : $monograph->getSubmissionProgress(),
 				$monograph->getCurrentRound() === null ? 1 : $monograph->getCurrentRound(),
 				$monograph->getSubmissionFileId(),
@@ -196,20 +181,17 @@ class MonographDAO extends DAO {
 				$monograph->getPages(),
 				$monograph->getFastTracked() ? 1 : 0,
 				$monograph->getHideAuthor() === null ? 0 : $monograph->getHideAuthor(),
-				$monograph->getCommentsStatus() === null ? 0 : $monograph->getCommentsStatus()
+				$monograph->getCommentsStatus() === null ? 0 : $monograph->getCommentsStatus(),
+				$monograph->getWorkType() == EDITED_VOLUME ? 1 : 0
 			)
 		);
 
 		$monograph->setMonographId($this->getInsertMonographId());
 		$this->updateLocaleFields($monograph);
 
-	/*	// Insert authors for this article
-		$authors = &$article->getAuthors();
-		for ($i=0, $count=count($authors); $i < $count; $i++) {
-			$authors[$i]->setArticleId($article->getArticleId());
-			$this->authorDao->insertAuthor($authors[$i]);
-		}
-*/
+		// Insert authors and monograph components for this monograph
+		$this->_updateMonographPeripherals($monograph);
+
 		return $monograph->getMonographId();
 
 	}
@@ -229,7 +211,7 @@ class MonographDAO extends DAO {
 	 * @return boolean
 	 */
 	function monographExists($pressId, $monographId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT m.* FROM monographs m WHERE press_id = ? AND monograph_id <> ?', 
 			array($pressId, $monographId)
 		);
@@ -241,30 +223,31 @@ class MonographDAO extends DAO {
 		return $returner;
 	}
 
+
 	/**
 	 * updates a monograph
 	 * @param Monograph object
 	 */
 	function updateMonograph($monograph) {
 		$this->update(
-			sprintf('UPDATE monographs
+			'UPDATE monographs
 				SET
 					press_id = ?,
-					status = ?,
-					date_published = %s,
-					public_monograph_id = ?,
+					submission_progress = ?,
+					edited_volume = ?,
+					comments_to_ed = ?
 				WHERE monograph_id = ?',
-			$this->datetimeToDB($monograph->getDatePublished())),
 			array(
 				$monograph->getPressId(),
-				$monograph->getStatus(),
-				$monograph->getPublicMonographId(),
+				$monograph->getSubmissionProgress(),
+				$monograph->getWorkType() == EDITED_VOLUME ? 1 : 0,
+				$monograph->getCommentsToEditor(),
 				$monograph->getMonographId()
 			)
 		);
-
 		$this->updateLocaleFields($monograph);
-
+		
+		$this->_updateMonographPeripherals($monograph);
 	}
 
 	/**
@@ -273,7 +256,7 @@ class MonographDAO extends DAO {
 	 */
 	function deleteMonograph(&$monograph) {
 		import('file.PublicFileManager');
-		$publicFileManager = &new PublicFileManager();
+		$publicFileManager =& new PublicFileManager();
 		
 /*		if (is_array($monograph->getFileName(null))) foreach ($monograph->getFileName(null) as $fileName) {
 			if ($fileName != '') {
@@ -307,7 +290,7 @@ class MonographDAO extends DAO {
 	 * @return boolean
 	 */
 	function monographIdExists($monographId, $pressId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM monographs WHERE monograph_id = ? AND press_id = ?',
 			array($monographId, $pressId)
 		);
@@ -320,7 +303,7 @@ class MonographDAO extends DAO {
 	 * @return boolean
 	 */
 	function publicMonographIdExists($publicMonographId, $monographId, $pressId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM monographs WHERE public_monograph_id = ? AND monograph_id <> ? AND press_id = ?', array($publicMonographId, $monographId, $pressId)
 		);
 		$returner = $result->fields[0] ? true : false;
@@ -340,9 +323,9 @@ class MonographDAO extends DAO {
 	function &getMonographs($pressId, $rangeInfo = null) {
 
 		$sql = 'SELECT m.* FROM monographs m WHERE press_id = ? ORDER BY date_published DESC';
-		$result = &$this->retrieveRange($sql, $pressId, $rangeInfo);
+		$result =& $this->retrieveRange($sql, $pressId, $rangeInfo);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnMonographFromRow');
+		$returner =& new DAOResultFactory($result, $this, '_returnMonographFromRow');
 		return $returner;
 	}
 
@@ -353,13 +336,89 @@ class MonographDAO extends DAO {
 	 * @return monographs ItemIterator
 	 */
 	function &getPublishedMonographs($pressId, $rangeInfo = null) {
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT m.* FROM monographs m WHERE m.press_id = ? AND m.status = '.MONOGRAPH_STATUS_PUBLISHED.' ORDER BY m.date_published DESC',
 			$pressId, $rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnMonographFromRow');
+		$returner =& new DAOResultFactory($result, $this, '_returnMonographFromRow');
 		return $returner;
+	}
+	/**
+	 * creates and returns a monograph object from a row
+	 * @param $row array
+	 * @return Monograph object
+	 */
+	function &_returnMonographFromRow($row) {
+		$monograph =& new Monograph();
+		$monograph->setMonographId($row['monograph_id']);
+		$monograph->setPressId($row['press_id']);
+		$monograph->setUserId($row['user_id']);
+		$monograph->setSubmissionProgress($row['submission_progress']);
+		$monograph->setStatus($row['status']);
+		$monograph->setCommentsToEditor($row['comments_to_ed']);
+    //$monograph->setDatePublished($this->datetimeFromDB($row['date_published']));
+//		//$monograph->setPublicMonographId($row['public_monograph_id']);
+		$monograph->setWorkType($row['edited_volume']);
+		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
+
+		HookRegistry::call('MonographDAO::_returnMonographFromRow', array(&$monograph, &$row));
+
+		return $monograph;
+	}
+	/**
+	 * creates and returns a monograph object from a row
+	 * @param $row array
+	 * @return Monograph object
+	 */
+	function _updateMonographPeripherals(&$monograph) {
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$authors =& $monograph->getAuthors();
+		$oldAuthors =& $authorDao->getAuthorIdsByMonographId($monograph->getMonographId());
+
+		$count = max(array(count($authors),count($oldAuthors)));
+
+		for ($i=0; $i < $count; $i++) {
+			if (isset($authors[$i]) && isset($oldAuthors[$i])) {
+				$gnash[$authors[$i]->getAuthorId()] = $oldAuthors[$i];
+				$authors[$i]->setAuthorId($oldAuthors[$i]);
+				$authorDao->updateAuthor($authors[$i]);
+			} else if (!isset($authors[$i]) && isset($oldAuthors[$i])) {
+				$authorDao->deleteAuthorById($oldAuthors[$i], $monograph->getMonographId());
+			} else if (isset($authors[$i]) && !isset($oldAuthors[$i])) {
+				$gnash[$authors[$i]->getAuthorId()] = $authorDao->insertAuthor($authors[$i]);
+			}
+		}
+
+		$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
+		$monographComponents =& $monograph->getMonographComponents();
+		$oldMonographComponents =& $monographComponentDao->getMonographComponentIdsByMonographId($monograph->getMonographId());
+
+		$count = max(array(count($monographComponents),count($oldMonographComponents)));
+
+		for ($i=0; $i < $count; $i++) {
+
+			if (isset($monographComponents[$i]) && isset($oldMonographComponents[$i])) {
+
+				foreach ($monographComponents[$i]->getMonographComponentAuthors() as $ca) {
+					if (isset($gnash[$ca->getAuthorId()])) {
+						$ca->setAuthorId($gnash[$ca->getAuthorId()]);
+					}
+					//primary contact settings
+				}
+				$monographComponents[$i]->setMonographComponentId($oldMonographComponents[$i]);
+				$monographComponentDao->updateMonographComponent($monographComponents[$i]);
+			} else if (!isset($monographComponents[$i]) && isset($oldMonographComponents[$i])) {
+
+				$monographComponentDao->deleteMonographComponentById($oldMonographComponents[$i]);
+			} else if (isset($monographComponents[$i]) && !isset($oldMonographComponents[$i])) {
+
+				foreach ($monographComponents[$i]->getMonographComponentAuthors() as $chau) {
+					$chau->setAuthorId($gnash[$chau->getAuthorId()]);
+				}
+				$monographComponentDao->insertMonographComponent($monographComponents[$i]);
+			}
+		}
 	}
 
 }

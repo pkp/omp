@@ -24,17 +24,31 @@ define('ISSUE_DEFAULT', 0);
 define('OPEN_ACCESS', 1);
 define('SUBSCRIPTION', 2);
 
+define('EDITED_VOLUME', 1);
+
 import('submission.Submission');
+import('monograph.Author');
 
 class Monograph extends Submission {
 	/**
 	 * get monograph id
 	 * @return int
 	 */
+
 	function getMonographId() {
 		return $this->getData('monographId');
 	}
-
+	function addMonographComponent($component) {
+		if ($component->getSequence() == null) {
+			$component->setSequence(count($this->getData('components')) + 1);
+		}
+		$components = $this->getData('components');
+		array_push($components, $component);
+		$this->setData('components', $components);
+	}
+	function setMonographComponents($components) {
+		$this->setData('components', $components);
+	}
 	/**
 	 * set monograph id
 	 * @param $monographId int
@@ -42,24 +56,15 @@ class Monograph extends Submission {
 	function setMonographId($monographId) {
 		return $this->setData('monographId', $monographId);
 	}
-	function getChapters() {
+	function getMonographComponents() {
 
-		return $this->getData('chapters');
+		return $this->getData('components');
 	}
-	/**
-	 * get user id
-	 * @return int
-	 */
-	function getUserId() {
-		return $this->getData('userId');
+	function getWorkType() {
+		return $this->getData('workType');
 	}
-
-	/**
-	 * set user id
-	 * @param $monographId int
-	 */
-	function setUserId($userId) {
-		return $this->setData('userId', $userId);
+	function setWorkType($type) {
+		$this->setData('workType', $type);
 	}
 	/**
 	 * get press id
@@ -83,40 +88,6 @@ class Monograph extends Submission {
 	 */
 	function getMonographTitle() {
 		return $this->getLocalizedData('title');
-	}
-
-	/**
-	 * get title
-	 * @param $locale string
-	 * @return string
-	 */
-	function getTitle($locale) {
-		return $this->getData('title', $locale);
-	}
-
-	/**
-	 * set title
-	 * @param $title string
-	 * @param $locale string
-	 */
-	function setTitle($title, $locale) {
-		return $this->setData('title', $title, $locale);
-	}
-
-	/**
-	 * get status
-	 * @return int
-	 */
-	function getStatus() {
-		return $this->getData('status');
-	}
-
-	/**
-	 * set status
-	 * @param $current int
-	 */
-	function setStatus($current) {
-		return $this->setData('current', $current);
 	}
 
  	/**
@@ -299,6 +270,10 @@ class Monograph extends Submission {
 	function getEditedVolume() {
 		$this->getData('edited_volume');
 	}
-}
+	function resetAuthors() {
+		unset($this->authors);
+		$this->authors = array();
+	}
+}	
 
 ?>

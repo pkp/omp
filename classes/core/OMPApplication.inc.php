@@ -123,6 +123,7 @@ class OMPApplication extends PKPApplication {
 			'ArticleEmailLogDAO' => 'article.log.ArticleEmailLogDAO',
 			'ArticleEventLogDAO' => 'article.log.ArticleEventLogDAO',
 			'MonographCommentDAO' => 'monograph.MonographCommentDAO',
+			'MonographComponentDAO' => 'monograph.MonographComponentDAO',
 			'ArticleDAO' => 'article.ArticleDAO',
 			'SeriesDAO' => 'series.SeriesDAO',
 			'MonographFileDAO' => 'monograph.MonographFileDAO',

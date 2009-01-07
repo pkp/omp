@@ -17,6 +17,158 @@
 
 	<!--
 	  *
+	  * TABLE edit_assignments
+	  *
+	  -->
+	<table name="edit_assignments">
+		<field name="edit_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="editor_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="can_edit" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="can_review" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="date_assigned" type="T"/>
+		<field name="date_notified" type="T"/>
+		<field name="date_underway" type="T"/>
+		<descr>Editing assignments.</descr>
+		<index name="edit_assignments_article_id">
+			<col>article_id</col>
+		</index>
+		<index name="edit_assignments_editor_id">
+			<col>editor_id</col>
+		</index>
+	</table>
+	<!--
+	  *
+	  * TABLE edit_decisions
+	  *
+	  -->
+	<table name="edit_decisions">
+		<field name="edit_decision_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="round" type="I1">
+			<NOTNULL/>
+		</field>
+		<field name="editor_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="decision" type="I1">
+			<NOTNULL/>
+		</field>
+		<field name="date_decided" type="T">
+			<NOTNULL/>
+		</field>
+		<descr>Editor decisions.</descr>
+		<index name="edit_decisions_article_id">
+			<col>article_id</col>
+		</index>
+		<index name="edit_decisions_editor_id">
+			<col>editor_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE review_rounds
+	  *
+	  -->
+	<table name="review_rounds">
+		<field name="monograph_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="round" type="I1">
+			<NOTNULL />
+		</field>
+		<field name="review_revision" type="I8" />
+		<descr>Review rounds.</descr>
+		<index name="review_rounds_article_id">
+			<col>article_id</col>
+		</index>
+		<index name="review_rounds_pkey">
+			<col>article_id</col>
+			<col>round</col>
+			<UNIQUE/>
+		</index>
+	</table>		
+		
+	<!--
+	  *
+	  * TABLE review_assignments
+	  *
+	  -->
+	<table name="review_assignments">
+		<field name="review_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="reviewer_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="competing_interests" type="X"/>
+		<field name="recommendation" type="I1"/>
+		<field name="date_assigned" type="T"/>
+		<field name="date_notified" type="T"/>
+		<field name="date_confirmed" type="T"/>
+		<field name="date_completed" type="T"/>
+		<field name="date_acknowledged" type="T"/>
+		<field name="date_due" type="T"/>
+		<field name="last_modified" type="T"/>
+		<field name="reminder_was_automatic" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="declined" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="replaced" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="cancelled" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="reviewer_file_id" type="I8"/>
+		<field name="date_rated" type="T"/>
+		<field name="date_reminded" type="T"/>
+		<field name="quality" type="I1"/>
+		<field name="round" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="review_form_id" type="I8"/>
+		<descr>Reviewing assignments.</descr>
+		<index name="review_assignments_article_id">
+			<col>article_id</col>
+		</index>
+		<index name="review_assignments_reviewer_id">
+			<col>reviewer_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
 	  * TABLE site
 	  *
 	  -->
@@ -483,8 +635,8 @@
 		</index>
 	</table>
 	
-	<table name="monograph_chapter_settings">
-		<field name="chapter_id" type="I8">
+	<table name="monograph_component_settings">
+		<field name="component_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
@@ -499,12 +651,12 @@
 			<NOTNULL/>
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
-		<descr>Language dependent chapter metadata.</descr>
-		<index name="monograph_chapter_settings_chapter_id">
-			<col>chapter_id</col>
+		<descr>Language dependent monograph component metadata.</descr>
+		<index name="monograph_component_settings_component_id">
+			<col>component_id</col>
 		</index>
-		<index name="monograph_chapter_settings_pkey">
-			<col>chapter_id</col>
+		<index name="monograph_component_settings_pkey">
+			<col>component_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE/>
@@ -598,15 +750,37 @@
 			<UNIQUE />
 		</index>
 	</table>
-	<table name="monograph_chapters">
-		<field name="chapter_id" type="I8">
-			<KEY />
-			<AUTOINCREMENT />
-		</field>
+	<table name="monograph_component_authors">
 		<field name="author_id" type="I8">
 			<NOTNULL />
 		</field>
+		<field name="component_id" type="I8">
+			<NOTNULL />
+		</field>
 		<field name="monograph_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL />
+			<DEFAULT VALUE="0"/>
+		</field>
+	</table>
+	<table name="monograph_components">
+		<field name="component_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT />
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="contact_author" type="I8">
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL />
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="revision_ETC" type="I8">
 			<NOTNULL />
 		</field>
 	</table>
