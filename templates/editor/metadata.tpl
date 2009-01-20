@@ -18,10 +18,6 @@
 
 <h4>{translate key="monograph.authors"}</h4>
 
-{monographComponents}
-
-{include file="inserts/monographComponents/monographComponentsInsert.tpl"}
-
 <table width="100%" class="data">
 	{foreach name=authors from=$authors item=author}
 	<tr valign="top">
