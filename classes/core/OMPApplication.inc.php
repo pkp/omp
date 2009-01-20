@@ -175,6 +175,19 @@ class OMPApplication extends PKPApplication {
 	}
 
 	/**
+	 * Get the list of plugin categories for this application.
+	 */
+	function getPluginCategories() {
+		return array(
+			'auth',
+			'blocks',
+			'generic',
+			'importexport',
+			'themes'
+		);
+	}
+
+	/**
 	 * Instantiate the help object for this application.
 	 * @return object
 	 */
