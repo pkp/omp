@@ -138,7 +138,7 @@ class MonographDAO extends DAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'description');
+		return array('title', 'abstract', 'sponsor', 'discipline', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample');
 	}
 
 	/**
@@ -228,7 +228,7 @@ class MonographDAO extends DAO {
 	 * updates a monograph
 	 * @param Monograph object
 	 */
-	function updateMonograph($monograph) {
+	function updateMonograph($monograph) {print_r($monograph);
 		$this->update(
 			'UPDATE monographs
 				SET
@@ -236,7 +236,8 @@ class MonographDAO extends DAO {
 					press_id = ?,
 					submission_progress = ?,
 					edited_volume = ?,
-					comments_to_ed = ?
+					comments_to_ed = ?,
+					language = ?
 				WHERE monograph_id = ?',
 			array(
 				$monograph->getDateSubmitted(),
@@ -244,6 +245,7 @@ class MonographDAO extends DAO {
 				$monograph->getSubmissionProgress(),
 				$monograph->getWorkType() == EDITED_VOLUME ? 1 : 0,
 				$monograph->getCommentsToEditor(),
+				$monograph->getLanguage(),
 				$monograph->getMonographId()
 			)
 		);
@@ -364,6 +366,8 @@ class MonographDAO extends DAO {
 		$monograph->setStatus($row['status']);
 		$monograph->setCommentsToEditor($row['comments_to_ed']);
 		$monograph->setDateSubmitted($row['date_submitted']);
+		$monograph->setLanguage($row['language']);
+
     //$monograph->setDatePublished($this->datetimeFromDB($row['date_published']));
 //		//$monograph->setPublicMonographId($row['public_monograph_id']);
 		$monograph->setWorkType($row['edited_volume']);

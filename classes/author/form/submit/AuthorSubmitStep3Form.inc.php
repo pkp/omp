@@ -76,16 +76,16 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	function uploadSubmissionFile($fileName) {
 		import('file.ManuscriptFileManager');
 
-		$manuscriptFileManager =& new ManuscriptFileManager($this->sequence->monograph);
+		$manuscriptFileManager =& new ManuscriptFileManager($this->sequence->monograph->getMonographId());
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		if ($manuscriptFileManager->uploadedFileExists($fileName)) {
 			// upload new submission file, overwriting previous if necessary
-			$submissionFileId = $manuscriptFileManager->uploadSubmissionFile($fileName, $this->article->getSubmissionFileId(), true);
+			$submissionFileId = $manuscriptFileManager->uploadSubmissionFile($fileName, $this->sequence->monograph->getSubmissionFileId(), true);
 		}
 
 		if (isset($submissionFileId)) {
-			$this->article->setSubmissionFileId($submissionFileId);
+			$this->sequence->monograph->setSubmissionFileId($submissionFileId);
 			return $monographDao->updateMonograph($this->sequence->monograph);
 
 		} else {

@@ -27,11 +27,12 @@ class TemplateManager extends PKPTemplateManager {
 	 * Initialize template engine and assign basic template variables.
 	 */
 	function TemplateManager() {
+		$this->register_modifier('monographComponents', array(&$this, 'smartyMonographComponents'));
 		parent::PKPTemplateManager();
 
 		// Are we using implicit authentication?
 		$this->assign('implicitAuth', Config::getVar('security', 'implicit_auth'));
-
+	
 		if (!defined('SESSION_DISABLE_INIT')) {
 			/**
 			 * Kludge to make sure no code that tries to connect to
@@ -224,6 +225,17 @@ class TemplateManager extends PKPTemplateManager {
 		}
 
 		return $value;
+	}
+	function smartyMonographComponents($params, &$smarty) {
+		if (isset($params['monographId'])) {
+			import('inserts.monographComponents.MonographComponentsInsert');
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$monograph = $monographDao->getMonograph($monographId);
+			
+			$mc =& new MonographComponentsInsert(null, $monograph, ($monograph->getWorkType()==EDITED_VOLUME)?0:AUTHORS_ONLY);
+			$mc->initData();
+			
+		}
 	}
 	/**
 	 * Generate a URL into OMP. (This is a wrapper around Request::url to make it available to Smarty templates.)
