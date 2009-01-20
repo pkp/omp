@@ -22,24 +22,24 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 	/**
 	 * Constructor.
 	 */
-	function AuthorSubmitStep5Form($article) {
-		parent::AuthorSubmitForm($article, 5);
+	function AuthorSubmitStep5Form() {
+		parent::AuthorSubmitForm();
 	}
 
 	/**
 	 * Display the form.
 	 */
 	function display() {
-		$journal =& Request::getJournal();
+		$press =& Request::getPress();
 		$user =& Request::getUser();		
 		$templateMgr =& TemplateManager::getManager();
 
 		// Get article file for this article
-		$articleFileDao =& DAORegistry::getDAO('ArticleFileDAO');
-		$articleFiles =& $articleFileDao->getArticleFilesByArticle($this->articleId);
+/*		$monographFileDao =& DAORegistry::getDAO('ArticleFileDAO');
+		$monographFiles =& $monographFileDao->getArticleFilesByArticle($this->monographId);
 
-		$templateMgr->assign_by_ref('files', $articleFiles);
-		$templateMgr->assign_by_ref('journal', Request::getJournal());
+		$templateMgr->assign_by_ref('files', $monographFiles);
+		$templateMgr->assign_by_ref('journal', Request::getPress());
 
 		// Set up required Payment Related Information
 		import('payment.ojs.OJSPaymentManager');
@@ -47,28 +47,33 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 		if ( $paymentManager->submissionEnabled() || $paymentManager->fastTrackEnabled() || $paymentManager->publicationEnabled()) {
 			$templateMgr->assign('authorFees', true);
 			$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
-			$articleId = $this->articleId;
+			$monographId = $this->monographId;
 			
 			if ( $paymentManager->submissionEnabled() ) {
-				$templateMgr->assign_by_ref('submissionPayment', $completedPaymentDAO->getSubmissionCompletedPayment ( $journal->getJournalId(), $articleId ));
-				$templateMgr->assign('manualPayment', $journal->getSetting('paymentMethodPluginName') == 'ManualPayment');
+				$templateMgr->assign_by_ref('submissionPayment', $completedPaymentDAO->getSubmissionCompletedPayment ( $press->getJournalId(), $monographId ));
+				$templateMgr->assign('manualPayment', $press->getSetting('paymentMethodPluginName') == 'ManualPayment');
 			}
 			
 			if ( $paymentManager->fastTrackEnabled()  ) {
-				$templateMgr->assign_by_ref('fastTrackPayment', $completedPaymentDAO->getFastTrackCompletedPayment ( $journal->getJournalId(), $articleId ));
+				$templateMgr->assign_by_ref('fastTrackPayment', $completedPaymentDAO->getFastTrackCompletedPayment ( $press->getJournalId(), $monographId ));
 			}	   
 		}
-		
+		*/
 		parent::display();
 	}
-	
+	function getHelpTopicId() {
+		return 'submission.supplementaryFiles';
+	}
+	function getTemplateFile() {
+		return 'author/submit/step5.tpl';
+	}
 	/**
 	 * Initialize form data from current article.
 	 */
 	function initData() {
-		if (isset($this->article)) {
+		if (isset($this->monograph)) {
 			$this->_data = array(
-				'commentsToEditor' => $this->article->getCommentsToEditor()
+				'commentsToEditor' => $this->monograph->getCommentsToEditor()
 			);
 		}
 	}
@@ -84,104 +89,104 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 	 * Validate the form
 	 */
 	function validate() {
-		import('payment.ojs.OJSPaymentManager');
+/*		import('payment.ojs.OJSPaymentManager');
 		$paymentManager =& OJSPaymentManager::getManager();
 		if ( $paymentManager->submissionEnabled() ) {
 			if ( !$this->isValid() ) return false;
 	
-			$journal =& Request::getJournal();
-			$journalId = $journal->getJournalId();
-			$articleId = $this->articleId;							
+			$press =& Request::getJournal();
+			$pressId = $press->getJournalId();
+			$monographId = $this->monographId;							
 			$user =& Request::getUser();
 			
 			$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
-			if ( $completedPaymentDAO->hasPaidSubmission ( $journalId, $articleId )  ) {
+			if ( $completedPaymentDAO->hasPaidSubmission ( $pressId, $monographId )  ) {
 				return parent::validate();		
 			} elseif ( Request::getUserVar('qualifyForWaiver') && Request::getUserVar('commentsToEditor') != '') {  
 				return parent::validate();
 			} elseif ( Request::getUserVar('paymentSent') ) {
 				return parent::validate();
 			} else {				
-				$queuedPayment =& $paymentManager->createQueuedPayment($journalId, PAYMENT_TYPE_SUBMISSION, $user->getUserId(), $articleId, $journal->getSetting('submissionFee'));
+				$queuedPayment =& $paymentManager->createQueuedPayment($pressId, PAYMENT_TYPE_SUBMISSION, $user->getUserId(), $monographId, $press->getSetting('submissionFee'));
 				$queuedPaymentId = $paymentManager->queuePayment($queuedPayment);
 		
 				$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
 				exit;	
 			}
-		} else {
+		} else {*/
 			return parent::validate();
-		}	
+	//	}	
 	}
 	
 	/**
 	 * Save changes to article.
 	 */
 	function execute() {
-		$articleDao = &DAORegistry::getDAO('ArticleDAO');
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
-		$journal = Request::getJournal();
+		$press = Request::getPress();
 
 		// Update article		
-		$article = &$this->article;
+		$monograph =& $this->sequence->monograph;
 
 		if ($this->getData('commentsToEditor') != '') {
-			$article->setCommentsToEditor($this->getData('commentsToEditor'));
+			$monograph->setCommentsToEditor($this->getData('commentsToEditor'));
 		}
 
-		$article->setDateSubmitted(Core::getCurrentDate());
-		$article->setSubmissionProgress(0);
-		$article->stampStatusModified();
-		$articleDao->updateArticle($article);
+		$monograph->setDateSubmitted(Core::getCurrentDate());
+		$monograph->setSubmissionProgress(0);
+		$monograph->stampStatusModified();
+		$monographDao->updateMonograph($monograph);
 
 		// Designate this as the review version by default.
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($article->getArticleId());
-		AuthorAction::designateReviewVersion($authorSubmission, true);
-		unset($authorSubmission);
+//		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+//		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($monograph->getArticleId());
+//		AuthorAction::designateReviewVersion($authorSubmission, true);
+//		unset($authorSubmission);
 
 		// Create additional submission mangement records
-		$copyeditorSubmissionDao = &DAORegistry::getDAO('CopyeditorSubmissionDAO');
-		$copyeditorSubmission = &new CopyeditorSubmission();
-		$copyeditorSubmission->setArticleId($article->getArticleId());
+/*		$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
+		$copyeditorSubmission =& new CopyeditorSubmission();
+		$copyeditorSubmission->setArticleId($monograph->getArticleId());
 		$copyeditorSubmission->setCopyeditorId(0);
 		$copyeditorSubmissionDao->insertCopyeditorSubmission($copyeditorSubmission);
 
-		$layoutDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-		$layoutAssignment = &new LayoutAssignment();
-		$layoutAssignment->setArticleId($article->getArticleId());
+		$layoutDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
+		$layoutAssignment =& new LayoutAssignment();
+		$layoutAssignment->setArticleId($monograph->getArticleId());
 		$layoutAssignment->setEditorId(0);
 		$layoutDao->insertLayoutAssignment($layoutAssignment);
 
-		$proofAssignmentDao = &DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment = &new ProofAssignment();
-		$proofAssignment->setArticleId($article->getArticleId());
+		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
+		$proofAssignment =& new ProofAssignment();
+		$proofAssignment->setArticleId($monograph->getArticleId());
 		$proofAssignment->setProofreaderId(0);
 		$proofAssignmentDao->insertProofAssignment($proofAssignment);
 
-		$sectionEditors = $this->assignEditors($article);
-
-		$user = &Request::getUser();
+		$sectionEditors = $this->assignEditors($monograph);
+*/
+		$user =& Request::getUser();
 
 		// Update search index
-		import('search.ArticleSearchIndex');
-		ArticleSearchIndex::indexArticleMetadata($article);
-		ArticleSearchIndex::indexArticleFiles($article);
+/*		import('search.ArticleSearchIndex');
+		ArticleSearchIndex::indexArticleMetadata($monograph);
+		ArticleSearchIndex::indexArticleFiles($monograph);
 
 		// Send author notification email
 		import('mail.ArticleMailTemplate');
-		$mail = &new ArticleMailTemplate($article, 'SUBMISSION_ACK');
-		$mail->setFrom($journal->getSetting('contactEmail'), $journal->getSetting('contactName'));
+		$mail =& new ArticleMailTemplate($monograph, 'SUBMISSION_ACK');
+		$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 		if ($mail->isEnabled()) {
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
 			// If necessary, BCC the acknowledgement to someone.
-			if($journal->getSetting('copySubmissionAckPrimaryContact')) {
+			if($press->getSetting('copySubmissionAckPrimaryContact')) {
 				$mail->addBcc(
-					$journal->getSetting('contactEmail'),
-					$journal->getSetting('contactName')
+					$press->getSetting('contactEmail'),
+					$press->getSetting('contactName')
 				);
 			}
-			if($journal->getSetting('copySubmissionAckSpecified')) {
-				$copyAddress = $journal->getSetting('copySubmissionAckAddress');
+			if($press->getSetting('copySubmissionAckSpecified')) {
+				$copyAddress = $press->getSetting('copySubmissionAckAddress');
 				if (!empty($copyAddress)) $mail->addBcc($copyAddress);
 			}
 
@@ -195,17 +200,17 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 			$mail->assignParams(array(
 				'authorName' => $user->getFullName(),
 				'authorUsername' => $user->getUsername(),
-				'editorialContactSignature' => $journal->getSetting('contactName') . "\n" . $journal->getJournalTitle(),
-				'submissionUrl' => Request::url(null, 'author', 'submission', $article->getArticleId())
+				'editorialContactSignature' => $press->getSetting('contactName') . "\n" . $press->getJournalTitle(),
+				'submissionUrl' => Request::url(null, 'author', 'submission', $monograph->getArticleId())
 			));
 			$mail->send();
 		}
 
 		import('article.log.ArticleLog');
 		import('article.log.ArticleEventLogEntry');
-		ArticleLog::logEvent($this->articleId, ARTICLE_LOG_ARTICLE_SUBMIT, ARTICLE_LOG_TYPE_AUTHOR, $user->getUserId(), 'log.author.submitted', array('submissionId' => $article->getArticleId(), 'authorName' => $user->getFullName()));
-
-		return $this->articleId;
+		ArticleLog::logEvent($this->monographId, ARTICLE_LOG_ARTICLE_SUBMIT, ARTICLE_LOG_TYPE_AUTHOR, $user->getUserId(), 'log.author.submitted', array('submissionId' => $monograph->getArticleId(), 'authorName' => $user->getFullName()));
+*/
+		return $monograph->getMonographId();
 	}
 
 }

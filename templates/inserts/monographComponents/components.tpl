@@ -1,3 +1,25 @@
+{literal}
+<script type="text/javascript">
+<!--
+// Move author up/down
+
+// Move author up/down
+function moveComponent(dir, componentIndex) {
+	var form = document.submit;
+	form.moveComponent.value = 1;
+	form.moveComponentDir.value = dir;
+	form.moveComponentIndex.value = componentIndex;
+	form.submit();
+}
+// -->
+</script>
+{/literal}
+
+
+
+
+
+
 <h3>Monograph Component Preparation</h3>
 <input type="hidden" name="moveAuthor" value="0" />
 <input type="hidden" name="moveAuthorDir" value="" />

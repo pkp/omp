@@ -1,4 +1,41 @@
 
+{literal}
+<script type="text/javascript">
+<!--
+// Move author up/down
+function moveComponentAuthor(dir, authorIndex,componentIndex) {
+	var form = document.submit;
+	form.moveComponentAuthor.value = 1;
+	form.moveAuthorDir.value = dir;
+	form.moveAuthorIndex.value = authorIndex;
+	form.moveAuthorComponent.value = componentIndex;
+	form.submit();
+}
+// -->
+</script>
+{/literal}
+{literal}
+<script type="text/javascript">
+<!--
+// Move author up/down
+function moveAuthor(dir, authorIndex) {
+	var form = document.submit;
+	form.moveAuthor.value = 1;
+	form.moveAuthorDir.value = dir;
+	form.moveAuthorIndex.value = authorIndex;
+	form.submit();
+}
+
+function show(id) {
+	var info = document.getElementById(id);
+	if(info.style.display=='block')
+		info.style.display='none';
+	else
+		info.style.display='block';
+}
+
+</script>
+{/literal}
 
 <h3>Monograph Contributors</h3>
 {assign var="authorIndex" value=0} 
@@ -40,6 +77,9 @@
 			<!--	<tr valign="top">
 					<td width="80%" class="value" colspan="2"><input type="submit" name="deleteAuthor[{$author.authorId}]" value="{translate key="author.submit.deleteAuthor"}" class="button" /></td>
 				</tr>-->
+				<tr valign="top">
+					<td width="80%" class="value" colspan="2"><a href="{url op="viewAuthorMetadata" path="$authorId"}">EDIT</a></td>
+				</tr>
 				<tr valign="top">
 					<td width="80%" class="value" colspan="2"><input type="submit" class="button" name="updateContributorInfo[{$author.authorId|escape}]" value="Update Contributor Information" /></td>
 				</tr>

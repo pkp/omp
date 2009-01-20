@@ -9,7 +9,7 @@
  * $Id$
  *}
 {assign var="pageTitle" value="author.submit.step1"}
-{include file="inserts/monographComponents/submitStepHeader.tpl"}
+{include file="author/submit/submitStepHeader.tpl"}
 
 {foreach from=$componentTemplates item=component}
 {include file=$component}

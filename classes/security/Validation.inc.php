@@ -311,7 +311,7 @@ class Validation {
 	 * @return boolean
 	 */
 	function isEditor($pressId = -1) {
-//		return Validation::isAuthorized(ROLE_ID_EDITOR, $pressId);
+		return Validation::isAuthorized(ROLE_ID_EDITOR, $pressId);
 	}
 
 	/**

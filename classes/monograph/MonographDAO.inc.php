@@ -232,12 +232,14 @@ class MonographDAO extends DAO {
 		$this->update(
 			'UPDATE monographs
 				SET
+					date_submitted = ?,
 					press_id = ?,
 					submission_progress = ?,
 					edited_volume = ?,
 					comments_to_ed = ?
 				WHERE monograph_id = ?',
 			array(
+				$monograph->getDateSubmitted(),
 				$monograph->getPressId(),
 				$monograph->getSubmissionProgress(),
 				$monograph->getWorkType() == EDITED_VOLUME ? 1 : 0,
@@ -349,22 +351,26 @@ class MonographDAO extends DAO {
 	 * @param $row array
 	 * @return Monograph object
 	 */
-	function &_returnMonographFromRow($row) {
+	function &_returnMonographFromRow(&$row) {
 		$monograph =& new Monograph();
+		$this->_monographFromRow($monograph, $row);
+		return $monograph;
+	}
+	function _monographFromRow(&$monograph, &$row) {
 		$monograph->setMonographId($row['monograph_id']);
 		$monograph->setPressId($row['press_id']);
 		$monograph->setUserId($row['user_id']);
 		$monograph->setSubmissionProgress($row['submission_progress']);
 		$monograph->setStatus($row['status']);
 		$monograph->setCommentsToEditor($row['comments_to_ed']);
+		$monograph->setDateSubmitted($row['date_submitted']);
     //$monograph->setDatePublished($this->datetimeFromDB($row['date_published']));
 //		//$monograph->setPublicMonographId($row['public_monograph_id']);
 		$monograph->setWorkType($row['edited_volume']);
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
-
+//		$article->setAuthors($this->authorDao->getAuthorsByArticle($row['article_id']));
 		HookRegistry::call('MonographDAO::_returnMonographFromRow', array(&$monograph, &$row));
 
-		return $monograph;
 	}
 	/**
 	 * creates and returns a monograph object from a row

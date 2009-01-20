@@ -9,7 +9,7 @@
  * $Id$
  *}
 {assign var="pageTitle" value="author.submit.step2"}
-{include file="inserts/monographComponents/submitStepHeader.tpl"}
+{include file="author/submit/submitStepHeader.tpl"}
 
 {url|assign:"competingInterestGuidelinesUrl" page="information" op="competingInterestGuidelines"}
 
@@ -19,35 +19,8 @@
 <input type="hidden" name="monographId" value="{$monographId|escape}" />
 {include file="common/formErrors.tpl"}
 
-{literal}
-<script type="text/javascript">
-<!--
-// Move author up/down
-function moveAuthor(dir, authorIndex) {
-	var form = document.submit;
-	form.moveAuthor.value = 1;
-	form.moveAuthorDir.value = dir;
-	form.moveAuthorIndex.value = authorIndex;
-	form.submit();
-}
-// -->
-</script>
-{/literal}
-{literal}
-<script type="text/javascript">
-<!--
-// Move author up/down
-function moveComponentAuthor(dir, authorIndex,componentIndex) {
-	var form = document.submit;
-	form.moveComponentAuthor.value = 1;
-	form.moveAuthorDir.value = dir;
-	form.moveAuthorIndex.value = authorIndex;
-	form.moveAuthorComponent.value = componentIndex;
-	form.submit();
-}
-// -->
-</script>
-{/literal}
+
+
 {if count($formLocales) > 1}
 <table width="100%" class="data">
 	<tr valign="top">
@@ -74,28 +47,8 @@ function moveComponentAuthor(dir, authorIndex,componentIndex) {
 
 
 
-{literal}
-<script type="text/javascript">
-<!--
-// Move author up/down
-function show(id) {
-	var info = document.getElementById(id);
-	if(info.style.display=='block')
-		info.style.display='none';
-	else
-		info.style.display='block';
-}
-// Move author up/down
-function moveComponent(dir, componentIndex) {
-	var form = document.submit;
-	form.moveComponent.value = 1;
-	form.moveComponentDir.value = dir;
-	form.moveComponentIndex.value = componentIndex;
-	form.submit();
-}
-// -->
-</script>
-{/literal}
+
+
 
 {include file="inserts/monographComponents/monographComponentsInsert.tpl"}
 

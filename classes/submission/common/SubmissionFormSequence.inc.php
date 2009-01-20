@@ -20,6 +20,7 @@ class SubmissionFormSequence
 	var $currentStep;
 	var $currentStepAlias;
 	var $aliasLookup;
+	var $contextSteps;
 
 	function getNextStep() {
 		return $this->currentStep+1;
@@ -32,6 +33,7 @@ class SubmissionFormSequence
 			$this->monograph = null;
 		}
 		$this->stepForms = array();
+		$this->contextSteps = array();
 		$this->currentStep = 0;
 		$this->currentStepAlias = null;
 	}
@@ -39,14 +41,17 @@ class SubmissionFormSequence
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('submitStep', $this->currentStep);
+		if (isset($this->contextSteps[$this->aliasLookup[$this->currentStepAlias]])) { // has context steps
+			$templateMgr->assign('contextSteps', $this->contextSteps[$this->aliasLookup[$this->currentStepAlias]]);
+		}
 		$templateMgr->assign('submitStepAlias', $this->currentStepAlias);
 		$templateMgr->assign_by_ref('steplist', $this->stepForms);
 		if(isset($this->monograph))
 			$templateMgr->assign('monographId', $this->monograph->getMonographId());
 
 	}
-	function addForm($fullImportPath, $class, $guideTag, $title, $alias) {
-		$step = count($this->stepForms)+1;
+	function addForm($fullImportPath, $class, $guideTag, $title, $alias, $contextParent = null) {
+		$step = count($this->stepForms) + 1;
 		$this->aliasLookup[$alias] = $step;
 
 		$this->stepForms[$step] = array(
@@ -54,8 +59,13 @@ class SubmissionFormSequence
 					'class' => $class, 
 					'tag'   => $guideTag, 
 					'title' => $title, 
-					'alias' => $alias
+					'alias' => $alias,
+					'context' => isset($contextParent) ? 1 : 0
 					);
+
+		if (isset($contextParent) && isset($this->aliasLookup[$contextParent])) {
+			$this->contextSteps[$this->aliasLookup[$contextParent]][] = array('step' => $step);
+		}
 	}
 
 	function &getFormForStep($stepAlias) {

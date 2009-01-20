@@ -9,7 +9,7 @@
  * $Id$
  *}
 {assign var="pageTitle" value="author.submit.step3"}
-{include file="inserts/monographComponents/submitStepHeader.tpl"}
+{include file="author/submit/submitStepHeader.tpl"}
 
 <form method="post" action="{url op="saveSubmit" path=$submitStep}" enctype="multipart/form-data">
 <input type="hidden" name="monographId" value="{$monographId|escape}" />

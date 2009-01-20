@@ -9,7 +9,7 @@
  * $Id$
  *}
 {assign var="pageTitle" value="author.submit.step4"}
-{include file="inserts/monographComponents/submitStepHeader.tpl"}
+{include file="author/submit/submitStepHeader.tpl"}
 
 <script type="text/javascript">
 {literal}

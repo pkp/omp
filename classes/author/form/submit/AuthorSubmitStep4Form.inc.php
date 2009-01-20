@@ -32,7 +32,7 @@ class AuthorSubmitStep4Form extends AuthorSubmitForm {
 		$templateMgr =& TemplateManager::getManager();
 
 		// Get supplementary files for this article
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+	//	$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 //		$templateMgr->assign_by_ref('suppFiles', $suppFileDao->getSuppFilesByArticle($this->articleId));
 
 		parent::display();
@@ -42,18 +42,18 @@ class AuthorSubmitStep4Form extends AuthorSubmitForm {
 	 * Save changes to article.
 	 */
 	function execute() {
-/*		$articleDao =& DAORegistry::getDAO('ArticleDAO');
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		// Update article
-		$article =& $this->article;
-		if ($article->getSubmissionProgress() <= $this->step) {
-			$article->stampStatusModified();
-			$article->setSubmissionProgress($this->step + 1);
+		$monograph =& $this->sequence->monograph;
+		if ($monograph->getSubmissionProgress() <= $this->sequence->currentStep) {
+			$monograph->stampStatusModified();
+			$monograph->setSubmissionProgress($this->sequence->currentStep + 1);
 		}
-		$articleDao->updateArticle($article);
+		$monographDao->updateMonograph($monograph);
 
-		return $this->articleId;
-*/	}
+		return $monograph->getMonographId();
+	}
 	function getHelpTopicId() {
 		return 'submission.supplementaryFiles';
 	}

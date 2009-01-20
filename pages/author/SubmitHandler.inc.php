@@ -71,10 +71,10 @@ class SubmitHandler extends AuthorHandler {
 				break;
 
 			case 4:
-				if (Request::getUserVar('submitUploadSuppFile')) {
-					SubmitHandler::submitUploadSuppFile();
-					return;
-				}
+			//	if (Request::getUserVar('submitUploadSuppFile')) {
+			//		SubmitHandler::submitUploadSuppFile();
+			//		return;
+			//	}
 				break;
 		}
 
@@ -86,9 +86,9 @@ class SubmitHandler extends AuthorHandler {
 				$templateMgr->assign_by_ref('press', $press);
 				// If this is an editor and there is a
 				// submission file, monograph can be expedited.
-				if (Validation::isEditor($press->getPressId()) && $monograph->getSubmissionFileId()) {
-					$templateMgr->assign('canExpedite', true);
-				}
+		//		if (Validation::isEditor($press->getPressId()) && $monograph->getSubmissionFileId()) {
+		//			$templateMgr->assign('canExpedite', true);
+		//		}
 				$templateMgr->assign('monographId', $monographId);
 				$templateMgr->assign('helpTopicId','submission.index');
 				$templateMgr->display('author/submit/complete.tpl');
