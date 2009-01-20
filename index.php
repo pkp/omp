@@ -54,10 +54,12 @@ define('INDEX_FILE_LOCATION', __FILE__);
  * Handle a new request.
  */
 function handleRequest() {
-	if (!Config::getVar('general', 'installed') && pageRequiresInstall()) {
-		// Redirect to installer if application has not been installed
-		Request::redirect(null, 'install');
-
+	if (!Config::getVar('general', 'installed')) {
+		define('SESSION_DISABLE_INIT', 1);
+		if (pageRequiresInstall()) {
+			// Redirect to installer if application has not been installed
+			Request::redirect(null, 'install');
+		}
 	}
 
 	// Determine the handler for this request
