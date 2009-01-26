@@ -15,7 +15,7 @@
 
 {if $canViewAuthors}
 <h3>{translate key="article.authors"}</h3>
-	
+
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>

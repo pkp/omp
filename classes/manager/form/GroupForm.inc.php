@@ -28,7 +28,7 @@ class GroupForm extends Form {
 	 * @param group Group object; null to create new
 	 */
 	function GroupForm($group = null) {
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 
 		parent::Form('manager/groups/groupForm.tpl');
 
@@ -53,7 +53,7 @@ class GroupForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('group', $this->group);
 		$templateMgr->assign('helpTopicId', 'press.managementPages.groups');
 		$templateMgr->assign('groupContextOptions', array(
@@ -90,11 +90,11 @@ class GroupForm extends Form {
 	 * Save group group. 
 	 */
 	function execute() {
-		$groupDao = &DAORegistry::getDAO('GroupDAO');
-		$press = &Request::getPress();
+		$groupDao =& DAORegistry::getDAO('GroupDAO');
+		$press =& Request::getPress();
 
 		if (!isset($this->group)) {
-			$this->group = &new Group();
+			$this->group =& new Group();
 		}
 
 		$this->group->setPressId($press->getPressId());

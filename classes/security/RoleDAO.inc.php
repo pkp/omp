@@ -166,30 +166,34 @@ class RoleDAO extends DAO {
 
 		$searchSql = '';
 
-		if (isset($search)) switch ($searchType) {
+		$searchTypeMap = array(
+			USER_FIELD_FIRSTNAME => 'u.first_name',
+			USER_FIELD_LASTNAME => 'u.last_name',
+			USER_FIELD_USERNAME => 'u.username',
+			USER_FIELD_EMAIL => 'u.email',
+			USER_FIELD_INTERESTS => 's.setting_value'
+		);
+
+		if (isset($search) && isset($searchTypeMap[$searchType])) {
+			$fieldName = $searchTypeMap[$searchType];
+			switch ($searchMatch) {
+				case 'is':
+					$searchSql = "AND LOWER($fieldName) = LOWER(?)";
+					$paramArray[] = $search;
+					break;
+				case 'contains':
+					$searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
+					$paramArray[] = '%' . $search . '%';
+					break;
+				case 'startsWith':
+					$searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
+					$paramArray[] = $search . '%';
+					break;
+			}
+		} elseif (isset($search)) switch ($searchType) {
 			case USER_FIELD_USERID:
 				$searchSql = 'AND u.user_id=?';
 				$paramArray[] = $search;
-				break;
-			case USER_FIELD_FIRSTNAME:
-				$searchSql = 'AND LOWER(u.first_name) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
-				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
-				break;
-			case USER_FIELD_LASTNAME:
-				$searchSql = 'AND LOWER(u.last_name) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
-				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
-				break;
-			case USER_FIELD_USERNAME:
-				$searchSql = 'AND LOWER(u.username) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
-				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
-				break;
-			case USER_FIELD_EMAIL:
-				$searchSql = 'AND LOWER(u.email) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
-				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
-				break;
-			case USER_FIELD_INTERESTS:
-				$searchSql = 'AND LOWER(s.setting_value) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
-				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
 				break;
 			case USER_FIELD_INITIAL:
 				$searchSql = 'AND LOWER(u.last_name) LIKE LOWER(?)';
@@ -200,12 +204,12 @@ class RoleDAO extends DAO {
 		$searchSql .= ' ORDER BY u.last_name, u.first_name'; // FIXME Add "sort field" parameter?
 
 		$result = &$this->retrieveRange(
-			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), roles AS r WHERE u.user_id = r.user_id ' . (isset($roleId)?'AND r.role_id = ?':'') . (isset($monographId) ? ' AND r.monograph_id = ?' : '') . ' ' . $searchSql,
+			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), roles AS r WHERE u.user_id = r.user_id ' . (isset($roleId)?'AND r.role_id = ?':'') . (isset($pressId) ? ' AND r.press_id = ?' : '') . ' ' . $searchSql,
 			$paramArray,
 			$dbResultRange
 		);
 
-		$returner = &new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
+		$returner = new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
 		return $returner;
 	}
 
@@ -224,30 +228,35 @@ class RoleDAO extends DAO {
 		$paramArray = array('interests', (int) $pressId);
 		$searchSql = '';
 
-		if (isset($search)) switch ($searchType) {
+
+		$searchTypeMap = array(
+			USER_FIELD_FIRSTNAME => 'u.first_name',
+			USER_FIELD_LASTNAME => 'u.last_name',
+			USER_FIELD_USERNAME => 'u.username',
+			USER_FIELD_EMAIL => 'u.email',
+			USER_FIELD_INTERESTS => 's.setting_value'
+		);
+
+		if (isset($search) && isset($searchTypeMap[$searchType])) {
+			$fieldName = $searchTypeMap[$searchType];
+			switch ($searchMatch) {
+				case 'is':
+					$searchSql = "AND LOWER($fieldName) = LOWER(?)";
+					$paramArray[] = $search;
+					break;
+				case 'contains':
+					$searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
+					$paramArray[] = '%' . $search . '%';
+					break;
+				case 'startsWith':
+					$searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
+					$paramArray[] = $search . '%';
+					break;
+			}
+		} elseif (isset($search)) switch ($searchType) {
 			case USER_FIELD_USERID:
 				$searchSql = 'AND u.user_id=?';
 				$paramArray[] = $search;
-				break;
-			case USER_FIELD_FIRSTNAME:
-				$searchSql = 'AND LOWER(u.first_name) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
-				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
-				break;
-			case USER_FIELD_LASTNAME:
-				$searchSql = 'AND LOWER(u.last_name) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
-				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
-				break;
-			case USER_FIELD_USERNAME:
-				$searchSql = 'AND LOWER(u.username) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
-				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
-				break;
-			case USER_FIELD_EMAIL:
-				$searchSql = 'AND LOWER(u.email) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
-				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
-				break;
-			case USER_FIELD_INTERESTS:
-				$searchSql = 'AND LOWER(s.setting_value) ' . ($searchMatch=='is'?'=':'LIKE') . ' LOWER(?)';
-				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
 				break;
 			case USER_FIELD_INITIAL:
 				$searchSql = 'AND LOWER(u.last_name) LIKE LOWER(?)';
@@ -264,7 +273,7 @@ class RoleDAO extends DAO {
 			$dbResultRange
 		);
 
-		$returner = &new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
+		$returner = new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
 		return $returner;
 	}
 
@@ -375,6 +384,16 @@ class RoleDAO extends DAO {
 				return 'user.role.author' . ($plural ? 's' : '');
 			case ROLE_ID_EDITOR:
 				return 'user.role.editor' . ($plural ? 's' : '');
+			case ROLE_ID_REVIEWER:
+				return 'user.role.reviewer' . ($plural ? 's' : '');
+			case ROLE_ID_SERIES_EDITOR:
+				return 'user.role.seriesEditor' . ($plural ? 's' : '');
+			case ROLE_ID_LAYOUT_EDITOR:
+				return 'user.role.layoutEditor' . ($plural ? 's' : '');
+			case ROLE_ID_COPYEDITOR:
+				return 'user.role.copyeditor' . ($plural ? 's' : '');
+			case ROLE_ID_PROOFREADER:
+				return 'user.role.proofreader' . ($plural ? 's' : '');
 			default:
 				return '';
 		}
@@ -395,6 +414,16 @@ class RoleDAO extends DAO {
 				return 'author';
 			case ROLE_ID_EDITOR:
 				return 'editor';
+			case ROLE_ID_REVIEWER:
+				return 'reviewer';
+			case ROLE_ID_SERIES_EDITOR:
+				return 'seriesEditor';
+			case ROLE_ID_LAYOUT_EDITOR:
+				return 'layoutEditor';
+			case ROLE_ID_COPYEDITOR:
+				return 'copyeditor';
+			case ROLE_ID_PROOFREADER:
+				return 'proofreader';
 			default:
 				return '';
 		}
@@ -415,6 +444,16 @@ class RoleDAO extends DAO {
 				return ROLE_ID_AUTHOR;
 			case 'editor':
 				return ROLE_ID_EDITOR;
+			case 'reviewer':
+				return ROLE_ID_REVIEWER;
+			case 'seriesEditor':
+				return ROLE_ID_SERIES_EDITOR;
+			case 'layoutEditor':
+				return ROLE_ID_LAYOUT_EDITOR;
+			case 'copyeditor':
+				return ROLE_ID_COPYEDITOR;
+			case 'proofreader':
+				return ROLE_ID_PROOFREADER;
 			default:
 				return null;
 		}

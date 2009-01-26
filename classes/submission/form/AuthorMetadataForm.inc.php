@@ -73,12 +73,13 @@ class AuthorMetadataForm extends Form {
 */
 		// If the user is a reviewer of this article, do not show authors.
 		$this->canViewAuthors = true;
-		if ($roleId != null && $roleId == ROLE_ID_REVIEWER) {
+	/*	if ($roleId != null && $roleId == ROLE_ID_REVIEWER) {
 			$this->canViewAuthors = false;
 		}
-
+*/
 		$this->author = $author;
 		$this->addCheck(new FormValidatorPost($this));
+		$this->addCheck(new FormValidatorArray($this, 'authors', 'required', 'author.submit.form.authorRequiredFields', array('firstName', 'lastName', 'email')));
 
 		parent::Form('submission/metadata/authorMetadataEdit.tpl');
 
@@ -92,6 +93,7 @@ class AuthorMetadataForm extends Form {
 		if (isset($this->author)) {
 			$author =& $this->author;
 			$this->_data = array (
+						'monographId' => $author->getMonographId(),
 						'authorId' => $author->getAuthorId(),
 						'firstName' => $author->getFirstName(),
 						'middleName' => $author->getMiddleName(),
@@ -103,9 +105,12 @@ class AuthorMetadataForm extends Form {
 						'url' => $author->getUrl(),
 						'biography' => $author->getBiography(null) // Localized
 					);
-				if ($author->getPrimaryContact()) {
-					$this->setData('primaryContact', $i);
-				}
+		} else {
+
+			$this->_data = array (
+						'monographId' => $this->monographId,
+						'authorId' => null
+				    );
 		}
 	}
 
@@ -116,8 +121,7 @@ class AuthorMetadataForm extends Form {
 	function getLocaleFieldNames() {
 
 		return array(
-			'title', 'abstract', 'coverPageAltText', 'showCoverPage', 'hideCoverPageToc', 'hideCoverPageAbstract', 'originalFileName', 'fileName', 'width', 'height',
-			'discipline', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor'
+			'backUrl','monographId','authorId','firstName','middleName','lastName','affiliation','country','email','url','biography'
 		);
 	}
 
@@ -136,11 +140,11 @@ class AuthorMetadataForm extends Form {
 		$templateMgr->assign('journalSettings', $settingsDao->getJournalSettings($journal->getJournalId()));
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
 */		$templateMgr->assign('canViewAuthors', $this->canViewAuthors);
-/*
+
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$templateMgr->assign('countries', $countryDao->getCountries());
-
-		$templateMgr->assign('helpTopicId','submission.indexingAndMetadata');
+		$templateMgr->assign('backUrl', Request::getCompleteUrl());
+/*		$templateMgr->assign('helpTopicId','submission.indexingAndMetadata');
 		if ($this->author) {
 			$templateMgr->assign_by_ref('section', $sectionDao->getSection($this->author->getSectionId()));
 		}
@@ -164,6 +168,7 @@ class AuthorMetadataForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array (
+					'backUrl',
 					'authorId',
 					'firstName',
 					'middleName',
@@ -177,11 +182,11 @@ class AuthorMetadataForm extends Form {
 			)
 		);
 
-		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-		$section =& $sectionDao->getSection($this->author->getSectionId());
-		if (!$section->getAbstractsNotRequired()) {
-			$this->addCheck(new FormValidatorLocale($this, 'abstract', 'required', 'author.submit.form.abstractRequired'));
-		}
+//		$sectionDao =& DAORegistry::getDAO('SectionDAO');
+//		$section =& $sectionDao->getSection($this->author->getSectionId());
+//		if (!$section->getAbstractsNotRequired()) {
+//			$this->addCheck(new FormValidatorLocale($this, 'abstract', 'required', 'author.submit.form.abstractRequired'));
+//		}
 
 	}
 
@@ -190,117 +195,41 @@ class AuthorMetadataForm extends Form {
 	 * @return int the article ID
 	 */
 	function execute() {
-		$monographDao =& DAORegistry::getDAO('ArticleDAO');
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-
-		$monograph =& $this->author;
-		$monograph->setTitle($this->getData('title'), null); // Localized
-
-		$section =& $sectionDao->getSection($monograph->getSectionId());
-		$monograph->setAbstract($this->getData('abstract'), null); // Localized
-
-		import('file.PublicFileManager');
-		$publicFileManager = new PublicFileManager();
-		if ($publicFileManager->uploadedFileExists('coverPage')) {
-			$journal = Request::getJournal();
-			$originalFileName = $publicFileManager->getUploadedFileName('coverPage');
-			$newFileName = 'cover_article_' . $this->getData('articleId') . '_' . $this->getFormLocale() . '.' . $publicFileManager->getExtension($originalFileName);
-			$publicFileManager->uploadJournalFile($journal->getJournalId(), 'coverPage', $newFileName);
-			$monograph->setOriginalFileName($publicFileManager->truncateFileName($originalFileName, 127), $this->getFormLocale());
-			$monograph->setFileName($newFileName, $this->getFormLocale());
-
-			// Store the image dimensions.
-			list($width, $height) = getimagesize($publicFileManager->getJournalFilesPath($journal->getJournalId()) . '/' . $newFileName);
-			$monograph->setWidth($width, $this->getFormLocale());
-			$monograph->setHeight($height, $this->getFormLocale());
-		}
-
-		$monograph->setCoverPageAltText($this->getData('coverPageAltText'), null); // Localized
-		$showCoverPage = array_map(create_function('$arrayElement', 'return (int)$arrayElement;'), (array) $this->getData('showCoverPage'));
-		foreach (array_keys($this->getData('coverPageAltText')) as $locale) {
-			if (!array_key_exists($locale, $showCoverPage)) {
-				$showCoverPage[$locale] = 0;
-			}
-		}
-		$monograph->setShowCoverPage($showCoverPage, null); // Localized
-
-		$hideCoverPageToc = array_map(create_function('$arrayElement', 'return (int)$arrayElement;'), (array) $this->getData('hideCoverPageToc'));
-		foreach (array_keys($this->getData('coverPageAltText')) as $locale) {
-			if (!array_key_exists($locale, $hideCoverPageToc)) {
-				$hideCoverPageToc[$locale] = 0;
-			}
-		}
-		$monograph->setHideCoverPageToc($hideCoverPageToc, null); // Localized
-
-		$hideCoverPageAbstract = array_map(create_function('$arrayElement', 'return (int)$arrayElement;'), (array) $this->getData('hideCoverPageAbstract'));
-		foreach (array_keys($this->getData('coverPageAltText')) as $locale) {
-			if (!array_key_exists($locale, $hideCoverPageAbstract)) {
-				$hideCoverPageAbstract[$locale] = 0;
-			}
-		}
-		$monograph->setHideCoverPageAbstract($hideCoverPageAbstract, null); // Localized
-
-		$monograph->setDiscipline($this->getData('discipline'), null); // Localized
-		$monograph->setSubjectClass($this->getData('subjectClass'), null); // Localized
-		$monograph->setSubject($this->getData('subject'), null); // Localized
-		$monograph->setCoverageGeo($this->getData('coverageGeo'), null); // Localized
-		$monograph->setCoverageChron($this->getData('coverageChron'), null); // Localized
-		$monograph->setCoverageSample($this->getData('coverageSample'), null); // Localized
-		$monograph->setType($this->getData('type'), null); // Localized
-		$monograph->setLanguage($this->getData('language')); // Localized
-		$monograph->setSponsor($this->getData('sponsor'), null); // Localized
-		$monograph->setHideAuthor($this->getData('hideAuthor') ? $this->getData('hideAuthor') : 0);
 
 		// Update authors
-		$authors = $this->getData('authors');
-		for ($i=0, $count=count($authors); $i < $count; $i++) {
-			if ($authors[$i]['authorId'] > 0) {
-				// Update an existing author
-				$author =& $monograph->getAuthor($authors[$i]['authorId']);
-				$isExistingAuthor = true;
-
-			} else {
-				// Create a new author
-				$author = new Author();
-				$isExistingAuthor = false;
-			}
-
-			if ($author != null) {
-				$author->setFirstName($authors[$i]['firstName']);
-				$author->setMiddleName($authors[$i]['middleName']);
-				$author->setLastName($authors[$i]['lastName']);
-				$author->setAffiliation($authors[$i]['affiliation']);
-				$author->setCountry($authors[$i]['country']);
-				$author->setEmail($authors[$i]['email']);
-				$author->setUrl($authors[$i]['url']);
-				if (array_key_exists('competingInterests', $authors[$i])) {
-					$author->setCompetingInterests($authors[$i]['competingInterests'], null); // Localized
-				}
-				$author->setBiography($authors[$i]['biography'], null); // Localized
-				$author->setPrimaryContact($this->getData('primaryContact') == $i ? 1 : 0);
-				$author->setSequence($authors[$i]['seq']);
-
-				if ($isExistingAuthor == false) {
-					$monograph->addAuthor($author);
-				}
-			}
+		if ($this->author == null) {
+			// Update an existing author
+			$author = new Author();
+		} else {
+			$author = $this->author;
+			
 		}
+		$this->readInputData();
 
-		// Remove deleted authors
-		$deletedAuthors = explode(':', $this->getData('deletedAuthors'));
-		for ($i=0, $count=count($deletedAuthors); $i < $count; $i++) {
-			$monograph->removeAuthor($deletedAuthors[$i]);
-		}
+		$author->setMonographId($this->getData('monographId'));
+		$author->setAuthorId($this->getData('authorId'));
+		$author->setFirstName($this->getData('firstName'));
+		$author->setMiddleName($this->getData('middleName'));
+		$author->setLastName($this->getData('lastName'));
+		$author->setAffiliation($this->getData('affiliation'));
+		$author->setCountry($this->getData('country'));
+		$author->setEmail($this->getData('email'));
+		$author->setUrl($this->getData('url'));
+		$author->setBiography($this->getData('biography'), null); // Localized
 
-		// Save the article
-		$monographDao->updateArticle($monograph);
+		// Save the author
+		$authorDao->updateAuthor($author);
 
 		// Update search index
-		import('search.ArticleSearchIndex');
-		ArticleSearchIndex::indexArticleMetadata($monograph);
+//		import('search.ArticleSearchIndex');
+//		ArticleSearchIndex::indexArticleMetadata($monograph);
 
-		return $monograph->getArticleId();
+		Request::redirectUrl($this->getData('backUrl'));
+
+
+		return $author->getAuthorId();
 	}
 
 	/**

@@ -24,22 +24,25 @@ import('inserts.contributors.ContributorInsert');
 class MonographComponentsInsert
 {
 	var $template;
-	var $form;
+	var $formData;
 	var $options;
 	var $monograph;
+	var $form;
 	var $contributorInsert;
+
 	function MonographComponentsInsert($monograph, $form, $options = 0) {
 		$this->template = 'inserts/monographComponents/monographComponentsInsert.tpl';
 	//	$form->addCheck(new FormValidatorCustom($this, 'authors', 'required', 'author.submit.form.authorRequired', create_function('$authors', 'return count($authors) > 0;')));
 	//	$form->addCheck(new FormValidatorArray($this, 'authors', 'required', 'author.submit.form.authorRequiredFields', array('firstName', 'lastName', 'email')));
 		$this->form = $form;
+		$this->formData = isset($form) ? $form->_data : array();
 		$this->monograph = $monograph;
 		$this->options = $options;
 		$this->contributorInsert =& new ContributorInsert($monograph, $form);
 	}
 	function listUserVars() {
-		$vars = array('newComponent', 'components', 'primaryContact');
-		return array_merge($vars, $this->contributorInsert->listUserVars());
+		
+		return array_merge(array('components','newComponent'), $this->contributorInsert->listUserVars());;
 	}
 	function initData() {
 
@@ -72,6 +75,7 @@ class MonographComponentsInsert
 			}
 
 			$this->form->_data['components'] = $formComponents;
+
 		}
 	}
 	function display() {
@@ -139,8 +143,10 @@ class MonographComponentsInsert
 	function processEvents() {
 		$eventProcessed = false;
 		$submitForm = $this->form;
+
 		$eventProcessed = $this->contributorInsert->processEvents();
 		if (Request::getUserVar('addComponent') && 1) {// && work is an edited volume
+
 			$eventProcessed = true;
 			$newComponent = $submitForm->getData('newComponent');
 			$components = $submitForm->getData('components');
@@ -156,14 +162,6 @@ class MonographComponentsInsert
 			}
 			array_push($components, $newComponent);
 			$submitForm->setData('components', $components);
-		} else if (($updateId = Request::getUserVar('updateContributorInfo'))) {
-			$eventProcessed = true;
-			$authors = $submitForm->getData('authors');
-			list($updateId) = array_keys($updateId);
-			$updateId = (int) $updateId;
-			if (isset($authors[$updateId]['isVolumeEditor']))
-				$authors[$updateId]['isVolumeEditor'] = 1;
-			$submitForm->setData('authors',$authors);
 		} else if ($deleteAuthor = Request::getUserVar('deleteAuthor')) {
 			// Delete an author
 			$eventProcessed = true;

@@ -106,6 +106,67 @@ class AboutHandler extends PKPHandler {
 		parent::validate(true);
 		AboutHandler::setupTemplate(true);
 
+		$press =& Request::getPress();
+		$templateMgr =& TemplateManager::getManager();
+
+		$countryDao =& DAORegistry::getDAO('CountryDAO');
+		$countries =& $countryDao->getCountries();
+		$templateMgr->assign_by_ref('countries', $countries);
+
+		// FIXME: This is pretty inefficient; should probably be cached.
+		if ($press->getSetting('boardEnabled') != true) {
+			// Don't use the Editorial Team feature. Generate
+			// Editorial Team information using Role info.
+			$roleDao =& DAORegistry::getDAO('RoleDAO');
+
+			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getPressId());
+			$editors =& $editors->toArray();
+
+			$seriesEditors =& $roleDao->getUsersByRoleId(ROLE_ID_SERIES_EDITOR, $press->getPressId());
+			$seriesEditors =& $seriesEditors->toArray();
+
+			$layoutEditors =& $roleDao->getUsersByRoleId(ROLE_ID_LAYOUT_EDITOR, $press->getPressId());
+			$layoutEditors =& $layoutEditors->toArray();
+
+			$copyEditors =& $roleDao->getUsersByRoleId(ROLE_ID_COPYEDITOR, $press->getPressId());
+			$copyEditors =& $copyEditors->toArray();
+
+			$proofreaders =& $roleDao->getUsersByRoleId(ROLE_ID_PROOFREADER, $press->getPressId());
+			$proofreaders =& $proofreaders->toArray();
+
+			$templateMgr->assign_by_ref('editors', $editors);
+			$templateMgr->assign_by_ref('seriesEditors', $seriesEditors);
+			$templateMgr->assign_by_ref('layoutEditors', $layoutEditors);
+			$templateMgr->assign_by_ref('copyEditors', $copyEditors);
+			$templateMgr->assign_by_ref('proofreaders', $proofreaders);
+			$templateMgr->display('about/editorialTeam.tpl');
+		} else {
+			// The Editorial Team feature has been enabled.
+			// Generate information using Group data.
+			$groupDao =& DAORegistry::getDAO('GroupDAO');
+			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
+
+			$allGroups =& $groupDao->getGroups($press->getPressId(), GROUP_CONTEXT_EDITORIAL_TEAM);
+			$teamInfo = array();
+			$groups = array();
+			while ($group =& $allGroups->next()) {
+				if (!$group->getAboutDisplayed()) continue;
+				$memberships = array();
+				$allMemberships =& $groupMembershipDao->getMemberships($group->getGroupId());
+				while ($membership =& $allMemberships->next()) {
+					if (!$membership->getAboutDisplayed()) continue;
+					$memberships[] =& $membership;
+					unset($membership);
+				}
+				if (!empty($memberships)) $groups[] =& $group;
+				$teamInfo[$group->getGroupId()] = $memberships;
+				unset($group);
+			}
+
+			$templateMgr->assign_by_ref('groups', $groups);
+			$templateMgr->assign_by_ref('teamInfo', $teamInfo);
+			$templateMgr->display('about/editorialTeamBoard.tpl');
+		}
 
 	}
 

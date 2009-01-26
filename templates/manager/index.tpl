@@ -22,7 +22,7 @@
 	<li>&#187; <a href="{url op="files"}">{translate key="manager.filesBrowser"}</a></li>
 	<li>&#187; <a href="{url op="reviewForms"}">{translate key="manager.reviewForms"}</a></li>
 	<li>&#187; <a href="{url op="languages"}">{translate key="common.languages"}</a></li>
-<!--	<li>&#187; <a href="{url op="groups"}">{translate key="manager.groups"}</a></li>-->
+	<li>&#187; <a href="{url op="groups"}">{translate key="manager.groups"}</a></li>
 	<li>&#187; <a href="{url op="emails"}">{translate key="manager.emails"}</a></li>
 <!--	<li>&#187; <a href="{url page="rtadmin"}">{translate key="manager.readingTools"}</a></li>-->
 	<li>&#187; <a href="{url op="setup"}">{translate key="manager.setup"}</a></li>

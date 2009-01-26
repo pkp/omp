@@ -18,6 +18,5 @@ class Action {
 			$metadataForm->display();
 		}
 	}
-
 }
 ?>

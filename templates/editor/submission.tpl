@@ -21,6 +21,16 @@
 	<li><a href="{url op="submissionHistory" path=$submission->getMonographId()}">{translate key="submission.history"}</a></li>
 </ul>
 
+{include file="seriesEditor/submission/management.tpl"}
+
+<div class="separator"></div>
+
+{include file="seriesEditor/submission/editors.tpl"}
+
+<div class="separator"></div>
+
+{include file="seriesEditor/submission/status.tpl"}
+
 <div class="separator"></div>
 
 {include file="editor/metadata.tpl"}

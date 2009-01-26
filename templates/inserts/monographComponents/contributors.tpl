@@ -1,19 +1,3 @@
-
-{literal}
-<script type="text/javascript">
-<!--
-// Move author up/down
-function moveComponentAuthor(dir, authorIndex,componentIndex) {
-	var form = document.submit;
-	form.moveComponentAuthor.value = 1;
-	form.moveAuthorDir.value = dir;
-	form.moveAuthorIndex.value = authorIndex;
-	form.moveAuthorComponent.value = componentIndex;
-	form.submit();
-}
-// -->
-</script>
-{/literal}
 {literal}
 <script type="text/javascript">
 <!--
@@ -44,44 +28,61 @@ function show(id) {
 {$isEditedVolume}
 {foreach name=authors from=$authors item=author}
 {$isEditedVolume}
-	<input type="hidden" name="authors[{$author.authorId|escape}][authorId]" value="{$author.authorId|escape}" />
-	<input type="hidden" name="authors[{$author.authorId|escape}][deleted]" value="{$author.deleted}" />
+	<input type="hidden" name="authors[{$author->getAuthorId()|escape}][authorId]" value="{$author->getAuthorId()|escape}" />
+	<input type="hidden" name="authors[{$author->getAuthorId()|escape}][deleted]" value="{*$author.deleted*}" />
 
-	{if !$author.deleted}
+	{if 1}{*!$authordeleted*}
 		{assign var="authorIndex" value=$authorIndex+1}
 		<div style="background-color:{if $authorIndex % 2}#FFFFFF{else}#E0E0E0{/if}">
-			<a style="text-decoration:none" href="javascript:show('authors-{$author.authorId|escape}-display')">(+) {if $author.isVolumeEditor}<strong>Volume Editor: </strong>{/if}{$author.firstName} {$author.lastName}</a>
-			{if $author.isVolumeEditor}<input type="radio" name="primaryContact" value="{$author.authorId}" {if $primaryContact == $author.authorId}checked="checked" {/if}/>{/if}
+			<a style="text-decoration:none" href="javascript:show('authors-{$author->getAuthorId()|escape}-display')">(+) {if $author->getVolumeEditor()}<strong>Volume Editor: </strong>{/if}{$author->getFullName()}</a>
+			{if $author->getVolumeEditor()}<input type="radio" name="primaryContact" value="{$author->getAuthorId()}" {if $primaryContact == $author->getAuthorId()}checked="checked" {/if}/>{/if}
 			<br />
 		</div>
-		<div id="authors-{$author.authorId|escape}-display" style="display:none;border-left:1px solid black;padding-left:10px;background-color:{if $authorIndex % 2}#FFFFFF{else}#E0E0E0{/if}">
-			{assign var="authorId" value=$author.authorId}
+		<div id="authors-{$author->getAuthorId()|escape}-display" style="display:none;border-left:1px solid black;padding-left:10px;background-color:{if $authorIndex % 2}#FFFFFF{else}#E0E0E0{/if}">
+			{assign var="authorId" value=$author->getAuthorId()}
 			<table width="100%" class="data">
 				  <tr valign="top">
-					  <td width="20%" class="label">{fieldLabel name="authors-$authorId-firstName" required="true" key="user.firstName"}</td>
-					  <td width="80%" class="value"><input type="text" class="textField" name="authors[{$author.authorId|escape}][firstName]" id="authors-{$author.authorId|escape}-firstName" value="{$author.firstName|escape}" size="20" maxlength="40" /></td>
+					  <td width="20%" class="label">{translate key="user.firstName"}</td>
+					  <td width="80%" class="value">{$author->getFirstName()|escape}</td>
 				  </tr>
 				  <tr valign="top">
-					  <td width="20%" class="label">{fieldLabel name="authors-$authorId-lastName" required="true" key="user.lastName"}</td>
-					  <td width="80%" class="value"><input type="text" class="textField" name="authors[{$author.authorId|escape}][lastName]" id="authors-{$author.authorId|escape}-lastName" value="{$author.lastName|escape}" size="20" maxlength="90" /></td>
+					  <td width="20%" class="label">{translate key="user.middleName"}</td>
+					  <td width="80%" class="value">{$author->getMiddleName()|escape|default:"&mdash;"}</td>
 				  </tr>
 				  <tr valign="top">
-					  <td width="20%" class="label">{fieldLabel name="authors-$authorId-email" required="true" key="user.email"}</td>
-					  <td width="80%" class="value"><input type="text" class="textField" name="authors[{$author.authorId|escape}][email]" id="authors-{$author.authorId|escape}-email" value="{$author.email|escape}" size="30" maxlength="90" /></td>
+					  <td width="20%" class="label">{translate key="user.lastName"}</td>
+					  <td width="80%" class="value">{$author->getLastName()|escape}</td>
+				  </tr>
+				  <tr valign="top">
+					  <td width="20%" class="label">{translate key="user.affiliation"}</td>
+					  <td width="80%" class="value">{$author->getAffiliation()|escape|default:"&mdash;"}</td>
+				  </tr>
+				  <tr valign="top">
+					  <td width="20%" class="label">{translate key="common.country"}</td>
+					  <td width="80%" class="value">{$author->getCountryLocalized()|escape|default:"&mdash;"}</td>
+				  </tr>
+				  <tr valign="top">
+					  <td width="20%" class="label">{translate key="user.email"}</td>
+					  <td width="80%" class="value">{$author->getEmail()|escape}</td>
+				  </tr>
+				  <tr valign="top">
+					  <td class="label">{translate key="user.url"}</td>
+					  <td class="value">{$author->getUrl()|escape|default:"&mdash;"}</td>
+				  </tr>
+				  <tr valign="top">
+					  <td class="label">{translate key="user.biography"}</td>
+					  <td class="value">{$author->getAuthorBiography()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 				  </tr>
 			{if 1}<!--$smarty.foreach.authors.total > 1-->
 				<tr valign="top">
-					<td width="80%" class="value" colspan="2"><input type="checkbox" name="authors[{$author.authorId|escape}][isVolumeEditor]" id="authors-{$author.authorId}-isVolumeEditor" value="1"{if 1 == $author.isVolumeEditor} checked="checked"{/if} /> <label for="authors-{$author.authorId}-isVolumeEditor">This contributor is a volume editor.</label>
+					<td width="80%" class="value" colspan="2"><input type="checkbox" name="authors[{$author->getAuthorId()|escape}][isVolumeEditor]" id="authors-{$author->getAuthorId()}-isVolumeEditor" value="1"{if 1 == $author->getVolumeEditor()} checked="checked"{/if} /> <label for="authors-{$author->getAuthorId()}-isVolumeEditor">This contributor is a volume editor.</label>
 				</td>
 				</tr>
 			<!--	<tr valign="top">
-					<td width="80%" class="value" colspan="2"><input type="submit" name="deleteAuthor[{$author.authorId}]" value="{translate key="author.submit.deleteAuthor"}" class="button" /></td>
+					<td width="80%" class="value" colspan="2"><input type="submit" name="deleteAuthor[{$author->getAuthorId()}]" value="{translate key="author.submit.deleteAuthor"}" class="button" /></td>
 				</tr>-->
 				<tr valign="top">
 					<td width="80%" class="value" colspan="2"><a href="{url op="viewAuthorMetadata" path="$authorId"}">EDIT</a></td>
-				</tr>
-				<tr valign="top">
-					<td width="80%" class="value" colspan="2"><input type="submit" class="button" name="updateContributorInfo[{$author.authorId|escape}]" value="Update Contributor Information" /></td>
 				</tr>
 				<tr>
 					<td colspan="2"><br/></td>
@@ -104,27 +105,22 @@ function show(id) {
 
 <input type="hidden" name="newAuthor[authorId]" value="{$authors|@count}" />
 
-{if $cannotAddAuthor}
-<p>Please fill in all of the required fields!</p>
-{/if}
+{
+
+
 <table width="100%" class="data">
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="newAuthor-firstName" required="true" key="user.firstName"}</td>
-	<td width="80%" class="value"><input type="text" class="textField" name="newAuthor[firstName]" value="{$newAuthor.firstName|escape}" id="newAuthors-firstName" size="20" maxlength="40" /></td>
+	<td width="80%" class="value"><input type="text" class="textField" name="author[firstName]" value="{$newAuthor.firstName|escape}" id="newAuthors-firstName" size="20" maxlength="40" /></td>
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="newAuthors-lastName" required="true" key="user.lastName"}</td>
-	<td width="80%" class="value"><input type="text" class="textField" name="newAuthor[lastName]" value="{$newAuthor.lastName|escape}" id="newAuthors-lastName" size="20" maxlength="90" /></td>
+	<td width="80%" class="value"><input type="text" class="textField" name="author[lastName]" value="{$newAuthor.lastName|escape}" id="newAuthors-lastName" size="20" maxlength="90" /></td>
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="newAuthors-email" required="true" key="user.email"}</td>
-	<td width="80%" class="value"><input type="text" class="textField" name="newAuthor[email]" value="{$newAuthor.email|escape}" id="newAuthors-email" size="30" maxlength="90" /></td>
-</tr>
-<tr valign="top">
-	<td width="80%" class="value" colspan="2"><input type="checkbox" id="newAuthors-isVolumeEditor" name="newAuthor[isVolumeEditor]" {if 1 == $newAuthor.isVolumeEditor}checked="checked"{/if}/> <label for="newAuthors-isVolumeEditor">This contributor is a volume editor.</label> </td>
+	<td width="80%" class="value"><input type="text" class="textField" name="author[email]" value="{$newAuthor.email|escape}" id="newAuthors-email" size="30" maxlength="90" /></td>
 </tr>
 </table>
-<input type="hidden" name="newAuthor[deleted]" value="0" />
 <p><input type="submit" class="button" name="addAuthor" value="{translate key="author.submit.addAuthor"}" /></p>
 </div> 
-

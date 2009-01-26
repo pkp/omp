@@ -229,6 +229,7 @@ class MonographDAO extends DAO {
 	 * @param Monograph object
 	 */
 	function updateMonograph($monograph) {
+
 		$this->update(
 			'UPDATE monographs
 				SET
@@ -237,7 +238,8 @@ class MonographDAO extends DAO {
 					submission_progress = ?,
 					edited_volume = ?,
 					comments_to_ed = ?,
-					language = ?
+					language = ?,
+					submission_file_id = ?
 				WHERE monograph_id = ?',
 			array(
 				$monograph->getDateSubmitted(),
@@ -246,6 +248,7 @@ class MonographDAO extends DAO {
 				$monograph->getWorkType() == EDITED_VOLUME ? 1 : 0,
 				$monograph->getCommentsToEditor(),
 				$monograph->getLanguage(),
+				$monograph->getSubmissionFileId(),
 				$monograph->getMonographId()
 			)
 		);
@@ -367,7 +370,7 @@ class MonographDAO extends DAO {
 		$monograph->setCommentsToEditor($row['comments_to_ed']);
 		$monograph->setDateSubmitted($row['date_submitted']);
 		$monograph->setLanguage($row['language']);
-
+		$monograph->setSubmissionFileId($row['submission_file_id']);
     //$monograph->setDatePublished($this->datetimeFromDB($row['date_published']));
 //		//$monograph->setPublicMonographId($row['public_monograph_id']);
 		$monograph->setWorkType($row['edited_volume']);

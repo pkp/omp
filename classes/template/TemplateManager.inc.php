@@ -27,9 +27,10 @@ class TemplateManager extends PKPTemplateManager {
 	 * Initialize template engine and assign basic template variables.
 	 */
 	function TemplateManager() {
-		$this->register_modifier('monographComponents', array(&$this, 'smartyMonographComponents'));
+
 		parent::PKPTemplateManager();
 
+		$this->register_function('monographComponents', array(&$this, 'smartyMonographComponents'));
 		// Are we using implicit authentication?
 		$this->assign('implicitAuth', Config::getVar('security', 'implicit_auth'));
 	
@@ -230,10 +231,11 @@ class TemplateManager extends PKPTemplateManager {
 		if (isset($params['monographId'])) {
 			import('inserts.monographComponents.MonographComponentsInsert');
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$monograph = $monographDao->getMonograph($monographId);
-			
-			$mc =& new MonographComponentsInsert(null, $monograph, ($monograph->getWorkType()==EDITED_VOLUME)?0:AUTHORS_ONLY);
-			$mc->initData();
+			$monograph = $monographDao->getMonograph($params['monographId']);
+			$mc =& new MonographComponentsInsert(null, $monograph, ($monograph->getWorkType()==1) ? 0 : 1);
+			//$mc->display();
+			$this->_smarty_include(array('smarty_include_vars'=>array(),'smarty_include_tpl_file'=>'monograph/contributors.tpl'));
+			return 1;
 			
 		}
 	}

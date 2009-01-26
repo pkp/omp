@@ -100,6 +100,7 @@ class MetadataForm extends Form {
 			if (!is_array($this->_data))
 				$this->_data = array();
 			$this->_data = array_merge($this->_data,array(
+
 				'title' => $monograph->getTitle(null), // Localized
 				'abstract' => $monograph->getAbstract(null), // Localized
 				'coverPageAltText' => $monograph->getCoverPageAltText(null), // Localized
@@ -120,9 +121,11 @@ class MetadataForm extends Form {
 				'language' => $monograph->getLanguage(),
 				'sponsor' => $monograph->getSponsor(null), // Localized
 				'hideAuthor' => $monograph->getHideAuthor()
+
 			));
 
 		}
+
 	}
 
 	/**
@@ -143,16 +146,16 @@ class MetadataForm extends Form {
 	 */
 	function display() {
 		$this->monographComponents->display();
-/*		$press =& Request::getPress();
-		$settingsDao =& DAORegistry::getDAO('JournalSettingsDAO');
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$press =& Request::getPress();
+		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+/*		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$sectionDao =& DAORegistry::getDAO('SectionDAO');
 
 */		$templateMgr =& TemplateManager::getManager();
-/*		$templateMgr->assign('articleId', isset($this->monograph)?$this->monograph->getArticleId():null);
-		$templateMgr->assign('journalSettings', $settingsDao->getJournalSettings($journal->getJournalId()));
+//		$templateMgr->assign('monographId', isset($this->monograph)?$this->monograph->getMonographId():null);
+		$templateMgr->assign('pressSettings', $settingsDao->getPressSettings($press->getPressId()));
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
-*/		$templateMgr->assign('canViewAuthors', $this->canViewAuthors);
+		$templateMgr->assign('canViewAuthors', $this->canViewAuthors);
 /*
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$templateMgr->assign('countries', $countryDao->getCountries());
