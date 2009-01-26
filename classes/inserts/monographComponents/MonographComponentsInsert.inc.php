@@ -19,46 +19,34 @@ define('SUMMARY_ONLY',0x2);
 define('AUTHORS_ONLY',0x4);
 define('UPLOADS',0x8);
 
+import('inserts.contributors.ContributorInsert');
+
 class MonographComponentsInsert
 {
 	var $template;
 	var $form;
 	var $options;
 	var $monograph;
-
-	function MonographComponentsInsert($form, &$monograph, $options = 0) {
+	var $contributorInsert;
+	function MonographComponentsInsert($monograph, $form, $options = 0) {
 		$this->template = 'inserts/monographComponents/monographComponentsInsert.tpl';
 	//	$form->addCheck(new FormValidatorCustom($this, 'authors', 'required', 'author.submit.form.authorRequired', create_function('$authors', 'return count($authors) > 0;')));
 	//	$form->addCheck(new FormValidatorArray($this, 'authors', 'required', 'author.submit.form.authorRequiredFields', array('firstName', 'lastName', 'email')));
 		$this->form = $form;
 		$this->monograph = $monograph;
 		$this->options = $options;
+		$this->contributorInsert =& new ContributorInsert($monograph, $form);
 	}
 	function listUserVars() {
-		return array('newComponent','components','newAuthor','authors','primaryContact');
+		$vars = array('newComponent', 'components', 'primaryContact');
+		return array_merge($vars, $this->contributorInsert->listUserVars());
 	}
 	function initData() {
 
 		if (isset($this->monograph)) {
 
-			$authors =& $this->monograph->getAuthors();
-			$formAuthors = array();
-			for ($i=0, $count=count($authors); $i < $count; $i++) {
-				$gnash[$authors[$i]->getAuthorId()] = $i;
-				array_push(
-					$formAuthors,
-					array(
-						'authorId' => $i,
-						'firstName' => $authors[$i]->getFirstName(),
-						'lastName' => $authors[$i]->getLastName(),
-						'email' => $authors[$i]->getEmail()
-					)
-				);
-				if ($authors[$i]->getPrimaryContact()) {
-					$this->form->setData('primaryContact', $i);
-				}
-			}
-			$this->form->_data['authors'] = $formAuthors;
+			$gnash = $this->contributorInsert->initData();
+
 			$components =& $this->monograph->getMonographComponents();
 			$formComponents = array();
 
@@ -83,16 +71,15 @@ class MonographComponentsInsert
 				);
 			}
 
-
 			$this->form->_data['components'] = $formComponents;
 		}
 	}
 	function display() {
 		
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('authors', $this->form->_data['authors']);
-		$templateMgr->assign('components', $this->monograph->_data['components']);
 
+		$templateMgr->assign('components', $this->form->getData('components'));
+		$this->contributorInsert->display();
 		if ($this->options == 0) {
 			$templateMgr->assign('componentCreation',1);
 		} else {
@@ -117,106 +104,43 @@ class MonographComponentsInsert
 	}
 	function execute() {
 		$components = $this->form->getData('components');
-		$authors = $this->form->getData('authors');
 
-		if($this->options & AUTHORS_ONLY) {
-			$this->monograph->resetAuthors();
-			foreach ($authors as $monographAuthor) {
-				
-				if ($monographAuthor['deleted']) continue;
+		$this->contributorInsert->execute();
 
-				$author =& new Author();
-				$author->setMonographId($this->monograph->getMonographId());
-				$author->setAuthorId($monographAuthor['authorId']);
-				$author->setFirstName($monographAuthor['firstName']);
-				$author->setLastName($monographAuthor['lastName']);
-				$author->setEmail($monographAuthor['email']);
-				$author->setPrimaryContact($this->form->getData('primaryContact') == $monographAuthor['authorId'] ? PRIMARY_CONTACT : 0);
-				
-				$this->monograph->addAuthor($author);
-			}
-
-		} else { 
-
-			$this->monograph->resetAuthors();
-			foreach ($authors as $monographAuthor) {
-				
-				if ($monographAuthor['deleted']) continue;
-
-				$author =& new Author();
-				$author->setFirstName($monographAuthor['firstName']);
-				$author->setAuthorId($monographAuthor['authorId']);
-				$author->setLastName($monographAuthor['lastName']);
-				$author->setEmail($monographAuthor['email']);
-				$author->setPrimaryContact($this->form->getData('primaryContact') == $monographAuthor['authorId'] ? PRIMARY_CONTACT : 0);
-				$author->setMonographId($this->monograph->getMonographId());
-				$this->monograph->addAuthor($author);
-			}
-
-
-			import('monograph.MonographComponent');
-			$componentsList = array();
-			$j = 1;
-			foreach ($components as $componentInfo) {
-				$component =& new MonographComponent;
-				$component->setMonographComponentTitle($componentInfo['title'], null);
-				$component->setMonographId($this->monograph->getMonographId());
-				$component->setSequence($j);
-				if(count($component->getMonographComponentAuthors()))
-					$component->setPrimaryContact($componentInfo['primaryContact']);
-				
-				if (isset($componentInfo['authors'])) {
-					$i = 1;
-					foreach ($componentInfo['authors'] as $componentAuthor) {
-						// Create a new author
-						$author =& new Author();
-						$authorId = (int) $componentAuthor['authorId'];
-						$author->setAuthorId($authorId);
-						$author->setSequence($i);
-						$component->addMonographComponentAuthor($author);
-						$i++;
-					}
+		import('monograph.MonographComponent');
+		$componentsList = array();
+		$j = 1;
+		if (isset($components))
+		foreach ($components as $componentInfo) {
+			$component =& new MonographComponent;
+			$component->setMonographComponentTitle($componentInfo['title'], null);
+			$component->setMonographId($this->monograph->getMonographId());
+			$component->setSequence($j);
+			if(count($component->getMonographComponentAuthors()))
+				$component->setPrimaryContact($componentInfo['primaryContact']);
+			
+			if (isset($componentInfo['authors'])) {
+				$i = 1;
+				foreach ($componentInfo['authors'] as $componentAuthor) {
+					// Create a new author
+					$author =& new Author();
+					$authorId = (int) $componentAuthor['authorId'];
+					$author->setAuthorId($authorId);
+					$author->setSequence($i);
+					$component->addMonographComponentAuthor($author);
+					$i++;
 				}
-				array_push($componentsList, $component);
-				$j++;
 			}
-			$this->monograph->setMonographComponents($componentsList);
+			array_push($componentsList, $component);
+			$j++;
 		}
-
+		$this->monograph->setMonographComponents($componentsList);
 	}
 	function processEvents() {
 		$eventProcessed = false;
 		$submitForm = $this->form;
-		if (Request::getUserVar('addAuthor')) {
-			// Add a sponsor
-			$eventProcessed = true;
-			$newAuthor =& $submitForm->getData('newAuthor');
-			$skipNewEntry = false;
-
-			foreach (array('firstName','lastName','email') as $field) {
-				if (isset($newAuthor[$field]) && $newAuthor[$field] == '') {
-					$skipNewEntry = true;
-					break;
-				}
-			}
-			$templateMgr =& TemplateManager::getManager();
-
-			if (!$skipNewEntry){
-				$authors = $submitForm->getData('authors');
-				$authors = !isset($authors) ? array() : $authors;
-				if (isset($newAuthor['isVolumeEditor'])) {
-					$newAuthor['isVolumeEditor'] = 1;
-					$templateMgr->assign('primaryContact',$newAuthor['authorId']);
-				}
-				array_push($authors, $newAuthor);
-				$submitForm->setData('authors', $authors);
-				$submitForm->setData('newAuthor',null);
-			} else {
-				$templateMgr =& TemplateManager::getManager();
-				$templateMgr->assign('cannotAddAuthor',true);
-				$templateMgr->assign_by_ref('newAuthor',$newAuthor);
-			}
-		} else if (Request::getUserVar('addComponent') && 1) {// && work is an edited volume
+		$eventProcessed = $this->contributorInsert->processEvents();
+		if (Request::getUserVar('addComponent') && 1) {// && work is an edited volume
 			$eventProcessed = true;
 			$newComponent = $submitForm->getData('newComponent');
 			$components = $submitForm->getData('components');
@@ -257,35 +181,6 @@ class MonographComponentsInsert
 			$moveAuthorIndex = (int) Request::getUserVar('moveAuthorIndex');
 			$moveComponentIndex = (int) Request::getUserVar('moveAuthorComponentIndex');
 			$authors = $submitForm->getData('authors');
-		} else if (Request::getUserVar('moveAuthor')) {
-			// Move an author up/down
-			$eventProcessed = true;
-			$moveAuthorDir = Request::getUserVar('moveAuthorDir');
-			$moveAuthorDir = $moveAuthorDir == 'u' ? 'u' : 'd';
-			$moveAuthorIndex = (int) Request::getUserVar('moveAuthorIndex');
-			$authors = $submitForm->getData('authors');
-			if (!(($moveAuthorDir == 'u' && $moveAuthorIndex <= 0) || ($moveAuthorDir == 'd' && $moveAuthorIndex >= count($authors) - 1))) {
-				$tmpAuthor = $authors[$moveAuthorIndex];
-				$primaryContact = $submitForm->getData('primaryContact');
-				if ($moveAuthorDir == 'u') {
-					$authors[$moveAuthorIndex] = $authors[$moveAuthorIndex - 1];
-					$authors[$moveAuthorIndex - 1] = $tmpAuthor;
-					if ($primaryContact == $moveAuthorIndex) {
-						$submitForm->setData('primaryContact', $moveAuthorIndex - 1);
-					} else if ($primaryContact == ($moveAuthorIndex - 1)) {
-						$submitForm->setData('primaryContact', $moveAuthorIndex);
-					}
-				} else {
-					$authors[$moveAuthorIndex] = $authors[$moveAuthorIndex + 1];
-					$authors[$moveAuthorIndex + 1] = $tmpAuthor;
-					if ($primaryContact == $moveAuthorIndex) {
-						$submitForm->setData('primaryContact', $moveAuthorIndex + 1);
-					} else if ($primaryContact == ($moveAuthorIndex + 1)) {
-						$submitForm->setData('primaryContact', $moveAuthorIndex);
-					}
-				}
-			}
-			$submitForm->setData('authors', $authors);
 		} else if (Request::getUserVar('moveComponent')) {
 			$eventProcessed = true;
 			$moveComponentDir = Request::getUserVar('moveComponentDir');

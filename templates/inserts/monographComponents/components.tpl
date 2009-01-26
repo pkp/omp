@@ -57,9 +57,9 @@ function moveComponent(dir, componentIndex) {
 		<td>
 			<a href="javascript:moveComponentAuthor('u', '{$componentAuthorIndex|escape}','{$componentIndex|escape}')" class="action">&uarr;</a> <a href="javascript:moveComponentAuthor('d', '{$componentIndex|escape}','{$componentIndex|escape}')" class="action">&darr;</a>
 		</td>
-		<td>{$authors[$authorId].firstName}&nbsp;{$authors[$authorId].lastName}</td>
-		<td>{$authors[$authorId].email}</td>
-		<td><input type="radio" name="components[{$componentIndex|escape}][primaryContact]"{if $component.primaryContact == $authorId} checked="checked"{/if}" value="{$authorId}"/></td>
+		<td>{$contributors[$authorId].firstName}&nbsp;{$contributors[$authorId].lastName}</td>
+		<td>{$contributors[$authorId].email}</td>
+		<td><input type="radio" name="components[{$componentIndex|escape}][primaryContact]"{if $component.primaryContact == $authorId} checked="checked"{/if} value="{$authorId}"/></td>
 		</tr>
 	{/foreach}
 		</table>
@@ -82,14 +82,14 @@ function moveComponent(dir, componentIndex) {
 <div id="showNewComponent" style="display:none;border:1px solid #e5aa5c;background-color:#ffd9a7">
 <table width="100%" class="data">
 <tr valign="top">
-	<td width="20%" class="label">Component Title</td>
+	<td width="20%" class="label">{translate key="monograph.component.title"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="newComponent[title]" size="40" maxlength="255" /></td>
 </tr>
 <tr valign="top">
-	<td width="20%" class="label">Component Authors</td>
+	<td width="20%" class="label">{translate key="monograph.component.authors"}</td>
 	<td width="80%">
 		<select name="newComponent[authors][]" multiple="multiple" class="selectMenu" size="7" style="width:20em">
-			{foreach from=$authors item=author}
+			{foreach from=$contributors item=author}
 			{if !$author.deleted}
 			<option value="{$author.authorId}">{$author.firstName} {$author.lastName} ({$author.email})</option>
 			{/if}

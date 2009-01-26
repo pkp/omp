@@ -45,12 +45,11 @@
 </table>
 {/if}
 
-
-
-
-
-
-{include file="inserts/monographComponents/monographComponentsInsert.tpl"}
+{if $workType == EDITED_VOLUME}
+	{include file="inserts/monographComponents/MonographComponentsInsert.tpl"}
+{else}
+	{include file="inserts/contributors/ContributorInsert.tpl"}
+{/if}
 
 <h3>Title and Description</h3>
 <br />

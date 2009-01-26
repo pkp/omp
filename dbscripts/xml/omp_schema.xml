@@ -83,7 +83,56 @@
 			<col>editor_id</col>
 		</index>
 	</table>
-	
+	<!--
+	  *
+	  * TABLE article_files
+	  *
+	  -->
+	<table name="monograph_files">
+		<field name="file_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="revision" type="I8">
+			<KEY />
+		</field>
+		<field name="source_file_id" type="I8" />
+		<field name="source_revision" type="I8" />
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="file_name" type="C2" size="90">
+			<NOTNULL/>
+		</field>
+		<field name="file_type" type="C2" size="255">
+			<NOTNULL/>
+		</field>
+		<field name="file_size" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="original_file_name" type="C2" size="127"/>
+		<field name="type" type="C2" size="40">
+			<NOTNULL/>
+		</field>
+		<field name="status" type="C2" size="40">
+			<NOTNULL/>
+		</field>
+		<field name="viewable" type="I1" />
+		<field name="date_uploaded" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="date_modified" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="round" type="I1">
+			<NOTNULL/>
+		</field>
+		<field name="assoc_id" type="I8"/>
+		<descr>Files associated with monograph. Includes submission files, supplementary files, etc.</descr>
+		<index name="monograph_files_monograph_id">
+			<col>monograph_id</col>
+		</index>
+	</table>
 	<!--
 	  *
 	  * TABLE review_rounds
@@ -575,7 +624,7 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
-		<field name="volume_editor" type="I1">
+		<field name="contribution_type" type="I8">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>

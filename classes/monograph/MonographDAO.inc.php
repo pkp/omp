@@ -182,7 +182,7 @@ class MonographDAO extends DAO {
 				$monograph->getFastTracked() ? 1 : 0,
 				$monograph->getHideAuthor() === null ? 0 : $monograph->getHideAuthor(),
 				$monograph->getCommentsStatus() === null ? 0 : $monograph->getCommentsStatus(),
-				$monograph->getWorkType() == EDITED_VOLUME ? 1 : 0
+				$monograph->getWorkType()
 			)
 		);
 
@@ -228,7 +228,7 @@ class MonographDAO extends DAO {
 	 * updates a monograph
 	 * @param Monograph object
 	 */
-	function updateMonograph($monograph) {print_r($monograph);
+	function updateMonograph($monograph) {
 		$this->update(
 			'UPDATE monographs
 				SET

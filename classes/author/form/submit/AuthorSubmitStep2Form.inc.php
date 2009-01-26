@@ -16,6 +16,7 @@
 
 
 import('author.form.submit.AuthorSubmitForm');
+import('inserts.contributors.ContributorInsert');
 import('inserts.monographComponents.MonographComponentsInsert');
 
 class AuthorSubmitStep2Form extends AuthorSubmitForm {
@@ -34,7 +35,12 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	}
 
 	function initializeInserts() {
-		$this->formComponents = array(new MonographComponentsInsert($this, ($this->sequence->monograph->getWorkType()==EDITED_VOLUME)?0:AUTHORS_ONLY));
+		if ($this->sequence->monograph->getWorkType() == EDITED_VOLUME) { 
+			$insert =& new MonographComponentsInsert($this->sequence->monograph, $this);
+		} else {
+			$insert =& new ContributorInsert($this->sequence->monograph, $this);
+		}
+		$this->formComponents = array($insert);
 	}
 
 	/**
@@ -117,9 +123,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 		}
 		$templateMgr =& TemplateManager::getManager();
 
-		$countryDao =& DAORegistry::getDAO('CountryDAO');
-		$countries =& $countryDao->getCountries();
-		$templateMgr->assign_by_ref('countries', $countries);
+		$templateMgr->assign('workType', $this->sequence->monograph->getWorkType());
 
 		parent::display();
 	}

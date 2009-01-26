@@ -18,16 +18,6 @@ class Action {
 			$metadataForm->display();
 		}
 	}
-	function viewAuthorMetadata($monograph, $roleId) {
-		import('submission.form.AuthorMetadataForm');print_r($monograph);
-		$authorMetadataForm =& new AuthorMetadataForm($monograph, $roleId);
 
-		if ($authorMetadataForm->getCanEdit() && $authorMetadataForm->isLocaleResubmit()) {
-			$authorMetadataForm->readInputData();
-		} else {
-			$authorMetadataForm->initData();
-		}
-		$authorMetadataForm->display();
-	}
 }
 ?>

@@ -11,9 +11,6 @@
 {assign var="pageTitle" value="author.submit.step1"}
 {include file="author/submit/submitStepHeader.tpl"}
 
-{foreach from=$componentTemplates item=component}
-{include file=$component}
-{/foreach}
 <!-- ********Support******** -->
 {if $pressSettings.supportPhone}
 	{assign var="howToKeyName" value="author.submit.howToSubmit"}

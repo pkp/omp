@@ -60,11 +60,11 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 
-	/*	// Get supplementary files for this article
-		$articleFileDao =& DAORegistry::getDAO('ArticleFileDAO');
-		if ($this->article->getSubmissionFileId() != null) {
-			$templateMgr->assign_by_ref('submissionFile', $articleFileDao->getArticleFile($this->article->getSubmissionFileId()));
-		}*/
+		// Get supplementary files for this article
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		if ($this->sequence->monograph->getSubmissionFileId() != null) {
+			$templateMgr->assign_by_ref('submissionFile', $monographFileDao->getMonographFile($this->sequence->monograph->getSubmissionFileId()));
+		}
 		parent::display();
 	}
 

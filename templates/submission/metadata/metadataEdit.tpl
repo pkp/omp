@@ -45,7 +45,7 @@
 </table>
 {/if}
 {/if}
-{include file="inserts/monographComponents/monographComponentsInsert.tpl"}
+{include file="inserts/monographComponents/MonographComponentsInsert.tpl"}
 
 
 

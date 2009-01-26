@@ -25,12 +25,12 @@ class AuthorHandler extends PKPHandler {
 	 */
 	function index($args) {
 		$templateMgr =& TemplateManager::getManager();
-/*		list($press) = AuthorHandler::validate();
-		AuthorHandler::setupTemplate();
-
+//		list($press) = AuthorHandler::validate();
+//		AuthorHandler::setupTemplate();
+		$press =& Request::getPress();
 		$user =& Request::getUser();
-//		$rangeInfo =& PKPHandler::getRangeInfo('submissions');
-//		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+		$rangeInfo =& PKPHandler::getRangeInfo('submissions');
+		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
 		switch($page) {
@@ -42,7 +42,7 @@ class AuthorHandler extends PKPHandler {
 				$active = true;
 		}
 
-		$submissions = array();//$authorSubmissionDao->getAuthorSubmissions($user->getUserId(), $press->getPressId(), $active, $rangeInfo);
+		$submissions = $authorSubmissionDao->getAuthorSubmissions($user->getUserId(), $press->getPressId(), $active, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageToDisplay', $page);
@@ -51,7 +51,7 @@ class AuthorHandler extends PKPHandler {
 			$templateMgr->assign('statViews', $press->getSetting('statViews'));
 		}
 		$templateMgr->assign_by_ref('submissions', $submissions);
-*/
+
 		// assign payment 
 /*		import('payment.ojs.OJSPaymentManager');
 		$paymentManager =& OJSPaymentManager::getManager();

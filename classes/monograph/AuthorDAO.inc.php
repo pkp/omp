@@ -229,6 +229,7 @@ class AuthorDAO extends DAO {
 		$author->setUrl($row['url']);
 		$author->setPrimaryContact($row['primary_contact']);
 		$author->setSequence($row['seq']);
+		$author->setContributionType($row['contribution_type']);
 
 		$this->getDataObjectSettings('monograph_author_settings', 'author_id', $row['author_id'], $author);
 
@@ -244,9 +245,9 @@ class AuthorDAO extends DAO {
 	function insertAuthor(&$author) {
 		$this->update(
 			'INSERT INTO monograph_authors
-				(monograph_id, first_name, middle_name, last_name, affiliation, country, email, url, primary_contact, seq)
+				(monograph_id, first_name, middle_name, last_name, affiliation, country, email, url, primary_contact, seq, contribution_type)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$author->getMonographId(),
 				$author->getFirstName(),
@@ -257,7 +258,8 @@ class AuthorDAO extends DAO {
 				$author->getEmail(),
 				$author->getUrl(),
 				$author->getPrimaryContact(),
-				$author->getSequence()
+				$author->getSequence(),
+				$author->getContributionType()
 			)
 		);
 
@@ -283,7 +285,8 @@ class AuthorDAO extends DAO {
 					email = ?,
 					url = ?,
 					primary_contact = ?,
-					seq = ?
+					seq = ?,
+					contribution_type = ? 
 				WHERE author_id = ?',
 			array(
 				$author->getFirstName(),
@@ -295,6 +298,7 @@ class AuthorDAO extends DAO {
 				$author->getUrl(),
 				$author->getPrimaryContact(),
 				$author->getSequence(),
+				$author->getContributionType(),
 				$author->getAuthorId()
 			)
 		);

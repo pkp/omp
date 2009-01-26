@@ -34,7 +34,11 @@ class MetadataForm extends Form {
 	function MetadataForm($monograph) {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath(Request::getRequestedPage());
-		$this->monographComponents =& new MonographComponentsInsert($this, $monograph, ($monograph->getWorkType()==EDITED_VOLUME)?0:AUTHORS_ONLY);
+		if ($monograph->getWorkType() == EDITED_VOLUME) {
+			$this->monographComponents =& new MonographComponentsInsert($monograph, $this);
+		} else {
+			$this->monographComponents =& new ContributorInsert($monograph, $this);
+		}
 
 //		$copyAssignmentDao =& DAORegistry::getDAO('CopyAssignmentDAO');
 /*
@@ -93,8 +97,9 @@ class MetadataForm extends Form {
 		$this->monographComponents->initData();
 		if (isset($this->monograph)) {
 			$monograph =& $this->monograph;
-			$this->_data = array(
-				'authors' => array(),
+			if (!is_array($this->_data))
+				$this->_data = array();
+			$this->_data = array_merge($this->_data,array(
 				'title' => $monograph->getTitle(null), // Localized
 				'abstract' => $monograph->getAbstract(null), // Localized
 				'coverPageAltText' => $monograph->getCoverPageAltText(null), // Localized
@@ -115,29 +120,8 @@ class MetadataForm extends Form {
 				'language' => $monograph->getLanguage(),
 				'sponsor' => $monograph->getSponsor(null), // Localized
 				'hideAuthor' => $monograph->getHideAuthor()
-			);
+			));
 
-			$authors =& $monograph->getAuthors();
-			for ($i=0, $count=count($authors); $i < $count; $i++) {
-				array_push(
-					$this->_data['authors'],
-					array(
-						'authorId' => $authors[$i]->getAuthorId(),
-						'firstName' => $authors[$i]->getFirstName(),
-						'middleName' => $authors[$i]->getMiddleName(),
-						'lastName' => $authors[$i]->getLastName(),
-						'affiliation' => $authors[$i]->getAffiliation(),
-						'country' => $authors[$i]->getCountry(),
-						'countryLocalized' => $authors[$i]->getCountryLocalized(),
-						'email' => $authors[$i]->getEmail(),
-						'url' => $authors[$i]->getUrl(),
-						'biography' => $authors[$i]->getBiography(null) // Localized
-					)
-				);
-				if ($authors[$i]->getPrimaryContact()) {
-					$this->setData('primaryContact', $i);
-				}
-			}
 		}
 	}
 
@@ -198,7 +182,6 @@ class MetadataForm extends Form {
 	function readInputData() {
 		$userVars = array (
 				'articleId',
-				'authors',
 				'deletedAuthors',
 				'primaryContact',
 				'title',

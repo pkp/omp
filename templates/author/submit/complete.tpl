@@ -13,16 +13,8 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<p>{translate key="author.submit.submissionComplete" monographTitle=$monograph->getMonographTitle()}</p>
+<p>{translate key="author.submit.submissionComplete" pressName=$press->getPressName()}</p>
 
-{if $canExpedite}
-	{url|assign:"expediteUrl" op="expediteSubmission" articleId=$articleId}
-	{translate key="author.submit.expedite" expediteUrl=$expediteUrl}
-{/if}
-{if $paymentButtonsTemplate }
-	{include file=$paymentButtonsTemplate orientation="vertical"}
-{/if}
-
-<p>&#187; <a href="{url op="track"}">{translate key="author.track"}</a></p>
+<p>&#187; <a href="{url page="author"}">{translate key="author.track"}</a></p>
 
 {include file="common/footer.tpl"}

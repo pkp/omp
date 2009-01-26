@@ -16,7 +16,11 @@
 // $Id$
 
 import('submission.PKPAuthor');
+
 define('PRIMARY_CONTACT',1);
+
+define('AUTHOR',0);
+define('VOLUME_EDITOR',1);
 
 class Author extends PKPAuthor {
 
@@ -30,11 +34,11 @@ class Author extends PKPAuthor {
 	//
 	// Get/set methods
 	//
-	function setVolumeEditor($isEditor) {
-		$this->setData('volume_editor', $isEditor);
+	function getContributionType() {
+		return $this->getData('contribution_type');
 	}
-	function getVolumeEditor() {
-		$this->getData('volume_editor');
+	function setContributionType($type) {
+		$this->setData('contribution_type', $type);
 	}
 	/**
 	 * Get ID of monograph.
