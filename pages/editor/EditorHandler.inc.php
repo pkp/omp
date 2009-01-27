@@ -266,8 +266,8 @@ class EditorHandler extends PKPHandler {
 	function submission($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 	//	list($journal, $submission) = $this->validate($monographId);
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$submission = $monographDao->getMonograph($monographId);
+		$monographDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+		$submission = $monographDao->getAuthorSubmission($monographId);
 
 		$journal =& Request::getPress();
 		parent::setupTemplate(true, $monographId);
@@ -289,7 +289,7 @@ class EditorHandler extends PKPHandler {
 		$templateMgr->assign_by_ref('submission', $submission);
 //		$templateMgr->assign_by_ref('section', $section);
 		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
-//		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
+		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 //		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 //		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
 		$templateMgr->assign_by_ref('pressSettings', $journalSettings);
