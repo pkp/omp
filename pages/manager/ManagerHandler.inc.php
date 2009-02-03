@@ -26,15 +26,15 @@ class ManagerHandler extends PKPHandler {
 		ManagerHandler::validate();
 		ManagerHandler::setupTemplate();
 
-		$press = &Request::getPress();
-		$pressSettingsDao = &DAORegistry::getDAO('PressSettingsDAO');
+		$press =& Request::getPress();
+		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$subscriptionsEnabled = $pressSettingsDao->getSetting($press->getPressId(), 'enableSubscriptions'); 
 		$announcementsEnabled = $pressSettingsDao->getSetting($press->getPressId(), 'enableAnnouncements'); 
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('subscriptionsEnabled', $subscriptionsEnabled);
 
-		$session = &Request::getSession();
+		$session =& Request::getSession();
 		$session->unsetSessionVar('enrolmentReferrer');
 
 		$templateMgr->assign('announcementsEnabled', $announcementsEnabled);
@@ -49,17 +49,17 @@ class ManagerHandler extends PKPHandler {
 		parent::validate();
 
 		ManagerHandler::setupTemplate(true);
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'press.users.emailUsers');
 
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$site = &Request::getSite();
-		$press = &Request::getPress();
-		$user = &Request::getUser();
+		$site =& Request::getSite();
+		$press =& Request::getPress();
+		$user =& Request::getUser();
 
 		import('mail.MailTemplate');
-		$email = &new MailTemplate(Request::getUserVar('template'), Request::getUserVar('locale'));
+		$email =& new MailTemplate(Request::getUserVar('template'), Request::getUserVar('locale'));
 
 		if (Request::getUserVar('send') && !$email->hasErrors()) {
 			$email->send();
@@ -108,7 +108,7 @@ class ManagerHandler extends PKPHandler {
 		parent::setupTemplate();
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy',
 			$subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'manager'), 'manager.pressManagement'))
 				: array(array(Request::url(null, 'user'), 'navigation.user'))
@@ -231,39 +231,72 @@ class ManagerHandler extends PKPHandler {
 
 
 	//
-	// Section Management
+	// Series Management
 	//
 
-	function sections() {
-		import('pages.manager.SectionHandler');
-		SectionHandler::sections();
+	function series() {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		AcquisitionsArrangementHandler::listItems();
 	}
 
-	function createSection() {
-		import('pages.manager.SectionHandler');
-		SectionHandler::createSection();
+	function createSeries() {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		AcquisitionsArrangementHandler::createItem();
 	}
 
-	function editSection($args) {
-		import('pages.manager.SectionHandler');
-		SectionHandler::editSection($args);
+	function editSeries($args) {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		AcquisitionsArrangementHandler::editItem($args);
 	}
 
-	function updateSection($args) {
-		import('pages.manager.SectionHandler');
-		SectionHandler::updateSection($args);
+	function updateSeries($args) {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		AcquisitionsArrangementHandler::updateItem($args);
 	}
 
-	function deleteSection($args) {
-		import('pages.manager.SectionHandler');
-		SectionHandler::deleteSection($args);
+	function deleteSeries($args) {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		AcquisitionsArrangementHandler::deleteItem($args);
 	}
 
-	function moveSection() {
-		import('pages.manager.SectionHandler');
-		SectionHandler::moveSection();
+	function moveSeries() {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		AcquisitionsArrangementHandler::moveItem();
 	}
 
+	//
+	// Submission Category Management
+	//
+
+	function submissionCategory() {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		AcquisitionsArrangementHandler::listItems(CATEGORY_ARRANGEMENT);
+	}
+
+	function createSubmissionCategory() {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		AcquisitionsArrangementHandler::createItem(CATEGORY_ARRANGEMENT);
+	}
+
+	function editSubmissionCategory($args) {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		AcquisitionsArrangementHandler::editItem($args, CATEGORY_ARRANGEMENT);
+	}
+
+	function updateSubmissionCategory($args) {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		AcquisitionsArrangementHandler::updateItem($args, CATEGORY_ARRANGEMENT);
+	}
+
+	function deleteSubmissionCategory($args) {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		AcquisitionsArrangementHandler::deleteItem($args, CATEGORY_ARRANGEMENT);
+	}
+
+	function moveSubmissionCategory() {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		AcquisitionsArrangementHandler::moveItem(CATEGORY_ARRANGEMENT);
+	}
 
 	//
 	// Review Form Management

@@ -386,8 +386,8 @@ class RoleDAO extends DAO {
 				return 'user.role.editor' . ($plural ? 's' : '');
 			case ROLE_ID_REVIEWER:
 				return 'user.role.reviewer' . ($plural ? 's' : '');
-			case ROLE_ID_SERIES_EDITOR:
-				return 'user.role.seriesEditor' . ($plural ? 's' : '');
+			case ROLE_ID_ACQUISITIONS_EDITOR:
+				return 'user.role.acquisitionsEditor' . ($plural ? 's' : '');
 			case ROLE_ID_LAYOUT_EDITOR:
 				return 'user.role.layoutEditor' . ($plural ? 's' : '');
 			case ROLE_ID_COPYEDITOR:
@@ -416,8 +416,8 @@ class RoleDAO extends DAO {
 				return 'editor';
 			case ROLE_ID_REVIEWER:
 				return 'reviewer';
-			case ROLE_ID_SERIES_EDITOR:
-				return 'seriesEditor';
+			case ROLE_ID_ACQUISITIONS_EDITOR:
+				return 'acquisitionsEditor';
 			case ROLE_ID_LAYOUT_EDITOR:
 				return 'layoutEditor';
 			case ROLE_ID_COPYEDITOR:
@@ -446,8 +446,8 @@ class RoleDAO extends DAO {
 				return ROLE_ID_EDITOR;
 			case 'reviewer':
 				return ROLE_ID_REVIEWER;
-			case 'seriesEditor':
-				return ROLE_ID_SERIES_EDITOR;
+			case 'acquisitionsEditor':
+				return ROLE_ID_ACQUISITIONS_EDITOR;
 			case 'layoutEditor':
 				return ROLE_ID_LAYOUT_EDITOR;
 			case 'copyeditor':
