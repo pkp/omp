@@ -18,10 +18,15 @@
 import("manager.form.setup.PressSetupForm");
 
 class PressSetupStep3Form extends PressSetupForm {
+
+	var $files;
 	/**
 	 * Constructor.
 	 */
 	function PressSetupStep3Form() {
+		$this->files = array(
+			'pageHeaderTitleImage',
+		);
 		parent::PressSetupForm(
 			3,
 			array(
@@ -30,9 +35,6 @@ class PressSetupStep3Form extends PressSetupForm {
 				'copyrightNotice' => 'string',
 				'includeCreativeCommons' => 'bool',
 				'copyrightNoticeAgree' => 'bool',
-				'requireAuthorCompetingInterests' => 'bool',
-				'requireReviewerCompetingInterests' => 'bool',
-				'competingInterestGuidelines' => 'string',
 				'metaDiscipline' => 'bool',
 				'metaDisciplineExamples' => 'string',
 				'metaSubjectClass' => 'bool',
@@ -60,21 +62,103 @@ class PressSetupStep3Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('authorGuidelines', 'submissionChecklist', 'copyrightNotice', 'metaDisciplineExamples', 'metaSubjectClassTitle', 'metaSubjectClassUrl', 'metaSubjectExamples', 'metaCoverageGeoExamples', 'metaCoverageChronExamples', 'metaCoverageResearchSampleExamples', 'metaTypeExamples', 'competingInterestGuidelines');
+		return array('authorGuidelines', 'submissionChecklist', 'copyrightNotice', 'metaDisciplineExamples', 'metaSubjectClassTitle', 'metaSubjectClassUrl', 'metaSubjectExamples', 'metaCoverageGeoExamples', 'metaCoverageChronExamples', 'metaCoverageResearchSampleExamples', 'metaTypeExamples');
+	}
+
+	/**
+	 * Assign form data to user-submitted data.
+	 */
+	function readInputData() {
+	//	$this->readUserVars();
+		parent::readInputData();
 	}
 
 	/**
 	 * Display the form
 	 */
 	function display() {
+		$press =& Request::getPress();
+
 		import('mail.MailTemplate');
-		$mail = &new MailTemplate('SUBMISSION_ACK');
+		$mail =& new MailTemplate('SUBMISSION_ACK');
 		if ($mail->isEnabled()) {
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('submissionAckEnabled', true);
 		}
 
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign(array('uploadedProspectus' => $press->getSetting('uploadedProspectus')));
+
 		parent::display();
+	}
+
+	/**
+	 * Uploads a prospectus document.
+	 * @param $settingName string setting key associated with the file
+	 * @param $locale string
+	 */
+	function uploadProspectus($settingName, $locale) {
+		$press =& Request::getPress();
+		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+
+		import('file.PublicFileManager');
+		$fileManager =& new PublicFileManager();      
+		if ($fileManager->uploadedFileExists($settingName)) {
+			$extension = $fileManager->getExtension($_FILES[$settingName]['name']);
+			if (!$extension) {
+				return false;
+			}
+			$uploadName = $settingName . '_' . $locale . '.' . $extension;
+
+			$setting = $settingsDao->getSetting($press->getPressId(), $settingName);
+
+
+			if ($fileManager->uploadPressFile($press->getPressId(), $settingName, $uploadName)) {
+
+				if (isset($setting)) {
+					$fileManager->removePressFile(
+								$press->getPressId(),
+								$locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName']
+								);
+				}
+
+				$filePath = $fileManager->getPressFilesPath($press->getPressId());
+				$size = $fileManager->getNiceFileSize(filesize($filePath . '/' . $uploadName));
+
+				$value = $press->getSetting($settingName);
+				$value[$locale] = array(
+					'name' => $fileManager->getUploadedFileName($settingName, $locale),
+					'uploadName' => $uploadName,
+					'size' => $size,
+					'dateUploaded' => Core::getCurrentDate()
+				);
+
+				$settingsDao->updateSetting($press->getPressId(), $settingName, $value, 'object', true);
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Deletes a press image.
+	 * @param $settingName string setting key associated with the file
+	 * @param $locale string
+	 */
+	function deleteProspectus($settingName, $locale = null) {
+		$press =& Request::getPress();
+		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+		$setting = $settingsDao->getSetting($press->getPressId(), $settingName);
+
+		import('file.PublicFileManager');
+		$fileManager =& new PublicFileManager();
+		if ($fileManager->removePressFile($press->getPressId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
+			$returner = $settingsDao->deleteSetting($press->getPressId(), $settingName, $locale);
+			return $returner;
+		} else {
+			return false;
+		}
 	}
 }
 

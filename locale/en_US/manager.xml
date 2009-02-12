@@ -19,8 +19,18 @@
 	<message key="manager.series.assigned">Editors for this Series</message>
 	<message key="manager.series.unassigned">Available Series Editors</message>
 
+	<message key="manager.setup.prospectus">Prospectus Guide</message>
+	<message key="manager.setup.prospectusDescription">The prospectus guide is a press prepared document that helps the author describe the submitted materials in a way that allows a press to determine the value of the submission. A prospectus can include a lot of items- from marketing potential to theoretical value; in any case, a press should create a prospectus guide that complements their publishing agenda.</message>
+
 	<message key="manager.submissionCategory.assigned">Editors for this Category</message>
 	<message key="manager.submissionCategory.unassigned">Available Category Editors</message>
+
+	<message key="manager.setup.seriesAndCategories">Submission Categories and Series</message>
+	<message key="manager.setup.seriesAndCategoriesDescription">Folks submitting materials to the press can, based on previous consultations with an editor or by logic, categorize their submission by selecting one of the press' series or categories. The acquisition editors associated with these categorization arrangements will be notified of your submission; however, only a senior editor can approve the work for consideration.</message>
+	<message key="manager.setup.submitToCategories">Allow category submissions</message>
+	<message key="manager.setup.submitToSeries">Allow series submissions</message>
+
+	<message key="manager.setup.prospectus">Prospectus Guide</message>
 
 
 	<message key="manager.emails.confirmResetAll">Are you sure you want to reset all email templates in this press? You will lose any customizations you have made.</message>

@@ -1,4 +1,4 @@
- <?php
+<?php
 
 /**
  * @file classes/manager/form/AcquisitionsArrangementForm.inc.php

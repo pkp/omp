@@ -11,7 +11,7 @@
 {assign var="pageTitle" value="manager.setup.guidingSubmissions"}
 {include file="manager/setup/setupHeader.tpl"}
 
-<form name="setupForm" method="post" action="{url op="saveSetup" path="3"}">
+<form name="setupForm" method="post" action="{url op="saveSetup" path="3"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
@@ -64,10 +64,31 @@
 
 <p><input type="submit" name="addChecklist" value="{translate key="manager.setup.addChecklistItem"}" class="button" /></p>
 
+<div class="separator"></div>
+
+<h3>3.2 {translate key="manager.setup.prospectus"}</h3>
+
+<p>{translate key="manager.setup.prospectusDescription"}</p>
+
+<input type="hidden" name="requireCompletedProspectus" /> {translate value="manager.setup.requireCompletedProspectus}
+<br />
+
+<input type="file" name="uploadedProspectus" class="uploadField" /> <input type="submit" name="uploadProspectus" value="{translate key="common.upload"}" class="button" />
+
+<br /><br />
+
+{if $uploadedProspectus[$formLocale]}
+{translate key="common.fileName"}: 
+<a href="{$publicFilesDir}/{$uploadedProspectus[$formLocale].uploadName}">
+  {$uploadedProspectus[$formLocale].name|escape}</a>
+
+{$uploadedProspectus[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteProspectus" value="{translate key="common.delete"}" class="button" />
+<br />
+{/if}
 
 <div class="separator"></div>
 
-<h3>3.2 {translate key="manager.setup.authorCopyrightNotice"}</h3>
+<h3>3.3 {translate key="manager.setup.authorCopyrightNotice"}</h3>
 
 {url|assign:"sampleCopyrightWordingUrl" page="information" op="sampleCopyrightWording"}
 <p>{translate key="manager.setup.authorCopyrightNoticeDescription" sampleCopyrightWordingUrl=$sampleCopyrightWordingUrl}</p>
@@ -94,35 +115,16 @@
 
 <div class="separator"></div>
 
-<h3>3.3 {translate key="manager.setup.competingInterests"}</h3>
+<h3>3.4 {translate key="manager.setup.seriesAndCategories}</h3>
 
-<p>{translate key="manager.setup.competingInterests.description"}</p>
+<p>{translate key="manager.setup.seriesAndCategoriesDescription"}</p>
 
-<table width="100%" class="data">
-	<tr valign="top">
-		<td class="label" width="5%">
-			<input type="checkbox" name="requireAuthorCompetingInterests" id="requireAuthorCompetingInterests" value="1"{if $requireAuthorCompetingInterests} checked="checked"{/if} />
-		</td>
-		<td class="value" width="95%">
-			<label for="requireAuthorCompetingInterests">{translate key="manager.setup.competingInterests.requireAuthors"}</label>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">
-			<input type="checkbox" name="requireReviewerCompetingInterests" id="requireReviewerCompetingInterests" value="1"{if $requireReviewerCompetingInterests} checked="checked"{/if} />
-		</td>
-		<td class="value">
-			<label for="requireReviewerCompetingInterests">{translate key="manager.setup.competingInterests.requireReviewers"}</label>
-		</td>
-	</tr>
-</table>
-
-<h4>{translate key="manager.setup.competingInterests.guidelines"}</h4>
-<p><textarea name="competingInterestGuidelines[{$formLocale|escape}]" id="competingInterestGuidelines" rows="12" cols="60" class="textArea">{$competingInterestGuidelines[$formLocale]|escape}</textarea></p>
+<input type="checkbox" name="series" /> {translate key="manager.setup.submitToSeries"} <br />
+<input type="checkbox" name="categories" /> {translate key="manager.setup.submitToCategories"}
 
 <div class="separator"></div>
 
-<h3>3.4 {translate key="manager.setup.forAuthorsToIndexTheirWork"}</h3>
+<h3>3.5 {translate key="manager.setup.forAuthorsToIndexTheirWork"}</h3>
 
 <p>{translate key="manager.setup.forAuthorsToIndexTheirWorkDescription"}</p>
 
@@ -270,16 +272,16 @@
 <div class="separator"></div>
 
 
-<h3>3.5 {translate key="manager.setup.registerJournalForIndexing"}</h3>
+<h3>3.6 {translate key="manager.setup.registerJournalForIndexing"}</h3>
 
-{url|assign:"oaiSiteUrl" journal=$currentJournal->getPath()}
+{url|assign:"oaiSiteUrl" press=$currentPress->getPath()}
 {url|assign:"oaiUrl" page="oai"}
 <p>{translate key="manager.setup.registerJournalForIndexingDescription" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
 
 
 <div class="separator"></div>
 
-<h3>3.6 {translate key="manager.setup.notifications"}</h3>
+<h3>3.7 {translate key="manager.setup.notifications"}</h3>
 
 <p>{translate key="manager.setup.notifications.description"}</p>
 

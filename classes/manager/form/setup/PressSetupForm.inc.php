@@ -40,7 +40,7 @@ class PressSetupForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('setupStep', $this->step);
 		$templateMgr->assign('helpTopicId', 'press.managementPages.setup');
 		$templateMgr->setCacheability(CACHEABILITY_MUST_REVALIDATE);
@@ -51,7 +51,7 @@ class PressSetupForm extends Form {
 	 * Initialize data from current settings.
 	 */
 	function initData() {
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 		$this->_data = $press->getSettings();
 	}
 
@@ -66,8 +66,8 @@ class PressSetupForm extends Form {
 	 * Save modified settings.
 	 */
 	function execute() {
-		$press = &Request::getPress();
-		$settingsDao = &DAORegistry::getDAO('PressSettingsDAO');
+		$press =& Request::getPress();
+		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
 		foreach ($this->_data as $name => $value) {
 			if (isset($this->settings[$name])) {

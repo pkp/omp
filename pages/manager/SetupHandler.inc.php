@@ -33,7 +33,7 @@ class SetupHandler extends ManagerHandler {
 			$formClass = "PressSetupStep{$step}Form";
 			import("manager.form.setup.$formClass");
 
-			$setupForm = &new $formClass();
+			$setupForm =& new $formClass();
 			if ($setupForm->isLocaleResubmit()) {
 				$setupForm->readInputData();
 			} else {
@@ -42,7 +42,7 @@ class SetupHandler extends ManagerHandler {
 			$setupForm->display();
 
 		} else {
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('helpTopicId','press.managementPages.setup');
 			$templateMgr->display('manager/setup/index.tpl');
 		}
@@ -64,7 +64,7 @@ class SetupHandler extends ManagerHandler {
 			$formClass = "PressSetupStep{$step}Form";
 			import("manager.form.setup.$formClass");
 
-			$setupForm = &new $formClass();
+			$setupForm =& new $formClass();
 			$setupForm->readInputData();
 			$formLocale = $setupForm->getFormLocale();
 
@@ -142,7 +142,18 @@ class SetupHandler extends ManagerHandler {
 					break;
 
 				case 3:
-					if (Request::getUserVar('addChecklist')) {
+					if (Request::getUserVar('uploadProspectus')) {
+						if ($setupForm->uploadProspectus('uploadedProspectus', $formLocale)) {
+							$editData = true;
+						} else {
+							$setupForm->addError('uploadedProspectus', Locale::translate('manager.setup.uploadedProspectusInvalid'));
+						}
+
+					} else if (Request::getUserVar('deleteProspectus')) {
+						$editData = true;
+						$setupForm->deleteProspectus('uploadedProspectus', $formLocale);
+
+					} else if (Request::getUserVar('addChecklist')) {
 						// Add a checklist item
 						$editData = true;
 						$checklist = $setupForm->getData('submissionChecklist');
@@ -321,7 +332,7 @@ class SetupHandler extends ManagerHandler {
 		if ($step >= 1 && $step <= 5) {
 			parent::setupTemplate(true);
 
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('setupStep', $step);
 			$templateMgr->assign('helpTopicId', 'press.managementPages.setup');
 			$templateMgr->display('manager/setup/settingsSaved.tpl');

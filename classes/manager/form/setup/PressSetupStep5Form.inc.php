@@ -84,7 +84,7 @@ class PressSetupStep5Form extends PressSetupForm {
 	 * Display the form.
 	 */
 	function display() {
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 
 		$allThemes =& PluginRegistry::loadCategory('themes', true);
 		$pressThemes = array();
@@ -95,7 +95,7 @@ class PressSetupStep5Form extends PressSetupForm {
 		}
 
 		// Ensure upload file settings are reloaded when the form is displayed.
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign(array(
 			'homeHeaderTitleImage' => $press->getSetting('homeHeaderTitleImage'),
 			'homeHeaderLogoImage'=> $press->getSetting('homeHeaderLogoImage'),
@@ -141,11 +141,11 @@ class PressSetupStep5Form extends PressSetupForm {
 	 * @param $locale string
 	 */
 	function uploadImage($settingName, $locale) {
-		$press = &Request::getPress();
-		$settingsDao = &DAORegistry::getDAO('PressSettingsDAO');
+		$press =& Request::getPress();
+		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
 		import('file.PublicFileManager');
-		$fileManager = &new PublicFileManager();
+		$fileManager =& new PublicFileManager();
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$type = $fileManager->getUploadedFileType($settingName);
 			$extension = $fileManager->getImageExtension($type);
@@ -181,17 +181,17 @@ class PressSetupStep5Form extends PressSetupForm {
 	 * @param $locale string
 	 */
 	function deleteImage($settingName, $locale = null) {
-		$press = &Request::getPress();
-		$settingsDao = &DAORegistry::getDAO('PressSettingsDAO');
+		$press =& Request::getPress();
+		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$setting = $settingsDao->getSetting($press->getPressId(), $settingName);
 
 		import('file.PublicFileManager');
-		$fileManager = &new PublicFileManager();
+		$fileManager =& new PublicFileManager();
 		if ($fileManager->removePressFile($press->getPressId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
 			$returner = $settingsDao->deleteSetting($press->getPressId(), $settingName, $locale);
 			// Ensure page header is refreshed
 			if ($returner) {
-				$templateMgr = &TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign(array(
 					'displayPageHeaderTitle' => $press->getPressPageHeaderTitle(),
 					'displayPageHeaderLogo' => $press->getPressPageHeaderLogo()
@@ -208,11 +208,11 @@ class PressSetupStep5Form extends PressSetupForm {
 	 * @param $settingName string setting key associated with the file
 	 */
 	function uploadStyleSheet($settingName) {
-		$press = &Request::getPress();
-		$settingsDao = &DAORegistry::getDAO('PressSettingsDAO');
+		$press =& Request::getPress();
+		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
 		import('file.PublicFileManager');
-		$fileManager = &new PublicFileManager();
+		$fileManager =& new PublicFileManager();
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$type = $fileManager->getUploadedFileType($settingName);
 			if ($type != 'text/plain' && $type != 'text/css') {
@@ -258,10 +258,10 @@ class PressSetupStep5Form extends PressSetupForm {
 		}
 
 		// Save alt text for images
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 		$pressId = $press->getPressId();
 		$locale = $this->getFormLocale();
-		$settingsDao = &DAORegistry::getDAO('PressSettingsDAO');
+		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$images = $this->images;
 
 		foreach($images as $settingName) {
