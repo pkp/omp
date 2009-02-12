@@ -97,19 +97,19 @@ class ReviewForm extends DataObject {
 	}
 
 	/**
-	 * Get ID of journal.
+	 * Get ID of press.
 	 * @return int
 	 */
-	function getJournalId() {
-		return $this->getData('journalId');
+	function getPressId() {
+		return $this->getData('pressId');
 	}
 
 	/**
-	 * Set ID of journal.
-	 * @param $journalId int
+	 * Set ID of press.
+	 * @param $pressId int
 	 */
-	function setJournalId($journalId) {
-		return $this->setData('journalId', $journalId);
+	function setPressId($pressId) {
+		return $this->setData('pressId', $pressId);
 	}
 
 	/**

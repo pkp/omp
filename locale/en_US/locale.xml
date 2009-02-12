@@ -28,13 +28,32 @@
 
 	<!-- review froms start -->
 	<message key="manuscript.submissions">Manuscript Submissions</message>
+	<message key="manuscript.submission">Manuscript Submission</message>
+	<message key="submission.round"><![CDATA[Round&nbsp;{$round}]]></message>
+	<message key="submission.notifyAuthor">Notify Author</message>
+	<message key="submission.authorVersion">Author Version</message>
+	<message key="submission.editorVersion">Editor Version</message>
+	<message key="submission.editorAuthorRecord">Editor/Author Email Record</message>
+	<message key="submission.review.mustUploadFileForReview">Request email cannot be sent until a Review Version is in place.</message>
+	<message key="submission.internalPeerReview">Internal Peer Review</message>
+	<message key="submission.externalPeerReview">External Peer Review</message>
+
+
+	<message key="monograph.abstract">Abstract</message>
+	<message key="monograph.language">Language</message>
+	<message key="monograph.authors">Authors</message>
+	<message key="monograph.title">Title</message>
+	<message key="monograph.suppFilesAbbrev">Supp. Files</message>
+
+
 	<message key="series.series">Series</message>
 	<message key="series.title">Series' Title</message>
 	<message key="series.abbreviation">Abbreviation</message>
 	<message key="series.abbreviation.example">(For example, Ancient Theatre Series=ATS)</message>
 	<message key="series.issn">ISSN</message>
 	<message key="submission.reviewForm">Review Form</message>
-
+	<message key="submission.editorDecision">Editor Decision</message>
+	
 	<message key="submissionCategory.submissionCategory">Submission Category</message>
 	<message key="submissionCategory.title">Category Title</message>
 	<message key="submissionCategory.abbreviation">Abbreviation</message>
@@ -121,9 +140,14 @@
 	<message key="user.role.proofreader">Proofreader</message>
 	<message key="user.role.author">Author</message>
 	<message key="user.role.subscriptionManager">Subscription Manager</message>
+	<message key="user.role.editorialMember">Editorial Committee Member</message>
+	<message key="user.role.reviewer">Reviewer</message>
+
+	<message key="user.role.reviewers">Reviewers</message>
+	<message key="user.role.editorialMembers">Editorial Committee Members</message>
 	<message key="user.role.managers">Press Managers</message>
 	<message key="user.role.editors">Editors</message>
-	<message key="user.role.seriesEditors">Series Editors</message>
+	<message key="user.role.acquisitionsEditors">Acquisitions Editors</message>
 	<message key="user.role.layoutEditors">Layout Editors</message>
 	<message key="user.role.copyeditors">Copyeditors</message>
 	<message key="user.role.proofreaders">Proofreaders</message>
@@ -310,7 +334,7 @@ You may optionally provide the user with a reason for disabling their account.</
 
 	
 	<!-- Used by editor in submission review / editing -->
-	<message key="editor.article.selectReviewerNotes"><![CDATA[Name links to reviewer's profile.<br/>
+	<message key="editor.monograph.selectReviewerNotes"><![CDATA[Name links to reviewer's profile.<br/>
 Ratings is out of 5 (Excellent).<br/>
 Weeks refers to average period of time to complete a review.<br/>
 Latest is date of most recently accepted review.<br/>

@@ -16,20 +16,20 @@
 
 <ul class="menu">
 	<li class="current"><a href="{url op="submission" path=$submission->getMonographId()}">{translate key="submission.summary"}</a></li>
-	{if $canReview}<li><a href="{url op="submissionReview" path=$submission->getMonographId()}">{translate key="submission.review"}</a></li>{/if}
-	{if $canEdit}<li><a href="{url op="submissionEditing" path=$submission->getMonographId()}">{translate key="submission.editing"}</a></li>{/if}
+	{*if $canReview*}<li><a href="{url op="submissionReview" path=$submission->getMonographId()}">{translate key="submission.review"}</a></li>{*/if*}
+	{*if $canEdit*}<li><a href="{url op="submissionEditing" path=$submission->getMonographId()}">{translate key="submission.editing"}</a></li>{*/if*}
 	<li><a href="{url op="submissionHistory" path=$submission->getMonographId()}">{translate key="submission.history"}</a></li>
 </ul>
 
-{include file="seriesEditor/submission/management.tpl"}
+{include file="acquisitionsEditor/submission/management.tpl"}
 
 <div class="separator"></div>
 
-{include file="seriesEditor/submission/editors.tpl"}
+{include file="acquisitionsEditor/submission/editors.tpl"}
 
 <div class="separator"></div>
 
-{include file="seriesEditor/submission/status.tpl"}
+{include file="acquisitionsEditor/submission/status.tpl"}
 
 <div class="separator"></div>
 

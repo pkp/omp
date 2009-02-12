@@ -49,6 +49,12 @@ class Monograph extends Submission {
 	function setMonographComponents($components) {
 		$this->setData('components', $components);
 	}
+	function setAcquisitionsArrangementId($id) {
+		 $this->setData('acquisitions_arrangement_id', $id);
+	}
+	function getAcquisitionsArrangementId() {
+		 return $this->getData('acquisitions_arrangement_id');
+	}
 	/**
 	 * set monograph id
 	 * @param $monographId int

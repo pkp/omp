@@ -25,9 +25,9 @@ class AuthorHandler extends PKPHandler {
 	 */
 	function index($args) {
 		$templateMgr =& TemplateManager::getManager();
-//		list($press) = AuthorHandler::validate();
-//		AuthorHandler::setupTemplate();
-		$press =& Request::getPress();
+		list($press) = AuthorHandler::validate();
+		AuthorHandler::setupTemplate();
+
 		$user =& Request::getUser();
 		$rangeInfo =& PKPHandler::getRangeInfo('submissions');
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
@@ -66,7 +66,7 @@ class AuthorHandler extends PKPHandler {
 		} 				
 
 		import('issue.IssueAction');
-		$issueAction = &new IssueAction();
+		$issueAction =& new IssueAction();
 		$templateMgr->register_function('print_issue_id', array($issueAction, 'smartyPrintIssueId'));
 		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.submissions');
 */
@@ -79,7 +79,7 @@ class AuthorHandler extends PKPHandler {
 	 */
 	function validate($reason = null) {
 		parent::validate();
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 		if (!isset($press) || !Validation::isAuthor($press->getPressId())) {
 			Validation::redirectLogin($reason);
 		}
@@ -94,7 +94,7 @@ class AuthorHandler extends PKPHandler {
 	function setupTemplate($subclass = false, $monographId = 0, $parentPage = null) {
 		parent::setupTemplate();
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR, LOCALE_COMPONENT_PKP_SUBMISSION));
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		$pageHierarchy = $subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'author'), 'user.role.author'), array(Request::url(null, 'author'), 'manuscript.submissions'))
 			: array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'author'), 'user.role.author'));

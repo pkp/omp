@@ -370,6 +370,7 @@ class MonographDAO extends DAO {
 		$monograph->setCommentsToEditor($row['comments_to_ed']);
 		$monograph->setDateSubmitted($row['date_submitted']);
 		$monograph->setLanguage($row['language']);
+		$monograph->setCurrentRound($row['current_round']);
 		$monograph->setSubmissionFileId($row['submission_file_id']);
     //$monograph->setDatePublished($this->datetimeFromDB($row['date_published']));
 //		//$monograph->setPublicMonographId($row['public_monograph_id']);

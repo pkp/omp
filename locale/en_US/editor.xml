@@ -13,10 +13,16 @@
   -->
 
 <locale name="en_US" full_name = "English">
+	<message key="editor.review.enrollReviewer">Enroll an Existing User as Reviewer</message>
+	<message key="editor.review.createReviewer">Create New Reviewer</message>
 	<message key="editor.article.reviewForms">Review Forms</message>
-	<message key="editor.article.selectReviewForm">Select Review Form</message>
-	<message key="editor.article.clearReviewForm">Clear Review Form</message>
-	<message key="editor.article.confirmChangeReviewForm">Changing the review form will remove responses...</message>
+	<message key="editor.regrets.link">View Regrets, Cancels, Previous Rounds</message>
+
+
+	<message key="editor.monograph.reviewForms">Review Forms</message>
+	<message key="editor.monograph.selectReviewForm">Select Review Form</message>
+	<message key="editor.monograph.clearReviewForm">Clear Review Form</message>
+	<message key="editor.monograph.confirmChangeReviewForm">Changing the review form will remove responses...</message>
 	<message key="editor.home">Editor Home</message>
 	<message key="editor.submissionsAndPublishing">Submissions and Publishing</message>
 	<message key="editor.submissionQueue">Submission Queue</message>
@@ -101,31 +107,31 @@
 	<message key="editor.navigation.createIssue">Create Issue</message>
 	<message key="editor.navigation.issueArchive">Back Issues</message>
 	<message key="editor.article.designateReviewVersion">Designate the original file as the Review Version</message>
-	<message key="editor.article.uploadReviewVersion">Upload a revised Review Version</message>
+	<message key="editor.monograph.uploadReviewVersion">Upload a revised Review Version</message>
 	<message key="editor.article.showSuppFile">Present file to reviewers</message>
 	<message key="editor.article.layoutAndProof">Layout &amp; Proof</message>
 	<message key="editor.article.clear">Clear</message>
 	<message key="editor.article.clearReviewer">Clear reviewer</message>
 	<message key="editor.article.changeSection">Change Section</message>
 	<message key="editor.article.setDueDate">Set Due Date</message>
-	<message key="editor.article.addReviewer">Add Reviewer</message>
-	<message key="editor.article.toReviewer">To Reviewer</message>
+	<message key="editor.monograph.addReviewer">Add Reviewer</message>
+	<message key="editor.monograph.toReviewer">To Reviewer</message>
 	<message key="editor.article.notifyReviewer">Notify Reviewer</message>
 	<message key="editor.article.initiateReview">Initiate Review</message>
 	<message key="editor.article.cancelReview">Cancel Request</message>
-	<message key="editor.article.clearReview">Clear Reviewer</message>
+	<message key="editor.monograph.clearReview">Clear Reviewer</message>
 	<message key="editor.article.enterRecommendation">Enter Recommendation</message>
 	<message key="editor.article.enterReviewerRecommendation">Enter Reviewer Recommendation</message>
 	<message key="editor.article.recommendation">Recommendation</message>
-	<message key="editor.article.selectReviewer">Select Reviewer</message>
+	<message key="editor.monograph.selectReviewer">Select Reviewer</message>
 	<message key="editor.article.replaceReviewer">Replace Reviewer</message>
 	<message key="editor.article.editorToEnter">Editor to enter recommendation/comments for reviewer</message>
 	<message key="editor.article.uploadReviewForReviewer">Upload review</message>
 	<message key="editor.article.peerReviewOptions">Peer Review Options</message>
-	<message key="editor.article.decision">Decision</message>
+	<message key="editor.monograph.decision">Decision</message>
 	<message key="editor.article.noEditorSelected">No editor selected.</message>
-	<message key="editor.article.recordDecision">Record Decision</message>
-	<message key="editor.article.cannotRecord">Section editor not yet recorded.</message>
+	<message key="editor.monograph.recordDecision">Record Decision</message>
+	<message key="editor.monograph.cannotRecord">Editor not yet recorded.</message>
 	<message key="editor.article.reviewersSeeAuthorsVersion">Reviewers to see author version</message>
 	<message key="editor.article.designateDueDate">Designate a Due Date</message>
 	<message key="editor.article.designateDueDateDescription">Enter the date or number of weeks for the new due date.</message>
@@ -151,10 +157,10 @@
 	<message key="editor.article.authorProofing">Author Proofing</message>
 	<message key="editor.article.archiveSubmission">Archive Submission</message>
 	<message key="editor.article.restoreToQueue">Restore to Active List</message>
-	<message key="editor.article.assignSectionEditor">Add Section Editor</message>
+	<message key="editor.monograph.assignAcquisitionsEditor">Add Acquisitions Editor</message>
 	<message key="editor.article.assignEditor">Add Editor</message>
 	<message key="editor.article.selectEditor">Select {$roleName}</message>
-	<message key="editor.article.selectDecision">Select decision</message>
+	<message key="editor.monograph.selectDecision">Select decision</message>
 	<message key="editor.article.decision.accept">Accept Submission</message>
 	<message key="editor.article.decision.pendingRevisions">Revisions Required</message>
 	<message key="editor.article.decision.resubmit">Resubmit for Review</message>

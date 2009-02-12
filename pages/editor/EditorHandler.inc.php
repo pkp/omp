@@ -14,7 +14,7 @@
 
 // $Id$
 
-import('core.PKPHandler');
+import('acquisitionsEditor.AcquisitionsEditorHandler');
 
 define('EDITOR_SECTION_HOME', 0);
 define('EDITOR_SECTION_SUBMISSIONS', 1);
@@ -24,7 +24,7 @@ define('EDITOR_SECTION_ISSUES', 2);
 define('FILTER_EDITOR_ALL', 0);
 define('FILTER_EDITOR_ME', 1);
 
-class EditorHandler extends PKPHandler {
+class EditorHandler extends AcquisitionsEditorHandler {
 
 	/**
 	 * Displays the editor role selection page.
@@ -78,6 +78,10 @@ class EditorHandler extends PKPHandler {
 
 		import('submission.common.Action');
 		Action::saveAuthorMetadata($author, ROLE_ID_EDITOR);
+	}
+	function selectReviewer($args) {
+		import('pages.acquisitionsEditor.SubmissionEditHandler');
+		SubmissionEditHandler::selectReviewer($args);
 	}
 	/**
 	 * Display editor submission queue pages.
@@ -237,32 +241,36 @@ class EditorHandler extends PKPHandler {
 		Request::redirect(null, null, 'submission', $monographId);
 	}
 
-
-
-	/**
-	 * Validate that user is an editor in the selected journal.
-	 * Redirects to user index page if not properly authenticated.
-	 */
-	function validate() {
-		$press =& Request::getPress();
-		if (!isset($press) || !Validation::isEditor($press->getPressId())) {
-			Validation::redirectLogin();
-		}
-	}
-
-	function setupTemplate() {
+	function setupTemplate($level = EDITOR_SECTION_HOME, $monographId = 0, $parentPage = null) {
 		parent::setupTemplate();
+		// Layout Editors have access to some Issue Mgmt functions. Make sure we give them
+		// the appropriate breadcrumbs and sidebar.
+		$isLayoutEditor = Request::getRequestedPage() == 'layoutEditor';
+
+		$press =& Request::getPress();
+		$templateMgr =& TemplateManager::getManager();
+
+		if ($level==EDITOR_SECTION_HOME) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'));
+		else if ($level==EDITOR_SECTION_SUBMISSIONS) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'editor'), 'user.role.editor'), array(Request::url(null, 'editor', 'submissions'), 'manuscript.submissions'));
+		else if ($level==EDITOR_SECTION_ISSUES) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, $isLayoutEditor?'layoutEditor':'editor'), $isLayoutEditor?'user.role.layoutEditor':'user.role.editor'), array(Request::url(null, $isLayoutEditor?'layoutEditor':'editor', 'futureIssues'), 'issue.issues'));
+
+		import('submission.acquisitionsEditor.AcquisitionsEditorAction');
+		$submissionCrumb = AcquisitionsEditorAction::submissionBreadcrumb($monographId, $parentPage, 'editor');
+		if (isset($submissionCrumb)) {
+			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
+		}
+		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 
 	}
-/*	function validate() {
+	function validate() {
 		parent::validate();
-		$journal =& Request::getJournal();
+		$press =& Request::getPress();
 		// FIXME This is kind of evil
 		$page = Request::getRequestedPage();
-		if (!isset($journal) || ($page == 'sectionEditor' && !Validation::isSectionEditor($journal->getPressId())) || ($page == 'editor' && !Validation::isEditor($journal->getPressId()))) {
+		if (!isset($press) || ($page == 'acquisitionsEditor' && !Validation::isAcquisitionsEditor($press->getPressId())) || ($page == 'editor' && !Validation::isEditor($press->getPressId()))) {
 			Validation::redirectLogin();
 		}
-	}*/
+	}
 	function submission($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 	//	list($journal, $submission) = $this->validate($monographId);
@@ -340,6 +348,15 @@ class EditorHandler extends PKPHandler {
 
 		$templateMgr->display('editor/submission.tpl');
 	}
+	function userProfile($args) {
+		import('pages.acquisitionsEditor.AcquisitionsEditorHandler');
+		AcquisitionsEditorHandler::userProfile($args);
+	}
+	function submissionReview($args) {
+		import('pages.acquisitionsEditor.AcquisitionsEditorHandler');
+		AcquisitionsEditorHandler::submissionReview($args);
+	}
+
 
 }
 

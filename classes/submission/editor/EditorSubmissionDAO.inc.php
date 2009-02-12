@@ -38,10 +38,10 @@ class EditorSubmissionDAO extends DAO {
 
 	/**
 	 * Retrieve an editor submission by article ID.
-	 * @param $articleId int
+	 * @param $monographId int
 	 * @return EditorSubmission
 	 */
-	function &getEditorSubmission($articleId) {
+	function &getEditorSubmission($monographId) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$result = &$this->retrieve(
@@ -65,7 +65,7 @@ class EditorSubmissionDAO extends DAO {
 				$primaryLocale,
 				'abbrev',
 				$locale,
-				$articleId
+				$monographId
 			)
 		);
 
@@ -91,7 +91,7 @@ class EditorSubmissionDAO extends DAO {
 		$this->monographDao->_monographFromRow($editorSubmission, $row);
 
 		// Editor Assignment
-//		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByArticleId($row['monograph_id']);
+//		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByMonographId($row['monograph_id']);
 //		$editorSubmission->setEditAssignments($editAssignments->toArray());
 
 		// Editor Decisions
@@ -116,7 +116,7 @@ class EditorSubmissionDAO extends DAO {
 				(?, ?, %s, %s, %s)',
 				$this->datetimeToDB($editorSubmission->getDateNotified()), $this->datetimeToDB($editorSubmission->getDateCompleted()), $this->datetimeToDB($editorSubmission->getDateAcknowledged())),
 			array(
-				$editorSubmission->getArticleId(),
+				$editorSubmission->getMonographId(),
 				$editorSubmission->getEditorId()
 			)
 		);
@@ -126,7 +126,7 @@ class EditorSubmissionDAO extends DAO {
 		// Insert review assignments.
 		$reviewAssignments = &$editorSubmission->getReviewAssignments();
 		for ($i=0, $count=count($reviewAssignments); $i < $count; $i++) {
-			$reviewAssignments[$i]->setArticleId($editorSubmission->getArticleId());
+			$reviewAssignments[$i]->setMonographId($editorSubmission->getMonographId());
 			$this->reviewAssignmentDao->insertReviewAssignment($reviewAssignments[$i]);
 		}
 
@@ -135,7 +135,7 @@ class EditorSubmissionDAO extends DAO {
 
 	/**
 	 * Update an existing article.
-	 * @param $article Article
+	 * @param $monograph Monograph
 	 */
 	function updateEditorSubmission(&$editorSubmission) {
 		// update edit assignments
@@ -219,7 +219,7 @@ class EditorSubmissionDAO extends DAO {
 			$primaryLocale,
 			'abbrev',
 			$locale,
-			'title', // Article title
+			'title', // Monograph title
 			$primaryLocale,
 			'title',
 			$locale,
@@ -448,9 +448,9 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
 		while (!$result->EOF) {
 			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
-			$articleId = $editorSubmission->getArticleId();
+			$monographId = $editorSubmission->getMonographId();
 			for ($i = 1; $i <= $editorSubmission->getCurrentRound(); $i++) {
-				$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentsByArticleId($articleId, $i);
+				$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentsByMonographId($monographId, $i);
 				if (!empty($reviewAssignment)) {
 					$editorSubmission->setReviewAssignments($reviewAssignment, $i);
 				}
@@ -506,21 +506,21 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 
 		while (!$result->EOF) {
 			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
-			$articleId = $editorSubmission->getArticleId();
+			$monographId = $editorSubmission->getMonographId();
 
 			// get copyedit final data
-			$copyedAssignment = $this->getCopyedAssignment($articleId);
+			$copyedAssignment = $this->getCopyedAssignment($monographId);
 			$row = $copyedAssignment->GetRowAssoc(false);
 			$editorSubmission->setCopyeditorDateFinalCompleted($this->datetimeFromDB($row['date_final_completed']));
 
 			// get layout assignment data
 			$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByArticleId($articleId);
+			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($monographId);
 			$editorSubmission->setLayoutAssignment($layoutAssignment);
 
 			// get proof assignment data
 			$proofAssignmentDao = &DAORegistry::getDAO('ProofAssignmentDAO');
-			$proofAssignment =& $proofAssignmentDao->getProofAssignmentByArticleId($articleId);
+			$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
 			$editorSubmission->setProofAssignment($proofAssignment);
 
 			// check if submission is still in review
@@ -571,21 +571,21 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 		$result = $this->getUnfilteredEditorSubmissions($journalId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
 		while (!$result->EOF) {
 			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
-			$articleId = $editorSubmission->getArticleId();
+			$monographId = $editorSubmission->getMonographId();
 
 			// get copyedit final data
-			$copyedAssignment = $this->getCopyedAssignment($articleId);
+			$copyedAssignment = $this->getCopyedAssignment($monographId);
 			$row = $copyedAssignment->GetRowAssoc(false);
 			$editorSubmission->setCopyeditorDateFinalCompleted($this->datetimeFromDB($row['date_final_completed']));
 
 			// get layout assignment data
 			$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByArticleId($articleId);
+			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($monographId);
 			$editorSubmission->setLayoutAssignment($layoutAssignment);
 
 			// get proof assignment data
 			$proofAssignmentDao = &DAORegistry::getDAO('ProofAssignmentDAO');
-			$proofAssignment =& $proofAssignmentDao->getProofAssignmentByArticleId($articleId);
+			$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
 			$editorSubmission->setProofAssignment($proofAssignment);
 
 			$editorSubmissions[] =& $editorSubmission;
@@ -666,20 +666,20 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 
 	/**
 	 * Get the editor decisions for a review round of an article.
-	 * @param $articleId int
+	 * @param $monographId int
 	 * @param $round int
 	 */
-	function getEditorDecisions($articleId, $round = null) {
+	function getEditorDecisions($monographId, $round = null) {
 		$decisions = array();
 
 		if ($round == null) {
 			$result = &$this->retrieve(
-				'SELECT edit_decision_id, editor_id, decision, date_decided FROM edit_decisions WHERE monograph_id = ? ORDER BY date_decided ASC', $articleId
+				'SELECT edit_decision_id, editor_id, decision, date_decided FROM edit_decisions WHERE monograph_id = ? ORDER BY date_decided ASC', $monographId
 			);
 		} else {
 			$result = &$this->retrieve(
 				'SELECT edit_decision_id, editor_id, decision, date_decided FROM edit_decisions WHERE monograph_id = ? AND round = ? ORDER BY date_decided ASC',
-				array($articleId, $round)
+				array($monographId, $round)
 			);
 		}
 
@@ -707,14 +707,14 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	/**
 	 * Retrieve a list of all users in the specified role not assigned as editors to the specified article.
 	 * @param $journalId int
-	 * @param $articleId int
+	 * @param $monographId int
 	 * @param $roleId int
 	 * @return DAOResultFactory containing matching Users
 	 */
-	function &getUsersNotAssignedToArticle($journalId, $articleId, $roleId, $searchType=null, $search=null, $searchMatch=null, $rangeInfo = null) {
+	function &getUsersNotAssignedToMonograph($journalId, $monographId, $roleId, $searchType=null, $search=null, $searchMatch=null, $rangeInfo = null) {
 		$users = array();
 
-		$paramArray = array('interests', $articleId, $journalId, $roleId);
+		$paramArray = array('interests', $monographId, $journalId, $roleId);
 		$searchSql = '';
 
 		if (isset($search)) switch ($searchType) {

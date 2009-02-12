@@ -319,8 +319,8 @@ class Validation {
 	 * @param $pressId int
 	 * @return boolean
 	 */
-	function isSectionEditor($pressId = -1) {
-//		return Validation::isAuthorized(ROLE_ID_SECTION_EDITOR, $pressId);
+	function isAcquisitionsEditor($pressId = -1) {
+		return Validation::isAuthorized(ROLE_ID_ACQUISITIONS_EDITOR, $pressId);
 	}
 
 	/**

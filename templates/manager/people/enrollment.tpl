@@ -49,7 +49,8 @@ function confirmAndPrompt(userId) {
 		<option {if $roleSymbolic=='all'}selected="selected" {/if}value="all">{translate key="manager.people.allUsers"}</option>
 		<option {if $roleSymbolic=='managers'}selected="selected" {/if}value="managers">{translate key="user.role.managers"}</option>
 		<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
-		<option {if $roleSymbolic=='acquisitionsEditors'}selected="selected" {/if}value="acquisitionsEditors">{translate key="user.role.sectionEditors"}</option>
+		<option {if $roleSymbolic=='acquisitionsEditors'}selected="selected" {/if}value="acquisitionsEditors">{translate key="user.role.acquisitionsEditors"}</option>
+		<option {if $roleSymbolic=='editorialMembers'}selected="selected" {/if}value="editorialMembers">{translate key="user.role.editorialMembers"}</option>
 		<option {if $roleSymbolic=='layoutEditors'}selected="selected" {/if}value="layoutEditors">{translate key="user.role.layoutEditors"}</option>
 		<option {if $roleSymbolic=='copyeditors'}selected="selected" {/if}value="copyeditors">{translate key="user.role.copyeditors"}</option>
 		<option {if $roleSymbolic=='proofreaders'}selected="selected" {/if}value="proofreaders">{translate key="user.role.proofreaders"}</option>
@@ -75,6 +76,7 @@ function confirmAndPrompt(userId) {
 	<li><a href="{url path="managers"}">{translate key="user.role.managers"}</a></li>
 	<li><a href="{url path="editors"}">{translate key="user.role.editors"}</a></li>
 	<li><a href="{url path="acquisitionsEditors"}">{translate key="user.role.acquisitionsEditors"}</a></li>
+	<li><a href="{url path="editorialMembers"}">{translate key="user.role.editorialMembers"}</a></li>
 	<li><a href="{url path="layoutEditors"}">{translate key="user.role.layoutEditors"}</a></li>
 	<li><a href="{url path="copyeditors"}">{translate key="user.role.copyeditors"}</a></li>
 	<li><a href="{url path="proofreaders"}">{translate key="user.role.proofreaders"}</a></li>
