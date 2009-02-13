@@ -9,7 +9,7 @@
  * @class AuthorSubmitStep4Form
  * @ingroup author_form_submit
  *
- * @brief Form for Step 4 of author article submission.
+ * @brief Form for Step 4 of author monograph submission.
  */
 
 // $Id$
@@ -31,20 +31,20 @@ class AuthorSubmitStep4Form extends AuthorSubmitForm {
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 
-		// Get supplementary files for this article
-	//	$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-//		$templateMgr->assign_by_ref('suppFiles', $suppFileDao->getSuppFilesByArticle($this->articleId));
+		// Get supplementary files for this monograph
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$templateMgr->assign_by_ref('suppFiles', $suppFileDao->getSuppFilesByMonograph($this->sequence->monograph->getMonographId()));
 
 		parent::display();
 	}
 
 	/**
-	 * Save changes to article.
+	 * Save changes to monograph.
 	 */
 	function execute() {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
-		// Update article
+		// Update monograph
 		$monograph =& $this->sequence->monograph;
 		if ($monograph->getSubmissionProgress() <= $this->sequence->currentStep) {
 			$monograph->stampStatusModified();

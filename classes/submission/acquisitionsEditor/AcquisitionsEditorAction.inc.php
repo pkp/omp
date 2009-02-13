@@ -1142,8 +1142,8 @@ class AcquisitionsEditorAction extends Action {
 	 * @param $acquisitionsEditorSubmission object
 	 */
 	function uploadReviewVersion($acquisitionsEditorSubmission) {
-		import('file.ManuscriptFileManager');
-		$monographFileManager = new ManuscriptFileManager($acquisitionsEditorSubmission->getMonographId());
+		import('file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($acquisitionsEditorSubmission->getMonographId());
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 
 		$fileName = 'upload';

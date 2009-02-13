@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * View (but not edit) metadata of an article.
+ * View (but not edit) metadata of an monograph.
  *
  * $Id$
  *}
@@ -14,13 +14,13 @@
 {/strip}
 
 {if $canViewAuthors}
-<h3>{translate key="article.authors"}</h3>
+<h3>{translate key="monograph.authors"}</h3>
 
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
-			{url|assign:"formUrl" path=$articleId}
+			{url|assign:"formUrl" path=$monographId}
 			<form name="metadata" action="{$formUrl}" method="post">
 			{form_language_chooser form="metadata" url=$formUrl}
 			<span class="instruct">{translate key="form.formLanguage.description"}</span>
@@ -32,7 +32,7 @@
 		<td width="20%" class="label">{translate key="user.name"}</td>
 		<td width="80%" class="value">
 			{assign var=emailString value="`$author.firstName` `$author.middleName` `$author.lastName` <`$author.email`>"}
-			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl articleId=$articleId}
+			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl monographId=$monographId}
 			{$author.firstName|escape} {$author.middleName|escape} {$author.lastName|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
@@ -78,7 +78,7 @@
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="article.title"}</td>
+		<td width="20%" class="label">{translate key="monograph.title"}</td>
 		<td width="80%" class="value">{$title[$formLocale]|strip_unsafe_html|default:"&mdash;"}</td>
 	</tr>
 
@@ -86,18 +86,18 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{translate key="article.abstract"}</td>
+		<td class="label">{translate key="monograph.abstract"}</td>
 		<td class="value">{$abstract[$formLocale]|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 	</tr>
 </table>
 
 <div class="separator"></div>
 
-<h3>{translate key="editor.article.cover"}</h3>
+<h3>{translate key="editor.monograph.cover"}</h3>
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="coverPage" key="editor.article.coverPage"}</td>
+		<td width="20%" class="label">{fieldLabel name="coverPage" key="editor.monograph.coverPage"}</td>
 		<td width="80%" class="value">{if $fileName[$formLocale]}<a href="javascript:openWindow('{$publicFilesDir}/{$fileName[$formLocale]|escape:"url"}');" class="file">{$originalFileName[$formLocale]}</a>{else}&mdash;{/if}</td>
 	</tr>
 
@@ -117,7 +117,7 @@
 <table width="100%" class="data">
 	{if $journalSettings.metaDiscipline}
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="article.discipline"}</td>
+		<td width="20%" class="label">{translate key="monograph.discipline"}</td>
 		<td width="80%" class="value">{$discipline[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
@@ -129,7 +129,7 @@
 		<td colspan="2" class="label"><a href="{$currentJournal->getLocalizedSetting('metaSubjectClassUrl')|escape}" target="_blank">{$currentJournal->getLocalizedSetting('metaSubjectClassTitle')|escape}</a></td>
 	</tr>
 	<tr valign="top">
-		<td width="20%"class="label">{translate key="article.subjectClassification"}</td>
+		<td width="20%"class="label">{translate key="monograph.subjectClassification"}</td>
 		<td width="80%" class="value">{$subjectClass[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
@@ -138,7 +138,7 @@
 	{/if}
 	{if $journalSettings.metaSubject}
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="article.subject"}</td>
+		<td width="20%" class="label">{translate key="monograph.subject"}</td>
 		<td width="80%" class="value">{$subject[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
@@ -147,21 +147,21 @@
 	{/if}
 	{if $journalSettings.metaCoverage}
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="article.coverageGeo"}</td>
+		<td width="20%" class="label">{translate key="monograph.coverageGeo"}</td>
 		<td width="80%" class="value">{$coverageGeo[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{translate key="article.coverageChron"}</td>
+		<td class="label">{translate key="monograph.coverageChron"}</td>
 		<td class="value">{$coverageChron[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{translate key="article.coverageSample"}</td>
+		<td class="label">{translate key="monograph.coverageSample"}</td>
 		<td class="value">{$coverageSample[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
@@ -170,7 +170,7 @@
 	{/if}
 	{if $journalSettings.metaType}
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="article.type"}</td>
+		<td width="20%" class="label">{translate key="monograph.type"}</td>
 		<td width="80%" class="value">{$type[$formLocale]|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
@@ -178,7 +178,7 @@
 	</tr>
 	{/if}
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="article.language"}</td>
+		<td width="20%" class="label">{translate key="monograph.language"}</td>
 		<td width="80%" class="value">{$language|escape|default:"&mdash;"}</td>
 	</tr>
 </table>

@@ -192,13 +192,13 @@ class ReviewerSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Get all submissions for a reviewer of a journal.
+	 * Get all submissions for a reviewer of a press.
 	 * @param $reviewerId int
-	 * @param $journalId int
+	 * @param $pressId int
 	 * @param $rangeInfo object
 	 * @return array ReviewerSubmissions
 	 */
-	function &getReviewerSubmissionsByReviewerId($reviewerId, $journalId, $active = true, $rangeInfo = null) {
+	function &getReviewerSubmissionsByReviewerId($reviewerId, $pressId, $active = true, $rangeInfo = null) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$sql = 'SELECT	a.*,
@@ -216,7 +216,7 @@ class ReviewerSubmissionDAO extends DAO {
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN section_settings sal ON (s.section_id = sal.section_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE	a.journal_id = ?
+			WHERE	a.press_id = ?
 				AND r.reviewer_id = ?
 				AND r.date_notified IS NOT NULL';
 
@@ -237,7 +237,7 @@ class ReviewerSubmissionDAO extends DAO {
 				$primaryLocale,
 				'abbrev',
 				$locale,
-				$journalId,
+				$pressId,
 				$reviewerId
 			),
 			$rangeInfo
@@ -250,16 +250,16 @@ class ReviewerSubmissionDAO extends DAO {
 	/**
 	 * Get count of active and complete assignments
 	 * @param reviewerId int
-	 * @param journalId int
+	 * @param pressId int
 	 */
-	function getSubmissionsCount($reviewerId, $journalId) {
+	function getSubmissionsCount($reviewerId, $pressId) {
 		$submissionsCount = array();
 		$submissionsCount[0] = 0;
 		$submissionsCount[1] = 0;
 
-		$sql = 'SELECT r.date_completed, r.declined, r.cancelled FROM monographs a LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id) LEFT JOIN sections s ON (s.section_id = a.section_id) LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round)  WHERE a.journal_id = ? AND r.reviewer_id = ? AND r.date_notified IS NOT NULL';
+		$sql = 'SELECT r.date_completed, r.declined, r.cancelled FROM monographs a LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id) LEFT JOIN sections s ON (s.section_id = a.section_id) LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round)  WHERE a.press_id = ? AND r.reviewer_id = ? AND r.date_notified IS NOT NULL';
 
-		$result =& $this->retrieve($sql, array($journalId, $reviewerId));
+		$result =& $this->retrieve($sql, array($pressId, $reviewerId));
 
 		while (!$result->EOF) {
 			if ($result->fields['date_completed'] == null && $result->fields['declined'] != 1 && $result->fields['cancelled'] != 1) {

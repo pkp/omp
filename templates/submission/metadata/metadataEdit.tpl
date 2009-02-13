@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Form for changing metadata of an article.
+ * Form for changing metadata of an monograph.
  *
  * $Id$
  *}
@@ -16,7 +16,7 @@
 {url|assign:"competingInterestGuidelinesUrl" page="information" op="competingInterestGuidelines"}
 
 <form name="metadata" method="post" action="{url op="saveMetadata"}" enctype="multipart/form-data">
-<input type="hidden" name="articleId" value="{$articleId|escape}" />
+<input type="hidden" name="monographId" value="{$monographId|escape}" />
 {include file="common/formErrors.tpl"}
 
 {if $canViewAuthors}
@@ -26,7 +26,7 @@
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
-			{url|assign:"formUrl" path=$articleId escape=false}
+			{url|assign:"formUrl" path=$monographId escape=false}
 			{* Maintain localized author info across requests *}
 			{foreach from=$authors key=authorIndex item=author}
 				{if $currentPress->getSetting('requireAuthorCompetingInterests')}
@@ -53,7 +53,7 @@
 
 <table width="100%" class="data">
 	<tr>
-		<td width="20%" class="label">{fieldLabel name="title" required="true" key="article.title"}</td>
+		<td width="20%" class="label">{fieldLabel name="title" required="true" key="monograph.title"}</td>
 		<td width="80%" class="value"><input type="text" name="title[{$formLocale|escape}]" id="title" value="{$title[$formLocale]|escape}" size="60" maxlength="255" class="textField" /></td>
 	</tr>
 
@@ -61,7 +61,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{translate key="article.abstract"}</td>
+		<td class="label">{translate key="monograph.abstract"}</td>
 		<td class="value"><textarea name="abstract[{$formLocale|escape}]" id="abstract" rows="15" cols="60" class="textArea">{$abstract[$formLocale]|escape}</textarea></td>
 	</tr>
 </table>
@@ -75,7 +75,7 @@
 <table width="100%" class="data">
 	{if $journalSettings.metaDiscipline}
 	<tr valign="top">
-		<td class="label">{fieldLabel name="discipline" key="article.discipline"}</td>
+		<td class="label">{fieldLabel name="discipline" key="monograph.discipline"}</td>
 		<td class="value">
 			<input type="text" name="discipline[{$formLocale|escape}]" id="discipline" value="{$discipline[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
 			{if $currentJournal->getLocalizedSetting('metaDisciplineExamples') != ''}
@@ -93,7 +93,7 @@
 		<td colspan="2" class="label"><a href="{$currentJournal->getLocalizedSetting('metaSubjectClassUrl')|escape}" target="_blank">{$currentJournal->getLocalizedSetting('metaSubjectClassTitle')|escape}</a></td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="subjectClass" key="article.subjectClassification"}</td>
+		<td class="label">{fieldLabel name="subjectClass" key="monograph.subjectClassification"}</td>
 		<td class="value">
 			<input type="text" name="subjectClass[{$formLocale|escape}]" id="subjectClass" value="{$subjectClass[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
 			<br />
@@ -106,7 +106,7 @@
 	{/if}
 	{if $journalSettings.metaSubject}
 	<tr valign="top">
-		<td class="label">{fieldLabel name="subject" key="article.subject"}</td>
+		<td class="label">{fieldLabel name="subject" key="monograph.subject"}</td>
 		<td class="value">
 			<input type="text" name="subject[{$formLocale|escape}]" id="subject" value="{$subject[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
 			{if $currentJournal->getLocalizedSetting('metaSubjectExamples') != ''}
@@ -121,7 +121,7 @@
 	{/if}
 	{if $journalSettings.metaCoverage}
 	<tr valign="top">
-		<td class="label">{fieldLabel name="coverageGeo" key="article.coverageGeo"}</td>
+		<td class="label">{fieldLabel name="coverageGeo" key="monograph.coverageGeo"}</td>
 		<td class="value">
 			<input type="text" name="coverageGeo[{$formLocale|escape}]" id="coverageGeo" value="{$coverageGeo[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
 			{if $currentJournal->getLocalizedSetting('metaCoverageGeoExamples') != ''}
@@ -134,7 +134,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="coverageChron" key="article.coverageChron"}</td>
+		<td class="label">{fieldLabel name="coverageChron" key="monograph.coverageChron"}</td>
 		<td class="value">
 			<input type="text" name="coverageChron[{$formLocale|escape}]" id="coverageChron" value="{$coverageChron[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
 			{if $currentJournal->getLocalizedSetting('metaCoverageChronExamples') != ''}
@@ -147,7 +147,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{fieldLabel name="coverageSample" key="article.coverageSample"}</td>
+		<td class="label">{fieldLabel name="coverageSample" key="monograph.coverageSample"}</td>
 		<td class="value">
 			<input type="text" name="coverageSample[{$formLocale|escape}]" id="coverageSample" value="{$coverageSample[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
 			{if $currentJournal->getLocalizedSetting('metaCoverageResearchSampleExamples') != ''}
@@ -162,7 +162,7 @@
 	{/if}
 	{if $journalSettings.metaType}
 	<tr valign="top">
-		<td class="label">{fieldLabel name="type" key="article.type"}</td>
+		<td class="label">{fieldLabel name="type" key="monograph.type"}</td>
 		<td class="value">
 			<input type="text" name="type[{$formLocale|escape}]" id="type" value="{$type[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
 		</td>
@@ -172,7 +172,7 @@
 	</tr>
 	{/if}
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="language" key="article.language"}</td>
+		<td width="20%" class="label">{fieldLabel name="language" key="monograph.language"}</td>
 		<td width="80%" class="value">
 			<input type="text" name="language" id="language" value="{$language|escape}" size="5" maxlength="10" class="textField" />
 			<br />

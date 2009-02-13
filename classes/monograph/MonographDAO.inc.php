@@ -142,6 +142,23 @@ class MonographDAO extends DAO {
 	}
 
 	/**
+	 * Get the ID of the press a monograph is associated with.
+	 * @param $monographId int
+	 * @return int
+	 */
+	function getMonographPressId($monographId) {
+		$result =& $this->retrieve(
+			'SELECT press_id FROM monographs WHERE monograph_id = ?', $monographId
+		);
+		$returner = isset($result->fields[0]) ? $result->fields[0] : false;
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
+	/**
 	 * Update the localized fields for this object.
 	 * @param $monograph
 	 */
@@ -258,6 +275,16 @@ class MonographDAO extends DAO {
 	}
 
 	/**
+	 * Delete monograph by id.
+	 * @param $monograph object Monograph
+	 */
+	function deleteMonographById($monographId) {
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getMonograph((int) $monographId);
+		MonographDAO::deleteMonograph($monograph);
+	}
+
+	/**
 	 * Delete monograph. Deletes associated published monographs and cover file.
 	 * @param $monograph object Monograph
 	 */
@@ -265,15 +292,14 @@ class MonographDAO extends DAO {
 		import('file.PublicFileManager');
 		$publicFileManager =& new PublicFileManager();
 		
-/*		if (is_array($monograph->getFileName(null))) foreach ($monograph->getFileName(null) as $fileName) {
+		if (is_array($monograph->getFileName(null))) foreach ($monograph->getFileName(null) as $fileName) {
 			if ($fileName != '') {
 				$publicFileManager->removePressFile($monograph->getPressId(), $fileName);
 			}
 		}
-		if (($fileName = $monograph->getStyleFileName()) != '') {
+	/*	if (($fileName = $monograph->getStyleFileName()) != '') {
 			$publicFileManager->removePressFile($monograph->getPressId(), $fileName);
-		}
-*/
+		}*/
 
 		$this->update('DELETE FROM monograph_settings WHERE monograph_id = ?', $monograph->getMonographId());
 		$this->update('DELETE FROM monographs WHERE monograph_id = ?', $monograph->getMonographId());
@@ -362,6 +388,9 @@ class MonographDAO extends DAO {
 		return $monograph;
 	}
 	function _monographFromRow(&$monograph, &$row) {
+
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+
 		$monograph->setMonographId($row['monograph_id']);
 		$monograph->setPressId($row['press_id']);
 		$monograph->setUserId($row['user_id']);
@@ -372,11 +401,11 @@ class MonographDAO extends DAO {
 		$monograph->setLanguage($row['language']);
 		$monograph->setCurrentRound($row['current_round']);
 		$monograph->setSubmissionFileId($row['submission_file_id']);
-    //$monograph->setDatePublished($this->datetimeFromDB($row['date_published']));
+		//$monograph->setDatePublished($this->datetimeFromDB($row['date_published']));
 //		//$monograph->setPublicMonographId($row['public_monograph_id']);
 		$monograph->setWorkType($row['edited_volume']);
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
-//		$article->setAuthors($this->authorDao->getAuthorsByArticle($row['article_id']));
+		$monograph->setAuthors($authorDao->getAuthorsByMonographId($row['monograph_id']));
 		HookRegistry::call('MonographDAO::_returnMonographFromRow', array(&$monograph, &$row));
 
 	}

@@ -158,7 +158,7 @@
 	<message key="editor.article.archiveSubmission">Archive Submission</message>
 	<message key="editor.article.restoreToQueue">Restore to Active List</message>
 	<message key="editor.monograph.assignAcquisitionsEditor">Add Acquisitions Editor</message>
-	<message key="editor.article.assignEditor">Add Editor</message>
+	<message key="editor.monograph.assignEditor">Add Editor</message>
 	<message key="editor.article.selectEditor">Select {$roleName}</message>
 	<message key="editor.monograph.selectDecision">Select decision</message>
 	<message key="editor.article.decision.accept">Accept Submission</message>

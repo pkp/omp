@@ -20,13 +20,13 @@ import('monograph.Monograph');
 
 class ReviewerSubmission extends Monograph {
 
-	/** @var array ArticleFiles reviewer file revisions of this article */
+	/** @var array ArticleFiles reviewer file revisions of this monograph */
 	var $reviewerFileRevisions;
 
-	/** @var array ArticleComments peer review comments of this article */
+	/** @var array ArticleComments peer review comments of this monograph */
 	var $peerReviewComments;
 
-	/** @var array the editor decisions of this article */
+	/** @var array the editor decisions of this monograph */
 	var $editorDecisions;
 
 	/**
@@ -41,7 +41,7 @@ class ReviewerSubmission extends Monograph {
 	 */
 
 	/**
-	 * Get edit assignments for this article.
+	 * Get edit assignments for this monograph.
 	 * @return array
 	 */
 	function &getEditAssignments() {
@@ -50,7 +50,7 @@ class ReviewerSubmission extends Monograph {
 	}
 
 	/**
-	 * Set edit assignments for this article.
+	 * Set edit assignments for this monograph.
 	 * @param $editAssignments array
 	 */
 	function setEditAssignments($editAssignments) {
@@ -58,7 +58,7 @@ class ReviewerSubmission extends Monograph {
 	}
 
 	/**
-	 * Get the competing interests for this article.
+	 * Get the competing interests for this monograph.
 	 * @return string
 	 */
 	function getCompetingInterests() {
@@ -90,19 +90,19 @@ class ReviewerSubmission extends Monograph {
 	}
 
 	/**
-	 * Get ID of article.
+	 * Get ID of monograph.
 	 * @return int
 	 */
 	function getArticleId() {
-		return $this->getData('articleId');
+		return $this->getData('monographId');
 	}
 
 	/**
-	 * Set ID of article.
-	 * @param $articleId int
+	 * Set ID of monograph.
+	 * @param $monographId int
 	 */
-	function setArticleId($articleId) {
-		return $this->setData('articleId', $articleId);
+	function setArticleId($monographId) {
+		return $this->setData('monographId', $monographId);
 	}
 
 	/**
@@ -405,7 +405,7 @@ class ReviewerSubmission extends Monograph {
 	//
 
 	/**
-	 * Get submission file for this article.
+	 * Get submission file for this monograph.
 	 * @return ArticleFile
 	 */
 	function &getSubmissionFile() {
@@ -414,7 +414,7 @@ class ReviewerSubmission extends Monograph {
 	}
 
 	/**
-	 * Set submission file for this article.
+	 * Set submission file for this monograph.
 	 * @param $submissionFile ArticleFile
 	 */
 	function setSubmissionFile($submissionFile) {
@@ -422,7 +422,7 @@ class ReviewerSubmission extends Monograph {
 	}
 
 	/**
-	 * Get revised file for this article.
+	 * Get revised file for this monograph.
 	 * @return ArticleFile
 	 */
 	function &getRevisedFile() {
@@ -431,7 +431,7 @@ class ReviewerSubmission extends Monograph {
 	}
 
 	/**
-	 * Set revised file for this article.
+	 * Set revised file for this monograph.
 	 * @param $submissionFile ArticleFile
 	 */
 	function setRevisedFile($revisedFile) {
@@ -439,7 +439,7 @@ class ReviewerSubmission extends Monograph {
 	}
 
 	/**
-	 * Get supplementary files for this article.
+	 * Get supplementary files for this monograph.
 	 * @return array SuppFiles
 	 */
 	function &getSuppFiles() {
@@ -448,7 +448,7 @@ class ReviewerSubmission extends Monograph {
 	}
 
 	/**
-	 * Set supplementary file for this article.
+	 * Set supplementary file for this monograph.
 	 * @param $suppFiles array SuppFiles
 	 */
 	function setSuppFiles($suppFiles) {

@@ -40,7 +40,7 @@ define('MONOGRAPH_FILE_SUPP',		'SP');
 define('MONOGRAPH_FILE_NOTE',		'NT');
 define('MONOGRAPH_FILE_ATTACHMENT',	'AT');
 
-class ManuscriptFileManager extends FileManager {
+class MonographFileManager extends FileManager {
 
 	/** @var string the path to location of the files */
 	var $filesDir;
@@ -56,7 +56,7 @@ class ManuscriptFileManager extends FileManager {
 	 * Create a manager for handling monograph file uploads.
 	 * @param $monographId int
 	 */
-	function ManuscriptFileManager($monographId) {
+	function MonographFileManager($monographId) {
 		$this->monographId = $monographId;
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$this->monograph =& $monographDao->getMonograph($monographId);
@@ -508,7 +508,7 @@ class ManuscriptFileManager extends FileManager {
 
 		$monographFile->setFileType($_FILES[$fileName]['type']);
 		$monographFile->setFileSize($_FILES[$fileName]['size']);
-		$monographFile->setOriginalFileName(ManuscriptFileManager::truncateFileName($_FILES[$fileName]['name'], 127));
+		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($_FILES[$fileName]['name'], 127));
 		$monographFile->setType($typePath);
 		$monographFile->setStatus(''); // FIXME wtf is this for?
 		$monographFile->setRound($this->monograph->getCurrentRound());

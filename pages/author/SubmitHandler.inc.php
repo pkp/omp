@@ -71,10 +71,10 @@ class SubmitHandler extends AuthorHandler {
 				break;
 
 			case 4:
-			//	if (Request::getUserVar('submitUploadSuppFile')) {
-			//		SubmitHandler::submitUploadSuppFile();
-			//		return;
-			//	}
+				if (Request::getUserVar('submitUploadSuppFile')) {
+					SubmitHandler::submitUploadSuppFile();
+					return;
+				}
 				break;
 		}
 
@@ -109,10 +109,11 @@ class SubmitHandler extends AuthorHandler {
 	function submitUploadSuppFile() {
 		parent::validate();
 		parent::setupTemplate(true);
-
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monographId = Request::getUserVar('monographId');
 
 		list($press, $monograph) = SubmitHandler::validate($monographId, 4);
+		$monograph =& $monographDao->getMonograph((int) $monographId);
 
 		import('author.form.submit.AuthorSubmitSuppFileForm');
 		$submitForm =& new AuthorSubmitSuppFileForm($monograph);
@@ -129,11 +130,13 @@ class SubmitHandler extends AuthorHandler {
 	function submitSuppFile($args) {
 		parent::validate();
 		parent::setupTemplate(true);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		$monographId = Request::getUserVar('monographId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
 		list($press, $monograph) = SubmitHandler::validate($monographId, 4);
+		$monograph =& $monographDao->getMonograph((int) $monographId);
 
 		import('author.form.submit.AuthorSubmitSuppFileForm');
 		$submitForm =& new AuthorSubmitSuppFileForm($monograph, $suppFileId);
@@ -153,11 +156,13 @@ class SubmitHandler extends AuthorHandler {
 	function saveSubmitSuppFile($args) {
 		parent::validate();
 		parent::setupTemplate(true);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		$monographId = Request::getUserVar('monographId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
 		list($press, $monograph) = SubmitHandler::validate($monographId, 4);
+		$monograph =& $monographDao->getMonograph((int) $monographId);
 
 		import('author.form.submit.AuthorSubmitSuppFileForm');
 		$submitForm =& new AuthorSubmitSuppFileForm($monograph, $suppFileId);
@@ -180,11 +185,14 @@ class SubmitHandler extends AuthorHandler {
 
 		parent::validate();
 		parent::setupTemplate(true);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		$monographId = Request::getUserVar('monographId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
+
 		list($press, $monograph) = SubmitHandler::validate($monographId, 4);
+		$monograph =& $monographDao->getMonograph((int) $monographId);
 
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$suppFile = $suppFileDao->getSuppFile($suppFileId, $monographId);

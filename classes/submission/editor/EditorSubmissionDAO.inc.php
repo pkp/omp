@@ -30,26 +30,26 @@ class EditorSubmissionDAO extends DAO {
 	 */
 	function EditorSubmissionDAO() {
 		parent::DAO();
-		$this->monographDao = &DAORegistry::getDAO('MonographDAO');
-		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
-		$this->userDao = &DAORegistry::getDAO('UserDAO');
-		$this->editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
+		$this->monographDao =& DAORegistry::getDAO('MonographDAO');
+		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$this->userDao =& DAORegistry::getDAO('UserDAO');
+		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 	}
 
 	/**
-	 * Retrieve an editor submission by article ID.
+	 * Retrieve an editor submission by monograph ID.
 	 * @param $monographId int
 	 * @return EditorSubmission
 	 */
 	function &getEditorSubmission($monographId) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT
 				a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
-			FROM	articles a
+			FROM	monographs a
 				LEFT JOIN sections s ON s.section_id = a.section_id
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
@@ -71,7 +71,7 @@ class EditorSubmissionDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -91,13 +91,13 @@ class EditorSubmissionDAO extends DAO {
 		$this->monographDao->_monographFromRow($editorSubmission, $row);
 
 		// Editor Assignment
-//		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByMonographId($row['monograph_id']);
-//		$editorSubmission->setEditAssignments($editAssignments->toArray());
+		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByMonographId($row['monograph_id']);
+		$editorSubmission->setEditAssignments($editAssignments->toArray());
 
 		// Editor Decisions
-//		for ($i = 1; $i <= $row['current_round']; $i++) {
-//			$editorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $i), $i);
-//		}
+		for ($i = 1; $i <= $row['current_round']; $i++) {
+			$editorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $i), $i);
+		}
 
 		HookRegistry::call('EditorSubmissionDAO::_returnEditorSubmissionFromRow', array(&$editorSubmission, &$row));
 
@@ -124,7 +124,7 @@ class EditorSubmissionDAO extends DAO {
 		$editorSubmission->setEditId($this->getInsertEditId());
 
 		// Insert review assignments.
-		$reviewAssignments = &$editorSubmission->getReviewAssignments();
+		$reviewAssignments =& $editorSubmission->getReviewAssignments();
 		for ($i=0, $count=count($reviewAssignments); $i < $count; $i++) {
 			$reviewAssignments[$i]->setMonographId($editorSubmission->getMonographId());
 			$this->reviewAssignmentDao->insertReviewAssignment($reviewAssignments[$i]);
@@ -134,7 +134,7 @@ class EditorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Update an existing article.
+	 * Update an existing monograph.
 	 * @param $monograph Monograph
 	 */
 	function updateEditorSubmission(&$editorSubmission) {
@@ -176,7 +176,7 @@ class EditorSubmissionDAO extends DAO {
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
 
-			FROM	articles a
+			FROM	monographs a
 				LEFT JOIN sections s ON (s.section_id = a.section_id)
 				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
@@ -187,7 +187,7 @@ class EditorSubmissionDAO extends DAO {
 				($sectionId?' AND a.section_id = ?':'') .
 			' ORDER BY monograph_id ASC';
 
-		$result = &$this->retrieveRange($sql, $params, $rangeInfo);
+		$result =& $this->retrieveRange($sql, $params, $rangeInfo);
 		$returner =& new DAOResultFactory($result, $this, '_returnEditorSubmissionFromRow');
 		return $returner;
 	}
@@ -295,7 +295,7 @@ class EditorSubmissionDAO extends DAO {
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
 			FROM
-				articles a
+				monographs a
 				INNER JOIN monograph_authors aa ON (aa.monograph_id = a.monograph_id)
 				LEFT JOIN sections s ON (s.section_id = a.section_id)
 			//	LEFT JOIN edit_assignments e ON (e.monograph_id = a.monograph_id)
@@ -312,8 +312,8 @@ class EditorSubmissionDAO extends DAO {
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN section_settings sal ON (s.section_id = sal.section_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN article_settings atpl ON (a.monograph_id = atpl.monograph_id AND atpl.setting_name = ? AND atpl.locale = ?)
-				LEFT JOIN article_settings atl ON (a.monograph_id = atl.monograph_id AND atl.setting_name = ? AND atl.locale = ?)
+				LEFT JOIN monograph_settings atpl ON (a.monograph_id = atpl.monograph_id AND atpl.setting_name = ? AND atpl.locale = ?)
+				LEFT JOIN monograph_settings atl ON (a.monograph_id = atl.monograph_id AND atl.setting_name = ? AND atl.locale = ?)
 			WHERE
 				a.press_id = ? AND a.submission_progress = 0';*/
 		$sql = 'SELECT DISTINCT
@@ -340,14 +340,14 @@ class EditorSubmissionDAO extends DAO {
 			$params[] = $editorId;
 		}
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			$sql . ' ' . $searchSql . ' ORDER BY a.monograph_id ASC',
 			count($params)===1?array_shift($params):$params,
 			$rangeInfo
 		);print_r($result);exit;
 */
 $sql.=	' ORDER BY a.monograph_id ASC';
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			$sql,array(),$rangeInfo
 		);
 
@@ -375,11 +375,11 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 
 	/**
 	 * Helper function to retrieve copyed assignment
-	 * @param articleId int
+	 * @param monographId int
 	 * @return result array
 	 */
 	function &getCopyedAssignment($monographId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 				'SELECT * from copyed_assignments where monograph_id = ? ', $monographId
 		);
 		return $result;
@@ -445,9 +445,9 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredEditorSubmissions($journalId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
-		$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		while (!$result->EOF) {
-			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 			$monographId = $editorSubmission->getMonographId();
 			for ($i = 1; $i <= $editorSubmission->getCurrentRound(); $i++) {
 				$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentsByMonographId($monographId, $i);
@@ -505,7 +505,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 		$result = $this->getUnfilteredEditorSubmissions($journalId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		while (!$result->EOF) {
-			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 			$monographId = $editorSubmission->getMonographId();
 
 			// get copyedit final data
@@ -514,12 +514,12 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			$editorSubmission->setCopyeditorDateFinalCompleted($this->datetimeFromDB($row['date_final_completed']));
 
 			// get layout assignment data
-			$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
+			$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
 			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($monographId);
 			$editorSubmission->setLayoutAssignment($layoutAssignment);
 
 			// get proof assignment data
-			$proofAssignmentDao = &DAORegistry::getDAO('ProofAssignmentDAO');
+			$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
 			$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
 			$editorSubmission->setProofAssignment($proofAssignment);
 
@@ -570,7 +570,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 
 		$result = $this->getUnfilteredEditorSubmissions($journalId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
 		while (!$result->EOF) {
-			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 			$monographId = $editorSubmission->getMonographId();
 
 			// get copyedit final data
@@ -579,12 +579,12 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			$editorSubmission->setCopyeditorDateFinalCompleted($this->datetimeFromDB($row['date_final_completed']));
 
 			// get layout assignment data
-			$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
+			$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
 			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($monographId);
 			$editorSubmission->setLayoutAssignment($layoutAssignment);
 
 			// get proof assignment data
-			$proofAssignmentDao = &DAORegistry::getDAO('ProofAssignmentDAO');
+			$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
 			$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
 			$editorSubmission->setProofAssignment($proofAssignment);
 
@@ -620,7 +620,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 		$result =& $this->getUnfilteredEditorSubmissions($pressId);
 
 		while (!$result->EOF) {
-			$editorSubmission = &$this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 
 			// check if submission is still in review
 			$inReview = true;
@@ -665,7 +665,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	//
 
 	/**
-	 * Get the editor decisions for a review round of an article.
+	 * Get the editor decisions for a review round of an monograph.
 	 * @param $monographId int
 	 * @param $round int
 	 */
@@ -673,11 +673,11 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 		$decisions = array();
 
 		if ($round == null) {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT edit_decision_id, editor_id, decision, date_decided FROM edit_decisions WHERE monograph_id = ? ORDER BY date_decided ASC', $monographId
 			);
 		} else {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT edit_decision_id, editor_id, decision, date_decided FROM edit_decisions WHERE monograph_id = ? AND round = ? ORDER BY date_decided ASC',
 				array($monographId, $round)
 			);
@@ -705,7 +705,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	}
 
 	/**
-	 * Retrieve a list of all users in the specified role not assigned as editors to the specified article.
+	 * Retrieve a list of all users in the specified role not assigned as editors to the specified monograph.
 	 * @param $journalId int
 	 * @param $monographId int
 	 * @param $roleId int
@@ -749,7 +749,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 				break;
 		}
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT DISTINCT
 				u.*
 			FROM	users u

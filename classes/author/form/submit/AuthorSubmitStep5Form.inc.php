@@ -35,14 +35,14 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 		$templateMgr =& TemplateManager::getManager();
 
 		// Get article file for this article
-/*		$monographFileDao =& DAORegistry::getDAO('ArticleFileDAO');
-		$monographFiles =& $monographFileDao->getArticleFilesByArticle($this->monographId);
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$monographFiles =& $monographFileDao->getMonographFilesByMonograph($this->sequence->monograph->getMonographId());
 
 		$templateMgr->assign_by_ref('files', $monographFiles);
-		$templateMgr->assign_by_ref('journal', Request::getPress());
+		$templateMgr->assign_by_ref('press', Request::getPress());
 
 		// Set up required Payment Related Information
-		import('payment.ojs.OJSPaymentManager');
+/*		import('payment.ojs.OJSPaymentManager');
 		$paymentManager =& OJSPaymentManager::getManager();
 		if ( $paymentManager->submissionEnabled() || $paymentManager->fastTrackEnabled() || $paymentManager->publicationEnabled()) {
 			$templateMgr->assign('authorFees', true);

@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Step 2 of author article submission.
+ * Step 2 of author monograph submission.
  *
  * $Id$
  *}
@@ -26,7 +26,7 @@
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
-			{url|assign:"submitFormUrl" op="submit" path="2" articleId=$articleId}
+			{url|assign:"submitFormUrl" op="submit" path="2" monographId=$monographId}
 			{* Maintain localized author info across requests *}
 			{foreach from=$authors key=authorIndex item=author}
 				{if $currentPress->getSetting('requireAuthorCompetingInterests')}
@@ -76,7 +76,7 @@ Please provide the title and a description of work, including the scope, aim, an
 	<table width="100%" class="data">
 	{if $pressSettings.metaDiscipline}
 	<tr valign="top">
-		<td{if $currentPress->getLocalizedSetting('metaDisciplineExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="discipline" key="article.discipline"}</td>
+		<td{if $currentPress->getLocalizedSetting('metaDisciplineExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="discipline" key="monograph.discipline"}</td>
 		<td width="80%" class="value"><input type="text" class="textField" name="discipline[{$formLocale|escape}]" id="discipline" value="{$discipline[$formLocale]|escape}" size="40" maxlength="255" /></td>
 	</tr>
 	{if $currentPress->getLocalizedSetting('metaDisciplineExamples')}
@@ -92,7 +92,7 @@ Please provide the title and a description of work, including the scope, aim, an
 	
 	{if $pressSettings.metaSubjectClass}
 	<tr valign="top">
-		<td rowspan="2" width="20%" class="label">{fieldLabel name="subjectClass" key="article.subjectClassification"}</td>
+		<td rowspan="2" width="20%" class="label">{fieldLabel name="subjectClass" key="monograph.subjectClassification"}</td>
 		<td width="80%" class="value"><input type="text" class="textField" name="subjectClass[{$formLocale|escape}]" id="subjectClass" value="{$subjectClass[$formLocale]|escape}" size="40" maxlength="255" /></td>
 	</tr>
 	<tr valign="top">
@@ -106,7 +106,7 @@ Please provide the title and a description of work, including the scope, aim, an
 	
 	{if $pressSettings.metaSubject}
 	<tr valign="top">
-		<td{if $currentPress->getLocalizedSetting('metaSubjectExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="subject" key="article.subject"}</td>
+		<td{if $currentPress->getLocalizedSetting('metaSubjectExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="subject" key="monograph.subject"}</td>
 		<td width="80%" class="value"><input type="text" class="textField" name="subject[{$formLocale|escape}]" id="subject" value="{$subject[$formLocale]|escape}" size="40" maxlength="255" /></td>
 	</tr>
 	{if $currentPress->getLocalizedSetting('metaSubjectExamples') != ''}
@@ -122,7 +122,7 @@ Please provide the title and a description of work, including the scope, aim, an
 	
 	{if $pressSettings.metaCoverage}
 	<tr valign="top">
-		<td{if $currentPress->getLocalizedSetting('metaCoverageGeoExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageGeo" key="article.coverageGeo"}</td>
+		<td{if $currentPress->getLocalizedSetting('metaCoverageGeoExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageGeo" key="monograph.coverageGeo"}</td>
 		<td width="80%" class="value"><input type="text" class="textField" name="coverageGeo[{$formLocale|escape}]" id="coverageGeo" value="{$coverageGeo[$formLocale]|escape}" size="40" maxlength="255" /></td>
 	</tr>
 	{if $currentPress->getLocalizedSetting('metaCoverageGeoExamples')}
@@ -135,7 +135,7 @@ Please provide the title and a description of work, including the scope, aim, an
 		<td>&nbsp;</td>
 	</tr>
 	<tr valign="top">
-		<td{if $currentPress->getLocalizedSetting('metaCoverageChronExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageChron" key="article.coverageChron"}</td>
+		<td{if $currentPress->getLocalizedSetting('metaCoverageChronExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageChron" key="monograph.coverageChron"}</td>
 		<td width="80%" class="value"><input type="text" class="textField" name="coverageChron[{$formLocale|escape}]" id="coverageChron" value="{$coverageChron[$formLocale]|escape}" size="40" maxlength="255" /></td>
 	</tr>
 	{if $currentPress->getLocalizedSetting('metaCoverageChronExamples') != ''}
@@ -148,7 +148,7 @@ Please provide the title and a description of work, including the scope, aim, an
 		<td>&nbsp;</td>
 	</tr>
 	<tr valign="top">
-		<td{if $currentPress->getLocalizedSetting('metaCoverageResearchSampleExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageSample" key="article.coverageSample"}</td>
+		<td{if $currentPress->getLocalizedSetting('metaCoverageResearchSampleExamples') != ''} rowspan="2"{/if} width="20%" class="label">{fieldLabel name="coverageSample" key="monograph.coverageSample"}</td>
 		<td width="80%" class="value"><input type="text" class="textField" name="coverageSample[{$formLocale|escape}]" id="coverageSample" value="{$coverageSample[$formLocale]|escape}" size="40" maxlength="255" /></td>
 	</tr>
 	{if $currentPress->getLocalizedSetting('metaCoverageResearchSampleExamples') != ''}
@@ -164,7 +164,7 @@ Please provide the title and a description of work, including the scope, aim, an
 	
 	{if $pressSettings.metaType}
 	<tr valign="top">
-		<td width="20%" {if $currentPress->getLocalizedSetting('metaTypeExamples') != ''}rowspan="2" {/if}class="label">{fieldLabel name="type" key="article.type"}</td>
+		<td width="20%" {if $currentPress->getLocalizedSetting('metaTypeExamples') != ''}rowspan="2" {/if}class="label">{fieldLabel name="type" key="monograph.type"}</td>
 		<td width="80%" class="value"><input type="text" class="textField" name="type[{$formLocale|escape}]" id="type" value="{$type[$formLocale]|escape}" size="40" maxlength="255" /></td>
 	</tr>
 
@@ -180,7 +180,7 @@ Please provide the title and a description of work, including the scope, aim, an
 	{/if}
 	
 	<tr valign="top">
-		<td rowspan="2" width="20%" class="label">{fieldLabel name="language" key="article.language"}</td>
+		<td rowspan="2" width="20%" class="label">{fieldLabel name="language" key="monograph.language"}</td>
 		<td width="80%" class="value"><input type="text" class="textField" name="language" id="language" value="{$language|escape}" size="5" maxlength="10" /></td>
 	</tr>
 	<tr valign="top">

@@ -11,7 +11,7 @@
 <div id="editors">
 <h3>{translate key="user.role.editors"}</h3>
 <form action="{url op="setEditorFlags"}" method="post">
-<input type="hidden" name="articleId" value="{$submission->getMonographId()}"/>
+<input type="hidden" name="monographId" value="{$submission->getMonographId()}"/>
 <table width="100%" class="listing">
 	<tr class="heading" valign="bottom">
 		<td width="{if $isEditor}20%{else}25%{/if}">&nbsp;</td>
@@ -30,7 +30,7 @@
 			<td>{if $editAssignment->getIsEditor()}{translate key="user.role.editor"}{else}{translate key="user.role.sectionEditor"}{/if}</td>
 			<td>
 				{assign var=emailString value="`$editAssignment->getEditorFullName()` <`$editAssignment->getEditorEmail()`>"}
-				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getMonographTitle|strip_tags articleId=$submission->getMonographId()}
+				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getMonographTitle|strip_tags monographId=$submission->getMonographId()}
 				{$editAssignment->getEditorFullName()|escape} {icon name="mail" url=$url}
 			</td>
 			<td>
@@ -70,9 +70,9 @@
 </table>
 {if $isEditor}
 	<input type="submit" class="button defaultButton" value="{translate key="common.record"}"/>&nbsp;&nbsp;
-	<a href="{url op="assignEditor" path="sectionEditor" articleId=$submission->getMonographId()}" class="action">{translate key="editor.monograph.assignAcquisitionsEditor"}</a>
-	|&nbsp;<a href="{url op="assignEditor" path="editor" articleId=$submission->getMonographId()}" class="action">{translate key="editor.article.assignEditor"}</a>
-	{if !$selfAssigned}|&nbsp;<a href="{url op="assignEditor" path="editor" editorId=$userId articleId=$submission->getMonographId()}" class="action">{translate key="common.addSelf"}</a>{/if}
+	<a href="{url op="assignEditor" path="sectionEditor" monographId=$submission->getMonographId()}" class="action">{translate key="editor.monograph.assignAcquisitionsEditor"}</a>
+	|&nbsp;<a href="{url op="assignEditor" path="editor" monographId=$submission->getMonographId()}" class="action">{translate key="editor.monograph.assignEditor"}</a>
+	{if !$selfAssigned}|&nbsp;<a href="{url op="assignEditor" path="editor" editorId=$userId monographId=$submission->getMonographId()}" class="action">{translate key="common.addSelf"}</a>{/if}
 {/if}
 </form>
 </div>

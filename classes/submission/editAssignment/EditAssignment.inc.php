@@ -47,19 +47,19 @@ class EditAssignment extends DataObject {
 	}
 
 	/**
-	 * Get ID of article.
+	 * Get ID of monograph.
 	 * @return int
 	 */
-	function getArticleId() {
-		return $this->getData('articleId');
+	function getMonographId() {
+		return $this->getData('monographId');
 	}
 
 	/**
-	 * Set ID of article.
-	 * @param $articleId int
+	 * Set ID of monograph.
+	 * @param $monographId int
 	 */
-	function setArticleId($articleId) {
-		return $this->setData('articleId', $articleId);
+	function setMonographId($monographId) {
+		return $this->setData('monographId', $monographId);
 	}
 
 	/**
@@ -79,7 +79,7 @@ class EditAssignment extends DataObject {
 	}
 
 	/**
-	 * Get flag indicating whether this section editor can review this article. (Irrelevant if this is an editor.)
+	 * Get flag indicating whether this section editor can review this monograph. (Irrelevant if this is an editor.)
 	 * @return boolean
 	 */
 	function getCanReview() {
@@ -87,7 +87,7 @@ class EditAssignment extends DataObject {
 	}
 
 	/**
-	 * Set flag indicating whether this section editor can review this article. (Irrelevant if this is an editor.)
+	 * Set flag indicating whether this section editor can review this monograph. (Irrelevant if this is an editor.)
 	 * @param $canReview boolean
 	 */
 	function setCanReview($canReview) {
@@ -95,7 +95,7 @@ class EditAssignment extends DataObject {
 	}
 
 	/**
-	 * Get flag indicating whether this section editor can edit this article. (Irrelevant if this is an editor.)
+	 * Get flag indicating whether this section editor can edit this monograph. (Irrelevant if this is an editor.)
 	 * @return boolean
 	 */
 	function getCanEdit() {
@@ -103,7 +103,7 @@ class EditAssignment extends DataObject {
 	}
 
 	/**
-	 * Set flag indicating whether this section editor can edit this article. (Irrelevant if this is an editor.)
+	 * Set flag indicating whether this section editor can edit this monograph. (Irrelevant if this is an editor.)
 	 * @param $canEdit boolean
 	 */
 	function setCanEdit($canEdit) {

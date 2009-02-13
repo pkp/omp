@@ -14,7 +14,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<h3>{translate key="article.submissions"}</h3>
+<h3>{translate key="manuscript.submissions"}</h3>
 
 <ul class="plain">
 	<li>&#187; <a href="{url op="submissions" path="submissionsUnassigned"}">{translate key="common.queue.short.submissionsUnassigned"}</a>&nbsp;({if $submissionsCount[0]}{$submissionsCount[0]}{else}0{/if})</li>

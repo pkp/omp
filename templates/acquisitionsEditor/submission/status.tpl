@@ -26,9 +26,9 @@
 		</td>
 		<td width="50%" class="value">
 			{if $status != STATUS_ARCHIVED}
-				<a href="{url op="unsuitableSubmission" articleId=$submission->getMonographId()}" class="action">{translate key="editor.article.archiveSubmission"}</a>
+				<a href="{url op="unsuitableSubmission" monographId=$submission->getMonographId()}" class="action">{translate key="editor.monograph.archiveSubmission"}</a>
 			{else}
-				<a href="{url op="restoreToQueue" path=$submission->getMonographId()}" class="action">{translate key="editor.article.restoreToQueue"}</a>
+				<a href="{url op="restoreToQueue" path=$submission->getMonographId()}" class="action">{translate key="editor.monograph.restoreToQueue"}</a>
 			{/if}
 		</td>
 	</tr>

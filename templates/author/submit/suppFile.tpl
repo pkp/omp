@@ -9,12 +9,12 @@
  * $Id$
  *}
 {assign var="pageTitle" value="author.submit.step4a"}
-{include file="author/submit/submitHeader.tpl"}
+{include file="author/submit/submitStepHeader.tpl"}
 
-<p><a href="{url op="submit" path=4 articleId=$articleId}">&lt;&lt; {translate key="author.submit.backToSupplementaryFiles"}</a></p>
+<p><a href="{url op="submit" path=4 monographId=$monographId}">&lt;&lt; {translate key="author.submit.backToSupplementaryFiles"}</a></p>
 
 <form name="submit" method="post" action="{url op="saveSubmitSuppFile" path=$suppFileId}" enctype="multipart/form-data">
-<input type="hidden" name="articleId" value="{$articleId|escape}" />
+<input type="hidden" name="monographId" value="{$monographId|escape}" />
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
@@ -22,7 +22,7 @@
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
-			{url|assign:"submitFormUrl" path=$suppFileId articleId=$articleId}
+			{url|assign:"submitFormUrl" path=$suppFileId monographId=$monographId}
 			{form_language_chooser form="submit" url=$submitFormUrl}
 			<span class="instruct">{translate key="form.formLanguage.description"}</span>
 		</td>
@@ -102,7 +102,7 @@
 {if $suppFile && $suppFile->getFileId()}
 <tr valign="top">
 	<td width="20%" class="label">{translate key="common.fileName"}</td>
-	<td width="80%" class="value"><a href="{url op="download" path=$articleId|to_array:$suppFile->getFileId()}">{$suppFile->getFileName()|escape}</a></td>
+	<td width="80%" class="value"><a href="{url op="download" path=$monographId|to_array:$suppFile->getFileId()}">{$suppFile->getFileName()|escape}</a></td>
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{translate key="common.originalFileName"}</td>
@@ -150,7 +150,7 @@
 
 <div class="separator"></div>
 
-<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="submit" path="4" articleId=$articleId escape=false}'" /></p>
+<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="submit" path="4" monographId=$monographId escape=false}'" /></p>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 

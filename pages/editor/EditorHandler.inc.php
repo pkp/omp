@@ -15,6 +15,8 @@
 // $Id$
 
 import('acquisitionsEditor.AcquisitionsEditorHandler');
+import ('submission.editor.EditorAction');
+
 
 define('EDITOR_SECTION_HOME', 0);
 define('EDITOR_SECTION_SUBMISSIONS', 1);
@@ -57,8 +59,8 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$submission =& $monographDao->getMonograph($monographId);
-		//list($journal, $submission) = SubmissionEditHandler::validate($articleId);
-		parent::setupTemplate();//true, $articleId, 'summary');
+		//list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		parent::setupTemplate();//true, $monographId, 'summary');
 		import('submission.common.Action');
 		Action::viewMetadata($submission, ROLE_ID_EDITOR);
 	}
@@ -208,6 +210,92 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$templateMgr->display('editor/submissions.tpl');
 	}
 
+	/**
+	 * Assigns the selected editor to the submission.
+	 */
+	function assignEditor($args) {
+		EditorHandler::validate();
+
+		$press =& Request::getPress();
+		$monographId = Request::getUserVar('monographId');
+		$editorId = Request::getUserVar('editorId');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+
+		$isSectionEditor = $roleDao->roleExists($press->getPressId(), $editorId, ROLE_ID_ACQUISITIONS_EDITOR);
+		$isEditor = $roleDao->roleExists($press->getPressId(), $editorId, ROLE_ID_EDITOR);
+
+		if (isset($editorId) && $editorId != null && ($isEditor || $isSectionEditor)) {
+			// A valid section editor has already been chosen;
+			// either prompt with a modifiable email or, if this
+			// has been done, send the email and store the editor
+			// selection.
+
+			EditorHandler::setupTemplate(EDITOR_SECTION_SUBMISSIONS, $monographId, 'summary');
+
+			// FIXME: Prompt for due date.
+			if (EditorAction::assignEditor($monographId, $editorId, $isEditor, Request::getUserVar('send'))) {
+				Request::redirect(null, null, 'submission', $monographId);
+			}
+		} else {
+			// Allow the user to choose a section editor or editor.
+			EditorHandler::setupTemplate(EDITOR_SECTION_SUBMISSIONS, $monographId, 'summary');
+
+			$searchType = null;
+			$searchMatch = null;
+			$search = Request::getUserVar('search');
+			$searchInitial = Request::getUserVar('searchInitial');
+			if (isset($search)) {
+				$searchType = Request::getUserVar('searchField');
+				$searchMatch = Request::getUserVar('searchMatch');
+
+			} else if (isset($searchInitial)) {
+				$searchInitial = String::strtoupper($searchInitial);
+				$searchType = USER_FIELD_INITIAL;
+				$search = $searchInitial;
+			}
+
+			$rangeInfo =& PKPHandler::getRangeInfo('editors');
+			$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
+
+			if (isset($args[0]) && $args[0] === 'editor') {
+				$roleName = 'user.role.editor';
+				$editors =& $editorSubmissionDao->getUsersNotAssignedToMonograph($press->getPressId(), $monographId, RoleDAO::getRoleIdFromPath('editor'), $searchType, $search, $searchMatch, $rangeInfo);
+			} else {
+				$roleName = 'user.role.sectionEditor';
+				$editors =& $editorSubmissionDao->getUsersNotAssignedToMonograph($press->getPressId(), $monographId, RoleDAO::getRoleIdFromPath('sectionEditor'), $searchType, $search, $searchMatch, $rangeInfo);
+			}
+
+			$templateMgr =& TemplateManager::getManager();
+
+			$templateMgr->assign_by_ref('editors', $editors);
+			$templateMgr->assign('roleName', $roleName);
+			$templateMgr->assign('monographId', $monographId);
+
+			$sectionDao =& DAORegistry::getDAO('SectionDAO');
+			$sectionEditorSections =& $sectionDao->getEditorSections($press->getPressId());
+
+			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+			$editorStatistics = $editAssignmentDao->getEditorStatistics($press->getPressId());
+
+			$templateMgr->assign_by_ref('editorSections', $sectionEditorSections);
+			$templateMgr->assign('editorStatistics', $editorStatistics);
+
+			$templateMgr->assign('searchField', $searchType);
+			$templateMgr->assign('searchMatch', $searchMatch);
+			$templateMgr->assign('search', $search);
+			$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
+
+			$templateMgr->assign('fieldOptions', Array(
+				USER_FIELD_FIRSTNAME => 'user.firstName',
+				USER_FIELD_LASTNAME => 'user.lastName',
+				USER_FIELD_USERNAME => 'user.username',
+				USER_FIELD_EMAIL => 'user.email'
+			));
+			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
+			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary.submissionManagement');	
+			$templateMgr->display('editor/selectSectionEditor.tpl');
+		}
+	}
 
 	/**
 	 * Set the canEdit / canReview flags for this submission's edit assignments.
@@ -216,14 +304,14 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		EditorHandler::validate();
 
 		$press =& Request::getPress();
-		$monographId = (int) Request::getUserVar('articleId');
+		$monographId = (int) Request::getUserVar('monographId');
 
-		$articleDao =& DAORegistry::getDAO('ArticleDAO');
-		$article =& $articleDao->getArticle($monographId);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getMonograph($monographId);
 
-		if ($article && $article->getPressId() === $press->getPressId()) {
+		if ($monograph && $monograph->getPressId() === $press->getPressId()) {
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-			$editAssignments =& $editAssignmentDao->getEditAssignmentsByArticleId($monographId);
+			$editAssignments =& $editAssignmentDao->getEditAssignmentsByMonographId($monographId);
 
 			while($editAssignment =& $editAssignments->next()) {
 				if ($editAssignment->getIsEditor()) continue;
@@ -273,24 +361,24 @@ class EditorHandler extends AcquisitionsEditorHandler {
 	}
 	function submission($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-	//	list($journal, $submission) = $this->validate($monographId);
+		list($press, $submission) = EditorHandler::validate($monographId);
 		$monographDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 		$submission = $monographDao->getAuthorSubmission($monographId);
 
-		$journal =& Request::getPress();
+		$press =& Request::getPress();
 		parent::setupTemplate(true, $monographId);
 		$user =& Request::getUser();
 
-		$journalSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$journalSettings = $journalSettingsDao->getPressSettings($journal->getPressId());
+		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+		$pressSettings = $pressSettingsDao->getPressSettings($press->getPressId());
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->roleExists($journal->getPressId(), $user->getUserId(), ROLE_ID_EDITOR);
+		$isEditor = $roleDao->roleExists($press->getPressId(), $user->getUserId(), ROLE_ID_EDITOR);
 
 //		$sectionDao =& DAORegistry::getDAO('SectionDAO');
 //		$section =& $sectionDao->getSection($submission->getSectionId());
 
-		$enableComments = $journal->getSetting('enableComments');
+		$enableComments = $press->getSetting('enableComments');
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -298,28 +386,28 @@ class EditorHandler extends AcquisitionsEditorHandler {
 //		$templateMgr->assign_by_ref('section', $section);
 		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
-//		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
+		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 //		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
-		$templateMgr->assign_by_ref('pressSettings', $journalSettings);
+		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
 		$templateMgr->assign('userId', $user->getUserId());
 		$templateMgr->assign('isEditor', $isEditor);
 		$templateMgr->assign('enableComments', $enableComments);
 
 //		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-//		$templateMgr->assign_by_ref('sections', $sectionDao->getSectionTitles($journal->getPressId()));
+//		$templateMgr->assign_by_ref('sections', $sectionDao->getSectionTitles($press->getPressId()));
 /*		if ($enableComments) {
-			import('article.Article');
+			import('monograph.Monograph');
 			$templateMgr->assign('commentsStatus', $submission->getCommentsStatus());
-			$templateMgr->assign_by_ref('commentsStatusOptions', Article::getCommentsStatusOptions());
+			$templateMgr->assign_by_ref('commentsStatusOptions', Monograph::getCommentsStatusOptions());
 		}
 
-		$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
-		$publishedArticle =& $publishedArticleDao->getPublishedArticleByArticleId($submission->getArticleId());
-		if ($publishedArticle) {
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
+		if ($publishedMonograph) {
 			$issueDao =& DAORegistry::getDAO('IssueDAO');
-			$issue =& $issueDao->getIssueById($publishedArticle->getIssueId());
+			$issue =& $issueDao->getIssueById($publishedMonograph->getIssueId());
 			$templateMgr->assign_by_ref('issue', $issue);
-			$templateMgr->assign_by_ref('publishedArticle', $publishedArticle);
+			$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
 		}
 */
 		if ($isEditor) {
@@ -334,15 +422,15 @@ class EditorHandler extends AcquisitionsEditorHandler {
 			$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
 			
 			if ( $paymentManager->submissionEnabled() ) {
-				$templateMgr->assign_by_ref('submissionPayment', $completedPaymentDAO->getSubmissionCompletedPayment ( $journal->getPressId(), $monographId ));
+				$templateMgr->assign_by_ref('submissionPayment', $completedPaymentDAO->getSubmissionCompletedPayment ( $press->getPressId(), $monographId ));
 			}
 			
 			if ( $paymentManager->fastTrackEnabled()  ) {
-				$templateMgr->assign_by_ref('fastTrackPayment', $completedPaymentDAO->getFastTrackCompletedPayment ( $journal->getPressId(), $monographId ));
+				$templateMgr->assign_by_ref('fastTrackPayment', $completedPaymentDAO->getFastTrackCompletedPayment ( $press->getPressId(), $monographId ));
 			}
 
 			if ( $paymentManager->publicationEnabled()  ) {
-				$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $journal->getPressId(), $monographId ));
+				$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getPressId(), $monographId ));
 			}				   
 		}	*/	
 

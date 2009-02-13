@@ -329,7 +329,7 @@ class Validation {
 	 * @return boolean
 	 */
 	function isLayoutEditor($pressId = -1) {
-//		return Validation::isAuthorized(ROLE_ID_LAYOUT_EDITOR, $pressId);
+		return Validation::isAuthorized(ROLE_ID_LAYOUT_EDITOR, $pressId);
 	}
 
 	/**
@@ -338,7 +338,7 @@ class Validation {
 	 * @return boolean
 	 */
 	function isReviewer($pressId = -1) {
-//		return Validation::isAuthorized(ROLE_ID_REVIEWER, $pressId);
+		return Validation::isAuthorized(ROLE_ID_REVIEWER, $pressId);
 	}
 
 	/**
@@ -347,7 +347,7 @@ class Validation {
 	 * @return boolean
 	 */
 	function isCopyeditor($pressId = -1) {
-//		return Validation::isAuthorized(ROLE_ID_COPYEDITOR, $pressId);
+		return Validation::isAuthorized(ROLE_ID_COPYEDITOR, $pressId);
 	}
 
 	/**
@@ -356,7 +356,7 @@ class Validation {
 	 * @return boolean
 	 */
 	function isProofreader($pressId = -1) {
-//		return Validation::isAuthorized(ROLE_ID_PROOFREADER, $pressId);
+		return Validation::isAuthorized(ROLE_ID_PROOFREADER, $pressId);
 	}
 
 	/**

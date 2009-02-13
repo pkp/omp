@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file classes/author/form/submit/AuthorSubmitSuppFileForm.inc.php
+ * @file classes/submission/form/SuppFileForm.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class AuthorSubmitSuppFileForm
- * @ingroup author_form_submit
+ * @class SuppFileForm
+ * @ingroup submission_form
  *
- * @brief Supplementary file author submission form.
+ * @brief Supplementary file form.
  */
 
 // $Id$
@@ -17,10 +17,7 @@
 
 import('form.Form');
 
-class AuthorSubmitSuppFileForm extends Form {
-	/** @var int the ID of the monograph */
-	var $monographId;
-
+class SuppFileForm extends Form {
 	/** @var int the ID of the supplementary file */
 	var $suppFileId;
 
@@ -35,13 +32,14 @@ class AuthorSubmitSuppFileForm extends Form {
 	 * @param $monograph object
 	 * @param $suppFileId int (optional)
 	 */
-	function AuthorSubmitSuppFileForm($monograph, $suppFileId = null) {
-		parent::Form('author/submit/suppFile.tpl');
-		$this->monographId = $monograph->getMonographId();
+	function SuppFileForm($monograph, $suppFileId = null) {
+		parent::Form('submission/suppFile/suppFile.tpl');
+
+		$this->monograph = $monograph;
 
 		if (isset($suppFileId) && !empty($suppFileId)) {
-			$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-			$this->suppFile = &$suppFileDao->getSuppFile($suppFileId, $monograph->getMonographId());
+			$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+			$this->suppFile =& $suppFileDao->getSuppFile($suppFileId, $monograph->getMonographId());
 			if (isset($this->suppFile)) {
 				$this->suppFileId = $suppFileId;
 			}
@@ -65,10 +63,13 @@ class AuthorSubmitSuppFileForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
-		$templateMgr->assign('monographId', $this->monographId);
+		$press =& Request::getPress();
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('enablePublicSuppFileId', $press->getSetting('enablePublicSuppFileId'));
+		$templateMgr->assign('rolePath', Request::getRequestedPage());
+		$templateMgr->assign('monographId', $this->monograph->getMonographId());
 		$templateMgr->assign('suppFileId', $this->suppFileId);
-		$templateMgr->assign('submitStep', 4);
 
 		$typeOptionsOutput = array(
 			'author.submit.suppFile.researchInstrument',
@@ -86,6 +87,10 @@ class AuthorSubmitSuppFileForm extends Form {
 		$templateMgr->assign('typeOptionsOutput', $typeOptionsOutput);
 		$templateMgr->assign('typeOptionsValues', $typeOptionsValues);
 
+		// Sometimes it's necessary to track the page we came from in
+		// order to redirect back to the right place
+		$templateMgr->assign('from', Request::getUserVar('from'));
+
 		if (isset($this->monograph)) {
 			$templateMgr->assign('submissionProgress', $this->monograph->getSubmissionProgress());
 		}
@@ -98,11 +103,27 @@ class AuthorSubmitSuppFileForm extends Form {
 	}
 
 	/**
+	 * Validate the form
+	 */
+	function validate() {
+		$press =& Request::getPress();
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+
+		$publicSuppFileId = $this->getData('publicSuppFileId');
+		if ($publicSuppFileId && $suppFileDao->suppFileExistsByPublicId($publicSuppFileId, $this->suppFileId, $press->getPressId())) {
+			$this->addError('publicIssueId', Locale::translate('author.suppFile.suppFilePublicIdentificationExists'));
+			$this->addErrorField('publicSuppFileId');
+		}
+
+		return parent::validate();
+	}
+
+	/**
 	 * Initialize form data from current supplementary file (if applicable).
 	 */
 	function initData() {
 		if (isset($this->suppFile)) {
-			$suppFile = &$this->suppFile;
+			$suppFile =& $this->suppFile;
 			$this->_data = array(
 				'title' => $suppFile->getTitle(null), // Localized
 				'creator' => $suppFile->getCreator(null), // Localized
@@ -115,12 +136,14 @@ class AuthorSubmitSuppFileForm extends Form {
 				'dateCreated' => $suppFile->getDateCreated(),
 				'source' => $suppFile->getSource(null), // Localized
 				'language' => $suppFile->getLanguage(),
-				'showReviewers' => $suppFile->getShowReviewers()
+				'showReviewers' => $suppFile->getShowReviewers()==1?1:0,
+				'publicSuppFileId' => $suppFile->getPublicSuppFileId()
 			);
 
 		} else {
 			$this->_data = array(
-				'type' => ''
+				'type' => '',
+				'showReviewers' => 1
 			);
 		}
 
@@ -143,7 +166,8 @@ class AuthorSubmitSuppFileForm extends Form {
 				'dateCreated',
 				'source',
 				'language',
-				'showReviewers'
+				'showReviewers',
+				'publicSuppFileId'
 			)
 		);
 	}
@@ -152,23 +176,25 @@ class AuthorSubmitSuppFileForm extends Form {
 	 * Save changes to the supplementary file.
 	 * @return int the supplementary file ID
 	 */
-	function execute() {
+	function execute($fileName = null) {
 		import("file.MonographFileManager");
-		$monographFileManager = &new MonographFileManager($this->monographId);
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+		$monographFileManager = new MonographFileManager($this->monograph->getMonographId());
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 
-		$fileName = 'uploadSuppFile';
+		$fileName = isset($fileName) ? $fileName : 'uploadSuppFile';
 
-		// edit an existing supp file, otherwise create new supp file entry	
 		if (isset($this->suppFile)) {
-			$suppFile = &$this->suppFile;
+			$suppFile =& $this->suppFile;
 
-			// Remove old file and upload new, if file is selected.
+			// Upload file, if file selected.
 			if ($monographFileManager->uploadedFileExists($fileName)) {
-				$monographFileDao = &DAORegistry::getDAO('MonographFileDAO');
-				$suppFileId = $monographFileManager->uploadSuppFile($fileName, $suppFile->getFileId(), true);
-				$suppFile->setFileId($suppFileId);
+				$monographFileManager->uploadSuppFile($fileName, $suppFile->getFileId());
+				import('search.MonographSearchIndex');
+				MonographSearchIndex::updateFileIndex($this->monograph->getMonographId(), ARTICLE_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
 			}
+
+			// Index metadata
+			MonographSearchIndex::indexSuppFileMetadata($suppFile);
 
 			// Update existing supplementary file
 			$this->setSuppFileData($suppFile);
@@ -178,13 +204,15 @@ class AuthorSubmitSuppFileForm extends Form {
 			// Upload file, if file selected.
 			if ($monographFileManager->uploadedFileExists($fileName)) {
 				$fileId = $monographFileManager->uploadSuppFile($fileName);
+				import('search.MonographSearchIndex');
+				MonographSearchIndex::updateFileIndex($this->monograph->getMonographId(), ARTICLE_SEARCH_SUPPLEMENTARY_FILE, $fileId);
 			} else {
 				$fileId = 0;
 			}
 
 			// Insert new supplementary file		
-			$suppFile = &new SuppFile();
-			$suppFile->setMonographId($this->monographId);
+			$suppFile = new SuppFile();
+			$suppFile->setMonographId($this->monograph->getMonographId());
 			$suppFile->setFileId($fileId);
 			$this->setSuppFileData($suppFile);
 			$suppFileDao->insertSuppFile($suppFile);
@@ -199,18 +227,19 @@ class AuthorSubmitSuppFileForm extends Form {
 	 * @param $suppFile SuppFile
 	 */
 	function setSuppFileData(&$suppFile) {
-		$suppFile->setTitle($this->getData('title'), null); // Null
-		$suppFile->setCreator($this->getData('creator'), null); // Null
-		$suppFile->setSubject($this->getData('subject'), null); // Null
+		$suppFile->setTitle($this->getData('title'), null); // Localized
+		$suppFile->setCreator($this->getData('creator'), null); // Localized
+		$suppFile->setSubject($this->getData('subject'), null); // Localized
 		$suppFile->setType($this->getData('type'));
-		$suppFile->setTypeOther($this->getData('typeOther'), null); // Null
-		$suppFile->setDescription($this->getData('description'), null); // Null
-		$suppFile->setPublisher($this->getData('publisher'), null); // Null
-		$suppFile->setSponsor($this->getData('sponsor'), null); // Null
+		$suppFile->setTypeOther($this->getData('typeOther'), null); // Localized
+		$suppFile->setDescription($this->getData('description'), null); // Localized
+		$suppFile->setPublisher($this->getData('publisher'), null); // Localized
+		$suppFile->setSponsor($this->getData('sponsor'), null); // Localized
 		$suppFile->setDateCreated($this->getData('dateCreated') == '' ? Core::getCurrentDate() : $this->getData('dateCreated'));
-		$suppFile->setSource($this->getData('source'), null); // Null
+		$suppFile->setSource($this->getData('source'), null); // Localized
 		$suppFile->setLanguage($this->getData('language'));
-		$suppFile->setShowReviewers($this->getData('showReviewers'));
+		$suppFile->setShowReviewers($this->getData('showReviewers')==1?1:0);
+		$suppFile->setPublicSuppFileId($this->getData('publicSuppFileId'));
 	}
 }
 

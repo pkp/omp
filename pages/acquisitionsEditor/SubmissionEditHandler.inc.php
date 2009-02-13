@@ -26,7 +26,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		if (!in_array($from, array('submission', 'submissionEditing'))) return $default;
 		return $from;
 	}
-
 	function submission($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
