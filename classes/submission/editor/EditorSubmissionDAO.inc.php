@@ -150,12 +150,12 @@ class EditorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Get all submissions for a journal.
-	 * @param $journalId int
+	 * Get all submissions for a press.
+	 * @param $pressId int
 	 * @param $status boolean true if queued, false if archived.
 	 * @return array EditorSubmission
 	 */
-	function &getEditorSubmissions($journalId, $status = true, $sectionId = 0, $rangeInfo = null) {
+	function &getEditorSubmissions($pressId, $status = true, $sectionId = 0, $rangeInfo = null) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$params = array(
@@ -167,7 +167,7 @@ class EditorSubmissionDAO extends DAO {
 			$primaryLocale,
 			'abbrev',
 			$locale,
-			$journalId,
+			$pressId,
 			$status
 		);
 		if ($sectionId) $params[] = $sectionId;
@@ -182,7 +182,7 @@ class EditorSubmissionDAO extends DAO {
 				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN section_settings sal ON (s.section_id = sal.section_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE	a.journal_id = ?
+			WHERE	a.press_id = ?
 				AND a.status = ?' .
 				($sectionId?' AND a.section_id = ?':'') .
 			' ORDER BY monograph_id ASC';
@@ -193,8 +193,8 @@ class EditorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Get all unfiltered submissions for a journal.
-	 * @param $journalId int
+	 * Get all unfiltered submissions for a press.
+	 * @param $pressId int
 	 * @param $sectionId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
@@ -386,8 +386,8 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	}
 
 	/**
-	 * Get all submissions unassigned for a journal.
-	 * @param $journalId int
+	 * Get all submissions unassigned for a press.
+	 * @param $pressId int
 	 * @param $sectionId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
@@ -399,11 +399,11 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getEditorSubmissionsUnassigned($journalId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getEditorSubmissionsUnassigned($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($journalId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredEditorSubmissions($pressId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		while (!$result->EOF) {
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
@@ -426,8 +426,8 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	}
 
 	/**
-	 * Get all submissions in review for a journal.
-	 * @param $journalId int
+	 * Get all submissions in review for a press.
+	 * @param $pressId int
 	 * @param $sectionId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
@@ -439,11 +439,11 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getEditorSubmissionsInReview($journalId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getEditorSubmissionsInReview($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($journalId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredEditorSubmissions($pressId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		while (!$result->EOF) {
@@ -485,8 +485,8 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	}
 
 	/**
-	 * Get all submissions in editing for a journal.
-	 * @param $journalId int
+	 * Get all submissions in editing for a press.
+	 * @param $pressId int
 	 * @param $sectionId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
@@ -498,11 +498,11 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getEditorSubmissionsInEditing($journalId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getEditorSubmissionsInEditing($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($journalId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredEditorSubmissions($pressId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		while (!$result->EOF) {
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
@@ -552,8 +552,8 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	}
 
 	/**
-	 * Get all submissions archived for a journal.
-	 * @param $journalId int
+	 * Get all submissions archived for a press.
+	 * @param $pressId int
 	 * @param $sectionId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
@@ -565,10 +565,10 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getEditorSubmissionsArchives($journalId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getEditorSubmissionsArchives($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 
-		$result = $this->getUnfilteredEditorSubmissions($journalId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
+		$result = $this->getUnfilteredEditorSubmissions($pressId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
 		while (!$result->EOF) {
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 			$monographId = $editorSubmission->getMonographId();
@@ -706,15 +706,15 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 
 	/**
 	 * Retrieve a list of all users in the specified role not assigned as editors to the specified monograph.
-	 * @param $journalId int
+	 * @param $pressId int
 	 * @param $monographId int
 	 * @param $roleId int
 	 * @return DAOResultFactory containing matching Users
 	 */
-	function &getUsersNotAssignedToMonograph($journalId, $monographId, $roleId, $searchType=null, $search=null, $searchMatch=null, $rangeInfo = null) {
+	function &getUsersNotAssignedToMonograph($pressId, $monographId, $roleId, $searchType=null, $search=null, $searchMatch=null, $rangeInfo = null) {
 		$users = array();
 
-		$paramArray = array('interests', $monographId, $journalId, $roleId);
+		$paramArray = array('interests', $monographId, $pressId, $roleId);
 		$searchSql = '';
 
 		if (isset($search)) switch ($searchType) {
@@ -756,7 +756,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
 				LEFT JOIN roles r ON (r.user_id = u.user_id)
 				LEFT JOIN edit_assignments e ON (e.editor_id = u.user_id AND e.monograph_id = ?)
-			WHERE	r.journal_id = ? AND
+			WHERE	r.press_id = ? AND
 				r.role_id = ? AND
 				(e.monograph_id IS NULL) ' . $searchSql . '
 			ORDER BY last_name, first_name',

@@ -146,11 +146,11 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 //		$acquisitionsEditorSubmission->setMostRecentProofreadComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PROOFREAD, $row['monograph_id']));
 
 		// Files
-/*		$acquisitionsEditorSubmission->setSubmissionFile($this->monographFileDao->getMonographFile($row['submission_file_id']));
+		$acquisitionsEditorSubmission->setSubmissionFile($this->monographFileDao->getMonographFile($row['submission_file_id']));
 		$acquisitionsEditorSubmission->setRevisedFile($this->monographFileDao->getMonographFile($row['revised_file_id']));
 		$acquisitionsEditorSubmission->setReviewFile($this->monographFileDao->getMonographFile($row['review_file_id']));
 		$acquisitionsEditorSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByMonograph($row['monograph_id']));
-		$acquisitionsEditorSubmission->setEditorFile($this->monographFileDao->getMonographFile($row['editor_file_id']));
+/*		$acquisitionsEditorSubmission->setEditorFile($this->monographFileDao->getMonographFile($row['editor_file_id']));
 		$acquisitionsEditorSubmission->setCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id']));
 */
 		// Initial Copyedit File

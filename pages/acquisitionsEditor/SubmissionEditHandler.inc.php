@@ -39,8 +39,8 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isEditor = $roleDao->roleExists($press->getPressId(), $user->getUserId(), ROLE_ID_EDITOR);
 
-		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-		$section =& $sectionDao->getSection($submission->getSectionId());
+//		$sectionDao =& DAORegistry::getDAO('SectionDAO');
+//		$section =& $sectionDao->getSection($submission->getSectionId());
 
 		$enableComments = $press->getSetting('enableComments');
 
@@ -57,15 +57,15 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr->assign('isEditor', $isEditor);
 		$templateMgr->assign('enableComments', $enableComments);
 
-		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-		$templateMgr->assign_by_ref('sections', $sectionDao->getSectionTitles($press->getPressId()));
+//		$sectionDao =& DAORegistry::getDAO('SectionDAO');
+//		$templateMgr->assign_by_ref('sections', $sectionDao->getSectionTitles($press->getPressId()));
 		if ($enableComments) {
 			import('monograph.Article');
 			$templateMgr->assign('commentsStatus', $submission->getCommentsStatus());
 			$templateMgr->assign_by_ref('commentsStatusOptions', Article::getCommentsStatusOptions());
 		}
 
-		$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
+/*		$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
 		$publishedArticle =& $publishedArticleDao->getPublishedArticleByArticleId($submission->getArticleId());
 		if ($publishedArticle) {
 			$issueDao =& DAORegistry::getDAO('IssueDAO');
@@ -73,13 +73,13 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 			$templateMgr->assign_by_ref('issue', $issue);
 			$templateMgr->assign_by_ref('publishedArticle', $publishedArticle);
 		}
-
+*/
 		if ($isEditor) {
 			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary');
 		}
 		
 		// Set up required Payment Related Information
-		import('payment.ojs.OJSPaymentManager');
+/*		import('payment.ojs.OJSPaymentManager');
 		$paymentManager =& OJSPaymentManager::getManager();
 		if ( $paymentManager->submissionEnabled() || $paymentManager->fastTrackEnabled() || $paymentManager->publicationEnabled()) {
 			$templateMgr->assign('authorFees', true);
@@ -97,7 +97,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 				$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getPressId(), $monographId ));
 			}				   
 		}		
-
+*/
 		$templateMgr->display('acquisitionsEditor/submission.tpl');
 	}
 

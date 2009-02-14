@@ -211,6 +211,31 @@ class EditorHandler extends AcquisitionsEditorHandler {
 	}
 
 	/**
+	 * Delete the specified edit assignment.
+	 */
+	function deleteEditAssignment($args) {
+		EditorHandler::validate();
+
+		$press =& Request::getPress();
+		$editId = (int) (isset($args[0])?$args[0]:0);
+
+		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignment =& $editAssignmentDao->getEditAssignment($editId);
+
+		if ($editAssignment) {
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$monograph =& $monographDao->getMonograph($editAssignment->getMonographId());
+
+			if ($monograph && $monograph->getPressId() === $press->getPressId()) {
+				$editAssignmentDao->deleteEditAssignmentById($editAssignment->getEditId());
+				Request::redirect(null, null, 'submission', $monograph->getMonographId());
+			}
+		}
+
+		Request::redirect(null, null, 'submissions');
+	}
+
+	/**
 	 * Assigns the selected editor to the submission.
 	 */
 	function assignEditor($args) {
@@ -271,8 +296,8 @@ class EditorHandler extends AcquisitionsEditorHandler {
 			$templateMgr->assign('roleName', $roleName);
 			$templateMgr->assign('monographId', $monographId);
 
-			$sectionDao =& DAORegistry::getDAO('SectionDAO');
-			$sectionEditorSections =& $sectionDao->getEditorSections($press->getPressId());
+//			$sectionDao =& DAORegistry::getDAO('SectionDAO');
+//			$sectionEditorSections =& $sectionDao->getEditorSections($press->getPressId());
 
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 			$editorStatistics = $editAssignmentDao->getEditorStatistics($press->getPressId());
@@ -293,7 +318,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 			));
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary.submissionManagement');	
-			$templateMgr->display('editor/selectSectionEditor.tpl');
+			$templateMgr->display('editor/selectAcquisitionsEditor.tpl');
 		}
 	}
 
@@ -351,90 +376,13 @@ class EditorHandler extends AcquisitionsEditorHandler {
 
 	}
 	function validate() {
-		parent::validate();
+		
 		$press =& Request::getPress();
 		// FIXME This is kind of evil
 		$page = Request::getRequestedPage();
 		if (!isset($press) || ($page == 'acquisitionsEditor' && !Validation::isAcquisitionsEditor($press->getPressId())) || ($page == 'editor' && !Validation::isEditor($press->getPressId()))) {
 			Validation::redirectLogin();
 		}
-	}
-	function submission($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = EditorHandler::validate($monographId);
-		$monographDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-		$submission = $monographDao->getAuthorSubmission($monographId);
-
-		$press =& Request::getPress();
-		parent::setupTemplate(true, $monographId);
-		$user =& Request::getUser();
-
-		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$pressSettings = $pressSettingsDao->getPressSettings($press->getPressId());
-
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->roleExists($press->getPressId(), $user->getUserId(), ROLE_ID_EDITOR);
-
-//		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-//		$section =& $sectionDao->getSection($submission->getSectionId());
-
-		$enableComments = $press->getSetting('enableComments');
-
-		$templateMgr =& TemplateManager::getManager();
-
-		$templateMgr->assign_by_ref('submission', $submission);
-//		$templateMgr->assign_by_ref('section', $section);
-		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
-		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
-		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
-//		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
-		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
-		$templateMgr->assign('userId', $user->getUserId());
-		$templateMgr->assign('isEditor', $isEditor);
-		$templateMgr->assign('enableComments', $enableComments);
-
-//		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-//		$templateMgr->assign_by_ref('sections', $sectionDao->getSectionTitles($press->getPressId()));
-/*		if ($enableComments) {
-			import('monograph.Monograph');
-			$templateMgr->assign('commentsStatus', $submission->getCommentsStatus());
-			$templateMgr->assign_by_ref('commentsStatusOptions', Monograph::getCommentsStatusOptions());
-		}
-
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
-		if ($publishedMonograph) {
-			$issueDao =& DAORegistry::getDAO('IssueDAO');
-			$issue =& $issueDao->getIssueById($publishedMonograph->getIssueId());
-			$templateMgr->assign_by_ref('issue', $issue);
-			$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
-		}
-*/
-		if ($isEditor) {
-			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary');
-		}
-		
-		// Set up required Payment Related Information
-/*		import('payment.ojs.OJSPaymentManager');
-		$paymentManager =& OJSPaymentManager::getManager();
-		if ( $paymentManager->submissionEnabled() || $paymentManager->fastTrackEnabled() || $paymentManager->publicationEnabled()) {
-			$templateMgr->assign('authorFees', true);
-			$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
-			
-			if ( $paymentManager->submissionEnabled() ) {
-				$templateMgr->assign_by_ref('submissionPayment', $completedPaymentDAO->getSubmissionCompletedPayment ( $press->getPressId(), $monographId ));
-			}
-			
-			if ( $paymentManager->fastTrackEnabled()  ) {
-				$templateMgr->assign_by_ref('fastTrackPayment', $completedPaymentDAO->getFastTrackCompletedPayment ( $press->getPressId(), $monographId ));
-			}
-
-			if ( $paymentManager->publicationEnabled()  ) {
-				$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getPressId(), $monographId ));
-			}				   
-		}	*/	
-
-		$templateMgr->display('editor/submission.tpl');
 	}
 	function userProfile($args) {
 		import('pages.acquisitionsEditor.AcquisitionsEditorHandler');
