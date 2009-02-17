@@ -37,6 +37,7 @@
 	<message key="submission.review.mustUploadFileForReview">Request email cannot be sent until a Review Version is in place.</message>
 	<message key="submission.internalPeerReview">Internal Peer Review</message>
 	<message key="submission.externalPeerReview">External Peer Review</message>
+	<message key="submissions.acquisitionsArrangement">Acquisitions Arrangement</message>
 
 
 	<message key="monograph.abstract">Abstract</message>
@@ -137,6 +138,8 @@
 	<message key="user.role.acquisitionsEditor">Acquisitions Editor</message>
 	<message key="user.role.layoutEditor">Layout Editor</message>
 	<message key="user.role.copyeditor">Copyeditor</message>
+	<message key="user.role.seriesEditor">Series Editor</message>
+	<message key="user.role.seriesEditors">Series Editors</message>
 	<message key="user.role.proofreader">Proofreader</message>
 	<message key="user.role.author">Author</message>
 	<message key="user.role.subscriptionManager">Subscription Manager</message>

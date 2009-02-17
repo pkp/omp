@@ -18,6 +18,7 @@
 	<message key="manager.submissionCategory.policy">Category's description</message>
 	<message key="manager.series.assigned">Editors for this Series</message>
 	<message key="manager.series.unassigned">Available Series Editors</message>
+	<message key="manager.series.noneCreated">No series have been created.</message>
 
 	<message key="manager.setup.prospectus">Prospectus Guide</message>
 	<message key="manager.setup.prospectusDescription">The prospectus guide is a press prepared document that helps the author describe the submitted materials in a way that allows a press to determine the value of the submission. A prospectus can include a lot of items- from marketing potential to theoretical value; in any case, a press should create a prospectus guide that complements their publishing agenda.</message>
