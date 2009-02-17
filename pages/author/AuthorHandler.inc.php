@@ -15,7 +15,7 @@
 // $Id$
 
 
-//import('submission.author.AuthorAction');
+import('submission.author.AuthorAction');
 import('core.PKPHandler');
 
 class AuthorHandler extends PKPHandler {

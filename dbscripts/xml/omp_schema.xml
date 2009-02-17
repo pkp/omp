@@ -1046,7 +1046,7 @@
 		<field name="press_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="section_id" type="I8" />
+		<field name="arrangement_id" type="I8" />
 		<field name="edited_volume" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
@@ -1075,6 +1075,7 @@
 		<field name="review_file_id" type="I8"/>
 		<field name="editor_file_id" type="I8"/>
 		<field name="copyedit_file_id" type="I8"/>
+		<field name="prospectus_file_id" type="I8"/>
 		<field name="pages" type="C2" size="255"/>
 		<field name="fast_tracked" type="I1">
 			<NOTNULL/>

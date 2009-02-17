@@ -36,18 +36,18 @@ class AuthorSubmissionDAO extends DAO {
 	 */
 	function AuthorSubmissionDAO() {
 		parent::DAO();
-		$this->monographDao = &DAORegistry::getDAO('MonographDAO');
-		$this->authorDao = &DAORegistry::getDAO('AuthorDAO');
-		$this->userDao = &DAORegistry::getDAO('UserDAO');
-//		$this->reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
-//		$this->editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
-		$this->monographFileDao = &DAORegistry::getDAO('MonographFileDAO');
-//		$this->suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-//		$this->copyeditorSubmissionDao = &DAORegistry::getDAO('CopyeditorSubmissionDAO');
-//		$this->monographCommentDao = &DAORegistry::getDAO('MonographCommentDAO');
-//		$this->layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-//		$this->proofAssignmentDao = &DAORegistry::getDAO('ProofAssignmentDAO');
-//		$this->galleyDao = &DAORegistry::getDAO('MonographGalleyDAO');
+		$this->monographDao =& DAORegistry::getDAO('MonographDAO');
+		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$this->userDao =& DAORegistry::getDAO('UserDAO');
+		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+//		$this->copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
+//		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+//		$this->layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
+//		$this->proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
+//		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 	}
 
 	/**
@@ -58,7 +58,7 @@ class AuthorSubmissionDAO extends DAO {
 	function &getAuthorSubmission($monographId) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
@@ -66,12 +66,12 @@ class AuthorSubmissionDAO extends DAO {
 				c.date_author_acknowledged AS ce_date_author_acknowledged, c.date_final_notified AS ce_date_final_notified, c.date_final_underway AS ce_date_final_underway, c.date_final_completed AS ce_date_final_completed, c.date_final_acknowledged AS ce_date_final_acknowledged, c.initial_revision AS copyeditor_initial_revision, c.editor_author_revision AS ce_editor_author_revision,
 				c.final_revision AS copyeditor_final_revision
 			FROM monographs a
-				LEFT JOIN sections s ON (s.section_id = a.section_id)
+				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
 				LEFT JOIN copyed_assignments c on (a.monograph_id = c.monograph_id)
-				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN section_settings sal ON (s.section_id = sal.section_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	a.monograph_id = ?',
 			array(
 				'title',
@@ -88,7 +88,7 @@ class AuthorSubmissionDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnAuthorSubmissionFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnAuthorSubmissionFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -109,8 +109,8 @@ class AuthorSubmissionDAO extends DAO {
 		$this->monographDao->_monographFromRow($authorSubmission, $row);
 
 		// Editor Assignment
-//		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByMonographId($row['monograph_id']);
-//		$authorSubmission->setEditAssignments($editAssignments->toArray());
+		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByMonographId($row['monograph_id']);
+		$authorSubmission->setEditAssignments($editAssignments->toArray());
 
 		// Editor Decisions
 		for ($i = 1; $i <= $row['current_round']; $i++) {
@@ -193,7 +193,7 @@ class AuthorSubmissionDAO extends DAO {
 	function updateAuthorSubmission(&$authorSubmission) {
 		// Update monograph
 		if ($authorSubmission->getMonographId()) {
-			$monograph = &$this->monographDao->getMonograph($authorSubmission->getMonographId());
+			$monograph =& $this->monographDao->getMonograph($authorSubmission->getMonographId());
 
 			// Only update fields that an author can actually edit.
 			$monograph->setRevisedFileId($authorSubmission->getRevisedFileId());
@@ -211,7 +211,7 @@ class AuthorSubmissionDAO extends DAO {
 
 		// Update copyeditor assignment
 		if ($authorSubmission->getCopyedId()) {
-			$copyeditorSubmission = &$this->copyeditorSubmissionDao->getCopyeditorSubmission($authorSubmission->getMonographId());
+			$copyeditorSubmission =& $this->copyeditorSubmissionDao->getCopyeditorSubmission($authorSubmission->getMonographId());
 
 			// Only update fields that an author can actually edit.
 			$copyeditorSubmission->setDateAuthorUnderway($authorSubmission->getCopyeditorDateAuthorUnderway());
@@ -233,7 +233,7 @@ class AuthorSubmissionDAO extends DAO {
 	function &getAuthorSubmissions($authorId, $pressId, $active = true, $rangeInfo = null) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
@@ -241,12 +241,12 @@ class AuthorSubmissionDAO extends DAO {
 				c.date_author_acknowledged AS ce_date_author_acknowledged, c.date_final_notified AS ce_date_final_notified, c.date_final_underway AS ce_date_final_underway, c.date_final_completed AS ce_date_final_completed, c.date_final_acknowledged AS ce_date_final_acknowledged, c.initial_revision AS copyeditor_initial_revision, c.editor_author_revision AS ce_editor_author_revision,
 				c.final_revision AS copyeditor_final_revision
 			FROM monographs a
-				LEFT JOIN sections s ON (s.section_id = a.section_id)
+				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
 				LEFT JOIN copyed_assignments c on (a.monograph_id = c.monograph_id)
-				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN section_settings sal ON (s.section_id = sal.section_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	a.user_id = ? AND a.press_id = ? AND ' .
 			($active?'a.status = 1':'(a.status <> 1 AND a.submission_progress = 0)'),
 			array(
@@ -281,11 +281,11 @@ class AuthorSubmissionDAO extends DAO {
 		$decisions = array();
 
 		if ($round == null) {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT edit_decision_id, editor_id, decision, date_decided FROM edit_decisions WHERE monograph_id = ? ORDER BY date_decided ASC', $monographId
 			);
 		} else {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT edit_decision_id, editor_id, decision, date_decided FROM edit_decisions WHERE monograph_id = ? AND round = ? ORDER BY date_decided ASC',
 				array($monographId, $round)
 			);
@@ -317,9 +317,9 @@ class AuthorSubmissionDAO extends DAO {
 		$submissionsCount[0] = 0;
 		$submissionsCount[1] = 0;
 
-		$sql = 'SELECT count(*), status FROM monographs a LEFT JOIN sections s ON (s.section_id = a.section_id) LEFT JOIN copyed_assignments c on (a.monograph_id = c.monograph_id) WHERE a.press_id = ? AND a.user_id = ? GROUP BY a.status';
+		$sql = 'SELECT count(*), status FROM monographs a LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id) LEFT JOIN copyed_assignments c on (a.monograph_id = c.monograph_id) WHERE a.press_id = ? AND a.user_id = ? GROUP BY a.status';
 
-		$result = &$this->retrieve($sql, array($pressId, $authorId));
+		$result =& $this->retrieve($sql, array($pressId, $authorId));
 
 		while (!$result->EOF) {
 			if ($result->fields['status'] != 1) {

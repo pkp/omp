@@ -26,8 +26,13 @@
 <p>{translate key="author.submit.notAccepting"}</p>
 {else}
 <!-- ********@@@@@@@@@@@@@@@@@******** -->
+<div class="separator"></div>
 
 <!-- *******Series/section********* -->
+
+<h3>{translate key="author.submit.category"}</h3>
+
+<p>{translate key="author.submit.category.description"}</p>
 
 <form name="submit" method="post" action="{url op="saveSubmit" path=$submitStepAlias}" onsubmit="return checkSubmissionChecklist()">
 {if $monographId}
@@ -36,17 +41,25 @@
 <input type="hidden" name="submissionChecklist" value="1" />
 {include file="common/formErrors.tpl"}
 
+<table class="data" width="100%">
+<tr valign="top">	
+	<td width="20%" class="label">{fieldLabel name="arrangementId" key="submissionCategory.submissionCategory"}</td>
+	<td width="80%" class="value"><select name="arrangementId" id="arrangementId" size="1" class="selectMenu">{html_options options=$arrangementOptions selected=$arrangementId}</select></td>
+</tr>
+	
+</table>
 <!-- ********Type of Work******** -->
 
 <div class="separator"></div>
-<h3>{translate key="author.submission.typeOfWork"}</h3>
+<h3>{translate key="author.submission.workType"}</h3>
+<p>{translate key="author.submission.workType.description"}</p>
 <table class="data" width="100%">
 <tr valign="top">	
-	<td width="20%" class="label">{translate key="author.submission.type.editedVolume"}</td>
+	<td width="20%" class="label">{translate key="author.submission.workType.editedVolume"}</td>
 	<td width="80%" class="value"><input type="radio" name="isEditedVolume" value="1" {if $isEditedVolume}checked="checked" {/if}/></td>
 </tr>
 <tr valign="top">	
-	<td width="20%" class="label">{translate key="author.submission.type.authored"}</td>
+	<td width="20%" class="label">{translate key="author.submission.workType.authoredWork"}</td>
 	<td width="80%" class="value"><input type="radio" name="isEditedVolume" value="0" {if !$isEditedVolume}checked="checked" {/if}/></td>
 </tr>
 

@@ -39,6 +39,7 @@ define('MONOGRAPH_FILE_PUBLIC',		'PB');
 define('MONOGRAPH_FILE_SUPP',		'SP');
 define('MONOGRAPH_FILE_NOTE',		'NT');
 define('MONOGRAPH_FILE_ATTACHMENT',	'AT');
+define('MONOGRAPH_FILE_PROSPECTUS',	'PR');
 
 class MonographFileManager extends FileManager {
 
@@ -73,6 +74,16 @@ class MonographFileManager extends FileManager {
 	 */
 	function uploadSubmissionFile($fileName, $fileId = null, $overwrite = false) {
 		return $this->handleUpload($fileName, MONOGRAPH_FILE_SUBMISSION, $fileId, $overwrite);
+	}
+
+	/**
+	 * Upload a completed prospectus file.
+	 * @param $fileName string the name of the file used in the POST form
+	 * @param $fileId int
+	 * @return int file ID, is false if failure
+	 */
+	function uploadCompletedProspectusFile($fileName, $fileId = null, $overwrite = false) {
+		return $this->handleUpload($fileName, MONOGRAPH_FILE_PROSPECTUS, $fileId, $overwrite);
 	}
 
 	/**
@@ -357,6 +368,7 @@ class MonographFileManager extends FileManager {
 			case MONOGRAPH_FILE_COPYEDIT: return 'submission/copyedit';
 			case MONOGRAPH_FILE_LAYOUT: return 'submission/layout';
 			case MONOGRAPH_FILE_ATTACHMENT: return 'attachment';
+			case MONOGRAPH_FILE_PROSPECTUS: return 'submission/original';
 			case MONOGRAPH_FILE_SUBMISSION: default: return 'submission/original';
 		}
 	}

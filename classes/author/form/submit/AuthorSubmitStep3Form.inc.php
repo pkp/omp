@@ -65,6 +65,11 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 		if ($this->sequence->monograph->getSubmissionFileId() != null) {
 			$templateMgr->assign_by_ref('submissionFile', $monographFileDao->getMonographFile($this->sequence->monograph->getSubmissionFileId()));
 		}
+
+		if ($this->sequence->monograph->getCompletedProspectusFileId() != null) {
+			$templateMgr->assign_by_ref('completedProspectusFile', $monographFileDao->getMonographFile($this->sequence->monograph->getCompletedProspectusFileId()));
+		}
+
 		parent::display();
 	}
 
@@ -86,6 +91,31 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 
 		if (isset($submissionFileId)) {
 			$this->sequence->monograph->setSubmissionFileId($submissionFileId);
+			return $monographDao->updateMonograph($this->sequence->monograph);
+
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Upload the completed prospectus file.
+	 * @param $fileName string
+	 * @return boolean
+	 */
+	function uploadCompletedProspectusFile($fileName) {
+		import('file.MonographFileManager');
+
+		$manuscriptFileManager =& new MonographFileManager($this->sequence->monograph->getMonographId());
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+
+		if ($manuscriptFileManager->uploadedFileExists($fileName)) {
+			// upload new submission file, overwriting previous if necessary
+			$prospectusFileId = $manuscriptFileManager->uploadCompletedProspectusFile($fileName, $this->sequence->monograph->getCompletedProspectusFileId(), true);
+		}
+
+		if (isset($prospectusFileId)) {
+			$this->sequence->monograph->setCompletedProspectusFileId($prospectusFileId);
 			return $monographDao->updateMonograph($this->sequence->monograph);
 
 		} else {

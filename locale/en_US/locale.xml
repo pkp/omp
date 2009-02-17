@@ -44,8 +44,8 @@
 	<message key="monograph.authors">Authors</message>
 	<message key="monograph.title">Title</message>
 	<message key="monograph.suppFilesAbbrev">Supp. Files</message>
-
-
+	<message key="monograph.contributors">Contributors</message>
+	
 	<message key="series.series">Series</message>
 	<message key="series.title">Series' Title</message>
 	<message key="series.abbreviation">Abbreviation</message>
@@ -354,7 +354,8 @@ Active is how many reviews are currently being considered or underway.]]></messa
 <li>Locate the file you wish to submit and highlight it.</li>
 <li>Click Open on the Choose File window, which places the name of the file on this page.</li>
 <li>Click Upload on this page, which uploads the file from the computer to the press' web site and renames it following the press' conventions.</li>
-<li>Once the submission is uploaded, click Save and Continue at the bottom of this page.</li>
+<li>Once the submission is uploaded, upload a completed prospectus guide in the same way the submission file was uploaded.</li>
+<li>Click Save and Continue at the bottom of this page.</li>
 </ol>]]></message>
 	
 	<!-- Login -->

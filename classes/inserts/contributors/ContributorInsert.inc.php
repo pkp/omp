@@ -101,6 +101,7 @@ class ContributorInsert
 		$authors = $this->form->getData('contributors');
 
 		$this->monograph->resetAuthors();
+		if(is_array($authors))
 		foreach ($authors as $formAuthor) {
 
 			if ($formAuthor['deleted']) continue;

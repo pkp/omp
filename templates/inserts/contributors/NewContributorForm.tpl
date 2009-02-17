@@ -64,4 +64,4 @@
 
 </table>
 
-<input type="submit" name="addContributor" value="{translate key="author.updateInfo"}" class="button defaultButton" />
+<input type="submit" name="addContributor" value="{translate key="author.submission.addContributor"}" class="button defaultButton" />

@@ -49,7 +49,7 @@ function attachCountryList(id,uc) {
 
 <h3>{translate key="monograph.contributors"}</h3>
 {assign var="authorIndex" value=0} 
-
+<p>{translate key="author.submission.contributors.description"}</p>
 <div style="border:1px solid #E0E0E0">
 {foreach name=authors from=$contributors item=author}
 

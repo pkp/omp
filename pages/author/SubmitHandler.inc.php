@@ -68,6 +68,10 @@ class SubmitHandler extends AuthorHandler {
 					$submitForm->uploadSubmissionFile('submissionFile');
 					$editData = true;
 				}
+				if (Request::getUserVar('uploadCompletedProspectusFile')) {
+					$submitForm->uploadCompletedProspectusFile('completedProspectusFile');
+					$editData = true;
+				}
 				break;
 
 			case 4:

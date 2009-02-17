@@ -23,6 +23,12 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 * Display the form.
 	 */
 	function display() {
+		$templateMgr = &TemplateManager::getManager();
+		$press =& Request::getPress();
+		// Get arrangements for this press
+		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
+		//$this->addCheck(new FormValidator($this, 'arrangementId', 'required', 'author.submit.form.arrangementRequired'));
+		$templateMgr->assign('arrangementOptions', array('0' => Locale::translate('author.submit.selectSection')) + $arrangementDao->getAcquisitionsArrangementsTitles($press->getPressId(), !true));
 		parent::display();
 	}
 
@@ -32,6 +38,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	function initData() {
 		if (isset($this->sequence->monograph)) {
 			$this->_data = array(
+				'arrangementId' => $this->sequence->monograph->getAcquisitionsArrangement(),
 				'isEditedVolume' => $this->sequence->monograph->getWorkType(),
 				'commentsToEditor' => $this->sequence->monograph->getCommentsToEditor(),
 			);
@@ -42,7 +49,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('submissionChecklist', 'isEditedVolume', 'copyrightNoticeAgree', 'commentsToEditor'));
+		$this->readUserVars(array('submissionChecklist', 'isEditedVolume', 'copyrightNoticeAgree', 'arrangementId', 'commentsToEditor'));
 	}	
 
 	function getTemplateFile() {
@@ -50,8 +57,8 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	}
 
 	/**
-	 * Save changes to article.
-	 * @return int the article ID
+	 * Save changes to submission.
+	 * @return int the monograph ID
 	 */
 	function execute() {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
@@ -64,24 +71,24 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 				$this->sequence->monograph->setSubmissionProgress($this->sequence->currentStep + 1);
 			}
 			$this->sequence->monograph->setWorkType($this->getData('isEditedVolume') ? EDITED_VOLUME :0);
-
+			$this->sequence->monograph->setAcquisitionsArrangement($this->getData('arrangementId'));
 			$monographId = $this->sequence->monograph->getMonographId();
 			$monographDao->updateMonograph($this->sequence->monograph);
 
 		} else {
-			// Insert new article
+			// Insert new monograph
 			$press =& Request::getPress();
 			$user =& Request::getUser();
 
 			$this->monograph =& new Monograph();
 			$this->monograph->setUserId($user->getUserId());
 			$this->monograph->setPressId($press->getPressId());
-			//$this->monograph->setSectionId(1);
 			$this->monograph->stampStatusModified();
 			$this->monograph->setSubmissionProgress($this->sequence->currentStep + 1);
 			$this->monograph->setLanguage(String::substr($press->getPrimaryLocale(), 0, 2));
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
 			$this->monograph->setWorkType($this->getData('isEditedVolume') ? EDITED_VOLUME : 0);
+			$this->monograph->setAcquisitionsArrangement($this->getData('arrangementId'));
 			// Set user to initial author
 
 /*			$author =& new Author();

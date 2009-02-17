@@ -9,7 +9,6 @@
 	<div class="separator"></div>
 	{if !$authors_only}
 	{include file="inserts/monographComponents/components.tpl"}
-	<div class="separator"></div>
 	{/if}
 
 {/if}

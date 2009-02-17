@@ -17,12 +17,21 @@
 
 
 
-	<message key="author.submission.typeOfWork">Type of Work</message>
-	<message key="author.submission.type.editedVolume">Edited Volume</message>
-	<message key="author.submission.type.authored">Authored Work</message>
+	<message key="author.submission.workType">Type of Work</message>
+	<message key="author.submission.workType.description">Select the option that best matches the type of the work that you are submitting.</message>
+	<message key="author.submission.workType.editedVolume">Edited Volume</message>
+	<message key="author.submission.workType.authoredWork">Authored Work</message>
+	<message key="author.updateInfo">Update Contributor Info</message>
+	<message key="author.submission.addContributor">Add Contributor</message>
+	<message key="author.submission.contributors.description">Enter each of the authors that contributed to the work by filling out profiles in the 'Add an Author' section below.</message>
+	<message key="author.submit.completedProspectus">Completed Prospectus</message>
+	<message key="author.submit.completedProspectus.description"><![CDATA[Upload a completed prospectus file that follows the guidelines of the <a href="{$prospectusGuideUrl}" class="action">press' prospectus guide</a>.]]></message>
+	<message key="author.submit.uploadProspectusFile">Upload Prospectus File</message>
+	<message key="author.submit.replaceProspectusFile">Replace Prospectus File</message>
 
-
-
+	<message key="author.submit.category">Submission Category</message>
+	<message key="author.submit.category.description">From the drop down list below, please select the category or series that best suits your submission. If you are unsure about what to select, or you haven't received special submission instructions from one of our editors, you can continue without selecting a particular series or submission category.</message>
+	
 
 	<message key="author.submit">New Submission</message>
 	<message key="author.track">Active Submissions</message>
@@ -65,7 +74,7 @@
 	<message key="author.submit.commentsForEditor">Comments for the Editor</message>
 	<message key="author.submit.comments">Enter text (optional)</message>
 	<message key="author.submit.form.sectionRequired">Please select an appropriate press section for this submission.</message>
-	<message key="author.submit.privacyStatement">Press's Privacy Statement</message>
+	<message key="author.submit.privacyStatement">Press' Privacy Statement</message>
 	<message key="author.submit.reorderInstructions">Reorder authors to appear in the order they will be listed on publication.</message>
 	<message key="author.submit.selectPrincipalContact">Principal contact for editorial correspondence.</message>
 	<message key="author.submit.addAuthor">Add Author</message>

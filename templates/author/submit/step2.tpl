@@ -51,6 +51,8 @@
 	{include file="inserts/contributors/ContributorInsert.tpl"}
 {/if}
 
+<div class="separator"></div>
+
 <h3>Title and Description</h3>
 <br />
 Please provide the title and a description of work, including the scope, aim, and value of this contribution.
