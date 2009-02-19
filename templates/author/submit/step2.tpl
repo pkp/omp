@@ -60,12 +60,12 @@ Please provide the title and a description of work, including the scope, aim, an
 <table width="100%" class="data">
 
 <tr valign="top">
-	<td width="20%" class="label">Title</td>
+	<td width="20%" class="label">{fieldLabel name="title" required="true" key="monograph.title"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="title[{$formLocale|escape}]" id="title" value="{$title[$formLocale]|escape}" size="60" maxlength="255" /></td>
 </tr>
 
 <tr valign="top">
-	<td width="20%" class="label">{if 1}<!--$section->getAbstractsNotRequired()==0-->Description{/if}</td>
+	<td width="20%" class="label">{if 1}<!--$section->getAbstractsNotRequired()==0-->{fieldLabel name="abstract" key="monograph.summary"}{/if}</td>
 	<td width="80%" class="value"><textarea name="abstract[{$formLocale|escape}]" id="abstract" class="textArea" rows="15" cols="60">{$abstract[$formLocale]|escape}</textarea></td>
 </tr>
 </table>

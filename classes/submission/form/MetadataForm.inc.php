@@ -94,11 +94,11 @@ class MetadataForm extends Form {
 	 * Initialize form data from current article.
 	 */
 	function initData() {
-		$this->monographComponents->initData();
+		$this->_data = array();
+		$this->_data = array_merge($this->_data, $this->monographComponents->initData($this));
 		if (isset($this->monograph)) {
 			$monograph =& $this->monograph;
 			if (!is_array($this->_data))
-				$this->_data = array();
 			$this->_data = array_merge($this->_data,array(
 
 				'title' => $monograph->getTitle(null), // Localized
@@ -145,7 +145,7 @@ class MetadataForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$this->monographComponents->display();
+		$this->monographComponents->display($this);
 		$press =& Request::getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 /*		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -228,7 +228,7 @@ class MetadataForm extends Form {
 		$sectionDao =& DAORegistry::getDAO('SectionDAO');
 
 		// Update article
-		$this->monographComponents->execute();
+		$this->monographComponents->execute($this);
 		$monograph =& $this->monograph;
 		$monograph->setTitle($this->getData('title'), null); // Localized
 

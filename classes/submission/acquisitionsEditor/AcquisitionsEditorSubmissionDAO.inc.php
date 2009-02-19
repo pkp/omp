@@ -87,13 +87,13 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 				c.final_revision AS copyeditor_final_revision,
 				r2.review_revision
 			FROM	monographs a
-				LEFT JOIN sections s ON (s.section_id = a.section_id)
+				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
 				LEFT JOIN copyed_assignments c ON (a.monograph_id = c.monograph_id)
 				LEFT JOIN review_rounds r2 ON (a.monograph_id = r2.monograph_id AND a.current_round = r2.round)
-				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN section_settings sal ON (s.section_id = sal.section_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	a.monograph_id = ?',
 			array(
 				'title',
@@ -397,13 +397,13 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 				r2.review_revision
 			FROM	monographs a
 				LEFT JOIN edit_assignments e ON (e.monograph_id = a.monograph_id)
-				LEFT JOIN sections s ON (s.section_id = a.section_id)
+				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
 				LEFT JOIN copyed_assignments c ON (a.monograph_id = c.monograph_id)
 				LEFT JOIN review_rounds r2 ON (a.monograph_id = r2.monograph_id AND a.current_round = r2.round)
-				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN section_settings sal ON (s.section_id = sal.section_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	a.press_id = ?
 				AND e.editor_id = ?
 				AND a.status = ?',
@@ -569,17 +569,17 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 				INNER JOIN monograph_authors aa ON (aa.monograph_id = a.monograph_id)
 				LEFT JOIN edit_assignments e ON (e.monograph_id = a.monograph_id)
 				LEFT JOIN users ed ON (e.editor_id = ed.user_id)
-				LEFT JOIN sections s ON (s.section_id = a.section_id)
+				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
 				LEFT JOIN copyed_assignments c ON (a.monograph_id = c.monograph_id)
 				LEFT JOIN users ce ON (c.copyeditor_id = ce.user_id)
 				LEFT JOIN proof_assignments p ON (p.monograph_id = a.monograph_id)
 				LEFT JOIN users pe ON (pe.user_id = p.proofreader_id)
 				LEFT JOIN review_rounds r2 ON (a.monograph_id = r2.monograph_id and a.current_round = r2.round)
 				LEFT JOIN layouted_assignments l ON (l.monograph_id = a.monograph_id) LEFT JOIN users le ON (le.user_id = l.editor_id)
-				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN section_settings sal ON (s.section_id = sal.section_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
 				LEFT JOIN monograph_settings atl ON (a.monograph_id = atl.monograph_id AND atl.setting_name = ?)
 			WHERE	a.press_id = ?
 				AND e.editor_id = ?
@@ -592,7 +592,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		if ($sectionId) {
 			$params[] = $sectionId;
-			$searchSql .= ' AND a.section_id = ?';
+			$searchSql .= ' AND a.arrangement_id = ?';
 		}
 
 		$result =& $this->retrieveRange($sql . ' ' . $searchSql . ' ORDER BY monograph_id ASC',

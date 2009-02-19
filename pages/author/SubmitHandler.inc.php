@@ -54,8 +54,8 @@ class SubmitHandler extends AuthorHandler {
 		$monographId = Request::getUserVar('monographId');
 
 		import('author.form.submit.AuthorSubmissionSequence');
-		$sequence =& new AuthorSubmissionSequence($monographId);
-		$submitForm = $sequence->getFormForStep($step);
+		$sequence = new AuthorSubmissionSequence($monographId);
+		$submitForm =& $sequence->getFormForStep($step);
 
 		$submitForm->readInputData();
 
@@ -81,6 +81,7 @@ class SubmitHandler extends AuthorHandler {
 				}
 				break;
 		}
+if (!$submitForm->validate()) echo 'nope';
 
 		if (!$editData && $submitForm->validate()) {
 			$monographId = $submitForm->execute();

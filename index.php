@@ -49,6 +49,9 @@
  * Front controller for OMP site. Loads required files and dispatches requests to the appropriate handler. 
  */
 
+ini_set('display_errors', '2');
+ERROR_REPORTING(E_ALL);
+
 define('INDEX_FILE_LOCATION', __FILE__);
 /**
  * Handle a new request.

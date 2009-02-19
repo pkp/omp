@@ -23,8 +23,8 @@ class SequenceForm extends Form
 	function SequenceForm() {
 		parent::Form($this->getTemplateFile());
 	}
-	function registerFormWithSequence($sequence) {
-		$this->sequence = $sequence;
+	function registerFormWithSequence(&$sequence) {
+		$this->sequence =& $sequence;
 	}
 	function display() {
 		if (isset($this->sequence)) {

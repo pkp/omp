@@ -22,25 +22,26 @@ class ContributorInsert
 	var $monograph;
 	var $formData;
 
-	function ContributorInsert($work, $form = null, $options = 0) {
+	function ContributorInsert(&$work, &$form, $options = 0) {
 		$this->template = 'inserts/contributors/ContributorInsert.tpl';
 	//	$form->addCheck(new FormValidatorCustom($this, 'authors', 'required', 'author.submit.form.authorRequired', create_function('$authors', 'return count($authors) > 0;')));
 	//	$form->addCheck(new FormValidatorArray($this, 'authors', 'required', 'author.submit.form.authorRequiredFields', array('firstName', 'lastName', 'email')));
-		$this->form = $form;
+		$this->form =& $form;
 		$this->formData = array();
-		$this->monograph = $work;
+		$this->monograph =& $work;
 		$this->options = $options;
 	}
 	function listUserVars() {
 		return array('newContributor','contributors','primaryContact');
 	}
-	function initData() { 
+	function &initData(&$form) {
+		$contributors = array();
 		if (isset($this->monograph)) {
+
 			$authors =& $this->monograph->getAuthors();
-			$contributors = array();
 			$i = 0;
 			$gnash = array();
-
+			$primaryContact = 0;
 			foreach ($authors as $author) {
 				$gnash[$author->getAuthorId()] = $i;
 
@@ -56,26 +57,19 @@ class ContributorInsert
 							'contributionType' => $author->getContributionType()
 						);
 				if ($author->getPrimaryContact()) {
-					if (isset($this->form)) {
-						$this->form->setData('primaryContact', $i);
-					} else {
-						$this->formData['primaryContact'] = $i;
-					}
+					$primaryContact = $i;
 				}
 				array_push($contributors, $authorArray);
 				$i++;
 			}
-			if (isset($this->form)) {
-				$this->form->setData('contributors', $contributors);
-				$this->form->setData('newContributor', null);
-			} else {
-				$this->formData['contributors'] = $contributors;
-				$this->formData['newContributor'] = null;
-			}
+
+//			$form->setData('contributors', $contributors);
+//			$form->setData('newContributor', null);
+
 		}
-		return $gnash;
+		return array('contributors' => $contributors, 'newContributor' => null, 'primaryContact' => $primaryContact);
 	}
-	function display() {
+	function display(&$form) {
 		$templateMgr =& TemplateManager::getManager();
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
@@ -83,27 +77,19 @@ class ContributorInsert
 
 		$templateMgr->assign('monographType', $this->monograph->getWorkType());
 
-		if (isset($this->form)) {
-			$templateMgr->assign('contributors', $this->form->getData('contributors'));
-		} else {
-			$templateMgr->assign('contributors', $this->form->formData['contributors']);
-		}
+		$templateMgr->assign('contributors', $form->getData('contributors'));
 	}
 	function getLocaleFieldNames() {
 		$fields = array();
 		return $fields;
 	}
-	function execute() {
-		if (!isset($this->form)) {
-			return;
-		}
+	function execute(&$form) {
 
-		$authors = $this->form->getData('contributors');
+		$authors = $form->getData('contributors');
 
 		$this->monograph->resetAuthors();
 		if(is_array($authors))
 		foreach ($authors as $formAuthor) {
-
 			if ($formAuthor['deleted']) continue;
 			$author =& new Author();
 			$author->setMonographId($this->monograph->getMonographId());
@@ -115,7 +101,7 @@ class ContributorInsert
 			$author->setCountry($formAuthor['country']);
 			$author->setUrl($formAuthor['url']);
 			$author->setEmail($formAuthor['email']);
-			$author->setPrimaryContact($this->form->getData('primaryContact') == $formAuthor['authorId'] ? PRIMARY_CONTACT : 0);
+			$author->setPrimaryContact($form->getData('primaryContact') == $formAuthor['authorId'] ? PRIMARY_CONTACT : 0);
 
 			if (!isset($formAuthor['contributionType'])) $author->setContributionType(AUTHOR);
 			else $author->setContributionType($formAuthor['contributionType']);
@@ -124,13 +110,16 @@ class ContributorInsert
 		}
 
 	}
-	function processEvents() {
+	function processEvents(&$form) {
 		$eventProcessed = false;
-		$submitForm = $this->form;
+		$submitForm =& $form;
+
 		if (Request::getUserVar('addContributor')) {
 
 			$eventProcessed = true;
-			$newAuthor =& $submitForm->getData('newContributor');
+			//$submitForm->readInputData();print_r($submitForm->_data);
+			$newAuthor = $submitForm->getData('newContributor');
+
 			$formError = false;
 
 			foreach (array('firstName','lastName','email') as $field) {
@@ -145,7 +134,7 @@ class ContributorInsert
 				$authors = $submitForm->getData('contributors');
 				$authors = !isset($authors) ? array() : $authors;
 
-				array_push($authors, $newAuthor);print_r($newAuthor);
+				array_push($authors, $newAuthor);
 				$submitForm->setData('contributors', $authors);
 				$submitForm->setData('newContributor', null);
 			} else {

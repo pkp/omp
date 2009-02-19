@@ -78,7 +78,7 @@
 <p>{translate key="author.submit.completedProspectus.description" prospectusGuideUrl=$prospectusGuideUrl}</p>
 
 <table class="data" width="100%">
-{if $submissionFile}
+{if $completedProspectusFile}
 <tr valign="top">
 	<td width="20%" class="label">{translate key="common.fileName"}</td>
 	<td width="80%" class="value"><a href="{url op="download" path=$monographId|to_array:$completedProspectusFile->getFileId()}">{$completedProspectusFile->getFileName()|escape}</a></td>

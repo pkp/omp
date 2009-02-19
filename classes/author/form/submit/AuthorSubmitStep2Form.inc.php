@@ -25,18 +25,19 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	 */
 	var $formComponents;
 	function AuthorSubmitStep2Form() {
+
 		parent::AuthorSubmitForm();
+//		$insert =& new ContributorInsert($this->sequence->monograph, $this);
+//		$this->formComponents = array($insert);
 
-		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'author.submit.form.titleRequired'));
-
-		//$this->formComponents = array(new ChapterEntryFormComponent($this, ($this->sequence->monograph->getWorkType()==EDITED_VOLUME)?0:AUTHORS_ONLY));		
+		// Validation checks for this form
 
 	}
 
 	function initializeInserts() {
 		if ($this->sequence->monograph->getWorkType() == EDITED_VOLUME) { 
-			$insert =& new MonographComponentsInsert($this->sequence->monograph, $this);
+			$insert = new MonographComponentsInsert($this->sequence->monograph, $this);
 		} else {
 			$insert =& new ContributorInsert($this->sequence->monograph, $this);
 		}
@@ -48,10 +49,12 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	 */
 	function initData() {
 
-		foreach ($this->formComponents as $formComponent) {
-			$formComponent->initData();
-		}
 		if (isset($this->sequence->monograph)) {
+
+			foreach ($this->formComponents as $formComponent) {
+				$this->_data = array_merge($this->_data, $formComponent->initData($this));
+			}
+
 			$monograph =& $this->sequence->monograph;
 			$this->_data = array_merge($this->_data,
 				array(
@@ -68,8 +71,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 					'sponsor' => $monograph->getSponsor(null), // Localized
 					'section' => 1//$sectionDao->getSection($monograph->getSectionId())
 				)
-			);			
-
+			);
 		}
 	}
 
@@ -92,10 +94,9 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 				);
 
 		foreach ($this->formComponents as $formComponent) {
-			$userVars = array_merge($formComponent->listUserVars(),$userVars);
+			$userVars =& array_merge($formComponent->listUserVars(),$userVars);
 		}
 		$this->readUserVars($userVars);
-
 		// Load the section. This is used in the step 2 form to
 		// determine whether or not to display indexing options.
 //		$sectionDao =& DAORegistry::getDAO('SectionDAO');
@@ -110,8 +111,9 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	function getLocaleFieldNames() {
 		$fields = array('title', 'abstract', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
 		foreach ($this->formComponents as $formComponent) {
-			array_merge($fields,$formComponent->getLocaleFieldNames());
+			$fields = array_merge($fields,$formComponent->getLocaleFieldNames());
 		}
+		return $fields;
 	}
 
 	/**
@@ -119,7 +121,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	 */
 	function display() {
 		foreach ($this->formComponents as $formComponent) {
-			$formComponent->display();
+			$formComponent->display($this);
 		}
 		$templateMgr =& TemplateManager::getManager();
 
@@ -136,7 +138,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	function processEvents() {
 		$returner = false;
 		foreach ($this->formComponents as $formComponent) {
-			$processed = $formComponent->processEvents();
+			$processed = $formComponent->processEvents($this);
 			if ($processed == true) $returner = true;
 		}
 		return $returner;
@@ -168,7 +170,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 		}
 
 		foreach ($this->formComponents as $formComponent) {
-			$formComponent->execute();
+			$formComponent->execute($this);
 		}
 
 		$monographDao->updateMonograph($monograph);
