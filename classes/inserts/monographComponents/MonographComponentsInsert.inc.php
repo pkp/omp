@@ -40,15 +40,16 @@ class MonographComponentsInsert
 		$this->options = $options;
 		$this->contributorInsert =& new ContributorInsert($monograph, $form);
 	}
-	function listUserVars() {
-		
-		return array_merge(array('components','newComponent'), $this->contributorInsert->listUserVars());;
+	function &listUserVars() {
+		$returner = array_merge(array('components','newComponent'), $this->contributorInsert->listUserVars());
+		return $returner;
 	}
-	function initData() {
+	function initData(&$form) {
 
 		if (isset($this->monograph)) {
 
-			$gnash = $this->contributorInsert->initData();
+			$insertReturns =& $this->contributorInsert->initData($form);
+			$gnash = $insertReturns['lookup'];
 
 			$components =& $this->monograph->getMonographComponents();
 			$formComponents = array();
@@ -67,23 +68,26 @@ class MonographComponentsInsert
 				}
 				array_push(
 					$formComponents,
-					array(
-						'title' => $components[$i]->getMonographComponentTitle(),
+					array (
+						'title' => $components[$i]->getTitle(null),
 						'authors' => $cas
 					)
 				);
 			}
-
-			$this->form->_data['components'] = $formComponents;
-
+			$returner = array ('components' => $formComponents, 
+						'contributors'=>$insertReturns['contributors'],
+						'newContributor'=>$insertReturns['newContributor'], 'primaryContact'=>$insertReturns['primaryContact']
+					);
+			return $returner;
 		}
+		return array();
 	}
-	function display() {
+	function display(&$form) {
 		
 		$templateMgr =& TemplateManager::getManager();
 
-		$templateMgr->assign('components', $this->form->getData('components'));
-		$this->contributorInsert->display();
+		$templateMgr->assign('components', $form->getData('components'));
+		$this->contributorInsert->display($form);
 		if ($this->options == 0) {
 			$templateMgr->assign('componentCreation',1);
 		} else {
@@ -106,10 +110,10 @@ class MonographComponentsInsert
 		$fields = array();
 		return $fields;
 	}
-	function execute() {
-		$components = $this->form->getData('components');
+	function execute(&$form, &$monograph) {
+		$components = $form->getData('components');
 
-		$this->contributorInsert->execute();
+		$this->contributorInsert->execute($form, $monograph);
 
 		import('monograph.MonographComponent');
 		$componentsList = array();
@@ -117,7 +121,7 @@ class MonographComponentsInsert
 		if (isset($components))
 		foreach ($components as $componentInfo) {
 			$component =& new MonographComponent;
-			$component->setMonographComponentTitle($componentInfo['title'], null);
+			$component->setTitle($componentInfo['title'], null);
 			$component->setMonographId($this->monograph->getMonographId());
 			$component->setSequence($j);
 			if(count($component->getMonographComponentAuthors()))
@@ -138,18 +142,19 @@ class MonographComponentsInsert
 			array_push($componentsList, $component);
 			$j++;
 		}
-		$this->monograph->setMonographComponents($componentsList);
-	}
-	function processEvents() {
-		$eventProcessed = false;
-		$submitForm = $this->form;
+		$monograph->setMonographComponents($componentsList);
 
-		$eventProcessed = $this->contributorInsert->processEvents();
+	}
+	function processEvents(&$form) {
+		$eventProcessed = false;
+		$submitForm = $form;
+
+		$eventProcessed = $this->contributorInsert->processEvents($form);
 		if (Request::getUserVar('addComponent') && 1) {// && work is an edited volume
 
 			$eventProcessed = true;
 			$newComponent = $submitForm->getData('newComponent');
-			$components = $submitForm->getData('components');
+			$components = $submitForm->getData('components');print_r($components);
 			$components = !isset($components) ? array() : $components;
 			$authorlist = array();
 			if (isset($newComponent['authors'])) {

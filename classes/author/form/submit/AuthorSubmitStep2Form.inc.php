@@ -72,7 +72,8 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 					'section' => 1//$sectionDao->getSection($monograph->getSectionId())
 				)
 			);
-		}
+		}	
+
 	}
 
 	/**
@@ -170,7 +171,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 		}
 
 		foreach ($this->formComponents as $formComponent) {
-			$formComponent->execute($this);
+			$formComponent->execute($this, $monograph);
 		}
 
 		$monographDao->updateMonograph($monograph);

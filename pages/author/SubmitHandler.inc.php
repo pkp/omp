@@ -81,7 +81,7 @@ class SubmitHandler extends AuthorHandler {
 				}
 				break;
 		}
-if (!$submitForm->validate()) echo 'nope';
+
 
 		if (!$editData && $submitForm->validate()) {
 			$monographId = $submitForm->execute();

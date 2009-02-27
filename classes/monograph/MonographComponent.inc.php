@@ -42,17 +42,18 @@ class MonographComponent extends DataObject {
 	function setMonographComponentAuthors($authors) {
 		$this->setData('authors',$authors);
 	}
-	function getTitle($locale) {
-		return $this->getData('title', $locale);
-	}
-	function getMonographComponentTitle() {
+
+	function getLocalizedTitle() {
 		return $this->getLocalizedData('title');
 	}
 	function setMonographComponentTitle($title, $locale) {
-		$this->setData('title', array($title), $locale);
+		return $this->setData('title', $title, $locale);
 	}
 	function setTitle($title) {
-		$this->setData('title', array($title));
+		$this->setData('title', $title);
+	}
+	function getTitle($locale) {
+		return $this->getData('title', $locale);
 	}
 	function getMonographComponentId() {
 		return $this->getData('component_id');

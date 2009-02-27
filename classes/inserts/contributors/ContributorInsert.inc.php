@@ -54,6 +54,7 @@ class ContributorInsert
 							'url' => $author->getUrl(),
 							'country' => $author->getCountry(),
 							'authorId' => $i,
+							'biography' => $author->getBiography(null),
 							'contributionType' => $author->getContributionType()
 						);
 				if ($author->getPrimaryContact()) {
@@ -67,7 +68,8 @@ class ContributorInsert
 //			$form->setData('newContributor', null);
 
 		}
-		return array('contributors' => $contributors, 'newContributor' => null, 'primaryContact' => $primaryContact);
+		$returner = array('contributors' => $contributors, 'newContributor' => null, 'primaryContact' => $primaryContact, 'lookup'=>$gnash);
+		return $returner;
 	}
 	function display(&$form) {
 		$templateMgr =& TemplateManager::getManager();
@@ -83,16 +85,16 @@ class ContributorInsert
 		$fields = array();
 		return $fields;
 	}
-	function execute(&$form) {
+	function execute(&$form, &$monograph) {
 
 		$authors = $form->getData('contributors');
 
-		$this->monograph->resetAuthors();
+		$monograph->resetAuthors();
 		if(is_array($authors))
 		foreach ($authors as $formAuthor) {
 			if ($formAuthor['deleted']) continue;
 			$author =& new Author();
-			$author->setMonographId($this->monograph->getMonographId());
+			$author->setMonographId($monograph->getMonographId());
 			$author->setAuthorId($formAuthor['authorId']);
 			$author->setFirstName($formAuthor['firstName']);
 			$author->setMiddleName($formAuthor['middleName']);
@@ -101,12 +103,13 @@ class ContributorInsert
 			$author->setCountry($formAuthor['country']);
 			$author->setUrl($formAuthor['url']);
 			$author->setEmail($formAuthor['email']);
+			$author->setBiography($formAuthor['biography'], null);
 			$author->setPrimaryContact($form->getData('primaryContact') == $formAuthor['authorId'] ? PRIMARY_CONTACT : 0);
 
 			if (!isset($formAuthor['contributionType'])) $author->setContributionType(AUTHOR);
 			else $author->setContributionType($formAuthor['contributionType']);
 
-			$this->monograph->addAuthor($author);
+			$monograph->addAuthor($author);
 		}
 
 	}
@@ -117,7 +120,6 @@ class ContributorInsert
 		if (Request::getUserVar('addContributor')) {
 
 			$eventProcessed = true;
-			//$submitForm->readInputData();print_r($submitForm->_data);
 			$newAuthor = $submitForm->getData('newContributor');
 
 			$formError = false;

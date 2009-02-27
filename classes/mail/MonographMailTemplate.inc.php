@@ -56,7 +56,7 @@ class MonographMailTemplate extends MailTemplate {
 		$monograph = &$this->monograph;
 		$press = isset($this->press)?$this->press:Request::getPress();
 
-		$paramArray['monographTitle'] = strip_tags($monograph->getMonographTitle());
+		$paramArray['monographTitle'] = strip_tags($monograph->getLocalizedTitle());
 		$paramArray['monographId'] = $monograph->getMonographId();
 		$paramArray['pressName'] = strip_tags($press->getPressTitle());
 		$paramArray['sectionName'] = strip_tags($monograph->getSectionTitle());

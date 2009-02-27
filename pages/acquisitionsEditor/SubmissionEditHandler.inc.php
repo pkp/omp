@@ -60,18 +60,18 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 //		$sectionDao =& DAORegistry::getDAO('SectionDAO');
 //		$templateMgr->assign_by_ref('sections', $sectionDao->getSectionTitles($press->getPressId()));
 		if ($enableComments) {
-			import('monograph.Article');
+			import('monograph.Monograph');
 			$templateMgr->assign('commentsStatus', $submission->getCommentsStatus());
-			$templateMgr->assign_by_ref('commentsStatusOptions', Article::getCommentsStatusOptions());
+			$templateMgr->assign_by_ref('commentsStatusOptions', Monograph::getCommentsStatusOptions());
 		}
 
-/*		$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
-		$publishedArticle =& $publishedArticleDao->getPublishedArticleByArticleId($submission->getArticleId());
-		if ($publishedArticle) {
+/*		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
+		if ($publishedMonograph) {
 			$issueDao =& DAORegistry::getDAO('IssueDAO');
-			$issue =& $issueDao->getIssueById($publishedArticle->getIssueId());
+			$issue =& $issueDao->getIssueById($publishedMonograph->getIssueId());
 			$templateMgr->assign_by_ref('issue', $issue);
-			$templateMgr->assign_by_ref('publishedArticle', $publishedArticle);
+			$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
 		}
 */
 		if ($isEditor) {
@@ -277,12 +277,12 @@ $sections = null;
 		$user =& Request::getUser();
 		$templateMgr->assign('isEditor', $roleDao->roleExists($press->getPressId(), $user->getUserId(), ROLE_ID_EDITOR));
 
-		import('issue.IssueAction');
+/*		import('issue.IssueAction');
 		$templateMgr->assign('issueOptions', IssueAction::getIssueOptions());
-		$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
-		$publishedArticle =& $publishedArticleDao->getPublishedArticleByArticleId($submission->getArticleId());
-		$templateMgr->assign_by_ref('publishedArticle', $publishedArticle);
-
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
+		$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
+*/
 		$templateMgr->assign('useCopyeditors', $useCopyeditors);
 		$templateMgr->assign('useLayoutEditors', $useLayoutEditors);
 		$templateMgr->assign('useProofreaders', $useProofreaders);
@@ -291,7 +291,7 @@ $sections = null;
 		$templateMgr->assign('submissionAccepted', $submissionAccepted);
 
 		// Set up required Payment Related Information
-		import('payment.ojs.OJSPaymentManager');
+/*		import('payment.ojs.OJSPaymentManager');
 		$paymentManager =& OJSPaymentManager::getManager();
 		$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
 		
@@ -300,7 +300,7 @@ $sections = null;
 		if ( $publicationFeeEnabled ) {
 			$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getPressId(), $monographId ));			   
 		}	
-
+*/
 		$templateMgr->assign('helpTopicId', 'editorial.acquisitionsEditorsRole.editing');
 		$templateMgr->display('acquisitionsEditor/submissionEditing.tpl');
 	}
@@ -315,16 +315,16 @@ $sections = null;
 		parent::setupTemplate(true, $monographId);
 
 		// submission notes
-		$monographNoteDao =& DAORegistry::getDAO('ArticleNoteDAO');
+		$monographNoteDao =& DAORegistry::getDAO('MonographNoteDAO');
 
 		$rangeInfo =& PKPHandler::getRangeInfo('submissionNotes');
-		$submissionNotes =& $monographNoteDao->getArticleNotes($monographId, $rangeInfo);
+		$submissionNotes =& $monographNoteDao->getMonographNotes($monographId, $rangeInfo);
 
-		import('monograph.log.ArticleLog');
+		import('monograph.log.MonographLog');
 		$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries');
-		$eventLogEntries =& ArticleLog::getEventLogEntries($monographId, $rangeInfo);
+		$eventLogEntries =& MonographLog::getEventLogEntries($monographId, $rangeInfo);
 		$rangeInfo =& PKPHandler::getRangeInfo('emailLogEntries');
-		$emailLogEntries =& ArticleLog::getEmailLogEntries($monographId, $rangeInfo);
+		$emailLogEntries =& MonographLog::getEmailLogEntries($monographId, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -882,8 +882,8 @@ $sections = null;
 		$submission->setWidth('', $formLocale);
 		$submission->setHeight('', $formLocale);
 
-		$monographDao =& DAORegistry::getDAO('ArticleDAO');
-		$monographDao->updateArticle($submission);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao->updateMonograph($submission);
 
 		Request::redirect(null, null, 'viewMetadata', $monographId);
 	}
@@ -1295,13 +1295,13 @@ $sections = null;
 	 * Delete an editor version file.
 	 * @param $args array ($monographId, $fileId)
 	 */
-	function deleteArticleFile($args) {
+	function deleteMonographFile($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$fileId = isset($args[1]) ? (int) $args[1] : 0;
 		$revisionId = isset($args[2]) ? (int) $args[2] : 0;
 
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
-		AcquisitionsEditorAction::deleteArticleFile($submission, $fileId, $revisionId);
+		AcquisitionsEditorAction::deleteMonographFile($submission, $fileId, $revisionId);
 
 		Request::redirect(null, null, 'submissionReview', $monographId);
 	}
@@ -1411,14 +1411,14 @@ $sections = null;
 	 * Delete an monograph image.
 	 * @param $args array ($monographId, $fileId)
 	 */
-	function deleteArticleImage($args) {
+	function deleteMonographImage($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$fileId = isset($args[2]) ? (int) $args[2] : 0;
 		$revisionId = isset($args[3]) ? (int) $args[3] : 0;
 
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
-		AcquisitionsEditorAction::deleteArticleImage($submission, $fileId, $revisionId);
+		AcquisitionsEditorAction::deleteMonographImage($submission, $fileId, $revisionId);
 
 		Request::redirect(null, null, 'editGalley', array($monographId, $galleyId));
 	}
@@ -1527,10 +1527,10 @@ $sections = null;
 		$monographId = Request::getUserVar('monographId');
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
 
-		import('submission.form.ArticleGalleyForm');
+		import('submission.form.MonographGalleyForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$galleyForm =& new ArticleGalleyForm($monographId);
+		$galleyForm =& new MonographGalleyForm($monographId);
 		$galleyId = $galleyForm->execute($fileName);
 
 		Request::redirect(null, null, 'editGalley', array($monographId, $galleyId));
@@ -1547,10 +1547,10 @@ $sections = null;
 
 		parent::setupTemplate(true, $monographId, 'editing');
 
-		import('submission.form.ArticleGalleyForm');
+		import('submission.form.MonographGalleyForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$submitForm =& new ArticleGalleyForm($monographId, $galleyId);
+		$submitForm =& new MonographGalleyForm($monographId, $galleyId);
 
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
@@ -1569,10 +1569,10 @@ $sections = null;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
 
-		import('submission.form.ArticleGalleyForm');
+		import('submission.form.MonographGalleyForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$submitForm =& new ArticleGalleyForm($monographId, $galleyId);
+		$submitForm =& new MonographGalleyForm($monographId, $galleyId);
 
 		$submitForm->readInputData();
 		if ($submitForm->validate()) {
@@ -1659,10 +1659,10 @@ $sections = null;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
 
-		$galleyDao =& DAORegistry::getDAO('ArticleGalleyDAO');
+		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		$galley =& $galleyDao->getGalley($galleyId, $monographId);
 
-		import('file.ArticleFileManager'); // FIXME
+		import('file.MonographFileManager'); // FIXME
 
 		if (isset($galley)) {
 			if ($galley->isHTMLGalley()) {
@@ -1731,7 +1731,7 @@ $sections = null;
 		$templateMgr->assign_by_ref('submission', $submission);
 
 		if ($logId) {
-			$logDao =& DAORegistry::getDAO('ArticleEventLogDAO');
+			$logDao =& DAORegistry::getDAO('MonographEventLogDAO');
 			$logEntry =& $logDao->getLogEntry($logId, $monographId);
 		}
 
@@ -1742,8 +1742,8 @@ $sections = null;
 		} else {
 			$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries');
 
-			import('monograph.log.ArticleLog');
-			$eventLogEntries =& ArticleLog::getEventLogEntries($monographId, $rangeInfo);
+			import('monograph.log.MonographLog');
+			$eventLogEntries =& MonographLog::getEventLogEntries($monographId, $rangeInfo);
 			$templateMgr->assign('eventLogEntries', $eventLogEntries);
 			$templateMgr->display('acquisitionsEditor/submissionEventLog.tpl');
 		}
@@ -1760,8 +1760,8 @@ $sections = null;
 		parent::setupTemplate(true, $monographId, 'history');
 
 		$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries');
-		$logDao =& DAORegistry::getDAO('ArticleEventLogDAO');
-		$eventLogEntries =& $logDao->getArticleLogEntriesByAssoc($monographId, $assocType, $assocId, $rangeInfo);
+		$logDao =& DAORegistry::getDAO('MonographEventLogDAO');
+		$eventLogEntries =& $logDao->getMonographLogEntriesByAssoc($monographId, $assocType, $assocId, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -1780,13 +1780,13 @@ $sections = null;
 		$logId = isset($args[1]) ? (int) $args[1] : 0;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
 
-		$logDao =& DAORegistry::getDAO('ArticleEventLogDAO');
+		$logDao =& DAORegistry::getDAO('MonographEventLogDAO');
 
 		if ($logId) {
 			$logDao->deleteLogEntry($logId, $monographId);
 
 		} else {
-			$logDao->deleteArticleLogEntries($monographId);
+			$logDao->deleteMonographLogEntries($monographId);
 		}
 
 		Request::redirect(null, null, 'submissionEventLog', $monographId);
@@ -1806,12 +1806,12 @@ $sections = null;
 		$templateMgr->assign('isEditor', Validation::isEditor());
 		$templateMgr->assign_by_ref('submission', $submission);
 
-		$monographFileDao =& DAORegistry::getDAO('ArticleFileDAO');
-		import('file.ArticleFileManager');
-		$templateMgr->assign('attachments', $monographFileDao->getArticleFilesByAssocId($logId, ARTICLE_FILE_ATTACHMENT));
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		import('file.MonographFileManager');
+		$templateMgr->assign('attachments', $monographFileDao->getMonographFilesByAssocId($logId, ARTICLE_FILE_ATTACHMENT));
 
 		if ($logId) {
-			$logDao =& DAORegistry::getDAO('ArticleEmailLogDAO');
+			$logDao =& DAORegistry::getDAO('MonographEmailLogDAO');
 			$logEntry =& $logDao->getLogEntry($logId, $monographId);
 		}
 
@@ -1822,8 +1822,8 @@ $sections = null;
 		} else {
 			$rangeInfo =& PKPHandler::getRangeInfo('emailLogEntries');
 
-			import('monograph.log.ArticleLog');
-			$emailLogEntries =& ArticleLog::getEmailLogEntries($monographId, $rangeInfo);
+			import('monograph.log.MonographLog');
+			$emailLogEntries =& MonographLog::getEmailLogEntries($monographId, $rangeInfo);
 			$templateMgr->assign_by_ref('emailLogEntries', $emailLogEntries);
 			$templateMgr->display('acquisitionsEditor/submissionEmailLog.tpl');
 		}
@@ -1840,8 +1840,8 @@ $sections = null;
 		parent::setupTemplate(true, $monographId, 'history');
 
 		$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries');
-		$logDao =& DAORegistry::getDAO('ArticleEmailLogDAO');
-		$emailLogEntries =& $logDao->getArticleLogEntriesByAssoc($monographId, $assocType, $assocId, $rangeInfo);
+		$logDao =& DAORegistry::getDAO('MonographEmailLogDAO');
+		$emailLogEntries =& $logDao->getMonographLogEntriesByAssoc($monographId, $assocType, $assocId, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -1860,13 +1860,13 @@ $sections = null;
 		$logId = isset($args[1]) ? (int) $args[1] : 0;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
 
-		$logDao =& DAORegistry::getDAO('ArticleEmailLogDAO');
+		$logDao =& DAORegistry::getDAO('MonographEmailLogDAO');
 
 		if ($logId) {
 			$logDao->deleteLogEntry($logId, $monographId);
 
 		} else {
-			$logDao->deleteArticleLogEntries($monographId);
+			$logDao->deleteMonographLogEntries($monographId);
 		}
 
 		Request::redirect(null, null, 'submissionEmailLog', $monographId);
@@ -1934,11 +1934,11 @@ $sections = null;
 		parent::setupTemplate(true, $monographId, 'history');
 
 		$rangeInfo =& PKPHandler::getRangeInfo('submissionNotes');
-		$monographNoteDao =& DAORegistry::getDAO('ArticleNoteDAO');
+		$monographNoteDao =& DAORegistry::getDAO('MonographNoteDAO');
 
 		// submission note edit
 		if ($noteViewType == 'edit') {
-			$monographNote = $monographNoteDao->getArticleNoteById($noteId);
+			$monographNote = $monographNoteDao->getMonographNoteById($noteId);
 		}
 
 		$templateMgr =& TemplateManager::getManager();
@@ -1953,7 +1953,7 @@ $sections = null;
 		if ($noteViewType == 'edit' || $noteViewType == 'add') {
 			$templateMgr->assign('showBackLink', true);
 		} else {
-			$submissionNotes =& $monographNoteDao->getArticleNotes($monographId, $rangeInfo);
+			$submissionNotes =& $monographNoteDao->getMonographNotes($monographId, $rangeInfo);
 			$templateMgr->assign_by_ref('submissionNotes', $submissionNotes);
 		}
 
@@ -2106,7 +2106,7 @@ $sections = null;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
 
 		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByArticleId($monographId);
+		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
 		$proofAssignment->setDateProofreaderNotified(Core::getCurrentDate());
 		$proofAssignmentDao->updateProofAssignment($proofAssignment);
 
@@ -2121,7 +2121,7 @@ $sections = null;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
 
 		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByArticleId($monographId);
+		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
 		$proofAssignment->setDateProofreaderCompleted(Core::getCurrentDate());
 		$proofAssignmentDao->updateProofAssignment($proofAssignment);
 
@@ -2166,7 +2166,7 @@ $sections = null;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
 
 		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByArticleId($monographId);
+		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
 		$proofAssignment->setDateLayoutEditorNotified(Core::getCurrentDate());
 		$proofAssignmentDao->updateProofAssignment($proofAssignment);
 
@@ -2181,7 +2181,7 @@ $sections = null;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
 
 		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByArticleId($monographId);
+		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
 		$proofAssignment->setDateLayoutEditorCompleted(Core::getCurrentDate());
 		$proofAssignmentDao->updateProofAssignment($proofAssignment);
 
@@ -2226,31 +2226,31 @@ $sections = null;
 		$issueId = (int) Request::getUserVar('issueId');
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('SectionEditorSubmissionDAO');
-		$publishedArticleDao =& DAORegistry::getDAO('PublishedArticleDAO');
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-		$publishedArticle =& $publishedArticleDao->getPublishedArticleByArticleId($monographId);
+		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($monographId);
 
 		$issueDao =& DAORegistry::getDAO('IssueDAO');
 		$issue =& $issueDao->getIssueById($issueId, $press->getPressId());
 
 		if ($issue) {
 			// Schedule against an issue.
-			if ($publishedArticle) {
-				$publishedArticle->setIssueId($issueId);
-				$publishedArticleDao->updatePublishedArticle($publishedArticle);
+			if ($publishedMonograph) {
+				$publishedMonograph->setIssueId($issueId);
+				$publishedMonographDao->updatePublishedMonograph($publishedMonograph);
 			} else {
-				$publishedArticle = new PublishedArticle();
-				$publishedArticle->setArticleId($submission->getArticleId());
-				$publishedArticle->setIssueId($issueId);
-				$publishedArticle->setDatePublished(Core::getCurrentDate());
-				$publishedArticle->setSeq(REALLY_BIG_NUMBER);
-				$publishedArticle->setViews(0);
-				$publishedArticle->setAccessStatus(0);
+				$publishedMonograph = new PublishedMonograph();
+				$publishedMonograph->setMonographId($submission->getMonographId());
+				$publishedMonograph->setIssueId($issueId);
+				$publishedMonograph->setDatePublished(Core::getCurrentDate());
+				$publishedMonograph->setSeq(REALLY_BIG_NUMBER);
+				$publishedMonograph->setViews(0);
+				$publishedMonograph->setAccessStatus(0);
 
-				$publishedArticleDao->insertPublishedArticle($publishedArticle);
+				$publishedMonographDao->insertPublishedMonograph($publishedMonograph);
 
 				// Resequence the monographs.
-				$publishedArticleDao->resequencePublishedArticles($submission->getSectionId(), $issueId);
+				$publishedMonographDao->resequencePublishedMonographs($submission->getSectionId(), $issueId);
 
 				// If we're using custom section ordering, and if this is the first
 				// monograph published in a section, make sure we enter a custom ordering
@@ -2263,11 +2263,11 @@ $sections = null;
 				}
 			}
 		} else {
-			if ($publishedArticle) {
+			if ($publishedMonograph) {
 				// This was published elsewhere; make sure we don't
 				// mess up sequencing information.
-				$publishedArticleDao->resequencePublishedArticles($submission->getSectionId(), $publishedArticle->getIssueId());
-				$publishedArticleDao->deletePublishedArticleByArticleId($monographId);
+				$publishedMonographDao->resequencePublishedMonographs($submission->getSectionId(), $publishedMonograph->getIssueId());
+				$publishedMonographDao->deletePublishedMonographByMonographId($monographId);
 			}
 		}
 		$submission->stampStatusModified();
@@ -2375,7 +2375,7 @@ $sections = null;
 	 * Validate that the user is the assigned section editor for
 	 * the monograph, or is a managing editor.
 	 * Redirects to acquisitionsEditor index page if validation fails.
-	 * @param $monographId int Article ID to validate
+	 * @param $monographId int Monograph ID to validate
 	 * @param $access int Optional name of access level required -- see SECTION_EDITOR_ACCESS_... constants
 	 */
 	function validate($monographId, $access = null) {
@@ -2390,7 +2390,7 @@ $sections = null;
 		$acquisitionsEditorSubmission =& $acquisitionsEditorSubmissionDao->getAcquisitionsEditorSubmission($monographId);
 
 		if ($acquisitionsEditorSubmission == null) {
-			$isValid = false;
+			$isValid = false;echo 'shit';exit;
 
 		} else if ($acquisitionsEditorSubmission->getPressId() != $press->getPressId()) {
 			$isValid = false;

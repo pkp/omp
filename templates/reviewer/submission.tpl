@@ -37,7 +37,7 @@ function confirmSubmissionCheck() {
 <table width="100%" class="data">
 <tr valign="top">
 	<td width="20%" class="label">{translate key="monograph.title"}</td>
-	<td width="80%" class="value">{$submission->getMonographTitle()|strip_unsafe_html}</td>
+	<td width="80%" class="value">{$submission->getLocalizedTitle()|strip_unsafe_html}</td>
 </tr>
 <tr valign="top">
 	<td class="label">{translate key="monograph.pressSection"}</td>
@@ -56,7 +56,7 @@ function confirmSubmissionCheck() {
 			<td class="value">
 	{/if}
 			{assign var=emailString value="`$editAssignment->getEditorFullName()` <`$editAssignment->getEditorEmail()`>"}
-			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getMonographTitle()|strip_tags monographId=$monographId}
+			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getLocalizedTitle()|strip_tags monographId=$monographId}
 			{$editAssignment->getEditorFullName()|escape} {icon name="mail" url=$url}
 			{if !$editAssignment->getCanEdit() || !$editAssignment->getCanReview()}
 				{if $editAssignment->getCanEdit()}

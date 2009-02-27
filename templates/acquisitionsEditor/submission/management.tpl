@@ -18,13 +18,13 @@
 	<tr>
 		<td width="20%" class="label">{translate key="monograph.authors"}</td>
 		<td width="80%" colspan="2" class="value">
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getAuthorEmails() subject=$submission->getMonographTitle() monographId=$submission->getMonographId()}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getAuthorEmails() subject=$submission->getLocalizedTitle() monographId=$submission->getMonographId()}
 			{$submission->getAuthorString()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
 	<tr>
 		<td class="label">{translate key="monograph.title"}</td>
-		<td colspan="2" class="value">{$submission->getMonographTitle()|strip_unsafe_html}</td>
+		<td colspan="2" class="value">{$submission->getLocalizedTitle()|strip_unsafe_html}</td>
 	</tr>
 	<tr>
 		<td class="label">{translate key="submission.originalFile"}</td>
@@ -52,7 +52,7 @@
 		<td colspan="2" class="value">
 			{assign var="submitter" value=$submission->getUser()}
 			{assign var=emailString value="`$submitter->getFullName()` <`$submitter->getEmail()`>"}
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getMonographTitle|strip_tags monographId=$submission->getMonographId()}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags monographId=$submission->getMonographId()}
 			{$submitter->getFullName()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>

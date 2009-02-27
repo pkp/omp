@@ -33,7 +33,7 @@ function moveComponent(dir, componentIndex) {
 {assign var="componentIndex" value=$componentIndex+1}
 
 <div style="background-color:{if $componentIndex % 2}#FFFFFF{else}#E0E0E0{/if}">
-	<a style="text-decoration:none" href="javascript:show('components-{$componentIndex}-authors')">(+) {$component.title}</a>
+	<a style="text-decoration:none" href="javascript:show('components-{$componentIndex}-authors')">(+) {$component.title.$formLocale}</a>
 	{if $smarty.foreach.components.total > 1 }
 	{if $componentIndex > 1}<a href="javascript:moveComponent('u', '{$componentIndex|escape}')" class="action">&uarr;</a>{else}&uarr;{/if} {if $componentIndex < count($components)}<a href="javascript:moveComponent('d', '{$componentIndex|escape}')" class="action">&darr;</a>{else}&darr;{/if}
 	{/if}
@@ -41,7 +41,7 @@ function moveComponent(dir, componentIndex) {
 </div>
 
 <div id="components-{$componentIndex}-authors" style="display:none;border-left:1px solid black;padding-left:10px;background-color:{if $componentIndex % 2}#FFFFFF{else}#E0E0E0{/if}">
-	<input type="hidden" name="components[{$componentIndex}][title]" value="{$component.title}" />
+	<input type="hidden" name="components[{$componentIndex}][title][{$formLocale|escape}]" value="{$component.title.$formLocale}" />
 	{if count($component.authors) > 0}
 		<h2>Component Authors</h2>
 		<table border="1">
@@ -83,7 +83,7 @@ function moveComponent(dir, componentIndex) {
 <table width="100%" class="data">
 <tr valign="top">
 	<td width="20%" class="label">{translate key="monograph.component.title"}</td>
-	<td width="80%" class="value"><input type="text" class="textField" name="newComponent[title]" size="40" maxlength="255" /></td>
+	<td width="80%" class="value"><input type="text" class="textField" name="newComponent[title][{$formLocale|escape}]" size="40" maxlength="255" /></td>
 </tr>
 <tr valign="top">
 	<td width="20%" class="label">{translate key="monograph.component.authors"}</td>

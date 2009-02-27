@@ -205,6 +205,7 @@ class AuthorDAO extends DAO {
 	 * @param $author object
 	 */
 	function updateLocaleFields(&$author) {
+
 		$this->updateDataObjectSettings('monograph_author_settings', $author, array(
 			'author_id' => $author->getAuthorId()
 		));

@@ -14,7 +14,9 @@
 <install version="0.1.0.0">
 	<code function="createDirectories"/>
 	<code function="createDatabase"/>
-	<schema file="lib/pkp/xml/pkp_schema.xml"/>
+	<schema file="lib/pkp/xml/schema/common.xml"/>
+	<schema file="lib/pkp/xml/schema/scheduledTasks.xml"/>
+	<schema file="lib/pkp/xml/schema/temporaryFiles.xml"/>
 	<schema file="dbscripts/xml/omp_schema.xml"/>
 	<data file="dbscripts/xml/data/email_templates.xml"/>
 	<data file="dbscripts/xml/data/locale/{$installedLocale}/email_templates_data.xml"/>

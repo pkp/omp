@@ -340,7 +340,7 @@ class AuthorAction extends Action {
 			return true;
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$email->setSubject($authorSubmission->getMonographTitle());
+				$email->setSubject($authorSubmission->getLocalizedTitle());
 				if (!empty($editors)) {
 					foreach ($editors as $editor) {
 						$email->addRecipient($editor->getEmail(), $editor->getFullName());

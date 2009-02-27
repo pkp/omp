@@ -15,7 +15,7 @@
 		<td>&nbsp;<br/><a href="{url op="viewMetadata" path=$submission->getMonographId()}" class="action">{translate key="submission.editMetadata"}</a></td>
 	</tr>
 </table>
-
+<h1>alsdfj</h1>
 <h4>{translate key="monograph.authors"}</h4>
 
 <table width="100%" class="data">
@@ -24,7 +24,7 @@
 		<td width="20%" class="label">{translate key="user.name"}</td>
 		<td width="80%" class="value">
 			{assign var=emailString value="`$author->getFullName()` <`$author->getEmail()`>"}
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getMonographTitle|strip_tags monographId=$submission->getMonographId()}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags monographId=$submission->getMonographId()}
 			{$author->getFullName()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
@@ -71,7 +71,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="monograph.title"}</td>
-		<td width="80%" class="value">{$submission->getMonographTitle()|strip_unsafe_html|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedTitle()|strip_unsafe_html|default:"&mdash;"}</td>
 	</tr>
 
 	<tr>

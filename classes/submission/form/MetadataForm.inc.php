@@ -19,7 +19,7 @@ import('form.Form');
 import('inserts.monographComponents.MonographComponentsInsert');
 
 class MetadataForm extends Form {
-	/** @var Article current article */
+	/** @var Monograph current monograph */
 	var $monograph;
 
 	/** @var boolean can edit metadata */
@@ -27,42 +27,39 @@ class MetadataForm extends Form {
 
 	/** @var boolean can view authors */
 	var $canViewAuthors;
-	var $monographComponents;
+	var $formComponents;
 	/**
 	 * Constructor.
 	 */
-	function MetadataForm($monograph) {
+	function MetadataForm(&$monograph) {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath(Request::getRequestedPage());
-		if ($monograph->getWorkType() == EDITED_VOLUME) {
-			$this->monographComponents =& new MonographComponentsInsert($monograph, $this);
-		} else {
-			$this->monographComponents =& new ContributorInsert($monograph, $this);
-		}
+
+		$this->formComponents =& new MonographComponentsInsert($monograph, $this);
 
 //		$copyAssignmentDao =& DAORegistry::getDAO('CopyAssignmentDAO');
 /*
 		$user =& Request::getUser();
 		$roleId = $roleDao->getRoleIdFromPath(Request::getRequestedPage());
 
-		// If the user is an editor of this article, make the form editable.
+		// If the user is an editor of this monograph, make the form editable.
 		$this->canEdit = false;
 		if ($roleId != null && ($roleId == ROLE_ID_EDITOR || $roleId == ROLE_ID_SECTION_EDITOR)) {
 			$this->canEdit = true;
 		}
 
-		// If the user is an author and the article hasn't passed the Copyediting stage, make the form editable.
+		// If the user is an author and the monograph hasn't passed the Copyediting stage, make the form editable.
 		if ($roleId == ROLE_ID_AUTHOR) {
-			$copyAssignment = $copyAssignmentDao->getCopyAssignmentByArticleId($monograph->getArticleId());
+			$copyAssignment = $copyAssignmentDao->getCopyAssignmentByMonographId($monograph->getMonographId());
 			if ($monograph->getStatus() != STATUS_PUBLISHED && ($copyAssignment == null || $copyAssignment->getDateCompleted() == null)) {
 				$this->canEdit = true;
 			}
 		}
 
 		// Copy editors are also allowed to edit metadata, but only if they have
-		// a current assignment to the article.
+		// a current assignment to the monograph.
 		if ($roleId != null && ($roleId == ROLE_ID_COPYEDITOR)) {
-			$copyAssignment = $copyAssignmentDao->getCopyAssignmentByArticleId($monograph->getArticleId());
+			$copyAssignment = $copyAssignmentDao->getCopyAssignmentByMonographId($monograph->getMonographId());
 			if ($copyAssignment != null && $monograph->getStatus() != STATUS_PUBLISHED) {
 				if ($copyAssignment->getDateNotified() != null && $copyAssignment->getDateFinalCompleted() == null) {
 					$this->canEdit = true;
@@ -77,7 +74,7 @@ class MetadataForm extends Form {
 			parent::Form('submission/metadata/metadataView.tpl');
 		}
 */
-		// If the user is a reviewer of this article, do not show authors.
+		// If the user is a reviewer of this monograph, do not show authors.
 		$this->canViewAuthors = true;
 		if ($roleId != null && $roleId == ROLE_ID_REVIEWER) {
 			$this->canViewAuthors = false;
@@ -91,11 +88,11 @@ class MetadataForm extends Form {
 	}
 
 	/**
-	 * Initialize form data from current article.
+	 * Initialize form data from current monograph.
 	 */
 	function initData() {
 		$this->_data = array();
-		$this->_data = array_merge($this->_data, $this->monographComponents->initData($this));
+		$this->_data = array_merge($this->_data, $this->formComponents->initData($this));
 		if (isset($this->monograph)) {
 			$monograph =& $this->monograph;
 			if (!is_array($this->_data))
@@ -138,21 +135,21 @@ class MetadataForm extends Form {
 			'title', 'abstract', 'coverPageAltText', 'showCoverPage', 'hideCoverPageToc', 'hideCoverPageAbstract', 'originalFileName', 'fileName', 'width', 'height',
 			'discipline', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor'
 		);
-		return array_merge($fields, $this->monographComponents->getLocaleFieldNames());
+		return array_merge($fields, $this->formComponents->getLocaleFieldNames());
 	}
 
 	/**
 	 * Display the form.
 	 */
 	function display() {
-		$this->monographComponents->display($this);
+		$this->formComponents->display($this);
 		$press =& Request::getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 /*		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$sectionDao =& DAORegistry::getDAO('SectionDAO');
 
 */		$templateMgr =& TemplateManager::getManager();
-//		$templateMgr->assign('monographId', isset($this->monograph)?$this->monograph->getMonographId():null);
+		$templateMgr->assign('monographId', isset($this->monograph)?$this->monograph->getMonographId():null);
 		$templateMgr->assign('pressSettings', $settingsDao->getPressSettings($press->getPressId()));
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
 		$templateMgr->assign('canViewAuthors', $this->canViewAuthors);
@@ -166,11 +163,11 @@ class MetadataForm extends Form {
 		}
 
 		if ($this->canEdit) {
-			import('article.Article');
+			import('monograph.Monograph');
 			$hideAuthorOptions = array(
-				AUTHOR_TOC_DEFAULT => Locale::Translate('editor.article.hideTocAuthorDefault'),
-				AUTHOR_TOC_HIDE => Locale::Translate('editor.article.hideTocAuthorHide'),
-				AUTHOR_TOC_SHOW => Locale::Translate('editor.article.hideTocAuthorShow')
+				AUTHOR_TOC_DEFAULT => Locale::Translate('editor.monograph.hideTocAuthorDefault'),
+				AUTHOR_TOC_HIDE => Locale::Translate('editor.monograph.hideTocAuthorHide'),
+				AUTHOR_TOC_SHOW => Locale::Translate('editor.monograph.hideTocAuthorShow')
 			);
 			$templateMgr->assign('hideAuthorOptions', $hideAuthorOptions);
 		}
@@ -184,7 +181,7 @@ class MetadataForm extends Form {
 	 */
 	function readInputData() {
 		$userVars = array (
-				'articleId',
+				'monographId',
 				'deletedAuthors',
 				'primaryContact',
 				'title',
@@ -210,25 +207,25 @@ class MetadataForm extends Form {
 			);
 
 		$this->readUserVars(array_merge($userVars, $this->formComponents->listUserVars()));
-		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-		$section =& $sectionDao->getSection($this->monograph->getSectionId());
-		if (!$section->getAbstractsNotRequired()) {
-			$this->addCheck(new FormValidatorLocale($this, 'abstract', 'required', 'author.submit.form.abstractRequired'));
-		}
+//		$sectionDao =& DAORegistry::getDAO('SectionDAO');
+//		$section =& $sectionDao->getSection($this->monograph->getSectionId());
+//		if (!$section->getAbstractsNotRequired()) {
+//			$this->addCheck(new FormValidatorLocale($this, 'abstract', 'required', 'author.submit.form.abstractRequired'));
+//		}
 
 	}
 
 	/**
-	 * Save changes to article.
-	 * @return int the article ID
+	 * Save changes to monograph.
+	 * @return int the monograph ID
 	 */
 	function execute() {
-		$monographDao =& DAORegistry::getDAO('ArticleDAO');
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$sectionDao =& DAORegistry::getDAO('SectionDAO');
 
-		// Update article
-		$this->monographComponents->execute($this);
+		// Update monograph
+		$this->formComponents->execute($this);
 		$monograph =& $this->monograph;
 		$monograph->setTitle($this->getData('title'), null); // Localized
 
@@ -240,7 +237,7 @@ class MetadataForm extends Form {
 		if ($publicFileManager->uploadedFileExists('coverPage')) {
 			$journal = Request::getJournal();
 			$originalFileName = $publicFileManager->getUploadedFileName('coverPage');
-			$newFileName = 'cover_article_' . $this->getData('articleId') . '_' . $this->getFormLocale() . '.' . $publicFileManager->getExtension($originalFileName);
+			$newFileName = 'cover_monograph_' . $this->getData('monographId') . '_' . $this->getFormLocale() . '.' . $publicFileManager->getExtension($originalFileName);
 			$publicFileManager->uploadJournalFile($journal->getJournalId(), 'coverPage', $newFileName);
 			$monograph->setOriginalFileName($publicFileManager->truncateFileName($originalFileName, 127), $this->getFormLocale());
 			$monograph->setFileName($newFileName, $this->getFormLocale());
@@ -328,14 +325,14 @@ class MetadataForm extends Form {
 			$monograph->removeAuthor($deletedAuthors[$i]);
 		}
 
-		// Save the article
-		$monographDao->updateArticle($monograph);
+		// Save the monograph
+		$monographDao->updateMonograph($monograph);
 
 		// Update search index
-		import('search.ArticleSearchIndex');
-		ArticleSearchIndex::indexArticleMetadata($monograph);
+		import('search.MonographSearchIndex');
+		MonographSearchIndex::indexMonographMetadata($monograph);
 
-		return $monograph->getArticleId();
+		return $monograph->getMonographId();
 	}
 
 	/**
@@ -344,6 +341,9 @@ class MetadataForm extends Form {
 	 */
 	function getCanEdit() {
 		return $this->canEdit;
+	}
+	function processEvents() {
+		return $this->formComponents->processEvents($this);
 	}
 }
 

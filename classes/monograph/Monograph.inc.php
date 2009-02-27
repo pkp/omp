@@ -105,7 +105,7 @@ class Monograph extends Submission {
 	 * Get the localized title
 	 * @return string
 	 */
-	function getMonographTitle() {
+	function getLocalizedTitle() {
 		return $this->getLocalizedData('title');
 	}
 	function getMonographSponsor() {

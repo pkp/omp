@@ -31,7 +31,7 @@
 		<td>{*$submission->getSectionAbbrev()|escape*}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		{if $progress == 0}
-			<td><a href="{url op="submission" path=$monographId}" class="action">{if $submission->getMonographTitle()}{$submission->getMonographTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
+			<td><a href="{url op="submission" path=$monographId}" class="action">{if $submission->getLocalizedTitle()}{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
 			<td align="right">
 				{assign var="status" value=$submission->getSubmissionStatus()}
 				{if $status==STATUS_ARCHIVED}{translate key="submissions.archived"}
@@ -67,7 +67,7 @@
 		{/if}
 			</td>
 		{else}
-			<td><a href="{url op="submit" path=$progress monographId=$monographId}" class="action">{if $submission->getMonographTitle()}{$submission->getMonographTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
+			<td><a href="{url op="submit" path=$progress monographId=$monographId}" class="action">{if $submission->getLocalizedTitle()}{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
 			<td align="right">{translate key="submissions.incomplete"}<br /><a href="{url op="deleteSubmission" path=$monographId}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="author.submissions.confirmDelete"}')">{translate key="common.delete"}</a></td>
 		{/if}
 

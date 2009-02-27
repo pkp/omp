@@ -45,7 +45,9 @@
 	<message key="monograph.authors">Authors</message>
 	<message key="monograph.title">Title</message>
 	<message key="monograph.suppFilesAbbrev">Supp. Files</message>
+	<message key="monograph.suppFile">Supplementary File</message>
 	<message key="monograph.contributors">Contributors</message>
+	<message key="monograph.commentsToEditor">Submitter Comments</message>
 	
 	<message key="series.series">Series</message>
 	<message key="series.title">Series' Title</message>
