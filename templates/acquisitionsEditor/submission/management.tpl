@@ -60,11 +60,11 @@
 		<td class="label">{translate key="common.dateSubmitted"}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatShort}</td>
 	</tr>
-<!--	<tr>
+	<tr>
 		<td class="label">{translate key="section.section"}</td>
-		<td class="value">{*$submission->getSectionTitle()|escape*}</td>
-		<td class="value"><form action="{url op="updateSection" path=$submission->getMonographId()}" method="post">{translate key="submission.changeSection"} <select name="section" size="1" class="selectMenu">{*html_options options=$sections selected=$submission->getSectionId()*}</select> <input type="submit" value="{translate key="common.record"}" class="button" /></form></td>
-	</tr>-->
+		<td class="value">{*$arrangement->getTitle()|escape*}</td>
+		<td class="value"><form action="{url op="updateSection" path=$submission->getMonographId()}" method="post">{translate key="submission.changeSection"} <select name="section" size="1" class="selectMenu">{html_options options=$arrangements selected=$submission->getAcquisitionsArrangementId()}</select> <input type="submit" value="{translate key="common.record"}" class="button" /></form></td>
+	</tr>
 	{if $submission->getCommentsToEditor()}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="monograph.commentsToEditor"}</td>

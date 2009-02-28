@@ -38,7 +38,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	function initData() {
 		if (isset($this->sequence->monograph)) {
 			$this->_data = array(
-				'arrangementId' => $this->sequence->monograph->getAcquisitionsArrangement(),
+				'arrangementId' => $this->sequence->monograph->getAcquisitionsArrangementId(),
 				'isEditedVolume' => $this->sequence->monograph->getWorkType(),
 				'commentsToEditor' => $this->sequence->monograph->getCommentsToEditor(),
 			);
@@ -71,7 +71,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 				$this->sequence->monograph->setSubmissionProgress($this->sequence->currentStep + 1);
 			}
 			$this->sequence->monograph->setWorkType($this->getData('isEditedVolume') ? EDITED_VOLUME :0);
-			$this->sequence->monograph->setAcquisitionsArrangement($this->getData('arrangementId'));
+			$this->sequence->monograph->setAcquisitionsArrangementId($this->getData('arrangementId'));
 			$monographId = $this->sequence->monograph->getMonographId();
 			$monographDao->updateMonograph($this->sequence->monograph);
 
@@ -88,7 +88,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$this->monograph->setLanguage(String::substr($press->getPrimaryLocale(), 0, 2));
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
 			$this->monograph->setWorkType($this->getData('isEditedVolume') ? EDITED_VOLUME : 0);
-			$this->monograph->setAcquisitionsArrangement($this->getData('arrangementId'));
+			$this->monograph->setAcquisitionsArrangementId($this->getData('arrangementId'));
 			// Set user to initial author
 
 /*			$author =& new Author();

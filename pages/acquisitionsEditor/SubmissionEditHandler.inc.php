@@ -39,15 +39,15 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isEditor = $roleDao->roleExists($press->getPressId(), $user->getUserId(), ROLE_ID_EDITOR);
 
-//		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-//		$section =& $sectionDao->getSection($submission->getSectionId());
+		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
+		$arrangement =& $arrangementDao->getAcquisitionsArrangement($submission->getAcquisitionsArrangementId());
 
 		$enableComments = $press->getSetting('enableComments');
 
 		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('section', $section);
+		$templateMgr->assign_by_ref('arrangement', $arrangement);
 		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
@@ -57,8 +57,8 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr->assign('isEditor', $isEditor);
 		$templateMgr->assign('enableComments', $enableComments);
 
-//		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-//		$templateMgr->assign_by_ref('sections', $sectionDao->getSectionTitles($press->getPressId()));
+		$templateMgr->assign_by_ref('arrangements', $arrangementDao->getAcquisitionsArrangementsTitles($press->getPressId()));
+
 		if ($enableComments) {
 			import('monograph.Monograph');
 			$templateMgr->assign('commentsStatus', $submission->getCommentsStatus());

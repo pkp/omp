@@ -250,26 +250,44 @@ class MonographDAO extends DAO {
 	function updateMonograph($monograph) {
 
 		$this->update(
-			'UPDATE monographs
+			sprintf('UPDATE monographs
 				SET
-					date_submitted = ?,
+					user_id = ?,
+					language = ?,
+					comments_to_ed = ?,
+					date_submitted = %s,
+					date_status_modified = %s,
+					last_modified = %s,
+					status = ?,
 					press_id = ?,
 					submission_progress = ?,
 					edited_volume = ?,
-					comments_to_ed = ?,
-					language = ?,
+					current_round = ?,
 					submission_file_id = ?,
+					revised_file_id = ?,
+					review_file_id = ?,
+					editor_file_id = ?,
+					copyedit_file_id = ?,
+					hide_author = ?,
 					arrangement_id = ?,
 					prospectus_file_id = ?
 				WHERE monograph_id = ?',
+				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
-				$monograph->getDateSubmitted(),
+				$monograph->getUserId(),
+				$monograph->getLanguage(),
+				$monograph->getCommentsToEditor(),
+				$monograph->getStatus(),
 				$monograph->getPressId(),
 				$monograph->getSubmissionProgress(),
 				$monograph->getWorkType() == EDITED_VOLUME ? 1 : 0,
-				$monograph->getCommentsToEditor(),
-				$monograph->getLanguage(),
+				$monograph->getCurrentRound(),
 				$monograph->getSubmissionFileId(),
+				$monograph->getRevisedFileId(),
+				$monograph->getReviewFileId(),
+				$monograph->getEditorFileId(),
+				$monograph->getCopyeditFileId(),
+				$monograph->getHideAuthor(),
 				$monograph->getAcquisitionsArrangement(),
 				$monograph->getCompletedProspectusFileId(),
 				$monograph->getMonographId()
@@ -400,6 +418,7 @@ class MonographDAO extends DAO {
 		$monograph->setMonographId($row['monograph_id']);
 		$monograph->setPressId($row['press_id']);
 		$monograph->setUserId($row['user_id']);
+		$monograph->setAcquisitionsArrangementId($row['arrangement_id']);
 		$monograph->setSubmissionProgress($row['submission_progress']);
 		$monograph->setStatus($row['status']);
 		$monograph->setCommentsToEditor($row['comments_to_ed']);
@@ -408,10 +427,12 @@ class MonographDAO extends DAO {
 		$monograph->setCurrentRound($row['current_round']);
 		$monograph->setSubmissionFileId($row['submission_file_id']);
 		$monograph->setCompletedProspectusFileId($row['prospectus_file_id']);
+		$monograph->setStatus($row['status']);
+		$monograph->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
 		//$monograph->setDatePublished($this->datetimeFromDB($row['date_published']));
 //		//$monograph->setPublicMonographId($row['public_monograph_id']);
 		$monograph->setWorkType($row['edited_volume']);
-		$monograph->setAcquisitionsArrangement($row['arrangement_id']);
+		$monograph->setLastModified($this->datetimeFromDB($row['last_modified']));
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
 		$monograph->setAuthors($authorDao->getAuthorsByMonographId($row['monograph_id']));
 		HookRegistry::call('MonographDAO::_returnMonographFromRow', array(&$monograph, &$row));

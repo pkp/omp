@@ -25,6 +25,11 @@ define('STATUS_QUEUED', 1);
 define('STATUS_PUBLISHED', 3);
 define('STATUS_DECLINED', 4);
 
+define ('STATUS_QUEUED_UNASSIGNED', 5);
+define ('STATUS_QUEUED_REVIEW', 6);
+define ('STATUS_QUEUED_EDITING', 7);
+define ('STATUS_INCOMPLETE', 8);
+
 define('ISSUE_DEFAULT', 0);
 define('OPEN_ACCESS', 1);
 define('SUBSCRIPTION', 2);
@@ -54,10 +59,10 @@ class Monograph extends Submission {
 	function setMonographComponents($components) {
 		$this->setData('components', $components);
 	}
-	function setAcquisitionsArrangement($id) {
+	function setAcquisitionsArrangementId($id) {
 		 $this->setData('acquisitions_arrangement_id', $id);
 	}
-	function getAcquisitionsArrangement() {
+	function getAcquisitionsArrangementId() {
 		 return $this->getData('acquisitions_arrangement_id');
 	}
 	function setCompletedProspectusFileId($id) {
