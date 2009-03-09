@@ -50,10 +50,10 @@ class UserHandler extends PKPHandler {
 
 			// Fetch the user's roles for each press
 			while ($press =& $presses->next()) {
-				$roles =& $roleDao->getRolesByUserId($session->getUserId(), $press->getPressId());
+				$roles =& $roleDao->getRolesByUserId($session->getUserId(), $press->getId());
 				if (!empty($roles)) {
 					$pressesToDisplay[] = $press;
-					$rolesToDisplay[$press->getPressId()] = &$roles;
+					$rolesToDisplay[$press->getId()] = &$roles;
 				}
 				if ($press->getEnabled()) $allPresses[] =& $press;
 				unset($press);
@@ -65,7 +65,7 @@ class UserHandler extends PKPHandler {
 
 		} else { // Currently within a press' context.
 			// Show roles for the currently selected press
-			$roles =& $roleDao->getRolesByUserId($session->getUserId(), $press->getPressId());
+			$roles =& $roleDao->getRolesByUserId($session->getUserId(), $press->getId());
 
 			$press =& Request::getPress();
 			$user =& Request::getUser();
@@ -80,7 +80,7 @@ class UserHandler extends PKPHandler {
 			if ( $subscriptionEnabled ) {
 				import('subscription.SubscriptionDAO');
 				$subscriptionDAO =& DAORegistry::getDAO('SubscriptionDAO');
-				$subscriptionId = $subscriptionDAO->getSubscriptionIdByUser($user->getUserId(), $press->getPressId());
+				$subscriptionId = $subscriptionDAO->getSubscriptionIdByUser($user->getUserId(), $press->getId());
 				$templateMgr->assign('userHasSubscription', $subscriptionId);
 				if ( $subscriptionId !== false ) {
 					$subscription =& $subscriptionDAO->getSubscription($subscriptionId);
@@ -95,7 +95,7 @@ class UserHandler extends PKPHandler {
 			$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor'));
 			$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer'));
 
-			$rolesToDisplay[$press->getPressId()] = &$roles;
+			$rolesToDisplay[$press->getId()] = &$roles;
 			$templateMgr->assign_by_ref('userPress', $press);
 		}
 
@@ -163,7 +163,7 @@ class UserHandler extends PKPHandler {
 
 		if ($press->getSetting($setting)) {
 			$role =& new Role();
-			$role->setPressId($press->getPressId());
+			$role->setPressId($press->getId());
 			$role->setRoleId($roleId);
 			$role->setUserId($user->getUserId());
 
@@ -321,13 +321,13 @@ class UserHandler extends PKPHandler {
 		$press =& Request::getMonograph();
 		if ($press) {
 			$user =& Request::getUser();
-			$subscriptionId = $subscriptionDAO->getSubscriptionIdByUser($user->getUserId(), $press->getPressId());
+			$subscriptionId = $subscriptionDAO->getSubscriptionIdByUser($user->getUserId(), $press->getId());
 
 			$subscriptionDAO =& DAORegistry::getDAO('SubscriptionDAO');
 			$subscription =& $subscriptionDAO->getSubscription($subscriptionId);
 			$subscriptionType =& $subscriptionTypeDAO->getSubscriptionType($subscription->getTypeId());
 
-			$queuedPayment =& $paymentManager->createQueuedPayment($press->getPressId(), PAYMENT_TYPE_SUBSCRIPTION, $user->getUserId(), $subscriptionId, $subscriptionType->getCost(), $subscriptionType->getCurrencyCodeAlpha());
+			$queuedPayment =& $paymentManager->createQueuedPayment($press->getId(), PAYMENT_TYPE_SUBSCRIPTION, $user->getUserId(), $subscriptionId, $subscriptionType->getCost(), $subscriptionType->getCurrencyCodeAlpha());
 			$queuedPaymentId = $paymentManager->queuePayment($queuedPayment);
 
 			$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
@@ -345,7 +345,7 @@ class UserHandler extends PKPHandler {
 		$press =& Request::getMonograph();
 		$user =& Request::getUser();
 
-		$queuedPayment =& $paymentManager->createQueuedPayment($press->getPressId(), PAYMENT_TYPE_MEMBERSHIP, $user->getUserId(), null,  $press->getSetting('membershipFee'));
+		$queuedPayment =& $paymentManager->createQueuedPayment($press->getId(), PAYMENT_TYPE_MEMBERSHIP, $user->getUserId(), null,  $press->getSetting('membershipFee'));
 		$queuedPaymentId = $paymentManager->queuePayment($queuedPayment);
 
 		$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);

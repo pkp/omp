@@ -13,7 +13,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<p>{translate key="author.submit.submissionComplete" pressName=$press->getPressName()}</p>
+<p>{translate key="author.submit.submissionComplete" pressName=$press->getLocalizedName()}</p>
 
 <p>&#187; <a href="{url page="author"}">{translate key="author.track"}</a></p>
 

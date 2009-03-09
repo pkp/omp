@@ -88,7 +88,7 @@ class IssueForm extends Form {
 		$issueDao =& DAORegistry::getDAO('IssueDAO');
 
 		$publicIssueId = $this->getData('publicIssueId');
-		if ($publicIssueId && $issueDao->publicIssueIdExists($publicIssueId, $issueId, $press->getPressId())) {
+		if ($publicIssueId && $issueDao->publicIssueIdExists($publicIssueId, $issueId, $press->getId())) {
 			$this->addError('publicIssueId', Locale::translate('editor.issues.issuePublicIdentificationExists'));
 			$this->addErrorField('publicIssueId');
 		}
@@ -193,7 +193,7 @@ class IssueForm extends Form {
 
 			// set up the default values for volume, number and year
 			$issueDao =& DAORegistry::getDAO('IssueDAO');
-			$issue = $issueDao->getLastCreatedIssue($press->getPressId());
+			$issue = $issueDao->getLastCreatedIssue($press->getId());
 
 			if (isset($issue)) {
 				$volumePerYear = $press->getSetting('volumePerYear');
@@ -321,7 +321,7 @@ class IssueForm extends Form {
 		$showYear = $this->getData('showYear');
 		$showTitle = $this->getData('showTitle');
 
-		$issue->setPressId($press->getPressId());
+		$issue->setPressId($press->getId());
 		$issue->setTitle($this->getData('title'), null); // Localized
 		$issue->setVolume(empty($volume) ? 0 : $volume);
 		$issue->setNumber(empty($number) ? 0 : $number);
@@ -391,12 +391,12 @@ class IssueForm extends Form {
 			$press = Request::getPress();
 			$originalFileName = $publicFileManager->getUploadedFileName('coverPage');
 			$newFileName = 'cover_issue_' . $issueId . '_' . $this->getFormLocale() . '.' . $publicFileManager->getExtension($originalFileName);
-			$publicFileManager->uploadPressFile($press->getPressId(), 'coverPage', $newFileName);
+			$publicFileManager->uploadPressFile($press->getId(), 'coverPage', $newFileName);
 			$issue->setOriginalFileName($publicFileManager->truncateFileName($originalFileName, 127), $this->getFormLocale());
 			$issue->setFileName($newFileName, $this->getFormLocale());
 
 			// Store the image dimensions.
-			list($width, $height) = getimagesize($publicFileManager->getPressFilesPath($press->getPressId()) . '/' . $newFileName);
+			list($width, $height) = getimagesize($publicFileManager->getPressFilesPath($press->getId()) . '/' . $newFileName);
 			$issue->setWidth($width, $this->getFormLocale());
 			$issue->setHeight($height, $this->getFormLocale());
 
@@ -407,7 +407,7 @@ class IssueForm extends Form {
 			$press = Request::getPress();
 			$originalFileName = $publicFileManager->getUploadedFileName('styleFile');
 			$newFileName = 'style_' . $issueId . '.css';
-			$publicFileManager->uploadPressFile($press->getPressId(), 'styleFile', $newFileName);
+			$publicFileManager->uploadPressFile($press->getId(), 'styleFile', $newFileName);
 			$issue->setStyleFileName($newFileName);
 			$issue->setOriginalStyleFileName($publicFileManager->truncateFileName($originalFileName, 127));
 			$issueDao->updateIssue($issue);

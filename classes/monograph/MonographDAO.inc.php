@@ -200,7 +200,7 @@ class MonographDAO extends DAO {
 				$monograph->getHideAuthor() === null ? 0 : $monograph->getHideAuthor(),
 				$monograph->getCommentsStatus() === null ? 0 : $monograph->getCommentsStatus(),
 				$monograph->getWorkType(),
-				$monograph->getAcquisitionsArrangement() ,
+				$monograph->getAcquisitionsArrangementId() ,
 				$monograph->getCompletedProspectusFileId()
 			)
 		);
@@ -288,7 +288,7 @@ class MonographDAO extends DAO {
 				$monograph->getEditorFileId(),
 				$monograph->getCopyeditFileId(),
 				$monograph->getHideAuthor(),
-				$monograph->getAcquisitionsArrangement(),
+				$monograph->getAcquisitionsArrangementId(),
 				$monograph->getCompletedProspectusFileId(),
 				$monograph->getMonographId()
 			)

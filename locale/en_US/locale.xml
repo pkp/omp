@@ -39,6 +39,7 @@
 	<message key="submission.externalPeerReview">External Peer Review</message>
 	<message key="submissions.acquisitionsArrangement">Acquisitions Arrangement</message>
 	<message key="submissions.queuedReview">In Review</message>
+	<message key="reviewer.completedReviews">Done</message>
 
 
 	<message key="monograph.abstract">Abstract</message>

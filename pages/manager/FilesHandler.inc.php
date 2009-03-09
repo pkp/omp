@@ -142,7 +142,7 @@ class FilesHandler extends ManagerHandler {
 
 	function getRealFilesDir($currentDir) {
 		$press = &Request::getPress();
-		return Config::getVar('files', 'files_dir') . '/presses/' . $press->getPressId() .'/' . $currentDir;
+		return Config::getVar('files', 'files_dir') . '/presses/' . $press->getId() .'/' . $currentDir;
 	}
 
 	function fileNameFilter($var) {

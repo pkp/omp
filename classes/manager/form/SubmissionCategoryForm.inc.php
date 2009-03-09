@@ -33,13 +33,13 @@ class SubmissionCategoryForm extends AcquisitionsArrangementForm {
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.sections.form.titleRequired'));
 		$this->addCheck(new FormValidatorLocale($this, 'abbrev', 'required', 'manager.sections.form.abbrevRequired'));
 		$this->addCheck(new FormValidatorPost($this));
-		$this->addCheck(new FormValidatorCustom($this, 'reviewFormId', 'optional', 'manager.sections.form.reviewFormId', array(DAORegistry::getDAO('ReviewFormDAO'), 'reviewFormExists'), array($press->getPressId())));
+		$this->addCheck(new FormValidatorCustom($this, 'reviewFormId', 'optional', 'manager.sections.form.reviewFormId', array(DAORegistry::getDAO('ReviewFormDAO'), 'reviewFormExists'), array($press->getId())));
 
 		$this->includeAcquisitionsArrangementEditor = $this->omitAcquisitionsArrangementEditor = null;
 
 		// Get a list of section editors for this press.
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$this->acquisitionsArrangementEditors =& $roleDao->getUsersByRoleId(ROLE_ID_ACQUISITIONS_EDITOR, $press->getPressId());
+		$this->acquisitionsArrangementEditors =& $roleDao->getUsersByRoleId(ROLE_ID_ACQUISITIONS_EDITOR, $press->getId());
 		$this->acquisitionsArrangementEditors =& $this->acquisitionsArrangementEditors->toArray();
 	}
 

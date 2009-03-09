@@ -32,10 +32,10 @@
 	</tr>
 	{iterate from=presses item=press}
 	<tr valign="top">
-		<td><a class="action" href="{url press=$press->getPath() page="manager"}">{$press->getPressName()|escape}</a></td>
+		<td><a class="action" href="{url press=$press->getPath() page="manager"}">{$press->getLocalizedName()|escape}</a></td>
 		<td>{$press->getPath()|escape}</td>
-		<td><a href="{url op="movePress" d=u pressId=$press->getPressId()}">&uarr;</a> <a href="{url op="movePress" d=d pressId=$press->getPressId()}">&darr;</a></td>
-		<td align="right"><a href="{url op="editPress" path=$press->getPressId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a class="action" href="{url op="deletePress" path=$press->getPressId()}" onclick="return confirm('{translate|escape:"jsparam" key="admin.presses.confirmDelete"}')">{translate key="common.delete"}</a></td>
+		<td><a href="{url op="movePress" d=u pressId=$press->getId()}">&uarr;</a> <a href="{url op="movePress" d=d pressId=$press->getId()}">&darr;</a></td>
+		<td align="right"><a href="{url op="editPress" path=$press->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a class="action" href="{url op="deletePress" path=$press->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="admin.presses.confirmDelete"}')">{translate key="common.delete"}</a></td>
 	</tr>
 	<tr>
 		<td colspan="4" class="{if $presses->eof()}end{/if}separator">&nbsp;</td>

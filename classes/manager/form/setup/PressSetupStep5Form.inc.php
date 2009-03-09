@@ -153,9 +153,9 @@ class PressSetupStep5Form extends PressSetupForm {
 				return false;
 			}
 			$uploadName = $settingName . '_' . $locale . $extension;
-			if ($fileManager->uploadPressFile($press->getPressId(), $settingName, $uploadName)) {
+			if ($fileManager->uploadPressFile($press->getId(), $settingName, $uploadName)) {
 				// Get image dimensions
-				$filePath = $fileManager->getPressFilesPath($press->getPressId());
+				$filePath = $fileManager->getPressFilesPath($press->getId());
 				list($width, $height) = getimagesize($filePath . '/' . $uploadName);
 
 				$value = $press->getSetting($settingName);
@@ -167,7 +167,7 @@ class PressSetupStep5Form extends PressSetupForm {
 					'dateUploaded' => Core::getCurrentDate()
 				);
 
-				$settingsDao->updateSetting($press->getPressId(), $settingName, $value, 'object', true);
+				$settingsDao->updateSetting($press->getId(), $settingName, $value, 'object', true);
 				return true;
 			}
 		}
@@ -183,12 +183,12 @@ class PressSetupStep5Form extends PressSetupForm {
 	function deleteImage($settingName, $locale = null) {
 		$press =& Request::getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$setting = $settingsDao->getSetting($press->getPressId(), $settingName);
+		$setting = $settingsDao->getSetting($press->getId(), $settingName);
 
 		import('file.PublicFileManager');
 		$fileManager =& new PublicFileManager();
-		if ($fileManager->removePressFile($press->getPressId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
-			$returner = $settingsDao->deleteSetting($press->getPressId(), $settingName, $locale);
+		if ($fileManager->removePressFile($press->getId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
+			$returner = $settingsDao->deleteSetting($press->getId(), $settingName, $locale);
 			// Ensure page header is refreshed
 			if ($returner) {
 				$templateMgr =& TemplateManager::getManager();
@@ -220,14 +220,14 @@ class PressSetupStep5Form extends PressSetupForm {
 			}
 
 			$uploadName = $settingName . '.css';
-			if($fileManager->uploadPressFile($press->getPressId(), $settingName, $uploadName)) {			
+			if($fileManager->uploadPressFile($press->getId(), $settingName, $uploadName)) {			
 				$value = array(
 					'name' => $fileManager->getUploadedFileName($settingName),
 					'uploadName' => $uploadName,
 					'dateUploaded' => date("Y-m-d g:i:s")
 				);
 
-				$settingsDao->updateSetting($press->getPressId(), $settingName, $value, 'object');
+				$settingsDao->updateSetting($press->getId(), $settingName, $value, 'object');
 				return true;
 			}
 		}
@@ -259,7 +259,7 @@ class PressSetupStep5Form extends PressSetupForm {
 
 		// Save alt text for images
 		$press =& Request::getPress();
-		$pressId = $press->getPressId();
+		$pressId = $press->getId();
 		$locale = $this->getFormLocale();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$images = $this->images;

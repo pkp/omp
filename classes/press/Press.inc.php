@@ -23,7 +23,7 @@ class Press extends DataObject {
 	 * Get the ID of the press
 	 * @return int
 	 */
-	function getPressId() {
+	function getId() {
 		return $this->getData('pressId');
 	}
 
@@ -31,7 +31,7 @@ class Press extends DataObject {
 	 * Set the ID of the press.
 	 * @param $announcementId int
 	 */
-	function setPressId($pressId) {
+	function setId($pressId) {
 		$this->setData('pressId', $pressId);
 	}
 
@@ -39,7 +39,7 @@ class Press extends DataObject {
 	 * Get the name of the press
 	 * @return string
 	 */
-	function getPressName() {
+	function getLocalizedName() {
 		return $this->getLocalizedSetting('name');
 	}
 
@@ -135,8 +135,8 @@ class Press extends DataObject {
 	 * Get the localized description of the press.
 	 * @return string
 	 */
-	function getPressDescription() {
-		return $this->getDescription(Locale::getLocale());
+	function getLocalizedDescription() {
+		return $this->getLocalizedSetting('description');
 	}
 
 	/**

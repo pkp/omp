@@ -42,7 +42,7 @@ class AuthorHandler extends PKPHandler {
 				$active = true;
 		}
 
-		$submissions = $authorSubmissionDao->getAuthorSubmissions($user->getUserId(), $press->getPressId(), $active, $rangeInfo);
+		$submissions = $authorSubmissionDao->getAuthorSubmissions($user->getUserId(), $press->getId(), $active, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageToDisplay', $page);
@@ -80,7 +80,7 @@ class AuthorHandler extends PKPHandler {
 	function validate($reason = null) {
 		parent::validate();
 		$press =& Request::getPress();
-		if (!isset($press) || !Validation::isAuthor($press->getPressId())) {
+		if (!isset($press) || !Validation::isAuthor($press->getId())) {
 			Validation::redirectLogin($reason);
 		}
 

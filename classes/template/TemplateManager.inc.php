@@ -53,9 +53,9 @@ class TemplateManager extends PKPTemplateManager {
 
 			if (isset($press)) {
 				$this->assign_by_ref('currentPress', $press);
-				$pressTitle = $press->getPressName();
+				$pressTitle = $press->getLocalizedName();
 				$this->assign('siteTitle', $pressTitle);
-				$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getPressFilesPath($press->getPressId()));
+				$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getPressFilesPath($press->getId()));
 
 				$this->assign('primaryLocale', $press->getPrimaryLocale());
 				$this->assign('alternateLocales', $press->getSetting('alternateLocales'));
@@ -86,7 +86,7 @@ class TemplateManager extends PKPTemplateManager {
 				// Assign stylesheets and footer
 				$pressStyleSheet = $press->getSetting('pressStyleSheet');
 				if ($pressStyleSheet) {
-					$this->addStyleSheet(Request::getBaseUrl() . '/' . PublicFileManager::getPressFilesPath($press->getPressId()) . '/' . $pressStyleSheet['uploadName']);
+					$this->addStyleSheet(Request::getBaseUrl() . '/' . PublicFileManager::getPressFilesPath($press->getId()) . '/' . $pressStyleSheet['uploadName']);
 				}
 				
 	//			import('payment.ojs.OJSPaymentManager');

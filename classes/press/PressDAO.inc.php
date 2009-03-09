@@ -40,7 +40,7 @@ class PressDAO extends DAO
 
 		$pressIterator =& $this->getPresses();
 		while ($press =& $pressIterator->next()) {
-			$presses[$press->getPressId()] = $press->getPressName();
+			$presses[$press->getId()] = $press->getLocalizedName();
 			unset($press);
 		}
 		unset($pressIterator);
@@ -55,7 +55,7 @@ class PressDAO extends DAO
 	 */
 	function &_returnPressFromRow(&$row) {
 		$press = &new Press();
-		$press->setPressId($row['press_id']);
+		$press->setId($row['press_id']);
 		$press->setPath($row['path']);
 		$press->setSequence($row['seq']);
 		$press->setEnabled($row['enabled']);
@@ -138,8 +138,8 @@ class PressDAO extends DAO
 			)
 		);
 
-		$press->setPressId($this->getInsertPressId());
-		return $press->getPressId();
+		$press->setId($this->getInsertPressId());
+		return $press->getId();
 	}
 
 	/**
@@ -160,7 +160,7 @@ class PressDAO extends DAO
 				$press->getSequence(),
 				$press->getEnabled() ? 1 : 0,
 				$press->getPrimaryLocale(),
-				$press->getPressId()
+				$press->getId()
 			)
 		);
 	}

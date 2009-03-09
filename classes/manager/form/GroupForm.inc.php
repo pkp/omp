@@ -97,7 +97,7 @@ class GroupForm extends Form {
 			$this->group =& new Group();
 		}
 
-		$this->group->setPressId($press->getPressId());
+		$this->group->setPressId($press->getId());
 		$this->group->setTitle($this->getData('title'), null); // Localized
 		$this->group->setContext($this->getData('context'));
 

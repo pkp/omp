@@ -150,7 +150,7 @@ class MetadataForm extends Form {
 
 */		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', isset($this->monograph)?$this->monograph->getMonographId():null);
-		$templateMgr->assign('pressSettings', $settingsDao->getPressSettings($press->getPressId()));
+		$templateMgr->assign('pressSettings', $settingsDao->getPressSettings($press->getId()));
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
 		$templateMgr->assign('canViewAuthors', $this->canViewAuthors);
 /*

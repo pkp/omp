@@ -51,7 +51,7 @@ class IndexHandler extends PKPHandler {
 				if ($enableAnnouncementsHomepage) {
 					$numAnnouncementsHomepage = $press->getSetting('numAnnouncementsHomepage');
 					$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
-					$announcements = &$announcementDao->getNumAnnouncementsNotExpiredByPressId($press->getPressId(), $numAnnouncementsHomepage);
+					$announcements = &$announcementDao->getNumAnnouncementsNotExpiredByPressId($press->getId(), $numAnnouncementsHomepage);
 					$templateMgr->assign('announcements', $announcements);
 					$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
 				}

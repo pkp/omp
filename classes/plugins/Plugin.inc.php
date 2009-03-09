@@ -94,7 +94,7 @@ class Plugin extends PKPPlugin {
 		if (!$isNewPress) return false;
 
 		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
-		$pluginSettingsDao->installSettings($press->getPressId(), $this->getName(), $this->getNewPressPluginSettingsFile());
+		$pluginSettingsDao->installSettings($press->getId(), $this->getName(), $this->getNewPressPluginSettingsFile());
 
 		return false;
 	}

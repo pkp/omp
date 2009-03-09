@@ -77,7 +77,7 @@ class RoleBlockPlugin extends BlockPlugin {
 		if (!$press || !$user) return null;
 
 		$userId = $user->getUserId();
-		$pressId = $press->getPressId();
+		$pressId = $press->getId();
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -110,7 +110,7 @@ class RoleBlockPlugin extends BlockPlugin {
 			case 'editor':
 				if (Request::getRequestedOp() == 'index') return null;
 				$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
-				$submissionsCount =& $editorSubmissionDao->getEditorSubmissionsCount($press->getPressId());
+				$submissionsCount =& $editorSubmissionDao->getEditorSubmissionsCount($press->getId());
 				$templateMgr->assign('submissionsCount', $submissionsCount);
 				return 'editor.tpl';
 			case 'sectionEditor':

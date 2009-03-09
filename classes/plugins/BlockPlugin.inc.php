@@ -39,7 +39,7 @@ class BlockPlugin extends Plugin {
 	 */
 	function getBlockContext() {
 		$press = &Request::getPress();
-		$pressId = ($press ? $press->getPressId() : 0);
+		$pressId = ($press ? $press->getId() : 0);
 		return $this->getSetting($pressId, 'context');
 	}
 
@@ -49,7 +49,7 @@ class BlockPlugin extends Plugin {
 	 */
 	function setBlockContext($context) {
 		$press =& Request::getPress();
-		$pressId = ($press ? $press->getPressId() : 0);
+		$pressId = ($press ? $press->getId() : 0);
 		return $this->updateSetting($pressId, 'context', $context, 'int');
 	}
 
@@ -67,7 +67,7 @@ class BlockPlugin extends Plugin {
 	 */
 	function getEnabled() {
 		$press =& Request::getPress();
-		$pressId = ($press ? $press->getPressId():0);
+		$pressId = ($press ? $press->getId():0);
 		return $this->getSetting($pressId, 'enabled');
 	}
 
@@ -77,7 +77,7 @@ class BlockPlugin extends Plugin {
 	 */
 	function setEnabled($enabled) {
 		$press = &Request::getPress();
-		$pressId = ($press ? $press->getPressId() : 0);
+		$pressId = ($press ? $press->getId() : 0);
 		return $this->updateSetting($pressId, 'enabled', $enabled, 'bool');
 	}
 
@@ -88,7 +88,7 @@ class BlockPlugin extends Plugin {
 	 */
 	function getSeq() {
 		$press =& Request::getPress();
-		$pressId = ($press ? $press->getPressId() : 0);
+		$pressId = ($press ? $press->getId() : 0);
 		return $this->getSetting($pressId, 'seq');
 	}
 
@@ -99,7 +99,7 @@ class BlockPlugin extends Plugin {
 	 */
 	function setSeq($i) {
 		$press =& Request::getPress();
-		$pressId = ($press ? $press->getPressId() : 0);
+		$pressId = ($press ? $press->getId() : 0);
 		return $this->updateSetting($pressId, 'seq', $i, 'int');
 	}
 

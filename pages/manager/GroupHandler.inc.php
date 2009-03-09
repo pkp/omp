@@ -27,7 +27,7 @@ class GroupHandler extends ManagerHandler {
 		$rangeInfo =& PKPHandler::getRangeInfo('groups');
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
-		$groups =& $groupDao->getGroups($press->getPressId(), null, $rangeInfo);
+		$groups =& $groupDao->getGroups($press->getId(), null, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('groups', $groups);
@@ -45,7 +45,7 @@ class GroupHandler extends ManagerHandler {
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteGroup($group);
-		$groupDao->resequenceGroups($press->getPressId());
+		$groupDao->resequenceGroups($press->getId());
 
 		Request::redirect(null, null, 'groups');
 	}
@@ -60,7 +60,7 @@ class GroupHandler extends ManagerHandler {
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$group->setSequence($group->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
 		$groupDao->updateGroup($group);
-		$groupDao->resequenceGroups($press->getPressId());
+		$groupDao->resequenceGroups($press->getId());
 
 		Request::redirect(null, null, 'groups');
 	}
@@ -76,7 +76,7 @@ class GroupHandler extends ManagerHandler {
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$group =& $groupDao->getGroup($groupId);
-			if (!$group || $press->getPressId() !== $group->getPressId()) {
+			if (!$group || $press->getId() !== $group->getPressId()) {
 				Request::redirect(null, null, 'groups');
 			}
 		} else $group = null;
@@ -210,7 +210,7 @@ class GroupHandler extends ManagerHandler {
 			}
 
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$users = $roleDao->getUsersByRoleId(null, $press->getPressId(), $searchType, $search, $searchMatch);
+			$users = $roleDao->getUsersByRoleId(null, $press->getId(), $searchType, $search, $searchMatch);
 
 			$templateMgr =& TemplateManager::getManager();
 
@@ -270,7 +270,7 @@ class GroupHandler extends ManagerHandler {
 		$press =& Request::getPress();
 		$boardEnabled = Request::getUserVar('boardEnabled')==1?true:false;
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$pressSettingsDao->updateSetting($press->getPressId(), 'boardEnabled', $boardEnabled);
+		$pressSettingsDao->updateSetting($press->getId(), 'boardEnabled', $boardEnabled);
 		Request::redirect(null, null, 'groups');
 	}
 
@@ -308,7 +308,7 @@ class GroupHandler extends ManagerHandler {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$group =& $groupDao->getGroup($groupId);
 
-			if (!$group || $group->getPressId() !== $press->getPressId()) $passedValidation = false;
+			if (!$group || $group->getPressId() !== $press->getId()) $passedValidation = false;
 			else $returner[] =& $group;
 
 			if ($userId !== null) {

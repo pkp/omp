@@ -183,7 +183,7 @@ class AdminLanguagesHandler extends AdminHandler {
 
 			if (is_array($supportedLocales)) {
 				$supportedLocales = array_intersect($supportedLocales, $siteSupportedLocales);
-				$settingsDao->updateSetting($press->getPressId(), 'supportedLocales', $supportedLocales, 'object');
+				$settingsDao->updateSetting($press->getId(), 'supportedLocales', $supportedLocales, 'object');
 			}
 		}
 	}

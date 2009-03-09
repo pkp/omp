@@ -28,8 +28,8 @@ class ManagerHandler extends PKPHandler {
 
 		$press =& Request::getPress();
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$subscriptionsEnabled = $pressSettingsDao->getSetting($press->getPressId(), 'enableSubscriptions'); 
-		$announcementsEnabled = $pressSettingsDao->getSetting($press->getPressId(), 'enableAnnouncements'); 
+		$subscriptionsEnabled = $pressSettingsDao->getSetting($press->getId(), 'enableSubscriptions'); 
+		$announcementsEnabled = $pressSettingsDao->getSetting($press->getId(), 'enableAnnouncements'); 
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('subscriptionsEnabled', $subscriptionsEnabled);
@@ -72,7 +72,7 @@ class ManagerHandler extends PKPHandler {
 					// Check for a group ID and add recipients.
 					$groupDao =& DAORegistry::getDAO('GroupDAO');
 					$group =& $groupDao->getGroup($groupId);
-					if ($group && $group->getPressId() == $press->getPressId()) {
+					if ($group && $group->getPressId() == $press->getId()) {
 						$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 						$memberships =& $groupMembershipDao->getMemberships($group->getGroupId());
 						$memberships =& $memberships->toArray();

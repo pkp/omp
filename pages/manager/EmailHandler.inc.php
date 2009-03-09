@@ -28,7 +28,7 @@ class EmailHandler extends ManagerHandler {
 
 		$press =& Request::getPress();
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplates =& $emailTemplateDao->getEmailTemplates(Locale::getLocale(), $press->getPressId());
+		$emailTemplates =& $emailTemplateDao->getEmailTemplates(Locale::getLocale(), $press->getId());
 
 		import('core.ArrayItemIterator');
 		$emailTemplates =& ArrayItemIterator::fromRangeInfo($emailTemplates, $rangeInfo);
@@ -97,8 +97,8 @@ class EmailHandler extends ManagerHandler {
 		$emailKey = array_shift($args);
 
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-		if ($emailTemplateDao->customTemplateExistsByKey($emailKey, $press->getPressId())) {
-			$emailTemplateDao->deleteEmailTemplateByKey($emailKey, $press->getPressId());
+		if ($emailTemplateDao->customTemplateExistsByKey($emailKey, $press->getId())) {
+			$emailTemplateDao->deleteEmailTemplateByKey($emailKey, $press->getId());
 		}
 
 		Request::redirect(null, null, 'emails');
@@ -115,7 +115,7 @@ class EmailHandler extends ManagerHandler {
 			$press = &Request::getPress();
 
 			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-			$emailTemplateDao->deleteEmailTemplateByKey($args[0], $press->getPressId());
+			$emailTemplateDao->deleteEmailTemplateByKey($args[0], $press->getId());
 		}
 
 		Request::redirect(null, null, 'emails');
@@ -129,7 +129,7 @@ class EmailHandler extends ManagerHandler {
 
 		$press = &Request::getPress();
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplateDao->deleteEmailTemplatesByPress($press->getPressId());
+		$emailTemplateDao->deleteEmailTemplatesByPress($press->getId());
 
 		Request::redirect(null, null, 'emails');
 	}
@@ -145,14 +145,14 @@ class EmailHandler extends ManagerHandler {
 			$press = &Request::getPress();
 
 			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $press->getPressId());
+			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $press->getId());
 
 			if (isset($emailTemplate)) {
 				if ($emailTemplate->getCanDisable()) {
 					$emailTemplate->setEnabled(0);
 
 					if ($emailTemplate->getPressId() == null) {
-						$emailTemplate->setPressId($press->getPressId());
+						$emailTemplate->setPressId($press->getId());
 					}
 
 					if ($emailTemplate->getEmailId() != null) {
@@ -178,7 +178,7 @@ class EmailHandler extends ManagerHandler {
 			$press = &Request::getPress();
 
 			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $press->getPressId());
+			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $press->getId());
 
 			if (isset($emailTemplate)) {
 				if ($emailTemplate->getCanDisable()) {

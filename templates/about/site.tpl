@@ -20,7 +20,7 @@
 <h3>{translate key="press.presses"}</h3>
 <ul class="plain">
 {iterate from=presses item=press}
-	<li>&#187; <a href="{url press=`$press->getPath()` page="about" op="index"}">{$press->getPressName()|escape}</a></li>
+	<li>&#187; <a href="{url press=`$press->getPath()` page="about" op="index"}">{$press->getLocalizedName()|escape}</a></li>
 {/iterate}
 </ul>
 

@@ -11,7 +11,7 @@
 {assign var="pageTitle" value="author.submit.step5"}
 {include file="author/submit/submitStepHeader.tpl"}
 
-<p>{translate key="author.submit.confirmationDescription" pressTitle=$press->getPressName()}</p>
+<p>{translate key="author.submit.confirmationDescription" pressTitle=$press->getLocalizedName()}</p>
 
 <form method="post" action="{url op="saveSubmit" path=$submitStep}">
 <input type="hidden" name="monographId" value="{$monographId|escape}" />

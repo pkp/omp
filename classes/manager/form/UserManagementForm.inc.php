@@ -314,7 +314,7 @@ class UserManagementForm extends Form {
 					if (!$isManager && $roleId != ROLE_ID_READER) continue;
 					if ($roleId != null) {
 						$role = &new Role();
-						$role->setPressId($press->getPressId());
+						$role->setPressId($press->getId());
 						$role->setUserId($userId);
 						$role->setRoleId($roleId);
 						$roleDao->insertRole($role);

@@ -17,6 +17,7 @@
 	<message key="editor.review.createReviewer">Create New Reviewer</message>
 	<message key="editor.article.reviewForms">Review Forms</message>
 	<message key="editor.regrets.link">View Regrets, Cancels, Previous Rounds</message>
+	<message key="editor.regrets.link">View Regrets, Cancels, Previous Rounds</message>
 
 
 	<message key="editor.monograph.reviewForms">Review Forms</message>
@@ -155,7 +156,7 @@
 	<message key="editor.article.saveRating">Save Rating</message>
 	<message key="editor.article.noneSelected">None Selected</message>
 	<message key="editor.article.authorProofing">Author Proofing</message>
-	<message key="editor.article.archiveSubmission">Archive Submission</message>
+	<message key="editor.monograph.archiveSubmission">Reject and Archive Submission</message>
 	<message key="editor.article.restoreToQueue">Restore to Active List</message>
 	<message key="editor.monograph.assignAcquisitionsEditor">Add Acquisitions Editor</message>
 	<message key="editor.monograph.assignEditor">Add Editor</message>

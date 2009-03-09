@@ -62,7 +62,7 @@ class ReviewFormForm extends Form {
 		if ($this->reviewFormId != null) {
 			$press =& Request::getPress();
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-			$reviewForm =& $reviewFormDao->getReviewForm($this->reviewFormId, $press->getPressId());
+			$reviewForm =& $reviewFormDao->getReviewForm($this->reviewFormId, $press->getId());
 
 			if ($reviewForm == null) {
 				$this->reviewFormId = null;
@@ -87,7 +87,7 @@ class ReviewFormForm extends Form {
 	 */
 	function execute() {
 		$press =& Request::getPress();
-		$pressId = $press->getPressId();
+		$pressId = $press->getId();
 
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 

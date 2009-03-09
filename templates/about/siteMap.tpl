@@ -21,7 +21,7 @@
 	<ul class="plain">
 	{if $presses|@count>1 && !$currentPress}
 		{foreach from=$presses item=press}
-			<li><a href="{url press=`$press->getPath()` page="about" op="siteMap"}">{$press->getPressName()|escape}</a></li>
+			<li><a href="{url press=`$press->getPath()` page="about" op="siteMap"}">{$press->getLocalizedName()|escape}</a></li>
 		{/foreach}
 	{else}
 		{if $presses|@count==1}
@@ -32,7 +32,7 @@
 			{assign var=onlyOnePress value=1}
 		{/if}
 
-		<li><a href="{url press=`$currentPress->getPath()`}">{$currentPress->getPressName()|escape}</a><br/>
+		<li><a href="{url press=`$currentPress->getPath()`}">{$currentPress->getLocalizedName()|escape}</a><br/>
 			<ul class="plain">
 				<li><a href="{url press=`$currentPress->getPath()` page="about"}">{translate key="navigation.about"}</a></li>
 				<li>
@@ -40,7 +40,7 @@
 						<ul class="plain">
 							<li><a href="{url press=`$currentPress->getPath()` page="user"}">{translate key="navigation.userHome"}</a><br/>
 								<ul class="plain">
-									{assign var=currentPressId value=$currentPress->getPressId()}
+									{assign var=currentPressId value=$currentPress->getId()}
 									{foreach from=$rolesByPress[$currentPressId] item=role}
 									{translate|assign:"roleName" key=$role->getRoleName()}
 										<li><a href="{url press=`$currentPress->getPath()` page=`$role->getRolePath()`}">{$roleName|escape}</a></li>

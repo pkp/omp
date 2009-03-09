@@ -79,7 +79,7 @@ class AcquisitionsArrangementForm extends Form {
 		$acquisitionsArrangementEditorsDao =& DAORegistry::getDAO('AcquisitionsArrangementEditorsDAO');
 		if (isset($this->acquisitionsArrangementId)) {
 			$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-			$arrangement =& $arrangementDao->getAcquisitionsArrangement($this->acquisitionsArrangementId, $press->getPressId());
+			$arrangement =& $arrangementDao->getAcquisitionsArrangement($this->acquisitionsArrangementId, $press->getId());
 
 			if ($arrangement == null) {
 				unset($this->acquisitionsArrangementId);
@@ -93,13 +93,13 @@ class AcquisitionsArrangementForm extends Form {
 					'hideAbout' => $arrangement->getHideAbout(),
 					'disableComments' => $arrangement->getDisableComments(),
 					'policy' => $arrangement->getPolicy(null), // Localized
-					'assignedEditors' => $acquisitionsArrangementEditorsDao->getEditorsByAcquisitionsArrangementId($press->getPressId(), $this->acquisitionsArrangementId),
-					'unassignedEditors' => $acquisitionsArrangementEditorsDao->getEditorsNotInArrangement($press->getPressId(), $this->acquisitionsArrangementId)
+					'assignedEditors' => $acquisitionsArrangementEditorsDao->getEditorsByAcquisitionsArrangementId($press->getId(), $this->acquisitionsArrangementId),
+					'unassignedEditors' => $acquisitionsArrangementEditorsDao->getEditorsNotInArrangement($press->getId(), $this->acquisitionsArrangementId)
 				);
 			}
 		} else {
 			$this->_data = array(
-				'unassignedEditors' => $acquisitionsArrangementEditorsDao->getEditorsNotInArrangement($press->getPressId(), null)
+				'unassignedEditors' => $acquisitionsArrangementEditorsDao->getEditorsNotInArrangement($press->getId(), null)
 			);
 		}
 	}
@@ -150,7 +150,7 @@ class AcquisitionsArrangementForm extends Form {
 		$templateMgr->assign('commentsEnabled', $press->getSetting('enableComments'));
 
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForms =& $reviewFormDao->getPressActiveReviewForms($press->getPressId());
+		$reviewForms =& $reviewFormDao->getPressActiveReviewForms($press->getId());
 		$reviewFormOptions = array();
 		while ($reviewForm =& $reviewForms->next()) {
 			$reviewFormOptions[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
@@ -165,7 +165,7 @@ class AcquisitionsArrangementForm extends Form {
 	 */
 	function execute() {
 		$press =& Request::getPress();
-		$pressId = $press->getPressId();
+		$pressId = $press->getId();
 
 		$acquisitionsArrangementsDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
 

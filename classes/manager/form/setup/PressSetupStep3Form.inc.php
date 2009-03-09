@@ -110,19 +110,19 @@ class PressSetupStep3Form extends PressSetupForm {
 			}
 			$uploadName = $settingName . '_' . $locale . '.' . $extension;
 
-			$setting = $settingsDao->getSetting($press->getPressId(), $settingName);
+			$setting = $settingsDao->getSetting($press->getId(), $settingName);
 
 
-			if ($fileManager->uploadPressFile($press->getPressId(), $settingName, $uploadName)) {
+			if ($fileManager->uploadPressFile($press->getId(), $settingName, $uploadName)) {
 
 				if (isset($setting)) {
 					$fileManager->removePressFile(
-								$press->getPressId(),
+								$press->getId(),
 								$locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName']
 								);
 				}
 
-				$filePath = $fileManager->getPressFilesPath($press->getPressId());
+				$filePath = $fileManager->getPressFilesPath($press->getId());
 				$size = $fileManager->getNiceFileSize(filesize($filePath . '/' . $uploadName));
 
 				$value = $press->getSetting($settingName);
@@ -133,7 +133,7 @@ class PressSetupStep3Form extends PressSetupForm {
 					'dateUploaded' => Core::getCurrentDate()
 				);
 
-				$settingsDao->updateSetting($press->getPressId(), $settingName, $value, 'object', true);
+				$settingsDao->updateSetting($press->getId(), $settingName, $value, 'object', true);
 				return true;
 			}
 		}
@@ -149,12 +149,12 @@ class PressSetupStep3Form extends PressSetupForm {
 	function deleteProspectus($settingName, $locale = null) {
 		$press =& Request::getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$setting = $settingsDao->getSetting($press->getPressId(), $settingName);
+		$setting = $settingsDao->getSetting($press->getId(), $settingName);
 
 		import('file.PublicFileManager');
 		$fileManager =& new PublicFileManager();
-		if ($fileManager->removePressFile($press->getPressId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
-			$returner = $settingsDao->deleteSetting($press->getPressId(), $settingName, $locale);
+		if ($fileManager->removePressFile($press->getId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
+			$returner = $settingsDao->deleteSetting($press->getId(), $settingName, $locale);
 			return $returner;
 		} else {
 			return false;

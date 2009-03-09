@@ -34,10 +34,10 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$user =& Request::getUser();
 
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$pressSettings = $pressSettingsDao->getPressSettings($press->getPressId());
+		$pressSettings = $pressSettingsDao->getPressSettings($press->getId());
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->roleExists($press->getPressId(), $user->getUserId(), ROLE_ID_EDITOR);
+		$isEditor = $roleDao->roleExists($press->getId(), $user->getUserId(), ROLE_ID_EDITOR);
 
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
 		$arrangement =& $arrangementDao->getAcquisitionsArrangement($submission->getAcquisitionsArrangementId());
@@ -57,7 +57,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr->assign('isEditor', $isEditor);
 		$templateMgr->assign('enableComments', $enableComments);
 
-		$templateMgr->assign_by_ref('arrangements', $arrangementDao->getAcquisitionsArrangementsTitles($press->getPressId()));
+		$templateMgr->assign_by_ref('arrangements', $arrangementDao->getAcquisitionsArrangementsTitles($press->getId()));
 
 		if ($enableComments) {
 			import('monograph.Monograph');
@@ -86,15 +86,15 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 			$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
 			
 			if ( $paymentManager->submissionEnabled() ) {
-				$templateMgr->assign_by_ref('submissionPayment', $completedPaymentDAO->getSubmissionCompletedPayment ( $press->getPressId(), $monographId ));
+				$templateMgr->assign_by_ref('submissionPayment', $completedPaymentDAO->getSubmissionCompletedPayment ( $press->getId(), $monographId ));
 			}
 			
 			if ( $paymentManager->fastTrackEnabled()  ) {
-				$templateMgr->assign_by_ref('fastTrackPayment', $completedPaymentDAO->getFastTrackCompletedPayment ( $press->getPressId(), $monographId ));
+				$templateMgr->assign_by_ref('fastTrackPayment', $completedPaymentDAO->getFastTrackCompletedPayment ( $press->getId(), $monographId ));
 			}
 
 			if ( $paymentManager->publicationEnabled()  ) {
-				$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getPressId(), $monographId ));
+				$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getId(), $monographId ));
 			}				   
 		}		
 */
@@ -155,7 +155,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$round = isset($args[1]) ? $args[1] : $submission->getCurrentRound();
 
 //		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-//		$sections =& $sectionDao->getPressSections($press->getPressId());
+//		$sections =& $sectionDao->getPressSections($press->getId());
 
 		$showPeerReviewOptions = $round == $submission->getCurrentRound() && $submission->getReviewFile() != null ? true : false;
 
@@ -185,7 +185,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		}
 */
 		// get press published review form titles
-		$reviewFormTitles =& $reviewFormDao->getPressReviewFormTitles($press->getPressId(), 1);
+		$reviewFormTitles =& $reviewFormDao->getPressReviewFormTitles($press->getId(), 1);
 
 		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 		$reviewFormResponses = array();
@@ -275,7 +275,7 @@ $sections = null;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$user =& Request::getUser();
-		$templateMgr->assign('isEditor', $roleDao->roleExists($press->getPressId(), $user->getUserId(), ROLE_ID_EDITOR));
+		$templateMgr->assign('isEditor', $roleDao->roleExists($press->getId(), $user->getUserId(), ROLE_ID_EDITOR));
 
 /*		import('issue.IssueAction');
 		$templateMgr->assign('issueOptions', IssueAction::getIssueOptions());
@@ -298,7 +298,7 @@ $sections = null;
 		$publicationFeeEnabled = $paymentManager->publicationEnabled();
 		$templateMgr->assign('publicatonFeeEnabled',  $publicationFeeEnabled);
 		if ( $publicationFeeEnabled ) {
-			$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getPressId(), $monographId ));			   
+			$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getId(), $monographId ));			   
 		}	
 */
 		$templateMgr->assign('helpTopicId', 'editorial.acquisitionsEditorsRole.editing');
@@ -400,7 +400,7 @@ $sections = null;
 			}
 
 			$rangeInfo =& PKPHandler::getRangeInfo('reviewers');
-			$reviewers = $acquisitionsEditorSubmissionDao->getReviewersForMonograph($press->getPressId(), $monographId, $submission->getCurrentRound(), REVIEW_TYPE_INTERNAL, $searchType, $search, $searchMatch, $rangeInfo);
+			$reviewers = $acquisitionsEditorSubmissionDao->getReviewersForMonograph($press->getId(), $monographId, $submission->getCurrentRound(), REVIEW_TYPE_INTERNAL, $searchType, $search, $searchMatch, $rangeInfo);
 
 			$press = Request::getPress();
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -414,7 +414,7 @@ $sections = null;
 
 			$templateMgr->assign_by_ref('reviewers', $reviewers);
 			$templateMgr->assign('monographId', $monographId);
-			$templateMgr->assign('reviewerStatistics', $acquisitionsEditorSubmissionDao->getReviewerStatistics($press->getPressId()));
+			$templateMgr->assign('reviewerStatistics', $acquisitionsEditorSubmissionDao->getReviewerStatistics($press->getId()));
 			$templateMgr->assign('fieldOptions', Array(
 				USER_FIELD_INTERESTS => 'user.interests',
 				USER_FIELD_FIRSTNAME => 'user.firstName',
@@ -422,9 +422,9 @@ $sections = null;
 				USER_FIELD_USERNAME => 'user.username',
 				USER_FIELD_EMAIL => 'user.email'
 			));
-			$templateMgr->assign('completedReviewCounts', $reviewAssignmentDao->getCompletedReviewCounts($press->getPressId()));
+			$templateMgr->assign('completedReviewCounts', $reviewAssignmentDao->getCompletedReviewCounts($press->getId()));
 			$templateMgr->assign('rateReviewerOnQuality', $press->getSetting('rateReviewerOnQuality'));
-			$templateMgr->assign('averageQualityRatings', $reviewAssignmentDao->getAverageQualityRatings($press->getPressId()));
+			$templateMgr->assign('averageQualityRatings', $reviewAssignmentDao->getAverageQualityRatings($press->getId()));
 
 			$templateMgr->assign('helpTopicId', 'press.roles.reviewer');
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
@@ -465,7 +465,7 @@ $sections = null;
 			}
 
 			$rangeInfo =& PKPHandler::getRangeInfo('reviewers');
-			$reviewers = $acquisitionsEditorSubmissionDao->getReviewersForMonograph($press->getPressId(), $monographId, $submission->getCurrentRound(), REVIEW_TYPE_EXTERNAL, $searchType, $search, $searchMatch, $rangeInfo);
+			$reviewers = $acquisitionsEditorSubmissionDao->getReviewersForMonograph($press->getId(), $monographId, $submission->getCurrentRound(), REVIEW_TYPE_EXTERNAL, $searchType, $search, $searchMatch, $rangeInfo);
 
 			$press = Request::getPress();
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -479,7 +479,7 @@ $sections = null;
 
 			$templateMgr->assign_by_ref('reviewers', $reviewers);
 			$templateMgr->assign('monographId', $monographId);
-			$templateMgr->assign('reviewerStatistics', $acquisitionsEditorSubmissionDao->getReviewerStatistics($press->getPressId()));
+			$templateMgr->assign('reviewerStatistics', $acquisitionsEditorSubmissionDao->getReviewerStatistics($press->getId()));
 			$templateMgr->assign('fieldOptions', Array(
 				USER_FIELD_INTERESTS => 'user.interests',
 				USER_FIELD_FIRSTNAME => 'user.firstName',
@@ -487,9 +487,9 @@ $sections = null;
 				USER_FIELD_USERNAME => 'user.username',
 				USER_FIELD_EMAIL => 'user.email'
 			));
-			$templateMgr->assign('completedReviewCounts', $reviewAssignmentDao->getCompletedReviewCounts($press->getPressId()));
+			$templateMgr->assign('completedReviewCounts', $reviewAssignmentDao->getCompletedReviewCounts($press->getId()));
 			$templateMgr->assign('rateReviewerOnQuality', $press->getSetting('rateReviewerOnQuality'));
-			$templateMgr->assign('averageQualityRatings', $reviewAssignmentDao->getAverageQualityRatings($press->getPressId()));
+			$templateMgr->assign('averageQualityRatings', $reviewAssignmentDao->getAverageQualityRatings($press->getId()));
 
 			$templateMgr->assign('helpTopicId', 'press.roles.reviewer');
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
@@ -612,9 +612,9 @@ $sections = null;
 
 		// Enroll reviewer
 		for ($i=0; $i<count($users); $i++) {
-			if (!$roleDao->roleExists($press->getPressId(), $users[$i], $roleId)) {
+			if (!$roleDao->roleExists($press->getId(), $users[$i], $roleId)) {
 				$role = new Role();
-				$role->setPressId($press->getPressId());
+				$role->setPressId($press->getId());
 				$role->setUserId($users[$i]);
 				$role->setRoleId($roleId);
 
@@ -757,7 +757,7 @@ $sections = null;
 			$reviewAssignment = $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
 			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-			$settings =& $settingsDao->getPressSettings($press->getPressId());
+			$settings =& $settingsDao->getPressSettings($press->getId());
 
 			$templateMgr =& TemplateManager::getManager();
 
@@ -876,7 +876,7 @@ $sections = null;
 
 		import('file.PublicFileManager');
 		$publicFileManager = new PublicFileManager();
-		$publicFileManager->removePressFile($press->getPressId(),$submission->getFileName($formLocale));
+		$publicFileManager->removePressFile($press->getId(),$submission->getFileName($formLocale));
 		$submission->setFileName('', $formLocale);
 		$submission->setOriginalFileName('', $formLocale);
 		$submission->setWidth('', $formLocale);
@@ -905,7 +905,7 @@ $sections = null;
 
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getPressId());
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -953,7 +953,7 @@ $sections = null;
 			$press =& Request::getPress();
 			$rangeInfo =& PKPHandler::getRangeInfo('reviewForms');
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-			$reviewForms =& $reviewFormDao->getPressActiveReviewForms($press->getPressId(), $rangeInfo);
+			$reviewForms =& $reviewFormDao->getPressActiveReviewForms($press->getId(), $rangeInfo);
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
 
@@ -1032,7 +1032,7 @@ $sections = null;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		if (isset($args[1]) && $args[1] != null && $roleDao->roleExists($press->getPressId(), $args[1], ROLE_ID_COPYEDITOR)) {
+		if (isset($args[1]) && $args[1] != null && $roleDao->roleExists($press->getId(), $args[1], ROLE_ID_COPYEDITOR)) {
 			AcquisitionsEditorAction::selectCopyeditor($submission, $args[1]);
 			Request::redirect(null, null, 'submissionEditing', $monographId);
 		} else {
@@ -1054,8 +1054,8 @@ $sections = null;
 				$search = $searchInitial;
 			}
 
-			$copyeditors = $roleDao->getUsersByRoleId(ROLE_ID_COPYEDITOR, $press->getPressId(), $searchType, $search, $searchMatch);
-			$copyeditorStatistics = $acquisitionsEditorSubmissionDao->getCopyeditorStatistics($press->getPressId());
+			$copyeditors = $roleDao->getUsersByRoleId(ROLE_ID_COPYEDITOR, $press->getId(), $searchType, $search, $searchMatch);
+			$copyeditorStatistics = $acquisitionsEditorSubmissionDao->getCopyeditorStatistics($press->getId());
 
 			$templateMgr =& TemplateManager::getManager();
 
@@ -1434,7 +1434,7 @@ $sections = null;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		if ($editorId && $roleDao->roleExists($press->getPressId(), $editorId, ROLE_ID_LAYOUT_EDITOR)) {
+		if ($editorId && $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_LAYOUT_EDITOR)) {
 			AcquisitionsEditorAction::assignLayoutEditor($submission, $editorId);
 			Request::redirect(null, null, 'submissionEditing', $monographId);
 		} else {
@@ -1452,10 +1452,10 @@ $sections = null;
 				$search = $searchInitial;
 			}
 
-			$layoutEditors = $roleDao->getUsersByRoleId(ROLE_ID_LAYOUT_EDITOR, $press->getPressId(), $searchType, $search, $searchMatch);
+			$layoutEditors = $roleDao->getUsersByRoleId(ROLE_ID_LAYOUT_EDITOR, $press->getId(), $searchType, $search, $searchMatch);
 
 			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('SectionEditorSubmissionDAO');
-			$layoutEditorStatistics = $acquisitionsEditorSubmissionDao->getLayoutEditorStatistics($press->getPressId());
+			$layoutEditorStatistics = $acquisitionsEditorSubmissionDao->getLayoutEditorStatistics($press->getId());
 
 			parent::setupTemplate(true, $monographId, 'editing');
 
@@ -2012,7 +2012,7 @@ $sections = null;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		if ($userId && $monographId && $roleDao->roleExists($press->getPressId(), $userId, ROLE_ID_PROOFREADER)) {
+		if ($userId && $monographId && $roleDao->roleExists($press->getId(), $userId, ROLE_ID_PROOFREADER)) {
 			import('submission.proofreader.ProofreaderAction');
 			ProofreaderAction::selectProofreader($userId, $submission);
 			Request::redirect(null, null, 'submissionEditing', $monographId);
@@ -2033,10 +2033,10 @@ $sections = null;
 				$search = $searchInitial;
 			}
 
-			$proofreaders = $roleDao->getUsersByRoleId(ROLE_ID_PROOFREADER, $press->getPressId(), $searchType, $search, $searchMatch);
+			$proofreaders = $roleDao->getUsersByRoleId(ROLE_ID_PROOFREADER, $press->getId(), $searchType, $search, $searchMatch);
 
 			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('SectionEditorSubmissionDAO');
-			$proofreaderStatistics = $acquisitionsEditorSubmissionDao->getProofreaderStatistics($press->getPressId());
+			$proofreaderStatistics = $acquisitionsEditorSubmissionDao->getProofreaderStatistics($press->getId());
 
 			$templateMgr =& TemplateManager::getManager();
 
@@ -2231,7 +2231,7 @@ $sections = null;
 		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($monographId);
 
 		$issueDao =& DAORegistry::getDAO('IssueDAO');
-		$issue =& $issueDao->getIssueById($issueId, $press->getPressId());
+		$issue =& $issueDao->getIssueById($issueId, $press->getId());
 
 		if ($issue) {
 			// Schedule against an issue.
@@ -2297,7 +2297,7 @@ $sections = null;
 		$user =& Request::getUser();
 
 		$queuedPayment =& $paymentManager->createQueuedPayment(
-			$press->getPressId(),
+			$press->getId(),
 			PAYMENT_TYPE_SUBMISSION,
 			$markAsPaid ? $submission->getUserId() : $user->getUserId(),
 			$monographId,
@@ -2321,7 +2321,7 @@ $sections = null;
 		$user =& Request::getUser();
 
 		$queuedPayment =& $paymentManager->createQueuedPayment(
-			$press->getPressId(),
+			$press->getId(),
 			PAYMENT_TYPE_FASTTRACK,
 			$markAsPaid ? $submission->getUserId() : $user->getUserId(),
 			$monographId,
@@ -2347,7 +2347,7 @@ $sections = null;
 		$user =& Request::getUser();
 
 		$queuedPayment =& $paymentManager->createQueuedPayment(
-			$press->getPressId(),
+			$press->getId(),
 			PAYMENT_TYPE_PUBLICATION,
 			$markAsPaid ? $submission->getUserId() : $user->getUserId(),
 			$monographId,
@@ -2392,7 +2392,7 @@ $sections = null;
 		if ($acquisitionsEditorSubmission == null) {
 			$isValid = false;echo 'shit';exit;
 
-		} else if ($acquisitionsEditorSubmission->getPressId() != $press->getPressId()) {
+		} else if ($acquisitionsEditorSubmission->getPressId() != $press->getId()) {
 			$isValid = false;
 
 		} else if ($acquisitionsEditorSubmission->getDateSubmitted() == null) {

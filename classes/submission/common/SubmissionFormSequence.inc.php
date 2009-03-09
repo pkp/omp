@@ -90,7 +90,7 @@ class SubmissionFormSequence
 			return false;
 
 		if (isset($this->monograph)) {
-			if ($this->monograph->getPressId() !== $press->getPressId())
+			if ($this->monograph->getPressId() !== $press->getId())
 				return false;
 		}
 

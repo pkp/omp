@@ -25,12 +25,12 @@ class CustomLocalePlugin extends GenericPlugin {
 
 			if ($this->getEnabled()) {
 				import('file.FileManager');
-				$journal = Request::getPress();
-				$journalId = $journal->getPressId();
+				$press = Request::getPress();
+				$pressId = $press->getId();
 				$locale = Locale::getLocale();
 				$localeFiles = Locale::getLocaleFiles($locale); 
 				$publicFilesDir = Config::getVar('files', 'public_files_dir');
-				$customLocaleDir = $publicFilesDir . DIRECTORY_SEPARATOR . 'journals' . DIRECTORY_SEPARATOR . $journalId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR;
+				$customLocaleDir = $publicFilesDir . DIRECTORY_SEPARATOR . 'presss' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR;
 
 				foreach ($localeFiles as $localeFile) {
 					$localeFilename = $localeFile->getFilename();
@@ -59,15 +59,15 @@ class CustomLocalePlugin extends GenericPlugin {
 	}
 
 	function getEnabled() {
-		$journal = &Request::getPress();
-		if (!$journal) return false;
-		return $this->getSetting($journal->getPressId(), 'enabled');
+		$press = &Request::getPress();
+		if (!$press) return false;
+		return $this->getSetting($press->getId(), 'enabled');
 	}
 
 	function setEnabled($enabled) {
-		$journal = &Request::getPress();
-		if ($journal) {
-			$this->updateSetting($journal->getPressId(), 'enabled', $enabled ? true : false);
+		$press = &Request::getPress();
+		if ($press) {
+			$this->updateSetting($press->getId(), 'enabled', $enabled ? true : false);
 			return true;
 		}
 		return false;

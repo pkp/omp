@@ -47,7 +47,7 @@ class AuthorSubmitForm extends SequenceForm {
 
 		$press =& Request::getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$templateMgr->assign_by_ref('pressSettings', $settingsDao->getPressSettings($press->getPressId()));
+		$templateMgr->assign_by_ref('pressSettings', $settingsDao->getPressSettings($press->getId()));
 
 		parent::display();
 	}
@@ -68,7 +68,7 @@ class AuthorSubmitForm extends SequenceForm {
 
 		$seriesEditorsDao =& DAORegistry::getDAO('SectionEditorsDAO');
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$sectionEditors =& $sectionEditorsDao->getEditorsBySectionId($press->getPressId(), $sectionId);
+		$sectionEditors =& $sectionEditorsDao->getEditorsBySectionId($press->getId(), $sectionId);
 
 		foreach ($sectionEditors as $sectionEditorEntry) {
 			$editAssignment =& new EditAssignment();

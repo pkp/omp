@@ -32,6 +32,58 @@
 		<descr>Review forms.</descr>
 	</table>
 	
+	<table name="notification_status">
+		<field name="press_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="user_id" type="I8">
+			<NOTNULL />
+		</field>
+		<descr>User "mail notifications to my account" flags</descr>
+		<index name="notification_status_pkey">
+			<col>press_id</col>
+			<col>user_id</col>
+			<UNIQUE />
+		</index>
+	</table>
+	<!--
+	  *
+	  * TABLE published_monographs
+	  *
+	  -->
+	<table name="published_monographs">
+		<field name="pub_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_published" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="views" type="I4">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="access_status" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="public_monograph_id" type="C2" size="255"/>
+		<descr>Published Monographs</descr>
+		<index name="published_monographs_monograph_id">
+			<col>monograph_id</col>
+			<UNIQUE/>
+		</index>
+		<index name="published_monographs_public_monograph_id">
+			<col>public_monograph_id</col>
+		</index>
+	</table>
 	<!--
 	  *
 	  * TABLE review_form_settings

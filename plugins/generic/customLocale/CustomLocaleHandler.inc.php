@@ -83,7 +83,7 @@ class CustomLocaleHandler extends PKPHandler {
 		import('file.FileManager');
 		import('file.EditableLocaleFile');
 		$press = Request::getPress();
-		$pressId = $press->getPressId();
+		$pressId = $press->getId();
 		$publicFilesDir = Config::getVar('files', 'public_files_dir');
 		$customLocaleDir = $publicFilesDir . DIRECTORY_SEPARATOR . 'journals' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR;
 		$customLocalePath = $customLocaleDir . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $filename;
@@ -141,7 +141,7 @@ class CustomLocaleHandler extends PKPHandler {
 		}
 
 		$press = &Request::getPress();
-		$pressId = $press->getPressId();
+		$pressId = $press->getId();
 		$changes = Request::getUserVar('changes');
 		$customFilesDir = Config::getVar('files', 'public_files_dir') . DIRECTORY_SEPARATOR . 'journals' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale;
 		$customFilePath = $customFilesDir . DIRECTORY_SEPARATOR . $filename;

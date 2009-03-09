@@ -28,9 +28,9 @@
 
 {foreach from=$userPresses item=press}
 	{assign var="hasRole" value=1}
-	<h4><a href="{url press=$press->getPath() page="user"}">{$press->getPressName()|escape}</a></h4>
+	<h4><a href="{url press=$press->getPath() page="user"}">{$press->getLocalizedName()|escape}</a></h4>
 	<ul class="plain">
-		{assign var="pressId" value=$press->getPressId()}
+		{assign var="pressId" value=$press->getId()}
 		{section name=role loop=$userRoles[$pressId]}
 			{if $userRoles[$pressId][role]->getRolePath() != 'reader'}
 
@@ -43,14 +43,14 @@
 
 {else}{* $showAllPresses *}
 
-<h3>{$userPress->getPressName()}</h3>
+<h3>{$userPress->getLocalizedName()}</h3>
 <ul class="plain">
 	{if $isSiteAdmin && !$hasOtherPresses}
 		{assign var="hasRole" value=1}
 		<li>&#187; <a href="{url press="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
 	{/if}
 
-	{assign var="pressId" value=$userPress->getPressId()}
+	{assign var="pressId" value=$userPress->getId()}
 	{section name=role loop=$userRoles[$pressId]}
 		{assign var="hasRole" value=1}
 		{if $userRoles[$pressId][role]->getRolePath() != 'reader'}
@@ -87,7 +87,7 @@
 		<p>{translate key="user.noRoles.choosePress"}</p>
 		<ul class="plain">
 			{foreach from=$allPresses item=thisPress}
-				<li>&#187; <a href="{url press=$thisPress->getPath() page="user" op="index"}">{$thisPress->getPressName()|escape}</a></li>
+				<li>&#187; <a href="{url press=$thisPress->getPath() page="user" op="index"}">{$thisPress->getLocalizedName()|escape}</a></li>
 			{/foreach}
 		</ul>
 	{/if}{* $currentPress *}

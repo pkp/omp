@@ -34,7 +34,7 @@ class PressFileManager extends FileManager {
 	 * @param $press Press
 	 */
 	function PressFileManager(&$press) {
-		$this->pressId = $press->getPressId();
+		$this->pressId = $press->getId();
 		$this->press =& $press;
 		$this->filesDir = Config::getVar('files', 'files_dir') . '/presses/' . $this->pressId . '/';
 	}

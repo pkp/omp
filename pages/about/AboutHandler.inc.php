@@ -26,17 +26,17 @@ class AboutHandler extends PKPHandler {
 		parent::validate();
 		AboutHandler::setupTemplate();
 
-		$templateMgr = &TemplateManager::getManager();
-		$pressDao = &DAORegistry::getDAO('PressDAO');
+		$templateMgr =& TemplateManager::getManager();
+		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$pressPath = Request::getRequestedPressPath();
 
 		if ($pressPath != 'index' && $pressDao->pressExistsByPath($pressPath)) {
-			$press = &Request::getPress();
+			$press =& Request::getPress();
 
-			$pressSettingsDao = &DAORegistry::getDAO('PressSettingsDAO');
-			$templateMgr->assign_by_ref('pressSettings', $pressSettingsDao->getPressSettings($press->getPressId()));
+			$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+			$templateMgr->assign_by_ref('pressSettings', $pressSettingsDao->getPressSettings($press->getId()));
 
-			$customAboutItems = &$pressSettingsDao->getSetting($press->getPressId(), 'customAboutItems');
+			$customAboutItems =& $pressSettingsDao->getSetting($press->getId(), 'customAboutItems');
 			if (isset($customAboutItems[Locale::getLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[Locale::getLocale()]);
 			elseif (isset($customAboutItems[Locale::getPrimaryLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[Locale::getPrimaryLocale()]);
 
@@ -48,17 +48,17 @@ class AboutHandler extends PKPHandler {
 			}
 
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$groups =& $groupDao->getGroups($press->getPressId(), GROUP_CONTEXT_PEOPLE);
+			$groups =& $groupDao->getGroups($press->getId(), GROUP_CONTEXT_PEOPLE);
 
 			$templateMgr->assign_by_ref('peopleGroups', $groups);
 */			$templateMgr->assign('helpTopicId', 'user.about');
 			$templateMgr->display('about/index.tpl');
 		} else {
-			$site = &Request::getSite();
+			$site =& Request::getSite();
 			$about = $site->getSiteAbout();
 			$templateMgr->assign('about', $about);
 
-			$presses = &$pressDao->getEnabledPresses(); //Enabled Added
+			$presses =& $pressDao->getEnabledPresses(); //Enabled Added
 			$templateMgr->assign_by_ref('presses', $presses);
 			$templateMgr->display('about/site.tpl');
 		}
@@ -73,7 +73,7 @@ class AboutHandler extends PKPHandler {
 		parent::setupTemplate();
 		parent::validate();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$press =& Request::getPress();
 
 		if (!$press || !$press->getSetting('restrictSiteAccess')) {
@@ -90,11 +90,11 @@ class AboutHandler extends PKPHandler {
 
 		AboutHandler::setupTemplate(true);
 
-		$pressSettingsDao = &DAORegistry::getDAO('PressSettingsDAO');
-		$monograph = &Request::getMonograph();
+		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+		$monograph =& Request::getMonograph();
 
-		$templateMgr = &TemplateManager::getManager();
-		$pressSettings = &$pressSettingsDao->getPressSettings($monograph->getMonographId());
+		$templateMgr =& TemplateManager::getManager();
+		$pressSettings =& $pressSettingsDao->getPressSettings($monograph->getMonographId());
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
 		$templateMgr->display('about/contact.tpl');
 	}
@@ -119,19 +119,19 @@ class AboutHandler extends PKPHandler {
 			// Editorial Team information using Role info.
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getPressId());
+			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getId());
 			$editors =& $editors->toArray();
 
-			$seriesEditors =& $roleDao->getUsersByRoleId(ROLE_ID_SERIES_EDITOR, $press->getPressId());
+			$seriesEditors =& $roleDao->getUsersByRoleId(ROLE_ID_SERIES_EDITOR, $press->getId());
 			$seriesEditors =& $seriesEditors->toArray();
 
-			$layoutEditors =& $roleDao->getUsersByRoleId(ROLE_ID_LAYOUT_EDITOR, $press->getPressId());
+			$layoutEditors =& $roleDao->getUsersByRoleId(ROLE_ID_LAYOUT_EDITOR, $press->getId());
 			$layoutEditors =& $layoutEditors->toArray();
 
-			$copyEditors =& $roleDao->getUsersByRoleId(ROLE_ID_COPYEDITOR, $press->getPressId());
+			$copyEditors =& $roleDao->getUsersByRoleId(ROLE_ID_COPYEDITOR, $press->getId());
 			$copyEditors =& $copyEditors->toArray();
 
-			$proofreaders =& $roleDao->getUsersByRoleId(ROLE_ID_PROOFREADER, $press->getPressId());
+			$proofreaders =& $roleDao->getUsersByRoleId(ROLE_ID_PROOFREADER, $press->getId());
 			$proofreaders =& $proofreaders->toArray();
 
 			$templateMgr->assign_by_ref('editors', $editors);
@@ -146,7 +146,7 @@ class AboutHandler extends PKPHandler {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 
-			$allGroups =& $groupDao->getGroups($press->getPressId(), GROUP_CONTEXT_EDITORIAL_TEAM);
+			$allGroups =& $groupDao->getGroups($press->getId(), GROUP_CONTEXT_EDITORIAL_TEAM);
 			$teamInfo = array();
 			$groups = array();
 			while ($group =& $allGroups->next()) {
@@ -235,26 +235,26 @@ class AboutHandler extends PKPHandler {
 		parent::validate();
 
 		AboutHandler::setupTemplate(true);
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
-		$pressDao = &DAORegistry::getDAO('PressDAO');
+		$pressDao =& DAORegistry::getDAO('PressDAO');
 
-		$user = &Request::getUser();
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$user =& Request::getUser();
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		if ($user) {
 			$rolesByPress = array();
-			$presses = &$pressDao->getEnabledPresses();
+			$presses =& $pressDao->getEnabledPresses();
 			// Fetch the user's roles for each press
 			foreach ($presses->toArray() as $press) {
-				$roles = &$roleDao->getRolesByUserId($user->getUserId(), $press->getPressId());
+				$roles =& $roleDao->getRolesByUserId($user->getUserId(), $press->getId());
 				if (!empty($roles)) {
-					$rolesByPress[$press->getPressId()] = &$roles;
+					$rolesByPress[$press->getId()] =& $roles;
 				}
 			}
 		}
 
-		$presses = &$pressDao->getEnabledPresses();
+		$presses =& $pressDao->getEnabledPresses();
 		$templateMgr->assign_by_ref('presses', $presses->toArray());
 		if (isset($rolesByPress)) {
 			$templateMgr->assign_by_ref('rolesByPress', $rolesByPress);
@@ -277,7 +277,7 @@ class AboutHandler extends PKPHandler {
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$version =& $versionDao->getCurrentVersion();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('ompVersion', $version->getVersionString());
 
 		foreach (array(Locale::getLocale(), $primaryLocale = Locale::getPrimaryLocale(), 'en_US') as $locale) {

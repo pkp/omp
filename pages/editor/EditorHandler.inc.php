@@ -38,19 +38,19 @@ class EditorHandler extends AcquisitionsEditorHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$press =& Request::getPress();
-		$pressId = $press->getPressId();
+		$pressId = $press->getId();
 		$user =& Request::getUser();
 
 		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
 	//	$sectionDao =& DAORegistry::getDAO('SectionDAO');
 
-	//	$sections =& $sectionDao->getSectionTitles($press->getPressId());
+	//	$sections =& $sectionDao->getSectionTitles($press->getId());
 	//	$templateMgr->assign('sectionOptions', array(0 => Locale::Translate('editor.allSections')) + $sections);
 	//	$templateMgr->assign('fieldOptions', EditorHandler::getSearchFieldOptions());
 	//	$templateMgr->assign('dateFieldOptions', EditorHandler::getDateFieldOptions());
 
 
-		$submissionsCount =& $editorSubmissionDao->getEditorSubmissionsCount($press->getPressId());
+		$submissionsCount =& $editorSubmissionDao->getEditorSubmissionsCount($press->getId());
 		$templateMgr->assign('submissionsCount', $submissionsCount);
 		$templateMgr->assign('helpTopicId', 'editorial.editorsRole');
 		$templateMgr->display('editor/index.tpl');
@@ -93,7 +93,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		EditorHandler::setupTemplate(EDITOR_SECTION_SUBMISSIONS);
 
 		$press =& Request::getPress();
-		$pressId = $press->getPressId();
+		$pressId = $press->getId();
 		$user =& Request::getUser();
 
 		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
@@ -226,7 +226,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
 			$monograph =& $monographDao->getMonograph($editAssignment->getMonographId());
 
-			if ($monograph && $monograph->getPressId() === $press->getPressId()) {
+			if ($monograph && $monograph->getPressId() === $press->getId()) {
 				$editAssignmentDao->deleteEditAssignmentById($editAssignment->getEditId());
 				Request::redirect(null, null, 'submission', $monograph->getMonographId());
 			}
@@ -246,8 +246,8 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$editorId = Request::getUserVar('editorId');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		$isSectionEditor = $roleDao->roleExists($press->getPressId(), $editorId, ROLE_ID_ACQUISITIONS_EDITOR);
-		$isEditor = $roleDao->roleExists($press->getPressId(), $editorId, ROLE_ID_EDITOR);
+		$isSectionEditor = $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_ACQUISITIONS_EDITOR);
+		$isEditor = $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_EDITOR);
 
 		if (isset($editorId) && $editorId != null && ($isEditor || $isSectionEditor)) {
 			// A valid section editor has already been chosen;
@@ -284,10 +284,10 @@ class EditorHandler extends AcquisitionsEditorHandler {
 
 			if (isset($args[0]) && $args[0] === 'editor') {
 				$roleName = 'user.role.editor';
-				$editors =& $editorSubmissionDao->getUsersNotAssignedToMonograph($press->getPressId(), $monographId, RoleDAO::getRoleIdFromPath('editor'), $searchType, $search, $searchMatch, $rangeInfo);
+				$editors =& $editorSubmissionDao->getUsersNotAssignedToMonograph($press->getId(), $monographId, RoleDAO::getRoleIdFromPath('editor'), $searchType, $search, $searchMatch, $rangeInfo);
 			} else {
 				$roleName = 'user.role.sectionEditor';
-				$editors =& $editorSubmissionDao->getUsersNotAssignedToMonograph($press->getPressId(), $monographId, RoleDAO::getRoleIdFromPath('sectionEditor'), $searchType, $search, $searchMatch, $rangeInfo);
+				$editors =& $editorSubmissionDao->getUsersNotAssignedToMonograph($press->getId(), $monographId, RoleDAO::getRoleIdFromPath('sectionEditor'), $searchType, $search, $searchMatch, $rangeInfo);
 			}
 
 			$templateMgr =& TemplateManager::getManager();
@@ -297,10 +297,10 @@ class EditorHandler extends AcquisitionsEditorHandler {
 			$templateMgr->assign('monographId', $monographId);
 
 //			$sectionDao =& DAORegistry::getDAO('SectionDAO');
-//			$sectionEditorSections =& $sectionDao->getEditorSections($press->getPressId());
+//			$sectionEditorSections =& $sectionDao->getEditorSections($press->getId());
 
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-			$editorStatistics = $editAssignmentDao->getEditorStatistics($press->getPressId());
+			$editorStatistics = $editAssignmentDao->getEditorStatistics($press->getId());
 
 			$templateMgr->assign_by_ref('editorSections', $sectionEditorSections);
 			$templateMgr->assign('editorStatistics', $editorStatistics);
@@ -334,7 +334,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getMonograph($monographId);
 
-		if ($monograph && $monograph->getPressId() === $press->getPressId()) {
+		if ($monograph && $monograph->getPressId() === $press->getId()) {
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 			$editAssignments =& $editAssignmentDao->getEditAssignmentsByMonographId($monographId);
 
@@ -380,7 +380,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$press =& Request::getPress();
 		// FIXME This is kind of evil
 		$page = Request::getRequestedPage();
-		if (!isset($press) || ($page == 'acquisitionsEditor' && !Validation::isAcquisitionsEditor($press->getPressId())) || ($page == 'editor' && !Validation::isEditor($press->getPressId()))) {
+		if (!isset($press) || ($page == 'acquisitionsEditor' && !Validation::isAcquisitionsEditor($press->getId())) || ($page == 'editor' && !Validation::isEditor($press->getId()))) {
 			Validation::redirectLogin();
 		}
 	}

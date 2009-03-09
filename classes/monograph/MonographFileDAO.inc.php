@@ -245,7 +245,6 @@ class MonographFileDAO extends DAO {
 		$monographFile->setOriginalFileName($row['original_file_name']);
 		$monographFile->setType($row['type']);
 		$monographFile->setAssocId($row['assoc_id']);
-		$monographFile->setStatus($row['status']);
 		$monographFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
 		$monographFile->setDateModified($this->datetimeFromDB($row['date_modified']));
 		$monographFile->setRound($row['round']);
@@ -271,8 +270,7 @@ class MonographFileDAO extends DAO {
 			$monographFile->getFileSize(),
 			$monographFile->getOriginalFileName(),
 			$monographFile->getType(),
-			$monographFile->getStatus(),
-			$monographFile->getRound() == null ? 1 : $monographFile->getRound(),//temporary
+			(int) $monographFile->getRound(),
 			$monographFile->getViewable(),
 			$monographFile->getAssocId()
 		);
@@ -283,9 +281,9 @@ class MonographFileDAO extends DAO {
 
 		$this->update(
 			sprintf('INSERT INTO monograph_files
-				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, type, status, date_uploaded, date_modified, round, viewable, assoc_id)
+				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, type, date_uploaded, date_modified, round, viewable, assoc_id)
 				VALUES
-				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?)',
+				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?)',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
 			$params
 		);
@@ -313,7 +311,6 @@ class MonographFileDAO extends DAO {
 					file_size = ?,
 					original_file_name = ?,
 					type = ?,
-					status = ?,
 					date_uploaded = %s,
 					date_modified = %s,
 					round = ?,
@@ -330,7 +327,6 @@ class MonographFileDAO extends DAO {
 				$monographFile->getFileSize(),
 				$monographFile->getOriginalFileName(),
 				$monographFile->getType(),
-				$monographFile->getStatus(),
 				$monographFile->getRound() == null ? 1 : $monographFile->getRound(),//temporary
 				$monographFile->getViewable(),
 				$monographFile->getAssocId(),

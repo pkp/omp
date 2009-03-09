@@ -26,7 +26,7 @@ class PressLanguagesHandler extends ManagerHandler {
 
 		import('manager.form.LanguageSettingsForm');
 
-		$settingsForm = &new LanguageSettingsForm();
+		$settingsForm =& new LanguageSettingsForm();
 		$settingsForm->initData();
 		$settingsForm->display();
 	}
@@ -40,13 +40,13 @@ class PressLanguagesHandler extends ManagerHandler {
 
 		import('manager.form.LanguageSettingsForm');
 
-		$settingsForm = &new LanguageSettingsForm();
+		$settingsForm =& new LanguageSettingsForm();
 		$settingsForm->readInputData();
 
 		if ($settingsForm->validate()) {
 			$settingsForm->execute();
 
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign(array(
 				'currentUrl' => Request::url(null, null, 'languages'),
 				'pageTitle' => 'common.languages',
@@ -71,17 +71,17 @@ class PressLanguagesHandler extends ManagerHandler {
 		parent::validate();
 		parent::setupTemplate(true);
 					
-		$press = &Request::getPress();
-		$pressSettingsDao = &DAORegistry::getDAO('PressSettingsDAO');
-		$pressSettingsDao->reloadLocalizedDefaultSettings($press->getPressId(), 'registry/pressSettings.xml', array(
+		$press =& Request::getPress();
+		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+		$pressSettingsDao->reloadLocalizedDefaultSettings($press->getId(), 'registry/pressSettings.xml', array(
 				'indexUrl' => Request::getIndexUrl(),
 				'pressPath' => $press->getData('path'),
 				'primaryLocale' => $press->getPrimaryLocale(),
-				'pressName' => $press->getPressName($press->getPrimaryLocale())
+				'pressName' => $press->getName($press->getPrimaryLocale())
 			),
 			$locale);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign(array(
 			'currentUrl' => Request::url(null, null, 'languages'),
 			'pageTitle' => 'common.languages',

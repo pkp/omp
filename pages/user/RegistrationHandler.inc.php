@@ -154,7 +154,7 @@ class RegistrationHandler extends UserHandler {
 		$press = Request::getPress();
 		if ($press != null) {
 			$pressSettingsDao = &DAORegistry::getDAO('PressSettingsDAO');
-			if ($pressSettingsDao->getSetting($press->getPressId(), 'disableUserReg')) {
+			if ($pressSettingsDao->getSetting($press->getId(), 'disableUserReg')) {
 				// Users cannot register themselves for this press
 				RegistrationHandler::registrationDisabled();
 				exit;

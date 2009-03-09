@@ -34,7 +34,7 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 		}
 
 		$rangeInfo =& PKPHandler::getRangeInfo($arrangement);
-		$arrangements =& $arrangementDao->getPressAcquisitionsArrangements($press->getPressId(), $rangeInfo, $type);
+		$arrangements =& $arrangementDao->getPressAcquisitionsArrangements($press->getId(), $rangeInfo, $type);
 
 		$templateMgr =& TemplateManager::getManager();
 //		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, 'manager'), 'manager.pressManagement')));
@@ -141,7 +141,7 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 			$press =& Request::getPress();
 
 			$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-			$arrangementDao->deleteAcquisitionsArrangementById($args[0], $press->getPressId());
+			$arrangementDao->deleteAcquisitionsArrangementById($args[0], $press->getId());
 		}
 
 		switch ($type) {
@@ -161,7 +161,7 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 		$press =& Request::getPress();
 
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		$arrangement =& $arrangementDao->getAcquisitionsArrangement(Request::getUserVar('arrangementId'), $press->getPressId());
+		$arrangement =& $arrangementDao->getAcquisitionsArrangement(Request::getUserVar('arrangementId'), $press->getId());
 
 		if ($arrangement != null) {
 			$arrangement->setSequence($arrangement->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));

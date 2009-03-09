@@ -413,7 +413,6 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileSize($sourceMonographFile->getFileSize());
 		$monographFile->setOriginalFileName($sourceMonographFile->getFileName());
 		$monographFile->setType($destTypePath);
-		$monographFile->setStatus($sourceMonographFile->getStatus());
 		$monographFile->setDateUploaded(Core::getCurrentDate());
 		$monographFile->setDateModified(Core::getCurrentDate());
 		$monographFile->setRound($this->monograph->getCurrentRound()); // FIXME This field is only applicable for review files?
@@ -452,7 +451,6 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileType('temp');
 		$monographFile->setFileSize(0);
 		$monographFile->setType('temp');
-		$monographFile->setStatus('temp');
 		$monographFile->setDateUploaded(Core::getCurrentDate());
 		$monographFile->setDateModified(Core::getCurrentDate());
 		$monographFile->setRound(0);
@@ -522,7 +520,6 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileSize($_FILES[$fileName]['size']);
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($_FILES[$fileName]['name'], 127));
 		$monographFile->setType($typePath);
-		$monographFile->setStatus(''); // FIXME wtf is this for?
 		$monographFile->setRound($this->monograph->getCurrentRound());
 
 		$newFileName = $this->generateFilename($monographFile, $type, $this->getUploadedFileName($fileName));
@@ -576,7 +573,6 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileSize(strlen($contents));
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($fileName, 127));
 		$monographFile->setType($typePath);
-		$monographFile->setStatus(''); // FIXME wtf is this for?
 		$monographFile->setRound($this->monograph->getCurrentRound());
 
 		$newFileName = $this->generateFilename($monographFile, $type, $fileName);
@@ -628,7 +624,6 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileType($mimeType);
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName(basename($url), 127));
 		$monographFile->setType($typePath);
-		$monographFile->setStatus(''); // FIXME wtf is this for?
 		$monographFile->setRound($this->monograph->getCurrentRound());
 
 		$newFileName = $this->generateFilename($monographFile, $type, $monographFile->getOriginalFileName());
@@ -665,7 +660,6 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileType($temporaryFile->getFileType());
 		$monographFile->setOriginalFileName($temporaryFile->getOriginalFileName());
 		$monographFile->setType($typePath);
-		$monographFile->setStatus(''); // FIXME wtf is this for?
 		$monographFile->setRound($this->monograph->getCurrentRound());
 		$monographFile->setAssocId($assocId);
 

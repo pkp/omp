@@ -28,7 +28,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		// Get arrangements for this press
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
 		//$this->addCheck(new FormValidator($this, 'arrangementId', 'required', 'author.submit.form.arrangementRequired'));
-		$templateMgr->assign('arrangementOptions', array('0' => Locale::translate('author.submit.selectSection')) + $arrangementDao->getAcquisitionsArrangementsTitles($press->getPressId(), !true));
+		$templateMgr->assign('arrangementOptions', array('0' => Locale::translate('author.submit.selectSection')) + $arrangementDao->getAcquisitionsArrangementsTitles($press->getId(), !true));
 		parent::display();
 	}
 
@@ -82,7 +82,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 			$this->monograph =& new Monograph();
 			$this->monograph->setUserId($user->getUserId());
-			$this->monograph->setPressId($press->getPressId());
+			$this->monograph->setPressId($press->getId());
 			$this->monograph->stampStatusModified();
 			$this->monograph->setSubmissionProgress($this->sequence->currentStep + 1);
 			$this->monograph->setLanguage(String::substr($press->getPrimaryLocale(), 0, 2));

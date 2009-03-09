@@ -29,17 +29,17 @@
 
 	<div style="clear:left;">
 	{if $displayHomePageImage && is_array($displayHomePageImage)}
-		<div class="homepageImage"><a href="{url press=$press->getPath()}" class="action"><img src="{$pressFilesPath}{$press->getPressId()}/{$displayHomePageImage.uploadName|escape:"url"}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} /></a></div>
+		<div class="homepageImage"><a href="{url press=$press->getPath()}" class="action"><img src="{$pressFilesPath}{$press->getId()}/{$displayHomePageImage.uploadName|escape:"url"}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} /></a></div>
 	{elseif $displayHomePageLogo && is_array($displayHomePageLogo)}
-		<div class="homepageImage"><a href="{url press=$press->getPath()}" class="action"><img src="{$pressFilesPath}{$press->getPressId()}/{$displayHomePageLogo.uploadName|escape:"url"}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} /></a></div>
+		<div class="homepageImage"><a href="{url press=$press->getPath()}" class="action"><img src="{$pressFilesPath}{$press->getId()}/{$displayHomePageLogo.uploadName|escape:"url"}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} /></a></div>
 	{elseif $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
-		<div class="homepageImage"><a href="{url press=$press->getPath()}" class="action"><img src="{$pressFilesPath}{$press->getPressId()}/{$displayPageHeaderLogo.uploadName|escape:"url"}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} /></a></div>
+		<div class="homepageImage"><a href="{url press=$press->getPath()}" class="action"><img src="{$pressFilesPath}{$press->getId()}/{$displayPageHeaderLogo.uploadName|escape:"url"}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} /></a></div>
 	{/if}
 	</div>
 
-	<h3>{$press->getPressName()|escape}</h3>
-	{if $press->getPressDescription()}
-		<p>{$press->getPressDescription()|nl2br}</p>
+	<h3>{$press->getLocalizedName()|escape}</h3>
+	{if $press->getDescription()}
+		<p>{$press->getDescription()|nl2br}</p>
 	{/if}
 
 	<p><a href="{url press=$press->getPath()}" class="action">{translate key="site.pressView"}</a></p>

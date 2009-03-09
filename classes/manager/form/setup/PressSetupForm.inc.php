@@ -73,7 +73,7 @@ class PressSetupForm extends Form {
 			if (isset($this->settings[$name])) {
 				$isLocalized = in_array($name, $this->getLocaleFieldNames());
 				$settingsDao->updateSetting(
-					$press->getPressId(),
+					$press->getId(),
 					$name,
 					$value,
 					$this->settings[$name],

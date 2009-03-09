@@ -111,7 +111,7 @@ class LanguageSettingsForm extends Form {
 		foreach ($this->_data as $name => $value) {
 			if (!in_array($name, array_keys($this->settings))) continue;
 			$settingsDao->updateSetting(
-				$press->getPressId(),
+				$press->getId(),
 				$name,
 				$value,
 				$this->settings[$name]

@@ -67,7 +67,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		parent::setupTemplate(true, $monographId);
 
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$pressSettings = $pressSettingsDao->getPressSettings($press->getPressId());
+		$pressSettings = $pressSettingsDao->getPressSettings($press->getId());
 
 		// Setting the round.
 		$round = isset($args[1]) ? $args[1] : $submission->getCurrentRound();
@@ -106,15 +106,15 @@ class TrackSubmissionHandler extends AuthorHandler {
 			$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
 			
 			if ( $paymentManager->submissionEnabled() ) {
-				$templateMgr->assign_by_ref('submissionPayment', $completedPaymentDAO->getSubmissionCompletedPayment ( $press->getPressId(), $monographId ));
+				$templateMgr->assign_by_ref('submissionPayment', $completedPaymentDAO->getSubmissionCompletedPayment ( $press->getId(), $monographId ));
 			}
 			
 			if ( $paymentManager->fastTrackEnabled()  ) {
-				$templateMgr->assign_by_ref('fastTrackPayment', $completedPaymentDAO->getFastTrackCompletedPayment ( $press->getPressId(), $monographId ));
+				$templateMgr->assign_by_ref('fastTrackPayment', $completedPaymentDAO->getFastTrackCompletedPayment ( $press->getId(), $monographId ));
 			}
 
 			if ( $paymentManager->publicationEnabled()  ) {
-				$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getPressId(), $monographId ));
+				$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getId(), $monographId ));
 			}				   
 		}		
 
@@ -348,7 +348,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		import('file.PublicFileManager');
 		$publicFileManager =& new PublicFileManager();
-		$publicFileManager->removePressFile($press->getPressId(),$submission->getFileName($formLocale));
+		$publicFileManager->removePressFile($press->getId(),$submission->getFileName($formLocale));
 		$submission->setFileName('', $formLocale);
 		$submission->setOriginalFileName('', $formLocale);
 		$submission->setWidth('', $formLocale);
@@ -436,7 +436,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		if ($authorSubmission == null) {
 			$isValid = false;
-		} else if ($authorSubmission->getPressId() != $press->getPressId()) {
+		} else if ($authorSubmission->getPressId() != $press->getId()) {
 			$isValid = false;
 		} else {
 			if ($authorSubmission->getUserId() != $user->getUserId()) {
@@ -568,7 +568,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$paymentManager =& OJSPaymentManager::getManager();
 		$user =& Request::getUser();
 
-		$queuedPayment =& $paymentManager->createQueuedPayment($press->getPressId(), PAYMENT_TYPE_SUBMISSION, $user->getUserId(), $monographId, $press->getSetting('submissionFee'));
+		$queuedPayment =& $paymentManager->createQueuedPayment($press->getId(), PAYMENT_TYPE_SUBMISSION, $user->getUserId(), $monographId, $press->getSetting('submissionFee'));
 		$queuedPaymentId = $paymentManager->queuePayment($queuedPayment);
 	
 		$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
@@ -588,7 +588,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$paymentManager =& OJSPaymentManager::getManager();
 		$user =& Request::getUser();
 
-		$queuedPayment =& $paymentManager->createQueuedPayment($press->getPressId(), PAYMENT_TYPE_FASTTRACK, $user->getUserId(), $monographId, $press->getSetting('fastTrackFee'));
+		$queuedPayment =& $paymentManager->createQueuedPayment($press->getId(), PAYMENT_TYPE_FASTTRACK, $user->getUserId(), $monographId, $press->getSetting('fastTrackFee'));
 		$queuedPaymentId = $paymentManager->queuePayment($queuedPayment);
 	
 		$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
@@ -608,7 +608,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$paymentManager =& OJSPaymentManager::getManager();
 		$user =& Request::getUser();
 
-		$queuedPayment =& $paymentManager->createQueuedPayment($press->getPressId(), PAYMENT_TYPE_PUBLICATION, $user->getUserId(), $monographId, $press->getSetting('publicationFee'));
+		$queuedPayment =& $paymentManager->createQueuedPayment($press->getId(), PAYMENT_TYPE_PUBLICATION, $user->getUserId(), $monographId, $press->getSetting('publicationFee'));
 		$queuedPaymentId = $paymentManager->queuePayment($queuedPayment);
 	
 		$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);

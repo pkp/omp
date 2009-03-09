@@ -91,7 +91,7 @@ class SubmitHandler extends AuthorHandler {
 				$templateMgr->assign_by_ref('press', $press);
 				// If this is an editor and there is a
 				// submission file, monograph can be expedited.
-		//		if (Validation::isEditor($press->getPressId()) && $monograph->getSubmissionFileId()) {
+		//		if (Validation::isEditor($press->getId()) && $monograph->getSubmissionFileId()) {
 		//			$templateMgr->assign('canExpedite', true);
 		//		}
 				$templateMgr->assign('monographId', $monographId);
@@ -216,7 +216,7 @@ class SubmitHandler extends AuthorHandler {
 		list($press, $monograph) = SubmitHandler::validate($monographId);
 
 		// The author must also be an editor to perform this task.
-		if (Validation::isEditor($press->getPressId()) && $monograph->getSubmissionFileId()) {
+		if (Validation::isEditor($press->getId()) && $monograph->getSubmissionFileId()) {
 			import('submission.editor.EditorAction');
 			EditorAction::expediteSubmission($monograph);
 			Request::redirect(null, 'editor', 'submissionEditing', array($monograph->getMonographId()));
@@ -246,7 +246,7 @@ class SubmitHandler extends AuthorHandler {
 		if (isset($monographId)) {
 			$monograph =& $monographDao->getMonograph((int) $monographId);
 
-			if (!$monograph || $monograph->getUserId() !== $user->getUserId() || $monograph->getPressId() !== $press->getPressId() || ($step !== false && $step > $monograph->getSubmissionProgress())) {
+			if (!$monograph || $monograph->getUserId() !== $user->getUserId() || $monograph->getPressId() !== $press->getId() || ($step !== false && $step > $monograph->getSubmissionProgress())) {
 				Request::redirect(null, null, 'submit');
 			}
 		}

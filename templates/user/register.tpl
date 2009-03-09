@@ -20,10 +20,10 @@
 {if !$implicitAuth}
 	{if !$existingUser}
 		{url|assign:"url" page="user" op="register" existingUser=1}
-		<p>{translate key="user.register.alreadyRegisteredOtherPress" registerUrl=$url}</p>
+		<p>{translate key="user.register.alreadyRegisteredOtherJournal" registerUrl=$url}</p>
 	{else}
 		{url|assign:"url" page="user" op="register"}
-		<p>{translate key="user.register.notAlreadyRegisteredOtherPress" registerUrl=$url}</p>
+		<p>{translate key="user.register.notAlreadyRegisteredOtherJournal" registerUrl=$url}</p>
 		<input type="hidden" name="existingUser" value="1"/>
 	{/if}
 
@@ -45,7 +45,7 @@
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
-			{url|assign:"userRegisterUrl" page="user" op="register"}
+			{url|assign:"userRegisterUrl" page="user" op="register" escape=false}
 			{form_language_chooser form="register" url=$userRegisterUrl}
 			<span class="instruct">{translate key="form.formLanguage.description"}</span>
 		</td>
@@ -127,7 +127,7 @@
 
 		<tr valign="top">
 			<td class="label">{fieldLabel name="signature" key="user.signature"}</td>
-			<td class="value"><textarea name="signature[{$formLocale|escape}]" id="signature" rows="5" cols="40" class="textArea">{$signature[$formLocale]|escape|nl2br}</textarea></td>
+			<td class="value"><textarea name="signature[{$formLocale|escape}]" id="signature" rows="5" cols="40" class="textArea">{$signature[$formLocale]|escape}</textarea></td>
 		</tr>
 
 		<tr valign="top">
@@ -206,12 +206,13 @@
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 {/if}{* !$implicitAuth *}
 
-<a name="privacyStatement"></a>
-
+<div id="privacyStatement">
 {if $privacyStatement}
 	<h3>{translate key="user.register.privacyStatement"}</h3>
 	<p>{$privacyStatement|nl2br}</p>
 {/if}
+</div>
+
 </form>
 
 {include file="common/footer.tpl"}

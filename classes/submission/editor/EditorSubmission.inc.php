@@ -920,7 +920,7 @@ class EditorSubmission extends Monograph {
 
 		$press =& Request::getPress();
 		// Sanity check
-		if (!$press || $press->getPressId() != $this->getPressId()) return null;
+		if (!$press || $press->getId() != $this->getPressId()) return null;
 
 		// Check whether it's in review or editing.
 		$inEditing = false;

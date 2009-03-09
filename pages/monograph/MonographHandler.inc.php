@@ -36,7 +36,7 @@ class MonographHandler extends PKPHandler {
 		$press = &Request::getPress();
 
 		$monographDao = &DAORegistry::getDAO('MonographDAO');
-		$monograph = &$monographDao->getCurrentIssue($press->getPressId());
+		$monograph = &$monographDao->getCurrentIssue($press->getId());
 
 		$templateMgr = &TemplateManager::getManager();
 
@@ -63,7 +63,7 @@ class MonographHandler extends PKPHandler {
 		$monographDao = &DAORegistry::getDAO('MonographDAO');
 
 		if ($press->getSetting('enablePublicMonographId')) {
-			$monograph = &$monographDao->getMonographByBestIssueId($monographId, $press->getPressId());
+			$monograph = &$monographDao->getMonographByBestIssueId($monographId, $press->getId());
 		} else {
 			$monograph = &$monographDao->getIssueById((int) $monographId);
 		}
@@ -103,12 +103,12 @@ class MonographHandler extends PKPHandler {
 		$monographDao = &DAORegistry::getDAO('MonographDAO');
 		$rangeInfo = Handler::getRangeInfo('monographs');
 
-		$publishedMonograhsIterator = $monographDao->getPublishedMonographs($press->getPressId(), $rangeInfo);
+		$publishedMonograhsIterator = $monographDao->getPublishedMonographs($press->getId(), $rangeInfo);
 
 		import('file.PublicFileManager');
 		$publicFileManager = &new PublicFileManager();
 		$coverPagePath = Request::getBaseUrl() . '/';
-		$coverPagePath .= $publicFileManager->getPressFilesPath($press->getPressId()) . '/';
+		$coverPagePath .= $publicFileManager->getPressFilesPath($press->getId()) . '/';
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('coverPagePath', $coverPagePath);

@@ -67,11 +67,11 @@ class MailTemplate extends Mail {
 		$this->locale = isset($locale) ? $locale : Locale::getLocale();
 
 		// If a press wasn't specified, use the current request.
-		if ($press === null) $press = &Request::getPress();
+		if ($press === null) $press =& Request::getPress();
 
 		if (isset($this->emailKey)) {
-			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-			$emailTemplate = &$emailTemplateDao->getEmailTemplate($this->emailKey, $this->locale, $press == null ? 0 : $press->getPressId());
+			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+			$emailTemplate =& $emailTemplateDao->getEmailTemplate($this->emailKey, $this->locale, $press == null ? 0 : $press->getId());
 		}
 
 		$userSig = '';
@@ -123,11 +123,11 @@ class MailTemplate extends Mail {
 		$this->bccSender = Request::getUserVar('bccSender');
 
 		// Default "From" to user if available, otherwise site/press principal contact
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 		if ($user) {
 			$this->setFrom($user->getEmail(), $user->getFullName());
 		} elseif ($press == null) {
-			$site = &Request::getSite();
+			$site =& Request::getSite();
 			$this->setFrom($site->getSiteContactEmail(), $site->getSiteContactName());
 
 		} else {
@@ -193,10 +193,10 @@ class MailTemplate extends Mail {
 		// Add commonly-used variables to the list
 		if (isset($this->press)) {
 			// FIXME Include affiliation, title, etc. in signature?
-			$paramArray['pressName'] = $this->press->getPressName();
+			$paramArray['pressName'] = $this->press->getLocalizedName();
 			$paramArray['principalContactSignature'] = $this->press->getSetting('contactName');
 		} else {
-			$site = &Request::getSite();
+			$site =& Request::getSite();
 			$paramArray['principalContactSignature'] = $site->getSiteContactName();
 		}
 		if (!isset($paramArray['pressUrl'])) $paramArray['pressUrl'] = Request::url(Request::getRequestedPressPath());
@@ -250,7 +250,7 @@ class MailTemplate extends Mail {
 	 */
 	function displayEditForm($formActionUrl, $hiddenFormParams = null, $alternateTemplate = null, $additionalParameters = array()) {
 		import('form.Form');
-		$form = &new Form($alternateTemplate!=null?$alternateTemplate:'email/email.tpl');
+		$form =& new Form($alternateTemplate!=null?$alternateTemplate:'email/email.tpl');
 
 		$form->setData('formActionUrl', $formActionUrl);
 		$form->setData('subject', $this->getSubject());
@@ -266,7 +266,7 @@ class MailTemplate extends Mail {
 
 		$form->setData('addressFieldsEnabled', $this->getAddressFieldsEnabled());
 
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 		if ($user) {
 			$form->setData('senderEmail', $user->getEmail());
 			$form->setData('bccSender', $this->bccSender);
@@ -287,7 +287,7 @@ class MailTemplate extends Mail {
 			$form->setData($key, $value);
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'press.managementPages.emails');
 
 		$form->display();
@@ -327,7 +327,7 @@ class MailTemplate extends Mail {
 			}
 		}
 
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 
 		if ($user && $this->bccSender) {
 			$this->addBcc($user->getEmail(), $user->getFullName());
@@ -398,7 +398,7 @@ class MailTemplate extends Mail {
 	 */
 	function _handleAttachments($userId) {
 		import('file.TemporaryFileManager');
-		$temporaryFileManager = &new TemporaryFileManager();
+		$temporaryFileManager =& new TemporaryFileManager();
 
 		$this->attachmentsEnabled = true;
 		$this->persistAttachments = array();
@@ -418,7 +418,7 @@ class MailTemplate extends Mail {
 		}
 
 		if (Request::getUserVar('addAttachment')) {
-			$user = &Request::getUser();
+			$user =& Request::getUser();
 
 			$this->persistAttachments[] = $temporaryFileManager->handleUpload('newAttachment', $user->getUserId());
 		}
@@ -436,7 +436,7 @@ class MailTemplate extends Mail {
 	 */
 	function _clearAttachments($userId) {
 		import('file.TemporaryFileManager');
-		$temporaryFileManager = &new TemporaryFileManager();
+		$temporaryFileManager =& new TemporaryFileManager();
 
 		$persistAttachments = Request::getUserVar('persistAttachments');
 		if (is_array($persistAttachments)) foreach ($persistAttachments as $fileId) {

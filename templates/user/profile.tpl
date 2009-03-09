@@ -61,7 +61,7 @@
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="signature" key="user.signature"}</td>
-	<td class="value"><textarea name="signature[{$formLocale|escape}]" id="signature" rows="5" cols="40" class="textArea">{$signature[$formLocale]|escape|nl2br}</textarea></td>
+	<td class="value"><textarea name="signature[{$formLocale|escape}]" id="signature" rows="5" cols="40" class="textArea">{$signature[$formLocale]|escape}</textarea></td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="email" required="true" key="user.email"}</td>
@@ -140,7 +140,7 @@
 {/if}
 
 {foreach from=$presses name=pressNotifications key=thisPressId item=thisPress}
-	{assign var=thisPressId value=$thisPress->getPressId()}
+	{assign var=thisPressId value=$thisPress->getId()}
 	{assign var=notificationEnabled value=`$pressNotifications.$thisPressId`}
 	{if !$notFirstPress}
 		{assign var=notFirstPress value=1}
@@ -149,7 +149,7 @@
 			<td class="value">
 	{/if}
 
-			<input type="checkbox" name="pressNotify[]" {if $notificationEnabled}checked="checked" {/if}id="pressNotify-{$thisPressId|escape}" value="{$thisPressId|escape}" /> <label for="pressNotify-{$thisPressId|escape}">{$thisPress->getPressName()|escape}</label><br/>
+			<input type="checkbox" name="pressNotify[]" {if $notificationEnabled}checked="checked" {/if}id="pressNotify-{$thisPressId|escape}" value="{$thisPressId|escape}" /> <label for="pressNotify-{$thisPressId|escape}">{$thisPress->getLocalizedName()|escape}</label><br/>
 
 	{if $smarty.foreach.pressNotifications.last}
 			</td>
@@ -160,7 +160,7 @@
 {if $displayOpenAccessNotification}
 	{assign var=notFirstPress value=0}
 	{foreach from=$presses name=pressOpenAccessNotifications key=thisPressId item=thisPress}
-		{assign var=thisPressId value=$thisPress->getPressId()}
+		{assign var=thisPressId value=$thisPress->getId()}
 		{assign var=enableSubscriptions value=$thisPress->getSetting('enableSubscriptions')}
 		{assign var=enableOpenAccessNotification value=$thisPress->getSetting('enableOpenAccessNotification')}
 		{assign var=notificationEnabled value=$user->getSetting('openAccessNotification', $thisPressId)}
@@ -172,7 +172,7 @@
 		{/if}
 
 		{if $enableSubscriptions && $enableOpenAccessNotification}
-			<input type="checkbox" name="openAccessNotify[]" {if $notificationEnabled}checked="checked" {/if}id="openAccessNotify-{$thisPressId|escape}" value="{$thisPressId|escape}" /> <label for="openAccessNotify-{$thisPressId|escape}">{$thisPress->getPressName()|escape}</label><br/>
+			<input type="checkbox" name="openAccessNotify[]" {if $notificationEnabled}checked="checked" {/if}id="openAccessNotify-{$thisPressId|escape}" value="{$thisPressId|escape}" /> <label for="openAccessNotify-{$thisPressId|escape}">{$thisPress->getLocalizedName()|escape}</label><br/>
 		{/if}
 
 		{if $smarty.foreach.pressOpenAccessNotifications.last}

@@ -46,7 +46,7 @@ class EmailTemplateForm extends Form {
 
 		$press = &Request::getPress();
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplate = &$emailTemplateDao->getBaseEmailTemplate($this->emailKey, $press->getPressId());
+		$emailTemplate = &$emailTemplateDao->getBaseEmailTemplate($this->emailKey, $press->getId());
 		$templateMgr->assign('canDisable', $emailTemplate?$emailTemplate->getCanDisable():false);
 		$templateMgr->assign('supportedLocales', $press->getSupportedLocaleNames());
 		$templateMgr->assign('helpTopicId','press.managementPages.emails');
@@ -59,7 +59,7 @@ class EmailTemplateForm extends Form {
 	function initData() {
 		$press = &Request::getPress();
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplate = &$emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $press->getPressId());
+		$emailTemplate = &$emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $press->getId());
 		$thisLocale = Locale::getLocale();
 
 		if ($emailTemplate) {
@@ -101,7 +101,7 @@ class EmailTemplateForm extends Form {
 		$press = &Request::getPress();
 
 		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplate = &$emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $press->getPressId());
+		$emailTemplate = &$emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $press->getId());
 
 		if (!$emailTemplate) {
 			$emailTemplate = &new LocaleEmailTemplate();
@@ -117,7 +117,7 @@ class EmailTemplateForm extends Form {
 
 		}
 
-		$emailTemplate->setPressId($press->getPressId());
+		$emailTemplate->setPressId($press->getId());
 
 		$supportedLocales = $press->getSupportedLocaleNames();
 		if (!empty($supportedLocales)) {

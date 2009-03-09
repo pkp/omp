@@ -116,7 +116,7 @@ class PressSiteSettingsForm extends Form {
 		$press->setPath($this->getData('path'));
 		$press->setEnabled($this->getData('enabled'));
 
-		if ($press->getPressId() != null) {
+		if ($press->getId() != null) {
 			$isNewPress = false;
 			$pressDao->updatePress($press);
 			$section = null;
@@ -125,7 +125,7 @@ class PressSiteSettingsForm extends Form {
 			$site =& Request::getSite();
 
 			// Give it a default primary locale
-			$press->setPrimaryLocale ($site->getPrimaryLocale());
+			$press->setPrimaryLocale($site->getPrimaryLocale());
 
 			$pressId = $pressDao->insertPress($press);
 //!!!!!!!!!!!!!!!!!!!!!			//$pressDao->resequencePresses();
@@ -168,7 +168,7 @@ class PressSiteSettingsForm extends Form {
 /*			// Create a default "Articles" section
 			$sectionDao =& DAORegistry::getDAO('SectionDAO');
 			$section =& new Section();
-			$section->setPressId($press->getPressId());
+			$section->setPressId($press->getId());
 			$section->setTitle(Locale::translate('section.default.title'), $press->getPrimaryLocale());
 			$section->setAbbrev(Locale::translate('section.default.abbrev'), $press->getPrimaryLocale());
 			$section->setMetaIndexed(true);

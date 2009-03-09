@@ -31,7 +31,7 @@ class AcquisitionsEditorHandler extends PKPHandler {
 		AcquisitionsEditorHandler::setupTemplate();
 
 		$press =& Request::getPress();
-		$pressId = $press->getPressId();
+		$pressId = $press->getId();
 		$user =& Request::getUser();
 
 		$rangeInfo = PKPHandler::getRangeInfo('submissions');
@@ -51,7 +51,7 @@ class AcquisitionsEditorHandler extends PKPHandler {
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
-		$arrangements =& $arrangementDao->getSectionTitles($press->getPressId());
+		$arrangements =& $arrangementDao->getSectionTitles($press->getId());
 
 		$filterSectionOptions = array(
 			FILTER_SECTION_ALL => Locale::Translate('editor.allSections')
@@ -85,7 +85,7 @@ class AcquisitionsEditorHandler extends PKPHandler {
 
 		$submissions =& $acquisitionsEditorSubmissionDao->$functionName(
 			$user->getUserId(),
-			$press->getPressId(),
+			$press->getId(),
 			$filterSection,
 			$searchField,
 			$searchMatch,
@@ -149,7 +149,7 @@ class AcquisitionsEditorHandler extends PKPHandler {
 		$press =& Request::getPress();
 		// FIXME This is kind of evil
 		$page = Request::getRequestedPage();
-		if (!isset($press) || ($page == 'acquisitionsEditor' && !Validation::isAcquisitionsEditor($press->getPressId())) || ($page == 'editor' && !Validation::isEditor($press->getPressId()))) {
+		if (!isset($press) || ($page == 'acquisitionsEditor' && !Validation::isAcquisitionsEditor($press->getId())) || ($page == 'editor' && !Validation::isEditor($press->getId()))) {
 			Validation::redirectLogin();
 		}
 	}

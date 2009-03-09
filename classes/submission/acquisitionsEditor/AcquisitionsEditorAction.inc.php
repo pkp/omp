@@ -125,7 +125,7 @@ class AcquisitionsEditorAction extends Action {
 
 			$press =& Request::getPress();
 			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-			$settings =& $settingsDao->getPressSettings($press->getPressId());
+			$settings =& $settingsDao->getPressSettings($press->getId());
 			if (isset($settings['numWeeksPerReview'])) AcquisitionsEditorAction::setDueDate($acquisitionsEditorSubmission->getMonographId(), $reviewAssignment->getReviewId(), null, $settings['numWeeksPerReview']);
 
 			// Add log
