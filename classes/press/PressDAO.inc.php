@@ -228,7 +228,7 @@ class PressDAO extends DAO
 		$roleDao->deleteRoleByJournalId($journalId);
 
 		$groupDao = &DAORegistry::getDAO('GroupDAO');
-		$groupDao->deleteGroupsByJournalId($journalId);
+		$groupDao->deleteGroupsByAssocId(ASSOC_TYPE_PRESS, $pressId);
 
 		$pluginSettingsDao = &DAORegistry::getDAO('PluginSettingsDAO');
 		$pluginSettingsDao->deleteSettingsByJournalId($journalId);

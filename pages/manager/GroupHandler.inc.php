@@ -27,7 +27,7 @@ class GroupHandler extends ManagerHandler {
 		$rangeInfo =& PKPHandler::getRangeInfo('groups');
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
-		$groups =& $groupDao->getGroups($press->getId(), null, $rangeInfo);
+		$groups =& $groupDao->getGroups(ASSOC_TYPE_PRESS, $press->getId(), null, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('groups', $groups);
@@ -45,7 +45,7 @@ class GroupHandler extends ManagerHandler {
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteGroup($group);
-		$groupDao->resequenceGroups($press->getId());
+		$groupDao->resequenceGroups($group->getAssocType(), $group->getAssocId());
 
 		Request::redirect(null, null, 'groups');
 	}
@@ -60,7 +60,7 @@ class GroupHandler extends ManagerHandler {
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$group->setSequence($group->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
 		$groupDao->updateGroup($group);
-		$groupDao->resequenceGroups($press->getId());
+		$groupDao->resequenceGroups($group->getAssocType(), $group->getAssocId());
 
 		Request::redirect(null, null, 'groups');
 	}
@@ -75,8 +75,8 @@ class GroupHandler extends ManagerHandler {
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$group =& $groupDao->getGroup($groupId);
-			if (!$group || $press->getId() !== $group->getPressId()) {
+			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_PRESS, $press->getId());
+			if (!$group) {
 				Request::redirect(null, null, 'groups');
 			}
 		} else $group = null;
@@ -306,9 +306,9 @@ class GroupHandler extends ManagerHandler {
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$group =& $groupDao->getGroup($groupId);
+			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_PRESS, $press->getId());
 
-			if (!$group || $group->getPressId() !== $press->getId()) $passedValidation = false;
+			if (!$group) $passedValidation = false;
 			else $returner[] =& $group;
 
 			if ($userId !== null) {

@@ -170,7 +170,7 @@ class Press extends DataObject {
 	 */
 	function updateSetting($name, $value, $type = null, $isLocalized = false) {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		return $pressSettingsDao->updateSetting($this->getPressId(), $name, $value, $type, $isLocalized);
+		return $pressSettingsDao->updateSetting($this->getId(), $name, $value, $type, $isLocalized);
 	}
 	function &getLocalizedSetting($name) {
 		$returner = $this->getSetting($name, Locale::getLocale());

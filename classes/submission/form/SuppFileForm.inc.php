@@ -189,12 +189,12 @@ class SuppFileForm extends Form {
 			// Upload file, if file selected.
 			if ($monographFileManager->uploadedFileExists($fileName)) {
 				$monographFileManager->uploadSuppFile($fileName, $suppFile->getFileId());
-				import('search.MonographSearchIndex');
-				MonographSearchIndex::updateFileIndex($this->monograph->getMonographId(), ARTICLE_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
+//				import('search.MonographSearchIndex');
+//				MonographSearchIndex::updateFileIndex($this->monograph->getMonographId(), ARTICLE_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
 			}
 
 			// Index metadata
-			MonographSearchIndex::indexSuppFileMetadata($suppFile);
+//			MonographSearchIndex::indexSuppFileMetadata($suppFile);
 
 			// Update existing supplementary file
 			$this->setSuppFileData($suppFile);
@@ -204,8 +204,8 @@ class SuppFileForm extends Form {
 			// Upload file, if file selected.
 			if ($monographFileManager->uploadedFileExists($fileName)) {
 				$fileId = $monographFileManager->uploadSuppFile($fileName);
-				import('search.MonographSearchIndex');
-				MonographSearchIndex::updateFileIndex($this->monograph->getMonographId(), ARTICLE_SEARCH_SUPPLEMENTARY_FILE, $fileId);
+//				import('search.MonographSearchIndex');
+//				MonographSearchIndex::updateFileIndex($this->monograph->getMonographId(), ARTICLE_SEARCH_SUPPLEMENTARY_FILE, $fileId);
 			} else {
 				$fileId = 0;
 			}

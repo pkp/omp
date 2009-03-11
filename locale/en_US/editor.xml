@@ -19,7 +19,7 @@
 	<message key="editor.regrets.link">View Regrets, Cancels, Previous Rounds</message>
 	<message key="editor.regrets.link">View Regrets, Cancels, Previous Rounds</message>
 
-
+	<message key="editor.monograph.showSuppFile">Present file to reviewers</message>
 	<message key="editor.monograph.reviewForms">Review Forms</message>
 	<message key="editor.monograph.selectReviewForm">Select Review Form</message>
 	<message key="editor.monograph.clearReviewForm">Clear Review Form</message>

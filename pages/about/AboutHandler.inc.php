@@ -40,7 +40,7 @@ class AboutHandler extends PKPHandler {
 			if (isset($customAboutItems[Locale::getLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[Locale::getLocale()]);
 			elseif (isset($customAboutItems[Locale::getPrimaryLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[Locale::getPrimaryLocale()]);
 
-/*			foreach (AboutHandler::getPublicStatisticsNames() as $name) {
+			foreach (AboutHandler::getPublicStatisticsNames() as $name) {
 				if ($press->getSetting($name)) {
 					$templateMgr->assign('publicStatisticsEnabled', true);
 					break;
@@ -48,10 +48,10 @@ class AboutHandler extends PKPHandler {
 			}
 
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$groups =& $groupDao->getGroups($press->getId(), GROUP_CONTEXT_PEOPLE);
+			$groups =& $groupDao->getGroups(ASSOC_TYPE_PRESS, GROUP_CONTEXT_PEOPLE);
 
 			$templateMgr->assign_by_ref('peopleGroups', $groups);
-*/			$templateMgr->assign('helpTopicId', 'user.about');
+			$templateMgr->assign('helpTopicId', 'user.about');
 			$templateMgr->display('about/index.tpl');
 		} else {
 			$site =& Request::getSite();
@@ -146,7 +146,7 @@ class AboutHandler extends PKPHandler {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 
-			$allGroups =& $groupDao->getGroups($press->getId(), GROUP_CONTEXT_EDITORIAL_TEAM);
+			$allGroups =& $groupDao->getGroups(ASSOC_TYPE_PRESS, GROUP_CONTEXT_EDITORIAL_TEAM);
 			$teamInfo = array();
 			$groups = array();
 			while ($group =& $allGroups->next()) {
@@ -303,7 +303,9 @@ class AboutHandler extends PKPHandler {
 	}
 
 	function getPublicStatisticsNames() {
-
+		import ('pages.manager.ManagerHandler');
+		import ('pages.manager.StatisticsHandler');
+		return StatisticsHandler::getPublicStatisticsNames();
 	}
 
 }

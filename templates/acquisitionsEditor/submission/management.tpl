@@ -61,7 +61,7 @@
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatShort}</td>
 	</tr>
 	<tr>
-		<td class="label">{translate key="section.section"}</td>
+		<td class="label">{translate key="submissions.acquisitionsArrangement"}</td>
 		<td class="value">{*$arrangement->getTitle()|escape*}</td>
 		<td class="value"><form action="{url op="updateSection" path=$submission->getMonographId()}" method="post">{translate key="submission.changeSection"} <select name="section" size="1" class="selectMenu">{html_options options=$arrangements selected=$submission->getAcquisitionsArrangementId()}</select> <input type="submit" value="{translate key="common.record"}" class="button" /></form></td>
 	</tr>

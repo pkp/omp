@@ -97,7 +97,8 @@ class GroupForm extends Form {
 			$this->group =& new Group();
 		}
 
-		$this->group->setPressId($press->getId());
+		$this->group->setAssocType(ASSOC_TYPE_PRESS);
+		$this->group->setAssocId($press->getId());
 		$this->group->setTitle($this->getData('title'), null); // Localized
 		$this->group->setContext($this->getData('context'));
 
@@ -113,7 +114,7 @@ class GroupForm extends Form {
 			$groupDao->insertGroup($this->group);
 
 			// Re-order the groups so the new one is at the end of the list.
-			$groupDao->resequenceGroups($this->group->getPressId());
+			$groupDao->resequenceGroups($this->group->getAssocType(), $this->group->getAssocId());
 		}
 	}
 }

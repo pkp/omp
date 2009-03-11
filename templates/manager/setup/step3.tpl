@@ -272,11 +272,11 @@
 <div class="separator"></div>
 
 
-<h3>3.6 {translate key="manager.setup.registerJournalForIndexing"}</h3>
+<h3>3.6 {translate key="manager.setup.registerPressForIndexing"}</h3>
 
 {url|assign:"oaiSiteUrl" press=$currentPress->getPath()}
 {url|assign:"oaiUrl" page="oai"}
-<p>{translate key="manager.setup.registerJournalForIndexingDescription" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
+<p>{translate key="manager.setup.registerPressForIndexingDescription" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
 
 
 <div class="separator"></div>

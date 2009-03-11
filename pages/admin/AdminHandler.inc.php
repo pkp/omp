@@ -50,6 +50,7 @@ class AdminHandler extends PKPHandler {
 		parent::setupTemplate();
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_ADMIN));
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_ADMIN));
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy',

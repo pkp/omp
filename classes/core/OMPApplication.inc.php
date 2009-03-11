@@ -18,6 +18,8 @@
 
 
 import('core.PKPApplication');
+ 	
+define('ASSOC_TYPE_PRESS',	0x0000200);
 
 class OMPApplication extends PKPApplication {
 	function OMPApplication() {

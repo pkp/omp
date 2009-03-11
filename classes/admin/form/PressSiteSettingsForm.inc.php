@@ -44,7 +44,7 @@ class PressSiteSettingsForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pressId', $this->pressId);
 		$templateMgr->assign('helpTopicId', 'site.siteManagement');
 		parent::display();
@@ -85,7 +85,7 @@ class PressSiteSettingsForm extends Form {
 		$this->setData('enabled', (int)$this->getData('enabled'));
 
 		if (isset($this->pressId)) {
-			$pressDao = &DAORegistry::getDAO('PressDAO');
+			$pressDao =& DAORegistry::getDAO('PressDAO');
 			$press =& $pressDao->getPress($this->pressId);
 			$this->setData('oldPath', $press->getPath());
 		}
@@ -103,14 +103,14 @@ class PressSiteSettingsForm extends Form {
 	 * Save press settings.
 	 */
 	function execute() {
-		$pressDao = &DAORegistry::getDAO('PressDAO');
+		$pressDao =& DAORegistry::getDAO('PressDAO');
 
 		if (isset($this->pressId)) {
 			$press =& $pressDao->getPress($this->pressId);
 		}
 
 		if (!isset($press)) {
-			$press = &new Press();
+			$press =& new Press();
 		}
 
 		$press->setPath($this->getData('path'));
@@ -128,18 +128,18 @@ class PressSiteSettingsForm extends Form {
 			$press->setPrimaryLocale($site->getPrimaryLocale());
 
 			$pressId = $pressDao->insertPress($press);
-//!!!!!!!!!!!!!!!!!!!!!			//$pressDao->resequencePresses();
+			$pressDao->resequencePresses();
 
 			// Make the site administrator the press manager of newly created presses
-			$sessionManager = &SessionManager::getManager();
-			$userSession = &$sessionManager->getUserSession();
+			$sessionManager =& SessionManager::getManager();
+			$userSession =& $sessionManager->getUserSession();
 			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($pressId)) {
-				$role = &new Role();
+				$role =& new Role();
 				$role->setPressId($pressId);
 				$role->setUserId($userSession->getUserId());
 				$role->setRoleId(ROLE_ID_PRESS_MANAGER);
 
-				$roleDao = &DAORegistry::getDAO('RoleDAO');
+				$roleDao =& DAORegistry::getDAO('RoleDAO');
 				$roleDao->insertRole($role);
 			}
 
@@ -151,8 +151,9 @@ class PressSiteSettingsForm extends Form {
 
 
 			// Install default press settings
-			$pressSettingsDao = &DAORegistry::getDAO('PressSettingsDAO');
+			$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			$titles = $this->getData('title');
+			Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
 			$pressSettingsDao->installSettings($pressId, 'registry/pressSettings.xml', array(
 				'indexUrl' => Request::getIndexUrl(),
 				'pressPath' => $this->getData('path'),
@@ -162,7 +163,7 @@ class PressSiteSettingsForm extends Form {
 
 			// Install the default RT versions.
 /*			import('rt.ojs.JournalRTAdmin');
-			$journalRtAdmin = &new JournalRTAdmin($journalId);
+			$journalRtAdmin =& new JournalRTAdmin($journalId);
 			$journalRtAdmin->restoreVersions(false);
 */
 /*			// Create a default "Articles" section

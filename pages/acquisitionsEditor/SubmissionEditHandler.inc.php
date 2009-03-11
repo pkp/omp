@@ -29,6 +29,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 	function submission($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_OMP_AUTHOR));
 		parent::setupTemplate(true, $monographId);
 
 		$user =& Request::getUser();
