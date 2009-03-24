@@ -421,12 +421,13 @@
 		<field name="review_revision" type="I8" />
 		<field name="review_type" type="I8" />
 		<descr>Review rounds.</descr>
-		<index name="review_rounds_article_id">
-			<col>article_id</col>
+		<index name="review_rounds_monograph_id">
+			<col>monograph_id</col>
 		</index>
 		<index name="review_rounds_pkey">
-			<col>article_id</col>
+			<col>monograph_id</col>
 			<col>round</col>
+			<col>review_type</col>
 			<UNIQUE/>
 		</index>
 	</table>		

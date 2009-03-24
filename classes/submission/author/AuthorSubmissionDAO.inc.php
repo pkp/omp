@@ -112,15 +112,23 @@ class AuthorSubmissionDAO extends DAO {
 		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByMonographId($row['monograph_id']);
 		$authorSubmission->setEditAssignments($editAssignments->toArray());
 
-		// Editor Decisions
-		for ($i = 1; $i <= $row['current_round']; $i++) {
-//			$authorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $i), $i);
+
+		$reviewRounds =& $authorSubmission->getReviewRounds();
+
+		if (isset($reviewRounds)) {
+		      foreach ($reviewRounds as $reviewRound => $round) { // Editor Decisions
+			      for ($i = 1; $i <= $round; $i++) {
+				      $authorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $reviewRound, $i), $reviewRound, $i);
+			      }
+		      }
+		      foreach ($reviewRounds as $reviewRound => $round) { // Review Assignments
+			      for ($i = 1; $i <= $round; $i++) {
+				      $authorSubmission->setReviewAssignments($this->reviewAssignmentDao->getReviewAssignmentsByMonographId($row['monograph_id'], $reviewRound, $i), $reviewRound, $i);
+			      }
+		      }
 		}
 
-		// Review Assignments
-		for ($i = 1; $i <= $row['current_round']; $i++) {
-//			$authorSubmission->setReviewAssignments($this->reviewAssignmentDao->getReviewAssignmentsByMonographId($row['monograph_id'], $i), $i);
-		}
+
 
 		// Comments
 /*		$authorSubmission->setMostRecentEditorDecisionComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_EDITOR_DECISION, $row['monograph_id']));

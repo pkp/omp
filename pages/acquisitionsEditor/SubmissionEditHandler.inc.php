@@ -107,15 +107,11 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$processId = isset($args[1]) ? (int) $args[1] : 0;//validate
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
 
-		$process =& Action::endSignoffProcess($processId);
+		$process =& Action::endSignoffProcess($processId);print_r($process);exit;
 		$signoffEntityDao =& DAORegistry::getDAO('SignoffEntityDAO');
-		$signoffEntityDao =& DAORegistry::getDAO('WorkflowDAO');
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 		import('workflow.review.ReviewProcess');
-		$entities =& $signoffEntityDao->get(WORKFLOW_PROCESS_TYPE_REVIEW, $submission->getCurrentReview(), $press->getId());
-
-		if (!empty($entities)) {
-			//see how many people have signed off
-		}
+		$entities =& $signoffEntityDao->get(WORKFLOW_PROCESS_TYPE_REVIEW, $process->getWorkflowProcessId(), $press->getId());
 
 		Request::redirect(null, null, 'submissionReview', $monographId);
 	}
@@ -232,39 +228,39 @@ $sections = null;
 		$reviewProcesses =& $workflowDao->getByWorkflowProcessType($monographId, WORKFLOW_PROCESS_TYPE_REVIEW);
 
 		$signoffEntityDao =& DAORegistry::getDAO('SignoffEntityDAO');
-		$signoffEntityDao =& DAORegistry::getDAO('WorkflowDAO');
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 		import('workflow.review.ReviewProcess');
 		$signoffProcessDao =& DAORegistry::getDAO('ProcessSignoffDAO');
 
-		$signoffProcess =& $signoffProcessDao->getById($processId);
-		if (!isset($signoffProcess)) return null;
-
-		$signoffProcess->setDateEnded(Core::getCurrentDate());
-		$signoffProcessDao->updateObject($signoffProcess);
-
-		$currentReviewType = 0;
+	if (isset($reviewProcesses[0]) && $reviewProcesses[0]->getWorkflowProcess() != null) {
+		$currentReviewType = 1;
+		$signoffQueue = false;
+		$workflowProcess = null;
 		for ($i=0;$i<count($reviewProcesses);$i++) {
-			$wp =& $reviewProcesses[$i]->getWorkflowProcess();
-			if(isset($wp->getDateEnded()) && !isset($wp->getDateSigned())) {
-				$entities =& $signoffEntityDao->get(WORKFLOW_PROCESS_TYPE_REVIEW, $reviewProcesses[$i]->getWorkflowProcessId(), $press->getId());
+			$workflowProcess =& $reviewProcesses[$i]->getWorkflowProcess();
+			if (isset($workflowProcess) && $workflowProcess->getDateEnded() != null && $workflowProcess->getDateSigned() == null) {
+				$currentReviewType = $workflowProcess->getWorkflowProcessId();
+				$entities =& $signoffEntityDao->get(WORKFLOW_PROCESS_TYPE_REVIEW, $workflowProcess->getWorkflowProcessId(), $press->getId());
 				if (empty($entities)) {// or everyone has signed
-					$wp->setDateSigned(Core::getCurrentDate());
-					$signoffProcessDao->updateObject($wp);
-
+					$workflowProcess->setDateSigned(Core::getCurrentDate());
+					$signoffProcessDao->updateObject($workflowProcess);
 					if (isset($reviewProcesses[$i+1])) {
-						  Action::initiateSignoffProcess($wp->getMonographId(), $wp->getWorkflowProcess, $reviewProcesses[$i+1]->getWorkflowProcessId());
-						  break;
+						$workflowProcess =& $reviewProcesses[$i+1]->getWorkflowProcess();print_r($workflowProcess);
+						Action::initiateSignoffProcess($workflowProcess->getMonographId(), $workflowProcess->getWorkflowProcess(), $workflowProcess->getWorkflowProcessId());
+						$currentReviewType = $workflowProcess->getWorkflowProcessId();
+						break;
 					}
-
-
+				} else {
+					 
 				}
 			}
 		}
-
+		unset($workflowProcess);
+	}
 		$templateMgr->assign('signoffWait', 0);
 		$templateMgr->assign('signoffQueue', 0);
 
-		$templateMgr->assign_by_ref('reviewType', $submission->getCurrentReviewType());
+		$templateMgr->assign_by_ref('reviewType', $currentReviewType);
 		$templateMgr->assign_by_ref('reviewProcesses', $reviewProcesses);
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('reviewIndexes', $reviewAssignmentDao->getReviewIndexesForRound($monographId, $round));

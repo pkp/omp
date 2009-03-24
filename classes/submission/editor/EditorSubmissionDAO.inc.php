@@ -99,7 +99,7 @@ class EditorSubmissionDAO extends DAO {
 
 		if (isset($reviewRounds))
 		foreach ($reviewRounds as $reviewRound => $round) {
-			for ($i = 1; $i <= $reviewRound; $i++) {
+			for ($i = 1; $i <= $round; $i++) {
 				$editorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $reviewRound, $i), $reviewRound, $i);
 			}
 		}

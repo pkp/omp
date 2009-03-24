@@ -286,7 +286,7 @@ class MonographDAO extends DAO {
 				$monograph->getReviewFileId(),
 				$monograph->getEditorFileId(),
 				$monograph->getCopyeditFileId(),
-				$monograph->getHideAuthor(),
+				$monograph->getHideAuthor() == null ? 0 : $monograph->getHideAuthor(),
 				$monograph->getAcquisitionsArrangementId(),
 				$monograph->getCompletedProspectusFileId(),
 				$monograph->getCurrentReviewType(),

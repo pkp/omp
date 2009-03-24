@@ -87,7 +87,33 @@ class ManagerHandler extends PKPHandler {
 			$email->displayEditForm(Request::url(null, null, 'email'), array(), 'manager/people/email.tpl');
 		}
 	}
-
+	//
+	// Review Setup
+	//
+	function reviewSignoffs($args) {
+		import('pages.manager.ReviewSetupHandler');
+		ReviewSetupHandler::reviewSignoffs($args);
+	}
+	function viewSignoffEntities($args) {
+		import('pages.manager.ReviewSetupHandler');
+		ReviewSetupHandler::viewSignoffEntities($args);
+	}
+	function addSignoffGroup($args) {
+		import('pages.manager.ReviewSetupHandler');
+		ReviewSetupHandler::addSignoffGroup($args);
+	}
+	function removeSignoffGroup($args) {
+		import('pages.manager.ReviewSetupHandler');
+		ReviewSetupHandler::removeSignoffGroup($args);
+	}
+	function addSignoffUser($args) {
+		import('pages.manager.ReviewSetupHandler');
+		ReviewSetupHandler::addSignoffUser($args);
+	}
+	function removeSignoffUser($args) {
+		import('pages.manager.ReviewSetupHandler');
+		ReviewSetupHandler::removeSignoffUser($args);
+	}
 	/**
 	 * Validate that user has permissions to manage the selected press.
 	 * Redirects to user index page if not properly authenticated.
