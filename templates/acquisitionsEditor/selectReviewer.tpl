@@ -13,12 +13,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{if $reviewType == REVIEW_TYPE_INTERNAL}
-	{assign var="selectReviewerFunction" value="selectInternalReviewer"}
-{else}
-	{assign var="selectReviewerFunction" value="selectReviewer"}
-{/if}
-
+{assign var="selectReviewerFunction" value="selectReviewer"}
 
 <h3>{translate key="editor.monograph.selectReviewer"}</h3>
 <form name="submit" method="post" action="{url op=$selectReviewerFunction path=$monographId}">
@@ -91,7 +86,7 @@
 		{if $reviewer->review_id}
 			{translate key="common.alreadyAssigned"}
 		{else}
-		<a class="action" href="{url op=$selectReviewerFunction path=$monographId|to_array:$reviewer->getUserId()}">{translate key="common.assign"}</a>
+		<a class="action" href="{url op=$selectReviewerFunction path=$monographId|to_array:$reviewType reviewerId=$reviewer->getUserId()}">{translate key="common.assign"}</a>
 		{/if}
 	</td>
 </tr>

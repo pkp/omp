@@ -72,14 +72,33 @@ class Monograph extends Submission {
 		 return $this->getData('arrangement_title', $value);
 	}
 
-	function setCompletedProspectusFileId($id) {
+	function setCompletedProspectusFileId(&$id) {
 		 $this->setData('prospectus_file_id', $id);
 	}
-	function getCompletedProspectusFileId() {
+	function &getCompletedProspectusFileId() {
 		 return $this->getData('prospectus_file_id');
 	}
 
-
+	function setReviewRounds($roundInfo) {
+		 $this->setData('review_rounds', $roundInfo);
+	}
+	function getReviewRounds() {
+		 return $this->getData('review_rounds');
+	}
+	function setCurrentReviewType($reviewId) {
+		 $this->setData('current_review', $reviewId);
+	}
+	function getCurrentReviewType() {
+		 return $this->getData('current_review');
+	}
+	function getCurrentRoundByReviewType($reviewType) {
+		$rounds = $this->getReviewRounds();
+		if (isset($rounds[$reviewType])) {
+			return $rounds[$reviewType];
+		} else {
+			return 0;
+		}
+	}
 	/**
 	 * set monograph id
 	 * @param $monographId int
@@ -254,21 +273,6 @@ class Monograph extends Submission {
 			if (!empty($publicIssueId)) return $publicIssueId;
 		}
 		return $this->getMonographId();
-	}
-	/**
-	 * Get current review round.
-	 * @return int
-	 */
-	function getCurrentRound() {
-		return $this->getData('currentRound');
-	}
-
-	/**
-	 * Set current review round.
-	 * @param $currentRound int
-	 */
-	function setCurrentRound($currentRound) {
-		return $this->setData('currentRound', $currentRound);
 	}
 
 	/**

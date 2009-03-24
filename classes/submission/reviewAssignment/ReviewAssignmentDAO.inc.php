@@ -41,11 +41,13 @@ class ReviewAssignmentDAO extends DAO {
 	 * @param $reviewerId int
 	 * @return ReviewAssignment
 	 */
-	function &getReviewAssignment($monographId, $reviewerId, $round) {
-		$result =& $this->retrieve(
-			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) WHERE r.monograph_id = ? AND r.reviewer_id = ? AND r.cancelled <> 1 AND r.round = ?',
-			array((int) $monographId, (int) $reviewerId, (int) $round)
-			);
+	function &getReviewAssignment($monographId, $reviewerId, $reviewType, $round) {
+
+		$result =& $this->retrieve('
+					SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name 
+					FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) WHERE r.monograph_id = ? AND r.reviewer_id = ? AND r.cancelled <> 1 AND r.review_type = ? AND r.round = ?',
+					array((int) $monographId, (int) $reviewerId, (int) $reviewType, (int) $round)
+				);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -135,7 +137,7 @@ class ReviewAssignmentDAO extends DAO {
 	 * @param $monographId int
 	 * @return array ReviewAssignments
 	 */
-	function &getReviewAssignmentsByMonographId($monographId, $round = null, $reviewType = null) {
+	function &getReviewAssignmentsByMonographId($monographId, $reviewType, $round = null) {
 		$reviewAssignments = array();
 
 		$query = 'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) WHERE r.monograph_id = ?';

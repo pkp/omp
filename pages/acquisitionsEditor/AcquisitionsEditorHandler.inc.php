@@ -139,7 +139,10 @@ class AcquisitionsEditorHandler extends PKPHandler {
 		import('pages.acquisitionsEditor.SubmissionEditHandler');
 		SubmissionEditHandler::selectInternalReviewer($args);
 	}
-
+	function endReviewProcess($args) {
+		import('pages.acquisitionsEditor.SubmissionEditHandler');
+		SubmissionEditHandler::endReviewProcess($args);
+	}
 	/**
 	 * Validate that user is a section editor in the selected journal.
 	 * Redirects to user index page if not properly authenticated.

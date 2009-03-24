@@ -219,11 +219,16 @@ class EditorSubmission extends Monograph {
 	 * Get editor decisions.
 	 * @return array
 	 */
-	function getDecisions($round = null) {
-		if ($round == null) {
+	function getDecisions($reviewType = null, $round = null) {
+
+		if ($reviewType == null) {
 			return $this->editorDecisions;
+		}
+
+		if ($round == null) {
+			return $this->editorDecisions[$reviewType];
 		} else {
-			if (isset($this->editorDecisions[$round])) return $this->editorDecisions[$round];
+			if (isset($this->editorDecisions[$reviewType][$round])) return $this->editorDecisions[$reviewType][$round];
 			else return null;
 		}
 	}
@@ -231,10 +236,11 @@ class EditorSubmission extends Monograph {
 	/**
 	 * Set editor decisions.
 	 * @param $editorDecisions array
+	 * @param $reviewType int
 	 * @param $round int
 	 */
-	function setDecisions($editorDecisions, $round) {
-		return $this->editorDecisions[$round] = $editorDecisions;
+	function setDecisions($editorDecisions, $reviewType, $round) {
+		return $this->editorDecisions[$reviewType][$round] = $editorDecisions;
 	}
 
 	// 
@@ -927,7 +933,7 @@ class EditorSubmission extends Monograph {
 		$decisionsEmpty = true;
 		$lastDecisionDate = null;
 		$decisions = $this->getDecisions();
-		$decision = array_pop($decisions);
+		$decision = is_array($decisions) ? array_pop($decisions) : null;
 		if (!empty($decision)) {
 			$latestDecision = array_pop($decision);
 			if (is_array($latestDecision)) {
@@ -1109,7 +1115,7 @@ class EditorSubmission extends Monograph {
 			// ---
 			// --- Highlighting conditions for submissions in review
 			// ---
-			$reviewAssignments =& $this->getReviewAssignments($this->getCurrentRound());
+		//	$reviewAssignments =& $this->getReviewAssignments($this->getCurrentRound());
 			if (is_array($reviewAssignments) && !empty($reviewAssignments)) {
 				$allReviewsComplete = true;
 				foreach ($reviewAssignments as $i => $junk) {

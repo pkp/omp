@@ -163,6 +163,9 @@ class OMPApplication extends PKPApplication {
 			'ReviewFormDAO' => 'reviewForm.ReviewFormDAO',
 			'ReviewFormElementDAO' => 'reviewForm.ReviewFormElementDAO',
 			'ReviewFormResponseDAO' => 'reviewForm.ReviewFormResponseDAO',
+			'ReviewProcessDAO' => 'workflow.review.ReviewProcessDAO',
+			'WorkflowDAO' => 'workflow.WorkflowDAO',
+			'ProcessSignoffDAO' => 'workflow.ProcessSignoffDAO',
 			'RoleDAO' => 'security.RoleDAO',
 			'RTDAO' => 'rt.ojs.RTDAO',
 			'SuppFileDAO' => 'monograph.SuppFileDAO',
@@ -171,7 +174,8 @@ class OMPApplication extends PKPApplication {
 			'SubscriptionDAO' => 'subscription.SubscriptionDAO',
 			'SubscriptionTypeDAO' => 'subscription.SubscriptionTypeDAO',
 			'UserDAO' => 'user.UserDAO',
-			'UserSettingsDAO' => 'user.UserSettingsDAO'
+			'UserSettingsDAO' => 'user.UserSettingsDAO',
+			'SignoffEntityDAO' => 'signoff.SignoffEntityDAO'
 		));
 	}
 

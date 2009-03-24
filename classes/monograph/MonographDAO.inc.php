@@ -178,7 +178,7 @@ class MonographDAO extends DAO {
 		$monograph->stampModified();
 		$this->update(
 			sprintf('INSERT INTO monographs
-				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, current_round, submission_file_id, revised_file_id, review_file_id, editor_file_id, copyedit_file_id, pages, fast_tracked, hide_author, comments_status, edited_volume, arrangement_id, prospectus_file_id)
+				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, submission_file_id, revised_file_id, review_file_id, editor_file_id, copyedit_file_id, pages, fast_tracked, hide_author, comments_status, edited_volume, arrangement_id, prospectus_file_id, current_review)
 				VALUES
 				(?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
@@ -189,7 +189,6 @@ class MonographDAO extends DAO {
 				$monograph->getCommentsToEditor(),
 				$monograph->getStatus() === null ? 1 : $monograph->getStatus(),
 				$monograph->getSubmissionProgress() === null ? 1 : $monograph->getSubmissionProgress(),
-				$monograph->getCurrentRound() === null ? 1 : $monograph->getCurrentRound(),
 				$monograph->getSubmissionFileId(),
 				$monograph->getRevisedFileId(),
 				$monograph->getReviewFileId(),
@@ -201,7 +200,8 @@ class MonographDAO extends DAO {
 				$monograph->getCommentsStatus() === null ? 0 : $monograph->getCommentsStatus(),
 				$monograph->getWorkType(),
 				$monograph->getAcquisitionsArrangementId() ,
-				$monograph->getCompletedProspectusFileId()
+				$monograph->getCompletedProspectusFileId(),
+				$monograph->getCurrentReviewType() === null ? 1 : $monograph->getCurrentReviewType()
 			)
 		);
 
@@ -262,7 +262,6 @@ class MonographDAO extends DAO {
 					press_id = ?,
 					submission_progress = ?,
 					edited_volume = ?,
-					current_round = ?,
 					submission_file_id = ?,
 					revised_file_id = ?,
 					review_file_id = ?,
@@ -270,7 +269,8 @@ class MonographDAO extends DAO {
 					copyedit_file_id = ?,
 					hide_author = ?,
 					arrangement_id = ?,
-					prospectus_file_id = ?
+					prospectus_file_id = ?,
+					current_review = ?
 				WHERE monograph_id = ?',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
@@ -281,7 +281,6 @@ class MonographDAO extends DAO {
 				$monograph->getPressId(),
 				$monograph->getSubmissionProgress(),
 				$monograph->getWorkType() == EDITED_VOLUME ? 1 : 0,
-				$monograph->getCurrentRound(),
 				$monograph->getSubmissionFileId(),
 				$monograph->getRevisedFileId(),
 				$monograph->getReviewFileId(),
@@ -290,6 +289,7 @@ class MonographDAO extends DAO {
 				$monograph->getHideAuthor(),
 				$monograph->getAcquisitionsArrangementId(),
 				$monograph->getCompletedProspectusFileId(),
+				$monograph->getCurrentReviewType(),
 				$monograph->getMonographId()
 			)
 		);
@@ -387,6 +387,34 @@ class MonographDAO extends DAO {
 	}
 
 	/**
+	 * return current round for each review type
+	 * @param $row array
+	 * @return array ($returned[review_type]=current_round_value)
+	 */
+	function &_retrieveCurrentReviewRounds($monographId) {
+		$returner = null;
+		$reviewProcessDao =& DAORegistry::getDAO('ReviewProcessDAO');
+		$reviewTypes =& $reviewProcessDao->getEnabledObjects($monographId);
+
+		$result =& $this->retrieve('SELECT MAX(round) AS current_round, review_type, review_revision FROM review_rounds r WHERE monograph_id = ? GROUP BY review_type', $monographId);
+
+		foreach ($reviewTypes as $reviewType) {
+			$returner[$reviewType->getId()] = 0;
+		}
+
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			$returner[$row['review_type']] = $row['current_round'];
+			$result->MoveNext();
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
+	/**
 	 * Get published monographs organized by published date
 	 * @param $pressId int
 	 * @param $rangeInfo object DBResultRange
@@ -424,11 +452,16 @@ class MonographDAO extends DAO {
 		$monograph->setCommentsToEditor($row['comments_to_ed']);
 		$monograph->setDateSubmitted($row['date_submitted']);
 		$monograph->setLanguage($row['language']);
-		$monograph->setCurrentRound($row['current_round']);
 		$monograph->setSubmissionFileId($row['submission_file_id']);
+		$monograph->setRevisedFileId($row['revised_file_id']);
+		$monograph->setReviewFileId($row['review_file_id']);
+		$monograph->setEditorFileId($row['editor_file_id']);
+		$monograph->setCopyeditFileId($row['copyedit_file_id']);
 		$monograph->setCompletedProspectusFileId($row['prospectus_file_id']);
 		$monograph->setStatus($row['status']);
 		$monograph->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
+		$monograph->setReviewRounds($this->_retrieveCurrentReviewRounds($row['monograph_id']));
+		$monograph->setCurrentReviewType($row['current_review']);
 		//$monograph->setDatePublished($this->datetimeFromDB($row['date_published']));
 //		//$monograph->setPublicMonographId($row['public_monograph_id']);
 		$monograph->setWorkType($row['edited_volume']);

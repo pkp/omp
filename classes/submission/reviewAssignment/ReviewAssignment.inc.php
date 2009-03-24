@@ -29,9 +29,6 @@ define('SUBMISSION_REVIEWER_RATING_AVERAGE', 3);
 define('SUBMISSION_REVIEWER_RATING_POOR', 2);
 define('SUBMISSION_REVIEWER_RATING_VERY_POOR', 1);
 
-define('REVIEW_TYPE_INTERNAL', 1);
-define('REVIEW_TYPE_EXTERNAL', 2);
-
 class ReviewAssignment extends DataObject {
 
 	/** @var array MonographFiles the revisions of the reviewer file */

@@ -80,7 +80,7 @@ class AcquisitionsEditorAction extends Action {
 	 * @param $acquisitionsEditorSubmission object
 	 * @param $reviewerId int
 	 */
-	function addReviewer($acquisitionsEditorSubmission, $reviewerId, $round = null, $reviewType = null) {
+	function addReviewer($acquisitionsEditorSubmission, $reviewerId, $reviewType, $round = null) {
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -91,10 +91,10 @@ class AcquisitionsEditorAction extends Action {
 		// Check to see if the requested reviewer is not already
 		// assigned to review this monograph.
 		if ($round == null) {
-			$round = $acquisitionsEditorSubmission->getCurrentRound();
+			$round = $acquisitionsEditorSubmission->getCurrentRoundByReviewType($reviewType);
 		}
 
-		$assigned = $acquisitionsEditorSubmissionDao->reviewerExists($acquisitionsEditorSubmission->getMonographId(), $reviewerId, $round);
+		$assigned = $acquisitionsEditorSubmissionDao->reviewerExists($acquisitionsEditorSubmission->getMonographId(), $reviewerId, $reviewType, $round);
 
 		// Only add the reviewer if he has not already
 		// been assigned to review this monograph.
@@ -103,8 +103,7 @@ class AcquisitionsEditorAction extends Action {
 			$reviewAssignment->setReviewerId($reviewerId);
 			$reviewAssignment->setDateAssigned(Core::getCurrentDate());
 			$reviewAssignment->setRound($round);
-			if (isset($reviewType))
-				$reviewAssignment->setReviewType($reviewType);
+			$reviewAssignment->setReviewType($reviewType);
 			// Assign review form automatically if needed
 			$pressId = $acquisitionsEditorSubmission->getPressId();
 			$acquisitionsDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
@@ -120,13 +119,13 @@ class AcquisitionsEditorAction extends Action {
 
 			$acquisitionsEditorSubmission->addReviewAssignment($reviewAssignment);
 			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
-
-			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($acquisitionsEditorSubmission->getMonographId(), $reviewerId, $round);
+			$round = $acquisitionsEditorSubmission->getCurrentRoundByReviewType($reviewType);
+			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($acquisitionsEditorSubmission->getMonographId(), $reviewerId, $reviewType, $round);
 
 			$press =& Request::getPress();
 			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			$settings =& $settingsDao->getPressSettings($press->getId());
-			if (isset($settings['numWeeksPerReview'])) AcquisitionsEditorAction::setDueDate($acquisitionsEditorSubmission->getMonographId(), $reviewAssignment->getReviewId(), null, $settings['numWeeksPerReview']);
+			//	if (isset($settings['numWeeksPerReview'])) AcquisitionsEditorAction::setDueDate($acquisitionsEditorSubmission->getMonographId(), $reviewAssignment->getReviewId(), null, $settings['numWeeksPerReview']);
 
 			// Add log
 //		import('monograph.log.MonographLog');

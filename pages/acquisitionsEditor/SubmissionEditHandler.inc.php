@@ -102,6 +102,23 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr->display('acquisitionsEditor/submission.tpl');
 	}
 
+	function endReviewProcess($args) {
+		$monographId = isset($args[0]) ? (int) $args[0] : 0;
+		$processId = isset($args[1]) ? (int) $args[1] : 0;//validate
+		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+
+		$process =& Action::endSignoffProcess($processId);
+		$signoffEntityDao =& DAORegistry::getDAO('SignoffEntityDAO');
+		$signoffEntityDao =& DAORegistry::getDAO('WorkflowDAO');
+		import('workflow.review.ReviewProcess');
+		$entities =& $signoffEntityDao->get(WORKFLOW_PROCESS_TYPE_REVIEW, $submission->getCurrentReview(), $press->getId());
+
+		if (!empty($entities)) {
+			//see how many people have signed off
+		}
+
+		Request::redirect(null, null, 'submissionReview', $monographId);
+	}
 	function submissionRegrets($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
@@ -153,18 +170,18 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
 		// Setting the round.
-		$round = isset($args[1]) ? $args[1] : $submission->getCurrentRound();
+		$round = 1;//isset($args[1]) ? $args[1] : $submission->getCurrentRound();
 
 //		$sectionDao =& DAORegistry::getDAO('SectionDAO');
 //		$sections =& $sectionDao->getPressSections($press->getId());
 
-		$showPeerReviewOptions = $round == $submission->getCurrentRound() && $submission->getReviewFile() != null ? true : false;
+//		$showPeerReviewOptions = $round == $submission->getCurrentRound() && $submission->getReviewFile() != null ? true : false;
 
 		$editorDecisions = $submission->getDecisions($round);
 		$lastDecision = null;//count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;				
 
 		$editAssignments =& $submission->getEditAssignments();
-		$allowRecommendation = $submission->getCurrentRound() == $round && $submission->getReviewFileId() != null && !empty($editAssignments);
+//		$allowRecommendation = $submission->getCurrentRound() == $round && $submission->getReviewFileId() != null && !empty($editAssignments);
 		$allowResubmit = $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT && $acquisitionsEditorSubmissionDao->getMaxReviewRound($monographId) == $round ? true : false;
 		$allowCopyedit = $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT && $submission->getCopyeditFileId() == null ? true : false;
 
@@ -173,6 +190,8 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		foreach ($submission->getReviewAssignments($round) as $reviewAssignment) {
 //			$notifyReviewerLogs[$reviewAssignment->getReviewId()] = array();
 		}
+
+
 
 		// Parse the list of email logs and populate the array.
 /*		import('monograph.log.MonographLog');
@@ -209,9 +228,47 @@ $sections = null;
 
 		$templateMgr =& TemplateManager::getManager();
 
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$reviewProcesses =& $workflowDao->getByWorkflowProcessType($monographId, WORKFLOW_PROCESS_TYPE_REVIEW);
+
+		$signoffEntityDao =& DAORegistry::getDAO('SignoffEntityDAO');
+		$signoffEntityDao =& DAORegistry::getDAO('WorkflowDAO');
+		import('workflow.review.ReviewProcess');
+		$signoffProcessDao =& DAORegistry::getDAO('ProcessSignoffDAO');
+
+		$signoffProcess =& $signoffProcessDao->getById($processId);
+		if (!isset($signoffProcess)) return null;
+
+		$signoffProcess->setDateEnded(Core::getCurrentDate());
+		$signoffProcessDao->updateObject($signoffProcess);
+
+		$currentReviewType = 0;
+		for ($i=0;$i<count($reviewProcesses);$i++) {
+			$wp =& $reviewProcesses[$i]->getWorkflowProcess();
+			if(isset($wp->getDateEnded()) && !isset($wp->getDateSigned())) {
+				$entities =& $signoffEntityDao->get(WORKFLOW_PROCESS_TYPE_REVIEW, $reviewProcesses[$i]->getWorkflowProcessId(), $press->getId());
+				if (empty($entities)) {// or everyone has signed
+					$wp->setDateSigned(Core::getCurrentDate());
+					$signoffProcessDao->updateObject($wp);
+
+					if (isset($reviewProcesses[$i+1])) {
+						  Action::initiateSignoffProcess($wp->getMonographId(), $wp->getWorkflowProcess, $reviewProcesses[$i+1]->getWorkflowProcessId());
+						  break;
+					}
+
+
+				}
+			}
+		}
+
+		$templateMgr->assign('signoffWait', 0);
+		$templateMgr->assign('signoffQueue', 0);
+
+		$templateMgr->assign_by_ref('reviewType', $submission->getCurrentReviewType());
+		$templateMgr->assign_by_ref('reviewProcesses', $reviewProcesses);
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('reviewIndexes', $reviewAssignmentDao->getReviewIndexesForRound($monographId, $round));
-		$templateMgr->assign('round', $round);
+//		$templateMgr->assign('round', $round);
 		$templateMgr->assign_by_ref('reviewAssignments', $submission->getReviewAssignments($round));
 		$templateMgr->assign('reviewFormResponses', $reviewFormResponses);
 		$templateMgr->assign('reviewFormTitles', $reviewFormTitles);
@@ -223,7 +280,7 @@ $sections = null;
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
 		$templateMgr->assign_by_ref('editorFile', $submission->getEditorFile());
 		$templateMgr->assign('rateReviewerOnQuality', $press->getSetting('rateReviewerOnQuality'));
-		$templateMgr->assign('showPeerReviewOptions', $showPeerReviewOptions);
+//		$templateMgr->assign('showPeerReviewOptions', $showPeerReviewOptions);
 //		$templateMgr->assign_by_ref('sections', $sections->toArray());
 		$templateMgr->assign('editorDecisionOptions',
 			array(
@@ -240,7 +297,7 @@ $sections = null;
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 		$templateMgr->assign_by_ref('reviewerRatingOptions', ReviewAssignment::getReviewerRatingOptions());
 
-		$templateMgr->assign('allowRecommendation', $allowRecommendation);
+//		$templateMgr->assign('allowRecommendation', $allowRecommendation);
 		$templateMgr->assign('allowResubmit', $allowResubmit);
 		$templateMgr->assign('allowCopyedit', $allowCopyedit);
 
@@ -370,81 +427,20 @@ $sections = null;
 	//
 	// Peer Review
 	//
-	function selectInternalReviewer($args) {
-		parent::setupTemplate();
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
-
-		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
-
-		if (isset($args[1]) && $args[1] != null) {
-			// Assign reviewer to monograph			
-			AcquisitionsEditorAction::addReviewer($submission, $args[1], null, REVIEW_TYPE_INTERNAL);
-			Request::redirect(null, null, 'submissionReview', $monographId);
-
-			// FIXME: Prompt for due date.
-		} else {
-			parent::setupTemplate(true, $monographId, 'review');
-
-			$searchType = null;
-			$searchMatch = null;
-			$search = $searchQuery = Request::getUserVar('search');
-			$searchInitial = Request::getUserVar('searchInitial');
-			if (isset($search)) {
-				$searchType = Request::getUserVar('searchField');
-				$searchMatch = Request::getUserVar('searchMatch');
-
-			} else if (isset($searchInitial)) {
-				$searchInitial = String::strtoupper($searchInitial);
-				$searchType = USER_FIELD_INITIAL;
-				$search = $searchInitial;
-			}
-
-			$rangeInfo =& PKPHandler::getRangeInfo('reviewers');
-			$reviewers = $acquisitionsEditorSubmissionDao->getReviewersForMonograph($press->getId(), $monographId, $submission->getCurrentRound(), REVIEW_TYPE_INTERNAL, $searchType, $search, $searchMatch, $rangeInfo);
-
-			$press = Request::getPress();
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-
-			$templateMgr =& TemplateManager::getManager();
-
-			$templateMgr->assign('searchField', $searchType);
-			$templateMgr->assign('searchMatch', $searchMatch);
-			$templateMgr->assign('search', $searchQuery);
-			$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
-
-			$templateMgr->assign_by_ref('reviewers', $reviewers);
-			$templateMgr->assign('monographId', $monographId);
-			$templateMgr->assign('reviewerStatistics', $acquisitionsEditorSubmissionDao->getReviewerStatistics($press->getId()));
-			$templateMgr->assign('fieldOptions', Array(
-				USER_FIELD_INTERESTS => 'user.interests',
-				USER_FIELD_FIRSTNAME => 'user.firstName',
-				USER_FIELD_LASTNAME => 'user.lastName',
-				USER_FIELD_USERNAME => 'user.username',
-				USER_FIELD_EMAIL => 'user.email'
-			));
-			$templateMgr->assign('completedReviewCounts', $reviewAssignmentDao->getCompletedReviewCounts($press->getId()));
-			$templateMgr->assign('rateReviewerOnQuality', $press->getSetting('rateReviewerOnQuality'));
-			$templateMgr->assign('averageQualityRatings', $reviewAssignmentDao->getAverageQualityRatings($press->getId()));
-
-			$templateMgr->assign('helpTopicId', 'press.roles.reviewer');
-			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
-			$templateMgr->assign('reviewerDatabaseLinks', $press->getSetting('reviewerDatabaseLinks'));
-			$templateMgr->assign('reviewType', REVIEW_TYPE_INTERNAL);
-
-			$templateMgr->display('acquisitionsEditor/selectReviewer.tpl');
-		}
-	}
 	function selectReviewer($args) {
 		parent::setupTemplate();
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
+		$reviewType = isset($args[1]) ? (int) $args[1] : 0;
+		$reviewerId = Request::getUserVar('reviewerId');
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
-
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+		$submission->setCurrentReviewType($reviewType);
 
-		if (isset($args[1]) && $args[1] != null) {
+		$round = $submission->getCurrentRoundByReviewType($reviewType);
+
+		if (isset($reviewerId)) {
 			// Assign reviewer to monograph			
-			AcquisitionsEditorAction::addReviewer($submission, $args[1], null, REVIEW_TYPE_EXTERNAL);
+			AcquisitionsEditorAction::addReviewer($submission, $reviewerId, $reviewType);
 			Request::redirect(null, null, 'submissionReview', $monographId);
 
 			// FIXME: Prompt for due date.
@@ -466,7 +462,7 @@ $sections = null;
 			}
 
 			$rangeInfo =& PKPHandler::getRangeInfo('reviewers');
-			$reviewers = $acquisitionsEditorSubmissionDao->getReviewersForMonograph($press->getId(), $monographId, $submission->getCurrentRound(), REVIEW_TYPE_EXTERNAL, $searchType, $search, $searchMatch, $rangeInfo);
+			$reviewers = $acquisitionsEditorSubmissionDao->getReviewersForMonograph($press->getId(), $monographId, $reviewType, $round, $searchType, $search, $searchMatch, $rangeInfo);
 
 			$press = Request::getPress();
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -495,7 +491,7 @@ $sections = null;
 			$templateMgr->assign('helpTopicId', 'press.roles.reviewer');
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 			$templateMgr->assign('reviewerDatabaseLinks', $press->getSetting('reviewerDatabaseLinks'));
-			$templateMgr->assign('reviewType', REVIEW_TYPE_EXTERNAL);
+			$templateMgr->assign('reviewType', $reviewType);
 
 			$templateMgr->display('acquisitionsEditor/selectReviewer.tpl');
 		}
@@ -852,6 +848,7 @@ $sections = null;
 	function viewMetadata($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_AUTHOR));
 		parent::setupTemplate(true, $monographId, 'summary');
 
 		AcquisitionsEditorAction::viewMetadata($submission, ROLE_ID_SECTION_EDITOR);
@@ -1210,6 +1207,7 @@ $sections = null;
 	function addSuppFile($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
 		parent::setupTemplate(true, $monographId, 'summary');
 
 		import('submission.form.SuppFileForm');
@@ -2391,7 +2389,7 @@ $sections = null;
 		$acquisitionsEditorSubmission =& $acquisitionsEditorSubmissionDao->getAcquisitionsEditorSubmission($monographId);
 
 		if ($acquisitionsEditorSubmission == null) {
-			$isValid = false;echo 'shit';exit;
+			$isValid = false;
 
 		} else if ($acquisitionsEditorSubmission->getPressId() != $press->getId()) {
 			$isValid = false;

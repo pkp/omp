@@ -139,10 +139,10 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 		$monographDao->updateMonograph($monograph);
 
 		// Designate this as the review version by default.
-//		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-//		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($monograph->getArticleId());
-//		AuthorAction::designateReviewVersion($authorSubmission, true);
-//		unset($authorSubmission);
+		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($monograph->getMonographId());
+		AuthorAction::designateReviewVersion($authorSubmission, true);
+		unset($authorSubmission);
 
 		// Create additional submission mangement records
 /*		$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
@@ -151,17 +151,18 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 		$copyeditorSubmission->setCopyeditorId(0);
 		$copyeditorSubmissionDao->insertCopyeditorSubmission($copyeditorSubmission);
 
-		$layoutDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-		$layoutAssignment =& new LayoutAssignment();
-		$layoutAssignment->setArticleId($monograph->getArticleId());
-		$layoutAssignment->setEditorId(0);
-		$layoutDao->insertLayoutAssignment($layoutAssignment);
-
 		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
 		$proofAssignment =& new ProofAssignment();
 		$proofAssignment->setArticleId($monograph->getArticleId());
 		$proofAssignment->setProofreaderId(0);
 		$proofAssignmentDao->insertProofAssignment($proofAssignment);
+*/
+/*
+		$layoutDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
+		$layoutAssignment =& new LayoutAssignment();
+		$layoutAssignment->setArticleId($monograph->getArticleId());
+		$layoutAssignment->setEditorId(0);
+		$layoutDao->insertLayoutAssignment($layoutAssignment);
 
 		$sectionEditors = $this->assignEditors($monograph);
 */

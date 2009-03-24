@@ -61,6 +61,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$submission =& $monographDao->getMonograph($monographId);
 		//list($press, $submission) = SubmissionEditHandler::validate($monographId);
 		parent::setupTemplate();//true, $monographId, 'summary');
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
 		import('submission.common.Action');
 		Action::viewMetadata($submission, ROLE_ID_EDITOR);
 	}

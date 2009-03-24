@@ -49,8 +49,8 @@ class AuthorAction extends Action {
 
 				$authorSubmissionDao->updateAuthorSubmission($authorSubmission);
 
-				$sectionEditorSubmissionDao =& DAORegistry::getDAO('SectionEditorSubmissionDAO');
-				$sectionEditorSubmissionDao->createReviewRound($authorSubmission->getMonographId(), 1, 1);
+				$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+				$acquisitionsEditorSubmissionDao->createReviewRound($authorSubmission->getMonographId(), 1, 1, 1);
 			}
 		}
 	}

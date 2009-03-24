@@ -226,6 +226,32 @@ class Action {
 			}
 		}
 	}
+
+	/**
+	 * Initiate a signoff process.
+	 * @param $monographId int
+	 * @param $eventType int
+	 * @param $eventId int
+	 */
+	function initiateSignoffProcess($monographId, $eventType, $eventId) {
+		$signoffProcessDao =& DAORegistry::getDAO('ProcessSignoffDAO');
+		$signoffProcessDao->build($monographId, $eventType, $eventId);
+	}
+
+	/**
+	 * Initiate a signoff process.
+	 * @param $process$Id int
+	 */
+	function &endSignoffProcess($processId) {
+		$signoffProcessDao =& DAORegistry::getDAO('ProcessSignoffDAO');
+
+		$signoffProcess =& $signoffProcessDao->getById($processId);
+		if (!isset($signoffProcess)) return null;
+
+		$signoffProcess->setDateEnded(Core::getCurrentDate());
+		$signoffProcessDao->updateObject($signoffProcess);
+		return $signoffProcess;
+	}
 }
 
 ?>

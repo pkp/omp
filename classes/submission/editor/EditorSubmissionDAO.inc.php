@@ -86,7 +86,7 @@ class EditorSubmissionDAO extends DAO {
 	 * @return EditorSubmission
 	 */
 	function &_returnEditorSubmissionFromRow(&$row) {
-		$editorSubmission =& new EditorSubmission();
+		$editorSubmission = new EditorSubmission();
 
 		$this->monographDao->_monographFromRow($editorSubmission, $row);
 
@@ -95,9 +95,17 @@ class EditorSubmissionDAO extends DAO {
 		$editorSubmission->setEditAssignments($editAssignments->toArray());
 
 		// Editor Decisions
-		for ($i = 1; $i <= $row['current_round']; $i++) {
-			$editorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $i), $i);
+		$reviewRounds =& $editorSubmission->getReviewRounds();
+
+		if (isset($reviewRounds))
+		foreach ($reviewRounds as $reviewRound => $round) {
+			for ($i = 1; $i <= $reviewRound; $i++) {
+				$editorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $reviewRound, $i), $reviewRound, $i);
+			}
 		}
+//		for ($i = 1; $i <= $row['current_round']; $i++) {
+//			$editorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $i), $i);
+//		}
 
 		HookRegistry::call('EditorSubmissionDAO::_returnEditorSubmissionFromRow', array(&$editorSubmission, &$row));
 
@@ -449,17 +457,17 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 		while (!$result->EOF) {
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 			$monographId = $editorSubmission->getMonographId();
-			for ($i = 1; $i <= $editorSubmission->getCurrentRound(); $i++) {
+/*			for ($i = 1; $i <= $editorSubmission->getCurrentRound(); $i++) {
 				$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentsByMonographId($monographId, $i);
 				if (!empty($reviewAssignment)) {
 					$editorSubmission->setReviewAssignments($reviewAssignment, $i);
 				}
 			}
-
+*/
 			// check if submission is still in review
 			$inReview = true;
 			$decisions = $editorSubmission->getDecisions();
-			$decision = array_pop($decisions);
+			$decision = is_array($decisions) ? array_pop($decisions) : null;
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
 				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
@@ -665,22 +673,32 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	//
 
 	/**
-	 * Get the editor decisions for a review round of an monograph.
+	 * Get the editor decisions for a review round of a monograph.
 	 * @param $monographId int
+	 * @param $reviewType int
 	 * @param $round int
 	 */
-	function getEditorDecisions($monographId, $round = null) {
+	function getEditorDecisions($monographId, $reviewType = null, $round = null) {
 		$decisions = array();
 
-		if ($round == null) {
+		if (!isset($reviewType)) {
 			$result =& $this->retrieve(
 				'SELECT edit_decision_id, editor_id, decision, date_decided FROM edit_decisions WHERE monograph_id = ? ORDER BY date_decided ASC', $monographId
 			);
+		} else if (isset($reviewType) && !isset($round)) {
+			$result =& $this->retrieve('
+					SELECT edit_decision_id, editor_id, decision, date_decided
+					FROM edit_decisions ed INNER JOIN review_rounds rr ON (ed.review_type = rr.review_type) 
+					WHERE ed.monograph_id = ? ORDER BY date_decided ASC',
+					$monographId
+				);
 		} else {
-			$result =& $this->retrieve(
-				'SELECT edit_decision_id, editor_id, decision, date_decided FROM edit_decisions WHERE monograph_id = ? AND round = ? ORDER BY date_decided ASC',
-				array($monographId, $round)
-			);
+			$result =& $this->retrieve('
+					SELECT edit_decision_id, editor_id, decision, date_decided
+					FROM edit_decisions ed INNER JOIN review_rounds rr ON (ed.review_type = rr.review_type AND ed.round = rr.round) 
+					WHERE ed.monograph_id = ? ORDER BY date_decided ASC',
+					$monographId
+				);
 		}
 
 		while (!$result->EOF) {

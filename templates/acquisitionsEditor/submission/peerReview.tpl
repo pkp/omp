@@ -101,7 +101,5 @@
 </div>
 
 <div id="peerReview">
-{include file="acquisitionsEditor/submission/internalReview.tpl"}
-<div class="separator"></div>
-{include file="acquisitionsEditor/submission/externalReview.tpl"}
+{include file="acquisitionsEditor/submission/reviews.tpl"}
 </div>

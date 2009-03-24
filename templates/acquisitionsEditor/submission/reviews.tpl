@@ -1,19 +1,27 @@
+
+{foreach from=$reviewProcesses item=reviewProcess}
+<div style="border:1px solid gray">
 <table class="data" width="100%">
 	<tr valign="middle">
-		<td width="22%"><h3>{translate key="submission.internalPeerReview"}</h3></td>
-		<td width="14%"><h4>{translate key="submission.round" round=$round}</h4></td>
+		<td width="22%"><h3>{$reviewProcess->getLocalizedName()}</h3></td>
+		<td width="14%"><h4>{if $reviewType == $reviewProcess->getId()}{translate key="submission.round" round=$round}{/if}</h4></td>
 		<td width="64%" class="nowrap">
-			<a href="{url op="selectInternalReviewer" path=$submission->getMonographId()}" class="action">{translate key="editor.monograph.selectReviewer"}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			{if $reviewType == $reviewProcess->getId()}
+			<a href="{url op="selectReviewer" path=$submission->getMonographId()|to_array:$reviewProcess->getId()}" class="action">{translate key="editor.monograph.selectReviewer"}</a>&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="{url op="submissionRegrets" path=$submission->getMonographId()}" class="action">{translate|escape key="editor.regrets.link"}</a>
+			{else}
+				<em>The document will go through this review once the above review is complete.</em>
+			{/if}
 		</td>
 	</tr>
 </table>
 
+
+{if $reviewType == $reviewProcess->getId()}
+
 {assign var="start" value="A"|ord}
 {foreach from=$reviewAssignments item=reviewAssignment key=reviewKey}
-
-{if $reviewAssignment->getReviewType() == REVIEW_TYPE_INTERNAL}
-
+	{if $reviewAssignment->getReviewType() == $reviewType}
 {assign var="reviewId" value=$reviewAssignment->getReviewId()}
 
 {if not $reviewAssignment->getCancelled() and not $reviewAssignment->getDeclined()}
@@ -35,7 +43,7 @@
 	</table>
 
 	<table width="100%" class="data">
- 	<tr valign="top">
+ <!--	<tr valign="top">
 		<td class="label">{translate key="submission.reviewForm"}</td>
 		<td>
 		{if $reviewAssignment->getReviewFormId()}
@@ -48,7 +56,7 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;<a class="action" href="{url op="selectReviewForm" path=$submission->getMonographId()|to_array:$reviewAssignment->getReviewId()}"{if $reviewFormResponses[$reviewId]} onclick="return confirm('{translate|escape:"jsparam" key="editor.monograph.confirmChangeReviewForm"}')"{/if}>{translate key="editor.monograph.selectReviewForm"}</a>{if $reviewAssignment->getReviewFormId()}&nbsp;&nbsp;&nbsp;&nbsp;<a class="action" href="{url op="clearReviewForm" path=$submission->getMonographId()|to_array:$reviewAssignment->getReviewId()}"{if $reviewFormResponses[$reviewId]} onclick="return confirm('{translate|escape:"jsparam" key="editor.monograph.confirmChangeReviewForm"}')"{/if}>{translate key="editor.monograph.clearReviewForm"}</a>{/if}
 		{/if}
 		</td>
-	</tr>
+	</tr>-->
 	<tr valign="top">
 		<td class="label" width="20%">&nbsp;</td>
 		<td width="80%">
@@ -223,5 +231,20 @@
 	{/if}
 	</table>
 {/if}
+	{/if}
+{/foreach}
+
+<div class="separator"></div>
+<table class="data" width="100%">
+	<tr valign="middle">
+		<td width="22%"><h3>{$reviewProcess->getLocalizedName()} Signoff</h3></td>
+		<td width="14%"><a href="{url op="endReviewProcess" path=$submission->getMonographId()|to_array:$reviewProcess->getId()}">Sign off</a></td>
+		<td width="64%" class="nowrap">
+			{if $signoffWait}There are/is {$signoffQueue} more people/person that must sign off.{/if}
+		</td>
+	</tr>
+</table>
 {/if}
-{/foreach} 
+</div>
+	<div class="separator"></div>
+{/foreach}{*review types*}
