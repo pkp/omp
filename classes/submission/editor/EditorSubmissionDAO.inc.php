@@ -637,6 +637,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			$decision = is_array($decisions) ? array_pop($decisions) : array();
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
+				if (isset($latestDecision['decision']))
 				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
 					$inReview = false;
 				}
