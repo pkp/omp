@@ -41,6 +41,47 @@ class WorkflowDAO extends DAO {
 
 	}
 
+	/**
+	 * Retrieve a WorkflowElements by workflow element type.
+	 * @param $monographId int
+	 * @param $eventType int
+	 * @return ProcessSignoff
+	 */
+	function &getByWorkflowProcessType($monographId, $eventType) {
+
+		$returner = null;
+
+		switch ($eventType) {
+		case WORKFLOW_PROCESS_TYPE_REVIEW:
+			$reviewTypeDao =& DAORegistry::getDAO('ReviewProcessDAO');
+			$returner =& $reviewTypeDao->getEnabledObjects($monographId);
+			return $returner;
+		}
+
+		return $returner;
+
+	}
+
+	/**
+	 * Retrieve the ordered workflow process list.
+	 * @return array
+	 */
+	function getWorkflowProcesses() {
+		return array(
+				array(),
+				array(),
+				array()
+			);
+	}
+
+	/**
+	 * Retrieve the next workflow process type.
+	 * @param $processId int
+	 * @return ProcessSignoff
+	 */
+	function getNextWorkflowProcess($eventType, $eventId) {
+		
+	}
 	function &getSignoffSummary($monographId, $eventType) {
 		$sql = 'SELECT * FROM (SELECT * FROM signoff_processes WHERE event_type = ?';
 		$sqlParams = array($eventType);

@@ -238,7 +238,7 @@
 <table class="data" width="100%">
 	<tr valign="middle">
 		<td width="22%"><h3>{$reviewProcess->getLocalizedName()} Signoff</h3></td>
-		<td width="14%"><a href="{url op="endReviewProcess" path=$submission->getMonographId()|to_array:$reviewProcess->getId()}">Sign off</a></td>
+		<td width="14%"><a href="{url op="endWorkflowProcess" path=$submission->getMonographId()|to_array:$reviewProcess->getId()}">Sign off</a></td>
 		<td width="64%" class="nowrap">
 			{if $signoffWait}There are/is {$signoffQueue} more people/person that must sign off.{/if}
 		</td>

@@ -33,13 +33,14 @@ import('file.FileManager');
 define('MONOGRAPH_FILE_SUBMISSION',	'SM');
 define('MONOGRAPH_FILE_REVIEW',		'RV');
 define('MONOGRAPH_FILE_EDITOR',		'ED');
-define('MONOGRAPH_FILE_COPYEDIT',		'CE');
+define('MONOGRAPH_FILE_COPYEDIT',	'CE');
 define('MONOGRAPH_FILE_LAYOUT',		'LE');
 define('MONOGRAPH_FILE_PUBLIC',		'PB');
 define('MONOGRAPH_FILE_SUPP',		'SP');
 define('MONOGRAPH_FILE_NOTE',		'NT');
 define('MONOGRAPH_FILE_ATTACHMENT',	'AT');
 define('MONOGRAPH_FILE_PROSPECTUS',	'PR');
+define('MONOGRAPH_FILE_ARTWORK',	'ART');
 
 class MonographFileManager extends FileManager {
 
@@ -106,6 +107,15 @@ class MonographFileManager extends FileManager {
 		return $this->handleUpload($fileName, MONOGRAPH_FILE_EDITOR, $fileId);
 	}
 
+	/**
+	 * Upload a file to the artwork file folder.
+	 * @param $fileName string the name of the file used in the POST form
+	 * @param $fileId int
+	 * @return int file ID, is false if failure
+	 */
+	function uploadEditorDecisionFile($fileName, $fileId = null) {
+		return $this->handleUpload($fileName, MONOGRAPH_FILE_ARTWORK, $fileId);
+	}
 	/**
 	 * Upload a file to the copyedit file folder.
 	 * @param $fileName string the name of the file used in the POST form

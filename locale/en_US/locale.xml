@@ -27,6 +27,8 @@
 	-->
 
 	<!-- review froms start -->
+	<message key="submission.page.layout">#{$id} Layout and Page Design</message>
+	<message key="submission.page.art">#{$id} Images, Illustrations, and other Art</message>
 	<message key="manuscript.submissions">Manuscript Submissions</message>
 	<message key="submission.changeSection">Change to</message>
 	<message key="manuscript.submission">Manuscript Submission</message>
@@ -154,6 +156,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="user.role.subscriptionManager">Subscription Manager</message>
 	<message key="user.role.editorialMember">Editorial Committee Member</message>
 	<message key="user.role.reviewer">Reviewer</message>
+	<message key="user.role.productionEditor">Production Editor</message>
 
 	<message key="user.role.reviewers">Reviewers</message>
 	<message key="user.role.editorialMembers">Editorial Committee Members</message>
@@ -166,7 +169,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="user.role.authors">Authors</message>
 	<message key="user.role.subscriptionManagers">Subscription Managers</message>
 	<message key="user.role.submissionCategoryEditors">Category Editors</message>
-	
+	<message key="user.role.productionEditors">Production Editors</message>
 
 
 	<!--

@@ -46,7 +46,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 //		$this->copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
-//		$this->layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
+		$this->layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 //		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
@@ -211,7 +211,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmission->setCopyeditorFinalRevision($row['copyeditor_final_revision']);
 
 		// Layout Editing
-//		$acquisitionsEditorSubmission->setLayoutAssignment($this->layoutAssignmentDao->getLayoutAssignmentByMonographId($row['monograph_id']));
+		$acquisitionsEditorSubmission->setLayoutAssignment($this->layoutAssignmentDao->getLayoutAssignmentByMonographId($row['monograph_id']));
 
 //		$acquisitionsEditorSubmission->setGalleys($this->galleyDao->getGalleysByMonograph($row['monograph_id']));
 

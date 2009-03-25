@@ -379,7 +379,7 @@ class MonographDAO extends DAO {
 	 */
 	function &getMonographs($pressId, $rangeInfo = null) {
 
-		$sql = 'SELECT m.* FROM monographs m WHERE press_id = ? ORDER BY date_published DESC';
+		$sql = 'SELECT m.* FROM monographs m WHERE press_id = ? ORDER BY date_submitted DESC';
 		$result =& $this->retrieveRange($sql, $pressId, $rangeInfo);
 
 		$returner =& new DAOResultFactory($result, $this, '_returnMonographFromRow');

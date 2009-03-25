@@ -351,6 +351,15 @@ class Validation {
 	}
 
 	/**
+	 * Shortcut for checking authorization as production editor.
+	 * @param $pressId int
+	 * @return boolean
+	 */
+	function isProductionEditor($pressId = -1) {
+		return Validation::isAuthorized(ROLE_ID_PRODUCTION_EDITOR, $pressId);
+	}
+
+	/**
 	 * Shortcut for checking authorization as proofreader.
 	 * @param $pressId int
 	 * @return boolean

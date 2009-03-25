@@ -102,7 +102,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr->display('acquisitionsEditor/submission.tpl');
 	}
 
-	function endReviewProcess($args) {
+	function endWorkflowProcess($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$processId = isset($args[1]) ? (int) $args[1] : 0;//validate
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
@@ -1449,7 +1449,7 @@ $sections = null;
 
 			$layoutEditors = $roleDao->getUsersByRoleId(ROLE_ID_LAYOUT_EDITOR, $press->getId(), $searchType, $search, $searchMatch);
 
-			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('SectionEditorSubmissionDAO');
+			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 			$layoutEditorStatistics = $acquisitionsEditorSubmissionDao->getLayoutEditorStatistics($press->getId());
 
 			parent::setupTemplate(true, $monographId, 'editing');

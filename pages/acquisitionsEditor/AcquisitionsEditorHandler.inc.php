@@ -139,9 +139,9 @@ class AcquisitionsEditorHandler extends PKPHandler {
 		import('pages.acquisitionsEditor.SubmissionEditHandler');
 		SubmissionEditHandler::selectInternalReviewer($args);
 	}
-	function endReviewProcess($args) {
+	function endWorkflowProcess($args) {
 		import('pages.acquisitionsEditor.SubmissionEditHandler');
-		SubmissionEditHandler::endReviewProcess($args);
+		SubmissionEditHandler::endWorkflowProcess($args);
 	}
 	/**
 	 * Validate that user is a section editor in the selected journal.

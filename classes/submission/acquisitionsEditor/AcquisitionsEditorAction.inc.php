@@ -1408,7 +1408,14 @@ class AcquisitionsEditorAction extends Action {
 		if (HookRegistry::call('AcquisitionsEditorAction::assignLayoutEditor', array(&$submission, &$editorId))) return;
 
 		$layoutAssignment =& $submission->getLayoutAssignment();
+		$layoutDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
 
+		if (!isset($layoutAssignment)) {
+			$layoutAssignment = new LayoutAssignment();
+			$layoutAssignment->setMonographId($submission->getMonographId());
+			$layoutAssignment->setEditorId($editorId);
+			$layoutDao->insertLayoutAssignment($layoutAssignment);
+		}
 		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');
 
@@ -1422,7 +1429,6 @@ class AcquisitionsEditorAction extends Action {
 		$layoutAssignment->setDateCompleted(null);
 		$layoutAssignment->setDateAcknowledged(null);
 
-		$layoutDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
 		$layoutDao->updateLayoutAssignment($layoutAssignment);
 		$layoutAssignment =& $layoutDao->getLayoutAssignmentById($layoutAssignment->getLayoutId());
 

@@ -14,6 +14,137 @@
 
 <schema version="0.2">
 
+	<!--
+	  *
+	  * TABLE proof_assignments
+	  *
+	  -->
+	<table name="proof_assignments">
+		<field name="proof_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="proofreader_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_author_notified" type="T"/>
+		<field name="date_author_underway" type="T"/>
+		<field name="date_author_completed" type="T"/>
+		<field name="date_author_acknowledged" type="T"/>
+		<field name="date_proofreader_notified" type="T"/>
+		<field name="date_proofreader_underway" type="T"/>
+		<field name="date_proofreader_completed" type="T"/>
+		<field name="date_proofreader_acknowledged" type="T"/>
+		<field name="date_layouteditor_notified" type="T"/>
+		<field name="date_layouteditor_underway" type="T"/>
+		<field name="date_layouteditor_completed" type="T"/>
+		<field name="date_layouteditor_acknowledged" type="T"/>
+
+		<descr>Proofreading assignments.</descr>
+		<index name="proof_assignments_monograph_id">
+			<col>monograph_id</col>
+		</index>
+		<index name="proof_assignments_proofreader_id">
+			<col>proofreader_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE layouted_assignments
+	  *
+	  -->
+	<table name="layouted_assignments">
+		<field name="layouted_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT />
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="editor_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_notified" type="T"/>
+		<field name="date_underway" type="T"/>
+		<field name="date_completed" type="T"/>
+		<field name="date_acknowledged" type="T"/>
+		<field name="layout_file_id" type="I8"/>
+		<descr>Layout editing assignments.</descr>
+		<index name="layouted_assignments_article_id">
+			<col>monograph_id</col>
+			<UNIQUE/>
+		</index>
+		<index name="layouted_assignments_editor_id">
+			<col>editor_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE article_galleys
+	  *
+	  -->
+	<table name="monograph_galleys">
+		<field name="galley_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="public_galley_id" type="C2" size="255" />
+		<field name="locale" type="C2" size="5"/>
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="file_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="label" type="C2" size="32"/>
+		<field name="html_galley" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="style_file_id" type="I8"/>
+		<field name="seq" type="F">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<field name="views" type="I4">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<descr>Monogrpah galleys.</descr>
+		<index name="monograph_galleys_monograph_id">
+			<col>monograph_id</col>
+		</index>
+		<index name="monograph_galleys_public_id">
+			<col>public_galley_id</col>
+			<col>monograph_id</col>
+			<UNIQUE/>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE article_html_galley_images
+	  *
+	  -->
+	<table name="article_html_galley_images">
+		<field name="galley_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="file_id" type="I8">
+			<NOTNULL />
+		</field>
+		<descr>Images associated with a monograph HTML galley.</descr>
+		<index name="monograph_html_galley_images_pkey">
+			<col>galley_id</col>
+			<col>file_id</col>
+			<UNIQUE/>
+		</index>
+	</table>
 
 	<table name="signoff_processes">
 		<field name="process_id" type="I8">
