@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 /**
  * @file classes/file/MonographFileManager.inc.php
@@ -113,7 +113,7 @@ class MonographFileManager extends FileManager {
 	 * @param $fileId int
 	 * @return int file ID, is false if failure
 	 */
-	function uploadEditorDecisionFile($fileName, $fileId = null) {
+	function uploadArtworkFile($fileName, $fileId = null) {
 		return $this->handleUpload($fileName, MONOGRAPH_FILE_ARTWORK, $fileId);
 	}
 	/**
@@ -379,6 +379,7 @@ class MonographFileManager extends FileManager {
 			case MONOGRAPH_FILE_LAYOUT: return 'submission/layout';
 			case MONOGRAPH_FILE_ATTACHMENT: return 'attachment';
 			case MONOGRAPH_FILE_PROSPECTUS: return 'submission/original';
+			case MONOGRAPH_FILE_ARTWORK: return 'submission/artwork';
 			case MONOGRAPH_FILE_SUBMISSION: default: return 'submission/original';
 		}
 	}

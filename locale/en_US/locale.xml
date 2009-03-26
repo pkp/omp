@@ -27,9 +27,13 @@
 	-->
 
 	<!-- review froms start -->
+	<message key="submission.layout.assignLayoutEditor">Assign Layout Editor</message>
+	<message key="submission.layout.noLayoutFile">None (Upload final copyedit version as Layout Version prior to sending request)</message>
+	<message key="submission.layout.layoutComments">Layout Comments</message>
 	<message key="submission.page.layout">#{$id} Layout and Page Design</message>
 	<message key="submission.page.art">#{$id} Images, Illustrations, and other Art</message>
 	<message key="manuscript.submissions">Manuscript Submissions</message>
+	<message key="manuscript.artwork">Artwork</message>
 	<message key="submission.changeSection">Change to</message>
 	<message key="manuscript.submission">Manuscript Submission</message>
 	<message key="submission.round"><![CDATA[Round&nbsp;{$round}]]></message>

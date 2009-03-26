@@ -17,6 +17,7 @@
 
 
 import('monograph.MonographFile');
+import('file.MonographFileManager');
 
 define('INLINEABLE_TYPES_FILE', Config::getVar('general', 'registry_dir') . DIRECTORY_SEPARATOR . 'inlineTypes.txt');
 
@@ -212,8 +213,8 @@ class MonographFileDAO extends DAO {
 		$monographFiles = array();
 
 		$result = &$this->retrieve(
-			'SELECT * FROM monograph_files WHERE assoc_id = ? AND type = ?',
-			array($assocId, MonographFileManager::typeToPath($type))
+			'SELECT * FROM monograph_files WHERE type = ?',
+			array(MonographFileManager::typeToPath($type))
 		);
 
 		while (!$result->EOF) {

@@ -54,7 +54,24 @@ class ProductionHandler extends SubmissionEditHandler {
 		$templateMgr->assign_by_ref('submissions', $submissions);
 		$templateMgr->display('productionEditor/index.tpl');
 	}
+	/**
 
+	 * View a file (inline file).
+	 * @param $args array ($monographId, $fileId, [$revision])
+	 */
+	function viewFile($args) {
+		$monographId = isset($args[0]) ? $args[0] : 0;
+		$fileId = isset($args[1]) ? $args[1] : 0;
+		$revision = isset($args[2]) ? $args[2] : null;
+
+		list($press) = ProductionHandler::validate();
+		import('file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($monographId);
+$monographFileManager->viewFile($fileId, $revision);
+//		if (!$monographFileManager->viewFile($fileId, $revision)) {
+//			Request::redirect(null, null, 'submission', $monographId);
+//		}
+	}
 	function submission($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		list($press, $submission) = ProductionHandler::validate($monographId);
@@ -139,6 +156,9 @@ class ProductionHandler extends SubmissionEditHandler {
 
 		$user =& Request::getUser();
 
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$artworks =& $monographFileDao->getMonographFilesByAssocId(null, MONOGRAPH_FILE_ARTWORK);
+
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$pressSettings = $pressSettingsDao->getPressSettings($press->getId());
 
@@ -151,10 +171,13 @@ class ProductionHandler extends SubmissionEditHandler {
 		$enableComments = $press->getSetting('enableComments');
 
 		$templateMgr =& TemplateManager::getManager();
-print_r($submission);
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('arrangement', $arrangement);
 		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
+
+		$templateMgr->assign_by_ref('artworks', $artworks);
+		
+
 //		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 //		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 //		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
@@ -210,34 +233,32 @@ print_r($submission);
 	}
 
 	/**
-	 * Upload the layout version of the submission file
+	 * Upload a layout file (either layout version, galley, or supp. file).
 	 */
-	function uploadLayoutVersion() {
-		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = ProductionHandler::validate($monographId);
+/*	function removeArtworkFile($args) {
+		$monographId = isset($args[0]) ? (int) $args[0] : 0;
+		$fileId = isset($args[1]) ? (int) $args[1] : 0;
 
-		AcquisitionsEditorAction::uploadLayoutVersion($submission);
+		import('file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($monographId);
+
+		$monographFileManager->deleteFile($fileId);
 
 		Request::redirect(null, null, 'submissionArt', $monographId);
 	}
-
+*/
 	/**
 	 * Upload a layout file (either layout version, galley, or supp. file).
 	 */
-	function uploadLayoutFile() {
-		$layoutFileType = Request::getUserVar('layoutFileType');
-		if ($layoutFileType == 'submission') {
-			SubmissionEditHandler::uploadLayoutVersion();
+	function uploadArtworkFile() {
+		$monographId = Request::getUserVar('monographId');
+		import('file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($monographId);
 
-		} else if ($layoutFileType == 'galley') {
-			SubmissionEditHandler::uploadGalley('layoutFile');
-
-		} else if ($layoutFileType == 'supp') {
-			SubmissionEditHandler::uploadSuppFile('layoutFile');
-
-		} else {
-			Request::redirect(null, null, SubmissionEditHandler::getFrom(), Request::getUserVar('monographId'));
+		if ($monographFileManager->uploadedFileExists('artworkFile')) {
+			$fileId = $monographFileManager->uploadArtworkFile('artworkFile', null);
 		}
+		Request::redirect(null, null, 'submissionArt', Request::getUserVar('monographId'));
 	}
 	function submissionLayout($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
