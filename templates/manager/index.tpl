@@ -21,7 +21,7 @@
 	{/if}
 	<li>&#187; <a href="{url op="files"}">{translate key="manager.filesBrowser"}</a></li>
 	<li>&#187; <a href="{url op="series"}">{translate key="series.series"}</a></li>
-	<li>&#187; <a href="{url op="submissionCategory"}">{translate key="submissionCategory.submissionCategory"}</a></li>
+	<li>&#187; <a href="{url op="submissionCategory"}">{translate key="submissionCategory.submissionCategories"}</a></li>
 	<li>&#187; <a href="{url op="reviewForms"}">{translate key="manager.reviewForms"}</a></li>
 	<li>&#187; <a href="{url op="languages"}">{translate key="common.languages"}</a></li>
 	<li>&#187; <a href="{url op="groups"}">{translate key="manager.groups"}</a></li>

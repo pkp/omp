@@ -9,7 +9,7 @@
  * $Id$
  *}
 {strip}
-{assign var="pageTitle" value="submissionCategory.submissionCategory"}
+{assign var="pageTitle" value="submissionCategory.submissionCategories"}
 {include file="common/header.tpl"}
 {/strip}
 

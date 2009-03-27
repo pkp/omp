@@ -23,7 +23,7 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 	 */
 	function listItems($type = null) {
 		parent::validate();
-		AcquisitionsArrangementHandler::setupTemplate();
+		AcquisitionsArrangementHandler::setupTemplate(false, $type);
 
 		$press =& Request::getPress();
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
@@ -60,7 +60,7 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 	 */
 	function editItem($args = array(), $type = null) {
 		parent::validate();
-		AcquisitionsArrangementHandler::setupTemplate();
+		AcquisitionsArrangementHandler::setupTemplate(true, $type);
 
 		switch ($type) {
 			case CATEGORY_ARRANGEMENT: {
@@ -125,7 +125,7 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 			$form->execute();
 			Request::redirect(null, null, $formRedirect);
 		} else {
-			AcquisitionsArrangementHandler::setupTemplate();
+			AcquisitionsArrangementHandler::setupTemplate(true, $type);
 			$form->display();
 		}
 	}
@@ -175,9 +175,23 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 		}
 	}
 
-	function setupTemplate() {
+	function setupTemplate($subclass = false, $type = null) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_READER));
 		parent::setupTemplate(true);
+		if ($subclass) {
+			$templateMgr = &TemplateManager::getManager();
+			switch ($type) {
+				case CATEGORY_ARRANGEMENT:
+					$arrangement = 'submissionCategory';
+					$localeKey  = 'submissionCategory.submissionCategories';
+					break;
+				default:
+					$type = SERIES_ARRANGEMENT;
+					$arrangement = 'series';
+					$localeKey = 'series.series';
+			}
+			$templateMgr->append('pageHierarchy', array(Request::url(null, 'manager', $arrangement), $localeKey));
+		}
 	}
 }
 ?>

@@ -70,7 +70,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="submission.reviewForm">Review Form</message>
 	<message key="submission.editorDecision">Editor Decision</message>
 	
-	<message key="submissionCategory.submissionCategory">Submission Category</message>
+	<message key="submissionCategory.submissionCategories">Submission Categories</message>
 	<message key="submissionCategory.title">Category Title</message>
 	<message key="submissionCategory.abbreviation">Abbreviation</message>
 	<message key="submissionCategory.abbreviation.example">(For example, Otorhinolaryngology=ENT)</message>
