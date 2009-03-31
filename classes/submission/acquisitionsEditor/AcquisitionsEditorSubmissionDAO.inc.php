@@ -332,7 +332,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		}
 
 		// Update layout editing assignment
-		$layoutAssignment =& $acquisitionsEditorSubmission->getLayoutAssignment();
+		$layoutAssignment =& $acquisitionsEditorSubmission->getLayoutAssignments();
 		if (isset($layoutAssignment)) {
 			if ($layoutAssignment->getLayoutId() > 0) {
 				$this->layoutAssignmentDao->updateLayoutAssignment($layoutAssignment);

@@ -28,6 +28,7 @@
 
 	<!-- review froms start -->
 	<message key="submission.layout.assignLayoutEditor">Assign Layout Editor</message>
+	<message key="submission.layout.uploadLayoutVersion">Upload Layout Version</message>
 	<message key="submission.layout.noLayoutFile">None (Upload final copyedit version as Layout Version prior to sending request)</message>
 	<message key="submission.layout.layoutComments">Layout Comments</message>
 	<message key="submission.page.layout">#{$id} Layout and Page Design</message>

@@ -840,7 +840,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * Get the layout assignment for an article.
 	 * @return LayoutAssignment
 	 */
-	function &getLayoutAssignment() {
+	function &getLayoutAssignments() {
 		$layoutAssignment = &$this->getData('layoutAssignment');
 		return $layoutAssignment;
 	}

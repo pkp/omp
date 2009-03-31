@@ -8,22 +8,58 @@
  *
  * $Id$
  *}
-{assign var=layoutAssignment value=$submission->getLayoutAssignment()}
-{*assign var=layoutFile value=$layoutAssignment->getLayoutFile()*}
+{assign var=layoutAssignment value=$submission->getLayoutAssignments()}
+{assign var=layoutFile value=$layoutAssignment->getLayoutFile()}
+
 <div id="layout">
-<h3>{translate key="submission.layout"}</h3>
+<h3>{translate key="user.role.layoutEditors"}</h3>
 
-
-<table class="data" width="100%">
+<!--<table class="data" width="100%">
 	<tr>
-		<td width="20%" class="label">{translate key="user.role.layoutEditor"}</td>
+		<td width="20%" class="label">{translate key="user.role.layoutEditors"}</td>
 		{if isset($layoutAssignment) && $layoutAssignment->getEditorId()}<td width="20%" class="value">{$layoutAssignment->getEditorFullName()|escape}</td>{/if}
-		<td class="value"><a href="{url op="assignLayoutEditor" path=$submission->getMonographId()}" class="action">{translate key="submission.layout.assignLayoutEditor"}</a></td>
+		<td class="value"></td>
+	</tr>
+</table>-->
+<em>There are currently no layout editors assigned</em>
+<br />
+<br />
+<a href="{url op="assignLayoutEditor" path=$submission->getMonographId()}" class="action">{translate key="submission.layout.assignLayoutEditor"}</a>
+
+<div class="separator"></div>
+
+<h3>Layout Version</h3>
+<form method="post" action="{url op="uploadLayoutFile"}"  enctype="multipart/form-data">
+<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
+
+<table>
+	<tr>
+		<td colspan="2">
+			{translate key="common.file"}
+		</td>
+		<td>
+			{if $layoutFile}
+				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$layoutFile->getFileId()}" class="file">{$layoutFile->getFileName()|escape}</a>&nbsp;&nbsp;{$layoutFile->getDateModified()|date_format:$dateFormatShort}
+			{else}
+				{translate key="submission.layout.noLayoutFile"}
+			{/if}
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			{translate key="submission.layout.uploadLayoutVersion"}
+		</td>
+		<td>
+			<input type="file" name="layoutFile" size="10" class="uploadField" />
+			<input type="submit" value="{translate key="common.upload"}" class="button" />	
+		</td>
 	</tr>
 </table>
+</form>
 
+<div class="separator"></div>
 
-<table width="100%" class="info">
+<!--<table width="100%" class="info">
 	<tr>
 		<td width="28%" colspan="2">&nbsp;</td>
 		<td width="18%" class="heading">{translate key="submission.request"}</td>
@@ -31,28 +67,7 @@
 		<td width="16%" class="heading">{translate key="submission.complete"}</td>
 		<td width="22%" colspan="2" class="heading">{translate key="submission.acknowledge"}</td>
 	</tr>
-	<tr>
-		<td colspan="2">
-			{translate key="submission.layout.layoutVersion"}
-		</td>
-		<td>
-			{if $useLayoutEditors}
-				{if $layoutAssignment->getEditorId() && $layoutFile}
-					{url|assign:"url" op="notifyLayoutEditor" monographId=$submission->getMonographId()}
-					{if $layoutAssignment->getDateUnderway()}
-                                        	{translate|escape:"javascript"|assign:"confirmText" key="sectionEditor.layout.confirmRenotify"}
-                                        	{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
-                                	{else}
-                                        	{icon name="mail" url=$url}
-                                	{/if}
-				{else}
-					{icon name="mail" disabled="disable"}
-				{/if}
-				{$layoutAssignment->getDateNotified()|date_format:$dateFormatShort|default:""}
-			{else}
-				{translate key="common.notApplicableShort"}
-			{/if}
-		</td>
+	<tr><td></td><td></td>
 		<td>
 			{if $useLayoutEditors}
 				{$layoutAssignment->getDateUnderway()|date_format:$dateFormatShort|default:"&mdash;"}
@@ -83,7 +98,7 @@
 	</tr>
 	<tr valign="top">
 		<td colspan="6">
-			{translate key="common.file"}:&nbsp;&nbsp;&nbsp;&nbsp;
+			{translate key="common.file"}
 			{if $layoutFile}
 				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$layoutFile->getFileId()}" class="file">{$layoutFile->getFileName()|escape}</a>&nbsp;&nbsp;{$layoutFile->getDateModified()|date_format:$dateFormatShort}
 			{else}
@@ -154,7 +169,7 @@
 	<input type="file" name="layoutFile" size="10" class="uploadField" />
 	<input type="submit" value="{translate key="common.upload"}" class="button" />
 </form>
-
+-->
 {translate key="submission.layout.layoutComments"}
 {if $submission->getMostRecentLayoutComment()}
 	{assign var="comment" value=$submission->getMostRecentLayoutComment()}

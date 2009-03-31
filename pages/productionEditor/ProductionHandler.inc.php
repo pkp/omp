@@ -148,15 +148,41 @@ $monographFileManager->viewFile($fileId, $revision);
 
 
 	}
+	function submitArtwork($args) {
+		$monographId = isset($args[0]) ? (int) $args[0] : 0;
+		list($press, $submission) = ProductionHandler::validate($monographId);
+		ProductionHandler::setupTemplate(false, $monographId);
 
+		$user =& Request::getUser();
+		import('monograph.form.MonographArtworkForm');
+		$artworkForm = new MonographArtworkForm('productionEditor/art.tpl', $submission);
+
+		$editData = $artworkForm->processEvents();
+
+		if (!$editData && $artworkForm->validate()) {
+			$monographId = $artworkForm->execute();
+		}
+
+		Request::redirect(null, null, 'submissionArt', $submission->getMonographId());
+	}
 	function submissionArt($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		list($press, $submission) = ProductionHandler::validate($monographId);
 		ProductionHandler::setupTemplate(false, $monographId);
 
 		$user =& Request::getUser();
+		import('monograph.form.MonographArtworkForm');
+		$artworkForm = new MonographArtworkForm('productionEditor/art.tpl', $submission);
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		if ($artworkForm->isLocaleResubmit()) {
+			$artworkForm->readInputData();
+		} else {
+			$artworkForm->initData();
+		}
+
+		$artworkForm->display();
+
+/*		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$artworks =& $monographFileDao->getMonographFilesByAssocId(null, MONOGRAPH_FILE_ARTWORK);
 
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
@@ -203,9 +229,9 @@ $monographFileManager->viewFile($fileId, $revision);
 			$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
 		}
 */
-		if ($isEditor) {
-			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary');
-		}
+//		if ($isEditor) {
+//			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary');
+//		}
 		
 		// Set up required Payment Related Information
 /*		import('payment.ojs.OJSPaymentManager');
@@ -227,15 +253,30 @@ $monographFileManager->viewFile($fileId, $revision);
 			}				   
 		}		
 */
-		$templateMgr->display('productionEditor/art.tpl');
+//		$templateMgr->display('productionEditor/art.tpl');
 
 
 	}
+	function assignLayoutEditor($args) {
+		SubmissionEditHandler::assignLayoutEditor($args, 'submissionLayout');
+	}
 
 	/**
-	 * Upload a layout file (either layout version, galley, or supp. file).
+	 * Upload the layout version of the submission file
 	 */
-/*	function removeArtworkFile($args) {
+	function uploadLayoutFile() {
+		$monographId = Request::getUserVar('monographId');
+		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+
+		AcquisitionsEditorAction::uploadLayoutVersion($submission);
+
+		Request::redirect(null, null, 'submissionLayout', $monographId);
+	}
+
+	/**
+	 * Upload an artwork file (either layout version, galley, or supp. file).
+	 */
+	function removeArtworkFile($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$fileId = isset($args[1]) ? (int) $args[1] : 0;
 
@@ -246,9 +287,9 @@ $monographFileManager->viewFile($fileId, $revision);
 
 		Request::redirect(null, null, 'submissionArt', $monographId);
 	}
-*/
+
 	/**
-	 * Upload a layout file (either layout version, galley, or supp. file).
+	 * Upload an artwork file (either layout version, galley, or supp. file).
 	 */
 	function uploadArtworkFile() {
 		$monographId = Request::getUserVar('monographId');
@@ -280,7 +321,7 @@ $monographFileManager->viewFile($fileId, $revision);
 
 		$templateMgr =& TemplateManager::getManager();
 
-		$templateMgr->assign_by_ref('layoutAssignment', $submission->getLayoutAssignment());
+		$templateMgr->assign_by_ref('layoutAssignment', $submission->getLayoutAssignments());
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('arrangement', $arrangement);
 		$templateMgr->assign_by_ref('authors', $submission->getAuthors());

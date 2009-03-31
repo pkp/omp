@@ -1,4 +1,4 @@
-  <?php
+<?php
 
 /**
  * @file classes/file/MonographFileManager.inc.php
@@ -111,9 +111,10 @@ class MonographFileManager extends FileManager {
 	 * Upload a file to the artwork file folder.
 	 * @param $fileName string the name of the file used in the POST form
 	 * @param $fileId int
+	 * @param $fileObj MonographArtworkFile
 	 * @return int file ID, is false if failure
 	 */
-	function uploadArtworkFile($fileName, $fileId = null) {
+	function uploadArtworkFile($fileName, $fileId = null, $fileObj = null) {
 		return $this->handleUpload($fileName, MONOGRAPH_FILE_ARTWORK, $fileId);
 	}
 	/**
@@ -453,8 +454,9 @@ class MonographFileManager extends FileManager {
 	 * @param $monograph object
 	 * @return object monographFile
 	 */
-	function &generateDummyFile(&$monograph) {
+	function &generateDummyFile(&$monograph, $type) {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+
 		$monographFile = new MonographFile();
 		$monographFile->setMonographId($monograph->getMonographId());
 		$monographFile->setFileName('temp');
@@ -516,7 +518,7 @@ class MonographFileManager extends FileManager {
 		if (!$fileId) {
 			// Insert dummy file to generate file id FIXME?
 			$dummyFile = true;
-			$monographFile =& $this->generateDummyFile($this->monograph);
+			$monographFile =& $this->generateDummyFile($this->monograph, $type);
 		} else {
 			$dummyFile = false;
 			$monographFile = new MonographFile();
@@ -569,7 +571,7 @@ class MonographFileManager extends FileManager {
 		if (!$fileId) {
 			// Insert dummy file to generate file id FIXME?
 			$dummyFile = true;
-			$monographFile =& $this->generateDummyFile($this->monograph);
+			$monographFile =& $this->generateDummyFile($this->monograph, $type);
 		} else {
 			$dummyFile = false;
 			$monographFile = new MonographFile();
@@ -604,7 +606,7 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * PRIVATE routine to copy an monograph file and add it to the database.
+	 * PRIVATE routine to copy a monograph file and add it to the database.
 	 * @param $url original filename/url of the file
 	 * @param $mimeType string the mime type of the file
 	 * @param $type string identifying type
@@ -621,7 +623,7 @@ class MonographFileManager extends FileManager {
 		if (!$fileId) {
 			// Insert dummy file to generate file id FIXME?
 			$dummyFile = true;
-			$monographFile =& $this->generateDummyFile($this->monograph);
+			$monographFile =& $this->generateDummyFile($this->monograph, $type);
 		} else {
 			$dummyFile = false;
 			$monographFile = new MonographFile();
@@ -667,7 +669,7 @@ class MonographFileManager extends FileManager {
 		$typePath = $this->typeToPath($type);
 		$dir = $this->filesDir . $typePath . '/';
 
-		$monographFile =& $this->generateDummyFile($this->monograph);
+		$monographFile =& $this->generateDummyFile($this->monograph, $type);
 		$monographFile->setFileType($temporaryFile->getFileType());
 		$monographFile->setOriginalFileName($temporaryFile->getOriginalFileName());
 		$monographFile->setType($typePath);

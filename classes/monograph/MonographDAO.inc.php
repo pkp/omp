@@ -42,12 +42,7 @@ class MonographDAO extends DAO {
 		$monograph = null;
 		if ($result->RecordCount() != 0) {
 			$monograph =& $this->_returnMonographFromRow($result->GetRowAssoc(false));
-			$authorDao =& DAORegistry::getDAO('AuthorDAO');
-			$authors =& $authorDao->getAuthorsByMonographId($monograph->getMonographId());
-			$monograph->setAuthors($authors);
-			$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
-			$monographComponents =& $monographComponentDao->getMonographComponents($monograph->getMonographId());
-			$monograph->setMonographComponents($monographComponents);
+
 		}
 		
 
@@ -468,6 +463,14 @@ class MonographDAO extends DAO {
 		$monograph->setLastModified($this->datetimeFromDB($row['last_modified']));
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
 		$monograph->setAuthors($authorDao->getAuthorsByMonographId($row['monograph_id']));
+
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$authors =& $authorDao->getAuthorsByMonographId($monograph->getMonographId());
+		$monograph->setAuthors($authors);
+		$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
+		$monographComponents =& $monographComponentDao->getMonographComponents($monograph->getMonographId());
+		$monograph->setMonographComponents($monographComponents);
+
 		HookRegistry::call('MonographDAO::_returnMonographFromRow', array(&$monograph, &$row));
 
 	}

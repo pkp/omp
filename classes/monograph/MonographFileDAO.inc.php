@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('monograph.MonographFile');
+import('monograph.MonographArtworkFile');
 import('file.MonographFileManager');
 
 define('INLINEABLE_TYPES_FILE', Config::getVar('general', 'registry_dir') . DIRECTORY_SEPARATOR . 'inlineTypes.txt');
@@ -28,7 +28,7 @@ class MonographFileDAO extends DAO {
 	var $inlineableTypes;
 
 	/**
-	 * Retrieve an monograph by ID.
+	 * Retrieve an monograph file by ID.
 	 * @param $fileId int
 	 * @param $revision int optional, if omitted latest revision is used
 	 * @param $monographId int optional
@@ -41,13 +41,13 @@ class MonographFileDAO extends DAO {
 		}
 		if ($revision == null) {
 			if ($monographId != null) {
-				$result = &$this->retrieveLimit(
+				$result =& $this->retrieveLimit(
 					'SELECT a.* FROM monograph_files a WHERE file_id = ? AND monograph_id = ? ORDER BY revision DESC',
 					array($fileId, $monographId),
 					1
 				);
 			} else {
-				$result = &$this->retrieveLimit(
+				$result =& $this->retrieveLimit(
 					'SELECT a.* FROM monograph_files a WHERE file_id = ? ORDER BY revision DESC',
 					$fileId,
 					1
@@ -56,12 +56,12 @@ class MonographFileDAO extends DAO {
 
 		} else {
 			if ($monographId != null) {
-				$result = &$this->retrieve(
+				$result =& $this->retrieve(
 					'SELECT a.* FROM monograph_files a WHERE file_id = ? AND revision = ? AND monograph_id = ?',
 					array($fileId, $revision, $monographId)
 				);
 			} else {
-				$result = &$this->retrieve(
+				$result =& $this->retrieve(
 					'SELECT a.* FROM monograph_files a WHERE file_id = ? AND revision = ?',
 					array($fileId, $revision)
 				);
@@ -70,7 +70,7 @@ class MonographFileDAO extends DAO {
 
 		$returner = null;
 		if (isset($result) && $result->RecordCount() != 0) {
-			$returner = &$this->_returnMonographFileFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnMonographFileFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -78,7 +78,48 @@ class MonographFileDAO extends DAO {
 
 		return $returner;
 	}
+	/**
+	 * Retrieve an monograph by ID.
+	 * @param $fileId int
+	 * @param $revision int optional, if omitted latest revision is used
+	 * @param $monographId int optional
+	 * @return MonographFile
+	 */
+	function &getMonographArtworkFile($fileId, $revision = null, $monographId = null) {
+		$returner = null;
 
+		if ($fileId === null) {
+			return $returner;
+		}
+
+		$sql = 'SELECT *
+			FROM monograph_files mf
+			LEFT JOIN monograph_artwork_files maf ON maf.file_id = mf.file_id
+			LEFT JOIN monograph_components mc ON maf.component_id = mc.component_id
+			WHERE mf.file_id = ?';
+		$sqlParams = array($fileId);
+
+		if ($revision != null) {
+			$sql .= ' AND mf.revision = ?';
+			$sqlParams[] = $revision;
+		}
+		if ($monographId != null) {
+			$sql .= ' AND mf.monograph_id = ?';
+			$sqlParams[] = $monographId;
+		}
+		$sql .= ' ORDER BY mc.seq, maf.seq';
+
+		$result =& $this->retrieve($sql, $sqlParams);
+
+		if (isset($result) && $result->RecordCount() != 0) {
+			$returner =& $this->_returnMonographArtworkFileFromRow($result->GetRowAssoc(false));
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
 	/**
 	 * Retrieve all revisions of an monograph file.
 	 * @param $monographId int
@@ -93,19 +134,19 @@ class MonographFileDAO extends DAO {
 
 		// FIXME If "round" is review-specific, it shouldn't be in this table
 		if ($round == null) {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT a.* FROM monograph_files a WHERE file_id = ? ORDER BY revision',
 				$fileId
 			);
 		} else {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT a.* FROM monograph_files a WHERE file_id = ? AND round = ? ORDER BY revision',
 				array($fileId, $round)
 			);
 		}
 
 		while (!$result->EOF) {
-			$monographFiles[] = &$this->_returnMonographFileFromRow($result->GetRowAssoc(false));
+			$monographFiles[] =& $this->_returnMonographFileFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -128,19 +169,19 @@ class MonographFileDAO extends DAO {
 		$monographFiles = array();
 
 		if ($end == null) {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT a.* FROM monograph_files a WHERE file_id = ? AND revision >= ?',
 				array($fileId, $start)
 			);
 		} else {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT a.* FROM monograph_files a WHERE file_id = ? AND revision >= ? AND revision <= ?',
 				array($fileId, $start, $end)
 			);		
 		}
 
 		while (!$result->EOF) {
-			$monographFiles[] = &$this->_returnMonographFileFromRow($result->GetRowAssoc(false));
+			$monographFiles[] =& $this->_returnMonographFileFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -160,7 +201,7 @@ class MonographFileDAO extends DAO {
 			$returner = null;
 			return $returner;
 		}
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT MAX(revision) AS max_revision FROM monograph_files a WHERE file_id = ?',
 			$fileId
 		);
@@ -186,13 +227,15 @@ class MonographFileDAO extends DAO {
 	function &getMonographFilesByMonograph($monographId) {
 		$monographFiles = array();
 
-		$result = &$this->retrieve(
-			'SELECT * FROM monograph_files WHERE monograph_id = ?',
+		$result =& $this->retrieve(
+			'SELECT * FROM monograph_files mf 
+			LEFT JOIN monograph_artwork_files maf ON maf.file_id = mf.file_id 
+			WHERE mf.monograph_id = ?',
 			$monographId
 		);
 
 		while (!$result->EOF) {
-			$monographFiles[] = &$this->_returnMonographFileFromRow($result->GetRowAssoc(false));
+			$monographFiles[] =& $this->_returnMonographArtworkFileFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -206,19 +249,22 @@ class MonographFileDAO extends DAO {
 	 * Retrieve all monograph files for a type and assoc ID.
 	 * @param $assocId int
 	 * @param $type int
+	 * @param $monographId int
 	 * @return array MonographFiles
 	 */
-	function &getMonographFilesByAssocId($assocId, $type) {
+	function &getMonographFilesByAssocId($assocId, $type, $monographId) {
 		import('file.MonographFileManager');
 		$monographFiles = array();
 
-		$result = &$this->retrieve(
-			'SELECT * FROM monograph_files WHERE type = ?',
-			array(MonographFileManager::typeToPath($type))
+		$result =& $this->retrieve(
+			'SELECT * FROM monograph_files mf
+			LEFT JOIN monograph_artwork_files maf ON maf.file_id = mf.file_id
+			WHERE mf.type = ? AND mf.monograph_id = ?',
+			array(MonographFileManager::typeToPath($type), $monographId)
 		);
 
 		while (!$result->EOF) {
-			$monographFiles[] = &$this->_returnMonographFileFromRow($result->GetRowAssoc(false));
+			$monographFiles[] =& $this->_returnMonographArtworkFileFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -228,6 +274,36 @@ class MonographFileDAO extends DAO {
 		return $monographFiles;
 	}
 
+	/**
+	 * Internal function to return an MonographFile object from a row.
+	 * @param $row array
+	 * @return MonographFile
+	 */
+	function &_returnMonographArtworkFileFromRow(&$row) {
+		$monographFile = new MonographArtworkFile();
+
+		$monographFile->setPermission($row['permission']);
+		$monographFile->setPermissionFileId($row['permission_file_id']);
+		$monographFile->setMonographComponentId($row['component_id']);
+		$monographFile->setSeq($row['seq']);
+		$monographFile->setIdentifier($row['identifier']);
+
+		$monographFile->setFileId($row['file_id']);
+		$monographFile->setSourceFileId($row['source_file_id']);
+		$monographFile->setSourceRevision($row['source_revision']);
+		$monographFile->setRevision($row['revision']);
+		$monographFile->setMonographId($row['monograph_id']);
+		$monographFile->setFileName($row['file_name']);
+		$monographFile->setFileType($row['file_type']);
+		$monographFile->setFileSize($row['file_size']);
+		$monographFile->setOriginalFileName($row['original_file_name']);
+		$monographFile->setType($row['type']);
+		$monographFile->setAssocId($row['assoc_id']);
+		$monographFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
+		$monographFile->setDateModified($this->datetimeFromDB($row['date_modified']));
+		$monographFile->setRound($row['round']);
+		return $monographFile;
+	}
 	/**
 	 * Internal function to return an MonographFile object from a row.
 	 * @param $row array
@@ -252,6 +328,27 @@ class MonographFileDAO extends DAO {
 		$monographFile->setViewable($row['viewable']);
 		HookRegistry::call('MonographFileDAO::_returnMonographFileFromRow', array(&$monographFile, &$row));
 		return $monographFile;
+	}
+
+	/**
+	 * Insert a new MonographArtworkFile entry.
+	 * @param $monographFile MonographFile
+	 * @return int
+	 */	
+	function insertMonographArtworkFile(&$monographFile) {
+		$this->update('INSERT INTO monograph_artwork_files
+				(file_id, permission, permission_file_id, identifier, component_id, seq)
+				VALUES
+				(?, ?, ?, ?, ?, ?)', 
+			array(
+				$monographFile->getFileId(),
+				$monographFile->getPermission() == null ? false : true,
+				$monographFile->getPermissionFileId(),
+				$monographFile->getIdentifier(),
+				$monographFile->getMonographComponentId(),
+				$monographFile->getSeq() == null ? 0 : $monographFile->getSeq()
+			)
+		);
 	}
 
 	/**
@@ -294,6 +391,31 @@ class MonographFileDAO extends DAO {
 		}
 
 		return $monographFile->getFileId();
+	}
+
+	/**
+	 * Update an existing monograph file.
+	 * @param $monograph MonographFile
+	 */
+	function updateMonographArtworkFile(&$monographFile) {
+
+		$this->update('UPDATE monograph_artwork_files
+				SET
+					permission = ?,
+					permission_file_id = ?, 
+					identifier = ?,
+					component_id = ?,
+					seq = ?
+				WHERE file_id = ?',
+			array(
+				$monographFile->getPermission(),
+				$monographFile->getPermissionFileId(),
+				$monographFile->getIdentifier(),
+				$monographFile->getMonographComponentId(),
+				$monographFile->getSeq(),
+				$monographFile->getFileId(),
+			)
+		);
 	}
 
 	/**
@@ -354,6 +476,9 @@ class MonographFileDAO extends DAO {
 	 * @param $revision int
 	 */
 	function deleteMonographFileById($fileId, $revision = null) {
+
+		$this->update('DELETE FROM monograph_artwork_files WHERE file_id = ?', $fileId);
+
 		if ($revision == null) {
 			return $this->update(
 				'DELETE FROM monograph_files WHERE file_id = ?', $fileId

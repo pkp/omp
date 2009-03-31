@@ -1388,7 +1388,15 @@ class AcquisitionsEditorAction extends Action {
 		$monographFileManager = new MonographFileManager($submission->getMonographId());
 		$submissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 
-		$layoutAssignment =& $submission->getLayoutAssignment();
+		$layoutAssignment =& $submission->getLayoutAssignments();
+
+		if (!$layoutAssignment) {
+			$layoutAssignment = new LayoutAssignment;
+			$layoutAssignment->setMonographId($submission->getMonographId());
+			$layoutAssignment->setEditorId(0);
+			$submission->setLayoutAssignment($layoutAssignment);
+			$submissionDao->updateAcquisitionsEditorSubmission($submission);
+		}
 
 		$fileName = 'layoutFile';
 		if ($monographFileManager->uploadedFileExists($fileName) && !HookRegistry::call('AcquisitionsEditorAction::uploadLayoutVersion', array(&$submission, &$layoutAssignment))) {
@@ -1407,33 +1415,38 @@ class AcquisitionsEditorAction extends Action {
 	function assignLayoutEditor($submission, $editorId) {
 		if (HookRegistry::call('AcquisitionsEditorAction::assignLayoutEditor', array(&$submission, &$editorId))) return;
 
-		$layoutAssignment =& $submission->getLayoutAssignment();
-		$layoutDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
+		$layoutAssignment =& $submission->getLayoutAssignments();
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		if (!isset($layoutAssignment)) {
-			$layoutAssignment = new LayoutAssignment();
-			$layoutAssignment->setMonographId($submission->getMonographId());
+			import('workflow.WorkflowProcess');
+			$layoutAssignment = new Signoff();
+			$layoutAssignment->setAssocType(ASSOC_TYPE_PRESS);
+			$layoutAssignment->setAssocId($submission->getPressId());
+			$layoutAssignment->setUserId($editorId);
+			$layoutAssignment->setSymbolic(WORKFLOW_PROCESS_TYPE_LAYOUT_ASSIGNMENT);
+			$signoffDao->insertObject($layoutAssignment);
+		} else {
 			$layoutAssignment->setEditorId($editorId);
-			$layoutDao->insertLayoutAssignment($layoutAssignment);
 		}
-		import('monograph.log.MonographLog');
+/*		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');
 
 		if ($layoutAssignment->getEditorId()) {
 			MonographLog::logEvent($submission->getMonographId(), ARTICLE_LOG_LAYOUT_UNASSIGN, ARTICLE_LOG_TYPE_LAYOUT, $layoutAssignment->getLayoutId(), 'log.layout.layoutEditorUnassigned', array('editorName' => $layoutAssignment->getEditorFullName(), 'monographId' => $submission->getMonographId()));
 		}
+*/
 
-		$layoutAssignment->setEditorId($editorId);
 		$layoutAssignment->setDateNotified(null);
 		$layoutAssignment->setDateUnderway(null);
 		$layoutAssignment->setDateCompleted(null);
 		$layoutAssignment->setDateAcknowledged(null);
 
-		$layoutDao->updateLayoutAssignment($layoutAssignment);
-		$layoutAssignment =& $layoutDao->getLayoutAssignmentById($layoutAssignment->getLayoutId());
-
+		$signoffDao->updateObject($layoutAssignment);
+//		$layoutAssignment =& $layoutDao->getLayoutAssignmentById($layoutAssignment->getLayoutId());
+/*
 		MonographLog::logEvent($submission->getMonographId(), ARTICLE_LOG_LAYOUT_ASSIGN, ARTICLE_LOG_TYPE_LAYOUT, $layoutAssignment->getLayoutId(), 'log.layout.layoutEditorAssigned', array('editorName' => $layoutAssignment->getEditorFullName(), 'monographId' => $submission->getMonographId()));
-	}
+*/	}
 
 	/**
 	 * Notifies the current layout editor about an assignment.

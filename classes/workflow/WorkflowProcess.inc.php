@@ -21,6 +21,10 @@ define('WORKFLOW_PROCESS_TYPE_EDITING_PROCESS', 3);
 define('WORKFLOW_PROCESS_TYPE_COPYEDIT', 4);
 define('WORKFLOW_PROCESS_TYPE_PROOFREAD', 5);
 
+define('WORKFLOW_PROCESS_TYPE_LAYOUT_ASSIGNMENT', 'layouted_assignment');
+define('WORKFLOW_PROCESS_TYPE_REVIEW_ASSIGNMENT', 'review_assignment');
+define('WORKFLOW_PROCESS_TYPE_COPYEDIT_ASSIGNMENT', 'copyedit_assignment');
+
 class WorkflowProcess extends DataObject {
 	//
 	// Get/set methods

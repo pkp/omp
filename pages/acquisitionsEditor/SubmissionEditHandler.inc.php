@@ -1422,7 +1422,7 @@ $sections = null;
 	 * Assign/reassign a layout editor to the submission.
 	 * @param $args array ($monographId, [$userId])
 	 */
-	function assignLayoutEditor($args) {
+	function assignLayoutEditor($args, $op = null) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$editorId = isset($args[1]) ? (int) $args[1] : 0;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
@@ -1431,7 +1431,9 @@ $sections = null;
 
 		if ($editorId && $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_LAYOUT_EDITOR)) {
 			AcquisitionsEditorAction::assignLayoutEditor($submission, $editorId);
-			Request::redirect(null, null, 'submissionEditing', $monographId);
+			if ($op == null)
+				$op = 'submissionEditing';
+			Request::redirect(null, null, $op, $monographId);
 		} else {
 			$searchType = null;
 			$searchMatch = null;
@@ -1468,7 +1470,7 @@ $sections = null;
 			$templateMgr->assign('monographId', $monographId);
 			$templateMgr->assign_by_ref('users', $layoutEditors);
 
-			$layoutAssignment =& $submission->getLayoutAssignment();
+			$layoutAssignment =& $submission->getLayoutAssignments();
 			if ($layoutAssignment) {
 				$templateMgr->assign('currentUser', $layoutAssignment->getEditorId());
 			}
