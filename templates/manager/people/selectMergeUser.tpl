@@ -22,7 +22,7 @@
 		<option {if $roleSymbolic=='managers'}selected="selected" {/if}value="managers">{translate key="user.role.managers"}</option>
 		<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
 		<option {if $roleSymbolic=='sectionEditors'}selected="selected" {/if}value="sectionEditors">{translate key="user.role.sectionEditors"}</option>
-		<option {if $roleSymbolic=='layoutEditors'}selected="selected" {/if}value="layoutEditors">{translate key="user.role.layoutEditors"}</option>
+		<option {if $roleSymbolic=='designers'}selected="selected" {/if}value="designers">{translate key="user.role.designers"}</option>
 		<option {if $roleSymbolic=='copyeditors'}selected="selected" {/if}value="copyeditors">{translate key="user.role.copyeditors"}</option>
 		<option {if $roleSymbolic=='proofreaders'}selected="selected" {/if}value="proofreaders">{translate key="user.role.proofreaders"}</option>
 		<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
@@ -46,8 +46,8 @@
 <ul>
 	<li><a href="{url path="managers" oldUserId=$oldUserId}">{translate key="user.role.managers"}</a></li>
 	<li><a href="{url path="editors" oldUserId=$oldUserId}">{translate key="user.role.editors"}</a></li>
-	<li><a href="{url path="sectionEditors" oldUserId=$oldUserId}">{translate key="user.role.sectionEditors"}</a></li>
-	<li><a href="{url path="layoutEditors" oldUserId=$oldUserId}">{translate key="user.role.layoutEditors"}</a></li>
+	<li><a href="{url path="acquisitionsEditors" oldUserId=$oldUserId}">{translate key="user.role.acquisitionsEditors"}</a></li>
+	<li><a href="{url path="designers" oldUserId=$oldUserId}">{translate key="user.role.designers"}</a></li>
 	<li><a href="{url path="copyeditors" oldUserId=$oldUserId}">{translate key="user.role.copyeditors"}</a></li>
 	<li><a href="{url path="proofreaders" oldUserId=$oldUserId}">{translate key="user.role.proofreaders"}</a></li>
 	<li><a href="{url path="reviewers" oldUserId=$oldUserId}">{translate key="user.role.reviewers"}</a></li>

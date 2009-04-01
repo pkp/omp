@@ -837,8 +837,8 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Get the layout assignment for an article.
-	 * @return LayoutAssignment
+	 * Get the layout assignments for a monograph.
+	 * @return array (LayoutAssignment)
 	 */
 	function &getLayoutAssignments() {
 		$layoutAssignment = &$this->getData('layoutAssignment');
@@ -846,11 +846,11 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Set the layout assignment for an article.
-	 * @param $layoutAssignment LayoutAssignment
+	 * Set the layout assignments for an article.
+	 * @param $layoutAssignments array (LayoutAssignment)
 	 */
-	function setLayoutAssignment(&$layoutAssignment) {
-		return $this->setData('layoutAssignment', $layoutAssignment);
+	function setLayoutAssignments(&$layoutAssignments) {
+		return $this->setData('layoutAssignments', $layoutAssignments);
 	}
 
 	/**

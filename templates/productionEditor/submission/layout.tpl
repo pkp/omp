@@ -9,19 +9,24 @@
  * $Id$
  *}
 {assign var=layoutAssignment value=$submission->getLayoutAssignments()}
+
+{if isset($layoutAssignment)}
 {assign var=layoutFile value=$layoutAssignment->getLayoutFile()}
+{else}
+{assign var=layoutFile value=null}
+{/if}
 
 <div id="layout">
-<h3>{translate key="user.role.layoutEditors"}</h3>
+<h3>{translate key="user.role.designers"}</h3>
 
 <!--<table class="data" width="100%">
 	<tr>
-		<td width="20%" class="label">{translate key="user.role.layoutEditors"}</td>
+		<td width="20%" class="label">{translate key="user.role.designers"}</td>
 		{if isset($layoutAssignment) && $layoutAssignment->getEditorId()}<td width="20%" class="value">{$layoutAssignment->getEditorFullName()|escape}</td>{/if}
 		<td class="value"></td>
 	</tr>
 </table>-->
-<em>There are currently no layout editors assigned</em>
+<em>There are currently no assigned layout designers</em>
 <br />
 <br />
 <a href="{url op="assignLayoutEditor" path=$submission->getMonographId()}" class="action">{translate key="submission.layout.assignLayoutEditor"}</a>

@@ -112,7 +112,7 @@
 	</tr>
 	<tr>
 		<td>3.</td>
-		<td>{translate key="user.role.layoutEditor"}</td>
+		<td>{translate key="user.role.designer"}</td>
 		<td>
 			{if $useLayoutEditors}
 				{if $layoutAssignment->getEditorId() && $proofAssignment->getDateProofreaderCompleted()}

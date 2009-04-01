@@ -14,6 +14,19 @@
 
 <schema version="0.2">
 
+	<table name="monograph_artwork_files">
+		<field name="file_id" type="I8" />
+		<field name="permission" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="permission_file_id" type="I8" />
+		<field name="component_id" type="I8" />
+		<field name="identifier" type="C2" size="255" />
+		<field name="seq" type="I8"/>
+		<descr>Monograph artwork files.</descr>
+	</table>
+	
 	<!--
 	  *
 	  * TABLE proof_assignments
@@ -57,15 +70,15 @@
 	  * TABLE layouted_assignments
 	  *
 	  -->
-	<table name="layouted_assignments">
-		<field name="layouted_id" type="I8">
+	<table name="layout_assignments">
+		<field name="assignment_id" type="I8">
 			<KEY />
 			<AUTOINCREMENT />
 		</field>
 		<field name="monograph_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="editor_id" type="I8">
+		<field name="designer_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<field name="date_notified" type="T"/>
@@ -73,13 +86,13 @@
 		<field name="date_completed" type="T"/>
 		<field name="date_acknowledged" type="T"/>
 		<field name="layout_file_id" type="I8"/>
-		<descr>Layout editing assignments.</descr>
-		<index name="layouted_assignments_article_id">
+		<descr>Layout assignments.</descr>
+		<index name="layout_assignments_monograph_id">
 			<col>monograph_id</col>
 			<UNIQUE/>
 		</index>
-		<index name="layouted_assignments_editor_id">
-			<col>editor_id</col>
+		<index name="layouted_assignments_designer_id">
+			<col>designer_id</col>
 		</index>
 	</table>
 	

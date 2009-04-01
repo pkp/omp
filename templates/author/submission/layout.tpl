@@ -16,7 +16,7 @@
 {if $useLayoutEditors}
 <table width="100%" class="data">
 	<tr>
-		<td class="label" width="20%">{translate key="user.role.layoutEditor"}</td>
+		<td class="label" width="20%">{translate key="user.role.designer"}</td>
 		<td class="value" width="80%">{if $layoutAssignment->getEditorId()}{$layoutAssignment->getEditorFullName()|escape}{else}{translate key="common.none"}{/if}</td>
 	</tr>
 </table>

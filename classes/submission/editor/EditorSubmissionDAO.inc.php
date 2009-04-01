@@ -523,8 +523,8 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 
 			// get layout assignment data
 			$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($monographId);
-			$editorSubmission->setLayoutAssignment($layoutAssignment);
+			$layoutAssignments =& $layoutAssignmentDao->getLayoutAssignmentsByMonographId($monographId);
+			$editorSubmission->setLayoutAssignments($layoutAssignments);
 
 			// get proof assignment data
 			$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
@@ -588,8 +588,8 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 
 			// get layout assignment data
 			$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($monographId);
-			$editorSubmission->setLayoutAssignment($layoutAssignment);
+			$layoutAssignments =& $layoutAssignmentDao->getLayoutAssignmentsByMonographId($monographId);
+			$editorSubmission->setLayoutAssignments($layoutAssignments);
 
 			// get proof assignment data
 			$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');

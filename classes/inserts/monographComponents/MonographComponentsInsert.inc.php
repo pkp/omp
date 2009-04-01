@@ -36,7 +36,7 @@ class MonographComponentsInsert
 	//	$form->addCheck(new FormValidatorArray($this, 'authors', 'required', 'author.submit.form.authorRequiredFields', array('firstName', 'lastName', 'email')));
 		$this->form = $form;
 		$this->formData = isset($form) ? $form->_data : array();
-		$this->monograph = $monograph;
+		$this->monograph =& $monograph;
 		$this->options = $options;
 		$this->contributorInsert =& new ContributorInsert($monograph, $form);
 	}

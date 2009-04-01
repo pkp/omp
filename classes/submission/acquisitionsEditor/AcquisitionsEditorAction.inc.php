@@ -1281,9 +1281,9 @@ class AcquisitionsEditorAction extends Action {
 		if ($copyEdFile =& $acquisitionsEditorSubmission->getFinalCopyeditFile()) {
 			// Set initial layout version to final copyedit version
 			$layoutDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignment =& $layoutDao->getLayoutAssignmentByMonographId($acquisitionsEditorSubmission->getMonographId());
+			$layoutAssignments =& $layoutDao->getLayoutAssignmentsByMonographId($acquisitionsEditorSubmission->getMonographId());
 
-			if (isset($layoutAssignment) && !$layoutAssignment->getLayoutFileId()) {
+/*			if (!empty($layoutAssignments) && !$layoutAssignment->getLayoutFileId()) {
 				import('file.MonographFileManager');
 				$monographFileManager = new MonographFileManager($acquisitionsEditorSubmission->getMonographId());
 				if ($layoutFileId = $monographFileManager->copyToLayoutFile($copyEdFile->getFileId(), $copyEdFile->getRevision())) {
@@ -1291,7 +1291,7 @@ class AcquisitionsEditorAction extends Action {
 					$layoutDao->updateLayoutAssignment($layoutAssignment);
 				}
 			}
-		}
+*/		}
 		// Add log entry
 		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');

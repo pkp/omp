@@ -22,26 +22,6 @@
 
 class LayoutAssignment extends DataObject {
 
-	//
-	// Get/set methods
-	//
-
-	/**
-	 * Get ID of layout assignment.
-	 * @return int
-	 */
-	function getLayoutId() {
-		return $this->getData('layoutId');
-	}
-
-	/**
-	 * Set ID of layout assignment
-	 * @param $layoutId int
-	 */
-	function setLayoutId($layoutId) {
-		return $this->setData('layoutId', $layoutId);
-	}
-
 	/**
 	 * Get ID of monograph.
 	 * @return int
@@ -59,51 +39,51 @@ class LayoutAssignment extends DataObject {
 	}
 
 	/**
-	 * Get user ID of layout editor.
+	 * Get user ID of the layout designer.
 	 * @return int
 	 */
-	function getEditorId() {
-		return $this->getData('editorId');
+	function getDesignerId() {
+		return $this->getData('designerId');
 	}
 
 	/**
-	 * Set user ID of layout editor.
-	 * @param $editorId int
+	 * Set user ID of layout designer.
+	 * @param $designerId int
 	 */
-	function setEditorId($editorId) {
-		return $this->setData('editorId', $editorId);
+	function setDesignerId($designerId) {
+		return $this->setData('designerId', $designerId);
 	}
 
 	/**
-	 * Get full name of layout editor.
+	 * Get full name of the designer.
 	 * @return string
 	 */
-	function getEditorFullName() {
-		return $this->getData('editorFullName');
+	function getDesignerFullName() {
+		return $this->getData('designerFullName');
 	}
 
 	/**
-	 * Set full name of layout editor.
-	 * @param $editorFullName string
+	 * Set full name of the designer.
+	 * @param $designerFullName string
 	 */
-	function setEditorFullName($editorFullName) {
-		return $this->setData('editorFullName', $editorFullName);
+	function setDesignerFullName($designerFullName) {
+		return $this->setData('designerFullName', $designerFullName);
 	}
 
 	/**
-	 * Get email of layout editor.
+	 * Get the designer's email address.
 	 * @return string
 	 */
-	function getEditorEmail() {
+	function getDesignerEmail() {
 		return $this->getData('editorEmail');
 	}
 
 	/**
-	 * Set email of layout editor.
-	 * @param $editorEmail string
+	 * Set the designer's email address.
+	 * @param $designerEmail string
 	 */
-	function setEditorEmail($editorEmail) {
-		return $this->setData('editorEmail', $editorEmail);
+	function setDesignerEmail($designerEmail) {
+		return $this->setData('designerEmail', $designerEmail);
 	}
 
 	/**

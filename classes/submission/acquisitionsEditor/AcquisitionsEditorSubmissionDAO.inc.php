@@ -211,7 +211,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmission->setCopyeditorFinalRevision($row['copyeditor_final_revision']);
 
 		// Layout Editing
-		$acquisitionsEditorSubmission->setLayoutAssignment($this->layoutAssignmentDao->getLayoutAssignmentByMonographId($row['monograph_id']));
+		$acquisitionsEditorSubmission->setLayoutAssignments($this->layoutAssignmentDao->getLayoutAssignmentsByMonographId($row['monograph_id']));
 
 //		$acquisitionsEditorSubmission->setGalleys($this->galleyDao->getGalleysByMonograph($row['monograph_id']));
 

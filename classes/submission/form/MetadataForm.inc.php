@@ -80,7 +80,7 @@ class MetadataForm extends Form {
 			$this->canViewAuthors = false;
 		}
 
-		$this->monograph = $monograph;
+		$this->monograph =& $monograph;
 		$this->addCheck(new FormValidatorPost($this));
 
 		parent::Form('submission/metadata/metadataEdit.tpl');
@@ -96,6 +96,7 @@ class MetadataForm extends Form {
 		if (isset($this->monograph)) {
 			$monograph =& $this->monograph;
 			if (!is_array($this->_data))
+				$this->_data = array($this->_data);
 			$this->_data = array_merge($this->_data,array(
 
 				'title' => $monograph->getTitle(null), // Localized
@@ -221,18 +222,17 @@ class MetadataForm extends Form {
 	 */
 	function execute() {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$sectionDao =& DAORegistry::getDAO('SectionDAO');
 
 		// Update monograph
-		$this->formComponents->execute($this);
 		$monograph =& $this->monograph;
 		$monograph->setTitle($this->getData('title'), null); // Localized
 
-		$section =& $sectionDao->getSection($monograph->getSectionId());
+		$this->formComponents->execute($this, $monograph);
+
+//		$section =& $sectionDao->getSection($monograph->getSectionId());
 		$monograph->setAbstract($this->getData('abstract'), null); // Localized
 
-		import('file.PublicFileManager');
+/*		import('file.PublicFileManager');
 		$publicFileManager = new PublicFileManager();
 		if ($publicFileManager->uploadedFileExists('coverPage')) {
 			$journal = Request::getJournal();
@@ -272,7 +272,7 @@ class MetadataForm extends Form {
 			}
 		}
 		$monograph->setHideCoverPageAbstract($hideCoverPageAbstract, null); // Localized
-
+*/
 		$monograph->setDiscipline($this->getData('discipline'), null); // Localized
 		$monograph->setSubjectClass($this->getData('subjectClass'), null); // Localized
 		$monograph->setSubject($this->getData('subject'), null); // Localized
@@ -285,7 +285,7 @@ class MetadataForm extends Form {
 		$monograph->setHideAuthor($this->getData('hideAuthor') ? $this->getData('hideAuthor') : 0);
 
 		// Update authors
-		$authors = $this->getData('authors');
+/*		$authors = $this->getData('authors');
 		for ($i=0, $count=count($authors); $i < $count; $i++) {
 			if ($authors[$i]['authorId'] > 0) {
 				// Update an existing author
@@ -325,12 +325,12 @@ class MetadataForm extends Form {
 			$monograph->removeAuthor($deletedAuthors[$i]);
 		}
 
-		// Save the monograph
+*/		// Save the monograph
 		$monographDao->updateMonograph($monograph);
 
 		// Update search index
-		import('search.MonographSearchIndex');
-		MonographSearchIndex::indexMonographMetadata($monograph);
+//		import('search.MonographSearchIndex');
+//		MonographSearchIndex::indexMonographMetadata($monograph);
 
 		return $monograph->getMonographId();
 	}
