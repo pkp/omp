@@ -45,12 +45,18 @@ class WorkflowDAO extends DAO {
 	 * Retrieve the ordered workflow process list.
 	 * @return array
 	 */
-	function getWorkflowProcesses() {
-		return array(
+	function &getWorkflowProcesses($subtree = null) {
+		$processes = array(
 				array(),
 				array(),
 				array()
 			);
+
+		if ($subtree != null) {
+			if (isset($processes[$subtree]))
+			    return $processes[$subtree];
+		}
+		return $processes;
 	}
 
 	/**
@@ -59,6 +65,9 @@ class WorkflowDAO extends DAO {
 	 * @return ProcessSignoff
 	 */
 	function getNextWorkflowProcess($eventType, $eventId) {
+		//email relevant parties that got access
+		//close off relevant processes
+		//
 		
 	}
 	function &getSignoffSummary($monographId, $eventType) {

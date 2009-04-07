@@ -67,7 +67,7 @@ class ProductionHandler extends SubmissionEditHandler {
 		list($press) = ProductionHandler::validate();
 		import('file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
-$monographFileManager->viewFile($fileId, $revision);
+		$monographFileManager->viewFile($fileId, $revision);
 //		if (!$monographFileManager->viewFile($fileId, $revision)) {
 //			Request::redirect(null, null, 'submission', $monographId);
 //		}
@@ -182,79 +182,6 @@ $monographFileManager->viewFile($fileId, $revision);
 
 		$artworkForm->display();
 
-/*		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$artworks =& $monographFileDao->getMonographFilesByAssocId(null, MONOGRAPH_FILE_ARTWORK);
-
-		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$pressSettings = $pressSettingsDao->getPressSettings($press->getId());
-
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->roleExists($press->getId(), $user->getUserId(), ROLE_ID_EDITOR);
-
-//		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-//		$arrangement =& $arrangementDao->getAcquisitionsArrangement($submission->getAcquisitionsArrangementId());
-
-		$enableComments = $press->getSetting('enableComments');
-
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('arrangement', $arrangement);
-		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
-
-		$templateMgr->assign_by_ref('artworks', $artworks);
-		
-
-//		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
-//		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
-//		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
-		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
-		$templateMgr->assign('userId', $user->getUserId());
-		$templateMgr->assign('isEditor', $isEditor);
-		$templateMgr->assign('enableComments', $enableComments);
-
-//		$templateMgr->assign_by_ref('arrangements', $arrangementDao->getAcquisitionsArrangementsTitles($press->getId()));
-
-		if ($enableComments) {
-			import('monograph.Monograph');
-			$templateMgr->assign('commentsStatus', $submission->getCommentsStatus());
-			$templateMgr->assign_by_ref('commentsStatusOptions', Monograph::getCommentsStatusOptions());
-		}
-
-/*		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
-		if ($publishedMonograph) {
-			$issueDao =& DAORegistry::getDAO('IssueDAO');
-			$issue =& $issueDao->getIssueById($publishedMonograph->getIssueId());
-			$templateMgr->assign_by_ref('issue', $issue);
-			$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
-		}
-*/
-//		if ($isEditor) {
-//			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary');
-//		}
-		
-		// Set up required Payment Related Information
-/*		import('payment.ojs.OJSPaymentManager');
-		$paymentManager =& OJSPaymentManager::getManager();
-		if ( $paymentManager->submissionEnabled() || $paymentManager->fastTrackEnabled() || $paymentManager->publicationEnabled()) {
-			$templateMgr->assign('authorFees', true);
-			$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
-			
-			if ( $paymentManager->submissionEnabled() ) {
-				$templateMgr->assign_by_ref('submissionPayment', $completedPaymentDAO->getSubmissionCompletedPayment ( $press->getId(), $monographId ));
-			}
-			
-			if ( $paymentManager->fastTrackEnabled()  ) {
-				$templateMgr->assign_by_ref('fastTrackPayment', $completedPaymentDAO->getFastTrackCompletedPayment ( $press->getId(), $monographId ));
-			}
-
-			if ( $paymentManager->publicationEnabled()  ) {
-				$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getId(), $monographId ));
-			}				   
-		}		
-*/
-//		$templateMgr->display('productionEditor/art.tpl');
-
 
 	}
 	function assignLayoutEditor($args) {
@@ -321,7 +248,7 @@ $monographFileManager->viewFile($fileId, $revision);
 
 		$templateMgr =& TemplateManager::getManager();
 
-		$templateMgr->assign_by_ref('layoutAssignment', $submission->getLayoutAssignments());
+		$templateMgr->assign_by_ref('layoutAssignments', $submission->getLayoutAssignments());
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('arrangement', $arrangement);
 		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
@@ -341,39 +268,10 @@ $monographFileManager->viewFile($fileId, $revision);
 			$templateMgr->assign_by_ref('commentsStatusOptions', Monograph::getCommentsStatusOptions());
 		}
 
-/*		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
-		if ($publishedMonograph) {
-			$issueDao =& DAORegistry::getDAO('IssueDAO');
-			$issue =& $issueDao->getIssueById($publishedMonograph->getIssueId());
-			$templateMgr->assign_by_ref('issue', $issue);
-			$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
-		}
-*/
 		if ($isEditor) {
 			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary');
 		}
-		
-		// Set up required Payment Related Information
-/*		import('payment.ojs.OJSPaymentManager');
-		$paymentManager =& OJSPaymentManager::getManager();
-		if ( $paymentManager->submissionEnabled() || $paymentManager->fastTrackEnabled() || $paymentManager->publicationEnabled()) {
-			$templateMgr->assign('authorFees', true);
-			$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
-			
-			if ( $paymentManager->submissionEnabled() ) {
-				$templateMgr->assign_by_ref('submissionPayment', $completedPaymentDAO->getSubmissionCompletedPayment ( $press->getId(), $monographId ));
-			}
-			
-			if ( $paymentManager->fastTrackEnabled()  ) {
-				$templateMgr->assign_by_ref('fastTrackPayment', $completedPaymentDAO->getFastTrackCompletedPayment ( $press->getId(), $monographId ));
-			}
 
-			if ( $paymentManager->publicationEnabled()  ) {
-				$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getId(), $monographId ));
-			}				   
-		}		
-*/
 		$templateMgr->display('productionEditor/layout.tpl');
 
 

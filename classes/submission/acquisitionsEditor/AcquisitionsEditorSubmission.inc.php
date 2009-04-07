@@ -167,7 +167,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * @return array
 	 */
 	function &getEditAssignments() {
-		$editAssignments = &$this->getData('editAssignments');
+		$editAssignments =& $this->getData('editAssignments');
 		return $editAssignments;
 	}
 
@@ -584,7 +584,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * @return User
 	 */
 	function &getCopyeditor() {
-		$copyEditor = &$this->getData('copyeditor');
+		$copyEditor =& $this->getData('copyeditor');
 		return $copyEditor;
 	}
 
@@ -841,8 +841,8 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * @return array (LayoutAssignment)
 	 */
 	function &getLayoutAssignments() {
-		$layoutAssignment = &$this->getData('layoutAssignment');
-		return $layoutAssignment;
+		$layoutAssignments =& $this->getData('layoutAssignments');
+		return $layoutAssignments;
 	}
 
 	/**
@@ -854,11 +854,28 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
+	 * Get the current layout file for a monograph.
+	 * @return MonographFile
+	 */
+	function &getLayoutFile() {
+		$layoutFile =& $this->getData('layoutFile');
+		return $layoutFile;
+	}
+
+	/**
+	 * Set the layout file.
+	 * @param $layoutFile MonographFile
+	 */
+	function setLayoutFile(&$layoutFile) {
+		return $this->setData('layoutFile', $layoutFile);
+	}
+
+	/**
 	 * Get the galleys for an article.
 	 * @return array MonographGalley
 	 */
 	function &getGalleys() {
-		$galleys = &$this->getData('galleys');
+		$galleys =& $this->getData('galleys');
 		return $galleys;
 	}
 
@@ -875,7 +892,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * @return ProofAssignment
 	 */
 	function &getProofAssignment() {
-		$proofAssignment = &$this->getData('proofAssignment');
+		$proofAssignment =& $this->getData('proofAssignment');
 		return $proofAssignment;
 	}
 

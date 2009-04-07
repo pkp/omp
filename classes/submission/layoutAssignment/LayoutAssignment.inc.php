@@ -165,23 +165,6 @@ class LayoutAssignment extends DataObject {
 	function setLayoutFileId($layoutFileId) {
 		return $this->setData('layoutFileId', $layoutFileId);
 	}
-
-	/**
-	 * Get layout file.
-	 * @return MonographFile
-	 */
-	function getLayoutFile() {
-		return $this->getData('layoutFile');
-	}
-
-	/**
-	 * Set layout file.
-	 * @param $layoutFile MonographFile
-	 */
-	function setLayoutFile($layoutFile) {
-		return $this->setData('layoutFile', $layoutFile);
-	}
-
 }
 
 ?>

@@ -49,7 +49,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$this->layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-//		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
+		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 //		$this->monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
 //		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 //		$this->proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
@@ -154,6 +154,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByMonograph($row['monograph_id']));
 		$acquisitionsEditorSubmission->setEditorFile($this->monographFileDao->getMonographFile($row['editor_file_id']));
 		$acquisitionsEditorSubmission->setCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id']));
+		$acquisitionsEditorSubmission->setLayoutFile($this->monographFileDao->getMonographFile($row['layout_file_id']));
 
 		// Initial Copyedit File
 		if ($row['copyeditor_initial_revision'] != null) {
@@ -211,9 +212,9 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmission->setCopyeditorFinalRevision($row['copyeditor_final_revision']);
 
 		// Layout Editing
-		$acquisitionsEditorSubmission->setLayoutAssignments($this->layoutAssignmentDao->getLayoutAssignmentsByMonographId($row['monograph_id']));
+		$acquisitionsEditorSubmission->setLayoutAssignments($this->layoutAssignmentDao->getByMonographId($row['monograph_id']));
 
-//		$acquisitionsEditorSubmission->setGalleys($this->galleyDao->getGalleysByMonograph($row['monograph_id']));
+		$acquisitionsEditorSubmission->setGalleys($this->galleyDao->getGalleysByMonograph($row['monograph_id']));
 
 		// Proof Assignment
 //		$acquisitionsEditorSubmission->setProofAssignment($this->proofAssignmentDao->getProofAssignmentByMonographId($row['monograph_id']));
@@ -332,15 +333,16 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		}
 
 		// Update layout editing assignment
-		$layoutAssignment =& $acquisitionsEditorSubmission->getLayoutAssignments();
+/*		$layoutAssignments =& $acquisitionsEditorSubmission->getLayoutAssignments();
+
 		if (isset($layoutAssignment)) {
-			if ($layoutAssignment->getLayoutId() > 0) {
+			if ($layoutAssignment->getId() > 0) {
 				$this->layoutAssignmentDao->updateLayoutAssignment($layoutAssignment);
 			} else {
 				$this->layoutAssignmentDao->insertLayoutAssignment($layoutAssignment);
 			}
 		}
-
+*/
 		// Update monograph
 		if ($acquisitionsEditorSubmission->getMonographId()) {
 
@@ -351,6 +353,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	//		$monograph->setCurrentRound($acquisitionsEditorSubmission->getCurrentRound());
 			$monograph->setReviewFileId($acquisitionsEditorSubmission->getReviewFileId());
 			$monograph->setEditorFileId($acquisitionsEditorSubmission->getEditorFileId());
+			$monograph->setLayoutFileId($acquisitionsEditorSubmission->getLayoutFileId());
 			$monograph->setStatus($acquisitionsEditorSubmission->getStatus());
 			$monograph->setCopyeditFileId($acquisitionsEditorSubmission->getCopyeditFileId());
 			$monograph->setDateStatusModified($acquisitionsEditorSubmission->getDateStatusModified());
@@ -583,7 +586,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 				LEFT JOIN users ce ON (c.copyeditor_id = ce.user_id)
 				LEFT JOIN proof_assignments p ON (p.monograph_id = a.monograph_id)
 				LEFT JOIN users pe ON (pe.user_id = p.proofreader_id)
-				LEFT JOIN layouted_assignments l ON (l.monograph_id = a.monograph_id) LEFT JOIN users le ON (le.user_id = l.editor_id)
+				LEFT JOIN designer_assignments l ON (l.monograph_id = a.monograph_id) LEFT JOIN users le ON (le.user_id = l.editor_id)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -1195,7 +1198,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$statistics = Array();
 
 		// Get counts of completed submissions
-		$result =& $this->retrieve('SELECT la.editor_id AS editor_id, COUNT(la.monograph_id) AS complete FROM layouted_assignments la, monographs a INNER JOIN proof_assignments p ON (p.monograph_id = a.monograph_id) WHERE la.monograph_id = a.monograph_id AND (la.date_completed IS NOT NULL AND p.date_layouteditor_completed IS NOT NULL) AND la.date_notified IS NOT NULL AND a.press_id = ? GROUP BY la.editor_id', $pressId);
+		$result =& $this->retrieve('SELECT la.designer_id AS editor_id, COUNT(la.monograph_id) AS complete FROM designer_assignments la, monographs a INNER JOIN proof_assignments p ON (p.monograph_id = a.monograph_id) WHERE la.monograph_id = a.monograph_id AND (la.date_completed IS NOT NULL AND p.date_layouteditor_completed IS NOT NULL) AND la.date_notified IS NOT NULL AND a.press_id = ? GROUP BY la.designer_id', $pressId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
@@ -1207,7 +1210,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Get counts of incomplete submissions
-		$result =& $this->retrieve('SELECT la.editor_id AS editor_id, COUNT(la.monograph_id) AS incomplete FROM layouted_assignments la, monographs a INNER JOIN proof_assignments p ON (p.monograph_id = a.monograph_id) WHERE la.monograph_id = a.monograph_id AND (la.date_completed IS NULL OR p.date_layouteditor_completed IS NULL) AND la.date_notified IS NOT NULL AND a.press_id = ? GROUP BY la.editor_id', $pressId);
+		$result =& $this->retrieve('SELECT la.designer_id AS editor_id, COUNT(la.monograph_id) AS incomplete FROM designer_assignments la, monographs a INNER JOIN proof_assignments p ON (p.monograph_id = a.monograph_id) WHERE la.monograph_id = a.monograph_id AND (la.date_completed IS NULL OR p.date_layouteditor_completed IS NULL) AND la.date_notified IS NOT NULL AND a.press_id = ? GROUP BY la.designer_id', $pressId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
@@ -1219,7 +1222,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Get last assignment date
-		$result =& $this->retrieve('SELECT la.editor_id AS editor_id, MAX(la.date_notified) AS last_assigned FROM layouted_assignments la, monographs a WHERE la.monograph_id=a.monograph_id AND a.press_id=? GROUP BY la.editor_id', $pressId);
+		$result =& $this->retrieve('SELECT la.designer_id AS editor_id, MAX(la.date_notified) AS last_assigned FROM designer_assignments la, monographs a WHERE la.monograph_id=a.monograph_id AND a.press_id=? GROUP BY la.designer_id', $pressId);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();

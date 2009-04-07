@@ -34,10 +34,10 @@ class LayoutAssignmentDAO extends DAO {
 	 * @param $assignmentId int
 	 * @return LayoutAssignment or null
 	 */
-	function &getLayoutAssignmentById($assignmentId) {
+	function &getById($assignmentId) {
 		$result =& $this->retrieve(
 			'SELECT l.*, u.first_name, u.last_name, u.email
-				FROM layout_assignments l
+				FROM designer_assignments l
 				LEFT JOIN users u ON (l.designer_id = u.user_id)
 				WHERE l.assignment_id = ?',
 			$assignmentId
@@ -45,7 +45,7 @@ class LayoutAssignmentDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnLayoutAssignmentFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -61,7 +61,7 @@ class LayoutAssignmentDAO extends DAO {
 	 */
 	function &getDesignerIdsByMonographId($monographId) {
 		$result =& $this->retrieve(
-			'SELECT designer_id FROM layout_assignments WHERE monograph_id = ?',
+			'SELECT designer_id FROM designer_assignments WHERE monograph_id = ?',
 			$monographId
 		);
 
@@ -83,10 +83,10 @@ class LayoutAssignmentDAO extends DAO {
 	 * @param $monographId int
 	 * @return array (LayoutAssignment)
 	 */
-	function &getLayoutAssignmentsByMonographId($monographId) {
+	function &getByMonographId($monographId) {
 		$result =& $this->retrieve(
 			'SELECT l.*, u.first_name, u.last_name, u.email
-				FROM layout_assignments l
+				FROM designer_assignments l
 				LEFT JOIN users u ON (l.designer_id = u.user_id)
 				WHERE l.monograph_id = ?',
 			$monographId
@@ -94,7 +94,7 @@ class LayoutAssignmentDAO extends DAO {
 
 		$returner = array();
 		while (!$result->EOF) {
-			$returner[] =& $this->_returnLayoutAssignmentFromRow($result->GetRowAssoc(false));
+			$returner[] =& $this->_fromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 
@@ -105,12 +105,20 @@ class LayoutAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Internal function to return a layout assignment object from a row.
+	 * Construct a new data object corresponding to this DAO.
+	 * @return ControlledVocabEntry
+	 */
+	function newDataObject() {
+		return new LayoutAssignment();
+	}
+
+	/**
+	 * Internal function to return a LayoutAssignment object from a row.
 	 * @param $row array
 	 * @return LayoutAssignment
 	 */
-	function &_returnLayoutAssignmentFromRow(&$row) {
-		$layoutAssignment = new LayoutAssignment();
+	function &_fromRow(&$row) {
+		$layoutAssignment = $this->newDataObject();
 		$layoutAssignment->setId($row['assignment_id']);
 		$layoutAssignment->setMonographId($row['monograph_id']);
 		$layoutAssignment->setDesignerId($row['designer_id']);
@@ -120,11 +128,11 @@ class LayoutAssignmentDAO extends DAO {
 		$layoutAssignment->setDateUnderway($this->datetimeFromDB($row['date_underway']));
 		$layoutAssignment->setDateCompleted($this->datetimeFromDB($row['date_completed']));
 		$layoutAssignment->setDateAcknowledged($this->datetimeFromDB($row['date_acknowledged']));
-		$layoutAssignment->setLayoutFileId($row['layout_file_id']);
 
+		/*$layoutAssignment->setLayoutFileId($row['layout_file_id']);
 		if ($row['layout_file_id'] && $row['layout_file_id']) {
 			$layoutAssignment->setLayoutFile($this->monographFileDao->getMonographFile($row['layout_file_id']));
-		}
+		}*/
 
 		HookRegistry::call('LayoutAssignmentDAO::_returnLayoutAssignmentFromRow', array(&$layoutAssignment, &$row));
 
@@ -134,18 +142,18 @@ class LayoutAssignmentDAO extends DAO {
 	/**
 	 * Insert a new layout assignment.
 	 * @param $layoutAssignment LayoutAssignment
+	 * @return int
 	 */	
 	function insertLayoutAssignment(&$layoutAssignment) {
 		$this->update(
-			sprintf('INSERT INTO layout_assignments
-				(monograph_id, designer_id, date_notified, date_underway, date_completed, date_acknowledged, layout_file_id)
+			sprintf('INSERT INTO designer_assignments
+				(monograph_id, designer_id, date_notified, date_underway, date_completed, date_acknowledged)
 				VALUES
-				(?, ?, %s, %s, %s, %s, ?)',
+				(?, ?, %s, %s, %s, %s)',
 				$this->datetimeToDB($layoutAssignment->getDateNotified()), $this->datetimeToDB($layoutAssignment->getDateUnderway()), $this->datetimeToDB($layoutAssignment->getDateCompleted()), $this->datetimeToDB($layoutAssignment->getDateAcknowledged())),
 			array(
 				$layoutAssignment->getMonographId(),
-				$layoutAssignment->getDesignerId(),
-				$layoutAssignment->getLayoutFileId()
+				$layoutAssignment->getDesignerId()
 			)
 		);
 
@@ -159,20 +167,18 @@ class LayoutAssignmentDAO extends DAO {
 	 */
 	function updateLayoutAssignment(&$layoutAssignment) {
 		return $this->update(
-			sprintf('UPDATE layout_assignments
+			sprintf('UPDATE designer_assignments
 				SET	monograph_id = ?,
 					designer_id = ?,
 					date_notified = %s,
 					date_underway = %s,
 					date_completed = %s,
-					date_acknowledged = %s,
-					layout_file_id = ?
+					date_acknowledged = %s
 				WHERE assignment_id = ?',
 				$this->datetimeToDB($layoutAssignment->getDateNotified()), $this->datetimeToDB($layoutAssignment->getDateUnderway()), $this->datetimeToDB($layoutAssignment->getDateCompleted()), $this->datetimeToDB($layoutAssignment->getDateAcknowledged())),
 			array(
 				$layoutAssignment->getMonographId(),
 				$layoutAssignment->getDesignerId(),
-				$layoutAssignment->getLayoutFileId(),
 				$layoutAssignment->getId()
 			)
 		);
@@ -182,9 +188,9 @@ class LayoutAssignmentDAO extends DAO {
 	 * Delete layout assignment.
 	 * @param $layoutId int
 	 */
-	function deleteLayoutAssignmentById($layoutId) {
+	function deleteById($layoutId) {
 		return $this->update(
-			'DELETE FROM layout_assignments WHERE assignment_id = ?',
+			'DELETE FROM designer_assignments WHERE assignment_id = ?',
 			$layoutId
 		);
 	}
@@ -193,9 +199,9 @@ class LayoutAssignmentDAO extends DAO {
 	 * Delete layout assignments by monograph.
 	 * @param $monographId int
 	 */
-	function deleteLayoutAssignmentsByMonograph($monographId) {
+	function deleteByMonographId($monographId) {
 		return $this->update(
-			'DELETE FROM layout_assignments WHERE monograph_id = ?',
+			'DELETE FROM designer_assignments WHERE monograph_id = ?',
 			$monographId
 		);
 	}
@@ -205,7 +211,7 @@ class LayoutAssignmentDAO extends DAO {
 	 * @return int
 	 */
 	function getInsertLayoutId() {
-		return $this->getInsertId('layout_assignments', 'assignment_id');
+		return $this->getInsertId('designer_assignments', 'assignment_id');
 	}
 }
 

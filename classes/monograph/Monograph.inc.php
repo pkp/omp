@@ -323,6 +323,22 @@ class Monograph extends Submission {
 	}
 
 	/**
+	 * Get layout file id.
+	 * @return int
+	 */
+	function getLayoutFileId() {
+		return $this->getData('layoutFileId');
+	}
+
+	/**
+	 * Set layout file id.
+	 * @param $layoutFileId int
+	 */
+	function setLayoutFileId($layoutFileId) {
+		return $this->setData('layoutFileId', $layoutFileId);
+	}
+
+	/**
 	 * get expedited
 	 * @return boolean
 	 */

@@ -28,23 +28,25 @@ class MonographDAO extends DAO {
 	 * @return Monograph object
 	 */
 	function &getMonograph($monographId, $pressId = null) {
+
+		$sql = 'SELECT m.*
+			FROM monographs m
+			WHERE m.monograph_id = ?';
+		$sqlParams[] = $monographId;
+
 		if (isset($pressId)) {
-			$result =& $this->retrieve(
-				'SELECT m.* FROM monographs m WHERE monograph_id = ? AND press_id = ?',
-				array($monographId, $pressId)
-			);
-		} else {
-			$result =& $this->retrieve(
-				'SELECT m.* FROM monographs m WHERE monograph_id = ?', $monographId
-			);
+			$sql .= ' AND m.press_id = ?';
+			$sqlParams[] = $pressId;
 		}
+
+		$result =& $this->retrieve($sql, $sqlParams);
 
 		$monograph = null;
 		if ($result->RecordCount() != 0) {
-			$monograph =& $this->_returnMonographFromRow($result->GetRowAssoc(false));
+			$monograph =& $this->_fromRow($result->GetRowAssoc(false));
 
 		}
-		
+
 
 		$result->Close();
 		unset($result);
@@ -71,7 +73,7 @@ class MonographDAO extends DAO {
 
 		$monograph = null;
 		if ($result->RecordCount() != 0) {
-			$monograph =& $this->_returnMonographFromRow($result->GetRowAssoc(false));
+			$monograph =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -104,7 +106,7 @@ class MonographDAO extends DAO {
 
 		$monograph = null;
 		if ($result->RecordCount() != 0) {
-			$monograph =& $this->_returnMonographFromRow($result->GetRowAssoc(false));
+			$monograph =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -124,7 +126,7 @@ class MonographDAO extends DAO {
 			'SELECT m.* FROM monographs m WHERE press_id = ? AND status = ?', array($pressId, MONOGRAPH_STATUS_UPCOMING), $rangeInfo
 		);
 
-		$returner =& new DAOResultFactory($result, $this, '_returnMonographFromRow');
+		$returner =& new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}	
 
@@ -173,9 +175,9 @@ class MonographDAO extends DAO {
 		$monograph->stampModified();
 		$this->update(
 			sprintf('INSERT INTO monographs
-				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, submission_file_id, revised_file_id, review_file_id, editor_file_id, copyedit_file_id, pages, fast_tracked, hide_author, comments_status, edited_volume, arrangement_id, prospectus_file_id, current_review)
+				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, submission_file_id, revised_file_id, review_file_id, editor_file_id, copyedit_file_id, layout_file_id, pages, fast_tracked, hide_author, comments_status, edited_volume, arrangement_id, prospectus_file_id, current_review)
 				VALUES
-				(?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
 				$monograph->getUserId(),
@@ -189,6 +191,7 @@ class MonographDAO extends DAO {
 				$monograph->getReviewFileId(),
 				$monograph->getEditorFileId(),
 				$monograph->getCopyeditFileId(),
+				$monograph->getLayoutFileId(),
 				$monograph->getPages(),
 				$monograph->getFastTracked() ? 1 : 0,
 				$monograph->getHideAuthor() === null ? 0 : $monograph->getHideAuthor(),
@@ -262,6 +265,7 @@ class MonographDAO extends DAO {
 					review_file_id = ?,
 					editor_file_id = ?,
 					copyedit_file_id = ?,
+					layout_file_id = ?,
 					hide_author = ?,
 					arrangement_id = ?,
 					prospectus_file_id = ?,
@@ -281,6 +285,7 @@ class MonographDAO extends DAO {
 				$monograph->getReviewFileId(),
 				$monograph->getEditorFileId(),
 				$monograph->getCopyeditFileId(),
+				$monograph->getLayoutFileId(),
 				$monograph->getHideAuthor() == null ? 0 : $monograph->getHideAuthor(),
 				$monograph->getAcquisitionsArrangementId(),
 				$monograph->getCompletedProspectusFileId(),
@@ -377,7 +382,7 @@ class MonographDAO extends DAO {
 		$sql = 'SELECT m.* FROM monographs m WHERE press_id = ? ORDER BY date_submitted DESC';
 		$result =& $this->retrieveRange($sql, $pressId, $rangeInfo);
 
-		$returner =& new DAOResultFactory($result, $this, '_returnMonographFromRow');
+		$returner =& new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 
@@ -421,7 +426,7 @@ class MonographDAO extends DAO {
 			$pressId, $rangeInfo
 		);
 
-		$returner =& new DAOResultFactory($result, $this, '_returnMonographFromRow');
+		$returner =& new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 	/**
@@ -429,7 +434,7 @@ class MonographDAO extends DAO {
 	 * @param $row array
 	 * @return Monograph object
 	 */
-	function &_returnMonographFromRow(&$row) {
+	function &_fromRow(&$row) {
 		$monograph =& new Monograph();
 		$this->_monographFromRow($monograph, $row);
 		return $monograph;
@@ -452,6 +457,7 @@ class MonographDAO extends DAO {
 		$monograph->setReviewFileId($row['review_file_id']);
 		$monograph->setEditorFileId($row['editor_file_id']);
 		$monograph->setCopyeditFileId($row['copyedit_file_id']);
+		$monograph->setLayoutFileId($row['layout_file_id']);
 		$monograph->setCompletedProspectusFileId($row['prospectus_file_id']);
 		$monograph->setStatus($row['status']);
 		$monograph->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
@@ -471,7 +477,7 @@ class MonographDAO extends DAO {
 		$monographComponents =& $monographComponentDao->getMonographComponents($monograph->getMonographId());
 		$monograph->setMonographComponents($monographComponents);
 
-		HookRegistry::call('MonographDAO::_returnMonographFromRow', array(&$monograph, &$row));
+		HookRegistry::call('MonographDAO::_fromRow', array(&$monograph, &$row));
 
 	}
 	/**

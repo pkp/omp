@@ -41,6 +41,7 @@ define('MONOGRAPH_FILE_NOTE',		'NT');
 define('MONOGRAPH_FILE_ATTACHMENT',	'AT');
 define('MONOGRAPH_FILE_PROSPECTUS',	'PR');
 define('MONOGRAPH_FILE_ARTWORK',	'ART');
+define('MONOGRAPH_FILE_GALLEY',		'GA');
 
 class MonographFileManager extends FileManager {
 
@@ -128,7 +129,7 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * Upload a section editor's layout editing file.
+	 * Upload an acquisitions editor's layout editing file.
 	 * @param $fileName string the name of the file used in the POST form
 	 * @param $fileId int
 	 * @param $overwrite boolean
@@ -136,6 +137,17 @@ class MonographFileManager extends FileManager {
 	 */
 	function uploadLayoutFile($fileName, $fileId = null, $overwrite = true) {
 		return $this->handleUpload($fileName, MONOGRAPH_FILE_LAYOUT, $fileId, $overwrite);
+	}	
+
+	/**
+	 * Upload an acquisitions editor's layout editing file.
+	 * @param $fileName string the name of the file used in the POST form
+	 * @param $fileId int
+	 * @param $overwrite boolean
+	 * @return int file ID, is null if failure
+	 */
+	function uploadGalleyFile($fileName, $fileId = null, $overwrite = true) {
+		return $this->handleUpload($fileName, MONOGRAPH_FILE_GALLEY, $fileId, $overwrite);
 	}	
 
 	/**
@@ -377,6 +389,7 @@ class MonographFileManager extends FileManager {
 			case MONOGRAPH_FILE_REVIEW: return 'submission/review';
 			case MONOGRAPH_FILE_EDITOR: return 'submission/editor';
 			case MONOGRAPH_FILE_COPYEDIT: return 'submission/copyedit';
+			case MONOGRAPH_FILE_GALLEY: return 'submission/galleys';
 			case MONOGRAPH_FILE_LAYOUT: return 'submission/layout';
 			case MONOGRAPH_FILE_ATTACHMENT: return 'attachment';
 			case MONOGRAPH_FILE_PROSPECTUS: return 'submission/original';

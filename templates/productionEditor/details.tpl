@@ -17,8 +17,8 @@
 <ul class="menu">
 	<li><a href="{url op="submission" path=$submission->getMonographId()}">{translate key="submission.summary"}</a></li>
 	<li><a href="{url op="submissionArt" path=$submission->getMonographId()}">{translate key="submission.art"}</a></li>
-	<li class="current"><a href="{url op="submissionLayout" path=$submission->getMonographId()}">{translate key="submission.layout"}</a></li>
-	<li><a href="{url op="submissionDetails" path=$submission->getMonographId()}">{translate key="submission.details"}</a></li>
+	<li><a href="{url op="submissionLayout" path=$submission->getMonographId()}">{translate key="submission.layout"}</a></li>
+	<li class="current"><a href="{url op="submissionDetails" path=$submission->getMonographId()}">{translate key="submission.details"}</a></li>
 </ul>
 
 {include file="productionEditor/submission/layout.tpl"}

@@ -1429,7 +1429,7 @@ $sections = null;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		if ($editorId && $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_LAYOUT_EDITOR)) {
+		if ($editorId && $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_DESIGNER)) {
 			AcquisitionsEditorAction::assignLayoutEditor($submission, $editorId);
 			if ($op == null)
 				$op = 'submissionEditing';
@@ -1449,7 +1449,7 @@ $sections = null;
 				$search = $searchInitial;
 			}
 
-			$layoutEditors = $roleDao->getUsersByRoleId(ROLE_ID_LAYOUT_EDITOR, $press->getId(), $searchType, $search, $searchMatch);
+			$layoutEditors = $roleDao->getUsersByRoleId(ROLE_ID_DESIGNER, $press->getId(), $searchType, $search, $searchMatch);
 
 			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 			$layoutEditorStatistics = $acquisitionsEditorSubmissionDao->getLayoutEditorStatistics($press->getId());
@@ -1470,11 +1470,14 @@ $sections = null;
 			$templateMgr->assign('monographId', $monographId);
 			$templateMgr->assign_by_ref('users', $layoutEditors);
 
-			$layoutAssignment =& $submission->getLayoutAssignments();
-			if ($layoutAssignment) {
-				$templateMgr->assign('currentUser', $layoutAssignment->getEditorId());
+			$layoutAssignments =& $submission->getLayoutAssignments();
+			$assignedDesigners = array();
+
+			foreach ($layoutAssignments as $layoutAssignment) {
+				$assignedDesigners[] = $layoutAssignment->getDesignerId();
 			}
 
+			$templateMgr->assign('assignedUsers', $assignedDesigners);
 			$templateMgr->assign('fieldOptions', Array(
 				USER_FIELD_FIRSTNAME => 'user.firstName',
 				USER_FIELD_LASTNAME => 'user.lastName',
@@ -1490,15 +1493,16 @@ $sections = null;
 	/**
 	 * Notify the layout editor.
 	 */
-	function notifyLayoutEditor($args) {
+	function notifyLayoutDesigner($args) {
 		$monographId = Request::getUserVar('monographId');
+		$layoutAssignmentId = Request::getUserVar('layoutAssignmentId');
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
 
-		$send = Request::getUserVar('send')?true:false;
+		$send = Request::getUserVar('send') ? true : false;
 		parent::setupTemplate(true, $monographId, 'editing');
 
-		if (AcquisitionsEditorAction::notifyLayoutEditor($submission, $send)) {
-			Request::redirect(null, null, 'submissionEditing', $monographId);
+		if (AcquisitionsEditorAction::notifyLayoutDesigner($submission, $layoutAssignmentId, $send)) {
+			Request::redirect(null, null, 'submissionLayout', $monographId);
 		}
 	}
 
@@ -1509,7 +1513,7 @@ $sections = null;
 		$monographId = Request::getUserVar('monographId');
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
 
-		$send = Request::getUserVar('send')?true:false;
+		$send = Request::getUserVar('send') ? true : false;
 		parent::setupTemplate(true, $monographId, 'editing');
 
 		if (AcquisitionsEditorAction::thankLayoutEditor($submission, $send)) {

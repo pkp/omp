@@ -47,10 +47,10 @@
 	<td>{if $stats.incomplete}{$stats.incomplete}{else}0{/if}</td>
 	<td>{if $stats.last_assigned}{$stats.last_assigned|date_format:$dateFormatShort}{else}&mdash;{/if}</td>
 	<td>
-		{if $currentUser != $userid}
-			<a href="{url op=$actionHandler path=$monographId|to_array:$userid}" class="action">{translate key="common.assign"}</a>
+		{if ((isset($assignedUsers) && in_array($userid, $assignedUsers)) || $userid == $currentUser)}
+			{translate key="common.alreadyAssigned"}
 		{else}
-			{translate key="common.alreadyAssigned"}</a>
+			<a href="{url op=$actionHandler path=$monographId|to_array:$userid}" class="action">{translate key="common.assign"}</a>
 		{/if}
 	</td>
 </tr>

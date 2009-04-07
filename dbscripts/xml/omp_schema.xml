@@ -70,7 +70,7 @@
 	  * TABLE layouted_assignments
 	  *
 	  -->
-	<table name="layout_assignments">
+	<table name="designer_assignments">
 		<field name="assignment_id" type="I8">
 			<KEY />
 			<AUTOINCREMENT />
@@ -85,13 +85,9 @@
 		<field name="date_underway" type="T"/>
 		<field name="date_completed" type="T"/>
 		<field name="date_acknowledged" type="T"/>
-		<field name="layout_file_id" type="I8"/>
-		<descr>Layout assignments.</descr>
-		<index name="layout_assignments_monograph_id">
-			<col>monograph_id</col>
-			<UNIQUE/>
-		</index>
-		<index name="layouted_assignments_designer_id">
+		<field name="assignment_type" type="I8"/>
+		<descr>Layout/design assignments.</descr>
+		<index name="designer_assignments_designer_id">
 			<col>designer_id</col>
 		</index>
 	</table>
@@ -1056,6 +1052,7 @@
 		<field name="editor_file_id" type="I8"/>
 		<field name="copyedit_file_id" type="I8"/>
 		<field name="prospectus_file_id" type="I8"/>
+		<field name="layout_file_id" type="I8"/>
 		<field name="pages" type="C2" size="255"/>
 		<field name="fast_tracked" type="I1">
 			<NOTNULL/>

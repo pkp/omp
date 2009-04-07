@@ -145,7 +145,7 @@ class OMPApplication extends PKPApplication {
 			'GroupMembershipDAO' => 'group.GroupMembershipDAO',
 			'IssueDAO' => 'issue.IssueDAO',
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
-			'LayoutEditorSubmissionDAO' => 'submission.layoutEditor.LayoutEditorSubmissionDAO',
+			'DesignerSubmissionDAO' => 'submission.designer.DesignerSubmissionDAO',
 			'MonographDAO' => 'monograph.MonographDAO',
 			'MonographGalleyDAO' => 'monograph.MonographGalleyDAO',
 			'NotificationStatusDAO' => 'press.NotificationStatusDAO',
