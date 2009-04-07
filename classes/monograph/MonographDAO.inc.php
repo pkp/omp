@@ -467,6 +467,12 @@ class MonographDAO extends DAO {
 //		//$monograph->setPublicMonographId($row['public_monograph_id']);
 		$monograph->setWorkType($row['edited_volume']);
 		$monograph->setLastModified($this->datetimeFromDB($row['last_modified']));
+
+		if (isset($row['arrangement_abbrev']))
+			$monograph->setAcquisitionsArrangementAbbrev($row['arrangement_abbrev']);
+		if (isset($row['arrangement_title']))
+			$monograph->setAcquisitionsArrangementTitle($row['arrangement_title']);
+
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
 		$monograph->setAuthors($authorDao->getAuthorsByMonographId($row['monograph_id']));
 

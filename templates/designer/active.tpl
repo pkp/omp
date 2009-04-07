@@ -14,7 +14,7 @@
 	<tr class="heading" valign="bottom">
 		<td width="5%">{translate key="common.id"}</td>
 		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="common.assign"}</td>
-		<td width="5%">{translate key="submissions.sec"}</td>
+		<td width="5%">{translate key="submissions.acquisitionsArrangement"}</td>
 		<td width="30%">{translate key="monograph.authors"}</td>
 		<td width="40%">{translate key="monograph.title"}</td>
 		<td width="15%" align="right">{translate key="common.status"}</td>

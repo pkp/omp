@@ -47,8 +47,8 @@ class EditorSubmissionDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT
 				a.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
 			FROM	monographs a
 				LEFT JOIN acquisitions_arrangements s ON s.arrangement_id = a.arrangement_id
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
@@ -89,6 +89,9 @@ class EditorSubmissionDAO extends DAO {
 		$editorSubmission = new EditorSubmission();
 
 		$this->monographDao->_monographFromRow($editorSubmission, $row);
+
+		if (isset($row['arrangement_abbrev']))
+			$editorSubmission->setAcquisitionsArrangementAbbrev($row['arrangement_abbrev']);
 
 		// Editor Assignment
 		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByMonographId($row['monograph_id']);
@@ -181,8 +184,8 @@ class EditorSubmissionDAO extends DAO {
 		if ($sectionId) $params[] = $sectionId;
 
 		$sql = 'SELECT	a.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
 
 			FROM	monographs a
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
@@ -325,12 +328,19 @@ class EditorSubmissionDAO extends DAO {
 			WHERE
 				a.press_id = ? AND a.submission_progress = 0';*/
 		$sql = 'SELECT DISTINCT
-				a.*
-
+				a.*,
+				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
 			FROM
 				monographs a
+				LEFT JOIN acquisitions_arrangements_settings stpl ON (a.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stl ON (a.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sapl ON (a.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sal ON (a.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN monograph_settings atpl ON (a.monograph_id = atpl.monograph_id AND atpl.setting_name = ? AND atpl.locale = ?)
+				LEFT JOIN monograph_settings atl ON (a.monograph_id = atl.monograph_id AND atl.setting_name = ? AND atl.locale = ?)
 			WHERE
-				a.press_id = '.$pressId.' AND a.submission_progress = 0';
+				a.press_id = ? AND a.submission_progress = 0';
 
 		// "Active" submissions have a status of STATUS_QUEUED and
 		// the layout editor has not yet been acknowledged.
@@ -356,7 +366,7 @@ class EditorSubmissionDAO extends DAO {
 */
 $sql.=	' ORDER BY a.monograph_id ASC';
 		$result =& $this->retrieveRange(
-			$sql,array(),$rangeInfo
+			$sql, $params, $rangeInfo
 		);
 
 

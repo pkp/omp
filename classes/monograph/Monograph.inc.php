@@ -65,13 +65,18 @@ class Monograph extends Submission {
 	function getAcquisitionsArrangementId() {
 		 return $this->getData('acquisitions_arrangement_id');
 	}
+	function getAcquisitionsArrangementAbbrev() {
+		 return $this->getData('arrangementAbbrev');
+	}
+	function setAcquisitionsArrangementAbbrev($value) {
+		 $this->setData('arrangementAbbrev', $value);
+	}
 	function getAcquisitionsArrangementTitle() {
-		 return $this->getData('arrangeme');
+		 return $this->getData('arrangementTitle');
 	}
 	function setAcquisitionsArrangementTitle($value) {
-		 return $this->getData('arrangement_title', $value);
+		 $this->setData('arrangementTitle', $value);
 	}
-
 	function setCompletedProspectusFileId(&$id) {
 		 $this->setData('prospectus_file_id', $id);
 	}

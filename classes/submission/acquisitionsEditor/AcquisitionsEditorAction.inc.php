@@ -1350,11 +1350,11 @@ class AcquisitionsEditorAction extends Action {
 	}
 
 	/**
-	 * Changes the section.
+	 * Changes the series/submission category.
 	 * @param $submission object
 	 * @param $acquisitionsId int
 	 */
-	function updateSection($submission, $acquisitionsId) {
+	function updateAcquisitionsArrangement($submission, $acquisitionsId) {
 		if (HookRegistry::call('AcquisitionsEditorAction::updateSection', array(&$submission, &$acquisitionsId))) return;
 
 		$submissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');

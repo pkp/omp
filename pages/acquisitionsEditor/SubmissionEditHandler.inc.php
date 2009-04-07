@@ -1227,6 +1227,7 @@ $sections = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
 		parent::setupTemplate(true, $monographId, 'summary');
 
 		import('submission.form.SuppFileForm');
@@ -1346,13 +1347,13 @@ $sections = null;
 	}
 
 	/**
-	 * Set section ID.
+	 * Set acquisitions arrangement ID.
 	 * @param $args array ($monographId)
 	 */
-	function updateSection($args) {
+	function updateAcquisitionsArrangement($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);		
-		AcquisitionsEditorAction::updateSection($submission, Request::getUserVar('section'));
+		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		AcquisitionsEditorAction::updateAcquisitionsArrangement($submission, Request::getUserVar('arrangement'));
 		Request::redirect(null, null, 'submission', $monographId);
 	}
 

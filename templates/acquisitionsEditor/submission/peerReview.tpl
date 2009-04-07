@@ -25,7 +25,7 @@
 	</tr>
 	<tr>
 		<td class="label">{translate key="submissions.acquisitionsArrangement"}</td>
-		<td>{*$submission->getSectionTitle()|escape*}</td>
+		<td>{$submission->getAcquisitionsArrangementAbbrev()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td class="label">{translate key="user.role.editor"}</td>

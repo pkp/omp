@@ -26,9 +26,9 @@
 	<tr valign="top">
 		<td>{$monographId|escape}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
-		<td>{$submission->getSectionAbbrev()|escape}</td>
+		<td>{$submission->getAcquisitionsArrangementAbbrev()|escape}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
-		<td><a href="{url op="submission" path=$monographId}" class="action">{$submission->getMonographTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
+		<td><a href="{url op="submission" path=$monographId}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		{assign var="status" value=$submission->getSubmissionStatus()}
 		{if $statViews}
 			<td>
