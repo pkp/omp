@@ -229,8 +229,8 @@ class MonographFileDAO extends DAO {
 		$monographFiles = array();
 
 		$result =& $this->retrieve(
-			'SELECT * FROM monograph_files mf 
-			LEFT JOIN monograph_artwork_files maf ON maf.file_id = mf.file_id 
+			'SELECT * FROM monograph_artwork_files maf  
+			RIGHT JOIN monograph_files mf ON mf.file_id = maf.file_id
 			WHERE mf.monograph_id = ?',
 			$monographId
 		);

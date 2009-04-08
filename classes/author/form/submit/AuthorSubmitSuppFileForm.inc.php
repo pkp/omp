@@ -68,7 +68,7 @@ class AuthorSubmitSuppFileForm extends Form {
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('monographId', $this->monographId);
 		$templateMgr->assign('suppFileId', $this->suppFileId);
-		$templateMgr->assign('submitStep', 4);
+		$templateMgr->assign('submitStep', 5);
 
 		$typeOptionsOutput = array(
 			'author.submit.suppFile.researchInstrument',

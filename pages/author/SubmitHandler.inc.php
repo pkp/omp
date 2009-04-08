@@ -116,7 +116,7 @@ class SubmitHandler extends AuthorHandler {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monographId = Request::getUserVar('monographId');
 
-		list($press, $monograph) = SubmitHandler::validate($monographId, 4);
+		list($press, $monograph) = SubmitHandler::validate($monographId, 5);
 		$monograph =& $monographDao->getMonograph((int) $monographId);
 
 		import('author.form.submit.AuthorSubmitSuppFileForm');
@@ -139,7 +139,7 @@ class SubmitHandler extends AuthorHandler {
 		$monographId = Request::getUserVar('monographId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
-		list($press, $monograph) = SubmitHandler::validate($monographId, 4);
+		list($press, $monograph) = SubmitHandler::validate($monographId, 5);
 		$monograph =& $monographDao->getMonograph((int) $monographId);
 
 		import('author.form.submit.AuthorSubmitSuppFileForm');
@@ -165,7 +165,7 @@ class SubmitHandler extends AuthorHandler {
 		$monographId = Request::getUserVar('monographId');
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
-		list($press, $monograph) = SubmitHandler::validate($monographId, 4);
+		list($press, $monograph) = SubmitHandler::validate($monographId, 5);
 		$monograph =& $monographDao->getMonograph((int) $monographId);
 
 		import('author.form.submit.AuthorSubmitSuppFileForm');
@@ -174,7 +174,7 @@ class SubmitHandler extends AuthorHandler {
 
 		if ($submitForm->validate()) {
 			$submitForm->execute();
-			Request::redirect(null, null, 'submit', '4', array('monographId' => $monographId));
+			Request::redirect(null, null, 'submit', '5', array('monographId' => $monographId));
 		} else {
 			$submitForm->display();
 		}
@@ -207,7 +207,7 @@ class SubmitHandler extends AuthorHandler {
 			$monographFileManager->deleteFile($suppFile->getFileId());
 		}
 
-		Request::redirect(null, null, 'submit', '4', array('monographId' => $monographId));
+		Request::redirect(null, null, 'submit', '5', array('monographId' => $monographId));
 	}
 
 	function expediteSubmission() {

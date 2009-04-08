@@ -147,14 +147,14 @@ class MonographComponentsInsert
 	}
 	function processEvents(&$form) {
 		$eventProcessed = false;
-		$submitForm = $form;
+		$submitForm =& $form;
 
 		$eventProcessed = $this->contributorInsert->processEvents($form);
 		if (Request::getUserVar('addComponent') && 1) {// && work is an edited volume
 
 			$eventProcessed = true;
 			$newComponent = $submitForm->getData('newComponent');
-			$components = $submitForm->getData('components');print_r($components);
+			$components = $submitForm->getData('components');
 			$components = !isset($components) ? array() : $components;
 			$authorlist = array();
 			if (isset($newComponent['authors'])) {

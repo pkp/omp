@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="author.submit.step2"}
+{assign var="pageTitle" value="author.submit.step.Artwork"}
 {include file="author/submit/submitStepHeader.tpl"}
 
 {url|assign:"competingInterestGuidelinesUrl" page="information" op="competingInterestGuidelines"}
