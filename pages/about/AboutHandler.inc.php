@@ -226,6 +226,20 @@ class AboutHandler extends PKPHandler {
 		parent::validate(true);
 		AboutHandler::setupTemplate(true);
 
+		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+		$press =& Request::getPress();
+
+		$templateMgr =& TemplateManager::getManager();
+		$pressSettings =& $settingsDao->getPressSettings($press->getId());
+		$submissionChecklist = $press->getLocalizedSetting('submissionChecklist');
+		if (!empty($submissionChecklist)) {
+			ksort($submissionChecklist);
+			reset($submissionChecklist);
+		}
+		$templateMgr->assign('submissionChecklist', $submissionChecklist);
+		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
+		$templateMgr->assign('helpTopicId','submission.authorGuidelines');
+		$templateMgr->display('about/submissions.tpl');
 	}
 
 	/**

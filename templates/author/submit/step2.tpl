@@ -45,11 +45,7 @@
 </table>
 {/if}
 
-{if $workType == EDITED_VOLUME}
-	{include file="inserts/monographComponents/MonographComponentsInsert.tpl"}
-{else}
-	{include file="inserts/contributors/ContributorInsert.tpl"}
-{/if}
+{include file="inserts/monographComponents/MonographComponentsInsert.tpl"}
 
 <div class="separator"></div>
 

@@ -71,9 +71,11 @@
 </tr>
 </table>
 
+{if $pressSettings.uploadedProspectus}
 <div class="separator"></div>
 
 <h3>{translate key="author.submit.completedProspectus"}</h3>
+{assign var="prospectusGuideUrl" value=$publicFilesDir|cat:"/"|cat:$pressSettings.uploadedProspectus.$formLocale.uploadName}
 
 <p>{translate key="author.submit.completedProspectus.description" prospectusGuideUrl=$prospectusGuideUrl}</p>
 
@@ -118,7 +120,7 @@
 </tr>
 </table>
 
-
+{/if}
 
 <div class="separator"></div>
 

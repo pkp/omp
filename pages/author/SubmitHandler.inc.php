@@ -33,7 +33,7 @@ class SubmitHandler extends AuthorHandler {
 
 		$sequence =& new AuthorSubmissionSequence($monographId);
 		$submitForm = $sequence->getFormForStep($step);
-		
+
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
 		} else {
@@ -74,7 +74,7 @@ class SubmitHandler extends AuthorHandler {
 				}
 				break;
 
-			case 4:
+			case 5:
 				if (Request::getUserVar('submitUploadSuppFile')) {
 					SubmitHandler::submitUploadSuppFile();
 					return;
@@ -82,10 +82,9 @@ class SubmitHandler extends AuthorHandler {
 				break;
 		}
 
-
 		if (!$editData && $submitForm->validate()) {
 			$monographId = $submitForm->execute();
-			if ($step == 5) {
+			if ($step == 6) {
 				$press =& Request::getPress();
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign_by_ref('press', $press);

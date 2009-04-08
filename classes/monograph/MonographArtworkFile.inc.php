@@ -24,7 +24,7 @@ class MonographArtworkFile extends MonographFile {
 	//
 
 	/**
-	 * Get source file ID of this file.
+	 * Get permission check.
 	 * @return int
 	 */
 	function getPermission() {
@@ -32,15 +32,15 @@ class MonographArtworkFile extends MonographFile {
 	}
 
 	/**
-	 * Set source file ID of this file.
-	 * @param $sourceFileId int
+	 * Set permission check.
+	 * @param $permission int
 	 */
 	function setPermission($permission) {
 		return $this->setData('permission', $permission);
 	}
 
 	/**
-	 * Get source revision of this file.
+	 * Get permissions file id.
 	 * @return int
 	 */
 	function getPermissionFileId() {
@@ -48,15 +48,15 @@ class MonographArtworkFile extends MonographFile {
 	}
 
 	/**
-	 * Set source revision of this file.
-	 * @param $sourceRevision int
+	 * Set permissions file id.
+	 * @param $permissionFileId int
 	 */
 	function setPermissionFileId($permissionFileId) {
 		return $this->setData('permissionFileId', $permissionFileId);
 	}
 
 	/**
-	 * Get associated ID of file. (Used, e.g., for email log attachments.)
+	 * Get the component Id.
 	 * @return int
 	 */
 	function getMonographComponentId() {
@@ -64,15 +64,31 @@ class MonographArtworkFile extends MonographFile {
 	}
 
 	/**
-	 * Set associated ID of file. (Used, e.g., for email log attachments.)
-	 * @param $assocId int
+	 * Set the component Id.
+	 * @param $componentId int
 	 */
 	function setMonographComponentId($componentId) {
 		return $this->setData('componentId', $componentId);
 	}
 
 	/**
-	 * Get associated ID of file. (Used, e.g., for email log attachments.)
+	 * Get the component Id.
+	 * @return int
+	 */
+	function getMonographComponentTitle() {
+		return $this->getData('componentTitle');
+	}
+
+	/**
+	 * Set the component Id.
+	 * @param $componentId int
+	 */
+	function setMonographComponentTitle($componentTitle) {
+		return $this->setData('componentTitle', $componentTitle);
+	}
+
+	/**
+	 * Get artwork placement identifier.
 	 * @return int
 	 */
 	function getIdentifier() {
@@ -80,7 +96,7 @@ class MonographArtworkFile extends MonographFile {
 	}
 
 	/**
-	 * Set associated ID of file. (Used, e.g., for email log attachments.)
+	 * Set artwork placement identifier.
 	 * @param $assocId int
 	 */
 	function setIdentifier($identifier) {
@@ -88,7 +104,7 @@ class MonographArtworkFile extends MonographFile {
 	}
 
 	/**
-	 * Get associated ID of file. (Used, e.g., for email log attachments.)
+	 * Get artwork sequencing info.
 	 * @return int
 	 */
 	function getSeq() {
@@ -96,8 +112,8 @@ class MonographArtworkFile extends MonographFile {
 	}
 
 	/**
-	 * Set associated ID of file. (Used, e.g., for email log attachments.)
-	 * @param $assocId int
+	 * Set artwork sequencing info
+	 * @param $seq int
 	 */
 	function setSeq($seq) {
 		return $this->setData('seq', $seq);

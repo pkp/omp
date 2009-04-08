@@ -16,7 +16,6 @@
 
 
 import('author.form.submit.AuthorSubmitForm');
-import('inserts.contributors.ContributorInsert');
 import('inserts.monographComponents.MonographComponentsInsert');
 
 class AuthorSubmitStep2Form extends AuthorSubmitForm {
@@ -36,11 +35,9 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	}
 
 	function initializeInserts() {
-		if ($this->sequence->monograph->getWorkType() == EDITED_VOLUME) { 
-			$insert = new MonographComponentsInsert($this->sequence->monograph, $this);
-		} else {
-			$insert =& new ContributorInsert($this->sequence->monograph, $this);
-		}
+
+		$insert = new MonographComponentsInsert($this->sequence->monograph, $this);
+
 		$this->formComponents = array($insert);
 	}
 

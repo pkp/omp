@@ -21,12 +21,15 @@ function moveComponent(dir, componentIndex) {
 
 
 <h3>Monograph Component Preparation</h3>
+<br />
 <input type="hidden" name="moveAuthor" value="0" />
 <input type="hidden" name="moveAuthorDir" value="" />
 <input type="hidden" name="moveAuthorIndex" value="" />
 <input type="hidden" name="moveComponent" value="0" />
 <input type="hidden" name="moveComponentDir" value="" />
 <input type="hidden" name="moveComponentIndex" value="" />
+{translate key="monograph.component.description"}
+<br /><br />
 {assign var="componentIndex" value=0} 
 <div style="border:1px solid #E0E0E0">
 {foreach name=components from=$components item=component}
@@ -80,11 +83,13 @@ function moveComponent(dir, componentIndex) {
 
 <a style="text-decoration:none" href="javascript:show('showNewComponent')">(+) Add Component</a>
 <div id="showNewComponent" style="display:none;border:1px solid #e5aa5c;background-color:#ffd9a7">
+
 <table width="100%" class="data">
 <tr valign="top">
 	<td width="20%" class="label">{translate key="monograph.component.title"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="newComponent[title][{$formLocale|escape}]" size="40" maxlength="255" /></td>
 </tr>
+{if $workType == EDITED_VOLUME}
 <tr valign="top">
 	<td width="20%" class="label">{translate key="monograph.component.authors"}</td>
 	<td width="80%">
@@ -97,6 +102,7 @@ function moveComponent(dir, componentIndex) {
 		</select>
 	</td>
 </tr>
+{/if}
 </table>
 
 <p><input type="submit" class="button" name="addComponent" value="{translate key="author.submit.addComponent"}" /></p>

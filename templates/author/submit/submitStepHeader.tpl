@@ -21,7 +21,7 @@
 	{if $submissionProgress >= $stepIndex and $submitStep!=$stepIndex}
 		<a href="{url op="submit" path=$step.alias monographId=$monographId}">
 	{/if}
-	{translate key=$step.tag}{$id}
+	{$stepIndex}. {translate key=$step.tag}{$id}
 	{if $submissionProgress >= $stepIndex and $submitStep!=$stepIndex}
 		</a>
 	{/if}

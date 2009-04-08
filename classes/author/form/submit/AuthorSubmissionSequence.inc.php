@@ -35,8 +35,9 @@ class AuthorSubmissionSequence extends SubmissionFormSequence
 		$this->addForm('author.form.submit.AuthorSubmitStep2Form','AuthorSubmitStep2Form','author.submit.metadata','author.submit.step2','2');
 		//$this->addForm('author.form.submit.AuthorSubmitStep2bForm','AuthorSubmitStep2bForm','author.submit.metadata','author.submit.step2b','2b','2');
 		$this->addForm('author.form.submit.AuthorSubmitStep3Form','AuthorSubmitStep3Form','author.submit.upload','author.submit.step3','3');
-		$this->addForm('author.form.submit.AuthorSubmitStep4Form','AuthorSubmitStep4Form','author.submit.supplementaryFiles','author.submit.step4','4');
-		$this->addForm('author.form.submit.AuthorSubmitStep5Form','AuthorSubmitStep5Form','author.submit.confirmation','author.submit.step5','5');
+		$this->addForm('author.form.submit.AuthorSubmitArtworkForm','AuthorSubmitArtworkForm','author.submit.artwork','author.submit.step.Artwork','4');
+		$this->addForm('author.form.submit.AuthorSubmitStep4Form','AuthorSubmitStep4Form','author.submit.supplementaryFiles','author.submit.step4','5');
+		$this->addForm('author.form.submit.AuthorSubmitStep5Form','AuthorSubmitStep5Form','author.submit.confirmation','author.submit.step5','6');
 	}
 
 	/**

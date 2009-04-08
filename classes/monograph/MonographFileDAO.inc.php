@@ -96,6 +96,7 @@ class MonographFileDAO extends DAO {
 			FROM monograph_files mf
 			LEFT JOIN monograph_artwork_files maf ON maf.file_id = mf.file_id
 			LEFT JOIN monograph_components mc ON maf.component_id = mc.component_id
+			LEFT JOIN monograph_component_settings mcs ON mc.component_id = mcs.component_id
 			WHERE mf.file_id = ?';
 		$sqlParams = array($fileId);
 
@@ -254,13 +255,22 @@ class MonographFileDAO extends DAO {
 	 */
 	function &getMonographFilesByAssocId($assocId, $type, $monographId) {
 		import('file.MonographFileManager');
+
+		$locale = Locale::getLocale();
+		$primaryLocale = Locale::getPrimaryLocale();
+
 		$monographFiles = array();
 
 		$result =& $this->retrieve(
-			'SELECT * FROM monograph_files mf
+			'SELECT mf.*, maf.*,
+				COALESCE(mcs.setting_value, mcs0.setting_value) AS component_title
+			FROM monograph_files mf
 			LEFT JOIN monograph_artwork_files maf ON maf.file_id = mf.file_id
+			LEFT JOIN monograph_components mc ON maf.component_id = mc.component_id
+			LEFT JOIN monograph_component_settings mcs ON (mcs.component_id = mc.component_id AND mcs.setting_name = ? AND mcs.locale = ?)
+			LEFT JOIN monograph_component_settings mcs0 ON (mcs0.component_id = mc.component_id AND mcs0.setting_name = ? AND mcs0.locale = ?)
 			WHERE mf.type = ? AND mf.monograph_id = ?',
-			array(MonographFileManager::typeToPath($type), $monographId)
+			array('title', $primaryLocale, 'title', $locale, MonographFileManager::typeToPath($type), $monographId)
 		);
 
 		while (!$result->EOF) {
@@ -287,6 +297,7 @@ class MonographFileDAO extends DAO {
 		$monographFile->setMonographComponentId($row['component_id']);
 		$monographFile->setSeq($row['seq']);
 		$monographFile->setIdentifier($row['identifier']);
+		if (isset($row['component_title'])) $monographFile->setMonographComponentTitle($row['component_title']);
 
 		$monographFile->setFileId($row['file_id']);
 		$monographFile->setSourceFileId($row['source_file_id']);
