@@ -45,13 +45,21 @@ class ReviewAssignmentDAO extends DAO {
 
 		$result =& $this->retrieve('
 					SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name 
-					FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) WHERE r.monograph_id = ? AND r.reviewer_id = ? AND r.cancelled <> 1 AND r.review_type = ? AND r.round = ?',
+					FROM review_assignments r 
+					LEFT JOIN users u ON (r.reviewer_id = u.user_id) 
+					LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) 
+					LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) 
+					WHERE r.monograph_id = ? AND 
+						r.reviewer_id = ? AND 
+						r.cancelled <> 1 AND 
+						r.review_type = ? AND 
+						r.round = ?',
 					array((int) $monographId, (int) $reviewerId, (int) $reviewType, (int) $round)
 				);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnReviewAssignmentFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -65,15 +73,20 @@ class ReviewAssignmentDAO extends DAO {
 	 * @param $reviewId int
 	 * @return ReviewAssignment
 	 */
-	function &getReviewAssignmentById($reviewId) {
+	function &getById($reviewId) {
 		$result =& $this->retrieve(
-			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) WHERE r.review_id = ?',
+			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name 
+			FROM review_assignments r 
+			LEFT JOIN users u ON (r.reviewer_id = u.user_id) 
+			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) 
+			LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) 
+			WHERE r.review_id = ?',
 			(int) $reviewId
 			);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnReviewAssignmentFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -92,7 +105,12 @@ class ReviewAssignmentDAO extends DAO {
 		$returner = array();
 		$index = 0;
 		$result =& $this->retrieve(
-			'SELECT review_id FROM review_assignments WHERE monograph_id = ? and round = ? AND (cancelled = 0 OR cancelled IS NULL) ORDER BY review_id',
+			'SELECT review_id 
+			FROM review_assignments 
+			WHERE monograph_id = ? AND 
+				round = ? AND 
+				(cancelled = 0 OR cancelled IS NULL) 
+			ORDER BY review_id',
 			array((int) $monographId, (int) $round)
 			);
 
@@ -114,15 +132,24 @@ class ReviewAssignmentDAO extends DAO {
 	 * @param $monographId int
 	 * @return array ReviewAssignments
 	 */
-	function &getIncompleteReviewAssignments() {
+	function &getIncomplete() {
 		$reviewAssignments = array();
 
 		$result =& $this->retrieve(
-			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) WHERE (r.cancelled IS NULL OR r.cancelled = 0) AND r.date_notified IS NOT NULL AND r.date_completed IS NULL AND r.declined <> 1 ORDER BY r.monograph_id'
+			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name 
+			FROM review_assignments r 
+			LEFT JOIN users u ON (r.reviewer_id = u.user_id) 
+			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) 
+			LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) 
+			WHERE (r.cancelled IS NULL OR r.cancelled = 0) AND 
+				r.date_notified IS NOT NULL AND 
+				r.date_completed IS NULL AND 
+				r.declined <> 1 
+			ORDER BY r.monograph_id'
 		);
 
 		while (!$result->EOF) {
-			$reviewAssignments[] =& $this->_returnReviewAssignmentFromRow($result->GetRowAssoc(false));
+			$reviewAssignments[] =& $this->_fromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 
@@ -133,14 +160,19 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Get all review assignments for an monograph.
+	 * Get all review assignments for a monograph.
 	 * @param $monographId int
 	 * @return array ReviewAssignments
 	 */
-	function &getReviewAssignmentsByMonographId($monographId, $reviewType, $round = null) {
+	function &getByMonographId($monographId, $reviewType, $round = null) {
 		$reviewAssignments = array();
 
-		$query = 'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) WHERE r.monograph_id = ?';
+		$query = 'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name 
+			FROM review_assignments r 
+			LEFT JOIN users u ON (r.reviewer_id = u.user_id) 
+			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) 
+			LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) 
+			WHERE r.monograph_id = ?';
 
 		$orderBy = ' ORDER BY review_id';
 
@@ -165,7 +197,7 @@ class ReviewAssignmentDAO extends DAO {
 		$result =& $this->retrieve($query, $queryParams);
 
 		while (!$result->EOF) {
-			$reviewAssignments[] =& $this->_returnReviewAssignmentFromRow($result->GetRowAssoc(false));
+			$reviewAssignments[] =& $this->_fromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 
@@ -180,16 +212,22 @@ class ReviewAssignmentDAO extends DAO {
 	 * @param $userId int
 	 * @return array ReviewAssignments
 	 */
-	function &getReviewAssignmentsByUserId($userId) {
+	function &getByUserId($userId) {
 		$reviewAssignments = array();
 
 		$result =& $this->retrieve(
-			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) WHERE r.reviewer_id = ? ORDER BY round, review_id',
+			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name 
+			FROM review_assignments r 
+			LEFT JOIN users u ON (r.reviewer_id = u.user_id) 
+			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) 
+			LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) 
+			WHERE r.reviewer_id = ? 
+			ORDER BY round, review_id',
 			(int) $userId
 		);
 
 		while (!$result->EOF) {
-			$reviewAssignments[] =& $this->_returnReviewAssignmentFromRow($result->GetRowAssoc(false));
+			$reviewAssignments[] =& $this->_fromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 
@@ -204,16 +242,22 @@ class ReviewAssignmentDAO extends DAO {
 	 * @param $reviewFormId int
 	 * @return array ReviewAssignments
 	 */
-	function &getReviewAssignmentsByReviewFormId($reviewFormId) {
+	function &getByReviewFormId($reviewFormId) {
 		$reviewAssignments = array();
 
 		$result =& $this->retrieve(
-			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) WHERE r.review_form_id = ? ORDER BY round, review_id',
+			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name 
+			FROM review_assignments r 
+			LEFT JOIN users u ON (r.reviewer_id = u.user_id) 
+			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) 
+			LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) 
+			WHERE r.review_form_id = ? 
+			ORDER BY round, review_id',
 			(int) $reviewFormId
 		);
 
 		while (!$result->EOF) {
-			$reviewAssignments[] =& $this->_returnReviewAssignmentFromRow($result->GetRowAssoc(false));
+			$reviewAssignments[] =& $this->_fromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 
@@ -224,7 +268,7 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Get a review file for an monograph for each round.
+	 * Get a review file for a monograph for each round.
 	 * @param $monographId int
 	 * @return array MonographFiles
 	 */
@@ -232,7 +276,14 @@ class ReviewAssignmentDAO extends DAO {
 		$returner = array();
 
 		$result =& $this->retrieve(
-			'SELECT a.*, r.round as round from review_rounds r, monograph_files a, monographs art where art.monograph_id=r.monograph_id and r.monograph_id=? and r.monograph_id=a.monograph_id and a.file_id=art.review_file_id and a.revision=r.review_revision and a.monograph_id=r.monograph_id', 
+			'SELECT a.*, r.round as round 
+			FROM review_rounds r, monograph_files a, monographs art 
+			WHERE art.monograph_id = r.monograph_id AND 
+				r.monograph_id = ? AND 
+				r.monograph_id = a.monograph_id AND 
+				a.file_id = art.review_file_id AND 
+				a.revision = r.review_revision AND 
+				a.monograph_id = r.monograph_id', 
 			(int) $monographId
 		);
 
@@ -249,7 +300,7 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Get all author-viewable reviewer files for an monograph for each round.
+	 * Get all author-viewable reviewer files for a monograph for each round.
 	 * @param $monographId int
 	 * @return array returned[round][reviewer_index] = array of MonographFiles
 	 */
@@ -257,12 +308,11 @@ class ReviewAssignmentDAO extends DAO {
 		$files = array();
 
 		$result =& $this->retrieve(
-			'SELECT	f.*, a.reviewer_id AS reviewer_id, a.review_id
-			FROM	review_assignments a,
-				monograph_files f
-			WHERE	reviewer_file_id = file_id
-				AND viewable=1
-				AND a.monograph_id = ?
+			'SELECT f.*, a.reviewer_id AS reviewer_id, a.review_id
+			FROM review_assignments a, monograph_files f 
+			WHERE reviewer_file_id = file_id AND 
+				viewable = 1 AND 
+				a.monograph_id = ?
 			ORDER BY a.round, a.reviewer_id, a.review_id', 
 			array((int) $monographId)
 		);
@@ -299,7 +349,10 @@ class ReviewAssignmentDAO extends DAO {
 		$returner = array();
 
 		$result =& $this->retrieve(
-			'SELECT round, MAX(last_modified) as last_modified FROM review_assignments WHERE monograph_id=? GROUP BY round', 
+			'SELECT round, MAX(last_modified) AS last_modified 
+			FROM review_assignments 
+			WHERE monograph_id = ? 
+			GROUP BY round', 
 			(int) $monographId
 		);
 
@@ -325,7 +378,10 @@ class ReviewAssignmentDAO extends DAO {
 		$returner = array();
 
 		$result =& $this->retrieve(
-			'SELECT round, MIN(date_notified) as earliest_date FROM review_assignments WHERE monograph_id=? GROUP BY round', 
+			'SELECT round, MIN(date_notified) AS earliest_date 
+			FROM review_assignments 
+			WHERE monograph_id = ? 
+			GROUP BY round', 
 			(int) $monographId
 		);
 
@@ -342,7 +398,7 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Get all cancelled/declined review assignments for an monograph.
+	 * Get all cancelled/declined review assignments for a monograph.
 	 * @param $monographId int
 	 * @return array ReviewAssignments
 	 */
@@ -350,12 +406,19 @@ class ReviewAssignmentDAO extends DAO {
 		$reviewAssignments = array();
 
 		$result =& $this->retrieve(
-			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name FROM review_assignments r LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) WHERE r.monograph_id = ? AND (r.cancelled = 1 OR r.declined = 1) ORDER BY round, review_id',
+			'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name 
+			FROM review_assignments r 
+			LEFT JOIN users u ON (r.reviewer_id = u.user_id) 
+			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) 
+			LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) 
+			WHERE r.monograph_id = ? AND 
+				(r.cancelled = 1 OR r.declined = 1) 
+			ORDER BY round, review_id',
 			(int) $monographId
 		);
 
 		while (!$result->EOF) {
-			$reviewAssignments[] =& $this->_returnReviewAssignmentFromRow($result->GetRowAssoc(false));
+			$reviewAssignments[] =& $this->_fromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 
@@ -366,59 +429,10 @@ class ReviewAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Internal function to return a review assignment object from a row.
-	 * @param $row array
-	 * @return ReviewAssignment
-	 */
-	function &_returnReviewAssignmentFromRow(&$row) {
-		$reviewAssignment = new ReviewAssignment();
-		$reviewAssignment->setReviewId($row['review_id']);
-		$reviewAssignment->setMonographId($row['monograph_id']);
-		$reviewAssignment->setReviewerId($row['reviewer_id']);
-		$reviewAssignment->setReviewerFullName($row['first_name'].' '.$row['last_name']);
-		$reviewAssignment->setCompetingInterests($row['competing_interests']);
-		$reviewAssignment->setRecommendation($row['recommendation']);
-		$reviewAssignment->setDateAssigned($this->datetimeFromDB($row['date_assigned']));
-		$reviewAssignment->setDateNotified($this->datetimeFromDB($row['date_notified']));
-		$reviewAssignment->setDateConfirmed($this->datetimeFromDB($row['date_confirmed']));
-		$reviewAssignment->setDateCompleted($this->datetimeFromDB($row['date_completed']));
-		$reviewAssignment->setDateAcknowledged($this->datetimeFromDB($row['date_acknowledged']));
-		$reviewAssignment->setDateDue($this->datetimeFromDB($row['date_due']));
-		$reviewAssignment->setLastModified($this->datetimeFromDB($row['last_modified']));
-		$reviewAssignment->setDeclined($row['declined']);
-		$reviewAssignment->setReplaced($row['replaced']);
-		$reviewAssignment->setCancelled($row['cancelled']);
-		$reviewAssignment->setReviewerFileId($row['reviewer_file_id']);
-		$reviewAssignment->setQuality($row['quality']);
-		$reviewAssignment->setDateRated($this->datetimeFromDB($row['date_rated']));
-		$reviewAssignment->setDateReminded($this->datetimeFromDB($row['date_reminded']));
-		$reviewAssignment->setReminderWasAutomatic($row['reminder_was_automatic']);
-		$reviewAssignment->setRound($row['round']);
-		$reviewAssignment->setReviewFileId($row['review_file_id']);
-		$reviewAssignment->setReviewRevision($row['review_revision']);
-		$reviewAssignment->setReviewFormId($row['review_form_id']);
-		$reviewAssignment->setReviewType($row['review_type']);
-
-		// Files
-		$reviewAssignment->setReviewFile($this->monographFileDao->getMonographFile($row['review_file_id'], $row['review_revision']));
-		$reviewAssignment->setReviewerFile($this->monographFileDao->getMonographFile($row['reviewer_file_id']));
-		$reviewAssignment->setReviewerFileRevisions($this->monographFileDao->getMonographFileRevisions($row['reviewer_file_id']));
-		$reviewAssignment->setSuppFiles($this->suppFileDao->getSuppFilesByMonograph($row['monograph_id']));
-
-
-		// Comments
-//		$reviewAssignment->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
-
-		HookRegistry::call('ReviewAssignmentDAO::_returnReviewAssignmentFromRow', array(&$reviewAssignment, &$row));
-
-		return $reviewAssignment;
-	}
-
-	/**
 	 * Insert a new Review Assignment.
 	 * @param $reviewAssignment ReviewAssignment
 	 */	
-	function insertReviewAssignment(&$reviewAssignment) {
+	function insertObject(&$reviewAssignment) {
 		$this->update(
 			sprintf('INSERT INTO review_assignments
 				(monograph_id, reviewer_id, round, competing_interests, recommendation, declined, replaced, cancelled, date_assigned, date_notified, date_confirmed, date_completed, date_acknowledged, date_due, reviewer_file_id, quality, date_rated, last_modified, date_reminded, reminder_was_automatic, review_form_id, review_type)
@@ -450,7 +464,7 @@ class ReviewAssignmentDAO extends DAO {
 	 * Update an existing review assignment.
 	 * @param $reviewAssignment object
 	 */
-	function updateReviewAssignment(&$reviewAssignment) {
+	function updateObject(&$reviewAssignment) {
 		return $this->update(
 			sprintf('UPDATE review_assignments
 				SET	monograph_id = ?,
@@ -498,7 +512,7 @@ class ReviewAssignmentDAO extends DAO {
 	 * Delete review assignment.
 	 * @param $reviewId int
 	 */
-	function deleteReviewAssignmentById($reviewId) {
+	function deleteById($reviewId) {
 		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 		$reviewFormResponseDao->deleteReviewFormResponseByReviewId($reviewId);
 
@@ -513,7 +527,7 @@ class ReviewAssignmentDAO extends DAO {
 	 * @param $monographId int
 	 * @return boolean
 	 */
-	function deleteReviewAssignmentsByMonograph($monographId) {
+	function deleteByMonographId($monographId) {
 		$returner = false;
 		$result =& $this->retrieve(
 			'SELECT review_id FROM review_assignments WHERE monograph_id = ?',
@@ -652,6 +666,65 @@ class ReviewAssignmentDAO extends DAO {
 
 		return $returner;
 	}
+
+	/**
+	 * Construct a new data object corresponding to this DAO.
+	 * @return ReviewAssignment
+	 */
+	function newDataObject() {
+		return new ReviewAssignment();
+	}
+
+	/**
+	 * Internal function to return a review assignment object from a row.
+	 * @param $row array
+	 * @return ReviewAssignment
+	 */
+	function &_fromRow(&$row) {
+		$reviewAssignment = $this->newDataObject();
+
+		$reviewAssignment->setReviewId($row['review_id']);
+		$reviewAssignment->setMonographId($row['monograph_id']);
+		$reviewAssignment->setReviewerId($row['reviewer_id']);
+		$reviewAssignment->setReviewerFullName($row['first_name'].' '.$row['last_name']);
+		$reviewAssignment->setCompetingInterests($row['competing_interests']);
+		$reviewAssignment->setRecommendation($row['recommendation']);
+		$reviewAssignment->setDateAssigned($this->datetimeFromDB($row['date_assigned']));
+		$reviewAssignment->setDateNotified($this->datetimeFromDB($row['date_notified']));
+		$reviewAssignment->setDateConfirmed($this->datetimeFromDB($row['date_confirmed']));
+		$reviewAssignment->setDateCompleted($this->datetimeFromDB($row['date_completed']));
+		$reviewAssignment->setDateAcknowledged($this->datetimeFromDB($row['date_acknowledged']));
+		$reviewAssignment->setDateDue($this->datetimeFromDB($row['date_due']));
+		$reviewAssignment->setLastModified($this->datetimeFromDB($row['last_modified']));
+		$reviewAssignment->setDeclined($row['declined']);
+		$reviewAssignment->setReplaced($row['replaced']);
+		$reviewAssignment->setCancelled($row['cancelled']);
+		$reviewAssignment->setReviewerFileId($row['reviewer_file_id']);
+		$reviewAssignment->setQuality($row['quality']);
+		$reviewAssignment->setDateRated($this->datetimeFromDB($row['date_rated']));
+		$reviewAssignment->setDateReminded($this->datetimeFromDB($row['date_reminded']));
+		$reviewAssignment->setReminderWasAutomatic($row['reminder_was_automatic']);
+		$reviewAssignment->setRound($row['round']);
+		$reviewAssignment->setReviewFileId($row['review_file_id']);
+		$reviewAssignment->setReviewRevision($row['review_revision']);
+		$reviewAssignment->setReviewFormId($row['review_form_id']);
+		$reviewAssignment->setReviewType($row['review_type']);
+
+		// Files
+		$reviewAssignment->setReviewFile($this->monographFileDao->getMonographFile($row['review_file_id'], $row['review_revision']));
+		$reviewAssignment->setReviewerFile($this->monographFileDao->getMonographFile($row['reviewer_file_id']));
+		$reviewAssignment->setReviewerFileRevisions($this->monographFileDao->getMonographFileRevisions($row['reviewer_file_id']));
+		$reviewAssignment->setSuppFiles($this->suppFileDao->getSuppFilesByMonograph($row['monograph_id']));
+
+
+		// Comments
+//		$reviewAssignment->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
+
+		HookRegistry::call('ReviewAssignmentDAO::_fromRow', array(&$reviewAssignment, &$row));
+
+		return $reviewAssignment;
+	}
+
 }
 
 ?>

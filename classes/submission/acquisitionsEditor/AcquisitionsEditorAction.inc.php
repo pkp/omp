@@ -145,7 +145,7 @@ class AcquisitionsEditorAction extends Action {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& Request::getUser();
 
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		if (isset($reviewAssignment) && $reviewAssignment->getMonographId() == $acquisitionsEditorSubmission->getMonographId() && !HookRegistry::call('AcquisitionsEditorAction::clearReview', array(&$acquisitionsEditorSubmission, $reviewAssignment))) {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
@@ -174,7 +174,7 @@ class AcquisitionsEditorAction extends Action {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		$isEmailBasedReview = $press->getSetting('mailSubmissionsToReviewers')==1?true:false;
 		$reviewerAccessKeysEnabled = $press->getSetting('reviewerAccessKeysEnabled');
@@ -223,7 +223,7 @@ class AcquisitionsEditorAction extends Action {
 				$reviewAssignment->setDateNotified(Core::getCurrentDate());
 				$reviewAssignment->setCancelled(0);
 				$reviewAssignment->stampModified();
-				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+				$reviewAssignmentDao->updateObject($reviewAssignment);
 				return true;
 			} else {
 				if (!Request::getUserVar('continued') || $preventAddressChanges) {
@@ -288,7 +288,7 @@ class AcquisitionsEditorAction extends Action {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return true;
 
@@ -310,7 +310,7 @@ class AcquisitionsEditorAction extends Action {
 					$reviewAssignment->setDateCompleted(Core::getCurrentDate());
 					$reviewAssignment->stampModified();
 
-					$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+					$reviewAssignmentDao->updateObject($reviewAssignment);
 
 					// Add log
 					import('monograph.log.MonographLog');
@@ -349,7 +349,7 @@ class AcquisitionsEditorAction extends Action {
 
 		$press =& Request::getPress();
 		$user =& Request::getUser();
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$reviewerAccessKeysEnabled = $press->getSetting('reviewerAccessKeysEnabled');
 
 		// If we're using access keys, disable the address fields
@@ -391,7 +391,7 @@ class AcquisitionsEditorAction extends Action {
 
 			$reviewAssignment->setDateReminded(Core::getCurrentDate());
 			$reviewAssignment->setReminderWasAutomatic(0);
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 			return true;
 		} elseif ($reviewAssignment->getMonographId() == $acquisitionsEditorSubmission->getMonographId()) {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
@@ -444,7 +444,7 @@ class AcquisitionsEditorAction extends Action {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		import('mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($acquisitionsEditorSubmission, 'REVIEW_ACK');
@@ -462,7 +462,7 @@ class AcquisitionsEditorAction extends Action {
 
 				$reviewAssignment->setDateAcknowledged(Core::getCurrentDate());
 				$reviewAssignment->stampModified();
-				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+				$reviewAssignmentDao->updateObject($reviewAssignment);
 			} else {
 				if (!Request::getUserVar('continued')) {
 					$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
@@ -491,7 +491,7 @@ class AcquisitionsEditorAction extends Action {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& Request::getUser();
 
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
@@ -505,7 +505,7 @@ class AcquisitionsEditorAction extends Action {
 			$reviewAssignment->setDateRated(Core::getCurrentDate());
 			$reviewAssignment->stampModified();
 
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
 			import('monograph.log.MonographLog');
@@ -524,7 +524,7 @@ class AcquisitionsEditorAction extends Action {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$monographFile =& $monographFileDao->getMonographFile($fileId, $revision);
 
 		if ($reviewAssignment->getMonographId() == $monographId && $reviewAssignment->getReviewerFileId() == $fileId && !HookRegistry::call('AcquisitionsEditorAction::makeReviewerFileViewable', array(&$reviewAssignment, &$monographFile, &$viewable))) {
@@ -545,7 +545,7 @@ class AcquisitionsEditorAction extends Action {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& Request::getUser();
 
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
@@ -569,7 +569,7 @@ class AcquisitionsEditorAction extends Action {
 			}
 
 			$reviewAssignment->stampModified();
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
 /*			import('monograph.log.MonographLog');
@@ -643,7 +643,7 @@ class AcquisitionsEditorAction extends Action {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& Request::getUser();
 
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId(), true);
 
 		if ($reviewAssignment->getMonographId() == $monographId && !HookRegistry::call('AcquisitionsEditorAction::setReviewerRecommendation', array(&$reviewAssignment, &$reviewer, &$recommendation, &$acceptOption))) {
@@ -656,7 +656,7 @@ class AcquisitionsEditorAction extends Action {
 			$reviewAssignment->setDateCompleted($nowDate);
 			$reviewAssignment->stampModified();
 
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
 			import('monograph.log.MonographLog');
@@ -672,7 +672,7 @@ class AcquisitionsEditorAction extends Action {
 	 */
 	function clearReviewForm($acquisitionsEditorSubmission, $reviewId) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		if (HookRegistry::call('AcquisitionsEditorAction::clearReviewForm', array(&$acquisitionsEditorSubmission, &$reviewAssignment, &$reviewId))) return $reviewId;
 
@@ -683,7 +683,7 @@ class AcquisitionsEditorAction extends Action {
 				$reviewFormResponseDao->deleteReviewFormResponseByReviewId($reviewId);
 			}
 			$reviewAssignment->setReviewFormId(null);
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 		}
 	}
 
@@ -695,7 +695,7 @@ class AcquisitionsEditorAction extends Action {
 	 */
 	function addReviewForm($acquisitionsEditorSubmission, $reviewId, $reviewFormId) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		if (HookRegistry::call('AcquisitionsEditorAction::addReviewForm', array(&$acquisitionsEditorSubmission, &$reviewAssignment, &$reviewId, &$reviewFormId))) return $reviewFormId;
 
@@ -709,7 +709,7 @@ class AcquisitionsEditorAction extends Action {
 					$reviewFormResponseDao->deleteReviewFormResponseByReviewId($reviewId);
 				}
 				$reviewAssignment->setReviewFormId($reviewFormId);
-				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+				$reviewAssignmentDao->updateObject($reviewAssignment);
 			}
 		}
 	}
@@ -721,7 +721,7 @@ class AcquisitionsEditorAction extends Action {
 	 */
 	function viewReviewFormResponse($acquisitionsEditorSubmission, $reviewId) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		if (HookRegistry::call('AcquisitionsEditorAction::viewReviewFormResponse', array(&$acquisitionsEditorSubmission, &$reviewAssignment, &$reviewId))) return $reviewId;
 
@@ -1899,7 +1899,7 @@ class AcquisitionsEditorAction extends Action {
 			} else {
 				if (Request::getUserVar('importPeerReviews')) {
 					$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-					$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByMonographId($acquisitionsEditorSubmission->getMonographId(), $acquisitionsEditorSubmission->getCurrentRound());
+					$reviewAssignments =& $reviewAssignmentDao->getByMonographId($acquisitionsEditorSubmission->getMonographId(), $acquisitionsEditorSubmission->getCurrentRound());
 					$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($acquisitionsEditorSubmission->getMonographId(), $acquisitionsEditorSubmission->getCurrentRound());
 
 					$body = '';
@@ -1986,7 +1986,7 @@ class AcquisitionsEditorAction extends Action {
 		$press =& Request::getPress();
 
 		$comments =& $commentDao->getMonographComments($monograph->getMonographId(), COMMENT_TYPE_EDITOR_DECISION);
-		$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByMonographId($monograph->getMonographId(), $monograph->getCurrentRound());
+		$reviewAssignments =& $reviewAssignmentDao->getByMonographId($monograph->getMonographId(), $monograph->getCurrentRound());
 
 		$commentsText = "";
 		foreach ($comments as $comment) {
@@ -2163,7 +2163,7 @@ class AcquisitionsEditorAction extends Action {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& Request::getUser();
 
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId(), true);
 
 		if (HookRegistry::call('AcquisitionsEditorAction::acceptReviewForReviewer', array(&$reviewAssignment, &$reviewer, &$accept))) return;
@@ -2174,7 +2174,7 @@ class AcquisitionsEditorAction extends Action {
 			$reviewAssignment->setDeclined($accept?0:1);
 			$reviewAssignment->setDateConfirmed(Core::getCurrentDate());
 			$reviewAssignment->stampModified();
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
 			import('monograph.log.MonographLog');
@@ -2202,7 +2202,7 @@ class AcquisitionsEditorAction extends Action {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& Request::getUser();
 
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId(), true);
 
 		if (HookRegistry::call('AcquisitionsEditorAction::uploadReviewForReviewer', array(&$reviewAssignment, &$reviewer))) return;
@@ -2232,7 +2232,7 @@ class AcquisitionsEditorAction extends Action {
 
 			$reviewAssignment->setReviewerFileId($fileId);
 			$reviewAssignment->stampModified();
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
 			import('monograph.log.MonographLog');

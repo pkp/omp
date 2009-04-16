@@ -108,7 +108,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnAcquisitionsEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -122,7 +122,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 * @param $row array
 	 * @return AcquisitionsEditorSubmission
 	 */
-	function &_returnAcquisitionsEditorSubmissionFromRow(&$row) {
+	function &_fromRow(&$row) {
 		$acquisitionsEditorSubmission = new AcquisitionsEditorSubmission();
 
 		// Monograph attributes
@@ -187,7 +187,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		if (isset($reviewRounds))
 		foreach ($reviewRounds as $reviewType => $round) {
 			for ($i = 1; $i <= $round; $i++) {
-				$acquisitionsEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getReviewAssignmentsByMonographId($row['monograph_id'], $reviewType, $i), $reviewType, $i);
+				$acquisitionsEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getByMonographId($row['monograph_id'], $reviewType, $i), $reviewType, $i);
 			}
 		}
 
@@ -219,7 +219,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		// Proof Assignment
 //		$acquisitionsEditorSubmission->setProofAssignment($this->proofAssignmentDao->getProofAssignmentByMonographId($row['monograph_id']));
 
-		HookRegistry::call('AcquisitionsEditorSubmissionDAO::_returnAcquisitionsEditorSubmissionFromRow', array(&$acquisitionsEditorSubmission, &$row));
+		HookRegistry::call('AcquisitionsEditorSubmissionDAO::_fromRow', array(&$acquisitionsEditorSubmission, &$row));
 
 		return $acquisitionsEditorSubmission;
 	}
@@ -319,9 +319,9 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		foreach ($acquisitionsEditorSubmission->getReviewAssignments() as $roundReviewAssignments) {
 			foreach ($roundReviewAssignments as $reviewAssignment) {
 				if ($reviewAssignment->getReviewId() > 0) {
-					$this->reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+					$this->reviewAssignmentDao->updateObject($reviewAssignment);
 				} else {
-					$this->reviewAssignmentDao->insertReviewAssignment($reviewAssignment);
+					$this->reviewAssignmentDao->insertObject($reviewAssignment);
 				}
 			}
 		}
@@ -329,7 +329,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		// Remove deleted review assignments
 		$removedReviewAssignments = $acquisitionsEditorSubmission->getRemovedReviewAssignments();
 		for ($i=0, $count=count($removedReviewAssignments); $i < $count; $i++) {
-			$this->reviewAssignmentDao->deleteReviewAssignmentById($removedReviewAssignments[$i]);
+			$this->reviewAssignmentDao->deleteById($removedReviewAssignments[$i]);
 		}
 
 		// Update layout editing assignment
@@ -436,7 +436,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		);
 
 		while (!$result->EOF) {
-			$acquisitionsEditorSubmissions[] =& $this->_returnAcquisitionsEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$acquisitionsEditorSubmissions[] =& $this->_fromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 
@@ -635,7 +635,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$submission =& $this->_returnAcquisitionsEditorSubmissionFromRow($row);
+			$submission =& $this->_fromRow($row);
 			$monographId = $submission->getMonographId();
 
 			// check if submission is still in review
@@ -684,7 +684,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$submission =& $this->_returnAcquisitionsEditorSubmissionFromRow($row);
+			$submission =& $this->_fromRow($row);
 
 			// check if submission is still in review
 			$inReview = true;
@@ -729,7 +729,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$result = $this->getUnfilteredAcquisitionsEditorSubmissions($acquisitionsEditorId, $pressId, $sectionId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, '', $rangeInfo);
 
 		while (!$result->EOF) {
-			$submission =& $this->_returnAcquisitionsEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$submission =& $this->_fromRow($result->GetRowAssoc(false));
 			$submissions[] =& $submission;
 			unset($submission);
 			$result->MoveNext();
@@ -763,7 +763,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$acquisitionsEditorSubmission =& $this->_returnAcquisitionsEditorSubmissionFromRow($row);
+			$acquisitionsEditorSubmission =& $this->_fromRow($row);
 
 			// check if submission is still in review
 			$inReview = true;

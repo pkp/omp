@@ -138,7 +138,7 @@ class EditorSubmissionDAO extends DAO {
 		$reviewAssignments =& $editorSubmission->getReviewAssignments();
 		for ($i=0, $count=count($reviewAssignments); $i < $count; $i++) {
 			$reviewAssignments[$i]->setMonographId($editorSubmission->getMonographId());
-			$this->reviewAssignmentDao->insertReviewAssignment($reviewAssignments[$i]);
+			$this->reviewAssignmentDao->insertObject($reviewAssignments[$i]);
 		}
 
 		return $editorSubmission->getEditId();
@@ -468,7 +468,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 			$monographId = $editorSubmission->getMonographId();
 /*			for ($i = 1; $i <= $editorSubmission->getCurrentRound(); $i++) {
-				$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentsByMonographId($monographId, $i);
+				$reviewAssignment =& $reviewAssignmentDao->getByMonographId($monographId, $i);
 				if (!empty($reviewAssignment)) {
 					$editorSubmission->setReviewAssignments($reviewAssignment, $i);
 				}

@@ -21,45 +21,6 @@ import('workflow.WorkflowProcess');
 class WorkflowDAO extends DAO {
 
 	/**
-	 * Retrieve a WorkflowElements by workflow element type.
-	 * @param $monographId int
-	 * @param $eventType int
-	 * @return ProcessSignoff
-	 */
-	function &getByWorkflowProcessType($monographId, $eventType) {
-
-		$returner = null;
-
-		switch ($eventType) {
-		case WORKFLOW_PROCESS_TYPE_REVIEW:
-			$reviewTypeDao =& DAORegistry::getDAO('ReviewProcessDAO');
-			$returner =& $reviewTypeDao->getEnabledObjects($monographId);
-			return $returner;
-		}
-
-		return $returner;
-
-	}
-
-	/**
-	 * Retrieve the ordered workflow process list.
-	 * @return array
-	 */
-	function &getWorkflowProcesses($subtree = null) {
-		$processes = array(
-				array(),
-				array(),
-				array()
-			);
-
-		if ($subtree != null) {
-			if (isset($processes[$subtree]))
-			    return $processes[$subtree];
-		}
-		return $processes;
-	}
-
-	/**
 	 * Retrieve the next workflow process type.
 	 * @param $processId int
 	 * @return ProcessSignoff
@@ -68,26 +29,46 @@ class WorkflowDAO extends DAO {
 		//email relevant parties that got access
 		//close off relevant processes
 		//
-		
 	}
-	function &getSignoffSummary($monographId, $eventType) {
-		$sql = 'SELECT * FROM (SELECT * FROM signoff_processes WHERE event_type = ?';
-		$sqlParams = array($eventType);
+	function &getByEventType($monographId, $eventType) {
+		$sql = 'SELECT * 
+			FROM signoff_processes sp 
+			WHERE sp.monograph_id = ? AND 
+				sp.event_type = ?';
 
-		switch ($eventType) {
-		case SIGNOFF_EVENT_TYPE_REVIEW_PROCESS:
-			$sql .= ' UNION ALL SELECT * FROM signoff_processes WHERE event_type = '.SIGNOFF_EVENT_TYPE_REVIEW;
-			$reviewTypeDao =& DAORegistry::getDAO('ReviewTypeDAO');
-			$reviewTypes =& $reviewTypeDao->getEnabledObjects();
-			$simpleReturner = false;
-			break;
-		case SIGNOFF_EVENT_TYPE_EDITING_PROCESS:
-			$sql .= ' UNION ALL SELECT * FROM signoff_processes WHERE event_type = '.SIGNOFF_EVENT_TYPE_COPYEDIT;
-			$simpleReturner = false;
-			break;
+		$sqlParams = array($monographId, $eventType);
+
+		$result =& $this->retrieve($sql, $sqlParams);
+
+		$objDao = null;
+		$returner = null;
+
+		import('workflow.review.ReviewProcess');
+
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			$obj =& $this->_fromRow($row);
+
+			switch($eventType) {
+			case WORKFLOW_PROCESS_TYPE_REVIEW:
+				if ($obj->getProcessId() !== null) {
+					$newObj = new ReviewProcess;
+					$newObj->_data = $obj->_data;
+					$obj = $newObj;
+					unset($newObj);
+				}
+				break;
+			default: break;
+			}
+			$returner[] = $obj;
+			
+			$result->MoveNext();
 		}
-		$sql .= ') AS events WHERE events.monograph_id = ?';
-		// then construct tree
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
 	}
 
 	/**
@@ -99,14 +80,14 @@ class WorkflowDAO extends DAO {
 	 */
 	function build($monographId, $eventType, $eventId) {
 		// If one exists, fetch and return.
-		$processSignoff =& $this->getProcessSignoff($monographId, $eventType, $eventId);
+		$processSignoff =& $this->getByEvent($monographId, $eventType, $eventId);
 		if ($processSignoff) return $processSignoff;
 
 		// Otherwise, build one.
 		unset($processSignoff);
 		$processSignoff = $this->newDataObject();
 
-		$processSignoff->setStatus(PROCESS_SIGNOFF_STATUS_INITIATED);
+		$processSignoff->setStatus(WORKFLOW_PROCESS_STATUS_INITIATED);
 		$processSignoff->setMonographId($monographId);
 		$processSignoff->setDateInitiated(Core::getCurrentDate());
 		$processSignoff->setEventType($eventType);
@@ -117,15 +98,121 @@ class WorkflowDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve a signoff entity by ID.
+	 * @param $processSignoffId int
+	 * @return SignoffEntity
+	 */
+	function getById($processId) {
+
+		$result =& $this->retrieve(
+			'SELECT * FROM signoff_processes WHERE process_id = ?',
+				$processId
+		);
+
+		$returner = null;
+		if ($result->RecordCount() != 0) {
+			$returner = $this->_fromRow($result->GetRowAssoc(false));
+		}
+		$result->Close();
+		return $returner;
+	}
+
+	/**
+	 * Construct a new data object corresponding to this DAO.
+	 * @return WorkflowProcess
+	 */
+	function newDataObject() {
+		return new WorkflowProcess();
+	}
+
+	/**
+	 * Internal function to return an ProcessSignoff object from a row.
+	 * @param $row array
+	 * @return ProcessSignoff
+	 */
+	function _fromRow(&$row) {
+		$processSignoff = $this->newDataObject();
+
+		$processSignoff->setId($row['process_id']);
+		$processSignoff->setStatus($row['status']);
+		$processSignoff->setMonographId($row['monograph_id']);
+		$processSignoff->setDateInitiated($row['date_initiated']);
+		$processSignoff->setDateEnded($row['date_ended']);
+		$processSignoff->setDateSigned($row['date_signed']);
+		$processSignoff->setWorkflowProcess($row['event_type']);
+		$processSignoff->setWorkflowProcessId($row['event_id']);
+
+		return $processSignoff;
+	}
+
+	/**
+	 * Insert a new Signoff.
+	 * @param $signoff Signoff
+	 * @return int 
+	 */
+	function insertObject(&$processSignoff) {
+		$this->update(
+				'INSERT INTO signoff_processes
+				(monograph_id, date_initiated, status, date_ended, event_type, event_id)
+				VALUES
+				(?, ?, ?, ?, ?, ?)',
+			array(
+				$processSignoff->getMonographId(),
+				$processSignoff->getDateInitiated(),
+				$processSignoff->getStatus(),
+				$processSignoff->getDateEnded(),
+				$processSignoff->getWorkflowProcess(),
+				$processSignoff->getWorkflowProcessId()
+			)
+		);
+		$processSignoff->setId($this->getInsertId());
+		return $processSignoff->getId();
+	}
+
+	/**
+	 * Update an existing signoff entity entry.
+	 * @param $processSignoff SignoffEntity
+	 * @return boolean
+	 */
+	function updateObject(&$processSignoff) {
+		$returner = $this->update(
+			sprintf(
+				'UPDATE signoff_processes
+				SET date_initiated = %s,
+					date_ended = %s,
+					date_signed = %s,
+					monograph_id = ?,
+					event_type = ?,
+					event_id = ?
+				WHERE process_id = ?',
+				$this->datetimeToDB($processSignoff->getDateInitiated()),
+				$this->datetimeToDB($processSignoff->getDateEnded()),
+				$this->datetimeToDB($processSignoff->getDateSigned())
+			),
+			array(
+				$processSignoff->getMonographId(),
+				$processSignoff->getWorkflowProcess(),
+				$processSignoff->getWorkflowProcessId(),
+				$processSignoff->getId()
+			)
+		);
+		return $returner;
+	}
+
+	/**
 	 * Retrieve an array of signoffs matching the specified
 	 * symbolic name and assoc info.
-	 * @param $symbolic string
-	 * @param $assocType int
-	 * @param $assocId int
+	 * @param $monographId int
+	 * @param $eventType int
+	 * @param $eventId int
 	 */
-	function &getProcessSignoff($monographId, $eventType, $eventId) {
+	function &getByEvent($monographId, $eventType, $eventId) {
 		$result =& $this->retrieve(
-			'SELECT * FROM signoff_processes WHERE monograph_id = ? AND event_type = ? AND event_id = ?',
+			'SELECT * 
+			FROM signoff_processes 
+			WHERE monograph_id = ? AND 
+				event_type = ? AND 
+				event_id = ?',
 			array($monographId, (int) $eventType, $eventId)
 		);
 
@@ -146,6 +233,5 @@ class WorkflowDAO extends DAO {
 	function getInsertId() {
 		return parent::getInsertId('signoff_processes', 'process_id');
 	}
-
 }
 ?>

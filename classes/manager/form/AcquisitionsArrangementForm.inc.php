@@ -150,7 +150,7 @@ class AcquisitionsArrangementForm extends Form {
 		$templateMgr->assign('commentsEnabled', $press->getSetting('enableComments'));
 
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForms =& $reviewFormDao->getPressActiveReviewForms($press->getId());
+		$reviewForms =& $reviewFormDao->getActiveByPressId($press->getId());
 		$reviewFormOptions = array();
 		while ($reviewForm =& $reviewForms->next()) {
 			$reviewFormOptions[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();

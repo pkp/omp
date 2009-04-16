@@ -436,9 +436,9 @@ class PeopleHandler extends ManagerHandler {
 			$editorSubmissionDao->transferEditorDecisions($oldUserId, $newUserId);
 
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			foreach ($reviewAssignmentDao->getReviewAssignmentsByUserId($oldUserId) as $reviewAssignment) {
+			foreach ($reviewAssignmentDao->getByUserId($oldUserId) as $reviewAssignment) {
 				$reviewAssignment->setReviewerId($newUserId);
-				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+				$reviewAssignmentDao->updateObject($reviewAssignment);
 				unset($reviewAssignment);
 			}
 

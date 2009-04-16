@@ -15,7 +15,6 @@
 
 // $Id$
 
-
 import('workflow.review.ReviewProcess');
 
 class ReviewProcessDAO extends DAO {
@@ -66,18 +65,18 @@ class ReviewProcessDAO extends DAO {
 	function newDataObject() {
 		return new ReviewProcess();
 	}
-	function &getEnabledObjects($monographId) {
+	function &getEnabledObjects() {
 		$obj1 =& $this->newDataObject();
 		$obj2 =& $this->newDataObject();
-		$processSignoffDao =& DAORegistry::getDAO('ProcessSignoffDAO');
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 
-		$obj1->setId(REVIEW_TYPE_INTERNAL);
-		$obj1->setName('Internal Review', Locale::getLocale());
-		$obj1->setWorkflowProcess($processSignoffDao->getProcessSignoff($monographId, WORKFLOW_PROCESS_TYPE_REVIEW, REVIEW_TYPE_INTERNAL));
+		$obj1->setProcessId(REVIEW_TYPE_INTERNAL);
+		$obj1->setName('Internalx Review', Locale::getLocale());
+//		$obj1->setWorkflowProcess($processSignoffDao->getProcessSignoff($monographId, WORKFLOW_PROCESS_TYPE_REVIEW, REVIEW_TYPE_INTERNAL));
 
-		$obj2->setId(REVIEW_TYPE_EXTERNAL);
+		$obj2->setProcessId(REVIEW_TYPE_EXTERNAL);
 		$obj2->setName('External Review', Locale::getLocale());
-		$obj2->setWorkflowProcess($processSignoffDao->getProcessSignoff($monographId, WORKFLOW_PROCESS_TYPE_REVIEW, REVIEW_TYPE_EXTERNAL));
+//		$obj2->setWorkflowProcess($processSignoffDao->getProcessSignoff($monographId, WORKFLOW_PROCESS_TYPE_REVIEW, REVIEW_TYPE_EXTERNAL));
 
 		$returner = array($obj1, $obj2);
 		return $returner;

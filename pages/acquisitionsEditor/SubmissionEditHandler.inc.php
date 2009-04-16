@@ -201,7 +201,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		}
 */
 		// get press published review form titles
-		$reviewFormTitles =& $reviewFormDao->getPressReviewFormTitles($press->getId(), 1);
+		$reviewFormTitles =& $reviewFormDao->getTitlesByPressId($press->getId(), 1);
 
 		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 		$reviewFormResponses = array();
@@ -210,7 +210,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$reviewFormTitles = array();
 
 		foreach ($submission->getReviewAssignments($round) as $reviewAssignment) {
-			$reviewForm =& $reviewFormDao->getReviewForm($reviewAssignment->getReviewFormId());
+			$reviewForm =& $reviewFormDao->getById($reviewAssignment->getReviewFormId());
 			if ($reviewForm) {
 				$reviewFormTitles[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
 			}
@@ -225,11 +225,10 @@ $sections = null;
 		$templateMgr =& TemplateManager::getManager();
 
 		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$reviewProcesses =& $workflowDao->getByWorkflowProcessType($monographId, WORKFLOW_PROCESS_TYPE_REVIEW);
-
-		$signoffEntityDao =& DAORegistry::getDAO('SignoffEntityDAO');
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		import('workflow.review.ReviewProcess');
+		$reviewProcesses =& $workflowDao->getByEventType($monographId, WORKFLOW_PROCESS_TYPE_REVIEW);
+print_r($reviewProcesses);
+//		$signoffEntityDao =& DAORegistry::getDAO('SignoffEntityDAO');
+/*		import('workflow.review.ReviewProcess');
 		$signoffProcessDao =& DAORegistry::getDAO('ProcessSignoffDAO');
 
 	if (isset($reviewProcesses[0]) && $reviewProcesses[0]->getWorkflowProcess() != null) {
@@ -256,7 +255,7 @@ $sections = null;
 			}
 		}
 		unset($workflowProcess);
-	}
+	}*/
 		$templateMgr->assign('signoffWait', 0);
 		$templateMgr->assign('signoffQueue', 0);
 
@@ -747,7 +746,7 @@ $sections = null;
 			$press =& Request::getPress();
 
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewAssignment = $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+			$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
 
 			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			$settings =& $settingsDao->getPressSettings($press->getId());
@@ -903,7 +902,7 @@ $sections = null;
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageTitle', 'manager.reviewForms.preview');	
@@ -947,9 +946,9 @@ $sections = null;
 			$press =& Request::getPress();
 			$rangeInfo =& PKPHandler::getRangeInfo('reviewForms');
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-			$reviewForms =& $reviewFormDao->getPressActiveReviewForms($press->getId(), $rangeInfo);
+			$reviewForms =& $reviewFormDao->getActiveByPressId($press->getId(), $rangeInfo);
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewAssignment =& $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+			$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 			parent::setupTemplate(true, $monographId, 'review');
 			$templateMgr =& TemplateManager::getManager();

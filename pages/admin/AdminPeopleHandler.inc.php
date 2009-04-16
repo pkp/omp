@@ -24,7 +24,7 @@ class AdminPeopleHandler extends AdminHandler {
 		parent::validate();
 		parent::setupTemplate(true);
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		$templateMgr =& TemplateManager::getManager();
@@ -69,9 +69,9 @@ class AdminPeopleHandler extends AdminHandler {
 			$editorSubmissionDao->transferEditorDecisions($oldUserId, $newUserId);
 
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			foreach ($reviewAssignmentDao->getReviewAssignmentsByUserId($oldUserId) as $reviewAssignment) {
+			foreach ($reviewAssignmentDao->getByUserId($oldUserId) as $reviewAssignment) {
 				$reviewAssignment->setReviewerId($newUserId);
-				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+				$reviewAssignmentDao->updateObject($reviewAssignment);
 				unset($reviewAssignment);
 			}
 
@@ -188,10 +188,10 @@ class AdminPeopleHandler extends AdminHandler {
 		$rangeInfo = Handler::getRangeInfo('users');
 
 		if ($roleId) {
-			$users = &$roleDao->getUsersByRoleId($roleId, null, $searchType, $search, $searchMatch, $rangeInfo);
+			$users =& $roleDao->getUsersByRoleId($roleId, null, $searchType, $search, $searchMatch, $rangeInfo);
 			$templateMgr->assign('roleId', $roleId);
 		} else {
-			$users = &$userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
+			$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
 		}
 
 		$templateMgr->assign('currentUrl', Request::url(null, null, 'mergeUsers'));
@@ -207,7 +207,7 @@ class AdminPeopleHandler extends AdminHandler {
 		$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
 
 		if ($roleId == ROLE_ID_REVIEWER) {
-			$reviewAssignmentDao = &DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$templateMgr->assign('rateReviewerOnQuality', $press->getSetting('rateReviewerOnQuality'));
 			$templateMgr->assign('qualityRatings', $press->getSetting('rateReviewerOnQuality') ? $reviewAssignmentDao->getAverageQualityRatings($pressId) : null);
 		}

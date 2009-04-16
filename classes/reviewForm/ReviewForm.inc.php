@@ -22,13 +22,6 @@
 class ReviewForm extends DataObject {
 
 	/**
-	 * Constructor.
-	 */
-	function ReviewForm() {
-		parent::DataObject();
-	}
-
-	/**
 	 * Get localized title.
 	 * @return string
 	 */
@@ -47,22 +40,6 @@ class ReviewForm extends DataObject {
 	//
 	// Get/set methods
 	//
-
-	/**
-	 * Get the ID of the review form.
-	 * @return int
-	 */
-	function getReviewFormId() {
-		return $this->getData('reviewFormId');
-	}
-
-	/**
-	 * Set the ID of the review form.
-	 * @param $reviewFormId int
-	 */
-	function setReviewFormId($reviewFormId) {
-		return $this->setData('reviewFormId', $reviewFormId);
-	}
 
 	/**
 	 * Get the number of completed reviews for this review form.

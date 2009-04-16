@@ -25,7 +25,7 @@ class ReviewFormHandler extends ManagerHandler {
 		$press =& Request::getPress();
 		$rangeInfo =& PKPHandler::getRangeInfo('reviewForms');
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForms =& $reviewFormDao->getPressReviewForms($press->getId(), $rangeInfo);
+		$reviewForms =& $reviewFormDao->getByPressId($press->getId(), $rangeInfo);
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 
 		$templateMgr =& TemplateManager::getManager();
@@ -52,7 +52,7 @@ class ReviewFormHandler extends ManagerHandler {
 
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
+		$reviewForm =& $reviewFormDao->getById($reviewFormId, $press->getId());
 
 		if ($reviewFormId != null && (!isset($reviewForm) || $reviewForm->getCompleteCount() != 0 || $reviewForm->getIncompleteCount() != 0)) {
 			Request::redirect(null, null, 'reviewForms');
@@ -165,14 +165,14 @@ class ReviewFormHandler extends ManagerHandler {
 
 		if (isset($reviewForm) && $reviewForm->getCompleteCount() == 0 && $reviewForm->getIncompleteCount() == 0) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByReviewFormId($reviewFormId);
+			$reviewAssignments =& $reviewAssignmentDao->getByReviewFormId($reviewFormId);
 
 			foreach ($reviewAssignments as $reviewAssignment) {
 				$reviewAssignment->setReviewFormId('');
-				$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+				$reviewAssignmentDao->updateObject($reviewAssignment);
 			}
 
-			$reviewFormDao->deleteReviewFormById($reviewFormId, $press->getId());
+			$reviewFormDao->deleteById($reviewFormId, $press->getId());
 		}
 
 		Request::redirect(null, null, 'reviewForms');
@@ -193,7 +193,7 @@ class ReviewFormHandler extends ManagerHandler {
 
 		if (isset($reviewForm) && !$reviewForm->getActive()) {
 			$reviewForm->setActive(1);
-			$reviewFormDao->updateReviewForm($reviewForm);
+			$reviewFormDao->updateObject($reviewForm);
 		}
 
 		Request::redirect(null, null, 'reviewForms');
@@ -214,7 +214,7 @@ class ReviewFormHandler extends ManagerHandler {
 
 		if (isset($reviewForm) && $reviewForm->getActive()) {
 			$reviewForm->setActive(0);
-			$reviewFormDao->updateReviewForm($reviewForm);
+			$reviewFormDao->updateObject($reviewForm);
 		}
 
 		Request::redirect(null, null, 'reviewForms');
@@ -235,8 +235,8 @@ class ReviewFormHandler extends ManagerHandler {
 		if (isset($reviewForm)) {
 			$reviewForm->setActive(0);
 			$reviewForm->setSequence(REALLY_BIG_NUMBER);
-			$newReviewFormId = $reviewFormDao->insertReviewForm($reviewForm);
-			$reviewFormDao->resequenceReviewForms($press->getId());
+			$newReviewFormId = $reviewFormDao->insertObject($reviewForm);
+			$reviewFormDao->resequenceByPressId($press->getId());
 
 			$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 			$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
@@ -264,8 +264,8 @@ class ReviewFormHandler extends ManagerHandler {
 
 		if (isset($reviewForm)) {
 			$reviewForm->setSequence($reviewForm->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
-			$reviewFormDao->updateReviewForm($reviewForm);
-			$reviewFormDao->resequenceReviewForms($press->getId());
+			$reviewFormDao->updateObject($reviewForm);
+			$reviewFormDao->resequenceByPressId($press->getId());
 		}
 
 		Request::redirect(null, null, 'reviewForms');
