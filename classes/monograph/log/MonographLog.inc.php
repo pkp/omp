@@ -63,7 +63,7 @@ class MonographLog {
 	 * @param $messageParams array
 	 */
 	function logEvent($monographId, $eventType, $assocType = 0, $assocId = 0, $messageKey = null, $messageParams = array()) {
-		return MonographLog::logEventLevel($monographId, ARTICLE_LOG_LEVEL_NOTICE, $eventType, $assocType, $assocId, $messageKey, $messageParams);
+		return MonographLog::logEventLevel($monographId, MONOGRAPH_LOG_LEVEL_NOTICE, $eventType, $assocType, $assocId, $messageKey, $messageParams);
 	}
 
 	/**

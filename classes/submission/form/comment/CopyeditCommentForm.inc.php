@@ -78,7 +78,7 @@ class CopyeditCommentForm extends CommentForm {
 
 		// Get editors
 		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments = &$editAssignmentDao->getEditAssignmentsByArticleId($article->getArticleId());
+		$editAssignments = &$editAssignmentDao->getByIdsByArticleId($article->getArticleId());
 		$editAssignments =& $editAssignments->toArray();
 		$editorAddresses = array();
 		foreach ($editAssignments as $editAssignment) {

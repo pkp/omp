@@ -81,7 +81,7 @@ class EmailHandler extends UserHandler {
 			if ($article && $article->getUserId() == $user->getUserId()) $hasAccess = true;
 			// 2. User is section editor of article or full editor
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-			$editAssignments =& $editAssignmentDao->getEditAssignmentsByArticleId($articleId);
+			$editAssignments =& $editAssignmentDao->getByIdsByArticleId($articleId);
 			while ($editAssignment =& $editAssignments->next()) {
 				if ($editAssignment->getEditorId() === $user->getUserId()) $hasAccess = true;
 			}

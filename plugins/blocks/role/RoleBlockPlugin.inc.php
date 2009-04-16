@@ -110,7 +110,7 @@ class RoleBlockPlugin extends BlockPlugin {
 			case 'editor':
 				if (Request::getRequestedOp() == 'index') return null;
 				$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
-				$submissionsCount =& $editorSubmissionDao->getEditorSubmissionsCount($press->getId());
+				$submissionsCount =& $editorSubmissionDao->getCount($press->getId());
 				$templateMgr->assign('submissionsCount', $submissionsCount);
 				return 'editor.tpl';
 			case 'sectionEditor':

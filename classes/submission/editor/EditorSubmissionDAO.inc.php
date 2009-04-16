@@ -41,7 +41,7 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $monographId int
 	 * @return EditorSubmission
 	 */
-	function &getEditorSubmission($monographId) {
+	function &getByMonographId($monographId) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$result =& $this->retrieve(
@@ -94,7 +94,7 @@ class EditorSubmissionDAO extends DAO {
 			$editorSubmission->setAcquisitionsArrangementAbbrev($row['arrangement_abbrev']);
 
 		// Editor Assignment
-		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByMonographId($row['monograph_id']);
+		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
 		$editorSubmission->setEditAssignments($editAssignments->toArray());
 
 		// Editor Decisions
@@ -148,9 +148,9 @@ class EditorSubmissionDAO extends DAO {
 	 * Update an existing monograph.
 	 * @param $monograph Monograph
 	 */
-	function updateEditorSubmission(&$editorSubmission) {
+	function updateObject(&$editorSubmission) {
 		// update edit assignments
-		$editAssignments = $editorSubmission->getEditAssignments();
+		$editAssignments = $editorSubmission->getByIds();
 		foreach ($editAssignments as $editAssignment) {
 			if ($editAssignment->getEditId() > 0) {
 				$this->editAssignmentDao->updateEditAssignment($editAssignment);
@@ -166,7 +166,7 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $status boolean true if queued, false if archived.
 	 * @return array EditorSubmission
 	 */
-	function &getEditorSubmissions($pressId, $status = true, $sectionId = 0, $rangeInfo = null) {
+	function &getByPressId($pressId, $status = true, $sectionId = 0, $rangeInfo = null) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$params = array(
@@ -417,7 +417,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getEditorSubmissionsUnassigned($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getUnassigned($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
@@ -427,7 +427,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 
 			// used to check if editor exists for this submission
-			$editAssignments =& $editorSubmission->getEditAssignments();
+			$editAssignments =& $editorSubmission->getByIds();
 
 			if (empty($editAssignments)) {
 				$editorSubmissions[] =& $editorSubmission;
@@ -457,7 +457,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getEditorSubmissionsInReview($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getInReview($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
@@ -486,7 +486,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			}
 
 			// used to check if editor exists for this submission
-			$editAssignments =& $editorSubmission->getEditAssignments();
+			$editAssignments =& $editorSubmission->getByIds();
 
 			if (!empty($editAssignments) && $inReview) {
 				$editorSubmissions[] =& $editorSubmission;
@@ -516,7 +516,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getEditorSubmissionsInEditing($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getInEditing($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
@@ -553,7 +553,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			}
 
 			// used to check if editor exists for this submission
-			$editAssignments = $editorSubmission->getEditAssignments();
+			$editAssignments = $editorSubmission->getByIds();
 
 			if ($inEditing && !empty($editAssignments)) {
 				$editorSubmissions[] =& $editorSubmission;
@@ -583,7 +583,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getEditorSubmissionsArchives($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getArchives($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 
 		$result = $this->getUnfilteredEditorSubmissions($pressId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
@@ -628,7 +628,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	/**
 	 * Function used for counting purposes for right nav bar
 	 */
-	function &getEditorSubmissionsCount($pressId) {
+	function &getCount($pressId) {
 
 		$submissionsCount = array();
 		for($i = 0; $i < 3; $i++) {
@@ -654,7 +654,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			}
 
 			// used to check if editor exists for this submission
-			$editAssignments = $editorSubmission->getEditAssignments();
+			$editAssignments = $editorSubmission->getByIds();
 
 			if (empty($editAssignments)) {
 				// unassigned submissions

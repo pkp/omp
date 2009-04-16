@@ -93,7 +93,7 @@ class DesignerSubmission extends Monograph {
 	 * Get edit assignments for this monograph.
 	 * @return array
 	 */
-	function &getEditAssignments() {
+	function &getByIds() {
 		$editAssignments = &$this->getData('editAssignments');
 		return $editAssignments;
 	}

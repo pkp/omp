@@ -34,7 +34,7 @@
 <tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
 <tr valign="bottom">
 	<td class="heading" width="30%">{translate key="user.name"}</td>
-	<td class="heading" width="20%">{translate key="section.sections"}</td>
+	<td class="heading" width="20%">{translate key="submissions.acquisitionsArrangement"}</td>
 	<td class="heading" width="20%">{translate key="submissions.completed"}</td>
 	<td class="heading" width="20%">{translate key="submissions.active"}</td>
 	<td class="heading" width="10%">{translate key="common.action"}</td>
@@ -45,9 +45,9 @@
 <tr valign="top">
 	<td><a class="action" href="{url op="userProfile" path=$editorId}">{$editor->getFullName()}</a></td>
 	<td>
-		{assign var=thisEditorSections value=$editorSections[$editorId]}
+		{assign var=thisEditorSections value=$editorArrangements[$editorId]}
 		{foreach from=$thisEditorSections item=section}
-			{$section->getSectionAbbrev()|escape}&nbsp;
+			{$section->getAcquisitionsArrangementAbbrev()|escape}&nbsp;
 		{foreachelse}
 			&mdash;
 		{/foreach}

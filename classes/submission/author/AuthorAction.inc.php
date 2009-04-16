@@ -135,7 +135,7 @@ class AuthorAction extends Action {
 		import('mail.MonographMailTemplate');
 		$email =& new MonographMailTemplate($authorSubmission, 'COPYEDIT_AUTHOR_COMPLETE');
 
-		$editAssignments = $authorSubmission->getEditAssignments();
+		$editAssignments = $authorSubmission->getByIds();
 
 		$copyeditor =& $authorSubmission->getCopyeditor();
 
@@ -314,7 +314,7 @@ class AuthorAction extends Action {
 		import('mail.MonographMailTemplate');
 		$email =& new MonographMailTemplate($authorSubmission);
 
-		$editAssignments = $authorSubmission->getEditAssignments();
+		$editAssignments = $authorSubmission->getByIds();
 		$editors = array();
 		foreach ($editAssignments as $editAssignment) {
 			array_push($editors, $userDao->getUser($editAssignment->getEditorId()));

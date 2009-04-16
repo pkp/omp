@@ -47,7 +47,7 @@ function confirmSubmissionCheck() {
 	<td class="label">{translate key="monograph.abstract"}</td>
 	<td class="value">{$submission->getMonographAbstract()|strip_unsafe_html|nl2br}</td>
 </tr>
-{assign var=editAssignments value=$submission->getEditAssignments()}
+{assign var=editAssignments value=$submission->getByIds()}
 {foreach from=$editAssignments item=editAssignment}
 	{if !$notFirstEditAssignment}
 		{assign var=notFirstEditAssignment value=1}
@@ -111,7 +111,7 @@ function confirmSubmissionCheck() {
 
 <table width="100%" class="data">
 <tr valign="top">
-	{assign var=editAssignments value=$submission->getEditAssignments}
+	{assign var=editAssignments value=$submission->getByIds}
 	{* FIXME: Should be able to assign primary editorial contact *}
 	{if $editAssignments[0]}{assign var=firstEditAssignment value=$editAssignments[0]}{/if}
 	<td width="3%">{$currentStep|escape}.{assign var="currentStep" value=$currentStep+1}</td>

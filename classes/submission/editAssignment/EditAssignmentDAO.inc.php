@@ -15,7 +15,6 @@
 
 // $Id$
 
-
 import('submission.editAssignment.EditAssignment');
 
 class EditAssignmentDAO extends DAO {
@@ -24,15 +23,21 @@ class EditAssignmentDAO extends DAO {
 	 * @param $editId int
 	 * @return EditAssignment
 	 */
-	function &getEditAssignment($editId) {
-		$result = &$this->retrieve(
-			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id FROM monographs a LEFT JOIN edit_assignments e ON (a.monograph_id = e.monograph_id) LEFT JOIN users u ON (e.editor_id = u.user_id) LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ' AND r.press_id = a.press_id) WHERE e.edit_id = ? AND a.monograph_id = e.monograph_id',
+	function &getById($editId) {
+		$result =& $this->retrieve(
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id 
+			FROM monographs a 
+			LEFT JOIN edit_assignments e ON (a.monograph_id = e.monograph_id) 
+			LEFT JOIN users u ON (e.editor_id = u.user_id) 
+			LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ' AND r.press_id = a.press_id) 
+			WHERE e.edit_id = ? AND 
+				a.monograph_id = e.monograph_id',
 			$editId
-			);
+		);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnEditAssignmentFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -46,13 +51,20 @@ class EditAssignmentDAO extends DAO {
 	 * @param $monographId int
 	 * @return EditAssignment
 	 */
-	function &getEditAssignmentsByMonographId($monographId) {
-		$result = &$this->retrieve(
-			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id FROM monographs a LEFT JOIN edit_assignments e ON (a.monograph_id = e.monograph_id) LEFT JOIN users u ON (e.editor_id = u.user_id) LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ' AND r.press_id = a.press_id) WHERE e.monograph_id = ? AND a.monograph_id = e.monograph_id ORDER BY e.date_notified ASC',
+	function &getByMonographId($monographId) {
+		$result =& $this->retrieve(
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id 
+			FROM monographs a 
+			LEFT JOIN edit_assignments e ON (a.monograph_id = e.monograph_id) 
+			LEFT JOIN users u ON (e.editor_id = u.user_id) 
+			LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ' AND r.press_id = a.press_id) 
+			WHERE e.monograph_id = ? AND 
+				a.monograph_id = e.monograph_id 
+			ORDER BY e.date_notified ASC',
 			$monographId
-			);
+		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 
@@ -62,12 +74,20 @@ class EditAssignmentDAO extends DAO {
 	 * @return EditAssignment
 	 */
 	function &getEditorAssignmentsByMonographId($monographId) {
-		$result = &$this->retrieve(
-			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id FROM monographs a, edit_assignments e, users u, roles r WHERE r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ' AND e.monograph_id = ? AND r.press_id = a.press_id AND a.monograph_id = e.monograph_id AND e.editor_id = u.user_id ORDER BY e.date_notified ASC',
+		$result =& $this->retrieve(
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id 
+			FROM monographs a, edit_assignments e, users u, roles r 
+			WHERE r.user_id = e.editor_id AND 
+				r.role_id = ' . ROLE_ID_EDITOR . ' AND 
+				e.monograph_id = ? AND 
+				r.press_id = a.press_id AND 
+				a.monograph_id = e.monograph_id AND 
+				e.editor_id = u.user_id 
+			ORDER BY e.date_notified ASC',
 			$monographId
-			);
+		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 
@@ -78,12 +98,21 @@ class EditAssignmentDAO extends DAO {
 	 * @return EditAssignment
 	 */
 	function &getReviewingSectionEditorAssignmentsByMonographId($monographId) {
-		$result = &$this->retrieve(
-			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id FROM monographs a LEFT JOIN edit_assignments e ON (a.monograph_id = e.monograph_id) LEFT JOIN users u ON (e.editor_id = u.user_id) LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ' AND r.press_id = a.press_id) WHERE e.monograph_id = ? AND a.monograph_id = e.monograph_id AND r.role_id IS NULL AND e.can_review = 1 ORDER BY e.date_notified ASC',
+		$result =& $this->retrieve(
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id 
+			FROM monographs a 
+			LEFT JOIN edit_assignments e ON (a.monograph_id = e.monograph_id) 
+			LEFT JOIN users u ON (e.editor_id = u.user_id) 
+			LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ' AND r.press_id = a.press_id) 
+			WHERE e.monograph_id = ? AND 
+				a.monograph_id = e.monograph_id AND 
+				r.role_id IS NULL AND 
+				e.can_review = 1 
+			ORDER BY e.date_notified ASC',
 			$monographId
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 
@@ -94,12 +123,21 @@ class EditAssignmentDAO extends DAO {
 	 * @return EditAssignment
 	 */
 	function &getEditingSectionEditorAssignmentsByMonographId($monographId) {
-		$result = &$this->retrieve(
-			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id FROM monographs a LEFT JOIN edit_assignments e ON (a.monograph_id = e.monograph_id) LEFT JOIN users u ON (e.editor_id = u.user_id) LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ' AND r.press_id = a.press_id) WHERE e.monograph_id = ? AND a.monograph_id = e.monograph_id AND r.role_id IS NULL AND e.can_edit = 1 ORDER BY e.date_notified ASC',
+		$result =& $this->retrieve(
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id 
+			FROM monographs a 
+			LEFT JOIN edit_assignments e ON (a.monograph_id = e.monograph_id) 
+			LEFT JOIN users u ON (e.editor_id = u.user_id) 
+			LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ' AND r.press_id = a.press_id) 
+			WHERE e.monograph_id = ? AND 
+				a.monograph_id = e.monograph_id AND 
+				r.role_id IS NULL AND 
+				e.can_edit = 1 
+			ORDER BY e.date_notified ASC',
 			$monographId
-			);
+		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 
@@ -108,14 +146,29 @@ class EditAssignmentDAO extends DAO {
 	 * @param $monographId int
 	 * @return EditAssignment
 	 */
-	function &getEditAssignmentsByUserId($userId) {
-		$result = &$this->retrieve(
-			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id FROM monographs a LEFT JOIN edit_assignments e ON (a.monograph_id = e.monograph_id) LEFT JOIN users u ON (e.editor_id = u.user_id) LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ' AND r.press_id = a.press_id) WHERE e.editor_id = ? AND a.monograph_id = e.monograph_id ORDER BY e.date_notified ASC',
+	function &getByUserId($userId) {
+		$result =& $this->retrieve(
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id 
+			FROM monographs a 
+			LEFT JOIN edit_assignments e ON (a.monograph_id = e.monograph_id) 
+			LEFT JOIN users u ON (e.editor_id = u.user_id) 
+			LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ' AND r.press_id = a.press_id) 
+			WHERE e.editor_id = ? AND 
+				a.monograph_id = e.monograph_id 
+			ORDER BY e.date_notified ASC',
 			$userId
 			);
 
-		$returner = new DAOResultFactory($result, $this, '_returnEditAssignmentFromRow');
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
+	}
+
+	/**
+	 * Construct a new data object corresponding to this DAO.
+	 * @return EditAssignment
+	 */
+	function newDataObject() {
+		return new EditAssignment();
 	}
 
 	/**
@@ -123,8 +176,9 @@ class EditAssignmentDAO extends DAO {
 	 * @param $row array
 	 * @return EditAssignment
 	 */
-	function &_returnEditAssignmentFromRow(&$row) {
-		$editAssignment = new EditAssignment();
+	function &_fromRow(&$row) {
+		$editAssignment = $this->newDataObject();
+
 		$editAssignment->setEditId($row['edit_id']);
 		$editAssignment->setMonographId($row['monograph_id']);
 		$editAssignment->setEditorId($row['editor_id']);
@@ -139,7 +193,7 @@ class EditAssignmentDAO extends DAO {
 		$editAssignment->setDateUnderway($this->datetimeFromDB($row['date_underway']));
 		$editAssignment->setDateNotified($this->datetimeFromDB($row['date_notified']));
 
-		HookRegistry::call('EditAssignmentDAO::_returnEditAssignmentFromRow', array(&$editAssignment, &$row));
+		HookRegistry::call('EditAssignmentDAO::_fromRow', array(&$editAssignment, &$row));
 
 		return $editAssignment;
 	}
@@ -198,7 +252,7 @@ class EditAssignmentDAO extends DAO {
 	 * Delete edit assignment.
 	 * @param $reviewId int
 	 */
-	function deleteEditAssignmentById($editId) {
+	function deleteById($editId) {
 		return $this->update(
 			'DELETE FROM edit_assignments WHERE edit_id = ?',
 			$editId
@@ -209,7 +263,7 @@ class EditAssignmentDAO extends DAO {
 	 * Delete edit assignments by monograph.
 	 * @param $monographId int
 	 */
-	function deleteEditAssignmentsByMonograph($monographId) {
+	function deleteByMonographId($monographId) {
 		return $this->update(
 			'DELETE FROM edit_assignments WHERE monograph_id = ?',
 			$monographId
@@ -233,11 +287,9 @@ class EditAssignmentDAO extends DAO {
 
 		// Get counts of completed submissions
 		$result =& $this->retrieve(
-			'SELECT	ea.editor_id,
-				COUNT(ea.monograph_id) AS complete
-			FROM	edit_assignments ea,
-				monographs a
-			WHERE	ea.monograph_id = a.monograph_id AND
+			'SELECT	ea.editor_id, COUNT(ea.monograph_id) AS complete
+			FROM edit_assignments ea, monographs a
+			WHERE ea.monograph_id = a.monograph_id AND
 				a.press_id = ? AND (
 					a.status = ' . STATUS_ARCHIVED . ' OR
 					a.status = ' . STATUS_PUBLISHED . ' OR
@@ -258,11 +310,9 @@ class EditAssignmentDAO extends DAO {
 
 		// Get counts of incomplete submissions
 		$result =& $this->retrieve(
-			'SELECT	ea.editor_id,
-				COUNT(ea.monograph_id) AS incomplete
-			FROM	edit_assignments ea,
-				monographs a
-			WHERE	ea.monograph_id = a.monograph_id AND
+			'SELECT ea.editor_id, COUNT(ea.monograph_id) AS incomplete
+			FROM edit_assignments ea, monographs a
+			WHERE ea.monograph_id = a.monograph_id AND
 				a.press_id = ? AND
 				a.status = ' . STATUS_QUEUED . '
 			GROUP BY ea.editor_id',

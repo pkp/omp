@@ -109,7 +109,7 @@ class AuthorSubmissionDAO extends DAO {
 		$this->monographDao->_monographFromRow($authorSubmission, $row);
 
 		// Editor Assignment
-		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByMonographId($row['monograph_id']);
+		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
 		$authorSubmission->setEditAssignments($editAssignments->toArray());
 
 

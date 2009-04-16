@@ -143,7 +143,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 		if ($this->getSubmissionProgress()) return (STATUS_INCOMPLETE);
 
 		// The submission is STATUS_QUEUED. Find out where it's queued.
-		$editAssignments = $this->getEditAssignments();
+		$editAssignments = $this->getByIds();
 		if (empty($editAssignments))
 			return (STATUS_QUEUED_UNASSIGNED);
 
@@ -166,7 +166,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * Get edit assignments for this article.
 	 * @return array
 	 */
-	function &getEditAssignments() {
+	function &getByIds() {
 		$editAssignments =& $this->getData('editAssignments');
 		return $editAssignments;
 	}
@@ -932,7 +932,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 		if ($this->getStatus() != STATUS_QUEUED) return null;
 
 		// Awaiting assignment.
-		$editAssignments = $this->getEditAssignments();
+		$editAssignments = $this->getByIds();
 		if (empty($editAssignments)) return $highlightClass;
 
 		$journal =& Request::getJournal();

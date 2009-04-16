@@ -105,7 +105,7 @@ class mergeUsers extends CommandLineTool {
 		}
 
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getEditAssignmentsByUserId($oldUserId);
+		$editAssignments =& $editAssignmentDao->getByUserId($oldUserId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$editAssignment->setEditorId($newUserId);
 			$editAssignmentDao->updateEditAssignment($editAssignment);

@@ -154,7 +154,7 @@ class DesignerAction extends Action {
 		import('mail.ArticleMailTemplate');
 		$email = new ArticleMailTemplate($submission, 'LAYOUT_COMPLETE');
 
-		$editAssignments = &$submission->getEditAssignments();
+		$editAssignments = &$submission->getByIds();
 		if (empty($editAssignments)) return;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {

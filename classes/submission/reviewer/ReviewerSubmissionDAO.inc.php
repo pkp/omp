@@ -102,7 +102,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission = new ReviewerSubmission();
 
 		// Editor Assignment
-		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByMonographId($row['monograph_id']);
+		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
 		$reviewerSubmission->setEditAssignments($editAssignments->toArray());
 
 		// Files

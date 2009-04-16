@@ -65,7 +65,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="user.role.editor"}</td>
-		{assign var="editAssignments" value=$submission->getEditAssignments()}
+		{assign var="editAssignments" value=$submission->getByIds()}
 		<td width="80%" colspan="2" class="data">
 			{foreach from=$editAssignments item=editAssignment}
 				{assign var=emailString value="`$editAssignment->getEditorFullName()` <`$editAssignment->getEditorEmail()`>"}

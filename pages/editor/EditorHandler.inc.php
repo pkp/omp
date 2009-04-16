@@ -50,7 +50,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 	//	$templateMgr->assign('dateFieldOptions', EditorHandler::getDateFieldOptions());
 
 
-		$submissionsCount =& $editorSubmissionDao->getEditorSubmissionsCount($press->getId());
+		$submissionsCount =& $editorSubmissionDao->getCount($press->getId());
 		$templateMgr->assign('submissionsCount', $submissionsCount);
 		$templateMgr->assign('helpTopicId', 'editorial.editorsRole');
 		$templateMgr->display('editor/index.tpl');
@@ -127,20 +127,20 @@ class EditorHandler extends AcquisitionsEditorHandler {
 
 		switch($page) {
 			case 'submissionsUnassigned':
-				$functionName = 'getEditorSubmissionsUnassigned';
+				$functionName = 'getUnassigned';
 				$helpTopicId = 'editorial.editorsRole.submissions.unassigned';
 				break;
 			case 'submissionsInEditing':
-				$functionName = 'getEditorSubmissionsInEditing';
+				$functionName = 'getInEditing';
 				$helpTopicId = 'editorial.editorsRole.submissions.inEditing';
 				break;
 			case 'submissionsArchives':
-				$functionName = 'getEditorSubmissionsArchives';
+				$functionName = 'getArchives';
 				$helpTopicId = 'editorial.editorsRole.submissions.archives';
 				break;
 			default:
 				$page = 'submissionsInReview';
-				$functionName = 'getEditorSubmissionsInReview';
+				$functionName = 'getInReview';
 				$helpTopicId = 'editorial.editorsRole.submissions.inReview';
 		}
 
@@ -221,14 +221,14 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$editId = (int) (isset($args[0])?$args[0]:0);
 
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignment =& $editAssignmentDao->getEditAssignment($editId);
+		$editAssignment =& $editAssignmentDao->getById($editId);
 
 		if ($editAssignment) {
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
 			$monograph =& $monographDao->getMonograph($editAssignment->getMonographId());
 
 			if ($monograph && $monograph->getPressId() === $press->getId()) {
-				$editAssignmentDao->deleteEditAssignmentById($editAssignment->getEditId());
+				$editAssignmentDao->deleteById($editAssignment->getEditId());
 				Request::redirect(null, null, 'submission', $monograph->getMonographId());
 			}
 		}
@@ -241,7 +241,6 @@ class EditorHandler extends AcquisitionsEditorHandler {
 	 */
 	function assignEditor($args) {
 		EditorHandler::validate();
-
 		$press =& Request::getPress();
 		$monographId = Request::getUserVar('monographId');
 		$editorId = Request::getUserVar('editorId');
@@ -287,8 +286,8 @@ class EditorHandler extends AcquisitionsEditorHandler {
 				$roleName = 'user.role.editor';
 				$editors =& $editorSubmissionDao->getUsersNotAssignedToMonograph($press->getId(), $monographId, RoleDAO::getRoleIdFromPath('editor'), $searchType, $search, $searchMatch, $rangeInfo);
 			} else {
-				$roleName = 'user.role.sectionEditor';
-				$editors =& $editorSubmissionDao->getUsersNotAssignedToMonograph($press->getId(), $monographId, RoleDAO::getRoleIdFromPath('sectionEditor'), $searchType, $search, $searchMatch, $rangeInfo);
+				$roleName = 'user.role.acquisitionsEditor';
+				$editors =& $editorSubmissionDao->getUsersNotAssignedToMonograph($press->getId(), $monographId, RoleDAO::getRoleIdFromPath('acquisitionsEditor'), $searchType, $search, $searchMatch, $rangeInfo);
 			}
 
 			$templateMgr =& TemplateManager::getManager();
@@ -297,13 +296,13 @@ class EditorHandler extends AcquisitionsEditorHandler {
 			$templateMgr->assign('roleName', $roleName);
 			$templateMgr->assign('monographId', $monographId);
 
-//			$sectionDao =& DAORegistry::getDAO('SectionDAO');
-//			$sectionEditorSections =& $sectionDao->getEditorSections($press->getId());
+			$acquisitionsArrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
+			$acquisitionsEditorArrangements =& $acquisitionsArrangementDao->getEditorAcquisitionArrangements($press->getId());
 
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 			$editorStatistics = $editAssignmentDao->getEditorStatistics($press->getId());
 
-			$templateMgr->assign_by_ref('editorSections', $sectionEditorSections);
+			$templateMgr->assign_by_ref('editorArrangements', $acquisitionsEditorArrangements);
 			$templateMgr->assign('editorStatistics', $editorStatistics);
 
 			$templateMgr->assign('searchField', $searchType);
@@ -384,6 +383,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		if (!isset($press) || ($page == 'acquisitionsEditor' && !Validation::isAcquisitionsEditor($press->getId())) || ($page == 'editor' && !Validation::isEditor($press->getId()))) {
 			Validation::redirectLogin();
 		}
+
 	}
 	function userProfile($args) {
 		import('pages.acquisitionsEditor.AcquisitionsEditorHandler');

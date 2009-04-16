@@ -129,7 +129,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$this->monographDao->_monographFromRow($acquisitionsEditorSubmission, $row);
 
 		// Editor Assignment
-		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByMonographId($row['monograph_id']);
+		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
 		$acquisitionsEditorSubmission->setEditAssignments($editAssignments->toArray());
 
 		// Editor Decisions
@@ -230,7 +230,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 */
 	function updateAcquisitionsEditorSubmission(&$acquisitionsEditorSubmission) {
 		// update edit assignment
-		$editAssignments =& $acquisitionsEditorSubmission->getEditAssignments();
+		$editAssignments =& $acquisitionsEditorSubmission->getByIds();
 		foreach ($editAssignments as $editAssignment) {
 			if ($editAssignment->getEditId() > 0) {
 				$this->editAssignmentDao->updateEditAssignment($editAssignment);

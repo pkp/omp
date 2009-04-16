@@ -51,7 +51,7 @@ class AuthorSubmission extends Monograph {
 	 * Get edit assignments for this monograph.
 	 * @return array
 	 */
-	function &getEditAssignments() {
+	function &getByIds() {
 		$editAssignments = &$this->getData('editAssignments');
 		return $editAssignments;
 	}
@@ -166,7 +166,7 @@ class AuthorSubmission extends Monograph {
 		if ($this->getSubmissionProgress()) return (STATUS_INCOMPLETE);
 
 		// The submission is STATUS_QUEUED. Find out where it's queued.
-		$editAssignments = $this->getEditAssignments();
+		$editAssignments = $this->getByIds();
 		if (empty($editAssignments)) 
 			return (STATUS_QUEUED_UNASSIGNED);
 

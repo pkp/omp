@@ -104,7 +104,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 
 	function endWorkflowProcess($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$processId = isset($args[1]) ? (int) $args[1] : 0;//validate
+		$processId = isset($args[1]) ? (int) $args[1] : 0;//fixme: validate
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
 
 		$process =& Action::endSignoffProcess($processId);print_r($process);exit;
@@ -176,7 +176,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$editorDecisions = $submission->getDecisions($round);
 		$lastDecision = null;//count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;				
 
-		$editAssignments =& $submission->getEditAssignments();
+		$editAssignments =& $submission->getByIds();
 //		$allowRecommendation = $submission->getCurrentRound() == $round && $submission->getReviewFileId() != null && !empty($editAssignments);
 		$allowResubmit = $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT && $acquisitionsEditorSubmissionDao->getMaxReviewRound($monographId) == $round ? true : false;
 		$allowCopyedit = $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT && $submission->getCopyeditFileId() == null ? true : false;
@@ -424,18 +424,18 @@ $sections = null;
 	// Peer Review
 	//
 	function selectReviewer($args) {
-		parent::setupTemplate();
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$reviewType = isset($args[1]) ? (int) $args[1] : 0;
-		$reviewerId = Request::getUserVar('reviewerId');
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$reviewerId = Request::getUserVar('reviewerId');
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+
 		$submission->setCurrentReviewType($reviewType);
 
 		$round = $submission->getCurrentRoundByReviewType($reviewType);
 
 		if (isset($reviewerId)) {
-			// Assign reviewer to monograph			
+			// Assign reviewer to monograph
 			AcquisitionsEditorAction::addReviewer($submission, $reviewerId, $reviewType);
 			Request::redirect(null, null, 'submissionReview', $monographId);
 
@@ -2410,7 +2410,7 @@ $sections = null;
 				$templateMgr->assign('canEdit', true);
 			} else {
 				// If this user isn't the submission's editor, they don't have access.
-				$editAssignments =& $acquisitionsEditorSubmission->getEditAssignments();
+				$editAssignments =& $acquisitionsEditorSubmission->getByIds();
 				$wasFound = false;
 				foreach ($editAssignments as $editAssignment) {
 					if ($editAssignment->getEditorId() == $user->getUserId()) {
@@ -2445,7 +2445,7 @@ $sections = null;
 
 		// If necessary, note the current date and time as the "underway" date/time
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $acquisitionsEditorSubmission->getEditAssignments();
+		$editAssignments =& $acquisitionsEditorSubmission->getByIds();
 		foreach ($editAssignments as $editAssignment) {
 			if ($editAssignment->getEditorId() == $user->getUserId() && $editAssignment->getDateUnderway() === null) {
 				$editAssignment->setDateUnderway(Core::getCurrentDate());

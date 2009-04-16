@@ -128,7 +128,7 @@ class DesignerSubmissionDAO extends DAO {
 
 //		$submission->setGalleys($this->galleyDao->getGalleysByMonograph($row['monograph_id']));
 
-//		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByMonographId($row['monograph_id']);
+//		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
 //		$submission->setEditAssignments($editAssignments->toArray());
 
 //		$submission->setProofAssignment($this->proofAssignmentDao->getProofAssignmentByMonographId($row['monograph_id']));

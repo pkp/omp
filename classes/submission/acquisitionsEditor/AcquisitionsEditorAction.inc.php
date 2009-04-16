@@ -49,7 +49,7 @@ class AcquisitionsEditorAction extends Action {
 	 * @param $decision int
 	 */
 	function recordDecision($acquisitionsEditorSubmission, $decision) {
-		$editAssignments =& $acquisitionsEditorSubmission->getEditAssignments();
+		$editAssignments =& $acquisitionsEditorSubmission->getByIds();
 		if (empty($editAssignments)) return;
 
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
@@ -71,7 +71,7 @@ class AcquisitionsEditorAction extends Action {
 			// Add log
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), ARTICLE_LOG_EDITOR_DECISION, ARTICLE_LOG_TYPE_EDITOR, $user->getUserId(), 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'decision' => Locale::translate($decisions[$decision])));
+			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_DECISION, MONOGRAPH_LOG_TYPE_EDITOR, $user->getUserId(), 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'decision' => Locale::translate($decisions[$decision])));
 		}
 	}
 
@@ -130,7 +130,7 @@ class AcquisitionsEditorAction extends Action {
 			// Add log
 //		import('monograph.log.MonographLog');
 //			import('monograph.log.MonographEventLogEntry');
-//			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), ARTICLE_LOG_REVIEW_ASSIGN, ARTICLE_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'round' => $round));
+//			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_ASSIGN, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'round' => $round));
 		}
 	}
 
@@ -156,7 +156,7 @@ class AcquisitionsEditorAction extends Action {
 			// Add log
 /*			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), ARTICLE_LOG_REVIEW_CLEAR, ARTICLE_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'round' => $reviewAssignment->getRound()));
+			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_CLEAR, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'round' => $reviewAssignment->getRound()));
 */		}
 	}
 
@@ -200,7 +200,7 @@ class AcquisitionsEditorAction extends Action {
 			if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 				HookRegistry::call('AcquisitionsEditorAction::notifyReviewer', array(&$acquisitionsEditorSubmission, &$reviewAssignment, &$email));
 				if ($email->isEnabled()) {
-					$email->setAssoc(ARTICLE_EMAIL_REVIEW_NOTIFY_REVIEWER, ARTICLE_EMAIL_TYPE_REVIEW, $reviewId);
+					$email->setAssoc(MONOGRAPH_EMAIL_REVIEW_NOTIFY_REVIEWER, MONOGRAPH_EMAIL_TYPE_REVIEW, $reviewId);
 					if ($reviewerAccessKeysEnabled) {
 						import('security.AccessKeyManager');
 						import('pages.reviewer.ReviewerHandler');
@@ -302,7 +302,7 @@ class AcquisitionsEditorAction extends Action {
 				if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 					HookRegistry::call('AcquisitionsEditorAction::cancelReview', array(&$acquisitionsEditorSubmission, &$reviewAssignment, &$email));
 					if ($email->isEnabled()) {
-						$email->setAssoc(ARTICLE_EMAIL_REVIEW_CANCEL, ARTICLE_EMAIL_TYPE_REVIEW, $reviewId);
+						$email->setAssoc(MONOGRAPH_EMAIL_REVIEW_CANCEL, MONOGRAPH_EMAIL_TYPE_REVIEW, $reviewId);
 						$email->send();
 					}
 
@@ -315,7 +315,7 @@ class AcquisitionsEditorAction extends Action {
 					// Add log
 					import('monograph.log.MonographLog');
 					import('monograph.log.MonographEventLogEntry');
-					MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), ARTICLE_LOG_REVIEW_CANCEL, ARTICLE_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCancelled', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'round' => $reviewAssignment->getRound()));
+					MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_CANCEL, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCancelled', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'round' => $reviewAssignment->getRound()));
 				} else {
 					if (!Request::getUserVar('continued')) {
 						$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
@@ -367,7 +367,7 @@ class AcquisitionsEditorAction extends Action {
 
 		if ($send && !$email->hasErrors()) {
 			HookRegistry::call('AcquisitionsEditorAction::remindReviewer', array(&$acquisitionsEditorSubmission, &$reviewAssignment, &$email));
-			$email->setAssoc(ARTICLE_EMAIL_REVIEW_REMIND, ARTICLE_EMAIL_TYPE_REVIEW, $reviewId);
+			$email->setAssoc(MONOGRAPH_EMAIL_REVIEW_REMIND, MONOGRAPH_EMAIL_TYPE_REVIEW, $reviewId);
 
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 
@@ -456,7 +456,7 @@ class AcquisitionsEditorAction extends Action {
 			if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 				HookRegistry::call('AcquisitionsEditorAction::thankReviewer', array(&$acquisitionsEditorSubmission, &$reviewAssignment, &$email));
 				if ($email->isEnabled()) {
-					$email->setAssoc(ARTICLE_EMAIL_REVIEW_THANK_REVIEWER, ARTICLE_EMAIL_TYPE_REVIEW, $reviewId);
+					$email->setAssoc(MONOGRAPH_EMAIL_REVIEW_THANK_REVIEWER, MONOGRAPH_EMAIL_TYPE_REVIEW, $reviewId);
 					$email->send();
 				}
 
@@ -510,7 +510,7 @@ class AcquisitionsEditorAction extends Action {
 			// Add log
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($monographId, ARTICLE_LOG_REVIEW_RATE, ARTICLE_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewerRated', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $monographId, 'round' => $reviewAssignment->getRound()));
+			MonographLog::logEvent($monographId, MONOGRAPH_LOG_REVIEW_RATE, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewerRated', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $monographId, 'round' => $reviewAssignment->getRound()));
 		}
 	}
 
@@ -576,8 +576,8 @@ class AcquisitionsEditorAction extends Action {
 			import('monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent(
 				$monographId,
-				ARTICLE_LOG_REVIEW_SET_DUE_DATE,
-				ARTICLE_LOG_TYPE_REVIEW,
+				MONOGRAPH_LOG_REVIEW_SET_DUE_DATE,
+				MONOGRAPH_LOG_TYPE_REVIEW,
 				$reviewAssignment->getReviewId(),
 				'log.review.reviewDueDateSet',
 				array(
@@ -612,7 +612,7 @@ class AcquisitionsEditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('AcquisitionsEditorAction::unsuitableSubmission', array(&$acquisitionsEditorSubmission, &$author, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_EDITOR_NOTIFY_AUTHOR_UNSUITABLE, ARTICLE_EMAIL_TYPE_EDITOR, $user->getUserId());
+				$email->setAssoc(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR_UNSUITABLE, MONOGRAPH_EMAIL_TYPE_EDITOR, $user->getUserId());
 				$email->send();
 			}
 			AcquisitionsEditorAction::archiveSubmission($acquisitionsEditorSubmission);
@@ -661,7 +661,7 @@ class AcquisitionsEditorAction extends Action {
 			// Add log
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($monographId, ARTICLE_LOG_REVIEW_RECOMMENDATION_BY_PROXY, ARTICLE_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewRecommendationSetByProxy', array('editorName' => $user->getFullName(), 'reviewerName' => $reviewer->getFullName(), 'monographId' => $monographId, 'round' => $reviewAssignment->getRound()));
+			MonographLog::logEvent($monographId, MONOGRAPH_LOG_REVIEW_RECOMMENDATION_BY_PROXY, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewRecommendationSetByProxy', array('editorName' => $user->getFullName(), 'reviewerName' => $reviewer->getFullName(), 'monographId' => $monographId, 'round' => $reviewAssignment->getRound()));
 		}
 	}
 
@@ -763,7 +763,7 @@ class AcquisitionsEditorAction extends Action {
 			// Add log
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_SET_FILE, ARTICLE_LOG_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getCopyeditFileId(), 'log.copyedit.copyeditFileSet');
+			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_SET_FILE, MONOGRAPH_LOG_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getCopyeditFileId(), 'log.copyedit.copyeditFileSet');
 		}
 	}
 
@@ -822,7 +822,7 @@ class AcquisitionsEditorAction extends Action {
 			// Add log
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), ARTICLE_LOG_REVIEW_RESUBMIT, ARTICLE_LOG_TYPE_EDITOR, $user->getUserId(), 'log.review.resubmit', array('monographId' => $acquisitionsEditorSubmission->getMonographId()));
+			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_RESUBMIT, MONOGRAPH_LOG_TYPE_EDITOR, $user->getUserId(), 'log.review.resubmit', array('monographId' => $acquisitionsEditorSubmission->getMonographId()));
 		}
 	}
 
@@ -851,7 +851,7 @@ class AcquisitionsEditorAction extends Action {
 			// Add log
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_ASSIGN, ARTICLE_LOG_TYPE_COPYEDIT, $copyeditorId, 'log.copyedit.copyeditorAssigned', array('copyeditorName' => $copyeditor->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId()));
+			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_ASSIGN, MONOGRAPH_LOG_TYPE_COPYEDIT, $copyeditorId, 'log.copyedit.copyeditorAssigned', array('copyeditorName' => $copyeditor->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId()));
 		}
 	}
 
@@ -875,7 +875,7 @@ class AcquisitionsEditorAction extends Action {
 		if ($acquisitionsEditorSubmission->getInitialCopyeditFile() && (!$email->isEnabled() || ($send && !$email->hasErrors()))) {
 			HookRegistry::call('AcquisitionsEditorAction::notifyCopyeditor', array(&$acquisitionsEditorSubmission, &$copyeditor, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_COPYEDIT_NOTIFY_COPYEDITOR, ARTICLE_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_COPYEDITOR, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
 				$email->send();
 			}
 
@@ -936,7 +936,7 @@ class AcquisitionsEditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('AcquisitionsEditorAction::thankCopyeditor', array(&$acquisitionsEditorSubmission, &$copyeditor, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_COPYEDIT_NOTIFY_ACKNOWLEDGE, ARTICLE_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_ACKNOWLEDGE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
 				$email->send();
 			}
 
@@ -977,7 +977,7 @@ class AcquisitionsEditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('AcquisitionsEditorAction::notifyAuthorCopyedit', array(&$acquisitionsEditorSubmission, &$author, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_COPYEDIT_NOTIFY_AUTHOR, ARTICLE_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
 				$email->send();
 			}
 
@@ -1025,7 +1025,7 @@ class AcquisitionsEditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('AcquisitionsEditorAction::thankAuthorCopyedit', array(&$acquisitionsEditorSubmission, &$author, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_COPYEDIT_NOTIFY_AUTHOR_ACKNOWLEDGE, ARTICLE_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR_ACKNOWLEDGE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
 				$email->send();
 			}
 
@@ -1067,7 +1067,7 @@ class AcquisitionsEditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('AcquisitionsEditorAction::notifyFinalCopyedit', array(&$acquisitionsEditorSubmission, &$copyeditor, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_COPYEDIT_NOTIFY_FINAL, ARTICLE_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_FINAL, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
 				$email->send();
 			}
 
@@ -1115,7 +1115,7 @@ class AcquisitionsEditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('AcquisitionsEditorAction::thankFinalCopyedit', array(&$acquisitionsEditorSubmission, &$copyeditor, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_COPYEDIT_NOTIFY_FINAL_ACKNOWLEDGE, ARTICLE_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_FINAL_ACKNOWLEDGE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
 				$email->send();
 			}
 
@@ -1193,7 +1193,7 @@ class AcquisitionsEditorAction extends Action {
 			// Add log
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), ARTICLE_LOG_EDITOR_FILE, ARTICLE_LOG_TYPE_EDITOR, $acquisitionsEditorSubmission->getEditorFileId(), 'log.editor.editorFile');
+			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_FILE, MONOGRAPH_LOG_TYPE_EDITOR, $acquisitionsEditorSubmission->getEditorFileId(), 'log.editor.editorFile');
 		}
 	}
 
@@ -1257,7 +1257,7 @@ class AcquisitionsEditorAction extends Action {
 		// Add log entry
 		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');
-		MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_INITIAL, ARTICLE_LOG_TYPE_COPYEDIT, $user->getUserId(), 'log.copyedit.initialEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId()));
+		MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_INITIAL, MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getUserId(), 'log.copyedit.initialEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId()));
 	}
 
 	/**
@@ -1295,7 +1295,7 @@ class AcquisitionsEditorAction extends Action {
 		// Add log entry
 		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');
-		MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_FINAL, ARTICLE_LOG_TYPE_COPYEDIT, $user->getUserId(), 'log.copyedit.finalEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId()));
+		MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_FINAL, MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getUserId(), 'log.copyedit.finalEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId()));
 	}
 
 	/**
@@ -1316,7 +1316,7 @@ class AcquisitionsEditorAction extends Action {
 		// Add log
 		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');
-		MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), ARTICLE_LOG_EDITOR_ARCHIVE, ARTICLE_LOG_TYPE_EDITOR, $acquisitionsEditorSubmission->getMonographId(), 'log.editor.archived', array('monographId' => $acquisitionsEditorSubmission->getMonographId()));
+		MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_ARCHIVE, MONOGRAPH_LOG_TYPE_EDITOR, $acquisitionsEditorSubmission->getMonographId(), 'log.editor.archived', array('monographId' => $acquisitionsEditorSubmission->getMonographId()));
 	}
 
 	/**
@@ -1346,7 +1346,7 @@ class AcquisitionsEditorAction extends Action {
 		// Add log
 		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');
-		MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), ARTICLE_LOG_EDITOR_RESTORE, ARTICLE_LOG_TYPE_EDITOR, $acquisitionsEditorSubmission->getMonographId(), 'log.editor.restored', array('monographId' => $acquisitionsEditorSubmission->getMonographId()));
+		MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_RESTORE, MONOGRAPH_LOG_TYPE_EDITOR, $acquisitionsEditorSubmission->getMonographId(), 'log.editor.restored', array('monographId' => $acquisitionsEditorSubmission->getMonographId()));
 	}
 
 	/**
@@ -1411,7 +1411,7 @@ class AcquisitionsEditorAction extends Action {
 		import('monograph.log.MonographEventLogEntry');
 
 		if ($layoutAssignment->getEditorId()) {
-			MonographLog::logEvent($submission->getMonographId(), ARTICLE_LOG_LAYOUT_UNASSIGN, ARTICLE_LOG_TYPE_LAYOUT, $layoutAssignment->getLayoutId(), 'log.layout.layoutEditorUnassigned', array('editorName' => $layoutAssignment->getEditorFullName(), 'monographId' => $submission->getMonographId()));
+			MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_UNASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $layoutAssignment->getLayoutId(), 'log.layout.layoutEditorUnassigned', array('editorName' => $layoutAssignment->getEditorFullName(), 'monographId' => $submission->getMonographId()));
 		}
 */
 		$layoutAssignment = new LayoutAssignment;
@@ -1429,7 +1429,7 @@ class AcquisitionsEditorAction extends Action {
 
 //		$layoutAssignment =& $layoutDao->getLayoutAssignmentById($layoutAssignment->getLayoutId());
 /*
-		MonographLog::logEvent($submission->getMonographId(), ARTICLE_LOG_LAYOUT_ASSIGN, ARTICLE_LOG_TYPE_LAYOUT, $layoutAssignment->getLayoutId(), 'log.layout.layoutEditorAssigned', array('editorName' => $layoutAssignment->getEditorFullName(), 'monographId' => $submission->getMonographId()));
+		MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_ASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $layoutAssignment->getLayoutId(), 'log.layout.layoutEditorAssigned', array('editorName' => $layoutAssignment->getEditorFullName(), 'monographId' => $submission->getMonographId()));
 */	}
 
 	/**
@@ -1463,7 +1463,7 @@ class AcquisitionsEditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('AcquisitionsEditorAction::notifyLayoutEditor', array(&$submission, &$layoutDesigner, &$layoutAssignment, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_LAYOUT_NOTIFY_EDITOR, ARTICLE_EMAIL_TYPE_LAYOUT, $layoutAssignment->getId());
+				$email->setAssoc(MONOGRAPH_EMAIL_LAYOUT_NOTIFY_EDITOR, MONOGRAPH_EMAIL_TYPE_LAYOUT, $layoutAssignment->getId());
 				$email->send();
 			}
 			$layoutAssignment->setDateNotified(Core::getCurrentDate());
@@ -1511,7 +1511,7 @@ class AcquisitionsEditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('AcquisitionsEditorAction::thankLayoutEditor', array(&$submission, &$layoutEditor, &$layoutAssignment, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_LAYOUT_THANK_EDITOR, ARTICLE_EMAIL_TYPE_LAYOUT, $layoutAssignment->getLayoutId());
+				$email->setAssoc(MONOGRAPH_EMAIL_LAYOUT_THANK_EDITOR, MONOGRAPH_EMAIL_TYPE_LAYOUT, $layoutAssignment->getLayoutId());
 				$email->send();
 			}
 
@@ -2184,9 +2184,9 @@ class AcquisitionsEditorAction extends Action {
 			$entry->setMonographId($reviewAssignment->getMonographId());
 			$entry->setUserId($user->getUserId());
 			$entry->setDateLogged(Core::getCurrentDate());
-			$entry->setEventType(ARTICLE_LOG_REVIEW_CONFIRM_BY_PROXY);
+			$entry->setEventType(MONOGRAPH_LOG_REVIEW_CONFIRM_BY_PROXY);
 			$entry->setLogMessage($accept?'log.review.reviewAcceptedByProxy':'log.review.reviewDeclinedByProxy', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getMonographId(), 'round' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));
-			$entry->setAssocType(ARTICLE_LOG_TYPE_REVIEW);
+			$entry->setAssocType(MONOGRAPH_LOG_TYPE_REVIEW);
 			$entry->setAssocId($reviewAssignment->getReviewId());
 
 			MonographLog::logEventEntry($reviewAssignment->getMonographId(), $entry);
@@ -2242,9 +2242,9 @@ class AcquisitionsEditorAction extends Action {
 			$entry->setMonographId($reviewAssignment->getMonographId());
 			$entry->setUserId($user->getUserId());
 			$entry->setDateLogged(Core::getCurrentDate());
-			$entry->setEventType(ARTICLE_LOG_REVIEW_FILE_BY_PROXY);
+			$entry->setEventType(MONOGRAPH_LOG_REVIEW_FILE_BY_PROXY);
 			$entry->setLogMessage('log.review.reviewFileByProxy', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getMonographId(), 'round' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));
-			$entry->setAssocType(ARTICLE_LOG_TYPE_REVIEW);
+			$entry->setAssocType(MONOGRAPH_LOG_TYPE_REVIEW);
 			$entry->setAssocId($reviewAssignment->getReviewId());
 
 			MonographLog::logEventEntry($reviewAssignment->getMonographId(), $entry);

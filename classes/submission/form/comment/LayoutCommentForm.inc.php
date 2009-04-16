@@ -86,7 +86,7 @@ class LayoutCommentForm extends CommentForm {
 		} else {
 			// Then add editor
 			$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
-			$editAssignments = &$editAssignmentDao->getEditAssignmentsByArticleId($this->article->getArticleId());
+			$editAssignments = &$editAssignmentDao->getByIdsByArticleId($this->article->getArticleId());
 			$editorAddresses = array();
 			while (!$editAssignments->eof()) {
 				$editAssignment =& $editAssignments->next();

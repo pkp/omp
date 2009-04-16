@@ -79,7 +79,7 @@ class Request extends PKPRequest {
 	}
 
 	/**
-	 * A Generic call to a context-defined path (e.g. a Journal or a Conference's path) 
+	 * A Generic call to a context-defined path (e.g. a Press or a Conference's path) 
 	 * @param $contextLevel int (optional) the number of levels of context to return in the path
 	 * @return array of String (each element the path to one context element)
 	 */
@@ -89,7 +89,7 @@ class Request extends PKPRequest {
 	}
 	
 	/**
-	 * A Generic call to a context defining object (e.g. a Journal, a Conference, or a SchedConf)
+	 * A Generic call to a context defining object (e.g. a Press, a Conference, or a SchedConf)
 	 * @return Press
 	 * @param $level int (optional) the desired context level
 	 */
@@ -104,7 +104,7 @@ class Request extends PKPRequest {
 	}	
 	
 	/**
-	 * Get the object that represents the desired context (e.g. Conference or Journal)
+	 * Get the object that represents the desired context (e.g. Conference or Press)
 	 * @param $contextName String specifying the page context 
 	 * @return Press
 	 */
@@ -130,6 +130,39 @@ class Request extends PKPRequest {
 	function url($pressPath = null, $page = null, $op = null, $path = null, 
 			$params = null, $anchor = null, $escape = false) {
 		return parent::url(array($pressPath), $page, $op, $path, $params, $anchor, $escape);
+	}
+
+	/**
+	 * Redirect to user home page (or the role home page if the user has one role).
+	 */
+	function redirectHome() {
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$user = Request::getUser();
+		$userId = $user->getUserId();
+
+		if ($press =& Request::getPress()) { 
+			// The user is in the press context, see if they have one role only
+			$roles =& $roleDao->getRolesByUserId($userId, $press->getPressId());
+			if(count($roles) == 1) {
+				$role = array_shift($roles);
+				Request::redirect(null, $role->getRolePath());
+			} else {
+				Request::redirect(null, 'user');
+			}
+		} else {
+			// The user is at the site context, check to see if they are
+			// only registered in one place w/ one role
+			$pressDao =& DAORegistry::getDAO('PressDAO');
+			$presss =& $pressDao->getPresses();
+			$roles = $roleDao->getRolesByUserId($userId);
+			
+			if(count($roles) == 1) {
+				$role = array_shift($roles);
+				$press = $pressDao->getPress($role->getPressId());
+				isset($press) ? Request::redirect($press->getPath(), $role->getRolePath()) :
+								  Request::redirect('index', 'user');
+			} else Request::redirect('index', 'user');
+		}
 	}
 }
 

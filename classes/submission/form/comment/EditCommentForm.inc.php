@@ -124,7 +124,7 @@ class EditCommentForm extends Form {
 
 		// Get editors for article
 		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments = &$editAssignmentDao->getEditAssignmentsByArticleId($this->article->getArticleId());
+		$editAssignments = &$editAssignmentDao->getByIdsByArticleId($this->article->getArticleId());
 		$editAssignments =& $editAssignments->toArray();
 		$editorAddresses = array();
 		foreach ($editAssignments as $editAssignment) {

@@ -30,7 +30,7 @@
 	<tr>
 		<td class="label">{translate key="user.role.editor"}</td>
 		<td>
-			{assign var=editAssignments value=$submission->getEditAssignments()}
+			{assign var=editAssignments value=$submission->getByIds()}
 			{foreach from=$editAssignments item=editAssignment}
 				{assign var=emailString value="`$editAssignment->getDesignerFullName()` <`$editAssignment->getDesignerEmail()`>"}
 				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getMonographTitle()|strip_tags monographId=$submission->getMonographId()}
