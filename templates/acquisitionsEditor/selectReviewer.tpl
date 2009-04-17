@@ -86,7 +86,7 @@
 		{if $reviewer->review_id}
 			{translate key="common.alreadyAssigned"}
 		{else}
-		<a class="action" href="{url op=$selectReviewerFunction path=$monographId|to_array:$reviewType reviewerId=$reviewer->getUserId()}">{translate key="common.assign"}</a>
+		<a class="action" href="{url op=$selectReviewerFunction path=$monographId reviewerId=$reviewer->getUserId()}">{translate key="common.assign"}</a>
 		{/if}
 	</td>
 </tr>

@@ -1,13 +1,15 @@
-
 {foreach from=$reviewProcesses item=reviewProcess}
 <div style="border:1px solid gray">
+
+{if $reviewProcess->getCurrentProcess() == true}
+
 <table class="data" width="100%">
 	<tr valign="middle">
-		<td width="22%"><h3>{$reviewProcess->getLocalizedName()}</h3></td>
+		<td width="22%"><h3>{$reviewProcess->getTitle()}</h3></td>
 		<td width="14%"><h4>{if $reviewType == $reviewProcess->getId()}{translate key="submission.round" round=$round}{/if}</h4></td>
 		<td width="64%" class="nowrap">
 			{if $reviewType == $reviewProcess->getId()}
-			<a href="{url op="selectReviewer" path=$submission->getMonographId()|to_array:$reviewProcess->getId()}" class="action">{translate key="editor.monograph.selectReviewer"}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="{url op="selectReviewer" path=$submission->getMonographId()}" class="action">{translate key="editor.monograph.selectReviewer"}</a>&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="{url op="submissionRegrets" path=$submission->getMonographId()}" class="action">{translate|escape key="editor.regrets.link"}</a>
 			{else}
 				<em>The document will go through this review once the above review is complete.</em>
@@ -237,7 +239,7 @@
 <div class="separator"></div>
 <table class="data" width="100%">
 	<tr valign="middle">
-		<td width="22%"><h3>{$reviewProcess->getLocalizedName()} Signoff</h3></td>
+		<td width="22%"><h3>{$reviewProcess->getTitle()} Signoff</h3></td>
 		<td width="14%"><a href="{url op="endWorkflowProcess" path=$submission->getMonographId()|to_array:$reviewProcess->getId()}">Sign off</a></td>
 		<td width="64%" class="nowrap">
 			{if $signoffWait}There are/is {$signoffQueue} more people/person that must sign off.{/if}
@@ -245,6 +247,17 @@
 	</tr>
 </table>
 {/if}
+
+{elseif $reviewProcess->getDateSigned() != null}
+
+<h3>{$reviewProcess->getTitle()}: Done ({$reviewProcess->getDateSigned()})</h3>
+
+{else}
+
+<h3>{$reviewProcess->getTitle()}: To be done after the internal review.</h3>
+
+{/if}
+
 </div>
 	<div class="separator"></div>
 {/foreach}{*review types*}

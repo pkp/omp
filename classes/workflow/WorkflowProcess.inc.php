@@ -15,14 +15,16 @@
 
 // $Id$
 
-define('WORKFLOW_PROCESS_TYPE_REVIEW', 1);
+define('WORKFLOW_PROCESS_EDITORIAL', 1);
+define('WORKFLOW_PROCESS_TYPE_REVIEW', 2);
 define('WORKFLOW_PROCESS_TYPE_EDITING_PROCESS', 3);
 define('WORKFLOW_PROCESS_TYPE_COPYEDIT', 4);
 define('WORKFLOW_PROCESS_TYPE_PROOFREAD', 5);
+define('WORKFLOW_PROCESS_TYPE_REVIEW_INTERNAL', 6);
+define('WORKFLOW_PROCESS_TYPE_REVIEW_EXTERNAL', 7);
 
+define('WORKFLOW_PROCESS_STATUS_CURRENT', 2);
 define('WORKFLOW_PROCESS_STATUS_INITIATED', 1);
-define('WORKFLOW_PROCESS_STATUS_ENDED', 2);
-define('WORKFLOW_PROCESS_STATUS_SIGNED', 4);
 define('WORKFLOW_PROCESS_STATUS_SUSPENDED', 8); //for example
 
 class WorkflowProcess extends DataObject {
@@ -141,6 +143,26 @@ class WorkflowProcess extends DataObject {
 		return $this->setData('processId', $eventId);
 	}
 
-}
+	/**
+	 * Get title for this element.
+	 * @return string
+	 */
+	function getTitle() {
+		return $this->getData('title');
+	}
 
+	/**
+	 * set title for this element.
+	 * @param $eventType string
+	 */
+	function setTitle($title) {
+		return $this->setData('title', $title);
+	}
+	function setCurrent($bool) {
+		$this->setData('current', $bool);
+	}
+	function isCurrent() {
+		return $this->getData('current');
+	}
+}
 ?>

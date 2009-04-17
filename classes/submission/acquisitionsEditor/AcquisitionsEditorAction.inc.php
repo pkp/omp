@@ -80,7 +80,7 @@ class AcquisitionsEditorAction extends Action {
 	 * @param $acquisitionsEditorSubmission object
 	 * @param $reviewerId int
 	 */
-	function addReviewer($acquisitionsEditorSubmission, $reviewerId, $reviewType, $round = null) {
+	function addReviewer($acquisitionsEditorSubmission, $reviewerId, $round = null) {
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -91,9 +91,11 @@ class AcquisitionsEditorAction extends Action {
 		// Check to see if the requested reviewer is not already
 		// assigned to review this monograph.
 		if ($round == null) {
-			$round = $acquisitionsEditorSubmission->getCurrentRoundByReviewType($reviewType);
+	//		$round = $acquisitionsEditorSubmission->getCurrentRoundByReviewType($reviewType);
 		}
-
+$round = 1;
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$workflowDao->getCurrent(WORKFLOW_PROCESS_TYPE_REVIEW);
 		$assigned = $acquisitionsEditorSubmissionDao->reviewerExists($acquisitionsEditorSubmission->getMonographId(), $reviewerId, $reviewType, $round);
 
 		// Only add the reviewer if he has not already

@@ -50,9 +50,6 @@ class EditorAction extends AcquisitionsEditorAction {
 				$email->send();
 			}
 
-			import('workflow.WorkflowProcess');
-			Action::initiateSignoffProcess($monographId, WORKFLOW_PROCESS_TYPE_REVIEW, 1);
-
 			$editAssignment = new EditAssignment();
 			$editAssignment->setMonographId($monographId);
 			$editAssignment->setCanEdit(1);

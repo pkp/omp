@@ -424,7 +424,6 @@ print_r($reviewProcesses);
 	//
 	function selectReviewer($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$reviewType = isset($args[1]) ? (int) $args[1] : 0;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
 		$reviewerId = Request::getUserVar('reviewerId');
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
@@ -435,7 +434,7 @@ print_r($reviewProcesses);
 
 		if (isset($reviewerId)) {
 			// Assign reviewer to monograph
-			AcquisitionsEditorAction::addReviewer($submission, $reviewerId, $reviewType);
+			AcquisitionsEditorAction::addReviewer($submission, $reviewerId);
 			Request::redirect(null, null, 'submissionReview', $monographId);
 
 			// FIXME: Prompt for due date.

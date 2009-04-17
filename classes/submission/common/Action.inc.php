@@ -229,17 +229,6 @@ class Action {
 
 	/**
 	 * Initiate a signoff process.
-	 * @param $monographId int
-	 * @param $eventType int
-	 * @param $eventId int
-	 */
-	function initiateSignoffProcess($monographId, $eventType, $eventId) {
-		$signoffProcessDao =& DAORegistry::getDAO('ProcessSignoffDAO');
-		$signoffProcessDao->build($monographId, $eventType, $eventId);
-	}
-
-	/**
-	 * Initiate a signoff process.
 	 * @param $process$Id int
 	 */
 	function &endSignoffProcess($processId) {
