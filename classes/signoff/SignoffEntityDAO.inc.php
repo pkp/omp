@@ -1,20 +1,22 @@
 <?php
 
 /**
- * @file classes/security/RoleDAO.inc.php
+ * @file classes/signoff/SignoffEntityDAO.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class RoleDAO
- * @ingroup security
- * @see Role
+ * @class SignoffEntityDAO
+ * @ingroup signoff
+ * @see SignoffEntity
  *
- * @brief Operations for retrieving and modifying Role objects.
+ * @brief Operations for retrieving and modifying SignoffEntity objects.
  */
 
 // $Id$
 
+define('SIGNOFF_ENTITY_SIGNED_FALSE', 0);
+define('SIGNOFF_ENTITY_SIGNED_TRUE', 1);
 
 import('signoff.SignoffEntity');
 
@@ -56,7 +58,8 @@ class SignoffEntityDAO extends DAO {
 		}
 
 		$result =& $this->retrieve(
-			'SELECT * FROM signoff_entities
+			'SELECT * 
+			FROM signoff_entities
 			WHERE event_type = ? AND
 				event_id = ? AND
 				press_id = ?'.$queryExtra.'
@@ -192,14 +195,14 @@ class SignoffEntityDAO extends DAO {
 	function updateObject(&$signoffEntity) {
 		$returner = $this->update(
 			sprintf(
-				'UPDATE	signoffs
-				SET	entity_type = ?,
+				'UPDATE signoffs
+				SET entity_type = ?,
 					entity_id = ?,
 					press_id = ?,
 					event_type = ?,
 					event_id = ?,
 					vote = ?,
-				WHERE	signoff_id = ?',
+				WHERE signoff_id = ?',
 				$this->datetimeToDB($signoffEntity->getDateNotified()),
 				$this->datetimeToDB($signoffEntity->getDateUnderway()),
 				$this->datetimeToDB($signoffEntity->getDateCompleted()),
@@ -218,27 +221,65 @@ class SignoffEntityDAO extends DAO {
 		return $returner;
 	}
 
+	function getSignoffTasksByUserId($userId) {
+
+	//	$result =& $this->retrieve(
+	//			'SELECT *
+	//			FROM ');
+		return null;
+
+	}
+
+	function &getRequiredSignoffsByProcess($eventType, $eventId, $pressId) {
+//FIXME: pass monographId
+		$sql = 'SELECT u.*, ws.user_id AS user_signoff
+			FROM users u, group_memberships grp, signoff_entities se
+			LEFT JOIN workflow_signoffs ws ON (se.entity_id = ws.user_id)
+			WHERE se.event_type = ? AND 
+				se.event_id = ? AND
+				se.press_id = ? AND
+				(u.user_id = se.entity_id AND 
+				se.entity_type = '. SIGNOFF_ENTITY_TYPE_USER .') OR
+				(se.entity_type = '. SIGNOFF_ENTITY_TYPE_GROUP .' AND 
+				grp.user_id = u.user_id AND 
+				grp.group_id = se.entity_id)
+			ORDER BY u.last_name, u.first_name';
+
+		$result =& $this->retrieve($sql, array($eventType, $eventId, $pressId));
+
+		$userDao =& DAORegistry::getDAO('UserDAO');
+
+		$returner = null;
+
+		while (!$result->EOF) {
+			$user_signoff = $result->fields['user_signoff'];
+			if ($user_signoff == null) {
+				$returner[] =& $userDao->_returnUserFromRow($result->GetRowAssoc(false));
+			}
+			$result->moveNext();
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $returner;;
+	}
+
 	/**
 	 * Update an existing signoff entity entry.
 	 * @param $signoffEntity SignoffEntity
 	 * @return boolean
 	 */
-	function getSignoffUsers($eventType, $eventId, $pressId) {
+	function getSignoffUsers() {
 
-		$sql = 'SELECT * FROM
-			(SELECT u.*
-			FROM signoff_entities se, users u, group_memberships gm
-			WHERE
-			u.user_id=gm.user_id AND
-			gm.group_id=se.entity_id AND
-			se.entity_type='.SIGNOFF_ENTITY_TYPE_GROUP.'
-			UNION
-			SELECT u1.*
-			FROM signoff_entities se1, users u1
-			WHERE
-			u1.user_id=se1.entity_id AND
-			se1.entity_type='.SIGNOFF_ENTITY_TYPE_USER.'
-			) AS t ORDER BY t.first_name, t.last_name';
+		$sql = 'SELECT u.* 
+			FROM signoff_entities se, users u, group_memberships grp
+			WHERE (u.user_id = grp.user_id AND
+				grp.group_id = se.entity_id AND
+				se.entity_type='.SIGNOFF_ENTITY_TYPE_GROUP.') OR 
+				(u1.user_id = se.entity_id AND
+				se1.entity_type='.SIGNOFF_ENTITY_TYPE_USER.')
+			ORDER BY u.last_name, u.first_name';
 
 		$result =& $this->retrieve($sql);
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -261,12 +302,11 @@ class SignoffEntityDAO extends DAO {
 	 */
 	function deleteObject($signoffEntity) {
 		return $this->update('DELETE FROM signoff_entities 
-					WHERE 
-					entity_id = ? AND 
-					entity_type = ? AND
-					press_id = ? AND
-					event_type = ? AND
-					event_id = ?',
+					WHERE entity_id = ? AND 
+						entity_type = ? AND
+						press_id = ? AND
+						event_type = ? AND
+						event_id = ?',
 					array(
 						$signoffEntity->getEntityId(),
 						$signoffEntity->getEntityType(),

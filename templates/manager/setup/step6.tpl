@@ -111,7 +111,7 @@ function prepBlockFields() {
 
 By default, the editors and acquisitions editors that are assigned to a particular manuscript will be the ones that will sign off on a review process.
 <br /><br />
-<a href="{url op="reviewSignoffs" path=1}">Click here</a> to specify the other parties, if any, that will have to acknowledge their satisfaction of the review process in an action of 'signing off'.
+<a href="{url op="reviewSignoffs" path=$smarty.const.WORKFLOW_PROCESS_ASSESSMENT_INTERNAL}">Click here</a> to specify the other parties, if any, that will have to acknowledge their satisfaction of the review process in an action of 'signing off'.
 
 
 
@@ -122,7 +122,7 @@ By default, the editors and acquisitions editors that are assigned to a particul
 
 By default, the editors and acquisitions editors that are assigned to a particular manuscript will be the ones that will sign off on a review process.
 <br /><br />
-<a href="{url op="reviewSignoffs" path=2}">Click here</a> to specify the other parties, if any, that will have to acknowledge their satisfaction of the review process in an action of 'signing off'.
+<a href="{url op="reviewSignoffs" path=$smarty.const.WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL}">Click here</a> to specify the other parties, if any, that will have to acknowledge their satisfaction of the review process in an action of 'signing off'.
 
 
 <div class="separator"></div>

@@ -258,7 +258,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 			EditorHandler::setupTemplate(EDITOR_SECTION_SUBMISSIONS, $monographId, 'summary');
 
 			$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-			$workflowDao->build($monographId, WORKFLOW_PROCESS_EDITORIAL, null);
+			$workflowDao->proceed($monographId);
 
 			// FIXME: Prompt for due date.
 			if (EditorAction::assignEditor($monographId, $editorId, $isEditor, Request::getUserVar('send'))) {

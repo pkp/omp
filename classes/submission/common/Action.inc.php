@@ -228,17 +228,16 @@ class Action {
 	}
 
 	/**
-	 * Initiate a signoff process.
-	 * @param $process$Id int
+	 * Move the submission along in the context of the workflow.
+	 * @param $monographId int
+	 * @param $pressId int
 	 */
-	function &endSignoffProcess($processId) {
-		$signoffProcessDao =& DAORegistry::getDAO('ProcessSignoffDAO');
+	function &endSignoffProcess($monographId) {
 
-		$signoffProcess =& $signoffProcessDao->getById($processId);
-		if (!isset($signoffProcess)) return null;
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 
-		$signoffProcess->setDateEnded(Core::getCurrentDate());
-		$signoffProcessDao->updateObject($signoffProcess);
+		$signoffProcess =& $workflowDao->proceed($monographId);
+
 		return $signoffProcess;
 	}
 }

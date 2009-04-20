@@ -142,7 +142,7 @@ class Request extends PKPRequest {
 
 		if ($press =& Request::getPress()) { 
 			// The user is in the press context, see if they have one role only
-			$roles =& $roleDao->getRolesByUserId($userId, $press->getPressId());
+			$roles =& $roleDao->getRolesByUserId($userId, $press->getId());
 			if(count($roles) == 1) {
 				$role = array_shift($roles);
 				Request::redirect(null, $role->getRolePath());
@@ -158,7 +158,7 @@ class Request extends PKPRequest {
 			
 			if(count($roles) == 1) {
 				$role = array_shift($roles);
-				$press = $pressDao->getPress($role->getPressId());
+				$press = $pressDao->getPress($role->getId());
 				isset($press) ? Request::redirect($press->getPath(), $role->getRolePath()) :
 								  Request::redirect('index', 'user');
 			} else Request::redirect('index', 'user');

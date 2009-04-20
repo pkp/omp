@@ -14,7 +14,7 @@
 
 // $Id$
 
-import('workflow.review.ReviewProcess');
+import('workflow.WorkflowProcess');
 
 class ReviewSetupHandler extends ManagerHandler {
 
@@ -31,8 +31,8 @@ class ReviewSetupHandler extends ManagerHandler {
 
 		$signoffEntitiesDao =& DAORegistry::getDAO('SignoffEntityDAO');
 
-		$groups =& $signoffEntitiesDao->getEntitiesForEvent(WORKFLOW_PROCESS_TYPE_REVIEW, $reviewTypeId, $press->getId());
-		$users =& $signoffEntitiesDao->getSignoffUsers(WORKFLOW_PROCESS_TYPE_REVIEW, $reviewTypeId, $press->getId());
+		$groups =& $signoffEntitiesDao->getEntitiesForEvent(WORKFLOW_PROCESS_ASSESSMENT, $reviewTypeId, $press->getId());
+		$users =& $signoffEntitiesDao->getSignoffUsers(WORKFLOW_PROCESS_ASSESSMENT, $reviewTypeId, $press->getId());
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('signoffEntities', $groups);
@@ -49,7 +49,7 @@ class ReviewSetupHandler extends ManagerHandler {
 		ReviewSetupHandler::setupTemplate();
 
 		$signoffEntitiesDao =& DAORegistry::getDAO('SignoffEntityDAO');
-		$signoffEntitiesDao->remove(WORKFLOW_PROCESS_TYPE_REVIEW, $reviewTypeId, $press->getId(),
+		$signoffEntitiesDao->remove(WORKFLOW_PROCESS_ASSESSMENT, $reviewTypeId, $press->getId(),
 									SIGNOFF_ENTITY_TYPE_GROUP, $groupId);
 		Request::redirect(null, null, 'reviewSignoffs', $reviewTypeId);
 	}
@@ -62,7 +62,7 @@ class ReviewSetupHandler extends ManagerHandler {
 		ReviewSetupHandler::setupTemplate();
 
 		$signoffEntitiesDao =& DAORegistry::getDAO('SignoffEntityDAO');
-		$signoffEntitiesDao->remove(WORKFLOW_PROCESS_TYPE_REVIEW, $reviewTypeId, $press->getId(),
+		$signoffEntitiesDao->remove(WORKFLOW_PROCESS_ASSESSMENT, $reviewTypeId, $press->getId(),
 									SIGNOFF_ENTITY_TYPE_USER, $entityId);
 		Request::redirect(null, null, 'reviewSignoffs', $reviewTypeId);
 	}
@@ -75,7 +75,7 @@ class ReviewSetupHandler extends ManagerHandler {
 		ReviewSetupHandler::setupTemplate();
 
 		$signoffEntitiesDao =& DAORegistry::getDAO('SignoffEntityDAO');
-		$signoffEntitiesDao->build(WORKFLOW_PROCESS_TYPE_REVIEW, $reviewTypeId, $press->getId(),
+		$signoffEntitiesDao->build(WORKFLOW_PROCESS_ASSESSMENT, $reviewTypeId, $press->getId(),
 									SIGNOFF_ENTITY_TYPE_GROUP, $groupId);
 		Request::redirect(null, null, 'reviewSignoffs', $reviewTypeId);
 	}
@@ -88,7 +88,7 @@ class ReviewSetupHandler extends ManagerHandler {
 		ReviewSetupHandler::setupTemplate();
 
 		$signoffEntitiesDao =& DAORegistry::getDAO('SignoffEntityDAO');
-		$signoffEntitiesDao->build(WORKFLOW_PROCESS_TYPE_REVIEW, $reviewTypeId, $press->getId(),
+		$signoffEntitiesDao->build(WORKFLOW_PROCESS_ASSESSMENT, $reviewTypeId, $press->getId(),
 									SIGNOFF_ENTITY_TYPE_USER, $entityId);
 		Request::redirect(null, null, 'reviewSignoffs', $reviewTypeId);
 	}
@@ -245,7 +245,7 @@ class ReviewSetupHandler extends ManagerHandler {
 		$passedValidation = true;
 
 		if ($reviewTypeId !== null) {
-			$reviewType = ($reviewTypeId == REVIEW_TYPE_EXTERNAL || $reviewTypeId == REVIEW_TYPE_INTERNAL) ? $reviewTypeId : null;
+			$reviewType = ($reviewTypeId == WORKFLOW_PROCESS_ASSESSMENT_INTERNAL || $reviewTypeId == WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL) ? $reviewTypeId : null;
 
 			if (!$reviewType) $passedValidation = false;
 			else $returner[] =& $reviewType;

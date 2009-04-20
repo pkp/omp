@@ -25,24 +25,29 @@ class UserHandler extends PKPHandler {
 	function index() {
 		UserHandler::validate();
 
-		$sessionManager = &SessionManager::getManager();
-		$session = &$sessionManager->getUserSession();
+		$sessionManager =& SessionManager::getManager();
+		$session =& $sessionManager->getUserSession();
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		UserHandler::setupTemplate();
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 		$templateMgr->assign('helpTopicId', 'user.userHome');
+
+		$user =& Request::getUser();
+		$signoffEntityDao =& DAORegistry::getDAO('SignoffEntityDAO');
+		$signoffTasks =& $signoffEntityDao->getSignoffTasksByUserId($user->getUserId());
+		$templateMgr->assign('signoffTasks', $signoffTasks);
 
 		if ($press == null) {
 			// Prevent variable clobbering
 			unset($press);
 
 			// Show roles for all presses
-			$pressDao = &DAORegistry::getDAO('PressDAO');
-			$presses = &$pressDao->getPresses();
+			$pressDao =& DAORegistry::getDAO('PressDAO');
+			$presses =& $pressDao->getPresses();
 
 			$allPresses = array();
 			$pressesToDisplay = array();
@@ -53,7 +58,7 @@ class UserHandler extends PKPHandler {
 				$roles =& $roleDao->getRolesByUserId($session->getUserId(), $press->getId());
 				if (!empty($roles)) {
 					$pressesToDisplay[] = $press;
-					$rolesToDisplay[$press->getId()] = &$roles;
+					$rolesToDisplay[$press->getId()] =& $roles;
 				}
 				if ($press->getEnabled()) $allPresses[] =& $press;
 				unset($press);
@@ -95,7 +100,7 @@ class UserHandler extends PKPHandler {
 			$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor'));
 			$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer'));
 
-			$rolesToDisplay[$press->getId()] = &$roles;
+			$rolesToDisplay[$press->getId()] =& $roles;
 			$templateMgr->assign_by_ref('userPress', $press);
 		}
 
@@ -111,8 +116,8 @@ class UserHandler extends PKPHandler {
 	function setLocale($args) {
 		$setLocale = isset($args[0]) ? $args[0] : null;
 
-		$site = &Request::getSite();
-		$press = &Request::getPress();
+		$site =& Request::getSite();
+		$press =& Request::getPress();
 		if ($press != null) {
 			$pressSupportedLocales = $press->getSetting('supportedLocales');
 			if (!is_array($pressSupportedLocales)) {
@@ -121,7 +126,7 @@ class UserHandler extends PKPHandler {
 		}
 
 		if (Locale::isLocaleValid($setLocale) && (!isset($pressSupportedLocales) || in_array($setLocale, $pressSupportedLocales)) && in_array($setLocale, $site->getSupportedLocales())) {
-			$session = &Request::getSession();
+			$session =& Request::getSession();
 			$session->setSessionVar('currentLocale', $setLocale);
 		}
 
@@ -195,7 +200,7 @@ class UserHandler extends PKPHandler {
 	 */
 	function setupTemplate($subclass = false) {
 		parent::setupTemplate();
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		if ($subclass) {
 			$templateMgr->assign('pageHierarchy', array(array(Request::url(null, 'user'), 'navigation.user')));
 		}

@@ -7,24 +7,26 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class WorkflowProcess
- * @ingroup signoff
- * @see SignoffEntityDAO
+ * @ingroup workflow
+ * @see WorkflowDAO
  *
  * @brief Extend this class for workflow processes that contain signoff information.
  */
 
 // $Id$
 
-define('WORKFLOW_PROCESS_EDITORIAL', 1);
-define('WORKFLOW_PROCESS_TYPE_REVIEW', 2);
-define('WORKFLOW_PROCESS_TYPE_EDITING_PROCESS', 3);
-define('WORKFLOW_PROCESS_TYPE_COPYEDIT', 4);
+define('WORKFLOW_PROCESS_MONOGRAPH_PROJECT', 3);
+define('WORKFLOW_PROCESS_ASSESSMENT', 0);
+//define('WORKFLOW_PROCESS_TYPE_REVIEW', 2);
+define('WORKFLOW_PROCESS_EDITING', 1);
+define('WORKFLOW_PROCESS_EDITING_COPYEDIT', 4);
 define('WORKFLOW_PROCESS_TYPE_PROOFREAD', 5);
-define('WORKFLOW_PROCESS_TYPE_REVIEW_INTERNAL', 6);
-define('WORKFLOW_PROCESS_TYPE_REVIEW_EXTERNAL', 7);
+define('WORKFLOW_PROCESS_ASSESSMENT_INTERNAL', 6);
+define('WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL', 7);
 
 define('WORKFLOW_PROCESS_STATUS_CURRENT', 2);
 define('WORKFLOW_PROCESS_STATUS_INITIATED', 1);
+define('WORKFLOW_PROCESS_STATUS_COMPLETE', 3);
 define('WORKFLOW_PROCESS_STATUS_SUSPENDED', 8); //for example
 
 class WorkflowProcess extends DataObject {
@@ -161,8 +163,14 @@ class WorkflowProcess extends DataObject {
 	function setCurrent($bool) {
 		$this->setData('current', $bool);
 	}
-	function isCurrent() {
+	function getCurrent() {
 		return $this->getData('current');
+	}
+	function setSignoffQueueCount($count) {
+		$this->setData('queueCount', $count);
+	}
+	function getSignoffQueueCount() {
+		return $this->getData('queueCount');
 	}
 }
 ?>

@@ -107,11 +107,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$processId = isset($args[1]) ? (int) $args[1] : 0;//fixme: validate
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
 
-		$process =& Action::endSignoffProcess($processId);print_r($process);exit;
-		$signoffEntityDao =& DAORegistry::getDAO('SignoffEntityDAO');
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		import('workflow.review.ReviewProcess');
-		$entities =& $signoffEntityDao->get(WORKFLOW_PROCESS_TYPE_REVIEW, $process->getWorkflowProcessId(), $press->getId());
+		$process =& Action::endSignoffProcess($monographId);
 
 		Request::redirect(null, null, 'submissionReview', $monographId);
 	}
@@ -225,8 +221,8 @@ $sections = null;
 		$templateMgr =& TemplateManager::getManager();
 
 		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$reviewProcesses =& $workflowDao->getByEventType($monographId, WORKFLOW_PROCESS_TYPE_REVIEW);
-print_r($reviewProcesses);
+		$reviewProcesses =& $workflowDao->getByEventType($monographId, WORKFLOW_PROCESS_ASSESSMENT);
+
 //		$signoffEntityDao =& DAORegistry::getDAO('SignoffEntityDAO');
 /*		import('workflow.review.ReviewProcess');
 		$signoffProcessDao =& DAORegistry::getDAO('ProcessSignoffDAO');

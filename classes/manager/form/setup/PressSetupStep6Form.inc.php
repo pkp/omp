@@ -102,6 +102,7 @@ class PressSetupStep6Form extends PressSetupForm {
 	 * Display the form.
 	 */
 	function display() {
+		import('workflow.WorkflowProcess');
 		$templateMgr = &TemplateManager::getManager();
 		if (Config::getVar('email', 'allow_envelope_sender'))
 			$templateMgr->assign('envelopeSenderEnabled', true);
