@@ -221,26 +221,20 @@ class SignoffEntityDAO extends DAO {
 		return $returner;
 	}
 
-	function &getRequiredSignoffsByProcess($eventType, $eventId, $pressId, $monographId = null) {
+	function &getRequiredSignoffsByProcess($eventType, $eventId, $pressId) {
 
-		$sqlExtra = $monographId == null ? '' : ' AND ws.monograph_id = ? ';
 		$sqlParams = array($eventType, $eventId, $pressId);
 
-		if ($monographId != null) {
-			$sqlParams[] = $monographId;
-		}
-
-		$sql = 'SELECT u.*, ws.user_id AS user_signoff, ws.monograph_id
-			FROM users u, group_memberships grp, signoff_entities se
-			LEFT JOIN workflow_signoffs ws ON (se.entity_id = ws.user_id)
-			WHERE se.event_type = ? AND 
+		$sql = 'SELECT u.*
+			FROM signoff_entities se
+			LEFT JOIN group_memberships grp ON (grp.group_id = se.entity_id AND se.entity_type = '. SIGNOFF_ENTITY_TYPE_GROUP .')
+			LEFT JOIN users u ON (grp.user_id=u.user_id OR (se.entity_id=u.user_id AND se.entity_type = '. SIGNOFF_ENTITY_TYPE_USER .'))
+			LEFT JOIN signoff_processes sp ON (sp.event_id = se.event_id)
+			LEFT JOIN workflow_signoffs ws ON (sp.process_id=ws.process_id AND u.user_id = ws.user_id)
+			WHERE se.event_type = ? AND
 				se.event_id = ? AND
 				se.press_id = ? AND
-				(u.user_id = se.entity_id AND 
-				se.entity_type = '. SIGNOFF_ENTITY_TYPE_USER .') OR
-				(se.entity_type = '. SIGNOFF_ENTITY_TYPE_GROUP .' AND 
-				grp.user_id = u.user_id AND 
-				grp.group_id = se.entity_id)'. $sqlExtra .'
+				ws.user_id IS NULL
 			ORDER BY u.last_name, u.first_name';
 
 		$result =& $this->retrieve($sql, $sqlParams);
@@ -250,10 +244,7 @@ class SignoffEntityDAO extends DAO {
 		$returner = null;
 
 		while (!$result->EOF) {
-			$user_signoff = $result->fields['user_signoff'];
-			if ($user_signoff == null) {
-				$returner[] =& $userDao->_returnUserFromRow($result->GetRowAssoc(false));
-			}
+			$returner[] =& $userDao->_returnUserFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -264,7 +255,7 @@ class SignoffEntityDAO extends DAO {
 	}
 
 	/**
-	 * Update an existing signoff entity entry.
+	 * Get signoff entities entry.
 	 * @param $signoffEntity SignoffEntity
 	 * @return boolean
 	 */

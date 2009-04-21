@@ -179,10 +179,9 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 
 		// Prepare an array to store the 'Notify Reviewer' email logs
 		$notifyReviewerLogs = array();
-		foreach ($submission->getReviewAssignments($round) as $reviewAssignment) {
+//		foreach ($submission->getReviewAssignments($round) as $reviewAssignment) {
 //			$notifyReviewerLogs[$reviewAssignment->getReviewId()] = array();
-		}
-
+//		}
 
 
 		// Parse the list of email logs and populate the array.
@@ -205,6 +204,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormTitles = array();
 
+		if (is_array($submission->getReviewAssignments($round)))
 		foreach ($submission->getReviewAssignments($round) as $reviewAssignment) {
 			$reviewForm =& $reviewFormDao->getById($reviewAssignment->getReviewFormId());
 			if ($reviewForm) {
@@ -252,15 +252,21 @@ $sections = null;
 		}
 		unset($workflowProcess);
 	}*/
+		$reviewAssignments =& $submission->getReviewAssignments();
+
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$process =& $workflowDao->getCurrent($monographId);
+
+		$reviewAssignments =& $reviewAssignments[$process->getProcessId()];
+
 		$templateMgr->assign('signoffWait', 0);
 		$templateMgr->assign('signoffQueue', 0);
-
 		$templateMgr->assign_by_ref('reviewType', $currentReviewType);
 		$templateMgr->assign_by_ref('reviewProcesses', $reviewProcesses);
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('reviewIndexes', $reviewAssignmentDao->getReviewIndexesForRound($monographId, $round));
 //		$templateMgr->assign('round', $round);
-		$templateMgr->assign_by_ref('reviewAssignments', $submission->getReviewAssignments($round));
+		$templateMgr->assign_by_ref('reviewAssignments', $reviewAssignments);
 		$templateMgr->assign('reviewFormResponses', $reviewFormResponses);
 		$templateMgr->assign('reviewFormTitles', $reviewFormTitles);
 		$templateMgr->assign_by_ref('notifyReviewerLogs', $notifyReviewerLogs);
@@ -424,13 +430,18 @@ $sections = null;
 		$reviewerId = Request::getUserVar('reviewerId');
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$currentProcess =& $workflowDao->getCurrent($monographId);
+
+		$reviewType = $currentProcess->getProcessId();
+
 		$submission->setCurrentReviewType($reviewType);
 
 		$round = $submission->getCurrentRoundByReviewType($reviewType);
 
 		if (isset($reviewerId)) {
 			// Assign reviewer to monograph
-			AcquisitionsEditorAction::addReviewer($submission, $reviewerId);
+			AcquisitionsEditorAction::addReviewer($submission, $reviewerId, $reviewType);
 			Request::redirect(null, null, 'submissionReview', $monographId);
 
 			// FIXME: Prompt for due date.
@@ -452,7 +463,7 @@ $sections = null;
 			}
 
 			$rangeInfo =& PKPHandler::getRangeInfo('reviewers');
-			$reviewers = $acquisitionsEditorSubmissionDao->getReviewersForMonograph($press->getId(), $monographId, $reviewType, $round, $searchType, $search, $searchMatch, $rangeInfo);
+			$reviewers =& $acquisitionsEditorSubmissionDao->getReviewersForMonograph($press->getId(), $monographId, $reviewType, $round, $searchType, $search, $searchMatch, $rangeInfo);
 
 			$press = Request::getPress();
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');

@@ -238,7 +238,7 @@
 
 <table class="data" width="100%">
 	<tr valign="middle">
-		<td width="22%"><h3>{$reviewProcess->getTitle()} Signoff</h3></td>
+		<td width="22%"></td>
 		<td width="14%">{if !$waitingOnSignoffs}<a href="{url op="endWorkflowProcess" path=$submission->getMonographId()}">Sign off</a>{/if}</td>
 		<td width="64%" class="nowrap">
 			{if $waitingOnSignoffs}There are/is {$reviewProcess->getSignoffQueueCount()} more people/person that must sign off.{/if}

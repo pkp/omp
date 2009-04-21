@@ -182,7 +182,6 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmission->setReviewRevision($row['review_revision']);
 */
 		// Review Assignments
-		$reviewRounds =& $acquisitionsEditorSubmission->getReviewRounds($row['monograph_id']);
 
 		if (isset($reviewRounds))
 		foreach ($reviewRounds as $reviewType => $round) {

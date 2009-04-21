@@ -405,7 +405,7 @@ class MonographDAO extends DAO {
 			);
 
 		foreach ($reviewTypes as $reviewType) {
-			$returner[$reviewType] = 0;
+			$returner[$reviewType] = 1;
 		}
 
 		while (!$result->EOF) {

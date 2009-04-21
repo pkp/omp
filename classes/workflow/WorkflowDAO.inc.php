@@ -53,7 +53,7 @@ class WorkflowDAO extends DAO {
 
 		$workflow =& $this->getWorkflowStructure();
 
-		$currentProcess =& $this->_getCurrent($monographId);
+		$currentProcess =& $this->getCurrent($monographId);
 
 		if ($currentProcess == null) {
 
@@ -129,7 +129,7 @@ class WorkflowDAO extends DAO {
 		return null;
 	}
 
-	function &_getCurrent($monographId) {
+	function &getCurrent($monographId) {
 		$result =& $this->retrieve(
 				'SELECT *
 				FROM signoff_processes
@@ -219,31 +219,44 @@ class WorkflowDAO extends DAO {
 		return $returner;
 	}
 
-	function signoff($userId, $monographId, $processId) {
-
+	function workflowSignoff($userId, $processId) {
+		$this->update(
+			'INSERT INTO workflow_signoffs
+			(user_id, date_signed, process_id)
+			VALUES
+			(?, ?, ?)',
+			array($userId, Core::getCurrentDate(), $processId)
+		);
 	}
 
 	function &getSignoffTasksByUserId($userId) {
 		import('signoff.SignoffEntity');
 
+		$press =& Request::getPress();
+		$locale =& Locale::getPrimaryLocale();
+		//FIXME deal w/monograph_settings differently
 		$result =& $this->retrieve(
-				'SELECT sp.*
-				FROM users u, group_memberships grp, signoff_entities se, workflow_signoffs ws
-				RIGHT JOIN signoff_processes sp ON (ws.process_id = sp.process_id AND sp.status = '. WORKFLOW_PROCESS_STATUS_CURRENT .')
-				WHERE ((u.user_id = se.entity_id AND 
-					se.entity_type = '. SIGNOFF_ENTITY_TYPE_USER .') OR
-					(se.entity_type = '. SIGNOFF_ENTITY_TYPE_GROUP .' AND 
-					grp.user_id = u.user_id AND 
-					grp.group_id = se.entity_id)) AND
-					u.user_id = ? 
-				ORDER BY u.last_name, u.first_name',
-				array($userId)
+				'SELECT sp.*, ms.setting_value AS monograph_title
+				FROM signoff_entities se
+				LEFT JOIN group_memberships grp ON (grp.group_id = se.entity_id AND se.entity_type = '. SIGNOFF_ENTITY_TYPE_GROUP .')
+				LEFT JOIN users u ON (grp.user_id=u.user_id OR (se.entity_id=u.user_id AND se.entity_type = '. SIGNOFF_ENTITY_TYPE_USER .'))
+				LEFT JOIN signoff_processes sp ON (sp.event_id = se.event_id)
+				LEFT JOIN workflow_signoffs ws ON (sp.process_id=ws.process_id AND ws.user_id = u.user_id)
+				LEFT JOIN monograph_settings ms ON (sp.monograph_id = ms.monograph_id AND ms.setting_name = \'title\' AND ms.locale = \''. $locale .'\')
+				WHERE u.user_id = ? AND
+				se.press_id = ? AND
+				ws.user_id IS NULL',
+				array($userId, $press->getId())
 			);
 
 		$returner = null;
 		while (!$result->EOF) {
 
-			$returner[] =& $this->_fromRow($result->GetRowAssoc(false));
+			$obj =& $this->_fromRow($result->GetRowAssoc(false));
+
+			$obj->setTitle($this->_getTitleByProcessId($obj->getProcessId()));
+			$returner[] = array('process' => $obj, 'title' => $result->fields['monograph_title']);
+
 			$result->moveNext();
 		}
 		$result->Close();
@@ -283,7 +296,7 @@ class WorkflowDAO extends DAO {
 	 * @param $workflowProcessId int
 	 * @return SignoffEntity
 	 */
-	function getById($processId) {
+	function &getById($processId) {
 
 		$result =& $this->retrieve(
 			'SELECT * FROM signoff_processes WHERE process_id = ?',

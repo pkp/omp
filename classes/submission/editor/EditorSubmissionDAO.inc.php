@@ -480,9 +480,9 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			$decision = is_array($decisions) ? array_pop($decisions) : null;
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
-					$inReview = false;			
-				}
+//				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
+//					$inReview = false;			
+//				}
 			}
 
 			// used to check if editor exists for this submission

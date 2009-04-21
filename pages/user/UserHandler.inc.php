@@ -206,6 +206,20 @@ class UserHandler extends PKPHandler {
 		}
 	}
 
+	function workflowSignoff($args) {
+		UserHandler::validate();
+		$processId = (int) array_shift($args);
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$user =& Request::getUser();
+		$process =& $workflowDao->getById($processId);
+
+		if ($process != null) {
+			$workflowDao->workflowSignoff($user->getUserId(), $processId);
+			$workflowDao->proceed($process->getMonographId());
+		}
+
+  		Request::redirect(null, 'user');
+	}
 
 	//
 	// Profiles
