@@ -25,7 +25,7 @@ class WorkflowDAO extends DAO {
 	 * @param $currentProcess WorkflowProcess
 	 * @return WorkflowProcess
 	 */
-	function &_getWorkflowStructure() {
+	function &getWorkflowStructure($subtree = null) {
 
 		$workflow[WORKFLOW_PROCESS_ASSESSMENT] = array(
 								WORKFLOW_PROCESS_ASSESSMENT_INTERNAL, 
@@ -34,6 +34,10 @@ class WorkflowDAO extends DAO {
 		$workflow[WORKFLOW_PROCESS_EDITING] = array(
 								WORKFLOW_PROCESS_EDITING_COPYEDIT
 							);
+		if ($subtree !== null && isset($workflow[$subtree])) {
+			return $workflow[$subtree];
+		}
+
 		return $workflow;
 	}
 
@@ -47,7 +51,7 @@ class WorkflowDAO extends DAO {
 
 		$press =& Request::getPress();
 
-		$workflow =& $this->_getWorkflowStructure();
+		$workflow =& $this->getWorkflowStructure();
 
 		$currentProcess =& $this->_getCurrent($monographId);
 
@@ -145,6 +149,7 @@ class WorkflowDAO extends DAO {
 	}
 
 	function _getTitleByProcessId($processId) {
+		//FIXME: create a settings table
 		switch ($processId) {
 		case WORKFLOW_PROCESS_ASSESSMENT_INTERNAL:
 			return 'Internal Review';
@@ -166,7 +171,7 @@ class WorkflowDAO extends DAO {
 
 		$result =& $this->retrieve($sql, $sqlParams);
 
-		$workflow =& $this->_getWorkflowStructure();
+		$workflow =& $this->getWorkflowStructure();
 
 		if (!isset($workflow[$eventType])) {
 			return $returner;
@@ -210,6 +215,39 @@ class WorkflowDAO extends DAO {
 				$returner[$i] = $obj;
 			}
 		}
+
+		return $returner;
+	}
+
+	function signoff($userId, $monographId, $processId) {
+
+	}
+
+	function &getSignoffTasksByUserId($userId) {
+		import('signoff.SignoffEntity');
+
+		$result =& $this->retrieve(
+				'SELECT sp.*
+				FROM users u, group_memberships grp, signoff_entities se, workflow_signoffs ws
+				RIGHT JOIN signoff_processes sp ON (ws.process_id = sp.process_id AND sp.status = '. WORKFLOW_PROCESS_STATUS_CURRENT .')
+				WHERE ((u.user_id = se.entity_id AND 
+					se.entity_type = '. SIGNOFF_ENTITY_TYPE_USER .') OR
+					(se.entity_type = '. SIGNOFF_ENTITY_TYPE_GROUP .' AND 
+					grp.user_id = u.user_id AND 
+					grp.group_id = se.entity_id)) AND
+					u.user_id = ? 
+				ORDER BY u.last_name, u.first_name',
+				array($userId)
+			);
+
+		$returner = null;
+		while (!$result->EOF) {
+
+			$returner[] =& $this->_fromRow($result->GetRowAssoc(false));
+			$result->moveNext();
+		}
+		$result->Close();
+		unset($result);
 
 		return $returner;
 	}

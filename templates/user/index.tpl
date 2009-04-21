@@ -13,6 +13,12 @@
 {include file="common/header.tpl"}
 {/strip}
 
+{foreach from=$signoffTasks item=signoffTask}
+
+<h3>{$signoffTask->getProcessId()}</h3>
+
+{/foreach}
+
 {if $showAllPresses}
 
 <h3>{translate key="user.myPresses"}</h3>

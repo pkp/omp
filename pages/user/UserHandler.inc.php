@@ -37,8 +37,8 @@ class UserHandler extends PKPHandler {
 		$templateMgr->assign('helpTopicId', 'user.userHome');
 
 		$user =& Request::getUser();
-		$signoffEntityDao =& DAORegistry::getDAO('SignoffEntityDAO');
-		$signoffTasks =& $signoffEntityDao->getSignoffTasksByUserId($user->getUserId());
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$signoffTasks =& $workflowDao->getSignoffTasksByUserId($user->getUserId());
 		$templateMgr->assign('signoffTasks', $signoffTasks);
 
 		if ($press == null) {

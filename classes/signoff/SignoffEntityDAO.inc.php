@@ -221,18 +221,16 @@ class SignoffEntityDAO extends DAO {
 		return $returner;
 	}
 
-	function getSignoffTasksByUserId($userId) {
+	function &getRequiredSignoffsByProcess($eventType, $eventId, $pressId, $monographId = null) {
 
-	//	$result =& $this->retrieve(
-	//			'SELECT *
-	//			FROM ');
-		return null;
+		$sqlExtra = $monographId == null ? '' : ' AND ws.monograph_id = ? ';
+		$sqlParams = array($eventType, $eventId, $pressId);
 
-	}
+		if ($monographId != null) {
+			$sqlParams[] = $monographId;
+		}
 
-	function &getRequiredSignoffsByProcess($eventType, $eventId, $pressId) {
-//FIXME: pass monographId
-		$sql = 'SELECT u.*, ws.user_id AS user_signoff
+		$sql = 'SELECT u.*, ws.user_id AS user_signoff, ws.monograph_id
 			FROM users u, group_memberships grp, signoff_entities se
 			LEFT JOIN workflow_signoffs ws ON (se.entity_id = ws.user_id)
 			WHERE se.event_type = ? AND 
@@ -242,10 +240,10 @@ class SignoffEntityDAO extends DAO {
 				se.entity_type = '. SIGNOFF_ENTITY_TYPE_USER .') OR
 				(se.entity_type = '. SIGNOFF_ENTITY_TYPE_GROUP .' AND 
 				grp.user_id = u.user_id AND 
-				grp.group_id = se.entity_id)
+				grp.group_id = se.entity_id)'. $sqlExtra .'
 			ORDER BY u.last_name, u.first_name';
 
-		$result =& $this->retrieve($sql, array($eventType, $eventId, $pressId));
+		$result =& $this->retrieve($sql, $sqlParams);
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
@@ -277,8 +275,8 @@ class SignoffEntityDAO extends DAO {
 			WHERE (u.user_id = grp.user_id AND
 				grp.group_id = se.entity_id AND
 				se.entity_type='.SIGNOFF_ENTITY_TYPE_GROUP.') OR 
-				(u1.user_id = se.entity_id AND
-				se1.entity_type='.SIGNOFF_ENTITY_TYPE_USER.')
+				(u.user_id = se.entity_id AND
+				se.entity_type='.SIGNOFF_ENTITY_TYPE_USER.')
 			ORDER BY u.last_name, u.first_name';
 
 		$result =& $this->retrieve($sql);

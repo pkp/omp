@@ -393,13 +393,19 @@ class MonographDAO extends DAO {
 	 */
 	function &_retrieveCurrentReviewRounds($monographId) {
 		$returner = null;
-		$reviewProcessDao =& DAORegistry::getDAO('ReviewProcessDAO');
-		$reviewTypes =& $reviewProcessDao->getEnabledObjects($monographId);
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$reviewTypes =& $workflowDao->getWorkflowStructure(WORKFLOW_PROCESS_ASSESSMENT);
 
-		$result =& $this->retrieve('SELECT MAX(round) AS current_round, review_type, review_revision FROM review_rounds r WHERE monograph_id = ? GROUP BY review_type', $monographId);
+		$result =& $this->retrieve(
+				'SELECT MAX(round) AS current_round, review_type, review_revision 
+				FROM review_rounds r 
+				WHERE monograph_id = ? 
+				GROUP BY review_type', 
+				$monographId
+			);
 
 		foreach ($reviewTypes as $reviewType) {
-			$returner[$reviewType->getId()] = 0;
+			$returner[$reviewType] = 0;
 		}
 
 		while (!$result->EOF) {
