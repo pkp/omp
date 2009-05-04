@@ -70,20 +70,15 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$pressSettings = $pressSettingsDao->getPressSettings($press->getId());
 
 		// Setting the round.
-		$round = isset($args[1]) ? $args[1] : $submission->getCurrentRound();
+		$round = isset($args[1]) ? $args[1] : $submission->getCurrentReviewRound();
 
 		$templateMgr =& TemplateManager::getManager();
 
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
-		if ($publishedMonograph) {
-			$issueDao =& DAORegistry::getDAO('IssueDAO');
-			$issue =& $issueDao->getIssueById($publishedMonograph->getIssueId());
-			$templateMgr->assign_by_ref('issue', $issue);
-		}
 
-		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-		$section =& $sectionDao->getSection($submission->getSectionId());
+		$sectionDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
+		$section =& $sectionDao->getAcquisitionsArrangement($submission->getAcquisitionsArrangementId());
 		$templateMgr->assign_by_ref('section', $section);
 
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
@@ -95,11 +90,11 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 
-		import('submission.sectionEditor.SectionEditorSubmission');
-		$templateMgr->assign_by_ref('editorDecisionOptions', SectionEditorSubmission::getEditorDecisionOptions());
+		import('submission.acquisitionsEditor.AcquisitionsEditorSubmission');
+		$templateMgr->assign_by_ref('editorDecisionOptions', AcquisitionsEditorSubmission::getEditorDecisionOptions());
 
 		// Set up required Payment Related Information
-		import('payment.ojs.OJSPaymentManager');
+/*		import('payment.ojs.OJSPaymentManager');
 		$paymentManager =& OJSPaymentManager::getManager();
 		if ( $paymentManager->submissionEnabled() || $paymentManager->fastTrackEnabled() || $paymentManager->publicationEnabled()) {
 			$templateMgr->assign('authorFees', true);
@@ -117,7 +112,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 				$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getId(), $monographId ));
 			}				   
 		}		
-
+*/
 		$templateMgr->assign('helpTopicId','editorial.authorsRole');
 		$templateMgr->display('author/submission.tpl');
 	}
@@ -138,7 +133,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$reviewFilesByRound =& $reviewAssignmentDao->getReviewFilesByRound($monographId);
 		$authorViewableFilesByRound =& $reviewAssignmentDao->getAuthorViewableFilesByRound($monographId);
 
-		$editorDecisions = $authorSubmission->getDecisions($authorSubmission->getCurrentRound());
+		$editorDecisions = $authorSubmission->getDecisions($authorSubmission->getCurrentReviewRound());
 		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1] : null;
 
 		$templateMgr =& TemplateManager::getManager();
@@ -151,7 +146,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign_by_ref('reviewModifiedByRound', $reviewModifiedByRound);
 
 		$reviewIndexesByRound = array();
-		for ($round = 1; $round <= $authorSubmission->getCurrentRound(); $round++) {
+		for ($round = 1; $round <= $authorSubmission->getCurrentReviewRound(); $round++) {
 			$reviewIndexesByRound[$round] = $reviewAssignmentDao->getReviewIndexesForRound($monographId, $round);
 		}
 		$templateMgr->assign_by_ref('reviewIndexesByRound', $reviewIndexesByRound);

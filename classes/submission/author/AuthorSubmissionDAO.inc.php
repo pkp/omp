@@ -113,7 +113,7 @@ class AuthorSubmissionDAO extends DAO {
 		$authorSubmission->setEditAssignments($editAssignments->toArray());
 
 
-		$reviewRounds =& $authorSubmission->getReviewRounds();
+		$reviewRounds =& $authorSubmission->getReviewRoundsInfo();
 
 		if (isset($reviewRounds)) {
 		      foreach ($reviewRounds as $reviewRound => $round) { // Editor Decisions

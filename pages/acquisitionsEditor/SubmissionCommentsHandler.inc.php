@@ -15,22 +15,22 @@
 // $Id$
 
 
-import('pages.sectionEditor.SubmissionEditHandler');
+import('pages.acquisitionsEditor.SubmissionEditHandler');
 
-class SubmissionCommentsHandler extends SectionEditorHandler {
+class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 
 	/**
 	 * View peer review comments.
 	 */
 	function viewPeerReviewComments($args) {
-		SectionEditorHandler::validate();
-		SectionEditorHandler::setupTemplate(true);
+		AcquisitionsEditorHandler::validate();
+		AcquisitionsEditorHandler::setupTemplate(true);
 
 		$articleId = $args[0];
 		$reviewId = $args[1];
 
 		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
-		SectionEditorAction::viewPeerReviewComments($submission, $reviewId);
+		AcquisitionsEditorAction::viewPeerReviewComments($submission, $reviewId);
 
 	}
 
@@ -38,18 +38,18 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 	 * Post peer review comments.
 	 */
 	function postPeerReviewComment() {
-		SectionEditorHandler::validate();
-		SectionEditorHandler::setupTemplate(true);
+		AcquisitionsEditorHandler::validate();
+		AcquisitionsEditorHandler::setupTemplate(true);
 
-		$articleId = Request::getUserVar('articleId');
+		$monographId = Request::getUserVar('monographId');
 		$reviewId = Request::getUserVar('reviewId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
-		if (SectionEditorAction::postPeerReviewComment($submission, $reviewId, $emailComment)) {
-			SectionEditorAction::viewPeerReviewComments($submission, $reviewId);
+		list($journal, $submission) = SubmissionEditHandler::validate($monographId);
+		if (AcquisitionsEditorAction::postPeerReviewComment($submission, $reviewId, $emailComment)) {
+			AcquisitionsEditorAction::viewPeerReviewComments($submission, $reviewId);
 		}
 
 	}
@@ -58,13 +58,13 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 	 * View editor decision comments.
 	 */
 	function viewEditorDecisionComments($args) {
-		SectionEditorHandler::validate();
-		SectionEditorHandler::setupTemplate(true);
+		AcquisitionsEditorHandler::validate();
+		AcquisitionsEditorHandler::setupTemplate(true);
 
 		$articleId = $args[0];
 
 		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
-		SectionEditorAction::viewEditorDecisionComments($submission);
+		AcquisitionsEditorAction::viewEditorDecisionComments($submission);
 
 	}
 
@@ -72,8 +72,8 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 	 * Post peer review comments.
 	 */
 	function postEditorDecisionComment() {
-		SectionEditorHandler::validate();
-		SectionEditorHandler::setupTemplate(true);
+		AcquisitionsEditorHandler::validate();
+		AcquisitionsEditorHandler::setupTemplate(true);
 
 		$articleId = Request::getUserVar('articleId');
 
@@ -81,8 +81,8 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
 		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
-		if (SectionEditorAction::postEditorDecisionComment($submission, $emailComment)) {
-			SectionEditorAction::viewEditorDecisionComments($submission);
+		if (AcquisitionsEditorAction::postEditorDecisionComment($submission, $emailComment)) {
+			AcquisitionsEditorAction::viewEditorDecisionComments($submission);
 		}
 
 	}
@@ -98,7 +98,7 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 		$inhibitExistingEmail = Request::getUserVar('blindCcReviewers')?true:false;
 
 		if (!$send) parent::setupTemplate(true, $articleId, 'editing');
-		if (SectionEditorAction::blindCcReviewsToReviewers($submission, $send, $inhibitExistingEmail)) {
+		if (AcquisitionsEditorAction::blindCcReviewsToReviewers($submission, $send, $inhibitExistingEmail)) {
 			Request::redirect(null, null, 'submissionReview', $articleId);
 		}
 	}
@@ -107,13 +107,13 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 	 * View copyedit comments.
 	 */
 	function viewCopyeditComments($args) {
-		SectionEditorHandler::validate();
-		SectionEditorHandler::setupTemplate(true);
+		AcquisitionsEditorHandler::validate();
+		AcquisitionsEditorHandler::setupTemplate(true);
 
 		$articleId = $args[0];
 
 		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
-		SectionEditorAction::viewCopyeditComments($submission);
+		AcquisitionsEditorAction::viewCopyeditComments($submission);
 
 	}
 
@@ -121,8 +121,8 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 	 * Post copyedit comment.
 	 */
 	function postCopyeditComment() {
-		SectionEditorHandler::validate();
-		SectionEditorHandler::setupTemplate(true);
+		AcquisitionsEditorHandler::validate();
+		AcquisitionsEditorHandler::setupTemplate(true);
 
 		$articleId = Request::getUserVar('articleId');
 
@@ -130,8 +130,8 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
 		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
-		if (SectionEditorAction::postCopyeditComment($submission, $emailComment)) {
-			SectionEditorAction::viewCopyeditComments($submission);
+		if (AcquisitionsEditorAction::postCopyeditComment($submission, $emailComment)) {
+			AcquisitionsEditorAction::viewCopyeditComments($submission);
 		}
 
 	}
@@ -140,13 +140,13 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 	 * View layout comments.
 	 */
 	function viewLayoutComments($args) {
-		SectionEditorHandler::validate();
-		SectionEditorHandler::setupTemplate(true);
+		AcquisitionsEditorHandler::validate();
+		AcquisitionsEditorHandler::setupTemplate(true);
 
 		$articleId = $args[0];
 
 		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
-		SectionEditorAction::viewLayoutComments($submission);
+		AcquisitionsEditorAction::viewLayoutComments($submission);
 
 	}
 
@@ -154,8 +154,8 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 	 * Post layout comment.
 	 */
 	function postLayoutComment() {
-		SectionEditorHandler::validate();
-		SectionEditorHandler::setupTemplate(true);
+		AcquisitionsEditorHandler::validate();
+		AcquisitionsEditorHandler::setupTemplate(true);
 
 		$articleId = Request::getUserVar('articleId');
 
@@ -163,8 +163,8 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
 		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
-		if (SectionEditorAction::postLayoutComment($submission, $emailComment)) {
-			SectionEditorAction::viewLayoutComments($submission);
+		if (AcquisitionsEditorAction::postLayoutComment($submission, $emailComment)) {
+			AcquisitionsEditorAction::viewLayoutComments($submission);
 		}
 
 	}
@@ -173,13 +173,13 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 	 * View proofread comments.
 	 */
 	function viewProofreadComments($args) {
-		SectionEditorHandler::validate();
-		SectionEditorHandler::setupTemplate(true);
+		AcquisitionsEditorHandler::validate();
+		AcquisitionsEditorHandler::setupTemplate(true);
 
 		$articleId = $args[0];
 
 		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
-		SectionEditorAction::viewProofreadComments($submission);
+		AcquisitionsEditorAction::viewProofreadComments($submission);
 
 	}
 
@@ -187,8 +187,8 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 	 * Post proofread comment.
 	 */
 	function postProofreadComment() {
-		SectionEditorHandler::validate();
-		SectionEditorHandler::setupTemplate(true);
+		AcquisitionsEditorHandler::validate();
+		AcquisitionsEditorHandler::setupTemplate(true);
 
 		$articleId = Request::getUserVar('articleId');
 
@@ -196,8 +196,8 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
 		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
-		if (SectionEditorAction::postProofreadComment($submission, $emailComment)) {
-			SectionEditorAction::viewProofreadComments($submission);
+		if (AcquisitionsEditorAction::postProofreadComment($submission, $emailComment)) {
+			AcquisitionsEditorAction::viewProofreadComments($submission);
 		}
 
 	}
@@ -206,15 +206,15 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 	 * Email an editor decision comment.
 	 */
 	function emailEditorDecisionComment() {
-		$articleId = (int) Request::getUserVar('articleId');
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
+		$articleId = (int) Request::getUserVar('monographId');
+		list($journal, $submission) = SubmissionEditHandler::validate($monographId);
 
 		parent::setupTemplate(true);		
-		if (SectionEditorAction::emailEditorDecisionComment($submission, Request::getUserVar('send'))) {
+		if (AcquisitionsEditorAction::emailEditorDecisionComment($submission, Request::getUserVar('send'))) {
 			if (Request::getUserVar('blindCcReviewers')) {
 				SubmissionCommentsHandler::blindCcReviewsToReviewers();
 			} else {
-				Request::redirect(null, null, 'submissionReview', array($articleId));
+				Request::redirect(null, null, 'submissionReview', array($monographId));
 			}
 		}
 	}
@@ -223,8 +223,8 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 	 * Edit comment.
 	 */
 	function editComment($args) {
-		SectionEditorHandler::validate();
-		SectionEditorHandler::setupTemplate(true);
+		AcquisitionsEditorHandler::validate();
+		AcquisitionsEditorHandler::setupTemplate(true);
 
 		$articleId = $args[0];
 		$commentId = $args[1];
@@ -237,7 +237,7 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 			Request::redirect(null, Request::getRequestedPage());
 		}
 
-		SectionEditorAction::editComment($submission, $comment);
+		AcquisitionsEditorAction::editComment($submission, $comment);
 
 	}
 
@@ -245,8 +245,8 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 	 * Save comment.
 	 */
 	function saveComment() {
-		SectionEditorHandler::validate();
-		SectionEditorHandler::setupTemplate(true);
+		AcquisitionsEditorHandler::validate();
+		AcquisitionsEditorHandler::setupTemplate(true);
 
 		$articleId = Request::getUserVar('articleId');
 		$commentId = Request::getUserVar('commentId');
@@ -263,7 +263,7 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 		}
 
 		// Save the comment.
-		SectionEditorAction::saveComment($submission, $comment, $emailComment);
+		AcquisitionsEditorAction::saveComment($submission, $comment, $emailComment);
 
 		$articleCommentDao = &DAORegistry::getDAO('ArticleCommentDAO');
 		$comment = &$articleCommentDao->getArticleCommentById($commentId);
@@ -286,15 +286,15 @@ class SubmissionCommentsHandler extends SectionEditorHandler {
 	 * Delete comment.
 	 */
 	function deleteComment($args) {
-		SectionEditorHandler::validate();
-		SectionEditorHandler::setupTemplate(true);
+		AcquisitionsEditorHandler::validate();
+		AcquisitionsEditorHandler::setupTemplate(true);
 
 		$articleId = $args[0];
 		$commentId = $args[1];
 
 		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
 		list($comment) = SubmissionCommentsHandler::validate($commentId);
-		SectionEditorAction::deleteComment($commentId);
+		AcquisitionsEditorAction::deleteComment($commentId);
 
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_PEER_REVIEW) {

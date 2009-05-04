@@ -17,7 +17,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="monograph.title"}</td>
-		<td width="80%" colspan="2" class="data">{$submission->getMonographTitle()|strip_unsafe_html}</td>
+		<td width="80%" colspan="2" class="data">{$submission->getLocalizedTitle()|strip_unsafe_html}</td>
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="submission.originalFile"}</td>
@@ -61,7 +61,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="section.section"}</td>
-		<td width="80%" colspan="2" class="data">{$submission->getSectionTitle()|escape}</td>
+		<td width="80%" colspan="2" class="data">{$submission->getAcquisitionsArrangementTitle()|escape}</td>
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="user.role.editor"}</td>

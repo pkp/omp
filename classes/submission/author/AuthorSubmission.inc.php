@@ -171,6 +171,9 @@ class AuthorSubmission extends Monograph {
 			return (STATUS_QUEUED_UNASSIGNED);
 
 		$decisions = $this->getDecisions();
+		if (!is_array($decisions)) {
+			$decisions = array($decisions);
+		}
 		$decision = array_pop($decisions);
 		if (!empty($decision)) {
 			$latestDecision = array_pop($decision);

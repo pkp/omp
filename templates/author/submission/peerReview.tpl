@@ -12,7 +12,7 @@
 <h3>{translate key="submission.peerReview"}</h3>
 
 {assign var=start value="A"|ord}
-{section name="round" loop=$submission->getCurrentRound()}
+{section name="round" loop=$submission->getCurrentReviewRound()}
 {assign var="round" value=$smarty.section.round.index+1}
 {assign var=authorFiles value=$submission->getAuthorFileRevisions($round)}
 {assign var=editorFiles value=$submission->getEditorFileRevisions($round)}

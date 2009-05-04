@@ -59,7 +59,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="monograph.title"}</td>
-		<td width="80%" class="value">{$submission->getMonographTitle()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedTitle()|escape|default:"&mdash;"}</td>
 	</tr>
 
 	<tr>
