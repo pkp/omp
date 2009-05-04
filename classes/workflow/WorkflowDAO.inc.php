@@ -239,7 +239,7 @@ class WorkflowDAO extends DAO {
 		$sqlParams = array($userId);
 
 		if (isset($press)) {
-			$sqlExtra = ' se.press_id = ?';
+			$sqlExtra = ' se.press_id = ? AND';
 			$sqlParams[] = $press->getId();
 		}
 
