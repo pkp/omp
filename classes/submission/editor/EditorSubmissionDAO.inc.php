@@ -98,9 +98,8 @@ class EditorSubmissionDAO extends DAO {
 		$editorSubmission->setEditAssignments($editAssignments->toArray());
 
 		// Editor Decisions
-		$reviewRounds =& $editorSubmission->getReviewRounds();
+		$reviewRounds =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);
 
-		if (isset($reviewRounds))
 		foreach ($reviewRounds as $reviewRound => $round) {
 			for ($i = 1; $i <= $round; $i++) {
 				$editorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $reviewRound, $i), $reviewRound, $i);

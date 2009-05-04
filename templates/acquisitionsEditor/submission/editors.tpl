@@ -21,7 +21,7 @@
 		<td width="{if $isEditor}20%{else}25%{/if}">{translate key="submission.request"}</td>
 		{if $isEditor}<td width="10%">{translate key="common.action"}</td>{/if}
 	</tr>
-	{assign var=editAssignments value=$submission->getByIds()}
+	{assign var=editAssignments value=$submission->getEditAssignments()}
 	{foreach from=$editAssignments item=editAssignment name=editAssignments}
 	{if $editAssignment->getEditorId() == $userId}
 		{assign var=selfAssigned value=1}

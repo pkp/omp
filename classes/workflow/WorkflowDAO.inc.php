@@ -49,6 +49,8 @@ class WorkflowDAO extends DAO {
 	function proceed($monographId) {
 		//FIXME: email relevant parties that got access
 
+		if (!isset($monographId)) return null;
+
 		$press =& Request::getPress();
 
 		$workflow =& $this->getWorkflowStructure();

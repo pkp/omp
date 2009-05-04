@@ -1,12 +1,12 @@
 {foreach from=$reviewProcesses item=reviewProcess}
 <div style="border:1px solid gray">
 
-{if $reviewProcess->getStatus() == WORKFLOW_PROCESS_STATUS_CURRENT}
+{if $reviewType != null and $reviewProcess->getProcessId() == $reviewType}
 
 <table class="data" width="100%">
 	<tr valign="middle">
 		<td width="22%"><h3>{$reviewProcess->getTitle()}</h3></td>
-		<td width="14%"><h4>{if $reviewType == $reviewProcess->getId()}{translate key="submission.round" round=$round}{/if}</h4></td>
+		<td width="14%"><h4>{translate key="submission.round" round=$round}</h4></td>
 		<td width="64%" class="nowrap">
 			<a href="{url op="selectReviewer" path=$submission->getMonographId()}" class="action">{translate key="editor.monograph.selectReviewer"}</a>&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="{url op="submissionRegrets" path=$submission->getMonographId()}" class="action">{translate|escape key="editor.regrets.link"}</a>
@@ -229,6 +229,7 @@
 
 <div class="separator"></div>
 
+{include file="acquisitionsEditor/submission/editorDecision.tpl"}
 
 {if $reviewProcess->getDateEnded() != null && $reviewProcess->getDateSigned() == null}
 	{assign var="waitingOnSignoffs" value="1"}

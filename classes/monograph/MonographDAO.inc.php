@@ -391,10 +391,8 @@ class MonographDAO extends DAO {
 	 * @param $row array
 	 * @return array ($returned[review_type]=current_round_value)
 	 */
-	function &_retrieveCurrentReviewRounds($monographId) {
-		$returner = null;
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$reviewTypes =& $workflowDao->getWorkflowStructure(WORKFLOW_PROCESS_ASSESSMENT);
+	function &getReviewRoundsInfoById($monographId) {
+		$returner = array();
 
 		$result =& $this->retrieve(
 				'SELECT MAX(round) AS current_round, review_type, review_revision 
@@ -403,10 +401,6 @@ class MonographDAO extends DAO {
 				GROUP BY review_type', 
 				$monographId
 			);
-
-		foreach ($reviewTypes as $reviewType) {
-			$returner[$reviewType] = 1;
-		}
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -467,8 +461,7 @@ class MonographDAO extends DAO {
 		$monograph->setCompletedProspectusFileId($row['prospectus_file_id']);
 		$monograph->setStatus($row['status']);
 		$monograph->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
-		$monograph->setReviewRounds($this->_retrieveCurrentReviewRounds($row['monograph_id']));
-		$monograph->setCurrentReviewType($row['current_review']);
+
 		//$monograph->setDatePublished($this->datetimeFromDB($row['date_published']));
 //		//$monograph->setPublicMonographId($row['public_monograph_id']);
 		$monograph->setWorkType($row['edited_volume']);

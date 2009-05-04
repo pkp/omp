@@ -22,8 +22,4 @@
 
 {include file="acquisitionsEditor/submission/peerReview.tpl"}
 
-<div class="separator"></div>
-
-{include file="acquisitionsEditor/submission/editorDecision.tpl"}
-
 {include file="common/footer.tpl"}

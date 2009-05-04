@@ -49,7 +49,7 @@ class AcquisitionsEditorAction extends Action {
 	 * @param $decision int
 	 */
 	function recordDecision($acquisitionsEditorSubmission, $decision) {
-		$editAssignments =& $acquisitionsEditorSubmission->getByIds();
+		$editAssignments =& $acquisitionsEditorSubmission->getEditAssignments();
 		if (empty($editAssignments)) return;
 
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
@@ -64,7 +64,12 @@ class AcquisitionsEditorAction extends Action {
 		if (!HookRegistry::call('AcquisitionsEditorAction::recordDecision', array(&$acquisitionsEditorSubmission, $editorDecision))) {
 			$acquisitionsEditorSubmission->setStatus(STATUS_QUEUED);
 			$acquisitionsEditorSubmission->stampStatusModified();
-			$acquisitionsEditorSubmission->addDecision($editorDecision, $acquisitionsEditorSubmission->getCurrentRound());
+			$acquisitionsEditorSubmission->addDecision(
+									$editorDecision, 
+									$acquisitionsEditorSubmission->getCurrentReviewType(),
+									$acquisitionsEditorSubmission->getCurrentReviewRound()
+								);
+
 			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
 
 			$decisions = AcquisitionsEditorSubmission::getEditorDecisionOptions();
@@ -1878,7 +1883,7 @@ $round = 1;
 			$monographComment->setDatePosted(Core::getCurrentDate());
 			$monographComment->setViewable(true);
 			$monographComment->setAssocId($acquisitionsEditorSubmission->getMonographId());
-			$monographCommentDao->insertMonographComment($monographComment);
+	//		$monographCommentDao->insertMonographComment($monographComment);
 
 			return true;
 		} else {
@@ -1888,7 +1893,7 @@ $round = 1;
 				$email->assignParams(array(
 					'editorialContactSignature' => $user->getContactSignature(),
 					'authorName' => $authorUser->getFullName(),
-					'journalTitle' => $press->getPressTitle()
+					'journalTitle' => $press->getLocalizedName()
 				));
 				$email->addRecipient($authorEmail, $authorUser->getFullName());
 				if ($press->getSetting('notifyAllAuthorsOnDecision')) foreach ($acquisitionsEditorSubmission->getAuthors() as $author) {

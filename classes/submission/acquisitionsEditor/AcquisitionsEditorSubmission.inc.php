@@ -67,15 +67,16 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Add an editorial decision for this article.
+	 * Add an editorial decision for this monograph.
 	 * @param $editorDecision array
+	 * @param $reviewType int
 	 * @param $round int
 	 */
-	function addDecision($editorDecision, $round) {
-		if (isset($this->editorDecisions[$round]) && is_array($this->editorDecisions[$round])) {
-			array_push($this->editorDecisions[$round], $editorDecision);
+	function addDecision($editorDecision, $reviewType, $round) {
+		if (isset($this->editorDecisions[$reviewType][$round]) && is_array($this->editorDecisions[$reviewType][$round])) {
+			array_push($this->editorDecisions[$reviewType][$round], $editorDecision);
 		}
-		else $this->editorDecisions[$round] = Array($editorDecision);
+		else $this->editorDecisions[$reviewType][$round] = Array($editorDecision);
 	}
 
 	/**
@@ -143,7 +144,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 		if ($this->getSubmissionProgress()) return (STATUS_INCOMPLETE);
 
 		// The submission is STATUS_QUEUED. Find out where it's queued.
-		$editAssignments = $this->getByIds();
+		$editAssignments = $this->getEditAssignments();
 		if (empty($editAssignments))
 			return (STATUS_QUEUED_UNASSIGNED);
 
@@ -166,7 +167,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * Get edit assignments for this article.
 	 * @return array
 	 */
-	function &getByIds() {
+	function &getEditAssignments() {
 		$editAssignments =& $this->getData('editAssignments');
 		return $editAssignments;
 	}
@@ -219,22 +220,28 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * Get editor decisions.
 	 * @return array
 	 */
-	function getDecisions($round = null) {
-		if ($round == null) {
+	function getDecisions($reviewType = null, $round = null) {
+		if ($reviewType == null && $round == null) {
 			return $this->editorDecisions;
-		} else {
-			if (isset($this->editorDecisions[$round])) return $this->editorDecisions[$round];
+		} elseif ($reviewType != null && $round == null) {
+			if (isset($this->editorDecisions[$reviewType])) return $this->editorDecisions[$round];
 			else return null;
+		} elseif ($reviewType != null && $round != null) {
+			if (isset($this->editorDecisions[$reviewType][$round])) return $this->editorDecisions[$reviewType][$round];
+			else return null;
+		} else {
+			return null;
 		}
 	}
 
 	/**
 	 * Set editor decisions.
 	 * @param $editorDecisions array
+	 * @param $reviewType int
 	 * @param $round int
 	 */
-	function setDecisions($editorDecisions, $round) {
-		return $this->editorDecisions[$round] = $editorDecisions;
+	function setDecisions($editorDecisions, $reviewType, $round) {
+		return $this->editorDecisions[$reviewType][$round] = $editorDecisions;
 	}
 
 	// 

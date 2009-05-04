@@ -162,18 +162,18 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
 		// Setting the round.
-		$round = 1;//isset($args[1]) ? $args[1] : $submission->getCurrentRound();
+		$round = $submission->getCurrentReviewRound();
 
 //		$sectionDao =& DAORegistry::getDAO('SectionDAO');
 //		$sections =& $sectionDao->getPressSections($press->getId());
 
 //		$showPeerReviewOptions = $round == $submission->getCurrentRound() && $submission->getReviewFile() != null ? true : false;
 
-		$editorDecisions = $submission->getDecisions($round);
-		$lastDecision = null;//count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;				
+		$editorDecisions = $submission->getDecisions($submission->getCurrentReviewType(), $submission->getCurrentReviewRound());
+		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;				
 
-		$editAssignments =& $submission->getByIds();
-//		$allowRecommendation = $submission->getCurrentRound() == $round && $submission->getReviewFileId() != null && !empty($editAssignments);
+		$editAssignments =& $submission->getEditAssignments();
+		$allowRecommendation = 1;//$submission->getCurrentRound() == $round && $submission->getReviewFileId() != null && !empty($editAssignments);
 		$allowResubmit = $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT && $acquisitionsEditorSubmissionDao->getMaxReviewRound($monographId) == $round ? true : false;
 		$allowCopyedit = $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT && $submission->getCopyeditFileId() == null ? true : false;
 
@@ -204,7 +204,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormTitles = array();
 
-		if (is_array($submission->getReviewAssignments($round)))
+		if (is_array($submission->getReviewAssignments($round)) && false)
 		foreach ($submission->getReviewAssignments($round) as $reviewAssignment) {
 			$reviewForm =& $reviewFormDao->getById($reviewAssignment->getReviewFormId());
 			if ($reviewForm) {
@@ -223,49 +223,22 @@ $sections = null;
 		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 		$reviewProcesses =& $workflowDao->getByEventType($monographId, WORKFLOW_PROCESS_ASSESSMENT);
 
-//		$signoffEntityDao =& DAORegistry::getDAO('SignoffEntityDAO');
-/*		import('workflow.review.ReviewProcess');
-		$signoffProcessDao =& DAORegistry::getDAO('ProcessSignoffDAO');
-
-	if (isset($reviewProcesses[0]) && $reviewProcesses[0]->getWorkflowProcess() != null) {
-		$currentReviewType = 1;
-		$signoffQueue = false;
-		$workflowProcess = null;
-		for ($i=0;$i<count($reviewProcesses);$i++) {
-			$workflowProcess =& $reviewProcesses[$i]->getWorkflowProcess();
-			if (isset($workflowProcess) && $workflowProcess->getDateEnded() != null && $workflowProcess->getDateSigned() == null) {
-				$currentReviewType = $workflowProcess->getWorkflowProcessId();
-				$entities =& $signoffEntityDao->get(WORKFLOW_PROCESS_TYPE_REVIEW, $workflowProcess->getWorkflowProcessId(), $press->getId());
-				if (empty($entities)) {// or everyone has signed
-					$workflowProcess->setDateSigned(Core::getCurrentDate());
-					$signoffProcessDao->updateObject($workflowProcess);
-					if (isset($reviewProcesses[$i+1])) {
-						$workflowProcess =& $reviewProcesses[$i+1]->getWorkflowProcess();print_r($workflowProcess);
-						Action::initiateSignoffProcess($workflowProcess->getMonographId(), $workflowProcess->getWorkflowProcess(), $workflowProcess->getWorkflowProcessId());
-						$currentReviewType = $workflowProcess->getWorkflowProcessId();
-						break;
-					}
-				} else {
-					 
-				}
-			}
-		}
-		unset($workflowProcess);
-	}*/
 		$reviewAssignments =& $submission->getReviewAssignments();
 
 		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$process =& $workflowDao->getCurrent($monographId);
+		$process =& $workflowDao->getCurrent($monographId, WORKFLOW_PROCESS_ASSESSMENT);
 
-		$reviewAssignments =& $reviewAssignments[$process->getProcessId()];
+		$reviewAssignments = isset($process) && isset($reviewAssignments[$process->getProcessId()]) ? $reviewAssignments[$process->getProcessId()] : null;
+
+		$processId = isset($process) ? $process->getProcessId() : null;
 
 		$templateMgr->assign('signoffWait', 0);
 		$templateMgr->assign('signoffQueue', 0);
-		$templateMgr->assign_by_ref('reviewType', $currentReviewType);
+		$templateMgr->assign_by_ref('reviewType', $processId);
 		$templateMgr->assign_by_ref('reviewProcesses', $reviewProcesses);
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('reviewIndexes', $reviewAssignmentDao->getReviewIndexesForRound($monographId, $round));
-//		$templateMgr->assign('round', $round);
+		$templateMgr->assign('round', $round);
 		$templateMgr->assign_by_ref('reviewAssignments', $reviewAssignments);
 		$templateMgr->assign('reviewFormResponses', $reviewFormResponses);
 		$templateMgr->assign('reviewFormTitles', $reviewFormTitles);
@@ -294,7 +267,7 @@ $sections = null;
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 		$templateMgr->assign_by_ref('reviewerRatingOptions', ReviewAssignment::getReviewerRatingOptions());
 
-//		$templateMgr->assign('allowRecommendation', $allowRecommendation);
+		$templateMgr->assign('allowRecommendation', $allowRecommendation);
 		$templateMgr->assign('allowResubmit', $allowResubmit);
 		$templateMgr->assign('allowCopyedit', $allowCopyedit);
 
@@ -312,13 +285,17 @@ $sections = null;
 		$useProofreaders = $press->getSetting('useProofreaders');
 
 		// check if submission is accepted
-		$round = isset($args[1]) ? $args[1] : $submission->getCurrentRound();
-		$editorDecisions = $submission->getDecisions($round);
-		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;				
-		$submissionAccepted = ($lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT) ? true : false;
-
+//		$round = isset($args[1]) ? $args[1] : $submission->getCurrentReviewRound();
+//		$editorDecisions = $submission->getDecisions($round);
+//		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;				
+//		$submissionAccepted = ($lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT) ? true : false;
+		$submissionAccepted = true;
 		$templateMgr =& TemplateManager::getManager();
 
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$currentProcess = $workflowDao->getCurrent($monographId);
+
+		$templateMgr->assign_by_ref('currentProcess', $currentProcess);
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('copyeditFile', $submission->getCopyeditFile());
@@ -341,8 +318,8 @@ $sections = null;
 		$templateMgr->assign('useCopyeditors', $useCopyeditors);
 		$templateMgr->assign('useLayoutEditors', $useLayoutEditors);
 		$templateMgr->assign('useProofreaders', $useProofreaders);
-		$templateMgr->assign_by_ref('proofAssignment', $submission->getProofAssignment());
-		$templateMgr->assign_by_ref('layoutAssignment', $submission->getLayoutAssignment());
+//		$templateMgr->assign_by_ref('proofAssignment', $submission->getProofAssignment());
+//		$templateMgr->assign_by_ref('layoutAssignment', $submission->getLayoutAssignment());
 		$templateMgr->assign('submissionAccepted', $submissionAccepted);
 
 		// Set up required Payment Related Information
@@ -996,18 +973,35 @@ $sections = null;
 		if ($submit != null) {
 			AcquisitionsEditorAction::uploadEditorVersion($submission);
 		}		
+//advance workflow
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 
 		if (Request::getUserVar('setCopyeditFile')) {
 			// If the Send To Copyedit button was pressed
 			$file = explode(',', Request::getUserVar('editorDecisionFile'));
 			if (isset($file[0]) && isset($file[1])) {
-				$round = $submission->getCurrentRound();
-				if ($submission->getMostRecentEditorDecisionComment()) {
+				$reviewType = $submission->getCurrentReviewType();
+				$newProcess =& $workflowDao->proceed($monographId);
+				switch ($reviewType) {
+				case WORKFLOW_PROCESS_ASSESSMENT_INTERNAL:
+					$submission->setReviewFileId($file[0]);
+					$submission->setReviewRevision($file[1]);
+					$submission->setCurrentReviewType($newProcess->getProcessId());
+					$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+					$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($submission);
+					break;
+				case WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL:
+					AcquisitionsEditorAction::setCopyeditFile($submission, $file[0], $file[1]);
+					$redirectTarget = 'submissionEditing';
+					break;
+				}
+
+//				if ($submission->getMostRecentEditorDecisionComment()) {
 					// The conditions are met for being able
 					// to send a file to copyediting.
-					AcquisitionsEditorAction::setCopyeditFile($submission, $file[0], $file[1]);
-				}
-				$redirectTarget = 'submissionEditing';
+				
+				
+//				}
 			}
 
 		} else if (Request::getUserVar('resubmit')) {
@@ -2450,7 +2444,7 @@ $sections = null;
 
 		// If necessary, note the current date and time as the "underway" date/time
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $acquisitionsEditorSubmission->getByIds();
+		$editAssignments =& $acquisitionsEditorSubmission->getEditAssignments();
 		foreach ($editAssignments as $editAssignment) {
 			if ($editAssignment->getEditorId() == $user->getUserId() && $editAssignment->getDateUnderway() === null) {
 				$editAssignment->setDateUnderway(Core::getCurrentDate());

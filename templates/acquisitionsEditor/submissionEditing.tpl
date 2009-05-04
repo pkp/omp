@@ -25,18 +25,15 @@
 
 <div class="separator"></div>
 
+{if $currentProcess != null and $currentProcess->getProcessId() == WORKFLOW_PROCESS_EDITING_COPYEDIT}
+
 {include file="acquisitionsEditor/submission/copyedit.tpl"}
 
 <div class="separator"></div>
+{else}
 
-{include file="acquisitionsEditor/submission/scheduling.tpl"}
+<em>Copyedit not available</em>
 
-<div class="separator"></div>
-
-{include file="acquisitionsEditor/submission/layout.tpl"}
-
-<div class="separator"></div>
-
-{include file="acquisitionsEditor/submission/proofread.tpl"}
+{/if}
 
 {include file="common/footer.tpl"}

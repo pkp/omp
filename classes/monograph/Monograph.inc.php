@@ -84,26 +84,26 @@ class Monograph extends Submission {
 		 return $this->getData('prospectus_file_id');
 	}
 
-	function setReviewRounds($roundInfo) {
-		 $this->setData('review_rounds', $roundInfo);
+	function setCurrentReviewRound($round) {
+		 $this->setData('currentReviewRound', $round);
 	}
-	function getReviewRounds() {
-		 return $this->getData('review_rounds');
+	function getCurrentReviewRound() {
+		 return $this->getData('currentReviewRound');
 	}
-	function setCurrentReviewType($reviewId) {
-		 $this->setData('current_review', $reviewId);
+	function setCurrentReviewType($reviewType) {
+		 $this->setData('currentReviewType', $reviewType);
 	}
 	function getCurrentReviewType() {
-		 return $this->getData('current_review');
+		 return $this->getData('currentReviewType');
 	}
-	function getCurrentRoundByReviewType($reviewType) {
-		$rounds = $this->getReviewRounds();
-		if (isset($rounds[$reviewType])) {
-			return $rounds[$reviewType];
-		} else {
-			return 0;
-		}
+
+	function setReviewRoundsInfo($reviewRoundsInfo) {
+		 $this->setData('reviewRoundsInfo', $reviewRoundsInfo);
 	}
+	function getReviewRoundsInfo() {
+		 return $this->getData('reviewRoundsInfo');
+	}
+
 	/**
 	 * set monograph id
 	 * @param $monographId int

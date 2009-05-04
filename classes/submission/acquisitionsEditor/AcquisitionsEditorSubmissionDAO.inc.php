@@ -118,12 +118,20 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	}
 
 	/**
+	 * Construct a new data object corresponding to this DAO.
+	 * @return AcquisitionsEditorSubmission
+	 */
+	function newDataObject() {
+		return new AcquisitionsEditorSubmission();
+	}
+
+	/**
 	 * Internal function to return a AcquisitionsEditorSubmission object from a row.
 	 * @param $row array
 	 * @return AcquisitionsEditorSubmission
 	 */
 	function &_fromRow(&$row) {
-		$acquisitionsEditorSubmission = new AcquisitionsEditorSubmission();
+		$acquisitionsEditorSubmission = $this->newDataObject();
 
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($acquisitionsEditorSubmission, $row);
@@ -132,12 +140,27 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
 		$acquisitionsEditorSubmission->setEditAssignments($editAssignments->toArray());
 
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$currentReviewProcess = $workflowDao->getCurrent($row['monograph_id'], WORKFLOW_PROCESS_ASSESSMENT);
+
+		$currentReviewType = isset($currentReviewProcess) ? $currentReviewProcess->getProcessId() : null;
+
+		$reviewRounds =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);
+
+		$acquisitionsEditorSubmission->setReviewRoundsInfo($reviewRounds);
+  
+
+		$currentReviewRound = isset($currentReviewProcess) &&isset($reviewRounds[$currentReviewProcess->getProcessId()]) ? 
+						$reviewRounds[$currentReviewProcess->getProcessId()] : null;
+
+		$acquisitionsEditorSubmission->setCurrentReviewType($currentReviewType);
+		$acquisitionsEditorSubmission->setCurrentReviewRound($currentReviewRound);
+	
+	
 		// Editor Decisions
-		$reviewRounds =& $acquisitionsEditorSubmission->getReviewRounds($row['monograph_id']);
-		if (isset($reviewRounds))
-		foreach ($reviewRounds as $reviewRound => $round) {
+		foreach ($reviewRounds as $reviewType => $round) {
 			for ($i = 1; $i <= $round; $i++) {
-				$acquisitionsEditorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $reviewRound, $i), $reviewRound, $i);
+				$acquisitionsEditorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $reviewType, $i), $reviewType, $i);
 			}
 		}
 
@@ -183,7 +206,6 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 */
 		// Review Assignments
 
-		if (isset($reviewRounds))
 		foreach ($reviewRounds as $reviewType => $round) {
 			for ($i = 1; $i <= $round; $i++) {
 				$acquisitionsEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getByMonographId($row['monograph_id'], $reviewType, $i), $reviewType, $i);
@@ -219,7 +241,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 //		$acquisitionsEditorSubmission->setProofAssignment($this->proofAssignmentDao->getProofAssignmentByMonographId($row['monograph_id']));
 
 		HookRegistry::call('AcquisitionsEditorSubmissionDAO::_fromRow', array(&$acquisitionsEditorSubmission, &$row));
-
+//print_r($acquisitionsEditorSubmission);
 		return $acquisitionsEditorSubmission;
 	}
 
@@ -229,7 +251,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 */
 	function updateAcquisitionsEditorSubmission(&$acquisitionsEditorSubmission) {
 		// update edit assignment
-		$editAssignments =& $acquisitionsEditorSubmission->getByIds();
+		$editAssignments =& $acquisitionsEditorSubmission->getEditAssignments();
 		foreach ($editAssignments as $editAssignment) {
 			if ($editAssignment->getEditId() > 0) {
 				$this->editAssignmentDao->updateEditAssignment($editAssignment);
@@ -238,31 +260,44 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 			}
 		}
 
-		$round = $acquisitionsEditorSubmission->getCurrentRoundByReviewType($acquisitionsEditorSubmission->getCurrentReviewType());
+		$reviewRounds = $acquisitionsEditorSubmission->getReviewRoundsInfo();
 
 		// Update editor decisions
+		foreach ($reviewRounds as $reviewType => $round) {
 		for ($i = 1; $i <= $round; $i++) {
-			$editorDecisions = $acquisitionsEditorSubmission->getDecisions($i);
+			$editorDecisions = $acquisitionsEditorSubmission->getDecisions($reviewType, $i);
 			if (is_array($editorDecisions)) {
 				foreach ($editorDecisions as $editorDecision) {
 					if ($editorDecision['editDecisionId'] == null) {
 						$this->update(
-							sprintf('INSERT INTO edit_decisions
-								(monograph_id, round, editor_id, decision, date_decided)
-								VALUES (?, ?, ?, ?, %s)',
-								$this->datetimeToDB($editorDecision['dateDecided'])),
-							array($acquisitionsEditorSubmission->getMonographId(), $acquisitionsEditorSubmission->getCurrentRound(), $editorDecision['editorId'], $editorDecision['decision'])
+							sprintf(
+								'INSERT INTO edit_decisions
+								(monograph_id, review_type, round, editor_id, decision, date_decided)
+								VALUES (?, ?, ?, ?, ?, %s)',
+								$this->datetimeToDB($editorDecision['dateDecided'])
+							),
+							array(
+								$acquisitionsEditorSubmission->getMonographId(),
+								$reviewType,
+								$i, 
+								$editorDecision['editorId'], 
+								$editorDecision['decision']
+							)
 						);
 					}
 				}
 			}
 		}
+		}
+		$round = $acquisitionsEditorSubmission->getCurrentReviewRound();
+
 		if ($this->reviewRoundExists($acquisitionsEditorSubmission->getMonographId(), $acquisitionsEditorSubmission->getCurrentReviewType(), $round)) {
 			$this->update(
 				'UPDATE review_rounds
-					SET
-						review_revision = ?
-					WHERE monograph_id = ? AND review_type = ? AND round = ?',
+					SET review_revision = ?
+					WHERE monograph_id = ? AND 
+						review_type = ? AND 
+						round = ?',
 				array(
 					$acquisitionsEditorSubmission->getReviewRevision(),
 					$acquisitionsEditorSubmission->getMonographId(),
@@ -270,7 +305,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 					$round
 				)
 			);
-		} elseif ($acquisitionsEditorSubmission->getReviewRevision()!=null) {
+		} elseif ($acquisitionsEditorSubmission->getReviewRevision() != null) {
 			
 			$this->createReviewRound(
 				$acquisitionsEditorSubmission->getMonographId(),
@@ -851,7 +886,14 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		}
 
 		while (!$result->EOF) {
-			$decisions[] = array('editDecisionId' => $result->fields[0], 'editorId' => $result->fields[1], 'decision' => $result->fields[2], 'dateDecided' => $this->datetimeFromDB($result->fields[3]));
+
+			$decisions[] = array(
+						'editDecisionId' => $result->fields['edit_decision_id'], 
+						'editorId' => $result->fields['editor_id'], 
+						'decision' => $result->fields['decision'], 
+						'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
+					);
+
 			$result->moveNext();
 		}
 		$result->Close();
