@@ -234,6 +234,16 @@ class WorkflowDAO extends DAO {
 
 		$press =& Request::getPress();
 		$locale =& Locale::getPrimaryLocale();
+
+		$sqlExtra = '';
+		$sqlParams = array($userId);
+
+		if (isset($press)) {
+			$sqlExtra = ' se.press_id = ?';
+			$sqlParams[] = $press->getId();
+		}
+
+
 		//FIXME deal w/monograph_settings differently
 		$result =& $this->retrieve(
 				'SELECT sp.*, ms.setting_value AS monograph_title
@@ -243,10 +253,9 @@ class WorkflowDAO extends DAO {
 				LEFT JOIN signoff_processes sp ON (sp.event_id = se.event_id)
 				LEFT JOIN workflow_signoffs ws ON (sp.process_id=ws.process_id AND ws.user_id = u.user_id)
 				LEFT JOIN monograph_settings ms ON (sp.monograph_id = ms.monograph_id AND ms.setting_name = \'title\' AND ms.locale = \''. $locale .'\')
-				WHERE u.user_id = ? AND
-				se.press_id = ? AND
+				WHERE u.user_id = ? AND '. $sqlExtra .'
 				ws.user_id IS NULL',
-				array($userId, $press->getId())
+				$sqlParams
 			);
 
 		$returner = null;
