@@ -33,7 +33,7 @@
 
 		<td colspan="2">
 			{url|assign:"url" page="manager" op="email" toGroup=$group->getGroupId()}
-			{$group->getGroupTitle()|escape}&nbsp;{icon name="mail" url=$url}
+			{$group->getLocalizedTitle()|escape}&nbsp;{icon name="mail" url=$url}
 		</td>
 
 		<td>
