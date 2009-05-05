@@ -65,8 +65,8 @@
 
 <form method="post" action="{url op="editorReview"}" enctype="multipart/form-data">
 <input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
-{assign var=authorFiles value=$submission->getAuthorFileRevisions($round)}
-{assign var=editorFiles value=$submission->getEditorFileRevisions($round)}
+{assign var=authorFiles value=$submission->getAuthorFileRevisions($reviewType)}
+{assign var=editorFiles value=$submission->getEditorFileRevisions($reviewType)}
 
 {assign var="authorRevisionExists" value=false}
 {foreach from=$authorFiles item=authorFile}
@@ -142,7 +142,8 @@
 		</tr>
 	{/foreach}
 	{assign var="firstItem" value=true}
-	{foreach from=$editorFiles item=editorFile key=key}
+	{assign var="editorFiles" value=$editorFiles.$round}
+	{foreach from=$editorFiles item=editorFile key=key}<?php print_r($editorFiles);?>
 		<tr valign="top">
 			{if $firstItem}
 				{assign var="firstItem" value=false}

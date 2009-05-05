@@ -45,7 +45,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$this->userDao =& DAORegistry::getDAO('UserDAO');
 		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-//		$this->copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
+		$this->copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
 		$this->layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
@@ -140,22 +140,23 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
 		$acquisitionsEditorSubmission->setEditAssignments($editAssignments->toArray());
 
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$currentReviewProcess = $workflowDao->getCurrent($row['monograph_id'], WORKFLOW_PROCESS_ASSESSMENT);
-
-		$currentReviewType = isset($currentReviewProcess) ? $currentReviewProcess->getProcessId() : null;
-
 		$reviewRounds =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);
 
 		$acquisitionsEditorSubmission->setReviewRoundsInfo($reviewRounds);
   
+/*		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$currentReviewProcess = $workflowDao->getCurrent($row['monograph_id'], WORKFLOW_PROCESS_ASSESSMENT);
+
+		$currentReviewType = isset($currentReviewProcess) ? $currentReviewProcess->getProcessId() : null;
+
+
 
 		$currentReviewRound = isset($currentReviewProcess) && isset($reviewRounds[$currentReviewProcess->getProcessId()]) ? 
 						$reviewRounds[$currentReviewProcess->getProcessId()] : null;
 
 		$acquisitionsEditorSubmission->setCurrentReviewType($currentReviewType);
 		$acquisitionsEditorSubmission->setCurrentReviewRound($currentReviewRound);
-	
+*/	
 	
 		// Editor Decisions
 		$decisions =& $this->getEditorDecisions($row['monograph_id']);
@@ -178,6 +179,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		// Initial Copyedit File
 		if ($row['copyeditor_initial_revision'] != null) {
+
 			$acquisitionsEditorSubmission->setInitialCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id'], $row['copyeditor_initial_revision']));
 		}
 
@@ -193,14 +195,11 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		$acquisitionsEditorSubmission->setCopyeditFileRevisions($this->monographFileDao->getMonographFileRevisionsInRange($row['copyedit_file_id']));
 
-		$editorFileRevisions = $this->monographFileDao->getMonographReviewRevisionsFiles($row['editor_file_id']);
+		$editorFileRevisions = $this->monographFileDao->getMonographFileRevisions($row['editor_file_id']);
+		$authorFileRevisions = $this->monographFileDao->getMonographFileRevisions($row['revised_file_id']);
 
-print_r($editorFileRevisions);
-
-		for ($i = 1; $i <= $row['current_round']; $i++) {
-			$acquisitionsEditorSubmission->setEditorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['editor_file_id'], $i), $i);
-			$acquisitionsEditorSubmission->setAuthorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['revised_file_id'], $i), $i);
-		}
+		$acquisitionsEditorSubmission->setEditorFileRevisions($editorFileRevisions);
+		$acquisitionsEditorSubmission->setAuthorFileRevisions($authorFileRevisions);
 
 		// Review Rounds
 //		$acquisitionsEditorSubmission->setReviewRevision($row['review_revision']);
@@ -242,7 +241,7 @@ print_r($editorFileRevisions);
 //		$acquisitionsEditorSubmission->setProofAssignment($this->proofAssignmentDao->getProofAssignmentByMonographId($row['monograph_id']));
 
 		HookRegistry::call('AcquisitionsEditorSubmissionDAO::_fromRow', array(&$acquisitionsEditorSubmission, &$row));
-print_r($acquisitionsEditorSubmission);
+
 		return $acquisitionsEditorSubmission;
 	}
 
@@ -317,7 +316,7 @@ print_r($acquisitionsEditorSubmission);
 		}
 
 		// Update copyeditor assignment
-/*		if ($acquisitionsEditorSubmission->getCopyedId()) {
+		if ($acquisitionsEditorSubmission->getCopyedId()) {
 			$copyeditorSubmission =& $this->copyeditorSubmissionDao->getCopyeditorSubmission($acquisitionsEditorSubmission->getMonographId());
 		} else {
 			$copyeditorSubmission = new CopyeditorSubmission();
@@ -348,7 +347,7 @@ print_r($acquisitionsEditorSubmission);
 			$this->copyeditorSubmissionDao->updateCopyeditorSubmission($copyeditorSubmission);
 		} else {
 			$this->copyeditorSubmissionDao->insertCopyeditorSubmission($copyeditorSubmission);
-		}*/
+		}
 
 		// update review assignments
 		foreach ($acquisitionsEditorSubmission->getReviewAssignments() as $roundReviewAssignments) {

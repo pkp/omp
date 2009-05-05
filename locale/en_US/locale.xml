@@ -40,6 +40,20 @@
 	<message key="manuscript.submissions">Manuscript Submissions</message>
 	<message key="manuscript.artwork">Artwork</message>
 	<message key="submission.changeSection">Change to</message>
+	<message key="submission.copyediting">Copyediting</message>
+	<message key="submission.copyedit">Copyedit</message>
+	<message key="submission.copyedit.mustUploadFileForInitialCopyedit">Request email cannot be sent until file is selected for copyediting in Editor Decision, Review page.</message>
+	<message key="editor.monograph.selectCopyeditor">Assign Copyeditor</message>
+	<message key="submission.copyedit.mustUploadFileForCopyedit">Request email cannot be sent until file is uploaded for copyediting.</message>
+	<message key="submission.copyedit.initialCopyedit">Initial Copyedit</message>
+	<message key="submission.copyedit.editorsCopyedit">Editor's Copyedit</message>
+	<message key="submission.copyedit.editorAuthorReview">Author Copyedit</message>
+	<message key="submission.copyedit.finalCopyedit">Final Copyedit</message>
+	<message key="submission.copyedit.copyeditVersion">C/E Version</message>
+	<message key="submission.copyedit.selectCopyeditor">Assign Copyeditor</message>
+	<message key="submission.copyedit.useFile">Use File</message>
+	<message key="submission.copyedit.copyeditComments">Copyedit Comments</message>
+	<message key="submission.copyedit.instructions">Copyedit Instructions</message>
 	<message key="manuscript.submission">Manuscript Submission</message>
 	<message key="submission.round"><![CDATA[Round&nbsp;{$round}]]></message>
 	<message key="submission.notifyAuthor">Notify Author</message>
@@ -52,6 +66,54 @@
 	<message key="submissions.acquisitionsArrangement">Acquisitions Arrangement</message>
 	<message key="submissions.queuedReview">In Review</message>
 	<message key="reviewer.completedReviews">Done</message>
+	
+	<!-- Used in submission review -->
+	<message key="reviewer.article.fileToBeReviewed">File to be reviewed</message>
+	<message key="reviewer.article.notifyTheEditor">Notify The Editor</message>
+	<message key="reviewer.monograph.canDoReview">Will do the review</message>
+	<message key="reviewer.monograph.cannotDoReview">Unable to do the review</message>
+	<message key="reviewer.article.restrictedFileAccess">Submission will be made available, if and when reviewer agrees to undertake review</message>
+	<message key="reviewer.article.submissionEditor">Submission Editor</message>
+	<message key="reviewer.article.reviewerCommentsDescription">Type or paste in review comments here</message>
+	<message key="reviewer.monograph.editorToEnter">Editor To Enter</message>
+	<message key="reviewer.monograph.sendReminder">Send Reminder</message>
+	<message key="reviewer.article.automatic">(Auto)</message>
+	<message key="reviewer.monograph.selectRecommendation">Select a recommendation</message>
+	<message key="reviewer.monograph.recommendation">Recommendation</message>
+	<message key="reviewer.article.submitReview">Submit Review To Editor</message>
+	<message key="reviewer.article.reviewerComments">Comments</message>
+	<message key="reviewer.monograph.uploadedFile">Uploaded files</message>	
+	<message key="reviewer.article.reviewersAnnotatedVersion">Version uploaded by reviewer</message>
+	<message key="reviewer.article.reviewersAnnotatedVersionDescription">(If you want to annotate the file, for the editor, save on your hard drive and use Browse/Upload.)</message>
+        <message key="reviewer.article.schedule.request">Editor's Request</message>
+        <message key="reviewer.article.schedule.response">Your Response</message>
+        <message key="reviewer.article.schedule.submitted">Review Submitted</message>
+        <message key="reviewer.article.schedule.due">Review Due</message>
+	<message key="reviewer.article.decision.accept">Accept Submission</message>
+	<message key="reviewer.article.decision.pendingRevisions">Revisions Required</message>
+	<message key="reviewer.article.decision.resubmitHere">Resubmit for Review</message>
+        <message key="reviewer.article.decision.resubmitElsewhere">Resubmit Elsewhere</message>
+	<message key="reviewer.article.decision.decline">Decline Submission</message>
+	<message key="reviewer.article.decision.seeComments">See Comments</message>
+	<message key="reviewer.article.schedule">Schedule</message>
+        <message key="reviewer.article.submissionToBeReviewed">Submission To Be Reviewed</message>
+        <message key="reviewer.article.reviewSchedule">Review Schedule</message>
+        <message key="reviewer.article.reviewSteps">Review Steps</message>
+        <message key="reviewer.article.reviewerGuidelines">Reviewer Guidelines</message>
+        <message key="reviewer.article.notifyEditorA">Notify the submission's editor</message>
+        <message key="reviewer.article.notifyEditorB">as to whether you will undertake the review.</message>
+        <message key="reviewer.article.consultGuidelines">If you are going to do the review, consult Reviewer Guidelines below.</message>
+        <message key="reviewer.article.downloadSubmission">Click on file names to download and review (on screen or by printing) the files associated with this submission.</message>
+        <message key="reviewer.article.enterCompetingInterests"><![CDATA[Declare whether or not you have competing interests with regard to this research (see <a target="_new" class="action" href="{$competingInterestGuidelinesUrl}">CI&nbsp;Policy</a>).]]></message>
+	<message key="reviewer.competingInterests">Competing Interests</message>
+        <message key="reviewer.article.enterReviewA">Click on icon to enter (or paste) your review of this submission.</message>
+        <message key="reviewer.article.uploadFile">In addition, you can upload files for the editor and/or author to consult.</message>
+        <message key="reviewer.article.selectRecommendation">Select a recommendation and submit the review to complete the process. You must enter a review or upload a file before selecting a recommendation.</message>
+	<message key="reviewer.article.mustSelectDecision">No recommendation was selected. You must choose a recommendation to submit.</message>
+	<message key="reviewer.article.confirmDecision">Once you have recorded a decision you will no longer be able to make changes to this review. Are you sure you wish to continue?</message>
+	<message key="reviewer.article.ensuringBlindReview">Ensuring a Blind Review</message>
+	
+	
 	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press' URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
 Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.

@@ -462,6 +462,17 @@ class MonographDAO extends DAO {
 		$monograph->setStatus($row['status']);
 		$monograph->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
 
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$currentReviewProcess = $workflowDao->getCurrent($row['monograph_id'], WORKFLOW_PROCESS_ASSESSMENT);
+		$reviewRounds =& $this->getReviewRoundsInfoById($row['monograph_id']);
+
+		$currentReviewType = isset($currentReviewProcess) ? $currentReviewProcess->getProcessId() : null;
+		$currentReviewRound = isset($currentReviewProcess) && isset($reviewRounds[$currentReviewProcess->getProcessId()]) ? 
+						$reviewRounds[$currentReviewProcess->getProcessId()] : null;
+
+		$monograph->setCurrentReviewType($currentReviewType);
+		$monograph->setCurrentReviewRound($currentReviewRound);
+
 		//$monograph->setDatePublished($this->datetimeFromDB($row['date_published']));
 //		//$monograph->setPublicMonographId($row['public_monograph_id']);
 		$monograph->setWorkType($row['edited_volume']);

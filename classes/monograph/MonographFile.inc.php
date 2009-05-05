@@ -287,6 +287,24 @@ class MonographFile extends DataObject {
 	}
 
 	/**
+	 * Get review type.
+	 * @return int
+	 */
+
+	function getReviewType() {
+		return $this->getData('reviewType');	
+	}
+
+
+	/**
+	 * Set review type.
+	 * @param $reviewType int
+	 */
+
+	function setReviewType($reviewType) {
+		return $this->SetData('reviewType', $reviewType);
+	}
+	/**
 	 * Get viewable.
 	 * @return boolean
 	 */

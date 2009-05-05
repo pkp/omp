@@ -124,7 +124,7 @@ $round = 1;
 
 			$acquisitionsEditorSubmission->addReviewAssignment($reviewAssignment);
 			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
-			$round = $acquisitionsEditorSubmission->getCurrentRoundByReviewType($reviewType);
+			$round = $acquisitionsEditorSubmission->getCurrentReviewRound();
 			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($acquisitionsEditorSubmission->getMonographId(), $reviewerId, $reviewType, $round);
 
 			$press =& Request::getPress();
@@ -788,14 +788,14 @@ $round = 1;
 
 		if (!HookRegistry::call('AcquisitionsEditorAction::resubmitFile', array(&$acquisitionsEditorSubmission, &$fileId, &$revision))) {
 			// Increment the round
-			$currentRound = $acquisitionsEditorSubmission->getCurrentRound();
-			$acquisitionsEditorSubmission->setCurrentRound($currentRound + 1);
+			$currentRound = $acquisitionsEditorSubmission->getCurrentReviewRound();
+			$acquisitionsEditorSubmission->setCurrentReviewRound($currentRound + 1);
 			$acquisitionsEditorSubmission->stampStatusModified();
 
 			// Copy the file from the editor decision file folder to the review file folder
 			$newFileId = $monographFileManager->copyToReviewFile($fileId, $revision, $acquisitionsEditorSubmission->getReviewFileId());
 			$newReviewFile = $monographFileDao->getMonographFile($newFileId);
-			$newReviewFile->setRound($acquisitionsEditorSubmission->getCurrentRound());
+			$newReviewFile->setRound($acquisitionsEditorSubmission->getCurrentReviewRound());
 			$monographFileDao->updateMonographFile($newReviewFile);
 
 			// Copy the file from the editor decision file folder to the next-round editor file
@@ -805,7 +805,8 @@ $round = 1;
 			// $editorFileId definitely will not be null after assignment
 			$editorFileId = $monographFileManager->copyToEditorFile($newFileId, null, $editorFileId);
 			$newEditorFile = $monographFileDao->getMonographFile($editorFileId);
-			$newEditorFile->setRound($acquisitionsEditorSubmission->getCurrentRound());
+			$newEditorFile->setRound($acquisitionsEditorSubmission->getCurrentReviewRound());
+			$newEditorFile->setReviewType($acquisitionsEditorSubmission->getCurrentReviewType());
 			$monographFileDao->updateMonographFile($newEditorFile);
 
 			// The review revision is the highest revision for the review file.
@@ -815,14 +816,14 @@ $round = 1;
 			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
 
 			// Now, reassign all reviewers that submitted a review for this new round of reviews.
-			$previousRound = $acquisitionsEditorSubmission->getCurrentRound() - 1;
-			foreach ($acquisitionsEditorSubmission->getReviewAssignments($previousRound) as $reviewAssignment) {
+			$previousRound = $acquisitionsEditorSubmission->getCurrentReviewRound() - 1;
+/*			foreach ($acquisitionsEditorSubmission->getReviewAssignments($previousRound) as $reviewAssignment) {
 				if ($reviewAssignment->getRecommendation() !== null && $reviewAssignment->getRecommendation() !== '') {
 					// Then this reviewer submitted a review.
 					AcquisitionsEditorAction::addReviewer($acquisitionsEditorSubmission, $reviewAssignment->getReviewerId(), $acquisitionsEditorSubmission->getCurrentRound());
 				}
 			}
-
+*/
 
 			// Add log
 			import('monograph.log.MonographLog');

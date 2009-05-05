@@ -550,9 +550,8 @@
 		<field name="date_modified" type="T">
 			<NOTNULL/>
 		</field>
-		<field name="round" type="I1">
-			<NOTNULL/>
-		</field>
+		<field name="round" type="I8" />
+		<field name="review_type" type="I8" />
 		<field name="assoc_id" type="I8"/>
 		<descr>Files associated with monograph. Includes submission files, supplementary files, etc.</descr>
 		<index name="monograph_files_monograph_id">

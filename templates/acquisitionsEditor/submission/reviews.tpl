@@ -121,12 +121,6 @@
 				{/if}
 			</td>
 		</tr>
-		{if $currentJournal->getSetting('requireReviewerCompetingInterests')}
-			<tr valign="top">
-				<td class="label">{translate key="reviewer.competingInterests"}</td>
-				<td>{$reviewAssignment->getCompetingInterests()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
-			</tr>
-		{/if}{* requireReviewerCompetingInterests *}
 		{if $reviewFormResponses[$reviewId]}
 			<tr valign="top">
 				<td class="label">{translate key="submission.reviewFormResponse"}</td>
@@ -152,7 +146,9 @@
 			<td class="label">{translate key="reviewer.monograph.uploadedFile"}</td>
 			<td>
 				<table width="100%" class="data">
-					{foreach from=$reviewAssignment->getReviewerFileRevisions() item=reviewerFile key=key}
+					{assign var="reviewerFileRevisions" value=$reviewAssignment->getReviewerFileRevisions($reviewType)}
+					{assign var="reviewerFileRevisions" value=$reviewerFileRevisions.$round}
+					{foreach from=$reviewerFileRevisions item=reviewerFile key=key}
 					<tr valign="top">
 						<td valign="middle">
 							<form name="authorView{$reviewAssignment->getReviewId()}" method="post" action="{url op="makeReviewerFileViewable"}">

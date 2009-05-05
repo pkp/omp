@@ -274,7 +274,6 @@ $sections = null;
 		$templateMgr->assign('allowRecommendation', $allowRecommendation);
 		$templateMgr->assign('allowResubmit', $allowResubmit);
 		$templateMgr->assign('allowCopyedit', $allowCopyedit);
-
 		$templateMgr->assign('helpTopicId', 'editorial.acquisitionsEditorsRole.review');
 		$templateMgr->display('acquisitionsEditor/submissionReview.tpl');
 	}
@@ -319,7 +318,7 @@ $sections = null;
 		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
 		$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
 */
-		$templateMgr->assign('useCopyeditors', $useCopyeditors);
+		$templateMgr->assign('useCopyeditors', true);
 		$templateMgr->assign('useLayoutEditors', $useLayoutEditors);
 		$templateMgr->assign('useProofreaders', $useProofreaders);
 //		$templateMgr->assign_by_ref('proofAssignment', $submission->getProofAssignment());
@@ -418,7 +417,7 @@ $sections = null;
 
 		$submission->setCurrentReviewType($reviewType);
 
-		$round = $submission->getCurrentRoundByReviewType($reviewType);
+		$round = $submission->getCurrentReviewRound();
 
 		if (isset($reviewerId)) {
 			// Assign reviewer to monograph
@@ -991,6 +990,7 @@ $sections = null;
 					$submission->setReviewFileId($file[0]);
 					$submission->setReviewRevision($file[1]);
 					$submission->setCurrentReviewType($newProcess->getProcessId());
+					$submission->setCurrentReviewRound(1);
 					$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 					$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($submission);
 					break;
@@ -1035,7 +1035,7 @@ $sections = null;
 		} else {
 			parent::setupTemplate(true, $monographId, 'editing');
 
-			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('SectionEditorSubmissionDAO');
+			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 
 			$searchType = null;
 			$searchMatch = null;

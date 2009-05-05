@@ -120,15 +120,15 @@
 	<message key="editor.monograph.toReviewer">To Reviewer</message>
 	<message key="editor.article.notifyReviewer">Notify Reviewer</message>
 	<message key="editor.article.initiateReview">Initiate Review</message>
-	<message key="editor.article.cancelReview">Cancel Request</message>
+	<message key="editor.monograph.cancelReview">Cancel Request</message>
 	<message key="editor.monograph.clearReview">Clear Reviewer</message>
 	<message key="editor.article.enterRecommendation">Enter Recommendation</message>
-	<message key="editor.article.enterReviewerRecommendation">Enter Reviewer Recommendation</message>
-	<message key="editor.article.recommendation">Recommendation</message>
+	<message key="editor.monograph.enterReviewerRecommendation">Enter Reviewer Recommendation</message>
+	<message key="editor.monograph.recommendation">Recommendation</message>
 	<message key="editor.monograph.selectReviewer">Select Reviewer</message>
 	<message key="editor.article.replaceReviewer">Replace Reviewer</message>
 	<message key="editor.article.editorToEnter">Editor to enter recommendation/comments for reviewer</message>
-	<message key="editor.article.uploadReviewForReviewer">Upload review</message>
+	<message key="editor.monograph.uploadReviewForReviewer">Upload review</message>
 	<message key="editor.article.peerReviewOptions">Peer Review Options</message>
 	<message key="editor.monograph.decision">Decision</message>
 	<message key="editor.article.noEditorSelected">No editor selected.</message>
@@ -144,7 +144,7 @@
 	<message key="editor.article.selectCopyeditor">Assign Copyeditor</message>
 	<message key="editor.article.replaceCopyeditor">Replace Copyeditor</message>
 	<message key="editor.article.editorsCopyedit">Editor's Copyedit</message>
-	<message key="editor.article.showAuthor">Let author view file</message>
+	<message key="editor.monograph.showAuthor">Let author view file</message>
 	<message key="editor.article.showCopyeditor">Show version to copyeditor</message>
 	<message key="editor.article.rateReviewer">Reviewer rating</message>
 	<message key="editor.article.reviewerRating.veryGood">5 High</message>
@@ -173,7 +173,7 @@
 	<message key="editor.article.resubmitForReview">Resubmit file for Review</message>
 	<message key="editor.article.resubmitFileForPeerReview">Resubmit selected file for peer review</message>
 	<message key="editor.article.sendToCopyedit">Send file to Copyediting</message>
-	<message key="editor.article.sendFileToCopyedit">Select file for Copyediting</message>
+	<message key="editor.monograph.sendFileToCopyedit">Select file for Copyediting</message>
 	<message key="editor.article.selectProofreader">Assign Proofreader</message>
 	<message key="editor.article.replaceProofreader">Replace Proofreader</message>
 	<message key="editor.article.authorComments">Author Comments</message>

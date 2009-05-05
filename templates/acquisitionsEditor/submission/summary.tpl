@@ -9,7 +9,7 @@
  * $Id$
  *}
 <div id="submission">
-<h3>{translate key="monograph.submission"}</h3>
+<h3>{translate key="manuscript.submission"}</h3>
 
 <table width="100%" class="data">
 	<tr>
@@ -24,7 +24,7 @@
 		<td>{$submission->getLocalizedTitle()|strip_unsafe_html}</td>
 	</tr>
 	<tr>
-		<td class="label">{translate key="submission.acquisitionsArrangement"}</td>
+		<td class="label">{translate key="submissions.acquisitionsArrangement"}</td>
 		<td>{$submission->getAcquisitionsArrangementAbbrev()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>

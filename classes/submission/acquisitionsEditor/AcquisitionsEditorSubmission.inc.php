@@ -335,7 +335,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * @return array MonographFiles
 	 */
 	function getEditorFileRevisions($reviewType = null) {
-		if ($round == null) {
+		if ($reviewType == null) {
 			return $this->editorFileRevisions;
 		} else {
 			return $this->editorFileRevisions[$reviewType];
@@ -345,10 +345,9 @@ class AcquisitionsEditorSubmission extends Monograph {
 	/**
 	 * Set all editor file revisions.
 	 * @param $editorFileRevisions array MonographFiles
-	 * @param $reviewType int
 	 */
-	function setEditorFileRevisions($editorFileRevisions, $reviewType) {
-		return $this->editorFileRevisions[$reviewType] = $editorFileRevisions;
+	function setEditorFileRevisions($editorFileRevisions) {
+		return $this->editorFileRevisions = $editorFileRevisions;
 	}
 
 	/**
@@ -356,7 +355,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * @return array MonographFiles
 	 */
 	function getAuthorFileRevisions($reviewType = null) {
-		if ($round == null) {
+		if ($reviewType == null) {
 			return $this->authorFileRevisions;
 		} else {
 			return $this->authorFileRevisions[$reviewType];
@@ -366,10 +365,9 @@ class AcquisitionsEditorSubmission extends Monograph {
 	/**
 	 * Set all author file revisions.
 	 * @param $authorFileRevisions array MonographFiles
-	 * @param $reviewType int
 	 */
-	function setAuthorFileRevisions($authorFileRevisions, $reviewType) {
-		return $this->authorFileRevisions[$reviewType] = $authorFileRevisions;
+	function setAuthorFileRevisions($authorFileRevisions) {
+		return $this->authorFileRevisions = $authorFileRevisions;
 	}
 
 	/**

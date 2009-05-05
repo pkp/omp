@@ -126,7 +126,7 @@ class MonographFileDAO extends DAO {
 	 * @param $monographId int
 	 * @return MonographFile
 	 */
-	function &getMonographFileRevisions($fileId, $round = null) {
+	function &getMonographFileRevisions($fileId, $reviewType = null) {
 		if ($fileId === null) {
 			$returner = null;
 			return $returner;
@@ -134,20 +134,24 @@ class MonographFileDAO extends DAO {
 		$monographFiles = array();
 
 		// FIXME If "round" is review-specific, it shouldn't be in this table
-		if ($round == null) {
+		if ($reviewType == null) {
 			$result =& $this->retrieve(
 				'SELECT a.* FROM monograph_files a WHERE file_id = ? ORDER BY revision',
 				$fileId
 			);
 		} else {
 			$result =& $this->retrieve(
-				'SELECT a.* FROM monograph_files a WHERE file_id = ? AND round = ? ORDER BY revision',
-				array($fileId, $round)
+				'SELECT a.* FROM monograph_files a WHERE file_id = ? AND review_type = ? ORDER BY revision',
+				array($fileId, $reviewType)
 			);
 		}
 
 		while (!$result->EOF) {
-			$monographFiles[] =& $this->_returnMonographFileFromRow($result->GetRowAssoc(false));
+			$file =& $this->_returnMonographFileFromRow($result->GetRowAssoc(false));
+
+			$monographFiles[$result->fields['review_type']][$result->fields['round']][] = $file;
+
+			unset($file);
 			$result->moveNext();
 		}
 
@@ -313,6 +317,7 @@ class MonographFileDAO extends DAO {
 		$monographFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
 		$monographFile->setDateModified($this->datetimeFromDB($row['date_modified']));
 		$monographFile->setRound($row['round']);
+		$monographFile->setReviewType($row['review_type']);
 		return $monographFile;
 	}
 	/**
@@ -337,6 +342,7 @@ class MonographFileDAO extends DAO {
 		$monographFile->setDateModified($this->datetimeFromDB($row['date_modified']));
 		$monographFile->setRound($row['round']);
 		$monographFile->setViewable($row['viewable']);
+		$monographFile->setReviewType($row['review_type']);
 		HookRegistry::call('MonographFileDAO::_returnMonographFileFromRow', array(&$monographFile, &$row));
 		return $monographFile;
 	}
@@ -379,9 +385,10 @@ class MonographFileDAO extends DAO {
 			$monographFile->getFileSize(),
 			$monographFile->getOriginalFileName(),
 			$monographFile->getType(),
-			(int) $monographFile->getRound(),
 			$monographFile->getViewable(),
-			$monographFile->getAssocId()
+			$monographFile->getAssocId(),
+			$monographFile->getReviewType(),
+			$monographFile->getRound()
 		);
 
 		if ($fileId) {
@@ -390,9 +397,9 @@ class MonographFileDAO extends DAO {
 
 		$this->update(
 			sprintf('INSERT INTO monograph_files
-				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, type, date_uploaded, date_modified, round, viewable, assoc_id)
+				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, type, date_uploaded, date_modified, viewable, assoc_id, review_type, round)
 				VALUES
-				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?)',
+				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?)',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
 			$params
 		);
@@ -448,6 +455,7 @@ class MonographFileDAO extends DAO {
 					date_uploaded = %s,
 					date_modified = %s,
 					round = ?,
+					review_type = ?,
 					viewable = ?,
 					assoc_id = ?
 				WHERE file_id = ? AND revision = ?',
@@ -462,6 +470,7 @@ class MonographFileDAO extends DAO {
 				$monographFile->getOriginalFileName(),
 				$monographFile->getType(),
 				$monographFile->getRound() == null ? 1 : $monographFile->getRound(),//temporary
+				$monographFile->getReviewType(),
 				$monographFile->getViewable(),
 				$monographFile->getAssocId(),
 				$monographFile->getFileId(),
