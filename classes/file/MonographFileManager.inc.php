@@ -479,9 +479,9 @@ class MonographFileManager extends FileManager {
 		$monographFile->setType('temp');
 		$monographFile->setDateUploaded(Core::getCurrentDate());
 		$monographFile->setDateModified(Core::getCurrentDate());
-//		$monographFile->setRound(0);
+		$monographFile->setRound(0);
 		$monographFile->setRevision(1);
-
+		$monographFile->setReviewType(0);
 		$monographFile->setFileId($monographFileDao->insertMonographFile($monographFile));
 
 		return $monographFile;
@@ -492,7 +492,7 @@ class MonographFileManager extends FileManager {
 	 */
 	function removePriorRevisions($fileId, $revision) {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$revisions = $monographFileDao->getMonographFileRevisions($fileId);
+		$revisions = $monographFileDao->getMonographFileRevisions($fileId, null, false);
 		foreach ($revisions as $revisionFile) {
 			if ($revisionFile->getRevision() != $revision) {
 				$this->deleteFile($fileId, $revisionFile->getRevision());

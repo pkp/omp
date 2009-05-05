@@ -229,6 +229,11 @@ class AcquisitionsEditorHandler extends PKPHandler {
 		SubmissionEditHandler::submissionEditing($args);
 	}
 
+	function submissionProduction($args) {
+		import('pages.acquisitionsEditor.SubmissionEditHandler');
+		SubmissionEditHandler::submissionProduction($args);
+	}
+
 	function submissionHistory($args) {
 		import('pages.acquisitionsEditor.SubmissionEditHandler');
 		SubmissionEditHandler::submissionHistory($args);

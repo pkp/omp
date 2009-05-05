@@ -17,6 +17,7 @@
 	<li><a href="{url op="submission" path=$submission->getMonographId()}">{translate key="submission.summary"}</a></li>
 	<li class="current"><a href="{url op="submissionReview" path=$submission->getMonographId()}">{translate key="submission.review"}</a></li>
 	{if $canEdit}<li><a href="{url op="submissionEditing" path=$submission->getMonographId()}">{translate key="submission.editing"}</a></li>{/if}
+	<li><a href="{url op="submissionProduction" path=$submission->getMonographId()}">{translate key="submission.production"}</a></li>
 	<li><a href="{url op="submissionHistory" path=$submission->getMonographId()}">{translate key="submission.history"}</a></li>
 </ul>
 

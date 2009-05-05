@@ -126,7 +126,7 @@ class MonographFileDAO extends DAO {
 	 * @param $monographId int
 	 * @return MonographFile
 	 */
-	function &getMonographFileRevisions($fileId, $reviewType = null) {
+	function &getMonographFileRevisions($fileId, $reviewType = null, $organizeByReview = true) {
 		if ($fileId === null) {
 			$returner = null;
 			return $returner;
@@ -145,14 +145,20 @@ class MonographFileDAO extends DAO {
 				array($fileId, $reviewType)
 			);
 		}
+		if ($organizeByReview) {
+			while (!$result->EOF) {
+				$file =& $this->_returnMonographFileFromRow($result->GetRowAssoc(false));
 
-		while (!$result->EOF) {
-			$file =& $this->_returnMonographFileFromRow($result->GetRowAssoc(false));
+				$monographFiles[$result->fields['review_type']][$result->fields['round']][] = $file;
 
-			$monographFiles[$result->fields['review_type']][$result->fields['round']][] = $file;
-
-			unset($file);
-			$result->moveNext();
+				unset($file);
+				$result->moveNext();
+			}
+		} else {
+			while (!$result->EOF) {
+				$monographFiles[] =& $this->_returnMonographFileFromRow($result->GetRowAssoc(false));
+				$result->moveNext();
+			}
 		}
 
 		$result->Close();

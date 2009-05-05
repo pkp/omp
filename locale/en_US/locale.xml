@@ -41,6 +41,7 @@
 	<message key="manuscript.artwork">Artwork</message>
 	<message key="submission.changeSection">Change to</message>
 	<message key="submission.copyediting">Copyediting</message>
+	<message key="submission.production">Production</message>
 	<message key="submission.copyedit">Copyedit</message>
 	<message key="submission.copyedit.mustUploadFileForInitialCopyedit">Request email cannot be sent until file is selected for copyediting in Editor Decision, Review page.</message>
 	<message key="editor.monograph.selectCopyeditor">Assign Copyeditor</message>

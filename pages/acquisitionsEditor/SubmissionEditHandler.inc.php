@@ -340,6 +340,68 @@ $sections = null;
 		$templateMgr->display('acquisitionsEditor/submissionEditing.tpl');
 	}
 
+	function submissionProduction($args) {
+		$monographId = isset($args[0]) ? (int) $args[0] : 0;
+		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		parent::setupTemplate(true, $monographId);
+
+		$useCopyeditors = $press->getSetting('useCopyeditors');
+		$useLayoutEditors = $press->getSetting('useLayoutEditors');
+		$useProofreaders = $press->getSetting('useProofreaders');
+
+		// check if submission is accepted
+//		$round = isset($args[1]) ? $args[1] : $submission->getCurrentReviewRound();
+//		$editorDecisions = $submission->getDecisions($round);
+//		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;				
+//		$submissionAccepted = ($lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT) ? true : false;
+		$submissionAccepted = true;
+		$templateMgr =& TemplateManager::getManager();
+
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$currentProcess = $workflowDao->getCurrent($monographId);
+
+		$templateMgr->assign_by_ref('currentProcess', $currentProcess);
+		$templateMgr->assign_by_ref('submission', $submission);
+		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
+		$templateMgr->assign_by_ref('copyeditFile', $submission->getCopyeditFile());
+		$templateMgr->assign_by_ref('initialCopyeditFile', $submission->getInitialCopyeditFile());
+		$templateMgr->assign_by_ref('editorAuthorCopyeditFile', $submission->getEditorAuthorCopyeditFile());
+		$templateMgr->assign_by_ref('finalCopyeditFile', $submission->getFinalCopyeditFile());
+		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
+		$templateMgr->assign_by_ref('copyeditor', $submission->getCopyeditor());
+
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$user =& Request::getUser();
+		$templateMgr->assign('isEditor', $roleDao->roleExists($press->getId(), $user->getUserId(), ROLE_ID_EDITOR));
+
+/*		import('issue.IssueAction');
+		$templateMgr->assign('issueOptions', IssueAction::getIssueOptions());
+		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
+		$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
+*/
+		$templateMgr->assign('useCopyeditors', true);
+		$templateMgr->assign('useLayoutEditors', $useLayoutEditors);
+		$templateMgr->assign('useProofreaders', $useProofreaders);
+//		$templateMgr->assign_by_ref('proofAssignment', $submission->getProofAssignment());
+//		$templateMgr->assign_by_ref('layoutAssignment', $submission->getLayoutAssignment());
+		$templateMgr->assign('submissionAccepted', $submissionAccepted);
+
+		// Set up required Payment Related Information
+/*		import('payment.ojs.OJSPaymentManager');
+		$paymentManager =& OJSPaymentManager::getManager();
+		$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
+		
+		$publicationFeeEnabled = $paymentManager->publicationEnabled();
+		$templateMgr->assign('publicatonFeeEnabled',  $publicationFeeEnabled);
+		if ( $publicationFeeEnabled ) {
+			$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getId(), $monographId ));			   
+		}	
+*/
+		$templateMgr->assign('helpTopicId', 'editorial.acquisitionsEditorsRole.editing');
+		$templateMgr->display('acquisitionsEditor/submissionProduction.tpl');
+	}
+
 	/**
 	 * View submission history
 	 */
