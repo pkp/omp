@@ -170,7 +170,10 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 //		$showPeerReviewOptions = $round == $submission->getCurrentRound() && $submission->getReviewFile() != null ? true : false;
 
 		$editorDecisions = $submission->getDecisions($submission->getCurrentReviewType(), $submission->getCurrentReviewRound());
-		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;				
+		if (!is_array($editorDecisions)) {
+			$editorDecisions = array($editorDecisions);
+		}
+		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;
 
 		$editAssignments =& $submission->getEditAssignments();
 		$allowRecommendation = 1;//$submission->getCurrentRound() == $round && $submission->getReviewFileId() != null && !empty($editAssignments);
@@ -235,6 +238,7 @@ $sections = null;
 		$templateMgr->assign('signoffWait', 0);
 		$templateMgr->assign('signoffQueue', 0);
 		$templateMgr->assign_by_ref('reviewType', $processId);
+		$templateMgr->assign_by_ref('editorDecisions', array_reverse($editorDecisions));
 		$templateMgr->assign_by_ref('reviewProcesses', $reviewProcesses);
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('reviewIndexes', $reviewAssignmentDao->getReviewIndexesForRound($monographId, $round));

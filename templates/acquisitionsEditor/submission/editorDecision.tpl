@@ -28,10 +28,11 @@
 <tr valign="top">
 	<td class="label">{translate key="editor.monograph.decision"}</td>
 	<td class="value">
-		{foreach from=$submission->getDecisions($round) item=editorDecision key=decisionKey}
-			{if $decisionKey neq 0} | {/if}
+		{foreach from=$editorDecisions item=editorDecision key=decisionKey}
 			{assign var="decision" value=$editorDecision.decision}
-			{translate key=$editorDecisionOptions.$decision}&nbsp;&nbsp;{$editorDecision.dateDecided|date_format:$dateFormatShort}
+			{if $decisionKey > 1} | {/if}
+			{if $decisionKey == 0}<strong>{/if}{translate key=$editorDecisionOptions.$decision}&nbsp;&nbsp;{$editorDecision.dateDecided|date_format:$dateFormatShort}{if $decisionKey == 0}</strong>{/if}
+			{if $decisionKey < 1}<br />{/if}
 		{foreachelse}
 			{translate key="common.none"}
 		{/foreach}

@@ -1839,8 +1839,8 @@ $round = 1;
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 
 		$press =& Request::getPress();
-
 		$user =& Request::getUser();
+
 		import('mail.MonographMailTemplate');
 
 		$decisionTemplateMap = array(
@@ -1856,7 +1856,7 @@ $round = 1;
 
 		$email = new MonographMailTemplate(
 			$acquisitionsEditorSubmission,
-			isset($decisionTemplateMap[$decision])?$decisionTemplateMap[$decision]:null
+			isset($decisionTemplateMap[$decision]) ? $decisionTemplateMap[$decision] : null
 		);
 
 		$copyeditor =& $acquisitionsEditorSubmission->getCopyeditor();

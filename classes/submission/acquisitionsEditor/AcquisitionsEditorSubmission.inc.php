@@ -236,12 +236,10 @@ class AcquisitionsEditorSubmission extends Monograph {
 
 	/**
 	 * Set editor decisions.
-	 * @param $editorDecisions array
-	 * @param $reviewType int
-	 * @param $round int
+	 * @param $decisions array
 	 */
-	function setDecisions($editorDecisions, $reviewType, $round) {
-		return $this->editorDecisions[$reviewType][$round] = $editorDecisions;
+	function setDecisions($decisions) {
+		$this->editorDecisions = $decisions;
 	}
 
 	// 
@@ -336,40 +334,42 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * Get all editor file revisions.
 	 * @return array MonographFiles
 	 */
-	function getEditorFileRevisions($round = null) {
+	function getEditorFileRevisions($reviewType = null) {
 		if ($round == null) {
 			return $this->editorFileRevisions;
 		} else {
-			return $this->editorFileRevisions[$round];
+			return $this->editorFileRevisions[$reviewType];
 		}
 	}
 
 	/**
 	 * Set all editor file revisions.
 	 * @param $editorFileRevisions array MonographFiles
+	 * @param $reviewType int
 	 */
-	function setEditorFileRevisions($editorFileRevisions, $round) {
-		return $this->editorFileRevisions[$round] = $editorFileRevisions;
+	function setEditorFileRevisions($editorFileRevisions, $reviewType) {
+		return $this->editorFileRevisions[$reviewType] = $editorFileRevisions;
 	}
 
 	/**
 	 * Get all author file revisions.
 	 * @return array MonographFiles
 	 */
-	function getAuthorFileRevisions($round = null) {
+	function getAuthorFileRevisions($reviewType = null) {
 		if ($round == null) {
 			return $this->authorFileRevisions;
 		} else {
-			return $this->authorFileRevisions[$round];
+			return $this->authorFileRevisions[$reviewType];
 		}
 	}
 
 	/**
 	 * Set all author file revisions.
 	 * @param $authorFileRevisions array MonographFiles
+	 * @param $reviewType int
 	 */
-	function setAuthorFileRevisions($authorFileRevisions, $round) {
-		return $this->authorFileRevisions[$round] = $authorFileRevisions;
+	function setAuthorFileRevisions($authorFileRevisions, $reviewType) {
+		return $this->authorFileRevisions[$reviewType] = $authorFileRevisions;
 	}
 
 	/**

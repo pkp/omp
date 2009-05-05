@@ -1,7 +1,7 @@
 {foreach from=$reviewProcesses item=reviewProcess}
 <div style="border:1px solid gray">
 
-{if $reviewType != null and $reviewProcess->getProcessId() == $reviewType}
+{if $reviewType != null and $reviewProcess->getProcessId() == $reviewType and $reviewFile != null}
 
 <table class="data" width="100%">
 	<tr valign="middle">

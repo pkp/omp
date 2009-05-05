@@ -150,7 +150,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmission->setReviewRoundsInfo($reviewRounds);
   
 
-		$currentReviewRound = isset($currentReviewProcess) &&isset($reviewRounds[$currentReviewProcess->getProcessId()]) ? 
+		$currentReviewRound = isset($currentReviewProcess) && isset($reviewRounds[$currentReviewProcess->getProcessId()]) ? 
 						$reviewRounds[$currentReviewProcess->getProcessId()] : null;
 
 		$acquisitionsEditorSubmission->setCurrentReviewType($currentReviewType);
@@ -158,11 +158,8 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	
 	
 		// Editor Decisions
-		foreach ($reviewRounds as $reviewType => $round) {
-			for ($i = 1; $i <= $round; $i++) {
-				$acquisitionsEditorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $reviewType, $i), $reviewType, $i);
-			}
-		}
+		$decisions =& $this->getEditorDecisions($row['monograph_id']);
+		$acquisitionsEditorSubmission->setDecisions($decisions);
 
 		// Comments
 //		$acquisitionsEditorSubmission->setMostRecentEditorDecisionComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_EDITOR_DECISION, $row['monograph_id']));
@@ -196,14 +193,18 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		$acquisitionsEditorSubmission->setCopyeditFileRevisions($this->monographFileDao->getMonographFileRevisionsInRange($row['copyedit_file_id']));
 
-/*		for ($i = 1; $i <= $row['current_round']; $i++) {
+		$editorFileRevisions = $this->monographFileDao->getMonographReviewRevisionsFiles($row['editor_file_id']);
+
+print_r($editorFileRevisions);
+
+		for ($i = 1; $i <= $row['current_round']; $i++) {
 			$acquisitionsEditorSubmission->setEditorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['editor_file_id'], $i), $i);
 			$acquisitionsEditorSubmission->setAuthorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['revised_file_id'], $i), $i);
 		}
 
 		// Review Rounds
-		$acquisitionsEditorSubmission->setReviewRevision($row['review_revision']);
-*/
+//		$acquisitionsEditorSubmission->setReviewRevision($row['review_revision']);
+
 		// Review Assignments
 
 		foreach ($reviewRounds as $reviewType => $round) {
@@ -241,7 +242,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 //		$acquisitionsEditorSubmission->setProofAssignment($this->proofAssignmentDao->getProofAssignmentByMonographId($row['monograph_id']));
 
 		HookRegistry::call('AcquisitionsEditorSubmissionDAO::_fromRow', array(&$acquisitionsEditorSubmission, &$row));
-//print_r($acquisitionsEditorSubmission);
+print_r($acquisitionsEditorSubmission);
 		return $acquisitionsEditorSubmission;
 	}
 
@@ -860,39 +861,29 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	/**
 	 * Get the editor decisions for a review round of a monograph.
 	 * @param $monographId int
-	 * @param $round int
 	 */
-	function getEditorDecisions($monographId, $reviewType = null, $round = null) {
+	function getEditorDecisions($monographId) {
 		$decisions = array();
 
-		if (!isset($reviewType)) {
-			$result =& $this->retrieve(
-				'SELECT edit_decision_id, editor_id, decision, date_decided FROM edit_decisions WHERE monograph_id = ? ORDER BY date_decided ASC', $monographId
+		$result =& $this->retrieve(
+				'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round 
+				FROM edit_decisions 
+				WHERE monograph_id = ? 
+				ORDER BY review_type, date_decided ASC', 
+				$monographId
 			);
-		} else if (isset($reviewType) && !isset($round)) {
-			$result =& $this->retrieve('
-					SELECT edit_decision_id, editor_id, decision, date_decided
-					FROM edit_decisions ed INNER JOIN review_rounds rr ON (ed.review_type = rr.review_type) 
-					WHERE ed.monograph_id = ? ORDER BY date_decided ASC',
-					$monographId
-				);
-		} else {
-			$result =& $this->retrieve('
-					SELECT edit_decision_id, editor_id, decision, date_decided
-					FROM edit_decisions ed INNER JOIN review_rounds rr ON (ed.review_type = rr.review_type AND ed.round = rr.round) 
-					WHERE ed.monograph_id = ? ORDER BY date_decided ASC',
-					$monographId
-				);
-		}
 
 		while (!$result->EOF) {
 
-			$decisions[] = array(
-						'editDecisionId' => $result->fields['edit_decision_id'], 
-						'editorId' => $result->fields['editor_id'], 
-						'decision' => $result->fields['decision'], 
-						'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
-					);
+			$value = array(
+					'editDecisionId' => $result->fields['edit_decision_id'], 
+					'editorId' => $result->fields['editor_id'], 
+					'decision' => $result->fields['decision'], 
+					'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
+				);
+
+			$decisions[$result->fields['review_type']][$result->fields['round']][] = $value;
+			
 
 			$result->moveNext();
 		}
