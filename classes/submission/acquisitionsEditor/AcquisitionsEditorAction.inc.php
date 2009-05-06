@@ -877,6 +877,7 @@ $round = 1;
 	 */
 	function notifyCopyeditor($acquisitionsEditorSubmission, $send = false) {
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 		$user =& Request::getUser();
@@ -884,21 +885,25 @@ $round = 1;
 		import('mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($acquisitionsEditorSubmission, 'COPYEDIT_REQUEST');
 
-		$copyeditor =& $userDao->getUser($acquisitionsEditorSubmission->getCopyeditorId());
+		$copyeditor = $acquisitionsEditorSubmission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL');
 		if (!isset($copyeditor)) return true;
 
-		if ($acquisitionsEditorSubmission->getInitialCopyeditFile() && (!$email->isEnabled() || ($send && !$email->hasErrors()))) {
+		if ($acquisitionsEditorSubmission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL') && (!$email->isEnabled() || ($send && !$email->hasErrors()))) {
 			HookRegistry::call('AcquisitionsEditorAction::notifyCopyeditor', array(&$acquisitionsEditorSubmission, &$copyeditor, &$email));
 			if ($email->isEnabled()) {
 				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_COPYEDITOR, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
 				$email->send();
 			}
-
-			$acquisitionsEditorSubmission->setCopyeditorDateNotified(Core::getCurrentDate());
-			$acquisitionsEditorSubmission->setCopyeditorDateUnderway(null);
-			$acquisitionsEditorSubmission->setCopyeditorDateCompleted(null);
-			$acquisitionsEditorSubmission->setCopyeditorDateAcknowledged(null);
-			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
+			$copyeditInitialSignoff = $signoffDao->build(
+								'SIGNOFF_COPYEDITING_INITIAL',
+								ASSOC_TYPE_MONOGRAPH,
+								$acquisitionsEditorSubmission->getMonographId()
+							);
+			$copyeditInitialSignoff->setDateNotified(Core::getCurrentDate());
+			$copyeditInitialSignoff->setDateUnderway(null);
+			$copyeditInitialSignoff->setDateCompleted(null);
+			$copyeditInitialSignoff->setDateAcknowledged(null);
+			$signoffDao->updateObject($copyeditInitialSignoff);
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->addRecipient($copyeditor->getEmail(), $copyeditor->getFullName());
@@ -946,7 +951,7 @@ $round = 1;
 		import('mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($acquisitionsEditorSubmission, 'COPYEDIT_ACK');
 
-		$copyeditor =& $acquisitionsEditorSubmission->getUserBySignoffType('SIGNOFF_COPYEDIT_INITIAL');
+		$copyeditor =& $acquisitionsEditorSubmission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL');
 		if (!isset($copyeditor)) return true;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {

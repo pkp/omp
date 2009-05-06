@@ -76,7 +76,8 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE	a.monograph_id = ?',
+			WHERE	a.monograph_id = ?
+			GROUP BY a.monograph_id',
 			array(
 				'title',
 				$primaryLocale,

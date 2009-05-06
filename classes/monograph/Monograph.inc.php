@@ -142,7 +142,7 @@ class Monograph extends Submission {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$signoff = $signoffDao->getBySymbolic($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+		$signoff =& $signoffDao->build($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
 
 		if (!$signoff) return false;
 		$user =& $userDao->getUser($signoff->getUserId());

@@ -1058,7 +1058,25 @@ $sections = null;
 					$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($submission);
 					break;
 				case WORKFLOW_PROCESS_EDITING:
+					$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 					AcquisitionsEditorAction::setCopyeditFile($submission, $file[0], $file[1]);
+
+					$copyeditAuthorSignoff = $signoffDao->build(
+									'SIGNOFF_COPYEDITING_AUTHOR', 
+									ASSOC_TYPE_MONOGRAPH, 
+									$submission->getMonographId()
+								  );
+					$copyeditFinalSignoff = $signoffDao->build(
+									'SIGNOFF_COPYEDITING_FINAL', 
+									ASSOC_TYPE_MONOGRAPH, 
+									$submission->getMonographId()
+								);
+					$copyeditAuthorSignoff->setUserId($submission->getUserId());
+					$copyeditFinalSignoff->setUserId(0);
+
+					$signoffDao->updateObject($copyeditAuthorSignoff);
+					$signoffDao->updateObject($copyeditFinalSignoff);
+
 					$redirectTarget = 'submissionEditing';
 					break;
 				}
@@ -1144,7 +1162,7 @@ $sections = null;
 		$monographId = Request::getUserVar('monographId');
 		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
 
-		$send = Request::getUserVar('send')?true:false;
+		$send = Request::getUserVar('send') ? true : false;
 		parent::setupTemplate(true, $monographId, 'editing');
 
 		if (AcquisitionsEditorAction::notifyCopyeditor($submission, $send)) {
