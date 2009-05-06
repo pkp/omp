@@ -15,17 +15,25 @@
 // $Id$
 
 import('workflow.WorkflowProcess');
+import('pages.manager.ManagerHandler');
 
 class ReviewSetupHandler extends ManagerHandler {
-
+	/**
+	 * Constructor
+	 */	
+	function ReviewSetupHandler() {
+		parent::ManagerHandler();
+	}
+	
 	/**
 	 * Display a list of review signoff entities for the current press.
 	 */
 	function reviewSignoffs($args) {
 		$reviewTypeId = isset($args[0])?(int)$args[0]:0;
 
-		list($press) = ReviewSetupHandler::validate($reviewTypeId);
-		ReviewSetupHandler::setupTemplate();
+		$this->validate($reviewTypeId);
+		$this->setupTemplate();
+		$press =& Request::getPress()
 
 		//$rangeInfo =& Handler::getRangeInfo('signoff_entities');
 
@@ -45,8 +53,9 @@ class ReviewSetupHandler extends ManagerHandler {
 		$groupId = Request::getUserVar('groupId');
 		$groupId = isset($groupId)?(int)$groupId:0;
 
-		list($press) = ReviewSetupHandler::validate($reviewTypeId);
-		ReviewSetupHandler::setupTemplate();
+		$this->validate($reviewTypeId);
+		$this->setupTemplate();
+		$press =& Request::getPress()
 
 		$signoffEntitiesDao =& DAORegistry::getDAO('SignoffEntityDAO');
 		$signoffEntitiesDao->remove(WORKFLOW_PROCESS_ASSESSMENT, $reviewTypeId, $press->getId(),
@@ -58,8 +67,9 @@ class ReviewSetupHandler extends ManagerHandler {
 		$entityId = Request::getUserVar('entityId');
 		$entityId = isset($entityId)?(int)$entityId:0;
 
-		list($press) = ReviewSetupHandler::validate($reviewTypeId);
-		ReviewSetupHandler::setupTemplate();
+		$this->validate($reviewTypeId);
+		$this->setupTemplate();
+		$press =& Request::getPress()
 
 		$signoffEntitiesDao =& DAORegistry::getDAO('SignoffEntityDAO');
 		$signoffEntitiesDao->remove(WORKFLOW_PROCESS_ASSESSMENT, $reviewTypeId, $press->getId(),
@@ -71,8 +81,9 @@ class ReviewSetupHandler extends ManagerHandler {
 		$groupId = Request::getUserVar('entityId');
 		$groupId = isset($groupId)?(int)$groupId:0;
 
-		list($press) = ReviewSetupHandler::validate($reviewTypeId);
-		ReviewSetupHandler::setupTemplate();
+		$this->validate($reviewTypeId);
+		$this->setupTemplate();
+		$press =& Request::getPress()
 
 		$signoffEntitiesDao =& DAORegistry::getDAO('SignoffEntityDAO');
 		$signoffEntitiesDao->build(WORKFLOW_PROCESS_ASSESSMENT, $reviewTypeId, $press->getId(),
@@ -84,8 +95,9 @@ class ReviewSetupHandler extends ManagerHandler {
 		$entityId = Request::getUserVar('entityId');
 		$entityId = isset($entityId)?(int)$entityId:0;
 
-		list($press) = ReviewSetupHandler::validate($reviewTypeId);
-		ReviewSetupHandler::setupTemplate();
+		$this->validate($reviewTypeId);
+		$this->setupTemplate();
+		$press =& Request::getPress()
 
 		$signoffEntitiesDao =& DAORegistry::getDAO('SignoffEntityDAO');
 		$signoffEntitiesDao->build(WORKFLOW_PROCESS_ASSESSMENT, $reviewTypeId, $press->getId(),
@@ -103,8 +115,9 @@ class ReviewSetupHandler extends ManagerHandler {
 
 		import('signoff.SignoffEntity');
 
-		list($press) = ReviewSetupHandler::validate($reviewTypeId, $entityType);
-		ReviewSetupHandler::setupTemplate();
+		$this->validate($reviewTypeId, $entityType);
+		$press =& Request::getPress()
+		$this->setupTemplate();
 
 		$signoffEntitiesDao =& DAORegistry::getDAO('SignoffEntityDAO');
 
@@ -145,7 +158,9 @@ class ReviewSetupHandler extends ManagerHandler {
 	 */
 	function deleteGroup($args) {
 		$groupId = isset($args[0])?(int)$args[0]:0;
-		list($press, $group) = GroupHandler::validate($groupId);
+		$groupHandler =& new GroupHandler();
+		$groupHandler->validate($groupId);
+		$group =& $groupHandler->group;
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteGroup($group);
@@ -159,7 +174,9 @@ class ReviewSetupHandler extends ManagerHandler {
 	 */
 	function moveGroup() {
 		$groupId = (int) Request::getUserVar('groupId');
-		list($press, $group) = GroupHandler::validate($groupId);
+		$groupHandler =& new GroupHandler();
+		$groupHandler->validate($groupId);
+		$group =& $groupHandler->group;
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$group->setSequence($group->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
@@ -175,7 +192,8 @@ class ReviewSetupHandler extends ManagerHandler {
 	 */
 	function editGroup($args = array()) {
 		$groupId = isset($args[0])?(int)$args[0]:null;
-		list($press) = GroupHandler::validate($groupId);
+		$groupHandler =& new GroupHandler();
+		$groupHandler->validate($groupId);
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');

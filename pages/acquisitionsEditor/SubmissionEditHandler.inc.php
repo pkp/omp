@@ -21,16 +21,25 @@ define('SECTION_EDITOR_ACCESS_REVIEW', 0x00002);
 import('pages.acquisitionsEditor.AcquisitionsEditorHandler');
 
 class SubmissionEditHandler extends AcquisitionsEditorHandler {
+	/** The press associated with this request **/
+	var $press;
+	
+	/** The submission associated with this request **/
+	var $submission;
+
 	function getFrom($default = 'submissionEditing') {
 		$from = Request::getUserVar('from');
 		if (!in_array($from, array('submission', 'submissionEditing'))) return $default;
 		return $from;
 	}
+	
 	function submission($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_OMP_AUTHOR));
-		parent::setupTemplate(true, $monographId);
+		$this->setupTemplate(true, $monographId);
 
 		$user =& Request::getUser();
 
@@ -105,7 +114,9 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 	function endWorkflowProcess($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$processId = isset($args[1]) ? (int) $args[1] : 0;//fixme: validate
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$process =& Action::endSignoffProcess($monographId);
 
@@ -113,8 +124,10 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 	}
 	function submissionRegrets($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
-		parent::setupTemplate(true, $monographId, 'review');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'review');
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$cancelsAndRegrets = $reviewAssignmentDao->getCancelsAndRegrets($monographId);
@@ -154,8 +167,10 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 
 	function submissionReview($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
-		parent::setupTemplate(true, $monographId);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;		
+		$this->setupTemplate(true, $monographId);
 
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -280,8 +295,10 @@ $sections = null;
 
 	function submissionEditing($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
-		parent::setupTemplate(true, $monographId);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;		
+		$this->setupTemplate(true, $monographId);
 
 		$useCopyeditors = $press->getSetting('useCopyeditors');
 		$useLayoutEditors = $press->getSetting('useLayoutEditors');
@@ -342,8 +359,10 @@ $sections = null;
 
 	function submissionProduction($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
-		parent::setupTemplate(true, $monographId);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;		
+		$this->setupTemplate(true, $monographId);
 
 		$useCopyeditors = $press->getSetting('useCopyeditors');
 		$useLayoutEditors = $press->getSetting('useLayoutEditors');
@@ -404,9 +423,11 @@ $sections = null;
 	 */
 	function submissionHistory($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
-		parent::setupTemplate(true, $monographId);
+		$this->setupTemplate(true, $monographId);
 
 		// submission notes
 		$monographNoteDao =& DAORegistry::getDAO('MonographNoteDAO');
@@ -433,7 +454,9 @@ $sections = null;
 
 	function changeSection() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$sectionId = Request::getUserVar('sectionId');
 
@@ -444,7 +467,9 @@ $sections = null;
 
 	function recordDecision() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$decision = Request::getUserVar('decision');
 
@@ -465,7 +490,9 @@ $sections = null;
 	//
 	function selectReviewer($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 		$reviewerId = Request::getUserVar('reviewerId');
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 
@@ -485,7 +512,7 @@ $sections = null;
 
 			// FIXME: Prompt for due date.
 		} else {
-			parent::setupTemplate(true, $monographId, 'review');
+			$this->setupTemplate(true, $monographId, 'review');
 
 			$searchType = null;
 			$searchMatch = null;
@@ -542,12 +569,14 @@ $sections = null;
 	 */
 	function createReviewer($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
-
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		
 		import('acquisitionsEditor.form.CreateReviewerForm');
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$createReviewerForm =& new CreateReviewerForm($monographId);
-		parent::setupTemplate(true, $monographId);
+		$this->setupTemplate(true, $monographId);
 
 		if (isset($args[1]) && $args[1] === 'create') {
 			$createReviewerForm->readInputData();
@@ -588,7 +617,9 @@ $sections = null;
 	 */
 	function enrollSearch($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath('reviewer');
@@ -597,7 +628,7 @@ $sections = null;
 
 		$rangeInfo = Handler::getRangeInfo('users');
 		$templateMgr =& TemplateManager::getManager();
-		parent::setupTemplate(true);
+		$this->setupTemplate(true);
 
 		$searchType = null;
 		$searchMatch = null;
@@ -639,7 +670,9 @@ $sections = null;
 
 	function enroll($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$roleId = $roleDao->getRoleIdFromPath('reviewer');
@@ -663,12 +696,14 @@ $sections = null;
 
 	function notifyReviewer($args = array()) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$reviewId = Request::getUserVar('reviewId');
 
 		$send = Request::getUserVar('send')?true:false;
-		parent::setupTemplate(true, $monographId, 'review');
+		$this->setupTemplate(true, $monographId, 'review');
 
 		if (AcquisitionsEditorAction::notifyReviewer($submission, $reviewId, $send)) {
 			Request::redirect(null, null, 'submissionReview', $monographId);
@@ -677,7 +712,9 @@ $sections = null;
 
 	function clearReview($args) {
 		$monographId = isset($args[0])?$args[0]:0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$reviewId = $args[1];
 
@@ -688,12 +725,14 @@ $sections = null;
 
 	function cancelReview($args) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
-
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		
 		$reviewId = Request::getUserVar('reviewId');
 
 		$send = Request::getUserVar('send')?true:false;
-		parent::setupTemplate(true, $monographId, 'review');
+		$this->setupTemplate(true, $monographId, 'review');
 
 		if (AcquisitionsEditorAction::cancelReview($submission, $reviewId, $send)) {
 			Request::redirect(null, null, 'submissionReview', $monographId);
@@ -702,10 +741,12 @@ $sections = null;
 
 	function remindReviewer($args = null) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$reviewId = Request::getUserVar('reviewId');
-		parent::setupTemplate(true, $monographId, 'review');
+		$this->setupTemplate(true, $monographId, 'review');
 
 		if (AcquisitionsEditorAction::remindReviewer($submission, $reviewId, Request::getUserVar('send'))) {
 			Request::redirect(null, null, 'submissionReview', $monographId);
@@ -714,12 +755,14 @@ $sections = null;
 
 	function thankReviewer($args = array()) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$reviewId = Request::getUserVar('reviewId');
 
 		$send = Request::getUserVar('send')?true:false;
-		parent::setupTemplate(true, $monographId, 'review');
+		$this->setupTemplate(true, $monographId, 'review');
 
 		if (AcquisitionsEditorAction::thankReviewer($submission, $reviewId, $send)) {
 			Request::redirect(null, null, 'submissionReview', $monographId);
@@ -728,8 +771,8 @@ $sections = null;
 
 	function rateReviewer() {
 		$monographId = Request::getUserVar('monographId');
-		SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
-		parent::setupTemplate(true, $monographId, 'review');
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->setupTemplate(true, $monographId, 'review');
 
 		$reviewId = Request::getUserVar('reviewId');
 		$quality = Request::getUserVar('quality');
@@ -742,7 +785,9 @@ $sections = null;
 	function confirmReviewForReviewer($args) {
 		$monographId = (int) isset($args[0])?$args[0]:0;
 		$accept = Request::getUserVar('accept')?true:false;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$reviewId = (int) isset($args[1])?$args[1]:0;
 
@@ -752,7 +797,9 @@ $sections = null;
 
 	function uploadReviewForReviewer($args) {
 		$monographId = (int) Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$reviewId = (int) Request::getUserVar('reviewId');
 
@@ -762,7 +809,9 @@ $sections = null;
 
 	function makeReviewerFileViewable() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$reviewId = Request::getUserVar('reviewId');
 		$fileId = Request::getUserVar('fileId');
@@ -776,7 +825,9 @@ $sections = null;
 
 	function setDueDate($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$reviewId = isset($args[1]) ? $args[1] : 0;
 		$dueDate = Request::getUserVar('dueDate');
@@ -787,7 +838,7 @@ $sections = null;
 			Request::redirect(null, null, 'submissionReview', $monographId);
 
 		} else {
-			parent::setupTemplate(true, $monographId, 'review');
+			$this->setupTemplate(true, $monographId, 'review');
 			$press =& Request::getPress();
 
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -816,7 +867,9 @@ $sections = null;
 
 	function enterReviewerRecommendation($args) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;;
 
 		$reviewId = Request::getUserVar('reviewId');
 
@@ -826,7 +879,7 @@ $sections = null;
 			AcquisitionsEditorAction::setReviewerRecommendation($monographId, $reviewId, $recommendation, SUBMISSION_REVIEWER_RECOMMENDATION_ACCEPT);
 			Request::redirect(null, null, 'submissionReview', $monographId);
 		} else {
-			parent::setupTemplate(true, $monographId, 'review');
+			$this->setupTemplate(true, $monographId, 'review');
 
 			$templateMgr =& TemplateManager::getManager();
 
@@ -846,7 +899,7 @@ $sections = null;
 	 */
 	function userProfile($args) {
 		parent::validate();
-		parent::setupTemplate(true);
+		$this->setupTemplate(true);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentUrl', Request::url(null, Request::getRequestedPage()));
@@ -887,17 +940,21 @@ $sections = null;
 
 	function viewMetadata($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_AUTHOR));
-		parent::setupTemplate(true, $monographId, 'summary');
+		$this->setupTemplate(true, $monographId, 'summary');
 
 		AcquisitionsEditorAction::viewMetadata($submission, ROLE_ID_SECTION_EDITOR);
 	}
 
 	function saveMetadata() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
-		parent::setupTemplate(true, $monographId, 'summary');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'summary');
 
 		if (AcquisitionsEditorAction::saveMetadata($submission)) {
 			Request::redirect(null, null, 'submission', $monographId);
@@ -910,7 +967,9 @@ $sections = null;
 	function removeCoverPage($args) {
 		$monographId = isset($args[0]) ? (int)$args[0] : 0;
 		$formLocale = $args[1];
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		import('file.PublicFileManager');
 		$publicFileManager = new PublicFileManager();
@@ -936,7 +995,7 @@ $sections = null;
 	 */
 	function previewReviewForm($args) {
 		parent::validate();
-		parent::setupTemplate(true);
+		$this->setupTemplate(true);
 
 		$reviewId = isset($args[0]) ? (int) $args[0] : null;
 		$reviewFormId = isset($args[1]) ? (int)$args[1] : null;			
@@ -966,7 +1025,9 @@ $sections = null;
 	function clearReviewForm($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$reviewId = isset($args[1]) ? (int) $args[1] : null;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 		
 		AcquisitionsEditorAction::clearReviewForm($submission, $reviewId);
 
@@ -979,8 +1040,10 @@ $sections = null;
 	 */
 	function selectReviewForm($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
-		
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
+				
 		$reviewId = isset($args[1]) ? (int) $args[1] : null;
 		$reviewFormId = isset($args[2]) ? (int) $args[2] : null;
 
@@ -995,7 +1058,7 @@ $sections = null;
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
-			parent::setupTemplate(true, $monographId, 'review');
+			$this->setupTemplate(true, $monographId, 'review');
 			$templateMgr =& TemplateManager::getManager();
 				
 			$templateMgr->assign('monographId', $monographId);
@@ -1013,7 +1076,9 @@ $sections = null;
 	 */
 	function viewReviewFormResponse($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$reviewId = isset($args[1]) ? (int) $args[1] : null;
 
@@ -1026,7 +1091,10 @@ $sections = null;
 
 	function editorReview() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this-
+>press;
+		$submission =& $this->submission;
 
 		$redirectTarget = 'submissionReview';
 
@@ -1102,15 +1170,17 @@ $sections = null;
 
 	function selectCopyeditor($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		if (isset($args[1]) && $args[1] != null && $roleDao->roleExists($press->getId(), $args[1], ROLE_ID_COPYEDITOR)) {
-			AcquisitionsEditorAction::selectCopyeditor($submission, $args[1]);
+		if (isset($args[1]) && $args[1] != null && $roleDao->roleExists(			$templateMgr->assign('currentUser', $submission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
+ction::selectCopyeditor($submission, $args[1]);
 			Request::redirect(null, null, 'submissionEditing', $monographId);
 		} else {
-			parent::setupTemplate(true, $monographId, 'editing');
+			$this->setupTemplate(true, $monographId, 'editing');
 
 			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 
@@ -1160,7 +1230,10 @@ $sections = null;
 
 	function notifyCopyeditor($args = array()) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
 
 		$send = Request::getUserVar('send') ? true : false;
 		parent::setupTemplate(true, $monographId, 'editing');
@@ -1173,7 +1246,10 @@ $sections = null;
 	/* Initiates the copyediting process when the editor does the copyediting */
 	function initiateCopyedit() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
 
 		AcquisitionsEditorAction::initiateCopyedit($submission);
 		Request::redirect(null, null, 'submissionEditing', $monographId);
@@ -1181,10 +1257,13 @@ $sections = null;
 
 	function thankCopyeditor($args = array()) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
 
 		$send = Request::getUserVar('send')?true:false;
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		if (AcquisitionsEditorAction::thankCopyeditor($submission, $send)) {
 			Request::redirect(null, null, 'submissionEditing', $monographId);
@@ -1193,10 +1272,13 @@ $sections = null;
 
 	function notifyAuthorCopyedit($args) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
 
 		$send = Request::getUserVar('send')?true:false;
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		if (AcquisitionsEditorAction::notifyAuthorCopyedit($submission, $send)) {
 			Request::redirect(null, null, 'submissionEditing', $monographId);
@@ -1205,10 +1287,13 @@ $sections = null;
 
 	function thankAuthorCopyedit($args) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
 
 		$send = Request::getUserVar('send')?true:false;
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		if (AcquisitionsEditorAction::thankAuthorCopyedit($submission, $send)) {
 			Request::redirect(null, null, 'submissionEditing', $monographId);
@@ -1217,10 +1302,13 @@ $sections = null;
 
 	function notifyFinalCopyedit($args = array()) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
 
 		$send = Request::getUserVar('send')?true:false;
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		if (AcquisitionsEditorAction::notifyFinalCopyedit($submission, $send)) {
 			Request::redirect(null, null, 'submissionEditing', $monographId);
@@ -1230,7 +1318,9 @@ $sections = null;
 	function completeCopyedit($args) {
 		$monographId = (int) Request::getUserVar('monographId');
 
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::completeCopyedit($submission);
 		Request::redirect(null, null, 'submissionEditing', $monographId);
@@ -1239,7 +1329,9 @@ $sections = null;
 	function completeFinalCopyedit($args) {
 		$monographId = (int) Request::getUserVar('monographId');
 
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::completeFinalCopyedit($submission);
 		Request::redirect(null, null, 'submissionEditing', $monographId);
@@ -1247,10 +1339,12 @@ $sections = null;
 
 	function thankFinalCopyedit($args) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$send = Request::getUserVar('send')?true:false;
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		if (AcquisitionsEditorAction::thankFinalCopyedit($submission, $send)) {
 			Request::redirect(null, null, 'submissionEditing', $monographId);
@@ -1259,7 +1353,9 @@ $sections = null;
 
 	function uploadReviewVersion() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::uploadReviewVersion($submission);
 
@@ -1268,7 +1364,10 @@ $sections = null;
 
 	function uploadCopyeditVersion() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
 
 		$copyeditStage = Request::getUserVar('copyeditStage');
 		AcquisitionsEditorAction::uploadCopyeditVersion($submission, $copyeditStage);
@@ -1282,9 +1381,11 @@ $sections = null;
 	 */
 	function addSuppFile($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;		
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
-		parent::setupTemplate(true, $monographId, 'summary');
+		$this->setupTemplate(true, $monographId, 'summary');
 
 		import('submission.form.SuppFileForm');
 
@@ -1306,9 +1407,11 @@ $sections = null;
 	function editSuppFile($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;		
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
-		parent::setupTemplate(true, $monographId, 'summary');
+		$this->setupTemplate(true, $monographId, 'summary');
 
 		import('submission.form.SuppFileForm');
 
@@ -1329,7 +1432,9 @@ $sections = null;
 	 */
 	function setSuppFileVisibility($args) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$suppFileId = Request::getUserVar('fileId');
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
@@ -1348,7 +1453,9 @@ $sections = null;
 	 */
 	function saveSuppFile($args) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
@@ -1360,9 +1467,9 @@ $sections = null;
 
 		if ($submitForm->validate()) {
 			$submitForm->execute();
-			Request::redirect(null, null, SubmissionEditHandler::getFrom(), $monographId);
+			Request::redirect(null, null, $this->getFrom(), $monographId);
 		} else {
-			parent::setupTemplate(true, $monographId, 'summary');
+			$this->setupTemplate(true, $monographId, 'summary');
 			$submitForm->display();
 		}
 	}
@@ -1376,7 +1483,10 @@ $sections = null;
 		$fileId = isset($args[1]) ? (int) $args[1] : 0;
 		$revisionId = isset($args[2]) ? (int) $args[2] : 0;
 
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		
 		AcquisitionsEditorAction::deleteMonographFile($submission, $fileId, $revisionId);
 
 		Request::redirect(null, null, 'submissionReview', $monographId);
@@ -1389,16 +1499,20 @@ $sections = null;
 	function deleteSuppFile($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::deleteSuppFile($submission, $suppFileId);
 
-		Request::redirect(null, null, SubmissionEditHandler::getFrom(), $monographId);
+		Request::redirect(null, null, $this->getFrom(), $monographId);
 	}
 
 	function archiveSubmission($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::archiveSubmission($submission);
 
@@ -1407,7 +1521,9 @@ $sections = null;
 
 	function restoreToQueue($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;		
 
 		AcquisitionsEditorAction::restoreToQueue($submission);
 
@@ -1416,10 +1532,12 @@ $sections = null;
 
 	function unsuitableSubmission($args) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;		
 
 		$send = Request::getUserVar('send')?true:false;
-		parent::setupTemplate(true, $monographId, 'summary');
+		$this->setupTemplate(true, $monographId, 'summary');
 
 		if (AcquisitionsEditorAction::unsuitableSubmission($submission, $send)) {
 			Request::redirect(null, null, 'submission', $monographId);
@@ -1432,7 +1550,9 @@ $sections = null;
 	 */
 	function updateAcquisitionsArrangement($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 		AcquisitionsEditorAction::updateAcquisitionsArrangement($submission, Request::getUserVar('arrangement'));
 		Request::redirect(null, null, 'submission', $monographId);
 	}
@@ -1443,7 +1563,9 @@ $sections = null;
 	 */
 	function updateCommentsStatus($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);		
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;	
 		AcquisitionsEditorAction::updateCommentsStatus($submission, Request::getUserVar('commentsStatus'));
 		Request::redirect(null, null, 'submission', $monographId);
 	}
@@ -1458,16 +1580,16 @@ $sections = null;
 	function uploadLayoutFile() {
 		$layoutFileType = Request::getUserVar('layoutFileType');
 		if ($layoutFileType == 'submission') {
-			SubmissionEditHandler::uploadLayoutVersion();
+			$this->uploadLayoutVersion();
 
 		} else if ($layoutFileType == 'galley') {
-			SubmissionEditHandler::uploadGalley('layoutFile');
+			$this->uploadGalley('layoutFile');
 
 		} else if ($layoutFileType == 'supp') {
-			SubmissionEditHandler::uploadSuppFile('layoutFile');
+			$this->uploadSuppFile('layoutFile');
 
 		} else {
-			Request::redirect(null, null, SubmissionEditHandler::getFrom(), Request::getUserVar('monographId'));
+			Request::redirect(null, null, $this->getFrom(), Request::getUserVar('monographId'));
 		}
 	}
 
@@ -1476,7 +1598,9 @@ $sections = null;
 	 */
 	function uploadLayoutVersion() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::uploadLayoutVersion($submission);
 
@@ -1493,7 +1617,9 @@ $sections = null;
 		$fileId = isset($args[2]) ? (int) $args[2] : 0;
 		$revisionId = isset($args[3]) ? (int) $args[3] : 0;
 
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 		AcquisitionsEditorAction::deleteMonographImage($submission, $fileId, $revisionId);
 
 		Request::redirect(null, null, 'editGalley', array($monographId, $galleyId));
@@ -1506,7 +1632,9 @@ $sections = null;
 	function assignLayoutEditor($args, $op = null) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$editorId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
@@ -1535,7 +1663,7 @@ $sections = null;
 			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 			$layoutEditorStatistics = $acquisitionsEditorSubmissionDao->getLayoutEditorStatistics($press->getId());
 
-			parent::setupTemplate(true, $monographId, 'editing');
+			$this->setupTemplate(true, $monographId, 'editing');
 
 			$templateMgr =& TemplateManager::getManager();
 
@@ -1577,10 +1705,12 @@ $sections = null;
 	function notifyLayoutDesigner($args) {
 		$monographId = Request::getUserVar('monographId');
 		$layoutAssignmentId = Request::getUserVar('layoutAssignmentId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$send = Request::getUserVar('send') ? true : false;
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		if (AcquisitionsEditorAction::notifyLayoutDesigner($submission, $layoutAssignmentId, $send)) {
 			Request::redirect(null, null, 'submissionLayout', $monographId);
@@ -1592,10 +1722,12 @@ $sections = null;
 	 */
 	function thankLayoutEditor($args) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$send = Request::getUserVar('send') ? true : false;
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		if (AcquisitionsEditorAction::thankLayoutEditor($submission, $send)) {
 			Request::redirect(null, null, 'submissionEditing', $monographId);
@@ -1607,7 +1739,9 @@ $sections = null;
 	 */
 	function uploadGalley($fileName = null) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		import('submission.form.MonographGalleyForm');
 
@@ -1625,9 +1759,11 @@ $sections = null;
 	function editGalley($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('submission.form.MonographGalleyForm');
 
@@ -1649,7 +1785,9 @@ $sections = null;
 	function saveGalley($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		import('submission.form.MonographGalleyForm');
 
@@ -1670,7 +1808,7 @@ $sections = null;
 			}
 			Request::redirect(null, null, 'submissionEditing', $monographId);
 		} else {
-			parent::setupTemplate(true, $monographId, 'editing');
+			$this->setupTemplate(true, $monographId, 'editing');
 			$submitForm->display();
 		}
 	}
@@ -1680,7 +1818,9 @@ $sections = null;
 	 */
 	function orderGalley() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::orderGalley($submission, Request::getUserVar('galleyId'), Request::getUserVar('d'));
 
@@ -1694,7 +1834,9 @@ $sections = null;
 	function deleteGalley($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::deleteGalley($submission, $galleyId);
 
@@ -1708,7 +1850,9 @@ $sections = null;
 	function proofGalley($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $monographId);
@@ -1723,7 +1867,9 @@ $sections = null;
 	function proofGalleyTop($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $monographId);
@@ -1739,7 +1885,9 @@ $sections = null;
 	function proofGalleyFile($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		$galley =& $galleyDao->getGalley($galleyId, $monographId);
@@ -1759,7 +1907,7 @@ $sections = null;
 
 			} else {
 				// View non-HTML file inline
-				SubmissionEditHandler::viewFile(array($monographId, $galley->getFileId()));
+				$this->viewFile(array($monographId, $galley->getFileId()));
 			}
 		}
 	}
@@ -1769,7 +1917,9 @@ $sections = null;
 	 */
 	function uploadSuppFile($fileName = null) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		import('submission.form.SuppFileForm');
 
@@ -1786,7 +1936,9 @@ $sections = null;
 	 */
 	function orderSuppFile() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::orderSuppFile($submission, Request::getUserVar('suppFileId'), Request::getUserVar('d'));
 
@@ -1804,8 +1956,10 @@ $sections = null;
 	function submissionEventLog($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$logId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
-		parent::setupTemplate(true, $monographId, 'history');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'history');
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -1838,8 +1992,10 @@ $sections = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$assocType = isset($args[1]) ? (int) $args[1] : null;
 		$assocId = isset($args[2]) ? (int) $args[2] : null;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
-		parent::setupTemplate(true, $monographId, 'history');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'history');
 
 		$rangeInfo =& Handler::getRangeInfo('eventLogEntries');
 		$logDao =& DAORegistry::getDAO('MonographEventLogDAO');
@@ -1860,7 +2016,9 @@ $sections = null;
 	function clearSubmissionEventLog($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$logId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$logDao =& DAORegistry::getDAO('MonographEventLogDAO');
 
@@ -1880,8 +2038,10 @@ $sections = null;
 	function submissionEmailLog($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$logId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
-		parent::setupTemplate(true, $monographId, 'history');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'history');
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -1918,8 +2078,10 @@ $sections = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$assocType = isset($args[1]) ? (int) $args[1] : null;
 		$assocId = isset($args[2]) ? (int) $args[2] : null;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
-		parent::setupTemplate(true, $monographId, 'history');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'history');
 
 		$rangeInfo =& Handler::getRangeInfo('eventLogEntries');
 		$logDao =& DAORegistry::getDAO('MonographEmailLogDAO');
@@ -1940,7 +2102,9 @@ $sections = null;
 	function clearSubmissionEmailLog($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$logId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$logDao =& DAORegistry::getDAO('MonographEmailLogDAO');
 
@@ -1962,7 +2126,9 @@ $sections = null;
 	 */
 	function addSubmissionNote() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::addSubmissionNote($monographId);
 		Request::redirect(null, null, 'submissionNotes', $monographId);
@@ -1974,7 +2140,9 @@ $sections = null;
 	 */
 	function removeSubmissionNote() {
 		$monographId = Request::getUserVar('monographId');		
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::removeSubmissionNote($monographId);
 		Request::redirect(null, null, 'submissionNotes', $monographId);
@@ -1986,7 +2154,9 @@ $sections = null;
 	 */
 	function updateSubmissionNote() {
 		$monographId = Request::getUserVar('monographId');		
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::updateSubmissionNote($monographId);
 		Request::redirect(null, null, 'submissionNotes', $monographId);
@@ -1998,7 +2168,9 @@ $sections = null;
 	 */
 	function clearAllSubmissionNotes() {
 		$monographId = Request::getUserVar('monographId');		
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::clearAllSubmissionNotes($monographId);
 		Request::redirect(null, null, 'submissionNotes', $monographId);
@@ -2012,8 +2184,10 @@ $sections = null;
 		$noteViewType = isset($args[1]) ? $args[1] : '';
 		$noteId = isset($args[2]) ? (int) $args[2] : 0;
 
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
-		parent::setupTemplate(true, $monographId, 'history');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'history');
 
 		$rangeInfo =& Handler::getRangeInfo('submissionNotes');
 		$monographNoteDao =& DAORegistry::getDAO('MonographNoteDAO');
@@ -2056,7 +2230,9 @@ $sections = null;
 		$fileId = isset($args[1]) ? $args[1] : 0;
 		$revision = isset($args[2]) ? $args[2] : null;
 
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 		if (!AcquisitionsEditorAction::downloadFile($monographId, $fileId, $revision)) {
 			Request::redirect(null, null, 'submission', $monographId);
 		}
@@ -2071,7 +2247,9 @@ $sections = null;
 		$fileId = isset($args[1]) ? $args[1] : 0;
 		$revision = isset($args[2]) ? $args[2] : null;
 
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
 		if (!AcquisitionsEditorAction::viewFile($monographId, $fileId, $revision)) {
 			Request::redirect(null, null, 'submission', $monographId);
 		}
@@ -2090,7 +2268,9 @@ $sections = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$userId = isset($args[1]) ? (int) $args[1] : 0;
 
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;		
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
@@ -2099,7 +2279,7 @@ $sections = null;
 			ProofreaderAction::selectProofreader($userId, $submission);
 			Request::redirect(null, null, 'submissionEditing', $monographId);
 		} else {
-			parent::setupTemplate(true, $monographId, 'editing');
+			$this->setupTemplate(true, $monographId, 'editing');
 
 			$searchType = null;
 			$searchMatch = null;
@@ -2156,8 +2336,10 @@ $sections = null;
 	function notifyAuthorProofreader($args) {
 		$monographId = Request::getUserVar('monographId');
 		$send = Request::getUserVar('send')?1:0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;		
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('submission.proofreader.ProofreaderAction');
 		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_AUTHOR_REQUEST', $send?'':Request::url(null, null, 'notifyAuthorProofreader'))) {
@@ -2171,8 +2353,10 @@ $sections = null;
 	function thankAuthorProofreader($args) {
 		$monographId = Request::getUserVar('monographId');
 		$send = Request::getUserVar('send')?1:0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('submission.proofreader.ProofreaderAction');
 		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_AUTHOR_ACK', $send?'':Request::url(null, null, 'thankAuthorProofreader'))) {
@@ -2185,7 +2369,9 @@ $sections = null;
 	 */
 	function editorInitiateProofreader() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
 		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
@@ -2200,7 +2386,9 @@ $sections = null;
 	 */
 	function editorCompleteProofreader() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
 		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
@@ -2216,8 +2404,10 @@ $sections = null;
 	function notifyProofreader($args) {
 		$monographId = Request::getUserVar('monographId');
 		$send = Request::getUserVar('send');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('submission.proofreader.ProofreaderAction');
 		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_REQUEST', $send?'':Request::url(null, null, 'notifyProofreader'))) {
@@ -2231,8 +2421,10 @@ $sections = null;
 	function thankProofreader($args) {
 		$monographId = Request::getUserVar('monographId');
 		$send = Request::getUserVar('send')?1:0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;				
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('submission.proofreader.ProofreaderAction');
 		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_ACK', $send?'':Request::url(null, null, 'thankProofreader'))) {
@@ -2245,7 +2437,9 @@ $sections = null;
 	 */
 	function editorInitiateLayoutEditor() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
 		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
@@ -2260,7 +2454,9 @@ $sections = null;
 	 */
 	function editorCompleteLayoutEditor() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 
 		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
 		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
@@ -2276,8 +2472,10 @@ $sections = null;
 	function notifyLayoutEditorProofreader($args) {
 		$monographId = Request::getUserVar('monographId');
 		$send = Request::getUserVar('send')?1:0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('submission.proofreader.ProofreaderAction');
 		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_LAYOUT_REQUEST', $send?'':Request::url(null, null, 'notifyLayoutEditorProofreader'))) {
@@ -2291,8 +2489,10 @@ $sections = null;
 	function thankLayoutEditorProofreader($args) {
 		$monographId = Request::getUserVar('monographId');
 		$send = Request::getUserVar('send')?1:0;
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('submission.proofreader.ProofreaderAction');
 		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_LAYOUT_ACK', $send?'':Request::url(null, null, 'thankLayoutEditorProofreader'))) {
@@ -2306,7 +2506,9 @@ $sections = null;
 	function scheduleForPublication($args) {
 		$monographId = (int) array_shift($args);
 		$issueId = (int) Request::getUserVar('issueId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('SectionEditorSubmissionDAO');
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$sectionDao =& DAORegistry::getDAO('SectionDAO');
@@ -2373,7 +2575,9 @@ $sections = null;
 		$monographId = (int) array_shift($args);
 		$markAsPaid = Request::getUserVar('markAsPaid');
 
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 		import('payment.ojs.OJSPaymentManager');
 		$paymentManager =& OJSPaymentManager::getManager();
 		$user =& Request::getUser();
@@ -2397,7 +2601,9 @@ $sections = null;
 	function waiveFastTrackFee($args) {
 		$monographId = (int) array_shift($args);
 		$markAsPaid = Request::getUserVar('markAsPaid');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 		import('payment.ojs.OJSPaymentManager');
 		$paymentManager =& OJSPaymentManager::getManager();
 		$user =& Request::getUser();
@@ -2423,7 +2629,9 @@ $sections = null;
 		$markAsPaid = Request::getUserVar('markAsPaid');
 		$sendToScheduling = Request::getUserVar('sendToScheduling')?true:false;
 		
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$press =& $this->press;
+		$submission =& $this->submission;
 		import('payment.ojs.OJSPaymentManager');
 		$paymentManager =& OJSPaymentManager::getManager();
 		$user =& Request::getUser();
@@ -2533,7 +2741,9 @@ $sections = null;
 			}
 		}
 
-		return array(&$press, &$acquisitionsEditorSubmission);
+		$this->press =& $press;
+		$this->submission =& $acquisitionsEditorSubmission;
+		return true;
 	}
 
 }

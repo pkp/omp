@@ -18,8 +18,71 @@
 // $Id$
 
 
-define('HANDLER_CLASS', 'AdminHandler');
-
-import('pages.admin.AdminHandler');
-
+switch ($op) {
+	//
+	// Settings
+	//
+	case 'settings':
+	case 'saveSettings':
+	//
+	// Press Management
+	//
+	case 'presses':
+	case 'createPress':
+	case 'editPress':
+	case 'updatePress':
+	case 'deletePress':
+	case 'movePress':
+		import('pages.admin.AdminPressHandler');
+		define('HANDLER_CLASS', 'AdminPressHandler');
+		break;
+	//
+	// Languages
+	//
+	case 'languages':
+	case 'saveLanguageSettings':
+	case 'installLocale':
+	case 'uninstallLocale':
+	case 'reloadLocale':
+	case 'downloadLocale':
+		import('pages.admin.AdminLanguagesHandler');
+		define('HANDLER_CLASS', 'AdminLanguagesHandler');
+		break;
+	//
+	// Authentication sources
+	//
+	case 'auth':
+	case 'updateAuthSources':
+	case 'createAuthSource':
+	case 'editAuthSource':
+	case 'updateAuthSource':
+	case 'deleteAuthSource':
+		import('pages.admin.AuthSourcesHandler');
+		define('HANDLER_CLASS', 'AuthSourcesHandler');
+		break;
+	//
+	// Merge users
+	//
+	case 'mergeUsers':
+		import('pages.admin.AdminPeopleHandler');
+		define('HANDLER_CLASS', 'AdminPeopleHandler');
+		break;
+	//
+	// Administrative functions
+	//
+	case 'systemInfo':
+	case 'editSystemConfig':
+	case 'saveSystemConfig':
+	case 'phpinfo':
+	case 'expireSessions':
+	case 'clearTemplateCache':
+	case 'clearDataCache':
+		import('pages.admin.AdminFunctionsHandler');
+		define('HANDLER_CLASS', 'AdminFunctionsHandler');
+		break;
+	default:	
+		define('HANDLER_CLASS', 'AdminHandler');
+		import('pages.admin.AdminHandler');
+		break;
+}
 ?>

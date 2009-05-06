@@ -18,28 +18,26 @@
 import('handler.Handler');
 
 class AdminHandler extends Handler {
+	/**
+	 * Constructor
+	 */
+	function AdminHandler() {
+		parent::Handler();
+
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN)));
+		$this->addCheck(new HandlerValidatorCustom($this, true, null, null, create_function(null, 'return Request::getRequestedPressPath() == \'index\';')));
+	}		
 
 	/**
 	 * Display site admin index page.
 	 */
 	function index() {
-		AdminHandler::validate();
-		AdminHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$templateMgr = &TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'site.index');
 		$templateMgr->display('admin/index.tpl');
-	}
-
-	/**
-	 * Validate that user has admin privileges and is not trying to access the admin module with a press selected.
-	 * Redirects to the user index page if not properly authenticated.
-	 */
-	function validate() {
-		parent::validate();
-		if (!Validation::isSiteAdmin() || Request::getRequestedPressPath() != 'index') {
-			Validation::redirectLogin();
-		}
 	}
 
 	/**
@@ -57,176 +55,6 @@ class AdminHandler extends Handler {
 			$subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'admin'), 'admin.siteAdmin'))
 				: array(array(Request::url(null, 'user'), 'navigation.user'))
 		);
-	}
-
-
-	//
-	// Settings
-	//
-
-	function settings() {
-		import('pages.admin.AdminSettingsHandler');
-		AdminSettingsHandler::settings();
-	}
-
-	function saveSettings() {
-		import('pages.admin.AdminSettingsHandler');
-		AdminSettingsHandler::saveSettings();
-	}
-
-
-	//
-	// Press Management
-	//
-
-	function presses() {
-		import('pages.admin.AdminPressHandler');
-		AdminPressHandler::presses();
-	}
-
-	function createPress() {
-		import('pages.admin.AdminPressHandler');
-		AdminPressHandler::createPress();
-	}
-
-	function editPress($args = array()) {
-		import('pages.admin.AdminPressHandler');
-		AdminPressHandler::editPress($args);
-	}
-
-	function updatePress() {
-		import('pages.admin.AdminPressHandler');
-		AdminPressHandler::updatePress();
-	}
-
-	function deletePress($args) {
-		import('pages.admin.AdminPressHandler');
-		AdminPressHandler::deletePress($args);
-	}
-
-	function movePress() {
-		import('pages.admin.AdminPressHandler');
-		AdminPressHandler::movePress();
-	}
-
-
-	//
-	// Languages
-	//
-
-	function languages() {
-		import('pages.admin.AdminLanguagesHandler');
-		AdminLanguagesHandler::languages();
-	}
-
-	function saveLanguageSettings() {
-		import('pages.admin.AdminLanguagesHandler');
-		AdminLanguagesHandler::saveLanguageSettings();
-	}
-
-	function installLocale() {
-		import('pages.admin.AdminLanguagesHandler');
-		AdminLanguagesHandler::installLocale();
-	}
-
-	function uninstallLocale() {
-		import('pages.admin.AdminLanguagesHandler');
-		AdminLanguagesHandler::uninstallLocale();
-	}
-
-	function reloadLocale() {
-		import('pages.admin.AdminLanguagesHandler');
-		AdminLanguagesHandler::reloadLocale();
-	}
-
-	function downloadLocale() {
-		import('pages.admin.AdminLanguagesHandler');
-		AdminLanguagesHandler::downloadLocale();
-	}
-
-
-	//
-	// Authentication sources
-	//
-
-	function auth() {
-		import('pages.admin.AuthSourcesHandler');
-		AuthSourcesHandler::auth();
-	}
-
-	function updateAuthSources() {
-		import('pages.admin.AuthSourcesHandler');
-		AuthSourcesHandler::updateAuthSources();
-	}
-
-	function createAuthSource() {
-		import('pages.admin.AuthSourcesHandler');
-		AuthSourcesHandler::createAuthSource();
-	}
-
-	function editAuthSource($args) {
-		import('pages.admin.AuthSourcesHandler');
-		AuthSourcesHandler::editAuthSource($args);
-	}
-
-	function updateAuthSource($args) {
-		import('pages.admin.AuthSourcesHandler');
-		AuthSourcesHandler::updateAuthSource($args);
-	}
-
-	function deleteAuthSource($args) {
-		import('pages.admin.AuthSourcesHandler');
-		AuthSourcesHandler::deleteAuthSource($args);
-	}
-
-
-	//
-	// Merge users
-	//
-
-	function mergeUsers($args) {
-		import('pages.admin.AdminPeopleHandler');
-		AdminPeopleHandler::mergeUsers($args);
-	}
-
-
-	//
-	// Administrative functions
-	//
-
-	function systemInfo() {
-		import('pages.admin.AdminFunctionsHandler');
-		AdminFunctionsHandler::systemInfo();
-	}
-
-	function editSystemConfig() {
-		import('pages.admin.AdminFunctionsHandler');
-		AdminFunctionsHandler::editSystemConfig();
-	}
-
-	function saveSystemConfig() {
-		import('pages.admin.AdminFunctionsHandler');
-		AdminFunctionsHandler::saveSystemConfig();
-	}
-
-	function phpinfo() {
-		import('pages.admin.AdminFunctionsHandler');
-		AdminFunctionsHandler::phpInfo();
-	}
-
-	function expireSessions() {
-		import('pages.admin.AdminFunctionsHandler');
-		AdminFunctionsHandler::expireSessions();
-	}
-
-	function clearTemplateCache() {
-		import('pages.admin.AdminFunctionsHandler');
-		AdminFunctionsHandler::clearTemplateCache();
-	}
-
-	function clearDataCache() {
-		import('pages.admin.AdminFunctionsHandler');
-		AdminFunctionsHandler::clearDataCache();
 	}
 }
 

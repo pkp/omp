@@ -17,9 +17,37 @@
 
 // $Id$
 
-
-define('HANDLER_CLASS', 'UserHandler');
-
-import('pages.user.UserHandler');
+switch ($op) {
+	//
+	// Profiles
+	//
+	case 'profile':
+	case 'saveProfile':
+	case 'changePassword':
+	case 'savePassword':
+		import('pages.user.ProfileHandler');
+		define('HANDLER_CLASS', 'ProfileHandler');
+		break;
+	//
+	// Registration
+	//
+	case 'register':
+	case 'registerUser':
+	case 'activateUser':
+		import('pages.user.RegistrationHandler');
+		define('HANDLER_CLASS', 'RegistrationHandler');
+		break;
+	//
+	// Email
+	//
+	case 'email':
+		import('pages.user.EmailHandler');
+		define('HANDLER_CLASS', 'EmailHandler');
+		break;	
+	default:
+		define('HANDLER_CLASS', 'UserHandler');
+		import('pages.user.UserHandler');
+		break;
+}
 
 ?>

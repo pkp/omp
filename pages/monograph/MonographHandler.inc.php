@@ -19,19 +19,24 @@ import ('monograph.MonographAction');
 import('handler.Handler');
 
 class MonographHandler extends Handler {
+	function MonographHandler() {
+		parent::Handler();
+		
+		$this->addCheck(new HandlerValidatorPress($this));
+	}		
 
 	/**
 	 * Display about index page.
 	 */
 	function index($args) {
-		MonographHandler::current();
+		$this->current();
 	}
 
 	/**
 	 * Display the monograph page.
 	 */
 	function current($args = null) {
-		parent::validate(true);
+		$this->validate();
 
 		$press = &Request::getPress();
 
@@ -53,7 +58,7 @@ class MonographHandler extends Handler {
 	 * Display monograph view page.
 	 */
 	function view($args) {
-		parent::validate(true);
+		$this->validate();
 
 		$monographId = isset($args[0]) ? $args[0] : 0;
 		$showToc = isset($args[1]) ? $args[1] : '';
@@ -97,7 +102,7 @@ class MonographHandler extends Handler {
 	 * Display the published monograph listings
 	 */
 	function published() {
-		parent::validate(true);
+		$this->validate();
 
 		$press = &Request::getPress();
 		$monographDao = &DAORegistry::getDAO('MonographDAO');

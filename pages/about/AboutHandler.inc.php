@@ -18,13 +18,19 @@
 import('handler.Handler');
 
 class AboutHandler extends Handler {
+	/**
+	 * Constructor
+	 */
+	function AboutHandler() {
+		parent::Handler();
+	}
 
 	/**
 	 * Display about index page.
 	 */
 	function index() {
-		parent::validate();
-		AboutHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
 		$pressDao =& DAORegistry::getDAO('PressDAO');
@@ -40,7 +46,7 @@ class AboutHandler extends Handler {
 			if (isset($customAboutItems[Locale::getLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[Locale::getLocale()]);
 			elseif (isset($customAboutItems[Locale::getPrimaryLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[Locale::getPrimaryLocale()]);
 
-			foreach (AboutHandler::getPublicStatisticsNames() as $name) {
+			foreach ($this->getPublicStatisticsNames() as $name) {
 				if ($press->getSetting($name)) {
 					$templateMgr->assign('publicStatisticsEnabled', true);
 					break;
@@ -71,7 +77,6 @@ class AboutHandler extends Handler {
 	 */
 	function setupTemplate($subclass = false) {
 		parent::setupTemplate();
-		parent::validate();
 
 		$templateMgr =& TemplateManager::getManager();
 		$press =& Request::getPress();
@@ -86,9 +91,10 @@ class AboutHandler extends Handler {
 	 * Display contact page.
 	 */
 	function contact() {
-		parent::validate(true);
+		$this->addCheck(new HandlerValidatorPress($this));
+		$this->validate();
 
-		AboutHandler::setupTemplate(true);
+		$this->setupTemplate(true);
 
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$monograph =& Request::getMonograph();
@@ -103,8 +109,9 @@ class AboutHandler extends Handler {
 	 * Display editorialTeam page.
 	 */
 	function editorialTeam() {
-		parent::validate(true);
-		AboutHandler::setupTemplate(true);
+		$this->addCheck(new HandlerValidatorPress($this));
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$press =& Request::getPress();
 		$templateMgr =& TemplateManager::getManager();
@@ -175,8 +182,9 @@ class AboutHandler extends Handler {
 	 * @param $args array
 	 */
 	function displayMembership($args) {
-		parent::validate(true);
-		AboutHandler::setupTemplate(true);
+		$this->addCheck(new HandlerValidatorPress($this));
+		$this->validate();
+		$this->setupTemplate(true);
 
 	}
 
@@ -185,8 +193,9 @@ class AboutHandler extends Handler {
 	 * @param $args array
 	 */
 	function editorialTeamBio($args) {
-		parent::validate(true);
-		AboutHandler::setupTemplate(true);
+		$this->addCheck(new HandlerValidatorPress($this));
+		$this->validate();
+		$this->setupTemplate(true);
 
 	}
 
@@ -194,8 +203,9 @@ class AboutHandler extends Handler {
 	 * Display editorialPolicies page.
 	 */
 	function editorialPolicies() {
-		parent::validate(true);
-		AboutHandler::setupTemplate(true);
+		$this->addCheck(new HandlerValidatorPress($this));
+		$this->validate();
+		$this->setupTemplate(true);
 
 
 	}
@@ -204,8 +214,9 @@ class AboutHandler extends Handler {
 	 * Display subscriptions page.
 	 */
 	function subscriptions() {
-		parent::validate(true);
-		AboutHandler::setupTemplate(true);
+		$this->addCheck(new HandlerValidatorPress($this));
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$templateMgr->display('about/subscriptions.tpl');
 	}
@@ -214,8 +225,9 @@ class AboutHandler extends Handler {
 	 * Display subscriptions page.
 	 */
 	function memberships() {
-		parent::validate(true);
-		AboutHandler::setupTemplate(true);
+		$this->addCheck(new HandlerValidatorPress($this));
+		$this->validate();
+		$this->setupTemplate(true);
 		
 	}
 
@@ -223,8 +235,9 @@ class AboutHandler extends Handler {
 	 * Display submissions page.
 	 */
 	function submissions() {
-		parent::validate(true);
-		AboutHandler::setupTemplate(true);
+		$this->addCheck(new HandlerValidatorPress($this));
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$press =& Request::getPress();
@@ -246,9 +259,9 @@ class AboutHandler extends Handler {
 	 * Display siteMap page.
 	 */
 	function siteMap() {
-		parent::validate();
-
-		AboutHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
+		
 		$templateMgr =& TemplateManager::getManager();
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
@@ -284,9 +297,8 @@ class AboutHandler extends Handler {
 	 * Display aboutThisPublishingSystem page.
 	 */
 	function aboutThisPublishingSystem() {
-		parent::validate();
-
-		AboutHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$versionDao =& DAORegistry::getDAO('VersionDAO');
 		$version =& $versionDao->getCurrentVersion();
@@ -309,8 +321,8 @@ class AboutHandler extends Handler {
 	 * with the reader's statistics view in the About pages.
 	 */
 	function statistics() {
-		parent::validate();
-		AboutHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 
 		$templateMgr->display('about/statistics.tpl');

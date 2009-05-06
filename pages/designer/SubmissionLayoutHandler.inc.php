@@ -14,8 +14,12 @@
 
 // $Id$
 
+import('pages.designer.DesignerHandler');
 
 class SubmissionLayoutHandler extends DesignerHandler {
+	function SubmissionLayoutHandler() {
+		parent::DesignerHandler();
+	}
 
 	//
 	// Submission Management
@@ -29,8 +33,10 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$monographId = isset($args[0]) ? $args[0] : 0;
 		$layoutAssignmentId = isset($args[1]) ? $args[1] : 0;
 
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId, $layoutAssignmentId);
-		parent::setupTemplate(true, $monographId);
+		$this->validate($monographId, $layoutAssignmentId);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId);
 
 //		import('submission.proofreader.ProofreaderAction');
 //		ProofreaderAction::designerProofreadingUnderway($submission);
@@ -74,8 +80,10 @@ class SubmissionLayoutHandler extends DesignerHandler {
 
 	function viewMetadata($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId);
-		parent::setupTemplate(true, $monographId, 'summary');
+		$this->validate($monographId);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'summary');
 
 		DesignerAction::viewMetadata($submission, ROLE_ID_LAYOUT_EDITOR);
 	}
@@ -85,7 +93,9 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	 */
 	function completeAssignment($args) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId, true);
+		$this->validate($monographId, true);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 
 		if (DesignerAction::completeLayoutEditing($submission, Request::getUserVar('send'))) {
 			Request::redirect(null, null, 'submission', $monographId);
@@ -102,7 +112,9 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	 */
 	function uploadLayoutFile() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId, true);
+		$this->validate($monographId, true);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 
 		switch (Request::getUserVar('layoutFileType')) {
 			case 'submission':
@@ -141,9 +153,11 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function editGalley($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId);
+		$this->validate($monographId);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		if (SubmissionLayoutHandler::layoutEditingEnabled($submission)) {
 			import('submission.form.MonographGalleyForm');
@@ -181,7 +195,9 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function saveGalley($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId, true);
+		$this->validate($monographId, true);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 
 		import('submission.form.MonographGalleyForm');
 
@@ -213,7 +229,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 			}
 			Request::redirect(null, null, 'submission', $monographId);
 		} else {
-			parent::setupTemplate(true, $monographId, 'editing');
+			$this->setupTemplate(true, $monographId, 'editing');
 			$submitForm->display();
 		}
 	}
@@ -225,7 +241,9 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function deleteGalley($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId, true);
+		$this->validate($monographId, true);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 
 		DesignerAction::deleteGalley($submission, $galleyId);
 
@@ -237,7 +255,9 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	 */
 	function orderGalley() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId, true);
+		$this->validate($monographId, true);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 
 		DesignerAction::orderGalley($submission, Request::getUserVar('galleyId'), Request::getUserVar('d'));
 
@@ -251,7 +271,9 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function proofGalley($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId);
+		$this->validate($monographId);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $monographId);
@@ -266,7 +288,9 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function proofGalleyTop($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId);
+		$this->validate($monographId);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $monographId);
@@ -282,7 +306,9 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function proofGalleyFile($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId);
+		$this->validate($monographId);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		$galley =& $galleyDao->getGalley($galleyId, $monographId);
@@ -316,7 +342,9 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$fileId = isset($args[2]) ? (int) $args[2] : 0;
 		$revisionId = isset($args[3]) ? (int) $args[3] : 0;
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId);
+		$this->validate($monographId);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 		DesignerAction::deleteMonographImage($submission, $fileId, $revisionId);
 
 		Request::redirect(null, null, 'editGalley', array($monographId, $galleyId));
@@ -335,9 +363,11 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function editSuppFile($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId);
+		$this->validate($monographId);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 
-		parent::setupTemplate(true, $monographId, 'editing');
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		if (SubmissionLayoutHandler::layoutEditingEnabled($submission)) {
 			import('submission.form.SuppFileForm');
@@ -375,7 +405,9 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	 */
 	function saveSuppFile($args) {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId);
+		$this->validate($monographId);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
@@ -402,7 +434,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 			Request::redirect(null, null, 'submission', $monographId);
 
 		} else {
-			parent::setupTemplate(true, $monographId, 'editing');
+			$this->setupTemplate(true, $monographId, 'editing');
 			$submitForm->display();
 		}
 	}
@@ -414,7 +446,9 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function deleteSuppFile($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId, true);
+		$this->validate($monographId, true);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 
 		DesignerAction::deleteSuppFile($submission, $suppFileId);
 
@@ -426,7 +460,9 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	 */
 	function orderSuppFile() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId, true);
+		$this->validate($monographId, true);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 
 		DesignerAction::orderSuppFile($submission, Request::getUserVar('suppFileId'), Request::getUserVar('d'));
 
@@ -447,7 +483,9 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$fileId = isset($args[1]) ? $args[1] : 0;
 		$revision = isset($args[2]) ? $args[2] : null;
 
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId);
+		$this->validate($monographId);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 		if (!DesignerAction::downloadFile($submission, $fileId, $revision)) {
 			Request::redirect(null, null, 'submission', $monographId);
 		}
@@ -462,7 +500,9 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$fileId = isset($args[1]) ? $args[1] : 0;
 		$revision = isset($args[2]) ? $args[2] : null;
 
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId);
+		$this->validate($monographId);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
 		if (!DesignerAction::viewFile($monographId, $fileId, $revision)) {
 			Request::redirect(null, null, 'submission', $monographId);
 		}
@@ -478,8 +518,10 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function designerProofreadingComplete($args) {
 		$monographId = Request::getUserVar('monographId');
 
-		list($press, $submission) = SubmissionLayoutHandler::validate($monographId);
-		parent::setupTemplate(true, $monographId);
+		$this->validate($monographId);
+		$journal =& $this->journal;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId);
 
 		$send = false;
 		if (isset($args[0])) {

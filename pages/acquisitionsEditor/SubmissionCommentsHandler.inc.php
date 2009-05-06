@@ -18,18 +18,29 @@
 import('pages.acquisitionsEditor.SubmissionEditHandler');
 
 class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
+	var $comment;
+
+	/**
+	 * Constructor
+	 */
+	function SubmissionCommentsHandler() {
+		parent::AcquisitionsEditorHandler();
+	}
 
 	/**
 	 * View peer review comments.
 	 */
 	function viewPeerReviewComments($args) {
-		AcquisitionsEditorHandler::validate();
-		AcquisitionsEditorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$articleId = $args[0];
 		$reviewId = $args[1];
 
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($articleId);
+		$submission =& $submissionEditHandler->submission;
+
 		AcquisitionsEditorAction::viewPeerReviewComments($submission, $reviewId);
 
 	}
@@ -38,8 +49,8 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * Post peer review comments.
 	 */
 	function postPeerReviewComment() {
-		AcquisitionsEditorHandler::validate();
-		AcquisitionsEditorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$monographId = Request::getUserVar('monographId');
 		$reviewId = Request::getUserVar('reviewId');
@@ -47,7 +58,9 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		list($journal, $submission) = SubmissionEditHandler::validate($monographId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($monographId);
+		$submission =& $submissionEditHandler->submission;
 		if (AcquisitionsEditorAction::postPeerReviewComment($submission, $reviewId, $emailComment)) {
 			AcquisitionsEditorAction::viewPeerReviewComments($submission, $reviewId);
 		}
@@ -58,12 +71,14 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * View editor decision comments.
 	 */
 	function viewEditorDecisionComments($args) {
-		AcquisitionsEditorHandler::validate();
-		AcquisitionsEditorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$articleId = $args[0];
 
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($articleId);
+		$submission =& $submissionEditHandler->submission;
 		AcquisitionsEditorAction::viewEditorDecisionComments($submission);
 
 	}
@@ -72,15 +87,17 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * Post peer review comments.
 	 */
 	function postEditorDecisionComment() {
-		AcquisitionsEditorHandler::validate();
-		AcquisitionsEditorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$articleId = Request::getUserVar('articleId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($articleId);
+		$submission =& $submissionEditHandler->submission;
 		if (AcquisitionsEditorAction::postEditorDecisionComment($submission, $emailComment)) {
 			AcquisitionsEditorAction::viewEditorDecisionComments($submission);
 		}
@@ -92,7 +109,9 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 */
 	function blindCcReviewsToReviewers($args = array()) {
 		$articleId = Request::getUserVar('articleId');
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($articleId);
+		$submission =& $submissionEditHandler->submission;
 
 		$send = Request::getUserVar('send')?true:false;
 		$inhibitExistingEmail = Request::getUserVar('blindCcReviewers')?true:false;
@@ -107,12 +126,14 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * View copyedit comments.
 	 */
 	function viewCopyeditComments($args) {
-		AcquisitionsEditorHandler::validate();
-		AcquisitionsEditorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$articleId = $args[0];
 
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($articleId);
+		$submission =& $submissionEditHandler->submission;
 		AcquisitionsEditorAction::viewCopyeditComments($submission);
 
 	}
@@ -121,15 +142,17 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * Post copyedit comment.
 	 */
 	function postCopyeditComment() {
-		AcquisitionsEditorHandler::validate();
-		AcquisitionsEditorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$articleId = Request::getUserVar('articleId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($articleId);
+		$submission =& $submissionEditHandler->submission;
 		if (AcquisitionsEditorAction::postCopyeditComment($submission, $emailComment)) {
 			AcquisitionsEditorAction::viewCopyeditComments($submission);
 		}
@@ -140,12 +163,14 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * View layout comments.
 	 */
 	function viewLayoutComments($args) {
-		AcquisitionsEditorHandler::validate();
-		AcquisitionsEditorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$articleId = $args[0];
 
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($articleId);
+		$submission =& $submissionEditHandler->submission;
 		AcquisitionsEditorAction::viewLayoutComments($submission);
 
 	}
@@ -154,15 +179,17 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * Post layout comment.
 	 */
 	function postLayoutComment() {
-		AcquisitionsEditorHandler::validate();
-		AcquisitionsEditorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$articleId = Request::getUserVar('articleId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($articleId);
+		$submission =& $submissionEditHandler->submission;
 		if (AcquisitionsEditorAction::postLayoutComment($submission, $emailComment)) {
 			AcquisitionsEditorAction::viewLayoutComments($submission);
 		}
@@ -173,12 +200,14 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * View proofread comments.
 	 */
 	function viewProofreadComments($args) {
-		AcquisitionsEditorHandler::validate();
-		AcquisitionsEditorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$articleId = $args[0];
 
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($articleId);
+		$submission =& $submissionEditHandler->submission;
 		AcquisitionsEditorAction::viewProofreadComments($submission);
 
 	}
@@ -187,15 +216,17 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * Post proofread comment.
 	 */
 	function postProofreadComment() {
-		AcquisitionsEditorHandler::validate();
-		AcquisitionsEditorHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$articleId = Request::getUserVar('articleId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($articleId);
+		$submission =& $submissionEditHandler->submission;
 		if (AcquisitionsEditorAction::postProofreadComment($submission, $emailComment)) {
 			AcquisitionsEditorAction::viewProofreadComments($submission);
 		}
@@ -223,14 +254,16 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * Edit comment.
 	 */
 	function editComment($args) {
-		AcquisitionsEditorHandler::validate();
-		AcquisitionsEditorHandler::setupTemplate(true);
-
 		$articleId = $args[0];
 		$commentId = $args[1];
 
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
-		list($comment) = SubmissionCommentsHandler::validate($commentId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($articleId);
+		$submission =& $submissionEditHandler->submission;
+		$this->validate($commentId);
+		$comment =& $this->comment;
+
+		$this->setupTemplate(true);
 
 		if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
 			// Cannot edit an editor decision comment.
@@ -245,17 +278,19 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * Save comment.
 	 */
 	function saveComment() {
-		AcquisitionsEditorHandler::validate();
-		AcquisitionsEditorHandler::setupTemplate(true);
-
 		$articleId = Request::getUserVar('articleId');
 		$commentId = Request::getUserVar('commentId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
-		list($comment) = SubmissionCommentsHandler::validate($commentId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($articleId);
+		$submission =& $submissionEditHandler->submission;
+		$this->validate($commentId);
+		$comment =& $this->comment;
+
+		$this->setupTemplate(true);
 
 		if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
 			// Cannot edit an editor decision comment.
@@ -286,14 +321,17 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * Delete comment.
 	 */
 	function deleteComment($args) {
-		AcquisitionsEditorHandler::validate();
-		AcquisitionsEditorHandler::setupTemplate(true);
-
 		$articleId = $args[0];
 		$commentId = $args[1];
 
-		list($journal, $submission) = SubmissionEditHandler::validate($articleId);
-		list($comment) = SubmissionCommentsHandler::validate($commentId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($articleId);
+		$submission =& $submissionEditHandler->submission;
+		$this->validate($commentId);
+		$comment =& $this->comment;
+
+		$this->setupTemplate(true);
+
 		AcquisitionsEditorAction::deleteComment($commentId);
 
 		// Redirect back to initial comments page
@@ -318,22 +356,25 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	/**
 	 * Validate that the user is the author of the comment.
 	 */
-	function validate($commentId) {
+	function validate($commentId = null) {
 		parent::validate();
 
-		$articleCommentDao = &DAORegistry::getDAO('ArticleCommentDAO');
-		$user = &Request::getUser();
-
-		$comment = &$articleCommentDao->getArticleCommentById($commentId);
-
-		if (
-			$comment == null ||
-			$comment->getAuthorId() != $user->getUserId()
-		) {
-			Request::redirect(null, Request::getRequestedPage());
+		if ( !is_null($commentId) ) {
+			$articleCommentDao = &DAORegistry::getDAO('ArticleCommentDAO');
+			$user = &Request::getUser();
+	
+			$comment = &$articleCommentDao->getArticleCommentById($commentId);
+	
+			if (
+				$comment == null ||
+				$comment->getAuthorId() != $user->getUserId()
+			) {
+				Request::redirect(null, Request::getRequestedPage());
+			}
+	
+			$this->comment =& $comment;
 		}
-
-		return array($comment);
+		return true;
 	}
 }
 ?>

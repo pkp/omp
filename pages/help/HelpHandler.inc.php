@@ -27,17 +27,20 @@ import('handler.Handler');
 import('help.Help');
 
 class HelpHandler extends Handler {
+	function HelpHandler() {
+		parent::Handler();
+	}
 
 	/**
 	 * Display help table of contents.
 	 */
 	function index() {
-		HelpHandler::view(array('index', 'topic', '000000'));
+		$this->view(array('index', 'topic', '000000'));
 	}
 
 	function toc() {
-		parent::validate();
-		HelpHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$templateMgr = &TemplateManager::getManager();
 		$help =& Help::getHelp();
@@ -50,8 +53,8 @@ class HelpHandler extends Handler {
 	 * @param $args array first parameter is the ID of the topic to display
 	 */
 	function view($args) {
-		parent::validate();
-		HelpHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$topicId = implode('/',$args);
 		$keyword = trim(String::regexp_replace('/[^\w\s\.\-]/', '', strip_tags(Request::getUserVar('keyword'))));
@@ -105,8 +108,8 @@ class HelpHandler extends Handler {
 	 * Display search results for a topic search by keyword.
 	 */
 	function search() {
-		parent::validate();
-		HelpHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$searchResults = array();
 

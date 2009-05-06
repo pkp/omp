@@ -1,28 +1,32 @@
 <?php
 
 /**
- * @file pages/admin/AdminPressHandler.inc.php
+ * @file pages/admin/$this->.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class AdminPressHandler
+ * @class $this->
  * @ingroup pages_admin
  *
  * @brief Handle requests for press management in site administration. 
  */
 
-// $Id$
+// $Id$this->.inc.php,v 1.4 2009/05/06 16:44:10 jalperin Exp $
 
+import('pages.admin.AdminHandler');
 
 class AdminPressHandler extends AdminHandler {
+	function AdminPressHandler() {
+		parent::AdminHandler();
+	}
 
 	/**
 	 * Display a list of the presses hosted on the site.
 	 */
 	function presses() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$rangeInfo = Handler::getRangeInfo('presses');
 
@@ -39,7 +43,7 @@ class AdminPressHandler extends AdminHandler {
 	 * Display form to create a new press.
 	 */
 	function createPress() {
-		AdminPressHandler::editPress();
+		$this->editPress();
 	}
 
 	/**
@@ -47,8 +51,8 @@ class AdminPressHandler extends AdminHandler {
 	 * @param $args array optional, if set the first parameter is the ID of the press to edit
 	 */
 	function editPress($args = array()) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('admin.form.PressSiteSettingsForm');
 
@@ -65,7 +69,7 @@ class AdminPressHandler extends AdminHandler {
 	 * Save changes to a press' settings.
 	 */
 	function updatePress() {
-		parent::validate();
+		$this->validate();
 
 		import('admin.form.PressSiteSettingsForm');
 
@@ -78,7 +82,7 @@ class AdminPressHandler extends AdminHandler {
 			Request::redirect(null, null, 'presses');
 
 		} else {
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 			$settingsForm->display();
 		}
 	}
@@ -88,7 +92,7 @@ class AdminPressHandler extends AdminHandler {
 	 * @param $args array first parameter is the ID of the press to delete
 	 */
 	function deletePress($args) {
-		parent::validate();
+		$this->validate();
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 
@@ -116,7 +120,7 @@ class AdminPressHandler extends AdminHandler {
 	 * Change the sequence of a press on the site index page.
 	 */
 	function movePress() {
-		parent::validate();
+		$this->validate();
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$press =& $pressDao->getPress(Request::getUserVar('pressId'));

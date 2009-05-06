@@ -14,16 +14,24 @@
 
 // $Id$
 
+import('pages.manager.ManagerHandler');
 
 class StatisticsHandler extends ManagerHandler {
+	/**
+	 * Constructor
+	 */	
+	function StatisticsHandler() {
+		parent::ManagerHandler();
+	}
+	
 	/**
 	 * Display a list of press statistics.
 	 * WARNING: This implementation should be kept roughly synchronized
 	 * with the reader's statistics view in the About pages.
 	 */
 	function statistics() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$press =& Request::getPress();
 		$templateMgr =& TemplateManager::getManager();
@@ -93,7 +101,7 @@ class StatisticsHandler extends ManagerHandler {
 		// The manager wants to save the list of sections used to
 		// generate statistics.
 
-		parent::validate();
+		$this->validate();
 
 		$press =& Request::getPress();
 
@@ -125,7 +133,7 @@ class StatisticsHandler extends ManagerHandler {
 	}
 
 	function savePublicStatisticsList() {
-		parent::validate();
+		$this->validate();
 
 		$press =& Request::getPress();
 		foreach (StatisticsHandler::getPublicStatisticsNames() as $name) {
@@ -136,8 +144,8 @@ class StatisticsHandler extends ManagerHandler {
 	}
 
 	function report($args) {
-		parent::validate();
-		parent::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$press =& Request::getPress();
 

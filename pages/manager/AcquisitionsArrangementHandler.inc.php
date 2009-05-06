@@ -17,17 +17,32 @@
 define('SERIES_ARRANGEMENT', 1);
 define('CATEGORY_ARRANGEMENT', 2);
 
+import('pages.manager.ManagerHandler');
+
 class AcquisitionsArrangementHandler extends ManagerHandler {
+	var $type; 
+
+	/**
+	 * Constructor
+	 */	
+	function AcquisitionsArrangementHandler() {
+		parent::ManagerHandler();
+		
+		//FIXME: how is this set elsewhere?
+		$this->type = CATEGORY_ARRANGEMENT;
+	}
+	
 	/**
 	 * Display a list of the series within the current press.
 	 */
-	function listItems($type = null) {
-		parent::validate();
-		AcquisitionsArrangementHandler::setupTemplate(false, $type);
+	function listItems() {
+		$this->validate();
+		$this->setupTemplate(false);
 
 		$press =& Request::getPress();
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
 
+		$type = $this->type;
 		switch ($type) {
 			case CATEGORY_ARRANGEMENT: $arrangement = 'submissionCategory'; break;
 			default: $type = SERIES_ARRANGEMENT; $arrangement = 'series';
@@ -50,18 +65,19 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 	/**
 	 * Display form to create a new series.
 	 */
-	function createItem($type = null) {
-		AcquisitionsArrangementHandler::editItem(null, $type);
+	function createItem() {
+		$this->editItem(null);
 	}
 
 	/**
 	 * Display form to create/edit a series.
 	 * @param $args array optional, if set the first parameter is the ID of the series to edit
 	 */
-	function editItem($args = array(), $type = null) {
-		parent::validate();
-		AcquisitionsArrangementHandler::setupTemplate(true, $type);
+	function editItem($args = array()) {
+		$this->validate();
+		$this->setupTemplate(true);
 
+		$type = $this->type;
 		switch ($type) {
 			case CATEGORY_ARRANGEMENT: {
 				import('manager.form.SubmissionCategoryForm');
@@ -87,9 +103,10 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 	/**
 	 * Save changes to a series.
 	 */
-	function updateItem($args, $type = null) {
-		parent::validate();
-
+	function updateItem($args) {
+		$this->validate();
+		
+		$type = $this->type;
 		switch ($type) {
 			case CATEGORY_ARRANGEMENT: {
 				import('manager.form.SubmissionCategoryForm');
@@ -125,7 +142,7 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 			$form->execute();
 			Request::redirect(null, null, $formRedirect);
 		} else {
-			AcquisitionsArrangementHandler::setupTemplate(true, $type);
+			$this->setupTemplate(true);
 			$form->display();
 		}
 	}
@@ -134,8 +151,8 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 	 * Delete a series.
 	 * @param $args array first parameter is the ID of the series to delete
 	 */
-	function deleteItem($args, $type = null) {
-		parent::validate();
+	function deleteItem($args) {
+		$this->validate();
 
 		if (isset($args) && !empty($args)) {
 			$press =& Request::getPress();
@@ -143,7 +160,8 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 			$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
 			$arrangementDao->deleteAcquisitionsArrangementById($args[0], $press->getId());
 		}
-
+		
+		$type = $this->type;
 		switch ($type) {
 			case CATEGORY_ARRANGEMENT: Request::redirect(null, null, 'submissionCategory'); break;
 			default: Request::redirect(null, null, 'series');
@@ -155,8 +173,8 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 	/**
 	 * Change the sequence of a series.
 	 */
-	function moveItem($type = null) {
-		parent::validate();
+	function moveItem() {
+		$this->validate();
 
 		$press =& Request::getPress();
 
@@ -168,18 +186,20 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 			$arrangementDao->updateAcquisitionsArrangement($arrangement);
 			$arrangementDao->resequenceAcquisitionsArrangements($arrangement->getArrangementType());
 		}
-
+		
+		$type = $this->type;
 		switch ($type) {
 			case CATEGORY_ARRANGEMENT: Request::redirect(null, null, 'submissionCategory'); break;
 			default: Request::redirect(null, null, 'series');
 		}
 	}
 
-	function setupTemplate($subclass = false, $type = null) {
+	function setupTemplate($subclass = false) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_READER));
 		parent::setupTemplate(true);
 		if ($subclass) {
 			$templateMgr = &TemplateManager::getManager();
+			$type = $this->type;			
 			switch ($type) {
 				case CATEGORY_ARRANGEMENT:
 					$arrangement = 'submissionCategory';

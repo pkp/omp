@@ -19,12 +19,19 @@ import('submission.designer.DesignerAction');
 import('handler.Handler');
 
 class DesignerHandler extends Handler {
+	function DesignerHandler() {
+		parent::Handler();
+
+		$this->addCheck(new HandlerValidatorPress($this));
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_DESIGNER)));		
+	}
+
 	/**
 	 * Display layout editor index page.
 	 */
 	function index() {
-		DesignerHandler::validate();
-		DesignerHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'editorial.designersRole');
@@ -35,8 +42,8 @@ class DesignerHandler extends Handler {
 	 * Display layout editor submissions page.
 	 */
 	function submissions($args) {
-		DesignerHandler::validate();
-		DesignerHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$press =& Request::getPress();
 		$user =& Request::getUser();
@@ -102,18 +109,6 @@ class DesignerHandler extends Handler {
 	}
 
 	/**
-	 * Validate that user is a layout editor in the selected press.
-	 * Redirects to user index page if not properly authenticated.
-	 */
-	function validate() {
-		parent::validate();
-		$press =& Request::getPress();
-		if (!isset($press) || !Validation::isDesigner($press->getId())) {
-			Validation::redirectLogin();
-		}
-	}
-
-	/**
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
@@ -142,161 +137,6 @@ class DesignerHandler extends Handler {
 			Request::redirect(null, Request::getRequestedPage());
 		}
 	}
-
-	function viewMetadata($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::viewMetadata($args);
-	}
-
-
-	//
-	// Submission Layout Editing
-	//
-
-	function submission($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::submission($args);
-	}
-
-	function submissionEditing($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::submission($args);
-	}
-
-	function completeAssignment($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::completeAssignment($args);
-	}
-
-	function uploadLayoutFile() {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::uploadLayoutFile();
-	}
-
-	function editGalley($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::editGalley($args);
-	}
-
-	function saveGalley($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::saveGalley($args);
-	}
-
-	function deleteGalley($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::deleteGalley($args);
-	}
-
-	function orderGalley() {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::orderGalley();
-	}
-
-	function proofGalley($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::proofGalley($args);
-	}
-
-	function proofGalleyTop($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::proofGalleyTop($args);
-	}
-
-	function proofGalleyFile($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::proofGalleyFile($args);
-	}
-
-	function editSuppFile($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::editSuppFile($args);
-	}
-
-	function saveSuppFile($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::saveSuppFile($args);
-	}
-
-	function deleteSuppFile($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::deleteSuppFile($args);
-	}
-
-	function orderSuppFile() {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::orderSuppFile();
-	}
-
-	function downloadFile($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::downloadFile($args);
-	}
-
-	function viewFile($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::viewFile($args);
-	}
-
-	function downloadLayoutTemplate($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::downloadLayoutTemplate($args);
-	}
-
-	function deleteArticleImage($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::deleteArticleImage($args);
-	}
-
-	//
-	// Proofreading Actions
-	//
-
-	function designerProofreadingComplete($args) {
-		import('pages.designer.SubmissionLayoutHandler');
-		SubmissionLayoutHandler::designerProofreadingComplete($args);
-	}
-
-
-	//
-	// Submission Comments
-	//
-
-	function viewLayoutComments($args) {
-		import('pages.designer.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::viewLayoutComments($args);
-	}
-
-	function postLayoutComment() {
-		import('pages.designer.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::postLayoutComment();
-	}
-
-	function viewProofreadComments($args) {
-		import('pages.designer.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::viewProofreadComments($args);
-	}
-
-	function postProofreadComment() {
-		import('pages.designer.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::postProofreadComment();
-	}
-
-	function editComment($args) {
-		import('pages.designer.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::editComment($args);
-	}
-
-	function saveComment() {
-		import('pages.designer.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::saveComment();
-	}
-
-	function deleteComment($args) {
-		import('pages.designer.SubmissionCommentsHandler');
-		SubmissionCommentsHandler::deleteComment($args);
-	}
-
 }
 
 ?>

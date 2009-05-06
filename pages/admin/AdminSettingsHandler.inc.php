@@ -14,14 +14,19 @@
  * $Id$
  */
 
+import('pages.admin.AdminHandler');
+
 class AdminSettingsHandler extends AdminHandler {
+	function AdminSettingsHandler() {
+		parent::AdminHandler();
+	}
 
 	/**
 	 * Display form to modify site settings.
 	 */
 	function settings() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('admin.form.SiteSettingsForm');
 
@@ -38,8 +43,8 @@ class AdminSettingsHandler extends AdminHandler {
 	 * Validate and save changes to site settings.
 	 */
 	function saveSettings() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 		$site =& Request::getSite();
 
 		import('admin.form.SiteSettingsForm');

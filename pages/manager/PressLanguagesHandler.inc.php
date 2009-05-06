@@ -14,15 +14,22 @@
 
 // $Id$
 
+import('pages.manager.ManagerHandler');
 
 class PressLanguagesHandler extends ManagerHandler {
-
+	/**
+	 * Constructor
+	 */	
+	function PressLanguagesHandler() {
+		parent::ManagerHandler();
+	}
+	
 	/**
 	 * Display form to edit language settings.
 	 */
 	function languages() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('manager.form.LanguageSettingsForm');
 
@@ -35,8 +42,8 @@ class PressLanguagesHandler extends ManagerHandler {
 	 * Save changes to language settings.
 	 */
 	function saveLanguageSettings() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('manager.form.LanguageSettingsForm');
 
@@ -68,8 +75,8 @@ class PressLanguagesHandler extends ManagerHandler {
 			Request::redirect(null, null, 'languages');
 		}
 
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 					
 		$press =& Request::getPress();
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');

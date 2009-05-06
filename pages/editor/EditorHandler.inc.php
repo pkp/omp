@@ -15,7 +15,7 @@
 // $Id$
 
 import('acquisitionsEditor.AcquisitionsEditorHandler');
-import ('submission.editor.EditorAction');
+import('submission.editor.EditorAction');
 
 
 define('EDITOR_SECTION_HOME', 0);
@@ -27,14 +27,20 @@ define('FILTER_EDITOR_ALL', 0);
 define('FILTER_EDITOR_ME', 1);
 
 class EditorHandler extends AcquisitionsEditorHandler {
+	/**
+	 * Constructor
+	 */
+	function EditorHandler() {
+		parent::AcquisitionsEditorHandler();
+	}
 
 	/**
 	 * Displays the editor role selection page.
 	 */
 
 	function index($args) {
-		EditorHandler::validate();
-		EditorHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
 		$press =& Request::getPress();
@@ -46,8 +52,8 @@ class EditorHandler extends AcquisitionsEditorHandler {
 
 	//	$sections =& $sectionDao->getSectionTitles($press->getId());
 	//	$templateMgr->assign('sectionOptions', array(0 => Locale::Translate('editor.allSections')) + $sections);
-	//	$templateMgr->assign('fieldOptions', EditorHandler::getSearchFieldOptions());
-	//	$templateMgr->assign('dateFieldOptions', EditorHandler::getDateFieldOptions());
+	//	$templateMgr->assign('fieldOptions', $this->getSearchFieldOptions());
+	//	$templateMgr->assign('dateFieldOptions', $this->getDateFieldOptions());
 
 
 		$submissionsCount =& $editorSubmissionDao->getCount($press->getId());
@@ -90,8 +96,8 @@ class EditorHandler extends AcquisitionsEditorHandler {
 	 * Display editor submission queue pages.
 	 */
 	function submissions($args) {
-		EditorHandler::validate();
-		EditorHandler::setupTemplate(EDITOR_SECTION_SUBMISSIONS);
+		$this->validate();
+		$this->setupTemplate(EDITOR_SECTION_SUBMISSIONS);
 
 		$press =& Request::getPress();
 		$pressId = $press->getId();
@@ -195,13 +201,13 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$templateMgr->assign('filterSection', $filterSection);
 
 		// Set search parameters
-//		foreach (EditorHandler::getSearchFormDuplicateParameters() as $param)
+//		foreach ($this->getSearchFormDuplicateParameters() as $param)
 //			$templateMgr->assign($param, Request::getUserVar($param));
 
 		$templateMgr->assign('dateFrom', $fromDate);
 		$templateMgr->assign('dateTo', $toDate);
-//		$templateMgr->assign('fieldOptions', EditorHandler::getSearchFieldOptions());
-//		$templateMgr->assign('dateFieldOptions', EditorHandler::getDateFieldOptions());
+//		$templateMgr->assign('fieldOptions', $this->getSearchFieldOptions());
+//		$templateMgr->assign('dateFieldOptions', $this->getDateFieldOptions());
 
 //		import('issue.IssueAction');
 //		$issueAction = new IssueAction();
@@ -215,7 +221,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 	 * Delete the specified edit assignment.
 	 */
 	function deleteEditAssignment($args) {
-		EditorHandler::validate();
+		$this->validate();
 
 		$press =& Request::getPress();
 		$editId = (int) (isset($args[0])?$args[0]:0);
@@ -240,7 +246,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 	 * Assigns the selected editor to the submission.
 	 */
 	function assignEditor($args) {
-		EditorHandler::validate();
+		$this->validate();
 		$press =& Request::getPress();
 		$monographId = Request::getUserVar('monographId');
 		$editorId = Request::getUserVar('editorId');
@@ -255,7 +261,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 			// has been done, send the email and store the editor
 			// selection.
 
-			EditorHandler::setupTemplate(EDITOR_SECTION_SUBMISSIONS, $monographId, 'summary');
+			$this->setupTemplate(EDITOR_SECTION_SUBMISSIONS, $monographId, 'summary');
 
 			$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 			$workflowDao->build(
@@ -276,7 +282,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 			}
 		} else {
 			// Allow the user to choose a section editor or editor.
-			EditorHandler::setupTemplate(EDITOR_SECTION_SUBMISSIONS, $monographId, 'summary');
+			$this->setupTemplate(EDITOR_SECTION_SUBMISSIONS, $monographId, 'summary');
 
 			$searchType = null;
 			$searchMatch = null;
@@ -339,7 +345,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 	 * Set the canEdit / canReview flags for this submission's edit assignments.
 	 */
 	function setEditorFlags($args) {
-		EditorHandler::validate();
+		$this->validate();
 
 		$press =& Request::getPress();
 		$monographId = (int) Request::getUserVar('monographId');
@@ -388,23 +394,15 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 
 	}
-	function validate() {
-		
-		$press =& Request::getPress();
-		// FIXME This is kind of evil
-		$page = Request::getRequestedPage();
-		if (!isset($press) || ($page == 'acquisitionsEditor' && !Validation::isAcquisitionsEditor($press->getId())) || ($page == 'editor' && !Validation::isEditor($press->getId()))) {
-			Validation::redirectLogin();
-		}
 
-	}
 	function userProfile($args) {
 		import('pages.acquisitionsEditor.AcquisitionsEditorHandler');
-		AcquisitionsEditorHandler::userProfile($args);
+		$this->userProfile($args);
 	}
+	
 	function submissionReview($args) {
 		import('pages.acquisitionsEditor.AcquisitionsEditorHandler');
-		AcquisitionsEditorHandler::submissionReview($args);
+		$this->submissionReview($args);
 	}
 
 

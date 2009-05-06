@@ -18,19 +18,25 @@
 import('handler.Handler');
 
 class UserHandler extends Handler {
-
+	/**
+	 * Constructor
+	 */
+	function UserHandler() {
+		parent::Handler();
+	}
+	
 	/**
 	 * Display user index page.
 	 */
 	function index() {
-		UserHandler::validate();
+		$this->validate();
 
 		$sessionManager =& SessionManager::getManager();
 		$session =& $sessionManager->getUserSession();
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		UserHandler::setupTemplate();
+		$this->setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
 
 		$press =& Request::getPress();
@@ -206,7 +212,7 @@ class UserHandler extends Handler {
 	}
 
 	function workflowSignoff($args) {
-		UserHandler::validate();
+		$this->validate();
 		$processId = (int) array_shift($args);
 		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 		$user =& Request::getUser();
@@ -218,59 +224,6 @@ class UserHandler extends Handler {
 		}
 
   		Request::redirect(null, 'user');
-	}
-
-	//
-	// Profiles
-	//
-
-	function profile() {
-		import('pages.user.ProfileHandler');
-		ProfileHandler::profile();
-	}
-
-	function saveProfile() {
-		import('pages.user.ProfileHandler');
-		ProfileHandler::saveProfile();
-	}
-
-	function changePassword() {
-		import('pages.user.ProfileHandler');
-		ProfileHandler::changePassword();
-	}
-
-	function savePassword() {
-		import('pages.user.ProfileHandler');
-		ProfileHandler::savePassword();
-	}
-
-
-	//
-	// Registration
-	//
-
-	function register() {
-		import('pages.user.RegistrationHandler');
-		RegistrationHandler::register();
-	}
-
-	function registerUser() {
-		import('pages.user.RegistrationHandler');
-		RegistrationHandler::registerUser();
-	}
-
-	function activateUser($args) {
-		import('pages.user.RegistrationHandler');
-		RegistrationHandler::activateUser($args);
-	}
-
-	//
-	// Email
-	//
-
-	function email($args) {
-		import('pages.user.EmailHandler');
-		EmailHandler::email($args);
 	}
 
 	//
@@ -297,7 +250,7 @@ class UserHandler extends Handler {
 	 * if that user should be exposed for public view.
 	 */
 	function viewPublicProfile($args) {
-		UserHandler::validate(false);
+		$this->validate(false);
 		$templateMgr =& TemplateManager::getManager();
 		$userId = (int) array_shift($args);
 
@@ -326,8 +279,8 @@ class UserHandler extends Handler {
 	//
 
 	function payRenewSubscription($args) {
-		UserHandler::validate();
-		UserHandler::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		import('payment.ojs.OJSPaymentManager');
 		$paymentManager =& OJSPaymentManager::getManager();
@@ -354,8 +307,8 @@ class UserHandler extends Handler {
 	}
 
 	function payMembership($args) {
-		UserHandler::validate();
-		UserHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		import('payment.ojs.OJSPaymentManager');
 		$paymentManager =& OJSPaymentManager::getManager();

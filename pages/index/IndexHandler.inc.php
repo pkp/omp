@@ -18,14 +18,20 @@
 import('handler.Handler');
 
 class IndexHandler extends Handler {
+	/**
+	 * Constructor
+	 */
+	function IndexHandler() {
+		parent::Handler();
+	}
 
 	/**
 	 * If no press is selected, display list of presses associated with this system.
 	 * Otherwise, display the index page for the selected press.
 	 */
 	function index($args) {
-		parent::validate();
-		parent::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
 		$pressDao =& DAORegistry::getDAO('PressDAO');

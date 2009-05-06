@@ -14,17 +14,24 @@
 
 // $Id$
 
+import('pages.manager.ManagerHandler');
 
 class SetupHandler extends ManagerHandler {
-
+	/**
+	 * Constructor
+	 */	
+	function SetupHandler() {
+		parent::ManagerHandler();
+	}
+	
 	/**
 	 * Display press setup form for the selected step.
 	 * Displays setup index page if a valid step is not specified.
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
 	function setup($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
@@ -53,13 +60,13 @@ class SetupHandler extends ManagerHandler {
 	 * @param $args array first parameter is the step being saved
 	 */
 	function saveSetup($args) {
-		parent::validate();
+		$this->validate();
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
 		if ($step >= 1 && $step <= 5) {
 
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 
 			$formClass = "PressSetupStep{$step}Form";
 			import("manager.form.setup.$formClass");
@@ -325,12 +332,12 @@ class SetupHandler extends ManagerHandler {
 	 * Display a "Settings Saved" message
 	 */
 	function setupSaved($args) {
-		parent::validate();
+		$this->validate();
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
 		if ($step >= 1 && $step <= 5) {
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('setupStep', $step);
@@ -342,7 +349,7 @@ class SetupHandler extends ManagerHandler {
 	}
 
 	function downloadLayoutTemplate($args) {
-		parent::validate();
+		$this->validate();
 		$press =& Request::getPress();
 		$templates = $press->getSetting('templates');
 		import('file.PressFileManager');

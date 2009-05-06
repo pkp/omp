@@ -18,13 +18,16 @@
 import('handler.Handler');
 
 class InformationHandler extends Handler {
+	function InformationHandler() {
+		parent::Handler();
+	}
 
 	/**
 	 * Display the information page for the press..
 	 */
 	function index($args) {
-		parent::validate();
-		InformationHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
 		$press = Request::getPress();
 
 		if ($press == null) {
@@ -69,23 +72,23 @@ class InformationHandler extends Handler {
 	}
 
 	function readers() {
-		InformationHandler::index(array('readers'));
+		$this->index(array('readers'));
 	}
 
 	function authors() {
-		InformationHandler::index(array('authors'));
+		$this->index(array('authors'));
 	}
 
 	function librarians() {
-		InformationHandler::index(array('librarians'));
+		$this->index(array('librarians'));
 	}
 
 	function competingInterestGuidelines() {
-		InformationHandler::index(array('competingInterestGuidelines'));
+		$this->index(array('competingInterestGuidelines'));
 	}
 
 	function sampleCopyrightWording() {
-		InformationHandler::index(array('sampleCopyrightWording'));
+		$this->index(array('sampleCopyrightWording'));
 	}
 
 	/**

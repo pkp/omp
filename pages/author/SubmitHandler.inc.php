@@ -14,17 +14,21 @@
 
 // $Id$
 
+import('pages.author.AuthorHandler');
 
 class SubmitHandler extends AuthorHandler {
-
+	function SubmitHandler() {
+		parent::AuthorHandler();
+	}
+	
 	/**
 	 * Display author monograph submission.
 	 * Displays author index page if a valid step is not specified.
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
 	function submit($args) {
-		parent::validate('author.submit.authorSubmitLoginMessage');
-		parent::setupTemplate(true);
+		$this->validate('author.submit.authorSubmitLoginMessage');
+		$this->setupTemplate(true);
 
 		$step = isset($args[0]) ? $args[0] : 0;
 		$monographId = Request::getUserVar('monographId');
@@ -47,8 +51,8 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $args array first parameter is the step being saved
 	 */
 	function saveSubmit($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$step = isset($args[0]) ? $args[0] : 0;
 		$monographId = Request::getUserVar('monographId');
@@ -111,8 +115,8 @@ class SubmitHandler extends AuthorHandler {
 	 * Create new supplementary file with a uploaded file.
 	 */
 	function submitUploadSuppFile() {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monographId = Request::getUserVar('monographId');
 
@@ -132,8 +136,8 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $args array optional, if set the first parameter is the supplementary file to edit
 	 */
 	function submitSuppFile($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		$monographId = Request::getUserVar('monographId');
@@ -158,8 +162,8 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $args array optional, if set the first parameter is the supplementary file to update
 	 */
 	function saveSubmitSuppFile($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		$monographId = Request::getUserVar('monographId');
@@ -187,8 +191,8 @@ class SubmitHandler extends AuthorHandler {
 	function deleteSubmitSuppFile($args) {
 		import('file.MonographFileManager');
 
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		$monographId = Request::getUserVar('monographId');
@@ -222,35 +226,6 @@ class SubmitHandler extends AuthorHandler {
 		}
 
 		Request::redirect(null, null, 'track');
-	}
-
-	/**
-	 * Validation check for submission.
-	 * Checks that monograph ID is valid, if specified.
-	 * @param $monographId int
-	 * @param $step int
-	 */
-	function validate($monographId = null, $step = false) {
-/*		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$user =& Request::getUser();
-		$press =& Request::getPress();
-
-		if ($step !== false && ($step < 1 || $step > 5 || (!isset($monographId) && $step != 1))) {
-			Request::redirect(null, null, 'submit', array(1));
-		}
-*/
-/*		$monograph = null;
-
-		// Check that monograph exists for this press and user and that submission is incomplete
-		if (isset($monographId)) {
-			$monograph =& $monographDao->getMonograph((int) $monographId);
-
-			if (!$monograph || $monograph->getUserId() !== $user->getUserId() || $monograph->getPressId() !== $press->getId() || ($step !== false && $step > $monograph->getSubmissionProgress())) {
-				Request::redirect(null, null, 'submit');
-			}
-		}
-		return array(&$press, &$monograph);
-*/
 	}
 }
 ?>

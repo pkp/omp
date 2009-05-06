@@ -14,16 +14,23 @@
 
 // $Id$
 
+import('pages.manager.ManagerHandler');
 
 class PeopleHandler extends ManagerHandler {
-
+	/**
+	 * Constructor
+	 */	
+	function PeopleHandler() {
+		parent::ManagerHandler();
+	}
+	
 	/**
 	 * Display list of people in the selected role.
 	 * @param $args array first parameter is the role ID to display
 	 */	
 	function people($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
@@ -145,7 +152,7 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array first parameter is the selected role ID
 	 */
 	function enrollSearch($args) {
-		parent::validate();
+		$this->validate();
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$pressDao =& DAORegistry::getDAO('PressDAO');
@@ -156,7 +163,7 @@ class PeopleHandler extends ManagerHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		parent::setupTemplate(true);
+		$this->setupTemplate(true);
 
 		$searchType = null;
 		$searchMatch = null;
@@ -208,7 +215,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Enroll a user in a role.
 	 */
 	function enroll($args) {
-		parent::validate();
+		$this->validate();
 		$roleId = (int)(isset($args[0])?$args[0]:Request::getUserVar('roleId'));
 
 		// Get a list of users to enroll -- either from the
@@ -245,7 +252,7 @@ class PeopleHandler extends ManagerHandler {
 	 */
 	function unEnroll($args) {
 		$roleId = isset($args[0])?$args[0]:0;
-		parent::validate();
+		$this->validate();
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$press =& $pressDao->getPressByPath(Request::getRequestedPressPath());
@@ -262,7 +269,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Show form to synchronize user enrollment with another press.
 	 */
 	function enrollSyncSelect($args) {
-		parent::validate();
+		$this->validate();
 
 		$rolePath = isset($args[0]) ? $args[0] : '';
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -291,7 +298,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Synchronize user enrollment with another press.
 	 */
 	function enrollSync($args) {
-		parent::validate();
+		$this->validate();
 
 		$press =& Request::getPress();
 		$rolePath = Request::getUserVar('rolePath');
@@ -318,7 +325,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Display form to create a new user.
 	 */
 	function createUser() {
-		PeopleHandler::editUser();
+		$this->editUser();
 	}
 
 	/**
@@ -326,7 +333,7 @@ class PeopleHandler extends ManagerHandler {
 	 * already used by the system. (Poor-man's AJAX.)
 	 */
 	function suggestUsername() {
-		parent::validate();
+		$this->validate();
 		$suggestion = Validation::suggestUsername(
 			Request::getUserVar('firstName'),
 			Request::getUserVar('lastName')
@@ -339,8 +346,8 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array optional, if set the first parameter is the ID of the user to edit
 	 */
 	function editUser($args = array()) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$press =& Request::getPress();
 
@@ -374,8 +381,8 @@ class PeopleHandler extends ManagerHandler {
 	 * Allow the Press Manager to merge user accounts, including attributed articles etc.
 	 */
 	function mergeUsers($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -597,8 +604,8 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array the ID of the user to disable
 	 */
 	function disableUser($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:Request::getUserVar('userId');
 		$user =& Request::getUser();
@@ -632,8 +639,8 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array the ID of the user to enable
 	 */
 	function enableUser($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:null;
 		$user =& Request::getUser();
@@ -655,8 +662,8 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array the ID of the user to remove
 	 */
 	function removeUser($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:null;
 		$user =& Request::getUser();
@@ -674,7 +681,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Save changes to a user profile.
 	 */
 	function updateUser() {
-		parent::validate();
+		$this->validate();
 
 		$press =& Request::getPress();
 		$userId = Request::getUserVar('userId');
@@ -712,7 +719,7 @@ class PeopleHandler extends ManagerHandler {
 			}
 
 		} else {
-			parent::setupTemplate(true);
+			$this->setupTemplate(true);
 			$userForm->display();
 		}
 	}
@@ -722,8 +729,8 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array first parameter is the ID or username of the user to display
 	 */
 	function userProfile($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentUrl', Request::url(null, null, 'people', 'all'));
@@ -772,7 +779,7 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array ($userId)
 	 */
 	function signInAsUser($args) {
-		parent::validate();
+		$this->validate();
 
 		if (isset($args[0]) && !empty($args[0])) {
 			$userId = (int)$args[0];

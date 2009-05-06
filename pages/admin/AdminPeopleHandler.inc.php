@@ -14,15 +14,22 @@
 
 // $Id$
 
+import('pages.admin.AdminHandler');
 
 class AdminPeopleHandler extends AdminHandler {
-
+	/**
+	 * Constructor
+	 */
+	 function AdminPeopleHandler() {
+	 	parent::AdminHandler();
+	 }
+	 
 	/**
 	 * Allow the Site Administrator to merge user accounts, including attributed articles etc.
 	 */
 	function mergeUsers($args) {
-		parent::validate();
-		parent::setupTemplate(true);
+		$this->validate();
+		$this->setupTemplate(true);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');

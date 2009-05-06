@@ -19,14 +19,18 @@ import('handler.Handler');
 import('pages.acquisitionsEditor.SubmissionEditHandler');
 
 class ProductionHandler extends SubmissionEditHandler {
+	function ProductionHandler() {
+		parent::SubmissionEditHandler();
+	}
 
 	/**
 	 * Display the information page for the press..
 	 */
 	function index($args) {
 
-		list($press) = ProductionHandler::validate();
-		ProductionHandler::setupTemplate();
+		$this->validate();
+		$this->setupTemplate();
+		$press =& Request::getPress();
 
 		$templateMgr =& TemplateManager::getManager();
 		$user =& Request::getUser();
@@ -55,7 +59,6 @@ class ProductionHandler extends SubmissionEditHandler {
 		$templateMgr->display('productionEditor/index.tpl');
 	}
 	/**
-
 	 * View a file (inline file).
 	 * @param $args array ($monographId, $fileId, [$revision])
 	 */
@@ -64,7 +67,8 @@ class ProductionHandler extends SubmissionEditHandler {
 		$fileId = isset($args[1]) ? $args[1] : 0;
 		$revision = isset($args[2]) ? $args[2] : null;
 
-		list($press) = ProductionHandler::validate();
+		$this->validate();
+		$press =& Request::getPress();
 		import('file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 		$monographFileManager->viewFile($fileId, $revision);
@@ -74,8 +78,9 @@ class ProductionHandler extends SubmissionEditHandler {
 	}
 	function submission($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = ProductionHandler::validate($monographId);
-		ProductionHandler::setupTemplate(false, $monographId);
+		$this->validate($monographId);
+		$submission =& $this->submission;
+		$this->setupTemplate(false, $monographId);
 
 		$user =& Request::getUser();
 
@@ -150,8 +155,9 @@ class ProductionHandler extends SubmissionEditHandler {
 	}
 	function submitArtwork($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = ProductionHandler::validate($monographId);
-		ProductionHandler::setupTemplate(false, $monographId);
+		$this->validate($monographId);
+		$submission =& $this->submission;
+		$this->setupTemplate(false, $monographId);
 
 		$user =& Request::getUser();
 		import('monograph.form.MonographArtworkForm');
@@ -167,8 +173,9 @@ class ProductionHandler extends SubmissionEditHandler {
 	}
 	function submissionArt($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = ProductionHandler::validate($monographId);
-		ProductionHandler::setupTemplate(false, $monographId);
+		$this->validate($monographId);
+		$submission =& $this->submission;
+		$this->setupTemplate(false, $monographId);
 
 		$user =& Request::getUser();
 		import('monograph.form.MonographArtworkForm');
@@ -193,7 +200,8 @@ class ProductionHandler extends SubmissionEditHandler {
 	 */
 	function uploadLayoutFile() {
 		$monographId = Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		parent::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::uploadLayoutVersion($submission);
 
@@ -228,10 +236,12 @@ class ProductionHandler extends SubmissionEditHandler {
 		}
 		Request::redirect(null, null, 'submissionArt', Request::getUserVar('monographId'));
 	}
+	
 	function submissionLayout($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		list($press, $submission) = ProductionHandler::validate($monographId);
-		ProductionHandler::setupTemplate(false, $monographId);
+		$this->validate($monographId);
+		$submission =& $this->submission;
+		$this->setupTemplate(false, $monographId);
 
 		$user =& Request::getUser();
 
@@ -304,6 +314,7 @@ class ProductionHandler extends SubmissionEditHandler {
 	 */
 	function validate($monographId = null, $reason = null) {
 	//	parent::validate();
+	//FIXME: this should work better with the parent's class
 		$press =& Request::getPress();
 		$productionEditorSubmission = null;
 		$isValid = true;
@@ -331,7 +342,9 @@ class ProductionHandler extends SubmissionEditHandler {
 			Request::redirect(null, Request::getRequestedPage());
 		}
 
-		return array(&$press, &$productionEditorSubmission);
+		$this->press =& $productionEditorSubmission;
+		$this->submission =& $productionEditorSubmission;
+		return true;
 	}
 }
 

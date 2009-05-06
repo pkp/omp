@@ -14,15 +14,23 @@
 
 // $Id$
 
+import('pages.manager.ManagerHandler');
 
 class PluginHandler extends ManagerHandler {
+	/**
+	 * Constructor
+	 */	
+	function PluginHandler() {
+		parent::ManagerHandler();
+	}
+	
 	/**
 	 * Display a list of plugins along with management options.
 	 */
 	function plugins($args) {
 		$category = isset($args[0])?$args[0]:null;
 
-		parent::validate();
+		$this->validate();
 
 		$categories = PluginRegistry::getCategories();
 
@@ -41,7 +49,7 @@ class PluginHandler extends ManagerHandler {
 			}
 		}
 
-		parent::setupTemplate(true);
+		$this->setupTemplate(true);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('plugins', $plugins);
@@ -60,7 +68,7 @@ class PluginHandler extends ManagerHandler {
 		$plugin = array_shift($args);
 		$verb = array_shift($args);
 
-		parent::validate();
+		$this->validate();
 
 		$plugins =& PluginRegistry::loadCategory($category);
 		if (!isset($plugins[$plugin]) || !$plugins[$plugin]->manage($verb, $args)) {
