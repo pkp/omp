@@ -157,7 +157,7 @@ class RegistrationHandler extends UserHandler {
 	 * Checks if press allows user registration.
 	 */	
 	function validate() {
-		$this->validate(false);
+		parent::validate(false);
 		$press = Request::getPress();
 		if ($press != null) {
 			$pressSettingsDao = &DAORegistry::getDAO('PressSettingsDAO');
