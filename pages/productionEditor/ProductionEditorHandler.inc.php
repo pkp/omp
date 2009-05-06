@@ -18,8 +18,8 @@
 import('handler.Handler');
 import('pages.acquisitionsEditor.SubmissionEditHandler');
 
-class ProductionHandler extends SubmissionEditHandler {
-	function ProductionHandler() {
+class ProductionEditorHandler extends SubmissionEditHandler {
+	function ProductionEditorHandler() {
 		parent::SubmissionEditHandler();
 	}
 
