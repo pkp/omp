@@ -76,29 +76,6 @@ class UserHandler extends Handler {
 			// Show roles for the currently selected press
 			$roles =& $roleDao->getRolesByUserId($session->getUserId(), $press->getId());
 
-	/*		import('payment.ojs.OJSPaymentManager');
-			$paymentManager =& OJSPaymentManager::getManager();
-			$membershipEnabled = $paymentManager->membershipEnabled();
-			$templateMgr->assign('membershipEnabled', $membershipEnabled);
-			$subscriptionEnabled = $paymentManager->acceptSubscriptionPayments();
-			$templateMgr->assign('subscriptionEnabled', $subscriptionEnabled);
-
-			if ( $subscriptionEnabled ) {
-				import('subscription.SubscriptionDAO');
-				$subscriptionDAO =& DAORegistry::getDAO('SubscriptionDAO');
-				$subscriptionId = $subscriptionDAO->getSubscriptionIdByUser($user->getUserId(), $press->getId());
-				$templateMgr->assign('userHasSubscription', $subscriptionId);
-				if ( $subscriptionId !== false ) {
-					$subscription =& $subscriptionDAO->getSubscription($subscriptionId);
-					$templateMgr->assign('subscriptionEndDate', $subscription->getDateEnd());
-				}
-			}
-
-			if ( $membershipEnabled ) {
-				$templateMgr->assign('dateEndMembership', $user->getSetting('dateEndMembership', 0));
-			}
-*/
-
 			$signoffTasks =& $workflowDao->getSignoffTasksByUserId($user->getUserId());
 			$templateMgr->assign('signoffTasks', $signoffTasks);
 
