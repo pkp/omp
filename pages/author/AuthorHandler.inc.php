@@ -22,7 +22,7 @@ class AuthorHandler extends Handler {
 	function AuthorHandler() {
 		parent::Handler();
 
-		$this->addCheck(new HandlerValidatorJournal($this));
+		$this->addCheck(new HandlerValidatorPress($this));
 		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_AUTHOR)));
 	}
 
