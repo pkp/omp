@@ -754,21 +754,28 @@ $round = 1;
 		$monographFileManager = new MonographFileManager($acquisitionsEditorSubmission->getMonographId());
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$user =& Request::getUser();
 
 		if (!HookRegistry::call('AcquisitionsEditorAction::setCopyeditFile', array(&$acquisitionsEditorSubmission, &$fileId, &$revision))) {
 			// Copy the file from the editor decision file folder to the copyedit file folder
 			$newFileId = $monographFileManager->copyToCopyeditFile($fileId, $revision);
 
-			$acquisitionsEditorSubmission->setCopyeditFileId($newFileId);
-			$acquisitionsEditorSubmission->setCopyeditorInitialRevision(1);
+			$copyeditSignoff = $signoffDao->build(
+								'SIGNOFF_COPYEDITING_INITIAL', 
+								ASSOC_TYPE_MONOGRAPH, 
+								$acquisitionsEditorSubmission->getMonographId()
+							);
 
-			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
+			$copyeditSignoff->setFileId($newFileId);
+			$copyeditSignoff->setFileRevision(1);
+
+			$signoffDao->updateObject($copyeditSignoff);
 
 			// Add log
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_SET_FILE, MONOGRAPH_LOG_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getCopyeditFileId(), 'log.copyedit.copyeditFileSet');
+			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_SET_FILE, MONOGRAPH_LOG_TYPE_COPYEDIT, $newFileId, 'log.copyedit.copyeditFileSet');
 		}
 	}
 
@@ -839,6 +846,7 @@ $round = 1;
 	 */
 	function selectCopyeditor($acquisitionsEditorSubmission, $copyeditorId) {
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& Request::getUser();
 
@@ -849,8 +857,9 @@ $round = 1;
 		// Only add the copyeditor if he has not already
 		// been assigned to review this monograph.
 		if (!$assigned && !HookRegistry::call('AcquisitionsEditorAction::selectCopyeditor', array(&$acquisitionsEditorSubmission, &$copyeditorId))) {
-			$acquisitionsEditorSubmission->setCopyeditorId($copyeditorId);
-			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
+			$copyeditInitialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getMonographId()); 
+			$copyeditInitialSignoff->setUserId($copyeditorId);
+			$signoffDao->updateObject($copyeditInitialSignoff);
 
 			$copyeditor =& $userDao->getUser($copyeditorId);
 
@@ -929,6 +938,7 @@ $round = 1;
 	 */
 	function thankCopyeditor($acquisitionsEditorSubmission, $send = false) {
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 		$user =& Request::getUser();
@@ -936,7 +946,7 @@ $round = 1;
 		import('mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($acquisitionsEditorSubmission, 'COPYEDIT_ACK');
 
-		$copyeditor =& $userDao->getUser($acquisitionsEditorSubmission->getCopyeditorId());
+		$copyeditor =& $acquisitionsEditorSubmission->getUserBySignoffType('SIGNOFF_COPYEDIT_INITIAL');
 		if (!isset($copyeditor)) return true;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
@@ -945,9 +955,13 @@ $round = 1;
 				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_ACKNOWLEDGE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
 				$email->send();
 			}
-
-			$acquisitionsEditorSubmission->setCopyeditorDateAcknowledged(Core::getCurrentDate());
-			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
+			$initialSignoff = $signoffDao->build(
+						'SIGNOFF_COPYEDITING_INITIAL', 
+						ASSOC_TYPE_MONOGRAPH, 
+						$acquisitionsEditorSubmission->getMonographId()
+					);
+			$initialSignoff->setDateAcknowledged(Core::getCurrentDate());
+			$signoffDao->updateObject($initialSignoff);
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->addRecipient($copyeditor->getEmail(), $copyeditor->getFullName());
@@ -971,6 +985,7 @@ $round = 1;
 	function notifyAuthorCopyedit($acquisitionsEditorSubmission, $send = false) {
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
@@ -986,12 +1001,17 @@ $round = 1;
 				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
 				$email->send();
 			}
-
-			$acquisitionsEditorSubmission->setCopyeditorDateAuthorNotified(Core::getCurrentDate());
-			$acquisitionsEditorSubmission->setCopyeditorDateAuthorUnderway(null);
-			$acquisitionsEditorSubmission->setCopyeditorDateAuthorCompleted(null);
-			$acquisitionsEditorSubmission->setCopyeditorDateAuthorAcknowledged(null);
-			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
+			$authorSignoff = $signoffDao->build(
+						'SIGNOFF_COPYEDITING_AUTHOR',
+						ASSOC_TYPE_MONOGRAPH,
+						$acquisitionsEditorSubmission->getMonographId()
+					);
+			$authorSignoff->setUserId($author->getUserId());
+			$authorSignoff->setDateNotified(Core::getCurrentDate());
+			$authorSignoff->setDateUnderway(null);
+			$authorSignoff->setDateCompleted(null);
+			$authorSignoff->setDateAcknowledged(null);
+			$signoffDao->updateObject($authorSignoff);
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->addRecipient($author->getEmail(), $author->getFullName());
@@ -1059,7 +1079,7 @@ $round = 1;
 	 * @return boolean true iff ready for redirect
 	 */
 	function notifyFinalCopyedit($acquisitionsEditorSubmission, $send = false) {
-		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 		$user =& Request::getUser();
@@ -1067,7 +1087,7 @@ $round = 1;
 		import('mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($acquisitionsEditorSubmission, 'COPYEDIT_FINAL_REQUEST');
 
-		$copyeditor =& $userDao->getUser($acquisitionsEditorSubmission->getCopyeditorId());
+		$copyeditor =& $acquisitionsEditorSubmission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL');
 		if (!isset($copyeditor)) return true;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
@@ -1076,13 +1096,18 @@ $round = 1;
 				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_FINAL, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
 				$email->send();
 			}
+			$signoff = $signoffDao->build(
+						'SIGNOFF_COPYEDITING_FINAL',
+						ASSOC_TYPE_MONOGRAPH,
+						$acquisitionsEditorSubmission->getMonographId()
+					);
+			$signoff->setUserId($copyeditor->getUserId());
+			$signoff->setDateNotified(Core::getCurrentDate());
+			$signoff->setDateUnderway(null);
+			$signoff->setDateCompleted(null);
+			$signoff->setDateAcknowledged(null);
 
-			$acquisitionsEditorSubmission->setCopyeditorDateFinalNotified(Core::getCurrentDate());
-			$acquisitionsEditorSubmission->setCopyeditorDateFinalUnderway(null);
-			$acquisitionsEditorSubmission->setCopyeditorDateFinalCompleted(null);
-			$acquisitionsEditorSubmission->setCopyeditorDateFinalAcknowledged(null);
-
-			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
+			$signoffDao->updateObject($signoff);
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->addRecipient($copyeditor->getEmail(), $copyeditor->getFullName());
@@ -1107,7 +1132,7 @@ $round = 1;
 	 * @return boolean true iff ready for redirect
 	 */
 	function thankFinalCopyedit($acquisitionsEditorSubmission, $send = false) {
-		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 		$user =& Request::getUser();
@@ -1115,7 +1140,7 @@ $round = 1;
 		import('mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($acquisitionsEditorSubmission, 'COPYEDIT_FINAL_ACK');
 
-		$copyeditor =& $userDao->getUser($acquisitionsEditorSubmission->getCopyeditorId());
+		$copyeditor =& $acquisitionsEditorSubmission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL');
 		if (!isset($copyeditor)) return true;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
@@ -1124,9 +1149,14 @@ $round = 1;
 				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_FINAL_ACKNOWLEDGE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
 				$email->send();
 			}
+			$signoff = $signoffDao->build(
+						'SIGNOFF_COPYEDITING_FINAL',
+						ASSOC_TYPE_MONOGRAPH,
+						$acquisitionsEditorSubmission->getMonographId()
+					);
+			$signoff->setDateAcknowledged(Core::getCurrentDate());
 
-			$acquisitionsEditorSubmission->setCopyeditorDateFinalAcknowledged(Core::getCurrentDate());
-			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
+			$signoffDao->updateObject($signoff);
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->addRecipient($copyeditor->getEmail(), $copyeditor->getFullName());

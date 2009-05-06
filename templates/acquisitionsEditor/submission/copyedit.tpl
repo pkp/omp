@@ -15,7 +15,7 @@
 <table width="100%" class="data">
 	<tr>
 		<td width="20%" class="label">{translate key="user.role.copyeditor"}</td>
-		{if $submission->getCopyeditorId()}<td width="20%" class="value">{$copyeditor->getFullName()|escape}</td>{/if}
+		{if $copyeditor}<td width="20%" class="value">{$copyeditor->getFullName()|escape}</td>{/if}
 		<td class="value"><a href="{url op="selectCopyeditor" path=$submission->getMonographId()}" class="action">{translate key="editor.monograph.selectCopyeditor"}</a></td>
 	</tr>
 </table>
@@ -34,7 +34,7 @@
 		<td width="26%">{translate key="submission.copyedit.initialCopyedit"}</td>
 		<td>
 			{if $useCopyeditors}
-				{if $submission->getCopyeditorId() && $initialCopyeditFile}
+				{if $copyeditor->getUserId() && $initialCopyeditFile}
 					{url|assign:"url" op="notifyCopyeditor" monographId=$submission->getMonographId()}
 					{if $submission->getCopyeditorDateUnderway()}
 						{translate|escape:"javascript"|assign:"confirmText" key="sectionEditor.copyedit.confirmRenotify"}

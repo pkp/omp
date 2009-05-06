@@ -224,14 +224,13 @@ class AcquisitionsEditorSubmission extends Monograph {
 		if ($reviewType == null && $round == null) {
 			return $this->editorDecisions;
 		} elseif ($reviewType != null && $round == null) {
-			if (isset($this->editorDecisions[$reviewType])) return $this->editorDecisions[$round];
-			else return null;
+			if (isset($this->editorDecisions[$reviewType])) return $this->editorDecisions[$reviewType];
 		} elseif ($reviewType != null && $round != null) {
 			if (isset($this->editorDecisions[$reviewType][$round])) return $this->editorDecisions[$reviewType][$round];
-			else return null;
-		} else {
-			return null;
 		}
+
+		return null;
+		
 	}
 
 	/**

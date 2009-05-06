@@ -280,60 +280,6 @@ class AuthorSubmission extends Monograph {
 	}
 
 	/**
-	 * Get initial copyedit file.
-	 * @return MonographFile
-	 */
-	function &getInitialCopyeditFile() {
-		$returner =& $this->getData('initialCopyeditFile');
-		return $returner;
-	}
-
-
-	/**
-	 * Set initial copyedit file.
-	 * @param $initialCopyeditFile MonographFile
-	 */
-	function setInitialCopyeditFile($initialCopyeditFile) {
-		return $this->setData('initialCopyeditFile', $initialCopyeditFile);
-	}
-
-	/**
-	 * Get editor author copyedit file.
-	 * @return MonographFile
-	 */
-	function &getEditorAuthorCopyeditFile() {
-		$returner =& $this->getData('editorAuthorCopyeditFile');
-		return $returner;
-	}
-
-
-	/**
-	 * Set editor author copyedit file.
-	 * @param $editorAuthorCopyeditFile MonographFile
-	 */
-	function setEditorAuthorCopyeditFile($editorAuthorCopyeditFile) {
-		return $this->setData('editorAuthorCopyeditFile', $editorAuthorCopyeditFile);
-	}
-
-	/**
-	 * Get final copyedit file.
-	 * @return MonographFile
-	 */
-	function &getFinalCopyeditFile() {
-		$returner =& $this->getData('finalCopyeditFile');
-		return $returner;
-	}
-
-
-	/**
-	 * Set final copyedit file.
-	 * @param $finalCopyeditFile MonographFile
-	 */
-	function setFinalCopyeditFile($finalCopyeditFile) {
-		return $this->setData('finalCopyeditFile', $finalCopyeditFile);
-	}
-
-	/**
 	 * Get the galleys for an monograph.
 	 * @return array MonographGalley
 	 */

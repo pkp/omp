@@ -61,13 +61,9 @@ class AuthorSubmissionDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
-				c.copyed_id, c.copyeditor_id, c.date_notified AS copyeditor_date_notified, c.date_underway AS copyeditor_date_underway, c.date_completed AS copyeditor_date_completed, c.date_acknowledged AS copyeditor_date_acknowledged, c.date_author_notified AS ce_date_author_notified, c.date_author_underway AS ce_date_author_underway, c.date_author_completed AS ce_date_author_completed,
-				c.date_author_acknowledged AS ce_date_author_acknowledged, c.date_final_notified AS ce_date_final_notified, c.date_final_underway AS ce_date_final_underway, c.date_final_completed AS ce_date_final_completed, c.date_final_acknowledged AS ce_date_final_acknowledged, c.initial_revision AS copyeditor_initial_revision, c.editor_author_revision AS ce_editor_author_revision,
-				c.final_revision AS copyeditor_final_revision
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
 			FROM monographs a
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
-				LEFT JOIN copyed_assignments c on (a.monograph_id = c.monograph_id)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -138,9 +134,9 @@ class AuthorSubmissionDAO extends DAO {
 */
 		// Files
 		$authorSubmission->setSubmissionFile($this->monographFileDao->getMonographFile($row['submission_file_id']));
-/*		$authorSubmission->setRevisedFile($this->monographFileDao->getMonographFile($row['revised_file_id']));
+		$authorSubmission->setRevisedFile($this->monographFileDao->getMonographFile($row['revised_file_id']));
 		$authorSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByMonograph($row['monograph_id']));
-		for ($i = 1; $i <= $row['current_round']; $i++) {
+/*		for ($i = 1; $i <= $row['current_round']; $i++) {
 			$authorSubmission->setAuthorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['revised_file_id'], $i), $i);
 		}
 		for ($i = 1; $i <= $row['current_round']; $i++) {
@@ -244,13 +240,9 @@ class AuthorSubmissionDAO extends DAO {
 		$result =& $this->retrieveRange(
 			'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
-				c.copyed_id, c.copyeditor_id, c.date_notified AS copyeditor_date_notified, c.date_underway AS copyeditor_date_underway, c.date_completed AS copyeditor_date_completed, c.date_acknowledged AS copyeditor_date_acknowledged, c.date_author_notified AS ce_date_author_notified, c.date_author_underway AS ce_date_author_underway, c.date_author_completed AS ce_date_author_completed,
-				c.date_author_acknowledged AS ce_date_author_acknowledged, c.date_final_notified AS ce_date_final_notified, c.date_final_underway AS ce_date_final_underway, c.date_final_completed AS ce_date_final_completed, c.date_final_acknowledged AS ce_date_final_acknowledged, c.initial_revision AS copyeditor_initial_revision, c.editor_author_revision AS ce_editor_author_revision,
-				c.final_revision AS copyeditor_final_revision
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
 			FROM monographs a
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
-				LEFT JOIN copyed_assignments c on (a.monograph_id = c.monograph_id)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -325,7 +317,11 @@ class AuthorSubmissionDAO extends DAO {
 		$submissionsCount[0] = 0;
 		$submissionsCount[1] = 0;
 
-		$sql = 'SELECT count(*), status FROM monographs a LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id) LEFT JOIN copyed_assignments c on (a.monograph_id = c.monograph_id) WHERE a.press_id = ? AND a.user_id = ? GROUP BY a.status';
+		$sql = 'SELECT count(*), status FROM monographs m 
+			LEFT JOIN acquisitions_arrangements aa ON (aa.arrangement_id = m.arrangement_id) 
+			WHERE m.press_id = ? AND 
+				m.user_id = ? 
+			GROUP BY m.status';
 
 		$result =& $this->retrieve($sql, array($pressId, $authorId));
 

@@ -67,27 +67,11 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 			'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev,
-				c.copyed_id,
-				c.copyeditor_id,
-				c.copyedit_revision,
-				c.date_notified AS copyeditor_date_notified,
-				c.date_underway AS copyeditor_date_underway,
-				c.date_completed AS copyeditor_date_completed,
-				c.date_acknowledged AS copyeditor_date_acknowledged,
-				c.date_author_notified AS ce_date_author_notified,
-				c.date_author_underway AS ce_date_author_underway,
-				c.date_author_completed AS ce_date_author_completed,
-				c.date_author_acknowledged AS ce_date_author_acknowledged,
-				c.date_final_notified AS ce_date_final_notified,
-				c.date_final_underway AS ce_date_final_underway,
-				c.date_final_completed AS ce_date_final_completed,
-				c.date_final_acknowledged AS ce_date_final_acknowledged,
-				c.initial_revision AS copyeditor_initial_revision,
-				c.editor_author_revision AS ce_editor_author_revision,
-				c.final_revision AS copyeditor_final_revision
+				MAX(rr.round) AS current_round,
+				rr.review_revision AS review_revision
 			FROM	monographs a
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
-				LEFT JOIN copyed_assignments c ON (a.monograph_id = c.monograph_id)
+				LEFT JOIN review_rounds rr ON (a.monograph_id = rr.monograph_id AND a.current_review = rr.review_type)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -143,7 +127,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$reviewRounds =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);
 
 		$acquisitionsEditorSubmission->setReviewRoundsInfo($reviewRounds);
-  
+
 /*		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 		$currentReviewProcess = $workflowDao->getCurrent($row['monograph_id'], WORKFLOW_PROCESS_ASSESSMENT);
 
@@ -174,11 +158,12 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmission->setReviewFile($this->monographFileDao->getMonographFile($row['review_file_id']));
 		$acquisitionsEditorSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByMonograph($row['monograph_id']));
 		$acquisitionsEditorSubmission->setEditorFile($this->monographFileDao->getMonographFile($row['editor_file_id']));
-		$acquisitionsEditorSubmission->setCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id']));
+//		$acquisitionsEditorSubmission->setCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id']));
 		$acquisitionsEditorSubmission->setLayoutFile($this->monographFileDao->getMonographFile($row['layout_file_id']));
 
+		$acquisitionsEditorSubmission->setReviewRevision($row['review_revision']);
 		// Initial Copyedit File
-		if ($row['copyeditor_initial_revision'] != null) {
+/*		if ($row['copyeditor_initial_revision'] != null) {
 
 			$acquisitionsEditorSubmission->setInitialCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id'], $row['copyeditor_initial_revision']));
 		}
@@ -192,7 +177,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		if ($row['copyeditor_final_revision'] != null) {
 			$acquisitionsEditorSubmission->setFinalCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id'], $row['copyeditor_final_revision']));
 		}
-
+*/
 		$acquisitionsEditorSubmission->setCopyeditFileRevisions($this->monographFileDao->getMonographFileRevisionsInRange($row['copyedit_file_id']));
 
 		$editorFileRevisions = $this->monographFileDao->getMonographFileRevisions($row['editor_file_id']);
@@ -201,11 +186,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmission->setEditorFileRevisions($editorFileRevisions);
 		$acquisitionsEditorSubmission->setAuthorFileRevisions($authorFileRevisions);
 
-		// Review Rounds
-//		$acquisitionsEditorSubmission->setReviewRevision($row['review_revision']);
-
 		// Review Assignments
-
 		foreach ($reviewRounds as $reviewType => $round) {
 			for ($i = 1; $i <= $round; $i++) {
 				$acquisitionsEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getByMonographId($row['monograph_id'], $reviewType, $i), $reviewType, $i);
@@ -213,7 +194,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		}
 
 		// Copyeditor Assignment
-		$acquisitionsEditorSubmission->setCopyedId($row['copyed_id']);
+/*		$acquisitionsEditorSubmission->setCopyedId($row['copyed_id']);
 		$acquisitionsEditorSubmission->setCopyeditorId($row['copyeditor_id']);
 		$acquisitionsEditorSubmission->setCopyeditor($this->userDao->getUser($row['copyeditor_id']), true);
 		$acquisitionsEditorSubmission->setCopyeditorDateNotified($this->datetimeFromDB($row['copyeditor_date_notified']));
@@ -231,15 +212,15 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmission->setCopyeditorInitialRevision($row['copyeditor_initial_revision']);
 		$acquisitionsEditorSubmission->setCopyeditorEditorAuthorRevision($row['ce_editor_author_revision']);
 		$acquisitionsEditorSubmission->setCopyeditorFinalRevision($row['copyeditor_final_revision']);
-
+*/
 		// Layout Editing
 		$acquisitionsEditorSubmission->setLayoutAssignments($this->layoutAssignmentDao->getByMonographId($row['monograph_id']));
 
 		$acquisitionsEditorSubmission->setGalleys($this->galleyDao->getGalleysByMonograph($row['monograph_id']));
-
+ 
 		// Proof Assignment
 //		$acquisitionsEditorSubmission->setProofAssignment($this->proofAssignmentDao->getProofAssignmentByMonographId($row['monograph_id']));
-
+//print_r($acquisitionsEditorSubmission);
 		HookRegistry::call('AcquisitionsEditorSubmissionDAO::_fromRow', array(&$acquisitionsEditorSubmission, &$row));
 
 		return $acquisitionsEditorSubmission;
@@ -316,7 +297,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		}
 
 		// Update copyeditor assignment
-		if ($acquisitionsEditorSubmission->getCopyedId()) {
+/*		if ($acquisitionsEditorSubmission->getCopyedId()) {
 			$copyeditorSubmission =& $this->copyeditorSubmissionDao->getCopyeditorSubmission($acquisitionsEditorSubmission->getMonographId());
 		} else {
 			$copyeditorSubmission = new CopyeditorSubmission();
@@ -348,7 +329,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		} else {
 			$this->copyeditorSubmissionDao->insertCopyeditorSubmission($copyeditorSubmission);
 		}
-
+*/
 		// update review assignments
 		foreach ($acquisitionsEditorSubmission->getReviewAssignments() as $roundReviewAssignments) {
 			foreach ($roundReviewAssignments as $reviewAssignment) {
@@ -389,7 +370,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 			$monograph->setEditorFileId($acquisitionsEditorSubmission->getEditorFileId());
 			$monograph->setLayoutFileId($acquisitionsEditorSubmission->getLayoutFileId());
 			$monograph->setStatus($acquisitionsEditorSubmission->getStatus());
-			$monograph->setCopyeditFileId($acquisitionsEditorSubmission->getCopyeditFileId());
+		//	$monograph->setCopyeditFileId($acquisitionsEditorSubmission->getCopyeditFileId());
 			$monograph->setDateStatusModified($acquisitionsEditorSubmission->getDateStatusModified());
 			$monograph->setLastModified($acquisitionsEditorSubmission->getLastModified());
 			$monograph->setCommentsStatus($acquisitionsEditorSubmission->getCommentsStatus());
@@ -425,28 +406,11 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 			'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
-				c.copyed_id,
-				c.copyeditor_id,
-				c.copyedit_revision,
-				c.date_notified AS copyeditor_date_notified,
-				c.date_underway AS copyeditor_date_underway,
-				c.date_completed AS copyeditor_date_completed,
-				c.date_acknowledged AS copyeditor_date_acknowledged,
-				c.date_author_notified AS ce_date_author_notified,
-				c.date_author_underway AS ce_date_author_underway,
-				c.date_author_completed AS ce_date_author_completed,
-				c.date_author_acknowledged AS ce_date_author_acknowledged,
-				c.date_final_notified AS ce_date_final_notified,
-				c.date_final_underway AS ce_date_final_underway,
-				c.date_final_completed AS ce_date_final_completed,
-				c.date_final_acknowledged AS ce_date_final_acknowledged,
-				c.initial_revision AS copyeditor_initial_revision,
-				c.editor_author_revision AS ce_editor_author_revision,
-				c.final_revision AS copyeditor_final_revision
+				MAX(rr.round) AS current_round,
+				rr.review_revision AS review_revision
 			FROM	monographs a
 				LEFT JOIN edit_assignments e ON (e.monograph_id = a.monograph_id)
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
-				LEFT JOIN copyed_assignments c ON (a.monograph_id = c.monograph_id)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -592,31 +556,12 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 				e.can_edit AS can_edit,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
-				c.copyed_id,
-				c.copyeditor_id,
-				c.copyedit_revision,
-				c.date_notified AS copyeditor_date_notified,
-				c.date_underway AS copyeditor_date_underway,
-				c.date_completed AS copyeditor_date_completed,
-				c.date_acknowledged AS copyeditor_date_acknowledged,
-				c.date_author_notified AS ce_date_author_notified,
-				c.date_author_underway AS ce_date_author_underway,
-				c.date_author_completed AS ce_date_author_completed,
-				c.date_author_acknowledged AS ce_date_author_acknowledged,
-				c.date_final_notified AS ce_date_final_notified,
-				c.date_final_underway AS ce_date_final_underway,
-				c.date_final_completed AS ce_date_final_completed,
-				c.date_final_acknowledged AS ce_date_final_acknowledged,
-				c.initial_revision AS copyeditor_initial_revision,
-				c.editor_author_revision AS ce_editor_author_revision,
-				c.final_revision AS copyeditor_final_revision
 			FROM
 				monographs a
 				INNER JOIN monograph_authors aa ON (aa.monograph_id = a.monograph_id)
 				LEFT JOIN edit_assignments e ON (e.monograph_id = a.monograph_id)
 				LEFT JOIN users ed ON (e.editor_id = ed.user_id)
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
-				LEFT JOIN copyed_assignments c ON (a.monograph_id = c.monograph_id)
 				LEFT JOIN users ce ON (c.copyeditor_id = ce.user_id)
 				LEFT JOIN proof_assignments p ON (p.monograph_id = a.monograph_id)
 				LEFT JOIN users pe ON (pe.user_id = p.proofreader_id)
@@ -1143,7 +1088,13 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 */
 	function copyeditorExists($monographId, $copyeditorId) {
 		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM copyed_assignments WHERE monograph_id = ? AND copyeditor_id = ?', array($monographId, $copyeditorId)
+			'SELECT COUNT(*) 
+			FROM signoffs 
+			WHERE assoc_id = ? AND 
+				assoc_type = ? AND
+				user_id = ? AND
+				symbolic = ?', 
+			array($monographId, ASSOC_TYPE_MONOGRAPH, $copyeditorId, 'SIGNOFF_COPYEDITING_INITIAL')
 		);
 		return isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 	}
@@ -1157,7 +1108,11 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	function &getCopyeditorsNotAssignedToMonograph($pressId, $monographId, $searchType = null, $search = null, $searchMatch = null) {
 		$users = array();
 
-		$paramArray = array('interests', $monographId, $pressId, RoleDAO::getRoleIdFromPath('copyeditor'));
+		$paramArray = array(
+				'interests', $monographId, ASSOC_TYPE_MONOGRAPH, 
+				'SIGNOFF_COPYEDITING_INITIAL', 
+				$pressId, RoleDAO::getRoleIdFromPath('copyeditor')
+				);
 		$searchSql = '';
 
 		$searchTypeMap = array(
@@ -1201,9 +1156,10 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 			FROM	users u
 				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
 				LEFT JOIN roles r ON (r.user_id = u.user_id)
-				LEFT JOIN copyed_assignments a ON (a.copyeditor_id = u.user_id AND a.monograph_id = ?)
+				LEFT JOIN signoffs sci ON (sci.user_id = u.user_id AND sci.assoc_id = ? AND sci.assoc_type = ? AND sci.symbolic = ?)
 			WHERE	r.press_id = ? AND
 				r.role_id = ? AND
+				sci.assoc_id IS NULL
 				a.monograph_id IS NULL
 				' . $searchSql . '
 			ORDER BY last_name, first_name',
@@ -1229,7 +1185,17 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$statistics = Array();
 
 		// Get counts of completed submissions
-		$result =& $this->retrieve('SELECT la.designer_id AS editor_id, COUNT(la.monograph_id) AS complete FROM designer_assignments la, monographs a INNER JOIN proof_assignments p ON (p.monograph_id = a.monograph_id) WHERE la.monograph_id = a.monograph_id AND (la.date_completed IS NOT NULL AND p.date_layouteditor_completed IS NOT NULL) AND la.date_notified IS NOT NULL AND a.press_id = ? GROUP BY la.designer_id', $pressId);
+		$result =& $this->retrieve(
+				'SELECT la.designer_id AS editor_id, COUNT(la.monograph_id) AS complete 
+				FROM designer_assignments la, monographs a 
+				INNER JOIN proof_assignments p ON (p.monograph_id = a.monograph_id) 
+				WHERE la.monograph_id = a.monograph_id AND 
+					(la.date_completed IS NOT NULL AND p.date_layouteditor_completed IS NOT NULL) AND 
+					la.date_notified IS NOT NULL AND 
+					a.press_id = ? 
+				GROUP BY la.designer_id', 
+				$pressId
+			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
@@ -1241,7 +1207,17 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Get counts of incomplete submissions
-		$result =& $this->retrieve('SELECT la.designer_id AS editor_id, COUNT(la.monograph_id) AS incomplete FROM designer_assignments la, monographs a INNER JOIN proof_assignments p ON (p.monograph_id = a.monograph_id) WHERE la.monograph_id = a.monograph_id AND (la.date_completed IS NULL OR p.date_layouteditor_completed IS NULL) AND la.date_notified IS NOT NULL AND a.press_id = ? GROUP BY la.designer_id', $pressId);
+		$result =& $this->retrieve(
+				'SELECT la.designer_id AS editor_id, COUNT(la.monograph_id) AS incomplete 
+				FROM designer_assignments la, monographs a 
+				INNER JOIN proof_assignments p ON (p.monograph_id = a.monograph_id) 
+				WHERE la.monograph_id = a.monograph_id AND 
+					(la.date_completed IS NULL OR p.date_layouteditor_completed IS NULL) AND 
+					la.date_notified IS NOT NULL AND 
+					a.press_id = ? 
+				GROUP BY la.designer_id', 
+				$pressId
+			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
@@ -1253,7 +1229,14 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Get last assignment date
-		$result =& $this->retrieve('SELECT la.designer_id AS editor_id, MAX(la.date_notified) AS last_assigned FROM designer_assignments la, monographs a WHERE la.monograph_id=a.monograph_id AND a.press_id=? GROUP BY la.designer_id', $pressId);
+		$result =& $this->retrieve(
+				'SELECT la.designer_id AS editor_id, MAX(la.date_notified) AS last_assigned 
+				FROM designer_assignments la, monographs a 
+				WHERE la.monograph_id=a.monograph_id AND 
+					a.press_id = ? 
+				GROUP BY la.designer_id', 
+				$pressId
+			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
@@ -1275,7 +1258,14 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$statistics = Array();
 
 		// Get counts of completed submissions
-		$result =& $this->retrieve('SELECT ra.reviewer_id AS editor_id, MAX(ra.date_notified) AS last_notified FROM review_assignments ra, monographs a WHERE ra.monograph_id = a.monograph_id AND a.press_id = ? GROUP BY ra.reviewer_id', $pressId);
+		$result =& $this->retrieve(
+				'SELECT ra.reviewer_id AS editor_id, MAX(ra.date_notified) AS last_notified 
+				FROM review_assignments ra, monographs a 
+				WHERE ra.monograph_id = a.monograph_id AND 
+					a.press_id = ? 
+				GROUP BY ra.reviewer_id', 
+				$pressId
+			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
@@ -1287,7 +1277,17 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Get completion status
-		$result =& $this->retrieve('SELECT r.reviewer_id, COUNT(*) AS incomplete FROM review_assignments r, monographs a WHERE r.monograph_id = a.monograph_id AND r.date_notified IS NOT NULL AND r.date_completed IS NULL AND r.cancelled = 0 AND a.press_id = ? GROUP BY r.reviewer_id', $pressId);
+		$result =& $this->retrieve(
+				'SELECT r.reviewer_id, COUNT(*) AS incomplete 
+				FROM review_assignments r, monographs a 
+				WHERE r.monograph_id = a.monograph_id AND 
+					r.date_notified IS NOT NULL AND 
+					r.date_completed IS NULL AND 
+					r.cancelled = 0 AND 
+					a.press_id = ? 
+				GROUP BY r.reviewer_id', 
+				$pressId
+			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
@@ -1299,7 +1299,16 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Calculate time taken for completed reviews
-		$result =& $this->retrieve('SELECT r.reviewer_id, r.date_notified, r.date_completed FROM review_assignments r, monographs a WHERE r.monograph_id = a.monograph_id AND r.date_notified IS NOT NULL AND r.date_completed IS NOT NULL AND r.declined = 0 AND a.press_id = ?', $pressId);
+		$result =& $this->retrieve(
+				'SELECT r.reviewer_id, r.date_notified, r.date_completed 
+				FROM review_assignments r, monographs a 
+				WHERE r.monograph_id = a.monograph_id AND 
+					r.date_notified IS NOT NULL AND 
+					r.date_completed IS NOT NULL AND 
+					r.declined = 0 AND 
+					a.press_id = ?', 
+				$pressId
+			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
@@ -1333,7 +1342,17 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$statistics = Array();
 
 		// Get counts of completed submissions
-		$result =& $this->retrieve('SELECT ca.copyeditor_id AS editor_id, COUNT(ca.monograph_id) AS complete FROM copyed_assignments ca, monographs a WHERE ca.monograph_id = a.monograph_id AND ca.date_completed IS NOT NULL AND a.press_id = ? GROUP BY ca.copyeditor_id', $pressId);
+		$result =& $this->retrieve(
+				'SELECT sc.user_id AS editor_id, COUNT(sc.assoc_id) AS complete 
+				FROM signoffs sc, monographs m 
+				WHERE sc.assoc_id = m.monograph_id AND 
+					sc.date_completed IS NOT NULL AND 
+					m.press_id = ? AND
+					sc.symbolic = ? AND
+					sc.assoc_type = ?
+				GROUP BY sc.user_id', 
+				array($pressId, 'SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH)
+			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
@@ -1345,7 +1364,17 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Get counts of incomplete submissions
-		$result =& $this->retrieve('SELECT ca.copyeditor_id AS editor_id, COUNT(ca.monograph_id) AS incomplete FROM copyed_assignments ca, monographs a WHERE ca.monograph_id = a.monograph_id AND ca.date_completed IS NULL AND a.press_id = ? GROUP BY ca.copyeditor_id', $pressId);
+		$result =& $this->retrieve(
+				'SELECT sc.user_id AS editor_id, COUNT(sc.assoc_id) AS incomplete
+				FROM signoffs sc, monographs m 
+				WHERE sc.assoc_id = m.monograph_id AND 
+					sc.date_completed IS NULL AND 
+					m.press_id = ? AND
+					sc.symbolic = ? AND
+					sc.assoc_type = ?
+				GROUP BY sc.user_id', 
+				array($pressId, 'SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH)
+			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
@@ -1357,7 +1386,16 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Get last assignment date
-		$result =& $this->retrieve('SELECT ca.copyeditor_id AS editor_id, MAX(ca.date_notified) AS last_assigned FROM copyed_assignments ca, monographs a WHERE ca.monograph_id = a.monograph_id AND a.press_id = ? GROUP BY ca.copyeditor_id', $pressId);
+		$result =& $this->retrieve(
+				'SELECT sc.user_id AS editor_id, MAX(sc.date_notified) AS last_assigned 
+				FROM signoffs sc, monographs m 
+				WHERE sc.assoc_id = m.monograph_id AND 
+					m.press_id = ? AND
+					sc.symbolic = ? AND
+					sc.assoc_type = ?
+				GROUP BY sc.user_id', 
+				array($pressId, 'SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH)
+			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
@@ -1379,7 +1417,15 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$statistics = Array();
 
 		// Get counts of completed submissions
-		$result =& $this->retrieve('SELECT pa.proofreader_id AS editor_id, COUNT(pa.monograph_id) AS complete FROM proof_assignments pa, monographs a WHERE pa.monograph_id = a.monograph_id AND pa.date_proofreader_completed IS NOT NULL AND a.press_id = ? GROUP BY pa.proofreader_id', $pressId);
+		$result =& $this->retrieve(
+				'SELECT pa.proofreader_id AS editor_id, COUNT(pa.monograph_id) AS complete 
+				FROM proof_assignments pa, monographs m 
+				WHERE pa.monograph_id = a.monograph_id AND 
+					pa.date_proofreader_completed IS NOT NULL AND 
+					m.press_id = ? 
+				GROUP BY pa.proofreader_id', 
+				$pressId
+			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
@@ -1391,7 +1437,15 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Get counts of incomplete submissions
-		$result =& $this->retrieve('SELECT pa.proofreader_id AS editor_id, COUNT(pa.monograph_id) AS incomplete FROM proof_assignments pa, monographs a WHERE pa.monograph_id = a.monograph_id AND pa.date_proofreader_completed IS NULL AND a.press_id = ? GROUP BY pa.proofreader_id', $pressId);
+		$result =& $this->retrieve(
+				'SELECT pa.proofreader_id AS editor_id, COUNT(pa.monograph_id) AS incomplete 
+				FROM proof_assignments pa, monographs a 
+				WHERE pa.monograph_id = a.monograph_id AND 
+					pa.date_proofreader_completed IS NULL AND 
+					a.press_id = ? 
+				GROUP BY pa.proofreader_id', 
+				$pressId
+			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
@@ -1403,7 +1457,14 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		// Get last assignment date
-		$result =& $this->retrieve('SELECT pa.proofreader_id AS editor_id, MAX(pa.date_proofreader_notified) AS last_assigned FROM proof_assignments pa, monographs a WHERE pa.monograph_id = a.monograph_id AND a.press_id = ? GROUP BY pa.proofreader_id', $pressId);
+		$result =& $this->retrieve(
+				'SELECT pa.proofreader_id AS editor_id, MAX(pa.date_proofreader_notified) AS last_assigned 
+				FROM proof_assignments pa, monographs a 
+				WHERE pa.monograph_id = a.monograph_id AND 
+					a.press_id = ? 
+				GROUP BY pa.proofreader_id', 
+				$pressId
+			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();

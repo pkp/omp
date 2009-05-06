@@ -178,7 +178,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$editAssignments =& $submission->getEditAssignments();
 		$allowRecommendation = 1;//$submission->getCurrentRound() == $round && $submission->getReviewFileId() != null && !empty($editAssignments);
 		$allowResubmit = $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT && $acquisitionsEditorSubmissionDao->getMaxReviewRound($monographId) == $round ? true : false;
-		$allowCopyedit = $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT && $submission->getCopyeditFileId() == null ? true : false;
+	//	$allowCopyedit = $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT && $submission->getCopyeditFileId() == null ? true : false;
 
 		// Prepare an array to store the 'Notify Reviewer' email logs
 		$notifyReviewerLogs = array();
@@ -250,7 +250,7 @@ $sections = null;
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
-		$templateMgr->assign_by_ref('copyeditFile', $submission->getCopyeditFile());
+		$templateMgr->assign_by_ref('copyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
 		$templateMgr->assign_by_ref('editorFile', $submission->getEditorFile());
 		$templateMgr->assign('rateReviewerOnQuality', $press->getSetting('rateReviewerOnQuality'));
@@ -273,7 +273,7 @@ $sections = null;
 
 		$templateMgr->assign('allowRecommendation', $allowRecommendation);
 		$templateMgr->assign('allowResubmit', $allowResubmit);
-		$templateMgr->assign('allowCopyedit', $allowCopyedit);
+		//$templateMgr->assign('allowCopyedit', $allowCopyedit);
 		$templateMgr->assign('helpTopicId', 'editorial.acquisitionsEditorsRole.review');
 		$templateMgr->display('acquisitionsEditor/submissionReview.tpl');
 	}
@@ -301,12 +301,12 @@ $sections = null;
 		$templateMgr->assign_by_ref('currentProcess', $currentProcess);
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
-		$templateMgr->assign_by_ref('copyeditFile', $submission->getCopyeditFile());
-		$templateMgr->assign_by_ref('initialCopyeditFile', $submission->getInitialCopyeditFile());
-		$templateMgr->assign_by_ref('editorAuthorCopyeditFile', $submission->getEditorAuthorCopyeditFile());
-		$templateMgr->assign_by_ref('finalCopyeditFile', $submission->getFinalCopyeditFile());
+		$templateMgr->assign_by_ref('copyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
+		$templateMgr->assign_by_ref('initialCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
+		$templateMgr->assign_by_ref('editorAuthorCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_AUTHOR'));
+		$templateMgr->assign_by_ref('finalCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_FINAL'));
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
-		$templateMgr->assign_by_ref('copyeditor', $submission->getCopyeditor());
+		$templateMgr->assign_by_ref('copyeditor', $submission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$user =& Request::getUser();
@@ -363,12 +363,9 @@ $sections = null;
 		$templateMgr->assign_by_ref('currentProcess', $currentProcess);
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
-		$templateMgr->assign_by_ref('copyeditFile', $submission->getCopyeditFile());
-		$templateMgr->assign_by_ref('initialCopyeditFile', $submission->getInitialCopyeditFile());
-		$templateMgr->assign_by_ref('editorAuthorCopyeditFile', $submission->getEditorAuthorCopyeditFile());
-		$templateMgr->assign_by_ref('finalCopyeditFile', $submission->getFinalCopyeditFile());
+		$templateMgr->assign_by_ref('finalCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_FINAL'));
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
-		$templateMgr->assign_by_ref('copyeditor', $submission->getCopyeditor());
+		$templateMgr->assign_by_ref('copyeditor', $submission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$user =& Request::getUser();
@@ -1039,35 +1036,35 @@ $sections = null;
 			AcquisitionsEditorAction::uploadEditorVersion($submission);
 		}		
 //advance workflow
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 
-		if (Request::getUserVar('setCopyeditFile')) {
-			// If the Send To Copyedit button was pressed
+
+		if (Request::getUserVar('setAcceptedFile')) {
+			// If the Accept button was pressed
 			$file = explode(',', Request::getUserVar('editorDecisionFile'));
+
 			if (isset($file[0]) && isset($file[1])) {
-				$reviewType = $submission->getCurrentReviewType();
-				$newProcess =& $workflowDao->proceed($monographId);
-				switch ($reviewType) {
-				case WORKFLOW_PROCESS_ASSESSMENT_INTERNAL:
+				$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+				$currentProcess =& $workflowDao->getCurrent($monographId);
+				$nextProcess =& $workflowDao->getNext($currentProcess);
+				$nextProcessType = isset($nextProcess[1]) ? $nextProcess[1] : null; 
+
+				switch ($nextProcess[0]) {
+				case WORKFLOW_PROCESS_ASSESSMENT:
 					$submission->setReviewFileId($file[0]);
 					$submission->setReviewRevision($file[1]);
-					$submission->setCurrentReviewType($newProcess->getProcessId());
+					$submission->setCurrentReviewType($nextProcessType);
 					$submission->setCurrentReviewRound(1);
 					$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 					$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($submission);
 					break;
-				case WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL:
+				case WORKFLOW_PROCESS_EDITING:
 					AcquisitionsEditorAction::setCopyeditFile($submission, $file[0], $file[1]);
 					$redirectTarget = 'submissionEditing';
 					break;
 				}
 
-//				if ($submission->getMostRecentEditorDecisionComment()) {
-					// The conditions are met for being able
-					// to send a file to copyediting.
-				
-				
-//				}
+				$workflowDao->proceed($monographId);
+
 			}
 
 		} else if (Request::getUserVar('resubmit')) {
@@ -1124,7 +1121,7 @@ $sections = null;
 			$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
 
 			$templateMgr->assign_by_ref('users', $copyeditors);
-			$templateMgr->assign('currentUser', $submission->getCopyeditorId());
+			$templateMgr->assign('currentUser', $submission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
 			$templateMgr->assign_by_ref('statistics', $copyeditorStatistics);
 			$templateMgr->assign('pageSubTitle', 'editor.monograph.selectCopyeditor');
 			$templateMgr->assign('pageTitle', 'user.role.copyeditors');

@@ -105,6 +105,65 @@ class Monograph extends Submission {
 	}
 
 	/**
+	 * Get a signoff for this monograph
+	 * @param $signoffType string
+	 * @return Signoff
+	 */
+	function getSignoff($signoffType) {
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		return $signoffDao->getBySymbolic($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+	}
+
+	/**
+	 * Get the file for this article at a given signoff stage
+	 * @param $signoffType string
+	 * @param $idOnly boolean Return only file ID
+	 * @return ArticleFile
+	 */
+	function getFileBySignoffType($signoffType, $idOnly = false) {
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+
+		$signoff = $signoffDao->getBySymbolic($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+		if (!$signoff) return false;
+
+		if ($idOnly) return $signoff->getFileId();
+
+		$monographFile =& $monographFileDao->getMonographFile($signoff->getFileId(), $signoff->getFileRevision());
+		return $monographFile;
+	}
+
+	/**
+	 * Get the user associated with a given signoff and this article
+	 * @param $signoffType string
+	 * @return User
+	 */
+	function getUserBySignoffType($signoffType) {
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+
+		$signoff = $signoffDao->getBySymbolic($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+
+		if (!$signoff) return false;
+		$user =& $userDao->getUser($signoff->getUserId());
+
+		return $user;
+	}
+	/**
+	 * Get the user id associated with a given signoff and this article
+	 * @param $signoffType string
+	 * @return int
+	 */
+	function getUserIdBySignoffType($signoffType) {
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoff = $signoffDao->getBySymbolic($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+		if (!$signoff) return false;
+		
+		return $signoff->getUserId();
+	}
+
+
+	/**
 	 * set monograph id
 	 * @param $monographId int
 	 */
@@ -309,22 +368,6 @@ class Monograph extends Submission {
 	 */
 	function setEditorFileId($editorFileId) {
 		return $this->setData('editorFileId', $editorFileId);
-	}
-
-	/**
-	 * Get copyedit file id.
-	 * @return int
-	 */
-	function getCopyeditFileId() {
-		return $this->getData('copyeditFileId');
-	}
-
-	/**
-	 * Set copyedit file id.
-	 * @param $copyeditFileId int
-	 */
-	function setCopyeditFileId($copyeditFileId) {
-		return $this->setData('copyeditFileId', $copyeditFileId);
 	}
 
 	/**

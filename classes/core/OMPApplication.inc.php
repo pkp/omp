@@ -20,6 +20,7 @@
 import('core.PKPApplication');
  	
 define('ASSOC_TYPE_PRESS',	0x0000200);
+define('ASSOC_TYPE_MONOGRAPH',	0x0000201);
 
 class OMPApplication extends PKPApplication {
 	function OMPApplication() {

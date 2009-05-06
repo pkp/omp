@@ -96,7 +96,7 @@
 			<td width="80%">
 				{if !($editorRevisionExists or $authorRevisionExists or $reviewVersionExists)} {* or !$submission->getMostRecentEditorDecisionComment()*}{assign var=copyeditingUnavailable value=1}{else}{assign var=copyeditingUnavailable value=0}{/if}
 				{translate key="editor.monograph.sendFileToCopyedit"}
-				<input type="submit" {if $copyeditingUnavailable}disabled="disabled" {/if}name="setCopyeditFile" value="{translate key="form.send"}" class="button" />
+				<input type="submit" {if $copyeditingUnavailable}disabled="disabled" {/if}name="setAcceptedFile" value="{translate key="form.send"}" class="button" />
 				{if $copyeditingUnavailable}
 					<br/>
 					<span class="instruct">{translate key="editor.submissionReview.cannotSendToCopyediting"}</span>

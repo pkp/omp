@@ -175,7 +175,7 @@ class MonographDAO extends DAO {
 		$monograph->stampModified();
 		$this->update(
 			sprintf('INSERT INTO monographs
-				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, submission_file_id, revised_file_id, review_file_id, editor_file_id, copyedit_file_id, layout_file_id, pages, fast_tracked, hide_author, comments_status, edited_volume, arrangement_id, prospectus_file_id, current_review)
+				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, submission_file_id, revised_file_id, review_file_id, editor_file_id, layout_file_id, pages, fast_tracked, hide_author, comments_status, edited_volume, arrangement_id, prospectus_file_id, current_review)
 				VALUES
 				(?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
@@ -190,7 +190,6 @@ class MonographDAO extends DAO {
 				$monograph->getRevisedFileId(),
 				$monograph->getReviewFileId(),
 				$monograph->getEditorFileId(),
-				$monograph->getCopyeditFileId(),
 				$monograph->getLayoutFileId(),
 				$monograph->getPages(),
 				$monograph->getFastTracked() ? 1 : 0,
@@ -264,7 +263,6 @@ class MonographDAO extends DAO {
 					revised_file_id = ?,
 					review_file_id = ?,
 					editor_file_id = ?,
-					copyedit_file_id = ?,
 					layout_file_id = ?,
 					hide_author = ?,
 					arrangement_id = ?,
@@ -284,7 +282,6 @@ class MonographDAO extends DAO {
 				$monograph->getRevisedFileId(),
 				$monograph->getReviewFileId(),
 				$monograph->getEditorFileId(),
-				$monograph->getCopyeditFileId(),
 				$monograph->getLayoutFileId(),
 				$monograph->getHideAuthor() == null ? 0 : $monograph->getHideAuthor(),
 				$monograph->getAcquisitionsArrangementId(),
@@ -456,7 +453,6 @@ class MonographDAO extends DAO {
 		$monograph->setRevisedFileId($row['revised_file_id']);
 		$monograph->setReviewFileId($row['review_file_id']);
 		$monograph->setEditorFileId($row['editor_file_id']);
-		$monograph->setCopyeditFileId($row['copyedit_file_id']);
 		$monograph->setLayoutFileId($row['layout_file_id']);
 		$monograph->setCompletedProspectusFileId($row['prospectus_file_id']);
 		$monograph->setStatus($row['status']);

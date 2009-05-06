@@ -46,6 +46,62 @@ class WorkflowDAO extends DAO {
 	 * @param $currentProcess WorkflowProcess
 	 * @return WorkflowProcess
 	 */
+	function &getNext(&$currentProcess) {
+		$workflow =& $this->getWorkflowStructure();
+		$returner = null;
+
+		$almostFound = false;
+		foreach ($workflow as $node => $leaf) {
+
+			if ($almostFound && isset($leaf[0])) {
+				$returner = array($node, $leaf[0]);
+				return $returner;
+			}
+
+			for ($i=0,$count=count($leaf); $i<$count; $i++) {
+				if ($leaf[$i] == $currentProcess->getProcessId()) {
+					if ($i<$count-1) {
+						$returner = array($node, $leaf[$i+1]);
+						return $returner;
+					} else {
+						$almostFound = true;
+						break;
+					}
+				}
+			}
+		}
+		return $returner;
+	}
+
+	/**
+	 * Actions associated with the beginning of a workflow process.
+	 * @param $monographId WorkflowProcess
+	 * @return WorkflowProcess
+	 */
+	function action($monographId, &$process, $args = null) {
+		switch ($process->getProcessId()) {
+		case WORKFLOW_PROCESS_ASSESSMENT_INTERNAL:
+		case WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL:
+
+			$submission->setReviewFileId($args[0]);
+			$submission->setReviewRevision($args[1]);
+			$submission->setCurrentReviewType($newProcess->getProcessType());
+			$submission->setCurrentReviewRound($newProcess->getProcessId());
+			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($submission);
+			break;
+		case WORKFLOW_PROCESS_EDITING_COPYEDIT:
+			
+			break;
+		}
+
+	}
+
+	/**
+	 * Retrieve the next workflow process type.
+	 * @param $currentProcess WorkflowProcess
+	 * @return WorkflowProcess
+	 */
 	function proceed($monographId) {
 		//FIXME: email relevant parties that got access
 
@@ -58,17 +114,7 @@ class WorkflowDAO extends DAO {
 		$currentProcess =& $this->getCurrent($monographId);
 
 		if ($currentProcess == null) {
-
-			$this->build($monographId,
-					WORKFLOW_PROCESS_ASSESSMENT,
-					null
-				);
-
-			return $this->build($monographId, 
-					WORKFLOW_PROCESS_ASSESSMENT, 
-					WORKFLOW_PROCESS_ASSESSMENT_INTERNAL, 
-					WORKFLOW_PROCESS_STATUS_CURRENT
-				);
+			return null;
 		}
 
 		//defer update?
