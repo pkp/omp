@@ -196,67 +196,6 @@ class Monograph extends Submission {
 		return $this->setData('pressId', $pressId);
 	}
 
-	/**
-	 * Get the localized title
-	 * @return string
-	 */
-	function getLocalizedTitle() {
-		return $this->getLocalizedData('title');
-	}
-	function getMonographSponsor() {
-		return $this->getLocalizedData('sponsor');
-	}
-	function getMonographAbstract() {
-		return $this->getLocalizedData('abstract');
-	}
-	/**
-	 * Return the localized discipline
-	 * @return string
-	 */
-	function getMonographDiscipline() {
-		return $this->getLocalizedData('discipline');
-	}
-
-	/**
-	 * Return the localized subject classification
-	 * @return string
-	 */
-	function getMonographSubjectClass() {
-		return $this->getLocalizedData('subjectClass');
-	}
-
-	/**
-	 * Return the localized subject
-	 * @return string
-	 */
-	function getMonographSubject() {
-		return $this->getLocalizedData('subject');
-	}
-
-	/**
-	 * Return the localized geographical coverage
-	 * @return string
-	 */
-	function getMonographCoverageGeo() {
-		return $this->getLocalizedData('coverageGeo');
-	}
-
-	/**
-	 * Return the localized chronological coverage
-	 * @return string
-	 */
-	function getMonographCoverageChron() {
-		return $this->getLocalizedData('coverageChron');
-	}
-
-	/**
-	 * Return the localized sample coverage
-	 * @return string
-	 */
-	function getMonographCoverageSample() {
-		return $this->getLocalizedData('coverageSample');
-	}
-
  	/**
 	 * get date published
 	 * @return date

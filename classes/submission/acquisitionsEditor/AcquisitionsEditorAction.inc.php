@@ -256,7 +256,7 @@ $round = 1;
 						'editorialContactSignature' => $user->getContactSignature(),
 						'reviewGuidelines' => $press->getLocalizedSetting('reviewGuidelines'),
 						'submissionReviewUrl' => $submissionUrl,
-						'abstractTermIfEnabled' => ($acquisitionsEditorSubmission->getMonographAbstract() == ''?'':Locale::translate('monograph.abstract')),
+						'abstractTermIfEnabled' => ($acquisitionsEditorSubmission->getLocalizedAbstract() == ''?'':Locale::translate('monograph.abstract')),
 						'passwordResetUrl' => Request::url(null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getUserId())))
 					);
 					$email->assignParams($paramArray);

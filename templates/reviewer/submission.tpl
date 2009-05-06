@@ -45,7 +45,7 @@ function confirmSubmissionCheck() {
 </tr>
 <tr valign="top">
 	<td class="label">{translate key="monograph.abstract"}</td>
-	<td class="value">{$submission->getMonographAbstract()|strip_unsafe_html|nl2br}</td>
+	<td class="value">{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br}</td>
 </tr>
 {assign var=editAssignments value=$submission->getByIds()}
 {foreach from=$editAssignments item=editAssignment}

@@ -60,7 +60,7 @@ class MonographMailTemplate extends MailTemplate {
 		$paramArray['monographId'] = $monograph->getMonographId();
 		$paramArray['pressName'] = strip_tags($press->getLocalizedName());
 		$paramArray['arrangementName'] = strip_tags($monograph->getAcquisitionsArrangementTitle());
-		$paramArray['monographAbstract'] = strip_tags($monograph->getMonographAbstract());
+		$paramArray['monographAbstract'] = strip_tags($monograph->getLocalizedAbstract());
 		$paramArray['authorString'] = strip_tags($monograph->getAuthorString());
 
 		parent::assignParams($paramArray);

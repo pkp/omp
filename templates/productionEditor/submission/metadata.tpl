@@ -90,7 +90,7 @@ function show(id) {
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="monograph.abstract"}</td>
-		<td class="value">{$submission->getMonographAbstract()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
+		<td class="value">{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 	</tr>
 </table>
 
@@ -100,7 +100,7 @@ function show(id) {
 	{if $journalSettings.metaDiscipline}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="monograph.discipline"}</td>
-		<td width="80%" class="value">{$submission->getMonographDiscipline()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedDiscipline()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -109,7 +109,7 @@ function show(id) {
 	{if $journalSettings.metaSubjectClass}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="monograph.subjectClassification"}</td>
-		<td width="80%" class="value">{$submission->getMonographSubjectClass()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedSubjectClass()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -118,7 +118,7 @@ function show(id) {
 	{if $journalSettings.metaSubject}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="monograph.subject"}</td>
-		<td width="80%" class="value">{$submission->getMonographSubject()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedSubject()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -127,21 +127,21 @@ function show(id) {
 	{if $journalSettings.metaCoverage}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="monograph.coverageGeo"}</td>
-		<td width="80%" class="value">{$submission->getMonographCoverageGeo()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedCoverageGeo()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="monograph.coverageChron"}</td>
-		<td class="value">{$submission->getMonographCoverageChron()|escape|default:"&mdash;"}</td>
+		<td class="value">{$submission->getLocalizedCoverageChron()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="monograph.coverageSample"}</td>
-		<td class="value">{$submission->getMonographCoverageSample()|escape|default:"&mdash;"}</td>
+		<td class="value">{$submission->getLocalizedCoverageSample()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -150,7 +150,7 @@ function show(id) {
 	{if $journalSettings.metaType}
 	<tr valign="top">
 		<td width="20%"  class="label">{translate key="monograph.type"}</td>
-		<td width="80%" class="value">{$submission->getMonographType()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedType()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="separator">&nbsp;</td>
@@ -167,6 +167,6 @@ function show(id) {
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="author.submit.agencies"}</td>
-		<td width="80%" class="value">{$submission->getMonographSponsor()|escape|default:"&mdash;"}</td>
+		<td width="80%" class="value">{$submission->getLocalizedSponsor()|escape|default:"&mdash;"}</td>
 	</tr>
 </table>
