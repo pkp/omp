@@ -281,7 +281,7 @@ class ProfileForm extends Form {
 		$readerNotify = Request::getUserVar('pressNotify');
 
 		foreach ($presses as $thisPress) {
-			$thisPressId = $thisPress->getPressId();
+			$thisPressId = $thisPress->getId();
 			$currentlyReceives = !empty($pressNotifications[$thisPressId]);
 			$shouldReceive = !empty($readerNotify) && in_array($thisPress->getPressId(), $readerNotify);
 			if ($currentlyReceives != $shouldReceive) {

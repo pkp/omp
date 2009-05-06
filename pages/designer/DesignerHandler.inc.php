@@ -16,9 +16,9 @@
 
 
 import('submission.designer.DesignerAction');
-import('core.PKPHandler');
+import('handler.Handler');
 
-class DesignerHandler extends PKPHandler {
+class DesignerHandler extends Handler {
 	/**
 	 * Display layout editor index page.
 	 */
@@ -63,7 +63,7 @@ class DesignerHandler extends PKPHandler {
 		$toDate = Request::getUserDateVar('dateTo', 32, 12, null, 23, 59, 59);
 		if ($toDate !== null) $toDate = date('Y-m-d H:i:s', $toDate);
 
-		$rangeInfo = PKPHandler::getRangeInfo('submissions');
+		$rangeInfo = Handler::getRangeInfo('submissions');
 		$submissions = $designerSubmissionDao->getSubmissions($user->getUserId(), $press->getId(), $searchField, $searchMatch, $search, $dateSearchField, $fromDate, $toDate, $active, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();

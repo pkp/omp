@@ -24,7 +24,7 @@ class AdminPressHandler extends AdminHandler {
 		parent::validate();
 		parent::setupTemplate(true);
 
-		$rangeInfo = PKPHandler::getRangeInfo('presses');
+		$rangeInfo = Handler::getRangeInfo('presses');
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$presses =& $pressDao->getPresses($rangeInfo);

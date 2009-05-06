@@ -15,9 +15,9 @@
 // $Id$
 
 
-import('core.PKPHandler');
+import('handler.Handler');
 
-class UserHandler extends PKPHandler {
+class UserHandler extends Handler {
 
 	/**
 	 * Display user index page.
@@ -38,8 +38,6 @@ class UserHandler extends PKPHandler {
 
 		$user =& Request::getUser();
 		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$signoffTasks =& $workflowDao->getSignoffTasksByUserId($user->getUserId());
-		$templateMgr->assign('signoffTasks', $signoffTasks);
 
 		if ($press == null) {
 			// Prevent variable clobbering
@@ -72,9 +70,6 @@ class UserHandler extends PKPHandler {
 			// Show roles for the currently selected press
 			$roles =& $roleDao->getRolesByUserId($session->getUserId(), $press->getId());
 
-			$press =& Request::getPress();
-			$user =& Request::getUser();
-
 	/*		import('payment.ojs.OJSPaymentManager');
 			$paymentManager =& OJSPaymentManager::getManager();
 			$membershipEnabled = $paymentManager->membershipEnabled();
@@ -97,6 +92,10 @@ class UserHandler extends PKPHandler {
 				$templateMgr->assign('dateEndMembership', $user->getSetting('dateEndMembership', 0));
 			}
 */
+
+			$signoffTasks =& $workflowDao->getSignoffTasksByUserId($user->getUserId());
+			$templateMgr->assign('signoffTasks', $signoffTasks);
+
 			$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor'));
 			$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer'));
 

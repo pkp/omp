@@ -414,13 +414,13 @@ $sections = null;
 		// submission notes
 		$monographNoteDao =& DAORegistry::getDAO('MonographNoteDAO');
 
-		$rangeInfo =& PKPHandler::getRangeInfo('submissionNotes');
+		$rangeInfo =& Handler::getRangeInfo('submissionNotes');
 		$submissionNotes =& $monographNoteDao->getMonographNotes($monographId, $rangeInfo);
 
 		import('monograph.log.MonographLog');
-		$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries');
+		$rangeInfo =& Handler::getRangeInfo('eventLogEntries');
 		$eventLogEntries =& MonographLog::getEventLogEntries($monographId, $rangeInfo);
-		$rangeInfo =& PKPHandler::getRangeInfo('emailLogEntries');
+		$rangeInfo =& Handler::getRangeInfo('emailLogEntries');
 		$emailLogEntries =& MonographLog::getEmailLogEntries($monographId, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
@@ -504,7 +504,7 @@ $sections = null;
 				$search = $searchInitial;
 			}
 
-			$rangeInfo =& PKPHandler::getRangeInfo('reviewers');
+			$rangeInfo =& Handler::getRangeInfo('reviewers');
 			$reviewers =& $acquisitionsEditorSubmissionDao->getReviewersForMonograph($press->getId(), $monographId, $reviewType, $round, $searchType, $search, $searchMatch, $rangeInfo);
 
 			$press = Request::getPress();
@@ -598,7 +598,7 @@ $sections = null;
 
 		$user =& Request::getUser();
 
-		$rangeInfo = PKPHandler::getRangeInfo('users');
+		$rangeInfo = Handler::getRangeInfo('users');
 		$templateMgr =& TemplateManager::getManager();
 		parent::setupTemplate(true);
 
@@ -992,7 +992,7 @@ $sections = null;
 			Request::redirect(null, null, 'submissionReview', $monographId);
 		} else {
 			$press =& Request::getPress();
-			$rangeInfo =& PKPHandler::getRangeInfo('reviewForms');
+			$rangeInfo =& Handler::getRangeInfo('reviewForms');
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 			$reviewForms =& $reviewFormDao->getActiveByPressId($press->getId(), $rangeInfo);
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -1807,7 +1807,7 @@ $sections = null;
 			$templateMgr->display('acquisitionsEditor/submissionEventLogEntry.tpl');
 
 		} else {
-			$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries');
+			$rangeInfo =& Handler::getRangeInfo('eventLogEntries');
 
 			import('monograph.log.MonographLog');
 			$eventLogEntries =& MonographLog::getEventLogEntries($monographId, $rangeInfo);
@@ -1826,7 +1826,7 @@ $sections = null;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
 		parent::setupTemplate(true, $monographId, 'history');
 
-		$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries');
+		$rangeInfo =& Handler::getRangeInfo('eventLogEntries');
 		$logDao =& DAORegistry::getDAO('MonographEventLogDAO');
 		$eventLogEntries =& $logDao->getMonographLogEntriesByAssoc($monographId, $assocType, $assocId, $rangeInfo);
 
@@ -1887,7 +1887,7 @@ $sections = null;
 			$templateMgr->display('acquisitionsEditor/submissionEmailLogEntry.tpl');
 
 		} else {
-			$rangeInfo =& PKPHandler::getRangeInfo('emailLogEntries');
+			$rangeInfo =& Handler::getRangeInfo('emailLogEntries');
 
 			import('monograph.log.MonographLog');
 			$emailLogEntries =& MonographLog::getEmailLogEntries($monographId, $rangeInfo);
@@ -1906,7 +1906,7 @@ $sections = null;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
 		parent::setupTemplate(true, $monographId, 'history');
 
-		$rangeInfo =& PKPHandler::getRangeInfo('eventLogEntries');
+		$rangeInfo =& Handler::getRangeInfo('eventLogEntries');
 		$logDao =& DAORegistry::getDAO('MonographEmailLogDAO');
 		$emailLogEntries =& $logDao->getMonographLogEntriesByAssoc($monographId, $assocType, $assocId, $rangeInfo);
 
@@ -2000,7 +2000,7 @@ $sections = null;
 		list($press, $submission) = SubmissionEditHandler::validate($monographId);
 		parent::setupTemplate(true, $monographId, 'history');
 
-		$rangeInfo =& PKPHandler::getRangeInfo('submissionNotes');
+		$rangeInfo =& Handler::getRangeInfo('submissionNotes');
 		$monographNoteDao =& DAORegistry::getDAO('MonographNoteDAO');
 
 		// submission note edit

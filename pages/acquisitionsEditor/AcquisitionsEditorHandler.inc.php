@@ -19,9 +19,9 @@
 define('FILTER_SECTION_ALL', 0);
 
 import('submission.acquisitionsEditor.AcquisitionsEditorAction');
-import('core.PKPHandler');
+import('handler.Handler');
 
-class AcquisitionsEditorHandler extends PKPHandler {
+class AcquisitionsEditorHandler extends Handler {
 
 	/**
 	 * Display acquisitions editor index page.
@@ -34,7 +34,7 @@ class AcquisitionsEditorHandler extends PKPHandler {
 		$pressId = $press->getId();
 		$user =& Request::getUser();
 
-		$rangeInfo = PKPHandler::getRangeInfo('submissions');
+		$rangeInfo = Handler::getRangeInfo('submissions');
 
 		// Get the user's search conditions, if any
 		$searchField = Request::getUserVar('searchField');

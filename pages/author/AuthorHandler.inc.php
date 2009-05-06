@@ -16,9 +16,9 @@
 
 
 import('submission.author.AuthorAction');
-import('core.PKPHandler');
+import('handler.Handler');
 
-class AuthorHandler extends PKPHandler {
+class AuthorHandler extends Handler {
 
 	/**
 	 * Display monograph author index page.
@@ -29,7 +29,7 @@ class AuthorHandler extends PKPHandler {
 		AuthorHandler::setupTemplate();
 
 		$user =& Request::getUser();
-		$rangeInfo =& PKPHandler::getRangeInfo('submissions');
+		$rangeInfo =& Handler::getRangeInfo('submissions');
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';

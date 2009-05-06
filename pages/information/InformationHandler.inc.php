@@ -15,9 +15,9 @@
 // $Id$
 
 
-import('core.PKPHandler');
+import('handler.Handler');
 
-class InformationHandler extends PKPHandler {
+class InformationHandler extends Handler {
 
 	/**
 	 * Display the information page for the press..

@@ -18,9 +18,9 @@
 ini_set('display_errors', E_ALL); // FIXME until I improve error handling
 
 require_once('TranslatorAction.inc.php');
-import('core.PKPHandler');
+import('handler.Handler');
 
-class TranslatorHandler extends PKPHandler {
+class TranslatorHandler extends Handler {
 	function index() {
 		list($plugin) = TranslatorHandler::validate();
 		TranslatorHandler::setupTemplate(false);

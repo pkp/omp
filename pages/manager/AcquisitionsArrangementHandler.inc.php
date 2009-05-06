@@ -33,7 +33,7 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 			default: $type = SERIES_ARRANGEMENT; $arrangement = 'series';
 		}
 
-		$rangeInfo =& PKPHandler::getRangeInfo($arrangement);
+		$rangeInfo =& Handler::getRangeInfo($arrangement);
 		$arrangements =& $arrangementDao->getPressAcquisitionsArrangements($press->getId(), $rangeInfo, $type);
 
 		$templateMgr =& TemplateManager::getManager();

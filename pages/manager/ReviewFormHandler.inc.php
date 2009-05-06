@@ -23,7 +23,7 @@ class ReviewFormHandler extends ManagerHandler {
 		ReviewFormHandler::setupTemplate();
 
 		$press =& Request::getPress();
-		$rangeInfo =& PKPHandler::getRangeInfo('reviewForms');
+		$rangeInfo =& Handler::getRangeInfo('reviewForms');
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForms =& $reviewFormDao->getByPressId($press->getId(), $rangeInfo);
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -287,7 +287,7 @@ class ReviewFormHandler extends ManagerHandler {
 			Request::redirect(null, null, 'reviewForms');
 		}
 
-		$rangeInfo =& PKPHandler::getRangeInfo('reviewFormElements');
+		$rangeInfo =& Handler::getRangeInfo('reviewFormElements');
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElementsByReviewForm($reviewFormId, $rangeInfo);
 

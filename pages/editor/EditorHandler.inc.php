@@ -123,7 +123,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$toDate = Request::getUserDateVar('dateTo', 32, 12, null, 23, 59, 59);
 		if ($toDate !== null) $toDate = date('Y-m-d H:i:s', $toDate);
 
-		$rangeInfo = PKPHandler::getRangeInfo('submissions');
+		$rangeInfo = Handler::getRangeInfo('submissions');
 
 		switch($page) {
 			case 'submissionsUnassigned':
@@ -282,7 +282,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 				$search = $searchInitial;
 			}
 
-			$rangeInfo =& PKPHandler::getRangeInfo('editors');
+			$rangeInfo =& Handler::getRangeInfo('editors');
 			$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
 
 			if (isset($args[0]) && $args[0] === 'editor') {

@@ -24,7 +24,7 @@ class EmailHandler extends ManagerHandler {
 		parent::validate();
 		parent::setupTemplate(true);
 
-		$rangeInfo = PKPHandler::getRangeInfo('emails');
+		$rangeInfo = Handler::getRangeInfo('emails');
 
 		$press =& Request::getPress();
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');

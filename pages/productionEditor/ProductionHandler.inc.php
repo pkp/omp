@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('core.PKPHandler');
+import('handler.Handler');
 import('pages.acquisitionsEditor.SubmissionEditHandler');
 
 class ProductionHandler extends SubmissionEditHandler {
@@ -30,7 +30,7 @@ class ProductionHandler extends SubmissionEditHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$user =& Request::getUser();
-		$rangeInfo =& PKPHandler::getRangeInfo('submissions');
+		$rangeInfo =& Handler::getRangeInfo('submissions');
 		$productionSubmissionDao =& DAORegistry::getDAO('MonographDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';

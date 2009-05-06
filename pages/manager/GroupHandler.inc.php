@@ -24,7 +24,7 @@ class GroupHandler extends ManagerHandler {
 		list($press) = GroupHandler::validate();
 		GroupHandler::setupTemplate();
 
-		$rangeInfo =& PKPHandler::getRangeInfo('groups');
+		$rangeInfo =& Handler::getRangeInfo('groups');
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groups =& $groupDao->getGroups(ASSOC_TYPE_PRESS, $press->getId(), null, $rangeInfo);
@@ -153,7 +153,7 @@ class GroupHandler extends ManagerHandler {
 		$groupId = isset($args[0])?(int)$args[0]:0;
 		list($press, $group) = GroupHandler::validate($groupId);
 
-		$rangeInfo =& PKPHandler::getRangeInfo('memberships');
+		$rangeInfo =& Handler::getRangeInfo('memberships');
 
 		GroupHandler::setupTemplate($group, true);
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');

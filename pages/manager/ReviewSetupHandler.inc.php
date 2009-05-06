@@ -27,7 +27,7 @@ class ReviewSetupHandler extends ManagerHandler {
 		list($press) = ReviewSetupHandler::validate($reviewTypeId);
 		ReviewSetupHandler::setupTemplate();
 
-		//$rangeInfo =& PKPHandler::getRangeInfo('signoff_entities');
+		//$rangeInfo =& Handler::getRangeInfo('signoff_entities');
 
 		$signoffEntitiesDao =& DAORegistry::getDAO('SignoffEntityDAO');
 
@@ -108,7 +108,7 @@ class ReviewSetupHandler extends ManagerHandler {
 
 		$signoffEntitiesDao =& DAORegistry::getDAO('SignoffEntityDAO');
 
-		$rangeInfo =& PKPHandler::getRangeInfo('groups');
+		$rangeInfo =& Handler::getRangeInfo('groups');
 
 
 		$templateMgr =& TemplateManager::getManager();
@@ -117,7 +117,7 @@ class ReviewSetupHandler extends ManagerHandler {
 		switch ($entityType) {
 		case SIGNOFF_ENTITY_TYPE_GROUP:
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$rangeInfo =& PKPHandler::getRangeInfo('groups');
+			$rangeInfo =& Handler::getRangeInfo('groups');
 
 			$groups =& $groupDao->getGroups(ASSOC_TYPE_PRESS, $press->getId(), null, $rangeInfo);
 
@@ -126,7 +126,7 @@ class ReviewSetupHandler extends ManagerHandler {
 			break;
 		case SIGNOFF_ENTITY_TYPE_USER:
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$rangeInfo = PKPHandler::getRangeInfo('users');
+			$rangeInfo = Handler::getRangeInfo('users');
 
 			$users =& $roleDao->getUsersByPressId($press->getId(), null, null, null, null);//$searchType, $search, $searchMatch, $rangeInfo);
 

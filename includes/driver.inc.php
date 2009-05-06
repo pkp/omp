@@ -52,6 +52,9 @@ require('functions.inc.php');
  * System initialization (post-classloading).
  */
 
+import('core.PKPProfiler');
+$pkpProfiler = new PKPProfiler();
+
 import('core.OMPApplication');
 $ompApplication =& new OMPApplication();
 PKPApplication::initialize($ompApplication);

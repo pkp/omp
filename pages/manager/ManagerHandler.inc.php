@@ -15,9 +15,9 @@
 // $Id$
 
 
-import('core.PKPHandler');
+import('handler.Handler');
 
-class ManagerHandler extends PKPHandler {
+class ManagerHandler extends Handler {
 
 	/**
 	 * Display press management index page.

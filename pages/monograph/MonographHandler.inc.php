@@ -16,9 +16,9 @@
 
 
 import ('monograph.MonographAction');
-import('core.PKPHandler');
+import('handler.Handler');
 
-class MonographHandler extends PKPHandler {
+class MonographHandler extends Handler {
 
 	/**
 	 * Display about index page.

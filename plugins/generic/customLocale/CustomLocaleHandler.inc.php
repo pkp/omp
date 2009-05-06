@@ -17,9 +17,9 @@
 
 require_once('CustomLocalePlugin.inc.php');
 require_once('CustomLocaleAction.inc.php');
-import('core.PKPHandler');
+import('handler.Handler');
 
-class CustomLocaleHandler extends PKPHandler {
+class CustomLocaleHandler extends Handler {
 
 	function index() {
 		list($plugin) = CustomLocaleHandler::validate();
