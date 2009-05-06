@@ -76,7 +76,7 @@ class AdminSettingsHandler extends AdminHandler {
 
 				// Refresh site header
 				$templateMgr = &TemplateManager::getManager();
-				$templateMgr->assign('displayPageHeaderTitle', $site->getSitePageHeaderTitle());
+				$templateMgr->assign('displayPageHeaderTitle', $site->getLocalizedPageHeaderTitle());
 			}
 		} elseif ($settingsForm->validate()) {
 			$settingsForm->execute();

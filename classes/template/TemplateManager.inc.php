@@ -96,9 +96,9 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign('pageFooter', $press->getLocalizedSetting('pressPageFooter'));	
 			} else {
 				// Add the site-wide logo, if set for this locale or the primary locale
-				$this->assign('displayPageHeaderTitle', $site->getSitePageHeaderTitle());
+				$this->assign('displayPageHeaderTitle', $site->getLocalizedPageHeaderTitle());
 
-				$this->assign('siteTitle', $site->getSiteTitle());
+				$this->assign('siteTitle', $site->getLocalizedTitle());
 			}
 
 			if (!$site->getRedirect()) {

@@ -71,7 +71,7 @@ class IndexHandler extends Handler {
 				Request::redirect($press->getPath());
 			}
 
-			$templateMgr->assign('intro', $site->getSiteIntro());
+			$templateMgr->assign('intro', $site->getLocalizedIntro());
 			$templateMgr->assign('pressFilesPath', Request::getBaseUrl() . '/' . Config::getVar('files', 'public_files_dir') . '/presses/');
 			$presses =& $pressDao->getEnabledPresses();
 			$templateMgr->assign_by_ref('presses', $presses);

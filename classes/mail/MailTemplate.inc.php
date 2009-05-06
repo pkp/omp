@@ -90,7 +90,7 @@ class MailTemplate extends PKPMailTemplate {
 			$this->setFrom($user->getEmail(), $user->getFullName());
 		} elseif ($press == null) {
 			$site =& Request::getSite();
-			$this->setFrom($site->getSiteContactEmail(), $site->getSiteContactName());
+			$this->setFrom($site->getLocalizedContactEmail(), $site->getLocalizedContactName());
 
 		} else {
 			$this->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
@@ -116,7 +116,7 @@ class MailTemplate extends PKPMailTemplate {
 			$paramArray['principalContactSignature'] = $this->press->getSetting('contactName');
 		} else {
 			$site =& Request::getSite();
-			$paramArray['principalContactSignature'] = $site->getSiteContactName();
+			$paramArray['principalContactSignature'] = $site->getLocalizedContactName();
 		}
 		if (!isset($paramArray['pressUrl'])) $paramArray['pressUrl'] = Request::url(Request::getRequestedPressPath());
 
