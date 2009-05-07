@@ -46,8 +46,7 @@
 		{assign var="pressId" value=$press->getId()}
 		{section name=role loop=$userRoles[$pressId]}
 			{if $userRoles[$pressId][role]->getRolePath() != 'reader'}
-
-				<li>&#187; <a href="{url press=$press->getPath() page=$userRoles[$pressId][role]->getRolePath() args=$tack}">{translate key=$userRoles[$pressId][role]->getRoleName()}</a></li>
+				<li>&#187; <a href="{url press=$press->getPath() page=$userRoles[$pressId][role]->getRolePath()}">{translate key=$userRoles[$pressId][role]->getRoleName()}</a></li>
 			{/if}
 		{/section}
 		{call_hook name="Templates::User::Index::Press" press=$press}
@@ -62,7 +61,6 @@
 		{assign var="hasRole" value=1}
 		<li>&#187; <a href="{url press="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
 	{/if}
-
 	{assign var="pressId" value=$userPress->getId()}
 	{section name=role loop=$userRoles[$pressId]}
 		{assign var="hasRole" value=1}
