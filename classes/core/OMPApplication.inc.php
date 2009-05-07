@@ -137,6 +137,7 @@ class OMPApplication extends PKPApplication {
 			'AuthorDAO' => 'monograph.AuthorDAO',
 			'AuthorSubmissionDAO' => 'submission.author.AuthorSubmissionDAO',
 			'CommentDAO' => 'comment.CommentDAO',
+			'ProductionEditorSubmissionDAO' => 'submission.productionEditor.ProductionEditorSubmissionDAO',
 			'CopyAssignmentDAO' => 'submission.copyAssignment.CopyAssignmentDAO',
 			'CopyeditorSubmissionDAO' => 'submission.copyeditor.CopyeditorSubmissionDAO',
 			'EditAssignmentDAO' => 'submission.editAssignment.EditAssignmentDAO',

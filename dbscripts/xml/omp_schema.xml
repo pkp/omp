@@ -674,6 +674,7 @@
 			<col>user_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
+			<col>press_id</col>
 			<UNIQUE />
 		</index>
 	</table>

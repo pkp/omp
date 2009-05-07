@@ -82,7 +82,7 @@ switch ($op) {
 	case 'deleteArticleImage':
 	case 'uploadLayoutFile':
 	case 'uploadLayoutVersion':
-	case 'assignLayoutEditor':
+	case 'assignProductionEditor':
 	case 'notifyLayoutEditor':
 	case 'thankLayoutEditor':
 	case 'uploadGalley':

@@ -35,7 +35,7 @@ class ProductionEditorHandler extends SubmissionEditHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$user =& Request::getUser();
 		$rangeInfo =& Handler::getRangeInfo('submissions');
-		$productionSubmissionDao =& DAORegistry::getDAO('MonographDAO');
+		$productionSubmissionDao =& DAORegistry::getDAO('ProductionEditorSubmissionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
 		switch($page) {
@@ -47,7 +47,7 @@ class ProductionEditorHandler extends SubmissionEditHandler {
 				$active = true;
 		}
 
-		$submissions = $productionSubmissionDao->getMonographs($press->getId(), $rangeInfo);
+		$submissions = $productionSubmissionDao->getProductionEditorSubmissions($user->getUserId(), $press->getId(), $active, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageToDisplay', $page);
@@ -80,6 +80,7 @@ class ProductionEditorHandler extends SubmissionEditHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
 		$submission =& $this->submission;
+		$press =& Request::getPress();
 		$this->setupTemplate(false, $monographId);
 
 		$user =& Request::getUser();
@@ -242,7 +243,7 @@ class ProductionEditorHandler extends SubmissionEditHandler {
 		$this->validate($monographId);
 		$submission =& $this->submission;
 		$this->setupTemplate(false, $monographId);
-
+		$press =& Request::getPress();
 		$user =& Request::getUser();
 
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');

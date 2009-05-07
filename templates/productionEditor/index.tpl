@@ -4,56 +4,22 @@
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * User index.
+ * Production Editor index.
  *
  * $Id$
  *}
 {strip}
-{assign var="pageTitle" value="user.userHome"}
+{assign var="pageTitle" value="common.queue.long.$pageToDisplay"}
 {include file="common/header.tpl"}
 {/strip}
 
-<div id="submissions">
-<table class="listing" width="100%">
-	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
-	<tr class="heading" valign="bottom">
-		<td width="5%">{translate key="common.id"}</td>
-		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="submissions.submit"}</td>
-		<td width="25%">{translate key="monograph.authors"}</td>
-		<td width="35%">{translate key="monograph.title"}</td>
-	</tr>
-	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
+<ul class="menu">
+	<li{if ($pageToDisplay == "active")} class="current"{/if}><a href="{url op="index" path="active"}">{translate key="common.queue.short.active"}</a></li>
+	<li{if ($pageToDisplay == "completed")} class="current"{/if}><a href="{url op="index" path="completed"}">{translate key="common.queue.short.completed"}</a></li>
+</ul>
 
-{iterate from=submissions item=submission}
-	{assign var="monographId" value=$submission->getMonographId()}
-	{assign var="progress" value=1}{*$submission->getSubmissionProgress()*}
+<br />
 
-	<tr valign="top">
-		<td>{$monographId|escape}</td>
-		<td>{if $submission->getDateSubmitted()}{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}{else}&mdash;{/if}</td>
-		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
-<td><a href="{url op="submission" path=$monographId}" class="action">{if $submission->getLocalizedTitle()}{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
-
-	</tr>
-
-	<tr>
-		<td colspan="6" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
-{/iterate}
-{if $submissions->wasEmpty()}
-	<tr>
-		<td colspan="6" class="nodata">{translate key="submissions.noSubmissions"}</td>
-	</tr>
-	<tr>
-		<td colspan="6" class="endseparator">&nbsp;</td>
-	</tr>
-{else}
-	<tr>
-		<td colspan="4" align="left">{page_info iterator=$submissions}</td>
-		<td colspan="2" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions}</td>
-	</tr>
-{/if}
-</table>
-</div>
+{include file="productionEditor/$pageToDisplay.tpl"}
 
 {include file="common/footer.tpl"}

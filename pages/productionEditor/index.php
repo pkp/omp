@@ -18,8 +18,11 @@
 // $Id$
 
 
-define('HANDLER_CLASS', 'ProductionHandler');
+switch ($op) {
 
-import('pages.productionEditor.ProductionHandler');
-
+default:
+	define('HANDLER_CLASS', 'ProductionEditorHandler');
+	import('pages.productionEditor.ProductionEditorHandler');
+	break;
+}
 ?>

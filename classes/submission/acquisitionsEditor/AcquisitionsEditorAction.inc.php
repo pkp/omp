@@ -857,7 +857,11 @@ $round = 1;
 		// Only add the copyeditor if he has not already
 		// been assigned to review this monograph.
 		if (!$assigned && !HookRegistry::call('AcquisitionsEditorAction::selectCopyeditor', array(&$acquisitionsEditorSubmission, &$copyeditorId))) {
-			$copyeditInitialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getMonographId()); 
+			$copyeditInitialSignoff = $signoffDao->build(
+								'SIGNOFF_COPYEDITING_INITIAL', 
+								ASSOC_TYPE_MONOGRAPH, 
+								$acquisitionsEditorSubmission->getMonographId()
+							); 
 			$copyeditInitialSignoff->setUserId($copyeditorId);
 			$signoffDao->updateObject($copyeditInitialSignoff);
 
@@ -1439,39 +1443,33 @@ $round = 1;
 	}
 
 	/**
-	 * Assign a layout editor to a submission.
+	 * Assign a production editor to a submission.
 	 * @param $submission object
-	 * @param $editorId int user ID of the new layout editor
+	 * @param $editorId int user ID of the new production editor
 	 */
-	function assignLayoutEditor($submission, $designerId) {
-		if (HookRegistry::call('AcquisitionsEditorAction::assignLayoutEditor', array(&$submission, &$designerId))) return;
+	function assignProductionEditor($submission, $editorId) {
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& Request::getUser();
 
-	//	$layoutAssignments =& $submission->getLayoutAssignments();
+		// Only add the copyeditor if he has not already
+		// been assigned to review this monograph.
+		if (!HookRegistry::call('AcquisitionsEditorAction::selectCopyeditor', array(&$acquisitionsEditorSubmission, &$copyeditorId))) {
+			$productionSignoff = $signoffDao->build(
+							'SIGNOFF_PRODUCTION_INITIAL', 
+							ASSOC_TYPE_MONOGRAPH, 
+							$submission->getMonographId()
+						); 
+			$productionSignoff->setUserId($editorId);
+			$signoffDao->updateObject($productionSignoff);
 
-/*		import('monograph.log.MonographLog');
-		import('monograph.log.MonographEventLogEntry');
+			$productionEditor =& $userDao->getUser($editorId);
 
-		if ($layoutAssignment->getEditorId()) {
-			MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_UNASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $layoutAssignment->getLayoutId(), 'log.layout.layoutEditorUnassigned', array('editorName' => $layoutAssignment->getEditorFullName(), 'monographId' => $submission->getMonographId()));
+			// TODO: Add log
+			import('monograph.log.MonographLog');
+			import('monograph.log.MonographEventLogEntry');
 		}
-*/
-		$layoutAssignment = new LayoutAssignment;
-		$layoutAssignment->setDesignerId($designerId);
-		$layoutAssignment->setDateNotified(null);
-		$layoutAssignment->setDateUnderway(null);
-		$layoutAssignment->setDateCompleted(null);
-		$layoutAssignment->setDateAcknowledged(null);
-		$layoutAssignment->setMonographId($submission->getMonographId());
-		$layoutAssignment->setLayoutFileId($submission->getLayoutFileId());
-
-		$layoutDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-
-		$layoutDao->insertLayoutAssignment($layoutAssignment);
-
-//		$layoutAssignment =& $layoutDao->getLayoutAssignmentById($layoutAssignment->getLayoutId());
-/*
-		MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_ASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $layoutAssignment->getLayoutId(), 'log.layout.layoutEditorAssigned', array('editorName' => $layoutAssignment->getEditorFullName(), 'monographId' => $submission->getMonographId()));
-*/	}
+	}
 
 	/**
 	 * Notifies the current layout editor about an assignment.

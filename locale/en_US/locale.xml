@@ -36,6 +36,7 @@
 	<message key="submission.layout.noLayoutFile">None (Upload final copyedit version as Layout Version prior to sending request)</message>
 	<message key="submission.layout.layoutComments">Layout Comments</message>
 	<message key="submission.page.layout">#{$id} Layout and Page Design</message>
+	<message key="submission.productionEditor">Production</message>
 	<message key="submission.page.art">#{$id} Images, Illustrations, and other Art</message>
 	<message key="manuscript.submissions">Manuscript Submissions</message>
 	<message key="manuscript.artwork">Artwork</message>

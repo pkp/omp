@@ -19,6 +19,7 @@ define('SECTION_EDITOR_ACCESS_EDIT', 0x00001);
 define('SECTION_EDITOR_ACCESS_REVIEW', 0x00002);
 
 import('pages.acquisitionsEditor.AcquisitionsEditorHandler');
+import('submission.acquisitionsEditor.AcquisitionsEditorAction');
 
 class SubmissionEditHandler extends AcquisitionsEditorHandler {
 	/** The press associated with this request **/
@@ -26,6 +27,13 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 	
 	/** The submission associated with this request **/
 	var $submission;
+
+	/**
+	 * Constructor
+	 **/
+	function SubmissionEditHandler() {
+		parent::AcquisitionsEditorHandler();
+	}
 
 	function getFrom($default = 'submissionEditing') {
 		$from = Request::getUserVar('from');
@@ -382,20 +390,14 @@ $sections = null;
 		$templateMgr->assign_by_ref('currentProcess', $currentProcess);
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
-		$templateMgr->assign_by_ref('finalCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_FINAL'));
+		$templateMgr->assign_by_ref('initialCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
-		$templateMgr->assign_by_ref('copyeditor', $submission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
+		$templateMgr->assign_by_ref('productionEditor', $submission->getUserBySignoffType('SIGNOFF_PRODUCTION_INITIAL'));
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$user =& Request::getUser();
 		$templateMgr->assign('isEditor', $roleDao->roleExists($press->getId(), $user->getUserId(), ROLE_ID_EDITOR));
 
-/*		import('issue.IssueAction');
-		$templateMgr->assign('issueOptions', IssueAction::getIssueOptions());
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
-		$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
-*/
 		$templateMgr->assign('useCopyeditors', true);
 		$templateMgr->assign('useLayoutEditors', $useLayoutEditors);
 		$templateMgr->assign('useProofreaders', $useProofreaders);
@@ -943,7 +945,7 @@ $sections = null;
 		$this->validate($monographId);
 		$press =& $this->press;
 		$submission =& $this->submission;
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_AUTHOR));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
 		$this->setupTemplate(true, $monographId, 'summary');
 
 		AcquisitionsEditorAction::viewMetadata($submission, ROLE_ID_SECTION_EDITOR);
@@ -1092,8 +1094,7 @@ $sections = null;
 	function editorReview() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, SECTION_EDITOR_ACCESS_REVIEW);
-		$press =& $this-
->press;
+		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$redirectTarget = 'submissionReview';
@@ -1176,8 +1177,8 @@ $sections = null;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		if (isset($args[1]) && $args[1] != null && $roleDao->roleExists(			$templateMgr->assign('currentUser', $submission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
-ction::selectCopyeditor($submission, $args[1]);
+		if (isset($args[1]) && $args[1] != null && $roleDao->roleExists($templateMgr->assign('currentUser', $submission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL')))) {
+			AcquisitionsEditorAction::selectCopyeditor($submission, $args[1]);
 			Request::redirect(null, null, 'submissionEditing', $monographId);
 		} else {
 			$this->setupTemplate(true, $monographId, 'editing');
@@ -1626,10 +1627,10 @@ ction::selectCopyeditor($submission, $args[1]);
 	}
 
 	/**
-	 * Assign/reassign a layout editor to the submission.
+	 * Assign/reassign a production editor to the submission.
 	 * @param $args array ($monographId, [$userId])
 	 */
-	function assignLayoutEditor($args, $op = null) {
+	function assignProductionEditor($args, $op = null) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$editorId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
@@ -1638,10 +1639,10 @@ ction::selectCopyeditor($submission, $args[1]);
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		if ($editorId && $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_DESIGNER)) {
-			AcquisitionsEditorAction::assignLayoutEditor($submission, $editorId);
+		if ($editorId && $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_PRODUCTION_EDITOR)) {
+			AcquisitionsEditorAction::assignProductionEditor($submission, $editorId);
 			if ($op == null)
-				$op = 'submissionEditing';
+				$op = 'submissionProduction';
 			Request::redirect(null, null, $op, $monographId);
 		} else {
 			$searchType = null;
@@ -1658,10 +1659,7 @@ ction::selectCopyeditor($submission, $args[1]);
 				$search = $searchInitial;
 			}
 
-			$layoutEditors = $roleDao->getUsersByRoleId(ROLE_ID_DESIGNER, $press->getId(), $searchType, $search, $searchMatch);
-
-			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
-			$layoutEditorStatistics = $acquisitionsEditorSubmissionDao->getLayoutEditorStatistics($press->getId());
+			$productionEditors = $roleDao->getUsersByRoleId(ROLE_ID_PRODUCTION_EDITOR, $press->getId(), $searchType, $search, $searchMatch);
 
 			$this->setupTemplate(true, $monographId, 'editing');
 
@@ -1673,28 +1671,20 @@ ction::selectCopyeditor($submission, $args[1]);
 			$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 
-			$templateMgr->assign('pageTitle', 'user.role.layoutEditors');
-			$templateMgr->assign('pageSubTitle', 'editor.monograph.selectLayoutEditor');
-			$templateMgr->assign('actionHandler', 'assignLayoutEditor');
+			$templateMgr->assign('pageTitle', 'user.role.productionEditors');
+			$templateMgr->assign('pageSubTitle', 'editor.monograph.selectProductionEditor');
+			$templateMgr->assign('actionHandler', 'assignProductionEditor');
 			$templateMgr->assign('monographId', $monographId);
-			$templateMgr->assign_by_ref('users', $layoutEditors);
+			$templateMgr->assign_by_ref('users', $productionEditors);
 
-			$layoutAssignments =& $submission->getLayoutAssignments();
-			$assignedDesigners = array();
-
-			foreach ($layoutAssignments as $layoutAssignment) {
-				$assignedDesigners[] = $layoutAssignment->getDesignerId();
-			}
-
-			$templateMgr->assign('assignedUsers', $assignedDesigners);
+			$templateMgr->assign('assignedUsers', array($editorId));
 			$templateMgr->assign('fieldOptions', Array(
 				USER_FIELD_FIRSTNAME => 'user.firstName',
 				USER_FIELD_LASTNAME => 'user.lastName',
 				USER_FIELD_USERNAME => 'user.username',
 				USER_FIELD_EMAIL => 'user.email'
 			));
-			$templateMgr->assign('statistics', $layoutEditorStatistics);
-			$templateMgr->assign('helpTopicId', 'press.roles.layoutEditor');
+			$templateMgr->assign('helpTopicId', 'press.roles.productionEditor');
 			$templateMgr->display('acquisitionsEditor/selectUser.tpl');
 		}
 	}
