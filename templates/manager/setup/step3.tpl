@@ -88,34 +88,7 @@
 
 <div class="separator"></div>
 
-<h3>3.3 {translate key="manager.setup.authorCopyrightNotice"}</h3>
-
-{url|assign:"sampleCopyrightWordingUrl" page="information" op="sampleCopyrightWording"}
-<p>{translate key="manager.setup.authorCopyrightNoticeDescription" sampleCopyrightWordingUrl=$sampleCopyrightWordingUrl}</p>
-
-<p><textarea name="copyrightNotice[{$formLocale|escape}]" id="copyrightNotice" rows="12" cols="60" class="textArea">{$copyrightNotice[$formLocale]|escape}</textarea></p>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label">
-			<input type="checkbox" name="copyrightNoticeAgree" id="copyrightNoticeAgree" value="1"{if $copyrightNoticeAgree} checked="checked"{/if} />
-		</td>
-		<td width="95%" class="value"><label for="copyrightNoticeAgree">{translate key="manager.setup.authorCopyrightNoticeAgree"}</label>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">
-			<input type="checkbox" name="includeCreativeCommons" id="includeCreativeCommons" value="1"{if $includeCreativeCommons} checked="checked"{/if} />
-		</td>
-		<td class="value">
-			<label for="includeCreativeCommons">{translate key="manager.setup.includeCreativeCommons"}</label>
-		</td>
-	</tr>
-</table>
-
-<div class="separator"></div>
-
-<h3>3.4 {translate key="manager.setup.seriesAndCategories}</h3>
+<h3>3.3 {translate key="manager.setup.seriesAndCategories}</h3>
 
 <p>{translate key="manager.setup.seriesAndCategoriesDescription"}</p>
 
@@ -124,7 +97,7 @@
 
 <div class="separator"></div>
 
-<h3>3.5 {translate key="manager.setup.forAuthorsToIndexTheirWork"}</h3>
+<h3>3.4 {translate key="manager.setup.forAuthorsToIndexTheirWork"}</h3>
 
 <p>{translate key="manager.setup.forAuthorsToIndexTheirWorkDescription"}</p>
 
@@ -272,7 +245,7 @@
 <div class="separator"></div>
 
 
-<h3>3.6 {translate key="manager.setup.registerPressForIndexing"}</h3>
+<h3>3.5 {translate key="manager.setup.registerPressForIndexing"}</h3>
 
 {url|assign:"oaiSiteUrl" press=$currentPress->getPath()}
 {url|assign:"oaiUrl" page="oai"}
@@ -281,7 +254,7 @@
 
 <div class="separator"></div>
 
-<h3>3.7 {translate key="manager.setup.notifications"}</h3>
+<h3>3.6 {translate key="manager.setup.notifications"}</h3>
 
 <p>{translate key="manager.setup.notifications.description"}</p>
 

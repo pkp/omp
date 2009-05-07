@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="manager.setup.managingTheJournal"}
+{assign var="pageTitle" value="manager.setup.managingThePress"}
 {include file="manager/setup/setupHeader.tpl"}
 
 <form name="setupForm" method="post" action="{url op="saveSetup" path="4"}" enctype="multipart/form-data">
@@ -108,8 +108,8 @@ function setRegAllowOpts(form) {
 		<td width="95%" class="value"><label for="restrictSiteAccess">{translate key="manager.setup.restrictSiteAccess"}</label></td>
 	</tr>
 	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="restrictArticleAccess" id="restrictArticleAccess" value="1"{if $restrictArticleAccess} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="restrictArticleAccess">{translate key="manager.setup.restrictArticleAccess"}</label></td>
+		<td width="5%" class="label"><input type="checkbox" name="restrictMonographAccess" id="restrictMonographAccess" value="1"{if $restrictMonographAccess} checked="checked"{/if} /></td>
+		<td width="95%" class="value"><label for="restrictMonographAccess">{translate key="manager.setup.restrictMonographAccess"}</label></td>
 	</tr>
 </table>
 
@@ -146,79 +146,14 @@ function setRegAllowOpts(form) {
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="articleEventLog" id="articleEventLog" value="1"{if $articleEventLog} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="articleEventLog">{translate key="manager.setup.submissionEventLogging"}</label></td>
+		<td width="5%" class="label"><input type="checkbox" name="monographEventLog" id="monographEventLog" value="1"{if $monographEventLog} checked="checked"{/if} /></td>
+		<td width="95%" class="value"><label for="monographEventLog">{translate key="manager.setup.submissionEventLogging"}</label></td>
 	</tr>
 	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="articleEmailLog" id="articleEmailLog" value="1"{if $articleEmailLog} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="articleEmailLog">{translate key="manager.setup.submissionEmailLogging"}</label></td>
+		<td width="5%" class="label"><input type="checkbox" name="monographEmailLog" id="monographEmailLog" value="1"{if $monographEmailLog} checked="checked"{/if} /></td>
+		<td width="95%" class="value"><label for="monographEmailLog">{translate key="manager.setup.submissionEmailLogging"}</label></td>
 	</tr>
 </table>
-
-
-<div class="separator"></div>
-
-<h3>4.2 {translate key="manager.setup.publicationScheduling"}</h3>
-
-<h4>{translate key="manager.setup.publicationSchedule"}</h4>
-
-<p>{translate key="manager.setup.publicationScheduleDescription"}</p>
-
-<p><textarea name="pubFreqPolicy[{$formLocale|escape}]" id="pubFreqPolicy" rows="12" cols="60" class="textArea">{$pubFreqPolicy[$formLocale]|escape}</textarea></p>
-
-<h4>{translate key="manager.setup.publicationFormat"}</h4>
-
-<p>{translate key="manager.setup.publicationFormatDescription"}</p>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="publicationFormatVolume" id="publicationFormatVolume" value="1"{if ($publicationFormatVolume)} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="publicationFormatVolume">{translate key="manager.setup.publicationFormatVolume"}</label></td>
-	</tr>
-	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="publicationFormatNumber" id="publicationFormatNumber" value="1"{if ($publicationFormatNumber)} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="publicationFormatNumber">{translate key="manager.setup.publicationFormatNumber"}</label></td>
-	</tr>
-	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="publicationFormatYear" id="publicationFormatYear" value="1"{if ($publicationFormatYear)} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="publicationFormatYear">{translate key="manager.setup.publicationFormatYear"}</label></td>
-	</tr>
-	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="publicationFormatTitle" id="publicationFormatTitle" value="1"{if ($publicationFormatTitle)} checked="checked"{/if} /></td>
-		<td width="95%" class="value">
-			<label for="publicationFormatTitle">{translate key="manager.setup.publicationFormatTitle"}</label>
-		</td>
-	</tr>
-</table>
-
-<h4>{translate key="manager.setup.frequencyOfPublication"}</h4>
-
-<p>{translate key="manager.setup.frequencyOfPublicationDescription"}</p>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="initialNumber" key="issue.number"}</td>
-		<td width="80%" class="data"><input type="text" name="initialNumber" id="initialNumber" value="{$initialNumber|escape}" size="5" maxlength="8" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="initialVolume" key="issue.volume"}</td>
-		<td width="80%" class="data"><input type="text" name="initialVolume" id="initialVolume" value="{$initialVolume|escape}" size="5" maxlength="8" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="initialYear" key="issue.year"}</td>
-		<td width="80%" class="data"><input type="text" name="initialYear" id="initialYear" value="{$initialYear|escape}" size="5" maxlength="8" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="issuePerVolume" key="manager.setup.issuePerVolume"}</td>
-		<td width="80%" class="data"><input type="text" name="issuePerVolume" id="issuePerVolume" value="{if $issuePerVolume}{$issuePerVolume|escape}{/if}" size="5" maxlength="8" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="volumePerYear" key="manager.setup.volumePerYear"}</td>
-		<td width="80%" class="data"><input type="text" name="volumePerYear" id="volumePerYear" value="{if $volumePerYear}{$volumePerYear|escape}{/if}" size="5" maxlength="8" class="textField" /></td>
-	</tr>
-</table>
-
-<p>{translate key="manager.setup.frequencyOfPublicationNote"}</p>
 
 
 <div class="separator"></div>
@@ -236,8 +171,8 @@ function setRegAllowOpts(form) {
 		<td width="95%" class="value"><label for="enablePublicIssueId">{translate key="manager.setup.enablePublicIssueId"}</label></td>
 	</tr>
 	<tr valign="top">
-		<td class="label"><input type="checkbox" name="enablePublicArticleId" id="enablePublicArticleId" value="1"{if $enablePublicArticleId} checked="checked"{/if} /></td>
-		<td class="value"><label for="enablePublicArticleId">{translate key="manager.setup.enablePublicArticleId"}</label></td>
+		<td class="label"><input type="checkbox" name="enablePublicMonographId" id="enablePublicMonographId" value="1"{if $enablePublicMonographId} checked="checked"{/if} /></td>
+		<td class="value"><label for="enablePublicMonographId">{translate key="manager.setup.enablePublicMonographId"}</label></td>
 	</tr>
 	<tr valign="top">
 		<td class="label"><input type="checkbox" name="enablePublicGalleyId" id="enablePublicGalleyId" value="1"{if $enablePublicGalleyId} checked="checked"{/if} /></td>

@@ -53,7 +53,7 @@ class PressSetupStep5Form extends PressSetupForm {
 				'librarianInformation' => 'string',
 				'pressPageHeader' => 'string',
 				'pressPageFooter' => 'string',
-				'displayCurrentIssue' => 'bool',
+				'numRecentTitlesOnHomepage' => 'int',
 				'additionalHomeContent' => 'string',
 				'description' => 'string',
 				'navItems' => 'object',

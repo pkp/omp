@@ -219,12 +219,13 @@
 	<message key="manager.setup.coverageGeoProvideExamples">Provide examples of relevant geo-spatial or geographical terms for this field</message>
 	<message key="manager.setup.coverageResearchSampleExamples">(E.g., Age; Gender; Ethnicity; etc.)</message>
 	<message key="manager.setup.coverageResearchSampleProvideExamples">Provide examples of research sample characteristics for this field</message>
-	<message key="manager.setup.currentIssue">Current issue</message>
+	<message key="manager.setup.recentTitles">Recent Titles</message>
+	<message key="manager.setup.numRecentTitlesOnHomepage">Number of Recent Items on Homepage</message>
 	<message key="manager.setup.customizingTheLook">Step 5. Customizing the Look</message>
 	<message key="manager.setup.customTags">Custom tags</message>
 	<message key="manager.setup.customTagsDescription">Custom HTML header tags to be inserted in the header of every page (e.g., META tags).</message>
 	<message key="manager.setup.details">Details</message>
-	<message key="manager.setup.details.description">**DETAILS DESCRIPTION**.</message>
+	<message key="manager.setup.details.description">Name of press, contacts, sponsors, and search engines.</message>
 	<message key="manager.setup.disableUserRegistration">Press Manager registers all users, with Editors or Section Editors able to register Reviewers alone.</message>
 	<message key="manager.setup.discipline">Academic Discipline and Sub-Disciplines</message>
 	<message key="manager.setup.disciplineDescription">Useful when press crosses disciplinary boundaries and/or authors submit multidisciplinary items.</message>
@@ -250,7 +251,7 @@
 	<message key="manager.setup.enableAnnouncementsHomepage1">Display</message>
 	<message key="manager.setup.enableAnnouncementsHomepage2">of the most recent announcements on the press homepage.</message>
 	<message key="manager.setup.enablePageNumber">Page numbers for items will be calculated and entered manually in the Table of Contents (e.g., pp. 13-26).</message>
-	<message key="manager.setup.enablePublicArticleId">Custom identifiers will be used to identify published items.</message>
+	<message key="manager.setup.enablePublicMonographId">Custom identifiers will be used to identify published items.</message>
 	<message key="manager.setup.enablePublicGalleyId">Custom identifiers will be used to identify galleys (e.g. HTML or PDF files) for published items.</message>
 	<message key="manager.setup.enablePublicIssueId">Custom identifiers will be used to identify issues.</message>
 	<message key="manager.setup.enablePublicSuppFileId">Custom identifiers will be used to identify supplemental article files.</message>
@@ -267,14 +268,10 @@
 	<message key="manager.setup.forAuthorsToIndexTheirWorkDescription"><![CDATA[OMP adheres to the <a href="http://www.openarchives.org/" target="_blank">Open Archives Initiative</a> Protocol for Metadata Harvesting, which is the emerging standard for providing well-indexed access to electronic research resources on a global scale. The authors will use a similar template to provide metadata for their submission. The Press Manager should select the categories for indexing and present authors with relevant examples to assist them in indexing their work, separating terms with a semi-colon (e.g., term1; term2). The entries should be introduced as examples by using "E.g.," or "For example,".]]></message>
 	<message key="manager.setup.form.contactEmailRequired">The primary contact email is required.</message>
 	<message key="manager.setup.form.contactNameRequired">The primary contact name is required.</message>
-	<message key="manager.setup.form.pressInitialsRequired">The press initials are required.</message>
-	<message key="manager.setup.form.pressTitleRequired">The press title is required.</message>
+	<message key="manager.setup.form.pressNameRequired">The press name is required.</message>
 	<message key="manager.setup.form.numReviewersPerSubmission">The number of reviewers per submission is required.</message>
 	<message key="manager.setup.form.supportEmailRequired">The support email is required.</message>
 	<message key="manager.setup.form.supportNameRequired">The support name is required.</message>
-	<message key="manager.setup.frequencyOfPublication">Starting Point and Frequency</message>
-	<message key="manager.setup.frequencyOfPublicationDescription">Set the initial issue/volume numbers and year for the first publication of the press, as well as intended frequency for issue/volumes.</message>
-	<message key="manager.setup.frequencyOfPublicationNote">Note: Leave items blank if not used with this press, and editors can re-set numbers in the publishing process.</message>
 	<message key="manager.setup.generalInformation">General Information</message>
 	<message key="manager.setup.gettingDownTheDetails">Step 1. Getting Down the Details</message>
 	<message key="manager.setup.guidelines">Guidelines</message>
@@ -288,14 +285,9 @@
 	<message key="manager.setup.information.forAuthors">For Authors</message>
 	<message key="manager.setup.information.forLibrarians">For Librarians</message>
 	<message key="manager.setup.information.forReaders">For Readers</message>
-	<message key="manager.setup.initialIssue">Initial issue</message>
-	<message key="manager.setup.initialIssueDescription">Depending on the format selected, identify the issue, volume, and/or year of the first issue to be published with OMP:</message>
 	<message key="manager.setup.institution">Institution</message>
-	<message key="manager.setup.issnDescription"><![CDATA[The ISSN (International Standard Serial Number) is an eight-digit number which identifies periodical publications as such, including electronic serials. It is managed by a world wide network of National Centres coordinated by an International Centre based in Paris, backed by Unesco and the French Government. A number can be obtained from the <a href="http://www.issn.org" target="_new">ISSN web site</a>.  This can be done at any point in operating the press.]]></message>
-	<message key="manager.setup.issuePerVolume">Issues per volume</message>
 	<message key="manager.setup.itemsDescription">Navigation bar items can be added to the current set (Home, About, User Home, etc.) that appear at the top of the page.</message>
 	<message key="manager.setup.itemsPerPage">Items per page</message>
-	<message key="manager.setup.pressAbbreviation">Press Abbreviation</message>
 	<message key="manager.setup.pressArchiving">Press Archiving</message>
 	<message key="manager.setup.pressDescription">Press Description</message>
 	<message key="manager.setup.pressDescriptionDescription">Add a brief 20-25 word description in text/HTML which will appear just below the navigation links.</message>
@@ -318,8 +310,8 @@
 	<message key="manager.setup.pressSetupUpdated">Your press setup has been updated.</message>
 	<message key="manager.setup.pressStyleSheetInvalid">Invalid press stylesheet format. Accepted format is .css.</message>
 	<message key="manager.setup.pressTheme">Press Theme</message>
-	<message key="manager.setup.pressName">Press name</message>
-	<message key="manager.setup.labelName">Label name</message>
+	<message key="manager.setup.pressName">Press Name</message>
+	<message key="manager.setup.labelName">Label Name</message>
 	<message key="manager.setup.layoutAndGalleys">Layout Editors</message>
 	<message key="manager.setup.layoutInstructions">Layout Instructions</message>
 	<message key="manager.setup.layoutInstructionsDescription">Layout Instructions can be prepared for the formatting of publishing items in the press and be entered below in HTML or plain text. They will be made available to  the Layout Editor and Section Editor on the Editing page of each submission. (As each press may employ its own file formats, bibliographic standards, style sheets, etc., a default set of instructions is not provided.)</message>
@@ -333,7 +325,7 @@
 	<message key="manager.setup.lockssLicenses"><![CDATA[See <a href="http://lockss.stanford.edu/publishers/publishers.htm" target="_blank">other versions of a LOCKSS license</a>.]]></message>
 	<message key="manager.setup.lockssRegister"><![CDATA[Identify 6-10 libraries that will register and cache the press. For example, turn to institutions where editors or Board members work and/or institutions already participating in LOCKSS. See <a href="http://lockss.stanford.edu/about/users.htm" target="_blank">participating libraries</a>. Use the prepared invitations for (i) <a href="{$lockssExistingArchiveUrl}" target="_blank">libraries participating in LOCKSS</a> or (ii) <a href="{$lockssNewArchiveUrl}" target="_blank">libraries not yet participating in LOCKSS</a>.]]></message>
 	<message key="manager.setup.look">The Look</message>
-	<message key="manager.setup.look.description">**LOOK DESCRIPTIONS**</message>
+	<message key="manager.setup.look.description">Homepage header, content, press header, footer, navigation bar, and style sheet.</message>
 	<message key="manager.setup.mailingAddressDescription">The press's physical location and mailing address.</message>
 	<message key="manager.setup.management">Management</message>
 	<message key="manager.setup.management.description">Access and security, scheduling, announcements, copyediting, layout, and proofreading.</message>
@@ -367,7 +359,7 @@
 	<message key="manager.setup.peerReviewPolicy">Peer Review</message>
 	<message key="manager.setup.peerReviewPolicy2">Peer review policy</message>
 	<message key="manager.setup.policies">Policies</message>
-	<message key="manager.setup.policies.description">**POLICIES DESCRIPTION**</message>
+	<message key="manager.setup.policies.description">Focus, peer review, sections, privacy, security, and additional about items.</message>
 	<message key="manager.setup.principalContact">Principal Contact</message>
 	<message key="manager.setup.principalContactDescription">This position, which can be treated as a principal editorship, managing editorship, or administrative staff position, will be listed on the homepage of the press under Contact, along with the Technical Support Contact.</message>
 	<message key="manager.setup.printIssn">Print ISSN</message>
@@ -378,22 +370,14 @@
 	<message key="manager.setup.proofingInstructionsDescription">The Proofreading Instructions will be made available to Proofreaders, Authors, Layout Editors, and Section Editors in the Submission Editing stage. Below is a default set of instructions in HTML, which can be edited or replaced by the Press Manager at any point (in HTML or plain text).</message>
 	<message key="manager.setup.proofreading">Proofreaders</message>
 	<message key="manager.setup.provideRefLinkInstructions">Provide Layout Editors with instructions.</message>
-	<message key="manager.setup.publicationFormat">Format</message>
-	<message key="manager.setup.publicationFormatDescription">The press will use the following elements to identify issues (which can be overridden for individual issues).</message>
-	<message key="manager.setup.publicationFormatNumber">Number</message>
-	<message key="manager.setup.publicationFormatTitle">Title</message>
-	<message key="manager.setup.publicationFormatVolume">Volume</message>
-	<message key="manager.setup.publicationFormatYear">Year</message>
-	<message key="manager.setup.publicationSchedule">Publication Schedule</message>
 	<message key="manager.setup.publicationScheduleDescription"><![CDATA[Press items can be published collectively, as part of an issue with its own Table of Contents. Alternatively, individual items can be published as soon as they are ready, by adding them to the "current" volume's Table of Contents. Provide readers, in About the Press, with a statement about the system this press will use and its expected frequency of publication.]]></message>
-	<message key="manager.setup.publicationScheduling">Publication Scheduling</message>
 	<message key="manager.setup.publicIdentifier">Identification of Press Content</message>
 	<message key="manager.setup.publisher">Publisher</message>
 	<message key="manager.setup.publisherDescription">The name of the organization publishing the press will appear in About the Press.</message>
 	<message key="manager.setup.referenceLinking">Reference Linking</message>
 	<message key="manager.setup.refLinkInstructions.description">Layout Instructions for Reference Linking</message>
 	<message key="manager.setup.registerPressForIndexing">Register Press for Indexing (Metadata Harvesting)</message>
-	<message key="manager.setup.restrictArticleAccess">Users must be registered and log in to view open access content.</message>
+	<message key="manager.setup.restrictMonographAccess">Users must be registered and log in to view open access content.</message>
 	<message key="manager.setup.restrictSiteAccess">Users must be registered and log in to view the press site.</message>
 	<message key="manager.setup.reviewerDatabaseLink">Potential Reviewer Database</message>
 	<message key="manager.setup.reviewerDatabaseLink.desc">Add to the Select Reviewer page a link to a relevant literature database that can be searched for potential reviewers and is open to editors without subscription.</message>
@@ -434,7 +418,7 @@
 	<message key="manager.setup.selectEditorDescription">The press editor who will see it through the editorial process.</message>
 	<message key="manager.setup.selectSectionDescription">The press section for which the item will be considered.</message>
 	<message key="manager.setup.showGalleyLinksDescription">Always show galley links and indicate restricted access.</message>
-	<message key="manager.setup.siteAccess">Additional Site and Article Access Restrictions</message>
+	<message key="manager.setup.siteAccess">Additional Site and Content Access Restrictions</message>
 	<message key="manager.setup.sponsors">Sponsoring Organizations</message>
 	<message key="manager.setup.sponsorsDescription">The name of the organizations (e.g., scholarly associations, university departments, cooperatives, etc.) sponsoring the press will appear in About the Press and may be accompanied by a note of acknowledgement.</message>
 	<message key="manager.setup.stepsToPressSite">Five Steps to a Press Web Site</message>

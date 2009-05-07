@@ -31,35 +31,12 @@
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="title" required="true" key="manager.setup.journalTitle"}</td>
-		<td width="80%" class="value"><input type="text" name="title[{$formLocale|escape}]" id="title" value="{$title[$formLocale]|escape}" size="40" maxlength="120" class="textField" /></td>
+		<td width="20%" class="label">{fieldLabel name="name" required="true" key="manager.setup.pressName"}</td>
+		<td width="80%" class="value"><input type="text" name="name[{$formLocale|escape}]" id="name" value="{$name[$formLocale]|escape}" size="40" maxlength="120" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="initials" required="true" key="manager.setup.journalInitials"}</td>
+		<td width="20%" class="label">{fieldLabel name="initials" key="manager.setup.pressInitials"}</td>
 		<td width="80%" class="value"><input type="text" name="initials[{$formLocale|escape}]" id="initials" value="{$initials[$formLocale]|escape}" size="8" maxlength="16" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="abbreviation" required="true" key="manager.setup.journalAbbreviation"}</td>
-		<td width="80%" class="value"><input type="text" name="abbreviation[{$formLocale|escape}]" id="abbreviation" value="{$abbreviation[$formLocale]|escape}" size="40" maxlength="120" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="printIssn" key="manager.setup.printIssn"}</td>
-		<td width="80%" class="value"><input type="text" name="printIssn" id="printIssn" value="{$printIssn|escape}" size="8" maxlength="16" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="onlineIssn" key="manager.setup.onlineIssn"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="onlineIssn" id="onlineIssn" value="{$onlineIssn|escape}" size="8" maxlength="16" class="textField" />
-			<br />
-			<span class="instruct">{translate key="manager.setup.issnDescription"}</span>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="doiPrefix" key="manager.setup.doiPrefix"}</td>
-		<td width="80%" class="value"><input type="text" name="doiPrefix" value="{$doiPrefix|escape}" size="8" maxlength="8" id="doiPrefix" class="textField" />
-		<br />
-		<span class="instruct">{translate key="manager.setup.doiPrefixDescription"}</span>
-		</td>		
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="mailingAddress" key="common.mailingAddress"}</td>

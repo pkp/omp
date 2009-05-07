@@ -107,11 +107,11 @@ function prepBlockFields() {
 </table>
 {/if}
 
-<h3>5.1 {translate key="manager.setup.journalHomepageHeader"}</h3>
+<h3>5.1 {translate key="manager.setup.pressHomepageHeader"}</h3>
 
-<p>{translate key="manager.setup.journalHomepageHeaderDescription"}</p>
+<p>{translate key="manager.setup.pressHomepageHeaderDescription"}</p>
 
-<h4>{translate key="manager.setup.journalTitle"}</h4>
+<h4>{translate key="manager.setup.pressName"}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
@@ -141,7 +141,7 @@ function prepBlockFields() {
 </table>
 {/if}
 
-<h4>{translate key="manager.setup.journalLogo"}</h4>
+<h4>{translate key="manager.setup.pressLogo"}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
@@ -170,13 +170,13 @@ function prepBlockFields() {
 <div class="separator"></div>
 
 
-<h3>5.2 {translate key="manager.setup.journalHomepageContent"}</h3>
+<h3>5.2 {translate key="manager.setup.pressHomepageContent"}</h3>
 
-<p>{translate key="manager.setup.journalHomepageContentDescription"}</p>
+<p>{translate key="manager.setup.pressHomepageContentDescription"}</p>
 
-<h4>{translate key="manager.setup.journalDescription"}</h4>
+<h4>{translate key="manager.setup.pressDescription"}</h4>
 
-<p>{translate key="manager.setup.journalDescriptionDescription"}</p>
+<p>{translate key="manager.setup.pressDescriptionDescription"}</p>
 
 <p><textarea id="description" name="description[{$formLocale|escape}]" rows="3" cols="60" class="textArea">{$description[$formLocale]|escape}</textarea></p>
 
@@ -194,7 +194,7 @@ function prepBlockFields() {
 {if $homepageImage[$formLocale]}
 {translate key="common.fileName"}: {$homepageImage[$formLocale].name|escape} {$homepageImage[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteHomepageImage" value="{translate key="common.delete"}" class="button" />
 <br />
-<img src="{$publicFilesDir}/{$homepageImage[$formLocale].uploadName|escape:"url"}" width="{$homepageImage[$formLocale].width|escape}" height="{$homepageImage[$formLocale].height|escape}" style="border: 0;" alt="{translate key="common.journalHomepageImage.altText"}" />
+<img src="{$publicFilesDir}/{$homepageImage[$formLocale].uploadName|escape:"url"}" width="{$homepageImage[$formLocale].width|escape}" height="{$homepageImage[$formLocale].height|escape}" style="border: 0;" alt="{translate key="common.pressHomepageImage.altText"}" />
 <br />
 <table width="100%" class="data">
 	<tr valign="top">
@@ -208,12 +208,12 @@ function prepBlockFields() {
 </table>
 {/if}
 
-<h4>{translate key="manager.setup.currentIssue"}</h4>
+<h4>{translate key="manager.setup.recentTitles"}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="displayCurrentIssue" id="displayCurrentIssue" value="1" {if $displayCurrentIssue} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="displayCurrentIssue">{translate key="manager.setup.displayCurrentIssue"}</label></td>
+		<td width="40%" class="label">{translate key="manager.setup.numRecentTitlesOnHomepage"}</td>
+		<td width="60%" class="value"><input type="text" size="3" name="numRecentTitlesOnHomepage" class="textField" value="{$numRecentTitlesOnHomepage|escape}" /></td>
 	</tr>
 </table>
 
@@ -228,11 +228,11 @@ function prepBlockFields() {
 <div class="separator"></div>
 
 
-<h3>5.3 {translate key="manager.setup.journalPageHeader"}</h3>
+<h3>5.3 {translate key="manager.setup.pressPageHeader"}</h3>
 
-<p>{translate key="manager.setup.journalPageHeaderDescription"}</p>
+<p>{translate key="manager.setup.pressPageHeaderDescription"}</p>
 
-<h4>{translate key="manager.setup.journalTitle"}</h4>
+<h4>{translate key="manager.setup.pressName"}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
@@ -262,7 +262,7 @@ function prepBlockFields() {
 </table>
 {/if}
 
-<h4>{translate key="manager.setup.journalLogo"}</h4>
+<h4>{translate key="manager.setup.pressLogo"}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
@@ -292,17 +292,17 @@ function prepBlockFields() {
 
 <p>{translate key="manager.setup.alternateHeaderDescription"}</p>
 
-<p><textarea name="journalPageHeader[{$formLocale|escape}]" id="journalPageHeader" rows="12" cols="60" class="textArea">{$journalPageHeader[$formLocale]|escape}</textarea></p>
+<p><textarea name="pressPageHeader[{$formLocale|escape}]" id="pressPageHeader" rows="12" cols="60" class="textArea">{$pressPageHeader[$formLocale]|escape}</textarea></p>
 
 
 <div class="separator"></div>
 
 
-<h3>5.4 {translate key="manager.setup.journalPageFooter"}</h3>
+<h3>5.4 {translate key="manager.setup.pressPageFooter"}</h3>
 
-<p>{translate key="manager.setup.journalPageFooterDescription"}</p>
+<p>{translate key="manager.setup.pressPageFooterDescription"}</p>
 
-<p><textarea name="journalPageFooter[{$formLocale|escape}]" id="journalPageFooter" rows="12" cols="60" class="textArea">{$journalPageFooter[$formLocale]|escape}</textarea></p>
+<p><textarea name="pressPageFooter[{$formLocale|escape}]" id="pressPageFooter" rows="12" cols="60" class="textArea">{$pressPageFooter[$formLocale]|escape}</textarea></p>
 
 
 <div class="separator"></div>
@@ -377,30 +377,30 @@ function prepBlockFields() {
 <div class="separator"></div>
 
 
-<h3>5.6 {translate key="manager.setup.journalLayout"}</h3>
+<h3>5.6 {translate key="manager.setup.pressLayout"}</h3>
 
-<p>{translate key="manager.setup.journalLayoutDescription"}</p>
+<p>{translate key="manager.setup.pressLayoutDescription"}</p>
 
 <table width="100%" class="data">
 <tr>
-	<td width="20%" class="label"><label for="journalTheme">{translate key="manager.setup.journalTheme"}</label></td>
+	<td width="20%" class="label"><label for="pressTheme">{translate key="manager.setup.pressTheme"}</label></td>
 	<td width="80%" class="value">
-		<select name="journalTheme" class="selectMenu" id="journalTheme"{if empty($journalThemes)} disabled="disabled"{/if}>
+		<select name="pressTheme" class="selectMenu" id="pressTheme"{if empty($pressThemes)} disabled="disabled"{/if}>
 			<option value="">{translate key="common.none"}</option>
-			{foreach from=$journalThemes key=path item=journalThemePlugin}
-				<option value="{$path|escape}"{if $path == $journalTheme} selected="selected"{/if}>{$journalThemePlugin->getDisplayName()}</option>
+			{foreach from=$pressThemes key=path item=pressThemePlugin}
+				<option value="{$path|escape}"{if $path == $pressTheme} selected="selected"{/if}>{$pressThemePlugin->getDisplayName()}</option>
 			{/foreach}
 		</select>
 	</td>
 </tr>
 <tr>
-	<td width="20%" class="label"><label for="journalStyleSheet">{translate key="manager.setup.useJournalStyleSheet"}</label></td>
-	<td width="80%" class="value"><input type="file" name="journalStyleSheet" id="journalStyleSheet" class="uploadField" /> <input type="submit" name="uploadJournalStyleSheet" value="{translate key="common.upload"}" class="button" /></td>
+	<td width="20%" class="label"><label for="pressStyleSheet">{translate key="manager.setup.usePressStyleSheet"}</label></td>
+	<td width="80%" class="value"><input type="file" name="pressStyleSheet" id="pressStyleSheet" class="uploadField" /> <input type="submit" name="uploadPressStyleSheet" value="{translate key="common.upload"}" class="button" /></td>
 </tr>
 </table>
 
-{if $journalStyleSheet}
-{translate key="common.fileName"}: <a href="{$publicFilesDir}/{$journalStyleSheet.uploadName|escape:"url"}" class="file">{$journalStyleSheet.name|escape}</a> {$journalStyleSheet.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteJournalStyleSheet" value="{translate key="common.delete"}" class="button" />
+{if $pressStyleSheet}
+{translate key="common.fileName"}: <a href="{$publicFilesDir}/{$pressStyleSheet.uploadName|escape:"url"}" class="file">{$pressStyleSheet.name|escape}</a> {$pressStyleSheet.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deletePressStyleSheet" value="{translate key="common.delete"}" class="button" />
 {/if}
 
 <table border="0" align="center">

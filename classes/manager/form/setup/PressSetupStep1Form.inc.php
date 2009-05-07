@@ -25,12 +25,8 @@ class PressSetupStep1Form extends PressSetupForm {
 		parent::PressSetupForm(
 			1,
 			array(
-				'title' => 'string',
+				'name' => 'string',
 				'initials' => 'string',
-				'abbreviation' => 'string',
-				'printIssn' => 'string',
-				'onlineIssn' => 'string',
-				'doiPrefix' => 'string',
 				'mailingAddress' => 'string',
 				'useEditorialBoard' => 'bool',
 				'contactName' => 'string',
@@ -59,8 +55,8 @@ class PressSetupStep1Form extends PressSetupForm {
 		);
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.setup.form.pressTitleRequired'));
-		$this->addCheck(new FormValidatorLocale($this, 'initials', 'required', 'manager.setup.form.pressnitialsRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'manager.setup.form.pressNameRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'initials', 'required', 'manager.setup.form.pressInitialsRequired'));
 		$this->addCheck(new FormValidator($this, 'contactName', 'required', 'manager.setup.form.contactNameRequired'));
 		$this->addCheck(new FormValidatorEmail($this, 'contactEmail', 'required', 'manager.setup.form.contactEmailRequired'));
 		$this->addCheck(new FormValidator($this, 'supportName', 'required', 'manager.setup.form.supportNameRequired'));
@@ -72,7 +68,7 @@ class PressSetupStep1Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'initials', 'abbreviation', 'sponsorNote', 'publisherNote', 'contributorNote', 'searchDescription', 'searchKeywords', 'customHeaders');
+		return array('name', 'initials', 'sponsorNote', 'publisherNote', 'contributorNote', 'searchDescription', 'searchKeywords', 'customHeaders');
 	}
 
 	/**

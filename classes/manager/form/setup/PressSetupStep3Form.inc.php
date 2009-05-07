@@ -32,9 +32,6 @@ class PressSetupStep3Form extends PressSetupForm {
 			array(
 				'authorGuidelines' => 'string',
 				'submissionChecklist' => 'object',
-				'copyrightNotice' => 'string',
-				'includeCreativeCommons' => 'bool',
-				'copyrightNoticeAgree' => 'bool',
 				'metaDiscipline' => 'bool',
 				'metaDisciplineExamples' => 'string',
 				'metaSubjectClass' => 'bool',
@@ -62,7 +59,7 @@ class PressSetupStep3Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('authorGuidelines', 'submissionChecklist', 'copyrightNotice', 'metaDisciplineExamples', 'metaSubjectClassTitle', 'metaSubjectClassUrl', 'metaSubjectExamples', 'metaCoverageGeoExamples', 'metaCoverageChronExamples', 'metaCoverageResearchSampleExamples', 'metaTypeExamples');
+		return array('authorGuidelines', 'submissionChecklist', 'metaDisciplineExamples', 'metaSubjectClassTitle', 'metaSubjectClassUrl', 'metaSubjectExamples', 'metaCoverageGeoExamples', 'metaCoverageChronExamples', 'metaCoverageResearchSampleExamples', 'metaTypeExamples');
 	}
 
 	/**

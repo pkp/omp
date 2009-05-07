@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="manager.setup.journalPolicies"}
+{assign var="pageTitle" value="manager.setup.pressPolicies"}
 {include file="manager/setup/setupHeader.tpl"}
 
 <form name="setupForm" method="post" action="{url op="saveSetup" path="2"}">
@@ -27,7 +27,7 @@
 </table>
 {/if}
 
-<h3>2.1 {translate key="manager.setup.focusAndScopeOfJournal"}</h3>
+<h3>2.1 {translate key="manager.setup.focusAndScopeOfPress"}</h3>
 <p>{translate key="manager.setup.focusAndScopeDescription"}</p>
 <p>
 	<textarea name="focusScopeDesc[{$formLocale|escape}]" id="focusScopeDesc" rows="12" cols="60" class="textArea">{$focusScopeDesc[$formLocale]|escape}</textarea>
@@ -172,7 +172,7 @@
 <div class="separator"></div>
 
 
-<h3>2.5 {translate key="manager.setup.addItemtoAboutJournal"}</h3>
+<h3>2.5 {translate key="manager.setup.addItemtoAboutPress"}</h3>
 
 <table width="100%" class="data">
 {foreach name=customAboutItems from=$customAboutItems[$formLocale] key=aboutId item=aboutItem}
@@ -205,29 +205,7 @@
 
 <div class="separator"></div>
 
-
-<h3>2.6 {translate key="manager.setup.journalArchiving"}</h3>
-
-<p>{translate key="manager.setup.lockssDescription"}</p>
-
-{url|assign:"lockssExistingArchiveUrl" page="manager" op="email" template="LOCKSS_EXISTING_ARCHIVE"}
-{url|assign:"lockssNewArchiveUrl" page="manager" op="email" template="LOCKSS_NEW_ARCHIVE"}
-<p>{translate key="manager.setup.lockssRegister" lockssExistingArchiveUrl=$lockssExistingArchiveUrl lockssNewArchiveUrl=$lockssNewArchiveUrl}</p>
-
-{url|assign:"lockssUrl" page="gateway" op="lockss"}
-<p><input type="checkbox" name="enableLockss" id="enableLockss" value="1"{if $enableLockss} checked="checked"{/if} /> <label for="enableLockss">{translate key="manager.setup.lockssEnable" lockssUrl=$lockssUrl}</label></p>
-
-<p>
-	<textarea name="lockssLicense[{$formLocale|escape}]" id="lockssLicense" rows="6" cols="60" class="textArea">{$lockssLicense[$formLocale]|escape}</textarea>
-	<br />
-	<span class="instruct">{translate key="manager.setup.lockssLicenses"}</span>
-</p>
-
-
-<div class="separator"></div>
-
-
-<h3>2.7 {translate key="manager.setup.reviewerDatabaseLink"}</h3>
+<h3>2.6 {translate key="manager.setup.reviewerDatabaseLink"}</h3>
 
 <p>{translate key="manager.setup.reviewerDatabaseLink.desc"}</p>
 
