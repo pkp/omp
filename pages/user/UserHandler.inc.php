@@ -249,56 +249,6 @@ class UserHandler extends Handler {
 		$templateMgr->assign_by_ref('user', $user);
 		$templateMgr->display('user/publicProfile.tpl');
 	}
-
-
-	//
-	// Payments
-	//
-
-	function payRenewSubscription($args) {
-		$this->validate();
-		$this->setupTemplate(true);
-
-		import('payment.ojs.OJSPaymentManager');
-		$paymentManager =& OJSPaymentManager::getManager();
-
-		import('subscription.SubscriptionDAO');
-		$subscriptionDAO =& DAORegistry::getDAO('SubscriptionDAO');
-		$subscriptionTypeDAO =& DAORegistry::getDAO('SubscriptionTypeDAO');
-
-		$press =& Request::getMonograph();
-		if ($press) {
-			$user =& Request::getUser();
-			$subscriptionId = $subscriptionDAO->getSubscriptionIdByUser($user->getUserId(), $press->getId());
-
-			$subscriptionDAO =& DAORegistry::getDAO('SubscriptionDAO');
-			$subscription =& $subscriptionDAO->getSubscription($subscriptionId);
-			$subscriptionType =& $subscriptionTypeDAO->getSubscriptionType($subscription->getTypeId());
-
-			$queuedPayment =& $paymentManager->createQueuedPayment($press->getId(), PAYMENT_TYPE_SUBSCRIPTION, $user->getUserId(), $subscriptionId, $subscriptionType->getCost(), $subscriptionType->getCurrencyCodeAlpha());
-			$queuedPaymentId = $paymentManager->queuePayment($queuedPayment);
-
-			$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
-		}
-
-	}
-
-	function payMembership($args) {
-		$this->validate();
-		$this->setupTemplate();
-
-		import('payment.ojs.OJSPaymentManager');
-		$paymentManager =& OJSPaymentManager::getManager();
-
-		$press =& Request::getMonograph();
-		$user =& Request::getUser();
-
-		$queuedPayment =& $paymentManager->createQueuedPayment($press->getId(), PAYMENT_TYPE_MEMBERSHIP, $user->getUserId(), null,  $press->getSetting('membershipFee'));
-		$queuedPaymentId = $paymentManager->queuePayment($queuedPayment);
-
-		$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
-
-	}
 }
 
 ?>
