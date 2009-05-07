@@ -203,7 +203,7 @@ class GroupHandler extends ManagerHandler {
 		// If a user has been selected, add them to the group.
 		// Otherwise list users.
 		if ($userId !== null) {
-			$this->validate($groupId);
+			$this->validate($groupId, $userId);
 			$press =& $this->press;
 			$group =& $this->group;
 			$user =& $this->user;
@@ -272,7 +272,7 @@ class GroupHandler extends ManagerHandler {
 		$groupId = isset($args[0])?(int)$args[0]:0;
 		$userId = isset($args[1])?(int)$args[1]:0;
 
-		$this->validate($groupId);
+		$this->validate($groupId, $userId, true);
 
 		$press =& $this->press;
 
@@ -295,7 +295,7 @@ class GroupHandler extends ManagerHandler {
 	function moveMembership() {
 		$groupId = (int) Request::getUserVar('groupId');
 		$userId = (int) Request::getUserVar('userId');
-		$this->validate($groupId);
+		$this->validate($groupId, $userId, true);
 		$press =& $this->press;
 		$group =& $this->group;
 		$user =& $this->user;
