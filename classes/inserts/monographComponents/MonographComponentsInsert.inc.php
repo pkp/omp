@@ -59,7 +59,7 @@ class MonographComponentsInsert
 				$cas = array();
 				foreach ($components[$i]->getMonographComponentAuthors() as $ca) {
 					array_push($cas, array(
-								'authorId' => $gnash[$ca->getAuthorId()],
+								'authorId' => $gnash[$ca->getId()],
 								'email' => $ca->getEmail(),
 								'firstName' => $ca->getFirstName(),
 								'lastName' => $ca->getLastName()
@@ -133,7 +133,7 @@ class MonographComponentsInsert
 					// Create a new author
 					$author =& new Author();
 					$authorId = (int) $componentAuthor['authorId'];
-					$author->setAuthorId($authorId);
+					$author->setId($authorId);
 					$author->setSequence($i);
 					$component->addMonographComponentAuthor($author);
 					$i++;

@@ -137,7 +137,7 @@ class MonographComponentDAO extends DAO {
 		for ($i=0,$count=count($componentAuthors);$i < $count;$i++) {
 			$this->_insertMonographComponentAuthor(
 				$component->getMonographComponentId(), 
-				$componentAuthors[$i]->getAuthorId(), 
+				$componentAuthors[$i]->getId(), 
 				$component->getMonographId(),
 				$i+1
 			);
@@ -183,7 +183,7 @@ class MonographComponentDAO extends DAO {
 		for ($i=0,$count=count($componentAuthors);$i<$count;$i++) {
 			$this->_insertMonographComponentAuthor(
 				$this->getInsertMonographComponentId(), 
-				$componentAuthors[$i]->getAuthorId(),
+				$componentAuthors[$i]->getId(),
 				$component->getMonographId(), 
 				$i+1
 			);		

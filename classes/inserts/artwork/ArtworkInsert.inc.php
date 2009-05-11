@@ -43,7 +43,7 @@ class ArtworkInsert
 				$cas = array();
 				foreach ($components[$i]->getMonographComponentAuthors() as $ca) {
 					array_push($cas, array(
-								'authorId' => $gnash[$ca->getAuthorId()],
+								'authorId' => $gnash[$ca->getId()],
 								'email' => $ca->getEmail(),
 								'firstName' => $ca->getFirstName(),
 								'lastName' => $ca->getLastName()

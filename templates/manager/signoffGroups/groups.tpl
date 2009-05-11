@@ -32,12 +32,12 @@
 	<tr valign="top">
 
 		<td colspan="2">
-			{url|assign:"url" page="manager" op="email" toGroup=$group->getGroupId()}
+			{url|assign:"url" page="manager" op="email" toGroup=$group->getId()}
 			{$group->getLocalizedTitle()|escape}&nbsp;{icon name="mail" url=$url}
 		</td>
 
 		<td>
-			<a href="{url op="addSignoffGroup" path=$reviewTypeId entityId=$group->getGroupId()}" class="action">{translate key="common.add"}</a>
+			<a href="{url op="addSignoffGroup" path=$reviewTypeId entityId=$group->getId()}" class="action">{translate key="common.add"}</a>
 		</td>
 	</tr>
 	<tr>

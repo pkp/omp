@@ -39,11 +39,11 @@ function show(id) {
 		<div style="background-color:{if $authorIndex % 2}#FFFFFF{else}#E0E0E0{/if}">
 			{assign var=emailString value="`$author->getFullName()` <`$author->getEmail()`>"}
 			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle()|strip_tags monographId=$submission->getMonographId()}
-			<a style="text-decoration:none" href="javascript:show('authors-{$author->getAuthorId()|escape}-display')">(+){$author->getFullname()}</a>&nbsp;{icon name="mail" url=$url}
+			<a style="text-decoration:none" href="javascript:show('authors-{$author->getId()|escape}-display')">(+){$author->getFullname()}</a>&nbsp;{icon name="mail" url=$url}
 		<br />
 		</div>
 
-		<div id="authors-{$author->getAuthorId()|escape}-display" style="display:none;border-left:1px solid black;padding-left:10px;background-color:{if $authorIndex % 2}#FFFFFF{else}#E0E0E0{/if}">
+		<div id="authors-{$author->getId()|escape}-display" style="display:none;border-left:1px solid black;padding-left:10px;background-color:{if $authorIndex % 2}#FFFFFF{else}#E0E0E0{/if}">
 			<table class="data">
 
 			{if $author->getEmail()}<tr valign="top">

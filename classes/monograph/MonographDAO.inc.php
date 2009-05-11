@@ -506,13 +506,13 @@ class MonographDAO extends DAO {
 
 		for ($i=0; $i < $count; $i++) {
 			if (isset($authors[$i]) && isset($oldAuthors[$i])) {
-				$gnash[$authors[$i]->getAuthorId()] = $oldAuthors[$i];
-				$authors[$i]->setAuthorId($oldAuthors[$i]);
+				$gnash[$authors[$i]->getId()] = $oldAuthors[$i];
+				$authors[$i]->setId($oldAuthors[$i]);
 				$authorDao->updateAuthor($authors[$i]);
 			} else if (!isset($authors[$i]) && isset($oldAuthors[$i])) {
 				$authorDao->deleteAuthorById($oldAuthors[$i], $monograph->getMonographId());
 			} else if (isset($authors[$i]) && !isset($oldAuthors[$i])) {
-				$gnash[$authors[$i]->getAuthorId()] = $authorDao->insertAuthor($authors[$i]);
+				$gnash[$authors[$i]->getId()] = $authorDao->insertAuthor($authors[$i]);
 			}
 		}
 
@@ -527,8 +527,8 @@ class MonographDAO extends DAO {
 			if (isset($monographComponents[$i]) && isset($oldMonographComponents[$i])) {
 
 				foreach ($monographComponents[$i]->getMonographComponentAuthors() as $ca) {
-					if (isset($gnash[$ca->getAuthorId()])) {
-						$ca->setAuthorId($gnash[$ca->getAuthorId()]);
+					if (isset($gnash[$ca->getId()])) {
+						$ca->setId($gnash[$ca->getId()]);
 					}
 					//primary contact settings
 				}
@@ -540,7 +540,7 @@ class MonographDAO extends DAO {
 			} else if (isset($monographComponents[$i]) && !isset($oldMonographComponents[$i])) {
 
 				foreach ($monographComponents[$i]->getMonographComponentAuthors() as $chau) {
-					$chau->setAuthorId($gnash[$chau->getAuthorId()]);
+					$chau->setId($gnash[$chau->getId()]);
 				}
 				$monographComponentDao->insertMonographComponent($monographComponents[$i]);
 			}

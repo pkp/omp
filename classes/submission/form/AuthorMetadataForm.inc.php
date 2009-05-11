@@ -94,7 +94,7 @@ class AuthorMetadataForm extends Form {
 			$author =& $this->author;
 			$this->_data = array (
 						'monographId' => $author->getMonographId(),
-						'authorId' => $author->getAuthorId(),
+						'authorId' => $author->getId(),
 						'firstName' => $author->getFirstName(),
 						'middleName' => $author->getMiddleName(),
 						'lastName' => $author->getLastName(),
@@ -209,7 +209,7 @@ class AuthorMetadataForm extends Form {
 		$this->readInputData();
 
 		$author->setMonographId($this->getData('monographId'));
-		$author->setAuthorId($this->getData('authorId'));
+		$author->setId($this->getData('authorId'));
 		$author->setFirstName($this->getData('firstName'));
 		$author->setMiddleName($this->getData('middleName'));
 		$author->setLastName($this->getData('lastName'));
@@ -229,7 +229,7 @@ class AuthorMetadataForm extends Form {
 		Request::redirectUrl($this->getData('backUrl'));
 
 
-		return $author->getAuthorId();
+		return $author->getId();
 	}
 
 	/**

@@ -22,7 +22,7 @@
 <br />
 {foreach from=$signoffEntities[$smarty.const.SIGNOFF_ENTITY_TYPE_GROUP] item=group}
 
-{$group->getLocalizedTitle()} <a href="{url op="removeSignoffGroup" path=$reviewTypeId groupId=$group->getGroupId()}">remove</a>
+{$group->getLocalizedTitle()} <a href="{url op="removeSignoffGroup" path=$reviewTypeId groupId=$group->getId()}">remove</a>
 
 {/foreach}
 

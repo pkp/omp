@@ -43,7 +43,7 @@ class ContributorInsert
 			$gnash = array();
 			$primaryContact = 0;
 			foreach ($authors as $author) {
-				$gnash[$author->getAuthorId()] = $i;
+				$gnash[$author->getId()] = $i;
 
 				$authorArray = array(
 							'firstName' => $author->getFirstName(),
@@ -95,7 +95,7 @@ class ContributorInsert
 			if ($formAuthor['deleted']) continue;
 			$author =& new Author();
 			$author->setMonographId($monograph->getMonographId());
-			$author->setAuthorId($formAuthor['authorId']);
+			$author->setId($formAuthor['authorId']);
 			$author->setFirstName($formAuthor['firstName']);
 			$author->setMiddleName($formAuthor['middleName']);
 			$author->setLastName($formAuthor['lastName']);
