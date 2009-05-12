@@ -14,7 +14,7 @@
 	<tr class="heading" valign="bottom">
 		<td width="5%">{translate key="common.id"}</td>
 		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="common.assigned"}</td>
-		<td width="5%">{translate key="submissions.sec"}</td>
+		<td width="5%">{translate key="submissions.acquisitionsArrangement"}</td>
 		<td width="70%">{translate key="monograph.title"}</td>
 		<td width="5%">{translate key="submission.due"}</td>
 		<td width="10%">{translate key="submissions.reviewRound"}</td>
@@ -28,7 +28,7 @@
 	<tr valign="top">
 		<td>{$monographId|escape}</td>
 		<td>{$submission->getDateNotified()|date_format:$dateFormatTrunc}</td>
-		<td>{$submission->getSectionAbbrev()|escape}</td>
+		<td>{$submission->getAcquisitionsArrangementAbbrev()|escape}</td>
 		<td><a href="{url op="submission" path=$reviewId}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		<td class="nowrap">{$submission->getDateDue()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getRound()}</td>

@@ -40,7 +40,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+//		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 	}
 
 	/**
@@ -61,13 +61,13 @@ class ReviewerSubmissionDAO extends DAO {
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
 			FROM	monographs a
 				LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id)
-				LEFT JOIN sections s ON (s.section_id = a.section_id)
+				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN review_rounds r2 ON (a.monograph_id = r2.monograph_id AND r.round = r2.round)
-				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN section_settings sal ON (s.section_id = sal.section_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	r.review_id = ?',
 			array(
 				'title',
@@ -84,7 +84,7 @@ class ReviewerSubmissionDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnReviewerSubmissionFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -94,12 +94,20 @@ class ReviewerSubmissionDAO extends DAO {
 	}
 
 	/**
+	 * Construct a new data object corresponding to this DAO.
+	 * @return SignoffEntry
+	 */
+	function newDataObject() {
+		return new ReviewerSubmission();
+	}
+
+	/**
 	 * Internal function to return a ReviewerSubmission object from a row.
 	 * @param $row array
 	 * @return ReviewerSubmission
 	 */
-	function &_returnReviewerSubmissionFromRow(&$row) {
-		$reviewerSubmission = new ReviewerSubmission();
+	function &_fromRow(&$row) {
+		$reviewerSubmission = $this->newDataObject();
 
 		// Editor Assignment
 		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
@@ -114,12 +122,11 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setReviewerFileRevisions($this->monographFileDao->getMonographFileRevisions($row['reviewer_file_id']));
 
 		// Comments
-		$reviewerSubmission->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
+//		$reviewerSubmission->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
 
 		// Editor Decisions
-		for ($i = 1; $i <= $row['current_round']; $i++) {
-			$reviewerSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $i), $i);
-		}
+		$decisions =& $this->getEditorDecisions($row['monograph_id']);
+		$reviewerSubmission->setDecisions($decisions);
 
 		// Review Assignment 
 		$reviewerSubmission->setReviewId($row['review_id']);
@@ -145,7 +152,7 @@ class ReviewerSubmissionDAO extends DAO {
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($reviewerSubmission, $row);
 
-		HookRegistry::call('ReviewerSubmissionDAO::_returnReviewerSubmissionFromRow', array(&$reviewerSubmission, &$row));
+		HookRegistry::call('ReviewerSubmissionDAO::_fromRow', array(&$reviewerSubmission, &$row));
 
 		return $reviewerSubmission;
 	}
@@ -209,13 +216,13 @@ class ReviewerSubmissionDAO extends DAO {
 				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
 			FROM	monographs a
 				LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id)
-				LEFT JOIN sections s ON (s.section_id = a.section_id)
+				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round)
-				LEFT JOIN section_settings stpl ON (s.section_id = stpl.section_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN section_settings stl ON (s.section_id = stl.section_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN section_settings sapl ON (s.section_id = sapl.section_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN section_settings sal ON (s.section_id = sal.section_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	a.press_id = ?
 				AND r.reviewer_id = ?
 				AND r.date_notified IS NOT NULL';
@@ -243,7 +250,7 @@ class ReviewerSubmissionDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnReviewerSubmissionFromRow');
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 
@@ -257,7 +264,15 @@ class ReviewerSubmissionDAO extends DAO {
 		$submissionsCount[0] = 0;
 		$submissionsCount[1] = 0;
 
-		$sql = 'SELECT r.date_completed, r.declined, r.cancelled FROM monographs a LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id) LEFT JOIN sections s ON (s.section_id = a.section_id) LEFT JOIN users u ON (r.reviewer_id = u.user_id) LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round)  WHERE a.press_id = ? AND r.reviewer_id = ? AND r.date_notified IS NOT NULL';
+		$sql = 'SELECT r.date_completed, r.declined, r.cancelled 
+			FROM monographs a 
+			LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id) 
+			LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id) 
+			LEFT JOIN users u ON (r.reviewer_id = u.user_id) 
+			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) 
+			WHERE a.press_id = ? AND 
+				r.reviewer_id = ? AND 
+				r.date_notified IS NOT NULL';
 
 		$result =& $this->retrieve($sql, array($pressId, $reviewerId));
 

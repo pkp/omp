@@ -98,13 +98,14 @@ class AcquisitionsEditorAction extends Action {
 		if ($round == null) {
 	//		$round = $acquisitionsEditorSubmission->getCurrentRoundByReviewType($reviewType);
 		}
-$round = 1;
+
 		$assigned = $acquisitionsEditorSubmissionDao->reviewerExists($acquisitionsEditorSubmission->getMonographId(), $reviewerId, $reviewType, $round);
 
 		// Only add the reviewer if he has not already
 		// been assigned to review this monograph.
 		if (!$assigned && isset($reviewer) && !HookRegistry::call('AcquisitionsEditorAction::addReviewer', array(&$acquisitionsEditorSubmission, $reviewerId))) {
 			$reviewAssignment = new ReviewAssignment();
+			$reviewAssignment->setMonographId($acquisitionsEditorSubmission->getMonographId());
 			$reviewAssignment->setReviewerId($reviewerId);
 			$reviewAssignment->setDateAssigned(Core::getCurrentDate());
 			$reviewAssignment->setRound($round);
@@ -122,7 +123,9 @@ $round = 1;
 				}
 			}
 
-			$acquisitionsEditorSubmission->addReviewAssignment($reviewAssignment);
+			$reviewAssignments = $acquisitionsEditorSubmission->getReviewAssignments();
+			$reviewAssignments = array_merge($reviewAssignments, array($reviewAssignment));
+			$acquisitionsEditorSubmission->setReviewAssignments($reviewAssignments);
 			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
 			$round = $acquisitionsEditorSubmission->getCurrentReviewRound();
 			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($acquisitionsEditorSubmission->getMonographId(), $reviewerId, $reviewType, $round);

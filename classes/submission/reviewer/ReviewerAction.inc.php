@@ -20,13 +20,6 @@ import('submission.common.Action');
 class ReviewerAction extends Action {
 
 	/**
-	 * Constructor.
-	 */
-	function ReviewerAction() {
-
-	}
-
-	/**
 	 * Actions.
 	 */
 
@@ -58,7 +51,7 @@ class ReviewerAction extends Action {
 			if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 				HookRegistry::call('ReviewerAction::confirmReview', array(&$reviewerSubmission, &$email, $decline));
 				if ($email->isEnabled()) {
-					$email->setAssoc($decline?ARTICLE_EMAIL_REVIEW_DECLINE:ARTICLE_EMAIL_REVIEW_CONFIRM, ARTICLE_EMAIL_TYPE_REVIEW, $reviewId);
+					$email->setAssoc($decline?MONOGRAPH_EMAIL_REVIEW_DECLINE:MONOGRAPH_EMAIL_REVIEW_CONFIRM, MONOGRAPH_EMAIL_TYPE_REVIEW, $reviewId);
 					$email->send();
 				}
 
@@ -68,16 +61,16 @@ class ReviewerAction extends Action {
 				$reviewAssignmentDao->updateObject($reviewAssignment);
 
 				// Add log
-				import('article.log.MonographLog');
-				import('article.log.MonographEventLogEntry');
+				import('monograph.log.MonographLog');
+				import('monograph.log.MonographEventLogEntry');
 
 				$entry = new MonographEventLogEntry();
 				$entry->setMonographId($reviewAssignment->getMonographId());
 				$entry->setUserId($reviewer->getUserId());
 				$entry->setDateLogged(Core::getCurrentDate());
-				$entry->setEventType($decline?ARTICLE_LOG_REVIEW_DECLINE:ARTICLE_LOG_REVIEW_ACCEPT);
-				$entry->setLogMessage($decline?'log.review.reviewDeclined':'log.review.reviewAccepted', array('reviewerName' => $reviewer->getFullName(), 'articleId' => $reviewAssignment->getMonographId(), 'round' => $reviewAssignment->getRound()));
-				$entry->setAssocType(ARTICLE_LOG_TYPE_REVIEW);
+				$entry->setEventType($decline?MONOGRAPH_LOG_REVIEW_DECLINE:MONOGRAPH_LOG_REVIEW_ACCEPT);
+				$entry->setLogMessage($decline?'log.review.reviewDeclined':'log.review.reviewAccepted', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getMonographId(), 'round' => $reviewAssignment->getRound()));
+				$entry->setAssocType(MONOGRAPH_LOG_TYPE_REVIEW);
 				$entry->setAssocId($reviewAssignment->getReviewId());
 
 				MonographLog::logEventEntry($reviewAssignment->getMonographId(), $entry);
@@ -88,9 +81,9 @@ class ReviewerAction extends Action {
 					$assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getMonographId());
 					$reviewingSectionEditors = $email->toAssignedReviewingSectionEditors($reviewerSubmission->getMonographId());
 					if (empty($assignedEditors) && empty($reviewingSectionEditors)) {
-						$journal =& Request::getPress();
-						$email->addRecipient($journal->getSetting('contactEmail'), $journal->getSetting('contactName'));
-						$editorialContactName = $journal->getSetting('contactName');
+						$press =& Request::getPress();
+						$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
+						$editorialContactName = $press->getSetting('contactName');
 					} else {
 						if (!empty($reviewingSectionEditors)) $editorialContact = array_shift($reviewingSectionEditors);
 						else $editorialContact = array_shift($assignedEditors);
@@ -142,7 +135,7 @@ class ReviewerAction extends Action {
 			if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 				HookRegistry::call('ReviewerAction::recordRecommendation', array(&$reviewerSubmission, &$email, $recommendation));
 				if ($email->isEnabled()) {
-					$email->setAssoc(ARTICLE_EMAIL_REVIEW_COMPLETE, ARTICLE_EMAIL_TYPE_REVIEW, $reviewerSubmission->getReviewId());
+					$email->setAssoc(MONOGRAPH_EMAIL_REVIEW_COMPLETE, MONOGRAPH_EMAIL_TYPE_REVIEW, $reviewerSubmission->getReviewId());
 					$email->send();
 				}
 
@@ -152,16 +145,16 @@ class ReviewerAction extends Action {
 				$reviewAssignmentDao->updateObject($reviewAssignment);
 
 				// Add log
-				import('article.log.MonographLog');
-				import('article.log.MonographEventLogEntry');
+				import('monograph.log.MonographLog');
+				import('monograph.log.MonographEventLogEntry');
 
 				$entry = new MonographEventLogEntry();
 				$entry->setMonographId($reviewAssignment->getMonographId());
 				$entry->setUserId($reviewer->getUserId());
 				$entry->setDateLogged(Core::getCurrentDate());
-				$entry->setEventType(ARTICLE_LOG_REVIEW_RECOMMENDATION);
-				$entry->setLogMessage('log.review.reviewRecommendationSet', array('reviewerName' => $reviewer->getFullName(), 'articleId' => $reviewAssignment->getMonographId(), 'round' => $reviewAssignment->getRound()));
-				$entry->setAssocType(ARTICLE_LOG_TYPE_REVIEW);
+				$entry->setEventType(MONOGRAPH_LOG_REVIEW_RECOMMENDATION);
+				$entry->setLogMessage('log.review.reviewRecommendationSet', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getMonographId(), 'round' => $reviewAssignment->getRound()));
+				$entry->setAssocType(MONOGRAPH_LOG_TYPE_REVIEW);
 				$entry->setAssocId($reviewAssignment->getReviewId());
 
 				MonographLog::logEventEntry($reviewAssignment->getMonographId(), $entry);
@@ -170,9 +163,9 @@ class ReviewerAction extends Action {
 					$assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getMonographId());
 					$reviewingSectionEditors = $email->toAssignedReviewingSectionEditors($reviewerSubmission->getMonographId());
 					if (empty($assignedEditors) && empty($reviewingSectionEditors)) {
-						$journal =& Request::getPress();
-						$email->addRecipient($journal->getSetting('contactEmail'), $journal->getSetting('contactName'));
-						$editorialContactName = $journal->getSetting('contactName');
+						$press =& Request::getPress();
+						$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
+						$editorialContactName = $press->getSetting('contactName');
 					} else {
 						if (!empty($reviewingSectionEditors)) $editorialContact = array_shift($reviewingSectionEditors);
 						else $editorialContact = array_shift($assignedEditors);
@@ -184,7 +177,7 @@ class ReviewerAction extends Action {
 					$email->assignParams(array(
 						'editorialContactName' => $editorialContactName,
 						'reviewerName' => $reviewer->getFullName(),
-						'articleTitle' => strip_tags($reviewerSubmission->getMonographTitle()),
+						'monographTitle' => strip_tags($reviewerSubmission->getLocalizedTitle()),
 						'recommendation' => Locale::translate($reviewerRecommendationOptions[$recommendation])
 					));
 				}
@@ -199,7 +192,7 @@ class ReviewerAction extends Action {
 	}
 
 	/**
-	 * Upload the annotated version of an article.
+	 * Upload the annotated version of an monograph.
 	 * @param $reviewId int
 	 */
 	function uploadReviewerVersion($reviewId) {
@@ -207,18 +200,18 @@ class ReviewerAction extends Action {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');		
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
-		$articleFileManager = new MonographFileManager($reviewAssignment->getMonographId());
+		$monographFileManager = new MonographFileManager($reviewAssignment->getMonographId());
 
 		// Only upload the file if the reviewer has yet to submit a recommendation
 		// and if review forms are not used
 		if (($reviewAssignment->getRecommendation() === null || $reviewAssignment->getRecommendation() === '') && !$reviewAssignment->getCancelled()) {
 			$fileName = 'upload';
-			if ($articleFileManager->uploadedFileExists($fileName)) {
+			if ($monographFileManager->uploadedFileExists($fileName)) {
 				HookRegistry::call('ReviewerAction::uploadReviewFile', array(&$reviewAssignment));
 				if ($reviewAssignment->getReviewerFileId() != null) {
-					$fileId = $articleFileManager->uploadReviewFile($fileName, $reviewAssignment->getReviewerFileId());
+					$fileId = $monographFileManager->uploadReviewFile($fileName, $reviewAssignment->getReviewerFileId());
 				} else {
-					$fileId = $articleFileManager->uploadReviewFile($fileName);
+					$fileId = $monographFileManager->uploadReviewFile($fileName);
 				}
 			}
 		}
@@ -229,8 +222,8 @@ class ReviewerAction extends Action {
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
-			import('article.log.MonographLog');
-			import('article.log.MonographEventLogEntry');
+			import('monograph.log.MonographLog');
+			import('monograph.log.MonographEventLogEntry');
 
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
@@ -239,9 +232,9 @@ class ReviewerAction extends Action {
 			$entry->setMonographId($reviewAssignment->getMonographId());
 			$entry->setUserId($reviewer->getUserId());
 			$entry->setDateLogged(Core::getCurrentDate());
-			$entry->setEventType(ARTICLE_LOG_REVIEW_FILE);
+			$entry->setEventType(MONOGRAPH_LOG_REVIEW_FILE);
 			$entry->setLogMessage('log.review.reviewerFile');
-			$entry->setAssocType(ARTICLE_LOG_TYPE_REVIEW);
+			$entry->setAssocType(MONOGRAPH_LOG_TYPE_REVIEW);
 			$entry->setAssocId($reviewAssignment->getReviewId());
 
 			MonographLog::logEventEntry($reviewAssignment->getMonographId(), $entry);
@@ -249,7 +242,7 @@ class ReviewerAction extends Action {
 	}
 
 	/**
-	 * Delete an annotated version of an article.
+	 * Delete an annotated version of an monograph.
 	 * @param $reviewId int
 	 * @param $fileId int
 	 * @param $revision int If null, then all revisions are deleted.
@@ -257,28 +250,28 @@ class ReviewerAction extends Action {
         function deleteReviewerVersion($reviewId, $fileId, $revision = null) {
 		import("file.MonographFileManager");
 
-		$articleId = Request::getUserVar('articleId');
+		$monographId = Request::getUserVar('monographId');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		if (!HookRegistry::call('ReviewerAction::deleteReviewerVersion', array(&$reviewAssignment, &$fileId, &$revision))) {
-			$articleFileManager = new MonographFileManager($reviewAssignment->getMonographId());
-			$articleFileManager->deleteFile($fileId, $revision);
+			$monographFileManager = new MonographFileManager($reviewAssignment->getMonographId());
+			$monographFileManager->deleteFile($fileId, $revision);
 		}
         }
 
 	/**
 	 * View reviewer comments.
 	 * @param $user object Current user
-	 * @param $article object
+	 * @param $monograph object
 	 * @param $reviewId int
 	 */
-	function viewPeerReviewComments(&$user, &$article, $reviewId) {
-		if (!HookRegistry::call('ReviewerAction::viewPeerReviewComments', array(&$user, &$article, &$reviewId))) {
+	function viewPeerReviewComments(&$user, &$monograph, $reviewId) {
+		if (!HookRegistry::call('ReviewerAction::viewPeerReviewComments', array(&$user, &$monograph, &$reviewId))) {
 			import("submission.form.comment.PeerReviewCommentForm");
 
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new PeerReviewCommentForm($article, $reviewId, ROLE_ID_REVIEWER);
+			$commentForm =& new PeerReviewCommentForm($monograph, $reviewId, ROLE_ID_REVIEWER);
 			$commentForm->setUser($user);
 			$commentForm->initData();
 			$commentForm->setData('reviewId', $reviewId);
@@ -289,16 +282,16 @@ class ReviewerAction extends Action {
 	/**
 	 * Post reviewer comments.
 	 * @param $user object Current user
-	 * @param $article object
+	 * @param $monograph object
 	 * @param $reviewId int
 	 * @param $emailComment boolean
 	 */
-	function postPeerReviewComment(&$user, &$article, $reviewId, $emailComment) {
-		if (!HookRegistry::call('ReviewerAction::postPeerReviewComment', array(&$user, &$article, &$reviewId, &$emailComment))) {
+	function postPeerReviewComment(&$user, &$monograph, $reviewId, $emailComment) {
+		if (!HookRegistry::call('ReviewerAction::postPeerReviewComment', array(&$user, &$monograph, &$reviewId, &$emailComment))) {
 			import("submission.form.comment.PeerReviewCommentForm");
 
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new PeerReviewCommentForm($article, $reviewId, ROLE_ID_REVIEWER);
+			$commentForm =& new PeerReviewCommentForm($monograph, $reviewId, ROLE_ID_REVIEWER);
 			$commentForm->setUser($user);
 			$commentForm->readInputData();
 
@@ -362,14 +355,14 @@ class ReviewerAction extends Action {
 	/**
 	 * Download a file a reviewer has access to.
 	 * @param $reviewId int
-	 * @param $article object
+	 * @param $monograph object
 	 * @param $fileId int
 	 * @param $revision int
 	 */
-	function downloadReviewerFile($reviewId, $article, $fileId, $revision = null) {
+	function downloadReviewerFile($reviewId, $monograph, $fileId, $revision = null) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');		
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
-		$journal =& Request::getPress();
+		$press =& Request::getPress();
 
 		$canDownload = false;
 
@@ -377,7 +370,7 @@ class ReviewerAction extends Action {
 		// 1) The current revision of the file to be reviewed.
 		// 2) Any file that he uploads.
 		// 3) Any supplementary file that is visible to reviewers.
-		if ((!$reviewAssignment->getDateConfirmed() || $reviewAssignment->getDeclined()) && $journal->getSetting('restrictReviewerFileAccess')) {
+		if ((!$reviewAssignment->getDateConfirmed() || $reviewAssignment->getDeclined()) && $press->getSetting('restrictReviewerFileAccess')) {
 			// Restrict files until review is accepted
 		} else if ($reviewAssignment->getReviewFileId() == $fileId) {
 			if ($revision != null) {
@@ -394,9 +387,9 @@ class ReviewerAction extends Action {
 		}
 
 		$result = false;
-		if (!HookRegistry::call('ReviewerAction::downloadReviewerFile', array(&$article, &$fileId, &$revision, &$canDownload, &$result))) {
+		if (!HookRegistry::call('ReviewerAction::downloadReviewerFile', array(&$monograph, &$fileId, &$revision, &$canDownload, &$result))) {
 			if ($canDownload) {
-				return Action::downloadFile($article->getMonographId(), $fileId, $revision);
+				return Action::downloadFile($monograph->getMonographId(), $fileId, $revision);
 			} else {
 				return false;
 			}
@@ -408,12 +401,12 @@ class ReviewerAction extends Action {
 	 * Edit comment.
 	 * @param $commentId int
 	 */
-	function editComment ($article, $comment, $reviewId) {
-		if (!HookRegistry::call('ReviewerAction::editComment', array(&$article, &$comment, &$reviewId))) {
+	function editComment ($monograph, $comment, $reviewId) {
+		if (!HookRegistry::call('ReviewerAction::editComment', array(&$monograph, &$comment, &$reviewId))) {
 			import ("submission.form.comment.EditCommentForm");
 
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new EditCommentForm ($article, $comment);
+			$commentForm =& new EditCommentForm ($monograph, $comment);
 			$commentForm->initData();
 			$commentForm->setData('reviewId', $reviewId);
 			$commentForm->display(array('reviewId' => $reviewId));

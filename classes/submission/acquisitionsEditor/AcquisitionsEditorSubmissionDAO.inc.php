@@ -333,14 +333,13 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 			$this->copyeditorSubmissionDao->insertCopyeditorSubmission($copyeditorSubmission);
 		}
 */
+
 		// update review assignments
-		foreach ($acquisitionsEditorSubmission->getReviewAssignments() as $roundReviewAssignments) {
-			foreach ($roundReviewAssignments as $reviewAssignment) {
-				if ($reviewAssignment->getReviewId() > 0) {
-					$this->reviewAssignmentDao->updateObject($reviewAssignment);
-				} else {
-					$this->reviewAssignmentDao->insertObject($reviewAssignment);
-				}
+		foreach ($acquisitionsEditorSubmission->getReviewAssignments() as $reviewAssignment) {
+			if ($reviewAssignment->getReviewId() > 0) {
+				$this->reviewAssignmentDao->updateObject($reviewAssignment);
+			} else {
+				$this->reviewAssignmentDao->insertObject($reviewAssignment);
 			}
 		}
 

@@ -40,14 +40,14 @@ function confirmSubmissionCheck() {
 	<td width="80%" class="value">{$submission->getLocalizedTitle()|strip_unsafe_html}</td>
 </tr>
 <tr valign="top">
-	<td class="label">{translate key="monograph.pressSection"}</td>
-	<td class="value">{$submission->getSectionTitle()|escape}</td>
+	<td class="label">{translate key="submission.acquisitionsArrangement"}</td>
+	<td class="value">{$submission->getAcquisitionsArrangementTitle()|escape}</td>
 </tr>
 <tr valign="top">
 	<td class="label">{translate key="monograph.abstract"}</td>
 	<td class="value">{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br}</td>
 </tr>
-{assign var=editAssignments value=$submission->getByIds()}
+{assign var=editAssignments value=$submission->getEditAssignments()}
 {foreach from=$editAssignments item=editAssignment}
 	{if !$notFirstEditAssignment}
 		{assign var=notFirstEditAssignment value=1}
@@ -271,7 +271,9 @@ function confirmSubmissionCheck() {
 	<td>&nbsp;</td>
 	<td>
 		<table class="data" width="100%">
-			{foreach from=$submission->getReviewerFileRevisions() item=reviewerFile key=key}
+			{assign var=reviewerFiles value=$submission->getReviewerFileRevisions()}
+			{assign var=reviewerFiles value=$reviewerFiles.$reviewType.$round}
+			{foreach from=$reviewerFiles item=reviewerFile key=key}
 				{assign var=uploadedFileExists value="1"}
 				<tr valign="top">
 				<td class="label" width="30%">

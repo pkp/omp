@@ -515,7 +515,7 @@ $sections = null;
 
 		if (isset($reviewerId)) {
 			// Assign reviewer to monograph
-			AcquisitionsEditorAction::addReviewer($submission, $reviewerId, $reviewType);
+			AcquisitionsEditorAction::addReviewer($submission, $reviewerId, $reviewType, $round);
 			Request::redirect(null, null, 'submissionReview', $monographId);
 
 			// FIXME: Prompt for due date.

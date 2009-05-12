@@ -20,10 +20,10 @@ import('monograph.Monograph');
 
 class ReviewerSubmission extends Monograph {
 
-	/** @var array ArticleFiles reviewer file revisions of this monograph */
+	/** @var array MonographFiles reviewer file revisions of this monograph */
 	var $reviewerFileRevisions;
 
-	/** @var array ArticleComments peer review comments of this monograph */
+	/** @var array MonographComments peer review comments of this monograph */
 	var $peerReviewComments;
 
 	/** @var array the editor decisions of this monograph */
@@ -44,7 +44,7 @@ class ReviewerSubmission extends Monograph {
 	 * Get edit assignments for this monograph.
 	 * @return array
 	 */
-	function &getByIds() {
+	function &getEditAssignments() {
 		$editAssignments = &$this->getData('editAssignments');
 		return $editAssignments;
 	}
@@ -93,7 +93,7 @@ class ReviewerSubmission extends Monograph {
 	 * Get ID of monograph.
 	 * @return int
 	 */
-	function getArticleId() {
+	function getMonographId() {
 		return $this->getData('monographId');
 	}
 
@@ -101,7 +101,7 @@ class ReviewerSubmission extends Monograph {
 	 * Set ID of monograph.
 	 * @param $monographId int
 	 */
-	function setArticleId($monographId) {
+	function setMonographId($monographId) {
 		return $this->setData('monographId', $monographId);
 	}
 
@@ -141,13 +141,8 @@ class ReviewerSubmission extends Monograph {
 	 * Get editor decisions.
 	 * @return array
 	 */
-	function getDecisions($round = null) {
-		if ($round == null) {
-			return $this->editorDecisions;
-		} else {
-			if (isset($this->editorDecisions[$round])) return $this->editorDecisions[$round];
-			else return null;
-		}
+	function getDecisions() {
+		return $this->editorDecisions;
 	}
 
 	/**
@@ -155,8 +150,8 @@ class ReviewerSubmission extends Monograph {
 	 * @param $editorDecisions array
 	 * @param $round int
 	 */
-	function setDecisions($editorDecisions, $round) {
-		return $this->editorDecisions[$round] = $editorDecisions;
+	function setDecisions($editorDecisions) {
+		return $this->editorDecisions = $editorDecisions;
 	}
 
 	/**
@@ -406,7 +401,7 @@ class ReviewerSubmission extends Monograph {
 
 	/**
 	 * Get submission file for this monograph.
-	 * @return ArticleFile
+	 * @return MonographFile
 	 */
 	function &getSubmissionFile() {
 		$returner =& $this->getData('submissionFile');
@@ -415,7 +410,7 @@ class ReviewerSubmission extends Monograph {
 
 	/**
 	 * Set submission file for this monograph.
-	 * @param $submissionFile ArticleFile
+	 * @param $submissionFile MonographFile
 	 */
 	function setSubmissionFile($submissionFile) {
 		return $this->setData('submissionFile', $submissionFile);
@@ -423,7 +418,7 @@ class ReviewerSubmission extends Monograph {
 
 	/**
 	 * Get revised file for this monograph.
-	 * @return ArticleFile
+	 * @return MonographFile
 	 */
 	function &getRevisedFile() {
 		$returner =& $this->getData('revisedFile');
@@ -432,7 +427,7 @@ class ReviewerSubmission extends Monograph {
 
 	/**
 	 * Set revised file for this monograph.
-	 * @param $submissionFile ArticleFile
+	 * @param $submissionFile MonographFile
 	 */
 	function setRevisedFile($revisedFile) {
 		return $this->setData('revisedFile', $revisedFile);
@@ -457,7 +452,7 @@ class ReviewerSubmission extends Monograph {
 
 	/**
 	 * Get review file.
-	 * @return ArticleFile
+	 * @return MonographFile
 	 */
 	function &getReviewFile() {
 		$returner =& $this->getData('reviewFile');
@@ -466,7 +461,7 @@ class ReviewerSubmission extends Monograph {
 
 	/**
 	 * Set review file.
-	 * @param $reviewFile ArticleFile
+	 * @param $reviewFile MonographFile
 	 */
 	function setReviewFile($reviewFile) {
 		return $this->setData('reviewFile', $reviewFile);
@@ -474,7 +469,7 @@ class ReviewerSubmission extends Monograph {
 
 	/**
 	 * Get reviewer file.
-	 * @return ArticleFile
+	 * @return MonographFile
 	 */
 	function &getReviewerFile() {
 		$returner =& $this->getData('reviewerFile');
@@ -483,7 +478,7 @@ class ReviewerSubmission extends Monograph {
 
 	/**
 	 * Set reviewer file.
-	 * @param $reviewFile ArticleFile
+	 * @param $reviewFile MonographFile
 	 */
 	function setReviewerFile($reviewerFile) {
 		return $this->setData('reviewerFile', $reviewerFile);
@@ -491,7 +486,7 @@ class ReviewerSubmission extends Monograph {
 
 	/**
 	 * Get all reviewer file revisions.
-	 * @return array ArticleFiles
+	 * @return array MonographFiles
 	 */
 	function getReviewerFileRevisions() {
 		return $this->reviewerFileRevisions;
@@ -499,7 +494,7 @@ class ReviewerSubmission extends Monograph {
 
 	/**
 	 * Set all reviewer file revisions.
-	 * @param $reviewerFileRevisions array ArticleFiles
+	 * @param $reviewerFileRevisions array MonographFiles
 	 */
 	function setReviewerFileRevisions($reviewerFileRevisions) {
 		return $this->reviewerFileRevisions = $reviewerFileRevisions;
@@ -511,7 +506,7 @@ class ReviewerSubmission extends Monograph {
 
 	/**
 	 * Get most recent peer review comment.
-	 * @return ArticleComment
+	 * @return MonographComment
 	 */
 	function getMostRecentPeerReviewComment() {
 		return $this->getData('peerReviewComment');
@@ -519,7 +514,7 @@ class ReviewerSubmission extends Monograph {
 
 	/**
 	 * Set most recent peer review comment.
-	 * @param $peerReviewComment ArticleComment
+	 * @param $peerReviewComment MonographComment
 	 */
 	function setMostRecentPeerReviewComment($peerReviewComment) {
 		return $this->setData('peerReviewComment', $peerReviewComment);
