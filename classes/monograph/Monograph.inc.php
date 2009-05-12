@@ -115,10 +115,70 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * Get the file for this article at a given signoff stage
+	 * Get an array of user IDs associated with this monograph
+	 * @param $authors boolean
+	 * @param $reviewers boolean
+	 * @param $editors boolean
+	 * @param $proofreader boolean
+	 * @param $copyeditor boolean
+	 * @param $layoutEditor boolean
+	 * @return array User IDs
+	 */
+	function getAssociatedUserIds($authors = true, $reviewers = true, $editors = true, $proofreader = true, $copyeditor = true, $layoutEditor = true) {
+		$monographId = $this->getMonographId();
+		$signoffDao = &DAORegistry::getDAO('SignoffDAO');
+		
+		$userIds = array();
+
+		if($authors) {
+			$authorDao = &DAORegistry::getDAO('AuthorDAO');
+			$authors = $authorDao->getAuthorsByMonograph($monographId);
+			foreach ($authors as $author) {
+				$userIds[] = array('id' => $author->getAuthorId(), 'role' => 'author');
+			}
+		}
+		
+		if($editors) {
+			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+			$editAssignments =& $editAssignmentDao->getEditorAssignmentsByMonographId($monographId);
+			while ($editAssignment =& $editAssignments->next()) {
+				$userIds[] = array('id' => $editAssignment->getEditorId(), 'role' => 'editor');
+				unset($editAssignment);
+			}
+		}
+		
+		if($copyeditor) {
+			$copyedSignoff = $signoffDao->getBySymbolic('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $monographId);
+			$userIds[] = array('id' => $copyedSignoff->getUserId(), 'role' => 'copyeditor');
+		}
+		
+		if($layoutEditor) {
+			$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $monographId);
+			$userIds[] = array('id' => $layoutSignoff->getUserId(), 'role' => 'layoutEditor');
+		}	
+		
+		if($proofreader) {
+			$proofSignoff = $signoffDao->getBySymbolic('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $monographId);
+			$userIds[] = array('id' => $proofSignoff->getUserId(), 'role' => 'proofreader');
+		}
+		
+		if($reviewers) {
+			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByMonographId($monographId);
+			foreach ($reviewAssignments as $reviewAssignment) {
+				$userIds[] = array('id' => $reviewAssignment->getReviewerId(), 'role' => 'reviewer');
+				unset($reviewAssignment);
+			}
+		}
+				
+		return $userIds;
+	}
+
+	/**
+	 * Get the file for this monograph at a given signoff stage
 	 * @param $signoffType string
 	 * @param $idOnly boolean Return only file ID
-	 * @return ArticleFile
+	 * @return MonographFile
 	 */
 	function getFileBySignoffType($signoffType, $idOnly = false) {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
@@ -134,7 +194,7 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * Get the user associated with a given signoff and this article
+	 * Get the user associated with a given signoff and this monograph
 	 * @param $signoffType string
 	 * @return User
 	 */
@@ -150,7 +210,7 @@ class Monograph extends Submission {
 		return $user;
 	}
 	/**
-	 * Get the user id associated with a given signoff and this article
+	 * Get the user id associated with a given signoff and this monograph
 	 * @param $signoffType string
 	 * @return int
 	 */

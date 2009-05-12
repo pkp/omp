@@ -98,10 +98,11 @@ class ReviewAssignmentDAO extends DAO {
 	/**
 	 * Determine the order of active reviews for the given round of the given monograph
 	 * @param $monographId int
+	 * @param $reviewType int
 	 * @param $round int
 	 * @return array associating review ID with number; ie if review ID 26 is first, returned['26']=0
 	 */
-	function &getReviewIndexesForRound($monographId, $round) {
+	function &getReviewIndexesForRound($monographId, $reviewType, $round) {
 		$returner = array();
 		$index = 0;
 		$result =& $this->retrieve(
@@ -109,9 +110,10 @@ class ReviewAssignmentDAO extends DAO {
 			FROM review_assignments 
 			WHERE monograph_id = ? AND 
 				round = ? AND 
+				review_type = ? AND
 				(cancelled = 0 OR cancelled IS NULL) 
 			ORDER BY review_id',
-			array((int) $monographId, (int) $round)
+			array((int) $monographId, (int) $reviewType, (int) $round)
 			);
 
 		while (!$result->EOF) {
@@ -170,7 +172,7 @@ class ReviewAssignmentDAO extends DAO {
 		$query = 'SELECT r.*, r2.review_revision, a.review_file_id, u.first_name, u.last_name 
 			FROM review_assignments r 
 			LEFT JOIN users u ON (r.reviewer_id = u.user_id) 
-			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) 
+			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round AND r.review_type = r2.review_type) 
 			LEFT JOIN monographs a ON (r.monograph_id = a.monograph_id) 
 			WHERE r.monograph_id = ?';
 

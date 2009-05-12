@@ -23,4 +23,8 @@
 
 {include file="productionEditor/submission/layout.tpl"}
 
+<div class="separator"></div>
+
+{include file="productionEditor/submission/proofread.tpl"}
+
 {include file="common/footer.tpl"}

@@ -1,5 +1,5 @@
 {foreach from=$reviewProcesses item=reviewProcess}
-<div style="border:1px solid gray">
+<div style="border:0px solid gray">
 
 {if $reviewType != null and $reviewProcess->getProcessId() == $reviewType and $reviewFile != null}
 
@@ -20,9 +20,11 @@
 
 {if not $reviewAssignment->getCancelled() and not $reviewAssignment->getDeclined()}
 	{assign var="reviewIndex" value=$reviewIndexes[$reviewId]}
-	<div class="separator"></div>
 
-	<table class="data" width="100%">
+	<table class="info" width="100%">
+	<tr>
+		<td colspan="3" class="separator">&nbsp;</td>
+	</tr>
 	<tr>
 		<td width="20%"><h4>{translate key="user.role.reviewer"} {$reviewIndex+$start|chr}</h4></td>
 		<td width="34%"><h4>{$reviewAssignment->getReviewerFullName()|escape}</h4></td>
@@ -221,10 +223,19 @@
 	{/if}
 	</table>
 {/if}
+{foreachelse}
+	<table class="info" width="100%">
+		<tr><td colspan="2" class="separator">&nbsp;</td></tr>
+		<tr valign="middle">
+			<td colspan="2" align="center">No Reviewers Assigned</td>
+		</tr>
+
+		<tr><td colspan="2" class="separator">&nbsp;</td></tr>
+
+	</table>
+
 {/foreach}
-
 <div class="separator"></div>
-
 {include file="acquisitionsEditor/submission/editorDecision.tpl"}
 
 {if $reviewProcess->getDateEnded() != null && $reviewProcess->getDateSigned() == null}
@@ -232,27 +243,51 @@
 {else}
 	{assign var="waitingOnSignoffs" value="0"}
 {/if}
-
+{if $waitingOnSignoffs}
 <table class="data" width="100%">
 	<tr valign="middle">
 		<td width="22%"></td>
-		<td width="14%">{if !$waitingOnSignoffs}<a href="{url op="endWorkflowProcess" path=$submission->getMonographId()}">Sign off</a>{/if}</td>
-		<td width="64%" class="nowrap">
-			{if $waitingOnSignoffs}There are/is {$reviewProcess->getSignoffQueueCount()} more people/person that must sign off.{/if}
+		<td width="78%" class="nowrap">
+			{$reviewProcess->getSignoffQueueCount()} more people/person that must sign off.
 		</td>
 	</tr>
 </table>
-
+{/if}
 {elseif $reviewProcess->getDateSigned() != null}
+	<table class="info" width="100%">
+		<tr valign="middle">
+			<td width="40%"><h3>{$reviewProcess->getTitle()}</h3></td>
+			<td width="60%">
+				<a href="{url op="submissionRegrets" path=$submission->getMonographId()}" class="action">{translate|escape key="editor.regrets.link"}</a>
+			</td>
+		</tr>
+		<tr><td colspan="2" class="separator">&nbsp;</td></tr>
+		<tr valign="middle">
+			<td colspan="2" align="center">Completed {$reviewProcess->getDateSigned()}</td>
+		</tr>
 
-<h3>{$reviewProcess->getTitle()}: Done ({$reviewProcess->getDateSigned()})</h3>
+		<tr><td colspan="2" class="separator">&nbsp;</td></tr>
+
+	</table>
 
 {else}
 
-<h3>{$reviewProcess->getTitle()}: Not available yet.</h3>
+	<table class="info" width="100%">
+		<tr valign="middle">
+			<td width="40%"><h3>{$reviewProcess->getTitle()}</h3></td>
+		</tr>
+		<tr><td class="separator">&nbsp;</td></tr>
+		<tr valign="middle">
+			<td align="center">{translate key="common.notAvailable"}</td>
+		</tr>
+		<tr><td class="separator">&nbsp;</td></tr>
+
+	</table>
 
 {/if}
 
 </div>
-	<div class="separator"></div>
+{if $reviewProcess->getProcessId() != WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL}
+<div class="separator"></div>
+{/if}
 {/foreach}{*review types*}

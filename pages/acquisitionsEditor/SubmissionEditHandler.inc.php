@@ -187,6 +187,14 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		// Setting the round.
 		$round = $submission->getCurrentReviewRound();
 
+/*		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundDao->build(
+				$monographId,
+				WORKFLOW_PROCESS_ASSESSMENT_INTERNAL,
+				1,
+				$submission->getReviewRevision()
+			);
+*/
 //		$sectionDao =& DAORegistry::getDAO('SectionDAO');
 //		$sections =& $sectionDao->getPressSections($press->getId());
 
@@ -254,8 +262,6 @@ $sections = null;
 		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 		$process =& $workflowDao->getCurrent($monographId, WORKFLOW_PROCESS_ASSESSMENT);
 
-		$reviewAssignments = isset($process) && isset($reviewAssignments[$process->getProcessId()]) ? $reviewAssignments[$process->getProcessId()] : null;
-
 		$processId = isset($process) ? $process->getProcessId() : null;
 
 		$templateMgr->assign('signoffWait', 0);
@@ -264,7 +270,7 @@ $sections = null;
 		$templateMgr->assign_by_ref('editorDecisions', array_reverse($editorDecisions));
 		$templateMgr->assign_by_ref('reviewProcesses', $reviewProcesses);
 		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('reviewIndexes', $reviewAssignmentDao->getReviewIndexesForRound($monographId, $round));
+		$templateMgr->assign_by_ref('reviewIndexes', $reviewAssignmentDao->getReviewIndexesForRound($monographId, $processId, $round));
 		$templateMgr->assign('round', $round);
 		$templateMgr->assign_by_ref('reviewAssignments', $reviewAssignments);
 		$templateMgr->assign('reviewFormResponses', $reviewFormResponses);

@@ -29,46 +29,46 @@ class DesignerAction extends Action {
 
 	/**
 	 * Change the sequence order of a galley.
-	 * @param $article object
+	 * @param $monograph object
 	 * @param $galleyId int
 	 * @param $direction char u = up, d = down
 	 */
-	function orderGalley($article, $galleyId, $direction) {
-		$galleyDao = &DAORegistry::getDAO('ArticleGalleyDAO');
-		$galley = &$galleyDao->getGalley($galleyId, $article->getArticleId());
+	function orderGalley($monograph, $galleyId, $direction) {
+		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
+		$galley =& $galleyDao->getGalley($galleyId, $monograph->getMonographId());
 
 		if (isset($galley)) {
 			$galley->setSequence($galley->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
 			$galleyDao->updateGalley($galley);
-			$galleyDao->resequenceGalleys($article->getArticleId());
+			$galleyDao->resequenceGalleys($monograph->getMonographId());
 		}
 	}
 
 	/**
 	 * Delete a galley.
-	 * @param $article object
+	 * @param $monograph object
 	 * @param $galleyId int
 	 */
-	function deleteGalley($article, $galleyId) {
-		import('file.ArticleFileManager');
+	function deleteGalley($monograph, $galleyId) {
+		import('file.MonographFileManager');
 
-		$galleyDao = &DAORegistry::getDAO('ArticleGalleyDAO');
-		$galley = &$galleyDao->getGalley($galleyId, $article->getArticleId());
+		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
+		$galley =& $galleyDao->getGalley($galleyId, $monograph->getMonographId());
 
-		if (isset($galley) && !HookRegistry::call('LayoutEditorAction::deleteGalley', array(&$article, &$galley))) {
-			$articleFileManager = new ArticleFileManager($article->getArticleId());
+		if (isset($galley) && !HookRegistry::call('LayoutEditorAction::deleteGalley', array(&$monograph, &$galley))) {
+			$monographFileManager = new MonographFileManager($monograph->getMonographId());
 
 			if ($galley->getFileId()) {
-				$articleFileManager->deleteFile($galley->getFileId());
-				import('search.ArticleSearchIndex');
-				ArticleSearchIndex::deleteTextIndex($article->getArticleId(), ARTICLE_SEARCH_GALLEY_FILE, $galley->getFileId());
+				$monographFileManager->deleteFile($galley->getFileId());
+				import('search.MonographSearchIndex');
+				MonographSearchIndex::deleteTextIndex($monograph->getMonographId(), MONOGRAPH_SEARCH_GALLEY_FILE, $galley->getFileId());
 			}
 			if ($galley->isHTMLGalley()) {
 				if ($galley->getStyleFileId()) {
-					$articleFileManager->deleteFile($galley->getStyleFileId());
+					$monographFileManager->deleteFile($galley->getStyleFileId());
 				}
 				foreach ($galley->getImageFiles() as $image) {
-					$articleFileManager->deleteFile($image->getFileId());
+					$monographFileManager->deleteFile($image->getFileId());
 				}
 			}
 			$galleyDao->deleteGalley($galley);
@@ -76,63 +76,24 @@ class DesignerAction extends Action {
 	}
 
 	/**
-	 * Delete an image from an article galley.
+	 * Delete an image from an monograph galley.
 	 * @param $submission object
 	 * @param $fileId int
 	 * @param $revision int (optional)
 	 */
-	function deleteArticleImage($submission, $fileId, $revision) {
-		import('file.ArticleFileManager');
-		$articleGalleyDao =& DAORegistry::getDAO('ArticleGalleyDAO');
-		if (HookRegistry::call('LayoutEditorAction::deleteArticleImage', array(&$submission, &$fileId, &$revision))) return;
+	function deleteMonographImage($submission, $fileId, $revision) {
+		import('file.MonographFileManager');
+		$monographGalleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
+		if (HookRegistry::call('LayoutEditorAction::deleteMonographImage', array(&$submission, &$fileId, &$revision))) return;
 		foreach ($submission->getGalleys() as $galley) {
-			$images =& $articleGalleyDao->getGalleyImages($galley->getGalleyId());
+			$images =& $monographGalleyDao->getGalleyImages($galley->getGalleyId());
 			foreach ($images as $imageFile) {
-				if ($imageFile->getArticleId() == $submission->getArticleId() && $fileId == $imageFile->getFileId() && $imageFile->getRevision() == $revision) {
-					$articleFileManager = new ArticleFileManager($submission->getArticleId());
-					$articleFileManager->deleteFile($imageFile->getFileId(), $imageFile->getRevision());
+				if ($imageFile->getMonographId() == $submission->getMonographId() && $fileId == $imageFile->getFileId() && $imageFile->getRevision() == $revision) {
+					$monographFileManager = new MonographFileManager($submission->getMonographId());
+					$monographFileManager->deleteFile($imageFile->getFileId(), $imageFile->getRevision());
 				}
 			}
 			unset($images);
-		}
-	}
-
-	/**
-	 * Change the sequence order of a supplementary file.
-	 * @param $article object
-	 * @param $suppFileId int
-	 * @param $direction char u = up, d = down
-	 */
-	function orderSuppFile($article, $suppFileId, $direction) {
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-		$suppFile = &$suppFileDao->getSuppFile($suppFileId, $article->getArticleId());
-
-		if (isset($suppFile)) {
-			$suppFile->setSequence($suppFile->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
-			$suppFileDao->updateSuppFile($suppFile);
-			$suppFileDao->resequenceSuppFiles($article->getArticleId());
-		}
-	}
-
-	/**
-	 * Delete a supplementary file.
-	 * @param $article object
-	 * @param $suppFileId int
-	 */
-	function deleteSuppFile($article, $suppFileId) {
-		import('file.ArticleFileManager');
-
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-
-		$suppFile = &$suppFileDao->getSuppFile($suppFileId, $article->getArticleId());
-		if (isset($suppFile) && !HookRegistry::call('LayoutEditorAction::deleteSuppFile', array(&$article, &$suppFile))) {
-			if ($suppFile->getFileId()) {
-				$articleFileManager = new ArticleFileManager($article->getArticleId());
-				$articleFileManager->deleteFile($suppFile->getFileId());
-				import('search.ArticleSearchIndex');
-				ArticleSearchIndex::deleteTextIndex($article->getArticleId(), ARTICLE_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
-			}
-			$suppFileDao->deleteSuppFile($suppFile);
 		}
 	}
 
@@ -142,25 +103,25 @@ class DesignerAction extends Action {
 	 * @param $send boolean
 	 */
 	function completeLayoutEditing($submission, $send = false) {
-		$submissionDao = &DAORegistry::getDAO('LayoutEditorSubmissionDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$journal = &Request::getJournal();
+		$submissionDao =& DAORegistry::getDAO('LayoutEditorSubmissionDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$press =& Request::getPress();
 
-		$layoutAssignment = &$submission->getLayoutAssignment();
+		$layoutAssignment =& $submission->getLayoutAssignment();
 		if ($layoutAssignment->getDateCompleted() != null) {
 			return true;
 		}
 
-		import('mail.ArticleMailTemplate');
-		$email = new ArticleMailTemplate($submission, 'LAYOUT_COMPLETE');
+		import('mail.MonographMailTemplate');
+		$email = new MonographMailTemplate($submission, 'LAYOUT_COMPLETE');
 
-		$editAssignments = &$submission->getByIds();
+		$editAssignments =& $submission->getByIds();
 		if (empty($editAssignments)) return;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('LayoutEditorAction::completeLayoutEditing', array(&$submission, &$layoutAssignment, &$editAssignments, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_LAYOUT_NOTIFY_COMPLETE, ARTICLE_EMAIL_TYPE_LAYOUT, $layoutAssignment->getLayoutId());
+				$email->setAssoc(MONOGRAPH_EMAIL_LAYOUT_NOTIFY_COMPLETE, MONOGRAPH_EMAIL_TYPE_LAYOUT, $layoutAssignment->getLayoutId());
 				$email->send();
 			}
 
@@ -168,20 +129,20 @@ class DesignerAction extends Action {
 			$submissionDao->updateSubmission($submission);
 
 			// Add log entry
-			$user = &Request::getUser();
-			import('article.log.ArticleLog');
-			import('article.log.ArticleEventLogEntry');
-			ArticleLog::logEvent($submission->getArticleId(), ARTICLE_LOG_LAYOUT_COMPLETE, ARTICLE_LOG_TYPE_LAYOUT, $user->getUserId(), 'log.layout.layoutEditComplete', Array('editorName' => $user->getFullName(), 'articleId' => $submission->getArticleId()));
+			$user =& Request::getUser();
+			import('monograph.log.MonographLog');
+			import('monograph.log.MonographEventLogEntry');
+			MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_COMPLETE, MONOGRAPH_LOG_TYPE_LAYOUT, $user->getUserId(), 'log.layout.layoutEditComplete', Array('editorName' => $user->getFullName(), 'monographId' => $submission->getMonographId()));
 
 			return true;
 		} else {
-			$user = &Request::getUser();
+			$user =& Request::getUser();
 			if (!Request::getUserVar('continued')) {
-				$assignedSectionEditors = $email->toAssignedEditingSectionEditors($submission->getArticleId());
-				$assignedEditors = $email->ccAssignedEditors($submission->getArticleId());
+				$assignedSectionEditors = $email->toAssignedEditingSectionEditors($submission->getMonographId());
+				$assignedEditors = $email->ccAssignedEditors($submission->getMonographId());
 				if (empty($assignedSectionEditors) && empty($assignedEditors)) {
-					$email->addRecipient($journal->getSetting('contactEmail'), $journal->getSetting('contactName'));
-					$editorialContactName = $journal->getSetting('contactName');
+					$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
+					$editorialContactName = $press->getSetting('contactName');
 				} else {
 					$editorialContact = array_shift($assignedSectionEditors);
 					if (!$editorialContact) $editorialContact = array_shift($assignedEditors);
@@ -193,27 +154,27 @@ class DesignerAction extends Action {
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, 'layoutEditor', 'completeAssignment', 'send'), array('articleId' => $submission->getArticleId()));
+			$email->displayEditForm(Request::url(null, 'layoutEditor', 'completeAssignment', 'send'), array('monographId' => $submission->getMonographId()));
 
 			return false;
 		}
 	}
 
 	/**
-	 * Upload the layout version of an article.
+	 * Upload the layout version of an monograph.
 	 * @param $submission object
 	 */
 	function uploadLayoutVersion($submission) {
-		import('file.ArticleFileManager');
-		$articleFileManager = new ArticleFileManager($submission->getArticleId());
-		$layoutEditorSubmissionDao = &DAORegistry::getDAO('LayoutEditorSubmissionDAO');
+		import('file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($submission->getMonographId());
+		$layoutEditorSubmissionDao =& DAORegistry::getDAO('LayoutEditorSubmissionDAO');
 
-		$layoutDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-		$layoutAssignment = &$layoutDao->getLayoutAssignmentByArticleId($submission->getArticleId());
+		$layoutDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
+		$layoutAssignment =& $layoutDao->getLayoutAssignmentByMonographId($submission->getMonographId());
 
 		$fileName = 'layoutFile';
-		if ($articleFileManager->uploadedFileExists($fileName) && !HookRegistry::call('LayoutEditorAction::uploadLayoutVersion', array(&$submission, &$layoutAssignment))) {
-			$layoutFileId = $articleFileManager->uploadLayoutFile($fileName, $layoutAssignment->getLayoutFileId());
+		if ($monographFileManager->uploadedFileExists($fileName) && !HookRegistry::call('LayoutEditorAction::uploadLayoutVersion', array(&$submission, &$layoutAssignment))) {
+			$layoutFileId = $monographFileManager->uploadLayoutFile($fileName, $layoutAssignment->getLayoutFileId());
 			$layoutAssignment->setLayoutFileId($layoutFileId);
 			$layoutDao->updateLayoutAssignment($layoutAssignment);
 		}
@@ -225,14 +186,14 @@ class DesignerAction extends Action {
 
 	/**
 	 * View layout comments.
-	 * @param $article object
+	 * @param $monograph object
 	 */
-	function viewLayoutComments($article) {
-		if (!HookRegistry::call('LayoutEditorAction::viewLayoutComments', array(&$article))) {
+	function viewLayoutComments($monograph) {
+		if (!HookRegistry::call('LayoutEditorAction::viewLayoutComments', array(&$monograph))) {
 			import("submission.form.comment.LayoutCommentForm");
 
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new LayoutCommentForm($article, ROLE_ID_LAYOUT_EDITOR);
+			$commentForm =& new LayoutCommentForm($monograph, ROLE_ID_LAYOUT_EDITOR);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -240,14 +201,14 @@ class DesignerAction extends Action {
 
 	/**
 	 * Post layout comment.
-	 * @param $article object
+	 * @param $monograph object
 	 */
-	function postLayoutComment($article, $emailComment) {
-		if (!HookRegistry::call('LayoutEditorAction::postLayoutComment', array(&$article, &$emailComment))) {
+	function postLayoutComment($monograph, $emailComment) {
+		if (!HookRegistry::call('LayoutEditorAction::postLayoutComment', array(&$monograph, &$emailComment))) {
 			import("submission.form.comment.LayoutCommentForm");
 
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new LayoutCommentForm($article, ROLE_ID_LAYOUT_EDITOR);
+			$commentForm =& new LayoutCommentForm($monograph, ROLE_ID_LAYOUT_EDITOR);
 			$commentForm->readInputData();
 
 			if ($commentForm->validate()) {
@@ -255,11 +216,11 @@ class DesignerAction extends Action {
 				
 				// Send a notification to associated users
 				import('notification.Notification');
-				$notificationUsers = $article->getAssociatedUserIds(true, false);
+				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				foreach ($notificationUsers as $user) {
-					$url = Request::url(null, $user['role'], 'submissionEditing', $article->getArticleId(), null, 'layout');
+					$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
 					Notification::createNotification($user['id'], "notification.type.layoutComment",
-						$article->getArticleTitle(), $url, 1, NOTIFICATION_TYPE_LAYOUT_COMMENT);
+						$monograph->getMonographTitle(), $url, 1, NOTIFICATION_TYPE_LAYOUT_COMMENT);
 				}
 				
 				if ($emailComment) {
@@ -276,14 +237,14 @@ class DesignerAction extends Action {
 
 	/**
 	 * View proofread comments.
-	 * @param $article object
+	 * @param $monograph object
 	 */
-	function viewProofreadComments($article) {
-		if (!HookRegistry::call('LayoutEditorAction::viewProofreadComments', array(&$article))) {
+	function viewProofreadComments($monograph) {
+		if (!HookRegistry::call('LayoutEditorAction::viewProofreadComments', array(&$monograph))) {
 			import("submission.form.comment.ProofreadCommentForm");
 
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new ProofreadCommentForm($article, ROLE_ID_LAYOUT_EDITOR);
+			$commentForm =& new ProofreadCommentForm($monograph, ROLE_ID_LAYOUT_EDITOR);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -291,14 +252,14 @@ class DesignerAction extends Action {
 
 	/**
 	 * Post proofread comment.
-	 * @param $article object
+	 * @param $monograph object
 	 */
-	function postProofreadComment($article, $emailComment) {
-		if (!HookRegistry::call('LayoutEditorAction::postProofreadComment', array(&$article, &$emailComment))) {
+	function postProofreadComment($monograph, $emailComment) {
+		if (!HookRegistry::call('LayoutEditorAction::postProofreadComment', array(&$monograph, &$emailComment))) {
 			import('submission.form.comment.ProofreadCommentForm');
 
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new ProofreadCommentForm($article, ROLE_ID_LAYOUT_EDITOR);
+			$commentForm =& new ProofreadCommentForm($monograph, ROLE_ID_LAYOUT_EDITOR);
 			$commentForm->readInputData();
 
 			if ($commentForm->validate()) {
@@ -306,11 +267,11 @@ class DesignerAction extends Action {
 				
 				// Send a notification to associated users
 				import('notification.Notification');
-				$notificationUsers = $article->getAssociatedUserIds(true, false);
+				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				foreach ($notificationUsers as $user) {
-					$url = Request::url(null, $user['role'], 'submissionEditing', $article->getArticleId(), null, 'proofread');
+					$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'proofread');
 					Notification::createNotification($user['id'], "notification.type.proofreadComment",
-						$article->getArticleTitle(), $url, 1, NOTIFICATION_TYPE_PROOFREAD_COMMENT);
+						$monograph->getMonographTitle(), $url, 1, NOTIFICATION_TYPE_PROOFREAD_COMMENT);
 				}
 				
 				if ($emailComment) {
@@ -332,34 +293,38 @@ class DesignerAction extends Action {
 	/**
 	 * Download a file a layout editor has access to.
 	 * This includes: The layout editor submission file, supplementary files, and galley files.
-	 * @param $article object
-	 * @parma $fileId int
+	 * @param $monograph object
+	 * @param $fileId int
 	 * @param $revision int optional
 	 * @return boolean
 	 */
-	function downloadFile($article, $fileId, $revision = null) {
+	function downloadFile($monograph, $fileId, $revision = null) {
 		$canDownload = false;
 
-		$layoutDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-		$galleyDao = &DAORegistry::getDAO('ArticleGalleyDAO');
-		$suppDao = &DAORegistry::getDAO('SuppFileDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
+		$suppDao =& DAORegistry::getDAO('SuppFileDAO');
 
-		$layoutAssignment = &$layoutDao->getLayoutAssignmentByArticleId($article->getArticleId());
+		$layoutAssignment =& $signoffDao->build(
+						  'SIGNOFF_LAYOUT',
+						  ASSOC_TYPE_MONOGRAPH,
+						  $monograph->getMonographId()
+					);
 
-		if ($layoutAssignment->getLayoutFileId() == $fileId) {
+		if ($layoutAssignment->getFileId() == $fileId) {
 			$canDownload = true;
 
-		} else if($galleyDao->galleyExistsByFileId($article->getArticleId(), $fileId)) {
+		} else if($galleyDao->galleyExistsByFileId($monograph->getMonographId(), $fileId)) {
 			$canDownload = true;
 
-		} else if($suppDao->suppFileExistsByFileId($article->getArticleId(), $fileId)) {
+		} else if($suppDao->suppFileExistsByFileId($monograph->getMonographId(), $fileId)) {
 			$canDownload = true;
 		}
 
 		$result = false;
-		if (!HookRegistry::call('LayoutEditorAction::downloadFile', array(&$article, &$fileId, &$revision, &$canDownload, &$result))) {
+		if (!HookRegistry::call('LayoutEditorAction::downloadFile', array(&$monograph, &$fileId, &$revision, &$canDownload, &$result))) {
 			if ($canDownload) {
-				return parent::downloadFile($article->getArticleId(), $fileId, $revision);
+				return parent::downloadFile($monograph->getMonographId(), $fileId, $revision);
 			} else {
 				return false;
 			}

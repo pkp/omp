@@ -24,13 +24,6 @@ import('monograph.Monograph');
 
 class DesignerSubmission extends Monograph {
 
-	/**
-	 * Constructor.
-	 */
-	function DesignerSubmission() {
-		parent::Monograph();
-	}
-
 	//
 	// Get/set methods
 	//
@@ -53,8 +46,25 @@ class DesignerSubmission extends Monograph {
 	}
 
 	/**
+	 * Get the layout assignment for a monograph.
+	 * @return LayoutAssignment
+	 */
+	function &getProofAssignments() {
+		$proofAssignment =& $this->getData('proofAssignment');
+		return $proofAssignment;
+	}
+
+	/**
+	 * Set the layout assignment for a monograph.
+	 * @param $layoutAssignment LayoutAssignment
+	 */
+	function setProofAssignments(&$proofAssignment) {
+		return $this->setData('proofAssignment', $proofAssignment);
+	}
+
+	/**
 	 * Get the galleys for a monograph.
-	 * @return array ArticleGalley
+	 * @return array MonographGalley
 	 */
 	function &getGalleys() {
 		$galleys = &$this->getData('galleys');
@@ -63,7 +73,7 @@ class DesignerSubmission extends Monograph {
 
 	/**
 	 * Set the galleys for a monograph.
-	 * @param $galleys array ArticleGalley
+	 * @param $galleys array MonographGalley
 	 */
 	function setGalleys(&$galleys) {
 		return $this->setData('galleys', $galleys);
@@ -93,7 +103,7 @@ class DesignerSubmission extends Monograph {
 	 * Get edit assignments for this monograph.
 	 * @return array
 	 */
-	function &getByIds() {
+	function &getEditAssignments() {
 		$editAssignments = &$this->getData('editAssignments');
 		return $editAssignments;
 	}
@@ -106,30 +116,13 @@ class DesignerSubmission extends Monograph {
 		return $this->setData('editAssignments', $editAssignments);
 	}
 
-	/**
-	 * Get proof assignment.
-	 * @return proofAssignment object
-	 */
-	function &getProofAssignment() {
-		$proofAssignment = &$this->getData('proofAssignment');
-		return $proofAssignment;
-	}
-
-	/**
-	 * Set proof assignment.
-	 * @param $proofAssignment
-	 */
-	function setProofAssignment($proofAssignment) {
-		return $this->setData('proofAssignment', $proofAssignment);
-	}
-
 	//
 	// Comments
 	//
 
 	/**
 	 * Get most recent layout comment.
-	 * @return ArticleComment
+	 * @return MonographComment
 	 */
 	function getMostRecentLayoutComment() {
 		return $this->getData('mostRecentLayoutComment');
@@ -137,26 +130,10 @@ class DesignerSubmission extends Monograph {
 
 	/**
 	 * Set most recent layout comment.
-	 * @param $mostRecentLayoutComment ArticleComment
+	 * @param $mostRecentLayoutComment MonographComment
 	 */
 	function setMostRecentLayoutComment($mostRecentLayoutComment) {
 		return $this->setData('mostRecentLayoutComment', $mostRecentLayoutComment);
-	}
-
-	/**
-	 * Get most recent proofread comment.
-	 * @return ArticleComment
-	 */
-	function getMostRecentProofreadComment() {
-		return $this->getData('mostRecentProofreadComment');
-	}
-
-	/**
-	 * Set most recent proofread comment.
-	 * @param $mostRecentProofreadComment ArticleComment
-	 */
-	function setMostRecentProofreadComment($mostRecentProofreadComment) {
-		return $this->setData('mostRecentProofreadComment', $mostRecentProofreadComment);
 	}
 
 	/**

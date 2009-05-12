@@ -117,7 +117,7 @@ class MonographGalleyDAO extends DAO {
 	 * @param $monographId int
 	 * @return array MonographGalleys
 	 */
-	function &getGalleysByMonograph($monographId) {
+	function &getByMonographId($monographId) {
 		$galleys = array();
 
 		$result =& $this->retrieve(
@@ -177,7 +177,7 @@ class MonographGalleyDAO extends DAO {
 		} else {
 			$galley = new MonographGalley();
 		}
-		$galley->setGalleyId($row['galley_id']);
+		$galley->setId($row['galley_id']);
 		$galley->setPublicGalleyId($row['public_galley_id']);
 		$galley->setMonographId($row['monograph_id']);
 		$galley->setLocale($row['locale']);
@@ -220,11 +220,11 @@ class MonographGalleyDAO extends DAO {
 				$galley->getSequence() == null ? $this->getNextGalleySequence($galley->getMonographID()) : $galley->getSequence()
 			)
 		);
-		$galley->setGalleyId($this->getInsertGalleyId());
+		$galley->setId($this->getInsertGalleyId());
 
-		HookRegistry::call('MonographGalleyDAO::insertNewGalley', array(&$galley, $galley->getGalleyId()));
+		HookRegistry::call('MonographGalleyDAO::insertNewGalley', array(&$galley, $galley->getId()));
 
-		return $galley->getGalleyId();
+		return $galley->getId();
 	}
 
 	/**
@@ -251,7 +251,7 @@ class MonographGalleyDAO extends DAO {
 				(int)$galley->isHTMLGalley(),
 				$galley->isHTMLGalley() ? $galley->getStyleFileId() : null,
 				$galley->getSequence(),
-				$galley->getGalleyId()
+				$galley->getId()
 			)
 		);
 	}
@@ -261,7 +261,7 @@ class MonographGalleyDAO extends DAO {
 	 * @param $galley MonographGalley
 	 */
 	function deleteGalley(&$galley) {
-		return $this->deleteGalleyById($galley->getGalleyId());
+		return $this->deleteGalleyById($galley->getId());
 	}
 
 	/**
@@ -295,7 +295,7 @@ class MonographGalleyDAO extends DAO {
 	function deleteGalleysByMonograph($monographId) {
 		$galleys =& $this->getGalleysByMonograph($monographId);
 		foreach ($galleys as $galley) {
-			$this->deleteGalleyById($galley->getGalleyId(), $monographId);
+			$this->deleteGalleyById($galley->getId(), $monographId);
 		}
 	}
 

@@ -251,6 +251,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$monographId = Request::getUserVar('monographId');
 		$editorId = Request::getUserVar('editorId');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$submission =& $this->submission;
 
 		$isSectionEditor = $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_ACQUISITIONS_EDITOR);
 		$isEditor = $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_EDITOR);
@@ -264,6 +265,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 			$this->setupTemplate(EDITOR_SECTION_SUBMISSIONS, $monographId, 'summary');
 
 			$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+
 			$workflowDao->build(
 					$monographId,
 					WORKFLOW_PROCESS_ASSESSMENT,
@@ -275,8 +277,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 					WORKFLOW_PROCESS_ASSESSMENT_INTERNAL, 
 					WORKFLOW_PROCESS_STATUS_CURRENT
 				);
-
-			// FIXME: Prompt for due date.
+			
 			if (EditorAction::assignEditor($monographId, $editorId, $isEditor, Request::getUserVar('send'))) {
 				Request::redirect(null, null, 'submission', $monographId);
 			}

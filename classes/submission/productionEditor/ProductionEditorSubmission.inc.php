@@ -21,28 +21,20 @@ import('monograph.Monograph');
 class ProductionEditorSubmission extends Monograph {
 
 	/**
-	 * Constructor.
-	 */
-	function ProductionEditorSubmission() {
-		parent::Monograph();
-
-	}
-
-	/**
-	 * Get edit assignments for this article.
+	 * Get layout assignments for this article.
 	 * @return array
 	 */
-	function &getEditAssignments() {
-		$editAssignments =& $this->getData('editAssignments');
+	function &getLayoutAssignments() {
+		$editAssignments =& $this->getData('layoutAssignments');
 		return $editAssignments;
 	}
 
 	/**
-	 * Set edit assignments for this article.
-	 * @param $editAssignments array
+	 * Set layout assignments for this article.
+	 * @param $layoutAssignments array
 	 */
-	function setEditAssignments($editAssignments) {
-		return $this->setData('editAssignments', $editAssignments);
+	function setLayoutAssignments($layoutAssignments) {
+		return $this->setData('layoutAssignments', $layoutAssignments);
 	}
 
 	/**
@@ -110,6 +102,54 @@ class ProductionEditorSubmission extends Monograph {
 	 */
 	function setSubmissionFile($submissionFile) {
 		return $this->setData('submissionFile', $submissionFile);
+	}
+	/**
+	 * Get most recent layout comment.
+	 * @return ArticleComment
+	 */
+	function getMostRecentLayoutComment() {
+		return $this->getData('mostRecentLayoutComment');
+	}
+
+	/**
+	 * Set most recent layout comment.
+	 * @param $mostRecentLayoutComment ArticleComment
+	 */
+	function setMostRecentLayoutComment($mostRecentLayoutComment) {
+		return $this->setData('mostRecentLayoutComment', $mostRecentLayoutComment);
+	}
+
+	/**
+	 * Get most recent proofread comment.
+	 * @return ArticleComment
+	 */
+	function getMostRecentProofreadComment() {
+		return $this->getData('mostRecentProofreadComment');
+	}
+
+	/**
+	 * Set most recent proofread comment.
+	 * @param $mostRecentProofreadComment ArticleComment
+	 */
+	function setMostRecentProofreadComment($mostRecentProofreadComment) {
+		return $this->setData('mostRecentProofreadComment', $mostRecentProofreadComment);
+	}
+
+	/**
+	 * Get the galleys for an article.
+	 * @return array ArticleGalley
+	 */
+	function &getGalleys() {
+		$galleys = &$this->getData('galleys');
+		return $galleys;
+	}
+
+	/**
+	 * Set the galleys for an article.
+	 * @param $galleys array ArticleGalley
+	 */
+	function setGalleys(&$galleys) {
+		return $this->setData('galleys', $galleys);
 	}
 }
 

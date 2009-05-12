@@ -14,7 +14,6 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{assign var=proofAssignment value=$submission->getProofAssignment()}
 {assign var=layoutFile value=$submission->getLayoutFile()}
 
 {include file="designer/submission/summary.tpl"}

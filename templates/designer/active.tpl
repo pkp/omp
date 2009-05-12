@@ -23,23 +23,22 @@
 
 {iterate from=submissions item=submission}
 	{assign var="monographId" value=$submission->getMonographId()}
-	{assign var="layoutAssignments" value=$submission->getLayoutAssignments()}
-	{foreach from=$layoutAssignments item=layoutAssignment}
+	{assign var="layoutSignoff" value=$submission->getSignoff('SIGNOFF_LAYOUT')}
+
 	<tr valign="top">
 		<td>{$monographId|escape}</td>
-		<td>{$layoutAssignment->getDateNotified()|date_format:$dateFormatTrunc}</td>
-		<td>{*$submission->getSectionAbbrev()|escape*}</td>
+		<td>{$layoutSignoff->getDateNotified()|date_format:$dateFormatTrunc}</td>
+		<td>{$submission->getAcquisitionsArrangementAbbrev()|escape}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
-		<td><a href="{url op="submission" path=$monographId|to_array:$layoutAssignment->getId()}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
+		<td><a href="{url op="submission" path=$monographId}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		<td align="right">
-			{if not $layoutAssignment->getDateCompleted()}
+			{if not $layoutSignoff->getDateCompleted()}
 				{translate key="submissions.initial"}
 			{else}
 				{translate key="submissions.proofread"}
 			{/if}
 		</td>
 	</tr>
-	{/foreach}
 	<tr>
                 <td colspan="7" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
 	</tr>

@@ -8,8 +8,10 @@
  *
  * $Id$
  *}
-{assign var=layoutAssignment value=$submission->getLayoutAssignment()}
-{*assign var=layoutFile value=$layoutAssignment->getLayoutFile()*}
+{assign var=layoutSignoff value=$submission->getSignoff('SIGNOFF_LAYOUT')}
+{assign var=layoutFile value=$submission->getFileBySignoffType('SIGNOFF_LAYOUT')}
+{assign var=layoutEditor value=$submission->getUserBySignoffType('SIGNOFF_LAYOUT')}
+
 <div id="layout">
 <h3>{translate key="submission.layout"}</h3>
 
@@ -17,7 +19,7 @@
 <table class="data" width="100%">
 	<tr>
 		<td width="20%" class="label">{translate key="user.role.layoutEditor"}</td>
-		{if $layoutAssignment->getEditorId()}<td width="20%" class="value">{$layoutAssignment->getEditorFullName()|escape}</td>{/if}
+		{if $layoutSignoff->getUserId()}<td width="20%" class="value">{$layoutEditor->getFullName()|escape}</td>{/if}
 		<td class="value"><a href="{url op="assignLayoutEditor" path=$submission->getMonographId()}" class="action">{translate key="submission.layout.assignLayoutEditor"}</a></td>
 	</tr>
 </table>
@@ -37,9 +39,9 @@
 		</td>
 		<td>
 			{if $useLayoutEditors}
-				{if $layoutAssignment->getEditorId() && $layoutFile}
-					{url|assign:"url" op="notifyLayoutEditor" monographId=$submission->getMonographId()}
-					{if $layoutAssignment->getDateUnderway()}
+				{if $layoutSignoff->getUserId() && $layoutFile}
+					{url|assign:"url" op="notifyLayoutEditor" articleId=$submission->getMonographId()}
+					{if $layoutSignoff->getDateUnderway()}
                                         	{translate|escape:"javascript"|assign:"confirmText" key="sectionEditor.layout.confirmRenotify"}
                                         	{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
                                 	{else}
@@ -48,34 +50,34 @@
 				{else}
 					{icon name="mail" disabled="disable"}
 				{/if}
-				{$layoutAssignment->getDateNotified()|date_format:$dateFormatShort|default:""}
+				{$layoutSignoff->getDateNotified()|date_format:$dateFormatShort|default:""}
 			{else}
 				{translate key="common.notApplicableShort"}
 			{/if}
 		</td>
 		<td>
 			{if $useLayoutEditors}
-				{$layoutAssignment->getDateUnderway()|date_format:$dateFormatShort|default:"&mdash;"}
+				{$layoutSignoff->getDateUnderway()|date_format:$dateFormatShort|default:"&mdash;"}
 			{else}
 				{translate key="common.notApplicableShort"}
 			{/if}
 		</td>
 		<td>
 			{if $useLayoutEditors}
-				{$layoutAssignment->getDateCompleted()|date_format:$dateFormatShort|default:"&mdash;"}
+				{$layoutSignoff->getDateCompleted()|date_format:$dateFormatShort|default:"&mdash;"}
 			{else}
 				{translate key="common.notApplicableShort"}
 			{/if}
 		</td>
 		<td colspan="2">
 			{if $useLayoutEditors}
-				{if $layoutAssignment->getEditorId() &&  $layoutAssignment->getDateCompleted() && !$layoutAssignment->getDateAcknowledged()}
-					{url|assign:"url" op="thankLayoutEditor" monographId=$submission->getMonographId()}
+				{if $layoutSignoff->getUserId() &&  $layoutSignoff->getDateCompleted() && !$layoutSignoff->getDateAcknowledged()}
+					{url|assign:"url" op="thankLayoutEditor" articleId=$submission->getMonographId()}
 					{icon name="mail" url=$url}
 				{else}
 					{icon name="mail" disabled="disable"}
 				{/if}
-				{$layoutAssignment->getDateAcknowledged()|date_format:$dateFormatShort|default:""}
+				{$layoutSignoff->getDateAcknowledged()|date_format:$dateFormatShort|default:""}
 			{else}
 				{translate key="common.notApplicableShort"}
 			{/if}
@@ -107,7 +109,7 @@
 		<td width="2%">{$smarty.foreach.galleys.iteration}.</td>
 		<td width="26%">{$galley->getGalleyLabel()|escape} &nbsp; <a href="{url op="proofGalley" path=$submission->getMonographId()|to_array:$galley->getGalleyId()}" class="action">{translate key="submission.layout.viewProof"}</a></td>
 		<td colspan="2"><a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$galley->getFileId()}" class="file">{$galley->getFileName()|escape}</a>&nbsp;&nbsp;{$galley->getDateModified()|date_format:$dateFormatShort}</td>
-		<td><a href="{url op="orderGalley" d=u monographId=$submission->getMonographId() galleyId=$galley->getGalleyId()}" class="plain">&uarr;</a> <a href="{url op="orderGalley" d=d monographId=$submission->getMonographId() galleyId=$galley->getGalleyId()}" class="plain">&darr;</a></td>
+		<td><a href="{url op="orderGalley" d=u articleId=$submission->getMonographId() galleyId=$galley->getGalleyId()}" class="plain">&uarr;</a> <a href="{url op="orderGalley" d=d articleId=$submission->getMonographId() galleyId=$galley->getGalleyId()}" class="plain">&darr;</a></td>
 		<td>
 			<a href="{url op="editGalley" path=$submission->getMonographId()|to_array:$galley->getGalleyId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteGalley" path=$submission->getMonographId()|to_array:$galley->getGalleyId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.layout.confirmDeleteGalley"}')" class="action">{translate key="common.delete"}</a>
 		</td>
@@ -132,7 +134,7 @@
 		<td width="2%">{$smarty.foreach.suppFiles.iteration}.</td>
 		<td width="26%">{$suppFile->getSuppFileTitle()}</td>
 		<td colspan="2"><a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$suppFile->getFileId()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;{$suppFile->getDateModified()|date_format:$dateFormatShort}</td>
-		<td><a href="{url op="orderSuppFile" d=u monographId=$submission->getMonographId() suppFileId=$suppFile->getSuppFileId()}" class="plain">&uarr;</a> <a href="{url op="orderSuppFile" d=d monographId=$submission->getMonographId() suppFileId=$suppFile->getSuppFileId()}" class="plain">&darr;</a></td>
+		<td><a href="{url op="orderSuppFile" d=u articleId=$submission->getMonographId() suppFileId=$suppFile->getSuppFileId()}" class="plain">&uarr;</a> <a href="{url op="orderSuppFile" d=d articleId=$submission->getMonographId() suppFileId=$suppFile->getSuppFileId()}" class="plain">&darr;</a></td>
 		<td colspan="2">
 			<a href="{url op="editSuppFile" from="submissionEditing" path=$submission->getMonographId()|to_array:$suppFile->getSuppFileId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSuppFile" from="submissionEditing" path=$submission->getMonographId()|to_array:$suppFile->getSuppFileId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.layout.confirmDeleteSupplementaryFile"}')" class="action">{translate key="common.delete"}</a>
 		</td>
@@ -149,8 +151,8 @@
 
 <form method="post" action="{url op="uploadLayoutFile"}"  enctype="multipart/form-data">
 	<input type="hidden" name="from" value="submissionEditing" />
-	<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
-	{translate key="submission.uploadFileTo"} <input type="radio" name="layoutFileType" id="layoutFileTypeSubmission" value="submission" checked="checked" /><label for="layoutFileTypeSubmission">{translate key="submission.layout.layoutVersion"}</label>, <input type="radio" name="layoutFileType" id="layoutFileTypeGalley" value="galley" /><label for="layoutFileTypeGalley">{translate key="submission.galley"}</label>, <input type="radio" name="layoutFileType" id="layoutFileTypeSupp" value="supp" /><label for="layoutFileTypeSupp">{translate key="monograph.suppFilesAbbrev"}</label>
+	<input type="hidden" name="articleId" value="{$submission->getMonographId()}" />
+	{translate key="submission.uploadFileTo"} <input type="radio" name="layoutFileType" id="layoutFileTypeSubmission" value="submission" checked="checked" /><label for="layoutFileTypeSubmission">{translate key="submission.layout.layoutVersion"}</label>, <input type="radio" name="layoutFileType" id="layoutFileTypeGalley" value="galley" /><label for="layoutFileTypeGalley">{translate key="submission.galley"}</label>, <input type="radio" name="layoutFileType" id="layoutFileTypeSupp" value="supp" /><label for="layoutFileTypeSupp">{translate key="article.suppFilesAbbrev"}</label>
 	<input type="file" name="layoutFile" size="10" class="uploadField" />
 	<input type="submit" value="{translate key="common.upload"}" class="button" />
 </form>
@@ -163,11 +165,11 @@
 	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getMonographId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
 {/if}
 
-{if $currentPress->getLocalizedSetting('layoutInstructions')}
+{if $currentJournal->getLocalizedSetting('layoutInstructions')}
 &nbsp;&nbsp;
 <a href="javascript:openHelp('{url op="instructions" path="layout"}')" class="action">{translate key="submission.layout.instructions"}</a>
 {/if}
-{if $currentPress->getSetting('provideRefLinkInstructions')}
+{if $currentJournal->getSetting('provideRefLinkInstructions')}
 &nbsp;&nbsp;
 <a href="javascript:openHelp('{url op="instructions" path="referenceLinking"}')" class="action">{translate key="submission.layout.referenceLinking"}</a>
 {/if}

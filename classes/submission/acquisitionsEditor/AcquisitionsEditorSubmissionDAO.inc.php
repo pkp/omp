@@ -46,13 +46,11 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$this->copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
-		$this->layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 //		$this->monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
 //		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-//		$this->proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
 	}
 
 	/**
@@ -141,7 +139,24 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		$acquisitionsEditorSubmission->setCurrentReviewType($currentReviewType);
 		$acquisitionsEditorSubmission->setCurrentReviewRound($currentReviewRound);
-*/	
+*/
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+
+		$reviewType = $acquisitionsEditorSubmission->getCurrentReviewType();
+		$round = isset($reviewRounds[$reviewType]) ? $reviewRounds[$reviewType] : null;
+
+		if (isset($reviewType)) {
+			$reviewRound = $reviewRoundDao->build(
+							$acquisitionsEditorSubmission->getMonographId(), 
+							$acquisitionsEditorSubmission->getCurrentReviewType(), 
+							$round == null ? 1 : $round,
+							1
+						);
+			if ($acquisitionsEditorSubmission->getReviewRevision() != null) {
+				$reviewRound->setReviewRevision($acquisitionsEditorSubmission->getReviewRevision());
+				$reviewRoundDao->updateObject($reviewRound);
+			}
+		}
 	
 		// Editor Decisions
 		$decisions =& $this->getEditorDecisions($row['monograph_id']);
@@ -188,11 +203,8 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmission->setAuthorFileRevisions($authorFileRevisions);
 
 		// Review Assignments
-		foreach ($reviewRounds as $reviewType => $round) {
-			for ($i = 1; $i <= $round; $i++) {
-				$acquisitionsEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getByMonographId($row['monograph_id'], $reviewType, $i), $reviewType, $i);
-			}
-		}
+
+		$acquisitionsEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getByMonographId($row['monograph_id'], $reviewType, $round));
 
 		// Copyeditor Assignment
 /*		$acquisitionsEditorSubmission->setCopyedId($row['copyed_id']);
@@ -215,9 +227,9 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmission->setCopyeditorFinalRevision($row['copyeditor_final_revision']);
 */
 		// Layout Editing
-		$acquisitionsEditorSubmission->setLayoutAssignments($this->layoutAssignmentDao->getByMonographId($row['monograph_id']));
+//		$acquisitionsEditorSubmission->setLayoutAssignments($this->layoutAssignmentDao->getByMonographId($row['monograph_id']));
 
-		$acquisitionsEditorSubmission->setGalleys($this->galleyDao->getGalleysByMonograph($row['monograph_id']));
+//		$acquisitionsEditorSubmission->setGalleys($this->galleyDao->getGalleysByMonograph($row['monograph_id']));
  
 		// Proof Assignment
 //		$acquisitionsEditorSubmission->setProofAssignment($this->proofAssignmentDao->getProofAssignmentByMonographId($row['monograph_id']));
@@ -272,31 +284,21 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		}
 		}
 		$round = $acquisitionsEditorSubmission->getCurrentReviewRound();
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 
-		if ($this->reviewRoundExists($acquisitionsEditorSubmission->getMonographId(), $acquisitionsEditorSubmission->getCurrentReviewType(), $round)) {
-			$this->update(
-				'UPDATE review_rounds
-					SET review_revision = ?
-					WHERE monograph_id = ? AND 
-						review_type = ? AND 
-						round = ?',
-				array(
-					$acquisitionsEditorSubmission->getReviewRevision(),
-					$acquisitionsEditorSubmission->getMonographId(),
-					$acquisitionsEditorSubmission->getCurrentReviewType(),
-					$round
-				)
-			);
-		} elseif ($acquisitionsEditorSubmission->getReviewRevision() != null) {
-			
-			$this->createReviewRound(
-				$acquisitionsEditorSubmission->getMonographId(),
-				$acquisitionsEditorSubmission->getCurrentReviewType(),
-				$round = $round == null ? 1 : $round,
-				$acquisitionsEditorSubmission->getReviewRevision()
-			);
+		$reviewType = $acquisitionsEditorSubmission->getCurrentReviewType();
+
+		if (isset($reviewType)) {
+			$reviewRound = $reviewRoundDao->build(
+							$acquisitionsEditorSubmission->getMonographId(), 
+							$acquisitionsEditorSubmission->getCurrentReviewType(), 
+							$round == null ? 1 : $round
+						);
+			if ($acquisitionsEditorSubmission->getReviewRevision() != null) {
+				$reviewRound->setReviewRevision($acquisitionsEditorSubmission->getReviewRevision());
+				$reviewRoundDao->updateObject($reviewRound);
+			}
 		}
-
 		// Update copyeditor assignment
 /*		if ($acquisitionsEditorSubmission->getCopyedId()) {
 			$copyeditorSubmission =& $this->copyeditorSubmissionDao->getCopyeditorSubmission($acquisitionsEditorSubmission->getMonographId());
@@ -379,16 +381,6 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 			$this->monographDao->updateMonograph($monograph);
 		}
 
-	}
-
-	function createReviewRound($monographId, $reviewType, $round, $reviewRevision) {
-		$this->update(
-			'INSERT INTO review_rounds
-				(monograph_id, review_type, round, review_revision)
-				VALUES
-				(?, ?, ?, ?)',
-			array($monographId, $reviewType, $round, $reviewRevision)
-		);
 	}
 
 	/**
@@ -854,25 +846,6 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		return $returner;
 	}	
-
-	/**
-	 * Check if a review round exists for a specified monograph.
-	 * @param $monographId int
-	 * @param $reviewType int
-	 * @param $round int
-	 * @return boolean
-	 */
-	function reviewRoundExists($monographId, $reviewType, $round) {
-		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM review_rounds WHERE monograph_id = ? AND review_type = ? AND round = ?', array($monographId, $reviewType, $round)
-		);
-		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
-	}
 
 	/**
 	 * Check if a reviewer is assigned to a specified monograph.

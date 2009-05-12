@@ -101,9 +101,6 @@ class DesignerHandler extends Handler {
 			SUBMISSION_FIELD_DATE_PROOFREADING_COMPLETE => 'submissions.proofreadingComplete'
 		));
 
-//		import('issue.IssueAction');
-//		$issueAction = new IssueAction();
-//		$templateMgr->register_function('print_issue_id', array($issueAction, 'smartyPrintIssueId'));
 		$templateMgr->assign('helpTopicId', 'editorial.designersRole.submissions');
 		$templateMgr->display('designer/submissions.tpl');
 	}

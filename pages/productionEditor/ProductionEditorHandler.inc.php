@@ -16,11 +16,12 @@
 
 
 import('handler.Handler');
-import('pages.acquisitionsEditor.SubmissionEditHandler');
+import('submission.productionEditor.ProductionEditorAction');
 
-class ProductionEditorHandler extends SubmissionEditHandler {
+class ProductionEditorHandler extends Handler {
+
 	function ProductionEditorHandler() {
-		parent::SubmissionEditHandler();
+		parent::Handler();
 	}
 
 	/**
@@ -58,24 +59,248 @@ class ProductionEditorHandler extends SubmissionEditHandler {
 		$templateMgr->assign_by_ref('submissions', $submissions);
 		$templateMgr->display('productionEditor/index.tpl');
 	}
-	/**
-	 * View a file (inline file).
-	 * @param $args array ($monographId, $fileId, [$revision])
-	 */
-	function viewFile($args) {
-		$monographId = isset($args[0]) ? $args[0] : 0;
-		$fileId = isset($args[1]) ? $args[1] : 0;
-		$revision = isset($args[2]) ? $args[2] : null;
 
-		$this->validate();
-		$press =& Request::getPress();
-		import('file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monographId);
-		$monographFileManager->viewFile($fileId, $revision);
-//		if (!$monographFileManager->viewFile($fileId, $revision)) {
-//			Request::redirect(null, null, 'submission', $monographId);
-//		}
+
+	/**
+	 * Select Proofreader.
+	 * @param $args array ($monographId, $userId)
+	 */
+	function selectProofreader($args) {
+		$monographId = isset($args[0]) ? (int) $args[0] : 0;
+		$userId = isset($args[1]) ? (int) $args[1] : 0;
+
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;		
+
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+
+		if ($userId && $monographId && $roleDao->roleExists($press->getId(), $userId, ROLE_ID_PROOFREADER)) {
+			import('submission.proofreader.ProofreaderAction');
+			ProofreaderAction::selectProofreader($userId, $submission);
+			Request::redirect(null, null, 'submissionEditing', $monographId);
+		} else {
+			$this->setupTemplate(true, $monographId, 'editing');
+
+			$searchType = null;
+			$searchMatch = null;
+			$search = $searchQuery = Request::getUserVar('search');
+			$searchInitial = Request::getUserVar('searchInitial');
+			if (isset($search)) {
+				$searchType = Request::getUserVar('searchField');
+				$searchMatch = Request::getUserVar('searchMatch');
+
+			} else if (isset($searchInitial)) {
+				$searchInitial = String::strtoupper($searchInitial);
+				$searchType = USER_FIELD_INITIAL;
+				$search = $searchInitial;
+			}
+
+			$proofreaders = $roleDao->getUsersByRoleId(ROLE_ID_PROOFREADER, $press->getId(), $searchType, $search, $searchMatch);
+
+			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+			$proofreaderStatistics = $acquisitionsEditorSubmissionDao->getProofreaderStatistics($press->getId());
+
+			$templateMgr =& TemplateManager::getManager();
+
+			$templateMgr->assign('searchField', $searchType);
+			$templateMgr->assign('searchMatch', $searchMatch);
+			$templateMgr->assign('search', $searchQuery);
+			$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
+
+			$templateMgr->assign_by_ref('users', $proofreaders);
+
+			$proofAssignment =& $submission->getProofAssignment();
+			if ($proofAssignment) {
+				$templateMgr->assign('currentUser', $proofAssignment->getProofreaderId());
+			}
+			$templateMgr->assign('statistics', $proofreaderStatistics);
+			$templateMgr->assign('fieldOptions', Array(
+				USER_FIELD_FIRSTNAME => 'user.firstName',
+				USER_FIELD_LASTNAME => 'user.lastName',
+				USER_FIELD_USERNAME => 'user.username',
+				USER_FIELD_EMAIL => 'user.email'
+			));
+			$templateMgr->assign('monographId', $monographId);
+			$templateMgr->assign('pageSubTitle', 'editor.monograph.selectProofreader');
+			$templateMgr->assign('pageTitle', 'user.role.proofreaders');
+			$templateMgr->assign('actionHandler', 'selectProofreader');
+
+			$templateMgr->assign('helpTopicId', 'press.roles.proofreader');
+			$templateMgr->display('acquisitionsEditor/selectUser.tpl');
+		}
 	}
+
+	/**
+	 * Notify author for proofreading
+	 */
+	function notifyAuthorProofreader($args) {
+		$monographId = Request::getUserVar('monographId');
+		$send = Request::getUserVar('send')?1:0;
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;		
+		$this->setupTemplate(true, $monographId, 'editing');
+
+		import('submission.proofreader.ProofreaderAction');
+		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_AUTHOR_REQUEST', $send?'':Request::url(null, null, 'notifyAuthorProofreader'))) {
+			Request::redirect(null, null, 'submissionEditing', $monographId);
+		}
+	}
+
+	/**
+	 * Thank author for proofreading
+	 */
+	function thankAuthorProofreader($args) {
+		$monographId = Request::getUserVar('monographId');
+		$send = Request::getUserVar('send')?1:0;
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'editing');
+
+		import('submission.proofreader.ProofreaderAction');
+		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_AUTHOR_ACK', $send?'':Request::url(null, null, 'thankAuthorProofreader'))) {
+			Request::redirect(null, null, 'submissionEditing', $monographId);
+		}
+	}
+
+	/**
+	 * Editor initiates proofreading
+	 */
+	function editorInitiateProofreader() {
+		$monographId = Request::getUserVar('monographId');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
+		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
+		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
+		$proofAssignment->setDateProofreaderNotified(Core::getCurrentDate());
+		$proofAssignmentDao->updateProofAssignment($proofAssignment);
+
+		Request::redirect(null, null, 'submissionEditing', $monographId);
+	}
+
+	/**
+	 * Editor completes proofreading
+	 */
+	function editorCompleteProofreader() {
+		$monographId = Request::getUserVar('monographId');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
+		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
+		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
+		$proofAssignment->setDateProofreaderCompleted(Core::getCurrentDate());
+		$proofAssignmentDao->updateProofAssignment($proofAssignment);
+
+		Request::redirect(null, null, 'submissionEditing', $monographId);
+	}
+
+	/**
+	 * Notify proofreader for proofreading
+	 */
+	function notifyProofreader($args) {
+		$monographId = Request::getUserVar('monographId');
+		$send = Request::getUserVar('send');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'editing');
+
+		import('submission.proofreader.ProofreaderAction');
+		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_REQUEST', $send?'':Request::url(null, null, 'notifyProofreader'))) {
+			Request::redirect(null, null, 'submissionEditing', $monographId);
+		}
+	}
+
+	/**
+	 * Thank proofreader for proofreading
+	 */
+	function thankProofreader($args) {
+		$monographId = Request::getUserVar('monographId');
+		$send = Request::getUserVar('send')?1:0;
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;				
+		$this->setupTemplate(true, $monographId, 'editing');
+
+		import('submission.proofreader.ProofreaderAction');
+		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_ACK', $send?'':Request::url(null, null, 'thankProofreader'))) {
+			Request::redirect(null, null, 'submissionEditing', $monographId);
+		}
+	}
+
+	/**
+	 * Editor initiates layout editor proofreading
+	 */
+	function editorInitiateLayoutEditor() {
+		$monographId = Request::getUserVar('monographId');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
+		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
+		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
+		$proofAssignment->setDateLayoutEditorNotified(Core::getCurrentDate());
+		$proofAssignmentDao->updateProofAssignment($proofAssignment);
+
+		Request::redirect(null, null, 'submissionEditing', $monographId);
+	}
+
+	/**
+	 * Editor completes layout editor proofreading
+	 */
+	function editorCompleteLayoutEditor() {
+		$monographId = Request::getUserVar('monographId');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
+		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
+		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
+		$proofAssignment->setDateLayoutEditorCompleted(Core::getCurrentDate());
+		$proofAssignmentDao->updateProofAssignment($proofAssignment);
+
+		Request::redirect(null, null, 'submissionEditing', $monographId);
+	}
+
+	/**
+	 * Notify layout editor for proofreading
+	 */
+	function notifyLayoutEditorProofreader($args) {
+		$monographId = Request::getUserVar('monographId');
+		$send = Request::getUserVar('send')?1:0;
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'editing');
+
+		import('submission.proofreader.ProofreaderAction');
+		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_LAYOUT_REQUEST', $send?'':Request::url(null, null, 'notifyLayoutEditorProofreader'))) {
+			Request::redirect(null, null, 'submissionEditing', $monographId);
+		}
+	}
+
+	/**
+	 * Thank layout editor for proofreading
+	 */
+	function thankLayoutEditorProofreader($args) {
+		$monographId = Request::getUserVar('monographId');
+		$send = Request::getUserVar('send')?1:0;
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'editing');
+
+		import('submission.proofreader.ProofreaderAction');
+		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_LAYOUT_ACK', $send?'':Request::url(null, null, 'thankLayoutEditorProofreader'))) {
+			Request::redirect(null, null, 'submissionEditing', $monographId);
+		}
+	}
+
 	function submission($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
@@ -117,39 +342,8 @@ class ProductionEditorHandler extends SubmissionEditHandler {
 			$templateMgr->assign_by_ref('commentsStatusOptions', Monograph::getCommentsStatusOptions());
 		}
 
-/*		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
-		if ($publishedMonograph) {
-			$issueDao =& DAORegistry::getDAO('IssueDAO');
-			$issue =& $issueDao->getIssueById($publishedMonograph->getIssueId());
-			$templateMgr->assign_by_ref('issue', $issue);
-			$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
-		}
-*/
-		if ($isEditor) {
-			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary');
-		}
-		
-		// Set up required Payment Related Information
-/*		import('payment.ojs.OJSPaymentManager');
-		$paymentManager =& OJSPaymentManager::getManager();
-		if ( $paymentManager->submissionEnabled() || $paymentManager->fastTrackEnabled() || $paymentManager->publicationEnabled()) {
-			$templateMgr->assign('authorFees', true);
-			$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
-			
-			if ( $paymentManager->submissionEnabled() ) {
-				$templateMgr->assign_by_ref('submissionPayment', $completedPaymentDAO->getSubmissionCompletedPayment ( $press->getId(), $monographId ));
-			}
-			
-			if ( $paymentManager->fastTrackEnabled()  ) {
-				$templateMgr->assign_by_ref('fastTrackPayment', $completedPaymentDAO->getFastTrackCompletedPayment ( $press->getId(), $monographId ));
-			}
+		$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary');
 
-			if ( $paymentManager->publicationEnabled()  ) {
-				$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getId(), $monographId ));
-			}				   
-		}		
-*/
 		$templateMgr->display('productionEditor/submission.tpl');
 
 
@@ -189,11 +383,73 @@ class ProductionEditorHandler extends SubmissionEditHandler {
 		}
 
 		$artworkForm->display();
-
-
 	}
+
 	function assignLayoutEditor($args) {
-		SubmissionEditHandler::assignLayoutEditor($args, 'submissionLayout');
+		$monographId = isset($args[0]) ? (int) $args[0] : 0;
+		$designerId = isset($args[1]) ? (int) $args[1] : 0;
+		$this->validate($monographId);
+		
+		$submission =& $this->submission;
+		$press =& $this->press;
+
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+
+		if ($designerId && $roleDao->roleExists($press->getId(), $designerId, ROLE_ID_DESIGNER)) {
+			ProductionEditorAction::assignLayoutEditor($submission, $designerId);			
+			Request::redirect(null, null, 'submissionLayout', $monographId);
+		} else {
+			$searchType = null;
+			$searchMatch = null;
+			$search = $searchQuery = Request::getUserVar('search');
+			$searchInitial = Request::getUserVar('searchInitial');
+			if (isset($search)) {
+				$searchType = Request::getUserVar('searchField');
+				$searchMatch = Request::getUserVar('searchMatch');
+
+			} else if (isset($searchInitial)) {
+				$searchInitial = String::strtoupper($searchInitial);
+				$searchType = USER_FIELD_INITIAL;
+				$search = $searchInitial;
+			}
+
+			$designers = $roleDao->getUsersByRoleId(ROLE_ID_DESIGNER, $press->getId(), $searchType, $search, $searchMatch);
+
+			$productionEditorSubmissionDao =& DAORegistry::getDAO('ProductionEditorSubmissionDAO');
+//			$layoutEditorStatistics = $productionEditorSubmissionDao->getLayoutEditorStatistics($press->getId());
+
+			$this->setupTemplate(true, $monographId, 'editing');
+
+			$templateMgr =& TemplateManager::getManager();
+
+			$templateMgr->assign('searchField', $searchType);
+			$templateMgr->assign('searchMatch', $searchMatch);
+			$templateMgr->assign('search', $searchQuery);
+			$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
+			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
+
+			$templateMgr->assign('pageTitle', 'user.role.designers');
+			$templateMgr->assign('pageSubTitle', 'editor.monograph.selectDesigner');
+			$templateMgr->assign('actionHandler', 'assignLayoutEditor');
+			$templateMgr->assign('monographId', $monographId);
+			$templateMgr->assign_by_ref('users', $designers);
+
+//			$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_ARTICLE, $articleId);
+//			if ($layoutSignoff) {
+//				$templateMgr->assign('currentUser', $layoutSignoff->getUserId());
+ //			}
+
+			$templateMgr->assign('fieldOptions', Array(
+				USER_FIELD_FIRSTNAME => 'user.firstName',
+				USER_FIELD_LASTNAME => 'user.lastName',
+				USER_FIELD_USERNAME => 'user.username',
+				USER_FIELD_EMAIL => 'user.email'
+			));
+//			$templateMgr->assign('statistics', $layoutEditorStatistics);
+			$templateMgr->assign('helpTopicId', 'journal.roles.layoutEditor');
+			$templateMgr->display('acquisitionsEditor/selectUser.tpl');
+		}
 	}
 
 	/**
@@ -201,10 +457,10 @@ class ProductionEditorHandler extends SubmissionEditHandler {
 	 */
 	function uploadLayoutFile() {
 		$monographId = Request::getUserVar('monographId');
-		parent::validate($monographId, SECTION_EDITOR_ACCESS_EDIT);
+		$this->validate($monographId);
 		$submission =& $this->submission;
 
-		AcquisitionsEditorAction::uploadLayoutVersion($submission);
+		ProductionEditorAction::uploadLayoutVersion($submission);
 
 		Request::redirect(null, null, 'submissionLayout', $monographId);
 	}
@@ -229,6 +485,8 @@ class ProductionEditorHandler extends SubmissionEditHandler {
 	 */
 	function uploadArtworkFile() {
 		$monographId = Request::getUserVar('monographId');
+		$this->validate($monographId);
+
 		import('file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 
@@ -258,8 +516,8 @@ class ProductionEditorHandler extends SubmissionEditHandler {
 		$enableComments = $press->getSetting('enableComments');
 
 		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('useLayoutEditors', true);
 
-		$templateMgr->assign_by_ref('layoutAssignments', $submission->getLayoutAssignments());
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('arrangement', $arrangement);
 		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
@@ -270,7 +528,7 @@ class ProductionEditorHandler extends SubmissionEditHandler {
 		$templateMgr->assign('userId', $user->getUserId());
 		$templateMgr->assign('isEditor', $isEditor);
 		$templateMgr->assign('enableComments', $enableComments);
-
+		$templateMgr->assign('useLayoutEditors', true);
 //		$templateMgr->assign_by_ref('arrangements', $arrangementDao->getAcquisitionsArrangementsTitles($press->getId()));
 
 		if ($enableComments) {
@@ -286,6 +544,42 @@ class ProductionEditorHandler extends SubmissionEditHandler {
 		$templateMgr->display('productionEditor/layout.tpl');
 
 
+	}
+
+	/**
+	 * Download a file.
+	 * @param $args array ($monographId, $fileId, [$revision])
+	 */
+	function downloadFile($args) {
+		$monographId = isset($args[0]) ? $args[0] : 0;
+		$fileId = isset($args[1]) ? $args[1] : 0;
+		$revision = isset($args[2]) ? $args[2] : null;
+
+		$this->validate($monographId);
+		$press =& Request::getPress();
+		import('file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($monographId);
+		if (!$monographFileManager->viewFile($fileId, $revision)) {
+			Request::redirect(null, null, 'submissionLayout', $monographId);
+		}
+	}
+
+	/**
+	 * View a file (inline file).
+	 * @param $args array ($monographId, $fileId, [$revision])
+	 */
+	function viewFile($args) {
+		$monographId = isset($args[0]) ? $args[0] : 0;
+		$fileId = isset($args[1]) ? $args[1] : 0;
+		$revision = isset($args[2]) ? $args[2] : null;
+
+		$this->validate($monographId);
+		$press =& Request::getPress();
+		import('file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($monographId);
+		if (!$monographFileManager->viewFile($fileId, $revision)) {
+			Request::redirect(null, null, 'submissionLayout', $monographId);
+		}
 	}
 
 	/**
@@ -314,15 +608,15 @@ class ProductionEditorHandler extends SubmissionEditHandler {
 	 * Redirects to user index page if not properly authenticated.
 	 */
 	function validate($monographId = null, $reason = null) {
-	//	parent::validate();
-	//FIXME: this should work better with the parent's class
+		parent::validate();
+
 		$press =& Request::getPress();
 		$productionEditorSubmission = null;
 		$isValid = true;
 
 		if ($monographId != null) {
-			$monographDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
-			$productionEditorSubmission =& $monographDao->getAcquisitionsEditorSubmission($monographId);
+			$productionEditorSubmissionDao =& DAORegistry::getDAO('ProductionEditorSubmissionDAO');
+			$productionEditorSubmission =& $productionEditorSubmissionDao->getById($monographId, $press->getId());
 
 			if ($productionEditorSubmission == null) {
 				$isValid = false;
@@ -343,10 +637,223 @@ class ProductionEditorHandler extends SubmissionEditHandler {
 			Request::redirect(null, Request::getRequestedPage());
 		}
 
-		$this->press =& $productionEditorSubmission;
+		$this->press =& $press;
 		$this->submission =& $productionEditorSubmission;
 		return true;
 	}
+	/**
+	 * Notify the layout editor.
+	 */
+	function notifyLayoutDesigner($args) {
+		$monographId = Request::getUserVar('monographId');
+		$layoutAssignmentId = Request::getUserVar('layoutAssignmentId');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
+		$send = Request::getUserVar('send') ? true : false;
+		$this->setupTemplate(true, $monographId, 'editing');
+
+		if (ProductionEditorAction::notifyLayoutDesigner($submission, $layoutAssignmentId, $send)) {
+			Request::redirect(null, null, 'submissionLayout', $monographId);
+		}
+	}
+
+	/**
+	 * Thank the layout editor.
+	 */
+	function thankLayoutEditor($args) {
+		$monographId = Request::getUserVar('monographId');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
+		$send = Request::getUserVar('send') ? true : false;
+		$this->setupTemplate(true, $monographId, 'editing');
+
+		if (AcquisitionsEditorAction::thankLayoutEditor($submission, $send)) {
+			Request::redirect(null, null, 'submissionEditing', $monographId);
+		}
+	}
+
+	/**
+	 * Create a new galley with the uploaded file.
+	 */
+	function uploadGalley($fileName = null) {
+		$monographId = Request::getUserVar('monographId');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
+		import('submission.form.MonographGalleyForm');
+
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$galleyForm =& new MonographGalleyForm($monographId);
+		$galleyId = $galleyForm->execute($fileName);
+
+		Request::redirect(null, null, 'editGalley', array($monographId, $galleyId));
+	}
+
+	/**
+	 * Edit a galley.
+	 * @param $args array ($monographId, $galleyId)
+	 */
+	function editGalley($args) {
+		$monographId = isset($args[0]) ? (int) $args[0] : 0;
+		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
+		$this->setupTemplate(true, $monographId, 'editing');
+
+		import('submission.form.MonographGalleyForm');
+
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$submitForm =& new MonographGalleyForm($monographId, $galleyId);
+
+		if ($submitForm->isLocaleResubmit()) {
+			$submitForm->readInputData();
+		} else {
+			$submitForm->initData();
+		}
+		$submitForm->display();
+	}
+
+	/**
+	 * Save changes to a galley.
+	 * @param $args array ($monographId, $galleyId)
+	 */
+	function saveGalley($args) {
+		$monographId = isset($args[0]) ? (int) $args[0] : 0;
+		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
+		import('submission.form.MonographGalleyForm');
+
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
+		$submitForm =& new MonographGalleyForm($monographId, $galleyId);
+
+		$submitForm->readInputData();
+		if ($submitForm->validate()) {
+			$submitForm->execute();
+
+			if (Request::getUserVar('uploadImage')) {
+				$submitForm->uploadImage();
+				Request::redirect(null, null, 'editGalley', array($monographId, $galleyId));
+			} else if(($deleteImage = Request::getUserVar('deleteImage')) && count($deleteImage) == 1) {
+				list($imageId) = array_keys($deleteImage);
+				$submitForm->deleteImage($imageId);
+				Request::redirect(null, null, 'editGalley', array($monographId, $galleyId));
+			}
+			Request::redirect(null, null, 'submissionEditing', $monographId);
+		} else {
+			$this->setupTemplate(true, $monographId, 'editing');
+			$submitForm->display();
+		}
+	}
+
+	/**
+	 * Change the sequence order of a galley.
+	 */
+	function orderGalley() {
+		$monographId = Request::getUserVar('monographId');
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
+		AcquisitionsEditorAction::orderGalley($submission, Request::getUserVar('galleyId'), Request::getUserVar('d'));
+
+		Request::redirect(null, null, 'submissionEditing', $monographId);
+	}
+
+	/**
+	 * Delete a galley file.
+	 * @param $args array ($monographId, $galleyId)
+	 */
+	function deleteGalley($args) {
+		$monographId = isset($args[0]) ? (int) $args[0] : 0;
+		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
+		AcquisitionsEditorAction::deleteGalley($submission, $galleyId);
+
+		Request::redirect(null, null, 'submissionEditing', $monographId);
+	}
+
+	/**
+	 * Proof / "preview" a galley.
+	 * @param $args array ($monographId, $galleyId)
+	 */
+	function proofGalley($args) {
+		$monographId = isset($args[0]) ? (int) $args[0] : 0;
+		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('monographId', $monographId);
+		$templateMgr->assign('galleyId', $galleyId);
+		$templateMgr->display('submission/layout/proofGalley.tpl');
+	}
+
+	/**
+	 * Proof galley (shows frame header).
+	 * @param $args array ($monographId, $galleyId)
+	 */
+	function proofGalleyTop($args) {
+		$monographId = isset($args[0]) ? (int) $args[0] : 0;
+		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('monographId', $monographId);
+		$templateMgr->assign('galleyId', $galleyId);
+		$templateMgr->assign('backHandler', 'submissionEditing');
+		$templateMgr->display('submission/layout/proofGalleyTop.tpl');
+	}
+
+	/**
+	 * Proof galley (outputs file contents).
+	 * @param $args array ($monographId, $galleyId)
+	 */
+	function proofGalleyFile($args) {
+		$monographId = isset($args[0]) ? (int) $args[0] : 0;
+		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
+		$this->validate($monographId);
+		$press =& $this->press;
+		$submission =& $this->submission;
+
+		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
+		$galley =& $galleyDao->getGalley($galleyId, $monographId);
+
+		import('file.MonographFileManager'); // FIXME
+
+		if (isset($galley)) {
+			if ($galley->isHTMLGalley()) {
+				$templateMgr =& TemplateManager::getManager();
+				$templateMgr->assign_by_ref('galley', $galley);
+				if ($galley->isHTMLGalley() && $styleFile =& $galley->getStyleFile()) {
+					$templateMgr->addStyleSheet(Request::url(null, 'monograph', 'viewFile', array(
+						$monographId, $galleyId, $styleFile->getFileId()
+					)));
+				}
+				$templateMgr->display('submission/layout/proofGalleyHTML.tpl');
+
+			} else {
+				// View non-HTML file inline
+				$this->viewFile(array($monographId, $galley->getFileId()));
+			}
+		}
+	}
+
 }
 
 ?>

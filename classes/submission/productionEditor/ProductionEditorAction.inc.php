@@ -14,7 +14,6 @@
 
 // $Id$
 
-
 import('submission.common.Action');
 
 class ProductionEditorAction extends Action {
@@ -23,7 +22,6 @@ class ProductionEditorAction extends Action {
 	 * Actions.
 	 * Ideas: unsuitable art
 	 */
-
 
 	//
 	// Layout Editing
@@ -36,14 +34,19 @@ class ProductionEditorAction extends Action {
 	function uploadLayoutVersion($submission) {
 		import('file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($submission->getMonographId());
-		$submissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+
+		$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
 
 		$fileName = 'layoutFile';
 		if ($monographFileManager->uploadedFileExists($fileName) && !HookRegistry::call('AcquisitionsEditorAction::uploadLayoutVersion', array(&$submission, &$layoutAssignment))) {
-			$layoutFileId = $monographFileManager->uploadLayoutFile($fileName);
-			$submission->setLayoutFileId($layoutFileId);
-
-			$submissionDao->updateAcquisitionsEditorSubmission($submission);
+			if ($layoutSignoff->getFileId() != null) {
+				$layoutFileId = $monographFileManager->uploadLayoutFile($fileName, $layoutSignoff->getFileId());
+			} else {
+				$layoutFileId = $monographFileManager->uploadLayoutFile($fileName);
+			}			
+			$layoutSignoff->setFileId($layoutFileId);
+			$signoffDao->updateObject($layoutSignoff);
 		}
 	}
 
@@ -53,34 +56,36 @@ class ProductionEditorAction extends Action {
 	 * @param $editorId int user ID of the new layout editor
 	 */
 	function assignLayoutEditor($submission, $designerId) {
-		if (HookRegistry::call('AcquisitionsEditorAction::assignLayoutEditor', array(&$submission, &$designerId))) return;
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		if (HookRegistry::call('SectionEditorAction::assignLayoutEditor', array(&$submission, &$designerId))) return;
 
-	//	$layoutAssignments =& $submission->getLayoutAssignments();
-
-/*		import('monograph.log.MonographLog');
+		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');
 
-		if ($layoutAssignment->getEditorId()) {
-			MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_UNASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $layoutAssignment->getLayoutId(), 'log.layout.layoutEditorUnassigned', array('editorName' => $layoutAssignment->getEditorFullName(), 'monographId' => $submission->getMonographId()));
+		$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+		$layoutProofSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+		if ($layoutSignoff->getUserId()) {
+			$layoutEditor =& $userDao->getUser($layoutSignoff->getUserId());
+			MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_UNASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $layoutSignoff->getId(), 'log.layout.layoutEditorUnassigned', array('editorName' => $layoutEditor->getFullName(), 'monographId' => $submission->getMonographId()));
 		}
-*/
-		$layoutAssignment = new LayoutAssignment;
-		$layoutAssignment->setDesignerId($designerId);
-		$layoutAssignment->setDateNotified(null);
-		$layoutAssignment->setDateUnderway(null);
-		$layoutAssignment->setDateCompleted(null);
-		$layoutAssignment->setDateAcknowledged(null);
-		$layoutAssignment->setMonographId($submission->getMonographId());
-		$layoutAssignment->setLayoutFileId($submission->getLayoutFileId());
+		
+		$layoutSignoff->setUserId($designerId);
+		$layoutSignoff->setDateNotified(null);
+		$layoutSignoff->setDateUnderway(null);
+		$layoutSignoff->setDateCompleted(null);
+		$layoutSignoff->setDateAcknowledged(null);
+		$layoutProofSignoff->setUserId($designerId);
+		$layoutProofSignoff->setDateNotified(null);
+		$layoutProofSignoff->setDateUnderway(null);
+		$layoutProofSignoff->setDateCompleted(null);
+		$layoutProofSignoff->setDateAcknowledged(null);
+		$signoffDao->updateObject($layoutSignoff);
+		$signoffDao->updateObject($layoutProofSignoff);
 
-		$layoutDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-
-		$layoutDao->insertLayoutAssignment($layoutAssignment);
-
-//		$layoutAssignment =& $layoutDao->getLayoutAssignmentById($layoutAssignment->getLayoutId());
-/*
-		MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_ASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $layoutAssignment->getLayoutId(), 'log.layout.layoutEditorAssigned', array('editorName' => $layoutAssignment->getEditorFullName(), 'monographId' => $submission->getMonographId()));
-*/	}
+		$layoutEditor =& $userDao->getUser($layoutSignoff->getUserId());
+		MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_ASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $layoutSignoff->getId(), 'log.layout.layoutEditorAssigned', array('editorName' => $layoutEditor->getFullName(), 'monographId' => $submission->getMonographId()));
+	}
 
 	/**
 	 * Notifies the current layout editor about an assignment.
@@ -90,83 +95,76 @@ class ProductionEditorAction extends Action {
 	 * @return boolean true iff ready for redirect
 	 */
 	function notifyLayoutDesigner($submission, $layoutAssignmentId, $send = false) {
-		$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$submissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$press =& Request::getPress();
+		$journal =& Request::getPress();
 		$user =& Request::getUser();
 
 		import('mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($submission, 'LAYOUT_REQUEST');
-
-		$layoutAssignments =& $submission->getLayoutAssignments();
-
-		foreach ($layoutAssignments as $layoutAssignmentItem) {
-			if ($layoutAssignmentItem->getId() == $layoutAssignmentId) {
-				$layoutAssignment =& $layoutAssignmentItem;
-				$layoutDesigner =& $userDao->getUser($layoutAssignmentItem->getDesignerId());
-				break;
-			}
-		}
-
-		if (!isset($layoutDesigner)) return true;
+		$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+		$layoutEditor =& $userDao->getUser($layoutSignoff->getUserId());
+		if (!isset($layoutEditor)) return true;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('AcquisitionsEditorAction::notifyLayoutEditor', array(&$submission, &$layoutDesigner, &$layoutAssignment, &$email));
+			HookRegistry::call('SectionEditorAction::notifyLayoutEditor', array(&$submission, &$layoutEditor, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(MONOGRAPH_EMAIL_LAYOUT_NOTIFY_EDITOR, MONOGRAPH_EMAIL_TYPE_LAYOUT, $layoutAssignment->getId());
+				$email->setAssoc(MONOGRAPH_EMAIL_LAYOUT_NOTIFY_EDITOR, MONOGRAPH_EMAIL_TYPE_LAYOUT, $layoutSignoff->getId());
 				$email->send();
 			}
-			$layoutAssignment->setDateNotified(Core::getCurrentDate());
-			$layoutAssignment->setDateUnderway(null);
-			$layoutAssignment->setDateCompleted(null);
-			$layoutAssignment->setDateAcknowledged(null);
-			$layoutAssignmentDao->updateLayoutAssignment($layoutAssignment);
 
+			$layoutSignoff->setDateNotified(Core::getCurrentDate());
+			$layoutSignoff->setDateUnderway(null);
+			$layoutSignoff->setDateCompleted(null);
+			$layoutSignoff->setDateAcknowledged(null);
+			$signoffDao->updateObject($layoutSignoff);
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$email->addRecipient($layoutDesigner->getEmail(), $layoutDesigner->getFullName());
+				$email->addRecipient($layoutEditor->getEmail(), $layoutEditor->getFullName());
 				$paramArray = array(
-					'layoutEditorName' => $layoutDesigner->getFullName(),
-					'layoutEditorUsername' => $layoutDesigner->getUsername(),
+					'layoutEditorName' => $layoutEditor->getFullName(),
+					'layoutEditorUsername' => $layoutEditor->getUsername(),
 					'editorialContactSignature' => $user->getContactSignature(),
 					'submissionLayoutUrl' => Request::url(null, 'layoutDesigner', 'submission', $submission->getMonographId())
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, null, 'notifyLayoutDesigner', 'send'), array('monographId' => $submission->getMonographId(), 'layoutAssignmentId' => $layoutAssignmentId));
+			$email->displayEditForm(Request::url(null, null, 'notifyLayoutDesigner', 'send'), array('monographId' => $submission->getMonographId()));
 			return false;
 		}
 		return true;
 	}
 
 	/**
-	 * Sends acknowledgement email to the current layout editor.
+	 * Sends acknowledgement email to the current layout designer.
 	 * @param $submission object
 	 * @param $send boolean
 	 * @return boolean true iff ready for redirect
 	 */
-	function thankLayoutEditor($submission, $send = false) {
+	function thankLayoutDesigner($submission, $send = false) {
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$submissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$press =& Request::getPress();
+		$journal =& Request::getJournal();
 		$user =& Request::getUser();
 
 		import('mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($submission, 'LAYOUT_ACK');
 
-		$layoutAssignment =& $submission->getLayoutAssignment();
-		$layoutEditor =& $userDao->getUser($layoutAssignment->getEditorId());
+		$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+		$layoutEditor =& $userDao->getUser($layoutSignoff->getUserId());
 		if (!isset($layoutEditor)) return true;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('AcquisitionsEditorAction::thankLayoutEditor', array(&$submission, &$layoutEditor, &$layoutAssignment, &$email));
+			HookRegistry::call('SectionEditorAction::thankLayoutEditor', array(&$submission, &$layoutEditor, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(MONOGRAPH_EMAIL_LAYOUT_THANK_EDITOR, MONOGRAPH_EMAIL_TYPE_LAYOUT, $layoutAssignment->getLayoutId());
+				$email->setAssoc(MONOGRAPH_EMAIL_LAYOUT_THANK_EDITOR, MONOGRAPH_EMAIL_TYPE_LAYOUT, $layoutSignoff->getId());
 				$email->send();
 			}
 
-			$layoutAssignment->setDateAcknowledged(Core::getCurrentDate());
-			$submissionDao->updateAcquisitionsEditorSubmission($submission);
+			$layoutSignoff->setDateAcknowledged(Core::getCurrentDate());
+			$signoffDao->updateObject($layoutSignoff);
 
 		} else {
 			if (!Request::getUserVar('continued')) {
@@ -190,8 +188,8 @@ class ProductionEditorAction extends Action {
 	 * @param $direction char u = up, d = down
 	 */
 	function orderGalley($monograph, $galleyId, $direction) {
-		import('submission.layoutEditor.LayoutEditorAction');
-		LayoutEditorAction::orderGalley($monograph, $galleyId, $direction);
+		import('submission.designer.DesignerAction');
+		DesignerAction::orderGalley($monograph, $galleyId, $direction);
 	}
 
 	/**
@@ -200,45 +198,8 @@ class ProductionEditorAction extends Action {
 	 * @param $galleyId int
 	 */
 	function deleteGalley($monograph, $galleyId) {
-		import('submission.layoutEditor.LayoutEditorAction');
-		LayoutEditorAction::deleteGalley($monograph, $galleyId);
-	}
-
-	/**
-	 * Change the sequence order of a supplementary file.
-	 * @param $monograph object
-	 * @param $suppFileId int
-	 * @param $direction char u = up, d = down
-	 */
-	function orderSuppFile($monograph, $suppFileId, $direction) {
-		import('submission.layoutEditor.LayoutEditorAction');
-		LayoutEditorAction::orderSuppFile($monograph, $suppFileId, $direction);
-	}
-
-	/**
-	 * Delete a supplementary file.
-	 * @param $monograph object
-	 * @param $suppFileId int
-	 */
-	function deleteSuppFile($monograph, $suppFileId) {
-		import('submission.layoutEditor.LayoutEditorAction');
-		LayoutEditorAction::deleteSuppFile($monograph, $suppFileId);
-	}
-
-	/**
-	 * Delete a file from an monograph.
-	 * @param $submission object
-	 * @param $fileId int
-	 * @param $revision int (optional)
-	 */
-	function deleteMonographFile($submission, $fileId, $revision) {
-		import('file.MonographFileManager');
-		$file =& $submission->getEditorFile();
-
-		if (isset($file) && $file->getFileId() == $fileId && !HookRegistry::call('AcquisitionsEditorAction::deleteMonographFile', array(&$submission, &$fileId, &$revision))) {
-			$monographFileManager = new MonographFileManager($submission->getMonographId());
-			$monographFileManager->deleteFile($fileId, $revision);
-		}
+		import('submission.designer.Designer');
+		DesignerAction::deleteGalley($monograph, $galleyId);
 	}
 
 	/**
@@ -248,21 +209,65 @@ class ProductionEditorAction extends Action {
 	 * @param $revision int (optional)
 	 */
 	function deleteMonographImage($submission, $fileId, $revision) {
-		import('file.MonographFileManager');
-		$monographGalleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
-		if (HookRegistry::call('AcquisitionsEditorAction::deleteMonographImage', array(&$submission, &$fileId, &$revision))) return;
-		foreach ($submission->getGalleys() as $galley) {
-			$images =& $monographGalleyDao->getGalleyImages($galley->getGalleyId());
-			foreach ($images as $imageFile) {
-				if ($imageFile->getMonographId() == $submission->getMonographId() && $fileId == $imageFile->getFileId() && $imageFile->getRevision() == $revision) {
-					$monographFileManager = new MonographFileManager($submission->getMonographId());
-					$monographFileManager->deleteFile($imageFile->getFileId(), $imageFile->getRevision());
-				}
-			}
-			unset($images);
+		import('submission.designer.DesignerAction');
+		DesginerAction::deleteArticleImage($submission, $fileId, $revision);
+	}
+
+	/**
+	 * Change the sequence order of a supplementary file.
+	 * @param $monograph object
+	 * @param $suppFileId int
+	 * @param $direction char u = up, d = down
+	 */
+	function orderSuppFile($monograph, $suppFileId, $direction) {
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$suppFile =& $suppFileDao->getSuppFile($suppFileId, $monograph->getMonographId());
+
+		if (isset($suppFile)) {
+			$suppFile->setSequence($suppFile->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
+			$suppFileDao->updateSuppFile($suppFile);
+			$suppFileDao->resequenceSuppFiles($monograph->getMonographId());
 		}
 	}
 
+	/**
+	 * Delete a supplementary file.
+	 * @param $monograph object
+	 * @param $suppFileId int
+	 */
+	function deleteSuppFile($monograph, $suppFileId) {
+		import('file.MonographFileManager');
+
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+
+		$suppFile =& $suppFileDao->getSuppFile($suppFileId, $monograph->getMonographId());
+		if (isset($suppFile) && !HookRegistry::call('LayoutEditorAction::deleteSuppFile', array(&$monograph, &$suppFile))) {
+			if ($suppFile->getFileId()) {
+				$monographFileManager = new MonographFileManager($monograph->getMonographId());
+				$monographFileManager->deleteFile($suppFile->getFileId());
+				import('search.MonographSearchIndex');
+				MonographSearchIndex::deleteTextIndex($monograph->getMonographId(), ARTICLE_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
+			}
+			$suppFileDao->deleteSuppFile($suppFile);
+		}
+	}
+
+	/**
+	 * Delete a file from an monograph.
+	 * @param $submission object
+	 * @param $fileId int
+	 * @param $revision int (optional)
+	 */
+/*	function deleteMonographFile($submission, $fileId, $revision) {
+		import('file.MonographFileManager');
+		$file =& $submission->getEditorFile();
+
+		if (isset($file) && $file->getFileId() == $fileId && !HookRegistry::call('AcquisitionsEditorAction::deleteMonographFile', array(&$submission, &$fileId, &$revision))) {
+			$monographFileManager = new MonographFileManager($submission->getMonographId());
+			$monographFileManager->deleteFile($fileId, $revision);
+		}
+	}
+*/
 	//
 	// Comments
 	//

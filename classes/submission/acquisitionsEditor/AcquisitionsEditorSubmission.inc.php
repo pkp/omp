@@ -188,20 +188,16 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * Get review assignments for this article.
 	 * @return array ReviewAssignments
 	 */
-	function &getReviewAssignments($round = null) {
-		if ($round == null) {
-			return $this->reviewAssignments;
-		} else {
-			return $this->reviewAssignments[$round];
-		}
+	function &getReviewAssignments() {
+		return $this->reviewAssignments;
 	}
 
 	/**
 	 * Set review assignments for this article.
 	 * @param $reviewAssignments array ReviewAssignments
 	 */
-	function setReviewAssignments($reviewAssignments, $round) {
-		return $this->reviewAssignments[$round] = $reviewAssignments;
+	function setReviewAssignments($reviewAssignments) {
+		return $this->reviewAssignments = $reviewAssignments;
 	}
 
 	/**

@@ -34,34 +34,29 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$layoutAssignmentId = isset($args[1]) ? $args[1] : 0;
 
 		$this->validate($monographId, $layoutAssignmentId);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId);
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 //		import('submission.proofreader.ProofreaderAction');
 //		ProofreaderAction::designerProofreadingUnderway($submission);
 //
-		$layoutAssignments =& $submission->getLayoutAssignments();
+		$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $monographId);
 
-/*		if ($layoutAssignment->getDateNotified() != null && $layoutAssignment->getDateUnderway() == null)
+		if ($layoutSignoff->getDateNotified() != null && $layoutSignoff->getDateUnderway() == null)
 		{
 			// Set underway date
-			$layoutAssignment->setDateUnderway(Core::getCurrentDate());
-			$layoutDao =& DAORegistry::getDAO('DesignerSubmissionDAO');
-			$layoutDao->updateSubmission($submission);
+			$layoutSignoff->setDateUnderway(Core::getCurrentDate());
+			$signoffDao->updateObject($layoutSignoff);
 		}
-*/
+
 //		$disableEdit = !SubmissionLayoutHandler::layoutEditingEnabled($submission);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $submission);
 //		$templateMgr->assign('disableEdit', $disableEdit);
-		$designerAssignments =& $submission->getLayoutAssignments();
-		if (isset($designerAssignments[0])) {
-			$templateMgr->assign('designerAssignment', $designerAssignments[0]);
-		} else {
-			$templateMgr->assign('designerAssignment', array());
-		}
+
 		$templateMgr->assign('useProofreaders', $press->getSetting('useProofreaders'));
 		$templateMgr->assign('templates', $press->getSetting('templates'));
 		$templateMgr->assign('helpTopicId', 'editorial.designersRole.layout');
@@ -81,7 +76,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function viewMetadata($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'summary');
 
@@ -94,7 +89,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function completeAssignment($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, true);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 
 		if (DesignerAction::completeLayoutEditing($submission, Request::getUserVar('send'))) {
@@ -113,7 +108,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function uploadLayoutFile() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, true);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 
 		switch (Request::getUserVar('layoutFileType')) {
@@ -154,7 +149,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$this->setupTemplate(true, $monographId, 'editing');
@@ -196,7 +191,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId, true);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 
 		import('submission.form.MonographGalleyForm');
@@ -209,7 +204,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 			$submitForm->execute();
 
 			// Send a notification to associated users
-			import('notification.Notification');
+/*			import('notification.Notification');
 			$monographDao =& DAORegistry::getDAO('MonographDAO'); 
 			$monograph =& $monographDao->getMonograph($monographId);
 			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
@@ -218,7 +213,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 				Notification::createNotification($user['id'], "notification.type.galleyModified",
 					$monograph->getMonographTitle(), $url, 1, NOTIFICATION_TYPE_GALLEY_MODIFIED);
 			}
-
+*/
 			if (Request::getUserVar('uploadImage')) {
 				$submitForm->uploadImage();
 				Request::redirect(null, null, 'editGalley', array($monographId, $galleyId));
@@ -242,7 +237,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId, true);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 
 		DesignerAction::deleteGalley($submission, $galleyId);
@@ -256,7 +251,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function orderGalley() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, true);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 
 		DesignerAction::orderGalley($submission, Request::getUserVar('galleyId'), Request::getUserVar('d'));
@@ -272,7 +267,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$templateMgr =& TemplateManager::getManager();
@@ -289,7 +284,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$templateMgr =& TemplateManager::getManager();
@@ -307,7 +302,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
@@ -343,7 +338,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$fileId = isset($args[2]) ? (int) $args[2] : 0;
 		$revisionId = isset($args[3]) ? (int) $args[3] : 0;
 		$this->validate($monographId);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 		DesignerAction::deleteMonographImage($submission, $fileId, $revisionId);
 
@@ -364,7 +359,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$this->setupTemplate(true, $monographId, 'editing');
@@ -406,7 +401,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function saveSuppFile($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
@@ -447,7 +442,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId, true);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 
 		DesignerAction::deleteSuppFile($submission, $suppFileId);
@@ -461,7 +456,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	function orderSuppFile() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, true);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 
 		DesignerAction::orderSuppFile($submission, Request::getUserVar('suppFileId'), Request::getUserVar('d'));
@@ -484,7 +479,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$revision = isset($args[2]) ? $args[2] : null;
 
 		$this->validate($monographId);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 		if (!DesignerAction::downloadFile($submission, $fileId, $revision)) {
 			Request::redirect(null, null, 'submission', $monographId);
@@ -501,7 +496,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$revision = isset($args[2]) ? $args[2] : null;
 
 		$this->validate($monographId);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 		if (!DesignerAction::viewFile($monographId, $fileId, $revision)) {
 			Request::redirect(null, null, 'submission', $monographId);
@@ -519,7 +514,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$monographId = Request::getUserVar('monographId');
 
 		$this->validate($monographId);
-		$journal =& $this->journal;
+		$press =& $this->press;
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId);
 
@@ -545,26 +540,37 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	 * @param $monographId int the submission being edited
 	 * @param $checkEdit boolean check if editor has editing permissions
 	 */
-	function validate($monographId, $assignmentId, $checkEdit = false) {
+	function validate($monographId, $checkEdit = false) {
 		parent::validate();
 
-		$isValid = true;
+		$isValid = false;
 
 		$press =& Request::getPress();
+		$user =& Request::getUser();
 
 		$designerSubmissionDao =& DAORegistry::getDAO('DesignerSubmissionDAO');
-		$submission =& $designerSubmissionDao->getSubmission($monographId, $assignmentId, $press->getId());
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$submission =& $designerSubmissionDao->getSubmission($monographId, $press->getId());
 
 		if (isset($submission)) {
-			$layoutAssignments =& $submission->getLayoutAssignments();
-			if (!isset($layoutAssignments)) $isValid = false;
+			$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $monographId);
+			if (!isset($layoutSignoff)) $isValid = false;
+			elseif ($layoutSignoff->getUserId() == $user->getUserId()) {
+				if ($checkEdit) {
+					$isValid = $this->layoutEditingEnabled($submission);
+				} else {
+					$isValid = true;
+				}
+			}			
 		}
 
 		if (!$isValid) {
 			Request::redirect(null, Request::getRequestedPage());
 		}
-
-		return array($press, $submission);
+		
+		$this->press =& $press;
+		$this->submission =& $submission;
+		return true;
 	}
 
 	/**
@@ -575,8 +581,8 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	 * @return boolean true if layout editor can modify the submission
 	 */
 	function layoutEditingEnabled(&$submission) {
-		$layoutAssignment =& $submission->getLayoutAssignment();
-		$proofAssignment =& $submission->getProofAssignment();
+		$layoutAssignment =& $submission->getLayoutAssignments();
+		$proofAssignment =& $submission->getProofAssignments();
 
 		return(($layoutAssignment->getDateNotified() != null
 			&& $layoutAssignment->getDateCompleted() == null)
