@@ -59,13 +59,13 @@ class CustomLocalePlugin extends GenericPlugin {
 	}
 
 	function getEnabled() {
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 		if (!$press) return false;
 		return $this->getSetting($press->getId(), 'enabled');
 	}
 
 	function setEnabled($enabled) {
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 		if ($press) {
 			$this->updateSetting($press->getId(), 'enabled', $enabled ? true : false);
 			return true;

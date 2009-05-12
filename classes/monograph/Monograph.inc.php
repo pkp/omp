@@ -327,7 +327,7 @@ class Monograph extends Submission {
 	function getBestMonographId($press = null) {
 		// Retrieve the press object, if necessary.
 		if (!isset($press)) {
-			$pressDao = &DAORegistry::getDAO('PressDAO');
+			$pressDao =& DAORegistry::getDAO('PressDAO');
 			$press = $pressDao->getPress($this->getPressId());
 		}
 

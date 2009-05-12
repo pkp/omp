@@ -100,7 +100,7 @@ class ReviewFormDAO extends DAO {
 	 * @return boolean
 	 */
 	function reviewFormExists($reviewFormId, $pressId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM review_forms WHERE review_form_id = ? AND press_id = ?',
 			array($reviewFormId, $pressId)
 		);

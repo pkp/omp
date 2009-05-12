@@ -53,7 +53,7 @@ class MonographMailTemplate extends MailTemplate {
 	}
 
 	function assignParams($paramArray = array()) {
-		$monograph = &$this->monograph;
+		$monograph =& $this->monograph;
 		$press = isset($this->press)?$this->press:Request::getPress();
 
 		$paramArray['monographTitle'] = strip_tags($monograph->getLocalizedTitle());
@@ -125,7 +125,7 @@ class MonographMailTemplate extends MailTemplate {
 		import('monograph.log.MonographEmailLogEntry');
 		import('monograph.log.MonographLog');
 		$entry = new MonographEmailLogEntry();
-		$monograph = &$this->monograph;
+		$monograph =& $this->monograph;
 
 		// Log data
 		$entry->setEventType($this->eventType);

@@ -42,11 +42,11 @@ class EmailTemplateForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
-		$press = &Request::getPress();
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplate = &$emailTemplateDao->getBaseEmailTemplate($this->emailKey, $press->getId());
+		$press =& Request::getPress();
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplate =& $emailTemplateDao->getBaseEmailTemplate($this->emailKey, $press->getId());
 		$templateMgr->assign('canDisable', $emailTemplate?$emailTemplate->getCanDisable():false);
 		$templateMgr->assign('supportedLocales', $press->getSupportedLocaleNames());
 		$templateMgr->assign('helpTopicId','press.managementPages.emails');
@@ -57,9 +57,9 @@ class EmailTemplateForm extends Form {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		$press = &Request::getPress();
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplate = &$emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $press->getId());
+		$press =& Request::getPress();
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $press->getId());
 		$thisLocale = Locale::getLocale();
 
 		if ($emailTemplate) {
@@ -98,13 +98,13 @@ class EmailTemplateForm extends Form {
 	 * Save email template.
 	 */
 	function execute() {
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplate = &$emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $press->getId());
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplate =& $emailTemplateDao->getLocaleEmailTemplate($this->emailKey, $press->getId());
 
 		if (!$emailTemplate) {
-			$emailTemplate = &new LocaleEmailTemplate();
+			$emailTemplate =& new LocaleEmailTemplate();
 			$emailTemplate->setCustomTemplate(true);
 			$emailTemplate->setCanDisable(false);
 			$emailTemplate->setEnabled(true);

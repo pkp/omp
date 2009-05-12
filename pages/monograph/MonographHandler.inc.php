@@ -38,12 +38,12 @@ class MonographHandler extends Handler {
 	function current($args = null) {
 		$this->validate();
 
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 
-		$monographDao = &DAORegistry::getDAO('MonographDAO');
-		$monograph = &$monographDao->getCurrentIssue($press->getId());
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getCurrentIssue($press->getId());
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
 		if ($monograph != null) {
 			
@@ -63,19 +63,19 @@ class MonographHandler extends Handler {
 		$monographId = isset($args[0]) ? $args[0] : 0;
 		$showToc = isset($args[1]) ? $args[1] : '';
 
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 
-		$monographDao = &DAORegistry::getDAO('MonographDAO');
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		if ($press->getSetting('enablePublicMonographId')) {
-			$monograph = &$monographDao->getMonographByBestIssueId($monographId, $press->getId());
+			$monograph =& $monographDao->getMonographByBestIssueId($monographId, $press->getId());
 		} else {
-			$monograph = &$monographDao->getIssueById((int) $monographId);
+			$monograph =& $monographDao->getIssueById((int) $monographId);
 		}
 
 		if (!$monograph) Request::redirect(null, null, 'current');
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		IssueHandler::setupIssueTemplate($monograph, ($showToc == 'showToc') ? true : false);
 
 		// Display creative commons logo/licence if enabled
@@ -104,18 +104,18 @@ class MonographHandler extends Handler {
 	function published() {
 		$this->validate();
 
-		$press = &Request::getPress();
-		$monographDao = &DAORegistry::getDAO('MonographDAO');
+		$press =& Request::getPress();
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$rangeInfo = Handler::getRangeInfo('monographs');
 
 		$publishedMonograhsIterator = $monographDao->getPublishedMonographs($press->getId(), $rangeInfo);
 
 		import('file.PublicFileManager');
-		$publicFileManager = &new PublicFileManager();
+		$publicFileManager =& new PublicFileManager();
 		$coverPagePath = Request::getBaseUrl() . '/';
 		$coverPagePath .= $publicFileManager->getPressFilesPath($press->getId()) . '/';
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('coverPagePath', $coverPagePath);
 		$templateMgr->assign('locale', Locale::getLocale());
 		$templateMgr->assign_by_ref('issues', $publishedMonographsIterator);

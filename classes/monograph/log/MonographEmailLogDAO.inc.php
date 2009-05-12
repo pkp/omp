@@ -27,19 +27,19 @@ class MonographEmailLogDAO extends DAO {
 	 */
 	function &getLogEntry($logId, $monographId = null) {
 		if (isset($monographId)) {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT * FROM monograph_email_log WHERE log_id = ? AND monograph_id = ?',
 				array($logId, $monographId)
 			);
 		} else {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT * FROM monograph_email_log WHERE log_id = ?', $logId
 			);
 		}
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnLogEntryFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnLogEntryFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -54,7 +54,7 @@ class MonographEmailLogDAO extends DAO {
 	 * @return DAOResultFactory containing matching MonographEmailLogEntry ordered by sequence
 	 */
 	function &getMonographLogEntries($monographId, $rangeInfo = null) {
-		$returner = &$this->getMonographLogEntriesByAssoc($monographId, null, null, $rangeInfo);
+		$returner =& $this->getMonographLogEntriesByAssoc($monographId, null, null, $rangeInfo);
 		return $returner;
 	}
 
@@ -74,7 +74,7 @@ class MonographEmailLogDAO extends DAO {
 			}
 		}
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT * FROM monograph_email_log WHERE monograph_id = ?' . (isset($assocType) ? ' AND assoc_type = ?' . (isset($assocId) ? ' AND assoc_id = ?' : '') : '') . ' ORDER BY log_id DESC',
 			$params, $rangeInfo
 		);

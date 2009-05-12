@@ -993,7 +993,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 				break;
 		}
 
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT DISTINCT
 				u.*,
 				a.review_id

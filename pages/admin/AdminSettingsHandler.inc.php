@@ -30,7 +30,7 @@ class AdminSettingsHandler extends AdminHandler {
 
 		import('admin.form.SiteSettingsForm');
 
-		$settingsForm = &new SiteSettingsForm();
+		$settingsForm =& new SiteSettingsForm();
 		if ($settingsForm->isLocaleResubmit()) {
 			$settingsForm->readInputData();
 		} else {
@@ -49,7 +49,7 @@ class AdminSettingsHandler extends AdminHandler {
 
 		import('admin.form.SiteSettingsForm');
 
-		$settingsForm = &new SiteSettingsForm();
+		$settingsForm =& new SiteSettingsForm();
 		$settingsForm->readInputData();
 
 		if (Request::getUserVar('uploadSiteStyleSheet')) {
@@ -75,13 +75,13 @@ class AdminSettingsHandler extends AdminHandler {
 				$siteSettingsDao->deleteSetting('pageHeaderTitleImage', $formLocale);
 
 				// Refresh site header
-				$templateMgr = &TemplateManager::getManager();
+				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('displayPageHeaderTitle', $site->getLocalizedPageHeaderTitle());
 			}
 		} elseif ($settingsForm->validate()) {
 			$settingsForm->execute();
 
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign(array(
 				'currentUrl' => Request::url(null, null, 'settings'),
 				'pageTitle' => 'admin.siteSettings',

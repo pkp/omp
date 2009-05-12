@@ -396,10 +396,10 @@ class SuppFile extends MonographFile {
 	function getBestSuppFileId($journal = null) {
 		// Retrieve the journal, if necessary.
 		if (!isset($journal)) {
-			$monographDao = &DAORegistry::getDAO('MonographDAO');
-			$monograph = &$monographDao->getMonograph($this->getMonographId());
-			$journalDao = &DAORegistry::getDAO('JournalDAO');
-			$journal = &$journalDao->getJournal($monograph->getJournalId());
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$monograph =& $monographDao->getMonograph($this->getMonographId());
+			$journalDao =& DAORegistry::getDAO('JournalDAO');
+			$journal =& $journalDao->getJournal($monograph->getJournalId());
 		}
 
 		if ($journal->getSetting('enablePublicSuppFileId')) {

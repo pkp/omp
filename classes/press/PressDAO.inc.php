@@ -22,11 +22,11 @@ class PressDAO extends DAO
 	 * @return Press
 	 */
 	function getPress($pressId){
-		$result = &$this->retrieve('SELECT * FROM presses WHERE press_id = ?', $pressId);
+		$result =& $this->retrieve('SELECT * FROM presses WHERE press_id = ?', $pressId);
 		
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnPressFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnPressFromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		return $returner;
@@ -54,7 +54,7 @@ class PressDAO extends DAO
 	 * @return Press
 	 */
 	function &_returnPressFromRow(&$row) {
-		$press = &new Press();
+		$press =& new Press();
 		$press->setId($row['press_id']);
 		$press->setPath($row['path']);
 		$press->setSequence($row['seq']);
@@ -72,7 +72,7 @@ class PressDAO extends DAO
 	 * @return boolean
 	 */
 	function pressExistsByPath($path) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM presses WHERE path = ?', $path
 		);
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
@@ -91,12 +91,12 @@ class PressDAO extends DAO
 	 */
 	function &getPressByPath($path) {
 		$returner = null;
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM presses WHERE path = ?', $path
 		);
 
 		if ($result->RecordCount() != 0) {
-			$returner = &$this->_returnPressFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnPressFromRow($result->GetRowAssoc(false));
 		}
 		$result->Close();
 		unset($result);
@@ -111,12 +111,12 @@ class PressDAO extends DAO
 	 * @return DAOResultFactory containing matching presses
 	 */
 	function &getPresses($rangeInfo = null) {
-		$result = &$this->retrieveRange(
+		$result =& $this->retrieveRange(
 			'SELECT * FROM presses ORDER BY seq',
 			false, $rangeInfo
 		);
 
-		$returner = &new DAOResultFactory($result, $this, '_returnPressFromRow');
+		$returner =& new DAOResultFactory($result, $this, '_returnPressFromRow');
 		return $returner;
 	}
 
@@ -170,11 +170,11 @@ class PressDAO extends DAO
 	 * @return array Presses ordered by sequence
 	 */
 	function &getEnabledPresses() {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT * FROM presses WHERE enabled=1 ORDER BY seq'
 		);
 
-		$resultFactory = &new DAOResultFactory($result, $this, '_returnPressFromRow');
+		$resultFactory =& new DAOResultFactory($result, $this, '_returnPressFromRow');
 		return $resultFactory;
 	}
 
@@ -191,46 +191,46 @@ class PressDAO extends DAO
 	 * @param $pressId int
 	 */
 	function deletePressById($pressId) {
-		$pressSettingsDao = &DAORegistry::getDAO('PressSettingsDAO');
+		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$pressSettingsDao->deleteSettingsByPress($pressId);
 /*
-		$sectionDao = &DAORegistry::getDAO('SectionDAO');
+		$sectionDao =& DAORegistry::getDAO('SectionDAO');
 		$sectionDao->deleteSectionsByJournal($journalId);
 
-		$issueDao = &DAORegistry::getDAO('IssueDAO');
+		$issueDao =& DAORegistry::getDAO('IssueDAO');
 		$issueDao->deleteIssuesByJournal($journalId);
 
-		$notificationStatusDao = &DAORegistry::getDAO('NotificationStatusDAO');
+		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
 		$notificationStatusDao->deleteNotificationStatusByJournal($journalId);
 
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplateDao->deleteEmailTemplatesByJournal($journalId);
 
-		$rtDao = &DAORegistry::getDAO('RTDAO');
+		$rtDao =& DAORegistry::getDAO('RTDAO');
 		$rtDao->deleteVersionsByJournal($journalId);
 
-		$subscriptionDao = &DAORegistry::getDAO('SubscriptionDAO');
+		$subscriptionDao =& DAORegistry::getDAO('SubscriptionDAO');
 		$subscriptionDao->deleteSubscriptionsByJournal($journalId);
 
-		$subscriptionTypeDao = &DAORegistry::getDAO('SubscriptionTypeDAO');
+		$subscriptionTypeDao =& DAORegistry::getDAO('SubscriptionTypeDAO');
 		$subscriptionTypeDao->deleteSubscriptionTypesByJournal($journalId);
 
-		$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
+		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		$announcementDao->deleteAnnouncementsByJournal($journalId);
 
-		$announcementTypeDao = &DAORegistry::getDAO('AnnouncementTypeDAO');
+		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
 		$announcementTypeDao->deleteAnnouncementTypesByJournal($journalId);
 
-		$articleDao = &DAORegistry::getDAO('ArticleDAO');
+		$articleDao =& DAORegistry::getDAO('ArticleDAO');
 		$articleDao->deleteArticlesByJournalId($journalId);
 
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$roleDao->deleteRoleByJournalId($journalId);
 
-		$groupDao = &DAORegistry::getDAO('GroupDAO');
+		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteGroupsByAssocId(ASSOC_TYPE_PRESS, $pressId);
 
-		$pluginSettingsDao = &DAORegistry::getDAO('PluginSettingsDAO');
+		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
 		$pluginSettingsDao->deleteSettingsByJournalId($journalId);
 
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
@@ -245,7 +245,7 @@ class PressDAO extends DAO
 	 * Sequentially renumber each press according to their sequence order.
 	 */
 	function resequencePresses() {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT press_id FROM presses ORDER BY seq'
 		);
 

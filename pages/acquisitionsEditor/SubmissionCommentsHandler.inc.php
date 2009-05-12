@@ -300,8 +300,8 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		// Save the comment.
 		AcquisitionsEditorAction::saveComment($submission, $comment, $emailComment);
 
-		$articleCommentDao = &DAORegistry::getDAO('ArticleCommentDAO');
-		$comment = &$articleCommentDao->getArticleCommentById($commentId);
+		$articleCommentDao =& DAORegistry::getDAO('ArticleCommentDAO');
+		$comment =& $articleCommentDao->getArticleCommentById($commentId);
 
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_PEER_REVIEW) {
@@ -360,10 +360,10 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		parent::validate();
 
 		if ( !is_null($commentId) ) {
-			$articleCommentDao = &DAORegistry::getDAO('ArticleCommentDAO');
-			$user = &Request::getUser();
+			$articleCommentDao =& DAORegistry::getDAO('ArticleCommentDAO');
+			$user =& Request::getUser();
 	
-			$comment = &$articleCommentDao->getArticleCommentById($commentId);
+			$comment =& $articleCommentDao->getArticleCommentById($commentId);
 	
 			if (
 				$comment == null ||

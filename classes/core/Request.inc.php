@@ -70,7 +70,7 @@ class Request extends PKPRequest {
 		if (!isset($press)) {
 			$path = Request::getRequestedPressPath();
 			if ($path != 'index') {
-				$pressDao = &DAORegistry::getDAO('PressDAO');
+				$pressDao =& DAORegistry::getDAO('PressDAO');
 				$press = $pressDao->getPressByPath(Request::getRequestedPressPath());
 			}
 		}

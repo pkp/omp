@@ -60,12 +60,12 @@ class Locale extends PKPLocale {
 				$locale = Request::getUserVar('setLocale');
 				if (empty($locale) || !in_array($locale, array_keys(Locale::getSupportedLocales()))) $locale = Request::getCookieVar('currentLocale');
 			} else {
-				$sessionManager = &SessionManager::getManager();
-				$session = &$sessionManager->getUserSession();
+				$sessionManager =& SessionManager::getManager();
+				$session =& $sessionManager->getUserSession();
 				$locale = $session->getSessionVar('currentLocale');
 
-				$press = &Request::getPress();
-				$site = &Request::getSite();
+				$press =& Request::getPress();
+				$site =& Request::getSite();
 
 				if (!isset($locale)) {
 					$locale = Request::getCookieVar('currentLocale');
@@ -74,9 +74,9 @@ class Locale extends PKPLocale {
 				if (isset($locale)) {
 					// Check if user-specified locale is supported
 					if ($press != null) {
-						$locales = &$press->getSupportedLocaleNames();
+						$locales =& $press->getSupportedLocaleNames();
 					} else {
-						$locales = &$site->getSupportedLocaleNames();
+						$locales =& $site->getSupportedLocaleNames();
 					}
 
 					if (!in_array($locale, array_keys($locales))) {
@@ -128,14 +128,14 @@ class Locale extends PKPLocale {
 	 * @return string
 	 */
 	function getPrimaryLocale() {
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 
 		if (isset($press)) {
 			$locale = $press->getPrimaryLocale();
 		}
 
 		if (!isset($locale)) {
-			$site = &Request::getSite();
+			$site =& Request::getSite();
 			$locale = $site->getPrimaryLocale();
 		}
 

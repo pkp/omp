@@ -29,12 +29,12 @@ class EmailHandler extends UserHandler {
 
 		$this->setupTemplate(true);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 
-		$userDao = &DAORegistry::getDAO('UserDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$press = &Request::getPress();
-		$user = &Request::getUser();
+		$press =& Request::getPress();
+		$user =& Request::getUser();
 
 		// See if this is the Editor or Manager and an email template has been chosen
 		$template = Request::getUserVar('template');
@@ -124,7 +124,7 @@ class EmailHandler extends UserHandler {
 
 		if ($email === null) {
 			import('mail.MailTemplate');
-			$email = &new MailTemplate($template);
+			$email =& new MailTemplate($template);
 		}
 
 		if (Request::getUserVar('send') && !$email->hasErrors()) {

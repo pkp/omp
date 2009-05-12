@@ -63,7 +63,7 @@ class PressSetupStep2Form extends PressSetupForm {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		if (Config::getVar('general', 'scheduled_tasks'))
 			$templateMgr->assign('scheduledTasksEnabled', true);
 

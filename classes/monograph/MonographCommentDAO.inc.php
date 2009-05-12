@@ -29,16 +29,16 @@ class MonographCommentDAO extends DAO {
 		$monographComments = array();
 
 		if ($commentType == null) {
-			$result = &$this->retrieve(
+			$result =& $this->retrieve(
 				'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? ORDER BY date_posted',	$monographId
 			);
 		} else {
 			if ($assocId == null) {
-				$result = &$this->retrieve(
+				$result =& $this->retrieve(
 					'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? AND comment_type = ? ORDER BY date_posted',	array($monographId, $commentType)
 				);
 			} else {
-				$result = &$this->retrieve(
+				$result =& $this->retrieve(
 					'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? AND comment_type = ? AND assoc_id = ? ORDER BY date_posted',
 					array($monographId, $commentType, $assocId)
 				);
@@ -46,7 +46,7 @@ class MonographCommentDAO extends DAO {
 		}
 
 		while (!$result->EOF) {
-			$monographComments[] = &$this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
+			$monographComments[] =& $this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -64,12 +64,12 @@ class MonographCommentDAO extends DAO {
 	function &getMonographCommentsByUserId($userId) {
 		$monographComments = array();
 
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT a.* FROM monograph_comments a WHERE author_id = ? ORDER BY date_posted',	$userId
 		);
 
 		while (!$result->EOF) {
-			$monographComments[] = &$this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
+			$monographComments[] =& $this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
@@ -87,20 +87,20 @@ class MonographCommentDAO extends DAO {
 	 */
 	function getMostRecentMonographComment($monographId, $commentType = null, $assocId = null) {
 		if ($commentType == null) {
-			$result = &$this->retrieveLimit(
+			$result =& $this->retrieveLimit(
 				'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? ORDER BY date_posted DESC',
 				$monographId,
 				1
 			);
 		} else {
 			if ($assocId == null) {
-				$result = &$this->retrieveLimit(
+				$result =& $this->retrieveLimit(
 					'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? AND comment_type = ? ORDER BY date_posted DESC',
 					array($monographId, $commentType),
 					1
 				);
 			} else {
-				$result = &$this->retrieveLimit(
+				$result =& $this->retrieveLimit(
 					'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? AND comment_type = ? AND assoc_id = ? ORDER BY date_posted DESC',
 					array($monographId, $commentType, $assocId),
 					1
@@ -110,7 +110,7 @@ class MonographCommentDAO extends DAO {
 
 		$returner = null;
 		if (isset($result) && $result->RecordCount() != 0) {
-			$returner = &$this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -125,11 +125,11 @@ class MonographCommentDAO extends DAO {
 	 * @return MonographComment object
 	 */
 	function &getMonographCommentById($commentId) {
-		$result = &$this->retrieve(
+		$result =& $this->retrieve(
 			'SELECT a.* FROM monograph_comments a WHERE comment_id = ?', $commentId
 		);
 
-		$monographComment = &$this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
+		$monographComment =& $this->_returnMonographCommentFromRow($result->GetRowAssoc(false));
 
 		$result->Close();
 		unset($result);

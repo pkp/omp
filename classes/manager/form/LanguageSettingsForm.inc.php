@@ -35,7 +35,7 @@ class LanguageSettingsForm extends Form {
 			'supportedLocales' => 'object'
 		);
 
-		$site = &Request::getSite();
+		$site =& Request::getSite();
 		$this->availableLocales = $site->getSupportedLocales();
 
 		$localeCheck = create_function('$locale,$availableLocales', 'return in_array($locale,$availableLocales);');
@@ -50,8 +50,8 @@ class LanguageSettingsForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
-		$site = &Request::getSite();
+		$templateMgr =& TemplateManager::getManager();
+		$site =& Request::getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 		$templateMgr->assign('helpTopicId','press.managementPages.languages');
 		parent::display();
@@ -61,7 +61,7 @@ class LanguageSettingsForm extends Form {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 		foreach ($this->settings as $settingName => $settingType) {
 			$this->_data[$settingName] = $press->getSetting($settingName);
 		}
@@ -90,8 +90,8 @@ class LanguageSettingsForm extends Form {
 	 * Save modified settings.
 	 */
 	function execute() {
-		$press = &Request::getPress();
-		$settingsDao = &DAORegistry::getDAO('PressSettingsDAO');
+		$press =& Request::getPress();
+		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
 		// Verify additional locales
 		$supportedLocales = array();

@@ -42,7 +42,7 @@ class HelpHandler extends Handler {
 		$this->validate();
 		$this->setupTemplate();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$help =& Help::getHelp();
 		$templateMgr->assign_by_ref('helpToc', $help->getTableOfContents());
 		$templateMgr->display('help/helpToc.tpl');
@@ -60,7 +60,7 @@ class HelpHandler extends Handler {
 		$keyword = trim(String::regexp_replace('/[^\w\s\.\-]/', '', strip_tags(Request::getUserVar('keyword'))));
 		$result = (int) Request::getUserVar('result');
 
-		$topicDao = &DAORegistry::getDAO('HelpTopicDAO');
+		$topicDao =& DAORegistry::getDAO('HelpTopicDAO');
 		$topic = $topicDao->getTopic($topicId);
 
 		if ($topic === false) {
@@ -69,7 +69,7 @@ class HelpHandler extends Handler {
 			$topic = $topicDao->getTopic($topicId);
 		}
 
-		$tocDao = &DAORegistry::getDAO('HelpTocDAO');
+		$tocDao =& DAORegistry::getDAO('HelpTocDAO');
 		$toc = $tocDao->getToc($topic->getTocId());
 
 		if ($toc === false) {
@@ -87,7 +87,7 @@ class HelpHandler extends Handler {
 
 		$topics = $toc->getTopics();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentTopicId', $topic->getId());
 		$templateMgr->assign_by_ref('topic', $topic);
 		$templateMgr->assign('toc', $toc);
@@ -116,16 +116,16 @@ class HelpHandler extends Handler {
 		$keyword = trim(String::regexp_replace('/[^\w\s\.\-]/', '', strip_tags(Request::getUserVar('keyword'))));
 
 		if (!empty($keyword)) {
-			$topicDao = &DAORegistry::getDAO('HelpTopicDAO');
+			$topicDao =& DAORegistry::getDAO('HelpTopicDAO');
 			$topics = $topicDao->getTopicsByKeyword($keyword);
 
-			$tocDao = &DAORegistry::getDAO('HelpTocDAO');
+			$tocDao =& DAORegistry::getDAO('HelpTocDAO');
 			foreach ($topics as $topic) {
 				$searchResults[] = array('topic' => $topic, 'toc' => $tocDao->getToc($topic->getTocId()));		
 			}
 		}
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('showSearch', true);
 		$templateMgr->assign('pageTitle', Locale::translate('help.searchResults'));
 		$templateMgr->assign('helpSearchKeyword', $keyword);

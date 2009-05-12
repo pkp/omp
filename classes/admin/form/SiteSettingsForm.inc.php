@@ -31,9 +31,9 @@ class SiteSettingsForm extends PKPSiteSettingsForm {
 	 * Display the form.
 	 */
 	function display() {
-		$pressDao = &DAORegistry::getDAO('PressDAO');
-		$presses = &$pressDao->getPressNames();
-		$templateMgr = &TemplateManager::getManager();
+		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$presses =& $pressDao->getPressNames();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('redirectOptions', $presses);
 		return parent::display();
 	}

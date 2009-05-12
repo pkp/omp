@@ -41,8 +41,8 @@ class TemplateManager extends PKPTemplateManager {
 			 * installer pages).
 			 */
 
-			$press = &Request::getPress();
-			$site = &Request::getSite();
+			$press =& Request::getPress();
+			$site =& Request::getSite();
 
 			$siteFilesDir = Request::getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath();
 			$this->assign('sitePublicFilesDir', $siteFilesDir);
@@ -61,7 +61,7 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign('alternateLocales', $press->getSetting('alternateLocales'));
 
 				// Assign additional navigation bar items
-				$navMenuItems = &$press->getLocalizedSetting('navItems');
+				$navMenuItems =& $press->getLocalizedSetting('navItems');
 				$this->assign_by_ref('navMenuItems', $navMenuItems);
 
 				// Assign press page header

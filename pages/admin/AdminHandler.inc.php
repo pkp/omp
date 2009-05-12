@@ -35,7 +35,7 @@ class AdminHandler extends Handler {
 		$this->validate();
 		$this->setupTemplate();
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'site.index');
 		$templateMgr->display('admin/index.tpl');
 	}
@@ -50,7 +50,7 @@ class AdminHandler extends Handler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_ADMIN));
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy',
 			$subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'admin'), 'admin.siteAdmin'))
 				: array(array(Request::url(null, 'user'), 'navigation.user'))

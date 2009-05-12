@@ -198,7 +198,7 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_READER));
 		parent::setupTemplate(true);
 		if ($subclass) {
-			$templateMgr = &TemplateManager::getManager();
+			$templateMgr =& TemplateManager::getManager();
 			$type = $this->type;			
 			switch ($type) {
 				case CATEGORY_ARRANGEMENT:

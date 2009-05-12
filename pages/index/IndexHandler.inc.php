@@ -39,7 +39,7 @@ class IndexHandler extends Handler {
 		$templateMgr->assign('helpTopicId', 'user.home');
 
 		if ($pressPath != 'index' && $pressDao->pressExistsByPath($pressPath)) {//if the request is for a M, display M page
-			$press = &Request::getPress();
+			$press =& Request::getPress();
 
 			// Assign header and content for home page
 			$templateMgr->assign('displayPageHeaderTitle', $press->getPressPageHeaderTitle(true));
@@ -56,8 +56,8 @@ class IndexHandler extends Handler {
 				$enableAnnouncementsHomepage = $press->getSetting('enableAnnouncementsHomepage');
 				if ($enableAnnouncementsHomepage) {
 					$numAnnouncementsHomepage = $press->getSetting('numAnnouncementsHomepage');
-					$announcementDao = &DAORegistry::getDAO('AnnouncementDAO');
-					$announcements = &$announcementDao->getNumAnnouncementsNotExpiredByPressId($press->getId(), $numAnnouncementsHomepage);
+					$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
+					$announcements =& $announcementDao->getNumAnnouncementsNotExpiredByPressId($press->getId(), $numAnnouncementsHomepage);
 					$templateMgr->assign('announcements', $announcements);
 					$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
 				}

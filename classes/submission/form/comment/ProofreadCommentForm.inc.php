@@ -31,7 +31,7 @@ class ProofreadCommentForm extends CommentForm {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageTitle', 'submission.comments.corrections');
 		$templateMgr->assign('commentAction', 'postProofreadComment');
 		$templateMgr->assign('commentType', 'proofread');
@@ -62,9 +62,9 @@ class ProofreadCommentForm extends CommentForm {
 	 * Email the comment.
 	 */
 	function email() {
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$userDao = &DAORegistry::getDAO('UserDAO');
-		$journal = &Request::getJournal();	
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$journal =& Request::getJournal();	
 
 		// Create list of recipients:
 		$recipients = array();
@@ -73,8 +73,8 @@ class ProofreadCommentForm extends CommentForm {
 		// excluding whomever posted the comment.
 
 		// Get editors
-		$editAssignmentDao = &DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments = &$editAssignmentDao->getByIdsByArticleId($this->article->getArticleId());
+		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignments =& $editAssignmentDao->getByIdsByArticleId($this->article->getArticleId());
 		$editorAddresses = array();
 		while (!$editAssignments->eof()) {
 			$editAssignment =& $editAssignments->next();
@@ -85,33 +85,33 @@ class ProofreadCommentForm extends CommentForm {
 		// If no editors are currently assigned to this article,
 		// send the email to all editors for the journal
 		if (empty($editorAddresses)) {
-			$editors = &$roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $journal->getJournalId());
+			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $journal->getJournalId());
 			while (!$editors->eof()) {
-				$editor = &$editors->next();
+				$editor =& $editors->next();
 				$editorAddresses[$editor->getEmail()] = $editor->getFullName();
 			}
 		}
 
 		// Get layout editor
-		$layoutAssignmentDao = &DAORegistry::getDAO('LayoutAssignmentDAO');
-		$layoutAssignment = &$layoutAssignmentDao->getLayoutAssignmentByArticleId($this->article->getArticleId());
+		$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
+		$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByArticleId($this->article->getArticleId());
 		if ($layoutAssignment != null && $layoutAssignment->getEditorId() > 0) {
-			$layoutEditor = &$userDao->getUser($layoutAssignment->getEditorId());
+			$layoutEditor =& $userDao->getUser($layoutAssignment->getEditorId());
 		} else {
 			$layoutEditor = null;
 		}
 
 		// Get proofreader
-		$proofAssignmentDao = &DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment = &$proofAssignmentDao->getProofAssignmentByArticleId($this->article->getArticleId());
+		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
+		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByArticleId($this->article->getArticleId());
 		if ($proofAssignment != null && $proofAssignment->getProofreaderId() > 0) {
-			$proofreader = &$userDao->getUser($proofAssignment->getProofreaderId());
+			$proofreader =& $userDao->getUser($proofAssignment->getProofreaderId());
 		} else {
 			$proofreader = null;
 		}
 
 		// Get author
-		$author = &$userDao->getUser($this->article->getUserId());
+		$author =& $userDao->getUser($this->article->getUserId());
 
 		// Choose who receives this email
 		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SECTION_EDITOR) {

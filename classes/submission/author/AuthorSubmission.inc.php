@@ -52,7 +52,7 @@ class AuthorSubmission extends Monograph {
 	 * @return array
 	 */
 	function &getByIds() {
-		$editAssignments = &$this->getData('editAssignments');
+		$editAssignments =& $this->getData('editAssignments');
 		return $editAssignments;
 	}
 
@@ -284,7 +284,7 @@ class AuthorSubmission extends Monograph {
 	 * @return array MonographGalley
 	 */
 	function &getGalleys() {
-		$galleys = &$this->getData('galleys');
+		$galleys =& $this->getData('galleys');
 		return $galleys;
 	}
 
@@ -407,7 +407,7 @@ class AuthorSubmission extends Monograph {
 	 * @return User
 	 */
 	function &getCopyeditor() {
-		$copyEditor = &$this->getData('copyeditor');
+		$copyEditor =& $this->getData('copyeditor');
 		return $copyEditor;
 	}
 
@@ -671,7 +671,7 @@ class AuthorSubmission extends Monograph {
 	 * @return layoutAssignment object
 	 */
 	function &getLayoutAssignment() {
-		$layoutAssignment = &$this->getData('layoutAssignment');
+		$layoutAssignment =& $this->getData('layoutAssignment');
 		return $layoutAssignment;
 	}
 
@@ -688,7 +688,7 @@ class AuthorSubmission extends Monograph {
 	 * @return proofAssignment object
 	 */
 	function &getProofAssignment() {
-		$proofAssignment = &$this->getData('proofAssignment');
+		$proofAssignment =& $this->getData('proofAssignment');
 		return $proofAssignment;
 	}
 

@@ -140,7 +140,7 @@ class CustomLocaleHandler extends Handler {
 			Request::redirect(null, null, null, $path);
 		}
 
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 		$pressId = $press->getId();
 		$changes = Request::getUserVar('changes');
 		$customFilesDir = Config::getVar('files', 'public_files_dir') . DIRECTORY_SEPARATOR . 'journals' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale;
@@ -187,7 +187,7 @@ class CustomLocaleHandler extends Handler {
 
 	function setupTemplate(&$plugin, $subclass = true) {
 		parent::setupTemplate();
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->register_function('plugin_url', array(&$plugin, 'smartyPluginUrl'));
 		$pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'manager'), 'user.role.manager'));
 		if ($subclass) {
@@ -205,7 +205,7 @@ class CustomLocaleHandler extends Handler {
 			Validation::redirectLogin();
 		}
 
-		$plugin = &PluginRegistry::getPlugin('generic', 'CustomLocalePlugin');
+		$plugin =& PluginRegistry::getPlugin('generic', 'CustomLocalePlugin');
 		return array(&$plugin);
 	}
 

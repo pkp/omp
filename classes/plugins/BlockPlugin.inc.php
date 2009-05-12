@@ -38,7 +38,7 @@ class BlockPlugin extends Plugin {
 	 * @return int
 	 */
 	function getBlockContext() {
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 		$pressId = ($press ? $press->getId() : 0);
 		return $this->getSetting($pressId, 'context');
 	}
@@ -76,7 +76,7 @@ class BlockPlugin extends Plugin {
 	 * @param $enabled boolean
 	 */
 	function setEnabled($enabled) {
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 		$pressId = ($press ? $press->getId() : 0);
 		return $this->updateSetting($pressId, 'enabled', $enabled, 'bool');
 	}

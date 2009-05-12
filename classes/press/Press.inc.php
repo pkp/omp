@@ -144,8 +144,8 @@ class Press extends DataObject {
 	 * @return array
 	 */
 	function &getSettings() {
-		$pressSettingsDao = &DAORegistry::getDAO('PressSettingsDAO');
-		$settings = &$pressSettingsDao->getPressSettings($this->getData('pressId'));
+		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+		$settings =& $pressSettingsDao->getPressSettings($this->getData('pressId'));
 		return $settings;
 	}
 
@@ -156,8 +156,8 @@ class Press extends DataObject {
 	 * @return mixed
 	 */
 	function &getSetting($name, $locale = null) {
-		$pressSettingsDao = &DAORegistry::getDAO('PressSettingsDAO');
-		$setting = &$pressSettingsDao->getSetting($this->getData('pressId'), $name, $locale);
+		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+		$setting =& $pressSettingsDao->getSetting($this->getData('pressId'), $name, $locale);
 		return $setting;
 	}
 
@@ -227,7 +227,7 @@ class Press extends DataObject {
 
 		if (!isset($supportedLocales)) {
 			$supportedLocales = array();
-			$localeNames = &Locale::getAllLocales();
+			$localeNames =& Locale::getAllLocales();
 
 			$locales = $this->getSetting('supportedLocales');
 			if (!isset($locales) || !is_array($locales)) {

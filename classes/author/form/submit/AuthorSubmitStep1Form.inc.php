@@ -23,7 +23,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$press =& Request::getPress();
 		// Get arrangements for this press
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');

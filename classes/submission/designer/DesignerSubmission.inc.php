@@ -33,7 +33,7 @@ class DesignerSubmission extends Monograph {
 	 * @return LayoutAssignment
 	 */
 	function &getLayoutAssignments() {
-		$layoutAssignment = &$this->getData('layoutAssignment');
+		$layoutAssignment =& $this->getData('layoutAssignment');
 		return $layoutAssignment;
 	}
 
@@ -67,7 +67,7 @@ class DesignerSubmission extends Monograph {
 	 * @return array MonographGalley
 	 */
 	function &getGalleys() {
-		$galleys = &$this->getData('galleys');
+		$galleys =& $this->getData('galleys');
 		return $galleys;
 	}
 
@@ -104,7 +104,7 @@ class DesignerSubmission extends Monograph {
 	 * @return array
 	 */
 	function &getEditAssignments() {
-		$editAssignments = &$this->getData('editAssignments');
+		$editAssignments =& $this->getData('editAssignments');
 		return $editAssignments;
 	}
 

@@ -40,8 +40,8 @@ class AuthorSubmitSuppFileForm extends Form {
 		$this->monographId = $monograph->getMonographId();
 
 		if (isset($suppFileId) && !empty($suppFileId)) {
-			$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
-			$this->suppFile = &$suppFileDao->getSuppFile($suppFileId, $monograph->getMonographId());
+			$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+			$this->suppFile =& $suppFileDao->getSuppFile($suppFileId, $monograph->getMonographId());
 			if (isset($this->suppFile)) {
 				$this->suppFileId = $suppFileId;
 			}
@@ -65,7 +65,7 @@ class AuthorSubmitSuppFileForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $this->monographId);
 		$templateMgr->assign('suppFileId', $this->suppFileId);
 		$templateMgr->assign('submitStep', 5);
@@ -102,7 +102,7 @@ class AuthorSubmitSuppFileForm extends Form {
 	 */
 	function initData() {
 		if (isset($this->suppFile)) {
-			$suppFile = &$this->suppFile;
+			$suppFile =& $this->suppFile;
 			$this->_data = array(
 				'title' => $suppFile->getTitle(null), // Localized
 				'creator' => $suppFile->getCreator(null), // Localized
@@ -154,18 +154,18 @@ class AuthorSubmitSuppFileForm extends Form {
 	 */
 	function execute() {
 		import("file.MonographFileManager");
-		$monographFileManager = &new MonographFileManager($this->monographId);
-		$suppFileDao = &DAORegistry::getDAO('SuppFileDAO');
+		$monographFileManager =& new MonographFileManager($this->monographId);
+		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 
 		$fileName = 'uploadSuppFile';
 
 		// edit an existing supp file, otherwise create new supp file entry	
 		if (isset($this->suppFile)) {
-			$suppFile = &$this->suppFile;
+			$suppFile =& $this->suppFile;
 
 			// Remove old file and upload new, if file is selected.
 			if ($monographFileManager->uploadedFileExists($fileName)) {
-				$monographFileDao = &DAORegistry::getDAO('MonographFileDAO');
+				$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 				$suppFileId = $monographFileManager->uploadSuppFile($fileName, $suppFile->getFileId(), true);
 				$suppFile->setFileId($suppFileId);
 			}
@@ -183,7 +183,7 @@ class AuthorSubmitSuppFileForm extends Form {
 			}
 
 			// Insert new supplementary file		
-			$suppFile = &new SuppFile();
+			$suppFile =& new SuppFile();
 			$suppFile->setMonographId($this->monographId);
 			$suppFile->setFileId($fileId);
 			$this->setSuppFileData($suppFile);

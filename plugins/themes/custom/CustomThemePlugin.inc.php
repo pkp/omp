@@ -63,7 +63,7 @@ class CustomThemePlugin extends ThemePlugin {
 	 * @param $subclass boolean
 	 */
 	function setBreadcrumbs($isSubclass = false) {
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$pageCrumbs = array(
 			array(
 				Request::url(null, 'user'),
@@ -112,7 +112,7 @@ class CustomThemePlugin extends ThemePlugin {
 		$templateMgr->setCacheability(CACHEABILITY_MUST_REVALIDATE);
 
 		$this->import('CustomThemeSettingsForm');
-		$form = &new CustomThemeSettingsForm($this, $journal->getJournalId());
+		$form =& new CustomThemeSettingsForm($this, $journal->getJournalId());
 		if (Request::getUserVar('save')) {
 			$form->readInputData();
 			if ($form->validate()) {

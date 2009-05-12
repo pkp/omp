@@ -60,14 +60,14 @@ class EmailHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$templateMgr = &TemplateManager::getManager();
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->append('pageHierarchy', array(Request::url(null, 'manager', 'emails'), 'manager.emails'));
 
 		$emailKey = !isset($args) || empty($args) ? null : $args[0];
 
 		import('manager.form.EmailTemplateForm');
 
-		$emailTemplateForm = &new EmailTemplateForm($emailKey);
+		$emailTemplateForm =& new EmailTemplateForm($emailKey);
 		$emailTemplateForm->initData();
 		$emailTemplateForm->display();
 	}
@@ -82,7 +82,7 @@ class EmailHandler extends ManagerHandler {
 
 		$emailKey = Request::getUserVar('emailKey');
 
-		$emailTemplateForm = &new EmailTemplateForm($emailKey);
+		$emailTemplateForm =& new EmailTemplateForm($emailKey);
 		$emailTemplateForm->readInputData();
 
 		if ($emailTemplateForm->validate()) {
@@ -101,10 +101,10 @@ class EmailHandler extends ManagerHandler {
 	 */
 	function deleteCustomEmail($args) {
 		$this->validate();
-		$press = &Request::getPress();
+		$press =& Request::getPress();
 		$emailKey = array_shift($args);
 
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		if ($emailTemplateDao->customTemplateExistsByKey($emailKey, $press->getId())) {
 			$emailTemplateDao->deleteEmailTemplateByKey($emailKey, $press->getId());
 		}
@@ -120,9 +120,9 @@ class EmailHandler extends ManagerHandler {
 		$this->validate();
 
 		if (isset($args) && !empty($args)) {
-			$press = &Request::getPress();
+			$press =& Request::getPress();
 
-			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
+			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 			$emailTemplateDao->deleteEmailTemplateByKey($args[0], $press->getId());
 		}
 
@@ -135,8 +135,8 @@ class EmailHandler extends ManagerHandler {
 	function resetAllEmails() {
 		$this->validate();
 
-		$press = &Request::getPress();
-		$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
+		$press =& Request::getPress();
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplateDao->deleteEmailTemplatesByPress($press->getId());
 
 		Request::redirect(null, null, 'emails');
@@ -150,9 +150,9 @@ class EmailHandler extends ManagerHandler {
 		$this->validate();
 
 		if (isset($args) && !empty($args)) {
-			$press = &Request::getPress();
+			$press =& Request::getPress();
 
-			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
+			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $press->getId());
 
 			if (isset($emailTemplate)) {
@@ -183,9 +183,9 @@ class EmailHandler extends ManagerHandler {
 		$this->validate();
 
 		if (isset($args) && !empty($args)) {
-			$press = &Request::getPress();
+			$press =& Request::getPress();
 
-			$emailTemplateDao = &DAORegistry::getDAO('EmailTemplateDAO');
+			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 			$emailTemplate = $emailTemplateDao->getBaseEmailTemplate($args[0], $press->getId());
 
 			if (isset($emailTemplate)) {
