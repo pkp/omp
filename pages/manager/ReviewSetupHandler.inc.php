@@ -163,7 +163,7 @@ class ReviewSetupHandler extends ManagerHandler {
 		$group =& $groupHandler->group;
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
-		$groupDao->deleteGroup($group);
+		$groupDao->deleteObject($group);
 		$groupDao->resequenceGroups($group->getAssocType(), $group->getAssocId());
 
 		Request::redirect(null, null, 'groups');
@@ -180,7 +180,7 @@ class ReviewSetupHandler extends ManagerHandler {
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$group->setSequence($group->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
-		$groupDao->updateGroup($group);
+		$groupDao->updateObject($group);
 		$groupDao->resequenceGroups($group->getAssocType(), $group->getAssocId());
 
 		Request::redirect(null, null, 'groups');

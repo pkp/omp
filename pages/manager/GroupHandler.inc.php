@@ -63,7 +63,7 @@ class GroupHandler extends ManagerHandler {
 		$group =& $this->group;
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
-		$groupDao->deleteGroup($group);
+		$groupDao->deleteObject($group);
 		$groupDao->resequenceGroups($group->getAssocType(), $group->getAssocId());
 
 		Request::redirect(null, null, 'groups');
@@ -80,7 +80,7 @@ class GroupHandler extends ManagerHandler {
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$group->setSequence($group->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
-		$groupDao->updateGroup($group);
+		$groupDao->updateObject($group);
 		$groupDao->resequenceGroups($group->getAssocType(), $group->getAssocId());
 
 		Request::redirect(null, null, 'groups');
@@ -303,7 +303,7 @@ class GroupHandler extends ManagerHandler {
 
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 		$groupMembership->setSequence($groupMembership->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
-		$groupMembershipDao->updateMembership($groupMembership);
+		$groupMembershipDao->updateObject($groupMembership);
 		$groupMembershipDao->resequenceMemberships($group->getId());
 
 		Request::redirect(null, null, 'groupMembership', $group->getId());
