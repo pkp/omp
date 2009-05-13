@@ -33,6 +33,7 @@ class ProfileHandler extends UserHandler {
 
 		import('user.form.ProfileForm');
 
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$profileForm =& new ProfileForm();
 		if ($profileForm->isLocaleResubmit()) {
 			$profileForm->readInputData();
@@ -47,10 +48,12 @@ class ProfileHandler extends UserHandler {
 	 */
 	function saveProfile() {
 		$this->validate();
+		$this->setupTemplate();
 		$dataModified = false;
 
 		import('user.form.ProfileForm');
 
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$profileForm =& new ProfileForm();
 		$profileForm->readInputData();
 
@@ -83,6 +86,7 @@ class ProfileHandler extends UserHandler {
 
 		import('user.form.ChangePasswordForm');
 
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$passwordForm =& new ChangePasswordForm();
 		$passwordForm->initData();
 		$passwordForm->display();
@@ -96,6 +100,7 @@ class ProfileHandler extends UserHandler {
 
 		import('user.form.ChangePasswordForm');
 
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$passwordForm =& new ChangePasswordForm();
 		$passwordForm->readInputData();
 

@@ -33,6 +33,8 @@ class PressSetupStep4Form extends PressSetupForm {
 				'restrictMonographAccess' => 'bool',
 				'monographEventLog' => 'bool',
 				'monographEmailLog' => 'bool',
+				'useCustomInternalReviewSignoff' => 'bool',
+				'useCustomExternalReviewSignoff' => 'bool',
 				'useCopyeditors' => 'bool',
 				'copyeditInstructions' => 'string',
 				'useLayoutEditors' => 'bool',

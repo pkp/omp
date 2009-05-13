@@ -22,6 +22,9 @@
 	<li>&#187; <a href="{url op="files"}">{translate key="manager.filesBrowser"}</a></li>
 	<li>&#187; <a href="{url op="series"}">{translate key="series.series"}</a></li>
 	<li>&#187; <a href="{url op="submissionCategory"}">{translate key="submissionCategory.submissionCategories"}</a></li>
+	{if $customSingoffEnabled}
+		<li>&#187; <a href="{url op="reviewSignoff"}">{translate key="manager.reviewSignoff.process"}</a></li>
+	{/if}
 	<li>&#187; <a href="{url op="reviewForms"}">{translate key="manager.reviewForms"}</a></li>
 	<li>&#187; <a href="{url op="languages"}">{translate key="common.languages"}</a></li>
 	<li>&#187; <a href="{url op="groups"}">{translate key="manager.groups"}</a></li>
@@ -29,10 +32,9 @@
 <!--	<li>&#187; <a href="{url page="rtadmin"}">{translate key="manager.readingTools"}</a></li>-->
 	<li>&#187; <a href="{url op="setup"}">{translate key="manager.setup"}</a></li>
 <!--	<li>&#187; <a href="{url op="statistics"}">{translate key="manager.statistics"}</a></li>-->
-<!--	<li>&#187; <a href="{url op="payments"}">{translate key="manager.payments"}</a></li>
 	{if $subscriptionsEnabled}
 		<li>&#187; <a href="{url op="subscriptions"}">{translate key="manager.subscriptions"}</a></li>
-	{/if}-->
+	{/if}
 	<li>&#187; <a href="{url op="plugins"}">{translate key="manager.plugins"}</a></li>
 	<li>&#187; <a href="{url op="importexport"}">{translate key="manager.importExport"}</a></li>
 	{call_hook name="Templates::Manager::Index::ManagementPages"}

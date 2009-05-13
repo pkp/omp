@@ -1,0 +1,123 @@
+{**
+ * selectUsers.tpl
+ *
+ * Copyright (c) 2003-2008 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * List enrolled users.
+ *
+ *}
+
+{strip}
+{assign var="pageTitle" value="manager.reviewSignoff.selectUser"}
+{include file="common/header.tpl"}
+{/strip}
+<h3>{translate key=$roleName}</h3>
+<form method="post" action="{url path=$roleSymbolic}">
+	<select name="roleSymbolic" class="selectMenu">
+		<option {if $roleSymbolic=='all'}selected="selected" {/if}value="all">{translate key="manager.people.allUsers"}</option>
+		<option {if $roleSymbolic=='managers'}selected="selected" {/if}value="managers">{translate key="user.role.managers"}</option>
+		<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
+		<option {if $roleSymbolic=='acquisitionsEditors'}selected="selected" {/if}value="acquisitionsEditors">{translate key="user.role.acquisitionsEditors"}</option>
+		<option {if $roleSymbolic=='editorialMembers'}selected="selected" {/if}value="editorialMembers">{translate key="user.role.editorialMembers"}</option>
+		<option {if $roleSymbolic=='designers'}selected="selected" {/if}value="designers">{translate key="user.role.designers"}</option>
+		<option {if $roleSymbolic=='copyeditors'}selected="selected" {/if}value="copyeditors">{translate key="user.role.copyeditors"}</option>
+		<option {if $roleSymbolic=='proofreaders'}selected="selected" {/if}value="proofreaders">{translate key="user.role.proofreaders"}</option>
+		<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
+		<option {if $roleSymbolic=='authors'}selected="selected" {/if}value="authors">{translate key="user.role.authors"}</option>
+		<option {if $roleSymbolic=='readers'}selected="selected" {/if}value="readers">{translate key="user.role.readers"}</option>
+		<option {if $roleSymbolic=='productionEditors'}selected="selected" {/if}value="readers">{translate key="user.role.productionEditors"}</option>
+		<option {if $roleSymbolic=='subscriptionManagers'}selected="selected" {/if}value="subscriptionManagers">{translate key="user.role.subscriptionManagers"}</option>
+	</select>
+	<select name="searchField" size="1" class="selectMenu">
+		{html_options_translate options=$fieldOptions selected=$searchField}
+	</select>
+	<select name="searchMatch" size="1" class="selectMenu">
+		<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
+		<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
+	</select>
+	<input type="text" size="10" name="search" class="textField" value="{$search|escape}" />&nbsp;<input type="submit" value="{translate key="common.search"}" class="button" />
+</form>
+
+<p>{foreach from=$alphaList item=letter}<a href="{url path=$roleSymbolic searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url path=$roleSymbolic}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
+
+{if not $roleId}
+<ul>
+	<li><a href="{url path="managers"}">{translate key="user.role.managers"}</a></li>
+	<li><a href="{url path="editors"}">{translate key="user.role.editors"}</a></li>
+	<li><a href="{url path="acquisitionsEditors"}">{translate key="user.role.acquisitionsEditors"}</a></li>
+	<li><a href="{url path="editorialMembers"}">{translate key="user.role.editorialMembers"}</a></li>
+	<li><a href="{url path="designers"}">{translate key="user.role.designers"}</a></li>
+	<li><a href="{url path="copyeditors"}">{translate key="user.role.copyeditors"}</a></li>
+	<li><a href="{url path="proofreaders"}">{translate key="user.role.proofreaders"}</a></li>
+	<li><a href="{url path="reviewers"}">{translate key="user.role.reviewers"}</a></li>
+	<li><a href="{url path="authors"}">{translate key="user.role.authors"}</a></li>
+	<li><a href="{url path="readers"}">{translate key="user.role.readers"}</a></li>
+	<li><a href="{url path="subscriptionManagers"}">{translate key="user.role.subscriptionManagers"}</a></li>
+	<li><a href="{url path="productionEditors"}">{translate key="user.role.productionEditor"}</a></li>
+</ul>
+
+<br />
+{else}
+<p><a href="{url path="all"}" class="action">{translate key="manager.people.allUsers"}</a></p>
+{/if}
+
+<form name="people" action="{url page="user" op="email"}" method="post">
+<input type="hidden" name="redirectUrl" value="{url path=$roleSymbolic}"/>
+
+<a name="users"></a>
+
+<table width="100%" class="listing">
+	<tr>
+		<td colspan="5" class="headseparator">&nbsp;</td>
+	</tr>
+	<tr class="heading" valign="bottom">
+		<td width="17%">{translate key="user.username"}</td>
+		<td width="20%">{translate key="user.name"}</td>
+		<td width="23%">{translate key="user.email"}</td>
+		<td width="40%" align="right">{translate key="common.action"}</td>
+	</tr>
+	<tr>
+		<td colspan="4" class="headseparator">&nbsp;</td>
+	</tr>
+	{iterate from=users item=user}
+	{assign var=userExists value=1}
+	<tr valign="top">
+		<td><a class="action" href="{url op="userProfile" path=$user->getId()}">{$user->getUsername()|escape|wordwrap:15:" ":true}</a></td>
+		<td>{$user->getFullName()|escape}</td>
+		<td class="nowrap">
+			{assign var=emailString value="`$user->getFullName()` <`$user->getEmail()`>"}
+			{url|assign:"redirectUrl" path=$roleSymbolic escape=false}
+			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$redirectUrl}
+			{$user->getEmail()|truncate:15:"..."|escape}&nbsp;{icon name="mail" url=$url}
+		</td>
+		<td align="right">
+			<a href="{url op="addSignoffUser" path=$reviewType userId=$user->getId()}" class="action">{translate key="manager.reviewSignoff.addUser"}</a>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4" class="{if $users->eof()}end{/if}separator">&nbsp;</td>
+	</tr>
+{/iterate}
+{if $users->wasEmpty()}
+	<tr>
+		<td colspan="4" class="nodata">{translate key="manager.people.noneEnrolled"}</td>
+	</tr>
+	<tr>
+		<td colspan="4" class="endseparator">&nbsp;</td>
+	</tr>
+{else}
+	<tr>
+		<td colspan="3" align="left">{page_info iterator=$users}</td>
+		<td align="right">{page_links anchor="users" name="users" iterator=$users searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth roleSymbolic=$roleSymbolic searchInitial=$searchInitial}</td>
+	</tr>
+{/if}
+</table>
+
+</form>
+
+{url|assign:"enrollmentUrl" path=$roleSymbolic searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth searchInitial=$searchInitial}
+<a href="{if $roleId}{url op="createUser" roleId=$roleId source=$enrollmentUrl}{else}{url op="createUser" source=$enrollmentUrl}{/if}" class="action">{translate key="manager.people.createUser"}</a>
+
+{include file="common/footer.tpl"}
+ 

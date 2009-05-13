@@ -259,8 +259,8 @@ class SignoffEntityDAO extends DAO {
 	 * @param $signoffEntity SignoffEntity
 	 * @return boolean
 	 */
-	function getSignoffUsers() {
-
+	function OLDgetSignoffUsers() {
+	
 		$sql = 'SELECT u.* 
 			FROM signoff_entities se, users u, group_memberships grp
 			WHERE (u.user_id = grp.user_id AND
@@ -283,6 +283,43 @@ class SignoffEntityDAO extends DAO {
 
 		return $returner;;
 	}
+
+	/**
+	 * Get signoff entities entry.
+	 * @param $signoffEntity SignoffEntity
+	 * @return boolean
+	 */
+	function getSignoffUsers($pressId, $reviewTypeId) {
+		$result =& $this->retrieve('SELECT u.* 
+			FROM signoff_entities se JOIN users u ON u.user_id = se.entity_id 
+			WHERE se.entity_type='.SIGNOFF_ENTITY_TYPE_USER. '
+				AND press_id = ? AND event_id = ? 
+			ORDER BY u.last_name, u.first_name', 
+			array($pressId, $reviewTypeId)
+			);
+		$userDao =& DAORegistry::getDAO('UserDAO');
+
+		$returner = new DAOResultFactory($result, $userDao, '_returnUserFromRowWithData');
+		return $returner;
+	}
+	
+	/**
+	 * Get signoff entities entry.
+	 * @param $signoffEntity SignoffEntity
+	 * @return boolean
+	 */
+	function getSignoffGroups($pressId, $reviewTypeId) {
+		$result =& $this->retrieve('SELECT g.* 
+			FROM signoff_entities se JOIN groups g ON g.group_id = se.entity_id 
+			WHERE se.entity_type='.SIGNOFF_ENTITY_TYPE_GROUP . '
+				AND press_id = ? AND event_id = ?', 
+			array($pressId, $reviewTypeId)
+			);
+		$groupDao =& DAORegistry::getDAO('GroupDAO');
+
+		$returner = new DAOResultFactory($result, $groupDao, '_returnGroupFromRow');
+		return $returner;
+	}	
 
 	/**
 	 * Delete a signoff entity entry.

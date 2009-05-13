@@ -10,30 +10,17 @@
  *
  *}
 {strip}
-{translate|assign:"pageTitleTranslated" key="manager.people.roleEnrollment" role=$roleName|translate}
+{assign var="pageTitle" value="manager.reviewSignoff.process"} 
 {include file="common/header.tpl"}
 {/strip}
+<ul class="menu">
+	<li {if $reviewType eq "internal"}class="current"{/if}><a href="{url path="internal"}">{translate key="manager.reviewSignoff.internal"}</a></li>
+	<li {if $reviewType eq "external"}class="current"{/if}<a href="{url path="external"}">{translate key="manager.reviewSignoff.external"}</a></li>
+</ul>
 
-<a href="{url op="setup" path=6}"><< Back to Step 6</a>
+<h3>{translate key="manager.reviewSignoff.`$reviewType`"}</h3>
+{include file="manager/signoffGroups/users.tpl"}
 
-<h3>Groups</h3>
-<a href="{url op="viewSignoffEntities" path=$reviewTypeId entity=$smarty.const.SIGNOFF_ENTITY_TYPE_GROUP}">Add Group</a>
-<br />
-<br />
-{foreach from=$signoffEntities[$smarty.const.SIGNOFF_ENTITY_TYPE_GROUP] item=group}
-
-{$group->getLocalizedTitle()} <a href="{url op="removeSignoffGroup" path=$reviewTypeId groupId=$group->getId()}">remove</a>
-
-{/foreach}
-
-<h3>Users</h3>
-<a href="{url op="viewSignoffEntities" path=$reviewTypeId entity=$smarty.const.SIGNOFF_ENTITY_TYPE_USER}">Add User</a>
-<br />
-<br />
-{foreach from=$signoffEntities[$smarty.const.SIGNOFF_ENTITY_TYPE_USER] item=user}
-
-{$user->getFullName()}<br />
-{/foreach}
-
+{include file="manager/signoffGroups/groups.tpl"}
 
 {include file="common/footer.tpl"}

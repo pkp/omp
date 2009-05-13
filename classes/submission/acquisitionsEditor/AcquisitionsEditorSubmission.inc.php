@@ -86,7 +86,6 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 */
 	function removeReviewAssignment($reviewId) {
 		$found = false;
-
 		if ($reviewId != 0) {
 			// FIXME maintain a hash of ID to author for quicker get/remove
 			$reviewAssignments = array();
