@@ -48,7 +48,7 @@ class ProductionEditorHandler extends Handler {
 				$active = true;
 		}
 
-		$submissions = $productionSubmissionDao->getProductionEditorSubmissions($user->getUserId(), $press->getId(), $active, $rangeInfo);
+		$submissions = $productionSubmissionDao->getProductionEditorSubmissions($user->getId(), $press->getId(), $active, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageToDisplay', $page);
@@ -314,7 +314,7 @@ class ProductionEditorHandler extends Handler {
 		$pressSettings = $pressSettingsDao->getPressSettings($press->getId());
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->roleExists($press->getId(), $user->getUserId(), ROLE_ID_EDITOR);
+		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR);
 
 //		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
 //		$arrangement =& $arrangementDao->getAcquisitionsArrangement($submission->getAcquisitionsArrangementId());
@@ -330,7 +330,7 @@ class ProductionEditorHandler extends Handler {
 //		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 //		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
-		$templateMgr->assign('userId', $user->getUserId());
+		$templateMgr->assign('userId', $user->getId());
 		$templateMgr->assign('isEditor', $isEditor);
 		$templateMgr->assign('enableComments', $enableComments);
 
@@ -508,7 +508,7 @@ class ProductionEditorHandler extends Handler {
 		$pressSettings = $pressSettingsDao->getPressSettings($press->getId());
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->roleExists($press->getId(), $user->getUserId(), ROLE_ID_EDITOR);
+		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR);
 
 //		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
 //		$arrangement =& $arrangementDao->getAcquisitionsArrangement($submission->getAcquisitionsArrangementId());
@@ -525,7 +525,7 @@ class ProductionEditorHandler extends Handler {
 //		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 //		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
-		$templateMgr->assign('userId', $user->getUserId());
+		$templateMgr->assign('userId', $user->getId());
 		$templateMgr->assign('isEditor', $isEditor);
 		$templateMgr->assign('enableComments', $enableComments);
 		$templateMgr->assign('useLayoutEditors', true);

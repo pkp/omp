@@ -76,7 +76,7 @@ class RoleBlockPlugin extends BlockPlugin {
 		$user =& Request::getUser();
 		if (!$press || !$user) return null;
 
-		$userId = $user->getUserId();
+		$userId = $user->getId();
 		$pressId = $press->getId();
 
 		$templateMgr =& TemplateManager::getManager();

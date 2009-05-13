@@ -367,7 +367,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	
 			if (
 				$comment == null ||
-				$comment->getAuthorId() != $user->getUserId()
+				$comment->getAuthorId() != $user->getId()
 			) {
 				Request::redirect(null, Request::getRequestedPage());
 			}

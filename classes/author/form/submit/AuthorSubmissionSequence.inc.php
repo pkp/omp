@@ -54,13 +54,12 @@ class AuthorSubmissionSequence extends SubmissionFormSequence
 
 		// Check that monograph exists for this press and user and that submission is incomplete
 		if (isset($this->monograph)) {
-			if ($this->monograph->getUserId() !== $user->getUserId() || ($step !== false && $step > $this->monograph->getSubmissionProgress())) {
+			if ($this->monograph->getUserId() !== $user->getId() || ($step !== false && $step > $this->monograph->getSubmissionProgress())) {
 				Request::redirect(null, null, 'submit');
 			}
 		}
 		return array(&$press, &$this->monograph);
-		
 	}
-	
 }
+
 ?>

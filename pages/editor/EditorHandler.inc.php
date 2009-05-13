@@ -162,7 +162,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		}
 
 		if ($filterEditor == FILTER_EDITOR_ME) {
-			$editorId = $user->getUserId();
+			$editorId = $user->getId();
 		} else {
 			$editorId = FILTER_EDITOR_ALL;
 		}

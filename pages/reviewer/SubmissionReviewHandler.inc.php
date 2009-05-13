@@ -264,7 +264,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		if (!$reviewerSubmission || $reviewerSubmission->getPressId() != $press->getId()) {
 			$isValid = false;
 		} elseif ($user && empty($newKey)) {
-			if ($reviewerSubmission->getReviewerId() != $user->getUserId()) {
+			if ($reviewerSubmission->getReviewerId() != $user->getId()) {
 				$isValid = false;
 			}
 		} else {

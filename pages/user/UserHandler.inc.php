@@ -76,7 +76,7 @@ class UserHandler extends Handler {
 			// Show roles for the currently selected press
 			$roles =& $roleDao->getRolesByUserId($session->getUserId(), $press->getId());
 
-			$signoffTasks =& $workflowDao->getSignoffTasksByUserId($user->getUserId());
+			$signoffTasks =& $workflowDao->getSignoffTasksByUserId($user->getId());
 			$templateMgr->assign('signoffTasks', $signoffTasks);
 
 			$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor'));
@@ -152,7 +152,7 @@ class UserHandler extends Handler {
 			$role =& new Role();
 			$role->setPressId($press->getId());
 			$role->setRoleId($roleId);
-			$role->setUserId($user->getUserId());
+			$role->setUserId($user->getId());
 
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			$roleDao->insertRole($role);
@@ -196,7 +196,7 @@ class UserHandler extends Handler {
 		$process =& $workflowDao->getById($processId);
 
 		if ($process != null) {
-			$workflowDao->workflowSignoff($user->getUserId(), $processId);
+			$workflowDao->workflowSignoff($user->getId(), $processId);
 			$workflowDao->proceed($process->getMonographId());
 		}
 

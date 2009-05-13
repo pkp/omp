@@ -54,7 +54,7 @@ class EmailHandler extends UserHandler {
 		);
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		if ($press) {
-			$roles =& $roleDao->getRolesByUserId($user->getUserId(), $press->getId());
+			$roles =& $roleDao->getRolesByUserId($user->getId(), $press->getId());
 			foreach ($roles as $role) {
 				if (in_array($role->getRoleId(), $unlimitedEmailRoles)) $canSendUnlimitedEmails = true;
 			}
@@ -86,32 +86,32 @@ class EmailHandler extends UserHandler {
 
 			// First, conditions where access is OK.
 			// 1. User is submitter
-			if ($article && $article->getUserId() == $user->getUserId()) $hasAccess = true;
+			if ($article && $article->getUserId() == $user->getId()) $hasAccess = true;
 			// 2. User is section editor of article or full editor
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 			$editAssignments =& $editAssignmentDao->getByIdsByArticleId($articleId);
 			while ($editAssignment =& $editAssignments->next()) {
-				if ($editAssignment->getEditorId() === $user->getUserId()) $hasAccess = true;
+				if ($editAssignment->getEditorId() === $user->getId()) $hasAccess = true;
 			}
 			if (Validation::isEditor($press->getId())) $hasAccess = true;
 
 			// 3. User is reviewer
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			foreach ($reviewAssignmentDao->getReviewAssignmentsByArticleId($articleId) as $reviewAssignment) {
-				if ($reviewAssignment->getReviewerId() === $user->getUserId()) $hasAccess = true;
+				if ($reviewAssignment->getReviewerId() === $user->getId()) $hasAccess = true;
 			}
 			// 4. User is copyeditor
 			$copyAssignmentDao =& DAORegistry::getDAO('CopyAssignmentDAO');
 			$copyAssignment =& $copyAssignmentDao->getCopyAssignmentByArticleId($articleId);
-			if ($copyAssignment && $copyAssignment->getCopyeditorId() === $user->getUserId()) $hasAccess = true;
+			if ($copyAssignment && $copyAssignment->getCopyeditorId() === $user->getId()) $hasAccess = true;
 			// 5. User is layout editor
 			$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
 			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByArticleId($articleId);
-			if ($layoutAssignment && $layoutAssignment->getEditorId() === $user->getUserId()) $hasAccess = true;
+			if ($layoutAssignment && $layoutAssignment->getEditorId() === $user->getId()) $hasAccess = true;
 			// 6. User is proofreader
 			$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
 			$proofAssignment =& $proofAssignmentDao->getProofAssignmentByArticleId($articleId);
-			if ($proofAssignment && $proofAssignment->getProofreaderId() === $user->getUserId()) $hasAccess = true;
+			if ($proofAssignment && $proofAssignment->getProofreaderId() === $user->getId()) $hasAccess = true;
 
 			// Last, "deal-breakers" -- access is not allowed.
 			if (!$article || ($article && $article->getPressId() !== $press->getId())) $hasAccess = false;

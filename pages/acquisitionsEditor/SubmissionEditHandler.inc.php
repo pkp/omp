@@ -55,7 +55,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$pressSettings = $pressSettingsDao->getPressSettings($press->getId());
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->roleExists($press->getId(), $user->getUserId(), ROLE_ID_EDITOR);
+		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR);
 
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
 		$arrangement =& $arrangementDao->getAcquisitionsArrangement($submission->getAcquisitionsArrangementId());
@@ -71,7 +71,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
-		$templateMgr->assign('userId', $user->getUserId());
+		$templateMgr->assign('userId', $user->getId());
 		$templateMgr->assign('isEditor', $isEditor);
 		$templateMgr->assign('enableComments', $enableComments);
 
@@ -341,7 +341,7 @@ $sections = null;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$user =& Request::getUser();
-		$templateMgr->assign('isEditor', $roleDao->roleExists($press->getId(), $user->getUserId(), ROLE_ID_EDITOR));
+		$templateMgr->assign('isEditor', $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR));
 
 /*		import('issue.IssueAction');
 		$templateMgr->assign('issueOptions', IssueAction::getIssueOptions());
@@ -402,7 +402,7 @@ $sections = null;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$user =& Request::getUser();
-		$templateMgr->assign('isEditor', $roleDao->roleExists($press->getId(), $user->getUserId(), ROLE_ID_EDITOR));
+		$templateMgr->assign('isEditor', $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR));
 
 		$templateMgr->assign('useCopyeditors', true);
 		$templateMgr->assign('useLayoutEditors', $useLayoutEditors);
@@ -2581,7 +2581,7 @@ $sections = null;
 		$queuedPayment =& $paymentManager->createQueuedPayment(
 			$press->getId(),
 			PAYMENT_TYPE_SUBMISSION,
-			$markAsPaid ? $submission->getUserId() : $user->getUserId(),
+			$markAsPaid ? $submission->getUserId() : $user->getId(),
 			$monographId,
 			$markAsPaid ? $press->getSetting('submissionFee') : 0,
 			$markAsPaid ? $press->getSetting('currency') : ''
@@ -2607,7 +2607,7 @@ $sections = null;
 		$queuedPayment =& $paymentManager->createQueuedPayment(
 			$press->getId(),
 			PAYMENT_TYPE_FASTTRACK,
-			$markAsPaid ? $submission->getUserId() : $user->getUserId(),
+			$markAsPaid ? $submission->getUserId() : $user->getId(),
 			$monographId,
 			$markAsPaid ? $press->getSetting('fastTrackFee') : 0,
 			$markAsPaid ? $press->getSetting('currency') : ''
@@ -2635,7 +2635,7 @@ $sections = null;
 		$queuedPayment =& $paymentManager->createQueuedPayment(
 			$press->getId(),
 			PAYMENT_TYPE_PUBLICATION,
-			$markAsPaid ? $submission->getUserId() : $user->getUserId(),
+			$markAsPaid ? $submission->getUserId() : $user->getId(),
 			$monographId,
 			$markAsPaid ? $press->getSetting('publicationFee') : 0,
 			$markAsPaid ? $press->getSetting('currency') : ''
@@ -2697,7 +2697,7 @@ $sections = null;
 				$editAssignments =& $acquisitionsEditorSubmission->getByIds();
 				$wasFound = false;
 				foreach ($editAssignments as $editAssignment) {
-					if ($editAssignment->getEditorId() == $user->getUserId()) {
+					if ($editAssignment->getEditorId() == $user->getId()) {
 						$templateMgr->assign('canReview', $editAssignment->getCanReview());
 						$templateMgr->assign('canEdit', $editAssignment->getCanEdit());
 						switch ($access) {
@@ -2731,7 +2731,7 @@ $sections = null;
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $acquisitionsEditorSubmission->getEditAssignments();
 		foreach ($editAssignments as $editAssignment) {
-			if ($editAssignment->getEditorId() == $user->getUserId() && $editAssignment->getDateUnderway() === null) {
+			if ($editAssignment->getEditorId() == $user->getId() && $editAssignment->getDateUnderway() === null) {
 				$editAssignment->setDateUnderway(Core::getCurrentDate());
 				$editAssignmentDao->updateEditAssignment($editAssignment);
 			}

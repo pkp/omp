@@ -53,7 +53,7 @@ class AcquisitionsArrangementForm extends Form {
 	 */
 	function includeAcquisitionsEditor($acquisitionsArrangementEditorId) {
 		foreach ($this->acquisitionsArrangementEditors as $key => $junk) {
-			if ($this->acquisitionsArrangementEditors[$key]->getUserId() == $acquisitionsArrangementEditorId) {
+			if ($this->acquisitionsArrangementEditors[$key]->getId() == $acquisitionsArrangementEditorId) {
 				$this->includeAcquisitionsArrangementEditor =& $this->acquisitionsArrangementEditors[$key];
 			}
 		}
@@ -65,7 +65,7 @@ class AcquisitionsArrangementForm extends Form {
 	 */
 	function omitAcquisitionsEditor($acquisitionsArrangementEditorId) {
 		foreach ($this->acquisitionsArrangementEditors as $key => $junk) {
-			if ($this->acquisitionsArrangementEditors[$key]->getUserId() == $acquisitionsArrangementEditorId) {
+			if ($this->acquisitionsArrangementEditors[$key]->getId() == $acquisitionsArrangementEditorId) {
 				$this->omitAcquisitionsArrangementEditor =& $this->acquisitionsArrangementEditors[$key];
 			}
 		}
@@ -119,10 +119,10 @@ class AcquisitionsArrangementForm extends Form {
 
 		foreach ($this->acquisitionsArrangementEditors as $key => $junk) {
 			$arrangementEditor =& $this->acquisitionsArrangementEditors[$key]; // Ref
-			$userId = $arrangementEditor->getUserId();
+			$userId = $arrangementEditor->getId();
 
-			$isIncludeEditor = $this->includeAcquisitionsArrangementEditor && $this->includeAcquisitionsArrangementEditor->getUserId() == $userId;
-			$isOmitEditor = $this->omitAcquisitionsArrangementEditor && $this->omitAcquisitionsArrangementEditor->getUserId() == $userId;
+			$isIncludeEditor = $this->includeAcquisitionsArrangementEditor && $this->includeAcquisitionsArrangementEditor->getId() == $userId;
+			$isOmitEditor = $this->omitAcquisitionsArrangementEditor && $this->omitAcquisitionsArrangementEditor->getId() == $userId;
 			if ((in_array($userId, $assignedEditorIds) || $isIncludeEditor) && !$isOmitEditor) {
 				$assignedEditors[] = array(
 					'user' => &$arrangementEditor,
@@ -209,7 +209,7 @@ class AcquisitionsArrangementForm extends Form {
 		$acquisitionsArrangementsEditorsDao->deleteEditorsByAcquisitionsArrangementId($submissionCategoryId, $pressId);
 		foreach ($this->acquisitionsArrangementEditors as $key => $junk) {
 			$arrangementEditor =& $this->acquisitionsArrangementEditors[$key];
-			$userId = $arrangementEditor->getUserId();
+			$userId = $arrangementEditor->getId();
 			// We don't have to worry about omit- and include-
 			// section editors because this function is only called
 			// when the Save button is pressed and those are only

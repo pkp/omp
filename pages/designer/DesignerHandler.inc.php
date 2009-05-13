@@ -71,7 +71,7 @@ class DesignerHandler extends Handler {
 		if ($toDate !== null) $toDate = date('Y-m-d H:i:s', $toDate);
 
 		$rangeInfo = Handler::getRangeInfo('submissions');
-		$submissions = $designerSubmissionDao->getSubmissions($user->getUserId(), $press->getId(), $searchField, $searchMatch, $search, $dateSearchField, $fromDate, $toDate, $active, $rangeInfo);
+		$submissions = $designerSubmissionDao->getSubmissions($user->getId(), $press->getId(), $searchField, $searchMatch, $search, $dateSearchField, $fromDate, $toDate, $active, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageToDisplay', $page);

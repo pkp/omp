@@ -112,7 +112,7 @@ class AuthorAction extends Action {
 			$user =& Request::getUser();
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($authorSubmission->getMonographId(), ARTICLE_LOG_AUTHOR_REVISION, ARTICLE_LOG_TYPE_AUTHOR, $user->getUserId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'monographId' => $authorSubmission->getMonographId()));
+			MonographLog::logEvent($authorSubmission->getMonographId(), ARTICLE_LOG_AUTHOR_REVISION, ARTICLE_LOG_TYPE_AUTHOR, $user->getId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'monographId' => $authorSubmission->getMonographId()));
 		}
 	}
 
@@ -151,7 +151,7 @@ class AuthorAction extends Action {
 			// Add log entry
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($authorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_REVISION, ARTICLE_LOG_TYPE_AUTHOR, $user->getUserId(), 'log.copyedit.authorFile');
+			MonographLog::logEvent($authorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_REVISION, ARTICLE_LOG_TYPE_AUTHOR, $user->getId(), 'log.copyedit.authorFile');
 
 			return true;
 

@@ -66,7 +66,7 @@ class ReviewerAction extends Action {
 
 				$entry = new MonographEventLogEntry();
 				$entry->setMonographId($reviewAssignment->getMonographId());
-				$entry->setUserId($reviewer->getUserId());
+				$entry->setUserId($reviewer->getId());
 				$entry->setDateLogged(Core::getCurrentDate());
 				$entry->setEventType($decline?MONOGRAPH_LOG_REVIEW_DECLINE:MONOGRAPH_LOG_REVIEW_ACCEPT);
 				$entry->setLogMessage($decline?'log.review.reviewDeclined':'log.review.reviewAccepted', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getMonographId(), 'round' => $reviewAssignment->getRound()));
@@ -150,7 +150,7 @@ class ReviewerAction extends Action {
 
 				$entry = new MonographEventLogEntry();
 				$entry->setMonographId($reviewAssignment->getMonographId());
-				$entry->setUserId($reviewer->getUserId());
+				$entry->setUserId($reviewer->getId());
 				$entry->setDateLogged(Core::getCurrentDate());
 				$entry->setEventType(MONOGRAPH_LOG_REVIEW_RECOMMENDATION);
 				$entry->setLogMessage('log.review.reviewRecommendationSet', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getMonographId(), 'round' => $reviewAssignment->getRound()));
@@ -230,7 +230,7 @@ class ReviewerAction extends Action {
 
 			$entry = new MonographEventLogEntry();
 			$entry->setMonographId($reviewAssignment->getMonographId());
-			$entry->setUserId($reviewer->getUserId());
+			$entry->setUserId($reviewer->getId());
 			$entry->setDateLogged(Core::getCurrentDate());
 			$entry->setEventType(MONOGRAPH_LOG_REVIEW_FILE);
 			$entry->setLogMessage('log.review.reviewerFile');

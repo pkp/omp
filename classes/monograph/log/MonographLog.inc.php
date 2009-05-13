@@ -46,7 +46,7 @@ class MonographLog {
 
 		if ($entry->getUserId() == null) {
 			$user =& Request::getUser();
-			$entry->setUserId($user == null ? 0 : $user->getUserId());
+			$entry->setUserId($user == null ? 0 : $user->getId());
 		}
 
 		$logDao =& DAORegistry::getDAO('MonographEventLogDAO');
@@ -126,7 +126,7 @@ class MonographLog {
 
 		if ($entry->getSenderId() == null) {
 			$user =& Request::getUser();
-			$entry->setSenderId($user == null ? 0 : $user->getUserId());
+			$entry->setSenderId($user == null ? 0 : $user->getId());
 		}
 
 		$logDao =& DAORegistry::getDAO('MonographEmailLogDAO');

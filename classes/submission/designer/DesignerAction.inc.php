@@ -132,7 +132,7 @@ class DesignerAction extends Action {
 			$user =& Request::getUser();
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_COMPLETE, MONOGRAPH_LOG_TYPE_LAYOUT, $user->getUserId(), 'log.layout.layoutEditComplete', Array('editorName' => $user->getFullName(), 'monographId' => $submission->getMonographId()));
+			MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_COMPLETE, MONOGRAPH_LOG_TYPE_LAYOUT, $user->getId(), 'log.layout.layoutEditComplete', Array('editorName' => $user->getFullName(), 'monographId' => $submission->getMonographId()));
 
 			return true;
 		} else {

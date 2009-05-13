@@ -37,7 +37,7 @@
 	{assign var=userExists value=1}
 	<tr valign="top">
 		<td><input type="checkbox" name="bcc[]" value="{$user->getEmail()|escape}"/></td>
-		<td><a class="action" href="{url op="userProfile" path=$user->getUserId()}">{$user->getUsername()|escape|wordwrap:15:" ":true}</a></td>
+		<td><a class="action" href="{url op="userProfile" path=$user->getId()}">{$user->getUsername()|escape|wordwrap:15:" ":true}</a></td>
 		<td>{$user->getFullName()|escape}</td>
 		<td class="nowrap">
 			{assign var=emailString value="`$user->getFullName()` <`$user->getEmail()`>"}
@@ -47,9 +47,9 @@
 		</td>
 		<td align="right">
 			{if $roleId}
-			<a href="{url op="unEnroll" path=$roleId userId=$user->getUserId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.people.confirmUnenroll"}')" class="action">{translate key="manager.people.unenroll"}</a>&nbsp;|
+			<a href="{url op="unEnroll" path=$roleId userId=$user->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.people.confirmUnenroll"}')" class="action">{translate key="manager.people.unenroll"}</a>&nbsp;|
 			{/if}
-			<a href="{url op="addSignoffUser" path=$reviewTypeId entityId=$user->getUserId()}" class="action">{translate key="common.assign"}</a>
+			<a href="{url op="addSignoffUser" path=$reviewTypeId entityId=$user->getId()}" class="action">{translate key="common.assign"}</a>
 		</td>
 	</tr>
 	<tr>

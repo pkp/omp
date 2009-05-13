@@ -114,7 +114,7 @@ class DesignerSubmissionDAO extends DAO {
 			$layoutAssignments =& $this->layoutDao->getByMonographId($row['monograph_id']);
 			$layoutAssignmentSet = array();
 			foreach ($layoutAssignments as $layoutAssignment) {
-				if ($layoutAssignment->getDesignerId() == $user->getUserId()) {
+				if ($layoutAssignment->getDesignerId() == $user->getId()) {
 					$layoutAssignmentSet[] =& $layoutAssignment;
 				}
 			}

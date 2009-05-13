@@ -138,7 +138,7 @@ class Request extends PKPRequest {
 	function redirectHome() {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$user = Request::getUser();
-		$userId = $user->getUserId();
+		$userId = $user->getId();
 
 		if ($press =& Request::getPress()) { 
 			// The user is in the press context, see if they have one role only

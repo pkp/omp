@@ -478,7 +478,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		} else if ($authorSubmission->getPressId() != $press->getId()) {
 			$isValid = false;
 		} else {
-			if ($authorSubmission->getUserId() != $user->getUserId()) {
+			if ($authorSubmission->getUserId() != $user->getId()) {
 				$isValid = false;
 			}
 		}

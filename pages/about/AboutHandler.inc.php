@@ -274,7 +274,7 @@ class AboutHandler extends Handler {
 			$presses =& $pressDao->getEnabledPresses();
 			// Fetch the user's roles for each press
 			foreach ($presses->toArray() as $press) {
-				$roles =& $roleDao->getRolesByUserId($user->getUserId(), $press->getId());
+				$roles =& $roleDao->getRolesByUserId($user->getId(), $press->getId());
 				if (!empty($roles)) {
 					$rolesByPress[$press->getId()] =& $roles;
 				}
@@ -287,7 +287,7 @@ class AboutHandler extends Handler {
 			$templateMgr->assign_by_ref('rolesByPress', $rolesByPress);
 		}
 		if ($user) {
-			$templateMgr->assign('isSiteAdmin', $roleDao->getRole(0, $user->getUserId(), ROLE_ID_SITE_ADMIN));
+			$templateMgr->assign('isSiteAdmin', $roleDao->getRole(0, $user->getId(), ROLE_ID_SITE_ADMIN));
 		}
 
 		$templateMgr->display('about/siteMap.tpl');

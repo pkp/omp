@@ -56,7 +56,7 @@ class AcquisitionsEditorAction extends Action {
 		$user =& Request::getUser();
 		$editorDecision = array(
 			'editDecisionId' => null,
-			'editorId' => $user->getUserId(),
+			'editorId' => $user->getId(),
 			'decision' => $decision,
 			'dateDecided' => date(Core::getCurrentDate())
 		);
@@ -76,7 +76,7 @@ class AcquisitionsEditorAction extends Action {
 			// Add log
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_DECISION, MONOGRAPH_LOG_TYPE_EDITOR, $user->getUserId(), 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'decision' => Locale::translate($decisions[$decision])));
+			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_DECISION, MONOGRAPH_LOG_TYPE_EDITOR, $user->getId(), 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'decision' => Locale::translate($decisions[$decision])));
 		}
 	}
 
@@ -217,7 +217,7 @@ class AcquisitionsEditorAction extends Action {
 						// Key lifetime is the typical review period plus four weeks
 						$keyLifetime = ($press->getSetting('numWeeksPerReview') + 4) * 7;
 
-						$email->addPrivateParam('ACCESS_KEY', $accessKeyManager->createKey('ReviewerContext', $reviewer->getUserId(), $reviewId, $keyLifetime));
+						$email->addPrivateParam('ACCESS_KEY', $accessKeyManager->createKey('ReviewerContext', $reviewer->getId(), $reviewId, $keyLifetime));
 					}
 
 					if ($preventAddressChanges) {
@@ -260,7 +260,7 @@ class AcquisitionsEditorAction extends Action {
 						'reviewGuidelines' => $press->getLocalizedSetting('reviewGuidelines'),
 						'submissionReviewUrl' => $submissionUrl,
 						'abstractTermIfEnabled' => ($acquisitionsEditorSubmission->getLocalizedAbstract() == ''?'':Locale::translate('monograph.abstract')),
-						'passwordResetUrl' => Request::url(null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getUserId())))
+						'passwordResetUrl' => Request::url(null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId())))
 					);
 					$email->assignParams($paramArray);
 					if ($isEmailBasedReview) {
@@ -270,7 +270,7 @@ class AcquisitionsEditorAction extends Action {
 						$temporaryFileManager = new TemporaryFileManager();
 						$reviewVersion =& $acquisitionsEditorSubmission->getReviewFile();
 						if ($reviewVersion) {
-							$temporaryFile = $temporaryFileManager->monographToTemporaryFile($reviewVersion, $user->getUserId());
+							$temporaryFile = $temporaryFileManager->monographToTemporaryFile($reviewVersion, $user->getId());
 							$email->addPersistAttachment($temporaryFile);
 						}
 					}
@@ -386,7 +386,7 @@ class AcquisitionsEditorAction extends Action {
 
 				// Key lifetime is the typical review period plus four weeks
 				$keyLifetime = ($press->getSetting('numWeeksPerReview') + 4) * 7;
-				$email->addPrivateParam('ACCESS_KEY', $accessKeyManager->createKey('ReviewerContext', $reviewer->getUserId(), $reviewId, $keyLifetime));
+				$email->addPrivateParam('ACCESS_KEY', $accessKeyManager->createKey('ReviewerContext', $reviewer->getId(), $reviewId, $keyLifetime));
 			}
 
 			if ($preventAddressChanges) {
@@ -419,7 +419,7 @@ class AcquisitionsEditorAction extends Action {
 					'reviewerPassword' => $reviewer->getPassword(),
 					'reviewDueDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue())),
 					'editorialContactSignature' => $user->getContactSignature(),
-					'passwordResetUrl' => Request::url(null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getUserId()))),
+					'passwordResetUrl' => Request::url(null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId()))),
 					'submissionReviewUrl' => $submissionUrl
 				);
 				$email->assignParams($paramArray);
@@ -428,7 +428,7 @@ class AcquisitionsEditorAction extends Action {
 			$email->displayEditForm(
 				Request::url(null, null, 'remindReviewer', 'send'),
 				array(
-					'reviewerId' => $reviewer->getUserId(),
+					'reviewerId' => $reviewer->getId(),
 					'monographId' => $acquisitionsEditorSubmission->getMonographId(),
 					'reviewId' => $reviewId
 				)
@@ -620,7 +620,7 @@ class AcquisitionsEditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('AcquisitionsEditorAction::unsuitableSubmission', array(&$acquisitionsEditorSubmission, &$author, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR_UNSUITABLE, MONOGRAPH_EMAIL_TYPE_EDITOR, $user->getUserId());
+				$email->setAssoc(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR_UNSUITABLE, MONOGRAPH_EMAIL_TYPE_EDITOR, $user->getId());
 				$email->send();
 			}
 			AcquisitionsEditorAction::archiveSubmission($acquisitionsEditorSubmission);
@@ -838,7 +838,7 @@ class AcquisitionsEditorAction extends Action {
 			// Add log
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_RESUBMIT, MONOGRAPH_LOG_TYPE_EDITOR, $user->getUserId(), 'log.review.resubmit', array('monographId' => $acquisitionsEditorSubmission->getMonographId()));
+			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_RESUBMIT, MONOGRAPH_LOG_TYPE_EDITOR, $user->getId(), 'log.review.resubmit', array('monographId' => $acquisitionsEditorSubmission->getMonographId()));
 		}
 	}
 
@@ -1018,7 +1018,7 @@ class AcquisitionsEditorAction extends Action {
 						ASSOC_TYPE_MONOGRAPH,
 						$acquisitionsEditorSubmission->getMonographId()
 					);
-			$authorSignoff->setUserId($author->getUserId());
+			$authorSignoff->setUserId($author->getId());
 			$authorSignoff->setDateNotified(Core::getCurrentDate());
 			$authorSignoff->setDateUnderway(null);
 			$authorSignoff->setDateCompleted(null);
@@ -1113,7 +1113,7 @@ class AcquisitionsEditorAction extends Action {
 						ASSOC_TYPE_MONOGRAPH,
 						$acquisitionsEditorSubmission->getMonographId()
 					);
-			$signoff->setUserId($copyeditor->getUserId());
+			$signoff->setUserId($copyeditor->getId());
 			$signoff->setDateNotified(Core::getCurrentDate());
 			$signoff->setDateUnderway(null);
 			$signoff->setDateCompleted(null);
@@ -1305,7 +1305,7 @@ class AcquisitionsEditorAction extends Action {
 		// Add log entry
 		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');
-		MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_INITIAL, MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getUserId(), 'log.copyedit.initialEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId()));
+		MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_INITIAL, MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.initialEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId()));
 	}
 
 	/**
@@ -1343,7 +1343,7 @@ class AcquisitionsEditorAction extends Action {
 		// Add log entry
 		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');
-		MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_FINAL, MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getUserId(), 'log.copyedit.finalEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId()));
+		MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_FINAL, MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.finalEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId()));
 	}
 
 	/**
@@ -1667,7 +1667,7 @@ class AcquisitionsEditorAction extends Action {
 
 		$monographNote = new MonographNote();
 		$monographNote->setMonographId($monographId);
-		$monographNote->setUserId($user->getUserId());
+		$monographNote->setUserId($user->getId());
 		$monographNote->setDateCreated(Core::getCurrentDate());
 		$monographNote->setDateModified(Core::getCurrentDate());
 		$monographNote->setTitle(Request::getUserVar('title'));
@@ -1721,7 +1721,7 @@ class AcquisitionsEditorAction extends Action {
 		$monographNote = new MonographNote();
 		$monographNote->setNoteId(Request::getUserVar('noteId'));
 		$monographNote->setMonographId($monographId);
-		$monographNote->setUserId($user->getUserId());
+		$monographNote->setUserId($user->getId());
 		$monographNote->setDateModified(Core::getCurrentDate());
 		$monographNote->setTitle(Request::getUserVar('title'));
 		$monographNote->setNote(Request::getUserVar('note'));
@@ -2224,7 +2224,7 @@ class AcquisitionsEditorAction extends Action {
 
 			$entry = new MonographEventLogEntry();
 			$entry->setMonographId($reviewAssignment->getMonographId());
-			$entry->setUserId($user->getUserId());
+			$entry->setUserId($user->getId());
 			$entry->setDateLogged(Core::getCurrentDate());
 			$entry->setEventType(MONOGRAPH_LOG_REVIEW_CONFIRM_BY_PROXY);
 			$entry->setLogMessage($accept?'log.review.reviewAcceptedByProxy':'log.review.reviewDeclinedByProxy', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getMonographId(), 'round' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));
@@ -2282,7 +2282,7 @@ class AcquisitionsEditorAction extends Action {
 
 			$entry = new MonographEventLogEntry();
 			$entry->setMonographId($reviewAssignment->getMonographId());
-			$entry->setUserId($user->getUserId());
+			$entry->setUserId($user->getId());
 			$entry->setDateLogged(Core::getCurrentDate());
 			$entry->setEventType(MONOGRAPH_LOG_REVIEW_FILE_BY_PROXY);
 			$entry->setLogMessage('log.review.reviewFileByProxy', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getMonographId(), 'round' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));

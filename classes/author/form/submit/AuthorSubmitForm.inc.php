@@ -73,7 +73,7 @@ class AuthorSubmitForm extends SequenceForm {
 		foreach ($sectionEditors as $sectionEditorEntry) {
 			$editAssignment =& new EditAssignment();
 			$editAssignment->setArticleId($monograph->getArticleId());
-			$editAssignment->setEditorId($sectionEditorEntry['user']->getUserId());
+			$editAssignment->setEditorId($sectionEditorEntry['user']->getId());
 			$editAssignment->setCanReview($sectionEditorEntry['canReview']);
 			$editAssignment->setCanEdit($sectionEditorEntry['canEdit']);
 			$editAssignmentDao->insertEditAssignment($editAssignment);

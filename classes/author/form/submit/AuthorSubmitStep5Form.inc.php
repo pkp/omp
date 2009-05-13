@@ -107,7 +107,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 			} elseif ( Request::getUserVar('paymentSent') ) {
 				return parent::validate();
 			} else {				
-				$queuedPayment =& $paymentManager->createQueuedPayment($pressId, PAYMENT_TYPE_SUBMISSION, $user->getUserId(), $monographId, $press->getSetting('submissionFee'));
+				$queuedPayment =& $paymentManager->createQueuedPayment($pressId, PAYMENT_TYPE_SUBMISSION, $user->getId(), $monographId, $press->getSetting('submissionFee'));
 				$queuedPaymentId = $paymentManager->queuePayment($queuedPayment);
 		
 				$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
@@ -209,7 +209,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
 		import('article.log.ArticleLog');
 		import('article.log.ArticleEventLogEntry');
-		ArticleLog::logEvent($this->monographId, ARTICLE_LOG_ARTICLE_SUBMIT, ARTICLE_LOG_TYPE_AUTHOR, $user->getUserId(), 'log.author.submitted', array('submissionId' => $monograph->getArticleId(), 'authorName' => $user->getFullName()));
+		ArticleLog::logEvent($this->monographId, ARTICLE_LOG_ARTICLE_SUBMIT, ARTICLE_LOG_TYPE_AUTHOR, $user->getId(), 'log.author.submitted', array('submissionId' => $monograph->getArticleId(), 'authorName' => $user->getFullName()));
 */
 		return $monograph->getMonographId();
 	}

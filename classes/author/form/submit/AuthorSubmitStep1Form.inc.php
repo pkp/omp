@@ -81,7 +81,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$user =& Request::getUser();
 
 			$this->monograph =& new Monograph();
-			$this->monograph->setUserId($user->getUserId());
+			$this->monograph->setUserId($user->getId());
 			$this->monograph->setPressId($press->getId());
 			$this->monograph->stampStatusModified();
 			$this->monograph->setSubmissionProgress($this->sequence->currentStep + 1);

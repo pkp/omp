@@ -40,7 +40,7 @@ function checkEditorAssignments() {
 	{foreach from=$assignedEditors item=editorEntry}
 	{assign var=editor value=$editorEntry.user}
 	{literal}
-		if (!document.series.canReview{/literal}{$editor->getUserId()}{literal}.checked && !document.series.canEdit{/literal}{$editor->getUserId()}{literal}.checked) {
+		if (!document.series.canReview{/literal}{$editor->getId()}{literal}.checked && !document.series.canEdit{/literal}{$editor->getId()}{literal}.checked) {
 			isOk = false;
 		}
 	{/literal}{/foreach}{literal}
@@ -159,7 +159,7 @@ function checkEditorAssignments() {
 			<td>{$editor->getUsername()|escape}</td>
 			<td>{$editor->getFullName()|escape}</td>
 			<td align="right">
-				<a class="action" href="javascript:addEditor({$editor->getUserId()})">{translate key="common.add"}</a>
+				<a class="action" href="javascript:addEditor({$editor->getId()})">{translate key="common.add"}</a>
 			</td>
 		</tr>
 	{foreachelse}
@@ -190,14 +190,14 @@ function checkEditorAssignments() {
 	</tr>
 	{foreach from=$assignedEditors item=editorEntry}
 		{assign var=editor value=$editorEntry.user}
-		<input type="hidden" name="assignedEditorIds[]" value="{$editor->getUserId()|escape}" />
+		<input type="hidden" name="assignedEditorIds[]" value="{$editor->getId()|escape}" />
 		<tr valign="top">
 			<td>{$editor->getUsername()|escape}</td>
 			<td>{$editor->getFullName()|escape}</td>
-			<td align="center"><input type="checkbox" {if $editorEntry.canReview}checked="checked"{/if} name="canReview{$editor->getUserId()}" /></td>
-			<td align="center"><input type="checkbox" {if $editorEntry.canEdit}checked="checked"{/if} name="canEdit{$editor->getUserId()}" /></td>
+			<td align="center"><input type="checkbox" {if $editorEntry.canReview}checked="checked"{/if} name="canReview{$editor->getId()}" /></td>
+			<td align="center"><input type="checkbox" {if $editorEntry.canEdit}checked="checked"{/if} name="canEdit{$editor->getId()}" /></td>
 			<td align="right">
-				<a class="action" href="javascript:removeEditor({$editor->getUserId()})">{translate key="common.remove"}</a>
+				<a class="action" href="javascript:removeEditor({$editor->getId()})">{translate key="common.remove"}</a>
 			</td>
 		</tr>
 	{foreachelse}

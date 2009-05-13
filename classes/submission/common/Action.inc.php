@@ -220,7 +220,7 @@ class Action {
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$comment =& $monographCommentDao->getMonographCommentById($commentId);
 
-		if ($comment->getAuthorId() == $user->getUserId()) {
+		if ($comment->getAuthorId() == $user->getId()) {
 			if (!HookRegistry::call('Action::deleteComment', array(&$comment))) {
 				$monographCommentDao->deleteMonographComment($comment);
 			}

@@ -211,12 +211,12 @@ class GroupHandler extends ManagerHandler {
 			// the membership list and redirect.
 
 			// Avoid duplicating memberships.
-			$groupMembership =& $groupMembershipDao->getMembership($group->getId(), $user->getUserId());
+			$groupMembership =& $groupMembershipDao->getMembership($group->getId(), $user->getId());
 
 			if (!$groupMembership) {
 				$groupMembership = new GroupMembership();
 				$groupMembership->setGroupId($group->getId());
-				$groupMembership->setUserId($user->getUserId());
+				$groupMembership->setUserId($user->getId());
 				// For now, all memberships are displayed in About
 				$groupMembership->setAboutDisplayed(true);
 				$groupMembershipDao->insertMembership($groupMembership);
@@ -283,7 +283,7 @@ class GroupHandler extends ManagerHandler {
 		$groupMembership =& $this->groupMembership;
 
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
-		$groupMembershipDao->deleteMembershipById($group->getId(), $user->getUserId());
+		$groupMembershipDao->deleteMembershipById($group->getId(), $user->getId());
 		$groupMembershipDao->resequenceMemberships($group->getId());
 
 		Request::redirect(null, null, 'groupMembership', $group->getId());

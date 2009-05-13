@@ -38,7 +38,7 @@ class ProfileForm extends Form {
 		$this->addCheck(new FormValidator($this, 'lastName', 'required', 'user.profile.form.lastNameRequired'));
 		$this->addCheck(new FormValidatorUrl($this, 'userUrl', 'optional', 'user.profile.form.urlInvalid'));
 		$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'user.profile.form.emailRequired'));
-		$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.register.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array($user->getUserId(), true), true));
+		$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.register.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array($user->getId(), true), true));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -69,7 +69,7 @@ class ProfileForm extends Form {
 		$extension = $fileManager->getImageExtension($type);
 		if (!$extension) return false;
 
-		$uploadName = 'profileImage-' . (int) $user->getUserId() . $extension;
+		$uploadName = 'profileImage-' . (int) $user->getId() . $extension;
 		if (!$fileManager->uploadSiteFile('profileImage', $uploadName)) return false;
 
 		$filePath = $fileManager->getSiteFilesPath();
@@ -123,7 +123,7 @@ class ProfileForm extends Form {
 		$press =& Request::getPress();
 		if ($press) {
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$roles =& $roleDao->getRolesByUserId($user->getUserId(), $press->getId());
+			$roles =& $roleDao->getRolesByUserId($user->getId(), $press->getId());
 			$roleNames = array();
 			foreach ($roles as $role) $roleNames[$role->getRolePath()] = $role->getRoleName();
 			$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer'));
@@ -249,7 +249,7 @@ class ProfileForm extends Form {
 		$press =& Request::getPress();
 		if ($press) {
 			$role =& new Role();
-			$role->setUserId($user->getUserId());
+			$role->setUserId($user->getId());
 			$role->setPressId($press->getId());
 			if ($press->getSetting('allowRegReviewer')) {
 				$role->setRoleId(ROLE_ID_REVIEWER);
@@ -276,7 +276,7 @@ class ProfileForm extends Form {
 
 		$presses =& $pressDao->getPresses();
 		$presses =& $presses->toArray();
-		$pressNotifications = $notificationStatusDao->getPressNotifications($user->getUserId());
+		$pressNotifications = $notificationStatusDao->getPressNotifications($user->getId());
 
 		$readerNotify = Request::getUserVar('pressNotify');
 
@@ -285,7 +285,7 @@ class ProfileForm extends Form {
 			$currentlyReceives = !empty($pressNotifications[$thisPressId]);
 			$shouldReceive = !empty($readerNotify) && in_array($thisPress->getPressId(), $readerNotify);
 			if ($currentlyReceives != $shouldReceive) {
-				$notificationStatusDao->setPressNotifications($thisPressId, $user->getUserId(), $shouldReceive);
+				$notificationStatusDao->setPressNotifications($thisPressId, $user->getId(), $shouldReceive);
 			}
 		}
 
@@ -298,7 +298,7 @@ class ProfileForm extends Form {
 				$currentlyReceives = $user->getSetting('openAccessNotification', $thisPress->getPressId());
 				$shouldReceive = !empty($openAccessNotify) && in_array($thisPress->getPressId(), $openAccessNotify);
 				if ($currentlyReceives != $shouldReceive) {
-					$userSettingsDao->updateSetting($user->getUserId(), 'openAccessNotification', $shouldReceive, 'bool', $thisPress->getPressId());
+					$userSettingsDao->updateSetting($user->getId(), 'openAccessNotification', $shouldReceive, 'bool', $thisPress->getPressId());
 				}
 			}
 		}

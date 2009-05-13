@@ -59,7 +59,7 @@ class CopyeditorAction extends Action {
 			// Add log entry
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($copyeditorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_INITIAL, ARTICLE_LOG_TYPE_COPYEDIT, $user->getUserId(), 'log.copyedit.initialEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $copyeditorSubmission->getMonographId()));
+			MonographLog::logEvent($copyeditorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_INITIAL, ARTICLE_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.initialEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $copyeditorSubmission->getMonographId()));
 
 			return true;
 
@@ -130,7 +130,7 @@ class CopyeditorAction extends Action {
 			// Add log entry
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($copyeditorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_FINAL, ARTICLE_LOG_TYPE_COPYEDIT, $user->getUserId(), 'log.copyedit.finalEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $copyeditorSubmission->getMonographId()));
+			MonographLog::logEvent($copyeditorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_FINAL, ARTICLE_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.finalEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $copyeditorSubmission->getMonographId()));
 
 			return true;
 
@@ -184,7 +184,7 @@ class CopyeditorAction extends Action {
 				$user =& Request::getUser();
 				import('monograph.log.MonographLog');
 				import('monograph.log.MonographEventLogEntry');
-				MonographLog::logEvent($copyeditorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_INITIATE, ARTICLE_LOG_TYPE_COPYEDIT, $user->getUserId(), 'log.copyedit.initiate', Array('copyeditorName' => $user->getFullName(), 'monographId' => $copyeditorSubmission->getMonographId()));
+				MonographLog::logEvent($copyeditorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_INITIATE, ARTICLE_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.initiate', Array('copyeditorName' => $user->getFullName(), 'monographId' => $copyeditorSubmission->getMonographId()));
 			}
 		}
 	}	
@@ -234,7 +234,7 @@ class CopyeditorAction extends Action {
 
 			$entry = new MonographEventLogEntry();
 			$entry->setMonographId($copyeditorSubmission->getMonographId());
-			$entry->setUserId($user->getUserId());
+			$entry->setUserId($user->getId());
 			$entry->setDateLogged(Core::getCurrentDate());
 			$entry->setEventType(ARTICLE_LOG_COPYEDIT_COPYEDITOR_FILE);
 			$entry->setLogMessage('log.copyedit.copyeditorFile');

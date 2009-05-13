@@ -43,10 +43,10 @@ class EditorAction extends AcquisitionsEditorAction {
 		import('mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($editorSubmission, 'EDITOR_ASSIGN');
 
-		if ($user->getUserId() === $acquisitionsEditorId || !$email->isEnabled() || ($send && !$email->hasErrors())) {
+		if ($user->getId() === $acquisitionsEditorId || !$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('EditorAction::assignEditor', array(&$editorSubmission, &$acquisitionsEditor, &$isEditor, &$email));
-			if ($email->isEnabled() && $user->getUserId() !== $acquisitionsEditorId) {
-				$email->setAssoc(MONOGRAPH_EMAIL_EDITOR_ASSIGN, MONOGRAPH_EMAIL_TYPE_EDITOR, $acquisitionsEditor->getUserId());
+			if ($email->isEnabled() && $user->getId() !== $acquisitionsEditorId) {
+				$email->setAssoc(MONOGRAPH_EMAIL_EDITOR_ASSIGN, MONOGRAPH_EMAIL_TYPE_EDITOR, $acquisitionsEditor->getId());
 				$email->send();
 			}
 

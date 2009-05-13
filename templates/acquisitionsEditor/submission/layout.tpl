@@ -71,7 +71,7 @@
 		</td>
 		<td colspan="2">
 			{if $useLayoutEditors}
-				{if $layoutSignoff->getUserId() &&  $layoutSignoff->getDateCompleted() && !$layoutSignoff->getDateAcknowledged()}
+				{if $layoutSignoff->getUserId() && $layoutSignoff->getDateCompleted() && !$layoutSignoff->getDateAcknowledged()}
 					{url|assign:"url" op="thankLayoutEditor" articleId=$submission->getMonographId()}
 					{icon name="mail" url=$url}
 				{else}

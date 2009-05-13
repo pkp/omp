@@ -97,7 +97,7 @@ class AcquisitionsEditorHandler extends Handler {
 		}
 
 		$submissions =& $acquisitionsEditorSubmissionDao->$functionName(
-			$user->getUserId(),
+			$user->getId(),
 			$press->getId(),
 			$filterSection,
 			$searchField,
