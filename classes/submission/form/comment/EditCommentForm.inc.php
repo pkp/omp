@@ -19,10 +19,10 @@ import('form.Form');
 
 class EditCommentForm extends Form {
 
-	/** @var object the article */
-	var $article;
+	/** @var object the monograph */
+	var $monograph;
 
-	/** @var ArticleComment the comment */
+	/** @var MonographComment the comment */
 	var $comment;
 
 	/** @var int the role of the comment author */
@@ -33,17 +33,17 @@ class EditCommentForm extends Form {
 
 	/**
 	 * Constructor.
-	 * @param $article object
+	 * @param $monograph object
 	 * @param $comment object
 	 */
-	function EditCommentForm(&$article, &$comment) {
+	function EditCommentForm(&$monograph, &$comment) {
 		parent::Form('submission/comment/editComment.tpl');
 		$this->addCheck(new FormValidatorPost($this));
 
 		$this->comment = $comment;
 		$this->roleId = $comment->getRoleId();
 
-		$this->article = $article;
+		$this->monograph = $monograph;
 		$this->user =& Request::getUser();
 	}
 
@@ -65,7 +65,7 @@ class EditCommentForm extends Form {
 	 */
 	function display($additionalHiddenParams = null) {
 		$hiddenFormParams = array(
-			'articleId' => $this->article->getArticleId(),
+			'monographId' => $this->monograph->getMonographId(),
 			'commentId' => $this->comment->getCommentId()
 		);
 		if (isset($additionalHiddenParams)) {
@@ -99,7 +99,7 @@ class EditCommentForm extends Form {
 	 * Update the comment.
 	 */
 	function execute() {
-		$commentDao =& DAORegistry::getDAO('ArticleCommentDAO');
+		$commentDao =& DAORegistry::getDAO('MonographCommentDAO');
 
 		// Update comment		
 		$comment = $this->comment;
@@ -108,7 +108,7 @@ class EditCommentForm extends Form {
 		$comment->setViewable($this->getData('viewable') ? 1 : 0);
 		$comment->setDateModified(Core::getCurrentDate());
 
-		$commentDao->updateArticleComment($comment);
+		$commentDao->updateMonographComment($comment);
 	}
 
 	/**
@@ -118,13 +118,13 @@ class EditCommentForm extends Form {
 	function emailHelper() {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$journal =& Request::getJournal();
+		$press =& Request::getJournal();
 
 		$recipients = array();
 
-		// Get editors for article
+		// Get editors for monograph
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getByIdsByArticleId($this->article->getArticleId());
+		$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getMonographId());
 		$editAssignments =& $editAssignments->toArray();
 		$editorAddresses = array();
 		foreach ($editAssignments as $editAssignment) {
@@ -132,9 +132,9 @@ class EditCommentForm extends Form {
 		}
 
 		// If no editors are currently assigned, send this message to
-		// all of the journal's editors.
+		// all of the press's editors.
 		if (empty($editorAddresses)) {
-			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $journal->getJournalId());
+			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getJournalId());
 			while (!$editors->eof()) {
 				$editor =& $editors->next();
 				$editorAddresses[$editor->getEmail()] = $editor->getFullName();
@@ -143,7 +143,7 @@ class EditCommentForm extends Form {
 
 		// Get proofreader
 		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByArticleId($this->article->getArticleId());
+		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($this->monograph->getMonographId());
 		if ($proofAssignment != null && $proofAssignment->getProofreaderId() > 0) {
 			$proofreader =& $userDao->getUser($proofAssignment->getProofreaderId());
 		} else {
@@ -152,7 +152,7 @@ class EditCommentForm extends Form {
 
 		// Get layout editor
 		$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-		$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByArticleId($this->article->getArticleId());
+		$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($this->monograph->getMonographId());
 		if ($layoutAssignment != null && $layoutAssignment->getEditorId() > 0) {
 			$layoutEditor =& $userDao->getUser($layoutAssignment->getEditorId());
 		} else {
@@ -161,7 +161,7 @@ class EditCommentForm extends Form {
 
 		// Get copyeditor
 		$copyAssignmentDao =& DAORegistry::getDAO('CopyAssignmentDAO');
-		$copyAssignment =& $copyAssignmentDao->getCopyAssignmentByArticleId($this->article->getArticleId());
+		$copyAssignment =& $copyAssignmentDao->getCopyAssignmentByMonographId($this->monograph->getMonographId());
 		if ($copyAssignment != null && $copyAssignment->getCopyeditorId() > 0) {
 			$copyeditor =& $userDao->getUser($copyAssignment->getCopyeditorId());
 		} else {
@@ -178,7 +178,7 @@ class EditCommentForm extends Form {
 		}
 
 		// Get author
-		$author =& $userDao->getUser($this->article->getUserId());
+		$author =& $userDao->getUser($this->monograph->getUserId());
 
 		switch ($this->comment->getCommentType()) {
 		case COMMENT_TYPE_PEER_REVIEW:
@@ -228,7 +228,7 @@ class EditCommentForm extends Form {
 			if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SECTION_EDITOR) {
 				// Then add layout editor
 
-				// Check to ensure that there is a layout editor assigned to this article.
+				// Check to ensure that there is a layout editor assigned to this monograph.
 				if ($layoutEditor != null) {
 					$recipients = array_merge($recipients, array($layoutEditor->getEmail() => $layoutEditor->getFullName()));
 				}
@@ -293,14 +293,14 @@ class EditCommentForm extends Form {
 	 * @param $recipients array of recipients (email address => name)
 	 */
 	function email($recipients) {
-		import('mail.ArticleMailTemplate');
-		$email = new ArticleMailTemplate($this->article, 'SUBMISSION_COMMENT');
-		$journal =& Request::getJournal();
-		if ($journal) $email->setFrom($journal->getSetting('contactEmail'), $journal->getSetting('contactName'));
+		import('mail.MonographMailTemplate');
+		$email = new MonographMailTemplate($this->monograph, 'SUBMISSION_COMMENT');
+		$press =& Request::getJournal();
+		if ($press) $email->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 
 		foreach ($recipients as $emailAddress => $name) {
 			$email->addRecipient($emailAddress, $name);
-			$email->setSubject(strip_tags($this->article->getArticleTitle()));
+			$email->setSubject(strip_tags($this->monograph->getMonographTitle()));
 
 			$paramArray = array(
 				'name' => $name,

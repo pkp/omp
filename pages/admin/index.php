@@ -24,6 +24,9 @@ switch ($op) {
 	//
 	case 'settings':
 	case 'saveSettings':
+		define('HANDLER_CLASS', 'AdminSettingsHandler');
+		import('pages.admin.AdminSettingsHandler');
+		break;
 	//
 	// Press Management
 	//

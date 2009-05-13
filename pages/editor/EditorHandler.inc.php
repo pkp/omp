@@ -356,7 +356,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 
 		if ($monograph && $monograph->getPressId() === $press->getId()) {
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-			$editAssignments =& $editAssignmentDao->getEditAssignmentsByMonographId($monographId);
+			$editAssignments =& $editAssignmentDao->getByMonographId($monographId);
 
 			while($editAssignment =& $editAssignments->next()) {
 				if ($editAssignment->getIsEditor()) continue;

@@ -15,16 +15,16 @@
 // $Id$
 
 
-import("submission.form.comment.CommentForm");
+import('submission.form.comment.CommentForm');
 
 class EditorDecisionCommentForm extends CommentForm {
 
 	/**
 	 * Constructor.
-	 * @param $article object
+	 * @param $monograph object
 	 */
-	function EditorDecisionCommentForm($article, $roleId) {
-		parent::CommentForm($article, COMMENT_TYPE_EDITOR_DECISION, $roleId, $article->getArticleId());
+	function EditorDecisionCommentForm($monograph, $roleId) {
+		parent::CommentForm($monograph, COMMENT_TYPE_EDITOR_DECISION, $roleId, $monograph->getMonographId());
 	}
 
 	/**
@@ -33,15 +33,15 @@ class EditorDecisionCommentForm extends CommentForm {
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageTitle', 'submission.comments.editorAuthorCorrespondence');
-		$templateMgr->assign('articleId', $this->article->getArticleId());
+		$templateMgr->assign('monographId', $this->monograph->getMonographId());
 		$templateMgr->assign('commentAction', 'postEditorDecisionComment');
 		$templateMgr->assign('hiddenFormParams', 
 			array(
-				'articleId' => $this->article->getArticleId()
+				'monographId' => $this->monograph->getMonographId()
 			)
 		);
 
-		$isEditor = $this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SECTION_EDITOR ? true : false;
+		$isEditor = $this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_ACQUISITIONS_EDITOR ? true : false;
 		$templateMgr->assign('isEditor', $isEditor);
 
 		parent::display();
@@ -72,7 +72,7 @@ class EditorDecisionCommentForm extends CommentForm {
 	function email() {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$journal =& Request::getJournal();
+		$press =& Request::getPress();
 
 		// Create list of recipients:
 
@@ -80,25 +80,25 @@ class EditorDecisionCommentForm extends CommentForm {
 		// the opposite of whomever wrote the comment.
 		$recipients = array();
 
-		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SECTION_EDITOR) {
+		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_ACQUISITIONS_EDITOR) {
 			// Then add author
-			$user =& $userDao->getUser($this->article->getUserId());
+			$user =& $userDao->getUser($this->monograph->getUserId());
 
 			if ($user) $recipients = array_merge($recipients, array($user->getEmail() => $user->getFullName()));
 		} else {
 			// Then add editor
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-			$editAssignments =& $editAssignmentDao->getByIdsByArticleId($this->article->getArticleId());
+			$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getMonographId());
 			$editorAddresses = array();
 			while (!$editAssignments->eof()) {
 				$editAssignment =& $editAssignments->next();
 				$editorAddresses[$editAssignment->getEditorEmail()] = $editAssignment->getEditorFullName();
 			}
 
-			// If no editors are currently assigned to this article,
-			// send the email to all editors for the journal
+			// If no editors are currently assigned to this monograph,
+			// send the email to all editors for the press
 			if (empty($editorAddresses)) {
-				$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $journal->getJournalId());
+				$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getPressId());
 				while (!$editors->eof()) {
 					$editor =& $editors->next();
 					$editorAddresses[$editor->getEmail()] = $editor->getFullName();

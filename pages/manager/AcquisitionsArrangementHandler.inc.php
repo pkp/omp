@@ -31,6 +31,36 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 		//FIXME: how is this set elsewhere?
 		$this->type = CATEGORY_ARRANGEMENT;
 	}
+
+	function submissionCategory() {
+		$this->listItems(CATEGORY_ARRANGEMENT);
+	}
+
+	function createSubmissionCategory() {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		$this->createItem(CATEGORY_ARRANGEMENT);
+	}
+
+	function editSubmissionCategory($args) {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		$this->editItem($args, CATEGORY_ARRANGEMENT);
+	}
+
+	function updateSubmissionCategory($args) {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		$this->updateItem($args, CATEGORY_ARRANGEMENT);
+	}
+
+	function deleteSubmissionCategory($args) {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		$this->deleteItem($args, CATEGORY_ARRANGEMENT);
+	}
+
+	function moveSubmissionCategory() {
+		import('pages.manager.AcquisitionsArrangementHandler');
+		$this->moveItem(CATEGORY_ARRANGEMENT);
+	}
+
 	
 	/**
 	 * Display a list of the series within the current press.

@@ -15,7 +15,6 @@
 
 // $Id$
 
-
 import('submission.common.Action');
 
 class CopyeditorAction extends Action {
@@ -30,10 +29,12 @@ class CopyeditorAction extends Action {
 	 */
 	function completeCopyedit($copyeditorSubmission, $send = false) {
 		$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 
-		if ($copyeditorSubmission->getDateCompleted() != null) {
+		$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
+		if ($initialSignoff->getDateCompleted() != null) {
 			return true;
 		}
 
@@ -48,18 +49,33 @@ class CopyeditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('CopyeditorAction::completeCopyedit', array(&$copyeditorSubmission, &$editAssignments, &$author, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_COPYEDIT_NOTIFY_COMPLETE, ARTICLE_EMAIL_TYPE_COPYEDIT, $copyeditorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_COMPLETE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $copyeditorSubmission->getMonographId());
 				$email->send();
 			}
 
-			$copyeditorSubmission->setDateCompleted(Core::getCurrentDate());
-			$copyeditorSubmission->setDateAuthorNotified(Core::getCurrentDate());
-			$copyeditorSubmissionDao->updateCopyeditorSubmission($copyeditorSubmission);
+			$initialSignoff->setDateCompleted(Core::getCurrentDate());
+			
+			$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
+			$authorSignoff->setUserId($author->getId());
+			$authorSignoff->setDateNotified(Core::getCurrentDate());
+			$signoffDao->updateObject($initialSignoff);
+			$signoffDao->updateObject($authorSignoff);
+			
 
 			// Add log entry
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($copyeditorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_INITIAL, ARTICLE_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.initialEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $copyeditorSubmission->getMonographId()));
+
+			MonographLog::logEvent(
+					$copyeditorSubmission->getMonographId(), 
+					MONOGRAPH_LOG_COPYEDIT_INITIAL, 
+					MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getId(), 
+					'log.copyedit.initialEditComplete', 
+					Array(
+						'copyeditorName' => $user->getFullName(), 
+						'monographId' => $copyeditorSubmission->getMonographId()
+					)
+				);
 
 			return true;
 
@@ -89,10 +105,12 @@ class CopyeditorAction extends Action {
 	 */
 	function completeFinalCopyedit($copyeditorSubmission, $send = false) {
 		$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 
-		if ($copyeditorSubmission->getDateFinalCompleted() != null) {
+		$finalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
+		if ($finalSignoff->getDateCompleted() != null) {
 			return true;
 		}
 
@@ -105,24 +123,23 @@ class CopyeditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('CopyeditorAction::completeFinalCopyedit', array(&$copyeditorSubmission, &$editAssignments, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_COPYEDIT_NOTIFY_FINAL_COMPLETE, ARTICLE_EMAIL_TYPE_COPYEDIT, $copyeditorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_FINAL_COMPLETE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $copyeditorSubmission->getMonographId());
 				$email->send();
 			}
 
-			$copyeditorSubmission->setDateFinalCompleted(Core::getCurrentDate());
-			$copyeditorSubmissionDao->updateCopyeditorSubmission($copyeditorSubmission);
+			$finalSignoff->setDateCompleted(Core::getCurrentDate());
+			$signoffDao->updateObject($finalSignoff);
 
-			if ($copyEdFile =& $copyeditorSubmission->getFinalCopyeditFile()) {
+			if ($copyEdFile = $copyeditorSubmission->getFileBySignoffType('SIGNOFF_COPYEDITING_FINAL')) {
 				// Set initial layout version to final copyedit version
-				$layoutDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-				$layoutAssignment =& $layoutDao->getLayoutAssignmentByMonographId($copyeditorSubmission->getMonographId());
+				$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
 
-				if (isset($layoutAssignment) && !$layoutAssignment->getLayoutFileId()) {
+				if (!$layoutSignoff->getFileId()) {
 					import('file.MonographFileManager');
 					$monographFileManager = new MonographFileManager($copyeditorSubmission->getMonographId());
 					if ($layoutFileId = $monographFileManager->copyToLayoutFile($copyEdFile->getFileId(), $copyEdFile->getRevision())) {
-						$layoutAssignment->setLayoutFileId($layoutFileId);
-						$layoutDao->updateLayoutAssignment($layoutAssignment);
+						$layoutSignoff->setFileId($layoutFileId);
+						$signoffDao->updateObject($layoutSignoff);
 					}
 				}
 			}
@@ -130,7 +147,8 @@ class CopyeditorAction extends Action {
 			// Add log entry
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($copyeditorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_FINAL, ARTICLE_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.finalEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $copyeditorSubmission->getMonographId()));
+
+			MonographLog::logEvent($copyeditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_FINAL, MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.finalEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $copyeditorSubmission->getMonographId()));
 
 			return true;
 
@@ -166,25 +184,39 @@ class CopyeditorAction extends Action {
 	 */
 	function copyeditUnderway(&$copyeditorSubmission) {
 		if (!HookRegistry::call('CopyeditorAction::copyeditUnderway', array(&$copyeditorSubmission))) {
-			$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');		
+			$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');	
+			$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+			
+			$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
+			$finalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
 
-			if ($copyeditorSubmission->getDateNotified() != null && $copyeditorSubmission->getDateUnderway() == null) {
-				$copyeditorSubmission->setDateUnderway(Core::getCurrentDate());
+			if ($initialSignoff->getDateNotified() != null && $initialSignoff->getDateUnderway() == null) {
+				$initialSignoff->setDateUnderway(Core::getCurrentDate());
+				$signoffDao->updateObject($initialSignoff);
 				$update = true;
 
-			} elseif ($copyeditorSubmission->getDateFinalNotified() != null && $copyeditorSubmission->getDateFinalUnderway() == null) {
-				$copyeditorSubmission->setDateFinalUnderway(Core::getCurrentDate());
+			} elseif ($finalSignoff->getDateNotified() != null && $finalSignoff->getDateUnderway() == null) {
+				$finalSignoff->setDateUnderway(Core::getCurrentDate());
+				$signoffDao->updateObject($finalSignoff);
 				$update = true;
 			}
 
 			if (isset($update)) {
-				$copyeditorSubmissionDao->updateCopyeditorSubmission($copyeditorSubmission);
-
 				// Add log entry
 				$user =& Request::getUser();
 				import('monograph.log.MonographLog');
 				import('monograph.log.MonographEventLogEntry');
-				MonographLog::logEvent($copyeditorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_INITIATE, ARTICLE_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.initiate', Array('copyeditorName' => $user->getFullName(), 'monographId' => $copyeditorSubmission->getMonographId()));
+
+				MonographLog::logEvent(
+						$copyeditorSubmission->getMonographId(), 
+						MONOGRAPH_LOG_COPYEDIT_INITIATE, 
+						MONOGRAPH_LOG_TYPE_COPYEDIT, 
+						$user->getId(), 'log.copyedit.initiate', 
+						Array(
+							'copyeditorName' => $user->getFullName(), 
+							'monographId' => $copyeditorSubmission->getMonographId()
+						)
+					);
 			}
 		}
 	}	
@@ -194,14 +226,21 @@ class CopyeditorAction extends Action {
 	 * @param $copyeditorSubmission object
 	 */
 	function uploadCopyeditVersion($copyeditorSubmission, $copyeditStage) {
-		import("file.MonographFileManager");
+		import('file.MonographFileManager');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');		
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+
+		if($copyeditStage == 'initial') {
+			$signoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
+		} else if($copyeditStage == 'final') {
+			$signoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
+		}
 
 		// Only allow an upload if they're in the initial or final copyediting
 		// stages.
-		if ($copyeditStage == 'initial' && ($copyeditorSubmission->getDateNotified() == null || $copyeditorSubmission->getDateCompleted() != null)) return;
-		else if ($copyeditStage == 'final' && ($copyeditorSubmission->getDateFinalNotified() == null || $copyeditorSubmission->getDateFinalCompleted() != null)) return;
+		if ($copyeditStage == 'initial' && ($signoff->getDateNotified() == null || $signoff->getDateCompleted() != null)) return;
+		else if ($copyeditStage == 'final' && ($signoff->getDateNotified() == null || $signoff->getDateCompleted() != null)) return;
 		else if ($copyeditStage != 'initial' && $copyeditStage != 'final') return;
 
 		$monographFileManager = new MonographFileManager($copyeditorSubmission->getMonographId());
@@ -210,23 +249,17 @@ class CopyeditorAction extends Action {
 		$fileName = 'upload';
 		if ($monographFileManager->uploadedFileExists($fileName)) {
 			HookRegistry::call('CopyeditorAction::uploadCopyeditVersion', array(&$copyeditorSubmission));
-			if ($copyeditorSubmission->getCopyeditFileId() != null) {
-				$fileId = $monographFileManager->uploadCopyeditFile($fileName, $copyeditorSubmission->getCopyeditFileId());
+			if ($signoff->getFileId() != null) {
+				$fileId = $monographFileManager->uploadCopyeditFile($fileName, $copyeditorSubmission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL', true));
 			} else {
 				$fileId = $monographFileManager->uploadCopyeditFile($fileName);
 			}
 		}
 
 		if (isset($fileId) && $fileId != 0) {
-			$copyeditorSubmission->setCopyeditFileId($fileId);
-
-			if ($copyeditStage == 'initial') {
-				$copyeditorSubmission->setInitialRevision($monographFileDao->getRevisionNumber($fileId));
-			} elseif ($copyeditStage == 'final') {
-				$copyeditorSubmission->setFinalRevision($monographFileDao->getRevisionNumber($fileId));
-			}
-
-			$copyeditorSubmissionDao->updateCopyeditorSubmission($copyeditorSubmission);
+			$signoff->setFileId($fileId);
+			$signoff->setFileRevision($monographFileDao->getRevisionNumber($fileId));
+			$signoffDao->updateObject($signoff);
 
 			// Add log
 			import('monograph.log.MonographLog');
@@ -236,13 +269,15 @@ class CopyeditorAction extends Action {
 			$entry->setMonographId($copyeditorSubmission->getMonographId());
 			$entry->setUserId($user->getId());
 			$entry->setDateLogged(Core::getCurrentDate());
-			$entry->setEventType(ARTICLE_LOG_COPYEDIT_COPYEDITOR_FILE);
+			$entry->setEventType(MONOGRAPH_LOG_COPYEDIT_COPYEDITOR_FILE);
 			$entry->setLogMessage('log.copyedit.copyeditorFile');
-			$entry->setAssocType(ARTICLE_LOG_TYPE_COPYEDIT);
+			$entry->setAssocType(MONOGRAPH_LOG_TYPE_COPYEDIT);
 			$entry->setAssocId($fileId);
 
 			MonographLog::logEventEntry($copyeditorSubmission->getMonographId(), $entry);
 		}
+		
+		
 	}
 
 	//
@@ -255,7 +290,7 @@ class CopyeditorAction extends Action {
 	 */
 	function viewLayoutComments($monograph) {
 		if (!HookRegistry::call('CopyeditorAction::viewLayoutComments', array(&$monograph))) {
-			import("submission.form.comment.LayoutCommentForm");
+			import('submission.form.comment.LayoutCommentForm');
 
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$commentForm =& new LayoutCommentForm($monograph, ROLE_ID_COPYEDITOR);
@@ -270,7 +305,7 @@ class CopyeditorAction extends Action {
 	 */
 	function postLayoutComment($monograph, $emailComment) {
 		if (!HookRegistry::call('CopyeditorAction::postLayoutComment', array(&$monograph, &$emailComment))) {
-			import("submission.form.comment.LayoutCommentForm");
+			import('submission.form.comment.LayoutCommentForm');
 
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$commentForm =& new LayoutCommentForm($monograph, ROLE_ID_COPYEDITOR);
@@ -284,8 +319,11 @@ class CopyeditorAction extends Action {
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				foreach ($notificationUsers as $user) {
 					$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
-					Notification::createNotification($user['id'], "notification.type.layoutComment",
-						$monograph->getMonographTitle(), $url, 1, NOTIFICATION_TYPE_LAYOUT_COMMENT);
+					Notification::createNotification(
+								$user['id'], "notification.type.layoutComment", 
+								$monograph->getLocalizedTitle(), $url, 1, 
+								NOTIFICATION_TYPE_LAYOUT_COMMENT
+							);
 				}
 				
 				if ($emailComment) {
@@ -306,7 +344,7 @@ class CopyeditorAction extends Action {
 	 */
 	function viewCopyeditComments($monograph) {
 		if (!HookRegistry::call('CopyeditorAction::viewCopyeditComments', array(&$monograph))) {
-			import("submission.form.comment.CopyeditCommentForm");
+			import('submission.form.comment.CopyeditCommentForm');
 
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$commentForm =& new CopyeditCommentForm($monograph, ROLE_ID_COPYEDITOR);
@@ -321,7 +359,7 @@ class CopyeditorAction extends Action {
 	 */
 	function postCopyeditComment($monograph, $emailComment) {
 		if (!HookRegistry::call('CopyeditorAction::postCopyeditComment', array(&$monograph, &$emailComment))) {
-			import("submission.form.comment.CopyeditCommentForm");
+			import('submission.form.comment.CopyeditCommentForm');
 
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$commentForm =& new CopyeditCommentForm($monograph, ROLE_ID_COPYEDITOR);
@@ -335,8 +373,12 @@ class CopyeditorAction extends Action {
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				foreach ($notificationUsers as $user) {
 					$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'coypedit');
-					Notification::createNotification($user['id'], "notification.type.copyeditComment",
-						$monograph->getMonographTitle(), $url, 1, NOTIFICATION_TYPE_COPYEDIT_COMMENT);
+					Notification::createNotification(
+								$user['id'], 
+								"notification.type.copyeditComment", 
+								$monograph->getLocalizedTitle(), 
+								$url, 1, NOTIFICATION_TYPE_COPYEDIT_COMMENT
+							);
 				}
 				
 				if ($emailComment) {
@@ -372,21 +414,25 @@ class CopyeditorAction extends Action {
 		// 3) The author copyedit revision, after the author copyedit has been completed
 		// 4) The final copyedit revision
 		// 5) Layout galleys
-		if ($submission->getCopyeditFileId() == $fileId) {
+		if ($submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL', true) == $fileId) {
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');		
 			$currentRevision =& $monographFileDao->getRevisionNumber($fileId);
 
 			if ($revision == null) {
 				$revision = $currentRevision;
 			}
-
+				
+			$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getMonographId());
+			$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getMonographId());
+			$finalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getMonographId());
+				
 			if ($revision == 1) {
 				$canDownload = true;
-			} else if ($submission->getInitialRevision() == $revision) {
+			} else if ($initialSignoff->getFileRevision() == $revision) {
 				$canDownload = true;
-			} else if ($submission->getEditorAuthorRevision() == $revision && $submission->getDateAuthorCompleted() != null) {
+			} else if ($authorSignoff->getFileRevision() == $revision && $submission->getDateAuthorCompleted() != null) {
 				$canDownload = true;
-			} else if ($submission->getFinalRevision() == $revision) {
+			} else if ($finalSignoff->getFileRevision() == $revision) {
 				$canDownload = true;
 			}
 		}

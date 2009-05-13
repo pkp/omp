@@ -116,7 +116,7 @@
 	<a href="javascript:openComments('{url op="viewCopyeditComments" path=$submission->getMonographId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
 {/if}
 
-{if $currentJournal->getLocalizedSetting('copyeditInstructions') != ''}
+{if $currentPress->getLocalizedSetting('copyeditInstructions') != ''}
 &nbsp;&nbsp;
 <a href="javascript:openHelp('{url op="instructions" path="copy"}')" class="action">{translate key="submission.copyedit.instructions"}</a>
 {/if}

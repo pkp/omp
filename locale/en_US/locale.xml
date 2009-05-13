@@ -128,6 +128,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="monograph.title">Title</message>
 	<message key="monograph.suppFilesAbbrev">Supp. Files</message>
 	<message key="monograph.suppFile">Supplementary File</message>
+	<message key="monograph.suppFiles">Supplementary Files</message>
 	<message key="monograph.contributors">Contributors</message>
 	<message key="monograph.commentsToEditor">Submitter Comments</message>
 	
@@ -170,6 +171,11 @@ Note that if your site administrator has already registered this site with the P
 	 *
 	-->
 
+	<!-- Submission list search engine -->
+	<message key="submissions.copyeditComplete">Copyedited</message>
+	<message key="submissions.layoutComplete">Layout edited</message>
+	<message key="submissions.proofreadingComplete">Proofread</message>
+	
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>
 	<message key="common.confirmComplete">Are you sure you wish to mark this task as completed? You may not be able to make changes afterwards.</message>
@@ -192,7 +198,16 @@ Note that if your site administrator has already registered this site with the P
 	<message key="navigation.competingInterestGuidelines">Competing Interest Guidelines</message>
 	<message key="navigation.infoForAuthors.long">Information For Authors</message>
 	<message key="navigation.infoForLibrarians.long">Information For Librarians</message>
+
+	<!-- Submission History -->
 	
+	<message key="submission.logType.article">Article</message>
+	<message key="submission.logType.author">Author</message>
+	<message key="submission.logType.editor">Editor</message>
+	<message key="submission.logType.review">Review</message>
+	<message key="submission.logType.copyedit">Copyedit</message>
+	<message key="submission.logType.layout">Layout</message>
+	<message key="submission.logType.proofread">Proofread</message>
 	<!--
 	 *
 	 * ENTITIES - This section contains terms pertaining to the system's
@@ -263,7 +278,18 @@ Note that if your site administrator has already registered this site with the P
 	<message key="comments.commentsOnArticle">Comments on this article</message>
 	<message key="comments.authenticated"><![CDATA[by <a href="{$publicProfileUrl}" target="_parent">{$userName}</a>]]></message>
 
-	<!-- Site Administration -->
+	<message key="submission.comments.editorAuthorCorrespondence">Editor/Author Correspondence</message>
+	<message key="submission.comments.copyeditComments">Copyedit Comments</message>
+	<message key="submission.comments.viewableDescription"><![CDATA[These comments can be shared with the author.<br />
+(After saving, further comments can be added.)]]></message>
+	<message key="submission.comments.canShareWithAuthor">For author and editor</message>
+	<message key="submission.comments.cannotShareWithAuthor">For editor</message>
+	<message key="submission.comments.blindCcReviewers">After sending, present an editable BCC copy to send to reviewers.</message>
+	<message key="submission.comments.forAuthorEditor">For author and editor</message>
+	<message key="submission.comments.forEditor">For editor</message>
+	<message key="submission.comments.saveAndEmailAuthor">Save and Email Author</message>
+	<message key="submission.comments.saveAndEmailEditor">Save and Email Editor</message>
+
 
 	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[To have the contents of all presses hosted on this site indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your site's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
@@ -452,6 +478,16 @@ current password.<br /><br />Enter your email address below to reset your passwo
 <li>Exclude a word by prefixing it with <strong>-</strong> or <em>NOT</em>; e.g. <em>online -politics</em> or <em>online NOT politics</em></li>
 <li>Use <strong>*</strong> in a term as a wildcard to match any sequence of characters; e.g., <em>soci* morality</em> would match documents containing "sociological" or "societal"</li>
 </ul>]]></message>
+
+	<message key="acquisitionsEditor.regrets.breadcrumb">Regrets</message>
+	<message key="acquisitionsEditor.regrets.title">#{$monographId} Reviewer Regrets, Cancellations, and Earlier Rounds</message>
+	<message key="acquisitionsEditor.regrets">Regrets</message>
+	<message key="acquisitionsEditor.regrets.link">View Regrets, Cancels, Previous Rounds</message>
+	<message key="acquisitionsEditor.regrets.reviewRound">Peer Review, Round {$round}</message>
+	<message key="acquisitionsEditor.regrets.decisionRound">Editor Decision, Round {$round}</message>
+	<message key="acquisitionsEditor.regrets.regretsAndCancels">Reviewer Regrets and Cancellations</message>
+	<message key="acquisitionsEditor.regrets.regret">Regret</message>
+	<message key="acquisitionsEditor.regrets.result">Result</message>
 
 	<!-- Interstitial page for PDFs -->
 	<message key="article.pdf.title">Portable Document Format (PDF)</message>

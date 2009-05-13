@@ -34,11 +34,11 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$articleId = $args[0];
+		$monographId = $args[0];
 		$reviewId = $args[1];
 
 		$submissionEditHandler =& new SubmissionEditHandler();
-		$submissionEditHandler->validate($articleId);
+		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 
 		AcquisitionsEditorAction::viewPeerReviewComments($submission, $reviewId);
@@ -74,10 +74,10 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$articleId = $args[0];
+		$monographId = $args[0];
 
 		$submissionEditHandler =& new SubmissionEditHandler();
-		$submissionEditHandler->validate($articleId);
+		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		AcquisitionsEditorAction::viewEditorDecisionComments($submission);
 
@@ -90,13 +90,13 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$articleId = Request::getUserVar('articleId');
+		$monographId = Request::getUserVar('monographId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
 		$submissionEditHandler =& new SubmissionEditHandler();
-		$submissionEditHandler->validate($articleId);
+		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		if (AcquisitionsEditorAction::postEditorDecisionComment($submission, $emailComment)) {
 			AcquisitionsEditorAction::viewEditorDecisionComments($submission);
@@ -108,17 +108,17 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * Blind CC the reviews to reviewers.
 	 */
 	function blindCcReviewsToReviewers($args = array()) {
-		$articleId = Request::getUserVar('articleId');
+		$monographId = Request::getUserVar('monographId');
 		$submissionEditHandler =& new SubmissionEditHandler();
-		$submissionEditHandler->validate($articleId);
+		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 
 		$send = Request::getUserVar('send')?true:false;
 		$inhibitExistingEmail = Request::getUserVar('blindCcReviewers')?true:false;
 
-		if (!$send) parent::setupTemplate(true, $articleId, 'editing');
+		if (!$send) parent::setupTemplate(true, $monographId, 'editing');
 		if (AcquisitionsEditorAction::blindCcReviewsToReviewers($submission, $send, $inhibitExistingEmail)) {
-			Request::redirect(null, null, 'submissionReview', $articleId);
+			Request::redirect(null, null, 'submissionReview', $monographId);
 		}
 	}
 
@@ -129,10 +129,10 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$articleId = $args[0];
+		$monographId = $args[0];
 
 		$submissionEditHandler =& new SubmissionEditHandler();
-		$submissionEditHandler->validate($articleId);
+		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		AcquisitionsEditorAction::viewCopyeditComments($submission);
 
@@ -145,13 +145,13 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$articleId = Request::getUserVar('articleId');
+		$monographId = Request::getUserVar('monographId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
 		$submissionEditHandler =& new SubmissionEditHandler();
-		$submissionEditHandler->validate($articleId);
+		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		if (AcquisitionsEditorAction::postCopyeditComment($submission, $emailComment)) {
 			AcquisitionsEditorAction::viewCopyeditComments($submission);
@@ -166,10 +166,10 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$articleId = $args[0];
+		$monographId = $args[0];
 
 		$submissionEditHandler =& new SubmissionEditHandler();
-		$submissionEditHandler->validate($articleId);
+		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		AcquisitionsEditorAction::viewLayoutComments($submission);
 
@@ -182,13 +182,13 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$articleId = Request::getUserVar('articleId');
+		$monographId = Request::getUserVar('monographId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
 		$submissionEditHandler =& new SubmissionEditHandler();
-		$submissionEditHandler->validate($articleId);
+		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		if (AcquisitionsEditorAction::postLayoutComment($submission, $emailComment)) {
 			AcquisitionsEditorAction::viewLayoutComments($submission);
@@ -203,10 +203,10 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$articleId = $args[0];
+		$monographId = $args[0];
 
 		$submissionEditHandler =& new SubmissionEditHandler();
-		$submissionEditHandler->validate($articleId);
+		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		AcquisitionsEditorAction::viewProofreadComments($submission);
 
@@ -219,13 +219,13 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$articleId = Request::getUserVar('articleId');
+		$monographId = Request::getUserVar('monographId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
 		$submissionEditHandler =& new SubmissionEditHandler();
-		$submissionEditHandler->validate($articleId);
+		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		if (AcquisitionsEditorAction::postProofreadComment($submission, $emailComment)) {
 			AcquisitionsEditorAction::viewProofreadComments($submission);
@@ -254,11 +254,11 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * Edit comment.
 	 */
 	function editComment($args) {
-		$articleId = $args[0];
+		$monographId = $args[0];
 		$commentId = $args[1];
 
 		$submissionEditHandler =& new SubmissionEditHandler();
-		$submissionEditHandler->validate($articleId);
+		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		$this->validate($commentId);
 		$comment =& $this->comment;
@@ -278,14 +278,14 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * Save comment.
 	 */
 	function saveComment() {
-		$articleId = Request::getUserVar('articleId');
+		$monographId = Request::getUserVar('monographId');
 		$commentId = Request::getUserVar('commentId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
 		$submissionEditHandler =& new SubmissionEditHandler();
-		$submissionEditHandler->validate($articleId);
+		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		$this->validate($commentId);
 		$comment =& $this->comment;
@@ -300,20 +300,20 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		// Save the comment.
 		AcquisitionsEditorAction::saveComment($submission, $comment, $emailComment);
 
-		$articleCommentDao =& DAORegistry::getDAO('ArticleCommentDAO');
-		$comment =& $articleCommentDao->getArticleCommentById($commentId);
+		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$comment =& $monographCommentDao->getMonographCommentById($commentId);
 
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_PEER_REVIEW) {
-			Request::redirect(null, null, 'viewPeerReviewComments', array($articleId, $comment->getAssocId()));
+			Request::redirect(null, null, 'viewPeerReviewComments', array($monographId, $comment->getAssocId()));
 		} else if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
-			Request::redirect(null, null, 'viewEditorDecisionComments', $articleId);
+			Request::redirect(null, null, 'viewEditorDecisionComments', $monographId);
 		} else if ($comment->getCommentType() == COMMENT_TYPE_COPYEDIT) {
-			Request::redirect(null, null, 'viewCopyeditComments', $articleId);
+			Request::redirect(null, null, 'viewCopyeditComments', $monographId);
 		} else if ($comment->getCommentType() == COMMENT_TYPE_LAYOUT) {
-			Request::redirect(null, null, 'viewLayoutComments', $articleId);
+			Request::redirect(null, null, 'viewLayoutComments', $monographId);
 		} else if ($comment->getCommentType() == COMMENT_TYPE_PROOFREAD) {
-			Request::redirect(null, null, 'viewProofreadComments', $articleId);
+			Request::redirect(null, null, 'viewProofreadComments', $monographId);
 		}
 	}
 
@@ -321,11 +321,11 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 * Delete comment.
 	 */
 	function deleteComment($args) {
-		$articleId = $args[0];
+		$monographId = $args[0];
 		$commentId = $args[1];
 
 		$submissionEditHandler =& new SubmissionEditHandler();
-		$submissionEditHandler->validate($articleId);
+		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		$this->validate($commentId);
 		$comment =& $this->comment;
@@ -336,15 +336,15 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_PEER_REVIEW) {
-			Request::redirect(null, null, 'viewPeerReviewComments', array($articleId, $comment->getAssocId()));
+			Request::redirect(null, null, 'viewPeerReviewComments', array($monographId, $comment->getAssocId()));
 		} else if ($comment->getCommentType() == COMMENT_TYPE_EDITOR_DECISION) {
-			Request::redirect(null, null, 'viewEditorDecisionComments', $articleId);
+			Request::redirect(null, null, 'viewEditorDecisionComments', $monographId);
 		} else if ($comment->getCommentType() == COMMENT_TYPE_COPYEDIT) {
-			Request::redirect(null, null, 'viewCopyeditComments', $articleId);
+			Request::redirect(null, null, 'viewCopyeditComments', $monographId);
 		} else if ($comment->getCommentType() == COMMENT_TYPE_LAYOUT) {
-			Request::redirect(null, null, 'viewLayoutComments', $articleId);
+			Request::redirect(null, null, 'viewLayoutComments', $monographId);
 		} else if ($comment->getCommentType() == COMMENT_TYPE_PROOFREAD) {
-			Request::redirect(null, null, 'viewProofreadComments', $articleId);
+			Request::redirect(null, null, 'viewProofreadComments', $monographId);
 		}
 
 	}
@@ -360,10 +360,10 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		parent::validate();
 
 		if ( !is_null($commentId) ) {
-			$articleCommentDao =& DAORegistry::getDAO('ArticleCommentDAO');
+			$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 			$user =& Request::getUser();
 	
-			$comment =& $articleCommentDao->getArticleCommentById($commentId);
+			$comment =& $monographCommentDao->getMonographCommentById($commentId);
 	
 			if (
 				$comment == null ||

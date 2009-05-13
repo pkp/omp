@@ -3,7 +3,7 @@
 /**
  * @file classes/submission/form/comment/CopyeditCommentForm.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CopyeditCommentForm
@@ -16,23 +16,23 @@
 // $Id$
 
 
-import("submission.form.comment.CommentForm");
+import('submission.form.comment.CommentForm');
 
 class CopyeditCommentForm extends CommentForm {
 
 	/**
 	 * Constructor.
-	 * @param $article object
+	 * @param $monograph object
 	 */
-	function CopyeditCommentForm($article, $roleId) {
-		parent::CommentForm($article, COMMENT_TYPE_COPYEDIT, $roleId, $article->getArticleId());
+	function CopyeditCommentForm($monograph, $roleId) {
+		parent::CommentForm($monograph, COMMENT_TYPE_COPYEDIT, $roleId, $monograph->getMonographId());
 	}
 
 	/**
 	 * Display the form.
 	 */
 	function display() {
-		$article = $this->article;
+		$monograph = $this->monograph;
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageTitle', 'submission.comments.copyeditComments');
@@ -40,7 +40,7 @@ class CopyeditCommentForm extends CommentForm {
 		$templateMgr->assign('commentType', 'copyedit');
 		$templateMgr->assign('hiddenFormParams', 
 			array(
-				'articleId' => $article->getArticleId()
+				'monographId' => $monograph->getMonographId()
 			)
 		);
 
@@ -65,10 +65,11 @@ class CopyeditCommentForm extends CommentForm {
 	 * Email the comment.
 	 */
 	function email() {
-		$article = $this->article;
+		$monograph = $this->monograph;
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$journal =& Request::getJournal();
+		$press =& Request::getPress();
 
 		// Create list of recipients:
 		$recipients = array();
@@ -78,7 +79,7 @@ class CopyeditCommentForm extends CommentForm {
 
 		// Get editors
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getByIdsByArticleId($article->getArticleId());
+		$editAssignments =& $editAssignmentDao->getEditAssignmentsByMonographId($monograph->getMonographId());
 		$editAssignments =& $editAssignments->toArray();
 		$editorAddresses = array();
 		foreach ($editAssignments as $editAssignment) {
@@ -86,9 +87,9 @@ class CopyeditCommentForm extends CommentForm {
 		}
 
 		// If no editors are currently assigned, send this message to
-		// all of the journal's editors.
+		// all of the press's editors.
 		if (empty($editorAddresses)) {
-			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $journal->getJournalId());
+			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getId());
 			while (!$editors->eof()) {
 				$editor =& $editors->next();
 				$editorAddresses[$editor->getEmail()] = $editor->getFullName();
@@ -96,16 +97,15 @@ class CopyeditCommentForm extends CommentForm {
 		}
 
 		// Get copyeditor
-		$copyAssignmentDao =& DAORegistry::getDAO('CopyAssignmentDAO');
-		$copyAssignment =& $copyAssignmentDao->getCopyAssignmentByArticleId($article->getArticleId());
-		if ($copyAssignment != null && $copyAssignment->getCopyeditorId() > 0) {
-			$copyeditor =& $userDao->getUser($copyAssignment->getCopyeditorId());
+		$copySignoff = $signoffDao->getBySymbolic('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $monograph->getMonographId());
+		if ($copySignoff != null && $copySignoff->getUserId() > 0) {
+			$copyeditor =& $userDao->getUser($copySignoff->getUserId());
 		} else {
 			$copyeditor = null;
 		}
 
 		// Get author
-		$author =& $userDao->getUser($article->getUserId());
+		$author =& $userDao->getUser($monograph->getUserId());
 
 		// Choose who receives this email
 		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SECTION_EDITOR) {

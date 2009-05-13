@@ -109,26 +109,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		import('submission.acquisitionsEditor.AcquisitionsEditorSubmission');
 		$templateMgr->assign_by_ref('editorDecisionOptions', AcquisitionsEditorSubmission::getEditorDecisionOptions());
 
-		// Set up required Payment Related Information
-/*		import('payment.ojs.OJSPaymentManager');
-		$paymentManager =& OJSPaymentManager::getManager();
-		if ( $paymentManager->submissionEnabled() || $paymentManager->fastTrackEnabled() || $paymentManager->publicationEnabled()) {
-			$templateMgr->assign('authorFees', true);
-			$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
-			
-			if ( $paymentManager->submissionEnabled() ) {
-				$templateMgr->assign_by_ref('submissionPayment', $completedPaymentDAO->getSubmissionCompletedPayment ( $press->getId(), $monographId ));
-			}
-			
-			if ( $paymentManager->fastTrackEnabled()  ) {
-				$templateMgr->assign_by_ref('fastTrackPayment', $completedPaymentDAO->getFastTrackCompletedPayment ( $press->getId(), $monographId ));
-			}
-
-			if ( $paymentManager->publicationEnabled()  ) {
-				$templateMgr->assign_by_ref('publicationPayment', $completedPaymentDAO->getPublicationCompletedPayment ( $press->getId(), $monographId ));
-			}				   
-		}		
-*/
 		$templateMgr->assign('helpTopicId','editorial.authorsRole');
 		$templateMgr->display('author/submission.tpl');
 	}
@@ -304,26 +284,24 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
-		parent::setupTemplate(true, $monographId);
+		$this->setupTemplate(true, $monographId);
 
 		AuthorAction::copyeditUnderway($submission);
-		import('submission.proofreader.ProofreaderAction');
-		ProofreaderAction::authorProofreadingUnderway($submission);
+//		import('submission.proofreader.ProofreaderAction');
+//		ProofreaderAction::proofreadingUnderway($submission, 'SIGNOFF_PROOFREADING_AUTHOR');
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('copyeditor', $submission->getCopyeditor());
+		$templateMgr->assign_by_ref('copyeditor', $submission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
-		$templateMgr->assign_by_ref('initialCopyeditFile', $submission->getInitialCopyeditFile());
-		$templateMgr->assign_by_ref('editorAuthorCopyeditFile', $submission->getEditorAuthorCopyeditFile());
-		$templateMgr->assign_by_ref('finalCopyeditFile', $submission->getFinalCopyeditFile());
+		$templateMgr->assign_by_ref('initialCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
+		$templateMgr->assign_by_ref('editorAuthorCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_AUTHOR'));
+		$templateMgr->assign_by_ref('finalCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_FINAL'));
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign('useCopyeditors', $press->getSetting('useCopyeditors'));
 		$templateMgr->assign('useLayoutEditors', $press->getSetting('useLayoutEditors'));
 		$templateMgr->assign('useProofreaders', $press->getSetting('useProofreaders'));
-		$templateMgr->assign_by_ref('proofAssignment', $submission->getProofAssignment());
 		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.editing');	
 		$templateMgr->display('author/submissionEditing.tpl');
 	}

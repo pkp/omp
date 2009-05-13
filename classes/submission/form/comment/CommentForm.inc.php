@@ -8,7 +8,7 @@
  *
  * @class CommentForm
  * @ingroup submission_form
- * @see Comment, ArticleCommentDAO
+ * @see Comment, MonographCommentDAO
  *
  * @brief Comment form.
  */
@@ -26,8 +26,8 @@ class CommentForm extends Form {
 	/** @var int the role id of the comment poster */
 	var $roleId;
 
-	/** @var Article current article */
-	var $article;
+	/** @var Monograph current monograph */
+	var $monograph;
 
 	/** @var User comment author */
 	var $user;
@@ -37,9 +37,9 @@ class CommentForm extends Form {
 
 	/**
 	 * Constructor.
-	 * @param $article object
+	 * @param $monograph object
 	 */
-	function CommentForm($article, $commentType, $roleId, $assocId = null) {
+	function CommentForm($monograph, $commentType, $roleId, $assocId = null) {
 		if ($commentType == COMMENT_TYPE_PEER_REVIEW) {
 			parent::Form('submission/comment/peerReviewComment.tpl');
 		} else if ($commentType == COMMENT_TYPE_EDITOR_DECISION) {
@@ -48,14 +48,14 @@ class CommentForm extends Form {
 			parent::Form('submission/comment/comment.tpl');
 		}
 
-		$this->article = $article;
+		$this->monograph = $monograph;
 		$this->commentType = $commentType;
 		$this->roleId = $roleId;
-		$this->assocId = $assocId == null ? $article->getArticleId() : $assocId;
+		$this->assocId = $assocId == null ? $monograph->getMonographId() : $assocId;
 
 		$this->user =& Request::getUser();
 
-		if ($commentType != COMMENT_TYPE_PEER_REVIEW) $this->addCheck(new FormValidator($this, 'comments', 'required', 'editor.article.commentsRequired'));
+		if ($commentType != COMMENT_TYPE_PEER_REVIEW) $this->addCheck(new FormValidator($this, 'comments', 'required', 'editor.monograph.commentsRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -71,16 +71,16 @@ class CommentForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$article = $this->article;
+		$monograph = $this->monograph;
 
-		$articleCommentDao =& DAORegistry::getDAO('ArticleCommentDAO');
-		$articleComments =& $articleCommentDao->getArticleComments($article->getArticleId(), $this->commentType, $this->assocId);
+		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$monographComments =& $monographCommentDao->getMonographComments($monograph->getMonographId(), $this->commentType, $this->assocId);
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('articleId', $article->getArticleId());
-		$templateMgr->assign('commentTitle', strip_tags($article->getArticleTitle()));
+		$templateMgr->assign('monographId', $monograph->getMonographId());
+		$templateMgr->assign('commentTitle', strip_tags($monograph->getLocalizedTitle()));
 		$templateMgr->assign('userId', $this->user->getId());
-		$templateMgr->assign('articleComments', $articleComments);
+		$templateMgr->assign('monographComments', $monographComments);
 
 		parent::display();
 	}
@@ -102,14 +102,15 @@ class CommentForm extends Form {
 	 * Add the comment.
 	 */
 	function execute() {
-		$commentDao =& DAORegistry::getDAO('ArticleCommentDAO');
-		$article = $this->article;
+
+		$commentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$monograph = $this->monograph;
 
 		// Insert new comment		
-		$comment = new ArticleComment();
+		$comment = new MonographComment();
 		$comment->setCommentType($this->commentType);
 		$comment->setRoleId($this->roleId);
-		$comment->setArticleId($article->getArticleId());
+		$comment->setMonographId($monograph->getMonographId());
 		$comment->setAssocId($this->assocId);
 		$comment->setAuthorId($this->user->getId());
 		$comment->setCommentTitle($this->getData('commentTitle'));
@@ -117,7 +118,7 @@ class CommentForm extends Form {
 		$comment->setDatePosted(Core::getCurrentDate());
 		$comment->setViewable($this->getData('viewable'));
 
-		$this->commentId = $commentDao->insertArticleComment($comment);
+		$this->commentId = $commentDao->insertMonographComment($comment);
 	}
 
 	/**
@@ -125,12 +126,12 @@ class CommentForm extends Form {
 	 * @param $recipients array of recipients (email address => name)
 	 */
 	function email($recipients) {
-		$article = $this->article;
-		$articleCommentDao =& DAORegistry::getDAO('ArticleCommentDAO');
-		$journal =& Request::getJournal();
+		$monograph = $this->monograph;
+		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$press =& Request::getPress();
 
-		import('mail.ArticleMailTemplate');
-		$email = new ArticleMailTemplate($article, 'SUBMISSION_COMMENT');
+		import('mail.MonographMailTemplate');
+		$email = new MonographMailTemplate($monograph, 'SUBMISSION_COMMENT');
 		$email->setFrom($this->user->getEmail(), $this->user->getFullName());
 
 		$commentText = $this->getData('comments');

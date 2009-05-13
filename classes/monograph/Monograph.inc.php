@@ -126,21 +126,21 @@ class Monograph extends Submission {
 	 */
 	function getAssociatedUserIds($authors = true, $reviewers = true, $editors = true, $proofreader = true, $copyeditor = true, $layoutEditor = true) {
 		$monographId = $this->getMonographId();
-		$signoffDao = &DAORegistry::getDAO('SignoffDAO');
-		
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+
 		$userIds = array();
 
 		if($authors) {
-			$authorDao = &DAORegistry::getDAO('AuthorDAO');
-			$authors = $authorDao->getAuthorsByMonograph($monographId);
+			$authorDao =& DAORegistry::getDAO('AuthorDAO');
+			$authors = $authorDao->getAuthorsByMonographId($monographId);
 			foreach ($authors as $author) {
-				$userIds[] = array('id' => $author->getAuthorId(), 'role' => 'author');
+				$userIds[] = array('id' => $author->getId(), 'role' => 'author');
 			}
 		}
 		
 		if($editors) {
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-			$editAssignments =& $editAssignmentDao->getEditorAssignmentsByMonographId($monographId);
+			$editAssignments =& $editAssignmentDao->getByMonographId($monographId);
 			while ($editAssignment =& $editAssignments->next()) {
 				$userIds[] = array('id' => $editAssignment->getEditorId(), 'role' => 'editor');
 				unset($editAssignment);
@@ -152,7 +152,7 @@ class Monograph extends Submission {
 			$userIds[] = array('id' => $copyedSignoff->getUserId(), 'role' => 'copyeditor');
 		}
 		
-		if($layoutEditor) {
+/*		if($layoutEditor) {
 			$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $monographId);
 			$userIds[] = array('id' => $layoutSignoff->getUserId(), 'role' => 'layoutEditor');
 		}	
@@ -161,7 +161,7 @@ class Monograph extends Submission {
 			$proofSignoff = $signoffDao->getBySymbolic('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $monographId);
 			$userIds[] = array('id' => $proofSignoff->getUserId(), 'role' => 'proofreader');
 		}
-		
+*/
 		if($reviewers) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByMonographId($monographId);
@@ -170,7 +170,7 @@ class Monograph extends Submission {
 				unset($reviewAssignment);
 			}
 		}
-				
+
 		return $userIds;
 	}
 
