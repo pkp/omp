@@ -227,7 +227,7 @@
 	<table class="info" width="100%">
 		<tr><td colspan="2" class="separator">&nbsp;</td></tr>
 		<tr valign="middle">
-			<td colspan="2" align="center">No Reviewers Assigned</td>
+			<td colspan="2" align="center">{translate key="reviewers.noneAssigned"}</td>
 		</tr>
 
 		<tr><td colspan="2" class="separator">&nbsp;</td></tr>

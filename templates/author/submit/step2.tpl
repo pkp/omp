@@ -61,7 +61,7 @@ Please provide the title and a description of work, including the scope, aim, an
 </tr>
 
 <tr valign="top">
-	<td width="20%" class="label">{if 1}<!--$section->getAbstractsNotRequired()==0-->{fieldLabel name="abstract" key="monograph.summary"}{/if}</td>
+	<td width="20%" class="label">{fieldLabel name="abstract" key="monograph.abstract"}</td>
 	<td width="80%" class="value"><textarea name="abstract[{$formLocale|escape}]" id="abstract" class="textArea" rows="15" cols="60">{$abstract[$formLocale]|escape}</textarea></td>
 </tr>
 </table>

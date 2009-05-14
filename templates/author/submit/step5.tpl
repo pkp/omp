@@ -36,7 +36,7 @@
 <tr valign="top">
 	<td>{$file->getFileId()}</td>
 	<td><a class="file" href="{url op="download" path=$monographId|to_array:$file->getFileId()}">{$file->getOriginalFileName()|escape}</a></td>
-	<td>{if ($file->getType() == 'supp')}{translate key="monograph.suppFile"}{else}{translate key="author.submit.submissionFile"}{/if}</td>
+	<td>{translate key=$file->getLocaleKeyForType()}</td>
 	<td>{$file->getNiceFileSize()}</td>
 	<td>{$file->getDateUploaded()|date_format:$dateFormatTrunc}</td>
 </tr>

@@ -28,6 +28,7 @@
 
 	<!-- review froms start -->
 	<message key="monograph.component.title">Component Title</message>
+	<message key="monograph.artworkFile">Artwork File</message>
 	<message key="monograph.component.authors">Authors</message>
 	<message key="monograph.component.description">Books are divided into sections called monograph components. Chapters, table of contents, and prefaces are all monograph components.</message>
 	<message key="author.submit.addComponent">Add Component</message>
@@ -70,6 +71,7 @@
 	<message key="reviewer.completedReviews">Done</message>
 	
 	<!-- Used in submission review -->
+	<message key="reviewer.noneAssigned">No Assigned Reviewers</message>
 	<message key="reviewer.monograph.fileToBeReviewed">File to be reviewed</message>
 	<message key="reviewer.monograph.notifyTheEditor">Notify The Editor</message>
 	<message key="reviewer.monograph.canDoReview">Will do the review</message>
@@ -441,7 +443,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	
 	<!-- Profile -->
 	<message key="user.profile.form.profileImageInvalid">Invalid profile image format or image too big. Accepted formats are .gif, .jpg, or .png, and the image must not exceed 150x150 pixels.</message>
-	
+	<message key="submission.prospectusFile">Prospectus File</message>
+
 	<!-- Registration -->
 	<message key="user.register.repeatPassword">Repeat password</message>
 	<message key="user.register.selectPress">Select a press to register with</message>

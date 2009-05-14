@@ -202,6 +202,22 @@ class MonographFile extends DataObject {
 	}
 
 	/**
+	 * Get type of the file.
+	 * @ return string
+	 */
+	function getLocaleKeyForType() {
+		return $this->getData('localeKey');	
+	}
+
+	/**
+	 * Set type of the file.
+	 * @param $key string
+	 */
+	function setLocaleKeyForType($key) {
+		return $this->setData('localeKey', $key);	
+	}
+
+	/**
 	 * Get uploaded date of file.
 	 * @return date
 	 */

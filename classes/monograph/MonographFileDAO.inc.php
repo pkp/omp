@@ -15,7 +15,6 @@
 
 // $Id$
 
-
 import('monograph.MonographArtworkFile');
 import('file.MonographFileManager');
 
@@ -264,7 +263,6 @@ class MonographFileDAO extends DAO {
 	 * @return array MonographFiles
 	 */
 	function &getMonographFilesByAssocId($assocId, $type, $monographId) {
-		import('file.MonographFileManager');
 
 		$locale = Locale::getLocale();
 		$primaryLocale = Locale::getPrimaryLocale();
@@ -307,6 +305,7 @@ class MonographFileDAO extends DAO {
 		$monographFile->setMonographComponentId($row['component_id']);
 		$monographFile->setSeq($row['seq']);
 		$monographFile->setIdentifier($row['identifier']);
+
 		if (isset($row['component_title'])) $monographFile->setMonographComponentTitle($row['component_title']);
 
 		$monographFile->setFileId($row['file_id']);
@@ -319,6 +318,7 @@ class MonographFileDAO extends DAO {
 		$monographFile->setFileSize($row['file_size']);
 		$monographFile->setOriginalFileName($row['original_file_name']);
 		$monographFile->setType($row['type']);
+		$monographFile->setLocaleKeyForType(MonographFileManager::pathToLocaleKey($row['type']));
 		$monographFile->setAssocId($row['assoc_id']);
 		$monographFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
 		$monographFile->setDateModified($this->datetimeFromDB($row['date_modified']));
@@ -343,6 +343,7 @@ class MonographFileDAO extends DAO {
 		$monographFile->setFileSize($row['file_size']);
 		$monographFile->setOriginalFileName($row['original_file_name']);
 		$monographFile->setType($row['type']);
+		$monographFile->setLocaleKeyForType(MonographFileManager::pathToLocaleKey($row['type']));
 		$monographFile->setAssocId($row['assoc_id']);
 		$monographFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
 		$monographFile->setDateModified($this->datetimeFromDB($row['date_modified']));

@@ -287,7 +287,7 @@ class MonographFileManager extends FileManager {
 			}
 
 		} else {
-			$files =& $monographFileDao->getMonographFileRevisions($fileId);
+			$files =& $monographFileDao->getMonographFileRevisions($fileId, null, false);
 		}
 
 		foreach ($files as $f) {
@@ -392,9 +392,23 @@ class MonographFileManager extends FileManager {
 			case MONOGRAPH_FILE_GALLEY: return 'submission/galleys';
 			case MONOGRAPH_FILE_LAYOUT: return 'submission/layout';
 			case MONOGRAPH_FILE_ATTACHMENT: return 'attachment';
-			case MONOGRAPH_FILE_PROSPECTUS: return 'submission/original';
+			case MONOGRAPH_FILE_PROSPECTUS: return 'submission/prospectus';
 			case MONOGRAPH_FILE_ARTWORK: return 'submission/artwork';
 			case MONOGRAPH_FILE_SUBMISSION: default: return 'submission/original';
+		}
+	}
+
+	/**
+	 * Return locale key that represents the type of file.
+	 * @param $path string
+	 * @return string
+	 */
+	function pathToLocaleKey($path) {
+		switch ($path) {
+			case 'submission/prospectus': return 'submission.prospectusFile';
+			case 'submission/artwork': return 'monograph.artworkFile';
+			case 'submission/original': return 'author.submit.submissionFile';
+			case 'supp': default: return 'monograph.suppFile';
 		}
 	}
 
