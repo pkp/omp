@@ -236,13 +236,26 @@ $sections = null;
 
 		$processId = isset($process) ? $process->getProcessId() : null;
 
+		$reviewIndexes = array();
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$reviewProcesses =& $workflowDao->getByEventType($monographId, WORKFLOW_PROCESS_ASSESSMENT);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$reviewRounds =& $monographDao->getReviewRoundsInfoById($monographId);
+
+		foreach($reviewProcesses as $reviewProcess) {
+			$value = !isset($reviewRounds[$reviewProcess->getProcessId()]) ? 0 : $reviewRounds[$reviewProcess->getProcessId()];
+			for ($indexRound=1; $indexRound<=$value; $indexRound++) {
+				$reviewIndexes[$reviewProcess->getProcessId()][$indexRound] = $reviewAssignmentDao->getReviewIndexesForRound($monographId, $submission->getCurrentReviewType(), $indexRound);
+			}
+		}
+
 		$templateMgr->assign('signoffWait', 0);
 		$templateMgr->assign('signoffQueue', 0);
 		$templateMgr->assign_by_ref('reviewType', $processId);
 		$templateMgr->assign_by_ref('editorDecisions', array_reverse($editorDecisions));
 		$templateMgr->assign_by_ref('reviewProcesses', $reviewProcesses);
 		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('reviewIndexes', $reviewAssignmentDao->getReviewIndexesForRound($monographId, $processId, $round));
+		$templateMgr->assign_by_ref('reviewIndexes', $reviewIndexes);
 		$templateMgr->assign('round', $round);
 		$templateMgr->assign_by_ref('reviewAssignments', $reviewAssignments);
 		$templateMgr->assign('reviewFormResponses', $reviewFormResponses);

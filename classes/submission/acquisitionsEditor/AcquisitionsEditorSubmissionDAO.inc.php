@@ -954,7 +954,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
 
 		return $returner;*/
-		$paramArray = array('interests', $monographId, $reviewType, $pressId, RoleDAO::getRoleIdFromPath('reviewer'));
+		$paramArray = array('interests', $monographId, $reviewType, $round, $pressId, RoleDAO::getRoleIdFromPath('reviewer'));
 		$searchSql = '';
 
 		$searchTypeMap = array(
@@ -1000,7 +1000,9 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 			FROM	users u
 				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
 				LEFT JOIN roles r ON (r.user_id = u.user_id)
-				LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id AND a.cancelled = 0 AND a.monograph_id = ? AND a.review_type = ?)
+				LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id AND 
+									a.cancelled = 0 AND a.monograph_id = ? AND 
+									a.review_type = ? AND a.round = ?)
 			WHERE	u.user_id = r.user_id AND
 				r.press_id = ? AND
 				r.role_id = ? ' . $searchSql . '

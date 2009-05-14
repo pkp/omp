@@ -96,7 +96,7 @@ class AcquisitionsEditorAction extends Action {
 		// Check to see if the requested reviewer is not already
 		// assigned to review this monograph.
 		if ($round == null) {
-	//		$round = $acquisitionsEditorSubmission->getCurrentRoundByReviewType($reviewType);
+			$round = $acquisitionsEditorSubmission->getCurrentReviewRound();
 		}
 
 		$assigned = $acquisitionsEditorSubmissionDao->reviewerExists($acquisitionsEditorSubmission->getMonographId(), $reviewerId, $reviewType, $round);
@@ -797,9 +797,24 @@ class AcquisitionsEditorAction extends Action {
 		$user =& Request::getUser();
 
 		if (!HookRegistry::call('AcquisitionsEditorAction::resubmitFile', array(&$acquisitionsEditorSubmission, &$fileId, &$revision))) {
+			// Reassign all reviewers that submitted a review for this new round of reviews.
+			$nextRound = $acquisitionsEditorSubmission->getCurrentReviewRound() + 1;
+
+			foreach ($acquisitionsEditorSubmission->getReviewAssignments() as $reviewAssignment) {
+				if ($reviewAssignment->getRecommendation() !== null && $reviewAssignment->getRecommendation() !== '') {
+					// Then this reviewer submitted a review.
+					AcquisitionsEditorAction::addReviewer(
+									$acquisitionsEditorSubmission, 
+									$reviewAssignment->getReviewerId(), 
+									$acquisitionsEditorSubmission->getCurrentReviewType(), 
+									$nextRound
+								);
+				}
+			}
+
+
 			// Increment the round
-			$currentRound = $acquisitionsEditorSubmission->getCurrentReviewRound();
-			$acquisitionsEditorSubmission->setCurrentReviewRound($currentRound + 1);
+			$acquisitionsEditorSubmission->setCurrentReviewRound($nextRound);
 			$acquisitionsEditorSubmission->stampStatusModified();
 
 			// Copy the file from the editor decision file folder to the review file folder
@@ -824,16 +839,6 @@ class AcquisitionsEditorAction extends Action {
 			$acquisitionsEditorSubmission->setReviewRevision($reviewRevision);
 
 			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
-
-			// Now, reassign all reviewers that submitted a review for this new round of reviews.
-			$previousRound = $acquisitionsEditorSubmission->getCurrentReviewRound() - 1;
-/*			foreach ($acquisitionsEditorSubmission->getReviewAssignments($previousRound) as $reviewAssignment) {
-				if ($reviewAssignment->getRecommendation() !== null && $reviewAssignment->getRecommendation() !== '') {
-					// Then this reviewer submitted a review.
-					AcquisitionsEditorAction::addReviewer($acquisitionsEditorSubmission, $reviewAssignment->getReviewerId(), $acquisitionsEditorSubmission->getCurrentRound());
-				}
-			}
-*/
 
 			// Add log
 			import('monograph.log.MonographLog');

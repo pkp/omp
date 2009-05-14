@@ -19,7 +19,7 @@
 {assign var="reviewId" value=$reviewAssignment->getReviewId()}
 
 {if not $reviewAssignment->getCancelled() and not $reviewAssignment->getDeclined()}
-	{assign var="reviewIndex" value=$reviewIndexes[$reviewId]}
+	{assign var="reviewIndex" value=$reviewIndexes[$reviewType][$round][$reviewId]}
 
 	<table class="info" width="100%">
 	<tr>

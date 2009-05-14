@@ -109,8 +109,8 @@ class ReviewAssignmentDAO extends DAO {
 			'SELECT review_id 
 			FROM review_assignments 
 			WHERE monograph_id = ? AND 
-				round = ? AND 
-				review_type = ? AND
+				review_type = ? AND 
+				round = ? AND
 				(cancelled = 0 OR cancelled IS NULL) 
 			ORDER BY review_id',
 			array((int) $monographId, (int) $reviewType, (int) $round)
