@@ -62,12 +62,12 @@ class UserSettingsDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all settings for a user for a journal.
+	 * Retrieve all settings for a user for a press.
 	 * @param $userId int
 	 * @param $pressId int
 	 * @return array 
 	 */
-	function &getSettingsByJournal($userId, $pressId = null) {
+	function &getSettingsByPress($userId, $pressId = null) {
 		$userSettings = array();
 
 		$result =& $this->retrieve(
