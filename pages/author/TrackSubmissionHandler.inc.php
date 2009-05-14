@@ -144,11 +144,25 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign_by_ref('reviewModifiedByRound', $reviewModifiedByRound);
 
 		$reviewIndexesByRound = array();
-		for ($round = 1; $round <= $authorSubmission->getCurrentReviewRound(); $round++) {
-			$reviewIndexesByRound[$round] = $reviewAssignmentDao->getReviewIndexesForRound($monographId, $round);
-		}
-		$templateMgr->assign_by_ref('reviewIndexesByRound', $reviewIndexesByRound);
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$reviewProcesses =& $workflowDao->getByEventType($monographId, WORKFLOW_PROCESS_ASSESSMENT);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$reviewRounds =& $monographDao->getReviewRoundsInfoById($monographId);
 
+		foreach($reviewProcesses as $reviewProcess) {
+			$value = !isset($reviewRounds[$reviewProcess->getProcessId()]) ? 0 : $reviewRounds[$reviewProcess->getProcessId()];
+			for ($round=1; $round<=$value; $round++) {
+				$reviewIndexesByRound[$reviewProcess->getProcessId()][$round] = $reviewAssignmentDao->getReviewIndexesForRound($monographId, $authorSubmission->getCurrentReviewType(), $round);
+			}
+		}
+		$templateMgr->assign_by_ref('reviewProcesses', $reviewProcesses);
+		$templateMgr->assign_by_ref('reviewRounds', $reviewRounds);
+
+/*
+		for ($round = 1; $round <= $authorSubmission->getCurrentReviewRound(); $round++) {
+			$reviewIndexesByRound[$round] = $reviewAssignmentDao->getReviewIndexesForRound($monographId, $authorSubmission->getCurrentReviewType(), $round);
+		}*/
+		$templateMgr->assign_by_ref('reviewIndexesByRound', $reviewIndexesByRound);
 		$templateMgr->assign('reviewEarliestNotificationByRound', $reviewEarliestNotificationByRound);
 		$templateMgr->assign_by_ref('submissionFile', $authorSubmission->getSubmissionFile());
 		$templateMgr->assign_by_ref('revisedFile', $authorSubmission->getRevisedFile());

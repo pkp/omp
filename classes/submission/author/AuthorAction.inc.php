@@ -112,7 +112,7 @@ class AuthorAction extends Action {
 			$user =& Request::getUser();
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($authorSubmission->getMonographId(), ARTICLE_LOG_AUTHOR_REVISION, ARTICLE_LOG_TYPE_AUTHOR, $user->getId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'monographId' => $authorSubmission->getMonographId()));
+			MonographLog::logEvent($authorSubmission->getMonographId(), MONOGRAPH_LOG_AUTHOR_REVISION, MONOGRAPH_LOG_TYPE_AUTHOR, $user->getId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'monographId' => $authorSubmission->getMonographId()));
 		}
 	}
 
@@ -140,7 +140,7 @@ class AuthorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('AuthorAction::completeAuthorCopyedit', array(&$authorSubmission, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(ARTICLE_EMAIL_COPYEDIT_NOTIFY_AUTHOR_COMPLETE, ARTICLE_EMAIL_TYPE_COPYEDIT, $authorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR_COMPLETE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $authorSubmission->getMonographId());
 				$email->send();
 			}
 
@@ -151,7 +151,7 @@ class AuthorAction extends Action {
 			// Add log entry
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($authorSubmission->getMonographId(), ARTICLE_LOG_COPYEDIT_REVISION, ARTICLE_LOG_TYPE_AUTHOR, $user->getId(), 'log.copyedit.authorFile');
+			MonographLog::logEvent($authorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_REVISION, MONOGRAPH_LOG_TYPE_AUTHOR, $user->getId(), 'log.copyedit.authorFile');
 
 			return true;
 
@@ -312,7 +312,7 @@ class AuthorAction extends Action {
 		import('mail.MonographMailTemplate');
 		$email =& new MonographMailTemplate($authorSubmission);
 
-		$editAssignments = $authorSubmission->getByIds();
+		$editAssignments = $authorSubmission->getEditAssignments();
 		$editors = array();
 		foreach ($editAssignments as $editAssignment) {
 			array_push($editors, $userDao->getUser($editAssignment->getEditorId()));

@@ -11,22 +11,25 @@
 <div id="peerReview">
 <h3>{translate key="submission.peerReview"}</h3>
 
+{foreach from=$reviewProcesses item=reviewProcess}
+<h3>{$reviewProcess->getTitle()}</h3>
+{assign var=processId value=$reviewProcess->getProcessId()}
+
 {assign var=start value="A"|ord}
-{section name="round" loop=$submission->getCurrentReviewRound()}
+{section name="round" loop=$reviewRounds[$processId]}
 {assign var="round" value=$smarty.section.round.index+1}
-{assign var=authorFiles value=$submission->getAuthorFileRevisions($round)}
-{assign var=editorFiles value=$submission->getEditorFileRevisions($round)}
+{assign var=authorFiles value=$submission->getAuthorFileRevisions($processId)}
+{assign var=editorFiles value=$submission->getEditorFileRevisions($processId)}
 {assign var="viewableFiles" value=$authorViewableFilesByRound[$round]}
 
 <h4>{translate key="submission.round" round=$round}</h4>
-
 <table class="data" width="100%">
 	<tr valign="top">
 		<td class="label" width="20%">
 			{translate key="submission.reviewVersion"}
 		</td>
 		<td class="value" width="80%">
-			{assign var="reviewFile" value=$reviewFilesByRound[$round]}
+			{assign var=reviewFile value=$reviewFilesByRound[$processId][$round]}
 			{if $reviewFile}
 				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;{$reviewFile->getDateModified()|date_format:$dateFormatShort}
 			{else}
@@ -39,8 +42,8 @@
 			{translate key="submission.initiated"}
 		</td>
 		<td class="value" width="80%">
-			{if $reviewEarliestNotificationByRound[$round]}
-				{$reviewEarliestNotificationByRound[$round]|date_format:$dateFormatShort}
+			{if $reviewEarliestNotificationByRound[$processId][$round]}
+				{$reviewEarliestNotificationByRound[$processId][$round]|date_format:$dateFormatShort}
 			{else}
 				&mdash;
 			{/if}
@@ -51,8 +54,8 @@
 			{translate key="submission.lastModified"}
 		</td>
 		<td class="value" width="80%">
-			{if $reviewModifiedByRound[$round]}
-				{$reviewModifiedByRound[$round]|date_format:$dateFormatShort}
+			{if $reviewModifiedByRound[$processId][$round]}
+				{$reviewModifiedByRound[$processId][$round]|date_format:$dateFormatShort}
 			{else}
 				&mdash;
 			{/if}
@@ -103,11 +106,15 @@
 			</td>
 		</tr>
 	{/if}
+
 </table>
 
-{if !$smarty.section.round.last}
-	<div class="separator"></div>
+{if $smarty.section.round.last}
+	<!--<div class="separator"></div>-->
 {/if}
 
 {/section}
+
+{/foreach}
+
 </div>

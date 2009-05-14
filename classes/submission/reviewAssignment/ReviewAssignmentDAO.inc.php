@@ -278,7 +278,7 @@ class ReviewAssignmentDAO extends DAO {
 		$returner = array();
 
 		$result =& $this->retrieve(
-			'SELECT a.*, r.round as round 
+			'SELECT a.*, r.review_type, r.round as round 
 			FROM review_rounds r, monograph_files a, monographs art 
 			WHERE art.monograph_id = r.monograph_id AND 
 				r.monograph_id = ? AND 
@@ -291,7 +291,7 @@ class ReviewAssignmentDAO extends DAO {
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$returner[$row['round']] =& $this->monographFileDao->_returnMonographFileFromRow($row);
+			$returner[$row['review_type']][$row['round']] =& $this->monographFileDao->_returnMonographFileFromRow($row);
 			$result->MoveNext();
 		}
 
@@ -351,7 +351,7 @@ class ReviewAssignmentDAO extends DAO {
 		$returner = array();
 
 		$result =& $this->retrieve(
-			'SELECT round, MAX(last_modified) AS last_modified 
+			'SELECT round, review_type, MAX(last_modified) AS last_modified 
 			FROM review_assignments 
 			WHERE monograph_id = ? 
 			GROUP BY round', 
@@ -360,7 +360,7 @@ class ReviewAssignmentDAO extends DAO {
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$returner[$row['round']] = $this->datetimeFromDB($row['last_modified']);
+			$returner[$row['review_type']][$row['round']] = $this->datetimeFromDB($row['last_modified']);
 			$result->MoveNext();
 		}
 
@@ -380,7 +380,7 @@ class ReviewAssignmentDAO extends DAO {
 		$returner = array();
 
 		$result =& $this->retrieve(
-			'SELECT round, MIN(date_notified) AS earliest_date 
+			'SELECT round, review_type, MIN(date_notified) AS earliest_date 
 			FROM review_assignments 
 			WHERE monograph_id = ? 
 			GROUP BY round', 
@@ -389,7 +389,7 @@ class ReviewAssignmentDAO extends DAO {
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$returner[$row['round']] = $this->datetimeFromDB($row['earliest_date']);
+			$returner[$row['review_type']][$row['round']] = $this->datetimeFromDB($row['earliest_date']);
 			$result->MoveNext();
 		}
 
@@ -720,7 +720,7 @@ class ReviewAssignmentDAO extends DAO {
 
 
 		// Comments
-//		$reviewAssignment->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
+		$reviewAssignment->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
 
 		HookRegistry::call('ReviewAssignmentDAO::_fromRow', array(&$reviewAssignment, &$row));
 

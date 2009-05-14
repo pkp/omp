@@ -32,6 +32,9 @@
 	<message key="author.submit.category">Submission Category</message>
 	<message key="author.submit.category.description">From the drop down list below, please select the category or series that best suits your submission. If you are unsure about what to select, or you haven't received special submission instructions from one of our editors, you can continue without selecting a particular series or submission category.</message>
 	
+	<message key="editor.monograph.decision">Decision</message>
+	<message key="submission.notifyEditor">Notify Editor</message>
+	<message key="author.monograph.uploadAuthorVersion">Upload Author Version</message>
 
 	<message key="author.submit">New Submission</message>
 	<message key="author.track">Active Submissions</message>

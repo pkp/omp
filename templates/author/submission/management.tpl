@@ -9,7 +9,7 @@
  * $Id$
  *}
 <div id="submission">
-<h3>{translate key="monograph.submission"}</h3>
+<h3>{translate key="manuscript.submission"}</h3>
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="monograph.authors"}</td>
@@ -60,12 +60,12 @@
 		<td>{$submission->getDateSubmitted()|date_format:$datetimeFormatLong}</td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="section.section"}</td>
-		<td width="80%" colspan="2" class="data">{$submission->getAcquisitionsArrangementTitle()|escape}</td>
+		<td width="20%" class="label">{translate key="submissions.acquisitionsArrangement"}</td>
+		<td width="80%" colspan="2" class="data">{$submission->getAcquisitionsArrangementTitle()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="user.role.editor"}</td>
-		{assign var="editAssignments" value=$submission->getByIds()}
+		{assign var="editAssignments" value=$submission->getEditAssignments()}
 		<td width="80%" colspan="2" class="data">
 			{foreach from=$editAssignments item=editAssignment}
 				{assign var=emailString value="`$editAssignment->getEditorFullName()` <`$editAssignment->getEditorEmail()`>"}

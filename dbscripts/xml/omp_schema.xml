@@ -697,7 +697,10 @@
 		<field name="setting_name" type="C2" size="255">
 			<NOTNULL/>
 		</field>
-		<field name="press_id" type="I8"/>
+		<field name="press_id" type="I8">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
 		<field name="setting_value" type="X"/>
 		<field name="setting_type" type="C2" size="6">
 			<NOTNULL/>
@@ -1123,8 +1126,8 @@
 		<index name="monographs_press_id">
 			<col>press_id</col>
 		</index>
-		<index name="monographs_section_id">
-			<col>section_id</col>
+		<index name="monographs_arrangement_id">
+			<col>arrangement_id</col>
 		</index>
 	</table>
 	<!--

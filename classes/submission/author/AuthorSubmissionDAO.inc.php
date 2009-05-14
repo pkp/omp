@@ -44,7 +44,7 @@ class AuthorSubmissionDAO extends DAO {
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 //		$this->copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
-//		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 //		$this->layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
 //		$this->proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
 //		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
@@ -127,11 +127,11 @@ class AuthorSubmissionDAO extends DAO {
 
 
 		// Comments
-/*		$authorSubmission->setMostRecentEditorDecisionComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_EDITOR_DECISION, $row['monograph_id']));
+		$authorSubmission->setMostRecentEditorDecisionComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_EDITOR_DECISION, $row['monograph_id']));
 		$authorSubmission->setMostRecentCopyeditComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_COPYEDIT, $row['monograph_id']));
 		$authorSubmission->setMostRecentProofreadComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PROOFREAD, $row['monograph_id']));
 		$authorSubmission->setMostRecentLayoutComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_LAYOUT, $row['monograph_id']));
-*/
+
 		// Files
 		$authorSubmission->setSubmissionFile($this->monographFileDao->getMonographFile($row['submission_file_id']));
 		$authorSubmission->setRevisedFile($this->monographFileDao->getMonographFile($row['revised_file_id']));

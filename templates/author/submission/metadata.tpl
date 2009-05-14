@@ -22,7 +22,7 @@
 		<td width="20%" class="label">{translate key="user.name"}</td>
 
 		{assign var=emailString value="`$author->getFullName()` <`$author->getEmail()`>"}
-		{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getMonographTitle()|strip_tags monographId=$submission->getMonographId()}
+		{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getLocalizedTitle()|strip_tags monographId=$submission->getMonographId()}
 		<td width="80%" class="value">{$author->getFullName()|escape} {icon name="mail" url=$url}</td>
 	</tr>
 	<tr valign="top">

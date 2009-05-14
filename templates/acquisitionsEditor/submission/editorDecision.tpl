@@ -65,7 +65,7 @@
 
 <form method="post" action="{url op="editorReview"}" enctype="multipart/form-data">
 <input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
-{assign var=authorFiles value=$submission->getAuthorFileRevisions($reviewType)}
+{assign var=authorFiles value=$submission->getAuthorFileRevisions()}
 {assign var=editorFiles value=$submission->getEditorFileRevisions($reviewType)}
 
 {assign var="authorRevisionExists" value=false}

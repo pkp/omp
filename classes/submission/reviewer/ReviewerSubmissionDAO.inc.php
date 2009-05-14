@@ -40,7 +40,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-//		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 	}
 
 	/**
@@ -122,7 +122,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setReviewerFileRevisions($this->monographFileDao->getMonographFileRevisions($row['reviewer_file_id']));
 
 		// Comments
-//		$reviewerSubmission->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
+		$reviewerSubmission->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
 
 		// Editor Decisions
 		$decisions =& $this->getEditorDecisions($row['monograph_id']);
