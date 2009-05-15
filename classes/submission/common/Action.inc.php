@@ -56,11 +56,11 @@ class Action {
 	 * View metadata of an monograph.
 	 * @param $monograph object
 	 */
-	function viewMetadata($monograph, $roleId) {
+	function viewMetadata($monograph) {
 		if (!HookRegistry::call('Action::viewMetadata', array(&$monograph, &$roleId))) {
 			import('submission.form.MetadataForm');
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$metadataForm =& new MetadataForm($monograph, $roleId);
+			$metadataForm =& new MetadataForm($monograph);
 
 
 			if ($metadataForm->getCanEdit() && $metadataForm->isLocaleResubmit()) {
