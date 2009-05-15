@@ -78,14 +78,14 @@ class UserManagementForm extends Form {
 				'' => 'manager.people.doNotEnroll',
 				'manager' => 'user.role.manager',
 				'editor' => 'user.role.editor',
-				'sectionEditor' => 'user.role.sectionEditor',
-				'layoutEditor' => 'user.role.layoutEditor',
+				'designer' => 'user.role.designer',
 				'reviewer' => 'user.role.reviewer',
 				'copyeditor' => 'user.role.copyeditor',
 				'proofreader' => 'user.role.proofreader',
 				'author' => 'user.role.author',
 				'reader' => 'user.role.reader',
-				'subscriptionManager' => 'user.role.subscriptionManager'
+				'acquisitionsEditor' => 'user.role.acquisitionsEditor',
+				'productionEditor' => 'user.role.productionEditor'
 			)
 		);
 		else $templateMgr->assign('roleOptions', // Subscription Manager

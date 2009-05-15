@@ -682,7 +682,7 @@ class PeopleHandler extends ManagerHandler {
 	 */
 	function updateUser() {
 		$this->validate();
-
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
 		$press =& Request::getPress();
 		$userId = Request::getUserVar('userId');
 
