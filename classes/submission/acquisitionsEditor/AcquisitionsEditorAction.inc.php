@@ -1460,11 +1460,11 @@ class AcquisitionsEditorAction extends Action {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& Request::getUser();
 
-		// Only add the copyeditor if he has not already
-		// been assigned to review this monograph.
+		// Only add the production editor if s/he has not already
+		// been assigned to this monograph.
 		if (!HookRegistry::call('AcquisitionsEditorAction::selectCopyeditor', array(&$acquisitionsEditorSubmission, &$copyeditorId))) {
 			$productionSignoff = $signoffDao->build(
-							'SIGNOFF_PRODUCTION_INITIAL', 
+							'SIGNOFF_PRODUCTION', 
 							ASSOC_TYPE_MONOGRAPH, 
 							$submission->getMonographId()
 						); 

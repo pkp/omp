@@ -11,7 +11,7 @@
 {assign var="pageTitle" value="author.submit.step4a"}
 {include file="author/submit/submitStepHeader.tpl"}
 
-<p><a href="{url op="submit" path=4 monographId=$monographId}">&lt;&lt; {translate key="author.submit.backToSupplementaryFiles"}</a></p>
+<p><a href="{url op="submit" path=5 monographId=$monographId}">&lt;&lt; {translate key="author.submit.backToSupplementaryFiles"}</a></p>
 
 <form name="submit" method="post" action="{url op="saveSubmitSuppFile" path=$suppFileId}" enctype="multipart/form-data">
 <input type="hidden" name="monographId" value="{$monographId|escape}" />

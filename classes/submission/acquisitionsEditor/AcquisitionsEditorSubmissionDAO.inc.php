@@ -174,6 +174,9 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmission->setReviewFile($this->monographFileDao->getMonographFile($row['review_file_id']));
 		$acquisitionsEditorSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByMonograph($row['monograph_id']));
 		$acquisitionsEditorSubmission->setEditorFile($this->monographFileDao->getMonographFile($row['editor_file_id']));
+
+		$acquisitionsEditorSubmission->setProspectusFile($this->monographFileDao->getMonographFile($row['prospectus_file_id']));
+
 //		$acquisitionsEditorSubmission->setCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id']));
 		$acquisitionsEditorSubmission->setLayoutFile($this->monographFileDao->getMonographFile($row['layout_file_id']));
 

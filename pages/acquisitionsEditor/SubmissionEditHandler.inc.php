@@ -63,10 +63,10 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$enableComments = $press->getSetting('enableComments');
 
 		$templateMgr =& TemplateManager::getManager();
-
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('arrangement', $arrangement);
 		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
+		$templateMgr->assign_by_ref('prospectusFile', $submission->getProspectusFile());
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
@@ -372,7 +372,7 @@ $sections = null;
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('initialCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
-		$templateMgr->assign_by_ref('productionEditor', $submission->getUserBySignoffType('SIGNOFF_PRODUCTION_INITIAL'));
+		$templateMgr->assign_by_ref('productionEditor', $submission->getUserBySignoffType('SIGNOFF_PRODUCTION'));
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$user =& Request::getUser();

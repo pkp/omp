@@ -129,10 +129,10 @@ class AboutHandler extends Handler {
 			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getId());
 			$editors =& $editors->toArray();
 
-			$seriesEditors =& $roleDao->getUsersByRoleId(ROLE_ID_SERIES_EDITOR, $press->getId());
+			$seriesEditors =& $roleDao->getUsersByRoleId(ROLE_ID_ACQUISITIONS_EDITOR, $press->getId());
 			$seriesEditors =& $seriesEditors->toArray();
 
-			$layoutEditors =& $roleDao->getUsersByRoleId(ROLE_ID_LAYOUT_EDITOR, $press->getId());
+			$layoutEditors =& $roleDao->getUsersByRoleId(ROLE_ID_DESIGNER, $press->getId());
 			$layoutEditors =& $layoutEditors->toArray();
 
 			$copyEditors =& $roleDao->getUsersByRoleId(ROLE_ID_COPYEDITOR, $press->getId());

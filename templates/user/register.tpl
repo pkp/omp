@@ -20,10 +20,10 @@
 {if !$implicitAuth}
 	{if !$existingUser}
 		{url|assign:"url" page="user" op="register" existingUser=1}
-		<p>{translate key="user.register.alreadyRegisteredOtherJournal" registerUrl=$url}</p>
+		<p>{translate key="user.register.alreadyRegisteredOtherPress" registerUrl=$url}</p>
 	{else}
 		{url|assign:"url" page="user" op="register"}
-		<p>{translate key="user.register.notAlreadyRegisteredOtherJournal" registerUrl=$url}</p>
+		<p>{translate key="user.register.notAlreadyRegisteredOtherPress" registerUrl=$url}</p>
 		<input type="hidden" name="existingUser" value="1"/>
 	{/if}
 

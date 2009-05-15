@@ -71,6 +71,16 @@
 		<td width="80%" colspan="2" class="data">{$submission->getCommentsToEditor()|strip_unsafe_html|nl2br}</td>
 	</tr>
 	{/if}
+	<tr valign="top">
+		<td width="20%" class="label">{translate key="submission.prospectusFile"}</td>
+		<td width="80%" colspan="2" class="data">
+			{if $prospectusFile}
+				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$prospectusFile->getFileId()}" class="file">{$prospectusFile->getFileName()|escape}</a>&nbsp;&nbsp;{$prospectusFile->getDateModified()|date_format:$dateFormatShort}
+			{else}
+				{translate key="common.none"}
+			{/if}
+		</td>
+	</tr>
 	{if $publishedMonograph}
 	<tr>
 		<td class="label">{translate key="submission.abstractViews"}</td>

@@ -99,12 +99,12 @@
 		{/if}{* $isUserLoggedIn *}
 
 <!--		<li><a href="{url page="search"}">{translate key="navigation.search"}</a></li>
--->
+
 		{if $currentPress}
 			<li><a href="{url page="issue" op="current"}">{translate key="navigation.current"}</a></li>
 			<li><a href="{url page="issue" op="archive"}">{translate key="navigation.archives"}</a></li>
 		{/if}{* $currentPress *}
-
+-->
 		{if $enableAnnouncements}
 			<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
 		{/if}{* enableAnnouncements *}

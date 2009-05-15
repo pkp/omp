@@ -20,13 +20,13 @@ import('monograph.Monograph');
 
 class AcquisitionsEditorSubmission extends Monograph {
 
-	/** @var array ReviewAssignments of this article */
+	/** @var array ReviewAssignments of this monograph */
 	var $reviewAssignments;
 
-	/** @var array IDs of ReviewAssignments removed from this article */
+	/** @var array IDs of ReviewAssignments removed from this monograph */
 	var $removedReviewAssignments;
 
-	/** @var array the editor decisions of this article */
+	/** @var array the editor decisions of this monograph */
 	var $editorDecisions;
 
 	/** @var array the revisions of the editor file */
@@ -48,7 +48,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Add a review assignment for this article.
+	 * Add a review assignment for this monograph.
 	 * @param $reviewAssignment ReviewAssignment
 	 */
 	function addReviewAssignment($reviewAssignment) {
@@ -163,7 +163,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 */
 
 	/**
-	 * Get edit assignments for this article.
+	 * Get edit assignments for this monograph.
 	 * @return array
 	 */
 	function &getEditAssignments() {
@@ -172,7 +172,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Set edit assignments for this article.
+	 * Set edit assignments for this monograph.
 	 * @param $editAssignments array
 	 */
 	function setEditAssignments($editAssignments) {
@@ -184,7 +184,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	//
 
 	/**
-	 * Get review assignments for this article.
+	 * Get review assignments for this monograph.
 	 * @return array ReviewAssignments
 	 */
 	function &getReviewAssignments() {
@@ -192,7 +192,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Set review assignments for this article.
+	 * Set review assignments for this monograph.
 	 * @param $reviewAssignments array ReviewAssignments
 	 */
 	function setReviewAssignments($reviewAssignments) {
@@ -241,7 +241,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	//	
 
 	/**
-	 * Get submission file for this article.
+	 * Get submission file for this monograph.
 	 * @return MonographFile
 	 */
 	function &getSubmissionFile() {
@@ -250,7 +250,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Set submission file for this article.
+	 * Set submission file for this monograph.
 	 * @param $submissionFile MonographFile
 	 */
 	function setSubmissionFile($submissionFile) {
@@ -258,7 +258,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Get revised file for this article.
+	 * Get revised file for this monograph.
 	 * @return MonographFile
 	 */
 	function &getRevisedFile() {
@@ -267,7 +267,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Set revised file for this article.
+	 * Set revised file for this monograph.
 	 * @param $submissionFile MonographFile
 	 */
 	function setRevisedFile($revisedFile) {
@@ -275,7 +275,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Get supplementary files for this article.
+	 * Get supplementary files for this monograph.
 	 * @return array SuppFiles
 	 */
 	function &getSuppFiles() {
@@ -284,7 +284,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Set supplementary file for this article.
+	 * Set supplementary file for this monograph.
 	 * @param $suppFiles array SuppFiles
 	 */
 	function setSuppFiles($suppFiles) {
@@ -579,7 +579,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Get copyeditor of this article.
+	 * Get copyeditor of this monograph.
 	 * @return User
 	 */
 	function &getCopyeditor() {
@@ -588,7 +588,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Set copyeditor of this article.
+	 * Set copyeditor of this monograph.
 	 * @param $copyeditor User
 	 */
 	function setCopyeditor($copyeditor) {
@@ -845,7 +845,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Set the layout assignments for an article.
+	 * Set the layout assignments for a monograph.
 	 * @param $layoutAssignments array (LayoutAssignment)
 	 */
 	function setLayoutAssignments(&$layoutAssignments) {
@@ -870,7 +870,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Get the galleys for an article.
+	 * Get the galleys for a monograph.
 	 * @return array MonographGalley
 	 */
 	function &getGalleys() {
@@ -879,7 +879,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Set the galleys for an article.
+	 * Set the galleys for a monograph.
 	 * @param $galleys array MonographGalley
 	 */
 	function setGalleys(&$galleys) {
@@ -887,7 +887,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Get the proof assignment for an article.
+	 * Get the proof assignment for a monograph.
 	 * @return ProofAssignment
 	 */
 	function &getProofAssignment() {
@@ -896,12 +896,30 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Set the proof assignment for an article.
+	 * Set the proof assignment for a monograph.
 	 * @param $proofAssignment ProofAssignment
 	 */
 	function setProofAssignment($proofAssignment) {
 		return $this->setData('proofAssignment', $proofAssignment);
 	}
+
+	/**
+	 * Get the prospectus for a monograph.
+	 * @return MonographFile
+	 */
+	function &getProspectusFile() {
+		$prospectusFile =& $this->getData('prospectusFile');
+		return $prospectusFile;
+	}
+
+	/**
+	 * Set the proof assignment for a monograph.
+	 * @param $prospectusFile MonographFile
+	 */
+	function setProspectusFile($prospectusFile) {
+		return $this->setData('prospectusFile', $prospectusFile);
+	}
+
 
 	/**
 	 * Return array mapping editor decision constants to their locale strings.
@@ -911,10 +929,10 @@ class AcquisitionsEditorSubmission extends Monograph {
 	function &getEditorDecisionOptions() {
 		static $editorDecisionOptions = array(
 			'' => 'common.chooseOne',
-			SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.article.decision.accept',
-			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.article.decision.pendingRevisions',
-			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.article.decision.resubmit',
-			SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.article.decision.decline'
+			SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.monograph.decision.accept',
+			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.pendingRevisions',
+			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.monograph.decision.resubmit',
+			SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.monograph.decision.decline'
 		);
 		return $editorDecisionOptions;
 	}

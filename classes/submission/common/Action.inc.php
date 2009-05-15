@@ -92,7 +92,7 @@ class Action {
 				$user =& Request::getUser();
 				import('monograph.log.MonographLog');
 				import('monograph.log.MonographEventLogEntry');
-				MonographLog::logEvent($monograph->getMonographId(), ARTICLE_LOG_METADATA_UPDATE, ARTICLE_LOG_TYPE_DEFAULT, 0, 'log.editor.metadataModified', Array('editorName' => $user->getFullName()));
+				MonographLog::logEvent($monograph->getMonographId(), MONOGRAPH_LOG_METADATA_UPDATE, MONOGRAPH_LOG_TYPE_DEFAULT, 0, 'log.editor.metadataModified', Array('editorName' => $user->getFullName()));
 
 				return true;
 			} else {
