@@ -543,7 +543,9 @@ $sections = null;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
 		$press =& $this->press;
 		$submission =& $this->submission;
-		
+
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
+
 		import('acquisitionsEditor.form.CreateReviewerForm');
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$createReviewerForm =& new CreateReviewerForm($monographId);

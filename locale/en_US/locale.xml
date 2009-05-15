@@ -418,11 +418,7 @@ Weeks refers to average period of time to complete a review.<br/>
 Latest is date of most recently accepted review.<br/>
 Active is how many reviews are currently being considered or underway.]]></message>
 
-
-
-
-
-	
+	<message key="acquisitionsEditor.review.createReviewer">Create New Reviewer</message>
 	
 	<!-- Article Submission Step 3 -->
 	<message key="author.submit.uploadInstructions"><![CDATA[
