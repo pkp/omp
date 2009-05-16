@@ -298,7 +298,7 @@ class ProfileForm extends Form {
 				$currentlyReceives = $user->getSetting('openAccessNotification', $thisPress->getId());
 				$shouldReceive = !empty($openAccessNotify) && in_array($thisPress->getId(), $openAccessNotify);
 				if ($currentlyReceives != $shouldReceive) {
-					$userSettingsDao->updateSetting($user->getId(), 'openAccessNotification', $shouldReceive, 'bool', $thisPress->getId());
+					$userSettingsDao->updateSetting($user->getPressId(), 'openAccessNotification', $shouldReceive, 'bool', $thisPress->getId());
 				}
 			}
 		}
