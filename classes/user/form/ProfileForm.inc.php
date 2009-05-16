@@ -283,7 +283,7 @@ class ProfileForm extends Form {
 		foreach ($presses as $thisPress) {
 			$thisPressId = $thisPress->getId();
 			$currentlyReceives = !empty($pressNotifications[$thisPressId]);
-			$shouldReceive = !empty($readerNotify) && in_array($thisPress->getPressId(), $readerNotify);
+			$shouldReceive = !empty($readerNotify) && in_array($thisPress->getId(), $readerNotify);
 			if ($currentlyReceives != $shouldReceive) {
 				$notificationStatusDao->setPressNotifications($thisPressId, $user->getId(), $shouldReceive);
 			}
@@ -295,10 +295,10 @@ class ProfileForm extends Form {
 
 		foreach ($presses as $thisPress) {
 			if (($thisPress->getSetting('enableSubscriptions') == true) && ($thisPress->getSetting('enableOpenAccessNotification') == true)) {
-				$currentlyReceives = $user->getSetting('openAccessNotification', $thisPress->getPressId());
-				$shouldReceive = !empty($openAccessNotify) && in_array($thisPress->getPressId(), $openAccessNotify);
+				$currentlyReceives = $user->getSetting('openAccessNotification', $thisPress->getId());
+				$shouldReceive = !empty($openAccessNotify) && in_array($thisPress->getId(), $openAccessNotify);
 				if ($currentlyReceives != $shouldReceive) {
-					$userSettingsDao->updateSetting($user->getId(), 'openAccessNotification', $shouldReceive, 'bool', $thisPress->getPressId());
+					$userSettingsDao->updateSetting($user->getId(), 'openAccessNotification', $shouldReceive, 'bool', $thisPress->getId());
 				}
 			}
 		}
