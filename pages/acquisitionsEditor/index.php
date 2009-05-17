@@ -165,8 +165,8 @@ switch ($op) {
 		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
 		break;
 	default:
-		define('HANDLER_CLASS', 'SectionEditorHandler');
-		import('pages.sectionEditor.SectionEditorHandler');
+		define('HANDLER_CLASS', 'AcquisitionsEditorHandler');
+		import('pages.acquisitionsEditor.AcquisitionsEditorHandler');
 		break;
 }
 

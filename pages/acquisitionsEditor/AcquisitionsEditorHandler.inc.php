@@ -72,16 +72,16 @@ class AcquisitionsEditorHandler extends Handler {
 
 		switch($page) {
 			case 'submissionsInEditing':
-				$functionName = 'getSectionEditorSubmissionsInEditing';
+				$functionName = 'getAcquisitionsEditorSubmissionsInEditing';
 				$helpTopicId = 'editorial.acquisitionsEditorsRole.submissions.inEditing';
 				break;
 			case 'submissionsArchives':
-				$functionName = 'getSectionEditorSubmissionsArchives';
+				$functionName = 'getAcquisitionsEditorSubmissionsArchives';
 				$helpTopicId = 'editorial.acquisitionsEditorsRole.submissions.archives';
 				break;
 			default:
 				$page = 'submissionsInReview';
-				$functionName = 'getSectionEditorSubmissionsInReview';
+				$functionName = 'getAcquisitionsEditorSubmissionsInReview';
 				$helpTopicId = 'editorial.acquisitionsEditorsRole.submissions.inReview';
 		}
 
