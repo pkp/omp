@@ -69,25 +69,9 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		parent::setupTemplate();//true, $monographId, 'summary');
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
 		import('submission.common.Action');
-		Action::viewMetadata($submission, ROLE_ID_EDITOR);
+		Action::viewMetadata($submission);
 	}
-	function viewAuthorMetadata($args) {
-		$authorId = isset($args[0]) ? (int) $args[0] : 0;
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$author =& $authorDao->getAuthor($authorId);
 
-		import('submission.common.Action');
-		Action::viewAuthorMetadata($author, ROLE_ID_EDITOR);
-	}
-	function saveAuthorMetadata($args) {
-
-		$authorId = isset($args[0]) ? (int) $args[0] : 0;
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$author =& $authorDao->getAuthor($authorId);
-
-		import('submission.common.Action');
-		Action::saveAuthorMetadata($author, ROLE_ID_EDITOR);
-	}
 	function selectReviewer($args) {
 		import('pages.acquisitionsEditor.SubmissionEditHandler');
 		SubmissionEditHandler::selectReviewer($args);

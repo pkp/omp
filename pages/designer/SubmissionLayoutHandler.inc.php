@@ -80,7 +80,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'summary');
 
-		DesignerAction::viewMetadata($submission, ROLE_ID_LAYOUT_EDITOR);
+		DesignerAction::viewMetadata($submission);
 	}
 
 	/**

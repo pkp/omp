@@ -249,7 +249,7 @@ class SubmissionCopyeditHandler extends CopyeditorHandler {
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'editing');
 
-		CopyeditorAction::viewMetadata($submission, ROLE_ID_COPYEDITOR);
+		CopyeditorAction::viewMetadata($submission);
 	}
 
 	function saveMetadata() {

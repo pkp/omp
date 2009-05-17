@@ -919,7 +919,7 @@ $sections = null;
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
 		$this->setupTemplate(true, $monographId, 'summary');
 
-		AcquisitionsEditorAction::viewMetadata($submission, ROLE_ID_ACQUISITIONS_EDITOR);
+		AcquisitionsEditorAction::viewMetadata($submission);
 	}
 
 	function saveMetadata() {
