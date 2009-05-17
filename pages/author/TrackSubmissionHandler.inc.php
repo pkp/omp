@@ -342,7 +342,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$submission =& $this->submission;
 		parent::setupTemplate(true, $monographId, 'summary');
 
-		AuthorAction::viewMetadata($submission, ROLE_ID_AUTHOR);
+		AuthorAction::viewMetadata($submission);
 	}
 
 	function saveMetadata() {
