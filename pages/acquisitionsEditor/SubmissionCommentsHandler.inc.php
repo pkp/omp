@@ -238,7 +238,9 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 */
 	function emailEditorDecisionComment() {
 		$monographId = (int) Request::getUserVar('monographId');
-		list($press, $submission) = SubmissionEditHandler::validate($monographId);
+		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler->validate($monographId);
+		$submission =& $submissionEditHandler->submission;
 
 		parent::setupTemplate(true);		
 		if (AcquisitionsEditorAction::emailEditorDecisionComment($submission, Request::getUserVar('send'))) {
