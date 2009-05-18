@@ -81,7 +81,7 @@ class MonographHandler extends Handler {
 		// Display creative commons logo/licence if enabled
 		$templateMgr->assign('displayCreativeCommons', $press->getSetting('includeCreativeCommons'));
 		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, 'issue', 'archive'), 'archive.archives')));
-//		$templateMgr->assign('helpTopicId', 'user.currentAndArchives');
+		$templateMgr->assign('helpTopicId', 'user.currentAndArchives');
 		$templateMgr->display('issue/viewPage.tpl');
 
 	}
@@ -94,8 +94,8 @@ class MonographHandler extends Handler {
 	 * 	the cover page will be displayed. Otherwise table of contents
 	 * 	will be displayed.
 	 */
-	function setupMonographTemplate(&$monograph, $showToc = false) {
-
+	function setupTemplate(&$monograph, $showToc = false) {
+		parent::setupTemplate();
 	}
 
 	/**
@@ -108,7 +108,7 @@ class MonographHandler extends Handler {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$rangeInfo = Handler::getRangeInfo('monographs');
 
-		$publishedMonograhsIterator = $monographDao->getPublishedMonographs($press->getId(), $rangeInfo);
+		$publishedMonographsIterator = $monographDao->getPublishedMonographs($press->getId(), $rangeInfo);
 
 		import('file.PublicFileManager');
 		$publicFileManager =& new PublicFileManager();
@@ -119,7 +119,6 @@ class MonographHandler extends Handler {
 		$templateMgr->assign('coverPagePath', $coverPagePath);
 		$templateMgr->assign('locale', Locale::getLocale());
 		$templateMgr->assign_by_ref('issues', $publishedMonographsIterator);
-//		$templateMgr->assign('helpTopicId', 'user.currentAndArchives');
 		$templateMgr->display('monograph/published.tpl');
 	}
 
