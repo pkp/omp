@@ -949,12 +949,12 @@ class AcquisitionsEditorSubmission extends Monograph {
 		if ($this->getStatus() != STATUS_QUEUED) return null;
 
 		// Awaiting assignment.
-		$editAssignments = $this->getByIds();
+		$editAssignments = $this->getEditAssignments();
 		if (empty($editAssignments)) return $highlightClass;
 
-		$journal =& Request::getJournal();
+		$press =& Request::getPress();
 		// Sanity check
-		if (!$journal || $journal->getJournalId() != $this->getJournalId()) return null;
+		if (!$press || $press->getId() != $this->getId()) return null;
 
 		// Check whether it's in review or editing.
 		$inEditing = false;
@@ -1166,14 +1166,14 @@ class AcquisitionsEditorSubmission extends Monograph {
 						// Check whether a reviewer is overdue to confirm invitation
 						if (	!$reviewAssignment->getDateCompleted() &&
 							!$dateConfirmed &&
-							!$journal->getSetting('remindForInvite') &&
+							!$press->getSetting('remindForInvite') &&
 							max($dateReminded, $dateNotified) + $overdueSeconds < time()
 						) return $highlightClass;
 
 						// Check whether a reviewer is overdue to complete review
 						if (	!$reviewAssignment->getDateCompleted() &&
 							$dateConfirmed &&
-							!$journal->getSetting('remindForSubmit') &&
+							!$press->getSetting('remindForSubmit') &&
 							max($dateReminded, $dateConfirmed) + $overdueSeconds < time()
 						) return $highlightClass;
 					}

@@ -86,7 +86,7 @@
 			{/foreach}
 		</td>
 		<td>
-			{assign var="editAssignments" value=$submission->getByIds()}
+			{assign var="editAssignments" value=$submission->getEditAssignments()}
 			{foreach from=$editAssignments item=editAssignment}{$editAssignment->getEditorInitials()|escape} {/foreach}
 		</td>
 	</tr>

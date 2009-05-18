@@ -149,7 +149,7 @@ class EditorSubmissionDAO extends DAO {
 	 */
 	function updateObject(&$editorSubmission) {
 		// update edit assignments
-		$editAssignments = $editorSubmission->getByIds();
+		$editAssignments = $editorSubmission->getEditAssignments();
 		foreach ($editAssignments as $editAssignment) {
 			if ($editAssignment->getEditId() > 0) {
 				$this->editAssignmentDao->updateEditAssignment($editAssignment);
@@ -241,9 +241,12 @@ class EditorSubmissionDAO extends DAO {
 			case SUBMISSION_FIELD_TITLE:
 				if ($searchMatch === 'is') {
 					$searchSql = ' AND LOWER(COALESCE(atl.setting_value, atpl.setting_value)) = LOWER(?)';
-				} else {
+				} elseif ($searchMatch === 'contains') {
 					$searchSql = ' AND LOWER(COALESCE(atl.setting_value, atpl.setting_value)) LIKE LOWER(?)';
 					$search = '%' . $search . '%';
+				} else { // $searchMatch === 'startsWith'
+					$searchSql = ' AND LOWER(COALESCE(atl.setting_value, atpl.setting_value)) LIKE LOWER(?)';
+					$search = $search . '%';
 				}
 				$params[] = $search;
 				break;
@@ -382,9 +385,12 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 		$last_comma_first_middle = $this->_dataSource->Concat($prefix.'last_name', '\', \'', $prefix.'first_name', '\' \'', $prefix.'middle_name');
 		if ($searchMatch === 'is') {
 			$searchSql = " AND (LOWER({$prefix}last_name) = LOWER(?) OR LOWER($first_last) = LOWER(?) OR LOWER($first_middle_last) = LOWER(?) OR LOWER($last_comma_first) = LOWER(?) OR LOWER($last_comma_first_middle) = LOWER(?))";
-		} else {
+		} elseif ($searchMatch === 'contains') {
 			$searchSql = " AND (LOWER({$prefix}last_name) LIKE LOWER(?) OR LOWER($first_last) LIKE LOWER(?) OR LOWER($first_middle_last) LIKE LOWER(?) OR LOWER($last_comma_first) LIKE LOWER(?) OR LOWER($last_comma_first_middle) LIKE LOWER(?))";
 			$search = '%' . $search . '%';
+		} else { // $searchMatch === 'startsWith'
+			$searchSql = " AND (LOWER({$prefix}last_name) LIKE LOWER(?) OR LOWER($first_last) LIKE LOWER(?) OR LOWER($first_middle_last) LIKE LOWER(?) OR LOWER($last_comma_first) LIKE LOWER(?) OR LOWER($last_comma_first_middle) LIKE LOWER(?))";
+			$search = $search . '%';
 		}
 		$params[] = $params[] = $params[] = $params[] = $params[] = $search;
 		return $searchSql;
@@ -426,7 +432,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 
 			// used to check if editor exists for this submission
-			$editAssignments =& $editorSubmission->getByIds();
+			$editAssignments =& $editorSubmission->getEditAssignments();
 
 			if (empty($editAssignments)) {
 				$editorSubmissions[] =& $editorSubmission;
@@ -485,7 +491,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			}
 
 			// used to check if editor exists for this submission
-			$editAssignments =& $editorSubmission->getByIds();
+			$editAssignments =& $editorSubmission->getEditAssignments();
 
 			if (!empty($editAssignments) && $inReview) {
 				$editorSubmissions[] =& $editorSubmission;
@@ -530,16 +536,6 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			$row = $copyedAssignment->GetRowAssoc(false);
 			$editorSubmission->setCopyeditorDateFinalCompleted($this->datetimeFromDB($row['date_final_completed']));
 
-			// get layout assignment data
-			$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignments =& $layoutAssignmentDao->getLayoutAssignmentsByMonographId($monographId);
-			$editorSubmission->setLayoutAssignments($layoutAssignments);
-
-			// get proof assignment data
-			$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-			$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
-			$editorSubmission->setProofAssignment($proofAssignment);
-
 			// check if submission is still in review
 			$inEditing = false;
 			$decisions = $editorSubmission->getDecisions();
@@ -552,7 +548,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			}
 
 			// used to check if editor exists for this submission
-			$editAssignments = $editorSubmission->getByIds();
+			$editAssignments = $editorSubmission->getEditAssignments();
 
 			if ($inEditing && !empty($editAssignments)) {
 				$editorSubmissions[] =& $editorSubmission;
@@ -653,7 +649,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			}
 
 			// used to check if editor exists for this submission
-			$editAssignments = $editorSubmission->getByIds();
+			$editAssignments = $editorSubmission->getEditAssignments();
 
 			if (empty($editAssignments)) {
 				// unassigned submissions
