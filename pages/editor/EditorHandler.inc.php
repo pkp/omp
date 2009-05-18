@@ -14,17 +14,15 @@
 
 // $Id$
 
-import('acquisitionsEditor.AcquisitionsEditorHandler');
-import('submission.editor.EditorAction');
-
-
 define('EDITOR_SECTION_HOME', 0);
 define('EDITOR_SECTION_SUBMISSIONS', 1);
-define('EDITOR_SECTION_ISSUES', 2);
 
 // Filter editor
 define('FILTER_EDITOR_ALL', 0);
 define('FILTER_EDITOR_ME', 1);
+
+import('acquisitionsEditor.AcquisitionsEditorHandler');
+import ('submission.editor.EditorAction');
 
 class EditorHandler extends AcquisitionsEditorHandler {
 	/**
@@ -32,6 +30,9 @@ class EditorHandler extends AcquisitionsEditorHandler {
 	 */
 	function EditorHandler() {
 		parent::AcquisitionsEditorHandler();
+
+		$this->addCheck(new HandlerValidatorPress($this));
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_EDITOR)));
 	}
 
 	/**
@@ -48,25 +49,20 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$user =& Request::getUser();
 
 		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
-	//	$sectionDao =& DAORegistry::getDAO('SectionDAO');
-
-	//	$sections =& $sectionDao->getSectionTitles($press->getId());
-	//	$templateMgr->assign('sectionOptions', array(0 => Locale::Translate('editor.allSections')) + $sections);
-	//	$templateMgr->assign('fieldOptions', $this->getSearchFieldOptions());
-	//	$templateMgr->assign('dateFieldOptions', $this->getDateFieldOptions());
-
 
 		$submissionsCount =& $editorSubmissionDao->getCount($press->getId());
 		$templateMgr->assign('submissionsCount', $submissionsCount);
 		$templateMgr->assign('helpTopicId', 'editorial.editorsRole');
 		$templateMgr->display('editor/index.tpl');
 	}
+	
 	function viewMetadata($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$submission =& $monographDao->getMonograph($monographId);
-		//list($press, $submission) = SubmissionEditHandler::validate($monographId);
-		parent::setupTemplate();//true, $monographId, 'summary');
+		$this->validate();
+		$this->setupTemplate(EDITOR_SECTION_SUBMISSIONS);
+		
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
 		import('submission.common.Action');
 		Action::viewMetadata($submission);
@@ -76,42 +72,21 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		import('pages.acquisitionsEditor.SubmissionEditHandler');
 		SubmissionEditHandler::selectReviewer($args);
 	}
+	
 	/**
 	 * Display editor submission queue pages.
 	 */
 	function submissions($args) {
 		$this->validate();
-		$this->setupTemplate(EDITOR_SECTION_SUBMISSIONS);
+		$this->setupTemplate(EDITOR_SECTION_HOME);
 
 		$press =& Request::getPress();
 		$pressId = $press->getId();
 		$user =& Request::getUser();
 
 		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
-//		$sectionDao =& DAORegistry::getDAO('SectionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
-//		$sections =& $sectionDao->getSectionTitles($pressId);
-
-		$filterEditorOptions = array(
-			FILTER_EDITOR_ALL => Locale::Translate('editor.allEditors'),
-			FILTER_EDITOR_ME => Locale::Translate('editor.me')
-		);
-
-/*		$filterSectionOptions = array(
-			FILTER_SECTION_ALL => Locale::Translate('editor.allSections')
-		) + $sections;
- */
-		// Get the user's search conditions, if any
-		$searchField = Request::getUserVar('searchField');
-		$dateSearchField = Request::getUserVar('dateSearchField');
-		$searchMatch = Request::getUserVar('searchMatch');
-		$search = Request::getUserVar('search');
-
-		$fromDate = Request::getUserDateVar('dateFrom', 1, 1);
-		if ($fromDate !== null) $fromDate = date('Y-m-d H:i:s', $fromDate);
-		$toDate = Request::getUserDateVar('dateTo', 32, 12, null, 23, 59, 59);
-		if ($toDate !== null) $toDate = date('Y-m-d H:i:s', $toDate);
 
 		$rangeInfo = Handler::getRangeInfo('submissions');
 
@@ -134,68 +109,23 @@ class EditorHandler extends AcquisitionsEditorHandler {
 				$helpTopicId = 'editorial.editorsRole.submissions.inReview';
 		}
 
-		$filterEditor = Request::getUserVar('filterEditor');
-		if ($filterEditor != '' && array_key_exists($filterEditor, $filterEditorOptions)) {
-			$user->updateSetting('filterEditor', $filterEditor, 'int', $pressId);
-		} else {
-			$filterEditor = $user->getSetting('filterEditor', $pressId);
-			if ($filterEditor == null) {
-				$filterEditor = FILTER_EDITOR_ALL;
-				$user->updateSetting('filterEditor', $filterEditor, 'int', $pressId);
-			}	
-		}
-
-		if ($filterEditor == FILTER_EDITOR_ME) {
-			$editorId = $user->getId();
-		} else {
-			$editorId = FILTER_EDITOR_ALL;
-		}
-
-		$filterSection = Request::getUserVar('filterSection');
-		if ($filterSection != '' && array_key_exists($filterSection, $filterSectionOptions)) {
-			$user->updateSetting('filterSection', $filterSection, 'int', $pressId);
-		} else {
-			$filterSection = $user->getSetting('filterSection', $pressId);
-			if ($filterSection == null) {
-				$filterSection = FILTER_SECTION_ALL;
-				$user->updateSetting('filterSection', $filterSection, 'int', $pressId);
-			}	
-		}
-
+		// TODO: nulls represent search options which have not yet been implemented
 		$submissions =& $editorSubmissionDao->$functionName(
 			$pressId,
-			$filterSection,
-			$editorId,
-			$searchField,
-			$searchMatch,
-			$search,
-			$dateSearchField,
-			$fromDate,
-			$toDate,
+			FILTER_EDITOR_ALL,
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
 			$rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign('editor', $user->getFullName());
-		$templateMgr->assign('editorOptions', $filterEditorOptions);
-	//	$templateMgr->assign('sectionOptions', $filterSectionOptions);
 
 		$templateMgr->assign_by_ref('submissions', $submissions);
-		$templateMgr->assign('filterEditor', $filterEditor);
-		$templateMgr->assign('filterSection', $filterSection);
-
-		// Set search parameters
-//		foreach ($this->getSearchFormDuplicateParameters() as $param)
-//			$templateMgr->assign($param, Request::getUserVar($param));
-
-		$templateMgr->assign('dateFrom', $fromDate);
-		$templateMgr->assign('dateTo', $toDate);
-//		$templateMgr->assign('fieldOptions', $this->getSearchFieldOptions());
-//		$templateMgr->assign('dateFieldOptions', $this->getDateFieldOptions());
-
-//		import('issue.IssueAction');
-//		$issueAction = new IssueAction();
-//		$templateMgr->register_function('print_issue_id', array($issueAction, 'smartyPrintIssueId'));
 
 		$templateMgr->assign('helpTopicId', $helpTopicId);
 		$templateMgr->display('editor/submissions.tpl');
@@ -369,7 +299,6 @@ class EditorHandler extends AcquisitionsEditorHandler {
 
 		if ($level==EDITOR_SECTION_HOME) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'));
 		else if ($level==EDITOR_SECTION_SUBMISSIONS) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'editor'), 'user.role.editor'), array(Request::url(null, 'editor', 'submissions'), 'manuscript.submissions'));
-		else if ($level==EDITOR_SECTION_ISSUES) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, $isLayoutEditor?'layoutEditor':'editor'), $isLayoutEditor?'user.role.layoutEditor':'user.role.editor'), array(Request::url(null, $isLayoutEditor?'layoutEditor':'editor', 'futureIssues'), 'issue.issues'));
 
 		import('submission.acquisitionsEditor.AcquisitionsEditorAction');
 		$submissionCrumb = AcquisitionsEditorAction::submissionBreadcrumb($monographId, $parentPage, 'editor');
@@ -379,18 +308,6 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 
 	}
-
-	function userProfile($args) {
-		import('pages.acquisitionsEditor.AcquisitionsEditorHandler');
-		$this->userProfile($args);
-	}
-	
-	function submissionReview($args) {
-		import('pages.acquisitionsEditor.AcquisitionsEditorHandler');
-		$this->submissionReview($args);
-	}
-
-
 }
 
 ?>

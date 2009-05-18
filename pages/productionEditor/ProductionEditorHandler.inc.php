@@ -316,25 +316,16 @@ class ProductionEditorHandler extends Handler {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR);
 
-//		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-//		$arrangement =& $arrangementDao->getAcquisitionsArrangement($submission->getAcquisitionsArrangementId());
-
 		$enableComments = $press->getSetting('enableComments');
 
 		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('arrangement', $arrangement);
 		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
-//		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
-//		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
-//		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
 		$templateMgr->assign('userId', $user->getId());
 		$templateMgr->assign('isEditor', $isEditor);
 		$templateMgr->assign('enableComments', $enableComments);
-
-//		$templateMgr->assign_by_ref('arrangements', $arrangementDao->getAcquisitionsArrangementsTitles($press->getId()));
 
 		if ($enableComments) {
 			import('monograph.Monograph');
@@ -417,7 +408,6 @@ class ProductionEditorHandler extends Handler {
 			$designers = $roleDao->getUsersByRoleId(ROLE_ID_DESIGNER, $press->getId(), $searchType, $search, $searchMatch);
 
 			$productionEditorSubmissionDao =& DAORegistry::getDAO('ProductionEditorSubmissionDAO');
-//			$layoutEditorStatistics = $productionEditorSubmissionDao->getLayoutEditorStatistics($press->getId());
 
 			$this->setupTemplate(true, $monographId, 'editing');
 
@@ -435,18 +425,12 @@ class ProductionEditorHandler extends Handler {
 			$templateMgr->assign('monographId', $monographId);
 			$templateMgr->assign_by_ref('users', $designers);
 
-//			$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_ARTICLE, $articleId);
-//			if ($layoutSignoff) {
-//				$templateMgr->assign('currentUser', $layoutSignoff->getUserId());
- //			}
-
 			$templateMgr->assign('fieldOptions', Array(
 				USER_FIELD_FIRSTNAME => 'user.firstName',
 				USER_FIELD_LASTNAME => 'user.lastName',
 				USER_FIELD_USERNAME => 'user.username',
 				USER_FIELD_EMAIL => 'user.email'
 			));
-//			$templateMgr->assign('statistics', $layoutEditorStatistics);
 			$templateMgr->assign('helpTopicId', 'journal.roles.layoutEditor');
 			$templateMgr->display('acquisitionsEditor/selectUser.tpl');
 		}
@@ -510,26 +494,18 @@ class ProductionEditorHandler extends Handler {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR);
 
-//		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-//		$arrangement =& $arrangementDao->getAcquisitionsArrangement($submission->getAcquisitionsArrangementId());
-
 		$enableComments = $press->getSetting('enableComments');
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('useLayoutEditors', true);
 
 		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('arrangement', $arrangement);
 		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
-//		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
-//		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
-//		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
 		$templateMgr->assign('userId', $user->getId());
 		$templateMgr->assign('isEditor', $isEditor);
 		$templateMgr->assign('enableComments', $enableComments);
 		$templateMgr->assign('useLayoutEditors', true);
-//		$templateMgr->assign_by_ref('arrangements', $arrangementDao->getAcquisitionsArrangementsTitles($press->getId()));
 
 		if ($enableComments) {
 			import('monograph.Monograph');
@@ -594,12 +570,6 @@ class ProductionEditorHandler extends Handler {
 		$pageHierarchy = $subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'productionEditor'), 'user.role.productionEditor'), array(Request::url(null, 'productionEditor'), 'manuscript.submissions'))
 			: array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'productionEditor'), 'user.role.productionEditor'));
 
-/*		import('submission.sectionEditor.SectionEditorAction');
-		$submissionCrumb = SectionEditorAction::submissionBreadcrumb($monographId, $parentPage, 'author');
-		if (isset($submissionCrumb)) {
-			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
-		}
-*/
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 
@@ -641,6 +611,7 @@ class ProductionEditorHandler extends Handler {
 		$this->submission =& $productionEditorSubmission;
 		return true;
 	}
+	
 	/**
 	 * Notify the layout editor.
 	 */
