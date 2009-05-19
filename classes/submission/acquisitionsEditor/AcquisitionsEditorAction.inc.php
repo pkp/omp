@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/submission/sectionEditor/AcquisitionsEditorAction.inc.php
+ * @file classes/submission/acquisitionsEditor/AcquisitionsEditorAction.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -1054,6 +1054,7 @@ class AcquisitionsEditorAction extends Action {
 	 * @return boolean true iff ready for redirect
 	 */
 	function thankAuthorCopyedit($acquisitionsEditorSubmission, $send = false) {
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
@@ -1072,8 +1073,9 @@ class AcquisitionsEditorAction extends Action {
 				$email->send();
 			}
 
-			$acquisitionsEditorSubmission->setCopyeditorDateAuthorAcknowledged(Core::getCurrentDate());
-			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
+			$signoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getMonographId());
+			$signoff->setDateAcknowledged(Core::getCurrentDate());
+			$signoffDao->updateObject($signoff);
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->addRecipient($author->getEmail(), $author->getFullName());
@@ -1264,37 +1266,44 @@ class AcquisitionsEditorAction extends Action {
 	 * @param $copyeditStage string
 	 */
 	function uploadCopyeditVersion($acquisitionsEditorSubmission, $copyeditStage) {
+		$monographId = $acquisitionsEditorSubmission->getMonographId();
 		import('file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($acquisitionsEditorSubmission->getMonographId());
+		$monographFileManager = new MonographFileManager($monographId);
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		// Perform validity checks.
-		if ($copyeditStage == 'final' && $acquisitionsEditorSubmission->getCopyeditorDateAuthorCompleted() == null) return;
-		if ($copyeditStage == 'author' && $acquisitionsEditorSubmission->getCopyeditorDateCompleted() == null) return;
+		$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $monographId);
+		$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $monographId);
+
+		if ($copyeditStage == 'final' && $authorSignoff->getDateCompleted() == null) return;
+		if ($copyeditStage == 'author' && $initialSignoff->getDateCompleted() == null) return;
 
 		$fileName = 'upload';
-		if ($monographFileManager->uploadedFileExists($fileName) && !HookRegistry::call('AcquisitionsEditorAction::uploadCopyeditVersion', array(&$acquisitionsEditorSubmission))) {
-			if ($acquisitionsEditorSubmission->getCopyeditFileId() != null) {
-				$copyeditFileId = $monographFileManager->uploadCopyeditFile($fileName, $acquisitionsEditorSubmission->getCopyeditFileId());
+		if ($monographFileManager->uploadedFileExists($fileName) && !HookRegistry::call('SectionEditorAction::uploadCopyeditVersion', array(&$acquisitionsEditorSubmission))) {
+			if ($acquisitionsEditorSubmission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL', true) != null) {
+				$copyeditFileId = $monographFileManager->uploadCopyeditFile($fileName, $acquisitionsEditorSubmission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL', true));
 			} else {
 				$copyeditFileId = $monographFileManager->uploadCopyeditFile($fileName);
 			}
 		}
 
-
 		if (isset($copyeditFileId) && $copyeditFileId != 0) {
-			$acquisitionsEditorSubmission->setCopyeditFileId($copyeditFileId);
-
 			if ($copyeditStage == 'initial') {
-				$acquisitionsEditorSubmission->setCopyeditorInitialRevision($monographFileDao->getRevisionNumber($copyeditFileId));
+				$signoff =& $initialSignoff;
+				$signoff->setFileId($copyeditFileId);
+				$signoff->setFileRevision($monographFileDao->getRevisionNumber($copyeditFileId));
 			} elseif ($copyeditStage == 'author') {
-				$acquisitionsEditorSubmission->setCopyeditorEditorAuthorRevision($monographFileDao->getRevisionNumber($copyeditFileId));
+				$signoff =& $authorSignoff;
+				$signoff->setFileId($copyeditFileId);
+				$signoff->setFileRevision($monographFileDao->getRevisionNumber($copyeditFileId));
 			} elseif ($copyeditStage == 'final') {
-				$acquisitionsEditorSubmission->setCopyeditorFinalRevision($monographFileDao->getRevisionNumber($copyeditFileId));
+				$signoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $monographId);
+				$signoff->setFileId($copyeditFileId);
+				$signoff->setFileRevision($monographFileDao->getRevisionNumber($copyeditFileId));
 			}
 
-			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
+			$signoffDao->updateObject($signoff);
 		}
 	}
 

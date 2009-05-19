@@ -205,14 +205,16 @@ class AuthorAction extends Action {
 	 * Set that the copyedit is underway.
 	 */
 	function copyeditUnderway($authorSubmission) {
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');		
+		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
-		if ($authorSubmission->getCopyeditorDateAuthorNotified() != null && $authorSubmission->getCopyeditorDateAuthorUnderway() == null) {
+		$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getMonographId());
+		if ($authorSignoff->getDateNotified() != null && $authorSignoff->getDateUnderway() == null) {
 			HookRegistry::call('AuthorAction::copyeditUnderway', array(&$authorSubmission));
-			$authorSubmission->setCopyeditorDateAuthorUnderway(Core::getCurrentDate());
-			$authorSubmissionDao->updateAuthorSubmission($authorSubmission);
+			$authorSignoff->setDateUnderway(Core::getCurrentDate());
+			$signoffDao->updateObject($authorSignoff);
 		}
-	}	
+	}
 
 	/**
 	 * Upload the revised version of a copyedit file.
