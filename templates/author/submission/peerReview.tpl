@@ -13,14 +13,28 @@
 
 {foreach from=$reviewProcesses item=reviewProcess}
 <h3>{$reviewProcess->getTitle()}</h3>
+{if $reviewProcess->getDateInitiated() == null}
+
+	<table class="info" width="100%">
+		<tr><td colspan="2" class="separator">&nbsp;</td></tr>
+		<tr valign="middle">
+			<td colspan="2" align="center">{translate key="common.notAvailable"}</td>
+		</tr>
+
+		<tr><td colspan="2" class="separator">&nbsp;</td></tr>
+
+	</table>
+
+
+{/if}
 {assign var=processId value=$reviewProcess->getProcessId()}
 
 {assign var=start value="A"|ord}
 {section name="round" loop=$reviewRounds[$processId]}
 {assign var="round" value=$smarty.section.round.index+1}
-{assign var=authorFiles value=$submission->getAuthorFileRevisions($processId)}
-{assign var=editorFiles value=$submission->getEditorFileRevisions($processId)}
-{assign var="viewableFiles" value=$authorViewableFilesByRound[$round]}
+{assign var=authorFiles value=$submission->getAuthorFileRevisions($processId, $round)}
+{assign var=editorFiles value=$submission->getEditorFileRevisions($processId, $round)}
+{assign var="viewableFiles" value=$authorViewableFilesByRound[$processId]}
 
 <h4>{translate key="submission.round" round=$round}</h4>
 <table class="data" width="100%">

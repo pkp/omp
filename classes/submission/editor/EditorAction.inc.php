@@ -60,7 +60,7 @@ class EditorAction extends AcquisitionsEditorAction {
 			$editAssignment->setDateNotified(Core::getCurrentDate());
 			$editAssignment->setDateUnderway(null);
 
-			$editAssignments =& $editorSubmission->getByIds();
+			$editAssignments =& $editorSubmission->getEditAssignments();
 			array_push($editAssignments, $editAssignment);
 			$editorSubmission->setEditAssignments($editAssignments);
 

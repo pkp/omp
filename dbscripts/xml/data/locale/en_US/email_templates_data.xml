@@ -449,7 +449,7 @@ Please confirm your ability to complete this vital contribution to the work of t
 			<field name="subject">Editor Decision</field>
 			<field name="body">{$authorName}:
 
-We have reached a decision regarding your submission to {$pressTitle}, "{$monographTitle}".
+We have reached a decision regarding your submission to {$pressName}, "{$monographTitle}".
 
 Our decision is to:
 
@@ -462,7 +462,7 @@ Our decision is to:
 			<field name="subject">Editor Decision</field>
 			<field name="body">{$authorName}:
 
-We have reached a decision regarding your submission to {$pressTitle}, "{$monographTitle}".
+We have reached a decision regarding your submission to {$pressName}, "{$monographTitle}".
 
 Our decision is to:
 
@@ -475,7 +475,7 @@ Our decision is to:
 			<field name="subject">Editor Decision</field>
 			<field name="body">{$authorName}:
 
-We have reached a decision regarding your submission to {$pressTitle}, "{$monographTitle}".
+We have reached a decision regarding your submission to {$pressName}, "{$monographTitle}".
 
 Our decision is to:
 
@@ -488,7 +488,7 @@ Our decision is to:
 			<field name="subject">Editor Decision</field>
 			<field name="body">{$authorName}:
 
-We have reached a decision regarding your submission to {$pressTitle}, "{$monographTitle}".
+We have reached a decision regarding your submission to {$pressName}, "{$monographTitle}".
 
 Our decision is to:
 

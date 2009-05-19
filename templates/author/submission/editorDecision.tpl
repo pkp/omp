@@ -11,8 +11,8 @@
 <div id="editorDecision">
 <h3>{translate key="submission.editorDecision"}</h3>
 
-{assign var=authorFiles value=$submission->getAuthorFileRevisions($submission->getCurrentReviewRound())}
-{assign var=editorFiles value=$submission->getEditorFileRevisions($submission->getCurrentReviewRound())}
+{assign var=authorFiles value=$submission->getAuthorFileRevisions($submission->getCurrentReviewType(), $submission->getCurrentReviewRound())}
+{assign var=editorFiles value=$submission->getEditorFileRevisions($submission->getCurrentReviewType(), $submission->getCurrentReviewRound())}
 
 <table width="100%" class="data">
 	<tr valign="top">
@@ -31,6 +31,9 @@
 			{translate key="submission.notifyEditor"}
 		</td>
 		<td class="value" width="80%">
+			{if !$submission->getEditAssignments()}
+				{translate key="common.noneAssigned"}
+			{else}
 			{url|assign:"notifyAuthorUrl" op="emailEditorDecisionComment" monographId=$submission->getMonographId()}
 			{icon name="mail" url=$notifyAuthorUrl}
 			&nbsp;&nbsp;&nbsp;&nbsp;
@@ -40,6 +43,7 @@
 				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getMonographId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a> {$comment->getDatePosted()|date_format:$dateFormatShort}
 			{else}
 				<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getMonographId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
+			{/if}
 			{/if}
 		</td>
 	</tr>

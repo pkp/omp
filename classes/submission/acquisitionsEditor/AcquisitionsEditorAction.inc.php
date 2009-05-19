@@ -136,9 +136,9 @@ class AcquisitionsEditorAction extends Action {
 			if (isset($settings['numWeeksPerReview'])) AcquisitionsEditorAction::setDueDate($acquisitionsEditorSubmission->getMonographId(), $reviewAssignment->getReviewId(), null, $settings['numWeeksPerReview']);
 
 			// Add log
-//		import('monograph.log.MonographLog');
-//			import('monograph.log.MonographEventLogEntry');
-//			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_ASSIGN, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'round' => $round));
+			import('monograph.log.MonographLog');
+			import('monograph.log.MonographEventLogEntry');
+			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_ASSIGN, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'reviewType' => $reviewType, 'round' => $round));
 		}
 	}
 
@@ -162,10 +162,10 @@ class AcquisitionsEditorAction extends Action {
 			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
 
 			// Add log
-/*			import('monograph.log.MonographLog');
+			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_CLEAR, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'round' => $reviewAssignment->getRound()));
-*/		}
+			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_CLEAR, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'reviewType' => $reviewAssignment->getReviewType(), 'round' => $reviewAssignment->getRound()));
+		}
 	}
 
 	/**
@@ -1173,6 +1173,14 @@ class AcquisitionsEditorAction extends Action {
 					);
 			$signoff->setDateAcknowledged(Core::getCurrentDate());
 
+			$productionSignoff = $signoffDao->build(
+						'SIGNOFF_PRODUCTION',
+						ASSOC_TYPE_MONOGRAPH,
+						$acquisitionsEditorSubmission->getMonographId()
+					);
+			$productionSignoff->setFileId($signoff->getFileId());
+
+			$signoffDao->updateObject($productionSignoff);
 			$signoffDao->updateObject($signoff);
 		} else {
 			if (!Request::getUserVar('continued')) {

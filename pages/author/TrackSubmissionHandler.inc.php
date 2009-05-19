@@ -131,11 +131,10 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$reviewFilesByRound =& $reviewAssignmentDao->getReviewFilesByRound($monographId);
 		$authorViewableFilesByRound =& $reviewAssignmentDao->getAuthorViewableFilesByRound($monographId);
 
-		$editorDecisions = $authorSubmission->getDecisions($authorSubmission->getCurrentReviewRound());
+		$editorDecisions = $authorSubmission->getDecisions($authorSubmission->getCurrentReviewType(), $authorSubmission->getCurrentReviewRound());
 		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1] : null;
 
 		$templateMgr =& TemplateManager::getManager();
-
 		$reviewAssignments =& $authorSubmission->getReviewAssignments();
 		$templateMgr->assign_by_ref('reviewAssignments', $reviewAssignments);
 		$templateMgr->assign_by_ref('submission', $authorSubmission);

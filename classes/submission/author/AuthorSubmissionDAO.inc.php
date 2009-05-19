@@ -43,7 +43,7 @@ class AuthorSubmissionDAO extends DAO {
 		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-//		$this->copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
+		$this->copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
 		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 //		$this->layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
 //		$this->proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
@@ -111,12 +111,9 @@ class AuthorSubmissionDAO extends DAO {
 
 		$reviewRounds =& $authorSubmission->getReviewRoundsInfo();
 
+		$authorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id']));
+
 		if (isset($reviewRounds)) {
-		      foreach ($reviewRounds as $reviewRound => $round) { // Editor Decisions
-			      for ($i = 1; $i <= $round; $i++) {
-				      $authorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $reviewRound, $i), $reviewRound, $i);
-			      }
-		      }
 		      foreach ($reviewRounds as $reviewRound => $round) { // Review Assignments
 			      for ($i = 1; $i <= $round; $i++) {
 				      $authorSubmission->setReviewAssignments($this->reviewAssignmentDao->getByMonographId($row['monograph_id'], $reviewRound, $i), $reviewRound, $i);
@@ -136,48 +133,16 @@ class AuthorSubmissionDAO extends DAO {
 		$authorSubmission->setSubmissionFile($this->monographFileDao->getMonographFile($row['submission_file_id']));
 		$authorSubmission->setRevisedFile($this->monographFileDao->getMonographFile($row['revised_file_id']));
 		$authorSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByMonograph($row['monograph_id']));
-/*		for ($i = 1; $i <= $row['current_round']; $i++) {
-			$authorSubmission->setAuthorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['revised_file_id'], $i), $i);
+
+		if ($authorSubmission->getCurrentReviewType() != null) {
+			$authorSubmission->setAuthorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['revised_file_id']));
+			$authorSubmission->setEditorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['editor_file_id']));
+		} else {
+			$authorSubmission->setAuthorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['revised_file_id'], null, false));
+			$authorSubmission->setEditorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['editor_file_id'], null, false));
 		}
-		for ($i = 1; $i <= $row['current_round']; $i++) {
-			$authorSubmission->setEditorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['editor_file_id'], $i), $i);
-		}
+/*
 		$authorSubmission->setGalleys($this->galleyDao->getGalleysByMonograph($row['monograph_id']));
-
-		// Initial Copyedit File
-		if ($row['copyeditor_initial_revision'] != null) {
-			$authorSubmission->setInitialCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id'], $row['copyeditor_initial_revision']));
-		}
-
-		// Editor / Author Copyedit File
-		if ($row['ce_editor_author_revision'] != null) {
-			$authorSubmission->setEditorAuthorCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id'], $row['ce_editor_author_revision']));
-		}
-
-		// Final Copyedit File
-		if ($row['copyeditor_final_revision'] != null) {
-			$authorSubmission->setFinalCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id'], $row['copyeditor_final_revision']));
-		}
-
-		// Copyeditor Assignment
-		$authorSubmission->setCopyedId($row['copyed_id']);
-		$authorSubmission->setCopyeditorId($row['copyeditor_id']);
-		$authorSubmission->setCopyeditor($this->userDao->getUser($row['copyeditor_id']), true);
-		$authorSubmission->setCopyeditorDateNotified($this->datetimeFromDB($row['copyeditor_date_notified']));
-		$authorSubmission->setCopyeditorDateUnderway($this->datetimeFromDB($row['copyeditor_date_underway']));
-		$authorSubmission->setCopyeditorDateCompleted($this->datetimeFromDB($row['copyeditor_date_completed']));
-		$authorSubmission->setCopyeditorDateAcknowledged($this->datetimeFromDB($row['copyeditor_date_acknowledged']));
-		$authorSubmission->setCopyeditorDateAuthorNotified($this->datetimeFromDB($row['ce_date_author_notified']));
-		$authorSubmission->setCopyeditorDateAuthorUnderway($this->datetimeFromDB($row['ce_date_author_underway']));
-		$authorSubmission->setCopyeditorDateAuthorCompleted($this->datetimeFromDB($row['ce_date_author_completed']));
-		$authorSubmission->setCopyeditorDateAuthorAcknowledged($this->datetimeFromDB($row['ce_date_author_acknowledged']));
-		$authorSubmission->setCopyeditorDateFinalNotified($this->datetimeFromDB($row['ce_date_final_notified']));
-		$authorSubmission->setCopyeditorDateFinalUnderway($this->datetimeFromDB($row['ce_date_final_underway']));
-		$authorSubmission->setCopyeditorDateFinalCompleted($this->datetimeFromDB($row['ce_date_final_completed']));
-		$authorSubmission->setCopyeditorDateFinalAcknowledged($this->datetimeFromDB($row['ce_date_final_acknowledged']));
-		$authorSubmission->setCopyeditorInitialRevision($row['copyeditor_initial_revision']);
-		$authorSubmission->setCopyeditorEditorAuthorRevision($row['ce_editor_author_revision']);
-		$authorSubmission->setCopyeditorFinalRevision($row['copyeditor_final_revision']);
 
 		// Layout Assignment
 		$authorSubmission->setLayoutAssignment($this->layoutAssignmentDao->getLayoutAssignmentByMonographId($row['monograph_id']));
@@ -212,21 +177,6 @@ class AuthorSubmissionDAO extends DAO {
 			$this->monographDao->updateMonograph($monograph);
 		}
 
-
-		// Update copyeditor assignment
-		if ($authorSubmission->getCopyedId()) {
-			$copyeditorSubmission =& $this->copyeditorSubmissionDao->getCopyeditorSubmission($authorSubmission->getMonographId());
-
-			// Only update fields that an author can actually edit.
-			$copyeditorSubmission->setDateAuthorUnderway($authorSubmission->getCopyeditorDateAuthorUnderway());
-			$copyeditorSubmission->setDateAuthorCompleted($authorSubmission->getCopyeditorDateAuthorCompleted());
-			$copyeditorSubmission->setDateFinalNotified($authorSubmission->getCopyeditorDateFinalNotified());
-			$copyeditorSubmission->setEditorAuthorRevision($authorSubmission->getCopyeditorEditorAuthorRevision());
-			$copyeditorSubmission->setDateStatusModified($authorSubmission->getDateStatusModified());
-			$copyeditorSubmission->setLastModified($authorSubmission->getLastModified());
-
-			$this->copyeditorSubmissionDao->updateCopyeditorSubmission($copyeditorSubmission);
-		}
 	}
 
 	/**
@@ -277,22 +227,19 @@ class AuthorSubmissionDAO extends DAO {
 	 * @param $monographId int
 	 * @param $round int
 	 */
-	function getEditorDecisions($monographId, $round = null) {
+	function getEditorDecisions($monographId) {
 		$decisions = array();
 
-		if ($round == null) {
-			$result =& $this->retrieve(
-				'SELECT edit_decision_id, editor_id, decision, date_decided FROM edit_decisions WHERE monograph_id = ? ORDER BY date_decided ASC', $monographId
+		$result =& $this->retrieve(
+				'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round
+				FROM edit_decisions 
+				WHERE monograph_id = ? 
+				ORDER BY date_decided ASC', 
+				$monographId
 			);
-		} else {
-			$result =& $this->retrieve(
-				'SELECT edit_decision_id, editor_id, decision, date_decided FROM edit_decisions WHERE monograph_id = ? AND round = ? ORDER BY date_decided ASC',
-				array($monographId, $round)
-			);
-		}
 
 		while (!$result->EOF) {
-			$decisions[] = array(
+			$decisions[$result->fields['review_type']][$result->fields['round']][] = array(
 				'editDecisionId' => $result->fields['edit_decision_id'],
 				'editorId' => $result->fields['editor_id'],
 				'decision' => $result->fields['decision'],

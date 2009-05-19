@@ -122,20 +122,22 @@ class AuthorAction extends Action {
 	 */
 	function completeAuthorCopyedit($authorSubmission, $send = false) {
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 
-		if ($authorSubmission->getCopyeditorDateAuthorCompleted() != null) {
+		$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getMonographId());
+		if ($authorSignoff->getDateCompleted() != null) {
 			return true;
 		}
 
 		$user =& Request::getUser();
 		import('mail.MonographMailTemplate');
-		$email =& new MonographMailTemplate($authorSubmission, 'COPYEDIT_AUTHOR_COMPLETE');
+		$email = new MonographMailTemplate($authorSubmission, 'COPYEDIT_AUTHOR_COMPLETE');
 
-		$editAssignments = $authorSubmission->getByIds();
+		$editAssignments = $authorSubmission->getEditAssignments();
 
-		$copyeditor =& $authorSubmission->getCopyeditor();
+		$copyeditor = $authorSubmission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL');
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('AuthorAction::completeAuthorCopyedit', array(&$authorSubmission, &$email));
@@ -144,9 +146,14 @@ class AuthorAction extends Action {
 				$email->send();
 			}
 
-			$authorSubmission->setCopyeditorDateAuthorCompleted(Core::getCurrentDate());
-			$authorSubmission->setCopyeditorDateFinalNotified(Core::getCurrentDate());
-			$authorSubmissionDao->updateAuthorSubmission($authorSubmission);
+			$authorSignoff->setDateCompleted(Core::getCurrentDate());
+
+			$finalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getMonographId());
+			$finalSignoff->setUserId($copyeditor->getId());
+			$finalSignoff->setDateNotified(Core::getCurrentDate());
+
+			$signoffDao->updateObject($authorSignoff);
+			$signoffDao->updateObject($finalSignoff);
 
 			// Add log entry
 			import('monograph.log.MonographLog');
@@ -183,7 +190,7 @@ class AuthorAction extends Action {
 				}
 
 				$paramArray = array(
-					'editorialContactName' => isset($copyeditor)?$copyeditor->getFullName():$editorName,
+					'editorialContactName' => isset($copyeditor) ? $copyeditor->getFullName() :$editorName,
 					'authorName' => $user->getFullName()
 				);
 				$email->assignParams($paramArray);
@@ -217,28 +224,30 @@ class AuthorAction extends Action {
 		$monographFileManager =& new MonographFileManager($authorSubmission->getMonographId());
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		// Authors cannot upload if the assignment is not active, i.e.
 		// they haven't been notified or the assignment is already complete.
-		if (!$authorSubmission->getCopyeditorDateAuthorNotified() || $authorSubmission->getCopyeditorDateAuthorCompleted()) return;
+		$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getMonographId());
+		if (!$authorSignoff->getDateNotified() || $authorSignoff->getDateCompleted()) return;
 
 		$fileName = 'upload';
 		if ($monographFileManager->uploadedFileExists($fileName)) {
 			HookRegistry::call('AuthorAction::uploadCopyeditVersion', array(&$authorSubmission, &$copyeditStage));
-			if ($authorSubmission->getCopyeditFileId() != null) {
-				$fileId = $monographFileManager->uploadCopyeditFile($fileName, $authorSubmission->getCopyeditFileId());
+			if ($authorSignoff->getFileId() != null) {
+				$fileId = $monographFileManager->uploadCopyeditFile($fileName, $authorSignoff->getFileId());
 			} else {
 				$fileId = $monographFileManager->uploadCopyeditFile($fileName);
 			}
 		}
 
-		$authorSubmission->setCopyeditFileId($fileId);
+		$authorSignoff->setFileId($fileId);
 
 		if ($copyeditStage == 'author') {
-			$authorSubmission->setCopyeditorEditorAuthorRevision($monographFileDao->getRevisionNumber($fileId));
+			$authorSignoff->setFileRevision($monographFileDao->getRevisionNumber($fileId));
 		}
 
-		$authorSubmissionDao->updateAuthorSubmission($authorSubmission);
+		$signoffDao->updateObject($authorSignoff);
 	}
 
 	//

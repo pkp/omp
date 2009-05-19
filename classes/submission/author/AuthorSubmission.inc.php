@@ -104,14 +104,14 @@ class AuthorSubmission extends Monograph {
 	 * Get review assignments for this monograph.
 	 * @return array ReviewAssignments
 	 */
-	function &getReviewAssignments($round = null) {
-		if ($round == null) {
-			// Return an array of arrays of review assignments
+	function &getReviewAssignments($reviewType = null, $round = null) {
+		if ($reviewType == null) {
 			return $this->reviewAssignments;
 		} else {
-			// Return an array of review assignments for the specified round
-			return $this->reviewAssignments[$round];
+			$returner = $round != null && isset($this->reviewAssignments[$reviewType][$round]) ? 
+						$this->reviewAssignments[$reviewType][$round] : null;
 		}
+		return $returner;
 	}
 
 	/**
@@ -130,11 +130,12 @@ class AuthorSubmission extends Monograph {
 	 * Get editor decisions.
 	 * @return array
 	 */
-	function getDecisions($round = null) {
-		if ($round == null) {
+	function getDecisions($reviewType = null, $round = null) {
+		if ($reviewType == null) {
 			return $this->editorDecisions;
 		} else {
-			return $this->editorDecisions[$round];
+			return $round != null && isset($this->editorDecisions[$reviewType][$round]) ? 
+					$this->editorDecisions[$reviewType][$round] : null;
 		}
 	}
 
@@ -143,8 +144,8 @@ class AuthorSubmission extends Monograph {
 	 * @param $editorDecisions array
 	 * @param $round int
 	 */
-	function setDecisions($editorDecisions, $round) {
-		return $this->editorDecisions[$round] = $editorDecisions;
+	function setDecisions($editorDecisions) {
+		return $this->editorDecisions = $editorDecisions;
 	}
 
 	/**
@@ -243,11 +244,11 @@ class AuthorSubmission extends Monograph {
 	 * Get all author file revisions.
 	 * @return array MonographFiles
 	 */
-	function getAuthorFileRevisions($round = null) {
-		if ($round == null) {
+	function getAuthorFileRevisions($reviewType = null, $round = null) {
+		if ($reviewType == null) {
 			return $this->authorFileRevisions;
 		} else {
-			return $this->authorFileRevisions[$round];
+			return $round != null ? $this->authorFileRevisions[$reviewType][$round] : $this->authorFileRevisions[$reviewType];
 		}
 	}
 
@@ -255,19 +256,19 @@ class AuthorSubmission extends Monograph {
 	 * Set all author file revisions.
 	 * @param $authorFileRevisions array MonographFiles
 	 */
-	function setAuthorFileRevisions($authorFileRevisions, $round) {
-		return $this->authorFileRevisions[$round] = $authorFileRevisions;
+	function setAuthorFileRevisions($authorFileRevisions) {
+		return $this->authorFileRevisions = $authorFileRevisions;
 	}
 
 	/**
 	 * Get all editor file revisions.
 	 * @return array MonographFiles
 	 */
-	function getEditorFileRevisions($round = null) {
-		if ($round == null) {
+	function getEditorFileRevisions($reviewType = null, $round = null) {
+		if ($reviewType == null) {
 			return $this->editorFileRevisions;
 		} else {
-			return $this->editorFileRevisions[$round];
+			return $round != null ? $this->editorFileRevisions[$reviewType][$round] : $this->editorFileRevisions[$reviewType];
 		}
 	}
 
@@ -275,8 +276,8 @@ class AuthorSubmission extends Monograph {
 	 * Set all editor file revisions.
 	 * @param $editorFileRevisions array MonographFiles
 	 */
-	function setEditorFileRevisions($editorFileRevisions, $round) {
-		return $this->editorFileRevisions[$round] = $editorFileRevisions;
+	function setEditorFileRevisions($editorFileRevisions) {
+		return $this->editorFileRevisions = $editorFileRevisions;
 	}
 
 	/**

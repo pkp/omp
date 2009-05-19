@@ -86,24 +86,12 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 */
 	function removeReviewAssignment($reviewId) {
 		$found = false;
-		if ($reviewId != 0) {
-			// FIXME maintain a hash of ID to author for quicker get/remove
-			$reviewAssignments = array();
-			$empty = array();
-			for ($i=1, $outerCount=count($this->reviewAssignments); $i <= $outerCount; $i++) {
-				$roundReviewAssignments = $this->reviewAssignments[$i];
-				for ($j=0, $innerCount=count($roundReviewAssignments); $j < $innerCount; $j++) {
-					if ($roundReviewAssignments[$j]->getReviewId() == $reviewId) {
-						array_push($this->removedReviewAssignments, $reviewId);
-						$found = true;
-					} else {
-						array_push($reviewAssignments, $roundReviewAssignments[$j]);
-					}
-				}
-				$this->reviewAssignments[$i] = $reviewAssignments;
-				$reviewAssignments = $empty;
-			}
+
+		if (isset($this->reviewAssignments[$reviewId])) {
+			$this->removedReviewAssignments[$reviewId] = $reviewId;
+			$found = true;
 		}
+
 		return $found;
 	}
 

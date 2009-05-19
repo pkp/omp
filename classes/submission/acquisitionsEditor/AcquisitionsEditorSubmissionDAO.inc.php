@@ -66,7 +66,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev,
 				MAX(rr.round) AS current_round,
-				rr.review_revision AS review_revision
+				MAX(rr.review_revision) AS review_revision
 			FROM	monographs a
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
 				LEFT JOIN review_rounds rr ON (a.monograph_id = rr.monograph_id AND a.current_review = rr.review_type)
@@ -302,43 +302,14 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 				$reviewRoundDao->updateObject($reviewRound);
 			}
 		}
-		// Update copyeditor assignment
-/*		if ($acquisitionsEditorSubmission->getCopyedId()) {
-			$copyeditorSubmission =& $this->copyeditorSubmissionDao->getCopyeditorSubmission($acquisitionsEditorSubmission->getMonographId());
-		} else {
-			$copyeditorSubmission = new CopyeditorSubmission();
-		}
-
-		// Only update the fields that an editor can modify.
-		$copyeditorSubmission->setMonographId($acquisitionsEditorSubmission->getMonographId());
-		$copyeditorSubmission->setCopyeditorId($acquisitionsEditorSubmission->getCopyeditorId());
-				$copyeditorSubmission->setDateUnderway($acquisitionsEditorSubmission->getCopyeditorDateUnderway());
-		$copyeditorSubmission->setDateNotified($acquisitionsEditorSubmission->getCopyeditorDateNotified());
-		$copyeditorSubmission->setDateCompleted($acquisitionsEditorSubmission->getCopyeditorDateCompleted());
-		$copyeditorSubmission->setDateAcknowledged($acquisitionsEditorSubmission->getCopyeditorDateAcknowledged());
-		$copyeditorSubmission->setDateAuthorUnderway($acquisitionsEditorSubmission->getCopyeditorDateAuthorUnderway());
-		$copyeditorSubmission->setDateAuthorNotified($acquisitionsEditorSubmission->getCopyeditorDateAuthorNotified());
-		$copyeditorSubmission->setDateAuthorCompleted($acquisitionsEditorSubmission->getCopyeditorDateAuthorCompleted());
-		$copyeditorSubmission->setDateAuthorAcknowledged($acquisitionsEditorSubmission->getCopyeditorDateAuthorAcknowledged());
-		$copyeditorSubmission->setDateFinalUnderway($acquisitionsEditorSubmission->getCopyeditorDateFinalUnderway());
-		$copyeditorSubmission->setDateFinalNotified($acquisitionsEditorSubmission->getCopyeditorDateFinalNotified());
-		$copyeditorSubmission->setDateFinalCompleted($acquisitionsEditorSubmission->getCopyeditorDateFinalCompleted());
-		$copyeditorSubmission->setDateFinalAcknowledged($acquisitionsEditorSubmission->getCopyeditorDateFinalAcknowledged());
-		$copyeditorSubmission->setInitialRevision($acquisitionsEditorSubmission->getCopyeditorInitialRevision());
-		$copyeditorSubmission->setEditorAuthorRevision($acquisitionsEditorSubmission->getCopyeditorEditorAuthorRevision());
-		$copyeditorSubmission->setFinalRevision($acquisitionsEditorSubmission->getCopyeditorFinalRevision());
-		$copyeditorSubmission->setDateStatusModified($acquisitionsEditorSubmission->getDateStatusModified());
-		$copyeditorSubmission->setLastModified($acquisitionsEditorSubmission->getLastModified());
-
-		if ($copyeditorSubmission->getCopyedId() != null) {
-			$this->copyeditorSubmissionDao->updateCopyeditorSubmission($copyeditorSubmission);
-		} else {
-			$this->copyeditorSubmissionDao->insertCopyeditorSubmission($copyeditorSubmission);
-		}
-*/
 
 		// update review assignments
+		$removedReviewAssignments =& $acquisitionsEditorSubmission->getRemovedReviewAssignments();
+
 		foreach ($acquisitionsEditorSubmission->getReviewAssignments() as $reviewAssignment) {
+
+			if (isset($removedReviewAssignments[$reviewAssignment->getReviewId()])) continue;
+
 			if ($reviewAssignment->getReviewId() > 0) {
 				$this->reviewAssignmentDao->updateObject($reviewAssignment);
 			} else {
@@ -347,9 +318,8 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		}
 
 		// Remove deleted review assignments
-		$removedReviewAssignments = $acquisitionsEditorSubmission->getRemovedReviewAssignments();
-		for ($i=0, $count=count($removedReviewAssignments); $i < $count; $i++) {
-			$this->reviewAssignmentDao->deleteById($removedReviewAssignments[$i]);
+		foreach ($removedReviewAssignments as $removedReviewAssignmentId) {
+			$this->reviewAssignmentDao->deleteById($removedReviewAssignmentId);
 		}
 
 		// Update layout editing assignment

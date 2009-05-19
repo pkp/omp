@@ -199,7 +199,7 @@ class ReviewAssignmentDAO extends DAO {
 		$result =& $this->retrieve($query, $queryParams);
 
 		while (!$result->EOF) {
-			$reviewAssignments[] =& $this->_fromRow($result->GetRowAssoc(false));
+			$reviewAssignments[$result->fields['review_id']] =& $this->_fromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 
@@ -312,8 +312,8 @@ class ReviewAssignmentDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT f.*, a.reviewer_id AS reviewer_id, a.review_id
 			FROM review_assignments a, monograph_files f 
-			WHERE reviewer_file_id = file_id AND 
-				viewable = 1 AND 
+			WHERE a.reviewer_file_id = f.file_id AND 
+				f.viewable = 1 AND 
 				a.monograph_id = ?
 			ORDER BY a.round, a.reviewer_id, a.review_id', 
 			array((int) $monographId)
