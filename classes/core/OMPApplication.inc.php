@@ -48,19 +48,21 @@ class OMPApplication extends PKPApplication {
 	function getContextList() {
 		return array('press');
 	}
-	/**
-	 * Get the locale key for the name of this application.
-	 * @return string
-	 */
-	function getNameKey() {
-		return('common.openMonographPress');
-	}
+
 	/**
 	 * Get the symbolic name of this application
 	 * @return string
 	 */
 	function getName() {
 		return 'omp';
+	}
+
+	/**
+	 * Get the locale key for the name of this application.
+	 * @return string
+	 */
+	function getNameKey() {
+		return('common.openMonographPress');
 	}
 
 	/**
@@ -81,7 +83,7 @@ class OMPApplication extends PKPApplication {
 		if (!Config::getVar('general', 'installed')) return false;
 		if (!empty($_POST) || Validation::isLoggedIn()) return false;
 		if (!PKPRequest::isPathInfoEnabled()) {
-			$ok = array('journal', 'page', 'op', 'path');
+			$ok = array('press', 'page', 'op', 'path');
 			if (!empty($_GET) && count(array_diff(array_keys($_GET), $ok)) != 0) {
 				return false;
 			}
@@ -90,7 +92,7 @@ class OMPApplication extends PKPApplication {
 		}
 
 		if (in_array(PKPRequest::getRequestedPage(), array(
-			'about', 'announcement', 'help', 'index', 'information', 'rt', 'issue', ''
+			'about', 'announcement', 'help', 'index', 'information', 'rt', ''
 		))) return true;
 
 		return false;
@@ -107,7 +109,7 @@ class OMPApplication extends PKPApplication {
 				$id = isset($_SERVER['PATH_INFO'])?$_SERVER['PATH_INFO']:'index';
 				$id .= '-' . Locale::getLocale();
 			} else {
-				$id = Request::getUserVar('journal') . '-' . Request::getUserVar('page') . '-' . Request::getUserVar('op') . '-' . Request::getUserVar('path') . '-' . Locale::getLocale();
+				$id = Request::getUserVar('press') . '-' . Request::getUserVar('page') . '-' . Request::getUserVar('op') . '-' . Request::getUserVar('path') . '-' . Locale::getLocale();
 			}
 			$path = dirname(dirname(dirname(__FILE__)));
 			$cacheFilename = $path . '/cache/wc-' . md5($id) . '.html';
@@ -121,59 +123,39 @@ class OMPApplication extends PKPApplication {
 	 */
 	function getDAOMap() {
 		return array_merge(parent::getDAOMap(), array(
-			'AnnouncementDAO' => 'announcement.AnnouncementDAO',
-			'AnnouncementTypeDAO' => 'announcement.AnnouncementTypeDAO',
-			'ArticleEmailLogDAO' => 'article.log.ArticleEmailLogDAO',
-			'ArticleEventLogDAO' => 'article.log.ArticleEventLogDAO',
+			'MonographEmailLogDAO' => 'monograph.log.MonographEmailLogDAO',
+			'MonographEventLogDAO' => 'monograph.log.MonographEventLogDAO',
 			'MonographCommentDAO' => 'monograph.MonographCommentDAO',
 			'MonographComponentDAO' => 'monograph.MonographComponentDAO',
-			'ArticleDAO' => 'article.ArticleDAO',
+			'MonographDAO' => 'monograph.MonographDAO',
 			'AcquisitionsArrangementDAO' => 'press.AcquisitionsArrangementDAO',
 			'AcquisitionsArrangementEditorsDAO' => 'press.AcquisitionsArrangementEditorsDAO',
 			'MonographFileDAO' => 'monograph.MonographFileDAO',
-			'ArticleGalleyDAO' => 'article.ArticleGalleyDAO',
-			'ArticleNoteDAO' => 'article.ArticleNoteDAO',
-			'ArticleSearchDAO' => 'search.ArticleSearchDAO',
+			'MonographGalleyDAO' => 'monograph.MonographGalleyDAO',
+			'NotificationStatusDAO' => 'press.NotificationStatusDAO',
 			'AuthorDAO' => 'monograph.AuthorDAO',
 			'AuthorSubmissionDAO' => 'submission.author.AuthorSubmissionDAO',
-			'CommentDAO' => 'comment.CommentDAO',
 			'ProductionEditorSubmissionDAO' => 'submission.productionEditor.ProductionEditorSubmissionDAO',
-			'CopyAssignmentDAO' => 'submission.copyAssignment.CopyAssignmentDAO',
 			'CopyeditorSubmissionDAO' => 'submission.copyeditor.CopyeditorSubmissionDAO',
 			'EditAssignmentDAO' => 'submission.editAssignment.EditAssignmentDAO',
 			'EditorSubmissionDAO' => 'submission.editor.EditorSubmissionDAO',
 			'EmailTemplateDAO' => 'mail.EmailTemplateDAO',
-			'GroupDAO' => 'group.GroupDAO',
-			'GroupMembershipDAO' => 'group.GroupMembershipDAO',
-			'IssueDAO' => 'issue.IssueDAO',
 			'DesignerSubmissionDAO' => 'submission.designer.DesignerSubmissionDAO',
-			'MonographDAO' => 'monograph.MonographDAO',
-			'MonographGalleyDAO' => 'monograph.MonographGalleyDAO',
-			'NotificationStatusDAO' => 'press.NotificationStatusDAO',
-			'OAIDAO' => 'oai.ojs.OAIDAO',
-			'OJSCompletedPaymentDAO' => 'payment.ojs.OJSCompletedPaymentDAO',
 			'PluginSettingsDAO' => 'plugins.PluginSettingsDAO',
 			'PressDAO' => 'press.PressDAO',
 			'PressSettingsDAO' => 'press.PressSettingsDAO',
-			'ProofreaderSubmissionDAO' => 'submission.proofreader.ProofreaderSubmissionDAO',
 			'PublishedMonographDAO' => 'monograph.PublishedMonographDAO',
-			'QueuedPaymentDAO' => 'payment.QueuedPaymentDAO',
 			'ReviewAssignmentDAO' => 'submission.reviewAssignment.ReviewAssignmentDAO',
 			'ReviewerSubmissionDAO' => 'submission.reviewer.ReviewerSubmissionDAO',
 			'ReviewFormDAO' => 'reviewForm.ReviewFormDAO',
 			'ReviewRoundDAO' => 'monograph.reviewRound.ReviewRoundDAO',
 			'ReviewFormElementDAO' => 'reviewForm.ReviewFormElementDAO',
 			'ReviewFormResponseDAO' => 'reviewForm.ReviewFormResponseDAO',
-			'ReviewProcessDAO' => 'workflow.review.ReviewProcessDAO',
 			'WorkflowDAO' => 'workflow.WorkflowDAO',
-			'ProcessSignoffDAO' => 'workflow.ProcessSignoffDAO',
+			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
 			'RoleDAO' => 'security.RoleDAO',
-			'RTDAO' => 'rt.ojs.RTDAO',
 			'SuppFileDAO' => 'monograph.SuppFileDAO',
-			'ScheduledTaskDAO' => 'scheduledTask.ScheduledTaskDAO',
 			'AcquisitionsEditorSubmissionDAO' => 'submission.acquisitionsEditor.AcquisitionsEditorSubmissionDAO',
-			'SubscriptionDAO' => 'subscription.SubscriptionDAO',
-			'SubscriptionTypeDAO' => 'subscription.SubscriptionTypeDAO',
 			'UserDAO' => 'user.UserDAO',
 			'UserSettingsDAO' => 'user.UserSettingsDAO',
 			'SignoffEntityDAO' => 'signoff.SignoffEntityDAO'
