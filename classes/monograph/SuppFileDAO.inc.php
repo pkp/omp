@@ -331,12 +331,18 @@ class SuppFileDAO extends DAO {
 	 * Checks if public identifier exists
 	 * @param $publicSuppFileId string
 	 * @param $suppId int A supplemental file ID to exempt from the test
-	 * @param $journalId int
+	 * @param $pressId int
 	 * @return boolean
 	 */
-	function suppFileExistsByPublicId($publicSuppFileId, $suppId, $journalId) {
+	function suppFileExistsByPublicId($publicSuppFileId, $suppId, $pressId) {
 		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM monograph_supplementary_files f, monographs a WHERE f.monograph_id = a.monograph_id AND f.public_supp_file_id = ? AND f.supp_id <> ? AND a.journal_id = ?', array($publicSuppFileId, $suppId, $journalId)
+			'SELECT COUNT(*) 
+			FROM monograph_supplementary_files f, monographs a 
+			WHERE f.monograph_id = a.monograph_id AND 
+				f.public_supp_file_id = ? AND 
+				f.supp_id <> ? AND 
+				a.press_id = ?', 
+			array($publicSuppFileId, $suppId, $pressId)
 		);
 		$returner = $result->fields[0] ? true : false;
 

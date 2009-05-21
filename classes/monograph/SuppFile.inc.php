@@ -388,21 +388,21 @@ class SuppFile extends MonographFile {
 
 	/**
 	 * Return the "best" supp file ID -- If a public ID is set,
-	 * use it; otherwise use the internal Id. (Checks the journal
+	 * use it; otherwise use the internal Id. (Checks the press
 	 * settings to ensure that the public ID feature is enabled.)
-	 * @param $journal Object the journal this monograph is in
+	 * @param $press Object of type Press
 	 * @return string
 	 */
-	function getBestSuppFileId($journal = null) {
+	function getBestSuppFileId($press = null) {
 		// Retrieve the journal, if necessary.
-		if (!isset($journal)) {
+		if (!isset($press)) {
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
 			$monograph =& $monographDao->getMonograph($this->getMonographId());
-			$journalDao =& DAORegistry::getDAO('JournalDAO');
-			$journal =& $journalDao->getJournal($monograph->getJournalId());
+			$pressDao =& DAORegistry::getDAO('PressDAO');
+			$press =& $pressDao->getPress($monograph->getPressId());
 		}
 
-		if ($journal->getSetting('enablePublicSuppFileId')) {
+		if ($press->getSetting('enablePublicSuppFileId')) {
 			$publicSuppFileId = $this->getPublicSuppFileId();
 			if (!empty($publicSuppFileId)) return $publicSuppFileId;
 		}

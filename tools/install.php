@@ -20,12 +20,12 @@ require(dirname(dirname(__FILE__)) . '/lib/pkp/classes/cliTool/CliTool.inc.php')
 
 import('cliTool.InstallTool');
 
-class OJSInstallTool extends InstallTool {
+class OMPInstallTool extends InstallTool {
 	/**
 	 * Constructor.
 	 * @param $argv array command-line arguments
 	 */
-	function OJSInstallTool($argv = array()) {
+	function OMPInstallTool($argv = array()) {
 		parent::InstallTool($argv);
 	}
 
@@ -35,18 +35,18 @@ class OJSInstallTool extends InstallTool {
 	 * FIXME: Use readline if available?
 	 */
 	function readParams() {
-		printf("%s\n", Locale::translate('installer.ojsInstallation'));
+		printf("%s\n", Locale::translate('installer.ompInstallation'));
 
 		parent::readParams();
 
-		$this->readParamBoolean('install', 'installer.installOJS');
+		$this->readParamBoolean('install', 'installer.installOMP');
 
 		return $this->params['install'];
 	}
 
 }
 
-$tool =& new OJSInstallTool(isset($argv) ? $argv : array());
+$tool =& new OMPInstallTool(isset($argv) ? $argv : array());
 $tool->execute();
 
 ?>
