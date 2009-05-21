@@ -30,7 +30,6 @@ class TemplateManager extends PKPTemplateManager {
 
 		parent::PKPTemplateManager();
 
-		$this->register_function('monographComponents', array(&$this, 'smartyMonographComponents'));
 		// Are we using implicit authentication?
 		$this->assign('implicitAuth', Config::getVar('security', 'implicit_auth'));
 	
@@ -51,6 +50,7 @@ class TemplateManager extends PKPTemplateManager {
 			$siteStyleFilename = PublicFileManager::getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
 			if (file_exists($siteStyleFilename)) $this->addStyleSheet(Request::getBaseUrl() . '/' . $siteStyleFilename);
 
+			$this->assign('homeContext', array());
 			if (isset($press)) {
 				$this->assign_by_ref('currentPress', $press);
 				$pressTitle = $press->getLocalizedName();
@@ -89,10 +89,6 @@ class TemplateManager extends PKPTemplateManager {
 					$this->addStyleSheet(Request::getBaseUrl() . '/' . PublicFileManager::getPressFilesPath($press->getId()) . '/' . $pressStyleSheet['uploadName']);
 				}
 				
-	//			import('payment.ojs.OJSPaymentManager');
-	//			$paymentManager =& OJSPaymentManager::getManager();
-	//			$this->assign('pressPaymentsEnabled', $paymentManager->isConfigured());				
-
 				$this->assign('pageFooter', $press->getLocalizedSetting('pressPageFooter'));	
 			} else {
 				// Add the site-wide logo, if set for this locale or the primary locale
@@ -153,6 +149,31 @@ class TemplateManager extends PKPTemplateManager {
 			$text = isset($params['text']) ? $params['text'] : '';
 			return "<a href=\"$link\">$text</a>";
 		}
+	}
+
+	/**
+	 * Generate a URL into OMP. (This is a wrapper around Request::url to make it available to Smarty templates.)
+	 */
+	function smartyUrl($params, &$smarty) {
+		// Extract the variables named in $paramList, and remove them
+		// from the params array. Variables remaining in params will be
+		// passed along to Request::url as extra parameters.
+		$context = array();
+		$contextList = OMPApplication::getContextList();
+
+		if ( !isset($params['context']) ) {
+			foreach ($contextList as $contextName) {
+				if (isset($params[$contextName])) {
+					$context[$contextName] = $params[$contextName];
+					unset($params[$contextName]);
+				} else {
+					$context[$contextName] = null;				
+				}
+			}
+			$params['context'] = $context;
+		}
+	
+		return parent::smartyUrl($params, $smarty);
 	}
 
 	/**
@@ -226,42 +247,6 @@ class TemplateManager extends PKPTemplateManager {
 		}
 
 		return $value;
-	}
-	function smartyMonographComponents($params, &$smarty) {
-		if (isset($params['monographId'])) {
-			import('inserts.monographComponents.MonographComponentsInsert');
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$monograph = $monographDao->getMonograph($params['monographId']);
-			$mc =& new MonographComponentsInsert(null, $monograph, ($monograph->getWorkType()==1) ? 0 : 1);
-			//$mc->display();
-			$this->_smarty_include(array('smarty_include_vars'=>array(),'smarty_include_tpl_file'=>'monograph/contributors.tpl'));
-			return 1;
-			
-		}
-	}
-	/**
-	 * Generate a URL into OMP. (This is a wrapper around Request::url to make it available to Smarty templates.)
-	 */
-	function smartyUrl($params, &$smarty) {
-		// Extract the variables named in $paramList, and remove them
-		// from the params array. Variables remaining in params will be
-		// passed along to Request::url as extra parameters.
-		$context = array();
-		$contextList = OMPApplication::getContextList();
-
-		if ( !isset($params['context']) ) {
-			foreach ($contextList as $contextName) {
-				if (isset($params[$contextName])) {
-					$context[$contextName] = $params[$contextName];
-					unset($params[$contextName]);
-				} else {
-					$context[$contextName] = null;				
-				}
-			}
-			$params['context'] = $context;
-		}
-	
-		return parent::smartyUrl($params, $smarty);
 	}
 }
 
