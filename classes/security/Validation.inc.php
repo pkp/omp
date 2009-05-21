@@ -383,16 +383,7 @@ class Validation {
 	 * @return boolean
 	 */
 	function isReader($pressId = -1) {
-//		return Validation::isAuthorized(ROLE_ID_READER, $pressId);
-	}
-
-	/**
-	 * Shortcut for checking authorization as subscription manager.
-	 * @param $pressId int
-	 * @return boolean
-	 */
-	function isSubscriptionManager($pressId = -1) {
-		return Validation::isAuthorized(ROLE_ID_SUBSCRIPTION_MANAGER, $pressId);
+		return Validation::isAuthorized(ROLE_ID_READER, $pressId);
 	}
 
 	/**
