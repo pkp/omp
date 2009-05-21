@@ -21,6 +21,8 @@ import ('monograph.Monograph');
 define('MONOGRAPH_STATUS_UPCOMING', 0x00000001);
 define('MONOGRAPH_STATUS_PUBLISHED', 0x00000002);
 
+define('ARRANGEMENT_UNASSIGNED', 0);
+
 class MonographDAO extends DAO {
 	/**
 	 * Retrieve Monograph by monograph id
@@ -547,6 +549,18 @@ class MonographDAO extends DAO {
 		}
 	}
 
+	/**
+	 * Remove all monographs from an acquisitions arrangement.
+	 * @param $arrangementId int
+	 */
+	function removeMonographsFromAcquisitionsArrangement($arrangementId) {
+		return $this->update(
+				'UPDATE monographs
+				SET arrangement_id = ?
+				WHERE arrangement_id = ?',
+				array(ARRANGEMENT_UNASSIGNED, $arrangementId)
+			);
+	}
 }
 
 ?>

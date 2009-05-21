@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Display list of submissionCategory in journal management.
+ * Display list of submission categories in press management.
  *
  * $Id$
  *}
@@ -22,7 +22,7 @@
 	</tr>
 	<tr class="heading" valign="bottom">
 		<td width="60%">{translate key="submissionCategory.title"}</td>
-		<td width="25%">{translate key="submissionCategory.abbreviation"}</td>
+		<td width="25%">{translate key="acquisitionsArrangement.abbreviation"}</td>
 		<td width="15%" align="right">{translate key="common.action"}</td>
 	</tr>
 	<tr>
@@ -33,7 +33,7 @@
 		<td>{$category_item->getAcquisitionsArrangementTitle()|escape}</td>
 		<td>{$category_item->getAcquisitionsArrangementAbbrev()|escape}</td>
 		<td align="right" class="nowrap">
-			<a href="{url op="editSubmissionCategory" path=$category_item->getAcquisitionsArrangementId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSubmissionCategory" path=$category_item->getAcquisitionsArrangementId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.submissionCategory.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveSubmissionCategory" d=u arrangementId=$category_item->getAcquisitionsArrangementId()}">&uarr;</a>&nbsp;<a href="{url op="moveSubmissionCategory" d=d arrangementId=$category_item->getAcquisitionsArrangementId()}">&darr;</a>
+			<a href="{url op="editSubmissionCategory" path=$category_item->getAcquisitionsArrangementId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSubmissionCategory" path=$category_item->getAcquisitionsArrangementId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.acquisitionsArrangement.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveSubmissionCategory" d=u arrangementId=$category_item->getAcquisitionsArrangementId()}">&uarr;</a>&nbsp;<a href="{url op="moveSubmissionCategory" d=d arrangementId=$category_item->getAcquisitionsArrangementId()}">&darr;</a>
 		</td>
 	</tr>
 	<tr>
@@ -42,7 +42,7 @@
 {/iterate}
 {if $submissionCategory->wasEmpty()}
 	<tr>
-		<td colspan="3" class="nodata">{translate key="manager.submissionCategory.noneCreated"}</td>
+		<td colspan="3" class="nodata">{translate key="manager.categories.noneCreated"}</td>
 	</tr>
 	<tr>
 		<td colspan="3" class="endseparator">&nbsp;</td>
@@ -54,7 +54,7 @@
 	</tr>
 {/if}
 </table>
-<a class="action" href="{url op="createSubmissionCategory"}">{translate key="manager.submissionCategory.create"}</a>
+<a class="action" href="{url op="createSubmissionCategory"}">{translate key="manager.categories.create"}</a>
 </div>
 
 {include file="common/footer.tpl"}

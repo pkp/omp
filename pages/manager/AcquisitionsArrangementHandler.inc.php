@@ -20,69 +20,123 @@ define('CATEGORY_ARRANGEMENT', 2);
 import('pages.manager.ManagerHandler');
 
 class AcquisitionsArrangementHandler extends ManagerHandler {
-	var $type; 
 
 	/**
 	 * Constructor
-	 */	
+	 */
 	function AcquisitionsArrangementHandler() {
 		parent::ManagerHandler();
-		
-		//FIXME: how is this set elsewhere?
-		$this->type = CATEGORY_ARRANGEMENT;
 	}
 
+	/**
+	 * Display a list of the submission categories for the current press.
+	 */
 	function submissionCategory() {
 		$this->listItems(CATEGORY_ARRANGEMENT);
 	}
 
+	/**
+	 * Display a list of the arrangements within the current press.
+	 */
 	function createSubmissionCategory() {
-		import('pages.manager.AcquisitionsArrangementHandler');
 		$this->createItem(CATEGORY_ARRANGEMENT);
 	}
 
+	/**
+	 * Display a list of the arrangements within the current press.
+	 * @param $args array optional, if set the first parameter is the ID of the arrangement to edit
+	 */
 	function editSubmissionCategory($args) {
-		import('pages.manager.AcquisitionsArrangementHandler');
 		$this->editItem($args, CATEGORY_ARRANGEMENT);
 	}
 
+	/**
+	 * Display a list of the arrangements within the current press.
+	 * @param $args array optional, if set the first parameter is the ID of the arrangement to edit
+	 */
 	function updateSubmissionCategory($args) {
-		import('pages.manager.AcquisitionsArrangementHandler');
 		$this->updateItem($args, CATEGORY_ARRANGEMENT);
 	}
 
+	/**
+	 * Delete a submission category.
+	 * @param $args array optional, if set the first parameter is the ID of the arrangement to edit
+	 */
 	function deleteSubmissionCategory($args) {
-		import('pages.manager.AcquisitionsArrangementHandler');
 		$this->deleteItem($args, CATEGORY_ARRANGEMENT);
 	}
 
+	/**
+	 * Move a submission category.
+	 */
 	function moveSubmissionCategory() {
-		import('pages.manager.AcquisitionsArrangementHandler');
 		$this->moveItem(CATEGORY_ARRANGEMENT);
 	}
 
+	/**
+	 * Display a list of the series for the current press.
+	 */
+	function series() {
+		$this->listItems(SERIES_ARRANGEMENT);
+	}
+
+	/**
+	 * Create a series.
+	 */
+	function createSeries() {
+		$this->createItem(SERIES_ARRANGEMENT);
+	}
+
+	/**
+	 * Edit a series.
+	 * @param $args array optional, if set the first parameter is the ID of the arrangement to edit
+	 */
+	function editSeries($args) {
+		$this->editItem($args, SERIES_ARRANGEMENT);
+	}
+
+	/**
+	 * Update a series.
+	 * @param $args array optional, if set the first parameter is the ID of the arrangement to edit
+	 */
+	function updateSeries($args) {
+		$this->updateItem($args, SERIES_ARRANGEMENT);
+	}
+
+	/**
+	 * Delete a series.
+	 * @param $args array optional, if set the first parameter is the ID of the arrangement to edit
+	 */
+	function deleteSeries($args) {
+		$this->deleteItem($args, SERIES_ARRANGEMENT);
+	}
+
+	/**
+	 * Move series.
+	 */
+	function moveSeries() {
+		$this->moveItem(SERIES_ARRANGEMENT);
+	}
 	
 	/**
-	 * Display a list of the series within the current press.
+	 * Display a list of the current press's arrangements for the specified arrangement type.
 	 */
-	function listItems() {
+	function listItems($type = SERIES_ARRANGEMENT) {
 		$this->validate();
-		$this->setupTemplate(false);
+		$this->setupTemplate(false, $type);
 
 		$press =& Request::getPress();
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
 
-		$type = $this->type;
 		switch ($type) {
 			case CATEGORY_ARRANGEMENT: $arrangement = 'submissionCategory'; break;
-			default: $type = SERIES_ARRANGEMENT; $arrangement = 'series';
+			default: $arrangement = 'series';
 		}
 
 		$rangeInfo =& Handler::getRangeInfo($arrangement);
 		$arrangements =& $arrangementDao->getPressAcquisitionsArrangements($press->getId(), $rangeInfo, $type);
 
 		$templateMgr =& TemplateManager::getManager();
-//		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, 'manager'), 'manager.pressManagement')));
 		$templateMgr->assign_by_ref($arrangement, $arrangements);
 		$templateMgr->assign('helpTopicId','press.managementPages.'.$arrangement);
 
@@ -93,21 +147,22 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 	}
 
 	/**
-	 * Display form to create a new series.
+	 * Display form to create a new arrangement for the specified arrangement type.
+	 * @param $type int
 	 */
-	function createItem() {
-		$this->editItem(null);
+	function createItem($type = SERIES_ARRANGEMENT) {
+		$this->editItem(null, $type);
 	}
 
 	/**
-	 * Display form to create/edit a series.
-	 * @param $args array optional, if set the first parameter is the ID of the series to edit
+	 * Display form to create/edit an arrangement for the specified arrangement type.
+	 * @param $args array optional, if set the first parameter is the ID of the arrangement to edit
+	 * @param $type int
 	 */
-	function editItem($args = array()) {
+	function editItem($args = array(), $type = SERIES_ARRANGEMENT) {
 		$this->validate();
-		$this->setupTemplate(true);
+		$this->setupTemplate(true, $type);
 
-		$type = $this->type;
 		switch ($type) {
 			case CATEGORY_ARRANGEMENT: {
 				import('manager.form.SubmissionCategoryForm');
@@ -121,7 +176,6 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 			}
 		}
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		if ($form->isLocaleResubmit()) {
 			$form->readInputData();
 		} else {
@@ -131,12 +185,13 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 	}
 
 	/**
-	 * Save changes to a series.
+	 * Save changes to an arrangement for the specified arrangement type.
+	 * @param $args array first parameter is the ID of the arrangement to delete
+	 * @param $type int
 	 */
-	function updateItem($args) {
+	function updateItem($args, $type = SERIES_ARRANGEMENT) {
 		$this->validate();
-		
-		$type = $this->type;
+
 		switch ($type) {
 			case CATEGORY_ARRANGEMENT: {
 				import('manager.form.SubmissionCategoryForm');
@@ -172,26 +227,26 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 			$form->execute();
 			Request::redirect(null, null, $formRedirect);
 		} else {
-			$this->setupTemplate(true);
+			$this->setupTemplate(true, $type);
 			$form->display();
 		}
 	}
 
 	/**
-	 * Delete a series.
-	 * @param $args array first parameter is the ID of the series to delete
+	 * Delete an arrangement for the specified arrangement type.
+	 * @param $args array first parameter is the ID of the arrangement to delete
+	 * @param $type int
 	 */
-	function deleteItem($args) {
+	function deleteItem($args, $type = SERIES_ARRANGEMENT) {
 		$this->validate();
 
 		if (isset($args) && !empty($args)) {
 			$press =& Request::getPress();
 
 			$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-			$arrangementDao->deleteAcquisitionsArrangementById($args[0], $press->getId());
+			$arrangementDao->deleteById($args[0], $press->getId());
 		}
-		
-		$type = $this->type;
+
 		switch ($type) {
 			case CATEGORY_ARRANGEMENT: Request::redirect(null, null, 'submissionCategory'); break;
 			default: Request::redirect(null, null, 'series');
@@ -201,9 +256,9 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 	}
 
 	/**
-	 * Change the sequence of a series.
+	 * Change the sequence of an arrangement for the specified arrangement type.
 	 */
-	function moveItem() {
+	function moveItem($type = SERIES_ARRANGEMENT) {
 		$this->validate();
 
 		$press =& Request::getPress();
@@ -216,20 +271,24 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 			$arrangementDao->updateAcquisitionsArrangement($arrangement);
 			$arrangementDao->resequenceAcquisitionsArrangements($arrangement->getArrangementType());
 		}
-		
-		$type = $this->type;
+
 		switch ($type) {
 			case CATEGORY_ARRANGEMENT: Request::redirect(null, null, 'submissionCategory'); break;
 			default: Request::redirect(null, null, 'series');
 		}
 	}
 
-	function setupTemplate($subclass = false) {
+	/**
+	 * Setup common template variables for the specified arrangement.
+	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
+	 * @param $type int
+	 */
+	function setupTemplate($subclass = false, $type = SERIES_ARRANGEMENT) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_READER));
 		parent::setupTemplate(true);
 		if ($subclass) {
 			$templateMgr =& TemplateManager::getManager();
-			$type = $this->type;			
+		
 			switch ($type) {
 				case CATEGORY_ARRANGEMENT:
 					$arrangement = 'submissionCategory';

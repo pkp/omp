@@ -133,20 +133,24 @@ Note that if your site administrator has already registered this site with the P
 	<message key="monograph.suppFiles">Supplementary Files</message>
 	<message key="monograph.contributors">Contributors</message>
 	<message key="monograph.commentsToEditor">Submitter Comments</message>
-	
-	<message key="series.series">Series</message>
-	<message key="series.title">Series' Title</message>
-	<message key="series.abbreviation">Abbreviation</message>
-	<message key="series.abbreviation.example">(For example, Ancient Theatre Series=ATS)</message>
-	<message key="series.issn">ISSN</message>
+
 	<message key="submission.reviewForm">Review Form</message>
 	<message key="submission.editorDecision">Editor Decision</message>
-	
+
+
+	<!-- series/categories/acquisitions arrangements -->
+	<message key="acquisitionsArrangement.abbreviation">Abbreviation</message>
+
+	<message key="series.series">Series</message>
+	<message key="series.title">Series' Title</message>
+	<message key="series.abbreviation.example">(For example, Ancient Theatre Series=ATS)</message>
+	<message key="series.issn">ISSN</message>
+
 	<message key="submissionCategory.submissionCategories">Submission Categories</message>
-	<message key="submissionCategory.title">Category Title</message>
-	<message key="submissionCategory.abbreviation">Abbreviation</message>
-	<message key="submissionCategory.abbreviation.example">(For example, Otorhinolaryngology=ENT)</message>
 	<message key="submissionCategory.submissionCategory">Submission Category</message>
+	<message key="submissionCategory.title">Category Title</message>
+	<message key="submissionCategory.abbreviation.example">(For example, Otorhinolaryngology=ENT)</message>
+	
 	<!-- common -->
 	<message key="common.copy">Copy</message>
 	<message key="common.preview">Preview</message>

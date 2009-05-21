@@ -144,20 +144,21 @@ class AcquisitionsArrangementForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr =& TemplateManager::getManager();
+		parent::display();
+
 		$press =& Request::getPress();
-
-		$templateMgr->assign('commentsEnabled', $press->getSetting('enableComments'));
-
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+
 		$reviewForms =& $reviewFormDao->getActiveByPressId($press->getId());
 		$reviewFormOptions = array();
 		while ($reviewForm =& $reviewForms->next()) {
 			$reviewFormOptions[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
 		}
-		$templateMgr->assign_by_ref('reviewFormOptions', $reviewFormOptions);
 
-		parent::display();
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('arrangementId', $this->acquisitionsArrangementId);
+		$templateMgr->assign('commentsEnabled', $press->getSetting('enableComments'));
+		$templateMgr->assign_by_ref('reviewFormOptions', $reviewFormOptions);
 	}
 
 	/**
@@ -184,7 +185,7 @@ class AcquisitionsArrangementForm extends Form {
 		$reviewFormId = $this->getData('reviewFormId');
 		if ($reviewFormId === '') $reviewFormId = null;
 		$arrangement->setReviewFormId($reviewFormId);
-		$arrangement->setMetaIndexed($this->getData('metaIndexed') ? 0 : 1); // #2066: Inverted
+		$arrangement->setMetaIndexed($this->getData('metaIndexed') ? 0 : 1);
 		$arrangement->setEditorRestricted($this->getData('editorRestriction') ? 1 : 0);
 		$arrangement->setHideAbout($this->getData('hideAbout') ? 1 : 0);
 		$arrangement->setDisableComments($this->getData('disableComments') ? 1 : 0);
@@ -193,20 +194,20 @@ class AcquisitionsArrangementForm extends Form {
 
 		if (isset($this->acquisitionsArrangementId)) {
 			$acquisitionsArrangementsDao->updateAcquisitionsArrangement($arrangement);
-			$submissionCategoryId = $arrangement->getAcquisitionsArrangementId();
+			$arrangementId = $arrangement->getAcquisitionsArrangementId();
 
 		} else {
-			$submissionCategoryId = $acquisitionsArrangementsDao->insertAcquisitionsArrangement($arrangement);
+			$arrangementId = $acquisitionsArrangementsDao->insertAcquisitionsArrangement($arrangement);
 			$acquisitionsArrangementsDao->resequenceAcquisitionsArrangements($arrangement->getArrangementType());
 		}
 
-		$this->acquisitionsArrangementId = $submissionCategoryId;
+		$this->acquisitionsArrangementId = $arrangementId;
 		// Save assigned editors
 		$assignedEditorIds = Request::getUserVar('assignedEditorIds');
 		if (empty($assignedEditorIds)) $assignedEditorIds = array();
 		elseif (!is_array($assignedEditorIds)) $assignedEditorIds = array($assignedEditorIds);
 		$acquisitionsArrangementsEditorsDao =& DAORegistry::getDAO('AcquisitionsArrangementEditorsDAO');
-		$acquisitionsArrangementsEditorsDao->deleteEditorsByAcquisitionsArrangementId($submissionCategoryId, $pressId);
+		$acquisitionsArrangementsEditorsDao->deleteEditorsByAcquisitionsArrangementId($arrangementId, $pressId);
 		foreach ($this->acquisitionsArrangementEditors as $key => $junk) {
 			$arrangementEditor =& $this->acquisitionsArrangementEditors[$key];
 			$userId = $arrangementEditor->getId();
@@ -216,7 +217,7 @@ class AcquisitionsArrangementForm extends Form {
 			// used in other cases.
 			if (in_array($userId, $assignedEditorIds)) $acquisitionsArrangementsEditorsDao->insertEditor(
 				$pressId,
-				$submissionCategoryId,
+				$arrangementId,
 				$userId,
 				Request::getUserVar('canReview' . $userId),
 				Request::getUserVar('canEdit' . $userId)

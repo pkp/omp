@@ -242,7 +242,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * @param $arrangement AcquisitionsArrangement
 	 */
 	function deleteSeries(&$arrangement) {
-		return $this->deleteAcquisitionsArrangementById($arrangement->getAcquisitionsArrangementId(), $arrangement->getPressId());
+		return $this->deleteById($arrangement->getAcquisitionsArrangementId(), $arrangement->getPressId());
 	}
 
 	/**
@@ -250,20 +250,13 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * @param $arrangementId int
 	 * @param $pressId int optional
 	 */
-	function deleteAcquisitionsArrangementById($arrangementId, $pressId = null) {
+	function deleteById($arrangementId, $pressId = null) {
 		$arrangementEditorsDao =& DAORegistry::getDAO('AcquisitionsArrangementEditorsDAO');
 		$arrangementEditorsDao->deleteEditorsByAcquisitionsArrangementId($arrangementId, $pressId);
 
-		// Remove articles from this acquisitions_arrangements
-		// TODO implement when checked
-//		$monographDao =& DAORegistry::getDAO('MonographDAO');
-//		$monographDao->removeMonographsFromAcquisitionsArrangement($arrangementId);
-
-		// Delete published article entries from this acquisitions_arrangements -- they must
-		// be re-published.
-		// TODO implement when published articles
-//		$publishedArticleDao =& DAORegistry::getDAO('PublishedMonographDAO');
-//		$publishedArticleDao->deletePublishedMonographsBySeriesId($arrangementId);
+		// Remove monographs from this arrangement
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao->removeMonographsFromAcquisitionsArrangement($arrangementId);
 
 		if (isset($pressId) && !$this->acquisitionsArrangementExists($arrangementId, $pressId)) return false;
 		$this->update('DELETE FROM acquisitions_arrangements_settings WHERE arrangement_id = ?', array($arrangementId));

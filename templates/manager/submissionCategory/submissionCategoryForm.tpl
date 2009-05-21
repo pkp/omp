@@ -1,10 +1,10 @@
 {**
- * seriesForm.tpl
+ * submissionCategoryForm.tpl
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Form to create/modify a journal series.
+ * Form to create/modify a press category.
  *
  * $Id$
  *}
@@ -14,7 +14,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form name="series" method="post" action="{url op="updateSubmissionCategory" path=$arrangementId}" onsubmit="return checkEditorAssignments()">
+<form name="category" method="post" action="{url op="updateSubmissionCategory" path=$arrangementId}" onsubmit="return checkEditorAssignments()">
 <input type="hidden" name="editorAction" value="" />
 <input type="hidden" name="userId" value="" />
 <input type="hidden" name="arrangementType" value="{$smarty.const.CATEGORY_ARRANGEMENT}" />
@@ -24,15 +24,15 @@
 <!--
 
 function addEditor(editorId) {
-	document.series.editorAction.value = "addEditor";
-	document.series.userId.value = editorId;
-	document.series.submit();
+	document.category.editorAction.value = "addEditor";
+	document.category.userId.value = editorId;
+	document.category.submit();
 }
 
 function removeEditor(editorId) {
-	document.series.editorAction.value = "removeEditor";
-	document.series.userId.value = editorId;
-	document.series.submit();
+	document.category.editorAction.value = "removeEditor";
+	document.category.userId.value = editorId;
+	document.category.submit();
 }
 
 function checkEditorAssignments() {
@@ -41,12 +41,12 @@ function checkEditorAssignments() {
 	{foreach from=$assignedEditors item=editorEntry}
 	{assign var=editor value=$editorEntry.user}
 	{literal}
-		if (!document.series.canReview{/literal}{$editor->getId()}{literal}.checked && !document.series.canEdit{/literal}{$editor->getId()}{literal}.checked) {
+		if (!document.category.canReview{/literal}{$editor->getId()}{literal}.checked && !document.category.canEdit{/literal}{$editor->getId()}{literal}.checked) {
 			isOk = false;
 		}
 	{/literal}{/foreach}{literal}
 	if (!isOk) {
-		alert({/literal}'{translate|escape:"jsparam" key="manager.series.form.mustAllowPermission"}'{literal});
+		alert({/literal}'{translate|escape:"jsparam" key="manager.acquisitionsArrangement.form.mustAllowPermission"}'{literal});
 		return false;
 	}
 	return true;
@@ -63,8 +63,8 @@ function checkEditorAssignments() {
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
-			{if $seriesId}{url|assign:"seriesFormUrl" op="editSubmissionCategory" path=$categoryId}
-			{else}{url|assign:"seriesFormUrl" op="createSubmissionCategory" path=$categoryId}
+			{if $arrangementId}{url|assign:"categoryFormUrl" op="editSubmissionCategory" path=$arrangementId}
+			{else}{url|assign:"categoryFormUrl" op="createSubmissionCategory" path=$arrangementId}
 			{/if}
 			{form_language_chooser form="submissionCategory" url=$submissionCategoryFormUrl}
 			<span class="instruct">{translate key="form.formLanguage.description"}</span>
@@ -76,11 +76,11 @@ function checkEditorAssignments() {
 	<td width="80%" class="value"><input type="text" name="title[{$formLocale|escape}]" value="{$title[$formLocale]|escape}" id="title" size="40" maxlength="120" class="textField" /></td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="abbrev" required="true" key="series.abbreviation"}</td>
+	<td class="label">{fieldLabel name="abbrev" required="true" key="acquisitionsArrangement.abbreviation"}</td>
 	<td class="value"><input type="text" name="abbrev[{$formLocale|escape}]" id="abbrev" value="{$abbrev[$formLocale]|escape}" size="20" maxlength="20" class="textField" />&nbsp;&nbsp;{translate key="submissionCategory.abbreviation.example"}</td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="policy" key="manager.submissionCategory.policy"}</td>
+	<td class="label">{fieldLabel name="policy" key="manager.categories.policy"}</td>
 	<td class="value"><textarea name="policy[{$formLocale|escape}]" rows="4" cols="40" id="policy" class="textArea">{$policy[$formLocale]|escape}</textarea></td>
 </tr>
 <tr valign="top">
@@ -96,14 +96,14 @@ function checkEditorAssignments() {
 	<td class="label">{fieldLabel suppressId="true" key="submission.indexing"}</td>
 	<td class="value">
 		<input type="checkbox" name="metaIndexed" id="metaIndexed" value="1" {if $metaIndexed}checked="checked"{/if} />
-		{fieldLabel name="metaIndexed" key="manager.sections.submissionIndexing"}
+		{fieldLabel name="metaIndexed" key="manager.acquisitionsArrangement.submissionIndexing"}
 	</td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel suppressId="true" key="submission.restrictions"}</td>
 	<td class="value">
 		<input type="checkbox" name="editorRestriction" id="editorRestriction" value="1" {if $editorRestriction}checked="checked"{/if} />
-		{fieldLabel name="editorRestriction" key="manager.series.editorRestriction"}
+		{fieldLabel name="editorRestriction" key="manager.acquisitionsArrangement.editorRestriction"}
 	</td>
 </tr>
 <tr valign="top">
@@ -127,11 +127,11 @@ function checkEditorAssignments() {
 <div class="separator"></div>
 
 <h3>{translate key="user.role.submissionCategoryEditors"}</h3>
-{url|assign:"seriesEditorsUrl" op="people" path="seriesEditors"|to_array}
-<p><span class="instruct">{translate key="manager.categories.categoryEditorInstructions" seriesEditorsUrl=$seriesEditorsUrl}</span></p>
-<h4>{translate key="manager.submissionCategory.unassigned"}</h4>
+{url|assign:"categoryEditorsUrl" op="people" path="acquisitionsEditors"|to_array}
+<p><span class="instruct">{translate key="manager.categories.categoryEditorInstructions" categoryEditorsUrl=$categoryEditorsUrl}</span></p>
+<h4>{translate key="manager.categories.unassigned"}</h4>
 
-<table width="100%" class="listing" id="unassignedSeriesEditors">
+<table width="100%" class="listing" id="unassignedCategoryEditors">
 	<tr>
 		<td colspan="3" class="headseparator">&nbsp;</td>
 	</tr>
@@ -161,9 +161,9 @@ function checkEditorAssignments() {
 	</tr>
 </table>
 
-<h4>{translate key="manager.submissionCategory.assigned"}</h4>
+<h4>{translate key="manager.categories.assigned"}</h4>
 
-<table width="100%" class="listing" id="assignedSeriesEditors">
+<table width="100%" class="listing" id="assignedCategoryEditors">
 	<tr>
 		<td colspan="5" class="headseparator">&nbsp;</td>
 	</tr>

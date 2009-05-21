@@ -22,7 +22,7 @@
 	</tr>
 	<tr class="heading" valign="bottom">
 		<td width="60%">{translate key="series.title"}</td>
-		<td width="25%">{translate key="series.abbreviation"}</td>
+		<td width="25%">{translate key="acquisitionsArrangement.abbreviation"}</td>
 		<td width="15%" align="right">{translate key="common.action"}</td>
 	</tr>
 	<tr>
@@ -33,7 +33,7 @@
 		<td>{$series_item->getAcquisitionsArrangementTitle()|escape}</td>
 		<td>{$series_item->getAcquisitionsArrangementAbbrev()|escape}</td>
 		<td align="right" class="nowrap">
-			<a href="{url op="editSeries" path=$series_item->getAcquisitionsArrangementId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSeries" path=$series_item->getAcquisitionsArrangementId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.series.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveSeries" d=u arrangementId=$series_item->getAcquisitionsArrangementId()}">&uarr;</a>&nbsp;<a href="{url op="moveSeries" d=d arrangementId=$series_item->getAcquisitionsArrangementId()}">&darr;</a>
+			<a href="{url op="editSeries" path=$series_item->getAcquisitionsArrangementId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSeries" path=$series_item->getAcquisitionsArrangementId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.acquisitionsArrangement.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveSeries" d=u arrangementId=$series_item->getAcquisitionsArrangementId()}">&uarr;</a>&nbsp;<a href="{url op="moveSeries" d=d arrangementId=$series_item->getAcquisitionsArrangementId()}">&darr;</a>
 		</td>
 	</tr>
 	<tr>
