@@ -23,7 +23,61 @@ class EmailHandler extends UserHandler {
 	function EmailHandler() {
 		parent::UserHandler();
 	}
-	
+
+	/**
+	 * Determine whether the current user has access to the monograph in some form
+	 * @param $monographId int
+	 * @return boolean
+	 */
+	function _monographAccessChecks($monographId, $userId) {
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+
+		$monograph =& $monographDao->getMonograph($monographId);
+
+		// First, conditions where access is OK.
+		// 1. User is submitter
+		if ($monograph && $monograph->getUserId() == $userId) return true;
+		// 2. User is acquisitions editor of monograph or full editor
+		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignments =& $editAssignmentDao->getByMonographId($monographId);
+		while ($editAssignment =& $editAssignments->next()) {
+			if ($editAssignment->getEditorId() === $userId) return true;
+		}
+		if (Validation::isEditor($press->getId())) return true;
+
+		// 3. User is reviewer
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		foreach ($reviewAssignmentDao->getByMonographId($monographId) as $reviewAssignment) {
+			if ($reviewAssignment->getReviewerId() === $userId) return true;
+		}
+		// 4. User is a designer
+		$designerAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
+		foreach ($designerAssignmentDao->getByMonographId($monographId) as $designAssignment) {
+			if ($designAssignment->getDesignerId() === $userId) return true;
+		}
+		// 5. User is copyeditor
+		$copyedSignoff =& $signoffDao->getBySymbolic('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $monographId);
+		if ($copyedSignoff && $copyedSignoff->getUserId() === $userId) return true;
+		// 6. User is production editor
+		$productionSignoff =& $signoffDao->getBySymbolic('SIGNOFF_PRODUCTION', ASSOC_TYPE_MONOGRAPH, $monographId);
+		if ($productionSignoff && $productionSignoff->getUserId() === $userId) return true;
+		// 7. User is proofreader
+		$proofSignoff =& $signoffDao->getBySymbolic('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $monographId);
+		if ($proofSignoff && $proofSignoff->getUserId() === $userId) return true;
+		// 8. User is indexer
+		$indexSignoff =& $signoffDao->getBySymbolic('SIGNOFF_INDEXING', ASSOC_TYPE_MONOGRAPH, $monographId);
+		if ($indexSignoff && $indexSignoff->getUserId() === $userId) return true;
+
+		// 9. User is director
+		if (Validation::isDirector($press->getId())) return true;
+
+		// Last, "deal-breakers" -- access is not allowed.
+		if (!$monograph || ($monograph && $monograph->getPressId() !== $press->getId())) return false;
+
+		return false;
+	}
+
 	function email($args) {
 		$this->validate();
 
@@ -41,7 +95,7 @@ class EmailHandler extends UserHandler {
 		if (	!$press || empty($template) || (
 			!Validation::isPressManager($press->getId()) &&
 			!Validation::isEditor($press->getId()) &&
-			!Validation::isSectionEditor($press->getId())
+			!Validation::isAcquisitionsEditor($press->getId())
 		)) {
 			$template = null;
 		}
@@ -74,51 +128,17 @@ class EmailHandler extends UserHandler {
 		}
 
 		$email = null;
-		if ($articleId = Request::getUserVar('articleId')) {
-			// This message is in reference to an article.
+		if ($monographId = Request::getUserVar('monographId')) {
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			// This message is in reference to a monograph.
 			// Determine whether the current user has access
-			// to the article in some form, and if so, use an
-			// ArticleMailTemplate.
-			$articleDao =& DAORegistry::getDAO('ArticleDAO');
-
-			$article =& $articleDao->getArticle($articleId);
-			$hasAccess = false;
-
-			// First, conditions where access is OK.
-			// 1. User is submitter
-			if ($article && $article->getUserId() == $user->getId()) $hasAccess = true;
-			// 2. User is section editor of article or full editor
-			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-			$editAssignments =& $editAssignmentDao->getByIdsByArticleId($articleId);
-			while ($editAssignment =& $editAssignments->next()) {
-				if ($editAssignment->getEditorId() === $user->getId()) $hasAccess = true;
-			}
-			if (Validation::isEditor($press->getId())) $hasAccess = true;
-
-			// 3. User is reviewer
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			foreach ($reviewAssignmentDao->getReviewAssignmentsByArticleId($articleId) as $reviewAssignment) {
-				if ($reviewAssignment->getReviewerId() === $user->getId()) $hasAccess = true;
-			}
-			// 4. User is copyeditor
-			$copyAssignmentDao =& DAORegistry::getDAO('CopyAssignmentDAO');
-			$copyAssignment =& $copyAssignmentDao->getCopyAssignmentByArticleId($articleId);
-			if ($copyAssignment && $copyAssignment->getCopyeditorId() === $user->getId()) $hasAccess = true;
-			// 5. User is layout editor
-			$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByArticleId($articleId);
-			if ($layoutAssignment && $layoutAssignment->getEditorId() === $user->getId()) $hasAccess = true;
-			// 6. User is proofreader
-			$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-			$proofAssignment =& $proofAssignmentDao->getProofAssignmentByArticleId($articleId);
-			if ($proofAssignment && $proofAssignment->getProofreaderId() === $user->getId()) $hasAccess = true;
-
-			// Last, "deal-breakers" -- access is not allowed.
-			if (!$article || ($article && $article->getPressId() !== $press->getId())) $hasAccess = false;
+			// to the monograph in some form, and if so, use an
+			// MonographMailTemplate.
+			$hasAccess = $this->_monographAccessChecks($monographId, $user->getId());
 
 			if ($hasAccess) {
-				import('mail.ArticleMailTemplate');
-				$email =& new ArticleMailTemplate($articleDao->getArticle($articleId, $template));
+				import('mail.MonographMailTemplate');
+				$email =& new MonographMailTemplate($monographDao->getMonograph($monographId, $template));
 			}
 		}
 
@@ -153,7 +173,7 @@ class EmailHandler extends UserHandler {
 			$userDao->updateObject($user);
 			Request::redirectUrl($redirectUrl);
 		} else {
-			$email->displayEditForm(Request::url(null, null, 'email'), array('redirectUrl' => Request::getUserVar('redirectUrl'), 'articleId' => $articleId), null, array('disableSkipButton' => true, 'articleId' => $articleId));
+			$email->displayEditForm(Request::url(null, null, 'email'), array('redirectUrl' => Request::getUserVar('redirectUrl'), 'monographId' => $monographId), null, array('disableSkipButton' => true, 'monographId' => $monographId));
 		}
 	}
 }

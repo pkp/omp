@@ -520,17 +520,17 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 				e.can_review AS can_review,
 				e.can_edit AS can_edit,
 				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
 			FROM
 				monographs a
 				INNER JOIN monograph_authors aa ON (aa.monograph_id = a.monograph_id)
 				LEFT JOIN edit_assignments e ON (e.monograph_id = a.monograph_id)
 				LEFT JOIN users ed ON (e.editor_id = ed.user_id)
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
-				LEFT JOIN users ce ON (c.copyeditor_id = ce.user_id)
 				LEFT JOIN proof_assignments p ON (p.monograph_id = a.monograph_id)
 				LEFT JOIN users pe ON (pe.user_id = p.proofreader_id)
-				LEFT JOIN designer_assignments l ON (l.monograph_id = a.monograph_id) LEFT JOIN users le ON (le.user_id = l.editor_id)
+				LEFT JOIN designer_assignments l ON (l.monograph_id = a.monograph_id) 
+				LEFT JOIN users le ON (le.user_id = l.designer_id)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)

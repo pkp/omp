@@ -400,6 +400,10 @@ class RoleDAO extends DAO {
 				return 'user.role.productionEditor' . ($plural ? 's' : '');
 			case ROLE_ID_READER:
 				return 'user.role.reader' . ($plural ? 's' : '');
+			case ROLE_ID_DIRECTOR:
+				return 'user.role.director' . ($plural ? 's' : '');
+			case ROLE_ID_INDEXER:
+				return 'user.role.indexer' . ($plural ? 's' : '');
 			default:
 				return '';
 		}
@@ -436,6 +440,10 @@ class RoleDAO extends DAO {
 				return 'productionEditor';
 			case ROLE_ID_READER:
 				return 'reader';
+			case ROLE_ID_DIRECTOR:
+				return 'director';
+			case ROLE_ID_INDEXER:
+				return 'indexer';
 			default:
 				return '';
 		}
@@ -472,6 +480,10 @@ class RoleDAO extends DAO {
 				return ROLE_ID_PRODUCTION_EDITOR;
 			case 'reader':
 				return ROLE_ID_READER;
+			case 'director':
+				return ROLE_ID_DIRECTOR;
+			case 'indexer':
+				return ROLE_ID_INDEXER;
 			default:
 				return null;
 		}

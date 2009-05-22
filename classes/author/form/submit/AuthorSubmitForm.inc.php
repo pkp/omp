@@ -58,31 +58,31 @@ class AuthorSubmitForm extends SequenceForm {
 
 
 	/**
-	 * Automatically assign Series/Acquisition Editors to new submissions.
+	 * Assign Acquisition Editors to new submissions.
 	 * @param $monograph object
-	 * @return array of section editors
+	 * @return array of acquisitions editors
 	 */
 	function assignEditors(&$monograph) {
-		$sectionId = $monograph->getSeriesId();
+		$acquisitionsArrangementEditorsDao =& DAORegistry::getDAO('AcquisitionsArrangementEditorsDAO');
+		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$press =& Request::getPress();
 
-		$seriesEditorsDao =& DAORegistry::getDAO('SectionEditorsDAO');
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$sectionEditors =& $sectionEditorsDao->getEditorsBySectionId($press->getId(), $sectionId);
+		$acquisitionsArrangementId = $monograph->getAcquisitionsArrangementId();
 
-		foreach ($sectionEditors as $sectionEditorEntry) {
-			$editAssignment =& new EditAssignment();
-			$editAssignment->setArticleId($monograph->getArticleId());
-			$editAssignment->setEditorId($sectionEditorEntry['user']->getId());
-			$editAssignment->setCanReview($sectionEditorEntry['canReview']);
-			$editAssignment->setCanEdit($sectionEditorEntry['canEdit']);
+		$acquisitionsEditors =& $acquisitionsArrangementEditorsDao->getEditorsByAcquisitionsArrangementId($press->getId(), $acquisitionsArrangementId);
+
+		foreach ($acquisitionsEditors as $acquisitionsEditor) {
+			$editAssignment = new EditAssignment();
+			$editAssignment->setMonographId($monograph->getMonographId());
+			$editAssignment->setEditorId($acquisitionsEditor['user']->getId());
+			$editAssignment->setCanReview($acquisitionsEditor['canReview']);
+			$editAssignment->setCanEdit($acquisitionsEditor['canEdit']);
 			$editAssignmentDao->insertEditAssignment($editAssignment);
 			unset($editAssignment);
 		}
 
-		return $sectionEditors;
+		return $acquisitionsEditors;
 	}
-
 }
 
 ?>

@@ -306,12 +306,30 @@ class Validation {
 	}
 
 	/**
+	 * Shortcut for checking authorization as indexer.
+	 * @param $pressId int
+	 * @return boolean
+	 */
+	function isIndexer($pressId = -1) {
+		return Validation::isAuthorized(ROLE_ID_INDEXER, $pressId);
+	}
+
+	/**
 	 * Shortcut for checking authorization as editor.
 	 * @param $pressId int
 	 * @return boolean
 	 */
 	function isEditor($pressId = -1) {
 		return Validation::isAuthorized(ROLE_ID_EDITOR, $pressId);
+	}
+
+	/**
+	 * Shortcut for checking authorization as director.
+	 * @param $pressId int
+	 * @return boolean
+	 */
+	function isDirector($pressId = -1) {
+		return Validation::isAuthorized(ROLE_ID_DIRECTOR, $pressId);
 	}
 
 	/**

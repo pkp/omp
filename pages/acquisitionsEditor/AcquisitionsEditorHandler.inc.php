@@ -64,7 +64,7 @@ class AcquisitionsEditorHandler extends Handler {
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
-		$arrangements =& $arrangementDao->getSectionTitles($press->getId());
+		$arrangements =& $arrangementDao->getAcquisitionsArrangementsTitles($press->getId());
 
 		$filterSectionOptions = array(
 			FILTER_SECTION_ALL => Locale::Translate('editor.allSections')
@@ -140,10 +140,6 @@ class AcquisitionsEditorHandler extends Handler {
 			SUBMISSION_FIELD_DATE_LAYOUT_COMPLETE => 'submissions.layoutComplete',
 			SUBMISSION_FIELD_DATE_PROOFREADING_COMPLETE => 'submissions.proofreadingComplete'
 		));
-
-		import('issue.IssueAction');
-		$issueAction = new IssueAction();
-		$templateMgr->register_function('print_issue_id', array($issueAction, 'smartyPrintIssueId'));
 
 		$templateMgr->display('acquisitionsEditor/index.tpl');
 	}

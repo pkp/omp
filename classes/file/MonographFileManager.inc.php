@@ -42,6 +42,7 @@ define('MONOGRAPH_FILE_ATTACHMENT',	'AT');
 define('MONOGRAPH_FILE_PROSPECTUS',	'PR');
 define('MONOGRAPH_FILE_ARTWORK',	'ART');
 define('MONOGRAPH_FILE_GALLEY',		'GA');
+define('MONOGRAPH_FILE_PRODUCTION',	'PRD');
 
 class MonographFileManager extends FileManager {
 
@@ -377,6 +378,16 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
+	 * Copies an existing file to create a production file.
+	 * @param $fileId int the file id of the production file.
+	 * @param $revision int the revision of the production file.
+	 * @return int the file id of the new file.
+	 */
+	function copyToProductionFile($fileId, $revision = null) {
+		return $this->copyAndRenameFile($fileId, $revision, MONOGRAPH_FILE_PRODUCTION);
+	}
+
+	/**
 	 * Return type path associated with a type code.
 	 * @param $type string
 	 * @return string
@@ -389,6 +400,7 @@ class MonographFileManager extends FileManager {
 			case MONOGRAPH_FILE_REVIEW: return 'submission/review';
 			case MONOGRAPH_FILE_EDITOR: return 'submission/editor';
 			case MONOGRAPH_FILE_COPYEDIT: return 'submission/copyedit';
+			case MONOGRAPH_FILE_PRODUCTION: return 'submission/production';
 			case MONOGRAPH_FILE_GALLEY: return 'submission/galleys';
 			case MONOGRAPH_FILE_LAYOUT: return 'submission/layout';
 			case MONOGRAPH_FILE_ATTACHMENT: return 'attachment';

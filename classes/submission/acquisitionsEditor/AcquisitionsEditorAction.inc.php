@@ -977,8 +977,19 @@ class AcquisitionsEditorAction extends Action {
 						ASSOC_TYPE_MONOGRAPH, 
 						$acquisitionsEditorSubmission->getMonographId()
 					);
+
 			$initialSignoff->setDateAcknowledged(Core::getCurrentDate());
 			$signoffDao->updateObject($initialSignoff);
+
+			$authorSignoff = $signoffDao->build(
+						'SIGNOFF_COPYEDITING_AUTHOR',
+						ASSOC_TYPE_MONOGRAPH,
+						$acquisitionsEditorSubmission->getMonographId()
+					);
+			$authorSignoff->setFileId($initialSignoff->getFileId());
+			$authorSignoff->setFileRevision($initialSignoff->getFileRevision());
+
+			$signoffDao->updateObject($authorSignoff);
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->addRecipient($copyeditor->getEmail(), $copyeditor->getFullName());
@@ -1018,11 +1029,19 @@ class AcquisitionsEditorAction extends Action {
 				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
 				$email->send();
 			}
+			$initialSignoff = $signoffDao->build(
+						'SIGNOFF_COPYEDITING_INITIAL',
+						ASSOC_TYPE_MONOGRAPH,
+						$acquisitionsEditorSubmission->getMonographId()
+					);
+
 			$authorSignoff = $signoffDao->build(
 						'SIGNOFF_COPYEDITING_AUTHOR',
 						ASSOC_TYPE_MONOGRAPH,
 						$acquisitionsEditorSubmission->getMonographId()
 					);
+			$authorSignoff->setFileId($initialSignoff->getFileId());
+			$authorSignoff->setFileRevision($initialSignoff->getFileRevision());
 			$authorSignoff->setUserId($author->getId());
 			$authorSignoff->setDateNotified(Core::getCurrentDate());
 			$authorSignoff->setDateUnderway(null);
@@ -1073,9 +1092,15 @@ class AcquisitionsEditorAction extends Action {
 				$email->send();
 			}
 
-			$signoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getMonographId());
-			$signoff->setDateAcknowledged(Core::getCurrentDate());
-			$signoffDao->updateObject($signoff);
+			$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getMonographId());
+			$authorSignoff->setDateAcknowledged(Core::getCurrentDate());
+			$signoffDao->updateObject($authorSignoff);
+
+			$finalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getMonographId());
+			$finalSignoff->setFileId($authorSignoff->getFileId());
+			$finalSignoff->setFileRevision($authorSignoff->getFileRevision());
+			$signoffDao->updateObject($finalSignoff);
+
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->addRecipient($author->getEmail(), $author->getFullName());
@@ -1174,16 +1199,18 @@ class AcquisitionsEditorAction extends Action {
 						$acquisitionsEditorSubmission->getMonographId()
 					);
 			$signoff->setDateAcknowledged(Core::getCurrentDate());
+			$signoffDao->updateObject($signoff);
 
 			$productionSignoff = $signoffDao->build(
 						'SIGNOFF_PRODUCTION',
 						ASSOC_TYPE_MONOGRAPH,
 						$acquisitionsEditorSubmission->getMonographId()
 					);
-			$productionSignoff->setFileId($signoff->getFileId());
 
+			$productionSignoff->setFileId($signoff->getFileId());
+			$productionSignoff->setFileRevision($signoff->getFileRevision());
 			$signoffDao->updateObject($productionSignoff);
-			$signoffDao->updateObject($signoff);
+
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->addRecipient($copyeditor->getEmail(), $copyeditor->getFullName());
@@ -1312,6 +1339,7 @@ class AcquisitionsEditorAction extends Action {
 	 * @param $acquisitionsEditorSubmission object
 	 */
 	function completeCopyedit($acquisitionsEditorSubmission) {
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
@@ -1322,8 +1350,10 @@ class AcquisitionsEditorAction extends Action {
 
 		if (HookRegistry::call('AcquisitionsEditorAction::completeCopyedit', array(&$acquisitionsEditorSubmission))) return;
 
-		$acquisitionsEditorSubmission->setCopyeditorDateCompleted(Core::getCurrentDate());
-		$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
+		$signoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getArticleId());
+		$signoff->setDateCompleted(Core::getCurrentDate());
+		$signoffDao->updateObject($signoff);
+
 		// Add log entry
 		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');
@@ -1337,6 +1367,7 @@ class AcquisitionsEditorAction extends Action {
 	function completeFinalCopyedit($acquisitionsEditorSubmission) {
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
@@ -1345,23 +1376,25 @@ class AcquisitionsEditorAction extends Action {
 
 		if (HookRegistry::call('AcquisitionsEditorAction::completeFinalCopyedit', array(&$acquisitionsEditorSubmission))) return;
 
-		$acquisitionsEditorSubmission->setCopyeditorDateFinalCompleted(Core::getCurrentDate());
-		$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
+		$copyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getMonographId());
+		$copyeditSignoff->setDateCompleted(Core::getCurrentDate());
+		$signoffDao->updateObject($copyeditSignoff);
 
-		if ($copyEdFile =& $acquisitionsEditorSubmission->getFinalCopyeditFile()) {
+
+		if ($copyEdFile = $acquisitionsEditorSubmission->getFileBySignoffType('SIGNOFF_COPYEDITING_FINAL')) {
 			// Set initial layout version to final copyedit version
-			$layoutDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignments =& $layoutDao->getLayoutAssignmentsByMonographId($acquisitionsEditorSubmission->getMonographId());
+			$productionSignoff = $signoffDao->build('SIGNOFF_PRODUCTION', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getMonographId());
 
-/*			if (!empty($layoutAssignments) && !$layoutAssignment->getLayoutFileId()) {
+			if (!$productionSignoff->getFileId()) {
 				import('file.MonographFileManager');
 				$monographFileManager = new MonographFileManager($acquisitionsEditorSubmission->getMonographId());
-				if ($layoutFileId = $monographFileManager->copyToLayoutFile($copyEdFile->getFileId(), $copyEdFile->getRevision())) {
-					$layoutAssignment->setLayoutFileId($layoutFileId);
-					$layoutDao->updateLayoutAssignment($layoutAssignment);
+				if ($productionFileId = $monographFileManager->copyToProductionFile($copyEdFile->getFileId(), $copyEdFile->getRevision())) {
+					$productionSignoff->setFileId($productionFileId);
+					$signoffDao->updateObject($productionSignoff);
 				}
 			}
-*/		}
+		}
+
 		// Add log entry
 		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');
@@ -1942,7 +1975,7 @@ class AcquisitionsEditorAction extends Action {
 			$monographComment->setDatePosted(Core::getCurrentDate());
 			$monographComment->setViewable(true);
 			$monographComment->setAssocId($acquisitionsEditorSubmission->getMonographId());
-	//		$monographCommentDao->insertMonographComment($monographComment);
+			$monographCommentDao->insertMonographComment($monographComment);
 
 			return true;
 		} else {
