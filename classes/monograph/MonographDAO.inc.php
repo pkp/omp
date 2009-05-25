@@ -506,6 +506,7 @@ class MonographDAO extends DAO {
 
 		$count = max(array(count($authors),count($oldAuthors)));
 
+		//FIXME: this is not pretty.
 		for ($i=0; $i < $count; $i++) {
 			if (isset($authors[$i]) && isset($oldAuthors[$i])) {
 				$gnash[$authors[$i]->getId()] = $oldAuthors[$i];
@@ -514,6 +515,8 @@ class MonographDAO extends DAO {
 			} else if (!isset($authors[$i]) && isset($oldAuthors[$i])) {
 				$authorDao->deleteAuthorById($oldAuthors[$i], $monograph->getMonographId());
 			} else if (isset($authors[$i]) && !isset($oldAuthors[$i])) {
+				$authors[$i]->setMonographId($monograph->getMonographId());
+				$authors[$i]->setContributionType(0);
 				$gnash[$authors[$i]->getId()] = $authorDao->insertAuthor($authors[$i]);
 			}
 		}
