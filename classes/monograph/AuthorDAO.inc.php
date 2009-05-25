@@ -260,7 +260,7 @@ class AuthorDAO extends DAO {
 				$author->getUrl(),
 				$author->getPrimaryContact(),
 				$author->getSequence(),
-				$author->getContributionType()
+				$author->getContributionType()?$author->getContributionType():0
 			)
 		);
 
