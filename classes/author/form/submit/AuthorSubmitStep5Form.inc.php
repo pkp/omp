@@ -61,27 +61,14 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 	}
 
 	/**
-	 * Assign form data to user-submitted data.
-	 */
-	function readInputData() {
-		$this->readUserVars(array('qualifyForWaiver', 'commentsToEditor'));
-	}	
-
-	/**
-	 * Validate the form
-	 */
-	function validate() {
-		return parent::validate();
-	}
-	
-	/**
 	 * Save changes to monograph.
 	 */
 	function execute() {		
+	
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$press = Request::getPress();
-
+		$user =& Request::getUser();
 		// Update monograph		
 		$monograph =& $this->sequence->monograph;
 
@@ -100,18 +87,40 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 		AuthorAction::designateReviewVersion($authorSubmission, true);
 		unset($authorSubmission);
 
+		// Create additional submission mangement records
+		$copyeditInitialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $monograph->getMonographId());
+		$copyeditAuthorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $monograph->getMonographId());
+		$copyeditFinalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $monograph->getMonographId());
+		$copyeditInitialSignoff->setUserId(0);
+		$copyeditAuthorSignoff->setUserId($user->getId());
+		$copyeditFinalSignoff->setUserId(0);
+		$signoffDao->updateObject($copyeditInitialSignoff);
+		$signoffDao->updateObject($copyeditAuthorSignoff);
+		$signoffDao->updateObject($copyeditFinalSignoff);
+
+		$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $monograph->getMonographId());
+		$layoutSignoff->setUserId(0);
+		$signoffDao->updateObject($layoutSignoff);
+
+		$proofAuthorSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $monograph->getMonographId());
+		$proofProofreaderSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $monograph->getMonographId());
+		$proofLayoutEditorSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_MONOGRAPH, $monograph->getMonographId());
+		$proofAuthorSignoff->setUserId($user->getId());
+		$proofProofreaderSignoff->setUserId(0);
+		$proofLayoutEditorSignoff->setUserId(0);
+		$signoffDao->updateObject($proofAuthorSignoff);
+		$signoffDao->updateObject($proofProofreaderSignoff);
+		$signoffDao->updateObject($proofLayoutEditorSignoff);
+
 		$acquisitionsArrangementEditors = $this->assignEditors($monograph);
 
 		$user =& Request::getUser();
 
-		// Update search index
-/*		import('search.MonographSearchIndex');
-		MonographSearchIndex::indexMonographMetadata($monograph);
-		MonographSearchIndex::indexMonographFiles($monograph);
-*/
+		// FIXME: Add code to Update search index (see bug #4355)	
+		
 		// Send author notification email
 		import('mail.MonographMailTemplate');
-		$mail = new MonographMailTemplate($monograph, 'SUBMISSION_ACK');
+		$mail =& new MonographMailTemplate($monograph, 'SUBMISSION_ACK');
 		$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 		if ($mail->isEnabled()) {
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
@@ -141,7 +150,6 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 				'submissionUrl' => Request::url(null, 'author', 'submission', $monograph->getMonographId())
 			));
 			$mail->send();
-		}
 
 		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');
