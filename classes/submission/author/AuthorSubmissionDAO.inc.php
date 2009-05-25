@@ -27,8 +27,6 @@ class AuthorSubmissionDAO extends DAO {
 	var $suppFileDao;
 	var $copyeditorSubmissionDao;
 	var $monographCommentDao;
-	var $layoutAssignmentDao;
-	var $proofAssignmentDao;
 	var $galleyDao;
 
 	/**
@@ -45,9 +43,7 @@ class AuthorSubmissionDAO extends DAO {
 		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$this->copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
 		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-//		$this->layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-//		$this->proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-//		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
+		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 	}
 
 	/**
@@ -141,17 +137,11 @@ class AuthorSubmissionDAO extends DAO {
 			$authorSubmission->setAuthorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['revised_file_id'], null, false));
 			$authorSubmission->setEditorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['editor_file_id'], null, false));
 		}
-/*
+
 		$authorSubmission->setGalleys($this->galleyDao->getGalleysByMonograph($row['monograph_id']));
 
-		// Layout Assignment
-		$authorSubmission->setLayoutAssignment($this->layoutAssignmentDao->getLayoutAssignmentByMonographId($row['monograph_id']));
-
-		// Proof Assignment
-		$authorSubmission->setProofAssignment($this->proofAssignmentDao->getProofAssignmentByMonographId($row['monograph_id']));
-
 		HookRegistry::call('AuthorSubmissionDAO::_returnAuthorSubmissionFromRow', array(&$authorSubmission, &$row));
-*/
+
 		return $authorSubmission;
 	}
 
@@ -231,12 +221,7 @@ class AuthorSubmissionDAO extends DAO {
 		$decisions = array();
 
 		$result =& $this->retrieve(
-				'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round
-				FROM edit_decisions 
-				WHERE monograph_id = ? 
-				ORDER BY date_decided ASC', 
-				$monographId
-			);
+				'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round FROM edit_decisions WHERE monograph_id = ? ORDER BY date_decided ASC', $monographId);
 
 		while (!$result->EOF) {
 			$decisions[$result->fields['review_type']][$result->fields['round']][] = array(
