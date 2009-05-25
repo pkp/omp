@@ -21,6 +21,13 @@ import('monograph.MonographFile');
 class MonographGalley extends MonographFile {
 
 	/**
+	 * Constructor.
+	 */
+	function MonographGalley() {
+		parent::DataObject();
+	}
+
+	/**
 	 * Check if galley is an HTML galley.
 	 * @return boolean
 	 */
@@ -157,11 +164,11 @@ class MonographGalley extends MonographFile {
 	 * Return the "best" monograph ID -- If a public monograph ID is set,
 	 * use it; otherwise use the internal monograph Id. (Checks the journal
 	 * settings to ensure that the public ID feature is enabled.)
-	 * @param $journal Object the journal this galley is in
+	 * @param $press Object the Press this galley is in
 	 * @return string
 	 */
-	function getBestGalleyId(&$journal) {
-		if ($journal->getSetting('enablePublicGalleyId')) {
+	function getBestGalleyId(&$press) {
+		if ($press->getSetting('enablePublicGalleyId')) {
 			$publicGalleyId = $this->getPublicGalleyId();
 			if (!empty($publicGalleyId)) return $publicGalleyId;
 		}

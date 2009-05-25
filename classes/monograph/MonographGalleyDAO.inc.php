@@ -3,7 +3,7 @@
 /**
  * @file classes/monograph/MonographGalleyDAO.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MonographGalleyDAO
@@ -17,7 +17,6 @@
 
 
 import('monograph.MonographGalley');
-//import('monograph.MonographHTMLGalley');
 
 class MonographGalleyDAO extends DAO {
 	/** Helper file DAOs. */
@@ -117,7 +116,7 @@ class MonographGalleyDAO extends DAO {
 	 * @param $monographId int
 	 * @return array MonographGalleys
 	 */
-	function &getByMonographId($monographId) {
+	function &getGalleysByMonograph($monographId) {
 		$galleys = array();
 
 		$result =& $this->retrieve(
@@ -177,7 +176,7 @@ class MonographGalleyDAO extends DAO {
 		} else {
 			$galley = new MonographGalley();
 		}
-		$galley->setId($row['galley_id']);
+		$galley->setGalleyId($row['galley_id']);
 		$galley->setPublicGalleyId($row['public_galley_id']);
 		$galley->setMonographId($row['monograph_id']);
 		$galley->setLocale($row['locale']);
@@ -220,11 +219,11 @@ class MonographGalleyDAO extends DAO {
 				$galley->getSequence() == null ? $this->getNextGalleySequence($galley->getMonographID()) : $galley->getSequence()
 			)
 		);
-		$galley->setId($this->getInsertGalleyId());
+		$galley->setGalleyId($this->getInsertGalleyId());
 
-		HookRegistry::call('MonographGalleyDAO::insertNewGalley', array(&$galley, $galley->getId()));
+		HookRegistry::call('MonographGalleyDAO::insertNewGalley', array(&$galley, $galley->getGalleyId()));
 
-		return $galley->getId();
+		return $galley->getGalleyId();
 	}
 
 	/**
@@ -251,7 +250,7 @@ class MonographGalleyDAO extends DAO {
 				(int)$galley->isHTMLGalley(),
 				$galley->isHTMLGalley() ? $galley->getStyleFileId() : null,
 				$galley->getSequence(),
-				$galley->getId()
+				$galley->getGalleyId()
 			)
 		);
 	}
@@ -261,7 +260,7 @@ class MonographGalleyDAO extends DAO {
 	 * @param $galley MonographGalley
 	 */
 	function deleteGalley(&$galley) {
-		return $this->deleteGalleyById($galley->getId());
+		return $this->deleteGalleyById($galley->getGalleyId());
 	}
 
 	/**
@@ -295,7 +294,7 @@ class MonographGalleyDAO extends DAO {
 	function deleteGalleysByMonograph($monographId) {
 		$galleys =& $this->getGalleysByMonograph($monographId);
 		foreach ($galleys as $galley) {
-			$this->deleteGalleyById($galley->getId(), $monographId);
+			$this->deleteGalleyById($galley->getGalleyId(), $monographId);
 		}
 	}
 
