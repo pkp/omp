@@ -9,7 +9,7 @@
  * @class AuthorSubmitStep1Form
  * @ingroup author_form_submit
  *
- * @brief Form for Step 1 of author article submission.
+ * @brief Form for Step 1 of author monograph submission.
  */
 
 // $Id$
@@ -20,6 +20,13 @@ import('author.form.submit.AuthorSubmitForm');
 class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 	/**
+	 * Constructor.
+	 */
+	function AuthorSubmitStep1Form($monograph = null) {
+		parent::AuthorSubmitForm($monograph);
+	}
+
+	/**
 	 * Display the form.
 	 */
 	function display() {
@@ -27,20 +34,19 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		$press =& Request::getPress();
 		// Get arrangements for this press
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		//$this->addCheck(new FormValidator($this, 'arrangementId', 'required', 'author.submit.form.arrangementRequired'));
 		$templateMgr->assign('arrangementOptions', array('0' => Locale::translate('author.submit.selectSection')) + $arrangementDao->getAcquisitionsArrangementsTitles($press->getId(), !true));
 		parent::display();
 	}
 
 	/**
-	 * Initialize form data from current article.
+	 * Initialize form data from current monograph.
 	 */
 	function initData() {
-		if (isset($this->sequence->monograph)) {
+		if (isset($this->monograph)) {
 			$this->_data = array(
-				'arrangementId' => $this->sequence->monograph->getAcquisitionsArrangementId(),
-				'isEditedVolume' => $this->sequence->monograph->getWorkType(),
-				'commentsToEditor' => $this->sequence->monograph->getCommentsToEditor(),
+				'arrangementId' => $this->monograph->getAcquisitionsArrangementId(),
+				'isEditedVolume' => $this->monograph->getWorkType(),
+				'commentsToEditor' => $this->monograph->getCommentsToEditor(),
 			);
 		}
 	}
@@ -62,18 +68,18 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 */
 	function execute() {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		if (isset($this->sequence->monograph)) {
-			// Update existing article
+		if (isset($this->monograph)) {
+			// Update existing monograph
 
-			$this->sequence->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
-			if ($this->sequence->monograph->getSubmissionProgress() <= $this->sequence->currentStep) {
-				$this->sequence->monograph->stampStatusModified();
-				$this->sequence->monograph->setSubmissionProgress($this->sequence->currentStep + 1);
+			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
+			if ($this->monograph->getSubmissionProgress() <= $this->sequence->currentStep) {
+				$this->monograph->stampStatusModified();
+				$this->monograph->setSubmissionProgress($this->sequence->currentStep + 1);
 			}
-			$this->sequence->monograph->setWorkType($this->getData('isEditedVolume') ? EDITED_VOLUME :0);
-			$this->sequence->monograph->setAcquisitionsArrangementId($this->getData('arrangementId'));
-			$monographId = $this->sequence->monograph->getMonographId();
-			$monographDao->updateMonograph($this->sequence->monograph);
+			$this->monograph->setWorkType($this->getData('isEditedVolume') ? EDITED_VOLUME :0);
+			$this->monograph->setAcquisitionsArrangementId($this->getData('arrangementId'));
+			$monographId = $this->monograph->getMonographId();
+			$monographDao->updateMonograph($this->monograph);
 
 		} else {
 			// Insert new monograph
@@ -89,9 +95,9 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
 			$this->monograph->setWorkType($this->getData('isEditedVolume') ? EDITED_VOLUME : 0);
 			$this->monograph->setAcquisitionsArrangementId($this->getData('arrangementId'));
-			// Set user to initial author
 
-/*			$author =& new Author();
+			// Set user to initial author
+			$author =& new Author();
 			$author->setFirstName($user->getFirstName());
 			$author->setMiddleName($user->getMiddleName());
 			$author->setLastName($user->getLastName());
@@ -102,7 +108,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$author->setBiography($user->getBiography(null), null);
 			$author->setPrimaryContact(1);
 			$this->monograph->addAuthor($author);
-*/
+
 			$monographId = $monographDao->insertMonograph($this->monograph);
 		}
 

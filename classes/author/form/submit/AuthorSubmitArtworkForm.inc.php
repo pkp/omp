@@ -23,22 +23,31 @@ class AuthorSubmitArtworkForm extends AuthorSubmitForm {
 	var $artworkInsert;
 
 	/**
+	 * Constructor.
+	 */
+	function AuthorSubmitArtworkForm($monograph = null) {
+		parent::AuthorSubmitForm($monograph);
+		
+		$this->_initializeInserts();
+	}
+
+	/**
 	 * Display the form.
 	 */
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 		$this->artworkInsert->display($this);
-		$templateMgr->assign('submission', $this->sequence->monograph);
+		$templateMgr->assign('submission', $this->monograph);
 
 		parent::display();
 	}
 
-	function initializeInserts() {
-		$this->artworkInsert = new ArtworkInsert($this->sequence->monograph);
+	function _initializeInserts() {
+		$this->artworkInsert = new ArtworkInsert($this->monograph);
 	}
 
 	/**
-	 * Initialize form data from current article.
+	 * Initialize form data from current monograph.
 	 */
 	function initData() {
 
@@ -54,6 +63,7 @@ class AuthorSubmitArtworkForm extends AuthorSubmitForm {
 	function getTemplateFile() {
 		return 'author/submit/artwork.tpl';
 	}
+	
 	function processEvents() {
 		return $this->artworkInsert->processEvents($this);
 	}
@@ -66,7 +76,7 @@ class AuthorSubmitArtworkForm extends AuthorSubmitForm {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		// Update monograph
-		$monograph =& $this->sequence->monograph;
+		$monograph =& $this->monograph;
 		if ($monograph->getSubmissionProgress() <= $this->sequence->currentStep) {
 			$monograph->stampStatusModified();
 			$monograph->setSubmissionProgress($this->sequence->currentStep + 1);

@@ -22,17 +22,16 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	/**
 	 * Constructor.
 	 */
-	function AuthorSubmitStep3Form() {
-		parent::AuthorSubmitForm();
-
+	function AuthorSubmitStep3Form($article) {
+		parent::AuthorSubmitForm($article);
 	}
 
 	/**
 	 * Initialize form data from current article.
 	 */
 	function initData() {
-		if (isset($this->sequence->monograph)) {
-			$monograph =& $this->sequence->monograph;
+		if (isset($this->monograph)) {
+			$monograph =& $this->monograph;
 			$this->_data = array(
 			);
 		}
@@ -62,12 +61,12 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 
 		// Get supplementary files for this article
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		if ($this->sequence->monograph->getSubmissionFileId() != null) {
-			$templateMgr->assign_by_ref('submissionFile', $monographFileDao->getMonographFile($this->sequence->monograph->getSubmissionFileId()));
+		if ($this->monograph->getSubmissionFileId() != null) {
+			$templateMgr->assign_by_ref('submissionFile', $monographFileDao->getMonographFile($this->monograph->getSubmissionFileId()));
 		}
 
-		if ($this->sequence->monograph->getCompletedProspectusFileId() != null) {
-			$templateMgr->assign_by_ref('completedProspectusFile', $monographFileDao->getMonographFile($this->sequence->monograph->getCompletedProspectusFileId()));
+		if ($this->monograph->getCompletedProspectusFileId() != null) {
+			$templateMgr->assign_by_ref('completedProspectusFile', $monographFileDao->getMonographFile($this->monograph->getCompletedProspectusFileId()));
 		}
 
 		parent::display();
@@ -81,17 +80,17 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	function uploadSubmissionFile($fileName) {
 		import('file.MonographFileManager');
 
-		$manuscriptFileManager =& new MonographFileManager($this->sequence->monograph->getMonographId());
+		$manuscriptFileManager =& new MonographFileManager($this->monograph->getMonographId());
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		if ($manuscriptFileManager->uploadedFileExists($fileName)) {
 			// upload new submission file, overwriting previous if necessary
-			$submissionFileId = $manuscriptFileManager->uploadSubmissionFile($fileName, $this->sequence->monograph->getSubmissionFileId(), true);
+			$submissionFileId = $manuscriptFileManager->uploadSubmissionFile($fileName, $this->monograph->getSubmissionFileId(), true);
 		}
 
 		if (isset($submissionFileId)) {
-			$this->sequence->monograph->setSubmissionFileId($submissionFileId);
-			return $monographDao->updateMonograph($this->sequence->monograph);
+			$this->monograph->setSubmissionFileId($submissionFileId);
+			return $monographDao->updateMonograph($this->monograph);
 
 		} else {
 			return false;
@@ -106,17 +105,17 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	function uploadCompletedProspectusFile($fileName) {
 		import('file.MonographFileManager');
 
-		$manuscriptFileManager =& new MonographFileManager($this->sequence->monograph->getMonographId());
+		$manuscriptFileManager =& new MonographFileManager($this->monograph->getMonographId());
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		if ($manuscriptFileManager->uploadedFileExists($fileName)) {
 			// upload new submission file, overwriting previous if necessary
-			$prospectusFileId = $manuscriptFileManager->uploadCompletedProspectusFile($fileName, $this->sequence->monograph->getCompletedProspectusFileId(), true);
+			$prospectusFileId = $manuscriptFileManager->uploadCompletedProspectusFile($fileName, $this->monograph->getCompletedProspectusFileId(), true);
 		}
 
 		if (isset($prospectusFileId)) {
-			$this->sequence->monograph->setCompletedProspectusFileId($prospectusFileId);
-			return $monographDao->updateMonograph($this->sequence->monograph);
+			$this->monograph->setCompletedProspectusFileId($prospectusFileId);
+			return $monographDao->updateMonograph($this->monograph);
 
 		} else {
 			return false;
@@ -130,7 +129,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	function execute() {
 		// Update article
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $this->sequence->monograph;
+		$monograph =& $this->monograph;
 
 		if ($monograph->getSubmissionProgress() <= $this->sequence->currentStep) {
 			$monograph->stampStatusModified();
@@ -138,7 +137,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 			$monographDao->updateMonograph($monograph);
 		}
 
-		return $this->sequence->monograph->getMonographId();
+		return $this->monograph->getMonographId();
 	}
 
 }

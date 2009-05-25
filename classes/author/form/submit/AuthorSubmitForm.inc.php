@@ -21,15 +21,24 @@
 import('submission.common.SequenceForm');
 
 class AuthorSubmitForm extends SequenceForm {
+	/** @var int the ID of the monograph */
+	var $monographId;
+
+	/** @var Monograph current monograph */
+	var $monograph;
 
 	/**
 	 * Constructor.
 	 * @param $monograph object
 	 * @param $step int
 	 */
-	function AuthorSubmitForm() {
+	function AuthorSubmitForm($monograph) {
 		parent::SequenceForm();
 		$this->addCheck(new FormValidatorPost($this));
+
+		$this->monograph =& $monograph;
+		$this->monographId = $monograph ? $monograph->getMonographId() : null;
+
 	}
 
 	/**
@@ -40,7 +49,7 @@ class AuthorSubmitForm extends SequenceForm {
 		$templateMgr->assign('submitStep', $this->sequence->currentStep);
 
 		if (isset($this->monograph)) {
-			$templateMgr->assign('submissionProgress', $this->sequence->monograph->getSubmissionProgress());
+			$templateMgr->assign('submissionProgress', $this->monograph->getSubmissionProgress());
 		}
 
 		$templateMgr->assign('helpTopicId', $this->getHelpTopicId());
@@ -51,6 +60,7 @@ class AuthorSubmitForm extends SequenceForm {
 
 		parent::display();
 	}
+
 	function getHelpTopicId() {
 		return 'submission.index';
 	}

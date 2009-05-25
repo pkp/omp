@@ -75,9 +75,8 @@ class SubmissionFormSequence
 		$this->currentStep = $step;
 
 		import($this->stepForms[$step]['path']);
-		$submitForm =& new $this->stepForms[$step]['class'];
+		$submitForm =& new $this->stepForms[$step]['class']($this->monograph);
 		$submitForm->registerFormWithSequence($this);
-		$submitForm->initializeInserts();
 
 		return $submitForm;
 	}

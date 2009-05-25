@@ -22,8 +22,8 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 	/**
 	 * Constructor.
 	 */
-	function AuthorSubmitStep5Form() {
-		parent::AuthorSubmitForm();
+	function AuthorSubmitStep5Form($monograph) {
+		parent::AuthorSubmitForm($monograph);
 	}
 
 	/**
@@ -36,7 +36,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
 		// Get monograph file for this monograph
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getMonographFilesByMonograph($this->sequence->monograph->getMonographId());
+		$monographFiles =& $monographFileDao->getMonographFilesByMonograph($this->monograph->getMonographId());
 
 		$templateMgr->assign_by_ref('files', $monographFiles);
 		$templateMgr->assign_by_ref('press', Request::getPress());
@@ -70,7 +70,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 		$press = Request::getPress();
 		$user =& Request::getUser();
 		// Update monograph		
-		$monograph =& $this->sequence->monograph;
+		$monograph =& $this->monograph;
 
 		if ($this->getData('commentsToEditor') != '') {
 			$monograph->setCommentsToEditor($this->getData('commentsToEditor'));
@@ -150,6 +150,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 				'submissionUrl' => Request::url(null, 'author', 'submission', $monograph->getMonographId())
 			));
 			$mail->send();
+		}
 
 		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');

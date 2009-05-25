@@ -21,8 +21,8 @@ class AuthorSubmitStep4Form extends AuthorSubmitForm {
 	/**
 	 * Constructor.
 	 */
-	function AuthorSubmitStep4Form() {
-		parent::AuthorSubmitForm();
+	function AuthorSubmitStep4Form($article) {
+		parent::AuthorSubmitForm($article);
 	}
 
 	/**
@@ -33,7 +33,7 @@ class AuthorSubmitStep4Form extends AuthorSubmitForm {
 
 		// Get supplementary files for this monograph
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-		$templateMgr->assign_by_ref('suppFiles', $suppFileDao->getSuppFilesByMonograph($this->sequence->monograph->getMonographId()));
+		$templateMgr->assign_by_ref('suppFiles', $suppFileDao->getSuppFilesByMonograph($this->monograph->getMonographId()));
 
 		parent::display();
 	}
@@ -45,7 +45,7 @@ class AuthorSubmitStep4Form extends AuthorSubmitForm {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		// Update monograph
-		$monograph =& $this->sequence->monograph;
+		$monograph =& $this->monograph;
 		if ($monograph->getSubmissionProgress() <= $this->sequence->currentStep) {
 			$monograph->stampStatusModified();
 			$monograph->setSubmissionProgress($this->sequence->currentStep + 1);
@@ -54,9 +54,11 @@ class AuthorSubmitStep4Form extends AuthorSubmitForm {
 
 		return $monograph->getMonographId();
 	}
+
 	function getHelpTopicId() {
 		return 'submission.supplementaryFiles';
 	}
+
 	function getTemplateFile() {
 		return 'author/submit/step4.tpl';
 	}

@@ -38,10 +38,7 @@ class SequenceForm extends Form
 		return false;
 	}
 	function getTemplateFile() {
-		return 'ABSTRACT! kindly implement in subclasses';
-	}
-	function initializeInserts() {
-		return 'ABSTRACT! kindly implement in subclasses';
+		fatalError('ABSTRACT METHOD');
 	}
 }
 ?>

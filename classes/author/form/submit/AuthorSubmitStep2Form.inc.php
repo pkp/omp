@@ -23,20 +23,18 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	 * Constructor.
 	 */
 	var $formComponents;
-	function AuthorSubmitStep2Form() {
-
-		parent::AuthorSubmitForm();
-//		$insert =& new ContributorInsert($this->sequence->monograph, $this);
-//		$this->formComponents = array($insert);
+	function AuthorSubmitStep2Form($monograph) {
+		parent::AuthorSubmitForm($monograph);
 
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'author.submit.form.titleRequired'));
 		// Validation checks for this form
 
+		$this->_initializeInserts();
 	}
 
-	function initializeInserts() {
+	function _initializeInserts() {
 
-		$insert = new MonographComponentsInsert($this->sequence->monograph, $this);
+		$insert = new MonographComponentsInsert($this->monograph, $this);
 
 		$this->formComponents = array($insert);
 	}
@@ -46,24 +44,17 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	 */
 	function initData() {
 
-		if (isset($this->sequence->monograph)) {
+		if (isset($this->monograph)) {
 
 			foreach ($this->formComponents as $formComponent) {
 				$this->_data = array_merge($this->_data, $formComponent->initData($this));
 			}
 
-			$monograph =& $this->sequence->monograph;
+			$monograph =& $this->monograph;
 			$this->_data = array_merge($this->_data,
 				array(
 					'title' => $monograph->getTitle(null), // Localized
 					'abstract' => $monograph->getAbstract(null), // Localized
-					'discipline' => $monograph->getDiscipline(null), // Localized
-					'subjectClass' => $monograph->getSubjectClass(null), // Localized
-					'subject' => $monograph->getSubject(null), // Localized
-					'coverageGeo' => $monograph->getCoverageGeo(null), // Localized
-					'coverageChron' => $monograph->getCoverageChron(null), // Localized
-					'coverageSample' => $monograph->getCoverageSample(null), // Localized
-					'type' => $monograph->getType(null), // Localized
 					'language' => $monograph->getLanguage(),
 					'sponsor' => $monograph->getSponsor(null), // Localized
 					'section' => 1//$sectionDao->getSection($monograph->getSectionId())
@@ -123,7 +114,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 		}
 		$templateMgr =& TemplateManager::getManager();
 
-		$templateMgr->assign('workType', $this->sequence->monograph->getWorkType());
+		$templateMgr->assign('workType', $this->monograph->getWorkType());
 
 		parent::display();
 	}
@@ -150,16 +141,9 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 
 		// Update monograph
-		$monograph =& $this->sequence->monograph;
+		$monograph =& $this->monograph;
 		$monograph->setTitle($this->getData('title'), null); // Localized
 		$monograph->setAbstract($this->getData('abstract'), null); // Localized
-		$monograph->setDiscipline($this->getData('discipline'), null); // Localized
-		$monograph->setSubjectClass($this->getData('subjectClass'), null); // Localized
-		$monograph->setSubject($this->getData('subject'), null); // Localized
-		$monograph->setCoverageGeo($this->getData('coverageGeo'), null); // Localized
-		$monograph->setCoverageChron($this->getData('coverageChron'), null); // Localized
-		$monograph->setCoverageSample($this->getData('coverageSample'), null); // Localized
-		$monograph->setType($this->getData('type'), null); // Localized
 		$monograph->setLanguage($this->getData('language'));
 		$monograph->setSponsor($this->getData('sponsor'), null); // Localized
  		if ($monograph->getSubmissionProgress() <= $this->sequence->currentStep) {
