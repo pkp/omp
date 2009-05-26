@@ -52,16 +52,6 @@ class IndexHandler extends Handler {
 			$templateMgr->assign('displayCreativeCommons', $press->getSetting('includeCreativeCommons'));
 
 			$enableAnnouncements = $press->getSetting('enableAnnouncements');
-			/*if ($enableAnnouncements && false) {
-				$enableAnnouncementsHomepage = $press->getSetting('enableAnnouncementsHomepage');
-				if ($enableAnnouncementsHomepage) {
-					$numAnnouncementsHomepage = $press->getSetting('numAnnouncementsHomepage');
-					$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-					$announcements =& $announcementDao->getNumAnnouncementsNotExpiredByPressId($press->getId(), $numAnnouncementsHomepage);
-					$templateMgr->assign('announcements', $announcements);
-					$templateMgr->assign('enableAnnouncementsHomepage', $enableAnnouncementsHomepage);
-				}
-			}*/
 			$templateMgr->display('index/press.tpl');
 		} else {
 			$siteDao =& DAORegistry::getDAO('SiteDAO');
