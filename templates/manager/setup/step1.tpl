@@ -63,11 +63,11 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="contactTitle" key="user.title"}</td>
-		<td width="80%" class="value"><input type="text" name="contactTitle" id="contactTitle" value="{$contactTitle|escape}" size="30" maxlength="90" class="textField" /></td>
+		<td width="80%" class="value"><input type="text" name="contactTitle[{$formLocale|escape}]" id="contactTitle" value="{$contactTitle[$formLocale]|escape}" size="30" maxlength="90" class="textField" /></td>
 	</tr>	
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="contactAffiliation" key="user.affiliation"}</td>
-		<td width="80%" class="value"><input type="text" name="contactAffiliation" id="contactAffiliation" value="{$contactAffiliation|escape}" size="30" maxlength="90" class="textField" /></td>
+		<td width="80%" class="value"><input type="text" name="contactAffiliation[{$formLocale|escape}]" id="contactAffiliation" value="{$contactAffiliation[$formLocale]|escape}" size="30" maxlength="90" class="textField" /></td>
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="contactEmail" key="user.email" required="true"}</td>
@@ -83,7 +83,7 @@
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="contactMailingAddress" key="common.mailingAddress"}</td>
-		<td width="80%" class="value"><textarea name="contactMailingAddress" id="contactMailingAddress" rows="3" cols="40" class="textArea">{$contactMailingAddress|escape}</textarea></td>
+		<td width="80%" class="value"><textarea name="contactMailingAddress[{$formLocale|escape}]" id="contactMailingAddress" rows="3" cols="40" class="textArea">{$contactMailingAddress[$formLocale]|escape}</textarea></td>
 	</tr>
 </table>
 
