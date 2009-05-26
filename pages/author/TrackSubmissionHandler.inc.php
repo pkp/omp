@@ -17,12 +17,12 @@
 import('pages.author.AuthorHandler');
 
 class TrackSubmissionHandler extends AuthorHandler {
-	/** press associated with this request **/
-	var $press;
-	
 	/** submission associated with this request **/
 	var $submission; 
 	
+	/**
+	 * Constructor
+	 **/
 	function TrackSubmissionHandler() {
 		parent::AuthorHandler();
 	}
@@ -33,9 +33,9 @@ class TrackSubmissionHandler extends AuthorHandler {
 	function deleteSubmission($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
+
 		$authorSubmission =& $this->submission;
-		parent::setupTemplate(true);
+		$this->setupTemplate(true);
 
 		// If the submission is incomplete, allow the author to delete it.
 		if ($authorSubmission->getSubmissionProgress()!=0) {
@@ -60,7 +60,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$revisionId = isset($args[2]) ? (int) $args[2] : 0;
 
 		$this->validate($monographId);
-		$press =& $this->press;
 		$authorSubmission =& $this->submission;
 		if ($authorSubmission->getStatus() != STATUS_PUBLISHED && $authorSubmission->getStatus() != STATUS_ARCHIVED) {
 			AuthorAction::deleteMonographFile($authorSubmission, $fileId, $revisionId);
@@ -78,9 +77,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
-		parent::setupTemplate(true, $monographId);
+		$this->setupTemplate(true, $monographId);
 
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$pressSettings = $pressSettingsDao->getPressSettings($press->getId());
@@ -93,9 +91,9 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
 
-		$sectionDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		$section =& $sectionDao->getAcquisitionsArrangement($submission->getAcquisitionsArrangementId());
-		$templateMgr->assign_by_ref('section', $section);
+		$acquisitionArrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
+		$arrangement =& $acquisitionArrangementDao->getAcquisitionsArrangement($submission->getAcquisitionsArrangementId());
+		$templateMgr->assign_by_ref('arrangement', $arrangement);
 
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
 		$templateMgr->assign_by_ref('submission', $submission);
@@ -121,9 +119,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 
 		$this->validate($monographId);
-		$press =& $this->press;
 		$authorSubmission =& $this->submission;
-		parent::setupTemplate(true, $monographId);
+		$this->setupTemplate(true, $monographId);
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewModifiedByRound = $reviewAssignmentDao->getLastModifiedByRound($monographId);
@@ -156,11 +153,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		}
 		$templateMgr->assign_by_ref('reviewProcesses', $reviewProcesses);
 		$templateMgr->assign_by_ref('reviewRounds', $reviewRounds);
-
-/*
-		for ($round = 1; $round <= $authorSubmission->getCurrentReviewRound(); $round++) {
-			$reviewIndexesByRound[$round] = $reviewAssignmentDao->getReviewIndexesForRound($monographId, $authorSubmission->getCurrentReviewType(), $round);
-		}*/
 		$templateMgr->assign_by_ref('reviewIndexesByRound', $reviewIndexesByRound);
 		$templateMgr->assign('reviewEarliestNotificationByRound', $reviewEarliestNotificationByRound);
 		$templateMgr->assign_by_ref('submissionFile', $authorSubmission->getSubmissionFile());
@@ -187,10 +179,9 @@ class TrackSubmissionHandler extends AuthorHandler {
 	function addSuppFile($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
 		$authorSubmission =& $this->submission;
 		if ($authorSubmission->getStatus() != STATUS_PUBLISHED && $authorSubmission->getStatus() != STATUS_ARCHIVED) {
-			parent::setupTemplate(true, $monographId, 'summary');
+			$this->setupTemplate(true, $monographId, 'summary');
 
 			import('submission.form.SuppFileForm');
 
@@ -215,10 +206,10 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
+
 		$authorSubmission =& $this->submission;
 		if ($authorSubmission->getStatus() != STATUS_PUBLISHED && $authorSubmission->getStatus() != STATUS_ARCHIVED) {
-			parent::setupTemplate(true, $monographId, 'summary');
+			$this->setupTemplate(true, $monographId, 'summary');
 
 			import('submission.form.SuppFileForm');
 
@@ -242,7 +233,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 	function setSuppFileVisibility($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$press =& $this->press;
 		$authorSubmission =& $this->submission;
 
 		if ($authorSubmission->getStatus() != STATUS_PUBLISHED && $authorSubmission->getStatus() != STATUS_ARCHIVED) {
@@ -265,7 +255,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 	function saveSuppFile($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$press =& $this->press;
 		$authorSubmission =& $this->submission;
 
 		if ($authorSubmission->getStatus() != STATUS_PUBLISHED && $authorSubmission->getStatus() != STATUS_ARCHIVED) {
@@ -280,7 +269,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 				$submitForm->execute();
 				Request::redirect(null, null, 'submission', $monographId);
 			} else {
-				parent::setupTemplate(true, $monographId, 'summary');
+				$this->setupTemplate(true, $monographId, 'summary');
 				$submitForm->display();
 			}
 		} else {
@@ -301,8 +290,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$this->setupTemplate(true, $monographId);
 
 		AuthorAction::copyeditUnderway($submission);
-//		import('submission.proofreader.ProofreaderAction');
-//		ProofreaderAction::proofreadingUnderway($submission, 'SIGNOFF_PROOFREADING_AUTHOR');
+		import('submission.proofreader.ProofreaderAction');
+		ProofreaderAction::proofreadingUnderway($submission, 'SIGNOFF_PROOFREADING_AUTHOR');
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $submission);
@@ -325,9 +314,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 	function uploadRevisedVersion() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;	
-		parent::setupTemplate(true);
+		$this->setupTemplate(true);
 
 		AuthorAction::uploadRevisedVersion($submission);
 
@@ -337,9 +325,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 	function viewMetadata($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
-		parent::setupTemplate(true, $monographId, 'summary');
+		$this->setupTemplate(true, $monographId, 'summary');
 
 		AuthorAction::viewMetadata($submission);
 	}
@@ -347,13 +334,15 @@ class TrackSubmissionHandler extends AuthorHandler {
 	function saveMetadata() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
-		parent::setupTemplate(true, $monographId);
+		$this->setupTemplate(true, $monographId);
 
 		// If the copy editor has completed copyediting, disallow
 		// the author from changing the metadata.
-		if ($submission->getCopyeditorDateCompleted() != null || AuthorAction::saveMetadata($submission)) {
+
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_ARTICLE, $submission->getArticleId());
+		if ($initialSignoff->getCopyeditorDateCompleted() != null || AuthorAction::saveMetadata($submission)) {
 			Request::redirect(null, null, 'submission', $monographId);
 		}
 	}
@@ -365,8 +354,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$monographId = isset($args[0]) ? (int)$args[0] : 0;
 		$formLocale = $args[1];
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
+		$press =& Request::getPress();
 
 		import('file.PublicFileManager');
 		$publicFileManager =& new PublicFileManager();
@@ -387,9 +376,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$monographId = Request::getUserVar('monographId');
 
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
-		parent::setupTemplate(true, $monographId);
+		$this->setupTemplate(true, $monographId);
 
 		AuthorAction::uploadCopyeditVersion($submission, $copyeditStage);
 
@@ -399,9 +387,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 	function completeAuthorCopyedit($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
-		parent::setupTemplate(true);		
+		$this->setupTemplate(true);		
 
 		if (AuthorAction::completeAuthorCopyedit($submission, Request::getUserVar('send'))) {
 			Request::redirect(null, null, 'submissionEditing', $monographId);
@@ -422,7 +409,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$revision = isset($args[2]) ? $args[2] : null;
 
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 		if (!AuthorAction::downloadAuthorFile($submission, $fileId, $revision)) {
 			Request::redirect(null, null, 'submission', $monographId);
@@ -439,8 +425,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$revision = isset($args[2]) ? $args[2] : null;
 
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
 		Action::downloadFile($monographId, $fileId, $revision);
 	}
 
@@ -457,9 +441,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$press =& Request::getPress();
 		$user =& Request::getUser();
-
+		$press =& Request::getPress();
 		$isValid = true;
 
 		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($monographId);
@@ -478,7 +461,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 			Request::redirect(null, Request::getRequestedPage());
 		}
 
-		$this->press =& $press;
 		$this->submission =& $authorSubmission;
 		return true;
 	}
@@ -493,9 +475,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 	function authorProofreadingComplete($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
-		parent::setupTemplate(true);
+		$this->setupTemplate(true);
 
 		$send = isset($args[0]) && $args[0] == 'send' ? true : false;
 
@@ -514,8 +494,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $monographId);
@@ -531,8 +509,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $monographId);
@@ -549,8 +525,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
 
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		$galley =& $galleyDao->getGalley($galleyId, $monographId);
@@ -585,8 +559,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$revision = isset($args[2]) ? $args[2] : null;
 
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
 		if (!AuthorAction::viewFile($monographId, $fileId, $revision)) {
 			Request::redirect(null, null, 'submission', $monographId);
 		}
