@@ -160,25 +160,6 @@ class PressSiteSettingsForm extends Form {
 				'primaryLocale' => $site->getPrimaryLocale(),
 				'pressName' => $titles[$site->getPrimaryLocale()]
 			));
-
-			// Install the default RT versions.
-/*			import('rt.ojs.JournalRTAdmin');
-			$journalRtAdmin =& new JournalRTAdmin($journalId);
-			$journalRtAdmin->restoreVersions(false);
-*/
-/*			// Create a default "Articles" section
-			$sectionDao =& DAORegistry::getDAO('SectionDAO');
-			$section =& new Section();
-			$section->setPressId($press->getId());
-			$section->setTitle(Locale::translate('section.default.title'), $press->getPrimaryLocale());
-			$section->setAbbrev(Locale::translate('section.default.abbrev'), $press->getPrimaryLocale());
-			$section->setMetaIndexed(true);
-			$section->setMetaReviewed(true);
-			$section->setPolicy(Locale::translate('section.default.policy'), $press->getPrimaryLocale());
-			$section->setEditorRestricted(false);
-			$section->setHideTitle(false);
-			$sectionDao->insertSection($section);
-*/
 		}
 		$press->updateSetting('name', $this->getData('name'), 'string', true);
 		$press->updateSetting('description', $this->getData('description'), 'string', true);
