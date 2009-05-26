@@ -19,6 +19,9 @@ import('submission.author.AuthorAction');
 import('handler.Handler');
 
 class AuthorHandler extends Handler {
+	/**
+	 * Constructor
+	 **/
 	function AuthorHandler() {
 		parent::Handler();
 
@@ -60,25 +63,7 @@ class AuthorHandler extends Handler {
 		}
 		$templateMgr->assign_by_ref('submissions', $submissions);
 
-		// assign payment 
-/*		import('payment.ojs.OJSPaymentManager');
-		$paymentManager =& OJSPaymentManager::getManager();
-
-		if ( $paymentManager->isConfigured() ) {		
-			$templateMgr->assign('submissionEnabled', $paymentManager->submissionEnabled());
-			$templateMgr->assign('fastTrackEnabled', $paymentManager->fastTrackEnabled());
-			$templateMgr->assign('publicationEnabled', $paymentManager->publicationEnabled());
-			
-			$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
-			$templateMgr->assign_by_ref('completedPaymentDAO', $completedPaymentDAO);
-		} 				
-
-		import('issue.IssueAction');
-		$issueAction =& new IssueAction();
-		$templateMgr->register_function('print_issue_id', array($issueAction, 'smartyPrintIssueId'));
-		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.submissions');
-*/
-		$templateMgr->display('author/index.tpl');
+ 		$templateMgr->display('author/index.tpl');
 	}
 
 	/**
@@ -93,12 +78,12 @@ class AuthorHandler extends Handler {
 		$pageHierarchy = $subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'author'), 'user.role.author'), array(Request::url(null, 'author'), 'manuscript.submissions'))
 			: array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'author'), 'user.role.author'));
 
-/*		import('submission.sectionEditor.SectionEditorAction');
-		$submissionCrumb = SectionEditorAction::submissionBreadcrumb($monographId, $parentPage, 'author');
+		import('submission.acquisitionsEditor.AcquisitionsEditorAction');
+		$submissionCrumb = AcquisitionsEditorAction::submissionBreadcrumb($monographId, $parentPage, 'author');
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
 		}
-*/
+
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 
