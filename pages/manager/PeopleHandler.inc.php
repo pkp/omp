@@ -19,7 +19,7 @@ import('pages.manager.ManagerHandler');
 class PeopleHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 */	
+	 **/
 	function PeopleHandler() {
 		parent::ManagerHandler();
 	}
@@ -75,34 +75,43 @@ class PeopleHandler extends ManagerHandler {
 				case ROLE_ID_PRESS_MANAGER:
 					$helpTopicId = 'press.roles.pressManager';
 					break;
-/*				case ROLE_ID_EDITOR:
-					$helpTopicId = 'journal.roles.editor';
+				case ROLE_ID_EDITOR:
+					$helpTopicId = 'press.roles.editor';
 					break;
-				case ROLE_ID_SECTION_EDITOR:
-					$helpTopicId = 'journal.roles.sectionEditor';
+				case ROLE_ID_ACQUISITIONS_EDITOR:
+					$helpTopicId = 'press.roles.acquisitionsEditor';
 					break;
-				case ROLE_ID_LAYOUT_EDITOR:
-					$helpTopicId = 'journal.roles.layoutEditor';
+				case ROLE_ID_PRODUCTION_EDITOR:
+					$helpTopicId = 'press.roles.productionEditor';
+					break;
+				case ROLE_ID_DESIGNER:
+					$helpTopicId = 'press.roles.designer';
 					break;
 				case ROLE_ID_REVIEWER:
-					$helpTopicId = 'journal.roles.reviewer';
+					$helpTopicId = 'press.roles.reviewer';
 					break;
 				case ROLE_ID_COPYEDITOR:
-					$helpTopicId = 'journal.roles.copyeditor';
+					$helpTopicId = 'press.roles.copyeditor';
 					break;
 				case ROLE_ID_PROOFREADER:
-					$helpTopicId = 'journal.roles.proofreader';
+					$helpTopicId = 'press.roles.proofreader';
 					break;
 				case ROLE_ID_AUTHOR:
-					$helpTopicId = 'journal.roles.author';
+					$helpTopicId = 'press.roles.author';
 					break;
 				case ROLE_ID_READER:
-					$helpTopicId = 'journal.roles.reader';
+					$helpTopicId = 'press.roles.reader';
 					break;
-				case ROLE_ID_SUBSCRIPTION_MANAGER:
-					$helpTopicId = 'journal.roles.subscriptionManager';
+				case ROLE_ID_COMMITTEE_MEMBER:
+					$helpTopicId = 'press.roles.committeeMember';
+					break;					
+				case ROLE_ID_DIRECTOR:
+					$helpTopicId = 'press.roles.director';
 					break;
-*/				default:
+				case ROLE_ID_INDEXER:
+					$helpTopicId = 'press.roles.indexer';
+					break;					
+				default:
 					$helpTopicId = 'press.roles.index';
 					break;
 			}
@@ -122,12 +131,12 @@ class PeopleHandler extends ManagerHandler {
 		$templateMgr->assign('search', $search);
 		$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
 
-/*		if ($roleId == ROLE_ID_REVIEWER) {
+		if ($roleId == ROLE_ID_REVIEWER) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$templateMgr->assign('rateReviewerOnQuality', $press->getSetting('rateReviewerOnQuality'));
 			$templateMgr->assign('qualityRatings', $press->getSetting('rateReviewerOnQuality') ? $reviewAssignmentDao->getAverageQualityRatings($press->getId()) : null);
 		}
-*/		$templateMgr->assign('helpTopicId', $helpTopicId);
+		$templateMgr->assign('helpTopicId', $helpTopicId);
 		$fieldOptions = Array(
 			USER_FIELD_FIRSTNAME => 'user.firstName',
 			USER_FIELD_LASTNAME => 'user.lastName',
@@ -135,14 +144,14 @@ class PeopleHandler extends ManagerHandler {
 			USER_FIELD_INTERESTS => 'user.interests',
 			USER_FIELD_EMAIL => 'user.email'
 		);
-	//	if ($roleId == ROLE_ID_REVIEWER) $fieldOptions = array_merge(array(USER_FIELD_INTERESTS => 'user.interests'), $fieldOptions);
+		if ($roleId == ROLE_ID_REVIEWER) $fieldOptions = array_merge(array(USER_FIELD_INTERESTS => 'user.interests'), $fieldOptions);
 		$templateMgr->assign('fieldOptions', $fieldOptions);
 		$templateMgr->assign('rolePath', $roleDao->getRolePath($roleId));
 		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 		$templateMgr->assign('roleSymbolic', $roleSymbolic);
 
 		$session =& Request::getSession();
-                $session->setSessionVar('enrolmentReferrer', Request::getRequestedArgs());
+		$session->setSessionVar('enrolmentReferrer', Request::getRequestedArgs());
 
 		$templateMgr->display('manager/people/enrollment.tpl');
 	}
@@ -205,9 +214,32 @@ class PeopleHandler extends ManagerHandler {
 
 		$session =& Request::getSession();
 		$referrerUrl = $session->getSessionVar('enrolmentReferrer');
-            	$templateMgr->assign('enrolmentReferrerUrl', isset($referrerUrl) ? Request::url(null,'manager','people',$referrerUrl) : Request::url(null,'manager'));
-                $session->unsetSessionVar('enrolmentReferrer');
+			$templateMgr->assign('enrolmentReferrerUrl', isset($referrerUrl) ? Request::url(null,'manager','people',$referrerUrl) : Request::url(null,'manager'));
+			$session->unsetSessionVar('enrolmentReferrer');
 
+		$templateMgr->display('manager/people/searchUsers.tpl');
+	}
+
+	/**
+	 * Show users with no role.
+	 */
+	function showNoRole() {
+		$this->validate();
+
+		$userDao =& DAORegistry::getDAO('UserDAO');
+
+		$templateMgr =& TemplateManager::getManager();
+
+		parent::setupTemplate(true);
+
+		$rangeInfo = Handler::getRangeInfo('users');
+
+		$users =& $userDao->getUsersWithNoRole(true, $rangeInfo);
+
+		$templateMgr->assign('omitSearch', true);
+		$templateMgr->assign_by_ref('users', $users);
+		$templateMgr->assign_by_ref('thisUser', Request::getUser());
+		$templateMgr->assign('helpTopicId', 'press.users.index');
 		$templateMgr->display('manager/people/searchUsers.tpl');
 	}
 
@@ -378,7 +410,7 @@ class PeopleHandler extends ManagerHandler {
 	}
 
 	/**
-	 * Allow the Press Manager to merge user accounts, including attributed articles etc.
+	 * Allow the Press Manager to merge user accounts, including attributed monographs etc.
 	 */
 	function mergeUsers($args) {
 		$this->validate();
@@ -407,119 +439,8 @@ class PeopleHandler extends ManagerHandler {
 		}
 
 		if (!empty($oldUserId) && !empty($newUserId)) {
-			// Both user IDs have been selected. Merge the accounts.
-
-			$articleDao =& DAORegistry::getDAO('ArticleDAO');
-			foreach ($articleDao->getArticlesByUserId($oldUserId) as $article) {
-				$article->setUserId($newUserId);
-				$articleDao->updateArticle($article);
-				unset($article);
-			}
-
-			$commentDao =& DAORegistry::getDAO('CommentDAO');
-			foreach ($commentDao->getCommentsByUserId($oldUserId) as $comment) {
-				$comment->setUserId($newUserId);
-				$commentDao->updateComment($comment);
-				unset($comment);
-			}
-
-			$articleNoteDao =& DAORegistry::getDAO('ArticleNoteDAO');
-			$articleNotes =& $articleNoteDao->getArticleNotesByUserId($oldUserId);
-			while ($articleNote =& $articleNotes->next()) {
-				$articleNote->setUserId($newUserId);
-				$articleNoteDao->updateArticleNote($articleNote);
-				unset($articleNote);
-			}
-
-			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-			$editAssignments =& $editAssignmentDao->getByUserId($oldUserId);
-			while ($editAssignment =& $editAssignments->next()) {
-				$editAssignment->setEditorId($newUserId);
-				$editAssignmentDao->updateEditAssignment($editAssignment);
-				unset($editAssignment);
-			}
-
-			$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
-			$editorSubmissionDao->transferEditorDecisions($oldUserId, $newUserId);
-
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			foreach ($reviewAssignmentDao->getByUserId($oldUserId) as $reviewAssignment) {
-				$reviewAssignment->setReviewerId($newUserId);
-				$reviewAssignmentDao->updateObject($reviewAssignment);
-				unset($reviewAssignment);
-			}
-
-			$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
-			$copyeditorSubmissions =& $copyeditorSubmissionDao->getCopyeditorSubmissionsByCopyeditorId($oldUserId);
-			while ($copyeditorSubmission =& $copyeditorSubmissions->next()) {
-				$copyeditorSubmission->setCopyeditorId($newUserId);
-				$copyeditorSubmissionDao->updateCopyeditorSubmission($copyeditorSubmission);
-				unset($copyeditorSubmission);
-			}
-
-			$layoutEditorSubmissionDao =& DAORegistry::getDAO('LayoutEditorSubmissionDAO');
-			$layoutEditorSubmissions =& $layoutEditorSubmissionDao->getSubmissions($oldUserId);
-			while ($layoutEditorSubmission =& $layoutEditorSubmissions->next()) {
-				$layoutAssignment =& $layoutEditorSubmission->getLayoutAssignment();
-				$layoutAssignment->setEditorId($newUserId);
-				$layoutEditorSubmissionDao->updateSubmission($layoutEditorSubmission);
-				unset($layoutAssignment);
-				unset($layoutEditorSubmission);
-			}
-
-			$proofreaderSubmissionDao =& DAORegistry::getDAO('ProofreaderSubmissionDAO');
-			$proofreaderSubmissions =& $proofreaderSubmissionDao->getSubmissions($oldUserId);
-			while ($proofreaderSubmission =& $proofreaderSubmissions->next()) {
-				$proofAssignment =& $proofreaderSubmission->getProofAssignment();
-				$proofAssignment->setProofreaderId($newUserId);
-				$proofreaderSubmissionDao->updateSubmission($proofreaderSubmission);
-				unset($proofAssignment);
-				unset($proofreaderSubmission);
-			}
-
-			$articleEmailLogDao =& DAORegistry::getDAO('ArticleEmailLogDAO');
-			$articleEmailLogDao->transferArticleLogEntries($oldUserId, $newUserId);
-			$articleEventLogDao =& DAORegistry::getDAO('ArticleEventLogDAO');
-			$articleEventLogDao->transferArticleLogEntries($oldUserId, $newUserId);
-
-			$articleCommentDao =& DAORegistry::getDAO('ArticleCommentDAO');
-			foreach ($articleCommentDao->getArticleCommentsByUserId($oldUserId) as $articleComment) {
-				$articleComment->setAuthorId($newUserId);
-				$articleCommentDao->updateArticleComment($articleComment);
-				unset($articleComment);
-			}
-
-			$accessKeyDao =& DAORegistry::getDAO('AccessKeyDAO');
-			$accessKeyDao->transferAccessKeys($oldUserId, $newUserId);
-
-			// Delete the old user and associated info.
-			$sessionDao =& DAORegistry::getDAO('SessionDAO');
-			$sessionDao->deleteSessionsByUserId($oldUserId);
-			$subscriptionDao =& DAORegistry::getDAO('SubscriptionDAO');
-			$subscriptionDao->deleteSubscriptionsByUserId($oldUserId);
-			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
-			$temporaryFileDao->deleteTemporaryFilesByUserId($oldUserId);
-			$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
-			$notificationStatusDao->deleteNotificationStatusByUserId($oldUserId);
-			$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
-			$userSettingsDao->deleteSettings($oldUserId);
-			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
-			$groupMembershipDao->deleteMembershipByUserId($oldUserId);
-			$sectionEditorsDao =& DAORegistry::getDAO('SectionEditorsDAO');
-			$sectionEditorsDao->deleteEditorsByUserId($oldUserId);
-
-			// Transfer old user's roles
-			$roles =& $roleDao->getRolesByUserId($oldUserId);
-			foreach ($roles as $role) {
-				if (!$roleDao->roleExists($role->getPressId(), $newUserId, $role->getRoleId())) {
-					$role->setUserId($newUserId);
-					$roleDao->insertRole($role);
-				}
-			}
-			$roleDao->deleteRoleByUserId($oldUserId);
-
-			$userDao->deleteUserById($oldUserId);
-
+			import('user.UserAction');
+			UserAction::mergeUsers($oldUserId, $newUserId);
 			Request::redirect(null, 'manager');
 		}
 
@@ -682,7 +603,6 @@ class PeopleHandler extends ManagerHandler {
 	 */
 	function updateUser() {
 		$this->validate();
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
 		$press =& Request::getPress();
 		$userId = Request::getUserVar('userId');
 
