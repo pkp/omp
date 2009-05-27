@@ -92,7 +92,7 @@
 		<li><a href="{url page="about"}">{translate key="navigation.about"}</a></li>
 
 		{if $isUserLoggedIn}
-			<li><a href="{url page="user"}">{translate key="navigation.userHome"}</a></li>
+			<li><a href="{url press="index" page="user"}">{translate key="navigation.userHome"}</a></li>
 		{else}
 			<li><a href="{url page="login"}">{translate key="navigation.login"}</a></li>
 			<!--<li><a href="{url page="user" op="register"}">{translate key="navigation.register"}</a></li>-->

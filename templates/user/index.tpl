@@ -25,11 +25,6 @@
 </table>
 {/if}
 
-
-{if $showAllPresses}
-
-<h3>{translate key="user.myPresses"}</h3>
-
 {if $isSiteAdmin}
 	{assign var="hasRole" value=1}
 	<h4><a href="{url page="user"}">{$siteTitle|escape}</a></h4>
@@ -38,6 +33,10 @@
 		{call_hook name="Templates::User::Index::Site"}
 	</ul>
 {/if}
+
+{if $showAllPresses}
+
+<h3>{translate key="user.myPresses"}</h3>
 
 {foreach from=$userPresses item=press}
 	{assign var="hasRole" value=1}

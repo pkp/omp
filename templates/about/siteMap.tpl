@@ -18,6 +18,7 @@
 <ul class="plain">
 <li>
 	<a href="{url press="index" page="index" op="index"}">{translate key="navigation.home"}</a><br/>
+	<a href="{url press="index" page="user"}">{translate key="navigation.userHome"}</a><br/>
 	<ul class="plain">
 	{if $presses|@count>1 && !$currentPress}
 		{foreach from=$presses item=press}
@@ -38,15 +39,11 @@
 				<li>
 					{if $isUserLoggedIn}
 						<ul class="plain">
-							<li><a href="{url press=`$currentPress->getPath()` page="user"}">{translate key="navigation.userHome"}</a><br/>
-								<ul class="plain">
-									{assign var=currentPressId value=$currentPress->getId()}
-									{foreach from=$rolesByPress[$currentPressId] item=role}
-									{translate|assign:"roleName" key=$role->getRoleName()}
-										<li><a href="{url press=`$currentPress->getPath()` page=`$role->getRolePath()`}">{$roleName|escape}</a></li>
-									{/foreach}
-								</ul>
-							</li>
+							{assign var=currentPressId value=$currentPress->getId()}
+							{foreach from=$rolesByPress[$currentPressId] item=role}
+								{translate|assign:"roleName" key=$role->getRoleName()}
+								<li><a href="{url press=`$currentPress->getPath()` page=`$role->getRolePath()`}">{$roleName|escape}</a></li>
+							{/foreach}
 						</ul>
 					{else}
 						<ul class="plain">
