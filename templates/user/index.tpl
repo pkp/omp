@@ -106,9 +106,7 @@
 <h3>{translate key="user.myAccount"}</h3>
 <ul class="plain">
 	{if $hasOtherPresses}
-		{if $showAllPresses}
-			<li>&#187; <a href="{url press="index" page="user" op="register"}">{translate key="user.registerForOtherPresses"}</a></li>
-		{else}
+		{if !$showAllPresses}
 			<li>&#187; <a href="{url press="index" page="user"}">{translate key="user.showAllPresses"}</a></li>
 		{/if}
 	{/if}
