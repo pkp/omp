@@ -321,7 +321,6 @@ class ProductionEditorHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
 		$templateMgr->assign('userId', $user->getId());
 		$templateMgr->assign('isEditor', $isEditor);

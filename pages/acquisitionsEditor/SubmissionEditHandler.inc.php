@@ -65,7 +65,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('arrangement', $arrangement);
-		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
 		$templateMgr->assign_by_ref('prospectusFile', $submission->getProspectusFile());
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());

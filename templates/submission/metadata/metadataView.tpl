@@ -17,16 +17,6 @@
 <h3>{translate key="monograph.authors"}</h3>
 
 <table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-		<td width="80%" class="value">
-			{url|assign:"formUrl" path=$monographId}
-			<form name="metadata" action="{$formUrl}" method="post">
-			{form_language_chooser form="metadata" url=$formUrl}
-			<span class="instruct">{translate key="form.formLanguage.description"}</span>
-			</form>
-		</td>
-	</tr>
 	{foreach name=authors from=$authors key=authorIndex item=author}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="user.name"}</td>
