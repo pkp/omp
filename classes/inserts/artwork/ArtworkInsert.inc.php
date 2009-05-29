@@ -14,9 +14,7 @@
 
 // $Id$
 
-class ArtworkInsert
-{
-
+class ArtworkInsert {
 	var $options;
 	var $monograph;
 
@@ -28,46 +26,8 @@ class ArtworkInsert
 		$returner = array('artworkFile', 'type', 'componentId', 'identifier');
 		return $returner;
 	}
-	function initData(&$form) {
-
-/*		if (isset($this->monograph)) {
-
-			$insertReturns =& $this->contributorInsert->initData($form);
-			$gnash = $insertReturns['lookup'];
-
-			$components =& $this->monograph->getMonographComponents();
-			$formComponents = array();
-
-			import('monograph.Author');
-			for ($i=0, $count=count($components); $i < $count; $i++) {
-				$cas = array();
-				foreach ($components[$i]->getMonographComponentAuthors() as $ca) {
-					array_push($cas, array(
-								'authorId' => $gnash[$ca->getId()],
-								'email' => $ca->getEmail(),
-								'firstName' => $ca->getFirstName(),
-								'lastName' => $ca->getLastName()
-							)
-						);
-				}
-				array_push(
-					$formComponents,
-					array (
-						'title' => $components[$i]->getTitle(null),
-						'authors' => $cas
-					)
-				);
-			}
-			$returner = array ('components' => $formComponents, 
-						'contributors'=>$insertReturns['contributors'],
-						'newContributor'=>$insertReturns['newContributor'], 'primaryContact'=>$insertReturns['primaryContact']
-					);
-			return $returner;
-		}
-		return array();*/
-	}
-	function display(&$form) {
-		
+	
+	function display(&$form) {	
 		$templateMgr =& TemplateManager::getManager();
 		$press =& Request::getPress();
 
@@ -81,6 +41,7 @@ class ArtworkInsert
 		$fields = array();
 		return $fields;
 	}
+	
 	function execute(&$form, &$monograph) {
 		$press =& Request::getPress();
 
@@ -120,6 +81,7 @@ class ArtworkInsert
 
 		return $fileId;
 	}
+	
 	function processEvents(&$form) {
 		$eventProcessed = false;
 
