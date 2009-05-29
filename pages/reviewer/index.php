@@ -41,7 +41,6 @@ switch ($op) {
 		define('HANDLER_CLASS', 'SubmissionReviewHandler');
 		import('pages.reviewer.SubmissionReviewHandler');
 		break;
-//		SubmissionReviewHandler::saveReviewFormResponse($args);
 	//
 	// Submission Comments
 	//
