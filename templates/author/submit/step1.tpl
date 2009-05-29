@@ -21,11 +21,6 @@
 <p>{translate key=$howToKeyName supportName=$pressSettings.supportName supportEmail=$pressSettings.supportEmail supportPhone=$pressSettings.supportPhone}</p>
 {/if}
 
-<!-- ********@@@@@@@@@@@@@@@@@******** -->
-{if 0}<!--count($sectionOptions) <= 1}-->
-<p>{translate key="author.submit.notAccepting"}</p>
-{else}
-<!-- ********@@@@@@@@@@@@@@@@@******** -->
 <div class="separator"></div>
 
 <!-- *******Series/section********* -->
@@ -161,7 +156,5 @@ function checkSubmissionChecklist() {
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 
 </form>
-
-{/if}{* If not accepting submissions *}
 
 {include file="common/footer.tpl"}
