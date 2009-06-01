@@ -1,19 +1,3 @@
-
-{literal}
-<script type="text/javascript">
-<!--
-// Move author up/down
-function moveComponentAuthor(dir, authorIndex,componentIndex) {
-	var form = document.submit;
-	form.moveComponentAuthor.value = 1;
-	form.moveAuthorDir.value = dir;
-	form.moveAuthorIndex.value = authorIndex;
-	form.moveAuthorComponent.value = componentIndex;
-	form.submit();
-}
-// -->
-</script>
-{/literal}
 {literal}
 <script type="text/javascript">
 <!--
@@ -36,9 +20,9 @@ function show(id) {
 function attachCountryList(id,uc) {
 	var c = document.getElementById(id);
 	var html = '';
-	{/literal}
+	{/literal}//	html+="<option value=x>{*$country*}</option>";
 	{foreach from=$countries item=country}
-	//	html+="<option value=x>{*$country*}</option>";
+	
 	{/foreach}
 	{literal};
 	c.innerHTML= html;

@@ -27,11 +27,17 @@
 	-->
 
 	<!-- review froms start -->
+	<message key="inserts.monographComponents.heading.info">Component Info</message>
+	<message key="inserts.monographComponents.heading.prep">Component Preparation</message>
+	<message key="inserts.monographComponents.heading.newComponent">New Component</message>
+	<message key="inserts.monographComponents.button.deleteComponent">Delete Component</message>
+	<message key="inserts.monographComponents.button.addComponent">Add Component</message>
+	<message key="inserts.monographComponents.button.removeAuthor">Remove Author</message>
+
 	<message key="monograph.component.title">Component Title</message>
 	<message key="monograph.artworkFile">Artwork File</message>
 	<message key="monograph.component.authors">Authors</message>
 	<message key="monograph.component.description">Books are divided into sections called monograph components. Chapters, table of contents, and prefaces are all monograph components.</message>
-	<message key="author.submit.addComponent">Add Component</message>
 	<message key="submission.layout.assignLayoutEditor">Assign Layout Editor</message>
 	<message key="submission.layout.uploadLayoutVersion">Upload Layout Version</message>
 	<message key="submission.layout.noLayoutFile">None (Upload final copyedit version as Layout Version prior to sending request)</message>

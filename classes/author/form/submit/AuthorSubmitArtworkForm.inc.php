@@ -43,7 +43,7 @@ class AuthorSubmitArtworkForm extends AuthorSubmitForm {
 	}
 
 	function _initializeInserts() {
-		$this->artworkInsert = new ArtworkInsert($this->monograph);
+		$this->artworkInsert = new ArtworkInsert($this->monograph->getMonographId());
 	}
 
 	/**

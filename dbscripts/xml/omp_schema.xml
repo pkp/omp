@@ -14,6 +14,74 @@
 
 <schema version="0.2">
 
+	<!--
+	  *
+	  * TABLE monograph_event_log
+	  *
+	  -->
+	<table name="monograph_event_log">
+		<field name="log_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="user_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_logged" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="ip_address" type="C2" size="15">
+			<NOTNULL/>
+		</field>
+		<field name="log_level" type="C2" size="1"/>
+		<field name="event_type" type="I8"/>
+		<field name="assoc_type" type="I8"/>
+		<field name="assoc_id" type="I8"/>
+		<field name="message" type="X"/>
+		<descr>A log of all events associated with a submission.</descr>
+		<index name="monograph_event_log_monograph_id">
+			<col>monograph_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE monograph_email_log
+	  *
+	  -->
+	<table name="monograph_email_log">
+		<field name="log_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="sender_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="date_sent" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="ip_address" type="C2" size="15"/>
+		<field name="event_type" type="I8"/>
+		<field name="assoc_type" type="I8"/>
+		<field name="assoc_id" type="I8"/>
+		<field name="from_address" type="C2" size="255"/>
+		<field name="recipients" type="X"/>
+		<field name="cc_recipients" type="X"/>
+		<field name="bcc_recipients" type="X"/>
+		<field name="subject" type="C2" size="255"/>
+		<field name="body" type="X"/>
+		<descr>A log of all emails sent out related to a submission.</descr>
+		<index name="monograph_email_log_monograph_id">
+			<col>monograph_id</col>
+		</index>
+	</table>
+
 	<table name="workflow_signoffs">
 		<field name="user_id" type="I8">
 			<NOTNULL/>
@@ -143,7 +211,7 @@
 	
 	<!--
 	  *
-	  * TABLE article_galleys
+	  * TABLE monograph_galleys
 	  *
 	  -->
 	<table name="monograph_galleys">
@@ -186,10 +254,10 @@
 	
 	<!--
 	  *
-	  * TABLE article_html_galley_images
+	  * TABLE monograph_html_galley_images
 	  *
 	  -->
-	<table name="article_html_galley_images">
+	<table name="monograph_html_galley_images">
 		<field name="galley_id" type="I8">
 			<NOTNULL />
 		</field>
@@ -404,7 +472,7 @@
 
 	<!--
 	  *
-	  * TABLE article_supplementary_files
+	  * TABLE monograph_supplementary_files
 	  *
 	  -->
 	<table name="monograph_supplementary_files">
@@ -432,7 +500,7 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
-		<descr>Supplementary files attached to articles.</descr>
+		<descr>Supplementary files attached to monographs.</descr>
 		<index name="monograph_supplementary_files_file_id">
 			<col>file_id</col>
 		</index>
@@ -446,7 +514,7 @@
 
 	<!--
 	  *
-	  * TABLE article_supp_file_settings
+	  * TABLE monograph_supp_file_settings
 	  *
 	  -->
 	<table name="monograph_supp_file_settings">
@@ -504,8 +572,8 @@
 		<field name="date_notified" type="T"/>
 		<field name="date_underway" type="T"/>
 		<descr>Editing assignments.</descr>
-		<index name="edit_assignments_article_id">
-			<col>article_id</col>
+		<index name="edit_assignments_monograph_id">
+			<col>monograph_id</col>
 		</index>
 		<index name="edit_assignments_editor_id">
 			<col>editor_id</col>
@@ -538,8 +606,8 @@
 		</field>
 		<field name="review_type" type="I8" />
 		<descr>Editor decisions.</descr>
-		<index name="edit_decisions_article_id">
-			<col>article_id</col>
+		<index name="edit_decisions_monograph_id">
+			<col>monograph_id</col>
 		</index>
 		<index name="edit_decisions_editor_id">
 			<col>editor_id</col>
@@ -547,7 +615,7 @@
 	</table>
 	<!--
 	  *
-	  * TABLE article_files
+	  * TABLE monograph_files
 	  *
 	  -->
 	<table name="monograph_files">
@@ -1291,7 +1359,7 @@
 
 	  <!--
 	  *
-	  * TABLE article_settings
+	  * TABLE monograph_settings
 	  *
 	  -->
 	<table name="monograph_settings">
@@ -1310,9 +1378,9 @@
 			<NOTNULL/>
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
-		<descr>Journal article metadata.</descr>
+		<descr>Monograph metadata.</descr>
 		<index name="monograph_settings_monograph_id">
-			<col>article_id</col>
+			<col>monograph_id</col>
 		</index>
 		<index name="monograph_settings_pkey">
 			<col>monograph_id</col>

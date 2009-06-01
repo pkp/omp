@@ -15,42 +15,40 @@
 // $Id$
 
 class ArtworkInsert {
-	var $options;
-	var $monograph;
+	var $monographId;
 
-	function ArtworkInsert($monograph, $options = 0) {
-		$this->monograph =& $monograph;
-		$this->options = $options;
+	function ArtworkInsert($monographId, $options = 0) {
+		parent::Insert($options);
+		$this->monographId = $monographId;
 	}
+
 	function &listUserVars() {
 		$returner = array('artworkFile', 'type', 'componentId', 'identifier');
 		return $returner;
 	}
-	
-	function display(&$form) {	
-		$templateMgr =& TemplateManager::getManager();
-		$press =& Request::getPress();
+
+	function display(&$form) {
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$artworks =& $monographFileDao->getMonographFilesByAssocId(null, MONOGRAPH_FILE_ARTWORK, $this->monograph->getMonographId());
+		$templateMgr =& TemplateManager::getManager();
+
+		$artworks =& $monographFileDao->getMonographFilesByAssocId(
+								null, 
+								MONOGRAPH_FILE_ARTWORK, 
+								$this->monographId
+							);
 
 		$templateMgr->assign_by_ref('artworks', $artworks);
 
 	}
-	function getLocaleFieldNames() {
-		$fields = array();
-		return $fields;
-	}
-	
+
 	function execute(&$form, &$monograph) {
-		$press =& Request::getPress();
-
 		import('monograph.MonographArtworkFile');
-		$artworkFileDao =& DAORegistry::getDAO('MonographFileDAO');
-
 		import('file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monograph->getMonographId());
+
 		$fileId = null;
+		$artworkFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$monographFileManager = new MonographFileManager($monograph->getMonographId());
 
 		if ($monographFileManager->uploadedFileExists('artworkFile')) {
 			$fileId = $monographFileManager->uploadArtworkFile('artworkFile', null);
@@ -63,6 +61,7 @@ class ArtworkInsert {
 			$newEntry = false;
 			$artworkFile = new MonographArtworkFile();
 		}
+
 		$form->readInputData();
 
 		$artworkFile->setFileId($fileId);
@@ -70,8 +69,7 @@ class ArtworkInsert {
 		$artworkFile->setPermissionFileId(0);
 		$artworkFile->setMonographComponentId($form->getData('componentId'));
 		$artworkFile->setIdentifier($form->getData('identifier'));
-
-		$artworkFile->setSeq(0);
+		$artworkFile->setSeq(REALLY_BIG_NUMBER);
 
 		if ($newEntry) {
 			$artworkFileDao->insertMonographArtworkFile($artworkFile);
@@ -82,17 +80,17 @@ class ArtworkInsert {
 		return $fileId;
 	}
 	
-	function processEvents(&$form) {
+	function processEvents(&$form, &$monograph) {
 		$eventProcessed = false;
 
 		if (Request::getUserVar('uploadNewArtwork')) {
-			$press =& Request::getPress();
-			$eventProcessed = true;
 			import('monograph.MonographArtworkFile');
-			$artworkFileDao =& DAORegistry::getDAO('MonographFileDAO');
-
 			import('file.MonographFileManager');
-			$monographFileManager = new MonographFileManager($this->monograph->getMonographId());
+
+			$eventProcessed = true;
+			$artworkFileDao =& DAORegistry::getDAO('MonographFileDAO');
+			$monographFileManager = new MonographFileManager($monograph->getMonographId());
+
 			$fileId = null;
 
 			if ($monographFileManager->uploadedFileExists('artworkFile')) {
@@ -100,12 +98,11 @@ class ArtworkInsert {
 			}
 
 			if ($fileId) {
-				$newEntry = true;
 				$artworkFile =& $artworkFileDao->getMonographArtworkFile($fileId);
 			} else {
-				$newEntry = false;
 				$artworkFile = new MonographArtworkFile();
 			}
+
 			$form->readInputData();
 
 			$artworkFile->setFileId($fileId);
@@ -113,23 +110,22 @@ class ArtworkInsert {
 			$artworkFile->setPermissionFileId(0);
 			$artworkFile->setMonographComponentId($form->getData('componentId'));
 			$artworkFile->setIdentifier($form->getData('identifier'));
+			$artworkFile->setSeq(REALLY_BIG_NUMBER);
 
-			$artworkFile->setSeq(0);
-
-			if ($newEntry) {
+			if ($fileId) {
 				$artworkFileDao->insertMonographArtworkFile($artworkFile);
 			} else {
 				$artworkFileDao->updateMonographArtworkFile($artworkFile);
 			}
 
 		} else if ($removeArtwork = Request::getUserVar('removeArtwork')) {
+			import('file.MonographFileManager');
+
 			$eventProcessed = true;
 			list($fileId) = array_keys($removeArtwork);
-			import('file.MonographFileManager');
-			$monographFileManager = new MonographFileManager($this->monograph->getMonographId());
+			$monographFileManager = new MonographFileManager($monograph->getMonographId());
 
 			$monographFileManager->deleteFile($fileId);
-
 		}
 
 		return $eventProcessed;

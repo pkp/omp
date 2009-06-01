@@ -32,7 +32,7 @@ class MetadataForm extends Form {
 	 * Constructor.
 	 */
 	function MetadataForm(&$monograph) {
-		$this->formComponents =& new MonographComponentsInsert($monograph, $this);
+		$this->formComponents = new MonographComponentsInsert($monograph);
 		$roleDao = &DAORegistry::getDAO('RoleDAO');
 		$signoffDao = &DAORegistry::getDAO('SignoffDAO');
 

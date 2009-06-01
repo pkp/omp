@@ -580,7 +580,7 @@ class AcquisitionsEditorAction extends Action {
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
-/*			import('monograph.log.MonographLog');
+			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent(
 				$monographId,
@@ -593,9 +593,10 @@ class AcquisitionsEditorAction extends Action {
 					'dueDate' => strftime(Config::getVar('general', 'date_format_short'),
 					strtotime($reviewAssignment->getDateDue())),
 					'monographId' => $monographId,
+					'reviewType' => $reviewAssignment->getReviewType(), 
 					'round' => $reviewAssignment->getRound()
 				)
-			);*/
+			);
 		}
 	}
 
@@ -1523,9 +1524,9 @@ class AcquisitionsEditorAction extends Action {
 
 			$productionEditor =& $userDao->getUser($editorId);
 
-			// TODO: Add log
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
+			MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_PRODUCTION_ASSIGN, MONOGRAPH_LOG_TYPE_PRODUCTION, $submission->getMonographId(), 'log.productionEditor.assigned', array('monographId' => $submission->getMonographId()));
 		}
 	}
 
@@ -1985,7 +1986,7 @@ class AcquisitionsEditorAction extends Action {
 				$email->assignParams(array(
 					'editorialContactSignature' => $user->getContactSignature(),
 					'authorName' => $authorUser->getFullName(),
-					'journalTitle' => $press->getLocalizedName()
+					'pressName' => $press->getLocalizedName()
 				));
 				$email->addRecipient($authorEmail, $authorUser->getFullName());
 				if ($press->getSetting('notifyAllAuthorsOnDecision')) foreach ($acquisitionsEditorSubmission->getAuthors() as $author) {

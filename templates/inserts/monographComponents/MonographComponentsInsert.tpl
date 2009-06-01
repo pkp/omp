@@ -1,14 +1,7 @@
-
 <input type="hidden" name="isEditedVolume" value="{$isEditedVolume}" />
 
-{if $componentSummary}
+{include file="inserts/contributors/ContributorInsert.tpl"}
 
-{else}
+<div class="separator"></div>
 
-	{include file="inserts/contributors/ContributorInsert.tpl"}
-	<div class="separator"></div>
-	{if !$authors_only}
-	{include file="inserts/monographComponents/components.tpl"}
-	{/if}
-
-{/if}
+{include file="inserts/monographComponents/components.tpl"}

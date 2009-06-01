@@ -14,22 +14,16 @@
 
 // $Id$
 
-class ContributorInsert
+import('inserts.Insert');
+
+class ContributorInsert extends Insert
 {
-	var $template;
-	var $form;
 	var $options;
 	var $monograph;
-	var $formData;
 
-	function ContributorInsert(&$work, &$form, $options = 0) {
-		$this->template = 'inserts/contributors/ContributorInsert.tpl';
-	//	$form->addCheck(new FormValidatorCustom($this, 'authors', 'required', 'author.submit.form.authorRequired', create_function('$authors', 'return count($authors) > 0;')));
-	//	$form->addCheck(new FormValidatorArray($this, 'authors', 'required', 'author.submit.form.authorRequiredFields', array('firstName', 'lastName', 'email')));
-		$this->form =& $form;
-		$this->formData = array();
-		$this->monograph =& $work;
-		$this->options = $options;
+	function ContributorInsert(&$monograph, $options = 0) {
+		parent::Insert($options);
+		$this->monograph =& $monograph;
 	}
 	function listUserVars() {
 		return array('newContributor','contributors','primaryContact');
@@ -39,11 +33,11 @@ class ContributorInsert
 		if (isset($this->monograph)) {
 
 			$authors =& $this->monograph->getAuthors();
-			$i = 0;
-			$gnash = array();
 			$primaryContact = 0;
+			$idMap = array();
+			$i = 0;
 			foreach ($authors as $author) {
-				$gnash[$author->getId()] = $i;
+				$idMap[$author->getId()] = $i;
 
 				$authorArray = array(
 							'firstName' => $author->getFirstName(),
@@ -63,27 +57,19 @@ class ContributorInsert
 				array_push($contributors, $authorArray);
 				$i++;
 			}
-
-//			$form->setData('contributors', $contributors);
-//			$form->setData('newContributor', null);
-
 		}
-		$returner = array('contributors' => $contributors, 'newContributor' => null, 'primaryContact' => $primaryContact, 'lookup'=>$gnash);
+		$returner = array('contributors' => $contributors, 'newContributor' => null, 'primaryContact' => $primaryContact, 'lookup'=>$idMap);
 		return $returner;
 	}
 	function display(&$form) {
 		$templateMgr =& TemplateManager::getManager();
+
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
+
 		$templateMgr->assign('countries', $countries);
-
 		$templateMgr->assign('monographType', $this->monograph->getWorkType());
-
 		$templateMgr->assign('contributors', $form->getData('contributors'));
-	}
-	function getLocaleFieldNames() {
-		$fields = array();
-		return $fields;
 	}
 	function execute(&$form, &$monograph) {
 
@@ -93,7 +79,7 @@ class ContributorInsert
 		if(is_array($authors))
 		foreach ($authors as $formAuthor) {
 			if ($formAuthor['deleted']) continue;
-			$author =& new Author();
+			$author = new Author();
 			$author->setMonographId($monograph->getMonographId());
 			$author->setId($formAuthor['authorId']);
 			$author->setFirstName($formAuthor['firstName']);

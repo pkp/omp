@@ -31,7 +31,7 @@ class MonographArtworkForm extends Form {
 		parent::Form($template);
 		$this->addCheck(new FormValidatorPost($this));
 		$this->monograph =& $monograph;
-		$this->artworkInsert = new ArtworkInsert($monograph);
+		$this->artworkInsert = new ArtworkInsert($monograph->getMonographId());
 	}
 
 	/**

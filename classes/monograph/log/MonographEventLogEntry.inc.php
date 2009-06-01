@@ -30,6 +30,7 @@ define('MONOGRAPH_LOG_TYPE_REVIEW', 		0x03);
 define('MONOGRAPH_LOG_TYPE_COPYEDIT', 		0x04);
 define('MONOGRAPH_LOG_TYPE_LAYOUT', 		0x05);
 define('MONOGRAPH_LOG_TYPE_PROOFREAD', 		0x06);
+define('MONOGRAPH_LOG_TYPE_PRODUCTION',		0x07);
 
 // Log entry event types. All types must be defined here
 define('MONOGRAPH_LOG_DEFAULT', 0);
@@ -99,6 +100,8 @@ define('MONOGRAPH_LOG_LAYOUT_INITIATE', 	0x70000003);
 define('MONOGRAPH_LOG_LAYOUT_GALLEY', 		0x70000004);
 define('MONOGRAPH_LOG_LAYOUT_COMPLETE', 	0x70000005);
 
+//production events
+define('MONOGRAPH_LOG_PRODUCTION_ASSIGN',	0x80000000);
 
 class MonographEventLogEntry extends DataObject {
 
@@ -409,6 +412,10 @@ class MonographEventLogEntry extends DataObject {
 			case MONOGRAPH_LOG_LAYOUT_COMPLETE:
 				return 'submission.event.layout.layoutComplete';
 
+			// Production events
+			case MONOGRAPH_LOG_PRODUCTION_ASSIGN:
+				return 'submission.event.production.productionEditorAssigned';
+
 			default:
 				return 'submission.event.general.defaultEvent';
 		}
@@ -461,6 +468,8 @@ class MonographEventLogEntry extends DataObject {
 				return 'LYT';
 			case MONOGRAPH_LOG_TYPE_PROOFREAD:
 				return 'PRF';
+			case MONOGRAPH_LOG_TYPE_PRODUCTION:
+				return 'PRO';
 			default:
 				return 'ART';
 		}
@@ -484,6 +493,8 @@ class MonographEventLogEntry extends DataObject {
 				return 'submission.logType.layout';
 			case MONOGRAPH_LOG_TYPE_PROOFREAD:
 				return 'submission.logType.proofread';
+			case MONOGRAPH_LOG_TYPE_PRODUCTION:
+				return 'submission.logType.production';
 			default:
 				return 'submission.logType.monograph';
 		}
