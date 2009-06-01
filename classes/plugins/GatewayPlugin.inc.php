@@ -28,7 +28,7 @@ class GatewayPlugin extends Plugin {
 
 	/**
 	 * Get the display name of this plugin. This name is displayed on the
-	 * Journal Manager's plugin management page, for example.
+	 * Press Manager's plugin management page, for example.
 	 * @return String
 	 */
 	function getDisplayName() {
@@ -67,21 +67,21 @@ class GatewayPlugin extends Plugin {
 	 * Determine whether or not this plugin is enabled.
 	 */
 	function getEnabled() {
-		$journal =& Request::getJournal();
-		if (!$journal) return false;
-		return $this->getSetting($journal->getJournalId(), 'enabled');
+		$press =& Request::getPress();
+		if (!$press) return false;
+		return $this->getSetting($press->getPressId(), 'enabled');
 	}
 
 	/**
 	 * Set the enabled/disabled state of this plugin
 	 */
 	function setEnabled($enabled) {
-		$journal =& Request::getJournal();
-		if ($journal) {
+		$press =& Request::getPress();
+		if ($press) {
 			$this->updateSetting(
-				$journal->getJournalId(),
+				$press->getPressId(),
 				'enabled',
-				$enabled?true:false
+				$enabled ? true : false
 			);
 			return true;
 		}
