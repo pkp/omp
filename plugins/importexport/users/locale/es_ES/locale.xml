@@ -19,9 +19,9 @@
 
 	<message key="plugins.importexport.users.cliUsage"><![CDATA[Uso: {$scriptName} {$pluginName} [command] ...
 Comandos:
-	import [xmlFileName] [journal_path] [optional flags]
-	export [xmlFileName] [journal_path]
-	export [xmlFileName] [journal_path] [role_path1] [role_path2] ...
+	import [xmlFileName] [press_path] [optional flags]
+	export [xmlFileName] [press_path]
+	export [xmlFileName] [press_path] [role_path1] [role_path2] ...
 
 Opciones:
 	continue_on_error: Si se indica no detendrá el proceso de importación de usuarios/as cuando ocurra un error
@@ -49,7 +49,7 @@ Ejemplos:
 	<message key="plugins.importexport.users.import.usersWereImported">Los/as siguientes usuarios/as fueron importados/as en el sistema</message>
 	<message key="plugins.importexport.users.import.errorsOccurred">Han ocurrido errores durante la importación</message>
 	<message key="plugins.importexport.users.import.confirmUsers">Confirme que son las/os usuarias/os que le gustaría importar en el sistema</message>
-	<message key="plugins.importexport.users.unknownJournal">Se ha especificado una ruta incorrecta para la revista "{$journalPath}".</message>
+	<message key="plugins.importexport.users.unknownPress">Se ha especificado una ruta incorrecta para la revista "{$pressPath}".</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Exportar usuarias/os</message>
 	<message key="plugins.importexport.users.export.exportByRole">Exportar por rol</message>

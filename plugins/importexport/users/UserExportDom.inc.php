@@ -17,11 +17,11 @@
 
 import('xml.XMLCustomWriter');
 
-define('USERS_DTD_URL', 'http://pkp.sfu.ca/ojs/dtds/users.dtd');
-define('USERS_DTD_ID', '-//PKP/OJS Users XML//EN');
+define('USERS_DTD_URL', 'http://pkp.sfu.ca/omp/dtds/users.dtd');
+define('USERS_DTD_ID', '-//PKP/OMP Users XML//EN');
 
 class UserExportDom {
-	function &exportUsers(&$journal, &$users, $allowedRoles = null) {
+	function &exportUsers(&$press, &$users, $allowedRoles = null) {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		$doc =& XMLCustomWriter::createDocument('users', USERS_DTD_ID, USERS_DTD_URL);
@@ -74,7 +74,7 @@ class UserExportDom {
 				}
 			}
 			XMLCustomWriter::createChildWithText($doc, $userNode, 'locales', join(':', $user->getLocales()), false);
-			$roles =& $roleDao->getRolesByUserId($user->getId(), $journal->getJournalId());
+			$roles =& $roleDao->getRolesByUserId($user->getId(), $press->getPressId());
 			foreach ($roles as $role) {
 				$rolePath = $role->getRolePath();
 				if ($allowedRoles !== null && !in_array($rolePath, $allowedRoles)) {

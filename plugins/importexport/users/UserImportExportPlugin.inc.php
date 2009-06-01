@@ -57,23 +57,25 @@ class UserImportExportPlugin extends ImportExportPlugin {
 			'' => 'manager.people.doNotEnroll',
 			'manager' => 'user.role.manager',
 			'editor' => 'user.role.editor',
-			'sectionEditor' => 'user.role.sectionEditor',
-			'layoutEditor' => 'user.role.layoutEditor',
+			'acquisitionsEditor' => 'user.role.acquisitionsEditor',
 			'reviewer' => 'user.role.reviewer',
 			'copyeditor' => 'user.role.copyeditor',
+			'productionEditor' => 'user.role.productionEditor',
+			'designer' => 'user.role.designer',
 			'proofreader' => 'user.role.proofreader',
 			'author' => 'user.role.author',
 			'reader' => 'user.role.reader',
-			'subscriptionManager' => 'user.role.subscriptionManager'
+			'director' => 'user.role.director',
+			'indexer' => 'user.role.indexer'
 		));
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		$journal =& Request::getPress();
+		$press =& Request::getPress();
 		switch (array_shift($args)) {
 			case 'confirm':
 				$this->import('UserXMLParser');
-				$templateMgr->assign('helpTopicId', 'journal.users.importUsers');
+				$templateMgr->assign('helpTopicId', 'press.users.importUsers');
 
 				$sendNotify = (bool) Request::getUserVar('sendNotify');
 				$continueOnError = (bool) Request::getUserVar('continueOnError');
@@ -81,7 +83,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				import('file.FileManager');
 				if (($userFile = FileManager::getUploadedFilePath('userFile')) !== false) {
 					// Import the uploaded file
-					$parser =& new UserXMLParser($journal->getJournalId());
+					$parser =& new UserXMLParser($press->getPressId());
 					$users =& $parser->parseData($userFile);
 
 					$i = 0;
@@ -156,7 +158,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 					array_push($users, $newUser);
 				}
 
-				$parser =& new UserXMLParser($journal->getJournalId());
+				$parser =& new UserXMLParser($press->getPressId());
 				$parser->setUsersToImport($users);
 				if (!$parser->importUsers($sendNotify, $continueOnError)) {
 					// Failures occurred
@@ -168,9 +170,9 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				break;
 			case 'exportAll':
 				$this->import('UserExportDom');
-				$users =& $roleDao->getUsersByJournalId($journal->getJournalId());
+				$users =& $roleDao->getUsersByPressId($press->getPressId());
 				$users =& $users->toArray();
-				$doc =& UserExportDom::exportUsers($journal, $users);
+				$doc =& UserExportDom::exportUsers($press, $users);
 				header("Content-Type: application/xml");
 				header("Cache-Control: private");
 				header("Content-Disposition: attachment; filename=\"users.xml\"");
@@ -182,14 +184,14 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$rolePaths = array();
 				foreach (Request::getUserVar('roles') as $rolePath) {
 					$roleId = $roleDao->getRoleIdFromPath($rolePath);
-					$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $journal->getJournalId());
+					$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $press->getPressId());
 					foreach ($thisRoleUsers->toArray() as $user) {
 						$users[$user->getId()] = $user;
 					}
 					$rolePaths[] = $rolePath;
 				}
 				$users = array_values($users);
-				$doc =& UserExportDom::exportUsers($journal, $users, $rolePaths);
+				$doc =& UserExportDom::exportUsers($press, $users, $rolePaths);
 				header("Content-Type: application/xml");
 				header("Cache-Control: private");
 				header("Content-Disposition: attachment; filename=\"users.xml\"");
@@ -208,18 +210,18 @@ class UserImportExportPlugin extends ImportExportPlugin {
 	function executeCLI($scriptName, &$args) {
 		$command = array_shift($args);
 		$xmlFile = array_shift($args);
-		$journalPath = array_shift($args);
+		$pressPath = array_shift($args);
 		$flags =& $args;
 
-		$journalDao =& DAORegistry::getDAO('JournalDAO');
+		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$journal =& $journalDao->getJournalByPath($journalPath);
+		$press =& $pressDao->getPressByPath($pressPath);
 
-		if (!$journal) {
-			if ($journalPath != '') {
+		if (!$press) {
+			if ($pressPath != '') {
 				echo Locale::translate('plugins.importexport.users.import.errorsOccurred') . ":\n";
-				echo Locale::translate('plugins.importexport.users.unknownJournal', array('journalPath' => $journalPath)) . "\n\n";
+				echo Locale::translate('plugins.importexport.users.unknownPress', array('pressPath' => $pressPath)) . "\n\n";
 			}
 			$this->usage($scriptName);
 			return;
@@ -234,7 +236,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				import('file.FileManager');
 
 				// Import the uploaded file
-				$parser =& new UserXMLParser($journal->getJournalId());
+				$parser =& new UserXMLParser($press->getPressId());
 				$users =& $parser->parseData($xmlFile);
 
 				if (!$parser->importUsers($sendNotify, $continueOnError)) {
@@ -259,14 +261,14 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$roleDao =& DAORegistry::getDAO('RoleDAO');
 				$rolePaths = null;
 				if (empty($args)) {
-					$users =& $roleDao->getUsersByJournalId($journal->getJournalId());
+					$users =& $roleDao->getUsersByPressId($press->getPressId());
 					$users =& $users->toArray();
 				} else {
 					$users = array();
 					$rolePaths = array();
 					foreach ($args as $rolePath) {
 						$roleId = $roleDao->getRoleIdFromPath($rolePath);
-						$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $journal->getJournalId());
+						$thisRoleUsers =& $roleDao->getUsersByRoleId($roleId, $press->getPressId());
 						foreach ($thisRoleUsers->toArray() as $user) {
 							$users[$user->getId()] = $user;
 						}
@@ -274,7 +276,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 					}
 					$users = array_values($users);
 				}
-				$doc =& UserExportDom::exportUsers($journal, $users, $rolePaths);
+				$doc =& UserExportDom::exportUsers($press, $users, $rolePaths);
 				if (($h = fopen($xmlFile, 'wb'))===false) {
 					echo Locale::translate('plugins.importexport.users.export.errorsOccurred') . ":\n";
 					echo Locale::translate('plugins.importexport.users.export.couldNotWriteFile', array('fileName' => $xmlFile)) . "\n";

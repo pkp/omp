@@ -28,7 +28,7 @@ class ImportExportPlugin extends Plugin {
 
 	/**
 	 * Get the display name of this plugin. This name is displayed on the
-	 * Journal Manager's import/export page, for example.
+	 * Press Manager's import/export page, for example.
 	 * @return String
 	 */
 	function getDisplayName() {

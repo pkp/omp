@@ -32,16 +32,16 @@ class UserXMLParser {
 	/** @var array error messages that occurred during import */
 	var $errors;
 
-	/** @var int the ID of the journal to import users into */
-	var $journalId;
+	/** @var int the ID of the press to import users into */
+	var $pressId;
 
 	/**
 	 * Constructor.
-	 * @param $journalId int assumed to be a valid journal ID
+	 * @param $pressId int assumed to be a valid press ID
 	 */
-	function UserXMLParser($journalId) {
+	function UserXMLParser($pressId) {
 		$this->parser =& new XMLParser();
-		$this->journalId = $journalId;
+		$this->pressId = $pressId;
 	}
 
 	/**
@@ -56,9 +56,9 @@ class UserXMLParser {
 		$this->usersToImport = array();
 		$tree = $this->parser->parse($file);
 
-		$journalDao =& DAORegistry::getDAO('JournalDAO');
-		$journal =& $journalDao->getJournal($this->journalId);
-		$journalPrimaryLocale = Locale::getPrimaryLocale();
+		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$press =& $pressDao->getPress($this->pressId);
+		$pressPrimaryLocale = Locale::getPrimaryLocale();
 
 		$site =& Request::getSite();
 		$siteSupportedLocales = $site->getSupportedLocales();
@@ -129,17 +129,17 @@ class UserXMLParser {
 								break;
 							case 'signature':
 								$locale = $attrib->getAttribute('locale');
-								if (empty($locale)) $locale = $journalPrimaryLocale;
+								if (empty($locale)) $locale = $pressPrimaryLocale;
 								$newUser->setInterests($attrib->getValue(), $locale);
 								break;
 							case 'interests':
 								$locale = $attrib->getAttribute('locale');
-								if (empty($locale)) $locale = $journalPrimaryLocale;
+								if (empty($locale)) $locale = $pressPrimaryLocale;
 								$newUser->setInterests($attrib->getValue(), $locale);
 								break;
 							case 'biography':
 								$locale = $attrib->getAttribute('locale');
-								if (empty($locale)) $locale = $journalPrimaryLocale;
+								if (empty($locale)) $locale = $pressPrimaryLocale;
 								$newUser->setBiography($attrib->getValue(), $locale);
 								break;
 							case 'locales':
@@ -188,9 +188,9 @@ class UserXMLParser {
 			import('mail.MailTemplate');
 			$mail =& new MailTemplate('USER_REGISTER');
 
-			$journalDao =& DAORegistry::getDAO('JournalDAO');
-			$journal =& $journalDao->getJournal($this->journalId);
-			$mail->setFrom($journal->getSetting('contactEmail'), $journal->getSetting('contactName'));
+			$pressDao =& DAORegistry::getDAO('PressDAO');
+			$press =& $pressDao->getPress($this->pressId);
+			$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 		}
 
 		for ($i=0, $count=count($this->usersToImport); $i < $count; $i++) {
@@ -249,8 +249,8 @@ class UserXMLParser {
 			// If the user is already enrolled in a role, that role is skipped
 			foreach ($user->getRoles() as $role) {
 				$role->setUserId($user->getId());
-				$role->setJournalId($this->journalId);
-				if (!$roleDao->roleExists($role->getJournalId(), $role->getUserId(), $role->getRoleId())) {
+				$role->setPressId($this->pressId);
+				if (!$roleDao->roleExists($role->getPressId(), $role->getUserId(), $role->getRoleId())) {
 					if (!$roleDao->insertRole($role)) {
 						// Failed to add role!
 						$this->errors[] = sprintf('%s: %s - %s (%s)',

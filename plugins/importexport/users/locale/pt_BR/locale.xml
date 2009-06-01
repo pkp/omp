@@ -18,9 +18,9 @@
 
 	<message key="plugins.importexport.users.cliUsage">Uso: {$scriptName} {$pluginName} [comando] ...
 Comandos:
-	import [xmlFileName] [journal_path] [optional flags]
-	export [xmlFileName] [journal_path]
-	export [xmlFileName] [journal_path] [role_path1] [role_path2] ...
+	import [xmlFileName] [press_path] [optional flags]
+	export [xmlFileName] [press_path]
+	export [xmlFileName] [press_path] [role_path1] [role_path2] ...
 
 Flags opcionais:
 	continue_on_error: Caso especificado, não interrompe a importação de usuários mesmo ocorrendo erro
@@ -29,14 +29,14 @@ Flags opcionais:
 		e senha para usuários importados
 
 Examples:
-	Import users into myJournal from myImportFile.xml, continuing on error:
-	{$scriptName} {$pluginName} import myImportFile.xml myJournal continue_on_error
+	Import users into myPress from myImportFile.xml, continuing on error:
+	{$scriptName} {$pluginName} import myImportFile.xml myPress continue_on_error
 
-	Export all users from myJournal:
-	{$scriptName} {$pluginName} export myExportFile.xml myJournal
+	Export all users from myPress:
+	{$scriptName} {$pluginName} export myExportFile.xml myPress
 
 	Export all users registered as reviewers, along with their reviewer roles only:
-	{$scriptName} {$pluginName} export myExportFile.xml myJournal reviewer</message>
+	{$scriptName} {$pluginName} export myExportFile.xml myPress reviewer</message>
 	<message key="plugins.importexport.users.import.importUsers">Importar Cadastros</message>
 	<message key="plugins.importexport.users.import.instructions"><![CDATA[Escolha um documento XML contendo as informações de cadastro para importação nesta revista. Veja a ajuda do sistema para detalhes sobre o formato do documento.<br /><br />Caso o documento possua logins ou e-mails já cadastrados no sistema, os dados cadastrais não serão importados e quaisquer funções adicionais serão designadas aos cadastros existentes.]]></message>
 	<message key="plugins.importexport.users.import.failedToImportUser">Falha na importação de cadastro</message>
@@ -48,7 +48,7 @@ Examples:
 	<message key="plugins.importexport.users.import.usersWereImported">Os seguintes cadastros foram importados com sucesso para o sistema</message>
 	<message key="plugins.importexport.users.import.errorsOccurred">Erros ocorridos durante a importação</message>
 	<message key="plugins.importexport.users.import.confirmUsers">Deseja importar os usuários listados para o sistema</message>
-	<message key="plugins.importexport.users.unknownJournal">Caminho de revista inválido</message>
+	<message key="plugins.importexport.users.unknownPress">Caminho de revista inválido</message>
 
 	<message key="plugins.importexport.users.export.exportUsers">Exportar Cadastros</message>
 	<message key="plugins.importexport.users.export.exportByRole">Exportar Por Função</message>
