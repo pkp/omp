@@ -110,7 +110,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign('helpTopicId','editorial.authorsRole');
 
 		$initialCopyeditSignoff = $submission->getSignoff('SIGNOFF_COPYEDITING_INITIAL');
-		$templateMgr->assign('canEditMetadata', !$initialCopyeditSignoff->getDateCompleted() && $submission->getStatus() != STATUS_PUBLISHED);
+		$templateMgr->assign('canEditMetadata', isset($initialCopyeditSignoff) && !$initialCopyeditSignoff->getDateCompleted() && $submission->getStatus() != STATUS_PUBLISHED);
 
 		$templateMgr->display('author/submission.tpl');
 	}

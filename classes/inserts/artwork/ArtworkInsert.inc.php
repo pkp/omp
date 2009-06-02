@@ -14,7 +14,9 @@
 
 // $Id$
 
-class ArtworkInsert {
+import('inserts.Insert');
+
+class ArtworkInsert extends Insert {
 	var $monographId;
 
 	function ArtworkInsert($monographId, $options = 0) {

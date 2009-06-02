@@ -65,7 +65,7 @@ class AuthorSubmitArtworkForm extends AuthorSubmitForm {
 	}
 	
 	function processEvents() {
-		return $this->artworkInsert->processEvents($this);
+		return $this->artworkInsert->processEvents($this, $this->monograph);
 	}
 
 	/**
