@@ -27,6 +27,7 @@
 	<meta name="generator" content="{translate key="common.openMonographPress"} {$currentVersionString|escape}" />
 	{$metaCustomHeaders}
 
+	<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/common.css" type="text/css" />
 	<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
 
 	{call_hook|assign:"leftSidebarCode" name="Templates::Common::LeftSidebar"}

@@ -32,7 +32,7 @@ class OMPUpgradeTool extends UpgradeTool {
 	}
 }
 
-$tool =& new OMPUpgradeTool(isset($argv) ? $argv : array());
+$tool = new OMPUpgradeTool(isset($argv) ? $argv : array());
 $tool->execute();
 
 ?>
