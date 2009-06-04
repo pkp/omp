@@ -3,3 +3,7 @@ build
 temp
 files
 .project
+cache
+lib
+.project
+.htaccess
