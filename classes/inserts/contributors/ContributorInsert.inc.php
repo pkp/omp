@@ -25,11 +25,19 @@ class ContributorInsert extends Insert
 		parent::Insert($options);
 		$this->monograph =& $monograph;
 	}
-	function listUserVars() {
-		return array('newContributor','contributors','primaryContact');
+	function &listUserVars() {
+		$returner = array(
+			'newContributor', 
+			'newContributorId', 
+			'contributors', 
+			'primaryContact'
+		);
+		return $returner;
 	}
-	function &initData(&$form) {
+	function &initData() {
 		$contributors = array();
+		$returner = array();
+
 		if (isset($this->monograph)) {
 
 			$authors =& $this->monograph->getAuthors();
@@ -57,8 +65,15 @@ class ContributorInsert extends Insert
 				array_push($contributors, $authorArray);
 				$i++;
 			}
+
+			$returner = array(
+				'newContributor' => null, 
+				'newContributorId' => $i, 
+				'contributors' => $contributors, 
+				'primaryContact'=> $primaryContact,
+				'lookup' => $idMap
+			);
 		}
-		$returner = array('contributors' => $contributors, 'newContributor' => null, 'primaryContact' => $primaryContact, 'lookup'=>$idMap);
 		return $returner;
 	}
 	function display(&$form) {
@@ -70,14 +85,16 @@ class ContributorInsert extends Insert
 		$templateMgr->assign('countries', $countries);
 		$templateMgr->assign('monographType', $this->monograph->getWorkType());
 		$templateMgr->assign('contributors', $form->getData('contributors'));
+		$templateMgr->assign('primaryContact', $form->getData('primaryContact'));
+		$templateMgr->assign('newContributorId', $form->getData('newContributorId'));
 	}
 	function execute(&$form, &$monograph) {
 
-		$authors = $form->getData('contributors');
+		$contributors = $form->getData('contributors');
 
 		$monograph->resetAuthors();
-		if(is_array($authors))
-		foreach ($authors as $formAuthor) {
+		if(is_array($contributors))
+		foreach ($contributors as $formAuthor) {
 			if ($formAuthor['deleted']) continue;
 			$author = new Author();
 			$author->setMonographId($monograph->getMonographId());
@@ -106,77 +123,134 @@ class ContributorInsert extends Insert
 		if (Request::getUserVar('addContributor')) {
 
 			$eventProcessed = true;
-			$newAuthor = $submitForm->getData('newContributor');
+			$newContributor = $submitForm->getData('newContributor');
 
 			$formError = false;
-
+			$formErrors = array();
 			foreach (array('firstName','lastName','email') as $field) {
-				if (isset($newAuthor[$field]) && $newAuthor[$field] == '') {
+				if (isset($newContributor[$field]) && $newContributor[$field] == '') {
 					$formError = true;
-					break;
+					array_push($formErrors, 'inserts.contributors.newContributor.formError.'.$field);
 				}
 			}
 			$templateMgr =& TemplateManager::getManager();
 
 			if (!$formError){
-				$authors = $submitForm->getData('contributors');
-				$authors = !isset($authors) ? array() : $authors;
+				$contributors = $submitForm->getData('contributors');
+				$contributors = !isset($contributors) ? array() : $contributors;
+				$newContributor['authorId'] = $submitForm->getData('newContributorId');
 
-				array_push($authors, $newAuthor);
-				$submitForm->setData('contributors', $authors);
+				if ($this->monograph->getWorkType() == EDITED_VOLUME && $newContributor['contributionType'] == VOLUME_EDITOR) {
+					$newList = array();
+					$tmpContributors = $contributors;
+					foreach ($contributors as $contributor) {
+						if (isset($contributor['contributionType']) && $contributor['contributionType'] == VOLUME_EDITOR) {
+							$contributor[$contributor['authorId']]['isVolumeEditor'] = (int) true;
+							array_push($newList, array_shift($tmpContributors));
+						} else {
+							break;
+						}
+					}
+
+					if (count($newList) < 1) {
+						$submitForm->setData('primaryContact', $newContributor['authorId']);
+					}
+
+					array_push($newList, $newContributor);
+					$contributors = array_merge($newList, $tmpContributors);
+				} else {
+
+					if (count($contributors) < 1 && $this->monograph->getWorkType() == EDITED_VOLUME) {
+						$submitForm->setData('primaryContact', $newContributor['authorId']);
+					}
+					array_push($contributors, $newContributor);
+				}
+
+				$submitForm->setData('newContributorId', $newContributor['authorId'] + 1);
+				$submitForm->setData('contributors', $contributors);
 				$submitForm->setData('newContributor', null);
 			} else {
-				$templateMgr->assign('isError', true);
-				$templateMgr->assign('errors', array('author.submit.form.authorRequiredFields'));
-				$submitForm->setData('newContributor', $newAuthor);
+				$templateMgr->assign('inserts_ContributorInsert_isError', true);
+				$templateMgr->assign('inserts_ContributorInsert_errors', $formErrors);
+				$submitForm->setData('newContributor', $newContributor);
 			}
 		} else if (($updateId = Request::getUserVar('updateContributorInfo'))) {
 			$eventProcessed = true;
-			$authors = $submitForm->getData('authors');
+			$contributors = $submitForm->getData('contributors');
 			list($updateId) = array_keys($updateId);
 			$updateId = (int) $updateId;
-			if (isset($authors[$updateId]['isVolumeEditor']))
-				$authors[$updateId]['isVolumeEditor'] = 1;
-			$submitForm->setData('authors',$authors);
-		} else if ($deleteAuthor = Request::getUserVar('deleteAuthor')) {
-			// Delete an author
-			$eventProcessed = true;
-			list($deleteAuthor) = array_keys($deleteAuthor);
-			$deleteAuthor = (int) $deleteAuthor;
-			$authors = $submitForm->getData('authors');
-			if (isset($authors[$deleteAuthor])) {
-				$authors[$deleteAuthor]['deleted']=1;
-			}
-			$submitForm->setData('authors', $authors);
-		} else if (Request::getUserVar('moveAuthor')) {
-			// Move an author up/down
-			$eventProcessed = true;
-			$moveAuthorDir = Request::getUserVar('moveAuthorDir');
-			$moveAuthorDir = $moveAuthorDir == 'u' ? 'u' : 'd';
-			$moveAuthorIndex = (int) Request::getUserVar('moveAuthorIndex');
-			$authors = $submitForm->getData('authors');
-			if (!(($moveAuthorDir == 'u' && $moveAuthorIndex <= 0) || ($moveAuthorDir == 'd' && $moveAuthorIndex >= count($authors) - 1))) {
-				$tmpAuthor = $authors[$moveAuthorIndex];
+
+			// volume editor list maintenance
+			if ($this->monograph->getWorkType() == EDITED_VOLUME) {
 				$primaryContact = $submitForm->getData('primaryContact');
-				if ($moveAuthorDir == 'u') {
-					$authors[$moveAuthorIndex] = $authors[$moveAuthorIndex - 1];
-					$authors[$moveAuthorIndex - 1] = $tmpAuthor;
-					if ($primaryContact == $moveAuthorIndex) {
-						$submitForm->setData('primaryContact', $moveAuthorIndex - 1);
-					} else if ($primaryContact == ($moveAuthorIndex - 1)) {
-						$submitForm->setData('primaryContact', $moveAuthorIndex);
+				$primaryContactFound = false;
+				$newList = array();
+				$tmpContributors = $contributors;
+				foreach ($contributors as $contributor) {
+					if (isset($contributor['contributionType']) && $contributor['contributionType'] == VOLUME_EDITOR) {
+						$contributors[$contributor['authorId']]['isVolumeEditor'] = (int) true;
+						$newList[$contributor['authorId']] = $contributor;
+						if ($contributor['authorId'] == $primaryContact) {
+							$primaryContactFound = true;
+						}
+						unset($tmpContributors[$contributor['authorId']]);
 					}
+				}
+
+				$contributors = array_merge($newList, $tmpContributors);
+
+				if (!$primaryContactFound && isset($contributors[0]) && $contributors[0]['contributionType'] == VOLUME_EDITOR) {
+					$submitForm->setData('primaryContact', $contributors[0]['authorId']);
+				}
+
+			}
+			$submitForm->setData('contributors',$contributors);
+		} else if ($deleteContributor = Request::getUserVar('deleteContributor')) {
+			// Delete a contributor
+			$eventProcessed = true;
+			list($deleteContributor) = array_keys($deleteContributor);
+			$deleteContributor = (int) $deleteContributor;
+			$contributors = $submitForm->getData('contributors');
+			$primaryContact = $submitForm->getData('primaryContact');
+
+			if (isset($contributors[$deleteContributor])) {
+				Registry::set('inserts_ContributorInsert_removeAuthor', $deleteContributor);
+				unset($contributors[$deleteContributor]);
+			}
+
+			$keyMap = array_keys($contributors);
+			if ($primaryContact == $deleteContributor && isset($contributors[$keyMap[0]])) {
+				$submitForm->setData('primaryContact', $contributors[$keyMap[0]]['authorId']);
+			}
+
+			$submitForm->setData('contributors', $contributors);
+		} else if (Request::getUserVar('moveContributor')) {
+			// Move a contributor up/down
+			$eventProcessed = true;
+			$moveContributorDir = Request::getUserVar('moveContributorDir');
+			$moveContributorDir = $moveContributorDir == 'u' ? 'u' : 'd';
+			$moveContributorIndex = (int) Request::getUserVar('moveContributorIndex');
+			$contributors = $submitForm->getData('contributors');
+
+			$keyMap = array_keys($contributors);
+
+			if (!(($moveContributorDir == 'u' && $moveContributorIndex <= 0) || ($moveContributorDir == 'd' && $moveContributorIndex >= count($contributors) - 1))) {
+				$tmpContributor = $contributors[$keyMap[$moveContributorIndex]];
+				$primaryContact = $submitForm->getData('primaryContact');
+				if ($moveContributorDir == 'u') {
+					$contributors[$keyMap[$moveContributorIndex]] = $contributors[$keyMap[$moveContributorIndex - 1]];
+					$contributors[$keyMap[$moveContributorIndex - 1]] = $tmpContributor;
 				} else {
-					$authors[$moveAuthorIndex] = $authors[$moveAuthorIndex + 1];
-					$authors[$moveAuthorIndex + 1] = $tmpAuthor;
-					if ($primaryContact == $moveAuthorIndex) {
-						$submitForm->setData('primaryContact', $moveAuthorIndex + 1);
-					} else if ($primaryContact == ($moveAuthorIndex + 1)) {
-						$submitForm->setData('primaryContact', $moveAuthorIndex);
+					if ((isset($contributors[$keyMap[$moveContributorIndex + 1]]['contributionType']) &&
+						$contributors[$keyMap[$moveContributorIndex + 1]]['contributionType'] == VOLUME_EDITOR) ||
+							$this->monograph->getWorkType() != EDITED_VOLUME) {
+
+						$contributors[$keyMap[$moveContributorIndex]] = $contributors[$keyMap[$moveContributorIndex + 1]];
+						$contributors[$keyMap[$moveContributorIndex + 1]] = $tmpContributor;
 					}
 				}
 			}
-			$submitForm->setData('authors', $authors);
+			$submitForm->setData('contributors', $contributors);
 		}
 		return $eventProcessed;
 	}

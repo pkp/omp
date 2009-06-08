@@ -33,11 +33,29 @@
 	<message key="inserts.monographComponents.button.deleteComponent">Delete Component</message>
 	<message key="inserts.monographComponents.button.addComponent">Add Component</message>
 	<message key="inserts.monographComponents.button.removeAuthor">Remove Author</message>
+	<message key="inserts.monographComponents.newComponent.description">To enter a new component, please fill out the form below and click the 'Add Component' button.</message>
+	<message key="inserts.monographComponents.description">Books are divided into sections called monograph components. Chapters, table of contents, and prefaces are all monograph components.</message>
+	
+	<message key="inserts.contributors.heading.info">Contributor Info</message>
+	<message key="inserts.contributors.button.addContributor">Add Contributor</message>
+	<message key="inserts.contributors.heading.newContributor">New Contributor</message>
+	<message key="inserts.contributors.isVolumeEditor">This contributor is a volume editor</message>
+	<message key="inserts.contributors.details">(+) Details</message>
+	<message key="inserts.contributors.newContributor.description">To enter a new contributor, please fill out the form below and click the 'Add Contributor' button.</message>
+	<message key="inserts.contributors.volumeEditor">Volume Editor</message>
+	<message key="inserts.contributors.volumeEditors">Volume Editors</message>
+	<message key="inserts.contributors.otherContributor">Other Contributor</message>
+	<message key="inserts.contributors.otherContributors">Other Contributors</message>
+	<message key="inserts.contributors.isVolumeEditor">This contributor is a volume editor.</message>
+	<message key="inserts.contributors.newContributor.formError.email">Email address is invalid</message>
+	<message key="inserts.contributors.newContributor.formError.lastName">Last name required</message>
+	<message key="inserts.contributors.newContributor.formError.firstName">First name required</message>
+	<message key="inserts.contributors.description">Enter each of the authors that contributed to the work by filling out profiles in the 'New Contributor' section below.</message>
 
 	<message key="monograph.component.title">Component Title</message>
 	<message key="monograph.artworkFile">Artwork File</message>
 	<message key="monograph.component.authors">Authors</message>
-	<message key="monograph.component.description">Books are divided into sections called monograph components. Chapters, table of contents, and prefaces are all monograph components.</message>
+
 	<message key="submission.layout.assignLayoutEditor">Assign Layout Editor</message>
 	<message key="submission.layout.uploadLayoutVersion">Upload Layout Version</message>
 	<message key="submission.layout.noLayoutFile">None (Upload final copyedit version as Layout Version prior to sending request)</message>

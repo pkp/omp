@@ -28,7 +28,9 @@ class MonographComponentDAO extends DAO {
 	function &getMonographComponents($monographId) {
 		$result =& $this->retrieve(
 			'SELECT * 
-			FROM monograph_components WHERE monograph_id = ?', $monographId
+			FROM monograph_components WHERE monograph_id = ?
+			ORDER BY seq', 
+			$monographId
 		);
 
 		$returner = array();
@@ -115,11 +117,13 @@ class MonographComponentDAO extends DAO {
 			'UPDATE monograph_components
 				SET
 					monograph_id = ?,
-					seq = ? 
+					seq = ?,
+					contact_author = ?
 					WHERE component_id = ?',
 			array(
 				$component->getMonographId(),
 				$component->getSequence(),
+				$component->getPrimaryContact(),
 				$component->getMonographComponentId()
 			)
 		);

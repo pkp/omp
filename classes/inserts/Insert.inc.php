@@ -22,12 +22,22 @@ class Insert
 		$this->options = $options;
 	}
 
+	/**
+	 * Retrieve a list of the form variables associated with this insert.
+	 * @return array  
+	 */
 	function &listUserVars() {
 		$returner = array();
 		return $returner;
 	}
-	function initData(&$form) {
-		return null;
+
+	/**
+	 * Retrieve the form variables.
+	 * @return array of Form_Variable => Variable_Value pairs  
+	 */
+	function &initData() {
+		$returner = array();
+		return $returner;
 	}
 	function display(&$form) {
 		return null;
@@ -36,9 +46,15 @@ class Insert
 		$fields = array();
 		return $fields;
 	}
+
 	function execute(&$form, &$monograph) {
 		return null;
 	}
+
+	/**
+	 * Process any special form events.
+	 * @return true if an event was processed
+	 */
 	function processEvents(&$form) {
 		return false;
 	}

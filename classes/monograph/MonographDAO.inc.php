@@ -495,9 +495,8 @@ class MonographDAO extends DAO {
 
 	}
 	/**
-	 * creates and returns a monograph object from a row
-	 * @param $row array
-	 * @return Monograph object
+	 * Update/insert monograph component and author related data.
+	 * @param $monograph Monograph
 	 */
 	function _updateMonographPeripherals(&$monograph) {
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
@@ -516,7 +515,8 @@ class MonographDAO extends DAO {
 				$authorDao->deleteAuthorById($oldAuthors[$i], $monograph->getMonographId());
 			} else if (isset($authors[$i]) && !isset($oldAuthors[$i])) {
 				$authors[$i]->setMonographId($monograph->getMonographId());
-				$authors[$i]->setContributionType(0);
+				$contribution = $authors[$i]->getContributionType();
+				if (!isset($contribution)) $authors[$i]->setContributionType(AUTHOR);
 				$gnash[$authors[$i]->getId()] = $authorDao->insertAuthor($authors[$i]);
 			}
 		}
@@ -535,18 +535,21 @@ class MonographDAO extends DAO {
 					if (isset($gnash[$ca->getId()])) {
 						$ca->setId($gnash[$ca->getId()]);
 					}
-					//primary contact settings
 				}
+				$monographComponents[$i]->setPrimaryContact($gnash[$monographComponents[$i]->getPrimaryContact()]);
 				$monographComponents[$i]->setMonographComponentId($oldMonographComponents[$i]);
 				$monographComponentDao->updateMonographComponent($monographComponents[$i]);
+
 			} else if (!isset($monographComponents[$i]) && isset($oldMonographComponents[$i])) {
 
 				$monographComponentDao->deleteMonographComponentById($oldMonographComponents[$i]);
+
 			} else if (isset($monographComponents[$i]) && !isset($oldMonographComponents[$i])) {
 
 				foreach ($monographComponents[$i]->getMonographComponentAuthors() as $chau) {
 					$chau->setId($gnash[$chau->getId()]);
 				}
+				$monographComponents[$i]->setPrimaryContact($gnash[$monographComponents[$i]->getPrimaryContact()]);
 				$monographComponentDao->insertMonographComponent($monographComponents[$i]);
 			}
 		}

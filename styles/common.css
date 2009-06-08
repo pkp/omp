@@ -310,3 +310,26 @@ div.progressbar {
 	width: 505px;
 	z-index:1;
 }
+
+/**
+ * Even/Odd side indicators
+ */
+
+div.evenSideIndicator {
+	border-left:2px solid #D0D0D0;
+}
+
+div.oddSideIndicator {
+	border-left:2px solid #e5aa5c;
+}
+
+/**
+ * New item container
+ */
+
+div.newItemContainer {
+	border:1px solid #e5aa5c;
+	background-color:#FFF8DC;
+	margin-left:10%;
+	margin-right:10%;
+}

@@ -21,9 +21,6 @@
 	<message key="author.submission.workType.description">Select the option that best matches the type of the work that you are submitting.</message>
 	<message key="author.submission.workType.editedVolume">Edited Volume</message>
 	<message key="author.submission.workType.authoredWork">Authored Work</message>
-	<message key="author.updateInfo">Update Contributor Info</message>
-	<message key="author.submission.addContributor">Add Contributor</message>
-	<message key="author.submission.contributors.description">Enter each of the authors that contributed to the work by filling out profiles in the 'Add an Author' section below.</message>
 	<message key="author.submit.completedProspectus">Completed Prospectus</message>
 	<message key="author.submit.completedProspectus.description"><![CDATA[Upload a completed prospectus file that follows the guidelines of the <a href="{$prospectusGuideUrl}" class="action">press' prospectus guide</a>.]]></message>
 	<message key="author.submit.uploadProspectusFile">Upload Prospectus File</message>

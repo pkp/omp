@@ -1,3 +1,13 @@
+{**
+ * components.tpl
+ *
+ * Copyright (c) 2003-2008 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * Component listing.
+ *
+ * $Id$
+ *}
 {literal}
 <script type="text/javascript">
 <!--
@@ -32,9 +42,8 @@ function moveComponent(dir, componentIndex) {
 
 <h3>{translate key="inserts.monographComponents.heading.prep"}</h3>
 <br />
-{translate key="monograph.component.description"}
+{translate key="inserts.monographComponents.description"}
 <br /><br />
-{assign var="componentIndex" value=0} 
 
 <table width="100%" class="listing">
 	<tr>
@@ -47,8 +56,8 @@ function moveComponent(dir, componentIndex) {
 	<tr>
 		<td class="headseparator" colspan="2">&nbsp;</td>
 	</tr>
+{assign var="componentIndex" value=0} 
 {foreach name=components from=$components item=component}
-{if !$component.deleted}
 <tr>
 <td>
 	<input type="hidden" name="components[{$componentIndex}][title][{$formLocale|escape}]" value="{$component.title.$formLocale}" />
@@ -57,56 +66,53 @@ function moveComponent(dir, componentIndex) {
 <td>
 	{if $componentIndex > 0}<a href="javascript:moveComponent('u', '{$componentIndex|escape}')" class="action">&uarr;</a>{else}&uarr;{/if} {if $componentIndex < count($components)-1}<a href="javascript:moveComponent('d', '{$componentIndex|escape}')" class="action">&darr;</a>{else}&darr;{/if}
 	
-	| <input type="submit" name="deleteComponent[{$componentIndex}][{$componentAuthorIndex}]" value="{translate key="inserts.monographComponents.button.deleteComponent"}" class="button" />
+	| <input type="submit" name="deleteComponent[{$componentIndex}]" value="{translate key="inserts.monographComponents.button.deleteComponent"}" class="button" />
 </td>
 </tr>
-{if count($component.authors) > 0}
-{foreach name=componentAuthors from=$component.authors key=componentAuthorIndex item=componentAuthor}
-{if !$componentAuthor.removed}
+{assign var="componentAuthorIndex" value=0}
+{foreach name=componentAuthors from=$component.authors item=componentAuthor}
 <tr>
 <td>
-	<div style="border-left:2px solid {if $componentAuthorIndex % 2}#D0D0D0{else}#e5aa5c{/if}">
-		<input type="hidden" name="components[{$componentIndex|escape}][authors][{$componentAuthorIndex|escape}][authorId]" value="{$componentAuthor.authorId}" />
+	<div class="{if $componentAuthorIndex % 2}evenSideIndicator{else}oddSideIndicator{/if}">
+		<input type="hidden" name="components[{$componentIndex|escape}][authors][{$componentAuthor.authorId|escape}]" value="{$componentAuthor.authorId|escape}" />
+
 		{assign var="authorId" value=$componentAuthor.authorId}
 		&nbsp;<strong>{$contributors[$authorId].firstName}&nbsp;{$contributors[$authorId].lastName}</strong>
 		<br />
 		&nbsp;{$contributors[$authorId].email}
 		<br />
-		<input type="radio" name="components[{$componentIndex|escape}][primaryContact]" value="{$componentAuthorIndex|escape}"{if $components[$componentIndex][primaryContact] == $authorIndex} checked="checked"{/if} /> <label for="components[{$componentIndex|escape}][primaryContact]">{translate key="author.submit.selectPrincipalContact"}</label>
+		<input type="radio" name="components[{$componentIndex|escape}][primaryContact]" value="{$componentAuthor.authorId|escape}"{if $component.primaryContact == $componentAuthor.authorId} checked="checked"{/if} /> <label for="components[{$componentIndex|escape}][primaryContact]">{translate key="author.submit.selectPrincipalContact"}</label>
 		<br />
-		&nbsp;<input type="submit" name="removeComponentAuthor[{$componentIndex}][{$componentAuthorIndex}]" value="{translate key="inserts.monographComponents.button.removeAuthor"}" class="button" />
+		&nbsp;<input type="submit" name="removeComponentAuthor[{$componentIndex}][{$componentAuthor.authorId|escape}]" value="{translate key="inserts.monographComponents.button.removeAuthor"}" class="button" />
 	</div>
 </td>
 <td>
-	<div style="height:100%;border-left:2px solid {if $componentAuthorIndex % 2}#D0D0D0{else}#e5aa5c{/if}">
-	&nbsp;<a href="javascript:moveComponentAuthor('u', '{$componentAuthorIndex|escape}','{$componentIndex|escape}')" class="action">&uarr;</a> <a href="javascript:moveComponentAuthor('d', '{$componentAuthorIndex|escape}','{$componentIndex|escape}')" class="action">&darr;</a>
-
-	</div>
+	<a href="javascript:moveComponentAuthor('u', '{$componentAuthorIndex|escape}','{$componentIndex|escape}')" class="action">&uarr;</a> <a href="javascript:moveComponentAuthor('d', '{$componentAuthorIndex|escape}','{$componentIndex|escape}')" class="action">&darr;</a>
 </td>
 </tr>
-{/if}
+{assign var="componentAuthorIndex" value=$componentAuthorIndex+1}
 {/foreach}
-{/if}
-{assign var="componentIndex" value=$componentIndex+1}
 <tr>
 	<td class="separator" colspan="2">&nbsp;</td>
 </tr>
-{/if}
+{assign var="componentIndex" value=$componentIndex+1}
 {foreachelse}
 	<tr><td class="nodata" colspan="2">{translate key="common.none"}</em></td></tr>
 <tr>
 	<td class="separator" colspan="2">&nbsp;</td>
 </tr>
-
 {/foreach}
 </table>
 
 <br />
 
-<div style="border:1px solid #e5aa5c;background-color:#ffd9a7;margin-left:10%;margin-right:10%">
+<div class="newItemContainer">
 <table style="info">
 <tr>
 	<td width="10%"></td><td width="80%"><h2>{translate key="inserts.monographComponents.heading.newComponent"}</h2></td><td width="10%"></td>
+</tr>
+<tr>
+	<td width="10%"></td><td width="80%">{translate key="inserts.monographComponents.newComponent.description"}<br /><br /></td><td width="10%"></td>
 </tr>
 <tr>
 	<td width="10%"></td>
@@ -122,9 +128,7 @@ function moveComponent(dir, componentIndex) {
 	<td width="80%">
 		<select name="newComponent[authors][]" multiple="multiple" class="selectMenu" size="7" style="width:20em">
 			{foreach from=$contributors item=author}
-			{if !$author.deleted}
 			<option value="{$author.authorId}">{$author.firstName} {$author.lastName} ({$author.email})</option>
-			{/if}
 			{/foreach}
 		</select>
 	</td>

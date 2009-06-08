@@ -1,19 +1,50 @@
 {**
- * authorMetadataEdit.tpl
+ * NewContributorForm.tpl
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Form for changing metadata of an article.
+ * Form for creating new contributors from within the Contributors insert.
  *
- * $Id: 
+ * $Id$
  *}
-{include file="common/formErrors.tpl}
 
-<input type="hidden" name="newContributor[authorId]" value="{$contributors|@count}" />
+<input type="hidden" name="newContributorId" value="{$newContributorId}" />
 
-<table width="100%" class="data">
+<div class="newItemContainer">
 
+{if $inserts_ContributorInsert_isError}
+<p>
+	<div id="inserts_ContributorInsert_formErrors">
+	<span class="formError">{translate key="form.errorsOccurred"}:</span>
+	<ul class="formErrorList">
+	{foreach key=field item=message from=$inserts_ContributorInsert_errors}
+		<li>{translate key=$message}</li>
+	{/foreach}
+	</ul>
+	</div>
+</p>
+<script type="text/javascript">
+{literal}
+<!--
+// Jump to form errors.
+window.location.hash="inserts_ContributorInsert_formErrors";
+// -->
+{/literal}
+</script>
+{/if}
+
+<table style="info">
+<tr>
+	<td width="10%"></td><td width="80%"><h2>{translate key="inserts.contributors.heading.newContributor"}</h2></td><td width="10%"></td>
+</tr>
+<tr>
+	<td width="10%"></td><td width="80%">{translate key="inserts.contributors.newContributor.description"}<br /><br /></td><td width="10%"></td>
+</tr>
+<tr>
+	<td width="10%"></td>
+	<td width="80%">
+	<table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">
 			{fieldLabel name="firstName" required="true" key="user.firstName"}
@@ -54,14 +85,22 @@
 	<tr valign="top">
 		<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
 		<td class="value"><textarea name="newContributor[biography][{$formLocale|escape}]" rows="5" cols="40" class="textArea">{$newContributor.biography.$formLocale|escape}</textarea></td>
-	
 	</tr>
+	{if $workType == EDITED_VOLUME}
 	<tr valign="top">
-		<td width="80%" class="value" colspan="2">
-			<input type="checkbox" name="newContributor[contributionType]" id="authors-{$author.authorId}-contributionType" value="1"{if VOLUME_EDITOR == $author.contributionType} checked="checked"{/if} /> <label for="authors-{$author.authorId}-contributionType">This contributor is a volume editor.</label>
+		<td>&nbsp;</td>
+		<td>
+			<input type="checkbox" name="newContributor[contributionType]" value="1"{if $newContributor.contributionType == VOLUME_EDITOR} checked="checked"{/if} /> <label for="newContributor[contributionType]">{translate key="inserts.contributors.isVolumeEditor"}</label>
 		</td>
 	</tr>
-
+	{/if}
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td><input type="submit" name="addContributor" value="{translate key="inserts.contributors.button.addContributor"}" class="button" /></td>
+	</tr>
+	</table>
+	</td>
+	<td width="10%"></td>
+</tr>
 </table>
-
-<input type="submit" name="addContributor" value="{translate key="author.submission.addContributor"}" class="button defaultButton" />
+</div>

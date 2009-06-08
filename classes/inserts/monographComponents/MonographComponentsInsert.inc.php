@@ -31,12 +31,14 @@ class MonographComponentsInsert extends Insert
 		$returner = array_merge(array('components','newComponent'), $this->contributorInsert->listUserVars());
 		return $returner;
 	}
-	function initData(&$form) {
+	function &initData() {
+		$returner = array();
 
 		if (isset($this->monograph)) {
 
-			$insertReturns =& $this->contributorInsert->initData($form);
+			$insertReturns =& $this->contributorInsert->initData();
 			$idMap = $insertReturns['lookup'];
+			unset($insertReturns['lookup']);
 
 			$components =& $this->monograph->getMonographComponents();
 			$formComponents = array();
@@ -44,6 +46,7 @@ class MonographComponentsInsert extends Insert
 			import('monograph.Author');
 			for ($i=0, $count=count($components); $i < $count; $i++) {
 				$cas = array();
+				$primaryContactIndex = 0;
 				foreach ($components[$i]->getMonographComponentAuthors() as $ca) {
 					array_push($cas, array(
 								'authorId' => $idMap[$ca->getId()],
@@ -52,22 +55,23 @@ class MonographComponentsInsert extends Insert
 								'lastName' => $ca->getLastName()
 							)
 						);
+					if ($components[$i]->getPrimaryContact() == $ca->getId()) {
+						$primaryContactIndex = $idMap[$ca->getId()];
+					}
 				}
 				array_push(
 					$formComponents,
 					array (
 						'title' => $components[$i]->getTitle(null),
-						'authors' => $cas
+						'authors' => $cas,
+						'primaryContact' => $primaryContactIndex
 					)
 				);
 			}
-			$returner = array ('components' => $formComponents, 
-						'contributors'=>$insertReturns['contributors'],
-						'newContributor'=>$insertReturns['newContributor'], 'primaryContact'=>$insertReturns['primaryContact']
-					);
-			return $returner;
+			$insertReturns['components'] = $formComponents;
+			$returner = $insertReturns;
 		}
-		return array();
+		return $returner;
 	}
 	function display(&$form) {
 		
@@ -80,7 +84,6 @@ class MonographComponentsInsert extends Insert
 		$this->contributorInsert->execute($form, $monograph);
 
 		$components = $form->getData('components');
-
 		import('monograph.MonographComponent');
 		$componentsList = array();
 		$j = 1;
@@ -88,18 +91,15 @@ class MonographComponentsInsert extends Insert
 		foreach ($components as $componentInfo) {
 			$component = new MonographComponent;
 			$component->setTitle($componentInfo['title'], null);
+			$component->setPrimaryContact(isset($componentInfo['primaryContact']) ? $componentInfo['primaryContact'] : 0);
 			$component->setMonographId($monograph->getMonographId());
 			$component->setSequence($j);
-			if(count($component->getMonographComponentAuthors()))
-				$component->setPrimaryContact($componentInfo['primaryContact']);
-			
 			if (isset($componentInfo['authors'])) {
 				$i = 1;
 				foreach ($componentInfo['authors'] as $componentAuthor) {
 					// Create a new author
 					$author = new Author();
-					$authorId = (int) $componentAuthor['authorId'];
-					$author->setId($authorId);
+					$author->setId((int) $componentAuthor['authorId']);
 					$author->setSequence($i);
 					$component->addMonographComponentAuthor($author);
 					$i++;
@@ -122,12 +122,11 @@ class MonographComponentsInsert extends Insert
 			$components = !isset($components) ? array() : $components;
 			$authorlist = array();
 			if (isset($newComponent['authors'])) {
-				for ($i = 0,$count=count($newComponent['authors']);$i < $count;$i++) {
-					$authorId = $newComponent['authors'][$i];
-					$authorlist[$i]['authorId'] = $authorId;
+				for ($i = 0,$count=count($newComponent['authors']); $i<$count; $i++) {
+					$newComponent['authors'][$i]['authorId'] = $newComponent['authors'][$i];
 				}
-				$newComponent['authors'] =& $authorlist;
-				$newComponent['primaryContact'] = $authorId;
+				$keyMap = array_keys($newComponent['authors']);
+				$newComponent['primaryContact'] = $newComponent['authors'][0]['authorId'];
 			}
 			array_push($components, $newComponent);
 			$form->setData('components', $components);
@@ -139,10 +138,7 @@ class MonographComponentsInsert extends Insert
 			$components = $form->getData('components');
 
 			if (isset($components[$removeComponentIndex])) {
-				$components[$removeComponentIndex]['deleted'] = (int) true;
-				if (count($components) <= 2) {
-					unset($components[$removeComponentIndex]);
-				}
+				unset($components[$removeComponentIndex]);
 			}
 			$form->setData('components', $components);
 		} else if ($removeAuthor = Request::getUserVar('removeComponentAuthor')) {
@@ -154,9 +150,17 @@ class MonographComponentsInsert extends Insert
 			$componentAuthorIndex = (int) $componentAuthorIndex;
 			$components = $form->getData('components');
 
-			if (isset($components[$removeComponentIndex]['authors'][$componentAuthorIndex])) {
-				$components[$removeComponentIndex]['authors'][$componentAuthorIndex]['removed'] = (int) true;
+			$componentInfo = null;
+			$componentInfo = $components[$removeComponentIndex]['authors'][$componentAuthorIndex];
+
+			if (isset($componentInfo)) {
+				unset($components[$removeComponentIndex]['authors'][$componentAuthorIndex]);
+				if ($components[$removeComponentIndex]['primaryContact'] == $componentInfo) {
+					$keyMap = array_keys($components[$removeComponentIndex]['authors']);
+					$components[$removeComponentIndex]['primaryContact'] = isset($keyMap[0]) ? $keyMap[0] : 0;
+				}
 			}
+
 			$form->setData('components', $components);
 		} else if (Request::getUserVar('moveComponentAuthor')) {
 			$eventProcessed = true;
@@ -167,14 +171,16 @@ class MonographComponentsInsert extends Insert
 			$components = $form->getData('components');
 			$componentAuthors = isset($components[$componentIndex]) && isset($components[$componentIndex]['authors']) ? $components[$componentIndex]['authors'] : null;
 
+			$keyMap = array_keys($componentAuthors);
+
 			if (isset($componentAuthors) && !(($moveComponentAuthorDir == 'u' && $moveComponentAuthorIndex <= 0) || ($moveComponentAuthorDir == 'd' && $moveComponentAuthorIndex >= count($componentAuthors)-1))) {
-				$tmpAuthor = $componentAuthors[$moveComponentAuthorIndex];
+				$tmpAuthor = $componentAuthors[$keyMap[$moveComponentAuthorIndex]];
 				if ($moveComponentAuthorDir == 'u') {
-					$componentAuthors[$moveComponentAuthorIndex] = $componentAuthors[$moveComponentAuthorIndex - 1];
-					$componentAuthors[$moveComponentAuthorIndex - 1] = $tmpAuthor;
+					$componentAuthors[$keyMap[$moveComponentAuthorIndex]] = $componentAuthors[$keyMap[$moveComponentAuthorIndex - 1]];
+					$componentAuthors[$keyMap[$moveComponentAuthorIndex - 1]] = $tmpAuthor;
 				} else {
-					$componentAuthors[$moveComponentAuthorIndex] = $componentAuthors[$moveComponentAuthorIndex + 1];
-					$componentAuthors[$moveComponentAuthorIndex + 1] = $tmpAuthor;
+					$componentAuthors[$keyMap[$moveComponentAuthorIndex]] = $componentAuthors[$keyMap[$moveComponentAuthorIndex + 1]];
+					$componentAuthors[$keyMap[$moveComponentAuthorIndex + 1]] = $tmpAuthor;
 				}
 			}
 			$components[$componentIndex]['authors'] = $componentAuthors;
@@ -194,6 +200,26 @@ class MonographComponentsInsert extends Insert
 				} else {
 					$components[$moveComponentIndex] = $components[$moveComponentIndex + 1];
 					$components[$moveComponentIndex + 1] = $tmpComponent;
+				}
+			}
+			$form->setData('components', $components);
+		}
+
+		$registry =& Registry::getRegistry();
+		if (isset($registry['inserts_ContributorInsert_removeAuthor'])) {
+			$eventProcessed = true;
+			$removeAuthor = Registry::get('inserts_ContributorInsert_removeAuthor');
+			$components = $form->getData('components');
+
+			for ($i=0,$count=count($components); $i<$count; $i++) {
+				if (isset($components[$i]['authors'][$removeAuthor])) {
+					$authorId = $components[$i]['authors'][$removeAuthor];
+					unset($components[$i]['authors'][$removeAuthor]);
+					if ($components[$i]['primaryContact'] == $authorId) {
+						$keyMap = array_keys($components[$i]['authors']);
+						$components[$i]['primaryContact'] = isset($keyMap[0]) ? $keyMap[0] : 0;
+					}
+
 				}
 			}
 			$form->setData('components', $components);
