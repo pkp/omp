@@ -16,7 +16,7 @@
 	<message key="plugins.block.user.displayName">Bloco Usuário</message>
 	<message key="plugins.block.user.description">Este plugin oferece ferramentas de usuário na barra lateral (ex.: logar, sair do sistema, acesso ao perfil, etc).</message>
 	<message key="plugins.block.user.loggedInAs">Logado como...</message>
-	<message key="plugins.block.user.myJournals">Meus periódicos</message>
+	<message key="plugins.block.user.myPresses">Meus periódicos</message>
 	<message key="plugins.block.user.myProfile">Perfil</message>
 	<message key="plugins.block.user.logout">Sair do Sistema</message>
 	<message key="plugins.block.user.signOutAsUser">Sair do Sistema como usuário</message>

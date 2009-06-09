@@ -13,7 +13,7 @@
  * @class CreateReviewerForm
  * @ingroup acquisitionsEditor_form
  *
- * @brief Form for section editors to create reviewers.
+ * @brief Form for acquisitions editors to create reviewers.
  */
 
 // $Id$

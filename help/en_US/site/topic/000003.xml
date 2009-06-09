@@ -18,7 +18,7 @@
 	</section>
 
 	<section title="System Information">
-		<![CDATA[<p>General information about the server environment and OJS version history (including past upgrades). A web-based interface to modify the OJS configuration file is also provided.</p>]]>
+		<![CDATA[<p>General information about the server environment and OMP version history (including past upgrades). A web-based interface to modify the OMP configuration file is also provided.</p>]]>
 	</section>
 
 	<section title="Expire User Sessions">
@@ -35,17 +35,17 @@
 
 	<section title="Merge Users">
 		<![CDATA[<p>The Merge Users feature allows the Site Administrator to merge two user accounts into a single account, transferring edit assignments, submissions, and numerous other records from one account to the other and effectively deleting the first.</p>
-		<p>Unlike the Merge Users feature available to a Journal Manager, which is limited to merging user accounts for a particular journal, the Merge Users feature under Site Administration allows the Site Administrator to merge any two user accounts, even across different journals.</p>
+		<p>Unlike the Merge Users feature available to a Press Manager, which is limited to merging user accounts for a particular press, the Merge Users feature under Site Administration allows the Site Administrator to merge any two user accounts, even across different presses.</p>
 		<p>The following items are transferred:</p>
 			<ul>
-				<li>Article authorship</li>
-				<li>Public comments on articles</li>
-				<li>Article notes</li>
+				<li>Monograph authorship</li>
+				<li>Public comments on monographs</li>
+				<li>Monograph notes</li>
 				<li>Editor assignments and decisions</li>
 				<li>Review assignments</li>
 				<li>Layout editor assignments</li>
 				<li>Proofreader assignments</li>
-				<li>Article email and event log entries</li>
+				<li>Monograph email and event log entries</li>
 				<li>Reviewer access keys</li>
 				<li>Roles</li>
 			</ul>
@@ -53,9 +53,9 @@
 			<ul>
 				<li>Sessions</li>
 				<li>Subscriptions</li>
-				<li>Notification status (i.e. whether the user has signed up to receive notifications about journal news)</li>
+				<li>Notification status (i.e. whether the user has signed up to receive notifications about press news)</li>
 				<li>Editorial team memberships</li>
-				<li>Section Editor status on sections</li>
+				<li>Acquisitions Editor status on acquisitions arrangements</li>
 				<li>User profile information (e.g. first name, last name, etc.)</li>
 			</ul>
 		<p>This feature should be used with caution, as it is not reversible and involves the transfer of records from one user to another.</p>]]>

@@ -27,8 +27,7 @@ class CitationPlugin extends Plugin {
 	}
 
 	/**
-	 * Get the display name of this plugin. This name is displayed on the
-	 * Journal Manager's setup page 5, for example.
+	 * Get the display name of this plugin.
 	 * @return String
 	 */
 	function getDisplayName() {
@@ -54,7 +53,7 @@ class CitationPlugin extends Plugin {
 
 	/**
 	 * Used by the cite function to embed an HTML citation in the
-	 * templates/rt/captureCite.tpl template, which ships with OJS.
+	 * templates/rt/captureCite.tpl template, which ships with OMP.
 	 */
 	function displayCitation($hookName, $args) {
 		$params =& $args[0];
@@ -69,10 +68,10 @@ class CitationPlugin extends Plugin {
 	 * Return an HTML-formatted citation. Default implementation displays
 	 * an HTML-based citation using the citation.tpl template in the plugin
 	 * path.
-	 * @param $article object
-	 * @param $issue object
+	 * @param $monograph object
+	 * @param $object object
 	 */
-	function cite(&$article, &$issue) {
+	function cite(&$monograph, &$object) {
 		HookRegistry::register('Template::RT::CaptureCite', array(&$this, 'displayCitation'));
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('citationPlugin', $this);

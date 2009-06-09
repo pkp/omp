@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../../lib/pkp/dtd/helpTopic.dtd">
+
+<!--
+  * 000004.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Management Pages - Setup 
+  *
+  * $Id$
+  -->
+
+<topic id="press/topic/000004" locale="en_US" title="Setup" toc="press/toc/000001" key="press.managementPages.setup">
+	<section>
+		<![CDATA[<p>The Press Manager sets up the press, after the system has been installed on a web server, by working through five steps, filling in templates and configuring the management of the press. The setup does not have to be done all at once: the templates can be filled in and saved; then the Press Manager can return to Setup to complete the task or make changes at any time.</p><p>Setup is available to the Press Manager on the Press Management page, and contains its own set of Help texts built into each of the templates. Setting up the press's web site will require decisions and texts for the following items, among others, which can be prepared in advance in consultation with the Editors or added at a later point.</p><ul><li>Principal contact for the press</li><li>Technical contact</li><li>Scope and Focus Statement for the press</li><li>Press Acquisitions Arrangements and policies</li><li>Author Guidelines</li><li>Submission requirements for authors</li><li>Indexing elements and appropriate examples</li><li>Peer Review Policy</li><li>Reviewer Guidelines</li><li>Copyright Policy</li><li>Open Access Policy</li><li>Editorial Board/Review Board</li><li>Subscription Policies</li><li>Use of layout editors, copyeditors, and/or proofreaders</li></ul>]]>
+	</section>
+</topic>

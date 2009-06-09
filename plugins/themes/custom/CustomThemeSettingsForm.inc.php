@@ -9,7 +9,7 @@
  * @class CustomThemeSettingsForm
  * @ingroup plugins_generic_customTheme
  *
- * @brief Form for journal managers to modify custom theme plugin settings
+ * @brief Form for press managers to modify custom theme plugin settings
  */
 
 // $Id$
@@ -19,8 +19,8 @@ import('form.Form');
 
 class CustomThemeSettingsForm extends Form {
 
-	/** @var $journalId int */
-	var $journalId;
+	/** @var $pressId int */
+	var $pressId;
 
 	/** @var $plugin object */
 	var $plugin;
@@ -28,10 +28,10 @@ class CustomThemeSettingsForm extends Form {
 	/**
 	 * Constructor
 	 * @param $plugin object
-	 * @param $journalId int
+	 * @param $pressId int
 	 */
-	function CustomThemeSettingsForm(&$plugin, $journalId) {
-		$this->journalId = $journalId;
+	function CustomThemeSettingsForm(&$plugin, $pressId) {
+		$this->pressId = $pressId;
 		$this->plugin =& $plugin;
 
 		parent::Form($plugin->getTemplatePath() . 'settingsForm.tpl');
@@ -54,14 +54,14 @@ class CustomThemeSettingsForm extends Form {
 	 * Initialize form data.
 	 */
 	function initData() {
-		$journalId = $this->journalId;
+		$pressId = $this->pressId;
 		$plugin =& $this->plugin;
 
 		$this->_data = array(
-			'customThemeHeaderColour' => $plugin->getSetting($journalId, 'customThemeHeaderColour'),
-			'customThemeLinkColour' => $plugin->getSetting($journalId, 'customThemeLinkColour'),
-			'customThemeBackgroundColour' => $plugin->getSetting($journalId, 'customThemeBackgroundColour'),
-			'customThemeForegroundColour' => $plugin->getSetting($journalId, 'customThemeForegroundColour')
+			'customThemeHeaderColour' => $plugin->getSetting($pressId, 'customThemeHeaderColour'),
+			'customThemeLinkColour' => $plugin->getSetting($pressId, 'customThemeLinkColour'),
+			'customThemeBackgroundColour' => $plugin->getSetting($pressId, 'customThemeBackgroundColour'),
+			'customThemeForegroundColour' => $plugin->getSetting($pressId, 'customThemeForegroundColour')
 		);
 	}
 
@@ -77,19 +77,19 @@ class CustomThemeSettingsForm extends Form {
 	 */
 	function execute() {
 		$plugin =& $this->plugin;
-		$journalId = $this->journalId;
+		$pressId = $this->pressId;
 		$css = '';
 
 		// Header and footer colours
 		$customThemeHeaderColour = $this->getData('customThemeHeaderColour');
-		$plugin->updateSetting($journalId, 'customThemeHeaderColour', $customThemeHeaderColour, 'string');
+		$plugin->updateSetting($pressId, 'customThemeHeaderColour', $customThemeHeaderColour, 'string');
 		$css .= "#header {background-color: $customThemeHeaderColour;}\n";
 		$css .= "#footer {background-color: $customThemeHeaderColour;}\n";
 		$css .= "table.listing tr.fastTracked {background-color: $customThemeHeaderColour;}\n";
 
 		// Link colours
 		$customThemeLinkColour = $this->getData('customThemeLinkColour');
-		$plugin->updateSetting($journalId, 'customThemeLinkColour', $customThemeLinkColour, 'string');
+		$plugin->updateSetting($pressId, 'customThemeLinkColour', $customThemeLinkColour, 'string');
 		$css .= "a {color: $customThemeLinkColour;}\n";
 		$css .= "a:link {color: $customThemeLinkColour;}\n";
 		$css .= "a:active {color: $customThemeLinkColour;}\n";
@@ -99,13 +99,13 @@ class CustomThemeSettingsForm extends Form {
 
 		// Background colours
 		$customThemeBackgroundColour = $this->getData('customThemeBackgroundColour');
-		$plugin->updateSetting($journalId, 'customThemeBackgroundColour', $customThemeBackgroundColour, 'string');
+		$plugin->updateSetting($pressId, 'customThemeBackgroundColour', $customThemeBackgroundColour, 'string');
 		$css .= "body {background-color: $customThemeBackgroundColour;}\n";
 		$css .= "input.defaultButton {background-color: $customThemeBackgroundColour;}\n";
 
 		// Foreground colours
 		$customThemeForegroundColour = $this->getData('customThemeForegroundColour');
-		$plugin->updateSetting($journalId, 'customThemeForegroundColour', $customThemeForegroundColour, 'string');
+		$plugin->updateSetting($pressId, 'customThemeForegroundColour', $customThemeForegroundColour, 'string');
 		$css .= "body {color: $customThemeForegroundColour;}\n";
 		$css .= "input.defaultButton {color: $customThemeForegroundColour;}\n";
 

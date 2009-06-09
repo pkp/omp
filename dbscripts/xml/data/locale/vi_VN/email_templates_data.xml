@@ -4,7 +4,7 @@
 <!--
   * email_templates_data.xml
   *
-  * Copyright (c) 2003-2008 John Willinsky
+  * Copyright (c) 2003-2009 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Email templates data XML file (English).
@@ -23,38 +23,38 @@
 		  -->
 		<row>
 			<field name="email_key">PASSWORD_RESET_CONFIRM</field>
-			<field name="subject">Kh?ng ??nh ??i m?t kh?u</field>
-			<field name="body">Ch�ng t�i nh?n ???c y�u c?u c?a qu� v? v? thay ??i m?t kh?u tr�n website {$siteTitle}.
+			<field name="subject">Khẳng định đổi mật khẩu</field>
+			<field name="body">Chúng tôi nhận được yêu cầu của quý vị về thay đổi mật khẩu trên website {$siteTitle}.
 
-N?u kh�ng ph?i l� qu� v? y�u c?u thay ??i, vui l�ng b? qua email n�y v� m?t kh?u c?a qu� v? s? kh�ng thay ??i. N?u qu� v? mu?n thay ??i m?t kh?u, nh?p chu?t v�o ???ng d?n sau:
+Nếu không phải là quý vị yêu cầu thay đổi, vui lòng bỏ qua email này và mật khẩu của quý vị sẽ không thay đổi. Nếu quý vị muốn thay đổi mật khẩu, nhấp chuột vào đường dẫn sau:
 
-Thay ??i m?t kh?u c?a t�i: {$url}
+Thay đổi mật khẩu của tôi: {$url}
 
 {$principalContactSignature}</field>
-			<field name="description">Email n�y ???c g?i t?i b?n ??c ?� ??ng k� khi h? th�ng b�o r?ng h? qu�n m?t kh?u ho?c kh�ng th? ??ng nh?p. Email n�y cung c?p ???ng d?n ?? ng??i d�ng c� th? truy c?p ?? thay ??i m?t kh?u.</field>
+			<field name="description">Email này được gửi tới bạn đọc đã đăng ký khi họ thông báo rằng họ quên mật khẩu hoặc không thể đăng nhập. Email này cung cấp đường dẫn để người dùng có thể truy cập để thay đổi mật khẩu.</field>
 		</row>
 		<row>
 			<field name="email_key">PASSWORD_RESET</field>
-			<field name="subject">M?t kh?u ?� thay ??i</field>
-			<field name="body">M?t kh?u c?a qu� v? ?� ???c thay ??i ?? s? d?ng v?i web site {$siteTitle}. Vui l�ng gi? l?i b� danh v� m?t kh?u n�y b?i v� n� c?n ?? ??ng nh?p v�o t?p ch�.
+			<field name="subject">Mật khẩu đã thay đổi</field>
+			<field name="body">Mật khẩu của quý vị đã được thay đổi để sử dụng với web site {$siteTitle}. Vui lòng giữ lại bí danh và mật khẩu này bởi vì nó cần để đăng nhập vào tạp chí.
 
-B� danh: {$username}
-M?t kh?u: {$password}
+Bí danh: {$username}
+Mật khẩu: {$password}
 
 {$principalContactSignature}</field>
-			<field name="description">Email n�y ???c g?i t?i b?n ??c khi h? ?� ??i th�nh c�ng m?t kh?u c?a m�nh trong email PASSWORD_RESET_CONFIRM.</field>
+			<field name="description">Email này được gửi tới bạn đọc khi họ đã đổi thành công mật khẩu của mình trong email PASSWORD_RESET_CONFIRM.</field>
 		</row>
 		<row>
 			<field name="email_key">USER_REGISTER</field>
-			<field name="subject">??ng k� m?i</field>
-			<field name="body">C?m ?n qu� v? ?� ??ng k� l�m b?n ??c c?a t?p ch� {$journalName}. Vui l�ng l?u gi? b� danh v� m?t kh?u c?a qu� v? v� n� c?n ?? ??ng nh?p v�o t?p ch� n�y.
+			<field name="subject">Đăng ký mới</field>
+			<field name="body">Cảm ơn quý vị đã đăng ký làm bạn đọc của tạp chí {$pressName}. Vui lòng lưu giữ bí danh và mật khẩu của quý vị vì nó cần để đăng nhập vào tạp chí này.
 
-B� danh: {$username}
-M?t kh?u: {$password}
+Bí danh: {$username}
+Mật khẩu: {$password}
 
-Xin c?m ?n,
+Xin cảm ơn,
 {$principalContactSignature}</field>
-			<field name="description">Email n�y ???c g?i t?i b?n ??c v?a m?i ??ng k� ?? ch�o m?ng h? ??n v?i t?p ch� v� cung c?p cho h? b� danh v� m?t kh?u.</field>
+			<field name="description">Email này được gửi tới bạn đọc vừa mới đăng ký để chào mừng họ đến với tạp chí và cung cấp cho họ bí danh và mật khẩu.</field>
 		</row>
 	</table>
 </data>

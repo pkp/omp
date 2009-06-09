@@ -38,7 +38,7 @@
 				{if $submission->getUserIdBySignoffType('SIGNOFF_COPYEDITING_INITIAL') && $initialCopyeditFile}
 					{url|assign:"url" op="notifyCopyeditor" monographId=$submission->getMonographId()}
 					{if $initialCopyeditSignoff->getDateUnderway()}
-						{translate|escape:"javascript"|assign:"confirmText" key="sectionEditor.copyedit.confirmRenotify"}
+						{translate|escape:"javascript"|assign:"confirmText" key="acquisitionsEditor.copyedit.confirmRenotify"}
 						{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
 					{else}
 						{icon name="mail" url=$url}
@@ -105,7 +105,7 @@
 			{if ($submission->getUserIdBySignoffType('SIGNOFF_COPYEDITING_INITIAL') || !$useCopyeditors) && $initialCopyeditSignoff->getDateCompleted()}
 				{url|assign:"url" op="notifyAuthorCopyedit monographId=$submission->getMonographId()}
 				{if $authorCopyeditSignoff->getDateUnderway()}
-					{translate|escape:"javascript"|assign:"confirmText" key="sectionEditor.author.confirmRenotify"}
+					{translate|escape:"javascript"|assign:"confirmText" key="acquisitionsEditor.author.confirmRenotify"}
 					{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
 				{else}
 					{icon name="mail" url=$url}
@@ -152,7 +152,7 @@
 				{if $submission->getUserIdBySignoffType('SIGNOFF_COPYEDITING_INITIAL') && $authorCopyeditSignoff->getDateCompleted()}
 					{url|assign:"url" op="notifyFinalCopyedit monographId=$submission->getMonographId()}
 					{if $finalCopyeditSignoff->getDateUnderway()}
-						{translate|escape:"javascript"|assign:"confirmText" key="sectionEditor.copyedit.confirmRenotify"}
+						{translate|escape:"javascript"|assign:"confirmText" key="acquisitionsEditor.copyedit.confirmRenotify"}
 						{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
 					{else}
 						{icon name="mail" url=$url}

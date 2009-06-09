@@ -20,20 +20,20 @@
 </p>
 {/if}
 
-{if not ($currentJournal->getLocalizedSetting('contactTitle') == '' && $currentJournal->getLocalizedSetting('contactAffiliation') == '' && $currentJournal->getLocalizedSetting('contactMailingAddress') == '' && empty($pressSettings.contactPhone) && empty($pressSettings.contactFax) && empty($pressSettings.contactEmail))}
+{if not ($currentPress->getLocalizedSetting('contactTitle') == '' && $currentPress->getLocalizedSetting('contactAffiliation') == '' && $currentPress->getLocalizedSetting('contactMailingAddress') == '' && empty($pressSettings.contactPhone) && empty($pressSettings.contactFax) && empty($pressSettings.contactEmail))}
 <h3>{translate key="about.contact.principalContact"}</h3>
 <p>
 	{if !empty($pressSettings.contactName)}
 		<strong>{$pressSettings.contactName|escape}</strong><br />
 	{/if}
 
-	{assign var=s value=$currentJournal->getLocalizedSetting('contactTitle')}
+	{assign var=s value=$currentPress->getLocalizedSetting('contactTitle')}
 	{if $s}{$s|escape}<br />{/if}
 
-	{assign var=s value=$currentJournal->getLocalizedSetting('contactAffiliation')}
+	{assign var=s value=$currentPress->getLocalizedSetting('contactAffiliation')}
 	{if $s}{$s|escape}<br />{/if}
 
-	{assign var=s value=$currentJournal->getLocalizedSetting('contactMailingAddress')}
+	{assign var=s value=$currentPress->getLocalizedSetting('contactMailingAddress')}
 	{if $s}{$s|nl2br}<br />{/if}
 
 	{if !empty($pressSettings.contactPhone)}

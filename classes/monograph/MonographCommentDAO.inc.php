@@ -138,7 +138,7 @@ class MonographCommentDAO extends DAO {
 	}	
 
 	/**
-	 * Creates and returns an monograph comment object from a row
+	 * Creates and returns a monograph comment object from a row
 	 * @param $row array
 	 * @return MonographComment object
 	 */
@@ -198,7 +198,7 @@ class MonographCommentDAO extends DAO {
 	}	
 
 	/**
-	 * removes an monograph comment from monograph_comments table
+	 * removes a monograph comment from monograph_comments table
 	 * @param MonographComment object
 	 */
 	function deleteMonographComment($monographComment) {
@@ -206,7 +206,7 @@ class MonographCommentDAO extends DAO {
 	}
 
 	/**
-	 * removes an monograph note by id
+	 * removes a monograph note by id
 	 * @param noteId int
 	 */
 	function deleteMonographCommentById($commentId) {
@@ -216,7 +216,7 @@ class MonographCommentDAO extends DAO {
 	}
 
 	/**
-	 * Delete all comments for an monograph.
+	 * Delete all comments for a monograph.
 	 * @param $monographId int
 	 */
 	function deleteMonographComments($monographId) {
@@ -226,7 +226,7 @@ class MonographCommentDAO extends DAO {
 	}
 
 	/**
-	 * updates an monograph comment
+	 * updates a monograph comment
 	 * @param MonographComment object
 	 */
 	function updateMonographComment($monographComment) {

@@ -21,10 +21,10 @@ class ProofreadCommentForm extends CommentForm {
 
 	/**
 	 * Constructor.
-	 * @param $article object
+	 * @param $monograph object
 	 */
-	function ProofreadCommentForm($article, $roleId) {
-		parent::CommentForm($article, COMMENT_TYPE_PROOFREAD, $roleId, $article->getArticleId());
+	function ProofreadCommentForm($monograph, $roleId) {
+		parent::CommentForm($monograph, COMMENT_TYPE_PROOFREAD, $roleId, $monograph->getMonographId());
 	}
 
 	/**
@@ -37,7 +37,7 @@ class ProofreadCommentForm extends CommentForm {
 		$templateMgr->assign('commentType', 'proofread');
 		$templateMgr->assign('hiddenFormParams', 
 			array(
-				'articleId' => $this->article->getArticleId()
+				'monographId' => $this->monograph->getMonographId()
 			)
 		);
 
@@ -64,7 +64,7 @@ class ProofreadCommentForm extends CommentForm {
 	function email() {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$journal =& Request::getJournal();	
+		$press =& Request::getPress();	
 
 		// Create list of recipients:
 		$recipients = array();
@@ -74,7 +74,7 @@ class ProofreadCommentForm extends CommentForm {
 
 		// Get editors
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getByIdsByArticleId($this->article->getArticleId());
+		$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getMonographId());
 		$editorAddresses = array();
 		while (!$editAssignments->eof()) {
 			$editAssignment =& $editAssignments->next();
@@ -82,10 +82,10 @@ class ProofreadCommentForm extends CommentForm {
 			unset($editAssignment);
 		}
 
-		// If no editors are currently assigned to this article,
-		// send the email to all editors for the journal
+		// If no editors are currently assigned to this monograph,
+		// send the email to all editors for the press
 		if (empty($editorAddresses)) {
-			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $journal->getJournalId());
+			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getPressId());
 			while (!$editors->eof()) {
 				$editor =& $editors->next();
 				$editorAddresses[$editor->getEmail()] = $editor->getFullName();
@@ -94,7 +94,7 @@ class ProofreadCommentForm extends CommentForm {
 
 		// Get layout editor
 		$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-		$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByArticleId($this->article->getArticleId());
+		$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($this->monograph->getMonographId());
 		if ($layoutAssignment != null && $layoutAssignment->getEditorId() > 0) {
 			$layoutEditor =& $userDao->getUser($layoutAssignment->getEditorId());
 		} else {
@@ -103,7 +103,7 @@ class ProofreadCommentForm extends CommentForm {
 
 		// Get proofreader
 		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByArticleId($this->article->getArticleId());
+		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($this->monograph->getMonographId());
 		if ($proofAssignment != null && $proofAssignment->getProofreaderId() > 0) {
 			$proofreader =& $userDao->getUser($proofAssignment->getProofreaderId());
 		} else {
@@ -111,10 +111,10 @@ class ProofreadCommentForm extends CommentForm {
 		}
 
 		// Get author
-		$author =& $userDao->getUser($this->article->getUserId());
+		$author =& $userDao->getUser($this->monograph->getUserId());
 
 		// Choose who receives this email
-		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SECTION_EDITOR) {
+		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_ACQUISITIONS_EDITOR) {
 			// Then add layout editor, proofreader and author
 			if ($layoutEditor != null) {
 				$recipients = array_merge($recipients, array($layoutEditor->getEmail() => $layoutEditor->getFullName()));

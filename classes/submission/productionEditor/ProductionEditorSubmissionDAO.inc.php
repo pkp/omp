@@ -59,8 +59,8 @@ class ProductionEditorSubmissionDAO extends DAO {
 		$locale = Locale::getLocale();
 		$result =& $this->retrieve(
 			'SELECT	a.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev,
 				sc.file_id AS layout_file_id
 			FROM monographs a
 				INNER JOIN signoffs sc ON (sc.assoc_type = ? AND sc.assoc_id = ? AND sc.symbolic = ?)
@@ -142,7 +142,7 @@ class ProductionEditorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Update an existing section editor submission.
+	 * Update an existing acquisitions editor submission.
 	 * @param $productionEditorSubmission ProductionEditorSubmission
 	 */
 	function updateObject(&$productionEditorSubmission) {
@@ -160,8 +160,8 @@ class ProductionEditorSubmissionDAO extends DAO {
 		$locale = Locale::getLocale();
 		$result =& $this->retrieveRange(
 			'SELECT	a.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
 			FROM monographs a
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)

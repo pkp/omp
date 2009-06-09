@@ -14,11 +14,11 @@
  
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.generic.customLocale.name">Công cụ phụ trợ ngôn ngữ tùy biến</message>
-	<message key="plugins.generic.customLocale.description">Công cụ này cho phép tùy biến ngôn ngữ giao diện người dụng mặc định trên phần mềm OJS.</message>
+	<message key="plugins.generic.customLocale.description">Công cụ này cho phép tùy biến ngôn ngữ giao diện người dụng mặc định trên phần mềm OMP.</message>
 
 	<message key="plugins.generic.customLocale.longDescription">Trang này liệt kê tất cả các ngôn ngữ hiện được cài đặt cho tạp chí này.</message>
 	<message key="plugins.generic.customLocale.localeDescription">Trang này liệt kê tất cả các file sẵn có cho ngôn ngữ được chọn.</message>
-	<message key="plugins.generic.customLocale.fileDescription">Nhập từ ngữ vào ô chữ tùy biến tương ứng. Để trống ô chữ tùy biến nếu muốn sử dụng từ ngữ mặc định của OJS.</message>
+	<message key="plugins.generic.customLocale.fileDescription">Nhập từ ngữ vào ô chữ tùy biến tương ứng. Để trống ô chữ tùy biến nếu muốn sử dụng từ ngữ mặc định của OMP.</message>
 	<message key="plugins.generic.customLocale.localeName">Tên ngôn ngữ</message>
 	<message key="plugins.generic.customLocale.localeKey">Nút chữ</message>
 	<message key="plugins.generic.customLocale.localeKeyValue">Giá trị</message>

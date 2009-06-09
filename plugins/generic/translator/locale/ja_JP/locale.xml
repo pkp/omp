@@ -15,8 +15,8 @@
 <locale name="ja_JP" full_name="日本語">
 	<message key="plugins.generic.translator.name">翻訳プラグイン</message>
 	<message key="plugins.generic.translator.description">このプラグインは翻訳ファイルの保守をWebで行えるようにします。</message>
-	<message key="plugins.generic.translator.longdescription">このエリアを使って、サイト管理者はOJSの翻訳ファイルを作成、変更、チェックすることができます。このファイルはサイト全体に関するものであり、個別のOJS雑誌をカスタマイズすることはできません。翻訳ファイルを修正または作成した場合は、将来のリリースで配布できるようにPublic Knowledge プロジェクトへの投稿を検討してください。</message>
-	<message key="plugins.generic.translator.localeDescription">このページはOJS翻訳パックを構成するすべてのファイルを表示し、翻訳者に各ファイルを編集する機会を提供しています。完全な翻訳パックには全ての翻訳ファイルが含まれている必要があります。</message>
+	<message key="plugins.generic.translator.longdescription">このエリアを使って、サイト管理者はOMPの翻訳ファイルを作成、変更、チェックすることができます。このファイルはサイト全体に関するものであり、個別のOMP雑誌をカスタマイズすることはできません。翻訳ファイルを修正または作成した場合は、将来のリリースで配布できるようにPublic Knowledge プロジェクトへの投稿を検討してください。</message>
+	<message key="plugins.generic.translator.localeDescription">このページはOMP翻訳パックを構成するすべてのファイルを表示し、翻訳者に各ファイルを編集する機会を提供しています。完全な翻訳パックには全ての翻訳ファイルが含まれている必要があります。</message>
 
 	<message key="plugins.generic.translator.localeName">ロケール名</message>
 	<message key="plugins.generic.translator.localeKey">キー</message>
@@ -68,7 +68,7 @@
 	<message key="plugins.generic.translator.email.resetConfirm">Are you sure you wish to reset the email contents?</message>
 	<message key="plugins.generic.translator.file.doesNotExistNote">* This file has not yet been translated.</message>
 	<message key="plugins.generic.translator.file.confirmCreate">The file "{$filename}" will be created using the English version; you will need to translate all strings in the file. Do you wish to continue?</message>
-	<message key="plugins.generic.translator.email.description">In the following fields, translate the email template's Title, Body, and Description. The Description is for the Journal Manager's reference only.</message>
+	<message key="plugins.generic.translator.email.description">In the following fields, translate the email template's Title, Body, and Description. The Description is for the Press Manager's reference only.</message>
 	<message key="plugins.generic.translator.confirmDelete">Are you sure you wish to delete this item? This action cannot be undone.</message>
 	<message key="plugins.generic.translator.deleteKey">Delete this key</message>
 	<message key="plugins.generic.translator.deleteEmail">Delete this email</message>

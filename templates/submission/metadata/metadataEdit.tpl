@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Form for changing metadata of an monograph.
+ * Form for changing metadata of a monograph.
  *
  * $Id$
  *}
@@ -70,17 +70,17 @@
 
 <h3>{translate key="submission.indexing"}</h3>
 
-{if $journalSettings.metaDiscipline || $journalSettings.metaSubjectClass || $journalSettings.metaSubject || $journalSettings.metaCoverage || $journalSettings.metaType}<p>{translate key="author.submit.submissionIndexingDescription"}</p>{/if}
+{if $pressSettings.metaDiscipline || $pressSettings.metaSubjectClass || $pressSettings.metaSubject || $pressSettings.metaCoverage || $pressSettings.metaType}<p>{translate key="author.submit.submissionIndexingDescription"}</p>{/if}
 
 <table width="100%" class="data">
-	{if $journalSettings.metaDiscipline}
+	{if $pressSettings.metaDiscipline}
 	<tr valign="top">
 		<td class="label">{fieldLabel name="discipline" key="monograph.discipline"}</td>
 		<td class="value">
 			<input type="text" name="discipline[{$formLocale|escape}]" id="discipline" value="{$discipline[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
-			{if $currentJournal->getLocalizedSetting('metaDisciplineExamples') != ''}
+			{if $currentPress->getLocalizedSetting('metaDisciplineExamples') != ''}
 			<br />
-			<span class="instruct">{$currentJournal->getLocalizedSetting('metaDisciplineExamples')|escape}</span>
+			<span class="instruct">{$currentPress->getLocalizedSetting('metaDisciplineExamples')|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -88,9 +88,9 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $journalSettings.metaSubjectClass}
+	{if $pressSettings.metaSubjectClass}
 	<tr valign="top">
-		<td colspan="2" class="label"><a href="{$currentJournal->getLocalizedSetting('metaSubjectClassUrl')|escape}" target="_blank">{$currentJournal->getLocalizedSetting('metaSubjectClassTitle')|escape}</a></td>
+		<td colspan="2" class="label"><a href="{$currentPress->getLocalizedSetting('metaSubjectClassUrl')|escape}" target="_blank">{$currentPress->getLocalizedSetting('metaSubjectClassTitle')|escape}</a></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="subjectClass" key="monograph.subjectClassification"}</td>
@@ -104,14 +104,14 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $journalSettings.metaSubject}
+	{if $pressSettings.metaSubject}
 	<tr valign="top">
 		<td class="label">{fieldLabel name="subject" key="monograph.subject"}</td>
 		<td class="value">
 			<input type="text" name="subject[{$formLocale|escape}]" id="subject" value="{$subject[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
-			{if $currentJournal->getLocalizedSetting('metaSubjectExamples') != ''}
+			{if $currentPress->getLocalizedSetting('metaSubjectExamples') != ''}
 			<br />
-			<span class="instruct">{$currentJournal->getLocalizedSetting('metaSubjectExamples')|escape}</span>
+			<span class="instruct">{$currentPress->getLocalizedSetting('metaSubjectExamples')|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -119,14 +119,14 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $journalSettings.metaCoverage}
+	{if $pressSettings.metaCoverage}
 	<tr valign="top">
 		<td class="label">{fieldLabel name="coverageGeo" key="monograph.coverageGeo"}</td>
 		<td class="value">
 			<input type="text" name="coverageGeo[{$formLocale|escape}]" id="coverageGeo" value="{$coverageGeo[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
-			{if $currentJournal->getLocalizedSetting('metaCoverageGeoExamples') != ''}
+			{if $currentPress->getLocalizedSetting('metaCoverageGeoExamples') != ''}
 			<br />
-			<span class="instruct">{$currentJournal->getLocalizedSetting('metaCoverageGeoExamples')|escape}</span>
+			<span class="instruct">{$currentPress->getLocalizedSetting('metaCoverageGeoExamples')|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -137,9 +137,9 @@
 		<td class="label">{fieldLabel name="coverageChron" key="monograph.coverageChron"}</td>
 		<td class="value">
 			<input type="text" name="coverageChron[{$formLocale|escape}]" id="coverageChron" value="{$coverageChron[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
-			{if $currentJournal->getLocalizedSetting('metaCoverageChronExamples') != ''}
+			{if $currentPress->getLocalizedSetting('metaCoverageChronExamples') != ''}
 			<br />
-			<span class="instruct">{$currentJournal->getLocalizedSetting('metaCoverageChronExamples')|escape}</span>
+			<span class="instruct">{$currentPress->getLocalizedSetting('metaCoverageChronExamples')|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -150,9 +150,9 @@
 		<td class="label">{fieldLabel name="coverageSample" key="monograph.coverageSample"}</td>
 		<td class="value">
 			<input type="text" name="coverageSample[{$formLocale|escape}]" id="coverageSample" value="{$coverageSample[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
-			{if $currentJournal->getLocalizedSetting('metaCoverageResearchSampleExamples') != ''}
+			{if $currentPress->getLocalizedSetting('metaCoverageResearchSampleExamples') != ''}
 			<br />
-			<span class="instruct">{$currentJournal->getLocalizedSetting('metaCoverageResearchSampleExamples')|escape}</span>
+			<span class="instruct">{$currentPress->getLocalizedSetting('metaCoverageResearchSampleExamples')|escape}</span>
 			{/if}
 		</td>
 	</tr>
@@ -160,7 +160,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $journalSettings.metaType}
+	{if $pressSettings.metaType}
 	<tr valign="top">
 		<td class="label">{fieldLabel name="type" key="monograph.type"}</td>
 		<td class="value">

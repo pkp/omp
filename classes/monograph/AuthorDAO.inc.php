@@ -43,7 +43,7 @@ class AuthorDAO extends DAO {
 
 
 	/**
-	 * Retrieve all authors for an monograph.
+	 * Retrieve all authors for a monograph.
 	 * @param $monographId int
 	 * @return array Authors ordered by sequence
 	 */
@@ -150,10 +150,7 @@ class AuthorDAO extends DAO {
 			FROM	monograph_authors aa,
 				monographs a,
 				published_monographs pa,
-				issues i
-			WHERE	i.issue_id = pa.issue_id
-				AND i.published = 1
-				AND aa.monograph_id = a.monograph_id ' .
+			WHERE	aa.monograph_id = a.monograph_id ' .
 				(isset($pressId)?'AND a.press_id = ? ':'') . '
 				AND pa.monograph_id = a.monograph_id
 				AND a.status = ' . STATUS_PUBLISHED . '
@@ -169,7 +166,7 @@ class AuthorDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve the IDs of all authors for an monograph.
+	 * Retrieve the IDs of all authors for a monograph.
 	 * @param $monographId int
 	 * @return array int ordered by sequence
 	 */
@@ -343,7 +340,7 @@ class AuthorDAO extends DAO {
 	}
 
 	/**
-	 * Sequentially renumber an monograph's authors in their sequence order.
+	 * Sequentially renumber a monograph's authors in their sequence order.
 	 * @param $monographId int
 	 */
 	function resequenceAuthors($monographId) {

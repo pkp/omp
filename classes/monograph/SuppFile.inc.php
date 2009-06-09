@@ -394,7 +394,7 @@ class SuppFile extends MonographFile {
 	 * @return string
 	 */
 	function getBestSuppFileId($press = null) {
-		// Retrieve the journal, if necessary.
+		// Retrieve the press, if necessary.
 		if (!isset($press)) {
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
 			$monograph =& $monographDao->getMonograph($this->getMonographId());

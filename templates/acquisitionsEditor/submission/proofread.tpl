@@ -35,7 +35,7 @@
 		<td>
 			{url|assign:"url" op="notifyAuthorProofreader" monographId=$submission->getMonographId()}
 			{if $proofAssignment->getDateAuthorUnderway()}
-				{translate|escape:"javascript"|assign:"confirmText" key="sectionEditor.author.confirmRenotify"}
+				{translate|escape:"javascript"|assign:"confirmText" key="acquisitionsEditor.author.confirmRenotify"}
 				{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
 			{else}
 				{icon name="mail" url=$url}
@@ -67,7 +67,7 @@
 				{if $proofAssignment->getProofreaderId() && $proofAssignment->getDateAuthorCompleted()}
 					{url|assign:"url" op="notifyProofreader" monographId=$submission->getMonographId()}
 					{if $proofAssignment->getDateProofreaderUnderway()}
-						{translate|escape:"javascript"|assign:"confirmText" key="sectionEditor.proofreader.confirmRenotify"}
+						{translate|escape:"javascript"|assign:"confirmText" key="acquisitionsEditor.proofreader.confirmRenotify"}
 						{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
 					{else}
 						{icon name="mail" url=$url}
@@ -118,7 +118,7 @@
 				{if $layoutAssignment->getEditorId() && $proofAssignment->getDateProofreaderCompleted()}
 					{url|assign:"url" op="notifyLayoutEditorProofreader" monographId=$submission->getMonographId()}
 					{if $proofAssignment->getDateLayoutEditorUnderway()}
-						{translate|escape:"javascript"|assign:"confirmText" key="sectionEditor.layout.confirmRenotify"}
+						{translate|escape:"javascript"|assign:"confirmText" key="acquisitionsEditor.layout.confirmRenotify"}
 						{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
 					{else}
 						{icon name="mail" url=$url}

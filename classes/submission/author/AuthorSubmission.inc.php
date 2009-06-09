@@ -155,7 +155,7 @@ class AuthorSubmission extends Monograph {
 	 * or STATUS_QUEUED_EDITING). Note that this function never returns
 	 * a value of STATUS_QUEUED -- the three STATUS_QUEUED_... constants
 	 * indicate a queued submission. NOTE that this code is similar to
-	 * getSubmissionStatus in the SectionEditorSubmission class and
+	 * getSubmissionStatus in the AcquisitionsEditorSubmission class and
 	 * changes here should be propagated.
 	 */
 	function getSubmissionStatus() {
@@ -281,7 +281,7 @@ class AuthorSubmission extends Monograph {
 	}
 
 	/**
-	 * Get the galleys for an monograph.
+	 * Get the galleys for a monograph.
 	 * @return array MonographGalley
 	 */
 	function &getGalleys() {
@@ -290,7 +290,7 @@ class AuthorSubmission extends Monograph {
 	}
 
 	/**
-	 * Set the galleys for an monograph.
+	 * Set the galleys for a monograph.
 	 * @param $galleys array MonographGalley
 	 */
 	function setGalleys(&$galleys) {

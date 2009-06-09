@@ -19,21 +19,21 @@ import('form.Form');
 
 class AcquisitionsArrangementForm extends Form {
 
-	/** @var $acquisitionsArrangementId int The ID of the section being edited */
+	/** @var $acquisitionsArrangementId int The ID of the arrangement being edited */
 	var $acquisitionsArrangementId;
 
-	/** @var $includeSubmissionCategoryEditor object Additional section editor to
-	 *       include in assigned list for this section
+	/** @var $includeSubmissionCategoryEditor object Additional acquisitions editor to
+	 *       include in assigned list for this arrangement
 	 */
 	var $includeAcquisitionsArrangementEditor;
 
-	/** @var $omitSubmissionCategoryEditor object Assigned section editor to omit from
-	 *       assigned list for this section
+	/** @var $omitSubmissionCategoryEditor object Assigned acquisitions editor to omit from
+	 *       assigned list for this arrangement
 	 */
 	var $omitAcquisitionsArrangementEditor;
 
 	/** @var $acquisitionsArrangementEditors array List of user objects representing the
-	 *       available section editors for this press.
+	 *       available acquisitions editors for this press.
 	 */
 	var $acquisitionsArrangementEditors;
 
@@ -162,7 +162,7 @@ class AcquisitionsArrangementForm extends Form {
 	}
 
 	/**
-	 * Save section.
+	 * Save arrangement.
 	 */
 	function execute() {
 		$press =& Request::getPress();
@@ -212,7 +212,7 @@ class AcquisitionsArrangementForm extends Form {
 			$arrangementEditor =& $this->acquisitionsArrangementEditors[$key];
 			$userId = $arrangementEditor->getId();
 			// We don't have to worry about omit- and include-
-			// section editors because this function is only called
+			// acquisitions editors because this function is only called
 			// when the Save button is pressed and those are only
 			// used in other cases.
 			if (in_array($userId, $assignedEditorIds)) $acquisitionsArrangementsEditorsDao->insertEditor(

@@ -40,18 +40,7 @@ class MonographHandler extends Handler {
 
 		$press =& Request::getPress();
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getCurrentIssue($press->getId());
-
-		$templateMgr =& TemplateManager::getManager();
-
-		if ($monograph != null) {
-			
-		} else {
-
-		}
- 
-		$templateMgr->display('issue/viewPage.tpl');
+		//FIXME deal with this function
 	}
 
 	/**
@@ -65,30 +54,12 @@ class MonographHandler extends Handler {
 
 		$press =& Request::getPress();
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-
-		if ($press->getSetting('enablePublicMonographId')) {
-			$monograph =& $monographDao->getMonographByBestIssueId($monographId, $press->getId());
-		} else {
-			$monograph =& $monographDao->getIssueById((int) $monographId);
-		}
-
-		if (!$monograph) Request::redirect(null, null, 'current');
-
-		$templateMgr =& TemplateManager::getManager();
-		IssueHandler::setupIssueTemplate($monograph, ($showToc == 'showToc') ? true : false);
-
-		// Display creative commons logo/licence if enabled
-		$templateMgr->assign('displayCreativeCommons', $press->getSetting('includeCreativeCommons'));
-		$templateMgr->assign('pageHierarchy', array(array(Request::url(null, 'issue', 'archive'), 'archive.archives')));
-		$templateMgr->assign('helpTopicId', 'user.currentAndArchives');
-		$templateMgr->display('issue/viewPage.tpl');
+		//FIXME deal with this function
 
 	}
 
 	/**
-	 * Given a monograph, set up the template with all the required variables for
-	 * issues/view.tpl to function properly.
+	 * Given a monograph, set up the template with all the required variables.
 	 * @param $monograph object The monograph to display
 	 * @param $showToc boolean iff false and a custom cover page exists,
 	 * 	the cover page will be displayed. Otherwise table of contents
@@ -103,7 +74,7 @@ class MonographHandler extends Handler {
 	 */
 	function published() {
 		$this->validate();
-
+		//FIXME deal with this function
 		$press =& Request::getPress();
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$rangeInfo = Handler::getRangeInfo('monographs');
@@ -118,7 +89,6 @@ class MonographHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('coverPagePath', $coverPagePath);
 		$templateMgr->assign('locale', Locale::getLocale());
-		$templateMgr->assign_by_ref('issues', $publishedMonographsIterator);
 		$templateMgr->display('monograph/published.tpl');
 	}
 

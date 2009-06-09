@@ -34,7 +34,7 @@ class GroupHandler extends ManagerHandler {
 	}
 	
 	/**
-	 * Display a list of groups for the current journal.
+	 * Display a list of groups for the current press.
 	 */
 	function groups() {
 		$this->validate();
@@ -327,12 +327,12 @@ class GroupHandler extends ManagerHandler {
 		if ($group) {
 			$templateMgr->append('pageHierarchy', array(Request::url(null, 'manager', 'editGroup', $group->getId()), $group->getLocalizedTitle(), true));
 		}
-		$templateMgr->assign('helpTopicId', 'journal.managementPages.groups');
+		$templateMgr->assign('helpTopicId', 'press.managementPages.groups');
 	}
 
 	/**
 	 * Validate the request. If a group ID is supplied, the group object
-	 * will be fetched and validated against the current journal. If,
+	 * will be fetched and validated against the current press. If,
 	 * additionally, the user ID is supplied, the user and membership
 	 * objects will be validated and fetched.
 	 * @param $groupId int optional

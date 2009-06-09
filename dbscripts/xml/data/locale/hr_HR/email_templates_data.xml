@@ -48,7 +48,7 @@ Vaša nova lozinka: {$password}
 		<row>
 			<field name="email_key">USER_REGISTER</field>
 			<field name="subject">Registracija novog korisnika</field>
-			<field name="body">Zahvaljujemo vam se što ste se registrirali kao korisnik časopisa {$journalName}. Molimo vas da pohranite vaše korisničko ime i lozinku jer su oni nužni za sve aktivnosti vezane uz časopis.
+			<field name="body">Zahvaljujemo vam se što ste se registrirali kao korisnik časopisa {$pressName}. Molimo vas da pohranite vaše korisničko ime i lozinku jer su oni nužni za sve aktivnosti vezane uz časopis.
 
 Korisničko ime: {$username}
 Lozinka: {$password}
@@ -62,7 +62,7 @@ Srdačno,
 			<field name="subject">Validacija korisničkog računa</field>
 			<field name="body">{$userFullName}
 
-Hcala vam što ste kreirali korisnički račun pri časopisu {$journalName}. No, prije nego aktiviramo vaš račun trebate učiniti još jedan korak, a to je potvrda vaše adrese e-pošte. To ćete učiniti jednostavno tako što ćete slijediti poveznicu priloženu ovoj poruci:
+Hcala vam što ste kreirali korisnički račun pri časopisu {$pressName}. No, prije nego aktiviramo vaš račun trebate učiniti još jedan korak, a to je potvrda vaše adrese e-pošte. To ćete učiniti jednostavno tako što ćete slijediti poveznicu priloženu ovoj poruci:
 
 {$activateUrl}
 

@@ -15,8 +15,8 @@
 <locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.generic.translator.name">Plugiciel de traduction</message>
 	<message key="plugins.generic.translator.description">Ce plugiciel permet l'entretien en ligne de fichiers de traduction.</message>
-	<message key="plugins.generic.translator.longdescription">Cette zone permet à l'Administrateur du site de créer, modifier et vérifier les traductions de OJS.Elle s'applique à l'ensemble du site et ne devrait pas être utilisée  pour personnaliser une revue en libre accès particulière. Si vous corrigez ou créez une traduction, veuillez la soumettre au Public Knowledge Project pour qu'elle puisse être distribuée dans des versions futures.</message>
-	<message key="plugins.generic.translator.localeDescription">Cette page liste toutes les composantes d'une traduction de l'OJS et permet au traducteur de modifier chacune d'entre elles. Une traduction complète devrait inclure les traductions de toutes les composantes.</message>
+	<message key="plugins.generic.translator.longdescription">Cette zone permet à l'Administrateur du site de créer, modifier et vérifier les traductions de OMP.Elle s'applique à l'ensemble du site et ne devrait pas être utilisée  pour personnaliser une revue en libre accès particulière. Si vous corrigez ou créez une traduction, veuillez la soumettre au Public Knowledge Project pour qu'elle puisse être distribuée dans des versions futures.</message>
+	<message key="plugins.generic.translator.localeDescription">Cette page liste toutes les composantes d'une traduction de l'OMP et permet au traducteur de modifier chacune d'entre elles. Une traduction complète devrait inclure les traductions de toutes les composantes.</message>
 
 	<message key="plugins.generic.translator.localeName">Nom de la langue</message>
 	<message key="plugins.generic.translator.localeKey">Clé</message>

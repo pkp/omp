@@ -73,7 +73,7 @@
 			{elseif $status == STATUS_QUEUED}
 				{translate key="submissions.queued"}
 			{elseif $status == STATUS_PUBLISHED}
-				##ISSUE ID##		
+				##ID##		
 			{elseif $status == STATUS_DECLINED}
 				{translate key="submissions.declined"}								
 			{/if}

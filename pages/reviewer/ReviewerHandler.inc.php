@@ -118,15 +118,15 @@ class ReviewerHandler extends Handler {
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
-	function setupTemplate($subclass = false, $articleId = 0, $reviewId = 0) {
+	function setupTemplate($subclass = false, $monographId = 0, $reviewId = 0) {
 		parent::setupTemplate();
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION));
 		$templateMgr =& TemplateManager::getManager();
 		$pageHierarchy = $subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'reviewer'), 'user.role.reviewer'))
 				: array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'reviewer'), 'user.role.reviewer'));
 
-		if ($articleId && $reviewId) {
-			$pageHierarchy[] = array(Request::url(null, 'reviewer', 'submission', $reviewId), "#$articleId", true);
+		if ($monographId && $reviewId) {
+			$pageHierarchy[] = array(Request::url(null, 'reviewer', 'submission', $reviewId), "#$monographId", true);
 		}
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}

@@ -27,16 +27,16 @@
 	</ol>
 {/if}
 
-{if count($sectionEditors) > 0}
-	{if count($sectionEditors) == 1}
-		<h4>{translate key="user.role.sectionEditor"}</h4>
+{if count($acquisitionsEditors) > 0}
+	{if count($acquisitionsEditors) == 1}
+		<h4>{translate key="user.role.acquisitionsEditor"}</h4>
 	{else}
-		<h4>{translate key="user.role.sectionEditors"}</h4>
+		<h4>{translate key="user.role.acquisitionsEditors"}</h4>
 	{/if}
 
 	<ol class="editorialTeam">
-		{foreach from=$sectionEditors item=sectionEditor}
-			<li><a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$sectionEditor->getId()}')">{$sectionEditor->getFullName()|escape}</a>{if $sectionEditor->getAffiliation()}, {$sectionEditor->getAffiliation()|escape}{/if}{if $sectionEditor->getCountry()}{assign var=countryCode value=$sectionEditor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li>
+		{foreach from=$acquisitionsEditors item=acquisitionsEditor}
+			<li><a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$acquisitionsEditor->getId()}')">{$acquisitionsEditor->getFullName()|escape}</a>{if $acquisitionsEditor->getAffiliation()}, {$acquisitionsEditor->getAffiliation()|escape}{/if}{if $acquisitionsEditor->getCountry()}{assign var=countryCode value=$acquisitionsEditor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li>
 		{/foreach}
 	</ol>
 {/if}

@@ -138,14 +138,14 @@ Thank you,
 		</row>
 		<row>
 			<field name="email_key">PUBLISH_NOTIFY</field>
-			<field name="subject">New Issue Published</field>
+			<field name="subject">New Book Published</field>
 			<field name="body">Readers:
 
-{$pressName} has just published its latest issue at {$pressUrl}. We invite you to review the Table of Contents here and then visit our web site to review monographs and items of interest.
+{$pressName} has just published its latest book at {$pressUrl}. We invite you to review the Table of Contents here and then visit our web site to review monographs and items of interest.
 
 Thanks for the continuing interest in our work,
 {$editorialContactSignature}</field>
-			<field name="description">This email is sent to registered readers via the "Notify Users" link in the Editor's User Home. It notifies readers of a new issue and invites them to visit the press at a supplied URL.</field>
+			<field name="description">This email is sent to registered readers via the "Notify Users" link in the Editor's User Home. It notifies readers of a new book and invites them to visit the press at a supplied URL.</field>
 		</row>
 		<row>
 			<field name="email_key">LOCKSS_EXISTING_ARCHIVE</field>
@@ -734,7 +734,7 @@ Submission URL: {$submissionUrl}
 Username: {$authorUsername}
 
 {$editorialContactSignature}</field>
-			<field name="description">This email from the Acquisitions Editor to the Author notifies them that an monograph's galleys are ready for proofreading. It provides information about the monograph and how to access it.</field>
+			<field name="description">This email from the Acquisitions Editor to the Author notifies them that a monograph's galleys are ready for proofreading. It provides information about the monograph and how to access it.</field>
 		</row>
 		<row>
 			<field name="email_key">PROOFREAD_AUTHOR_COMPLETE</field>
@@ -777,7 +777,7 @@ Username: {$proofreaderUsername}
 If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this press.
 
 {$editorialContactSignature}</field>
-			<field name="description">This email from the Acquisitions Editor to the Proofreader requests that they perform proofreading of an monograph's galleys. It provides information about the monograph and how to access it.</field>
+			<field name="description">This email from the Acquisitions Editor to the Proofreader requests that they perform proofreading of a monograph's galleys. It provides information about the monograph and how to access it.</field>
 		</row>
 		<row>
 			<field name="email_key">PROOFREAD_COMPLETE</field>
@@ -817,7 +817,7 @@ Username: {$layoutEditorUsername}
 If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this press.
 
 {$editorialContactSignature}</field>
-			<field name="description">This email from the Acquisitions Editor to the Layout Editor notifies them that an monograph's galleys are ready for final proofreading. It provides information on the monograph and how to access it.</field>
+			<field name="description">This email from the Acquisitions Editor to the Layout Editor notifies them that a monograph's galleys are ready for final proofreading. It provides information on the monograph and how to access it.</field>
 		</row>
 		<row>
 			<field name="email_key">PROOFREAD_LAYOUT_COMPLETE</field>
@@ -843,7 +843,7 @@ Thank you for completing the proofreading corrections for the galleys associated
 			<field name="email_key">EMAIL_LINK</field>
 			<field name="subject">Manuscript of Possible Interest</field>
 			<field name="body">Thought you might be interested in seeing "{$monographTitle}" by {$authorName} published in Vol {$volume}, No {$number} ({$year}) of {$pressName} at "{$monographUrl}".</field>
-			<field name="description">This email template provides a registered reader with the opportunity to send information about an monograph to somebody who may be interested. It is available via the Reading Tools and must be enabled by the Press Manager in the Reading Tools Administration page.</field>
+			<field name="description">This email template provides a registered reader with the opportunity to send information about a monograph to somebody who may be interested. It is available via the Reading Tools and must be enabled by the Press Manager in the Reading Tools Administration page.</field>
 		</row>
 	</table>
 </data>

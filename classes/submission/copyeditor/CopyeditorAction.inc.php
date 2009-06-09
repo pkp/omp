@@ -82,7 +82,7 @@ class CopyeditorAction extends Action {
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->addRecipient($author->getEmail(), $author->getFullName());
-				$email->ccAssignedEditingSectionEditors($copyeditorSubmission->getMonographId());
+				$email->ccAssignedEditingAcquisitionsEditors($copyeditorSubmission->getMonographId());
 				$email->ccAssignedEditors($copyeditorSubmission->getMonographId());
 
 				$paramArray = array(
@@ -154,16 +154,16 @@ class CopyeditorAction extends Action {
 
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$assignedSectionEditors = $email->toAssignedEditingSectionEditors($copyeditorSubmission->getMonographId());
+				$assignedAcquisitionsEditors = $email->toAssignedEditingAcquisitionsEditors($copyeditorSubmission->getMonographId());
 				$assignedEditors = $email->ccAssignedEditors($copyeditorSubmission->getMonographId());
-				if (empty($assignedSectionEditors) && empty($assignedEditors)) {
+				if (empty($assignedAcquisitionsEditors) && empty($assignedEditors)) {
 					$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 					$paramArray = array(
 						'editorialContactName' => $press->getSetting('contactName'),
 						'copyeditorName' => $user->getFullName()
 					);
 				} else {
-					$editorialContact = array_shift($assignedSectionEditors);
+					$editorialContact = array_shift($assignedAcquisitionsEditors);
 					if (!$editorialContact) $editorialContact = array_shift($assignedEditors);
 
 					$paramArray = array(
@@ -222,7 +222,7 @@ class CopyeditorAction extends Action {
 	}	
 
 	/**
-	 * Upload the copyedited version of an monograph.
+	 * Upload the copyedited version of a monograph.
 	 * @param $copyeditorSubmission object
 	 */
 	function uploadCopyeditVersion($copyeditorSubmission, $copyeditStage) {

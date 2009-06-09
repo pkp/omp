@@ -42,7 +42,7 @@
 				{if $layoutSignoff->getUserId() && $layoutFile}
 					{url|assign:"url" op="notifyLayoutDesigner" monographId=$submission->getMonographId()}
 					{if $layoutSignoff->getDateUnderway()}
-                                        	{translate|escape:"javascript"|assign:"confirmText" key="sectionEditor.layout.confirmRenotify"}
+                                        	{translate|escape:"javascript"|assign:"confirmText" key="acquisitionsEditor.layout.confirmRenotify"}
                                         	{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
                                 	{else}
                                         	{icon name="mail" url=$url}

@@ -98,14 +98,6 @@
 			<li><a href="{url page="login"}">{translate key="navigation.login"}</a></li>
 			<!--<li><a href="{url page="user" op="register"}">{translate key="navigation.register"}</a></li>-->
 		{/if}{* $isUserLoggedIn *}
-
-<!--		<li><a href="{url page="search"}">{translate key="navigation.search"}</a></li>
-
-		{if $currentPress}
-			<li><a href="{url page="issue" op="current"}">{translate key="navigation.current"}</a></li>
-			<li><a href="{url page="issue" op="archive"}">{translate key="navigation.archives"}</a></li>
-		{/if}{* $currentPress *}
--->
 		{if $enableAnnouncements}
 			<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
 		{/if}{* enableAnnouncements *}

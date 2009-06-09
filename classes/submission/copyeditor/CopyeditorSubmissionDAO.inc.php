@@ -141,11 +141,11 @@ class CopyeditorSubmissionDAO extends DAO {
 		$locale = Locale::getLocale();
 		$primaryLocale = Locale::getPrimaryLocale();
 		$params = array(
-			'title', // Section title
+			'title', // Arrangement title
 			$primaryLocale,
 			'title',
 			$locale,
-			'abbrev', // Section abbrev
+			'abbrev', // Arrangement abbrev
 			$primaryLocale,
 			'abbrev',
 			$locale,

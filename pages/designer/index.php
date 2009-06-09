@@ -40,7 +40,7 @@ switch ($op) {
 	case 'downloadFile':
 	case 'viewFile':
 	case 'downloadLayoutTemplate':
-	case 'deleteArticleImage':
+	case 'deleteMonographImage':
 	//
 	// Proofreading Actions
 	//

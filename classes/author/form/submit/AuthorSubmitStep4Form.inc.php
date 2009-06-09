@@ -9,7 +9,7 @@
  * @class AuthorSubmitStep4Form
  * @ingroup author_form_submit
  *
- * @brief Form for Step 4 of author monograph submission.
+ * @brief Form for Step 4 of author manuscript submission.
  */
 
 // $Id$
@@ -21,8 +21,8 @@ class AuthorSubmitStep4Form extends AuthorSubmitForm {
 	/**
 	 * Constructor.
 	 */
-	function AuthorSubmitStep4Form($article) {
-		parent::AuthorSubmitForm($article);
+	function AuthorSubmitStep4Form($monograph) {
+		parent::AuthorSubmitForm($monograph);
 	}
 
 	/**

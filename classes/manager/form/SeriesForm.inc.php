@@ -84,7 +84,7 @@ class SeriesForm extends AcquisitionsArrangementForm {
 	}
 
 	/**
-	 * Save section.
+	 * Save series.
 	 */
 	function execute() {
 		parent::execute();

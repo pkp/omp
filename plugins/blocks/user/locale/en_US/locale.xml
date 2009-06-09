@@ -16,7 +16,7 @@
 	<message key="plugins.block.user.displayName">User Block</message>
 	<message key="plugins.block.user.description">This plugin provides sidebar user account tools (e.g. login, logout, profile link, etc).</message>
 	<message key="plugins.block.user.loggedInAs">You are logged in as...</message>
-	<message key="plugins.block.user.myJournals">My Journals</message>
+	<message key="plugins.block.user.myPresses">My Presses</message>
 	<message key="plugins.block.user.myProfile">My Profile</message>
 	<message key="plugins.block.user.logout">Log Out</message>
 	<message key="plugins.block.user.signOutAsUser">Log Out as User</message>

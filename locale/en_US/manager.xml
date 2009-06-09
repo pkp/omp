@@ -70,10 +70,10 @@
 	<message key="manager.payment.options.feeDescription">Fee Description</message>
 	<message key="manager.payment.options.feeName">Fee Name</message>
 	<message key="manager.payment.options.membershipFee">Association Membership</message>
-	<message key="manager.payment.options.onlypdf">Only Restrict Access to PDF version of articles</message>
-	<message key="manager.payment.options.publicationFee">Article Publication</message>
-	<message key="manager.payment.options.purchaseArticleFee">Purchase Article</message>
-	<message key="manager.payment.options.submissionFee">Article Submission</message>
+	<message key="manager.payment.options.onlypdf">Only Restrict Access to PDF version of monographs</message>
+	<message key="manager.payment.options.publicationFee">Monograph Publication</message>
+	<message key="manager.payment.options.purchaseMonographFee">Purchase Monograph</message>
+	<message key="manager.payment.options.submissionFee">Monograph Submission</message>
 	<message key="manager.payment.options.text">Description of Payment Method</message>
 	<message key="manager.payment.options.waiverPolicy">Waiver Policy</message>
 	<message key="manager.payment.paymentId">Payment ID</message>
@@ -87,7 +87,7 @@
 	<message key="manager.payments">Payments</message>
 	<message key="manager.payment.userName">Payment ID</message>
 	<message key="manager.people.allEnrolledUsers">Users Enrolled in this Press</message>
-	<message key="manager.people.allPresss">All Presss</message>
+	<message key="manager.people.allPresses">All Presses</message>
 	<message key="manager.people.allSiteUsers">Enroll a User from this Site in this Press</message>
 	<message key="manager.people.allUsers">All Enrolled Users</message>
 	<message key="manager.people.confirmRemove">Remove this user from this press? This action will unenroll the user from all roles within this press.</message>
@@ -97,7 +97,7 @@
 	<message key="manager.people.mergeUsers.from.description">Select a user to merge into another user account (e.g., when someone has two user accounts). The account selected first will be deleted and its submissions, assignments, etc. will be attributed to the second account.</message>
 	<message key="manager.people.mergeUsers.into.description">Select a user to whom to attribute the previous user's authorships, editing assignments, etc.</message>
 	<message key="manager.people.roleEnrollment">{$role} Enrollment</message>
-	<message key="manager.people.syncUserDescription">Enrollment synchronization will enroll all users enrolled in the specified role in the specified press into the same role in this press. This function allows a common set of users (e.g., Reviewers) to be synchronized between presss.</message>
+	<message key="manager.people.syncUserDescription">Enrollment synchronization will enroll all users enrolled in the specified role in the specified press into the same role in this press. This function allows a common set of users (e.g., Reviewers) to be synchronized between presses.</message>
 	<message key="manager.plugins.description">This page allows the Press Manager to review and potentially configure the plugins that are currently installed. Plugins are divided into categories, according to their function. The categories are listed below, and within each category, its current set of plugins.</message>
 	<message key="manager.reviewFormElement.changeType">Changing the form item type...</message>
 	<message key="manager.reviewFormElements">Form Items</message>
@@ -202,14 +202,9 @@
 	<message key="manager.setup.appearInAboutPress">(To appear in About the Press) </message>
 	<message key="manager.setup.authorCopyrightNotice">Copyright Notice</message>
 	<message key="manager.setup.authorCopyrightNoticeAgree">Require authors to agree to Copyright Notice as part of the submission process.</message>
-	<message key="manager.setup.authorCopyrightNoticeDescription"><![CDATA[The Copyright Notice entered below will appear in About the Press and in each published item's metadata. While it is up to the press to determine the nature of its copyright agreement with authors, the Public Knowledge Project recommends the use of the <a href="http://creativecommons.org" target="_new" class="action">Creative Commons</a> license. To that end, it provides <a href="{$sampleCopyrightWordingUrl}" target="_new" class="action">sample Copyright Notice wording</a> that can be cut and pasted into the space below for presss that (a) offer open access, (b) offer delayed open access, or (c) do not offer open access.]]></message>
+	<message key="manager.setup.authorCopyrightNoticeDescription"><![CDATA[The Copyright Notice entered below will appear in About the Press and in each published item's metadata. While it is up to the press to determine the nature of its copyright agreement with authors, the Public Knowledge Project recommends the use of the <a href="http://creativecommons.org" target="_new" class="action">Creative Commons</a> license. To that end, it provides <a href="{$sampleCopyrightWordingUrl}" target="_new" class="action">sample Copyright Notice wording</a> that can be cut and pasted into the space below for presses that (a) offer open access, (b) offer delayed open access, or (c) do not offer open access.]]></message>
 	<message key="manager.setup.authorGuidelines">Author Guidelines</message>
-	<message key="manager.setup.authorGuidelinesDescription"><![CDATA[Set out for authors the bibliographic and formatting standards used for items submitted to the press (e.g., <em>Publication Manual of the American Psychological Association</em>, 5th edition, 2001). It is often helpful to provide examples of the common citation formats for presss and books to be used in submissions. Also identify the types of appropriate Supplementary Files (e.g., data-sets, research instruments, etc.) which authors should be encouraged to upload, in addition to their submission, to enhance readers' engagement with their work.]]></message>
-	<message key="manager.setup.competingInterests">Competing Interests</message>
-	<message key="manager.setup.competingInterests.description"><![CDATA[Biomedical presss typically require authors and reviewers to declare if they have any competing interests with regard to their research (see <a href="http://presss.plos.org/plosclinicaltrials/competing.php" target="_new">PLoS Policy</a>).]]></message>
-	<message key="manager.setup.competingInterests.guidelines">Guidelines for filing a Competing Interest statement</message>
-	<message key="manager.setup.competingInterests.requireAuthors">Require submitting Authors to file a Competing Interest (CI) statement with their submission.</message>
-	<message key="manager.setup.competingInterests.requireReviewers">Require Reviewers to file a CI statement with each peer review they submit.</message>
+	<message key="manager.setup.authorGuidelinesDescription"><![CDATA[Set out for authors the bibliographic and formatting standards used for items submitted to the press (e.g., <em>Publication Manual of the American Psychological Association</em>, 5th edition, 2001). It is often helpful to provide examples of the common citation formats for presses and books to be used in submissions. Also identify the types of appropriate Supplementary Files (e.g., data-sets, research instruments, etc.) which authors should be encouraged to upload, in addition to their submission, to enhance readers' engagement with their work.]]></message>
 	<message key="manager.setup.contributor">Contributor</message>
 	<message key="manager.setup.contributors">Sources of Support</message>
 	<message key="manager.setup.contributorsDescription">Additional agencies or organizations that provide financial or in-kind support for the press will appear in About the Press and may be accompanied by a note of acknowledgement.</message>
@@ -237,7 +232,7 @@
 	<message key="manager.setup.disciplineDescription">Useful when press crosses disciplinary boundaries and/or authors submit multidisciplinary items.</message>
 	<message key="manager.setup.disciplineExamples">(E.g., History; Education; Sociology; Psychology; Cultural Studies; Law)</message>
 	<message key="manager.setup.disciplineProvideExamples">Provide examples of relevant academic disciplines for this press</message>
-	<message key="manager.setup.displayCurrentIssue">Add the table of contents for the current issue (if available).</message>
+	<message key="manager.setup.displayCurrentMonograph">Add the table of contents for the current monograph (if available).</message>
 	<message key="manager.setup.doiPrefix">DOI Prefix</message>
 	<message key="manager.setup.doiPrefixDescription"><![CDATA[The DOI (Digital Object Identifier) Prefix is assigned by <a href="http://www.crossref.org" target="_new">CrossRef</a> and is in the format 10.xxxx (e.g. 10.1234).]]></message>
 	<message key="manager.setup.editorDecision">Editor Decision</message>
@@ -246,7 +241,7 @@
 	<message key="manager.setup.editorialProcess2">Managing Editor handles Submission Queue, and Table of Contents, while Section Editors handle Submission Review and Submission Editing.</message>
 	<message key="manager.setup.editorialProcess3">Managing Editor handles Submission Queue, Submission Editing, and Table of Contents, while the Section Editors handle Submission Review.</message>
 	<message key="manager.setup.editorialReviewBoard">Editorial / Review Board</message>
-	<message key="manager.setup.editorialReviewBoardDescription">Presss have Editorial Boards to oversee the editorial direction of the press, participate in the appointment of editors, and, by virtue of board members' reputations, give the press some standing in the field. Review Boards play a similar role but in addition, they lead the peer review process. Review Board members will not have access to the press's administrative system but will be added to the list of those available to do peer reviews.</message>
+	<message key="manager.setup.editorialReviewBoardDescription">Presses have Editorial Boards to oversee the editorial direction of the press, participate in the appointment of editors, and, by virtue of board members' reputations, give the press some standing in the field. Review Boards play a similar role but in addition, they lead the peer review process. Review Board members will not have access to the press's administrative system but will be added to the list of those available to do peer reviews.</message>
 	<message key="manager.setup.emailBounceAddress">Bounce Address</message>
 	<message key="manager.setup.emailBounceAddressDescription">Any undeliverable emails will result in an error message to this address.</message>
 	<message key="manager.setup.emailBounceAddressDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>allow_envelope_sender</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
@@ -259,14 +254,13 @@
 	<message key="manager.setup.enablePageNumber">Page numbers for items will be calculated and entered manually in the Table of Contents (e.g., pp. 13-26).</message>
 	<message key="manager.setup.enablePublicMonographId">Custom identifiers will be used to identify published items.</message>
 	<message key="manager.setup.enablePublicGalleyId">Custom identifiers will be used to identify galleys (e.g. HTML or PDF files) for published items.</message>
-	<message key="manager.setup.enablePublicIssueId">Custom identifiers will be used to identify issues.</message>
-	<message key="manager.setup.enablePublicSuppFileId">Custom identifiers will be used to identify supplemental article files.</message>
+	<message key="manager.setup.enablePublicSuppFileId">Custom identifiers will be used to identify supplemental monograph files.</message>
 	<message key="manager.setup.enableUserRegistration">Users can register themselves with the press in one or more of the following roles:</message>
 	<message key="manager.setup.enableUserRegistration.author">Authors (can submit materials to the press)</message>
 	<message key="manager.setup.enableUserRegistration.reader">Readers (will receive notifications and be counted as equivalent to a subscriber)</message>
 	<message key="manager.setup.enableUserRegistration.reviewer">Reviewers (available for reviewing submissions)</message>
 	<message key="manager.setup.focusAndScope">Focus and scope</message>
-	<message key="manager.setup.focusAndScopeDescription">Enter a statement below, which will appear in About the Press, that speaks to authors, readers, and librarians about the range of articles and other items which the press will publish.</message>
+	<message key="manager.setup.focusAndScopeDescription">Enter a statement below, which will appear in About the Press, that speaks to authors, readers, and librarians about the range of monographs and other items which the press will publish.</message>
 	<message key="manager.setup.focusAndScopeOfPress">Focus and Scope of Press</message>
 	<message key="manager.setup.focusScope">Focus and Scope</message>
 	<message key="manager.setup.focusScopeDescription"><![CDATA[<strong>EXAMPLE HTML DATA</strong>]]></message>
@@ -298,7 +292,7 @@
 	<message key="manager.setup.pressDescription">Press Description</message>
 	<message key="manager.setup.pressDescriptionDescription">Add a brief 20-25 word description in text/HTML which will appear just below the navigation links.</message>
 	<message key="manager.setup.pressHomepageContent">Press Homepage Content</message>
-	<message key="manager.setup.pressHomepageContentDescription">By default, the homepage consists of navigation links. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown. Note that the current issue is always accessible through the Current link in the navigation bar.</message>
+	<message key="manager.setup.pressHomepageContentDescription">By default, the homepage consists of navigation links. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown. Note that the newest monograph is always accessible through the Current link in the navigation bar.</message>
 	<message key="manager.setup.pressHomepageHeader">Press Homepage Header</message>
 	<message key="manager.setup.pressHomepageHeader.altText">Press Homepage Header</message>
 	<message key="manager.setup.pressHomepageHeaderDescription">A graphic version of the press's title and logo (as a .gif, .jpg, or .png file) can be uploaded for the homepage, which will replace the text version that otherwise appears.</message>
@@ -322,7 +316,7 @@
 	<message key="manager.setup.layoutInstructions">Layout Instructions</message>
 	<message key="manager.setup.layoutInstructionsDescription">Layout Instructions can be prepared for the formatting of publishing items in the press and be entered below in HTML or plain text. They will be made available to  the Layout Editor and Section Editor on the Editing page of each submission. (As each press may employ its own file formats, bibliographic standards, style sheets, etc., a default set of instructions is not provided.)</message>
 	<message key="manager.setup.layoutTemplates">Layout Templates</message>
-	<message key="manager.setup.layoutTemplatesDescription">Templates can be uploaded to appear in Layout for each of the standard formats published in the press (e.g., article, book review, etc.) using any file format (e.g., pdf, doc, etc.) with annotations added specifying font, size, margins, etc. to serve as a guide for Layout Editors and Proofreaders.</message>
+	<message key="manager.setup.layoutTemplatesDescription">Templates can be uploaded to appear in Layout for each of the standard formats published in the press (e.g., monograph, book review, etc.) using any file format (e.g., pdf, doc, etc.) with annotations added specifying font, size, margins, etc. to serve as a guide for Layout Editors and Proofreaders.</message>
 	<message key="manager.setup.layoutTemplates.file">Template File</message>
 	<message key="manager.setup.layoutTemplates.title">Title</message>
 	<message key="manager.setup.lists">Lists</message>
@@ -376,7 +370,7 @@
 	<message key="manager.setup.proofingInstructionsDescription">The Proofreading Instructions will be made available to Proofreaders, Authors, Layout Editors, and Section Editors in the Submission Editing stage. Below is a default set of instructions in HTML, which can be edited or replaced by the Press Manager at any point (in HTML or plain text).</message>
 	<message key="manager.setup.proofreading">Proofreaders</message>
 	<message key="manager.setup.provideRefLinkInstructions">Provide Layout Editors with instructions.</message>
-	<message key="manager.setup.publicationScheduleDescription"><![CDATA[Press items can be published collectively, as part of an issue with its own Table of Contents. Alternatively, individual items can be published as soon as they are ready, by adding them to the "current" volume's Table of Contents. Provide readers, in About the Press, with a statement about the system this press will use and its expected frequency of publication.]]></message>
+	<message key="manager.setup.publicationScheduleDescription"><![CDATA[Press items can be published collectively, as part of a monograph with its own Table of Contents. Alternatively, individual items can be published as soon as they are ready, by adding them to the "current" volume's Table of Contents. Provide readers, in About the Press, with a statement about the system this press will use and its expected frequency of publication.]]></message>
 	<message key="manager.setup.publicIdentifier">Identification of Press Content</message>
 	<message key="manager.setup.publisher">Publisher</message>
 	<message key="manager.setup.publisherDescription">The name of the organization publishing the press will appear in About the Press.</message>
@@ -417,8 +411,8 @@
 	<message key="manager.setup.searchEngineIndexing">Search Engine Indexing</message>
 	<message key="manager.setup.searchEngineIndexingDescription">To assist the users of search engines in discovering this press, provide a brief description of the press and relevant keywords (separated by semicolons).</message>
 	<message key="manager.setup.sectionsAndSectionEditors">Sections and Section Editors</message>
-	<message key="manager.setup.sectionsDefaultSectionDescription">(If sections are not added, then items are submitted to the Articles section by default.)</message>
-	<message key="manager.setup.sectionsDescription"><![CDATA[To create or modify sections for the press (e.g., Articles, Book Reviews, etc.), go to Section Management.<br /><br />Authors on submitting items to the press will designate...]]></message>
+	<message key="manager.setup.sectionsDefaultSectionDescription">(If sections are not added, then items are submitted to the Monographs section by default.)</message>
+	<message key="manager.setup.sectionsDescription"><![CDATA[To create or modify sections for the press (e.g., Monographs, Book Reviews, etc.), go to Section Management.<br /><br />Authors on submitting items to the press will designate...]]></message>
 	<message key="manager.setup.securitySettings">Access and Security Settings</message>
 	<message key="manager.setup.securitySettingsDescription">OMP provides a number of security-related options that can be used to restrict the press's contents, and maintain additional information about submissions for auditing purposes.</message>
 	<message key="manager.setup.selectEditorDescription">The press editor who will see it through the editorial process.</message>
@@ -448,7 +442,7 @@
 	<message key="manager.setup.typeMethodApproach">Type (Method/Approach)</message>
 	<message key="manager.setup.typeProvideExamples">Provide examples of relevant research types, methods, and approaches for this field</message>
 	<message key="manager.setup.uniqueIdentifier">Unique Identifier</message>
-	<message key="manager.setup.uniqueIdentifierDescription">Articles and issues can be tagged with an identification number or string, employing a registration system such as the Digital Object Identifier System (DOI).</message>
+	<message key="manager.setup.uniqueIdentifierDescription">Monographs can be tagged with an identification number or string, employing a registration system such as the Digital Object Identifier System (DOI).</message>
 	<message key="manager.setup.useCopyeditors">A Copyeditor will be assigned to work with each submission.</message>
 	<message key="manager.setup.useEditorialReviewBoard">An editorial/review board will be used by the press.</message>
 	<message key="manager.setup.useImageLogo">Logo image</message>
@@ -462,7 +456,7 @@
 	<message key="manager.statistics.reports">Report Generator</message>
 	<message key="manager.statistics.reports.description">OMP generates reports that track the details associated with processing submissions to the press from the perspective of submissions, editors, reviewers, and sections, over a given period of time. Reports are generated in CSV format which requires a spreadsheet application to view.</message>
 	<message key="manager.statistics.statistics">Press Statistics</message>
-	<message key="manager.statistics.statistics.articleViews">Article View Counts (for Authors only)</message>
+	<message key="manager.statistics.statistics.monographViews">Monograph View Counts (for Authors only)</message>
 	<message key="manager.statistics.statistics.count.accept">Accept</message>
 	<message key="manager.statistics.statistics.count.decline">Decline</message>
 	<message key="manager.statistics.statistics.count.revise">Resubmit</message>
@@ -472,7 +466,6 @@
 	<message key="manager.statistics.statistics.itemsPublished">Items published</message>
 	<message key="manager.statistics.statistics.makePublic">Check items to be made available to readers in About the Press.</message>
 	<message key="manager.statistics.statistics.note">Note: Percentages for peer reviewed submissions may not add up to 100%, as items resubmitted are either accepted, declined, or still in process.</message>
-	<message key="manager.statistics.statistics.numIssues">Issues published</message>
 	<message key="manager.statistics.statistics.numSubmissions">Total submissions</message>
 	<message key="manager.statistics.statistics.peerReviewed">Peer reviewed</message>
 	<message key="manager.statistics.statistics.registeredReaders">Registered readers</message>
@@ -487,9 +480,9 @@
 	<message key="manager.subscriptionPolicies.authorSelfArchive">Author Self-Archiving Policy</message>
 	<message key="manager.subscriptionPolicies.authorSelfArchiveDescription">The following Author Self-Archiving Policy will be included in About the Press under Policies.</message>
 	<message key="manager.subscriptionPolicies.delayedOpenAccess">Delayed Open Access</message>
-	<message key="manager.subscriptionPolicies.delayedOpenAccessDescription">With delayed open access, editors are still able to designate specific articles within an issue for immediate open access.</message>
-	<message key="manager.subscriptionPolicies.delayedOpenAccessDescription1">The back issues of this press will be available in an open access format</message>
-	<message key="manager.subscriptionPolicies.delayedOpenAccessDescription2">month(s) after an issue is published.</message>
+	<message key="manager.subscriptionPolicies.delayedOpenAccessDescription">With delayed open access, editors are still able to designate specific monographs for immediate open access.</message>
+	<message key="manager.subscriptionPolicies.delayedOpenAccessDescription1">The older monographs of this press will be available in an open access format</message>
+	<message key="manager.subscriptionPolicies.delayedOpenAccessDescription2">month(s) after a monograph is published.</message>
 	<message key="manager.subscriptionPolicies.delayedOpenAccessDurationValid">Please select a valid duration length.</message>
 	<message key="manager.subscriptionPolicies.delayedOpenAccessPolicyDescription">The following Delayed Open Access Policy will be posted in About the Press under Policies.</message>
 	<message key="manager.subscriptionPolicies.enableSubscriptionExpiryReminderBeforeMonthsValid">Please use the checkbox provided.</message>
@@ -516,10 +509,10 @@
 	<message key="manager.subscriptionPolicies.numMonthsBeforeSubscriptionExpiryReminderValid">Please select a valid value for the number of months before subscription expiry.</message>
 	<message key="manager.subscriptionPolicies.numWeeksAfterSubscriptionExpiryReminderValid">Please select a valid value for the number of weeks after subscription expiry.</message>
 	<message key="manager.subscriptionPolicies.numWeeksBeforeSubscriptionExpiryReminderValid">Please select a valid value for the number of weeks before subscription expiry.</message>
-	<message key="manager.subscriptionPolicies.openAccessNotificationDescription">Registered readers will have the option of receiving the table of contents by email when an issue becomes open access.</message>
+	<message key="manager.subscriptionPolicies.openAccessNotificationDescription">Registered readers will have the option of receiving the table of contents by email when a monograph becomes open access.</message>
 	<message key="manager.subscriptionPolicies.openAccessNotificationDisabled"><![CDATA[<strong>Note:</strong> To activate this option, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
-	<message key="manager.subscriptionPolicies.openAccessOptions">Open Access Options For Subscription Presss</message>
-	<message key="manager.subscriptionPolicies.openAccessOptionsDescription">Subscription presss can provide "delayed open access" to their published content, as well as permit "author self-archiving" (both of which increase readership and citation of content).</message>
+	<message key="manager.subscriptionPolicies.openAccessOptions">Open Access Options For Subscription Presses</message>
+	<message key="manager.subscriptionPolicies.openAccessOptionsDescription">Subscription presses can provide "delayed open access" to their published content, as well as permit "author self-archiving" (both of which increase readership and citation of content).</message>
 	<message key="manager.subscriptionPolicies.subscriptionAdditionalInformation">Subscription Information</message>
 	<message key="manager.subscriptionPolicies.subscriptionAdditionalInformationDescription">The Subscription Types and fee structure will be automatically placed under Subscriptions on the About the Press page, along with the name and contact information for the Subscription Manager. Additional information about subscriptions, such as methods of payment or support for subscribers in developing countries, can be added here.</message>
 	<message key="manager.subscriptionPolicies.subscriptionContact">Subscription Manager</message>

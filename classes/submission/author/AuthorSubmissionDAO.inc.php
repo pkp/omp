@@ -56,8 +56,8 @@ class AuthorSubmissionDAO extends DAO {
 		$locale = Locale::getLocale();
 		$result =& $this->retrieve(
 			'SELECT	a.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
 			FROM monographs a
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
@@ -179,8 +179,8 @@ class AuthorSubmissionDAO extends DAO {
 		$locale = Locale::getLocale();
 		$result =& $this->retrieveRange(
 			'SELECT	a.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
 			FROM monographs a
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
@@ -213,7 +213,7 @@ class AuthorSubmissionDAO extends DAO {
 	//
 
 	/**
-	 * Get the editor decisions for a review round of an monograph.
+	 * Get the editor decisions for a review round of a monograph.
 	 * @param $monographId int
 	 * @param $round int
 	 */

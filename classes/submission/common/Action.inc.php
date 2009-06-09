@@ -53,7 +53,7 @@ class Action {
 	 */
 
 	/**
-	 * View metadata of an monograph.
+	 * View metadata of a monograph.
 	 * @param $monograph object
 	 */
 	function viewMetadata($monograph) {

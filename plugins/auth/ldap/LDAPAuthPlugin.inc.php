@@ -279,7 +279,7 @@ class LDAPAuthPlugin extends AuthPlugin {
 
 	/**
 	 * Update User object from entry attributes.
-	 * TODO Abstract this to allow arbitrary LDAP <-> OJS schema mappings.
+	 * TODO Abstract this to allow arbitrary LDAP <-> OMP schema mappings.
 	 * For now must be subclassed for other schemas.
 	 * TODO How to deal with deleted fields.
 	 * @param $user User

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../../lib/pkp/dtd/helpTopic.dtd">
+
+<!--
+  * 000023.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Roles - Reader 
+  *
+  * $Id$
+  -->
+
+<topic id="press/topic/000023" locale="en_US" title="Reader"
+toc="press/toc/000003" key="press.roles.reader">
+	<section>
+		<![CDATA[<p>Readers include both subscribers for presses for
+which access is subscription-based, and readers who choose to register for open
+access presses (whether immediately open access or open after a period of time
+after initial publication of press content). Registered Readers receive a
+notification email with the publication of each monograph, which includes the Table
+of Contents. On registering themselves with the press,
+Authors are given the option of enrolling as Readers as well.</p><p>More
+information on Registering for a press can be found {help_topic
+key="user.registerAndProfile" text="here"}.</p> ]]>	
+	</section>
+</topic>

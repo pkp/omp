@@ -28,14 +28,14 @@ class TemporaryFileManager extends PKPTemporaryFileManager {
 	}
 
 	/**
-	 * Create a new temporary file from an article file.
-	 * @param $articleFile object
+	 * Create a new temporary file from a monogrpah file.
+	 * @param $monographFile object
 	 * @param $userId int
 	 * @return object The new TemporaryFile or false on failure
 	 */
-	function articleToTemporaryFile($articleFile, $userId) {
+	function monographToTemporaryFile($monographFile, $userId) {
 		// Get the file extension, then rename the file.
-		$fileExtension = $this->parseFileExtension($articleFile->getFileName());			
+		$fileExtension = $this->parseFileExtension($monographFile->getFileName());			
 
 		if (!$this->fileExists($this->filesDir, 'dir')) {
 			// Try to create destination directory
@@ -45,15 +45,15 @@ class TemporaryFileManager extends PKPTemporaryFileManager {
 		$newFileName = basename(tempnam($this->filesDir, $fileExtension));
 		if (!$newFileName) return false;
 
-		if (copy($articleFile->getFilePath(), $this->filesDir . $newFileName)) {
+		if (copy($monographFile->getFilePath(), $this->filesDir . $newFileName)) {
 			$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
 			$temporaryFile =& new TemporaryFile();
 
 			$temporaryFile->setUserId($userId);
 			$temporaryFile->setFileName($newFileName);
-			$temporaryFile->setFileType($articleFile->getFileType());
-			$temporaryFile->setFileSize($articleFile->getFileSize());
-			$temporaryFile->setOriginalFileName($articleFile->getOriginalFileName());
+			$temporaryFile->setFileType($monographFile->getFileType());
+			$temporaryFile->setFileSize($monographFile->getFileSize());
+			$temporaryFile->setOriginalFileName($monographFile->getOriginalFileName());
 			$temporaryFile->setDateUploaded(Core::getCurrentDate());
 
 			$temporaryFileDao->insertTemporaryFile($temporaryFile);

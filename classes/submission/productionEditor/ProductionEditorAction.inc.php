@@ -18,17 +18,12 @@ import('submission.common.Action');
 
 class ProductionEditorAction extends Action {
 
-	/**
-	 * Actions.
-	 * Ideas: unsuitable art
-	 */
-
 	//
 	// Layout Editing
 	//
 
 	/**
-	 * Upload the layout version of an monograph.
+	 * Upload the layout version of a monograph.
 	 * @param $submission object
 	 */
 	function uploadLayoutVersion($submission) {
@@ -58,7 +53,7 @@ class ProductionEditorAction extends Action {
 	function assignLayoutEditor($submission, $designerId) {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		if (HookRegistry::call('SectionEditorAction::assignLayoutEditor', array(&$submission, &$designerId))) return;
+		if (HookRegistry::call('AcquisitionsEditorAction::assignLayoutEditor', array(&$submission, &$designerId))) return;
 
 		import('monograph.log.MonographLog');
 		import('monograph.log.MonographEventLogEntry');
@@ -98,7 +93,7 @@ class ProductionEditorAction extends Action {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$submissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$journal =& Request::getPress();
+		$press =& Request::getPress();
 		$user =& Request::getUser();
 
 		import('mail.MonographMailTemplate');
@@ -108,7 +103,7 @@ class ProductionEditorAction extends Action {
 		if (!isset($layoutEditor)) return true;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('SectionEditorAction::notifyLayoutEditor', array(&$submission, &$layoutEditor, &$email));
+			HookRegistry::call('AcquisitionsEditorAction::notifyLayoutEditor', array(&$submission, &$layoutEditor, &$email));
 			if ($email->isEnabled()) {
 				$email->setAssoc(MONOGRAPH_EMAIL_LAYOUT_NOTIFY_EDITOR, MONOGRAPH_EMAIL_TYPE_LAYOUT, $layoutSignoff->getId());
 				$email->send();
@@ -146,7 +141,7 @@ class ProductionEditorAction extends Action {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$submissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$journal =& Request::getJournal();
+		$press =& Request::getPress();
 		$user =& Request::getUser();
 
 		import('mail.MonographMailTemplate');
@@ -157,7 +152,7 @@ class ProductionEditorAction extends Action {
 		if (!isset($layoutEditor)) return true;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('SectionEditorAction::thankLayoutEditor', array(&$submission, &$layoutEditor, &$email));
+			HookRegistry::call('AcquisitionsEditorAction::thankLayoutEditor', array(&$submission, &$layoutEditor, &$email));
 			if ($email->isEnabled()) {
 				$email->setAssoc(MONOGRAPH_EMAIL_LAYOUT_THANK_EDITOR, MONOGRAPH_EMAIL_TYPE_LAYOUT, $layoutSignoff->getId());
 				$email->send();
@@ -203,14 +198,14 @@ class ProductionEditorAction extends Action {
 	}
 
 	/**
-	 * Delete an image from an monograph galley.
+	 * Delete an image from a monograph galley.
 	 * @param $submission object
 	 * @param $fileId int
 	 * @param $revision int (optional)
 	 */
 	function deleteMonographImage($submission, $fileId, $revision) {
 		import('submission.designer.DesignerAction');
-		DesginerAction::deleteArticleImage($submission, $fileId, $revision);
+		DesginerAction::deleteMonographImage($submission, $fileId, $revision);
 	}
 
 	/**
@@ -246,14 +241,14 @@ class ProductionEditorAction extends Action {
 				$monographFileManager = new MonographFileManager($monograph->getMonographId());
 				$monographFileManager->deleteFile($suppFile->getFileId());
 				import('search.MonographSearchIndex');
-				MonographSearchIndex::deleteTextIndex($monograph->getMonographId(), ARTICLE_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
+				MonographSearchIndex::deleteTextIndex($monograph->getMonographId(), MONOGRAPH_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
 			}
 			$suppFileDao->deleteSuppFile($suppFile);
 		}
 	}
 
 	/**
-	 * Delete a file from an monograph.
+	 * Delete a file from a monograph.
 	 * @param $submission object
 	 * @param $fileId int
 	 * @param $revision int (optional)
@@ -281,7 +276,7 @@ class ProductionEditorAction extends Action {
 		import('submission.form.comment.LayoutCommentForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+		$commentForm =& new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -297,7 +292,7 @@ class ProductionEditorAction extends Action {
 		import('submission.form.comment.LayoutCommentForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+		$commentForm =& new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {
@@ -324,7 +319,7 @@ class ProductionEditorAction extends Action {
 		import('submission.form.comment.ProofreadCommentForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+		$commentForm =& new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -340,7 +335,7 @@ class ProductionEditorAction extends Action {
 		import('submission.form.comment.ProofreadCommentForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+		$commentForm =& new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {

@@ -180,47 +180,6 @@ table.announcementsMore td {
 	text-align: right;
 }
 
-
-/**
- * Table of contents
- */
-
-h4.tocSectionTitle {
-}
-
-table.tocArticle {
-	width: 100%;
-}
-
-table.tocArticle td.tocTitle {
-	width: 70%;
-	height: 100%;
-}
-
-table.tocArticle td.tocGalleys {
-	width: 30%;
-	text-align: right;
-}
-
-table.tocArticle td.tocAuthors {
-	padding-left: 30px;
-	font-style: italic;
-	vertical-align: top;
-}
-
-table.tocArticle td.tocPages {
-	text-align: right;
-	vertical-align: top;
-}
-
-.tocArticleCoverImage img {
-	border: 0;
-	float: left;
-	width: 100px;
-	margin: 0 1em 1em 0;
-}
-
-
 /**
  * Homepage image
  */
@@ -240,36 +199,6 @@ table.tocArticle td.tocPages {
 	margin: 1em 1em 1em 0;
 	text-align: center;
 }
-
-
-/**
- * Issue cover image
- */
-
-#issueCoverImage img {
-	display: block;
-	border: 0;
-}
-
-.issueCoverImage img {
-	border: 0;
-	float: left;
-	width: 100px;
-	margin: 1em 1em 1em 0;
-}
-
-#issueCoverImage a:link, .issueCoverImage a:link {
-}
-
-#issueCoverImage a:active, .issueCoverImage a:active {
-}
-
-#issueCoverImage a:visited, .issueCoverImage a:visited {
-}
-
-#issueCoverImage a:hover, .issueCoverImage a:hover {
-}
-
 
 /**
  * Additional text styles

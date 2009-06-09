@@ -39,8 +39,6 @@ define('MONOGRAPH_LOG_DEFAULT', 0);
 define('MONOGRAPH_LOG_MONOGRAPH_SUBMIT', 	0x10000001);
 define('MONOGRAPH_LOG_METADATA_UPDATE', 	0x10000002);
 define('MONOGRAPH_LOG_SUPPFILE_UPDATE', 	0x10000003);
-define('MONOGRAPH_LOG_ISSUE_SCHEDULE', 		0x10000004);
-define('MONOGRAPH_LOG_ISSUE_ASSIGN', 		0x10000005);
 define('MONOGRAPH_LOG_MONOGRAPH_PUBLISH', 	0x10000006);
 define('MONOGRAPH_LOG_MONOGRAPH_IMPORT',	0x10000007);
 
@@ -317,10 +315,6 @@ class MonographEventLogEntry extends DataObject {
 				return 'submission.event.general.metadataUpdated';
 			case MONOGRAPH_LOG_SUPPFILE_UPDATE:
 				return 'submission.event.general.suppFileUpdated';
-			case MONOGRAPH_LOG_ISSUE_SCHEDULE:
-				return 'submission.event.general.issueScheduled';
-			case MONOGRAPH_LOG_ISSUE_ASSIGN:
-				return 'submission.event.general.issueAssigned';
 			case MONOGRAPH_LOG_MONOGRAPH_PUBLISH:
 				return 'submission.event.general.monographPublished';
 

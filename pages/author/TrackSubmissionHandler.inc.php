@@ -88,9 +88,9 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+/*		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
-
+**/
 		$acquisitionArrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
 		$arrangement =& $acquisitionArrangementDao->getAcquisitionsArrangement($submission->getAcquisitionsArrangementId());
 		$templateMgr->assign_by_ref('arrangement', $arrangement);
@@ -313,7 +313,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 	}
 
 	/**
-	 * Upload the author's revised version of an monograph.
+	 * Upload the author's revised version of a monograph.
 	 */
 	function uploadRevisedVersion() {
 		$monographId = Request::getUserVar('monographId');
@@ -345,8 +345,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 		// the author from changing the metadata.
 
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_ARTICLE, $submission->getArticleId());
-		if ($initialSignoff->getCopyeditorDateCompleted() != null || AuthorAction::saveMetadata($submission)) {
+		$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+		if ($initialSignoff->getDateCompleted() != null || AuthorAction::saveMetadata($submission)) {
 			Request::redirect(null, null, 'submission', $monographId);
 		}
 	}

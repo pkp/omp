@@ -9,7 +9,7 @@
  * @class installTool
  * @ingroup tools
  *
- * @brief CLI tool for installing OJS.
+ * @brief CLI tool for installing OMP.
  */
 
 // $Id$

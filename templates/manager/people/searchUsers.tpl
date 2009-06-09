@@ -56,7 +56,7 @@ function confirmAndPrompt(userId) {
 		<option value=""></option>
 		<option value="{$smarty.const.ROLE_ID_PRESS_MANAGER}">{translate key="user.role.manager"}</option>
 		<option value="{$smarty.const.ROLE_ID_EDITOR}">{translate key="user.role.editor"}</option>
-		<option value="{$smarty.const.ROLE_ID_SECTION_EDITOR}">{translate key="user.role.sectionEditor"}</option>
+		<option value="{$smarty.const.ROLE_ID_ACQUISIITONS_EDITOR}">{translate key="user.role.acquisitionsEditor"}</option>
 		<option value="{$smarty.const.ROLE_ID_DESIGNER}">{translate key="user.role.designer"}</option>
 		<option value="{$smarty.const.ROLE_ID_REVIEWER}">{translate key="user.role.reviewer"}</option>
 		<option value="{$smarty.const.ROLE_ID_COPYEDITOR}">{translate key="user.role.copyeditor"}</option>

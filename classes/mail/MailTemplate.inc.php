@@ -25,7 +25,7 @@ class MailTemplate extends PKPMailTemplate {
 	 * Constructor.
 	 * @param $emailKey string unique identifier for the template
 	 * @param $locale string locale of the template
-	 * @param $enableAttachments boolean optional Whether or not to enable article attachments in the template
+	 * @param $enableAttachments boolean optional Whether or not to enable monograph attachments in the template
 	 * @param $press object optional The press this message relates to
 	 */
 	function MailTemplate($emailKey = null, $locale = null, $enableAttachments = null, $press = null) {

@@ -76,7 +76,7 @@ class DesignerAction extends Action {
 	}
 
 	/**
-	 * Delete an image from an monograph galley.
+	 * Delete an image from a monograph galley.
 	 * @param $submission object
 	 * @param $fileId int
 	 * @param $revision int (optional)
@@ -138,13 +138,13 @@ class DesignerAction extends Action {
 		} else {
 			$user =& Request::getUser();
 			if (!Request::getUserVar('continued')) {
-				$assignedSectionEditors = $email->toAssignedEditingSectionEditors($submission->getMonographId());
+				$assignedAcquisitionsEditors = $email->toAssignedEditingAcquisitionsEditors($submission->getMonographId());
 				$assignedEditors = $email->ccAssignedEditors($submission->getMonographId());
-				if (empty($assignedSectionEditors) && empty($assignedEditors)) {
+				if (empty($assignedAcquisitionsEditors) && empty($assignedEditors)) {
 					$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 					$editorialContactName = $press->getSetting('contactName');
 				} else {
-					$editorialContact = array_shift($assignedSectionEditors);
+					$editorialContact = array_shift($assignedAcquisitionsEditors);
 					if (!$editorialContact) $editorialContact = array_shift($assignedEditors);
 					$editorialContactName = $editorialContact->getEditorFullName();
 				}
@@ -161,7 +161,7 @@ class DesignerAction extends Action {
 	}
 
 	/**
-	 * Upload the layout version of an monograph.
+	 * Upload the layout version of a monograph.
 	 * @param $submission object
 	 */
 	function uploadLayoutVersion($submission) {

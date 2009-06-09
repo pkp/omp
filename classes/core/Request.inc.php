@@ -21,7 +21,7 @@ import('core.PKPRequest');
 
 class Request extends PKPRequest {
 	/**
-	 * Redirect to the specified page within OJS. Shorthand for a common call to Request::redirect(Request::url(...)).
+	 * Redirect to the specified page within OMP. Shorthand for a common call to Request::redirect(Request::url(...)).
 	 * @param $pressPath string The path of the Press to redirect to.
 	 * @param $page string The name of the op to redirect to.
 	 * @param $op string optional The name of the op to redirect to.
@@ -152,11 +152,10 @@ class Request extends PKPRequest {
 		} else {
 			// The user is at the site context, check to see if they are
 			// only registered in one place w/ one role
-			$pressDao =& DAORegistry::getDAO('PressDAO');
-			$presss =& $pressDao->getPresses();
 			$roles = $roleDao->getRolesByUserId($userId);
 			
 			if(count($roles) == 1) {
+				$pressDao =& DAORegistry::getDAO('PressDAO');
 				$role = array_shift($roles);
 				$press = $pressDao->getPress($role->getId());
 				isset($press) ? Request::redirect($press->getPath(), $role->getRolePath()) :

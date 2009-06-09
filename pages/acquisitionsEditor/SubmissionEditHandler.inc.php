@@ -85,9 +85,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 /*		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
 		if ($publishedMonograph) {
-			$issueDao =& DAORegistry::getDAO('IssueDAO');
-			$issue =& $issueDao->getIssueById($publishedMonograph->getIssueId());
-			$templateMgr->assign_by_ref('issue', $issue);
 			$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
 		}
 */
@@ -166,8 +163,8 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		// Setting the round.
 		$round = $submission->getCurrentReviewRound();
 
-//		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-//		$sections =& $sectionDao->getPressSections($press->getId());
+		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
+		$arrangements =& $arrangementDao->getPressAcquisitionsArrangements($press->getId());
 
 //		$showPeerReviewOptions = $round == $submission->getCurrentRound() && $submission->getReviewFile() != null ? true : false;
 
@@ -193,7 +190,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 /*		import('monograph.log.MonographLog');
 		$emailLogEntries =& MonographLog::getEmailLogEntries($monographId);
 		foreach ($emailLogEntries->toArray() as $emailLog) {
-			if ($emailLog->getEventType() == ARTICLE_EMAIL_REVIEW_NOTIFY_REVIEWER) {
+			if ($emailLog->getEventType() == MONOGRAPH_EMAIL_REVIEW_NOTIFY_REVIEWER) {
 				if (isset($notifyReviewerLogs[$emailLog->getAssocId()]) && is_array($notifyReviewerLogs[$emailLog->getAssocId()])) {
 					array_push($notifyReviewerLogs[$emailLog->getAssocId()], $emailLog);
 				}
@@ -221,7 +218,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		
 $reviewFormResponses = null;
 $reviewFormTitles = null;
-$sections = null;
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -267,7 +263,7 @@ $sections = null;
 		$templateMgr->assign('rateReviewerOnQuality', $press->getSetting('rateReviewerOnQuality'));
 		$templateMgr->assign('nextProcessTitle', $workflowDao->getTitleByProcessId($nextProcessId));
 //		$templateMgr->assign('showPeerReviewOptions', $showPeerReviewOptions);
-//		$templateMgr->assign_by_ref('sections', $sections->toArray());
+		$templateMgr->assign_by_ref('arrangements', $arrangements->toArray());
 		$templateMgr->assign('editorDecisionOptions',
 			array(
 				'' => 'common.chooseOne',
@@ -326,9 +322,7 @@ $sections = null;
 		$user =& Request::getUser();
 		$templateMgr->assign('isEditor', $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR));
 
-/*		import('issue.IssueAction');
-		$templateMgr->assign('issueOptions', IssueAction::getIssueOptions());
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
+/*		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
 		$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
 */
@@ -421,15 +415,15 @@ $sections = null;
 		$templateMgr->display('acquisitionsEditor/submissionHistory.tpl');
 	}
 
-	function changeSection() {
+	function changeAcquisitionsArrangement() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
 		$press =& $this->press;
 		$submission =& $this->submission;
 
-		$sectionId = Request::getUserVar('sectionId');
+		$arrangementId = Request::getUserVar('arrangementId');
 
-		AcquisitionsEditorAction::changeSection($submission, $sectionId);
+		AcquisitionsEditorAction::changeAcquisitionsArrangement($submission, $arrangementId);
 
 		Request::redirect(null, null, 'submission', $monographId);
 	}
@@ -1578,7 +1572,7 @@ $sections = null;
 	}
 
 	/**
-	 * Delete an monograph image.
+	 * Delete a monograph image.
 	 * @param $args array ($monographId, $fileId)
 	 */
 	function deleteMonographImage($args) {
@@ -2009,7 +2003,7 @@ $sections = null;
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		import('file.MonographFileManager');
-		$templateMgr->assign('attachments', $monographFileDao->getMonographFilesByAssocId($logId, ARTICLE_FILE_ATTACHMENT));
+		$templateMgr->assign('attachments', $monographFileDao->getMonographFilesByAssocId($logId, MONOGRAPH_FILE_ATTACHMENT));
 
 		if ($logId) {
 			$logDao =& DAORegistry::getDAO('MonographEmailLogDAO');
@@ -2256,7 +2250,7 @@ $sections = null;
 
 			$proofreaders = $roleDao->getUsersByRoleId(ROLE_ID_PROOFREADER, $press->getId(), $searchType, $search, $searchMatch);
 
-			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('SectionEditorSubmissionDAO');
+			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 			$proofreaderStatistics = $acquisitionsEditorSubmissionDao->getProofreaderStatistics($press->getId());
 
 			$templateMgr =& TemplateManager::getManager();
@@ -2460,70 +2454,12 @@ $sections = null;
 	}
 
 	/**
-	 * Schedule/unschedule an monograph for publication.
+	 * Schedule/unschedule a monograph for publication.
 	 */
 	function scheduleForPublication($args) {
-		$monographId = (int) array_shift($args);
-		$issueId = (int) Request::getUserVar('issueId');
-		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
-		$submission =& $this->submission;
-		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('SectionEditorSubmissionDAO');
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($monographId);
 
-		$issueDao =& DAORegistry::getDAO('IssueDAO');
-		$issue =& $issueDao->getIssueById($issueId, $press->getId());
+		//FIXME implement
 
-		if ($issue) {
-			// Schedule against an issue.
-			if ($publishedMonograph) {
-				$publishedMonograph->setIssueId($issueId);
-				$publishedMonographDao->updatePublishedMonograph($publishedMonograph);
-			} else {
-				$publishedMonograph = new PublishedMonograph();
-				$publishedMonograph->setMonographId($submission->getMonographId());
-				$publishedMonograph->setIssueId($issueId);
-				$publishedMonograph->setDatePublished(Core::getCurrentDate());
-				$publishedMonograph->setSeq(REALLY_BIG_NUMBER);
-				$publishedMonograph->setViews(0);
-				$publishedMonograph->setAccessStatus(0);
-
-				$publishedMonographDao->insertPublishedMonograph($publishedMonograph);
-
-				// Resequence the monographs.
-				$publishedMonographDao->resequencePublishedMonographs($submission->getSectionId(), $issueId);
-
-				// If we're using custom section ordering, and if this is the first
-				// monograph published in a section, make sure we enter a custom ordering
-				// for it. (Default at the end of the list.)
-				if ($sectionDao->customSectionOrderingExists($issueId)) {
-					if ($sectionDao->getCustomSectionOrder($issueId, $submission->getSectionId()) === null) {
-						$sectionDao->insertCustomSectionOrder($issueId, $submission->getSectionId(), REALLY_BIG_NUMBER);
-						$sectionDao->resequenceCustomSectionOrders($issueId);
-					}
-				}
-			}
-		} else {
-			if ($publishedMonograph) {
-				// This was published elsewhere; make sure we don't
-				// mess up sequencing information.
-				$publishedMonographDao->resequencePublishedMonographs($submission->getSectionId(), $publishedMonograph->getIssueId());
-				$publishedMonographDao->deletePublishedMonographByMonographId($monographId);
-			}
-		}
-		$submission->stampStatusModified();
-
-		if ($issue && $issue->getPublished()) {
-			$submission->setStatus(STATUS_PUBLISHED);
-		} else {
-			$submission->setStatus(STATUS_QUEUED);
-		}
-
-		$acquisitionsEditorSubmissionDao->updateSectionEditorSubmission($submission);
-
-		Request::redirect(null, null, 'submissionEditing', array($monographId), null, 'scheduling');
 	}
 
 	//
@@ -2531,7 +2467,7 @@ $sections = null;
 	//
 
 	/**
-	 * Validate that the user is the assigned section editor for
+	 * Validate that the user is the assigned acquisitions editor for
 	 * the monograph, or is a managing editor.
 	 * Redirects to acquisitionsEditor index page if validation fails.
 	 * @param $monographId int Monograph ID to validate

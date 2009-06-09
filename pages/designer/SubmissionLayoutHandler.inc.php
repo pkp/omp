@@ -63,13 +63,10 @@ class SubmissionLayoutHandler extends DesignerHandler {
 
 		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
-/*		if ($publishedMonograph) {
-			$issueDao =& DAORegistry::getDAO('IssueDAO');
-			$issue =& $issueDao->getIssueById($publishedMonograph->getIssueId());
+		if ($publishedMonograph) {
 			$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
-			$templateMgr->assign_by_ref('issue', $issue);
 		}
-*/
+
 		$templateMgr->display('designer/submission.tpl');
 	}
 
@@ -329,7 +326,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 	}
 
 	/**
-	 * Delete an monograph image.
+	 * Delete a monograph image.
 	 * @param $args array ($monographId, $fileId)
 	 */
 	function deleteMonographImage($args) {

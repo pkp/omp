@@ -12,12 +12,12 @@
   * $Id$
   -->
 
-<toc id="index/toc/000000" locale="en_US" title="OJS Help" parent_topic="index/topic/000000">
-	<topic id="intro/topic/000000" title="Introduction to OJS" />
+<toc id="index/toc/000000" locale="en_US" title="OMP Help" parent_topic="index/topic/000000">
+	<topic id="intro/topic/000000" title="Introduction to OMP" />
 	<topic id="site/topic/000000" title="Site Administration" />
-	<topic id="journal/topic/000000" title="Journal Management" />
+	<topic id="press/topic/000000" title="Press Management" />
 	<topic id="submission/topic/000000" title="Submission Process" />
 	<topic id="editorial/topic/000000" title="Editorial Process" />
 	<topic id="publishing/topic/000000" title="Publishing Process" />
-	<topic id="user/topic/000000" title="Journal Web Site" />
+	<topic id="user/topic/000000" title="Press Web Site" />
 </toc>

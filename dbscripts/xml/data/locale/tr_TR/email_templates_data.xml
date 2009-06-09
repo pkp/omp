@@ -48,7 +48,7 @@ Yeni şifreniz: {$password}
 		<row>
 			<field name="email_key">USER_REGISTER</field>
 			<field name="subject">Yeni kullanıcı kaydı</field>
-			<field name="body">{$journalName} dergisine kayıt yaptırdığınız için teşekkür ederiz. Kullanıcı adı ve şifre dergi ile yapacağınız tüm çalışmalarda gerekli olduğundan güvenli bir yere not ediniz.
+			<field name="body">{$pressName} dergisine kayıt yaptırdığınız için teşekkür ederiz. Kullanıcı adı ve şifre dergi ile yapacağınız tüm çalışmalarda gerekli olduğundan güvenli bir yere not ediniz.
 
 Kullanıcı adı: {$username}
 Şifre: {$password}

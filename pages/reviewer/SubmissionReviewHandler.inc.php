@@ -148,18 +148,18 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 */
 	function viewMetadata($args) {
 		$reviewId = $args[0];
-		$articleId = $args[1];
+		$monographId = $args[1];
 
 		$this->validate($reviewId);
 		$reviewerSubmission =& $this->submission;
 
-		$this->setupTemplate(true, $articleId, $reviewId);
+		$this->setupTemplate(true, $monographId, $reviewId);
 
 		ReviewerAction::viewMetadata($reviewerSubmission);
 	}
 
 	/**
-	 * Upload the reviewer's annotated version of an article.
+	 * Upload the reviewer's annotated version of a monograph.
 	 */
 	function uploadReviewerVersion() {
 		$reviewId = Request::getUserVar('reviewId');
@@ -172,7 +172,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	}
 
 	/*
-	 * Delete one of the reviewer's annotated versions of an article.
+	 * Delete one of the reviewer's annotated versions of a monograph.
 	 */
 	function deleteReviewerVersion($args) {		
                 $reviewId = isset($args[0]) ? (int) $args[0] : 0;
@@ -192,11 +192,11 @@ class SubmissionReviewHandler extends ReviewerHandler {
 
 	/**
 	 * Download a file.
-	 * @param $args array ($articleId, $fileId, [$revision])
+	 * @param $args array ($monographId, $fileId, [$revision])
 	 */
 	function downloadFile($args) {
 		$reviewId = isset($args[0]) ? $args[0] : 0;
-		$articleId = isset($args[1]) ? $args[1] : 0;
+		$monographId = isset($args[1]) ? $args[1] : 0;
 		$fileId = isset($args[2]) ? $args[2] : 0;
 		$revision = isset($args[3]) ? $args[3] : null;
 
@@ -248,7 +248,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 
 	/**
 	 * Validate that the user is an assigned reviewer for
-	 * the article.
+	 * the monograph.
 	 * Redirects to reviewer index page if validation fails.
 	 */
 	function validate($reviewId) {

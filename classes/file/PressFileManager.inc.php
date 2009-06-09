@@ -25,7 +25,7 @@ class PressFileManager extends FileManager {
 	/** @var int the ID of the associated press */
 	var $pressId;
 
-	/** @var Press the associated article */
+	/** @var Press the associated press */
 	var $press;
 
 	/**

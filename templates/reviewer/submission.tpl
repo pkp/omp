@@ -309,7 +309,7 @@ function confirmSubmissionCheck() {
 
 			{if $currentPress->getSetting('showEnsuringLink')}
 			<span class="instruct">
-				<a class="action" href="javascript:openHelp('{get_help_id key="editorial.sectionEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.monograph.ensuringBlindReview"}</a>
+				<a class="action" href="javascript:openHelp('{get_help_id key="editorial.acquisitionsEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.monograph.ensuringBlindReview"}</a>
 			</span>
 			{/if}
 		{/if}

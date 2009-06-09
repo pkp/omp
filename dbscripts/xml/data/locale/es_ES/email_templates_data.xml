@@ -51,7 +51,7 @@ Nueva contraseña: {$password}
 		<row>
 			<field name="email_key">USER_REGISTER</field>
 			<field name="subject">Nuevo registro de usuaria/o</field>
-			<field name="body">Gracias por registrarse como usuaria/o en {$journalName}. Por favor, guarde en lugar seguro su nombre de usuaria/o y contraseña, ya que son necesarios para trabajar con la revista.
+			<field name="body">Gracias por registrarse como usuaria/o en {$pressName}. Por favor, guarde en lugar seguro su nombre de usuaria/o y contraseña, ya que son necesarios para trabajar con la revista.
 
 Nombre de usuario/a: {$username}
 Contraseña: {$password}
@@ -65,7 +65,7 @@ Gracias,
 			<field name="subject">Activación de cuenta</field>
 			<field name="body">Estimada/o {$userFullName}
 
-Se ha recibido una solicitud de cuenta de usuario para la revista {$journalName} utilizando su dirección de correo. Si desea activar su cuenta en {$journalName}, pulse por favor sobre el vínculo siguiente:
+Se ha recibido una solicitud de cuenta de usuario para la revista {$pressName} utilizando su dirección de correo. Si desea activar su cuenta en {$pressName}, pulse por favor sobre el vínculo siguiente:
 
 {$activateUrl}
 

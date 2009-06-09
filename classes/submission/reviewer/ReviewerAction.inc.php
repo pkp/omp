@@ -79,13 +79,13 @@ class ReviewerAction extends Action {
 			} else {
 				if (!Request::getUserVar('continued')) {
 					$assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getMonographId());
-					$reviewingSectionEditors = $email->toAssignedReviewingSectionEditors($reviewerSubmission->getMonographId());
-					if (empty($assignedEditors) && empty($reviewingSectionEditors)) {
+					$reviewingAcquisitionsEditors = $email->toAssignedReviewingAcquisitionsEditors($reviewerSubmission->getMonographId());
+					if (empty($assignedEditors) && empty($reviewingAcquisitionsEditors)) {
 						$press =& Request::getPress();
 						$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 						$editorialContactName = $press->getSetting('contactName');
 					} else {
-						if (!empty($reviewingSectionEditors)) $editorialContact = array_shift($reviewingSectionEditors);
+						if (!empty($reviewingAcquisitionsEditors)) $editorialContact = array_shift($reviewingAcquisitionsEditors);
 						else $editorialContact = array_shift($assignedEditors);
 						$editorialContactName = $editorialContact->getEditorFullName();
 					}
@@ -161,13 +161,13 @@ class ReviewerAction extends Action {
 			} else {
 				if (!Request::getUserVar('continued')) {
 					$assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getMonographId());
-					$reviewingSectionEditors = $email->toAssignedReviewingSectionEditors($reviewerSubmission->getMonographId());
-					if (empty($assignedEditors) && empty($reviewingSectionEditors)) {
+					$reviewingAcquisitionsEditors = $email->toAssignedReviewingAcquisitionsEditors($reviewerSubmission->getMonographId());
+					if (empty($assignedEditors) && empty($reviewingAcquisitionsEditors)) {
 						$press =& Request::getPress();
 						$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 						$editorialContactName = $press->getSetting('contactName');
 					} else {
-						if (!empty($reviewingSectionEditors)) $editorialContact = array_shift($reviewingSectionEditors);
+						if (!empty($reviewingAcquisitionsEditors)) $editorialContact = array_shift($reviewingAcquisitionsEditors);
 						else $editorialContact = array_shift($assignedEditors);
 						$editorialContactName = $editorialContact->getEditorFullName();
 					}
@@ -192,7 +192,7 @@ class ReviewerAction extends Action {
 	}
 
 	/**
-	 * Upload the annotated version of an monograph.
+	 * Upload the annotated version of a monograph.
 	 * @param $reviewId int
 	 */
 	function uploadReviewerVersion($reviewId) {
@@ -242,7 +242,7 @@ class ReviewerAction extends Action {
 	}
 
 	/**
-	 * Delete an annotated version of an monograph.
+	 * Delete an annotated version of a monograph.
 	 * @param $reviewId int
 	 * @param $fileId int
 	 * @param $revision int If null, then all revisions are deleted.

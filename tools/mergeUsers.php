@@ -9,7 +9,7 @@
  * @class mergeUsers
  * @ingroup tools
  *
- * @brief CLI tool for merging two OJS 2 user accounts.
+ * @brief CLI tool for merging two OMP 2 user accounts.
  */
 
 // $Id$
@@ -46,8 +46,8 @@ class mergeUsers extends CommandLineTool {
 	 * Print command usage information.
 	 */
 	function usage() {
-		echo "OJS 2 merge users tool\n"
-			. "Use this tool to merge two OJS 2 user accounts.\n\n"
+		echo "OMP 2 merge users tool\n"
+			. "Use this tool to merge two OMP 2 user accounts.\n\n"
 			. "Usage: {$this->scriptName} [username1] [username2]\n"
 			. "username1      The first user to merge.\n"
 			. "username2      The second user to merge. All roles and content associated\n"
@@ -80,13 +80,13 @@ class mergeUsers extends CommandLineTool {
 				$this->username1);
 			exit;	
 		}
-
+		// FIXME this needs review
 		// Both user IDs are valid. Merge the accounts.
-		$articleDao =& DAORegistry::getDAO('ArticleDAO');
-		foreach ($articleDao->getArticlesByUserId($oldUserId) as $article) {
-			$article->setUserId($newUserId);
-			$articleDao->updateArticle($article);
-			unset($article);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		foreach ($monographDao->getMonographsByUserId($oldUserId) as $monograph) {
+			$monograph->setUserId($newUserId);
+			$monographDao->updateMonograph($monograph);
+			unset($monograph);
 		}
 
 		$commentDao =& DAORegistry::getDAO('CommentDAO');
@@ -96,12 +96,12 @@ class mergeUsers extends CommandLineTool {
 			unset($comment);
 		}
 
-		$articleNoteDao =& DAORegistry::getDAO('ArticleNoteDAO');
-		$articleNotes =& $articleNoteDao->getArticleNotesByUserId($oldUserId);
-		while ($articleNote =& $articleNotes->next()) {
-			$articleNote->setUserId($newUserId);
-			$articleNoteDao->updateArticleNote($articleNote);
-			unset($articleNote);
+		$monographNoteDao =& DAORegistry::getDAO('MonographNoteDAO');
+		$monographNotes =& $monographNoteDao->getMonographNotesByUserId($oldUserId);
+		while ($monographNote =& $monographNotes->next()) {
+			$monographNote->setUserId($newUserId);
+			$monographNoteDao->updateMonographNote($monographNote);
+			unset($monographNote);
 		}
 
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
@@ -150,16 +150,16 @@ class mergeUsers extends CommandLineTool {
 			unset($proofreaderSubmission);
 		}
 
-		$articleEmailLogDao =& DAORegistry::getDAO('ArticleEmailLogDAO');
-		$articleEmailLogDao->transferArticleLogEntries($oldUserId, $newUserId);
-		$articleEventLogDao =& DAORegistry::getDAO('ArticleEventLogDAO');
-		$articleEventLogDao->transferArticleLogEntries($oldUserId, $newUserId);
+		$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
+		$monographEmailLogDao->transferMonographLogEntries($oldUserId, $newUserId);
+		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
+		$monographEventLogDao->transferMonographLogEntries($oldUserId, $newUserId);
 
-		$articleCommentDao =& DAORegistry::getDAO('ArticleCommentDAO');
-		foreach ($articleCommentDao->getArticleCommentsByUserId($oldUserId) as $articleComment) {
-			$articleComment->setAuthorId($newUserId);
-			$articleCommentDao->updateArticleComment($articleComment);
-			unset($articleComment);
+		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		foreach ($monographCommentDao->getMonographCommentsByUserId($oldUserId) as $monographComment) {
+			$monographComment->setAuthorId($newUserId);
+			$monographCommentDao->updateMonographComment($monographComment);
+			unset($monographComment);
 		}
 
 		$accessKeyDao =& DAORegistry::getDAO('AccessKeyDAO');
@@ -178,13 +178,13 @@ class mergeUsers extends CommandLineTool {
 		$userSettingsDao->deleteSettings($oldUserId);
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 		$groupMembershipDao->deleteMembershipByUserId($oldUserId);
-		$sectionEditorsDao =& DAORegistry::getDAO('SectionEditorsDAO');
-		$sectionEditorsDao->deleteEditorsByUserId($oldUserId);
+		$acquisitionsEditorsDao =& DAORegistry::getDAO('AcquisitionsEditorsDAO');
+		$acquisitionsEditorsDao->deleteAcquisitionsEditorsByUserId($oldUserId);
 
 		// Transfer old user's roles
 		$roles =& $roleDao->getRolesByUserId($oldUserId);
 		foreach ($roles as $role) {
-			if (!$roleDao->roleExists($role->getJournalId(), $newUserId, $role->getRoleId())) {
+			if (!$roleDao->roleExists($role->getPressId(), $newUserId, $role->getRoleId())) {
 				$role->setUserId($newUserId);
 				$roleDao->insertRole($role);
 			}

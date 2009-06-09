@@ -79,9 +79,9 @@ class UserXMLParser {
 								$newUser->setMustChangePassword($attrib->getAttribute('change') == 'true'?1:0);
 								$encrypted = $attrib->getAttribute('encrypted');
 								if (isset($encrypted) && $encrypted !== 'plaintext') {
-									$ojsEncryptionScheme = Config::getVar('security', 'encryption');
-									if ($encrypted != $ojsEncryptionScheme) {
-										$this->errors[] = Locale::translate('plugins.importexport.users.import.encryptionMismatch', array('importHash' => $encrypted, 'ojsHash' => $ojsEncryptionScheme));
+									$ompEncryptionScheme = Config::getVar('security', 'encryption');
+									if ($encrypted != $ompEncryptionScheme) {
+										$this->errors[] = Locale::translate('plugins.importexport.users.import.encryptionMismatch', array('importHash' => $encrypted, 'ompHash' => $ompEncryptionScheme));
 									}
 									$newUser->setPassword($attrib->getValue());
 								} else {
@@ -325,7 +325,7 @@ class UserXMLParser {
 	 * @return boolean
 	 */
 	function validRole($roleType) {
-		return isset($roleType) && in_array($roleType, array('manager', 'editor', 'sectionEditor', 'layoutEditor', 'reviewer', 'copyeditor', 'proofreader', 'author', 'reader', 'subscriptionManager'));
+		return isset($roleType) && in_array($roleType, array('manager', 'editor', 'acquisitionsEditor', 'productionEditor', 'designer', 'reviewer', 'copyeditor', 'proofreader', 'author', 'reader'));
 	}
 
 	/**

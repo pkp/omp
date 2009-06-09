@@ -77,7 +77,7 @@
 		<frequency hour="0"/>
 	</task>
 	<task class="tasks.OpenAccessNotification">
-		<descr>Send automated email to registered readers that have requested to be notified when an issue becomes open access.</descr>
+		<descr>Send automated email to registered readers that have requested to be notified when a monograph becomes open access.</descr>
 		<frequency hour="0"/>
 	</task>
 </scheduled_tasks>

@@ -49,7 +49,7 @@ Sua nova senha: {$password}
 		<row>
 			<field name="email_key">USER_REGISTER</field>
 			<field name="subject">Novo Usuário Cadastrado</field>
-			<field name="body">Agradecemos o seu cadastro no sistema web da revista {$journalName}. Guarde o login e a senha, pois serão necessários para todos os trabalhos junto à revista. Caso deseje ser removido do sistema, entre em contato.
+			<field name="body">Agradecemos o seu cadastro no sistema web da revista {$pressName}. Guarde o login e a senha, pois serão necessários para todos os trabalhos junto à revista. Caso deseje ser removido do sistema, entre em contato.
 
 Login: {$username}
 Senha: {$password}
@@ -63,7 +63,7 @@ Agradecendo desde já a atenção dispensada,
 			<field name="subject">Validação de cadastro</field>
 			<field name="body">{$userFullName},
 
-Seu cadastro foi criado na revista {$journalName}, porém é necessário validar o endereço de e-mail para finalizar o processo. Para validar seu cadastro e acessar o sistema e seus recursos acesse a url a seguir:
+Seu cadastro foi criado na revista {$pressName}, porém é necessário validar o endereço de e-mail para finalizar o processo. Para validar seu cadastro e acessar o sistema e seus recursos acesse a url a seguir:
 
 
 {$activateUrl}

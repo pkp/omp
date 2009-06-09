@@ -15,8 +15,8 @@
 <locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.generic.translator.name">Complemento de traducción</message>
 	<message key="plugins.generic.translator.description">Este complemento permite el mantenimiento on-line de los ficheros de traducción.</message>
-	<message key="plugins.generic.translator.longdescription">Esta zona permite al administrador global modificar la traducción de OJS. Afecta a todas las revistas alojadas. Si decide corregir o crear una traducción, por favor considere enviarla al proyecto Public Knowledge Project para distribuirla en nuevas versiones.</message>
-	<message key="plugins.generic.translator.localeDescription">Esta página muestra todos los componentes de una traducción de OJS y proporciona al traductor la posibilidad de editar cada uno de ellos. Una traducción completa de OJS debe contener traducciones completas de todos los componentes.</message>
+	<message key="plugins.generic.translator.longdescription">Esta zona permite al administrador global modificar la traducción de OMP. Afecta a todas las revistas alojadas. Si decide corregir o crear una traducción, por favor considere enviarla al proyecto Public Knowledge Project para distribuirla en nuevas versiones.</message>
+	<message key="plugins.generic.translator.localeDescription">Esta página muestra todos los componentes de una traducción de OMP y proporciona al traductor la posibilidad de editar cada uno de ellos. Una traducción completa de OMP debe contener traducciones completas de todos los componentes.</message>
 
 	<message key="plugins.generic.translator.localeName">Nombre idioma</message>
 	<message key="plugins.generic.translator.localeKey">Clave</message>

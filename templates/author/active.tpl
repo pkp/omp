@@ -44,7 +44,7 @@
 
 				{** Payment related actions *}
 				{if $status==STATUS_QUEUED_UNASSIGNED || $status==STATUS_QUEUED_REVIEW}
-					{if $submissionEnabled && !$completedPaymentDAO->hasPaidSubmission($submission->getJournalId(), $submission->getMonographId())}
+					{if $submissionEnabled && !$completedPaymentDAO->hasPaidSubmission($submission->getPressId(), $submission->getMonographId())}
 						<br />
 						<a href="{url op="paySubmissionFee" path="$monographId"}" class="action">{translate key="payment.submission.paySubmission"}</a>					
 					{elseif $fastTrackEnabled}
@@ -58,7 +58,7 @@
 				{elseif $status==STATUS_QUEUED_EDITING}
 					{if $publicationEnabled}
 						<br />
-						{if $completedPaymentDAO->hasPaidPublication($submission->getJournalId(), $submission->getMonographId())}
+						{if $completedPaymentDAO->hasPaidPublication($submission->getPressId(), $submission->getMonographId())}
 							{translate key="payment.publication.publicationPaid}
 						{else}
 						 	<a href="{url op="payPublicationFee" path="$monographId"}" class="action">{translate key="payment.publication.payPublication"}</a>

@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @defgroup pages_sectionEditor
+ * @defgroup pages_acquisitionsEditor
  */
  
 /**
- * @file pages/sectionEditor/index.php
+ * @file pages/acquisitionsEditor/index.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @ingroup pages_sectionEditor
- * @brief Handle requests for section editor functions. 
+ * @ingroup pages_acquisitionsEditor
+ * @brief Handle requests for acquisitions editor functions. 
  *
  */
 
@@ -32,7 +32,7 @@ switch ($op) {
 	case 'submissionEditing':
 	case 'submissionProduction':
 	case 'submissionHistory':
-	case 'changeSection':
+	case 'changeAcquisitionsArrangement':
 	case 'recordDecision':
 	case 'selectReviewer':
 	case 'notifyReviewer':
@@ -50,7 +50,7 @@ switch ($op) {
 	case 'setDueDate':
 	case 'viewMetadata':
 	case 'saveMetadata':
-	case 'removeArticleCoverPage':
+	case 'removeMonographCoverPage':
 	case 'editorReview':
 	case 'selectCopyeditor':
 	case 'notifyCopyeditor':
@@ -70,7 +70,7 @@ switch ($op) {
 	case 'editSuppFile':
 	case 'saveSuppFile':
 	case 'deleteSuppFile':
-	case 'deleteArticleFile':
+	case 'deleteMonographFile':
 	case 'archiveSubmission':
 	case 'unsuitableSubmission':
 	case 'restoreToQueue':
@@ -79,7 +79,7 @@ switch ($op) {
 	//
 	// Layout Editing
 	//
-	case 'deleteArticleImage':
+	case 'deleteMonographImage':
 	case 'uploadLayoutFile':
 	case 'uploadLayoutVersion':
 	case 'assignProductionEditor':

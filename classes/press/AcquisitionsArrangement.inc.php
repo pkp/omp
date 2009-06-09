@@ -26,7 +26,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Get localized title of press section.
+	 * Get localized title of press arrangement.
 	 * @return string
 	 */
 	function getAcquisitionsArrangementTitle() {
@@ -34,7 +34,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Get localized abbreviation of press section.
+	 * Get localized abbreviation of press arrangement.
 	 * @return string
 	 */
 	function getAcquisitionsArrangementAbbrev() {
@@ -52,7 +52,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Get ID of section.
+	 * Get ID of arrangement.
 	 * @return int
 	 */
 	function getAcquisitionsArrangementId() {
@@ -60,7 +60,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Set ID of section.
+	 * Set ID of arrangement.
 	 * @param $arrangementId int
 	 */
 	function setAcquisitionsArrangementId($arrangementId) {
@@ -100,7 +100,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Get title of section.
+	 * Get title of arrangement.
 	 * @param $locale string
 	 * @return string
 	 */
@@ -109,7 +109,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Set title of section.
+	 * Set title of arrangement.
 	 * @param $title string
 	 * @param $locale string
 	 */
@@ -118,7 +118,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Get section title abbreviation.
+	 * Get arrangement title abbreviation.
 	 * @param $locale string
 	 * @return string
 	 */
@@ -127,7 +127,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Set section title abbreviation.
+	 * Set arrangement title abbreviation.
 	 * @param $abbrev string
 	 * @param $locale string
 	 */
@@ -136,7 +136,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Get sequence of section.
+	 * Get sequence of arrangement.
 	 * @return float
 	 */
 	function getSequence() {
@@ -144,7 +144,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Set sequence of section.
+	 * Set sequence of arrangement.
 	 * @param $sequence float
 	 */
 	function setSequence($sequence) {
@@ -152,7 +152,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Get open archive setting of section.
+	 * Get open archive setting of arrangement.
 	 * @return boolean
 	 */
 	function getMetaIndexed() {
@@ -160,7 +160,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Set open archive setting of section.
+	 * Set open archive setting of arrangement.
 	 * @param $metaIndexed boolean
 	 */
 	function setMetaIndexed($metaIndexed) {
@@ -168,7 +168,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Return boolean indicating whether or not submissions are restricted to [section]Editors.
+	 * Return boolean indicating whether or not submissions are restricted to [Acquisitions]Editors.
 	 * @return boolean
 	 */
 	function getEditorRestricted() {
@@ -176,7 +176,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Set whether or not submissions are restricted to [section]Editors.
+	 * Set whether or not submissions are restricted to [Acquisitions]Editors.
 	 * @param $editorRestricted boolean
 	 */
 	function setEditorRestricted($editorRestricted) {
@@ -216,7 +216,7 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Get localized section policy.
+	 * Get localized arrangement policy.
 	 * @return string
 	 */
 	function getAcquisitionsArrangementPolicy() {

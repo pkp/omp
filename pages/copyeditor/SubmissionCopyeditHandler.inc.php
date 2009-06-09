@@ -217,10 +217,10 @@ class SubmissionCopyeditHandler extends CopyeditorHandler {
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
 
-		$galleyDao =& DAORegistry::getDAO('ArticleGalleyDAO');
+		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		$galley =& $galleyDao->getGalley($galleyId, $monographId);
 
-		import('file.ArticleFileManager'); // FIXME
+		import('file.MonographFileManager'); // FIXME
 
 		if (isset($galley)) {
 			if ($galley->isHTMLGalley()) {
@@ -281,8 +281,8 @@ class SubmissionCopyeditHandler extends CopyeditorHandler {
 		$submission->setWidth('', $formLocale);
 		$submission->setHeight('', $formLocale);
 
-		$monographDao =& DAORegistry::getDAO('ArticleDAO');
-		$monographDao->updateArticle($submission);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao->updateMonograph($submission);
 
 		Request::redirect(null, null, 'viewMetadata', $monographId);
 	}

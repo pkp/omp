@@ -55,7 +55,7 @@ class LayoutAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve the IDs of the designers for an monograph.
+	 * Retrieve the IDs of the designers for a monograph.
 	 * @param $monographId int
 	 * @return array (int)
 	 */
@@ -79,7 +79,7 @@ class LayoutAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve the layout assignments for an monograph.
+	 * Retrieve the layout assignments for a monograph.
 	 * @param $monographId int
 	 * @return array (LayoutAssignment)
 	 */

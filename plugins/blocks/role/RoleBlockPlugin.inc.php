@@ -102,22 +102,17 @@ class RoleBlockPlugin extends BlockPlugin {
 				$submissionsCount = $copyeditorSubmissionDao->getSubmissionsCount($userId, $pressId);
 				$templateMgr->assign('submissionsCount', $submissionsCount);
 				return 'copyeditor.tpl';
-			case 'layoutEditor':
-				$layoutEditorSubmissionDao =& DAORegistry::getDAO('LayoutEditorSubmissionDAO');
-				$submissionsCount = $layoutEditorSubmissionDao->getSubmissionsCount($userId, $pressId);
-				$templateMgr->assign('submissionsCount', $submissionsCount);
-				return 'layoutEditor.tpl';
 			case 'editor':
 				if (Request::getRequestedOp() == 'index') return null;
 				$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
 				$submissionsCount =& $editorSubmissionDao->getCount($press->getId());
 				$templateMgr->assign('submissionsCount', $submissionsCount);
 				return 'editor.tpl';
-			case 'sectionEditor':
-				$sectionEditorSubmissionDao =& DAORegistry::getDAO('SectionEditorSubmissionDAO');
-				$submissionsCount =& $sectionEditorSubmissionDao->getSectionEditorSubmissionsCount($userId, $pressId);
+			case 'acquisitionsEditor':
+				$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+				$submissionsCount =& $acquisitionsEditorSubmissionDao->getAcquisitionsEditorSubmissionsCount($userId, $pressId);
 				$templateMgr->assign('submissionsCount', $submissionsCount);
-				return 'sectionEditor.tpl';
+				return 'acquisitionsEditor.tpl';
 			case 'proofreader':
 				$proofreaderSubmissionDao =& DAORegistry::getDAO('ProofreaderSubmissionDAO');
 				$submissionsCount = $proofreaderSubmissionDao->getSubmissionsCount($userId, $pressId);

@@ -14,15 +14,15 @@
 
 // $Id$
 
-define('EDITOR_SECTION_HOME', 0);
-define('EDITOR_SECTION_SUBMISSIONS', 1);
+define('EDITOR_ARRANGEMENT_HOME', 0);
+define('EDITOR_ARRANGEMENT_SUBMISSIONS', 1);
 
 // Filter editor
 define('FILTER_EDITOR_ALL', 0);
 define('FILTER_EDITOR_ME', 1);
 
 import('acquisitionsEditor.AcquisitionsEditorHandler');
-import ('submission.editor.EditorAction');
+import('submission.editor.EditorAction');
 
 class EditorHandler extends AcquisitionsEditorHandler {
 	/**
@@ -61,7 +61,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$submission =& $monographDao->getMonograph($monographId);
 		$this->validate();
-		$this->setupTemplate(EDITOR_SECTION_SUBMISSIONS);
+		$this->setupTemplate(EDITOR_ARRANGEMENT_SUBMISSIONS);
 		
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
 		import('submission.common.Action');
@@ -78,7 +78,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 	 */
 	function submissions($args) {
 		$this->validate();
-		$this->setupTemplate(EDITOR_SECTION_HOME);
+		$this->setupTemplate(EDITOR_ARRANGEMENT_HOME);
 
 		$press =& Request::getPress();
 		$pressId = $press->getId();
@@ -167,16 +167,16 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$submission =& $this->submission;
 
-		$isSectionEditor = $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_ACQUISITIONS_EDITOR);
+		$isAcquisitionsEditor = $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_ACQUISITIONS_EDITOR);
 		$isEditor = $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_EDITOR);
 
-		if (isset($editorId) && $editorId != null && ($isEditor || $isSectionEditor)) {
-			// A valid section editor has already been chosen;
+		if (isset($editorId) && $editorId != null && ($isEditor || $isAcquisitionsEditor)) {
+			// A valid acquisitions editor has already been chosen;
 			// either prompt with a modifiable email or, if this
 			// has been done, send the email and store the editor
 			// selection.
 
-			$this->setupTemplate(EDITOR_SECTION_SUBMISSIONS, $monographId, 'summary');
+			$this->setupTemplate(EDITOR_ARRANGEMENT_SUBMISSIONS, $monographId, 'summary');
 
 			$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 
@@ -196,8 +196,8 @@ class EditorHandler extends AcquisitionsEditorHandler {
 				Request::redirect(null, null, 'submission', $monographId);
 			}
 		} else {
-			// Allow the user to choose a section editor or editor.
-			$this->setupTemplate(EDITOR_SECTION_SUBMISSIONS, $monographId, 'summary');
+			// Allow the user to choose a acquisitions editor or editor.
+			$this->setupTemplate(EDITOR_ARRANGEMENT_SUBMISSIONS, $monographId, 'summary');
 
 			$searchType = null;
 			$searchMatch = null;
@@ -288,17 +288,17 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		Request::redirect(null, null, 'submission', $monographId);
 	}
 
-	function setupTemplate($level = EDITOR_SECTION_HOME, $monographId = 0, $parentPage = null) {
+	function setupTemplate($level = EDITOR_ARRANGEMENT_HOME, $monographId = 0, $parentPage = null) {
 		parent::setupTemplate();
-		// Layout Editors have access to some Issue Mgmt functions. Make sure we give them
+		// Layout Editors have access to some management functions. Make sure we give them
 		// the appropriate breadcrumbs and sidebar.
 		$isLayoutEditor = Request::getRequestedPage() == 'layoutEditor';
 
 		$press =& Request::getPress();
 		$templateMgr =& TemplateManager::getManager();
 
-		if ($level==EDITOR_SECTION_HOME) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'));
-		else if ($level==EDITOR_SECTION_SUBMISSIONS) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'editor'), 'user.role.editor'), array(Request::url(null, 'editor', 'submissions'), 'manuscript.submissions'));
+		if ($level == EDITOR_ARRANGEMENT_HOME) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'));
+		else if ($level == EDITOR_ARRANGEMENT_SUBMISSIONS) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'editor'), 'user.role.editor'), array(Request::url(null, 'editor', 'submissions'), 'manuscript.submissions'));
 
 		import('submission.acquisitionsEditor.AcquisitionsEditorAction');
 		$submissionCrumb = AcquisitionsEditorAction::submissionBreadcrumb($monographId, $parentPage, 'editor');

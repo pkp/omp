@@ -35,7 +35,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$monographId = $args[0];
 		$reviewId = $args[1];
 
-		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler = new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
 		$submission =& $submissionReviewHandler->submission;
 		$user =& $submissionReviewHandler->user;
@@ -74,8 +74,8 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$commentId = $args[1];
 		$reviewId = Request::getUserVar('reviewId');
 
-		$monographDao = &DAORegistry::getDAO('ArticleDAO');
-		$monograph = $monographDao->getArticle($monographId);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph = $monographDao->getMonograph($monographId);
 
 		$submissionReviewHandler =& new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
@@ -97,8 +97,8 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$commentId = Request::getUserVar('commentId');
 		$reviewId = Request::getUserVar('reviewId');
 
-		$monographDao = &DAORegistry::getDAO('ArticleDAO');
-		$monograph = $monographDao->getArticle($monographId);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph = $monographDao->getMonograph($monographId);
 
 		$submissionReviewHandler =& new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
@@ -115,8 +115,8 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		ReviewerAction::saveComment($monograph, $comment, $emailComment);
 
 		// Refresh the comment
-		$monographCommentDao = &DAORegistry::getDAO('ArticleCommentDAO');
-		$comment = &$monographCommentDao->getArticleCommentById($commentId);
+		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$comment =& $monographCommentDao->getMonographCommentById($commentId);
 
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_PEER_REVIEW) {
@@ -132,7 +132,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$commentId = $args[1];
 		$reviewId = Request::getUserVar('reviewId');
 
-		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler = new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
 		$submission =& $submissionReviewHandler->submission;
 		$user =& $submissionReviewHandler->user;
@@ -159,8 +159,8 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 	function validate($user, $commentId) {
 		$isValid = true;
 
-		$monographCommentDao = &DAORegistry::getDAO('ArticleCommentDAO');
-		$comment = &$monographCommentDao->getArticleCommentById($commentId);
+		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$comment =& $monographCommentDao->getMonographCommentById($commentId);
 
 		if ($comment == null) {
 			$isValid = false;

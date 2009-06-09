@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionCommentsHandler
- * @ingroup pages_sectionEditor
+ * @ingroup pages_acquisitionsEditor
  *
  * @brief Handle requests for submission comments. 
  */

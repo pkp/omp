@@ -36,7 +36,7 @@ Reset my password: {$url}
 		<row>
 			<field name="email_key">PASSWORD_RESET</field>
 			<field name="subject">Password Reset</field>
-			<field name="body">Your password has been successfully reset for use with the {$siteTitle} web site. Please retain this username and password, as it is necessary for all work with the journal.
+			<field name="body">Your password has been successfully reset for use with the {$siteTitle} web site. Please retain this username and password, as it is necessary for all work with the press.
 
 Your username: {$username}
 Your new password: {$password}
@@ -47,7 +47,7 @@ Your new password: {$password}
 		<row>
 			<field name="email_key">USER_REGISTER</field>
 			<field name="subject">New User Registration</field>
-			<field name="body">Thank you for registering as a user with {$journalName}. Please keep track of your username and password, which are needed for all work with this journal.
+			<field name="body">Thank you for registering as a user with {$pressName}. Please keep track of your username and password, which are needed for all work with this press.
 
 Username: {$username}
 Password: {$password}

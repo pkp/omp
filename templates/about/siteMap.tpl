@@ -58,13 +58,7 @@
 						<li><a href="{url press=`$currentPress->getPath()` page="search" op="titles"}">{translate key="navigation.browseByTitle"}</a></li>
 					</ul>
 				</li>
-		<!--		<li>{translate key="issue.issues"}<br/>
-					<ul class="plain">
-						<li><a href="{url press=`$currentPress->getPath()` page="issue" op="current"}">{translate key="press.currentIssue"}</a></li>
-						<li><a href="{url press=`$currentPress->getPath()` page="issue" op="archive"}">{translate key="navigation.archives"}</a></li>
-					</ul>
-				</li>
-		-->		{foreach from=$navMenuItems item=navItem}
+				{foreach from=$navMenuItems item=navItem}
 					{if $navItem.url != '' && $navItem.name != ''}<li><a href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{url page=""}{$navItem.url|escape}{/if}">{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name|escape}{/if}</a></li>{/if}
 				{/foreach}
 			</ul>

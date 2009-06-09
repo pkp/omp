@@ -38,7 +38,7 @@ class OMPApplication extends PKPApplication {
 	 * Get the "context depth" of this application, i.e. the number of
 	 * parts of the URL after index.php that represent the context of
 	 * the current request (e.g. Journal [1], or Conference and
-	 * Scheduled Conference [2]).
+	 * Scheduled Conference [2], or Press [1]).
 	 * @return int
 	 */
 	function getContextDepth() {

@@ -21,7 +21,7 @@
 		<last_name>TestUser1LastName</last_name>
 		<gender>F</gender>
 		<affiliation>TestUser1Affiliation</affiliation>
-		<email>testuser1@ojsdev.bb</email>
+		<email>testuser1@ompdev.bb</email>
 		<country>DE</country>
 		<biography locale="de_DE">My biograhy (German) - TestUser1.</biography>
 		<biography locale="en_US">My biograhy (English) - TestUser1.</biography>
@@ -36,7 +36,7 @@
 		<last_name>TestUser2LastName</last_name>
 		<gender>F</gender>
 		<affiliation>TestUser2Affiliation</affiliation>
-		<email>testuser2@ojsdev.bb</email>
+		<email>testuser2@ompdev.bb</email>
 		<country>DE</country>
 		<biography locale="de_DE">My biograhy (German) - TestUser2.</biography>
 		<biography locale="en_US">My biograhy (English) - TestUser2.</biography>

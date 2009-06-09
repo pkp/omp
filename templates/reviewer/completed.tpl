@@ -31,7 +31,7 @@
 		<td>{if !$submission->getDeclined()}<a href="{url op="submission" path=$reviewId}" class="action">{/if}{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}{if !$submission->getDeclined()}</a>{/if}</td>
 		<td>
 			{if $submission->getDeclined()}
-				{translate key="sectionEditor.regrets"}
+				{translate key="acquisitionsEditor.regrets"}
 			{else}
 				{assign var=recommendation value=$submission->getRecommendation()}
 				{if $recommendation === '' || $recommendation === null}

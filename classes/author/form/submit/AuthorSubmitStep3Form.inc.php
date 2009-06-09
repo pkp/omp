@@ -9,7 +9,7 @@
  * @class AuthorSubmitStep3Form
  * @ingroup author_form_submit
  *
- * @brief Form for Step 3 of author article submission.
+ * @brief Form for Step 3 of author manuscript submission.
  */
 
 // $Id$
@@ -22,12 +22,12 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	/**
 	 * Constructor.
 	 */
-	function AuthorSubmitStep3Form($article) {
-		parent::AuthorSubmitForm($article);
+	function AuthorSubmitStep3Form($monograph) {
+		parent::AuthorSubmitForm($monograph);
 	}
 
 	/**
-	 * Initialize form data from current article.
+	 * Initialize form data from current monograph.
 	 */
 	function initData() {
 		if (isset($this->monograph)) {
@@ -59,7 +59,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 
-		// Get supplementary files for this article
+		// Get supplementary files for this monograph
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		if ($this->monograph->getSubmissionFileId() != null) {
 			$templateMgr->assign_by_ref('submissionFile', $monographFileDao->getMonographFile($this->monograph->getSubmissionFileId()));
@@ -123,11 +123,11 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	}
 
 	/**
-	 * Save changes to article.
-	 * @return int the article ID
+	 * Save changes to monograph.
+	 * @return int the monograph ID
 	 */
 	function execute() {
-		// Update article
+		// Update monograph
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $this->monograph;
 

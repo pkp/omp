@@ -35,7 +35,7 @@
 			{if $submission->getUserIdBySignoffType('SIGNOFF_PRODUCTION') && $initialProductionFile}
 				{url|assign:"url" op="notifyProductionEditor" monographId=$submission->getMonographId()}
 				{if $initialCopyeditSignoff->getDateUnderway()}
-					{translate|escape:"javascript"|assign:"confirmText" key="sectionEditor.copyedit.confirmRenotify"}
+					{translate|escape:"javascript"|assign:"confirmText" key="acquisitionsEditor.copyedit.confirmRenotify"}
 					{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
 				{else}
 					{icon name="mail" url=$url}

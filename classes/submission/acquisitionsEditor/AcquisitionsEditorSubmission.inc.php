@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @file classes/submission/sectionEditor/SectionEditorSubmission.inc.php
+ * @file classes/submission/acquisitionsEditor/AcquisitionsEditorSubmission.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SectionEditorSubmission
+ * @class AcquisitionsEditorSubmission
  * @ingroup submission
- * @see SectionEditorSubmissionDAO
+ * @see AcquisitionsEditorSubmissionDAO
  *
- * @brief SectionEditorSubmission class.
+ * @brief AcquisitionsEditorSubmission class.
  */
 
 // $Id$

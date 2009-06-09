@@ -78,9 +78,9 @@
 				&#187;
 				{if $allowRegAuthor}
 					{url|assign:"submitUrl" page="author" op="submit"}
-					<a href="{url op="become" path="author" source=$submitUrl}">{translate key="user.noRoles.submitArticle"}</a>
+					<a href="{url op="become" path="author" source=$submitUrl}">{translate key="user.noRoles.submitMonograph"}</a>
 				{else}{* $allowRegAuthor *}
-					{translate key="user.noRoles.submitArticleRegClosed"}
+					{translate key="user.noRoles.submitMonographRegClosed"}
 				{/if}{* $allowRegAuthor *}
 			</li>
 			<li>

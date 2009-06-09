@@ -15,16 +15,16 @@
 // $Id$
 
 
-import("submission.form.comment.CommentForm");
+import('submission.form.comment.CommentForm');
 
 class LayoutCommentForm extends CommentForm {
 
 	/**
 	 * Constructor.
-	 * @param $article object
+	 * @param $monograph object
 	 */
-	function LayoutCommentForm($article, $roleId) {
-		parent::CommentForm($article, COMMENT_TYPE_LAYOUT, $roleId, $article->getArticleId());
+	function LayoutCommentForm($monograph, $roleId) {
+		parent::CommentForm($monograph, COMMENT_TYPE_LAYOUT, $roleId, $monograph->getMonographId());
 	}
 
 	/**
@@ -37,7 +37,7 @@ class LayoutCommentForm extends CommentForm {
 		$templateMgr->assign('commentType', 'layout');
 		$templateMgr->assign('hiddenFormParams', 
 			array(
-				'articleId' => $this->article->getArticleId()
+				'monographId' => $this->monograph->getMonographId()
 			)
 		);
 
@@ -64,7 +64,7 @@ class LayoutCommentForm extends CommentForm {
 	function email() {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$journal =& Request::getJournal();
+		$press =& Request::getPress();
 
 		// Create list of recipients:
 
@@ -72,12 +72,12 @@ class LayoutCommentForm extends CommentForm {
 		// the opposite of whomever posted the comment.
 		$recipients = array();
 
-		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SECTION_EDITOR) {
+		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_ACQUISITIONS_EDITOR) {
 			// Then add layout editor
 			$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByArticleId($this->article->getArticleId());
+			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($this->monograph->getMonographId());
 
-			// Check to ensure that there is a layout editor assigned to this article.
+			// Check to ensure that there is a layout editor assigned to this monograph.
 			if ($layoutAssignment != null && $layoutAssignment->getEditorId() > 0) {
 				$user =& $userDao->getUser($layoutAssignment->getEditorId());
 
@@ -86,7 +86,7 @@ class LayoutCommentForm extends CommentForm {
 		} else {
 			// Then add editor
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-			$editAssignments =& $editAssignmentDao->getByIdsByArticleId($this->article->getArticleId());
+			$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getMonographId());
 			$editorAddresses = array();
 			while (!$editAssignments->eof()) {
 				$editAssignment =& $editAssignments->next();
@@ -94,10 +94,10 @@ class LayoutCommentForm extends CommentForm {
 				unset($editAssignment);
 			}
 
-			// If no editors are currently assigned to this article,
-			// send the email to all editors for the journal
+			// If no editors are currently assigned to this monograph,
+			// send the email to all editors for the press
 			if (empty($editorAddresses)) {
-				$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $journal->getJournalId());
+				$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getPressId());
 				while (!$editors->eof()) {
 					$editor =& $editors->next();
 					$editorAddresses[$editor->getEmail()] = $editor->getFullName();

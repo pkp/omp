@@ -64,8 +64,8 @@ class DesignerSubmissionDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT
 				a.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
 			FROM monographs a
 				INNER JOIN signoffs sc ON (sc.assoc_id = a.monograph_id AND sc.assoc_type = ?)
 				LEFT JOIN acquisitions_arrangements s ON s.arrangement_id = a.arrangement_id
@@ -273,8 +273,8 @@ class DesignerSubmissionDAO extends DAO {
 
 		$sql = 'SELECT DISTINCT
 				m.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
 			FROM
 				monographs m
 				INNER JOIN monograph_authors aa ON (aa.monograph_id = m.monograph_id)
@@ -327,7 +327,7 @@ class DesignerSubmissionDAO extends DAO {
 			FROM	monographs a
 				LEFT JOIN layouted_assignments l ON (l.monograph_id = a.monograph_id)
 				LEFT JOIN proof_assignments p ON (p.monograph_id = a.monograph_id)
-				LEFT JOIN sections s ON (s.arrangement_id = a.arrangement_id)
+				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
 			WHERE	l.editor_id = ? AND
 				a.press_id = ? AND
 				l.date_notified IS NOT NULL';

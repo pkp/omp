@@ -165,7 +165,7 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $status boolean true if queued, false if archived.
 	 * @return array EditorSubmission
 	 */
-	function &getByPressId($pressId, $status = true, $sectionId = 0, $rangeInfo = null) {
+	function &getByPressId($pressId, $status = true, $arrangementId = 0, $rangeInfo = null) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$params = array(
@@ -180,7 +180,7 @@ class EditorSubmissionDAO extends DAO {
 			$pressId,
 			$status
 		);
-		if ($sectionId) $params[] = $sectionId;
+		if ($arrangementId) $params[] = $arrangementId;
 
 		$sql = 'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
@@ -194,7 +194,7 @@ class EditorSubmissionDAO extends DAO {
 				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	a.press_id = ?
 				AND a.status = ?' .
-				($sectionId?' AND a.arrangement_id = ?':'') .
+				($arrangementId?' AND a.arrangement_id = ?':'') .
 			' ORDER BY monograph_id ASC';
 
 		$result =& $this->retrieveRange($sql, $params, $rangeInfo);
@@ -205,7 +205,7 @@ class EditorSubmissionDAO extends DAO {
 	/**
 	 * Get all unfiltered submissions for a press.
 	 * @param $pressId int
-	 * @param $sectionId int
+	 * @param $arrangementId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
@@ -217,15 +217,15 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array result
 	 */
-	function &getUnfilteredEditorSubmissions($pressId, $sectionId = 0, $editorId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $status = true, $rangeInfo = null) {
+	function &getUnfilteredEditorSubmissions($pressId, $arrangementId = 0, $editorId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $status = true, $rangeInfo = null) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$params = array(
-			'title', // Section title
+			'title', // Arrangement title
 			$primaryLocale,
 			'title',
 			$locale,
-			'abbrev', // Section abbrev
+			'abbrev', // Arrangement abbrev
 			$primaryLocale,
 			'abbrev',
 			$locale,
@@ -305,8 +305,8 @@ class EditorSubmissionDAO extends DAO {
 		}/*
 		$sql = 'SELECT DISTINCT
 				a.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
 			FROM
 				monographs a
 				INNER JOIN monograph_authors aa ON (aa.monograph_id = a.monograph_id)
@@ -350,9 +350,9 @@ class EditorSubmissionDAO extends DAO {
 /*		if ($status === true) $sql .= ' AND a.status = ' . STATUS_QUEUED;
 		elseif ($status === false) $sql .= ' AND a.status <> ' . STATUS_QUEUED;
 
-		if ($sectionId) {
+		if ($arrangementId) {
 			$searchSql .= ' AND a.arrangement_id = ?';
-			$params[] = $sectionId;
+			$params[] = $arrangementId;
 		}
 
 		if ($editorId) {
@@ -411,7 +411,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	/**
 	 * Get all submissions unassigned for a press.
 	 * @param $pressId int
-	 * @param $sectionId int
+	 * @param $arrangementId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
@@ -422,11 +422,11 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getUnassigned($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getUnassigned($pressId, $arrangementId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($pressId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredEditorSubmissions($pressId, $arrangementId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		while (!$result->EOF) {
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
@@ -451,7 +451,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	/**
 	 * Get all submissions in review for a press.
 	 * @param $pressId int
-	 * @param $sectionId int
+	 * @param $arrangementId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
@@ -462,11 +462,11 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getInReview($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getInReview($pressId, $arrangementId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($pressId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredEditorSubmissions($pressId, $arrangementId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		while (!$result->EOF) {
@@ -510,7 +510,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	/**
 	 * Get all submissions in editing for a press.
 	 * @param $pressId int
-	 * @param $sectionId int
+	 * @param $arrangementId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
@@ -521,11 +521,11 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getInEditing($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getInEditing($pressId, $arrangementId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($pressId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredEditorSubmissions($pressId, $arrangementId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		while (!$result->EOF) {
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
@@ -567,7 +567,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	/**
 	 * Get all submissions archived for a press.
 	 * @param $pressId int
-	 * @param $sectionId int
+	 * @param $arrangementId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
@@ -578,10 +578,10 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getArchives($pressId, $sectionId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getArchives($pressId, $arrangementId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 
-		$result = $this->getUnfilteredEditorSubmissions($pressId, $sectionId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
+		$result = $this->getUnfilteredEditorSubmissions($pressId, $arrangementId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
 		while (!$result->EOF) {
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 			$monographId = $editorSubmission->getMonographId();

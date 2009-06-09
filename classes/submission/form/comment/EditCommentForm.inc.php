@@ -118,7 +118,7 @@ class EditCommentForm extends Form {
 	function emailHelper() {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$press =& Request::getJournal();
+		$press =& Request::getPress();
 
 		$recipients = array();
 
@@ -134,7 +134,7 @@ class EditCommentForm extends Form {
 		// If no editors are currently assigned, send this message to
 		// all of the press's editors.
 		if (empty($editorAddresses)) {
-			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getJournalId());
+			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getId());
 			while (!$editors->eof()) {
 				$editor =& $editors->next();
 				$editorAddresses[$editor->getEmail()] = $editor->getFullName();
@@ -182,7 +182,7 @@ class EditCommentForm extends Form {
 
 		switch ($this->comment->getCommentType()) {
 		case COMMENT_TYPE_PEER_REVIEW:
-			if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SECTION_EDITOR) {
+			if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_ACQUISITIONS_EDITOR) {
 				// Then add reviewer
 				if ($reviewer != null) {
 					$recipients = array_merge($recipients, array($reviewer->getEmail() => $reviewer->getFullName()));
@@ -191,7 +191,7 @@ class EditCommentForm extends Form {
 			break;
 
 		case COMMENT_TYPE_EDITOR_DECISION:
-			if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SECTION_EDITOR) {
+			if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_ACQUISITIONS_EDITOR) {
 				// Then add author
 				if (isset($author)) $recipients = array_merge($recipients, array($author->getEmail() => $author->getFullName()));
 			} else {
@@ -201,7 +201,7 @@ class EditCommentForm extends Form {
 			break;
 
 		case COMMENT_TYPE_COPYEDIT:
-			if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SECTION_EDITOR) {
+			if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_ACQUISITIONS_EDITOR) {
 				// Then add copyeditor and author
 				if ($copyeditor != null) {
 					$recipients = array_merge($recipients, array($copyeditor->getEmail() => $copyeditor->getFullName()));
@@ -225,7 +225,7 @@ class EditCommentForm extends Form {
 			}
 			break;
 		case COMMENT_TYPE_LAYOUT:
-			if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SECTION_EDITOR) {
+			if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_ACQUISITIONS_EDITOR) {
 				// Then add layout editor
 
 				// Check to ensure that there is a layout editor assigned to this monograph.
@@ -238,7 +238,7 @@ class EditCommentForm extends Form {
 			}
 			break;
 		case COMMENT_TYPE_PROOFREAD:
-			if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SECTION_EDITOR) {
+			if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_ACQUISITIONS_EDITOR) {
 				// Then add layout editor, proofreader and author
 				if ($layoutEditor != null) {
 					$recipients = array_merge($recipients, array($layoutEditor->getEmail() => $layoutEditor->getFullName()));
@@ -295,7 +295,7 @@ class EditCommentForm extends Form {
 	function email($recipients) {
 		import('mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($this->monograph, 'SUBMISSION_COMMENT');
-		$press =& Request::getJournal();
+		$press =& Request::getPress();
 		if ($press) $email->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 
 		foreach ($recipients as $emailAddress => $name) {

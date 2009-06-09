@@ -14,11 +14,11 @@
  
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.generic.customLocale.name">Plugiciel de langue personnalisée</message>
-	<message key="plugins.generic.customLocale.description">Ce plugiciel permet de personnaliser le texte de l'interface utilisateur par défaut utilisé par OJS.</message>
+	<message key="plugins.generic.customLocale.description">Ce plugiciel permet de personnaliser le texte de l'interface utilisateur par défaut utilisé par OMP.</message>
 
 	<message key="plugins.generic.customLocale.longDescription">Cette page liste toutes les langues présentement installées pour la revue.</message>
 	<message key="plugins.generic.customLocale.localeDescription">Cette page liste tous les fichiers qui sont disponibles pour la langue sélectionnée.</message>
-	<message key="plugins.generic.customLocale.fileDescription">Entrer le texte dans la zone de texte personnalisée correspondante. Laisser la zone de texte vide si le texte OJS par défaut devrait être utilisé.</message>
+	<message key="plugins.generic.customLocale.fileDescription">Entrer le texte dans la zone de texte personnalisée correspondante. Laisser la zone de texte vide si le texte OMP par défaut devrait être utilisé.</message>
 	<message key="plugins.generic.customLocale.localeName">Nom de la langue</message>
 	<message key="plugins.generic.customLocale.localeKey">Clé</message>
 	<message key="plugins.generic.customLocale.localeKeyValue">Valeur</message>

@@ -59,7 +59,7 @@ Cordialement.
 			<field name="subject">Inscription d'un nouvel utilisateur</field>
 			<field name="body">Bonjour,
 
-Nous vous remercions de vous être inscrit en tant qu'utilisateur pour {$journalName}. Veuillez conserver précieusement votre nom d'utilisateur et votre mot de passe.  Vous en aurez besoin pour toutes vos actions dans la revue.
+Nous vous remercions de vous être inscrit en tant qu'utilisateur pour {$pressName}. Veuillez conserver précieusement votre nom d'utilisateur et votre mot de passe.  Vous en aurez besoin pour toutes vos actions dans la revue.
 
 Nom d'utilisateur : {$username}
 Mot de passe : {$password}
@@ -75,7 +75,7 @@ Cordialement.
 			<field name="subject">Validez votre compte</field>
 			<field name="body">{$userFullName}
 
-Vous avez créé un compte avec {$journalName}, mais avant de pouvoir commencer à l'utiliser, vous devez valider votre compte de courriel. Pour le faire, suivez simplement le lien ci-dessous :
+Vous avez créé un compte avec {$pressName}, mais avant de pouvoir commencer à l'utiliser, vous devez valider votre compte de courriel. Pour le faire, suivez simplement le lien ci-dessous :
 
 
 {$activateUrl}

@@ -70,7 +70,7 @@ class ProofreaderSubmission extends Monograph {
 
 
 	/**
-	 * Get the galleys for an monograph.
+	 * Get the galleys for a monograph.
 	 * @return array MonographGalley
 	 */
 	function &getGalleys() {
@@ -79,7 +79,7 @@ class ProofreaderSubmission extends Monograph {
 	}
 
 	/**
-	 * Set the galleys for an monograph.
+	 * Set the galleys for a monograph.
 	 * @param $galleys array MonographGalley
 	 */
 	function setGalleys(&$galleys) {

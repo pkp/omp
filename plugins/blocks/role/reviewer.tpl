@@ -15,7 +15,7 @@
 {if $isUserLoggedIn}
 	<div class="block" id="sidebarReviewer">
 		<span class="blockTitle">{translate key="user.role.reviewer"}</span>
-		<span class="blockSubtitle">{translate key="article.submissions"}</span>
+		<span class="blockSubtitle">{translate key="monograph.submissions"}</span>
 		<ul>
 			<li><a href="{url op="index" path="active"}">{translate key="common.queue.short.active"}</a>&nbsp;({if $submissionsCount[0]}{$submissionsCount[0]}{else}0{/if})</li>
 			<li><a href="{url op="index" path="completed"}">{translate key="common.queue.short.completed"}</a>&nbsp;({if $submissionsCount[1]}{$submissionsCount[1]}{else}0{/if})</li>

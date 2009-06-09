@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Header for the article submission pages.
+ * Header for the manuscript submission pages.
  *
  * $Id$
  *}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE toc SYSTEM "../../../../lib/pkp/dtd/helpToc.dtd">
+
+<!--
+  * 000000.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * table of contents for Press Management. 
+  *
+  * $Id$
+  -->
+
+<toc id="press/toc/000000" locale="en_US" title="Press Management" parent_topic="press/topic/000000">
+	<topic id="press/topic/000001" title="Management Pages" />
+	<topic id="press/topic/000002" title="Users" />
+	<topic id="press/topic/000003" title="Roles" />
+	<breadcrumb url="press/topic/000000" title="Press Management" />
+</toc>

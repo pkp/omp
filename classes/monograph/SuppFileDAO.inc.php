@@ -69,7 +69,7 @@ class SuppFileDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all supplementary files for an monograph.
+	 * Retrieve all supplementary files for a monograph.
 	 * @param $monographId int
 	 * @return array SuppFiles
 	 */
@@ -266,7 +266,7 @@ class SuppFileDAO extends DAO {
 	}
 
 	/**
-	 * Sequentially renumber supplementary files for an monograph in their sequence order.
+	 * Sequentially renumber supplementary files for a monograph in their sequence order.
 	 * @param $monographId int
 	 */
 	function resequenceSuppFiles($monographId) {
@@ -289,7 +289,7 @@ class SuppFileDAO extends DAO {
 	}
 
 	/**
-	 * Get the the next sequence number for an monograph's supplementary files (i.e., current max + 1).
+	 * Get the the next sequence number for a monograph's supplementary files (i.e., current max + 1).
 	 * @param $monographId int
 	 * @return int
 	 */

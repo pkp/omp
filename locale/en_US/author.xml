@@ -36,7 +36,7 @@
 	<message key="author.submit">New Submission</message>
 	<message key="author.track">Active Submissions</message>
 	<message key="author.competingInterests"><![CDATA[Competing&nbsp;interests <a target="_new" class="action" href="{$competingInterestGuidelinesUrl}">CI&nbsp;Policy</a>]]></message>
-	<message key="author.submit.submitArticle">Submit an Article</message>
+	<message key="author.submit.submitMonograph">Submit an Monograph</message>
 	<message key="author.submit.stepsToSubmit">Five Steps to Submit</message>
 	<message key="author.submit.startHereTitle">Start a New Submission</message>
 	<message key="author.submit.startHereLink"><![CDATA[<a href="{$submitUrl}" class="action">Click here</a> to go to step one of the five-step submission process.]]></message>
@@ -56,7 +56,7 @@
 	<message key="author.submit.cancelSubmission">You can complete this submission at a later date by selecting Active Submissions from the Author home.</message>
 	<message key="author.submit.notAccepting">This press is not accepting submissions at this time.</message>
 	<message key="author.submit.requestWaiver">Request Waiver</message>
-	<message key="author.submit.qualityForWaiver">Please consider waiving the Article Submission Fee for this article</message>
+	<message key="author.submit.qualityForWaiver">Please consider waiving the Monograph Submission Fee for this monograph</message>
 	<message key="author.submit.addReasonsForWaiver">Please use the comments box below to indicate why fees should be waived.</message>
 	<message key="author.submissions.uploadCopyeditedVersion">Upload Copyedited Version</message>
 	<message key="author.submissions.proofreadingCorrections">Proofreading Corrections</message>
@@ -90,8 +90,8 @@
 	<message key="author.submit.languageInstructions"><![CDATA[English=en; French=fr; Spanish=es. <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php" target="_blank">Additional codes</a>.]]></message>
 	<message key="author.submit.form.authorRequired">At least one author is required.</message>
 	<message key="author.submit.form.authorRequiredFields">The first name, last name, and email address of each author is required.</message>
-	<message key="author.submit.form.titleRequired">Please enter the title of your article.</message>
-	<message key="author.submit.form.abstractRequired">Please enter the abstract of your article.</message>
+	<message key="author.submit.form.titleRequired">Please enter the title of your monograph.</message>
+	<message key="author.submit.form.abstractRequired">Please enter the abstract of your monograph.</message>
 	<message key="author.submit.submissionFile">Submission File</message>
 	<message key="author.submit.uploadSubmissionFile">Upload submission file</message>
 	<message key="author.submit.replaceSubmissionFile">Replace submission file</message>
@@ -136,8 +136,8 @@
 	<message key="author.submit.finishSubmission">Finish Submission</message>
 	<message key="author.submit.submissionComplete">Submission complete. Thank you for your interest in publishing with {$pressName}.</message>
 	<message key="author.submit.expedite"><![CDATA[If this submission is in a format that is ready to be published without further review, editing, or layout work, it can be placed directly in the last stage of the Editing queue by <a href="{$expediteUrl}" class="action">Clicking here</a>. (Note: Only press editors have this option for their submissions.)]]></message>
-	<message key="author.article.uploadAuthorVersion">Upload Author Version</message>
-	<message key="author.article.copyeditedFile">Copyedited File</message>
-	<message key="author.article.authorRevisedFile">Author File</message>
+	<message key="author.monograph.uploadAuthorVersion">Upload Author Version</message>
+	<message key="author.monograph.copyeditedFile">Copyedited File</message>
+	<message key="author.monograph.authorRevisedFile">Author File</message>
 	<message key="author.submit.authorSubmitLoginMessage">A user account is required to submit to this press. This allows our editors to track your submissions and contact you when the status of your submission changes, or if additional information is required from you.</message>
 </locale>

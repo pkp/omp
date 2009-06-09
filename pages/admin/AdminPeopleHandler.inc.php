@@ -25,7 +25,7 @@ class AdminPeopleHandler extends AdminHandler {
 	 }
 	 
 	/**
-	 * Allow the Site Administrator to merge user accounts, including attributed articles etc.
+	 * Allow the Site Administrator to merge user accounts, including attributed monographs etc.
 	 */
 	function mergeUsers($args) {
 		$this->validate();
@@ -42,11 +42,11 @@ class AdminPeopleHandler extends AdminHandler {
 		if (!empty($oldUserId) && !empty($newUserId)) {
 			// Both user IDs have been selected. Merge the accounts.
 
-			$articleDao =& DAORegistry::getDAO('ArticleDAO');
-			foreach ($articleDao->getArticlesByUserId($oldUserId) as $article) {
-				$article->setUserId($newUserId);
-				$articleDao->updateArticle($article);
-				unset($article);
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			foreach ($monographDao->getMonographsByUserId($oldUserId) as $monograph) {
+				$monograph->setUserId($newUserId);
+				$monographDao->updateMonograph($monograph);
+				unset($monograph);
 			}
 
 			$commentDao =& DAORegistry::getDAO('CommentDAO');
@@ -56,12 +56,12 @@ class AdminPeopleHandler extends AdminHandler {
 				unset($comment);
 			}
 
-			$articleNoteDao =& DAORegistry::getDAO('ArticleNoteDAO');
-			$articleNotes =& $articleNoteDao->getArticleNotesByUserId($oldUserId);
-			while ($articleNote =& $articleNotes->next()) {
-				$articleNote->setUserId($newUserId);
-				$articleNoteDao->updateArticleNote($articleNote);
-				unset($articleNote);
+			$monographNoteDao =& DAORegistry::getDAO('MonographNoteDAO');
+			$monographNotes =& $monographNoteDao->getMonographNotesByUserId($oldUserId);
+			while ($monographNote =& $monographNotes->next()) {
+				$monographNote->setUserId($newUserId);
+				$monographNoteDao->updateMonographNote($monographNote);
+				unset($monographNote);
 			}
 
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
@@ -110,16 +110,16 @@ class AdminPeopleHandler extends AdminHandler {
 				unset($proofreaderSubmission);
 			}
 
-			$articleEmailLogDao =& DAORegistry::getDAO('ArticleEmailLogDAO');
-			$articleEmailLogDao->transferArticleLogEntries($oldUserId, $newUserId);
-			$articleEventLogDao =& DAORegistry::getDAO('ArticleEventLogDAO');
-			$articleEventLogDao->transferArticleLogEntries($oldUserId, $newUserId);
+			$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
+			$monographEmailLogDao->transferMonographLogEntries($oldUserId, $newUserId);
+			$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
+			$monographEventLogDao->transferMonographLogEntries($oldUserId, $newUserId);
 
-			$articleCommentDao =& DAORegistry::getDAO('ArticleCommentDAO');
-			foreach ($articleCommentDao->getArticleCommentsByUserId($oldUserId) as $articleComment) {
-				$articleComment->setAuthorId($newUserId);
-				$articleCommentDao->updateArticleComment($articleComment);
-				unset($articleComment);
+			$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+			foreach ($monographCommentDao->getMonographCommentsByUserId($oldUserId) as $monographComment) {
+				$monographComment->setAuthorId($newUserId);
+				$monographCommentDao->updateMonographComment($monographComment);
+				unset($monographComment);
 			}
 
 			$accessKeyDao =& DAORegistry::getDAO('AccessKeyDAO');
@@ -138,8 +138,8 @@ class AdminPeopleHandler extends AdminHandler {
 			$userSettingsDao->deleteSettings($oldUserId);
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 			$groupMembershipDao->deleteMembershipByUserId($oldUserId);
-			$sectionEditorsDao =& DAORegistry::getDAO('SectionEditorsDAO');
-			$sectionEditorsDao->deleteEditorsByUserId($oldUserId);
+			$acquisitionsEditorsDao =& DAORegistry::getDAO('AcquisitionsEditorsDAO');
+			$acquisitionsEditorsDao->deleteEditorsByUserId($oldUserId);
 
 			// Transfer old user's roles
 			$roles =& $roleDao->getRolesByUserId($oldUserId);

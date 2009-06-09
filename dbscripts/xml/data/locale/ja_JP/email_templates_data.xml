@@ -51,7 +51,7 @@
 		<row>
 			<field name="email_key">USER_REGISTER</field>
 			<field name="subject">新規ユーザの登録</field>
-			<field name="body">雑誌『{$journalName}』への登録ありがとうございました。
+			<field name="body">雑誌『{$pressName}』への登録ありがとうございました。
 
 ユーザ名とパスワードは、この雑誌のすべての処理で必要となりますので、大切に保管してください。
 

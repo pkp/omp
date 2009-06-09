@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/submission/sectionEditor/AcquisitionsEditorSubmissionDAO.inc.php
+ * @file classes/submission/acquisitionsEditor/AcquisitionsEditorSubmissionDAO.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -54,7 +54,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve a section editor submission by monograph ID.
+	 * Retrieve a acquisitions editor submission by monograph ID.
 	 * @param $monographId int
 	 * @return EditorSubmission
 	 */
@@ -243,7 +243,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Update an existing section editor submission.
+	 * Update an existing acquisitions editor submission.
 	 * @param $acquisitionsEditorSubmission AcquisitionsEditorSubmission
 	 */
 	function updateAcquisitionsEditorSubmission(&$acquisitionsEditorSubmission) {
@@ -356,7 +356,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Get all section editor submissions for a section editor.
+	 * Get all acquisitions editor submissions for a acquisitions editor.
 	 * @param $acquisitionsEditorId int
 	 * @param $status boolean true if active, false if completed.
 	 * @return array AcquisitionsEditorSubmission
@@ -369,8 +369,8 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		$result =& $this->retrieve(
 			'SELECT	a.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev,
+				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev,
 				MAX(rr.round) AS current_round,
 				rr.review_revision AS review_revision
 			FROM	monographs a
@@ -410,9 +410,9 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve unfiltered section editor submissions
+	 * Retrieve unfiltered acquisitions editor submissions
 	 */
-	function &getUnfilteredAcquisitionsEditorSubmissions($acquisitionsEditorId, $pressId, $sectionId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $status = true, $additionalWhereSql = '', $rangeInfo = null) {
+	function &getUnfilteredAcquisitionsEditorSubmissions($acquisitionsEditorId, $pressId, $arrangementId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $status = true, $additionalWhereSql = '', $rangeInfo = null) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 
@@ -519,8 +519,8 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 				a.*,
 				e.can_review AS can_review,
 				e.can_edit AS can_edit,
-				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
 			FROM
 				monographs a
 				INNER JOIN monograph_authors aa ON (aa.monograph_id = a.monograph_id)
@@ -545,8 +545,8 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		if ($status) $sql .= ' AND a.status = ' . STATUS_QUEUED;
 		else $sql .= ' AND a.status <> ' . STATUS_QUEUED;
 
-		if ($sectionId) {
-			$params[] = $sectionId;
+		if ($arrangementId) {
+			$params[] = $arrangementId;
 			$searchSql .= ' AND a.arrangement_id = ?';
 		}
 
@@ -561,7 +561,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	/**
 	 * Get all submissions in review for a press.
 	 * @param $pressId int
-	 * @param $sectionId int
+	 * @param $arrangementId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains" or "startsWith"
 	 * @param $search String to look in $searchField for
@@ -571,11 +571,11 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getAcquisitionsEditorSubmissionsInReview($acquisitionsEditorId, $pressId, $sectionId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getAcquisitionsEditorSubmissionsInReview($acquisitionsEditorId, $pressId, $arrangementId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredAcquisitionsEditorSubmissions($acquisitionsEditorId, $pressId, $sectionId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true, 'e.can_review = 1');
+		$result = $this->getUnfilteredAcquisitionsEditorSubmissions($acquisitionsEditorId, $pressId, $arrangementId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true, 'e.can_review = 1');
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -610,7 +610,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	/**
 	 * Get all submissions in editing for a press.
 	 * @param $pressId int
-	 * @param $sectionId int
+	 * @param $arrangementId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains" or "startsWith"
 	 * @param $search String to look in $searchField for
@@ -620,11 +620,11 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getAcquisitionsEditorSubmissionsInEditing($acquisitionsEditorId, $pressId, $sectionId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getAcquisitionsEditorSubmissionsInEditing($acquisitionsEditorId, $pressId, $arrangementId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredAcquisitionsEditorSubmissions($acquisitionsEditorId, $pressId, $sectionId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true, 'e.can_edit = 1');
+		$result = $this->getUnfilteredAcquisitionsEditorSubmissions($acquisitionsEditorId, $pressId, $arrangementId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true, 'e.can_edit = 1');
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -657,7 +657,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	/**
 	 * Get all submissions in archives for a press.
 	 * @param $pressId int
-	 * @param $sectionId int
+	 * @param $arrangementId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains" or "startsWith"
 	 * @param $search String to look in $searchField for
@@ -667,10 +667,10 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getAcquisitionsEditorSubmissionsArchives($acquisitionsEditorId, $pressId, $sectionId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getAcquisitionsEditorSubmissionsArchives($acquisitionsEditorId, $pressId, $arrangementId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$submissions = array();
 
-		$result = $this->getUnfilteredAcquisitionsEditorSubmissions($acquisitionsEditorId, $pressId, $sectionId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, '', $rangeInfo);
+		$result = $this->getUnfilteredAcquisitionsEditorSubmissions($acquisitionsEditorId, $pressId, $arrangementId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, '', $rangeInfo);
 
 		while (!$result->EOF) {
 			$submission =& $this->_fromRow($result->GetRowAssoc(false));
@@ -840,7 +840,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve a list of all reviewers along with information about their current status with respect to an monograph's current round.
+	 * Retrieve a list of all reviewers along with information about their current status with respect to a monograph's current round.
 	 * @param $pressId int
 	 * @param $monographId int
 	 * @param $round int

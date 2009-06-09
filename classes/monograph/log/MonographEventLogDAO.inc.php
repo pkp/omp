@@ -49,7 +49,7 @@ class MonographEventLogDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all log entries for an monograph.
+	 * Retrieve all log entries for a monograph.
 	 * @param $monographId int
 	 * @return DAOResultFactory containing matching MonographEventLogEntry MonographEventLogEntry ordered by sequence
 	 */
@@ -59,7 +59,7 @@ class MonographEventLogDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all log entries for an monograph matching the specified association.
+	 * Retrieve all log entries for a monograph matching the specified association.
 	 * @param $monographId int
 	 * @param $assocType int
 	 * @param $assocId int
@@ -86,7 +86,7 @@ class MonographEventLogDAO extends DAO {
 	}
 
 	/**
-	 * Internal function to return an MonographEventLogEntry object from a row.
+	 * Internal function to return a MonographEventLogEntry object from a row.
 	 * @param $row array
 	 * @return MonographEventLogEntry
 	 */
@@ -142,7 +142,7 @@ class MonographEventLogDAO extends DAO {
 	}
 
 	/**
-	 * Delete a single log entry for an monograph.
+	 * Delete a single log entry for a monograph.
 	 * @param $logId int
 	 * @param $monographId int optional
 	 */
@@ -161,7 +161,7 @@ class MonographEventLogDAO extends DAO {
 	}
 
 	/**
-	 * Delete all log entries for an monograph.
+	 * Delete all log entries for a monograph.
 	 * @param $monographId int
 	 */
 	function deleteMonographLogEntries($monographId) {

@@ -111,7 +111,7 @@ class SuppFileForm extends Form {
 
 		$publicSuppFileId = $this->getData('publicSuppFileId');
 		if ($publicSuppFileId && $suppFileDao->suppFileExistsByPublicId($publicSuppFileId, $this->suppFileId, $press->getId())) {
-			$this->addError('publicIssueId', Locale::translate('author.suppFile.suppFilePublicIdentificationExists'));
+			$this->addError('publicMonographId', Locale::translate('author.suppFile.suppFilePublicIdentificationExists'));
 			$this->addErrorField('publicSuppFileId');
 		}
 
@@ -190,7 +190,7 @@ class SuppFileForm extends Form {
 			if ($monographFileManager->uploadedFileExists($fileName)) {
 				$monographFileManager->uploadSuppFile($fileName, $suppFile->getFileId());
 //				import('search.MonographSearchIndex');
-//				MonographSearchIndex::updateFileIndex($this->monograph->getMonographId(), ARTICLE_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
+//				MonographSearchIndex::updateFileIndex($this->monograph->getMonographId(), MONOGRAPH_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
 			}
 
 			// Index metadata
@@ -205,7 +205,7 @@ class SuppFileForm extends Form {
 			if ($monographFileManager->uploadedFileExists($fileName)) {
 				$fileId = $monographFileManager->uploadSuppFile($fileName);
 //				import('search.MonographSearchIndex');
-//				MonographSearchIndex::updateFileIndex($this->monograph->getMonographId(), ARTICLE_SEARCH_SUPPLEMENTARY_FILE, $fileId);
+//				MonographSearchIndex::updateFileIndex($this->monograph->getMonographId(), MONOGRAPH_SEARCH_SUPPLEMENTARY_FILE, $fileId);
 			} else {
 				$fileId = 0;
 			}

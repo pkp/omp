@@ -57,7 +57,6 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 					'abstract' => $monograph->getAbstract(null), // Localized
 					'language' => $monograph->getLanguage(),
 					'sponsor' => $monograph->getSponsor(null), // Localized
-					'section' => 1//$sectionDao->getSection($monograph->getSectionId())
 				)
 			);
 		}	
@@ -86,11 +85,6 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 			$userVars =& array_merge($formComponent->listUserVars(),$userVars);
 		}
 		$this->readUserVars($userVars);
-		// Load the section. This is used in the step 2 form to
-		// determine whether or not to display indexing options.
-//		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-//		$this->_data['section'] =& $sectionDao->getSection($this->monograph->getSectionId());
-
 	}
 
 	/**

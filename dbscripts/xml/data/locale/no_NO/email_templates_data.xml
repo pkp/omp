@@ -47,7 +47,7 @@ Ditt nye passord: {$password}
 		<row>
 			<field name="email_key">USER_REGISTER</field>
 			<field name="subject">Du er nå registrert som bruker</field>
-			<field name="body">Takk for at du har registrert deg som bruker av nettstedet for {$journalName}. Ta godt vare på brukernavnet og passordet, som du vil trenge hver gang du skal utføre brukeroppgaver på nettstedet.
+			<field name="body">Takk for at du har registrert deg som bruker av nettstedet for {$pressName}. Ta godt vare på brukernavnet og passordet, som du vil trenge hver gang du skal utføre brukeroppgaver på nettstedet.
 
 Brukernavn: {$username}
 Passord: {$password}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../../lib/pkp/dtd/helpTopic.dtd">
+
+<!--
+  * 000011.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Users - All Users 
+  *
+  * $Id$
+  -->
+
+<topic id="press/topic/000011" locale="en_US" title="Users Enrolled in This Press" toc="press/toc/000002" key="press.users.allUsers">
+	<section>
+		<![CDATA[<p>This list includes everyone who is registered with this press in some capacity. The Press Manager has the ability to sign in as any registered user. This can be extremely helpful when trying to provide the user with assistance at a distance, because it allows the Press Manager to gain a more precise sense of what may be going wrong.</p><p>From here, the Press Manager can also enroll existing users from the OMP site as a whole, can create new users, and can sync enrollment between presses.</p>]]>	
+	</section>
+</topic>

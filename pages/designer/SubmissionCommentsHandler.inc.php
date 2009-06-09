@@ -29,11 +29,11 @@ class SubmissionCommentsHandler extends LayoutEditorHandler {
 	 * View layout comments.
 	 */
 	function viewLayoutComments($args) {
-		$articleId = $args[0];
+		$monographId = $args[0];
 
 		$submissionLayoutHandler =& new SubmissionLayoutHandler()
-		$submissionLayoutHandler->validate($articleId);
-		$journal =& $submissionLayoutHandler->journal;
+		$submissionLayoutHandler->validate($monographId);
+		$press =& $submissionLayoutHandler->press;
 		$submission =& $submissionLayoutHandler->submission;
 
 		$this->setupTemplate(true);		
@@ -45,14 +45,14 @@ class SubmissionCommentsHandler extends LayoutEditorHandler {
 	 * Post layout comment.
 	 */
 	function postLayoutComment() {
-		$articleId = Request::getUserVar('articleId');
+		$monographId = Request::getUserVar('monographId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
 		$submissionLayoutHandler =& new SubmissionLayoutHandler()
-		$submissionLayoutHandler->validate($articleId);
-		$journal =& $submissionLayoutHandler->journal;
+		$submissionLayoutHandler->validate($monographId);
+		$press =& $submissionLayoutHandler->press;
 		$submission =& $submissionLayoutHandler->submission;
 		
 		$this->setupTemplate(true);		
@@ -66,11 +66,11 @@ class SubmissionCommentsHandler extends LayoutEditorHandler {
 	 * View proofread comments.
 	 */
 	function viewProofreadComments($args) {
-		$articleId = $args[0];
+		$monographId = $args[0];
 
 		$submissionLayoutHandler =& new SubmissionLayoutHandler()
-		$submissionLayoutHandler->validate($articleId);
-		$journal =& $submissionLayoutHandler->journal;
+		$submissionLayoutHandler->validate($monographId);
+		$press =& $submissionLayoutHandler->press;
 		$submission =& $submissionLayoutHandler->submission;
 
 		$this->setupTemplate(true);
@@ -82,14 +82,14 @@ class SubmissionCommentsHandler extends LayoutEditorHandler {
 	 * Post proofread comment.
 	 */
 	function postProofreadComment() {
-		$articleId = Request::getUserVar('articleId');
+		$monographId = Request::getUserVar('monographId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
 		$submissionLayoutHandler =& new SubmissionLayoutHandler()
-		$submissionLayoutHandler->validate($articleId);
-		$journal =& $submissionLayoutHandler->journal;
+		$submissionLayoutHandler->validate($monographId);
+		$press =& $submissionLayoutHandler->press;
 		$submission =& $submissionLayoutHandler->submission;
 		
 		$this->setupTemplate(true);		
@@ -103,12 +103,12 @@ class SubmissionCommentsHandler extends LayoutEditorHandler {
 	 * Edit comment.
 	 */
 	function editComment($args) {
-		$articleId = $args[0];
+		$monographId = $args[0];
 		$commentId = $args[1];
 
 		$submissionLayoutHandler =& new SubmissionLayoutHandler()
-		$submissionLayoutHandler->validate($articleId);
-		$journal =& $submissionLayoutHandler->journal;
+		$submissionLayoutHandler->validate($monographId);
+		$press =& $submissionLayoutHandler->press;
 		$submission =& $submissionLayoutHandler->submission;
 		$this->validate($commentId);
 		$comment =& $this->comment;
@@ -122,15 +122,15 @@ class SubmissionCommentsHandler extends LayoutEditorHandler {
 	 * Save comment.
 	 */
 	function saveComment() {
-		$articleId = Request::getUserVar('articleId');
+		$monographId = Request::getUserVar('monographId');
 		$commentId = Request::getUserVar('commentId');
 
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
 		$submissionLayoutHandler =& new SubmissionLayoutHandler()
-		$submissionLayoutHandler->validate($articleId);
-		$journal =& $submissionLayoutHandler->journal;
+		$submissionLayoutHandler->validate($monographId);
+		$press =& $submissionLayoutHandler->press;
 		$submission =& $submissionLayoutHandler->submission;
 		$this->validate($commentId);
 		$comment =& $this->comment;
@@ -141,9 +141,9 @@ class SubmissionCommentsHandler extends LayoutEditorHandler {
 
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_LAYOUT) {
-			Request::redirect(null, null, 'viewLayoutComments', $articleId);
+			Request::redirect(null, null, 'viewLayoutComments', $monographId);
 		} else if ($comment->getCommentType() == COMMENT_TYPE_PROOFREAD) {
-			Request::redirect(null, null, 'viewProofreadComments', $articleId);
+			Request::redirect(null, null, 'viewProofreadComments', $monographId);
 		}
 	}
 
@@ -151,12 +151,12 @@ class SubmissionCommentsHandler extends LayoutEditorHandler {
 	 * Delete comment.
 	 */
 	function deleteComment($args) {
-		$articleId = $args[0];
+		$monographId = $args[0];
 		$commentId = $args[1];
 
 		$submissionLayoutHandler =& new SubmissionLayoutHandler()
-		$submissionLayoutHandler->validate($articleId);
-		$journal =& $submissionLayoutHandler->journal;
+		$submissionLayoutHandler->validate($monographId);
+		$press =& $submissionLayoutHandler->press;
 		$submission =& $submissionLayoutHandler->submission;
 		$this->validate($commentId);
 		$comment =& $this->comment;
@@ -166,9 +166,9 @@ class SubmissionCommentsHandler extends LayoutEditorHandler {
 
 		// Redirect back to initial comments page
 		if ($comment->getCommentType() == COMMENT_TYPE_LAYOUT) {
-			Request::redirect(null, null, 'viewLayoutComments', $articleId);
+			Request::redirect(null, null, 'viewLayoutComments', $monographId);
 		} else if ($comment->getCommentType() == COMMENT_TYPE_PROOFREAD) {
-			Request::redirect(null, null, 'viewProofreadComments', $articleId);
+			Request::redirect(null, null, 'viewProofreadComments', $monographId);
 		}
 	}
 
@@ -185,10 +185,10 @@ class SubmissionCommentsHandler extends LayoutEditorHandler {
 		if ( !is_null($commentId) ) {
 			$isValid = true;
 
-			$articleCommentDao =& DAORegistry::getDAO('ArticleCommentDAO');
+			$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 			$user =& Request::getUser();
 
-			$comment =& $articleCommentDao->getArticleCommentById($commentId);
+			$comment =& $monographCommentDao->getMonographCommentById($commentId);
 
 			if ($comment == null) {
 				$isValid = false;

@@ -193,49 +193,7 @@ class PressDAO extends DAO
 	function deletePressById($pressId) {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$pressSettingsDao->deleteSettingsByPress($pressId);
-/*
-		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-		$sectionDao->deleteSectionsByJournal($journalId);
 
-		$issueDao =& DAORegistry::getDAO('IssueDAO');
-		$issueDao->deleteIssuesByJournal($journalId);
-
-		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
-		$notificationStatusDao->deleteNotificationStatusByJournal($journalId);
-
-		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-		$emailTemplateDao->deleteEmailTemplatesByJournal($journalId);
-
-		$rtDao =& DAORegistry::getDAO('RTDAO');
-		$rtDao->deleteVersionsByJournal($journalId);
-
-		$subscriptionDao =& DAORegistry::getDAO('SubscriptionDAO');
-		$subscriptionDao->deleteSubscriptionsByJournal($journalId);
-
-		$subscriptionTypeDao =& DAORegistry::getDAO('SubscriptionTypeDAO');
-		$subscriptionTypeDao->deleteSubscriptionTypesByJournal($journalId);
-
-		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
-		$announcementDao->deleteAnnouncementsByJournal($journalId);
-
-		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
-		$announcementTypeDao->deleteAnnouncementTypesByJournal($journalId);
-
-		$articleDao =& DAORegistry::getDAO('ArticleDAO');
-		$articleDao->deleteArticlesByJournalId($journalId);
-
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$roleDao->deleteRoleByJournalId($journalId);
-
-		$groupDao =& DAORegistry::getDAO('GroupDAO');
-		$groupDao->deleteGroupsByAssocId(ASSOC_TYPE_PRESS, $pressId);
-
-		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
-		$pluginSettingsDao->deleteSettingsByJournalId($journalId);
-
-		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewFormDao->deleteReviewFormsByJournalId($journalId);
-*/
 		return $this->update(
 			'DELETE FROM presses WHERE press_id = ?', $pressId
 		);

@@ -85,7 +85,7 @@ class CustomLocaleHandler extends Handler {
 		$press = Request::getPress();
 		$pressId = $press->getId();
 		$publicFilesDir = Config::getVar('files', 'public_files_dir');
-		$customLocaleDir = $publicFilesDir . DIRECTORY_SEPARATOR . 'journals' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR;
+		$customLocaleDir = $publicFilesDir . DIRECTORY_SEPARATOR . 'presses' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR;
 		$customLocalePath = $customLocaleDir . DIRECTORY_SEPARATOR . $locale . DIRECTORY_SEPARATOR . $filename;
 		if (FileManager::fileExists($customLocalePath)) {
 			$localeContents = EditableLocaleFile::load($customLocalePath);
@@ -143,7 +143,7 @@ class CustomLocaleHandler extends Handler {
 		$press =& Request::getPress();
 		$pressId = $press->getId();
 		$changes = Request::getUserVar('changes');
-		$customFilesDir = Config::getVar('files', 'public_files_dir') . DIRECTORY_SEPARATOR . 'journals' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale;
+		$customFilesDir = Config::getVar('files', 'public_files_dir') . DIRECTORY_SEPARATOR . 'presses' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR . DIRECTORY_SEPARATOR . $locale;
 		$customFilePath = $customFilesDir . DIRECTORY_SEPARATOR . $filename;
 
 		// Create empty custom locale file if it doesn't exist

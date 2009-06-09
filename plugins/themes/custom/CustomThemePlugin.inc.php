@@ -20,7 +20,7 @@ import('classes.plugins.ThemePlugin');
 class CustomThemePlugin extends ThemePlugin {
 	/**
 	 * Register the plugin, if enabled; note that this plugin
-	 * runs under both Journal and Site contexts.
+	 * runs under both Press and Site contexts.
 	 * @param $category string
 	 * @param $path string
 	 * @return boolean
@@ -105,14 +105,14 @@ class CustomThemePlugin extends ThemePlugin {
 	function manage($verb) {
 		if ($verb != 'settings') return false;
 
-		$journal =& Request::getJournal();
+		$press =& Request::getPress();
 		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->register_function('plugin_url', array(&$this, 'smartyPluginUrl'));
 		$templateMgr->setCacheability(CACHEABILITY_MUST_REVALIDATE);
 
 		$this->import('CustomThemeSettingsForm');
-		$form =& new CustomThemeSettingsForm($this, $journal->getJournalId());
+		$form =& new CustomThemeSettingsForm($this, $press->getId());
 		if (Request::getUserVar('save')) {
 			$form->readInputData();
 			if ($form->validate()) {

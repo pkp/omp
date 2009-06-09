@@ -65,7 +65,7 @@
 	<message key="submission.page.art">#{$id} Images, Illustrations, and other Art</message>
 	<message key="manuscript.submissions">Manuscript Submissions</message>
 	<message key="manuscript.artwork">Artwork</message>
-	<message key="submission.changeSection">Change to</message>
+	<message key="submission.changeAcquisitionsArrangement">Change to</message>
 	<message key="submission.copyediting">Copyediting</message>
 	<message key="submission.production">Production</message>
 	<message key="submission.copyedit">Copyedit</message>
@@ -142,7 +142,7 @@
 	<message key="reviewer.monograph.ensuringBlindReview">Ensuring a Blind Review</message>
 	
 	
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press' URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
 Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
 <br /><br />
@@ -221,7 +221,6 @@ Note that if your site administrator has already registered this site with the P
 	<message key="navigation.archives">Published Works</message>
 	<message key="navigation.current">Upcoming</message>
 	<message key="navigation.otherPresses">Other Presses</message>
-	<message key="navigation.browseByIssue">By Issue</message>
 	<message key="navigation.browseByAuthor">By Author</message>
 	<message key="navigation.infoForAuthors">For Authors</message>
 	<message key="navigation.infoForLibrarians">For Librarians</message>
@@ -231,7 +230,7 @@ Note that if your site administrator has already registered this site with the P
 
 	<!-- Submission History -->
 	
-	<message key="submission.logType.article">Article</message>
+	<message key="submission.logType.monograph">Monograph</message>
 	<message key="submission.logType.author">Author</message>
 	<message key="submission.logType.editor">Editor</message>
 	<message key="submission.logType.review">Review</message>
@@ -256,8 +255,8 @@ Note that if your site administrator has already registered this site with the P
 	<message key="user.myPresses">My Presses</message>
 	<message key="user.noRoles.choosePress">Your account is not currently associated with any presses. Please choose a press:</message>
 	<message key="user.noRoles.noRolesForPress">Your account does not currently have any roles for this press. Please choose from the actions below:</message>
-	<message key="user.noRoles.submitArticle">Submit a Proposal</message>
-	<message key="user.noRoles.submitArticleRegClosed">Submit an Article: Author registration is currently disabled.</message>
+	<message key="user.noRoles.submitMonograph">Submit a Proposal</message>
+	<message key="user.noRoles.submitMonographRegClosed">Submit an Monograph: Author registration is currently disabled.</message>
 	<message key="user.noRoles.regReviewer">Register as a Reviewer</message>
 	<message key="user.noRoles.regReviewerClosed">Register as a Reviewer: Reviewer registration is currently disabled.</message>
 
@@ -297,7 +296,7 @@ Note that if your site administrator has already registered this site with the P
 	 *
 	-->
 
-	<!-- Reader article view -->
+	<!-- Reader monograph view -->
 	<message key="reader.subscribersOnly">Subscribers Only</message>
 	<message key="reader.subscriptionRequiredLoginText">Subscription required to access item. To verify subscription, log in to press.</message>  
 	<message key="reader.openAccess">Open Access</message>
@@ -305,7 +304,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="reader.subscriptionOrFeeAccess">Subscription or Fee Access</message>
 
 	<!-- Reader Comments -->
-	<message key="comments.commentsOnArticle">Comments on this article</message>
+	<message key="comments.commentsOnMonograph">Comments on this monograph</message>
 	<message key="comments.authenticated"><![CDATA[by <a href="{$publicProfileUrl}" target="_parent">{$userName}</a>]]></message>
 
 	<message key="submission.comments.editorAuthorCorrespondence">Editor/Author Correspondence</message>
@@ -339,9 +338,9 @@ Note that the OAI interface can be disabled for this site by editing the OMP sys
 	</ul>
 <p>Language packs can be manually downloaded from the <a href="http://pkp.sfu.ca">PKP web site</a>.</p>]]></message>
 
-	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Specifying a default authentication source other than OJS has the following effects:</p>
+	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Specifying a default authentication source other than OMP has the following effects:</p>
 <ul>
-	<li>If a user attempts to register a new account with this site with a username that exists on the authentication source (but not in the OJS database), the registration attempt is only allowed if the supplied password is valid for that user account.</li>
+	<li>If a user attempts to register a new account with this site with a username that exists on the authentication source (but not in the OMP database), the registration attempt is only allowed if the supplied password is valid for that user account.</li>
 </ul>]]></message>
 	
 	<!-- System Information -->
@@ -358,7 +357,7 @@ Note that the OAI interface can be disabled for this site by editing the OMP sys
 	<message key="plugins.categories.auth.description">Authorization Plugins allow Open Monograph Press to delegate user authentication tasks to other systems, such as LDAP servers.</message>
 
 
-	<message key="plugins.categories.citationFormats.description">Citation format plugins provide users with various formats in which to access article citations.</message>
+	<message key="plugins.categories.citationFormats.description">Citation format plugins provide users with various formats in which to access monograph citations.</message>
 
 
 	<message key="plugins.categories.generic.description">Generic plugins are used to extend Open Monograph Press in a variety of ways that are not supported by the other plugin categories.</message>
@@ -388,7 +387,7 @@ Setting up LOCKSS support for Open Monograph Press does not need to take place u
 Authors who publish with this press agree to the following terms:
 <ol type="a">
 	<li>Authors retain copyright and grant the press right of first publication with the work simultaneously licensed under a <a target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
-	<li>Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the press' published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
+	<li>Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the press's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
 	<li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_new" href="http://opcit.eprints.org/oacitation-biblio.html">The Effect of Open Access</a>).</li>
 </ol>
 
@@ -396,12 +395,12 @@ Authors who publish with this press agree to the following terms:
 Authors who publish with this press agree to the following terms:
 <ol type="a">
 	<li>Authors retain copyright and grant the press right of first publication, with the work [SPECIFY PERIOD OF TIME] after publication simultaneously licensed under a <a target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
-	 <li>Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the press' published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
+	 <li>Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the press's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
 	 <li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_new" href="http://opcit.eprints.org/oacitation-biblio.html"> The Effect of Open Access</a>).</li>
 </ol>]]></message>
 	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[Press will use a subject classification system available on the web.<br />
 Title of classification system]]></message>
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press' URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
 Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
 <br /><br />
@@ -409,7 +408,7 @@ Note that if your site administrator has already registered this site with the P
 
 	<!-- Setup Step 4 -->
 	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Steps: Submission Queue &gt; Submission Review &gt; Submission Editing &gt; Table of Contents.<br /><br />
-Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Section Editors, go to Editors in Press Management.)]]></message>
+Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Acquisitions Editors, go to Editors in Press Management.)]]></message>
 	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>To enable readers to locate online versions of the work cited by an author, the following options are available.</p>
 
 <ol>
@@ -448,14 +447,14 @@ Active is how many reviews are currently being considered or underway.]]></messa
 
 	<message key="acquisitionsEditor.review.createReviewer">Create New Reviewer</message>
 	
-	<!-- Article Submission Step 3 -->
+	<!-- Monograph Submission Step 3 -->
 	<message key="author.submit.uploadInstructions"><![CDATA[
 <p>To upload a manuscript to this press, complete the following steps.</p>
 <ol>
 <li>On this page, click Browse (or Choose File) which opens a Choose File window for locating the file on the hard drive of your computer.</li>
 <li>Locate the file you wish to submit and highlight it.</li>
 <li>Click Open on the Choose File window, which places the name of the file on this page.</li>
-<li>Click Upload on this page, which uploads the file from the computer to the press' web site and renames it following the press' conventions.</li>
+<li>Click Upload on this page, which uploads the file from the computer to the press's web site and renames it following the press's conventions.</li>
 <li>Once the submission is uploaded, upload a completed prospectus guide in the same way the submission file was uploaded.</li>
 <li>Click Save and Continue at the bottom of this page.</li>
 </ol>]]></message>
@@ -479,8 +478,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.register.loginToRegister">Enter your existing username and password to register with this press.</message>
 	<message key="user.register.registrationDisabled">This press is currently not accepting user registrations.</message>
 	<message key="user.register.form.passwordLengthTooShort">The password you entered is not long enough.</message>
-	<message key="user.register.readerDescription">Notified by email on publication of an issue of the press.</message>
-	<message key="user.register.openAccessNotificationDescription">Notified by email when an issue of the press is made open access.</message>
+	<message key="user.register.readerDescription">Notified by email on publication of a monograph.</message>
+	<message key="user.register.openAccessNotificationDescription">Notified by email when a monograph from the press is made open access.</message>
 	<message key="user.register.authorDescription">Able to submit items to the press.</message>
 	<message key="user.register.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the press.</message>
 	<message key="user.register.reviewerDescription">Willing to conduct peer review of submissions to the press. Identify reviewing interests (substantive areas and research methods).</message>
@@ -489,7 +488,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 
 	<!-- Search -->
 	<message key="search.browseAuthorIndex">Browse Author Index</message>
-	<message key="search.searchFor">Search articles for</message>
+	<message key="search.searchFor">Search monographs for</message>
 	<message key="search.author">Authors</message>
 	<message key="search.withinPress">Within</message>
 	<message key="search.allPresses">All Presses</message>
@@ -498,8 +497,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="search.syntaxInstructions"><![CDATA[Search tips: <ul>
 <li>Search terms are case-insensitive</li>
 <li>Common words are ignored</li>
-<li>By default only articles containing <em>all</em> terms in the query are returned (i.e., <em>AND</em> is implied)</li>
-<li>Combine multiple words with <em>OR</em> to find articles containing either term; e.g., <em>education OR research</em></li>
+<li>By default only monographs containing <em>all</em> terms in the query are returned (i.e., <em>AND</em> is implied)</li>
+<li>Combine multiple words with <em>OR</em> to find monographs containing either term; e.g., <em>education OR research</em></li>
 <li>Use parentheses to create more complex queries; e.g., <em>archive ((press OR conference) NOT theses)</em></li>
 <li>Search for an exact phrase by putting it in quotes; e.g., <em>"open access publishing"</em></li>
 <li>Exclude a word by prefixing it with <strong>-</strong> or <em>NOT</em>; e.g. <em>online -politics</em> or <em>online NOT politics</em></li>
@@ -517,12 +516,12 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="acquisitionsEditor.regrets.result">Result</message>
 
 	<!-- Interstitial page for PDFs -->
-	<message key="article.pdf.title">Portable Document Format (PDF)</message>
-	<message key="article.pdf.note"><![CDATA[The PDF file you selected should load here, if your Web browser has a PDF reader plug-in installed (for example, a recent version of <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>). Alternatively, the PDF file will download to your computer, where it can also be opened using a PDF reader. If you would like more information about how to print, save, and work with PDFs, Highwire Press provides a helpful <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">Frequently Asked Questions about PDFs</a>.<br /><br />If the file does not download automatically, <a href="{$url}">click here</a>.]]></message>
+	<message key="monograph.pdf.title">Portable Document Format (PDF)</message>
+	<message key="monograph.pdf.note"><![CDATA[The PDF file you selected should load here, if your Web browser has a PDF reader plug-in installed (for example, a recent version of <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>). Alternatively, the PDF file will download to your computer, where it can also be opened using a PDF reader. If you would like more information about how to print, save, and work with PDFs, Highwire Press provides a helpful <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">Frequently Asked Questions about PDFs</a>.<br /><br />If the file does not download automatically, <a href="{$url}">click here</a>.]]></message>
 	
 	<!-- Interstitial page for non-PDF non-HTML galleys -->
-	<message key="article.nonpdf.title">Article Download</message>
-	<message key="article.nonpdf.note"><![CDATA[The file you selected should begin downloading automatically. If it does not, click the link below. Note that this file may require a special viewer or plugin to view.<br /><br />If the file does not download automatically, <a href="{$url}">click here</a>.]]></message>
+	<message key="monograph.nonpdf.title">Monograph Download</message>
+	<message key="monograph.nonpdf.note"><![CDATA[The file you selected should begin downloading automatically. If it does not, click the link below. Note that this file may require a special viewer or plugin to view.<br /><br />If the file does not download automatically, <a href="{$url}">click here</a>.]]></message>
 	
 	<!-- Site index -->
 	<message key="site.pressesHosted">Presses hosted on this site</message>
@@ -530,13 +529,10 @@ current password.<br /><br />Enter your email address below to reset your passwo
 
 	<!-- Current index -->
 	<message key="current.current">Current</message>
-	<message key="current.noCurrentIssue">No Current Issue</message>
-	<message key="current.noCurrentIssueDesc">This press has not published any issues.</message>
 
 	<!-- Archive index -->
 	<message key="archive.archives">Archives</message>
-	<message key="archive.browse">Browse through the older issues</message>
-	<message key="archive.issueUnavailable">Issue Unavailable</message>
+	<message key="archive.browse">Browse through the older monographs</message>
 	
 	<!-- About The Press -->
 	<message key="about.statistics">Statistics</message>
@@ -546,7 +542,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.editorialTeam.biography">Biography</message>
 	<message key="about.editorialPolicies">Editorial Policies</message>
 	<message key="about.focusAndScope">Focus and Scope</message>
-	<message key="about.sectionPolicies">Section Policies</message>
+	<message key="about.arrangementPolicies">Arrangement Policies</message>
 	<message key="about.submissions">Submissions</message>
 	<message key="about.sponsors">Sponsors</message>
 	<message key="about.contributors">Sources of Support</message>
@@ -568,7 +564,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.openAccessPolicy">Open Access Policy</message>
 	<message key="about.delayedOpenAccess">Delayed Open Access</message>
 	<message key="about.delayedOpenAccessDescription1">The contents of this press will be available in an open access format</message>
-	<message key="about.delayedOpenAccessDescription2">month(s) after an issue is published.</message>
+	<message key="about.delayedOpenAccessDescription2">month(s) after a monograph is published.</message>
 	<message key="about.authorSelfArchive">Author Self-Archiving</message>
 	<message key="about.archiving">Archiving</message>
 	<message key="about.subscriptions">Subscriptions</message>
@@ -635,10 +631,10 @@ current password.<br /><br />Enter your email address below to reset your passwo
 <h4>Manual installation</h4>
 
 <p>Select <strong>Manual Install</strong> to display the SQL statements necessary to create the OMP database schema and initial data so that database installation can be performed manually. This option is useful when debugging installation problems, particularly on unsupported platforms. Note that this installation method will not attempt to create the database or any tables, although the configuration file will still be written with the supplied database settings.</p>]]></message>
-	<message key="installer.upgradeInstructions"><![CDATA[<h4>OJS Version {$version}</h4>
+	<message key="installer.upgradeInstructions"><![CDATA[<h4>OMP Version {$version}</h4>
 	
 <p>Thank you for downloading the Public Knowledge Project's <strong>Open Monograph Press</strong>. Before proceeding, please read the <a href="{$baseUrl}/docs/README">README</a> and <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> files included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. If you have bug reports or technical support inquiries about Open Monograph Press, see the <a href="http://pkp.sfu.ca/support/forum">support forum</a> or visit PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>.</p>
-<p>It is <strong>strongly recommended</strong> that you back up your database, files directory, and OJS installation directory before proceeding.</p>
+<p>It is <strong>strongly recommended</strong> that you back up your database, files directory, and OMP installation directory before proceeding.</p>
 <p>If you are running in <a href="http://www.php.net/features.safe-mode" target="_blank">PHP Safe Mode</a>, please ensure that the max_execution_time directive in your php.ini configuration file is set to a high limit. If this or any other time limit (e.g. Apache's "Timeout" directive) is reached and the upgrade process is interrupted, manual intervention will be required.</p>]]></message>
 	<message key="installer.localeSettingsInstructions"><![CDATA[For complete Unicode (UTF-8) support, select UTF-8 for all character set settings. Note that this support currently requires a MySQL >= 4.1.1 or PostgreSQL >= 7.1 database server. Please also note that full Unicode support requires PHP >= 4.3.0 compiled with support for the <a href="http://www.php.net/mbstring" target="_blank">mbstring</a> library (enabled by default in most recent PHP installations). You may experience problems using extended character sets if your server does not meet these requirements.
 <br /><br />
@@ -647,67 +643,67 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="installer.additionalLocalesInstructions">Select any additional languages to support in this system. These languages will be available for use by presses hosted on the site. Additional languages can also be installed at any time from the site administration interface.</message>
 	<message key="installer.filesDirInstructions"><![CDATA[Enter full pathname to an existing directory where uploaded files are to be kept. This directory should not be directly web-accessible. <strong>Please ensure that this directory exists and is writable prior to installation.</strong> Windows path names should use forward slashes, e.g. "C:/mypress/files".]]></message>
 	<message key="installer.databaseSettingsInstructions">OMP requires access to a SQL database to store its data. See the system requirements above for a list of supported databases. In the fields below, provide the settings to be used to connect to the database.</message>
-	<message key="installer.installOJS">Install Open Monograph Press</message>
-	<message key="installer.upgradeOJS">Upgrade Open Monograph Press</message>
-	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Warning:</strong> If installation failed part way through database installation you may need to drop your OJS database or database tables before attempting to reinstall the database.]]></message>
+	<message key="installer.installOMP">Install Open Monograph Press</message>
+	<message key="installer.upgradeOMP">Upgrade Open Monograph Press</message>
+	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Warning:</strong> If installation failed part way through database installation you may need to drop your OMP database or database tables before attempting to reinstall the database.]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANT!</h4>
 <p>The installer could not automatically overwrite the configuration file. Before attempting to use the system, please open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
 	<message key="installer.manualSQLInstructions"><![CDATA[<h4>Manual installation</h4>
-<p>The SQL statements to create the OJS database schema and initial data are displayed below. Note that the system will be unusable until these statements have been executed manually. You will also have to manually configure the <tt>config.inc.php</tt> configuration file.</p>]]></message>
+<p>The SQL statements to create the OMP database schema and initial data are displayed below. Note that the system will be unusable until these statements have been executed manually. You will also have to manually configure the <tt>config.inc.php</tt> configuration file.</p>]]></message>
 	<message key="installer.installationComplete"><![CDATA[<p>Installation of OMP has completed successfully.</p>
 <p>To begin using the system, <a href="{$loginUrl}">login</a> with the username and password entered on the previous page.</p>
 <p>If you wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/omp/register" target="_new">http://pkp.sfu.ca/omp/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
-	<message key="installer.upgradeComplete"><![CDATA[<p>Upgrade of OJS to version {$version} has completed successfully.</p>
+	<message key="installer.upgradeComplete"><![CDATA[<p>Upgrade of OMP to version {$version} has completed successfully.</p>
 <p>Don't forget to set the "installed" setting in your config.inc.php configuration file back to <em>On</em>.</p>
-<p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/ojs/register" target="_new">http://pkp.sfu.ca/ojs/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
+<p>If you haven't already registered and wish to receive news and updates, <strong>please register at <a href="http://pkp.sfu.ca/omp/register" target="_new">http://pkp.sfu.ca/omp/register</a>.</strong> If you have questions or comments, please visit the <a href="http://pkp.sfu.ca/support/forum" target="_new">support forum</a>.</p>]]></message>
 
 
-	<!-- Article Logs -->
+	<!-- Monograph Logs -->
 	<message key="log.author.submitted">{$authorName} has entered a new submission, ID {$submissionId}.</message>
-	<message key="log.author.documentRevised">{$authorName} has revised article {$articleId}. The new file ID is {$fileId}.</message>
-	<message key="log.review.reviewerAssigned">{$reviewerName} has been assigned to review submission {$articleId} for review round {$round}.</message>
-	<message key="log.review.reviewerUnassigned">{$reviewerName} has been unassigned from reviewing submission {$articleId} for review round {$round}.</message>
-	<message key="log.review.reviewInitiated">The round {$round} review by {$reviewerName} for submission {$articleId} has been initiated.</message>
-	<message key="log.review.reviewReinitiated">The round {$round} review by {$reviewerName} for submission {$articleId} has been reinitiated.</message>
-	<message key="log.review.reviewCancelled">The round {$round} review by {$reviewerName} for submission {$articleId} has been cancelled.</message>
-	<message key="log.review.reviewCleared">The round {$round} review by {$reviewerName} for submission {$articleId} has been cleared.</message>
-	<message key="log.review.reviewerRated">{$reviewerName} has been rated for the round {$round} review of submission {$articleId}.</message>
-	<message key="log.review.reviewDueDateSet">The due date for the round {$round} review of submission {$articleId} by {$reviewerName} has been set to {$dueDate}.</message>
-	<message key="log.review.reviewRecommendationSet">The recommendation for the round {$round} review of submission {$articleId} by {$reviewerName} has been set.</message>
-	<message key="log.review.reviewRecommendationSetByProxy">The recommendation for the round {$round} review of submission {$articleId} has been set by the editor, {$editorName}, on behalf of the reviewer, {$reviewerName}.</message>
-	<message key="log.review.resubmit">The submission {$articleId} has been resubmitted for review.</message>
-	<message key="log.review.reviewDeclined">{$reviewerName} has declined the round {$round} review for submission {$articleId}.</message>
-	<message key="log.review.reviewAccepted">{$reviewerName} has accepted the round {$round} review for submission {$articleId}.</message>
-	<message key="log.review.reviewDeclinedByProxy">{$userName} has declined the round {$round} review for submission {$articleId} on behalf of {$reviewerName}.</message>
-	<message key="log.review.reviewAcceptedByProxy">{$userName} has accepted the round {$round} review for submission {$articleId} on behalf of {$reviewerName}.</message>
-	<message key="log.review.reviewFileByProxy">The Editor, {$userName}, has uploaded a review file for round {$round} of submission {$articleId} on behalf of the reviewer, {$reviewerName}.</message>
+	<message key="log.author.documentRevised">{$authorName} has revised monograph {$monographId}. The new file ID is {$fileId}.</message>
+	<message key="log.review.reviewerAssigned">{$reviewerName} has been assigned to review submission {$monographId} for review round {$round}.</message>
+	<message key="log.review.reviewerUnassigned">{$reviewerName} has been unassigned from reviewing submission {$monographId} for review round {$round}.</message>
+	<message key="log.review.reviewInitiated">The round {$round} review by {$reviewerName} for submission {$monographId} has been initiated.</message>
+	<message key="log.review.reviewReinitiated">The round {$round} review by {$reviewerName} for submission {$monographId} has been reinitiated.</message>
+	<message key="log.review.reviewCancelled">The round {$round} review by {$reviewerName} for submission {$monographId} has been cancelled.</message>
+	<message key="log.review.reviewCleared">The round {$round} review by {$reviewerName} for submission {$monographId} has been cleared.</message>
+	<message key="log.review.reviewerRated">{$reviewerName} has been rated for the round {$round} review of submission {$monographId}.</message>
+	<message key="log.review.reviewDueDateSet">The due date for the round {$round} review of submission {$monographId} by {$reviewerName} has been set to {$dueDate}.</message>
+	<message key="log.review.reviewRecommendationSet">The recommendation for the round {$round} review of submission {$monographId} by {$reviewerName} has been set.</message>
+	<message key="log.review.reviewRecommendationSetByProxy">The recommendation for the round {$round} review of submission {$monographId} has been set by the editor, {$editorName}, on behalf of the reviewer, {$reviewerName}.</message>
+	<message key="log.review.resubmit">The submission {$monographId} has been resubmitted for review.</message>
+	<message key="log.review.reviewDeclined">{$reviewerName} has declined the round {$round} review for submission {$monographId}.</message>
+	<message key="log.review.reviewAccepted">{$reviewerName} has accepted the round {$round} review for submission {$monographId}.</message>
+	<message key="log.review.reviewDeclinedByProxy">{$userName} has declined the round {$round} review for submission {$monographId} on behalf of {$reviewerName}.</message>
+	<message key="log.review.reviewAcceptedByProxy">{$userName} has accepted the round {$round} review for submission {$monographId} on behalf of {$reviewerName}.</message>
+	<message key="log.review.reviewFileByProxy">The Editor, {$userName}, has uploaded a review file for round {$round} of submission {$monographId} on behalf of the reviewer, {$reviewerName}.</message>
 	<message key="log.review.reviewerFile">A reviewer file has been uploaded.</message>
-	<message key="log.editor.decision">An editor decision ({$decision}) for article {$articleId} was recorded by {$editorName}.</message>
+	<message key="log.editor.decision">An editor decision ({$decision}) for monograph {$monographId} was recorded by {$editorName}.</message>
 
 
-	<message key="log.copyedit.initiate">Copyediting on submission {$articleId} has been commenced by {$copyeditorName}.</message>
+	<message key="log.copyedit.initiate">Copyediting on submission {$monographId} has been commenced by {$copyeditorName}.</message>
 	<message key="log.copyedit.copyeditFileSet">The default copyedit file has been chosen.</message>
-	<message key="log.copyedit.initialEditComplete">{$copyeditorName} has completed the initial copy edit of submission {$articleId}.</message>
-	<message key="log.copyedit.finalEditComplete">{$copyeditorName} has completed the final copy edit of submission {$articleId}.</message>
-	<message key="log.copyedit.copyeditorAssigned">{$copyeditorName} has been assigned to copyedit submission {$articleId}.</message>
+	<message key="log.copyedit.initialEditComplete">{$copyeditorName} has completed the initial copy edit of submission {$monographId}.</message>
+	<message key="log.copyedit.finalEditComplete">{$copyeditorName} has completed the final copy edit of submission {$monographId}.</message>
+	<message key="log.copyedit.copyeditorAssigned">{$copyeditorName} has been assigned to copyedit submission {$monographId}.</message>
 	<message key="log.copyedit.copyeditorFile">A copyeditor version of the submission file has been uploaded.</message>
 	<message key="log.copyedit.authorFile">A version of the submission file copyedited by the author has been uploaded.</message>
 
-	<message key="log.layout.layoutEditorAssigned">{$editorName} has been assigned as layout editor for submission {$articleId}.</message>
-	<message key="log.layout.layoutEditorUnassigned">{$editorName} has been unassigned as layout editor for submission {$articleId}.</message>
-	<message key="log.layout.layoutEditComplete">{$editorName} has completed layout editing for submission {$articleId}.</message>
+	<message key="log.layout.layoutEditorAssigned">{$editorName} has been assigned as layout editor for submission {$monographId}.</message>
+	<message key="log.layout.layoutEditorUnassigned">{$editorName} has been unassigned as layout editor for submission {$monographId}.</message>
+	<message key="log.layout.layoutEditComplete">{$editorName} has completed layout editing for submission {$monographId}.</message>
 
-	<message key="log.editor.metadataModified">The metadata for this article was modified by {$editorName}.</message>
+	<message key="log.editor.metadataModified">The metadata for this monograph was modified by {$editorName}.</message>
 	<message key="log.editor.editorFile">An editor version of the submission file has been uploaded.</message>
-	<message key="log.editor.archived">The submission {$articleId} has been archived.</message>
-	<message key="log.editor.restored">The submission {$articleId} has been restored to the queue.</message>
-	<message key="log.editor.editorAssigned">{$editorName} has been assigned as editor to submission {$articleId}.</message>
-	<message key="log.editor.submissionExpedited">{$editorName} has expedited the editing process for article {$articleId}.</message>
+	<message key="log.editor.archived">The submission {$monographId} has been archived.</message>
+	<message key="log.editor.restored">The submission {$monographId} has been restored to the queue.</message>
+	<message key="log.editor.editorAssigned">{$editorName} has been assigned as editor to submission {$monographId}.</message>
+	<message key="log.editor.submissionExpedited">{$editorName} has expedited the editing process for monograph {$monographId}.</message>
 
-	<message key="log.proofread.assign">{$assignerName} has assigned {$proofreaderName} to proofread submission {$articleId}.</message>
-	<message key="log.proofread.complete">{$proofreaderName} has submitted {$articleId} for scheduling.</message>
+	<message key="log.proofread.assign">{$assignerName} has assigned {$proofreaderName} to proofread submission {$monographId}.</message>
+	<message key="log.proofread.complete">{$proofreaderName} has submitted {$monographId} for scheduling.</message>
 
-	<message key="log.imported">{$userName} has imported article {$articleId}.</message>
+	<message key="log.imported">{$userName} has imported monograph {$monographId}.</message>
 
 
 	<!-- RT Versions -->
@@ -735,7 +731,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	<message key="default.pressSettings.privacyStatement">The names and email addresses entered in this press site will be used exclusively for the stated purposes of this press and will not be made available for any other purpose or to any other party.</message>
 	<message key="default.pressSettings.openAccessPolicy">This press provides immediate open access to its content on the principle that making research freely available to the public supports a greater global exchange of knowledge.</message>
 	<message key="default.pressSettings.authorSelfArchivePolicy">This press permits and encourages authors to post items submitted to the press on personal websites or institutional repositories both prior to and after publication, while providing bibliographic details that credit, if applicable, its publication in this press.</message>
-	<message key="default.pressSettings.copyeditInstructions"><![CDATA[The copyediting stage is intended to improve the flow, clarity, grammar, wording, and formatting of the article. It represents the last chance for the author to make any substantial changes to the text, as the next stage is restricted to typos and formatting corrections. 
+	<message key="default.pressSettings.copyeditInstructions"><![CDATA[The copyediting stage is intended to improve the flow, clarity, grammar, wording, and formatting of the monograph. It represents the last chance for the author to make any substantial changes to the text, as the next stage is restricted to typos and formatting corrections. 
 
 The file to be copyedited is in Word or .rtf format and therefore can be easily edited as a word processing document. This set of  instructions displayed here proposes two approaches to copyediting. The one is based on Microsoft Word's Track Changes feature and requires that the copyeditor, editor and author have access to this program. A second system, that is software independent, has been borrowed, with permission, from the Harvard Educational Review. The press editor is in a position to modify these instructions, so suggestions can be made to improve the process for this press. 
 
@@ -821,7 +817,7 @@ After you are finished with your revisions, rename the file from AuthorNameQA.do
 	<li>Turn that phrase into a hyperlink by highlighting the phrase and using Word's Insert Hyperlink tool and the appropriate URL prepared in #2.</li>
 	</ol>]]></message>
 
-	<message key="default.pressSettings.proofingInstructions"><![CDATA[<p>The proofreading stage is intended to catch any errors in the galley's spelling, grammar, and formatting. More substantial changes cannot be made at this stage, unless discussed with the Section Editor. In Layout, click on VIEW PROOF to see the HTML, PDF and other available file formats used in publishing this item.</p>
+	<message key="default.pressSettings.proofingInstructions"><![CDATA[<p>The proofreading stage is intended to catch any errors in the galley's spelling, grammar, and formatting. More substantial changes cannot be made at this stage, unless discussed with the Acquisitions Editor. In Layout, click on VIEW PROOF to see the HTML, PDF and other available file formats used in publishing this item.</p>
 <h4>For Spelling and Grammar Errors</h4>
 
 <p>Copy the problem word or groups of words and paste them into the Proofreading Corrections box with "CHANGE-TO" instructions to the editor as follows...</p>
@@ -850,17 +846,17 @@ The paragraph that begins "This last topic..." is not indented.</pre>]]></messag
 {$pressName}
 {$indexUrl}/{$pressPath}
 ]]></message>
-	<message key="default.pressSettings.forReaders"><![CDATA[We encourage readers to sign up for the publishing notification service for this press. Use the <a href="{$indexUrl}/{$pressPath}/user/register">Register</a> link at the top of the homepage for the press. This registration will result in the reader receiving the Table of Contents by email for each new issue of the press. This list also allows the press to claim a certain level of support or readership. See the press' <a href="{$indexUrl}/{$pressPath}/about/submissions#privacyStatement">Privacy Statement</a> which assures readers that their name and email address will not be used for other purposes.]]></message>
-	<message key="default.pressSettings.forAuthors"><![CDATA[Interested in submitting to this press? We recommend that you review the <a href="{$indexUrl}/{$pressPath}/about">About the Press</a> page for the press' section policies, as well as the <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines">Author Guidelines</a>. Authors need to <a href="{$indexUrl}/{$pressPath}/user/register">register</a> with the press prior to submitting, or if already registered can simply <a href="{$indexUrl}/index/login">log in</a> and begin the 5 step process.]]></message>
-	<message key="default.pressSettings.forLibrarians"><![CDATA[We encourage research librarians to list this press among their library's electronic press holdings. As well, it may be worth noting that this press' open source publishing system is suitable for libraries to host for their faculty members to use with presses they are involved in editing (see <a href="http://pkp.sfu.ca/ojs">Open Monograph Press</a>).]]></message>
+	<message key="default.pressSettings.forReaders"><![CDATA[We encourage readers to sign up for the publishing notification service for this press. Use the <a href="{$indexUrl}/{$pressPath}/user/register">Register</a> link at the top of the homepage for the press. This registration will result in the reader receiving the Table of Contents by email for each new monograph of the press. This list also allows the press to claim a certain level of support or readership. See the press's <a href="{$indexUrl}/{$pressPath}/about/submissions#privacyStatement">Privacy Statement</a> which assures readers that their name and email address will not be used for other purposes.]]></message>
+	<message key="default.pressSettings.forAuthors"><![CDATA[Interested in submitting to this press? We recommend that you review the <a href="{$indexUrl}/{$pressPath}/about">About the Press</a> page for the press's acquisitions arrangement policies, as well as the <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines">Author Guidelines</a>. Authors need to <a href="{$indexUrl}/{$pressPath}/user/register">register</a> with the press prior to submitting, or if already registered can simply <a href="{$indexUrl}/index/login">log in</a> and begin the 5 step process.]]></message>
+	<message key="default.pressSettings.forLibrarians"><![CDATA[We encourage research librarians to list this press among their library's electronic press holdings. As well, it may be worth noting that this press's open source publishing system is suitable for libraries to host for their faculty members to use with presses they are involved in editing (see <a href="http://pkp.sfu.ca/omp">Open Monograph Press</a>).]]></message>
 	<message key="default.pressSettings.lockssLicense"><![CDATA[This press utilizes the LOCKSS system to create a distributed archiving system among participating libraries and permits those libraries to create permanent archives of the press for purposes of preservation and restoration. <a href="http://lockss.stanford.edu/">More...</a>]]></message>
 	
 	<!-- Default settings for payment items. -->
-	<message key="default.pressSettings.submissionFeeDescription">Authors are required to pay an Article Submission Fee as part of the submission process to contribute to review costs.</message>
+	<message key="default.pressSettings.submissionFeeDescription">Authors are required to pay an Monograph Submission Fee as part of the submission process to contribute to review costs.</message>
 	<message key="default.pressSettings.fastTrackFeeDescription">With the payment of this fee, the review, editorial decision, and author notification on this manuscript is guaranteed to take place within 4 weeks.</message>
-	<message key="default.pressSettings.publicationFeeDescription">If this paper is accepted for publication, you will be asked to pay an Article Publication Fee to cover publications costs.</message>
+	<message key="default.pressSettings.publicationFeeDescription">If this paper is accepted for publication, you will be asked to pay an Monograph Publication Fee to cover publications costs.</message>
 	<message key="default.pressSettings.waiverPolicy">If you do not have funds to pay such fees, you will have an opportunity to waive each fee. We do not want fees to prevent the publication of worthy work.</message>
-	<message key="default.pressSettings.purchaseArticleFeeDescription">The payment of this fee will enable you to view, download, and print this article.</message>
+	<message key="default.pressSettings.purchaseMonographFeeDescription">The payment of this fee will enable you to view, download, and print this monograph.</message>
 	<message key="default.pressSettings.membershipFeeDescription">The payment of this fee will enroll you as a member in this association for one year and provide you with free access to this press.</message>
 	<message key="default.pressSettings.donationFeeDescription">Donations of any amount to this press are gratefully received and provide a means for the editors to continue to provide a press of the highest quality to its readers.</message>
 </locale>

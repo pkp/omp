@@ -13,7 +13,7 @@
   <message key="plugins.block.user.displayName" >بلوک کاربر</message>
   <message key="plugins.block.user.description" >این پلاگین ابزاری برای اداره حساب کاربری در نوار حاشیه فراهم میکند -مانند لینک ورود - خروج - کارنامه و غیره).</message>
   <message key="plugins.block.user.loggedInAs" >شما وارد شده اید به عنوان ...</message>
-  <message key="plugins.block.user.myJournals" >مجلات من</message>
+  <message key="plugins.block.user.myPresses" >مجلات من</message>
   <message key="plugins.block.user.myProfile" >کارنامه من</message>
   <message key="plugins.block.user.logout" >خروج</message>
   <message key="plugins.block.user.signOutAsUser" >خروج به عنوان</message>

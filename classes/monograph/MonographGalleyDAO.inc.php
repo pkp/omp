@@ -112,7 +112,7 @@ class MonographGalleyDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all galleys for an monograph.
+	 * Retrieve all galleys for a monograph.
 	 * @param $monographId int
 	 * @return array MonographGalleys
 	 */
@@ -155,7 +155,7 @@ class MonographGalleyDAO extends DAO {
 	}
 
 	/**
-	 * Internal function to return an MonographGalley object from a row.
+	 * Internal function to return a MonographGalley object from a row.
 	 * @param $row array
 	 * @return MonographGalley
 	 */
@@ -256,7 +256,7 @@ class MonographGalleyDAO extends DAO {
 	}
 
 	/**
-	 * Delete an MonographGalley.
+	 * Delete a MonographGalley.
 	 * @param $galley MonographGalley
 	 */
 	function deleteGalley(&$galley) {
@@ -333,7 +333,7 @@ class MonographGalleyDAO extends DAO {
 	}
 
 	/**
-	 * Sequentially renumber galleys for an monograph in their sequence order.
+	 * Sequentially renumber galleys for a monograph in their sequence order.
 	 * @param $monographId int
 	 */
 	function resequenceGalleys($monographId) {
@@ -356,7 +356,7 @@ class MonographGalleyDAO extends DAO {
 	}
 
 	/**
-	 * Get the the next sequence number for an monograph's galleys (i.e., current max + 1).
+	 * Get the the next sequence number for a monograph's galleys (i.e., current max + 1).
 	 * @param $monographId int
 	 * @return int
 	 */

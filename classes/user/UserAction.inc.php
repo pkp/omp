@@ -82,8 +82,8 @@ class UserAction {
 		$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
 		$copyeditorSubmissions =& $copyeditorSubmissionDao->getCopyeditorSubmissionsByCopyeditorId($oldUserId);
 		while ($copyeditorSubmission =& $copyeditorSubmissions->next()) {
-			$initialCopyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_ARTICLE, $copyeditorSubmission->getMonographId());
-			$finalCopyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_ARTICLE, $copyeditorSubmission->getMonographId());
+			$initialCopyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
+			$finalCopyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
 			$initialCopyeditSignoff->setUserId($newUserId);
 			$finalCopyeditSignoff->setUserId($newUserId);
 			$signoffDao->updateObject($initialCopyeditSignoff);			
@@ -96,8 +96,8 @@ class UserAction {
 		$layoutEditorSubmissionDao =& DAORegistry::getDAO('LayoutEditorSubmissionDAO');
 		$layoutEditorSubmissions =& $layoutEditorSubmissionDao->getSubmissions($oldUserId);
 		while ($layoutEditorSubmission =& $layoutEditorSubmissions->next()) {
-			$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_ARTICLE, $layoutEditorSubmission->getMonographId());
-			$layoutProofreadSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_ARTICLE, $layoutEditorSubmission->getMonographId());
+			$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $layoutEditorSubmission->getMonographId());
+			$layoutProofreadSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_MONOGRAPH, $layoutEditorSubmission->getMonographId());
 			$layoutSignoff->setUserId($newUserId);
 			$layoutProofreadSignoff->setUserId($newUserId);
 			$signoffDao->updateObject($layoutSignoff);
@@ -110,7 +110,7 @@ class UserAction {
 		$proofreaderSubmissionDao =& DAORegistry::getDAO('ProofreaderSubmissionDAO');
 		$proofreaderSubmissions =& $proofreaderSubmissionDao->getSubmissions($oldUserId);
 		while ($proofreaderSubmission =& $proofreaderSubmissions->next()) {
-			$proofSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_ARTICLE, $proofreaderSubmission->getMonographId());
+			$proofSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $proofreaderSubmission->getMonographId());
 			$proofSignoff->setUserId($newUserId);
 			$signoffDao->updateObject($proofSignoff);
 			unset($proofSignoff);

@@ -60,35 +60,19 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get ID of the issue this monograph is in.
+	 * Get the Id of the arrangement that contains this monograph.
 	 * @return int
 	 */
-	function getIssueId() {
-		return $this->getData('issueId');
+	function getAcquisitionsArrangementId() {
+		return $this->getData('arrangementId');
 	}
 
 	/**
-	 * Set ID of the issue this monograph is in.
-	 * @param $issueId int
+	 * Set the Id of the arrangement that contains this monograph.
+	 * @param $arrangementId int
 	 */
-	function setIssueId($issueId) {
-		return $this->setData('issueId', $issueId);
-	}
-
-	/**
-	 * Get section ID of the issue this monograph is in.
-	 * @return int
-	 */
-	function getSectionId() {
-		return $this->getData('sectionId');
-	}
-
-	/**
-	 * Set section ID of the issue this monograph is in.
-	 * @param $sectionId int
-	 */
-	function setSectionId($sectionId) {
-		return $this->setData('sectionId', $sectionId);
+	function setAcquisitionsArrangementId($arrangementId) {
+		return $this->setData('arrangementId', $arrangementId);
 	}
 
 	/**
@@ -159,7 +143,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get the galleys for an monograph.
+	 * Get the galleys for a monograph.
 	 * @return array MonographGalley
 	 */
 	function &getGalleys() {
@@ -168,7 +152,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Get the localized galleys for an monograph.
+	 * Get the localized galleys for a monograph.
 	 * @return array MonographGalley
 	 */
 	function &getLocalizedGalleys() {
@@ -192,7 +176,7 @@ class PublishedMonograph extends Monograph {
 	}
 
 	/**
-	 * Set the galleys for an monograph.
+	 * Set the galleys for a monograph.
 	 * @param $galleys array MonographGalley
 	 */
 	function setGalleys(&$galleys) {
@@ -273,11 +257,7 @@ class PublishedMonograph extends Monograph {
 		if (($doiPrefix = $press->getSetting('doiPrefix')) == '') return null;
 		$doiSuffixSetting = $press->getSetting('doiSuffix');
 
-		// Get the issue
-		$issueDao =& DAORegistry::getDAO('IssueDAO');
-		$issue =& $issueDao->getIssueByMonographId($this->getMonographId());
-
-		if (!$issue || !$press || $press->getPressId() != $issue->getPressId() ) return null;
+		if (!$press) return null;
 				
 		switch ( $doiSuffixSetting ) {
 			case 'customIdentifier': 
@@ -287,10 +267,6 @@ class PublishedMonograph extends Monograph {
 				$suffixPattern = $press->getSetting('doiSuffixPattern');
 				// %j - press initials
 				$suffixPattern = String::regexp_replace('/%j/', String::strtolower($press->getLocalizedSetting('initials')), $suffixPattern);
-				// %v - volume number  
-				$suffixPattern = String::regexp_replace('/%v/', $issue->getVolume(), $suffixPattern);
-				// %i - issue number
-				$suffixPattern = String::regexp_replace('/%i/', $issue->getNumber(), $suffixPattern);
 				// %a - monograph id
 				$suffixPattern = String::regexp_replace('/%a/', $this->getMonographId(), $suffixPattern);
 				// %p - page number
@@ -298,7 +274,7 @@ class PublishedMonograph extends Monograph {
 				return $doiPrefix . '/' . $suffixPattern; 														 
 				break;
 			default:
-				return $doiPrefix . '/' . String::strtolower($press->getLocalizedSetting('initials')) . '.v' . $issue->getVolume() . 'i' . $issue->getNumber() . '.' . $this->getMonographId();
+				return $doiPrefix . '/' . String::strtolower($press->getLocalizedSetting('initials')) . '#' . $this->getMonographId();
 		}
 	}
 }

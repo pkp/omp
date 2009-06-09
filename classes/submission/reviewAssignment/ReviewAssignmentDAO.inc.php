@@ -130,7 +130,7 @@ class ReviewAssignmentDAO extends DAO {
 
 
 	/**
-	 * Get all incomplete review assignments for all presss
+	 * Get all incomplete review assignments for all presses
 	 * @param $monographId int
 	 * @return array ReviewAssignments
 	 */

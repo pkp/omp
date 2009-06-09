@@ -10,7 +10,7 @@
  * @ingroup monograph
  * @see Monograph
  *
- * @brief Form to create or edit an issue
+ * @brief Form for uploading artwork.
  */
 
 // $Id$
@@ -59,8 +59,7 @@ class MonographArtworkForm extends Form {
 	}
 
 	/**
-	 * Initialize form data from current issue.
-	 * returns issue id that it initialized the page with
+	 * Initialize form data.
 	 */
 	function initData() {
 
@@ -74,7 +73,7 @@ class MonographArtworkForm extends Form {
 	}
 
 	/**
-	 * Save issue settings.
+	 * Save settings.
 	 */
 	function execute() {
 		  return $this->artworkInsert->execute($this, $this->monograph);

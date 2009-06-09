@@ -15,8 +15,8 @@
 <locale name="hr_HR" full_name="Hrvatski">
 	<message key="plugins.generic.translator.name">Dodatak za prevođenje</message>
 	<message key="plugins.generic.translator.description">Ovaj dodatak omogućuje izradu i ažuriranje datoteka prijevoda sustava preko mrežnog sučelja.</message>
-	<message key="plugins.generic.translator.longdescription">Ovaj dodatak omogućuje administratoru stranica da nadopuni, modificira i provjeri prijevod OJS sustava. Ove intervencije odnose se na čitav sustav te se ne bi smjele koristiti za prilagođavanje pojedinih OJS časopisa. Napravite li dopune ili ispravke prijevoda,  molimo vas da razmotrite prijavljivanje istih u Public Knowledge Project kako bi bili distribuirani u narednim verzijama OJS-a.</message>
-	<message key="plugins.generic.translator.localeDescription">Na ovoj su stranici ispisane sve komponente OJS prijevoda. Prevoditelj ima mogućnost urediti svaku od njih. Pun prijevod trebao bi sadržavati potpune prijevode svih komponenti.</message>
+	<message key="plugins.generic.translator.longdescription">Ovaj dodatak omogućuje administratoru stranica da nadopuni, modificira i provjeri prijevod OMP sustava. Ove intervencije odnose se na čitav sustav te se ne bi smjele koristiti za prilagođavanje pojedinih OMP časopisa. Napravite li dopune ili ispravke prijevoda,  molimo vas da razmotrite prijavljivanje istih u Public Knowledge Project kako bi bili distribuirani u narednim verzijama OMP-a.</message>
+	<message key="plugins.generic.translator.localeDescription">Na ovoj su stranici ispisane sve komponente OMP prijevoda. Prevoditelj ima mogućnost urediti svaku od njih. Pun prijevod trebao bi sadržavati potpune prijevode svih komponenti.</message>
 
 	<message key="plugins.generic.translator.localeName">Naziv prijevoda sustava</message>
 	<message key="plugins.generic.translator.localeKey">Fraza</message>

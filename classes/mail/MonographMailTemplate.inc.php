@@ -149,7 +149,7 @@ class MonographMailTemplate extends MailTemplate {
 		foreach ($this->getAttachmentFiles() as $attachment) {
 			$monographFileManager->temporaryFileToMonographFile(
 				$attachment,
-				ARTICLE_FILE_ATTACHMENT,
+				MONOGRAPH_FILE_ATTACHMENT,
 				$logEntryId
 			);
 		}
@@ -167,10 +167,10 @@ class MonographMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
-	function toAssignedReviewingSectionEditors($monographId) {
+	function toAssignedReviewingAcquisitionsEditors($monographId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getReviewingSectionEditorAssignmentsByMonographId($monographId);
+		$editAssignments =& $editAssignmentDao->getReviewingAcquisitionsEditorAssignmentsByMonographId($monographId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addRecipient($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
 			$returner[] =& $editAssignment;
@@ -179,10 +179,10 @@ class MonographMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
-	function toAssignedEditingSectionEditors($monographId) {
+	function toAssignedEditingAcquisitionsEditors($monographId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getEditingSectionEditorAssignmentsByMonographId($monographId);
+		$editAssignments =& $editAssignmentDao->getEditingAcquisitionsEditorAssignmentsByMonographId($monographId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addRecipient($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
 			$returner[] =& $editAssignment;
@@ -191,10 +191,10 @@ class MonographMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
-	function ccAssignedReviewingSectionEditors($monographId) {
+	function ccAssignedReviewingAcquisitionsEditors($monographId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getReviewingSectionEditorAssignmentsByMonographId($monographId);
+		$editAssignments =& $editAssignmentDao->getReviewingAcquisitionsEditorAssignmentsByMonographId($monographId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addCc($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
 			$returner[] =& $editAssignment;
@@ -203,10 +203,10 @@ class MonographMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
-	function ccAssignedEditingSectionEditors($monographId) {
+	function ccAssignedEditingAcquisitionsEditors($monographId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getEditingSectionEditorAssignmentsByMonographId($monographId);
+		$editAssignments =& $editAssignmentDao->getEditingAcquisitionsEditorAssignmentsByMonographId($monographId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addCc($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
 			$returner[] =& $editAssignment;

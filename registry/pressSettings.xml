@@ -218,16 +218,16 @@
 		<value>{translate key="default.pressSettings.waiverPolicy"}</value>
 	</setting>				
 	<setting type="int" locale="0">
-		<name>purchaseArticleFee</name>
+		<name>purchaseBookFee</name>
 		<value>0</value>
 	</setting>	
 	<setting type="string" locale="1">
-		<name>purchaseArticleFeeName</name>
-		<value>{translate key="manager.payment.options.purchaseArticleFee"}</value>
+		<name>purchaseBookFeeName</name>
+		<value>{translate key="manager.payment.options.purchaseMonographFee"}</value>
 	</setting>
 	<setting type="string" locale="1">
-		<name>purchaseArticleFeeDescription</name>
-		<value>{translate key="default.pressSettings.purchaseArticleFeeDescription"}</value>
+		<name>purchaseBookFeeDescription</name>
+		<value>{translate key="default.pressSettings.purchaseMonographFeeDescription"}</value>
 	</setting>			
 	<setting type="int" locale="0">
 		<name>membershipFee</name>

@@ -49,7 +49,7 @@ class MonographEmailLogDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all log entries for an monograph.
+	 * Retrieve all log entries for a monograph.
 	 * @param $monographId int
 	 * @return DAOResultFactory containing matching MonographEmailLogEntry ordered by sequence
 	 */
@@ -59,7 +59,7 @@ class MonographEmailLogDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all log entries for an monograph matching the specified association.
+	 * Retrieve all log entries for a monograph matching the specified association.
 	 * @param $monographId int
 	 * @param $assocType int
 	 * @param $assocId int
@@ -84,7 +84,7 @@ class MonographEmailLogDAO extends DAO {
 	}
 
 	/**
-	 * Internal function to return an MonographEmailLogEntry object from a row.
+	 * Internal function to return a MonographEmailLogEntry object from a row.
 	 * @param $row array
 	 * @return MonographEmailLogEntry
 	 */
@@ -148,7 +148,7 @@ class MonographEmailLogDAO extends DAO {
 	}
 
 	/**
-	 * Delete a single log entry for an monograph.
+	 * Delete a single log entry for a monograph.
 	 * @param $logId int
 	 * @param $monographId int optional
 	 */
@@ -167,7 +167,7 @@ class MonographEmailLogDAO extends DAO {
 	}
 
 	/**
-	 * Delete all log entries for an monograph.
+	 * Delete all log entries for a monograph.
 	 * @param $monographId int
 	 */
 	function deleteMonographLogEntries($monographId) {

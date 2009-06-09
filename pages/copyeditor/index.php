@@ -43,7 +43,7 @@ switch ($op) {
 	//
 	case 'viewMetadata':
 	case 'saveMetadata':
-	case 'removeArticleCoverPage':
+	case 'removeMonographCoverPage':
 		define('HANDLER_CLASS', 'SubmissionCopyeditHandler');
 		import('pages.copyeditor.SubmissionCopyeditHandler');
 		break;

@@ -40,9 +40,9 @@ class StatisticsHandler extends ManagerHandler {
 		if (empty($statisticsYear)) $statisticsYear = date('Y');
 		$templateMgr->assign('statisticsYear', $statisticsYear);
 
-		$sectionIds = $press->getSetting('statisticsSectionIds');
-		if (!is_array($sectionIds)) $sectionIds = array();
-		$templateMgr->assign('sectionIds', $sectionIds);
+		$arrangementIds = $press->getSetting('statisticsArrangementIds');
+		if (!is_array($arrangementIds)) $arrangementIds = array();
+		$templateMgr->assign('arrangementIds', $arrangementIds);
 
 		foreach (StatisticsHandler::getPublicStatisticsNames() as $name) {
 			$templateMgr->assign($name, $press->getSetting($name));
@@ -56,17 +56,14 @@ class StatisticsHandler extends ManagerHandler {
 		$monographStatistics = $pressStatisticsDao->getMonographStatistics($press->getPressId(), null, $fromDate, $toDate);
 		$templateMgr->assign('monographStatistics', $monographStatistics);
 
-		$limitedMonographStatistics = $pressStatisticsDao->getMonographStatistics($press->getPressId(), $sectionIds, $fromDate, $toDate);
+		$limitedMonographStatistics = $pressStatisticsDao->getMonographStatistics($press->getPressId(), $arrangementIds, $fromDate, $toDate);
 		$templateMgr->assign('limitedMonographStatistics', $limitedMonographStatistics);
 
-		$sectionDao =& DAORegistry::getDAO('SectionDAO');
-		$sections =& $sectionDao->getPressSections($press->getPressId());
-		$templateMgr->assign('sections', $sections->toArray());
+		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
+		$arrangements =& $arrangementDao->getPressAcquisitionsArrangements($press->getPressId());
+		$templateMgr->assign('arrangements', $arrangements->toArray());
 
-		$issueStatistics = $pressStatisticsDao->getIssueStatistics($press->getPressId(), $fromDate, $toDate);
-		$templateMgr->assign('issueStatistics', $issueStatistics);
-
-		$reviewerStatistics = $pressStatisticsDao->getReviewerStatistics($press->getPressId(), $sectionIds, $fromDate, $toDate);
+		$reviewerStatistics = $pressStatisticsDao->getReviewerStatistics($press->getPressId(), $arrangementIds, $fromDate, $toDate);
 		$templateMgr->assign('reviewerStatistics', $reviewerStatistics);
 
 		$allUserStatistics = $pressStatisticsDao->getUserStatistics($press->getPressId(), null, $toDate);
@@ -97,27 +94,26 @@ class StatisticsHandler extends ManagerHandler {
 		$templateMgr->display('manager/statistics/index.tpl');
 	}
 
-	function saveStatisticsSections() {
-		// The manager wants to save the list of sections used to
+	function saveStatisticsArrangements() {
+		// The manager wants to save the list of acquisitions arrangements used to
 		// generate statistics.
 
 		$this->validate();
 
 		$press =& Request::getPress();
 
-		$sectionIds = Request::getUserVar('sectionIds');
-		if (!is_array($sectionIds)) {
-			if (empty($sectionIds)) $sectionIds = array();
-			else $sectionIds = array($sectionIds);
+		$arrangementIds = Request::getUserVar('arrangementIds');
+		if (!is_array($arrangementIds)) {
+			if (empty($arrangementIds)) $arrangementIds = array();
+			else $arrangementIds = array($arrangementIds);
 		}
 
-		$press->updateSetting('statisticsSectionIds', $sectionIds);
+		$press->updateSetting('statisticsArrangementIds', $arrangementIds);
 		Request::redirect(null, null, 'statistics', null, array('statisticsYear' => Request::getUserVar('statisticsYear')));
 	}
 
 	function getPublicStatisticsNames() {
 		return array(
-			'statNumPublishedIssues',
 			'statItemsPublished',
 			'statNumSubmissions',
 			'statPeerReviewed',

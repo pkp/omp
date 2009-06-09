@@ -11,7 +11,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup pages_author
- * @brief Handle requests for journal author functions. 
+ * @brief Handle requests for press author functions. 
  *
  */
 
@@ -19,7 +19,7 @@
 
 switch ($op) {
 	//
-	// Article Submission
+	// Monograph Submission
 	//
 	case 'submit':
 	case 'saveSubmit':
@@ -33,7 +33,7 @@ switch ($op) {
 	//
 	// Submission Tracking
 	//
-	case 'deleteArticleFile':
+	case 'deleteMonographFile':
 	case 'deleteSubmission':
 	case 'submission':
 	case 'editSuppFile':
@@ -45,7 +45,7 @@ switch ($op) {
 	case 'uploadRevisedVersion':
 	case 'viewMetadata':
 	case 'saveMetadata':
-	case 'removeArticleCoverPage':
+	case 'removeMonographCoverPage':
 	case 'uploadCopyeditVersion':
 	case 'completeAuthorCopyedit':
 	//

@@ -56,5 +56,5 @@ Examples:
 	<message key="plugins.importexport.users.export.errorsOccurred">Error ocorridos durante a exportação</message>
 	<message key="plugins.importexport.users.export.couldNotWriteFile">Não foi possível escrever para o arquivo</message>
 	<message key="plugins.importexport.users.import.warning">Aviso</message>
-	<message key="plugins.importexport.users.import.encryptionMismatch">Não é possível criptografados com {$importHash}; o sisema está configurado para utilizar {$ojsHash}. Caso continue, será necessário recriar todas as senhas de usuários importados.</message>
+	<message key="plugins.importexport.users.import.encryptionMismatch">Não é possível criptografados com {$importHash}; o sisema está configurado para utilizar {$ompHash}. Caso continue, será necessário recriar todas as senhas de usuários importados.</message>
 </locale>

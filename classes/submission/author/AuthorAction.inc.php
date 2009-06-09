@@ -85,7 +85,7 @@ class AuthorAction extends Action {
 	}
 
 	/**
-	 * Upload the revised version of an monograph.
+	 * Upload the revised version of a monograph.
 	 * @param $authorSubmission object
 	 */
 	function uploadRevisedVersion($authorSubmission) {
@@ -166,24 +166,24 @@ class AuthorAction extends Action {
 			if (!Request::getUserVar('continued')) {
 				if (isset($copyeditor)) {
 					$email->addRecipient($copyeditor->getEmail(), $copyeditor->getFullName());
-					$assignedSectionEditors = $email->ccAssignedEditingSectionEditors($authorSubmission->getMonographId());
+					$assignedAcquisitionsEditors = $email->ccAssignedEditingAcquisitionsEditors($authorSubmission->getMonographId());
 					$assignedEditors = $email->ccAssignedEditors($authorSubmission->getMonographId());
-					if (empty($assignedSectionEditors) && empty($assignedEditors)) {
+					if (empty($assignedAcquisitionsEditors) && empty($assignedEditors)) {
 						$email->addCc($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 						$editorName = $press->getSetting('contactName');
 					} else {
-						$editor = array_shift($assignedSectionEditors);
+						$editor = array_shift($assignedAcquisitionsEditors);
 						if (!$editor) $editor = array_shift($assignedEditors);
 						$editorName = $editor->getEditorFullName();
 					}
 				} else {
-					$assignedSectionEditors = $email->toAssignedEditingSectionEditors($authorSubmission->getMonographId());
+					$assignedAcquisitionsEditors = $email->toAssignedEditingAcquisitionsEditors($authorSubmission->getMonographId());
 					$assignedEditors = $email->ccAssignedEditors($authorSubmission->getMonographId());
-					if (empty($assignedSectionEditors) && empty($assignedEditors)) {
+					if (empty($assignedAcquisitionsEditors) && empty($assignedEditors)) {
 						$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 						$editorName = $press->getSetting('contactName');
 					} else {
-						$editor = array_shift($assignedSectionEditors);
+						$editor = array_shift($assignedAcquisitionsEditors);
 						if (!$editor) $editor = array_shift($assignedEditors);
 						$editorName = $editor->getEditorFullName();
 					}

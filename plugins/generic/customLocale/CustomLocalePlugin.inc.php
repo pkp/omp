@@ -30,7 +30,7 @@ class CustomLocalePlugin extends GenericPlugin {
 				$locale = Locale::getLocale();
 				$localeFiles = Locale::getLocaleFiles($locale); 
 				$publicFilesDir = Config::getVar('files', 'public_files_dir');
-				$customLocaleDir = $publicFilesDir . DIRECTORY_SEPARATOR . 'presss' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR;
+				$customLocaleDir = $publicFilesDir . DIRECTORY_SEPARATOR . 'presses' . DIRECTORY_SEPARATOR . $pressId . DIRECTORY_SEPARATOR . CUSTOM_LOCALE_DIR;
 
 				foreach ($localeFiles as $localeFile) {
 					$localeFilename = $localeFile->getFilename();

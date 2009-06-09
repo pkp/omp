@@ -167,10 +167,6 @@ function setRegAllowOpts(form) {
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="enablePublicIssueId" id="enablePublicIssueId" value="1"{if $enablePublicIssueId} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="enablePublicIssueId">{translate key="manager.setup.enablePublicIssueId"}</label></td>
-	</tr>
-	<tr valign="top">
 		<td class="label"><input type="checkbox" name="enablePublicMonographId" id="enablePublicMonographId" value="1"{if $enablePublicMonographId} checked="checked"{/if} /></td>
 		<td class="value"><label for="enablePublicMonographId">{translate key="manager.setup.enablePublicMonographId"}</label></td>
 	</tr>

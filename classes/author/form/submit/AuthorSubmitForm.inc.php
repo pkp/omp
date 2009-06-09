@@ -13,7 +13,7 @@
  * @class AuthorSubmitForm
  * @ingroup author_form_submit
  *
- * @brief Base class for journal author submit forms.
+ * @brief Base class for author submit forms.
  */
 
 // $Id$

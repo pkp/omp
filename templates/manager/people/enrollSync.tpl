@@ -32,7 +32,7 @@
 					<option value="all">{translate key="manager.people.allUsers"}</option>
 					<option value="manager">{translate key="user.role.manager"}</option>
 				<!--	<option value="editor">{translate key="user.role.editor"}</option>
-					<option value="sectionEditor">{translate key="user.role.sectionEditor"}</option>
+					<option value="acquisitionsEditor">{translate key="user.role.acquisitionsEditor"}</option>
 					<option value="layoutEditor">{translate key="user.role.layoutEditor"}</option>
 					<option value="reviewer">{translate key="user.role.reviewer"}</option>
 					<option value="copyeditor">{translate key="user.role.copyeditor"}</option>

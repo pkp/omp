@@ -40,11 +40,4 @@
 	</div>
 {/if}
 
-{if $issue}
-	{* Display the table of contents or cover page of the current issue. *}
-	<br />
-	<h3>{$issue->getIssueIdentification()|escape}</h3>
-	{include file="issue/view.tpl"}
-{/if}
-
 {include file="common/footer.tpl"}

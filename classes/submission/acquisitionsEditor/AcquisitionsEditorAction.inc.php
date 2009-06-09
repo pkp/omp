@@ -31,12 +31,12 @@ class AcquisitionsEditorAction extends Action {
 	 */
 
 	/**
-	 * Changes the section an monograph belongs in.
+	 * Changes the arrangement a monograph belongs in.
 	 * @param $acquisitionsEditorSubmission int
 	 * @param $acquisitionsId int
 	 */
-	function changeSection($acquisitionsEditorSubmission, $acquisitionsId) {
-		if (!HookRegistry::call('AcquisitionsEditorAction::changeSection', array(&$acquisitionsEditorSubmission, $acquisitionsId))) {
+	function changeAcquisitionsArrangement($acquisitionsEditorSubmission, $acquisitionsId) {
+		if (!HookRegistry::call('AcquisitionsEditorAction::changeAcquisitionsArrangement', array(&$acquisitionsEditorSubmission, $acquisitionsId))) {
 			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 			$acquisitionsEditorSubmission->setAcquisitionsArrangementId($acquisitionsId);
 			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
@@ -188,7 +188,7 @@ class AcquisitionsEditorAction extends Action {
 		$reviewerAccessKeysEnabled = $press->getSetting('reviewerAccessKeysEnabled');
 
 		// If we're using access keys, disable the address fields
-		// for this message. (Prevents security issue: section editor
+		// for this message. (Prevents security issue: acquisitions editor
 		// could CC or BCC someone else, or change the reviewer address,
 		// in order to get the access key.)
 		$preventAddressChanges = $reviewerAccessKeysEnabled;
@@ -361,7 +361,7 @@ class AcquisitionsEditorAction extends Action {
 		$reviewerAccessKeysEnabled = $press->getSetting('reviewerAccessKeysEnabled');
 
 		// If we're using access keys, disable the address fields
-		// for this message. (Prevents security issue: section editor
+		// for this message. (Prevents security issue: acquisitions editor
 		// could CC or BCC someone else, or change the reviewer address,
 		// in order to get the access key.)
 		$preventAddressChanges = $reviewerAccessKeysEnabled;
@@ -523,7 +523,7 @@ class AcquisitionsEditorAction extends Action {
 	}
 
 	/**
-	 * Makes a reviewer's annotated version of an monograph available to the author.
+	 * Makes a reviewer's annotated version of a monograph available to the author.
 	 * @param $monographId int
 	 * @param $reviewId int
 	 * @param $viewable boolean
@@ -1228,7 +1228,7 @@ class AcquisitionsEditorAction extends Action {
 	}
 
 	/**
-	 * Upload the review version of an monograph.
+	 * Upload the review version of a monograph.
 	 * @param $acquisitionsEditorSubmission object
 	 */
 	function uploadReviewVersion($acquisitionsEditorSubmission) {
@@ -1258,7 +1258,7 @@ class AcquisitionsEditorAction extends Action {
 	}
 
 	/**
-	 * Upload the post-review version of an monograph.
+	 * Upload the post-review version of a monograph.
 	 * @param $acquisitionsEditorSubmission object
 	 */
 	function uploadEditorVersion($acquisitionsEditorSubmission) {
@@ -1289,7 +1289,7 @@ class AcquisitionsEditorAction extends Action {
 	}
 
 	/**
-	 * Upload the copyedit version of an monograph.
+	 * Upload the copyedit version of a monograph.
 	 * @param $acquisitionsEditorSubmission object
 	 * @param $copyeditStage string
 	 */
@@ -1308,7 +1308,7 @@ class AcquisitionsEditorAction extends Action {
 		if ($copyeditStage == 'author' && $initialSignoff->getDateCompleted() == null) return;
 
 		$fileName = 'upload';
-		if ($monographFileManager->uploadedFileExists($fileName) && !HookRegistry::call('SectionEditorAction::uploadCopyeditVersion', array(&$acquisitionsEditorSubmission))) {
+		if ($monographFileManager->uploadedFileExists($fileName) && !HookRegistry::call('AcquisitionsEditorAction::uploadCopyeditVersion', array(&$acquisitionsEditorSubmission))) {
 			if ($acquisitionsEditorSubmission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL', true) != null) {
 				$copyeditFileId = $monographFileManager->uploadCopyeditFile($fileName, $acquisitionsEditorSubmission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL', true));
 			} else {
@@ -1351,7 +1351,7 @@ class AcquisitionsEditorAction extends Action {
 
 		if (HookRegistry::call('AcquisitionsEditorAction::completeCopyedit', array(&$acquisitionsEditorSubmission))) return;
 
-		$signoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getArticleId());
+		$signoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getMonographId());
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);
 
@@ -1362,7 +1362,7 @@ class AcquisitionsEditorAction extends Action {
 	}
 
 	/**
-	 * Section editor completes final copyedit (copyeditors disabled).
+	 * Acquisitions editor completes final copyedit (copyeditors disabled).
 	 * @param $acquisitionsEditorSubmission object
 	 */
 	function completeFinalCopyedit($acquisitionsEditorSubmission) {
@@ -1459,7 +1459,7 @@ class AcquisitionsEditorAction extends Action {
 	 * @param $acquisitionsId int
 	 */
 	function updateAcquisitionsArrangement($submission, $acquisitionsId) {
-		if (HookRegistry::call('AcquisitionsEditorAction::updateSection', array(&$submission, &$acquisitionsId))) return;
+		if (HookRegistry::call('AcquisitionsEditorAction::updateAcquisitionsArrangement', array(&$submission, &$acquisitionsId))) return;
 
 		$submissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$submission->setAcquisitionsArrangementId($acquisitionsId); // FIXME validate this ID?
@@ -1484,7 +1484,7 @@ class AcquisitionsEditorAction extends Action {
 	//
 
 	/**
-	 * Upload the layout version of an monograph.
+	 * Upload the layout version of a monograph.
 	 * @param $submission object
 	 */
 	function uploadLayoutVersion($submission) {
@@ -1674,7 +1674,7 @@ class AcquisitionsEditorAction extends Action {
 	}
 
 	/**
-	 * Delete a file from an monograph.
+	 * Delete a file from a monograph.
 	 * @param $submission object
 	 * @param $fileId int
 	 * @param $revision int (optional)
@@ -1690,7 +1690,7 @@ class AcquisitionsEditorAction extends Action {
 	}
 
 	/**
-	 * Delete an image from an monograph galley.
+	 * Delete an image from a monograph galley.
 	 * @param $submission object
 	 * @param $fileId int
 	 * @param $revision int (optional)
@@ -1845,7 +1845,7 @@ class AcquisitionsEditorAction extends Action {
 		import('submission.form.comment.PeerReviewCommentForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new PeerReviewCommentForm($monograph, $reviewId, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+		$commentForm =& new PeerReviewCommentForm($monograph, $reviewId, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -1862,7 +1862,7 @@ class AcquisitionsEditorAction extends Action {
 		import('submission.form.comment.PeerReviewCommentForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new PeerReviewCommentForm($monograph, $reviewId, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+		$commentForm =& new PeerReviewCommentForm($monograph, $reviewId, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {
@@ -1889,7 +1889,7 @@ class AcquisitionsEditorAction extends Action {
 		import('submission.form.comment.EditorDecisionCommentForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new EditorDecisionCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+		$commentForm =& new EditorDecisionCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -1905,7 +1905,7 @@ class AcquisitionsEditorAction extends Action {
 		import('submission.form.comment.EditorDecisionCommentForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new EditorDecisionCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+		$commentForm =& new EditorDecisionCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {
@@ -1968,7 +1968,7 @@ class AcquisitionsEditorAction extends Action {
 
 			$monographComment = new MonographComment();
 			$monographComment->setCommentType(COMMENT_TYPE_EDITOR_DECISION);
-			$monographComment->setRoleId(Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+			$monographComment->setRoleId(Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 			$monographComment->setMonographId($acquisitionsEditorSubmission->getMonographId());
 			$monographComment->setAuthorId($acquisitionsEditorSubmission->getUserId());
 			$monographComment->setCommentTitle($email->getSubject());
@@ -2132,7 +2132,7 @@ class AcquisitionsEditorAction extends Action {
 		import('submission.form.comment.CopyeditCommentForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new CopyeditCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+		$commentForm =& new CopyeditCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -2148,7 +2148,7 @@ class AcquisitionsEditorAction extends Action {
 		import('submission.form.comment.CopyeditCommentForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new CopyeditCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+		$commentForm =& new CopyeditCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {
@@ -2175,7 +2175,7 @@ class AcquisitionsEditorAction extends Action {
 		import('submission.form.comment.LayoutCommentForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+		$commentForm =& new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -2191,7 +2191,7 @@ class AcquisitionsEditorAction extends Action {
 		import('submission.form.comment.LayoutCommentForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+		$commentForm =& new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {
@@ -2218,7 +2218,7 @@ class AcquisitionsEditorAction extends Action {
 		import('submission.form.comment.ProofreadCommentForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+		$commentForm =& new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -2234,7 +2234,7 @@ class AcquisitionsEditorAction extends Action {
 		import('submission.form.comment.ProofreadCommentForm');
 
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SECTION_EDITOR);
+		$commentForm =& new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {
@@ -2376,7 +2376,7 @@ class AcquisitionsEditorAction extends Action {
 					$parent = array(Request::url(null, $acquisitions, 'submissionHistory', $monographId), 'submission.history');
 					break;
 			}
-			if ($acquisitions != 'editor' && $acquisitions != 'sectionEditor') {
+			if ($acquisitions != 'editor' && $acquisitions != 'acquisitionsEditor') {
 				$parent[0] = Request::url(null, $acquisitions, 'submission', $monographId);
 			}
 			$breadcrumb[] = $parent;

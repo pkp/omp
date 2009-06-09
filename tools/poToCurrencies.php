@@ -52,12 +52,12 @@ class poToCurrencies extends CommandLineTool {
 	 * Print command usage information.
 	 */
 	function usage() {
-		echo "Script to convert PO file to OJS's ISO4217 XML format\n"
+		echo "Script to convert PO file to OMP's ISO4217 XML format\n"
 			. "Usage: {$this->scriptName} locale /path/to/translation.po\n";
 	}
 
 	/**
-	 * Rebuild the search index for all articles in all journals.
+	 * Rebuild the search index for all monographs in all presses.
 	 */
 	function execute() {
 		// Read the translated file as a map from English => Whatever

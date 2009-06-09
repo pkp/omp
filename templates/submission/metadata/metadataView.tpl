@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * View (but not edit) metadata of an monograph.
+ * View (but not edit) metadata of a monograph.
  *
  * $Id$
  *}
@@ -38,7 +38,7 @@
 		<td class="label">{translate key="common.country"}</td>
 		<td class="value">{$author.countryLocalized|escape|default:"&mdash;"}</td>
 	</tr>
-	{if $currentJournal->getSetting('requireAuthorCompetingInterests')}
+	{if $currentPress->getSetting('requireAuthorCompetingInterests')}
 	<tr valign="top">
 		<td class="label">
 			{url|assign:"competingInterestGuidelinesUrl" page="information" op="competingInterestGuidelines"}
@@ -105,7 +105,7 @@
 <h3>{translate key="submission.indexing"}</h3>
 	
 <table width="100%" class="data">
-	{if $journalSettings.metaDiscipline}
+	{if $pressSettings.metaDiscipline}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="monograph.discipline"}</td>
 		<td width="80%" class="value">{$discipline[$formLocale]|escape|default:"&mdash;"}</td>
@@ -114,9 +114,9 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $journalSettings.metaSubjectClass}
+	{if $pressSettings.metaSubjectClass}
 	<tr valign="top">
-		<td colspan="2" class="label"><a href="{$currentJournal->getLocalizedSetting('metaSubjectClassUrl')|escape}" target="_blank">{$currentJournal->getLocalizedSetting('metaSubjectClassTitle')|escape}</a></td>
+		<td colspan="2" class="label"><a href="{$currentPress->getLocalizedSetting('metaSubjectClassUrl')|escape}" target="_blank">{$currentPress->getLocalizedSetting('metaSubjectClassTitle')|escape}</a></td>
 	</tr>
 	<tr valign="top">
 		<td width="20%"class="label">{translate key="monograph.subjectClassification"}</td>
@@ -126,7 +126,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $journalSettings.metaSubject}
+	{if $pressSettings.metaSubject}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="monograph.subject"}</td>
 		<td width="80%" class="value">{$subject[$formLocale]|escape|default:"&mdash;"}</td>
@@ -135,7 +135,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $journalSettings.metaCoverage}
+	{if $pressSettings.metaCoverage}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="monograph.coverageGeo"}</td>
 		<td width="80%" class="value">{$coverageGeo[$formLocale]|escape|default:"&mdash;"}</td>
@@ -158,7 +158,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
-	{if $journalSettings.metaType}
+	{if $pressSettings.metaType}
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="monograph.type"}</td>
 		<td width="80%" class="value">{$type[$formLocale]|escape|default:"&mdash;"}</td>

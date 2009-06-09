@@ -15,8 +15,8 @@
 <locale name="it_IT" full_name="Italiano">
 	<message key="plugins.generic.translator.name">Plugin per traduzioni</message>
 	<message key="plugins.generic.translator.description">Questo plugin permette la manutenzione via web dei file di traduzione.</message>
-	<message key="plugins.generic.translator.longdescription">Questo campo permette all'amministratore del sito di costruire, modificare e controllare le traduzioni di OJS. E' globale per tutta la installazione e non può essere usato per personalizzare una singola rivista OJS. Se si corregge o si crea una traduzione, si prega di pensare di sottoporla al Public Knowledge Project per distribuirla con le versioni future.</message>
-	<message key="plugins.generic.translator.localeDescription">Questa pagina elenca tutti i contenuti di una traduzione di OJS e fornisce al traduttore l'opportunità di modificare ognuno. Una completa traduzione dovrebbe contenere le traduzioni complete di tutti i contenuti.</message>
+	<message key="plugins.generic.translator.longdescription">Questo campo permette all'amministratore del sito di costruire, modificare e controllare le traduzioni di OMP. E' globale per tutta la installazione e non può essere usato per personalizzare una singola rivista OMP. Se si corregge o si crea una traduzione, si prega di pensare di sottoporla al Public Knowledge Project per distribuirla con le versioni future.</message>
+	<message key="plugins.generic.translator.localeDescription">Questa pagina elenca tutti i contenuti di una traduzione di OMP e fornisce al traduttore l'opportunità di modificare ognuno. Una completa traduzione dovrebbe contenere le traduzioni complete di tutti i contenuti.</message>
 
 	<message key="plugins.generic.translator.localeName">Nome</message>
 	<message key="plugins.generic.translator.localeKey">Chiave</message>

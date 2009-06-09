@@ -6,7 +6,7 @@
 # Copyright (c) 2003-2008 John Willinsky
 # Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
 #
-# Script to create an OJS package for distribution.
+# Script to create an OMP package for distribution.
 #
 # Usage: buildpkg.sh <version> [<tag>]
 #
@@ -14,7 +14,7 @@
 #
 
 CVSROOT=:pserver:anonymous@pkp.sfu.ca:/cvs
-MODULE=ojs2
+MODULE=omp
 
 if [ -z "$1" ]; then
 	echo "Usage: $0 <version> [<tag>] [<patch_dir>]";
@@ -24,7 +24,7 @@ fi
 VERSION=$1
 TAG=${2-HEAD}
 PATCHDIR=${3-}
-PREFIX=ojs
+PREFIX=omp
 BUILD=$PREFIX-$VERSION
 TMPDIR=`mktemp -d $PREFIX.XXXXXX` || exit 1
 
@@ -84,7 +84,7 @@ fi
 cd ..
 
 echo -n "Building doxygen documentation... "
-doxygen docs/dev/ojs2.doxygen > /dev/null && cd docs/doxygen && tar czf ../../${BUILD}-doxygen.tar.gz html latex && cd ../..
+doxygen docs/dev/omp.doxygen > /dev/null && cd docs/doxygen && tar czf ../../${BUILD}-doxygen.tar.gz html latex && cd ../..
 
 echo "Done"
 

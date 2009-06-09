@@ -333,7 +333,7 @@ class Validation {
 	}
 
 	/**
-	 * Shortcut for checking authorization as section editor.
+	 * Shortcut for checking authorization as acquisitions editor.
 	 * @param $pressId int
 	 * @return boolean
 	 */

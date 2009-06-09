@@ -51,8 +51,6 @@ class PressSetupStep4Form extends PressSetupForm {
 				'numAnnouncementsHomepage' => 'int',
 				'announcementsIntroduction' => 'string',
 				'volumePerYear' => 'int',
-				'issuePerVolume' => 'int',
-				'enablePublicIssueId' => 'bool',
 				'enablePublicMonographId' => 'bool',
 				'enablePublicGalleyId' => 'bool',
 				'enablePublicSuppFileId' => 'bool',

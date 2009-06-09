@@ -83,7 +83,7 @@
 					</td>
 					<td>
 						{if $reviewAssignment->getDeclined()}
-							{translate key="sectionEditor.regrets"}
+							{translate key="acquisitionsEditor.regrets"}
 						{else}
 							<a href="{url op="setDueDate" path=$reviewAssignment->getMonographId()|to_array:$reviewAssignment->getReviewId()}">{if $reviewAssignment->getDateDue()}{$reviewAssignment->getDateDue()|date_format:$dateFormatShort}{else}&mdash;{/if}</a>
 						{/if}

@@ -48,7 +48,7 @@
 		<row>
 			<field name="email_key">USER_REGISTER</field>
 			<field name="subject">新使用者註冊</field>
-			<field name="body">謝謝您註冊成為《{$journalName}》的一個使用者。請保管好這份使用者名稱和密碼，它對於使用本站的所有功能來說是非常必要的。
+			<field name="body">謝謝您註冊成為《{$pressName}》的一個使用者。請保管好這份使用者名稱和密碼，它對於使用本站的所有功能來說是非常必要的。
 
 使用者名稱：{$username}
 密碼：{$password}

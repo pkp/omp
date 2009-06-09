@@ -21,7 +21,7 @@ import('monograph.Monograph');
 class ProductionEditorSubmission extends Monograph {
 
 	/**
-	 * Get layout assignments for this article.
+	 * Get layout assignments for this monograph.
 	 * @return array
 	 */
 	function &getLayoutAssignments() {
@@ -30,7 +30,7 @@ class ProductionEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Set layout assignments for this article.
+	 * Set layout assignments for this monograph.
 	 * @param $layoutAssignments array
 	 */
 	function setLayoutAssignments($layoutAssignments) {
@@ -38,7 +38,7 @@ class ProductionEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Get supplementary files for this article.
+	 * Get supplementary files for this monograph.
 	 * @return array SuppFiles
 	 */
 	function &getSuppFiles() {
@@ -47,7 +47,7 @@ class ProductionEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Set supplementary file for this article.
+	 * Set supplementary file for this monograph.
 	 * @param $suppFiles array SuppFiles
 	 */
 	function setSuppFiles($suppFiles) {
@@ -72,7 +72,7 @@ class ProductionEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Get submission file for this article.
+	 * Get submission file for this monograph.
 	 * @return MonographFile
 	 */
 	function &getSubmissionFile() {
@@ -97,7 +97,7 @@ class ProductionEditorSubmission extends Monograph {
 		return $this->setData('layoutFile', $layoutFile);
 	}
 	/**
-	 * Set submission file for this article.
+	 * Set submission file for this monograph.
 	 * @param $submissionFile MonographFile
 	 */
 	function setSubmissionFile($submissionFile) {
@@ -105,7 +105,7 @@ class ProductionEditorSubmission extends Monograph {
 	}
 	/**
 	 * Get most recent layout comment.
-	 * @return ArticleComment
+	 * @return MonographComment
 	 */
 	function getMostRecentLayoutComment() {
 		return $this->getData('mostRecentLayoutComment');
@@ -113,7 +113,7 @@ class ProductionEditorSubmission extends Monograph {
 
 	/**
 	 * Set most recent layout comment.
-	 * @param $mostRecentLayoutComment ArticleComment
+	 * @param $mostRecentLayoutComment MonographComment
 	 */
 	function setMostRecentLayoutComment($mostRecentLayoutComment) {
 		return $this->setData('mostRecentLayoutComment', $mostRecentLayoutComment);
@@ -121,7 +121,7 @@ class ProductionEditorSubmission extends Monograph {
 
 	/**
 	 * Get most recent proofread comment.
-	 * @return ArticleComment
+	 * @return MonographComment
 	 */
 	function getMostRecentProofreadComment() {
 		return $this->getData('mostRecentProofreadComment');
@@ -129,15 +129,15 @@ class ProductionEditorSubmission extends Monograph {
 
 	/**
 	 * Set most recent proofread comment.
-	 * @param $mostRecentProofreadComment ArticleComment
+	 * @param $mostRecentProofreadComment MonographComment
 	 */
 	function setMostRecentProofreadComment($mostRecentProofreadComment) {
 		return $this->setData('mostRecentProofreadComment', $mostRecentProofreadComment);
 	}
 
 	/**
-	 * Get the galleys for an article.
-	 * @return array ArticleGalley
+	 * Get the galleys for a monograph.
+	 * @return array MonographGalley
 	 */
 	function &getGalleys() {
 		$galleys = &$this->getData('galleys');
@@ -145,8 +145,8 @@ class ProductionEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Set the galleys for an article.
-	 * @param $galleys array ArticleGalley
+	 * Set the galleys for a monograph.
+	 * @param $galleys array MonographGalley
 	 */
 	function setGalleys(&$galleys) {
 		return $this->setData('galleys', $galleys);

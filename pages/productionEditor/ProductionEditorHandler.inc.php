@@ -430,7 +430,7 @@ class ProductionEditorHandler extends Handler {
 				USER_FIELD_USERNAME => 'user.username',
 				USER_FIELD_EMAIL => 'user.email'
 			));
-			$templateMgr->assign('helpTopicId', 'journal.roles.layoutEditor');
+			$templateMgr->assign('helpTopicId', 'press.roles.productionEditor');
 			$templateMgr->display('acquisitionsEditor/selectUser.tpl');
 		}
 	}

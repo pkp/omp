@@ -37,7 +37,7 @@ Resetta la mia password: {$url}
 		<row>
 			<field name="email_key">PASSWORD_RESET</field>
 			<field name="subject">Password Reset</field>
-			<field name="body">La tua password &#x00E8; stata resettata con successo per questo sito web {$siteTitle}. Si prega di ricordare questa username e password, dato che &#x00E8; necessaria per tutto il lavoro con il journal.
+			<field name="body">La tua password &#x00E8; stata resettata con successo per questo sito web {$siteTitle}. Si prega di ricordare questa username e password, dato che &#x00E8; necessaria per tutto il lavoro con il press.
 
 La tua username: {$username}
 La tua nuova password: {$password}
@@ -48,7 +48,7 @@ La tua nuova password: {$password}
 		<row>
 			<field name="email_key">USER_REGISTER</field>
 			<field name="subject">Registrazione nuovo utente</field>
-			<field name="body">Grazie per esserti registrato come utente a  {$journalName}. Si prega di mantenere la username e password, che sono necessarie per tutto il lavoro con questo journal.
+			<field name="body">Grazie per esserti registrato come utente a  {$pressName}. Si prega di mantenere la username e password, che sono necessarie per tutto il lavoro con questo press.
 
 Username: {$username}
 Password: {$password}
@@ -62,7 +62,7 @@ Grazie,
 			<field name="subject">Convalida il tuo account</field>
 			<field name="body">{$userFullName}
 
-Hai creato un account in {$journalName}, ma prima che tu possa usarlo, devi caonvalidare la email del tuo account. Per farlo, segui semplicemente il link qui sotto:
+Hai creato un account in {$pressName}, ma prima che tu possa usarlo, devi caonvalidare la email del tuo account. Per farlo, segui semplicemente il link qui sotto:
 
 {$activateUrl}
 

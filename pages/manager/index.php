@@ -225,7 +225,7 @@ switch ($op) {
 	// Statistics Functions
 	//
 	case 'statistics':
-	case 'saveStatisticsSections':
+	case 'saveStatisticsArrangements':
 	case 'savePublicStatisticsList':
 	case 'report':
 		import('pages.manager.StatisticsHandler');

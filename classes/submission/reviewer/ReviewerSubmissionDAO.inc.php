@@ -57,8 +57,8 @@ class ReviewerSubmissionDAO extends DAO {
 				r.*,
 				r2.review_revision,
 				u.first_name, u.last_name,
-				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
 			FROM	monographs a
 				LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id)
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
@@ -212,8 +212,8 @@ class ReviewerSubmissionDAO extends DAO {
 				r.*,
 				r2.review_revision,
 				u.first_name, u.last_name,
-				COALESCE(stl.setting_value, stpl.setting_value) AS section_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS section_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
 			FROM	monographs a
 				LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id)
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
@@ -292,7 +292,7 @@ class ReviewerSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Get the editor decisions for a review round of an monograph.
+	 * Get the editor decisions for a review round of a monograph.
 	 * @param $monographId int
 	 * @param $round int
 	 */

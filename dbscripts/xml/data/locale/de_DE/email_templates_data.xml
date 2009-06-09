@@ -47,7 +47,7 @@ Ihr neues Passwort: {$password}
 		<row>
 			<field name="email_key">USER_REGISTER</field>
 			<field name="subject">Neue/r Benutzer/in</field>
-			<field name="body">Besten Dank für die Registierung als neue/r Benutzer/in von {$journalName}. Notieren Sie Bitte Benutzernamen und Passwort, beide werden für alle Arbeiten mit dieser Zeitschrift gebraucht.
+			<field name="body">Besten Dank für die Registierung als neue/r Benutzer/in von {$pressName}. Notieren Sie Bitte Benutzernamen und Passwort, beide werden für alle Arbeiten mit dieser Zeitschrift gebraucht.
 
 Benutzername: {$username}
 Passwort: {$password}

@@ -68,7 +68,6 @@ Please provide the title and a description of work, including the scope, aim, an
 
 <div class="separator"></div>
 
-{if 1}<!--$section->getMetaIndexed()==1-->
 	<h3>{translate key="submission.indexing"}</h3>
 	{if $pressSettings.metaDiscipline || $pressSettings.metaSubjectClass || $pressSettings.metaSubject || $pressSettings.metaCoverage || $pressSettings.metaType}<p>{translate key="author.submit.submissionIndexingDescription"}</p>{/if}
 	<table width="100%" class="data">
@@ -187,10 +186,6 @@ Please provide the title and a description of work, including the scope, aim, an
 	</table>
 
 <div class="separator"></div>
-
-{/if}
-
-<!-- ******* -->
 
 <!-- ******* -->
 

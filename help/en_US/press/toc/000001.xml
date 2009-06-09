@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE toc SYSTEM "../../../../lib/pkp/dtd/helpToc.dtd">
+
+<!--
+  * 000001.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * table of contents for Press Management - Management Pages. 
+  *
+  * $Id$
+  -->
+
+<toc id="press/toc/000001" locale="en_US" title="Management Pages" parent_topic="press/topic/000001">
+	<topic id="press/topic/000034" title="Announcements" />
+	<topic id="press/topic/000010" title="Files Browser" />
+	<topic id="press/topic/000005" title="Press Acquisitions Arrangements" />
+	<topic id="press/topic/000036" title="Review Forms" />
+	<topic id="press/topic/000007" title="Languages" />
+	<topic id="press/topic/000029" title="Masthead" />
+	<topic id="press/topic/000035" title="Payments" />
+	<topic id="press/topic/000006" title="Prepared Emails" />
+	<topic id="press/topic/000009" title="Reading Tools" />
+	<topic id="press/topic/000004" title="Setup" />
+	<topic id="press/topic/000008" title="Stats &amp; Reports" />
+	<topic id="press/topic/000025" title="Subscriptions" />
+	<topic id="press/topic/000030" title="System Plugins" />
+	<topic id="press/topic/000031" title="Import/Export Data" />
+
+	<breadcrumb url="press/topic/000000" title="Press Management" />
+	<breadcrumb url="press/topic/000001" title="Management Pages" />
+</toc>

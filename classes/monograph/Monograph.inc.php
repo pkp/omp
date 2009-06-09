@@ -30,7 +30,6 @@ define ('STATUS_QUEUED_REVIEW', 6);
 define ('STATUS_QUEUED_EDITING', 7);
 define ('STATUS_INCOMPLETE', 8);
 
-define('ISSUE_DEFAULT', 0);
 define('OPEN_ACCESS', 1);
 define('SUBSCRIPTION', 2);
 
@@ -299,7 +298,7 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * get public issue id
+	 * get public monograph id
 	 * @return string
 	 */
 	function getPublicMonographId() {
@@ -310,16 +309,16 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * set public issue id
-	 * @param $publicIssueId string
+	 * set public monograph id
+	 * @param $publicMonographId string
 	 */
 	function setPublicMonographId($publicMonographId) {
 		return $this->setData('publicMonographId', $publicMonographId);
 	}
 
 	/**
-	 * Return the "best" issue ID -- If a public issue ID is set,
-	 * use it; otherwise use the internal issue Id. (Checks the monograph
+	 * Return the "best" monograph ID -- If a public monograph ID is set,
+	 * use it; otherwise use the internal monograph Id. (Checks the monograph
 	 * settings to ensure that the public ID feature is enabled.)
 	 * @param $monograph object The press that is preparing this monograph
 	 * @return string
@@ -331,9 +330,9 @@ class Monograph extends Submission {
 			$press = $pressDao->getPress($this->getPressId());
 		}
 
-		if ($press->getSetting('enablePublicIssueId')) {
-			$publicIssueId = $this->getPublicIssueId();
-			if (!empty($publicIssueId)) return $publicIssueId;
+		if ($press->getSetting('enablePublicMonographId')) {
+			$publicMonographId = $this->getPublicMonographId();
+			if (!empty($publicMonographId)) return $publicMonographId;
 		}
 		return $this->getMonographId();
 	}
@@ -401,7 +400,7 @@ class Monograph extends Submission {
 		return $this->setData('fastTracked',$fastTracked);
 	}
 	/**
-	 * Return boolean indicating if author should be hidden in issue ToC.
+	 * Return boolean indicating if author should be hidden in contributor statement.
 	 * @return boolean
 	 */
 	function getHideAuthor() {
@@ -409,7 +408,7 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * Set if author should be hidden in issue ToC.
+	 * Set if author should be hidden in the contributor statement.
 	 * @param $hideAuthor boolean
 	 */
 	function setHideAuthor($hideAuthor) {

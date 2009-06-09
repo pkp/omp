@@ -301,7 +301,7 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * Delete the entire tree of files belonging to an monograph.
+	 * Delete the entire tree of files belonging to a monograph.
 	 */
 	function deleteMonographTree() {
 		parent::rmtree($this->filesDir);
@@ -527,7 +527,7 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * PRIVATE routine to generate a filename for an monograph file. Sets the filename
+	 * PRIVATE routine to generate a filename for a monograph file. Sets the filename
 	 * field in the monographFile to the generated value.
 	 * @param $monographFile The monograph to generate a filename for
 	 * @param $type The type of the monograph (e.g. as supplied to handleUpload)
@@ -593,7 +593,7 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * PRIVATE routine to write an monograph file and add it to the database.
+	 * PRIVATE routine to write a monograph file and add it to the database.
 	 * @param $fileName original filename of the file
 	 * @param $contents string contents of the file to write
 	 * @param $mimeType string the mime type of the file
@@ -701,7 +701,7 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * Copy a temporary file to an monograph file.
+	 * Copy a temporary file to a monograph file.
 	 * @param TemporaryFile
 	 * @return int the file ID (false if upload failed)
 	 */

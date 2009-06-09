@@ -92,12 +92,12 @@ class EditAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve those edit assignments that relate to section editors with
+	 * Retrieve those edit assignments that relate to acquisitions editors with
 	 * review access.
 	 * @param $monographId int
 	 * @return EditAssignment
 	 */
-	function &getReviewingSectionEditorAssignmentsByMonographId($monographId) {
+	function &getReviewingAcquisitionsEditorAssignmentsByMonographId($monographId) {
 		$result =& $this->retrieve(
 			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id 
 			FROM monographs a 
@@ -117,12 +117,12 @@ class EditAssignmentDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve those edit assignments that relate to section editors with
+	 * Retrieve those edit assignments that relate to acquisitions editors with
 	 * editing access.
 	 * @param $monographId int
 	 * @return EditAssignment
 	 */
-	function &getEditingSectionEditorAssignmentsByMonographId($monographId) {
+	function &getEditingAcquisitionsEditorAssignmentsByMonographId($monographId) {
 		$result =& $this->retrieve(
 			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id 
 			FROM monographs a 

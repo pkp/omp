@@ -15,8 +15,8 @@
 // $Id$
 
 
-// Filter section
-define('FILTER_SECTION_ALL', 0);
+// Filter arrangement
+define('FILTER_ARRANGEMENT_ALL', 0);
 
 import('handler.Handler');
 
@@ -66,8 +66,8 @@ class AcquisitionsEditorHandler extends Handler {
 		$page = isset($args[0]) ? $args[0] : '';
 		$arrangements =& $arrangementDao->getAcquisitionsArrangementsTitles($press->getId());
 
-		$filterSectionOptions = array(
-			FILTER_SECTION_ALL => Locale::Translate('editor.allSections')
+		$filterArrangementOptions = array(
+			FILTER_ARRANGEMENT_ALL => Locale::Translate('editor.allAcquistionsArrangements')
 		) + $arrangements;
 
 		switch($page) {
@@ -85,21 +85,21 @@ class AcquisitionsEditorHandler extends Handler {
 				$helpTopicId = 'editorial.acquisitionsEditorsRole.submissions.inReview';
 		}
 
-		$filterSection = Request::getUserVar('filterSection');
-		if ($filterSection != '' && array_key_exists($filterSection, $filterSectionOptions)) {
-			$user->updateSetting('filterSection', $filterSection, 'int', $pressId);
+		$filterArrangement = Request::getUserVar('filterArrangement');
+		if ($filterArrangement != '' && array_key_exists($filterArrangement, $filterArrangementOptions)) {
+			$user->updateSetting('filterArrangement', $filterArrangement, 'int', $pressId);
 		} else {
-			$filterSection = $user->getSetting('filterSection', $pressId);
-			if ($filterSection == null) {
-				$filterSection = FILTER_SECTION_ALL;
-				$user->updateSetting('filterSection', $filterSection, 'int', $pressId);
+			$filterArrangement = $user->getSetting('filterArrangement', $pressId);
+			if ($filterArrangement == null) {
+				$filterArrangement = FILTER_ARRANGEMENT_ALL;
+				$user->updateSetting('filterArrangement', $filterArrangement, 'int', $pressId);
 			}	
 		}
 
 		$submissions =& $acquisitionsEditorSubmissionDao->$functionName(
 			$user->getId(),
 			$press->getId(),
-			$filterSection,
+			$filterArrangement,
 			$searchField,
 			$searchMatch,
 			$search,
@@ -111,9 +111,9 @@ class AcquisitionsEditorHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', $helpTopicId);
-		$templateMgr->assign('sectionOptions', $filterSectionOptions);
+		$templateMgr->assign('arrangementOptions', $filterArrangementOptions);
 		$templateMgr->assign_by_ref('submissions', $submissions);
-		$templateMgr->assign('filterSection', $filterSection);
+		$templateMgr->assign('filterArrangement', $filterArrangement);
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign('acquisitionsEditor', $user->getFullName());
 
@@ -130,7 +130,7 @@ class AcquisitionsEditorHandler extends Handler {
 		$templateMgr->assign('dateFrom', $fromDate);
 		$templateMgr->assign('dateTo', $toDate);
 		$templateMgr->assign('fieldOptions', Array(
-			SUBMISSION_FIELD_TITLE => 'article.title',
+			SUBMISSION_FIELD_TITLE => 'monograph.title',
 			SUBMISSION_FIELD_AUTHOR => 'user.role.author',
 			SUBMISSION_FIELD_EDITOR => 'user.role.editor'
 		));

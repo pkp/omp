@@ -19,7 +19,7 @@
 	<strong>{$loggedInUsername|escape}</strong>
 	
 	<ul>
-		{if $hasOtherJournals}
+		{if $hasOtherPresses}
 		<li><a href="{url context="index" page="user"}">{translate key="plugins.block.user.myPresses"}</a></li>
 		{/if}
 		<li><a href="{url page="user" op="profile"}">{translate key="plugins.block.user.myProfile"}</a></li>
@@ -31,7 +31,7 @@
 	{else}
 	
 	{if $implicitAuth}	
-		<a href="{url page="login" op="implicitAuthLogin"}">Journals Login</a>		
+		<a href="{url page="login" op="implicitAuthLogin"}">Presses Login</a>		
 	{else}
 		<form method="post" action="{url page="login" op="signIn"}">
 	{/if}

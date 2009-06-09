@@ -12,8 +12,15 @@
   * $Id$
   -->
 
-<topic id="editorial/topic/000001" locale="en_US" title="Editor's Role" toc="editorial/toc/000000" subtoc="editorial/toc/000001" key="editorial.editorsRole">
+<topic id="editorial/topic/000001" locale="en_US" title="Editor's Role"
+toc="editorial/toc/000000" subtoc="editorial/toc/000001"
+key="editorial.editorsRole">
 	<section>
-		<![CDATA[<p>The Editor oversees the editorial process, beginning with the assignment of the Section Editor to a submission.  Depending on the policies of the journal, the Editor often plays the role of Section Editor in seeing accepted submissions through the Editing stage of the editorial process.</p><p>The Editor can also create and manage journal issues, and notify users of new issues and/or events.</p>]]>	
+		<![CDATA[<p>The Editor oversees the editorial process, beginning
+with the assignment of the Acquisitions Editor to a submission.  Depending on
+the policies of the press, the Editor often plays the role of Acquisitions
+Editor in seeing accepted submissions through the Editing stage of the editorial
+process.</p><p>The Editor can also create and manage press monographs, and notify
+users of new monogrpahs and/or events.</p>]]>	
 	</section>
 </topic>

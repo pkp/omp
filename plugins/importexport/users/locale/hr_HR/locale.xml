@@ -55,5 +55,5 @@ Primjeri:
 	<message key="plugins.importexport.users.export.errorsOccurred">Pogreške koje su se pojavile prilikom iznošenja</message>
 	<message key="plugins.importexport.users.export.couldNotWriteFile">Nije moguće pisati po datoteci "{$fileName}".</message>
 	<message key="plugins.importexport.users.import.warning">Upozorenje</message>
-	<message key="plugins.importexport.users.import.encryptionMismatch">Nije moguće koristiti lozinke pohranjene hash funkcijom {$importHash}; OJS je podešen da koristi {$ojsHash}. Ukoliko nastavite, morat ćete ponovno postaviti lozinke ovako unesenih korisnika.</message>
+	<message key="plugins.importexport.users.import.encryptionMismatch">Nije moguće koristiti lozinke pohranjene hash funkcijom {$importHash}; OMP je podešen da koristi {$ompHash}. Ukoliko nastavite, morat ćete ponovno postaviti lozinke ovako unesenih korisnika.</message>
 </locale>

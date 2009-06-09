@@ -137,7 +137,7 @@ class UserHandler extends Handler {
 			case 'author':
 				$roleId = ROLE_ID_AUTHOR;
 				$setting = 'allowRegAuthor';
-				$deniedKey = 'user.noRoles.submitArticleRegClosed';
+				$deniedKey = 'user.noRoles.submitMonographRegClosed';
 				break;
 			case 'reviewer':
 				$roleId = ROLE_ID_REVIEWER;

@@ -27,7 +27,7 @@ class MonographFileDAO extends DAO {
 	var $inlineableTypes;
 
 	/**
-	 * Retrieve an monograph file by ID.
+	 * Retrieve a monograph file by ID.
 	 * @param $fileId int
 	 * @param $revision int optional, if omitted latest revision is used
 	 * @param $monographId int optional
@@ -78,7 +78,7 @@ class MonographFileDAO extends DAO {
 		return $returner;
 	}
 	/**
-	 * Retrieve an monograph by ID.
+	 * Retrieve a monograph by ID.
 	 * @param $fileId int
 	 * @param $revision int optional, if omitted latest revision is used
 	 * @param $monographId int optional
@@ -121,7 +121,7 @@ class MonographFileDAO extends DAO {
 		return $returner;
 	}
 	/**
-	 * Retrieve all revisions of an monograph file.
+	 * Retrieve all revisions of a monograph file.
 	 * @param $monographId int
 	 * @return MonographFile
 	 */
@@ -167,7 +167,7 @@ class MonographFileDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve revisions of an monograph file in a range.
+	 * Retrieve revisions of a monograph file in a range.
 	 * @param $monographId int
 	 * @return MonographFile
 	 */
@@ -230,7 +230,7 @@ class MonographFileDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all monograph files for an monograph.
+	 * Retrieve all monograph files for a monograph.
 	 * @param $monographId int
 	 * @return array MonographFiles
 	 */
@@ -293,7 +293,7 @@ class MonographFileDAO extends DAO {
 	}
 
 	/**
-	 * Internal function to return an MonographFile object from a row.
+	 * Internal function to return a MonographFile object from a row.
 	 * @param $row array
 	 * @return MonographFile
 	 */
@@ -327,7 +327,7 @@ class MonographFileDAO extends DAO {
 		return $monographFile;
 	}
 	/**
-	 * Internal function to return an MonographFile object from a row.
+	 * Internal function to return a MonographFile object from a row.
 	 * @param $row array
 	 * @return MonographFile
 	 */
@@ -490,7 +490,7 @@ class MonographFileDAO extends DAO {
 	}
 
 	/**
-	 * Delete an monograph file.
+	 * Delete a monograph file.
 	 * @param $monograph MonographFile
 	 */
 	function deleteMonographFile(&$monographFile) {
@@ -498,7 +498,7 @@ class MonographFileDAO extends DAO {
 	}
 
 	/**
-	 * Delete an monograph file by ID.
+	 * Delete a monograph file by ID.
 	 * @param $monographId int
 	 * @param $revision int
 	 */
@@ -518,7 +518,7 @@ class MonographFileDAO extends DAO {
 	}
 
 	/**
-	 * Delete all monograph files for an monograph.
+	 * Delete all monograph files for a monograph.
 	 * @param $monographId int
 	 */
 	function deleteMonographFiles($monographId) {

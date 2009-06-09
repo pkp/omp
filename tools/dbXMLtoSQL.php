@@ -21,7 +21,7 @@ require(dirname(dirname(__FILE__)) . '/lib/pkp/classes/cliTool/CliTool.inc.php')
 import('cliTool.XmlToSqlTool');
 
 /** Default XML file to parse if none is specified */
-define('DATABASE_XML_FILE', 'dbscripts/xml/ojs_schema.xml');
+define('DATABASE_XML_FILE', 'dbscripts/xml/omp_schema.xml');
 
 class dbXMLtoSQL extends XmlToSqlTool {
 	/**

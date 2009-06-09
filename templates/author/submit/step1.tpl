@@ -23,8 +23,6 @@
 
 <div class="separator"></div>
 
-<!-- *******Series/section********* -->
-
 <h3>{translate key="author.submit.category"}</h3>
 
 <p>{translate key="author.submit.category.description"}</p>

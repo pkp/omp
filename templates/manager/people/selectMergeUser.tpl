@@ -21,7 +21,7 @@
 		<option {if $roleSymbolic=='all'}selected="selected" {/if}value="all">{translate key="manager.people.allUsers"}</option>
 		<option {if $roleSymbolic=='managers'}selected="selected" {/if}value="managers">{translate key="user.role.managers"}</option>
 		<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
-		<option {if $roleSymbolic=='sectionEditors'}selected="selected" {/if}value="sectionEditors">{translate key="user.role.sectionEditors"}</option>
+		<option {if $roleSymbolic=='acquisitionsEditors'}selected="selected" {/if}value="acquisitionsEditors">{translate key="user.role.acquisitionsEditors"}</option>
 		<option {if $roleSymbolic=='designers'}selected="selected" {/if}value="designers">{translate key="user.role.designers"}</option>
 		<option {if $roleSymbolic=='copyeditors'}selected="selected" {/if}value="copyeditors">{translate key="user.role.copyeditors"}</option>
 		<option {if $roleSymbolic=='proofreaders'}selected="selected" {/if}value="proofreaders">{translate key="user.role.proofreaders"}</option>

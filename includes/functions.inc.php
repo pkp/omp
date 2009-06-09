@@ -144,7 +144,7 @@ function fatalError($reason) {
 		}
 	}
 
-	error_log("OJS: $reason");
+	error_log("OMP: $reason");
 	die();
 }
 

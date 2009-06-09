@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic SYSTEM "../../../../lib/pkp/dtd/helpTopic.dtd">
+
+<!--
+  * 000013.xml
+  *
+  * Copyright (c) 2003-2008 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Users - Import Users
+  *
+  * $Id$
+  -->
+
+<topic id="press/topic/000013" locale="en_US" title="Import Users" toc="press/toc/000002" key="press.users.importUsers">
+	<section>
+		<![CDATA[<p>OMP provides a simple facility for importing user data from an XML-based format, which can be easily generated from other databases of user information. Consult the documentation included with OMP for more information about the XML format and XML DTD for user data.</p>]]>	
+	</section>
+</topic>
