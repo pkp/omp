@@ -225,18 +225,16 @@ $sections = null;
 
 		$templateMgr =& TemplateManager::getManager();
 
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$reviewProcesses =& $workflowDao->getByEventType($monographId, WORKFLOW_PROCESS_ASSESSMENT);
-
 		$reviewAssignments =& $submission->getReviewAssignments();
 
 		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+		$reviewProcesses =& $workflowDao->getByEventType($monographId, WORKFLOW_PROCESS_ASSESSMENT);
 		$process =& $workflowDao->getCurrent($monographId, WORKFLOW_PROCESS_ASSESSMENT);
+		list($nextProcessType, $nextProcessId) = $workflowDao->getNext($process);
 
 		$processId = isset($process) ? $process->getProcessId() : null;
 
 		$reviewIndexes = array();
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 		$reviewProcesses =& $workflowDao->getByEventType($monographId, WORKFLOW_PROCESS_ASSESSMENT);
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$reviewRounds =& $monographDao->getReviewRoundsInfoById($monographId);
@@ -267,6 +265,7 @@ $sections = null;
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
 		$templateMgr->assign_by_ref('editorFile', $submission->getEditorFile());
 		$templateMgr->assign('rateReviewerOnQuality', $press->getSetting('rateReviewerOnQuality'));
+		$templateMgr->assign('nextProcessTitle', $workflowDao->getTitleByProcessId($nextProcessId));
 //		$templateMgr->assign('showPeerReviewOptions', $showPeerReviewOptions);
 //		$templateMgr->assign_by_ref('sections', $sections->toArray());
 		$templateMgr->assign('editorDecisionOptions',

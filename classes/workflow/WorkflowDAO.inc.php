@@ -196,13 +196,15 @@ class WorkflowDAO extends DAO {
 		return $returner;
 	}
 
-	function _getTitleByProcessId($processId) {
+	function getTitleByProcessId($processId) {
 		//FIXME: create a settings table
 		switch ($processId) {
 		case WORKFLOW_PROCESS_ASSESSMENT_INTERNAL:
 			return 'Internal Review';
 		case WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL:
 			 return 'External Review';
+		case WORKFLOW_PROCESS_EDITING_COPYEDIT:
+			 return 'Copyediting';
 		default: return '';
 		}
 	}
@@ -247,7 +249,7 @@ class WorkflowDAO extends DAO {
 					$obj->setSignoffQueueCount(count($users));
 					unset($users);
 				}
-				$obj->setTitle($this->_getTitleByProcessId($obj->getProcessId()));
+				$obj->setTitle($this->getTitleByProcessId($obj->getProcessId()));
 				$returner[$key] = $obj;
 			}
 
@@ -259,7 +261,7 @@ class WorkflowDAO extends DAO {
 		for ($i=0, $count=count($workflowProcesses); $i<$count; $i++) {
 			if (!isset($returner[$i])) {
 				$obj = $this->newDataObject();
-				$obj->setTitle($this->_getTitleByProcessId($workflowProcesses[$i]));
+				$obj->setTitle($this->getTitleByProcessId($workflowProcesses[$i]));
 				$returner[$i] = $obj;
 			}
 		}
@@ -311,7 +313,7 @@ class WorkflowDAO extends DAO {
 
 			$obj =& $this->_fromRow($result->GetRowAssoc(false));
 
-			$obj->setTitle($this->_getTitleByProcessId($obj->getProcessId()));
+			$obj->setTitle($this->getTitleByProcessId($obj->getProcessId()));
 			$returner[] = array('process' => $obj, 'title' => $result->fields['monograph_title']);
 
 			$result->moveNext();

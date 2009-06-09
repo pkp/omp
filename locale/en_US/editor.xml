@@ -174,7 +174,7 @@
 	<message key="editor.article.resubmitForReview">Resubmit file for Review</message>
 	<message key="editor.article.resubmitFileForPeerReview">Resubmit selected file for peer review</message>
 	<message key="editor.article.sendToCopyedit">Send file to Copyediting</message>
-	<message key="editor.monograph.sendFileToCopyedit">Select file for Copyediting</message>
+	<message key="editor.monograph.sendFileToNextWorkflowProcess">Select file for {$nextProcessTitle}</message>
 	<message key="editor.article.selectProofreader">Assign Proofreader</message>
 	<message key="editor.article.replaceProofreader">Replace Proofreader</message>
 	<message key="editor.article.authorComments">Author Comments</message>
