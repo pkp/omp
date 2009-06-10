@@ -1,4 +1,4 @@
-<input type="hidden" name="isEditedVolume" value="{$isEditedVolume}" />
+<input type="hidden" name="workType" value="{$workType}" />
 
 {include file="inserts/contributors/ContributorInsert.tpl"}
 

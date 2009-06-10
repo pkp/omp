@@ -61,8 +61,6 @@ class Action {
 			import('submission.form.MetadataForm');
 			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$metadataForm =& new MetadataForm($monograph);
-
-
 			if ($metadataForm->getCanEdit() && $metadataForm->isLocaleResubmit()) {
 				$metadataForm->readInputData();
 			} else {

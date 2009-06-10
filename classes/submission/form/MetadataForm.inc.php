@@ -27,16 +27,18 @@ class MetadataForm extends Form {
 
 	/** @var boolean can view authors */
 	var $canViewAuthors;
-	var $formComponents;
+
+	/** @var Insert monograph components insert */
+	var $componentsInsert;
+
 	/**
 	 * Constructor.
 	 */
 	function MetadataForm(&$monograph) {
-		$this->formComponents = new MonographComponentsInsert($monograph);
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		$signoffDao = &DAORegistry::getDAO('SignoffDAO');
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
-		$user = &Request::getUser();
+		$user =& Request::getUser();
 		$roleId = $roleDao->getRoleIdFromPath(Request::getRequestedPage());
 
 		// If the user is an editor of this monograph, make the form editable.
@@ -66,6 +68,8 @@ class MetadataForm extends Form {
 			}
 		}
 
+		$this->componentsInsert = new MonographComponentsInsert($monograph);
+
 		if ($this->canEdit) {
 			parent::Form('submission/metadata/metadataEdit.tpl');
 			$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'author.submit.form.titleRequired'));
@@ -90,19 +94,24 @@ class MetadataForm extends Form {
 	 */
 	function initData() {
 		$this->_data = array();
-		$this->_data = array_merge($this->_data, $this->formComponents->initData($this));
+		$this->_data = $this->componentsInsert->initData($this);
 		if (isset($this->monograph)) {
 			$monograph =& $this->monograph;
-			if (!is_array($this->_data))
-				$this->_data = array($this->_data);
+
+			if (!is_array($this->_data)) $this->_data = array($this->_data);
+
 			$this->_data = array_merge($this->_data,array(
-
-				'title' => $monograph->getTitle(null), // Localized
-				'abstract' => $monograph->getAbstract(null), // Localized
+				'title' => $monograph->getTitle(null), 
+				'abstract' => $monograph->getAbstract(null), 
 				'language' => $monograph->getLanguage(),
-				'sponsor' => $monograph->getSponsor(null), // Localized
-				'hideAuthor' => $monograph->getHideAuthor()
-
+				'sponsor' => $monograph->getSponsor(null), 
+				'discipline' => $monograph->getDiscipline(null), 
+				'subjectClass' => $monograph->getSubjectClass(null), 
+				'subject' => $monograph->getSubject(null), 
+				'coverageGeo' => $monograph->getCoverageGeo(null), 
+				'coverageChron' => $monograph->getCoverageChron(null), 
+				'coverageSample' => $monograph->getCoverageSample(null), 
+				'type' => $monograph->getType(null)
 			));
 
 		}
@@ -116,25 +125,27 @@ class MetadataForm extends Form {
 	function getLocaleFieldNames() {
 
 		$fields = array(
-			'title', 'abstract', 'coverPageAltText', 'showCoverPage', 'hideCoverPageToc', 'hideCoverPageAbstract', 'originalFileName', 'fileName', 'width', 'height',
-			'discipline', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor'
+			'title', 'abstract', 'sponsor', 'discipline', 'subjectClass', 'type', 
+			'subject', 'coverageGeo', 'coverageChron', 'coverageSample'
 		);
-		return array_merge($fields, $this->formComponents->getLocaleFieldNames());
+		return array_merge($fields, $this->componentsInsert->getLocaleFieldNames());
 	}
 
 	/**
 	 * Display the form.
 	 */
 	function display() {
-		$this->formComponents->display($this);
+		$this->componentsInsert->display($this);
 		$press =& Request::getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('monographId', isset($this->monograph)?$this->monograph->getMonographId():null);
+		$templateMgr->assign('monographId', isset($this->monograph) ? $this->monograph->getMonographId():null);
 		$templateMgr->assign('pressSettings', $settingsDao->getPressSettings($press->getId()));
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
 		$templateMgr->assign('canViewAuthors', $this->canViewAuthors);
+
+		$templateMgr->assign('helpTopicId','submission.indexingAndMetadata');
 
 		parent::display();
 	}
@@ -150,10 +161,16 @@ class MetadataForm extends Form {
 				'abstract',
 				'language',
 				'sponsor',
-				'hideAuthor'
+				'discipline', 
+				'subjectClass', 
+				'subject', 
+				'coverageGeo',
+				'coverageChron', 
+				'coverageSample', 
+				'type'
 			);
 
-		$this->readUserVars(array_merge($userVars, $this->formComponents->listUserVars()));
+		$this->readUserVars(array_merge($userVars, $this->componentsInsert->listUserVars()));
 	}
 
 	/**
@@ -166,15 +183,18 @@ class MetadataForm extends Form {
 		// Update monograph
 		$monograph =& $this->monograph;
 		$monograph->setTitle($this->getData('title'), null); // Localized
-
-		$this->formComponents->execute($this, $monograph);
-
 		$monograph->setAbstract($this->getData('abstract'), null); // Localized
-
-		$monograph->setLanguage($this->getData('language')); // Localized
+		$monograph->setLanguage($this->getData('language'));
 		$monograph->setSponsor($this->getData('sponsor'), null); // Localized
-		$monograph->setHideAuthor($this->getData('hideAuthor') ? $this->getData('hideAuthor') : 0);
+		$monograph->setDiscipline($this->getData('discipline'), null); // Localized
+		$monograph->setSubjectClass($this->getData('subjectClass'), null); // Localized
+		$monograph->setSubject($this->getData('subject'), null); // Localized
+		$monograph->setCoverageGeo($this->getData('coverageGeo'), null); // Localized
+		$monograph->setCoverageChron($this->getData('coverageChron'), null); // Localized
+		$monograph->setCoverageSample($this->getData('coverageSample'), null); // Localized
+		$monograph->setType($this->getData('type'), null); // Localized
 
+		$this->componentsInsert->execute($this, $monograph);
 
 		// Save the monograph
 		$monographDao->updateMonograph($monograph);
@@ -190,7 +210,7 @@ class MetadataForm extends Form {
 		return $this->canEdit;
 	}
 	function processEvents() {
-		return $this->formComponents->processEvents($this);
+		return $this->componentsInsert->processEvents($this);
 	}
 }
 

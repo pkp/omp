@@ -50,6 +50,8 @@ class WorkflowDAO extends DAO {
 		$workflow =& $this->getWorkflowStructure();
 		$returner = null;
 
+		if ($currentProcess == null) return $returner;
+
 		$almostFound = false;
 		foreach ($workflow as $node => $leaf) {
 

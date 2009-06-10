@@ -50,7 +50,8 @@ class ContributorInsert extends Insert
 				$authorArray = array(
 							'firstName' => $author->getFirstName(),
 							'middleName' => $author->getMiddleName(),
-							'lastName' => $author->getLastName(),
+							'lastName' => $author->getLastName(), 
+							'fullName' => $author->getFullName(), 
 							'affiliation' => $author->getAffiliation(),
 							'email' => $author->getEmail(),
 							'url' => $author->getUrl(),
@@ -70,7 +71,8 @@ class ContributorInsert extends Insert
 				'newContributor' => null, 
 				'newContributorId' => $i, 
 				'contributors' => $contributors, 
-				'primaryContact'=> $primaryContact,
+				'primaryContact'=> $primaryContact, 
+				'workType' => $this->monograph->getWorkType(), 
 				'lookup' => $idMap
 			);
 		}
@@ -83,7 +85,7 @@ class ContributorInsert extends Insert
 		$countries =& $countryDao->getCountries();
 
 		$templateMgr->assign('countries', $countries);
-		$templateMgr->assign('monographType', $this->monograph->getWorkType());
+		$templateMgr->assign('workType', $this->monograph->getWorkType());
 		$templateMgr->assign('contributors', $form->getData('contributors'));
 		$templateMgr->assign('primaryContact', $form->getData('primaryContact'));
 		$templateMgr->assign('newContributorId', $form->getData('newContributorId'));

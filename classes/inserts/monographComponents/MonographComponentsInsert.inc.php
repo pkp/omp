@@ -69,6 +69,7 @@ class MonographComponentsInsert extends Insert
 				);
 			}
 			$insertReturns['components'] = $formComponents;
+			$insertReturns['workType'] = $this->monograph->getWorkType();
 			$returner = $insertReturns;
 		}
 		return $returner;

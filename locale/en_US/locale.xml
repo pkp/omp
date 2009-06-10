@@ -52,10 +52,16 @@
 	<message key="inserts.contributors.newContributor.formError.firstName">First name required</message>
 	<message key="inserts.contributors.description">Enter each of the authors that contributed to the work by filling out profiles in the 'New Contributor' section below.</message>
 
-	<message key="monograph.component.title">Component Title</message>
-	<message key="monograph.artworkFile">Artwork File</message>
-	<message key="monograph.component.authors">Authors</message>
+	<message key="monograph.discipline">Academic discipline and sub-disciplines</message>
+	<message key="monograph.subjectClassification">Subject classification</message>
+	<message key="monograph.subject">Keywords</message>
+	<message key="monograph.coverage">Coverage</message>
+	<message key="monograph.coverageGeo">Geo-spatial coverage</message>
+	<message key="monograph.coverageChron">Chronological or historical coverage</message>
+	<message key="monograph.coverageSample"> Research sample characteristics</message>
+	<message key="monograph.type">Type, method or approach</message>
 
+	<message key="monograph.artworkFile">Artwork File</message>
 	<message key="submission.layout.assignLayoutEditor">Assign Layout Editor</message>
 	<message key="submission.layout.uploadLayoutVersion">Upload Layout Version</message>
 	<message key="submission.layout.noLayoutFile">None (Upload final copyedit version as Layout Version prior to sending request)</message>

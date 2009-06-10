@@ -8,55 +8,80 @@
  *
  * $Id$
  *}
+
+{literal}
+<script type="text/javascript">
+<!--
+function show(id) {
+	var info = document.getElementById(id);
+	if(info.style.display=='block') info.style.display='none';
+	else info.style.display='block';
+}
+//-->
+</script>
+{/literal}
+
 <div id="metadata">
 <h3>{translate key="submission.metadata"}</h3>
 
-{if $canEditMetadata}
-	<p><a href="{url op="viewMetadata" path=$submission->getMonographId()}" class="action">{translate key="submission.editMetadata"}</a></p>
+<p><a href="{url op="viewMetadata" path=$submission->getMonographId()}" class="action">{translate key="submission.editMetadata"}</a></p>
+
+{if $submission->getWorkType() != EDITED_VOLUME}
+	<h4>{translate key="monograph.authors"}</h4>
 {/if}
 
-<h4>{translate key="monograph.authors"}</h4>
-	
-<table width="100%" class="data">
-	{foreach name=authors from=$submission->getAuthors() item=author}
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="user.name"}</td>
-		<td width="80%" class="value">
-			{assign var=emailString value="`$author->getFullName()` <`$author->getEmail()`>"}
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle()|strip_tags monographId=$submission->getMonographId()}
-			{$author->getFullName()|escape} {icon name="mail" url=$url}
-		</td>
-	</tr>
-	{if $author->getUrl()}
+{assign var="authorIndex" value=0} 
+{assign var="firstAuthor" value=false}
+
+{foreach name=authors from=$submission->getAuthors() item=author}
+
+	{if $submission->getWorkType() == EDITED_VOLUME}
+		{if $authorIndex == 0 && $author->getContributionType() == VOLUME_EDITOR}
+			<h4>{translate key="inserts.contributors.volumeEditors"}</h4>
+		{/if}
+		{if $firstAuthor == false && $author->getContributionType() != VOLUME_EDITOR}
+			<h4>{translate key="monograph.authors"}</h4>
+			{assign var="firstAuthor" value=true}
+		{/if}
+	{/if}
+
+	<div class="{if $authorIndex % 2}oddSideIndicator{else}evenSideIndicator{/if}">
+		{assign var=emailString value="`$author->getFullName()` <`$author->getEmail()`>"}
+		{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle()|strip_tags monographId=$submission->getMonographId()}
+		&nbsp;<a href="javascript:show('authors-{$author->getId()|escape}-display')">{$author->getFullname()}</a>&nbsp;{icon name="mail" url=$url}
+		{if $author->getPrimaryContact()}<br />&nbsp;{translate key="author.submit.selectPrincipalContact"}{/if}
+	<br />
+	</div>
+	<div id="authors-{$author->getId()|escape}-display" class="{if $authorIndex % 2}oddSideIndicator{else}evenSideIndicator{/if}" style="display:none">
+		<table class="data">
+		{if $author->getUrl()}
 		<tr valign="top">
 			<td class="label">{translate key="user.url"}</td>
 			<td class="value"><a href="{$author->getUrl()|escape:"quotes"}">{$author->getUrl()|escape}</a></td>
 		</tr>
-	{/if}
-	<tr valign="top">
-		<td class="label">{translate key="user.affiliation"}</td>
-		<td class="value">{$author->getAffiliation()|escape|default:"&mdash;"}</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="common.country"}</td>
-		<td class="value">{$author->getCountryLocalized()|escape|default:"&mdash;"}</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="user.biography"}</td>
-		<td class="value">{$author->getAuthorBiography()|nl2br|strip_unsafe_html|default:"&mdash;"}</td>
-	</tr>
-	{if $author->getPrimaryContact()}
-	<tr valign="top">
-		<td colspan="2" class="label">{translate key="author.submit.selectPrincipalContact"}</td>
-	</tr>
-	{/if}
-	{if !$smarty.foreach.authors.last}
-	<tr>
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
-	{/if}
-	{/foreach}
-</table>
+		{/if}
+		<tr valign="top">
+			<td class="label">{translate key="user.affiliation"}</td>
+			<td class="value">{$author->getAffiliation()|escape|default:"&mdash;"}</td>
+		</tr>
+		<tr valign="top">
+			<td class="label">{translate key="common.country"}</td>
+			<td class="value">{$author->getCountryLocalized()|escape|default:"&mdash;"}</td>
+		</tr>
+		<tr valign="top">
+			<td class="label">{translate key="user.biography"}</td>
+			<td class="value">{$author->getAuthorBiography()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
+		</tr>
+		{if !$smarty.foreach.authors.last}
+		<tr>
+			<td colspan="2" class="separator">&nbsp;</td>
+		</tr>
+		{/if}
+		</table>
+	</div>
+	<br />
+	{assign var="authorIndex" value=$authorIndex+1}
+{/foreach}
 
 <h4>{translate key="submission.titleAndAbstract"}</h4>
 

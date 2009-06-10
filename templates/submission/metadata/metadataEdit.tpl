@@ -13,14 +13,11 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{url|assign:"competingInterestGuidelinesUrl" page="information" op="competingInterestGuidelines"}
-
 <form name="metadata" method="post" action="{url op="saveMetadata"}" enctype="multipart/form-data">
 <input type="hidden" name="monographId" value="{$monographId|escape}" />
 {include file="common/formErrors.tpl"}
 
 {if $canViewAuthors}
-
 {if count($formLocales) > 1}
 <table width="100%" class="data">
 	<tr valign="top">
@@ -29,11 +26,6 @@
 			{url|assign:"formUrl" path=$monographId escape=false}
 			{* Maintain localized author info across requests *}
 			{foreach from=$authors key=authorIndex item=author}
-				{if $currentPress->getSetting('requireAuthorCompetingInterests')}
-					{foreach from=$author.competingInterests key="thisLocale" item="thisCompetingInterests"}
-						{if $thisLocale != $formLocale}<input type="hidden" name="authors[{$authorIndex|escape}][competingInterests][{$thisLocale|escape}]" value="{$thisCompetingInterests|escape}" />{/if}
-					{/foreach}
-				{/if}
 				{foreach from=$author.biography key="thisLocale" item="thisBiography"}
 					{if $thisLocale != $formLocale}<input type="hidden" name="authors[{$authorIndex|escape}][biography][{$thisLocale|escape}]" value="{$thisBiography|escape}" />{/if}
 				{/foreach}
@@ -46,8 +38,6 @@
 {/if}
 {/if}
 {include file="inserts/monographComponents/MonographComponentsInsert.tpl"}
-
-
 
 <h3>{translate key="submission.titleAndAbstract"}</h3>
 
