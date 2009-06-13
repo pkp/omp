@@ -85,6 +85,7 @@ class AcquisitionsArrangementForm extends Form {
 				unset($this->acquisitionsArrangementId);
 			} else {
 				$this->_data = array(
+					'arrangementId' => $this->acquisitionsArrangementId, 
 					'title' => $arrangement->getTitle(null), // Localized
 					'abbrev' => $arrangement->getAbbrev(null), // Localized
 					'reviewFormId' => $arrangement->getReviewFormId(),
@@ -145,7 +146,6 @@ class AcquisitionsArrangementForm extends Form {
 	 */
 	function display() {
 		parent::display();
-
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
@@ -194,7 +194,7 @@ class AcquisitionsArrangementForm extends Form {
 
 		if (isset($this->acquisitionsArrangementId)) {
 			$acquisitionsArrangementsDao->updateAcquisitionsArrangement($arrangement);
-			$arrangementId = $arrangement->getAcquisitionsArrangementId();
+			$arrangementId = $arrangement->getId();
 
 		} else {
 			$arrangementId = $acquisitionsArrangementsDao->insertAcquisitionsArrangement($arrangement);

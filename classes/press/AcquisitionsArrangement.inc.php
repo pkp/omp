@@ -26,19 +26,27 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Get localized title of press arrangement.
+	 * Get localized title of journal section.
 	 * @return string
 	 */
-	function getAcquisitionsArrangementTitle() {
+	function getLocalizedTitle() {
 		return $this->getLocalizedData('title');
 	}
 
 	/**
-	 * Get localized abbreviation of press arrangement.
+	 * Get localized abbreviation of journal section.
 	 * @return string
 	 */
-	function getAcquisitionsArrangementAbbrev() {
+	function getLocalizedAbbrev() {
 		return $this->getLocalizedData('abbrev');
+	}
+
+	/**
+	 * Get localized section policy.
+	 * @return string
+	 */
+	function getLocalizedPolicy() {
+		return $this->getLocalizedData('policy');
 	}
 
 	//
@@ -49,22 +57,6 @@ class AcquisitionsArrangement extends DataObject {
 	}
 	function getArrangementType() {
 		return $this->getData('type');
-	}
-
-	/**
-	 * Get ID of arrangement.
-	 * @return int
-	 */
-	function getAcquisitionsArrangementId() {
-		return $this->getData('arrangementId');
-	}
-
-	/**
-	 * Set ID of arrangement.
-	 * @param $arrangementId int
-	 */
-	function setAcquisitionsArrangementId($arrangementId) {
-		return $this->setData('arrangementId', $arrangementId);
 	}
 
 	/**
@@ -213,14 +205,6 @@ class AcquisitionsArrangement extends DataObject {
 	 */
 	function setDisableComments($disableComments) {
 		return $this->setData('disableComments', $disableComments);
-	}
-
-	/**
-	 * Get localized arrangement policy.
-	 * @return string
-	 */
-	function getAcquisitionsArrangementPolicy() {
-		return $this->getLocalizedData('policy');
 	}
 
 	/**

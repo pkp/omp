@@ -47,7 +47,7 @@
 	<td>
 		{assign var=thisEditorArrangements value=$editorArrangements[$editorId]}
 		{foreach from=$thisEditorArrangements item=arrangement}
-			{$arrangement->getAcquisitionsArrangementAbbrev()|escape}&nbsp;
+			{$arrangement->getLocalizedAbbrev()|escape}&nbsp;
 		{foreachelse}
 			&mdash;
 		{/foreach}

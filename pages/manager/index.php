@@ -221,16 +221,6 @@ switch ($op) {
 		import('pages.manager.GroupHandler');
 		define('HANDLER_CLASS', 'GroupHandler');
 		break;
-	//
-	// Statistics Functions
-	//
-	case 'statistics':
-	case 'saveStatisticsArrangements':
-	case 'savePublicStatisticsList':
-	case 'report':
-		import('pages.manager.StatisticsHandler');
-		define('HANDLER_CLASS', 'StatisticsHandler');
-		break;
 	default:
 		define('HANDLER_CLASS', 'ManagerHandler');
 		import('pages.manager.ManagerHandler');

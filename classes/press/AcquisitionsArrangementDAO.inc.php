@@ -143,8 +143,8 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * @return AcquisitionsArrangement
 	 */
 	function &_returnAcquisitionsArrangementFromRow(&$row) {
-		$arrangement =& new AcquisitionsArrangement();
-		$arrangement->setAcquisitionsArrangementId($row['arrangement_id']);
+		$arrangement = new AcquisitionsArrangement();
+		$arrangement->setId($row['arrangement_id']);
 		$arrangement->setPressId($row['press_id']);
 		$arrangement->setReviewFormId($row['review_form_id']);
 		$arrangement->setSequence($row['seq']);
@@ -175,7 +175,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 */
 	function updateLocaleFields(&$arrangement) {
 		$this->updateDataObjectSettings('acquisitions_arrangements_settings', $arrangement, array(
-			'arrangement_id' => $arrangement->getAcquisitionsArrangementId()
+			'arrangement_id' => $arrangement->getId()
 		));
 	}
 
@@ -201,9 +201,9 @@ class AcquisitionsArrangementDAO extends DAO {
 			)
 		);
 
-		$arrangement->setAcquisitionsArrangementId($this->getInsertAcquisitionsArrangementId());
+		$arrangement->setId($this->getInsertAcquisitionsArrangementId());
 		$this->updateLocaleFields($arrangement);
-		return $arrangement->getAcquisitionsArrangementId();
+		return $arrangement->getId();
 	}
 
 	/**
@@ -230,7 +230,7 @@ class AcquisitionsArrangementDAO extends DAO {
 				$arrangement->getHideAbout(),
 				$arrangement->getDisableComments(),
 				$arrangement->getArrangementType(),
-				$arrangement->getAcquisitionsArrangementId()
+				$arrangement->getId()
 			)
 		);
 		$this->updateLocaleFields($arrangement);
@@ -242,7 +242,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * @param $arrangement AcquisitionsArrangement
 	 */
 	function deleteSeries(&$arrangement) {
-		return $this->deleteById($arrangement->getAcquisitionsArrangementId(), $arrangement->getPressId());
+		return $this->deleteById($arrangement->getId(), $arrangement->getPressId());
 	}
 
 	/**
@@ -342,10 +342,10 @@ class AcquisitionsArrangementDAO extends DAO {
 		while (($arrangement =& $arrangementIterator->next())) {
 			if ($submittableOnly) {
 				if (!$arrangement->getEditorRestricted()) {
-					$arrangements[$arrangement->getAcquisitionsArrangementId()] = $arrangement->getAcquisitionsArrangementTitle();
+					$arrangements[$arrangement->getId()] = $arrangement->getLocalizedTitle();
 				}
 			} else {
-				$arrangements[$arrangement->getAcquisitionsArrangementId()] = $arrangement->getAcquisitionsArrangementTitle();
+				$arrangements[$arrangement->getId()] = $arrangement->getLocalizedTitle();
 			}
 			unset($arrangement);
 		}

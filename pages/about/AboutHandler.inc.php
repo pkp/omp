@@ -46,13 +46,6 @@ class AboutHandler extends Handler {
 			if (isset($customAboutItems[Locale::getLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[Locale::getLocale()]);
 			elseif (isset($customAboutItems[Locale::getPrimaryLocale()])) $templateMgr->assign('customAboutItems', $customAboutItems[Locale::getPrimaryLocale()]);
 
-			foreach ($this->getPublicStatisticsNames() as $name) {
-				if ($press->getSetting($name)) {
-					$templateMgr->assign('publicStatisticsEnabled', true);
-					break;
-				} 
-			}
-
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$groups =& $groupDao->getGroups(ASSOC_TYPE_PRESS, GROUP_CONTEXT_PEOPLE);
 
@@ -84,7 +77,7 @@ class AboutHandler extends Handler {
 		if (!$press || !$press->getSetting('restrictSiteAccess')) {
 			$templateMgr->setCacheability(CACHEABILITY_PUBLIC);
 		}
-		if($subclass)$templateMgr->assign('pageHierarchy', array(array(Request::url(null, 'about'), 'about.aboutThePress')));
+		if ($subclass) $templateMgr->assign('pageHierarchy', array(array(Request::url(null, 'about'), 'about.aboutThePress')));
 	}
 
 	/**
@@ -93,14 +86,13 @@ class AboutHandler extends Handler {
 	function contact() {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->validate();
-
 		$this->setupTemplate(true);
 
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$monograph =& Request::getMonograph();
+		$press =& Request::getPress();
 
 		$templateMgr =& TemplateManager::getManager();
-		$pressSettings =& $pressSettingsDao->getPressSettings($monograph->getMonographId());
+		$pressSettings =& $pressSettingsDao->getPressSettings($press->getId());
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
 		$templateMgr->display('about/contact.tpl');
 	}
@@ -129,11 +121,11 @@ class AboutHandler extends Handler {
 			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getId());
 			$editors =& $editors->toArray();
 
-			$seriesEditors =& $roleDao->getUsersByRoleId(ROLE_ID_ACQUISITIONS_EDITOR, $press->getId());
-			$seriesEditors =& $seriesEditors->toArray();
+			$acquisitionsEditors =& $roleDao->getUsersByRoleId(ROLE_ID_ACQUISITIONS_EDITOR, $press->getId());
+			$acquisitionsEditors =& $acquisitionsEditors->toArray();
 
-			$layoutEditors =& $roleDao->getUsersByRoleId(ROLE_ID_DESIGNER, $press->getId());
-			$layoutEditors =& $layoutEditors->toArray();
+			$productionEditors =& $roleDao->getUsersByRoleId(ROLE_ID_PRODUCTION_EDITOR, $press->getId());
+			$productionEditors =& $productionEditors->toArray();
 
 			$copyEditors =& $roleDao->getUsersByRoleId(ROLE_ID_COPYEDITOR, $press->getId());
 			$copyEditors =& $copyEditors->toArray();
@@ -143,7 +135,7 @@ class AboutHandler extends Handler {
 
 			$templateMgr->assign_by_ref('editors', $editors);
 			$templateMgr->assign_by_ref('seriesEditors', $seriesEditors);
-			$templateMgr->assign_by_ref('layoutEditors', $layoutEditors);
+			$templateMgr->assign_by_ref('productionEditors', $productionEditors);
 			$templateMgr->assign_by_ref('copyEditors', $copyEditors);
 			$templateMgr->assign_by_ref('proofreaders', $proofreaders);
 			$templateMgr->display('about/editorialTeam.tpl');
@@ -178,17 +170,6 @@ class AboutHandler extends Handler {
 	}
 
 	/**
-	 * Display group info for a particular group.
-	 * @param $args array
-	 */
-	function displayMembership($args) {
-		$this->addCheck(new HandlerValidatorPress($this));
-		$this->validate();
-		$this->setupTemplate(true);
-
-	}
-
-	/**
 	 * Display a biography for an editorial team member.
 	 * @param $args array
 	 */
@@ -196,6 +177,87 @@ class AboutHandler extends Handler {
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->validate();
 		$this->setupTemplate(true);
+
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$press =& Request::getPress();
+
+		$templateMgr =& TemplateManager::getManager();
+
+		$userId = isset($args[0])?(int)$args[0]:0;
+
+		// Make sure we're fetching a biography for
+		// a user who should appear on the listing;
+		// otherwise we'll be exposing user information
+		// that might not necessarily be public.
+
+		// FIXME: This is pretty inefficient. Should be cached.
+
+		$user = null;
+		if ($press->getSetting('boardEnabled') != true) {
+			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getId());
+			while ($potentialUser =& $editors->next()) {
+				if ($potentialUser->getId() == $userId)
+					$user =& $potentialUser;
+				unset($potentialUser);
+			}
+
+			$acquisitionsEditors =& $roleDao->getUsersByRoleId(ROLE_ID_ACQUISITIONS_EDITOR, $press->getId());
+			while ($potentialUser =& $acquisitionsEditors->next()) {
+				if ($potentialUser->getId() == $userId)
+					$user =& $potentialUser;
+				unset($potentialUser);
+			}
+
+			$productionEditors =& $roleDao->getUsersByRoleId(ROLE_ID_PRODUCTION_EDITOR, $press->getId());
+			while ($potentialUser =& $productionEditors->next()) {
+				if ($potentialUser->getId() == $userId)
+					$user = $potentialUser;
+				unset($potentialUser);
+			}
+
+			$copyEditors =& $roleDao->getUsersByRoleId(ROLE_ID_COPYEDITOR, $press->getId());
+			while ($potentialUser =& $copyEditors->next()) {
+				if ($potentialUser->getId() == $userId)
+					$user = $potentialUser;
+				unset($potentialUser);
+			}
+
+			$proofreaders =& $roleDao->getUsersByRoleId(ROLE_ID_PROOFREADER, $press->getId());
+			while ($potentialUser =& $proofreaders->next()) {
+				if ($potentialUser->getId() == $userId)
+					$user = $potentialUser;
+				unset($potentialUser);
+			}
+
+		} else {
+			$groupDao =& DAORegistry::getDAO('GroupDAO');
+			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
+
+			$allGroups =& $groupDao->getGroups(ASSOC_TYPE_PRESS, $press->getId());
+			while ($group =& $allGroups->next()) {
+				if (!$group->getAboutDisplayed()) continue;
+				$allMemberships =& $groupMembershipDao->getMemberships($group->getId());
+				while ($membership =& $allMemberships->next()) {
+					if (!$membership->getAboutDisplayed()) continue;
+					$potentialUser =& $membership->getUser();
+					if ($potentialUser->getId() == $userId)
+						$user = $potentialUser;
+					unset($membership);
+				}
+				unset($group);
+			}
+		}
+
+		if (!$user) Request::redirect(null, 'about', 'editorialTeam');
+
+		$countryDao =& DAORegistry::getDAO('CountryDAO');
+		if ($user && $user->getCountry() != '') {
+			$country = $countryDao->getCountry($user->getCountry());
+			$templateMgr->assign('country', $country);
+		}
+
+		$templateMgr->assign_by_ref('user', $user);
+		$templateMgr->display('about/editorialTeamBio.tpl');
 
 	}
 
@@ -207,28 +269,23 @@ class AboutHandler extends Handler {
 		$this->validate();
 		$this->setupTemplate(true);
 
+		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
+		$arrangementEditorsDao =& DAORegistry::getDAO('AcquisitionsArrangementEditorsDAO');
+		$press =& Request::getPress();
 
-	}
+		$templateMgr =& TemplateManager::getManager();
+		$arrangements =& $arrangementDao->getPressAcquisitionsArrangements($press->getId());
+		$arrangements =& $arrangements->toArray();
+		$templateMgr->assign_by_ref('arrangements', $arrangements);
 
-	/**
-	 * Display subscriptions page.
-	 */
-	function subscriptions() {
-		$this->addCheck(new HandlerValidatorPress($this));
-		$this->validate();
-		$this->setupTemplate(true);
+		$arrangementEditorEntriesByArrangement = array();
+		foreach ($arrangements as $arrangement) {
+			$arrangementEditorEntriesByArrangement[$arrangement->getId()] =& $arrangementEditorsDao->getEditorsByAcquisitionsArrangementId($press->getId(), $arrangement->getId());
+		}
+		$templateMgr->assign_by_ref('arrangementEditorEntriesByArrangement', $arrangementEditorEntriesByArrangement);
 
-		$templateMgr->display('about/subscriptions.tpl');
-	}
-
-	/**
-	 * Display subscriptions page.
-	 */
-	function memberships() {
-		$this->addCheck(new HandlerValidatorPress($this));
-		$this->validate();
-		$this->setupTemplate(true);
-		
+		$templateMgr->display('about/editorialPolicies.tpl');
 	}
 
 	/**
@@ -314,26 +371,6 @@ class AboutHandler extends Handler {
 
 		$templateMgr->display('about/aboutThisPublishingSystem.tpl');
 	}
-
-	/**
-	 * Display a list of public stats for the current press.
-	 * WARNING: This implementation should be kept roughly synchronized
-	 * with the reader's statistics view in the About pages.
-	 */
-	function statistics() {
-		$this->validate();
-		$this->setupTemplate(true);
-
-
-		$templateMgr->display('about/statistics.tpl');
-	}
-
-	function getPublicStatisticsNames() {
-		import ('pages.manager.ManagerHandler');
-		import ('pages.manager.StatisticsHandler');
-		return StatisticsHandler::getPublicStatisticsNames();
-	}
-
 }
 
 ?>

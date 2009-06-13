@@ -41,16 +41,16 @@
 	</ol>
 {/if}
 
-{if count($layoutEditors) > 0}
-	{if count($layoutEditors) == 1}
-		<h4>{translate key="user.role.layoutEditor"}</h4>
+{if count($productionEditors) > 0}
+	{if count($productionEditors) == 1}
+		<h4>{translate key="user.role.productionEditor"}</h4>
 	{else}
-		<h4>{translate key="user.role.layoutEditors"}</h4>
+		<h4>{translate key="user.role.productionEditors"}</h4>
 	{/if}
 
 	<ol class="editorialTeam">
-		{foreach from=$layoutEditors item=layoutEditor}
-			<li><a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$layoutEditor->getId()}')">{$layoutEditor->getFullName()|escape}</a>{if $layoutEditor->getAffiliation()}, {$layoutEditor->getAffiliation()|escape}{/if}{if $layoutEditor->getCountry()}{assign var=countryCode value=$layoutEditor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li>
+		{foreach from=$productionEditors item=productionEditor}
+			<li><a href="javascript:openRTWindow('{url op="editorialTeamBio" path=$productionEditor->getId()}')">{$productionEditor->getFullName()|escape}</a>{if $productionEditor->getAffiliation()}, {$productionEditor->getAffiliation()|escape}{/if}{if $productionEditor->getCountry()}{assign var=countryCode value=$productionEditor->getCountry()}{assign var=country value=$countries.$countryCode}, {$country|escape}{/if}</li>
 		{/foreach}
 	</ol>
 {/if}
