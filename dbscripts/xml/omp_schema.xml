@@ -15,6 +15,76 @@
 <schema version="0.2">
 
 	<!--
+	 *
+	 * TABLE monograph_search_keyword_list
+	 *
+	 -->
+	<table name="monograph_search_keyword_list">
+		<field name="keyword_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="keyword_text" type="C2" size="60">
+			<NOTNULL/>
+		</field>
+		<descr>List of all keywords.</descr>
+		<index name="monograph_search_keyword_text">
+			<col>keyword_text</col>
+			<UNIQUE/>
+		</index>
+	</table>
+	
+	<!--
+	 *
+	 * TABLE monograph_search_objects
+	 *
+	 -->
+	<table name="monograph_search_objects">
+		<field name="object_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT/>
+		</field>
+		<field name="monograph_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="type" type="I4">
+			<NOTNULL />
+			<descr>Type of item. E.g., abstract, fulltext, etc.</descr>
+		</field>
+		<field name="assoc_id" type="I8">
+			<descr>Optional ID of an associated record (e.g., a file_id)</descr>
+		</field>
+		<descr>Indexed objects.</descr>
+	</table>
+	
+	<!--
+	 *
+	 * TABLE monograph_search_object_keywords
+	 *
+	 -->
+	<table name="monograph_search_object_keywords">
+		<field name="object_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="keyword_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="pos" type="I4">
+			<NOTNULL />
+			<descr>Word position of the keyword in the object.</descr>
+		</field>
+		<descr>Keyword occurrences for each indexed object.</descr>
+		<index name="monograph_search_object_keywords_keyword_id">
+			<col>keyword_id</col>
+		</index>
+		<index name="monograph_search_object_keywords_pkey">
+			<col>object_id</col>
+			<col>pos</col>
+			<UNIQUE />
+		</index>
+	</table>
+	
+	<!--
 	  *
 	  * TABLE monograph_event_log
 	  *

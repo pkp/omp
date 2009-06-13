@@ -116,7 +116,10 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
 		$user =& Request::getUser();
 
-		// FIXME: Add code to Update search index (see bug #4355)	
+		// Update search index
+		import('search.MonographSearchIndex');
+		MonographSearchIndex::indexMonographMetadata($monograph);
+		MonographSearchIndex::indexMonographFiles($monograph);
 		
 		// Send author notification email
 		import('mail.MonographMailTemplate');
