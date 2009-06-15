@@ -116,7 +116,7 @@ class AcquisitionsEditorAction extends Action {
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
 			$acquisitionsId = $acquisitionsEditorSubmission->getMonographId();
-			$acquisitions =& $acquisitionsDao->getAcquisitionsArrangement($acquisitionsId, $pressId);
+			$acquisitions =& $acquisitionsDao->getById($acquisitionsId, $pressId);
 			if ($acquisitions && ($reviewFormId = (int) $acquisitions->getReviewFormId())) {
 				if ($reviewFormDao->reviewFormExists($reviewFormId, $pressId)) {
 					$reviewAssignment->setReviewFormId($reviewFormId);

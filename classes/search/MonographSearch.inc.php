@@ -252,7 +252,7 @@ class MonographSearch {
 			if ($publishedMonograph && $monograph) {
 				$arrangementId = $monograph->getSectionId();
 				if (!isset($arrangementCache[$arrangementId])) {
-					$arrangementCache[$arrangementId] =& $arrangementDao->getAcquisitionsArrangement($arrangementId);
+					$arrangementCache[$arrangementId] =& $arrangementDao->getById($arrangementId);
 				}
 
 				// Get the press, storing in cache if necessary.

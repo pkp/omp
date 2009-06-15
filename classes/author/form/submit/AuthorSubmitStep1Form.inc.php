@@ -34,7 +34,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		$press =& Request::getPress();
 		// Get arrangements for this press
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		$templateMgr->assign('arrangementOptions', array('0' => Locale::translate('author.submit.selectAcquisitionsArrangement')) + $arrangementDao->getAcquisitionsArrangementsTitles($press->getId(), !true));
+		$templateMgr->assign('arrangementOptions', array('0' => Locale::translate('author.submit.selectAcquisitionsArrangement')) + $arrangementDao->getTitlesByPressId($press->getId(), !true));
 		parent::display();
 	}
 

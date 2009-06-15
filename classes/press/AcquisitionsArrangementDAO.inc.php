@@ -24,7 +24,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * @param $arrangementId int
 	 * @return AcquisitionsArrangement
 	 */
-	function &getAcquisitionsArrangement($arrangementId, $pressId = null, $type = null) {
+	function &getById($arrangementId, $pressId = null, $type = null) {
 		$sql = 'SELECT * FROM acquisitions_arrangements WHERE arrangement_id = ?';
 		$params = array($arrangementId);
 
@@ -41,7 +41,7 @@ class AcquisitionsArrangementDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnAcquisitionsArrangementFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -56,7 +56,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * @param $locale string optional
 	 * @return AcquisitionsArrangement
 	 */
-	function &getAcquisitionsArrangementByAbbrev($arrangementAbbrev, $pressId, $locale = null, $type = null) {
+	function &getByAbbrev($arrangementAbbrev, $pressId, $locale = null, $type = null) {
 		$sql = 'SELECT s.* FROM acquisitions_arrangements s, acquisitions_arrangements_settings l WHERE l.acquisitions_arrangements_id = s.acquisitions_arrangements_id AND l.setting_name = ? AND l.setting_value = ? AND s.press_id = ?';
 		$params = array('abbrev', $arrangementAbbrev, $pressId);
 
@@ -87,7 +87,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * @param $arrangementTitle string
 	 * @return AcquisitionsArrangement
 	 */
-	function &getAcquisitionsArrangementByTitle($arrangementTitle, $pressId, $locale = null) {
+	function &getByTitle($arrangementTitle, $pressId, $locale = null) {
 		$sql = 'SELECT a.* FROM acquisitions_arrangements a, acquisitions_arrangements_settings l WHERE l.arrangement_id = a.arrangement_id AND l.setting_name = ? AND l.setting_value = ? AND s.press_id = ?';
 		$params = array('title', $arrangementTitle, $pressId);
 		if ($locale !== null) {
@@ -99,7 +99,7 @@ class AcquisitionsArrangementDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnAcquisitionsArrangementFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -115,7 +115,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * @param $locale string optional
 	 * @return AcquisitionsArrangement
 	 */
-	function &getAcquisitionsArrangementByTitleAndAbbrev($arrangementTitle, $arrangementAbbrev, $pressId, $locale) {
+	function &getByTitleAndAbbrev($arrangementTitle, $arrangementAbbrev, $pressId, $locale) {
 		$sql = 'SELECT a.* FROM acquisitions_arrangements a, acquisitions_arrangements_settings l1, acquisitions_arrangements_settings l2 WHERE l1.arrangement_id = a.arrangement_id AND l2.arrangement_id = a.arrangement_id AND l1.setting_name = ? AND l2.setting_name = ? AND l1.setting_value = ? AND l2.setting_value = ? AND a.press_id = ?';
 		$params = array('title', 'abbrev', $arrangementTitle, $arrangementAbbrev, $pressId);
 		if ($locale !== null) {
@@ -128,7 +128,7 @@ class AcquisitionsArrangementDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnAcquisitionsArrangementFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -138,12 +138,21 @@ class AcquisitionsArrangementDAO extends DAO {
 	}
 
 	/**
+	 * Construct a new data object corresponding to this DAO.
+	 * @return AcquisitionsArrangement
+	 */
+	function newDataObject() {
+		return new AcquisitionsArrangement();
+	}
+
+	/**
 	 * Internal function to return an AcquisitionsArrangement object from a row.
 	 * @param $row array
 	 * @return AcquisitionsArrangement
 	 */
-	function &_returnAcquisitionsArrangementFromRow(&$row) {
-		$arrangement = new AcquisitionsArrangement();
+	function _fromRow(&$row) {
+		$arrangement = $this->newDataObject();
+
 		$arrangement->setId($row['arrangement_id']);
 		$arrangement->setPressId($row['press_id']);
 		$arrangement->setReviewFormId($row['review_form_id']);
@@ -156,7 +165,7 @@ class AcquisitionsArrangementDAO extends DAO {
 
 		$this->getDataObjectSettings('acquisitions_arrangements_settings', 'arrangement_id', $row['arrangement_id'], $arrangement);
 
-		HookRegistry::call('AcquisitionsArrangementDAO::_returnAcquisitionsArrangementFromRow', array(&$arrangement, &$row));
+		HookRegistry::call('AcquisitionsArrangementDAO::_fromRow', array(&$arrangement, &$row));
 
 		return $arrangement;
 	}
@@ -183,7 +192,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * Insert a new acquisitions arrangement.
 	 * @param $arrangement AcquisitionsArrangement
 	 */	
-	function insertAcquisitionsArrangement(&$arrangement) {
+	function insertObject(&$arrangement) {
 		$this->update(
 			'INSERT INTO acquisitions_arrangements
 				(press_id, review_form_id, seq, meta_indexed, editor_restricted, hide_about, disable_comments, arrangement_type)
@@ -210,7 +219,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * Update an existing acquisitions arrangement.
 	 * @param $arrangement AcquisitionsArrangement
 	 */
-	function updateAcquisitionsArrangement($arrangement) {
+	function updateObject($arrangement) {
 		$returner = $this->update(
 			'UPDATE acquisitions_arrangements
 				SET
@@ -258,7 +267,7 @@ class AcquisitionsArrangementDAO extends DAO {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monographDao->removeMonographsFromAcquisitionsArrangement($arrangementId);
 
-		if (isset($pressId) && !$this->acquisitionsArrangementExists($arrangementId, $pressId)) return false;
+		if (isset($pressId) && !$this->arrangementExists($arrangementId, $pressId)) return false;
 		$this->update('DELETE FROM acquisitions_arrangements_settings WHERE arrangement_id = ?', array($arrangementId));
 		return $this->update('DELETE FROM acquisitions_arrangements WHERE arrangement_id = ?', array($arrangementId));
 	}
@@ -269,8 +278,8 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * to be called only when deleting a press.
 	 * @param $pressId int
 	 */
-	function deleteAcquisitionsArrangementsByPress($pressId) {
-		$arrangements =& $this->getPressAcquisitionsArrangements($pressId);
+	function deleteByPress($pressId) {
+		$arrangements =& $this->getByPressId($pressId);
 		while (($arrangement =& $arrangements->next())) {
 			$this->deleteAcquisitionsArrangement($arrangement);
 			unset($arrangement);
@@ -296,7 +305,7 @@ class AcquisitionsArrangementDAO extends DAO {
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$arrangement =& $this->_returnAcquisitionsArrangementFromRow($row);
+			$arrangement =& $this->_fromRow($row);
 			if (!isset($returner[$row['editor_id']])) {
 				$returner[$row['editor_id']] = array($arrangement);
 			} else {
@@ -315,7 +324,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * Retrieve all acquisitions arrangements for a press.
 	 * @return DAOResultFactory containing AcquisitionsArrangement ordered by sequence
 	 */
-	function &getPressAcquisitionsArrangements($pressId, $rangeInfo = null, $type = null) {
+	function &getByPressId($pressId, $rangeInfo = null, $type = null) {
 
 		$sql = 'SELECT * FROM acquisitions_arrangements WHERE press_id = ?';
 		$params = array($pressId);
@@ -327,7 +336,7 @@ class AcquisitionsArrangementDAO extends DAO {
 		
 		$result =& $this->retrieveRange($sql.' ORDER BY seq', $params, $rangeInfo);
 
-		$returner = new DAOResultFactory($result, $this, '_returnAcquisitionsArrangementFromRow');
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 
@@ -335,10 +344,10 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * Retrieve the IDs and titles of the arrangements for a press in an associative array.
 	 * @return array
 	 */
-	function &getAcquisitionsArrangementsTitles($pressId, $submittableOnly = false) {
+	function &getTitlesByPressId($pressId, $submittableOnly = false) {
 		$arrangements = array();
 
-		$arrangementIterator =& $this->getPressAcquisitionsArrangements($pressId);
+		$arrangementIterator =& $this->getByPressId($pressId);
 		while (($arrangement =& $arrangementIterator->next())) {
 			if ($submittableOnly) {
 				if (!$arrangement->getEditorRestricted()) {
@@ -359,7 +368,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * @param $pressId int
 	 * @return boolean
 	 */
-	function acquisitionsArrangementExists($arrangementId, $pressId) {
+	function arrangementExists($arrangementId, $pressId) {
 		$result =& $this->retrieve(
 			'SELECT COUNT(*) FROM acquisitions_arrangements WHERE arrangement_id = ? AND press_id = ?',
 			array($arrangementId, $pressId)
@@ -376,7 +385,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * Sequentially renumber acquisition arrangements in their sequence order.
 	 * @param $pressId int
 	 */
-	function resequenceAcquisitionsArrangements($type = SERIES_ARRANGEMENT) {
+	function resequence($type = SERIES_ARRANGEMENT) {
 		$result =& $this->retrieve(
 			'SELECT arrangement_id FROM acquisitions_arrangements WHERE arrangement_type = ? ORDER BY seq',
 			array($type)

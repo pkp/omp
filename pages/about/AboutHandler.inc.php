@@ -275,7 +275,7 @@ class AboutHandler extends Handler {
 		$press =& Request::getPress();
 
 		$templateMgr =& TemplateManager::getManager();
-		$arrangements =& $arrangementDao->getPressAcquisitionsArrangements($press->getId());
+		$arrangements =& $arrangementDao->getByPressId($press->getId());
 		$arrangements =& $arrangements->toArray();
 		$templateMgr->assign_by_ref('arrangements', $arrangements);
 

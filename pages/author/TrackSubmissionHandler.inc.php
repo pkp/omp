@@ -92,7 +92,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
 **/
 		$acquisitionArrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		$arrangement =& $acquisitionArrangementDao->getAcquisitionsArrangement($submission->getAcquisitionsArrangementId());
+		$arrangement =& $acquisitionArrangementDao->getById($submission->getAcquisitionsArrangementId());
 		$templateMgr->assign_by_ref('arrangement', $arrangement);
 
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);

@@ -134,7 +134,7 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 		}
 
 		$rangeInfo =& Handler::getRangeInfo($arrangement);
-		$arrangements =& $arrangementDao->getPressAcquisitionsArrangements($press->getId(), $rangeInfo, $type);
+		$arrangements =& $arrangementDao->getByPressId($press->getId(), $rangeInfo, $type);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref($arrangement, $arrangements);
@@ -264,12 +264,12 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 		$press =& Request::getPress();
 
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		$arrangement =& $arrangementDao->getAcquisitionsArrangement(Request::getUserVar('arrangementId'), $press->getId());
+		$arrangement =& $arrangementDao->getById(Request::getUserVar('arrangementId'), $press->getId());
 
 		if ($arrangement != null) {
 			$arrangement->setSequence($arrangement->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
-			$arrangementDao->updateAcquisitionsArrangement($arrangement);
-			$arrangementDao->resequenceAcquisitionsArrangements($arrangement->getArrangementType());
+			$arrangementDao->updateObject($arrangement);
+			$arrangementDao->resequence($arrangement->getArrangementType());
 		}
 
 		switch ($type) {

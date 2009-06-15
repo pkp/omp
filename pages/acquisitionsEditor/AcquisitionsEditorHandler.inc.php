@@ -64,7 +64,7 @@ class AcquisitionsEditorHandler extends Handler {
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
-		$arrangements =& $arrangementDao->getAcquisitionsArrangementsTitles($press->getId());
+		$arrangements =& $arrangementDao->getTitlesByPressId($press->getId());
 
 		$filterArrangementOptions = array(
 			FILTER_ARRANGEMENT_ALL => Locale::Translate('editor.allAcquistionsArrangements')

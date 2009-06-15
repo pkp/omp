@@ -79,7 +79,7 @@ class AcquisitionsArrangementForm extends Form {
 		$acquisitionsArrangementEditorsDao =& DAORegistry::getDAO('AcquisitionsArrangementEditorsDAO');
 		if (isset($this->acquisitionsArrangementId)) {
 			$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-			$arrangement =& $arrangementDao->getAcquisitionsArrangement($this->acquisitionsArrangementId, $press->getId());
+			$arrangement =& $arrangementDao->getById($this->acquisitionsArrangementId, $press->getId());
 
 			if ($arrangement == null) {
 				unset($this->acquisitionsArrangementId);
@@ -171,7 +171,7 @@ class AcquisitionsArrangementForm extends Form {
 		$acquisitionsArrangementsDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
 
 		if (isset($this->acquisitionsArrangementId)) {
-			$arrangement =& $acquisitionsArrangementsDao->getAcquisitionsArrangement($this->acquisitionsArrangementId, $pressId);
+			$arrangement =& $acquisitionsArrangementsDao->getById($this->acquisitionsArrangementId, $pressId);
 		}
 
 		if (!isset($arrangement)) {
@@ -193,12 +193,12 @@ class AcquisitionsArrangementForm extends Form {
 		$arrangement->setArrangementType($this->getData('arrangementType'));
 
 		if (isset($this->acquisitionsArrangementId)) {
-			$acquisitionsArrangementsDao->updateAcquisitionsArrangement($arrangement);
+			$acquisitionsArrangementsDao->updateObject($arrangement);
 			$arrangementId = $arrangement->getId();
 
 		} else {
-			$arrangementId = $acquisitionsArrangementsDao->insertAcquisitionsArrangement($arrangement);
-			$acquisitionsArrangementsDao->resequenceAcquisitionsArrangements($arrangement->getArrangementType());
+			$arrangementId = $acquisitionsArrangementsDao->insertObject($arrangement);
+			$acquisitionsArrangementsDao->resequence($arrangement->getArrangementType());
 		}
 
 		$this->acquisitionsArrangementId = $arrangementId;

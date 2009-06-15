@@ -58,7 +58,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR);
 
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		$arrangement =& $arrangementDao->getAcquisitionsArrangement($submission->getAcquisitionsArrangementId());
+		$arrangement =& $arrangementDao->getById($submission->getAcquisitionsArrangementId());
 
 		$enableComments = $press->getSetting('enableComments');
 
@@ -74,7 +74,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr->assign('isEditor', $isEditor);
 		$templateMgr->assign('enableComments', $enableComments);
 
-		$templateMgr->assign_by_ref('arrangements', $arrangementDao->getAcquisitionsArrangementsTitles($press->getId()));
+		$templateMgr->assign_by_ref('arrangements', $arrangementDao->getTitlesByPressId($press->getId()));
 
 		if ($enableComments) {
 			import('monograph.Monograph');
@@ -164,7 +164,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$round = $submission->getCurrentReviewRound();
 
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		$arrangements =& $arrangementDao->getPressAcquisitionsArrangements($press->getId());
+		$arrangements =& $arrangementDao->getByPressId($press->getId());
 
 //		$showPeerReviewOptions = $round == $submission->getCurrentRound() && $submission->getReviewFile() != null ? true : false;
 
