@@ -463,40 +463,28 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @return array EditorSubmission
 	 */
 	function &getInReview($pressId, $arrangementId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
+
 		$editorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredEditorSubmissions($pressId, $arrangementId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		while (!$result->EOF) {
-			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
-			$monographId = $editorSubmission->getMonographId();
-/*			for ($i = 1; $i <= $editorSubmission->getCurrentRound(); $i++) {
-				$reviewAssignment =& $reviewAssignmentDao->getByMonographId($monographId, $i);
-				if (!empty($reviewAssignment)) {
-					$editorSubmission->setReviewAssignments($reviewAssignment, $i);
-				}
-			}
-*/
-			// check if submission is still in review
-			$inReview = true;
-			$decisions = $editorSubmission->getDecisions();
-			$decision = is_array($decisions) ? array_pop($decisions) : null;
-			if (!empty($decision)) {
-				$latestDecision = array_pop($decision);
-//				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
-//					$inReview = false;			
-//				}
-			}
+			$submission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$currentProcess =& $workflowDao->getCurrent($submission->getMonographId());
+
+			$inReview = isset($currentProcess) && $currentProcess->getProcessType() == WORKFLOW_PROCESS_ASSESSMENT ? true : false;
 
 			// used to check if editor exists for this submission
-			$editAssignments =& $editorSubmission->getEditAssignments();
+			$editAssignments =& $submission->getEditAssignments();
 
 			if (!empty($editAssignments) && $inReview) {
-				$editorSubmissions[] =& $editorSubmission;
+				$editorSubmissions[] =& $submission;
 			}
-			unset($editorSubmission);
+			unset($submission);
+			unset($currentProcess);
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -522,38 +510,26 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @return array EditorSubmission
 	 */
 	function &getInEditing($pressId, $arrangementId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 		$editorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredEditorSubmissions($pressId, $arrangementId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		while (!$result->EOF) {
-			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
-			$monographId = $editorSubmission->getMonographId();
+			$submission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$currentProcess =& $workflowDao->getCurrent($submission->getMonographId());
 
-			// get copyedit final data
-			$copyedAssignment = $this->getCopyedAssignment($monographId);
-			$row = $copyedAssignment->GetRowAssoc(false);
-			$editorSubmission->setCopyeditorDateFinalCompleted($this->datetimeFromDB($row['date_final_completed']));
-
-			// check if submission is still in review
-			$inEditing = false;
-			$decisions = $editorSubmission->getDecisions();
-			$decision = array_pop($decisions);
-			if (!empty($decision)) {
-				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
-					$inEditing = true;	
-				}
-			}
+			$inEditing = isset($currentProcess) && $currentProcess->getProcessType() == WORKFLOW_PROCESS_EDITING ? true : false;
 
 			// used to check if editor exists for this submission
-			$editAssignments = $editorSubmission->getEditAssignments();
+			$editAssignments = $submission->getEditAssignments();
 
 			if ($inEditing && !empty($editAssignments)) {
-				$editorSubmissions[] =& $editorSubmission;
+				$editorSubmissions[] =& $submission;
 			}
-			unset($editorSubmission);
+			unset($currentProcess);
+			unset($submission);
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -624,6 +600,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * Function used for counting purposes for right nav bar
 	 */
 	function &getCount($pressId) {
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 
 		$submissionsCount = array();
 		for($i = 0; $i < 3; $i++) {
@@ -633,39 +610,24 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 		$result =& $this->getUnfilteredEditorSubmissions($pressId);
 
 		while (!$result->EOF) {
-			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$submission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
+			$currentProcess =& $workflowDao->getCurrent($submission->getMonographId());
 
-			// check if submission is still in review
-			$inReview = true;
-			$notDeclined = true;
-			$decisions = $editorSubmission->getDecisions();
-			$decision = is_array($decisions) ? array_pop($decisions) : array();
-			if (!empty($decision)) {
-				$latestDecision = array_pop($decision);
-				if (isset($latestDecision['decision']))
-				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
-					$inReview = false;
+			if (isset($currentProcess)) {
+				switch ($currentProcess->getProcessType()) {
+				case WORKFLOW_PROCESS_ASSESSMENT: 
+					$submissionsCount[1] += 1;
+					break;
+				case WORKFLOW_PROCESS_EDITING: 
+					$submissionsCount[2] += 1;
+					break;
 				}
-			}
-
-			// used to check if editor exists for this submission
-			$editAssignments = $editorSubmission->getEditAssignments();
-
-			if (empty($editAssignments)) {
-				// unassigned submissions
-				$submissionsCount[0] += 1;
+				unset($currentProcess);
 			} else {
-				if ($inReview) {
-					if ($notDeclined) {
-						// in review submissions
-						$submissionsCount[1] += 1;
-					}
-				} else {
-					// in editing submissions
-					$submissionsCount[2] += 1;					
-				}
+				$submissionsCount[0] += 1;
 			}
-			unset($editorSubmission);
+
+			unset($submission);
 			$result->MoveNext();
 		}
 		$result->Close();

@@ -572,29 +572,22 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 * @return array EditorSubmission
 	 */
 	function &getAcquisitionsEditorSubmissionsInReview($acquisitionsEditorId, $pressId, $arrangementId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredAcquisitionsEditorSubmissions($acquisitionsEditorId, $pressId, $arrangementId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true, 'e.can_review = 1');
 
 		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-			$submission =& $this->_fromRow($row);
-			$monographId = $submission->getMonographId();
+			$submission =& $this->_fromRow($result->GetRowAssoc(false));
+			$currentProcess =& $workflowDao->getCurrent($submission->getMonographId());
 
-			// check if submission is still in review
-			$inReview = true;
-			$decisions = $submission->getDecisions();
-			$decision = array_pop($decisions);
-			if (!empty($decision)) {
-				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
-					$inReview = false;
-				}
-			}
+			$inReview = isset($currentProcess) && $currentProcess->getProcessType() == WORKFLOW_PROCESS_ASSESSMENT ? true : false;
+
 			if ($inReview) $submissions[] =& $submission;
 
 			unset($submission);
+			unset($currentProcess);
 			$result->MoveNext();
 		}
 
@@ -621,26 +614,20 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 * @return array EditorSubmission
 	 */
 	function &getAcquisitionsEditorSubmissionsInEditing($acquisitionsEditorId, $pressId, $arrangementId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 		$submissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredAcquisitionsEditorSubmissions($acquisitionsEditorId, $pressId, $arrangementId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true, 'e.can_edit = 1');
 
 		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-			$submission =& $this->_fromRow($row);
+			$submission =& $this->_fromRow($result->GetRowAssoc(false));
+			$currentProcess =& $workflowDao->getCurrent($submission->getMonographId());
 
-			// check if submission is still in review
-			$inReview = true;
-			$decisions = $submission->getDecisions();
-			$decision = array_pop($decisions);
-			if (!empty($decision)) {
-				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
-					$inReview = false;
-				}
-			}
-			if (!$inReview) $submissions[] =& $submission;
+			// check if submission is still in editing
+			$inEditing = isset($currentProcess) && $currentProcess->getProcessType() == WORKFLOW_PROCESS_EDITING ? true : false;
+
+			if ($inEditing) $submissions[] =& $submission;
 
 			unset($submission);
 			$result->MoveNext();
@@ -697,6 +684,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 * Function used for counting purposes for right nav bar
 	 */
 	function &getAcquisitionsEditorSubmissionsCount($acquisitionsEditorId, $pressId) {
+		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 
 		$submissionsCount = array();
 		for($i = 0; $i < 4; $i++) {
@@ -707,31 +695,26 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$acquisitionsEditorSubmission =& $this->_fromRow($row);
+			$submission =& $this->_fromRow($row);
+			$currentProcess =& $workflowDao->getCurrent($submission->getMonographId());
 
-			// check if submission is still in review
-			$inReview = true;
-			$decisions = $acquisitionsEditorSubmission->getDecisions();
-			$decision = array_pop($decisions);
-			if (!empty($decision)) {
-				$latestDecision = array_pop($decision);
-				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
-					$inReview = false;
+			if (isset($currentProcess)) {
+				switch ($currentProcess->getProcessType()) {
+				case WORKFLOW_PROCESS_ASSESSMENT:
+					if ($row['can_review']) {
+						$submissionsCount[0] += 1;
+					}
+					break;
+				case WORKFLOW_PROCESS_EDITING:
+					if ($row['can_edit']) {
+						$submissionsCount[1] += 1;
+					}
+					break;
 				}
+				unset($currentProcess);
 			}
 
-			if ($inReview) {
-				if ($row['can_review']) {
-					// in review submissions
-					$submissionsCount[0] += 1;
-				}
-			} else {
-				// in editing submissions
-				if ($row['can_edit']) {
-					$submissionsCount[1] += 1;
-				}
-			}
-			unset($acquisitionsEditorSubmission);
+			unset($submission);
 			$result->MoveNext();
 		}
 
