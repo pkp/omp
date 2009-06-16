@@ -269,7 +269,7 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 		if ($arrangement != null) {
 			$arrangement->setSequence($arrangement->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
 			$arrangementDao->updateObject($arrangement);
-			$arrangementDao->resequence($arrangement->getArrangementType());
+			$arrangementDao->resequence($arrangement->getType());
 		}
 
 		switch ($type) {

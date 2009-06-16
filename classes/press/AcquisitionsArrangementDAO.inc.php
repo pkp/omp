@@ -161,7 +161,7 @@ class AcquisitionsArrangementDAO extends DAO {
 		$arrangement->setEditorRestricted($row['editor_restricted']);
 		$arrangement->setHideAbout($row['hide_about']);
 		$arrangement->setDisableComments($row['disable_comments']);
-		$arrangement->setArrangementType($row['arrangement_type']);
+		$arrangement->setType($row['arrangement_type']);
 
 		$this->getDataObjectSettings('acquisitions_arrangements_settings', 'arrangement_id', $row['arrangement_id'], $arrangement);
 
@@ -206,7 +206,7 @@ class AcquisitionsArrangementDAO extends DAO {
 				$arrangement->getEditorRestricted() ? 1 : 0,
 				$arrangement->getHideAbout() ? 1 : 0,
 				$arrangement->getDisableComments() ? 1 : 0,
-				$arrangement->getArrangementType()
+				$arrangement->getType()
 			)
 		);
 
@@ -238,7 +238,7 @@ class AcquisitionsArrangementDAO extends DAO {
 				$arrangement->getEditorRestricted(),
 				$arrangement->getHideAbout(),
 				$arrangement->getDisableComments(),
-				$arrangement->getArrangementType(),
+				$arrangement->getType(),
 				$arrangement->getId()
 			)
 		);

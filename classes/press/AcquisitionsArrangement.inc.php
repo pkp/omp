@@ -26,40 +26,6 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
-	 * Get localized title of journal section.
-	 * @return string
-	 */
-	function getLocalizedTitle() {
-		return $this->getLocalizedData('title');
-	}
-
-	/**
-	 * Get localized abbreviation of journal section.
-	 * @return string
-	 */
-	function getLocalizedAbbrev() {
-		return $this->getLocalizedData('abbrev');
-	}
-
-	/**
-	 * Get localized section policy.
-	 * @return string
-	 */
-	function getLocalizedPolicy() {
-		return $this->getLocalizedData('policy');
-	}
-
-	//
-	// Get/set methods
-	//
-	function setArrangementType($value) {
-		$this->setData('type', $value);
-	}
-	function getArrangementType() {
-		return $this->getData('type');
-	}
-
-	/**
 	 * Get ID of press.
 	 * @return int
 	 */
@@ -92,6 +58,14 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
+	 * Get localized title of the acquisitions arrangement.
+	 * @return string
+	 */
+	function getLocalizedTitle() {
+		return $this->getLocalizedData('title');
+	}
+
+	/**
 	 * Get title of arrangement.
 	 * @param $locale string
 	 * @return string
@@ -107,6 +81,14 @@ class AcquisitionsArrangement extends DataObject {
 	 */
 	function setTitle($title, $locale) {
 		return $this->setData('title', $title, $locale);
+	}
+
+	/**
+	 * Get localized abbreviation of the acquisitions arrangement.
+	 * @return string
+	 */
+	function getLocalizedAbbrev() {
+		return $this->getLocalizedData('abbrev');
 	}
 
 	/**
@@ -208,6 +190,14 @@ class AcquisitionsArrangement extends DataObject {
 	}
 
 	/**
+	 * Get localized arrangement policy.
+	 * @return string
+	 */
+	function getLocalizedPolicy() {
+		return $this->getLocalizedData('policy');
+	}
+
+	/**
 	 * Get policy.
 	 * @param $locale string
 	 * @return string
@@ -224,6 +214,23 @@ class AcquisitionsArrangement extends DataObject {
 	function setPolicy($policy, $locale) {
 		return $this->setData('policy', $policy, $locale);
 	}
+
+	/**
+	 * Get arrangement type.
+	 * @return int
+	 */
+	function getType() {
+		return $this->getData('type');
+	}
+
+	/**
+	 * Set arrangement type.
+	 * @return int
+	 */
+	function setType($value) {
+		$this->setData('type', $value);
+	}
+
 }
 
 ?>

@@ -190,7 +190,7 @@ class AcquisitionsArrangementForm extends Form {
 		$arrangement->setHideAbout($this->getData('hideAbout') ? 1 : 0);
 		$arrangement->setDisableComments($this->getData('disableComments') ? 1 : 0);
 		$arrangement->setPolicy($this->getData('policy'), null); // Localized
-		$arrangement->setArrangementType($this->getData('arrangementType'));
+		$arrangement->setType($this->getData('arrangementType'));
 
 		if (isset($this->acquisitionsArrangementId)) {
 			$acquisitionsArrangementsDao->updateObject($arrangement);
@@ -198,7 +198,7 @@ class AcquisitionsArrangementForm extends Form {
 
 		} else {
 			$arrangementId = $acquisitionsArrangementsDao->insertObject($arrangement);
-			$acquisitionsArrangementsDao->resequence($arrangement->getArrangementType());
+			$acquisitionsArrangementsDao->resequence($arrangement->getType());
 		}
 
 		$this->acquisitionsArrangementId = $arrangementId;
