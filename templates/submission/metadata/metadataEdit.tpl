@@ -155,6 +155,10 @@
 		<td class="label">{fieldLabel name="type" key="monograph.type"}</td>
 		<td class="value">
 			<input type="text" name="type[{$formLocale|escape}]" id="type" value="{$type[$formLocale]|escape}" size="40" maxlength="255" class="textField" />
+			{if $currentPress->getLocalizedSetting('metaTypeExamples') != ''}
+			<br />
+			<span class="instruct">{$currentPress->getLocalizedSetting('metaTypeExamples')|escape}</span>
+			{/if}
 		</td>
 	</tr>
 	<tr>
