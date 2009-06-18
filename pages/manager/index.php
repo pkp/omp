@@ -48,6 +48,7 @@ switch ($op) {
 	case 'enrollSearch':
 	case 'enroll':
 	case 'unEnroll':
+	case 'showNoRole':
 	case 'enrollSyncSelect':
 	case 'enrollSync':
 	case 'createUser':

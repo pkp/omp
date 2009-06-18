@@ -214,8 +214,8 @@ class PeopleHandler extends ManagerHandler {
 
 		$session =& Request::getSession();
 		$referrerUrl = $session->getSessionVar('enrolmentReferrer');
-			$templateMgr->assign('enrolmentReferrerUrl', isset($referrerUrl) ? Request::url(null,'manager','people',$referrerUrl) : Request::url(null,'manager'));
-			$session->unsetSessionVar('enrolmentReferrer');
+		$templateMgr->assign('enrolmentReferrerUrl', isset($referrerUrl) ? Request::url(null,'manager','people',$referrerUrl) : Request::url(null,'manager'));
+		$session->unsetSessionVar('enrolmentReferrer');
 
 		$templateMgr->display('manager/people/searchUsers.tpl');
 	}
@@ -302,6 +302,7 @@ class PeopleHandler extends ManagerHandler {
 	 */
 	function enrollSyncSelect($args) {
 		$this->validate();
+		$this->setupTemplate(true);
 
 		$rolePath = isset($args[0]) ? $args[0] : '';
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -626,6 +627,7 @@ class PeopleHandler extends ManagerHandler {
 			$userForm->execute();
 
 			if (Request::getUserVar('createAnother')) {
+				$this->setupTemplate(true);
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('currentUrl', Request::url(null, null, 'people', 'all'));
 				$templateMgr->assign('userCreated', true);
@@ -736,7 +738,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Restore original user account after signing in as a user.
 	 */
 	function signOutAsUser() {
-		Handler::validate();
+		$this->validate();
 
 		$session =& Request::getSession();
 		$signedInAs = $session->getSessionVar('signedInAs');

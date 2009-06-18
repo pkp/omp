@@ -31,7 +31,6 @@
 	<li>&#187; <a href="{url op="emails"}">{translate key="manager.emails"}</a></li>
 <!--	<li>&#187; <a href="{url page="rtadmin"}">{translate key="manager.readingTools"}</a></li>-->
 	<li>&#187; <a href="{url op="setup"}">{translate key="manager.setup"}</a></li>
-<!--	<li>&#187; <a href="{url op="statistics"}">{translate key="manager.statistics"}</a></li>-->
 	{if $subscriptionsEnabled}
 		<li>&#187; <a href="{url op="subscriptions"}">{translate key="manager.subscriptions"}</a></li>
 	{/if}
@@ -46,6 +45,7 @@
 <ul class="plain">
 	<li>&#187; <a href="{url op="people" path="all"}">{translate key="manager.people.allEnrolledUsers"}</a></li>
 	<li>&#187; <a href="{url op="enrollSearch"}">{translate key="manager.people.allSiteUsers"}</a></li>
+	<li>&#187; <a href="{url op="showNoRole"}">{translate key="manager.people.showNoRole"}</a></li>
 	{url|assign:"managementUrl" page="manager"}
 	<li>&#187; <a href="{url op="createUser" source=$managementUrl}">{translate key="manager.people.createUser"}</a></li>
 	<li>&#187; <a href="{url op="mergeUsers"}">{translate key="manager.people.mergeUsers"}</a></li>
