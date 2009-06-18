@@ -88,7 +88,7 @@ class UserManagementForm extends Form {
 				'productionEditor' => 'user.role.productionEditor'
 			)
 		);
-		else $templateMgr->assign('roleOptions', // Subscription Manager
+		else $templateMgr->assign('roleOptions', 
 			array(
 				'' => 'manager.people.doNotEnroll',
 				'reader' => 'user.role.reader'

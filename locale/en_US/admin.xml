@@ -53,7 +53,6 @@
 	<message key="admin.presses.pressDescription">Press description</message>
 	
 	<message key="admin.press.pathImportInstructions">Existing press path or path to create (e.g., "omp").</message>
-	<message key="admin.presses.importSubscriptions">Import subscriptions</message>
 	<message key="admin.presses.transcode">Transcode monograph metadata from ISO8859-1</message>
 	<message key="admin.presses.form.importPathRequired">The import path is required.</message>
 	<message key="admin.presses.importErrors">Importing failed to complete successfully</message>

@@ -116,19 +116,6 @@
 		<li>&#187; <a href="{url page="user" op="changePassword"}">{translate key="user.changeMyPassword"}</a></li>
 	{/if}
 
-	{if $userPress}
-		{if $pressPaymentsEnabled && $subscriptionEnabled && $userHasSubscription}
-			<li>&#187; <a href="{url page="user" op="payRenewSubscription"}">{translate key="payment.subscription.renew"}</a> ({translate key="payment.subscription.expires"}: {$subscriptionEndDate|date_format:$dateFormatShort})</li>
-		{/if}
-		{if $pressPaymentsEnabled && $membershipEnabled}
-			{if $dateEndMembership}
-				<li>&#187; <a href="{url page="user" op="payMembership"}">{translate key="payment.membership.renewMembership"}</a> ({translate key="payment.membership.ends"}: {$dateEndMembership|date_format:$dateFormatShort})</li>
-			{else}
-				<li>&#187; <a href="{url page="user" op="payMembership"}">{translate key="payment.membership.buyMembership"}</a></li>		
-			{/if}
-		{/if}{* $pressPaymentsEnabled && $membershipEnabled *}
-	{/if}{* $userPress *}
-
 	<li>&#187; <a href="{url page="login" op="signOut"}">{translate key="user.logOut"}</a></li>
 	{call_hook name="Templates::User::Index::MyAccount"}
 </ul>

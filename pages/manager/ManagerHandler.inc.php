@@ -37,13 +37,11 @@ class ManagerHandler extends Handler {
 
 		$press =& Request::getPress();
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$subscriptionsEnabled = $pressSettingsDao->getSetting($press->getId(), 'enableSubscriptions'); 
 		$announcementsEnabled = $pressSettingsDao->getSetting($press->getId(), 'enableAnnouncements');
 		$customSignoffInternal = $pressSettingsDao->getSetting($press->getId(), 'useCustomInternalReviewSignoff');
 		$customSignoffExternal = $pressSettingsDao->getSetting($press->getId(), 'useCustomExternalReviewSignoff'); 
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('subscriptionsEnabled', $subscriptionsEnabled);
 		$templateMgr->assign('customSingoffEnabled', $customSignoffInternal || $customSignoffExternal );
 		
 		$session =& Request::getSession();

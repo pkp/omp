@@ -43,7 +43,6 @@ class PressSetupStep4Form extends PressSetupForm {
 				'refLinkInstructions' => 'string',
 				'useProofreaders' => 'bool',
 				'proofInstructions' => 'string',
-				'enableSubscriptions' => 'bool',
 				'showGalleyLinks' => 'bool',
 				'openAccessPolicy' => 'string',
 				'enableAnnouncements' => 'bool',

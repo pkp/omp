@@ -31,9 +31,6 @@
 	<li>&#187; <a href="{url op="emails"}">{translate key="manager.emails"}</a></li>
 <!--	<li>&#187; <a href="{url page="rtadmin"}">{translate key="manager.readingTools"}</a></li>-->
 	<li>&#187; <a href="{url op="setup"}">{translate key="manager.setup"}</a></li>
-	{if $subscriptionsEnabled}
-		<li>&#187; <a href="{url op="subscriptions"}">{translate key="manager.subscriptions"}</a></li>
-	{/if}
 	<li>&#187; <a href="{url op="plugins"}">{translate key="manager.plugins"}</a></li>
 	<li>&#187; <a href="{url op="importexport"}">{translate key="manager.importExport"}</a></li>
 	{call_hook name="Templates::Manager::Index::ManagementPages"}

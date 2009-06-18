@@ -49,6 +49,10 @@ class AboutHandler extends Handler {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$groups =& $groupDao->getGroups(ASSOC_TYPE_PRESS, GROUP_CONTEXT_PEOPLE);
 
+			$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
+			$arrangements =& $arrangementDao->getByPressId($press->getId());
+
+			$templateMgr->assign('arrangementCount', $arrangements->GetCount());
 			$templateMgr->assign_by_ref('peopleGroups', $groups);
 			$templateMgr->assign('helpTopicId', 'user.about');
 			$templateMgr->display('about/index.tpl');

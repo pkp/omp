@@ -31,7 +31,7 @@
 					<option value=""></option>
 					<option value="all">{translate key="manager.people.allUsers"}</option>
 					<option value="manager">{translate key="user.role.manager"}</option>
-				<!--	<option value="editor">{translate key="user.role.editor"}</option>
+					<option value="editor">{translate key="user.role.editor"}</option>
 					<option value="acquisitionsEditor">{translate key="user.role.acquisitionsEditor"}</option>
 					<option value="layoutEditor">{translate key="user.role.layoutEditor"}</option>
 					<option value="reviewer">{translate key="user.role.reviewer"}</option>
@@ -39,7 +39,6 @@
 					<option value="proofreader">{translate key="user.role.proofreader"}</option>
 					<option value="author">{translate key="user.role.author"}</option>
 					<option value="reader">{translate key="user.role.reader"}</option>
-					<option value="subscriptionManager">{translate key="user.role.subscriptionManager"}</option>-->
 				</select>
 			{/if}
 		</td>

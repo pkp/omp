@@ -25,15 +25,11 @@
 <h3>{translate key="about.policies"}</h3>
 <ul class="plain">
 	{if $currentPress->getLocalizedSetting('focusScopeDesc') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="focusAndScope"}">{translate key="about.focusAndScope"}</a></li>{/if}
-	<li>&#187; <a href="{url op="editorialPolicies" anchor="acquisitionsArrrangementPolicies"}">{translate key="about.acquisitionsArrangementPolicies"}</a></li>
+	{if $arrangementCount > 0}<li>&#187; <a href="{url op="editorialPolicies" anchor="acquisitionsArrrangementPolicies"}">{translate key="about.acquisitionsArrangementPolicies"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('reviewPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('pubFreqPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="publicationFrequency"}">{translate key="about.publicationFrequency"}</a></li>{/if}
-	{if empty($pressSettings.enableSubscriptions) && $currentPress->getLocalizedSetting('openAccessPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
+	{if $currentPress->getLocalizedSetting('openAccessPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
 	{if $pressSettings.enableLockss && $currentPress->getLocalizedSetting('lockssLicense') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiving"}">{translate key="about.archiving"}</a></li>{/if}
-	{if $pressSettings.pressPaymentsEnabled && $pressSettings.membershipFeeEnabled && $pressSettings.membershipFee > 0}<li>&#187; <a href="{url op="memberships"}">{translate key="about.memberships"}</a></li>{/if}
-	{if !empty($pressSettings.enableSubscriptions)}<li>&#187; <a href="{url op="subscriptions"}">{translate key="about.subscriptions"}</a></li>{/if}
-	{if !empty($pressSettings.enableSubscriptions) && !empty($pressSettings.enableAuthorSelfArchive)}<li>&#187; <a href="{url op="editorialPolicies" anchor="authorSelfArchivePolicy"}">{translate key="about.authorSelfArchive"}</a></li>{/if}
-	{if !empty($pressSettings.enableSubscriptions) && !empty($pressSettings.enableDelayedOpenAccess)}<li>&#187; <a href="{url op="editorialPolicies" anchor="delayedOpenAccessPolicy"}">{translate key="about.delayedOpenAccess"}</a></li>{/if}
 	{foreach key=key from=$customAboutItems item=customAboutItem}
 		{if $customAboutItem.title!=''}<li>&#187; <a href="{url op="editorialPolicies" anchor=custom`$key`}">{$customAboutItem.title|escape}</a></li>{/if}
 	{/foreach}

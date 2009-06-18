@@ -112,8 +112,6 @@ class RegistrationForm extends Form {
 
 		$templateMgr->assign('privacyStatement', $press->getLocalizedSetting('privacyStatement'));
 		$templateMgr->assign('allowRegReader', $press->getSetting('allowRegReader')==1?1:0);
-		$templateMgr->assign('enableSubscriptions', $press->getSetting('enableSubscriptions')==1?1:0);
-		$templateMgr->assign('enableOpenAccessNotification', $press->getSetting('enableOpenAccessNotification')==1?1:0);
 		$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor')==1?1:0);
 		$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer')==1?1:0);
 		$templateMgr->assign('source', Request::getUserVar('source'));
@@ -150,7 +148,7 @@ class RegistrationForm extends Form {
 			'gender', 'initials', 'country',
 			'affiliation', 'email', 'userUrl', 'phone', 'fax', 'signature',
 			'mailingAddress', 'biography', 'interests', 'userLocales',
-			'registerAsReader', 'openAccessNotification', 'registerAsAuthor',
+			'registerAsReader', 'registerAsAuthor',
 			'registerAsReviewer', 'existingUser', 'sendPassword'
 		);
 		if ($this->captchaEnabled) {
@@ -328,11 +326,6 @@ class RegistrationForm extends Form {
 			$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
 			$notificationStatusDao->setPressNotifications($press->getId(), $userId, false);
 			$notificationStatusDao->setPressNotifications($press->getId(), $userId, true);
-		}
-
-		if (isset($allowedRoles['reader']) && $this->getData('openAccessNotification')) {
-			$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
-			$userSettingsDao->updateSetting($userId, 'openAccessNotification', true, 'bool', $press->getId());
 		}
 	}
 

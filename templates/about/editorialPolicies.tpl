@@ -17,6 +17,7 @@
 	{if $currentPress->getLocalizedSetting('focusScopeDesc') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="focusAndScope"}">{translate key="about.focusAndScope"}</a></li>{/if}
 	{if count($arrangements) > 0}<li>&#187; <a href="{url op="editorialPolicies" anchor="arrangementPolicies"}">{translate key="about.acquisitionsArrangementPolicies"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('reviewPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
+	{if $currentPress->getLocalizedSetting('openAccessPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
 	{foreach key=key from=$currentPress->getLocalizedSetting('customAboutItems') item=customAboutItem}
 		{if !empty($customAboutItem.title)}
 			<li>&#187; <a href="{url op="editorialPolicies" anchor=custom`$key`}">{$customAboutItem.title|escape}</a></li>
@@ -69,6 +70,14 @@
 
 {if $currentPress->getLocalizedSetting('reviewPolicy') != ''}<div id="peerReviewProcess"><h3>{translate key="about.peerReviewProcess"}</h3>
 <p>{$currentPress->getLocalizedSetting('reviewPolicy')|nl2br}</p>
+
+<div class="separator">&nbsp;</div>
+</div>
+{/if}
+
+{if $currentPress->getLocalizedSetting('openAccessPolicy') != ''} 
+<div id="openAccessPolicy"><h3>{translate key="about.openAccessPolicy"}</h3>
+<p>{$currentPress->getLocalizedSetting('openAccessPolicy')|nl2br}</p>
 
 <div class="separator">&nbsp;</div>
 </div>

@@ -30,55 +30,11 @@
 <h3>4.1 {translate key="manager.setup.securitySettings"}</h3>
 
 <h4>{translate key="manager.setup.onlineAccessManagement"}</h4>
-	<script type="text/javascript">
-		{literal}
-		<!--
-			function toggleEnableSubscriptions(form) {
-				if (form.enableSubscriptions[0].checked) {
-					form.openAccessPolicy.disabled = false;
-					form.showGalleyLinks.disabled = true;
-				} else {
-					form.openAccessPolicy.disabled = true;
-					form.showGalleyLinks.disabled = false;
-				}
-			}
-		// -->
-		{/literal}
-	</script>
 
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label" align="right">
-			<input type="radio" name="enableSubscriptions" id="enableSubscriptions-0" value="0" onclick="toggleEnableSubscriptions(this.form)"{if not $enableSubscriptions} checked="checked"{/if} />
-		</td>
-		<td width="95%" class="value">
-			<label for="enableSubscriptions-0">{translate key="manager.setup.openAccess"}</label>
-			<h4>{translate key="manager.setup.openAccessPolicy"}</h4>
-			<p><span class="instruct">{translate key="manager.setup.openAccessPolicyDescription"}</span></p>
-			<p><textarea name="openAccessPolicy[{$formLocale|escape}]" id="openAccessPolicy" rows="12" cols="60" class="textArea"{if $enableSubscriptions} disabled="disabled"{/if}>{$openAccessPolicy[$formLocale]|escape}</textarea></p>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
-	<tr valign="top">
-		<td width="5%" class="label" align="right">
-			<input type="radio" name="enableSubscriptions" id="enableSubscriptions-1" value="1" onclick="toggleEnableSubscriptions(this.form)"{if $enableSubscriptions} checked="checked"{/if} />
-		</td>
-		<td width="95%" class="value">
-			<label for="enableSubscriptions-1">{translate key="manager.setup.subscription"}</label>
-			<p><span class="instruct">{translate key="manager.setup.subscriptionDescription"}</span></p>
-			<table width="100%">
-				<tr>
-					<td width="5%"><input type="checkbox" name="showGalleyLinks" id="showGalleyLinks" {if $showGalleyLinks} checked="checked"{/if} /></td>
-					<td width="95%"><label for="showGalleyLinks">{translate key="manager.setup.showGalleyLinksDescription"}</label></td>
-				</tr>	
-			</table>
-		</td>
-	</tr>
+<h4>{translate key="manager.setup.openAccessPolicy"}</h4>
+<p><span class="instruct">{translate key="manager.setup.openAccessPolicyDescription"}</span></p>
 
-</table>
-
+<p><textarea name="openAccessPolicy[{$formLocale|escape}]" id="openAccessPolicy" rows="12" cols="60" class="textArea">{$openAccessPolicy[$formLocale]|escape}</textarea></p>
 
 <p>{translate key="manager.setup.securitySettingsDescription"}</p>
 

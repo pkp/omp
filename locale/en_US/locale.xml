@@ -282,7 +282,6 @@ Note that if your site administrator has already registered this site with the P
 	<message key="user.role.seriesEditors">Series Editors</message>
 	<message key="user.role.proofreader">Proofreader</message>
 	<message key="user.role.author">Author</message>
-	<message key="user.role.subscriptionManager">Subscription Manager</message>
 	<message key="user.role.editorialMember">Editorial Committee Member</message>
 	<message key="user.role.reviewer">Reviewer</message>
 	<message key="user.role.productionEditor">Production Editor</message>
@@ -296,7 +295,6 @@ Note that if your site administrator has already registered this site with the P
 	<message key="user.role.copyeditors">Copyeditors</message>
 	<message key="user.role.proofreaders">Proofreaders</message>
 	<message key="user.role.authors">Authors</message>
-	<message key="user.role.subscriptionManagers">Subscription Managers</message>
 	<message key="user.role.submissionCategoryEditors">Category Editors</message>
 	<message key="user.role.productionEditors">Production Editors</message>
 
@@ -309,11 +307,7 @@ Note that if your site administrator has already registered this site with the P
 	-->
 
 	<!-- Reader monograph view -->
-	<message key="reader.subscribersOnly">Subscribers Only</message>
-	<message key="reader.subscriptionRequiredLoginText">Subscription required to access item. To verify subscription, log in to press.</message>  
 	<message key="reader.openAccess">Open Access</message>
-	<message key="reader.subscriptionAccess">Subscription Access</message>
-	<message key="reader.subscriptionOrFeeAccess">Subscription or Fee Access</message>
 
 	<!-- Reader Comments -->
 	<message key="comments.commentsOnMonograph">Comments on this monograph</message>
@@ -491,7 +485,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.register.registrationDisabled">This press is currently not accepting user registrations.</message>
 	<message key="user.register.form.passwordLengthTooShort">The password you entered is not long enough.</message>
 	<message key="user.register.readerDescription">Notified by email on publication of a monograph.</message>
-	<message key="user.register.openAccessNotificationDescription">Notified by email when a monograph from the press is made open access.</message>
 	<message key="user.register.authorDescription">Able to submit items to the press.</message>
 	<message key="user.register.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the press.</message>
 	<message key="user.register.reviewerDescription">Willing to conduct peer review of submissions to the press. Identify reviewing interests (substantive areas and research methods).</message>
@@ -579,9 +572,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.delayedOpenAccessDescription2">month(s) after a monograph is published.</message>
 	<message key="about.authorSelfArchive">Author Self-Archiving</message>
 	<message key="about.archiving">Archiving</message>
-	<message key="about.subscriptions">Subscriptions</message>
-	<message key="about.subscriptionsContact">Subscriptions Contact</message>
-	<message key="about.availableSubscriptionTypes">Subscription Types</message>
 	<message key="about.memberships">Memberships</message>
 	<message key="about.pressSponsorship">Press Sponsorship</message>
 	<message key="about.aboutThisPublishingSystem">About this Publishing System</message>

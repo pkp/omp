@@ -157,31 +157,6 @@
 	{/if}
 {/foreach}
 
-{if $displayOpenAccessNotification}
-	{assign var=notFirstPress value=0}
-	{foreach from=$presses name=pressOpenAccessNotifications key=thisPressId item=thisPress}
-		{assign var=thisPressId value=$thisPress->getId()}
-		{assign var=enableSubscriptions value=$thisPress->getSetting('enableSubscriptions')}
-		{assign var=enableOpenAccessNotification value=$thisPress->getSetting('enableOpenAccessNotification')}
-		{assign var=notificationEnabled value=$user->getSetting('openAccessNotification', $thisPressId)}
-		{if !$notFirstPress}
-			{assign var=notFirstPress value=1}
-			<tr valign="top">
-				<td class="label">{translate key="user.profile.form.openAccessNotifications"}</td>
-				<td class="value">
-		{/if}
-
-		{if $enableSubscriptions && $enableOpenAccessNotification}
-			<input type="checkbox" name="openAccessNotify[]" {if $notificationEnabled}checked="checked" {/if}id="openAccessNotify-{$thisPressId|escape}" value="{$thisPressId|escape}" /> <label for="openAccessNotify-{$thisPressId|escape}">{$thisPress->getLocalizedName()|escape}</label><br/>
-		{/if}
-
-		{if $smarty.foreach.pressOpenAccessNotifications.last}
-				</td>
-			</tr>
-		{/if}
-	{/foreach}
-{/if}
-
 </table>
 <p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="user" escape=false}'" /></p>
 </form>

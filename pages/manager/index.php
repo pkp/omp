@@ -145,33 +145,6 @@ switch ($op) {
 		define('HANDLER_CLASS', 'FilesHandler');
 		break;
 	//
-	// Subscription Policies 
-	//
-	case 'subscriptionPolicies':
-	case 'saveSubscriptionPolicies':
-	//
-	// Subscription Types
-	//
-	case 'subscriptionTypes':
-	case 'deleteSubscriptionType':
-	case 'createSubscriptionType':
-	case 'selectSubscriber':
-	case 'editSubscriptionType':
-	case 'updateSubscriptionType':
-	case 'moveSubscriptionType':
-	//
-	// Subscriptions
-	//
-
-	case 'subscriptions':
-	case 'deleteSubscription':
-	case 'createSubscription':
-	case 'editSubscription':
-	case 'updateSubscription':
-		import('pages.manager.SubscriptionHandler');
-		define('HANDLER_CLASS', 'SubscriptionHandler');
-		break;
-	//
 	// Announcement Types 
 	//
 	case 'announcementTypes':

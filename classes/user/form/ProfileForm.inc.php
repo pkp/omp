@@ -289,19 +289,7 @@ class ProfileForm extends Form {
 			}
 		}
 
-		$openAccessNotify = Request::getUserVar('openAccessNotify');
-
 		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
-
-		foreach ($presses as $thisPress) {
-			if (($thisPress->getSetting('enableSubscriptions') == true) && ($thisPress->getSetting('enableOpenAccessNotification') == true)) {
-				$currentlyReceives = $user->getSetting('openAccessNotification', $thisPress->getId());
-				$shouldReceive = !empty($openAccessNotify) && in_array($thisPress->getId(), $openAccessNotify);
-				if ($currentlyReceives != $shouldReceive) {
-					$userSettingsDao->updateSetting($user->getPressId(), 'openAccessNotification', $shouldReceive, 'bool', $thisPress->getId());
-				}
-			}
-		}
 
 		if ($user->getAuthId()) {
 			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
