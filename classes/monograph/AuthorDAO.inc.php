@@ -67,52 +67,6 @@ class AuthorDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all published monographs associated with authors with
-	 * the given first name, middle name, last name, affiliation, and country.
-	 * @param $pressId int (null if no restriction desired)
-	 * @param $firstName string
-	 * @param $middleName string
-	 * @param $lastName string
-	 * @param $affiliation string
-	 * @param $country string
-	 */
-	function &getPublishedMonographsForAuthor($pressId, $firstName, $middleName, $lastName, $affiliation, $country) {
-		$publishedMonographs = array();
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$params = array($firstName, $middleName, $lastName, $affiliation, $country);
-		if ($pressId !== null) $params[] = $pressId;
-
-		$result =& $this->retrieve(
-			'SELECT DISTINCT
-				aa.monograph_id
-			FROM monograph_authors aa
-				LEFT JOIN monographs a ON (aa.monograph_id = a.monograph_id)
-			WHERE	aa.first_name = ?
-				AND a.status = ' . STATUS_PUBLISHED . '
-				AND (aa.middle_name = ?' . (empty($middleName)?' OR aa.middle_name IS NULL':'') . ')
-				AND aa.last_name = ?
-				AND (aa.affiliation = ?' . (empty($affiliation)?' OR aa.affiliation IS NULL':'') . ')
-				AND (aa.country = ?' . (empty($country)?' OR aa.country IS NULL':'') . ') ' . 
-				($pressId!==null?(' AND a.press_id = ?'):''),
-			$params
-		);
-
-		while (!$result->EOF) {
-			$row =& $result->getRowAssoc(false);
-			$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($row['monograph_id']);
-			if ($publishedMonograph) {
-				$publishedMonographs[] =& $publishedMonograph;
-			}
-			$result->moveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $publishedMonographs;
-	}
-
-	/**
 	 * Retrieve all published authors for a press in an associative array by
 	 * the first letter of the last name, for example:
 	 * $returnedArray['S'] gives array($misterSmithObject, $misterSmytheObject, ...)
@@ -129,7 +83,7 @@ class AuthorDAO extends DAO {
 		if (isset($pressId)) $params[] = $pressId;
 		if (isset($initial)) {
 			$params[] = String::strtolower($initial) . '%';
-			$initialSql = ' AND LOWER(aa.last_name) LIKE LOWER(?)';
+			$initialSql = ' AND LOWER(ma.last_name) LIKE LOWER(?)';
 		} else {
 			$initialSql = '';
 		}
@@ -142,21 +96,19 @@ class AuthorDAO extends DAO {
 				CAST(\'\' AS CHAR) AS email,
 				0 AS primary_contact,
 				0 AS seq,
-				aa.first_name AS first_name,
-				aa.middle_name AS middle_name,
-				aa.last_name AS last_name,
-				aa.affiliation AS affiliation,
-				aa.country
-			FROM	monograph_authors aa,
-				monographs a,
-				published_monographs pa,
-			WHERE	aa.monograph_id = a.monograph_id ' .
+				ma.first_name AS first_name,
+				ma.middle_name AS middle_name,
+				ma.last_name AS last_name,
+				ma.affiliation AS affiliation,
+				ma.country
+			FROM	monograph_authors ma,
+				monographs a
+			WHERE	ma.monograph_id = a.monograph_id ' .
 				(isset($pressId)?'AND a.press_id = ? ':'') . '
-				AND pa.monograph_id = a.monograph_id
 				AND a.status = ' . STATUS_PUBLISHED . '
-				AND (aa.last_name IS NOT NULL AND aa.last_name <> \'\')' .
+				AND (ma.last_name IS NOT NULL AND ma.last_name <> \'\')' .
 				$initialSql . '
-			ORDER BY aa.last_name, aa.first_name',
+			ORDER BY ma.last_name, ma.first_name',
 			empty($params)?false:$params,
 			$rangeInfo
 		);

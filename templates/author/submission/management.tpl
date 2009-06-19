@@ -90,11 +90,6 @@
 		<td width="80%" colspan="2" class="data">{$submission->getCommentsToEditor()|strip_unsafe_html|nl2br}</td>
 	</tr>
 	{/if}
-	{if $publishedMonograph}
-	<tr>
-		<td class="label">{translate key="submission.abstractViews"}</td>
-		<td>{$publishedMonograph->getViews()}</td>
-	</tr>
-	{/if}
+
 </table>
 </div>

@@ -1432,17 +1432,7 @@ class AcquisitionsEditorAction extends Action {
 
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 
-		// Determine which queue to return the monograph to: the
-		// scheduling queue or the editing queue.
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($acquisitionsEditorSubmission->getMonographId());
-		if ($publishedMonograph) {
-			$acquisitionsEditorSubmission->setStatus(STATUS_PUBLISHED);
-		} else {
-			$acquisitionsEditorSubmission->setStatus(STATUS_QUEUED);
-		}
-		unset($publishedMonograph);
-
+		$acquisitionsEditorSubmission->setStatus(STATUS_QUEUED);
 		$acquisitionsEditorSubmission->stampStatusModified();
 
 		$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);

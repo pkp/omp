@@ -61,12 +61,6 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$templateMgr->assign('templates', $press->getSetting('templates'));
 		$templateMgr->assign('helpTopicId', 'editorial.designersRole.layout');
 
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
-		if ($publishedMonograph) {
-			$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
-		}
-
 		$templateMgr->display('designer/submission.tpl');
 	}
 

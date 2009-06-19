@@ -90,14 +90,6 @@ class MonographSearchDAO extends DAO {
 			$params[] = $type;
 		}
 
-		if (!empty($publishedFrom)) {
-			$sqlWhere .= ' AND pm.date_published >= ' . $this->datetimeToDB($publishedFrom);
-		}
-
-		if (!empty($publishedTo)) {
-			$sqlWhere .= ' AND pm.date_published <= ' . $this->datetimeToDB($publishedTo);
-		}
-
 		if (!empty($press)) {
 			$sqlWhere .= ' AND m.press_id = ?';
 			$params[] = $press->getId();
@@ -108,12 +100,10 @@ class MonographSearchDAO extends DAO {
 				o.monograph_id,
 				COUNT(*) AS count
 			FROM
-				published_monographs pm,
 				monographs m, 
 				monograph_search_objects o NATURAL JOIN ' . $sqlFrom . '
 			WHERE
-				m.monograph_id = pa.monograph_id AND
-				pm.monograph_id = o.monograph_id AND ' . $sqlWhere . '
+				m.monograph_id = pa.monograph_id AND ' . $sqlWhere . '
 			GROUP BY o.monograph_id
 			ORDER BY count DESC
 			LIMIT ' . $limit,

@@ -231,9 +231,7 @@ class MonographSearch {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangmentDAO');
-		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
 
-		$publishedMonographCache = array();
 		$arrangementCache = array();
 		$monographCache = array();
 		$pressCache = array();
@@ -242,14 +240,12 @@ class MonographSearch {
 		foreach ($results as $monographId) {
 			// Get the monograph, storing in cache if necessary.
 			if (!isset($monographCache[$monographId])) {
-				$publishedMonographCache[$monographId] =& $publishedMonographDao->getPublishedMonographByMonographId($monographId);
 				$monographCache[$monographId] =& $monographDao->getMonograph($monographId);
 			}
-			unset($monograph, $publishedMonograph);
+			unset($monograph);
 			$monograph =& $monographCache[$monographId];
-			$publishedMonograph =& $publishedMonographCache[$monographId];
 
-			if ($publishedMonograph && $monograph) {
+			if ($monograph) {
 				$arrangementId = $monograph->getSectionId();
 				if (!isset($arrangementCache[$arrangementId])) {
 					$arrangementCache[$arrangementId] =& $arrangementDao->getById($arrangementId);
@@ -265,7 +261,6 @@ class MonographSearch {
 				$returner[] = array(
 					'press' => &$pressCache[$pressId],
 					'monograph' => &$monograph,
-					'publishedMonograph' => &$publishedMonographCache[$monographId],
 					'acquisitionsArrangment' => &$arrangementCache[$arrangementId]
 				);
 			}

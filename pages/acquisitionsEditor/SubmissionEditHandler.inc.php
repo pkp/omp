@@ -82,12 +82,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 			$templateMgr->assign_by_ref('commentsStatusOptions', Monograph::getCommentsStatusOptions());
 		}
 
-/*		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
-		if ($publishedMonograph) {
-			$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
-		}
-*/
 		if ($isEditor) {
 			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary');
 		}
@@ -302,7 +296,7 @@ $reviewFormTitles = null;
 //		$editorDecisions = $submission->getDecisions($round);
 //		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;				
 //		$submissionAccepted = ($lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT) ? true : false;
-		$submissionAccepted = true;
+
 		$templateMgr =& TemplateManager::getManager();
 
 		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
@@ -322,10 +316,6 @@ $reviewFormTitles = null;
 		$user =& Request::getUser();
 		$templateMgr->assign('isEditor', $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR));
 
-/*		$publishedMonographDao =& DAORegistry::getDAO('PublishedMonographDAO');
-		$publishedMonograph =& $publishedMonographDao->getPublishedMonographByMonographId($submission->getMonographId());
-		$templateMgr->assign_by_ref('publishedMonograph', $publishedMonograph);
-*/
 		$templateMgr->assign('useCopyeditors', true);
 		$templateMgr->assign('useLayoutEditors', $useLayoutEditors);
 		$templateMgr->assign('useProofreaders', $useProofreaders);

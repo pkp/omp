@@ -414,21 +414,6 @@ class MonographDAO extends DAO {
 	}
 
 	/**
-	 * Get published monographs organized by published date
-	 * @param $pressId int
-	 * @param $rangeInfo object DBResultRange
-	 * @return monographs ItemIterator
-	 */
-	function &getPublishedMonographs($pressId, $rangeInfo = null) {
-		$result =& $this->retrieveRange(
-			'SELECT m.* FROM monographs m WHERE m.press_id = ? AND m.status = '.MONOGRAPH_STATUS_PUBLISHED.' ORDER BY m.date_published DESC',
-			$pressId, $rangeInfo
-		);
-
-		$returner =& new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
-	}
-	/**
 	 * creates and returns a monograph object from a row
 	 * @param $row array
 	 * @return Monograph object

@@ -81,11 +81,5 @@
 			{/if}
 		</td>
 	</tr>
-	{if $publishedMonograph}
-	<tr>
-		<td class="label">{translate key="submission.abstractViews"}</td>
-		<td>{$publishedMonograph->getViews()}</td>
-	</tr>
-	{/if}
 </table>
 </div>

@@ -145,7 +145,6 @@ class OMPApplication extends PKPApplication {
 			'PluginSettingsDAO' => 'plugins.PluginSettingsDAO',
 			'PressDAO' => 'press.PressDAO',
 			'PressSettingsDAO' => 'press.PressSettingsDAO',
-			'PublishedMonographDAO' => 'monograph.PublishedMonographDAO',
 			'ReviewAssignmentDAO' => 'submission.reviewAssignment.ReviewAssignmentDAO',
 			'ReviewerSubmissionDAO' => 'submission.reviewer.ReviewerSubmissionDAO',
 			'ReviewFormDAO' => 'reviewForm.ReviewFormDAO',
