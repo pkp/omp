@@ -33,6 +33,7 @@ function show(id) {
 <input type="hidden" name="moveContributorDir" value="" />
 <input type="hidden" name="moveContributorIndex" value="" />
 
+<div id="contributors">
 <h3>{translate key="monograph.contributors"}</h3>
 
 <p>{translate key="inserts.contributors.description"}</p>
@@ -171,6 +172,16 @@ function show(id) {
 </tr>
 {/foreach}
 </table>
+</div>
+
+{if $scrollToAuthor}
+{literal}
+	<script type="text/javascript">
+		var contributors = document.getElementById('contributors');
+		contributors.scrollIntoView();
+	</script>
+{/literal}
+{/if}
 
 <br />
 

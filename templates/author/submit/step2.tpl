@@ -49,17 +49,13 @@
 
 <div class="separator"></div>
 
-<h3>Title and Description</h3>
-<br />
-Please provide the title and a description of work, including the scope, aim, and value of this contribution.
-<br /><br />
-<table width="100%" class="data">
+<h3>{translate key="submission.titleAndAbstract"}</h3>
 
+<table width="100%" class="data">
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="title" required="true" key="monograph.title"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="title[{$formLocale|escape}]" id="title" value="{$title[$formLocale]|escape}" size="60" maxlength="255" /></td>
 </tr>
-
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="abstract" key="monograph.abstract"}</td>
 	<td width="80%" class="value"><textarea name="abstract[{$formLocale|escape}]" id="abstract" class="textArea" rows="15" cols="60">{$abstract[$formLocale]|escape}</textarea></td>

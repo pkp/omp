@@ -254,6 +254,12 @@ class ContributorInsert extends Insert
 			}
 			$submitForm->setData('contributors', $contributors);
 		}
+
+		if ($eventProcessed) {
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->assign('scrollToAuthor', true);
+		}
+
 		return $eventProcessed;
 	}
 }
