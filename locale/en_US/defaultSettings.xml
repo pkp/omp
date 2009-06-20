@@ -18,6 +18,18 @@
 	 * DEFAULT - Default settings for setup items.
 	 *
 	-->
+	
+	<message key="default.pressSettings.bookFileTypes.artwork">Artwork</message>
+	<message key="default.pressSettings.bookFileTypes.appendix">Appendix</message>
+	<message key="default.pressSettings.bookFileTypes.bibliography">Bibliography</message>
+	<message key="default.pressSettings.bookFileTypes.manuscript">Manuscript</message>
+	<message key="default.pressSettings.bookFileTypes.chapter">Chapter</message>
+	<message key="default.pressSettings.bookFileTypes.glossary">Glossary</message>
+	<message key="default.pressSettings.bookFileTypes.index">Index</message>
+	<message key="default.pressSettings.bookFileTypes.preface">Preface</message>
+	<message key="default.pressSettings.bookFileTypes.prospectus">Prospectus</message>
+	<message key="default.pressSettings.bookFileTypes.tablesAndFigures">Tables and Figures</message>
+	
 	<message key="default.pressSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another press for consideration (or an explanation has been provided in Comments to the Editor).</message>
 	<message key="default.pressSettings.checklist.fileFormat">The submission file is in the Microsoft Word, RTF, OpenDocument, or WordPerfect file format.</message>
 	<message key="default.pressSettings.checklist.addressesLinked">Where available, URLs for the references have been provided.</message>
@@ -25,7 +37,6 @@
 	<message key="default.pressSettings.checklist.bibliographicRequirements"><![CDATA[The text adheres to the stylistic and bibliographic requirements outlined in the <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines" target="_new">Author Guidelines</a>, which is found in About the Press.]]></message>
 	<message key="default.pressSettings.privacyStatement">The names and email addresses entered in this press site will be used exclusively for the stated purposes of this press and will not be made available for any other purpose or to any other party.</message>
 	<message key="default.pressSettings.openAccessPolicy">This press provides immediate open access to its content on the principle that making research freely available to the public supports a greater global exchange of knowledge.</message>
-	<message key="default.pressSettings.authorSelfArchivePolicy">This press permits and encourages authors to post items submitted to the press on personal websites or institutional repositories both prior to and after publication, while providing bibliographic details that credit, if applicable, its publication in this press.</message>
 	<message key="default.pressSettings.copyeditInstructions"><![CDATA[The copyediting stage is intended to improve the flow, clarity, grammar, wording, and formatting of the monograph. It represents the last chance for the author to make any substantial changes to the text, as the next stage is restricted to typos and formatting corrections. 
 
 The file to be copyedited is in Word or .rtf format and therefore can be easily edited as a word processing document. This set of  instructions displayed here proposes two approaches to copyediting. The one is based on Microsoft Word's Track Changes feature and requires that the copyeditor, editor and author have access to this program. A second system, that is software independent, has been borrowed, with permission, from the Harvard Educational Review. The press editor is in a position to modify these instructions, so suggestions can be made to improve the process for this press. 
@@ -145,13 +156,4 @@ The paragraph that begins "This last topic..." is not indented.</pre>]]></messag
 	<message key="default.pressSettings.forAuthors"><![CDATA[Interested in submitting to this press? We recommend that you review the <a href="{$indexUrl}/{$pressPath}/about">About the Press</a> page for the press's section policies, as well as the <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines">Author Guidelines</a>. Authors need to <a href="{$indexUrl}/{$pressPath}/user/register">register</a> with the press prior to submitting, or if already registered can simply <a href="{$indexUrl}/index/login">log in</a> and begin the 5 step process.]]></message>
 	<message key="default.pressSettings.forLibrarians"><![CDATA[We encourage research librarians to list this press among their library's electronic press holdings. As well, it may be worth noting that this press's open source publishing system is suitable for libraries to host for their faculty members to use with presses they are involved in editing (see <a href="http://pkp.sfu.ca/omp">Open Monograph Press</a>).]]></message>
 	<message key="default.pressSettings.lockssLicense"><![CDATA[This press utilizes the LOCKSS system to create a distributed archiving system among participating libraries and permits those libraries to create permanent archives of the press for purposes of preservation and restoration. <a href="http://lockss.stanford.edu/">More...</a>]]></message>
-	
-	<!-- Default settings for payment items. -->
-	<message key="default.pressSettings.submissionFeeDescription">Authors are required to pay an Monograph Submission Fee as part of the submission process to contribute to review costs.</message>
-	<message key="default.pressSettings.fastTrackFeeDescription">With the payment of this fee, the review, editorial decision, and author notification on this manuscript is guaranteed to take place within 4 weeks.</message>
-	<message key="default.pressSettings.publicationFeeDescription">If this paper is accepted for publication, you will be asked to pay an Monograph Publication Fee to cover publications costs.</message>
-	<message key="default.pressSettings.waiverPolicy">If you do not have funds to pay such fees, you will have an opportunity to waive each fee. We do not want fees to prevent the publication of worthy work.</message>
-	<message key="default.pressSettings.purchaseMonographFeeDescription">The payment of this fee will enable you to view, download, and print this monograph.</message>
-	<message key="default.pressSettings.membershipFeeDescription">The payment of this fee will enroll you as a member in this association for one year and provide you with free access to this press.</message>
-	<message key="default.pressSettings.donationFeeDescription">Donations of any amount to this press are gratefully received and provide a means for the editors to continue to provide a press of the highest quality to its readers.</message>
 </locale>

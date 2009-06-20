@@ -49,41 +49,6 @@
 
 <div class="separator"></div>
 
-{if $authorFees}
-	{include file="author/submit/authorFees.tpl" showPayLinks=1}
-	{if $currentPress->getLocalizedSetting('waiverPolicy') != ''}
-		{if $manualPayment}
-			<h3>{translate key="payment.alreadyPaid"}</h3>
-			<table class="data" width="100%">
-				<tr valign="top">
-				<td width="5%" align="left"><input type="checkbox" name="paymentSent" value="1" /></td>
-				<td width="95%">{translate key="payment.paymentSent"}</td>
-				</tr>
-				<tr>
-				<td />
-				<td>{translate key="payment.alreadyPaidMessage"}</td>
-				<tr>
-			</table>
-		{/if}
-		<h3>{translate key="author.submit.requestWaiver"}</h3>
-		<table class="data" width="100%">
-			<tr valign="top">
-				<td width="5%" align="left"><input type="checkbox" name="qualifyForWaiver" value="1" /></td>
-				<td width="95%">{translate key="author.submit.qualityForWaiver"}</td>
-			</tr>
-			<tr>
-				<td />
-				<td>
-					<label for="commentsToEditor">{translate key="author.submit.addReasonsForWaiver"}</label><br />
-					<textarea name="commentsToEditor" id="commentsToEditor" rows="3" cols="40" class="textArea">{$commentsToEditor|escape}</textarea>
-				</td>
-			</tr>
-		</table> 
-	{/if}
-
-	<div class="separator"></div>
-{/if}
-
 <p><input type="submit" value="{translate key="author.submit.finishSubmission"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
 
 </form>

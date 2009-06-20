@@ -15,7 +15,7 @@
 // $Id$
 
 
-import("manager.form.setup.PressSetupForm");
+import('manager.form.setup.PressSetupForm');
 
 class PressSetupStep3Form extends PressSetupForm {
 
@@ -66,7 +66,7 @@ class PressSetupStep3Form extends PressSetupForm {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-	//	$this->readUserVars();
+		$this->readUserVars(array('newBookFileType', 'bookFileTypeSelect'));
 		parent::readInputData();
 	}
 
@@ -76,15 +76,16 @@ class PressSetupStep3Form extends PressSetupForm {
 	function display() {
 		$press =& Request::getPress();
 
+		$templateMgr =& TemplateManager::getManager();
+
+		$templateMgr->assign(array('uploadedProspectus' => $press->getSetting('uploadedProspectus')));
+		$templateMgr->assign_by_ref('bookFileTypes', $press->getSetting('bookFileTypes'));
+
 		import('mail.MailTemplate');
-		$mail =& new MailTemplate('SUBMISSION_ACK');
+		$mail = new MailTemplate('SUBMISSION_ACK');
 		if ($mail->isEnabled()) {
-			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('submissionAckEnabled', true);
 		}
-
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign(array('uploadedProspectus' => $press->getSetting('uploadedProspectus')));
 
 		parent::display();
 	}
@@ -99,7 +100,7 @@ class PressSetupStep3Form extends PressSetupForm {
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
 		import('file.PublicFileManager');
-		$fileManager =& new PublicFileManager();      
+		$fileManager = new PublicFileManager();      
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$extension = $fileManager->getExtension($_FILES[$settingName]['name']);
 			if (!$extension) {
@@ -149,7 +150,7 @@ class PressSetupStep3Form extends PressSetupForm {
 		$setting = $settingsDao->getSetting($press->getId(), $settingName);
 
 		import('file.PublicFileManager');
-		$fileManager =& new PublicFileManager();
+		$fileManager = new PublicFileManager();
 		if ($fileManager->removePressFile($press->getId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
 			$returner = $settingsDao->deleteSetting($press->getId(), $settingName, $locale);
 			return $returner;

@@ -173,6 +173,63 @@ class SetupHandler extends ManagerHandler {
 						array_push($checklist[$formLocale], array('order' => $lastOrder+1));
 						$setupForm->setData('submissionChecklist', $checklist);
 
+					} else if (Request::getUserVar('deleteSelectedBookFileTypes')) {
+						// Delete book file types
+						$editData = true;
+						$press =& Request::getPress();
+						$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+						$bookFileIds = $setupForm->getData('bookFileTypeSelect');
+						$bookFileTypes =& $settingsDao->getSetting($press->getId(), 'bookFileTypes');
+
+						foreach ($bookFileIds as $bookFileIndex) {
+							if (isset($bookFileTypes[$formLocale][$bookFileIndex])) {
+								 unset($bookFileTypes[$formLocale][$bookFileIndex]);
+							}
+						}
+						$settingsDao->updateSetting(
+							$press->getId(), 
+							'bookFileTypes', 
+							$bookFileTypes, 
+							'object', 
+							true
+						);
+
+						$setupForm->setData('bookFileTypes', $bookFileTypes);
+					} else if (Request::getUserVar('restoreDefaultBookFileTypes')) {
+						// Delete book file types
+						$editData = true;
+						$press =& Request::getPress();
+						$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+						$newBookFileType = $setupForm->getData('bookFileTypeId');
+
+						Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
+						$settingsDao->reloadDefaultSetting(
+							$press->getId(), 
+							'registry/pressSettings.xml', 
+							'bookFileTypes'
+						);
+
+					} else if (Request::getUserVar('addBookFileType')) {
+						// Add a book file type
+						// FIXME validate user data
+						$editData = true;
+						$press =& Request::getPress();
+						$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+						$newBookFileType = $setupForm->getData('newBookFileType');
+
+						$bookFileTypes = $settingsDao->getSetting($press->getId(), 'bookFileTypes');
+
+						array_push($bookFileTypes[$formLocale], $newBookFileType);
+
+						$settingsDao->updateSetting(
+							$press->getId(),
+							'bookFileTypes',
+							$bookFileTypes,
+							'object',
+							true
+						);
+;
+						$setupForm->setData('bookFileTypes', $bookFileTypes);
 					} else if (($delChecklist = Request::getUserVar('delChecklist')) && count($delChecklist) == 1) {
 						// Delete a checklist item
 						$editData = true;

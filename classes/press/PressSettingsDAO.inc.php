@@ -209,7 +209,7 @@ class PressSettingsDAO extends DAO {
 	 * @param $paramArray array Optional parameters for variable replacement in settings
 	 */
 	function installSettings($pressId, $filename, $paramArray = array()) {
-		$xmlParser =& new XMLParser();
+		$xmlParser = new XMLParser();
 		$tree = $xmlParser->parse($filename);
 
 		if (!$tree) {
@@ -293,6 +293,58 @@ class PressSettingsDAO extends DAO {
 	}
 
 	/**
+	 * Reload a default press setting from an XML file.
+	 * @param $pressId int ID of press for settings to apply to
+	 * @param $filename string Name of XML file to parse and install
+	 * @param $settingName string Name of the setting that is to be reloaded
+	 * @param $paramArray array Optional parameters for variable replacement in settings
+	 */
+	function reloadDefaultSetting($pressId, $filename, $settingName, $paramArray) {
+		$xmlParser = new XMLParser();
+		$tree = $xmlParser->parse($filename);
+
+		if (!$tree) {
+			$xmlParser->destroy();
+			return false;
+		}
+
+		foreach ($tree->getChildren() as $setting) {
+			$nameNode =& $setting->getChildByName('name');
+			$valueNode =& $setting->getChildByName('value');
+
+			if (isset($nameNode) && isset($valueNode)) {
+
+				if ($nameNode->getValue() == $settingName) {
+					$type = $setting->getAttribute('type');
+					$isLocaleField = $setting->getAttribute('locale');
+					$name =& $nameNode->getValue();
+
+					if ($type == 'object') {
+						$arrayNode =& $valueNode->getChildByName('array');
+						$value = $this->_buildObject($arrayNode, $paramArray);
+					} else {
+						$value = $this->_performReplacement($valueNode->getValue(), $paramArray);
+					}
+
+					$this->updateSetting(
+						$pressId,
+						$name,
+						$isLocaleField?array(Locale::getLocale() => $value):$value,
+						$type,
+						$isLocaleField
+					);
+
+					$xmlParser->destroy();
+					return true;
+				}
+			}
+		}
+
+		$xmlParser->destroy();
+
+	}
+
+	/**
 	 * Install locale field Only press settings from an XML file.
 	 * @param $pressId int ID of press for settings to apply to
 	 * @param $filename string Name of XML file to parse and install
@@ -300,7 +352,7 @@ class PressSettingsDAO extends DAO {
 	 * @param $locale string locale id for which settings will be loaded
 	 */
 	function reloadLocalizedDefaultSettings($pressId, $filename, $paramArray, $locale) {
-		$xmlParser =& new XMLParser();
+		$xmlParser = new XMLParser();
 		$tree = $xmlParser->parse($filename);
 
 		if (!$tree) {

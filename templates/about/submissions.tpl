@@ -13,17 +13,11 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{if $currentPress->getSetting('pressPaymentsEnabled') && 
-		($currentPress->getSetting('submissionFeeEnabled') || $currentPress->getSetting('fastTrackFeeEnabled') || $currentPress->getSetting('publicationFeeEnabled')) }
-	{assign var="authorFees" value=1}
-{/if}
-
 <ul class="plain">
 	<li>&#187; <a href="{url page="about" op="submissions" anchor="onlineSubmissions"}">{translate key="about.onlineSubmissions"}</a></li>
 	{if $currentPress->getLocalizedSetting('authorGuidelines') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="authorGuidelines"}">{translate key="about.authorGuidelines"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('copyrightNotice') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="copyrightNotice"}">{translate key="about.copyrightNotice"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('privacyStatement') != ''}<li>&#187; <a href="{url page="about" op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
-	{if $authorFees}<li>&#187; <a href="{url page="about" op="submissions" anchor="authorFees"}">{translate key="about.authorFees"}</a></li>{/if}	
 </ul>
 
 <div id="onlineSubmissions"><h3>{translate key="about.onlineSubmissions"}</h3>
@@ -74,25 +68,4 @@
 </div>
 {/if}
 
-{if $authorFees}
-
-<div id="authorFees"><h3>{translate key="manager.payment.authorFees"}</h3>
-	<p>{translate key="about.authorFeesMessage"}</p>
-	{if $currentPress->getSetting('submissionFeeEnabled')}
-		<p>{$currentPress->getLocalizedSetting('submissionFeeName')|escape}: {$currentPress->getSetting('submissionFee')|string_format:"%.2f"} ({$currentPress->getSetting('currency')})<br />
-		{$currentPress->getLocalizedSetting('submissionFeeDescription')|nl2br}<p>
-	{/if}
-	{if $currentPress->getSetting('fastTrackFeeEnabled')}
-		<p>{$currentPress->getLocalizedSetting('fastTrackFeeName')|escape}: {$currentPress->getSetting('fastTrackFee')|string_format:"%.2f"} ({$currentPress->getSetting('currency')})<br />
-		{$currentPress->getLocalizedSetting('fastTrackFeeDescription')|nl2br}<p>	
-	{/if}
-	{if $currentPress->getSetting('publicationFeeEnabled')}
-		<p>{$currentPress->getLocalizedSetting('publicationFeeName')|escape}: {$currentPress->getSetting('publicationFee')|string_format:"%.2f"} ({$currentPress->getSetting('currency')})<br />
-		{$currentPress->getLocalizedSetting('publicationFeeDescription')|nl2br}<p>	
-	{/if}
-	{if $currentPress->getLocalizedSetting('waiverPolicy') != ''}
-		<p>{$currentPress->getLocalizedSetting('waiverPolicy')|escape}</p>
-	{/if}
-</div>
-{/if}
 {include file="common/footer.tpl"}

@@ -14,7 +14,14 @@
 
 <locale name="en_US" full_name = "English">
 	<message key="manager.setup.registerPressForIndexing">Register Press for Indexing (Metadata Harvesting)</message>
-	
+
+	<message key="manager.setup.bookFileTypesDescription">These file types are used for file-naming purposes and are presented in a pull-down menu on uploading files, along with an “Other” option accompanied by a free-form field also appearing as part of that menu. The file types designated ##, allow the user to associate the file with either the whole book 99Z or a particular chapter by number (e.g., 02).</message>
+	<message key="manager.setup.bookFileTypes">Book File Types</message>
+	<message key="manager.setup.newBookFileType">New Book File Type</message>
+	<message key="manager.setup.newBookFileTypeDescription">To create a new book file type, fill out the form below and click the 'Create' button.</message>
+	<message key="manager.setup.deleteSelected">Delete Selected</message>
+	<message key="manager.setup.restoreDefaults">Restore Default Settings</message>
+
 	<message key="manager.setup.prospectus">Prospectus Guide</message>
 	<message key="manager.setup.prospectusDescription">The prospectus guide is a press prepared document that helps the author describe the submitted materials in a way that allows a press to determine the value of the submission. A prospectus can include a lot of items- from marketing potential to theoretical value; in any case, a press should create a prospectus guide that complements their publishing agenda.</message>
 

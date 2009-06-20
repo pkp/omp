@@ -88,12 +88,65 @@
 
 <div class="separator"></div>
 
-<h3>3.3 {translate key="manager.setup.seriesAndCategories}</h3>
+<h3>3.3 {translate key="manager.setup.bookFileTypes}</h3>
 
-<p>{translate key="manager.setup.seriesAndCategoriesDescription"}</p>
+<p>{translate key="manager.setup.bookFileTypesDescription"}</p>
 
-<input type="checkbox" name="series" /> {translate key="manager.setup.submitToSeries"} <br />
-<input type="checkbox" name="categories" /> {translate key="manager.setup.submitToCategories"}
+{foreach name=bookFileTypes from=$bookFileTypes[$formLocale] key=fileTypeId item=fileTypeItem}
+	{if !$notFirstFileTypeItem}
+		{assign var=notFirstFileTypeItem value=1}
+		<table width="100%" class="data">
+			<tr valign="top">
+				<td width="5%">&nbsp;</td>
+				<td width="30%">{translate key="common.type"}</td>
+				<td width="70%">{translate key="common.filePrefix"}</td>
+			</tr>
+	{/if}
+
+	<tr valign="top">
+		<td><input type="checkbox" name="bookFileTypeSelect[]" value="{$fileTypeId}" /></td>
+		<td>{$fileTypeItem.type}</td>
+		<td>{$fileTypeItem.prefix}</td>
+	</tr>
+{/foreach}
+
+{if $notFirstFileTypeItem}
+	</table>
+{/if}
+<p>
+<input type="submit" name="deleteSelectedBookFileTypes" value="{translate key="manager.setup.deleteSelected"}" class="button" />
+<input type="submit" name="restoreDefaultBookFileTypes" value="{translate key="manager.setup.restoreDefaults"}" class="button" />
+</p>
+<div class="newItemContainer">
+
+<table style="info">
+<tr>
+	<td width="10%"></td><td width="80%"><h2>{translate key="manager.setup.newBookFileType"}</h2></td><td width="10%"></td>
+</tr>
+<tr>
+	<td width="10%"></td><td width="80%">{translate key="manager.setup.newBookFileTypeDescription"}<br /><br /></td><td width="10%"></td>
+</tr>
+<tr>
+	<td width="10%"></td>
+	<td width="80%">
+		<table>
+		<tr>
+			<td>{translate key="common.filePrefix"}</td><td><input type="text" name="newBookFileType[prefix]" /></td>
+		</tr>
+		<tr>
+			<td>{translate key="common.type"}</td><td><input type="text" name="newBookFileType[type]" /></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td><td><input type="submit" name="addBookFileType" value="{translate key="common.create"}" class="button" /></td>
+		</tr>
+		</table>
+
+	</td>
+	<td width="10%"></td>
+</tr>
+</table>
+<br />
+</div>
 
 <div class="separator"></div>
 

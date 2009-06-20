@@ -45,10 +45,6 @@
 		<value>{translate key="default.pressSettings.openAccessPolicy"}</value>
 	</setting>
 	<setting type="string" locale="1">
-		<name>authorSelfArchivePolicy</name>
-		<value>{translate key="default.pressSettings.authorSelfArchivePolicy"}</value>
-	</setting>
-	<setting type="string" locale="1">
 		<name>copyeditInstructions</name>
 		<value>{translate key="default.pressSettings.copyeditInstructions"}</value>
 	</setting>
@@ -85,6 +81,73 @@
 		<value>
 			<array>
 				<element>{$primaryLocale}</element>
+			</array>
+		</value>
+	</setting>
+	<setting type="object" locale="1">
+		<name>bookFileTypes</name>
+		<value>
+			<array>
+				<element>
+					<array>
+						<element key="prefix">99W</element>
+						<element key="type">{translate key="default.pressSettings.bookFileTypes.artwork"}</element>
+					</array>
+				</element>
+				<element>
+					<array>
+						<element key="prefix">99A</element>
+						<element key="type">{translate key="default.pressSettings.bookFileTypes.appendix"}</element>
+					</array>
+				</element>
+				<element>
+					<array>
+						<element key="prefix">99B</element>
+						<element key="type">{translate key="default.pressSettings.bookFileTypes.bibliography"}</element>
+					</array>
+				</element>
+				<element>
+					<array>
+						<element key="prefix">99Z</element>
+						<element key="type">{translate key="default.pressSettings.bookFileTypes.manuscript"}</element>
+					</array>
+				</element>
+					<element>
+					<array>
+						<element key="prefix">##</element>
+						<element key="type">{translate key="default.pressSettings.bookFileTypes.chapter"}</element>
+					</array>
+				</element>
+					<element>
+					<array>
+						<element key="prefix">99G</element>
+						<element key="type">{translate key="default.pressSettings.bookFileTypes.glossary"}</element>
+					</array>
+				</element>
+				<element>
+					<array>
+						<element key="prefix">99I</element>
+						<element key="type">{translate key="default.pressSettings.bookFileTypes.index"}</element>
+					</array>
+				</element>
+				<element>
+					<array>
+						<element key="prefix">00P</element>
+						<element key="type">{translate key="default.pressSettings.bookFileTypes.preface"}</element>
+					</array>
+				</element>
+				<element>
+					<array>
+						<element key="prefix">88P</element>
+						<element key="type">{translate key="default.pressSettings.bookFileTypes.prospectus"}</element>
+					</array>
+				</element>
+				<element>
+					<array>
+						<element key="prefix">99W</element>
+						<element key="type">{translate key="default.pressSettings.bookFileTypes.tablesAndFigures"}</element>
+					</array>
+				</element>
 			</array>
 		</value>
 	</setting>
@@ -176,77 +239,5 @@
 	<setting type="bool" locale="0">
 		<name>allowRegReader</name>
 		<value>true</value>
-	</setting>
-	<setting type="int" locale="0">
-		<name>submissionFee</name>
-		<value>0</value>
-	</setting>	
-	<setting type="string" locale="1">
-		<name>submissionFeeName</name>
-		<value>{translate key="manager.payment.options.submissionFee"}</value>
-	</setting>
-	<setting type="string" locale="1">
-		<name>submissionFeeDescription</name>
-		<value>{translate key="default.pressSettings.submissionFeeDescription"}</value>
-	</setting>			
-	<setting type="int" locale="0">
-		<name>fastTrackFee</name>
-		<value>0</value>
-	</setting>	
-	<setting type="string" locale="1">
-		<name>fastTrackFeeName</name>
-		<value>{translate key="manager.payment.options.fastTrackFee"}</value>
-	</setting>
-	<setting type="string" locale="1">
-		<name>fastTrackFeeDescription</name>
-		<value>{translate key="default.pressSettings.fastTrackFeeDescription"}</value>
-	</setting>			
-	<setting type="int" locale="0">
-		<name>publicationFee</name>
-		<value>0</value>
-	</setting>	
-	<setting type="string" locale="1">
-		<name>publicationFeeName</name>
-		<value>{translate key="manager.payment.options.publicationFee"}</value>
-	</setting>
-	<setting type="string" locale="1">
-		<name>publicationFeeDescription</name>
-		<value>{translate key="default.pressSettings.publicationFeeDescription"}</value>
-	</setting>
-	<setting type="string" locale="1">
-		<name>waiverPolicy</name>
-		<value>{translate key="default.pressSettings.waiverPolicy"}</value>
-	</setting>				
-	<setting type="int" locale="0">
-		<name>purchaseBookFee</name>
-		<value>0</value>
-	</setting>	
-	<setting type="string" locale="1">
-		<name>purchaseBookFeeName</name>
-		<value>{translate key="manager.payment.options.purchaseMonographFee"}</value>
-	</setting>
-	<setting type="string" locale="1">
-		<name>purchaseBookFeeDescription</name>
-		<value>{translate key="default.pressSettings.purchaseMonographFeeDescription"}</value>
-	</setting>			
-	<setting type="int" locale="0">
-		<name>membershipFee</name>
-		<value>0</value>
-	</setting>	
-	<setting type="string" locale="1">
-		<name>membershipFeeName</name>
-		<value>{translate key="manager.payment.options.membershipFee"}</value>
-	</setting>
-	<setting type="string" locale="1">
-		<name>membershipFeeDescription</name>
-		<value>{translate key="default.pressSettings.membershipFeeDescription"}</value>
-	</setting>			
-	<setting type="string" locale="1">
-		<name>donationFeeName</name>
-		<value>{translate key="manager.payment.options.donationFee"}</value>
-	</setting>
-	<setting type="string" locale="1">
-		<name>donationFeeDescription</name>
-		<value>{translate key="default.pressSettings.donationFeeDescription"}</value>
 	</setting>
 </press_settings>

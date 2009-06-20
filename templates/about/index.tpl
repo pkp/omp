@@ -42,7 +42,6 @@
 	{if $currentPress->getLocalizedSetting('authorGuidelines') != ''}<li>&#187; <a href="{url op="submissions" anchor="authorGuidelines"}">{translate key="about.authorGuidelines"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('copyrightNotice') != ''}<li>&#187; <a href="{url op="submissions" anchor="copyrightNotice"}">{translate key="about.copyrightNotice"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('privacyStatement') != ''}<li>&#187; <a href="{url op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>{/if}
-	{if $currentPress->getSetting('pressPaymentsEnabled') && ($currentPress->getSetting('submissionFeeEnabled') || $currentPress->getSetting('fastTrackFeeEnabled') || $currentPress->getSetting('publicationFeeEnabled'))}<li>&#187; <a href="{url op="submissions" anchor="authorFees"}">{translate key="about.authorFees"}</a></li>{/if}
 	{call_hook name="Templates::About::Index::Submissions"}
 </ul>
 
@@ -51,7 +50,6 @@
 	{if not ($currentPress->getSetting('publisherInstitution') == '' && $currentPress->getLocalizedSetting('publisherNote') == '' && $currentPress->getLocalizedSetting('contributorNote') == '' && empty($pressSettings.contributors) && $currentPress->getLocalizedSetting('sponsorNote') == '' && empty($pressSettings.sponsors))}<li>&#187; <a href="{url op="pressSponsorship"}">{translate key="about.pressSponsorship"}</a></li>{/if}
 	<li>&#187; <a href="{url op="siteMap"}">{translate key="about.siteMap"}</a></li>
 	<li>&#187; <a href="{url op="aboutThisPublishingSystem"}">{translate key="about.aboutThisPublishingSystem"}</a></li>
-	{if $publicStatisticsEnabled}<li>&#187; <a href="{url op="statistics"}">{translate key="about.statistics"}</a></li>{/if}
 	{call_hook name="Templates::About::Index::Other"}
 </ul>
 

@@ -132,7 +132,6 @@
 	<message key="editor.submissions.inSection">In Section</message>
 	<message key="editor.monograph.scheduleForPublication">Schedule for publication in</message>
 	<message key="editor.monograph.scheduleForPublication.toBeAssigned">To Be Assigned</message>
-	<message key="editor.monograph.payment.publicationFeeNotPaid">Publication Fee not paid. To schedule item for publication notify author to pay fee or waive fee.</message>
 	<message key="editor.monograph.display">Display</message>
 	<message key="editor.monograph.hideTocAuthorDescription">Omit author names from the monograph table of contents</message>
 	<message key="editor.monograph.hideTocAuthorDefault">Default</message>
