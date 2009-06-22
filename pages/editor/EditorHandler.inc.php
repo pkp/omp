@@ -78,7 +78,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 	 */
 	function submissions($args) {
 		$this->validate();
-		$this->setupTemplate(EDITOR_ARRANGEMENT_SUBMISSIONS);
+		$this->setupTemplate(EDITOR_ARRANGEMENT_HOME);
 
 		$press =& Request::getPress();
 		$pressId = $press->getId();
