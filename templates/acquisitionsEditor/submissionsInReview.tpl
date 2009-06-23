@@ -1,27 +1,25 @@
 {**
  * submissionsInReview.tpl
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Show editor's submissions in review.
+ * Show section editor's submissions in review.
  *
  * $Id$
  *}
 <div id="submissions">
 <table width="100%" class="listing">
-	<tr>
-		<td colspan="8" class="headseparator">&nbsp;</td>
-	</tr>
+	<tr><td colspan="7" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
-		<td width="5%">{translate key="common.id"}</td>
-		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="submissions.submit"}</td>
-		<td width="5%">{translate key="submissions.acquisitionsArrangement"}</td>
-		<td width="15%">{translate key="monograph.authors"}</td>
-		<td width="30%">{translate key="monograph.title"}</td>
+		<td width="5%">{sort_search key="common.id" heading="id"}</td>
+		<td width="5%"><span class="disabled">MM-DD</span><br />{sort_search key="submissions.submit" heading="submitDate"}</td>
+		<td width="5%">{sort_search key="submissions.acquisitionsArrangement" heading="arrangement"}</td>
+		<td width="20%">{sort_search key="monograph.authors" heading="authors"}</td>
+		<td width="30%">{sort_search key="monograph.title" heading="title"}</td>
 		<td width="30%">
 			{translate key="submission.peerReview"}
-			<table width="100%" class="nested">
+			<table width="100%">
 				<tr valign="top">
 					<td width="33%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submission.ask"}</td>
 					<td width="33%" style="padding: 0 4px 0 0; font-size: 1.0em">{translate key="submission.due"}</td>
@@ -30,23 +28,20 @@
 			</table>
 		</td>
 		<td width="5%">{translate key="submissions.ruling"}</td>
-		<td width="5%">{translate key="monograph.acquisitionsEditor"}</td>
 	</tr>
-	<tr>
-		<td colspan="8" class="headseparator">&nbsp;</td>
-	</tr>
-	
-	{iterate from=submissions item=submission}
+	<tr><td colspan="7" class="headseparator">&nbsp;</td></tr>
+
+{iterate from=submissions item=submission}
+	{assign var="monographId" value=$submission->getMonographId()}
 	{assign var="highlightClass" value=$submission->getHighlightClass()}
-	{assign var="fastTracked" value=$submission->getFastTracked()}
-	<tr valign="top"{if $highlightClass || $fastTracked} class="{$highlightClass|escape} {if $fastTracked}fastTracked{/if}"{/if}>
+	<tr valign="top"{if $highlightClass} class="{$highlightClass|escape}"{/if}>
 		<td>{$submission->getMonographId()}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getAcquisitionsArrangementAbbrev()|escape}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submissionReview" path=$submission->getMonographId()}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:40:"..."}</a></td>
 		<td>
-			<table width="100%">
+		<table width="100%">
 			{foreach from=$submission->getReviewAssignments($submission->getCurrentReviewType()) item=reviewAssignments}
 				{foreach from=$reviewAssignments item=assignment name=assignmentList}
 					{if !$assignment->getCancelled()}
@@ -57,54 +52,42 @@
 					</tr>
 					{/if}
 				{foreachelse}
-				<tr valign="top">
-					<td width="33%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-					<td width="33%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-					<td width="34%" style="padding: 0 0 0 0; font-size: 1.0em">&mdash;</td>
-				</tr>
+					<tr valign="top">
+						<td width="33%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
+						<td width="33%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
+						<td width="34%" style="padding: 0 0 0 0; font-size:1.0em">&mdash;</td>
+					</tr>
 				{/foreach}
-			{foreachelse}
-				<tr valign="top">
-					<td width="33%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-					<td width="33%" style="padding: 0 4px 0 0; font-size: 1.0em">&mdash;</td>
-					<td width="34%" style="padding: 0 0 0 0; font-size: 1.0em">&mdash;</td>
-				</tr>
-			{/foreach}
-			</table>
+			{/foreach}			
+		</table>
 		</td>
 		<td>
 			{foreach from=$submission->getDecisions() item=decisions}
 				{foreach from=$decisions item=decision name=decisionList}
 					{if $smarty.foreach.decisionList.last}
-							{$decision.dateDecided|date_format:$dateFormatTrunc}				
+						{$decision.dateDecided|date_format:$dateFormatTrunc}				
 					{/if}
 				{foreachelse}
 					&mdash;
 				{/foreach}
-			{foreachelse}
-				&mdash;
-			{/foreach}
-		</td>
-		<td>
-			{assign var="editAssignments" value=$submission->getEditAssignments()}
-			{foreach from=$editAssignments item=editAssignment}{$editAssignment->getEditorInitials()|escape} {/foreach}
+			{/foreach}			
 		</td>
 	</tr>
 	<tr>
-		<td colspan="8" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
+		<td colspan="7" class="{if $submissions->eof()}end{/if}separator">&nbsp;</td>
 	</tr>
 {/iterate}
 {if $submissions->wasEmpty()}
 	<tr>
-		<td colspan="8" class="nodata">{translate key="submissions.noSubmissions"}</td>
+		<td colspan="7" class="nodata">{translate key="submissions.noSubmissions"}</td>
 	</tr>
 	<tr>
-		<td colspan="8" class="endseparator">&nbsp;</td>
+		<td colspan="7" class="endseparator">&nbsp;</td>
 	</tr>
 {else}
 	<tr>
 		<td colspan="5" align="left">{page_info iterator=$submissions}</td>
-		<td colspan="3" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth arrangement=$arrangement}</td>
+		<td colspan="2" align="right">{page_links anchor="submissions" name="submissions" iterator=$submissions searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth arrangement=$arrangement}</td>
 	</tr>
 {/if}
 </table>

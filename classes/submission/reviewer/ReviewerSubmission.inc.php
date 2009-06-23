@@ -346,6 +346,21 @@ class ReviewerSubmission extends Monograph {
 		return $this->setData('quality', $quality);
 	}
 
+	/**
+	 * Get reviewType.
+	 * @return int
+	 */
+	function getReviewType() {
+		return $this->getData('reviewType');
+	}
+
+	/**
+	 * Set reviewType.
+	 * @param $reviewType int
+	 */
+	function setReviewType($reviewType) {
+		return $this->setData('reviewType', $reviewType);
+	}
 
 	/**
 	 * Get round.

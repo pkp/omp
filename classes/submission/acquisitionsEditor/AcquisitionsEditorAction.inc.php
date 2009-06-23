@@ -67,7 +67,7 @@ class AcquisitionsEditorAction extends Action {
 			$acquisitionsEditorSubmission->addDecision(
 									$editorDecision, 
 									$acquisitionsEditorSubmission->getCurrentReviewType(),
-									$acquisitionsEditorSubmission->getCurrentReviewRound()
+									$acquisitionsEditorSubmission->getCurrentRound()
 								);
 
 			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
@@ -96,7 +96,7 @@ class AcquisitionsEditorAction extends Action {
 		// Check to see if the requested reviewer is not already
 		// assigned to review this monograph.
 		if ($round == null) {
-			$round = $acquisitionsEditorSubmission->getCurrentReviewRound();
+			$round = $acquisitionsEditorSubmission->getCurrentRound();
 		}
 
 		$assigned = $acquisitionsEditorSubmissionDao->reviewerExists($acquisitionsEditorSubmission->getMonographId(), $reviewerId, $reviewType, $round);
@@ -108,8 +108,9 @@ class AcquisitionsEditorAction extends Action {
 			$reviewAssignment->setMonographId($acquisitionsEditorSubmission->getMonographId());
 			$reviewAssignment->setReviewerId($reviewerId);
 			$reviewAssignment->setDateAssigned(Core::getCurrentDate());
-			$reviewAssignment->setRound($round);
 			$reviewAssignment->setReviewType($reviewType);
+			$reviewAssignment->setRound($round);
+
 			// Assign review form automatically if needed
 			$pressId = $acquisitionsEditorSubmission->getPressId();
 			$acquisitionsDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
@@ -123,11 +124,9 @@ class AcquisitionsEditorAction extends Action {
 				}
 			}
 
-			$reviewAssignments = $acquisitionsEditorSubmission->getReviewAssignments();
-			$reviewAssignments = array_merge($reviewAssignments, array($reviewAssignment));
-			$acquisitionsEditorSubmission->setReviewAssignments($reviewAssignments);
+			$acquisitionsEditorSubmission->addReviewAssignment($reviewAssignment, $reviewType, $round);
 			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
-			$round = $acquisitionsEditorSubmission->getCurrentReviewRound();
+
 			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($acquisitionsEditorSubmission->getMonographId(), $reviewerId, $reviewType, $round);
 
 			$press =& Request::getPress();
@@ -547,8 +546,9 @@ class AcquisitionsEditorAction extends Action {
 	 * @param $reviewId int
 	 * @param $dueDate string
 	 * @param $numWeeks int
+	 * @param $logEntry boolean
 	 */
-	function setDueDate($monographId, $reviewId, $dueDate = null, $numWeeks = null) {
+	function setDueDate($monographId, $reviewId, $dueDate = null, $numWeeks = null, $logEntry = false) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& Request::getUser();
@@ -579,24 +579,26 @@ class AcquisitionsEditorAction extends Action {
 			$reviewAssignment->stampModified();
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 
-			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent(
-				$monographId,
-				MONOGRAPH_LOG_REVIEW_SET_DUE_DATE,
-				MONOGRAPH_LOG_TYPE_REVIEW,
-				$reviewAssignment->getReviewId(),
-				'log.review.reviewDueDateSet',
-				array(
-					'reviewerName' => $reviewer->getFullName(),
-					'dueDate' => strftime(Config::getVar('general', 'date_format_short'),
-					strtotime($reviewAssignment->getDateDue())),
-					'monographId' => $monographId,
-					'reviewType' => $reviewAssignment->getReviewType(), 
-					'round' => $reviewAssignment->getRound()
-				)
-			);
+			if ($logEntry) {
+				// Add log
+				import('monograph.log.MonographLog');
+				import('monograph.log.MonographEventLogEntry');
+				MonographLog::logEvent(
+					$monographId,
+					MONOGRAPH_LOG_REVIEW_SET_DUE_DATE,
+					MONOGRAPH_LOG_TYPE_REVIEW,
+					$reviewAssignment->getReviewId(),
+					'log.review.reviewDueDateSet',
+					array(
+						'reviewerName' => $reviewer->getFullName(),
+						'dueDate' => strftime(Config::getVar('general', 'date_format_short'),
+						strtotime($reviewAssignment->getDateDue())),
+						'monographId' => $monographId,
+						'reviewType' => $reviewAssignment->getReviewType(), 
+						'round' => $reviewAssignment->getRound()
+					)
+				);
+			}
 		}
 	}
 
@@ -798,30 +800,15 @@ class AcquisitionsEditorAction extends Action {
 		$user =& Request::getUser();
 
 		if (!HookRegistry::call('AcquisitionsEditorAction::resubmitFile', array(&$acquisitionsEditorSubmission, &$fileId, &$revision))) {
-			// Reassign all reviewers that submitted a review for this new round of reviews.
-			$nextRound = $acquisitionsEditorSubmission->getCurrentReviewRound() + 1;
-
-			foreach ($acquisitionsEditorSubmission->getReviewAssignments() as $reviewAssignment) {
-				if ($reviewAssignment->getRecommendation() !== null && $reviewAssignment->getRecommendation() !== '') {
-					// Then this reviewer submitted a review.
-					AcquisitionsEditorAction::addReviewer(
-									$acquisitionsEditorSubmission, 
-									$reviewAssignment->getReviewerId(), 
-									$acquisitionsEditorSubmission->getCurrentReviewType(), 
-									$nextRound
-								);
-				}
-			}
-
-
 			// Increment the round
-			$acquisitionsEditorSubmission->setCurrentReviewRound($nextRound);
+			$currentRound = $acquisitionsEditorSubmission->getCurrentRound();
+			$acquisitionsEditorSubmission->setCurrentRound($currentRound + 1);
 			$acquisitionsEditorSubmission->stampStatusModified();
 
 			// Copy the file from the editor decision file folder to the review file folder
 			$newFileId = $monographFileManager->copyToReviewFile($fileId, $revision, $acquisitionsEditorSubmission->getReviewFileId());
 			$newReviewFile = $monographFileDao->getMonographFile($newFileId);
-			$newReviewFile->setRound($acquisitionsEditorSubmission->getCurrentReviewRound());
+			$newReviewFile->setRound($acquisitionsEditorSubmission->getCurrentRound());
 			$monographFileDao->updateMonographFile($newReviewFile);
 
 			// Copy the file from the editor decision file folder to the next-round editor file
@@ -831,7 +818,7 @@ class AcquisitionsEditorAction extends Action {
 			// $editorFileId definitely will not be null after assignment
 			$editorFileId = $monographFileManager->copyToEditorFile($newFileId, null, $editorFileId);
 			$newEditorFile = $monographFileDao->getMonographFile($editorFileId);
-			$newEditorFile->setRound($acquisitionsEditorSubmission->getCurrentReviewRound());
+			$newEditorFile->setRound($acquisitionsEditorSubmission->getCurrentRound());
 			$newEditorFile->setReviewType($acquisitionsEditorSubmission->getCurrentReviewType());
 			$monographFileDao->updateMonographFile($newEditorFile);
 
@@ -840,6 +827,16 @@ class AcquisitionsEditorAction extends Action {
 			$acquisitionsEditorSubmission->setReviewRevision($reviewRevision);
 
 			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
+
+			// Now, reassign all reviewers that submitted a review for this new round of reviews.
+			$previousRound = $acquisitionsEditorSubmission->getCurrentRound() - 1;
+			foreach ($acquisitionsEditorSubmission->getReviewAssignments($acquisitionsEditorSubmission->getCurrentReviewType(), $previousRound) as $reviewAssignment) {
+				if ($reviewAssignment->getRecommendation() !== null && $reviewAssignment->getRecommendation() !== '') {
+					// Then this reviewer submitted a review.
+					AcquisitionsEditorAction::addReviewer($acquisitionsEditorSubmission, $reviewAssignment->getReviewerId(), $acquisitionsEditorSubmission->getCurrentReviewType(), $acquisitionsEditorSubmission->getCurrentRound());
+				}
+			}
+
 
 			// Add log
 			import('monograph.log.MonographLog');
@@ -889,7 +886,6 @@ class AcquisitionsEditorAction extends Action {
 	 * @return boolean true iff ready for redirect
 	 */
 	function notifyCopyeditor($acquisitionsEditorSubmission, $send = false) {
-		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
@@ -941,11 +937,19 @@ class AcquisitionsEditorAction extends Action {
 	 */
 	function initiateCopyedit($acquisitionsEditorSubmission) {
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+		$user =& Request::getUser();
 
 		// Only allow copyediting to be initiated if a copyedit file exists.
-		if ($acquisitionsEditorSubmission->getInitialCopyeditFile() && !HookRegistry::call('AcquisitionsEditorAction::initiateCopyedit', array(&$acquisitionsEditorSubmission))) {
-			$acquisitionsEditorSubmission->setCopyeditorDateNotified(Core::getCurrentDate());
-			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
+		if ($acquisitionsEditorSubmission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL') && !HookRegistry::call('AcquisitionsEditorAction::initiateCopyedit', array(&$acquisitionsEditorSubmission))) {
+			$signoffDao =& DAORegistry::getDAO('SignoffDAO');			
+			
+			$copyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getArticleId());
+			if (!$copyeditSignoff->getUserId()) {
+				$copyeditSignoff->setUserId($user->getId());
+			}
+			$copyeditSignoff->setDateNotified(Core::getCurrentDate());
+			
+			$signoffDao->updateObject($copyeditSignoff);
 		}
 	}
 
@@ -955,7 +959,6 @@ class AcquisitionsEditorAction extends Action {
 	 * @return boolean true iff ready for redirect
 	 */
 	function thankCopyeditor($acquisitionsEditorSubmission, $send = false) {
-		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
@@ -973,11 +976,8 @@ class AcquisitionsEditorAction extends Action {
 				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_ACKNOWLEDGE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $acquisitionsEditorSubmission->getMonographId());
 				$email->send();
 			}
-			$initialSignoff = $signoffDao->build(
-						'SIGNOFF_COPYEDITING_INITIAL', 
-						ASSOC_TYPE_MONOGRAPH, 
-						$acquisitionsEditorSubmission->getMonographId()
-					);
+
+			$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getMonographId());
 
 			$initialSignoff->setDateAcknowledged(Core::getCurrentDate());
 			$signoffDao->updateObject($initialSignoff);
@@ -1012,9 +1012,8 @@ class AcquisitionsEditorAction extends Action {
 	 * @return true iff ready for redirect
 	 */
 	function notifyAuthorCopyedit($acquisitionsEditorSubmission, $send = false) {
-		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
@@ -1075,7 +1074,6 @@ class AcquisitionsEditorAction extends Action {
 	 */
 	function thankAuthorCopyedit($acquisitionsEditorSubmission, $send = false) {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 		$user =& Request::getUser();
@@ -1341,7 +1339,6 @@ class AcquisitionsEditorAction extends Action {
 	 */
 	function completeCopyedit($acquisitionsEditorSubmission) {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 		$user =& Request::getUser();
@@ -1366,9 +1363,8 @@ class AcquisitionsEditorAction extends Action {
 	 * @param $acquisitionsEditorSubmission object
 	 */
 	function completeFinalCopyedit($acquisitionsEditorSubmission) {
-		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
@@ -1482,12 +1478,17 @@ class AcquisitionsEditorAction extends Action {
 		$monographFileManager = new MonographFileManager($submission->getMonographId());
 		$submissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 
+		$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+
 		$fileName = 'layoutFile';
 		if ($monographFileManager->uploadedFileExists($fileName) && !HookRegistry::call('AcquisitionsEditorAction::uploadLayoutVersion', array(&$submission, &$layoutAssignment))) {
-			$layoutFileId = $monographFileManager->uploadLayoutFile($fileName);
-			$submission->setLayoutFileId($layoutFileId);
-
-			$submissionDao->updateAcquisitionsEditorSubmission($submission);
+			if ($layoutSignoff->getFileId() != null) {
+				$layoutFileId = $monographFileManager->uploadLayoutFile($fileName, $layoutSignoff->getFileId());
+			} else {
+				$layoutFileId = $monographFileManager->uploadLayoutFile($fileName);
+			}
+			$layoutSignoff->setFileId($layoutFileId);
+			$signoffDao->updateObject($layoutSignoff);
 		}
 	}
 
@@ -1528,6 +1529,7 @@ class AcquisitionsEditorAction extends Action {
 	 * @return boolean true iff ready for redirect
 	 */
 	function notifyLayoutDesigner($submission, $layoutAssignmentId, $send = false) {
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
@@ -1535,18 +1537,9 @@ class AcquisitionsEditorAction extends Action {
 
 		import('mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($submission, 'LAYOUT_REQUEST');
-
-		$layoutAssignments =& $submission->getLayoutAssignments();
-
-		foreach ($layoutAssignments as $layoutAssignmentItem) {
-			if ($layoutAssignmentItem->getId() == $layoutAssignmentId) {
-				$layoutAssignment =& $layoutAssignmentItem;
-				$layoutDesigner =& $userDao->getUser($layoutAssignmentItem->getDesignerId());
-				break;
-			}
-		}
-
-		if (!isset($layoutDesigner)) return true;
+		$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+		$layoutEditor =& $userDao->getUser($layoutSignoff->getUserId());
+		if (!isset($layoutEditor)) return true;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('AcquisitionsEditorAction::notifyLayoutEditor', array(&$submission, &$layoutDesigner, &$layoutAssignment, &$email));
@@ -1554,12 +1547,12 @@ class AcquisitionsEditorAction extends Action {
 				$email->setAssoc(MONOGRAPH_EMAIL_LAYOUT_NOTIFY_EDITOR, MONOGRAPH_EMAIL_TYPE_LAYOUT, $layoutAssignment->getId());
 				$email->send();
 			}
-			$layoutAssignment->setDateNotified(Core::getCurrentDate());
-			$layoutAssignment->setDateUnderway(null);
-			$layoutAssignment->setDateCompleted(null);
-			$layoutAssignment->setDateAcknowledged(null);
-			$layoutAssignmentDao->updateLayoutAssignment($layoutAssignment);
 
+			$layoutSignoff->setDateNotified(Core::getCurrentDate());
+			$layoutSignoff->setDateUnderway(null);
+			$layoutSignoff->setDateCompleted(null);
+			$layoutSignoff->setDateAcknowledged(null);
+			$signoffDao->updateObject($layoutSignoff);
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->addRecipient($layoutDesigner->getEmail(), $layoutDesigner->getFullName());
@@ -1584,6 +1577,8 @@ class AcquisitionsEditorAction extends Action {
 	 * @return boolean true iff ready for redirect
 	 */
 	function thankLayoutEditor($submission, $send = false) {
+
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$submissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
@@ -1592,8 +1587,8 @@ class AcquisitionsEditorAction extends Action {
 		import('mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($submission, 'LAYOUT_ACK');
 
-		$layoutAssignment =& $submission->getLayoutAssignment();
-		$layoutEditor =& $userDao->getUser($layoutAssignment->getEditorId());
+		$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+		$layoutEditor =& $userDao->getUser($layoutSignoff->getUserId());
 		if (!isset($layoutEditor)) return true;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
@@ -1603,8 +1598,8 @@ class AcquisitionsEditorAction extends Action {
 				$email->send();
 			}
 
-			$layoutAssignment->setDateAcknowledged(Core::getCurrentDate());
-			$submissionDao->updateAcquisitionsEditorSubmission($submission);
+			$layoutSignoff->setDateAcknowledged(Core::getCurrentDate());
+			$signoffDao->updateObject($layoutSignoff);
 
 		} else {
 			if (!Request::getUserVar('continued')) {
@@ -1858,6 +1853,15 @@ class AcquisitionsEditorAction extends Action {
 		if ($commentForm->validate()) {
 			$commentForm->execute();
 
+			// Send a notification to associated users
+			import('notification.Notification');
+			$notificationUsers = $monograph->getAssociatedUserIds();
+			foreach ($notificationUsers as $user) {
+				$url = Request::url(null, $user['role'], 'submissionReview', $monograph->getMonographId(), null, 'peerReview');
+				Notification::createNotification($user['id'], "notification.type.reviewerComment",
+					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_COMMENT);
+			}
+				
 			if ($emailComment) {
 				$commentForm->email();
 			}
@@ -1901,6 +1905,15 @@ class AcquisitionsEditorAction extends Action {
 		if ($commentForm->validate()) {
 			$commentForm->execute();
 
+			// Send a notification to associated users
+			import('notification.Notification');
+			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+			foreach ($notificationUsers as $user) {
+				$url = Request::url(null, $user['role'], 'submissionReview', $monograph->getMonographId(), null, 'editorDecision');
+				Notification::createNotification($user['id'], "notification.type.editorDecisionComment",
+					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_EDITOR_DECISION_COMMENT);
+			}
+				
 			if ($emailComment) {
 				$commentForm->email();
 			}
@@ -1942,8 +1955,7 @@ class AcquisitionsEditorAction extends Action {
 			isset($decisionTemplateMap[$decision]) ? $decisionTemplateMap[$decision] : null
 		);
 
-		$copyeditor =& $acquisitionsEditorSubmission->getCopyeditor();
-
+		$copyeditor = $acquisitionsEditorSubmission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL');
 		if ($send && !$email->hasErrors()) {
 			HookRegistry::call('AcquisitionsEditorAction::emailEditorDecisionComment', array(&$acquisitionsEditorSubmission, &$send));
 			$email->send();
@@ -2144,6 +2156,15 @@ class AcquisitionsEditorAction extends Action {
 		if ($commentForm->validate()) {
 			$commentForm->execute();
 
+			// Send a notification to associated users
+			import('notification.Notification');
+			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+			foreach ($notificationUsers as $user) {
+				$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'copyedit');
+				Notification::createNotification($user['id'], "notification.type.copyeditComment",
+					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_COPYEDIT_COMMENT);
+			}
+
 			if ($emailComment) {
 				$commentForm->email();
 			}
@@ -2187,6 +2208,15 @@ class AcquisitionsEditorAction extends Action {
 		if ($commentForm->validate()) {
 			$commentForm->execute();
 
+			// Send a notification to associated users
+			import('notification.Notification');
+			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+			foreach ($notificationUsers as $user) {
+				$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
+				Notification::createNotification($user['id'], "notification.type.layoutComment",
+					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_LAYOUT_COMMENT);
+			}
+				
 			if ($emailComment) {
 				$commentForm->email();
 			}
@@ -2230,6 +2260,15 @@ class AcquisitionsEditorAction extends Action {
 		if ($commentForm->validate()) {
 			$commentForm->execute();
 
+			// Send a notification to associated users
+			import('notification.Notification');
+			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+			foreach ($notificationUsers as $user) {
+				$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'proofread');
+				Notification::createNotification($user['id'], "notification.type.proofreadComment",
+					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_PROOFREAD_COMMENT);
+			}	
+			
 			if ($emailComment) {
 				$commentForm->email();
 			}

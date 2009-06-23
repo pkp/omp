@@ -84,7 +84,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$pressSettings = $pressSettingsDao->getPressSettings($press->getId());
 
 		// Setting the round.
-		$round = isset($args[1]) ? $args[1] : $submission->getCurrentReviewRound();
+		$round = isset($args[1]) ? $args[1] : $submission->getCurrentRound();
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -128,7 +128,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$reviewFilesByRound =& $reviewAssignmentDao->getReviewFilesByRound($monographId);
 		$authorViewableFilesByRound =& $reviewAssignmentDao->getAuthorViewableFilesByRound($monographId);
 
-		$editorDecisions = $authorSubmission->getDecisions($authorSubmission->getCurrentReviewType(), $authorSubmission->getCurrentReviewRound());
+		$editorDecisions = $authorSubmission->getDecisions($authorSubmission->getCurrentReviewType(), $authorSubmission->getCurrentRound());
 		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1] : null;
 
 		$templateMgr =& TemplateManager::getManager();

@@ -25,67 +25,67 @@ class ReviewRound extends DataObject {
 	//
 
 	/**
-	 * get assoc id
+	 * get monograph id
 	 * @return int
 	 */
 	function getMonographId() {
-		return $this->getData('assocId');
+		return $this->getData('monographId');
 	}
 
 	/**
-	 * set assoc id
-	 * @param $assocId int
+	 * set monograph id
+	 * @param $monographId int
 	 */
-	function setMonographId($assocId) {
-		return $this->setData('assocId', $assocId);
+	function setMonographId($monographId) {
+		return $this->setData('monographId', $monographId);
 	}	
 
 	/**
-	 * Get associated type.
+	 * Get date review type.
+	 * @return int
+	 */
+	function getReviewType() {
+		return $this->getData('reviewType');
+	}
+
+	/**
+	 * Set review Type
+	 * @param $reviewType int
+	 */
+	function setReviewType($reviewType) {
+		return $this->setData('reviewType', $reviewType);
+	}
+	
+	/**
+	 * Get review round
 	 * @return int
 	 */
 	function getRound() {
-		return $this->getData('assocType');
+		return $this->getData('round');
 	}
 
 	/**
-	 * Set associated type.
+	 * Set review round
 	 * @param $assocType int
 	 */
-	function setRound($assocType) {
-		return $this->setData('assocType', $assocType);
+	function setRound($round) {
+		return $this->setData('round', $round);
 	}
 
 	/**
-	 * Get date notified.
-	 * @return string
+	 * Get review revision
+	 * @return int
 	 */
 	function getReviewRevision() {
-		return $this->getData('dateNotified');
+		return $this->getData('reviewRevision');
 	}
 
 	/**
-	 * Set date notified.
-	 * @param $dateNotified string
+	 * Set review reviesion
+	 * @param $reviewRevision int
 	 */
-	function setReviewRevision($dateNotified) {
-		return $this->setData('dateNotified', $dateNotified);
-	}
-
-	/**
-	 * Get date underway.
-	 * @return string
-	 */
-	function getReviewType() {
-		return $this->getData('dateUnderway');
-	}
-
-	/**
-	 * Set date underway.
-	 * @param $dateUnderway string
-	 */
-	function setReviewType($dateUnderway) {
-		return $this->setData('dateUnderway', $dateUnderway);
+	function setReviewRevision($reviewRevision) {
+		return $this->setData('reviewRevision', $reviewRevision);
 	}
 }
 

@@ -1,25 +1,11 @@
-{foreach from=$reviewProcesses item=reviewProcess}
-<div style="border:0px solid gray">
 
-{if $reviewType != null and $reviewProcess->getProcessId() == $reviewType and $reviewFile != null}
-
-<table class="data" width="100%">
-	<tr valign="middle">
-		<td width="22%"><h3>{$reviewProcess->getTitle()}</h3></td>
-		<td width="14%"><h4>{translate key="submission.round" round=$round}</h4></td>
-		<td width="64%" class="nowrap">
-			<a href="{url op="selectReviewer" path=$submission->getMonographId()}" class="action">{translate key="editor.monograph.selectReviewer"}</a>&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="{url op="submissionRegrets" path=$submission->getMonographId()}" class="action">{translate|escape key="editor.regrets.link"}</a>
-		</td>
-	</tr>
-</table>
 
 {assign var="start" value="A"|ord}
 {foreach from=$reviewAssignments item=reviewAssignment key=reviewKey}
 {assign var="reviewId" value=$reviewAssignment->getReviewId()}
 
 {if not $reviewAssignment->getCancelled() and not $reviewAssignment->getDeclined()}
-	{assign var="reviewIndex" value=$reviewIndexes[$reviewType][$round][$reviewId]}
+	{assign var="reviewIndex" value=$reviewIndexes[$reviewId]}
 
 	<table class="info" width="100%">
 	<tr>
@@ -39,7 +25,7 @@
 	</table>
 
 	<table width="100%" class="data">
- <!--	<tr valign="top">
+ 	<tr valign="top">
 		<td class="label">{translate key="submission.reviewForm"}</td>
 		<td>
 		{if $reviewAssignment->getReviewFormId()}
@@ -52,7 +38,7 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;<a class="action" href="{url op="selectReviewForm" path=$submission->getMonographId()|to_array:$reviewAssignment->getReviewId()}"{if $reviewFormResponses[$reviewId]} onclick="return confirm('{translate|escape:"jsparam" key="editor.monograph.confirmChangeReviewForm"}')"{/if}>{translate key="editor.monograph.selectReviewForm"}</a>{if $reviewAssignment->getReviewFormId()}&nbsp;&nbsp;&nbsp;&nbsp;<a class="action" href="{url op="clearReviewForm" path=$submission->getMonographId()|to_array:$reviewAssignment->getReviewId()}"{if $reviewFormResponses[$reviewId]} onclick="return confirm('{translate|escape:"jsparam" key="editor.monograph.confirmChangeReviewForm"}')"{/if}>{translate key="editor.monograph.clearReviewForm"}</a>{/if}
 		{/if}
 		</td>
-	</tr>-->
+	</tr>
 	<tr valign="top">
 		<td class="label" width="20%">&nbsp;</td>
 		<td width="80%">
@@ -148,9 +134,7 @@
 			<td class="label">{translate key="reviewer.monograph.uploadedFile"}</td>
 			<td>
 				<table width="100%" class="data">
-					{assign var="reviewerFileRevisions" value=$reviewAssignment->getReviewerFileRevisions($reviewType)}
-					{assign var="reviewerFileRevisions" value=$reviewerFileRevisions.$round}
-					{foreach from=$reviewerFileRevisions item=reviewerFile key=key}
+					{foreach from=$reviewAssignment->getReviewerFileRevisions() item=reviewerFile key=key}
 					<tr valign="top">
 						<td valign="middle">
 							<form name="authorView{$reviewAssignment->getReviewId()}" method="post" action="{url op="makeReviewerFileViewable"}">
@@ -223,71 +207,9 @@
 	{/if}
 	</table>
 {/if}
-{foreachelse}
-	<table class="info" width="100%">
-		<tr><td colspan="2" class="separator">&nbsp;</td></tr>
-		<tr valign="middle">
-			<td colspan="2" align="center">{translate key="reviewers.noneAssigned"}</td>
-		</tr>
-
-		<tr><td colspan="2" class="separator">&nbsp;</td></tr>
-
-	</table>
-
 {/foreach}
 <div class="separator"></div>
 {include file="acquisitionsEditor/submission/editorDecision.tpl"}
 
-{if $reviewProcess->getDateEnded() != null && $reviewProcess->getDateSigned() == null}
-	{assign var="waitingOnSignoffs" value="1"}
-{else}
-	{assign var="waitingOnSignoffs" value="0"}
-{/if}
-{if $waitingOnSignoffs}
-<table class="data" width="100%">
-	<tr valign="middle">
-		<td width="22%"></td>
-		<td width="78%" class="nowrap">
-			{$reviewProcess->getSignoffQueueCount()} more people/person that must sign off.
-		</td>
-	</tr>
-</table>
-{/if}
-{elseif $reviewProcess->getDateSigned() != null}
-	<table class="info" width="100%">
-		<tr valign="middle">
-			<td width="40%"><h3>{$reviewProcess->getTitle()}</h3></td>
-			<td width="60%">
-				<a href="{url op="submissionRegrets" path=$submission->getMonographId()}" class="action">{translate|escape key="editor.regrets.link"}</a>
-			</td>
-		</tr>
-		<tr><td colspan="2" class="separator">&nbsp;</td></tr>
-		<tr valign="middle">
-			<td colspan="2" align="center">Completed {$reviewProcess->getDateSigned()}</td>
-		</tr>
-
-		<tr><td colspan="2" class="separator">&nbsp;</td></tr>
-
-	</table>
-
-{else}
-
-	<table class="info" width="100%">
-		<tr valign="middle">
-			<td width="40%"><h3>{$reviewProcess->getTitle()}</h3></td>
-		</tr>
-		<tr><td class="separator">&nbsp;</td></tr>
-		<tr valign="middle">
-			<td align="center">{translate key="common.notAvailable"}</td>
-		</tr>
-		<tr><td class="separator">&nbsp;</td></tr>
-
-	</table>
-
-{/if}
 
 </div>
-{if $reviewProcess->getProcessId() != WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL}
-<div class="separator"></div>
-{/if}
-{/foreach}{*review types*}

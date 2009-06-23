@@ -66,8 +66,12 @@ class AcquisitionsEditorHandler extends Handler {
 		$page = isset($args[0]) ? $args[0] : '';
 		$arrangements =& $arrangementDao->getTitlesByPressId($press->getId());
 
+		$sort = Request::getUserVar('sort');
+		$sort = isset($sort) ? $sort : 'id';
+		$sortDirection = Request::getUserVar('sortDirection');
+
 		$filterArrangementOptions = array(
-			FILTER_ARRANGEMENT_ALL => Locale::Translate('editor.allAcquistionsArrangements')
+			FILTER_ARRANGEMENT_ALL => Locale::Translate('editor.allArrangements')
 		) + $arrangements;
 
 		switch($page) {
@@ -106,7 +110,8 @@ class AcquisitionsEditorHandler extends Handler {
 			$dateSearchField,
 			$fromDate,
 			$toDate,
-			$rangeInfo
+			$rangeInfo,
+			$acquisitionsEditorSubmissionDao->getSortMapping($sort)
 		);
 
 		$templateMgr =& TemplateManager::getManager();
@@ -141,6 +146,9 @@ class AcquisitionsEditorHandler extends Handler {
 			SUBMISSION_FIELD_DATE_PROOFREADING_COMPLETE => 'submissions.proofreadingComplete'
 		));
 
+		$templateMgr->assign('sort', $sort);
+		$templateMgr->assign('sortDirection', $sortDirection);
+
 		$templateMgr->display('acquisitionsEditor/index.tpl');
 	}
 
@@ -154,7 +162,7 @@ class AcquisitionsEditorHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$isEditor = Validation::isEditor();
 
-		if (Request::getRequestedPage() == 'editor') {
+		if (($page = Request::getRequestedPage()) == 'editor') {
 			$templateMgr->assign('helpTopicId', 'editorial.editorsRole');
 
 		} else {
@@ -165,7 +173,7 @@ class AcquisitionsEditorHandler extends Handler {
 			: array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, $isEditor?'editor':'acquisitionsEditor'), $isEditor?'user.role.editor':'user.role.acquisitionsEditor'));
 
 		import('submission.acquisitionsEditor.AcquisitionsEditorAction');
-		$submissionCrumb = AcquisitionsEditorAction::submissionBreadcrumb($monographId, $parentPage, 'acquisitionsEditor');
+		$submissionCrumb = AcquisitionsEditorAction::submissionBreadcrumb($monographId, $parentPage, $page);
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
 		}

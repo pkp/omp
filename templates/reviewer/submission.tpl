@@ -31,7 +31,7 @@ function confirmSubmissionCheck() {
 // -->
 {/literal}
 </script>
-
+<div id="submissionToBeReviewed">
 <h3>{translate key="reviewer.monograph.submissionToBeReviewed"}</h3>
 
 <table width="100%" class="data">
@@ -78,9 +78,9 @@ function confirmSubmissionCheck() {
 	       </td>
 	</tr>
 </table>
-
+</div>
 <div class="separator"></div>
-
+<div id="reviewSchedule">
 <h3>{translate key="reviewer.monograph.reviewSchedule"}</h3>
 <table width="100%" class="data">
 <tr valign="top">
@@ -100,9 +100,10 @@ function confirmSubmissionCheck() {
 	<td class="value">{if $submission->getDateDue()}{$submission->getDateDue()|date_format:$dateFormatShort}{else}&mdash;{/if}</td>
 </tr>
 </table>
-
+</div>
 <div class="separator"></div>
 
+<div id="reviewSteps">
 <h3>{translate key="reviewer.monograph.reviewSteps"}</h3>
 
 {include file="common/formErrors.tpl"}
@@ -271,9 +272,7 @@ function confirmSubmissionCheck() {
 	<td>&nbsp;</td>
 	<td>
 		<table class="data" width="100%">
-			{assign var=reviewerFiles value=$submission->getReviewerFileRevisions()}
-			{assign var=reviewerFiles value=$reviewerFiles.$reviewType.$round}
-			{foreach from=$reviewerFiles item=reviewerFile key=key}
+			{foreach from=$submission->getReviewerFileRevisions() item=reviewerFile key=key}
 				{assign var=uploadedFileExists value="1"}
 				<tr valign="top">
 				<td class="label" width="30%">
@@ -348,11 +347,13 @@ function confirmSubmissionCheck() {
 	</td>
 </tr>
 </table>
-
+</div>
 {if $press->getLocalizedSetting('reviewGuidelines') != ''}
 <div class="separator"></div>
+<div id="reviewerGuidelines">
 <h3>{translate key="reviewer.monograph.reviewerGuidelines"}</h3>
 <p>{$press->getLocalizedSetting('reviewGuidelines')|nl2br}</p>
+</div>
 {/if}
 
 {include file="common/footer.tpl"}

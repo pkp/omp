@@ -33,7 +33,8 @@ define ('STATUS_INCOMPLETE', 8);
 define('OPEN_ACCESS', 1);
 define('SUBSCRIPTION', 2);
 
-define('EDITED_VOLUME', 1);
+define('WORK_TYPE_EDITED_VOLUME', 1);
+define('WORK_TYPE_AUTHORED_WORK', 2);
 
 import('submission.Submission');
 import('monograph.Author');
@@ -83,11 +84,11 @@ class Monograph extends Submission {
 		 return $this->getData('prospectus_file_id');
 	}
 
-	function setCurrentReviewRound($round) {
-		 $this->setData('currentReviewRound', $round);
+	function setCurrentRound($round) {
+		 $this->setData('currentRound', $round);
 	}
-	function getCurrentReviewRound() {
-		 return $this->getData('currentReviewRound');
+	function getCurrentRound() {
+		 return $this->getData('currentRound');
 	}
 	function setCurrentReviewType($reviewType) {
 		 $this->setData('currentReviewType', $reviewType);
@@ -99,6 +100,7 @@ class Monograph extends Submission {
 	function setReviewRoundsInfo($reviewRoundsInfo) {
 		 $this->setData('reviewRoundsInfo', $reviewRoundsInfo);
 	}
+	
 	function getReviewRoundsInfo() {
 		 return $this->getData('reviewRoundsInfo');
 	}

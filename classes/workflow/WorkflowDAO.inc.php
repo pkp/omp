@@ -88,7 +88,7 @@ class WorkflowDAO extends DAO {
 			$submission->setReviewFileId($args[0]);
 			$submission->setReviewRevision($args[1]);
 			$submission->setCurrentReviewType($newProcess->getProcessType());
-			$submission->setCurrentReviewRound($newProcess->getProcessId());
+			$submission->setCurrentRound($newProcess->getProcessId());
 			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($submission);
 			break;

@@ -40,7 +40,7 @@ class PeerReviewCommentForm extends CommentForm {
 	function display() {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($this->reviewId);
-		$reviewLetters =& $reviewAssignmentDao->getReviewIndexesForRound($this->monograph->getMonographId(), $this->monograph->getCurrentReviewType(), $this->monograph->getCurrentReviewRound());
+		$reviewLetters =& $reviewAssignmentDao->getReviewIndexesForRound($this->monograph->getMonographId(), $this->monograph->getCurrentReviewType(), $this->monograph->getCurrentRound());
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('commentType', 'peerReview');

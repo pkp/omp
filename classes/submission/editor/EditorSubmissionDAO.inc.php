@@ -17,7 +17,8 @@
 
 
 import('submission.editor.EditorSubmission');
-//import('submission.author.AuthorSubmission'); // Bring in editor decision constants
+import('submission.author.AuthorSubmission'); // Bring in editor decision constants
+import('workflow.WorkflowProcess'); // import constants
 
 class EditorSubmissionDAO extends DAO {
 	var $monographDao;
@@ -90,24 +91,18 @@ class EditorSubmissionDAO extends DAO {
 
 		$this->monographDao->_monographFromRow($editorSubmission, $row);
 
-		if (isset($row['arrangement_abbrev']))
-			$editorSubmission->setAcquisitionsArrangementAbbrev($row['arrangement_abbrev']);
-
 		// Editor Assignment
 		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
 		$editorSubmission->setEditAssignments($editAssignments->toArray());
 
 		// Editor Decisions
-		$reviewRounds =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);
-
-		foreach ($reviewRounds as $reviewRound => $round) {
-			for ($i = 1; $i <= $round; $i++) {
-				$editorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $reviewRound, $i), $reviewRound, $i);
+		$reviewRoundsInfo =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);
+		// Review Assignments
+		foreach ( $reviewRoundsInfo as $reviewType => $currentReviewRound) {
+			for ($i = 1; $i <= $currentReviewRound; $i++) {
+				$editorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $reviewType, $i), $reviewType, $i);
 			}
 		}
-//		for ($i = 1; $i <= $row['current_round']; $i++) {
-//			$editorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $i), $i);
-//		}
 
 		HookRegistry::call('EditorSubmissionDAO::_returnEditorSubmissionFromRow', array(&$editorSubmission, &$row));
 
@@ -208,7 +203,7 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $arrangementId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
-	 * @param $searchMatch string "is" or "contains"
+	 * @param $searchMatch string "is" or "contains" or "startsWith"
 	 * @param $search String to look in $searchField for
 	 * @param $dateField int Symbolic SUBMISSION_FIELD_DATE_... identifier
 	 * @param $dateFrom String date to search from
@@ -217,10 +212,16 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array result
 	 */
-	function &getUnfilteredEditorSubmissions($pressId, $arrangementId = 0, $editorId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $status = true, $rangeInfo = null) {
+	function &getUnfilteredEditorSubmissions($pressId, $arrangementId = 0, $editorId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $status = true, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$params = array(
+			ASSOC_TYPE_MONOGRAPH,
+			'SIGNOFF_COPYEDITING_FINAL',
+			ASSOC_TYPE_ASSOC_TYPE_MONOGRAPH,
+			'SIGNOFF_PROOFREADING_PROOFREADER',
+			ASSOC_TYPE_ASSOC_TYPE_MONOGRAPH,
+			'SIGNOFF_LAYOUT',
 			'title', // Arrangement title
 			$primaryLocale,
 			'title',
@@ -280,61 +281,53 @@ class EditorSubmissionDAO extends DAO {
 				break;
 			case SUBMISSION_FIELD_DATE_COPYEDIT_COMPLETE:
 				if (!empty($dateFrom)) {
-					$searchSql .= ' AND c.date_final_completed >= ' . $this->datetimeToDB($dateFrom);
+					$searchSql .= ' AND sfc.date_completed >= ' . $this->datetimeToDB($dateFrom);
 				}
 				if (!empty($dateTo)) {
-					$searchSql .= ' AND c.date_final_completed <= ' . $this->datetimeToDB($dateTo);
+					$searchSql .= ' AND scf.date_completed <= ' . $this->datetimeToDB($dateTo);
 				}
 				break;
 			case SUBMISSION_FIELD_DATE_LAYOUT_COMPLETE:
 				if (!empty($dateFrom)) {
-					$searchSql .= ' AND l.date_completed >= ' . $this->datetimeToDB($dateFrom);
+					$searchSql .= ' AND sle.date_completed >= ' . $this->datetimeToDB($dateFrom);
 				}
 				if (!empty($dateTo)) {
-					$searchSql .= ' AND l.date_completed <= ' . $this->datetimeToDB($dateTo);
+					$searchSql .= ' AND sle.date_completed <= ' . $this->datetimeToDB($dateTo);
 				}
 				break;
 			case SUBMISSION_FIELD_DATE_PROOFREADING_COMPLETE:
 				if (!empty($dateFrom)) {
-					$searchSql .= ' AND p.date_proofreader_completed >= ' . $this->datetimeToDB($dateFrom);
+					$searchSql .= ' AND spr.date_completed >= ' . $this->datetimeToDB($dateFrom);
 				}
 				if (!empty($dateTo)) {
-					$searchSql .= ' AND p.date_proofreader_completed <= ' . $this->datetimeToDB($dateTo);
+					$searchSql .= ' AND spr.date_completed <= ' . $this->datetimeToDB($dateTo);
 				}
 				break;
-		}/*
+		}
 		$sql = 'SELECT DISTINCT
 				a.*,
+				scf.date_completed as copyedit_completed,
+				spr.date_completed as proofread_completed,
+				sle.date_completed as layout_completed,
+				atl.setting_value AS submission_title,
+				aap.last_name AS author_name,
 				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
 			FROM
 				monographs a
 				INNER JOIN monograph_authors aa ON (aa.monograph_id = a.monograph_id)
+				LEFT JOIN monograph_authors aap ON (aap.monograph_id = a.monograph_id AND aap.primary_contact = 1)
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
-			//	LEFT JOIN edit_assignments e ON (e.monograph_id = a.monograph_id)
+				LEFT JOIN edit_assignments e ON (e.monograph_id = a.monograph_id)
 				LEFT JOIN users ed ON (e.editor_id = ed.user_id)
-				LEFT JOIN copyed_assignments c ON (a.monograph_id = c.monograph_id)
-				LEFT JOIN users ce ON (c.copyeditor_id = ce.user_id)
-				LEFT JOIN proof_assignments p ON (p.monograph_id = a.monograph_id)
-				LEFT JOIN users pe ON (pe.user_id = p.proofreader_id)
-				LEFT JOIN layouted_assignments l ON (l.monograph_id = a.monograph_id)
-				LEFT JOIN users le ON (le.user_id = l.editor_id)
+				LEFT JOIN signoffs scf ON (a.monograph_id = scf.assoc_id AND scf.assoc_type = ? AND scf.symbolic = ?)
+				LEFT JOIN users ce ON (scf.user_id = ce.user_id)
+				LEFT JOIN signoffs spr ON (a.monograph_id = spr.assoc_id AND scf.assoc_type = ? AND spr.symbolic = ?)
+				LEFT JOIN users pe ON (pe.user_id = spr.user_id)
+				LEFT JOIN signoffs sle ON (a.monograph_id = sle.assoc_id AND scf.assoc_type = ? AND sle.symbolic = ?)
+				LEFT JOIN users le ON (le.user_id = sle.user_id)
 				LEFT JOIN review_assignments r ON (r.monograph_id = a.monograph_id)
 				LEFT JOIN users re ON (re.user_id = r.reviewer_id AND cancelled = 0)
-				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN monograph_settings atpl ON (a.monograph_id = atpl.monograph_id AND atpl.setting_name = ? AND atpl.locale = ?)
-				LEFT JOIN monograph_settings atl ON (a.monograph_id = atl.monograph_id AND atl.setting_name = ? AND atl.locale = ?)
-			WHERE
-				a.press_id = ? AND a.submission_progress = 0';*/
-		$sql = 'SELECT DISTINCT
-				a.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
-			FROM
-				monographs a
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (a.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings stl ON (a.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sapl ON (a.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -347,7 +340,7 @@ class EditorSubmissionDAO extends DAO {
 		// "Active" submissions have a status of STATUS_QUEUED and
 		// the layout editor has not yet been acknowledged.
 		// A status value of null doesn't discriminate.
-/*		if ($status === true) $sql .= ' AND a.status = ' . STATUS_QUEUED;
+		if ($status === true) $sql .= ' AND a.status = ' . STATUS_QUEUED;
 		elseif ($status === false) $sql .= ' AND a.status <> ' . STATUS_QUEUED;
 
 		if ($arrangementId) {
@@ -361,17 +354,10 @@ class EditorSubmissionDAO extends DAO {
 		}
 
 		$result =& $this->retrieveRange(
-			$sql . ' ' . $searchSql . ' ORDER BY a.monograph_id ASC',
+			$sql . ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
 			count($params)===1?array_shift($params):$params,
 			$rangeInfo
-		);print_r($result);exit;
-*/
-$sql.=	' ORDER BY a.monograph_id ASC';
-		$result =& $this->retrieveRange(
-			$sql, $params, $rangeInfo
 		);
-
-
 		return $result;
 	}
 
@@ -397,18 +383,6 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	}
 
 	/**
-	 * Helper function to retrieve copyed assignment
-	 * @param monographId int
-	 * @return result array
-	 */
-	function &getCopyedAssignment($monographId) {
-		$result =& $this->retrieve(
-				'SELECT * from copyed_assignments where monograph_id = ? ', $monographId
-		);
-		return $result;
-	}
-
-	/**
 	 * Get all submissions unassigned for a press.
 	 * @param $pressId int
 	 * @param $arrangementId int
@@ -422,7 +396,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getUnassigned($pressId, $arrangementId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getUnassigned($pressId, $arrangementId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$editorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
@@ -454,7 +428,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $arrangementId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
-	 * @param $searchMatch string "is" or "contains"
+	 * @param $searchMatch string "is" or "contains" or "startsWith"
 	 * @param $search String to look in $searchField for
 	 * @param $dateField int Symbolic SUBMISSION_FIELD_DATE_... identifier
 	 * @param $dateFrom String date to search from
@@ -472,22 +446,24 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 		while (!$result->EOF) {
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 			$monographId = $editorSubmission->getMonographId();
-/*			for ($i = 1; $i <= $editorSubmission->getCurrentRound(); $i++) {
-				$reviewAssignment =& $reviewAssignmentDao->getByMonographId($monographId, $i);
-				if (!empty($reviewAssignment)) {
-					$editorSubmission->setReviewAssignments($reviewAssignment, $i);
+
+			$reviewRoundsInfo =& $this->monographDao->getReviewRoundsInfoById($monographId);
+			// Review Assignments
+			foreach ( $reviewRoundsInfo as $reviewType => $currentReviewRound) {
+				for ($i = 1; $i <= $currentReviewRound; $i++) {		
+					$editorSubmission->setReviewAssignments($reviewAssignmentDao->getByMonographId($monographId, $reviewType, $i), $reviewType, $i);				
 				}
 			}
-*/
+			
 			// check if submission is still in review
 			$inReview = true;
-			$decisions = $editorSubmission->getDecisions();
-			$decision = is_array($decisions) ? array_pop($decisions) : null;
+			$decisions = $editorSubmission->getDecisions(WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL);
+			$decision = array_pop($decisions); // take the last round
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
-//				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
-//					$inReview = false;			
-//				}
+				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
+					$inReview = false;			
+				}
 			}
 
 			// used to check if editor exists for this submission
@@ -523,6 +499,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 */
 	function &getInEditing($pressId, $arrangementId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
 		$result = $this->getUnfilteredEditorSubmissions($pressId, $arrangementId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
@@ -531,15 +508,10 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 			$monographId = $editorSubmission->getMonographId();
 
-			// get copyedit final data
-			$copyedAssignment = $this->getCopyedAssignment($monographId);
-			$row = $copyedAssignment->GetRowAssoc(false);
-			$editorSubmission->setCopyeditorDateFinalCompleted($this->datetimeFromDB($row['date_final_completed']));
-
 			// check if submission is still in review
 			$inEditing = false;
-			$decisions = $editorSubmission->getDecisions();
-			$decision = array_pop($decisions);
+			$decisions = $editorSubmission->getDecisions(WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL);
+			$decision = array_pop($decisions); // grab decisions for latest round
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
 				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
@@ -570,7 +542,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 * @param $arrangementId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
-	 * @param $searchMatch string "is" or "contains"
+	 * @param $searchMatch string "is" or "contains" or "startsWith"
 	 * @param $search String to look in $searchField for
 	 * @param $dateField int Symbolic SUBMISSION_FIELD_DATE_... identifier
 	 * @param $dateFrom String date to search from
@@ -584,23 +556,6 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 		$result = $this->getUnfilteredEditorSubmissions($pressId, $arrangementId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
 		while (!$result->EOF) {
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
-			$monographId = $editorSubmission->getMonographId();
-
-			// get copyedit final data
-			$copyedAssignment = $this->getCopyedAssignment($monographId);
-			$row = $copyedAssignment->GetRowAssoc(false);
-			$editorSubmission->setCopyeditorDateFinalCompleted($this->datetimeFromDB($row['date_final_completed']));
-
-			// get layout assignment data
-			$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignments =& $layoutAssignmentDao->getLayoutAssignmentsByMonographId($monographId);
-			$editorSubmission->setLayoutAssignments($layoutAssignments);
-
-			// get proof assignment data
-			$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-			$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
-			$editorSubmission->setProofAssignment($proofAssignment);
-
 			$editorSubmissions[] =& $editorSubmission;
 			unset($editorSubmission);
 			$result->MoveNext();
@@ -638,7 +593,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 			// check if submission is still in review
 			$inReview = true;
 			$notDeclined = true;
-			$decisions = $editorSubmission->getDecisions();
+			$decisions = $editorSubmission->getDecisions(WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL);
 			$decision = is_array($decisions) ? array_pop($decisions) : array();
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
@@ -681,34 +636,45 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	/**
 	 * Get the editor decisions for a review round of a monograph.
 	 * @param $monographId int
-	 * @param $reviewType int
-	 * @param $round int
 	 */
 	function getEditorDecisions($monographId, $reviewType = null, $round = null) {
 		$decisions = array();
 
-		if (!isset($reviewType)) {
+		if ($reviewType == null) {
 			$result =& $this->retrieve(
-				'SELECT edit_decision_id, editor_id, decision, date_decided FROM edit_decisions WHERE monograph_id = ? ORDER BY date_decided ASC', $monographId
-			);
-		} else if (isset($reviewType) && !isset($round)) {
-			$result =& $this->retrieve('
-					SELECT edit_decision_id, editor_id, decision, date_decided
-					FROM edit_decisions ed INNER JOIN review_rounds rr ON (ed.review_type = rr.review_type) 
-					WHERE ed.monograph_id = ? ORDER BY date_decided ASC',
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round 
+					FROM edit_decisions 
+					WHERE monograph_id = ? 
+					ORDER BY date_decided ASC', 
 					$monographId
+				);
+		} elseif ($round == null) {
+			$result =& $this->retrieve(
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round 
+					FROM edit_decisions 
+					WHERE monograph_id = ? AND review_type = ? 
+					ORDER BY date_decided ASC', 
+					array($monographId, $reviewType)
 				);
 		} else {
-			$result =& $this->retrieve('
-					SELECT edit_decision_id, editor_id, decision, date_decided
-					FROM edit_decisions ed INNER JOIN review_rounds rr ON (ed.review_type = rr.review_type AND ed.round = rr.round) 
-					WHERE ed.monograph_id = ? ORDER BY date_decided ASC',
-					$monographId
+			$result =& $this->retrieve(
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round 
+					FROM edit_decisions 
+					WHERE monograph_id = ? AND review_type = ? AND round = ?
+					ORDER BY date_decided ASC', 
+					array($monographId, $reviewType, $round)
 				);
 		}
-
+		
 		while (!$result->EOF) {
-			$decisions[] = array('editDecisionId' => $result->fields[0], 'editorId' => $result->fields[1], 'decision' => $result->fields[2], 'dateDecided' => $this->datetimeFromDB($result->fields[3]));
+			$value = array(
+					'editDecisionId' => $result->fields['edit_decision_id'], 
+					'editorId' => $result->fields['editor_id'], 
+					'decision' => $result->fields['decision'], 
+					'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
+				);
+
+			$decisions[] = $value;
 			$result->moveNext();
 		}
 		$result->Close();
@@ -741,9 +707,33 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 		$paramArray = array('interests', $monographId, $pressId, $roleId);
 		$searchSql = '';
 
-		if (isset($search)) switch ($searchType) {
+		$searchTypeMap = array(
+			USER_FIELD_FIRSTNAME => 'u.first_name',
+			USER_FIELD_LASTNAME => 'u.last_name',
+			USER_FIELD_USERNAME => 'u.username',
+			USER_FIELD_EMAIL => 'u.email',
+			USER_FIELD_INTERESTS => 's.setting_value'
+		);
+
+		if (isset($search) && isset($searchTypeMap[$searchType])) {
+			$fieldName = $searchTypeMap[$searchType];
+			switch ($searchMatch) {
+				case 'is':
+					$searchSql = "AND LOWER($fieldName) = LOWER(?)";
+					$paramArray[] = $search;
+					break;
+				case 'contains':
+					$searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
+					$paramArray[] = '%' . $search . '%';
+					break;
+				case 'startsWith':
+					$searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
+					$paramArray[] = $search . '%';
+					break;
+			}
+		} elseif (isset($search)) switch ($searchType) {
 			case USER_FIELD_USERID:
-				$searchSql = 'AND user_id=?';
+				$searchSql = 'AND u.user_id=?';
 				$paramArray[] = $search;
 				break;
 			case USER_FIELD_FIRSTNAME:
@@ -767,7 +757,7 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 				$paramArray[] = ($searchMatch=='is'?$search:'%' . $search . '%');
 				break;
 			case USER_FIELD_INITIAL:
-				$searchSql = 'AND (LOWER(last_name) LIKE LOWER(?) OR LOWER(username) LIKE LOWER(?))';
+				$searchSql = 'AND (LOWER(u.last_name) LIKE LOWER(?) OR LOWER(u.username) LIKE LOWER(?))';
 				$paramArray[] = $search . '%';
 				$paramArray[] = $search . '%';
 				break;
@@ -797,6 +787,27 @@ $sql.=	' ORDER BY a.monograph_id ASC';
 	 */
 	function getInsertEditId() {
 		return $this->getInsertId('edit_assignments', 'edit_id');
+	}
+	
+	/**
+	 * Map a column heading value to a database value for sorting
+	 * @param string
+	 * @return string
+	 */
+	function getSortMapping($heading) {
+		switch ($heading) {
+			case 'id': return 'a.article_id';
+			case 'submitDate': return 'a.date_submitted';
+			case 'section': return 'section_abbrev';
+			case 'authors': return 'author_name';
+			case 'title': return 'submission_title';
+			case 'active': return 'a.submission_progress';		
+			case 'subCopyedit': return 'copyedit_completed';
+			case 'subLayout': return 'layout_completed';
+			case 'subProof': return 'proofread_completed';
+			case 'status': return 'a.status';
+			default: return null;
+		}
 	}
 }
 

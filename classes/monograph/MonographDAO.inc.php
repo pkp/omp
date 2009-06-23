@@ -177,9 +177,9 @@ class MonographDAO extends DAO {
 		$monograph->stampModified();
 		$this->update(
 			sprintf('INSERT INTO monographs
-				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, submission_file_id, revised_file_id, review_file_id, editor_file_id, layout_file_id, pages, fast_tracked, hide_author, comments_status, edited_volume, arrangement_id, prospectus_file_id, current_review)
+				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, submission_file_id, revised_file_id, review_file_id, editor_file_id, layout_file_id, pages, fast_tracked, hide_author, comments_status, edited_volume, arrangement_id, prospectus_file_id, current_review_type, current_round)
 				VALUES
-				(?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
 				$monograph->getUserId(),
@@ -200,7 +200,8 @@ class MonographDAO extends DAO {
 				$monograph->getWorkType(),
 				$monograph->getAcquisitionsArrangementId() ,
 				$monograph->getCompletedProspectusFileId(),
-				$monograph->getCurrentReviewType() === null ? 1 : $monograph->getCurrentReviewType()
+				$monograph->getCurrentReviewType() === null ? 6 : $monograph->getCurrentReviewType(),				
+				$monograph->getCurrentRound() === null ? 1 : $article->getCurrentRound()
 			)
 		);
 
@@ -269,7 +270,8 @@ class MonographDAO extends DAO {
 					hide_author = ?,
 					arrangement_id = ?,
 					prospectus_file_id = ?,
-					current_review = ?
+					current_review_type = ?,
+					current_round = ?
 				WHERE monograph_id = ?',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
@@ -289,6 +291,7 @@ class MonographDAO extends DAO {
 				$monograph->getAcquisitionsArrangementId(),
 				$monograph->getCompletedProspectusFileId(),
 				$monograph->getCurrentReviewType(),
+				$monograph->getCurrentRound(),
 				$monograph->getMonographId()
 			)
 		);
@@ -444,20 +447,9 @@ class MonographDAO extends DAO {
 		$monograph->setCompletedProspectusFileId($row['prospectus_file_id']);
 		$monograph->setStatus($row['status']);
 		$monograph->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
+		$monograph->setCurrentReviewType($row['current_review_type']);
+		$monograph->setCurrentRound($row['current_round']);
 
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$currentReviewProcess = $workflowDao->getCurrent($row['monograph_id'], WORKFLOW_PROCESS_ASSESSMENT);
-		$reviewRounds =& $this->getReviewRoundsInfoById($row['monograph_id']);
-
-		$currentReviewType = isset($currentReviewProcess) ? $currentReviewProcess->getProcessId() : null;
-		$currentReviewRound = isset($currentReviewProcess) && isset($reviewRounds[$currentReviewProcess->getProcessId()]) ? 
-						$reviewRounds[$currentReviewProcess->getProcessId()] : null;
-
-		$monograph->setCurrentReviewType($currentReviewType);
-		$monograph->setCurrentReviewRound($currentReviewRound);
-
-		//$monograph->setDatePublished($this->datetimeFromDB($row['date_published']));
-//		//$monograph->setPublicMonographId($row['public_monograph_id']);
 		$monograph->setWorkType($row['edited_volume']);
 		$monograph->setLastModified($this->datetimeFromDB($row['last_modified']));
 
@@ -472,9 +464,15 @@ class MonographDAO extends DAO {
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$authors =& $authorDao->getAuthorsByMonographId($monograph->getMonographId());
 		$monograph->setAuthors($authors);
+		
 		$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
 		$monographComponents =& $monographComponentDao->getMonographComponents($monograph->getMonographId());
 		$monograph->setMonographComponents($monographComponents);
+
+		// set review rounds info
+		$reviewRoundsInfo = $this->getReviewRoundsInfoById($row['monograph_id']);
+		if ( empty($reviewRoundsInfo) ) $reviewRoundsInfo[$row['current_review_type']] = $row['current_round'];
+		$monograph->setReviewRoundsInfo($reviewRoundsInfo);
 
 		HookRegistry::call('MonographDAO::_fromRow', array(&$monograph, &$row));
 

@@ -572,7 +572,7 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileSize($_FILES[$fileName]['size']);
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($_FILES[$fileName]['name'], 127));
 		$monographFile->setType($typePath);
-		$monographFile->setRound($this->monograph->getCurrentReviewRound());
+		$monographFile->setRound($this->monograph->getCurrentRound());
 		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 
 		$newFileName = $this->generateFilename($monographFile, $type, $this->getUploadedFileName($fileName));
@@ -626,7 +626,7 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileSize(strlen($contents));
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($fileName, 127));
 		$monographFile->setType($typePath);
-		$monographFile->setRound($this->monograph->getCurrentReviewRound());
+		$monographFile->setRound($this->monograph->getCurrentRound());
 		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 
 		$newFileName = $this->generateFilename($monographFile, $type, $fileName);
@@ -678,7 +678,7 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileType($mimeType);
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName(basename($url), 127));
 		$monographFile->setType($typePath);
-		$monographFile->setRound($this->monograph->getCurrentReviewRound());
+		$monographFile->setRound($this->monograph->getCurrentRound());
 		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 
 		$newFileName = $this->generateFilename($monographFile, $type, $monographFile->getOriginalFileName());
@@ -715,7 +715,7 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileType($temporaryFile->getFileType());
 		$monographFile->setOriginalFileName($temporaryFile->getOriginalFileName());
 		$monographFile->setType($typePath);
-		$monographFile->setRound($this->monograph->getCurrentReviewRound());
+		$monographFile->setRound($this->monograph->getCurrentRound());
 		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 		$monographFile->setAssocId($assocId);
 

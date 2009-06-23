@@ -31,7 +31,7 @@
 	<message key="editor.submissionArchive">Submission Archive</message>
 	<message key="editor.publishing">Publishing</message>
 	<message key="editor.publishedMonographs">Published Monographs</message>
-	<message key="editor.allAcquisitionsArrangements">All Acquisitions Arrangements</message>
+	<message key="editor.allArrangements">All Arrangements</message>
 	<message key="editor.allEditors">All Editors</message>
 	<message key="editor.me">Me</message>
 	<message key="editor.submissionArchive.noSubmissions">No submissions in the archive.</message>
@@ -129,7 +129,7 @@
 	<message key="editor.submissions.averageTime">Weeks</message>
 	<message key="editor.submissions.lastCompleted">Last Complete</message>
 	<message key="editor.submissions.assignedTo">Assigned To</message>
-	<message key="editor.submissions.inSection">In Section</message>
+	<message key="editor.submissions.inArrangement">In Arrangement</message>
 	<message key="editor.monograph.scheduleForPublication">Schedule for publication in</message>
 	<message key="editor.monograph.scheduleForPublication.toBeAssigned">To Be Assigned</message>
 	<message key="editor.monograph.display">Display</message>

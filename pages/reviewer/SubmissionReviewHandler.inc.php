@@ -63,10 +63,10 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$templateMgr->assign('confirmedStatus', $confirmedStatus);
 		$templateMgr->assign('declined', $submission->getDeclined());
 		$templateMgr->assign('reviewFormResponseExists', $reviewFormResponseDao->reviewFormResponseExists($reviewId));
-		$templateMgr->assign('round', $submission->getCurrentReviewRound());
+		$templateMgr->assign('round', $submission->getCurrentRound());
 		$templateMgr->assign('reviewType', $submission->getCurrentReviewType());
 		$templateMgr->assign_by_ref('reviewFile', $reviewAssignment->getReviewFile());
-		//$templateMgr->assign_by_ref('reviewerFile', $submission->getReviewerFile());
+		$templateMgr->assign_by_ref('reviewerFile', $submission->getReviewerFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('press', $press);
 		$templateMgr->assign_by_ref('reviewGuidelines', $press->getLocalizedSetting('reviewGuidelines'));

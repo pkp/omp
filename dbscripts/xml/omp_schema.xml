@@ -1182,7 +1182,8 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
-		<field name="current_review" type="I8"/>
+		<field name="current_review_type" type="I8"/>
+		<field name="current_round" type="I8"/>
 		<descr>Monographs.</descr>
 		<index name="monographs_user_id">
 			<col>user_id</col>

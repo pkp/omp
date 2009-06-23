@@ -11,8 +11,8 @@
 <div id="editorDecision">
 <h3>{translate key="submission.editorDecision"}</h3>
 
-{assign var=authorFiles value=$submission->getAuthorFileRevisions($submission->getCurrentReviewType(), $submission->getCurrentReviewRound())}
-{assign var=editorFiles value=$submission->getEditorFileRevisions($submission->getCurrentReviewType(), $submission->getCurrentReviewRound())}
+{assign var=authorFiles value=$submission->getAuthorFileRevisions($submission->getCurrentReviewType(), $submission->getCurrentRound())}
+{assign var=editorFiles value=$submission->getEditorFileRevisions($submission->getCurrentReviewType(), $submission->getCurrentRound())}
 
 <table width="100%" class="data">
 	<tr valign="top">

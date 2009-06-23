@@ -19,6 +19,7 @@
 import('submission.acquisitionsEditor.AcquisitionsEditorSubmission');
 import('submission.author.AuthorSubmission'); // Bring in editor decision constants
 import('submission.reviewer.ReviewerSubmission'); // Bring in editor decision constants
+import('workflow.WorkflowProcess'); // import constants
 
 class AcquisitionsEditorSubmissionDAO extends DAO {
 	var $monographDao;
@@ -27,13 +28,12 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	var $editAssignmentDao;
 	var $reviewAssignmentDao;
 	var $copyeditorSubmissionDao;
-	var $layoutAssignmentDao;
 	var $monographFileDao;
 	var $suppFileDao;
+	var $signoffDao;
 	var $galleyDao;
 	var $monographEmailLogDao;
 	var $monographCommentDao;
-	var $proofAssignmentDao;
 
 	/**
 	 * Constructor.
@@ -48,13 +48,14 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$this->copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
+		$this->signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
-//		$this->monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
+		$this->monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
 		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 	}
 
 	/**
-	 * Retrieve a acquisitions editor submission by monograph ID.
+	 * Retrieve an acquisitions editor submission by monograph ID.
 	 * @param $monographId int
 	 * @return EditorSubmission
 	 */
@@ -62,20 +63,19 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$result =& $this->retrieve(
-			'SELECT	a.*,
+			'SELECT	m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev,
-				MAX(rr.round) AS current_round,
-				MAX(rr.review_revision) AS review_revision
-			FROM	monographs a
-				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
-				LEFT JOIN review_rounds rr ON (a.monograph_id = rr.monograph_id AND a.current_review = rr.review_type)
+				rr.review_revision AS review_revision
+			FROM	monographs m
+				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = m.arrangement_id)
+				LEFT JOIN review_rounds rr ON (m.monograph_id = rr.monograph_id AND m.current_review_type = rr.review_type AND m.current_round = rr.round)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE	a.monograph_id = ?
-			GROUP BY a.monograph_id',
+			WHERE	m.monograph_id = ?
+			GROUP BY m.monograph_id',
 			array(
 				'title',
 				$primaryLocale,
@@ -123,44 +123,14 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
 		$acquisitionsEditorSubmission->setEditAssignments($editAssignments->toArray());
 
-		$reviewRounds =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);
+		$reviewRoundsInfo =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);
 
-		$acquisitionsEditorSubmission->setReviewRoundsInfo($reviewRounds);
-
-/*		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$currentReviewProcess = $workflowDao->getCurrent($row['monograph_id'], WORKFLOW_PROCESS_ASSESSMENT);
-
-		$currentReviewType = isset($currentReviewProcess) ? $currentReviewProcess->getProcessId() : null;
-
-
-
-		$currentReviewRound = isset($currentReviewProcess) && isset($reviewRounds[$currentReviewProcess->getProcessId()]) ? 
-						$reviewRounds[$currentReviewProcess->getProcessId()] : null;
-
-		$acquisitionsEditorSubmission->setCurrentReviewType($currentReviewType);
-		$acquisitionsEditorSubmission->setCurrentReviewRound($currentReviewRound);
-*/
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-
-		$reviewType = $acquisitionsEditorSubmission->getCurrentReviewType();
-		$round = isset($reviewRounds[$reviewType]) ? $reviewRounds[$reviewType] : null;
-
-		if (isset($reviewType)) {
-			$reviewRound = $reviewRoundDao->build(
-							$acquisitionsEditorSubmission->getMonographId(), 
-							$acquisitionsEditorSubmission->getCurrentReviewType(), 
-							$round == null ? 1 : $round,
-							1
-						);
-			if ($acquisitionsEditorSubmission->getReviewRevision() != null) {
-				$reviewRound->setReviewRevision($acquisitionsEditorSubmission->getReviewRevision());
-				$reviewRoundDao->updateObject($reviewRound);
+		// Editor Decisions
+		foreach ( $reviewRoundsInfo as $reviewType => $currentReviewRound) {
+			for ($i = 1; $i <= $currentReviewRound; $i++) {
+				$acquisitionsEditorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id'], $reviewType, $i), $reviewType, $i);
 			}
 		}
-	
-		// Editor Decisions
-		$decisions =& $this->getEditorDecisions($row['monograph_id']);
-		$acquisitionsEditorSubmission->setDecisions($decisions);
 
 		// Comments
 		$acquisitionsEditorSubmission->setMostRecentEditorDecisionComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_EDITOR_DECISION, $row['monograph_id']));
@@ -175,75 +145,32 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByMonograph($row['monograph_id']));
 		$acquisitionsEditorSubmission->setEditorFile($this->monographFileDao->getMonographFile($row['editor_file_id']));
 
-		$acquisitionsEditorSubmission->setProspectusFile($this->monographFileDao->getMonographFile($row['prospectus_file_id']));
+		foreach ( $reviewRoundsInfo as $reviewType => $currentReviewRound) {
+			for ($i = 1; $i <= $currentReviewRound; $i++) {				
+				$acquisitionsEditorSubmission->setEditorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['editor_file_id'], $reviewType, $i), $reviewType, $i);
+				$acquisitionsEditorSubmission->setAuthorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['revised_file_id'], $reviewType, $i), $reviewType, $i);
+			}
+		}
 
-//		$acquisitionsEditorSubmission->setCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id']));
-		$acquisitionsEditorSubmission->setLayoutFile($this->monographFileDao->getMonographFile($row['layout_file_id']));
-
+		// Review Rounds
 		$acquisitionsEditorSubmission->setReviewRevision($row['review_revision']);
-		// Initial Copyedit File
-/*		if ($row['copyeditor_initial_revision'] != null) {
-
-			$acquisitionsEditorSubmission->setInitialCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id'], $row['copyeditor_initial_revision']));
-		}
-
-		// Editor / Author Copyedit File
-		if ($row['ce_editor_author_revision'] != null) {
-			$acquisitionsEditorSubmission->setEditorAuthorCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id'], $row['ce_editor_author_revision']));
-		}
-
-		// Final Copyedit File
-		if ($row['copyeditor_final_revision'] != null) {
-			$acquisitionsEditorSubmission->setFinalCopyeditFile($this->monographFileDao->getMonographFile($row['copyedit_file_id'], $row['copyeditor_final_revision']));
-		}
-*/
-		$acquisitionsEditorSubmission->setCopyeditFileRevisions($this->monographFileDao->getMonographFileRevisionsInRange($row['copyedit_file_id']));
-
-		$editorFileRevisions = $this->monographFileDao->getMonographFileRevisions($row['editor_file_id']);
-		$authorFileRevisions = $this->monographFileDao->getMonographFileRevisions($row['revised_file_id'], null, false);
-
-		$acquisitionsEditorSubmission->setEditorFileRevisions($editorFileRevisions);
-		$acquisitionsEditorSubmission->setAuthorFileRevisions($authorFileRevisions);
 
 		// Review Assignments
-
-		$acquisitionsEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getByMonographId($row['monograph_id'], $reviewType, $round));
-
-		// Copyeditor Assignment
-/*		$acquisitionsEditorSubmission->setCopyedId($row['copyed_id']);
-		$acquisitionsEditorSubmission->setCopyeditorId($row['copyeditor_id']);
-		$acquisitionsEditorSubmission->setCopyeditor($this->userDao->getUser($row['copyeditor_id']), true);
-		$acquisitionsEditorSubmission->setCopyeditorDateNotified($this->datetimeFromDB($row['copyeditor_date_notified']));
-		$acquisitionsEditorSubmission->setCopyeditorDateUnderway($this->datetimeFromDB($row['copyeditor_date_underway']));
-		$acquisitionsEditorSubmission->setCopyeditorDateCompleted($this->datetimeFromDB($row['copyeditor_date_completed']));
-		$acquisitionsEditorSubmission->setCopyeditorDateAcknowledged($this->datetimeFromDB($row['copyeditor_date_acknowledged']));
-		$acquisitionsEditorSubmission->setCopyeditorDateAuthorNotified($this->datetimeFromDB($row['ce_date_author_notified']));
-		$acquisitionsEditorSubmission->setCopyeditorDateAuthorUnderway($this->datetimeFromDB($row['ce_date_author_underway']));
-		$acquisitionsEditorSubmission->setCopyeditorDateAuthorCompleted($this->datetimeFromDB($row['ce_date_author_completed']));
-		$acquisitionsEditorSubmission->setCopyeditorDateAuthorAcknowledged($this->datetimeFromDB($row['ce_date_author_acknowledged']));
-		$acquisitionsEditorSubmission->setCopyeditorDateFinalNotified($this->datetimeFromDB($row['ce_date_final_notified']));
-		$acquisitionsEditorSubmission->setCopyeditorDateFinalUnderway($this->datetimeFromDB($row['ce_date_final_underway']));
-		$acquisitionsEditorSubmission->setCopyeditorDateFinalCompleted($this->datetimeFromDB($row['ce_date_final_completed']));
-		$acquisitionsEditorSubmission->setCopyeditorDateFinalAcknowledged($this->datetimeFromDB($row['ce_date_final_acknowledged']));
-		$acquisitionsEditorSubmission->setCopyeditorInitialRevision($row['copyeditor_initial_revision']);
-		$acquisitionsEditorSubmission->setCopyeditorEditorAuthorRevision($row['ce_editor_author_revision']);
-		$acquisitionsEditorSubmission->setCopyeditorFinalRevision($row['copyeditor_final_revision']);
-*/
-		// Layout Editing
-//		$acquisitionsEditorSubmission->setLayoutAssignments($this->layoutAssignmentDao->getByMonographId($row['monograph_id']));
-
-//		$acquisitionsEditorSubmission->setGalleys($this->galleyDao->getGalleysByMonograph($row['monograph_id']));
- 
+		foreach ( $reviewRoundsInfo as $reviewType => $currentReviewRound) {
+			for ($i = 1; $i <= $currentReviewRound; $i++) {		
+				$acquisitionsEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getByMonographId($row['monograph_id'], $reviewType, $i), $reviewType, $i);				
+			}
+		}
+	
 		// Proof Assignment
-//		$acquisitionsEditorSubmission->setProofAssignment($this->proofAssignmentDao->getProofAssignmentByMonographId($row['monograph_id']));
-//print_r($acquisitionsEditorSubmission);
+
 		HookRegistry::call('AcquisitionsEditorSubmissionDAO::_fromRow', array(&$acquisitionsEditorSubmission, &$row));
 
 		return $acquisitionsEditorSubmission;
 	}
 
 	/**
-	 * Update an existing acquisitions editor submission.
+	 * Update an existing acquisitions editorsubmission.
 	 * @param $acquisitionsEditorSubmission AcquisitionsEditorSubmission
 	 */
 	function updateAcquisitionsEditorSubmission(&$acquisitionsEditorSubmission) {
@@ -286,7 +213,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 			}
 		}
 		}
-		$round = $acquisitionsEditorSubmission->getCurrentReviewRound();
+		$round = $acquisitionsEditorSubmission->getCurrentRound();
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 
 		$reviewType = $acquisitionsEditorSubmission->getCurrentReviewType();
@@ -306,14 +233,17 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		// update review assignments
 		$removedReviewAssignments =& $acquisitionsEditorSubmission->getRemovedReviewAssignments();
 
-		foreach ($acquisitionsEditorSubmission->getReviewAssignments() as $reviewAssignment) {
-
-			if (isset($removedReviewAssignments[$reviewAssignment->getReviewId()])) continue;
-
-			if ($reviewAssignment->getReviewId() > 0) {
-				$this->reviewAssignmentDao->updateObject($reviewAssignment);
-			} else {
-				$this->reviewAssignmentDao->insertObject($reviewAssignment);
+		foreach ($reviewRounds as $reviewType => $round) {
+			for ($i = 1; $i <= $round; $i++) {
+				foreach ($acquisitionsEditorSubmission->getReviewAssignments($reviewType, $i) as $reviewAssignment) {
+					if (isset($removedReviewAssignments[$reviewAssignment->getReviewId()])) continue;
+		
+					if ($reviewAssignment->getReviewId() > 0) {
+						$this->reviewAssignmentDao->updateObject($reviewAssignment);
+					} else {
+						$this->reviewAssignmentDao->insertObject($reviewAssignment);
+					}
+				}
 			}
 		}
 
@@ -322,17 +252,6 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 			$this->reviewAssignmentDao->deleteById($removedReviewAssignmentId);
 		}
 
-		// Update layout editing assignment
-/*		$layoutAssignments =& $acquisitionsEditorSubmission->getLayoutAssignments();
-
-		if (isset($layoutAssignment)) {
-			if ($layoutAssignment->getId() > 0) {
-				$this->layoutAssignmentDao->updateLayoutAssignment($layoutAssignment);
-			} else {
-				$this->layoutAssignmentDao->insertLayoutAssignment($layoutAssignment);
-			}
-		}
-*/
 		// Update monograph
 		if ($acquisitionsEditorSubmission->getMonographId()) {
 
@@ -340,12 +259,12 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 			// Only update fields that can actually be edited.
 			$monograph->setAcquisitionsArrangementId($acquisitionsEditorSubmission->getAcquisitionsArrangementId());
-	//		$monograph->setCurrentRound($acquisitionsEditorSubmission->getCurrentRound());
+			$monograph->setCurrentRound($acquisitionsEditorSubmission->getCurrentRound());
+			$monograph->setCurrentReviewType($acquisitionsEditorSubmission->getCurrentReviewType());
 			$monograph->setReviewFileId($acquisitionsEditorSubmission->getReviewFileId());
 			$monograph->setEditorFileId($acquisitionsEditorSubmission->getEditorFileId());
 			$monograph->setLayoutFileId($acquisitionsEditorSubmission->getLayoutFileId());
 			$monograph->setStatus($acquisitionsEditorSubmission->getStatus());
-		//	$monograph->setCopyeditFileId($acquisitionsEditorSubmission->getCopyeditFileId());
 			$monograph->setDateStatusModified($acquisitionsEditorSubmission->getDateStatusModified());
 			$monograph->setLastModified($acquisitionsEditorSubmission->getLastModified());
 			$monograph->setCommentsStatus($acquisitionsEditorSubmission->getCommentsStatus());
@@ -356,7 +275,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Get all acquisitions editor submissions for a acquisitions editor.
+	 * Get all acquisitions editorsubmissions for an acquisitions editor.
 	 * @param $acquisitionsEditorId int
 	 * @param $status boolean true if active, false if completed.
 	 * @return array AcquisitionsEditorSubmission
@@ -368,28 +287,28 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmissions = array();
 
 		$result =& $this->retrieve(
-			'SELECT	a.*,
+			'SELECT	m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev,
-				MAX(rr.round) AS current_round,
 				rr.review_revision AS review_revision
-			FROM	monographs a
-				LEFT JOIN edit_assignments e ON (e.monograph_id = a.monograph_id)
-				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
+			FROM	monographs m
+				LEFT JOIN edit_assignments e ON (e.monograph_id = m.monograph_id)
+				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = m.arrangement_id)
+				LEFT JOIN review_rounds r2 ON (m.monograph_id = r2.monograph_id AND m.current_round = r2.round)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE	a.press_id = ?
+			WHERE	m.press_id = ?
 				AND e.editor_id = ?
-				AND a.status = ?',
+				AND m.status = ?',
 			array(
 				'title',
 				$primaryLocale,
 				'title',
 				$locale,
 				'abbrev',
-				$primarylocale,
+				$primaryLocale,
 				'abbrev',
 				$locale,
 				$pressId,
@@ -417,7 +336,13 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$locale = Locale::getLocale();
 
 		$params = array(
-			'title', // Acquisitions title
+			ASSOC_TYPE_MONOGRAPH,
+			'SIGNOFF_COPYEDITING_FINAL',
+			ASSOC_TYPE_MONOGRAPH,
+			'SIGNOFF_PROOFREADING_PROOFREADER',
+			ASSOC_TYPE_MONOGRAPH,
+			'SIGNOFF_LAYOUT',
+			'title', // Section title
 			$primaryLocale,
 			'title',
 			$locale,
@@ -483,10 +408,10 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		if (!empty($dateFrom) || !empty($dateTo)) switch($dateField) {
 			case SUBMISSION_FIELD_DATE_SUBMITTED:
 				if (!empty($dateFrom)) {
-					$searchSql .= ' AND a.date_submitted >= ' . $this->datetimeToDB($dateFrom);
+					$searchSql .= ' AND m.date_submitted >= ' . $this->datetimeToDB($dateFrom);
 				}
 				if (!empty($dateTo)) {
-					$searchSql .= ' AND a.date_submitted <= ' . $this->datetimeToDB($dateTo);
+					$searchSql .= ' AND m.date_submitted <= ' . $this->datetimeToDB($dateTo);
 				}
 				break;
 			case SUBMISSION_FIELD_DATE_COPYEDIT_COMPLETE:
@@ -516,38 +441,47 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		}
 
 		$sql = 'SELECT DISTINCT
-				a.*,
+				m.*,
+				scf.date_completed as copyedit_completed,
+				spr.date_completed as proofread_completed,
+				sle.date_completed as layout_completed,
+				atl.setting_value AS submission_title,
+				aap.last_name AS author_name,
 				e.can_review AS can_review,
 				e.can_edit AS can_edit,
 				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
+				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev,
+				r2.review_revision
 			FROM
-				monographs a
-				INNER JOIN monograph_authors aa ON (aa.monograph_id = a.monograph_id)
-				LEFT JOIN edit_assignments e ON (e.monograph_id = a.monograph_id)
+				monographs m
+				INNER JOIN monograph_authors aa ON (aa.monograph_id = m.monograph_id)
+				LEFT JOIN monograph_authors aap ON (aap.monograph_id = m.monograph_id AND aap.primary_contact = 1)
+				LEFT JOIN edit_assignments e ON (e.monograph_id = m.monograph_id)
 				LEFT JOIN users ed ON (e.editor_id = ed.user_id)
-				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
-				LEFT JOIN proof_assignments p ON (p.monograph_id = a.monograph_id)
-				LEFT JOIN users pe ON (pe.user_id = p.proofreader_id)
-				LEFT JOIN designer_assignments l ON (l.monograph_id = a.monograph_id) 
-				LEFT JOIN users le ON (le.user_id = l.designer_id)
+				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = m.arrangement_id)
+				LEFT JOIN signoffs scf ON (m.monograph_id = scf.assoc_id AND scf.assoc_type = ? AND scf.symbolic = ?)
+				LEFT JOIN users ce ON (scf.user_id = ce.user_id)
+				LEFT JOIN signoffs spr ON (m.monograph_id = spr.assoc_id AND spr.assoc_type = ? AND spr.symbolic = ?)
+				LEFT JOIN users pe ON (pe.user_id = spr.user_id)
+				LEFT JOIN review_rounds r2 ON (m.monograph_id = r2.monograph_id and m.current_review_type = r2.review_type AND m.current_round = r2.round)
+				LEFT JOIN signoffs sle ON (m.monograph_id = sle.assoc_id AND sle.assoc_type = ? AND sle.symbolic = ?) LEFT JOIN users le ON (le.user_id = sle.user_id)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN monograph_settings atl ON (a.monograph_id = atl.monograph_id AND atl.setting_name = ?)
-			WHERE	a.press_id = ?
+				LEFT JOIN monograph_settings atl ON (m.monograph_id = atl.monograph_id AND atl.setting_name = ?)
+			WHERE	m.press_id = ?
 				AND e.editor_id = ?
-				AND a.submission_progress = 0' . (!empty($additionalWhereSql)?" AND ($additionalWhereSql)":"");
+				AND m.submission_progress = 0' . (!empty($additionalWhereSql)?" AND ($additionalWhereSql)":"");
 
 		// "Active" submissions have a status of STATUS_QUEUED and
 		// the layout editor has not yet been acknowledged.
-		if ($status) $sql .= ' AND a.status = ' . STATUS_QUEUED;
-		else $sql .= ' AND a.status <> ' . STATUS_QUEUED;
+		if ($status) $sql .= ' AND m.status = ' . STATUS_QUEUED;
+		else $sql .= ' AND m.status <> ' . STATUS_QUEUED;
 
 		if ($arrangementId) {
 			$params[] = $arrangementId;
-			$searchSql .= ' AND a.arrangement_id = ?';
+			$searchSql .= ' AND m.arrangement_id = ?';
 		}
 
 		$result =& $this->retrieveRange($sql . ' ' . $searchSql . ' ORDER BY monograph_id ASC',
@@ -571,11 +505,11 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getAcquisitionsEditorSubmissionsInReview($acquisitionsEditorId, $pressId, $arrangementId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getAcquisitionsEditorSubmissionsInReview($acquisitionsEditorId, $pressId, $arrangementId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$submissions = array();
 
-		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredAcquisitionsEditorSubmissions($acquisitionsEditorId, $pressId, $arrangementId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true, 'e.can_review = 1');
+		// FIXME: Does not pass $rangeInfo else we only get partial results
+		$result = $this->getUnfilteredAcquisitionsEditorSubmissions($acquisitionsEditorId, $pressId, $arrangementId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true, 'e.can_review = 1', null, $sortBy, $sortDirection);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -584,7 +518,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 			// check if submission is still in review
 			$inReview = true;
-			$decisions = $submission->getDecisions();
+			$decisions = $submission->getDecisions(WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL);
 			$decision = array_pop($decisions);
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
@@ -632,7 +566,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 			// check if submission is still in review
 			$inReview = true;
-			$decisions = $submission->getDecisions();
+			$decisions = $submission->getDecisions(WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL);
 			$decision = array_pop($decisions);
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
@@ -711,7 +645,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 			// check if submission is still in review
 			$inReview = true;
-			$decisions = $acquisitionsEditorSubmission->getDecisions();
+			$decisions = $acquisitionsEditorSubmission->getDecisions(WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL);
 			$decision = array_pop($decisions);
 			if (!empty($decision)) {
 				$latestDecision = array_pop($decision);
@@ -771,19 +705,36 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 * Get the editor decisions for a review round of a monograph.
 	 * @param $monographId int
 	 */
-	function getEditorDecisions($monographId) {
+	function getEditorDecisions($monographId, $reviewType = null, $round = null) {
 		$decisions = array();
 
-		$result =& $this->retrieve(
-				'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round 
-				FROM edit_decisions 
-				WHERE monograph_id = ? 
-				ORDER BY review_type, date_decided ASC', 
-				$monographId
-			);
-
+		if ($reviewType == null) {
+			$result =& $this->retrieve(
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round 
+					FROM edit_decisions 
+					WHERE monograph_id = ? 
+					ORDER BY date_decided ASC', 
+					$monographId
+				);
+		} elseif ($round == null) {
+			$result =& $this->retrieve(
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round 
+					FROM edit_decisions 
+					WHERE monograph_id = ? AND review_type = ? 
+					ORDER BY date_decided ASC', 
+					array($monographId, $reviewType)
+				);
+		} else {
+			$result =& $this->retrieve(
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round 
+					FROM edit_decisions 
+					WHERE monograph_id = ? AND review_type = ? AND round = ?
+					ORDER BY date_decided ASC', 
+					array($monographId, $reviewType, $round)
+				);
+		}
+		
 		while (!$result->EOF) {
-
 			$value = array(
 					'editDecisionId' => $result->fields['edit_decision_id'], 
 					'editorId' => $result->fields['editor_id'], 
@@ -791,9 +742,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 					'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
 				);
 
-			$decisions[$result->fields['review_type']][$result->fields['round']][] = $value;
-			
-
+			$decisions[] = $value;
 			$result->moveNext();
 		}
 		$result->Close();
@@ -807,9 +756,9 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 * @param $monographId int
 	 * @return int
 	 */
-	function getMaxReviewRound($monographId) {
+	function getMaxReviewRound($monographId, $reviewType) {
 		$result =& $this->retrieve(
-			'SELECT MAX(round) FROM review_rounds WHERE monograph_id = ?', $monographId
+			'SELECT MAX(round) FROM review_rounds WHERE monograph_id = ? AND review_type = ?', array($monographId, $reviewType)
 		);
 		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;
 
@@ -823,8 +772,6 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 * Check if a reviewer is assigned to a specified monograph.
 	 * @param $monographId int
 	 * @param $reviewerId int
-	 * @param $reviewType int
-	 * @param $round int
 	 * @return boolean
 	 */
 	function reviewerExists($monographId, $reviewerId, $reviewType, $round) {
@@ -840,8 +787,8 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve a list of all reviewers along with information about their current status with respect to a monograph's current round.
-	 * @param $pressId int
+	 * Retrieve a list of all reviewers along with information about their current status with respect to an monograph's current round.
+	 * @param $journalId int
 	 * @param $monographId int
 	 * @param $round int
 	 * @param $searchType int USER_FIELD_...
@@ -851,82 +798,6 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	 * @return DAOResultFactory containing matching Users
 	 */
 	function &getReviewersForMonograph($pressId, $monographId, $reviewType, $round = null, $searchType = null, $search = null, $searchMatch = null, $rangeInfo = null) {
-/*		$paramArray = array('interests', $pressId, $monographId, $round);
-		$searchSql = '';
-
-		$searchTypeMap = array(
-			USER_FIELD_FIRSTNAME => 'u.first_name',
-			USER_FIELD_LASTNAME => 'u.last_name',
-			USER_FIELD_USERNAME => 'u.username',
-			USER_FIELD_EMAIL => 'u.email',
-			USER_FIELD_INTERESTS => 's.setting_value'
-		);
-		$reviewTypeSql = '';
-		if (isset($reviewType)) {
-			switch ($reviewType) {
-				case REVIEW_TYPE_INTERNAL:
-					$reviewTypeSql = 'NOT ';
-					break;
-				case REVIEW_TYPE_EXTERNAL:
-					$reviewTypeSql = '';
-					break;
-			}
-
-		}
-
-		if (isset($search) && isset($searchTypeMap[$searchType])) {
-			$fieldName = $searchTypeMap[$searchType];
-			switch ($searchMatch) {
-				case 'is':
-					$searchSql = "AND LOWER($fieldName) = LOWER(?)";
-					$paramArray[] = $search;
-					break;
-				case 'contains':
-					$searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
-					$paramArray[] = '%' . $search . '%';
-					break;
-				case 'startsWith':
-					$searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
-					$paramArray[] = $search . '%';
-					break;
-			}
-		} elseif (isset($search)) switch ($searchType) {
-			case USER_FIELD_USERID:
-				$searchSql = 'AND user_id=?';
-				$paramArray[] = $search;
-				break;
-			case USER_FIELD_INITIAL:
-				$searchSql = 'AND (LOWER(last_name) LIKE LOWER(?) OR LOWER(username) LIKE LOWER(?))';
-				$paramArray[] = $search . '%';
-				$paramArray[] = $search . '%';
-				break;
-		}
-
-		$sql = 'SELECT DISTINCT
-			u.*,
-			a.review_id
-			FROM users u 
-			LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
-			LEFT JOIN (
-				SELECT DISTINCT rx.user_id FROM roles rx, roles ry LEFT JOIN roles rz 
-				ON (ry.user_id = rz.user_id AND rz.role_id = 32)
-				WHERE rx.user_id = ry.user_id
-				AND rx.role_id = 256
-				AND rz.role_id IS '.$reviewTypeSql.'NULL
-				AND rx.press_id = ?
-				) r ON (r.user_id = u.user_id)
-			LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id AND a.cancelled = 0 AND a.monograph_id = ? AND a.round = ?)
-			WHERE
-			u.user_id = r.user_id ' . $searchSql . '
-			ORDER BY last_name, first_name';
-
-		$result =& $this->retrieveRange(
-				$sql, $paramArray, $rangeInfo
-			);
-
-		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
-
-		return $returner;*/
 		$paramArray = array('interests', $monographId, $reviewType, $round, $pressId, RoleDAO::getRoleIdFromPath('reviewer'));
 		$searchSql = '';
 
@@ -1012,7 +883,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 				LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id AND a.monograph_id = ?)
 			WHERE	r.press_id = ? AND
 				r.role_id = ? AND
-				a.monograph_id IS NULL
+				m.monograph_id IS NULL
 			ORDER BY last_name, first_name',
 			array($monographId, $pressId, RoleDAO::getRoleIdFromPath('reviewer'))
 		);
@@ -1108,7 +979,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 			WHERE	r.press_id = ? AND
 				r.role_id = ? AND
 				sci.assoc_id IS NULL
-				a.monograph_id IS NULL
+				m.monograph_id IS NULL
 				' . $searchSql . '
 			ORDER BY last_name, first_name',
 			$paramArray
@@ -1134,14 +1005,14 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		// Get counts of completed submissions
 		$result =& $this->retrieve(
-				'SELECT la.designer_id AS editor_id, COUNT(la.monograph_id) AS complete 
-				FROM designer_assignments la, monographs a 
-				INNER JOIN proof_assignments p ON (p.monograph_id = a.monograph_id) 
-				WHERE la.monograph_id = a.monograph_id AND 
-					(la.date_completed IS NOT NULL AND p.date_layouteditor_completed IS NOT NULL) AND 
-					la.date_notified IS NOT NULL AND 
-					a.press_id = ? 
-				GROUP BY la.designer_id', 
+				'SELECT lm.designer_id AS editor_id, COUNT(lm.monograph_id) AS complete 
+				FROM designer_assignments la, monographs m 
+				INNER JOIN proof_assignments p ON (p.monograph_id = m.monograph_id) 
+				WHERE lm.monograph_id = m.monograph_id AND 
+					(lm.date_completed IS NOT NULL AND p.date_layouteditor_completed IS NOT NULL) AND 
+					lm.date_notified IS NOT NULL AND 
+					m.press_id = ? 
+				GROUP BY lm.designer_id', 
 				$pressId
 			);
 		while (!$result->EOF) {
@@ -1156,14 +1027,14 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		// Get counts of incomplete submissions
 		$result =& $this->retrieve(
-				'SELECT la.designer_id AS editor_id, COUNT(la.monograph_id) AS incomplete 
-				FROM designer_assignments la, monographs a 
-				INNER JOIN proof_assignments p ON (p.monograph_id = a.monograph_id) 
-				WHERE la.monograph_id = a.monograph_id AND 
-					(la.date_completed IS NULL OR p.date_layouteditor_completed IS NULL) AND 
-					la.date_notified IS NOT NULL AND 
-					a.press_id = ? 
-				GROUP BY la.designer_id', 
+				'SELECT lm.designer_id AS editor_id, COUNT(lm.monograph_id) AS incomplete 
+				FROM designer_assignments la, monographs m 
+				INNER JOIN proof_assignments p ON (p.monograph_id = m.monograph_id) 
+				WHERE lm.monograph_id = m.monograph_id AND 
+					(lm.date_completed IS NULL OR p.date_layouteditor_completed IS NULL) AND 
+					lm.date_notified IS NOT NULL AND 
+					m.press_id = ? 
+				GROUP BY lm.designer_id', 
 				$pressId
 			);
 		while (!$result->EOF) {
@@ -1178,11 +1049,11 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		// Get last assignment date
 		$result =& $this->retrieve(
-				'SELECT la.designer_id AS editor_id, MAX(la.date_notified) AS last_assigned 
-				FROM designer_assignments la, monographs a 
-				WHERE la.monograph_id=a.monograph_id AND 
-					a.press_id = ? 
-				GROUP BY la.designer_id', 
+				'SELECT lm.designer_id AS editor_id, MAX(lm.date_notified) AS last_assigned 
+				FROM designer_assignments la, monographs m 
+				WHERE lm.monograph_id=m.monograph_id AND 
+					m.press_id = ? 
+				GROUP BY lm.designer_id', 
 				$pressId
 			);
 		while (!$result->EOF) {
@@ -1208,9 +1079,9 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		// Get counts of completed submissions
 		$result =& $this->retrieve(
 				'SELECT ra.reviewer_id AS editor_id, MAX(ra.date_notified) AS last_notified 
-				FROM review_assignments ra, monographs a 
-				WHERE ra.monograph_id = a.monograph_id AND 
-					a.press_id = ? 
+				FROM review_assignments ra, monographs m 
+				WHERE ra.monograph_id = m.monograph_id AND 
+					m.press_id = ? 
 				GROUP BY ra.reviewer_id', 
 				$pressId
 			);
@@ -1227,12 +1098,12 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		// Get completion status
 		$result =& $this->retrieve(
 				'SELECT r.reviewer_id, COUNT(*) AS incomplete 
-				FROM review_assignments r, monographs a 
-				WHERE r.monograph_id = a.monograph_id AND 
+				FROM review_assignments r, monographs m 
+				WHERE r.monograph_id = m.monograph_id AND 
 					r.date_notified IS NOT NULL AND 
 					r.date_completed IS NULL AND 
 					r.cancelled = 0 AND 
-					a.press_id = ? 
+					m.press_id = ? 
 				GROUP BY r.reviewer_id', 
 				$pressId
 			);
@@ -1249,12 +1120,12 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		// Calculate time taken for completed reviews
 		$result =& $this->retrieve(
 				'SELECT r.reviewer_id, r.date_notified, r.date_completed 
-				FROM review_assignments r, monographs a 
-				WHERE r.monograph_id = a.monograph_id AND 
+				FROM review_assignments r, monographs m 
+				WHERE r.monograph_id = m.monograph_id AND 
 					r.date_notified IS NOT NULL AND 
 					r.date_completed IS NOT NULL AND 
 					r.declined = 0 AND 
-					a.press_id = ?', 
+					m.press_id = ?', 
 				$pressId
 			);
 		while (!$result->EOF) {
@@ -1366,12 +1237,12 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		// Get counts of completed submissions
 		$result =& $this->retrieve(
-				'SELECT pa.proofreader_id AS editor_id, COUNT(pa.monograph_id) AS complete 
+				'SELECT pm.proofreader_id AS editor_id, COUNT(pm.monograph_id) AS complete 
 				FROM proof_assignments pa, monographs m 
-				WHERE pa.monograph_id = a.monograph_id AND 
-					pa.date_proofreader_completed IS NOT NULL AND 
+				WHERE pm.monograph_id = m.monograph_id AND 
+					pm.date_proofreader_completed IS NOT NULL AND 
 					m.press_id = ? 
-				GROUP BY pa.proofreader_id', 
+				GROUP BY pm.proofreader_id', 
 				$pressId
 			);
 		while (!$result->EOF) {
@@ -1386,12 +1257,12 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		// Get counts of incomplete submissions
 		$result =& $this->retrieve(
-				'SELECT pa.proofreader_id AS editor_id, COUNT(pa.monograph_id) AS incomplete 
-				FROM proof_assignments pa, monographs a 
-				WHERE pa.monograph_id = a.monograph_id AND 
-					pa.date_proofreader_completed IS NULL AND 
-					a.press_id = ? 
-				GROUP BY pa.proofreader_id', 
+				'SELECT pm.proofreader_id AS editor_id, COUNT(pm.monograph_id) AS incomplete 
+				FROM proof_assignments pa, monographs m 
+				WHERE pm.monograph_id = m.monograph_id AND 
+					pm.date_proofreader_completed IS NULL AND 
+					m.press_id = ? 
+				GROUP BY pm.proofreader_id', 
 				$pressId
 			);
 		while (!$result->EOF) {
@@ -1406,11 +1277,11 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		// Get last assignment date
 		$result =& $this->retrieve(
-				'SELECT pa.proofreader_id AS editor_id, MAX(pa.date_proofreader_notified) AS last_assigned 
-				FROM proof_assignments pa, monographs a 
-				WHERE pa.monograph_id = a.monograph_id AND 
-					a.press_id = ? 
-				GROUP BY pa.proofreader_id', 
+				'SELECT pm.proofreader_id AS editor_id, MAX(pm.date_proofreader_notified) AS last_assigned 
+				FROM proof_assignments pa, monographs m 
+				WHERE pm.monograph_id = m.monograph_id AND 
+					m.press_id = ? 
+				GROUP BY pm.proofreader_id', 
 				$pressId
 			);
 		while (!$result->EOF) {
@@ -1423,6 +1294,33 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		return $statistics;
+	}
+	
+	/**
+	 * Map a column heading value to a database value for sorting
+	 * @param string
+	 * @return string
+	 */
+	function getSortMapping($heading) {
+		switch ($heading) {
+			case 'id': return 'm.monograph_id';
+			case 'submitDate': return 'm.date_submitted';
+			case 'arrangement': return 'arrangement_abbrev';
+			case 'authors': return 'author_name';
+			case 'title': return 'submission_title';
+			case 'active': return 'incomplete';		
+			case 'subCopyedit': return 'copyedit_completed';
+			case 'subLayout': return 'layout_completed';
+			case 'subProof': return 'proofread_completed';
+			case 'reviewerName': return 'u.last_name';
+			case 'quality': return 'average_quality';
+			case 'done': return 'completed';
+			case 'latest': return 'latest';
+			case 'active': return 'active';
+			case 'average': return 'average';
+
+			default: return null;
+		}
 	}
 }
 

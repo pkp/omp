@@ -72,6 +72,10 @@
 	<message key="manuscript.submissions">Manuscript Submissions</message>
 	<message key="manuscript.artwork">Artwork</message>
 	<message key="submission.changeAcquisitionsArrangement">Change to</message>
+
+	<message key="submission.sent">Sent</message>
+	<message key="submission.internalReview"><![CDATA[Internal&nbsp;Review]]></message>
+	<message key="submission.externalReview"><![CDATA[External&nbsp;Review]]></message>
 	<message key="submission.copyediting">Copyediting</message>
 	<message key="submission.production">Production</message>
 	<message key="submission.copyedit">Copyedit</message>

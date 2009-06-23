@@ -125,39 +125,33 @@ class MonographFileDAO extends DAO {
 	 * @param $monographId int
 	 * @return MonographFile
 	 */
-	function &getMonographFileRevisions($fileId, $reviewType = null, $organizeByReview = true) {
+	function &getMonographFileRevisions($fileId, $reviewType = null, $round = null) {
 		if ($fileId === null) {
 			$returner = null;
 			return $returner;
 		}
 		$monographFiles = array();
 
-		// FIXME If "round" is review-specific, it shouldn't be in this table
 		if ($reviewType == null) {
 			$result =& $this->retrieve(
 				'SELECT a.* FROM monograph_files a WHERE file_id = ? ORDER BY revision',
 				$fileId
 			);
-		} else {
+		} elseif ( $round == null ) {
 			$result =& $this->retrieve(
 				'SELECT a.* FROM monograph_files a WHERE file_id = ? AND review_type = ? ORDER BY revision',
 				array($fileId, $reviewType)
 			);
-		}
-		if ($organizeByReview) {
-			while (!$result->EOF) {
-				$file =& $this->_returnMonographFileFromRow($result->GetRowAssoc(false));
-
-				$monographFiles[$result->fields['review_type']][$result->fields['round']][] = $file;
-
-				unset($file);
-				$result->moveNext();
-			}
 		} else {
-			while (!$result->EOF) {
-				$monographFiles[] =& $this->_returnMonographFileFromRow($result->GetRowAssoc(false));
-				$result->moveNext();
-			}
+			$result =& $this->retrieve(
+				'SELECT a.* FROM monograph_files a WHERE file_id = ? AND review_type = ? AND round = ? ORDER BY revision',
+				array($fileId, $reviewType, $round)
+			);
+		}
+
+		while (!$result->EOF) {
+			$monographFiles[] =& $this->_returnMonographFileFromRow($result->GetRowAssoc(false));
+			$result->moveNext();
 		}
 
 		$result->Close();

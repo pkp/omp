@@ -56,14 +56,14 @@ class AcquisitionsEditorSubmission extends Monograph {
 			$reviewAssignment->setMonographId($this->getMonographId());
 		}
 
-		if (isset($this->reviewAssignments[$reviewAssignment->getRound()])) {
-			$roundReviewAssignments = $this->reviewAssignments[$reviewAssignment->getRound()];
+		if (isset($this->reviewAssignments[$reviewAssignment->getReviewType()][$reviewAssignment->getRound()])) {
+			$roundReviewAssignments = $this->reviewAssignments[$reviewAssignment->getReviewType()][$reviewAssignment->getRound()];
 		} else {
 			$roundReviewAssignments = Array();
 		}
 		array_push($roundReviewAssignments, $reviewAssignment);
 
-		return $this->reviewAssignments[$reviewAssignment->getRound()] = $roundReviewAssignments;
+		return $this->reviewAssignments[$reviewAssignment->getReviewType()][$reviewAssignment->getRound()] = $roundReviewAssignments;
 	}
 
 	/**
@@ -76,7 +76,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 		if (isset($this->editorDecisions[$reviewType][$round]) && is_array($this->editorDecisions[$reviewType][$round])) {
 			array_push($this->editorDecisions[$reviewType][$round], $editorDecision);
 		}
-		else $this->editorDecisions[$reviewType][$round] = Array($editorDecision);
+		else $this->editorDecisions[$reviewType][$round] = Array($editorDecision);		
 	}
 
 	/**
@@ -87,11 +87,26 @@ class AcquisitionsEditorSubmission extends Monograph {
 	function removeReviewAssignment($reviewId) {
 		$found = false;
 
-		if (isset($this->reviewAssignments[$reviewId])) {
-			$this->removedReviewAssignments[$reviewId] = $reviewId;
-			$found = true;
+		if ($reviewId != 0) {
+			// FIXME maintain a hash for quicker get/remove
+			$reviewAssignments = array();
+			$empty = array();
+			foreach ($this->reviewAssignments as $reviewType => $reviewRounds)  {
+				foreach ($reviewRounds as $round => $junk )  {
+					$roundReviewAssignments = $this->reviewAssignments[$reviewType][$round];
+					foreach ( $roundReviewAssignments as $assignment ) {
+						if ($assignment->getReviewId() == $reviewId) {
+							array_push($this->removedReviewAssignments, $reviewId);
+							$found = true;
+						} else {
+							array_push($reviewAssignments, $assignment);
+						}
+					}
+					$this->reviewAssignments[$reviewType][$round] = $reviewAssignments;
+					$reviewAssignments = $empty;
+				}
+			}
 		}
-
 		return $found;
 	}
 
@@ -101,7 +116,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 */
 	function updateReviewAssignment($reviewAssignment) {
 		$reviewAssignments = array();
-		$roundReviewAssignments = $this->reviewAssignments[$reviewAssignment->getRound()];
+		$roundReviewAssignments = $this->reviewAssignments[$reviewAssignment->getReviewType()][$reviewAssignment->getRound()];
 		for ($i=0, $count=count($roundReviewAssignments); $i < $count; $i++) {
 			if ($roundReviewAssignments[$i]->getReviewId() == $reviewAssignment->getReviewId()) {
 				array_push($reviewAssignments, $reviewAssignment);
@@ -109,7 +124,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 				array_push($reviewAssignments, $roundReviewAssignments[$i]);
 			}
 		}
-		$this->reviewAssignments[$reviewAssignment->getRound()] = $reviewAssignments;
+		$this->reviewAssignments[$reviewAssignment->getReviewType()][$reviewAssignment->getRound()] = $reviewAssignments;
 	}
 
 	/**
@@ -175,16 +190,22 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * Get review assignments for this monograph.
 	 * @return array ReviewAssignments
 	 */
-	function &getReviewAssignments() {
-		return $this->reviewAssignments;
+	function &getReviewAssignments($reviewType = null, $round = null) {
+		if ($reviewType == null) {
+			return $this->reviewAssignments;
+		} elseif ($round == null) {
+			return $this->reviewAssignments[$reviewType];
+		} else {
+			return $this->reviewAssignments[$reviewType][$round];
+		}
 	}
 
 	/**
 	 * Set review assignments for this monograph.
 	 * @param $reviewAssignments array ReviewAssignments
 	 */
-	function setReviewAssignments($reviewAssignments) {
-		return $this->reviewAssignments = $reviewAssignments;
+	function setReviewAssignments($reviewAssignments, $reviewType, $round) {
+		return $this->reviewAssignments[$reviewType][$round] = $reviewAssignments;
 	}
 
 	/**
@@ -204,11 +225,11 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * @return array
 	 */
 	function getDecisions($reviewType = null, $round = null) {
-		if ($reviewType == null && $round == null) {
+		if ($reviewType == null) {
 			return $this->editorDecisions;
-		} elseif ($reviewType != null && $round == null) {
+		} elseif ($round == null) {
 			if (isset($this->editorDecisions[$reviewType])) return $this->editorDecisions[$reviewType];
-		} elseif ($reviewType != null && $round != null) {
+		} else {
 			if (isset($this->editorDecisions[$reviewType][$round])) return $this->editorDecisions[$reviewType][$round];
 		}
 
@@ -218,10 +239,12 @@ class AcquisitionsEditorSubmission extends Monograph {
 
 	/**
 	 * Set editor decisions.
-	 * @param $decisions array
+	 * @param $editorDecisions array
+	 * @param $reviewType int
+	 * @param $round int
 	 */
-	function setDecisions($decisions) {
-		$this->editorDecisions = $decisions;
+	function setDecisions($editorDecisions, $reviewType, $round) {
+		$this->editorDecisions[$reviewType][$round] = $editorDecisions;
 	}
 
 	// 
@@ -297,30 +320,16 @@ class AcquisitionsEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Get all copyedit file revisions.
-	 * @return array MonographFiles
-	 */
-	function getCopyeditFileRevisions() {
-		return $this->copyeditFileRevisions;
-	}
-
-	/**
-	 * Set all copyedit file revisions.
-	 * @param $copyeditFileRevisions array MonographFiles
-	 */
-	function setCopyeditFileRevisions($copyeditFileRevisions) {
-		return $this->copyeditFileRevisions = $copyeditFileRevisions;
-	}
-
-	/**
 	 * Get all editor file revisions.
 	 * @return array MonographFiles
 	 */
-	function getEditorFileRevisions($reviewType = null) {
+	function getEditorFileRevisions($reviewType = null, $round = null) {
 		if ($reviewType == null) {
 			return $this->editorFileRevisions;
-		} else {
+		} elseif ( $round == null ) {
 			return $this->editorFileRevisions[$reviewType];
+		} else {
+			return $this->editorFileRevisions[$reviewType][$round];
 		}
 	}
 
@@ -328,19 +337,21 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * Set all editor file revisions.
 	 * @param $editorFileRevisions array MonographFiles
 	 */
-	function setEditorFileRevisions($editorFileRevisions) {
-		return $this->editorFileRevisions = $editorFileRevisions;
+	function setEditorFileRevisions($editorFileRevisions, $reviewType, $round) {
+		return $this->editorFileRevisions[$reviewType][$round] = $editorFileRevisions;
 	}
 
 	/**
 	 * Get all author file revisions.
 	 * @return array MonographFiles
 	 */
-	function getAuthorFileRevisions($reviewType = null) {
+	function getAuthorFileRevisions($reviewType = null, $round = null) {
 		if ($reviewType == null) {
 			return $this->authorFileRevisions;
-		} else {
+		} elseif ( $round == null ) {
 			return $this->authorFileRevisions[$reviewType];
+		} else {
+			return $this->authorFileRevisions[$reviewType][$round];
 		}
 	}
 
@@ -348,8 +359,8 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * Set all author file revisions.
 	 * @param $authorFileRevisions array MonographFiles
 	 */
-	function setAuthorFileRevisions($authorFileRevisions) {
-		return $this->authorFileRevisions = $authorFileRevisions;
+	function setAuthorFileRevisions($authorFileRevisions, $reviewType, $round) {
+		return $this->authorFileRevisions[$reviewType][$round] = $authorFileRevisions;
 	}
 
 	/**
@@ -368,79 +379,6 @@ class AcquisitionsEditorSubmission extends Monograph {
 	function setEditorFile($editorFile) {
 		return $this->setData('editorFile', $editorFile);
 	}
-
-	/**
-	 * Get copyedit file.
-	 * @return MonographFile
-	 */
-	function &getCopyeditFile() {
-		$returner =& $this->getData('copyeditFile');
-		return $returner;
-	}
-
-
-	/**
-	 * Set copyedit file.
-	 * @param $copyeditFile MonographFile
-	 */
-	function setCopyeditFile($copyeditFile) {
-		return $this->setData('copyeditFile', $copyeditFile);
-	}
-
-	/**
-	 * Get initial copyedit file.
-	 * @return MonographFile
-	 */
-	function &getInitialCopyeditFile() {
-		$returner =& $this->getData('initialCopyeditFile');
-		return $returner;
-	}
-
-
-	/**
-	 * Set initial copyedit file.
-	 * @param $initialCopyeditFile MonographFile
-	 */
-	function setInitialCopyeditFile($initialCopyeditFile) {
-		return $this->setData('initialCopyeditFile', $initialCopyeditFile);
-	}
-
-	/**
-	 * Get editor author copyedit file.
-	 * @return MonographFile
-	 */
-	function &getEditorAuthorCopyeditFile() {
-		$returner =& $this->getData('editorAuthorCopyeditFile');
-		return $returner;
-	}
-
-
-	/**
-	 * Set editor author copyedit file.
-	 * @param $editorAuthorCopyeditFile MonographFile
-	 */
-	function setEditorAuthorCopyeditFile($editorAuthorCopyeditFile) {
-		return $this->setData('editorAuthorCopyeditFile', $editorAuthorCopyeditFile);
-	}
-
-	/**
-	 * Get final copyedit file.
-	 * @return MonographFile
-	 */
-	function &getFinalCopyeditFile() {
-		$returner =& $this->getData('finalCopyeditFile');
-		return $returner;
-	}
-
-
-	/**
-	 * Set final copyedit file.
-	 * @param $finalCopyeditFile MonographFile
-	 */
-	function setFinalCopyeditFile($finalCopyeditFile) {
-		return $this->setData('finalCopyeditFile', $finalCopyeditFile);
-	}
-
 
 	//
 	// Review Rounds
@@ -530,335 +468,8 @@ class AcquisitionsEditorSubmission extends Monograph {
 		return $this->setData('mostRecentProofreadComment', $mostRecentProofreadComment);
 	}
 
-	//
-	// Copyeditor Assignment
-	//
-
 	/**
-	 * Get copyed id.
-	 * @return int
-	 */
-	function getCopyedId() {
-		return $this->getData('copyedId');
-	}
-
-	/**
-	 * Set copyed id.
-	 * @param $copyedId int
-	 */
-	function setCopyedId($copyedId) {
-		return $this->setData('copyedId', $copyedId);
-	}
-
-	/**
-	 * Get copyeditor id.
-	 * @return int
-	 */
-	function getCopyeditorId() {
-		return $this->getData('copyeditorId');
-	}
-
-	/**
-	 * Set copyeditor id.
-	 * @param $copyeditorId int
-	 */
-	function setCopyeditorId($copyeditorId) {
-		return $this->setData('copyeditorId', $copyeditorId);
-	}
-
-	/**
-	 * Get copyeditor of this monograph.
-	 * @return User
-	 */
-	function &getCopyeditor() {
-		$copyEditor =& $this->getData('copyeditor');
-		return $copyEditor;
-	}
-
-	/**
-	 * Set copyeditor of this monograph.
-	 * @param $copyeditor User
-	 */
-	function setCopyeditor($copyeditor) {
-		return $this->setData('copyeditor', $copyeditor);
-	}
-
-	/**
-	 * Get copyeditor date notified.
-	 * @return string
-	 */
-	function getCopyeditorDateNotified() {
-		return $this->getData('copyeditorDateNotified');
-	}
-
-	/**
-	 * Set copyeditor date notified.
-	 * @param $copyeditorDateNotified string
-	 */
-	function setCopyeditorDateNotified($copyeditorDateNotified) {
-		return $this->setData('copyeditorDateNotified', $copyeditorDateNotified);
-	}
-
-	/**
-	 * Get copyeditor date underway.
-	 * @return string
-	 */
-	function getCopyeditorDateUnderway() {
-		return $this->getData('copyeditorDateUnderway');
-	}
-
-	/**
-	 * Set copyeditor date underway.
-	 * @param $copyeditorDateUnderway string
-	 */
-	function setCopyeditorDateUnderway($copyeditorDateUnderway) {
-		return $this->setData('copyeditorDateUnderway', $copyeditorDateUnderway);
-	}
-
-	/**
-	 * Get copyeditor date completed.
-	 * @return string
-	 */
-	function getCopyeditorDateCompleted() {
-		return $this->getData('copyeditorDateCompleted');
-	}
-
-	/**
-	 * Set copyeditor date completed.
-	 * @param $copyeditorDateCompleted string
-	 */
-	function setCopyeditorDateCompleted($copyeditorDateCompleted) {
-		return $this->setData('copyeditorDateCompleted', $copyeditorDateCompleted);
-	}
-
-	/**
-	 * Get copyeditor date acknowledged.
-	 * @return string
-	 */
-	function getCopyeditorDateAcknowledged() {
-		return $this->getData('copyeditorDateAcknowledged');
-	}
-
-	/**
-	 * Set copyeditor date acknowledged.
-	 * @param $copyeditorDateAcknowledged string
-	 */
-	function setCopyeditorDateAcknowledged($copyeditorDateAcknowledged) {
-		return $this->setData('copyeditorDateAcknowledged', $copyeditorDateAcknowledged);
-	}
-
-	/**
-	 * Get copyeditor date author notified.
-	 * @return string
-	 */
-	function getCopyeditorDateAuthorNotified() {
-		return $this->getData('copyeditorDateAuthorNotified');
-	}
-
-	/**
-	 * Set copyeditor date author notified.
-	 * @param $copyeditorDateAuthorNotified string
-	 */
-	function setCopyeditorDateAuthorNotified($copyeditorDateAuthorNotified) {
-		return $this->setData('copyeditorDateAuthorNotified', $copyeditorDateAuthorNotified);
-	}
-
-	/**
-	 * Get copyeditor date authorunderway.
-	 * @return string
-	 */
-	function getCopyeditorDateAuthorUnderway() {
-		return $this->getData('copyeditorDateAuthorUnderway');
-	}
-
-	/**
-	 * Set copyeditor date author underway.
-	 * @param $copyeditorDateAuthorUnderway string
-	 */
-	function setCopyeditorDateAuthorUnderway($copyeditorDateAuthorUnderway) {
-		return $this->setData('copyeditorDateAuthorUnderway', $copyeditorDateAuthorUnderway);
-	}	
-
-	/**
-	 * Get copyeditor date author completed.
-	 * @return string
-	 */
-	function getCopyeditorDateAuthorCompleted() {
-		return $this->getData('copyeditorDateAuthorCompleted');
-	}
-
-	/**
-	 * Set copyeditor date author completed.
-	 * @param $copyeditorDateAuthorCompleted string
-	 */
-	function setCopyeditorDateAuthorCompleted($copyeditorDateAuthorCompleted) {
-		return $this->setData('copyeditorDateAuthorCompleted', $copyeditorDateAuthorCompleted);
-	}
-
-	/**
-	 * Get copyeditor date author acknowledged.
-	 * @return string
-	 */
-	function getCopyeditorDateAuthorAcknowledged() {
-		return $this->getData('copyeditorDateAuthorAcknowledged');
-	}
-
-	/**
-	 * Set copyeditor date author acknowledged.
-	 * @param $copyeditorDateAuthorAcknowledged string
-	 */
-	function setCopyeditorDateAuthorAcknowledged($copyeditorDateAuthorAcknowledged) {
-		return $this->setData('copyeditorDateAuthorAcknowledged', $copyeditorDateAuthorAcknowledged);
-	}
-
-	/**
-	 * Get copyeditor date final notified.
-	 * @return string
-	 */
-	function getCopyeditorDateFinalNotified() {
-		return $this->getData('copyeditorDateFinalNotified');
-	}
-
-	/**
-	 * Set copyeditor date final notified.
-	 * @param $copyeditorDateFinalNotified string
-	 */
-	function setCopyeditorDateFinalNotified($copyeditorDateFinalNotified) {
-		return $this->setData('copyeditorDateFinalNotified', $copyeditorDateFinalNotified);
-	}
-
-	/**
-	 * Get copyeditor date final underway.
-	 * @return string
-	 */
-	function getCopyeditorDateFinalUnderway() {
-		return $this->getData('copyeditorDateFinalUnderway');
-	}
-
-	/**
-	 * Set copyeditor date final underway.
-	 * @param $copyeditorDateFinalUnderway string
-	 */
-	function setCopyeditorDateFinalUnderway($copyeditorDateFinalUnderway) {
-		return $this->setData('copyeditorDateFinalUnderway', $copyeditorDateFinalUnderway);
-	}
-
-	/**
-	 * Get copyeditor date final completed.
-	 * @return string
-	 */
-	function getCopyeditorDateFinalCompleted() {
-		return $this->getData('copyeditorDateFinalCompleted');
-	}
-
-	/**
-	 * Set copyeditor date final completed.
-	 * @param $copyeditorDateFinalCompleted string
-	 */
-	function setCopyeditorDateFinalCompleted($copyeditorDateFinalCompleted) {
-		return $this->setData('copyeditorDateFinalCompleted', $copyeditorDateFinalCompleted);
-	}
-
-	/**
-	 * Get copyeditor date author acknowledged.
-	 * @return string
-	 */
-	function getCopyeditorDateFinalAcknowledged() {
-		return $this->getData('copyeditorDateFinalAcknowledged');
-	}
-
-	/**
-	 * Set copyeditor date final acknowledged.
-	 * @param $copyeditorDateFinalAcknowledged string
-	 */
-	function setCopyeditorDateFinalAcknowledged($copyeditorDateFinalAcknowledged) {
-		return $this->setData('copyeditorDateFinalAcknowledged', $copyeditorDateFinalAcknowledged);
-	}
-
-	/**
-	 * Get copyeditor initial revision.
-	 * @return int
-	 */
-	function getCopyeditorInitialRevision() {
-		return $this->getData('copyeditorInitialRevision');
-	}
-
-	/**
-	 * Set copyeditor initial revision.
-	 * @param $copyeditorInitialRevision int
-	 */
-	function setCopyeditorInitialRevision($copyeditorInitialRevision)	{
-		return $this->setData('copyeditorInitialRevision', $copyeditorInitialRevision);
-	}
-
-	/**
-	 * Get copyeditor editor/author revision.
-	 * @return int
-	 */
-	function getCopyeditorEditorAuthorRevision() {
-		return $this->getData('copyeditorEditorAuthorRevision');
-	}
-
-	/**
-	 * Set copyeditor editor/author revision.
-	 * @param $editorAuthorRevision int
-	 */
-	function setCopyeditorEditorAuthorRevision($copyeditorEditorAuthorRevision)	{
-		return $this->setData('copyeditorEditorAuthorRevision', $copyeditorEditorAuthorRevision);
-	}
-
-	/**
-	 * Get copyeditor final revision.
-	 * @return int
-	 */
-	function getCopyeditorFinalRevision() {
-		return $this->getData('copyeditorFinalRevision');
-	}
-
-	/**
-	 * Set copyeditor final revision.
-	 * @param $copyeditorFinalRevision int
-	 */
-	function setCopyeditorFinalRevision($copyeditorFinalRevision)	{
-		return $this->setData('copyeditorFinalRevision', $copyeditorFinalRevision);
-	}
-
-	/**
-	 * Get the layout assignments for a monograph.
-	 * @return array (LayoutAssignment)
-	 */
-	function &getLayoutAssignments() {
-		$layoutAssignments =& $this->getData('layoutAssignments');
-		return $layoutAssignments;
-	}
-
-	/**
-	 * Set the layout assignments for a monograph.
-	 * @param $layoutAssignments array (LayoutAssignment)
-	 */
-	function setLayoutAssignments(&$layoutAssignments) {
-		return $this->setData('layoutAssignments', $layoutAssignments);
-	}
-
-	/**
-	 * Get the current layout file for a monograph.
-	 * @return MonographFile
-	 */
-	function &getLayoutFile() {
-		$layoutFile =& $this->getData('layoutFile');
-		return $layoutFile;
-	}
-
-	/**
-	 * Set the layout file.
-	 * @param $layoutFile MonographFile
-	 */
-	function setLayoutFile(&$layoutFile) {
-		return $this->setData('layoutFile', $layoutFile);
-	}
-
-	/**
-	 * Get the galleys for a monograph.
+	 * Get the galleys for an monograph.
 	 * @return array MonographGalley
 	 */
 	function &getGalleys() {
@@ -873,41 +484,6 @@ class AcquisitionsEditorSubmission extends Monograph {
 	function setGalleys(&$galleys) {
 		return $this->setData('galleys', $galleys);
 	}
-
-	/**
-	 * Get the proof assignment for a monograph.
-	 * @return ProofAssignment
-	 */
-	function &getProofAssignment() {
-		$proofAssignment =& $this->getData('proofAssignment');
-		return $proofAssignment;
-	}
-
-	/**
-	 * Set the proof assignment for a monograph.
-	 * @param $proofAssignment ProofAssignment
-	 */
-	function setProofAssignment($proofAssignment) {
-		return $this->setData('proofAssignment', $proofAssignment);
-	}
-
-	/**
-	 * Get the prospectus for a monograph.
-	 * @return MonographFile
-	 */
-	function &getProspectusFile() {
-		$prospectusFile =& $this->getData('prospectusFile');
-		return $prospectusFile;
-	}
-
-	/**
-	 * Set the proof assignment for a monograph.
-	 * @param $prospectusFile MonographFile
-	 */
-	function setProspectusFile($prospectusFile) {
-		return $this->setData('prospectusFile', $prospectusFile);
-	}
-
 
 	/**
 	 * Return array mapping editor decision constants to their locale strings.
@@ -930,6 +506,7 @@ class AcquisitionsEditorSubmission extends Monograph {
 	 * @return string
 	 */
 	function getHighlightClass() {
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$highlightClass = 'highlight';
 		$overdueSeconds = 60 * 60 * 24 * 14; // Two weeks
 
@@ -967,14 +544,15 @@ class AcquisitionsEditorSubmission extends Monograph {
 			// COPYEDITING
 
 			// First round of copyediting
-			$dateCopyeditorNotified = $this->getCopyeditorDateNotified() ?
-				strtotime($this->getCopyeditorDateNotified()) : 0;
-			$dateCopyeditorUnderway = $this->getCopyeditorDateUnderway() ?
-				strtotime($this->getCopyeditorDateUnderway()) : 0;
-			$dateCopyeditorCompleted = $this->getCopyeditorDateCompleted() ?
-				strtotime($this->getCopyeditorDateCompleted()) : 0;
-			$dateCopyeditorAcknowledged = $this->getCopyeditorDateAcknowledged() ?
-				strtotime($this->getCopyeditorDateAcknowledged()) : 0;
+			$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+			$dateCopyeditorNotified = $initialSignoff->getDateNotified() ?
+				strtotime($initialSignoff->getDateNotified()) : 0;
+			$dateCopyeditorUnderway = $initialSignoff->getDateUnderway() ?
+				strtotime($initialSignoff->getDateUnderway()) : 0;
+			$dateCopyeditorCompleted = $initialSignoff->getDateCompleted() ?
+				strtotime($initialSignoff->getDateCompleted()) : 0;
+			$dateCopyeditorAcknowledged = $initialSignoff->getDateAcknowledged() ?
+				strtotime($initialSignoff->getDateAcknowledged()) : 0;
 			$dateLastCopyeditor = max($dateCopyeditorNotified, $dateCopyeditorUnderway);
 
 			// If the Copyeditor has not been notified, highlight.
@@ -990,14 +568,15 @@ class AcquisitionsEditorSubmission extends Monograph {
 			if ($dateCopyeditorCompleted && !$dateCopyeditorAcknowledged) return $highlightClass;
 
 			// Second round of copyediting
-			$dateCopyeditorAuthorNotified = $this->getCopyeditorDateAuthorNotified() ?
-				strtotime($this->getCopyeditorDateAuthorNotified()) : 0;
-			$dateCopyeditorAuthorUnderway = $this->getCopyeditorDateAuthorUnderway() ?
-				strtotime($this->getCopyeditorDateAuthorUnderway()) : 0;
-			$dateCopyeditorAuthorCompleted = $this->getCopyeditorDateAuthorCompleted() ?
-				strtotime($this->getCopyeditorDateAuthorCompleted()) : 0;
-			$dateCopyeditorAuthorAcknowledged = $this->getCopyeditorDateAuthorAcknowledged() ?
-				strtotime($this->getCopyeditorDateAuthorAcknowledged()) : 0;
+			$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+			$dateCopyeditorAuthorNotified = $authorSignoff->getDateNotified() ?
+				strtotime($authorSignoff->getDateNotified()) : 0;
+			$dateCopyeditorAuthorUnderway = $authorSignoff->getDateUnderway() ?
+				strtotime($authorSignoff->getDateUnderway()) : 0;
+			$dateCopyeditorAuthorCompleted = $authorSignoff->getDateCompleted() ?
+				strtotime($authorSignoff->getDateCompleted()) : 0;
+			$dateCopyeditorAuthorAcknowledged = $authorSignoff->getDateAcknowledged() ?
+				strtotime($authorSignoff->getDateAcknowledged()) : 0;
 			$dateLastCopyeditorAuthor = max($dateCopyeditorAuthorNotified, $dateCopyeditorAuthorUnderway);
 
 			// Check if round 2 is awaiting notification.
@@ -1013,12 +592,13 @@ class AcquisitionsEditorSubmission extends Monograph {
 			) return $highlightClass;
 
 			// Third round of copyediting
-			$dateCopyeditorFinalNotified = $this->getCopyeditorDateFinalNotified() ?
-				strtotime($this->getCopyeditorDateFinalNotified()) : 0;
-			$dateCopyeditorFinalUnderway = $this->getCopyeditorDateFinalUnderway() ?
-				strtotime($this->getCopyeditorDateFinalUnderway()) : 0;
-			$dateCopyeditorFinalCompleted = $this->getCopyeditorDateFinalCompleted() ?
-				strtotime($this->getCopyeditorDateFinalCompleted()) : 0;
+			$finalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+			$dateCopyeditorFinalNotified = $finalSignoff->getDateNotified() ?
+				strtotime($finalSignoff->getDateNotified()) : 0;
+			$dateCopyeditorFinalUnderway = $finalSignoff->getDateUnderway() ?
+				strtotime($finalSignoff->getDateUnderway()) : 0;
+			$dateCopyeditorFinalCompleted = $finalSignoff->getDateCompleted() ?
+				strtotime($finalSignoff->getDateCompleted()) : 0;
 			$dateLastCopyeditorFinal = max($dateCopyeditorFinalNotified, $dateCopyeditorUnderway);
 
 			// Check if round 3 is awaiting notification.
@@ -1034,16 +614,15 @@ class AcquisitionsEditorSubmission extends Monograph {
 			if ($dateCopyeditorFinalCompleted && !$dateCopyeditorFinalAcknowledged) return $highlightClass;
 
 			// LAYOUT EDITING
-			$layoutAssignment =& $this->getLayoutAssignment();
-
-			$dateLayoutNotified = $layoutAssignment->getDateNotified() ?
-				strtotime($layoutAssignment->getDateNotified()) : 0;
-			$dateLayoutUnderway = $layoutAssignment->getDateUnderway() ?
-				strtotime($layoutAssignment->getDateUnderway()) : 0;
-			$dateLayoutCompleted = $layoutAssignment->getDateCompleted() ?
-				strtotime($layoutAssignment->getDateCompleted()) : 0;
-			$dateLayoutAcknowledged = $layoutAssignment->getDateAcknowledged() ?
-				strtotime($layoutAssignment->getDateAcknowledged()) : 0;
+			$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+			$dateLayoutNotified = $layoutSignoff->getDateNotified() ?
+				strtotime($layoutSignoff->getDateNotified()) : 0;
+			$dateLayoutUnderway = $layoutSignoff->getDateUnderway() ?
+				strtotime($layoutSignoff->getDateUnderway()) : 0;
+			$dateLayoutCompleted = $layoutSignoff->getDateCompleted() ?
+				strtotime($layoutSignoff->getDateCompleted()) : 0;
+			$dateLayoutAcknowledged = $layoutSignoff->getDateAcknowledged() ?
+				strtotime($layoutSignoff->getDateAcknowledged()) : 0;
 			$dateLastLayout = max($dateLayoutNotified, $dateLayoutUnderway);
 
 			// Check if Layout Editor needs to be notified.
@@ -1059,18 +638,18 @@ class AcquisitionsEditorSubmission extends Monograph {
 			if ($dateLayoutCompleted && !$dateLayoutAcknowledged) return $highlightClass;
 
 			// PROOFREADING
-			$proofAssignment =& $this->getProofAssignment();
 
 			// First round of proofreading
-			$dateAuthorNotified = $proofAssignment->getDateAuthorNotified() ?
-				strtotime($proofAssignment->getDateAuthorNotified()) : 0;
-			$dateAuthorUnderway = $proofAssignment->getDateAuthorUnderway() ?
-				strtotime($proofAssignment->getDateAuthorUnderway()) : 0;
-			$dateAuthorCompleted = $proofAssignment->getDateAuthorCompleted() ?
-				strtotime($proofAssignment->getDateAuthorCompleted()) : 0;
-			$dateAuthorAcknowledged = $proofAssignment->getDateAuthorAcknowledged() ?
-				strtotime($proofAssignment->getDateAuthorAcknowledged()) : 0;
-			$dateLastAuthor = max($dateAuthorNotified, $dateAuthorUnderway);
+			$authorSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+			$dateAuthorNotified = $authorSignoff->getDateNotified() ?
+				strtotime($authorSignoff->getDateNotified()) : 0;
+			$dateAuthorUnderway = $authorSignoff->getDateUnderway() ?
+				strtotime($authorSignoff->getDateUnderway()) : 0;
+			$dateAuthorCompleted = $authorSignoff->getDateCompleted() ?
+				strtotime($authorSignoff->getDateCompleted()) : 0;
+			$dateAuthorAcknowledged = $authorSignoff->getDateAcknowledged() ?
+				strtotime($authorSignoff->getDateAcknowledged()) : 0;
+			$dateLastAuthor = max($dateNotified, $dateAuthorUnderway);
 
 			// Check if the author is awaiting proofreading notification.
 			if ($dateLayoutAcknowledged && !$dateAuthorNotified) return $highlightClass;
@@ -1085,14 +664,15 @@ class AcquisitionsEditorSubmission extends Monograph {
 			if ($dateAuthorCompleted && !$dateAuthorAcknowledged) return $highlightClass;
 
 			// Second round of proofreading
-			$dateProofreaderNotified = $proofAssignment->getDateProofreaderNotified() ?
-				strtotime($proofAssignment->getDateProofreaderNotified()) : 0;
-			$dateProofreaderUnderway = $proofAssignment->getDateProofreaderUnderway() ?
-				strtotime($proofAssignment->getDateProofreaderUnderway()) : 0;
-			$dateProofreaderCompleted = $proofAssignment->getDateProofreaderCompleted() ?
-				strtotime($proofAssignment->getDateProofreaderCompleted()) : 0;
-			$dateProofreaderAcknowledged = $proofAssignment->getDateProofreaderAcknowledged() ?
-				strtotime($proofAssignment->getDateProofreaderAcknowledged()) : 0;
+			$proofreaderSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+			$dateProofreaderNotified = $proofreaderSignoff->getDateNotified() ?
+				strtotime($proofreaderSignoff->getDateNotified()) : 0;
+			$dateProofreaderUnderway = $proofreaderSignoff->getDateUnderway() ?
+				strtotime($proofreaderSignoff->getDateUnderway()) : 0;
+			$dateProofreaderCompleted = $proofreaderSignoff->getDateCompleted() ?
+				strtotime($proofreaderSignoff->getDateCompleted()) : 0;
+			$dateProofreaderAcknowledged = $proofreaderSignoff->getDateAcknowledged() ?
+				strtotime($proofreaderSignoff->getDateAcknowledged()) : 0;
 			$dateLastProofreader = max($dateProofreaderNotified, $dateProofreaderUnderway);
 
 			// Check if the proofreader is awaiting notification.
@@ -1108,12 +688,13 @@ class AcquisitionsEditorSubmission extends Monograph {
 			) return $highlightClass;
 
 			// Third round of proofreading
-			$dateLayoutEditorNotified = $proofAssignment->getDateLayoutEditorNotified() ?
-				strtotime($proofAssignment->getDateLayoutEditorNotified()) : 0;
-			$dateLayoutEditorUnderway = $proofAssignment->getDateLayoutEditorUnderway() ?
-				strtotime($proofAssignment->getDateLayoutEditorUnderway()) : 0;
-			$dateLayoutEditorCompleted = $proofAssignment->getDateLayoutEditorCompleted() ?
-				strtotime($proofAssignment->getDateLayoutEditorCompleted()) : 0;
+			$layoutEditorSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+			$dateLayoutEditorNotified = $layoutEditorSignoff->getDateNotified() ?
+				strtotime($layoutEditorSignoff->getDateNotified()) : 0;
+			$dateLayoutEditorUnderway = $layoutEditorSignoff->getDateUnderway() ?
+				strtotime($layoutEditorSignoff->getDateUnderway()) : 0;
+			$dateLayoutEditorCompleted = $layoutEditorSignoff->getDateCompleted() ?
+				strtotime($layoutEditorSignoff->getDateCompleted()) : 0;
 			$dateLastLayoutEditor = max($dateLayoutEditorNotified, $dateCopyeditorUnderway);
 
 			// Check if the layout editor is awaiting notification.

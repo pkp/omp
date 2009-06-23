@@ -124,7 +124,6 @@ class ReviewAssignmentDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-
 		return $returner;
 	}
 
@@ -437,13 +436,14 @@ class ReviewAssignmentDAO extends DAO {
 	function insertObject(&$reviewAssignment) {
 		$this->update(
 			sprintf('INSERT INTO review_assignments
-				(monograph_id, reviewer_id, round, competing_interests, recommendation, declined, replaced, cancelled, date_assigned, date_notified, date_confirmed, date_completed, date_acknowledged, date_due, reviewer_file_id, quality, date_rated, last_modified, date_reminded, reminder_was_automatic, review_form_id, review_type)
+				(monograph_id, reviewer_id, review_type, round, competing_interests, recommendation, declined, replaced, cancelled, date_assigned, date_notified, date_confirmed, date_completed, date_acknowledged, date_due, reviewer_file_id, quality, date_rated, last_modified, date_reminded, reminder_was_automatic, review_form_id)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, ?, ?, %s, %s, %s, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, ?, ?, %s, %s, %s, ?, ?)',
 				$this->datetimeToDB($reviewAssignment->getDateAssigned()), $this->datetimeToDB($reviewAssignment->getDateNotified()), $this->datetimeToDB($reviewAssignment->getDateConfirmed()), $this->datetimeToDB($reviewAssignment->getDateCompleted()), $this->datetimeToDB($reviewAssignment->getDateAcknowledged()), $this->datetimeToDB($reviewAssignment->getDateDue()), $this->datetimeToDB($reviewAssignment->getDateRated()), $this->datetimeToDB($reviewAssignment->getLastModified()), $this->datetimeToDB($reviewAssignment->getDateReminded())),
 			array(
 				(int) $reviewAssignment->getMonographId(),
 				(int) $reviewAssignment->getReviewerId(),
+				(int) $reviewAssignment->getReviewType(),	
 				max((int) $reviewAssignment->getRound(), 1),
 				$reviewAssignment->getCompetingInterests(),
 				$reviewAssignment->getRecommendation(),
@@ -454,7 +454,6 @@ class ReviewAssignmentDAO extends DAO {
 				$reviewAssignment->getQuality(),
 				$reviewAssignment->getReminderWasAutomatic(),
 				$reviewAssignment->getReviewFormId(),
-				$reviewAssignment->getReviewType(),
 			)
 		);
 
@@ -471,6 +470,7 @@ class ReviewAssignmentDAO extends DAO {
 			sprintf('UPDATE review_assignments
 				SET	monograph_id = ?,
 					reviewer_id = ?,
+					review_type = ?,
 					round = ?,
 					competing_interests = ?,
 					recommendation = ?,
@@ -495,6 +495,7 @@ class ReviewAssignmentDAO extends DAO {
 			array(
 				(int) $reviewAssignment->getMonographId(),
 				(int) $reviewAssignment->getReviewerId(),
+				(int) $reviewAssignment->getReviewType(),
 				(int) $reviewAssignment->getRound(),
 				$reviewAssignment->getCompetingInterests(),
 				$reviewAssignment->getRecommendation(),

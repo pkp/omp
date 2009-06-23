@@ -22,9 +22,6 @@ import('pages.acquisitionsEditor.AcquisitionsEditorHandler');
 import('submission.acquisitionsEditor.AcquisitionsEditorAction');
 
 class SubmissionEditHandler extends AcquisitionsEditorHandler {
-	/** The press associated with this request **/
-	var $press;
-	
 	/** The submission associated with this request **/
 	var $submission;
 
@@ -44,7 +41,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 	function submission($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_OMP_AUTHOR));
 		$this->setupTemplate(true, $monographId);
@@ -65,7 +62,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('arrangement', $arrangement);
-		$templateMgr->assign_by_ref('prospectusFile', $submission->getProspectusFile());
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
@@ -89,21 +85,10 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr->display('acquisitionsEditor/submission.tpl');
 	}
 
-	function endWorkflowProcess($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$processId = isset($args[1]) ? (int) $args[1] : 0;//fixme: validate
-		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
-
-		$process =& Action::endSignoffProcess($monographId);
-
-		Request::redirect(null, null, 'submissionReview', $monographId);
-	}
 	function submissionRegrets($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'review');
 
@@ -113,7 +98,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 
 		$reviewAssignments =& $submission->getReviewAssignments();
 		$editorDecisions = $submission->getDecisions();
-		$numRounds = $submission->getCurrentReviewRound();
+		$numRounds = $submission->getCurrentRound();
 		
 		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 		$reviewFormResponses = array();
@@ -146,42 +131,40 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 	function submissionReview($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;		
 		$this->setupTemplate(true, $monographId);
-
+		
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
-		// Setting the round.
-		$round = $submission->getCurrentReviewRound();
-
-		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		$arrangements =& $arrangementDao->getByPressId($press->getId());
-
-//		$showPeerReviewOptions = $round == $submission->getCurrentRound() && $submission->getReviewFile() != null ? true : false;
-
-		$editorDecisions = $submission->getDecisions($submission->getCurrentReviewType(), $submission->getCurrentReviewRound());
-		if (!is_array($editorDecisions)) {
-			$editorDecisions = array($editorDecisions);
+		// Setting the review type and round.
+		// Default to current review type and round but allowing it to be set by URL
+		$reviewType = isset($args[1]) ? $args[1] : $submission->getCurrentReviewType();
+		if ( isset($args[1]) && !isset($args[2]) ) {
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$reviewRoundsInfo =& $monographDao->getReviewRoundsInfoById($monographId);			
+			$round = isset($reviewRoundsInfo[$reviewType]) ? isset($reviewRoundsInfo[$reviewType]) : 1;
+		} else {
+			$round = isset($args[2]) ? $args[2] : $submission->getCurrentRound();
 		}
+
+		$editorDecisions = $submission->getDecisions($reviewType, $round);
 		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;
 
 		$editAssignments =& $submission->getEditAssignments();
-		$allowRecommendation = 1;//$submission->getCurrentRound() == $round && $submission->getReviewFileId() != null && !empty($editAssignments);
-		$allowResubmit = $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT && $acquisitionsEditorSubmissionDao->getMaxReviewRound($monographId) == $round ? true : false;
-	//	$allowCopyedit = $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT && $submission->getCopyeditFileId() == null ? true : false;
+		$allowRecommendation = $submission->getCurrentReviewType() == $reviewType && $submission->getCurrentRound() == $round && $submission->getReviewFileId() != null && !empty($editAssignments);
+		$allowResubmit = $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT && $acquisitionsEditorSubmissionDao->getMaxReviewRound($monographId, $reviewType) == $round ? true : false;
 
 		// Prepare an array to store the 'Notify Reviewer' email logs
 		$notifyReviewerLogs = array();
-//		foreach ($submission->getReviewAssignments($round) as $reviewAssignment) {
-//			$notifyReviewerLogs[$reviewAssignment->getReviewId()] = array();
-//		}
-
+		foreach ($submission->getReviewAssignments($reviewType, $round) as $reviewAssignment) {
+			$notifyReviewerLogs[$reviewAssignment->getReviewId()] = array();
+		}
 
 		// Parse the list of email logs and populate the array.
-/*		import('monograph.log.MonographLog');
+		import('monograph.log.MonographLog');
 		$emailLogEntries =& MonographLog::getEmailLogEntries($monographId);
 		foreach ($emailLogEntries->toArray() as $emailLog) {
 			if ($emailLog->getEventType() == MONOGRAPH_EMAIL_REVIEW_NOTIFY_REVIEWER) {
@@ -190,7 +173,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 				}
 			}
 		}
-*/
+
 		// get press published review form titles
 		$reviewFormTitles =& $reviewFormDao->getTitlesByPressId($press->getId(), 1);
 
@@ -200,8 +183,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormTitles = array();
 
-		if (is_array($submission->getReviewAssignments($round)) && false)
-		foreach ($submission->getReviewAssignments($round) as $reviewAssignment) {
+		foreach ($submission->getReviewAssignments($reviewType, $round) as $reviewAssignment) {
 			$reviewForm =& $reviewFormDao->getById($reviewAssignment->getReviewFormId());
 			if ($reviewForm) {
 				$reviewFormTitles[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
@@ -209,42 +191,21 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 			unset($reviewForm);
 			$reviewFormResponses[$reviewAssignment->getReviewId()] = $reviewFormResponseDao->reviewFormResponseExists($reviewAssignment->getReviewId());
 		}
-		
-$reviewFormResponses = null;
-$reviewFormTitles = null;
 
 		$templateMgr =& TemplateManager::getManager();
-
-		$reviewAssignments =& $submission->getReviewAssignments();
-
+		
 		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 		$reviewProcesses =& $workflowDao->getByEventType($monographId, WORKFLOW_PROCESS_ASSESSMENT);
 		$process =& $workflowDao->getCurrent($monographId, WORKFLOW_PROCESS_ASSESSMENT);
 		list($nextProcessType, $nextProcessId) = $workflowDao->getNext($process);
-
 		$processId = isset($process) ? $process->getProcessId() : null;
-
-		$reviewIndexes = array();
-		$reviewProcesses =& $workflowDao->getByEventType($monographId, WORKFLOW_PROCESS_ASSESSMENT);
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$reviewRounds =& $monographDao->getReviewRoundsInfoById($monographId);
-
-		foreach($reviewProcesses as $reviewProcess) {
-			$value = !isset($reviewRounds[$reviewProcess->getProcessId()]) ? 0 : $reviewRounds[$reviewProcess->getProcessId()];
-			for ($indexRound=1; $indexRound<=$value; $indexRound++) {
-				$reviewIndexes[$reviewProcess->getProcessId()][$indexRound] = $reviewAssignmentDao->getReviewIndexesForRound($monographId, $submission->getCurrentReviewType(), $indexRound);
-			}
-		}
-
-		$templateMgr->assign('signoffWait', 0);
-		$templateMgr->assign('signoffQueue', 0);
-		$templateMgr->assign_by_ref('reviewType', $processId);
-		$templateMgr->assign_by_ref('editorDecisions', array_reverse($editorDecisions));
-		$templateMgr->assign_by_ref('reviewProcesses', $reviewProcesses);
-		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('reviewIndexes', $reviewIndexes);
+		
+		$templateMgr->assign_by_ref('reviewType', $reviewType);
 		$templateMgr->assign('round', $round);
-		$templateMgr->assign_by_ref('reviewAssignments', $reviewAssignments);
+		$templateMgr->assign_by_ref('editorDecisions', array_reverse($editorDecisions));
+		$templateMgr->assign_by_ref('submission', $submission);
+		$templateMgr->assign_by_ref('reviewIndexes', $reviewAssignmentDao->getReviewIndexesForRound($monographId, $reviewType, $round));
+		$templateMgr->assign_by_ref('reviewAssignments', $submission->getReviewAssignments($reviewType, $round));
 		$templateMgr->assign('reviewFormResponses', $reviewFormResponses);
 		$templateMgr->assign('reviewFormTitles', $reviewFormTitles);
 		$templateMgr->assign_by_ref('notifyReviewerLogs', $notifyReviewerLogs);
@@ -255,9 +216,13 @@ $reviewFormTitles = null;
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
 		$templateMgr->assign_by_ref('editorFile', $submission->getEditorFile());
 		$templateMgr->assign('rateReviewerOnQuality', $press->getSetting('rateReviewerOnQuality'));
+		if ( $reviewType == WORKFLOW_PROCESS_ASSESSMENT_INTERNAL ) 
+			$templateMgr->assign('reviewTypeTitle', 'submission.internalReview');
+		else 
+			$templateMgr->assign('reviewTypeTitle', 'submission.externalReview');
+			
 		$templateMgr->assign('nextProcessTitle', $workflowDao->getTitleByProcessId($nextProcessId));
-//		$templateMgr->assign('showPeerReviewOptions', $showPeerReviewOptions);
-		$templateMgr->assign_by_ref('arrangements', $arrangements->toArray());
+
 		$templateMgr->assign('editorDecisionOptions',
 			array(
 				'' => 'common.chooseOne',
@@ -275,7 +240,6 @@ $reviewFormTitles = null;
 
 		$templateMgr->assign('allowRecommendation', $allowRecommendation);
 		$templateMgr->assign('allowResubmit', $allowResubmit);
-		//$templateMgr->assign('allowCopyedit', $allowCopyedit);
 		$templateMgr->assign('helpTopicId', 'editorial.acquisitionsEditorsRole.review');
 		$templateMgr->display('acquisitionsEditor/submissionReview.tpl');
 	}
@@ -283,7 +247,7 @@ $reviewFormTitles = null;
 	function submissionEditing($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;		
 		$this->setupTemplate(true, $monographId);
 
@@ -292,7 +256,7 @@ $reviewFormTitles = null;
 		$useProofreaders = $press->getSetting('useProofreaders');
 
 		// check if submission is accepted
-//		$round = isset($args[1]) ? $args[1] : $submission->getCurrentReviewRound();
+//		$round = isset($args[1]) ? $args[1] : $submission->getCurrentRound();
 //		$editorDecisions = $submission->getDecisions($round);
 //		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;				
 //		$submissionAccepted = ($lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT) ? true : false;
@@ -319,8 +283,6 @@ $reviewFormTitles = null;
 		$templateMgr->assign('useCopyeditors', true);
 		$templateMgr->assign('useLayoutEditors', $useLayoutEditors);
 		$templateMgr->assign('useProofreaders', $useProofreaders);
-//		$templateMgr->assign_by_ref('proofAssignment', $submission->getProofAssignment());
-//		$templateMgr->assign_by_ref('layoutAssignment', $submission->getLayoutAssignment());
 		$templateMgr->assign('submissionAccepted', $submissionAccepted);
 
 		$templateMgr->assign('helpTopicId', 'editorial.acquisitionsEditorsRole.editing');
@@ -330,7 +292,7 @@ $reviewFormTitles = null;
 	function submissionProduction($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;		
 		$this->setupTemplate(true, $monographId);
 
@@ -339,7 +301,7 @@ $reviewFormTitles = null;
 		$useProofreaders = $press->getSetting('useProofreaders');
 
 		// check if submission is accepted
-//		$round = isset($args[1]) ? $args[1] : $submission->getCurrentReviewRound();
+//		$round = isset($args[1]) ? $args[1] : $submission->getCurrentRound();
 //		$editorDecisions = $submission->getDecisions($round);
 //		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;				
 //		$submissionAccepted = ($lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT) ? true : false;
@@ -377,7 +339,7 @@ $reviewFormTitles = null;
 	function submissionHistory($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		$this->setupTemplate(true, $monographId);
@@ -408,7 +370,7 @@ $reviewFormTitles = null;
 	function changeAcquisitionsArrangement() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		$arrangementId = Request::getUserVar('arrangementId');
@@ -421,7 +383,7 @@ $reviewFormTitles = null;
 	function recordDecision() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		$decision = Request::getUserVar('decision');
@@ -444,19 +406,19 @@ $reviewFormTitles = null;
 	function selectReviewer($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
+
+		$sort = Request::getUserVar('sort');
+		$sort = isset($sort) ? $sort : 'name';
+		$sortDirection = Request::getUserVar('sortDirection');
+		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
+
 		$reviewerId = Request::getUserVar('reviewerId');
 		$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$currentProcess =& $workflowDao->getCurrent($monographId);
-
-		$reviewType = $currentProcess->getProcessId();
-
-		$submission->setCurrentReviewType($reviewType);
-
-		$round = $submission->getCurrentReviewRound();
+		$reviewType = $submission->getCurrentReviewType();
+		$round = $submission->getCurrentRound();
 
 		if (isset($reviewerId)) {
 			// Assign reviewer to monograph
@@ -512,7 +474,8 @@ $reviewFormTitles = null;
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 			$templateMgr->assign('reviewerDatabaseLinks', $press->getSetting('reviewerDatabaseLinks'));
 			$templateMgr->assign('reviewType', $reviewType);
-
+			$templateMgr->assign('sort', $sort);
+			$templateMgr->assign('sortDirection', $sortDirection);
 			$templateMgr->display('acquisitionsEditor/selectReviewer.tpl');
 		}
 	}
@@ -523,10 +486,8 @@ $reviewFormTitles = null;
 	function createReviewer($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
-
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
 
 		import('acquisitionsEditor.form.CreateReviewerForm');
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
@@ -573,7 +534,6 @@ $reviewFormTitles = null;
 	function enrollSearch($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -626,7 +586,7 @@ $reviewFormTitles = null;
 	function enroll($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -652,7 +612,7 @@ $reviewFormTitles = null;
 	function notifyReviewer($args = array()) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		$reviewId = Request::getUserVar('reviewId');
@@ -668,7 +628,7 @@ $reviewFormTitles = null;
 	function clearReview($args) {
 		$monographId = isset($args[0])?$args[0]:0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		$reviewId = $args[1];
@@ -681,7 +641,7 @@ $reviewFormTitles = null;
 	function cancelReview($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 		
 		$reviewId = Request::getUserVar('reviewId');
@@ -697,7 +657,7 @@ $reviewFormTitles = null;
 	function remindReviewer($args = null) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		$reviewId = Request::getUserVar('reviewId');
@@ -711,7 +671,6 @@ $reviewFormTitles = null;
 	function thankReviewer($args = array()) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$reviewId = Request::getUserVar('reviewId');
@@ -741,7 +700,7 @@ $reviewFormTitles = null;
 		$monographId = (int) isset($args[0])?$args[0]:0;
 		$accept = Request::getUserVar('accept')?true:false;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		$reviewId = (int) isset($args[1])?$args[1]:0;
@@ -753,7 +712,6 @@ $reviewFormTitles = null;
 	function uploadReviewForReviewer($args) {
 		$monographId = (int) Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$reviewId = (int) Request::getUserVar('reviewId');
@@ -765,7 +723,6 @@ $reviewFormTitles = null;
 	function makeReviewerFileViewable() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$reviewId = Request::getUserVar('reviewId');
@@ -781,7 +738,7 @@ $reviewFormTitles = null;
 	function setDueDate($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		$reviewId = isset($args[1]) ? $args[1] : 0;
@@ -823,7 +780,6 @@ $reviewFormTitles = null;
 	function enterReviewerRecommendation($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
 		$submission =& $this->submission;;
 
 		$reviewId = Request::getUserVar('reviewId');
@@ -896,9 +852,7 @@ $reviewFormTitles = null;
 	function viewMetadata($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
 		$this->setupTemplate(true, $monographId, 'summary');
 
 		AcquisitionsEditorAction::viewMetadata($submission);
@@ -907,7 +861,6 @@ $reviewFormTitles = null;
 	function saveMetadata() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'summary');
 
@@ -923,7 +876,6 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int)$args[0] : 0;
 		$formLocale = $args[1];
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		import('file.PublicFileManager');
@@ -981,7 +933,6 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$reviewId = isset($args[1]) ? (int) $args[1] : null;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
 		$submission =& $this->submission;
 		
 		AcquisitionsEditorAction::clearReviewForm($submission, $reviewId);
@@ -996,7 +947,6 @@ $reviewFormTitles = null;
 	function selectReviewForm($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
 		$submission =& $this->submission;
 				
 		$reviewId = isset($args[1]) ? (int) $args[1] : null;
@@ -1032,7 +982,6 @@ $reviewFormTitles = null;
 	function viewReviewFormResponse($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$reviewId = isset($args[1]) ? (int) $args[1] : null;
@@ -1047,8 +996,9 @@ $reviewFormTitles = null;
 	function editorReview() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
 		$submission =& $this->submission;
+
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		$redirectTarget = 'submissionReview';
 
@@ -1057,54 +1007,51 @@ $reviewFormTitles = null;
 		if ($submit != null) {
 			AcquisitionsEditorAction::uploadEditorVersion($submission);
 		}		
-//advance workflow
-
 
 		if (Request::getUserVar('setAcceptedFile')) {
 			// If the Accept button was pressed
 			$file = explode(',', Request::getUserVar('editorDecisionFile'));
 
 			if (isset($file[0]) && isset($file[1])) {
+				$reviewType = $submission->getCurrentReviewType();
+				$round = $submission->getCurrentRound();
+
+				// adva
 				$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-				$currentProcess =& $workflowDao->getCurrent($monographId);
-				$nextProcess =& $workflowDao->getNext($currentProcess);
-				$nextProcessType = isset($nextProcess[1]) ? $nextProcess[1] : null; 
-
-				switch ($nextProcess[0]) {
-				case WORKFLOW_PROCESS_ASSESSMENT:
-					$submission->setReviewFileId($file[0]);
-					$submission->setReviewRevision($file[1]);
-					$submission->setCurrentReviewType($nextProcessType);
-					$submission->setCurrentReviewRound(1);
-					$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
-					$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($submission);
-					break;
-				case WORKFLOW_PROCESS_EDITING:
-					$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-					AcquisitionsEditorAction::setCopyeditFile($submission, $file[0], $file[1]);
-
-					$copyeditAuthorSignoff = $signoffDao->build(
-									'SIGNOFF_COPYEDITING_AUTHOR', 
-									ASSOC_TYPE_MONOGRAPH, 
-									$submission->getMonographId()
-								  );
-					$copyeditFinalSignoff = $signoffDao->build(
-									'SIGNOFF_COPYEDITING_FINAL', 
-									ASSOC_TYPE_MONOGRAPH, 
-									$submission->getMonographId()
-								);
-					$copyeditAuthorSignoff->setUserId($submission->getUserId());
-					$copyeditFinalSignoff->setUserId(0);
-
-					$signoffDao->updateObject($copyeditAuthorSignoff);
-					$signoffDao->updateObject($copyeditFinalSignoff);
-
-					$redirectTarget = 'submissionEditing';
-					break;
-				}
-
 				$workflowDao->proceed($monographId);
-
+								
+				switch ($submission->getCurrentReviewType()) {
+					case WORKFLOW_PROCESS_ASSESSMENT_INTERNAL:
+						$submission->setReviewFileId($file[0]);
+						$submission->setReviewRevision($file[1]);
+						$submission->setCurrentReviewType(WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL);
+						$submission->setCurrentRound(1);
+						$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
+						$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($submission);
+						break;
+					case WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL:
+						$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+						AcquisitionsEditorAction::setCopyeditFile($submission, $file[0], $file[1]);
+	
+						$copyeditAuthorSignoff = $signoffDao->build(
+										'SIGNOFF_COPYEDITING_AUTHOR', 
+										ASSOC_TYPE_MONOGRAPH, 
+										$submission->getMonographId()
+									  );
+						$copyeditFinalSignoff = $signoffDao->build(
+										'SIGNOFF_COPYEDITING_FINAL', 
+										ASSOC_TYPE_MONOGRAPH, 
+										$submission->getMonographId()
+									);
+						$copyeditAuthorSignoff->setUserId($submission->getUserId());
+						$copyeditFinalSignoff->setUserId(0);
+	
+						$signoffDao->updateObject($copyeditAuthorSignoff);
+						$signoffDao->updateObject($copyeditFinalSignoff);
+	
+						$redirectTarget = 'submissionEditing';
+						break;
+				}
 			}
 
 		} else if (Request::getUserVar('resubmit')) {
@@ -1112,6 +1059,11 @@ $reviewFormTitles = null;
 			$file = explode(',', Request::getUserVar('editorDecisionFile'));
 			if (isset($file[0]) && isset($file[1])) {
 				AcquisitionsEditorAction::resubmitFile($submission, $file[0], $file[1]);
+
+				$signoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+				$signoff->setFileId($file[0]);
+				$signoff->setFileRevision($file[1]);
+				$signoffDao->updateObject($signoff);
 			}
 		}
 
@@ -1125,7 +1077,7 @@ $reviewFormTitles = null;
 	function selectCopyeditor($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -1185,7 +1137,6 @@ $reviewFormTitles = null;
 	function notifyCopyeditor($args = array()) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 
@@ -1201,7 +1152,6 @@ $reviewFormTitles = null;
 	function initiateCopyedit() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 
@@ -1212,7 +1162,6 @@ $reviewFormTitles = null;
 	function thankCopyeditor($args = array()) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 
@@ -1227,7 +1176,6 @@ $reviewFormTitles = null;
 	function notifyAuthorCopyedit($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 
@@ -1242,7 +1190,6 @@ $reviewFormTitles = null;
 	function thankAuthorCopyedit($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 
@@ -1257,7 +1204,6 @@ $reviewFormTitles = null;
 	function notifyFinalCopyedit($args = array()) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 
@@ -1273,7 +1219,6 @@ $reviewFormTitles = null;
 		$monographId = (int) Request::getUserVar('monographId');
 
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::completeCopyedit($submission);
@@ -1284,7 +1229,6 @@ $reviewFormTitles = null;
 		$monographId = (int) Request::getUserVar('monographId');
 
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::completeFinalCopyedit($submission);
@@ -1294,7 +1238,6 @@ $reviewFormTitles = null;
 	function thankFinalCopyedit($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$send = Request::getUserVar('send')?true:false;
@@ -1308,7 +1251,6 @@ $reviewFormTitles = null;
 	function uploadReviewVersion() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::uploadReviewVersion($submission);
@@ -1319,7 +1261,6 @@ $reviewFormTitles = null;
 	function uploadCopyeditVersion() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 
@@ -1336,9 +1277,7 @@ $reviewFormTitles = null;
 	function addSuppFile($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;		
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
 		$this->setupTemplate(true, $monographId, 'summary');
 
 		import('submission.form.SuppFileForm');
@@ -1362,9 +1301,7 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;		
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
+		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'summary');
 
 		import('submission.form.SuppFileForm');
@@ -1387,7 +1324,6 @@ $reviewFormTitles = null;
 	function setSuppFileVisibility($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$suppFileId = Request::getUserVar('fileId');
@@ -1408,7 +1344,6 @@ $reviewFormTitles = null;
 	function saveSuppFile($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
@@ -1421,6 +1356,18 @@ $reviewFormTitles = null;
 
 		if ($submitForm->validate()) {
 			$submitForm->execute();
+
+			// Send a notification to associated users
+			import('notification.Notification');
+			$monographDao =& DAORegistry::getDAO('MonographDAO'); 
+			$monograph =& $monographDao->getMonograph($monographId);
+			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+			foreach ($notificationUsers as $user) {
+				$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
+				Notification::createNotification($user['id'], "notification.type.suppFileModified",
+					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUPP_FILE_MODIFIED);
+			}
+
 			Request::redirect(null, null, $this->getFrom(), $monographId);
 		} else {
 			$this->setupTemplate(true, $monographId, 'summary');
@@ -1438,9 +1385,7 @@ $reviewFormTitles = null;
 		$revisionId = isset($args[2]) ? (int) $args[2] : 0;
 
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
-		$press =& $this->press;
-		$submission =& $this->submission;
-		
+		$submission =& $this->submission;		
 		AcquisitionsEditorAction::deleteMonographFile($submission, $fileId, $revisionId);
 
 		Request::redirect(null, null, 'submissionReview', $monographId);
@@ -1454,7 +1399,6 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::deleteSuppFile($submission, $suppFileId);
@@ -1465,7 +1409,6 @@ $reviewFormTitles = null;
 	function archiveSubmission($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::archiveSubmission($submission);
@@ -1476,7 +1419,6 @@ $reviewFormTitles = null;
 	function restoreToQueue($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;		
 
 		AcquisitionsEditorAction::restoreToQueue($submission);
@@ -1487,7 +1429,6 @@ $reviewFormTitles = null;
 	function unsuitableSubmission($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;		
 
 		$send = Request::getUserVar('send')?true:false;
@@ -1505,7 +1446,6 @@ $reviewFormTitles = null;
 	function updateAcquisitionsArrangement($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 		AcquisitionsEditorAction::updateAcquisitionsArrangement($submission, Request::getUserVar('arrangement'));
 		Request::redirect(null, null, 'submission', $monographId);
@@ -1518,7 +1458,6 @@ $reviewFormTitles = null;
 	function updateCommentsStatus($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;	
 		AcquisitionsEditorAction::updateCommentsStatus($submission, Request::getUserVar('commentsStatus'));
 		Request::redirect(null, null, 'submission', $monographId);
@@ -1553,7 +1492,6 @@ $reviewFormTitles = null;
 	function uploadLayoutVersion() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::uploadLayoutVersion($submission);
@@ -1572,7 +1510,6 @@ $reviewFormTitles = null;
 		$revisionId = isset($args[3]) ? (int) $args[3] : 0;
 
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 		AcquisitionsEditorAction::deleteMonographImage($submission, $fileId, $revisionId);
 
@@ -1587,10 +1524,11 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$editorId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		if ($editorId && $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_PRODUCTION_EDITOR)) {
 			AcquisitionsEditorAction::assignProductionEditor($submission, $editorId);
@@ -1649,7 +1587,6 @@ $reviewFormTitles = null;
 		$monographId = Request::getUserVar('monographId');
 		$layoutAssignmentId = Request::getUserVar('layoutAssignmentId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$send = Request::getUserVar('send') ? true : false;
@@ -1666,7 +1603,7 @@ $reviewFormTitles = null;
 	function thankLayoutEditor($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		$send = Request::getUserVar('send') ? true : false;
@@ -1683,7 +1620,7 @@ $reviewFormTitles = null;
 	function uploadGalley($fileName = null) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		import('submission.form.MonographGalleyForm');
@@ -1703,7 +1640,7 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		$this->setupTemplate(true, $monographId, 'editing');
@@ -1729,7 +1666,7 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		import('submission.form.MonographGalleyForm');
@@ -1740,6 +1677,17 @@ $reviewFormTitles = null;
 		$submitForm->readInputData();
 		if ($submitForm->validate()) {
 			$submitForm->execute();
+
+			// Send a notification to associated users
+			import('notification.Notification');
+			$articleDao =& DAORegistry::getDAO('ArticleDAO'); 
+			$article =& $articleDao->getArticle($articleId);
+			$notificationUsers = $article->getAssociatedUserIds(true, false);
+			foreach ($notificationUsers as $user) {
+				$url = Request::url(null, $user['role'], 'submissionEditing', $article->getArticleId(), null, 'layout');
+				Notification::createNotification($user['id'], "notification.type.galleyModified",
+					$article->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_GALLEY_MODIFIED);
+			}
 
 			if (Request::getUserVar('uploadImage')) {
 				$submitForm->uploadImage();
@@ -1762,7 +1710,7 @@ $reviewFormTitles = null;
 	function orderGalley() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::orderGalley($submission, Request::getUserVar('galleyId'), Request::getUserVar('d'));
@@ -1778,7 +1726,6 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::deleteGalley($submission, $galleyId);
@@ -1794,7 +1741,6 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$templateMgr =& TemplateManager::getManager();
@@ -1811,7 +1757,6 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$templateMgr =& TemplateManager::getManager();
@@ -1829,7 +1774,6 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
@@ -1861,7 +1805,6 @@ $reviewFormTitles = null;
 	function uploadSuppFile($fileName = null) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		import('submission.form.SuppFileForm');
@@ -1880,7 +1823,6 @@ $reviewFormTitles = null;
 	function orderSuppFile() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::orderSuppFile($submission, Request::getUserVar('suppFileId'), Request::getUserVar('d'));
@@ -1900,7 +1842,6 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$logId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'history');
 
@@ -1936,7 +1877,6 @@ $reviewFormTitles = null;
 		$assocType = isset($args[1]) ? (int) $args[1] : null;
 		$assocId = isset($args[2]) ? (int) $args[2] : null;
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'history');
 
@@ -1960,7 +1900,6 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$logId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
 		$logDao =& DAORegistry::getDAO('MonographEventLogDAO');
@@ -1982,7 +1921,6 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$logId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'history');
 
@@ -2022,7 +1960,6 @@ $reviewFormTitles = null;
 		$assocType = isset($args[1]) ? (int) $args[1] : null;
 		$assocId = isset($args[2]) ? (int) $args[2] : null;
 		$this->validate($monographId);
-		$press =& $this->press;
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'history');
 
@@ -2046,8 +1983,6 @@ $reviewFormTitles = null;
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$logId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
 
 		$logDao =& DAORegistry::getDAO('MonographEmailLogDAO');
 
@@ -2070,8 +2005,6 @@ $reviewFormTitles = null;
 	function addSubmissionNote() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::addSubmissionNote($monographId);
 		Request::redirect(null, null, 'submissionNotes', $monographId);
@@ -2084,8 +2017,6 @@ $reviewFormTitles = null;
 	function removeSubmissionNote() {
 		$monographId = Request::getUserVar('monographId');		
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::removeSubmissionNote($monographId);
 		Request::redirect(null, null, 'submissionNotes', $monographId);
@@ -2098,8 +2029,6 @@ $reviewFormTitles = null;
 	function updateSubmissionNote() {
 		$monographId = Request::getUserVar('monographId');		
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::updateSubmissionNote($monographId);
 		Request::redirect(null, null, 'submissionNotes', $monographId);
@@ -2112,8 +2041,6 @@ $reviewFormTitles = null;
 	function clearAllSubmissionNotes() {
 		$monographId = Request::getUserVar('monographId');		
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
 
 		AcquisitionsEditorAction::clearAllSubmissionNotes($monographId);
 		Request::redirect(null, null, 'submissionNotes', $monographId);
@@ -2128,8 +2055,6 @@ $reviewFormTitles = null;
 		$noteId = isset($args[2]) ? (int) $args[2] : 0;
 
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'history');
 
 		$rangeInfo =& Handler::getRangeInfo('submissionNotes');
@@ -2174,8 +2099,6 @@ $reviewFormTitles = null;
 		$revision = isset($args[2]) ? $args[2] : null;
 
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
 		if (!AcquisitionsEditorAction::downloadFile($monographId, $fileId, $revision)) {
 			Request::redirect(null, null, 'submission', $monographId);
 		}
@@ -2191,8 +2114,6 @@ $reviewFormTitles = null;
 		$revision = isset($args[2]) ? $args[2] : null;
 
 		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
 		if (!AcquisitionsEditorAction::viewFile($monographId, $fileId, $revision)) {
 			Request::redirect(null, null, 'submission', $monographId);
 		}
@@ -2212,10 +2133,11 @@ $reviewFormTitles = null;
 		$userId = isset($args[1]) ? (int) $args[1] : 0;
 
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
+		$press =& Request::getPress();
 		$submission =& $this->submission;		
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		if ($userId && $monographId && $roleDao->roleExists($press->getId(), $userId, ROLE_ID_PROOFREADER)) {
 			import('submission.proofreader.ProofreaderAction');
@@ -2252,10 +2174,10 @@ $reviewFormTitles = null;
 
 			$templateMgr->assign_by_ref('users', $proofreaders);
 
-			$proofAssignment =& $submission->getProofAssignment();
-			if ($proofAssignment) {
-				$templateMgr->assign('currentUser', $proofAssignment->getProofreaderId());
-			}
+			$proofSignoff = $signoffDao->getBySymbolic('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_ARTICLE, $articleId);
+			if ($proofSignoff) {
+				$templateMgr->assign('currentUser', $proofSignoff->getUserId());
+ 			}
 			$templateMgr->assign('statistics', $proofreaderStatistics);
 			$templateMgr->assign('fieldOptions', Array(
 				USER_FIELD_FIRSTNAME => 'user.firstName',
@@ -2280,8 +2202,6 @@ $reviewFormTitles = null;
 		$monographId = Request::getUserVar('monographId');
 		$send = Request::getUserVar('send')?1:0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
-		$submission =& $this->submission;		
 		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('submission.proofreader.ProofreaderAction');
@@ -2297,8 +2217,6 @@ $reviewFormTitles = null;
 		$monographId = Request::getUserVar('monographId');
 		$send = Request::getUserVar('send')?1:0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
-		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('submission.proofreader.ProofreaderAction');
@@ -2313,13 +2231,15 @@ $reviewFormTitles = null;
 	function editorInitiateProofreader() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
-		$submission =& $this->submission;
 
-		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
-		$proofAssignment->setDateProofreaderNotified(Core::getCurrentDate());
-		$proofAssignmentDao->updateProofAssignment($proofAssignment);
+
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoff = $signoffDao->build('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_ARTICLE, $articleId);
+		if (!$signoff->getUserId()) {
+			$signoff->setUserId($user->getId());
+		}
+		$signoff->setDateNotified(Core::getCurrentDate());
+		$signoffDao->updateObject($signoff);
 
 		Request::redirect(null, null, 'submissionEditing', $monographId);
 	}
@@ -2330,13 +2250,13 @@ $reviewFormTitles = null;
 	function editorCompleteProofreader() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
 		$submission =& $this->submission;
 
-		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
-		$proofAssignment->setDateProofreaderCompleted(Core::getCurrentDate());
-		$proofAssignmentDao->updateProofAssignment($proofAssignment);
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoff = $signoffDao->build('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_ARTICLE, $articleId);
+		$signoff->setDateCompleted(Core::getCurrentDate());
+		$signoffDao->updateObject($signoff);
+
 
 		Request::redirect(null, null, 'submissionEditing', $monographId);
 	}
@@ -2348,8 +2268,6 @@ $reviewFormTitles = null;
 		$monographId = Request::getUserVar('monographId');
 		$send = Request::getUserVar('send');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
-		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('submission.proofreader.ProofreaderAction');
@@ -2365,8 +2283,6 @@ $reviewFormTitles = null;
 		$monographId = Request::getUserVar('monographId');
 		$send = Request::getUserVar('send')?1:0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
-		$submission =& $this->submission;				
 		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('submission.proofreader.ProofreaderAction');
@@ -2381,13 +2297,18 @@ $reviewFormTitles = null;
 	function editorInitiateLayoutEditor() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
-		$submission =& $this->submission;
 
-		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
-		$proofAssignment->setDateLayoutEditorNotified(Core::getCurrentDate());
-		$proofAssignmentDao->updateProofAssignment($proofAssignment);
+
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_ARTICLE, $articleId);
+		if (!$signoff->getUserId()) {
+			$signoff->setUserId($user->getId());
+		}
+		$signoff->setDateNotified(Core::getCurrentDate());
+		$signoff->setDateUnderway(null);
+		$signoff->setDateCompleted(null);
+		$signoff->setDateAcknowledged(null);
+		$signoffDao->updateObject($signoff);
 
 		Request::redirect(null, null, 'submissionEditing', $monographId);
 	}
@@ -2398,13 +2319,11 @@ $reviewFormTitles = null;
 	function editorCompleteLayoutEditor() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
-		$submission =& $this->submission;
 
-		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($monographId);
-		$proofAssignment->setDateLayoutEditorCompleted(Core::getCurrentDate());
-		$proofAssignmentDao->updateProofAssignment($proofAssignment);
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_ARTICLE, $articleId);
+		$signoff->setDateCompleted(Core::getCurrentDate());
+		$signoffDao->updateObject($signoff);
 
 		Request::redirect(null, null, 'submissionEditing', $monographId);
 	}
@@ -2416,9 +2335,15 @@ $reviewFormTitles = null;
 		$monographId = Request::getUserVar('monographId');
 		$send = Request::getUserVar('send')?1:0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
-		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'editing');
+
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoff = $signoffDao->getBySymbolic('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_ARTICLE, $articleId);
+		$signoff->setDateNotified(Core::getCurrentDate());
+		$signoff->setDateUnderway(null);
+		$signoff->setDateCompleted(null);
+		$signoff->setDateAcknowledged(null);
+		$signoffDao->updateObject($signoff);
 
 		import('submission.proofreader.ProofreaderAction');
 		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_LAYOUT_REQUEST', $send?'':Request::url(null, null, 'notifyLayoutEditorProofreader'))) {
@@ -2433,8 +2358,6 @@ $reviewFormTitles = null;
 		$monographId = Request::getUserVar('monographId');
 		$send = Request::getUserVar('send')?1:0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
-		$press =& $this->press;
-		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('submission.proofreader.ProofreaderAction');
@@ -2447,7 +2370,6 @@ $reviewFormTitles = null;
 	 * Schedule/unschedule a monograph for publication.
 	 */
 	function scheduleForPublication($args) {
-
 		//FIXME implement
 
 	}
@@ -2536,7 +2458,6 @@ $reviewFormTitles = null;
 			}
 		}
 
-		$this->press =& $press;
 		$this->submission =& $acquisitionsEditorSubmission;
 		return true;
 	}

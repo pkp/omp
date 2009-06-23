@@ -23,8 +23,7 @@ class EditorSubmission extends AcquisitionsEditorSubmission {
 	/**
 	 * Constructor.
 	 */
-	function EditorSubmission() {
-		Console::log('EditorSubmission'); 
+	function EditorSubmission() { 
 		parent::AcquisitionsEditorSubmission();
 	}
 }

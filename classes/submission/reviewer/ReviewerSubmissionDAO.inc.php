@@ -63,7 +63,7 @@ class ReviewerSubmissionDAO extends DAO {
 				LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id)
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_rounds r2 ON (a.monograph_id = r2.monograph_id AND r.round = r2.round)
+				LEFT JOIN review_rounds r2 ON (a.monograph_id = r2.monograph_id AND r.review_type = r2.review_type AND r.round = r2.round)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -125,6 +125,11 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
 
 		// Editor Decisions
+/*
+		for ($i = 1; $i <= $row['current_round']; $i++) {
+			$reviewerSubmission->setDecisions($this->getEditorDecisions($row['article_id'], $i), $i);
+		}
+*/
 		$decisions =& $this->getEditorDecisions($row['monograph_id']);
 		$reviewerSubmission->setDecisions($decisions);
 
@@ -146,6 +151,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setReviewerFileId($row['reviewer_file_id']);
 		$reviewerSubmission->setQuality($row['quality']);
 		$reviewerSubmission->setRound($row['round']);
+		$reviewerSubmission->setReviewType($row['review_type']);
 		$reviewerSubmission->setReviewFileId($row['review_file_id']);
 		$reviewerSubmission->setReviewRevision($row['review_revision']);
 
@@ -153,7 +159,6 @@ class ReviewerSubmissionDAO extends DAO {
 		$this->monographDao->_monographFromRow($reviewerSubmission, $row);
 
 		HookRegistry::call('ReviewerSubmissionDAO::_fromRow', array(&$reviewerSubmission, &$row));
-
 		return $reviewerSubmission;
 	}
 
@@ -166,6 +171,7 @@ class ReviewerSubmissionDAO extends DAO {
 			sprintf('UPDATE review_assignments
 				SET	monograph_id = ?,
 					reviewer_id = ?,
+					review_type = ?,
 					round = ?,
 					competing_interests = ?,
 					recommendation = ?,
@@ -185,6 +191,7 @@ class ReviewerSubmissionDAO extends DAO {
 			array(
 				$reviewerSubmission->getMonographId(),
 				$reviewerSubmission->getReviewerId(),
+				$reviewerSubmission->getReviewType(),
 				$reviewerSubmission->getRound(),
 				$reviewerSubmission->getCompetingInterests(),
 				$reviewerSubmission->getRecommendation(),
@@ -205,20 +212,22 @@ class ReviewerSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array ReviewerSubmissions
 	 */
-	function &getReviewerSubmissionsByReviewerId($reviewerId, $pressId, $active = true, $rangeInfo = null) {
+	function &getReviewerSubmissionsByReviewerId($reviewerId, $pressId, $active = true, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$sql = 'SELECT	a.*,
 				r.*,
 				r2.review_revision,
 				u.first_name, u.last_name,
+				atl.setting_value AS submission_title,
 				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
 			FROM	monographs a
 				LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id)
+				LEFT JOIN monograph_settings atl ON (atl.monograph_id = a.monograph_id AND atl.setting_name = ? AND atl.locale = ?)
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round)
+				LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.review_type = r2.review_type AND r.round = r2.round)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -233,9 +242,15 @@ class ReviewerSubmissionDAO extends DAO {
 			$sql .= ' AND (r.date_completed IS NOT NULL OR r.cancelled = 1 OR r.declined = 1)';
 		}
 
+		if ($sortBy) {
+			$sql .=  ' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection);
+		}
+
 		$result =& $this->retrieveRange(
 			$sql,
 			array(
+				'title',
+				$locale,
 				'title',
 				$primaryLocale,
 				'title',
@@ -269,7 +284,7 @@ class ReviewerSubmissionDAO extends DAO {
 			LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id) 
 			LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id) 
 			LEFT JOIN users u ON (r.reviewer_id = u.user_id) 
-			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.round = r2.round) 
+			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.review_type = r2.review_type AND r.round = r2.round) 
 			WHERE a.press_id = ? AND 
 				r.reviewer_id = ? AND 
 				r.date_notified IS NOT NULL';
@@ -324,6 +339,25 @@ class ReviewerSubmissionDAO extends DAO {
 		unset($result);
 
 		return $decisions;
+	}
+	
+	/**
+	 * Map a column heading value to a database value for sorting
+	 * @param string
+	 * @return string
+	 */
+	function getSortMapping($heading) {
+		switch ($heading) {
+			case 'id': return 'a.article_id';
+			case 'assignDate': return 'r.date_assigned';
+			case 'dueDate': return 'r.date_due';
+			case 'section': return 'section_abbrev';
+			case 'title': return 'submission_title';
+			case 'round': return 'r.round';
+			case 'review': return 'r.recommendation';
+			case 'decision': return 'editor_decision';
+			default: return null;
+		}
 	}
 }
 

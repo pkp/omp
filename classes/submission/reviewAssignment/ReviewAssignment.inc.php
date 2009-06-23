@@ -542,7 +542,7 @@ class ReviewAssignment extends DataObject {
 	 * Get all reviewer file revisions.
 	 * @return array MonographFiles
 	 */
-	function getReviewerFileRevisions($reviewType) {
+	function getReviewerFileRevisions($reviewType = null) {
 		if ($reviewType != null) {
 			if (!isset($this->reviewerFileRevisions[$reviewType])) return null;
 			else return $this->reviewerFileRevisions[$reviewType];

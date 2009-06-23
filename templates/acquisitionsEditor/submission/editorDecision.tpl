@@ -28,11 +28,10 @@
 <tr valign="top">
 	<td class="label">{translate key="editor.monograph.decision"}</td>
 	<td class="value">
-		{foreach from=$editorDecisions item=editorDecision key=decisionKey}
+		{foreach from=$submission->getDecisions($reviewType, $round) item=editorDecision key=decisionKey}
+			{if $decisionKey neq 0} | {/if}
 			{assign var="decision" value=$editorDecision.decision}
-			{if $decisionKey > 1} | {/if}
-			{if $decisionKey == 0}<strong>{/if}{translate key=$editorDecisionOptions.$decision}&nbsp;&nbsp;{$editorDecision.dateDecided|date_format:$dateFormatShort}{if $decisionKey == 0}</strong>{/if}
-			{if $decisionKey < 1}<br />{/if}
+			{translate key=$editorDecisionOptions.$decision}&nbsp;&nbsp;{$editorDecision.dateDecided|date_format:$dateFormatShort}
 		{foreachelse}
 			{translate key="common.none"}
 		{/foreach}
@@ -65,8 +64,8 @@
 
 <form method="post" action="{url op="editorReview"}" enctype="multipart/form-data">
 <input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
-{assign var=authorFiles value=$submission->getAuthorFileRevisions()}
-{assign var=editorFiles value=$submission->getEditorFileRevisions($reviewType)}
+{assign var=authorFiles value=$submission->getAuthorFileRevisions($reviewType, $round)}
+{assign var=editorFiles value=$submission->getEditorFileRevisions($reviewType, $round)}
 
 {assign var="authorRevisionExists" value=false}
 {foreach from=$authorFiles item=authorFile}
@@ -87,7 +86,7 @@
 			<td width="20%">&nbsp;</td>
 			<td width="80%">
 				{translate key="editor.monograph.resubmitFileForPeerReview"}
-				<input type="submit" name="resubmit" {if !($editorRevisionExists or $authorRevisionExists)}disabled="disabled" {/if}value="{translate key="form.resubmit"}" class="button" />
+				<input type="submit" name="resubmit" {if !($editorRevisionExists or $authorRevisionExists or $reviewVersionExists)}disabled="disabled" {/if}value="{translate key="form.resubmit"}" class="button" />
 			</td>
 		</tr>
 	{elseif $lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT}
@@ -142,8 +141,7 @@
 		</tr>
 	{/foreach}
 	{assign var="firstItem" value=true}
-	{assign var="editorFiles" value=$editorFiles.$round}
-	{foreach from=$editorFiles item=editorFile key=key}<?php print_r($editorFiles);?>
+	{foreach from=$editorFiles item=editorFile key=key}
 		<tr valign="top">
 			{if $firstItem}
 				{assign var="firstItem" value=false}
