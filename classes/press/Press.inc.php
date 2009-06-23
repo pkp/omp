@@ -50,6 +50,13 @@ class Press extends DataObject {
 	function setPressName($pressName) {
 		$this->setData('name', $pressName);
 	}
+	
+	/**
+	 * get the name of the press
+	 */
+	function getName($locale) {
+		return $this->getSetting('name', $locale);	
+	}
 
 	/**
 	 * Get press description.
