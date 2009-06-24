@@ -35,10 +35,10 @@ class AuthorSubmissionSequence extends SubmissionFormSequence
 	 * Add individual forms to the sequence.
 	 */
 	function prepareFormSequences() {
-		$this->addForm('author.form.submit.AuthorSubmitStep1Form','AuthorSubmitStep1Form','author.submit.start','author.submit.step1','1');
-		$this->addForm('author.form.submit.AuthorSubmitStep3Form','AuthorSubmitStep3Form','author.submit.upload','author.submit.step2','2');
-		$this->addForm('author.form.submit.AuthorSubmitStep2Form','AuthorSubmitStep2Form','author.submit.metadata','author.submit.step3','3');
-		$this->addForm('author.form.submit.AuthorSubmitStep5Form','AuthorSubmitStep5Form','author.submit.confirmation','author.submit.step5','4');
+		$this->addForm('author.form.submit.AuthorSubmitStep1Form','AuthorSubmitStep1Form','author.submit.start','author.submit.stepHeading.start','1');
+		$this->addForm('author.form.submit.AuthorSubmitStep3Form','AuthorSubmitStep3Form','author.submit.upload','author.submit.stepHeading.upload','2');
+		$this->addForm('author.form.submit.AuthorSubmitStep2Form','AuthorSubmitStep2Form','author.submit.metadata','author.submit.stepHeading.metadata','3');
+		$this->addForm('author.form.submit.AuthorSubmitStep5Form','AuthorSubmitStep5Form','author.submit.confirmation','author.submit.stepHeading.confirmation','4');
 	}
 
 	/**

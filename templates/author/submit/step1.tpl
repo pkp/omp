@@ -18,6 +18,7 @@
 	{assign var="howToKeyName" value="author.submit.howToSubmitNoPhone"}
 {/if}
 {if isset($pressSettings.supportName)}
+<div class="separator"></div>
 <p>{translate key=$howToKeyName supportName=$pressSettings.supportName supportEmail=$pressSettings.supportEmail supportPhone=$pressSettings.supportPhone}</p>
 {/if}
 

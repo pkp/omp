@@ -11,6 +11,8 @@
 
 {include file="author/submit/submitStepHeader.tpl"}
 
+<div class="separator"></div>
+
 <form method="post" action="{url op="saveSubmit" path=$submitStep}" enctype="multipart/form-data">
 <input type="hidden" name="monographId" value="{$monographId|escape}" />
 {include file="common/formErrors.tpl"}

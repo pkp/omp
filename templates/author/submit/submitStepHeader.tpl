@@ -10,7 +10,9 @@
  *}
 {strip}
 {assign var="pageCrumbTitle" value="author.submit"}
-{translate|assign:"pageTitleTranslated" key=$stepTitle}
+{translate|assign:"stepx" key="submission.stepX" step=$submitStep}
+{translate|assign:"stepy" key=$stepTitle}
+{assign var="pageTitleTranslated" value="$stepx $stepy"}
 {include file="common/header.tpl"}
 {/strip}
 
