@@ -107,16 +107,8 @@ function moveComponent(dir, componentIndex) {
 <br />
 
 <div class="newItemContainer">
-<table style="info">
-<tr>
-	<td width="10%"></td><td width="80%"><h2>{translate key="inserts.monographComponents.heading.newComponent"}</h2></td><td width="10%"></td>
-</tr>
-<tr>
-	<td width="10%"></td><td width="80%">{translate key="inserts.monographComponents.newComponent.description"}<br /><br /></td><td width="10%"></td>
-</tr>
-<tr>
-	<td width="10%"></td>
-	<td width="80%">
+<h3>{translate key="inserts.monographComponents.heading.newComponent"}</h3>
+<p>{translate key="inserts.monographComponents.newComponent.description"}</p>
 <table width="100%" class="data">
 <tr valign="top">
 	<td width="20%" class="label">{translate key="common.title"}</td>
@@ -136,13 +128,8 @@ function moveComponent(dir, componentIndex) {
 {/if}
 <tr valign="top">
 	<td width="20%"></td>
-	<td width="80%"><p><input type="submit" class="button" name="addComponent" value="{translate key="inserts.monographComponents.button.addComponent"}" /></p></td>
+	<td width="80%"><input type="submit" class="button" name="addComponent" value="{translate key="inserts.monographComponents.button.addComponent"}" /></td>
 </tr>
 </table>
-	</td>
-	<td width="10%"></td>
-</tr>
-</table>
-
 </div>
  

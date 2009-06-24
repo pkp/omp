@@ -73,30 +73,9 @@ class SubmitHandler extends AuthorHandler {
 
 		$editData = $submitForm->processEvents();
 
-		// Check for any special cases before trying to save
-		switch ($step) {
-			case 3:
-				if (Request::getUserVar('uploadSubmissionFile')) {
-					$submitForm->uploadSubmissionFile('submissionFile');
-					$editData = true;
-				}
-				if (Request::getUserVar('uploadCompletedProspectusFile')) {
-					$submitForm->uploadCompletedProspectusFile('completedProspectusFile');
-					$editData = true;
-				}
-				break;
-
-			case 5:
-				if (Request::getUserVar('submitUploadSuppFile')) {
-					SubmitHandler::submitUploadSuppFile();
-					return;
-				}
-				break;
-		}
-
 		if (!$editData && $submitForm->validate()) {
 			$monographId = $submitForm->execute();
-			if ($step == 6) {
+			if ($sequence->isLastStep()) {
 				$press =& Request::getPress();
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign_by_ref('press', $press);

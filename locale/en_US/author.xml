@@ -41,8 +41,8 @@
 	<message key="author.submit.startHereTitle">Start a New Submission</message>
 	<message key="author.submit.startHereLink"><![CDATA[<a href="{$submitUrl}" class="action">Click here</a> to go to step one of the five-step submission process.]]></message>
 	<message key="author.submit.step1">Step 1. Starting the Submission</message>
-	<message key="author.submit.step2">Step 2. Entering the Submission's Metadata</message>
-	<message key="author.submit.step3">Step 3. Uploading the Submission</message>
+	<message key="author.submit.step2">Step 2. Uploading the Submission</message>
+	<message key="author.submit.step3">Step 3. Entering the Submission's Metadata</message>
 	<message key="author.submit.step.Artwork">Step 4. Uploading Artwork</message>
 	<message key="author.submit.step4">Step 5. Uploading Supplementary Files</message>
 	<message key="author.submit.step4a">Step 5a. Add a Supplementary File</message>

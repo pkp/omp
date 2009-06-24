@@ -30,7 +30,6 @@
 import('file.FileManager');
 
 /* File type suffixes */
-define('MONOGRAPH_FILE_SUBMISSION',	'SM');
 define('MONOGRAPH_FILE_REVIEW',		'RV');
 define('MONOGRAPH_FILE_EDITOR',		'ED');
 define('MONOGRAPH_FILE_COPYEDIT',	'CE');
@@ -39,10 +38,10 @@ define('MONOGRAPH_FILE_PUBLIC',		'PB');
 define('MONOGRAPH_FILE_SUPP',		'SP');
 define('MONOGRAPH_FILE_NOTE',		'NT');
 define('MONOGRAPH_FILE_ATTACHMENT',	'AT');
-define('MONOGRAPH_FILE_PROSPECTUS',	'PR');
-define('MONOGRAPH_FILE_ARTWORK',	'ART');
 define('MONOGRAPH_FILE_GALLEY',		'GA');
 define('MONOGRAPH_FILE_PRODUCTION',	'PRD');
+
+define('MONOGRAPH_BOOKFILE_UPLOAD',	'BK');
 
 class MonographFileManager extends FileManager {
 
@@ -70,23 +69,13 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * Upload a submission file.
+	 * Upload a book file.
 	 * @param $fileName string the name of the file used in the POST form
-	 * @param $fileId int
 	 * @return int file ID, is false if failure
 	 */
-	function uploadSubmissionFile($fileName, $fileId = null, $overwrite = false) {
-		return $this->handleUpload($fileName, MONOGRAPH_FILE_SUBMISSION, $fileId, $overwrite);
-	}
-
-	/**
-	 * Upload a completed prospectus file.
-	 * @param $fileName string the name of the file used in the POST form
-	 * @param $fileId int
-	 * @return int file ID, is false if failure
-	 */
-	function uploadCompletedProspectusFile($fileName, $fileId = null, $overwrite = false) {
-		return $this->handleUpload($fileName, MONOGRAPH_FILE_PROSPECTUS, $fileId, $overwrite);
+	function uploadBookFile($fileName, $prefix, $typeName) {
+		$bookFileTypeInfo = array('prefix' => $prefix, 'type' => $typeName);
+		return $this->handleUpload($fileName, MONOGRAPH_BOOKFILE_UPLOAD, null, false, $bookFileTypeInfo);
 	}
 
 	/**
@@ -109,16 +98,6 @@ class MonographFileManager extends FileManager {
 		return $this->handleUpload($fileName, MONOGRAPH_FILE_EDITOR, $fileId);
 	}
 
-	/**
-	 * Upload a file to the artwork file folder.
-	 * @param $fileName string the name of the file used in the POST form
-	 * @param $fileId int
-	 * @param $fileObj MonographArtworkFile
-	 * @return int file ID, is false if failure
-	 */
-	function uploadArtworkFile($fileName, $fileId = null, $fileObj = null) {
-		return $this->handleUpload($fileName, MONOGRAPH_FILE_ARTWORK, $fileId);
-	}
 	/**
 	 * Upload a file to the copyedit file folder.
 	 * @param $fileName string the name of the file used in the POST form
@@ -395,7 +374,7 @@ class MonographFileManager extends FileManager {
 	function typeToPath($type) {
 		switch ($type) {
 			case MONOGRAPH_FILE_PUBLIC: return 'public';
-			case MONOGRAPH_FILE_SUPP: return 'supp';
+			case MONOGRAPH_BOOKFILE_UPLOAD: return 'submission';
 			case MONOGRAPH_FILE_NOTE: return 'note';
 			case MONOGRAPH_FILE_REVIEW: return 'submission/review';
 			case MONOGRAPH_FILE_EDITOR: return 'submission/editor';
@@ -404,9 +383,7 @@ class MonographFileManager extends FileManager {
 			case MONOGRAPH_FILE_GALLEY: return 'submission/galleys';
 			case MONOGRAPH_FILE_LAYOUT: return 'submission/layout';
 			case MONOGRAPH_FILE_ATTACHMENT: return 'attachment';
-			case MONOGRAPH_FILE_PROSPECTUS: return 'submission/prospectus';
-			case MONOGRAPH_FILE_ARTWORK: return 'submission/artwork';
-			case MONOGRAPH_FILE_SUBMISSION: default: return 'submission/original';
+			case MONOGRAPH_FILE_SUPP: default: return 'supp';
 		}
 	}
 
@@ -466,7 +443,7 @@ class MonographFileManager extends FileManager {
 		$monographFile->setType($destTypePath);
 		$monographFile->setDateUploaded(Core::getCurrentDate());
 		$monographFile->setDateModified(Core::getCurrentDate());
-//		$monographFile->setRound($this->monograph->getCurrentRound()); // FIXME This field is only applicable for review files?
+		$monographFile->setRound($this->monograph->getCurrentRound());
 		$monographFile->setRevision($revision);
 
 		$fileId = $monographFileDao->insertMonographFile($monographFile);
@@ -541,6 +518,19 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
+	 * PRIVATE routine to generate a filename for a monograph file. Sets the filename
+	 * field in the monographFile to the generated value.
+	 * @param $monographFile The monograph to generate a filename for
+	 * @param $originalName The name of the original file
+	 */
+	function generateBookFileName(&$monographFile, $originalName, $prefix = '__', $typeName) {
+		$extension = $this->parseFileExtension($originalName);
+		$newFileName = $prefix.'_'.date('Y', time()).'-'.$typeName.'-'.$monographFile->getFileId().'-'.$monographFile->getRevision().'.'.$extension;
+		$monographFile->setFileName($newFileName);
+		return $newFileName;
+	}
+
+	/**
 	 * PRIVATE routine to upload the file and add it to the database.
 	 * @param $fileName string index into the $_FILES array
 	 * @param $type string identifying type
@@ -548,7 +538,7 @@ class MonographFileManager extends FileManager {
 	 * @param $overwrite boolean overwrite all previous revisions of the file (revision number is still incremented)
 	 * @return int the file ID (false if upload failed)
 	 */
-	function handleUpload($fileName, $type, $fileId = null, $overwrite = false) {
+	function handleUpload($fileName, $type, $fileId = null, $overwrite = false, &$bookFileTypeInfo = null) {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 
 		$typePath = $this->typeToPath($type);
@@ -575,12 +565,21 @@ class MonographFileManager extends FileManager {
 		$monographFile->setRound($this->monograph->getCurrentRound());
 		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 
-		$newFileName = $this->generateFilename($monographFile, $type, $this->getUploadedFileName($fileName));
+		if (isset($bookFileTypeInfo)) {
+			$newFileName = $this->generateBookFileName(
+					$monographFile, 
+					$this->getUploadedFileName($fileName), 
+					$bookFileTypeInfo['prefix'],
+					$bookFileTypeInfo['type']
+				);
+			$monographFile->setSortableByComponent(isset($bookFileTypeInfo['sortable']) ? $bookFileTypeInfo['sortable'] : 0);
+		} else {
+			$newFileName = $this->generateFilename($monographFile, $type, $this->getUploadedFileName($fileName));
+		}
 
 		if (!$this->uploadFile($fileName, $dir.$newFileName)) {
 			// Delete the dummy file we inserted
 			$monographFileDao->deleteMonographFileById($monographFile->getFileId());
-
 			return false;
 		}
 

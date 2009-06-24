@@ -70,6 +70,13 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr->assign('isEditor', $isEditor);
 		$templateMgr->assign('enableComments', $enableComments);
 
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$monographFiles =& $monographFileDao->getByMonographId($submission->getMonographId(), 'submission');
+		$templateMgr->assign_by_ref('submissionFiles', $monographFiles);
+
+		$templateMgr->assign_by_ref('bookFileTypes', $bookFileTypes);
+		$templateMgr->assign_by_ref('submissionFiles', $monographFiles);
+
 		$templateMgr->assign_by_ref('arrangements', $arrangementDao->getTitlesByPressId($press->getId()));
 
 		if ($enableComments) {
@@ -398,6 +405,24 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		}
 
 		Request::redirect(null, null, 'submissionReview', $monographId);
+	}
+
+	function recordReviewFiles() {
+		$monographId = Request::getUserVar('monographId');
+		$this->validate($monographId);
+		$press =& Request::getPress();
+		$submission =& $this->submission;
+
+		$fileIds = Request::getUserVar('selectedFiles');
+
+		import('file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($monographId);
+
+		foreach ($fileIds as $fileId) {
+			$monographFileManager->copyToReviewFile($fileId);
+		}
+
+		Request::redirect(null, null, 'submission', $monographId);
 	}
 
 	//

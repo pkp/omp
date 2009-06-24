@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="author.submit.step3"}
+
 {include file="author/submit/submitStepHeader.tpl"}
 
 <form method="post" action="{url op="saveSubmit" path=$submitStep}" enctype="multipart/form-data">
@@ -27,49 +27,78 @@
 
 <div class="separator"></div>
 
-<h3>{translate key="author.submit.submissionFile"}</h3>
-<table class="data" width="100%">
-{if $submissionFile}
-<tr valign="top">
-	<td width="20%" class="label">{translate key="common.fileName"}</td>
-	<td width="80%" class="value"><a href="{url op="download" path=$monographId|to_array:$submissionFile->getFileId()}">{$submissionFile->getFileName()|escape}</a></td>
-</tr>
-<tr valign="top">
-	<td width="20%" class="label">{translate key="common.originalFileName"}</td>
-	<td width="80%" class="value">{$submissionFile->getOriginalFileName()|escape}</td>
-</tr>
-<tr valign="top">
-	<td width="20%" class="label">{translate key="common.fileSize"}</td>
-	<td width="80%" class="value">{$submissionFile->getNiceFileSize()}</td>
-</tr>
-<tr valign="top">
-	<td width="20%" class="label">{translate key="common.dateUploaded"}</td>
-	<td width="80%" class="value">{$submissionFile->getDateUploaded()|date_format:$datetimeFormatShort}</td>
-</tr>
-{else}
-<tr valign="top">
-	<td colspan="2" class="nodata">{translate key="author.submit.noSubmissionFile"}</td>
-</tr>
-{/if}
-</table>
+<h3>{translate key="common.bookFiles"}</h3>
 
-<div class="separator"></div>
+<table class="listing" width="100%">
+<tr valign="top">
+	<td width="5%">&nbsp;</td>
+	<td width="30%">{translate key="common.fileName"}</td>
+	<td width="8%">{translate key="common.note"}</td>
+	<td width="22%">{translate key="common.type"}</td>
+	<td width="10%">{translate key="common.fileSize"}</td>
+	<td width="30%">{translate key="common.originalFileName"}</td>
+</tr>
+<tr>
+	<td class="separator" colspan="6">&nbsp;</td>
+</tr>
+{foreach from=$submissionFiles item=submissionFile}
+<tr valign="top">
+	<td><input type="checkbox" name="selectedFiles[]" value="{$submissionFile->getFileId()}" /></td>
+	<td><a href="{url op="download" path=$monographId|to_array:$submissionFile->getFileId()}">{$submissionFile->getFileName()|escape}</a></td>
+	<td>{icon name="comment" disabled="disabled"}</td>
+	<td>{if $submissionFile->getSetting('bookFileTypeName')}{$submissionFile->getSetting('bookFileTypeName')}{/if}</td>
+	<td>{$submissionFile->getNiceFileSize()}</td>
+	<td>{$submissionFile->getOriginalFilename()}</td>
+</tr>
+{foreachelse}
+<tr valign="top">
+	<td colspan="6" class="nodata"><em>{translate key="common.none"}</em></td>
+</tr>
+{/foreach}
+<tr>
+	<td class="separator" colspan="6">&nbsp;</td>
+</tr>
+</table>
+{if count($submissionFiles) > 0}<input type="submit" class="button" name="deleteSelectedFiles" value="{translate key="common.delete"}" />{/if}
+<br />
+<br />
+
+<div class="newItemContainer">
+<h3>{translate key="common.fileUpload"}</h3>
 
 <table class="data" width="100%">
 <tr>
 	<td width="30%" class="label">
-		{if $submissionFile}
-			{fieldLabel name="submissionFile" key="author.submit.replaceSubmissionFile"}
-		{else}
-			{fieldLabel name="submissionFile" key="author.submit.uploadSubmissionFile"}
-		{/if}
+		{fieldLabel name="submissionFile" key="author.submit.uploadSubmissionFile"}
 	</td>
 	<td width="70%" class="value">
-		<input type="file" class="uploadField" name="submissionFile" id="submissionFile" /> <input name="uploadSubmissionFile" type="submit" class="button" value="{translate key="common.upload"}" />
+		<input type="file" class="uploadField" name="bookFile" id="bookFile" />
 		{if $currentPress->getSetting('showEnsuringLink')}<a class="action" href="javascript:openHelp('{get_help_id key="editorial.acquisitionsEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.monograph.ensuringBlindReview"}</a>{/if}
 	</td>
 </tr>
+<tr>
+	<td class="label">{translate key="common.type"}</td>
+	<td class="value">
+		<select name="bookFileType" id="bookFileType" class="selectMenu">
+			<option value="">{translate key="common.select"}</option>
+		{foreach from=$bookFileTypes key=bookFileTypeKey item=bookFileType}
+			<option value="{$bookFileTypeKey}">{$bookFileType.type}</option>
+		{/foreach}
+		</select>
+	</td>
+<tr>
+	<td class="label">&nbsp;</td>
+	<td class="value"><input name="uploadBookFile" type="submit" class="button" value="{translate key="common.upload"}" /></td>
+</tr>
 </table>
+</div>
+
+{foreach from=$bookFileTypes key=bookFileTypeKey item=bookFileType}
+<input type="hidden" name="newBookFileTypeInfo[{$bookFileTypeKey}][prefix]" value="{$bookFileType.prefix}" />
+<input type="hidden" name="newBookFileTypeInfo[{$bookFileTypeKey}][description]" value="{$bookFileType.description}" />
+<input type="hidden" name="newBookFileTypeInfo[{$bookFileTypeKey}][sortable]" value="{$bookFileType.sortable}" />
+<input type="hidden" name="newBookFileTypeInfo[{$bookFileTypeKey}][type]" value="{$bookFileType.type}" />
+{/foreach}
 
 {if $pressSettings.uploadedProspectus}
 <div class="separator"></div>

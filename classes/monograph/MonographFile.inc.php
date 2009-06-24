@@ -58,6 +58,31 @@ class MonographFile extends DataObject {
 	}
 
 	/**
+	 * Get a file setting.
+	 * @return mixed
+	 */
+	function getSetting($settingName) {
+		$settings =& $this->getSettings();
+		return isset($settings[$settingName]) ? $settings[$settingName] : null; 
+	}
+
+	/**
+	 * Get file settings.
+	 * @return int
+	 */
+	function &getSettings() {
+		return $this->getData('settings');
+	}
+
+	/**
+	 * Set file settings.
+	 * @param $settings array
+	 */
+	function setSettings(&$settings) {
+		return $this->setData('settings', $settings);
+	}
+
+	/**
 	 * Get source file ID of this file.
 	 * @return int
 	 */
@@ -217,6 +242,22 @@ class MonographFile extends DataObject {
 		return $this->setData('localeKey', $key);	
 	}
 
+ 	/**
+	 * Get sortable by monograph component.
+	 * @return bool
+	 */
+	function getSortableByComponent() {
+		return $this->getData('sortable') == null ? 0 : $this->getData('sortable');
+	}
+
+	/**
+	 * Set sortable by monograph component.
+	 * @param $sortable bool
+	 */
+	function setSortableByComponent($sortable) {
+		return $this->setData('sortable', $sortable);
+	}
+
 	/**
 	 * Get uploaded date of file.
 	 * @return date
@@ -225,7 +266,6 @@ class MonographFile extends DataObject {
 	function getDateUploaded() {
 		return $this->getData('dateUploaded');	
 	}
-
 
 	/**
 	 * Set uploaded date of file.

@@ -128,6 +128,7 @@ class OMPApplication extends PKPApplication {
 			'MonographCommentDAO' => 'monograph.MonographCommentDAO',
 			'MonographComponentDAO' => 'monograph.MonographComponentDAO',
 			'MonographSearchDAO' => 'search.MonographSearchDAO',
+			'MonographFileSettingsDAO' => 'monograph.MonographFileSettingsDAO',
 			'MonographDAO' => 'monograph.MonographDAO',
 			'AcquisitionsArrangementDAO' => 'press.AcquisitionsArrangementDAO',
 			'AcquisitionsArrangementEditorsDAO' => 'press.AcquisitionsArrangementEditorsDAO',

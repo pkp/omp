@@ -27,23 +27,11 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	}
 
 	/**
-	 * Initialize form data from current monograph.
-	 */
-	function initData() {
-		if (isset($this->monograph)) {
-			$monograph =& $this->monograph;
-			$this->_data = array(
-			);
-		}
-	}
-
-	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
 		$this->readUserVars(
-			array(
-			)
+			array('newBookFileTypeInfo', 'bookFileType', 'selectedFiles')
 		);
 	}
 
@@ -59,67 +47,47 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 
-		// Get supplementary files for this monograph
+		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		if ($this->monograph->getSubmissionFileId() != null) {
-			$templateMgr->assign_by_ref('submissionFile', $monographFileDao->getMonographFile($this->monograph->getSubmissionFileId()));
-		}
 
-		if ($this->monograph->getCompletedProspectusFileId() != null) {
-			$templateMgr->assign_by_ref('completedProspectusFile', $monographFileDao->getMonographFile($this->monograph->getCompletedProspectusFileId()));
-		}
+
+		$bookFileTypes =& $pressSettingsDao->getSetting($this->monograph->getPressId(), 'bookFileTypes', Locale::getLocale());
+		$monographFiles =& $monographFileDao->getByMonographId($this->monograph->getMonographId(), 'submission');
+
+		$templateMgr->assign_by_ref('bookFileTypes', $bookFileTypes);
+		$templateMgr->assign_by_ref('submissionFiles', $monographFiles);
 
 		parent::display();
 	}
 
 	/**
-	 * Upload the submission file.
+	 * Upload the book file.
 	 * @param $fileName string
 	 * @return boolean
 	 */
-	function uploadSubmissionFile($fileName) {
+	function uploadBookFile($fileName) {
 		import('file.MonographFileManager');
 
-		$manuscriptFileManager =& new MonographFileManager($this->monograph->getMonographId());
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$manuscriptFileManager = new MonographFileManager($this->monograph->getMonographId());
 
 		if ($manuscriptFileManager->uploadedFileExists($fileName)) {
-			// upload new submission file, overwriting previous if necessary
-			$submissionFileId = $manuscriptFileManager->uploadSubmissionFile($fileName, $this->monograph->getSubmissionFileId(), true);
+			// upload new book file, overwriting previous if necessary
+			$bookFileTypeInfo = $this->getData('newBookFileTypeInfo');
+			$bookFileType = $this->getData('bookFileType');
+			$bookFileTypeInfo = $bookFileTypeInfo[$bookFileType];
+			$submissionFileId = $manuscriptFileManager->uploadBookFile(
+								$fileName, 
+								$bookFileTypeInfo['prefix'], 
+								$bookFileTypeInfo['type']
+							);
+
+			$monographFileSettingsDao =& DAORegistry::getDAO('MonographFileSettingsDAO');
+			$monographFileSettingsDao->updateSetting($submissionFileId, null, 'bookFileTypeName', $bookFileTypeInfo['type']);
+			$monographFileSettingsDao->updateSetting($submissionFileId, null, 'bookFileTypeDescription', $bookFileTypeInfo['description']);
+			$monographFileSettingsDao->updateSetting($submissionFileId, null, 'bookFileTypePrefix', $bookFileTypeInfo['prefix']);
 		}
 
-		if (isset($submissionFileId)) {
-			$this->monograph->setSubmissionFileId($submissionFileId);
-			return $monographDao->updateMonograph($this->monograph);
-
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * Upload the completed prospectus file.
-	 * @param $fileName string
-	 * @return boolean
-	 */
-	function uploadCompletedProspectusFile($fileName) {
-		import('file.MonographFileManager');
-
-		$manuscriptFileManager =& new MonographFileManager($this->monograph->getMonographId());
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-
-		if ($manuscriptFileManager->uploadedFileExists($fileName)) {
-			// upload new submission file, overwriting previous if necessary
-			$prospectusFileId = $manuscriptFileManager->uploadCompletedProspectusFile($fileName, $this->monograph->getCompletedProspectusFileId(), true);
-		}
-
-		if (isset($prospectusFileId)) {
-			$this->monograph->setCompletedProspectusFileId($prospectusFileId);
-			return $monographDao->updateMonograph($this->monograph);
-
-		} else {
-			return false;
-		}
+		return !isset($submissionFileId) ? false : true;
 	}
 
 	/**
@@ -139,7 +107,24 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 
 		return $this->monograph->getMonographId();
 	}
-
+	function processEvents() {
+		$eventProcessed = false;
+		if (Request::getUserVar('uploadBookFile')) {
+			$eventProcessed = true;
+			$this->uploadBookFile('bookFile');
+		} else if (Request::getUserVar('deleteSelectedFiles')) {
+			$eventProcessed = true;
+			$checkedFiles = $this->getData('selectedFiles');
+			$monographFilesDao =& DAORegistry::getDAO('MonographFileDAO');
+			import('file.MonographFileManager');
+			$monographFileManager = new MonographFileManager($this->monograph->getMonographId());
+			foreach ($checkedFiles as $fileId) {
+				$monographFileManager->deleteFile($fileId);
+				$monographFilesDao->deleteMonographFileById($fileId);
+			}
+		}
+		return $eventProcessed;
+	}
 }
 
 ?>

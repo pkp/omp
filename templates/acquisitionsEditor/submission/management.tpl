@@ -27,27 +27,6 @@
 		<td colspan="2" class="value">{$submission->getLocalizedTitle()|strip_unsafe_html}</td>
 	</tr>
 	<tr>
-		<td class="label">{translate key="submission.originalFile"}</td>
-		<td colspan="2" class="value">
-			{if $submissionFile}
-				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$submissionFile->getFileId()}" class="file">{$submissionFile->getFileName()|escape}</a>&nbsp;&nbsp;{$submissionFile->getDateModified()|date_format:$dateFormatShort}
-			{else}
-				{translate key="common.none"}
-			{/if}
-		</td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="monograph.suppFilesAbbrev"}</td>
-		<td colspan="2" class="value">
-			{foreach name="suppFiles" from=$suppFiles item=suppFile}
-				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$suppFile->getFileId()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;{$suppFile->getDateModified()|date_format:$dateFormatShort}&nbsp;&nbsp;<a href="{url op="editSuppFile" from="submission" path=$submission->getMonographId()|to_array:$suppFile->getSuppFileId()}" class="action">{translate key="common.edit"}</a>&nbsp;&nbsp;&nbsp;&nbsp;{if !$notFirst}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="addSuppFile" from="submission" path=$submission->getMonographId()}" class="action">{translate key="submission.addSuppFile"}</a>{/if}<br />
-				{assign var=notFirst value=1}
-			{foreachelse}
-				{translate key="common.none"}&nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="addSuppFile" from="submission" path=$submission->getMonographId()}" class="action">{translate key="submission.addSuppFile"}</a>
-			{/foreach}
-		</td>
-	</tr>
-	<tr>
 		<td class="label">{translate key="submission.submitter"}</td>
 		<td colspan="2" class="value">
 			{assign var="submitter" value=$submission->getUser()}
@@ -71,15 +50,5 @@
 		<td width="80%" colspan="2" class="data">{$submission->getCommentsToEditor()|strip_unsafe_html|nl2br}</td>
 	</tr>
 	{/if}
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="submission.prospectusFile"}</td>
-		<td width="80%" colspan="2" class="data">
-			{if $prospectusFile}
-				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$prospectusFile->getFileId()}" class="file">{$prospectusFile->getFileName()|escape}</a>&nbsp;&nbsp;{$prospectusFile->getDateModified()|date_format:$dateFormatShort}
-			{else}
-				{translate key="common.none"}
-			{/if}
-		</td>
-	</tr>
 </table>
 </div>

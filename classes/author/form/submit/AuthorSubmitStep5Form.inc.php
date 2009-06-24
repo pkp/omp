@@ -36,7 +36,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
 		// Get monograph file for this monograph
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getMonographFilesByMonograph($this->monograph->getMonographId());
+		$monographFiles =& $monographFileDao->getByMonographId($this->monograph->getMonographId());
 
 		$templateMgr->assign_by_ref('files', $monographFiles);
 		$templateMgr->assign_by_ref('press', Request::getPress());

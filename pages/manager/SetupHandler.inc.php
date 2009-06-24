@@ -219,6 +219,13 @@ class SetupHandler extends ManagerHandler {
 
 						$bookFileTypes = $settingsDao->getSetting($press->getId(), 'bookFileTypes');
 
+						if (isset($newBookFileType['sortable'])) {
+							$newBookFileType['prefix'] = '--';
+							$newBookFileType['sortable'] = true;
+						} else {
+							$newBookFileType['sortable'] = false;
+						}
+
 						array_push($bookFileTypes[$formLocale], $newBookFileType);
 
 						$settingsDao->updateSetting(

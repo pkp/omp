@@ -53,7 +53,7 @@
 		{if $reviewFile}
 			<td width="80%" class="value">
 				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;
-				{$reviewFile->getDateModified()|date_format:$dateFormatShort}{if $currentPress->getSetting('showEnsuringLink')}&nbsp;&nbsp;&nbsp;&nbsp;<a class="action" href="javascript:openHelp('{get_help_id key="editorial.acquisitionsEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.monograph.ensuringBlindReview"}</a>{/if}
+				{$reviewFile->getDateModified()|date_format:$dateFormatShort}{if $currentPress->getSetting('showEnsuringLink')}&nbsp;&nbsp;&nbsp;&nbsp;<a class="action" href="javascript:openHelp('{get_help_id key="editorial.sectionEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.monograph.ensuringBlindReview"}</a>{/if}
 			</td>
 		{else}
 			<td width="80%" class="nodata">{translate key="common.none"}</td>
@@ -70,38 +70,12 @@
 			</form>
 		</td>
 	</tr>
-	{foreach from=$suppFiles item=suppFile}
-		<tr valign="top">
-			{if !$notFirstSuppFile}
-				<td class="label" rowspan="{$suppFiles|@count}">{translate key="monograph.suppFilesAbbrev"}</td>
-				{assign var=notFirstSuppFile value=1}
-			{/if}
-			<td width="80%" class="value nowrap">
-				<form method="post" action="{url op="setSuppFileVisibility"}">
-				<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
-				<input type="hidden" name="fileId" value="{$suppFile->getSuppFileId()}" />
-
-				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$suppFile->getFileId():$suppFile->getRevision()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;
-				{$suppFile->getDateModified()|date_format:$dateFormatShort}&nbsp;&nbsp;
-				<label for="show">{translate key="editor.monograph.showSuppFile"}</label>
-				<input type="checkbox" name="show" id="show" value="1"{if $suppFile->getShowReviewers()==1} checked="checked"{/if}/>
-				<input type="submit" name="submit" value="{translate key="common.record"}" class="button" />
-				</form>
-			</td>
-		</tr>
-	{foreachelse}
-	<tr valign="top">
-		<td class="label">{translate key="monograph.suppFilesAbbrev"}</td>
-		<td class="nodata">{translate key="common.none"}</td>
-	</tr>
-{/foreach}
 </table>
 
 <div class="separator"></div>
 </div>
 
 <div id="peerReview">
-<div style="border:0px solid gray">
 
 <table class="data" width="100%">
 	<tr valign="middle">
@@ -115,5 +89,4 @@
 </table>
 {include file="acquisitionsEditor/submission/reviews.tpl"}
 
-</div>
 </div>

@@ -165,19 +165,6 @@
 		<descr>Misc workflow signoffs.</descr>
 	</table>
 	
-	<table name="monograph_artwork_files">
-		<field name="file_id" type="I8" />
-		<field name="permission" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
-		</field>
-		<field name="permission_file_id" type="I8" />
-		<field name="component_id" type="I8" />
-		<field name="identifier" type="C2" size="255" />
-		<field name="seq" type="I8"/>
-		<descr>Monograph artwork files.</descr>
-	</table>
-
 	<!--
 	  *
 	  * TABLE monograph_comments
@@ -664,7 +651,7 @@
 		<field name="monograph_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="file_name" type="C2" size="90">
+		<field name="file_name" type="C2" size="255">
 			<NOTNULL/>
 		</field>
 		<field name="file_type" type="C2" size="255">
@@ -681,6 +668,10 @@
 			<NOTNULL/>
 		</field>
 		<field name="viewable" type="I1" />
+		<field name="sortable_by_component" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
 		<field name="date_uploaded" type="T">
 			<NOTNULL/>
 		</field>
@@ -695,7 +686,42 @@
 			<col>monograph_id</col>
 		</index>
 	</table>
+	
 	<!--
+	  *
+	  * TABLE monograph_file_settings
+	  *
+	  -->
+	<table name="monograph_file_settings">
+		<field name="file_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="revision" type="I8" />
+		<field name="locale" type="C2" size="5">
+			<NOTNULL/>
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL/>
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Monograph file settings.</descr>
+		<index name="monograph_file_settings_file_id">
+			<col>file_id</col>
+		</index>
+		<index name="monograph_file_settings_pkey">
+			<col>file_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE />
+		</index>
+	</table>
+
+	  <!--
 	  *
 	  * TABLE review_rounds
 	  *

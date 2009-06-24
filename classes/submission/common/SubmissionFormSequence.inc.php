@@ -11,7 +11,7 @@
  * @brief Represents a group of forms. Subclasses would be able to examine and react to state before displaying the sequence. Forms in groups should inherit from SequenceForm. 
  */
 
-// $Id: 
+// $Id$
 
 class SubmissionFormSequence
 {
@@ -37,6 +37,9 @@ class SubmissionFormSequence
 		$this->currentStep = 0;
 		$this->currentStepAlias = null;
 	}
+	function isLastStep() {
+		return count($this->stepForms) == $this->currentStep;
+	}
 	function display() {
 
 		$templateMgr =& TemplateManager::getManager();
@@ -44,6 +47,8 @@ class SubmissionFormSequence
 		if (isset($this->contextSteps[$this->aliasLookup[$this->currentStepAlias]])) { // has context steps
 			$templateMgr->assign('contextSteps', $this->contextSteps[$this->aliasLookup[$this->currentStepAlias]]);
 		}
+		$stepTitle = isset($this->stepForms[$this->currentStep]) ? $this->stepForms[$this->currentStep]['title'] : 'common.none';
+		$templateMgr->assign('stepTitle', $stepTitle);
 		$templateMgr->assign('submitStepAlias', $this->currentStepAlias);
 		$templateMgr->assign_by_ref('steplist', $this->stepForms);
 		if(isset($this->monograph))

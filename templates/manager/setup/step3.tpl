@@ -118,34 +118,25 @@
 <input type="submit" name="restoreDefaultBookFileTypes" value="{translate key="manager.setup.restoreDefaults"}" class="button" />
 </p>
 <div class="newItemContainer">
-
-<table style="info">
+<h3>{translate key="manager.setup.newBookFileType"}</h3>
+<p>{translate key="manager.setup.newBookFileTypeDescription"}</p>
+<table>
 <tr>
-	<td width="10%"></td><td width="80%"><h2>{translate key="manager.setup.newBookFileType"}</h2></td><td width="10%"></td>
+	<td>{translate key="common.filePrefix"}</td><td><input type="text" name="newBookFileType[prefix]" class="textField" /></td>
 </tr>
 <tr>
-	<td width="10%"></td><td width="80%">{translate key="manager.setup.newBookFileTypeDescription"}<br /><br /></td><td width="10%"></td>
+	<td>{translate key="common.type"}</td><td><input type="text" name="newBookFileType[type]" class="textField" /></td>
 </tr>
 <tr>
-	<td width="10%"></td>
-	<td width="80%">
-		<table>
-		<tr>
-			<td>{translate key="common.filePrefix"}</td><td><input type="text" name="newBookFileType[prefix]" /></td>
-		</tr>
-		<tr>
-			<td>{translate key="common.type"}</td><td><input type="text" name="newBookFileType[type]" /></td>
-		</tr>
-		<tr>
-			<td>&nbsp;</td><td><input type="submit" name="addBookFileType" value="{translate key="common.create"}" class="button" /></td>
-		</tr>
-		</table>
-
-	</td>
-	<td width="10%"></td>
+	<td>{translate key="common.description"}</td><td><textarea name="newBookFileType[description]" rows="5" cols="30" class="textArea"></textarea></td>
+</tr>
+<tr>
+	<td>{translate key="common.sortableByComponent"}</td><td><input type="checkbox" name="newBookFileType[sortable]" class="textField" /></td>
+</tr>
+<tr>
+	<td>&nbsp;</td><td><input type="submit" name="addBookFileType" value="{translate key="common.create"}" class="button" /></td>
 </tr>
 </table>
-<br />
 </div>
 
 <div class="separator"></div>

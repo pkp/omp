@@ -23,9 +23,9 @@
 </a>
 </td>
 <td>
-{$artwork->getIdentifier()}<br />
-{$artwork->getMonographComponentTitle()}<br />
-Revision: {$artwork->getRevision()}<br />
+$artwork->getIdentifier()<br />
+$artwork->getMonographComponentTitle()<br />
+Revision: $artwork->getRevision()<br />
 <input type="submit" name="removeArtwork[{$artwork->getFileId()}]" value="{translate key="common.delete"}" class="button" />
 </td>
 </tr>
