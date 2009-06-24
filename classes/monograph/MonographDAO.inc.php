@@ -400,7 +400,7 @@ class MonographDAO extends DAO {
 				'SELECT MAX(round) AS current_round, review_type, review_revision 
 				FROM review_rounds r 
 				WHERE monograph_id = ? 
-				GROUP BY review_type', 
+				GROUP BY review_type, r.review_revision', 
 				$monographId
 			);
 
