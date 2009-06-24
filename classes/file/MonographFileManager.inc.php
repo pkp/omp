@@ -538,7 +538,7 @@ class MonographFileManager extends FileManager {
 	 * @param $overwrite boolean overwrite all previous revisions of the file (revision number is still incremented)
 	 * @return int the file ID (false if upload failed)
 	 */
-	function handleUpload($fileName, $type, $fileId = null, $overwrite = false, &$bookFileTypeInfo = null) {
+	function handleUpload($fileName, $type, $fileId = null, $overwrite = false, $bookFileTypeInfo = null) {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 
 		$typePath = $this->typeToPath($type);
