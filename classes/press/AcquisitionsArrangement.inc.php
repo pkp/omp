@@ -16,6 +16,9 @@
 // $Id$
 
 
+define('ARRANGEMENT_TYPE_SERIES',	1);
+define('ARRANGEMENT_TYPE_CATEGORY',	2);
+
 class AcquisitionsArrangement extends DataObject {
 
 	/**

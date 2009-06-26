@@ -24,10 +24,6 @@
 
 <div class="separator"></div>
 
-<h3>{translate key="author.submit.category"}</h3>
-
-<p>{translate key="author.submit.category.description"}</p>
-
 <form name="submit" method="post" action="{url op="saveSubmit" path=$submitStepAlias}" onsubmit="return checkSubmissionChecklist()">
 {if $monographId}
 <input type="hidden" name="monographId" value="{$monographId|escape}" />
@@ -35,16 +31,21 @@
 <input type="hidden" name="submissionChecklist" value="1" />
 {include file="common/formErrors.tpl"}
 
-<table class="data" width="100%">
-<tr valign="top">	
-	<td width="20%" class="label">{fieldLabel name="arrangementId" key="submissionCategory.submissionCategory"}</td>
-	<td width="80%" class="value"><select name="arrangementId" id="arrangementId" size="1" class="selectMenu">{html_options options=$arrangementOptions selected=$arrangementId}</select></td>
-</tr>
-	
-</table>
+{if count($arrangementOptions) > 1}
+	<h3>{translate key="author.submit.category"}</h3>
+	<p>{translate key="author.submit.category.description"}</p>
+
+	<table class="data" width="100%">
+	<tr valign="top">	
+		<td width="20%" class="label">{fieldLabel name="arrangementId" key="submissionCategory.submissionCategory"}</td>
+		<td width="80%" class="value"><select name="arrangementId" id="arrangementId" size="1" class="selectMenu">{html_options options=$arrangementOptions selected=$arrangementId}</select></td>
+	</tr>
+	</table>
+	<div class="separator"></div>
+{/if}
+
 <!-- ********Type of Work******** -->
 
-<div class="separator"></div>
 <h3>{translate key="author.submission.workType"}</h3>
 <p>{translate key="author.submission.workType.description"}</p>
 <table class="data" width="100%">

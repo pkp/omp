@@ -344,10 +344,10 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * Retrieve the IDs and titles of the arrangements for a press in an associative array.
 	 * @return array
 	 */
-	function &getTitlesByPressId($pressId, $submittableOnly = false) {
+	function &getTitlesByPressId($pressId, $submittableOnly = false, $type = null) {
 		$arrangements = array();
 
-		$arrangementIterator =& $this->getByPressId($pressId);
+		$arrangementIterator =& $this->getByPressId($pressId, null, $type);
 		while (($arrangement =& $arrangementIterator->next())) {
 			if ($submittableOnly) {
 				if (!$arrangement->getEditorRestricted()) {
