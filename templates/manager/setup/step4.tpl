@@ -186,32 +186,6 @@ function setRegAllowOpts(form) {
 
 <p><textarea name="announcementsIntroduction[{$formLocale|escape}]" id="announcementsIntroduction" rows="12" cols="60" class="textArea">{$announcementsIntroduction[$formLocale]|escape}</textarea></p>
 
-<div class="separator"></div>
-<h3>4.5 {translate key="manager.setup.reviewSignoffProcess"}</h3>
-
-<p>{translate key="manager.setup.reviewProcessesDescription"}</p>
-
-<h4>{translate key="manager.setup.internalReview"}</h4>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="useCustomInternalReviewSignoff" id="useCustomInternalReviewSignoff" value="1"{if $useCustomInternalReviewSignoff} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="useCustomInternalReviewSignoff">{translate key="manager.setup.useCustomInternalReviewSignoff"}</label></td>
-	</tr>
-</table>	
-
-<h4>{translate key="manager.setup.externalReview"}</h4>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="useCustomExternalReviewSignoff" id="useCustomExternalReview" value="1"{if $useCustomExternalReviewSignoff} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="useCustomExternalReviewSignoff">{translate key="manager.setup.useCustomExternalReviewSignoff"}</label></td>
-	</tr>
-</table>	
-
-<div class="separator"></div>
-
-
 <h3>4.5 {translate key="manager.setup.copyediting"}</h3>
 
 <p>{translate key="manager.setup.selectOne"}:</p>

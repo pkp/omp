@@ -19,19 +19,6 @@
 
 switch ($op) {
 	//
-	// Review Setup
-	//
-	case 'reviewSignoff':
-	case 'selectSignoffUser':
-	case 'selectSignoffGroup':
-	case 'addSignoffGroup':
-	case 'addSignoffUser':
-	case 'removeSignoffGroup':
-	case 'removeSignoffUser':
-		import('pages.manager.ReviewSetupHandler');
-		define('HANDLER_CLASS', 'ReviewSetupHandler');
-		break;
-	//
 	// Setup
 	//
 	case 'setup':
