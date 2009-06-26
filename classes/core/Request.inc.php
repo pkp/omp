@@ -85,7 +85,7 @@ class Request extends PKPRequest {
 	 */
 	function getRequestedContextPath($contextLevel = null) {
 		//there is only one $contextLevel, so no need to check
-		return array(Request::getRequestedPressath());
+		return array(Request::getRequestedPressPath());
 	}
 	
 	/**

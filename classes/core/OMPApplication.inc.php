@@ -123,6 +123,8 @@ class OMPApplication extends PKPApplication {
 	 */
 	function getDAOMap() {
 		return array_merge(parent::getDAOMap(), array(
+			'AnnouncementDAO' => 'announcement.AnnouncementDAO',
+			'AnnouncementTypeDAO' => 'announcement.AnnouncementTypeDAO',
 			'MonographEmailLogDAO' => 'monograph.log.MonographEmailLogDAO',
 			'MonographEventLogDAO' => 'monograph.log.MonographEventLogDAO',
 			'MonographCommentDAO' => 'monograph.MonographCommentDAO',
