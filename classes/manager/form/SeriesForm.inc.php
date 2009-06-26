@@ -47,10 +47,9 @@ class SeriesForm extends AcquisitionsArrangementForm {
 	 * Display the form.
 	 */
 	function display() {
-		parent::display();
-
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId','press.managementPages.series');
+		parent::display();
 	}
 
 	/**

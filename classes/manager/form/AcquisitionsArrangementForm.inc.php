@@ -145,7 +145,6 @@ class AcquisitionsArrangementForm extends Form {
 	 * Display the form.
 	 */
 	function display() {
-		parent::display();
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
@@ -159,6 +158,7 @@ class AcquisitionsArrangementForm extends Form {
 		$templateMgr->assign('arrangementId', $this->acquisitionsArrangementId);
 		$templateMgr->assign('commentsEnabled', $press->getSetting('enableComments'));
 		$templateMgr->assign_by_ref('reviewFormOptions', $reviewFormOptions);
+		parent::display();
 	}
 
 	/**

@@ -47,10 +47,9 @@ class SubmissionCategoryForm extends AcquisitionsArrangementForm {
 	 * Display the form.
 	 */
 	function display() {
-		parent::display();
-
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId','press.managementPages.categories');
+		parent::display();
 	}
 
 }
