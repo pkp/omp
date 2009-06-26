@@ -77,7 +77,7 @@ class SuppFileDAO extends DAO {
 		$suppFiles = array();
 
 		$result =& $this->retrieve(
-			'SELECT s.*, a.file_name, a.original_file_name, a.file_type, a.file_size, a.status, a.date_uploaded, a.date_modified FROM monograph_supplementary_files s LEFT JOIN monograph_files a ON (s.file_id = a.file_id) WHERE s.monograph_id = ? ORDER BY s.seq',
+			'SELECT s.*, a.file_name, a.original_file_name, a.file_type, a.file_size, a.date_uploaded, a.date_modified FROM monograph_supplementary_files s LEFT JOIN monograph_files a ON (s.file_id = a.file_id) WHERE s.monograph_id = ? ORDER BY s.seq',
 			$monographId
 		);
 

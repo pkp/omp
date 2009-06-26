@@ -353,7 +353,7 @@ class ReviewAssignmentDAO extends DAO {
 			'SELECT round, review_type, MAX(last_modified) AS last_modified 
 			FROM review_assignments 
 			WHERE monograph_id = ? 
-			GROUP BY round', 
+			GROUP BY round, review_type', 
 			(int) $monographId
 		);
 
@@ -382,7 +382,7 @@ class ReviewAssignmentDAO extends DAO {
 			'SELECT round, review_type, MIN(date_notified) AS earliest_date 
 			FROM review_assignments 
 			WHERE monograph_id = ? 
-			GROUP BY round', 
+			GROUP BY round, review_type', 
 			(int) $monographId
 		);
 
