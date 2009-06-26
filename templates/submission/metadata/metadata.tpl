@@ -26,7 +26,7 @@ function show(id) {
 
 <p><a href="{url op="viewMetadata" path=$submission->getMonographId()}" class="action">{translate key="submission.editMetadata"}</a></p>
 
-{if $submission->getWorkType() != EDITED_VOLUME}
+{if $submission->getWorkType() != WORK_TYPE_EDITED_VOLUME}
 	<h4>{translate key="monograph.authors"}</h4>
 {/if}
 
@@ -35,7 +35,7 @@ function show(id) {
 
 {foreach name=authors from=$submission->getAuthors() item=author}
 
-	{if $submission->getWorkType() == EDITED_VOLUME}
+	{if $submission->getWorkType() == WORK_TYPE_EDITED_VOLUME}
 		{if $authorIndex == 0 && $author->getContributionType() == VOLUME_EDITOR}
 			<h4>{translate key="inserts.contributors.volumeEditors"}</h4>
 		{/if}

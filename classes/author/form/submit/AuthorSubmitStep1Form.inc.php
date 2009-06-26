@@ -76,7 +76,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 				$this->monograph->stampStatusModified();
 				$this->monograph->setSubmissionProgress($this->sequence->currentStep + 1);
 			}
-			$this->monograph->setWorkType($this->getData('isEditedVolume') ? EDITED_VOLUME :0);
+			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME :0);
 			$this->monograph->setAcquisitionsArrangementId($this->getData('arrangementId'));
 			$monographId = $this->monograph->getMonographId();
 			$monographDao->updateMonograph($this->monograph);
@@ -93,7 +93,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$this->monograph->setSubmissionProgress($this->sequence->currentStep + 1);
 			$this->monograph->setLanguage(String::substr($press->getPrimaryLocale(), 0, 2));
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
-			$this->monograph->setWorkType($this->getData('isEditedVolume') ? EDITED_VOLUME : 0);
+			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : 0);
 			$this->monograph->setAcquisitionsArrangementId($this->getData('arrangementId'));
 
 			// Set user to initial author

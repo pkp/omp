@@ -53,7 +53,7 @@ function show(id) {
 {assign var="authorArrayIndex" value=0}
 
 {foreach name=authors from=$contributors item=author}
-{if $workType == EDITED_VOLUME and $authorArrayIndex == 0}
+{if $workType == WORK_TYPE_EDITED_VOLUME and $authorArrayIndex == 0}
 <tr>
 	<td colspan="2"><h4>{translate key="inserts.contributors.volumeEditors"}</h4></td>
 </tr>
@@ -61,7 +61,7 @@ function show(id) {
 	<td class="separator" colspan="2">&nbsp;</td>
 </tr>
 {/if}
-{if $workType == EDITED_VOLUME and $authorArrayIndex == 0 and $author.contributionType != VOLUME_EDITOR}
+{if $workType == WORK_TYPE_EDITED_VOLUME and $authorArrayIndex == 0 and $author.contributionType != VOLUME_EDITOR}
 <tr>
 	<td class="nodata" colspan="2">{translate key="common.none"}</em></td>
 </tr>
@@ -69,7 +69,7 @@ function show(id) {
 	<td class="separator" colspan="2">&nbsp;</td>
 </tr>
 {/if}
-{if $workType == EDITED_VOLUME and $firstOther and $author.contributionType != VOLUME_EDITOR}
+{if $workType == WORK_TYPE_EDITED_VOLUME and $firstOther and $author.contributionType != VOLUME_EDITOR}
 <tr>
 	<td colspan="2"><h4>{translate key="inserts.contributors.otherContributors"}</h4></td>
 </tr>
@@ -86,14 +86,14 @@ function show(id) {
 		<br />
 		<em>{$author.email}</em>
 		<br />
-		{if $workType != EDITED_VOLUME or ($workType == EDITED_VOLUME and $author.contributionType == VOLUME_EDITOR)}
+		{if $workType != WORK_TYPE_EDITED_VOLUME or ($workType == WORK_TYPE_EDITED_VOLUME and $author.contributionType == VOLUME_EDITOR)}
 		<input type="radio" name="primaryContact" value="{$authorIndex|escape}"{if $primaryContact == $authorIndex} checked="checked"{/if} /> <label for="primaryContact">{translate key="author.submit.selectPrincipalContact"}</label>
 		<br />
 		{/if}
 		<a href="javascript:show('authors-{$authorIndex|escape}-display')">{translate key="inserts.contributors.details"}</a>
 	</td>
 	<td>
-		{if $workType != EDITED_VOLUME or ($workType == EDITED_VOLUME and $author.contributionType == VOLUME_EDITOR)}
+		{if $workType != WORK_TYPE_EDITED_VOLUME or ($workType == WORK_TYPE_EDITED_VOLUME and $author.contributionType == VOLUME_EDITOR)}
 		<a href="javascript:moveContributor('u', '{$authorArrayIndex|escape}')" class="action">&uarr;</a>
 		<a href="javascript:moveContributor('d', '{$authorArrayIndex|escape}')" class="action">&darr;</a>
 		| {/if}<input type="submit" name="deleteContributor[{$authorIndex|escape}]" value="{translate key="common.delete"}" class="button" />
@@ -142,7 +142,7 @@ function show(id) {
 				<td width="80%" class="value" colspan="2"><textarea name="contributors[{$authorIndex|escape}][biography][{$formLocale|escape}]" class="textArea">{$author.biography.$formLocale}</textarea>
 				</td>
 			</tr>
-			{if $workType == EDITED_VOLUME}
+			{if $workType == WORK_TYPE_EDITED_VOLUME}
 			<tr valign="top">
 				<td width="80%" class="value" colspan="2">
 					<input type="checkbox" name="contributors[{$authorIndex|escape}][contributionType]" id="authors-{$authorIndex}-contributionType" value="1"{if VOLUME_EDITOR == $author.contributionType} checked="checked"{/if} /> <label for="authors-{$authorIndex}-contributionType">{translate key="inserts.contributors.isVolumeEditor"}</label>

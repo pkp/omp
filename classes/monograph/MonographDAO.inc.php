@@ -281,7 +281,7 @@ class MonographDAO extends DAO {
 				$monograph->getStatus(),
 				$monograph->getPressId(),
 				$monograph->getSubmissionProgress(),
-				$monograph->getWorkType() == EDITED_VOLUME ? 1 : 0,
+				$monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME ? 1 : 0,
 				$monograph->getSubmissionFileId(),
 				$monograph->getRevisedFileId(),
 				$monograph->getReviewFileId(),

@@ -78,7 +78,7 @@ window.location.hash="inserts_ContributorInsert_formErrors";
 	<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
 	<td class="value"><textarea name="newContributor[biography][{$formLocale|escape}]" rows="5" cols="40" class="textArea">{$newContributor.biography.$formLocale|escape}</textarea></td>
 </tr>
-{if $workType == EDITED_VOLUME}
+{if $workType == WORK_TYPE_EDITED_VOLUME}
 <tr valign="top">
 	<td>&nbsp;</td>
 	<td>

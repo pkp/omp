@@ -142,7 +142,7 @@ class ContributorInsert extends Insert
 				$contributors = !isset($contributors) ? array() : $contributors;
 				$newContributor['authorId'] = $submitForm->getData('newContributorId');
 
-				if ($this->monograph->getWorkType() == EDITED_VOLUME && $newContributor['contributionType'] == VOLUME_EDITOR) {
+				if ($this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME && $newContributor['contributionType'] == VOLUME_EDITOR) {
 					$newList = array();
 					$tmpContributors = $contributors;
 					foreach ($contributors as $contributor) {
@@ -162,7 +162,7 @@ class ContributorInsert extends Insert
 					$contributors = array_merge($newList, $tmpContributors);
 				} else {
 
-					if (count($contributors) < 1 && $this->monograph->getWorkType() == EDITED_VOLUME) {
+					if (count($contributors) < 1 && $this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME) {
 						$submitForm->setData('primaryContact', $newContributor['authorId']);
 					}
 					array_push($contributors, $newContributor);
@@ -183,7 +183,7 @@ class ContributorInsert extends Insert
 			$updateId = (int) $updateId;
 
 			// volume editor list maintenance
-			if ($this->monograph->getWorkType() == EDITED_VOLUME) {
+			if ($this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME) {
 				$primaryContact = $submitForm->getData('primaryContact');
 				$primaryContactFound = false;
 				$newList = array();
@@ -245,7 +245,7 @@ class ContributorInsert extends Insert
 				} else {
 					if ((isset($contributors[$keyMap[$moveContributorIndex + 1]]['contributionType']) &&
 						$contributors[$keyMap[$moveContributorIndex + 1]]['contributionType'] == VOLUME_EDITOR) ||
-							$this->monograph->getWorkType() != EDITED_VOLUME) {
+							$this->monograph->getWorkType() != WORK_TYPE_EDITED_VOLUME) {
 
 						$contributors[$keyMap[$moveContributorIndex]] = $contributors[$keyMap[$moveContributorIndex + 1]];
 						$contributors[$keyMap[$moveContributorIndex + 1]] = $tmpContributor;

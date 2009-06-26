@@ -26,7 +26,7 @@ function show(id) {
 </script>
 {/literal}
 
-{if $workType != EDITED_VOLUME}
+{if $workType != WORK_TYPE_EDITED_VOLUME}
 	<h4>{translate key="monograph.authors"}</h4>
 {/if}
 
@@ -35,7 +35,7 @@ function show(id) {
 
 {foreach name=authors from=$contributors item=author}
 
-	{if $workType == EDITED_VOLUME}
+	{if $workType == WORK_TYPE_EDITED_VOLUME}
 		{if $authorIndex == 0 && $author.contributionType == VOLUME_EDITOR}
 			<h4>{translate key="inserts.contributors.volumeEditors"}</h4>
 		{/if}

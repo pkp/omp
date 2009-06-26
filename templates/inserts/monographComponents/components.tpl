@@ -114,7 +114,7 @@ function moveComponent(dir, componentIndex) {
 	<td width="20%" class="label">{translate key="common.title"}</td>
 	<td width="80%" class="value"><input type="text" class="textField" name="newComponent[title][{$formLocale|escape}]" size="30" maxlength="255" /></td>
 </tr>
-{if $workType == EDITED_VOLUME}
+{if $workType == WORK_TYPE_EDITED_VOLUME}
 <tr valign="top">
 	<td width="20%" class="label">{translate key="monograph.component.authors"}</td>
 	<td width="80%">
