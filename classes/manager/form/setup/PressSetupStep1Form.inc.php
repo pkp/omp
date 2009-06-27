@@ -68,7 +68,7 @@ class PressSetupStep1Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('name', 'initials', 'sponsorNote', 'publisherNote', 'contributorNote', 'searchDescription', 'searchKeywords', 'customHeaders');
+		return array('name', 'initials', 'sponsorNote', 'contactTitle', 'contactAffiliation', 'contactMailingAddress', 'publisherNote', 'contributorNote', 'searchDescription', 'searchKeywords', 'customHeaders');
 	}
 
 	/**

@@ -102,6 +102,26 @@ class AboutHandler extends Handler {
 	}
 
 	/**
+	 * Display Press Sponsorship page.
+	 */
+	function pressSponsorship() {
+		$this->validate();
+		$this->setupTemplate(true);
+
+		$press =& Request::getPress();
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign_by_ref('publisherInstitution', $press->getSetting('publisherInstitution'));
+		$templateMgr->assign_by_ref('publisherUrl', $press->getSetting('publisherUrl'));
+		$templateMgr->assign_by_ref('publisherNote', $press->getLocalizedSetting('publisherNote'));
+		$templateMgr->assign_by_ref('contributorNote', $press->getLocalizedSetting('contributorNote'));
+		$templateMgr->assign_by_ref('contributors', $press->getSetting('contributors'));
+		$templateMgr->assign('sponsorNote', $press->getLocalizedSetting('sponsorNote'));
+		$templateMgr->assign_by_ref('sponsors', $press->getSetting('sponsors'));
+		$templateMgr->display('about/pressSponsorship.tpl');
+	}
+
+	/**
 	 * Display editorialTeam page.
 	 */
 	function editorialTeam() {
