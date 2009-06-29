@@ -170,6 +170,7 @@ class MonographSearchIndex {
 		}
 
 		// Update search index
+		import('search.MonographSearch');
 		$monographId = $monograph->getMonographId();
 		MonographSearchIndex::updateTextIndex($monographId, MONOGRAPH_SEARCH_AUTHOR, $authorText);
 		MonographSearchIndex::updateTextIndex($monographId, MONOGRAPH_SEARCH_TITLE, $monograph->getTitle(null));
