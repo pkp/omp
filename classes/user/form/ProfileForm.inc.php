@@ -109,12 +109,15 @@ class ProfileForm extends Form {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		$presses =& $pressDao->getPresses();
 		$presses =& $presses->toArray();
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
+		
+		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 
 		$templateMgr->assign_by_ref('presses', $presses);
 		$templateMgr->assign_by_ref('countries', $countries);

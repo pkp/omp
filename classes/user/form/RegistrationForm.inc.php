@@ -109,6 +109,9 @@ class RegistrationForm extends Form {
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
+		
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 
 		$templateMgr->assign('privacyStatement', $press->getLocalizedSetting('privacyStatement'));
 		$templateMgr->assign('allowRegReader', $press->getSetting('allowRegReader')==1?1:0);

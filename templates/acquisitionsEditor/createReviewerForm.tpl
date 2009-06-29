@@ -75,7 +75,11 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="gender" key="user.gender"}</td>
-		<td class="value"><input type="radio" name="gender" id="gender-m" value="M" {if $gender == 'M'} checked="checked"{/if}/><label for="gender-m">{translate key="user.masculine"}</label> &nbsp;&nbsp;&nbsp; <input type="radio" name="gender" id="gender-f" value="F" {if $gender == 'F'} checked="checked"{/if}><label for="gender-f">{translate key="user.feminine"}</label></td>
+		<td class="value">
+			<select name="gender" id="gender" size="1" class="selectMenu">
+				{html_options_translate options=$genderOptions selected=$gender}
+ 			</select>
+ 		</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="username" required="true" key="user.username"}</td>
