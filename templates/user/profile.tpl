@@ -143,24 +143,6 @@
 </tr>
 {/if}
 
-{foreach from=$presses name=pressNotifications key=thisPressId item=thisPress}
-	{assign var=thisPressId value=$thisPress->getId()}
-	{assign var=notificationEnabled value=`$pressNotifications.$thisPressId`}
-	{if !$notFirstPress}
-		{assign var=notFirstPress value=1}
-		<tr valign="top">
-			<td class="label">{translate key="user.profile.form.publishedNotifications"}</td>
-			<td class="value">
-	{/if}
-
-			<input type="checkbox" name="pressNotify[]" {if $notificationEnabled}checked="checked" {/if}id="pressNotify-{$thisPressId|escape}" value="{$thisPressId|escape}" /> <label for="pressNotify-{$thisPressId|escape}">{$thisPress->getLocalizedName()|escape}</label><br/>
-
-	{if $smarty.foreach.pressNotifications.last}
-			</td>
-		</tr>
-	{/if}
-{/foreach}
-
 </table>
 <p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="user" escape=false}'" /></p>
 </form>
