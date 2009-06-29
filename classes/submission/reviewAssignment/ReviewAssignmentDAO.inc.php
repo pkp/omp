@@ -290,7 +290,7 @@ class ReviewAssignmentDAO extends DAO {
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$returner[$row['review_type']][$row['round']] =& $this->monographFileDao->_returnMonographFileFromRow($row);
+			$returner[$row['review_type']][$row['round']] =& $this->monographFileDao->_fromRow($row);
 			$result->MoveNext();
 		}
 
@@ -329,7 +329,7 @@ class ReviewAssignmentDAO extends DAO {
 				$reviewerIndex++;
 			}
 
-			$thisMonographFile =& $this->monographFileDao->_returnMonographFileFromRow($row);
+			$thisMonographFile =& $this->monographFileDao->_fromRow($row);
 			$files[$row['round']][$reviewerIndex][$row['review_id']][] = $thisMonographFile;
 			$result->MoveNext();
 		}

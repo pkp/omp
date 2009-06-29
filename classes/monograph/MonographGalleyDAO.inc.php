@@ -401,7 +401,7 @@ class MonographGalleyDAO extends DAO {
 		);
 
 		while (!$result->EOF) {
-			$images[] =& $this->monographFileDao->_returnMonographFileFromRow($result->GetRowAssoc(false));
+			$images[] =& $this->monographFileDao->_fromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 
