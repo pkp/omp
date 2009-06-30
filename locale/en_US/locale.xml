@@ -383,6 +383,9 @@ Note that the OAI interface can be disabled for this site by editing the OMP sys
 	<message key="plugins.categories.oaiMetadataFormats">OAI Metadata Format Plugins</message>
 	<message key="plugins.categories.oaiMetadataFormats.description">These format plugins express metadata in OAI communications.</message>
 
+	<!-- Setup Step 1 -->
+	
+	<message key="manager.setup.form.pressInitialsRequired">Press initials are required.</message>
 
 	<!-- Setup Step 2 -->
 
