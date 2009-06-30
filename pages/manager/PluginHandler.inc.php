@@ -34,12 +34,21 @@ class PluginHandler extends ManagerHandler {
 
 		$categories = PluginRegistry::getCategories();
 
+		$templateMgr =& TemplateManager::getManager();
+		$this->validate();
+
 		if (isset($category)) {
 			// The user specified a category of plugins to view;
 			// get the plugins in that category only.
+			$mainPage = false;
 			$plugins =& PluginRegistry::loadCategory($category);
+
+			$this->setupTemplate(false);
+			$templateMgr->assign('pageTitle', 'plugins.categories.' . $category);
+			$templateMgr->assign('pageHierarchy', PluginHandler::setBreadcrumbs(true));
 		} else {
 			// No plugin specified; display all.
+			$mainPage = true;
 			$plugins = array();
 			foreach ($categories as $category) {
 				$newPlugins =& PluginRegistry::loadCategory($category);
@@ -47,13 +56,15 @@ class PluginHandler extends ManagerHandler {
 					$plugins = array_merge($plugins, PluginRegistry::loadCategory($category));
 				}
 			}
+			
+			$this->setupTemplate(true);
+			$templateMgr->assign('pageTitle', 'manager.plugins.pluginManagement');
+			$templateMgr->assign('pageHierarchy', PluginHandler::setBreadcrumbs(false));
 		}
 
-		$this->setupTemplate(true);
-
-		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('plugins', $plugins);
 		$templateMgr->assign_by_ref('categories', $categories);
+		$templateMgr->assign('mainPage', $mainPage);
 		$templateMgr->assign('isSiteAdmin', Validation::isSiteAdmin());
 		$templateMgr->assign('helpTopicId', 'press.managementPages.plugins');
 
@@ -71,10 +82,46 @@ class PluginHandler extends ManagerHandler {
 		$this->validate();
 
 		$plugins =& PluginRegistry::loadCategory($category);
-		if (!isset($plugins[$plugin]) || !$plugins[$plugin]->manage($verb, $args)) {
-			Request::redirect(null, null, 'plugins');
+		$message = null;
+		if (!isset($plugins[$plugin]) || !$plugins[$plugin]->manage($verb, $args, $message)) {
+			if ($message) {
+				$templateMgr =& TemplateManager::getManager();
+				$templateMgr->assign('message', $message);
+			}
+			PluginHandler::plugins(array($category));
 		}
 	}
+	
+	/**
+	 * Set the page's breadcrumbs
+	 * @param $subclass boolean
+	 */
+	function setBreadcrumbs($subclass = false) {
+		$templateMgr =& TemplateManager::getManager();
+		$pageCrumbs = array(
+			array(
+				Request::url(null, 'user'),
+				'navigation.user',
+				false
+			),
+			array(
+				Request::url(null, 'manager'),
+				'manager.pressManagement',
+				false
+			)
+		);
+		
+		if ($subclass) {
+			$pageCrumbs[] = array(
+				Request::url(null, 'manager', 'plugins'),
+				'manager.plugins.pluginManagement',
+				false
+			);
+		}
+
+		return $pageCrumbs;
+	}
+	
 }
 
 ?>

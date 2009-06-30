@@ -160,8 +160,12 @@ switch ($op) {
 	//
 	case 'plugins':
 	case 'plugin':
-		import('pages.manager.PluginHandler');
 		define('HANDLER_CLASS', 'PluginHandler');
+		import('pages.manager.PluginHandler');
+		break;
+	case 'pluginManagement':
+		define('HANDLER_CLASS', 'PluginManagementHandler');
+		import('pages.manager.PluginManagementHandler');
 		break;
 	//
 	// Group Management
