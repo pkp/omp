@@ -96,7 +96,7 @@
 			<li><a href="{url press="index" page="user"}">{translate key="navigation.userHome"}</a></li>
 		{else}
 			<li><a href="{url page="login"}">{translate key="navigation.login"}</a></li>
-			<!--<li><a href="{url page="user" op="register"}">{translate key="navigation.register"}</a></li>-->
+			<li><a href="{url page="user" op="register"}">{translate key="navigation.register"}</a></li>
 		{/if}{* $isUserLoggedIn *}
 		{if $enableAnnouncements}
 			<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
