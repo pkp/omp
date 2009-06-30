@@ -13,18 +13,6 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{if isset($signoffTasks)}
-<h3>Tasks</h3>
-
-<table>
-{foreach from=$signoffTasks item=signoffTask}
-<tr>
-<td style="width:40%">&#187; {$signoffTask.title}</td><td style="width:60%"><a href="{url op="workflowSignoff" path=$signoffTask.process->getId()}">Signoff</a> ({$signoffTask.process->getTitle()} {$signoffTask.process->getDateEnded()})</td>
-</tr>
-{/foreach}
-</table>
-{/if}
-
 {if $isSiteAdmin}
 	{assign var="hasRole" value=1}
 	<h4><a href="{url page="user"}">{$siteTitle|escape}</a></h4>
