@@ -79,6 +79,26 @@ class SubmitHandler extends AuthorHandler {
 				$press =& Request::getPress();
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign_by_ref('press', $press);
+				
+				// Send a notification to associated users
+				import('notification.Notification');
+				$monographDao =& DAORegistry::getDAO('MonographDAO');
+				$monograph =& $monographDao->getMonograph($monographId);
+				$roleDao =& DAORegistry::getDAO('RoleDAO');
+				$notificationUsers = array();
+				$pressManagers = $roleDao->getUsersByRoleId(ROLE_ID_PRESS_MANAGER);
+				$allUsers = $pressManagers->toArray();
+				$editors = $roleDao->getUsersByRoleId(ROLE_ID_EDITOR);
+				array_merge($allUsers, $editors->toArray());
+				foreach ($allUsers as $user) {
+					$notificationUsers[] = array('id' => $user->getId());
+				}
+				foreach ($notificationUsers as $user) {
+					$url = Request::url(null, 'editor', 'submission', $monographId);
+					Notification::createNotification($user['id'], "notification.type.monographSubmitted",
+						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED);
+				}
+				
 				// If this is an editor and there is a
 				// submission file, monograph can be expedited.
 				if (Validation::isEditor($press->getId()) && $monograph->getSubmissionFileId()) {

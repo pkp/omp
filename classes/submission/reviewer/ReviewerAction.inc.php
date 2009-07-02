@@ -340,6 +340,20 @@ class ReviewerAction extends Action {
 			$reviewForm->readInputData();
 			if ($reviewForm->validate()) {
 				$reviewForm->execute();
+				
+				// Send a notification to associated users
+				import('notification.Notification');
+				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+				$reviewAssignment = $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+				$monographId = $reviewAssignment->getMonographId();
+				$monographDao =& DAORegistry::getDAO('MonographDAO'); 
+				$monograph =& $monographDao->getMonograph($monographId);
+				$notificationUsers = $monograph->getAssociatedUserIds();
+				foreach ($notificationUsers as $user) {
+					$url = Request::url(null, $user['role'], 'submissionReview', $monographId, null, 'peerReview');
+					Notification::createNotification($user['id'], "notification.type.reviewerFormComment",
+						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT);
+				}
 			} else {
 				$reviewForm->display();
 				return false;

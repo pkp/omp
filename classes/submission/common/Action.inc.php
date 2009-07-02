@@ -85,6 +85,15 @@ class Action {
 
 			if (!$editData && $metadataForm->validate()) {
 				$metadataForm->execute();
+				
+				// Send a notification to associated users
+				import('notification.Notification');
+				$notificationUsers = $monograph->getAssociatedUserIds();
+				foreach ($notificationUsers as $user) {
+					$url = Request::url(null, $user['role'], 'submission', $monograph->getArticleId(), null, 'metadata');
+					Notification::createNotification($user['id'], "notification.type.metadataModified",
+						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_METADATA_MODIFIED);
+				}
 
 				// Add log entry
 				$user =& Request::getUser();
@@ -196,6 +205,15 @@ class Action {
 
 			if ($commentForm->validate()) {
 				$commentForm->execute();
+				
+				// Send a notification to associated users
+				import('notification.Notification');
+				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+				foreach ($notificationUsers as $user) {
+					$url = Request::url(null, $user['role'], 'submissionReview', $monograph->getArticleId(), null, 'editorDecision');
+					Notification::createNotification($user['id'], "notification.type.submissionComment",
+						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUBMISSION_COMMENT);
+				}
 
 				if ($emailComment) {
 					$commentForm->email($commentForm->emailHelper());
