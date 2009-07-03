@@ -201,7 +201,7 @@ class MonographDAO extends DAO {
 				$monograph->getAcquisitionsArrangementId() ,
 				$monograph->getCompletedProspectusFileId(),
 				$monograph->getCurrentReviewType() === null ? 6 : $monograph->getCurrentReviewType(),				
-				$monograph->getCurrentRound() === null ? 1 : $article->getCurrentRound()
+				$monograph->getCurrentRound() === null ? 1 : $monograph->getCurrentRound()
 			)
 		);
 

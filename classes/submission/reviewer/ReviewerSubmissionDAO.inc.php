@@ -352,7 +352,7 @@ class ReviewerSubmissionDAO extends DAO {
 	 */
 	function getSortMapping($heading) {
 		switch ($heading) {
-			case 'id': return 'a.article_id';
+			case 'id': return 'a.monograph_id';
 			case 'assignDate': return 'r.date_assigned';
 			case 'dueDate': return 'r.date_due';
 			case 'section': return 'section_abbrev';

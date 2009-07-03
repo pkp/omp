@@ -1705,13 +1705,13 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 
 			// Send a notification to associated users
 			import('notification.Notification');
-			$articleDao =& DAORegistry::getDAO('ArticleDAO'); 
-			$article =& $articleDao->getArticle($articleId);
-			$notificationUsers = $article->getAssociatedUserIds(true, false);
+			$monographDao =& DAORegistry::getDAO('MonographDAO'); 
+			$monograph =& $monographDao->getMonograph($monographId);
+			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $user) {
-				$url = Request::url(null, $user['role'], 'submissionEditing', $article->getArticleId(), null, 'layout');
+				$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
 				Notification::createNotification($user['id'], "notification.type.galleyModified",
-					$article->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_GALLEY_MODIFIED);
+					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_GALLEY_MODIFIED);
 			}
 
 			if (Request::getUserVar('uploadImage')) {
@@ -2199,7 +2199,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 
 			$templateMgr->assign_by_ref('users', $proofreaders);
 
-			$proofSignoff = $signoffDao->getBySymbolic('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_ARTICLE, $articleId);
+			$proofSignoff = $signoffDao->getBySymbolic('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $monographId);
 			if ($proofSignoff) {
 				$templateMgr->assign('currentUser', $proofSignoff->getUserId());
  			}
@@ -2259,7 +2259,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 
 
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoff = $signoffDao->build('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_ARTICLE, $articleId);
+		$signoff = $signoffDao->build('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $monographId);
 		if (!$signoff->getUserId()) {
 			$signoff->setUserId($user->getId());
 		}
@@ -2278,7 +2278,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$submission =& $this->submission;
 
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoff = $signoffDao->build('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_ARTICLE, $articleId);
+		$signoff = $signoffDao->build('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $monographId);
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);
 
@@ -2325,7 +2325,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 
 
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_ARTICLE, $articleId);
+		$signoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_MONOGRAPH, $monographId);
 		if (!$signoff->getUserId()) {
 			$signoff->setUserId($user->getId());
 		}
@@ -2346,7 +2346,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
 
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_ARTICLE, $articleId);
+		$signoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_MONOGRAPH, $monographId);
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);
 
@@ -2363,7 +2363,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$this->setupTemplate(true, $monographId, 'editing');
 
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoff = $signoffDao->getBySymbolic('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_ARTICLE, $articleId);
+		$signoff = $signoffDao->getBySymbolic('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_MONOGRAPH, $monographId);
 		$signoff->setDateNotified(Core::getCurrentDate());
 		$signoff->setDateUnderway(null);
 		$signoff->setDateCompleted(null);

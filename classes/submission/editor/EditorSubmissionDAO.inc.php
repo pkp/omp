@@ -796,7 +796,7 @@ class EditorSubmissionDAO extends DAO {
 	 */
 	function getSortMapping($heading) {
 		switch ($heading) {
-			case 'id': return 'a.article_id';
+			case 'id': return 'a.monograph_id';
 			case 'submitDate': return 'a.date_submitted';
 			case 'section': return 'section_abbrev';
 			case 'authors': return 'author_name';

@@ -90,7 +90,7 @@ class Action {
 				import('notification.Notification');
 				$notificationUsers = $monograph->getAssociatedUserIds();
 				foreach ($notificationUsers as $user) {
-					$url = Request::url(null, $user['role'], 'submission', $monograph->getArticleId(), null, 'metadata');
+					$url = Request::url(null, $user['role'], 'submission', $monograph->getMonographId(), null, 'metadata');
 					Notification::createNotification($user['id'], "notification.type.metadataModified",
 						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_METADATA_MODIFIED);
 				}
@@ -210,7 +210,7 @@ class Action {
 				import('notification.Notification');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				foreach ($notificationUsers as $user) {
-					$url = Request::url(null, $user['role'], 'submissionReview', $monograph->getArticleId(), null, 'editorDecision');
+					$url = Request::url(null, $user['role'], 'submissionReview', $monograph->getMonographId(), null, 'editorDecision');
 					Notification::createNotification($user['id'], "notification.type.submissionComment",
 						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUBMISSION_COMMENT);
 				}

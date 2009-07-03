@@ -943,7 +943,7 @@ class AcquisitionsEditorAction extends Action {
 		if ($acquisitionsEditorSubmission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL') && !HookRegistry::call('AcquisitionsEditorAction::initiateCopyedit', array(&$acquisitionsEditorSubmission))) {
 			$signoffDao =& DAORegistry::getDAO('SignoffDAO');			
 			
-			$copyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getArticleId());
+			$copyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $acquisitionsEditorSubmission->getMonographId());
 			if (!$copyeditSignoff->getUserId()) {
 				$copyeditSignoff->setUserId($user->getId());
 			}
