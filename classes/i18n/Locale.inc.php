@@ -27,7 +27,7 @@ define('LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS',	0x00000111);
 
 class Locale extends PKPLocale {
 	/**
-	 * Get all supported locales for the current context.
+	 * Get all supported UI locales for the current context.
 	 * @return array
 	 */
 	function getSupportedLocales() {
@@ -43,6 +43,25 @@ class Locale extends PKPLocale {
 			}
 		}
 		return $supportedLocales;
+	}
+
+	/**
+	 * Get all supported form locales for the current context.
+	 * @return array
+	 */
+	function getSupportedFormLocales() {
+		static $supportedFormLocales;
+		if (!isset($supportedFormLocales)) {
+			if (defined('SESSION_DISABLE_INIT') || !Config::getVar('general', 'installed')) {
+				$supportedFormLocales = Locale::getAllLocales();
+			} elseif (($press =& Request::getPress())) {
+				$supportedFormLocales = $press->getSupportedFormLocaleNames();
+			} else {
+				$site =& Request::getSite();
+				$supportedFormLocales = $site->getSupportedLocaleNames();
+			}
+		}
+		return $supportedFormLocales;
 	}
 
 	/**
