@@ -480,9 +480,7 @@ Active is how many reviews are currently being considered or underway.]]></messa
 	<message key="user.login.registerNewAccount">Not a user? Register with this site</message>
 	<message key="user.login.resetPasswordInstructions"><![CDATA[For security reasons, this system emails a reset password to registered users, rather than recalling the 
 current password.<br /><br />Enter your email address below to reset your password. A confirmation will be sent to this email address.]]></message>
-	
-	<!-- Profile -->
-	<message key="user.profile.form.profileImageInvalid">Invalid profile image format or image too big. Accepted formats are .gif, .jpg, or .png, and the image must not exceed 150x150 pixels.</message>
+
 	<message key="submission.prospectusFile">Prospectus File</message>
 
 	<!-- Registration -->
