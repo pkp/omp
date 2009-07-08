@@ -114,7 +114,7 @@ class MonographComponentsInsert extends Insert
 	}
 	function processEvents(&$form) {
 		$eventProcessed = false;
-		$eventProcessed = $this->contributorInsert->processEvents($form);
+		$eventProcessed = $contributorEventProcessed = $this->contributorInsert->processEvents($form);
 
 		if (Request::getUserVar('addComponent')) {
 			$eventProcessed = true;
@@ -225,6 +225,12 @@ class MonographComponentsInsert extends Insert
 			}
 			$form->setData('components', $components);
 		}
+
+		if (!$contributorEventProcessed && $eventProcessed) {
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->assign('scrollToComponents', true);
+		}
+
 		return $eventProcessed;
 	}
 }

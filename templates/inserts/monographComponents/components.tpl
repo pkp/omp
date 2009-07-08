@@ -40,6 +40,7 @@ function moveComponent(dir, componentIndex) {
 <input type="hidden" name="moveComponentDir" value="" />
 <input type="hidden" name="moveComponentIndex" value="" />
 
+<div id="components">
 <h3>{translate key="inserts.monographComponents.heading.prep"}</h3>
 <br />
 {translate key="inserts.monographComponents.description"}
@@ -103,6 +104,16 @@ function moveComponent(dir, componentIndex) {
 </tr>
 {/foreach}
 </table>
+</div>
+
+{if $scrollToComponents}
+{literal}
+<script type="text/javascript">
+var components = document.getElementById('components');
+components.scrollIntoView();
+</script>
+{/literal}
+{/if}
 
 <br />
 
@@ -116,7 +127,7 @@ function moveComponent(dir, componentIndex) {
 </tr>
 {if $workType == WORK_TYPE_EDITED_VOLUME}
 <tr valign="top">
-	<td width="20%" class="label">{translate key="monograph.component.authors"}</td>
+	<td width="20%" class="label">{translate key="user.role.authors"}</td>
 	<td width="80%">
 		<select name="newComponent[authors][]" multiple="multiple" class="selectMenu" size="7" style="width:20em">
 			{foreach from=$contributors item=author}
