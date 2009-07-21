@@ -50,7 +50,7 @@ class ArtworkInsert extends Insert {
 
 		$fileId = null;
 		$artworkFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFileManager = new MonographFileManager($monograph->getMonographId());
+		$monographFileManager = new MonographFileManager($this->monographId);
 
 		if ($monographFileManager->uploadedFileExists('artworkFile')) {
 			$fileId = $monographFileManager->uploadArtworkFile('artworkFile', null);
@@ -91,7 +91,7 @@ class ArtworkInsert extends Insert {
 
 			$eventProcessed = true;
 			$artworkFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFileManager = new MonographFileManager($monograph->getMonographId());
+			$monographFileManager = new MonographFileManager($this->monographId);
 
 			$fileId = null;
 

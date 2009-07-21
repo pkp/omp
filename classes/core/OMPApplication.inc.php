@@ -19,8 +19,9 @@
 
 import('core.PKPApplication');
  	
-define('ASSOC_TYPE_PRESS',	0x0000200);
-define('ASSOC_TYPE_MONOGRAPH',	0x0000201);
+define('ASSOC_TYPE_PRESS',			0x0000200);
+define('ASSOC_TYPE_MONOGRAPH',			0x0000201);
+define('ASSOC_TYPE_PRODUCTION_ASSIGNMENT',	0x0000202);
 
 class OMPApplication extends PKPApplication {
 	function OMPApplication() {
@@ -132,6 +133,7 @@ class OMPApplication extends PKPApplication {
 			'MonographSearchDAO' => 'search.MonographSearchDAO',
 			'MonographFileSettingsDAO' => 'monograph.MonographFileSettingsDAO',
 			'MonographDAO' => 'monograph.MonographDAO',
+			'ProductionAssignmentDAO' => 'submission.productionAssignment.ProductionAssignmentDAO',
 			'AcquisitionsArrangementDAO' => 'press.AcquisitionsArrangementDAO',
 			'AcquisitionsArrangementEditorsDAO' => 'press.AcquisitionsArrangementEditorsDAO',
 			'MonographFileDAO' => 'monograph.MonographFileDAO',

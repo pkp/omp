@@ -119,18 +119,6 @@ switch ($op) {
 	case 'selectReviewForm':
 	case 'previewReviewForm':
 	case 'viewReviewFormResponse':
-	/** Proof Assignment Functions */
-	case 'selectProofreader':
-	case 'notifyAuthorProofreader':
-	case 'thankAuthorProofreader':
-	case 'editorInitiateProofreader':
-	case 'editorCompleteProofreader':
-	case 'notifyProofreader':
-	case 'thankProofreader':
-	case 'editorInitiateLayoutEditor':
-	case 'editorCompleteLayoutEditor':
-	case 'notifyLayoutEditorProofreader':
-	case 'thankLayoutEditorProofreader':
 	/**
 	 * Workflow
 	 */

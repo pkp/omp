@@ -94,6 +94,22 @@ class MonographGalley extends MonographFile {
 	}
 
 	/**
+	 * Get production assignment Id.
+	 * @return string
+	 */
+	function getAssignmentId() {
+		return $this->getData('assignmentId');
+	}
+
+	/**
+	 * Set production assignment Id.
+	 * @param $assignmentId int
+	 */
+	function setAssignmentId($assignmentId) {
+		return $this->setData('assignmentId', $assignmentId);
+	}
+
+	/**
 	 * Get label/title.
 	 * @return string
 	 */

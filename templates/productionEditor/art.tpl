@@ -18,13 +18,12 @@
 	<li><a href="{url op="submission" path=$submission->getMonographId()}">{translate key="submission.summary"}</a></li>
 	<li class="current"><a href="{url op="submissionArt" path=$submission->getMonographId()}">{translate key="submission.art"}</a></li>
 	<li><a href="{url op="submissionLayout" path=$submission->getMonographId()}">{translate key="submission.layout"}</a></li>
-	<li><a href="{url op="submissionDetails" path=$submission->getMonographId()}">{translate key="submission.details"}</a></li>
 </ul>
 
 {include file="productionEditor/submission/summary.tpl"}
 
 <div class="separator"></div>
-
+<h3>{translate key="underConstruction.newSpecs"}</h3>
 {include file="productionEditor/submission/components.tpl"}
 
 {include file="common/footer.tpl"}

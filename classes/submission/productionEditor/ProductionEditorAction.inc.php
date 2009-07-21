@@ -14,9 +14,9 @@
 
 // $Id$
 
-import('submission.common.Action');
+import('submission.designer.DesignerAction');
 
-class ProductionEditorAction extends Action {
+class ProductionEditorAction extends DesignerAction {
 
 	//
 	// Layout Editing
@@ -46,86 +46,48 @@ class ProductionEditorAction extends Action {
 	}
 
 	/**
-	 * Assign a layout editor to a submission.
+	 * Notifies the current designer about an assignment.
 	 * @param $submission object
-	 * @param $editorId int user ID of the new layout editor
-	 */
-	function assignLayoutEditor($submission, $designerId) {
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		if (HookRegistry::call('AcquisitionsEditorAction::assignLayoutEditor', array(&$submission, &$designerId))) return;
-
-		import('monograph.log.MonographLog');
-		import('monograph.log.MonographEventLogEntry');
-
-		$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
-		$layoutProofSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
-		if ($layoutSignoff->getUserId()) {
-			$layoutEditor =& $userDao->getUser($layoutSignoff->getUserId());
-			MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_UNASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $layoutSignoff->getId(), 'log.layout.layoutEditorUnassigned', array('editorName' => $layoutEditor->getFullName(), 'monographId' => $submission->getMonographId()));
-		}
-		
-		$layoutSignoff->setUserId($designerId);
-		$layoutSignoff->setDateNotified(null);
-		$layoutSignoff->setDateUnderway(null);
-		$layoutSignoff->setDateCompleted(null);
-		$layoutSignoff->setDateAcknowledged(null);
-		$layoutProofSignoff->setUserId($designerId);
-		$layoutProofSignoff->setDateNotified(null);
-		$layoutProofSignoff->setDateUnderway(null);
-		$layoutProofSignoff->setDateCompleted(null);
-		$layoutProofSignoff->setDateAcknowledged(null);
-		$signoffDao->updateObject($layoutSignoff);
-		$signoffDao->updateObject($layoutProofSignoff);
-
-		$layoutEditor =& $userDao->getUser($layoutSignoff->getUserId());
-		MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_ASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $layoutSignoff->getId(), 'log.layout.layoutEditorAssigned', array('editorName' => $layoutEditor->getFullName(), 'monographId' => $submission->getMonographId()));
-	}
-
-	/**
-	 * Notifies the current layout editor about an assignment.
-	 * @param $submission object
-	 * @param $layoutAssignmentId int
+	 * @param $assignmentId int
 	 * @param $send boolean
 	 * @return boolean true iff ready for redirect
 	 */
-	function notifyLayoutDesigner($submission, $layoutAssignmentId, $send = false) {
+	function notifyDesigner($submission, $assignmentId, $send = false) {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$submissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
 		import('mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($submission, 'LAYOUT_REQUEST');
-		$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
-		$layoutEditor =& $userDao->getUser($layoutSignoff->getUserId());
-		if (!isset($layoutEditor)) return true;
+		$designSignoff = $signoffDao->getBySymbolic('PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT, $assignmentId);
+		$designer =& $userDao->getUser($designSignoff->getUserId());
+		if (!isset($designer)) return true;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('AcquisitionsEditorAction::notifyLayoutEditor', array(&$submission, &$layoutEditor, &$email));
+			HookRegistry::call('ProductionEditorAction::notifyDesigner', array(&$submission, &$designer, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(MONOGRAPH_EMAIL_LAYOUT_NOTIFY_EDITOR, MONOGRAPH_EMAIL_TYPE_LAYOUT, $layoutSignoff->getId());
+				$email->setAssoc(MONOGRAPH_EMAIL_LAYOUT_NOTIFY_EDITOR, MONOGRAPH_EMAIL_TYPE_LAYOUT, $designSignoff->getId());
 				$email->send();
 			}
 
-			$layoutSignoff->setDateNotified(Core::getCurrentDate());
-			$layoutSignoff->setDateUnderway(null);
-			$layoutSignoff->setDateCompleted(null);
-			$layoutSignoff->setDateAcknowledged(null);
-			$signoffDao->updateObject($layoutSignoff);
+			$designSignoff->setDateNotified(Core::getCurrentDate());
+			$designSignoff->setDateUnderway(null);
+			$designSignoff->setDateCompleted(null);
+			$designSignoff->setDateAcknowledged(null);
+			$signoffDao->updateObject($designSignoff);
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$email->addRecipient($layoutEditor->getEmail(), $layoutEditor->getFullName());
+				$email->addRecipient($designer->getEmail(), $designer->getFullName());
 				$paramArray = array(
-					'layoutEditorName' => $layoutEditor->getFullName(),
-					'layoutEditorUsername' => $layoutEditor->getUsername(),
+					'layoutEditorName' => $designer->getFullName(),
+					'layoutEditorUsername' => $designer->getUsername(),
 					'editorialContactSignature' => $user->getContactSignature(),
-					'submissionLayoutUrl' => Request::url(null, 'layoutDesigner', 'submission', $submission->getMonographId())
+					'submissionLayoutUrl' => Request::url(null, 'designer', 'submission', $submission->getMonographId())
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, null, 'notifyLayoutDesigner', 'send'), array('monographId' => $submission->getMonographId()));
+			$email->displayEditForm(Request::url(null, null, 'notifyDesigner', 'send'), array('monographId' => $submission->getMonographId(), 'assignmentId' => $assignmentId));
 			return false;
 		}
 		return true;
@@ -134,12 +96,12 @@ class ProductionEditorAction extends Action {
 	/**
 	 * Sends acknowledgement email to the current layout designer.
 	 * @param $submission object
+	 * @param $assignmentId int
 	 * @param $send boolean
 	 * @return boolean true iff ready for redirect
 	 */
-	function thankLayoutDesigner($submission, $send = false) {
+	function thankLayoutDesigner($submission, $assignmentId, $send = false) {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$submissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 		$user =& Request::getUser();
@@ -147,12 +109,12 @@ class ProductionEditorAction extends Action {
 		import('mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($submission, 'LAYOUT_ACK');
 
-		$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
-		$layoutEditor =& $userDao->getUser($layoutSignoff->getUserId());
-		if (!isset($layoutEditor)) return true;
+		$layoutSignoff = $signoffDao->getBySymbolic('PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT, $assignmentId);
+		$layoutDesigner =& $userDao->getUser($layoutSignoff->getUserId());
+		if (!isset($layoutDesigner)) return true;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('AcquisitionsEditorAction::thankLayoutEditor', array(&$submission, &$layoutEditor, &$email));
+			HookRegistry::call('AcquisitionsEditorAction::thankLayoutDesigner', array(&$submission, &$layoutDesigner, &$email));
 			if ($email->isEnabled()) {
 				$email->setAssoc(MONOGRAPH_EMAIL_LAYOUT_THANK_EDITOR, MONOGRAPH_EMAIL_TYPE_LAYOUT, $layoutSignoff->getId());
 				$email->send();
@@ -163,106 +125,19 @@ class ProductionEditorAction extends Action {
 
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$email->addRecipient($layoutEditor->getEmail(), $layoutEditor->getFullName());
+				$email->addRecipient($layoutDesigner->getEmail(), $layoutDesigner->getFullName());
 				$paramArray = array(
-					'layoutEditorName' => $layoutEditor->getFullName(),
+					'layoutEditorName' => $layoutDesigner->getFullName(),
 					'editorialContactSignature' => $user->getContactSignature()
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, null, 'thankLayoutEditor', 'send'), array('monographId' => $submission->getMonographId()));
+			$email->displayEditForm(Request::url(null, null, 'thankLayoutDesigner', 'send'), array('monographId' => $submission->getMonographId(), 'assignmentId' => $assignmentId));
 			return false;
 		}
 		return true;
 	}
 
-	/**
-	 * Change the sequence order of a galley.
-	 * @param $monograph object
-	 * @param $galleyId int
-	 * @param $direction char u = up, d = down
-	 */
-	function orderGalley($monograph, $galleyId, $direction) {
-		import('submission.designer.DesignerAction');
-		DesignerAction::orderGalley($monograph, $galleyId, $direction);
-	}
-
-	/**
-	 * Delete a galley.
-	 * @param $monograph object
-	 * @param $galleyId int
-	 */
-	function deleteGalley($monograph, $galleyId) {
-		import('submission.designer.Designer');
-		DesignerAction::deleteGalley($monograph, $galleyId);
-	}
-
-	/**
-	 * Delete an image from a monograph galley.
-	 * @param $submission object
-	 * @param $fileId int
-	 * @param $revision int (optional)
-	 */
-	function deleteMonographImage($submission, $fileId, $revision) {
-		import('submission.designer.DesignerAction');
-		DesginerAction::deleteMonographImage($submission, $fileId, $revision);
-	}
-
-	/**
-	 * Change the sequence order of a supplementary file.
-	 * @param $monograph object
-	 * @param $suppFileId int
-	 * @param $direction char u = up, d = down
-	 */
-	function orderSuppFile($monograph, $suppFileId, $direction) {
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-		$suppFile =& $suppFileDao->getSuppFile($suppFileId, $monograph->getMonographId());
-
-		if (isset($suppFile)) {
-			$suppFile->setSequence($suppFile->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
-			$suppFileDao->updateSuppFile($suppFile);
-			$suppFileDao->resequenceSuppFiles($monograph->getMonographId());
-		}
-	}
-
-	/**
-	 * Delete a supplementary file.
-	 * @param $monograph object
-	 * @param $suppFileId int
-	 */
-	function deleteSuppFile($monograph, $suppFileId) {
-		import('file.MonographFileManager');
-
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-
-		$suppFile =& $suppFileDao->getSuppFile($suppFileId, $monograph->getMonographId());
-		if (isset($suppFile) && !HookRegistry::call('LayoutEditorAction::deleteSuppFile', array(&$monograph, &$suppFile))) {
-			if ($suppFile->getFileId()) {
-				$monographFileManager = new MonographFileManager($monograph->getMonographId());
-				$monographFileManager->deleteFile($suppFile->getFileId());
-				import('search.MonographSearchIndex');
-				MonographSearchIndex::deleteTextIndex($monograph->getMonographId(), MONOGRAPH_SEARCH_SUPPLEMENTARY_FILE, $suppFile->getFileId());
-			}
-			$suppFileDao->deleteSuppFile($suppFile);
-		}
-	}
-
-	/**
-	 * Delete a file from a monograph.
-	 * @param $submission object
-	 * @param $fileId int
-	 * @param $revision int (optional)
-	 */
-/*	function deleteMonographFile($submission, $fileId, $revision) {
-		import('file.MonographFileManager');
-		$file =& $submission->getEditorFile();
-
-		if (isset($file) && $file->getFileId() == $fileId && !HookRegistry::call('AcquisitionsEditorAction::deleteMonographFile', array(&$submission, &$fileId, &$revision))) {
-			$monographFileManager = new MonographFileManager($submission->getMonographId());
-			$monographFileManager->deleteFile($fileId, $revision);
-		}
-	}
-*/
 	//
 	// Comments
 	//

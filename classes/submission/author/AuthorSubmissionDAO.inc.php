@@ -138,7 +138,7 @@ class AuthorSubmissionDAO extends DAO {
 			$authorSubmission->setEditorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['editor_file_id'], null, false));
 		}
 
-		$authorSubmission->setGalleys($this->galleyDao->getGalleysByMonograph($row['monograph_id']));
+		$authorSubmission->setGalleys($this->galleyDao->getByMonographId($row['monograph_id']));
 
 		HookRegistry::call('AuthorSubmissionDAO::_returnAuthorSubmissionFromRow', array(&$authorSubmission, &$row));
 

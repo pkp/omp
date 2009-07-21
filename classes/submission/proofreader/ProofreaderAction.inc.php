@@ -23,11 +23,14 @@ import('submission.common.Action');
 class ProofreaderAction extends Action {
 
 	/**
-	 * Select a proofreader for submission
+	 * Assign a proofreader to a submission.
+	 * @param $userId int
+	 * @param $assignmentId int
+	 * @param $submission object
 	 */
-	function selectProofreader($userId, $monograph) {
+	function selectProofreader($userId, $assignmentId, $monograph) {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$proofSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $monograph->getMonographId());
+		$proofSignoff = $signoffDao->build('PRODUCTION_PROOF_PROOFREADER', ASSOC_TYPE_PRODUCTION_ASSIGNMENT, $assignmentId);
 
 		if (!HookRegistry::call('ProofreaderAction::selectProofreader', array(&$userId, &$monograph))) {
 			$proofSignoff->setUserId($userId);
@@ -51,17 +54,17 @@ class ProofreaderAction extends Action {
 	 * @param $actionPath string - form action
 	 * @return true iff ready for a redirect
 	 */
-	function proofreadEmail($monographId, $mailType, $actionPath = '') {
+	function proofreadEmail($monographId, $assignmentId, $mailType, $actionPath = '') {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$acquisitionsArrangmentEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsArrangmentEditorSubmissionDAO');
-		$acquisitionsArrangmentEditorSubmission =& $acquisitionsArrangmentEditorSubmissionDao->getAcquisitionsArrangmentEditorSubmission($monographId);
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$acquisitionsEditorDao =& DAORegistry::getDAO('ProductionEditorSubmissionDAO');
 		$press =& Request::getPress();
 		$user =& Request::getUser();
+		$submission =& $acquisitionsEditorDao->getById($monographId, $press->getId());
+		$userDao =& DAORegistry::getDAO('UserDAO');
 		$ccs = array();
 
 		import('mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($acquisitionsArrangmentEditorSubmission, $mailType);
+		$email = new MonographMailTemplate($submission, $mailType);
 
 		switch($mailType) {
 			case 'PROOFREAD_AUTHOR_REQUEST':
@@ -70,13 +73,13 @@ class ProofreaderAction extends Action {
 				$signoffType = 'SIGNOFF_PROOFREADING_AUTHOR';
 				$setDateField = 'setDateNotified';
 				$nullifyDateFields = array('setDateUnderway', 'setDateCompleted', 'setDateAcknowledged');
-				$setUserId = $acquisitionsArrangmentEditorSubmission->getUserId();
+				$setUserId = $submission->getUserId();
 				$receiver =& $userDao->getUser($setUserId);
 				$setUserId = $receiver;
 				if (!isset($receiver)) return true;
 				$receiverName = $receiver->getFullName();
 				$receiverAddress = $receiver->getEmail();
-				$email->ccAssignedEditingAcquisitionsArrangmentEditors($acquisitionsArrangmentEditorSubmission->getMonographId());
+				$email->ccAssignedEditingAcquisitionsArrangmentEditors($submission->getMonographId());
 				$addParamArray = array(
 					'authorName' => $receiver->getFullName(),
 					'authorUsername' => $receiver->getUsername(),
@@ -91,11 +94,11 @@ class ProofreaderAction extends Action {
 				$assocType = MONOGRAPH_EMAIL_TYPE_PROOFREAD;
 				$signoffType = 'SIGNOFF_PROOFREADING_AUTHOR';
 				$setDateField = 'setDateAcknowledged';
-				$receiver =& $userDao->getUser($acquisitionsArrangmentEditorSubmission->getUserId());
+				$receiver =& $userDao->getUser($submission->getUserId());
 				if (!isset($receiver)) return true;
 				$receiverName = $receiver->getFullName();
 				$receiverAddress = $receiver->getEmail();
-				$email->ccAssignedEditingAcquisitionsArrangmentEditors($acquisitionsArrangmentEditorSubmission->getMonographId());
+				$email->ccAssignedEditingAcquisitionsArrangmentEditors($submission->getMonographId());
 				$addParamArray = array(
 					'authorName' => $receiver->getFullName(),
 					'editorialContactSignature' => $user->getContactSignature()
@@ -109,7 +112,7 @@ class ProofreaderAction extends Action {
 				$setDateField = 'setDateCompleted';
 				$getDateField = 'getDateCompleted';
 
-				$editAssignments =& $acquisitionsArrangmentEditorSubmission->getEditAssignments();
+				$editAssignments =& $submission->getEditAssignments();
 				$nextSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $monographId);
 
 				if ($nextSignoff->getUserId() != 0) {
@@ -160,11 +163,11 @@ class ProofreaderAction extends Action {
 				$setDateField = 'setDateNotified';
 				$nullifyDateFields = array('setDateUnderway', 'setDateCompleted', 'setDateAcknowledged');
 				
-				$receiver = $acquisitionsArrangmentEditorSubmission->getUserBySignoffType($signoffType);
+				$receiver = $submission->getUserBySignoffType($signoffType);
 				if (!isset($receiver)) return true;
 				$receiverName = $receiver->getFullName();
 				$receiverAddress = $receiver->getEmail();
-				$email->ccAssignedEditingAcquisitionsArrangmentEditors($acquisitionsArrangmentEditorSubmission->getMonographId());
+				$email->ccAssignedEditingAcquisitionsArrangmentEditors($submission->getMonographId());
 
 				$addParamArray = array(
 					'proofreaderName' => $receiverName,
@@ -181,11 +184,11 @@ class ProofreaderAction extends Action {
 				$signoffType = 'SIGNOFF_PROOFREADING_PROOFREADER';
 				$setDateField = 'setDateAcknowledged';
 			
-				$receiver = $acquisitionsArrangmentEditorSubmission->getUserBySignoffType($signoffType);
+				$receiver = $submission->getUserBySignoffType($signoffType);
 				if (!isset($receiver)) return true;
 				$receiverName = $receiver->getFullName();
 				$receiverAddress = $receiver->getEmail();
-				$email->ccAssignedEditingAcquisitionsArrangmentEditors($acquisitionsArrangmentEditorSubmission->getMonographId());
+				$email->ccAssignedEditingAcquisitionsArrangmentEditors($submission->getMonographId());
 
 				$addParamArray = array(
 					'proofreaderName' => $receiverName,
@@ -203,9 +206,9 @@ class ProofreaderAction extends Action {
 				$setNextDateField = 'setDateNotified';
 				$nextSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_MONOGRAPH, $monographId);
 
-				$editAssignments =& $acquisitionsArrangmentEditorSubmission->getEditAssignments();
+				$editAssignments =& $submission->getEditAssignments();
 
-				$receiver = $acquisitionsArrangmentEditorSubmission->getUserBySignoffType($signoffType);
+				$receiver = $submission->getUserBySignoffType($signoffType);
 
 				$editorAdded = false;
 				foreach ($editAssignments as $editAssignment) {
@@ -234,15 +237,15 @@ class ProofreaderAction extends Action {
 			case 'PROOFREAD_LAYOUT_REQUEST':
 				$eventType = MONOGRAPH_EMAIL_PROOFREAD_NOTIFY_LAYOUTEDITOR;
 				$assocType = MONOGRAPH_EMAIL_TYPE_PROOFREAD;
-				$signoffType = 'SIGNOFF_PROOFREADING_LAYOUT';
+				$signoffType = 'PRODUCTION_DESIGN';
 				$setDateField = 'setDateNotified';
 				$nullifyDateFields = array('setDateUnderway', 'setDateCompleted', 'setDateAcknowledged');
 
-				$receiver = $acquisitionsArrangmentEditorSubmission->getUserBySignoffType($signoffType);
+				$receiver = $submission->getUserBySignoffType($signoffType);
 				if (!isset($receiver)) return true;
 				$receiverName = $receiver->getFullName();
 				$receiverAddress = $receiver->getEmail();
-				$email->ccAssignedEditingAcquisitionsArrangmentEditors($acquisitionsArrangmentEditorSubmission->getMonographId());
+				$email->ccAssignedEditingAcquisitionsArrangmentEditors($submission->getMonographId());
 
 				$addParamArray = array(
 					'layoutEditorName' => $receiverName,
@@ -254,11 +257,11 @@ class ProofreaderAction extends Action {
 
 				if (!$actionPath) {
 					// Reset underway/complete/thank dates
-					$signoffReset = $signoffDao->build($signoffType, ASSOC_TYPE_MONOGRAPH, $monographId);
+					$signoffReset = $signoffDao->build($signoffType, ASSOC_TYPE_PRODUCTION_ASSIGNMENT, $assignmentId);
 					$signoffReset->setDateUnderway(null);
 					$signoffReset->setDateCompleted(null);
 					$signoffReset->setDateAcknowledged(null);
-				}
+				}echo '!';exit;
 				break;
 
 			case 'PROOFREAD_LAYOUT_ACK':
@@ -267,11 +270,11 @@ class ProofreaderAction extends Action {
 				$signoffType = 'SIGNOFF_PROOFREADING_LAYOUT';
 				$setDateField = 'setDateAcknowledged';
 
-				$receiver = $acquisitionsArrangmentEditorSubmission->getUserBySignoffType($signoffType);
+				$receiver = $submission->getUserBySignoffType($signoffType);
 				if (!isset($receiver)) return true;
 				$receiverName = $receiver->getFullName();
 				$receiverAddress = $receiver->getEmail();
-				$email->ccAssignedEditingAcquisitionsArrangmentEditors($acquisitionsArrangmentEditorSubmission->getMonographId());
+				$email->ccAssignedEditingAcquisitionsArrangmentEditors($submission->getMonographId());
 
 				$addParamArray = array(
 					'layoutEditorName' => $receiverName,
@@ -286,7 +289,7 @@ class ProofreaderAction extends Action {
 				$setDateField = 'setDateCompleted';
 				$getDateField = 'getDateCompleted';
 
-				$editAssignments =& $acquisitionsArrangmentEditorSubmission->getEditAssignments();
+				$editAssignments =& $submission->getEditAssignments();
 				$assignmentIndex = 0;
 				$editorAdded = false;
 				foreach ($editAssignments as $editAssignment) {
@@ -315,7 +318,7 @@ class ProofreaderAction extends Action {
 				return true;	
 		}
 
-		$signoff = $signoffDao->build($signoffType, ASSOC_TYPE_MONOGRAPH, $monographId);
+		$signoff = $signoffDao->build($signoffType, ASSOC_TYPE_PRODUCTION_ASSIGNMENT, $assignmentId);
 
 		if (isset($getDateField)) {
 			$date = $signoff->$getDateField();		

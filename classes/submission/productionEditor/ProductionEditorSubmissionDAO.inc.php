@@ -23,12 +23,10 @@ class ProductionEditorSubmissionDAO extends DAO {
 	var $authorDao;
 	var $userDao;
 	var $editAssignmentDao;
+	var $productionAssignmentDao;
 	var $monographFileDao;
 	var $suppFileDao;
 	var $galleyDao;
-	var $monographEmailLogDao;
-	var $monographCommentDao;
-	var $proofAssignmentDao;
 
 	/**
 	 * Constructor.
@@ -39,13 +37,10 @@ class ProductionEditorSubmissionDAO extends DAO {
 		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$this->userDao =& DAORegistry::getDAO('UserDAO');
 		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-	//	$this->layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
+		$this->productionAssignmentDao =& DAORegistry::getDAO('ProductionAssignmentDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
-//		$this->monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
-//		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-//		$this->proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
 	}
 
 	/**
@@ -58,30 +53,26 @@ class ProductionEditorSubmissionDAO extends DAO {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$result =& $this->retrieve(
-			'SELECT	a.*,
+			'SELECT	m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev,
-				sc.file_id AS layout_file_id
-			FROM monographs a
-				INNER JOIN signoffs sc ON (sc.assoc_type = ? AND sc.assoc_id = ? AND sc.symbolic = ?)
-				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
+				COALESCE(aal.setting_value, aapl.setting_value) AS arrangement_abbrev
+			FROM monographs m
+				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = m.arrangement_id)
 				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE a.press_id = ?',
+				LEFT JOIN acquisitions_arrangements_settings aapl ON (s.arrangement_id = aapl.arrangement_id AND aapl.setting_name = ? AND aapl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings aal ON (s.arrangement_id = aal.arrangement_id AND aal.setting_name = ? AND aal.locale = ?)
+			WHERE m.monograph_id = ? AND m.press_id = ?',
 			array(
-				ASSOC_TYPE_MONOGRAPH,
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale,
 				$monographId,
-				'SIGNOFF_LAYOUT',
-				'title',
-				$primaryLocale,
-				'title',
-				$locale,
-				'abbrev',
-				$primaryLocale,
-				'abbrev',
-				$locale,
 				$pressId
 			)
 		);
@@ -111,42 +102,33 @@ class ProductionEditorSubmissionDAO extends DAO {
 	 * @return ProductionEditorSubmission
 	 */
 	function &_fromRow(&$row) {
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$productionEditorSubmission = $this->newDataObject();
+
+		$productionEditorSubmission->setProductionAssignments($this->productionAssignmentDao->getByMonographId($row['monograph_id']));
 
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($productionEditorSubmission, $row);
 
 		// Editor Assignment
-
-
-//		$layoutAssignments =& $this->layoutAssignmentDao->getByMonographId($row['monograph_id']);
-	//	$productionEditorSubmission->setLayoutAssignments($layoutAssignments);
-
 		$reviewRounds =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);
 
 		$productionEditorSubmission->setReviewRoundsInfo($reviewRounds);
 
 		// Files
 		$productionEditorSubmission->setSubmissionFile($this->monographFileDao->getMonographFile($row['submission_file_id']));
-		$productionEditorSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByMonograph($row['monograph_id']));
+
 		$productionEditorSubmission->setEditorFile($this->monographFileDao->getMonographFile($row['editor_file_id']));
-		$productionEditorSubmission->setLayoutFile($this->monographFileDao->getMonographFile($row['layout_file_id']));
+
+		$layoutSignoff =& $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $row['monograph_id']);
+		$productionEditorSubmission->setLayoutFile($this->monographFileDao->getMonographFile($layoutSignoff->getFileId()));
 
 		// Layout Editing
-
 		$productionEditorSubmission->setGalleys($this->galleyDao->getByMonographId($row['monograph_id']));
- 
+
 		HookRegistry::call('ProductionEditorSubmissionDAO::_fromRow', array(&$productionEditorSubmission, &$row));
 
 		return $productionEditorSubmission;
-	}
-
-	/**
-	 * Update an existing acquisitions editor submission.
-	 * @param $productionEditorSubmission ProductionEditorSubmission
-	 */
-	function updateObject(&$productionEditorSubmission) {
-
 	}
 
 	/**
@@ -160,14 +142,14 @@ class ProductionEditorSubmissionDAO extends DAO {
 		$locale = Locale::getLocale();
 		$result =& $this->retrieveRange(
 			'SELECT	a.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
+				COALESCE(atl.setting_value, atpl.setting_value) AS arrangement_title,
+				COALESCE(aal.setting_value, aapl.setting_value) AS arrangement_abbrev
 			FROM monographs a
 				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
-				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings atpl ON (s.arrangement_id = atpl.arrangement_id AND atpl.setting_name = ? AND atpl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings atl ON (s.arrangement_id = atl.arrangement_id AND atl.setting_name = ? AND atl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings aapl ON (s.arrangement_id = aapl.arrangement_id AND aapl.setting_name = ? AND aapl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings aal ON (s.arrangement_id = aal.arrangement_id AND aal.setting_name = ? AND aal.locale = ?)
 			WHERE	a.user_id = ? AND a.press_id = ? AND ' .
 			($active?'a.status = 1':'(a.status <> 1 AND a.submission_progress = 0)'),
 			array(
@@ -188,6 +170,81 @@ class ProductionEditorSubmissionDAO extends DAO {
 		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
+
+	/**
+	 * Retrieve a list of all designers along with information about their current status with respect to a monograph's production.
+	 * @param $pressId int
+	 * @param $monographId int
+	 * @param $searchType int USER_FIELD_...
+	 * @param $search string
+	 * @param $searchMatch string "is" or "contains" or "startsWith"
+	 * @param $rangeInfo RangeInfo optional
+	 * @return DAOResultFactory containing matching Users
+	 */
+	function &getDesignersForMonograph($pressId, $monographId, $searchType = null, $search = null, $searchMatch = null, $rangeInfo = null) {
+		$paramArray = array($pressId, RoleDAO::getRoleIdFromPath('designer'), ASSOC_TYPE_DESIGN_ASSIGNMENT, $monographId);
+		$searchSql = '';
+
+		$searchTypeMap = array(
+			USER_FIELD_FIRSTNAME => 'u.first_name',
+			USER_FIELD_LASTNAME => 'u.last_name',
+			USER_FIELD_USERNAME => 'u.username',
+			USER_FIELD_EMAIL => 'u.email',
+			USER_FIELD_INTERESTS => 's.setting_value'
+		);
+
+		if (isset($search) && isset($searchTypeMap[$searchType])) {
+			$fieldName = $searchTypeMap[$searchType];
+			switch ($searchMatch) {
+				case 'is':
+					$searchSql = "AND LOWER($fieldName) = LOWER(?)";
+					$paramArray[] = $search;
+					break;
+				case 'contains':
+					$searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
+					$paramArray[] = '%' . $search . '%';
+					break;
+				case 'startsWith':
+					$searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
+					$paramArray[] = $search . '%';
+					break;
+			}
+		} elseif (isset($search)) switch ($searchType) {
+			case USER_FIELD_USERID:
+				$searchSql = 'AND user_id=?';
+				$paramArray[] = $search;
+				break;
+			case USER_FIELD_INITIAL:
+				$searchSql = 'AND (LOWER(last_name) LIKE LOWER(?) OR LOWER(username) LIKE LOWER(?))';
+				$paramArray[] = $search . '%';
+				$paramArray[] = $search . '%';
+				break;
+		}
+
+		$result =& $this->retrieveRange(
+			'SELECT DISTINCT u.*, pa.monograph_id AS assigned
+			FROM users u
+			LEFT JOIN roles r ON (r.press_id = ? AND r.user_id = u.user_id AND r.role_id = ?)
+			LEFT JOIN signoffs s ON (s.user_id = u.user_id AND s.assoc_type = ?)
+			LEFT JOIN production_assignments pa ON (s.assoc_id = pa.assignment_id)
+			WHERE pa.monograph_id = ? OR pa.monograph_id IS NULL ' . $searchSql . '
+			ORDER BY last_name, first_name',
+			$paramArray, $rangeInfo
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_returnUserFromRow');
+		return $returner;
+	}
+
+	function &_returnUserFromRow(&$row) { // FIXME
+		$user =& $this->userDao->_returnUserFromRowWithData($row);
+		$user->setData('isAssignedDesigner', $row['assigned']);
+
+		HookRegistry::call('AcquisitionsEditorSubmissionDAO::_returnReviewerUserFromRow', array(&$designer, &$row));
+
+		return $user;
+	}
+
 }
 
 ?>

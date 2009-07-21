@@ -21,20 +21,20 @@ import('monograph.Monograph');
 class ProductionEditorSubmission extends Monograph {
 
 	/**
-	 * Get layout assignments for this monograph.
+	 * Get design assignments for this monograph.
 	 * @return array
 	 */
-	function &getLayoutAssignments() {
-		$editAssignments =& $this->getData('layoutAssignments');
-		return $editAssignments;
+	function &getProductionAssignments() {
+		$designAssignments =& $this->getData('designAssignments');
+		return $designAssignments;
 	}
 
 	/**
-	 * Set layout assignments for this monograph.
-	 * @param $layoutAssignments array
+	 * Set design assignments for this monograph.
+	 * @param $designAssignments array
 	 */
-	function setLayoutAssignments($layoutAssignments) {
-		return $this->setData('layoutAssignments', $layoutAssignments);
+	function setProductionAssignments(&$designAssignments) {
+		return $this->setData('designAssignments', $designAssignments);
 	}
 
 	/**

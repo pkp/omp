@@ -996,23 +996,23 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Get the assignment counts and last assigned date for all layout editors of the given press.
+	 * Get the assignment counts and last assigned date for all designers of the given press.
 	 * @return array
 	 */
-	function getLayoutEditorStatistics($pressId) {
+	function getDesignerStatistics($pressId) {
 		$statistics = Array();
 
 		// Get counts of completed submissions
 		$result =& $this->retrieve(
-				'SELECT lm.designer_id AS editor_id, COUNT(lm.monograph_id) AS complete 
-				FROM designer_assignments la, monographs m 
-				INNER JOIN proof_assignments p ON (p.monograph_id = m.monograph_id) 
-				WHERE lm.monograph_id = m.monograph_id AND 
-					(lm.date_completed IS NOT NULL AND p.date_layouteditor_completed IS NOT NULL) AND 
-					lm.date_notified IS NOT NULL AND 
-					m.press_id = ? 
-				GROUP BY lm.designer_id', 
-				$pressId
+				'SELECT sc.user_id AS editor_id, COUNT(sc.assoc_id) AS complete 
+				FROM signoffs sc, monographs m 
+				WHERE sc.assoc_id = m.monograph_id AND 
+					sc.date_completed IS NOT NULL AND 
+					m.press_id = ? AND
+					sc.symbolic = ? AND
+					sc.assoc_type = ?
+				GROUP BY sc.user_id', 
+				array($pressId, 'PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
 			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -1026,15 +1026,15 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		// Get counts of incomplete submissions
 		$result =& $this->retrieve(
-				'SELECT lm.designer_id AS editor_id, COUNT(lm.monograph_id) AS incomplete 
-				FROM designer_assignments la, monographs m 
-				INNER JOIN proof_assignments p ON (p.monograph_id = m.monograph_id) 
-				WHERE lm.monograph_id = m.monograph_id AND 
-					(lm.date_completed IS NULL OR p.date_layouteditor_completed IS NULL) AND 
-					lm.date_notified IS NOT NULL AND 
-					m.press_id = ? 
-				GROUP BY lm.designer_id', 
-				$pressId
+				'SELECT sc.user_id AS editor_id, COUNT(sc.assoc_id) AS incomplete
+				FROM signoffs sc, monographs m 
+				WHERE sc.assoc_id = m.monograph_id AND 
+					sc.date_completed IS NULL AND 
+					m.press_id = ? AND
+					sc.symbolic = ? AND
+					sc.assoc_type = ?
+				GROUP BY sc.user_id', 
+				array($pressId, 'PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
 			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -1048,12 +1048,14 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		// Get last assignment date
 		$result =& $this->retrieve(
-				'SELECT lm.designer_id AS editor_id, MAX(lm.date_notified) AS last_assigned 
-				FROM designer_assignments la, monographs m 
-				WHERE lm.monograph_id=m.monograph_id AND 
-					m.press_id = ? 
-				GROUP BY lm.designer_id', 
-				$pressId
+				'SELECT sc.user_id AS editor_id, MAX(sc.date_notified) AS last_assigned 
+				FROM signoffs sc, monographs m 
+				WHERE sc.assoc_id = m.monograph_id AND 
+					m.press_id = ? AND
+					sc.symbolic = ? AND
+					sc.assoc_type = ?
+				GROUP BY sc.user_id', 
+				array($pressId, 'PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
 			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -1061,7 +1063,6 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 			$statistics[$row['editor_id']]['last_assigned'] = $this->datetimeFromDB($row['last_assigned']);
 			$result->MoveNext();
 		}
-
 		$result->Close();
 		unset($result);
 
@@ -1236,13 +1237,15 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		// Get counts of completed submissions
 		$result =& $this->retrieve(
-				'SELECT pm.proofreader_id AS editor_id, COUNT(pm.monograph_id) AS complete 
-				FROM proof_assignments pa, monographs m 
-				WHERE pm.monograph_id = m.monograph_id AND 
-					pm.date_proofreader_completed IS NOT NULL AND 
-					m.press_id = ? 
-				GROUP BY pm.proofreader_id', 
-				$pressId
+				'SELECT sc.user_id AS editor_id, COUNT(sc.assoc_id) AS complete 
+				FROM signoffs sc, monographs m 
+				WHERE sc.assoc_id = m.monograph_id AND 
+					sc.date_completed IS NOT NULL AND 
+					m.press_id = ? AND
+					sc.symbolic = ? AND
+					sc.assoc_type = ?
+				GROUP BY sc.user_id', 
+				array($pressId, 'PRODUCTION_PROOF_PROOFREADER', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
 			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -1256,13 +1259,15 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		// Get counts of incomplete submissions
 		$result =& $this->retrieve(
-				'SELECT pm.proofreader_id AS editor_id, COUNT(pm.monograph_id) AS incomplete 
-				FROM proof_assignments pa, monographs m 
-				WHERE pm.monograph_id = m.monograph_id AND 
-					pm.date_proofreader_completed IS NULL AND 
-					m.press_id = ? 
-				GROUP BY pm.proofreader_id', 
-				$pressId
+				'SELECT sc.user_id AS editor_id, COUNT(sc.assoc_id) AS incomplete
+				FROM signoffs sc, monographs m 
+				WHERE sc.assoc_id = m.monograph_id AND 
+					sc.date_completed IS NULL AND 
+					m.press_id = ? AND
+					sc.symbolic = ? AND
+					sc.assoc_type = ?
+				GROUP BY sc.user_id', 
+				array($pressId, 'PRODUCTION_PROOF_PROOFREADER', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
 			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -1276,12 +1281,14 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 		// Get last assignment date
 		$result =& $this->retrieve(
-				'SELECT pm.proofreader_id AS editor_id, MAX(pm.date_proofreader_notified) AS last_assigned 
-				FROM proof_assignments pa, monographs m 
-				WHERE pm.monograph_id = m.monograph_id AND 
-					m.press_id = ? 
-				GROUP BY pm.proofreader_id', 
-				$pressId
+				'SELECT sc.user_id AS editor_id, MAX(sc.date_notified) AS last_assigned 
+				FROM signoffs sc, monographs m 
+				WHERE sc.assoc_id = m.monograph_id AND 
+					m.press_id = ? AND
+					sc.symbolic = ? AND
+					sc.assoc_type = ?
+				GROUP BY sc.user_id', 
+				array($pressId, 'PRODUCTION_PROOF_PROOFREADER', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
 			);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);

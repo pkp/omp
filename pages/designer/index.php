@@ -24,8 +24,8 @@ switch ($op) {
 	//
 	case 'submission':
 	case 'submissionEditing':
-	case 'completeAssignment':
-	case 'uploadLayoutFile':
+	case 'completeDesign':
+	case 'uploadGalley':
 	case 'editGalley':
 	case 'saveGalley':
 	case 'deleteGalley':
@@ -33,10 +33,6 @@ switch ($op) {
 	case 'proofGalley':
 	case 'proofGalleyTop':
 	case 'proofGalleyFile':
-	case 'editSuppFile':
-	case 'saveSuppFile':
-	case 'deleteSuppFile':
-	case 'orderSuppFile':
 	case 'downloadFile':
 	case 'viewFile':
 	case 'downloadLayoutTemplate':

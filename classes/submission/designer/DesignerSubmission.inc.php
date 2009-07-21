@@ -29,19 +29,36 @@ class DesignerSubmission extends Monograph {
 	//
 
 	/**
+	 * Get design assignments for this monograph.
+	 * @return array
+	 */
+	function &getProductionAssignments() {
+		$designAssignments =& $this->getData('productionAssignments');
+		return $designAssignments;
+	}
+
+	/**
+	 * Set design assignments for this monograph.
+	 * @param $productionAssignments array
+	 */
+	function setProductionAssignments(&$productionAssignments) {
+		return $this->setData('productionAssignments', $productionAssignments);
+	}
+
+	/**
 	 * Get the layout assignment for a monograph.
 	 * @return LayoutAssignment
 	 */
-	function &getLayoutAssignments() {
+	function &getLayoutAssignment() {
 		$layoutAssignment =& $this->getData('layoutAssignment');
 		return $layoutAssignment;
 	}
 
 	/**
 	 * Set the layout assignment for a monograph.
-	 * @param $layoutAssignment LayoutAssignment
+	 * @param $layoutAssignment Signoff
 	 */
-	function setLayoutAssignments(&$layoutAssignment) {
+	function setLayoutAssignment(&$layoutAssignment) {
 		return $this->setData('layoutAssignment', $layoutAssignment);
 	}
 

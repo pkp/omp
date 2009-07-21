@@ -41,9 +41,11 @@ class MonographGalleyDAO extends DAO {
 		if ($monographId !== null) $params[] = (int) $monographId;
 		$result =& $this->retrieve(
 			'SELECT	g.*,
-				a.file_name, a.original_file_name, a.file_type, a.file_size, a.date_uploaded, a.date_modified
+				mf.file_name, mf.original_file_name, mf.file_type, mf.file_size, mf.date_uploaded, mf.date_modified,
+				pa.label
 			FROM	monograph_galleys g
-				LEFT JOIN monograph_files a ON (g.file_id = a.file_id)
+			LEFT JOIN monograph_files mf ON (g.file_id = mf.file_id)
+			LEFT JOIN production_assignments pa ON (pa.assignment_id = g.assignment_id)
 			WHERE	g.galley_id = ?' .
 			($monographId !== null?' AND g.monograph_id = ?':''),
 			$params
@@ -51,9 +53,9 @@ class MonographGalleyDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnGalleyFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		} else {
-			HookRegistry::call('MonographGalleyDAO::getNewGalley', array(&$galleyId, &$monographId, &$returner));
+			HookRegistry::call('MonographGalleyDAO::getGalley', array(&$galleyId, &$monographId, &$returner));
 		}
 
 		$result->Close();
@@ -90,9 +92,10 @@ class MonographGalleyDAO extends DAO {
 	function &getGalleyByPublicGalleyId($publicGalleyId, $monographId) {
 		$result =& $this->retrieve(
 			'SELECT	g.*,
-				a.file_name, a.original_file_name, a.file_type, a.file_size, a.date_uploaded, a.date_modified
+				mf.file_name, mf.original_file_name, mf.file_type, mf.file_size, mf.date_uploaded, mf.date_modified
 			FROM	monograph_galleys g
-				LEFT JOIN monograph_files a ON (g.file_id = a.file_id)
+			LEFT JOIN monograph_files mf ON (g.file_id = mf.file_id)
+			LEFT JOIN production_assignments pa ON (pa.assignment_id = g.assignment_id)
 			WHERE	g.public_galley_id = ? AND
 				g.monograph_id = ?',
 			array($publicGalleyId, (int) $monographId)
@@ -100,7 +103,7 @@ class MonographGalleyDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnGalleyFromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 		} else {
 			HookRegistry::call('MonographGalleyDAO::getNewGalley', array(&$galleyId, &$monographId, &$returner));
 		}
@@ -112,31 +115,75 @@ class MonographGalleyDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all galleys for a monograph.
-	 * @param $monographId int
+	 * Retrieve all galleys for a production assignment.
+	 * @param $assignmentId int
 	 * @return array MonographGalleys
 	 */
-	function &getGalleysByMonograph($monographId) {
+	function &getByAssignmentId($assignmentId) {
 		$galleys = array();
 
 		$result =& $this->retrieve(
 			'SELECT g.*,
-			a.file_name, a.original_file_name, a.file_type, a.file_size, a.date_uploaded, a.date_modified
+			mf.file_name, mf.original_file_name, mf.file_type, mf.file_size, mf.date_uploaded, mf.date_modified
 			FROM monograph_galleys g
-			LEFT JOIN monograph_files a ON (g.file_id = a.file_id)
-			WHERE g.monograph_id = ? ORDER BY g.seq',
+			LEFT JOIN monograph_files mf ON (g.file_id = mf.file_id)
+			LEFT JOIN production_assignments pa ON (pa.assignment_id = g.assignment_id)	
+			WHERE g.assignment_id = ? ORDER BY g.seq',
 			$monographId
 		);
 
 		while (!$result->EOF) {
-			$galleys[] =& $this->_returnGalleyFromRow($result->GetRowAssoc(false));
+			$galleys[] =& $this->_fromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
 
 		$result->Close();
 		unset($result);
 
-		HookRegistry::call('MonographGalleyDAO::getGalleysByMonograph', array(&$galleys, &$monographId));
+		HookRegistry::call('MonographGalleyDAO::getByMonographId', array(&$galleys, &$monographId));
+
+		return $galleys;
+	}
+
+	/**
+	 * Retrieve all galleys for a monograph.
+	 * @param $monographId int
+	 * @param $userId int optional - filter by associated user
+	 * @return array MonographGalleys
+	 */
+	function &getByMonographId($monographId, $userId = null) {
+		$galleys = array();
+		$sqlExtra = '';
+		$sqlParams = array();
+
+		if ($userId !== null) {
+			$sqlExtra .= 'LEFT JOIN signoffs s ON (s.assoc_type = ? AND s.assoc_id = pa.assignment_id AND s.date_notified IS NOT NULL)';
+			$sqlParams[] = ASSOC_TYPE_PRODUCTION_ASSIGNMENT;
+			$sqlParams[] = $userId;
+		}
+		$sqlParams[] = $monographId;
+
+		$result =& $this->retrieve(
+			'SELECT g.*,
+			mf.file_name, mf.original_file_name, mf.file_type, mf.file_size, mf.date_uploaded, mf.date_modified
+			FROM monograph_galleys g
+			LEFT JOIN monograph_files mf ON (g.file_id = mf.file_id)
+			LEFT JOIN production_assignments pa ON (pa.assignment_id = g.assignment_id) '. $sqlExtra .'
+			WHERE '. ($userId != null ? 's.user_id = ? AND ' : '') .'g.monograph_id = ? 
+			ORDER BY g.seq', 
+			$sqlParams
+		);
+
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			$galleys[$row['assignment_id']][] =& $this->_fromRow($row);
+			$result->moveNext();
+		}
+
+		$result->Close();
+		unset($result);
+
+		HookRegistry::call('MonographGalleyDAO::getByMonographId', array(&$galleys, &$monographId));
 
 		return $galleys;
 	}
@@ -154,12 +201,20 @@ class MonographGalleyDAO extends DAO {
 		return $galley;
 	}
 
+ 	/**
+	 * Construct a new data object corresponding to this DAO.
+	 * @return SignoffEntry
+	 */
+	function newDataObject() {
+		return new MonographGalley();
+	}
+
 	/**
 	 * Internal function to return a MonographGalley object from a row.
 	 * @param $row array
 	 * @return MonographGalley
 	 */
-	function &_returnGalleyFromRow(&$row) {
+	function &_fromRow(&$row) {
 		if ($row['html_galley']) {
 			$galley = new MonographHTMLGalley();
 
@@ -174,14 +229,19 @@ class MonographGalleyDAO extends DAO {
 			$galley->setImageFiles($images);
 
 		} else {
-			$galley = new MonographGalley();
+			$galley = $this->newDataObject();
 		}
-		$galley->setGalleyId($row['galley_id']);
+
+		$productionAssignmentDao =& DAORegistry::getDAO('ProductionAssignmentDAO');
+		$designAssignment =& $productionAssignmentDao->getById($row['assignment_id']);
+
+		$galley->setId($row['galley_id']);
 		$galley->setPublicGalleyId($row['public_galley_id']);
 		$galley->setMonographId($row['monograph_id']);
+		$galley->setLabel($row['label']);
 		$galley->setLocale($row['locale']);
 		$galley->setFileId($row['file_id']);
-		$galley->setLabel($row['label']);
+		$galley->setAssignmentId($row['assignment_id']);
 		$galley->setSequence($row['seq']);
 		$galley->setViews($row['views']);
 
@@ -193,7 +253,7 @@ class MonographGalleyDAO extends DAO {
 		$galley->setDateModified($this->datetimeFromDB($row['date_modified']));
 		$galley->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
 
-		HookRegistry::call('MonographGalleyDAO::_returnGalleyFromRow', array(&$galley, &$row));
+		HookRegistry::call('MonographGalleyDAO::_fromRow', array(&$galley, &$row));
 
 		return $galley;
 	}
@@ -202,41 +262,41 @@ class MonographGalleyDAO extends DAO {
 	 * Insert a new MonographGalley.
 	 * @param $galley MonographGalley
 	 */
-	function insertGalley(&$galley) {
+	function insertObject(&$galley) {
 		$this->update(
 			'INSERT INTO monograph_galleys
-				(public_galley_id, monograph_id, file_id, label, locale, html_galley, style_file_id, seq)
+				(public_galley_id, monograph_id, file_id, assignment_id, locale, html_galley, style_file_id, seq)
 				VALUES
 				(?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$galley->getPublicGalleyId(),
 				$galley->getMonographId(),
 				$galley->getFileId(),
-				$galley->getLabel(),
+				$galley->getAssignmentId(),
 				$galley->getLocale(),
 				(int)$galley->isHTMLGalley(),
 				$galley->isHTMLGalley() ? $galley->getStyleFileId() : null,
-				$galley->getSequence() == null ? $this->getNextGalleySequence($galley->getMonographID()) : $galley->getSequence()
+				$galley->getSequence() == null ? $this->getNextGalleySequence($galley->getMonographId(), $galley->getAssignmentId()) : $galley->getSequence()
 			)
 		);
-		$galley->setGalleyId($this->getInsertGalleyId());
+		$galley->setId($this->getInsertGalleyId());
 
-		HookRegistry::call('MonographGalleyDAO::insertNewGalley', array(&$galley, $galley->getGalleyId()));
+		HookRegistry::call('MonographGalleyDAO::insertNewGalley', array(&$galley, $galley->getId()));
 
-		return $galley->getGalleyId();
+		return $galley->getId();
 	}
 
 	/**
 	 * Update an existing MonographGalley.
 	 * @param $galley MonographGalley
 	 */
-	function updateGalley(&$galley) {
+	function updateObject(&$galley) {
 		return $this->update(
 			'UPDATE monograph_galleys
 				SET
 					public_galley_id = ?,
 					file_id = ?,
-					label = ?,
+					assignment_id = ?,
 					locale = ?,
 					html_galley = ?,
 					style_file_id = ?,
@@ -245,12 +305,12 @@ class MonographGalleyDAO extends DAO {
 			array(
 				$galley->getPublicGalleyId(),
 				$galley->getFileId(),
-				$galley->getLabel(),
+				$galley->getAssignmentId(),
 				$galley->getLocale(),
 				(int)$galley->isHTMLGalley(),
 				$galley->isHTMLGalley() ? $galley->getStyleFileId() : null,
 				$galley->getSequence(),
-				$galley->getGalleyId()
+				$galley->getId()
 			)
 		);
 	}
@@ -259,8 +319,20 @@ class MonographGalleyDAO extends DAO {
 	 * Delete a MonographGalley.
 	 * @param $galley MonographGalley
 	 */
-	function deleteGalley(&$galley) {
-		return $this->deleteGalleyById($galley->getGalleyId());
+	function deleteObject(&$galley) {
+		return $this->deleteById($galley->getId());
+	}
+
+	/**
+	 * Delete galleys by assignment Id.
+	 * @param $assignmentId int
+	 */
+	function deleteByAssignmentId($assignmentId) {
+		$galleys =& $this->getByAssignmentId($assignmentId);
+
+		foreach ($galleys as $galley) {
+			$this->deleteObject($galley);
+		}
 	}
 
 	/**
@@ -268,9 +340,9 @@ class MonographGalleyDAO extends DAO {
 	 * @param $galleyId int
 	 * @param $monographId int optional
 	 */
-	function deleteGalleyById($galleyId, $monographId = null) {
+	function deleteById($galleyId, $monographId = null) {
 
-		HookRegistry::call('MonographGalleyDAO::deleteGalleyById', array(&$galleyId, &$monographId));
+		HookRegistry::call('MonographGalleyDAO::deleteById', array(&$galleyId, &$monographId));
 
 		$this->deleteImagesByGalley($galleyId);
 		if (isset($monographId)) {
@@ -291,10 +363,10 @@ class MonographGalleyDAO extends DAO {
 	 * NOTE that this will not delete monograph_file entities or the respective files.
 	 * @param $monographId int
 	 */
-	function deleteGalleysByMonograph($monographId) {
-		$galleys =& $this->getGalleysByMonograph($monographId);
+	function deleteByMonographId($monographId) {
+		$galleys =& $this->getByMonographId($monographId);
 		foreach ($galleys as $galley) {
-			$this->deleteGalleyById($galley->getGalleyId(), $monographId);
+			$this->deleteById($galley->getId(), $monographId);
 		}
 	}
 
@@ -335,11 +407,12 @@ class MonographGalleyDAO extends DAO {
 	/**
 	 * Sequentially renumber galleys for a monograph in their sequence order.
 	 * @param $monographId int
+	 * @param $assignmentId int
 	 */
-	function resequenceGalleys($monographId) {
+	function resequenceGalleys($monographId, $assignmentId) {
 		$result =& $this->retrieve(
-			'SELECT galley_id FROM monograph_galleys WHERE monograph_id = ? ORDER BY seq',
-			$monographId
+			'SELECT galley_id FROM monograph_galleys WHERE monograph_id = ? AND assignment_id = ? ORDER BY seq',
+			array($monographId, $assignmentId)
 		);
 
 		for ($i=1; !$result->EOF; $i++) {
@@ -358,14 +431,17 @@ class MonographGalleyDAO extends DAO {
 	/**
 	 * Get the the next sequence number for a monograph's galleys (i.e., current max + 1).
 	 * @param $monographId int
+	 * @param $assignmentId int
 	 * @return int
 	 */
-	function getNextGalleySequence($monographId) {
+	function getNextGalleySequence($monographId, $assignmentId) {
 		$result =& $this->retrieve(
-			'SELECT MAX(seq) + 1 FROM monograph_galleys WHERE monograph_id = ?',
-			$monographId
+			'SELECT MAX(seq) + 1 FROM monograph_galleys WHERE monograph_id = ? AND assignment_id = ?',
+			array($monographId, $assignmentId)
 		);
 		$returner = floor($result->fields[0]);
+
+		$returner = $returner < 1 ? 1 : $returner;
 
 		$result->Close();
 		unset($result);
@@ -395,8 +471,8 @@ class MonographGalleyDAO extends DAO {
 		$images = array();
 
 		$result =& $this->retrieve(
-			'SELECT a.* FROM monograph_html_galley_images i, monograph_files a
-			WHERE i.file_id = a.file_id AND i.galley_id = ?',
+			'SELECT mf.* FROM monograph_html_galley_images i, monograph_files mf
+			WHERE i.file_id = mf.file_id AND i.galley_id = ?',
 			$galleyId
 		);
 

@@ -222,8 +222,8 @@ class MonographSearchIndex {
 		unset($files);
 
 		// Index galley files
-		$fileDao =& DAORegistry::getDAO('MonographGalleyDAO');
-		$files =& $fileDao->getGalleysByMonograph($monograph->getMonographId());
+		$monographGalleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
+		$files =& $monographGalleyDao->getByMonographId($monograph->getMonographId());
 		foreach ($files as $file) {
 			if ($file->getFileId()) {
 				MonographSearchIndex::updateFileIndex($monograph->getMonographId(), MONOGRAPH_SEARCH_GALLEY_FILE, $file->getFileId());
