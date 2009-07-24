@@ -125,11 +125,6 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
 
 		// Editor Decisions
-/*
-		for ($i = 1; $i <= $row['current_round']; $i++) {
-			$reviewerSubmission->setDecisions($this->getEditorDecisions($row['article_id'], $i), $i);
-		}
-*/
 		$decisions =& $this->getEditorDecisions($row['monograph_id']);
 		$reviewerSubmission->setDecisions($decisions);
 

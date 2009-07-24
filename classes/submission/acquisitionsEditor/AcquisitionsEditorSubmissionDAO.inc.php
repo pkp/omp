@@ -787,7 +787,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 
 	/**
 	 * Retrieve a list of all reviewers along with information about their current status with respect to an monograph's current round.
-	 * @param $journalId int
+	 * @param $pressId int
 	 * @param $monographId int
 	 * @param $round int
 	 * @param $searchType int USER_FIELD_...

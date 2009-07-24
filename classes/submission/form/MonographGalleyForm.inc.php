@@ -148,7 +148,7 @@ class MonographGalleyForm extends Form {
 
 				// Update file search index
 				import('search.MonographSearchIndex');
-				MonographSearchIndex::updateFileIndex($this->monographId, ARTICLE_SEARCH_GALLEY_FILE, $galley->getFileId());
+				MonographSearchIndex::updateFileIndex($this->monographId, MONOGRAPH_SEARCH_GALLEY_FILE, $galley->getFileId());
 			}
 
 			if ($monographFileManager->uploadedFileExists('styleFile')) {
