@@ -193,7 +193,22 @@ class PressDAO extends DAO
 	function deletePressById($pressId) {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$pressSettingsDao->deleteSettingsByPress($pressId);
+		
+		$acquisitionsArrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
+		$acquisitionsArrangementDao->deleteByPress($pressId);
+				
+		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
+		$emailTemplateDao->deleteEmailTemplatesByPress($pressId);
 
+		$monographDAO =& DAORegistry::getDAO('MonographDAO');
+		$monographDAO->deleteMonographsByPress($pressId);
+		
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$roleDao->deleteRoleByPressId($pressId);		
+
+		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
+		$pluginSettingsDao->deleteSettingsByPressId($pressId);
+				
 		return $this->update(
 			'DELETE FROM presses WHERE press_id = ?', $pressId
 		);
