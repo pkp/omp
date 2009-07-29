@@ -9,7 +9,7 @@
   *
   * OMP database schema in XML.
   *
-  * $Id: 
+  * $Id$
   -->
 
 <schema version="0.2">
@@ -33,7 +33,7 @@
 			<UNIQUE/>
 		</index>
 	</table>
-	
+
 	<!--
 	 *
 	 * TABLE monograph_search_objects
@@ -56,7 +56,7 @@
 		</field>
 		<descr>Indexed objects.</descr>
 	</table>
-	
+
 	<!--
 	 *
 	 * TABLE monograph_search_object_keywords
@@ -83,7 +83,7 @@
 			<UNIQUE />
 		</index>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE monograph_event_log
@@ -116,7 +116,7 @@
 			<col>monograph_id</col>
 		</index>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE monograph_email_log
@@ -164,7 +164,7 @@
 		</field>
 		<descr>Misc workflow signoffs.</descr>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE monograph_comments
@@ -302,7 +302,7 @@
 			<UNIQUE/>
 		</index>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE monograph_html_galley_images
@@ -364,7 +364,7 @@
 		<field name="is_active" type="I1" />
 		<descr>Review forms.</descr>
 	</table>
-	
+
 	<table name="notification_status">
 		<field name="press_id" type="I8">
 			<NOTNULL />
@@ -430,7 +430,7 @@
 		<field name="required" type="I1" />
 		<descr>Review form elements.</descr>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE review_form_element_settings
@@ -680,7 +680,7 @@
 			<col>monograph_id</col>
 		</index>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE monograph_file_settings
@@ -739,8 +739,8 @@
 			<col>review_type</col>
 			<UNIQUE/>
 		</index>
-	</table>		
-		
+	</table>
+
 	<!--
 	  *
 	  * TABLE review_assignments
@@ -801,7 +801,7 @@
 			<col>reviewer_id</col>
 		</index>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE plugin_settings
@@ -828,7 +828,7 @@
 		</field>
 		<descr>Press settings.</descr>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE roles
@@ -910,105 +910,8 @@
 			<UNIQUE />
 		</index>
 	</table>
-	
+
 	<!--
-	  *
-	  * TABLE email_templates_default
-	  *
-	  -->
-	<table name="email_templates_default">
-		<field name="email_id" type="I8">
-			<KEY />
-			<AUTOINCREMENT/>
-		</field>
-		<field name="email_key" type="C2" size="30">
-			<NOTNULL/>
-			<descr>Unique identifier for this email.</descr>
-		</field>
-		<field name="can_disable" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
-		</field>
-		<field name="can_edit" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
-		</field>
-		<field name="from_role_id" type="I8"/>
-		<field name="to_role_id" type="I8"/>
-		<descr>Default press email templates.</descr>
-	</table>
-	
-	<!--
-	  *
-	  * TABLE email_templates_default_data
-	  *
-	  -->
-	<table name="email_templates_default_data">
-		<field name="email_key" type="C2" size="30">
-			<NOTNULL />
-			<descr>Unique identifier for this email.</descr>
-		</field>
-		<field name="locale" type="C2" size="5">
-			<NOTNULL />
-			<DEFAULT VALUE="en_US"/>
-		</field>
-		<field name="subject" type="C2" size="120">
-			<NOTNULL/>
-		</field>
-		<field name="body" type="X"/>
-		<field name="description" type="X"/>
-		<descr>Default data for press email templates.</descr>
-	</table>
-	
-	<!--
-	  *
-	  * TABLE email_templates
-	  *
-	  -->
-	<table name="email_templates">
-		<field name="email_id" type="I8">
-			<KEY />
-			<AUTOINCREMENT/>
-		</field>
-		<field name="email_key" type="C2" size="30">
-			<NOTNULL/>
-			<descr>Unique identifier for this email.</descr>
-		</field>
-		<field name="press_id" type="I8">
-			<NOTNULL/>
-		</field>
-		<field name="enabled" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
-		</field>
-		<descr>Templates for press emails.</descr>
-	</table>
-	
-	<!--
-	  *
-	  * TABLE email_templates_data
-	  *
-	  -->
-	<table name="email_templates_data">
-		<field name="email_key" type="C2" size="30">
-			<NOTNULL />
-			<descr>Unique identifier for this email.</descr>
-		</field>
-		<field name="locale" type="C2" size="5">
-			<NOTNULL />
-			<DEFAULT VALUE="en_US"/>
-		</field>
-		<field name="press_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="subject" type="C2" size="120">
-			<NOTNULL/>
-		</field>
-		<field name="body" type="X"/>
-		<descr>Data for press email templates.</descr>
-	</table>
-	
-		<!--
 	  *
 	  * TABLE monograph_authors
 	  *
@@ -1051,7 +954,7 @@
 			<col>monograph_id</col>
 		</index>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE monograph_author_settings
@@ -1084,7 +987,7 @@
 			<UNIQUE/>
 		</index>
 	</table>
-	
+
 	<table name="monograph_component_settings">
 		<field name="component_id" type="I8">
 			<NOTNULL />
@@ -1258,7 +1161,7 @@
 			<col>press_id</col>
 		</index>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE series_settings
@@ -1291,7 +1194,7 @@
 			<UNIQUE />
 		</index>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE acquisitions_editors
@@ -1366,5 +1269,4 @@
 			<UNIQUE/>
 		</index>
 	</table>
-	
 </schema>

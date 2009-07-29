@@ -117,7 +117,8 @@ class EmailTemplateForm extends Form {
 
 		}
 
-		$emailTemplate->setPressId($press->getId());
+		$emailTemplate->setAssocType(ASSOC_TYPE_PRESS);
+		$emailTemplate->setAssocId($press->getPressId());
 
 		$supportedLocales = $press->getSupportedLocaleNames();
 		if (!empty($supportedLocales)) {
