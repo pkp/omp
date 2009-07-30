@@ -226,9 +226,9 @@ class MonographDAO extends DAO {
 		$monograph->stampModified();
 		$this->update(
 			sprintf('INSERT INTO monographs
-				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, submission_file_id, revised_file_id, review_file_id, editor_file_id, layout_file_id, pages, fast_tracked, hide_author, comments_status, edited_volume, arrangement_id, prospectus_file_id, current_review_type, current_round)
+				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, submission_file_id, revised_file_id, review_file_id, editor_file_id, pages, fast_tracked, hide_author, comments_status, edited_volume, arrangement_id, current_review_type, current_round)
 				VALUES
-				(?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
 				$monograph->getUserId(),
@@ -241,14 +241,12 @@ class MonographDAO extends DAO {
 				$monograph->getRevisedFileId(),
 				$monograph->getReviewFileId(),
 				$monograph->getEditorFileId(),
-				$monograph->getLayoutFileId(),
 				$monograph->getPages(),
 				$monograph->getFastTracked() ? 1 : 0,
 				$monograph->getHideAuthor() === null ? 0 : $monograph->getHideAuthor(),
 				$monograph->getCommentsStatus() === null ? 0 : $monograph->getCommentsStatus(),
 				$monograph->getWorkType(),
 				$monograph->getAcquisitionsArrangementId() ,
-				$monograph->getCompletedProspectusFileId(),
 				$monograph->getCurrentReviewType() === null ? 6 : $monograph->getCurrentReviewType(),				
 				$monograph->getCurrentRound() === null ? 1 : $monograph->getCurrentRound()
 			)
@@ -315,10 +313,8 @@ class MonographDAO extends DAO {
 					revised_file_id = ?,
 					review_file_id = ?,
 					editor_file_id = ?,
-					layout_file_id = ?,
 					hide_author = ?,
 					arrangement_id = ?,
-					prospectus_file_id = ?,
 					current_review_type = ?,
 					current_round = ?
 				WHERE monograph_id = ?',
@@ -335,10 +331,8 @@ class MonographDAO extends DAO {
 				$monograph->getRevisedFileId(),
 				$monograph->getReviewFileId(),
 				$monograph->getEditorFileId(),
-				$monograph->getLayoutFileId(),
 				$monograph->getHideAuthor() == null ? 0 : $monograph->getHideAuthor(),
 				$monograph->getAcquisitionsArrangementId(),
-				$monograph->getCompletedProspectusFileId(),
 				$monograph->getCurrentReviewType(),
 				$monograph->getCurrentRound(),
 				$monograph->getMonographId()
@@ -492,8 +486,6 @@ class MonographDAO extends DAO {
 		$monograph->setRevisedFileId($row['revised_file_id']);
 		$monograph->setReviewFileId($row['review_file_id']);
 		$monograph->setEditorFileId($row['editor_file_id']);
-		$monograph->setLayoutFileId($row['layout_file_id']);
-		$monograph->setCompletedProspectusFileId($row['prospectus_file_id']);
 		$monograph->setStatus($row['status']);
 		$monograph->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
 		$monograph->setCurrentReviewType($row['current_review_type']);

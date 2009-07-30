@@ -569,37 +569,19 @@ class ProductionEditorHandler extends Handler {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$pressSettings = $pressSettingsDao->getPressSettings($press->getId());
-
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$layoutFile =& $monographFileDao->getMonographFile($submission->getLayoutFileId());
-
 //		$artworkCount = $monographFileDao->getArtworkFileCountByMonographId($submission->getMonographId());
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR);
+		$productionAssignmentDao =& DAORegistry::getDAO('ProductionAssignmentDAO');
+		$productionAssignmentTypes = $productionAssignmentDao->productionAssignmentTypeToLocaleKey();
 
 		$enableComments = $press->getSetting('enableComments');
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('useLayoutEditors', true);
-
-		$productionAssignmentDao =& DAORegistry::getDAO('ProductionAssignmentDAO');
-		$assignments =& $productionAssignmentDao->getByMonographId($monographId);
-
-		$productionAssignmentTypes = $productionAssignmentDao->productionAssignmentTypeToLocaleKey();
-//print_r($submission);
-		$templateMgr->assign('artworkCount', $artworkCount);
-		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('authors', $submission->getAuthors());
-		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
 		$templateMgr->assign_by_ref('productionAssignmentTypes', $productionAssignmentTypes);
-		$templateMgr->assign('userId', $user->getId());
-		$templateMgr->assign('isEditor', $isEditor);
-		$templateMgr->assign('galleys', $galleys);
 		$templateMgr->assign('enableComments', $enableComments);
-		$templateMgr->assign('useLayoutEditors', true);
+		$templateMgr->assign_by_ref('submission', $submission);
+		$templateMgr->assign('artworkCount', $artworkCount);
+		$templateMgr->assign('galleys', $galleys);
 
 		if ($enableComments) {
 			import('monograph.Monograph');
@@ -612,7 +594,6 @@ class ProductionEditorHandler extends Handler {
 		}
 
 		$templateMgr->display('productionEditor/layout.tpl');
-
 	}
 
 	function viewMetadata($args) {

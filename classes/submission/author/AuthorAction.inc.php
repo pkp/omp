@@ -462,7 +462,7 @@ class AuthorAction extends Action {
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');		
 
 		$submission =& $authorSubmissionDao->getAuthorSubmission($monograph->getMonographId());
-		$layoutAssignment =& $submission->getLayoutAssignment();
+		$layoutSignoff =& $submission->getSignoff('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
 
 		$canDownload = false;
 
@@ -492,7 +492,7 @@ class AuthorAction extends Action {
 			}
 		} else if ($submission->getRevisedFileId() == $fileId) {
 			$canDownload = true;
-		} else if ($layoutAssignment->getLayoutFileId() == $fileId) {
+		} else if ($layoutSignoff->getFileId() == $fileId) {
 			$canDownload = true;
 		} else {
 			// Check reviewer files

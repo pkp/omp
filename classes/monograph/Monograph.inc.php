@@ -77,13 +77,6 @@ class Monograph extends Submission {
 	function setAcquisitionsArrangementTitle($value) {
 		 $this->setData('arrangementTitle', $value);
 	}
-	function setCompletedProspectusFileId(&$id) {
-		 $this->setData('prospectus_file_id', $id);
-	}
-	function &getCompletedProspectusFileId() {
-		 return $this->getData('prospectus_file_id');
-	}
-
 	function setCurrentRound($round) {
 		 $this->setData('currentRound', $round);
 	}
@@ -368,22 +361,6 @@ class Monograph extends Submission {
 	 */
 	function setEditorFileId($editorFileId) {
 		return $this->setData('editorFileId', $editorFileId);
-	}
-
-	/**
-	 * Get layout file id.
-	 * @return int
-	 */
-	function getLayoutFileId() {
-		return $this->getData('layoutFileId');
-	}
-
-	/**
-	 * Set layout file id.
-	 * @param $layoutFileId int
-	 */
-	function setLayoutFileId($layoutFileId) {
-		return $this->setData('layoutFileId', $layoutFileId);
 	}
 
 	/**

@@ -262,7 +262,6 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 			$monograph->setCurrentReviewType($acquisitionsEditorSubmission->getCurrentReviewType());
 			$monograph->setReviewFileId($acquisitionsEditorSubmission->getReviewFileId());
 			$monograph->setEditorFileId($acquisitionsEditorSubmission->getEditorFileId());
-			$monograph->setLayoutFileId($acquisitionsEditorSubmission->getLayoutFileId());
 			$monograph->setStatus($acquisitionsEditorSubmission->getStatus());
 			$monograph->setDateStatusModified($acquisitionsEditorSubmission->getDateStatusModified());
 			$monograph->setLastModified($acquisitionsEditorSubmission->getLastModified());
