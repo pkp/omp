@@ -38,29 +38,14 @@ class UserAction {
 		}
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		foreach ($monographDao->getMonographsByUserId($oldUserId) as $monograph) {
+		foreach ($monographDao->getByUserId($oldUserId) as $monograph) {
 			$monograph->setUserId($newUserId);
 			$monographDao->updateMonograph($monograph);
 			unset($monograph);
 		}
 
-		$commentDao =& DAORegistry::getDAO('CommentDAO');
-		foreach ($commentDao->getCommentsByUserId($oldUserId) as $comment) {
-			$comment->setUserId($newUserId);
-			$commentDao->updateComment($comment);
-			unset($comment);
-		}
-
-		$monographNoteDao =& DAORegistry::getDAO('MonographNoteDAO');
-		$monographNotes =& $monographNoteDao->getMonographNotesByUserId($oldUserId);
-		while ($monographNote =& $monographNotes->next()) {
-			$monographNote->setUserId($newUserId);
-			$monographNoteDao->updateMonographNote($monographNote);
-				unset($monographNote);
-		}
-
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getEditAssignmentsByUserId($oldUserId);
+		$editAssignments =& $editAssignmentDao->getByUserId($oldUserId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$editAssignment->setEditorId($newUserId);
 			$editAssignmentDao->updateEditAssignment($editAssignment);
@@ -71,16 +56,16 @@ class UserAction {
 		$editorSubmissionDao->transferEditorDecisions($oldUserId, $newUserId);
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		foreach ($reviewAssignmentDao->getReviewAssignmentsByUserId($oldUserId) as $reviewAssignment) {
+		foreach ($reviewAssignmentDao->getByUserId($oldUserId) as $reviewAssignment) {
 			$reviewAssignment->setReviewerId($newUserId);
-			$reviewAssignmentDao->updateReviewAssignment($reviewAssignment);
+			$reviewAssignmentDao->updateObject($reviewAssignment);
 			unset($reviewAssignment);
 		}
 
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
-		$copyeditorSubmissions =& $copyeditorSubmissionDao->getCopyeditorSubmissionsByCopyeditorId($oldUserId);
+		$copyeditorSubmissions =& $copyeditorSubmissionDao->getByCopyeditorId($oldUserId);
 		while ($copyeditorSubmission =& $copyeditorSubmissions->next()) {
 			$initialCopyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
 			$finalCopyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
@@ -93,28 +78,20 @@ class UserAction {
 			unset($finalCopyeditSignoff);
 		}
 
-		$layoutEditorSubmissionDao =& DAORegistry::getDAO('LayoutEditorSubmissionDAO');
-		$layoutEditorSubmissions =& $layoutEditorSubmissionDao->getSubmissions($oldUserId);
-		while ($layoutEditorSubmission =& $layoutEditorSubmissions->next()) {
-			$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $layoutEditorSubmission->getMonographId());
-			$layoutProofreadSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_MONOGRAPH, $layoutEditorSubmission->getMonographId());
-			$layoutSignoff->setUserId($newUserId);
-			$layoutProofreadSignoff->setUserId($newUserId);
-			$signoffDao->updateObject($layoutSignoff);
-			$signoffDao->updateObject($layoutProofreadSignoff);
-			unset($layoutSignoff);
-			unset($layoutProofreadSignoff);
-			unset($layoutEditorSubmission);
-		}
-
-		$proofreaderSubmissionDao =& DAORegistry::getDAO('ProofreaderSubmissionDAO');
-		$proofreaderSubmissions =& $proofreaderSubmissionDao->getSubmissions($oldUserId);
-		while ($proofreaderSubmission =& $proofreaderSubmissions->next()) {
-			$proofSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $proofreaderSubmission->getMonographId());
-			$proofSignoff->setUserId($newUserId);
-			$signoffDao->updateObject($proofSignoff);
-			unset($proofSignoff);
-			unset($proofreaderSubmission);
+		$designerSubmissionDao =& DAORegistry::getDAO('DesignerSubmissionDAO');
+		$designerSubmissions =& $designerSubmissionDao->getSubmissions($oldUserId);
+		while ($designerSubmission =& $designerSubmissions->next()) {
+			foreach ($designerSubmission->getProductionAssignments as $productionAssignment) {
+				$layoutSignoff = $signoffDao->build('PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT, $productionAssignment->getId());
+				$layoutProofSignoff = $signoffDao->build('PRODUCTION_DESIGN_PROOF', ASSOC_TYPE_PRODUCTION_ASSIGNMENT, $productionAssignment->getId());
+				$layoutSignoff->setUserId($newUserId);
+				$layoutProofSignoff->setUserId($newUserId);
+				$signoffDao->updateObject($layoutSignoff);
+				$signoffDao->updateObject($layoutProofSignoff);
+				unset($layoutSignoff);
+				unset($layoutProofSignoff);
+			}
+			unset($designerSubmission);
 		}
 
 		$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
@@ -141,8 +118,8 @@ class UserAction {
 		$userSettingsDao->deleteSettings($oldUserId);
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 		$groupMembershipDao->deleteMembershipByUserId($oldUserId);
-		$acquisitionsEditorsDao =& DAORegistry::getDAO('AcquisitionsEditorsDAO');
-		$acquisitionsEditorsDao->deleteEditorsByUserId($oldUserId);
+		$arrangementEditorsDao =& DAORegistry::getDAO('AcquisitionsArrangementEditorsDAO');
+		$arrangementEditorsDao->deleteEditorsByUserId($oldUserId);
 
 		// Transfer old user's roles
 		$roleDao =& DAORegistry::getDAO('RoleDAO');

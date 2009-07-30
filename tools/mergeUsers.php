@@ -80,118 +80,10 @@ class mergeUsers extends CommandLineTool {
 				$this->username1);
 			exit;	
 		}
-		// FIXME this needs review
+
 		// Both user IDs are valid. Merge the accounts.
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		foreach ($monographDao->getMonographsByUserId($oldUserId) as $monograph) {
-			$monograph->setUserId($newUserId);
-			$monographDao->updateMonograph($monograph);
-			unset($monograph);
-		}
-
-		$commentDao =& DAORegistry::getDAO('CommentDAO');
-		foreach ($commentDao->getCommentsByUserId($oldUserId) as $comment) {
-			$comment->setUserId($newUserId);
-			$commentDao->updateComment($comment);
-			unset($comment);
-		}
-
-		$monographNoteDao =& DAORegistry::getDAO('MonographNoteDAO');
-		$monographNotes =& $monographNoteDao->getMonographNotesByUserId($oldUserId);
-		while ($monographNote =& $monographNotes->next()) {
-			$monographNote->setUserId($newUserId);
-			$monographNoteDao->updateMonographNote($monographNote);
-			unset($monographNote);
-		}
-
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getByUserId($oldUserId);
-		while ($editAssignment =& $editAssignments->next()) {
-			$editAssignment->setEditorId($newUserId);
-			$editAssignmentDao->updateEditAssignment($editAssignment);
-			unset($editAssignment);
-		}
-
-		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
-		$editorSubmissionDao->transferEditorDecisions($oldUserId, $newUserId);
-
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		foreach ($reviewAssignmentDao->getByUserId($oldUserId) as $reviewAssignment) {
-			$reviewAssignment->setReviewerId($newUserId);
-			$reviewAssignmentDao->updateObject($reviewAssignment);
-			unset($reviewAssignment);
-		}
-
-		$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
-		$copyeditorSubmissions =& $copyeditorSubmissionDao->getCopyeditorSubmissionsByCopyeditorId($oldUserId);
-		while ($copyeditorSubmission =& $copyeditorSubmissions->next()) {
-			$copyeditorSubmission->setCopyeditorId($newUserId);
-			$copyeditorSubmissionDao->updateCopyeditorSubmission($copyeditorSubmission);
-			unset($copyeditorSubmission);
-		}
-
-		$layoutEditorSubmissionDao =& DAORegistry::getDAO('LayoutEditorSubmissionDAO');
-		$layoutEditorSubmissions =& $layoutEditorSubmissionDao->getSubmissions($oldUserId);
-		while ($layoutEditorSubmission =& $layoutEditorSubmissions->next()) {
-			$layoutAssignment =& $layoutEditorSubmission->getLayoutAssignment();
-			$layoutAssignment->setEditorId($newUserId);
-			$layoutEditorSubmissionDao->updateSubmission($layoutEditorSubmission);
-			unset($layoutAssignment);
-			unset($layoutEditorSubmission);
-		}
-
-		$proofreaderSubmissionDao =& DAORegistry::getDAO('ProofreaderSubmissionDAO');
-		$proofreaderSubmissions =& $proofreaderSubmissionDao->getSubmissions($oldUserId);
-		while ($proofreaderSubmission =& $proofreaderSubmissions->next()) {
-			$proofAssignment =& $proofreaderSubmission->getProofAssignment();
-			$proofAssignment->setProofreaderId($newUserId);
-			$proofreaderSubmissionDao->updateSubmission($proofreaderSubmission);
-			unset($proofAssignment);
-			unset($proofreaderSubmission);
-		}
-
-		$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
-		$monographEmailLogDao->transferMonographLogEntries($oldUserId, $newUserId);
-		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
-		$monographEventLogDao->transferMonographLogEntries($oldUserId, $newUserId);
-
-		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-		foreach ($monographCommentDao->getMonographCommentsByUserId($oldUserId) as $monographComment) {
-			$monographComment->setAuthorId($newUserId);
-			$monographCommentDao->updateMonographComment($monographComment);
-			unset($monographComment);
-		}
-
-		$accessKeyDao =& DAORegistry::getDAO('AccessKeyDAO');
-		$accessKeyDao->transferAccessKeys($oldUserId, $newUserId);
-
-		// Delete the old user and associated info.
-		$sessionDao =& DAORegistry::getDAO('SessionDAO');
-		$sessionDao->deleteSessionsByUserId($oldUserId);
-		$subscriptionDao =& DAORegistry::getDAO('SubscriptionDAO');
-		$subscriptionDao->deleteSubscriptionsByUserId($oldUserId);
-		$temporaryFileDao =& DAORegistry::getDAO('TemporaryFileDAO');
-		$temporaryFileDao->deleteTemporaryFilesByUserId($oldUserId);
-		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
-		$notificationStatusDao->deleteNotificationStatusByUserId($oldUserId);
-		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
-		$userSettingsDao->deleteSettings($oldUserId);
-		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
-		$groupMembershipDao->deleteMembershipByUserId($oldUserId);
-		$acquisitionsEditorsDao =& DAORegistry::getDAO('AcquisitionsEditorsDAO');
-		$acquisitionsEditorsDao->deleteAcquisitionsEditorsByUserId($oldUserId);
-
-		// Transfer old user's roles
-		$roles =& $roleDao->getRolesByUserId($oldUserId);
-		foreach ($roles as $role) {
-			if (!$roleDao->roleExists($role->getPressId(), $newUserId, $role->getRoleId())) {
-				$role->setUserId($newUserId);
-				$roleDao->insertRole($role);
-			}
-		}
-		$roleDao->deleteRoleByUserId($oldUserId);
-
-		$userDao->deleteUserById($oldUserId);
+		import('user.UserAction');
+		UserAction::mergeUsers($oldUserId, $newUserId);
 
 		printf("Merge completed: '%s' merged into '%s'.\n",
 			$this->username2,
@@ -200,6 +92,6 @@ class mergeUsers extends CommandLineTool {
 	}
 }
 
-$tool =& new mergeUsers(isset($argv) ? $argv : array());
+$tool = new mergeUsers(isset($argv) ? $argv : array());
 $tool->execute();
 ?>

@@ -85,6 +85,55 @@ class MonographDAO extends DAO {
 	}
 
 	/**
+	 * Get all monographs for a user.
+	 * @param $userId int
+	 * @param $pressId int optional
+	 * @return array Monographs
+	 */
+	function &getByUserId($userId, $pressId = null) {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+		$params = array(
+			'title',
+			$primaryLocale,
+			'title',
+			$locale,
+			'abbrev',
+			$primaryLocale,
+			'abbrev',
+			$locale,
+			$userId
+		);
+		if ($pressId) $params[] = $pressId;
+		$monographs = array();
+
+		$result =& $this->retrieve(
+			'SELECT	m.*,
+				COALESCE(atl.setting_value, atpl.setting_value) AS arrangement_title,
+				COALESCE(aal.setting_value, aapl.setting_value) AS arrangement_abbrev
+			FROM	monographs m
+				LEFT JOIN acquisitions_arrangements aa ON (aa.arrangement_id = m.arrangement_id)
+				LEFT JOIN acquisitions_arrangements_settings atpl ON (aa.arrangement_id = atpl.arrangement_id AND atpl.setting_name = ? AND atpl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings atl ON (aa.arrangement_id = atl.arrangement_id AND atl.setting_name = ? AND atl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings aapl ON (aa.arrangement_id = aapl.arrangement_id AND aapl.setting_name = ? AND aapl.locale = ?)
+				LEFT JOIN acquisitions_arrangements_settings aal ON (aa.arrangement_id = aal.arrangement_id AND aal.setting_name = ? AND aal.locale = ?)
+			WHERE	m.user_id = ?' .
+			(isset($pressId)?' AND m.journal_id = ?':''),
+			$params
+		);
+
+		while (!$result->EOF) {
+			$monographs[] =& $this->_fromRow($result->GetRowAssoc(false));
+			$result->MoveNext();
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $monographs;
+	}
+
+	/**
 	 * Retrieve Monograph by "best" monograph id -- public ID if it exists,
 	 * falling back on the internal monograph ID otherwise.
 	 * @param $monographId string
