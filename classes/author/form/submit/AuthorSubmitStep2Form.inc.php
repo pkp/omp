@@ -27,6 +27,8 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 		parent::AuthorSubmitForm($monograph);
 
 		// Validation checks for this form
+		$this->addCheck(new FormValidatorCustom($this, 'contributors', 'required', 'author.submit.form.authorRequired', create_function('$contributors', 'return count($contributors) > 0;')));
+		$this->addCheck(new FormValidatorArray($this, 'contributors', 'required', 'author.submit.form.authorRequiredFields', array('firstName', 'lastName', 'email')));
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'author.submit.form.titleRequired'));
 
 		$this->_initializeInserts();
