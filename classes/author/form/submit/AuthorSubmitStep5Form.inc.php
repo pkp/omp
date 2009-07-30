@@ -112,7 +112,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 		$signoffDao->updateObject($proofProofreaderSignoff);
 		$signoffDao->updateObject($proofLayoutEditorSignoff);
 
-		$acquisitionsArrangementEditors = $this->assignEditors($monograph);
+		$arrangementEditors = $this->assignEditors($monograph);
 
 		$user =& Request::getUser();
 
@@ -140,7 +140,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 			}
 
 			// Also BCC automatically assigned acquisitions editors
-			foreach ($acquisitionsArrangementEditors as $acquisitionsEditorEntry) {
+			foreach ($arrangementEditors as $acquisitionsEditorEntry) {
 				$acquisitionsEditor =& $acquisitionsEditorEntry['user'];
 				$mail->addBcc($acquisitionsEditor->getEmail(), $acquisitionsEditor->getFullName());
 				unset($acquisitionsEditor);

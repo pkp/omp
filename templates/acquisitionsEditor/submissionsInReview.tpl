@@ -14,7 +14,7 @@
 	<tr class="heading" valign="bottom">
 		<td width="5%">{sort_search key="common.id" sort="id"}</td>
 		<td width="5%"><span class="disabled">MM-DD</span><br />{sort_search key="submissions.submit" sort="submitDate"}</td>
-		<td width="5%">{sort_search key="submissions.acquisitionsArrangement" sort="arrangement"}</td>
+		<td width="5%">{sort_search key="submissions.arrangement" sort="arrangement"}</td>
 		<td width="20%">{sort_search key="monograph.authors" sort="authors"}</td>
 		<td width="30%">{sort_search key="monograph.title" sort="title"}</td>
 		<td width="30%">
@@ -37,7 +37,7 @@
 	<tr valign="top"{if $highlightClass} class="{$highlightClass|escape}"{/if}>
 		<td>{$submission->getMonographId()}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
-		<td>{$submission->getAcquisitionsArrangementAbbrev()|escape}</td>
+		<td>{$submission->getArrangementAbbrev()|escape}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submissionReview" path=$submission->getMonographId()}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:40:"..."}</a></td>
 		<td>

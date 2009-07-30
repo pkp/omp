@@ -16,7 +16,7 @@
 	<tr class="heading" valign="bottom">
 		<td width="5%">{translate key="common.id"}</td>
 		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="submissions.submit"}</td>
-		<td width="5%">{translate key="submissions.acquisitionsArrangement"}</td>
+		<td width="5%">{translate key="submissions.arrangement"}</td>
 		<td width="15%">{translate key="monograph.authors"}</td>
 		<td width="30%">{translate key="monograph.title"}</td>
 		<td width="30%">
@@ -42,7 +42,7 @@
 	<tr valign="top"{if $highlightClass || $fastTracked} class="{$highlightClass|escape} {if $fastTracked}fastTracked{/if}"{/if}>
 		<td>{$submission->getMonographId()}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
-		<td>{$submission->getAcquisitionsArrangementAbbrev()|escape}</td>
+		<td>{$submission->getArrangementAbbrev()|escape}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submissionReview" path=$submission->getMonographId()}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:40:"..."}</a></td>
 		<td>

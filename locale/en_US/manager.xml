@@ -134,19 +134,19 @@
 	<message key="manager.setup.seriesAndCategories">Submission Categories and Series</message>
 	<message key="manager.setup.seriesAndCategoriesDescription">Folks submitting materials to the press can, based on previous consultations with an editor or by logic, categorize their submission by selecting one of the press' series or categories. The acquisition editors associated with these categorization arrangements will be notified of your submission; however, only a senior editor can approve the work for consideration.</message>
 
-	<message key="manager.acquisitionsArrangement.form.mustAllowPermission">Please ensure that at least one checkbox is checked for each Acquisitions Editor assignment.</message>
-	<message key="manager.acquisitionsArrangement.form.reviewFormId">Please ensure that you have chosen a valid review form.</message>
-	<message key="manager.acquisitionsArrangement.submissionIndexing">Will not be included in the indexing of the press</message>
-	<message key="manager.acquisitionsArrangement.editorRestriction">Items can only be submitted by Editors and Acquisitions Editors.</message>
-	<message key="manager.acquisitionsArrangement.confirmDelete">Are you sure you want to permanently delete this arrangement?</message>
-	<message key="manager.acquisitionsArrangement.indexed">Indexed</message>
-	<message key="manager.acquisitionsArrangement.open">Open Submissions</message>
-	<message key="manager.acquisitionsArrangement.readingTools">Reading Tools</message>
-	<message key="manager.acquisitionsArrangement.reviewed">Peer Reviewed</message>
-	<message key="manager.acquisitionsArrangement.submissionReview">Will not be peer-reviewed</message>
-	<message key="manager.acquisitionsArrangement.submissionsToThisSection">Submissions made to this arrangement</message>
-	<message key="manager.acquisitionsArrangement.abstractsNotRequired">Do not require abstracts</message>
-	<message key="manager.acquisitionsArrangement.disableComments">Disable reader comments for this arrangement.</message>
+	<message key="manager.arrangement.form.mustAllowPermission">Please ensure that at least one checkbox is checked for each Acquisitions Editor assignment.</message>
+	<message key="manager.arrangement.form.reviewFormId">Please ensure that you have chosen a valid review form.</message>
+	<message key="manager.arrangement.submissionIndexing">Will not be included in the indexing of the press</message>
+	<message key="manager.arrangement.editorRestriction">Items can only be submitted by Editors and Acquisitions Editors.</message>
+	<message key="manager.arrangement.confirmDelete">Are you sure you want to permanently delete this arrangement?</message>
+	<message key="manager.arrangement.indexed">Indexed</message>
+	<message key="manager.arrangement.open">Open Submissions</message>
+	<message key="manager.arrangement.readingTools">Reading Tools</message>
+	<message key="manager.arrangement.reviewed">Peer Reviewed</message>
+	<message key="manager.arrangement.submissionReview">Will not be peer-reviewed</message>
+	<message key="manager.arrangement.submissionsToThisSection">Submissions made to this arrangement</message>
+	<message key="manager.arrangement.abstractsNotRequired">Do not require abstracts</message>
+	<message key="manager.arrangement.disableComments">Disable reader comments for this arrangement.</message>
 
 	<message key="manager.series.create">Create Series</message>
 	<message key="manager.series.policy">Series description</message>

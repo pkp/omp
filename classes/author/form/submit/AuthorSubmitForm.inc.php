@@ -73,13 +73,13 @@ class AuthorSubmitForm extends SequenceForm {
 	 * @return array of acquisitions editors
 	 */
 	function assignEditors(&$monograph) {
-		$acquisitionsArrangementEditorsDao =& DAORegistry::getDAO('AcquisitionsArrangementEditorsDAO');
+		$arrangementEditorsDao =& DAORegistry::getDAO('AcquisitionsArrangementEditorsDAO');
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$press =& Request::getPress();
 
-		$acquisitionsArrangementId = $monograph->getAcquisitionsArrangementId();
+		$arrangementId = $monograph->getArrangementId();
 
-		$acquisitionsEditors =& $acquisitionsArrangementEditorsDao->getEditorsByAcquisitionsArrangementId($press->getId(), $acquisitionsArrangementId);
+		$acquisitionsEditors =& $arrangementEditorsDao->getEditorsByArrangementId($arrangementId, $press->getId());
 
 		foreach ($acquisitionsEditors as $acquisitionsEditor) {
 			$editAssignment = new EditAssignment();

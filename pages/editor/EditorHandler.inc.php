@@ -230,8 +230,8 @@ class EditorHandler extends AcquisitionsEditorHandler {
 			$templateMgr->assign('roleName', $roleName);
 			$templateMgr->assign('monographId', $monographId);
 
-			$acquisitionsArrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-			$acquisitionsEditorArrangements =& $acquisitionsArrangementDao->getEditorAcquisitionArrangements($press->getId());
+			$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
+			$acquisitionsEditorArrangements =& $arrangementDao->getEditorAcquisitionArrangements($press->getId());
 
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 			$editorStatistics = $editAssignmentDao->getEditorStatistics($press->getId());

@@ -40,9 +40,9 @@
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatShort}</td>
 	</tr>
 	<tr>
-		<td class="label">{translate key="submissions.acquisitionsArrangement"}</td>
-		<td class="value">{$submission->getAcquisitionsArrangementAbbrev()|escape|default:"&mdash;"}</td>
-		<td class="value">{if $arrangements|@count > 0}<form action="{url op="updateAcquisitionsArrangement" path=$submission->getMonographId()}" method="post">{translate key="submission.changeAcquisitionsArrangement"} <select name="arrangement" size="1" class="selectMenu">{html_options options=$arrangements selected=$submission->getAcquisitionsArrangementId()}</select> <input type="submit" value="{translate key="common.record"}" class="button" /></form>{/if}</td>
+		<td class="label">{translate key="submissions.arrangement"}</td>
+		<td class="value">{$submission->getArrangementAbbrev()|escape|default:"&mdash;"}</td>
+		<td class="value">{if $arrangements|@count > 0}<form action="{url op="updateAcquisitionsArrangement" path=$submission->getMonographId()}" method="post">{translate key="submission.changeArrangement"} <select name="arrangement" size="1" class="selectMenu">{html_options options=$arrangements selected=$submission->getArrangementId()}</select> <input type="submit" value="{translate key="common.record"}" class="button" /></form>{/if}</td>
 	</tr>
 	{if $submission->getCommentsToEditor()}
 	<tr valign="top">

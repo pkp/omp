@@ -15,7 +15,7 @@
 
 <ul class="plain">
 	{if $currentPress->getLocalizedSetting('focusScopeDesc') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="focusAndScope"}">{translate key="about.focusAndScope"}</a></li>{/if}
-	{if count($arrangements) > 0}<li>&#187; <a href="{url op="editorialPolicies" anchor="arrangementPolicies"}">{translate key="about.acquisitionsArrangementPolicies"}</a></li>{/if}
+	{if count($arrangements) > 0}<li>&#187; <a href="{url op="editorialPolicies" anchor="arrangementPolicies"}">{translate key="about.arrangementPolicies"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('reviewPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('openAccessPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
 	{foreach key=key from=$currentPress->getLocalizedSetting('customAboutItems') item=customAboutItem}
@@ -34,7 +34,7 @@
 {/if}
 
 {if count($arrangements) > 0}
-<div id="arrangementPolicies"><h3>{translate key="about.acquisitionsArrangementPolicies"}</h3>
+<div id="arrangementPolicies"><h3>{translate key="about.arrangementPolicies"}</h3>
 {foreach from=$arrangements item=arrangement}{if !$arrangement->getHideAbout()}
 	<h4>{$arrangement->getLocalizedTitle()}</h4>
 	{if strlen($arrangement->getLocalizedPolicy()) > 0}
@@ -58,8 +58,8 @@
 
 	<table class="plain" width="60%">
 		<tr>
-			<td width="50%">{if !$arrangement->getEditorRestricted()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.acquisitionsArrangement.open"}</td>
-			<td width="50%">{if $arrangement->getMetaIndexed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.acquisitionsArrangement.indexed"}</td>
+			<td width="50%">{if !$arrangement->getEditorRestricted()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.arrangement.open"}</td>
+			<td width="50%">{if $arrangement->getMetaIndexed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.arrangement.indexed"}</td>
 		</tr>
 	</table>
 {/if}{/foreach}

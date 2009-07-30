@@ -27,7 +27,7 @@ class SeriesForm extends AcquisitionsArrangementForm {
 		parent::Form('manager/series/seriesForm.tpl');
 
 		$press =& Request::getPress();
-		$this->acquisitionsArrangementId = $seriesId;
+		$this->arrangementId = $seriesId;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.series.form.titleRequired'));
@@ -35,12 +35,12 @@ class SeriesForm extends AcquisitionsArrangementForm {
 		$this->addCheck(new FormValidatorPost($this));
 		$this->addCheck(new FormValidatorCustom($this, 'reviewFormId', 'optional', 'manager.series.form.reviewFormId', array(DAORegistry::getDAO('ReviewFormDAO'), 'reviewFormExists'), array($press->getId())));
 
-		$this->includeAcquisitionsArrangementEditor = $this->omitAcquisitionsArrangementEditor = null;
+		$this->includeArrangementEditor = $this->omitArrangementEditor = null;
 
 		// Get a list of acquisitions editors for this press.
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$this->acquisitionsArrangementEditors =& $roleDao->getUsersByRoleId(ROLE_ID_ACQUISITIONS_EDITOR, $press->getId());
-		$this->acquisitionsArrangementEditors =& $this->acquisitionsArrangementEditors->toArray();
+		$this->arrangementEditors =& $roleDao->getUsersByRoleId(ROLE_ID_ACQUISITIONS_EDITOR, $press->getId());
+		$this->arrangementEditors =& $this->arrangementEditors->toArray();
 	}
 
 	/**
@@ -68,8 +68,8 @@ class SeriesForm extends AcquisitionsArrangementForm {
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
 		$this->_data = array_merge($this->_data,
 					array(
-						'printIssn' => $arrangementDao->getSetting($this->acquisitionsArrangementId, 'printIssn'),
-						'onlineIssn' => $arrangementDao->getSetting($this->acquisitionsArrangementId, 'onlineIssn')
+						'printIssn' => $arrangementDao->getSetting($this->arrangementId, 'printIssn'),
+						'onlineIssn' => $arrangementDao->getSetting($this->arrangementId, 'onlineIssn')
 					)
 				);
 	}
@@ -88,8 +88,8 @@ class SeriesForm extends AcquisitionsArrangementForm {
 	function execute() {
 		parent::execute();
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		$arrangementDao->updateSetting($this->acquisitionsArrangementId, 'printIssn', $this->getData('printIssn'));
-		$arrangementDao->updateSetting($this->acquisitionsArrangementId, 'onlineIssn', $this->getData('onlineIssn'));
+		$arrangementDao->updateSetting($this->arrangementId, 'printIssn', $this->getData('printIssn'));
+		$arrangementDao->updateSetting($this->arrangementId, 'onlineIssn', $this->getData('onlineIssn'));
 
 	}
 }

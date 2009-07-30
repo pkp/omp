@@ -158,7 +158,7 @@ class AboutHandler extends Handler {
 			$proofreaders =& $proofreaders->toArray();
 
 			$templateMgr->assign_by_ref('editors', $editors);
-			$templateMgr->assign_by_ref('seriesEditors', $seriesEditors);
+			$templateMgr->assign_by_ref('acquisitionsEditors', $acquisitionsEditors);
 			$templateMgr->assign_by_ref('productionEditors', $productionEditors);
 			$templateMgr->assign_by_ref('copyEditors', $copyEditors);
 			$templateMgr->assign_by_ref('proofreaders', $proofreaders);
@@ -305,7 +305,7 @@ class AboutHandler extends Handler {
 
 		$arrangementEditorEntriesByArrangement = array();
 		foreach ($arrangements as $arrangement) {
-			$arrangementEditorEntriesByArrangement[$arrangement->getId()] =& $arrangementEditorsDao->getEditorsByAcquisitionsArrangementId($press->getId(), $arrangement->getId());
+			$arrangementEditorEntriesByArrangement[$arrangement->getId()] =& $arrangementEditorsDao->getEditorsByArrangementId($arrangement->getId(), $press->getId());
 		}
 		$templateMgr->assign_by_ref('arrangementEditorEntriesByArrangement', $arrangementEditorEntriesByArrangement);
 

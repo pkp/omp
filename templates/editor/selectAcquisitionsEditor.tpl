@@ -34,7 +34,7 @@
 <tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
 <tr valign="bottom">
 	<td class="heading" width="30%">{translate key="user.name"}</td>
-	<td class="heading" width="20%">{translate key="submissions.acquisitionsArrangement"}</td>
+	<td class="heading" width="20%">{translate key="submissions.arrangement"}</td>
 	<td class="heading" width="20%">{translate key="submissions.completed"}</td>
 	<td class="heading" width="20%">{translate key="submissions.active"}</td>
 	<td class="heading" width="10%">{translate key="common.action"}</td>

@@ -24,8 +24,8 @@
 		<td>{$submission->getLocalizedTitle()|strip_unsafe_html}</td>
 	</tr>
 	<tr>
-		<td class="label">{translate key="submissions.acquisitionsArrangement"}</td>
-		<td>{$submission->getAcquisitionsArrangementTitle()|escape}</td>
+		<td class="label">{translate key="submissions.arrangement"}</td>
+		<td>{$submission->getArrangementTitle()|escape}</td>
 	</tr>
 	<tr>
 		<td class="label">{translate key="user.role.editor"}</td>

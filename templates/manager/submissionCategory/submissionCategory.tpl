@@ -22,7 +22,7 @@
 	</tr>
 	<tr class="heading" valign="bottom">
 		<td width="60%">{translate key="submissionCategory.title"}</td>
-		<td width="25%">{translate key="acquisitionsArrangement.abbreviation"}</td>
+		<td width="25%">{translate key="arrangement.abbreviation"}</td>
 		<td width="15%" align="right">{translate key="common.action"}</td>
 	</tr>
 	<tr>
@@ -33,7 +33,7 @@
 		<td>{$category_item->getLocalizedTitle()|escape}</td>
 		<td>{$category_item->getLocalizedAbbrev()|escape}</td>
 		<td align="right" class="nowrap">
-			<a href="{url op="editSubmissionCategory" path=$category_item->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSubmissionCategory" path=$category_item->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.acquisitionsArrangement.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveSubmissionCategory" d=u arrangementId=$category_item->getId()}">&uarr;</a>&nbsp;<a href="{url op="moveSubmissionCategory" d=d arrangementId=$category_item->getId()}">&darr;</a>
+			<a href="{url op="editSubmissionCategory" path=$category_item->getId()}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="deleteSubmissionCategory" path=$category_item->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.arrangement.confirmDelete"}')" class="action">{translate key="common.delete"}</a>&nbsp;|&nbsp;<a href="{url op="moveSubmissionCategory" d=u arrangementId=$category_item->getId()}">&uarr;</a>&nbsp;<a href="{url op="moveSubmissionCategory" d=d arrangementId=$category_item->getId()}">&darr;</a>
 		</td>
 	</tr>
 	<tr>

@@ -59,11 +59,11 @@ class AcquisitionsArrangementEditorsDAO extends DAO {
 
 	/**
 	 * Retrieve a list of all arrangement editors assigned to the specified arrangement.
-	 * @param $pressId int
 	 * @param $arrangementId int
+	 * @param $pressId int
 	 * @return array matching Users
 	 */
-	function &getEditorsByAcquisitionsArrangementId($pressId, $arrangementId) {
+	function &getEditorsByArrangementId($arrangementId, $pressId) {
 		$users = array();
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -128,7 +128,7 @@ class AcquisitionsArrangementEditorsDAO extends DAO {
 	 * @param $arrangementId int
 	 * @param $pressId int
 	 */
-	function deleteEditorsByAcquisitionsArrangementId($arrangementId, $pressId = null) {
+	function deleteEditorsByArrangementId($arrangementId, $pressId = null) {
 		if (isset($pressId)) return $this->update(
 			'DELETE FROM acquisitions_arrangements_editors WHERE press_id = ? AND arrangement_id = ?',
 			array($pressId, $arrangementId)
@@ -153,7 +153,7 @@ class AcquisitionsArrangementEditorsDAO extends DAO {
 	 * Delete all arrangement assignments for the specified user.
 	 * @param $userId int
 	 * @param $pressId int optional, include assignments only in this press
-	 * @param $arrangementId int optional, include only this series
+	 * @param $arrangementId int optional, include only this arrangement
 	 */
 	function deleteEditorsByUserId($userId, $pressId  = null, $arrangementId = null) {
 		return $this->update(
@@ -165,7 +165,7 @@ class AcquisitionsArrangementEditorsDAO extends DAO {
 	}
 
 	/**
-	 * Check if a user is assigned to a specified series.
+	 * Check if a user is assigned to a specified arrangement.
 	 * @param $pressId int
 	 * @param $arrangementId int
 	 * @param $userId int

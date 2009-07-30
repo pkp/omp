@@ -30,9 +30,6 @@ define ('STATUS_QUEUED_REVIEW', 6);
 define ('STATUS_QUEUED_EDITING', 7);
 define ('STATUS_INCOMPLETE', 8);
 
-define('OPEN_ACCESS', 1);
-define('SUBSCRIPTION', 2);
-
 define('WORK_TYPE_EDITED_VOLUME', 1);
 define('WORK_TYPE_AUTHORED_WORK', 2);
 
@@ -59,22 +56,22 @@ class Monograph extends Submission {
 	function setMonographComponents($components) {
 		$this->setData('components', $components);
 	}
-	function setAcquisitionsArrangementId($id) {
-		 $this->setData('acquisitions_arrangement_id', $id);
+	function setArrangementId($id) {
+		 $this->setData('arrangementId', $id);
 	}
-	function getAcquisitionsArrangementId() {
-		 return $this->getData('acquisitions_arrangement_id');
+	function getArrangementId() {
+		 return $this->getData('arrangementId');
 	}
-	function getAcquisitionsArrangementAbbrev() {
+	function getArrangementAbbrev() {
 		 return $this->getData('arrangementAbbrev');
 	}
-	function setAcquisitionsArrangementAbbrev($value) {
+	function setArrangementAbbrev($value) {
 		 $this->setData('arrangementAbbrev', $value);
 	}
-	function getAcquisitionsArrangementTitle() {
+	function getArrangementTitle() {
 		 return $this->getData('arrangementTitle');
 	}
-	function setAcquisitionsArrangementTitle($value) {
+	function setArrangementTitle($value) {
 		 $this->setData('arrangementTitle', $value);
 	}
 	function setCurrentRound($round) {

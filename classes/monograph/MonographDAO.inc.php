@@ -246,7 +246,7 @@ class MonographDAO extends DAO {
 				$monograph->getHideAuthor() === null ? 0 : $monograph->getHideAuthor(),
 				$monograph->getCommentsStatus() === null ? 0 : $monograph->getCommentsStatus(),
 				$monograph->getWorkType(),
-				$monograph->getAcquisitionsArrangementId() ,
+				$monograph->getArrangementId() ,
 				$monograph->getCurrentReviewType() === null ? 6 : $monograph->getCurrentReviewType(),				
 				$monograph->getCurrentRound() === null ? 1 : $monograph->getCurrentRound()
 			)
@@ -332,7 +332,7 @@ class MonographDAO extends DAO {
 				$monograph->getReviewFileId(),
 				$monograph->getEditorFileId(),
 				$monograph->getHideAuthor() == null ? 0 : $monograph->getHideAuthor(),
-				$monograph->getAcquisitionsArrangementId(),
+				$monograph->getArrangementId(),
 				$monograph->getCurrentReviewType(),
 				$monograph->getCurrentRound(),
 				$monograph->getMonographId()
@@ -476,7 +476,7 @@ class MonographDAO extends DAO {
 		$monograph->setMonographId($row['monograph_id']);
 		$monograph->setPressId($row['press_id']);
 		$monograph->setUserId($row['user_id']);
-		$monograph->setAcquisitionsArrangementId($row['arrangement_id']);
+		$monograph->setArrangementId($row['arrangement_id']);
 		$monograph->setSubmissionProgress($row['submission_progress']);
 		$monograph->setStatus($row['status']);
 		$monograph->setCommentsToEditor($row['comments_to_ed']);
@@ -495,9 +495,9 @@ class MonographDAO extends DAO {
 		$monograph->setLastModified($this->datetimeFromDB($row['last_modified']));
 
 		if (isset($row['arrangement_abbrev']))
-			$monograph->setAcquisitionsArrangementAbbrev($row['arrangement_abbrev']);
+			$monograph->setArrangementAbbrev($row['arrangement_abbrev']);
 		if (isset($row['arrangement_title']))
-			$monograph->setAcquisitionsArrangementTitle($row['arrangement_title']);
+			$monograph->setArrangementTitle($row['arrangement_title']);
 
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
 		$monograph->setAuthors($authorDao->getAuthorsByMonographId($row['monograph_id']));

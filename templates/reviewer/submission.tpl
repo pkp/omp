@@ -40,8 +40,8 @@ function confirmSubmissionCheck() {
 	<td width="80%" class="value">{$submission->getLocalizedTitle()|strip_unsafe_html}</td>
 </tr>
 <tr valign="top">
-	<td class="label">{translate key="submissions.acquisitionsArrangement"}</td>
-	<td class="value">{$submission->getAcquisitionsArrangementTitle()|escape}</td>
+	<td class="label">{translate key="submissions.arrangement"}</td>
+	<td class="value">{$submission->getArrangementTitle()|escape}</td>
 </tr>
 <tr valign="top">
 	<td class="label">{translate key="monograph.abstract"}</td>

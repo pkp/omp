@@ -25,7 +25,7 @@
 <h3>{translate key="about.policies"}</h3>
 <ul class="plain">
 	{if $currentPress->getLocalizedSetting('focusScopeDesc') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="focusAndScope"}">{translate key="about.focusAndScope"}</a></li>{/if}
-	{if $arrangementCount > 0}<li>&#187; <a href="{url op="editorialPolicies" anchor="acquisitionsArrrangementPolicies"}">{translate key="about.acquisitionsArrangementPolicies"}</a></li>{/if}
+	{if $arrangementCount > 0}<li>&#187; <a href="{url op="editorialPolicies" anchor="acquisitionsArrrangementPolicies"}">{translate key="about.arrangementPolicies"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('reviewPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('pubFreqPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="publicationFrequency"}">{translate key="about.publicationFrequency"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('openAccessPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}

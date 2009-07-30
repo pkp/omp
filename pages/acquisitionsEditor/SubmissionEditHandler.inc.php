@@ -55,7 +55,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR);
 
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		$arrangement =& $arrangementDao->getById($submission->getAcquisitionsArrangementId());
+		$arrangement =& $arrangementDao->getById($submission->getArrangementId());
 
 		$enableComments = $press->getSetting('enableComments');
 
@@ -2170,7 +2170,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 				$templateMgr->assign('canEdit', true);
 			} else {
 				// If this user isn't the submission's editor, they don't have access.
-				$editAssignments =& $acquisitionsEditorSubmission->getByIds();
+				$editAssignments =& $acquisitionsEditorSubmission->getEditAssignments();
 				$wasFound = false;
 				foreach ($editAssignments as $editAssignment) {
 					if ($editAssignment->getEditorId() == $user->getId()) {

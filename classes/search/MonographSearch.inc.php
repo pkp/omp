@@ -246,7 +246,7 @@ class MonographSearch {
 			$monograph =& $monographCache[$monographId];
 
 			if ($monograph) {
-				$arrangementId = $monograph->getAcquisitionsArrangementId();
+				$arrangementId = $monograph->getArrangementId();
 				if (!isset($arrangementCache[$arrangementId])) {
 					$arrangementCache[$arrangementId] =& $arrangementDao->getById($arrangementId);
 				}

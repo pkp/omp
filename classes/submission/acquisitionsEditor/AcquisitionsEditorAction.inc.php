@@ -33,12 +33,12 @@ class AcquisitionsEditorAction extends Action {
 	/**
 	 * Changes the arrangement a monograph belongs in.
 	 * @param $acquisitionsEditorSubmission int
-	 * @param $acquisitionsId int
+	 * @param $arrangementId int
 	 */
-	function changeAcquisitionsArrangement($acquisitionsEditorSubmission, $acquisitionsId) {
-		if (!HookRegistry::call('AcquisitionsEditorAction::changeAcquisitionsArrangement', array(&$acquisitionsEditorSubmission, $acquisitionsId))) {
+	function changeAcquisitionsArrangement($acquisitionsEditorSubmission, $arrangementId) {
+		if (!HookRegistry::call('AcquisitionsEditorAction::changeAcquisitionsArrangement', array(&$acquisitionsEditorSubmission, $arrangementId))) {
 			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
-			$acquisitionsEditorSubmission->setAcquisitionsArrangementId($acquisitionsId);
+			$acquisitionsEditorSubmission->setArrangementId($arrangementId);
 			$acquisitionsEditorSubmissionDao->updateAcquisitionsEditorSubmission($acquisitionsEditorSubmission);
 		}
 	}
@@ -113,11 +113,11 @@ class AcquisitionsEditorAction extends Action {
 
 			// Assign review form automatically if needed
 			$pressId = $acquisitionsEditorSubmission->getPressId();
-			$acquisitionsDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
+			$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
-			$acquisitionsId = $acquisitionsEditorSubmission->getMonographId();
-			$acquisitions =& $acquisitionsDao->getById($acquisitionsId, $pressId);
+			$submissionId = $acquisitionsEditorSubmission->getMonographId();
+			$acquisitions =& $arrangementDao->getById($submissionId, $pressId);
 			if ($acquisitions && ($reviewFormId = (int) $acquisitions->getReviewFormId())) {
 				if ($reviewFormDao->reviewFormExists($reviewFormId, $pressId)) {
 					$reviewAssignment->setReviewFormId($reviewFormId);
@@ -1442,13 +1442,13 @@ class AcquisitionsEditorAction extends Action {
 	/**
 	 * Changes the series/submission category.
 	 * @param $submission object
-	 * @param $acquisitionsId int
+	 * @param $arrangementId int
 	 */
-	function updateAcquisitionsArrangement($submission, $acquisitionsId) {
-		if (HookRegistry::call('AcquisitionsEditorAction::updateAcquisitionsArrangement', array(&$submission, &$acquisitionsId))) return;
+	function updateAcquisitionsArrangement($submission, $arrangementId) {
+		if (HookRegistry::call('AcquisitionsEditorAction::updateAcquisitionsArrangement', array(&$submission, &$arrangementId))) return;
 
 		$submissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
-		$submission->setAcquisitionsArrangementId($acquisitionsId); // FIXME validate this ID?
+		$submission->setArrangementId($arrangementId); // FIXME validate this ID?
 		$submissionDao->updateAcquisitionsEditorSubmission($submission);
 	}
 

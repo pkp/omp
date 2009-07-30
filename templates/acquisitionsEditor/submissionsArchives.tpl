@@ -14,7 +14,7 @@
 	<tr class="heading" valign="bottom">
 		<td width="5%">{sort_search key="common.id" sort="id"}</td>
 		<td width="15%"><span class="disabled"></span><br />{sort_search key="submissions.submitted" sort="submitDate"}</td>
-		<td width="5%">{sort_search key="submissions.acquisitionsArrangement" sort="arrangement"}</td>
+		<td width="5%">{sort_search key="submissions.arrangement" sort="arrangement"}</td>
 		<td width="25%">{sort_search key="monograph.authors" sort="authors"}</td>
 		<td width="30%">{sort_search key="monograph.title" sort="title"}</td>
 		<td width="20%" align="right">{sort_search key="common.status" sort="status"}</td>

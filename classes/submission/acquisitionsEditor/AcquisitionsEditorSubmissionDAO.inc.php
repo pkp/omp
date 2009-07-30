@@ -257,7 +257,7 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 			$monograph =& $this->monographDao->getMonograph($acquisitionsEditorSubmission->getMonographId());
 
 			// Only update fields that can actually be edited.
-			$monograph->setAcquisitionsArrangementId($acquisitionsEditorSubmission->getAcquisitionsArrangementId());
+			$monograph->setArrangementId($acquisitionsEditorSubmission->getArrangementId());
 			$monograph->setCurrentRound($acquisitionsEditorSubmission->getCurrentRound());
 			$monograph->setCurrentReviewType($acquisitionsEditorSubmission->getCurrentReviewType());
 			$monograph->setReviewFileId($acquisitionsEditorSubmission->getReviewFileId());

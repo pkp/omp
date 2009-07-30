@@ -46,7 +46,7 @@ function checkEditorAssignments() {
 		}
 	{/literal}{/foreach}{literal}
 	if (!isOk) {
-		alert({/literal}'{translate|escape:"jsparam" key="manager.acquisitionsArrangement.form.mustAllowPermission"}'{literal});
+		alert({/literal}'{translate|escape:"jsparam" key="manager.arrangement.form.mustAllowPermission"}'{literal});
 		return false;
 	}
 	return true;
@@ -76,7 +76,7 @@ function checkEditorAssignments() {
 	<td width="80%" class="value"><input type="text" name="title[{$formLocale|escape}]" value="{$title[$formLocale]|escape}" id="title" size="40" maxlength="120" class="textField" /></td>
 </tr>
 <tr valign="top">
-	<td class="label">{fieldLabel name="abbrev" required="true" key="acquisitionsArrangement.abbreviation"}</td>
+	<td class="label">{fieldLabel name="abbrev" required="true" key="arrangement.abbreviation"}</td>
 	<td class="value"><input type="text" name="abbrev[{$formLocale|escape}]" id="abbrev" value="{$abbrev[$formLocale]|escape}" size="20" maxlength="20" class="textField" />&nbsp;&nbsp;{translate key="submissionCategory.abbreviation.example"}</td>
 </tr>
 <tr valign="top">
@@ -96,14 +96,14 @@ function checkEditorAssignments() {
 	<td class="label">{fieldLabel suppressId="true" key="submission.indexing"}</td>
 	<td class="value">
 		<input type="checkbox" name="metaIndexed" id="metaIndexed" value="1" {if $metaIndexed}checked="checked"{/if} />
-		{fieldLabel name="metaIndexed" key="manager.acquisitionsArrangement.submissionIndexing"}
+		{fieldLabel name="metaIndexed" key="manager.arrangement.submissionIndexing"}
 	</td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel suppressId="true" key="submission.restrictions"}</td>
 	<td class="value">
 		<input type="checkbox" name="editorRestriction" id="editorRestriction" value="1" {if $editorRestriction}checked="checked"{/if} />
-		{fieldLabel name="editorRestriction" key="manager.acquisitionsArrangement.editorRestriction"}
+		{fieldLabel name="editorRestriction" key="manager.arrangement.editorRestriction"}
 	</td>
 </tr>
 <tr valign="top">

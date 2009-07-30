@@ -14,7 +14,7 @@
 	<tr class="heading" valign="bottom">
 		<td width="5%">{translate key="common.id"}</td>
 		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="submissions.submit"}</td>
-		<td width="5%">{translate key="submissions.acquisitionsArrangement"}</td>
+		<td width="5%">{translate key="submissions.arrangement"}</td>
 		<td width="25%">{translate key="monograph.authors"}</td>
 		<td width="35%">{translate key="monograph.title"}</td>
 		<td width="25%" align="right">{translate key="common.status"}</td>
@@ -28,7 +28,7 @@
 	<tr valign="top">
 		<td>{$monographId|escape}</td>
 		<td>{if $submission->getDateSubmitted()}{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}{else}&mdash;{/if}</td>
-		<td>{$submission->getAcquisitionsArrangementAbbrev()|escape}</td>
+		<td>{$submission->getArrangementAbbrev()|escape}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		{if $progress == 0}
 			<td><a href="{url op="submission" path=$monographId}" class="action">{if $submission->getLocalizedTitle()}{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>

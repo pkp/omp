@@ -17,7 +17,7 @@
 	<tr class="heading" valign="bottom">
 		<td width="5%">{translate key="common.id"}</td>
 		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="submissions.submit"}</td>
-		<td width="5%">{translate key="submissions.acquisitionsArrangement"}</td>
+		<td width="5%">{translate key="submissions.arrangement"}</td>
 		<td width="30%">{translate key="monograph.authors"}</td>
 		<td width="50%">{translate key="monograph.title"}</td>
 	</tr>
@@ -29,7 +29,7 @@
 	<tr valign="top">
 		<td>{$submission->getMonographId()}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
-		<td>{$submission->getAcquisitionsArrangementAbbrev()|escape|default:"&mdash;"}</td>
+		<td>{$submission->getArrangementAbbrev()|escape|default:"&mdash;"}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submission" path=$submission->getMonographId()}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 	</tr>

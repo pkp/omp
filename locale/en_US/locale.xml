@@ -87,7 +87,7 @@
 	<message key="submission.page.art">#{$id} Images, Illustrations, and other Art</message>
 	<message key="manuscript.submissions">Manuscript Submissions</message>
 	<message key="manuscript.artwork">Artwork</message>
-	<message key="submission.changeAcquisitionsArrangement">Change to</message>
+	<message key="submission.changeArrangement">Change to</message>
 	<message key="submission.selectFilesForReview">Select the files that are to be reviewed by reviewers as part of this book's assessment and press Record.</message>
 	<message key="submission.stepX">Step {$step}.</message>
 
@@ -118,13 +118,13 @@
 	<message key="submission.review.mustUploadFileForReview">Request email cannot be sent until a Review Version is in place.</message>
 	<message key="submission.internalPeerReview">Internal Peer Review</message>
 	<message key="submission.externalPeerReview">External Peer Review</message>
-	<message key="submissions.acquisitionsArrangement">Acquisitions Arrangement</message>
+	<message key="submissions.arrangement">Acquisitions Arrangement</message>
 	<message key="submissions.queuedReview">In Review</message>
 	<message key="reviewer.completedReviews">Done</message>
 
-	<message key="manager.acquisitionsArrangement.reviewed">Peer Reviewed</message>
-	<message key="manager.acquisitionsArrangement.open">Open Submissions</message>
-	<message key="manager.acquisitionsArrangement.indexed">Indexed</message>
+	<message key="manager.arrangement.reviewed">Peer Reviewed</message>
+	<message key="manager.arrangement.open">Open Submissions</message>
+	<message key="manager.arrangement.indexed">Indexed</message>
 
 	<message key="reviewer.completedReviews">Done</message>
 
@@ -197,7 +197,7 @@ Note that if your site administrator has already registered this site with the P
 
 
 	<!-- series/categories/acquisitions arrangements -->
-	<message key="acquisitionsArrangement.abbreviation">Abbreviation</message>
+	<message key="arrangement.abbreviation">Abbreviation</message>
 
 	<message key="series.series">Series</message>
 	<message key="series.title">Series' Title</message>
@@ -577,7 +577,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.editorialTeam.biography">Biography</message>
 	<message key="about.editorialPolicies">Editorial Policies</message>
 	<message key="about.focusAndScope">Focus and Scope</message>
-	<message key="about.acquisitionsArrangementPolicies">Series and Divisions Policies</message>
+	<message key="about.arrangementPolicies">Series and Divisions Policies</message>
 	<message key="about.submissions">Submissions</message>
 	<message key="about.sponsors">Sponsors</message>
 	<message key="about.contributors">Sources of Support</message>

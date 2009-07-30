@@ -210,7 +210,7 @@ class AcquisitionsArrangementDAO extends DAO {
 			)
 		);
 
-		$arrangement->setId($this->getInsertAcquisitionsArrangementId());
+		$arrangement->setId($this->getInsertArrangementId());
 		$this->updateLocaleFields($arrangement);
 		return $arrangement->getId();
 	}
@@ -261,7 +261,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 */
 	function deleteById($arrangementId, $pressId = null) {
 		$arrangementEditorsDao =& DAORegistry::getDAO('AcquisitionsArrangementEditorsDAO');
-		$arrangementEditorsDao->deleteEditorsByAcquisitionsArrangementId($arrangementId, $pressId);
+		$arrangementEditorsDao->deleteEditorsByArrangementId($arrangementId, $pressId);
 
 		// Remove monographs from this arrangement
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
@@ -412,7 +412,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * Get the ID of the last inserted arrangement.
 	 * @return int
 	 */
-	function getInsertAcquisitionsArrangementId() {
+	function getInsertArrangementId() {
 		return $this->getInsertId('acquisitions_arrangements', 'arrangement_id');
 	}
 
