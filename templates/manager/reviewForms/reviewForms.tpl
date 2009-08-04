@@ -1,7 +1,7 @@
 {**
  * reviewForms.tpl
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display list of unpublished review forms in press management.
@@ -12,11 +12,16 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<script type="text/javascript">
+{literal}
+$(document).ready(function() { setupTableDND("#dragTable", "moveReviewForm"); });
+{/literal}
+</script>
+
 <p>{translate key="manager.reviewForms.list.description"}</p>
 
-<a name="reviewForms"></a>
-
-<table width="100%" class="listing">
+<div id="reviewForms">
+<table width="100%" class="listing" id="dragTable">
 	<tr>
 		<td class="headseparator" colspan="4">&nbsp;</td>
 	</tr>
@@ -35,10 +40,10 @@
 {else}
 	{assign var=canEdit value=0}
 {/if}
-	<tr valign="top">
-		<td>{$reviewForm->getReviewFormTitle()|escape}</td>
-		<td>{$reviewForm->getIncompleteCount()|escape}</td>
-		<td>{$reviewForm->getCompleteCount()|escape}</td>
+	<tr valign="top" id="reviewform-{$reviewForm->getReviewFormId()}" class="data">
+		<td class="drag">{$reviewForm->getReviewFormTitle()|escape}</td>
+		<td class="drag">{$reviewForm->getIncompleteCount()|escape}</td>
+		<td class="drag">{$reviewForm->getCompleteCount()|escape}</td>
 		<td align="right" class="nowrap">
 			{if $canEdit}<a href="{url op="editReviewForm" path=$reviewForm->getReviewFormId()}" class="action">{translate key="common.edit"}</a>&nbsp;|{/if}
 			{strip}
@@ -52,13 +57,13 @@
 			{if !$canEdit}<a href="{url op="copyReviewForm" path=$reviewForm->getReviewFormId()}" class="action">{translate key="common.copy"}</a>&nbsp;|{/if}
 			<a href="{url op="previewReviewForm" path=$reviewForm->getReviewFormId()}" class="action">{translate key="common.preview"}</a>&nbsp;|
 			{if $canEdit}<a href="{url op="deleteReviewForm" path=$reviewForm->getReviewFormId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.reviewForms.confirmDeleteUnpublished"}')" class="action">{translate key="common.delete"}</a>&nbsp;|{/if}
-			<a href="{url op="moveReviewForm" d=u reviewFormId=$reviewForm->getReviewFormId()}" class="action">&uarr;</a>&nbsp;<a href="{url op="moveReviewForm" d=d reviewFormId=$reviewForm->getReviewFormId()}" class="action">&darr;</a>
+			<a href="{url op="moveReviewForm" d=u id=$reviewForm->getReviewFormId()}" class="action">&uarr;</a>&nbsp;<a href="{url op="moveReviewForm" d=d id=$reviewForm->getReviewFormId()}" class="action">&darr;</a>
 		</td>
 	</tr>
-	<tr>
-		<td colspan="4" class="{if $reviewForms->eof()}end{/if}separator">&nbsp;</td>
-	</tr>
 {/iterate}
+	<tr>
+		<td colspan="4" class="endseparator">&nbsp;</td>
+	</tr>
 
 {if $reviewForms->wasEmpty()}
 	<tr>
@@ -77,5 +82,5 @@
 </table>
 
 <a class="action" href="{url op="createReviewForm"}">{translate key="manager.reviewForms.create"}</a>
-
+</div>
 {include file="common/footer.tpl"}

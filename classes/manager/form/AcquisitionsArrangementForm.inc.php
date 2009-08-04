@@ -148,7 +148,7 @@ class AcquisitionsArrangementForm extends Form {
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
-		$reviewForms =& $reviewFormDao->getActiveByPressId($press->getId());
+		$reviewForms =& $reviewFormDao->getPressActiveReviewForms($press->getId());
 		$reviewFormOptions = array();
 		while ($reviewForm =& $reviewForms->next()) {
 			$reviewFormOptions[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();

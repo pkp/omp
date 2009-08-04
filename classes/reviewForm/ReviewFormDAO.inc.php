@@ -3,7 +3,7 @@
 /**
  * @file classes/reviewForm/ReviewFormDAO.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewFormDAO
@@ -19,12 +19,19 @@ import ('reviewForm.ReviewForm');
 class ReviewFormDAO extends DAO {
 
 	/**
+	 * Constructor.
+	 */
+	function ReviewFormDAO() {
+		parent::DAO();
+	}
+
+	/**
 	 * Retrieve a review form by ID.
 	 * @param $reviewFormId int
 	 * @param $pressId int optional
 	 * @return ReviewForm
 	 */
-	function &getById($reviewFormId, $pressId = null) {
+	function &getReviewForm($reviewFormId, $pressId = null) {
 		$params = array((int) $reviewFormId);
 		if ($pressId !== null) $params[] = (int) $pressId;
 
@@ -53,7 +60,7 @@ class ReviewFormDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner =& $this->_returnReviewFormFromRow($result->GetRowAssoc(false));
 		}
 
 		$result->Close();
@@ -63,23 +70,14 @@ class ReviewFormDAO extends DAO {
 	}
 
 	/**
-	 * Construct a new data object corresponding to this DAO.
-	 * @return SignoffEntry
-	 */
-	function newDataObject() {
-		return new ReviewForm();
-	}
-
-	/**
 	 * Internal function to return a ReviewForm object from a row.
 	 * @param $row array
 	 * @return ReviewForm
 	 */
-	function &_fromRow(&$row) {
+	function &_returnReviewFormFromRow(&$row) {
 		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$reviewForm = $this->newDataObject();
-
-		$reviewForm->setId($row['review_form_id']);
+		$reviewForm =& new ReviewForm();
+		$reviewForm->setReviewFormId($row['review_form_id']);
 		$reviewForm->setPressId($row['press_id']);
 		$reviewForm->setSequence($row['seq']);
 		$reviewForm->setActive($row['is_active']);
@@ -88,7 +86,7 @@ class ReviewFormDAO extends DAO {
 
 		$this->getDataObjectSettings('review_form_settings', 'review_form_id', $row['review_form_id'], $reviewForm);
 
-		HookRegistry::call('ReviewFormDAO::_fromRow', array(&$reviewForm, &$row));
+		HookRegistry::call('ReviewFormDAO::_returnReviewFormFromRow', array(&$reviewForm, &$row));
 
 		return $reviewForm;
 	}
@@ -126,7 +124,7 @@ class ReviewFormDAO extends DAO {
 	 */
 	function updateLocaleFields(&$reviewForm) {
 		$this->updateDataObjectSettings('review_form_settings', $reviewForm, array(
-			'review_form_id' => $reviewForm->getId()
+			'review_form_id' => $reviewForm->getReviewFormId()
 		));
 	}
 
@@ -134,7 +132,7 @@ class ReviewFormDAO extends DAO {
 	 * Insert a new review form.
 	 * @param $reviewForm ReviewForm
 	 */
-	function insertObject(&$reviewForm) {
+	function insertReviewForm(&$reviewForm) {
 		$this->update(
 			'INSERT INTO review_forms
 				(press_id, seq, is_active)
@@ -150,14 +148,14 @@ class ReviewFormDAO extends DAO {
 		$reviewForm->setReviewFormId($this->getInsertReviewFormId());
 		$this->updateLocaleFields($reviewForm);
 
-		return $reviewForm->getId();
+		return $reviewForm->getReviewFormId();
 	}
 
 	/**
 	 * Update an existing review form.
 	 * @param $reviewForm ReviewForm
 	 */
-	function updateObject(&$reviewForm) {
+	function updateReviewForm(&$reviewForm) {
 		$returner = $this->update(
 			'UPDATE review_forms
 				SET
@@ -169,7 +167,7 @@ class ReviewFormDAO extends DAO {
 				$reviewForm->getPressId(),
 				$reviewForm->getSequence(),
 				$reviewForm->getActive(),
-				$reviewForm->getId()
+				$reviewForm->getReviewFormId()
 			)
 		);
 
@@ -182,8 +180,8 @@ class ReviewFormDAO extends DAO {
 	 * Delete a review form.
 	 * @param $reviewForm reviewForm
 	 */
-	function deleteObject(&$reviewForm) {
-		return $this->deleteById($reviewForm->getId(), $reviewForm->getPressId());
+	function deleteReviewForm(&$reviewForm) {
+		return $this->deleteReviewFormById($reviewForm->getReviewFormId(), $reviewForm->getPressId());
 	}
 
 	/**
@@ -191,7 +189,7 @@ class ReviewFormDAO extends DAO {
 	 * @param $reviewFormId int
 	 * @param $pressId int optional
 	 */
-	function deleteById($reviewFormId, $pressId = null) {
+	function deleteReviewFormById($reviewFormId, $pressId = null) {
 		if (isset($pressId)) {
 			$reviewForm =& $this->getReviewForm($reviewFormId, $pressId);
 			if (!$reviewForm) return null;
@@ -209,12 +207,12 @@ class ReviewFormDAO extends DAO {
 	 * Delete all review forms by press ID.
 	 * @param $pressId int
 	 */
-	function deleteByPressId($pressId) {
-		$reviewForms = $this->getByPressId($pressId);
+	function deleteReviewFormsByPressId($pressId) {
+		$reviewForms = $this->getPressReviewForms($pressId);
 
 		while (!$reviewForms->eof()) {
 			$reviewForm =& $reviewForms->next();
-			$this->deleteById($reviewForm->getId());
+			$this->deleteReviewFormById($reviewForm->getReviewFormId());
 		}
 	}
 
@@ -223,7 +221,7 @@ class ReviewFormDAO extends DAO {
 	 * @param $pressId int
 	 * @return DAOResultFactory containing matching ReviewForms
 	 */
-	function &getByPressId($pressId) {
+	function &getPressReviewForms($pressId) {
 		$result =& $this->retrieveRange(
 			'SELECT	rf.review_form_id,
 				rf.press_id,
@@ -247,7 +245,7 @@ class ReviewFormDAO extends DAO {
 			$pressId
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnReviewFormFromRow');
 		return $returner;
 	}
 
@@ -257,7 +255,7 @@ class ReviewFormDAO extends DAO {
 	 * @param $rangeInfo object RangeInfo object (optional)
 	 * @return DAOResultFactory containing matching ReviewForms
 	 */
-	function &getActiveByPressId($pressId, $rangeInfo = null) {
+	function &getPressActiveReviewForms($pressId, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
 			'SELECT	rf.review_form_id,
 				rf.press_id,
@@ -282,7 +280,7 @@ class ReviewFormDAO extends DAO {
 			$pressId, $rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnReviewFormFromRow');
 		return $returner;
 	}
 
@@ -292,7 +290,7 @@ class ReviewFormDAO extends DAO {
 	 * @param $rangeInfo object RangeInfo object (optional)
 	 * @return DAOResultFactory containing matching ReviewForms
 	 */
-	function &getUsedByPressId($pressId, $rangeInfo = null) {
+	function &getPressUsedReviewForms($pressId, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
 			'SELECT	rf.review_form_id,
 				rf.press_id,
@@ -318,7 +316,7 @@ class ReviewFormDAO extends DAO {
 			$pressId, $rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnReviewFormFromRow');
 		return $returner;
 	}
 
@@ -328,7 +326,7 @@ class ReviewFormDAO extends DAO {
 	 * @param $rangeInfo object RangeInfo object (optional)
 	 * @return DAOResultFactory containing matching ReviewForms
 	 */
-	function &getUnusedByPressId($pressId, $rangeInfo = null) {
+	function &getPressUnusedReviewForms($pressId, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
 			'SELECT	rf.review_form_id,
 				rf.press_id,
@@ -353,7 +351,7 @@ class ReviewFormDAO extends DAO {
 			$pressId, $rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnReviewFormFromRow');
 		return $returner;
 	}
 
@@ -363,16 +361,16 @@ class ReviewFormDAO extends DAO {
 	 * @param $used int
 	 * @return array
 	 */
-	function &getTitlesByPressId($pressId, $used) {
+	function &getPressReviewFormTitles($pressId, $used) {
 		$reviewFormTitles = array();
 
 		if ($used) {
-			$reviewForms =& $this->getUsedByPressId($pressId);
+			$reviewForms =& $this->getPressUsedReviewForms($pressId);
 		} else {
-			$reviewForms =& $this->getUnusedByPressId($pressId);
+			$reviewForms =& $this->getPressUnusedReviewForms($pressId);
 		}
 		while (($reviewForm =& $reviewForms->next())) {
-			$reviewFormTitles[$reviewForm->getId()] = $reviewForm->getReviewFormTitle();
+			$reviewFormTitles[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
 			unset($reviewForm);
 		}
 
@@ -422,7 +420,7 @@ class ReviewFormDAO extends DAO {
 	 * Sequentially renumber review form in their sequence order.
 	 * @param $pressId int
 	 */
-	function resequenceByPressId($pressId) {
+	function resequenceReviewForms($pressId) {
 		$result =& $this->retrieve(
 			'SELECT review_form_id FROM review_forms WHERE press_id = ? ORDER BY seq',
 			(int) $pressId

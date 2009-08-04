@@ -182,7 +182,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		}
 
 		// get press published review form titles
-		$reviewFormTitles =& $reviewFormDao->getTitlesByPressId($press->getId(), 1);
+		$reviewFormTitles =& $reviewFormDao->getPressReviewFormTitles($press->getId(), 1);
 
 		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 		$reviewFormResponses = array();
@@ -191,7 +191,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$reviewFormTitles = array();
 
 		foreach ($submission->getReviewAssignments($reviewType, $round) as $reviewAssignment) {
-			$reviewForm =& $reviewFormDao->getById($reviewAssignment->getReviewFormId());
+			$reviewForm =& $reviewFormDao->getReviewForm($reviewAssignment->getReviewFormId());
 			if ($reviewForm) {
 				$reviewFormTitles[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
 			}
@@ -961,7 +961,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 			$press =& Request::getPress();
 			$rangeInfo =& Handler::getRangeInfo('reviewForms');
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-			$reviewForms =& $reviewFormDao->getActiveByPressId($press->getId(), $rangeInfo);
+			$reviewForms =& $reviewFormDao->getPressActiveReviewForms($press->getId(), $rangeInfo);
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
@@ -972,7 +972,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 			$templateMgr->assign('reviewId', $reviewId);
 			$templateMgr->assign('assignedReviewFormId', $reviewAssignment->getReviewFormId());
 			$templateMgr->assign_by_ref('reviewForms', $reviewForms);
-			//$templateMgr->assign('helpTopicId','press.managementPages.reviewForms');
+			$templateMgr->assign('helpTopicId','press.managementPages.reviewForms');
 			$templateMgr->display('acquisitionsEditor/selectReviewForm.tpl');
 		}
 	}

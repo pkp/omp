@@ -3,7 +3,7 @@
 /**
  * @file classes/manager/form/ReviewFormForm.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewFormForm
@@ -106,11 +106,11 @@ class ReviewFormForm extends Form {
 		$reviewForm->setDescription($this->getData('description'), null); // Localized
 
 		if ($reviewForm->getReviewFormId() != null) {
-			$reviewFormDao->updateObject($reviewForm);
+			$reviewFormDao->updateReviewForm($reviewForm);
 			$reviewFormId = $reviewForm->getReviewFormId();
 		} else {
-			$reviewFormId = $reviewFormDao->insertObject($reviewForm);
-			$reviewFormDao->resequenceByPressId($pressId, 0);
+			$reviewFormId = $reviewFormDao->insertReviewForm($reviewForm);
+			$reviewFormDao->resequenceReviewForms($pressId, 0);
 		}
 	}
 }

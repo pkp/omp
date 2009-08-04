@@ -3,7 +3,7 @@
 /**
  * @file ReviewFormHandler.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewFormHandler
@@ -18,11 +18,11 @@ import('pages.manager.ManagerHandler');
 class ReviewFormHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 */	
+	 **/
 	function ReviewFormHandler() {
 		parent::ManagerHandler();
 	}
-	
+
 	/**
 	 * Display a list of review forms within the current press.
 	 */
@@ -33,7 +33,7 @@ class ReviewFormHandler extends ManagerHandler {
 		$press =& Request::getPress();
 		$rangeInfo =& Handler::getRangeInfo('reviewForms');
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForms =& $reviewFormDao->getByPressId($press->getId(), $rangeInfo);
+		$reviewForms =& $reviewFormDao->getPressReviewForms($press->getId(), $rangeInfo);
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 
 		$templateMgr =& TemplateManager::getManager();
@@ -60,7 +60,7 @@ class ReviewFormHandler extends ManagerHandler {
 
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForm =& $reviewFormDao->getById($reviewFormId, $press->getId());
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
 
 		if ($reviewFormId != null && (!isset($reviewForm) || $reviewForm->getCompleteCount() != 0 || $reviewForm->getIncompleteCount() != 0)) {
 			Request::redirect(null, null, 'reviewForms');
@@ -75,6 +75,7 @@ class ReviewFormHandler extends ManagerHandler {
 			}
 
 			import('manager.form.ReviewFormForm');
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$reviewFormForm =& new ReviewFormForm($reviewFormId);
 
 			if ($reviewFormForm->isLocaleResubmit()) {
@@ -97,12 +98,13 @@ class ReviewFormHandler extends ManagerHandler {
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
-
 		if ($reviewFormId != null && (!isset($reviewForm) || $reviewForm->getCompleteCount() != 0 || $reviewForm->getIncompleteCount() != 0)) {
 			Request::redirect(null, null, 'reviewForms');
 		}
+		$this->setupTemplate(true, $reviewForm);
 
 		import('manager.form.ReviewFormForm');
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$reviewFormForm =& new ReviewFormForm($reviewFormId);
 		$reviewFormForm->readInputData();
 
@@ -180,7 +182,7 @@ class ReviewFormHandler extends ManagerHandler {
 				$reviewAssignmentDao->updateObject($reviewAssignment);
 			}
 
-			$reviewFormDao->deleteById($reviewFormId, $press->getId());
+			$reviewFormDao->deleteReviewFormById($reviewFormId, $press->getId());
 		}
 
 		Request::redirect(null, null, 'reviewForms');
@@ -201,7 +203,7 @@ class ReviewFormHandler extends ManagerHandler {
 
 		if (isset($reviewForm) && !$reviewForm->getActive()) {
 			$reviewForm->setActive(1);
-			$reviewFormDao->updateObject($reviewForm);
+			$reviewFormDao->updateReviewForm($reviewForm);
 		}
 
 		Request::redirect(null, null, 'reviewForms');
@@ -222,7 +224,7 @@ class ReviewFormHandler extends ManagerHandler {
 
 		if (isset($reviewForm) && $reviewForm->getActive()) {
 			$reviewForm->setActive(0);
-			$reviewFormDao->updateObject($reviewForm);
+			$reviewFormDao->updateReviewForm($reviewForm);
 		}
 
 		Request::redirect(null, null, 'reviewForms');
@@ -243,8 +245,8 @@ class ReviewFormHandler extends ManagerHandler {
 		if (isset($reviewForm)) {
 			$reviewForm->setActive(0);
 			$reviewForm->setSequence(REALLY_BIG_NUMBER);
-			$newReviewFormId = $reviewFormDao->insertObject($reviewForm);
-			$reviewFormDao->resequenceByPressId($press->getId());
+			$newReviewFormId = $reviewFormDao->insertReviewForm($reviewForm);
+			$reviewFormDao->resequenceReviewForms($press->getId());
 
 			$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 			$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
@@ -268,15 +270,36 @@ class ReviewFormHandler extends ManagerHandler {
 
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForm =& $reviewFormDao->getReviewForm(Request::getUserVar('reviewFormId'), $press->getId());
+		$reviewForm =& $reviewFormDao->getReviewForm(Request::getUserVar('id'), $press->getId());
 
 		if (isset($reviewForm)) {
-			$reviewForm->setSequence($reviewForm->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
-			$reviewFormDao->updateObject($reviewForm);
-			$reviewFormDao->resequenceByPressId($press->getId());
+			$direction = Request::getUserVar('d');
+
+			if ($direction != null) {
+				// moving with up or down arrow
+				$reviewForm->setSequence($reviewForm->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
+
+			} else {
+				// Dragging and dropping
+				$prevId = Request::getUserVar('prevId');
+				if ($prevId == null)
+					$prevSeq = 0;
+				else {
+					$prevPress = $reviewFormDao->getReviewForm($prevId);
+					$prevSeq = $prevPress->getSequence();
+				}
+
+				$reviewForm->setSequence($prevSeq + .5);
+			}
+
+			$reviewFormDao->updateReviewForm($reviewForm);
+			$reviewFormDao->resequenceReviewForms($press->getId());
 		}
 
-		Request::redirect(null, null, 'reviewForms');
+		// Moving up or down with the arrows requires a page reload.
+		if ($direction != null) {
+			Request::redirect(null, null, 'reviewForms');
+		}
 	}
 
 	/**
@@ -349,6 +372,7 @@ class ReviewFormHandler extends ManagerHandler {
 		}
 
 		import('manager.form.ReviewFormElementForm');
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$reviewFormElementForm =& new ReviewFormElementForm($reviewFormId, $reviewFormElementId);
 		if ($reviewFormElementForm->isLocaleResubmit()) {
 			$reviewFormElementForm->readInputData();
@@ -377,6 +401,7 @@ class ReviewFormHandler extends ManagerHandler {
 		}
 
 		import('manager.form.ReviewFormElementForm');
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$reviewFormElementForm =& new ReviewFormElementForm($reviewFormId, $reviewFormElementId);
 		$reviewFormElementForm->readInputData();
 		$formLocale = $reviewFormElementForm->getFormLocale();
@@ -461,15 +486,38 @@ class ReviewFormHandler extends ManagerHandler {
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
-		$reviewFormElement =& $reviewFormElementDao->getReviewFormElement(Request::getUserVar('reviewFormElementId'));
+		$reviewFormElement =& $reviewFormElementDao->getReviewFormElement(Request::getUserVar('id'));
 
 		if (isset($reviewFormElement) && $reviewFormDao->unusedReviewFormExists($reviewFormElement->getReviewFormId(), $press->getId())) {
-			$reviewFormElement->setSequence($reviewFormElement->getSequence() + (Request::getUserVar('d') == 'u' ? -1.5 : 1.5));
+			$direction = Request::getUserVar('d');
+
+			if ($direction != null) {
+				// moving with up or down arrow
+				$reviewFormElement->setSequence($reviewFormElement->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
+
+			} else {
+				// drag and drop
+				$prevId = Request::getUserVar('prevId');
+				if ($prevId == null)
+					$prevSeq = 0;
+				else {
+					$prevReviewFormElement = $reviewFormElementDao->getReviewFormElement($prevId);
+					$prevSeq = $prevReviewFormElement->getSequence();
+				}
+
+				$reviewFormElement->setSequence($prevSeq + .5);
+			}
+				
 			$reviewFormElementDao->updateReviewFormElement($reviewFormElement);
 			$reviewFormElementDao->resequenceReviewFormElements($reviewFormElement->getReviewFormId());
 		}
 
-		Request::redirect(null, null, 'reviewFormElements', array($reviewFormElement->getReviewFormId()));
+		// Moving up or down with the arrows requires a page reload.
+		// In the case of a drag and drop move, the display has been
+		// updated on the client side, so no reload is necessary.
+		if ($direction != null) {
+			Request::redirect(null, null, 'reviewFormElements', array($reviewFormElement->getReviewFormId()));
+		}
 	}
 
 	/**

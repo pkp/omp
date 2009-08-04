@@ -344,7 +344,7 @@ class ReviewerAction extends Action {
 				// Send a notification to associated users
 				import('notification.Notification');
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-				$reviewAssignment = $reviewAssignmentDao->getReviewAssignmentById($reviewId);
+				$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
 				$monographId = $reviewAssignment->getMonographId();
 				$monographDao =& DAORegistry::getDAO('MonographDAO'); 
 				$monograph =& $monographDao->getMonograph($monographId);

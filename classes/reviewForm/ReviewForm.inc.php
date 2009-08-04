@@ -3,12 +3,11 @@
 /**
  * @defgroup reviewForm
  */
- 
 
 /**
  * @file classes/reviewForm/ReviewForm.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewForm
@@ -20,6 +19,13 @@
  */
 
 class ReviewForm extends DataObject {
+
+	/**
+	 * Constructor.
+	 */
+	function ReviewForm() {
+		parent::DataObject();
+	}
 
 	/**
 	 * Get localized title.
@@ -40,6 +46,22 @@ class ReviewForm extends DataObject {
 	//
 	// Get/set methods
 	//
+
+	/**
+	 * Get the ID of the review form.
+	 * @return int
+	 */
+	function getReviewFormId() {
+		return $this->getData('reviewFormId');
+	}
+
+	/**
+	 * Set the ID of the review form.
+	 * @param $reviewFormId int
+	 */
+	function setReviewFormId($reviewFormId) {
+		return $this->setData('reviewFormId', $reviewFormId);
+	}
 
 	/**
 	 * Get the number of completed reviews for this review form.
@@ -74,7 +96,7 @@ class ReviewForm extends DataObject {
 	}
 
 	/**
-	 * Get ID of press.
+	 * Get ID of the press.
 	 * @return int
 	 */
 	function getPressId() {
@@ -82,7 +104,7 @@ class ReviewForm extends DataObject {
 	}
 
 	/**
-	 * Set ID of press.
+	 * Set ID of the press.
 	 * @param $pressId int
 	 */
 	function setPressId($pressId) {

@@ -37,14 +37,23 @@ import('submission.Submission');
 import('monograph.Author');
 
 class Monograph extends Submission {
+
 	/**
 	 * get monograph id
 	 * @return int
 	 */
-
 	function getMonographId() {
 		return $this->getData('monographId');
 	}
+
+	/**
+	 * set monograph id
+	 * @param $monographId int
+	 */
+	function setMonographId($monographId) {
+		return $this->setData('monographId', $monographId);
+	}
+
 	function addMonographComponent($component) {
 		if ($component->getSequence() == null) {
 			$component->setSequence(count($this->getData('components')) + 1);
@@ -56,24 +65,63 @@ class Monograph extends Submission {
 	function setMonographComponents($components) {
 		$this->setData('components', $components);
 	}
-	function setArrangementId($id) {
-		 $this->setData('arrangementId', $id);
-	}
+
+	//
+	// Acquisitions Arrangements
+	//
+
+	/**
+	 * Get the acquisitions arrangement id.
+	 * @return int
+	 */
 	function getArrangementId() {
 		 return $this->getData('arrangementId');
 	}
+
+	/**
+	 * Set the acquisitions arrangement id.
+	 * @param $id int
+	 */
+	function setArrangementId($id) {
+		 $this->setData('arrangementId', $id);
+	}
+
+	/**
+	 * Get the arrangement's abbreviated identifier.
+	 * @return string
+	 */
 	function getArrangementAbbrev() {
 		 return $this->getData('arrangementAbbrev');
 	}
-	function setArrangementAbbrev($value) {
-		 $this->setData('arrangementAbbrev', $value);
+
+	/**
+	 * Set the arrangement's abbreviated identifier.
+	 * @param $abbrev string
+	 */
+	function setArrangementAbbrev($abbrev) {
+		 $this->setData('arrangementAbbrev', $abbrev);
 	}
+
+	/**
+	 * Get the arrangement's title.
+	 * @return string
+	 */
 	function getArrangementTitle() {
 		 return $this->getData('arrangementTitle');
 	}
-	function setArrangementTitle($value) {
-		 $this->setData('arrangementTitle', $value);
+
+	/**
+	 * Set the arrangement title.
+	 * @param $title string
+	 */
+	function setArrangementTitle($title) {
+		 $this->setData('arrangementTitle', $title);
 	}
+
+	//
+	// Peer Review
+	//
+
 	function setCurrentRound($round) {
 		 $this->setData('currentRound', $round);
 	}
@@ -155,7 +203,7 @@ class Monograph extends Submission {
 */
 		if($reviewers) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewAssignments =& $reviewAssignmentDao->getReviewAssignmentsByMonographId($monographId);
+			$reviewAssignments =& $reviewAssignmentDao->getByMonographId($monographId);
 			foreach ($reviewAssignments as $reviewAssignment) {
 				$userIds[] = array('id' => $reviewAssignment->getReviewerId(), 'role' => 'reviewer');
 				unset($reviewAssignment);
@@ -213,14 +261,6 @@ class Monograph extends Submission {
 		return $signoff->getUserId();
 	}
 
-
-	/**
-	 * set monograph id
-	 * @param $monographId int
-	 */
-	function setMonographId($monographId) {
-		return $this->setData('monographId', $monographId);
-	}
 	function getMonographComponents() {
 
 		return $this->getData('components');
