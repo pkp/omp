@@ -269,7 +269,6 @@ Note that if your site administrator has already registered this site with the P
 	<message key="navigation.infoForLibrarians.long">Information For Librarians</message>
 
 	<!-- Submission History -->
-	
 	<message key="submission.logType.monograph">Monograph</message>
 	<message key="submission.logType.author">Author</message>
 	<message key="submission.logType.editor">Editor</message>
@@ -277,6 +276,8 @@ Note that if your site administrator has already registered this site with the P
 	<message key="submission.logType.copyedit">Copyedit</message>
 	<message key="submission.logType.layout">Layout</message>
 	<message key="submission.logType.proofread">Proofread</message>
+	<message key="submission.event.logLevel">Level</message>
+
 	<!--
 	 *
 	 * ENTITIES - This section contains terms pertaining to the system's

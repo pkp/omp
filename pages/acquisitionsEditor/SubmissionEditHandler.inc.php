@@ -351,12 +351,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 
 		$this->setupTemplate(true, $monographId);
 
-		// submission notes
-		$monographNoteDao =& DAORegistry::getDAO('MonographNoteDAO');
-
-		$rangeInfo =& Handler::getRangeInfo('submissionNotes');
-		$submissionNotes =& $monographNoteDao->getMonographNotes($monographId, $rangeInfo);
-
 		import('monograph.log.MonographLog');
 		$rangeInfo =& Handler::getRangeInfo('eventLogEntries');
 		$eventLogEntries =& MonographLog::getEventLogEntries($monographId, $rangeInfo);
@@ -369,7 +363,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('eventLogEntries', $eventLogEntries);
 		$templateMgr->assign_by_ref('emailLogEntries', $emailLogEntries);
-		$templateMgr->assign_by_ref('submissionNotes', $submissionNotes);
 
 		$templateMgr->display('acquisitionsEditor/submissionHistory.tpl');
 	}
@@ -1997,95 +1990,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 
 		Request::redirect(null, null, 'submissionEmailLog', $monographId);
 	}
-
-	// Submission Notes Functions
-
-	/**
-	 * Creates a submission note.
-	 * Redirects to submission notes list
-	 */
-	function addSubmissionNote() {
-		$monographId = Request::getUserVar('monographId');
-		$this->validate($monographId);
-
-		AcquisitionsEditorAction::addSubmissionNote($monographId);
-		Request::redirect(null, null, 'submissionNotes', $monographId);
-	}
-
-	/**
-	 * Removes a submission note.
-	 * Redirects to submission notes list
-	 */
-	function removeSubmissionNote() {
-		$monographId = Request::getUserVar('monographId');		
-		$this->validate($monographId);
-
-		AcquisitionsEditorAction::removeSubmissionNote($monographId);
-		Request::redirect(null, null, 'submissionNotes', $monographId);
-	}
-
-	/**
-	 * Updates a submission note.
-	 * Redirects to submission notes list
-	 */
-	function updateSubmissionNote() {
-		$monographId = Request::getUserVar('monographId');		
-		$this->validate($monographId);
-
-		AcquisitionsEditorAction::updateSubmissionNote($monographId);
-		Request::redirect(null, null, 'submissionNotes', $monographId);
-	}
-
-	/**
-	 * Clear all submission notes.
-	 * Redirects to submission notes list
-	 */
-	function clearAllSubmissionNotes() {
-		$monographId = Request::getUserVar('monographId');		
-		$this->validate($monographId);
-
-		AcquisitionsEditorAction::clearAllSubmissionNotes($monographId);
-		Request::redirect(null, null, 'submissionNotes', $monographId);
-	}
-
-	/**
-	 * View submission notes.
-	 */
-	function submissionNotes($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$noteViewType = isset($args[1]) ? $args[1] : '';
-		$noteId = isset($args[2]) ? (int) $args[2] : 0;
-
-		$this->validate($monographId);
-		$this->setupTemplate(true, $monographId, 'history');
-
-		$rangeInfo =& Handler::getRangeInfo('submissionNotes');
-		$monographNoteDao =& DAORegistry::getDAO('MonographNoteDAO');
-
-		// submission note edit
-		if ($noteViewType == 'edit') {
-			$monographNote = $monographNoteDao->getMonographNoteById($noteId);
-		}
-
-		$templateMgr =& TemplateManager::getManager();
-
-		$templateMgr->assign('monographId', $monographId);
-		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign('noteViewType', $noteViewType);
-		if (isset($monographNote)) {
-			$templateMgr->assign_by_ref('monographNote', $monographNote);		
-		}
-
-		if ($noteViewType == 'edit' || $noteViewType == 'add') {
-			$templateMgr->assign('showBackLink', true);
-		} else {
-			$submissionNotes =& $monographNoteDao->getMonographNotes($monographId, $rangeInfo);
-			$templateMgr->assign_by_ref('submissionNotes', $submissionNotes);
-		}
-
-		$templateMgr->display('acquisitionsEditor/submissionNotes.tpl');
-	}
-
 
 	//
 	// Misc

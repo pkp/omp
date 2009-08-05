@@ -104,11 +104,6 @@ switch ($op) {
 	case 'submissionEmailLog':
 	case 'submissionEmailLogType':
 	case 'clearSubmissionEmailLog':
-	case 'addSubmissionNote':
-	case 'removeSubmissionNote':
-	case 'updateSubmissionNote':
-	case 'clearAllSubmissionNotes':
-	case 'submissionNotes':
 	//
 	// Misc.
 	//
