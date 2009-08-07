@@ -233,6 +233,7 @@ class ContributorInsert extends Insert
 			$moveContributorDir = $moveContributorDir == 'u' ? 'u' : 'd';
 			$moveContributorIndex = (int) Request::getUserVar('moveContributorIndex');
 			$contributors = $submitForm->getData('contributors');
+			$newContributorList = array();
 
 			$keyMap = array_keys($contributors);
 
@@ -240,19 +241,29 @@ class ContributorInsert extends Insert
 				$tmpContributor = $contributors[$keyMap[$moveContributorIndex]];
 				$primaryContact = $submitForm->getData('primaryContact');
 				if ($moveContributorDir == 'u') {
-					$contributors[$keyMap[$moveContributorIndex]] = $contributors[$keyMap[$moveContributorIndex - 1]];
-					$contributors[$keyMap[$moveContributorIndex - 1]] = $tmpContributor;
+					$tmpUpperValue = $keyMap[$moveContributorIndex - 1];
+					$keyMap[$moveContributorIndex - 1] = $keyMap[$moveContributorIndex];
+					$keyMap[$moveContributorIndex] = $tmpUpperValue;
+					foreach ($keyMap as $key => $value) {
+						$newContributorList[$value] = $contributors[$keyMap[$key]];
+					}
 				} else {
 					if ((isset($contributors[$keyMap[$moveContributorIndex + 1]]['contributionType']) &&
 						$contributors[$keyMap[$moveContributorIndex + 1]]['contributionType'] == VOLUME_EDITOR) ||
 							$this->monograph->getWorkType() != WORK_TYPE_EDITED_VOLUME) {
-
-						$contributors[$keyMap[$moveContributorIndex]] = $contributors[$keyMap[$moveContributorIndex + 1]];
-						$contributors[$keyMap[$moveContributorIndex + 1]] = $tmpContributor;
+						$tmpLowerValue = $keyMap[$moveContributorIndex + 1];
+						$keyMap[$moveContributorIndex + 1] = $keyMap[$moveContributorIndex];
+						$keyMap[$moveContributorIndex] = $tmpLowerValue;
+						foreach ($keyMap as $key => $value) {
+							$newContributorList[$value] = $contributors[$keyMap[$key]];
+						}
 					}
 				}
+				$submitForm->setData('contributors', $newContributorList);
+			} else {
+				$submitForm->setData('contributors', $contributors);
 			}
-			$submitForm->setData('contributors', $contributors);
+			
 		}
 
 		if ($eventProcessed) {
