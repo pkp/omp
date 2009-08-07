@@ -39,15 +39,6 @@ class UpgradeForm extends Form {
 	}
 
 	/**
-	 * Assign form data to user-submitted data.
-	 */
-	function readInputData() {
-		$this->readUserVars(array(
-			'manualInstall'
-		));
-	}
-
-	/**
 	 * Perform installation.
 	 */
 	function execute() {
@@ -59,11 +50,6 @@ class UpgradeForm extends Form {
 		// FIXME Mostly common with InstallForm
 
 		if ($installer->execute()) {
-			if ($this->getData('manualInstall')) {
-				// Display SQL statements that would have been executed during installation
-				$templateMgr->assign(array('manualInstall' => true, 'installSql' => $installer->getSQL()));
-
-			}
 			if (!$installer->wroteConfig()) {
 				// Display config file contents for manual replacement
 				$templateMgr->assign(array('writeConfigFailed' => true, 'configFileContents' => $installer->getConfigContents()));
