@@ -33,6 +33,8 @@ function show(id) {
 <input type="hidden" name="moveContributorDir" value="" />
 <input type="hidden" name="moveContributorIndex" value="" />
 
+<input type="hidden" name="deletedContributors" value="{$deletedContributors|escape}" />
+
 <div id="contributors">
 <h3>{translate key="monograph.contributors"}</h3>
 
@@ -61,7 +63,7 @@ function show(id) {
 	<td class="separator" colspan="2">&nbsp;</td>
 </tr>
 {/if}
-{if $workType == WORK_TYPE_EDITED_VOLUME and $authorArrayIndex == 0 and $author.contributionType != VOLUME_EDITOR}
+{if $workType == WORK_TYPE_EDITED_VOLUME and $authorArrayIndex == 0 and $author.contributionType != CONTRIBUTION_TYPE_VOLUME_EDITOR}
 <tr>
 	<td class="nodata" colspan="2">{translate key="common.none"}</em></td>
 </tr>
@@ -69,7 +71,7 @@ function show(id) {
 	<td class="separator" colspan="2">&nbsp;</td>
 </tr>
 {/if}
-{if $workType == WORK_TYPE_EDITED_VOLUME and $firstOther and $author.contributionType != VOLUME_EDITOR}
+{if $workType == WORK_TYPE_EDITED_VOLUME and $firstOther and $author.contributionType != CONTRIBUTION_TYPE_VOLUME_EDITOR}
 <tr>
 	<td colspan="2"><h4>{translate key="inserts.contributors.otherContributors"}</h4></td>
 </tr>
@@ -78,22 +80,23 @@ function show(id) {
 </tr>
 {assign var="firstOther" value=false}
 {/if}
-{assign var="authorIndex" value=$author.authorId}
+{assign var="authorIndex" value=$author.pivotId}
 <tr>
 	<td>
-		<input type="hidden" name="contributors[{$authorIndex|escape}][authorId]" value="{$authorIndex|escape}" />
+		<input type="hidden" name="contributors[{$authorIndex|escape}][pivotId]" value="{$author.pivotId|escape}" />
+		<input type="hidden" name="contributors[{$authorIndex|escape}][contributorId]" value="{$author.contributorId|escape}" />
 		<strong>{$author.firstName}&nbsp;{$author.lastName}</strong>
 		<br />
 		<em>{$author.email}</em>
 		<br />
-		{if $workType != WORK_TYPE_EDITED_VOLUME or ($workType == WORK_TYPE_EDITED_VOLUME and $author.contributionType == VOLUME_EDITOR)}
+		{if $workType != WORK_TYPE_EDITED_VOLUME or ($workType == WORK_TYPE_EDITED_VOLUME and $author.contributionType == CONTRIBUTION_TYPE_VOLUME_EDITOR)}
 		<input type="radio" name="primaryContact" value="{$authorIndex|escape}"{if $primaryContact == $authorIndex} checked="checked"{/if} /> <label for="primaryContact">{translate key="author.submit.selectPrincipalContact"}</label>
 		<br />
 		{/if}
 		<a href="javascript:show('authors-{$authorIndex|escape}-display')">{translate key="inserts.contributors.details"}</a>
 	</td>
 	<td>
-		{if $workType != WORK_TYPE_EDITED_VOLUME or ($workType == WORK_TYPE_EDITED_VOLUME and $author.contributionType == VOLUME_EDITOR)}
+		{if $workType != WORK_TYPE_EDITED_VOLUME or ($workType == WORK_TYPE_EDITED_VOLUME and $author.contributionType == CONTRIBUTION_TYPE_VOLUME_EDITOR)}
 		<a href="javascript:moveContributor('u', '{$authorArrayIndex|escape}')" class="action">&uarr;</a>
 		<a href="javascript:moveContributor('d', '{$authorArrayIndex|escape}')" class="action">&darr;</a>
 		| {/if}<input type="submit" name="deleteContributor[{$authorIndex|escape}]" value="{translate key="common.delete"}" class="button" />
@@ -102,7 +105,6 @@ function show(id) {
 <tr>
 <td colspan="2">
 	<div id="authors-{$authorIndex|escape}-display" style="display:none" class="{if $authorIndex % 2}evenSideIndicator{else}oddSideIndicator{/if}">
-		{assign var="authorId" value=$authorIndex}
 		<table class="data">
 			<tr valign="top">
 				<td width="20%" class="label">{fieldLabel name="authors-$authorIndex-firstName" required="true" key="user.firstName"}</td>
@@ -145,7 +147,7 @@ function show(id) {
 			{if $workType == WORK_TYPE_EDITED_VOLUME}
 			<tr valign="top">
 				<td width="80%" class="value" colspan="2">
-					<input type="checkbox" name="contributors[{$authorIndex|escape}][contributionType]" id="authors-{$authorIndex}-contributionType" value="1"{if VOLUME_EDITOR == $author.contributionType} checked="checked"{/if} /> <label for="authors-{$authorIndex}-contributionType">{translate key="inserts.contributors.isVolumeEditor"}</label>
+					<input type="checkbox" name="contributors[{$authorIndex|escape}][contributionType]" id="authors-{$authorIndex}-contributionType" value="1"{if $author.contributionType == CONTRIBUTION_TYPE_VOLUME_EDITOR} checked="checked"{/if} /> <label for="authors-{$authorIndex}-contributionType">{translate key="inserts.contributors.isVolumeEditor"}</label>
 				</td>
 			</tr>
 			{/if}

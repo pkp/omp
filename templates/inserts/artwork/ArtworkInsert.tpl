@@ -44,8 +44,8 @@ Revision: $artwork->getRevision()<br />
 		<td>
 			<select name="componentId">
 			<option>--Select--</option>
-			{foreach from=$submission->getMonographComponents() item=component}
-				<option value="{$component->getMonographComponentId()}">{$component->getLocalizedTitle()}</option>
+			{foreach from=$submission->getComponents() item=component}
+				<option value="{$component->getId()}">{$component->getLocalizedTitle()}</option>
 			{/foreach}
 			</select>
 		</td>

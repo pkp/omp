@@ -9,8 +9,6 @@
  * $Id$
  *}
 
-<input type="hidden" name="newContributorId" value="{$newContributorId}" />
-
 <div class="newItemContainer">
 
 {if $inserts_ContributorInsert_isError}
@@ -36,6 +34,7 @@ window.location.hash="inserts_ContributorInsert_formErrors";
 
 <h3>{translate key="inserts.contributors.heading.newContributor"}</h3>
 <p>{translate key="inserts.contributors.newContributor.description"}</p>
+<input type="hidden" name="newContributor[pivotId]" value="{$nextPivotId|escape}" />
 <table width="100%" class="data">
 <tr valign="top">
 	<td width="20%" class="label">
@@ -82,7 +81,7 @@ window.location.hash="inserts_ContributorInsert_formErrors";
 <tr valign="top">
 	<td>&nbsp;</td>
 	<td>
-		<input type="checkbox" name="newContributor[contributionType]" value="1"{if $newContributor.contributionType == VOLUME_EDITOR} checked="checked"{/if} /> <label for="newContributor[contributionType]">{translate key="inserts.contributors.isVolumeEditor"}</label>
+		<input type="checkbox" name="newContributor[contributionType]" value="1"{if $newContributor.contributionType == CONTRIBUTION_TYPE_VOLUME_EDITOR} checked="checked"{/if} /> <label for="newContributor[contributionType]">{translate key="inserts.contributors.isVolumeEditor"}</label>
 	</td>
 </tr>
 {/if}

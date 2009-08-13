@@ -19,10 +19,12 @@ import('author.form.submit.AuthorSubmitForm');
 import('inserts.monographComponents.MonographComponentsInsert');
 
 class AuthorSubmitStep2Form extends AuthorSubmitForm {
+
+	var $formComponent;
+
 	/**
 	 * Constructor.
 	 */
-	var $formComponents;
 	function AuthorSubmitStep2Form($monograph) {
 		parent::AuthorSubmitForm($monograph);
 
@@ -30,15 +32,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 		$this->addCheck(new FormValidatorCustom($this, 'contributors', 'required', 'author.submit.form.authorRequired', create_function('$contributors', 'return count($contributors) > 0;')));
 		$this->addCheck(new FormValidatorArray($this, 'contributors', 'required', 'author.submit.form.authorRequiredFields', array('firstName', 'lastName', 'email')));
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'author.submit.form.titleRequired'));
-
-		$this->_initializeInserts();
-	}
-
-	function _initializeInserts() {
-
-		$insert = new MonographComponentsInsert($this->monograph);
-
-		$this->formComponents = array($insert);
+		$this->formComponent = new MonographComponentsInsert($this->monograph);
 	}
 
 	/**
@@ -48,10 +42,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 
 		if (isset($this->monograph)) {
 
-			foreach ($this->formComponents as $formComponent) {
-				$this->_data = array_merge($this->_data, $formComponent->initData($this));
-			}
-
+			$this->_data = array_merge($this->_data, $this->formComponent->initData($this));
 			$monograph =& $this->monograph;
 			$this->_data = array_merge($this->_data,
 				array(
@@ -90,9 +81,8 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 				'isEditedVolume'
 				);
 
-		foreach ($this->formComponents as $formComponent) {
-			$userVars =& array_merge($formComponent->listUserVars(),$userVars);
-		}
+		$userVars =& array_merge($this->formComponent->listUserVars(),$userVars);
+
 		$this->readUserVars($userVars);
 	}
 
@@ -102,9 +92,8 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	 */
 	function getLocaleFieldNames() {
 		$fields = array('title', 'abstract', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
-		foreach ($this->formComponents as $formComponent) {
-			$fields = array_merge($fields,$formComponent->getLocaleFieldNames());
-		}
+		$fields = array_merge($fields, $this->formComponent->getLocaleFieldNames());
+
 		return $fields;
 	}
 
@@ -112,11 +101,9 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	 * Display the form.
 	 */
 	function display() {
-		foreach ($this->formComponents as $formComponent) {
-			$formComponent->display($this);
-		}
-		$templateMgr =& TemplateManager::getManager();
+		$this->formComponent->display($this);
 
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('workType', $this->monograph->getWorkType());
 
 		parent::display();
@@ -128,12 +115,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 		return 'author/submit/step2.tpl';
 	}
 	function processEvents() {
-		$returner = false;
-		foreach ($this->formComponents as $formComponent) {
-			$processed = $formComponent->processEvents($this);
-			if ($processed == true) $returner = true;
-		}
-		return $returner;
+		return $this->formComponent->processEvents($this);
 	}
 	/**
 	 * Save changes to monograph.
@@ -162,9 +144,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 			$monograph->setSubmissionProgress($this->sequence->currentStep + 1);
 		}
 
-		foreach ($this->formComponents as $formComponent) {
-			$formComponent->execute($this, $monograph);
-		}
+		$this->formComponent->execute($this, $monograph);
 
 		$monographDao->updateMonograph($monograph);
 

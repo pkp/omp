@@ -28,9 +28,9 @@ class ContributorInsert extends Insert
 	function &listUserVars() {
 		$returner = array(
 			'newContributor', 
-			'newContributorId', 
 			'contributors', 
-			'primaryContact'
+			'primaryContact',
+			'deletedContributors'
 		);
 		return $returner;
 	}
@@ -48,18 +48,19 @@ class ContributorInsert extends Insert
 				$idMap[$author->getId()] = $i;
 
 				$authorArray = array(
-							'firstName' => $author->getFirstName(),
-							'middleName' => $author->getMiddleName(),
-							'lastName' => $author->getLastName(), 
-							'fullName' => $author->getFullName(), 
-							'affiliation' => $author->getAffiliation(),
-							'email' => $author->getEmail(),
-							'url' => $author->getUrl(),
-							'country' => $author->getCountry(),
-							'authorId' => $i,
-							'biography' => $author->getBiography(null),
-							'contributionType' => $author->getContributionType()
-						);
+					'firstName' => $author->getFirstName(),
+					'middleName' => $author->getMiddleName(),
+					'lastName' => $author->getLastName(), 
+					'fullName' => $author->getFullName(), 
+					'affiliation' => $author->getAffiliation(),
+					'email' => $author->getEmail(),
+					'url' => $author->getUrl(),
+					'country' => $author->getCountry(),
+					'pivotId' => $i,
+					'contributorId' => $author->getId(),
+					'biography' => $author->getBiography(null),
+					'contributionType' => $author->getContributionType()
+				);
 				if ($author->getPrimaryContact()) {
 					$primaryContact = $i;
 				}
@@ -69,7 +70,7 @@ class ContributorInsert extends Insert
 
 			$returner = array(
 				'newContributor' => null, 
-				'newContributorId' => $i, 
+				'nextPivotId' => $i, 
 				'contributors' => $contributors, 
 				'primaryContact'=> $primaryContact, 
 				'workType' => $this->monograph->getWorkType(), 
@@ -88,44 +89,63 @@ class ContributorInsert extends Insert
 		$templateMgr->assign('workType', $this->monograph->getWorkType());
 		$templateMgr->assign('contributors', $form->getData('contributors'));
 		$templateMgr->assign('primaryContact', $form->getData('primaryContact'));
-		$templateMgr->assign('newContributorId', $form->getData('newContributorId'));
+
+		$newContributor = $form->getData('newContributor');
+		$templateMgr->assign('nextPivotId', $newContributor['pivotId']);
 	}
 	function execute(&$form, &$monograph) {
-
+		import('monograph.Author');
 		$contributors = $form->getData('contributors');
 
-		$monograph->resetAuthors();
-		if(is_array($contributors))
-		foreach ($contributors as $formAuthor) {
-			if ($formAuthor['deleted']) continue;
-			$author = new Author();
+		$i = 0;
+		foreach ($contributors as $contributor) {
+			if (!empty($contributor['contributorId'])) {
+				$contributorId = $contributor['contributorId'];
+				// Update an existing contributor
+				$author =& $monograph->getAuthor($contributorId);
+				$isExistingContributor = true;
+			} else {
+				// Create a new contributor
+				$author = new Author();
+				$isExistingContributor = false;
+			}
+
+			$author->setData('pivotId', $contributor['pivotId']);
 			$author->setMonographId($monograph->getMonographId());
-			$author->setId($formAuthor['authorId']);
-			$author->setFirstName($formAuthor['firstName']);
-			$author->setMiddleName($formAuthor['middleName']);
-			$author->setLastName($formAuthor['lastName']);
-			$author->setAffiliation($formAuthor['affiliation']);
-			$author->setCountry($formAuthor['country']);
-			$author->setUrl($formAuthor['url']);
-			$author->setEmail($formAuthor['email']);
-			$author->setBiography($formAuthor['biography'], null);
-			$author->setPrimaryContact($form->getData('primaryContact') == $formAuthor['authorId'] ? PRIMARY_CONTACT : 0);
+			$author->setFirstName($contributor['firstName']);
+			$author->setMiddleName($contributor['middleName']);
+			$author->setLastName($contributor['lastName']);
+			$author->setAffiliation($contributor['affiliation']);
+			$author->setCountry($contributor['country']);
+			$author->setEmail($contributor['email']);
+			$author->setUrl($contributor['url']);
+			$author->setBiography($contributor['biography'], null);
+			$author->setPrimaryContact($form->getData('primaryContact') == $contributor['pivotId'] ? PRIMARY_CONTACT : 0);
+			$author->setSequence($i+1);
 
-			if (!isset($formAuthor['contributionType'])) $author->setContributionType(AUTHOR);
-			else $author->setContributionType($formAuthor['contributionType']);
+			if (!isset($contributor['contributionType'])) $author->setContributionType(CONTRIBUTION_TYPE_AUTHOR);
+			else $author->setContributionType($contributor['contributionType']);
 
-			$monograph->addAuthor($author);
+			if (!$isExistingContributor) {
+				$monograph->addAuthor($author);
+			}
+			unset($author);
+			$i++;
 		}
 
+		// Remove deleted contributors
+		$deletedContributors = explode(':', $form->getData('deletedContributors'));
+		for ($i=0, $count=count($deletedContributors); $i < $count; $i++) {
+			$monograph->removeAuthor($deletedContributors[$i]);
+		}
 	}
 	function processEvents(&$form) {
 		$eventProcessed = false;
-		$submitForm =& $form;
 
 		if (Request::getUserVar('addContributor')) {
 
 			$eventProcessed = true;
-			$newContributor = $submitForm->getData('newContributor');
+			$newContributor = $form->getData('newContributor');
 
 			$formError = false;
 			$formErrors = array();
@@ -135,19 +155,17 @@ class ContributorInsert extends Insert
 					array_push($formErrors, 'inserts.contributors.newContributor.formError.'.$field);
 				}
 			}
-			$templateMgr =& TemplateManager::getManager();
 
 			if (!$formError){
-				$contributors = $submitForm->getData('contributors');
+				$contributors = $form->getData('contributors');
 				$contributors = !isset($contributors) ? array() : $contributors;
-				$newContributor['authorId'] = $submitForm->getData('newContributorId');
 
-				if ($this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME && $newContributor['contributionType'] == VOLUME_EDITOR) {
+				if ($this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME && $newContributor['contributionType'] == CONTRIBUTION_TYPE_VOLUME_EDITOR) {
 					$newList = array();
 					$tmpContributors = $contributors;
 					foreach ($contributors as $contributor) {
-						if (isset($contributor['contributionType']) && $contributor['contributionType'] == VOLUME_EDITOR) {
-							$contributor[$contributor['authorId']]['isVolumeEditor'] = (int) true;
+						if (!empty($contributor['contributionType']) && $contributor['contributionType'] == CONTRIBUTION_TYPE_VOLUME_EDITOR) {
+							$contributor[$contributor['pivotId']]['isVolumeEditor'] = (int) true;
 							array_push($newList, array_shift($tmpContributors));
 						} else {
 							break;
@@ -155,7 +173,7 @@ class ContributorInsert extends Insert
 					}
 
 					if (count($newList) < 1) {
-						$submitForm->setData('primaryContact', $newContributor['authorId']);
+						$form->setData('primaryContact', $newContributor['pivotId']);
 					}
 
 					array_push($newList, $newContributor);
@@ -163,83 +181,88 @@ class ContributorInsert extends Insert
 				} else {
 
 					if (count($contributors) < 1 && $this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME) {
-						$submitForm->setData('primaryContact', $newContributor['authorId']);
+						$form->setData('primaryContact', $newContributor['pivotId']);
 					}
 					array_push($contributors, $newContributor);
 				}
 
-				$submitForm->setData('newContributorId', $newContributor['authorId'] + 1);
-				$submitForm->setData('contributors', $contributors);
-				$submitForm->setData('newContributor', null);
+				$form->setData('nextPivotId', $newContributor['pivotId'] + 1);
+				$form->setData('contributors', $contributors);
+				$form->setData('newContributor', null);
 			} else {
+				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('inserts_ContributorInsert_isError', true);
 				$templateMgr->assign('inserts_ContributorInsert_errors', $formErrors);
-				$submitForm->setData('newContributor', $newContributor);
+				$form->setData('newContributor', $newContributor);
 			}
 		} else if (($updateId = Request::getUserVar('updateContributorInfo'))) {
 			$eventProcessed = true;
-			$contributors = $submitForm->getData('contributors');
+			$contributors = $form->getData('contributors');
 			list($updateId) = array_keys($updateId);
 			$updateId = (int) $updateId;
 
 			// volume editor list maintenance
 			if ($this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME) {
-				$primaryContact = $submitForm->getData('primaryContact');
+				$primaryContact = $form->getData('primaryContact');
 				$primaryContactFound = false;
 				$newList = array();
 				$tmpContributors = $contributors;
 				foreach ($contributors as $contributor) {
-					if (isset($contributor['contributionType']) && $contributor['contributionType'] == VOLUME_EDITOR) {
-						$contributors[$contributor['authorId']]['isVolumeEditor'] = (int) true;
-						$newList[$contributor['authorId']] = $contributor;
-						if ($contributor['authorId'] == $primaryContact) {
+					if (isset($contributor['contributionType']) && $contributor['contributionType'] == CONTRIBUTION_TYPE_VOLUME_EDITOR) {
+						$contributors[$contributor['pivotId']]['isVolumeEditor'] = (int) true;
+						$newList[$contributor['pivotId']] = $contributor;
+						if ($contributor['pivotId'] == $primaryContact) {
 							$primaryContactFound = true;
 						}
-						unset($tmpContributors[$contributor['authorId']]);
+						unset($tmpContributors[$contributor['pivotId']]);
 					}
 				}
 
 				$contributors = array_merge($newList, $tmpContributors);
 
-				if (!$primaryContactFound && isset($contributors[0]) && $contributors[0]['contributionType'] == VOLUME_EDITOR) {
-					$submitForm->setData('primaryContact', $contributors[0]['authorId']);
+				if (!$primaryContactFound && isset($contributors[0]) && $contributors[0]['contributionType'] == CONTRIBUTION_TYPE_VOLUME_EDITOR) {
+					$form->setData('primaryContact', $contributors[0]['pivotId']);
 				}
-
 			}
-			$submitForm->setData('contributors',$contributors);
+			$form->setData('contributors',$contributors);
 		} else if ($deleteContributor = Request::getUserVar('deleteContributor')) {
 			// Delete a contributor
 			$eventProcessed = true;
 			list($deleteContributor) = array_keys($deleteContributor);
 			$deleteContributor = (int) $deleteContributor;
-			$contributors = $submitForm->getData('contributors');
-			$primaryContact = $submitForm->getData('primaryContact');
+			$contributors = $form->getData('contributors');
+			$primaryContact = $form->getData('primaryContact');
 
 			if (isset($contributors[$deleteContributor])) {
+				if (!empty($contributors[$deleteContributor]['contributorId'])) {
+					$deletedContributors = explode(':', $form->getData('deletedContributors'));
+					array_push($deletedContributors, $contributors[$deleteContributor]['contributorId']);
+					$form->setData('deletedContributors', join(':', $deletedContributors));
+				}
 				Registry::set('inserts_ContributorInsert_removeAuthor', $deleteContributor);
 				unset($contributors[$deleteContributor]);
 			}
 
 			$keyMap = array_keys($contributors);
 			if ($primaryContact == $deleteContributor && isset($contributors[$keyMap[0]])) {
-				$submitForm->setData('primaryContact', $contributors[$keyMap[0]]['authorId']);
+				$form->setData('primaryContact', $contributors[$keyMap[0]]['pivotId']);
 			}
 
-			$submitForm->setData('contributors', $contributors);
+			$form->setData('contributors', $contributors);
 		} else if (Request::getUserVar('moveContributor')) {
 			// Move a contributor up/down
 			$eventProcessed = true;
 			$moveContributorDir = Request::getUserVar('moveContributorDir');
 			$moveContributorDir = $moveContributorDir == 'u' ? 'u' : 'd';
 			$moveContributorIndex = (int) Request::getUserVar('moveContributorIndex');
-			$contributors = $submitForm->getData('contributors');
+			$contributors = $form->getData('contributors');
 			$newContributorList = array();
 
 			$keyMap = array_keys($contributors);
 
 			if (!(($moveContributorDir == 'u' && $moveContributorIndex <= 0) || ($moveContributorDir == 'd' && $moveContributorIndex >= count($contributors) - 1))) {
 				$tmpContributor = $contributors[$keyMap[$moveContributorIndex]];
-				$primaryContact = $submitForm->getData('primaryContact');
+				$primaryContact = $form->getData('primaryContact');
 				if ($moveContributorDir == 'u') {
 					$tmpUpperValue = $keyMap[$moveContributorIndex - 1];
 					$keyMap[$moveContributorIndex - 1] = $keyMap[$moveContributorIndex];
@@ -249,7 +272,7 @@ class ContributorInsert extends Insert
 					}
 				} else {
 					if ((isset($contributors[$keyMap[$moveContributorIndex + 1]]['contributionType']) &&
-						$contributors[$keyMap[$moveContributorIndex + 1]]['contributionType'] == VOLUME_EDITOR) ||
+						$contributors[$keyMap[$moveContributorIndex + 1]]['contributionType'] == CONTRIBUTION_TYPE_VOLUME_EDITOR) ||
 							$this->monograph->getWorkType() != WORK_TYPE_EDITED_VOLUME) {
 						$tmpLowerValue = $keyMap[$moveContributorIndex + 1];
 						$keyMap[$moveContributorIndex + 1] = $keyMap[$moveContributorIndex];
@@ -259,9 +282,9 @@ class ContributorInsert extends Insert
 						}
 					}
 				}
-				$submitForm->setData('contributors', $newContributorList);
+				$form->setData('contributors', $newContributorList);
 			} else {
-				$submitForm->setData('contributors', $contributors);
+				$form->setData('contributors', $contributors);
 			}
 			
 		}

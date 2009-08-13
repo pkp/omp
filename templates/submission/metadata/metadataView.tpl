@@ -36,10 +36,10 @@ function show(id) {
 {foreach name=authors from=$contributors item=author}
 
 	{if $workType == WORK_TYPE_EDITED_VOLUME}
-		{if $authorIndex == 0 && $author.contributionType == VOLUME_EDITOR}
+		{if $authorIndex == 0 && $author.contributionType == CONTRIBUTION_TYPE_VOLUME_EDITOR}
 			<h4>{translate key="inserts.contributors.volumeEditors"}</h4>
 		{/if}
-		{if $firstAuthor == false && $author.contributionType != VOLUME_EDITOR}
+		{if $firstAuthor == false && $author.contributionType != CONTRIBUTION_TYPE_VOLUME_EDITOR}
 			<h4>{translate key="monograph.authors"}</h4>
 			{assign var="firstAuthor" value=true}
 		{/if}

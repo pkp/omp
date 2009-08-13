@@ -40,6 +40,8 @@ function moveComponent(dir, componentIndex) {
 <input type="hidden" name="moveComponentDir" value="" />
 <input type="hidden" name="moveComponentIndex" value="" />
 
+<input type="hidden" name="deletedComponents" value="{$deletedComponents|escape}" />
+
 <div id="components">
 <h3>{translate key="inserts.monographComponents.heading.prep"}</h3>
 <br />
@@ -61,6 +63,7 @@ function moveComponent(dir, componentIndex) {
 {foreach name=components from=$components item=component}
 <tr>
 <td>
+	<input type="hidden" name="components[{$componentIndex}][componentId]" value="{$component.componentId|escape}" />
 	<input type="hidden" name="components[{$componentIndex}][title][{$formLocale|escape}]" value="{$component.title.$formLocale}" />
 	<h4>{$component.title.$formLocale}</h4>
 </td>
@@ -75,16 +78,16 @@ function moveComponent(dir, componentIndex) {
 <tr>
 <td>
 	<div class="{if $componentAuthorIndex % 2}evenSideIndicator{else}oddSideIndicator{/if}">
-		<input type="hidden" name="components[{$componentIndex|escape}][authors][{$componentAuthor.authorId|escape}]" value="{$componentAuthor.authorId|escape}" />
-
-		{assign var="authorId" value=$componentAuthor.authorId}
-		&nbsp;<strong>{$contributors[$authorId].firstName}&nbsp;{$contributors[$authorId].lastName}</strong>
+		{assign var="pivotId" value=$componentAuthor.pivotId}
+		<input type="hidden" name="components[{$componentIndex}][authors][{$pivotId}]" value="{$pivotId|escape}" />
+		<input type="hidden" name="components[{$componentIndex}][authors][{$pivotId}][pivotId]" value="{$pivotId|escape}" />
+		&nbsp;<strong>{$contributors[$pivotId].firstName}&nbsp;{$contributors[$pivotId].lastName}</strong>
 		<br />
-		&nbsp;{$contributors[$authorId].email}
+		&nbsp;{$contributors[$pivotId].email}
 		<br />
-		<input type="radio" name="components[{$componentIndex|escape}][primaryContact]" value="{$componentAuthor.authorId|escape}"{if $component.primaryContact == $componentAuthor.authorId} checked="checked"{/if} /> <label for="components[{$componentIndex|escape}][primaryContact]">{translate key="author.submit.selectPrincipalContact"}</label>
+		<input type="radio" name="components[{$componentIndex}][primaryContact]" value="{$pivotId|escape}"{if $component.primaryContact == $pivotId} checked="checked"{/if} /> <label for="components[{$componentIndex|escape}][primaryContact]">{translate key="author.submit.selectPrincipalContact"}</label>
 		<br />
-		&nbsp;<input type="submit" name="removeComponentAuthor[{$componentIndex}][{$componentAuthor.authorId|escape}]" value="{translate key="inserts.monographComponents.button.removeAuthor"}" class="button" />
+		&nbsp;<input type="submit" name="removeComponentAuthor[{$componentIndex}][{$pivotId|escape}]" value="{translate key="inserts.monographComponents.button.removeAuthor"}" class="button" />
 	</div>
 </td>
 <td>
@@ -131,7 +134,7 @@ components.scrollIntoView();
 	<td width="80%">
 		<select name="newComponent[authors][]" multiple="multiple" class="selectMenu" size="7" style="width:20em">
 			{foreach from=$contributors item=author}
-			<option value="{$author.authorId}">{$author.firstName} {$author.lastName} ({$author.email})</option>
+			<option value="{$author.pivotId}">{$author.firstName} {$author.lastName} ({$author.email})</option>
 			{/foreach}
 		</select>
 	</td>

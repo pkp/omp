@@ -76,7 +76,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 				$this->monograph->stampStatusModified();
 				$this->monograph->setSubmissionProgress($this->sequence->currentStep + 1);
 			}
-			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME :0);
+			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : 0);
 			$this->monograph->setArrangementId($this->getData('arrangementId'));
 			$monographId = $this->monograph->getMonographId();
 			$monographDao->updateMonograph($this->monograph);
@@ -86,7 +86,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$press =& Request::getPress();
 			$user =& Request::getUser();
 
-			$this->monograph =& new Monograph();
+			$this->monograph = new Monograph();
 			$this->monograph->setUserId($user->getId());
 			$this->monograph->setPressId($press->getId());
 			$this->monograph->stampStatusModified();
@@ -97,7 +97,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$this->monograph->setArrangementId($this->getData('arrangementId'));
 
 			// Set user to initial author
-			$author =& new Author();
+			$author = new Author();
 			$author->setFirstName($user->getFirstName());
 			$author->setMiddleName($user->getMiddleName());
 			$author->setLastName($user->getLastName());
@@ -106,6 +106,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$author->setEmail($user->getEmail());
 			$author->setUrl($user->getUrl());
 			$author->setBiography($user->getBiography(null), null);
+			$author->setContributionType($this->getData('isEditedVolume') ? CONTRIBUTION_TYPE_VOLUME_EDITOR : CONTRIBUTION_TYPE_AUTHOR);
 			$author->setPrimaryContact(1);
 			$this->monograph->addAuthor($author);
 

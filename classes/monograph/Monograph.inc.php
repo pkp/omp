@@ -38,6 +38,20 @@ import('monograph.Author');
 
 class Monograph extends Submission {
 
+	var $components;
+	var $removedComponents;
+
+ 	/**
+	 * get monograph id
+	 * @return int
+	 * Constructor.
+ 	 */
+	function Monograph() {
+		parent::Submission();
+		$this->components = array();
+		$this->removedComponents = array();
+ 	}
+
 	/**
 	 * get monograph id
 	 * @return int
@@ -54,16 +68,81 @@ class Monograph extends Submission {
 		return $this->setData('monographId', $monographId);
 	}
 
-	function addMonographComponent($component) {
-		if ($component->getSequence() == null) {
-			$component->setSequence(count($this->getData('components')) + 1);
+	/**
+	 * Get a specific monograph component.
+	 * @param $componentId int
+	 * @return MonographComponent
+	 */
+	function &getComponent($componentId) {
+		$component = null;
+
+		if (!empty($componentId)) {
+			for ($i=0, $count=count($this->components); $i < $count && $components == null; $i++) {
+				if ($this->components[$i]->getId() == $componentId) {
+					$component =& $this->components[$i];
+				}
+			}
 		}
-		$components = $this->getData('components');
-		array_push($components, $component);
-		$this->setData('components', $components);
+		return $component;
 	}
-	function setMonographComponents($components) {
-		$this->setData('components', $components);
+
+	/**
+	 * Add a monograph component.
+	 * @param $component MonographComponent
+	 */
+	function addComponent($component) {
+		if ($component->getSequence() == null) {
+			$component->setSequence(count($this->components) + 1);
+		}
+		array_push($this->components, $component);
+	}
+
+	/**
+	 * Remove a monograph component.
+	 * @param $componentId ID of the component to remove
+	 * @return boolean component was removed
+	 */
+	function removeComponent($componentId) {
+		$found = false;
+
+		if (!empty($componentId)) {
+			// FIXME maintain a hash of ID to component for quicker get/remove
+			$components = array();
+			for ($i=0, $count=count($this->components); $i < $count; $i++) {
+				if ($this->components[$i]->getId() == $componentId) {
+					array_push($this->removedComponents, $componentId);
+					$found = true;
+				} else {
+					array_push($components, $this->components[$i]);
+				}
+			}
+			$this->components = $components;
+ 		}
+		return $found;
+ 	}
+
+	/**
+	 * Get the IDs of all components removed from this submission.
+	 * @return array int
+	 */
+	function &getRemovedComponents() {
+		return $this->removedComponents;
+ 	}
+
+	/**
+	 * Set monograph components.
+	 * @param $components array MonographComponent
+	 */
+	function setComponents($components) {
+		$this->components = $components;
+	}
+
+	/**
+	 * Get all monograph components.
+	 * @return array MonographComponent
+	 */
+	function &getComponents() {
+		return $this->components;
 	}
 
 	//

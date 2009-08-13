@@ -24,6 +24,19 @@ define('MONOGRAPH_STATUS_PUBLISHED', 0x00000002);
 define('ARRANGEMENT_UNASSIGNED', 0);
 
 class MonographDAO extends DAO {
+
+	var $authorDao;
+	var $monographComponentDao;
+
+	/**
+	 * Constructor.
+	 */
+	function MonographDAO() {
+		parent::DAO();
+		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$this->monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
+	}
+
 	/**
 	 * Retrieve Monograph by monograph id
 	 * @param $monographId int
@@ -255,8 +268,19 @@ class MonographDAO extends DAO {
 		$monograph->setMonographId($this->getInsertMonographId());
 		$this->updateLocaleFields($monograph);
 
-		// Insert authors and monograph components for this monograph
-		$this->_updateMonographPeripherals($monograph);
+		// Insert authors for this monograph
+		$authors =& $monograph->getAuthors();
+		for ($i=0, $count=count($authors); $i < $count; $i++) {
+			$authors[$i]->setMonographId($monograph->getMonographId());
+			$this->authorDao->insertAuthor($authors[$i]);
+		}
+
+		// Insert components for this monograph
+		$components =& $monograph->getComponents();
+		for ($i=0, $count=count($components); $i < $count; $i++) {
+			$components[$i]->setMonographId($monograph->getMonographId());
+			$this->monographComponentDao->insertObject($components[$i]);
+		}
 
 		return $monograph->getMonographId();
 
@@ -339,8 +363,64 @@ class MonographDAO extends DAO {
 			)
 		);
 		$this->updateLocaleFields($monograph);
-		
-		$this->_updateMonographPeripherals($monograph);
+
+		$contributorMap = null;
+
+		// update authors for this monograph
+		$authors =& $monograph->getAuthors();
+		for ($i=0, $count=count($authors); $i < $count; $i++) {
+
+			$pivotId = $authors[$i]->getData('pivotId');
+
+			if ($authors[$i]->getId() > 0) {
+				$this->authorDao->updateAuthor($authors[$i]);
+				$authorId = $authors[$i]->getId();
+			} else {
+				$authorId = $this->authorDao->insertAuthor($authors[$i]);
+			}
+
+			if ($pivotId !== null) {
+				$contributorMap[$pivotId] = $authorId;
+			}
+		}
+
+		// Remove deleted authors
+		$removedAuthors = $monograph->getRemovedAuthors();
+		for ($i=0, $count=count($removedAuthors); $i < $count; $i++) {
+			$this->authorDao->deleteAuthorById($removedAuthors[$i], $monograph->getMonographId());
+		}
+
+		// update monograph components
+		$components = $monograph->getComponents();
+		for ($i=0, $count=count($components); $i < $count; $i++) {
+			if (!empty($contributorMap)) {
+				$authors =& $components[$i]->getAuthors();
+				for ($j=0,$authorCount=count($authors); $j<$authorCount; $j++) {
+					if (isset($contributorMap[$authors[$j]->getId()])) {
+						$authors[$j]->setId($contributorMap[$authors[$j]->getId()]);
+					}
+				}
+				$primaryContact = $components[$i]->getPrimaryContact();
+				if (isset($contributorMap[$primaryContact])) {
+					$components[$i]->setPrimaryContact($contributorMap[$primaryContact]);
+				}
+			}
+
+			if ($components[$i]->getId() > 0) {
+				$this->monographComponentDao->updateObject($components[$i]);
+			} else {
+				$this->monographComponentDao->insertObject($components[$i]);
+			}
+		}
+
+		// Remove deleted components
+		$removedComponents = $monograph->getRemovedComponents();
+		for ($i=0, $count=count($removedComponents); $i < $count; $i++) {
+			$this->monographComponentDao->deleteById($removedComponents[$i], $monograph->getMonographId());
+		}
+
+		// Update author sequence numbers
+		$this->authorDao->resequenceAuthors($monograph->getMonographId());
 	}
 
 	/**
@@ -359,19 +439,19 @@ class MonographDAO extends DAO {
 	 */
 	function deleteMonograph(&$monograph) {
 		import('file.PublicFileManager');
-		$publicFileManager =& new PublicFileManager();
+		$publicFileManager = new PublicFileManager();
 		
 		if (is_array($monograph->getFileName(null))) foreach ($monograph->getFileName(null) as $fileName) {
 			if ($fileName != '') {
 				$publicFileManager->removePressFile($monograph->getPressId(), $fileName);
 			}
 		}
-	/*	if (($fileName = $monograph->getStyleFileName()) != '') {
-			$publicFileManager->removePressFile($monograph->getPressId(), $fileName);
-		}*/
 
 		$this->update('DELETE FROM monograph_settings WHERE monograph_id = ?', $monograph->getMonographId());
 		$this->update('DELETE FROM monographs WHERE monograph_id = ?', $monograph->getMonographId());
+
+		$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
+		$monographComponentDao->deleteByMonographId($monograph->getMonographId());
 	}
 
 	/**
@@ -471,8 +551,6 @@ class MonographDAO extends DAO {
 	}
 	function _monographFromRow(&$monograph, &$row) {
 
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-
 		$monograph->setMonographId($row['monograph_id']);
 		$monograph->setPressId($row['press_id']);
 		$monograph->setUserId($row['user_id']);
@@ -500,83 +578,19 @@ class MonographDAO extends DAO {
 			$monograph->setArrangementTitle($row['arrangement_title']);
 
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
-		$monograph->setAuthors($authorDao->getAuthorsByMonographId($row['monograph_id']));
-
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$authors =& $authorDao->getAuthorsByMonographId($monograph->getMonographId());
-		$monograph->setAuthors($authors);
+		$monograph->setAuthors($this->authorDao->getAuthorsByMonographId($row['monograph_id']));
 		
 		$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
 		$monographComponents =& $monographComponentDao->getMonographComponents($monograph->getMonographId());
-		$monograph->setMonographComponents($monographComponents);
+		$monograph->setComponents($monographComponents);
 
 		// set review rounds info
 		$reviewRoundsInfo = $this->getReviewRoundsInfoById($row['monograph_id']);
 		if ( empty($reviewRoundsInfo) ) $reviewRoundsInfo[$row['current_review_type']] = $row['current_round'];
 		$monograph->setReviewRoundsInfo($reviewRoundsInfo);
 
-		HookRegistry::call('MonographDAO::_fromRow', array(&$monograph, &$row));
+		HookRegistry::call('MonographDAO::_monographFromRow', array(&$monograph, &$row));
 
-	}
-	/**
-	 * Update/insert monograph component and author related data.
-	 * @param $monograph Monograph
-	 */
-	function _updateMonographPeripherals(&$monograph) {
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$authors =& $monograph->getAuthors();
-		$oldAuthors =& $authorDao->getAuthorIdsByMonographId($monograph->getMonographId());
-
-		$count = max(array(count($authors),count($oldAuthors)));
-
-		//FIXME: this is not pretty.
-		for ($i=0; $i < $count; $i++) {
-			if (isset($authors[$i]) && isset($oldAuthors[$i])) {
-				$gnash[$authors[$i]->getId()] = $oldAuthors[$i];
-				$authors[$i]->setId($oldAuthors[$i]);
-				$authorDao->updateAuthor($authors[$i]);
-			} else if (!isset($authors[$i]) && isset($oldAuthors[$i])) {
-				$authorDao->deleteAuthorById($oldAuthors[$i], $monograph->getMonographId());
-			} else if (isset($authors[$i]) && !isset($oldAuthors[$i])) {
-				$authors[$i]->setMonographId($monograph->getMonographId());
-				$contribution = $authors[$i]->getContributionType();
-				if (!isset($contribution)) $authors[$i]->setContributionType(AUTHOR);
-				$gnash[$authors[$i]->getId()] = $authorDao->insertAuthor($authors[$i]);
-			}
-		}
-
-		$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
-		$monographComponents =& $monograph->getMonographComponents();
-		$oldMonographComponents =& $monographComponentDao->getMonographComponentIdsByMonographId($monograph->getMonographId());
-
-		$count = max(array(count($monographComponents),count($oldMonographComponents)));
-
-		for ($i=0; $i < $count; $i++) {
-
-			if (isset($monographComponents[$i]) && isset($oldMonographComponents[$i])) {
-
-				foreach ($monographComponents[$i]->getMonographComponentAuthors() as $ca) {
-					if (isset($gnash[$ca->getId()])) {
-						$ca->setId($gnash[$ca->getId()]);
-					}
-				}
-				$monographComponents[$i]->setPrimaryContact($gnash[$monographComponents[$i]->getPrimaryContact()]);
-				$monographComponents[$i]->setMonographComponentId($oldMonographComponents[$i]);
-				$monographComponentDao->updateMonographComponent($monographComponents[$i]);
-
-			} else if (!isset($monographComponents[$i]) && isset($oldMonographComponents[$i])) {
-
-				$monographComponentDao->deleteMonographComponentById($oldMonographComponents[$i]);
-
-			} else if (isset($monographComponents[$i]) && !isset($oldMonographComponents[$i])) {
-
-				foreach ($monographComponents[$i]->getMonographComponentAuthors() as $chau) {
-					$chau->setId($gnash[$chau->getId()]);
-				}
-				$monographComponents[$i]->setPrimaryContact($gnash[$monographComponents[$i]->getPrimaryContact()]);
-				$monographComponentDao->insertMonographComponent($monographComponents[$i]);
-			}
-		}
 	}
 
 	/**

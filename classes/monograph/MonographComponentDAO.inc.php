@@ -16,8 +16,7 @@
 // $Id$
 
 
-import('monograph.Author');
-import('monograph.Monograph');
+import('monograph.MonographComponent');
 
 class MonographComponentDAO extends DAO {
 	/**
@@ -36,7 +35,7 @@ class MonographComponentDAO extends DAO {
 		$returner = array();
 
 		while (!$result->EOF) {
-			$returner[] =& $this->_returnMonographComponentFromRow($result->GetRowAssoc(false));;
+			$returner[] =& $this->_fromRow($result->GetRowAssoc(false));;
 			$result->moveNext();
 		}
 
@@ -84,9 +83,17 @@ class MonographComponentDAO extends DAO {
 	 */
 	function updateLocaleFields(&$component) {
 		$this->updateDataObjectSettings('monograph_component_settings', $component, array(
-			'component_id' => $component->getMonographComponentId()
+			'component_id' => $component->getId()
 		));
 
+	}
+
+ 	/**
+	 * Construct a new data object corresponding to this DAO.
+	 * @return SignoffEntry
+	 */
+	function newDataObject() {
+		return new MonographComponent();
 	}
 
 	/**
@@ -94,37 +101,35 @@ class MonographComponentDAO extends DAO {
 	 * @param $row array
 	 * @return MonographComponent
 	 */
-	function &_returnMonographComponentFromRow(&$row) {
-		import('monograph.MonographComponent');
-		$component =& new MonographComponent();
-		$component->setMonographComponentId($row['component_id']);
+	function &_fromRow(&$row) {
+		$component = $this->newDataObject();
+		$component->setId($row['component_id']);
 		$component->setMonographId($row['monograph_id']);
 		$component->setSequence($row['seq']);
 		$component->setPrimaryContact($row['contact_author']);
 
 		$componentAuthors = $this->getAuthorsByMonographComponent($row['component_id']);
 		
-		$component->setMonographComponentAuthors($componentAuthors);
+		$component->setAuthors($componentAuthors);
 		$this->getDataObjectSettings('monograph_component_settings', 'component_id', $row['component_id'], $component);
 
-		HookRegistry::call('MonographComponentDAO::_returnMonographComponentFromRow', array(&$component, &$row));
+		HookRegistry::call('MonographComponentDAO::_fromRow', array(&$component, &$row));
 
 		return $component;
 	}
 
-	function updateMonographComponent($component) {
+	function updateObject($component) {
 		$returner = $this->update(
 			'UPDATE monograph_components
-				SET
-					monograph_id = ?,
-					seq = ?,
-					contact_author = ?
-					WHERE component_id = ?',
+			SET monograph_id = ?,
+				seq = ?,
+				contact_author = ?
+			WHERE component_id = ?',
 			array(
 				$component->getMonographId(),
 				$component->getSequence(),
 				$component->getPrimaryContact(),
-				$component->getMonographComponentId()
+				$component->getId()
 			)
 		);
 		$this->updateLocaleFields($component);
@@ -132,15 +137,15 @@ class MonographComponentDAO extends DAO {
 		$this->update('DELETE FROM monograph_component_authors WHERE monograph_id = ? AND component_id = ?',
 				array(
 					$component->getMonographId(),
-					$component->getMonographComponentId()
+					$component->getId()
 				)
 			);
 		
-		$componentAuthors = $component->getMonographComponentAuthors();
+		$componentAuthors = $component->getAuthors();
 
 		for ($i=0,$count=count($componentAuthors);$i < $count;$i++) {
 			$this->_insertMonographComponentAuthor(
-				$component->getMonographComponentId(), 
+				$component->getId(), 
 				$componentAuthors[$i]->getId(), 
 				$component->getMonographId(),
 				$i+1
@@ -163,12 +168,26 @@ class MonographComponentDAO extends DAO {
 				)
 			);
 	}
-	function deleteMonographComponentById($componentId) {
+
+	function deleteById($componentId) {
 		$returner = $this->update(
 			'DELETE FROM monograph_components WHERE component_id = ?', $componentId
 		);
+		$this->update('DELETE FROM monograph_component_settings WHERE component_id = ?', $componentId);
+		$this->update('DELETE FROM monograph_component_authors WHERE component_id = ?', $componentId);
+
+		return $returner;
 	}
-	function insertMonographComponent($component) {
+
+	function deleteByMonographId($monographId) {
+		$components =& $this->getMonographComponents($monographId);
+
+		foreach ($components as $component) {
+			$this->deleteById($component->getId());
+		}
+ 	}
+
+	function insertObject($component) {
 
 		$this->update(
 			'INSERT INTO monograph_components
@@ -181,8 +200,8 @@ class MonographComponentDAO extends DAO {
 				$component->getSequence()
 			));
 		
-		$component->setMonographComponentId($this->getInsertMonographComponentId());
-		$componentAuthors = $component->getMonographComponentAuthors();
+		$component->setId($this->getInsertMonographComponentId());
+		$componentAuthors = $component->getAuthors();
 
 		for ($i=0,$count=count($componentAuthors);$i<$count;$i++) {
 			$this->_insertMonographComponentAuthor(
