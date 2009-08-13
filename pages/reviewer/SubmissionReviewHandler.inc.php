@@ -175,16 +175,16 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * Delete one of the reviewer's annotated versions of a monograph.
 	 */
 	function deleteReviewerVersion($args) {		
-                $reviewId = isset($args[0]) ? (int) $args[0] : 0;
+		$reviewId = isset($args[0]) ? (int) $args[0] : 0;
 		$fileId = isset($args[1]) ? (int) $args[1] : 0;
 		$revision = isset($args[2]) ? (int) $args[2] : null;
 
 		$this->validate($reviewId);
 		$reviewerSubmission =& $this->submission;
 
-        if (!$reviewerSubmission->getCancelled()) ReviewerAction::deleteReviewerVersion($reviewId, $fileId, $revision);
-		Request::redirect(null, null, 'submission', $reviewId);
-	}
+		if (!$reviewerSubmission->getCancelled()) ReviewerAction::deleteReviewerVersion($reviewId, $fileId, $revision);
+			Request::redirect(null, null, 'submission', $reviewId);
+		}
 
 	//
 	// Misc

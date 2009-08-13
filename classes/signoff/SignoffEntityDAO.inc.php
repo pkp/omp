@@ -78,7 +78,7 @@ class SignoffEntityDAO extends DAO {
 		return $returner;
 	}
 
-      	/**
+	/**
 	 * Fetch a list of the entities associated with a process for a press.
 	 * @param $eventType int
 	 * @param $eventId int

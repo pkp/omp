@@ -328,7 +328,7 @@ class AcquisitionsArrangementDAO extends DAO {
 
 		$sql = 'SELECT * FROM acquisitions_arrangements WHERE press_id = ?';
 		$params = array($pressId);
-	      
+
 		if ($type !== null) {
 			$sql.= 'AND arrangement_type = ?';
 			$params[] = $type;

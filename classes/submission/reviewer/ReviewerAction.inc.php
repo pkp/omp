@@ -247,7 +247,7 @@ class ReviewerAction extends Action {
 	 * @param $fileId int
 	 * @param $revision int If null, then all revisions are deleted.
 	 */
-        function deleteReviewerVersion($reviewId, $fileId, $revision = null) {
+	function deleteReviewerVersion($reviewId, $fileId, $revision = null) {
 		import("file.MonographFileManager");
 
 		$monographId = Request::getUserVar('monographId');
@@ -258,7 +258,7 @@ class ReviewerAction extends Action {
 			$monographFileManager = new MonographFileManager($reviewAssignment->getMonographId());
 			$monographFileManager->deleteFile($fileId, $revision);
 		}
-        }
+	}
 
 	/**
 	 * View reviewer comments.

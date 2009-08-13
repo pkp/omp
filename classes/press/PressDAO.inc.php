@@ -31,7 +31,8 @@ class PressDAO extends DAO
 		$result->Close();
 		return $returner;
 	}
-        /**
+
+	/**
 	 * Retrieve the IDs and names of all presses in an associative array.
 	 * @return array
 	 */

@@ -100,7 +100,7 @@ class PressSetupStep3Form extends PressSetupForm {
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
 		import('file.PublicFileManager');
-		$fileManager = new PublicFileManager();      
+		$fileManager = new PublicFileManager();
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$extension = $fileManager->getExtension($_FILES[$settingName]['name']);
 			if (!$extension) {

@@ -110,11 +110,11 @@ class AuthorSubmissionDAO extends DAO {
 		$authorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id']));
 
 		if (isset($reviewRounds)) {
-		      foreach ($reviewRounds as $reviewRound => $round) { // Review Assignments
-			      for ($i = 1; $i <= $round; $i++) {
-				      $authorSubmission->setReviewAssignments($this->reviewAssignmentDao->getByMonographId($row['monograph_id'], $reviewRound, $i), $reviewRound, $i);
-			      }
-		      }
+			foreach ($reviewRounds as $reviewRound => $round) { // Review Assignments
+				for ($i = 1; $i <= $round; $i++) {
+					$authorSubmission->setReviewAssignments($this->reviewAssignmentDao->getByMonographId($row['monograph_id'], $reviewRound, $i), $reviewRound, $i);
+				}
+			}
 		}
 
 

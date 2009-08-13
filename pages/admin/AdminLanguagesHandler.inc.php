@@ -66,10 +66,10 @@ class AdminLanguagesHandler extends AdminHandler {
 
 		$site =& Request::getSite();
 
-                $primaryLocale = Request::getUserVar('primaryLocale');
+		$primaryLocale = Request::getUserVar('primaryLocale');
 		$supportedLocales = Request::getUserVar('supportedLocales');
 
-                if (Locale::isLocaleValid($primaryLocale)) {
+		if (Locale::isLocaleValid($primaryLocale)) {
 			$site->setPrimaryLocale($primaryLocale);
 		}
 
