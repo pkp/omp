@@ -35,7 +35,7 @@ class SetupHandler extends ManagerHandler {
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
-		if ($step >= 1 && $step <= 6) {
+		if ($step >= 1 && $step <= 5) {
 
 			$formClass = "PressSetupStep{$step}Form";
 			import("manager.form.setup.$formClass");
