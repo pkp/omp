@@ -60,6 +60,7 @@ class RegistrationHandler extends UserHandler {
 	 */
 	function registerUser() {
 		$this->validate();
+		$this->setupTemplate(true);
 		import('user.form.RegistrationForm');
 
 		$regForm =& new RegistrationForm();
@@ -97,7 +98,6 @@ class RegistrationHandler extends UserHandler {
 			else Request::redirect(null, 'login');
 
 		} else {
-			$this->setupTemplate(true);
 			$regForm->display();
 		}
 	}
