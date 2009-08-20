@@ -145,6 +145,7 @@ class Request extends PKPRequest {
 			$roles =& $roleDao->getRolesByUserId($userId, $press->getId());
 			if(count($roles) == 1) {
 				$role = array_shift($roles);
+				if ($role->getRoleId() == ROLE_ID_READER) Request::redirect(null, 'index');
 				Request::redirect(null, $role->getRolePath());
 			} else {
 				Request::redirect(null, 'user');
@@ -158,8 +159,9 @@ class Request extends PKPRequest {
 				$pressDao =& DAORegistry::getDAO('PressDAO');
 				$role = array_shift($roles);
 				$press = $pressDao->getPress($role->getId());
-				isset($press) ? Request::redirect($press->getPath(), $role->getRolePath()) :
-								  Request::redirect('index', 'user');
+				if (!isset($press)) Request::redirect('index', 'user');;
+				if ($role->getRoleId() == ROLE_ID_READER) Request::redirect(null, 'index');
+				Request::redirect($press->getPath(), $role->getRolePath());
 			} else Request::redirect('index', 'user');
 		}
 	}
