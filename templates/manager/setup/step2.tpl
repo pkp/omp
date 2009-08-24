@@ -27,26 +27,13 @@
 </table>
 {/if}
 
-<h3>2.1 {translate key="manager.setup.focusAndScopeOfPress"}</h3>
-<p>{translate key="manager.setup.focusAndScopeDescription"}</p>
-<p>
-	<textarea name="focusScopeDesc[{$formLocale|escape}]" id="focusScopeDesc" rows="12" cols="60" class="textArea">{$focusScopeDesc[$formLocale]|escape}</textarea>
-	<br />
-	<span class="instruct">{translate key="manager.setup.htmlSetupInstructions"}</span>
-</p>
-
-
-<div class="separator"></div>
-
-
-<h3>2.2 {translate key="manager.setup.peerReviewPolicy"}</h3>
+<h3>2.1 {translate key="manager.setup.peerReviewPolicy"}</h3>
 
 <p>{translate key="manager.setup.peerReviewDescription"}</p>
 
 <h4>{translate key="manager.setup.reviewPolicy"}</h4>
 
 <p><textarea name="reviewPolicy[{$formLocale|escape}]" id="reviewPolicy" rows="12" cols="60" class="textArea">{$reviewPolicy[$formLocale]|escape}</textarea></p>
-
 
 <h4>{translate key="manager.setup.reviewGuidelines"}</h4>
 
@@ -157,55 +144,13 @@
 
 <div class="separator"></div>
 
-<h3>2.3 {translate key="manager.setup.privacyStatement"}</h3>
-
-<p><textarea name="privacyStatement[{$formLocale|escape}]" id="privacyStatement" rows="12" cols="60" class="textArea">{$privacyStatement[$formLocale]|escape}</textarea></p>
-
-
-<div class="separator"></div>
-
-
-<h3>2.4 {translate key="manager.setup.editorDecision"}</h3>
+<h3>2.2 {translate key="manager.setup.editorDecision"}</h3>
 
 <p><input type="checkbox" name="notifyAllAuthorsOnDecision" id="notifyAllAuthorsOnDecision" value="1"{if $notifyAllAuthorsOnDecision} checked="checked"{/if} /> <label for="notifyAllAuthorsOnDecision">{translate key="manager.setup.notifyAllAuthorsOnDecision"}</label></p>
 
 <div class="separator"></div>
 
-
-<h3>2.5 {translate key="manager.setup.addItemtoAboutPress"}</h3>
-
-<table width="100%" class="data">
-{foreach name=customAboutItems from=$customAboutItems[$formLocale] key=aboutId item=aboutItem}
-	<tr valign="top">
-		<td width="5%" class="label">{fieldLabel name="customAboutItems-$aboutId-title" key="common.title"}</td>
-		<td width="95%" class="value"><input type="text" name="customAboutItems[{$formLocale|escape}][{$aboutId|escape}][title]" id="customAboutItems-{$aboutId|escape}-title" value="{$aboutItem.title|escape}" size="40" maxlength="255" class="textField" />{if $smarty.foreach.customAboutItems.total > 1} <input type="submit" name="delCustomAboutItem[{$aboutId|escape}]" value="{translate key="common.delete"}" class="button" />{/if}</td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="customAboutItems-$aboutId-content" key="manager.setup.aboutItemContent"}</td>
-		<td width="80%" class="value"><textarea name="customAboutItems[{$formLocale|escape}][{$aboutId|escape}][content]" id="customAboutItems-{$aboutId|escape}-content" rows="12" cols="40" class="textArea">{$aboutItem.content|escape}</textarea></td>
-	</tr>
-	{if !$smarty.foreach.customAboutItems.last}
-	<tr valign="top">
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
-	{/if}
-{foreachelse}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-title" key="common.title"}</td>
-		<td width="80%" class="value"><input type="text" name="customAboutItems[{$formLocale|escape}][0][title]" id="customAboutItems-0-title" value="" size="40" maxlength="255" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-content" key="manager.setup.aboutItemContent"}</td>
-		<td width="80%" class="value"><textarea name="customAboutItems[{$formLocale|escape}][0][content]" id="customAboutItems-0-content" rows="12" cols="40" class="textArea"></textarea></td>
-	</tr>
-{/foreach}
-</table>
-
-<p><input type="submit" name="addCustomAboutItem" value="{translate key="manager.setup.addAboutItem"}" class="button" /></p>
-
-<div class="separator"></div>
-
-<h3>2.6 {translate key="manager.setup.reviewerDatabaseLink"}</h3>
+<h3>2.3 {translate key="manager.setup.reviewerDatabaseLink"}</h3>
 
 <p>{translate key="manager.setup.reviewerDatabaseLink.desc"}</p>
 

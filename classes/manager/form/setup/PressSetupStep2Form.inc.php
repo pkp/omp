@@ -15,7 +15,7 @@
 // $Id$
 
 
-import("manager.form.setup.PressSetupForm");
+import('manager.form.setup.PressSetupForm');
 
 class PressSetupStep2Form extends PressSetupForm {
 	/**
@@ -25,7 +25,6 @@ class PressSetupStep2Form extends PressSetupForm {
 		parent::PressSetupForm(
 			2,
 			array(
-				'focusScopeDesc' => 'string',
 				'numWeeksPerReview' => 'int',
 				'remindForInvite' => 'bool',
 				'remindForSubmit' => 'bool',
@@ -39,8 +38,6 @@ class PressSetupStep2Form extends PressSetupForm {
 				'mailSubmissionsToReviewers' => 'bool',
 				'reviewGuidelines' => 'string',
 				'authorSelectsEditor' => 'bool',
-				'privacyStatement' => 'string',
-				'customAboutItems' => 'object',
 				'enableLockss' => 'bool',
 				'lockssLicense' => 'string',
 				'reviewerDatabaseLinks' => 'object',
@@ -56,7 +53,7 @@ class PressSetupStep2Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('focusScopeDesc', 'reviewPolicy', 'reviewGuidelines', 'privacyStatement', 'customAboutItems', 'lockssLicense');
+		return array('reviewPolicy', 'reviewGuidelines', 'lockssLicense');
 	}
 
 	/**

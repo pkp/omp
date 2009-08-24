@@ -15,7 +15,7 @@
 // $Id$
 
 
-import("manager.form.setup.PressSetupForm");
+import('manager.form.setup.PressSetupForm');
 
 class PressSetupStep1Form extends PressSetupForm {
 	/**
@@ -48,9 +48,9 @@ class PressSetupStep1Form extends PressSetupForm {
 				'contributors' => 'object',
 				'envelopeSender' => 'string',
 				'emailSignature' => 'string',
-				'searchDescription' => 'string',
-				'searchKeywords' => 'string',
-				'customHeaders' => 'string'
+				'customAboutItems' => 'object',
+				'focusScopeDesc' => 'string',
+				'privacyStatement' => 'string'
 			)
 		);
 
@@ -68,7 +68,11 @@ class PressSetupStep1Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('name', 'initials', 'sponsorNote', 'contactTitle', 'contactAffiliation', 'contactMailingAddress', 'publisherNote', 'contributorNote', 'searchDescription', 'searchKeywords', 'customHeaders');
+		return array(
+			'name', 'initials', 'sponsorNote', 'contactTitle', 'contactAffiliation', 'contactMailingAddress', 
+			'publisherNote', 'contributorNote', 'searchDescription', 'searchKeywords', 'customHeaders', 
+			'customAboutItems', 'focusScopeDesc', 'privacyStatement'
+		);
 	}
 
 	/**

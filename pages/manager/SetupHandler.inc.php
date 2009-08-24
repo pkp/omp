@@ -109,11 +109,7 @@ class SetupHandler extends ManagerHandler {
 						$contributors = $setupForm->getData('contributors');
 						array_splice($contributors, $delContributor, 1);
 						$setupForm->setData('contributors', $contributors);
-					}
-					break;
-
-				case 2:
-					if (Request::getUserVar('addCustomAboutItem')) {
+					} else if (Request::getUserVar('addCustomAboutItem')) {
 						// Add a custom about item
 						$editData = true;
 						$customAboutItems = $setupForm->getData('customAboutItems');
@@ -130,6 +126,10 @@ class SetupHandler extends ManagerHandler {
 						array_splice($customAboutItems[$formLocale], $delCustomAboutItem, 1);
 						$setupForm->setData('customAboutItems', $customAboutItems);
 					}
+
+					break;
+
+				case 2:
 					if (Request::getUserVar('addReviewerDatabaseLink')) {
 						// Add a reviewer database link
 						$editData = true;

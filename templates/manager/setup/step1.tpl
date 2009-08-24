@@ -240,33 +240,54 @@
 
 <div class="separator"></div>
 
-
-<h3>1.8 {translate key="manager.setup.searchEngineIndexing"}</h3>
-
-<p>{translate key="manager.setup.searchEngineIndexingDescription"}</p>
+<h3>1.8 {translate key="manager.setup.addItemtoAboutPress"}</h3>
 
 <table width="100%" class="data">
+{foreach name=customAboutItems from=$customAboutItems[$formLocale] key=aboutId item=aboutItem}
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="searchDescription" key="common.description"}</td>
-		<td width="80%" class="value"><input type="text" name="searchDescription[{$formLocale|escape}]" id="searchDescription" value="{$searchDescription[$formLocale]|escape}" size="40" maxlength="255" class="textField" /></td>
+		<td width="5%" class="label">{fieldLabel name="customAboutItems-$aboutId-title" key="common.title"}</td>
+		<td width="95%" class="value"><input type="text" name="customAboutItems[{$formLocale|escape}][{$aboutId|escape}][title]" id="customAboutItems-{$aboutId|escape}-title" value="{$aboutItem.title|escape}" size="40" maxlength="255" class="textField" />{if $smarty.foreach.customAboutItems.total > 1} <input type="submit" name="delCustomAboutItem[{$aboutId|escape}]" value="{translate key="common.delete"}" class="button" />{/if}</td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="searchKeywords" key="common.keywords"}</td>
-		<td width="80%" class="value"><input type="text" name="searchKeywords[{$formLocale|escape}]" id="searchKeywords" value="{$searchKeywords[$formLocale]|escape}" size="40" maxlength="255" class="textField" /></td>
+		<td width="20%" class="label">{fieldLabel name="customAboutItems-$aboutId-content" key="manager.setup.aboutItemContent"}</td>
+		<td width="80%" class="value"><textarea name="customAboutItems[{$formLocale|escape}][{$aboutId|escape}][content]" id="customAboutItems-{$aboutId|escape}-content" rows="12" cols="40" class="textArea">{$aboutItem.content|escape}</textarea></td>
+	</tr>
+	{if !$smarty.foreach.customAboutItems.last}
+	<tr valign="top">
+		<td colspan="2" class="separator">&nbsp;</td>
+	</tr>
+	{/if}
+{foreachelse}
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-title" key="common.title"}</td>
+		<td width="80%" class="value"><input type="text" name="customAboutItems[{$formLocale|escape}][0][title]" id="customAboutItems-0-title" value="" size="40" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="customHeaders" key="manager.setup.customTags"}</td>
-		<td width="80%" class="value">
-			<textarea name="customHeaders[{$formLocale|escape}]" id="customHeaders" rows="3" cols="40" class="textArea">{$customHeaders[$formLocale]|escape}</textarea>
-			<br />
-			<span class="instruct">{translate key="manager.setup.customTagsDescription"}</span>
-		</td>
+		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-content" key="manager.setup.aboutItemContent"}</td>
+		<td width="80%" class="value"><textarea name="customAboutItems[{$formLocale|escape}][0][content]" id="customAboutItems-0-content" rows="12" cols="40" class="textArea"></textarea></td>
 	</tr>
+{/foreach}
 </table>
 
+<p><input type="submit" name="addCustomAboutItem" value="{translate key="manager.setup.addAboutItem"}" class="button" /></p>
 
 <div class="separator"></div>
 
+<h3>1.9 {translate key="manager.setup.focusAndScopeOfPress"}</h3>
+<p>{translate key="manager.setup.focusAndScopeDescription"}</p>
+<p>
+	<textarea name="focusScopeDesc[{$formLocale|escape}]" id="focusScopeDesc" rows="12" cols="60" class="textArea">{$focusScopeDesc[$formLocale]|escape}</textarea>
+	<br />
+	<span class="instruct">{translate key="manager.setup.htmlSetupInstructions"}</span>
+</p>
+
+<div class="separator"></div>
+
+<h3>1.10 {translate key="manager.setup.privacyStatement"}</h3>
+
+<p><textarea name="privacyStatement[{$formLocale|escape}]" id="privacyStatement" rows="12" cols="60" class="textArea">{$privacyStatement[$formLocale]|escape}</textarea></p>
+
+<div class="separator"></div>
 
 <p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>
 
