@@ -3,7 +3,7 @@
 /**
  * @defgroup monograph
  */
- 
+
 /**
  * @file classes/monograph/Monograph.inc.php
  *
@@ -217,7 +217,7 @@ class Monograph extends Submission {
 	function setReviewRoundsInfo($reviewRoundsInfo) {
 		 $this->setData('reviewRoundsInfo', $reviewRoundsInfo);
 	}
-	
+
 	function getReviewRoundsInfo() {
 		 return $this->getData('reviewRoundsInfo');
 	}
@@ -255,36 +255,41 @@ class Monograph extends Submission {
 				$userIds[] = array('id' => $author->getId(), 'role' => 'author');
 			}
 		}
-		
+
 		if($editors) {
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 			$editAssignments =& $editAssignmentDao->getByMonographId($monographId);
 			while ($editAssignment =& $editAssignments->next()) {
-				$userIds[] = array('id' => $editAssignment->getEditorId(), 'role' => 'editor');
+				$userId = $editAssignment->getEditorId();
+				if ($userId) $userIds[] = array('id' => $userId, 'role' => 'editor');
 				unset($editAssignment);
 			}
 		}
-		
+
 		if($copyeditor) {
 			$copyedSignoff = $signoffDao->getBySymbolic('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $monographId);
-			$userIds[] = array('id' => $copyedSignoff->getUserId(), 'role' => 'copyeditor');
+			$userId = $copyedSignoff->getUserId();
+			if ($userId) $userIds[] = array('id' => $userId, 'role' => 'copyeditor');
 		}
-		
+
 /*		if($layoutEditor) {
 			$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $monographId);
-			$userIds[] = array('id' => $layoutSignoff->getUserId(), 'role' => 'layoutEditor');
-		}	
-		
+			$userId = $layoutSignoff->getUserId();
+			if ($userId) $userIds[] = array('id' => $userId, 'role' => 'layoutEditor');
+		}
+
 		if($proofreader) {
 			$proofSignoff = $signoffDao->getBySymbolic('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $monographId);
-			$userIds[] = array('id' => $proofSignoff->getUserId(), 'role' => 'proofreader');
+			$userId = $proofSignoff->getUserId();
+			if ($userId) $userIds[] = array('id' => $userId, 'role' => 'proofreader');
 		}
 */
 		if($reviewers) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignments =& $reviewAssignmentDao->getByMonographId($monographId);
 			foreach ($reviewAssignments as $reviewAssignment) {
-				$userIds[] = array('id' => $reviewAssignment->getReviewerId(), 'role' => 'reviewer');
+				$userId = $reviewAssignment->getReviewerId();
+				if ($userId) $userIds[] = array('id' => $userId, 'role' => 'reviewer');
 				unset($reviewAssignment);
 			}
 		}
@@ -336,7 +341,7 @@ class Monograph extends Submission {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$signoff = $signoffDao->getBySymbolic($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
 		if (!$signoff) return false;
-		
+
 		return $signoff->getUserId();
 	}
 
@@ -486,7 +491,7 @@ class Monograph extends Submission {
 	function getFastTracked() {
 		return $this->getData('fastTracked');
 	}
-	 
+
 	/**
 	 * set fastTracked
 	 * @param $fastTracked boolean
@@ -519,6 +524,6 @@ class Monograph extends Submission {
 		unset($this->authors);
 		$this->authors = array();
 	}
-}	
+}
 
 ?>
