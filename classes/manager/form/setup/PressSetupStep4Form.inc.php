@@ -33,14 +33,6 @@ class PressSetupStep4Form extends PressSetupForm {
 				'restrictMonographAccess' => 'bool',
 				'monographEventLog' => 'bool',
 				'monographEmailLog' => 'bool',
-				'useCopyeditors' => 'bool',
-				'copyeditInstructions' => 'string',
-				'useLayoutEditors' => 'bool',
-				'layoutInstructions' => 'string',
-				'provideRefLinkInstructions' => 'bool',
-				'refLinkInstructions' => 'string',
-				'useProofreaders' => 'bool',
-				'proofInstructions' => 'string',
 				'showGalleyLinks' => 'bool',
 				'openAccessPolicy' => 'string',
 				'enableAnnouncements' => 'bool',
@@ -48,6 +40,9 @@ class PressSetupStep4Form extends PressSetupForm {
 				'numAnnouncementsHomepage' => 'int',
 				'announcementsIntroduction' => 'string',
 				'volumePerYear' => 'int',
+				'enableLockss' => 'bool',
+				'lockssLicense' => 'string',
+				'reviewerDatabaseLinks' => 'object',
 				'enablePublicMonographId' => 'bool',
 				'enablePublicGalleyId' => 'bool',
 				'enablePublicSuppFileId' => 'bool',
@@ -61,7 +56,7 @@ class PressSetupStep4Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('pubFreqPolicy', 'copyeditInstructions', 'layoutInstructions', 'refLinkInstructions', 'proofInstructions', 'openAccessPolicy', 'announcementsIntroduction');
+		return array('pubFreqPolicy', 'openAccessPolicy', 'announcementsIntroduction', 'lockssLicense');
 	}
 
 	/**

@@ -27,7 +27,11 @@
 </table>
 {/if}
 
-<h3>3.3 {translate key="manager.setup.bookFileTypes}</h3>
+<h3>4.1 {translate key="common.roles"}</h3>
+
+<div class="separator"></div>
+
+<h3>4.2 {translate key="manager.setup.bookFileTypes}</h3>
 
 <p>{translate key="manager.setup.bookFileTypesDescription"}</p>
 
@@ -80,7 +84,35 @@
 
 <div class="separator"></div>
 
-<h3>4.1 {translate key="manager.setup.securitySettings"}</h3>
+<h3>4.3 {translate key="manager.setup.registerPressForIndexing"}</h3>
+
+{url|assign:"oaiSiteUrl" press=$currentPress->getPath()}
+{url|assign:"oaiUrl" page="oai"}
+<p>{translate key="manager.setup.registerPressForIndexingDescription" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
+
+<div class="separator"></div>
+
+
+<h3>4.4 {translate key="manager.setup.pressArchiving"}</h3>
+
+<p>{translate key="manager.setup.lockssDescription"}</p>
+
+{url|assign:"lockssExistingArchiveUrl" page="manager" op="email" template="LOCKSS_EXISTING_ARCHIVE"}
+{url|assign:"lockssNewArchiveUrl" page="manager" op="email" template="LOCKSS_NEW_ARCHIVE"}
+<p>{translate key="manager.setup.lockssRegister" lockssExistingArchiveUrl=$lockssExistingArchiveUrl lockssNewArchiveUrl=$lockssNewArchiveUrl}</p>
+
+{url|assign:"lockssUrl" page="gateway" op="lockss"}
+<p><input type="checkbox" name="enableLockss" id="enableLockss" value="1"{if $enableLockss} checked="checked"{/if} /> <label for="enableLockss">{translate key="manager.setup.lockssEnable" lockssUrl=$lockssUrl}</label></p>
+
+<p>
+	<textarea name="lockssLicense[{$formLocale|escape}]" id="lockssLicense" rows="6" cols="60" class="textArea">{$lockssLicense[$formLocale]|escape}</textarea>
+	<br />
+	<span class="instruct">{translate key="manager.setup.lockssLicenses"}</span>
+</p>
+
+<div class="separator"></div>
+
+<h3>4.5 {translate key="manager.setup.securitySettings"}</h3>
 
 <h4>{translate key="manager.setup.onlineAccessManagement"}</h4>
 
@@ -168,7 +200,7 @@ function setRegAllowOpts(form) {
 <div class="separator"></div>
 
 
-<h3>4.3 {translate key="manager.setup.publicIdentifier"}</h3>
+<h3>4.6 {translate key="manager.setup.publicIdentifier"}</h3>
 
 <h4>{translate key="manager.setup.uniqueIdentifier"}</h4>
 
@@ -203,7 +235,7 @@ function setRegAllowOpts(form) {
 <div class="separator"></div>
 
 
-<h3>4.4 {translate key="manager.setup.announcements"}</h3>
+<h3>4.7 {translate key="manager.setup.announcements"}</h3>
 
 <p>{translate key="manager.setup.announcementsDescription"}</p>
 
@@ -239,126 +271,70 @@ function setRegAllowOpts(form) {
 
 <p><textarea name="announcementsIntroduction[{$formLocale|escape}]" id="announcementsIntroduction" rows="12" cols="60" class="textArea">{$announcementsIntroduction[$formLocale]|escape}</textarea></p>
 
-<h3>4.5 {translate key="manager.setup.copyediting"}</h3>
-
-<p>{translate key="manager.setup.selectOne"}:</p>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label"><input type="radio" name="useCopyeditors" id="useCopyeditors-1" value="1"{if $useCopyeditors} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="useCopyeditors-1">{translate key="manager.setup.useCopyeditors"}</label></td>
-	</tr>
-	<tr valign="top">
-		<td width="5%" class="label"><input type="radio" name="useCopyeditors" id="useCopyeditors-0" value="0"{if !$useCopyeditors} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="useCopyeditors-0">{translate key="manager.setup.noUseCopyeditors"}</label></td>
-	</tr>
-</table>
-
-<h4>{translate key="manager.setup.copyeditInstructions"}</h4>
-
-<p>{translate key="manager.setup.copyeditInstructionsDescription"}</p>
-
-<p>
-	<textarea name="copyeditInstructions[{$formLocale|escape}]" id="copyeditInstructions" rows="12" cols="60" class="textArea">{$copyeditInstructions[$formLocale]|escape}</textarea>
-	<br />
-	<span class="instruct">{translate key="manager.setup.htmlSetupInstructions"}</span>
-</p>
-
-
 <div class="separator"></div>
 
+<h3>4.8 {translate key="manager.setup.reviewerDatabaseLink"}</h3>
 
-<h3>4.6 {translate key="manager.setup.layoutAndGalleys"}</h3>
-
-<p>{translate key="manager.setup.selectOne"}:</p>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label"><input type="radio" name="useLayoutEditors" id="useLayoutEditors-1" value="1"{if $useLayoutEditors} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="useLayoutEditors-1">{translate key="manager.setup.useLayoutEditors"}</label></td>
-	</tr>
-	<tr valign="top">
-		<td width="5%" class="label"><input type="radio" name="useLayoutEditors" id="useLayoutEditors-0" value="0"{if !$useLayoutEditors} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="useLayoutEditors-0">{translate key="manager.setup.noUseLayoutEditors"}</label></td>
-	</tr>
-</table>
-
-<h4>{translate key="manager.setup.layoutInstructions"}</h4>
-
-<p>{translate key="manager.setup.layoutInstructionsDescription"}</p>
-
-<p>
-	<textarea name="layoutInstructions[{$formLocale|escape}]" id="layoutInstructions" rows="12" cols="60" class="textArea">{$layoutInstructions[$formLocale]|escape}</textarea>
-	<br />
-	<span class="instruct">{translate key="manager.setup.htmlSetupInstructions"}</span>
-</p>
-
-<h4>{translate key="manager.setup.layoutTemplates"}</h4>
-
-<p>{translate key="manager.setup.layoutTemplatesDescription"}</p>
+<p>{translate key="manager.setup.reviewerDatabaseLink.desc"}</p>
 
 <table width="100%" class="data">
-{foreach name=templates from=$templates key=templateId item=template}
+{foreach name=reviewerDatabaseLinks from=$reviewerDatabaseLinks key=reviewerDatabaseLinkId item=reviewerDatabaseLink}
 	<tr valign="top">
-		<td width="20%" class="label"><a href="{url op="downloadLayoutTemplate" path=$templateId}" class="action">{$template.filename|escape}</a></td>
-		<td width="50%" class="value">{$template.title|escape}</td>
-		<td width="30%"><input type="submit" name="delTemplate[{$templateId|escape}]" value="{translate key="common.delete"}" class="button" /></td>
+		<td width="5%" class="label">{fieldLabel name="reviewerDatabaseLinks-$reviewerDatabaseLinkId-title" key="common.title"}</td>
+		<td width="95%" class="value"><input type="text" name="reviewerDatabaseLinks[{$reviewerDatabaseLinkId|escape}][title]" id="reviewerDatabaseLinks-{$reviewerDatabaseLinkId|escape}-title" value="{$reviewerDatabaseLink.title|escape}" size="40" maxlength="255" class="textField" />{if $smarty.foreach.reviewerDatabaseLinks.total > 1} <input type="submit" name="delReviewerDatabaseLink[{$reviewerDatabaseLinkId|escape}]" value="{translate key="common.delete"}" class="button" />{/if}</td>
+	</tr>
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="reviewerDatabaseLinks-$reviewerDatabaseLinkId-url" key="common.url"}</td>
+		<td width="80%" class="value"><input type="text" name="reviewerDatabaseLinks[{$reviewerDatabaseLinkId|escape}][url]" id="reviewerDatabaseLinks-{$reviewerDatabaseLinkId|escape}-url" value="{$reviewerDatabaseLink.url|escape}" size="40" maxlength="255" class="textField" /></td>
+	</tr>
+	{if !$smarty.foreach.reviewerDatabaseLinks.last}
+	<tr valign="top">
+		<td colspan="2" class="separator">&nbsp;</td>
+	</tr>
+	{/if}
+{foreachelse}
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="reviewerDatabaseLinks-0-title" key="common.title"}</td>
+		<td width="80%" class="value"><input type="text" name="reviewerDatabaseLinks[0][title]" id="reviewerDatabaseLinks-0-title" value="" size="40" maxlength="255" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="reviewerDatabaseLinks-0-url" key="common.url"}</td>
+		<td width="80%" class="value"><input type="text" name="reviewerDatabaseLinks[0][url]" id="reviewerDatabaseLinks-0-url" value="" size="40" maxlength="255" class="textField" /></td>
+	</tr>
 {/foreach}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="template-title" key="manager.setup.layoutTemplates.title"}</td>
-		<td width="80%" colspan="2" class="value"><input type="text" name="template-title" id="template-title" size="40" maxlength="90" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="template-file" key="manager.setup.layoutTemplates.file"}</td>
-		<td width="80%" colspan="2" class="value"><input type="file" name="template-file" id="template-file" class="uploadField" /><input type="submit" name="addTemplate" value="{translate key="common.upload"}" class="button" /></td>
-	</tr>
 </table>
 
-<h4>{translate key="manager.setup.referenceLinking"}</h4>
-
-{translate key="manager.setup.referenceLinkingDescription"}
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="provideRefLinkInstructions" id="provideRefLinkInstructions" value="1"{if $provideRefLinkInstructions} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="provideRefLinkInstructions">{translate key="manager.setup.provideRefLinkInstructions"}</label></td>
-	</tr>
-</table>
-
-<h4>{translate key="manager.setup.refLinkInstructions.description"}</h4>
-<textarea name="refLinkInstructions[{$formLocale|escape}]" id="refLinkInstructions" rows="12" cols="60" class="textArea">{$refLinkInstructions[$formLocale]|escape}</textarea>
+<p><input type="submit" name="addReviewerDatabaseLink" value="{translate key="manager.setup.addReviewerDatabaseLink"}" class="button" /></p>
 
 <div class="separator"></div>
 
-
-<h3>4.7 {translate key="manager.setup.proofreading"}</h3>
-
-<p>{translate key="manager.setup.selectOne"}:</p>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label"><input type="radio" name="useProofreaders" id="useProofreaders-1" value="1"{if $useProofreaders} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="useProofreaders-1">{translate key="manager.setup.useProofreaders"}</label></td>
-	</tr>
-	<tr valign="top">
-		<td width="5%" class="label"><input type="radio" name="useProofreaders" id="useProofreaders-0" value="0"{if !$useProofreaders} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="useProofreaders-0">{translate key="manager.setup.noUseProofreaders"}</label></td>
-	</tr>
-</table>
-
-<h4>{translate key="manager.setup.proofingInstructions"}</h4>
-
-<p>{translate key="manager.setup.proofingInstructionsDescription"}</p>
-
-<p>
-	<textarea name="proofInstructions[{$formLocale|escape}]" id="proofInstructions" rows="12" cols="60" class="textArea">{$proofInstructions[$formLocale]|escape}</textarea>
-	<br />
-	<span class="instruct">{translate key="manager.setup.htmlSetupInstructions"}</span>
-</p>
-
+<h3>4.9 {translate key="manager.setup.divisionsAndSeries"}</h3>
 
 <div class="separator"></div>
 
+<h3>3.6 {translate key="manager.setup.notifications"}</h3>
+
+<p>{translate key="manager.setup.notifications.description"}</p>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td class="label"><input {if !$submissionAckEnabled}disabled="disabled" {/if}type="checkbox" name="copySubmissionAckPrimaryContact" id="copySubmissionAckPrimaryContact" value="true" {if $copySubmissionAckPrimaryContact}checked="checked"{/if}/></td>
+		<td class="value">{fieldLabel name="copySubmissionAckPrimaryContact" key="manager.setup.notifications.copyPrimaryContact"}</td>
+	</tr>
+	<tr valign="top">
+		<td class="label"><input {if !$submissionAckEnabled}disabled="disabled" {/if}type="checkbox" name="copySubmissionAckSpecified" id="copySubmissionAckSpecified" value="true" {if $copySubmissionAckSpecified}checked="checked"{/if}/></td>
+		<td class="value">{fieldLabel name="copySubmissionAckAddress" key="manager.setup.notifications.copySpecifiedAddress"}&nbsp;&nbsp;<input {if !$submissionAckEnabled}disabled="disabled" {/if}type="text" class="textField" id="copySubmissionAckAddress" name="copySubmissionAckAddress" value="{$copySubmissionAckAddress|escape}"/></td>
+	</tr>
+	{if !$submissionAckEnabled}
+	<tr valign="top">
+		<td>&nbsp;</td>
+		{url|assign:"preparedEmailsUrl" op="emails"}
+		<td>{translate key="manager.setup.notifications.submissionAckDisabled" preparedEmailsUrl=$preparedEmailsUrl}</td>
+	</tr>
+	{/if}
+</table>
+
+<div class="separator"></div>
 
 <p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>
 

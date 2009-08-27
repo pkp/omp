@@ -235,40 +235,6 @@
 
 <div class="separator"></div>
 
-
-<h3>3.5 {translate key="manager.setup.registerPressForIndexing"}</h3>
-
-{url|assign:"oaiSiteUrl" press=$currentPress->getPath()}
-{url|assign:"oaiUrl" page="oai"}
-<p>{translate key="manager.setup.registerPressForIndexingDescription" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
-
-
-<div class="separator"></div>
-
-<h3>3.6 {translate key="manager.setup.notifications"}</h3>
-
-<p>{translate key="manager.setup.notifications.description"}</p>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td class="label"><input {if !$submissionAckEnabled}disabled="disabled" {/if}type="checkbox" name="copySubmissionAckPrimaryContact" id="copySubmissionAckPrimaryContact" value="true" {if $copySubmissionAckPrimaryContact}checked="checked"{/if}/></td>
-		<td class="value">{fieldLabel name="copySubmissionAckPrimaryContact" key="manager.setup.notifications.copyPrimaryContact"}</td>
-	</tr>
-	<tr valign="top">
-		<td class="label"><input {if !$submissionAckEnabled}disabled="disabled" {/if}type="checkbox" name="copySubmissionAckSpecified" id="copySubmissionAckSpecified" value="true" {if $copySubmissionAckSpecified}checked="checked"{/if}/></td>
-		<td class="value">{fieldLabel name="copySubmissionAckAddress" key="manager.setup.notifications.copySpecifiedAddress"}&nbsp;&nbsp;<input {if !$submissionAckEnabled}disabled="disabled" {/if}type="text" class="textField" id="copySubmissionAckAddress" name="copySubmissionAckAddress" value="{$copySubmissionAckAddress|escape}"/></td>
-	</tr>
-	{if !$submissionAckEnabled}
-	<tr valign="top">
-		<td>&nbsp;</td>
-		{url|assign:"preparedEmailsUrl" op="emails"}
-		<td>{translate key="manager.setup.notifications.submissionAckDisabled" preparedEmailsUrl=$preparedEmailsUrl}</td>
-	</tr>
-	{/if}
-</table>
-
-<div class="separator"></div>
-
 <p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="setup" escape=false}'" /></p>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
