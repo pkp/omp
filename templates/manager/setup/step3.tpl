@@ -88,59 +88,6 @@
 
 <div class="separator"></div>
 
-<h3>3.3 {translate key="manager.setup.bookFileTypes}</h3>
-
-<p>{translate key="manager.setup.bookFileTypesDescription"}</p>
-
-{foreach name=bookFileTypes from=$bookFileTypes[$formLocale] key=fileTypeId item=fileTypeItem}
-	{if !$notFirstFileTypeItem}
-		{assign var=notFirstFileTypeItem value=1}
-		<table width="100%" class="data">
-			<tr valign="top">
-				<td width="5%">&nbsp;</td>
-				<td width="30%">{translate key="common.type"}</td>
-				<td width="70%">{translate key="common.filePrefix"}</td>
-			</tr>
-	{/if}
-
-	<tr valign="top">
-		<td><input type="checkbox" name="bookFileTypeSelect[]" value="{$fileTypeId}" /></td>
-		<td>{$fileTypeItem.type}</td>
-		<td>{$fileTypeItem.prefix}</td>
-	</tr>
-{/foreach}
-
-{if $notFirstFileTypeItem}
-	</table>
-{/if}
-<p>
-<input type="submit" name="deleteSelectedBookFileTypes" value="{translate key="manager.setup.deleteSelected"}" class="button" />
-<input type="submit" name="restoreDefaultBookFileTypes" value="{translate key="manager.setup.restoreDefaults"}" class="button" />
-</p>
-<div class="newItemContainer">
-<h3>{translate key="manager.setup.newBookFileType"}</h3>
-<p>{translate key="manager.setup.newBookFileTypeDescription"}</p>
-<table>
-<tr>
-	<td>{translate key="common.filePrefix"}</td><td><input type="text" name="newBookFileType[prefix]" class="textField" /></td>
-</tr>
-<tr>
-	<td>{translate key="common.type"}</td><td><input type="text" name="newBookFileType[type]" class="textField" /></td>
-</tr>
-<tr>
-	<td>{translate key="common.description"}</td><td><textarea name="newBookFileType[description]" rows="5" cols="30" class="textArea"></textarea></td>
-</tr>
-<tr>
-	<td>{translate key="common.sortableByComponent"}</td><td><input type="checkbox" name="newBookFileType[sortable]" class="textField" /></td>
-</tr>
-<tr>
-	<td>&nbsp;</td><td><input type="submit" name="addBookFileType" value="{translate key="common.create"}" class="button" /></td>
-</tr>
-</table>
-</div>
-
-<div class="separator"></div>
-
 <h3>3.4 {translate key="manager.setup.forAuthorsToIndexTheirWork"}</h3>
 
 <p>{translate key="manager.setup.forAuthorsToIndexTheirWorkDescription"}</p>

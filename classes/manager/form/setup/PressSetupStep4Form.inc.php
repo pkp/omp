@@ -63,6 +63,24 @@ class PressSetupStep4Form extends PressSetupForm {
 	function getLocaleFieldNames() {
 		return array('pubFreqPolicy', 'copyeditInstructions', 'layoutInstructions', 'refLinkInstructions', 'proofInstructions', 'openAccessPolicy', 'announcementsIntroduction');
 	}
+
+	/**
+	 * Assign form data to user-submitted data.
+	 */
+	function readInputData() {
+		$this->readUserVars(array('newBookFileType', 'bookFileTypeSelect'));
+		parent::readInputData();
+	}
+
+	/**
+	 * Display the form
+	 */
+	function display() {
+		$press =& Request::getPress();
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign_by_ref('bookFileTypes', $press->getSetting('bookFileTypes'));
+		parent::display();
+	}
 }
 
 ?>

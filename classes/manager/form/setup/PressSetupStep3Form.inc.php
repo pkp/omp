@@ -63,23 +63,13 @@ class PressSetupStep3Form extends PressSetupForm {
 	}
 
 	/**
-	 * Assign form data to user-submitted data.
-	 */
-	function readInputData() {
-		$this->readUserVars(array('newBookFileType', 'bookFileTypeSelect'));
-		parent::readInputData();
-	}
-
-	/**
 	 * Display the form
 	 */
 	function display() {
 		$press =& Request::getPress();
-
 		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign(array('uploadedProspectus' => $press->getSetting('uploadedProspectus')));
-		$templateMgr->assign_by_ref('bookFileTypes', $press->getSetting('bookFileTypes'));
 
 		import('mail.MailTemplate');
 		$mail = new MailTemplate('SUBMISSION_ACK');

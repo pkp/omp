@@ -173,6 +173,58 @@ class SetupHandler extends ManagerHandler {
 						array_push($checklist[$formLocale], array('order' => $lastOrder+1));
 						$setupForm->setData('submissionChecklist', $checklist);
 
+					} else if (($delChecklist = Request::getUserVar('delChecklist')) && count($delChecklist) == 1) {
+						// Delete a checklist item
+						$editData = true;
+						list($delChecklist) = array_keys($delChecklist);
+						$delChecklist = (int) $delChecklist;
+						$checklist = $setupForm->getData('submissionChecklist');
+						if (!isset($checklist[$formLocale])) $checklist[$formLocale] = array();
+						array_splice($checklist[$formLocale], $delChecklist, 1);
+						$setupForm->setData('submissionChecklist', $checklist);
+					}
+
+					if (!isset($editData)) {
+						// Reorder checklist items
+						$checklist = $setupForm->getData('submissionChecklist');
+						if (isset($checklist[$formLocale]) && is_array($checklist[$formLocale])) {
+							usort($checklist[$formLocale], create_function('$a,$b','return $a[\'order\'] == $b[\'order\'] ? 0 : ($a[\'order\'] < $b[\'order\'] ? -1 : 1);'));
+						}
+						$setupForm->setData('submissionChecklist', $checklist);
+					}
+					break;
+
+				case 4:
+					$press =& Request::getPress();
+					$templates = $press->getSetting('templates');
+					import('file.PressFileManager');
+					$pressFileManager =& new PressFileManager($press);
+					if (Request::getUserVar('addTemplate')) {
+						// Add a layout template
+						$editData = true;
+						if (!is_array($templates)) $templates = array();
+						$templateId = count($templates);
+						$originalFilename = $_FILES['template-file']['name'];
+						$fileType = $_FILES['template-file']['type'];
+						$filename = "template-$templateId." . $pressFileManager->parseFileExtension($originalFilename);
+						$pressFileManager->uploadFile('template-file', $filename);
+						$templates[$templateId] = array(
+							'originalFilename' => $originalFilename,
+							'fileType' => $fileType,
+							'filename' => $filename,
+							'title' => Request::getUserVar('template-title')
+						);
+						$press->updateSetting('templates', $templates);
+					} else if (($delTemplate = Request::getUserVar('delTemplate')) && count($delTemplate) == 1) {
+						// Delete a template
+						$editData = true;
+						list($delTemplate) = array_keys($delTemplate);
+						$delTemplate = (int) $delTemplate;
+						$template = $templates[$delTemplate];
+						$filename = "template-$delTemplate." . $pressFileManager->parseFileExtension($template['originalFilename']);
+						$pressFileManager->deleteFile($filename);
+						array_splice($templates, $delTemplate, 1);
+						$press->updateSetting('templates', $templates);
 					} else if (Request::getUserVar('deleteSelectedBookFileTypes')) {
 						// Delete book file types
 						$editData = true;
@@ -237,58 +289,6 @@ class SetupHandler extends ManagerHandler {
 						);
 ;
 						$setupForm->setData('bookFileTypes', $bookFileTypes);
-					} else if (($delChecklist = Request::getUserVar('delChecklist')) && count($delChecklist) == 1) {
-						// Delete a checklist item
-						$editData = true;
-						list($delChecklist) = array_keys($delChecklist);
-						$delChecklist = (int) $delChecklist;
-						$checklist = $setupForm->getData('submissionChecklist');
-						if (!isset($checklist[$formLocale])) $checklist[$formLocale] = array();
-						array_splice($checklist[$formLocale], $delChecklist, 1);
-						$setupForm->setData('submissionChecklist', $checklist);
-					}
-
-					if (!isset($editData)) {
-						// Reorder checklist items
-						$checklist = $setupForm->getData('submissionChecklist');
-						if (isset($checklist[$formLocale]) && is_array($checklist[$formLocale])) {
-							usort($checklist[$formLocale], create_function('$a,$b','return $a[\'order\'] == $b[\'order\'] ? 0 : ($a[\'order\'] < $b[\'order\'] ? -1 : 1);'));
-						}
-						$setupForm->setData('submissionChecklist', $checklist);
-					}
-					break;
-
-				case 4:
-					$press =& Request::getPress();
-					$templates = $press->getSetting('templates');
-					import('file.PressFileManager');
-					$pressFileManager =& new PressFileManager($press);
-					if (Request::getUserVar('addTemplate')) {
-						// Add a layout template
-						$editData = true;
-						if (!is_array($templates)) $templates = array();
-						$templateId = count($templates);
-						$originalFilename = $_FILES['template-file']['name'];
-						$fileType = $_FILES['template-file']['type'];
-						$filename = "template-$templateId." . $pressFileManager->parseFileExtension($originalFilename);
-						$pressFileManager->uploadFile('template-file', $filename);
-						$templates[$templateId] = array(
-							'originalFilename' => $originalFilename,
-							'fileType' => $fileType,
-							'filename' => $filename,
-							'title' => Request::getUserVar('template-title')
-						);
-						$press->updateSetting('templates', $templates);
-					} else if (($delTemplate = Request::getUserVar('delTemplate')) && count($delTemplate) == 1) {
-						// Delete a template
-						$editData = true;
-						list($delTemplate) = array_keys($delTemplate);
-						$delTemplate = (int) $delTemplate;
-						$template = $templates[$delTemplate];
-						$filename = "template-$delTemplate." . $pressFileManager->parseFileExtension($template['originalFilename']);
-						$pressFileManager->deleteFile($filename);
-						array_splice($templates, $delTemplate, 1);
-						$press->updateSetting('templates', $templates);
 					}
 					$setupForm->setData('templates', $templates);
 					break;
