@@ -394,7 +394,6 @@ class MonographFileManager extends FileManager {
 	 */
 	function pathToLocaleKey($path) {
 		switch ($path) {
-			case 'submission/prospectus': return 'submission.prospectusFile';
 			case 'submission/artwork': return 'monograph.artworkFile';
 			case 'submission/original': return 'author.submit.submissionFile';
 			case 'supp': default: return 'monograph.suppFile';

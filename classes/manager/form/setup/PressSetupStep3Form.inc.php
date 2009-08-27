@@ -66,87 +66,17 @@ class PressSetupStep3Form extends PressSetupForm {
 	 * Display the form
 	 */
 	function display() {
-		$press =& Request::getPress();
 		$templateMgr =& TemplateManager::getManager();
-
-		$templateMgr->assign(array('uploadedProspectus' => $press->getSetting('uploadedProspectus')));
+		$press =& Request::getPress();
 
 		import('mail.MailTemplate');
 		$mail = new MailTemplate('SUBMISSION_ACK');
+
 		if ($mail->isEnabled()) {
 			$templateMgr->assign('submissionAckEnabled', true);
 		}
 
 		parent::display();
-	}
-
-	/**
-	 * Uploads a prospectus document.
-	 * @param $settingName string setting key associated with the file
-	 * @param $locale string
-	 */
-	function uploadProspectus($settingName, $locale) {
-		$press =& Request::getPress();
-		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-
-		import('file.PublicFileManager');
-		$fileManager = new PublicFileManager();
-		if ($fileManager->uploadedFileExists($settingName)) {
-			$extension = $fileManager->getExtension($_FILES[$settingName]['name']);
-			if (!$extension) {
-				return false;
-			}
-			$uploadName = $settingName . '_' . $locale . '.' . $extension;
-
-			$setting = $settingsDao->getSetting($press->getId(), $settingName);
-
-
-			if ($fileManager->uploadPressFile($press->getId(), $settingName, $uploadName)) {
-
-				if (isset($setting)) {
-					$fileManager->removePressFile(
-								$press->getId(),
-								$locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName']
-								);
-				}
-
-				$filePath = $fileManager->getPressFilesPath($press->getId());
-				$size = $fileManager->getNiceFileSize(filesize($filePath . '/' . $uploadName));
-
-				$value = $press->getSetting($settingName);
-				$value[$locale] = array(
-					'name' => $fileManager->getUploadedFileName($settingName, $locale),
-					'uploadName' => $uploadName,
-					'size' => $size,
-					'dateUploaded' => Core::getCurrentDate()
-				);
-
-				$settingsDao->updateSetting($press->getId(), $settingName, $value, 'object', true);
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * Deletes a press image.
-	 * @param $settingName string setting key associated with the file
-	 * @param $locale string
-	 */
-	function deleteProspectus($settingName, $locale = null) {
-		$press =& Request::getPress();
-		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$setting = $settingsDao->getSetting($press->getId(), $settingName);
-
-		import('file.PublicFileManager');
-		$fileManager = new PublicFileManager();
-		if ($fileManager->removePressFile($press->getId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
-			$returner = $settingsDao->deleteSetting($press->getId(), $settingName, $locale);
-			return $returner;
-		} else {
-			return false;
-		}
 	}
 }
 

@@ -66,28 +66,6 @@
 
 <div class="separator"></div>
 
-<h3>3.2 {translate key="manager.setup.prospectus"}</h3>
-
-<p>{translate key="manager.setup.prospectusDescription"}</p>
-
-<input type="hidden" name="requireCompletedProspectus" /> {translate value="manager.setup.requireCompletedProspectus}
-<br />
-
-<input type="file" name="uploadedProspectus" class="uploadField" /> <input type="submit" name="uploadProspectus" value="{translate key="common.upload"}" class="button" />
-
-<br /><br />
-
-{if $uploadedProspectus[$formLocale]}
-{translate key="common.fileName"}: 
-<a href="{$publicFilesDir}/{$uploadedProspectus[$formLocale].uploadName}">
-  {$uploadedProspectus[$formLocale].name|escape}</a>
-
-{$uploadedProspectus[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteProspectus" value="{translate key="common.delete"}" class="button" />
-<br />
-{/if}
-
-<div class="separator"></div>
-
 <h3>3.4 {translate key="manager.setup.forAuthorsToIndexTheirWork"}</h3>
 
 <p>{translate key="manager.setup.forAuthorsToIndexTheirWorkDescription"}</p>

@@ -102,57 +102,6 @@
 <input type="hidden" name="newBookFileTypeInfo[{$bookFileTypeKey}][type]" value="{$bookFileType.type}" />
 {/foreach}
 
-{if $pressSettings.uploadedProspectus}
-<div class="separator"></div>
-
-<h3>{translate key="author.submit.completedProspectus"}</h3>
-{assign var="prospectusGuideUrl" value=$publicFilesDir|cat:"/"|cat:$pressSettings.uploadedProspectus.$formLocale.uploadName}
-
-<p>{translate key="author.submit.completedProspectus.description" prospectusGuideUrl=$prospectusGuideUrl}</p>
-
-<table class="data" width="100%">
-{if $completedProspectusFile}
-<tr valign="top">
-	<td width="20%" class="label">{translate key="common.fileName"}</td>
-	<td width="80%" class="value"><a href="{url op="download" path=$monographId|to_array:$completedProspectusFile->getFileId()}">{$completedProspectusFile->getFileName()|escape}</a></td>
-</tr>
-<tr valign="top">
-	<td width="20%" class="label">{translate key="common.originalFileName"}</td>
-	<td width="80%" class="value">{$completedProspectusFile->getOriginalFileName()|escape}</td>
-</tr>
-<tr valign="top">
-	<td width="20%" class="label">{translate key="common.fileSize"}</td>
-	<td width="80%" class="value">{$completedProspectusFile->getNiceFileSize()}</td>
-</tr>
-<tr valign="top">
-	<td width="20%" class="label">{translate key="common.dateUploaded"}</td>
-	<td width="80%" class="value">{$completedProspectusFile->getDateUploaded()|date_format:$datetimeFormatShort}</td>
-</tr>
-{else}
-<tr valign="top">
-	<td colspan="2" class="nodata">{translate key="author.submit.noSubmissionFile"}</td>
-</tr>
-{/if}
-</table>
-
-
-<table class="data" width="100%">
-<tr>
-	<td width="30%" class="label">
-		{if $completedProspectusFile}
-			{fieldLabel name="completedProspectusFile" key="author.submit.replaceProspectusFile"}
-		{else}
-			{fieldLabel name="completedProspectusFile" key="author.submit.uploadProspectusFile"}
-		{/if}
-	</td>
-	<td width="70%" class="value">
-		<input type="file" class="uploadField" name="completedProspectusFile" id="completedProspectusFile" /> <input name="uploadCompletedProspectusFile" type="submit" class="button" value="{translate key="common.upload"}" />
-	</td>
-</tr>
-</table>
-
-{/if}
-
 <div class="separator"></div>
 
 <p><input type="submit"{if !$submissionFile} onclick="return confirm('{translate|escape:"jsparam" key="author.submit.noSubmissionConfirm"}')"{/if} value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
