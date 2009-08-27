@@ -249,11 +249,8 @@ class Monograph extends Submission {
 		$userIds = array();
 
 		if($authors) {
-			$authorDao =& DAORegistry::getDAO('AuthorDAO');
-			$authors = $authorDao->getAuthorsByMonographId($monographId);
-			foreach ($authors as $author) {
-				$userIds[] = array('id' => $author->getId(), 'role' => 'author');
-			}
+			$userId = $this->getUserId();
+			if ($userId) $userIds[] = array('id' => $userId, 'role' => 'author');
 		}
 
 		if($editors) {
