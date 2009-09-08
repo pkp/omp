@@ -121,6 +121,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$this->validate($monographId);
 		$authorSubmission =& $this->submission;
 		$this->setupTemplate(true, $monographId);
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR)); // editor.article.decision etc. FIXME?
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewModifiedByRound = $reviewAssignmentDao->getLastModifiedByRound($monographId);
