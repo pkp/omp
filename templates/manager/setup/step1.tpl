@@ -273,16 +273,6 @@
 
 <div class="separator"></div>
 
-<h3>1.9 {translate key="manager.setup.focusAndScopeOfPress"}</h3>
-<p>{translate key="manager.setup.focusAndScopeDescription"}</p>
-<p>
-	<textarea name="focusScopeDesc[{$formLocale|escape}]" id="focusScopeDesc" rows="12" cols="60" class="textArea">{$focusScopeDesc[$formLocale]|escape}</textarea>
-	<br />
-	<span class="instruct">{translate key="manager.setup.htmlSetupInstructions"}</span>
-</p>
-
-<div class="separator"></div>
-
 <h3>1.10 {translate key="manager.setup.privacyStatement"}</h3>
 
 <p><textarea name="privacyStatement[{$formLocale|escape}]" id="privacyStatement" rows="12" cols="60" class="textArea">{$privacyStatement[$formLocale]|escape}</textarea></p>

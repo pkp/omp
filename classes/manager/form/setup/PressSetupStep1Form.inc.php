@@ -49,7 +49,6 @@ class PressSetupStep1Form extends PressSetupForm {
 				'envelopeSender' => 'string',
 				'emailSignature' => 'string',
 				'customAboutItems' => 'object',
-				'focusScopeDesc' => 'string',
 				'privacyStatement' => 'string'
 			)
 		);
@@ -71,7 +70,7 @@ class PressSetupStep1Form extends PressSetupForm {
 		return array(
 			'name', 'initials', 'sponsorNote', 'contactTitle', 'contactAffiliation', 'contactMailingAddress', 
 			'publisherNote', 'contributorNote', 'searchDescription', 'searchKeywords', 'customHeaders', 
-			'customAboutItems', 'focusScopeDesc', 'privacyStatement'
+			'customAboutItems', 'privacyStatement'
 		);
 	}
 

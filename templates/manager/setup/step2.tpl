@@ -27,7 +27,60 @@
 </table>
 {/if}
 
-<h3>2.1 {translate key="manager.setup.peerReviewPolicy"}</h3>
+<h3>2.1 {translate key="manager.setup.focusAndScopeOfPress"}</h3>
+<p>{translate key="manager.setup.focusAndScopeDescription"}</p>
+<p>
+	<textarea name="focusScopeDesc[{$formLocale|escape}]" id="focusScopeDesc" rows="12" cols="60" class="textArea">{$focusScopeDesc[$formLocale]|escape}</textarea>
+	<br />
+	<span class="instruct">{translate key="manager.setup.htmlSetupInstructions"}</span>
+</p>
+
+<div class="separator"></div>
+
+<h3>2.2 {translate key="manager.setup.divisionsAndSeries"}</h3>
+
+<div class="separator"></div>
+
+<h3>2.3 {translate key="manager.setup.authorGuidelines"}</h3>
+
+<p>{translate key="manager.setup.authorGuidelinesDescription"}</p>
+
+<p>
+	<textarea name="authorGuidelines[{$formLocale|escape}]" id="authorGuidelines" rows="12" cols="60" class="textArea">{$authorGuidelines[$formLocale]|escape}</textarea>
+	<br />
+	<span class="instruct">{translate key="manager.setup.htmlSetupInstructions"}</span>
+</p>
+
+<h4>{translate key="manager.setup.submissionPreparationChecklist"}</h4>
+
+<p>{translate key="manager.setup.submissionPreparationChecklistDescription"}</p>
+
+{foreach name=checklist from=$submissionChecklist[$formLocale] key=checklistId item=checklistItem}
+	{if !$notFirstChecklistItem}
+		{assign var=notFirstChecklistItem value=1}
+		<table width="100%" class="data">
+			<tr valign="top">
+				<td width="5%">{translate key="common.order"}</td>
+				<td width="95%" colspan="2">&nbsp;</td>
+			</tr>
+	{/if}
+
+	<tr valign="top">
+		<td width="5%" class="label"><input type="text" name="submissionChecklist[{$formLocale|escape}][{$checklistId|escape}][order]" value="{$checklistItem.order|escape}" size="3" maxlength="2" class="textField" /></td>
+		<td class="value"><textarea name="submissionChecklist[{$formLocale|escape}][{$checklistId|escape}][content]" id="submissionChecklist-{$checklistId|escape}" rows="3" cols="40" class="textArea">{$checklistItem.content|escape}</textarea></td>
+		<td width="100%"><input type="submit" name="delChecklist[{$checklistId|escape}]" value="{translate key="common.delete"}" class="button" /></td>
+	</tr>
+{/foreach}
+
+{if $notFirstChecklistItem}
+	</table>
+{/if}
+
+<p><input type="submit" name="addChecklist" value="{translate key="manager.setup.addChecklistItem"}" class="button" /></p>
+
+<div class="separator"></div>
+
+<h3>2.4 {translate key="manager.setup.peerReviewPolicy"}</h3>
 
 <p>{translate key="manager.setup.peerReviewDescription"}</p>
 
@@ -144,9 +197,30 @@
 
 <div class="separator"></div>
 
-<h3>2.2 {translate key="manager.setup.editorDecision"}</h3>
+<h3>2.5 {translate key="manager.setup.authorCopyrightNotice"}</h3>
 
-<p><input type="checkbox" name="notifyAllAuthorsOnDecision" id="notifyAllAuthorsOnDecision" value="1"{if $notifyAllAuthorsOnDecision} checked="checked"{/if} /> <label for="notifyAllAuthorsOnDecision">{translate key="manager.setup.notifyAllAuthorsOnDecision"}</label></p>
+{url|assign:"sampleCopyrightWordingUrl" page="information" op="sampleCopyrightWording"}
+<p>{translate key="manager.setup.authorCopyrightNoticeDescription" sampleCopyrightWordingUrl=$sampleCopyrightWordingUrl}</p>
+
+<p><textarea name="copyrightNotice[{$formLocale|escape}]" id="copyrightNotice" rows="12" cols="60" class="textArea">{$copyrightNotice[$formLocale]|escape}</textarea></p>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="5%" class="label">
+			<input type="checkbox" name="copyrightNoticeAgree" id="copyrightNoticeAgree" value="1"{if $copyrightNoticeAgree} checked="checked"{/if} />
+		</td>
+		<td width="95%" class="value"><label for="copyrightNoticeAgree">{translate key="manager.setup.authorCopyrightNoticeAgree"}</label>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td class="label">
+			<input type="checkbox" name="includeCreativeCommons" id="includeCreativeCommons" value="1"{if $includeCreativeCommons} checked="checked"{/if} />
+		</td>
+		<td class="value">
+			<label for="includeCreativeCommons">{translate key="manager.setup.includeCreativeCommons"}</label>
+		</td>
+	</tr>
+</table>
 
 <div class="separator"></div>
 

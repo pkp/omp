@@ -30,8 +30,6 @@ class PressSetupStep3Form extends PressSetupForm {
 		parent::PressSetupForm(
 			3,
 			array(
-				'authorGuidelines' => 'string',
-				'submissionChecklist' => 'object',
 				'metaDiscipline' => 'bool',
 				'metaDisciplineExamples' => 'string',
 				'metaSubjectClass' => 'bool',
@@ -59,7 +57,7 @@ class PressSetupStep3Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('authorGuidelines', 'submissionChecklist', 'metaDisciplineExamples', 'metaSubjectClassTitle', 'metaSubjectClassUrl', 'metaSubjectExamples', 'metaCoverageGeoExamples', 'metaCoverageChronExamples', 'metaCoverageResearchSampleExamples', 'metaTypeExamples');
+		return array('metaDisciplineExamples', 'metaSubjectClassTitle', 'metaSubjectClassUrl', 'metaSubjectExamples', 'metaCoverageGeoExamples', 'metaCoverageChronExamples', 'metaCoverageResearchSampleExamples', 'metaTypeExamples');
 	}
 
 	/**

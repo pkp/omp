@@ -25,6 +25,9 @@ class PressSetupStep2Form extends PressSetupForm {
 		parent::PressSetupForm(
 			2,
 			array(
+				'focusScopeDesc' => 'string',
+				'authorGuidelines' => 'string',
+				'submissionChecklist' => 'object',
 				'numWeeksPerReview' => 'int',
 				'remindForInvite' => 'bool',
 				'remindForSubmit' => 'bool',
@@ -37,11 +40,9 @@ class PressSetupStep2Form extends PressSetupForm {
 				'reviewPolicy' => 'string',
 				'mailSubmissionsToReviewers' => 'bool',
 				'reviewGuidelines' => 'string',
-				'authorSelectsEditor' => 'bool',
-				'enableLockss' => 'bool',
-				'lockssLicense' => 'string',
-				'reviewerDatabaseLinks' => 'object',
-				'notifyAllAuthorsOnDecision' => 'bool'
+				'copyrightNotice' => 'string',
+				'includeCreativeCommons' => 'bool',
+				'copyrightNoticeAgree' => 'bool'
 			)
 		);
 
@@ -53,7 +54,7 @@ class PressSetupStep2Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('reviewPolicy', 'reviewGuidelines', 'lockssLicense');
+		return array('authorGuidelines', 'copyrightNotice', 'submissionChecklist', 'reviewPolicy', 'reviewGuidelines', 'focusScopeDesc');
 	}
 
 	/**

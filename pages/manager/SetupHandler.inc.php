@@ -130,21 +130,7 @@ class SetupHandler extends ManagerHandler {
 					break;
 
 				case 2:
-					break;
-
-				case 3:
-					if (Request::getUserVar('uploadProspectus')) {
-						if ($setupForm->uploadProspectus('uploadedProspectus', $formLocale)) {
-							$editData = true;
-						} else {
-							$setupForm->addError('uploadedProspectus', Locale::translate('manager.setup.uploadedProspectusInvalid'));
-						}
-
-					} else if (Request::getUserVar('deleteProspectus')) {
-						$editData = true;
-						$setupForm->deleteProspectus('uploadedProspectus', $formLocale);
-
-					} else if (Request::getUserVar('addChecklist')) {
+					if (Request::getUserVar('addChecklist')) {
 						// Add a checklist item
 						$editData = true;
 						$checklist = $setupForm->getData('submissionChecklist');
@@ -166,7 +152,11 @@ class SetupHandler extends ManagerHandler {
 						if (!isset($checklist[$formLocale])) $checklist[$formLocale] = array();
 						array_splice($checklist[$formLocale], $delChecklist, 1);
 						$setupForm->setData('submissionChecklist', $checklist);
-					} else if (Request::getUserVar('deleteSelectedBookFileTypes')) {
+					} 
+					break;
+
+				case 3:
+					if (Request::getUserVar('deleteSelectedBookFileTypes')) {
 						// Delete book file types
 						$editData = true;
 						$press =& Request::getPress();
