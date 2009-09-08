@@ -63,6 +63,14 @@ class PressSetupStep3Form extends PressSetupForm {
 	}
 
 	/**
+	 * Assign form data to user-submitted data.
+	 */
+	function readInputData() {
+		$this->readUserVars(array('newBookFileType', 'bookFileTypeSelect'));
+		parent::readInputData();
+	}
+
+	/**
 	 * Display the form
 	 */
 	function display() {
@@ -75,6 +83,8 @@ class PressSetupStep3Form extends PressSetupForm {
 		if ($mail->isEnabled()) {
 			$templateMgr->assign('submissionAckEnabled', true);
 		}
+
+		$templateMgr->assign_by_ref('bookFileTypes', $press->getSetting('bookFileTypes'));
 
 		parent::display();
 	}

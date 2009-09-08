@@ -27,92 +27,7 @@
 </table>
 {/if}
 
-<h3>4.1 {translate key="common.roles"}</h3>
-
-<div class="separator"></div>
-
-<h3>4.2 {translate key="manager.setup.bookFileTypes}</h3>
-
-<p>{translate key="manager.setup.bookFileTypesDescription"}</p>
-
-{foreach name=bookFileTypes from=$bookFileTypes[$formLocale] key=fileTypeId item=fileTypeItem}
-	{if !$notFirstFileTypeItem}
-		{assign var=notFirstFileTypeItem value=1}
-		<table width="100%" class="data">
-			<tr valign="top">
-				<td width="5%">&nbsp;</td>
-				<td width="30%">{translate key="common.type"}</td>
-				<td width="70%">{translate key="common.filePrefix"}</td>
-			</tr>
-	{/if}
-
-	<tr valign="top">
-		<td><input type="checkbox" name="bookFileTypeSelect[]" value="{$fileTypeId}" /></td>
-		<td>{$fileTypeItem.type}</td>
-		<td>{$fileTypeItem.prefix}</td>
-	</tr>
-{/foreach}
-
-{if $notFirstFileTypeItem}
-	</table>
-{/if}
-<p>
-<input type="submit" name="deleteSelectedBookFileTypes" value="{translate key="manager.setup.deleteSelected"}" class="button" />
-<input type="submit" name="restoreDefaultBookFileTypes" value="{translate key="manager.setup.restoreDefaults"}" class="button" />
-</p>
-<div class="newItemContainer">
-<h3>{translate key="manager.setup.newBookFileType"}</h3>
-<p>{translate key="manager.setup.newBookFileTypeDescription"}</p>
-<table>
-<tr>
-	<td>{translate key="common.filePrefix"}</td><td><input type="text" name="newBookFileType[prefix]" class="textField" /></td>
-</tr>
-<tr>
-	<td>{translate key="common.type"}</td><td><input type="text" name="newBookFileType[type]" class="textField" /></td>
-</tr>
-<tr>
-	<td>{translate key="common.description"}</td><td><textarea name="newBookFileType[description]" rows="5" cols="30" class="textArea"></textarea></td>
-</tr>
-<tr>
-	<td>{translate key="common.sortableByComponent"}</td><td><input type="checkbox" name="newBookFileType[sortable]" class="textField" /></td>
-</tr>
-<tr>
-	<td>&nbsp;</td><td><input type="submit" name="addBookFileType" value="{translate key="common.create"}" class="button" /></td>
-</tr>
-</table>
-</div>
-
-<div class="separator"></div>
-
-<h3>4.3 {translate key="manager.setup.registerPressForIndexing"}</h3>
-
-{url|assign:"oaiSiteUrl" press=$currentPress->getPath()}
-{url|assign:"oaiUrl" page="oai"}
-<p>{translate key="manager.setup.registerPressForIndexingDescription" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
-
-<div class="separator"></div>
-
-
-<h3>4.4 {translate key="manager.setup.pressArchiving"}</h3>
-
-<p>{translate key="manager.setup.lockssDescription"}</p>
-
-{url|assign:"lockssExistingArchiveUrl" page="manager" op="email" template="LOCKSS_EXISTING_ARCHIVE"}
-{url|assign:"lockssNewArchiveUrl" page="manager" op="email" template="LOCKSS_NEW_ARCHIVE"}
-<p>{translate key="manager.setup.lockssRegister" lockssExistingArchiveUrl=$lockssExistingArchiveUrl lockssNewArchiveUrl=$lockssNewArchiveUrl}</p>
-
-{url|assign:"lockssUrl" page="gateway" op="lockss"}
-<p><input type="checkbox" name="enableLockss" id="enableLockss" value="1"{if $enableLockss} checked="checked"{/if} /> <label for="enableLockss">{translate key="manager.setup.lockssEnable" lockssUrl=$lockssUrl}</label></p>
-
-<p>
-	<textarea name="lockssLicense[{$formLocale|escape}]" id="lockssLicense" rows="6" cols="60" class="textArea">{$lockssLicense[$formLocale]|escape}</textarea>
-	<br />
-	<span class="instruct">{translate key="manager.setup.lockssLicenses"}</span>
-</p>
-
-<div class="separator"></div>
-
-<h3>4.5 {translate key="manager.setup.securitySettings"}</h3>
+<h3>4.1 {translate key="manager.setup.securitySettings"}</h3>
 
 <h4>{translate key="manager.setup.onlineAccessManagement"}</h4>
 
@@ -199,43 +114,7 @@ function setRegAllowOpts(form) {
 
 <div class="separator"></div>
 
-
-<h3>4.6 {translate key="manager.setup.publicIdentifier"}</h3>
-
-<h4>{translate key="manager.setup.uniqueIdentifier"}</h4>
-
-<p>{translate key="manager.setup.uniqueIdentifierDescription"}</p>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td class="label"><input type="checkbox" name="enablePublicMonographId" id="enablePublicMonographId" value="1"{if $enablePublicMonographId} checked="checked"{/if} /></td>
-		<td class="value"><label for="enablePublicMonographId">{translate key="manager.setup.enablePublicMonographId"}</label></td>
-	</tr>
-	<tr valign="top">
-		<td class="label"><input type="checkbox" name="enablePublicGalleyId" id="enablePublicGalleyId" value="1"{if $enablePublicGalleyId} checked="checked"{/if} /></td>
-		<td class="value"><label for="enablePublicGalleyId">{translate key="manager.setup.enablePublicGalleyId"}</label></td>
-	</tr>
-	<tr valign="top">
-		<td class="label"><input type="checkbox" name="enablePublicSuppFileId" id="enablePublicSuppFileId" value="1"{if $enablePublicSuppFileId} checked="checked"{/if} /></td>
-		<td class="value"><label for="enablePublicSuppFileId">{translate key="manager.setup.enablePublicSuppFileId"}</label></td>
-	</tr>
-</table>
-
-<br />
-
-<h4>{translate key="manager.setup.pageNumberIdentifier"}</h4>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="enablePageNumber" id="enablePageNumber" value="1"{if $enablePageNumber} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="enablePageNumber">{translate key="manager.setup.enablePageNumber"}</label></td>
-	</tr>
-</table>
-
-<div class="separator"></div>
-
-
-<h3>4.7 {translate key="manager.setup.announcements"}</h3>
+<h3>4.2 {translate key="manager.setup.announcements"}</h3>
 
 <p>{translate key="manager.setup.announcementsDescription"}</p>
 
@@ -270,6 +149,97 @@ function setRegAllowOpts(form) {
 <p>{translate key="manager.setup.announcementsIntroductionDescription"}</p>
 
 <p><textarea name="announcementsIntroduction[{$formLocale|escape}]" id="announcementsIntroduction" rows="12" cols="60" class="textArea">{$announcementsIntroduction[$formLocale]|escape}</textarea></p>
+
+<div class="separator"></div>
+
+<h3>4.3 {translate key="manager.setup.publicIdentifier"}</h3>
+
+<h4>{translate key="manager.setup.uniqueIdentifier"}</h4>
+
+<p>{translate key="manager.setup.uniqueIdentifierDescription"}</p>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td class="label"><input type="checkbox" name="enablePublicMonographId" id="enablePublicMonographId" value="1"{if $enablePublicMonographId} checked="checked"{/if} /></td>
+		<td class="value"><label for="enablePublicMonographId">{translate key="manager.setup.enablePublicMonographId"}</label></td>
+	</tr>
+	<tr valign="top">
+		<td class="label"><input type="checkbox" name="enablePublicGalleyId" id="enablePublicGalleyId" value="1"{if $enablePublicGalleyId} checked="checked"{/if} /></td>
+		<td class="value"><label for="enablePublicGalleyId">{translate key="manager.setup.enablePublicGalleyId"}</label></td>
+	</tr>
+	<tr valign="top">
+		<td class="label"><input type="checkbox" name="enablePublicSuppFileId" id="enablePublicSuppFileId" value="1"{if $enablePublicSuppFileId} checked="checked"{/if} /></td>
+		<td class="value"><label for="enablePublicSuppFileId">{translate key="manager.setup.enablePublicSuppFileId"}</label></td>
+	</tr>
+</table>
+
+<br />
+
+<h4>{translate key="manager.setup.pageNumberIdentifier"}</h4>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="5%" class="label"><input type="checkbox" name="enablePageNumber" id="enablePageNumber" value="1"{if $enablePageNumber} checked="checked"{/if} /></td>
+		<td width="95%" class="value"><label for="enablePageNumber">{translate key="manager.setup.enablePageNumber"}</label></td>
+	</tr>
+</table>
+
+<div class="separator"></div>
+
+<h3>4.4 {translate key="manager.setup.cataloguingMetadata"}</h3>
+
+<div class="separator"></div>
+
+<h3>4.5 {translate key="manager.setup.searchEngineIndexing"}</h3>
+
+<p>{translate key="manager.setup.searchEngineIndexingDescription"}</p>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="searchDescription" key="common.description"}</td>
+		<td width="80%" class="value"><input type="text" name="searchDescription[{$formLocale|escape}]" id="searchDescription" value="{$searchDescription[$formLocale]|escape}" size="40" maxlength="255" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="searchKeywords" key="common.keywords"}</td>
+		<td width="80%" class="value"><input type="text" name="searchKeywords[{$formLocale|escape}]" id="searchKeywords" value="{$searchKeywords[$formLocale]|escape}" size="40" maxlength="255" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="customHeaders" key="manager.setup.customTags"}</td>
+		<td width="80%" class="value">
+			<textarea name="customHeaders[{$formLocale|escape}]" id="customHeaders" rows="3" cols="40" class="textArea">{$customHeaders[$formLocale]|escape}</textarea>
+			<br />
+			<span class="instruct">{translate key="manager.setup.customTagsDescription"}</span>
+		</td>
+	</tr>
+</table>
+
+<div class="separator"></div>
+
+<h3>4.6 {translate key="manager.setup.registerPressForIndexing"}</h3>
+
+{url|assign:"oaiSiteUrl" press=$currentPress->getPath()}
+{url|assign:"oaiUrl" page="oai"}
+<p>{translate key="manager.setup.registerPressForIndexingDescription" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
+
+<div class="separator"></div>
+
+
+<h3>4.4 {translate key="manager.setup.pressArchiving"}</h3>
+
+<p>{translate key="manager.setup.lockssDescription"}</p>
+
+{url|assign:"lockssExistingArchiveUrl" page="manager" op="email" template="LOCKSS_EXISTING_ARCHIVE"}
+{url|assign:"lockssNewArchiveUrl" page="manager" op="email" template="LOCKSS_NEW_ARCHIVE"}
+<p>{translate key="manager.setup.lockssRegister" lockssExistingArchiveUrl=$lockssExistingArchiveUrl lockssNewArchiveUrl=$lockssNewArchiveUrl}</p>
+
+{url|assign:"lockssUrl" page="gateway" op="lockss"}
+<p><input type="checkbox" name="enableLockss" id="enableLockss" value="1"{if $enableLockss} checked="checked"{/if} /> <label for="enableLockss">{translate key="manager.setup.lockssEnable" lockssUrl=$lockssUrl}</label></p>
+
+<p>
+	<textarea name="lockssLicense[{$formLocale|escape}]" id="lockssLicense" rows="6" cols="60" class="textArea">{$lockssLicense[$formLocale]|escape}</textarea>
+	<br />
+	<span class="instruct">{translate key="manager.setup.lockssLicenses"}</span>
+</p>
 
 <div class="separator"></div>
 

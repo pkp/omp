@@ -46,7 +46,10 @@ class PressSetupStep4Form extends PressSetupForm {
 				'enablePublicMonographId' => 'bool',
 				'enablePublicGalleyId' => 'bool',
 				'enablePublicSuppFileId' => 'bool',
-				'enablePageNumber' => 'bool'
+				'enablePageNumber' => 'bool',
+				'searchDescription' => 'string',
+				'searchKeywords' => 'string',
+				'customHeaders' => 'string'
 			)
 		);
 	}
@@ -56,25 +59,7 @@ class PressSetupStep4Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('pubFreqPolicy', 'openAccessPolicy', 'announcementsIntroduction', 'lockssLicense');
-	}
-
-	/**
-	 * Assign form data to user-submitted data.
-	 */
-	function readInputData() {
-		$this->readUserVars(array('newBookFileType', 'bookFileTypeSelect'));
-		parent::readInputData();
-	}
-
-	/**
-	 * Display the form
-	 */
-	function display() {
-		$press =& Request::getPress();
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign_by_ref('bookFileTypes', $press->getSetting('bookFileTypes'));
-		parent::display();
+		return array('pubFreqPolicy', 'openAccessPolicy', 'announcementsIntroduction', 'lockssLicense', 'searchDescription', 'searchKeywords', 'customHeaders');
 	}
 }
 
