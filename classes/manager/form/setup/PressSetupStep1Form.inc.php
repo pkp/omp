@@ -48,7 +48,6 @@ class PressSetupStep1Form extends PressSetupForm {
 				'contributors' => 'object',
 				'envelopeSender' => 'string',
 				'emailSignature' => 'string',
-				'customAboutItems' => 'object',
 				'privacyStatement' => 'string'
 			)
 		);
@@ -69,8 +68,7 @@ class PressSetupStep1Form extends PressSetupForm {
 	function getLocaleFieldNames() {
 		return array(
 			'name', 'initials', 'sponsorNote', 'contactTitle', 'contactAffiliation', 'contactMailingAddress', 
-			'publisherNote', 'contributorNote', 'searchDescription', 'searchKeywords', 'customHeaders', 
-			'customAboutItems', 'privacyStatement'
+			'publisherNote', 'contributorNote', 'privacyStatement'
 		);
 	}
 

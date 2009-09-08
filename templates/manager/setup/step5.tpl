@@ -227,157 +227,60 @@ function prepBlockFields() {
 
 <div class="separator"></div>
 
-
-<h3>5.3 {translate key="manager.setup.pressPageHeader"}</h3>
-
-<p>{translate key="manager.setup.pressPageHeaderDescription"}</p>
-
-<h4>{translate key="manager.setup.pressName"}</h4>
+<h3>5.3 {translate key="manager.setup.addItemtoAboutPress"}</h3>
 
 <table width="100%" class="data">
+{foreach name=customAboutItems from=$customAboutItems[$formLocale] key=aboutId item=aboutItem}
 	<tr valign="top">
-		<td width="20%" class="label"><input type="radio" name="pageHeaderTitleType[{$formLocale|escape}]" id="pageHeaderTitleType-0" value="0"{if not $pageHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="pageHeaderTitleType-0" key="manager.setup.useTextTitle"}</td>
-		<td width="80%" class="value"><input type="text" name="pageHeaderTitle[{$formLocale|escape}]" value="{$pageHeaderTitle[$formLocale]|escape}" size="40" maxlength="255" class="textField" /></td>
+		<td width="5%" class="label">{fieldLabel name="customAboutItems-$aboutId-title" key="common.title"}</td>
+		<td width="95%" class="value"><input type="text" name="customAboutItems[{$formLocale|escape}][{$aboutId|escape}][title]" id="customAboutItems-{$aboutId|escape}-title" value="{$aboutItem.title|escape}" size="40" maxlength="255" class="textField" />{if $smarty.foreach.customAboutItems.total > 1} <input type="submit" name="delCustomAboutItem[{$aboutId|escape}]" value="{translate key="common.delete"}" class="button" />{/if}</td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label"><input type="radio" name="pageHeaderTitleType[{$formLocale|escape}]" id="pageHeaderTitleType-1" value="1"{if $pageHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="pageHeaderTitleType-1" key="manager.setup.useImageTitle"}</td>
-		<td width="80%" class="value"><input type="file" name="pageHeaderTitleImage" class="uploadField" /> <input type="submit" name="uploadPageHeaderTitleImage" value="{translate key="common.upload"}" class="button" /></td>
+		<td width="20%" class="label">{fieldLabel name="customAboutItems-$aboutId-content" key="manager.setup.aboutItemContent"}</td>
+		<td width="80%" class="value"><textarea name="customAboutItems[{$formLocale|escape}][{$aboutId|escape}][content]" id="customAboutItems-{$aboutId|escape}-content" rows="12" cols="40" class="textArea">{$aboutItem.content|escape}</textarea></td>
 	</tr>
-</table>
-
-{if $pageHeaderTitleImage[$formLocale]}
-{translate key="common.fileName"}: {$pageHeaderTitleImage[$formLocale].name|escape} {$pageHeaderTitleImage[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deletePageHeaderTitleImage" value="{translate key="common.delete"}" class="button" />
-<br />
-<img src="{$publicFilesDir}/{$pageHeaderTitleImage[$formLocale].uploadName|escape:"url"}" width="{$pageHeaderTitleImage[$formLocale].width|escape}" height="{$pageHeaderTitleImage[$formLocale].height|escape}" style="border: 0;" alt="{translate key="common.pageHeader.altText"}" />
-<br />
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="pageHeaderTitleImageAltText" key="common.altText"}</td>
-		<td width="80%" class="value"><input type="text" name="pageHeaderTitleImageAltText[{$formLocale|escape}]" value="{$pageHeaderTitleImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td>&nbsp;</td>
-		<td class="value"><span class="instruct">{translate key="common.altTextInstructions"}</span></td>
-		</tr>
-</table>
-{/if}
-
-<h4>{translate key="manager.setup.pressLogo"}</h4>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="manager.setup.useImageLogo"}</td>
-		<td width="80%" class="value"><input type="file" name="pageHeaderLogoImage" class="uploadField" /> <input type="submit" name="uploadPageHeaderLogoImage" value="{translate key="common.upload"}" class="button" /></td>
-	</tr>
-</table>
-
-{if $pageHeaderLogoImage[$formLocale]}
-{translate key="common.fileName"}: {$pageHeaderLogoImage[$formLocale].name|escape} {$pageHeaderLogoImage[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deletePageHeaderLogoImage" value="{translate key="common.delete"}" class="button" />
-<br />
-<img src="{$publicFilesDir}/{$pageHeaderLogoImage[$formLocale].uploadName|escape:"url"}" width="{$pageHeaderLogoImage[$formLocale].width|escape}" height="{$pageHeaderLogoImage[$formLocale].height|escape}" style="border: 0;" alt="{translate key="common.pageHeaderLogo.altText"}" />
-<br />
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="pageHeaderLogoImageAltText" key="common.altText"}</td>
-		<td width="80%" class="value"><input type="text" name="pageHeaderLogoImageAltText[{$formLocale|escape}]" value="{$pageHeaderLogoImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td>&nbsp;</td>
-		<td class="value"><span class="instruct">{translate key="common.altTextInstructions"}</span></td>
-		</tr>
-</table>
-{/if}
-
-<h4>{translate key="manager.setup.alternateHeader"}</h4>
-
-<p>{translate key="manager.setup.alternateHeaderDescription"}</p>
-
-<p><textarea name="pressPageHeader[{$formLocale|escape}]" id="pressPageHeader" rows="12" cols="60" class="textArea">{$pressPageHeader[$formLocale]|escape}</textarea></p>
-
-
-<div class="separator"></div>
-
-
-<h3>5.4 {translate key="manager.setup.pressPageFooter"}</h3>
-
-<p>{translate key="manager.setup.pressPageFooterDescription"}</p>
-
-<p><textarea name="pressPageFooter[{$formLocale|escape}]" id="pressPageFooter" rows="12" cols="60" class="textArea">{$pressPageFooter[$formLocale]|escape}</textarea></p>
-
-
-<div class="separator"></div>
-
-
-<h3>5.5 {translate key="manager.setup.navigationBar"}</h3>
-
-<p>{translate key="manager.setup.itemsDescription"}</p>
-
-<table width="100%" class="data">
-{foreach name=navItems from=$navItems[$formLocale] key=navItemId item=navItem}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="navItems-$navItemId-name" key="manager.setup.labelName"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="navItems[{$formLocale|escape}][{$navItemId|escape}][name]" id="navItems-{$navItemId|escape}-name" value="{$navItem.name|escape}" size="30" maxlength="90" class="textField" /> <input type="submit" name="delNavItem[{$navItemId|escape}]" value="{translate key="common.delete"}" class="button" />
-			<table width="100%">
-				<tr valign="top">
-					<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][{$navItemId|escape}][isLiteral]" id="navItems-{$navItemId|escape}-isLiteral" value="1"{if $navItem.isLiteral} checked="checked"{/if} /></td>
-					<td width="95%"><label for="navItems-{$navItemId|escape}-isLiteral">{translate key="manager.setup.navItemIsLiteral"}</label></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="navItems-$navItemId-url" key="common.url"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="navItems[{$formLocale|escape}][{$navItemId|escape}][url]" id="navItems-{$navItemId|escape}-url" value="{$navItem.url|escape}" size="60" maxlength="255" class="textField" />
-			<table width="100%">
-				<tr valign="top">
-					<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][{$navItemId|escape}][isAbsolute]" id="navItems-{$navItemId|escape}-isAbsolute" value="1"{if $navItem.isAbsolute} checked="checked"{/if} /></td>
-					<td width="95%"><label for="navItems-{$navItemId|escape}-isAbsolute">{translate key="manager.setup.navItemIsAbsolute"}</label></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	{if !$smarty.foreach.navItems.last}
+	{if !$smarty.foreach.customAboutItems.last}
 	<tr valign="top">
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	{/if}
 {foreachelse}
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="navItems-0-name" key="manager.setup.labelName"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="navItems[{$formLocale|escape}][0][name]" id="navItems-0-name" size="30" maxlength="90" class="textField" />
-			<table width="100%">
-				<tr valign="top">
-					<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][0][isLiteral]" id="navItems-0-isLiteral" value="1" /></td>
-					<td width="95%"><label for="navItems-0-isLiteral">{translate key="manager.setup.navItemIsLiteral"}</label></td>
-				</tr>
-			</table>
-		</td>
+		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-title" key="common.title"}</td>
+		<td width="80%" class="value"><input type="text" name="customAboutItems[{$formLocale|escape}][0][title]" id="customAboutItems-0-title" value="" size="40" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="navItems-0-url" key="common.url"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="navItems[{$formLocale|escape}][0][url]" id="navItems-0-url" size="60" maxlength="255" class="textField" />
-			<table width="100%">
-				<tr valign="top">
-					<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][0][isAbsolute]" id="navItems-0-isAbsolute" value="1" /></td>
-					<td width="95%"><label for="navItems-0-isAbsolute">{translate key="manager.setup.navItemIsAbsolute"}</label></td>
-				</tr>
-			</table>
-		</td>
+		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-content" key="manager.setup.aboutItemContent"}</td>
+		<td width="80%" class="value"><textarea name="customAboutItems[{$formLocale|escape}][0][content]" id="customAboutItems-0-content" rows="12" cols="40" class="textArea"></textarea></td>
 	</tr>
 {/foreach}
 </table>
 
-<p><input type="submit" name="addNavItem" value="{translate key="manager.setup.addNavItem"}" class="button" /></p>
+<p><input type="submit" name="addCustomAboutItem" value="{translate key="manager.setup.addAboutItem"}" class="button" /></p>
+
+<div class="separator"></div>
+
+<h3>5.4 {translate key="manager.setup.information"}</h3>
+
+<p>{translate key="manager.setup.information.description"}</p>
+
+<h4>{translate key="manager.setup.information.forReaders"}</h4>
+
+<p><textarea name="readerInformation[{$formLocale|escape}]" id="readerInformation" rows="12" cols="60" class="textArea">{$readerInformation[$formLocale]|escape}</textarea></p>
+
+<h4>{translate key="manager.setup.information.forAuthors"}</h4>
+
+<p><textarea name="authorInformation[{$formLocale|escape}]" id="authorInformation" rows="12" cols="60" class="textArea">{$authorInformation[$formLocale]|escape}</textarea></p>
+
+<h4>{translate key="manager.setup.information.forLibrarians"}</h4>
+
+<p><textarea name="librarianInformation[{$formLocale|escape}]" id="librarianInformation" rows="12" cols="60" class="textArea">{$librarianInformation[$formLocale]|escape}</textarea></p>
 
 
 <div class="separator"></div>
 
 
-<h3>5.6 {translate key="manager.setup.pressLayout"}</h3>
+<h3>5.5 {translate key="manager.setup.pressLayout"}</h3>
 
 <p>{translate key="manager.setup.pressLayoutDescription"}</p>
 
@@ -455,26 +358,155 @@ function prepBlockFields() {
 
 <div class="separator"></div>
 
-<h3>5.7 {translate key="manager.setup.information"}</h3>
+<h3>5.6 {translate key="manager.setup.pressPageHeader"}</h3>
 
-<p>{translate key="manager.setup.information.description"}</p>
+<p>{translate key="manager.setup.pressPageHeaderDescription"}</p>
 
-<h4>{translate key="manager.setup.information.forReaders"}</h4>
+<h4>{translate key="manager.setup.pressName"}</h4>
 
-<p><textarea name="readerInformation[{$formLocale|escape}]" id="readerInformation" rows="12" cols="60" class="textArea">{$readerInformation[$formLocale]|escape}</textarea></p>
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label"><input type="radio" name="pageHeaderTitleType[{$formLocale|escape}]" id="pageHeaderTitleType-0" value="0"{if not $pageHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="pageHeaderTitleType-0" key="manager.setup.useTextTitle"}</td>
+		<td width="80%" class="value"><input type="text" name="pageHeaderTitle[{$formLocale|escape}]" value="{$pageHeaderTitle[$formLocale]|escape}" size="40" maxlength="255" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td width="20%" class="label"><input type="radio" name="pageHeaderTitleType[{$formLocale|escape}]" id="pageHeaderTitleType-1" value="1"{if $pageHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="pageHeaderTitleType-1" key="manager.setup.useImageTitle"}</td>
+		<td width="80%" class="value"><input type="file" name="pageHeaderTitleImage" class="uploadField" /> <input type="submit" name="uploadPageHeaderTitleImage" value="{translate key="common.upload"}" class="button" /></td>
+	</tr>
+</table>
 
-<h4>{translate key="manager.setup.information.forAuthors"}</h4>
+{if $pageHeaderTitleImage[$formLocale]}
+{translate key="common.fileName"}: {$pageHeaderTitleImage[$formLocale].name|escape} {$pageHeaderTitleImage[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deletePageHeaderTitleImage" value="{translate key="common.delete"}" class="button" />
+<br />
+<img src="{$publicFilesDir}/{$pageHeaderTitleImage[$formLocale].uploadName|escape:"url"}" width="{$pageHeaderTitleImage[$formLocale].width|escape}" height="{$pageHeaderTitleImage[$formLocale].height|escape}" style="border: 0;" alt="{translate key="common.pageHeader.altText"}" />
+<br />
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="pageHeaderTitleImageAltText" key="common.altText"}</td>
+		<td width="80%" class="value"><input type="text" name="pageHeaderTitleImageAltText[{$formLocale|escape}]" value="{$pageHeaderTitleImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td class="value"><span class="instruct">{translate key="common.altTextInstructions"}</span></td>
+		</tr>
+</table>
+{/if}
 
-<p><textarea name="authorInformation[{$formLocale|escape}]" id="authorInformation" rows="12" cols="60" class="textArea">{$authorInformation[$formLocale]|escape}</textarea></p>
+<h4>{translate key="manager.setup.pressLogo"}</h4>
 
-<h4>{translate key="manager.setup.information.forLibrarians"}</h4>
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{translate key="manager.setup.useImageLogo"}</td>
+		<td width="80%" class="value"><input type="file" name="pageHeaderLogoImage" class="uploadField" /> <input type="submit" name="uploadPageHeaderLogoImage" value="{translate key="common.upload"}" class="button" /></td>
+	</tr>
+</table>
 
-<p><textarea name="librarianInformation[{$formLocale|escape}]" id="librarianInformation" rows="12" cols="60" class="textArea">{$librarianInformation[$formLocale]|escape}</textarea></p>
+{if $pageHeaderLogoImage[$formLocale]}
+{translate key="common.fileName"}: {$pageHeaderLogoImage[$formLocale].name|escape} {$pageHeaderLogoImage[$formLocale].dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deletePageHeaderLogoImage" value="{translate key="common.delete"}" class="button" />
+<br />
+<img src="{$publicFilesDir}/{$pageHeaderLogoImage[$formLocale].uploadName|escape:"url"}" width="{$pageHeaderLogoImage[$formLocale].width|escape}" height="{$pageHeaderLogoImage[$formLocale].height|escape}" style="border: 0;" alt="{translate key="common.pageHeaderLogo.altText"}" />
+<br />
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="pageHeaderLogoImageAltText" key="common.altText"}</td>
+		<td width="80%" class="value"><input type="text" name="pageHeaderLogoImageAltText[{$formLocale|escape}]" value="{$pageHeaderLogoImage[$formLocale].altText|escape}" size="40" maxlength="255" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td>&nbsp;</td>
+		<td class="value"><span class="instruct">{translate key="common.altTextInstructions"}</span></td>
+		</tr>
+</table>
+{/if}
+
+<h4>{translate key="manager.setup.alternateHeader"}</h4>
+
+<p>{translate key="manager.setup.alternateHeaderDescription"}</p>
+
+<p><textarea name="pressPageHeader[{$formLocale|escape}]" id="pressPageHeader" rows="12" cols="60" class="textArea">{$pressPageHeader[$formLocale]|escape}</textarea></p>
 
 
 <div class="separator"></div>
 
-<h3>5.8 {translate key="manager.setup.lists"}</h3>
+
+<h3>5.7 {translate key="manager.setup.pressPageFooter"}</h3>
+
+<p>{translate key="manager.setup.pressPageFooterDescription"}</p>
+
+<p><textarea name="pressPageFooter[{$formLocale|escape}]" id="pressPageFooter" rows="12" cols="60" class="textArea">{$pressPageFooter[$formLocale]|escape}</textarea></p>
+
+
+<div class="separator"></div>
+
+
+<h3>5.8 {translate key="manager.setup.navigationBar"}</h3>
+
+<p>{translate key="manager.setup.itemsDescription"}</p>
+
+<table width="100%" class="data">
+{foreach name=navItems from=$navItems[$formLocale] key=navItemId item=navItem}
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="navItems-$navItemId-name" key="manager.setup.labelName"}</td>
+		<td width="80%" class="value">
+			<input type="text" name="navItems[{$formLocale|escape}][{$navItemId|escape}][name]" id="navItems-{$navItemId|escape}-name" value="{$navItem.name|escape}" size="30" maxlength="90" class="textField" /> <input type="submit" name="delNavItem[{$navItemId|escape}]" value="{translate key="common.delete"}" class="button" />
+			<table width="100%">
+				<tr valign="top">
+					<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][{$navItemId|escape}][isLiteral]" id="navItems-{$navItemId|escape}-isLiteral" value="1"{if $navItem.isLiteral} checked="checked"{/if} /></td>
+					<td width="95%"><label for="navItems-{$navItemId|escape}-isLiteral">{translate key="manager.setup.navItemIsLiteral"}</label></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="navItems-$navItemId-url" key="common.url"}</td>
+		<td width="80%" class="value">
+			<input type="text" name="navItems[{$formLocale|escape}][{$navItemId|escape}][url]" id="navItems-{$navItemId|escape}-url" value="{$navItem.url|escape}" size="60" maxlength="255" class="textField" />
+			<table width="100%">
+				<tr valign="top">
+					<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][{$navItemId|escape}][isAbsolute]" id="navItems-{$navItemId|escape}-isAbsolute" value="1"{if $navItem.isAbsolute} checked="checked"{/if} /></td>
+					<td width="95%"><label for="navItems-{$navItemId|escape}-isAbsolute">{translate key="manager.setup.navItemIsAbsolute"}</label></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	{if !$smarty.foreach.navItems.last}
+	<tr valign="top">
+		<td colspan="2" class="separator">&nbsp;</td>
+	</tr>
+	{/if}
+{foreachelse}
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="navItems-0-name" key="manager.setup.labelName"}</td>
+		<td width="80%" class="value">
+			<input type="text" name="navItems[{$formLocale|escape}][0][name]" id="navItems-0-name" size="30" maxlength="90" class="textField" />
+			<table width="100%">
+				<tr valign="top">
+					<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][0][isLiteral]" id="navItems-0-isLiteral" value="1" /></td>
+					<td width="95%"><label for="navItems-0-isLiteral">{translate key="manager.setup.navItemIsLiteral"}</label></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="navItems-0-url" key="common.url"}</td>
+		<td width="80%" class="value">
+			<input type="text" name="navItems[{$formLocale|escape}][0][url]" id="navItems-0-url" size="60" maxlength="255" class="textField" />
+			<table width="100%">
+				<tr valign="top">
+					<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][0][isAbsolute]" id="navItems-0-isAbsolute" value="1" /></td>
+					<td width="95%"><label for="navItems-0-isAbsolute">{translate key="manager.setup.navItemIsAbsolute"}</label></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+{/foreach}
+</table>
+
+<p><input type="submit" name="addNavItem" value="{translate key="manager.setup.addNavItem"}" class="button" /></p>
+
+
+<div class="separator"></div>
+
+<h3>5.9 {translate key="manager.setup.lists"}</h3>
 <p>{translate key="manager.setup.listsDescription"}</p>
 <table width="100%" class="data">
 	<tr valign="top">

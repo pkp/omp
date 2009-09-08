@@ -109,22 +109,6 @@ class SetupHandler extends ManagerHandler {
 						$contributors = $setupForm->getData('contributors');
 						array_splice($contributors, $delContributor, 1);
 						$setupForm->setData('contributors', $contributors);
-					} else if (Request::getUserVar('addCustomAboutItem')) {
-						// Add a custom about item
-						$editData = true;
-						$customAboutItems = $setupForm->getData('customAboutItems');
-						$customAboutItems[$formLocale][] = array();
-						$setupForm->setData('customAboutItems', $customAboutItems);
-
-					} else if (($delCustomAboutItem = Request::getUserVar('delCustomAboutItem')) && count($delCustomAboutItem) == 1) {
-						// Delete a custom about item
-						$editData = true;
-						list($delCustomAboutItem) = array_keys($delCustomAboutItem);
-						$delCustomAboutItem = (int) $delCustomAboutItem;
-						$customAboutItems = $setupForm->getData('customAboutItems');
-						if (!isset($customAboutItems[$formLocale])) $customAboutItems[$formLocale][] = array();
-						array_splice($customAboutItems[$formLocale], $delCustomAboutItem, 1);
-						$setupForm->setData('customAboutItems', $customAboutItems);
 					}
 
 					break;
@@ -365,7 +349,24 @@ class SetupHandler extends ManagerHandler {
 							array_splice($navItems[$formLocale], $delNavItem, 1);		
 							$setupForm->setData('navItems', $navItems);
 						}
+					} else if (Request::getUserVar('addCustomAboutItem')) {
+						// Add a custom about item
+						$editData = true;
+						$customAboutItems = $setupForm->getData('customAboutItems');
+						$customAboutItems[$formLocale][] = array();
+						$setupForm->setData('customAboutItems', $customAboutItems);
+
+					} else if (($delCustomAboutItem = Request::getUserVar('delCustomAboutItem')) && count($delCustomAboutItem) == 1) {
+						// Delete a custom about item
+						$editData = true;
+						list($delCustomAboutItem) = array_keys($delCustomAboutItem);
+						$delCustomAboutItem = (int) $delCustomAboutItem;
+						$customAboutItems = $setupForm->getData('customAboutItems');
+						if (!isset($customAboutItems[$formLocale])) $customAboutItems[$formLocale][] = array();
+						array_splice($customAboutItems[$formLocale], $delCustomAboutItem, 1);
+						$setupForm->setData('customAboutItems', $customAboutItems);
 					}
+
 					break;
 			}
 

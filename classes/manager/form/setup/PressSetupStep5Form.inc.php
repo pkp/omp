@@ -58,6 +58,7 @@ class PressSetupStep5Form extends PressSetupForm {
 				'description' => 'string',
 				'navItems' => 'object',
 				'itemsPerPage' => 'int',
+				'customAboutItems' => 'object',
 				'numPageLinks' => 'int',
 				'pressTheme' => 'string'
 			)
@@ -69,7 +70,7 @@ class PressSetupStep5Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('homeHeaderTitleType', 'homeHeaderTitle', 'pageHeaderTitleType', 'pageHeaderTitle', 'readerInformation', 'authorInformation', 'librarianInformation', 'pressPageHeader', 'pressPageFooter', 'homepageImage', 'additionalHomeContent', 'description', 'navItems');
+		return array('homeHeaderTitleType', 'customAboutItems', 'homeHeaderTitle', 'pageHeaderTitleType', 'pageHeaderTitle', 'readerInformation', 'authorInformation', 'librarianInformation', 'pressPageHeader', 'pressPageFooter', 'homepageImage', 'additionalHomeContent', 'description', 'navItems');
 	}
 
 	/**
