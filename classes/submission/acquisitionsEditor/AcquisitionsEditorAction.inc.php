@@ -76,6 +76,7 @@ class AcquisitionsEditorAction extends Action {
 			// Add log
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
+			Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR));
 			MonographLog::logEvent($acquisitionsEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_DECISION, MONOGRAPH_LOG_TYPE_EDITOR, $user->getId(), 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $acquisitionsEditorSubmission->getMonographId(), 'decision' => Locale::translate($decisions[$decision])));
 		}
 	}
