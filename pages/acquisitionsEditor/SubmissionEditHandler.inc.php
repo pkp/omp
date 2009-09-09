@@ -490,7 +490,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 
 			$templateMgr->assign('helpTopicId', 'press.roles.reviewer');
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
-			$templateMgr->assign('reviewerDatabaseLinks', $press->getSetting('reviewerDatabaseLinks'));
 			$templateMgr->assign('reviewType', $reviewType);
 			$templateMgr->assign('sort', $sort);
 			$templateMgr->assign('sortDirection', $sortDirection);

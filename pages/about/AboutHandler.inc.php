@@ -111,9 +111,6 @@ class AboutHandler extends Handler {
 		$press =& Request::getPress();
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign_by_ref('publisherInstitution', $press->getSetting('publisherInstitution'));
-		$templateMgr->assign_by_ref('publisherUrl', $press->getSetting('publisherUrl'));
-		$templateMgr->assign_by_ref('publisherNote', $press->getLocalizedSetting('publisherNote'));
 		$templateMgr->assign_by_ref('contributorNote', $press->getLocalizedSetting('contributorNote'));
 		$templateMgr->assign_by_ref('contributors', $press->getSetting('contributors'));
 		$templateMgr->assign('sponsorNote', $press->getLocalizedSetting('sponsorNote'));

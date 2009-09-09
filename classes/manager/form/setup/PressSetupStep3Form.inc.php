@@ -19,37 +19,15 @@ import('manager.form.setup.PressSetupForm');
 
 class PressSetupStep3Form extends PressSetupForm {
 
-	var $files;
 	/**
 	 * Constructor.
 	 */
 	function PressSetupStep3Form() {
-		$this->files = array(
-			'pageHeaderTitleImage',
-		);
 		parent::PressSetupForm(
 			3,
 			array(
-				'metaDiscipline' => 'bool',
-				'metaDisciplineExamples' => 'string',
-				'metaSubjectClass' => 'bool',
-				'metaSubjectClassTitle' => 'string',
-				'metaSubjectClassUrl' => 'string',
-				'metaSubject' => 'bool',
-				'metaSubjectExamples' => 'string',
-				'metaCoverage' => 'bool',
-				'metaCoverageGeoExamples' => 'string',
-				'metaCoverageChronExamples' => 'string',
-				'metaCoverageResearchSampleExamples' => 'string',
-				'metaType' => 'bool',
-				'metaTypeExamples' => 'string',
-				'copySubmissionAckPrimaryContact' => 'bool',
-				'copySubmissionAckSpecified' => 'bool',
-				'copySubmissionAckAddress' => 'string'
 			)
 		);
-
-		$this->addCheck(new FormValidatorEmail($this, 'copySubmissionAckAddress', 'optional', 'user.profile.form.emailRequired'));
 	}
 
 	/**
@@ -57,7 +35,7 @@ class PressSetupStep3Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('metaDisciplineExamples', 'metaSubjectClassTitle', 'metaSubjectClassUrl', 'metaSubjectExamples', 'metaCoverageGeoExamples', 'metaCoverageChronExamples', 'metaCoverageResearchSampleExamples', 'metaTypeExamples');
+		return array();
 	}
 
 	/**
@@ -74,13 +52,6 @@ class PressSetupStep3Form extends PressSetupForm {
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 		$press =& Request::getPress();
-
-		import('mail.MailTemplate');
-		$mail = new MailTemplate('SUBMISSION_ACK');
-
-		if ($mail->isEnabled()) {
-			$templateMgr->assign('submissionAckEnabled', true);
-		}
 
 		$templateMgr->assign_by_ref('bookFileTypes', $press->getSetting('bookFileTypes'));
 

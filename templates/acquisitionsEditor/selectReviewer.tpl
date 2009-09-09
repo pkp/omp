@@ -30,7 +30,7 @@
 
 <p>{foreach from=$alphaList item=letter}<a href="{url op=$selectReviewerFunction path=$monographId searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op=$selectReviewerFunction path=$monographId}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
 
-<p><a class="action" href="{url op="enrollSearch" path=$monographId}">{translate key="editor.review.enrollReviewer"}</a>&nbsp;|&nbsp;<a class="action" href="{url op="createReviewer" path=$monographId}">{translate key="editor.review.createReviewer"}</a>{foreach from=$reviewerDatabaseLinks item="link"}{if !empty($link.title) && !empty($link.url)}&nbsp;|&nbsp;<a href="{$link.url|escape}" target="_new" class="action">{$link.title|escape}</a>{/if}{/foreach}</p>
+<p><a class="action" href="{url op="enrollSearch" path=$monographId}">{translate key="editor.review.enrollReviewer"}</a>&nbsp;|&nbsp;<a class="action" href="{url op="createReviewer" path=$monographId}">{translate key="editor.review.createReviewer"}</a></p>
 
 <div id="reviewers">
 <table class="listing" width="100%">

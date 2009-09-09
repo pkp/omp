@@ -127,17 +127,6 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 		$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 		if ($mail->isEnabled()) {
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
-			// If necessary, BCC the acknowledgement to someone.
-			if($press->getSetting('copySubmissionAckPrimaryContact')) {
-				$mail->addBcc(
-					$press->getSetting('contactEmail'),
-					$press->getSetting('contactName')
-				);
-			}
-			if($press->getSetting('copySubmissionAckSpecified')) {
-				$copyAddress = $press->getSetting('copySubmissionAckAddress');
-				if (!empty($copyAddress)) $mail->addBcc($copyAddress);
-			}
 
 			// Also BCC automatically assigned acquisitions editors
 			foreach ($arrangementEditors as $acquisitionsEditorEntry) {

@@ -127,38 +127,6 @@ Thanks for the continuing interest in our work,
 {$editorialContactSignature}</body>
 		<description>This email is sent to registered readers via the "Notify Users" link in the Editor's User Home. It notifies readers of a new book and invites them to visit the press at a supplied URL.</description>
 	</email_text>
-	<email_text key="LOCKSS_EXISTING_ARCHIVE">
-		<subject>Archiving Request for {$pressName}</subject>
-		<body>Dear [University Librarian]
-
-{$pressName} &lt;{$pressUrl}&gt;, is a press for which a member of your faculty, [name of member], serves as a [title of position]. The press is seeking to establish a LOCKSS (Lots of Copies Keep Stuff Safe) compliant archive with this and other university libraries.
-
-[Brief description of press]
-
-The URL to the LOCKSS Publisher Manifest for our press is: {$pressUrl}/gateway/lockss
-
-We understand that you are already participating in LOCKSS. If we can provide any additional metadata for purposes of registering our press with your version of LOCKSS, we would be happy to provide it.
-
-Thank you,
-{$principalContactSignature}</body>
-		<description>This email requests the keeper of a LOCKSS archive to consider including this press in their archive. It provides the URL to the press's LOCKSS Publisher Manifest.</description>
-	</email_text>
-	<email_text key="LOCKSS_NEW_ARCHIVE">
-		<subject>Archiving Request for {$pressName}</subject>
-		<body>Dear [University Librarian]
-
-{$pressName} &lt;{$pressUrl}&gt;, is a press for which a member of your faculty, [name of member] serves as a [title of position]. The press is seeking to establish a LOCKSS (Lots of Copies Keep Stuff Safe) compliant archive with this and other university libraries.
-
-[Brief description of press]
-
-The LOCKSS Program &lt;http://lockss.stanford.edu/&gt;, an international library/publisher initiative, is a working example of a distributed preservation and archiving repository, additional details are below. The software, which runs on an ordinary personal computer is free; the system is easily brought on-line; very little ongoing maintenance is required.
-
-To assist in the archiving of our press, we invite you to become a member of the LOCKSS community, to help collect and preserve titles produced by your faculty and by other scholars worldwide. To do so, please have someone on your staff visit the LOCKSS site for information on how this system operates. I look forward to hearing from you on the feasibility of providing this archiving support for this press.
-
-Thank you,
-{$principalContactSignature}</body>
-		<description>This email encourages the recipient to participate in the LOCKSS initiative and include this press in the archive. It provides information about the LOCKSS initiative and ways to become involved.</description>
-	</email_text>
 	<email_text key="SUBMISSION_ACK">
 		<subject>Submission Acknowledgement</subject>
 		<body>{$authorName}:

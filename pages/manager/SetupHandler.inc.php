@@ -247,21 +247,6 @@ class SetupHandler extends ManagerHandler {
 						$pressFileManager->deleteFile($filename);
 						array_splice($templates, $delTemplate, 1);
 						$press->updateSetting('templates', $templates);
-					} else if (Request::getUserVar('addReviewerDatabaseLink')) {
-						// Add a reviewer database link
-						$editData = true;
-						$reviewerDatabaseLinks = $setupForm->getData('reviewerDatabaseLinks');
-						array_push($reviewerDatabaseLinks, array());
-						$setupForm->setData('reviewerDatabaseLinks', $reviewerDatabaseLinks);
-
-					} else if (($delReviewerDatabaseLink = Request::getUserVar('delReviewerDatabaseLink')) && count($delReviewerDatabaseLink) == 1) {
-						// Delete a custom about item
-						$editData = true;
-						list($delReviewerDatabaseLink) = array_keys($delReviewerDatabaseLink);
-						$delReviewerDatabaseLink = (int) $delReviewerDatabaseLink;
-						$reviewerDatabaseLinks = $setupForm->getData('reviewerDatabaseLinks');
-						array_splice($reviewerDatabaseLinks, $delReviewerDatabaseLink, 1);
-						$setupForm->setData('reviewerDatabaseLinks', $reviewerDatabaseLinks);
 					}
 
 					$setupForm->setData('templates', $templates);

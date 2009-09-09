@@ -42,7 +42,8 @@ class PressSetupStep2Form extends PressSetupForm {
 				'reviewGuidelines' => 'string',
 				'copyrightNotice' => 'string',
 				'includeCreativeCommons' => 'bool',
-				'copyrightNoticeAgree' => 'bool'
+				'copyrightNoticeAgree' => 'bool',
+				'privacyStatement' => 'string'
 			)
 		);
 
@@ -54,7 +55,7 @@ class PressSetupStep2Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('authorGuidelines', 'copyrightNotice', 'submissionChecklist', 'reviewPolicy', 'reviewGuidelines', 'focusScopeDesc');
+		return array('authorGuidelines', 'copyrightNotice', 'submissionChecklist', 'reviewPolicy', 'reviewGuidelines', 'focusScopeDesc', 'privacyStatement');
 	}
 
 	/**

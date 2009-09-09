@@ -415,10 +415,6 @@ Note that the OAI interface can be disabled for this site by editing the OMP sys
 	Reviewers the request to review with the submission attached to the email. Reviewers email editors their assent (or regrets), as well as the review and recommendation. Editors enter Reviewers' assent (or regrets), as well as the review and recommendation on the submission's Review page, to record the review process.</message>
 
 
-	<message key="manager.setup.lockssDescription"><![CDATA[Open Monograph Press supports the <a href="http://lockss.stanford.edu/" target="_blank">LOCKSS</a> (Lots of Copies Keep Stuff Safe) system to ensure a secure and permanent archive for the press. LOCKSS is open source software developed at Stanford University Library that enables libraries to preserve selected web presses by regularly polling registered press websites for newly published content and archiving it. Each archive is continually validated against other library caches, and if content is found to be corrupted or lost, the other caches or the press is used to restore it.
-<br /><br />
-Setting up LOCKSS support for Open Monograph Press does not need to take place until after publishing is fully underway, at which point follow these two steps:]]></message>
-	
 	<!-- Setup Step 3 -->
 	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Proposed Creative Commons Copyright Notices</h3>
 <h4>1. Proposed Policy for Presses That Offer Open Access</h4>

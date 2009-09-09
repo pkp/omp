@@ -135,28 +135,6 @@
 	</tr>
 </table>
 
-
-<div class="separator"></div>
-
-<h3>1.5 {translate key="manager.setup.publisher"}</h3>
-
-<p>{translate key="manager.setup.publisherDescription"}</p>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="publisherNote" key="manager.setup.note"}</td>
-		<td width="80%" class="value"><textarea name="publisherNote[{$formLocale|escape}]" id="publisherNote" rows="5" cols="40" class="textArea">{$publisherNote[$formLocale]|escape}</textarea></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="publisherInstitution" key="manager.setup.institution"}</td>
-		<td width="80%" class="value"><input type="text" name="publisherInstitution" id="publisherInstitution" value="{$publisherInstitution|escape}" size="40" maxlength="90" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="publisherUrl" key="common.url"}</td>
-		<td width="80%" class="value"><input type="text" name="publisherUrl" id="publisherUrl" value="{$publisherUrl|escape}" size="40" maxlength="255" class="textField" /></td>
-	</tr>
-</table>
-
 <div class="separator"></div>
 
 <h3>1.6 {translate key="manager.setup.sponsors"}</h3>
@@ -237,12 +215,6 @@
 
 <p><input type="submit" name="addContributor" value="{translate key="manager.setup.addContributor"}" class="button" /></p>
 
-
-<div class="separator"></div>
-
-<h3>1.10 {translate key="manager.setup.privacyStatement"}</h3>
-
-<p><textarea name="privacyStatement[{$formLocale|escape}]" id="privacyStatement" rows="12" cols="60" class="textArea">{$privacyStatement[$formLocale]|escape}</textarea></p>
 
 <div class="separator"></div>
 

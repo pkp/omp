@@ -180,7 +180,6 @@
 	<message key="manager.setup.additionalContent">Additional Content</message>
 	<message key="manager.setup.additionalContentDescription">Add the following content, using text/HTML, which will appear below the homepage image, if one is uploaded.</message>
 	<message key="manager.setup.addNavItem">Add Item</message>
-	<message key="manager.setup.addReviewerDatabaseLink">Add New Database Link</message>
 	<message key="manager.setup.addSponsor">Add Sponsoring Organization</message>
 	<message key="manager.setup.alternateHeader">Alternate Header</message>
 	<message key="manager.setup.alternateHeaderDescription">Alternately, instead of title and logo, an HTML version of the header can be inserted into the text box below. Leave textbox blank if not required.</message>
@@ -310,9 +309,6 @@
 	<message key="manager.setup.layoutTemplates.title">Title</message>
 	<message key="manager.setup.lists">Lists</message>
 	<message key="manager.setup.listsDescription">Enter the maximum number of items (for example, submissions, users, or editing assignments) that appear on each page of a list, and the number of pages links to display on each page.</message>
-	<message key="manager.setup.lockssEnable"><![CDATA[Enable LOCKSS to store and distribute press content at participating libraries via a LOCKSS <a href="{$lockssUrl}" target="_blank">Publisher Manifest</a> page. A LOCKSS license will appear in About the Press under Archiving:]]></message>
-	<message key="manager.setup.lockssLicenses"><![CDATA[See <a href="http://lockss.stanford.edu/publishers/publishers.htm" target="_blank">other versions of a LOCKSS license</a>.]]></message>
-	<message key="manager.setup.lockssRegister"><![CDATA[Identify 6-10 libraries that will register and cache the press. For example, turn to institutions where editors or Board members work and/or institutions already participating in LOCKSS. See <a href="http://lockss.stanford.edu/about/users.htm" target="_blank">participating libraries</a>. Use the prepared invitations for (i) <a href="{$lockssExistingArchiveUrl}" target="_blank">libraries participating in LOCKSS</a> or (ii) <a href="{$lockssNewArchiveUrl}" target="_blank">libraries not yet participating in LOCKSS</a>.]]></message>
 	<message key="manager.setup.look">The Look</message>
 	<message key="manager.setup.look.description">Homepage header, content, press header, footer, navigation bar, and style sheet.</message>
 	<message key="manager.setup.mailingAddressDescription">The press's physical location and mailing address.</message>
@@ -368,8 +364,6 @@
 	<message key="manager.setup.registerPressForIndexing">Register Press for Indexing (Metadata Harvesting)</message>
 	<message key="manager.setup.restrictMonographAccess">Users must be registered and log in to view open access content.</message>
 	<message key="manager.setup.restrictSiteAccess">Users must be registered and log in to view the press site.</message>
-	<message key="manager.setup.reviewerDatabaseLink">Potential Reviewer Database</message>
-	<message key="manager.setup.reviewerDatabaseLink.desc">Add to the Select Reviewer page a link to a relevant literature database that can be searched for potential reviewers and is open to editors without subscription.</message>
 	<message key="manager.setup.reviewGuidelines">Review Guidelines</message>
 	<message key="manager.setup.reviewGuidelinesDescription"><![CDATA[The Review Guidelines will provide reviewers with criteria for judging a submission's suitability for publication in the press, and can include any special instructions for preparing an effective and helpful review. In conducting the review, reviewers are presented with with two open text boxes, the first "for author and editor," and the second "for editor." Alternatively, the Press Manager can create a peer review form under <a href="{$reviewFormsUrl}" class="action">Review Forms</a>. In all cases, editors will have the option of including the reviews in corresponding with the author.]]></message>
 	<message key="manager.setup.reviewOptions">Review Options</message>

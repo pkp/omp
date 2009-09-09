@@ -40,9 +40,6 @@ class PressSetupStep4Form extends PressSetupForm {
 				'numAnnouncementsHomepage' => 'int',
 				'announcementsIntroduction' => 'string',
 				'volumePerYear' => 'int',
-				'enableLockss' => 'bool',
-				'lockssLicense' => 'string',
-				'reviewerDatabaseLinks' => 'object',
 				'enablePublicMonographId' => 'bool',
 				'enablePublicGalleyId' => 'bool',
 				'enablePublicSuppFileId' => 'bool',
@@ -59,7 +56,7 @@ class PressSetupStep4Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('pubFreqPolicy', 'openAccessPolicy', 'announcementsIntroduction', 'lockssLicense', 'searchDescription', 'searchKeywords', 'customHeaders');
+		return array('pubFreqPolicy', 'openAccessPolicy', 'announcementsIntroduction', 'searchDescription', 'searchKeywords', 'customHeaders');
 	}
 }
 

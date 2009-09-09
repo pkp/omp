@@ -13,17 +13,6 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{if not(empty($publisherNote) && empty($publisherInstitution))}
-<div id="publisher">
-<h3>{translate key="common.publisher"}</h3>
-
-{if $publisherNote}<p>{$publisherNote|nl2br}</p>{/if}
-
-<p><a href="{$publisherUrl}">{$publisherInstitution|escape}</a></p>
-</div>
-<div class="separator"></div>
-{/if}
-
 {if not (empty($sponsorNote) && empty($sponsors))}
 <div id="sponsors">
 <h3>{translate key="about.sponsors"}</h3>

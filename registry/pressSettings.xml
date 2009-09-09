@@ -72,10 +72,6 @@
 		<name>librarianInformation</name>
 		<value>{translate key="default.pressSettings.forLibrarians"}</value>
 	</setting>
-	<setting type="string" locale="1">
-		<name>lockssLicense</name>
-		<value>{translate key="default.pressSettings.lockssLicense"}</value>
-	</setting>
 	<setting type="object" locale="0">
 		<name>supportedLocales</name>
 		<value>

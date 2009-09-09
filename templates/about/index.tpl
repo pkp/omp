@@ -29,7 +29,6 @@
 	{if $currentPress->getLocalizedSetting('reviewPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('pubFreqPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="publicationFrequency"}">{translate key="about.publicationFrequency"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('openAccessPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
-	{if $pressSettings.enableLockss && $currentPress->getLocalizedSetting('lockssLicense') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="archiving"}">{translate key="about.archiving"}</a></li>{/if}
 	{foreach key=key from=$customAboutItems item=customAboutItem}
 		{if $customAboutItem.title!=''}<li>&#187; <a href="{url op="editorialPolicies" anchor=custom`$key`}">{$customAboutItem.title|escape}</a></li>{/if}
 	{/foreach}
@@ -47,7 +46,7 @@
 
 <h3>{translate key="about.other"}</h3>
 <ul class="plain">
-	{if not ($currentPress->getSetting('publisherInstitution') == '' && $currentPress->getLocalizedSetting('publisherNote') == '' && $currentPress->getLocalizedSetting('contributorNote') == '' && empty($pressSettings.contributors) && $currentPress->getLocalizedSetting('sponsorNote') == '' && empty($pressSettings.sponsors))}<li>&#187; <a href="{url op="pressSponsorship"}">{translate key="about.pressSponsorship"}</a></li>{/if}
+	{if not ($currentPress->getLocalizedSetting('contributorNote') == '' && empty($pressSettings.contributors) && $currentPress->getLocalizedSetting('sponsorNote') == '' && empty($pressSettings.sponsors))}<li>&#187; <a href="{url op="pressSponsorship"}">{translate key="about.pressSponsorship"}</a></li>{/if}
 	<li>&#187; <a href="{url op="siteMap"}">{translate key="about.siteMap"}</a></li>
 	<li>&#187; <a href="{url op="aboutThisPublishingSystem"}">{translate key="about.aboutThisPublishingSystem"}</a></li>
 	{call_hook name="Templates::About::Index::Other"}
