@@ -39,6 +39,10 @@
 		<td width="80%" class="value"><input type="text" name="initials[{$formLocale|escape}]" id="initials" value="{$initials[$formLocale]|escape}" size="8" maxlength="16" class="textField" /></td>
 	</tr>
 	<tr valign="top">
+		<td class="label">{fieldLabel name="description" key="manager.setup.pressDescription"}</td>
+		<td class="value"><textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="10" class="textArea">{$description[$formLocale]|escape}</textarea></td>
+	</tr>
+	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="mailingAddress" key="common.mailingAddress"}</td>
 		<td width="80%" class="value">
 			<textarea name="mailingAddress" id="mailingAddress" rows="3" cols="40" class="textArea">{$mailingAddress|escape}</textarea>
@@ -46,13 +50,42 @@
 			<span class="instruct">{translate key="manager.setup.mailingAddressDescription"}</span>
 		</td>
 	</tr>
+	<tr valign="top">
+		<td colspan="2" class="label">
+			<input type="checkbox" name="pressEnabled" id="pressEnabled" value="1"{if $pressEnabled} checked="checked"{/if} /> <label for="pressEnabled">{translate key="manager.setup.enablePressInstructions"}</label>
+		</td>
+	</tr>
 </table>
 
 
 <div class="separator"></div>
 
+<h3>1.2 {translate key="manager.setup.emails"}</h3>
+<table width="100%" class="data">
+	<tr valign="top"><td colspan="2">{translate key="manager.setup.emailSignatureDescription"}<br />&nbsp;</td></tr>
+	<tr valign="top">
+		<td class="label">{fieldLabel name="emailSignature" key="manager.setup.emailSignature"}</td>
+		<td class="value">
+			<textarea name="emailSignature" id="emailSignature" rows="3" cols="60" class="textArea">{$emailSignature|escape}</textarea>
+		</td>
+	</tr>
+	<tr valign="top"><td colspan="2">&nbsp;</td></tr>
+	<tr valign="top"><td colspan="2">{translate key="manager.setup.emailBounceAddressDescription"}<br />&nbsp;</td></tr>
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="envelopeSender" key="manager.setup.emailBounceAddress"}</td>
+		<td width="80%" class="value">
+			<input type="text" name="envelopeSender" id="envelopeSender" size="40" maxlength="255" class="textField" {if !$envelopeSenderEnabled}disabled="disabled" value=""{else}value="{$envelopeSender|escape}"{/if} />
+			{if !$envelopeSenderEnabled}
+			<br />
+			<span class="instruct">{translate key="manager.setup.emailBounceAddressDisabled"}</span>
+			{/if}
+		</td>
+	</tr>
+</table>
 
-<h3>1.2 {translate key="manager.setup.principalContact"}</h3>
+<div class="separator"></div>
+
+<h3>1.3 {translate key="manager.setup.principalContact"}</h3>
 
 <p>{translate key="manager.setup.principalContactDescription"}</p>
 
@@ -90,54 +123,11 @@
 
 <div class="separator"></div>
 
-
-<h3>1.3 {translate key="manager.setup.technicalSupportContact"}</h3>
-
-<p>{translate key="manager.setup.technicalSupportContactDescription"}</p>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="supportName" key="user.name" required="true"}</td>
-		<td width="80%" class="value"><input type="text" name="supportName" id="supportName" value="{$supportName|escape}" size="30" maxlength="60" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="supportEmail" key="user.email" required="true"}</td>
-		<td width="80%" class="value"><input type="text" name="supportEmail" id="supportEmail" value="{$supportEmail|escape}" size="30" maxlength="90" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="supportPhone" key="user.phone"}</td>
-		<td width="80%" class="value"><input type="text" name="supportPhone" id="supportPhone" value="{$supportPhone|escape}" size="15" maxlength="24" class="textField" /></td>
-	</tr>
-</table>
+<h3>1.4 {translate key="manager.setup.masthead"}</h3>
 
 <div class="separator"></div>
 
-<h3>1.4 {translate key="manager.setup.emails"}</h3>
-<table width="100%" class="data">
-	<tr valign="top"><td colspan="2">{translate key="manager.setup.emailSignatureDescription"}<br />&nbsp;</td></tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="emailSignature" key="manager.setup.emailSignature"}</td>
-		<td class="value">
-			<textarea name="emailSignature" id="emailSignature" rows="3" cols="60" class="textArea">{$emailSignature|escape}</textarea>
-		</td>
-	</tr>
-	<tr valign="top"><td colspan="2">&nbsp;</td></tr>
-	<tr valign="top"><td colspan="2">{translate key="manager.setup.emailBounceAddressDescription"}<br />&nbsp;</td></tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="envelopeSender" key="manager.setup.emailBounceAddress"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="envelopeSender" id="envelopeSender" size="40" maxlength="255" class="textField" {if !$envelopeSenderEnabled}disabled="disabled" value=""{else}value="{$envelopeSender|escape}"{/if} />
-			{if !$envelopeSenderEnabled}
-			<br />
-			<span class="instruct">{translate key="manager.setup.emailBounceAddressDisabled"}</span>
-			{/if}
-		</td>
-	</tr>
-</table>
-
-<div class="separator"></div>
-
-<h3>1.6 {translate key="manager.setup.sponsors"}</h3>
+<h3>1.5 {translate key="manager.setup.sponsors"}</h3>
 
 <p>{translate key="manager.setup.sponsorsDescription"}</p>
 
@@ -174,11 +164,9 @@
 
 <p><input type="submit" name="addSponsor" value="{translate key="manager.setup.addSponsor"}" class="button" /></p>
 
-
 <div class="separator"></div>
 
-
-<h3>1.7 {translate key="manager.setup.contributors"}</h3>
+<h3>1.6 {translate key="manager.setup.contributors"}</h3>
 
 <p>{translate key="manager.setup.contributorsDescription"}</p>
 
@@ -215,6 +203,26 @@
 
 <p><input type="submit" name="addContributor" value="{translate key="manager.setup.addContributor"}" class="button" /></p>
 
+<div class="separator"></div>
+
+<h3>1.7 {translate key="manager.setup.technicalSupportContact"}</h3>
+
+<p>{translate key="manager.setup.technicalSupportContactDescription"}</p>
+
+<table width="100%" class="data">
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="supportName" key="user.name" required="true"}</td>
+		<td width="80%" class="value"><input type="text" name="supportName" id="supportName" value="{$supportName|escape}" size="30" maxlength="60" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="supportEmail" key="user.email" required="true"}</td>
+		<td width="80%" class="value"><input type="text" name="supportEmail" id="supportEmail" value="{$supportEmail|escape}" size="30" maxlength="90" class="textField" /></td>
+	</tr>
+	<tr valign="top">
+		<td width="20%" class="label">{fieldLabel name="supportPhone" key="user.phone"}</td>
+		<td width="80%" class="value"><input type="text" name="supportPhone" id="supportPhone" value="{$supportPhone|escape}" size="15" maxlength="24" class="textField" /></td>
+	</tr>
+</table>
 
 <div class="separator"></div>
 

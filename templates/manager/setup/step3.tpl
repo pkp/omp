@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="manager.setup.guidingSubmissions"}
+{assign var="pageTitle" value="manager.setup.preparingWorkflow"}
 {include file="manager/setup/setupHeader.tpl"}
 
 <form name="setupForm" method="post" action="{url op="saveSetup" path="3"}" enctype="multipart/form-data">
@@ -26,6 +26,10 @@
 	</tr>
 </table>
 {/if}
+
+<h3>3.1 {translate key="manager.setup.submissionRoles}</h3>
+
+<div class="separator"></div>
 
 <h3>3.2 {translate key="manager.setup.bookFileTypes}</h3>
 
@@ -77,6 +81,50 @@
 </tr>
 </table>
 </div>
+
+<div class="separator"></div>
+
+<h3>3.3 {translate key="manager.setup.submissionLibrary}</h3>
+
+<div class="separator"></div>
+
+<h3>3.4 {translate key="manager.setup.internalReviewRoles}</h3>
+
+<div class="separator"></div>
+
+<h3>3.5 {translate key="manager.setup.externalReviewRoles}</h3>
+
+<div class="separator"></div>
+
+<h3>3.6 {translate key="manager.setup.reviewLibrary}</h3>
+
+<div class="separator"></div>
+
+<h3>3.7 {translate key="manager.setup.reviewForms}</h3>
+
+<div class="separator"></div>
+
+<h3>3.8 {translate key="manager.setup.editorialRoles}</h3>
+
+<div class="separator"></div>
+
+<h3>3.9 {translate key="manager.setup.editorialLibrary}</h3>
+
+<div class="separator"></div>
+
+<h3>3.10 {translate key="manager.setup.productionRoles}</h3>
+
+<div class="separator"></div>
+
+<h3>3.11 {translate key="manager.setup.productionLibrary}</h3>
+
+<div class="separator"></div>
+
+<h3>3.11 {translate key="manager.setup.productionTemplates}</h3>
+
+<div class="separator"></div>
+
+<h3>3.11 {translate key="manager.setup.publicationFormats}</h3>
 
 <div class="separator"></div>
 

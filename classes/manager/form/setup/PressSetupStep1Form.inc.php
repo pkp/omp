@@ -27,7 +27,9 @@ class PressSetupStep1Form extends PressSetupForm {
 			array(
 				'name' => 'string',
 				'initials' => 'string',
+				'description' => 'string',
 				'mailingAddress' => 'string',
+				'pressEnabled' => 'bool',
 				'useEditorialBoard' => 'bool',
 				'contactName' => 'string',
 				'contactTitle' => 'string',
@@ -64,7 +66,7 @@ class PressSetupStep1Form extends PressSetupForm {
 	 */
 	function getLocaleFieldNames() {
 		return array(
-			'name', 'initials', 'sponsorNote', 'contactTitle', 'contactAffiliation', 'contactMailingAddress', 'contributorNote', 'privacyStatement'
+			'name', 'initials', 'description', 'sponsorNote', 'contactTitle', 'contactAffiliation', 'contactMailingAddress', 'contributorNote', 'privacyStatement'
 		);
 	}
 
@@ -88,6 +90,15 @@ class PressSetupStep1Form extends PressSetupForm {
 			$this->setData($element, $elementValue);
 		}
 
+		$press =& Request::getPress();
+
+		if ($press->getEnabled() !== $this->getData('pressEnabled')) {
+			$pressDao =& DAORegistry::getDAO('PressDAO');
+			$press->setEnabled($this->getData('pressEnabled'));
+			$pressDao->updatePress($press);
+
+		}
+
 		return parent::execute();
 	}
 
@@ -95,9 +106,13 @@ class PressSetupStep1Form extends PressSetupForm {
 	 * Display the form.
 	 */
 	function display() {
+		$press =& Request::getPress();
 		$templateMgr =& TemplateManager::getManager();
 		if (Config::getVar('email', 'allow_envelope_sender'))
 			$templateMgr->assign('envelopeSenderEnabled', true);
+
+		$templateMgr->assign('pressEnabled', $press->getEnabled());
+
 		parent::display();
 	}
 }

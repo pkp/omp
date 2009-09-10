@@ -210,7 +210,7 @@
 	<message key="manager.setup.coverageResearchSampleProvideExamples">Provide examples of research sample characteristics for this field</message>
 	<message key="manager.setup.recentTitles">Recent Titles</message>
 	<message key="manager.setup.numRecentTitlesOnHomepage">Number of Recent Items on Homepage</message>
-	<message key="manager.setup.customizingTheLook">Step 5. Customizing the Look</message>
+	<message key="manager.setup.customizingTheLook"><![CDATA[Step 5. Customizing the Look & Feel]]></message>
 	<message key="manager.setup.customTags">Custom tags</message>
 	<message key="manager.setup.customTagsDescription">Custom HTML header tags to be inserted in the header of every page (e.g., META tags).</message>
 	<message key="manager.setup.details">Details</message>
@@ -240,6 +240,7 @@
 	<message key="manager.setup.enableAnnouncementsHomepage1">Display</message>
 	<message key="manager.setup.enableAnnouncementsHomepage2">of the most recent announcements on the press homepage.</message>
 	<message key="manager.setup.enablePageNumber">Page numbers for items will be calculated and entered manually in the Table of Contents (e.g., pp. 13-26).</message>
+	<message key="manager.setup.enablePressInstructions">Enable this press to appear publicly on the site</message>
 	<message key="manager.setup.enablePublicMonographId">Custom identifiers will be used to identify published items.</message>
 	<message key="manager.setup.enablePublicGalleyId">Custom identifiers will be used to identify galleys (e.g. HTML or PDF files) for published items.</message>
 	<message key="manager.setup.enablePublicSuppFileId">Custom identifiers will be used to identify supplemental monograph files.</message>
@@ -263,7 +264,7 @@
 	<message key="manager.setup.generalInformation">General Information</message>
 	<message key="manager.setup.gettingDownTheDetails">Step 1. Getting Down the Details</message>
 	<message key="manager.setup.guidelines">Guidelines</message>
-	<message key="manager.setup.guidingSubmissions">Step 3. Guiding Submissions</message>
+	<message key="manager.setup.preparingWorkflow">Step 3. Preparing the workflow</message>
 	<message key="manager.setup.homepageImage">Homepage image</message>
 	<message key="manager.setup.homepageImageDescription">Add an image or graphic file to the middle of the page.</message>
 	<message key="manager.setup.htmlSetupInstructions"><![CDATA[HTML can be used in textarea (for font size, color, etc.), with "returns" treated as <tt>&lt;br&gt;</tt>; HTML editor works with Firefox browsers.]]></message>
@@ -284,7 +285,7 @@
 	<message key="manager.setup.pressHomepageHeader">Press Homepage Header</message>
 	<message key="manager.setup.pressHomepageHeader.altText">Press Homepage Header</message>
 	<message key="manager.setup.pressHomepageHeaderDescription">A graphic version of the press's title and logo (as a .gif, .jpg, or .png file) can be uploaded for the homepage, which will replace the text version that otherwise appears.</message>
-	<message key="manager.setup.pressInitials">Press initials</message>
+	<message key="manager.setup.pressInitials">Press Initials</message>
 	<message key="manager.setup.pressLayout">Press Layout</message>
 	<message key="manager.setup.pressLayoutDescription">Choose a press theme and select layout components here. A press stylesheet may also be uploaded, which can be used to override style data in the system-wide stylesheets and theme stylesheet (if a theme is chosen).</message>
 	<message key="manager.setup.pressLogo">Press Logo</message>
@@ -309,14 +310,14 @@
 	<message key="manager.setup.layoutTemplates.title">Title</message>
 	<message key="manager.setup.lists">Lists</message>
 	<message key="manager.setup.listsDescription">Enter the maximum number of items (for example, submissions, users, or editing assignments) that appear on each page of a list, and the number of pages links to display on each page.</message>
-	<message key="manager.setup.look">The Look</message>
+	<message key="manager.setup.look"><![CDATA[Look & Feel]]></message>
 	<message key="manager.setup.look.description">Homepage header, content, press header, footer, navigation bar, and style sheet.</message>
 	<message key="manager.setup.mailingAddressDescription">The press's physical location and mailing address.</message>
-	<message key="manager.setup.management">Management</message>
+	<message key="manager.setup.settings">Settings</message>
 	<message key="manager.setup.management.description">Access and security, scheduling, announcements, copyediting, layout, and proofreading.</message>
 	<message key="manager.setup.managementOfBasicEditorialSteps">Management of Basic Editorial Steps</message>
 	<message key="manager.setup.managingPublishingSetup">Management and Publishing Setup</message>
-	<message key="manager.setup.managingThePress">Step 4. Managing the Press</message>
+	<message key="manager.setup.managingThePress">Step 4. Managing the Settings</message>
 	<message key="manager.setup.navigationBar">Navigation Bar</message>
 	<message key="manager.setup.navigationBarDescription">Add or remove additional navigation bar items.</message>
 	<message key="manager.setup.navItemIsAbsolute">URL is an absolute URL (e.g., "http://www.example.com") rather than a path relative to the site (e.g., "/manager/setup")</message>
@@ -345,6 +346,7 @@
 	<message key="manager.setup.peerReviewPolicy2">Peer review policy</message>
 	<message key="manager.setup.policies">Policies</message>
 	<message key="manager.setup.policies.description">Focus, peer review, sections, privacy, security, and additional about items.</message>
+	<message key="manager.setup.pressDescription">Press Description</message>
 	<message key="manager.setup.principalContact">Principal Contact</message>
 	<message key="manager.setup.principalContactDescription">This position, which can be treated as a principal editorship, managing editorship, or administrative staff position, will be listed on the homepage of the press under Contact, along with the Technical Support Contact.</message>
 	<message key="manager.setup.printIssn">Print ISSN</message>
@@ -415,7 +417,7 @@
 	<message key="manager.setup.submissionGuidelines">Submission guidelines</message>
 	<message key="manager.setup.submissionPreparationChecklist">Submission Preparation Checklist</message>
 	<message key="manager.setup.submissionPreparationChecklistDescription">On making a submission to the press, authors are first asked to check each item on the Submission Preparation Checklist as completed, before proceeding. The checklist also appears in the Author Guidelines, under About the Press. The list can be edited below, but all items on the list will require a checkmark before authors can proceed with their submission.</message>
-	<message key="manager.setup.submissions">Submissions</message>
+	<message key="manager.setup.workflow">Workflow</message>
 	<message key="manager.setup.submissions.description">Author guidelines, copyright, and indexing (including registration).</message>
 	<message key="manager.setup.technicalSupportContact">Technical Support Contact</message>
 	<message key="manager.setup.technicalSupportContactDescription">This person will be listed on the press's Contact page for the use of editors, authors, and reviewers, and should have experience working through the system from the perspective of all of its roles. As this press system requires very little technical support, this should be seen as a part-time assignment. There may be occasions, for example, when authors and reviewers have difficulties with the instructions or file formats, or there's a need to ensure that the press is regularly backed up on the server.</message>
