@@ -54,7 +54,7 @@ window.location.hash="inserts_ContributorInsert_formErrors";
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="affiliation" key="user.affiliation"}</td>
-	<td class="value"><input type="text" name="newContributor[affiliation]" value="{$newContributor.affiliation|escape}" size="30" maxlength="255" class="textField" /></td>
+	<td class="value"><textarea name="newContributor[affiliation]" rows="5" cols="40" class="textArea">{$newContributor.affiliation|escape}</textarea></td>
 </tr>
 <tr valign="top">
 	<td class="label">{fieldLabel name="country" key="common.country"}</td>
