@@ -27,12 +27,12 @@
 		&nbsp;
 	</li>
 	<li>
-		<h4><a href="{url op="setup" path="3"}">{translate key="manager.setup.submissions"}</a></h4>
+		<h4><a href="{url op="setup" path="3"}">{translate key="manager.setup.workflow"}</a></h4>
 		{translate key="manager.setup.submissions.description"}<br/>
 		&nbsp;
 	</li>
 	<li>
-		<h4><a href="{url op="setup" path="4"}">{translate key="manager.setup.management"}</a></h4>
+		<h4><a href="{url op="setup" path="4"}">{translate key="manager.setup.settings"}</a></h4>
 		{translate key="manager.setup.management.description"}<br/>
 		&nbsp;
 	</li>
