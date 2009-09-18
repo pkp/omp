@@ -64,7 +64,7 @@ class UserHandler extends Handler {
 					$pressesToDisplay[] = $press;
 					$rolesToDisplay[$press->getId()] =& $roles;
 				}
-				if ($press->getEnabled()) $allPresses[] =& $press;
+				$allPresses[] =& $press;
 				unset($press);
 			}
 
