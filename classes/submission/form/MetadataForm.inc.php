@@ -139,6 +139,8 @@ class MetadataForm extends Form {
 		$press =& Request::getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR)); // editor.cover.xxx locale keys; FIXME?
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', isset($this->monograph) ? $this->monograph->getMonographId():null);
 		$templateMgr->assign('pressSettings', $settingsDao->getPressSettings($press->getId()));
