@@ -146,7 +146,7 @@ class PressSetupStep5Form extends PressSetupForm {
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
 		import('file.PublicFileManager');
-		$fileManager =& new PublicFileManager();
+		$fileManager = new PublicFileManager();
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$type = $fileManager->getUploadedFileType($settingName);
 			$extension = $fileManager->getImageExtension($type);
@@ -187,7 +187,7 @@ class PressSetupStep5Form extends PressSetupForm {
 		$setting = $settingsDao->getSetting($press->getId(), $settingName);
 
 		import('file.PublicFileManager');
-		$fileManager =& new PublicFileManager();
+		$fileManager = new PublicFileManager();
 		if ($fileManager->removePressFile($press->getId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
 			$returner = $settingsDao->deleteSetting($press->getId(), $settingName, $locale);
 			// Ensure page header is refreshed
@@ -213,7 +213,7 @@ class PressSetupStep5Form extends PressSetupForm {
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
 		import('file.PublicFileManager');
-		$fileManager =& new PublicFileManager();
+		$fileManager = new PublicFileManager();
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$type = $fileManager->getUploadedFileType($settingName);
 			if ($type != 'text/plain' && $type != 'text/css') {

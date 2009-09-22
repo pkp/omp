@@ -123,7 +123,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 		
 		// Send author notification email
 		import('mail.MonographMailTemplate');
-		$mail =& new MonographMailTemplate($monograph, 'SUBMISSION_ACK');
+		$mail = new MonographMailTemplate($monograph, 'SUBMISSION_ACK');
 		$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 		if ($mail->isEnabled()) {
 			$mail->addRecipient($user->getEmail(), $user->getFullName());

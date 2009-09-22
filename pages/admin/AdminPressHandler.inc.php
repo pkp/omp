@@ -56,6 +56,7 @@ class AdminPressHandler extends AdminHandler {
 
 		import('admin.form.PressSiteSettingsForm');
 
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$settingsForm =& new PressSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
 		if ($settingsForm->isLocaleResubmit()) {
 			$settingsForm->readInputData();
@@ -73,6 +74,7 @@ class AdminPressHandler extends AdminHandler {
 
 		import('admin.form.PressSiteSettingsForm');
 
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$settingsForm =& new PressSiteSettingsForm(Request::getUserVar('pressId'));
 		$settingsForm->readInputData();
 
@@ -102,13 +104,13 @@ class AdminPressHandler extends AdminHandler {
 				// Delete press file tree
 				// FIXME move this somewhere better.
 				import('file.FileManager');
-				$fileManager =& new FileManager();
+				$fileManager = new FileManager();
 
 				$pressPath = Config::getVar('files', 'files_dir') . '/presses/' . $pressId;
 				$fileManager->rmtree($pressPath);
 
 				import('file.PublicFileManager');
-				$publicFileManager =& new PublicFileManager();
+				$publicFileManager = new PublicFileManager();
 				$publicFileManager->rmtree($publicFileManager->getPressFilesPath($pressId));
 			}
 		}

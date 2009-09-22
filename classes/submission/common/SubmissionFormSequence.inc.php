@@ -80,6 +80,7 @@ class SubmissionFormSequence
 		$this->currentStep = $step;
 
 		import($this->stepForms[$step]['path']);
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$submitForm =& new $this->stepForms[$step]['class']($this->monograph);
 		$submitForm->registerFormWithSequence($this);
 

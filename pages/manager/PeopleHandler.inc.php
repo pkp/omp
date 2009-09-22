@@ -266,7 +266,7 @@ class PeopleHandler extends ManagerHandler {
 		if ($users != null && is_array($users) && $rolePath != '' && $rolePath != 'admin') {
 			for ($i=0; $i<count($users); $i++) {
 				if (!$roleDao->roleExists($press->getId(), $users[$i], $roleId)) {
-					$role =& new Role();
+					$role = new Role();
 					$role->setPressId($press->getId());
 					$role->setUserId($users[$i]);
 					$role->setRoleId($roleId);
@@ -401,6 +401,7 @@ class PeopleHandler extends ManagerHandler {
 		import('manager.form.UserManagementForm');
 
 		$templateMgr->assign('currentUrl', Request::url(null, null, 'people', 'all'));
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$userForm =& new UserManagementForm($userId);
 		if ($userForm->isLocaleResubmit()) {
 			$userForm->readInputData();
@@ -620,6 +621,7 @@ class PeopleHandler extends ManagerHandler {
 
 		import('manager.form.UserManagementForm');
 
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$userForm =& new UserManagementForm($userId);
 		$userForm->readInputData();
 
@@ -631,6 +633,7 @@ class PeopleHandler extends ManagerHandler {
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('currentUrl', Request::url(null, null, 'people', 'all'));
 				$templateMgr->assign('userCreated', true);
+				// FIXME: Need construction by reference or validation always fails on PHP 4.x
 				$userForm =& new UserManagementForm();
 				$userForm->initData();
 				$userForm->display();

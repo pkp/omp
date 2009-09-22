@@ -61,7 +61,7 @@ class RoleDAO extends DAO {
 	 * @return Role
 	 */
 	function &_returnRoleFromRow(&$row) {
-		$role =& new Role();
+		$role = new Role();
 		$role->setPressId($row['press_id']);
 		$role->setUserId($row['user_id']);
 		$role->setRoleId($row['role_id']);
@@ -320,7 +320,7 @@ class RoleDAO extends DAO {
 			$params
 		);
 
-		$returner =& new DAOResultFactory($result, $this, '_returnRoleFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnRoleFromRow');
 		return $returner;
 	}
 

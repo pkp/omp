@@ -260,7 +260,7 @@ class PressSettingsDAO extends DAO {
 		// this only translates from mail locale file 
 		create_function('$matches', 
 		'$locale = "' . $locale . '";'.'$localeFileName = Locale::getMainLocaleFilename($locale);'.
-		'$localeFile =& new LocaleFile($locale, $localeFileName);'.'return $localeFile->translate($matches[1]);'),$rawInput); 
+		'$localeFile = new LocaleFile($locale, $localeFileName);'.'return $localeFile->translate($matches[1]);'),$rawInput); 
 		foreach ($paramArray as $pKey => $pValue) {
 			$value = str_replace('{$' . $pKey . '}', $pValue, $value);
 		}

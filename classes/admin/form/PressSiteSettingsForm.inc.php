@@ -134,7 +134,7 @@ class PressSiteSettingsForm extends Form {
 			$sessionManager =& SessionManager::getManager();
 			$userSession =& $sessionManager->getUserSession();
 			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($pressId)) {
-				$role =& new Role();
+				$role = new Role();
 				$role->setPressId($pressId);
 				$role->setUserId($userSession->getUserId());
 				$role->setRoleId(ROLE_ID_PRESS_MANAGER);

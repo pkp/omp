@@ -98,6 +98,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		import('submission.form.MonographGalleyForm');
 		$productionAssignmentId = Request::getUserVar('productionAssignmentId');
 
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$galleyForm =& new MonographGalleyForm($monographId);
 		$galleyId = $galleyForm->execute('galleyFile', $productionAssignmentId);
 
@@ -119,6 +120,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 
 		import('submission.form.MonographGalleyForm');
 
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$submitForm =& new MonographGalleyForm($monographId, $galleyId);
 
 		if ($submitForm->isLocaleResubmit()) {
@@ -142,6 +144,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 
 		import('submission.form.MonographGalleyForm');
 
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$submitForm =& new MonographGalleyForm($monographId, $galleyId);
 
 		$submitForm->readInputData();

@@ -229,7 +229,7 @@ class UserManagementForm extends Form {
 		}
 
 		if (!isset($user)) {
-			$user =& new User();
+			$user = new User();
 		}
 
 		$user->setSalutation($this->getData('salutation'));
@@ -316,7 +316,7 @@ class UserManagementForm extends Form {
 					$roleId = $roleDao->getRoleIdFromPath($roleName);
 					if (!$isManager && $roleId != ROLE_ID_READER) continue;
 					if ($roleId != null) {
-						$role =& new Role();
+						$role = new Role();
 						$role->setPressId($press->getId());
 						$role->setUserId($userId);
 						$role->setRoleId($roleId);
@@ -328,7 +328,7 @@ class UserManagementForm extends Form {
 			if ($sendNotify) {
 				// Send welcome email to user
 				import('mail.MailTemplate');
-				$mail =& new MailTemplate('USER_REGISTER');
+				$mail = new MailTemplate('USER_REGISTER');
 				$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 				$mail->assignParams(array('username' => $this->getData('username'), 'password' => $password, 'userFullName' => $user->getFullName()));
 				$mail->addRecipient($user->getEmail(), $user->getFullName());

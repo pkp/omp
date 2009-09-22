@@ -55,7 +55,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler = new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
 		$submission =& $submissionReviewHandler->submission;
 		$user =& $submissionReviewHandler->user;
@@ -77,7 +77,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph = $monographDao->getMonograph($monographId);
 
-		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler = new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
 		$submission =& $submissionReviewHandler->submission;
 		$user =& $submissionReviewHandler->user;
@@ -100,7 +100,7 @@ class SubmissionCommentsHandler extends ReviewerHandler {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph = $monographDao->getMonograph($monographId);
 
-		$submissionReviewHandler =& new SubmissionReviewHandler();
+		$submissionReviewHandler = new SubmissionReviewHandler();
 		$submissionReviewHandler->validate($reviewId);
 		$submission =& $submissionReviewHandler->submission;
 		$user =& $submissionReviewHandler->user;

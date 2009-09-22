@@ -37,7 +37,7 @@ class AuthorAction extends Action {
 	 */
 	function designateReviewVersion($authorSubmission, $designate = false) {
 		import('file.MonographFileManager');
-		$monographFileManager =& new MonographFileManager($authorSubmission->getMonographId());
+		$monographFileManager = new MonographFileManager($authorSubmission->getMonographId());
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		if ($designate && !HookRegistry::call('AuthorAction::designateReviewVersion', array(&$authorSubmission))) {
@@ -62,7 +62,7 @@ class AuthorAction extends Action {
 	function deleteMonographFile($monograph, $fileId, $revisionId) {
 		import('file.MonographFileManager');
 
-		$monographFileManager =& new MonographFileManager($monograph->getMonographId());
+		$monographFileManager = new MonographFileManager($monograph->getMonographId());
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
@@ -90,7 +90,7 @@ class AuthorAction extends Action {
 	 */
 	function uploadRevisedVersion($authorSubmission) {
 		import("file.MonographFileManager");
-		$monographFileManager =& new MonographFileManager($authorSubmission->getMonographId());
+		$monographFileManager = new MonographFileManager($authorSubmission->getMonographId());
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		$fileName = 'upload';
@@ -223,7 +223,7 @@ class AuthorAction extends Action {
 	 */
 	function uploadCopyeditVersion($authorSubmission, $copyeditStage) {
 		import("file.MonographFileManager");
-		$monographFileManager =& new MonographFileManager($authorSubmission->getMonographId());
+		$monographFileManager = new MonographFileManager($authorSubmission->getMonographId());
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
@@ -263,6 +263,7 @@ class AuthorAction extends Action {
 	function viewLayoutComments($monograph) {
 		if (!HookRegistry::call('AuthorAction::viewLayoutComments', array(&$monograph))) {
 			import("submission.form.comment.LayoutCommentForm");
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$commentForm =& new LayoutCommentForm($monograph, ROLE_ID_EDITOR);
 			$commentForm->initData();
 			$commentForm->display();
@@ -278,6 +279,7 @@ class AuthorAction extends Action {
 		if (!HookRegistry::call('AuthorAction::postLayoutComment', array(&$monograph, &$emailComment))) {
 			import("submission.form.comment.LayoutCommentForm");
 
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$commentForm =& new LayoutCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->readInputData();
 
@@ -304,6 +306,7 @@ class AuthorAction extends Action {
 		if (!HookRegistry::call('AuthorAction::viewEditorDecisionComments', array(&$monograph))) {
 			import("submission.form.comment.EditorDecisionCommentForm");
 
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$commentForm =& new EditorDecisionCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->initData();
 			$commentForm->display();
@@ -321,7 +324,7 @@ class AuthorAction extends Action {
 
 		$user =& Request::getUser();
 		import('mail.MonographMailTemplate');
-		$email =& new MonographMailTemplate($authorSubmission);
+		$email = new MonographMailTemplate($authorSubmission);
 
 		$editAssignments = $authorSubmission->getEditAssignments();
 		$editors = array();
@@ -334,7 +337,7 @@ class AuthorAction extends Action {
 			$email->send();
 
 			$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-			$monographComment =& new MonographComment();
+			$monographComment = new MonographComment();
 			$monographComment->setCommentType(COMMENT_TYPE_EDITOR_DECISION);
 			$monographComment->setRoleId(ROLE_ID_AUTHOR);
 			$monographComment->setMonographId($authorSubmission->getMonographId());
@@ -373,6 +376,7 @@ class AuthorAction extends Action {
 		if (!HookRegistry::call('AuthorAction::viewCopyeditComments', array(&$monograph))) {
 			import("submission.form.comment.CopyeditCommentForm");
 
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$commentForm =& new CopyeditCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->initData();
 			$commentForm->display();
@@ -387,6 +391,7 @@ class AuthorAction extends Action {
 		if (!HookRegistry::call('AuthorAction::postCopyeditComment', array(&$monograph, &$emailComment))) {
 			import("submission.form.comment.CopyeditCommentForm");
 
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$commentForm =& new CopyeditCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->readInputData();
 
@@ -413,6 +418,7 @@ class AuthorAction extends Action {
 		if (!HookRegistry::call('AuthorAction::viewProofreadComments', array(&$monograph))) {
 			import("submission.form.comment.ProofreadCommentForm");
 
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$commentForm =& new ProofreadCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->initData();
 			$commentForm->display();
@@ -428,6 +434,7 @@ class AuthorAction extends Action {
 		if (!HookRegistry::call('AuthorAction::postProofreadComment', array(&$monograph, &$emailComment))) {
 			import("submission.form.comment.ProofreadCommentForm");
 
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$commentForm =& new ProofreadCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->readInputData();
 

@@ -42,7 +42,7 @@ class SubmitHandler extends AuthorHandler {
 		
 		import('author.form.submit.AuthorSubmissionSequence');
 
-		$sequence =& new AuthorSubmissionSequence($monographId);
+		$sequence = new AuthorSubmissionSequence($monographId);
 		$submitForm = $sequence->getFormForStep($step);
 
 		if ($submitForm->isLocaleResubmit()) {
@@ -129,6 +129,7 @@ class SubmitHandler extends AuthorHandler {
 		$this->setupTemplate(true);
 
 		import('author.form.submit.AuthorSubmitSuppFileForm');
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$submitForm =& new AuthorSubmitSuppFileForm($monograph);
 		$submitForm->setData('title', Locale::translate('common.untitled'));
 		$suppFileId = $submitForm->execute();
@@ -149,6 +150,7 @@ class SubmitHandler extends AuthorHandler {
 		$this->setupTemplate(true);
 
 		import('author.form.submit.AuthorSubmitSuppFileForm');
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$submitForm =& new AuthorSubmitSuppFileForm($monograph, $suppFileId);
 
 		if ($submitForm->isLocaleResubmit()) {
@@ -172,6 +174,7 @@ class SubmitHandler extends AuthorHandler {
 		$this->setupTemplate(true);
 
 		import('author.form.submit.AuthorSubmitSuppFileForm');
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$submitForm =& new AuthorSubmitSuppFileForm($monograph, $suppFileId);
 		$submitForm->readInputData();
 
@@ -206,7 +209,7 @@ class SubmitHandler extends AuthorHandler {
 		$suppFileDao->deleteSuppFileById($suppFileId, $monographId);
 
 		if ($suppFile->getFileId()) {
-			$monographFileManager =& new MonographFileManager($monographId);
+			$monographFileManager = new MonographFileManager($monographId);
 			$monographFileManager->deleteFile($suppFile->getFileId());
 		}
 

@@ -81,7 +81,7 @@ class Install extends PKPInstall {
 
 			$locale = $this->getParam('locale');
 			$siteDao =& DAORegistry::getDAO('SiteDAO', $this->dbconn);
-			$site =& new Site();
+			$site = new Site();
 			$site->setRedirect(0);
 			$site->setMinPasswordLength(INSTALLER_DEFAULT_MIN_PASSWORD_LENGTH);
 			$site->setPrimaryLocale($locale);
@@ -107,7 +107,7 @@ class Install extends PKPInstall {
 
 			// Add initial site administrator user
 			$userDao =& DAORegistry::getDAO('UserDAO', $this->dbconn);
-			$user =& new User();
+			$user = new User();
 			$user->setUsername($this->getParam('adminUsername'));
 			$user->setPassword(Validation::encryptCredentials($this->getParam('adminUsername'), $this->getParam('adminPassword'), $this->getParam('encryption')));
 			$user->setFirstName($user->getUsername());
@@ -118,7 +118,7 @@ class Install extends PKPInstall {
 				return false;
 			}
 			$roleDao =& DAORegistry::getDao('RoleDAO', $this->dbconn);
-			$role =& new Role();
+			$role = new Role();
 			$role->setPressId(0);
 			$role->setUserId($user->getId());
 			$role->setRoleId(ROLE_ID_SITE_ADMIN);

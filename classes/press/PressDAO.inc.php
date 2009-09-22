@@ -55,7 +55,7 @@ class PressDAO extends DAO
 	 * @return Press
 	 */
 	function &_returnPressFromRow(&$row) {
-		$press =& new Press();
+		$press = new Press();
 		$press->setId($row['press_id']);
 		$press->setPath($row['path']);
 		$press->setSequence($row['seq']);
@@ -117,7 +117,7 @@ class PressDAO extends DAO
 			false, $rangeInfo
 		);
 
-		$returner =& new DAOResultFactory($result, $this, '_returnPressFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnPressFromRow');
 		return $returner;
 	}
 
@@ -175,7 +175,7 @@ class PressDAO extends DAO
 			'SELECT * FROM presses WHERE enabled=1 ORDER BY seq'
 		);
 
-		$resultFactory =& new DAOResultFactory($result, $this, '_returnPressFromRow');
+		$resultFactory = new DAOResultFactory($result, $this, '_returnPressFromRow');
 		return $resultFactory;
 	}
 

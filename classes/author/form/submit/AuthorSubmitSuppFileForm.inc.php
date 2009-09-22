@@ -154,7 +154,7 @@ class AuthorSubmitSuppFileForm extends Form {
 	 */
 	function execute() {
 		import("file.MonographFileManager");
-		$monographFileManager =& new MonographFileManager($this->monographId);
+		$monographFileManager = new MonographFileManager($this->monographId);
 		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 
 		$fileName = 'uploadSuppFile';
@@ -183,7 +183,7 @@ class AuthorSubmitSuppFileForm extends Form {
 			}
 
 			// Insert new supplementary file		
-			$suppFile =& new SuppFile();
+			$suppFile = new SuppFile();
 			$suppFile->setMonographId($this->monographId);
 			$suppFile->setFileId($fileId);
 			$this->setSuppFileData($suppFile);

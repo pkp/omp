@@ -113,7 +113,7 @@ class AuthorDAO extends DAO {
 			$rangeInfo
 		);
 
-		$returner =& new DAOResultFactory($result, $this, '_returnAuthorFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnAuthorFromRow');
 		return $returner;
 	}
 
@@ -167,7 +167,7 @@ class AuthorDAO extends DAO {
 	 * @return Author
 	 */
 	function &_returnAuthorFromRow(&$row) {
-		$author =& new Author();
+		$author = new Author();
 		$author->setId($row['author_id']);
 		$author->setMonographId($row['monograph_id']);
 		$author->setFirstName($row['first_name']);

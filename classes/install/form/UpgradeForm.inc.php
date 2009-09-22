@@ -43,7 +43,7 @@ class UpgradeForm extends Form {
 	 */
 	function execute() {
 		$templateMgr =& TemplateManager::getManager();
-		$installer =& new Upgrade($this->_data);
+		$installer = new Upgrade($this->_data);
 
 		// FIXME Use logger?
 

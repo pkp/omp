@@ -56,7 +56,7 @@ import('core.PKPProfiler');
 $pkpProfiler = new PKPProfiler();
 
 import('core.OMPApplication');
-$ompApplication =& new OMPApplication();
+$ompApplication = new OMPApplication();
 PKPApplication::initialize($ompApplication);
 
 ?>

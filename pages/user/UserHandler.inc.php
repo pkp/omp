@@ -149,7 +149,7 @@ class UserHandler extends Handler {
 		}
 
 		if ($press->getSetting($setting)) {
-			$role =& new Role();
+			$role = new Role();
 			$role->setPressId($press->getId());
 			$role->setRoleId($roleId);
 			$role->setUserId($user->getId());
@@ -210,7 +210,7 @@ class UserHandler extends Handler {
 	function viewCaptcha($args) {
 		$captchaId = (int) array_shift($args);
 		import('captcha.CaptchaManager');
-		$captchaManager =& new CaptchaManager();
+		$captchaManager = new CaptchaManager();
 		if ($captchaManager->isEnabled()) {
 			$captchaDao =& DAORegistry::getDAO('CaptchaDAO');
 			$captcha =& $captchaDao->getCaptcha($captchaId);

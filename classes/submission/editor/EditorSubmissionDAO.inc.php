@@ -193,7 +193,7 @@ class EditorSubmissionDAO extends DAO {
 			' ORDER BY monograph_id ASC';
 
 		$result =& $this->retrieveRange($sql, $params, $rangeInfo);
-		$returner =& new DAOResultFactory($result, $this, '_returnEditorSubmissionFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnEditorSubmissionFromRow');
 		return $returner;
 	}
 

@@ -40,7 +40,7 @@ class UserXMLParser {
 	 * @param $pressId int assumed to be a valid press ID
 	 */
 	function UserXMLParser($pressId) {
-		$this->parser =& new XMLParser();
+		$this->parser = new XMLParser();
 		$this->pressId = $pressId;
 	}
 
@@ -67,7 +67,7 @@ class UserXMLParser {
 			foreach ($tree->getChildren() as $user) {
 				if ($user->getName() == 'user') {
 					// Match user element
-					$newUser =& new ImportedUser();
+					$newUser = new ImportedUser();
 
 					foreach ($user->getChildren() as $attrib) {
 						switch ($attrib->getName()) {
@@ -154,7 +154,7 @@ class UserXMLParser {
 							case 'role':
 								$roleType = $attrib->getAttribute('type');
 								if ($this->validRole($roleType)) {
-									$role =& new Role();
+									$role = new Role();
 									$role->setRoleId($roleDao->getRoleIdFromPath($roleType));
 									$newUser->addRole($role);
 								}
@@ -186,7 +186,7 @@ class UserXMLParser {
 		if ($sendNotify) {
 			// Set up mail template to send to added users
 			import('mail.MailTemplate');
-			$mail =& new MailTemplate('USER_REGISTER');
+			$mail = new MailTemplate('USER_REGISTER');
 
 			$pressDao =& DAORegistry::getDAO('PressDAO');
 			$press =& $pressDao->getPress($this->pressId);

@@ -164,6 +164,7 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 		$this->setupTemplate(true, $type);
 
 		switch ($type) {
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			case CATEGORY_ARRANGEMENT: {
 				import('manager.form.SubmissionCategoryForm');
 				$form =& new SubmissionCategoryForm(!isset($args) || empty($args) ? null : ((int) $args[0]));

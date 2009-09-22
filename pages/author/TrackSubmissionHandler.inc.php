@@ -40,7 +40,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		// If the submission is incomplete, allow the author to delete it.
 		if ($authorSubmission->getSubmissionProgress()!=0) {
 			import('file.MonographFileManager');
-			$monographFileManager =& new MonographFileManager($monographId);
+			$monographFileManager = new MonographFileManager($monographId);
 			$monographFileManager->deleteMonographTree();
 
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
@@ -186,6 +186,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 			import('submission.form.SuppFileForm');
 
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$submitForm =& new SuppFileForm($authorSubmission);
 
 			if ($submitForm->isLocaleResubmit()) {
@@ -214,6 +215,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 			import('submission.form.SuppFileForm');
 
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$submitForm =& new SuppFileForm($authorSubmission, $suppFileId);
 
 			if ($submitForm->isLocaleResubmit()) {
@@ -263,6 +265,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 			import('submission.form.SuppFileForm');
 
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$submitForm =& new SuppFileForm($authorSubmission, $suppFileId);
 			$submitForm->readInputData();
 
@@ -359,7 +362,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$press =& Request::getPress();
 
 		import('file.PublicFileManager');
-		$publicFileManager =& new PublicFileManager();
+		$publicFileManager = new PublicFileManager();
 		$publicFileManager->removePressFile($press->getId(),$submission->getFileName($formLocale));
 		$submission->setFileName('', $formLocale);
 		$submission->setOriginalFileName('', $formLocale);

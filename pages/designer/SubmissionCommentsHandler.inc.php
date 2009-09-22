@@ -31,7 +31,7 @@ class SubmissionCommentsHandler extends SubmissionLayoutHandler {
 	function viewLayoutComments($args) {
 		$monographId = $args[0];
 
-		$submissionLayoutHandler =& new SubmissionLayoutHandler();
+		$submissionLayoutHandler = new SubmissionLayoutHandler();
 		$submissionLayoutHandler->validate($monographId);
 		$press =& $submissionLayoutHandler->press;
 		$submission =& $submissionLayoutHandler->submission;
@@ -50,7 +50,7 @@ class SubmissionCommentsHandler extends SubmissionLayoutHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$submissionLayoutHandler =& new SubmissionLayoutHandler();
+		$submissionLayoutHandler = new SubmissionLayoutHandler();
 		$submissionLayoutHandler->validate($monographId);
 		$press =& $submissionLayoutHandler->press;
 		$submission =& $submissionLayoutHandler->submission;
@@ -68,7 +68,7 @@ class SubmissionCommentsHandler extends SubmissionLayoutHandler {
 	function viewProofreadComments($args) {
 		$monographId = $args[0];
 
-		$submissionLayoutHandler =& new SubmissionLayoutHandler();
+		$submissionLayoutHandler = new SubmissionLayoutHandler();
 		$submissionLayoutHandler->validate($monographId);
 		$press =& $submissionLayoutHandler->press;
 		$submission =& $submissionLayoutHandler->submission;
@@ -87,7 +87,7 @@ class SubmissionCommentsHandler extends SubmissionLayoutHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$submissionLayoutHandler =& new SubmissionLayoutHandler();
+		$submissionLayoutHandler = new SubmissionLayoutHandler();
 		$submissionLayoutHandler->validate($monographId);
 		$press =& $submissionLayoutHandler->press;
 		$submission =& $submissionLayoutHandler->submission;
@@ -106,7 +106,7 @@ class SubmissionCommentsHandler extends SubmissionLayoutHandler {
 		$monographId = $args[0];
 		$commentId = $args[1];
 
-		$submissionLayoutHandler =& new SubmissionLayoutHandler();
+		$submissionLayoutHandler = new SubmissionLayoutHandler();
 		$submissionLayoutHandler->validate($monographId);
 		$press =& $submissionLayoutHandler->press;
 		$submission =& $submissionLayoutHandler->submission;
@@ -128,7 +128,7 @@ class SubmissionCommentsHandler extends SubmissionLayoutHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$submissionLayoutHandler =& new SubmissionLayoutHandler();
+		$submissionLayoutHandler = new SubmissionLayoutHandler();
 		$submissionLayoutHandler->validate($monographId);
 		$press =& $submissionLayoutHandler->press;
 		$submission =& $submissionLayoutHandler->submission;
@@ -154,7 +154,7 @@ class SubmissionCommentsHandler extends SubmissionLayoutHandler {
 		$monographId = $args[0];
 		$commentId = $args[1];
 
-		$submissionLayoutHandler =& new SubmissionLayoutHandler();
+		$submissionLayoutHandler = new SubmissionLayoutHandler();
 		$submissionLayoutHandler->validate($monographId);
 		$press =& $submissionLayoutHandler->press;
 		$submission =& $submissionLayoutHandler->submission;

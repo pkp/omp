@@ -48,7 +48,7 @@ class AdminLanguagesHandler extends AdminHandler {
 		$templateMgr->assign('helpTopicId', 'site.siteManagement');
 
 		import('i18n.LanguageAction');
-		$languageAction =& new LanguageAction();
+		$languageAction = new LanguageAction();
 		if ($languageAction->isDownloadAvailable()) {
 			$templateMgr->assign('downloadAvailable', true);
 			$templateMgr->assign('downloadableLocales', $languageAction->getDownloadableLocales());
@@ -209,7 +209,7 @@ class AdminLanguagesHandler extends AdminHandler {
 		$locale = Request::getUserVar('locale');
 
 		import('i18n.LanguageAction');
-		$languageAction =& new LanguageAction();
+		$languageAction = new LanguageAction();
 
 		if (!$languageAction->isDownloadAvailable()) Request::redirect(null, null, 'languages');
 

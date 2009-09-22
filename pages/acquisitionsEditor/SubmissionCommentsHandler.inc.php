@@ -37,7 +37,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		$monographId = $args[0];
 		$reviewId = $args[1];
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 
@@ -58,7 +58,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		if (AcquisitionsEditorAction::postPeerReviewComment($submission, $reviewId, $emailComment)) {
@@ -76,7 +76,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 
 		$monographId = $args[0];
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		AcquisitionsEditorAction::viewEditorDecisionComments($submission);
@@ -95,7 +95,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		if (AcquisitionsEditorAction::postEditorDecisionComment($submission, $emailComment)) {
@@ -109,7 +109,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 	 */
 	function blindCcReviewsToReviewers($args = array()) {
 		$monographId = Request::getUserVar('monographId');
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 
@@ -131,7 +131,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 
 		$monographId = $args[0];
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		AcquisitionsEditorAction::viewCopyeditComments($submission);
@@ -150,7 +150,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		if (AcquisitionsEditorAction::postCopyeditComment($submission, $emailComment)) {
@@ -168,7 +168,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 
 		$monographId = $args[0];
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		AcquisitionsEditorAction::viewLayoutComments($submission);
@@ -187,7 +187,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		if (AcquisitionsEditorAction::postLayoutComment($submission, $emailComment)) {
@@ -205,7 +205,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 
 		$monographId = $args[0];
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		AcquisitionsEditorAction::viewProofreadComments($submission);
@@ -224,7 +224,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		if (AcquisitionsEditorAction::postProofreadComment($submission, $emailComment)) {
@@ -260,7 +260,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		$monographId = $args[0];
 		$commentId = $args[1];
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		$this->validate($commentId);
@@ -287,7 +287,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		$this->validate($commentId);
@@ -327,7 +327,7 @@ class SubmissionCommentsHandler extends AcquisitionsEditorHandler {
 		$monographId = $args[0];
 		$commentId = $args[1];
 
-		$submissionEditHandler =& new SubmissionEditHandler();
+		$submissionEditHandler = new SubmissionEditHandler();
 		$submissionEditHandler->validate($monographId);
 		$submission =& $submissionEditHandler->submission;
 		$this->validate($commentId);

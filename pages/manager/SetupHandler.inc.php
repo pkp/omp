@@ -40,6 +40,7 @@ class SetupHandler extends ManagerHandler {
 			$formClass = "PressSetupStep{$step}Form";
 			import("manager.form.setup.$formClass");
 
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$setupForm =& new $formClass();
 			if ($setupForm->isLocaleResubmit()) {
 				$setupForm->readInputData();
@@ -71,6 +72,7 @@ class SetupHandler extends ManagerHandler {
 			$formClass = "PressSetupStep{$step}Form";
 			import("manager.form.setup.$formClass");
 
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$setupForm =& new $formClass();
 			$setupForm->readInputData();
 			$formLocale = $setupForm->getFormLocale();
@@ -220,7 +222,7 @@ class SetupHandler extends ManagerHandler {
 					$press =& Request::getPress();
 					$templates = $press->getSetting('templates');
 					import('file.PressFileManager');
-					$pressFileManager =& new PressFileManager($press);
+					$pressFileManager = new PressFileManager($press);
 					if (Request::getUserVar('addTemplate')) {
 						// Add a layout template
 						$editData = true;
@@ -393,7 +395,7 @@ class SetupHandler extends ManagerHandler {
 		$press =& Request::getPress();
 		$templates = $press->getSetting('templates');
 		import('file.PressFileManager');
-		$pressFileManager =& new PressFileManager($press);
+		$pressFileManager = new PressFileManager($press);
 		$templateId = (int) array_shift($args);
 		if ($templateId >= count($templates) || $templateId < 0) Request::redirect(null, null, 'setup');
 		$template =& $templates[$templateId];

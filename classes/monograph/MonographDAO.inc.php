@@ -190,7 +190,7 @@ class MonographDAO extends DAO {
 			'SELECT m.* FROM monographs m WHERE press_id = ? AND status = ?', array($pressId, MONOGRAPH_STATUS_UPCOMING), $rangeInfo
 		);
 
-		$returner =& new DAOResultFactory($result, $this, '_fromRow');
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}	
 
@@ -507,7 +507,7 @@ class MonographDAO extends DAO {
 		$sql = 'SELECT m.* FROM monographs m WHERE press_id = ? ORDER BY date_submitted DESC';
 		$result =& $this->retrieveRange($sql, $pressId, $rangeInfo);
 
-		$returner =& new DAOResultFactory($result, $this, '_fromRow');
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 
@@ -545,7 +545,7 @@ class MonographDAO extends DAO {
 	 * @return Monograph object
 	 */
 	function &_fromRow(&$row) {
-		$monograph =& new Monograph();
+		$monograph = new Monograph();
 		$this->_monographFromRow($monograph, $row);
 		return $monograph;
 	}

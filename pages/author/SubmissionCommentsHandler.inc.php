@@ -199,7 +199,7 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		// If the user pressed the "Save and email" button, then email the comment.
 		$emailComment = Request::getUserVar('saveAndEmail') != null ? true : false;
 
-		$trackSubmissionHandler =& new TrackSubmissionHandler();
+		$trackSubmissionHandler = new TrackSubmissionHandler();
 		$trackSubmissionHandler->validate($monographId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
 		$this->validate($commentId);
@@ -240,7 +240,7 @@ class SubmissionCommentsHandler extends AuthorHandler {
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$comment =& $monographCommentDao->getMonographCommentById($commentId);
 
-		$trackSubmissionHandler =& new TrackSubmissionHandler();
+		$trackSubmissionHandler = new TrackSubmissionHandler();
 		$trackSubmissionHandler->validate($monographId);
 		$authorSubmission =& $trackSubmissionHandler->submission;
 		$this->validate($commentId);

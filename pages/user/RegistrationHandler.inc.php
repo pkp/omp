@@ -36,6 +36,7 @@ class RegistrationHandler extends UserHandler {
 		if ($press != null) {
 			import('user.form.RegistrationForm');
 
+			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			$regForm =& new RegistrationForm();
 			if ($regForm->isLocaleResubmit()) {
 				$regForm->readInputData();
@@ -63,6 +64,7 @@ class RegistrationHandler extends UserHandler {
 		$this->setupTemplate(true);
 		import('user.form.RegistrationForm');
 
+		// FIXME: Need construction by reference or validation always fails on PHP 4.x
 		$regForm =& new RegistrationForm();
 		$regForm->readInputData();
 
@@ -130,7 +132,7 @@ class RegistrationHandler extends UserHandler {
 
 		// Checks user & token
 		import('security.AccessKeyManager');
-		$accessKeyManager =& new AccessKeyManager();
+		$accessKeyManager = new AccessKeyManager();
 		$accessKeyHash = AccessKeyManager::generateKeyHash($accessKeyCode);
 		$accessKey =& $accessKeyManager->validateKey(
 			'RegisterContext',

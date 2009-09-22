@@ -126,7 +126,7 @@ class TranslatorHandler extends Handler {
 		// Save the changes file by file.
 		import('file.EditableLocaleFile');
 		foreach ($changesByFile as $filename => $changes) {
-			$file =& new EditableLocaleFile($locale, $filename);
+			$file = new EditableLocaleFile($locale, $filename);
 			foreach ($changes as $key => $value) {
 				if (empty($value)) continue;
 				if (!$file->update($key, $value)) {
@@ -148,7 +148,7 @@ class TranslatorHandler extends Handler {
 				list($filename, $key) = explode('/', $deleteKey, 2);
 				$filename = urldecode(urldecode($filename));
 				if (!in_array($filename, $localeFiles)) continue;
-				$file =& new EditableLocaleFile($locale, $filename);
+				$file = new EditableLocaleFile($locale, $filename);
 				$file->delete($key);
 				$file->write();
 				unset($file);
@@ -159,7 +159,7 @@ class TranslatorHandler extends Handler {
 		import('file.EditableEmailFile');
 		$deleteEmails = Request::getUserVar('deleteEmail');
 		if (!empty($deleteEmails)) {
-			$file =& new EditableEmailFile($locale, Locale::getEmailTemplateFilename($locale));
+			$file = new EditableEmailFile($locale, Locale::getEmailTemplateFilename($locale));
 			foreach ($deleteEmails as $key) {
 				$file->delete($key);
 			}
@@ -271,7 +271,7 @@ class TranslatorHandler extends Handler {
 
 		import('file.EditableLocaleFile');
 		$changes = Request::getUserVar('changes');
-		$file =& new EditableLocaleFile($locale, $filename);
+		$file = new EditableLocaleFile($locale, $filename);
 
 		while (!empty($changes)) {
 			$key = array_shift($changes);
@@ -297,7 +297,7 @@ class TranslatorHandler extends Handler {
 		}
 
 		$changes = Request::getUserVar('changes');
-		$file =& new EditableLocaleFile($locale, $filename);
+		$file = new EditableLocaleFile($locale, $filename);
 
 		if ($file->delete(array_shift($args))) $file->write();
 		Request::redirect(null, null, 'editLocaleFile', array($locale, urlencode(urlencode($filename))));
@@ -377,7 +377,7 @@ class TranslatorHandler extends Handler {
 		if (!in_array($emailKey, array_keys($emails))) Request::redirect(null, null, 'index');
 
 		import('file.EditableEmailFile');
-		$file =& new EditableEmailFile($locale, Locale::getEmailTemplateFilename($locale));
+		$file = new EditableEmailFile($locale, Locale::getEmailTemplateFilename($locale));
 
 		$subject = Request::getUserVar('subject');
 		$body = Request::getUserVar('body');
