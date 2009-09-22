@@ -150,8 +150,7 @@ class ProductionEditorAction extends DesignerAction {
 
 		import('submission.form.comment.LayoutCommentForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -166,8 +165,7 @@ class ProductionEditorAction extends DesignerAction {
 
 		import('submission.form.comment.LayoutCommentForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {
@@ -193,8 +191,7 @@ class ProductionEditorAction extends DesignerAction {
 
 		import('submission.form.comment.ProofreadCommentForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -209,8 +206,7 @@ class ProductionEditorAction extends DesignerAction {
 
 		import('submission.form.comment.ProofreadCommentForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {

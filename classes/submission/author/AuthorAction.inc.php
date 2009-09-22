@@ -263,8 +263,7 @@ class AuthorAction extends Action {
 	function viewLayoutComments($monograph) {
 		if (!HookRegistry::call('AuthorAction::viewLayoutComments', array(&$monograph))) {
 			import("submission.form.comment.LayoutCommentForm");
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new LayoutCommentForm($monograph, ROLE_ID_EDITOR);
+			$commentForm = new LayoutCommentForm($monograph, ROLE_ID_EDITOR);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -279,8 +278,7 @@ class AuthorAction extends Action {
 		if (!HookRegistry::call('AuthorAction::postLayoutComment', array(&$monograph, &$emailComment))) {
 			import("submission.form.comment.LayoutCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new LayoutCommentForm($monograph, ROLE_ID_AUTHOR);
+			$commentForm = new LayoutCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->readInputData();
 
 			if ($commentForm->validate()) {
@@ -306,8 +304,7 @@ class AuthorAction extends Action {
 		if (!HookRegistry::call('AuthorAction::viewEditorDecisionComments', array(&$monograph))) {
 			import("submission.form.comment.EditorDecisionCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new EditorDecisionCommentForm($monograph, ROLE_ID_AUTHOR);
+			$commentForm = new EditorDecisionCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -376,8 +373,7 @@ class AuthorAction extends Action {
 		if (!HookRegistry::call('AuthorAction::viewCopyeditComments', array(&$monograph))) {
 			import("submission.form.comment.CopyeditCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new CopyeditCommentForm($monograph, ROLE_ID_AUTHOR);
+			$commentForm = new CopyeditCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -391,8 +387,7 @@ class AuthorAction extends Action {
 		if (!HookRegistry::call('AuthorAction::postCopyeditComment', array(&$monograph, &$emailComment))) {
 			import("submission.form.comment.CopyeditCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new CopyeditCommentForm($monograph, ROLE_ID_AUTHOR);
+			$commentForm = new CopyeditCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->readInputData();
 
 			if ($commentForm->validate()) {
@@ -418,8 +413,7 @@ class AuthorAction extends Action {
 		if (!HookRegistry::call('AuthorAction::viewProofreadComments', array(&$monograph))) {
 			import("submission.form.comment.ProofreadCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new ProofreadCommentForm($monograph, ROLE_ID_AUTHOR);
+			$commentForm = new ProofreadCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -434,8 +428,7 @@ class AuthorAction extends Action {
 		if (!HookRegistry::call('AuthorAction::postProofreadComment', array(&$monograph, &$emailComment))) {
 			import("submission.form.comment.ProofreadCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new ProofreadCommentForm($monograph, ROLE_ID_AUTHOR);
+			$commentForm = new ProofreadCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->readInputData();
 
 			if ($commentForm->validate()) {

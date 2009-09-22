@@ -56,8 +56,7 @@ class AdminPressHandler extends AdminHandler {
 
 		import('admin.form.PressSiteSettingsForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$settingsForm =& new PressSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
+		$settingsForm = new PressSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
 		if ($settingsForm->isLocaleResubmit()) {
 			$settingsForm->readInputData();
 		} else {
@@ -74,8 +73,7 @@ class AdminPressHandler extends AdminHandler {
 
 		import('admin.form.PressSiteSettingsForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$settingsForm =& new PressSiteSettingsForm(Request::getUserVar('pressId'));
+		$settingsForm = new PressSiteSettingsForm(Request::getUserVar('pressId'));
 		$settingsForm->readInputData();
 
 		if ($settingsForm->validate()) {

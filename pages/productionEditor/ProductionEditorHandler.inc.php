@@ -467,8 +467,7 @@ class ProductionEditorHandler extends Handler {
 		}
 
 		import('submission.form.ProductionAssignmentForm');
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$form =& new ProductionAssignmentForm($monographId, $productionAssignment);
+		$form = new ProductionAssignmentForm($monographId, $productionAssignment);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $submission);
@@ -741,8 +740,7 @@ class ProductionEditorHandler extends Handler {
 		import('submission.form.MonographGalleyForm');
 		$productionAssignmentId = Request::getUserVar('productionAssignmentId');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$galleyForm =& new MonographGalleyForm($monographId);
+		$galleyForm = new MonographGalleyForm($monographId);
 		$galleyId = $galleyForm->execute('galleyFile', $productionAssignmentId);
 
 		Request::redirect(null, null, 'editGalley', array($monographId, $galleyId));
@@ -763,8 +761,7 @@ class ProductionEditorHandler extends Handler {
 
 		import('submission.form.MonographGalleyForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$submitForm =& new MonographGalleyForm($monographId, $galleyId);
+		$submitForm = new MonographGalleyForm($monographId, $galleyId);
 
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
@@ -787,8 +784,7 @@ class ProductionEditorHandler extends Handler {
 
 		import('submission.form.MonographGalleyForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$submitForm =& new MonographGalleyForm($monographId, $galleyId);
+		$submitForm = new MonographGalleyForm($monographId, $galleyId);
 
 		$submitForm->readInputData();
 		if ($submitForm->validate()) {

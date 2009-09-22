@@ -129,8 +129,7 @@ class SubmitHandler extends AuthorHandler {
 		$this->setupTemplate(true);
 
 		import('author.form.submit.AuthorSubmitSuppFileForm');
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$submitForm =& new AuthorSubmitSuppFileForm($monograph);
+		$submitForm = new AuthorSubmitSuppFileForm($monograph);
 		$submitForm->setData('title', Locale::translate('common.untitled'));
 		$suppFileId = $submitForm->execute();
 
@@ -150,8 +149,7 @@ class SubmitHandler extends AuthorHandler {
 		$this->setupTemplate(true);
 
 		import('author.form.submit.AuthorSubmitSuppFileForm');
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$submitForm =& new AuthorSubmitSuppFileForm($monograph, $suppFileId);
+		$submitForm = new AuthorSubmitSuppFileForm($monograph, $suppFileId);
 
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
@@ -174,8 +172,7 @@ class SubmitHandler extends AuthorHandler {
 		$this->setupTemplate(true);
 
 		import('author.form.submit.AuthorSubmitSuppFileForm');
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$submitForm =& new AuthorSubmitSuppFileForm($monograph, $suppFileId);
+		$submitForm = new AuthorSubmitSuppFileForm($monograph, $suppFileId);
 		$submitForm->readInputData();
 
 		if ($submitForm->validate()) {

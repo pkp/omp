@@ -270,8 +270,7 @@ class ReviewerAction extends Action {
 		if (!HookRegistry::call('ReviewerAction::viewPeerReviewComments', array(&$user, &$monograph, &$reviewId))) {
 			import("submission.form.comment.PeerReviewCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new PeerReviewCommentForm($monograph, $reviewId, ROLE_ID_REVIEWER);
+			$commentForm = new PeerReviewCommentForm($monograph, $reviewId, ROLE_ID_REVIEWER);
 			$commentForm->setUser($user);
 			$commentForm->initData();
 			$commentForm->setData('reviewId', $reviewId);
@@ -290,8 +289,7 @@ class ReviewerAction extends Action {
 		if (!HookRegistry::call('ReviewerAction::postPeerReviewComment', array(&$user, &$monograph, &$reviewId, &$emailComment))) {
 			import("submission.form.comment.PeerReviewCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new PeerReviewCommentForm($monograph, $reviewId, ROLE_ID_REVIEWER);
+			$commentForm = new PeerReviewCommentForm($monograph, $reviewId, ROLE_ID_REVIEWER);
 			$commentForm->setUser($user);
 			$commentForm->readInputData();
 
@@ -319,8 +317,7 @@ class ReviewerAction extends Action {
 		if (!HookRegistry::call('ReviewerAction::editReviewFormResponse', array($reviewId, $reviewFormId))) {
 			import('submission.form.ReviewFormResponseForm');
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$reviewForm =& new ReviewFormResponseForm($reviewId, $reviewFormId);
+			$reviewForm = new ReviewFormResponseForm($reviewId, $reviewFormId);
 			$reviewForm->initData();
 			$reviewForm->display();
 		}
@@ -335,8 +332,7 @@ class ReviewerAction extends Action {
 		if (!HookRegistry::call('ReviewerAction::saveReviewFormResponse', array($reviewId, $reviewFormId))) {
 			import('submission.form.ReviewFormResponseForm');
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$reviewForm =& new ReviewFormResponseForm($reviewId, $reviewFormId);
+			$reviewForm = new ReviewFormResponseForm($reviewId, $reviewFormId);
 			$reviewForm->readInputData();
 			if ($reviewForm->validate()) {
 				$reviewForm->execute();
@@ -419,8 +415,7 @@ class ReviewerAction extends Action {
 		if (!HookRegistry::call('ReviewerAction::editComment', array(&$monograph, &$comment, &$reviewId))) {
 			import ("submission.form.comment.EditCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new EditCommentForm ($monograph, $comment);
+			$commentForm = new EditCommentForm ($monograph, $comment);
 			$commentForm->initData();
 			$commentForm->setData('reviewId', $reviewId);
 			$commentForm->display(array('reviewId' => $reviewId));

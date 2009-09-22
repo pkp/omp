@@ -741,8 +741,7 @@ class AcquisitionsEditorAction extends Action {
 			$reviewFormId = $reviewAssignment->getReviewFormId();
 			if ($reviewFormId != null) {
 				import('submission.form.ReviewFormResponseForm');
-				// FIXME: Need construction by reference or validation always fails on PHP 4.x
-				$reviewForm =& new ReviewFormResponseForm($reviewId, $reviewFormId);
+				$reviewForm = new ReviewFormResponseForm($reviewId, $reviewFormId);
 				$reviewForm->initData();
 				$reviewForm->display();
 			}
@@ -1711,8 +1710,7 @@ class AcquisitionsEditorAction extends Action {
 
 		import('submission.form.comment.PeerReviewCommentForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new PeerReviewCommentForm($monograph, $reviewId, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new PeerReviewCommentForm($monograph, $reviewId, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -1728,8 +1726,7 @@ class AcquisitionsEditorAction extends Action {
 
 		import('submission.form.comment.PeerReviewCommentForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new PeerReviewCommentForm($monograph, $reviewId, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new PeerReviewCommentForm($monograph, $reviewId, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {
@@ -1764,8 +1761,7 @@ class AcquisitionsEditorAction extends Action {
 
 		import('submission.form.comment.EditorDecisionCommentForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new EditorDecisionCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new EditorDecisionCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -1780,8 +1776,7 @@ class AcquisitionsEditorAction extends Action {
 
 		import('submission.form.comment.EditorDecisionCommentForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new EditorDecisionCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new EditorDecisionCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {
@@ -2015,8 +2010,7 @@ class AcquisitionsEditorAction extends Action {
 
 		import('submission.form.comment.CopyeditCommentForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new CopyeditCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new CopyeditCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -2031,8 +2025,7 @@ class AcquisitionsEditorAction extends Action {
 
 		import('submission.form.comment.CopyeditCommentForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new CopyeditCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new CopyeditCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {
@@ -2067,8 +2060,7 @@ class AcquisitionsEditorAction extends Action {
 
 		import('submission.form.comment.LayoutCommentForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -2083,8 +2075,7 @@ class AcquisitionsEditorAction extends Action {
 
 		import('submission.form.comment.LayoutCommentForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {
@@ -2119,8 +2110,7 @@ class AcquisitionsEditorAction extends Action {
 
 		import('submission.form.comment.ProofreadCommentForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -2135,8 +2125,7 @@ class AcquisitionsEditorAction extends Action {
 
 		import('submission.form.comment.ProofreadCommentForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$commentForm =& new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {

@@ -432,8 +432,7 @@ class ProofreaderAction extends Action {
 		if (!HookRegistry::call('ProofreaderAction::viewProofreadComments', array(&$monograph))) {
 			import("submission.form.comment.ProofreadCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new ProofreadCommentForm($monograph, ROLE_ID_PROOFREADER);
+			$commentForm = new ProofreadCommentForm($monograph, ROLE_ID_PROOFREADER);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -448,8 +447,7 @@ class ProofreaderAction extends Action {
 		if (!HookRegistry::call('ProofreaderAction::postProofreadComment', array(&$monograph, &$emailComment))) {
 			import("submission.form.comment.ProofreadCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new ProofreadCommentForm($monograph, ROLE_ID_PROOFREADER);
+			$commentForm = new ProofreadCommentForm($monograph, ROLE_ID_PROOFREADER);
 			$commentForm->readInputData();
 
 			if ($commentForm->validate()) {
@@ -484,8 +482,7 @@ class ProofreaderAction extends Action {
 		if (!HookRegistry::call('ProofreaderAction::viewLayoutComments', array(&$monograph))) {
 			import("submission.form.comment.LayoutCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new LayoutCommentForm($monograph, ROLE_ID_PROOFREADER);
+			$commentForm = new LayoutCommentForm($monograph, ROLE_ID_PROOFREADER);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -500,8 +497,7 @@ class ProofreaderAction extends Action {
 		if (!HookRegistry::call('ProofreaderAction::postLayoutComment', array(&$monograph, &$emailComment))) {
 			import("submission.form.comment.LayoutCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new LayoutCommentForm($monograph, ROLE_ID_PROOFREADER);
+			$commentForm = new LayoutCommentForm($monograph, ROLE_ID_PROOFREADER);
 			$commentForm->readInputData();
 
 			if ($commentForm->validate()) {

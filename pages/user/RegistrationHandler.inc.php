@@ -36,8 +36,7 @@ class RegistrationHandler extends UserHandler {
 		if ($press != null) {
 			import('user.form.RegistrationForm');
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$regForm =& new RegistrationForm();
+			$regForm = new RegistrationForm();
 			if ($regForm->isLocaleResubmit()) {
 				$regForm->readInputData();
 			} else {
@@ -64,8 +63,7 @@ class RegistrationHandler extends UserHandler {
 		$this->setupTemplate(true);
 		import('user.form.RegistrationForm');
 
-		// FIXME: Need construction by reference or validation always fails on PHP 4.x
-		$regForm =& new RegistrationForm();
+		$regForm = new RegistrationForm();
 		$regForm->readInputData();
 
 		if ($regForm->validate()) {

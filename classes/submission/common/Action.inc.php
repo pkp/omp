@@ -59,8 +59,7 @@ class Action {
 	function viewMetadata($monograph) {
 		if (!HookRegistry::call('Action::viewMetadata', array(&$monograph, &$roleId))) {
 			import('submission.form.MetadataForm');
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$metadataForm =& new MetadataForm($monograph);
+			$metadataForm = new MetadataForm($monograph);
 			if ($metadataForm->getCanEdit() && $metadataForm->isLocaleResubmit()) {
 				$metadataForm->readInputData();
 			} else {
@@ -77,8 +76,7 @@ class Action {
 	function saveMetadata($monograph) {
 		if (!HookRegistry::call('Action::saveMetadata', array(&$monograph))) {
 			import('submission.form.MetadataForm');
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$metadataForm =& new MetadataForm($monograph);
+			$metadataForm = new MetadataForm($monograph);
 			$metadataForm->readInputData();
 			$editData = false;
 			$editData = $metadataForm->processEvents();
@@ -185,8 +183,7 @@ class Action {
 		if (!HookRegistry::call('Action::editComment', array(&$monograph, &$comment))) {
 			import("submission.form.comment.EditCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new EditCommentForm($monograph, $comment);
+			$commentForm = new EditCommentForm($monograph, $comment);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -200,8 +197,7 @@ class Action {
 		if (!HookRegistry::call('Action::saveComment', array(&$monograph, &$comment, &$emailComment))) {
 			import("submission.form.comment.EditCommentForm");
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new EditCommentForm($monograph, $comment);
+			$commentForm = new EditCommentForm($monograph, $comment);
 			$commentForm->readInputData();
 
 			if ($commentForm->validate()) {

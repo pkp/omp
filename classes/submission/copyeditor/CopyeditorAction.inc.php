@@ -292,8 +292,7 @@ class CopyeditorAction extends Action {
 		if (!HookRegistry::call('CopyeditorAction::viewLayoutComments', array(&$monograph))) {
 			import('submission.form.comment.LayoutCommentForm');
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new LayoutCommentForm($monograph, ROLE_ID_COPYEDITOR);
+			$commentForm = new LayoutCommentForm($monograph, ROLE_ID_COPYEDITOR);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -307,8 +306,7 @@ class CopyeditorAction extends Action {
 		if (!HookRegistry::call('CopyeditorAction::postLayoutComment', array(&$monograph, &$emailComment))) {
 			import('submission.form.comment.LayoutCommentForm');
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new LayoutCommentForm($monograph, ROLE_ID_COPYEDITOR);
+			$commentForm = new LayoutCommentForm($monograph, ROLE_ID_COPYEDITOR);
 			$commentForm->readInputData();
 
 			if ($commentForm->validate()) {
@@ -346,8 +344,7 @@ class CopyeditorAction extends Action {
 		if (!HookRegistry::call('CopyeditorAction::viewCopyeditComments', array(&$monograph))) {
 			import('submission.form.comment.CopyeditCommentForm');
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new CopyeditCommentForm($monograph, ROLE_ID_COPYEDITOR);
+			$commentForm = new CopyeditCommentForm($monograph, ROLE_ID_COPYEDITOR);
 			$commentForm->initData();
 			$commentForm->display();
 		}
@@ -361,8 +358,7 @@ class CopyeditorAction extends Action {
 		if (!HookRegistry::call('CopyeditorAction::postCopyeditComment', array(&$monograph, &$emailComment))) {
 			import('submission.form.comment.CopyeditCommentForm');
 
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
-			$commentForm =& new CopyeditCommentForm($monograph, ROLE_ID_COPYEDITOR);
+			$commentForm = new CopyeditCommentForm($monograph, ROLE_ID_COPYEDITOR);
 			$commentForm->readInputData();
 
 			if ($commentForm->validate()) {

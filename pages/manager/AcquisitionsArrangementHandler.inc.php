@@ -164,15 +164,14 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 		$this->setupTemplate(true, $type);
 
 		switch ($type) {
-			// FIXME: Need construction by reference or validation always fails on PHP 4.x
 			case CATEGORY_ARRANGEMENT: {
 				import('manager.form.SubmissionCategoryForm');
-				$form =& new SubmissionCategoryForm(!isset($args) || empty($args) ? null : ((int) $args[0]));
+				$form = new SubmissionCategoryForm(!isset($args) || empty($args) ? null : ((int) $args[0]));
 				break;
 			}
 			default: {
 				import('manager.form.SeriesForm');
-				$form =& new SeriesForm(!isset($args) || empty($args) ? null : ((int) $args[0]));
+				$form = new SeriesForm(!isset($args) || empty($args) ? null : ((int) $args[0]));
 				break;
 			}
 		}
@@ -196,15 +195,13 @@ class AcquisitionsArrangementHandler extends ManagerHandler {
 		switch ($type) {
 			case CATEGORY_ARRANGEMENT: {
 				import('manager.form.SubmissionCategoryForm');
-				// FIXME: Need construction by reference or validation always fails on PHP 4.x
-				$form =& new SubmissionCategoryForm(!isset($args) || empty($args) ? null : ((int) $args[0]));
+				$form = new SubmissionCategoryForm(!isset($args) || empty($args) ? null : ((int) $args[0]));
 				$formRedirect = 'submissionCategory';
 				break;
 			}
 			default: {
 				import('manager.form.SeriesForm');
-				// FIXME: Need construction by reference or validation always fails on PHP 4.x
-				$form =& new SeriesForm(!isset($args) || empty($args) ? null : ((int) $args[0]));
+				$form = new SeriesForm(!isset($args) || empty($args) ? null : ((int) $args[0]));
 				$formRedirect = 'series';
 			}
 		}
