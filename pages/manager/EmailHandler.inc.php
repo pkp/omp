@@ -60,6 +60,7 @@ class EmailHandler extends ManagerHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
+		$press =& Request::getPress();
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->append('pageHierarchy', array(Request::url(null, 'manager', 'emails'), 'manager.emails'));
 
@@ -67,7 +68,7 @@ class EmailHandler extends ManagerHandler {
 
 		import('manager.form.EmailTemplateForm');
 
-		$emailTemplateForm = new EmailTemplateForm($emailKey);
+		$emailTemplateForm = new EmailTemplateForm($emailKey, $press);
 		$emailTemplateForm->initData();
 		$emailTemplateForm->display();
 	}
@@ -78,12 +79,13 @@ class EmailHandler extends ManagerHandler {
 	function updateEmail() {
 		$this->validate();
 		$this->setupTemplate(true);
+		$press =& Request::getPress();
 
 		import('manager.form.EmailTemplateForm');
 
 		$emailKey = Request::getUserVar('emailKey');
 
-		$emailTemplateForm = new EmailTemplateForm($emailKey);
+		$emailTemplateForm = new EmailTemplateForm($emailKey, $press);
 		$emailTemplateForm->readInputData();
 
 		if ($emailTemplateForm->validate()) {
