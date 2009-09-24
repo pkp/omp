@@ -265,3 +265,14 @@ div.newItemContainer {
 	padding-right:5%;
 	padding-bottom:1%;
 }
+
+/**
+ * Setup styles
+ */
+
+div.flexibleRolesList {
+	height:100px;
+	width:200px;
+	border:1px solid gray;
+	overflow:auto;
+}

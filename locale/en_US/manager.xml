@@ -29,8 +29,22 @@
 	<message key="manager.setup.submitToSeries">Allow series submissions</message>
 	<message key="manager.setup.issnDescription"><![CDATA[The ISSN (International Standard Serial Number) is an eight-digit number which identifies periodical publications as such, including electronic serials. It is managed by a world wide network of National Centres coordinated by an International Centre based in Paris, backed by Unesco and the French Government. A number can be obtained from the <a href="http://www.issn.org" target="_new">ISSN web site</a>.  This can be done at any point in operating the press.]]></message>
 
-	<message key="manager.setup.prospectus">Prospectus Guide</message>
-
+	<message key="manager.setup.authorRole">Author Role</message>
+	<message key="manager.setup.pressRole">Press Role</message>
+	<message key="manager.setup.roleAbbrev">Role Abbreviation</message>
+	<message key="manager.setup.roleName">Role Name</message>
+	<message key="manager.setup.roleType">Role Type</message>
+	<message key="manager.setup.authorRoles">Author Roles</message>
+	<message key="manager.setup.pressRoles">Press Roles</message>
+	<message key="manager.setup.pressRolesDescription">Create additional roles with the form below.</message>
+	<message key="manager.setup.availableRoles">Available Roles</message>
+	<message key="manager.setup.currentRoles">Current Roles</message>
+  
+	<message key="manager.setup.submissionRoles">Submission Roles</message>
+	<message key="manager.setup.internalReviewRoles">Internal Review Roles</message>
+	<message key="manager.setup.externalReviewRoles">External Review Roles</message>
+	<message key="manager.setup.editorialRoles">Editorial Roles</message>
+	<message key="manager.setup.productionRoles">Production Roles</message>
 
 	<message key="manager.emails.confirmResetAll">Are you sure you want to reset all email templates in this press? You will lose any customizations you have made.</message>
 	<message key="manager.files.note">Note: The Files Browser is an advanced feature that allows the files and directories associated with a press to be viewed and manipulated directly.</message>

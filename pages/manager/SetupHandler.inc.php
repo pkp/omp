@@ -136,7 +136,8 @@ class SetupHandler extends ManagerHandler {
 						if (!isset($checklist[$formLocale])) $checklist[$formLocale] = array();
 						array_splice($checklist[$formLocale], $delChecklist, 1);
 						$setupForm->setData('submissionChecklist', $checklist);
-					} 
+					}
+
 					break;
 
 				case 3:
@@ -204,6 +205,48 @@ class SetupHandler extends ManagerHandler {
 						);
 ;
 						$setupForm->setData('bookFileTypes', $bookFileTypes);
+					} else if (Request::getUserVar('addRole')) {
+						$editData = true;
+						$newRole = $setupForm->getData('newRole');
+						$roles = $setupForm->getData('additionalRoles');
+						$nextRoleId = $setupForm->getData('nextRoleId');
+
+						$roles[$newRole['type']][$nextRoleId]['name'][$formLocale] = $newRole['name'];
+						$roles[$newRole['type']][$nextRoleId]['abbrev'][$formLocale] = $newRole['abbrev'];
+
+						$setupForm->setData('nextRoleId', $nextRoleId + 1);
+						$setupForm->setData('additionalRoles', $roles);
+					} else if (($removeRole = Request::getUserVar('removeRole'))) {
+						$editData = true;
+						list($removeRoleClass) = array_keys($removeRole);
+						list($removeRoleId) = array_keys($removeRole[$removeRoleClass]);
+						$removeRoleClass = (int) $removeRoleClass;
+						$removeRoleId = (int) $removeRoleId;
+
+						$additionalRoles = $setupForm->getData('additionalRoles');
+
+						if (!empty($additionalRoles[$removeRoleClass][$removeRoleId]['flexibleRoleId'])) {
+							$deletedFlexibleRoles = explode(':', $setupForm->getData('deletedFlexibleRoles'));
+							array_push($deletedFlexibleRoles, $additionalRoles[$removeRoleClass][$removeRoleId]['flexibleRoleId']);
+							$setupForm->setData('deletedFlexibleRoles', join(':', $deletedFlexibleRoles));
+						}
+						unset($additionalRoles[$removeRoleClass][$removeRoleId]);
+
+						$workflowRoleSections = array(
+								'submissionRoles', 'internalReviewRoles', 
+								'externalReviewRoles', 'editorialRoles', 'productionRoles'
+							);
+
+						foreach ($workflowRoleSections as $workflowRoleSection) {
+							$workflowRoleData = $setupForm->getData($workflowRoleSection);
+							if (isset($workflowRoleData[$removeRoleId])) {
+								unset($workflowRoleData[$removeRoleId]);
+								$setupForm->setData($workflowRoleSection, $workflowRoleData);
+							}
+							unset($workflowRoleData);
+						}
+
+						$setupForm->setData('additionalRoles', $additionalRoles);
 					}
 
 					if (!isset($editData)) {

@@ -1232,6 +1232,80 @@
 		</index>
 	</table>
 
+	<!--
+	  *
+	  * TABLE flexible_roles
+	  *
+	  -->
+	<table name="flexible_roles">
+		<field name="flexible_role_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="press_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="type" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="enabled" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<descr>A press's flexible roles.</descr>
+		<index name="flexible_roles_flexible_role_id">
+			<col>flexible_role_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE flexible_role_settings
+	  *
+	  -->
+	<table name="flexible_role_settings">
+		<field name="flexible_role_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Flexible role settings</descr>
+		<index name="flexible_role_settings_flexible_role_id">
+			<col>flexible_role_id</col>
+		</index>
+		<index name="flexible_role_settings_pkey">
+			<col>flexible_role_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE />
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE flexible_role_arrangements
+	  *
+	  -->
+	<table name="flexible_role_arrangements">
+		<field name="flexible_role_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="arrangement_id" type="I8">
+			<NOTNULL />
+		</field>
+		<descr>Flexible roles arranged by workflow identifiers.</descr>
+	</table>
+
 	<table name="signoff_processes">
 		<field name="process_id" type="I8">
 			<KEY/>

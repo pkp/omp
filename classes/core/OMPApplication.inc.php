@@ -159,6 +159,7 @@ class OMPApplication extends PKPApplication {
 			'WorkflowDAO' => 'workflow.WorkflowDAO',
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
 			'RoleDAO' => 'security.RoleDAO',
+			'FlexibleRoleDAO' => 'role.FlexibleRoleDAO',
 			'SuppFileDAO' => 'monograph.SuppFileDAO',
 			'AcquisitionsEditorSubmissionDAO' => 'submission.acquisitionsEditor.AcquisitionsEditorSubmissionDAO',
 			'UserDAO' => 'user.UserDAO',
