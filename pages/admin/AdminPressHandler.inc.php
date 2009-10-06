@@ -12,7 +12,7 @@
  * @brief Handle requests for press management in site administration. 
  */
 
-// $Id$this->.inc.php,v 1.4 2009/05/06 16:44:10 jalperin Exp $
+// $Id: AdminPressHandler.inc.php,v 1.8 2009/10/06 21:57:31 asmecher Exp $this->.inc.php,v 1.4 2009/05/06 16:44:10 jalperin Exp $
 
 import('pages.admin.AdminHandler');
 
@@ -56,7 +56,11 @@ class AdminPressHandler extends AdminHandler {
 
 		import('admin.form.PressSiteSettingsForm');
 
-		$settingsForm = new PressSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
+		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
+			$settingsForm = new PressSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
+		} else {
+			$settingsForm =& new PressSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
+		}
 		if ($settingsForm->isLocaleResubmit()) {
 			$settingsForm->readInputData();
 		} else {
@@ -73,7 +77,11 @@ class AdminPressHandler extends AdminHandler {
 
 		import('admin.form.PressSiteSettingsForm');
 
-		$settingsForm = new PressSiteSettingsForm(Request::getUserVar('pressId'));
+		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
+			$settingsForm = new PressSiteSettingsForm(Request::getUserVar('pressId'));
+		} else {
+			$settingsForm =& new PressSiteSettingsForm(Request::getUserVar('pressId'));
+		}
 		$settingsForm->readInputData();
 
 		if ($settingsForm->validate()) {
