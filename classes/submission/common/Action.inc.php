@@ -16,7 +16,7 @@
  * @brief Action class.
  */
 
-// $Id$
+// $Id: Action.inc.php,v 1.19 2009/10/07 00:36:11 asmecher Exp $
 
 
 /* These constants correspond to editing decision "decision codes". */
@@ -87,9 +87,9 @@ class Action {
 				// Send a notification to associated users
 				import('notification.Notification');
 				$notificationUsers = $monograph->getAssociatedUserIds();
-				foreach ($notificationUsers as $user) {
-					$url = Request::url(null, $user['role'], 'submission', $monograph->getMonographId(), null, 'metadata');
-					Notification::createNotification($user['id'], "notification.type.metadataModified",
+				foreach ($notificationUsers as $userRole) 
+					$url = Request::url(null, $userRole['role'], 'submission', $monograph->getMonographId(), null, 'metadata');
+					Notification::createNotification($userRole['id'], "notification.type.metadataModified",
 						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_METADATA_MODIFIED);
 				}
 
@@ -206,9 +206,9 @@ class Action {
 				// Send a notification to associated users
 				import('notification.Notification');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
-				foreach ($notificationUsers as $user) {
-					$url = Request::url(null, $user['role'], 'submissionReview', $monograph->getMonographId(), null, 'editorDecision');
-					Notification::createNotification($user['id'], "notification.type.submissionComment",
+				foreach ($notificationUsers as $userRole) {
+					$url = Request::url(null, $userRole['role'], 'submissionReview', $monograph->getMonographId(), null, 'editorDecision');
+					Notification::createNotification($userRole['id'], "notification.type.submissionComment",
 						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUBMISSION_COMMENT);
 				}
 
