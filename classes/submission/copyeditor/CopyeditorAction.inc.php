@@ -13,7 +13,7 @@
  * @brief CopyeditorAction class.
  */
 
-// $Id$
+// $Id: CopyeditorAction.inc.php,v 1.6 2009/10/07 00:36:11 asmecher Exp $
 
 import('submission.common.Action');
 
@@ -315,10 +315,10 @@ class CopyeditorAction extends Action {
 				// Send a notification to associated users
 				import('notification.Notification');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
-				foreach ($notificationUsers as $user) {
-					$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
+				foreach ($notificationUsers as $userRole) {
+					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
 					Notification::createNotification(
-								$user['id'], "notification.type.layoutComment", 
+								$userRole['id'], "notification.type.layoutComment", 
 								$monograph->getLocalizedTitle(), $url, 1, 
 								NOTIFICATION_TYPE_LAYOUT_COMMENT
 							);
@@ -367,10 +367,10 @@ class CopyeditorAction extends Action {
 				// Send a notification to associated users
 				import('notification.Notification');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
-				foreach ($notificationUsers as $user) {
-					$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'coypedit');
+				foreach ($notificationUsers as $userRole) {
+					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'coypedit');
 					Notification::createNotification(
-								$user['id'], 
+								$userRole['id'], 
 								"notification.type.copyeditComment", 
 								$monograph->getLocalizedTitle(), 
 								$url, 1, NOTIFICATION_TYPE_COPYEDIT_COMMENT

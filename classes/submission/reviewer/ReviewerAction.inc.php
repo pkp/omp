@@ -12,7 +12,7 @@
  * @brief ReviewerAction class.
  */
 
-// $Id$
+// $Id: ReviewerAction.inc.php,v 1.10 2009/10/07 00:36:12 asmecher Exp $
 
 
 import('submission.common.Action');
@@ -345,9 +345,9 @@ class ReviewerAction extends Action {
 				$monographDao =& DAORegistry::getDAO('MonographDAO'); 
 				$monograph =& $monographDao->getMonograph($monographId);
 				$notificationUsers = $monograph->getAssociatedUserIds();
-				foreach ($notificationUsers as $user) {
-					$url = Request::url(null, $user['role'], 'submissionReview', $monographId, null, 'peerReview');
-					Notification::createNotification($user['id'], "notification.type.reviewerFormComment",
+				foreach ($notificationUsers as $userRole) {
+					$url = Request::url(null, $userRole['role'], 'submissionReview', $monographId, null, 'peerReview');
+					Notification::createNotification($userRole['id'], "notification.type.reviewerFormComment",
 						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT);
 				}
 			} else {

@@ -16,7 +16,7 @@
  * @brief DesignerAction class.
  */
 
-// $Id$
+// $Id: DesignerAction.inc.php,v 1.8 2009/10/07 00:36:11 asmecher Exp $
 
 
 import('submission.common.Action');
@@ -217,9 +217,9 @@ class DesignerAction extends Action {
 				// Send a notification to associated users
 				import('notification.Notification');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
-				foreach ($notificationUsers as $user) {
-					$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
-					Notification::createNotification($user['id'], "notification.type.layoutComment",
+				foreach ($notificationUsers as $userRole) {
+					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
+					Notification::createNotification($userRole['id'], "notification.type.layoutComment",
 						$monograph->getMonographTitle(), $url, 1, NOTIFICATION_TYPE_LAYOUT_COMMENT);
 				}
 				
@@ -266,9 +266,9 @@ class DesignerAction extends Action {
 				// Send a notification to associated users
 				import('notification.Notification');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
-				foreach ($notificationUsers as $user) {
-					$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'proofread');
-					Notification::createNotification($user['id'], "notification.type.proofreadComment",
+				foreach ($notificationUsers as $userRole) {
+					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'proofread');
+					Notification::createNotification($userRole['id'], "notification.type.proofreadComment",
 						$monograph->getMonographTitle(), $url, 1, NOTIFICATION_TYPE_PROOFREAD_COMMENT);
 				}
 				

@@ -16,7 +16,7 @@
  * @brief Form for press managers to create/edit announcements.
  */
 
-// $Id$
+// $Id: AnnouncementForm.inc.php,v 1.2 2009/10/07 00:36:11 asmecher Exp $
 
 import('manager.form.PKPAnnouncementForm');
 
@@ -76,8 +76,8 @@ class AnnouncementForm extends PKPAnnouncementForm {
 			unset($user);
 		}
 		$url = Request::url(null, 'announcement', 'view', array(1));
-		foreach ($notificationUsers as $user) {
-			Notification::createNotification($user['id'], "notification.type.newAnnouncement",
+		foreach ($notificationUsers as $userRole) {
+			Notification::createNotification($userRole['id'], "notification.type.newAnnouncement",
 				null, $url, 1, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT);
 		}
 		$notificationDao =& DAORegistry::getDAO('NotificationDAO');

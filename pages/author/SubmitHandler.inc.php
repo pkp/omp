@@ -12,7 +12,7 @@
  * @brief Handle requests for author monograph submission. 
  */
 
-// $Id$
+// $Id: SubmitHandler.inc.php,v 1.16 2009/10/07 00:36:12 asmecher Exp $
 
 import('pages.author.AuthorHandler');
 
@@ -93,9 +93,9 @@ class SubmitHandler extends AuthorHandler {
 				foreach ($allUsers as $user) {
 					$notificationUsers[] = array('id' => $user->getId());
 				}
-				foreach ($notificationUsers as $user) {
+				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, 'editor', 'submission', $monographId);
-					Notification::createNotification($user['id'], "notification.type.monographSubmitted",
+					Notification::createNotification($userRole['id'], "notification.type.monographSubmitted",
 						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED);
 				}
 				

@@ -12,7 +12,7 @@
  * @brief Handle requests for submission tracking. 
  */
 
-// $Id$
+// $Id: SubmissionEditHandler.inc.php,v 1.52 2009/10/07 00:36:12 asmecher Exp $
 
 
 define('ACQUISITIONS_EDITOR_ACCESS_EDIT', 0x00001);
@@ -1352,9 +1352,9 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 			$monographDao =& DAORegistry::getDAO('MonographDAO'); 
 			$monograph =& $monographDao->getMonograph($monographId);
 			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
-			foreach ($notificationUsers as $user) {
-				$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
-				Notification::createNotification($user['id'], "notification.type.suppFileModified",
+			foreach ($notificationUsers as $userRole) {
+				$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
+				Notification::createNotification($userRole['id'], "notification.type.suppFileModified",
 					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUPP_FILE_MODIFIED);
 			}
 
@@ -1670,9 +1670,9 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 			$monographDao =& DAORegistry::getDAO('MonographDAO'); 
 			$monograph =& $monographDao->getMonograph($monographId);
 			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
-			foreach ($notificationUsers as $user) {
-				$url = Request::url(null, $user['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
-				Notification::createNotification($user['id'], "notification.type.galleyModified",
+			foreach ($notificationUsers as $userRole) {
+				$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
+				Notification::createNotification($userRole['id'], "notification.type.galleyModified",
 					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_GALLEY_MODIFIED);
 			}
 
