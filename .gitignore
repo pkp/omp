@@ -2,4 +2,3 @@ cache/
 public/
 config.inc.php
 .DS_Store
-.gitmodules
