@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE email_texts SYSTEM "../../registry/namesAndDesignations.dtd">
+<!--
+  * entries.xml
+  *
+  * Copyright (c) 2003-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Localized book file types.
+  *
+  * $Id: bookFileTypes.xml,v 1.1 2009/10/14 19:26:00 tylerl Exp $
+  -->
+<entries locale="en_US">
+	<entry key="ARTWORK">
+		<name>Artwork</name>
+	</entry>
+	<entry key="APPENDIX">
+		<name>Appendix</name>
+		<designation>99A</designation>
+	</entry>
+	<entry key="BIBLIOGRAPHY">
+		<name>Bibliography</name>
+		<designation>99B</designation>
+	</entry>
+	<entry key="MANUSCRIPT">
+		<name>Manuscript</name>
+		<designation>99Z</designation>
+	</entry>
+	<entry key="CHAPTER">
+		<name>Chapter</name>
+	</entry>
+	<entry key="GLOSSARY">
+		<name>Glossary</name>
+		<designation>99G</designation>
+	</entry>
+	<entry key="INDEX">
+		<name>Index</name>
+		<designation>99I</designation>
+	</entry>
+	<entry key="PREFACE">
+		<name>Preface</name>
+		<designation>00P</designation>
+	</entry>
+	<entry key="PROSPECTUS">
+		<name>Prospectus</name>
+		<designation>88P</designation>
+	</entry>
+	<entry key="TABLES_AND_FIGURES">
+		<name>Tables and Figures</name>
+	</entry>
+</entries>

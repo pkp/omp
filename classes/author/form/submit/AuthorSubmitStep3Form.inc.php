@@ -12,7 +12,7 @@
  * @brief Form for Step 3 of author manuscript submission.
  */
 
-// $Id$
+// $Id: AuthorSubmitStep3Form.inc.php,v 1.9 2009/10/14 19:25:59 tylerl Exp $
 
 
 import('author.form.submit.AuthorSubmitForm');
@@ -31,7 +31,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	 */
 	function readInputData() {
 		$this->readUserVars(
-			array('newBookFileTypeInfo', 'bookFileType', 'selectedFiles')
+			array('bookFileType', 'selectedFiles')
 		);
 	}
 
@@ -47,11 +47,11 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 
-		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 
 
-		$bookFileTypes =& $pressSettingsDao->getSetting($this->monograph->getPressId(), 'bookFileTypes', Locale::getLocale());
+		$bookFileTypes =& $bookFileTypeDao->getEnabledByPressId($this->monograph->getPressId());
 		$monographFiles =& $monographFileDao->getByMonographId($this->monograph->getMonographId(), 'submission');
 
 		$templateMgr->assign_by_ref('bookFileTypes', $bookFileTypes);
@@ -72,19 +72,16 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 
 		if ($manuscriptFileManager->uploadedFileExists($fileName)) {
 			// upload new book file, overwriting previous if necessary
-			$bookFileTypeInfo = $this->getData('newBookFileTypeInfo');
-			$bookFileType = $this->getData('bookFileType');
-			$bookFileTypeInfo = $bookFileTypeInfo[$bookFileType];
+			$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+			$bookFileTypeId = $this->getData('bookFileType');
+
+			$bookFileType =& $bookFileTypeDao->getById($bookFileTypeId);
+
 			$submissionFileId = $manuscriptFileManager->uploadBookFile(
 								$fileName, 
-								$bookFileTypeInfo['prefix'], 
-								$bookFileTypeInfo['type']
+								$bookFileType->getDesignation($this->getFormLocale()), 
+								$bookFileType->getName($this->getFormLocale())
 							);
-
-			$monographFileSettingsDao =& DAORegistry::getDAO('MonographFileSettingsDAO');
-			$monographFileSettingsDao->updateSetting($submissionFileId, null, 'bookFileTypeName', $bookFileTypeInfo['type']);
-			$monographFileSettingsDao->updateSetting($submissionFileId, null, 'bookFileTypeDescription', $bookFileTypeInfo['description']);
-			$monographFileSettingsDao->updateSetting($submissionFileId, null, 'bookFileTypePrefix', $bookFileTypeInfo['prefix']);
 		}
 
 		return !isset($submissionFileId) ? false : true;

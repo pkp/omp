@@ -12,7 +12,7 @@
  * @brief Form for Step 3 of press setup.
  */
 
-// $Id$
+// $Id: PressSetupStep3Form.inc.php,v 1.13 2009/10/14 19:26:00 tylerl Exp $
 
 import('manager.form.setup.PressSetupForm');
 import('role.FlexibleRole');
@@ -71,12 +71,21 @@ class PressSetupStep3Form extends PressSetupForm {
 	}
 
 	/**
+	 * Get a list of field names for which localized settings are used
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('newBookFileName', 'newBookFileDesignation');
+	}
+
+	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
 		$this->readUserVars(array(
-				'additionalRoles', 'newBookFileType', 'bookFileTypeSelect', 'newRole', 'deletedFlexibleRoles', 'nextRoleId',
-				'submissionRoles', 'internalReviewRoles', 'externalReviewRoles', 'editorialRoles', 'productionRoles'
+				'additionalRoles', 'newBookFileSortable', 'newBookFileName', 'newBookFileDesignation', 
+				'bookFileTypeSelect', 'newRole', 'deletedFlexibleRoles', 'nextRoleId', 'submissionRoles', 
+				'internalReviewRoles', 'externalReviewRoles', 'editorialRoles', 'productionRoles', 'bookFileTypeUpdate'
 			)
 		);
 		parent::readInputData();
@@ -100,10 +109,12 @@ class PressSetupStep3Form extends PressSetupForm {
 	 * Display the form
 	 */
 	function display() {
+		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$templateMgr =& TemplateManager::getManager();
 		$press =& Request::getPress();
+		$bookFileTypes =& $bookFileTypeDao->getEnabledByPressId($press->getId());
 
-		$templateMgr->assign_by_ref('bookFileTypes', $press->getSetting('bookFileTypes'));
+		$templateMgr->assign_by_ref('bookFileTypes', $bookFileTypes);
 
 		parent::display();
 	}

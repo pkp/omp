@@ -6,7 +6,7 @@
  *
  * Step 3 of press setup.
  *
- * $Id$
+ * $Id: step3.tpl,v 1.15 2009/10/14 19:26:00 tylerl Exp $
  *}
 {assign var="pageTitle" value="manager.setup.preparingWorkflow"}
 {include file="manager/setup/setupHeader.tpl"}
@@ -167,22 +167,43 @@ function removeWorkflowRole(toName, prefix, roleId, roleName) {
 
 <p>{translate key="manager.setup.bookFileTypesDescription"}</p>
 
-{foreach name=bookFileTypes from=$bookFileTypes[$formLocale] key=fileTypeId item=fileTypeItem}
+{foreach name=bookFileTypes from=$bookFileTypes item=fileTypeItem}
 	{if !$notFirstFileTypeItem}
 		{assign var=notFirstFileTypeItem value=1}
 		<table width="100%" class="data">
 			<tr valign="top">
 				<td width="5%">&nbsp;</td>
-				<td width="30%">{translate key="common.type"}</td>
-				<td width="70%">{translate key="common.filePrefix"}</td>
+				<td width="30%">{translate key="common.name"}</td>
+				<td width="70%">{translate key="common.designation"}</td>
 			</tr>
 	{/if}
 
 	<tr valign="top">
-		<td><input type="checkbox" name="bookFileTypeSelect[]" value="{$fileTypeId}" /></td>
-		<td>{$fileTypeItem.type}</td>
-		<td>{$fileTypeItem.prefix}</td>
+		<td><input type="checkbox" name="bookFileTypeSelect[]" value="{$fileTypeItem->getId()|escape}" /></td>
+		<td>
+			{if $fileTypeItem->getName($formLocale)}
+				{$fileTypeItem->getName($formLocale)|escape}
+			{else}
+				<input type="text" name="bookFileTypeUpdate[{$fileTypeItem->getId()|escape}][name]" value="{$fileTypeItem->getName($primaryLocale)|escape}"/>
+			{/if}
+		</td>
+		<td>
+			{if $fileTypeItem->getSortable()}
+				{$smarty.const.BOOK_FILE_TYPE_SORTABLE_DESIGNATION}
+			{elseif $fileTypeItem->getDesignation($formLocale)}
+				{$fileTypeItem->getDesignation($formLocale)|escape}
+			{else}
+				<input type="text" name="bookFileTypeUpdate[{$fileTypeItem->getId()|escape}][designation]" value="{$fileTypeItem->getDesignation($primaryLocale)|escape}"/>
+			{/if}
+		</td>
 	</tr>
+	{if !$fileTypeItem->getName($formLocale) or (!$fileTypeItem->getDesignation($formLocale) and !$fileTypeItem->getSortable())}
+	<tr valign="top">
+		<td colspan="3">
+			<input type="submit" name="updateBookFileType[{$fileTypeItem->getId()|escape}]" value="{translate key="common.update"}" class="button" />
+		</td>
+	</tr>
+	{/if}
 {/foreach}
 {if $notFirstFileTypeItem}
 	</table>
@@ -197,16 +218,13 @@ function removeWorkflowRole(toName, prefix, roleId, roleName) {
 <p>{translate key="manager.setup.newBookFileTypeDescription"}</p>
 <table>
 <tr>
-	<td>{translate key="common.filePrefix"}</td><td><input type="text" name="newBookFileType[prefix]" class="textField" /></td>
+	<td>{translate key="common.name"}</td><td><input type="text" name="newBookFileName[{$formLocale|escape}]" class="textField" /></td>
 </tr>
 <tr>
-	<td>{translate key="common.type"}</td><td><input type="text" name="newBookFileType[type]" class="textField" /></td>
+	<td>{translate key="common.designation"}</td><td><input type="text" name="newBookFileDesignation[{$formLocale|escape}]" class="textField" /></td>
 </tr>
 <tr>
-	<td>{translate key="common.description"}</td><td><textarea name="newBookFileType[description]" rows="5" cols="30" class="textArea"></textarea></td>
-</tr>
-<tr>
-	<td>{translate key="common.sortableByComponent"}</td><td><input type="checkbox" name="newBookFileType[sortable]" class="textField" /></td>
+	<td>&nbsp;</td><td><input type="checkbox" name="newBookFileSortable" class="textField" /> {translate key="manager.setup.sortableByComponent"}</td>
 </tr>
 <tr>
 	<td>&nbsp;</td><td><input type="submit" name="addBookFileType" value="{translate key="common.create"}" class="button" /></td>

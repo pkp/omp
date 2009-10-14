@@ -14,7 +14,7 @@
  *
  */
 
-// $Id$
+// $Id: OMPApplication.inc.php,v 1.24 2009/10/14 19:25:59 tylerl Exp $
 
 
 import('core.PKPApplication');
@@ -126,6 +126,7 @@ class OMPApplication extends PKPApplication {
 		return array_merge(parent::getDAOMap(), array(
 			'AnnouncementDAO' => 'announcement.AnnouncementDAO',
 			'AnnouncementTypeDAO' => 'announcement.AnnouncementTypeDAO',
+			'BookFileTypeDAO' => 'bookFile.BookFileTypeDAO',
 			'MonographEmailLogDAO' => 'monograph.log.MonographEmailLogDAO',
 			'MonographEventLogDAO' => 'monograph.log.MonographEventLogDAO',
 			'MonographCommentDAO' => 'monograph.MonographCommentDAO',

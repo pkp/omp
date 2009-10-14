@@ -12,7 +12,7 @@
  * @brief Form for site administrator to edit basic press settings.
  */
 
-// $Id$
+// $Id: PressSiteSettingsForm.inc.php,v 1.9 2009/10/14 19:25:59 tylerl Exp $
 
 
 import('db.DBDataXMLParser');
@@ -149,6 +149,9 @@ class PressSiteSettingsForm extends Form {
 			FileManager::mkdir(Config::getVar('files', 'files_dir'). '/presses/' . $pressId . '/monographs');
 			FileManager::mkdir(Config::getVar('files', 'public_files_dir') . '/presses/' . $pressId);
 
+			// Install default book file types
+			$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+			$bookFileTypeDao->installDefaultsForPress($pressId);
 
 			// Install default press settings
 			$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');

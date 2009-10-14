@@ -16,7 +16,7 @@
  * @brief Action class.
  */
 
-// $Id: Action.inc.php,v 1.19 2009/10/07 00:36:11 asmecher Exp $
+// $Id: Action.inc.php,v 1.20 2009/10/14 19:26:00 tylerl Exp $
 
 
 /* These constants correspond to editing decision "decision codes". */
@@ -87,7 +87,7 @@ class Action {
 				// Send a notification to associated users
 				import('notification.Notification');
 				$notificationUsers = $monograph->getAssociatedUserIds();
-				foreach ($notificationUsers as $userRole) 
+				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, $userRole['role'], 'submission', $monograph->getMonographId(), null, 'metadata');
 					Notification::createNotification($userRole['id'], "notification.type.metadataModified",
 						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_METADATA_MODIFIED);
