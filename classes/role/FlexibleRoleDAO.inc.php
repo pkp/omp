@@ -36,9 +36,9 @@ class FlexibleRoleDAO extends DAO
 	 * Retrieve all enabled flexible roles
 	 * @return array FlexibleRoles
 	 */
-	function &getEnabledByPressId($roleId) {
+	function &getEnabledByPressId($pressId) {
 		$result =& $this->retrieve(
-			'SELECT * FROM flexible_roles WHERE enabled=1 AND press_id = ? ORDER BY type', $roleId
+			'SELECT * FROM flexible_roles WHERE enabled=1 AND press_id = ? ORDER BY type', $pressId
 		);
 
 		$returner = null;

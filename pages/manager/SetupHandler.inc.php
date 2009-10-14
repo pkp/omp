@@ -12,7 +12,7 @@
  * @brief Handle requests for press setup functions. 
  */
 
-// $Id$
+// $Id: SetupHandler.inc.php,v 1.18 2009/10/14 19:26:00 tylerl Exp $
 
 import('pages.manager.ManagerHandler');
 
@@ -142,70 +142,73 @@ class SetupHandler extends ManagerHandler {
 
 				case 3:
 					if (Request::getUserVar('deleteSelectedBookFileTypes')) {
+
 						// Delete book file types
 						$editData = true;
 						$press =& Request::getPress();
-						$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 						$bookFileIds = $setupForm->getData('bookFileTypeSelect');
-						$bookFileTypes =& $settingsDao->getSetting($press->getId(), 'bookFileTypes');
+						$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 
-						foreach ($bookFileIds as $bookFileIndex) {
-							if (isset($bookFileTypes[$formLocale][$bookFileIndex])) {
-								 unset($bookFileTypes[$formLocale][$bookFileIndex]);
-							}
+						foreach ($bookFileIds as $bookFileId) {
+							$bookFileTypeDao->deleteById($bookFileId);
 						}
-						$settingsDao->updateSetting(
-							$press->getId(), 
-							'bookFileTypes', 
-							$bookFileTypes, 
-							'object', 
-							true
-						);
 
+						$bookFileTypes = $bookFileTypeDao->getEnabledByPressId($press->getId());
 						$setupForm->setData('bookFileTypes', $bookFileTypes);
+
 					} else if (Request::getUserVar('restoreDefaultBookFileTypes')) {
-						// Delete book file types
+
 						$editData = true;
 						$press =& Request::getPress();
-						$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-						$newBookFileType = $setupForm->getData('bookFileTypeId');
+						$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+						$bookFileTypeDao->installDefaultsForPress($press->getId());
 
-						Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
-						$settingsDao->reloadDefaultSetting(
-							$press->getId(), 
-							'registry/pressSettings.xml', 
-							'bookFileTypes'
-						);
+					} else if ($typeId = Request::getUserVar('updateBookFileType')) {
+
+						$editData = true;
+						$press =& Request::getPress();
+						$typeId = array_keys($typeId);
+						$typeId = (int) $typeId[0];
+						$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+						$bookFileTypeUpdate = $setupForm->getData('bookFileTypeUpdate');
+						$bookFileType =& $bookFileTypeDao->getById($typeId);
+
+						$bookFileType->setName($bookFileTypeUpdate[$typeId]['name'], $formLocale);
+						$bookFileType->setDesignation($bookFileTypeUpdate[$typeId]['designation'], $formLocale);
+
+						$bookFileTypeDao->updateObject($bookFileType);
 
 					} else if (Request::getUserVar('addBookFileType')) {
+
 						// Add a book file type
 						// FIXME validate user data
 						$editData = true;
 						$press =& Request::getPress();
-						$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-						$newBookFileType = $setupForm->getData('newBookFileType');
+						$newBookFileDesignation = $setupForm->getData('newBookFileDesignation');
+						$newBookFileSortable = $setupForm->getData('newBookFileSortable');
+						$newBookFileName = $setupForm->getData('newBookFileName');
+						$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 
-						$bookFileTypes = $settingsDao->getSetting($press->getId(), 'bookFileTypes');
+						$bookFileType = $bookFileTypeDao->newDataObject();
+						$bookFileType->setName($newBookFileName, null);
+						$bookFileType->setSortable(isset($newBookFileSortable) ? 1 : 0);
 
-						if (isset($newBookFileType['sortable'])) {
-							$newBookFileType['prefix'] = '--';
-							$newBookFileType['sortable'] = true;
+						if (isset($newBookFileSortable)) {
+							foreach (Locale::getSupportedLocales() as $locale => $localeItem) {
+								$bookFileType->setDesignation(BOOK_FILE_TYPE_SORTABLE_DESIGNATION, $locale);
+							}
 						} else {
-							$newBookFileType['sortable'] = false;
+							$bookFileType->setDesignation($newBookFileDesignation, null);
 						}
 
-						array_push($bookFileTypes[$formLocale], $newBookFileType);
+						$bookFileTypeDao->insertObject($bookFileType);
 
-						$settingsDao->updateSetting(
-							$press->getId(),
-							'bookFileTypes',
-							$bookFileTypes,
-							'object',
-							true
-						);
-;
+						$bookFileTypes =& $bookFileTypeDao->getEnabledByPressId($press->getId());
+
 						$setupForm->setData('bookFileTypes', $bookFileTypes);
+
 					} else if (Request::getUserVar('addRole')) {
+
 						$editData = true;
 						$newRole = $setupForm->getData('newRole');
 						$roles = $setupForm->getData('additionalRoles');
@@ -216,7 +219,9 @@ class SetupHandler extends ManagerHandler {
 
 						$setupForm->setData('nextRoleId', $nextRoleId + 1);
 						$setupForm->setData('additionalRoles', $roles);
+
 					} else if (($removeRole = Request::getUserVar('removeRole'))) {
+
 						$editData = true;
 						list($removeRoleClass) = array_keys($removeRole);
 						list($removeRoleId) = array_keys($removeRole[$removeRoleClass]);
@@ -247,6 +252,7 @@ class SetupHandler extends ManagerHandler {
 						}
 
 						$setupForm->setData('additionalRoles', $additionalRoles);
+
 					}
 
 					if (!isset($editData)) {

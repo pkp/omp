@@ -6,7 +6,7 @@
  *
  * Step 3 of author monograph submission.
  *
- * $Id$
+ * $Id: step3.tpl,v 1.11 2009/10/14 19:26:00 tylerl Exp $
  *}
 
 {include file="author/submit/submitStepHeader.tpl"}
@@ -82,9 +82,8 @@
 	<td class="label">{translate key="common.type"}</td>
 	<td class="value">
 		<select name="bookFileType" id="bookFileType" class="selectMenu">
-			<option value="">{translate key="common.select"}</option>
 		{foreach from=$bookFileTypes key=bookFileTypeKey item=bookFileType}
-			<option value="{$bookFileTypeKey}">{$bookFileType.type}</option>
+			<option value="{$bookFileType->getId()|escape}">{$bookFileType->getName($formLocale)|escape}</option>
 		{/foreach}
 		</select>
 	</td>
@@ -94,13 +93,6 @@
 </tr>
 </table>
 </div>
-
-{foreach from=$bookFileTypes key=bookFileTypeKey item=bookFileType}
-<input type="hidden" name="newBookFileTypeInfo[{$bookFileTypeKey}][prefix]" value="{$bookFileType.prefix}" />
-<input type="hidden" name="newBookFileTypeInfo[{$bookFileTypeKey}][description]" value="{$bookFileType.description}" />
-<input type="hidden" name="newBookFileTypeInfo[{$bookFileTypeKey}][sortable]" value="{$bookFileType.sortable}" />
-<input type="hidden" name="newBookFileTypeInfo[{$bookFileTypeKey}][type]" value="{$bookFileType.type}" />
-{/foreach}
 
 <div class="separator"></div>
 

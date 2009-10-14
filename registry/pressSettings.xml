@@ -8,7 +8,7 @@
   *
   * Default press settings.
   *
-  * $Id$
+  * $Id: pressSettings.xml,v 1.7 2009/10/14 19:26:00 tylerl Exp $
   -->
 
 <!DOCTYPE press_settings [
@@ -77,93 +77,6 @@
 		<value>
 			<array>
 				<element>{$primaryLocale}</element>
-			</array>
-		</value>
-	</setting>
-	<setting type="object" locale="1">
-		<name>bookFileTypes</name>
-		<value>
-			<array>
-				<element>
-					<array>
-						<element key="prefix">--</element>
-						<element key="type">{translate key="default.pressSettings.bookFileTypes.artwork"}</element>
-						<element key="sortable">1</element>
-						<element key="description">{translate key="default.pressSettings.bookFileTypes.artworkDescription"}</element>
-					</array>
-				</element>
-				<element>
-					<array>
-						<element key="prefix">99A</element>
-						<element key="type">{translate key="default.pressSettings.bookFileTypes.appendix"}</element>
-						<element key="sortable">0</element>
-						<element key="description">{translate key="default.pressSettings.bookFileTypes.appendixDescription"}</element>
-					</array>
-				</element>
-				<element>
-					<array>
-						<element key="prefix">99B</element>
-						<element key="type">{translate key="default.pressSettings.bookFileTypes.bibliography"}</element>
-						<element key="sortable">0</element>
-						<element key="description">{translate key="default.pressSettings.bookFileTypes.bibliographyDescription"}</element>
-					</array>
-				</element>
-				<element>
-					<array>
-						<element key="prefix">99Z</element>
-						<element key="type">{translate key="default.pressSettings.bookFileTypes.manuscript"}</element>
-						<element key="sortable">0</element>
-						<element key="description">{translate key="default.pressSettings.bookFileTypes.manuscriptDescription"}</element>
-					</array>
-				</element>
-					<element>
-					<array>
-						<element key="prefix">--</element>
-						<element key="type">{translate key="default.pressSettings.bookFileTypes.chapter"}</element>
-						<element key="sortable">1</element>
-						<element key="description">{translate key="default.pressSettings.bookFileTypes.chapterDescription"}</element>
-					</array>
-				</element>
-					<element>
-					<array>
-						<element key="prefix">99G</element>
-						<element key="type">{translate key="default.pressSettings.bookFileTypes.glossary"}</element>
-						<element key="sortable">0</element>
-						<element key="description">{translate key="default.pressSettings.bookFileTypes.glossaryDescription"}</element>
-					</array>
-				</element>
-				<element>
-					<array>
-						<element key="prefix">99I</element>
-						<element key="type">{translate key="default.pressSettings.bookFileTypes.index"}</element>
-						<element key="sortable">0</element>
-						<element key="description">{translate key="default.pressSettings.bookFileTypes.indexDescription"}</element>
-					</array>
-				</element>
-				<element>
-					<array>
-						<element key="prefix">00P</element>
-						<element key="type">{translate key="default.pressSettings.bookFileTypes.preface"}</element>
-						<element key="sortable">0</element>
-						<element key="description">{translate key="default.pressSettings.bookFileTypes.prefaceDescription"}</element>
-					</array>
-				</element>
-				<element>
-					<array>
-						<element key="prefix">88P</element>
-						<element key="type">{translate key="default.pressSettings.bookFileTypes.prospectus"}</element>
-						<element key="sortable">0</element>
-						<element key="description">{translate key="default.pressSettings.bookFileTypes.prospectusDescription"}</element>
-					</array>
-				</element>
-				<element>
-					<array>
-						<element key="prefix">--</element>
-						<element key="type">{translate key="default.pressSettings.bookFileTypes.tablesAndFigures"}</element>
-						<element key="sortable">1</element>
-						<element key="description">{translate key="default.pressSettings.bookFileTypes.tablesAndFiguresDescription"}</element>
-					</array>
-				</element>
 			</array>
 		</value>
 	</setting>

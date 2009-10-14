@@ -13,7 +13,7 @@
  *
  */
 
-// $Id$
+// $Id: Locale.inc.php,v 1.8 2009/10/14 19:25:59 tylerl Exp $
 
 
 import('i18n.PKPLocale');
@@ -163,6 +163,28 @@ class Locale extends PKPLocale {
 		}
 
 		return $locale;
+	}
+
+	/**
+	 * Install support for an existing locale.
+	 * @param $locale string
+	 */
+	function installLocale($locale) {
+		parent::installLocale($locale);
+
+		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+		$bookFileTypeDao->installBookFileTypeData($bookFileTypeDao->getMainBookFileTypeDataFilename($locale));
+	}
+
+	/**
+	 * Uninstall support for a new locale.
+	 * @param $locale string
+	 */
+	function uninstallLocale($locale) {
+		parent::uninstallLocale($locale);
+
+		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+		$bookFileTypeDao->deleteByLocale($locale);
 	}
 
 	/**

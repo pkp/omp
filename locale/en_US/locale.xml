@@ -9,7 +9,7 @@
   *
   * Localization strings for the en_US (U.S. English) locale.
   *
-  * $Id$
+  * $Id: locale.xml,v 1.43 2009/10/14 19:26:00 tylerl Exp $
   -->
  
 <locale name="en_US" full_name="U.S. English">
@@ -254,7 +254,8 @@ Note that if your site administrator has already registered this site with the P
 	<message key="common.pageHeader.altText">Page Header</message>
 	<message key="common.homePageHeader.altText">Homepage Header</message>
 	<message key="common.pressHomepageImage.altText">Press Homepage Image</message>
-	<message key="common.filePrefix">Filename Prefix</message>
+	<message key="common.designation">Designation</message>
+	<message key="common.name">Name</message>
 
 	<!-- Navigation -->
 	<message key="navigation.pressHelp">Press Help</message>
