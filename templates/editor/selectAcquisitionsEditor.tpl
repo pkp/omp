@@ -6,7 +6,7 @@
  *
  * List editors or section editors and give the ability to select one.
  *
- * $Id$
+ * $Id: selectAcquisitionsEditor.tpl,v 1.8 2009/10/15 17:51:45 tylerl Exp $
  *}
 {strip}
 {assign var="pageTitle" value=`$roleName`s}
@@ -15,7 +15,7 @@
 
 <h3>{translate key="editor.monograph.selectEditor" roleName=$roleName|translate}</h3>
 
-<form name="submit" method="post" action="{url op="assignEditor" monographId=$monographId}">
+<form name="submit" method="post" action="{url op="assignEditor" path=$rolePath monographId=$monographId}">
 	<select name="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
 	</select>
@@ -27,7 +27,7 @@
 	<input type="text" name="search" class="textField" value="{$search|escape}" />&nbsp;<input type="submit" value="{translate key="common.search"}" class="button" />
 </form>
 
-<p>{foreach from=$alphaList item=letter}<a href="{url op="assignEditor" monographId=$monographId searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op="assignEditor" monographId=$monographId}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
+<p>{foreach from=$alphaList item=letter}<a href="{url op="assignEditor" path=$rolePath monographId=$monographId searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op="assignEditor" monographId=$monographId}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
 
 <div id="editors">
 <table width="100%" class="listing">
