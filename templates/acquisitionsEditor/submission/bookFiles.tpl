@@ -6,7 +6,7 @@
  *
  * Book files summary.
  *
- * $Id$
+ * $Id: bookFiles.tpl,v 1.2 2009/10/15 17:18:56 tylerl Exp $
  *}
 
 <div id="bookFiles">
@@ -30,7 +30,10 @@
 	<td><input type="checkbox" name="selectedFiles[]" value="{$submissionFile->getFileId()}" /></td>
 	<td><a href="{url op="download" path=$submission->getMonographId()|to_array:$submissionFile->getFileId():$submissionFile->getRevision()}">{$submissionFile->getFileName()|escape}</a></td>
 	<td>{icon name="comment" disabled="disabled"}</td>
-	<td>{if $submissionFile->getSetting('bookFileTypeName')}{$submissionFile->getSetting('bookFileTypeName')}{/if}</td>
+	<td>
+		{assign var="assocObject" value=$submissionFile->getAssocObject()}
+		{$assocObject->getLocalizedName()|escape}
+	</td>
 	<td>{$submissionFile->getNiceFileSize()}</td>
 </tr>
 {foreachelse}

@@ -12,7 +12,7 @@
  * @brief Artwork form insert.
  */
 
-// $Id$
+// $Id: ArtworkInsert.inc.php,v 1.7 2009/10/15 17:18:56 tylerl Exp $
 
 import('inserts.Insert');
 
@@ -34,11 +34,7 @@ class ArtworkInsert extends Insert {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$templateMgr =& TemplateManager::getManager();
 
-		$artworks =& $monographFileDao->getMonographFilesByAssocId(
-								null, 
-								MONOGRAPH_FILE_ARTWORK, 
-								$this->monographId
-							);
+		$artworks =& $monographFileDao->getByMonographId($this->monographId, 'submission');
 
 		$templateMgr->assign_by_ref('artworks', $artworks);
 

@@ -14,7 +14,7 @@
  *
  */
 
-// $Id: OMPApplication.inc.php,v 1.24 2009/10/14 19:25:59 tylerl Exp $
+// $Id: OMPApplication.inc.php,v 1.25 2009/10/15 17:18:56 tylerl Exp $
 
 
 import('core.PKPApplication');
@@ -132,7 +132,6 @@ class OMPApplication extends PKPApplication {
 			'MonographCommentDAO' => 'monograph.MonographCommentDAO',
 			'MonographComponentDAO' => 'monograph.MonographComponentDAO',
 			'MonographSearchDAO' => 'search.MonographSearchDAO',
-			'MonographFileSettingsDAO' => 'monograph.MonographFileSettingsDAO',
 			'MonographDAO' => 'monograph.MonographDAO',
 			'ProductionAssignmentDAO' => 'submission.productionAssignment.ProductionAssignmentDAO',
 			'AcquisitionsArrangementDAO' => 'press.AcquisitionsArrangementDAO',

@@ -24,7 +24,7 @@
  * [monograph id]/attachment
  */
 
-// $Id$
+// $Id: MonographFileManager.inc.php,v 1.19 2009/10/15 17:18:56 tylerl Exp $
 
 
 import('file.FileManager');
@@ -71,11 +71,11 @@ class MonographFileManager extends FileManager {
 	/**
 	 * Upload a book file.
 	 * @param $fileName string the name of the file used in the POST form
+	 * @param $typeId int book file type
 	 * @return int file ID, is false if failure
 	 */
-	function uploadBookFile($fileName, $prefix, $typeName) {
-		$bookFileTypeInfo = array('prefix' => $prefix, 'type' => $typeName);
-		return $this->handleUpload($fileName, MONOGRAPH_BOOKFILE_UPLOAD, null, false, $bookFileTypeInfo);
+	function uploadBookFile($fileName, $typeId) {
+		return $this->handleUpload($fileName, MONOGRAPH_BOOKFILE_UPLOAD, null, false, $typeId);
 	}
 
 	/**
@@ -388,19 +388,6 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * Return locale key that represents the type of file.
-	 * @param $path string
-	 * @return string
-	 */
-	function pathToLocaleKey($path) {
-		switch ($path) {
-			case 'submission/artwork': return 'monograph.artworkFile';
-			case 'submission/original': return 'author.submit.submissionFile';
-			case 'supp': default: return 'monograph.suppFile';
-		}
-	}
-
-	/**
 	 * Copies an existing MonographFile and renames it.
 	 * @param $sourceFileId int
 	 * @param $sourceRevision int
@@ -409,7 +396,7 @@ class MonographFileManager extends FileManager {
 	 */
 	function copyAndRenameFile($sourceFileId, $sourceRevision, $destType, $destFileId = null) {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile = new MonographFile();
+		$monographFile = $monographFileDao->newDataObject();
 
 		$destTypePath = $this->typeToPath($destType);
 		$destDir = $this->filesDir . $destTypePath . '/';
@@ -521,10 +508,16 @@ class MonographFileManager extends FileManager {
 	 * field in the monographFile to the generated value.
 	 * @param $monographFile The monograph to generate a filename for
 	 * @param $originalName The name of the original file
+	 * @param $typeId int book file type id
 	 */
-	function generateBookFileName(&$monographFile, $originalName, $prefix = '__', $typeName) {
+	function generateBookFileName(&$monographFile, $originalName, $typeId) {
 		$extension = $this->parseFileExtension($originalName);
-		$newFileName = $prefix.'_'.date('Y', time()).'-'.$typeName.'-'.$monographFile->getFileId().'-'.$monographFile->getRevision().'.'.$extension;
+		$primaryLocale = Locale::getPrimaryLocale();
+
+		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+		$bookFileType =& $bookFileTypeDao->getById($typeId);
+
+		$newFileName = $bookFileType->getDesignation($primaryLocale).'_'.date('Y', time()).'-'.$bookFileType->getName($primaryLocale).'-'.$monographFile->getFileId().'-'.$monographFile->getRevision().'.'.$extension;
 		$monographFile->setFileName($newFileName);
 		return $newFileName;
 	}
@@ -537,7 +530,7 @@ class MonographFileManager extends FileManager {
 	 * @param $overwrite boolean overwrite all previous revisions of the file (revision number is still incremented)
 	 * @return int the file ID (false if upload failed)
 	 */
-	function handleUpload($fileName, $type, $fileId = null, $overwrite = false, $bookFileTypeInfo = null) {
+	function handleUpload($fileName, $type, $fileId = null, $overwrite = false, $bookFileTypeId = null) {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 
 		$typePath = $this->typeToPath($type);
@@ -549,7 +542,7 @@ class MonographFileManager extends FileManager {
 			$monographFile =& $this->generateDummyFile($this->monograph, $type);
 		} else {
 			$dummyFile = false;
-			$monographFile = new MonographFile();
+			$monographFile = $monographFileDao->newDataObject();
 			$monographFile->setRevision($monographFileDao->getRevisionNumber($fileId)+1);
 			$monographFile->setMonographId($this->monographId);
 			$monographFile->setFileId($fileId);
@@ -564,14 +557,13 @@ class MonographFileManager extends FileManager {
 		$monographFile->setRound($this->monograph->getCurrentRound());
 		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 
-		if (isset($bookFileTypeInfo)) {
+		if (isset($bookFileTypeId)) {
 			$newFileName = $this->generateBookFileName(
 					$monographFile, 
 					$this->getUploadedFileName($fileName), 
-					$bookFileTypeInfo['prefix'],
-					$bookFileTypeInfo['type']
+					$bookFileTypeId
 				);
-			$monographFile->setSortableByComponent(isset($bookFileTypeInfo['sortable']) ? $bookFileTypeInfo['sortable'] : 0);
+			$monographFile->setAssocId($bookFileTypeId);
 		} else {
 			$newFileName = $this->generateFilename($monographFile, $type, $this->getUploadedFileName($fileName));
 		}
@@ -612,7 +604,7 @@ class MonographFileManager extends FileManager {
 			$monographFile =& $this->generateDummyFile($this->monograph, $type);
 		} else {
 			$dummyFile = false;
-			$monographFile = new MonographFile();
+			$monographFile = $monographFileDao->newDataObject();
 			$monographFile->setRevision($monographFileDao->getRevisionNumber($fileId)+1);
 			$monographFile->setMonographId($this->monographId);
 			$monographFile->setFileId($fileId);
@@ -665,7 +657,7 @@ class MonographFileManager extends FileManager {
 			$monographFile =& $this->generateDummyFile($this->monograph, $type);
 		} else {
 			$dummyFile = false;
-			$monographFile = new MonographFile();
+			$monographFile = $monographFileDao->newDataObject();
 			$monographFile->setRevision($monographFileDao->getRevisionNumber($fileId)+1);
 			$monographFile->setMonographId($this->monographId);
 			$monographFile->setFileId($fileId);
@@ -700,10 +692,12 @@ class MonographFileManager extends FileManager {
 
 	/**
 	 * Copy a temporary file to a monograph file.
-	 * @param TemporaryFile
+	 * @param $temporaryFile
 	 * @return int the file ID (false if upload failed)
 	 */
 	function temporaryFileToMonographFile(&$temporaryFile, $type, $assocId = null) {
+		if (HookRegistry::call('MonographFileManager::temporaryFileToMonographFile', array(&$temporaryFile, &$type, &$assocId, &$result))) return $result;
+
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 
 		$typePath = $this->typeToPath($type);

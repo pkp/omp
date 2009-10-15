@@ -17,6 +17,9 @@
  * @brief Basic class describing a book file type.
  */
 
+// $Id: BookFileType.inc.php,v 1.2 2009/10/15 17:18:56 tylerl Exp $
+
+
 define('BOOK_FILE_TYPE_SORTABLE_DESIGNATION', '##');
 
 class BookFileType extends DataObject {
@@ -44,7 +47,7 @@ class BookFileType extends DataObject {
 	 * @return string
 	 */
 	function getLocalizedName() {
-		return $this->getLocalizedSetting('name');	
+		return $this->getLocalizedData('name');	
 	}
 
 	/**
@@ -70,7 +73,7 @@ class BookFileType extends DataObject {
 	 * @return string
 	 */
 	function getLocalizedDesignation() {
-		return $this->getLocalizedSetting('designation');	
+		return $this->getLocalizedData('designation');	
 	}
 
 	/**

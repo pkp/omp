@@ -6,7 +6,7 @@
  *
  * Step 3 of author monograph submission.
  *
- * $Id: step3.tpl,v 1.11 2009/10/14 19:26:00 tylerl Exp $
+ * $Id: step3.tpl,v 1.12 2009/10/15 17:18:56 tylerl Exp $
  *}
 
 {include file="author/submit/submitStepHeader.tpl"}
@@ -48,9 +48,12 @@
 	<td><input type="checkbox" name="selectedFiles[]" value="{$submissionFile->getFileId()}" /></td>
 	<td><a href="{url op="download" path=$monographId|to_array:$submissionFile->getFileId()}">{$submissionFile->getFileName()|escape}</a></td>
 	<td>{icon name="comment" disabled="disabled"}</td>
-	<td>{if $submissionFile->getSetting('bookFileTypeName')}{$submissionFile->getSetting('bookFileTypeName')}{/if}</td>
-	<td>{$submissionFile->getNiceFileSize()}</td>
-	<td>{$submissionFile->getOriginalFilename()}</td>
+	<td>
+		{assign var="assocObject" value=$submissionFile->getAssocObject()}
+		{$assocObject->getLocalizedName()|escape}
+	</td>
+	<td>{$submissionFile->getNiceFileSize()|escape}</td>
+	<td>{$submissionFile->getOriginalFilename()|escape}</td>
 </tr>
 {foreachelse}
 <tr valign="top">
@@ -97,10 +100,6 @@
 <div class="separator"></div>
 
 <p><input type="submit"{if !$submissionFile} onclick="return confirm('{translate|escape:"jsparam" key="author.submit.noSubmissionConfirm"}')"{/if} value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
-
-
-
-
 
 </form>
 

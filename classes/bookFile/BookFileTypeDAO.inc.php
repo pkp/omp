@@ -12,6 +12,9 @@
  * @brief Operations for retrieving and modifying BookFileType objects.
  */
 
+// $Id: BookFileTypeDAO.inc.php,v 1.2 2009/10/15 17:18:56 tylerl Exp $
+
+
 import('bookFile.BookFileType');
 
 class BookFileTypeDAO extends DAO
