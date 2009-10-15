@@ -12,7 +12,7 @@
  * @brief Handle requests for editor functions. 
  */
 
-// $Id$
+// $Id: EditorHandler.inc.php,v 1.24 2009/10/15 17:51:45 tylerl Exp $
 
 define('EDITOR_ARRANGEMENT_HOME', 0);
 define('EDITOR_ARRANGEMENT_SUBMISSIONS', 1);
@@ -218,9 +218,12 @@ class EditorHandler extends AcquisitionsEditorHandler {
 
 			if (isset($args[0]) && $args[0] === 'editor') {
 				$roleName = 'user.role.editor';
+				$rolePath = 'editor';
+
 				$editors =& $editorSubmissionDao->getUsersNotAssignedToMonograph($press->getId(), $monographId, RoleDAO::getRoleIdFromPath('editor'), $searchType, $search, $searchMatch, $rangeInfo);
 			} else {
 				$roleName = 'user.role.acquisitionsEditor';
+				$rolePath = 'acquisitionsEditor';
 				$editors =& $editorSubmissionDao->getUsersNotAssignedToMonograph($press->getId(), $monographId, RoleDAO::getRoleIdFromPath('acquisitionsEditor'), $searchType, $search, $searchMatch, $rangeInfo);
 			}
 
@@ -228,6 +231,8 @@ class EditorHandler extends AcquisitionsEditorHandler {
 
 			$templateMgr->assign_by_ref('editors', $editors);
 			$templateMgr->assign('roleName', $roleName);
+			$templateMgr->assign('rolePath', $rolePath);
+
 			$templateMgr->assign('monographId', $monographId);
 
 			$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
