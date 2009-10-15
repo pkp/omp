@@ -12,7 +12,7 @@
  * @brief Form for Step 3 of author manuscript submission.
  */
 
-// $Id: AuthorSubmitStep3Form.inc.php,v 1.9 2009/10/14 19:25:59 tylerl Exp $
+// $Id: AuthorSubmitStep3Form.inc.php,v 1.10 2009/10/15 17:18:56 tylerl Exp $
 
 
 import('author.form.submit.AuthorSubmitForm');
@@ -72,15 +72,11 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 
 		if ($manuscriptFileManager->uploadedFileExists($fileName)) {
 			// upload new book file, overwriting previous if necessary
-			$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 			$bookFileTypeId = $this->getData('bookFileType');
-
-			$bookFileType =& $bookFileTypeDao->getById($bookFileTypeId);
 
 			$submissionFileId = $manuscriptFileManager->uploadBookFile(
 								$fileName, 
-								$bookFileType->getDesignation($this->getFormLocale()), 
-								$bookFileType->getName($this->getFormLocale())
+								$bookFileTypeId
 							);
 		}
 

@@ -6,7 +6,7 @@
  *
  * Step 5 of author monograph submission.
  *
- * $Id$
+ * $Id: step5.tpl,v 1.9 2009/10/15 17:18:56 tylerl Exp $
  *}
 {assign var="pageTitle" value="author.submit.step5"}
 {include file="author/submit/submitStepHeader.tpl"}
@@ -38,7 +38,10 @@
 <tr valign="top">
 	<td>{$file->getFileId()}</td>
 	<td><a class="file" href="{url op="download" path=$monographId|to_array:$file->getFileId()}">{$file->getOriginalFileName()|escape}</a></td>
-	<td>{if $file->getSetting('bookFileTypeName')}{$file->getSetting('bookFileTypeName')}{/if}</td>
+	<td>
+		{assign var="assocObject" value=$file->getAssocObject()}
+		{$assocObject->getLocalizedName()|escape}
+	</td>
 	<td>{$file->getNiceFileSize()}</td>
 	<td>{$file->getDateUploaded()|date_format:$dateFormatTrunc}</td>
 </tr>

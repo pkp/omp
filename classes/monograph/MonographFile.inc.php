@@ -13,7 +13,7 @@
  * @brief Monograph file class.
  */
 
-// $Id$
+// $Id: MonographFile.inc.php,v 1.6 2009/10/15 17:18:56 tylerl Exp $
 
 
 class MonographFile extends DataObject {
@@ -55,31 +55,6 @@ class MonographFile extends DataObject {
 	 */
 	function setFileId($fileId) {
 		return $this->setData('fileId', $fileId);
-	}
-
-	/**
-	 * Get a file setting.
-	 * @return mixed
-	 */
-	function getSetting($settingName) {
-		$settings =& $this->getSettings();
-		return isset($settings[$settingName]) ? $settings[$settingName] : null; 
-	}
-
-	/**
-	 * Get file settings.
-	 * @return int
-	 */
-	function &getSettings() {
-		return $this->getData('settings');
-	}
-
-	/**
-	 * Set file settings.
-	 * @param $settings array
-	 */
-	function setSettings(&$settings) {
-		return $this->setData('settings', $settings);
 	}
 
 	/**
@@ -128,6 +103,22 @@ class MonographFile extends DataObject {
 	 */
 	function setAssocId($assocId) {
 		return $this->setData('assocId', $assocId);
+	}
+
+	/**
+	 * Get object that is associated with this file.
+	 * @return object
+	 */
+	function getAssocObject() {
+		return $this->getData('assocObject');
+	}
+
+	/**
+	 * Set object that is associated with this file.
+	 * @param $assocObject object
+	 */
+	function setAssocObject($assocObject) {
+		return $this->setData('assocObject', $assocObject);
 	}
 
 	/**
@@ -224,38 +215,6 @@ class MonographFile extends DataObject {
 	 */
 	function setType($type) {
 		return $this->setData('type', $type);	
-	}
-
-	/**
-	 * Get type of the file.
-	 * @ return string
-	 */
-	function getLocaleKeyForType() {
-		return $this->getData('localeKey');	
-	}
-
-	/**
-	 * Set type of the file.
-	 * @param $key string
-	 */
-	function setLocaleKeyForType($key) {
-		return $this->setData('localeKey', $key);	
-	}
-
- 	/**
-	 * Get sortable by monograph component.
-	 * @return bool
-	 */
-	function getSortableByComponent() {
-		return $this->getData('sortable') == null ? 0 : $this->getData('sortable');
-	}
-
-	/**
-	 * Set sortable by monograph component.
-	 * @param $sortable bool
-	 */
-	function setSortableByComponent($sortable) {
-		return $this->setData('sortable', $sortable);
 	}
 
 	/**

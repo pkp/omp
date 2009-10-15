@@ -13,7 +13,7 @@
  * @brief Operations for retrieving and modifying MonographFile objects.
  */
 
-// $Id$
+// $Id: MonographFileDAO.inc.php,v 1.13 2009/10/15 17:18:56 tylerl Exp $
 
 import('monograph.MonographArtworkFile');
 import('file.MonographFileManager');
@@ -217,26 +217,15 @@ class MonographFileDAO extends DAO {
 	 * Retrieve all monograph files for a type and assoc ID.
 	 * @param $assocId int
 	 * @param $type int
-	 * @param $monographId int
 	 * @return array MonographFiles
 	 */
-	function &getMonographFilesByAssocId($assocId, $type, $monographId) {
-
-		$locale = Locale::getLocale();
-		$primaryLocale = Locale::getPrimaryLocale();
-
+	function &getMonographFilesByAssocId($assocId, $type) {
+		import('file.MonographFileManager');
 		$monographFiles = array();
 
 		$result =& $this->retrieve(
-			'SELECT mf.*, mfs.*,
-				COALESCE(mcs.setting_value, mcs0.setting_value) AS component_title
-			FROM monograph_files mf
-			LEFT JOIN monograph_file_settings mfs ON mf.file_id = mfs.file_id AND mfs.setting_name = \'componentId\'
-			LEFT JOIN monograph_components mc ON mfs.setting_value = mc.component_id
-			LEFT JOIN monograph_component_settings mcs ON (mcs.component_id = mc.component_id AND mcs.setting_name = ? AND mcs.locale = ?)
-			LEFT JOIN monograph_component_settings mcs0 ON (mcs0.component_id = mc.component_id AND mcs0.setting_name = ? AND mcs0.locale = ?)
-			WHERE mf.type = ? AND mf.monograph_id = ?',
-			array('title', $primaryLocale, 'title', $locale, MonographFileManager::typeToPath($type), $monographId)
+			'SELECT * FROM monograph_files WHERE assoc_id = ? AND type = ?',
+			array($assocId, MonographFileManager::typeToPath($type))
 		);
 
 		while (!$result->EOF) {
@@ -276,18 +265,18 @@ class MonographFileDAO extends DAO {
 		$monographFile->setFileSize($row['file_size']);
 		$monographFile->setOriginalFileName($row['original_file_name']);
 		$monographFile->setType($row['type']);
-		$monographFile->setLocaleKeyForType(MonographFileManager::pathToLocaleKey($row['type']));
 		$monographFile->setAssocId($row['assoc_id']);
 		$monographFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
 		$monographFile->setDateModified($this->datetimeFromDB($row['date_modified']));
 		$monographFile->setRound($row['round']);
 		$monographFile->setViewable($row['viewable']);
 		$monographFile->setReviewType($row['review_type']);
-		$monographFile->setSortableByComponent($row['sortable_by_component']);
 
-		$monographFileSettingsDao =& DAORegistry::getDAO('MonographFileSettingsDAO');
-		$monographFileSettings =& $monographFileSettingsDao->getSettingsByFileId($monographFile->getFileId());
-		$monographFile->setSettings($monographFileSettings);
+		if ($row['type'] == 'submission') {
+			$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+			$bookFileType =& $bookFileTypeDao->getById($monographFile->getAssocId());
+			$monographFile->setAssocObject($bookFileType);
+		}
 
 		HookRegistry::call('MonographFileDAO::_fromRow', array(&$monographFile, &$row));
 
@@ -314,8 +303,7 @@ class MonographFileDAO extends DAO {
 			$monographFile->getViewable(),
 			$monographFile->getAssocId(),
 			$monographFile->getReviewType(),
-			$monographFile->getRound(),
-			$monographFile->getSortableByComponent()
+			$monographFile->getRound()
 		);
 
 		if ($fileId) {
@@ -324,9 +312,9 @@ class MonographFileDAO extends DAO {
 
 		$this->update(
 			sprintf('INSERT INTO monograph_files
-				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, type, date_uploaded, date_modified, viewable, assoc_id, review_type, round, sortable_by_component)
+				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, type, date_uploaded, date_modified, viewable, assoc_id, review_type, round)
 				VALUES
-				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?, ?)',
+				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?)',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
 			$params
 		);
@@ -359,8 +347,7 @@ class MonographFileDAO extends DAO {
 					round = ?,
 					review_type = ?,
 					viewable = ?,
-					assoc_id = ?,
-					sortable_by_component = ?
+					assoc_id = ?
 				WHERE file_id = ? AND revision = ?',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
 			array(
@@ -376,7 +363,6 @@ class MonographFileDAO extends DAO {
 				$monographFile->getReviewType(),
 				$monographFile->getViewable(),
 				$monographFile->getAssocId(),
-				$monographFile->getSortableByComponent(),
 				$monographFile->getFileId(),
 				$monographFile->getRevision()
 			)
@@ -400,7 +386,6 @@ class MonographFileDAO extends DAO {
 	 * @param $revision int
 	 */
 	function deleteMonographFileById($fileId, $revision = null) {
-		$monographFileSettingsDao =& DAORegistry::getDAO('MonographFileSettingsDAO');
 
 		if ($revision == null) {
 			$this->update(
@@ -411,8 +396,6 @@ class MonographFileDAO extends DAO {
 				'DELETE FROM monograph_files WHERE file_id = ? AND revision = ?', array($fileId, $revision)
 			);
 		}
-
-		$monographFileSettingsDao->deleteSettingsByFileId($fileId, $revision);
 	}
 
 	/**
