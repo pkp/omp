@@ -12,7 +12,7 @@
  * @brief AcquisitionsEditorAction class.
  */
 
-// $Id: AcquisitionsEditorAction.inc.php,v 1.39 2009/10/07 00:36:11 asmecher Exp $
+// $Id: AcquisitionsEditorAction.inc.php,v 1.40 2009/10/15 00:37:08 asmecher Exp $
 
 
 import('submission.common.Action');
@@ -1825,11 +1825,12 @@ class AcquisitionsEditorAction extends Action {
 
 		$decisions = $acquisitionsEditorSubmission->getDecisions();
 		$decisions = array_pop($decisions); // Rounds
-		$decision = (int) array_pop($decisions);
+		$decision = array_pop($decisions);
+		$decisionConst = $decision?$decision['decision']:null;
 
 		$email = new MonographMailTemplate(
 			$acquisitionsEditorSubmission,
-			isset($decisionTemplateMap[$decision]) ? $decisionTemplateMap[$decision] : null
+			isset($decisionTemplateMap[$decisionConst]) ? $decisionTemplateMap[$decisionConst] : null
 		);
 
 		$copyeditor = $acquisitionsEditorSubmission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL');
@@ -1837,7 +1838,7 @@ class AcquisitionsEditorAction extends Action {
 			HookRegistry::call('AcquisitionsEditorAction::emailEditorDecisionComment', array(&$acquisitionsEditorSubmission, &$send));
 			$email->send();
 
-			if ($decision && $decision['decision'] == SUBMISSION_EDITOR_DECISION_DECLINE) {
+			if ($decisionConst == SUBMISSION_EDITOR_DECISION_DECLINE) {
 				// If the most recent decision was a decline,
 				// sending this email archives the submission.
 				$acquisitionsEditorSubmission->setStatus(STATUS_ARCHIVED);
