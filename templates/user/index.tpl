@@ -6,7 +6,7 @@
  *
  * User index.
  *
- * $Id$
+ * $Id: index.tpl,v 1.15 2009/10/27 19:12:22 asmecher Exp $
  *}
 {strip}
 {assign var="pageTitle" value="user.userHome"}
@@ -15,11 +15,8 @@
 
 {if $isSiteAdmin}
 	{assign var="hasRole" value=1}
-	<h4><a href="{url page="user"}">{$siteTitle|escape}</a></h4>
-	<ul class="plain">
-		<li>&#187; <a href="{url press="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
-		{call_hook name="Templates::User::Index::Site"}
-	</ul>
+	&#187; <a href="{url press="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a>
+	{call_hook name="Templates::User::Index::Site"}
 {/if}
 
 {if $showAllPresses}
