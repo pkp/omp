@@ -11,7 +11,7 @@
  *
  * @brief Handle requests for changing site admin settings. 
  *
- * $Id$
+ * $Id: AdminSettingsHandler.inc.php,v 1.7 2009/10/30 23:14:48 asmecher Exp $
  */
 
 import('pages.admin.AdminHandler');
@@ -65,14 +65,12 @@ class AdminSettingsHandler extends AdminHandler {
 			}
 		} elseif (Request::getUserVar('deletePageHeaderTitleImage')) {
 			$publicFileManager = new PublicFileManager();
-			$setting = $site->getData('pageHeaderTitleImage');
+			$setting = $site->getSetting('pageHeaderTitleImage');
 			$formLocale = $settingsForm->getFormLocale();
 			if (isset($setting[$formLocale])) {
 				$publicFileManager->removeSiteFile($setting[$formLocale]['uploadName']);
-				unset($setting[$formLocale]);
-				$site->setData('pageHeaderTitleImage', $setting);
-				$siteSettingsDao =& DAORegistry::getDAO('SiteSettingsDAO');
-				$siteSettingsDao->deleteSetting('pageHeaderTitleImage', $formLocale);
+				$setting[$formLocale] = array();
+				$site->updateSetting('pageHeaderTitleImage', $setting, 'object', true);
 
 				// Refresh site header
 				$templateMgr =& TemplateManager::getManager();
