@@ -18,7 +18,7 @@
  * It can also be used for a "manual install" to retrieve the SQL statements required for installation.
  */
 
-// $Id: Install.inc.php,v 1.7 2009/10/14 19:26:00 tylerl Exp $
+// $Id: Install.inc.php,v 1.8 2009/10/31 00:14:57 asmecher Exp $
 
 
 // Default installation data
@@ -71,9 +71,13 @@ class Install extends PKPInstall {
 
 			// Install email template list and data for each locale
 			$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
-			$this->executeSQL($emailTemplateDao->installEmailTemplates($emailTemplateDao->getMainEmailTemplatesFilename(), true));
+			foreach ($emailTemplateDao->installEmailTemplates($emailTemplateDao->getMainEmailTemplatesFilename(), true) as $sql) {
+				$this->executeSQL($sql);
+			}
 			foreach ($this->installedLocales as $locale) {
-				$this->executeSQL($emailTemplateDao->installEmailTemplateData($emailTemplateDao->getMainEmailTemplateDataFilename($locale), true));
+				foreach ($emailTemplateDao->installEmailTemplateData($emailTemplateDao->getMainEmailTemplateDataFilename($locale), true) as $sql) {
+					$this->executeSQL($sql);
+				}
 			}
 
 			// Install book file types and data for each locale
