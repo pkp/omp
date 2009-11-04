@@ -18,7 +18,7 @@
  * It can also be used for a "manual install" to retrieve the SQL statements required for installation.
  */
 
-// $Id: Install.inc.php,v 1.8 2009/10/31 00:14:57 asmecher Exp $
+// $Id: Install.inc.php,v 1.9 2009/11/04 19:01:19 tylerl Exp $
 
 
 // Default installation data
@@ -79,14 +79,6 @@ class Install extends PKPInstall {
 					$this->executeSQL($sql);
 				}
 			}
-
-			// Install book file types and data for each locale
-			$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-			$this->executeSQL($bookFileTypeDao->installBookFileTypes($bookFileTypeDao->getMainBookFileTypeFilename(), true));
-			foreach ($this->installedLocales as $locale) {
-				$this->executeSQL($bookFileTypeDao->installBookFileTypesData($bookFileTypeDao->getMainBookFileTypeDataFilename($locale), true));
-			}
-
 		} else {
 			// Add initial site data 
 
@@ -108,13 +100,6 @@ class Install extends PKPInstall {
 			$emailTemplateDao->installEmailTemplates($emailTemplateDao->getMainEmailTemplatesFilename());
 			foreach ($this->installedLocales as $locale) {
 				$emailTemplateDao->installEmailTemplateData($emailTemplateDao->getMainEmailTemplateDataFilename($locale));
-			}
-
-			// Install book file types data for each locale
-			$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-			$bookFileTypeDao->installBookFileTypes($bookFileTypeDao->getMainBookFileTypeFilename());
-			foreach ($this->installedLocales as $locale) {
-				$bookFileTypeDao->installBookFileTypeData($bookFileTypeDao->getMainBookFileTypeDataFilename($locale));
 			}
 
 			$siteSettingsDao =& DAORegistry::getDAO('SiteSettingsDAO');
