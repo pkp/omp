@@ -9,7 +9,7 @@
   *
   * OMP database schema in XML.
   *
-  * $Id: omp_schema.xml,v 1.33 2009/10/15 17:18:56 tylerl Exp $
+  * $Id: omp_schema.xml,v 1.34 2009/11/04 19:01:19 tylerl Exp $
   -->
 
 <schema version="0.2">
@@ -137,15 +137,22 @@
 	  *
 	  -->
 	<table name="book_file_types">
-		<field name="type_id" type="I8">
+		<field name="entry_id" type="I8">
 			<KEY/>
 			<AUTOINCREMENT/>
+		</field>
+		<field name="press_id" type="I8">
+			<NOTNULL />
 		</field>
 		<field name="sortable" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
-		<field name="type_key" type="C2" size="30"/>
+		<field name="enabled" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="entry_key" type="C2" size="30"/>
 		<descr>A press's book file types.</descr>
 		<index name="book_file_types_type_id">
 			<col>type_id</col>
@@ -158,7 +165,7 @@
 	  *
 	  -->
 	<table name="book_file_type_settings">
-		<field name="type_id" type="I8">
+		<field name="entry_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
@@ -178,29 +185,9 @@
 			<col>type_id</col>
 		</index>
 		<index name="book_file_type_settings_pkey">
-			<col>type_id</col>
+			<col>entry_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
-			<UNIQUE />
-		</index>
-	</table>
-
-	<!--
-	  *
-	  * TABLE book_file_types_enabled
-	  *
-	  -->
-	<table name="book_file_types_enabled">
-		<field name="press_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="type_id" type="I8">
-			<NOTNULL />
-		</field>
-		<descr>List of a press's enabled book file types.</descr>
-		<index name="book_file_types_enabled_pkey">
-			<col>press_id</col>
-			<col>type_id</col>
 			<UNIQUE />
 		</index>
 	</table>
@@ -979,6 +966,42 @@
 	  * TABLE press_settings
 	  *
 	  -->
+	<table name="press_defaults">
+		<field name="press_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL/>
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="assoc_type" type="I8"/>
+		<field name="entry_key" type="C2" size="30"/>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL/>
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Press settings.</descr>
+		<index name="press_settings_press_id">
+			<col>press_id</col>
+		</index>
+		<index name="press_settings_pkey">
+			<col>press_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<col>entry_key</col>
+			<UNIQUE />
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE press_settings
+	  *
+	  -->
 	<table name="press_settings">
 		<field name="press_id" type="I8">
 			<NOTNULL/>
@@ -1293,6 +1316,21 @@
 		<index name="flexible_roles_flexible_role_id">
 			<col>flexible_role_id</col>
 		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE flexible_roles_enabled
+	  *
+	  -->
+	<table name="flexible_roles_enabled">
+		<field name="flexible_role_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="press_id" type="I8">
+			<NOTNULL />
+		</field>
+		<descr>Flexible roles arranged by press.</descr>
 	</table>
 
 	<!--

@@ -12,7 +12,7 @@
  * @brief Handle requests for press setup functions. 
  */
 
-// $Id: SetupHandler.inc.php,v 1.18 2009/10/14 19:26:00 tylerl Exp $
+// $Id: SetupHandler.inc.php,v 1.19 2009/11/04 19:01:19 tylerl Exp $
 
 import('pages.manager.ManagerHandler');
 
@@ -161,7 +161,7 @@ class SetupHandler extends ManagerHandler {
 						$editData = true;
 						$press =& Request::getPress();
 						$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-						$bookFileTypeDao->installDefaultsForPress($press->getId());
+						$bookFileTypeDao->restoreByPressId($press->getId());
 
 					} else if ($typeId = Request::getUserVar('updateBookFileType')) {
 

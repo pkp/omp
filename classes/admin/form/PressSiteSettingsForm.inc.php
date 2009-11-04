@@ -12,7 +12,7 @@
  * @brief Form for site administrator to edit basic press settings.
  */
 
-// $Id: PressSiteSettingsForm.inc.php,v 1.9 2009/10/14 19:25:59 tylerl Exp $
+// $Id: PressSiteSettingsForm.inc.php,v 1.10 2009/11/04 19:01:19 tylerl Exp $
 
 
 import('db.DBDataXMLParser');
@@ -151,7 +151,8 @@ class PressSiteSettingsForm extends Form {
 
 			// Install default book file types
 			$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-			$bookFileTypeDao->installDefaultsForPress($pressId);
+			$bookFileTypeDao->installDefaultBase($pressId);
+			$bookFileTypeDao->installDefaultBaseData($bookFileTypeDao->getDefaultBaseDataFilename($press->getPrimaryLocale()), $pressId);
 
 			// Install default press settings
 			$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
