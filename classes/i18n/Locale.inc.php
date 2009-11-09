@@ -13,7 +13,7 @@
  *
  */
 
-// $Id: Locale.inc.php,v 1.8 2009/10/14 19:25:59 tylerl Exp $
+// $Id: Locale.inc.php,v 1.9 2009/11/09 16:23:47 tylerl Exp $
 
 
 import('i18n.PKPLocale');
@@ -173,7 +173,10 @@ class Locale extends PKPLocale {
 		parent::installLocale($locale);
 
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-		$bookFileTypeDao->installBookFileTypeData($bookFileTypeDao->getMainBookFileTypeDataFilename($locale));
+		$bookFileTypeDao->installLocale($locale);
+
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao->installLocale($locale);
 	}
 
 	/**
@@ -184,7 +187,10 @@ class Locale extends PKPLocale {
 		parent::uninstallLocale($locale);
 
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-		$bookFileTypeDao->deleteByLocale($locale);
+		$bookFileTypeDao->uninstallLocale($locale);
+
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao->uninstallLocale($locale);
 	}
 
 	/**

@@ -6,7 +6,7 @@
  *
  * Step 3 of press setup.
  *
- * $Id: step3.tpl,v 1.15 2009/10/14 19:26:00 tylerl Exp $
+ * $Id: step3.tpl,v 1.16 2009/11/09 16:23:47 tylerl Exp $
  *}
 {assign var="pageTitle" value="manager.setup.preparingWorkflow"}
 {include file="manager/setup/setupHeader.tpl"}
@@ -395,6 +395,68 @@ function removeWorkflowRole(toName, prefix, roleId, roleName) {
 <div class="separator"></div>
 
 <h3>3.14 {translate key="manager.setup.publicationFormats}</h3>
+
+<p>{translate key="manager.setup.publicationFormatsDescription"}</p>
+
+{foreach name=publicationFormats from=$publicationFormats item=fileTypeItem}
+	{if !$notFirstFormatItem}
+		{assign var=notFirstFormatItem value=1}
+		<table width="100%" class="data">
+			<tr valign="top">
+				<td width="5%">&nbsp;</td>
+				<td width="30%">{translate key="common.name"}</td>
+				<td width="70%">{translate key="common.designation"}</td>
+			</tr>
+	{/if}
+
+	<tr valign="top">
+		<td><input type="checkbox" name="publicationFormatSelect[]" value="{$fileTypeItem->getId()|escape}" /></td>
+		<td>
+			{if $fileTypeItem->getName($formLocale)}
+				{$fileTypeItem->getName($formLocale)|escape}
+			{else}
+				<input type="text" name="publicationFormatUpdate[{$fileTypeItem->getId()|escape}][name]" value="{$fileTypeItem->getName($primaryLocale)|escape}"/>
+			{/if}
+		</td>
+		<td>
+			{if $fileTypeItem->getDesignation($formLocale)}
+				{$fileTypeItem->getDesignation($formLocale)|escape}
+			{else}
+				<input type="text" name="publicationFormatUpdate[{$fileTypeItem->getId()|escape}][designation]" value="{$fileTypeItem->getDesignation($primaryLocale)|escape}"/>
+			{/if}
+		</td>
+	</tr>
+	{if !$fileTypeItem->getName($formLocale) or !$fileTypeItem->getDesignation($formLocale)}
+	<tr valign="top">
+		<td colspan="3">
+			<input type="submit" name="updatePublicationFormat[{$fileTypeItem->getId()|escape}]" value="{translate key="common.update"}" class="button" />
+		</td>
+	</tr>
+	{/if}
+{/foreach}
+{if $notFirstFormatItem}
+	</table>
+{/if}
+<p>
+<input type="submit" name="deleteSelectedPublicationFormats" value="{translate key="manager.setup.deleteSelected"}" class="button" />
+<input type="submit" name="restoreDefaultPublicationFormats" value="{translate key="manager.setup.restoreDefaults"}" class="button" />
+</p>
+
+<div class="newItemContainer">
+<h3>{translate key="manager.setup.newPublicationFormat"}</h3>
+<p>{translate key="manager.setup.newPublicationFormatDescription"}</p>
+<table>
+<tr>
+	<td>{translate key="common.name"}</td><td><input type="text" name="newPublicationFormatName[{$formLocale|escape}]" class="textField" /></td>
+</tr>
+<tr>
+	<td>{translate key="common.designation"}</td><td><input type="text" name="newPublicationFormatDesignation[{$formLocale|escape}]" class="textField" /></td>
+</tr>
+<tr>
+	<td>&nbsp;</td><td><input type="submit" name="addPublicationFormat" value="{translate key="common.create"}" class="button" /></td>
+</tr>
+</table>
+</div>
 
 <div class="separator"></div>
 

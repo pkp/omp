@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  * publicationFormats.xml
+  *
+  * Copyright (c) 2003-2009 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Email templates XML file.
+  *
+  * $Id: publicationFormats.xml,v 1.1 2009/11/09 16:23:47 tylerl Exp $
+  -->
+<publicationFormats>
+	<publicationFormat key="EBOOK"/>
+	<publicationFormat key="HARDCOVER"/>
+	<publicationFormat key="SOFTCOVER"/>
+</publicationFormats>
