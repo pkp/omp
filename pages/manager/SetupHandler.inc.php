@@ -12,7 +12,7 @@
  * @brief Handle requests for press setup functions. 
  */
 
-// $Id: SetupHandler.inc.php,v 1.19 2009/11/04 19:01:19 tylerl Exp $
+// $Id: SetupHandler.inc.php,v 1.20 2009/11/09 16:23:47 tylerl Exp $
 
 import('pages.manager.ManagerHandler');
 
@@ -141,7 +141,64 @@ class SetupHandler extends ManagerHandler {
 					break;
 
 				case 3:
-					if (Request::getUserVar('deleteSelectedBookFileTypes')) {
+					if (Request::getUserVar('deleteSelectedPublicationFormats')) {
+
+						// Delete book file types
+						$editData = true;
+						$press =& Request::getPress();
+						$publicationFormatIds = $setupForm->getData('publicationFormatSelect');
+						$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+
+						foreach ($publicationFormatIds as $publicationFormatId) {
+							$publicationFormatDao->deleteById($publicationFormatId);
+						}
+
+						$publicationFormats = $publicationFormatDao->getEnabledByPressId($press->getId());
+						$setupForm->setData('publicationFormats', $publicationFormats);
+
+					} else if (Request::getUserVar('restoreDefaultPublicationFormats')) {
+
+						$editData = true;
+						$press =& Request::getPress();
+						$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+						$publicationFormatDao->restoreByPressId($press->getId());
+
+					} else if ($formatId = Request::getUserVar('updatePublicationFormat')) {
+
+						$editData = true;
+						$press =& Request::getPress();
+						$formatId = array_keys($formatId);
+						$formatId = (int) $formatId[0];
+						$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+						$publicationFormatUpdate = $setupForm->getData('publicationFormatUpdate');
+						$publicationFormat =& $publicationFormatDao->getById($formatId);
+
+						$publicationFormat->setName($publicationFormatUpdate[$formatId]['name'], $formLocale);
+						$publicationFormat->setDesignation($publicationFormatUpdate[$formatId]['designation'], $formLocale);
+
+						$publicationFormatDao->updateObject($publicationFormat);
+
+					} else if (Request::getUserVar('addPublicationFormat')) {
+
+						// Add a book file type
+						// FIXME validate user data
+						$editData = true;
+						$press =& Request::getPress();
+						$designation = $setupForm->getData('newPublicationFormatDesignation');
+						$name = $setupForm->getData('newPublicationFormatName');
+						$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+
+						$publicationFormat = $publicationFormatDao->newDataObject();
+						$publicationFormat->setName($name, null);
+						$publicationFormat->setDesignation($designation, null);
+
+						$publicationFormatDao->insertObject($publicationFormat);
+
+						$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
+
+						$setupForm->setData('publicationFormats', $publicationFormats);
+
+					} else if (Request::getUserVar('deleteSelectedBookFileTypes')) {
 
 						// Delete book file types
 						$editData = true;

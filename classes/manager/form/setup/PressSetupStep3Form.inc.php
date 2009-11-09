@@ -12,7 +12,7 @@
  * @brief Form for Step 3 of press setup.
  */
 
-// $Id: PressSetupStep3Form.inc.php,v 1.13 2009/10/14 19:26:00 tylerl Exp $
+// $Id: PressSetupStep3Form.inc.php,v 1.14 2009/11/09 16:23:47 tylerl Exp $
 
 import('manager.form.setup.PressSetupForm');
 import('role.FlexibleRole');
@@ -75,7 +75,7 @@ class PressSetupStep3Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('newBookFileName', 'newBookFileDesignation');
+		return array('newBookFileName', 'newBookFileDesignation', 'newPublicationFormatName', 'newPublicationFormatDesignation');
 	}
 
 	/**
@@ -84,8 +84,9 @@ class PressSetupStep3Form extends PressSetupForm {
 	function readInputData() {
 		$this->readUserVars(array(
 				'additionalRoles', 'newBookFileSortable', 'newBookFileName', 'newBookFileDesignation', 
-				'bookFileTypeSelect', 'newRole', 'deletedFlexibleRoles', 'nextRoleId', 'submissionRoles', 
-				'internalReviewRoles', 'externalReviewRoles', 'editorialRoles', 'productionRoles', 'bookFileTypeUpdate'
+				'bookFileTypeSelect', 'newPublicationFormatName', 'newPublicationFormatDesignation', 'publicationFormatSelect',
+				'newRole', 'deletedFlexibleRoles', 'nextRoleId', 'submissionRoles', 'internalReviewRoles', 'externalReviewRoles', 
+				'editorialRoles', 'productionRoles', 'bookFileTypeUpdate'
 			)
 		);
 		parent::readInputData();
@@ -110,11 +111,15 @@ class PressSetupStep3Form extends PressSetupForm {
 	 */
 	function display() {
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$templateMgr =& TemplateManager::getManager();
 		$press =& Request::getPress();
+
 		$bookFileTypes =& $bookFileTypeDao->getEnabledByPressId($press->getId());
+		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
 
 		$templateMgr->assign_by_ref('bookFileTypes', $bookFileTypes);
+		$templateMgr->assign_by_ref('publicationFormats', $publicationFormats);
 
 		parent::display();
 	}

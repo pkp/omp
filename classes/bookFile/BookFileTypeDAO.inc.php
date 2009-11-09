@@ -12,7 +12,7 @@
  * @brief Operations for retrieving and modifying BookFileType objects.
  */
 
-// $Id: BookFileTypeDAO.inc.php,v 1.3 2009/11/04 19:01:19 tylerl Exp $
+// $Id: BookFileTypeDAO.inc.php,v 1.4 2009/11/09 16:23:46 tylerl Exp $
 
 
 import('bookFile.BookFileType');
@@ -208,53 +208,24 @@ class BookFileTypeDAO extends DefaultSettingDAO
 	}
 
 	/**
-	 * Install book file type localized data from an XML file.
-	 * @param $bookFileTypeDataFile string Filename to install
-	 * @param $pressId int
-	 * @return boolean
+	 * Get setting names and values.
+	 * @param $node XMLNode
+	 * @return array
 	 */
-	function installDefaultBaseData($bookFileTypeDataFile, $pressId) {
-		$xmlDao = new XMLDAO();
+	function &getSettingAttributes($node = null) {
 
-		$data = $xmlDao->parse($bookFileTypeDataFile, array('entries', 'entry', 'name', 'designation'));
-		if (!$data) return false;
-
-		$locale = $data->getAttribute('locale');
-		$defaultTypes = $this->getDefaultSettingIds($pressId);
-
-		foreach ($data->getChildren() as $bookFileTypeNode) {
+		if ($node == null) {
+			$settings = array('name', 'designation');
+		} else {
+			$designation = $node->getChildValue('designation');
+			if (empty($designation)) $designation = BOOK_FILE_TYPE_SORTABLE_DESIGNATION;
 
 			$settings = array(
-				'name' => $bookFileTypeNode->getChildValue('name'), 
-				'designation' => $bookFileTypeNode->getChildValue('designation')
+				'name' => $node->getChildValue('name'), 
+				'designation' => $designation
 			);
-
-			foreach ($settings as $settingName => $settingValue) {
-
-				if ($settingName == 'designation' && (!isset($settingValue) || $settingValue == '')) {
-					$settingValue = BOOK_FILE_TYPE_SORTABLE_DESIGNATION;
-				}
-
-				$this->update(
-					'INSERT INTO press_defaults
-					(press_id, assoc_type, entry_key, locale, setting_name, setting_value, setting_type)
-					VALUES
-					(?, ?, ?, ?, ?, ?, ?)',
-					array(
-						$pressId,
-						$this->getDefaultType(),
-						$bookFileTypeNode->getAttribute('key'),
-						$locale,
-						$settingName,
-						$settingValue,
-						'string'
-					)
-				);
-
-				$this->restoreByPressId($pressId);
-			}
 		}
-		return true;
+		return $settings;
 	}
 }
 

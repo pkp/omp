@@ -14,7 +14,7 @@
 
 define('DEFAULT_SETTING_FLEXIBLE_ROLES',	1);
 define('DEFAULT_SETTING_BOOK_FILE_TYPES',	2);
-define('DEFAULT_SETTING_PUBLICATION_FORMAT',	3);
+define('DEFAULT_SETTING_PUBLICATION_FORMATS',	3);
 
 class DefaultSettingDAO extends DAO
 {
@@ -37,13 +37,14 @@ class DefaultSettingDAO extends DAO
 	}
 
 	/**
-	 * Install book file type localized data from an XML file.
-	 * @param $dataFile string Filename to install
-	 * @param $pressId int
-	 * @return boolean
+	 * Get the names and values for setting attributes. 
+	 * In subclasses: if $node is null, return only the attribute names.
+	 * @param $node XMLNode
+	 * @param $onlyNames bool
+	 * @return array key=>value
 	 */
-	function installDefaultBaseData($dataFile, $pressId) {
-		return null;
+	function getSettingAttributes($node = null) {
+		return array();
 	}
 
 	/**
@@ -71,6 +72,89 @@ class DefaultSettingDAO extends DAO
 	}
 
 	/**
+	 * Install book file type localized data from an XML file.
+	 * @param $dataFile string Filename to install
+	 * @param $pressId int
+	 * @param $skipLoad bool
+	 * @param $localInstall bool
+	 * @return boolean
+	 */
+	function installDefaultBaseData($dataFile, $pressId, $skipLoad = true, $localeInstall = false) {
+		$xmlDao = new XMLDAO();
+
+		$data = $xmlDao->parse($dataFile);
+		if (!$data) return false;
+  
+		$locale = $data->getAttribute('locale');
+		$defaultIds = $this->getDefaultSettingIds($pressId);
+
+		foreach ($data->getChildren() as $formatNode) {
+
+			$settings =& $this->getSettingAttributes($formatNode);
+
+			if (empty($defaultIds[$formatNode->getAttribute('key')])) { // ignore keys not associated with this press
+				continue;
+			} else { // prepare a list of attributes not defined in the current settings xml file
+				unset($defaultIds[$formatNode->getAttribute('key')]);
+			}
+
+			foreach ($settings as $settingName => $settingValue) {
+
+				$this->update(
+					'INSERT INTO press_defaults
+					(press_id, assoc_type, entry_key, locale, setting_name, setting_value, setting_type)
+					VALUES
+					(?, ?, ?, ?, ?, ?, ?)',
+					array(
+						$pressId,
+						$this->getDefaultType(),
+						$formatNode->getAttribute('key'),
+						$locale,
+						$settingName,
+						$settingValue,
+						'string'
+					)
+				);
+			}
+		}
+
+		$attributeNames =& $this->getSettingAttributes();
+
+		// install defaults for keys not defined in the xml
+		foreach ($defaultIds as $key => $id) {
+			foreach ($attributeNames as $setting) {
+				$this->update(
+					'INSERT INTO press_defaults
+					(press_id, assoc_type, entry_key, locale, setting_name, setting_value, setting_type)
+					VALUES
+					(?, ?, ?, ?, ?, ?, ?)',
+					array(
+						$pressId,
+						$this->getDefaultType(),
+						$key,
+						$locale,
+						$setting,
+						'##',
+						'string'
+					)
+				);
+			}
+		}
+
+		if ($skipLoad) {
+			return true;
+		}
+
+		if ($localeInstall) {
+			$this->restoreByPressId($pressId, $locale);
+		} else {
+			$this->restoreByPressId($pressId);
+		}
+
+		return true;
+	}
+
+	/**
 	 * Retrieve all default book file types
 	 * @param $pressId int
 	 */
@@ -93,22 +177,35 @@ class DefaultSettingDAO extends DAO
 	/**
 	 * Restore settings.
 	 * @param $pressId int
-	 * @param $setting int
+	 * @param $locale string
 	 */
-	function restoreByPressId($pressId) {
+	function restoreByPressId($pressId, $locale = null) {
 
 		$defaultIds = $this->getDefaultSettingIds($pressId);
 
-		foreach ($defaultIds as $key => $id) {
-			$this->update('DELETE FROM '. $this->getSettingsTableName() .' WHERE entry_id = ?', $id);
+		if ($locale) {
+			foreach ($defaultIds as $key => $id) {
+				$this->update('DELETE FROM '. $this->getSettingsTableName() .' WHERE entry_id = ? AND locale = ?', array($id, $locale));
+			}
+		} else {
+			foreach ($defaultIds as $key => $id) {
+				$this->update('DELETE FROM '. $this->getSettingsTableName() .' WHERE entry_id = ?', $id);
+			}
 		}
 
-		$this->update('UPDATE '. $this->getTableName() .' SET enabled = ? WHERE press_id = ? AND entry_key IS NOT NULL', array(1, $pressId));
-		$this->update('UPDATE '. $this->getTableName() .' SET enabled = ? WHERE press_id = ? AND entry_key IS NULL', array(0, $pressId));
+		if (!$locale) {
+			$this->update('UPDATE '. $this->getTableName() .' SET enabled = ? WHERE press_id = ? AND entry_key IS NOT NULL', array(1, $pressId));
+			$this->update('UPDATE '. $this->getTableName() .' SET enabled = ? WHERE press_id = ? AND entry_key IS NULL', array(0, $pressId));
+		}
 
-		$result =& $this->retrieve(
-			'SELECT * FROM press_defaults WHERE press_id = ? AND assoc_type = ?', array($pressId, $this->getDefaultType())
-		);
+		$sql = 'SELECT * FROM press_defaults WHERE press_id = ? AND assoc_type = ?';
+		$sqlParams = array($pressId, $this->getDefaultType());
+		if ($locale) {
+			$sql .= ' AND locale = ?';
+			$sqlParams[] = $locale;
+		}
+
+		$result =& $this->retrieve($sql, $sqlParams);
 
 		$returner = null;
 		while (!$result->EOF) {
@@ -125,6 +222,43 @@ class DefaultSettingDAO extends DAO
 		}
 		$result->Close();
 		unset($result);
+	}
+
+	/**
+	 * Install default data for settings.
+	 * @param $pressId int
+	 * @param $locales array
+	 */
+	function installDefaults($pressId, $locales) {
+		$this->installDefaultBase($pressId);
+		foreach ($locales as $locale) {
+			$this->installDefaultBaseData($this->getDefaultBaseDataFilename($locale), $pressId);
+		}
+		$this->restoreByPressId($pressId);
+	}
+
+	/**
+	 * Install locale specific items for a locale.
+	 * @param $locale string
+	 */
+	function installLocale($locale) {
+		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$presses =& $pressDao->getPressNames();
+
+		foreach ($presses as $id => $name) {
+			$fileName = $this->getDefaultBaseDataFilename($locale);
+			$this->installDefaultBaseData($fileName, $id, false, true);
+		}
+
+	}
+
+	/**
+	 * Delete locale specific items from the settings table.
+	 * @param $locale string
+	 */
+	function uninstallLocale($locale) {
+		$this->update('DELETE FROM '. $this->getSettingsTableName() .' WHERE locale = ?', array($locale));
+		$this->update('DELETE FROM press_defaults WHERE locale = ?', array($locale));
 	}
 }
 

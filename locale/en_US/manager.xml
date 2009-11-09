@@ -9,11 +9,16 @@
   *
   * Localization strings for the en_US (English) locale.
   *
-  * $Id: manager.xml,v 1.18 2009/10/14 19:26:00 tylerl Exp $
+  * $Id: manager.xml,v 1.19 2009/11/09 16:23:47 tylerl Exp $
   -->
 
 <locale name="en_US" full_name = "English">
 	<message key="manager.setup.registerPressForIndexing">Register Press for Indexing (Metadata Harvesting)</message>
+
+	<message key="manager.setup.publicationFormatsDescription"></message>
+	<message key="manager.setup.publicationFormats">Publication Formats</message>
+	<message key="manager.setup.newPublicationFormat">New Publication Format</message>
+	<message key="manager.setup.newPublicationFormatDescription">To create a new publication format, fill out the form below and click the 'Create' button.</message>
 
 	<message key="manager.setup.bookFileTypesDescription">These file types are used for file-naming purposes and are presented in a pull-down menu on uploading files, along with an “Other” option accompanied by a free-form field also appearing as part of that menu. The file types designated ##, allow the user to associate the file with either the whole book 99Z or a particular chapter by number (e.g., 02).</message>
 	<message key="manager.setup.bookFileTypes">Book File Types</message>
