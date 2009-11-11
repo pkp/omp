@@ -13,7 +13,7 @@
 ; OMP Configuration settings.
 ; Rename config.TEMPLATE.inc.php to config.inc.php to use.
 ;
-; $Id$
+; $Id: config.TEMPLATE.inc.php,v 1.4 2009/11/11 04:25:03 jerico.dev Exp $
 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -364,6 +364,24 @@ captcha_on_comments = on
 
 ; Font location for font to use in Captcha images
 font_location = /usr/share/fonts/truetype/freefont/FreeSerif.ttf
+
+
+;;;;;;;;;;;;;;;;;;;;;
+; External Commands ;
+;;;;;;;;;;;;;;;;;;;;;
+
+[cli]
+
+; These are paths to (optional) external binaries used in
+; certain plug-ins or advanced program features.
+
+; Using full paths to the binaries is recommended.
+
+; perl (used in paracite citation parser)
+perl = /usr/bin/perl
+
+; tar (used in backup plugin, translation packaging)
+tar = /bin/tar
 
 
 ;;;;;;;;;;;;;;;;;;

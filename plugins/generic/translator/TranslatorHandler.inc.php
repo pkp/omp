@@ -12,7 +12,7 @@
  * @brief This handles requests for the translator plugin.
  */
 
-// $Id$
+// $Id: TranslatorHandler.inc.php,v 1.8 2009/11/11 04:25:03 jerico.dev Exp $
 
 
 ini_set('display_errors', E_ALL); // FIXME until I improve error handling
@@ -31,6 +31,10 @@ class TranslatorHandler extends Handler {
 		import('core.ArrayItemIterator');
 		$templateMgr->assign('locales', new ArrayItemIterator(Locale::getAllLocales(), $rangeInfo->getPage(), $rangeInfo->getCount()));
 		$templateMgr->assign('masterLocale', MASTER_LOCALE);
+
+		// Test whether the tar binary is available for the export to work
+		$tarBinary = Config::getVar('cli', 'tar');
+		$templateMgr->assign('tarAvailable', !empty($tarBinary) && file_exists($tarBinary));
 
 		$templateMgr->display($plugin->getTemplatePath() . 'index.tpl');
 	}
@@ -419,7 +423,7 @@ class TranslatorHandler extends Handler {
   *
   * Localized email templates XML file.
   *
-  * $Id$
+  * $Id: TranslatorHandler.inc.php,v 1.8 2009/11/11 04:25:03 jerico.dev Exp $
   -->
 <email_texts locale="' . $locale . '">
 </email_texts>');
