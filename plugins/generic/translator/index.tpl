@@ -6,7 +6,7 @@
  *
  * List of operations this plugin can perform
  *
- * $Id$
+ * $Id: index.tpl,v 1.2 2009/11/11 04:25:03 jerico.dev Exp $
  *}
 {strip}
 {assign var="pageTitle" value="plugins.generic.translator.name"}
@@ -14,6 +14,9 @@
 {/strip}
 
 <p>{translate key="plugins.generic.translator.longdescription"}</p>
+{if not $tarAvailable}
+	<p><span class="formError">{translate key="plugins.generic.translator.tarMissing"}</span></p>
+{/if}
 
 <a name="locales"></a>
 <h3>{translate key="plugins.generic.translator.availableLocales"}</h3>
@@ -31,7 +34,7 @@
 		<td>{$localeKey|escape}</td>
 		<td>{$localeName|escape}</td>
 		<td>
-			{if $masterLocale != $localeKey}<a href="{url op="check" path=$localeKey}" class="action">{translate key="plugins.generic.translator.check"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="edit" path=$localeKey}" class="action">{translate key="common.edit"}</a>&nbsp;|&nbsp;<a href="{url op="export" path=$localeKey}" class="action">{translate key="common.export"}</a>
+			{if $masterLocale != $localeKey}<a href="{url op="check" path=$localeKey}" class="action">{translate key="plugins.generic.translator.check"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="edit" path=$localeKey}" class="action">{translate key="common.edit"}</a>{if $tarAvailable}&nbsp;|&nbsp;<a href="{url op="export" path=$localeKey}" class="action">{translate key="common.export"}</a>{/if}
 		</td>
 	</tr>
 	<tr>

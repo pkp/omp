@@ -12,11 +12,8 @@
  * @brief Perform various tasks related to translation.
  */
 
-// $Id$
+// $Id: TranslatorAction.inc.php,v 1.3 2009/11/11 04:25:03 jerico.dev Exp $
 
-
-/** This command is used to execute tar. */
-define('TAR_COMMAND', '/bin/tar cz');
 
 class TranslatorAction {
 	/**
@@ -24,7 +21,16 @@ class TranslatorAction {
 	 * Requires /bin/tar for operation.
 	 */
 	function export($locale) {
-		$command = TAR_COMMAND;
+		// Construct the tar command
+		$tarBinary = Config::getVar('cli', 'tar');
+		if (empty($tarBinary) || !file_exists($tarBinary)) {
+			// We can use fatalError() here as we already have a user
+			// friendly way of dealing with the missing tar on the
+			// index page.
+			fatalError('The tar binary must be configured in config.inc.php\'s cli section to use the export function of this plugin!');
+		}
+		$command = $tarBinary.' cz';
+
 		$localeFilesList = TranslatorAction::getLocaleFiles($locale);
 		$localeFilesList = array_merge($localeFilesList, TranslatorAction::getMiscLocaleFiles($locale));
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
