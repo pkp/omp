@@ -7,3 +7,6 @@ cache
 lib
 .project
 .htaccess
+.git
+.gitignore
+.gitmodules
