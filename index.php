@@ -1,5 +1,4 @@
 <?php
-// added a line to test exporting from git to cvs
 /**
  * @mainpage OMP API Reference
  * 
