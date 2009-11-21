@@ -12,43 +12,9 @@
 /**
  * Common HTML elements
  */
-
-a:link {
-	color: #375;
+#content {
+	padding-left: 10px;
 }
-
-a:active {
-	color: #253;
-}
-
-a:visited {
-	color: #375;
-}
-
-a:hover {
-	color: #253;
-	background: #CDC;
-}
-
-
-/**
- * Main layout elements
- */
-
-#header {
-	background-color: #f08d22;
-        color: white;
-}
-
-#footer {
-	background-color: #ABA;
-}
-
-#main {
-	width: 80%;
-	margin: 0 auto;
-}
-
 
 /**
  * Access icons and key
@@ -67,16 +33,6 @@ a:hover {
 	vertical-align: middle;
 	margin: 0;
 	padding: 0;
-}
-
-
-/**
- * Navigation bar
- */
-
-#navbar a {
-	font-size: 0.65em;
-	letter-spacing: 0.05em;
 }
 
 
@@ -181,26 +137,6 @@ table.announcementsMore td {
 }
 
 /**
- * Homepage image
- */
-
-#homepageImage img {
-	display: block;
-	margin: 0 auto;
-	border: 0;
-	text-align: center;
-}
-
-.homepageImage img {
-	margin: 0 auto;
-	border: 0;
-	float: left;
-	width: 100px;
-	margin: 1em 1em 1em 0;
-	text-align: center;
-}
-
-/**
  * Additional text styles
  */
 
@@ -275,4 +211,15 @@ div.flexibleRolesList {
 	width:200px;
 	border:1px solid gray;
 	overflow:auto;
+}
+
+
+div.separator {
+	width: 100%;
+	margin-top: 1em;
+	margin-bottom: 0.25em;
+	padding: 0;
+	border-bottom: 1px dotted #000;
+	font-size: 0.5em;
+	line-height: 25%;
 }

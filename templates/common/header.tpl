@@ -1,14 +1,14 @@
 {**
  * header.tpl
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Common site header.
  *
- * $Id$
  *}
 {strip}
+{translate|assign:"applicationName" key="common.openMonographPress"}
 {if !$pageTitleTranslated}{translate|assign:"pageTitleTranslated" key=$pageTitle}{/if}
 {if $pageCrumbTitle}
 	{translate|assign:"pageCrumbTitleTranslated" key=$pageCrumbTitle}
@@ -16,22 +16,20 @@
 	{assign var="pageCrumbTitleTranslated" value=$pageTitleTranslated}
 {/if}
 {/strip}<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset|escape}" />
 	<title>{$pageTitleTranslated}</title>
 	<meta name="description" content="{$metaSearchDescription|escape}" />
 	<meta name="keywords" content="{$metaSearchKeywords|escape}" />
-	<meta name="generator" content="{translate key="common.openMonographPress"} {$currentVersionString|escape}" />
+	<meta name="generator" content="{$applicationName} {$currentVersionString|escape}" />
 	{$metaCustomHeaders}
+	{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" />{/if}
 
-	<link rel="stylesheet" href="{$baseUrl}/lib/pkp/styles/common.css" type="text/css" />
-	<link rel="stylesheet" href="{$baseUrl}/styles/common.css" type="text/css" />
-
+	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/styles/omp.css" />
+	
 	{call_hook|assign:"leftSidebarCode" name="Templates::Common::LeftSidebar"}
-
 	{call_hook|assign:"rightSidebarCode" name="Templates::Common::RightSidebar"}
 	{if $leftSidebarCode || $rightSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/sidebar.css" type="text/css" />{/if}
 	{if $leftSidebarCode}<link rel="stylesheet" href="{$baseUrl}/styles/leftSidebar.css" type="text/css" />{/if}
@@ -42,83 +40,75 @@
 		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
 	{/foreach}
 
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/lib/jquery/jquery.js"></script>	
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/superfish/hoverIntent.js"></script>	
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/superfish/superfish.js"></script>	
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/wufoo/wufoo.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/general.js"></script>
+	<script type="text/javascript">
+        // initialise plugins
+		{literal}
+        $(function(){
+            $('ul.sf-menu').superfish();
+        });
+		{/literal}
+    </script>
+    
 	{$additionalHeadData}
 </head>
 <body>
-<div id="container">
+<div class="page {$cssBodyClass} {$liquid}">
 
-<div id="header">
-<div id="headerTitle">
+<div class="head">
+	
+{include file="common/sitenav.tpl"}
+
+<div class="masthead">
 <h1>
 {if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
-	<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
+	<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
 {/if}
 {if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
-	<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitle.altText != ''}alt="{$displayPageHeaderTitle.altText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
+	<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
 {elseif $displayPageHeaderTitle}
 	{$displayPageHeaderTitle}
 {elseif $alternatePageHeader}
 	{$alternatePageHeader}
+{elseif $customLogoTemplate}
+	{include file=$customLogoTemplate}
 {elseif $siteTitle}
 	{$siteTitle}
 {else}
-	{translate key="common.openMonographPress"}
+	{$applicationName}
 {/if}
 </h1>
-</div>
-</div>
+</div> <!-- /masthead -->
 
-<div id="body">
+{include file="common/localnav.tpl"}
 
-{if $leftSidebarCode || $rightSidebarCode}
-	<div id="sidebar">
-		{if $leftSidebarCode}
-			<div id="leftSidebar">
-				{$leftSidebarCode}
-			</div>
-		{/if}
-		{if $rightSidebarCode}
-			<div id="rightSidebar">
-				{$rightSidebarCode}
-			</div>
-		{/if}
-	</div>
+{include file="common/breadcrumbs.tpl"}
+
+</div> <!-- /head -->
+
+<div class="body">
+
+{if $isUserLoggedIn}
+<div class="rightCol toolbox mod simple">
+    <div class="mod simple">
+        <b class="top"><b class="tl"></b><b class="tr"></b></b>
+        <div class="inner">
+            <div class="hd">
+                <h3>Toolbox</h3>
+            </div>
+            {$rightSidebarCode}
+        </div>
+        <b class="bottom"><b class="bl"></b><b class="br"></b></b>
+    </div>
+</div>
 {/if}
 
-<div id="main">
-<div id="navbar">
-	<ul class="menu">
-		<li><a href="{url page="index"}">{translate key="navigation.home"}</a></li>
-		<li><a href="{url page="about"}">{translate key="navigation.about"}</a></li>
+<div class="main">
 
-		{if $isUserLoggedIn}
-			<li><a href="{url press="index" page="user"}">{translate key="navigation.userHome"}</a></li>
-		{else}
-			<li><a href="{url page="login"}">{translate key="navigation.login"}</a></li>
-			<li><a href="{url page="user" op="register"}">{translate key="navigation.register"}</a></li>
-		{/if}{* $isUserLoggedIn *}
-		{if $enableAnnouncements}
-			<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
-		{/if}{* enableAnnouncements *}
-
-		{call_hook name="Templates::Common::Header::Navbar::CurrentPress"}
-
-		{foreach from=$navMenuItems item=navItem}
-			{if $navItem.url != '' && $navItem.name != ''}
-				<li><a href="{if $navItem.isAbsolute}{$navItem.url|escape}{else}{$navItem.url|escape}{/if}">{if $navItem.isLiteral}{$navItem.name|escape}{else}{translate key=$navItem.name}{/if}</a></li>
-			{/if}
-		{/foreach}
-	</ul>
-</div>
-
-<div id="breadcrumb">
-	<a href="{url page="index"}">{translate key="navigation.home"}</a> &gt;
-	{foreach from=$pageHierarchy item=hierarchyLink}
-		<a href="{$hierarchyLink[0]|escape}" class="hierarchyLink">{if not $hierarchyLink[2]}{translate key=$hierarchyLink[1]}{else}{$hierarchyLink[1]|escape}{/if}</a> &gt;
-	{/foreach}
-	<a href="{$currentUrl|escape}" class="current">{$pageCrumbTitleTranslated}</a>
-</div>
 
 <h2>{$pageTitleTranslated}</h2>
 

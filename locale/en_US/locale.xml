@@ -9,7 +9,7 @@
   *
   * Localization strings for the en_US (U.S. English) locale.
   *
-  * $Id: locale.xml,v 1.43 2009/10/14 19:26:00 tylerl Exp $
+  * $Id$
   -->
  
 <locale name="en_US" full_name="U.S. English">
@@ -252,6 +252,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="common.payment">Payment</message>
 	<message key="common.payments">Payments</message>
 	<message key="common.pageHeader.altText">Page Header</message>
+	<message key="common.publicKnowledgeProject">Public Knowledge Project</message>
 	<message key="common.homePageHeader.altText">Homepage Header</message>
 	<message key="common.pressHomepageImage.altText">Press Homepage Image</message>
 	<message key="common.designation">Designation</message>
@@ -268,6 +269,10 @@ Note that if your site administrator has already registered this site with the P
 	<message key="navigation.competingInterestGuidelines">Competing Interest Guidelines</message>
 	<message key="navigation.infoForAuthors.long">Information For Authors</message>
 	<message key="navigation.infoForLibrarians.long">Information For Librarians</message>
+	<message key="navigation.currentCatalogue">Current Catalogue</message>
+	<message key="navigation.backCatalogue">Back Catalogue</message>
+	<message key="navigation.pressHome">Press Home</message>
+	<message key="navigation.published">Published</message>	
 
 	<!-- Submission History -->
 	<message key="submission.logType.monograph">Monograph</message>

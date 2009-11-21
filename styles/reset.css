@@ -1,0 +1,23 @@
+/* reset */
+
+* {
+	vertical-align: baseline;
+	font-weight: inherit;
+	font-family: Arial;
+	font-style: inherit;
+	font-size: 100%;
+	line-height: 1.125em; /* 16 x 1.125 = 18px */
+	border: 0 none;
+	outline: 0;
+	padding: 0;
+	margin: 0;
+}
+
+li, dd, blockquote {
+	margin-left: 40px;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}

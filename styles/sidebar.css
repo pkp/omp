@@ -18,25 +18,27 @@
 	font-size: 0.95em;
 }
 
-#sidebar div.block {
-	font-size: 1em;
-	padding-bottom: 1.5em;
+div.block {
+	padding-left: 10px;
+	padding-bottom: .5em;
 }
 
-#sidebar div.block span.blockTitle {
-	display: block;
-	padding: 0.5em 0 0.5em 0;
+div.block span.blockTitle {
+	font-weight: bold;
 	font-size: 1em;
-	letter-spacing: 0.1em;
-	text-transform: uppercase;
+	padding-bottom: .5em;
 }
 
-#sidebar div.block span.blockSubtitle {
+div.block span.blockSubtitle {
 	display: block;
 	padding: 0;
 }
 
-#sidebar input.textField, #sidebar select.selectMenu, #sidebar input.button {
+div.block select {
+	width: 90%;
+}
+
+input.textField, #sidebar select.selectMenu, #sidebar input.button {
 	font-size: 1em;
 }
 
