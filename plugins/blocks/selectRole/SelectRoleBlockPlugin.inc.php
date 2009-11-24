@@ -17,6 +17,15 @@ import('plugins.BlockPlugin');
 
 class SelectRoleBlockPlugin extends BlockPlugin {
 	function register($category, $path) {
+
+		if (Config::getVar('general', 'installed')) {
+			$user =& Request::getUser();
+			$press =& Request::getPress();
+			if (!$press || !$user) return false;
+		} else {
+			return false;
+		}
+
 		$success = parent::register($category, $path);
 		if ($success) {
 			$this->addLocaleData();
@@ -73,11 +82,11 @@ class SelectRoleBlockPlugin extends BlockPlugin {
 	}
 
 	function getContents(&$templateMgr) {
-		$user = Request::getUser();
-		$userId = $user->getId();
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$press =& Request::getPress();
-		$roleDao = &DAORegistry::getDAO('RoleDAO');
-		
+		$user =& Request::getUser();
+		$userId =& $user->getId();
+
 		$roles =& $roleDao->getRolesByUserId($userId, $press->getId());
 
 		$templateMgr->assign_by_ref('roles', $roles);
