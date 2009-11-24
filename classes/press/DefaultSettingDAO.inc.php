@@ -37,6 +37,22 @@ class DefaultSettingDAO extends DAO
 	}
 
 	/**
+	 * Get the column name of the primary key
+	 * @return string
+	 */
+	function getPrimaryKeyColumnName() {
+		return 'entry_id';
+	}
+
+	/**
+	 * Get the column name of the constant key identifier.
+	 * @return string
+	 */
+	function getDefaultKey() {
+		return 'entry_key';
+	}
+
+	/**
 	 * Get the names and values for setting attributes. 
 	 * In subclasses: if $node is null, return only the attribute names.
 	 * @param $node XMLNode
@@ -155,17 +171,18 @@ class DefaultSettingDAO extends DAO
 	}
 
 	/**
-	 * Retrieve all default book file types
+	 * Retrieve ids for all default setting entries
 	 * @param $pressId int
 	 */
 	function &getDefaultSettingIds($pressId) {
 		$result =& $this->retrieve(
-			'SELECT entry_id, entry_key FROM '. $this->getTableName() .' WHERE press_id = ? AND entry_key IS NOT NULL', $pressId
+			'SELECT '. $this->getPrimaryKeyColumnName() .', '. $this->getDefaultKey() .' FROM '. $this->getTableName() .' 
+			WHERE press_id = ? AND '. $this->getDefaultKey() .' IS NOT NULL', $pressId
 		);
 
 		$returner = null;
 		while (!$result->EOF) {
-			$returner[$result->fields['entry_key']] =& $result->fields['entry_id'];
+			$returner[$result->fields[$this->getDefaultKey()]] =& $result->fields[$this->getPrimaryKeyColumnName()];
 			$result->moveNext();
 		}
 		$result->Close();
@@ -185,17 +202,17 @@ class DefaultSettingDAO extends DAO
 
 		if ($locale) {
 			foreach ($defaultIds as $key => $id) {
-				$this->update('DELETE FROM '. $this->getSettingsTableName() .' WHERE entry_id = ? AND locale = ?', array($id, $locale));
+				$this->update('DELETE FROM '. $this->getSettingsTableName() .' WHERE '. $this->getPrimaryKeyColumnName() .' = ? AND locale = ?', array($id, $locale));
 			}
 		} else {
 			foreach ($defaultIds as $key => $id) {
-				$this->update('DELETE FROM '. $this->getSettingsTableName() .' WHERE entry_id = ?', $id);
+				$this->update('DELETE FROM '. $this->getSettingsTableName() .' WHERE '. $this->getPrimaryKeyColumnName() .' = ?', $id);
 			}
 		}
 
 		if (!$locale) {
-			$this->update('UPDATE '. $this->getTableName() .' SET enabled = ? WHERE press_id = ? AND entry_key IS NOT NULL', array(1, $pressId));
-			$this->update('UPDATE '. $this->getTableName() .' SET enabled = ? WHERE press_id = ? AND entry_key IS NULL', array(0, $pressId));
+			$this->update('UPDATE '. $this->getTableName() .' SET enabled = ? WHERE press_id = ? AND '. $this->getDefaultKey() .' IS NOT NULL', array(1, $pressId));
+			$this->update('UPDATE '. $this->getTableName() .' SET enabled = ? WHERE press_id = ? AND '. $this->getDefaultKey() .' IS NULL', array(0, $pressId));
 		}
 
 		$sql = 'SELECT * FROM press_defaults WHERE press_id = ? AND assoc_type = ?';
@@ -212,7 +229,7 @@ class DefaultSettingDAO extends DAO
 			$row =& $result->GetRowAssoc(false);
 			$this->update(
 				'INSERT INTO '. $this->getSettingsTableName() .'
-				(entry_id, locale, setting_name, setting_value, setting_type)
+				('. $this->getPrimaryKeyColumnName() .', locale, setting_name, setting_value, setting_type)
 				VALUES
 				(?, ?, ?, ?, ?)',
 				array($defaultIds[$row['entry_key']], $row['locale'], $row['setting_name'], $row['setting_value'], $row['setting_type'])
