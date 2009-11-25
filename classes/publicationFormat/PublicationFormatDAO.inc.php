@@ -12,7 +12,7 @@
  * @brief Operations for retrieving and modifying PublicationFormat objects.
  */
 
-// $Id: PublicationFormatDAO.inc.php,v 1.1 2009/11/09 16:23:47 tylerl Exp $
+// $Id$
 
 
 import('publicationFormat.PublicationFormat');
@@ -172,14 +172,11 @@ class PublicationFormatDAO extends DefaultSettingDAO
 	}
 
 	/**
-	 * Get the name/path of the setting data file for a locale.
-	 * @param $locale string
+	 * Get the path of the setting data file.
 	 * @return string
 	 */
-	function getDefaultBaseDataFilename($locale = null) {
-		if ($locale !== null && !PKPLocale::isLocaleValid($locale)) return null;
-		if ($locale === null) $locale = '{$installedLocale}';
-		return "locale/$locale/publicationFormats.xml";
+	function getDefaultBaseFilename() {
+		return 'registry/publicationFormats.xml';
 	}
 
 	/**
@@ -190,7 +187,7 @@ class PublicationFormatDAO extends DefaultSettingDAO
 	function installDefaultBase($pressId) {
 		$xmlDao = new XMLDAO();
 
-		$data = $xmlDao->parseStruct('registry/publicationFormats.xml', array('publicationFormat'));
+		$data = $xmlDao->parseStruct($this->getDefaultBaseFilename(), array('publicationFormat'));
 		if (!isset($data['publicationFormat'])) return false;
 
 		foreach ($data['publicationFormat'] as $entry) {
@@ -209,15 +206,18 @@ class PublicationFormatDAO extends DefaultSettingDAO
 	/**
 	 * Get setting names and values.
 	 * @param $node XMLNode
+	 * @param $locale string
 	 * @return array
 	 */
-	function &getSettingAttributes($node = null) {
+	function &getSettingAttributes($node = null, $locale = null) {
 		if ($node == null) {
 			$settings = array('name', 'designation');
 		} else {
+			$localeKey = $node->getAttribute('localeKey');
+
 			$settings = array(
-				'name' => $node->getChildValue('name'), 
-				'designation' => $node->getChildValue('designation')
+				'name' => Locale::translate($localeKey, array(), $locale), 
+				'designation' => Locale::translate($localeKey.'.designation', array(), $locale)
 			);
 		}
 		return $settings;

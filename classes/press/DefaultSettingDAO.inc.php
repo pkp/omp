@@ -28,11 +28,10 @@ class DefaultSettingDAO extends DAO
 	}
 
 	/**
-	 * Get the name/path of the setting data file for a locale.
-	 * @param $locale string
+	 * Get the path of the settings file.
 	 * @return string
 	 */
-	function getDefaultBaseDataFilename($locale = null) {
+	function getDefaultBaseFilename() {
 		return null;
 	}
 
@@ -89,24 +88,22 @@ class DefaultSettingDAO extends DAO
 
 	/**
 	 * Install book file type localized data from an XML file.
-	 * @param $dataFile string Filename to install
+	 * @param $locale string
 	 * @param $pressId int
 	 * @param $skipLoad bool
 	 * @param $localInstall bool
 	 * @return boolean
 	 */
-	function installDefaultBaseData($dataFile, $pressId, $skipLoad = true, $localeInstall = false) {
+	function installDefaultBaseData($locale, $pressId, $skipLoad = true, $localeInstall = false) {
 		$xmlDao = new XMLDAO();
-
-		$data = $xmlDao->parse($dataFile);
+		$data = $xmlDao->parse($this->getDefaultBaseFilename());
 		if (!$data) return false;
-  
-		$locale = $data->getAttribute('locale');
-		$defaultIds = $this->getDefaultSettingIds($pressId);
+  		$defaultIds = $this->getDefaultSettingIds($pressId);
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS), $locale);
 
 		foreach ($data->getChildren() as $formatNode) {
 
-			$settings =& $this->getSettingAttributes($formatNode);
+			$settings =& $this->getSettingAttributes($formatNode, $locale);
 
 			if (empty($defaultIds[$formatNode->getAttribute('key')])) { // ignore keys not associated with this press
 				continue;
@@ -249,7 +246,7 @@ class DefaultSettingDAO extends DAO
 	function installDefaults($pressId, $locales) {
 		$this->installDefaultBase($pressId);
 		foreach ($locales as $locale) {
-			$this->installDefaultBaseData($this->getDefaultBaseDataFilename($locale), $pressId);
+			$this->installDefaultBaseData($locale, $pressId);
 		}
 		$this->restoreByPressId($pressId);
 	}
@@ -263,8 +260,7 @@ class DefaultSettingDAO extends DAO
 		$presses =& $pressDao->getPressNames();
 
 		foreach ($presses as $id => $name) {
-			$fileName = $this->getDefaultBaseDataFilename($locale);
-			$this->installDefaultBaseData($fileName, $id, false, true);
+			$this->installDefaultBaseData($locale, $id, false, true);
 		}
 
 	}

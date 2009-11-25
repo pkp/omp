@@ -7,10 +7,10 @@
   *
   * Email templates XML file.
   *
-  * $Id: publicationFormats.xml,v 1.1 2009/11/09 16:23:47 tylerl Exp $
+  * $Id$
   -->
 <publicationFormats>
-	<publicationFormat key="EBOOK"/>
-	<publicationFormat key="HARDCOVER"/>
-	<publicationFormat key="SOFTCOVER"/>
+	<publicationFormat key="EBOOK" localeKey="default.publicationFormats.ebook"/>
+	<publicationFormat key="HARDCOVER" localeKey="default.publicationFormats.hardcover"/>
+	<publicationFormat key="SOFTCOVER" localeKey="default.publicationFormats.softcover"/>
 </publicationFormats>
