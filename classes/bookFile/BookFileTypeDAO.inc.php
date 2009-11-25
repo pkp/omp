@@ -12,7 +12,7 @@
  * @brief Operations for retrieving and modifying BookFileType objects.
  */
 
-// $Id: BookFileTypeDAO.inc.php,v 1.4 2009/11/09 16:23:46 tylerl Exp $
+// $Id$
 
 
 import('bookFile.BookFileType');
@@ -173,14 +173,11 @@ class BookFileTypeDAO extends DefaultSettingDAO
 	}
 
 	/**
-	 * Get the name/path of the setting data file for a locale.
-	 * @param $locale string
+	 * Get the path of the setting data file.
 	 * @return string
 	 */
-	function getDefaultBaseDataFilename($locale = null) {
-		if ($locale !== null && !PKPLocale::isLocaleValid($locale)) return null;
-		if ($locale === null) $locale = '{$installedLocale}';
-		return "locale/$locale/bookFileTypes.xml";
+	function getDefaultBaseFilename() {
+		return 'registry/bookFileTypes.xml';
 	}
 
 	/**
@@ -191,7 +188,7 @@ class BookFileTypeDAO extends DefaultSettingDAO
 	function installDefaultBase($pressId) {
 		$xmlDao = new XMLDAO();
 
-		$data = $xmlDao->parseStruct('registry/bookFileTypes.xml', array('bookFileType'));
+		$data = $xmlDao->parseStruct($this->getDefaultBaseFilename(), array('bookFileType'));
 		if (!isset($data['bookFileType'])) return false;
 
 		foreach ($data['bookFileType'] as $entry) {
@@ -210,18 +207,21 @@ class BookFileTypeDAO extends DefaultSettingDAO
 	/**
 	 * Get setting names and values.
 	 * @param $node XMLNode
+	 * @param $locale string
 	 * @return array
 	 */
-	function &getSettingAttributes($node = null) {
+	function &getSettingAttributes($node = null, $locale = null) {
 
 		if ($node == null) {
 			$settings = array('name', 'designation');
 		} else {
-			$designation = $node->getChildValue('designation');
-			if (empty($designation)) $designation = BOOK_FILE_TYPE_SORTABLE_DESIGNATION;
+			$localeKey = $node->getAttribute('localeKey');
+			$sortable = $node->getAttribute('sortable');
+
+			$designation = $sortable ? BOOK_FILE_TYPE_SORTABLE_DESIGNATION : Locale::translate($localeKey.'.designation', array(), $locale);
 
 			$settings = array(
-				'name' => $node->getChildValue('name'), 
+				'name' => Locale::translate($localeKey, array(), $locale), 
 				'designation' => $designation
 			);
 		}

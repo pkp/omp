@@ -18,18 +18,31 @@
 	 * DEFAULT - Default settings for setup items.
 	 *
 	-->
-	
-	<message key="default.pressSettings.bookFileTypes.artwork">Artwork</message>
-	<message key="default.pressSettings.bookFileTypes.appendix">Appendix</message>
-	<message key="default.pressSettings.bookFileTypes.bibliography">Bibliography</message>
-	<message key="default.pressSettings.bookFileTypes.manuscript">Manuscript</message>
-	<message key="default.pressSettings.bookFileTypes.chapter">Chapter</message>
-	<message key="default.pressSettings.bookFileTypes.glossary">Glossary</message>
-	<message key="default.pressSettings.bookFileTypes.index">Index</message>
-	<message key="default.pressSettings.bookFileTypes.preface">Preface</message>
-	<message key="default.pressSettings.bookFileTypes.prospectus">Prospectus</message>
-	<message key="default.pressSettings.bookFileTypes.tablesAndFigures">Tables and Figures</message>
-	
+	<message key="default.bookFileTypes.artwork">Artwork</message>
+	<message key="default.bookFileTypes.appendix">Appendix</message>
+	<message key="default.bookFileTypes.appendix.designation">99A</message>
+	<message key="default.bookFileTypes.bibliography">Bibliography</message>
+	<message key="default.bookFileTypes.bibliography.designation">99B</message>
+	<message key="default.bookFileTypes.manuscript">Manuscript</message>
+	<message key="default.bookFileTypes.manuscript.designation">99Z</message>
+	<message key="default.bookFileTypes.chapter">Chapter</message>
+	<message key="default.bookFileTypes.glossary">Glossary</message>
+	<message key="default.bookFileTypes.glossary.designation">99G</message>
+	<message key="default.bookFileTypes.index">Index</message>
+	<message key="default.bookFileTypes.index.designation">99I</message>
+	<message key="default.bookFileTypes.preface">Preface</message>
+	<message key="default.bookFileTypes.preface.designation">00P</message>
+	<message key="default.bookFileTypes.prospectus">Prospectus</message>
+	<message key="default.bookFileTypes.prospectus.designation">88P</message>
+	<message key="default.bookFileTypes.tablesAndFigures">Tables and Figures</message>
+
+	<message key="default.publicationFormats.hardcover">Hardcover</message>
+	<message key="default.publicationFormats.hardcover.designation">HC</message>
+	<message key="default.publicationFormats.softcover">Softcover</message>
+	<message key="default.publicationFormats.softcover.designation">SC</message>
+	<message key="default.publicationFormats.ebook">EBook</message>
+	<message key="default.publicationFormats.ebook.designation">EBook</message>
+
 	<message key="default.pressSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another press for consideration (or an explanation has been provided in Comments to the Editor).</message>
 	<message key="default.pressSettings.checklist.fileFormat">The submission file is in the Microsoft Word, RTF, OpenDocument, or WordPerfect file format.</message>
 	<message key="default.pressSettings.checklist.addressesLinked">Where available, URLs for the references have been provided.</message>
