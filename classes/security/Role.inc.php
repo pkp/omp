@@ -18,19 +18,23 @@
 
 /** ID codes for all user roles */
 define('ROLE_ID_SITE_ADMIN',		0x00000001);
-define('ROLE_ID_PRESS_MANAGER',		0x00000010);
+define('ROLE_ID_PRESS_MANAGER',		0x00000011);
+define('ROLE_ID_DIRECTOR',		0x00000012);
 define('ROLE_ID_EDITOR',		0x00000100);
-define('ROLE_ID_ACQUISITIONS_EDITOR',	0x00000200);
-define('ROLE_ID_PRODUCTION_EDITOR',	0x00000300);
+define('ROLE_ID_ACQUISITIONS_EDITOR',	0x00000201);
+define('ROLE_ID_PRODUCTION_EDITOR',	0x00000401);
 define('ROLE_ID_REVIEWER',		0x00001000);
 define('ROLE_ID_COPYEDITOR',		0x00002000);
-define('ROLE_ID_PROOFREADER',		0x00003000);
+define('ROLE_ID_PROOFREADER',		0x00004000);
 define('ROLE_ID_AUTHOR',		0x00010000);
-define('ROLE_ID_READER',		0x00100000);
-define('ROLE_ID_DESIGNER',		0x01000000);
-define('ROLE_ID_COMMITTEE_MEMBER',	0x02000000);
-define('ROLE_ID_DIRECTOR',		0x03000000);
-define('ROLE_ID_INDEXER',		0x04000000);
+define('ROLE_ID_VOLUME_EDITOR',		0x00010001);
+define('ROLE_ID_TRANSLATOR',		0x00010010);
+define('ROLE_ID_READER',		0x00020000);
+define('ROLE_ID_DESIGNER',		0x00100001);
+define('ROLE_ID_MARKETING',		0x00100010);
+define('ROLE_ID_FUNDING_COORDINATOR',	0x00100100);
+define('ROLE_ID_INDEXER',		0x00200000);
+define('ROLE_ID_FLEXIBLE_ROLE',		0x00400000);
 
 class Role extends DataObject {
 
@@ -107,6 +111,28 @@ class Role extends DataObject {
 	 */
 	function setRoleId($roleId) {
 		return $this->setData('roleId', $roleId);
+	}
+
+	/**
+	 * Get the flexible role id of this role.
+	 * @return int
+	 */
+	function getFlexibleRoleId() {
+		$flexibleRoleId = $this->getData('flexibleRoleId');
+		if (empty($flexibleRoleId)) {
+			$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+			$flexibleRole = $flexibleRoleDao->getByRoleId($this->getRoleId(), $this->getPressId());
+			$flexibleRoleId = $flexibleRole ? $flexibleRole->getId() : null;
+		}
+		return $flexibleRoleId;
+	}
+
+	/**
+	 * Set the flexible role id of this role.
+	 * @param $flexibleRoleId int
+	 */
+	function setFlexibleRoleId($flexibleRoleId) {
+		return $this->setData('flexibleRoleId', $flexibleRoleId);
 	}
 }
 

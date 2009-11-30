@@ -26,7 +26,6 @@
 	<li>&#187; <a href="{url op="languages"}">{translate key="common.languages"}</a></li>
 	<li>&#187; <a href="{url op="groups"}">{translate key="manager.groups"}</a></li>
 	<li>&#187; <a href="{url op="emails"}">{translate key="manager.emails"}</a></li>
-<!--	<li>&#187; <a href="{url page="rtadmin"}">{translate key="manager.readingTools"}</a></li>-->
 	<li>&#187; <a href="{url op="setup"}">{translate key="manager.setup"}</a></li>
 	<li>&#187; <a href="{url op="plugins"}">{translate key="manager.plugins"}</a></li>
 	<li>&#187; <a href="{url op="importexport"}">{translate key="manager.importExport"}</a></li>
@@ -50,16 +49,9 @@
 <h3>{translate key="manager.roles"}</h3>
 
 <ul class="plain">
-	<li>&#187; <a href="{url op="people" path="managers"}">{translate key="user.role.managers"}</a></li>
-	<li>&#187; <a href="{url op="people" path="authors"}">{translate key="user.role.authors"}</a></li>
-	<li>&#187; <a href="{url op="people" path="editors"}">{translate key="user.role.editors"}</a></li>
-	<li>&#187; <a href="{url op="people" path="reviewers"}">{translate key="user.role.reviewers"}</a></li>
-	<li>&#187; <a href="{url op="people" path="acquisitionsEditors"}">{translate key="user.role.acquisitionsEditors"}</a></li>
-	<li>&#187; <a href="{url op="people" path="designers"}">{translate key="user.role.designers"}</a></li>
-	<li>&#187; <a href="{url op="people" path="copyeditors"}">{translate key="user.role.copyeditors"}</a></li>
-	<li>&#187; <a href="{url op="people" path="proofreaders"}">{translate key="user.role.proofreaders"}</a></li>
-	<li>&#187; <a href="{url op="people" path="editorialMembers"}">{translate key="user.role.editorialMembers"}</a></li>
-	<li>&#187; <a href="{url op="people" path="productionEditors"}">{translate key="user.role.productionEditors"}</a></li>
+{foreach from=$roles item=role}
+	<li>&#187; <a href="{url op="people" path=$role->getPath()}">{$role->getLocalizedPluralName()}</a></li>
+{/foreach}
 	{call_hook name="Templates::Manager::Index::Roles"}
 </ul>
 

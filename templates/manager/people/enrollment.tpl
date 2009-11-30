@@ -43,21 +43,18 @@ function confirmAndPrompt(userId) {
 {/literal}
 </script>
 
-<h3>{translate key=$roleName}</h3>
+{if $contextRole && $contextRole->isCustomRole()}
+	{assign var="isCustomRole" value=1}
+{else}
+	{assign var="isCustomRole" value=0}
+{/if}
+<h3>{$roleName|escape}</h3>
 <form method="post" action="{url path=$roleSymbolic}">
 	<select name="roleSymbolic" class="selectMenu">
 		<option {if $roleSymbolic=='all'}selected="selected" {/if}value="all">{translate key="manager.people.allUsers"}</option>
-		<option {if $roleSymbolic=='managers'}selected="selected" {/if}value="managers">{translate key="user.role.managers"}</option>
-		<option {if $roleSymbolic=='editors'}selected="selected" {/if}value="editors">{translate key="user.role.editors"}</option>
-		<option {if $roleSymbolic=='acquisitionsEditors'}selected="selected" {/if}value="acquisitionsEditors">{translate key="user.role.acquisitionsEditors"}</option>
-		<option {if $roleSymbolic=='editorialMembers'}selected="selected" {/if}value="editorialMembers">{translate key="user.role.editorialMembers"}</option>
-		<option {if $roleSymbolic=='designers'}selected="selected" {/if}value="designers">{translate key="user.role.designers"}</option>
-		<option {if $roleSymbolic=='copyeditors'}selected="selected" {/if}value="copyeditors">{translate key="user.role.copyeditors"}</option>
-		<option {if $roleSymbolic=='proofreaders'}selected="selected" {/if}value="proofreaders">{translate key="user.role.proofreaders"}</option>
-		<option {if $roleSymbolic=='reviewers'}selected="selected" {/if}value="reviewers">{translate key="user.role.reviewers"}</option>
-		<option {if $roleSymbolic=='authors'}selected="selected" {/if}value="authors">{translate key="user.role.authors"}</option>
-		<option {if $roleSymbolic=='readers'}selected="selected" {/if}value="readers">{translate key="user.role.readers"}</option>
-		<option {if $roleSymbolic=='productionEditors'}selected="selected" {/if}value="readers">{translate key="user.role.productionEditors"}</option>
+	{foreach from=$roles item=role}
+		<option {if ($roleSymbolic==$role->getPath() && !$isCustomRole) || ($isCustomRole && $contextRole->getId()==$role->getId())}selected="selected" {/if}value="{if $role->isCustomRole()}{$role->getId()|escape}{else}{$role->getPath()|escape}{/if}">{$role->getLocalizedPluralName()|escape}</option>
+	{/foreach}
 	</select>
 	<select name="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
@@ -69,21 +66,18 @@ function confirmAndPrompt(userId) {
 	<input type="text" size="10" name="search" class="textField" value="{$search|escape}" />&nbsp;<input type="submit" value="{translate key="common.search"}" class="button" />
 </form>
 
-<p>{foreach from=$alphaList item=letter}<a href="{url path=$roleSymbolic searchInitial=$letter}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url path=$roleSymbolic}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
+<p>{foreach from=$alphaList item=letter}<a href="{if $isCustomRole}{url path=$roleSymbolic searchInitial=$letter customRoleId=$contextRole->getId()}{else}{url path=$roleSymbolic searchInitial=$letter}{/if}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{if $isCustomRole}{url path=$roleSymbolic customRoleId=$contextRole->getId()}{else}{url path=$roleSymbolic}{/if}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
 
-{if not $roleId}
+{if not $contextRole}
 <ul>
-	<li><a href="{url path="managers"}">{translate key="user.role.managers"}</a></li>
-	<li><a href="{url path="editors"}">{translate key="user.role.editors"}</a></li>
-	<li><a href="{url path="acquisitionsEditors"}">{translate key="user.role.acquisitionsEditors"}</a></li>
-	<li><a href="{url path="editorialMembers"}">{translate key="user.role.editorialMembers"}</a></li>
-	<li><a href="{url path="designers"}">{translate key="user.role.designers"}</a></li>
-	<li><a href="{url path="copyeditors"}">{translate key="user.role.copyeditors"}</a></li>
-	<li><a href="{url path="proofreaders"}">{translate key="user.role.proofreaders"}</a></li>
-	<li><a href="{url path="reviewers"}">{translate key="user.role.reviewers"}</a></li>
-	<li><a href="{url path="authors"}">{translate key="user.role.authors"}</a></li>
-	<li><a href="{url path="readers"}">{translate key="user.role.readers"}</a></li>
-	<li><a href="{url path="productionEditors"}">{translate key="user.role.productionEditor"}</a></li>
+{foreach from=$roles item=role}
+	{if $role->isCustomRole()}
+		{url|assign:"rolePath" op="people" path=$role->getPath() customRoleId=$role->getId()}
+	{else}
+		{url|assign:"rolePath" op="people" path=$role->getPath()}
+	{/if}
+	<li><a href="{$rolePath|escape}">{$role->getLocalizedPluralName()|escape}</a></li>
+{/foreach}
 </ul>
 
 <br />
@@ -123,13 +117,13 @@ function confirmAndPrompt(userId) {
 			{$user->getEmail()|truncate:15:"..."|escape}&nbsp;{icon name="mail" url=$url}
 		</td>
 		<td align="right">
-			{if $roleId}
-			<a href="{url op="unEnroll" path=$roleId userId=$user->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.people.confirmUnenroll"}')" class="action">{translate key="manager.people.unenroll"}</a>&nbsp;|
+			{if $contextRole}
+			<a href="{url op="unEnroll" path=$contextRole->getId() userId=$user->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.people.confirmUnenroll"}')" class="action">{translate key="manager.people.unenroll"}</a>&nbsp;|
 			{/if}
 			<a href="{url op="editUser" path=$user->getId()}" class="action">{translate key="common.edit"}</a>
 			{if $thisUser->getId() != $user->getId()}
 				|&nbsp;<a href="{url page="login" op="signInAsUser" path=$user->getId()}" class="action">{translate key="manager.people.signInAs"}</a>
-				{if !$roleId}|&nbsp;<a href="{url op="removeUser" path=$user->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.people.confirmRemove"}')" class="action">{translate key="manager.people.remove"}</a>{/if}
+				{if !$contextRole}|&nbsp;<a href="{url op="removeUser" path=$user->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.people.confirmRemove"}')" class="action">{translate key="manager.people.remove"}</a>{/if}
 				{if $user->getDisabled()}
 					|&nbsp;<a href="{url op="enableUser" path=$user->getId()}" class="action">{translate key="manager.people.enable"}</a>
 				{else}
@@ -162,8 +156,8 @@ function confirmAndPrompt(userId) {
 {/if}
 </form>
 
-<a href="{url op="enrollSearch" path=$roleId}" class="action">{translate key="manager.people.enrollExistingUser"}</a> |
+<a href="{if $contextRole}{url op="enrollSearch" path=$contextRole->getId()}{else}{url op="enrollSearch"}{/if}" class="action">{translate key="manager.people.enrollExistingUser"}</a> |
 {url|assign:"enrollmentUrl" path=$roleSymbolic searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth searchInitial=$searchInitial}
-<a href="{if $roleId}{url op="createUser" roleId=$roleId source=$enrollmentUrl}{else}{url op="createUser" source=$enrollmentUrl}{/if}" class="action">{translate key="manager.people.createUser"}</a> | <a href="{url op="enrollSyncSelect" path=$rolePath}" class="action">{translate key="manager.people.enrollSync"}</a>
+<a href="{if $contextRole}{url op="createUser" flexibleRoleId=$contextRole->getId() source=$enrollmentUrl}{else}{url op="createUser" source=$enrollmentUrl}{/if}" class="action">{translate key="manager.people.createUser"}</a> | <a href="{if $contextRole}{url op="enrollSyncSelect" path=$contextRole->getPath()}{else}{url op="enrollSyncSelect"}{/if}" class="action">{translate key="manager.people.enrollSync"}</a>
 
 {include file="common/footer.tpl"}

@@ -25,7 +25,7 @@ class ManagerHandler extends Handler {
 		parent::Handler();
 		
 		$this->addCheck(new HandlerValidatorPress($this));
-		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER)));	
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER)));
 	}
 	
 	/**
@@ -43,7 +43,11 @@ class ManagerHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('customSingoffEnabled', $customSignoffInternal || $customSignoffExternal );
-		
+
+		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$roles =& $flexibleRoleDao->getEnabledByPressId($press->getId());
+		$templateMgr->assign_by_ref('roles', $roles);
+
 		$session =& Request::getSession();
 		$session->unsetSessionVar('enrolmentReferrer');
 

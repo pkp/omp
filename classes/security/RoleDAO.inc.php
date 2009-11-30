@@ -32,17 +32,22 @@ class RoleDAO extends DAO {
 	 * @param $pressId int
 	 * @param $userId int
 	 * @param $roleId int
+	 * @param $flexibleRoleId int
 	 * @return Role
 	 */
-	function &getRole($pressId, $userId, $roleId) {
-		$result =& $this->retrieve(
-			'SELECT * FROM roles WHERE press_id = ? AND user_id = ? AND role_id = ?',
-			array(
-				(int) $pressId,
-				(int) $userId,
-				(int) $roleId
-			)
-		);
+	function &getRole($pressId, $userId, $roleId, $flexibleRoleId = null) {
+
+		if ($roleId == ROLE_ID_FLEXIBLE_ROLE && !$flexibleRoleId) return null;
+
+		$sql = 'SELECT * FROM roles
+			WHERE press_id = ? AND user_id = ? AND role_id = ?'. (isset($flexibleRoleId) ? ' AND flexible_role_id = ?' : '');
+		$sqlParams = array((int) $pressId, (int) $userId, (int) $roleId);
+
+		if ($flexibleRoleId) {
+			$sqlParams[] = (int) $flexibleRoleId;
+		}
+
+		$result =& $this->retrieve($sql, $sqlParams);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -65,6 +70,7 @@ class RoleDAO extends DAO {
 		$role->setPressId($row['press_id']);
 		$role->setUserId($row['user_id']);
 		$role->setRoleId($row['role_id']);
+		$role->setFlexibleRoleId($row['flexible_role_id']);
 
 		HookRegistry::call('RoleDAO::_returnRoleFromRow', array(&$role, &$row));
 
@@ -76,32 +82,46 @@ class RoleDAO extends DAO {
 	 * @param $role Role
 	 */
 	function insertRole(&$role) {
+
 		return $this->update(
 			'INSERT INTO roles
-				(press_id, user_id, role_id)
+				(press_id, user_id, role_id, flexible_role_id)
 				VALUES
-				(?, ?, ?)',
+				(?, ?, ?, ?)',
 			array(
 				(int) $role->getPressId(),
 				(int) $role->getUserId(),
-				(int) $role->getRoleId()
+				(int) $role->getRoleId(),
+				(int) $role->getFlexibleRoleId()
 			)
 		);
 	}
 
 	/**
-	 * Delete all roles for a specified press.
+	 * Delete a user's roles.
 	 * @param $userId int
 	 * @param $pressId int optional, include roles only for this press
-	 * @param $roleId int optional, include only this role
+	 * @param $roleId int optional, include only this ROLE_ID
+	 * @param $flexibleRoleId int optional, include only this role
 	 */
-	function deleteRoleByUserId($userId, $pressId  = null, $roleId = null) {
-		return $this->update(
-			'DELETE FROM roles WHERE user_id = ?' . (isset($pressId) ? ' AND press_id = ?' : '') . (isset($roleId) ? ' AND role_id = ?' : ''),
-			isset($pressId) && isset($roleId) ? array((int) $userId, (int) $pressId, (int) $roleId)
-			: (isset($pressId) ? array((int) $userId, (int) $pressId)
-			: (isset($roleId) ? array((int) $userId, (int) $roleId) : (int) $userId))
-		);
+	function deleteRoleByUserId($userId, $pressId  = null, $roleId = null, $flexibleRoleId = null) {
+		$sql = 'DELETE FROM roles WHERE user_id = ? ';
+		$sqlParams = array($userId);
+
+		if (isset($pressId)) {
+			$sql .= 'AND press_id = ? ';
+			$sqlParams[] = $pressId;
+		}
+		if (isset($roleId)) {
+			$sql .= 'AND role_id = ? ';
+			$sqlParams[] = $roleId;
+		}
+		if (isset($flexibleRoleId)) {
+			$sql .= 'AND flexible_role_id = ? ';
+			$sqlParams[] = $flexibleRoleId;
+		}
+
+		return $this->update($sql, $sqlParams);
 	}
 	/**
 	 * Delete a role.
@@ -109,11 +129,12 @@ class RoleDAO extends DAO {
 	 */
 	function deleteRole(&$role) {
 		return $this->update(
-			'DELETE FROM roles WHERE press_id = ? AND user_id = ? AND role_id = ?',
+			'DELETE FROM roles WHERE press_id = ? AND user_id = ? AND role_id = ? AND flexible_role_id = ?',
 			array(
 				(int) $role->getPressId(),
 				(int) $role->getUserId(),
-				(int) $role->getRoleId()
+				(int) $role->getRoleId(),
+				(int) $role->getFlexibleRoleId()
 			)
 		);
 	}
@@ -151,15 +172,16 @@ class RoleDAO extends DAO {
 	 * @param $search string optional, string to match
 	 * @param $searchMatch string optional, type of match ('is' vs. 'contains')
 	 * @param $dbResultRange object DBRangeInfo object describing range of results to return
+	 * @param $customRoleId int flexible role id of custom role
 	 * @return array matching Users
 	 */
-	function &getUsersByRoleId($roleId = null, $pressId = null, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null) {
+	function &getUsersByRoleId($roleId = null, $pressId = null, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null, $customRoleId = null) {
 		$users = array();
 
 		$paramArray = array('interests');
 		if (isset($roleId)) $paramArray[] = (int) $roleId;
 		if (isset($pressId)) $paramArray[] = (int) $pressId;
-
+		if (isset($customRoleId)) $paramArray[] = (int) $customRoleId;
 		// For security / resource usage reasons, a role or press ID
 		// must be specified. Don't allow calls supplying neither.
 		if ($pressId === null && $roleId === null) return null;
@@ -204,7 +226,9 @@ class RoleDAO extends DAO {
 		$searchSql .= ' ORDER BY u.last_name, u.first_name'; // FIXME Add "sort field" parameter?
 
 		$result =& $this->retrieveRange(
-			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), roles AS r WHERE u.user_id = r.user_id ' . (isset($roleId)?'AND r.role_id = ?':'') . (isset($pressId) ? ' AND r.press_id = ?' : '') . ' ' . $searchSql,
+			'SELECT DISTINCT u.* FROM users AS u 
+			LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), roles AS r 
+			WHERE u.user_id = r.user_id' . (isset($roleId) ? ' AND r.role_id = ?' : '') . (isset($pressId) ? ' AND r.press_id = ?' : '') . (isset($customRoleId) ? ' AND r.flexible_role_id = ?' : '') . ' ' . $searchSql,
 			$paramArray,
 			$dbResultRange
 		);
@@ -302,8 +326,9 @@ class RoleDAO extends DAO {
 	 * Select all roles for a specific press.
 	 * @param $monographId int optional
 	 * @param $roleId int optional
+	 * @param $flexibleRoleId int optional
 	 */
-	function &getRolesByPressId($pressId = null, $roleId = null) {
+	function &getRolesByPressId($pressId = null, $roleId = null, $flexibleRoleId = null) {
 		$params = array();
 		$conditions = array();
 		if (isset($pressId)) {
@@ -313,6 +338,10 @@ class RoleDAO extends DAO {
 		if (isset($roleId)) {
 			$params[] = (int) $roleId;
 			$conditions[] = 'role_id = ?';
+		}
+		if (isset($flexibleRoleId)) {
+			$params[] = (int) $flexibleRoleId;
+			$conditions[] = 'flexible_role_id = ?';
 		}
 
 		$result =& $this->retrieve(
@@ -335,31 +364,26 @@ class RoleDAO extends DAO {
 	}
 
 	/**
-	 * Delete all roles for the specified user.
-	 * @param $userId int
-	 * @param $pressId int optional, include roles only in this press
-	 * @param $roleId int optional, include only this role
-	 */
-	function deleteRolesByUserId($userId, $pressId  = null, $roleId = null) {
-		return $this->update(
-			'DELETE FROM roles WHERE user_id = ?' . (isset($pressId) ? ' AND press_id = ?' : '') . (isset($roleId) ? ' AND role_id = ?' : ''),
-			isset($pressId) && isset($roleId) ? array((int) $userId, (int) $pressId, (int) $roleId)
-			: (isset($pressId) ? array((int) $userId, (int) $pressId)
-			: (isset($roleId) ? array((int) $userId, (int) $roleId) : (int) $userId))
-		);
-	}
-
-	/**
 	 * Check if a role exists.
 	 * @param $pressId int
 	 * @param $userId int
 	 * @param $roleId int
+	 * @param $flexibleRoleId int
 	 * @return boolean
 	 */
-	function roleExists($pressId, $userId, $roleId) {
+	function roleExists($pressId, $userId, $roleId, $flexibleRoleId = null) {
+
+		$sqlParams = array((int) $pressId, (int) $userId, (int) $roleId);
+		if (isset($flexibleRoleId)) {
+			$sqlParams[] = (int) $flexibleRoleId;
+		}
+
 		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM roles WHERE press_id = ? AND user_id = ? AND role_id = ?', array((int) $pressId, (int) $userId, (int) $roleId)
+			'SELECT COUNT(role_id) FROM roles 
+			WHERE press_id = ? AND user_id = ? AND role_id = ?'.(isset($flexibleRoleId) ? ' AND flexible_role_id = ?': ''), 
+			$sqlParams
 		);
+
 		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
 
 		$result->Close();
@@ -372,121 +396,78 @@ class RoleDAO extends DAO {
 	 * Get the i18n key name associated with the specified role.
 	 * @param $roleId int
 	 * @param $plural boolean get the plural form of the name
+	 * @param $pressId int
+	 * @param $flexibleRoleId int
 	 * @return string
 	 */
-	function getRoleName($roleId, $plural = false) {
-		switch ($roleId) {
-			case ROLE_ID_SITE_ADMIN:
-				return 'user.role.siteAdmin' . ($plural ? 's' : '');
-			case ROLE_ID_PRESS_MANAGER:
-				return 'user.role.manager' . ($plural ? 's' : '');
-			case ROLE_ID_AUTHOR:
-				return 'user.role.author' . ($plural ? 's' : '');
-			case ROLE_ID_EDITOR:
-				return 'user.role.editor' . ($plural ? 's' : '');
-			case ROLE_ID_REVIEWER:
-				return 'user.role.reviewer' . ($plural ? 's' : '');
-			case ROLE_ID_ACQUISITIONS_EDITOR:
-				return 'user.role.acquisitionsEditor' . ($plural ? 's' : '');
-			case ROLE_ID_DESIGNER:
-				return 'user.role.designer' . ($plural ? 's' : '');
-			case ROLE_ID_COPYEDITOR:
-				return 'user.role.copyeditor' . ($plural ? 's' : '');
-			case ROLE_ID_PROOFREADER:
-				return 'user.role.proofreader' . ($plural ? 's' : '');
-			case ROLE_ID_COMMITTEE_MEMBER:
-				return 'user.role.editorialMember' . ($plural ? 's' : '');
-			case ROLE_ID_PRODUCTION_EDITOR:
-				return 'user.role.productionEditor' . ($plural ? 's' : '');
-			case ROLE_ID_READER:
-				return 'user.role.reader' . ($plural ? 's' : '');
-			case ROLE_ID_DIRECTOR:
-				return 'user.role.director' . ($plural ? 's' : '');
-			case ROLE_ID_INDEXER:
-				return 'user.role.indexer' . ($plural ? 's' : '');
-			default:
-				return '';
+	function getRoleName($roleId, $plural = false, $pressId = null, $flexibleRoleId = null) {
+		if ($roleId == ROLE_ID_SITE_ADMIN) {
+			return $plural ? Locale::translate('user.role.siteAdmins') : Locale::translate('user.role.siteAdmin');
 		}
+
+		if (empty($pressId)) {
+			$press =& Request::getPress();
+			$pressId = $press ? $press->getId() : null;
+		}
+
+		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$flexibleRole =& $flexibleRoleDao->getByPath($roleSymbolic, $pressId);
+		if ($flexibleRole) {
+			return $plural ? $flexibleRole->getLocalizedPluralName() : $flexibleRole->getLocalizedName();
+ 		}
+		return '';
 	}
 
 	/**
 	 * Get the URL path associated with the specified role's operations.
 	 * @param $roleId int
+	 * @param pressId int
 	 * @return string
 	 */
-	function getRolePath($roleId) {
-		switch ($roleId) {
-			case ROLE_ID_SITE_ADMIN:
-				return 'admin';
-			case ROLE_ID_PRESS_MANAGER:
-				return 'manager';
-			case ROLE_ID_AUTHOR:
-				return 'author';
-			case ROLE_ID_EDITOR:
-				return 'editor';
-			case ROLE_ID_REVIEWER:
-				return 'reviewer';
-			case ROLE_ID_ACQUISITIONS_EDITOR:
-				return 'acquisitionsEditor';
-			case ROLE_ID_DESIGNER:
-				return 'designer';
-			case ROLE_ID_COPYEDITOR:
-				return 'copyeditor';
-			case ROLE_ID_PROOFREADER:
-				return 'proofreader';
-			case ROLE_ID_COMMITTEE_MEMBER:
-				return 'editorialMember';
-			case ROLE_ID_PRODUCTION_EDITOR:
-				return 'productionEditor';
-			case ROLE_ID_READER:
-				return 'reader';
-			case ROLE_ID_DIRECTOR:
-				return 'director';
-			case ROLE_ID_INDEXER:
-				return 'indexer';
-			default:
-				return '';
+	function getRolePath($roleId, $pressId = null) {
+
+		if ($roleId == ROLE_ID_SITE_ADMIN) {
+			return 'admin';
+		} 
+
+		if (empty($pressId)) {
+			$press =& Request::getPress();
+			$pressId = $press ? $press->getId() : null;
 		}
+
+		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$flexibleRole =& $flexibleRoleDao->getByRoleId($roleId, $pressId);
+		if ($flexibleRole) {
+			return $flexibleRole->getPath();
+ 		}
+		return '';
 	}
 
 	/**
 	 * Get a role's ID based on its path.
 	 * @param $rolePath string
+	 * @param $pressId int
 	 * @return int
 	 */
-	function getRoleIdFromPath($rolePath) {
-		switch ($rolePath) {
-			case 'admin':
-				return ROLE_ID_SITE_ADMIN;
-			case 'manager':
-				return ROLE_ID_PRESS_MANAGER;
-			case 'author':
-				return ROLE_ID_AUTHOR;
-			case 'editor':
-				return ROLE_ID_EDITOR;
-			case 'reviewer':
-				return ROLE_ID_REVIEWER;
-			case 'acquisitionsEditor':
-				return ROLE_ID_ACQUISITIONS_EDITOR;
-			case 'designer':
-				return ROLE_ID_DESIGNER;
-			case 'copyeditor':
-				return ROLE_ID_COPYEDITOR;
-			case 'proofreader':
-				return ROLE_ID_PROOFREADER;
-			case 'editorialMember':
-				return ROLE_ID_COMMITTEE_MEMBER;
-			case 'productionEditor':
-				return ROLE_ID_PRODUCTION_EDITOR;
-			case 'reader':
-				return ROLE_ID_READER;
-			case 'director':
-				return ROLE_ID_DIRECTOR;
-			case 'indexer':
-				return ROLE_ID_INDEXER;
-			default:
-				return null;
+	function getRoleIdFromPath($rolePath, $pressId = null) {
+
+		if ($roleId == 'admin') {
+			return ROLE_ID_SITE_ADMIN;
+		} 
+
+		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+
+		if (empty($pressId)) {
+			$press =& Request::getPress();
+			$pressId = $press ? $press->getId() : null;
 		}
+
+		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$flexibleRole =& $flexibleRoleDao->getByPath($rolePath, $pressId);
+		if ($flexibleRole) {
+			return $flexibleRole->getRoleId();
+ 		}
+		return null;
 	}
 }
 

@@ -6,7 +6,7 @@
  *
  * User index.
  *
- * $Id: index.tpl,v 1.15 2009/10/27 19:12:22 asmecher Exp $
+ * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="user.userHome"}
@@ -15,7 +15,7 @@
 
 {if $isSiteAdmin}
 	{assign var="hasRole" value=1}
-	&#187; <a href="{url press="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a>
+	&#187; <a href="{url press="index" page=$isSiteAdmin->getRolePath()}">{$isSiteAdmin->getRoleName()|escape}</a>
 	{call_hook name="Templates::User::Index::Site"}
 {/if}
 
@@ -29,8 +29,13 @@
 	<ul class="plain">
 		{assign var="pressId" value=$press->getId()}
 		{section name=role loop=$userRoles[$pressId]}
-			{if $userRoles[$pressId][role]->getRolePath() != 'reader'}
-				<li>&#187; <a href="{url press=$press->getPath() page=$userRoles[$pressId][role]->getRolePath()}">{translate key=$userRoles[$pressId][role]->getRoleName()}</a></li>
+			{if $userRoles[$pressId][role]->getPath() != 'reader'}
+				{if $userRoles[$pressId][role]->isCustomRole()}
+					{url|assign:"rolePath" press=$press->getPath() page=$userRoles[$pressId][role]->getPath() roleId=$userRoles[$pressId][role]->getId()}
+				{else}
+					{url|assign:"rolePath" press=$press->getPath() page=$userRoles[$pressId][role]->getPath()}
+				{/if}
+				<li>&#187; <a href="{$rolePath|escape}">{$userRoles[$pressId][role]->getLocalizedName()|escape}</a></li>
 			{/if}
 		{/section}
 		{call_hook name="Templates::User::Index::Press" press=$press}
@@ -48,8 +53,13 @@
 	{assign var="pressId" value=$userPress->getId()}
 	{section name=role loop=$userRoles[$pressId]}
 		{assign var="hasRole" value=1}
-		{if $userRoles[$pressId][role]->getRolePath() != 'reader'}
-			<li>&#187; <a href="{url press=$userPress->getPath() page=$userRoles[$pressId][role]->getRolePath()}">{translate key=$userRoles[$pressId][role]->getRoleName()}</a></li>
+		{if $userRoles[$pressId][role]->getPath() != 'reader'}
+			{if $userRoles[$pressId][role]->isCustomRole()}
+				{url|assign:"rolePath" press=$userPress->getPath() page=$userRoles[$pressId][role]->getPath() roleId=$userRoles[$pressId][role]->getId()}
+			{else}
+				{url|assign:"rolePath" press=$userPress->getPath() page=$userRoles[$pressId][role]->getPath()}
+			{/if}
+			<li>&#187; <a href="{$rolePath|escape}">{$userRoles[$pressId][role]->getLocalizedName()|escape}</a></li>
 		{/if}
 	{/section}
 </ul>
