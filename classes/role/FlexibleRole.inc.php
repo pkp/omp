@@ -61,33 +61,95 @@ class FlexibleRole extends DataObject {
 	 * @return string
 	 */
 	function getLocalizedName() {
-		return $this->getLocalizedSetting('name');	
+		return $this->getLocalizedData('name');
 	}
 
 	/**
-	 * Set the abbreviation of the role
-	 * @param $abbrev string
+	 * Set the role's designation
+	 * @param $designation string
 	 * @param $locale string
 	 */
-	function setAbbrev($abbrev, $locale) {
-		$this->setData('abbrev', $abbrev, $locale);
+	function setDesignation($designation, $locale) {
+		$this->setData('designation', $designation, $locale);
 	}
 	
 	/**
-	 * Get the abbreviation of the role
+	 * Get the role's designation
 	 * @param $locale string
 	 * @return string
 	 */
-	function getAbbrev($locale) {
-		return $this->getData('abbrev', $locale);	
+	function getDesignation($locale) {
+		return $this->getData('designation', $locale);	
 	}
 
 	/**
-	 * Get the localized abbreviation of the role
+	 * Get the role's localized designation
 	 * @return string
 	 */
-	function getLocalizedAbbrev() {
-		return $this->getLocalizedSetting('abbrev');	
+	function getLocalizedDesignation() {
+		return $this->getLocalizedData('designation');	
+	}
+
+	/**
+	 * Set the plural name of the role
+	 * @param $name string
+	 * @param $locale string
+	 */
+	function setPluralName($name, $locale) {
+		$this->setData('pluralName', $name, $locale);
+	}
+	
+	/**
+	 * Get the plural name of the role
+	 * @param $locale string
+	 * @return string
+	 */
+	function getPluralName($locale) {
+		return $this->getData('pluralName', $locale);	
+	}
+
+	/**
+	 * Get the localized plural name of the role
+	 * @return string
+	 */
+	function getLocalizedPluralName() {
+		$pluralName = $this->getLocalizedData('pluralName');
+		if (!$pluralName || trim($pluralName) == '') {
+			return $this->getLocalizedData('name');
+		}
+		return $pluralName;
+	}
+
+	/**
+	 * Get the role's path
+	 * @return string
+	 */
+	function getPath() {
+		return $this->getData('customRole') ? 'role' : $this->getData('path');
+	}
+
+	/** 
+	 * Set the role's path
+	 * @param $path string
+	 */
+	function setPath($path) {
+		return $this->setData('path', $path);
+	}
+
+	/**
+	 * Get the role's constant identifier
+	 * @return string
+	 */
+	function getRoleId() {
+		return $this->getData('roleId');
+	}
+
+	/** 
+	 * Set the role's constant identifier
+	 * @param $roleId int
+	 */
+	function setRoleId($roleId) {
+		return $this->setData('roleId', $roleId);
 	}
 
 	/**
@@ -136,6 +198,22 @@ class FlexibleRole extends DataObject {
 	 */
 	function setPressId($pressId) {
 		return $this->setData('pressId', $pressId);
+	}
+
+	/**
+	 * Determine whether or not this is a custom role	.
+	 * @return bool
+	 */
+	function isCustomRole() {
+		return $this->getData('customRole') ? true : false;
+	}
+
+	/**
+	 * Set the 'is custom role' the value.
+	 * @param $customRole bool
+	 */
+	function setCustomRole($customRole) {
+		return $this->setData('customRole', $customRole);
 	}
 
 	/**

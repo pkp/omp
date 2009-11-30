@@ -10,7 +10,7 @@
  *
  *}
 {strip}
-{translate|assign:"pageTitleTranslated" key="manager.people.roleEnrollment" role=$roleName|translate}
+{translate|assign:"pageTitleTranslated" key="manager.people.roleEnrollment" role=$roleName}
 {include file="common/header.tpl"}
 {/strip}
 
@@ -37,7 +37,7 @@ function confirmAndPrompt(userId) {
 
 {if not $omitSearch}
 	<form method="post" name="submit" action="{url op="enrollSearch"}">
-	<input type="hidden" name="roleId" value="{$roleId|escape}"/>
+	<input type="hidden" name="flexibleRoleId" value="{$flexibleRoleId|escape}"/>
 		<select name="searchField" size="1" class="selectMenu">
 			{html_options_translate options=$fieldOptions selected=$searchField}
 		</select>
@@ -48,33 +48,27 @@ function confirmAndPrompt(userId) {
 		<input type="text" size="15" name="search" class="textField" value="{$search|escape}" />&nbsp;<input type="submit" value="{translate key="common.search"}" class="button" />
 	</form>
 {/if}
-<p>{foreach from=$alphaList item=letter}<a href="{url op="enrollSearch" searchInitial=$letter roleId=$roleId}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op="enrollSearch" roleId=$roleId}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
+<p>{foreach from=$alphaList item=letter}<a href="{url op="enrollSearch" searchInitial=$letter flexibleRoleId=$flexibleRoleId}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op="enrollSearch" flexibleRoleId=$flexibleRoleId}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
 
-<form name="enroll" action="{if $roleId}{url op="enroll" path=$roleId}{else}{url op="enroll"}{/if}" method="post">
-{if !$roleId}
+<form name="enroll" action="{if $contextRole}{url op="enroll" path=$flexibleRoleId}{else}{url op="enroll"}{/if}" method="post">
+{if !$contextRole}
 	<p>
-	{translate key="manager.people.enrollUserAs"} <select name="roleId" size="1"  class="selectMenu">
+	{translate key="manager.people.enrollUserAs"} <select name="flexibleRoleId" size="1"  class="selectMenu">
 		<option value=""></option>
-		<option value="{$smarty.const.ROLE_ID_PRESS_MANAGER}">{translate key="user.role.manager"}</option>
-		<option value="{$smarty.const.ROLE_ID_EDITOR}">{translate key="user.role.editor"}</option>
-		<option value="{$smarty.const.ROLE_ID_ACQUISIITONS_EDITOR}">{translate key="user.role.acquisitionsEditor"}</option>
-		<option value="{$smarty.const.ROLE_ID_DESIGNER}">{translate key="user.role.designer"}</option>
-		<option value="{$smarty.const.ROLE_ID_REVIEWER}">{translate key="user.role.reviewer"}</option>
-		<option value="{$smarty.const.ROLE_ID_COPYEDITOR}">{translate key="user.role.copyeditor"}</option>
-		<option value="{$smarty.const.ROLE_ID_PROOFREADER}">{translate key="user.role.proofreader"}</option>
-		<option value="{$smarty.const.ROLE_ID_AUTHOR}">{translate key="user.role.author"}</option>
-		<option value="{$smarty.const.ROLE_ID_READER}">{translate key="user.role.reader"}</option>
+	{foreach from=$roles item=role}
+		<option value="{$role->getId()|escape}">{$role->getLocalizedName()|escape}</option>
+	{/foreach}
 	</select>
 	</p>
 	<script type="text/javascript">
 	<!--
 	function enrollUser(userId) {ldelim}
 		var fakeUrl = '{url op="enroll" path="ROLE_ID" userId="USER_ID"}';
-		if (document.enroll.roleId.options[document.enroll.roleId.selectedIndex].value == '') {ldelim}
+		if (document.enroll.flexibleRoleId.options[document.enroll.flexibleRoleId.selectedIndex].value == '') {ldelim}
 			alert("{translate|escape:"javascript" key="manager.people.mustChooseRole"}");
 			return false;
 		{rdelim}
-		fakeUrl = fakeUrl.replace('ROLE_ID', document.enroll.roleId.options[document.enroll.roleId.selectedIndex].value);
+		fakeUrl = fakeUrl.replace('ROLE_ID', document.enroll.flexibleRoleId.options[document.enroll.flexibleRoleId.selectedIndex].value);
 		fakeUrl = fakeUrl.replace('USER_ID', userId);
 		location.href = fakeUrl;
 	{rdelim}
@@ -107,8 +101,8 @@ function confirmAndPrompt(userId) {
 		{$user->getEmail()|truncate:20:"..."|escape}&nbsp;{icon name="mail" url=$url}
 	</td>
 	<td align="right" class="nowrap">
-		{if $roleId}
-		<a href="{url op="enroll" path=$roleId userId=$user->getId()}" class="action">{translate key="manager.people.enroll"}</a>
+		{if $contextRole}
+		<a href="{url op="enroll" path=$flexibleRoleId userId=$user->getId()}" class="action">{translate key="manager.people.enroll"}</a>
 		{else}
 		<a href="#" onclick="enrollUser({$user->getId()})" class="action">{translate key="manager.people.enroll"}</a>
 		{/if}
@@ -131,7 +125,7 @@ function confirmAndPrompt(userId) {
 {else}
 	<tr>
 		<td colspan="3" align="left">{page_info iterator=$users}</td>
-		<td colspan="2" align="right">{page_links anchor="users" name="users" iterator=$users searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth roleId=$roleId}</td>
+		<td colspan="2" align="right">{page_links anchor="users" name="users" iterator=$users searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth flexibleRoleId=$flexibleRoleId}</td>
 	</tr>
 {/if}
 </table>

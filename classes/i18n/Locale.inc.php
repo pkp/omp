@@ -13,7 +13,7 @@
  *
  */
 
-// $Id: Locale.inc.php,v 1.9 2009/11/09 16:23:47 tylerl Exp $
+// $Id$
 
 
 import('i18n.PKPLocale');
@@ -177,6 +177,9 @@ class Locale extends PKPLocale {
 
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormatDao->installLocale($locale);
+
+		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$flexibleRoleDao->installLocale($locale);
 	}
 
 	/**
@@ -191,6 +194,9 @@ class Locale extends PKPLocale {
 
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormatDao->uninstallLocale($locale);
+
+		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$flexibleRoleDao->uninstallLocale($locale);
 	}
 
 	/**

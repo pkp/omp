@@ -9,7 +9,7 @@
   *
   * OMP database schema in XML.
   *
-  * $Id: omp_schema.xml,v 1.35 2009/11/09 16:23:47 tylerl Exp $
+  * $Id$
   -->
 
 <schema version="0.2">
@@ -154,8 +154,8 @@
 		</field>
 		<field name="entry_key" type="C2" size="30"/>
 		<descr>A press's book file types.</descr>
-		<index name="book_file_types_type_id">
-			<col>type_id</col>
+		<index name="book_file_types_entry_id">
+			<col>entry_id</col>
 		</index>
 	</table>
 
@@ -181,8 +181,8 @@
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
 		<descr>Book file type settings</descr>
-		<index name="book_file_type_settings_type_id">
-			<col>type_id</col>
+		<index name="book_file_type_settings_entry_id">
+			<col>entry_id</col>
 		</index>
 		<index name="book_file_type_settings_pkey">
 			<col>entry_id</col>
@@ -1331,6 +1331,9 @@
 		<field name="role_id" type="I8">
 			<NOTNULL />
 		</field>
+		<field name="flexible_role_id" type="I8">
+			<NOTNULL />
+		</field>
 		<descr>User roles in presss.</descr>
 		<index name="roles_press_id">
 			<col>press_id</col>
@@ -1341,10 +1344,14 @@
 		<index name="roles_role_id">
 			<col>role_id</col>
 		</index>
+		<index name="roles_flexible_role_id">
+			<col>flexible_role_id</col>
+		</index>
 		<index name="roles_pkey">
 			<col>press_id</col>
 			<col>user_id</col>
 			<col>role_id</col>
+			<col>flexible_role_id</col>
 			<UNIQUE />
 		</index>
 	</table>
@@ -1365,29 +1372,23 @@
 		<field name="type" type="I8">
 			<NOTNULL />
 		</field>
+		<field name="role_id" type="I8">
+			<NOTNULL />
+		</field>
 		<field name="enabled" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
+		<field name="custom_role" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="path" type="C2" size="30"/>
+		<field name="entry_key" type="C2" size="30"/>
 		<descr>A press's flexible roles.</descr>
 		<index name="flexible_roles_flexible_role_id">
 			<col>flexible_role_id</col>
 		</index>
-	</table>
-
-	<!--
-	  *
-	  * TABLE flexible_roles_enabled
-	  *
-	  -->
-	<table name="flexible_roles_enabled">
-		<field name="flexible_role_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="press_id" type="I8">
-			<NOTNULL />
-		</field>
-		<descr>Flexible roles arranged by press.</descr>
 	</table>
 
 	<!--

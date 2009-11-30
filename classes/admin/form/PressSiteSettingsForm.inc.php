@@ -12,7 +12,7 @@
  * @brief Form for site administrator to edit basic press settings.
  */
 
-// $Id: PressSiteSettingsForm.inc.php,v 1.11 2009/11/09 16:23:46 tylerl Exp $
+// $Id$
 
 
 import('db.DBDataXMLParser');
@@ -130,19 +130,6 @@ class PressSiteSettingsForm extends Form {
 			$pressId = $pressDao->insertPress($press);
 			$pressDao->resequencePresses();
 
-			// Make the site administrator the press manager of newly created presses
-			$sessionManager =& SessionManager::getManager();
-			$userSession =& $sessionManager->getUserSession();
-			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($pressId)) {
-				$role = new Role();
-				$role->setPressId($pressId);
-				$role->setUserId($userSession->getUserId());
-				$role->setRoleId(ROLE_ID_PRESS_MANAGER);
-
-				$roleDao =& DAORegistry::getDAO('RoleDAO');
-				$roleDao->insertRole($role);
-			}
-
 			// Make the file directories for the press
 			import('file.FileManager');
 			FileManager::mkdir(Config::getVar('files', 'files_dir') . '/presses/' . $pressId);
@@ -158,6 +145,23 @@ class PressSiteSettingsForm extends Form {
 			// Install default publication formats
 			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 			$publicationFormatDao->installDefaults($pressId, $installedLocales);
+
+			// Install default roles
+			$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+			$flexibleRoleDao->installDefaults($pressId, $installedLocales);
+
+			// Make the site administrator the press manager of newly created presses
+			$sessionManager =& SessionManager::getManager();
+			$userSession =& $sessionManager->getUserSession();
+			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($pressId)) {
+				$roleDao =& DAORegistry::getDAO('RoleDAO');
+				$role = new Role();
+				$role->setPressId($pressId);
+				$role->setUserId($userSession->getUserId());
+				$role->setRoleId(ROLE_ID_PRESS_MANAGER);
+
+				$roleDao->insertRole($role);
+			}
 
 			// Install default press settings
 			$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');

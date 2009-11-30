@@ -122,7 +122,7 @@
 		<td class="label">{fieldLabel name="enrollAs" key="manager.people.enrollUserAs"}</td>
 		<td class="value">
 			<select name="enrollAs[]" id="enrollAs" multiple="multiple" size="11" class="selectMenu">
-			{html_options_translate options=$roleOptions selected=$enrollAs}
+			{html_options options=$roleOptions selected=$enrollAs}
 			</select>
 			<br />
 			<span class="instruct">{translate key="manager.people.enrollUserAsDescription"}</span>

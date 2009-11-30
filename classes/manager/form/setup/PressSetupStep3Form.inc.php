@@ -12,7 +12,7 @@
  * @brief Form for Step 3 of press setup.
  */
 
-// $Id: PressSetupStep3Form.inc.php,v 1.14 2009/11/09 16:23:47 tylerl Exp $
+// $Id$
 
 import('manager.form.setup.PressSetupForm');
 import('role.FlexibleRole');
@@ -36,6 +36,7 @@ class PressSetupStep3Form extends PressSetupForm {
 	function initData() {
 		parent::initData();
 		$press =& Request::getPress();
+
 		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
 
 		$flexibleRoles = $flexibleRoleDao->getEnabledByPressId($press->getId());
@@ -44,14 +45,14 @@ class PressSetupStep3Form extends PressSetupForm {
 		$idMap = array();
 
 		for ($i=0,$count=count($flexibleRoles); $i<$count; $i++) {
-			$additionalRoles[$flexibleRoles[$i]->getType()][$i+1]['name'] = $flexibleRoles[$i]->getName();
-			$additionalRoles[$flexibleRoles[$i]->getType()][$i+1]['abbrev'] = $flexibleRoles[$i]->getAbbrev();
+			$additionalRoles[$flexibleRoles[$i]->getType()][$i+1]['name'] = $flexibleRoles[$i]->getName(null);
+			$additionalRoles[$flexibleRoles[$i]->getType()][$i+1]['abbrev'] = $flexibleRoles[$i]->getDesignation(null);
 			$additionalRoles[$flexibleRoles[$i]->getType()][$i+1]['flexibleRoleId'] = $flexibleRoles[$i]->getId();
 			$idMap[$flexibleRoles[$i]->getId()] = $i+1;
 		}
 
 		foreach($this->getFlexibleRoleArrangements() as $id => $roleArrangement) {
-			$roleIds[$id] = $flexibleRoleDao->getByArrangementId($press->getId(), $id, true);
+			$roleIds[$id] = $flexibleRoleDao->getIdsByArrangementId($id, $press->getId());
 			foreach ($roleIds[$id] as $roleArrangement) {
 				$roleArrangements[$id][$idMap[$roleArrangement]] = '';
 			}
@@ -75,7 +76,7 @@ class PressSetupStep3Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('newBookFileName', 'newBookFileDesignation', 'newPublicationFormatName', 'newPublicationFormatDesignation');
+		return array('additionalRoles', 'newBookFileName', 'newBookFileDesignation', 'newPublicationFormatName', 'newPublicationFormatDesignation');
 	}
 
 	/**
@@ -149,7 +150,7 @@ class PressSetupStep3Form extends PressSetupForm {
 
 				$flexibleRole->setPressId($press->getId());
 				$flexibleRole->setName($additionalRole['name'], null);
-				$flexibleRole->setAbbrev($additionalRole['abbrev'], null);
+				$flexibleRole->setDesignation($additionalRole['abbrev'], null);
 				$flexibleRole->setType($type);
 				$flexibleRole->setEnabled(true);
 

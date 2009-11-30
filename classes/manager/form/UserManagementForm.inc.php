@@ -63,6 +63,7 @@ class UserManagementForm extends Form {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$templateMgr =& TemplateManager::getManager();
 		$site =& Request::getSite();
+		$press =& Request::getPress();
 
 		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
@@ -76,27 +77,24 @@ class UserManagementForm extends Form {
 		} else {
 			$helpTopicId = 'press.users.createNewUser';
 		}
-		if (Validation::isPressManager()) $templateMgr->assign('roleOptions',
-			array(
-				'' => 'manager.people.doNotEnroll',
-				'manager' => 'user.role.manager',
-				'editor' => 'user.role.editor',
-				'designer' => 'user.role.designer',
-				'reviewer' => 'user.role.reviewer',
-				'copyeditor' => 'user.role.copyeditor',
-				'proofreader' => 'user.role.proofreader',
-				'author' => 'user.role.author',
-				'reader' => 'user.role.reader',
-				'acquisitionsEditor' => 'user.role.acquisitionsEditor',
-				'productionEditor' => 'user.role.productionEditor'
-			)
-		);
-		else $templateMgr->assign('roleOptions', 
-			array(
-				'' => 'manager.people.doNotEnroll',
-				'reader' => 'user.role.reader'
-			)
-		);
+
+		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+
+		$options = array();
+		$options[''] = Locale::translate('manager.people.doNotEnroll');
+
+		if (Validation::isPressManager()) {
+			$roles =& $flexibleRoleDao->getEnabledByPressId($press->getId());
+
+			foreach ($roles as $role) {
+				$options[$role->getId()] = $role->getLocalizedName();
+			}
+		} else {
+			$flexibleRole =& $flexibleRoleDao->getByRoleId(ROLE_ID_READER, $press->getId());
+			$options[$flexibleRole->getId()] = $flexibleRole->getLocalizedName();
+		}
+
+		$templateMgr->assign('roleOptions', $options);
 
 		// Send implicitAuth setting down to template
 		$templateMgr->assign('implicitAuth', Config::getVar('security', 'implicit_auth'));
@@ -159,11 +157,10 @@ class UserManagementForm extends Form {
 		}
 		if (!isset($this->userId)) {
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$roleId = Request::getUserVar('roleId');
-			$roleSymbolic = $roleDao->getRolePath($roleId);
+			$flexibleRoleId = Request::getUserVar('flexibleRoleId');
 
 			$this->_data = array(
-				'enrollAs' => array($roleSymbolic)
+				'enrollAs' => array($flexibleRoleId)
 			);
 		}
 	}
@@ -310,18 +307,22 @@ class UserManagementForm extends Form {
 			$isManager = Validation::isPressManager();
 
 			if (!empty($this->_data['enrollAs'])) {
-				foreach ($this->getData('enrollAs') as $roleName) {
+				$roleDao =& DAORegistry::getDAO('RoleDAO');
+				$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+				foreach ($this->getData('enrollAs') as $flexibleRoleId) {
 					// Enroll new user into an initial role
-					$roleDao =& DAORegistry::getDAO('RoleDAO');
-					$roleId = $roleDao->getRoleIdFromPath($roleName);
+					$flexibleRole =& $flexibleRoleDao->getById($flexibleRoleId);
+					$roleId = $flexibleRole ? $flexibleRole->getRoleId() : 0;
 					if (!$isManager && $roleId != ROLE_ID_READER) continue;
 					if ($roleId != null) {
 						$role = new Role();
 						$role->setPressId($press->getId());
 						$role->setUserId($userId);
 						$role->setRoleId($roleId);
+						$role->setFlexibleRoleId($flexibleRoleId);
 						$roleDao->insertRole($role);
 					}
+					unset($flexibleRole);
 				}
 			}
 

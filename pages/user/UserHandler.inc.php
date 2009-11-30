@@ -35,6 +35,7 @@ class UserHandler extends Handler {
 		$session =& $sessionManager->getUserSession();
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
 
 		$this->setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
@@ -59,7 +60,7 @@ class UserHandler extends Handler {
 
 			// Fetch the user's roles for each press
 			while ($press =& $presses->next()) {
-				$roles =& $roleDao->getRolesByUserId($session->getUserId(), $press->getId());
+				$roles =& $flexibleRoleDao->getByUserId($session->getUserId(), $press->getId());
 				if (!empty($roles)) {
 					$pressesToDisplay[] = $press;
 					$rolesToDisplay[$press->getId()] =& $roles;
@@ -74,7 +75,7 @@ class UserHandler extends Handler {
 
 		} else { // Currently within a press' context.
 			// Show roles for the currently selected press
-			$roles =& $roleDao->getRolesByUserId($session->getUserId(), $press->getId());
+			$roles =& $flexibleRoleDao->getByUserId($session->getUserId(), $press->getId());
 
 			$signoffTasks =& $workflowDao->getSignoffTasksByUserId($user->getId());
 			$templateMgr->assign('signoffTasks', $signoffTasks);

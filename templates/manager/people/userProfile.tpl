@@ -122,7 +122,7 @@
 
 <ul>
 {section name=role loop=$userRoles}
-	<li>{translate key=$userRoles[role]->getRoleName()} <a href="{url op="unEnroll" path=$userRoles[role]->getRoleId() userId=$user->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.people.confirmUnenroll"}')" class="action">{translate key="manager.people.unenroll"}</a></li>
+	<li>{$userRoles[role]->getLocalizedName()|escape} <a href="{url op="unEnroll" path=$userRoles[role]->getId() userId=$user->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="manager.people.confirmUnenroll"}')" class="action">{translate key="manager.people.unenroll"}</a></li>
 {/section}
 </ul>
 
