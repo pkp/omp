@@ -13,7 +13,7 @@
 ; OMP Configuration settings.
 ; Rename config.TEMPLATE.inc.php to config.inc.php to use.
 ;
-; $Id: config.TEMPLATE.inc.php,v 1.4 2009/11/11 04:25:03 jerico.dev Exp $
+; $Id$
 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -227,7 +227,7 @@ allowed_html = "<a> <em> <strong> <cite> <code> <ul> <ol> <li> <dl> <dt> <dd> <b
 ;implicit_auth_header_phone = HTTP_TDL_TELEPHONENUMBER
 ;implicit_auth_header_initials = HTTP_TDL_METADATA_INITIALS
 ;implicit_auth_header_mailing_address = HTTP_TDL_METADATA_TDLHOMEPOSTALADDRESS
-;implicit_auth_header_uin = HTTP_TDL_TDLUID 
+;implicit_auth_header_uin = HTTP_TDL_TDLUID
 
 ; A space delimited list of uins to make admin
 ;implicit_auth_admin_list = "100000040@tdl.org 85B7FA892DAA90F7@utexas.edu 100000012@tdl.org"
@@ -416,4 +416,7 @@ show_stacktrace = Off
 
 ; Display an error message when something goes wrong.
 display_errors = Off
+
+; Display deprecation warnings
+deprecation_warnings = Off
 
