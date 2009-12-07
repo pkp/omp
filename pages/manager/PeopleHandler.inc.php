@@ -331,7 +331,7 @@ class PeopleHandler extends ManagerHandler {
 
 		}
 
-		Request::redirect(null, null, 'people');
+		Request::redirect(null, null, 'people', $roleDao->getRolePath($roleId) . 's');
 	}
 
 	/**
