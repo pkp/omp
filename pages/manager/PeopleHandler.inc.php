@@ -331,7 +331,11 @@ class PeopleHandler extends ManagerHandler {
 
 		}
 
-		Request::redirect(null, null, 'people');
+		if ($flexibleRole->getRoleId() == ROLE_ID_FLEXIBLE_ROLE) {
+			Request::redirect(null, null, 'people', $flexibleRole->getPath(), array('customRoleId' => $flexibleRoleId));
+		} else {
+			Request::redirect(null, null, 'people', $flexibleRole->getPath());
+		}
 	}
 
 	/**
