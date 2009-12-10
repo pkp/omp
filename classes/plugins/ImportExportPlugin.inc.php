@@ -16,6 +16,10 @@
 
 
 class ImportExportPlugin extends Plugin {
+	function ImportExportPlugin() {
+		parent::Plugin();
+	}
+
 	/**
 	 * Get the name of this plugin. The name must be unique within
 	 * its category.
