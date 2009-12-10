@@ -23,6 +23,8 @@ define('ASSOC_TYPE_PRESS',			0x0000200);
 define('ASSOC_TYPE_MONOGRAPH',			0x0000201);
 define('ASSOC_TYPE_PRODUCTION_ASSIGNMENT',	0x0000202);
 
+define('CONTEXT_PRESS', 1);
+
 class OMPApplication extends PKPApplication {
 	function OMPApplication() {
 		parent::PKPApplication();
@@ -41,7 +43,7 @@ class OMPApplication extends PKPApplication {
 		$dispatcher =& parent::getDispatcher();
 
 		// Inject application-specific configuration
-		$dispatcher->addRouterName('core.OMPPageRouter', 'page');
+		$dispatcher->addRouterName('core.OMPPageRouter', ROUTE_PAGE);
 		return $dispatcher;
 	}
 
