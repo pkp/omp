@@ -160,6 +160,7 @@ class CustomLocalePlugin extends GenericPlugin {
 					$customLocaleHandler = new CustomLocaleHandler();
 					$customLocaleHandler->index();
 				}
+		}
 		return $returner;
 	}
 }
