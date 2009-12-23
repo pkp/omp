@@ -12,7 +12,7 @@
  * @brief Artwork form insert.
  */
 
-// $Id: ArtworkInsert.inc.php,v 1.7 2009/10/15 17:18:56 tylerl Exp $
+// $Id$
 
 import('inserts.Insert');
 
@@ -25,105 +25,165 @@ class ArtworkInsert extends Insert {
 	}
 
 	function &listUserVars() {
-		$returner = array('artworkFile', 'type', 'componentId', 'identifier');
+		$returner = array('artwork', 'artwork_file', 'artwork_caption', 'artwork_credit', 'artwork_copyrightOwner', 'artwork_copyrightOwnerContact', 'artwork_permissionTerms', 
+				'artwork_permissionForm', 'artwork_type', 'artwork_otherType', 'artwork_contact', 'artwork_placement', 'artwork_otherPlacement', 'artwork_componentId', 'artwork_placementType');
 		return $returner;
 	}
 
 	function display(&$form) {
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
+		$monographArtworkDao =& DAORegistry::getDAO('MonographArtworkDAO');
 		$templateMgr =& TemplateManager::getManager();
 
-		$artworks =& $monographFileDao->getByMonographId($this->monographId, 'submission');
+		$components =& $monographComponentDao->getMonographComponents($this->monographId);
+		$artworks =& $monographArtworkDao->getByMonographId($this->monographId);
+		$otherComponent = $monographComponentDao->newDataObject();
 
-		$templateMgr->assign_by_ref('artworks', $artworks);
 
+		$idMap = array();
+		for ($i=0, $count=count($components); $i<$count; $i++) {
+			$idMap[$components[$i]->getId()] = $i;
+		}
+
+		$otherArt = array();
+		foreach ($artworks as $artwork) {
+			$componentId = $artwork->getComponentId();
+			if ($componentId > 0) {
+				$components[$idMap[$artwork->getComponentId()]]->addAssocObject($artwork);
+			} else {
+				$otherArt[] = $artwork;
+			}
+		}
+		$otherComponent->setAssocObjects($otherArt);
+		$otherComponent->setTitle(Locale::translate('common.other'), $form->getFormLocale());
+		$components[] = $otherComponent;
+
+		$templateMgr->assign_by_ref('components', $components);
 	}
 
-	function execute(&$form, &$monograph) {
-		import('monograph.MonographArtworkFile');
-		import('file.MonographFileManager');
-
-		$fileId = null;
-		$artworkFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFileManager = new MonographFileManager($this->monographId);
-
-		if ($monographFileManager->uploadedFileExists('artworkFile')) {
-			$fileId = $monographFileManager->uploadArtworkFile('artworkFile', null);
-		}
-
-		if ($fileId) {
-			$newEntry = true;
-			$artworkFile =& $artworkFileDao->getMonographArtworkFile($fileId);
-		} else {
-			$newEntry = false;
-			$artworkFile = new MonographArtworkFile();
-		}
-
-		$form->readInputData();
-
-		$artworkFile->setFileId($fileId);
-		$artworkFile->setPermission(0);
-		$artworkFile->setPermissionFileId(0);
-		$artworkFile->setMonographComponentId($form->getData('componentId'));
-		$artworkFile->setIdentifier($form->getData('identifier'));
-		$artworkFile->setSeq(REALLY_BIG_NUMBER);
-
-		if ($newEntry) {
-			$artworkFileDao->insertMonographArtworkFile($artworkFile);
-		} else {
-			$artworkFileDao->updateMonographArtworkFile($artworkFile);
-		}
-
-		return $fileId;
-	}
-	
 	function processEvents(&$form, &$monograph) {
 		$eventProcessed = false;
 
 		if (Request::getUserVar('uploadNewArtwork')) {
-			import('monograph.MonographArtworkFile');
+			$monographArtworkDao =& DAORegistry::getDAO('MonographArtworkDAO');
 			import('file.MonographFileManager');
-
 			$eventProcessed = true;
-			$artworkFileDao =& DAORegistry::getDAO('MonographFileDAO');
+
 			$monographFileManager = new MonographFileManager($this->monographId);
 
 			$fileId = null;
 
-			if ($monographFileManager->uploadedFileExists('artworkFile')) {
-				$fileId = $monographFileManager->uploadArtworkFile('artworkFile', null);
+			if ($monographFileManager->uploadedFileExists('artwork_file')) {
+				$fileId = $monographFileManager->uploadArtworkFile('artwork_file');
 			}
 
 			if ($fileId) {
-				$artworkFile =& $artworkFileDao->getMonographArtworkFile($fileId);
-			} else {
-				$artworkFile = new MonographArtworkFile();
+				$permissionFileId = null;
+
+				if ($monographFileManager->uploadedFileExists('artwork_permissionForm')) {
+					$permissionFileId = $monographFileManager->uploadArtworkFile('artwork_permissionForm');
+				}
+
+				$form->readInputData();
+				$otherType = $form->getData('artwork_type') == MONOGRAPH_ARTWORK_TYPE_OTHER ? $form->getData('artwork_otherType') : null;
+				$otherPlacement = $form->getData('artwork_placementType') == MONOGRAPH_ARTWORK_PLACEMENT_OTHER ? $form->getData('artwork_otherPlacement') : null;
+
+				$artworkFile =& $monographArtworkDao->newDataObject();
+			
+				$artworkFile->setFileId($fileId);
+				$artworkFile->setMonographId($this->monographId);
+				$artworkFile->setCaption($form->getData('artwork_caption'));
+				$artworkFile->setCredit($form->getData('artwork_credit'));
+				$artworkFile->setCopyrightOwner($form->getData('artwork_copyrightOwner'));
+				$artworkFile->setCopyrightOwnerContactDetails($form->getData('artwork_copyrightOwnerContact'));
+				$artworkFile->setPermissionTerms($form->getData('artwork_permissionTerms'));
+				$artworkFile->setPermissionFileId($permissionFileId);
+				$artworkFile->setContactAuthor($form->getData('artwork_contact'));
+				$artworkFile->setType($form->getData('artwork_type'));
+
+				if ($otherType) {
+					$artworkFile->setCustomType($otherType);
+				} else {
+					$artworkFile->setCustomType(null);
+				}
+
+				if ($otherPlacement) {
+					$artworkFile->setComponentId(null);
+					$artworkFile->setPlacement($otherPlacement);
+				} else {
+					$artworkFile->setPlacement($form->getData('artwork_placement'));
+					$artworkFile->setComponentId($form->getData('artwork_componentId'));
+				}
+
+				$monographArtworkDao->insertObject($artworkFile);
 			}
+
+		} else if ($artworkId = Request::getUserVar('updateArtwork')) {
+
+			$monographArtworkDao =& DAORegistry::getDAO('MonographArtworkDAO');
+			list($artworkId) = array_keys($artworkId);
+			import('file.MonographFileManager');
+			$eventProcessed = true;
+
+
+  			$monographFileManager = new MonographFileManager($this->monographId);
 
 			$form->readInputData();
+			$artworks = $form->getData('artwork');
+			$artwork = $artworks[$artworkId];
+			$fileId = $artwork['file_id'];
+			$permissionFileId = $artwork['permission_file_id'];
 
-			$artworkFile->setFileId($fileId);
-			$artworkFile->setPermission(0);
-			$artworkFile->setPermissionFileId(0);
-			$artworkFile->setMonographComponentId($form->getData('componentId'));
-			$artworkFile->setIdentifier($form->getData('identifier'));
-			$artworkFile->setSeq(REALLY_BIG_NUMBER);
-
-			if ($fileId) {
-				$artworkFileDao->insertMonographArtworkFile($artworkFile);
-			} else {
-				$artworkFileDao->updateMonographArtworkFile($artworkFile);
+			if ($monographFileManager->uploadedFileExists('artwork_file-'.$artworkId)) {
+				$fileId = $monographFileManager->uploadArtworkFile('artwork_file-'.$artworkId, $fileId);
 			}
 
+			if ($monographFileManager->uploadedFileExists('artwork_permissionForm-'.$artworkId)) {
+				$permissionFileId = $monographFileManager->uploadArtworkFile('artwork_permissionForm-'.$artworkId, $permissionFileId);
+			}
+
+			$otherType = $artwork['artwork_type'] == MONOGRAPH_ARTWORK_TYPE_OTHER ? $artwork['artwork_otherType'] : null;
+			$otherPlacement = $artwork['artwork_placementType'] == MONOGRAPH_ARTWORK_PLACEMENT_OTHER ? $artwork['artwork_otherPlacement'] : null;
+
+			$artworkFile =& $monographArtworkDao->newDataObject();
+
+			$artworkFile->setId($artwork['artwork_id']);
+			$artworkFile->setFileId($fileId);
+			$artworkFile->setMonographId($this->monographId);
+			$artworkFile->setCaption($artwork['artwork_caption']);
+			$artworkFile->setCredit($artwork['artwork_credit']);
+			$artworkFile->setCopyrightOwner($artwork['artwork_copyrightOwner']);
+			$artworkFile->setCopyrightOwnerContactDetails($artwork['artwork_copyrightOwnerContact']);
+			$artworkFile->setPermissionTerms($artwork['artwork_permissionTerms']);
+			$artworkFile->setPermissionFileId($permissionFileId);
+			$artworkFile->setContactAuthor($artwork['artwork_contact']);
+			$artworkFile->setType($artwork['artwork_type']);
+
+			if ($otherType) {
+				$artworkFile->setCustomType($otherType);
+			} else {
+				$artworkFile->setCustomType(null);
+			}
+
+			if ($otherPlacement) {
+				$artworkFile->setComponentId(null);
+				$artworkFile->setPlacement($otherPlacement);
+			} else {
+				$artworkFile->setPlacement($artwork['artwork_placement']);
+				$artworkFile->setComponentId($artwork['artwork_componentId']);
+			}
+
+			$monographArtworkDao->updateObject($artworkFile);
+
 		} else if ($removeArtwork = Request::getUserVar('removeArtwork')) {
-			import('file.MonographFileManager');
 
-			$eventProcessed = true;
+			$monographArtworkDao =& DAORegistry::getDAO('MonographArtworkDAO');
 			list($fileId) = array_keys($removeArtwork);
-			$monographFileManager = new MonographFileManager($monograph->getMonographId());
+			$eventProcessed = true;
 
-			$monographFileManager->deleteFile($fileId);
+			$artworkFile =& $monographArtworkDao->getById($fileId);
+			if ($artworkFile) $monographArtworkDao->deleteObject($artworkFile);
 		}
 
 		return $eventProcessed;

@@ -13,9 +13,9 @@
  * @brief Operations for retrieving and modifying MonographFile objects.
  */
 
-// $Id: MonographFileDAO.inc.php,v 1.13 2009/10/15 17:18:56 tylerl Exp $
+// $Id$
 
-import('monograph.MonographArtworkFile');
+import('monograph.MonographFile');
 import('file.MonographFileManager');
 
 define('INLINEABLE_TYPES_FILE', Config::getVar('general', 'registry_dir') . DIRECTORY_SEPARATOR . 'inlineTypes.txt');

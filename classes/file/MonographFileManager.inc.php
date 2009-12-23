@@ -24,7 +24,7 @@
  * [monograph id]/attachment
  */
 
-// $Id: MonographFileManager.inc.php,v 1.19 2009/10/15 17:18:56 tylerl Exp $
+// $Id$
 
 
 import('file.FileManager');
@@ -40,8 +40,8 @@ define('MONOGRAPH_FILE_NOTE',		'NT');
 define('MONOGRAPH_FILE_ATTACHMENT',	'AT');
 define('MONOGRAPH_FILE_GALLEY',		'GA');
 define('MONOGRAPH_FILE_PRODUCTION',	'PRD');
-
 define('MONOGRAPH_BOOKFILE_UPLOAD',	'BK');
+define('MONOGRAPH_ARTWORK_UPLOAD',	'ART');
 
 class MonographFileManager extends FileManager {
 
@@ -76,6 +76,16 @@ class MonographFileManager extends FileManager {
 	 */
 	function uploadBookFile($fileName, $typeId) {
 		return $this->handleUpload($fileName, MONOGRAPH_BOOKFILE_UPLOAD, null, false, $typeId);
+	}
+
+	/**
+	 * Upload an artwork file.
+	 * @param $fileName string the name of the file used in the POST form
+	 * @param $fileId int
+	 * @return int file ID, is false if failure
+	 */
+	function uploadArtworkFile($fileName, $fileId = null) {
+		return $this->handleUpload($fileName, MONOGRAPH_ARTWORK_UPLOAD, $fileId);
 	}
 
 	/**
@@ -375,6 +385,7 @@ class MonographFileManager extends FileManager {
 		switch ($type) {
 			case MONOGRAPH_FILE_PUBLIC: return 'public';
 			case MONOGRAPH_BOOKFILE_UPLOAD: return 'submission';
+			case MONOGRAPH_ARTWORK_UPLOAD: return 'artwork';
 			case MONOGRAPH_FILE_NOTE: return 'note';
 			case MONOGRAPH_FILE_REVIEW: return 'submission/review';
 			case MONOGRAPH_FILE_EDITOR: return 'submission/editor';

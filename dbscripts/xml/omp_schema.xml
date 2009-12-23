@@ -331,6 +331,38 @@
 
 	<!--
 	  *
+	  * TABLE monograph_artwork_files
+	  *
+	  -->
+	<table name="monograph_artwork_files">
+		<field name="artwork_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT />
+		</field>
+		<field name="file_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="file_id" type="I8"/>
+		<field name="monograph_id" type="I8"/>
+		<field name="caption" type="X"/>
+		<field name="credit" type="C2" size="255"/>
+		<field name="copyright_owner" type="C2" size="255"/>
+		<field name="copyright_owner_contact" type="X"/>
+		<field name="permission_terms" type="X"/>
+		<field name="permission_file_id" type="I8"/>
+		<field name="type_id" type="I8"/>
+		<field name="custom_type" type="C2" size="255"/>
+		<field name="placement" type="C2" size="255"/>
+		<field name="component_id" type="I8"/>
+		<field name="contact_author" type="I8"/>
+		<descr>Book visuals.</descr>
+		<index name="monograph_artwork_files_artwork_id">
+			<col>artwork_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
 	  * TABLE monograph_settings
 	  *
 	  -->

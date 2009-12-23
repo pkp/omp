@@ -23,7 +23,9 @@
 {include file="productionEditor/submission/summary.tpl"}
 
 <div class="separator"></div>
-<h3>{translate key="underConstruction.newSpecs"}</h3>
-{include file="productionEditor/submission/components.tpl"}
+
+<form method="post" action="{url op="submitArtwork" path=$submission->getMonographId()}"  enctype="multipart/form-data">
+	{include file="inserts/artwork/ArtworkInsert.tpl"}
+</form>
 
 {include file="common/footer.tpl"}
