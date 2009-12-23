@@ -26,6 +26,24 @@
 	 *  DEFAULT - Default settings for configuration items.
 	-->
 
+	<message key="submission.artwork.replaceFile">Replace File</message>
+	<message key="submission.artwork.permissionForm">Permission Form</message>
+	<message key="submission.artwork.metadata">Artwork Metadata</message>
+	<message key="submission.artwork.caption">Artwork Caption</message>
+	<message key="submission.artwork.credit">Artwork Credit</message>
+	<message key="submission.artwork.copyrightOwner">Copyright Owner</message>
+	<message key="submission.artwork.copyrightContact">Contact (if not author/press)</message>
+	<message key="submission.artwork.permissionTerms">Permission Terms</message>
+	<message key="submission.artwork.placement">Placement in book</message>
+	<message key="submission.artwork.contactAuthor">Contact Author</message>
+	<message key="submission.artwork.type">Artwork Type</message>
+	<message key="submission.artwork.type.table">Table</message>
+	<message key="submission.artwork.type.figure">Figure</message>
+	<message key="submission.artwork.placementDetail">Table/Fig. No.</message>
+	<message key="submission.artwork.add">Add Artwork w/Permissions</message>
+	<message key="submission.chapter">Chapter</message>
+	<message key="common.details">Details</message>
+
 	<!-- review froms start -->
 	<message key="inserts.monographComponents.heading.info">Component Info</message>
 	<message key="inserts.monographComponents.heading.prep">Component Preparation</message>

@@ -18,6 +18,7 @@
 class MonographComponent extends DataObject {
 
 	var $authors;
+	var $assocObjects;
 
 	/**
 	 * Constructor.
@@ -25,6 +26,7 @@ class MonographComponent extends DataObject {
 	function MonographComponent() {
 		parent::DataObject();
 		$this->authors = array();
+		$this->assocObjects = array();
 	}
 
 	/**
@@ -72,32 +74,101 @@ class MonographComponent extends DataObject {
 		return $this->authors;
  	}
 
+	/**
+	 * Get the localized component title.
+	 * @return string
+	 */
 	function getLocalizedTitle() {
 		return $this->getLocalizedData('title');
 	}
-	function setTitle($title) {
-		$this->setData('title', $title);
+
+	/**
+	 * Set the monograph component title.
+	 * @param $title string
+	 * @param $locale string
+	 */
+	function setTitle($title, $locale = null) {
+		$this->setData('title', $title, $locale);
 	}
+
+	/**
+	 * Get the component title.
+	 * @return string
+	 */
 	function getTitle($locale) {
 		return $this->getData('title', $locale);
 	}
+
+	/**
+	 * Set the monograph id.
+	 * @param $id int
+	 */
 	function setMonographId($id) {
 		$this->setData('monograph_id', $id);
 	}
+
+	/**
+	 * Get the monograph id.
+	 * @return int
+	 */
 	function getMonographId() {
 		return $this->getData('monograph_id');
 	}
+
+	/**
+	 * Set the primary contact.
+	 * @param $contact int
+	 */
 	function setPrimaryContact($contact) {
 		$this->setData('primary_contact', $contact);
 	}
+
+	/**
+	 * Get primary contact.
+	 * @return int
+	 */
 	function getPrimaryContact() {
 		return $this->getData('primary_contact');
 	}
+
+	/**
+	 * Get placement value.
+	 * @return int
+	 */
 	function getSequence() {
 		return $this->getData('seq');
 	}
+
+	/**
+	 * Set placement value.
+	 * @param $seq int
+	 */
 	function setSequence($seq) {
 		$this->setData('seq', $seq);
+	}
+
+	/**
+	 * Set associated objects.
+	 * @param $assocObjects array Object
+	 */
+	function setAssocObjects($assocObjects) {
+		return $this->assocObjects = $assocObjects;
+	}
+
+	/**
+	 * Get all associated objects.
+	 * @return array Object
+	 */
+	function &getAssocObjects() {
+		return $this->assocObjects;
+	}
+
+	/**
+	 * Add an associated object.
+	 * @param $object Object
+	 */
+	function addAssocObject($object) {
+		array_push($this->assocObjects, $object);
 	}
 }
 

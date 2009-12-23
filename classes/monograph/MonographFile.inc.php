@@ -13,7 +13,7 @@
  * @brief Monograph file class.
  */
 
-// $Id: MonographFile.inc.php,v 1.6 2009/10/15 17:18:56 tylerl Exp $
+// $Id$
 
 
 class MonographFile extends DataObject {
@@ -221,7 +221,6 @@ class MonographFile extends DataObject {
 	 * Get uploaded date of file.
 	 * @return date
 	 */
-
 	function getDateUploaded() {
 		return $this->getData('dateUploaded');	
 	}
@@ -230,7 +229,6 @@ class MonographFile extends DataObject {
 	 * Set uploaded date of file.
 	 * @param $dateUploaded date
 	 */
-
 	function setDateUploaded($dateUploaded) {
 		return $this->SetData('dateUploaded', $dateUploaded);
 	}
@@ -239,7 +237,6 @@ class MonographFile extends DataObject {
 	 * Get modified date of file.
 	 * @return date
 	 */
-
 	function getDateModified() {
 		return $this->getData('dateModified');	
 	}
@@ -249,7 +246,6 @@ class MonographFile extends DataObject {
 	 * Set modified date of file.
 	 * @param $dateModified date
 	 */
-
 	function setDateModified($dateModified) {
 		return $this->SetData('dateModified', $dateModified);
 	}
@@ -258,7 +254,6 @@ class MonographFile extends DataObject {
 	 * Get file size of file.
 	 * @return int
 	 */
-
 	function getFileSize() {
 		return $this->getData('fileSize');	
 	}
@@ -268,7 +263,6 @@ class MonographFile extends DataObject {
 	 * Set file size of file.
 	 * @param $fileSize int
 	 */
-
 	function setFileSize($fileSize) {
 		return $this->SetData('fileSize', $fileSize);
 	}
@@ -277,7 +271,6 @@ class MonographFile extends DataObject {
 	 * Get nice file size of file.
 	 * @return string
 	 */
-
 	function getNiceFileSize() {
 		return FileManager::getNiceFileSize($this->getData('fileSize'));
 	}
@@ -286,7 +279,6 @@ class MonographFile extends DataObject {
 	 * Get round.
 	 * @return int
 	 */
-
 	function getRound() {
 		return $this->getData('round');	
 	}
@@ -296,7 +288,6 @@ class MonographFile extends DataObject {
 	 * Set round.
 	 * @param $round int
 	 */
-
 	function setRound($round) {
 		return $this->SetData('round', $round);
 	}
@@ -305,20 +296,18 @@ class MonographFile extends DataObject {
 	 * Get review type.
 	 * @return int
 	 */
-
 	function getReviewType() {
 		return $this->getData('reviewType');	
 	}
-
 
 	/**
 	 * Set review type.
 	 * @param $reviewType int
 	 */
-
 	function setReviewType($reviewType) {
 		return $this->SetData('reviewType', $reviewType);
 	}
+
 	/**
 	 * Get viewable.
 	 * @return boolean
@@ -328,12 +317,20 @@ class MonographFile extends DataObject {
 		return $this->getData('viewable');	
 	}
 
+	/**
+	 * Get the file's extension.
+	 * @return string
+	 */
+	function getExtension() {
+		import('file.FileManager');
+		$fileManager = new FileManager();
+		return strtoupper($fileManager->getExtension($this->getData('fileName')));
+	}
 
 	/**
 	 * Set viewable.
 	 * @param $viewable boolean
 	 */
-
 	function setViewable($viewable) {
 		return $this->SetData('viewable', $viewable);
 	}

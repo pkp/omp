@@ -15,32 +15,133 @@
 
 // $Id$
 
-import('monograph.MonographFile');
+define('MONOGRAPH_ARTWORK_TYPE_OTHER',		1);
+define('MONOGRAPH_ARTWORK_TYPE_TABLE',		2);
+define('MONOGRAPH_ARTWORK_TYPE_FIGURE',		3);
 
-class MonographArtworkFile extends MonographFile {
+define('MONOGRAPH_ARTWORK_PLACEMENT_OTHER',		1);
+define('MONOGRAPH_ARTWORK_PLACEMENT_BY_CHAPTER',	2);
+
+class MonographArtworkFile extends DataObject {
 
 	//
 	// Get/set methods
 	//
 
 	/**
-	 * Get permission check.
+	 * Get artwork file id.
 	 * @return int
 	 */
-	function getPermission() {
-		return $this->getData('permission');
+	function getFileId() {
+		return $this->getData('fileId');
 	}
 
 	/**
-	 * Set permission check.
-	 * @param $permission int
+	 * Set artwork file id.
+	 * @param $fileId int
 	 */
-	function setPermission($permission) {
-		return $this->setData('permission', $permission);
+	function setFileId($fileId) {
+		return $this->setData('fileId', $fileId);
 	}
 
 	/**
-	 * Get permissions file id.
+	 * Get the current monograph id.
+	 * @return int
+	 */
+	function getMonographId() {
+		return $this->getData('monographId');
+	}
+
+	/**
+	 * Set the current monograph id.
+	 * @param $monographId int
+	 */
+	function setMonographId($monographId) {
+		return $this->setData('monographId', $monographId);
+	}
+
+	/**
+	 * Get artwork caption.
+	 * @return string
+	 */
+	function getCaption() {
+		return $this->getData('caption');
+	}
+
+	/**
+	 * Set artwork caption.
+	 * @param $caption string
+	 */
+	function setCaption($caption) {
+		return $this->setData('caption', $caption);
+	}
+
+	/**
+	 * Get the credit.
+	 * @return string
+	 */
+	function getCredit() {
+		return $this->getData('credit');
+	}
+
+	/**
+	 * Set the credit.
+	 * @param $credit string
+	 */
+	function setCredit($credit) {
+		return $this->setData('credit', $credit);
+	}
+
+	/**
+	 * Get the copyright owner.
+	 * @return string
+	 */
+	function getCopyrightOwner() {
+		return $this->getData('copyrightOwner');
+	}
+
+	/**
+	 * Set the copyright owner.
+	 * @param $owner string
+	 */
+	function setCopyrightOwner($owner) {
+		return $this->setData('copyrightOwner', $owner);
+	}
+
+	/**
+	 * Get contact details for the copyright owner.
+	 * @return string
+	 */
+	function getCopyrightOwnerContactDetails() {
+		return $this->getData('copyrightOwnerContact');
+	}
+
+	/**
+	 * Set the contact details for the copyright owner.
+	 * @param $contactDetails string
+	 */
+	function setCopyrightOwnerContactDetails($contactDetails) {
+		return $this->setData('copyrightOwnerContact', $contactDetails);
+	}
+
+	/**
+	 * Get the permission terms.
+	 * @return string
+	 */
+	function getPermissionTerms() {
+		return $this->getData('terms');
+	}
+
+	/**
+	 * Set the permission terms.
+	 * @param $terms string
+	 */
+	function setPermissionTerms($terms) {
+		return $this->setData('terms', $terms);
+	}
+
+	/**
+	 * Get the permission form file id.
 	 * @return int
 	 */
 	function getPermissionFileId() {
@@ -48,77 +149,112 @@ class MonographArtworkFile extends MonographFile {
 	}
 
 	/**
-	 * Set permissions file id.
-	 * @param $permissionFileId int
+	 * Set the permission form file id.
+	 * @param $fileId int
 	 */
-	function setPermissionFileId($permissionFileId) {
-		return $this->setData('permissionFileId', $permissionFileId);
+	function setPermissionFileId($fileId) {
+		return $this->setData('permissionFileId', $fileId);
 	}
 
 	/**
-	 * Get the component Id.
+	 * Get the placement note for the artwork.
+	 * @return string
+	 */
+	function getPlacement() {
+		return $this->getData('placement');
+	}
+
+	/**
+	 * Set the placement note for the artwork.
+	 * @param $placement string
+	 */
+	function setPlacement($placement) {
+		return $this->setData('placement', $placement);
+	}
+
+	/**
+	 * Get the monograph component id.
 	 * @return int
 	 */
-	function getMonographComponentId() {
+	function getComponentId() {
 		return $this->getData('componentId');
 	}
 
 	/**
-	 * Set the component Id.
+	 * Set the monograph component id.
 	 * @param $componentId int
 	 */
-	function setMonographComponentId($componentId) {
+	function setComponentId($componentId) {
 		return $this->setData('componentId', $componentId);
 	}
 
 	/**
-	 * Get the component Id.
+	 * Get the artwork type.
 	 * @return int
 	 */
-	function getMonographComponentTitle() {
-		return $this->getData('componentTitle');
+	function getType() {
+		return $this->getData('artworkType');
 	}
 
 	/**
-	 * Set the component Id.
-	 * @param $componentId int
+	 * Set the artwork type.
+	 * @param $typeId int
 	 */
-	function setMonographComponentTitle($componentTitle) {
-		return $this->setData('componentTitle', $componentTitle);
+	function setType($typeId) {
+		return $this->setData('artworkType', $typeId);
 	}
 
 	/**
-	 * Get artwork placement identifier.
+	 * Get the descriptive name for the artwork type.
+	 * @return string
+	 */
+	function getCustomType() {
+		return $this->getData('customArtworkType');
+	}
+
+	/**
+	 * Set a descriptive name for the artwork type.
+	 * @param $type string
+	 */
+	function setCustomType($type) {
+		return $this->setData('customArtworkType', $type);
+	}
+
+	/**
+	 * Get the contact author's id.
 	 * @return int
 	 */
-	function getIdentifier() {
-		return $this->getData('identifier');
+	function getContactAuthor() {
+		return $this->getData('contactAuthor');
 	}
 
 	/**
-	 * Set artwork placement identifier.
-	 * @param $assocId int
+	 * Set the contact author's id.
+	 * @param $authorId int
 	 */
-	function setIdentifier($identifier) {
-		return $this->setData('identifier', $identifier);
+	function setContactAuthor($authorId) {
+		return $this->setData('contactAuthor', $authorId);
 	}
 
 	/**
-	 * Get artwork sequencing info.
-	 * @return int
+	 * Get the artwork file object.
+	 * @return MonographFile
 	 */
-	function getSeq() {
-		return $this->getData('seq');
+	function &getFile() {
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$monographFile =& $monographFileDao->getMonographFile($this->getData('fileId'), $this->getData('revision'));
+		return $monographFile;
 	}
 
 	/**
-	 * Set artwork sequencing info
-	 * @param $seq int
+	 * Get the file object.
+	 * @return MonographFile
 	 */
-	function setSeq($seq) {
-		return $this->setData('seq', $seq);
+	function &getPermissionFile() {
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$monographFile =& $monographFileDao->getMonographFile($this->getData('permissionFileId'));
+		return $monographFile;
 	}
-
 }
 
 ?>

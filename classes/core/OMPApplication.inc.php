@@ -98,6 +98,7 @@ class OMPApplication extends PKPApplication {
 			'BookFileTypeDAO' => 'bookFile.BookFileTypeDAO',
 			'MonographEmailLogDAO' => 'monograph.log.MonographEmailLogDAO',
 			'MonographEventLogDAO' => 'monograph.log.MonographEventLogDAO',
+			'MonographArtworkDAO' => 'monograph.MonographArtworkDAO',
 			'MonographCommentDAO' => 'monograph.MonographCommentDAO',
 			'MonographComponentDAO' => 'monograph.MonographComponentDAO',
 			'MonographSearchDAO' => 'search.MonographSearchDAO',
