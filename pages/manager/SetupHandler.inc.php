@@ -9,21 +9,21 @@
  * @class SetupHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for press setup functions. 
+ * @brief Handle requests for press setup functions.
  */
 
-// $Id: SetupHandler.inc.php,v 1.20 2009/11/09 16:23:47 tylerl Exp $
+// $Id$
 
 import('pages.manager.ManagerHandler');
 
 class SetupHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 */	
+	 */
 	function SetupHandler() {
 		parent::ManagerHandler();
 	}
-	
+
 	/**
 	 * Display press setup form for the selected step.
 	 * Displays setup index page if a valid step is not specified.
@@ -295,7 +295,7 @@ class SetupHandler extends ManagerHandler {
 						unset($additionalRoles[$removeRoleClass][$removeRoleId]);
 
 						$workflowRoleSections = array(
-								'submissionRoles', 'internalReviewRoles', 
+								'submissionRoles', 'internalReviewRoles',
 								'externalReviewRoles', 'editorialRoles', 'productionRoles'
 							);
 
@@ -357,7 +357,7 @@ class SetupHandler extends ManagerHandler {
 
 					$setupForm->setData('templates', $templates);
 					break;
-				case 5:	
+				case 5:
 					if (Request::getUserVar('uploadHomeHeaderTitleImage')) {
 						if ($setupForm->uploadImage('homeHeaderTitleImage', $formLocale)) {
 							$editData = true;
@@ -437,7 +437,7 @@ class SetupHandler extends ManagerHandler {
 						$delNavItem = (int) $delNavItem;
 						$navItems = $setupForm->getData('navItems');
 						if (is_array($navItems) && is_array($navItems[$formLocale])) {
-							array_splice($navItems[$formLocale], $delNavItem, 1);		
+							array_splice($navItems[$formLocale], $delNavItem, 1);
 							$setupForm->setData('navItems', $navItems);
 						}
 					} else if (Request::getUserVar('addCustomAboutItem')) {
