@@ -128,43 +128,17 @@
 <div class="separator"></div>
 
 <h3>1.5 {translate key="manager.setup.sponsors"}</h3>
-
+ 
 <p>{translate key="manager.setup.sponsorsDescription"}</p>
-
+<br />
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="sponsorNote" key="manager.setup.note"}</td>
 		<td width="80%" class="value"><textarea name="sponsorNote[{$formLocale|escape}]" id="sponsorNote" rows="5" cols="40" class="textArea">{$sponsorNote[$formLocale]|escape}</textarea></td>
 	</tr>
-{foreach name=sponsors from=$sponsors key=sponsorId item=sponsor}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="sponsors-$sponsorId-institution" key="manager.setup.institution"}</td>
-		<td width="80%" class="value"><input type="text" name="sponsors[{$sponsorId|escape}][institution]" id="sponsors-{$sponsorId|escape}-institution" value="{$sponsor.institution|escape}" size="40" maxlength="90" class="textField" />{if $smarty.foreach.sponsors.total > 1} <input type="submit" name="delSponsor[{$sponsorId|escape}]" value="{translate key="common.delete"}" class="button" />{/if}</td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="sponsors-$sponsorId-url" key="common.url"}</td>
-		<td width="80%" class="value"><input type="text" name="sponsors[{$sponsorId|escape}][url]" id="sponsors-{$sponsorId|escape}-url" value="{$sponsor.url|escape}" size="40" maxlength="255" class="textField" /></td>
-	</tr>
-	{if !$smarty.foreach.sponsors.last}
-	<tr valign="top">
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
-	{/if}
-{foreachelse}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="sponsors-0-institution" key="manager.setup.institution"}</td>
-		<td width="80%" class="value"><input type="text" name="sponsors[0][institution]" id="sponsors-0-institution" size="40" maxlength="90" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="sponsors-0-url" key="common.url"}</td>
-		<td width="80%" class="value"><input type="text" name="sponsors[0][url]" id="sponsors-0-url" size="40" maxlength="255" class="textField" /></td>
-	</tr>
-{/foreach}
 </table>
 
-<p><input type="submit" name="addSponsor" value="{translate key="manager.setup.addSponsor"}" class="button" /></p>
-
-<div class="separator"></div>
+{load_url_in_div id="sponsorGridDiv" url=$sponsorGridUrl}
 
 <h3>1.6 {translate key="manager.setup.contributors"}</h3>
 

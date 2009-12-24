@@ -40,11 +40,23 @@
 		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
 	{/foreach}
 
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/lib/jquery/jquery.js"></script>	
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/superfish/hoverIntent.js"></script>	
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/superfish/superfish.js"></script>	
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/wufoo/wufoo.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/general.js"></script>
+	<!-- Base Jquery -->
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>	
+	
+	<!-- UI elements (menus, forms, etc) -->
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/hoverIntent.js"></script>	
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/superfish.js"></script>	
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/wufoo/wufoo.js"></script>
+	
+	<!-- Modals/Confirms -->
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/validate/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/jqueryValidatorI18n.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/modal.js"></script>
+
+	<!-- General JS -->	
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/general.js"></script>		
+
 	<script type="text/javascript">
         // initialise plugins
 		{literal}
@@ -52,6 +64,9 @@
             $('ul.sf-menu').superfish();
         });
 		{/literal}
+		
+		// include the appropriate validation localization
+		jqueryValidatorI18n("{$baseUrl}", "{$currentLocale}");
     </script>
     
 	{$additionalHeadData}
