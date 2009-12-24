@@ -14,6 +14,7 @@
 
 // $Id$
 
+import('core.JSON');
 import('pages.manager.ManagerHandler');
 
 class SetupHandler extends ManagerHandler {
@@ -29,13 +30,25 @@ class SetupHandler extends ManagerHandler {
 	 * Displays setup index page if a valid step is not specified.
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
-	function setup($args) {
+	function setup(&$args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
 		if ($step >= 1 && $step <= 5) {
+			$templateMgr =& TemplateManager::getManager();
+			switch ($step) {
+				case 1:
+					//FIXME: Could be replaced with smarty URL function (see bug 4935)
+					// Sponsor Grid
+					$templateMgr->assign('sponsorGridUrl', $this->getDispatcher()->url($request, 'component', null, 'grid.sponsor.SponsorGridHandler', 'fetchGrid'));
+
+					// Contributor Grid
+//					$templateMgr->assign('contributorGridUrl', $this->getDispatcher()->url($request, 'controller', null, 'grid.contributor.ContributorGridHandler', 'fetch'));
+					break;
+			}
+
 
 			$formClass = "PressSetupStep{$step}Form";
 			import("manager.form.setup.$formClass");
@@ -59,7 +72,7 @@ class SetupHandler extends ManagerHandler {
 	 * Save changes to press settings.
 	 * @param $args array first parameter is the step being saved
 	 */
-	function saveSetup($args) {
+	function saveSetup(&$args, &$request) {
 		$this->validate();
 
 		$step = isset($args[0]) ? (int) $args[0] : 0;
@@ -77,42 +90,6 @@ class SetupHandler extends ManagerHandler {
 
 			// Check for any special cases before trying to save
 			switch ($step) {
-				case 1:
-					if (Request::getUserVar('addSponsor')) {
-						// Add a sponsor
-						$editData = true;
-						$sponsors = $setupForm->getData('sponsors');
-						array_push($sponsors, array());
-						$setupForm->setData('sponsors', $sponsors);
-
-					} else if (($delSponsor = Request::getUserVar('delSponsor')) && count($delSponsor) == 1) {
-						// Delete a sponsor
-						$editData = true;
-						list($delSponsor) = array_keys($delSponsor);
-						$delSponsor = (int) $delSponsor;
-						$sponsors = $setupForm->getData('sponsors');
-						array_splice($sponsors, $delSponsor, 1);
-						$setupForm->setData('sponsors', $sponsors);
-
-					} else if (Request::getUserVar('addContributor')) {
-						// Add a contributor
-						$editData = true;
-						$contributors = $setupForm->getData('contributors');
-						array_push($contributors, array());
-						$setupForm->setData('contributors', $contributors);
-
-					} else if (($delContributor = Request::getUserVar('delContributor')) && count($delContributor) == 1) {
-						// Delete a contributor
-						$editData = true;
-						list($delContributor) = array_keys($delContributor);
-						$delContributor = (int) $delContributor;
-						$contributors = $setupForm->getData('contributors');
-						array_splice($contributors, $delContributor, 1);
-						$setupForm->setData('contributors', $contributors);
-					}
-
-					break;
-
 				case 2:
 					if (Request::getUserVar('addChecklist')) {
 						// Add a checklist item
