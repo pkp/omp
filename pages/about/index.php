@@ -18,8 +18,19 @@
 // $Id$
 
 
-define('HANDLER_CLASS', 'AboutHandler');
-
-import('pages.about.AboutHandler');
+switch ($op) {
+	case 'index':
+	case 'contact':
+	case 'pressSponsorship':
+	case 'editorialTeam':
+	case 'editorialTeamBio':
+	case 'editorialPolicies':
+	case 'submissions':
+	case 'siteMap':
+	case 'aboutThisPublishingSystem':
+		define('HANDLER_CLASS', 'AboutHandler');
+		import('pages.about.AboutHandler');
+		break;
+}
 
 ?>

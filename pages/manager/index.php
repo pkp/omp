@@ -184,7 +184,8 @@ switch ($op) {
 		import('pages.manager.GroupHandler');
 		define('HANDLER_CLASS', 'GroupHandler');
 		break;
-	default:
+	case 'index':
+	case 'email':
 		define('HANDLER_CLASS', 'ManagerHandler');
 		import('pages.manager.ManagerHandler');
 		break;

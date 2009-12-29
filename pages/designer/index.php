@@ -57,7 +57,9 @@ switch ($op) {
 		import('pages.designer.SubmissionCommentsHandler');
 		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
 		break;
-	default: 	
+	case 'index':
+	case 'submissions':
+	case 'instructions':
 		define('HANDLER_CLASS', 'DesignerHandler');	
 		import('pages.designer.DesignerHandler');
 		break;
