@@ -147,7 +147,13 @@ switch ($op) {
 		import('pages.acquisitionsEditor.SubmissionCommentsHandler');
 		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
 		break;
-	default:
+	case 'index':
+	case 'viewMetadata':
+	case 'selectReviewer':
+	case 'submissions':
+	case 'deleteEditAssignment':
+	case 'assignEditor':
+	case 'setEditorFlags':
 		define('HANDLER_CLASS', 'EditorHandler');
 		import('pages.editor.EditorHandler');
 		break;

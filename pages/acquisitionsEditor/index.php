@@ -147,7 +147,7 @@ switch ($op) {
 		import('pages.acquisitionsEditor.SubmissionCommentsHandler');
 		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
 		break;
-	default:
+	case 'index':
 		define('HANDLER_CLASS', 'AcquisitionsEditorHandler');
 		import('pages.acquisitionsEditor.AcquisitionsEditorHandler');
 		break;

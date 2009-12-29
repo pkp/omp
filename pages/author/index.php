@@ -86,7 +86,8 @@ switch ($op) {
 		import('pages.author.SubmissionCommentsHandler');
 		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
 		break;
-	default:
+	case 'index':
+	case 'instructions':
 		define('HANDLER_CLASS', 'AuthorHandler');
 		import('pages.author.AuthorHandler');
 		break;

@@ -18,8 +18,14 @@
 // $Id$
 
 
-define('HANDLER_CLASS', 'HelpHandler');
-
-import('pages.help.HelpHandler');
+switch ($op) {
+	case 'index':
+	case 'toc':
+	case 'view':
+	case 'search':
+		define('HANDLER_CLASS', 'HelpHandler');
+		import('pages.help.HelpHandler');
+		break;
+}
 
 ?>

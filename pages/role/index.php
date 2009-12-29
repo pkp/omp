@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup pages_index
+ * @defgroup pages_role
  */
  
 /**
@@ -18,8 +18,11 @@
 // $Id$
 
 
-define('HANDLER_CLASS', 'RoleHandler');
-
-import('pages.role.RoleHandler');
+switch ($op) {
+	case 'index':
+		define('HANDLER_CLASS', 'RoleHandler');
+		import('pages.role.RoleHandler');
+		break;
+}
 
 ?>
