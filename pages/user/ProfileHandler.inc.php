@@ -9,10 +9,10 @@
  * @class ProfileHandler
  * @ingroup pages_user
  *
- * @brief Handle requests for modifying user profiles. 
+ * @brief Handle requests for modifying user profiles.
  */
 
-// $Id: ProfileHandler.inc.php,v 1.6 2009/10/06 21:57:31 asmecher Exp $
+// $Id$
 
 import('pages.user.UserHandler');
 
@@ -23,7 +23,7 @@ class ProfileHandler extends UserHandler {
 	function ProfileHandler() {
 		parent::UserHandler();
 	}
-	
+
 	/**
 	 * Display form to edit user's profile.
 	 */
@@ -108,12 +108,12 @@ class ProfileHandler extends UserHandler {
 		}
 		$passwordForm->readInputData();
 
+		$this->setupTemplate(true);
 		if ($passwordForm->validate()) {
 			$passwordForm->execute();
 			Request::redirect(null, Request::getRequestedPage());
 
 		} else {
-			$this->setupTemplate(true);
 			$passwordForm->display();
 		}
 	}
