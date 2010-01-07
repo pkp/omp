@@ -12,7 +12,7 @@
  * @brief Handle requests for press management in site administration. 
  */
 
-// $Id: AdminPressHandler.inc.php,v 1.8 2009/10/06 21:57:31 asmecher Exp $this->.inc.php,v 1.4 2009/05/06 16:44:10 jalperin Exp $
+// $Id$this->.inc.php,v 1.4 2009/05/06 16:44:10 jalperin Exp $
 
 import('pages.admin.AdminHandler');
 
@@ -74,6 +74,7 @@ class AdminPressHandler extends AdminHandler {
 	 */
 	function updatePress() {
 		$this->validate();
+		$this->setupTemplate(true);
 
 		import('admin.form.PressSiteSettingsForm');
 
@@ -90,7 +91,6 @@ class AdminPressHandler extends AdminHandler {
 			Request::redirect(null, null, 'presses');
 
 		} else {
-			$this->setupTemplate(true);
 			$settingsForm->display();
 		}
 	}

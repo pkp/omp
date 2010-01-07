@@ -12,7 +12,7 @@
  * @brief Handle requests for submission tracking. 
  */
 
-// $Id: SubmissionEditHandler.inc.php,v 1.52 2009/10/07 00:36:12 asmecher Exp $
+// $Id$
 
 
 define('ACQUISITIONS_EDITOR_ACCESS_EDIT', 0x00001);
@@ -1336,6 +1336,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
 		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'summary');
 
 		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
 
@@ -1360,7 +1361,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 
 			Request::redirect(null, null, $this->getFrom(), $monographId);
 		} else {
-			$this->setupTemplate(true, $monographId, 'summary');
 			$submitForm->display();
 		}
 	}
@@ -1654,6 +1654,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_EDIT);
+		$this->setupTemplate(true, $monographId, 'editing');
 		$press =& Request::getPress();
 		$submission =& $this->submission;
 
@@ -1686,7 +1687,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 			}
 			Request::redirect(null, null, 'submissionEditing', $monographId);
 		} else {
-			$this->setupTemplate(true, $monographId, 'editing');
 			$submitForm->display();
 		}
 	}

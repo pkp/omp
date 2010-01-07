@@ -68,9 +68,7 @@ class ProfileHandler extends UserHandler {
 		if (!$dataModified && $profileForm->validate()) {
 			$profileForm->execute();
 			Request::redirect(null, Request::getRequestedPage());
-
 		} else {
-			$this->setupTemplate(true);
 			$profileForm->display();
 		}
 	}
@@ -98,6 +96,7 @@ class ProfileHandler extends UserHandler {
 	 */
 	function savePassword() {
 		$this->validate();
+		$this->setupTemplate(true);
 
 		import('user.form.ChangePasswordForm');
 

@@ -257,6 +257,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
 		$authorSubmission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'summary');
 
 		if ($authorSubmission->getStatus() != STATUS_PUBLISHED && $authorSubmission->getStatus() != STATUS_ARCHIVED) {
 			$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
@@ -270,7 +271,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 				$submitForm->execute();
 				Request::redirect(null, null, 'submission', $monographId);
 			} else {
-				$this->setupTemplate(true, $monographId, 'summary');
 				$submitForm->display();
 			}
 		} else {
