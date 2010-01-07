@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file classes/core/OMPPageRouter.inc.php
+ * @file classes/core/PageRouter.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class OMPPageRouter
+ * @class PageRouter
  * @ingroup core
  *
  * @brief Class providing OMP-specific page routing.
@@ -17,7 +17,7 @@
 
 import('core.PKPPageRouter');
 
-class OMPPageRouter extends PKPPageRouter {
+class PageRouter extends PKPPageRouter {
 	/**
 	 * get the cacheable pages
 	 * @return array

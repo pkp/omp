@@ -32,7 +32,7 @@ class TemplateManager extends PKPTemplateManager {
 
 		// Are we using implicit authentication?
 		$this->assign('implicitAuth', Config::getVar('security', 'implicit_auth'));
-	
+
 		if (!defined('SESSION_DISABLE_INIT')) {
 			/**
 			 * Kludge to make sure no code that tries to connect to
@@ -88,8 +88,8 @@ class TemplateManager extends PKPTemplateManager {
 				if ($pressStyleSheet) {
 					$this->addStyleSheet(Request::getBaseUrl() . '/' . PublicFileManager::getPressFilesPath($press->getId()) . '/' . $pressStyleSheet['uploadName']);
 				}
-				
-				$this->assign('pageFooter', $press->getLocalizedSetting('pressPageFooter'));	
+
+				$this->assign('pageFooter', $press->getLocalizedSetting('pressPageFooter'));
 			} else {
 				// Add the site-wide logo, if set for this locale or the primary locale
 				$displayPageHeaderTitle = $site->getLocalizedPageHeaderTitle();
@@ -151,31 +151,6 @@ class TemplateManager extends PKPTemplateManager {
 			$text = isset($params['text']) ? $params['text'] : '';
 			return "<a href=\"$link\">$text</a>";
 		}
-	}
-
-	/**
-	 * Generate a URL into OMP. (This is a wrapper around Request::url to make it available to Smarty templates.)
-	 */
-	function smartyUrl($params, &$smarty) {
-		// Extract the variables named in $paramList, and remove them
-		// from the params array. Variables remaining in params will be
-		// passed along to Request::url as extra parameters.
-		$context = array();
-		$contextList = OMPApplication::getContextList();
-
-		if ( !isset($params['context']) ) {
-			foreach ($contextList as $contextName) {
-				if (isset($params[$contextName])) {
-					$context[$contextName] = $params[$contextName];
-					unset($params[$contextName]);
-				} else {
-					$context[$contextName] = null;				
-				}
-			}
-			$params['context'] = $context;
-		}
-	
-		return parent::smartyUrl($params, $smarty);
 	}
 
 	/**
