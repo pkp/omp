@@ -12,7 +12,7 @@
  * @brief Handle requests for editor functions. 
  */
 
-// $Id: EditorHandler.inc.php,v 1.24 2009/10/15 17:51:45 tylerl Exp $
+// $Id$
 
 define('EDITOR_ARRANGEMENT_HOME', 0);
 define('EDITOR_ARRANGEMENT_SUBMISSIONS', 1);
@@ -161,6 +161,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 	 */
 	function assignEditor($args) {
 		$this->validate();
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.noneEnrolled
 		$press =& Request::getPress();
 		$monographId = Request::getUserVar('monographId');
 		$editorId = Request::getUserVar('editorId');
