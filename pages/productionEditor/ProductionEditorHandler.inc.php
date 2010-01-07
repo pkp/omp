@@ -781,6 +781,7 @@ class ProductionEditorHandler extends Handler {
 		$this->validate($monographId);
 		$press =& $this->press;
 		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('submission.form.MonographGalleyForm');
 
@@ -800,7 +801,6 @@ class ProductionEditorHandler extends Handler {
 			}
 			Request::redirect(null, null, 'submissionLayout', $monographId);
 		} else {
-			$this->setupTemplate(true, $monographId, 'editing');
 			$submitForm->display();
 		}
 	}

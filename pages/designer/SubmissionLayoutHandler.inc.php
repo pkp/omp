@@ -139,6 +139,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$this->validate($monographId);
 		$press =& $this->press;
 		$submission =& $this->submission;
+		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('submission.form.MonographGalleyForm');
 
@@ -158,7 +159,6 @@ class SubmissionLayoutHandler extends DesignerHandler {
 			}
 			Request::redirect(null, null, 'submission', $monographId);
 		} else {
-			$this->setupTemplate(true, $monographId, 'editing');
 			$submitForm->display();
 		}
 	}

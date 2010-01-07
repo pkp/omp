@@ -97,6 +97,8 @@ class ReviewFormHandler extends ManagerHandler {
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
+		$this->setupTemplate(true, $reviewForm);
+
 		if ($reviewFormId != null && (!isset($reviewForm) || $reviewForm->getCompleteCount() != 0 || $reviewForm->getIncompleteCount() != 0)) {
 			Request::redirect(null, null, 'reviewForms');
 		}
@@ -110,7 +112,6 @@ class ReviewFormHandler extends ManagerHandler {
 			$reviewFormForm->execute();
 			Request::redirect(null, null, 'reviewForms');
 		} else {
-			$this->setupTemplate(true, $reviewForm);
 			$templateMgr =& TemplateManager::getManager();
 
 			if ($reviewFormId == null) {
@@ -389,8 +390,11 @@ class ReviewFormHandler extends ManagerHandler {
 		$reviewFormId = Request::getUserVar('reviewFormId') === null? null : (int) Request::getUserVar('reviewFormId');
 		$reviewFormElementId = Request::getUserVar('reviewFormElementId') === null? null : (int) Request::getUserVar('reviewFormElementId');
 
-		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
+		$this->setupTemplate(true, $reviewForm);
+
+		$press =& Request::getPress();
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 
 		if (!$reviewFormDao->unusedReviewFormExists($reviewFormId, $press->getId()) || ($reviewFormElementId != null && !$reviewFormElementDao->reviewFormElementExists($reviewFormElementId, $reviewFormId))) {
@@ -438,10 +442,6 @@ class ReviewFormHandler extends ManagerHandler {
 			Request::redirect(null, null, 'reviewFormElements', array($reviewFormId));
 		} else {
 			$press =& Request::getPress();
-			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-			$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
-
-			$this->setupTemplate(true, $reviewForm);
 			$templateMgr =& TemplateManager::getManager();
 			if ($reviewFormElementId == null) {
 				$templateMgr->assign('pageTitle', 'manager.reviewFormElements.create');

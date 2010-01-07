@@ -663,6 +663,7 @@ class PeopleHandler extends ManagerHandler {
 		$this->validate();
 		$press =& Request::getPress();
 		$userId = Request::getUserVar('userId');
+		$this->setupTemplate(true);
 
 		if (!empty($userId) && !Validation::canAdminister($press->getId(), $userId)) {
 			// We don't have administrative rights
@@ -704,9 +705,7 @@ class PeopleHandler extends ManagerHandler {
 				if ($source = Request::getUserVar('source')) Request::redirectUrl($source);
 				else Request::redirect(null, null, 'people', 'all');
 			}
-
 		} else {
-			$this->setupTemplate(true);
 			$userForm->display();
 		}
 	}
