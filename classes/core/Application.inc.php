@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file classes/core/OMPApplication.inc.php
+ * @file classes/core/Application.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class OMPApplication
+ * @class Application
  * @ingroup core
  * @see PKPApplication
  *
@@ -25,26 +25,9 @@ define('ASSOC_TYPE_PRODUCTION_ASSIGNMENT',	0x0000202);
 
 define('CONTEXT_PRESS', 1);
 
-class OMPApplication extends PKPApplication {
-	function OMPApplication() {
+class Application extends PKPApplication {
+	function Application() {
 		parent::PKPApplication();
-	}
-
-	function initialize(&$application) {
-		PKPApplication::initialize($application);
-		import('i18n.Locale');
-	}
-
-	/**
-	 * Get the dispatcher implementation singleton
-	 * @return Dispatcher
-	 */
-	function &getDispatcher() {
-		$dispatcher =& parent::getDispatcher();
-
-		// Inject application-specific configuration
-		$dispatcher->addRouterName('core.OMPPageRouter', ROUTE_PAGE);
-		return $dispatcher;
 	}
 
 	/**
