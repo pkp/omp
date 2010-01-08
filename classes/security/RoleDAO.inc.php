@@ -411,7 +411,7 @@ class RoleDAO extends DAO {
 		}
 
 		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
-		$flexibleRole =& $flexibleRoleDao->getByPath($roleSymbolic, $pressId);
+		$flexibleRole =& $flexibleRoleDao->getByRoleId($roleId, $pressId, $flexibleRoleId);
 		if ($flexibleRole) {
 			return $plural ? $flexibleRole->getLocalizedPluralName() : $flexibleRole->getLocalizedName();
  		}

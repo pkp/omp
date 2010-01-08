@@ -80,10 +80,18 @@ class FlexibleRoleDAO extends DefaultSettingDAO
 	 * Retrieve a flexible role by ROLE_ID_.
 	 * @param $roleId string
 	 * @param $pressId int
+	 * @param $flexibleRoleId int
 	 * @return FlexibleRole
 	 */
-	function getByRoleId($roleId, $pressId){
-		$result =& $this->retrieve('SELECT * FROM flexible_roles WHERE press_id = ? AND role_id = ?', array($pressId, $roleId));
+	function getByRoleId($roleId, $pressId, $flexibleRoleId = null){
+		$params = array($pressId, $roleId);
+		if (isset($flexibleRoleId)) $params[] = $flexibleRoleId;
+
+		$result =& $this->retrieve(
+					'SELECT * FROM flexible_roles 
+					WHERE press_id = ? AND role_id = ?'. (isset($flexibleRoleId) ? ' AND flexible_role_id = ?' : ''), 
+					$params
+				);
 		
 		$returner = null;
 		if ($result->RecordCount() != 0) {
