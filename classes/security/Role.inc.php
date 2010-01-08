@@ -50,7 +50,7 @@ class Role extends DataObject {
 	 * @return String the key
 	 */
 	function getRoleName() {
-		return RoleDAO::getRoleName($this->getData('roleId'));
+		return RoleDAO::getRoleName($this->getData('roleId'), false, $this->getData('pressId'), $this->getData('flexibleRoleId'));
 	}
 
 	/**
@@ -119,7 +119,7 @@ class Role extends DataObject {
 	 */
 	function getFlexibleRoleId() {
 		$flexibleRoleId = $this->getData('flexibleRoleId');
-		if (empty($flexibleRoleId)) {
+		if (!isset($flexibleRoleId) && $this->getData('roleId') !== ROLE_ID_FLEXIBLE_ROLE) {
 			$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
 			$flexibleRole = $flexibleRoleDao->getByRoleId($this->getRoleId(), $this->getPressId());
 			$flexibleRoleId = $flexibleRole ? $flexibleRole->getId() : null;
