@@ -52,9 +52,13 @@ class PressSetupStep3Form extends PressSetupForm {
 		}
 
 		foreach($this->getFlexibleRoleArrangements() as $id => $roleArrangement) {
-			$roleIds[$id] = $flexibleRoleDao->getIdsByArrangementId($id, $press->getId());
-			foreach ($roleIds[$id] as $roleArrangement) {
-				$roleArrangements[$id][$idMap[$roleArrangement]] = '';
+			$roleIds = $flexibleRoleDao->getIdsByArrangementId($id, $press->getId());
+			if (isset($roleIds)) {
+				foreach ($roleIds as $roleArrangement) {
+					$roleArrangements[$id][$idMap[$roleArrangement]] = '';
+				}
+			} else {
+				$roleArrangements[$id] = array();
 			}
 		}
 
