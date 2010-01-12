@@ -6,7 +6,7 @@
  *
  * Step 3 of press setup.
  *
- * $Id: step3.tpl,v 1.16 2009/11/09 16:23:47 tylerl Exp $
+ * $Id$
  *}
 {assign var="pageTitle" value="manager.setup.preparingWorkflow"}
 {include file="manager/setup/setupHeader.tpl"}
@@ -69,17 +69,16 @@ function removeWorkflowRole(toName, prefix, roleId, roleName) {
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-		<td width="80%" class="value">
-			{url|assign:"setupFormUrl" op="setup" path="3"}
-			{form_language_chooser form="setupForm" url=$setupFormUrl}
-			<span class="instruct">{translate key="form.formLanguage.description"}</span>
-		</td>
-	</tr>
-</table>
-{/if}
+{fbvFormArea id="locales"}
+{fbvFormSection title="form.formLanguage" for="languageSelector"}
+	{fbvCustomElement}
+		{url|assign:"setupFormUrl" op="setup" path="1"}
+		{form_language_chooser form="setupForm" url=$setupFormUrl}
+		<span class="instruct">{translate key="form.formLanguage.description"}</span>
+	{/fbvCustomElement}
+{/fbvFormSection}
+{/fbvFormArea}
+{/if} {* count($formLocales) > 1*}
 
 <h3>3.1 {translate key="manager.setup.pressRoles"}</h3>
 

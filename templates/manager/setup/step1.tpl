@@ -15,73 +15,58 @@
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-		<td width="80%" class="value">
-			{url|assign:"setupFormUrl" op="setup" path="1"}
-			{form_language_chooser form="setupForm" url=$setupFormUrl}
-			<span class="instruct">{translate key="form.formLanguage.description"}</span>
-		</td>
-	</tr>
-</table>
-{/if}
+{fbvFormArea id="locales"}
+{fbvFormSection title="form.formLanguage" for="languageSelector"}
+	{fbvCustomElement}
+		{url|assign:"setupFormUrl" op="setup" path="1"}
+		{form_language_chooser form="setupForm" url=$setupFormUrl}
+		<p>{translate key="form.formLanguage.description"}</p>
+	{/fbvCustomElement}
+{/fbvFormSection}
+{/fbvFormArea}
+{/if} {* count($formLocales) > 1*}
 
 <h3>1.1 {translate key="manager.setup.generalInformation"}</h3>
 
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="name" required="true" key="manager.setup.pressName"}</td>
-		<td width="80%" class="value"><input type="text" name="name[{$formLocale|escape}]" id="name" value="{$name[$formLocale]|escape}" size="40" maxlength="120" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="initials" required="true" key="manager.setup.pressInitials"}</td>
-		<td width="80%" class="value"><input type="text" name="initials[{$formLocale|escape}]" id="initials" value="{$initials[$formLocale]|escape}" size="8" maxlength="16" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="description" key="manager.setup.pressDescription"}</td>
-		<td class="value"><textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="10" class="textArea">{$description[$formLocale]|escape}</textarea></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="mailingAddress" key="common.mailingAddress"}</td>
-		<td width="80%" class="value">
-			<textarea name="mailingAddress" id="mailingAddress" rows="3" cols="40" class="textArea">{$mailingAddress|escape}</textarea>
-			<br />
-			<span class="instruct">{translate key="manager.setup.mailingAddressDescription"}</span>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td colspan="2" class="label">
-			<input type="checkbox" name="pressEnabled" id="pressEnabled" value="1"{if $pressEnabled} checked="checked"{/if} /> <label for="pressEnabled">{translate key="manager.setup.enablePressInstructions"}</label>
-		</td>
-	</tr>
-</table>
-
+{fbvFormArea id="generalInformation"}
+{fbvFormSection title="common.name"}
+	{fbvElement type="text" label="manager.setup.pressName" name="name[$formLocale]" id="name" value=$name[$formLocale] maxlength="120" size=$fbvStyles.size.LARGE required="true"}
+	{fbvElement type="text" label="manager.setup.pressInitials" name="initials[$formLocale]" id="initials" value=$initials[$formLocale] maxlength="16" size=$fbvStyles.size.SMALL required="true"}
+{/fbvFormSection}
+{fbvFormSection title="manager.setup.pressDescription" for="description" float=$fbvStyles.float.LEFT}
+	{fbvElement type="textarea" name="description[$formLocale]" id="description" value=$description[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+{/fbvFormSection}
+{fbvFormSection title="common.mailingAddress" for="mailingAddress" group="true" float=$fbvStyles.float.RIGHT}
+	{fbvCustomElement}
+		{fbvTextarea id="mailingAddress" value=$mailingAddress size=$fbvStyles.size.SMALL}
+		<br />
+		<span>{translate key="manager.setup.mailingAddressDescription"}</span>
+	{/fbvCustomElement}
+{/fbvFormSection}
+{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvElement type="checkbox" id="pressEnabled" value="1" checked=$pressEnabled label="manager.setup.enablePressInstructions"}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <div class="separator"></div>
 
 <h3>1.2 {translate key="manager.setup.emails"}</h3>
-<table width="100%" class="data">
-	<tr valign="top"><td colspan="2">{translate key="manager.setup.emailSignatureDescription"}<br />&nbsp;</td></tr>
-	<tr valign="top">
-		<td class="label">{fieldLabel name="emailSignature" key="manager.setup.emailSignature"}</td>
-		<td class="value">
-			<textarea name="emailSignature" id="emailSignature" rows="3" cols="60" class="textArea">{$emailSignature|escape}</textarea>
-		</td>
-	</tr>
-	<tr valign="top"><td colspan="2">&nbsp;</td></tr>
-	<tr valign="top"><td colspan="2">{translate key="manager.setup.emailBounceAddressDescription"}<br />&nbsp;</td></tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="envelopeSender" key="manager.setup.emailBounceAddress"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="envelopeSender" id="envelopeSender" size="40" maxlength="255" class="textField" {if !$envelopeSenderEnabled}disabled="disabled" value=""{else}value="{$envelopeSender|escape}"{/if} />
-			{if !$envelopeSenderEnabled}
-			<br />
-			<span class="instruct">{translate key="manager.setup.emailBounceAddressDisabled"}</span>
-			{/if}
-		</td>
-	</tr>
-</table>
+
+<p>{translate key="manager.setup.emailSignatureDescription"}</p>
+
+{fbvFormArea id="emails"}
+{fbvFormSection title="manager.setup.emailSignature" for="emailSignature"}
+	{fbvElement type="textarea" id="emailSignature" value=$emailSignature size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.2OF3}
+{/fbvFormSection}
+{fbvFormSection title="manager.setup.emailBounceAddress" for="envelopeSender"}
+	<p>{translate key="manager.setup.emailBounceAddressDescription"}</p>
+	{fbvElement type="text" id="envelopeSender" value=$envelopeSender maxlength="90" disabled=!$envelopeSenderEnabled size=$fbvStyles.size.LARGE}
+	{if !$envelopeSenderEnabled}
+		<div class="clear"></div>
+		<p>{translate key="manager.setup.emailBounceAddressDisabled"}</p>
+	{/if}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <div class="separator"></div>
 
@@ -89,37 +74,29 @@
 
 <p>{translate key="manager.setup.principalContactDescription"}</p>
 
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="contactName" key="user.name" required="true"}</td>
-		<td width="80%" class="value"><input type="text" name="contactName" id="contactName" value="{$contactName|escape}" size="30" maxlength="60" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="contactTitle" key="user.title"}</td>
-		<td width="80%" class="value"><input type="text" name="contactTitle[{$formLocale|escape}]" id="contactTitle" value="{$contactTitle[$formLocale]|escape}" size="30" maxlength="90" class="textField" /></td>
-	</tr>	
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="contactAffiliation" key="user.affiliation"}</td>
-		<td width="80%" class="value"><textarea name="contactAffiliation[{$formLocale|escape}]" id="contactAffiliation" rows="5" cols="40" class="textArea">{$contactAffiliation[$formLocale]|escape}</textarea></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="contactEmail" key="user.email" required="true"}</td>
-		<td width="80%" class="value"><input type="text" name="contactEmail" id="contactEmail" value="{$contactEmail|escape}" size="30" maxlength="90" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="contactPhone" key="user.phone"}</td>
-		<td width="80%" class="value"><input type="text" name="contactPhone" id="contactPhone" value="{$contactPhone|escape}" size="15" maxlength="24" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="contactFax" key="user.fax"}</td>
-		<td width="80%" class="value"><input type="text" name="contactFax" id="contactFax" value="{$contactFax|escape}" size="15" maxlength="24" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="contactMailingAddress" key="common.mailingAddress"}</td>
-		<td width="80%" class="value"><textarea name="contactMailingAddress[{$formLocale|escape}]" id="contactMailingAddress" rows="3" cols="40" class="textArea">{$contactMailingAddress[$formLocale]|escape}</textarea></td>
-	</tr>
-</table>
-
+{fbvFormArea id="principalContact"}
+{fbvFormSection title="user.name" required="true" for="contactName"}
+	{fbvElement type="text" id="contactName" value=$contactName maxlength="60" required="true"}
+{/fbvFormSection}
+{fbvFormSection title="user.title" for="contactTitle"}
+	{fbvElement type="text" name="contactTitle[$formLocale]" id="contactTitle" value=$contactTitle[$formLocale] maxlength="90"}
+{/fbvFormSection}
+{fbvFormSection title="user.affiliation" for="contactAffiliation"}
+	{fbvElement type="textarea" name="contactAffiliation[$formLocale]" id="contactAffiliation" value=$contactAffiliation[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF2}
+{/fbvFormSection}
+{fbvFormSection title="user.email" for="contactEmail" required="true"}
+	{fbvElement type="text" id="contactEmail" value=$contactEmail maxlength="90" required="true"}
+{/fbvFormSection}
+{fbvFormSection title="user.phone" for="contactPhone" float=$fbvStyles.float.LEFT}
+	{fbvElement type="text" id="contactPhone" value=$contactPhone maxlength="24"}
+{/fbvFormSection}
+{fbvFormSection title="user.fax" for="contactFax" float=$fbvStyles.float.RIGHT}
+	{fbvElement type="text" id="contactFax" value=$contactFax maxlength="24"}
+{/fbvFormSection}
+{fbvFormSection title="common.mailingAddress" for="contactMailingAddress"}
+	{fbvElement type="textarea" name="contactMailingAddress[$formLocale]" id="contactMailingAddress" value=$contactMailingAddress[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF2}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <div class="separator"></div>
 
@@ -128,17 +105,19 @@
 <div class="separator"></div>
 
 <h3>1.5 {translate key="manager.setup.sponsors"}</h3>
- 
+
 <p>{translate key="manager.setup.sponsorsDescription"}</p>
-<br />
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="sponsorNote" key="manager.setup.note"}</td>
-		<td width="80%" class="value"><textarea name="sponsorNote[{$formLocale|escape}]" id="sponsorNote" rows="5" cols="40" class="textArea">{$sponsorNote[$formLocale]|escape}</textarea></td>
-	</tr>
-</table>
+
+{fbvFormArea id="sponsors"}
+{fbvFormSection title="manager.setup.note" for="sponsorNote"}
+	{fbvElement type="textarea" name="sponsorNote[$formLocale]" id="sponsorNote" value=$sponsorNote[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+{/fbvFormSection}
+{/fbvFormArea}
 
 {load_url_in_div id="sponsorGridDiv" url=$sponsorGridUrl}
+<p><input type="submit" name="addSponsor" value="{translate key="manager.setup.addSponsor"}" class="button" /></p>
+
+<div class="separator"></div>
 
 <h3>1.6 {translate key="manager.setup.contributors"}</h3>
 
@@ -183,20 +162,17 @@
 
 <p>{translate key="manager.setup.technicalSupportContactDescription"}</p>
 
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="supportName" key="user.name" required="true"}</td>
-		<td width="80%" class="value"><input type="text" name="supportName" id="supportName" value="{$supportName|escape}" size="30" maxlength="60" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="supportEmail" key="user.email" required="true"}</td>
-		<td width="80%" class="value"><input type="text" name="supportEmail" id="supportEmail" value="{$supportEmail|escape}" size="30" maxlength="90" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="supportPhone" key="user.phone"}</td>
-		<td width="80%" class="value"><input type="text" name="supportPhone" id="supportPhone" value="{$supportPhone|escape}" size="15" maxlength="24" class="textField" /></td>
-	</tr>
-</table>
+{fbvFormArea id="technicalSupportContact"}
+{fbvFormSection title="user.name" for="supportName" required="true"}
+	{fbvElement type="text" id="supportName" value=$supportName maxlength="60" required="true"}
+{/fbvFormSection}
+{fbvFormSection title="user.email" for="supportEmail" required="true" float=$fbvStyles.float.LEFT}
+	{fbvElement type="text" id="supportEmail" value=$supportEmail maxlength="90" required="true"}
+{/fbvFormSection}
+{fbvFormSection title="user.phone" for="supportPhone" float=$fbvStyles.float.RIGHT}
+	{fbvElement type="text" id="supportPhone" value=$supportPhone maxlength="24"}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <div class="separator"></div>
 

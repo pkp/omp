@@ -34,7 +34,7 @@
 </a>
 </td>
 <td>
-{$artwork->getIdentifier()}<br />
+{$artwork->getIdentifier()|escape}<br />
 Revision: {$artwork->getRevision()}<br />
 <a href="{url op="removeArtworkFile" path=$submission->getMonographId()|to_array:$artwork->getFileId()}">Remove</a>
 </td>

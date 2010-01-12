@@ -66,7 +66,7 @@
 		<td colspan="5">
 			{translate key="common.file"}:
 			{if $initialProductionFile}
-				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$initialProductionFile->getFileId():$initialProductionFile->getRevision()}" class="file">{$initialProductionFile->getFileName()}</a>&nbsp;&nbsp;{$initialProductionFile->getDateModified()|date_format:$dateFormatShort}
+				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$initialProductionFile->getFileId():$initialProductionFile->getRevision()}" class="file">{$initialProductionFile->getFileName()|escape}</a>&nbsp;&nbsp;{$initialProductionFile->getDateModified()|date_format:$dateFormatShort}
 			{else}
 				{translate key="submission.production.mustUploadFileForProduction"}
 			{/if}
