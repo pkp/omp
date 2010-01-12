@@ -95,17 +95,16 @@ function prepBlockFields() {
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-		<td width="80%" class="value">
-			{url|assign:"setupFormUrl" op="setup" path="5"}
-			{form_language_chooser form="setupForm" url=$setupFormUrl}
-			<span class="instruct">{translate key="form.formLanguage.description"}</span>
-		</td>
-	</tr>
-</table>
-{/if}
+{fbvFormArea id="locales"}
+{fbvFormSection title="form.formLanguage" for="languageSelector"}
+	{fbvCustomElement}
+		{url|assign:"setupFormUrl" op="setup" path="1"}
+		{form_language_chooser form="setupForm" url=$setupFormUrl}
+		<span class="instruct">{translate key="form.formLanguage.description"}</span>
+	{/fbvCustomElement}
+{/fbvFormSection}
+{/fbvFormArea}
+{/if} {* count($formLocales) > 1*}
 
 <h3>5.1 {translate key="manager.setup.pressHomepageHeader"}</h3>
 
@@ -178,7 +177,11 @@ function prepBlockFields() {
 
 <p>{translate key="manager.setup.pressDescriptionDescription"}</p>
 
-<p><textarea id="description" name="description[{$formLocale|escape}]" rows="3" cols="60" class="textArea">{$description[$formLocale]|escape}</textarea></p>
+{fbvFormArea id="pressDescription"}
+{fbvFormSection}
+	{fbvElement type="textarea" name="description[$formLocale]" id="description" value=$description[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <h4>{translate key="manager.setup.homepageImage"}</h4>
 
@@ -222,39 +225,33 @@ function prepBlockFields() {
 
 <p>{translate key="manager.setup.additionalContentDescription"}</p>
 
-<p><textarea name="additionalHomeContent[{$formLocale|escape}]" id="additionalHomeContent" rows="12" cols="60" class="textArea">{$additionalHomeContent[$formLocale]|escape}</textarea></p>
-
+{fbvFormArea id="additionalContent"}
+{fbvFormSection}
+	{fbvElement type="textarea" name="additionalHomeContent[$formLocale]" id="additionalHomeContent" value=$additionalHomeContent[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <div class="separator"></div>
 
 <h3>5.3 {translate key="manager.setup.addItemtoAboutPress"}</h3>
 
-<table width="100%" class="data">
+{fbvFormArea id="addItemtoAboutPress"}
 {foreach name=customAboutItems from=$customAboutItems[$formLocale] key=aboutId item=aboutItem}
-	<tr valign="top">
-		<td width="5%" class="label">{fieldLabel name="customAboutItems-$aboutId-title" key="common.title"}</td>
-		<td width="95%" class="value"><input type="text" name="customAboutItems[{$formLocale|escape}][{$aboutId|escape}][title]" id="customAboutItems-{$aboutId|escape}-title" value="{$aboutItem.title|escape}" size="40" maxlength="255" class="textField" />{if $smarty.foreach.customAboutItems.total > 1} <input type="submit" name="delCustomAboutItem[{$aboutId|escape}]" value="{translate key="common.delete"}" class="button" />{/if}</td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="customAboutItems-$aboutId-content" key="manager.setup.aboutItemContent"}</td>
-		<td width="80%" class="value"><textarea name="customAboutItems[{$formLocale|escape}][{$aboutId|escape}][content]" id="customAboutItems-{$aboutId|escape}-content" rows="12" cols="40" class="textArea">{$aboutItem.content|escape}</textarea></td>
-	</tr>
-	{if !$smarty.foreach.customAboutItems.last}
-	<tr valign="top">
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
-	{/if}
+	{fbvFormSection title="common.title" for="customAboutItems-$aboutId-title"}
+		{fbvElement type="text" name="customAboutItems[$formLocale][$aboutId][title]" id="customAboutItems-$aboutId-title" value=$aboutItem.title maxlength="255"}
+	{/fbvFormSection}
+	{fbvFormSection title="manager.setup.aboutItemContent" for="customAboutItems-$aboutId-content"}
+		{fbvElement type="textarea" name="customAboutItems[$formLocale][$aboutId][content]" id="customAboutItems-$aboutId-content" value=$aboutItem.content size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+	{/fbvFormSection}
 {foreachelse}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-title" key="common.title"}</td>
-		<td width="80%" class="value"><input type="text" name="customAboutItems[{$formLocale|escape}][0][title]" id="customAboutItems-0-title" value="" size="40" maxlength="255" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="customAboutItems-0-content" key="manager.setup.aboutItemContent"}</td>
-		<td width="80%" class="value"><textarea name="customAboutItems[{$formLocale|escape}][0][content]" id="customAboutItems-0-content" rows="12" cols="40" class="textArea"></textarea></td>
-	</tr>
+	{fbvFormSection title="common.title" for="customAboutItems-0-title"}
+		{fbvElement type="text" name="customAboutItems[$formLocale][0][title]" id="customAboutItems-0-title" value="" maxlength="255"}
+	{/fbvFormSection}
+	{fbvFormSection title="manager.setup.aboutItemContent" for="customAboutItems-0-content"}
+		{fbvElement type="textarea" name="customAboutItems[$formLocale][0][content]" id="customAboutItems-0-content" value="" size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+	{/fbvFormSection}
 {/foreach}
-</table>
+{/fbvFormArea}
 
 <p><input type="submit" name="addCustomAboutItem" value="{translate key="manager.setup.addAboutItem"}" class="button" /></p>
 
@@ -266,19 +263,29 @@ function prepBlockFields() {
 
 <h4>{translate key="manager.setup.information.forReaders"}</h4>
 
-<p><textarea name="readerInformation[{$formLocale|escape}]" id="readerInformation" rows="12" cols="60" class="textArea">{$readerInformation[$formLocale]|escape}</textarea></p>
+{fbvFormArea id="forReaders"}
+{fbvFormSection}
+	{fbvElement type="textarea" name="readerInformation[$formLocale]" id="readerInformation" value=$readerInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <h4>{translate key="manager.setup.information.forAuthors"}</h4>
 
-<p><textarea name="authorInformation[{$formLocale|escape}]" id="authorInformation" rows="12" cols="60" class="textArea">{$authorInformation[$formLocale]|escape}</textarea></p>
+{fbvFormArea id="forAuthors"}
+{fbvFormSection}
+	{fbvElement type="textarea" name="authorInformation[$formLocale]" id="authorInformation" value=$authorInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <h4>{translate key="manager.setup.information.forLibrarians"}</h4>
 
-<p><textarea name="librarianInformation[{$formLocale|escape}]" id="librarianInformation" rows="12" cols="60" class="textArea">{$librarianInformation[$formLocale]|escape}</textarea></p>
-
+{fbvFormArea id="forLibrarians"}
+{fbvFormSection}
+	{fbvElement type="textarea" name="librarianInformation[$formLocale]" id="librarianInformation" value=$librarianInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <div class="separator"></div>
-
 
 <h3>5.5 {translate key="manager.setup.pressLayout"}</h3>
 
@@ -422,8 +429,11 @@ function prepBlockFields() {
 
 <p>{translate key="manager.setup.alternateHeaderDescription"}</p>
 
-<p><textarea name="pressPageHeader[{$formLocale|escape}]" id="pressPageHeader" rows="12" cols="60" class="textArea">{$pressPageHeader[$formLocale]|escape}</textarea></p>
-
+{fbvFormArea id="alternateHeader"}
+{fbvFormSection}
+	{fbvElement type="textarea" name="pressPageHeader[$formLocale]" id="pressPageHeader" value=$pressPageHeader[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <div class="separator"></div>
 
@@ -432,11 +442,13 @@ function prepBlockFields() {
 
 <p>{translate key="manager.setup.pressPageFooterDescription"}</p>
 
-<p><textarea name="pressPageFooter[{$formLocale|escape}]" id="pressPageFooter" rows="12" cols="60" class="textArea">{$pressPageFooter[$formLocale]|escape}</textarea></p>
-
+{fbvFormArea id="pressPageFooter"}
+{fbvFormSection}
+	{fbvElement type="textarea" name="pressPageFooter[$formLocale]" id="pressPageFooter" value=$pressPageFooter[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <div class="separator"></div>
-
 
 <h3>5.8 {translate key="manager.setup.navigationBar"}</h3>
 
@@ -508,16 +520,15 @@ function prepBlockFields() {
 
 <h3>5.9 {translate key="manager.setup.lists"}</h3>
 <p>{translate key="manager.setup.listsDescription"}</p>
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="manager.setup.itemsPerPage"}</td>
-		<td width="80%" class="value"><input type="text" size="3" name="itemsPerPage" class="textField" value="{$itemsPerPage|escape}" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{translate key="manager.setup.numPageLinks"}</td>
-		<td width="80%" class="value"><input type="text" size="3" name="numPageLinks" class="textField" value="{$numPageLinks|escape}" /></td>
-	</tr>
-</table>
+
+{fbvFormArea id="lists"}
+{fbvFormSection float=$fbvStyles.float.LEFT title="manager.setup.itemsPerPage"}
+	{fbvElement type="text" id="itemsPerPage" value=$itemsPerPage size=$fbvStyles.size.SMALL}
+{/fbvFormSection}
+{fbvFormSection float=$fbvStyles.float.RIGHT title="manager.setup.numPageLinks"}
+	{fbvElement type="text" id="numPageLinks" value=$numPageLinks size=$fbvStyles.size.SMALL}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <div class="separator"></div>
 

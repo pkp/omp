@@ -15,26 +15,29 @@
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-		<td width="80%" class="value">
-			{url|assign:"setupFormUrl" op="setup" path="4"}
-			{form_language_chooser form="setupForm" url=$setupFormUrl}
-			<span class="instruct">{translate key="form.formLanguage.description"}</span>
-		</td>
-	</tr>
-</table>
-{/if}
+{fbvFormArea id="locales"}
+{fbvFormSection title="form.formLanguage" for="languageSelector"}
+	{fbvCustomElement}
+		{url|assign:"setupFormUrl" op="setup" path="1"}
+		{form_language_chooser form="setupForm" url=$setupFormUrl}
+		<span class="instruct">{translate key="form.formLanguage.description"}</span>
+	{/fbvCustomElement}
+{/fbvFormSection}
+{/fbvFormArea}
+{/if} {* count($formLocales) > 1*}
 
 <h3>4.1 {translate key="manager.setup.securitySettings"}</h3>
 
 <h4>{translate key="manager.setup.onlineAccessManagement"}</h4>
 
 <h4>{translate key="manager.setup.openAccessPolicy"}</h4>
-<p><span class="instruct">{translate key="manager.setup.openAccessPolicyDescription"}</span></p>
+<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
 
-<p><textarea name="openAccessPolicy[{$formLocale|escape}]" id="openAccessPolicy" rows="12" cols="60" class="textArea">{$openAccessPolicy[$formLocale]|escape}</textarea></p>
+{fbvFormArea id="openAccessPolicy"}
+{fbvFormSection}
+	{fbvElement type="textarea" name="openAccessPolicy[$formLocale]" id="openAccessPolicy" value=$openAccessPolicy[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <p>{translate key="manager.setup.securitySettingsDescription"}</p>
 
@@ -56,61 +59,23 @@ function setRegAllowOpts(form) {
 {/literal}
 </script>
 
-<h4>{translate key="manager.setup.siteAccess"}</h4>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="restrictSiteAccess" id="restrictSiteAccess" value="1"{if $restrictSiteAccess} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="restrictSiteAccess">{translate key="manager.setup.restrictSiteAccess"}</label></td>
-	</tr>
-	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="restrictMonographAccess" id="restrictMonographAccess" value="1"{if $restrictMonographAccess} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="restrictMonographAccess">{translate key="manager.setup.restrictMonographAccess"}</label></td>
-	</tr>
-</table>
-
-<h4>{translate key="manager.setup.userRegistration"}</h4>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label"><input type="radio" name="disableUserReg" id="disableUserReg-0" value="0" onclick="setRegAllowOpts(this.form)"{if !$disableUserReg} checked="checked"{/if} /></td>
-		<td width="95%" class="value">
-			<label for="disableUserReg-0">{translate key="manager.setup.enableUserRegistration"}</label>
-			<table width="100%">
-				<tr>
-					<td width="5%"><input type="checkbox" name="allowRegReader" id="allowRegReader" value="1"{if $allowRegReader} checked="checked"{/if}{if $disableUserReg} disabled="disabled"{/if} /></td>
-					<td width="95%"><label for="allowRegReader">{translate key="manager.setup.enableUserRegistration.reader"}</label></td>
-				</tr>
-				<tr>
-					<td width="5%"><input type="checkbox" name="allowRegAuthor" id="allowRegAuthor" value="1"{if $allowRegAuthor} checked="checked"{/if}{if $disableUserReg} disabled="disabled"{/if} /></td>
-					<td width="95%"><label for="allowRegAuthor">{translate key="manager.setup.enableUserRegistration.author"}</label></td>
-				</tr>
-				<tr>
-					<td width="5%"><input type="checkbox" name="allowRegReviewer" id="allowRegReviewer" value="1"{if $allowRegReviewer} checked="checked"{/if}{if $disableUserReg} disabled="disabled"{/if} /></td>
-					<td width="95%"><label for="allowRegReviewer">{translate key="manager.setup.enableUserRegistration.reviewer"}</label></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="5%" class="label"><input type="radio" name="disableUserReg" id="disableUserReg-1" value="1" onclick="setRegAllowOpts(this.form)"{if $disableUserReg} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="disableUserReg-1">{translate key="manager.setup.disableUserRegistration"}</label></td>
-	</tr>
-</table>
-
-<h4>{translate key="manager.setup.loggingAndAuditing"}</h4>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="monographEventLog" id="monographEventLog" value="1"{if $monographEventLog} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="monographEventLog">{translate key="manager.setup.submissionEventLogging"}</label></td>
-	</tr>
-	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="monographEmailLog" id="monographEmailLog" value="1"{if $monographEmailLog} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="monographEmailLog">{translate key="manager.setup.submissionEmailLogging"}</label></td>
-	</tr>
-</table>
-
+{fbvFormArea id="siteAccess"}
+{fbvFormSection title="manager.setup.siteAccess" layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvElement type="checkbox" id="restrictSiteAccess" value="1" checked=$restrictSiteAccess label="manager.setup.restrictSiteAccess"}
+	{fbvElement type="checkbox" id="restrictMonographAccess" value="1" checked=$restrictMonographAccess label="manager.setup.restrictMonographAccess"}
+{/fbvFormSection}
+{fbvFormSection title="manager.setup.userRegistration" layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvElement type="radio" id="disableUserReg-0" name="disableUserReg" value="0" onclick="setRegAllowOpts(this.form)" checked=!$disableUserReg label="manager.setup.enableUserRegistration"}
+		{fbvElement type="checkbox" id="allowRegReader" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="manager.setup.enableUserRegistration.reader"}
+		{fbvElement type="checkbox" id="allowRegAuthor" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="manager.setup.enableUserRegistration.author"}
+		{fbvElement type="checkbox" id="allowRegReviewer" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="manager.setup.enableUserRegistration.reviewer"}
+	{fbvElement type="radio" id="disableUserReg-1" name="disableUserReg" value="1" onclick="setRegAllowOpts(this.form)" checked=$disableUserReg label="manager.setup.disableUserRegistration"}
+{/fbvFormSection}
+{fbvFormSection title="manager.setup.loggingAndAuditing" layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvElement type="checkbox" id="monographEventLog" value="1" checked=$monographEventLog label="manager.setup.submissionEventLogging"}
+	{fbvElement type="checkbox" id="monographEmailLog" value="1" checked=$monographEmailLog label="manager.setup.submissionEmailLogging"}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <div class="separator"></div>
 
@@ -148,41 +113,28 @@ function setRegAllowOpts(form) {
 
 <p>{translate key="manager.setup.announcementsIntroductionDescription"}</p>
 
-<p><textarea name="announcementsIntroduction[{$formLocale|escape}]" id="announcementsIntroduction" rows="12" cols="60" class="textArea">{$announcementsIntroduction[$formLocale]|escape}</textarea></p>
+{fbvFormArea id="announcementsIntroduction"}
+{fbvFormSection}
+	{fbvElement type="textarea" name="announcementsIntroduction[$formLocale]" id="announcementsIntroduction" value=$announcementsIntroduction[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <div class="separator"></div>
 
 <h3>4.3 {translate key="manager.setup.publicIdentifier"}</h3>
 
-<h4>{translate key="manager.setup.uniqueIdentifier"}</h4>
-
-<p>{translate key="manager.setup.uniqueIdentifierDescription"}</p>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td class="label"><input type="checkbox" name="enablePublicMonographId" id="enablePublicMonographId" value="1"{if $enablePublicMonographId} checked="checked"{/if} /></td>
-		<td class="value"><label for="enablePublicMonographId">{translate key="manager.setup.enablePublicMonographId"}</label></td>
-	</tr>
-	<tr valign="top">
-		<td class="label"><input type="checkbox" name="enablePublicGalleyId" id="enablePublicGalleyId" value="1"{if $enablePublicGalleyId} checked="checked"{/if} /></td>
-		<td class="value"><label for="enablePublicGalleyId">{translate key="manager.setup.enablePublicGalleyId"}</label></td>
-	</tr>
-	<tr valign="top">
-		<td class="label"><input type="checkbox" name="enablePublicSuppFileId" id="enablePublicSuppFileId" value="1"{if $enablePublicSuppFileId} checked="checked"{/if} /></td>
-		<td class="value"><label for="enablePublicSuppFileId">{translate key="manager.setup.enablePublicSuppFileId"}</label></td>
-	</tr>
-</table>
-
-<br />
-
-<h4>{translate key="manager.setup.pageNumberIdentifier"}</h4>
-
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="5%" class="label"><input type="checkbox" name="enablePageNumber" id="enablePageNumber" value="1"{if $enablePageNumber} checked="checked"{/if} /></td>
-		<td width="95%" class="value"><label for="enablePageNumber">{translate key="manager.setup.enablePageNumber"}</label></td>
-	</tr>
-</table>
+{fbvFormArea id="publicIdentifier"}
+{fbvFormSection title="manager.setup.uniqueIdentifier" layout=$fbvStyles.layout.ONE_COLUMN}
+	<p>{translate key="manager.setup.uniqueIdentifierDescription"}</p>
+	<br />
+	{fbvElement type="checkbox" id="enablePublicMonographId" value="1" checked=$enablePublicMonographId label="manager.setup.enablePublicMonographId"}
+	{fbvElement type="checkbox" id="enablePublicGalleyId" value="1" checked=$enablePublicGalleyId label="manager.setup.enablePublicGalleyId"}
+	{fbvElement type="checkbox" id="enablePublicSuppFileId" value="1" checked=$enablePublicSuppFileId label="manager.setup.enablePublicSuppFileId"}
+{/fbvFormSection}
+{fbvFormSection title="manager.setup.pageNumberIdentifier" layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvElement type="checkbox" id="enablePageNumber" value="1" checked=$enablePageNumber label="manager.setup.enablePageNumber"}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <div class="separator"></div>
 
@@ -194,24 +146,17 @@ function setRegAllowOpts(form) {
 
 <p>{translate key="manager.setup.searchEngineIndexingDescription"}</p>
 
-<table width="100%" class="data">
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="searchDescription" key="common.description"}</td>
-		<td width="80%" class="value"><input type="text" name="searchDescription[{$formLocale|escape}]" id="searchDescription" value="{$searchDescription[$formLocale]|escape}" size="40" maxlength="255" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="searchKeywords" key="common.keywords"}</td>
-		<td width="80%" class="value"><input type="text" name="searchKeywords[{$formLocale|escape}]" id="searchKeywords" value="{$searchKeywords[$formLocale]|escape}" size="40" maxlength="255" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="customHeaders" key="manager.setup.customTags"}</td>
-		<td width="80%" class="value">
-			<textarea name="customHeaders[{$formLocale|escape}]" id="customHeaders" rows="3" cols="40" class="textArea">{$customHeaders[$formLocale]|escape}</textarea>
-			<br />
-			<span class="instruct">{translate key="manager.setup.customTagsDescription"}</span>
-		</td>
-	</tr>
-</table>
+{fbvFormArea id="searchEngineIndexing"}
+{fbvFormSection title="common.description" float=$fbvStyles.float.LEFT}
+	{fbvElement type="text" id="searchDescription" name="searchDescription[$formLocale]" value=$searchDescription[$formLocale] size=$fbvStyles.size.LARGE}
+{/fbvFormSection}
+{fbvFormSection title="common.keywords" float=$fbvStyles.float.RIGHT}
+	{fbvElement type="text" id="searchKeywords" name="searchKeywords[$formLocale]" value=$searchKeywords[$formLocale] size=$fbvStyles.size.LARGE}
+{/fbvFormSection}
+{fbvFormSection title="manager.setup.customTags"}
+	{fbvElement type="textarea" id="customHeaders" name="customHeaders[$formLocale]" value=$customHeaders[$formLocale] measure=$fbvStyles.measure.1OF2}
+{/fbvFormSection}
+{/fbvFormArea}
 
 <div class="separator"></div>
 

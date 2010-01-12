@@ -35,6 +35,9 @@
 	<message key="manager.setup.issnDescription"><![CDATA[The ISSN (International Standard Serial Number) is an eight-digit number which identifies periodical publications as such, including electronic serials. It is managed by a world wide network of National Centres coordinated by an International Centre based in Paris, backed by Unesco and the French Government. A number can be obtained from the <a href="http://www.issn.org" target="_new">ISSN web site</a>.  This can be done at any point in operating the press.]]></message>
 	<message key="manager.setup.sortableByComponent">Sortable by component</message>
 
+	<message key="manager.setup.cataloguingMetadata">Cataloguing Metadata</message>
+	<message key="manager.setup.divisionsAndSeries">Divisions and Series</message>
+	<message key="manager.setup.reviewForms">Review Forms</message>
 
 	<message key="manager.setup.authorRole">Author Role</message>
 	<message key="manager.setup.pressRole">Press Role</message>
