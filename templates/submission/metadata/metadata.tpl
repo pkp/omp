@@ -48,7 +48,7 @@ function show(id) {
 	<div class="{if $authorIndex % 2}oddSideIndicator{else}evenSideIndicator{/if}">
 		{assign var=emailString value="`$author->getFullName()` <`$author->getEmail()`>"}
 		{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle()|strip_tags monographId=$submission->getMonographId()}
-		&nbsp;<a href="javascript:show('authors-{$author->getId()|escape}-display')">{$author->getFullname()}</a>&nbsp;{icon name="mail" url=$url}
+		&nbsp;<a href="javascript:show('authors-{$author->getId()|escape}-display')">{$author->getFullName()|escape}</a>&nbsp;{icon name="mail" url=$url}
 		{if $author->getPrimaryContact()}<br />&nbsp;{translate key="author.submit.selectPrincipalContact"}{/if}
 	<br />
 	</div>

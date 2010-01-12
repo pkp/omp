@@ -36,9 +36,9 @@ function show(id) {
 	</td>
 	<td>
 	<table>
-	<tr><td>{translate key="common.originalFileName"}:&nbsp;</td><td>{$file->getOriginalFileName()}</td></tr>
+	<tr><td>{translate key="common.originalFileName"}:&nbsp;</td><td>{$file->getOriginalFileName()|escape}</td></tr>
 	<tr><td>{translate key="common.fileSize"}:&nbsp;</td><td>{$file->getNiceFileSize()}</td></tr>
-	<tr><td>{translate key="common.type"}:&nbsp;</td><td>{$file->getExtension()}</td></tr>
+	<tr><td>{translate key="common.type"}:&nbsp;</td><td>{$file->getExtension()|escape}</td></tr>
 	<tr><td>{translate key="common.dateUploaded"}:&nbsp;</td><td>{$file->getDateUploaded()}</td></tr>
 	<tr><td colspan="2"><input type="submit" name="removeArtwork[{$artwork->getId()}]" value="{translate key="common.delete"}" class="button" /></td></tr>
 	</table>
@@ -109,7 +109,7 @@ function show(id) {
 					<select name="artwork[{$artwork->getId()|escape}][artwork_contact]">
 					<option value="0">--{translate key="common.select"}--</option>
 					{foreach from=$submission->getAuthors() item=author}
-						<option value="{$author->getId()}" {if $author->getId() == $artwork->getContactAuthor()}selected="selected"{/if}>{$author->getFullName()}</option>
+						<option value="{$author->getId()}" {if $author->getId() == $artwork->getContactAuthor()}selected="selected"{/if}>{$author->getFullName()|escape}</option>
 					{/foreach}
 					</select> 
 				</td>
@@ -182,7 +182,7 @@ function show(id) {
 			<select name="artwork_contact">
 			<option value="0">--{translate key="common.select"}--</option>
 			{foreach from=$submission->getAuthors() item=author}
-				<option value="{$author->getId()}">{$author->getFullName()}</option>
+				<option value="{$author->getId()}">{$author->getFullName()|escape}</option>
 			{/foreach}
 			</select> 
 		</td>

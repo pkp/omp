@@ -90,7 +90,7 @@
 <tr valign="top">
 	<td><input type="checkbox" name="selectedAssignments[]" value="{$assignmentId}" /></td>
 	<td>
-		{$productionAssignment->getLabel()}
+		{$productionAssignment->getLabel()|escape}
 	</td>
 	<td>{icon name="comment" disabled="disable"}</td>
 	<td>
@@ -132,7 +132,7 @@
 <tr valign="top">
 	<td></td>
 	<td>
-		<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$galley->getFileId()}">{$galley->getFileName()}</a>
+		<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$galley->getFileId()}">{$galley->getFileName()|escape}</a>
 	</td>
 	<td>{icon name="comment" disabled="disable"}</td>
 	<td>
@@ -173,7 +173,7 @@
 			<select name="productionAssignmentId">
 			<option>{translate key="common.select"}</option>
 			{foreach from=$productionAssignments item=productionAssignment}
-				<option value="{$productionAssignment->getId()}">{$productionAssignment->getLabel()}</option>
+				<option value="{$productionAssignment->getId()}">{$productionAssignment->getLabel()|escape}</option>
 			{/foreach}
 			</select>
 		</td>

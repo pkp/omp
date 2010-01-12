@@ -6,7 +6,7 @@
  *
  * List editors or section editors and give the ability to select one.
  *
- * $Id: selectAcquisitionsEditor.tpl,v 1.8 2009/10/15 17:51:45 tylerl Exp $
+ * $Id$
  *}
 {strip}
 {assign var="pageTitle" value=`$roleName`s}
@@ -43,7 +43,7 @@
 {iterate from=editors item=editor}
 {assign var=editorId value=$editor->getId()}
 <tr valign="top">
-	<td><a class="action" href="{url op="userProfile" path=$editorId}">{$editor->getFullName()}</a></td>
+	<td><a class="action" href="{url op="userProfile" path=$editorId}">{$editor->getFullName()|escape}</a></td>
 	<td>
 		{assign var=thisEditorArrangements value=$editorArrangements[$editorId]}
 		{foreach from=$thisEditorArrangements item=arrangement}

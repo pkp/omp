@@ -72,7 +72,7 @@
 	<tr valign="top">
 		<td>&nbsp;</td>
 		<td>
-			<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$galley->getFileId()}">{$galley->getFileName()}</a>
+			<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$galley->getFileId()}">{$galley->getFileName()|escape}</a>
 		</td>
 		<td>{icon name="comment" disabled="disable"}</td>
 		<td>
@@ -131,7 +131,7 @@
 				{assign var=productionSignoffs value=$productionAssignment->getSignoffs()}
 				{assign var=designSignoff value=$productionSignoffs.PRODUCTION_DESIGN}
 				{if !$designSignoff->getDateCompleted()}
-				<option value="{$productionAssignment->getId()}">{$productionAssignment->getLabel()}</option>
+				<option value="{$productionAssignment->getId()}">{$productionAssignment->getLabel()|escape}</option>
 				{/if}
 			{/foreach}
 			</select>
