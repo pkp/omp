@@ -196,7 +196,7 @@ class PressDAO extends DAO
 		$pressSettingsDao->deleteSettingsByPress($pressId);
 		
 		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		$arrangementDao->deleteByPress($pressId);
+		$arrangementDao->deleteByPressId($pressId);
 				
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplateDao->deleteEmailTemplatesByPress($pressId);
