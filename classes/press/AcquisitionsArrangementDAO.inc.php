@@ -250,7 +250,7 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * Delete an arrangement.
 	 * @param $arrangement AcquisitionsArrangement
 	 */
-	function deleteSeries(&$arrangement) {
+	function deleteObject(&$arrangement) {
 		return $this->deleteById($arrangement->getId(), $arrangement->getPressId());
 	}
 
@@ -278,10 +278,10 @@ class AcquisitionsArrangementDAO extends DAO {
 	 * to be called only when deleting a press.
 	 * @param $pressId int
 	 */
-	function deleteByPress($pressId) {
+	function deleteByPressId($pressId) {
 		$arrangements =& $this->getByPressId($pressId);
 		while (($arrangement =& $arrangements->next())) {
-			$this->deleteAcquisitionsArrangement($arrangement);
+			$this->deleteObject($arrangement);
 			unset($arrangement);
 		}
 	}
