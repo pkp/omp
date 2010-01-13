@@ -28,13 +28,9 @@
 
 <h3>4.1 {translate key="manager.setup.securitySettings"}</h3>
 
-<h4>{translate key="manager.setup.onlineAccessManagement"}</h4>
-
-<h4>{translate key="manager.setup.openAccessPolicy"}</h4>
-<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
-
 {fbvFormArea id="openAccessPolicy"}
-{fbvFormSection}
+{fbvFormSection title="manager.setup.openAccessPolicy"}
+	<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
 	{fbvElement type="textarea" name="openAccessPolicy[$formLocale]" id="openAccessPolicy" value=$openAccessPolicy[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 {/fbvFormSection}
 {/fbvFormArea}
@@ -109,12 +105,9 @@ function setRegAllowOpts(form) {
 	{translate key="manager.setup.enableAnnouncementsHomepage2"}
 </p>
 
-<h4>{translate key="manager.setup.announcementsIntroduction"}</h4>
-
-<p>{translate key="manager.setup.announcementsIntroductionDescription"}</p>
-
 {fbvFormArea id="announcementsIntroduction"}
-{fbvFormSection}
+{fbvFormSection title="manager.setup.announcementsIntroduction"}
+	<p>{translate key="manager.setup.announcementsIntroductionDescription"}</p>
 	{fbvElement type="textarea" name="announcementsIntroduction[$formLocale]" id="announcementsIntroduction" value=$announcementsIntroduction[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 {/fbvFormSection}
 {/fbvFormArea}
