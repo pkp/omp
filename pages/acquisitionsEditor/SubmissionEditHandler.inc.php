@@ -550,6 +550,7 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 	function enrollSearch($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, ACQUISITIONS_EDITOR_ACCESS_REVIEW);
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER)); // manager.people.enrollment, manager.people.enroll
 		$submission =& $this->submission;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
