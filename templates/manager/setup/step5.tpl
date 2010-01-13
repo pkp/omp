@@ -173,14 +173,11 @@ function prepBlockFields() {
 
 <p>{translate key="manager.setup.pressHomepageContentDescription"}</p>
 
-<h4>{translate key="manager.setup.pressDescription"}</h4>
-
-<p>{translate key="manager.setup.pressDescriptionDescription"}</p>
-
 {fbvFormArea id="pressDescription"}
-{fbvFormSection}
-	{fbvElement type="textarea" name="description[$formLocale]" id="description" value=$description[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
-{/fbvFormSection}
+	{fbvFormSection title="manager.setup.pressDescription"}
+		<p>{translate key="manager.setup.pressDescriptionDescription"}</p>
+		{fbvElement type="textarea" name="description[$formLocale]" id="description" value=$description[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+	{/fbvFormSection}
 {/fbvFormArea}
 
 <h4>{translate key="manager.setup.homepageImage"}</h4>
@@ -220,15 +217,11 @@ function prepBlockFields() {
 	</tr>
 </table>
 
-
-<h4>{translate key="manager.setup.additionalContent"}</h4>
-
-<p>{translate key="manager.setup.additionalContentDescription"}</p>
-
 {fbvFormArea id="additionalContent"}
-{fbvFormSection}
-	{fbvElement type="textarea" name="additionalHomeContent[$formLocale]" id="additionalHomeContent" value=$additionalHomeContent[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
-{/fbvFormSection}
+	{fbvFormSection title="manager.setup.additionalContent"}
+		<p>{translate key="manager.setup.additionalContentDescription"}</p>
+		{fbvElement type="textarea" name="additionalHomeContent[$formLocale]" id="additionalHomeContent" value=$additionalHomeContent[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{/fbvFormSection}
 {/fbvFormArea}
 
 <div class="separator"></div>
@@ -261,28 +254,16 @@ function prepBlockFields() {
 
 <p>{translate key="manager.setup.information.description"}</p>
 
-<h4>{translate key="manager.setup.information.forReaders"}</h4>
-
-{fbvFormArea id="forReaders"}
-{fbvFormSection}
-	{fbvElement type="textarea" name="readerInformation[$formLocale]" id="readerInformation" value=$readerInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
-{/fbvFormSection}
-{/fbvFormArea}
-
-<h4>{translate key="manager.setup.information.forAuthors"}</h4>
-
-{fbvFormArea id="forAuthors"}
-{fbvFormSection}
-	{fbvElement type="textarea" name="authorInformation[$formLocale]" id="authorInformation" value=$authorInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
-{/fbvFormSection}
-{/fbvFormArea}
-
-<h4>{translate key="manager.setup.information.forLibrarians"}</h4>
-
-{fbvFormArea id="forLibrarians"}
-{fbvFormSection}
-	{fbvElement type="textarea" name="librarianInformation[$formLocale]" id="librarianInformation" value=$librarianInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
-{/fbvFormSection}
+{fbvFormArea id="information"}
+	{fbvFormSection title="manager.setup.information.forReaders"}
+		{fbvElement type="textarea" name="readerInformation[$formLocale]" id="readerInformation" value=$readerInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{/fbvFormSection}
+	{fbvFormSection title="manager.setup.information.forAuthors"}
+		{fbvElement type="textarea" name="authorInformation[$formLocale]" id="authorInformation" value=$authorInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{/fbvFormSection}
+	{fbvFormSection title="manager.setup.information.forLibrarians"}
+		{fbvElement type="textarea" name="librarianInformation[$formLocale]" id="librarianInformation" value=$librarianInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{/fbvFormSection}
 {/fbvFormArea}
 
 <div class="separator"></div>
@@ -425,12 +406,9 @@ function prepBlockFields() {
 </table>
 {/if}
 
-<h4>{translate key="manager.setup.alternateHeader"}</h4>
-
-<p>{translate key="manager.setup.alternateHeaderDescription"}</p>
-
 {fbvFormArea id="alternateHeader"}
-{fbvFormSection}
+{fbvFormSection title="manager.setup.alternateHeader"}
+	<p>{translate key="manager.setup.alternateHeaderDescription"}</p>
 	{fbvElement type="textarea" name="pressPageHeader[$formLocale]" id="pressPageHeader" value=$pressPageHeader[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 {/fbvFormSection}
 {/fbvFormArea}
@@ -454,64 +432,29 @@ function prepBlockFields() {
 
 <p>{translate key="manager.setup.itemsDescription"}</p>
 
-<table width="100%" class="data">
+
+{fbvFormArea id="navigationBar"}
 {foreach name=navItems from=$navItems[$formLocale] key=navItemId item=navItem}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="navItems-$navItemId-name" key="manager.setup.labelName"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="navItems[{$formLocale|escape}][{$navItemId|escape}][name]" id="navItems-{$navItemId|escape}-name" value="{$navItem.name|escape}" size="30" maxlength="90" class="textField" /> <input type="submit" name="delNavItem[{$navItemId|escape}]" value="{translate key="common.delete"}" class="button" />
-			<table width="100%">
-				<tr valign="top">
-					<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][{$navItemId|escape}][isLiteral]" id="navItems-{$navItemId|escape}-isLiteral" value="1"{if $navItem.isLiteral} checked="checked"{/if} /></td>
-					<td width="95%"><label for="navItems-{$navItemId|escape}-isLiteral">{translate key="manager.setup.navItemIsLiteral"}</label></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="navItems-$navItemId-url" key="common.url"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="navItems[{$formLocale|escape}][{$navItemId|escape}][url]" id="navItems-{$navItemId|escape}-url" value="{$navItem.url|escape}" size="60" maxlength="255" class="textField" />
-			<table width="100%">
-				<tr valign="top">
-					<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][{$navItemId|escape}][isAbsolute]" id="navItems-{$navItemId|escape}-isAbsolute" value="1"{if $navItem.isAbsolute} checked="checked"{/if} /></td>
-					<td width="95%"><label for="navItems-{$navItemId|escape}-isAbsolute">{translate key="manager.setup.navItemIsAbsolute"}</label></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	{if !$smarty.foreach.navItems.last}
-	<tr valign="top">
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
-	{/if}
+	{fbvFormSection title="manager.setup.labelName" for="navItems-$navItemId-name" float=$fbvStyles.float.LEFT}
+		{fbvElement type="text" name="navItems[$formLocale][$navItemId][name]" id="navItems-$navItemId-name" value=$navItem.name size=$fbvStyles.size.SMALL maxlength="90"}
+		<input type="submit" name="delNavItem[{$navItemId|escape}]" value="{translate key="common.delete"}" class="button" />
+		{fbvElement type="checkbox" id="navItems-$navItemId-isLiteral" name="navItems[$formLocale][$navItemId][isLiteral]" value="1" checked=$navItem.isLiteral label="manager.setup.navItemIsLiteral"}
+	{/fbvFormSection}
+	{fbvFormSection title="common.url" for="navItems-$navItemId-url" float=$fbvStyles.float.RIGHT}
+		{fbvElement type="text" name="navItems[$formLocale][$navItemId][url]" id="navItems-$navItemId-url" value=$navItem.url size=$fbvStyles.size.SMALL maxlength="255"}
+		{fbvElement type="checkbox" id="navItems-$navItemId-isAbsolute" name="navItems[$formLocale][$navItemId][isAbsolute]" value="1" checked=$navItem.isAbsolute label="manager.setup.navItemIsAbsolute"}
+	{/fbvFormSection}
 {foreachelse}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="navItems-0-name" key="manager.setup.labelName"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="navItems[{$formLocale|escape}][0][name]" id="navItems-0-name" size="30" maxlength="90" class="textField" />
-			<table width="100%">
-				<tr valign="top">
-					<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][0][isLiteral]" id="navItems-0-isLiteral" value="1" /></td>
-					<td width="95%"><label for="navItems-0-isLiteral">{translate key="manager.setup.navItemIsLiteral"}</label></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="navItems-0-url" key="common.url"}</td>
-		<td width="80%" class="value">
-			<input type="text" name="navItems[{$formLocale|escape}][0][url]" id="navItems-0-url" size="60" maxlength="255" class="textField" />
-			<table width="100%">
-				<tr valign="top">
-					<td width="5%"><input type="checkbox" name="navItems[{$formLocale|escape}][0][isAbsolute]" id="navItems-0-isAbsolute" value="1" /></td>
-					<td width="95%"><label for="navItems-0-isAbsolute">{translate key="manager.setup.navItemIsAbsolute"}</label></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
+	{fbvFormSection title="manager.setup.labelName" for="navItems-0-name" float=$fbvStyles.float.LEFT}
+		{fbvElement type="text" name="navItems[$formLocale][0][name]" id="navItems-0-name" value=$navItem.name size=$fbvStyles.size.SMALL maxlength="90"}
+		{fbvElement type="checkbox" id="navItems-0-isLiteral" name="navItems[$formLocale][0][isLiteral]" value="1" checked=$navItem.isLiteral label="manager.setup.navItemIsLiteral"}
+	{/fbvFormSection}
+	{fbvFormSection title="common.url" for="navItems-0-url" float=$fbvStyles.float.RIGHT}
+		{fbvElement type="text" name="navItems[$formLocale][0][url]" id="navItems-0-url" value=$navItem.url size=$fbvStyles.size.SMALL maxlength="255"}
+		{fbvElement type="checkbox" id="navItems-0-isAbsolute" name="navItems[$formLocale][0][isAbsolute]" value="1" checked=$navItem.isAbsolute label="manager.setup.navItemIsAbsolute"}
+	{/fbvFormSection}
 {/foreach}
-</table>
+{/fbvFormArea}
 
 <p><input type="submit" name="addNavItem" value="{translate key="manager.setup.addNavItem"}" class="button" /></p>
 

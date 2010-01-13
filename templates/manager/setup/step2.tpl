@@ -85,34 +85,20 @@
 
 <p>{translate key="manager.setup.peerReviewDescription"}</p>
 
-<h4>{translate key="manager.setup.reviewPolicy"}</h4>
-
-{fbvFormArea id="reviewPolicy"}
-{fbvFormSection}
-	{fbvElement type="textarea" name="reviewPolicy[$formLocale]" id="reviewPolicy" value=$reviewPolicy[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
-{/fbvFormSection}
-{/fbvFormArea}
-
-<h4>{translate key="manager.setup.reviewGuidelines"}</h4>
-
-{url|assign:"reviewFormsUrl" op="reviewForms"}
-<p>{translate key="manager.setup.reviewGuidelinesDescription" reviewFormsUrl=$reviewFormsUrl}</p>
-
-{fbvFormArea id="reviewGuidelines"}
-{fbvFormSection}
-	{fbvElement type="textarea" name="reviewGuidelines[$formLocale]" id="reviewGuidelines" value=$reviewGuidelines[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
-{/fbvFormSection}
-{/fbvFormArea}
-
-<h4>{translate key="manager.setup.reviewProcess"}</h4>
-
-<p>{translate key="manager.setup.reviewProcessDescription"}</p>
-
-{fbvFormArea id="reviewProcess"}
-{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
-	{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-0" value="0" checked=!$mailSubmissionsToReviewers label="manager.setup.reviewProcessStandard"}
-	{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-1" value="1" checked=$mailSubmissionsToReviewers label="manager.setup.reviewProcessEmail"}
-{/fbvFormSection}
+{fbvFormArea id="peerReviewPolicy"}
+	{fbvFormSection title="manager.setup.reviewPolicy"}
+		{fbvElement type="textarea" name="reviewPolicy[$formLocale]" id="reviewPolicy" value=$reviewPolicy[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{/fbvFormSection}
+	{fbvFormSection title="manager.setup.reviewGuidelines"}
+		{url|assign:"reviewFormsUrl" op="reviewForms"}
+		<p>{translate key="manager.setup.reviewGuidelinesDescription" reviewFormsUrl=$reviewFormsUrl}</p>
+		{fbvElement type="textarea" name="reviewGuidelines[$formLocale]" id="reviewGuidelines" value=$reviewGuidelines[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{/fbvFormSection}
+	{fbvFormSection title="manager.setup.reviewProcess" layout=$fbvStyles.layout.ONE_COLUMN}
+		<p>{translate key="manager.setup.reviewProcessDescription"}</p>
+		{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-0" value="0" checked=!$mailSubmissionsToReviewers label="manager.setup.reviewProcessStandard"}
+		{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-1" value="1" checked=$mailSubmissionsToReviewers label="manager.setup.reviewProcessEmail"}
+	{/fbvFormSection}
 {/fbvFormArea}
 
 <h4>{translate key="manager.setup.reviewOptions"}</h4>
