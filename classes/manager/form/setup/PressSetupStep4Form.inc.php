@@ -42,7 +42,6 @@ class PressSetupStep4Form extends PressSetupForm {
 				'volumePerYear' => 'int',
 				'enablePublicMonographId' => 'bool',
 				'enablePublicGalleyId' => 'bool',
-				'enablePublicSuppFileId' => 'bool',
 				'enablePageNumber' => 'bool',
 				'searchDescription' => 'string',
 				'searchKeywords' => 'string',

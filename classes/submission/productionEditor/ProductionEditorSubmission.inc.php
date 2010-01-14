@@ -38,23 +38,6 @@ class ProductionEditorSubmission extends Monograph {
 	}
 
 	/**
-	 * Get supplementary files for this monograph.
-	 * @return array SuppFiles
-	 */
-	function &getSuppFiles() {
-		$returner =& $this->getData('suppFiles');
-		return $returner;
-	}
-
-	/**
-	 * Set supplementary file for this monograph.
-	 * @param $suppFiles array SuppFiles
-	 */
-	function setSuppFiles($suppFiles) {
-		return $this->setData('suppFiles', $suppFiles);
-	}
-
-	/**
 	 * Get post-review file.
 	 * @return MonographFile
 	 */

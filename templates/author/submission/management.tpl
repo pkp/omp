@@ -29,23 +29,6 @@
 			{/if}
 		</td>
 	</tr>
-	<tr valign="top">
-		<td class="label">{translate key="monograph.suppFilesAbbrev"}</td>
-		<td width="30%" class="value">
-			{foreach name="suppFiles" from=$suppFiles item=suppFile}
-				<a href="{if $submission->getStatus() != STATUS_PUBLISHED && $submission->getStatus() != STATUS_ARCHIVED}{url op="editSuppFile" path=$submission->getMonographId()|to_array:$suppFile->getSuppFileId()}{else}{url op="downloadFile" path=$submission->getMonographId()|to_array:$suppFile->getFileId()}{/if}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;{$suppFile->getDateModified()|date_format:$dateFormatShort}<br />
-			{foreachelse}
-				{translate key="common.none"}
-			{/foreach}
-		</td>
-		<td width="50%" class="value">
-			{if $submission->getStatus() != STATUS_PUBLISHED && $submission->getStatus() != STATUS_ARCHIVED}
-				<a href="{url op="addSuppFile" path=$submission->getMonographId()}" class="action">{translate key="submission.addSuppFile"}</a>
-			{else}
-				&nbsp;
-			{/if}
-		</td>
-	</tr>
 	<tr>
 		<td class="label">{translate key="submission.submitter"}</td>
 		<td colspan="2" class="value">

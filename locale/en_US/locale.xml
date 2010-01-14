@@ -204,9 +204,6 @@ Note that if your site administrator has already registered this site with the P
 	<message key="monograph.language">Language</message>
 	<message key="monograph.authors">Authors</message>
 	<message key="monograph.title">Title</message>
-	<message key="monograph.suppFilesAbbrev">Supp. Files</message>
-	<message key="monograph.suppFile">Supplementary File</message>
-	<message key="monograph.suppFiles">Supplementary Files</message>
 	<message key="monograph.contributors">Contributors</message>
 	<message key="monograph.commentsToEditor">Submitter Comments</message>
 
@@ -777,7 +774,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.site">Site Events</message>
 	<message key="notification.type.submissionComment">An editor has made a comment on "{$param}".</message>
 	<message key="notification.type.submissions">Submission Events</message>
-	<message key="notification.type.suppFileModified">"{$param}'s" supplementary file(s) has been modified.</message>
 	<message key="notification.type.userComment">A reader has made a comment on "{$param}"</message>
 
 

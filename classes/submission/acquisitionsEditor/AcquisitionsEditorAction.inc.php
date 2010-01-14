@@ -12,7 +12,7 @@
  * @brief AcquisitionsEditorAction class.
  */
 
-// $Id: AcquisitionsEditorAction.inc.php,v 1.40 2009/10/15 00:37:08 asmecher Exp $
+// $Id$
 
 
 import('submission.common.Action');
@@ -1635,27 +1635,6 @@ class AcquisitionsEditorAction extends Action {
 	function deleteGalley($monograph, $galleyId) {
 		import('submission.layoutEditor.LayoutEditorAction');
 		LayoutEditorAction::deleteGalley($monograph, $galleyId);
-	}
-
-	/**
-	 * Change the sequence order of a supplementary file.
-	 * @param $monograph object
-	 * @param $suppFileId int
-	 * @param $direction char u = up, d = down
-	 */
-	function orderSuppFile($monograph, $suppFileId, $direction) {
-		import('submission.layoutEditor.LayoutEditorAction');
-		LayoutEditorAction::orderSuppFile($monograph, $suppFileId, $direction);
-	}
-
-	/**
-	 * Delete a supplementary file.
-	 * @param $monograph object
-	 * @param $suppFileId int
-	 */
-	function deleteSuppFile($monograph, $suppFileId) {
-		import('submission.layoutEditor.LayoutEditorAction');
-		LayoutEditorAction::deleteSuppFile($monograph, $suppFileId);
 	}
 
 	/**

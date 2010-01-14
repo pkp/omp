@@ -20,7 +20,6 @@
  * [monograph id]/submission/editor
  * [monograph id]/submission/copyedit
  * [monograph id]/submission/layout
- * [monograph id]/supp
  * [monograph id]/attachment
  */
 
@@ -35,7 +34,6 @@ define('MONOGRAPH_FILE_EDITOR',		'ED');
 define('MONOGRAPH_FILE_COPYEDIT',	'CE');
 define('MONOGRAPH_FILE_LAYOUT',		'LE');
 define('MONOGRAPH_FILE_PUBLIC',		'PB');
-define('MONOGRAPH_FILE_SUPP',		'SP');
 define('MONOGRAPH_FILE_NOTE',		'NT');
 define('MONOGRAPH_FILE_ATTACHMENT',	'AT');
 define('MONOGRAPH_FILE_GALLEY',		'GA');
@@ -141,17 +139,6 @@ class MonographFileManager extends FileManager {
 	}	
 
 	/**
-	 * Upload a supp file.
-	 * @param $fileName string the name of the file used in the POST form
-	 * @param $fileId int
-	 * @param $overwrite boolean
-	 * @return int file ID, is false if failure
-	 */
-	function uploadSuppFile($fileName, $fileId = null, $overwrite = true) {
-		return $this->handleUpload($fileName, MONOGRAPH_FILE_SUPP, $fileId, $overwrite);
-	}	
-
-	/**
 	 * Upload a public file.
 	 * @param $fileName string the name of the file used in the POST form
 	 * @param $fileId int
@@ -194,29 +181,6 @@ class MonographFileManager extends FileManager {
 	 */
 	function copyPublicFile($url, $mimeType, $fileId = null, $overwrite = true) {
 		return $this->handleCopy($url, $mimeType, MONOGRAPH_FILE_PUBLIC, $fileId, $overwrite);
-	}
-
-	/**
-	 * Write a supplemental file.
-	 * @param $fileName string The original filename
-	 * @param $contents string The contents to be written to the file
-	 * @param $mimeType string The mime type of the original file
-	 * @param $fileId int
-	 * @param $overwrite boolean
-	 */
-	function writeSuppFile($fileName, &$contents, $mimeType, $fileId = null, $overwrite = true) {
-		return $this->handleWrite($fileName, $contents, $mimeType, MONOGRAPH_FILE_SUPP, $fileId, $overwrite);
-	}
-
-	/**
-	 * Copy a supplemental file.
-	 * @param $url string The source URL/filename
-	 * @param $mimeType string The mime type of the original file
-	 * @param $fileId int
-	 * @param $overwrite boolean
-	 */
-	function copySuppFile($url, $mimeType, $fileId = null, $overwrite = true) {
-		return $this->handleCopy($url, $mimeType, MONOGRAPH_FILE_SUPP, $fileId, $overwrite);
 	}
 
 	/**
@@ -393,8 +357,7 @@ class MonographFileManager extends FileManager {
 			case MONOGRAPH_FILE_PRODUCTION: return 'submission/production';
 			case MONOGRAPH_FILE_GALLEY: return 'submission/galleys';
 			case MONOGRAPH_FILE_LAYOUT: return 'submission/layout';
-			case MONOGRAPH_FILE_ATTACHMENT: return 'attachment';
-			case MONOGRAPH_FILE_SUPP: default: return 'supp';
+			case MONOGRAPH_FILE_ATTACHMENT: default: return 'attachment';
 		}
 	}
 

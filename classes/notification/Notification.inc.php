@@ -17,7 +17,6 @@
 /** Notification associative types. */
 define('NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED', 	0x1000001);
 define('NOTIFICATION_TYPE_METADATA_MODIFIED', 		0x1000002);
-define('NOTIFICATION_TYPE_SUPP_FILE_MODIFIED', 		0x1000004);
 define('NOTIFICATION_TYPE_GALLEY_MODIFIED', 		0x1000006);
 define('NOTIFICATION_TYPE_SUBMISSION_COMMENT', 		0x1000007);
 define('NOTIFICATION_TYPE_LAYOUT_COMMENT', 		0x1000008);
@@ -52,10 +51,6 @@ class Notification extends PKPNotification {
 			case NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED:
 				return $baseUrl . 'page_new.gif';
 				break;
-			case NOTIFICATION_TYPE_SUPP_FILE_MODIFIED:
-				return $baseUrl . 'page_attachment.gif';
-				break;
-
 			case NOTIFICATION_TYPE_METADATA_MODIFIED:
 			case NOTIFICATION_TYPE_GALLEY_MODIFIED:
 				return $baseUrl . 'edit.gif';

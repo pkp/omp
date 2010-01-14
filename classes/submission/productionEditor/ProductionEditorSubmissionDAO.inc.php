@@ -25,7 +25,6 @@ class ProductionEditorSubmissionDAO extends DAO {
 	var $editAssignmentDao;
 	var $productionAssignmentDao;
 	var $monographFileDao;
-	var $suppFileDao;
 	var $galleyDao;
 
 	/**
@@ -39,7 +38,6 @@ class ProductionEditorSubmissionDAO extends DAO {
 		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$this->productionAssignmentDao =& DAORegistry::getDAO('ProductionAssignmentDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 	}
 

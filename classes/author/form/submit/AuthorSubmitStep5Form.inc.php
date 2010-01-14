@@ -43,9 +43,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
 		parent::display();
 	}
-	function getHelpTopicId() {
-		return 'submission.supplementaryFiles';
-	}
+
 	function getTemplateFile() {
 		return 'author/submit/step5.tpl';
 	}

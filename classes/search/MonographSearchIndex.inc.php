@@ -184,43 +184,10 @@ class MonographSearchIndex {
 	}
 
 	/**
-	 * Index supp file metadata.
-	 * @param $suppFile object
-	 */
-	function indexSuppFileMetadata(&$suppFile) {
-		// Update search index
-		$monographId = $suppFile->getMonographId();
-		MonographSearchIndex::updateTextIndex(
-			$monographId,
-			MONOGRAPH_SEARCH_SUPPLEMENTARY_FILE,
-			array_merge(
-				array_values((array) $suppFile->getTitle(null)),
-				array_values((array) $suppFile->getCreator(null)),
-				array_values((array) $suppFile->getSubject(null)),
-				array_values((array) $suppFile->getTypeOther(null)),
-				array_values((array) $suppFile->getDescription(null)),
-				array_values((array) $suppFile->getSource(null))
-			),
-			$suppFile->getFileId()
-		);
-	}
-
-	/**
-	 * Index all monograph files (supplementary and galley).
+	 * Index all monograph files (galley files).
 	 * @param $monograph Monograph
 	 */
 	function indexMonographFiles(&$monograph) {
-		// Index supplementary files
-		$fileDao =& DAORegistry::getDAO('SuppFileDAO');
-		$files =& $fileDao->getSuppFilesByMonograph($monograph->getMonographId());
-		foreach ($files as $file) {
-			if ($file->getFileId()) {
-				MonographSearchIndex::updateFileIndex($monograph->getMonographId(), MONOGRAPH_SEARCH_SUPPLEMENTARY_FILE, $file->getFileId());
-			}
-			MonographSearchIndex::indexSuppFileMetadata($file);
-		}
-		unset($files);
-
 		// Index galley files
 		$monographGalleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		$files =& $monographGalleyDao->getByMonographId($monograph->getMonographId());

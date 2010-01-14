@@ -13,7 +13,7 @@
  * @brief CopyeditorAction class.
  */
 
-// $Id: CopyeditorAction.inc.php,v 1.6 2009/10/07 00:36:11 asmecher Exp $
+// $Id$
 
 import('submission.common.Action');
 
@@ -436,12 +436,6 @@ class CopyeditorAction extends Action {
 			// Check galley files
 			foreach ($submission->getGalleys() as $galleyFile) {
 				if ($galleyFile->getFileId() == $fileId) {
-					$canDownload = true;
-				}
-			}
-			// Check supp files
-			foreach ($submission->getSuppFiles() as $suppFile) {
-				if ($suppFile->getFileId() == $fileId) {
 					$canDownload = true;
 				}
 			}

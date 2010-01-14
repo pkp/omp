@@ -34,7 +34,6 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 		$this->readUserVars(
 			array('notificationMonographSubmitted',
 				'notificationMetadataModified',
-				'notificationSuppFileModified',
 				'notificationGalleyModified',
 				'notificationSubmissionComment',
 				'notificationLayoutComment',
@@ -48,7 +47,6 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 				'notificationNewAnnouncement',
 				'emailNotificationMonographSubmitted',
 				'emailNotificationMetadataModified',
-				'emailNotificationSuppFileModified',
 				'emailNotificationGalleyModified',
 				'emailNotificationSubmissionComment',
 				'emailNotificationLayoutComment',
@@ -96,7 +94,6 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 		$settings = array();
 		if(!$this->getData('notificationMonographSubmitted')) $settings[] = NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED;
 		if(!$this->getData('notificationMetadataModified')) $settings[] = NOTIFICATION_TYPE_METADATA_MODIFIED;
-		if(!$this->getData('notificationSuppFileModified')) $settings[] = NOTIFICATION_TYPE_SUPP_FILE_MODIFIED;
 		if(!$this->getData('notificationGalleyModified')) $settings[] = NOTIFICATION_TYPE_GALLEY_MODIFIED;
 		if(!$this->getData('notificationSubmissionComment')) $settings[] = NOTIFICATION_TYPE_SUBMISSION_COMMENT;
 		if(!$this->getData('notificationLayoutComment')) $settings[] = NOTIFICATION_TYPE_LAYOUT_COMMENT;
@@ -113,7 +110,6 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 		$emailSettings = array();
 		if($this->getData('emailNotificationMonographSubmitted')) $emailSettings[] = NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED;
 		if($this->getData('emailNotificationMetadataModified')) $emailSettings[] = NOTIFICATION_TYPE_METADATA_MODIFIED;
-		if($this->getData('emailNotificationSuppFileModified')) $emailSettings[] = NOTIFICATION_TYPE_SUPP_FILE_MODIFIED;
 		if($this->getData('emailNotificationGalleyModified')) $emailSettings[] = NOTIFICATION_TYPE_GALLEY_MODIFIED;
 		if($this->getData('emailNotificationSubmissionComment')) $emailSettings[] = NOTIFICATION_TYPE_SUBMISSION_COMMENT;
 		if($this->getData('emailNotificationLayoutComment')) $emailSettings[] = NOTIFICATION_TYPE_LAYOUT_COMMENT;

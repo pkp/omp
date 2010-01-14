@@ -12,7 +12,7 @@
  * @brief ReviewerAction class.
  */
 
-// $Id: ReviewerAction.inc.php,v 1.10 2009/10/07 00:36:12 asmecher Exp $
+// $Id$
 
 
 import('submission.common.Action');
@@ -379,7 +379,6 @@ class ReviewerAction extends Action {
 		// Reviewers have access to:
 		// 1) The current revision of the file to be reviewed.
 		// 2) Any file that he uploads.
-		// 3) Any supplementary file that is visible to reviewers.
 		if ((!$reviewAssignment->getDateConfirmed() || $reviewAssignment->getDeclined()) && $press->getSetting('restrictReviewerFileAccess')) {
 			// Restrict files until review is accepted
 		} else if ($reviewAssignment->getReviewFileId() == $fileId) {
@@ -388,12 +387,6 @@ class ReviewerAction extends Action {
 			}
 		} else if ($reviewAssignment->getReviewerFileId() == $fileId) {
 			$canDownload = true;
-		} else {
-			foreach ($reviewAssignment->getSuppFiles() as $suppFile) {
-				if ($suppFile->getFileId() == $fileId && $suppFile->getShowReviewers()) {
-					$canDownload = true;
-				}
-			}
 		}
 
 		$result = false;

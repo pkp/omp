@@ -473,7 +473,6 @@ class AuthorAction extends Action {
 		// 3) The initial and final copyedit files, after initial copyedit is complete.
 		// 4) Any of the author-revised files.
 		// 5) The layout version of the file.
-		// 6) Any supplementary file
 		// 7) Any galley file
 		// 8) All review versions of the file
 		// 9) Current editor versions of the file
@@ -507,13 +506,6 @@ class AuthorAction extends Action {
 							$canDownload = true;
 						}
 					}
-				}
-			}
-
-			// Check supplementary files
-			foreach ($submission->getSuppFiles() as $suppFile) {
-				if ($suppFile->getFileId() == $fileId) {
-					$canDownload = true;
 				}
 			}
 

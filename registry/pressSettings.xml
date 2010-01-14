@@ -8,7 +8,7 @@
   *
   * Default press settings.
   *
-  * $Id: pressSettings.xml,v 1.7 2009/10/14 19:26:00 tylerl Exp $
+  * $Id$
   -->
 
 <!DOCTYPE press_settings [
@@ -127,10 +127,6 @@
 	</setting>
 	<setting type="bool" locale="0">
 		<name>rtViewMetadata</name>
-		<value>true</value>
-	</setting>
-	<setting type="bool" locale="0">
-		<name>rtSupplementaryFiles</name>
 		<value>true</value>
 	</setting>
 	<setting type="bool" locale="0">

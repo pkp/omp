@@ -24,7 +24,6 @@ class ProofreaderSubmissionDAO extends DAO {
 	var $monographCommentDao;
 	var $editAssignmentDao;
 	var $galleyDao;
-	var $suppFileDao;
 
 	/**
 	 * Constructor.
@@ -36,7 +35,6 @@ class ProofreaderSubmissionDAO extends DAO {
 		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
-		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 	}
 
 	/**
@@ -103,8 +101,6 @@ class ProofreaderSubmissionDAO extends DAO {
 
 		// Layout reference information
 		$submission->setGalleys($this->galleyDao->getGalleysByMonograph($row['monograph_id']));
-
-		$submission->setSuppFiles($this->suppFileDao->getSuppFilesByMonograph($row['monograph_id']));
 
 		$submission->setMostRecentLayoutComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_LAYOUT, $row['monograph_id']));
 

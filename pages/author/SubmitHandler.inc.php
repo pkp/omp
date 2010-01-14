@@ -12,7 +12,7 @@
  * @brief Handle requests for author monograph submission. 
  */
 
-// $Id: SubmitHandler.inc.php,v 1.16 2009/10/07 00:36:12 asmecher Exp $
+// $Id$
 
 import('pages.author.AuthorHandler');
 
@@ -116,101 +116,6 @@ class SubmitHandler extends AuthorHandler {
 
 			$submitForm->display();
 		}
-	}
-
-	/**
-	 * Create new supplementary file with a uploaded file.
-	 */
-	function submitUploadSuppFile() {
-		$monographId = Request::getUserVar('monographId');
-
-		$this->validate($monographId, 4);
-		$monograph =& $this->monograph;
-		$this->setupTemplate(true);
-
-		import('author.form.submit.AuthorSubmitSuppFileForm');
-		$submitForm = new AuthorSubmitSuppFileForm($monograph);
-		$submitForm->setData('title', Locale::translate('common.untitled'));
-		$suppFileId = $submitForm->execute();
-
-		Request::redirect(null, null, 'submitSuppFile', $suppFileId, array('monographId' => $monographId));
-	}
-
-	/**
-	 * Display supplementary file submission form.
-	 * @param $args array optional, if set the first parameter is the supplementary file to edit
-	 */
-	function submitSuppFile($args) {
-		$monographId = Request::getUserVar('monographId');
-		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
-
-		$this->validate($monographId);
-		$monograph =& $this->monograph;
-		$this->setupTemplate(true);
-
-		import('author.form.submit.AuthorSubmitSuppFileForm');
-		$submitForm = new AuthorSubmitSuppFileForm($monograph, $suppFileId);
-
-		if ($submitForm->isLocaleResubmit()) {
-			$submitForm->readInputData();
-		} else {
-			$submitForm->initData();
-		}
-		$submitForm->display();
-	}
-
-	/**
-	 * Save a supplementary file.
-	 * @param $args array optional, if set the first parameter is the supplementary file to update
-	 */
-	function saveSubmitSuppFile($args) {
-		$monographId = Request::getUserVar('monographId');
-		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
-
-		$this->validate($monographId);
-		$monograph =& $this->monograph;
-		$this->setupTemplate(true);
-
-		import('author.form.submit.AuthorSubmitSuppFileForm');
-		$submitForm = new AuthorSubmitSuppFileForm($monograph, $suppFileId);
-		$submitForm->readInputData();
-
-		if ($submitForm->validate()) {
-			$submitForm->execute();
-			Request::redirect(null, null, 'submit', '5', array('monographId' => $monographId));
-		} else {
-			$submitForm->display();
-		}
-	}
-
-	/**
-	 * Delete a supplementary file.
-	 * @param $args array, the first parameter is the supplementary file to delete
-	 */
-	function deleteSubmitSuppFile($args) {
-		import('file.MonographFileManager');
-
-		$this->validate();
-		$this->setupTemplate(true);
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-
-		$monographId = Request::getUserVar('monographId');
-		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
-
-		$this->validate($monographId, 4);
-		$monograph =& $this->monograph;
-		$this->setupTemplate(true);
-
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-		$suppFile = $suppFileDao->getSuppFile($suppFileId, $monographId);
-		$suppFileDao->deleteSuppFileById($suppFileId, $monographId);
-
-		if ($suppFile->getFileId()) {
-			$monographFileManager = new MonographFileManager($monographId);
-			$monographFileManager->deleteFile($suppFile->getFileId());
-		}
-
-		Request::redirect(null, null, 'submit', '5', array('monographId' => $monographId));
 	}
 
 	function expediteSubmission() {

@@ -29,7 +29,6 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 	var $reviewAssignmentDao;
 	var $copyeditorSubmissionDao;
 	var $monographFileDao;
-	var $suppFileDao;
 	var $signoffDao;
 	var $galleyDao;
 	var $monographEmailLogDao;
@@ -47,7 +46,6 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$this->copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$this->signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		$this->monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
@@ -141,7 +139,6 @@ class AcquisitionsEditorSubmissionDAO extends DAO {
 		$acquisitionsEditorSubmission->setSubmissionFile($this->monographFileDao->getMonographFile($row['submission_file_id']));
 		$acquisitionsEditorSubmission->setRevisedFile($this->monographFileDao->getMonographFile($row['revised_file_id']));
 		$acquisitionsEditorSubmission->setReviewFile($this->monographFileDao->getMonographFile($row['review_file_id']));
-		$acquisitionsEditorSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByMonograph($row['monograph_id']));
 		$acquisitionsEditorSubmission->setEditorFile($this->monographFileDao->getMonographFile($row['editor_file_id']));
 
 		foreach ( $reviewRoundsInfo as $reviewType => $currentReviewRound) {

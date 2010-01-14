@@ -142,7 +142,7 @@ class MonographGalley extends MonographFile {
 	}
 
 	/**
-	 * Get sequence order of supplementary file.
+	 * Get sequence order of galley file.
 	 * @return float
 	 */
 	function getSequence() {
@@ -150,7 +150,7 @@ class MonographGalley extends MonographFile {
 	}
 
 	/**
-	 * Set sequence order of supplementary file.
+	 * Set sequence order of galley file.
 	 * @param $sequence float
 	 */
 	function setSequence($sequence) {
