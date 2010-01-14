@@ -63,7 +63,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('arrangement', $arrangement);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
-		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
 		$templateMgr->assign('userId', $user->getId());
@@ -217,7 +216,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr->assign('reviewFormTitles', $reviewFormTitles);
 		$templateMgr->assign_by_ref('notifyReviewerLogs', $notifyReviewerLogs);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
-		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
 		$templateMgr->assign_by_ref('copyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
@@ -280,7 +278,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr->assign_by_ref('initialCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
 		$templateMgr->assign_by_ref('editorAuthorCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_AUTHOR'));
 		$templateMgr->assign_by_ref('finalCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_FINAL'));
-		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('copyeditor', $submission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -322,7 +319,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('initialCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
-		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign_by_ref('productionEditor', $submission->getUserBySignoffType('SIGNOFF_PRODUCTION'));
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -1265,108 +1261,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 	}
 
 	/**
-	 * Add a supplementary file.
-	 * @param $args array ($monographId)
-	 */
-	function addSuppFile($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($monographId);
-		$submission =& $this->submission;		
-		$this->setupTemplate(true, $monographId, 'summary');
-
-		import('submission.form.SuppFileForm');
-
-		$submitForm = new SuppFileForm($submission);
-
-		if ($submitForm->isLocaleResubmit()) {
-			$submitForm->readInputData();
-		} else {
-			$submitForm->initData();
-		}
-		$submitForm->display();
-	}
-
-	/**
-	 * Edit a supplementary file.
-	 * @param $args array ($monographId, $suppFileId)
-	 */
-	function editSuppFile($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $monographId, 'summary');
-
-		import('submission.form.SuppFileForm');
-
-		$submitForm = new SuppFileForm($submission, $suppFileId);
-
-		if ($submitForm->isLocaleResubmit()) {
-			$submitForm->readInputData();
-		} else {
-			$submitForm->initData();
-		}
-		$submitForm->display();
-	}
-
-	/**
-	 * Set reviewer visibility for a supplementary file.
-	 * @param $args array ($suppFileId)
-	 */
-	function setSuppFileVisibility($args) {
-		$monographId = Request::getUserVar('monographId');
-		$this->validate($monographId);
-		$submission =& $this->submission;
-
-		$suppFileId = Request::getUserVar('fileId');
-		$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-		$suppFile = $suppFileDao->getSuppFile($suppFileId, $monographId);
-
-		if (isset($suppFile) && $suppFile != null) {
-			$suppFile->setShowReviewers(Request::getUserVar('show')==1?1:0);
-			$suppFileDao->updateSuppFile($suppFile);
-		}
-		Request::redirect(null, null, 'submissionReview', $monographId);
-	}
-
-	/**
-	 * Save a supplementary file.
-	 * @param $args array ($suppFileId)
-	 */
-	function saveSuppFile($args) {
-		$monographId = Request::getUserVar('monographId');
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $monographId, 'summary');
-
-		$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
-
-		import('submission.form.SuppFileForm');
-
-		$submitForm = new SuppFileForm($submission, $suppFileId);
-		$submitForm->readInputData();
-
-		if ($submitForm->validate()) {
-			$submitForm->execute();
-
-			// Send a notification to associated users
-			import('notification.Notification');
-			$monographDao =& DAORegistry::getDAO('MonographDAO'); 
-			$monograph =& $monographDao->getMonograph($monographId);
-			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
-			foreach ($notificationUsers as $userRole) {
-				$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
-				Notification::createNotification($userRole['id'], "notification.type.suppFileModified",
-					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUPP_FILE_MODIFIED);
-			}
-
-			Request::redirect(null, null, $this->getFrom(), $monographId);
-		} else {
-			$submitForm->display();
-		}
-	}
-
-	/**
 	 * Delete an editor version file.
 	 * @param $args array ($monographId, $fileId)
 	 */
@@ -1380,21 +1274,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 		AcquisitionsEditorAction::deleteMonographFile($submission, $fileId, $revisionId);
 
 		Request::redirect(null, null, 'submissionReview', $monographId);
-	}
-
-	/**
-	 * Delete a supplementary file.
-	 * @param $args array ($monographId, $suppFileId)
-	 */
-	function deleteSuppFile($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($monographId);
-		$submission =& $this->submission;
-
-		AcquisitionsEditorAction::deleteSuppFile($submission, $suppFileId);
-
-		Request::redirect(null, null, $this->getFrom(), $monographId);
 	}
 
 	function archiveSubmission($args) {
@@ -1468,9 +1347,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 
 		} else if ($layoutFileType == 'galley') {
 			$this->uploadGalley('layoutFile');
-
-		} else if ($layoutFileType == 'supp') {
-			$this->uploadSuppFile('layoutFile');
 
 		} else {
 			Request::redirect(null, null, $this->getFrom(), Request::getUserVar('monographId'));
@@ -1786,37 +1662,6 @@ class SubmissionEditHandler extends AcquisitionsEditorHandler {
 			}
 		}
 	}
-
-	/**
-	 * Upload a new supplementary file.
-	 */
-	function uploadSuppFile($fileName = null) {
-		$monographId = Request::getUserVar('monographId');
-		$this->validate($monographId);
-		$submission =& $this->submission;
-
-		import('submission.form.SuppFileForm');
-
-		$suppFileForm = new SuppFileForm($submission);
-		$suppFileForm->setData('title', Locale::translate('common.untitled'));
-		$suppFileId = $suppFileForm->execute($fileName);
-
-		Request::redirect(null, null, 'editSuppFile', array($monographId, $suppFileId));
-	}
-
-	/**
-	 * Change the sequence order of a supplementary file.
-	 */
-	function orderSuppFile() {
-		$monographId = Request::getUserVar('monographId');
-		$this->validate($monographId);
-		$submission =& $this->submission;
-
-		AcquisitionsEditorAction::orderSuppFile($submission, Request::getUserVar('suppFileId'), Request::getUserVar('d'));
-
-		Request::redirect(null, null, 'submissionEditing', $monographId);
-	}
-
 
 	//
 	// Submission History (FIXME Move to separate file?)

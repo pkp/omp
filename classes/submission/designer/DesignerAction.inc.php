@@ -16,7 +16,7 @@
  * @brief DesignerAction class.
  */
 
-// $Id: DesignerAction.inc.php,v 1.8 2009/10/07 00:36:11 asmecher Exp $
+// $Id$
 
 
 import('submission.common.Action');
@@ -290,7 +290,7 @@ class DesignerAction extends Action {
 
 	/**
 	 * Download a file a layout editor has access to.
-	 * This includes: The layout editor submission file, supplementary files, and galley files.
+	 * This includes: The layout editor submission file and galley files.
 	 * @param $monograph object
 	 * @param $fileId int
 	 * @param $revision int optional
@@ -301,7 +301,6 @@ class DesignerAction extends Action {
 
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
-		$suppDao =& DAORegistry::getDAO('SuppFileDAO');
 
 		$layoutAssignment =& $signoffDao->build(
 						  'SIGNOFF_LAYOUT',
@@ -315,8 +314,6 @@ class DesignerAction extends Action {
 		} else if($galleyDao->galleyExistsByFileId($monograph->getMonographId(), $fileId)) {
 			$canDownload = true;
 
-		} else if($suppDao->suppFileExistsByFileId($monograph->getMonographId(), $fileId)) {
-			$canDownload = true;
 		}
 
 		$result = false;

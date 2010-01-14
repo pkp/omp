@@ -23,9 +23,6 @@ switch ($op) {
 	//
 	case 'submit':
 	case 'saveSubmit':
-	case 'submitSuppFile':
-	case 'saveSubmitSuppFile':
-	case 'deleteSubmitSuppFile':
 	case 'expediteSubmission':
 		import('pages.author.SubmitHandler');
 		define('HANDLER_CLASS', 'SubmitHandler');
@@ -36,10 +33,6 @@ switch ($op) {
 	case 'deleteMonographFile':
 	case 'deleteSubmission':
 	case 'submission':
-	case 'editSuppFile':
-	case 'setSuppFileVisibility':
-	case 'saveSuppFile':
-	case 'addSuppFile':
 	case 'submissionReview':
 	case 'submissionEditing':
 	case 'uploadRevisedVersion':

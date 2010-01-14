@@ -74,21 +74,6 @@
 		<td colspan="6" class="separator">&nbsp;</td>
 	</tr>
 	<tr>
-		<td colspan="2">{translate key="submission.supplementaryFiles"}</td>
-		<td colspan="4" class="heading">{translate key="common.file"}</td>
-	</tr>
-	{foreach name=suppFiles from=$submission->getSuppFiles() item=suppFile}
-	<tr>
-		<td width="5%">{$smarty.foreach.suppFiles.iteration}.</td>
-		<td width="35%">{$suppFile->getSuppFileTitle()|escape}</td>
-		<td colspan="4"><a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$suppFile->getFileId()}" class="file">{$suppFile->getFileName()|escape}</a>&nbsp;&nbsp;{$suppFile->getDateModified()|date_format:$dateFormatShort}</td>
-	</tr>
-	{foreachelse}
-	<tr>
-		<td colspan="6" class="nodata">{translate key="common.none"}</td>
-	</tr>
-	{/foreach}
-	<tr>
 		<td colspan="6" class="separator">&nbsp;</td>
 	</tr>
 </table>

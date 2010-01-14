@@ -96,24 +96,6 @@ class DesignerSubmission extends Monograph {
 		return $this->setData('galleys', $galleys);
 	}
 
-	/**
-	 * Get supplementary files for this monograph.
-	 * @return array SuppFiles
-	 */
-	function &getSuppFiles() {
-		$returner =& $this->getData('suppFiles');
-		return $returner;
-	}
-
-	/**
-	 * Set supplementary file for this monograph.
-	 * @param $suppFiles array SuppFiles
-	 */
-	function setSuppFiles($suppFiles) {
-		return $this->setData('suppFiles', $suppFiles);
-	}
-
-
 	// FIXME These should probably be in an abstract "Submission" base class
 
 	/**

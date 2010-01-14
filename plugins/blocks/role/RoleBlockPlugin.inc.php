@@ -85,9 +85,6 @@ class RoleBlockPlugin extends BlockPlugin {
 			case 'author': switch (Request::getRequestedOp()) {
 				case 'submit':
 				case 'saveSubmit':
-				case 'submitSuppFile':
-				case 'saveSubmitSuppFile':
-				case 'deleteSubmitSuppFile':
 				case 'expediteSubmission':
 					// Block disabled for submission
 					return null;

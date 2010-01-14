@@ -24,7 +24,6 @@ class CopyeditorSubmissionDAO extends DAO {
 	var $userDao;
 	var $editAssignmentDao;
 	var $monographFileDao;
-	var $suppFileDao;
 	var $galleyDao;
 	var $monographCommentDao;
 
@@ -40,7 +39,6 @@ class CopyeditorSubmissionDAO extends DAO {
 		$this->monographDao =& DAORegistry::getDAO('MonographDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 	}
 
@@ -117,7 +115,6 @@ class CopyeditorSubmissionDAO extends DAO {
 		$copyeditorSubmission->setMostRecentLayoutComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_LAYOUT, $row['monograph_id']));
 
 		// Information for Layout table access
-		$copyeditorSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByMonograph($row['monograph_id']));
 		$copyeditorSubmission->setGalleys($this->galleyDao->getGalleysByMonograph($row['monograph_id']));
 
 		HookRegistry::call('CopyeditorSubmissionDAO::_fromRow', array(&$copyeditorSubmission, &$row));

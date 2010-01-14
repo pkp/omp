@@ -114,7 +114,6 @@ class Application extends PKPApplication {
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
 			'RoleDAO' => 'security.RoleDAO',
 			'FlexibleRoleDAO' => 'role.FlexibleRoleDAO',
-			'SuppFileDAO' => 'monograph.SuppFileDAO',
 			'AcquisitionsEditorSubmissionDAO' => 'submission.acquisitionsEditor.AcquisitionsEditorSubmissionDAO',
 			'UserDAO' => 'user.UserDAO',
 			'UserSettingsDAO' => 'user.UserSettingsDAO',

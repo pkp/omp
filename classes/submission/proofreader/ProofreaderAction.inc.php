@@ -16,7 +16,7 @@
  * @brief ProofreaderAction class.
  */
 
-// $Id: ProofreaderAction.inc.php,v 1.4 2009/10/07 00:36:12 asmecher Exp $
+// $Id$
 
 import('submission.common.Action');
 
@@ -395,16 +395,7 @@ class ProofreaderAction extends Action {
 	function downloadProofreaderFile($submission, $fileId, $revision = null) {
 		$canDownload = false;
 
-		// Proofreaders have access to:
-		// 1) All supplementary files.
-		// 2) All galley files.
-
-		// Check supplementary files
-		foreach ($submission->getSuppFiles() as $suppFile) {
-			if ($suppFile->getFileId() == $fileId) {
-				$canDownload = true;
-			}
-		}
+		// Proofreaders have access to all galley files.
 
 		// Check galley files
 		foreach ($submission->getGalleys() as $galleyFile) {

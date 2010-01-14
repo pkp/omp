@@ -560,23 +560,6 @@ class ReviewAssignment extends DataObject {
 	}
 
 	/**
-	 * Get supplementary files for this monograph.
-	 * @return array SuppFiles
-	 */
-	function &getSuppFiles() {
-		$returner =& $this->getData('suppFiles');
-		return $returner;
-	}
-
-	/**
-	 * Set supplementary file for this monograph.
-	 * @param $suppFiles array SuppFiles
-	 */
-	function setSuppFiles($suppFiles) {
-		return $this->setData('suppFiles', $suppFiles);
-	}
-
-	/**
 	 * Get number of weeks until review is due (or number of weeks overdue).
 	 * @return int
 	 */

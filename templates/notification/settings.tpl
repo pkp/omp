@@ -50,21 +50,6 @@
 	</li>
 </ul>	
 
-<ul>
-	<li>{translate key="notification.type.suppFileModified" param=$titleVar}
-	<ul class="plain">
-		<li><span>
-				<input type="checkbox" name="notificationSuppFileModified"{if !$smarty.const.NOTIFICATION_TYPE_SUPP_FILE_MODIFIED|in_array:$notificationSettings} checked="checked"{/if} />
-				{translate key="notification.allow"}
-			</span></li>
-		<li><span>
-				<input type="checkbox" name="emailNotificationSuppFileModified"{if $smarty.const.NOTIFICATION_TYPE_SUPP_FILE_MODIFIED|in_array:$emailSettings} checked="checked"{/if} />
-				{translate key="notification.email"}
-			</span></li>
-	</ul>
-	</li>
-</ul>
-
 <br />
 
 {if !$canOnlyRead}

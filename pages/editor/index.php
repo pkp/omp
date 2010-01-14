@@ -65,11 +65,6 @@ switch ($op) {
 	case 'uploadCopyeditVersion':
 	case 'completeCopyedit':
 	case 'completeFinalCopyedit':
-	case 'addSuppFile':
-	case 'setSuppFileVisibility':
-	case 'editSuppFile':
-	case 'saveSuppFile':
-	case 'deleteSuppFile':
 	case 'deleteMonographFile':
 	case 'archiveSubmission':
 	case 'unsuitableSubmission':
@@ -93,8 +88,6 @@ switch ($op) {
 	case 'proofGalley':
 	case 'proofGalleyTop':
 	case 'proofGalleyFile':
-	case 'uploadSuppFile':
-	case 'orderSuppFile':
 	//
 	// Submission History
 	//

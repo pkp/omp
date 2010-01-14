@@ -24,7 +24,6 @@ class AuthorSubmissionDAO extends DAO {
 	var $userDao;
 	var $reviewAssignmentDao;
 	var $monographFileDao;
-	var $suppFileDao;
 	var $copyeditorSubmissionDao;
 	var $monographCommentDao;
 	var $galleyDao;
@@ -40,7 +39,6 @@ class AuthorSubmissionDAO extends DAO {
 		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$this->suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
 		$this->copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
 		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
@@ -128,7 +126,6 @@ class AuthorSubmissionDAO extends DAO {
 		// Files
 		$authorSubmission->setSubmissionFile($this->monographFileDao->getMonographFile($row['submission_file_id']));
 		$authorSubmission->setRevisedFile($this->monographFileDao->getMonographFile($row['revised_file_id']));
-		$authorSubmission->setSuppFiles($this->suppFileDao->getSuppFilesByMonograph($row['monograph_id']));
 
 		if ($authorSubmission->getCurrentReviewType() != null) {
 			$authorSubmission->setAuthorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['revised_file_id']));

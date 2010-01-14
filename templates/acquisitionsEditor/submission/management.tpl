@@ -12,7 +12,6 @@
 <h3>{translate key="manuscript.submission"}</h3>
 
 {assign var="submissionFile" value=$submission->getSubmissionFile()}
-{assign var="suppFiles" value=$submission->getSuppFiles()}
 
 <table width="100%" class="data">
 	<tr>

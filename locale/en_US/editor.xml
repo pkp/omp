@@ -20,7 +20,6 @@
 	<message key="editor.regrets.link">View Regrets, Cancels, Previous Rounds</message>
 	<message key="submission.art">Artwork</message>
 
-	<message key="editor.monograph.showSuppFile">Present file to reviewers</message>
 	<message key="editor.monograph.reviewForms">Review Forms</message>
 	<message key="editor.monograph.selectReviewForm">Select Review Form</message>
 	<message key="editor.monograph.clearReviewForm">Clear Review Form</message>
@@ -48,7 +47,6 @@
 	<message key="editor.editorAdministration">Editor Administration</message>
 	<message key="editor.monograph.designateReviewVersion">Designate the original file as the Review Version</message>
 	<message key="editor.monograph.uploadReviewVersion">Upload a revised Review Version</message>
-	<message key="editor.monograph.showSuppFile">Present file to reviewers</message>
 	<message key="editor.monograph.layoutAndProof">Layout &amp; Proof</message>
 	<message key="editor.monograph.clear">Clear</message>
 	<message key="editor.monograph.clearReviewer">Clear reviewer</message>

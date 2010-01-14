@@ -122,7 +122,6 @@ function setRegAllowOpts(form) {
 	<br />
 	{fbvElement type="checkbox" id="enablePublicMonographId" value="1" checked=$enablePublicMonographId label="manager.setup.enablePublicMonographId"}
 	{fbvElement type="checkbox" id="enablePublicGalleyId" value="1" checked=$enablePublicGalleyId label="manager.setup.enablePublicGalleyId"}
-	{fbvElement type="checkbox" id="enablePublicSuppFileId" value="1" checked=$enablePublicSuppFileId label="manager.setup.enablePublicSuppFileId"}
 {/fbvFormSection}
 {fbvFormSection title="manager.setup.pageNumberIdentifier" layout=$fbvStyles.layout.ONE_COLUMN}
 	{fbvElement type="checkbox" id="enablePageNumber" value="1" checked=$enablePageNumber label="manager.setup.enablePageNumber"}

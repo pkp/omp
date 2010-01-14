@@ -98,7 +98,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign('round', $round);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
-		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 
 		import('submission.acquisitionsEditor.AcquisitionsEditorSubmission');
 		$templateMgr->assign_by_ref('editorDecisionOptions', AcquisitionsEditorSubmission::getEditorDecisionOptions());
@@ -158,7 +157,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign('reviewEarliestNotificationByRound', $reviewEarliestNotificationByRound);
 		$templateMgr->assign_by_ref('submissionFile', $authorSubmission->getSubmissionFile());
 		$templateMgr->assign_by_ref('revisedFile', $authorSubmission->getRevisedFile());
-		$templateMgr->assign_by_ref('suppFiles', $authorSubmission->getSuppFiles());
 		$templateMgr->assign('lastEditorDecision', $lastDecision);
 		$templateMgr->assign('editorDecisionOptions',
 			array(
@@ -171,111 +169,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		);
 		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.review');
 		$templateMgr->display('author/submissionReview.tpl');
-	}
-
-	/**
-	 * Add a supplementary file.
-	 * @param $args array ($monographId)
-	 */
-	function addSuppFile($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($monographId);
-		$authorSubmission =& $this->submission;
-		if ($authorSubmission->getStatus() != STATUS_PUBLISHED && $authorSubmission->getStatus() != STATUS_ARCHIVED) {
-			$this->setupTemplate(true, $monographId, 'summary');
-
-			import('submission.form.SuppFileForm');
-
-			$submitForm = new SuppFileForm($authorSubmission);
-
-			if ($submitForm->isLocaleResubmit()) {
-				$submitForm->readInputData();
-			} else {
-				$submitForm->initData();
-			}
-			$submitForm->display();
-		} else {
-			Request::redirect(null, null, 'submission', $monographId);
-		}
-	}
-
-	/**
-	 * Edit a supplementary file.
-	 * @param $args array ($monographId, $suppFileId)
-	 */
-	function editSuppFile($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$suppFileId = isset($args[1]) ? (int) $args[1] : 0;
-		$this->validate($monographId);
-
-		$authorSubmission =& $this->submission;
-		if ($authorSubmission->getStatus() != STATUS_PUBLISHED && $authorSubmission->getStatus() != STATUS_ARCHIVED) {
-			$this->setupTemplate(true, $monographId, 'summary');
-
-			import('submission.form.SuppFileForm');
-
-			$submitForm = new SuppFileForm($authorSubmission, $suppFileId);
-
-			if ($submitForm->isLocaleResubmit()) {
-				$submitForm->readInputData();
-			} else {
-				$submitForm->initData();
-			}
-			$submitForm->display();
-		} else {
-			Request::redirect(null, null, 'submission', $monographId);
-		}
-	}
-
-	/**
-	 * Set reviewer visibility for a supplementary file.
-	 * @param $args array ($suppFileId)
-	 */
-	function setSuppFileVisibility($args) {
-		$monographId = Request::getUserVar('monographId');
-		$this->validate($monographId);
-		$authorSubmission =& $this->submission;
-
-		if ($authorSubmission->getStatus() != STATUS_PUBLISHED && $authorSubmission->getStatus() != STATUS_ARCHIVED) {
-			$suppFileId = Request::getUserVar('fileId');
-			$suppFileDao =& DAORegistry::getDAO('SuppFileDAO');
-			$suppFile = $suppFileDao->getSuppFile($suppFileId, $monographId);
-
-			if (isset($suppFile) && $suppFile != null) {
-				$suppFile->setShowReviewers(Request::getUserVar('hide')==1?0:1);
-				$suppFileDao->updateSuppFile($suppFile);
-			}
-		}
-		Request::redirect(null, null, 'submissionReview', $monographId);
-	}
-
-	/**
-	 * Save a supplementary file.
-	 * @param $args array ($suppFileId)
-	 */
-	function saveSuppFile($args) {
-		$monographId = Request::getUserVar('monographId');
-		$this->validate($monographId);
-		$authorSubmission =& $this->submission;
-		$this->setupTemplate(true, $monographId, 'summary');
-
-		if ($authorSubmission->getStatus() != STATUS_PUBLISHED && $authorSubmission->getStatus() != STATUS_ARCHIVED) {
-			$suppFileId = isset($args[0]) ? (int) $args[0] : 0;
-
-			import('submission.form.SuppFileForm');
-
-			$submitForm = new SuppFileForm($authorSubmission, $suppFileId);
-			$submitForm->readInputData();
-
-			if ($submitForm->validate()) {
-				$submitForm->execute();
-				Request::redirect(null, null, 'submission', $monographId);
-			} else {
-				$submitForm->display();
-			}
-		} else {
-			Request::redirect(null, null, 'submission', $monographId);
-		}
 	}
 
 	/**
@@ -301,7 +194,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign_by_ref('initialCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
 		$templateMgr->assign_by_ref('editorAuthorCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_AUTHOR'));
 		$templateMgr->assign_by_ref('finalCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_FINAL'));
-		$templateMgr->assign_by_ref('suppFiles', $submission->getSuppFiles());
 		$templateMgr->assign('useCopyeditors', $press->getSetting('useCopyeditors'));
 		$templateMgr->assign('useLayoutEditors', $press->getSetting('useLayoutEditors'));
 		$templateMgr->assign('useProofreaders', $press->getSetting('useProofreaders'));
