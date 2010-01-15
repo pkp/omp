@@ -43,6 +43,7 @@
 	<message key="submission.artwork.add">Add Artwork w/Permissions</message>
 	<message key="submission.chapter">Chapter</message>
 	<message key="common.details">Details</message>
+	<message key="user.accountInformation">Account Information</message>
 
 	<!-- review froms start -->
 	<message key="inserts.monographComponents.heading.info">Component Info</message>
