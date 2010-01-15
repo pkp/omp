@@ -29,8 +29,6 @@
 
 	<h3>{translate key="user.profile"}</h3>
 
-	{include file="common/formErrors.tpl"}
-
 	{if $existingUser}
 		<p>{translate key="user.register.loginToRegister"}</p>
 	{/if}
@@ -40,170 +38,155 @@
 	<input type="hidden" name="source" value="{$source|escape}" />
 {/if}
 
-<table class="data" width="100%">
+{fbvFormArea id="registration"}
 {if count($formLocales) > 1 && !$existingUser}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-		<td width="80%" class="value">
-			{url|assign:"userRegisterUrl" page="user" op="register" escape=false}
-			{form_language_chooser form="register" url=$userRegisterUrl}
-			<span class="instruct">{translate key="form.formLanguage.description"}</span>
-		</td>
-	</tr>
+	{fbvFormSection title="form.formLanguage" for="languageSelector"}
+		{fbvCustomElement}
+			{url|assign:"setupFormUrl" op="setup" path="1"}
+			{form_language_chooser form="setupForm" url=$setupFormUrl}
+			<p>{translate key="form.formLanguage.description"}</p>
+		{/fbvCustomElement}
+	{/fbvFormSection}
 {/if}{* count($formLocales) > 1 && !$existingUser *}
 
 {if !$implicitAuth}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="username" required="true" key="user.username"}</td>
-		<td width="80%" class="value"><input type="text" name="username" value="{$username|escape}" id="username" size="20" maxlength="32" class="textField" /></td>
-	</tr>
-	{if !$existingUser}
-	<tr valign="top">
-		<td></td>
-		<td class="instruct">{translate key="user.register.usernameRestriction"}</td>
-	</tr>
-	{/if}{* !$existingUser *}
+	{fbvFormSection title="user.accountInformation" required="true"}
+		{fbvElement type="text" label="user.username" id="username" value=$username required="true"}
+		{fbvElement type="text" label="user.password" id="password" value=$password required="true" password="true"}
+		{if !$existingUser}
+			{fbvElement type="text" label="user.register.repeatPassword" id="password2" value=$password2 required="true" password="true"}
+		{/if}{* !$existingUser *}
+	{/fbvFormSection}
 
-	<tr valign="top">
-		<td class="label">{fieldLabel name="password" required="true" key="user.password"}</td>
-		<td class="value"><input type="password" name="password" value="{$password|escape}" id="password" size="20" maxlength="32" class="textField" /></td>
-	</tr>
+  {if !$existingUser}
+	{fbvFormSection title="common.name" required="true"}
+		{fbvElement type="text" label="user.salutation" id="salutation" value=$salutation size=$fbvStyles.size.SMALL}
+		{fbvElement type="text" label="user.firstName" id="firstName" value=$firstName required="true"}
+		{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName}
+		{fbvElement type="text" label="user.lastName" id="lastName" value=$lastName required="true"}
+		{fbvElement type="text" label="user.initials" id="initials" value=$initials size=$fbvStyles.size.SMALL}
+	{/fbvFormSection}
 
-	{if !$existingUser}
-		<tr valign="top">
-			<td></td>
-			<td class="instruct">{translate key="user.register.passwordLengthRestriction" length=$minPasswordLength}</td>
-		</tr>
-		<tr valign="top">
-			<td class="label">{fieldLabel name="password2" required="true" key="user.register.repeatPassword"}</td>
-			<td class="value"><input type="password" name="password2" id="password2" value="{$password2|escape}" size="20" maxlength="32" class="textField" /></td>
-		</tr>
+	{fbvFormSection title="user.gender" for="gender" float=$fbvStyles.positions.LEFT}
+		{fbvElement type="select" from=$genderOptions selected=$gender id="gender" translate="true"}
+	{/fbvFormSection}
 
-		{if $captchaEnabled}
-			<tr>
-				<td class="label" valign="top">{fieldLabel name="captcha" required="true" key="common.captchaField"}</td>
-				<td class="value">
-					<img src="{url page="user" op="viewCaptcha" path=$captchaId}" alt="{translate key="common.captchaField.altText"}" /><br />
-					<span class="instruct">{translate key="common.captchaField.description"}</span><br />
-					<input name="captcha" id="captcha" value="" size="20" maxlength="32" class="textField" />
-					<input type="hidden" name="captchaId" value="{$captchaId|escape:"quoted"}" />
-				</td>
-			</tr>
-		{/if}{* $captchaEnabled *}
+	{fbvFormSection title="user.phone" for="phone" float=$fbvStyles.float.LEFT}
+		{fbvElement type="text" id="phone" value=$phone}
+	{/fbvFormSection}
 
-		<tr valign="top">
-			<td class="label">{fieldLabel name="salutation" key="user.salutation"}</td>
-			<td class="value"><input type="text" name="salutation" id="salutation" value="{$salutation|escape}" size="20" maxlength="40" class="textField" /></td>
-		</tr>
-		<tr valign="top">
-			<td class="label">{fieldLabel name="firstName" required="true" key="user.firstName"}</td>
-			<td class="value"><input type="text" id="firstName" name="firstName" value="{$firstName|escape}" size="20" maxlength="40" class="textField" /></td>
-		</tr>
+	{fbvFormSection title="user.fax" for="fax" float=$fbvStyles.float.RIGHT}
+		{fbvElement type="text" id="fax" value=$fax}
+	{/fbvFormSection}
 
-		<tr valign="top">
-			<td class="label">{fieldLabel name="middleName" key="user.middleName"}</td>
-			<td class="value"><input type="text" id="middleName" name="middleName" value="{$middleName|escape}" size="20" maxlength="40" class="textField" /></td>
-		</tr>
+	{fbvFormSection title="user.email" for="email" required="true" float=$fbvStyles.float.LEFT}
+		{fbvElement type="text" id="email" value=$email size=$fbvStyles.size.LARGE} {if $privacyStatement}<a class="action" href="#privacyStatement">{translate key="user.register.privacyStatement"}</a>{/if}
+	{/fbvFormSection}
 
-		<tr valign="top">
-			<td class="label">{fieldLabel name="lastName" required="true" key="user.lastName"}</td>
-			<td class="value"><input type="text" id="lastName" name="lastName" value="{$lastName|escape}" size="20" maxlength="90" class="textField" /></td>
-		</tr>
+	{fbvFormSection title="user.url" for="userUrl" float=$fbvStyles.float.RIGHT}
+		{fbvElement type="text" id="userUrl" value=$userUrl size=$fbvStyles.size.LARGE}
+	{/fbvFormSection}
 
-		<tr valign="top">
-			<td class="label">{fieldLabel name="initials" key="user.initials"}</td>
-			<td class="value"><input type="text" id="initials" name="initials" value="{$initials|escape}" size="5" maxlength="5" class="textField" />&nbsp;&nbsp;{translate key="user.initialsExample"}</td>
-		</tr>
+	{fbvFormSection title="user.affiliation" for="affiliation" float=$fbvStyles.float.LEFT}
+		{fbvElement type="textarea" id="affiliation" value=$affiliation size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+	{/fbvFormSection}
 
-		<tr valign="top">
-			<td class="label">{fieldLabel name="gender-m" key="user.gender"}</td>
-			<td class="value">
-				<select name="gender" id="gender" size="1" class="selectMenu">
-					{html_options_translate options=$genderOptions selected=$gender}
-				</select>
- 			</td>
-		</tr>
+	{fbvFormSection title="user.mailingAddress" for="mailingAddress" float=$fbvStyles.float.RIGHT}
+		{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+	{/fbvFormSection}
 
-		<tr valign="top">
-			<td class="label">{fieldLabel name="affiliation" key="user.affiliation"}</td>
-			<td class="value"><textarea id="affiliation" name="affiliation" rows="5" cols="40" class="textArea">{$affiliation|escape}</textarea></td>
-		</tr>
+	{fbvFormSection title="user.biography" for="biography" float=$fbvStyles.float.LEFT}
+		{fbvElement type="textarea" id="biography" name="biography[$formLocale]" value=$biography[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{/fbvFormSection}
 
-		<tr valign="top">
-			<td class="label">{fieldLabel name="signature" key="user.signature"}</td>
-			<td class="value"><textarea name="signature[{$formLocale|escape}]" id="signature" rows="5" cols="40" class="textArea">{$signature[$formLocale]|escape}</textarea></td>
-		</tr>
+	{fbvFormSection title="user.signature" for="signature" float=$fbvStyles.float.RIGHT}
+		{fbvElement type="textarea" id="signature" name="signature[$formLocale]" value=$signature[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+	{/fbvFormSection}
 
-		<tr valign="top">
-			<td class="label">{fieldLabel name="email" required="true" key="user.email"}</td>
-			<td class="value"><input type="text" id="email" name="email" value="{$email|escape}" size="30" maxlength="90" class="textField" /> {if $privacyStatement}<a class="action" href="#privacyStatement">{translate key="user.register.privacyStatement"}</a>{/if}</td>
-		</tr>
+	{fbvFormSection title="common.country" for="country"}
+		{fbvElement type="select" from=$countries selected=$country translate=0 id="country" defaultValue="" defaultLabel=""}
+	{/fbvFormSection}
 
-		<tr valign="top">
-			<td class="label">{fieldLabel name="userUrl" key="user.url"}</td>
-			<td class="value"><input type="text" id="userUrl" name="userUrl" value="{$userUrl|escape}" size="30" maxlength="90" class="textField" /></td>
-		</tr>
+	{if count($availableLocales) > 1}
+	{fbvFormSection title="user.workingLanguages" layout=$fbvStyles.layout.THREE_COLUMNS group="true"}
+		{foreach from=$availableLocales key=localeKey item=localeName}
+			{assign var="controlId" value=userLocales-$localeKey}
+			{if in_array($localeKey, $userLocales)}
+				{fbvElement type="checkbox" name="userLocales[]" id=$controlId value="1" label=$localeName translate="false" checked="checked"}
+			{else}
+				{fbvElement type="checkbox" name="userLocales[]" id=$controlId value="1" label=$localeName translate="false"}
+			{/if}
+		{/foreach}
+	{/fbvFormSection}
+	{/if}{* count($availableLocales) > 1 *}
 
-		<tr valign="top">
-			<td class="label">{fieldLabel name="phone" key="user.phone"}</td>
-			<td class="value"><input type="text" name="phone" id="phone" value="{$phone|escape}" size="15" maxlength="24" class="textField" /></td>
-		</tr>
+	{fbvFormSection title="user.sendPassword" layout=$fbvStyles.layout.ONE_COLUMN}
+		{if $sendPassword}
+			{fbvElement type="checkbox" id="sendPassword" value="1" label="user.sendPassword.description" checked="checked"}
+		{else}
+			{fbvElement type="checkbox" id="sendPassword" value="1" label="user.sendPassword.description"}
+		{/if}
+	{/fbvFormSection}
 
-		<tr valign="top">
-			<td class="label">{fieldLabel name="fax" key="user.fax"}</td>
-			<td class="value"><input type="text" name="fax" id="fax" value="{$fax|escape}" size="15" maxlength="24" class="textField" /></td>
-		</tr>
 
-		<tr valign="top">
-			<td class="label">{fieldLabel name="mailingAddress" key="common.mailingAddress"}</td>
-			<td class="value"><textarea name="mailingAddress" id="mailingAddress" rows="3" cols="40" class="textArea">{$mailingAddress|escape}</textarea></td>
-		</tr>
-
-		<tr valign="top">
-			<td class="label">{fieldLabel name="country" key="common.country"}</td>
-			<td class="value">
-				<select name="country" id="country" class="selectMenu">
-					<option value=""></option>
-					{html_options options=$countries selected=$country}
-				</select>
-			</td>
-		</tr>
-
-		<tr valign="top">
-			<td class="label">{fieldLabel name="biography" key="user.biography"}<br />{translate key="user.biography.description"}</td>
-			<td class="value"><textarea name="biography[{$formLocale|escape}]" id="biography" rows="5" cols="40" class="textArea">{$biography[$formLocale]|escape}</textarea></td>
-		</tr>
-
-		<tr valign="top">
-			<td class="label">{fieldLabel name="sendPassword" key="user.sendPassword"}</td>
-			<td class="value">
-				<input type="checkbox" name="sendPassword" id="sendPassword" value="1"{if $sendPassword} checked="checked"{/if} /> <label for="sendPassword">{translate key="user.sendPassword.description"}</label>
-			</td>
-		</tr>
-
-		{if count($availableLocales) > 1}
-			<tr valign="top">
-				<td class="label">{translate key="user.workingLanguages"}</td>
-				<td class="value">{foreach from=$availableLocales key=localeKey item=localeName}
-				<input type="checkbox" name="userLocales[]" id="userLocales-{$localeKey|escape}" value="{$localeKey|escape}"{if in_array($localeKey, $userLocales)} checked="checked"{/if} /> <label for="userLocales-{$localeKey|escape}">{$localeName|escape}</label><br />
-				{/foreach}</td>
-			</tr>
-		{/if}{* count($availableLocales) > 1 *}
-	{/if}{* !$existingUser *}
+  {/if} {* !$existingUser *}
 {/if}{* !$implicitAuth *}
 
-{if $allowRegReader || $allowRegReader === null || $allowRegAuthor || $allowRegAuthor === null || $allowRegReviewer || $allowRegReviewer === null}
-	<tr valign="top">
-		<td class="label">{fieldLabel suppressId="true" name="registerAs" key="user.register.registerAs"}</td>
-		<td class="value">{if $allowRegReader || $allowRegReader === null}<input type="checkbox" name="registerAsReader" id="registerAsReader" value="1"{if $registerAsReader} checked="checked"{/if} /> <label for="registerAsReader">{translate key="user.role.reader"}</label>: {translate key="user.register.readerDescription"}<br />{/if}
-		{if $allowRegAuthor || $allowRegAuthor === null}<input type="checkbox" name="registerAsAuthor" id="registerAsAuthor" value="1"{if $registerAsAuthor} checked="checked"{/if} /> <label for="registerAsAuthor">{translate key="user.role.author"}</label>: {translate key="user.register.authorDescription"}<br />{/if}
-		{if $allowRegReviewer || $allowRegReviewer === null}<input type="checkbox" name="registerAsReviewer" id="registerAsReviewer" value="1"{if $registerAsReviewer} checked="checked"{/if} /> <label for="registerAsReviewer">{translate key="user.role.reviewer"}</label>: {if $existingUser}{translate key="user.register.reviewerDescriptionNoInterests"}{else}{translate key="user.register.reviewerDescription"} <input type="text" name="interests[{$formLocale|escape}]" value="{$interests[$formLocale]|escape}" size="20" maxlength="255" class="textField" />{/if}{/if}</td>
-	</tr>
-{/if}
+  {if $allowRegReader || $allowRegReader === null || $allowRegAuthor || $allowRegAuthor === null || $allowRegReviewer || $allowRegReviewer === null}
+	{fbvFormSection title="user.register.registerAs" layout=$fbvStyles.layout.ONE_COLUMN group="true"}
+	{if $allowRegReader || $allowRegReader === null}
+		{if $registerAsReader}
+			{fbvElement type="checkbox" id="registerAsReader" value="1" label="user.register.readerDescription" checked="checked"}
+		{else}
+			{fbvElement type="checkbox" id="registerAsReader" value="1" label="user.register.readerDescription"}
+		{/if}
+	{/if}
+	{if $allowRegAuthor || $allowRegAuthor === null}
+		{if $registerAsAuthor}
+			{fbvElement type="checkbox" id="registerAsAuthor" value="1" label="user.register.authorDescription" checked="checked"}
+		{else}
+			{fbvElement type="checkbox" id="registerAsAuthor" value="1" label="user.register.authorDescription"}
+		{/if}
+	{/if}
+	{assign var="divEnded" value=0}
+	{if $allowRegReviewer || $allowRegReviewer === null}
+		{if $existingUser}
+			{assign var="regReviewerLabel" value="user.register.reviewerDescriptionNoInterests"}
+		{else}
+			{assign var="regReviewerLabel" value="user.register.reviewerDescription"}
+		{/if}
 
-</table>
+		{if $registerAsReviewer}
+			{fbvElement type="checkbox" id="registerAsReviewer" value="1" label=$regReviewerLabel checked="checked"}
+		{else}
+			{fbvElement type="checkbox" id="registerAsReviewer" value="1" label=$regReviewerLabel}
+			{fbvElement type="text" id="reviewerInterests" name="interests" value=$interests[$formLocale]}
+		{/if}
+		
 
-<p><input type="submit" value="{translate key="user.register"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="index" escape=false}'" /></p>
+	{/if}
+
+	{/fbvFormSection}
+  {/if}
+{if !$implicitAuth}
+	{if !existingUser}
+  {if $captchaEnabled}
+  <li>
+	{fieldLabel name="captcha" required="true" key="common.captchaField" class="desc"}
+	<span>
+		<img src="{url page="user" op="viewCaptcha" path=$captchaId}" alt="{translate key="common.captchaField.altText"}" /><br />
+		<p>{translate key="common.captchaField.description"}</p>
+		<input name="captcha" id="captcha" value="" size="20" maxlength="32" class="field text" />
+		<input type="hidden" name="captchaId" value="{$captchaId|escape:"quoted"}" />
+	</span>
+  </li>
+  {/if}{* $captchaEnabled *}
+
+	{/if} {* !$existingUser *}
+{/if}{* !$implicitAuth *}
+{/fbvFormArea}
+{url|assign:"url" page="index" escape=false}
+<p>{fbvButton type="submit" label="user.register"} {fbvButton label="common.cancel" onclick="document.location.href='$url'"}</p>
 
 {if ! $implicitAuth}
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
