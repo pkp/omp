@@ -62,7 +62,7 @@ class SponsorGridHandler extends GridMainHandler {
 
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();
-		$context =& $router->getContext();
+		$context =& $router->getContext($request);
 		$sponsors = $context->getSetting('sponsors');
 		$this->setData($sponsors);
 

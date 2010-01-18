@@ -154,7 +154,7 @@ class SponsorRowHandler extends GridRowHandler {
 		$this->_configureRow($request, $args);
 
 		$router =& $request->getRouter();
-		$press =& $router->getContext();
+		$press =& $router->getContext($request);
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
  
 		// get all of the sponsors

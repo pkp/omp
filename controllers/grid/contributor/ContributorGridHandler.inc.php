@@ -62,7 +62,7 @@ class ContributorGridHandler extends GridMainHandler {
 
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();
-		$context =& $router->getContext();
+		$context =& $router->getContext($request);
 		$contributors = $context->getSetting('contributors');
 		$this->setData($contributors);
 

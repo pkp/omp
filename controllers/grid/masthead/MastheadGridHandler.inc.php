@@ -42,7 +42,7 @@ class MastheadGridHandler extends GridMainHandler {
 	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addMasthead'));
+		return array_merge(parent::getRemoteOperations(), array('addGroup'));
 	}
 
 	//
@@ -62,7 +62,7 @@ class MastheadGridHandler extends GridMainHandler {
 
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();
-		$context =& $router->getContext();
+		$context =& $router->getContext($request);
 		$groupDAO =& DAORegistry::getDAO('GroupDAO');
 		$groups = $groupDAO->getGroups(ASSOC_TYPE_PRESS, $context->getId());
 		$this->setData($groups);
@@ -98,6 +98,6 @@ class MastheadGridHandler extends GridMainHandler {
 
 		// Calling editMasthead with an empty row id will add
 		// a new masthead.
-		$mastheadRow->editMasthead($args, $request);
+		$mastheadRow->editGroup($args, $request);
 	}
 }
