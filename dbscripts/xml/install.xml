@@ -23,6 +23,7 @@
 	<schema file="lib/pkp/xml/schema/announcements.xml"/>
 	<schema file="lib/pkp/xml/schema/signoff.xml" />
 	<schema file="dbscripts/xml/omp_schema.xml"/>
+	<schema file="dbscripts/xml/library_files.xml"/>	
 	
 	<code function="createData"/>
 	<code function="createConfig"/>
