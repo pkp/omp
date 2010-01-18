@@ -77,7 +77,7 @@ class FileForm extends Form {
 		$context =& $router->getContext($request);
 		import('file.LibraryFileManager');
 		$libraryFileManager = new LibraryFileManager($context->getId());
-		return $libraryFileManager->uploadSubmissionLibraryFile('libraryFile', $this->fileId);
+		return $libraryFileManager->handleUpload($this->fileType, 'libraryFile', $this->fileId);
 	}
 
 	/**
