@@ -108,7 +108,9 @@ class MastheadRowHandler extends GridRowHandler {
 // 	FIXME: add validation here
 		$this->validate($request, $groupId);
 		$this->setupTemplate($args, $request);
-		$press =& $request->getContext();
+		
+		$router =& $request->getRouter();
+		$press =& $router->getContext($request);
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
@@ -249,7 +251,7 @@ class MastheadRowHandler extends GridRowHandler {
 		parent::validate();
 
 		$router =& $request->getRouter();
-		$context =& $router->getContext();
+		$context =& $router->getContext($request);
 
 		$passedValidation = true;
 
