@@ -149,6 +149,7 @@ class LibraryFileRowHandler extends GridRowHandler {
 			$fileRow->setData($libraryFile);			
 
 			$json = new JSON('true', $fileRow->renderRowInternally($request));
+			echo $json->getString();
 		} elseif ($fileForm->validate() && ($fileId = $fileForm->uploadFile($args, $request)) ) {
 			// form validated and file uploaded successfully
 			$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
@@ -159,9 +160,9 @@ class LibraryFileRowHandler extends GridRowHandler {
 			$templateMgr->display('controllers/grid/library/form/fileInfo.tpl');
 			exit;
 		} else {
-			$json = new JSON('false');
+			echo Locale::translate("problem uploading file");
 		}
-		echo $json->getString();		
+
 	}
 
 

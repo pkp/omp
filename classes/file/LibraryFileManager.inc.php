@@ -41,16 +41,6 @@ class LibraryFileManager extends PKPPublicFileManager {
 		$this->pressId = $pressId;
 	}
 
-	/** Upload a submission library file 
-	 * @param $fileName string the name of the file in the upload form
-	 * @return boolean
-	 */
-	function uploadSubmissionLibraryFile($fileName, $fileId = null) {
-		return $this->handleUpload(LIBRARY_FILE_TYPE_SUBMISSION, $fileName, $fileId);
-	}
-	
-
-
  	/**
 	 * Delete a file by ID.
 	 * @param $fileId int
@@ -67,8 +57,9 @@ class LibraryFileManager extends PKPPublicFileManager {
 	
 	function generateFileName($type, $originalFileName) {
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
+		$suffix = $this->_getFileSuffixFromType($type);
 		$ext = $this->getExtension($originalFileName);
-		$truncated = $this->truncateFileName($originalFileName, 127 - String::strlen($type) - 1);
+		$truncated = $this->truncateFileName($originalFileName, 127 - String::strlen($suffix) - 1);
 		$baseName = String::substr($truncated, 0, String::strpos($originalFileName, $ext) - 1);
 
 		// try the following
@@ -77,9 +68,9 @@ class LibraryFileManager extends PKPPublicFileManager {
 			return $fileName;
 		} else {
 			for ($i = 1; ; $i++) {
-				$suffix = $this->_getFileSuffixFromType($type) . '-' . $i;
+				$fullSuffix = $suffix . '-' . $i;
 				//truncate more if necessary
-				$truncated = $this->truncateFileName($originalFileName, 127 - String::strlen($suffix) - 1);				
+				$truncated = $this->truncateFileName($originalFileName, 127 - String::strlen($fullSuffix) - 1);				
 				// get the base name and append the suffix
 				$baseName = String::substr($truncated, 0, String::strpos($originalFileName, $ext) - 1);
 				
@@ -135,7 +126,7 @@ class LibraryFileManager extends PKPPublicFileManager {
 			case LIBRARY_FILE_TYPE_SUBMISSION: return LIBRARY_FILE_SUFFIX_SUBMISSION;
 			case LIBRARY_FILE_TYPE_PRODUCTION: return LIBRARY_FILE_SUFFIX_PRODUCTION;
 			case LIBRARY_FILE_TYPE_EDITORIAL: return LIBRARY_FILE_SUFFIX_EDITORIAL;
-			case LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATES: return LIBRARY_FILE_SUFFIX_PRODUCTION_TEMPLATES;		
+			case LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE: return LIBRARY_FILE_SUFFIX_PRODUCTION_TEMPLATES;		
 		}
 	}
 }

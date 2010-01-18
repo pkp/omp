@@ -83,6 +83,9 @@
 
 <h3>3.7 {translate key="manager.setup.reviewLibrary"}</h3>
 
+{url|assign:reviewLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_REVIEW}
+{load_url_in_div id="reviewLibraryGridDiv" url=$reviewLibraryGridUrl}
+
 <div class="separator"></div>
 
 <h3>3.8 {translate key="manager.setup.reviewForms"}</h3>
@@ -100,6 +103,9 @@
 
 <h3>3.10 {translate key="manager.setup.editorialLibrary"}</h3>
 
+{url|assign:editorialLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_EDITORIAL}
+{load_url_in_div id="editorialLibraryGridDiv" url=$editorialLibraryGridUrl}
+
 <div class="separator"></div>
 
 <h3>3.11 {translate key="manager.setup.productionRoles"}</h3>
@@ -113,9 +119,15 @@
 
 <h3>3.12 {translate key="manager.setup.productionLibrary"}</h3>
 
+{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
+{load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
+
 <div class="separator"></div>
 
 <h3>3.13 {translate key="manager.setup.productionTemplates"}</h3>
+
+{url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
+{load_url_in_div id="productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}
 
 <div class="separator"></div>
 

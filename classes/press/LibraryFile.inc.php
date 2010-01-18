@@ -18,7 +18,7 @@
 define('LIBRARY_FILE_TYPE_SUBMISSION', 'submission');
 define('LIBRARY_FILE_TYPE_REVIEW', 'review');
 define('LIBRARY_FILE_TYPE_PRODUCTION', 'production');
-define('LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE', 'production_template');
+define('LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE', 'productionTemplate');
 define('LIBRARY_FILE_TYPE_EDITORIAL', 'editorial');
 
 class LibraryFile extends DataObject {
