@@ -54,6 +54,10 @@
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/jqueryValidatorI18n.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/modal.js"></script>
 
+	<!-- ListBuilder -->
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/autocomplete.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/listbuilder.js"></script>
+
 	<!-- Other Jquery Plugins -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.form.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/ajax_upload.js"></script>	

@@ -3,6 +3,7 @@
 /* Common PKP CSS 
 @import url("../lib/pkp/styles/common.css");*/
 @import url("common.css");
+@import url("../lib/pkp/styles/listbuilder.css");
 
 
 /* jQuery UI http://jqueryui.com */

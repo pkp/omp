@@ -233,11 +233,23 @@ class FlexibleRole extends DataObject {
 
 	/**
 	 * Associate a workflow point with this role.
-	 * @param $pressId int
+	 * @param $arrangementId int
 	 */
 	function addAssociatedArrangement($arrangementId) {
 		if (!in_array($arrangementId, $this->arrangements)) {
 			array_push($this->arrangements, $arrangementId);
+		}
+	}
+	
+	/**
+	 * Remove a workflow point from this role.
+	 * @param $arrangementId int
+	 */
+	function removeAssociatedArrangement($arrangementId) {
+		$key = array_search($arrangementId, $this->arrangements);
+
+		if (isset($key)) {
+			unset($this->arrangements[$key]);
 		}
 	}
 }
