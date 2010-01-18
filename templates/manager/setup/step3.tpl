@@ -94,7 +94,7 @@ function removeWorkflowRole(toName, prefix, roleId, roleName) {
 			<input type="text" name="newRole[name]" class="textField" />
 			<p>{translate key="manager.setup.roleAbbrev"}</p>
 			<input type="text" name="newRole[abbrev]" class="textField" />
-			<p>{translate key="manager.setup.roleType}</p>
+			<p>{translate key="manager.setup.roleType"}</p>
 			<input type="radio" name="newRole[type]" checked="checked" value="{$flexRoleAuthorId}" /> {translate key="manager.setup.authorRole"}
 			<input type="radio" name="newRole[type]" value="{$flexRolePressId}" /> {translate key="manager.setup.pressRole"}
 		</td>
@@ -128,7 +128,7 @@ function removeWorkflowRole(toName, prefix, roleId, roleName) {
 
 <div class="separator"></div>
 
-<h3>3.2 {translate key="manager.setup.submissionRoles}</h3>
+<h3>3.2 {translate key="manager.setup.submissionRoles"}</h3>
 
 <p>{translate key="manager.setup.submissionRolesDescription"}</p>
 
@@ -162,7 +162,7 @@ function removeWorkflowRole(toName, prefix, roleId, roleName) {
 
 <div class="separator"></div>
 
-<h3>3.3 {translate key="manager.setup.bookFileTypes}</h3>
+<h3>3.3 {translate key="manager.setup.bookFileTypes"}</h3>
 
 <p>{translate key="manager.setup.bookFileTypesDescription"}</p>
 
@@ -233,11 +233,13 @@ function removeWorkflowRole(toName, prefix, roleId, roleName) {
 
 <div class="separator"></div>
 
-<h3>3.4 {translate key="manager.setup.submissionLibrary}</h3>
+<h3>3.4 {translate key="manager.setup.submissionLibrary"}</h3>
+{url|assign:submissionLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_SUBMISSION}
+{load_url_in_div id="submissionLibraryGridDiv" url=$submissionLibraryUrl}
 
 <div class="separator"></div>
 
-<h3>3.5 {translate key="manager.setup.internalReviewRoles}</h3>
+<h3>3.5 {translate key="manager.setup.internalReviewRoles"}</h3>
 
 <p>{translate key="manager.setup.internalReviewRolesDescription"}</p>
 
@@ -271,7 +273,7 @@ function removeWorkflowRole(toName, prefix, roleId, roleName) {
 
 <div class="separator"></div>
 
-<h3>3.6 {translate key="manager.setup.externalReviewRoles}</h3>
+<h3>3.6 {translate key="manager.setup.externalReviewRoles"}</h3>
 
 <p>{translate key="manager.setup.externalReviewRolesDescription"}</p>
 
@@ -305,15 +307,15 @@ function removeWorkflowRole(toName, prefix, roleId, roleName) {
 
 <div class="separator"></div>
 
-<h3>3.7 {translate key="manager.setup.reviewLibrary}</h3>
+<h3>3.7 {translate key="manager.setup.reviewLibrary"}</h3>
 
 <div class="separator"></div>
 
-<h3>3.8 {translate key="manager.setup.reviewForms}</h3>
+<h3>3.8 {translate key="manager.setup.reviewForms"}</h3>
 
 <div class="separator"></div>
 
-<h3>3.9 {translate key="manager.setup.editorialRoles}</h3>
+<h3>3.9 {translate key="manager.setup.editorialRoles"}</h3>
 
 <p>{translate key="manager.setup.editorialRolesDescription"}</p>
 
@@ -347,11 +349,11 @@ function removeWorkflowRole(toName, prefix, roleId, roleName) {
 
 <div class="separator"></div>
 
-<h3>3.10 {translate key="manager.setup.editorialLibrary}</h3>
+<h3>3.10 {translate key="manager.setup.editorialLibrary"}</h3>
 
 <div class="separator"></div>
 
-<h3>3.11 {translate key="manager.setup.productionRoles}</h3>
+<h3>3.11 {translate key="manager.setup.productionRoles"}</h3>
 
 <p>{translate key="manager.setup.productionRolesDescription"}</p>
 
@@ -385,11 +387,11 @@ function removeWorkflowRole(toName, prefix, roleId, roleName) {
 
 <div class="separator"></div>
 
-<h3>3.12 {translate key="manager.setup.productionLibrary}</h3>
+<h3>3.12 {translate key="manager.setup.productionLibrary"}</h3>
 
 <div class="separator"></div>
 
-<h3>3.13 {translate key="manager.setup.productionTemplates}</h3>
+<h3>3.13 {translate key="manager.setup.productionTemplates"}</h3>
 
 <div class="separator"></div>
 

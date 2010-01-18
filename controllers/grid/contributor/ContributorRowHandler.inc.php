@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @file controllers/grid/sponsor/SponsorRowHandler.inc.php
+ * @file controllers/grid/contributor/ContributorRowHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SponsorRowHandler
- * @ingroup controllers_grid_sponsor
+ * @class ContributorRowHandler
+ * @ingroup controllers_grid_contributor
  *
- * @brief Handle sponsor grid row requests.
+ * @brief Handle contributor grid row requests.
  */
 
 import('controllers.grid.GridRowHandler');
 
-class SponsorRowHandler extends GridRowHandler {
+class ContributorRowHandler extends GridRowHandler {
 	/**
 	 * Constructor
 	 */
-	function SponsorRowHandler() {
+	function ContributorRowHandler() {
 		parent::GridRowHandler();
 	}
 
@@ -30,7 +30,7 @@ class SponsorRowHandler extends GridRowHandler {
 	 */
 	function getRemoteOperations() {
 		return array_merge(parent::getRemoteOperations(),
-				array('editSponsor', 'updateSponsor', 'deleteSponsor'));
+				array('editContributor', 'updateContributor', 'deleteContributor'));
 	}
 
 	//
@@ -68,70 +68,70 @@ class SponsorRowHandler extends GridRowHandler {
 		);
 		$this->addAction(
 			new GridAction(
-				'editSponsor',
+				'editContributor',
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_REPLACE,
-				$router->url($request, null, 'grid.sponsor.SponsorRowHandler', 'editSponsor', null, $actionArgs),
+				$router->url($request, null, 'grid.contributor.ContributorRowHandler', 'editContributor', null, $actionArgs),
 				'grid.action.edit',
 				'edit'
 			));
 		$this->addAction(
 			new GridAction(
-				'deleteSponsor',
+				'deleteContributor',
 				GRID_ACTION_MODE_CONFIRM,
 				GRID_ACTION_TYPE_REMOVE,
-				$router->url($request, null, 'grid.sponsor.SponsorRowHandler', 'deleteSponsor', null, $actionArgs),
+				$router->url($request, null, 'grid.contributor.ContributorRowHandler', 'deleteContributor', null, $actionArgs),
 				'grid.action.delete',
 				'delete'
 			));		
 	}
 	
 	//
-	// Public Sponsor Row Actions
+	// Public Contributor Row Actions
 	//
 	/**
-	 * An action to edit a sponsor
+	 * An action to edit a contributor
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function editSponsor(&$args, &$request) {
+	function editContributor(&$args, &$request) {
 		//FIXME: add validation here?
 		$this->_configureRow($request, $args);
 
-		import('controllers.grid.sponsor.form.SponsorForm');
-		$sponsorForm = new SponsorForm($this->getId());
+		import('controllers.grid.contributor.form.ContributorForm');
+		$contributorForm = new ContributorForm($this->getId());
 
-		if ($sponsorForm->isLocaleResubmit()) {
-			$sponsorForm->readInputData();
+		if ($contributorForm->isLocaleResubmit()) {
+			$contributorForm->readInputData();
 		} else {
-			$sponsorForm->initData($args, $request);
+			$contributorForm->initData($args, $request);
 		}
-		$sponsorForm->display();
+		$contributorForm->display();
 	}
 
 	/**
-	 * Update a sponsor
+	 * Update a contributor
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function updateSponsor(&$args, &$request) {
+	function updateContributor(&$args, &$request) {
 		//FIXME: add validation here?
-		// -> sponsorId must be present and valid
+		// -> contributorId must be present and valid
 		// -> htmlId must be present and valid
 		$this->_configureRow($request, $args);
 
-		import('controllers.grid.sponsor.form.SponsorForm');
-		$sponsorForm = new SponsorForm($this->getId());
-		$sponsorForm->readInputData();
+		import('controllers.grid.contributor.form.ContributorForm');
+		$contributorForm = new ContributorForm($this->getId());
+		$contributorForm->readInputData();
 
-		if ($sponsorForm->validate()) {
-			$sponsorForm->execute($args, $request);
+		if ($contributorForm->validate()) {
+			$contributorForm->execute($args, $request);
 
 			// prepare the grid row data			
-			$rowData = array('institution' => $sponsorForm->getData('institution'), 
-							'url' => $sponsorForm->getData('url'));
-			$this->setId($sponsorForm->sponsorId);
+			$rowData = array('institution' => $contributorForm->getData('institution'), 
+							'url' => $contributorForm->getData('url'));
+			$this->setId($contributorForm->contributorId);
 			$this->setData($rowData);
 
 			$json = new JSON('true', $this->renderRowInternally($request));
@@ -143,12 +143,12 @@ class SponsorRowHandler extends GridRowHandler {
 	}
 
 	/**
-	 * Delete a sponsor
+	 * Delete a contributor
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function deleteSponsor(&$args, &$request) {
+	function deleteContributor(&$args, &$request) {
 		// FIXME: add validation here?
 
 		$this->_configureRow($request, $args);
@@ -157,16 +157,16 @@ class SponsorRowHandler extends GridRowHandler {
 		$press =& $router->getContext();
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
  
-		// get all of the sponsors
-		$sponsors = $pressSettingsDao->getSetting($press->getId(), 'sponsors');
- 		$sponsorId = $this->getId();
+		// get all of the contributors
+		$contributors = $pressSettingsDao->getSetting($press->getId(), 'contributors');
+ 		$contributorId = $this->getId();
 
-		if ( isset($sponsors[$sponsorId]) ) {
-			unset($sponsors[$sponsorId]);
-			$pressSettingsDao->updateSetting($press->getId(), 'sponsors', $sponsors, 'object');
+		if ( isset($contributors[$contributorId]) ) {
+			unset($contributors[$contributorId]);
+			$pressSettingsDao->updateSetting($press->getId(), 'contributors', $contributors, 'object');
 			$json = new JSON('true');
 		} else {
-			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingSponsor'));
+			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingContributor'));
 		}
 		echo $json->getString();
 	}

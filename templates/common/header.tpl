@@ -47,12 +47,16 @@
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/hoverIntent.js"></script>	
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/superfish.js"></script>	
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/wufoo/wufoo.js"></script>
-	
+
 	<!-- Modals/Confirms -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/validate/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/jqueryValidatorI18n.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/modal.js"></script>
+
+	<!-- Other Jquery Plugins -->
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.form.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/ajax_upload.js"></script>	
 
 	<!-- General JS -->	
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/general.js"></script>		

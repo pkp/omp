@@ -111,6 +111,7 @@ class Application extends PKPApplication {
 			'ReviewFormElementDAO' => 'reviewForm.ReviewFormElementDAO',
 			'ReviewFormResponseDAO' => 'reviewForm.ReviewFormResponseDAO',
 			'WorkflowDAO' => 'workflow.WorkflowDAO',
+			'LibraryFileDAO' => 'press.LibraryFileDAO',			
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
 			'RoleDAO' => 'security.RoleDAO',
 			'FlexibleRoleDAO' => 'role.FlexibleRoleDAO',

@@ -40,15 +40,21 @@ class SetupHandler extends ManagerHandler {
 			$templateMgr =& TemplateManager::getManager();
 			switch ($step) {
 				case 1:
-					//FIXME: Could be replaced with smarty URL function (see bug 4935)
+					//FIXME: Following 3 could be replaced with smarty URL function (see bug 4935)
 					// Sponsor Grid
 					$templateMgr->assign('sponsorGridUrl', $this->getDispatcher()->url($request, 'component', null, 'grid.sponsor.SponsorGridHandler', 'fetchGrid'));
 
 					// Contributor Grid
-//					$templateMgr->assign('contributorGridUrl', $this->getDispatcher()->url($request, 'controller', null, 'grid.contributor.ContributorGridHandler', 'fetch'));
+					$templateMgr->assign('contributorGridUrl', $this->getDispatcher()->url($request, 'component', null, 'grid.contributor.ContributorGridHandler', 'fetchGrid'));
+					
+					// Contributor Grid
+					$templateMgr->assign('mastheadGridUrl', $this->getDispatcher()->url($request, 'component', null, 'grid.masthead.MastheadGridHandler', 'fetchGrid'));					
+					break;
+				case 3:
+					// import the file type constants
+					import('press.LibraryFile');
 					break;
 			}
-
 
 			$formClass = "PressSetupStep{$step}Form";
 			import("manager.form.setup.$formClass");

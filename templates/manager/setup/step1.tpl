@@ -100,7 +100,7 @@
 
 <div class="separator"></div>
 
-<h3>1.4 {translate key="manager.setup.masthead"}</h3>
+{load_url_in_div id="mastheadGridDiv" url=$mastheadGridUrl}
 
 <div class="separator"></div>
 
@@ -128,33 +128,9 @@
 		<td width="20%" class="label">{fieldLabel name="contributorNote" key="manager.setup.note"}</td>
 		<td width="80%" class="value"><textarea name="contributorNote[{$formLocale|escape}]" id="contributorNote" rows="5" cols="40" class="textArea">{$contributorNote[$formLocale]|escape}</textarea></td>
 	</tr>
-{foreach name=contributors from=$contributors key=contributorId item=contributor}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="contributors-$contributorId-name" key="manager.setup.contributor"}</td>
-		<td width="80%" class="value"><input type="text" name="contributors[{$contributorId|escape}][name]" id="contributors-{$contributorId|escape}-name" value="{$contributor.name|escape}" size="40" maxlength="90" class="textField" />{if $smarty.foreach.contributors.total > 1} <input type="submit" name="delContributor[{$contributorId|escape}]" value="{translate key="common.delete"}" class="button" />{/if}</td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="contributors-$contributorId-url" key="common.url"}</td>
-		<td width="80%" class="value"><input type="text" name="contributors[{$contributorId|escape}][url]" id="contributors-{$contributorId|escape}-url" value="{$contributor.url|escape}" size="40" maxlength="255" class="textField" /></td>
-	</tr>
-	{if !$smarty.foreach.contributors.last}
-	<tr valign="top">
-		<td colspan="2" class="separator">&nbsp;</td>
-	</tr>
-	{/if}
-{foreachelse}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="contributors-0-name" key="manager.setup.contributor"}</td>
-		<td width="80%" class="value"><input type="text" name="contributors[0][name]" id="contributors-0-name" size="40" maxlength="90" class="textField" /></td>
-	</tr>
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="contributors-0-url" key="common.url"}</td>
-		<td width="80%" class="value"><input type="text" name="contributors[0][url]" id="contributors-0-url" size="40" maxlength="255" class="textField" /></td>
-	</tr>
-{/foreach}
 </table>
 
-<p><input type="submit" name="addContributor" value="{translate key="manager.setup.addContributor"}" class="button" /></p>
+{load_url_in_div id="contributorGridDiv" url=$contributorGridUrl}
 
 <div class="separator"></div>
 

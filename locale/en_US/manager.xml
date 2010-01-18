@@ -59,6 +59,7 @@
 	<message key="manager.setup.masthead">Masthead</message>
 	<message key="grid.masthead.group">Group</message>
 	
+	<message key="manager.setup.files">Files</message>
 	<message key="manager.setup.submissionLibrary">Submission Library</message>
 	<message key="manager.setup.reviewLibrary">Review Library</message>
 	<message key="manager.setup.editorialLibrary">Editorial Library</message>
