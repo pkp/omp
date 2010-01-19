@@ -1,10 +1,6 @@
 /* @group Imports */
-
-/* Common PKP CSS 
-@import url("../lib/pkp/styles/common.css");*/
-@import url("common.css");
+/* listBuilder */
 @import url("../lib/pkp/styles/listbuilder.css");
-
 
 /* jQuery UI http://jqueryui.com */
 @import url("../lib/pkp/styles/jqueryUi.css");
