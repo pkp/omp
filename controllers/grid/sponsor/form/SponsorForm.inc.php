@@ -51,10 +51,10 @@ class SponsorForm extends Form {
 				'url' => ''
 			);
 		}
-		
+
 		// grid related data
 		$this->_data['gridId'] = $args['gridId'];
-		$this->_data['rowId'] = $args['rowId'];	
+		$this->_data['rowId'] = isset($args['rowId']) ? $args['rowId'] : null;
 	}
 
 	/**
