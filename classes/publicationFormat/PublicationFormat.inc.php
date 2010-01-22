@@ -7,7 +7,7 @@
 /**
  * @file classes/publicationFormat/PublicationFormat.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PublicationFormat
@@ -17,7 +17,7 @@
  * @brief Basic class describing a publication format.
  */
 
-// $Id: PublicationFormat.inc.php,v 1.1 2009/11/09 16:23:47 tylerl Exp $
+// $Id$
 
 
 class PublicationFormat extends DataObject {

@@ -3,7 +3,7 @@
 /**
  * @file classes/author/form/submit/AuthorSubmitStep3Form.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class AuthorSubmitStep3Form
@@ -12,7 +12,7 @@
  * @brief Form for Step 3 of author manuscript submission.
  */
 
-// $Id: AuthorSubmitStep3Form.inc.php,v 1.10 2009/10/15 17:18:56 tylerl Exp $
+// $Id$
 
 
 import('author.form.submit.AuthorSubmitForm');

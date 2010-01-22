@@ -3,7 +3,7 @@
 /**
  * @file classes/install/Install.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Install
@@ -18,7 +18,7 @@
  * It can also be used for a "manual install" to retrieve the SQL statements required for installation.
  */
 
-// $Id: Install.inc.php,v 1.9 2009/11/04 19:01:19 tylerl Exp $
+// $Id$
 
 
 // Default installation data

@@ -1,12 +1,12 @@
 {**
  * index.tpl
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * List of operations this plugin can perform
  *
- * $Id: index.tpl,v 1.2 2009/11/11 04:25:03 jerico.dev Exp $
+ * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="plugins.generic.translator.name"}

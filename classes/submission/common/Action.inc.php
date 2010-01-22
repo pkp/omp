@@ -7,7 +7,7 @@
 /**
  * @file classes/submission/common/Action.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Action
@@ -16,7 +16,7 @@
  * @brief Action class.
  */
 
-// $Id: Action.inc.php,v 1.20 2009/10/14 19:26:00 tylerl Exp $
+// $Id$
 
 
 /* These constants correspond to editing decision "decision codes". */
