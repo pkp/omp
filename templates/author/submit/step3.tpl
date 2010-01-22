@@ -1,12 +1,12 @@
 {**
  * step3.tpl
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Step 3 of author monograph submission.
  *
- * $Id: step3.tpl,v 1.12 2009/10/15 17:18:56 tylerl Exp $
+ * $Id$
  *}
 
 {include file="author/submit/submitStepHeader.tpl"}

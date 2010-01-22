@@ -7,7 +7,7 @@
 /**
  * @file classes/bookFile/BookFileType.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class BookFileType
@@ -17,7 +17,7 @@
  * @brief Basic class describing a book file type.
  */
 
-// $Id: BookFileType.inc.php,v 1.2 2009/10/15 17:18:56 tylerl Exp $
+// $Id$
 
 
 define('BOOK_FILE_TYPE_SORTABLE_DESIGNATION', '##');

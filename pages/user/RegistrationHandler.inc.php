@@ -3,7 +3,7 @@
 /**
  * @file RegistrationHandler.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class RegistrationHandler
@@ -12,7 +12,7 @@
  * @brief Handle requests for user registration. 
  */
 
-// $Id: RegistrationHandler.inc.php,v 1.11 2009/10/06 21:57:32 asmecher Exp $
+// $Id$
 
 import('pages.user.UserHandler');
 

@@ -1,7 +1,7 @@
 {**
  * NewContributorForm.tpl
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Form for creating new contributors from within the Contributors insert.

@@ -3,7 +3,7 @@
 /**
  * @file AdminSettingsHandler.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class AdminSettingsHandler
@@ -11,7 +11,7 @@
  *
  * @brief Handle requests for changing site admin settings. 
  *
- * $Id: AdminSettingsHandler.inc.php,v 1.7 2009/10/30 23:14:48 asmecher Exp $
+ * $Id$
  */
 
 import('pages.admin.AdminHandler');

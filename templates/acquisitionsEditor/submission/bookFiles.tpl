@@ -1,12 +1,12 @@
 {**
  * bookFiles.tpl
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Book files summary.
  *
- * $Id: bookFiles.tpl,v 1.2 2009/10/15 17:18:56 tylerl Exp $
+ * $Id$
  *}
 
 <div id="bookFiles">

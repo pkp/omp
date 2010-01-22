@@ -3,7 +3,7 @@
 /**
  * @file TranslatorAction.inc.php
  *
- * Copyright (c) 2003-2008 John Willinsky
+ * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class TranslatorAction
@@ -12,7 +12,7 @@
  * @brief Perform various tasks related to translation.
  */
 
-// $Id: TranslatorAction.inc.php,v 1.3 2009/11/11 04:25:03 jerico.dev Exp $
+// $Id$
 
 
 class TranslatorAction {
