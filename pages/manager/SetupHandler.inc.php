@@ -38,17 +38,18 @@ class SetupHandler extends ManagerHandler {
 
 		if ($step >= 1 && $step <= 5) {
 			$templateMgr =& TemplateManager::getManager();
+			$dispatcher =& $this->getDispatcher();
 			switch ($step) {
 				case 1:
 					//FIXME: Following 3 could be replaced with smarty URL function (see bug 4935)
 					// Sponsor Grid
-					$templateMgr->assign('sponsorGridUrl', $this->getDispatcher()->url($request, 'component', null, 'grid.sponsor.SponsorGridHandler', 'fetchGrid'));
+					$templateMgr->assign('sponsorGridUrl', $dispatcher->url($request, 'component', null, 'grid.sponsor.SponsorGridHandler', 'fetchGrid'));
 
 					// Contributor Grid
-					$templateMgr->assign('contributorGridUrl', $this->getDispatcher()->url($request, 'component', null, 'grid.contributor.ContributorGridHandler', 'fetchGrid'));
-					
+					$templateMgr->assign('contributorGridUrl', $dispatcher->url($request, 'component', null, 'grid.contributor.ContributorGridHandler', 'fetchGrid'));
+
 					// Contributor Grid
-					$templateMgr->assign('mastheadGridUrl', $this->getDispatcher()->url($request, 'component', null, 'grid.masthead.MastheadGridHandler', 'fetchGrid'));					
+					$templateMgr->assign('mastheadGridUrl', $dispatcher->url($request, 'component', null, 'grid.masthead.MastheadGridHandler', 'fetchGrid'));
 					break;
 				case 3:
 					// import the file type constants

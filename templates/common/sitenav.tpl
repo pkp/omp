@@ -13,11 +13,13 @@
 		<ul class="flat_list installation_navigation">
 			<li><a href="{url page="index"}">{translate key="navigation.home"}</a></li>
 			<li><a href="{url page="about"}">{translate key="navigation.about"}</a></li>
+			<li><a href="javascript:openHelp('{if $helpTopicId}{get_help_id|escape key="$helpTopicId" url="true"}{else}{url page="help"}{/if}')">{translate key="help.help"}</a></li
 		</ul>
 	</div>
 	{if $isUserLoggedIn}
 	<div class="unit size1of2 lastUnit align_right">
 		<ul class="flat_list user_navigation">
+			<li><div id="sizer"></div></li>
 			<li><a href="{url page="user" op="profile"}">{translate key="user.profile"}</a></li>
 			<li><a href="{url page="login" op="signOut"}">{translate key="user.logOut"}</a></li>
 		</ul>
@@ -25,6 +27,7 @@
 	{else}
 	<div class="unit size1of2 lastUnit align_right">
 		<ul class="flat_list user_navigation">
+			<li><div id="sizer"></div></li>
 			<li><a href="{url page="login"}">{translate key="navigation.login"}</a></li>
 			<li><a href="{url page="user" op="register"}">{translate key="navigation.register"}</a></li>
 		</ul>

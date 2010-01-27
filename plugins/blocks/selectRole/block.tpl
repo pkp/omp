@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
- 
+
 {if $currentPress && $isUserLoggedIn}
 	<div class="block" id="sidebarUser">
 		<span class="blockTitle">{translate key="user.roles"}</span>
@@ -16,7 +16,7 @@
 		<form>
 			<select id="toolbox_press_roles" name="toolbox_press_roles" class="field select" onchange="window.location.href=this.form.toolbox_press_roles.options[this.form.toolbox_press_roles.selectedIndex].value">
 				{foreach from=$roles item=role}
-					<option value="{url page=$role->getRolePath()}">{translate key=$role->getRoleName()}</option>
+					<option value="{url page=$role->getRolePath()}">{$role->getRoleName()}</option>
 					{/foreach}
 			</select>
 		</form>

@@ -165,5 +165,6 @@ function setRegAllowOpts(form) {
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 
 </form>
+</div>
 
 {include file="common/footer.tpl"}

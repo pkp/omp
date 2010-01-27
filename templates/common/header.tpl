@@ -28,7 +28,7 @@
 	{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" />{/if}
 
 	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/styles/omp.css" />
-	
+
 	{call_hook|assign:"leftSidebarCode" name="Templates::Common::LeftSidebar"}
 	{call_hook|assign:"rightSidebarCode" name="Templates::Common::RightSidebar"}
 
@@ -37,11 +37,11 @@
 	{/foreach}
 
 	<!-- Base Jquery -->
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>	
-	
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
+
 	<!-- UI elements (menus, forms, etc) -->
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/hoverIntent.js"></script>	
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/superfish.js"></script>	
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/hoverIntent.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/superfish.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/wufoo/wufoo.js"></script>
 
 	<!-- Modals/Confirms -->
@@ -56,30 +56,30 @@
 
 	<!-- Other Jquery Plugins -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.form.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/ajax_upload.js"></script>	
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/ajax_upload.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/fontController.js"></script>
 
-	<!-- General JS -->	
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/general.js"></script>		
+	<!-- General JS -->
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/general.js"></script>
 
 	<script type="text/javascript">
         // initialise plugins
 		{literal}
         $(function(){
-            $('ul.sf-menu').superfish();
-        });
+            $('ul.sf-menu').superfish(); // Initialize the navigation menu
+			jqueryValidatorI18n("{$baseUrl}", "{$currentLocale}"); // include the appropriate validation localization
+			fontSize("#sizer", ".page", 9, 12, 20); // Initialize the font sizer
+		});
 		{/literal}
-		
-		// include the appropriate validation localization
-		jqueryValidatorI18n("{$baseUrl}", "{$currentLocale}");
     </script>
-    
+
 	{$additionalHeadData}
 </head>
 <body>
 <div class="page {$cssBodyClass} {$liquid}">
 
 <div class="head">
-	
+
 {include file="common/sitenav.tpl"}
 
 <div class="masthead">
@@ -112,7 +112,7 @@
 <div class="body">
 
 {if $isUserLoggedIn}
-<div class="rightCol toolbox mod simple">
+<div id="toolbox" class="rightCol toolbox mod simple">
     <div class="mod simple">
         <b class="top"><b class="tl"></b><b class="tr"></b></b>
         <div class="inner">

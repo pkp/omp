@@ -317,7 +317,7 @@ function prepBlockFields() {
 					<option value="{$block->getName()|escape}">{$block->getDisplayName()|escape}</option>
 				{/foreach}
 			</select>
-		</td> 
+		</td>
 		<td>
 			<input class="button defaultButton" style="width: 30px;" type="button" value="&larr;" onclick="jumpList(this.form.elements['blockSelectRightWidget'],this.form.elements['blockUnselectedWidget']);" /><br/>
 			<input class="button defaultButton" style="width: 30px;" type="button" value="&rarr;" onclick="jumpList(this.form.elements['blockUnselectedWidget'],this.form.elements['blockSelectRightWidget']);" />
@@ -480,5 +480,6 @@ function prepBlockFields() {
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 
 </form>
+</div>
 
 {include file="common/footer.tpl"}
