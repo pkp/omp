@@ -112,7 +112,7 @@
 <div class="body">
 
 {if $isUserLoggedIn}
-<div class="rightCol toolbox mod simple">
+<div id="toolbox" class="rightCol toolbox mod simple">
     <div class="mod simple">
         <b class="top"><b class="tl"></b><b class="tr"></b></b>
         <div class="inner">
