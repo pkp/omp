@@ -9,7 +9,6 @@
  *
  * $Id$
  *}
-{**FIXME: fix URL action to use new Request URL method **}
 <form name="editSponsorForm" id="editSponsorForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.sponsor.SponsorRowHandler" op="updateSponsor"}"}
 {include file="common/formErrors.tpl"}
 
