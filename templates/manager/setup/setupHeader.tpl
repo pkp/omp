@@ -14,9 +14,9 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<!-- 
-	This is a representation of HTML generated via the jQueryUI framework for tabs. 
-	Ideally, this process should use AJAX and jQueryUI to create this dynamically. 
+<!--
+	This is a representation of HTML generated via the jQueryUI framework for tabs.
+	Ideally, this process should use AJAX and jQueryUI to create this dynamically.
 	See: http://jqueryui.com/demos/tabs/#ajax
 -->
 
@@ -38,5 +38,4 @@
 			<a href="{url op="setup" path="5"}">5. {translate key="manager.setup.look"}</a>
 		</li>
 	</ul>
-</div>
 

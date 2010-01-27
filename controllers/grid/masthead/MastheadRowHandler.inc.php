@@ -17,7 +17,7 @@ import('controllers.grid.GridRowHandler');
 class MastheadRowHandler extends GridRowHandler {
 	/** @var group associated with the request **/
 	var $group;
-	
+
 	/** @var group membership associated with the request **/
 	var $groupMembership;
 
@@ -66,7 +66,7 @@ class MastheadRowHandler extends GridRowHandler {
 		// assumes row has already been initialized
 		// do the default configuration
 		parent::_configureRow($request, $args);
-		
+
 		// Actions
 		$router =& $request->getRouter();
 		$actionArgs = array(
@@ -90,17 +90,17 @@ class MastheadRowHandler extends GridRowHandler {
 				$router->url($request, null, 'grid.masthead.MastheadRowHandler', 'deleteGroup', null, $actionArgs),
 				'grid.action.delete',
 				'delete'
-			));		
+			));
 	}
-	
+
 	//
 	// Public Masthead Row Actions
 	//
-	
+
 	/**
 	 * Action to edit a group
 	 * @param $args array, first parameter is the ID of the group to edit
-	 * @param $request PKPRequest	
+	 * @param $request PKPRequest
 	 */
 	function editGroup(&$args, &$request) {
 		$this->_configureRow($request, $args);
@@ -108,7 +108,7 @@ class MastheadRowHandler extends GridRowHandler {
 // 	FIXME: add validation here
 		$this->validate($request, $groupId);
 		$this->setupTemplate($args, $request);
-		
+
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
 
@@ -156,7 +156,7 @@ class MastheadRowHandler extends GridRowHandler {
 			$group =& $this->group;
 		}
 		$press =& $request->getContext();
-		
+
 		$this->_configureRow($request, $args);
 
 		import('controllers.grid.masthead.form.GroupForm');
@@ -200,7 +200,7 @@ class MastheadRowHandler extends GridRowHandler {
 		$this->_configureRow($request, $args);
 		$groupId = $this->getId();
 
-		$this->validate($groupId);
+		$this->validate($request, $groupId);
 		$group =& $this->group;
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
@@ -210,7 +210,7 @@ class MastheadRowHandler extends GridRowHandler {
 		$json = new JSON('true');
 		echo $json->getString();
 	}
-	
+
 	/**
 	 * View group membership.
 	 */
@@ -223,20 +223,20 @@ class MastheadRowHandler extends GridRowHandler {
 		$rangeInfo =& $this->getRangeInfo('memberships');
 
 		$this->setupTemplate();
-		
+
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 		$memberships =& $groupMembershipDao->getMemberships($group->getId(), $rangeInfo);
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('memberships', $memberships);
 		$templateMgr->assign_by_ref('group', $group);
 		$templateMgr->display('controllers/grid/masthead/memberships.tpl');
-	}	
-	
+	}
+
 	function setupTemplate(&$args, &$request) {
 		// Load manager translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));		
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
 	}
-	
+
 	/**
 	 * Validate the request. If a group ID is supplied, the group object
 	 * will be fetched and validated against the current press. If,
@@ -279,5 +279,5 @@ class MastheadRowHandler extends GridRowHandler {
 		}
 		if (!$passedValidation) $request->redirect(null, null, 'groups');
 		return true;
-	}	
+	}
 }
