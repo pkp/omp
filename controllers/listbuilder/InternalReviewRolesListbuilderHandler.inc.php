@@ -29,47 +29,47 @@ class InternalReviewRolesListbuilderHandler extends ListbuilderHandler {
 	function loadList(&$request) {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
-		
+
 		$press =& $request->getPress();
 
 		// Get items to populate listBuilder current item list
-		$roles = $flexibleRoleDao->getByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_INTERNAL_REVIEW, $press->getId());		
-		
+		$roles = $flexibleRoleDao->getByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_INTERNAL_REVIEW, $press->getId());
+
 		$items = array();
 		foreach($roles as $item) {
 			$id = $item->getId();
 			$items[$id] = array('item' => $item->getLocalizedName(), 'attribute' => $item->getLocalizedDesignation());
 		}
-		
+
 		$this->setData($items);
 	}
-	
+
 	/* Get possible items to populate drop-down list with */
 	function getPossibleItemList() {
 		return $this->possibleItems;
 	}
-	
+
 	/* Load possible items to populate drop-down list with */
 	function loadPossibleItemList(&$request) {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
-		
+
 		$press =& $request->getPress();
 
 		// Get items to populate possible items list with
-		$roles = $flexibleRoleDao->getByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_INTERNAL_REVIEW, $press->getId());
+		$currentRoleIds = $flexibleRoleDao->getIdsByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_INTERNAL_REVIEW, $press->getId()); // Don't include current roles
 
 		$itemList = array();
 		$availableRoles = $flexibleRoleDao->getEnabledByPressId($press->getId());
 		foreach ($availableRoles as $availableRole) {
-			if ($availableRole->getType() == FLEXIBLE_ROLE_CLASS_PRESS) {
+			if ($availableRole->getType() == FLEXIBLE_ROLE_CLASS_PRESS && !in_array($availableRole->getId(), $currentRoleIds)) {
 				$itemList[] = $this->buildListItemHTML($availableRole->getId(), $availableRole->getLocalizedName(), $availableRole->getLocalizedDesignation());
 			}
 		}
 
 		$this->possibleItems = $itemList;
 	}
-	
+
 	//
 	// Overridden template methods
 	//
@@ -93,55 +93,61 @@ class InternalReviewRolesListbuilderHandler extends ListbuilderHandler {
 
 		parent::initialize($request);
 	}
-	
+
 	/**
 	 * Get the row handler - override the default row handler
 	 * @return SponsorRowHandler
 	 */
 	function &getRowHandler() {
 		if (!$this->_rowHandlerInstantiated) {
-			import('controllers.listbuilder.ListbuilderGridRowHandler');			
+			import('controllers.listbuilder.ListbuilderGridRowHandler');
 			$rowHandler =& new ListbuilderGridRowHandler();
-			
+
 			// Basic grid row configuration
-			$rowHandler->addColumn(new GridColumn('item', 'common.name'));		
-			$rowHandler->addColumn(new GridColumn('attribute', 'common.designation'));		
-		
+			$rowHandler->addColumn(new GridColumn('item', 'common.name'));
+			$rowHandler->addColumn(new GridColumn('attribute', 'common.designation'));
+
 			$this->setRowHandler($rowHandler);
 			$this->_rowHandlerInstantiated = true;
 		}
 		return parent::getRowHandler();
 	}
-	
+
 	//
 	// Public AJAX-accessible functions
 	//
-	
+
 	/*
 	 * Handle adding an item to the list
 	 */
 	function additem(&$args, &$request) {
+		$this->setupTemplate();
 		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
 		$press =& $request->getPress();
-	
+
 		$flexibleRoleId = (int) $args['selectList-intRevRoles'];
-		
-		$flexibleRole =& $flexibleRoleDao->getById($flexibleRoleId);
 
-		// FIXME: Make sure associated arrangement doesn't already exist, else return an error modal
+		if(empty($flexibleRoleId)) {
+			$json = new JSON('false', Locale::translate('common.listbuilder.selectValidOption'));
+			echo $json->getString();
+		} else {
+			$flexibleRole =& $flexibleRoleDao->getById($flexibleRoleId);
 
-		$flexibleRole->addAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_INTERNAL_REVIEW);
-		$flexibleRoleDao->updateObject($flexibleRole);
+			// FIXME: Make sure associated arrangement doesn't already exist, else return an error modal
 
-		// Return JSON with formatted HTML to insert into list
-		$flexibleRoleRow =& $this->getRowHandler();
-		$rowData = array('item' => $flexibleRole->getLocalizedName(), 'attribute' => $flexibleRole->getDesignation());
-		$flexibleRoleRow->_configureRow($request);
-		$flexibleRoleRow->setData($rowData);
-		$flexibleRoleRow->setId($flexibleRoleId);
+			$flexibleRole->addAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_INTERNAL_REVIEW);
+			$flexibleRoleDao->updateObject($flexibleRole);
 
-		$json = new JSON('true', $flexibleRoleRow->renderRowInternally($request));
-		echo $json->getString();
+			// Return JSON with formatted HTML to insert into list
+			$flexibleRoleRow =& $this->getRowHandler();
+			$rowData = array('item' => $flexibleRole->getLocalizedName(), 'attribute' => $flexibleRole->getDesignation());
+			$flexibleRoleRow->_configureRow($request);
+			$flexibleRoleRow->setData($rowData);
+			$flexibleRoleRow->setId($flexibleRoleId);
+
+			$json = new JSON('true', $flexibleRoleRow->renderRowInternally($request));
+			echo $json->getString();
+		}
 	}
 
 	/*
@@ -155,10 +161,10 @@ class InternalReviewRolesListbuilderHandler extends ListbuilderHandler {
 
 			$flexibleRole->removeAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_INTERNAL_REVIEW);
 			$flexibleRoleDao->updateObject($flexibleRole);
-			
+
 			unset($flexibleRole);
 		}
-		
+
 		$json = new JSON('true');
 		echo $json->getString();
 	}

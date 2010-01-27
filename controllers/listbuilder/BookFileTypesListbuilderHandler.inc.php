@@ -14,10 +14,10 @@
 
 import('controllers.listbuilder.ListbuilderHandler');
 
-class BookFileTypesListbuilderHandler extends ListbuilderHandler {	
+class BookFileTypesListbuilderHandler extends ListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
 	var $_rowHandlerInstantiated = false;
-	
+
 	/**
 	 * Constructor
 	 */
@@ -29,9 +29,9 @@ class BookFileTypesListbuilderHandler extends ListbuilderHandler {
 	/* Load the list from an external source into the grid structure */
 	function loadList(&$request) {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$pressDao =& DAORegistry::getDAO('PressDAO');		
+		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$press =& $request->getPress();
-		
+
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$bookFileTypes = $bookFileTypeDao->getEnabledByPressId($press->getId());
 
@@ -42,7 +42,7 @@ class BookFileTypesListbuilderHandler extends ListbuilderHandler {
 		}
 		$this->setData($items);
 	}
-		
+
 	//
 	// Overridden template methods
 	//
@@ -66,54 +66,66 @@ class BookFileTypesListbuilderHandler extends ListbuilderHandler {
 
 		parent::initialize($request);
 	}
-	
+
 	/**
 	 * Get the row handler - override the default row handler
 	 * @return SponsorRowHandler
 	 */
 	function &getRowHandler() {
 		if (!$this->_rowHandlerInstantiated) {
-			import('controllers.listbuilder.ListbuilderGridRowHandler');			
+			import('controllers.listbuilder.ListbuilderGridRowHandler');
 			$rowHandler =& new ListbuilderGridRowHandler();
-			
+
 			// Basic grid row configuration
-			$rowHandler->addColumn(new GridColumn('item', 'common.name'));		
-			$rowHandler->addColumn(new GridColumn('attribute', 'common.designation'));		
-		
+			$rowHandler->addColumn(new GridColumn('item', 'common.name'));
+			$rowHandler->addColumn(new GridColumn('attribute', 'common.designation'));
+
 			$this->setRowHandler($rowHandler);
 			$this->_rowHandlerInstantiated = true;
 		}
 		return parent::getRowHandler();
 	}
-	
+
 
 	//
 	// Public AJAX-accessible functions
 	//
-	
+
 	/*
 	 * Handle adding an item to the list
 	 */
 	function additem(&$args, &$request) {
+		$this->setupTemplate();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$press =& $request->getPress();
-	
+
 		$bookFileName = $args['sourceTitle-bookFileTypes'];
 		$bookFileDesignation = $args['attribute-1-bookFileTypes'];
-		
 
-		if(!isset($bookFileName) || !isset($bookFileDesignation)) {
-			$json = new JSON('false');
+
+		if(empty($bookFileName) || empty($bookFileDesignation)) {
+			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
 			echo $json->getString();
 		} else {
 			$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+
+			// Make sure the role name or abbreviation doesn't already exist
+			$bookFileTypes = $bookFileTypeDao->getEnabledByPressId($press->getId());
+			foreach ($bookFileTypes as $bookFileType) {
+				if ($bookFileName == $bookFileType->getLocalizedName() || $bookFileDesignation == $bookFileType->getLocalizedDesignation()) {
+					$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
+					echo $json->getString();
+					return false;
+				}
+			}
+
 			$bookFileType =& new BookFileType();
 
 			$bookFileType->setName($bookFileName);
 			$bookFileType->setDesignation($bookFileDesignation);
 
 			$bookFileTypeDao->insertObject($bookFileType);
-			
+
 			// Return JSON with formatted HTML to insert into list
 			$bookFileTypeRow =& $this->getRowHandler();
 			$rowData = array('item' => $bookFileName, 'attribute' => $bookFileDesignation);
@@ -135,7 +147,7 @@ class BookFileTypesListbuilderHandler extends ListbuilderHandler {
 		foreach($args as $bookFileId) {
 			$bookFileTypeDao->deleteById($bookFileId);
 		}
-		
+
 		$json = new JSON('true');
 		echo $json->getString();
 	}

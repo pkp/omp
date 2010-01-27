@@ -11,7 +11,7 @@
   *
   * $Id$
   -->
- 
+
 <locale name="en_US" full_name="U.S. English">
 	<!--
 	 * This file is organized into several major sections, separated
@@ -54,7 +54,7 @@
 	<message key="inserts.monographComponents.button.removeAuthor">Remove Author</message>
 	<message key="inserts.monographComponents.newComponent.description">To enter a new component, please fill out the form below and click the 'Add Component' button.</message>
 	<message key="inserts.monographComponents.description">Books are divided into sections called monograph components. Chapters, table of contents, and prefaces are all monograph components.</message>
-	
+
 	<message key="inserts.contributors.heading.info">Contributor Info</message>
 	<message key="inserts.contributors.button.addContributor">Add Contributor</message>
 	<message key="inserts.contributors.heading.newContributor">New Contributor</message>
@@ -163,7 +163,7 @@
 	<message key="reviewer.monograph.recommendation">Recommendation</message>
 	<message key="reviewer.monograph.submitReview">Submit Review To Editor</message>
 	<message key="reviewer.monograph.reviewerComments">Comments</message>
-	<message key="reviewer.monograph.uploadedFile">Uploaded files</message>	
+	<message key="reviewer.monograph.uploadedFile">Uploaded files</message>
 	<message key="reviewer.monograph.reviewersAnnotatedVersion">Version uploaded by reviewer</message>
 	<message key="reviewer.monograph.reviewersAnnotatedVersionDescription">(If you want to annotate the file, for the editor, save on your hard drive and use Browse/Upload.)</message>
         <message key="reviewer.monograph.schedule.request">Editor's Request</message>
@@ -193,14 +193,14 @@
 	<message key="reviewer.monograph.mustSelectDecision">No recommendation was selected. You must choose a recommendation to submit.</message>
 	<message key="reviewer.monograph.confirmDecision">Once you have recorded a decision you will no longer be able to make changes to this review. Are you sure you wish to continue?</message>
 	<message key="reviewer.monograph.ensuringBlindReview">Ensuring a Blind Review</message>
-	
-	
+
+
 	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
 <br /><br />
 Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
-	
+
 	<message key="monograph.abstract">Abstract</message>
 	<message key="monograph.language">Language</message>
 	<message key="monograph.authors">Authors</message>
@@ -224,7 +224,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="submissionCategory.submissionCategory">Submission Category</message>
 	<message key="submissionCategory.title">Category Title</message>
 	<message key="submissionCategory.abbreviation.example">(For example, Otorhinolaryngology=ENT)</message>
-	
+
 	<!-- common -->
 	<message key="common.publish">Publish</message>
 	<message key="common.underway">Underway</message>
@@ -236,7 +236,8 @@ Note that if your site administrator has already registered this site with the P
 	<message key="common.deactivate">Deactivate</message>
 	<message key="common.bookFiles">Book Files</message>
 	<message key="common.fileUpload">File Upload</message>
-	
+	<message key="common.warning">Warning</message>
+
 	<message key="common.queue.short.submissionsUnassigned">Unassigned</message>
 	<message key="common.queue.short.submissionsInEditing">In Editing</message>
 	<message key="common.queue.short.submissionsInReview">In Review</message>
@@ -251,6 +252,10 @@ Note that if your site administrator has already registered this site with the P
 	<message key="common.queue.long.active">Active Submissions</message>
 	<message key="common.queue.long.completed">Archive</message>
 
+	<message key="common.listbuilder.completeForm">Please fill out the form completely.</message>
+	<message key="common.listbuilder.selectValidOption">Please select a valid option from the list.</message>
+	<message key="common.listbuilder.itemExists">You have submitted an item that already exists.</message>
+
 	<!--
 	 *
 	 * COMMON - This section contains the most frequently-used words
@@ -261,7 +266,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="submissions.copyeditComplete">Copyedited</message>
 	<message key="submissions.layoutComplete">Layout edited</message>
 	<message key="submissions.proofreadingComplete">Proofread</message>
-	
+
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>
 	<message key="common.confirmComplete">Are you sure you wish to mark this task as completed? You may not be able to make changes afterwards.</message>
@@ -288,7 +293,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="navigation.currentCatalogue">Current Catalogue</message>
 	<message key="navigation.backCatalogue">Back Catalogue</message>
 	<message key="navigation.pressHome">Press Home</message>
-	<message key="navigation.published">Published</message>	
+	<message key="navigation.published">Published</message>
 
 	<!-- Submission History -->
 	<message key="submission.logType.monograph">Monograph</message>
@@ -383,8 +388,8 @@ Note that if your site administrator has already registered this site with the P
 <br /><br />
 Note that the OAI interface can be disabled for this site by editing the OMP system configuration. Future versions of OMP will allow the OAI interface to be enabled or disabled for individual presses within the site.]]></message>
 
-	
-	
+
+
 	<!-- Languages -->
 
 
@@ -399,15 +404,15 @@ Note that the OAI interface can be disabled for this site by editing the OMP sys
 <ul>
 	<li>If a user attempts to register a new account with this site with a username that exists on the authentication source (but not in the OMP database), the registration attempt is only allowed if the supplied password is valid for that user account.</li>
 </ul>]]></message>
-	
+
 	<!-- System Information -->
 	<message key="admin.editSystemConfigInstructions"><![CDATA[Use this form to modify your system configuration (the <tt>config.inc.php</tt> file). Click Save to save your new configuration, or "Display" to simply display the updated configuration file and not modify your existing configuration.
 <br /><br />
 <span class="formError">Warning: Modifying these settings can potentially leave your site in an inaccessible state (requiring your configuration file to be manually fixed). It is strongly recommended that you do not make any changes unless you know exactly what you are doing.</span>]]></message>
 	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTE!</div>
 <p>The system could not automatically overwrite the configuration file. To apply your configuration changes you must open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
-	
-	<!-- Site Administrator Merge Users -->	
+
+	<!-- Site Administrator Merge Users -->
 
 
 	<!-- General plugin information -->
@@ -427,7 +432,7 @@ Note that the OAI interface can be disabled for this site by editing the OMP sys
 	<message key="plugins.categories.oaiMetadataFormats.description">These format plugins express metadata in OAI communications.</message>
 
 	<!-- Setup Step 1 -->
-	
+
 	<message key="manager.setup.form.pressInitialsRequired">Press initials are required.</message>
 
 	<!-- Setup Step 2 -->
@@ -493,7 +498,7 @@ You may optionally provide the user with a reason for disabling their account.</
 </ol>]]></message>
 
 
-	
+
 	<!-- Used by editor in submission review / editing -->
 	<message key="editor.monograph.selectReviewerNotes"><![CDATA[Name links to reviewer's profile.<br/>
 Ratings is out of 5 (Excellent).<br/>
@@ -502,7 +507,7 @@ Latest is date of most recently accepted review.<br/>
 Active is how many reviews are currently being considered or underway.]]></message>
 
 	<message key="acquisitionsEditor.review.createReviewer">Create New Reviewer</message>
-	
+
 	<!-- Monograph Submission Step 3 -->
 	<message key="author.submit.uploadInstructions"><![CDATA[
 <p>To submit a file to this press, complete the following steps.</p>
@@ -514,10 +519,10 @@ Active is how many reviews are currently being considered or underway.]]></messa
 <li>Repeat for additional files.</li>
 <li>Click Save and Continue at the bottom of this page.</li>
 </ol>]]></message>
-	
+
 	<!-- Login -->
 	<message key="user.login.registerNewAccount">Not a user? Register with this site</message>
-	<message key="user.login.resetPasswordInstructions"><![CDATA[For security reasons, this system emails a reset password to registered users, rather than recalling the 
+	<message key="user.login.resetPasswordInstructions"><![CDATA[For security reasons, this system emails a reset password to registered users, rather than recalling the
 current password.<br /><br />Enter your email address below to reset your password. A confirmation will be sent to this email address.]]></message>
 
 	<message key="submission.prospectusFile">Prospectus File</message>
@@ -572,11 +577,11 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<!-- Interstitial page for PDFs -->
 	<message key="monograph.pdf.title">Portable Document Format (PDF)</message>
 	<message key="monograph.pdf.note"><![CDATA[The PDF file you selected should load here, if your Web browser has a PDF reader plug-in installed (for example, a recent version of <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>). Alternatively, the PDF file will download to your computer, where it can also be opened using a PDF reader. If you would like more information about how to print, save, and work with PDFs, Highwire Press provides a helpful <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">Frequently Asked Questions about PDFs</a>.<br /><br />If the file does not download automatically, <a href="{$url}">click here</a>.]]></message>
-	
+
 	<!-- Interstitial page for non-PDF non-HTML galleys -->
 	<message key="monograph.nonpdf.title">Monograph Download</message>
 	<message key="monograph.nonpdf.note"><![CDATA[The file you selected should begin downloading automatically. If it does not, click the link below. Note that this file may require a special viewer or plugin to view.<br /><br />If the file does not download automatically, <a href="{$url}">click here</a>.]]></message>
-	
+
 	<!-- Site index -->
 	<message key="site.pressesHosted">Presses hosted on this site</message>
 	<message key="site.pressView">View Press Website</message>
@@ -587,7 +592,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<!-- Archive index -->
 	<message key="archive.archives">Archives</message>
 	<message key="archive.browse">Browse through the older monographs</message>
-	
+
 	<!-- About The Press -->
 	<message key="about.statistics">Statistics</message>
 	<message key="about.pressContact">Press Contact</message>
@@ -626,12 +631,12 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.aboutThisPublishingSystem.altText">OMP Editorial and Publishing Process</message>
 	<message key="about.aboutOMPPress"><![CDATA[This press uses Open Monograph Press {$ompVersion}, which is open source press management and publishing software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
 	<message key="about.aboutOMPSite"><![CDATA[This site uses Open Monograph Press {$ompVersion}, which is open source press management and publishing software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
-	
+
 	<!-- Announcement -->
 
 	<!-- Help -->
 	<message key="help.ompHelp">Open Monograph Press Help</message>
-	<message key="help.ompHelpAbbrev">OMP Help</message>	
+	<message key="help.ompHelpAbbrev">OMP Help</message>
 	<message key="help.searchReturnResults">Return to Search Results</message>
 
 
@@ -682,7 +687,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 
 <p>Select <strong>Manual Install</strong> to display the SQL statements necessary to create the OMP database schema and initial data so that database installation can be performed manually. This option is useful when debugging installation problems, particularly on unsupported platforms. Note that this installation method will not attempt to create the database or any tables, although the configuration file will still be written with the supplied database settings.</p>]]></message>
 	<message key="installer.upgradeInstructions"><![CDATA[<h4>OMP Version {$version}</h4>
-	
+
 <p>Thank you for downloading the Public Knowledge Project's <strong>Open Monograph Press</strong>. Before proceeding, please read the <a href="{$baseUrl}/docs/README">README</a> and <a href="{$baseUrl}/docs/UPGRADE">UPGRADE</a> files included with this software. For more information about the Public Knowledge Project and its software projects, please visit the <a href="http://pkp.sfu.ca/" target="_blank">PKP web site</a>. If you have bug reports or technical support inquiries about Open Monograph Press, see the <a href="http://pkp.sfu.ca/support/forum">support forum</a> or visit PKP's online <a href="http://pkp.sfu.ca/bugzilla/" target="_blank">bug reporting system</a>. Although the support forum is the preferred method of contact, you can also email the team at <a href="mailto:pkp-support@sfu.ca">pkp-support@sfu.ca</a>.</p>
 <p>It is <strong>strongly recommended</strong> that you back up your database, files directory, and OMP installation directory before proceeding.</p>
 <p>If you are running in <a href="http://www.php.net/features.safe-mode" target="_blank">PHP Safe Mode</a>, please ensure that the max_execution_time directive in your php.ini configuration file is set to a high limit. If this or any other time limit (e.g. Apache's "Timeout" directive) is reached and the upgrade process is interrupted, manual intervention will be required.</p>]]></message>
@@ -754,7 +759,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.proofread.complete">{$proofreaderName} has submitted {$monographId} for scheduling.</message>
 
 	<message key="log.imported">{$userName} has imported monograph {$monographId}.</message>
-	
+
 	<!-- Notification Types -->
 	<message key="notification.mailListDescription">Enter your email address to receive immediate notifications of important new content added to the press.</message>
 	<message key="notification.notificationsPublicDescription">This page shows important updates associated with this press such as new monographs or announcements.  You may subscribe to these notifications through RSS feeds (by clicking on the images to the right), or <![CDATA[  <a href="{$emailUrl}">through email.</a>]]></message>
@@ -767,7 +772,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.monographPublished">A new monograph has been published.</message>
 	<message key="notification.type.layoutComment">A comment has been left about "{$param}'s" layout.</message>
 	<message key="notification.type.metadataModified">"{$param}'s" metadata has been modified.</message>
-	<message key="notification.type.newAnnouncement">A new announcement has been created.</message>	
+	<message key="notification.type.newAnnouncement">A new announcement has been created.</message>
 	<message key="notification.type.proofreadComment">A comment has been left by a proofreader on "{$param}".</message>
 	<message key="notification.type.reviewerComment">A reviewer has commented on "{$param}".</message>
 	<message key="notification.type.reviewerFormComment">A review form review has been submitted for "{$param}".</message>
@@ -787,7 +792,7 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="rt.admin.validateUrls.description"><![CDATA[Possibly invalid URLs for search sites are displayed below.<br/>
 You should manually verify any URLs marked as invalid, as this test is not 100% accurate.<br/>
 Validation may fail on search URLs that require posted form data.]]></message>
-	
+
 
 	<!--
 	 *
@@ -795,7 +800,7 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	 *
 	-->
 	<!-- Icons: Default "alt" text -->
-	
+
 	<!-- Debug messages -->
 	<message key="debug.notes.currencyListLoad">Loaded currency list "{$filename}" from XML</message>
 	<message key="debug.notes.helpMappingLoad">Reloaded XML help mapping file {$filename} in search of {$id}.</message>
