@@ -8,16 +8,6 @@
  *
  * $Id$
  *}
-{if $group}
-	<ul class="menu">
-		<li class="current"><a href="#">{translate key="manager.groups.editTitle"}</a></li>
-		<li><a href="javascript:replaceModalWithUrl('{$baseUrl}/index.php/dev/$$$call$$$/grid/masthead/masthead-row/group-membership?rowId={$group->getId()}', '{translate key="manager.groups.membership"}')">{translate key="manager.groups.membership"}</a></li>
-	</ul>
-{/if}
-
-<a ></a>
-
-<br/>
 
 <form name="groupForm" method="post" action="{$baseUrl}/index.php/dev/$$$call$$$/grid/masthead/masthead-row/update-group">
 {if $group}
@@ -38,21 +28,29 @@
 		</td>
 	</tr>
 {/if}
-<tr valign="top">
-	<td width="20%" class="label">{fieldLabel name="title" required="true" key="manager.groups.title"}</td>
-	<td width="80%" class="value"><input type="text" name="title[{$formLocale|escape}]" value="{$title[$formLocale]|escape}" size="35" maxlength="80" id="title" class="textField" /></td>
-</tr>
-
-<tr valign="top">
-	<td width="20%" class="label">{translate key="common.type"}</td>
-	<td width="80%" class="value">
-		{foreach from=$groupContextOptions item=groupContextOptionKey key=groupContextOptionValue}
-			<input type="radio" name="context" value="{$groupContextOptionValue|escape}" {if $context == $groupContextOptionValue}checked="checked" {/if} id="context-{$groupContextOptionValue|escape}" />&nbsp;
-			{fieldLabel name="context-`$groupContextOptionValue`" key=$groupContextOptionKey}<br />
-		{/foreach}
-	</td>
-</tr>
 </table>
+
+{fbvFormArea id="mastheadInfo"}
+{fbvFormSection title="manager.groups.title" required="true" for="title"}
+	{fbvElement type="text" id="title" value="`$title[$formLocale]`" maxlength="80" required="true"}
+{/fbvFormSection}
+{fbvFormSection title="common.type" for="context"}
+	{foreach from=$groupContextOptions item=groupContextOptionKey key=groupContextOptionValue}
+		{if $context == $groupContextOptionValue}
+			{assign var="checked" value=true}
+		{/if}
+		{fbvElement type="radio" name="context" id="context-`$groupContextOptionValue`" value=$groupContextOptionValue checked=$checked label=$groupContextOptionKey}
+	{/foreach}
+{/fbvFormSection}
+{/fbvFormArea}
+
+
 </form>
 
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
+<br />
+{if $group}
+	{url|assign:mastheadMembersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.MastheadMembershipListbuilderHandler" op="fetch" groupId=$group->getId()}
+	{* Need a random div ID to load listbuilders in modals *}
+	{assign var='randomId' value=1|rand:99999}
+	{load_url_in_div id=$randomId url=$mastheadMembersUrl}
+{/if}

@@ -14,10 +14,10 @@
 
 import('controllers.listbuilder.ListbuilderHandler');
 
-class PublicationFormatsListbuilderHandler extends ListbuilderHandler {	
+class PublicationFormatsListbuilderHandler extends ListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
 	var $_rowHandlerInstantiated = false;
-	
+
 	/**
 	 * Constructor
 	 */
@@ -29,9 +29,9 @@ class PublicationFormatsListbuilderHandler extends ListbuilderHandler {
 	/* Load the list from an external source into the grid structure */
 	function loadList(&$request) {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$pressDao =& DAORegistry::getDAO('PressDAO');		
+		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$press =& $request->getPress();
-		
+
 		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
 
 
@@ -42,7 +42,7 @@ class PublicationFormatsListbuilderHandler extends ListbuilderHandler {
 		}
 		$this->setData($items);
 	}
-		
+
 	//
 	// Overridden template methods
 	//
@@ -66,45 +66,56 @@ class PublicationFormatsListbuilderHandler extends ListbuilderHandler {
 
 		parent::initialize($request);
 	}
-	
+
 	/**
 	 * Get the row handler - override the default row handler
 	 * @return SponsorRowHandler
 	 */
 	function &getRowHandler() {
 		if (!$this->_rowHandlerInstantiated) {
-			import('controllers.listbuilder.ListbuilderGridRowHandler');			
+			import('controllers.listbuilder.ListbuilderGridRowHandler');
 			$rowHandler =& new ListbuilderGridRowHandler();
-			
+
 			// Basic grid row configuration
-			$rowHandler->addColumn(new GridColumn('item', 'common.name'));		
-			$rowHandler->addColumn(new GridColumn('attribute', 'common.designation'));		
-		
+			$rowHandler->addColumn(new GridColumn('item', 'common.name'));
+			$rowHandler->addColumn(new GridColumn('attribute', 'common.designation'));
+
 			$this->setRowHandler($rowHandler);
 			$this->_rowHandlerInstantiated = true;
 		}
 		return parent::getRowHandler();
 	}
-	
+
 
 	//
 	// Public AJAX-accessible functions
 	//
-	
+
 	/*
 	 * Handle adding an item to the list
 	 */
 	function additem(&$args, &$request) {
+		$this->setupTemplate();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$press =& $request->getPress();
-	
+
 		$publicationFormatName = $args['sourceTitle-publicationFormats'];
 		$publicationFormatDesignation = $args['attribute-1-publicationFormats'];
 
-		if(!isset($publicationFormatName) || !isset($publicationFormatDesignation)) {
-			$json = new JSON('false');
+		if(empty($publicationFormatName) || empty($publicationFormatDesignation)) {
+			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
 			echo $json->getString();
 		} else {
+			// Make sure the role name or abbreviation doesn't already exist
+			$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
+			foreach ($publicationFormats as $publicationFormat) {
+				if ($publicationFormatName == $publicationFormat->getLocalizedName() || $publicationFormatDesignation == $publicationFormat->getLocalizedDesignation()) {
+					$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
+					echo $json->getString();
+					return false;
+				}
+			}
+
 			$locale = Locale::getLocale();
 			$publicationFormat = $publicationFormatDao->newDataObject();
 			$publicationFormat->setName($publicationFormatName, $locale);
@@ -133,7 +144,7 @@ class PublicationFormatsListbuilderHandler extends ListbuilderHandler {
 		foreach($args as $publicationFormatId) {
 			$publicationFormatDao->deleteById($publicationFormatId);
 		}
-		
+
 		$json = new JSON('true');
 		echo $json->getString();
 	}

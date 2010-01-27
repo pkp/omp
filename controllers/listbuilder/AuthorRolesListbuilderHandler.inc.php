@@ -14,10 +14,10 @@
 
 import('controllers.listbuilder.ListbuilderHandler');
 
-class AuthorRolesListbuilderHandler extends ListbuilderHandler {	
+class AuthorRolesListbuilderHandler extends ListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
 	var $_rowHandlerInstantiated = false;
-	
+
 	/**
 	 * Constructor
 	 */
@@ -33,7 +33,7 @@ class AuthorRolesListbuilderHandler extends ListbuilderHandler {
 
 		// Get items to populate listBuilder current item list
 		$availableRoles = $flexibleRoleDao->getEnabledByPressId($press->getId());
-		
+
 		$items = array();
 		foreach ($availableRoles as $availableRole) {
 			if ($availableRole->getType() == FLEXIBLE_ROLE_CLASS_AUTHOR) {
@@ -43,7 +43,7 @@ class AuthorRolesListbuilderHandler extends ListbuilderHandler {
 		}
 		$this->setData($items);
 	}
-		
+
 	//
 	// Overridden template methods
 	//
@@ -67,47 +67,58 @@ class AuthorRolesListbuilderHandler extends ListbuilderHandler {
 
 		parent::initialize($request);
 	}
-	
+
 	/**
 	 * Get the row handler - override the default row handler
 	 * @return SponsorRowHandler
 	 */
 	function &getRowHandler() {
 		if (!$this->_rowHandlerInstantiated) {
-			import('controllers.listbuilder.ListbuilderGridRowHandler');			
+			import('controllers.listbuilder.ListbuilderGridRowHandler');
 			$rowHandler =& new ListbuilderGridRowHandler();
-			
+
 			// Basic grid row configuration
-			$rowHandler->addColumn(new GridColumn('item', 'manager.setup.roleName'));		
-			$rowHandler->addColumn(new GridColumn('attribute', 'manager.setup.roleAbbrev'));		
-		
+			$rowHandler->addColumn(new GridColumn('item', 'manager.setup.roleName'));
+			$rowHandler->addColumn(new GridColumn('attribute', 'manager.setup.roleAbbrev'));
+
 			$this->setRowHandler($rowHandler);
 			$this->_rowHandlerInstantiated = true;
 		}
 		return parent::getRowHandler();
 	}
-	
+
 
 	//
 	// Public AJAX-accessible functions
 	//
-	
+
 	/*
 	 * Handle adding an item to the list
 	 */
 	function additem(&$args, &$request) {
+		$this->setupTemplate();
 		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
 		$press =& $request->getPress();
-	
+
 		$roleName = $args['sourceTitle-authorRoles'];
 		$roleAbbrev = $args['attribute-1-authorRoles'];
 
-		if(!isset($roleName) || !isset($roleAbbrev)) {
-			$json = new JSON('false');
+		if(empty($roleName) || empty($roleAbbrev)) {
+			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
 			echo $json->getString();
 		} else {
+			// Make sure the role name or abbreviation doesn't already exist
+			$availableRoles = $flexibleRoleDao->getEnabledByPressId($press->getId());
+			foreach ($availableRoles as $availableRole) {
+				if ($availableRole->getType() == FLEXIBLE_ROLE_CLASS_AUTHOR && ($roleName == $availableRole->getLocalizedName() || $roleAbbrev == $availableRole->getLocalizedDesignation())) {
+					$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
+					echo $json->getString();
+					return false;
+				}
+			}
+
 			$locale = Locale::getLocale();
-			
+
 			$flexibleRole = $flexibleRoleDao->newDataObject();
 
 			$flexibleRole->setPressId($press->getId());
@@ -115,7 +126,7 @@ class AuthorRolesListbuilderHandler extends ListbuilderHandler {
 			$flexibleRole->setDesignation($roleAbbrev, $locale);
 			$flexibleRole->setType(FLEXIBLE_ROLE_CLASS_AUTHOR);
 			$flexibleRole->setEnabled(true);
-			
+
 			$flexibleRoleId = $flexibleRoleDao->insertObject($flexibleRole);
 
 			// Return JSON with formatted HTML to insert into list
@@ -125,7 +136,12 @@ class AuthorRolesListbuilderHandler extends ListbuilderHandler {
 			$flexibleRoleRow->setData($rowData);
 			$flexibleRoleRow->setId($flexibleRoleId);
 
-			$json = new JSON('true', $flexibleRoleRow->renderRowInternally($request));
+			// List other listbuilders on the page to add this item to
+			$additionalAttributes = array('addToSources' => 'true',
+										'sourceHtml' => $this->buildListItemHTML($flexibleRoleId, $roleName, $roleAbbrev),
+										'sourceIds' => 'selectList-submissionRoles');
+
+			$json = new JSON('true', $flexibleRoleRow->renderRowInternally($request), 'false', 0, $additionalAttributes);
 			echo $json->getString();
 		}
 	}
@@ -134,13 +150,19 @@ class AuthorRolesListbuilderHandler extends ListbuilderHandler {
 	 * Handle deleting items from the list
 	 */
 	function deleteitems(&$args, &$request) {
-	$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
 
 		foreach($args as $flexibleRoleId) {
 			$flexibleRoleDao->deleteById($flexibleRoleId);
+			$itemIds[] = $flexibleRoleId;
 		}
-		
-		$json = new JSON('true');
+
+		// List other listbuilders on the page to delete these items from
+		$additionalAttributes = array('removeFromSources' => 'true',
+									'itemIds' => implode(',', $itemIds),
+									'sourceIds' => 'selectList-submissionRoles');
+
+		$json = new JSON('true', '', 'false', 0, $additionalAttributes);
 		echo $json->getString();
 	}
 }

@@ -36,6 +36,7 @@
 	<message key="manager.setup.sortableByComponent">Sortable by component</message>
 
 	<message key="manager.setup.cataloguingMetadata">Cataloguing Metadata</message>
+	<message key="manager.setup.division">Division</message>
 	<message key="manager.setup.divisionsAndSeries">Divisions and Series</message>
 	<message key="manager.setup.reviewForms">Review Forms</message>
 
@@ -49,7 +50,7 @@
 	<message key="manager.setup.pressRolesDescription">Create additional roles with the form below.</message>
 	<message key="manager.setup.availableRoles">Available Roles</message>
 	<message key="manager.setup.currentRoles">Current Roles</message>
-  
+
 	<message key="manager.setup.submissionRoles">Submission Roles</message>
 	<message key="manager.setup.internalReviewRoles">Internal Review Roles</message>
 	<message key="manager.setup.externalReviewRoles">External Review Roles</message>
@@ -58,7 +59,7 @@
 
 	<message key="manager.setup.masthead">Masthead</message>
 	<message key="grid.masthead.group">Group</message>
-	
+
 	<message key="manager.setup.files">Files</message>
 	<message key="manager.setup.submissionLibrary">Submission Library</message>
 	<message key="manager.setup.reviewLibrary">Review Library</message>
@@ -76,6 +77,7 @@
 	<message key="manager.groups.disableBoard">OMP lists people in Editorial Team under assigned roles (Press Manager, Copyeditor, etc.)</message>
 	<message key="manager.groups.enableBoard">The Press Manager creates titles and adds people under each title.</message>
 	<message key="manager.groups.enableBoard.description"><![CDATA[Under <a href="{$aboutEditorialTeamUrl}">People</a> in About the Press:]]></message>
+	<message key="manager.groups.existingUsers">Existing users</message>
 	<message key="manager.groups.noneCreated">No editorial team positions have been created.</message>
 	<message key="manager.pressManagement">Press Management</message>
  	<message key="manager.language.ui">UI</message>
@@ -182,6 +184,7 @@
 	<message key="manager.arrangement.abstractsNotRequired">Do not require abstracts</message>
 	<message key="manager.arrangement.disableComments">Disable reader comments for this arrangement.</message>
 
+	<message key="manager.series.book">Book Series</message>
 	<message key="manager.series.create">Create Series</message>
 	<message key="manager.series.policy">Series description</message>
 	<message key="manager.series.assigned">Editors for this Series</message>

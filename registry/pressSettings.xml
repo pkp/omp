@@ -117,6 +117,16 @@
 			</array>
 		</value>
 	</setting>
+	<setting type="object" locale="1">
+		<name>cataloguingMetadata</name>
+		<value>
+			<array>
+				<element key="name">{translate key="manager.setup.division"}</element>
+				<element key="name">{translate key="manager.series.book"}</element>
+				<element key="name">{translate key="common.keywords"}</element>
+			</array>
+		</value>
+	</setting>
 	<setting type="bool" locale="0">
 		<name>rtAbstract</name>
 		<value>true</value>
