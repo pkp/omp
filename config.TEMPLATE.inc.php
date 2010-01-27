@@ -79,6 +79,9 @@ allow_url_fopen = Off
 ; base_url[myPress] = http://www.myUrl.com/myPress
 ; base_url[myOtherPress] = http://myOtherPress.myUrl.com
 
+; Allow javascript files to be served through a content delivery network (set to off to use local files)
+enable_cdn = On
+
 ;;;;;;;;;;;;;;;;;;;;;
 ; Database Settings ;
 ;;;;;;;;;;;;;;;;;;;;;
