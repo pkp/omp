@@ -46,7 +46,7 @@
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
 	{/if}
-	
+
 	<!-- UI elements (menus, forms, etc) -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/hoverIntent.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/superfish.js"></script>
@@ -74,7 +74,7 @@
 		{literal}
         $(function(){
             $('ul.sf-menu').superfish(); // Initialize the navigation menu
-			jqueryValidatorI18n("{$baseUrl}", "{$currentLocale}"); // include the appropriate validation localization
+			jqueryValidatorI18n("{/literal}{$baseUrl}{literal}", "{/literal}{$currentLocale}{literal}"); // include the appropriate validation localization
 			fontSize("#sizer", ".page", 9, 12, 20); // Initialize the font sizer
 		});
 		{/literal}
