@@ -54,6 +54,7 @@
 
 	<!-- Modals/Confirms -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/validate/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/ui.throbber.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/jqueryValidatorI18n.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/modal.js"></script>
 
@@ -76,6 +77,9 @@
             $('ul.sf-menu').superfish(); // Initialize the navigation menu
 			jqueryValidatorI18n("{/literal}{$baseUrl}{literal}", "{/literal}{$currentLocale}{literal}"); // include the appropriate validation localization
 			fontSize("#sizer", ".page", 9, 12, 20); // Initialize the font sizer
+			$('a.settings').live("click", (function() { // Initialize grid settings button handler
+				$(this).parent().siblings('.row_controls').toggle(300);
+			}));
 		});
 		{/literal}
     </script>
