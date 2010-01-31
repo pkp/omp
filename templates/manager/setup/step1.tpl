@@ -100,6 +100,7 @@
 
 <div class="separator"></div>
 
+{url|assign:mastheadGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.masthead.mastheadGridHandler" op="fetchGrid"}
 {load_url_in_div id="mastheadGridDiv" url=$mastheadGridUrl}
 
 <div class="separator"></div>
@@ -114,8 +115,8 @@
 {/fbvFormSection}
 {/fbvFormArea}
 
+{url|assign:sponsorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.sponsor.sponsorGridHandler" op="fetchGrid"}
 {load_url_in_div id="sponsorGridDiv" url=$sponsorGridUrl}
-<p><input type="submit" name="addSponsor" value="{translate key="manager.setup.addSponsor"}" class="button" /></p>
 
 <div class="separator"></div>
 
@@ -130,6 +131,7 @@
 	</tr>
 </table>
 
+{url|assign:contributorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.contributor.ContributorGridHandler" op="fetchGrid"}
 {load_url_in_div id="contributorGridDiv" url=$contributorGridUrl}
 
 <div class="separator"></div>
