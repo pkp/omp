@@ -40,17 +40,6 @@ class SetupHandler extends ManagerHandler {
 			$templateMgr =& TemplateManager::getManager();
 			$dispatcher =& $this->getDispatcher();
 			switch ($step) {
-				case 1:
-					//FIXME: Following 3 could be replaced with smarty URL function (see bug 4935)
-					// Sponsor Grid
-					$templateMgr->assign('sponsorGridUrl', $dispatcher->url($request, 'component', null, 'grid.sponsor.SponsorGridHandler', 'fetchGrid'));
-
-					// Contributor Grid
-					$templateMgr->assign('contributorGridUrl', $dispatcher->url($request, 'component', null, 'grid.contributor.ContributorGridHandler', 'fetchGrid'));
-
-					// Contributor Grid
-					$templateMgr->assign('mastheadGridUrl', $dispatcher->url($request, 'component', null, 'grid.masthead.MastheadGridHandler', 'fetchGrid'));
-					break;
 				case 3:
 					// import the file type constants
 					import('press.LibraryFile');
@@ -97,33 +86,6 @@ class SetupHandler extends ManagerHandler {
 
 			// Check for any special cases before trying to save
 			switch ($step) {
-				case 2:
-					if (Request::getUserVar('addChecklist')) {
-						// Add a checklist item
-						$editData = true;
-						$checklist = $setupForm->getData('submissionChecklist');
-						if (!isset($checklist[$formLocale]) || !is_array($checklist[$formLocale])) {
-							$checklist[$formLocale] = array();
-							$lastOrder = 0;
-						} else {
-							$lastOrder = $checklist[$formLocale][count($checklist[$formLocale])-1]['order'];
-						}
-						array_push($checklist[$formLocale], array('order' => $lastOrder+1));
-						$setupForm->setData('submissionChecklist', $checklist);
-
-					} else if (($delChecklist = Request::getUserVar('delChecklist')) && count($delChecklist) == 1) {
-						// Delete a checklist item
-						$editData = true;
-						list($delChecklist) = array_keys($delChecklist);
-						$delChecklist = (int) $delChecklist;
-						$checklist = $setupForm->getData('submissionChecklist');
-						if (!isset($checklist[$formLocale])) $checklist[$formLocale] = array();
-						array_splice($checklist[$formLocale], $delChecklist, 1);
-						$setupForm->setData('submissionChecklist', $checklist);
-					}
-
-					break;
-
 				case 3:
 					if (Request::getUserVar('deleteSelectedPublicationFormats')) {
 
