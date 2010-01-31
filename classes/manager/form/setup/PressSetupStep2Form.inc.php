@@ -27,7 +27,6 @@ class PressSetupStep2Form extends PressSetupForm {
 			array(
 				'focusScopeDesc' => 'string',
 				'authorGuidelines' => 'string',
-				'submissionChecklist' => 'object',
 				'numWeeksPerReview' => 'int',
 				'remindForInvite' => 'bool',
 				'remindForSubmit' => 'bool',
@@ -55,7 +54,7 @@ class PressSetupStep2Form extends PressSetupForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('authorGuidelines', 'copyrightNotice', 'submissionChecklist', 'reviewPolicy', 'reviewGuidelines', 'focusScopeDesc', 'privacyStatement');
+		return array('authorGuidelines', 'copyrightNotice', 'reviewPolicy', 'reviewGuidelines', 'focusScopeDesc', 'privacyStatement');
 	}
 
 	/**

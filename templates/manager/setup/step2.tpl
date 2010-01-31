@@ -56,28 +56,8 @@
 
 <p>{translate key="manager.setup.submissionPreparationChecklistDescription"}</p>
 
-{foreach name=checklist from=$submissionChecklist[$formLocale] key=checklistId item=checklistItem}
-	{if !$notFirstChecklistItem}
-		{assign var=notFirstChecklistItem value=1}
-		<table width="100%" class="data">
-			<tr valign="top">
-				<td width="5%">{translate key="common.order"}</td>
-				<td width="95%" colspan="2">&nbsp;</td>
-			</tr>
-	{/if}
-
-	<tr valign="top">
-		<td width="5%" class="label"><input type="text" name="submissionChecklist[{$formLocale|escape}][{$checklistId|escape}][order]" value="{$checklistItem.order|escape}" size="3" maxlength="2" class="textField" /></td>
-		<td class="value"><textarea name="submissionChecklist[{$formLocale|escape}][{$checklistId|escape}][content]" id="submissionChecklist-{$checklistId|escape}" rows="3" cols="40" class="textArea">{$checklistItem.content|escape}</textarea></td>
-		<td width="100%"><input type="submit" name="delChecklist[{$checklistId|escape}]" value="{translate key="common.delete"}" class="button" /></td>
-	</tr>
-{/foreach}
-
-{if $notFirstChecklistItem}
-	</table>
-{/if}
-
-<p><input type="submit" name="addChecklist" value="{translate key="manager.setup.addChecklistItem"}" class="button" /></p>
+{url|assign:submissionChecklistGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.submissionChecklist.SubmissionChecklistGridHandler" op="fetchGrid"}
+{load_url_in_div id="submissionChecklistGridDiv" url=$submissionChecklistGridUrl}
 
 <div class="separator"></div>
 
