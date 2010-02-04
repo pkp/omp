@@ -10,11 +10,9 @@
   * $Id$
   -->
 <roles>
-	<role key="PRESS_MANAGER" roleId="0x00000011" path="manager" type="2" localeKey="default.roles.pressManager"/>
+	<role key="READER" roleId="0x00020000" path="reader" type="2" localeKey="default.roles.reader"/>
 	<role key="DIRECTOR" roleId="0x00000012" path="director" type="2" localeKey="default.roles.director"/>
-	<role key="PRESS_EDITOR" roleId="0x00000100" path="editor" type="2" localeKey="default.roles.editor"/>
-	<role key="PRODUCTION_EDITOR" roleId="0x00000401" path="productionEditor" type="2" localeKey="default.roles.productionEditor"/>
-	<role key="ACQUISITIONS_EDITOR" roleId="0x00000201" path="acquisitionsEditor" type="2" localeKey="default.roles.acquisitionsEditor"/>
+	<role key="SERIES_EDITOR" roleId="0x00000201" path="seriesEditor" type="2" localeKey="default.roles.seriesEditor"/>
 	<role key="COPYEDITOR" roleId="0x00002000" path="copyeditor" type="2" localeKey="default.roles.copyeditor"/>
 	<role key="PROOFREADER" roleId="0x00004000" path="proofreader" type="2" localeKey="default.roles.proofreader"/>
 	<role key="DESIGNER" roleId="0x00100001" path="designer" type="2" localeKey="default.roles.designer"/>
@@ -25,5 +23,7 @@
 	<role key="AUTHOR" roleId="0x00010000" path="author" type="1" localeKey="default.roles.author"/>
 	<role key="VOLUME_EDITOR" roleId="0x00010001" path="volumeEditor" type="1" localeKey="default.roles.volumeEditor"/>
 	<role key="TRANSLATOR" roleId="0x00010010" path="translator" type="1" localeKey="default.roles.translator"/>
-	<role key="READER" roleId="0x00020000" path="reader" type="2" localeKey="default.roles.reader"/>
+	<role key="PRESS_EDITOR" roleId="0x00000100" path="editor" type="3" localeKey="default.roles.editor"/>
+	<role key="PRESS_MANAGER" roleId="0x00000011" path="manager" type="3" localeKey="default.roles.pressManager"/>
+	<role key="PRODUCTION_EDITOR" roleId="0x00000401" path="productionEditor" type="3" localeKey="default.roles.productionEditor"/>
 </roles>

@@ -57,7 +57,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 			'' => 'manager.people.doNotEnroll',
 			'manager' => 'user.role.manager',
 			'editor' => 'user.role.editor',
-			'acquisitionsEditor' => 'user.role.acquisitionsEditor',
+			'seriesEditor' => 'user.role.seriesEditor',
 			'reviewer' => 'user.role.reviewer',
 			'copyeditor' => 'user.role.copyeditor',
 			'productionEditor' => 'user.role.productionEditor',

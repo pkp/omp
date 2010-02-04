@@ -34,7 +34,7 @@ class ProductionEditorAction extends DesignerAction {
 		$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
 
 		$fileName = 'layoutFile';
-		if ($monographFileManager->uploadedFileExists($fileName) && !HookRegistry::call('AcquisitionsEditorAction::uploadLayoutVersion', array(&$submission, &$layoutAssignment))) {
+		if ($monographFileManager->uploadedFileExists($fileName) && !HookRegistry::call('SeriesEditorAction::uploadLayoutVersion', array(&$submission, &$layoutAssignment))) {
 			if ($layoutSignoff->getFileId() != null) {
 				$layoutFileId = $monographFileManager->uploadLayoutFile($fileName, $layoutSignoff->getFileId());
 			} else {
@@ -114,7 +114,7 @@ class ProductionEditorAction extends DesignerAction {
 		if (!isset($layoutDesigner)) return true;
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('AcquisitionsEditorAction::thankLayoutDesigner', array(&$submission, &$layoutDesigner, &$email));
+			HookRegistry::call('SeriesEditorAction::thankLayoutDesigner', array(&$submission, &$layoutDesigner, &$email));
 			if ($email->isEnabled()) {
 				$email->setAssoc(MONOGRAPH_EMAIL_LAYOUT_THANK_EDITOR, MONOGRAPH_EMAIL_TYPE_LAYOUT, $layoutSignoff->getId());
 				$email->send();
@@ -146,11 +146,11 @@ class ProductionEditorAction extends DesignerAction {
 	 * @param $monograph object
 	 */
 	function viewLayoutComments($monograph) {
-		if (HookRegistry::call('AcquisitionsEditorAction::viewLayoutComments', array(&$monograph))) return;
+		if (HookRegistry::call('SeriesEditorAction::viewLayoutComments', array(&$monograph))) return;
 
 		import('submission.form.comment.LayoutCommentForm');
 
-		$commentForm = new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -161,11 +161,11 @@ class ProductionEditorAction extends DesignerAction {
 	 * @param $emailComment boolean
 	 */
 	function postLayoutComment($monograph, $emailComment) {
-		if (HookRegistry::call('AcquisitionsEditorAction::postLayoutComment', array(&$monograph, &$emailComment))) return;
+		if (HookRegistry::call('SeriesEditorAction::postLayoutComment', array(&$monograph, &$emailComment))) return;
 
 		import('submission.form.comment.LayoutCommentForm');
 
-		$commentForm = new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {
@@ -187,11 +187,11 @@ class ProductionEditorAction extends DesignerAction {
 	 * @param $monograph object
 	 */
 	function viewProofreadComments($monograph) {
-		if (HookRegistry::call('AcquisitionsEditorAction::viewProofreadComments', array(&$monograph))) return;
+		if (HookRegistry::call('SeriesEditorAction::viewProofreadComments', array(&$monograph))) return;
 
 		import('submission.form.comment.ProofreadCommentForm');
 
-		$commentForm = new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->initData();
 		$commentForm->display();
 	}
@@ -202,11 +202,11 @@ class ProductionEditorAction extends DesignerAction {
 	 * @param $emailComment boolean
 	 */
 	function postProofreadComment($monograph, $emailComment) {
-		if (HookRegistry::call('AcquisitionsEditorAction::postProofreadComment', array(&$monograph, &$emailComment))) return;
+		if (HookRegistry::call('SeriesEditorAction::postProofreadComment', array(&$monograph, &$emailComment))) return;
 
 		import('submission.form.comment.ProofreadCommentForm');
 
-		$commentForm = new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_ACQUISITIONS_EDITOR);
+		$commentForm = new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->readInputData();
 
 		if ($commentForm->validate()) {

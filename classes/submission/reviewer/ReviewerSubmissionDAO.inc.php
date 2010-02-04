@@ -55,17 +55,17 @@ class ReviewerSubmissionDAO extends DAO {
 				r.*,
 				r2.review_revision,
 				u.first_name, u.last_name,
-				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	monographs a
 				LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id)
-				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
+				LEFT JOIN series s ON (s.series_id = a.series_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN review_rounds r2 ON (a.monograph_id = r2.monograph_id AND r.review_type = r2.review_type AND r.round = r2.round)
-				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	r.review_id = ?',
 			array(
 				'title',
@@ -212,18 +212,18 @@ class ReviewerSubmissionDAO extends DAO {
 				r2.review_revision,
 				u.first_name, u.last_name,
 				atl.setting_value AS submission_title,
-				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	monographs a
 				LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id)
 				LEFT JOIN monograph_settings atl ON (atl.monograph_id = a.monograph_id AND atl.setting_name = ? AND atl.locale = ?)
-				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
+				LEFT JOIN series s ON (s.series_id = a.series_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
 				LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.review_type = r2.review_type AND r.round = r2.round)
-				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	a.press_id = ?
 				AND r.reviewer_id = ?
 				AND r.date_notified IS NOT NULL';
@@ -278,7 +278,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$sql = 'SELECT r.date_completed, r.declined, r.cancelled 
 			FROM monographs a 
 			LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id) 
-			LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id) 
+			LEFT JOIN series s ON (s.series_id = a.series_id) 
 			LEFT JOIN users u ON (r.reviewer_id = u.user_id) 
 			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.review_type = r2.review_type AND r.round = r2.round) 
 			WHERE a.press_id = ? AND 

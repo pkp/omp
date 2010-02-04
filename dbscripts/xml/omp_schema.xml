@@ -16,54 +16,30 @@
 
 	<!--
 	  *
-	  * TABLE acquisitions_arrangements (series/divisions)
+	  * TABLE divisions
 	  *
 	  -->
-	<table name="acquisitions_arrangements">
-		<field name="arrangement_id" type="I8">
+	<table name="divisions">
+		<field name="division_id" type="I8">
 			<KEY />
 			<AUTOINCREMENT />
-		</field>
-		<field name="arrangement_type" type="I8">
-			<NOTNULL/>
 		</field>
 		<field name="press_id" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="review_form_id" type="I8" />
-		<field name="seq" type="F">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
-		<field name="editor_restricted" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
-		<field name="meta_indexed" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
-		<field name="hide_about" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
-		<field name="disable_comments" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="0"/>
-		</field>
-		<descr>Press acquisition arrangements.</descr>
-		<index name="arrangement_press_id">
+		<descr>Press divisions.</descr>
+		<index name="divisions_press_id">
 			<col>press_id</col>
 		</index>
 	</table>
 
 	<!--
 	  *
-	  * TABLE acquisitions_arrangements_settings
+	  * TABLE divisions_settings
 	  *
 	  -->
-	<table name="acquisitions_arrangements_settings">
-		<field name="arrangement_id" type="I8">
+	<table name="divisions_settings">
+		<field name="division_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
@@ -78,12 +54,9 @@
 			<NOTNULL/>
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
-		<descr>Arrangement-specific settings</descr>
-		<index name="aspect_settings_aspect_id">
-			<col>aspect_id</col>
-		</index>
-		<index name="arrangement_settings_pkey">
-			<col>arrangement_id</col>
+		<descr>Division-specific settings</descr>
+		<index name="division_settings_pkey">
+			<col>division_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE />
@@ -92,14 +65,67 @@
 
 	<!--
 	  *
-	  * TABLE acquisitions_arrangements_editors
+	  * TABLE series (series/divisions)
 	  *
 	  -->
-	<table name="acquisitions_arrangements_editors">
+	<table name="series">
+		<field name="series_id" type="I8">
+			<KEY />
+			<AUTOINCREMENT />
+		</field>
+		<field name="press_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="division_id" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
+		<descr>Press series.</descr>
+		<index name="series_press_id">
+			<col>press_id</col>
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE series_settings
+	  *
+	  -->
+	<table name="series_settings">
+		<field name="series_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Series-specific settings</descr>
+		<index name="series_settings_pkey">
+			<col>series_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE />
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE series_editors
+	  *
+	  -->
+	<table name="series_editors">
 		<field name="press_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="arrangement_id" type="I8">
+		<field name="series_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="user_id" type="I8">
@@ -113,19 +139,19 @@
 			<NOTNULL />
 			<DEFAULT VALUE="1" />
 		</field>
-		<descr>Assignments of acquisition editors to acquisitions arrangements.</descr>
-		<index name="acquisitions_arrangements_editors_press_id">
+		<descr>Assignments of series editors to series.</descr>
+		<index name="series_editors_press_id">
 			<col>press_id</col>
 		</index>
-		<index name="acquisitions_arrangements_editors_arrangement_id">
-			<col>arrangement_id</col>
+		<index name="series_editors_series_id">
+			<col>series_id</col>
 		</index>
-		<index name="acquisitions_arrangements_editors_user_id">
+		<index name="series_editors_user_id">
 			<col>user_id</col>
 		</index>
-		<index name="acquisitions_arrangements_editors_pkey">
+		<index name="series_editors_pkey">
 			<col>press_id</col>
-			<col>arrangement_id</col>
+			<col>series_id</col>
 			<col>user_id</col>
 			<UNIQUE />
 		</index>
@@ -278,7 +304,7 @@
 		<field name="press_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="arrangement_id" type="I8" />
+		<field name="series_id" type="I8" />
 		<field name="edited_volume" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
@@ -324,8 +350,8 @@
 		<index name="monographs_press_id">
 			<col>press_id</col>
 		</index>
-		<index name="monographs_arrangement_id">
-			<col>arrangement_id</col>
+		<index name="monographs_series_id">
+			<col>series_id</col>
 		</index>
 	</table>
 
@@ -617,7 +643,7 @@
 			<UNIQUE/>
 		</index>
 	</table>
-	
+
 	<!--
 	  *
 	  * TABLE monograph_components
@@ -1383,14 +1409,14 @@
 
 	<!--
 	  *
-	  * TABLE flexible_role_arrangements
+	  * TABLE flexible_role_series
 	  *
 	  -->
-	<table name="flexible_role_arrangements">
+	<table name="flexible_role_series">
 		<field name="flexible_role_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="arrangement_id" type="I8">
+		<field name="series_id" type="I8">
 			<NOTNULL />
 		</field>
 		<descr>Flexible roles arranged by workflow identifiers.</descr>

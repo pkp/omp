@@ -41,7 +41,7 @@ class EditorDecisionCommentForm extends CommentForm {
 			)
 		);
 
-		$isEditor = $this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_ACQUISITIONS_EDITOR ? true : false;
+		$isEditor = $this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SERIES_EDITOR ? true : false;
 		$templateMgr->assign('isEditor', $isEditor);
 
 		parent::display();
@@ -80,7 +80,7 @@ class EditorDecisionCommentForm extends CommentForm {
 		// the opposite of whomever wrote the comment.
 		$recipients = array();
 
-		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_ACQUISITIONS_EDITOR) {
+		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SERIES_EDITOR) {
 			// Then add author
 			$user =& $userDao->getUser($this->monograph->getUserId());
 

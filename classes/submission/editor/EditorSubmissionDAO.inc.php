@@ -48,14 +48,14 @@ class EditorSubmissionDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT
 				a.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	monographs a
-				LEFT JOIN acquisitions_arrangements s ON s.arrangement_id = a.arrangement_id
-				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN series s ON s.series_id = a.series_id
+				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	a.monograph_id = ?',
 			array(
 				'title',
@@ -160,7 +160,7 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $status boolean true if queued, false if archived.
 	 * @return array EditorSubmission
 	 */
-	function &getByPressId($pressId, $status = true, $arrangementId = 0, $rangeInfo = null) {
+	function &getByPressId($pressId, $status = true, $seriesId = 0, $rangeInfo = null) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$params = array(
@@ -175,21 +175,21 @@ class EditorSubmissionDAO extends DAO {
 			$pressId,
 			$status
 		);
-		if ($arrangementId) $params[] = $arrangementId;
+		if ($seriesId) $params[] = $seriesId;
 
 		$sql = 'SELECT	a.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 
 			FROM	monographs a
-				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
-				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sapl ON (s.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sal ON (s.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN series s ON (s.series_id = a.series_id)
+				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	a.press_id = ?
 				AND a.status = ?' .
-				($arrangementId?' AND a.arrangement_id = ?':'') .
+				($seriesId?' AND a.series_id = ?':'') .
 			' ORDER BY monograph_id ASC';
 
 		$result =& $this->retrieveRange($sql, $params, $rangeInfo);
@@ -200,7 +200,7 @@ class EditorSubmissionDAO extends DAO {
 	/**
 	 * Get all unfiltered submissions for a press.
 	 * @param $pressId int
-	 * @param $arrangementId int
+	 * @param $seriesId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains" or "startsWith"
@@ -212,7 +212,7 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array result
 	 */
-	function &getUnfilteredEditorSubmissions($pressId, $arrangementId = 0, $editorId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $status = true, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
+	function &getUnfilteredEditorSubmissions($pressId, $seriesId = 0, $editorId = 0, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $status = true, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$params = array(
@@ -222,11 +222,11 @@ class EditorSubmissionDAO extends DAO {
 			'SIGNOFF_PROOFREADING_PROOFREADER',
 			ASSOC_TYPE_MONOGRAPH,
 			'SIGNOFF_LAYOUT',
-			'title', // Arrangement title
+			'title', // Series title
 			$primaryLocale,
 			'title',
 			$locale,
-			'abbrev', // Arrangement abbrev
+			'abbrev', // Series abbrev
 			$primaryLocale,
 			'abbrev',
 			$locale,
@@ -311,13 +311,13 @@ class EditorSubmissionDAO extends DAO {
 				sle.date_completed as layout_completed,
 				atl.setting_value AS submission_title,
 				aap.last_name AS author_name,
-				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM
 				monographs a
 				INNER JOIN monograph_authors aa ON (aa.monograph_id = a.monograph_id)
 				LEFT JOIN monograph_authors aap ON (aap.monograph_id = a.monograph_id AND aap.primary_contact = 1)
-				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
+				LEFT JOIN series s ON (s.series_id = a.series_id)
 				LEFT JOIN edit_assignments e ON (e.monograph_id = a.monograph_id)
 				LEFT JOIN users ed ON (e.editor_id = ed.user_id)
 				LEFT JOIN signoffs scf ON (a.monograph_id = scf.assoc_id AND scf.assoc_type = ? AND scf.symbolic = ?)
@@ -328,10 +328,10 @@ class EditorSubmissionDAO extends DAO {
 				LEFT JOIN users le ON (le.user_id = sle.user_id)
 				LEFT JOIN review_assignments r ON (r.monograph_id = a.monograph_id)
 				LEFT JOIN users re ON (re.user_id = r.reviewer_id AND cancelled = 0)
-				LEFT JOIN acquisitions_arrangements_settings stpl ON (a.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings stl ON (a.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sapl ON (a.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sal ON (a.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN series_settings stpl ON (a.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (a.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (a.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (a.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 				LEFT JOIN monograph_settings atpl ON (a.monograph_id = atpl.monograph_id AND atpl.setting_name = ? AND atpl.locale = ?)
 				LEFT JOIN monograph_settings atl ON (a.monograph_id = atl.monograph_id AND atl.setting_name = ? AND atl.locale = ?)
 			WHERE
@@ -343,9 +343,9 @@ class EditorSubmissionDAO extends DAO {
 		if ($status === true) $sql .= ' AND a.status = ' . STATUS_QUEUED;
 		elseif ($status === false) $sql .= ' AND a.status <> ' . STATUS_QUEUED;
 
-		if ($arrangementId) {
-			$searchSql .= ' AND a.arrangement_id = ?';
-			$params[] = $arrangementId;
+		if ($seriesId) {
+			$searchSql .= ' AND a.series_id = ?';
+			$params[] = $seriesId;
 		}
 
 		if ($editorId) {
@@ -385,7 +385,7 @@ class EditorSubmissionDAO extends DAO {
 	/**
 	 * Get all submissions unassigned for a press.
 	 * @param $pressId int
-	 * @param $arrangementId int
+	 * @param $seriesId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
@@ -396,11 +396,11 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getUnassigned($pressId, $arrangementId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
+	function &getUnassigned($pressId, $seriesId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$editorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($pressId, $arrangementId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredEditorSubmissions($pressId, $seriesId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		while (!$result->EOF) {
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
@@ -425,7 +425,7 @@ class EditorSubmissionDAO extends DAO {
 	/**
 	 * Get all submissions in review for a press.
 	 * @param $pressId int
-	 * @param $arrangementId int
+	 * @param $seriesId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains" or "startsWith"
@@ -436,11 +436,11 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getInReview($pressId, $arrangementId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getInReview($pressId, $seriesId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($pressId, $arrangementId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredEditorSubmissions($pressId, $seriesId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		while (!$result->EOF) {
@@ -486,7 +486,7 @@ class EditorSubmissionDAO extends DAO {
 	/**
 	 * Get all submissions in editing for a press.
 	 * @param $pressId int
-	 * @param $arrangementId int
+	 * @param $seriesId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains"
@@ -497,12 +497,12 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getInEditing($pressId, $arrangementId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getInEditing($pressId, $seriesId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		// FIXME Does not pass $rangeInfo else we only get partial results
-		$result = $this->getUnfilteredEditorSubmissions($pressId, $arrangementId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
+		$result = $this->getUnfilteredEditorSubmissions($pressId, $seriesId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, true);
 
 		while (!$result->EOF) {
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
@@ -539,7 +539,7 @@ class EditorSubmissionDAO extends DAO {
 	/**
 	 * Get all submissions archived for a press.
 	 * @param $pressId int
-	 * @param $arrangementId int
+	 * @param $seriesId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
 	 * @param $searchMatch string "is" or "contains" or "startsWith"
@@ -550,10 +550,10 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array EditorSubmission
 	 */
-	function &getArchives($pressId, $arrangementId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
+	function &getArchives($pressId, $seriesId, $editorId, $searchField = null, $searchMatch = null, $search = null, $dateField = null, $dateFrom = null, $dateTo = null, $rangeInfo = null) {
 		$editorSubmissions = array();
 
-		$result = $this->getUnfilteredEditorSubmissions($pressId, $arrangementId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
+		$result = $this->getUnfilteredEditorSubmissions($pressId, $seriesId, $editorId, $searchField, $searchMatch, $search, $dateField, $dateFrom, $dateTo, false, $rangeInfo);
 		while (!$result->EOF) {
 			$editorSubmission =& $this->_returnEditorSubmissionFromRow($result->GetRowAssoc(false));
 			$editorSubmissions[] =& $editorSubmission;

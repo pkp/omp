@@ -79,7 +79,7 @@ class EditAssignment extends DataObject {
 	}
 
 	/**
-	 * Get flag indicating whether this acquisitions editor can review this monograph. (Irrelevant if this is an editor.)
+	 * Get flag indicating whether this series editor can review this monograph. (Irrelevant if this is an editor.)
 	 * @return boolean
 	 */
 	function getCanReview() {
@@ -87,7 +87,7 @@ class EditAssignment extends DataObject {
 	}
 
 	/**
-	 * Set flag indicating whether this acquisitions editor can review this monograph. (Irrelevant if this is an editor.)
+	 * Set flag indicating whether this series editor can review this monograph. (Irrelevant if this is an editor.)
 	 * @param $canReview boolean
 	 */
 	function setCanReview($canReview) {
@@ -95,7 +95,7 @@ class EditAssignment extends DataObject {
 	}
 
 	/**
-	 * Get flag indicating whether this acquisitions editor can edit this monograph. (Irrelevant if this is an editor.)
+	 * Get flag indicating whether this series editor can edit this monograph. (Irrelevant if this is an editor.)
 	 * @return boolean
 	 */
 	function getCanEdit() {
@@ -103,7 +103,7 @@ class EditAssignment extends DataObject {
 	}
 
 	/**
-	 * Set flag indicating whether this acquisitions editor can edit this monograph. (Irrelevant if this is an editor.)
+	 * Set flag indicating whether this series editor can edit this monograph. (Irrelevant if this is an editor.)
 	 * @param $canEdit boolean
 	 */
 	function setCanEdit($canEdit) {
@@ -111,7 +111,7 @@ class EditAssignment extends DataObject {
 	}
 
 	/**
-	 * Get flag indicating whether this entry is for an editor or a acquisitions editor.
+	 * Get flag indicating whether this entry is for an editor or a series editor.
 	 * @return boolean
 	 */
 	function getIsEditor() {
@@ -119,7 +119,7 @@ class EditAssignment extends DataObject {
 	}
 
 	/**
-	 * Set flag indicating whether this entry is for an editor or a acquisitions editor.
+	 * Set flag indicating whether this entry is for an editor or a series editor.
 	 * @param $isEditor boolean
 	 */
 	function setIsEditor($isEditor) {

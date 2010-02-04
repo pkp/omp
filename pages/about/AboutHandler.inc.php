@@ -49,10 +49,10 @@ class AboutHandler extends Handler {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$groups =& $groupDao->getGroups(ASSOC_TYPE_PRESS, GROUP_CONTEXT_PEOPLE);
 
-			$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-			$arrangements =& $arrangementDao->getByPressId($press->getId());
+			$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+			$series =& $seriesDao->getByPressId($press->getId());
 
-			$templateMgr->assign('arrangementCount', $arrangements->GetCount());
+			$templateMgr->assign('seriesCount', $series->GetCount());
 			$templateMgr->assign_by_ref('peopleGroups', $groups);
 			$templateMgr->assign('helpTopicId', 'user.about');
 			$templateMgr->display('about/index.tpl');
@@ -143,8 +143,8 @@ class AboutHandler extends Handler {
 			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getId());
 			$editors =& $editors->toArray();
 
-			$acquisitionsEditors =& $roleDao->getUsersByRoleId(ROLE_ID_ACQUISITIONS_EDITOR, $press->getId());
-			$acquisitionsEditors =& $acquisitionsEditors->toArray();
+			$seriesEditors =& $roleDao->getUsersByRoleId(ROLE_ID_SERIES_EDITOR, $press->getId());
+			$seriesEditors =& $seriesEditors->toArray();
 
 			$productionEditors =& $roleDao->getUsersByRoleId(ROLE_ID_PRODUCTION_EDITOR, $press->getId());
 			$productionEditors =& $productionEditors->toArray();
@@ -156,7 +156,7 @@ class AboutHandler extends Handler {
 			$proofreaders =& $proofreaders->toArray();
 
 			$templateMgr->assign_by_ref('editors', $editors);
-			$templateMgr->assign_by_ref('acquisitionsEditors', $acquisitionsEditors);
+			$templateMgr->assign_by_ref('seriesEditors', $seriesEditors);
 			$templateMgr->assign_by_ref('productionEditors', $productionEditors);
 			$templateMgr->assign_by_ref('copyEditors', $copyEditors);
 			$templateMgr->assign_by_ref('proofreaders', $proofreaders);
@@ -223,8 +223,8 @@ class AboutHandler extends Handler {
 				unset($potentialUser);
 			}
 
-			$acquisitionsEditors =& $roleDao->getUsersByRoleId(ROLE_ID_ACQUISITIONS_EDITOR, $press->getId());
-			while ($potentialUser =& $acquisitionsEditors->next()) {
+			$seriesEditors =& $roleDao->getUsersByRoleId(ROLE_ID_SERIES_EDITOR, $press->getId());
+			while ($potentialUser =& $seriesEditors->next()) {
 				if ($potentialUser->getId() == $userId)
 					$user =& $potentialUser;
 				unset($potentialUser);
@@ -292,20 +292,20 @@ class AboutHandler extends Handler {
 		$this->setupTemplate(true);
 
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		$arrangementEditorsDao =& DAORegistry::getDAO('AcquisitionsArrangementEditorsDAO');
+		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
 		$press =& Request::getPress();
 
 		$templateMgr =& TemplateManager::getManager();
-		$arrangements =& $arrangementDao->getByPressId($press->getId());
-		$arrangements =& $arrangements->toArray();
-		$templateMgr->assign_by_ref('arrangements', $arrangements);
+		$series =& $seriesDao->getByPressId($press->getId());
+		$series =& $series->toArray();
+		$templateMgr->assign_by_ref('series', $series);
 
-		$arrangementEditorEntriesByArrangement = array();
-		foreach ($arrangements as $arrangement) {
-			$arrangementEditorEntriesByArrangement[$arrangement->getId()] =& $arrangementEditorsDao->getEditorsByArrangementId($arrangement->getId(), $press->getId());
+		$seriesEditorEntriesBySeries = array();
+		foreach ($series as $series) {
+			$seriesEditorEntriesBySeries[$series->getId()] =& $seriesEditorsDao->getEditorsBySeriesId($series->getId(), $press->getId());
 		}
-		$templateMgr->assign_by_ref('arrangementEditorEntriesByArrangement', $arrangementEditorEntriesByArrangement);
+		$templateMgr->assign_by_ref('seriesEditorEntriesBySeries', $seriesEditorEntriesBySeries);
 
 		$templateMgr->display('about/editorialPolicies.tpl');
 	}

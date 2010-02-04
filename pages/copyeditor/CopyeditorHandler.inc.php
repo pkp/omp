@@ -116,8 +116,8 @@ class CopyeditorHandler extends Handler {
 		$pageHierarchy = $subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'copyeditor'), 'user.role.copyeditor'))
 				: array(array('user', 'navigation.user'), array('copyeditor', 'user.role.copyeditor'));
 
-		import('submission.acquisitionsEditor.AcquisitionsEditorAction');
-		$submissionCrumb = AcquisitionsEditorAction::submissionBreadcrumb($monographId, $parentPage, 'copyeditor');
+		import('submission.seriesEditor.SeriesEditorAction');
+		$submissionCrumb = SeriesEditorAction::submissionBreadcrumb($monographId, $parentPage, 'copyeditor');
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
 		}

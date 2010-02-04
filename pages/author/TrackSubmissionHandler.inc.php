@@ -88,9 +88,9 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		$arrangement =& $arrangementDao->getById($submission->getArrangementId());
-		$templateMgr->assign_by_ref('arrangement', $arrangement);
+		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$series =& $seriesDao->getById($submission->getSeriesId());
+		$templateMgr->assign_by_ref('series', $series);
 
 		$templateMgr->assign_by_ref('pressSettings', $pressSettings);
 		$templateMgr->assign_by_ref('submission', $submission);
@@ -99,8 +99,8 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
 
-		import('submission.acquisitionsEditor.AcquisitionsEditorSubmission');
-		$templateMgr->assign_by_ref('editorDecisionOptions', AcquisitionsEditorSubmission::getEditorDecisionOptions());
+		import('submission.seriesEditor.SeriesEditorSubmission');
+		$templateMgr->assign_by_ref('editorDecisionOptions', SeriesEditorSubmission::getEditorDecisionOptions());
 
 		$templateMgr->assign('helpTopicId','editorial.authorsRole');
 

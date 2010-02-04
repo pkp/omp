@@ -14,22 +14,22 @@
 
 // $Id$
 
-define('EDITOR_ARRANGEMENT_HOME', 0);
-define('EDITOR_ARRANGEMENT_SUBMISSIONS', 1);
+define('EDITOR_SERIES_HOME', 0);
+define('EDITOR_SERIES_SUBMISSIONS', 1);
 
 // Filter editor
 define('FILTER_EDITOR_ALL', 0);
 define('FILTER_EDITOR_ME', 1);
 
-import('acquisitionsEditor.AcquisitionsEditorHandler');
+import('seriesEditor.SeriesEditorHandler');
 import('submission.editor.EditorAction');
 
-class EditorHandler extends AcquisitionsEditorHandler {
+class EditorHandler extends SeriesEditorHandler {
 	/**
 	 * Constructor
 	 */
 	function EditorHandler() {
-		parent::AcquisitionsEditorHandler();
+		parent::SeriesEditorHandler();
 
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_EDITOR)));
@@ -61,7 +61,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$submission =& $monographDao->getMonograph($monographId);
 		$this->validate();
-		$this->setupTemplate(EDITOR_ARRANGEMENT_SUBMISSIONS);
+		$this->setupTemplate(EDITOR_SERIES_SUBMISSIONS);
 		
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
 		import('submission.common.Action');
@@ -69,7 +69,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 	}
 
 	function selectReviewer($args) {
-		import('pages.acquisitionsEditor.SubmissionEditHandler');
+		import('pages.seriesEditor.SubmissionEditHandler');
 		SubmissionEditHandler::selectReviewer($args);
 	}
 	
@@ -78,7 +78,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 	 */
 	function submissions($args) {
 		$this->validate();
-		$this->setupTemplate(EDITOR_ARRANGEMENT_HOME);
+		$this->setupTemplate(EDITOR_SERIES_HOME);
 
 		$press =& Request::getPress();
 		$pressId = $press->getId();
@@ -168,16 +168,16 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$submission =& $this->submission;
 
-		$isAcquisitionsEditor = $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_ACQUISITIONS_EDITOR);
+		$isSeriesEditor = $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_SERIES_EDITOR);
 		$isEditor = $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_EDITOR);
 
-		if (isset($editorId) && $editorId != null && ($isEditor || $isAcquisitionsEditor)) {
-			// A valid acquisitions editor has already been chosen;
+		if (isset($editorId) && $editorId != null && ($isEditor || $isSeriesEditor)) {
+			// A valid series editor has already been chosen;
 			// either prompt with a modifiable email or, if this
 			// has been done, send the email and store the editor
 			// selection.
 
-			$this->setupTemplate(EDITOR_ARRANGEMENT_SUBMISSIONS, $monographId, 'summary');
+			$this->setupTemplate(EDITOR_SERIES_SUBMISSIONS, $monographId, 'summary');
 
 			$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 
@@ -197,8 +197,8 @@ class EditorHandler extends AcquisitionsEditorHandler {
 				Request::redirect(null, null, 'submission', $monographId);
 			}
 		} else {
-			// Allow the user to choose a acquisitions editor or editor.
-			$this->setupTemplate(EDITOR_ARRANGEMENT_SUBMISSIONS, $monographId, 'summary');
+			// Allow the user to choose a series editor or editor.
+			$this->setupTemplate(EDITOR_SERIES_SUBMISSIONS, $monographId, 'summary');
 
 			$searchType = null;
 			$searchMatch = null;
@@ -223,9 +223,9 @@ class EditorHandler extends AcquisitionsEditorHandler {
 
 				$editors =& $editorSubmissionDao->getUsersNotAssignedToMonograph($press->getId(), $monographId, RoleDAO::getRoleIdFromPath('editor'), $searchType, $search, $searchMatch, $rangeInfo);
 			} else {
-				$roleName = 'user.role.acquisitionsEditor';
-				$rolePath = 'acquisitionsEditor';
-				$editors =& $editorSubmissionDao->getUsersNotAssignedToMonograph($press->getId(), $monographId, RoleDAO::getRoleIdFromPath('acquisitionsEditor'), $searchType, $search, $searchMatch, $rangeInfo);
+				$roleName = 'user.role.seriesEditor';
+				$rolePath = 'seriesEditor';
+				$editors =& $editorSubmissionDao->getUsersNotAssignedToMonograph($press->getId(), $monographId, RoleDAO::getRoleIdFromPath('seriesEditor'), $searchType, $search, $searchMatch, $rangeInfo);
 			}
 
 			$templateMgr =& TemplateManager::getManager();
@@ -236,13 +236,13 @@ class EditorHandler extends AcquisitionsEditorHandler {
 
 			$templateMgr->assign('monographId', $monographId);
 
-			$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-			$acquisitionsEditorArrangements =& $arrangementDao->getEditorAcquisitionArrangements($press->getId());
+			$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+			$seriesEditorSeries =& $seriesDao->getEditorSeries($press->getId());
 
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 			$editorStatistics = $editAssignmentDao->getEditorStatistics($press->getId());
 
-			$templateMgr->assign_by_ref('editorArrangements', $acquisitionsEditorArrangements);
+			$templateMgr->assign_by_ref('editorSeries', $seriesEditorSeries);
 			$templateMgr->assign('editorStatistics', $editorStatistics);
 
 			$templateMgr->assign('searchField', $searchType);
@@ -258,7 +258,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 			));
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary.submissionManagement');	
-			$templateMgr->display('editor/selectAcquisitionsEditor.tpl');
+			$templateMgr->display('editor/selectSeriesEditor.tpl');
 		}
 	}
 
@@ -294,7 +294,7 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		Request::redirect(null, null, 'submission', $monographId);
 	}
 
-	function setupTemplate($level = EDITOR_ARRANGEMENT_HOME, $monographId = 0, $parentPage = null) {
+	function setupTemplate($level = EDITOR_SERIES_HOME, $monographId = 0, $parentPage = null) {
 		parent::setupTemplate();
 		// Layout Editors have access to some management functions. Make sure we give them
 		// the appropriate breadcrumbs and sidebar.
@@ -303,11 +303,11 @@ class EditorHandler extends AcquisitionsEditorHandler {
 		$press =& Request::getPress();
 		$templateMgr =& TemplateManager::getManager();
 
-		if ($level == EDITOR_ARRANGEMENT_HOME) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'));
-		else if ($level == EDITOR_ARRANGEMENT_SUBMISSIONS) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'editor'), 'user.role.editor'), array(Request::url(null, 'editor', 'submissions'), 'manuscript.submissions'));
+		if ($level == EDITOR_SERIES_HOME) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'));
+		else if ($level == EDITOR_SERIES_SUBMISSIONS) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'editor'), 'user.role.editor'), array(Request::url(null, 'editor', 'submissions'), 'manuscript.submissions'));
 
-		import('submission.acquisitionsEditor.AcquisitionsEditorAction');
-		$submissionCrumb = AcquisitionsEditorAction::submissionBreadcrumb($monographId, $parentPage, 'editor');
+		import('submission.seriesEditor.SeriesEditorAction');
+		$submissionCrumb = SeriesEditorAction::submissionBreadcrumb($monographId, $parentPage, 'editor');
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
 		}

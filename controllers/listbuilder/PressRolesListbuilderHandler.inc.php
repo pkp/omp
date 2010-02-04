@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file classes/manager/listbuilder/PublicationFormatsListbuilderHandler.inc.php
+ * @file classes/manager/listbuilder/PressRolesListbuilderHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class PublicationFormatsListbuilderHandler
+ * @class PressRolesListbuilderHandler
  * @ingroup listbuilder
  *
- * @brief Class for adding new publication formats
+ * @brief Class for adding new press roles.
  */
 
 import('controllers.listbuilder.ListbuilderHandler');
@@ -21,7 +21,7 @@ class PressRolesListbuilderHandler extends ListbuilderHandler {
 	/**
 	 * Constructor
 	 */
-	function AuthorRolesListbuilderHandler() {
+	function PressRolesListbuilderHandler() {
 		parent::ListbuilderHandler();
 	}
 
@@ -57,10 +57,10 @@ class PressRolesListbuilderHandler extends ListbuilderHandler {
 
 		// Basic configuration
 		$this->setId('pressRoles');
-		$this->setTitle('manager.setup.pressRoles');
+		$this->setTitle('manager.setup.pressRole');
 		$this->setSourceTitle('manager.setup.roleName');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
-		$this->setListTitle('manager.setup.pressRole');
+		$this->setListTitle('manager.setup.currentRoles');
 		$this->setAttributeNames(array('manager.setup.roleAbbrev'));
 
 		$this->loadList($request);

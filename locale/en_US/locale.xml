@@ -106,7 +106,7 @@
 	<message key="submission.page.art">#{$id} Images, Illustrations, and other Art</message>
 	<message key="manuscript.submissions">Manuscript Submissions</message>
 	<message key="manuscript.artwork">Artwork</message>
-	<message key="submission.changeArrangement">Change to</message>
+	<message key="submission.changeSeries">Change to</message>
 	<message key="submission.selectFilesForReview">Select the files that are to be reviewed by reviewers as part of this book's assessment and press Record.</message>
 	<message key="submission.stepX">Step {$step}.</message>
 
@@ -137,13 +137,13 @@
 	<message key="submission.review.mustUploadFileForReview">Request email cannot be sent until a Review Version is in place.</message>
 	<message key="submission.internalPeerReview">Internal Peer Review</message>
 	<message key="submission.externalPeerReview">External Peer Review</message>
-	<message key="submissions.arrangement">Acquisitions Arrangement</message>
+	<message key="submissions.series">Series</message>
 	<message key="submissions.queuedReview">In Review</message>
 	<message key="reviewer.completedReviews">Done</message>
 
-	<message key="manager.arrangement.reviewed">Peer Reviewed</message>
-	<message key="manager.arrangement.open">Open Submissions</message>
-	<message key="manager.arrangement.indexed">Indexed</message>
+	<message key="manager.series.reviewed">Peer Reviewed</message>
+	<message key="manager.series.open">Open Submissions</message>
+	<message key="manager.series.indexed">Indexed</message>
 
 	<message key="reviewer.completedReviews">Done</message>
 
@@ -212,8 +212,8 @@ Note that if your site administrator has already registered this site with the P
 	<message key="submission.editorDecision">Editor Decision</message>
 
 
-	<!-- series/categories/acquisitions arrangements -->
-	<message key="arrangement.abbreviation">Abbreviation</message>
+	<!-- series/categories/series -->
+	<message key="series.abbreviation">Abbreviation</message>
 
 	<message key="series.series">Series</message>
 	<message key="series.title">Series' Title</message>
@@ -331,7 +331,7 @@ Note that if your site administrator has already registered this site with the P
 	<!-- Roles -->
 	<message key="user.role.manager">Press Manager</message>
 	<message key="user.role.editor">Editor</message>
-	<message key="user.role.acquisitionsEditor">Acquisitions Editor</message>
+	<message key="user.role.seriesEditor">Series Editor</message>
 	<message key="user.role.designer">Designer</message>
 	<message key="user.role.copyeditor">Copyeditor</message>
 	<message key="user.role.seriesEditor">Series Editor</message>
@@ -346,7 +346,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="user.role.editorialMembers">Editorial Committee Members</message>
 	<message key="user.role.managers">Press Managers</message>
 	<message key="user.role.editors">Editors</message>
-	<message key="user.role.acquisitionsEditors">Acquisitions Editors</message>
+	<message key="user.role.seriesEditors">Series Editors</message>
 	<message key="user.role.designers">Designers</message>
 	<message key="user.role.copyeditors">Copyeditors</message>
 	<message key="user.role.proofreaders">Proofreaders</message>
@@ -448,7 +448,7 @@ Note that the OAI interface can be disabled for this site by editing the OMP sys
 Authors who publish with this press agree to the following terms:
 <ol type="a">
 	<li>Authors retain copyright and grant the press right of first publication with the work simultaneously licensed under a <a target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
-	<li>Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the press's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
+	<li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the press's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
 	<li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_new" href="http://opcit.eprints.org/oacitation-biblio.html">The Effect of Open Access</a>).</li>
 </ol>
 
@@ -456,7 +456,7 @@ Authors who publish with this press agree to the following terms:
 Authors who publish with this press agree to the following terms:
 <ol type="a">
 	<li>Authors retain copyright and grant the press right of first publication, with the work [SPECIFY PERIOD OF TIME] after publication simultaneously licensed under a <a target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
-	 <li>Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the press's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
+	 <li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the press's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
 	 <li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_new" href="http://opcit.eprints.org/oacitation-biblio.html"> The Effect of Open Access</a>).</li>
 </ol>]]></message>
 	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[Press will use a subject classification system available on the web.<br />
@@ -469,7 +469,7 @@ Note that if your site administrator has already registered this site with the P
 
 	<!-- Setup Step 4 -->
 	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Steps: Submission Queue &gt; Submission Review &gt; Submission Editing &gt; Table of Contents.<br /><br />
-Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Acquisitions Editors, go to Editors in Press Management.)]]></message>
+Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Series Editors, go to Editors in Press Management.)]]></message>
 	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>To enable readers to locate online versions of the work cited by an author, the following options are available.</p>
 
 <ol>
@@ -506,7 +506,7 @@ Weeks refers to average period of time to complete a review.<br/>
 Latest is date of most recently accepted review.<br/>
 Active is how many reviews are currently being considered or underway.]]></message>
 
-	<message key="acquisitionsEditor.review.createReviewer">Create New Reviewer</message>
+	<message key="seriesEditor.review.createReviewer">Create New Reviewer</message>
 
 	<!-- Monograph Submission Step 3 -->
 	<message key="author.submit.uploadInstructions"><![CDATA[
@@ -564,15 +564,15 @@ current password.<br /><br />Enter your email address below to reset your passwo
 <li>Use <strong>*</strong> in a term as a wildcard to match any sequence of characters; e.g., <em>soci* morality</em> would match documents containing "sociological" or "societal"</li>
 </ul>]]></message>
 
-	<message key="acquisitionsEditor.regrets.breadcrumb">Regrets</message>
-	<message key="acquisitionsEditor.regrets.title">#{$monographId} Reviewer Regrets, Cancellations, and Earlier Rounds</message>
-	<message key="acquisitionsEditor.regrets">Regrets</message>
-	<message key="acquisitionsEditor.regrets.link">View Regrets, Cancels, Previous Rounds</message>
-	<message key="acquisitionsEditor.regrets.reviewRound">Peer Review, Round {$round}</message>
-	<message key="acquisitionsEditor.regrets.decisionRound">Editor Decision, Round {$round}</message>
-	<message key="acquisitionsEditor.regrets.regretsAndCancels">Reviewer Regrets and Cancellations</message>
-	<message key="acquisitionsEditor.regrets.regret">Regret</message>
-	<message key="acquisitionsEditor.regrets.result">Result</message>
+	<message key="seriesEditor.regrets.breadcrumb">Regrets</message>
+	<message key="seriesEditor.regrets.title">#{$monographId} Reviewer Regrets, Cancellations, and Earlier Rounds</message>
+	<message key="seriesEditor.regrets">Regrets</message>
+	<message key="seriesEditor.regrets.link">View Regrets, Cancels, Previous Rounds</message>
+	<message key="seriesEditor.regrets.reviewRound">Peer Review, Round {$round}</message>
+	<message key="seriesEditor.regrets.decisionRound">Editor Decision, Round {$round}</message>
+	<message key="seriesEditor.regrets.regretsAndCancels">Reviewer Regrets and Cancellations</message>
+	<message key="seriesEditor.regrets.regret">Regret</message>
+	<message key="seriesEditor.regrets.result">Result</message>
 
 	<!-- Interstitial page for PDFs -->
 	<message key="monograph.pdf.title">Portable Document Format (PDF)</message>
@@ -601,7 +601,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.editorialTeam.biography">Biography</message>
 	<message key="about.editorialPolicies">Editorial Policies</message>
 	<message key="about.focusAndScope">Focus and Scope</message>
-	<message key="about.arrangementPolicies">Series and Divisions Policies</message>
+	<message key="about.seriesPolicies">Series and Divisions Policies</message>
 	<message key="about.submissions">Submissions</message>
 	<message key="about.sponsors">Sponsors</message>
 	<message key="about.contributors">Sources of Support</message>

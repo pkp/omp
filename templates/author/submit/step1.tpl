@@ -31,14 +31,14 @@
 <input type="hidden" name="submissionChecklist" value="1" />
 {include file="common/formErrors.tpl"}
 
-{if count($arrangementOptions) > 1}
+{if count($seriesOptions) > 1}
 	<h3>{translate key="author.submit.category"}</h3>
 	<p>{translate key="author.submit.category.description"}</p>
 
 	<table class="data" width="100%">
 	<tr valign="top">	
-		<td width="20%" class="label">{fieldLabel name="arrangementId" key="submissionCategory.submissionCategory"}</td>
-		<td width="80%" class="value"><select name="arrangementId" id="arrangementId" size="1" class="selectMenu">{html_options options=$arrangementOptions selected=$arrangementId}</select></td>
+		<td width="20%" class="label">{fieldLabel name="seriesId" key="submissionCategory.submissionCategory"}</td>
+		<td width="80%" class="value"><select name="seriesId" id="seriesId" size="1" class="selectMenu">{html_options options=$seriesOptions selected=$seriesId}</select></td>
 	</tr>
 	</table>
 	<div class="separator"></div>

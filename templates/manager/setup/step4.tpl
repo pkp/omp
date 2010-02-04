@@ -132,6 +132,9 @@ function setRegAllowOpts(form) {
 
 <h3>4.4 {translate key="manager.setup.cataloguingMetadata"}</h3>
 
+{url|assign:cataloguingMetadataUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.CataloguingMetadataListbuilderHandler" op="fetch"}
+{load_url_in_div id="cataloguingMetadataContainer" url=$cataloguingMetadataUrl}
+
 <div class="separator"></div>
 
 <h3>4.5 {translate key="manager.setup.searchEngineIndexing"}</h3>

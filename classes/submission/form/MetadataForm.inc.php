@@ -44,7 +44,7 @@ class MetadataForm extends Form {
 		// If the user is an editor of this monograph, make the form editable.
 		$this->canEdit = false;
 		$this->isEditor = false;
-		if ($roleId != null && ($roleId == ROLE_ID_EDITOR || $roleId == ROLE_ID_ACQUISITIONS_EDITOR)) {
+		if ($roleId != null && ($roleId == ROLE_ID_EDITOR || $roleId == ROLE_ID_SERIES_EDITOR)) {
 			$this->canEdit = true;
 			$this->isEditor = true;
 		}

@@ -325,7 +325,7 @@ class UserXMLParser {
 	 * @return boolean
 	 */
 	function validRole($roleType) {
-		return isset($roleType) && in_array($roleType, array('manager', 'editor', 'acquisitionsEditor', 'productionEditor', 'designer', 'reviewer', 'copyeditor', 'proofreader', 'author', 'reader'));
+		return isset($roleType) && in_array($roleType, array('manager', 'editor', 'seriesEditor', 'productionEditor', 'designer', 'reviewer', 'copyeditor', 'proofreader', 'author', 'reader'));
 	}
 
 	/**

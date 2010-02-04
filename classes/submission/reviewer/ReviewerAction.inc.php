@@ -79,13 +79,13 @@ class ReviewerAction extends Action {
 			} else {
 				if (!Request::getUserVar('continued')) {
 					$assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getMonographId());
-					$reviewingAcquisitionsEditors = $email->toAssignedReviewingAcquisitionsEditors($reviewerSubmission->getMonographId());
-					if (empty($assignedEditors) && empty($reviewingAcquisitionsEditors)) {
+					$reviewingSeriesEditors = $email->toAssignedReviewingSeriesEditors($reviewerSubmission->getMonographId());
+					if (empty($assignedEditors) && empty($reviewingSeriesEditors)) {
 						$press =& Request::getPress();
 						$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 						$editorialContactName = $press->getSetting('contactName');
 					} else {
-						if (!empty($reviewingAcquisitionsEditors)) $editorialContact = array_shift($reviewingAcquisitionsEditors);
+						if (!empty($reviewingSeriesEditors)) $editorialContact = array_shift($reviewingSeriesEditors);
 						else $editorialContact = array_shift($assignedEditors);
 						$editorialContactName = $editorialContact->getEditorFullName();
 					}
@@ -161,13 +161,13 @@ class ReviewerAction extends Action {
 			} else {
 				if (!Request::getUserVar('continued')) {
 					$assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getMonographId());
-					$reviewingAcquisitionsEditors = $email->toAssignedReviewingAcquisitionsEditors($reviewerSubmission->getMonographId());
-					if (empty($assignedEditors) && empty($reviewingAcquisitionsEditors)) {
+					$reviewingSeriesEditors = $email->toAssignedReviewingSeriesEditors($reviewerSubmission->getMonographId());
+					if (empty($assignedEditors) && empty($reviewingSeriesEditors)) {
 						$press =& Request::getPress();
 						$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 						$editorialContactName = $press->getSetting('contactName');
 					} else {
-						if (!empty($reviewingAcquisitionsEditors)) $editorialContact = array_shift($reviewingAcquisitionsEditors);
+						if (!empty($reviewingSeriesEditors)) $editorialContact = array_shift($reviewingSeriesEditors);
 						else $editorialContact = array_shift($assignedEditors);
 						$editorialContactName = $editorialContact->getEditorFullName();
 					}

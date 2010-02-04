@@ -124,18 +124,18 @@ class FlexibleRoleDAO extends DefaultSettingDAO
 	}
 
 	/**
-	 * Retrieve all flexible roles by arrangement id.
-	 * @param $arrangementId int
+	 * Retrieve all flexible roles by series id.
+	 * @param $seriesId int
 	 * @param $pressId int
 	 * @return mixed array
 	 */
-	function &getByArrangementId($arrangementId, $pressId) {
+	function &getBySeriesId($seriesId, $pressId) {
 
-		$sql = 'SELECT fr.* FROM flexible_role_arrangements fra
+		$sql = 'SELECT fr.* FROM flexible_role_series fra
 			LEFT JOIN flexible_roles fr ON (fr.flexible_role_id = fra.flexible_role_id)
-			WHERE fr.enabled = 1 AND fr.press_id = ? AND fra.arrangement_id = ?';
+			WHERE fr.enabled = 1 AND fr.press_id = ? AND fra.series_id = ?';
 
-		$result =& $this->retrieve($sql, array($pressId, $arrangementId));
+		$result =& $this->retrieve($sql, array($pressId, $seriesId));
 
 		$returner = null;
 
@@ -151,18 +151,18 @@ class FlexibleRoleDAO extends DefaultSettingDAO
 	}
 
 	/**
-	 * Retrieve all flexible roles ids by arrangement id.
-	 * @param $arrangementId int
+	 * Retrieve all flexible roles ids by series id.
+	 * @param $seriesId int
 	 * @param $pressId int
 	 * @return mixed array
 	 */
-	function &getIdsByArrangementId($arrangementId, $pressId) {
+	function &getIdsBySeriesId($seriesId, $pressId) {
 
-		$sql = 'SELECT fr.flexible_role_id FROM flexible_role_arrangements fra
+		$sql = 'SELECT fr.flexible_role_id FROM flexible_role_series fra
 			LEFT JOIN flexible_roles fr ON (fr.flexible_role_id = fra.flexible_role_id)
-			WHERE fr.enabled = 1 AND fr.press_id = ? AND fra.arrangement_id = ?';
+			WHERE fr.enabled = 1 AND fr.press_id = ? AND fra.series_id = ?';
 
-		$result =& $this->retrieve($sql, array($pressId, $arrangementId));
+		$result =& $this->retrieve($sql, array($pressId, $seriesId));
 
 		$returner = null;
 
@@ -220,7 +220,7 @@ class FlexibleRoleDAO extends DefaultSettingDAO
 
 		$this->getDataObjectSettings('flexible_role_settings', 'flexible_role_id', $row['flexible_role_id'], $flexibleRole);
 
-		$this->setAssociatedArrangements($flexibleRole);
+		$this->setAssociatedSeries($flexibleRole);
 
 		return $flexibleRole;
 	}  
@@ -249,11 +249,11 @@ class FlexibleRoleDAO extends DefaultSettingDAO
 
 		$this->updateLocaleFields($role);
 
-		foreach ($role->getAssociatedArrangements() as $arrangement) {
+		foreach ($role->getAssociatedSeries() as $series) {
 			$this->update(
-				'INSERT INTO flexible_role_arrangements (flexible_role_id, arrangement_id)
+				'INSERT INTO flexible_role_series (flexible_role_id, series_id)
 				VALUES (?, ?)',
-				array($role->getId(), $arrangement)
+				array($role->getId(), $series)
 			);
 		}
 
@@ -281,29 +281,29 @@ class FlexibleRoleDAO extends DefaultSettingDAO
 
 		$this->updateLocaleFields($role);
 
-		$this->update('DELETE FROM flexible_role_arrangements WHERE flexible_role_id = ?', $role->getId());
+		$this->update('DELETE FROM flexible_role_series WHERE flexible_role_id = ?', $role->getId());
 
-		foreach ($role->getAssociatedArrangements() as $arrangement) {
+		foreach ($role->getAssociatedSeries() as $series) {
 			$this->update(
-				'INSERT INTO flexible_role_arrangements (flexible_role_id, arrangement_id)
+				'INSERT INTO flexible_role_series (flexible_role_id, series_id)
 				VALUES (?, ?)',
-				array($role->getId(), $arrangement)
+				array($role->getId(), $series)
 			);
 		}
 	}
 
 	/**
-	 * Set the associated workflow role arrangement ids.
+	 * Set the associated workflow role series ids.
 	 * @param $role FlexibleRole
 	 */
-	function setAssociatedArrangements(&$role) {
+	function setAssociatedSeries(&$role) {
 		$result =& $this->retrieve(
-			'SELECT arrangement_id FROM flexible_role_arrangements WHERE flexible_role_id = ?', $role->getId()
+			'SELECT series_id FROM flexible_role_series WHERE flexible_role_id = ?', $role->getId()
 		);
 
 		$returner = null;
 		while (!$result->EOF) {
-			$role->addAssociatedArrangement($result->fields['arrangement_id']);
+			$role->addAssociatedSeries($result->fields['series_id']);
 			$result->moveNext();
 		}
 		$result->Close();

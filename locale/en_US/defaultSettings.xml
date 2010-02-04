@@ -55,9 +55,9 @@
 	<message key="default.roles.productionEditor">Production editor</message>
 	<message key="default.roles.productionEditors">Production editors</message>
 	<message key="default.roles.productionEditor.designation">PE</message>
-	<message key="default.roles.acquisitionsEditor">Acquisitions editor</message>
-	<message key="default.roles.acquisitionsEditors">Acquisitions editors</message>
-	<message key="default.roles.acquisitionsEditor.designation">AcqE</message>
+	<message key="default.roles.seriesEditor">Series editor</message>
+	<message key="default.roles.seriesEditors">Series editors</message>
+	<message key="default.roles.seriesEditor.designation">AcqE</message>
 	<message key="default.roles.copyeditor">Copyeditor</message>
 	<message key="default.roles.copyeditors">Copyeditors</message>
 	<message key="default.roles.copyeditor.designation">CE</message>

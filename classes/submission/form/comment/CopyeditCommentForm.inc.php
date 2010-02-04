@@ -108,7 +108,7 @@ class CopyeditCommentForm extends CommentForm {
 		$author =& $userDao->getUser($monograph->getUserId());
 
 		// Choose who receives this email
-		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_ACQUISITIONS_EDITOR) {
+		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SERIES_EDITOR) {
 			// Then add copyeditor and author
 			if ($copyeditor != null) {
 				$recipients = array_merge($recipients, array($copyeditor->getEmail() => $copyeditor->getFullName()));

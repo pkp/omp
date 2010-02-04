@@ -230,9 +230,9 @@ class MonographSearch {
 	function &formatResults(&$results) {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangmentDAO');
+		$seriesDao =& DAORegistry::getDAO('SeriesArrangmentDAO');
 
-		$arrangementCache = array();
+		$seriesCache = array();
 		$monographCache = array();
 		$pressCache = array();
 
@@ -246,9 +246,9 @@ class MonographSearch {
 			$monograph =& $monographCache[$monographId];
 
 			if ($monograph) {
-				$arrangementId = $monograph->getArrangementId();
-				if (!isset($arrangementCache[$arrangementId])) {
-					$arrangementCache[$arrangementId] =& $arrangementDao->getById($arrangementId);
+				$seriesId = $monograph->getSeriesId();
+				if (!isset($seriesCache[$seriesId])) {
+					$seriesCache[$seriesId] =& $seriesDao->getById($seriesId);
 				}
 
 				// Get the press, storing in cache if necessary.
@@ -261,7 +261,7 @@ class MonographSearch {
 				$returner[] = array(
 					'press' => &$pressCache[$pressId],
 					'monograph' => &$monograph,
-					'acquisitionsArrangment' => &$arrangementCache[$arrangementId]
+					'seriesArrangment' => &$seriesCache[$seriesId]
 				);
 			}
 		}

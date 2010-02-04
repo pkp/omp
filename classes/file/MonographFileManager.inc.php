@@ -117,7 +117,7 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * Upload an acquisitions editor's layout editing file.
+	 * Upload an series editor's layout editing file.
 	 * @param $fileName string the name of the file used in the POST form
 	 * @param $fileId int
 	 * @param $overwrite boolean

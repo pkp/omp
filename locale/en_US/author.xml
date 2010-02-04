@@ -65,7 +65,7 @@
 	<message key="author.submit.howToSubmitNoPhone"><![CDATA[Encountering difficulties? Contact <a href="mailto:{$supportEmail}">{$supportName}</a> for assistance.]]></message>
 	<message key="author.submit.pressSection">Press Section</message>
 	<message key="author.submit.pressSectionDescription"><![CDATA[Select the appropriate section for this submission (see Sections and Policies in <a href="{$aboutUrl}" target="_new">About</a> the Press).]]></message>
-	<message key="author.submit.selectArrangement">If applicable, please select a category...</message>
+	<message key="author.submit.selectSeries">If applicable, please select a category...</message>
 	<message key="author.submit.submissionChecklist">Submission Checklist</message>
 	<message key="author.submit.submissionChecklistDescription">Indicate that this submission is ready to be considered by this press by checking off the following (comments to the editor can be added below).</message>
 	<message key="author.submit.verifyChecklist">You must make sure all items in the submission checklist are satisfied before continuing.</message>

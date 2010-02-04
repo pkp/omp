@@ -116,8 +116,8 @@ class DesignerHandler extends Handler {
 		$pageHierarchy = $subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'designer'), 'user.role.designer'))
 				: array(array(Request::url(null, 'user'), 'navigation.user'));
 
-		import('submission.acquisitionsEditor.AcquisitionsEditorAction');
-		$submissionCrumb = AcquisitionsEditorAction::submissionBreadcrumb($monographId, $parentPage, 'designer');
+		import('submission.seriesEditor.SeriesEditorAction');
+		$submissionCrumb = SeriesEditorAction::submissionBreadcrumb($monographId, $parentPage, 'designer');
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
 		}

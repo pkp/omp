@@ -59,7 +59,7 @@ class MonographMailTemplate extends MailTemplate {
 		$paramArray['monographTitle'] = strip_tags($monograph->getLocalizedTitle());
 		$paramArray['monographId'] = $monograph->getMonographId();
 		$paramArray['pressName'] = strip_tags($press->getLocalizedName());
-		$paramArray['arrangementName'] = strip_tags($monograph->getArrangementTitle());
+		$paramArray['seriesName'] = strip_tags($monograph->getSeriesTitle());
 		$paramArray['monographAbstract'] = strip_tags($monograph->getLocalizedAbstract());
 		$paramArray['authorString'] = strip_tags($monograph->getAuthorString());
 
@@ -167,10 +167,10 @@ class MonographMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
-	function toAssignedReviewingAcquisitionsEditors($monographId) {
+	function toAssignedReviewingSeriesEditors($monographId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getReviewingAcquisitionsEditorAssignmentsByMonographId($monographId);
+		$editAssignments =& $editAssignmentDao->getReviewingSeriesEditorAssignmentsByMonographId($monographId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addRecipient($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
 			$returner[] =& $editAssignment;
@@ -179,10 +179,10 @@ class MonographMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
-	function toAssignedEditingAcquisitionsEditors($monographId) {
+	function toAssignedEditingSeriesEditors($monographId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getEditingAcquisitionsEditorAssignmentsByMonographId($monographId);
+		$editAssignments =& $editAssignmentDao->getEditingSeriesEditorAssignmentsByMonographId($monographId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addRecipient($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
 			$returner[] =& $editAssignment;
@@ -191,10 +191,10 @@ class MonographMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
-	function ccAssignedReviewingAcquisitionsEditors($monographId) {
+	function ccAssignedReviewingSeriesEditors($monographId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getReviewingAcquisitionsEditorAssignmentsByMonographId($monographId);
+		$editAssignments =& $editAssignmentDao->getReviewingSeriesEditorAssignmentsByMonographId($monographId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addCc($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
 			$returner[] =& $editAssignment;
@@ -203,10 +203,10 @@ class MonographMailTemplate extends MailTemplate {
 		return $returner;
 	}
 
-	function ccAssignedEditingAcquisitionsEditors($monographId) {
+	function ccAssignedEditingSeriesEditors($monographId) {
 		$returner = array();
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getEditingAcquisitionsEditorAssignmentsByMonographId($monographId);
+		$editAssignments =& $editAssignmentDao->getEditingSeriesEditorAssignmentsByMonographId($monographId);
 		while ($editAssignment =& $editAssignments->next()) {
 			$this->addCc($editAssignment->getEditorEmail(), $editAssignment->getEditorFullName());
 			$returner[] =& $editAssignment;

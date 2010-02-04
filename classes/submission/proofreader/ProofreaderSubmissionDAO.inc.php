@@ -61,14 +61,14 @@ class ProofreaderSubmissionDAO extends DAO {
 
 		$result =& $this->retrieve(
 			'SELECT	a.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS acquisitions_arrangment_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS acquisitions_arrangment_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_arrangment_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_arrangment_abbrev
 			FROM monographs a
-				LEFT JOIN acquisitions_arrangments aa ON aa.acquisitions_arrangment_id = a.acquisitions_arrangment_id
-				LEFT JOIN acquisitions_arrangment_settings stpl ON (aa.acquisitions_arrangment_id = stpl.acquisitions_arrangment_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN acquisitions_arrangment_settings stl ON (aa.acquisitions_arrangment_id = stl.acquisitions_arrangment_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN acquisitions_arrangment_settings sapl ON (aa.acquisitions_arrangment_id = sapl.acquisitions_arrangment_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN acquisitions_arrangment_settings sal ON (aa.acquisitions_arrangment_id = sal.acquisitions_arrangment_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN series_arrangments aa ON aa.series_arrangment_id = a.series_arrangment_id
+				LEFT JOIN series_arrangment_settings stpl ON (aa.series_arrangment_id = stpl.series_arrangment_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_arrangment_settings stl ON (aa.series_arrangment_id = stl.series_arrangment_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_arrangment_settings sapl ON (aa.series_arrangment_id = sapl.series_arrangment_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_arrangment_settings sal ON (aa.series_arrangment_id = sal.series_arrangment_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	monograph_id = ?' .
 				($pressId?' AND a.press_id = ?':''),
 			$params
@@ -238,19 +238,19 @@ class ProofreaderSubmissionDAO extends DAO {
 				spr.date_completed AS date_completed,
 				atl.setting_value AS submission_title,
 				aap.last_name AS author_name,
-				COALESCE(stl.setting_value, stpl.setting_value) AS acquisitions_arrangment_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS acquisitions_arrangment_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_arrangment_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_arrangment_abbrev
 			FROM
 				monographs a
 				INNER JOIN monograph_authors aa ON (aa.monograph_id = a.monograph_id)
 				LEFT JOIN monograph_authors aap ON (aap.monograph_id = a.monograph_id AND aap.primary_contact = 1)
-				LEFT JOIN acquisitions_arrangments aa ON aa.acquisitions_arrangment_id = a.acquisitions_arrangment_id
+				LEFT JOIN series_arrangments aa ON aa.series_arrangment_id = a.series_arrangment_id
 				LEFT JOIN edit_assignments e ON (e.monograph_id = a.monograph_id)
 				LEFT JOIN users ed ON (e.editor_id = ed.user_id)
-				LEFT JOIN acquisitions_arrangment_settings stpl ON (aa.acquisitions_arrangment_id = stpl.acquisitions_arrangment_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN acquisitions_arrangment_settings stl ON (aa.acquisitions_arrangment_id = stl.acquisitions_arrangment_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN acquisitions_arrangment_settings sapl ON (aa.acquisitions_arrangment_id = sapl.acquisitions_arrangment_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN acquisitions_arrangment_settings sal ON (aa.acquisitions_arrangment_id = sal.acquisitions_arrangment_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN series_arrangment_settings stpl ON (aa.series_arrangment_id = stpl.series_arrangment_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_arrangment_settings stl ON (aa.series_arrangment_id = stl.series_arrangment_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_arrangment_settings sapl ON (aa.series_arrangment_id = sapl.series_arrangment_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_arrangment_settings sal ON (aa.series_arrangment_id = sal.series_arrangment_id AND sal.setting_name = ? AND sal.locale = ?)
 				LEFT JOIN monograph_settings atl ON (a.monograph_id = atl.monograph_id AND atl.setting_name = ?)
 				LEFT JOIN signoffs scpf ON (a.monograph_id = scpf.assoc_id AND scpf.assoc_type = ? AND scpf.symbolic = ?)
 				LEFT JOIN signoffs sle ON (a.monograph_id = sle.assoc_id AND sle.assoc_type = ? AND sle.symbolic = ?)
@@ -288,7 +288,7 @@ class ProofreaderSubmissionDAO extends DAO {
 				FROM 
 					monographs a 
 					LEFT JOIN signoffs spp ON (a.monograph_id = spp.assoc_id AND spp.assoc_type = ? AND spp.symbolic = ?)
-					LEFT JOIN acquisitions_arrangments aa ON aa.acquisitions_arrangment_id = a.acquisitions_arrangment_id 
+					LEFT JOIN series_arrangments aa ON aa.series_arrangment_id = a.series_arrangment_id 
 				WHERE 
 					spp.user_id = ? AND a.press_id = ? AND spp.date_notified IS NOT NULL';
 
@@ -316,7 +316,7 @@ class ProofreaderSubmissionDAO extends DAO {
 			case 'id': return 'a.monograph_id';
 			case 'assignDate': return 'date_assigned';
 			case 'dateCompleted': return 'date_completed';
-			case 'acquisitions_arrangment': return 'acquisitions_arrangment_abbrev';
+			case 'series_arrangment': return 'series_arrangment_abbrev';
 			case 'authors': return 'author_name';
 			case 'title': return 'submission_title';
 			case 'status': return 'a.status';

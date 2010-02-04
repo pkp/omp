@@ -32,9 +32,9 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 		$press =& Request::getPress();
-		// Get arrangements for this press
-		$arrangementDao =& DAORegistry::getDAO('AcquisitionsArrangementDAO');
-		$templateMgr->assign('arrangementOptions', array('0' => Locale::translate('common.select')) + $arrangementDao->getTitlesByPressId($press->getId(), !true, ARRANGEMENT_TYPE_CATEGORY));
+		// Get series for this press
+		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+		$templateMgr->assign('seriesOptions', array('0' => Locale::translate('common.select')) + $seriesDao->getTitlesByPressId($press->getId(), !true, SERIES_TYPE_CATEGORY));
 		parent::display();
 	}
 
@@ -44,7 +44,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	function initData() {
 		if (isset($this->monograph)) {
 			$this->_data = array(
-				'arrangementId' => $this->monograph->getArrangementId(),
+				'seriesId' => $this->monograph->getSeriesId(),
 				'isEditedVolume' => $this->monograph->getWorkType(),
 				'commentsToEditor' => $this->monograph->getCommentsToEditor(),
 			);
@@ -55,7 +55,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('submissionChecklist', 'isEditedVolume', 'copyrightNoticeAgree', 'arrangementId', 'commentsToEditor'));
+		$this->readUserVars(array('submissionChecklist', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor'));
 	}	
 
 	function getTemplateFile() {
@@ -77,7 +77,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 				$this->monograph->setSubmissionProgress($this->sequence->currentStep + 1);
 			}
 			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : 0);
-			$this->monograph->setArrangementId($this->getData('arrangementId'));
+			$this->monograph->setSeriesId($this->getData('seriesId'));
 			$monographId = $this->monograph->getMonographId();
 			$monographDao->updateMonograph($this->monograph);
 
@@ -94,7 +94,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$this->monograph->setLanguage(String::substr($press->getPrimaryLocale(), 0, 2));
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
 			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : 0);
-			$this->monograph->setArrangementId($this->getData('arrangementId'));
+			$this->monograph->setSeriesId($this->getData('seriesId'));
 
 			// Set user to initial author
 			$author = new Author();

@@ -333,12 +333,12 @@ class Validation {
 	}
 
 	/**
-	 * Shortcut for checking authorization as acquisitions editor.
+	 * Shortcut for checking authorization as series editor.
 	 * @param $pressId int
 	 * @return boolean
 	 */
-	function isAcquisitionsEditor($pressId = -1) {
-		return Validation::isAuthorized(ROLE_ID_ACQUISITIONS_EDITOR, $pressId);
+	function isSeriesEditor($pressId = -1) {
+		return Validation::isAuthorized(ROLE_ID_SERIES_EDITOR, $pressId);
 	}
 
 	/**

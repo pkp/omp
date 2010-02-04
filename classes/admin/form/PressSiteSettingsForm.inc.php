@@ -119,7 +119,7 @@ class PressSiteSettingsForm extends Form {
 		if ($press->getId() != null) {
 			$isNewPress = false;
 			$pressDao->updatePress($press);
-			$arrangement = null;
+			$series = null;
 		} else {
 			$isNewPress = true;
 			$site =& Request::getSite();
@@ -176,7 +176,7 @@ class PressSiteSettingsForm extends Form {
 		}
 		$press->updateSetting('name', $this->getData('name'), 'string', true);
 		$press->updateSetting('description', $this->getData('description'), 'string', true);
-		HookRegistry::call('PressSiteSettingsForm::execute', array(&$this, &$press, &$arrangement, &$isNewPress));
+		HookRegistry::call('PressSiteSettingsForm::execute', array(&$this, &$press, &$series, &$isNewPress));
 	}
 
 }

@@ -58,14 +58,14 @@ class DesignerSubmissionDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT
 				m.*,
-				COALESCE(atl.setting_value, atpl.setting_value) AS arrangement_title,
-				COALESCE(aal.setting_value, aapl.setting_value) AS arrangement_abbrev
+				COALESCE(atl.setting_value, atpl.setting_value) AS series_title,
+				COALESCE(aal.setting_value, aapl.setting_value) AS series_abbrev
 			FROM monographs m
-				LEFT JOIN acquisitions_arrangements aa ON (aa.arrangement_id = m.arrangement_id)
-				LEFT JOIN acquisitions_arrangements_settings atpl ON (aa.arrangement_id = atpl.arrangement_id AND atpl.setting_name = ? AND atpl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings atl ON (aa.arrangement_id = atl.arrangement_id AND atl.setting_name = ? AND atl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings aapl ON (aa.arrangement_id = aapl.arrangement_id AND aapl.setting_name = ? AND aapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings aal ON (aa.arrangement_id = aal.arrangement_id AND aal.setting_name = ? AND aal.locale = ?)
+				LEFT JOIN series aa ON (aa.series_id = m.series_id)
+				LEFT JOIN series_settings atpl ON (aa.series_id = atpl.series_id AND atpl.setting_name = ? AND atpl.locale = ?)
+				LEFT JOIN series_settings atl ON (aa.series_id = atl.series_id AND atl.setting_name = ? AND atl.locale = ?)
+				LEFT JOIN series_settings aapl ON (aa.series_id = aapl.series_id AND aapl.setting_name = ? AND aapl.locale = ?)
+				LEFT JOIN series_settings aal ON (aa.series_id = aal.series_id AND aal.setting_name = ? AND aal.locale = ?)
 			WHERE m.monograph_id = ?' .
 			($pressId?' AND m.press_id = ?':''),
 			$params
@@ -224,16 +224,16 @@ class DesignerSubmissionDAO extends DAO {
 
 		$sql = 'SELECT DISTINCT
 				m.*,
-				COALESCE(atl.setting_value, atpl.setting_value) AS arrangement_title,
-				COALESCE(aal.setting_value, aapl.setting_value) AS arrangement_abbrev
+				COALESCE(atl.setting_value, atpl.setting_value) AS series_title,
+				COALESCE(aal.setting_value, aapl.setting_value) AS series_abbrev
 			FROM
 				monographs m
 				INNER JOIN monograph_authors ma ON (ma.monograph_id = m.monograph_id)
-				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = m.arrangement_id)
-				LEFT JOIN acquisitions_arrangements_settings atpl ON (s.arrangement_id = atpl.arrangement_id AND atpl.setting_name = ? AND atpl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings atl ON (s.arrangement_id = atl.arrangement_id AND atl.setting_name = ? AND atl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings aapl ON (s.arrangement_id = aapl.arrangement_id AND aapl.setting_name = ? AND aapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings aal ON (s.arrangement_id = aal.arrangement_id AND aal.setting_name = ? AND aal.locale = ?)
+				LEFT JOIN series s ON (s.series_id = m.series_id)
+				LEFT JOIN series_settings atpl ON (s.series_id = atpl.series_id AND atpl.setting_name = ? AND atpl.locale = ?)
+				LEFT JOIN series_settings atl ON (s.series_id = atl.series_id AND atl.setting_name = ? AND atl.locale = ?)
+				LEFT JOIN series_settings aapl ON (s.series_id = aapl.series_id AND aapl.setting_name = ? AND aapl.locale = ?)
+				LEFT JOIN series_settings aal ON (s.series_id = aal.series_id AND aal.setting_name = ? AND aal.locale = ?)
 				LEFT JOIN monograph_settings mtl ON (m.monograph_id = mtl.monograph_id AND mtl.setting_name = ?)
 				INNER JOIN production_assignments pa ON (pa.monograph_id = m.monograph_id)
 				LEFT JOIN signoffs da ON (da.assoc_type = ? AND da.symbolic = ? AND da.assoc_id = pa.assignment_id)

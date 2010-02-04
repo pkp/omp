@@ -14,7 +14,7 @@
 	<tr valign="bottom" class="heading">
 		<td width="5%">{translate key="common.id"}</td>
 		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="submissions.submit"}</td>
-		<td width="5%">{translate key="submissions.arrangement"}</td>
+		<td width="5%">{translate key="submissions.series"}</td>
 		<td width="23%">{translate key="monograph.authors"}</td>
 		<td width="32%">{translate key="monograph.title"}</td>
 		{if $statViews}<td width="5%">{translate key="submission.views"}</td>{/if}
@@ -26,7 +26,7 @@
 	<tr valign="top">
 		<td>{$monographId|escape}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
-		<td>{$submission->getArrangementAbbrev()|escape}</td>
+		<td>{$submission->getSeriesAbbrev()|escape}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submission" path=$monographId}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		{assign var="status" value=$submission->getSubmissionStatus()}

@@ -82,7 +82,7 @@ class CopyeditorAction extends Action {
 		} else {
 			if (!Request::getUserVar('continued')) {
 				$email->addRecipient($author->getEmail(), $author->getFullName());
-				$email->ccAssignedEditingAcquisitionsEditors($copyeditorSubmission->getMonographId());
+				$email->ccAssignedEditingSeriesEditors($copyeditorSubmission->getMonographId());
 				$email->ccAssignedEditors($copyeditorSubmission->getMonographId());
 
 				$paramArray = array(
@@ -154,16 +154,16 @@ class CopyeditorAction extends Action {
 
 		} else {
 			if (!Request::getUserVar('continued')) {
-				$assignedAcquisitionsEditors = $email->toAssignedEditingAcquisitionsEditors($copyeditorSubmission->getMonographId());
+				$assignedSeriesEditors = $email->toAssignedEditingSeriesEditors($copyeditorSubmission->getMonographId());
 				$assignedEditors = $email->ccAssignedEditors($copyeditorSubmission->getMonographId());
-				if (empty($assignedAcquisitionsEditors) && empty($assignedEditors)) {
+				if (empty($assignedSeriesEditors) && empty($assignedEditors)) {
 					$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 					$paramArray = array(
 						'editorialContactName' => $press->getSetting('contactName'),
 						'copyeditorName' => $user->getFullName()
 					);
 				} else {
-					$editorialContact = array_shift($assignedAcquisitionsEditors);
+					$editorialContact = array_shift($assignedSeriesEditors);
 					if (!$editorialContact) $editorialContact = array_shift($assignedEditors);
 
 					$paramArray = array(

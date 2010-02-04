@@ -114,7 +114,7 @@ class ProofreadCommentForm extends CommentForm {
 		$author =& $userDao->getUser($this->monograph->getUserId());
 
 		// Choose who receives this email
-		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_ACQUISITIONS_EDITOR) {
+		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SERIES_EDITOR) {
 			// Then add layout editor, proofreader and author
 			if ($layoutEditor != null) {
 				$recipients = array_merge($recipients, array($layoutEditor->getEmail() => $layoutEditor->getFullName()));

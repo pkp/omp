@@ -99,8 +99,8 @@ class ProductionEditorHandler extends Handler {
 
 			$proofreaders = $roleDao->getUsersByRoleId(ROLE_ID_PROOFREADER, $press->getId(), $searchType, $search, $searchMatch);
 
-			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
-			$proofreaderStatistics = $acquisitionsEditorSubmissionDao->getProofreaderStatistics($press->getId());
+			$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+			$proofreaderStatistics = $seriesEditorSubmissionDao->getProofreaderStatistics($press->getId());
 
 			$templateMgr =& TemplateManager::getManager();
 
@@ -173,8 +173,8 @@ class ProductionEditorHandler extends Handler {
 
 			$proofreaders = $roleDao->getUsersByRoleId(ROLE_ID_DESIGNER, $press->getId(), $searchType, $search, $searchMatch);
 
-			$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
-			$designerStatistics = $acquisitionsEditorSubmissionDao->getDesignerStatistics($press->getId());
+			$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+			$designerStatistics = $seriesEditorSubmissionDao->getDesignerStatistics($press->getId());
 
 			$templateMgr =& TemplateManager::getManager();
 
