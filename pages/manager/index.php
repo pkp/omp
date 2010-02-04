@@ -72,29 +72,6 @@ switch ($op) {
 		define('HANDLER_CLASS', 'AcquisitionsArrangementHandler');
 		break;
 	//
-	// Review Form Management
-	//
-	case 'reviewForms':
-	case 'createReviewForm':
-	case 'editReviewForm':
-	case 'updateReviewForm':
-	case 'previewReviewForm':
-	case 'deleteReviewForm':
-	case 'activateReviewForm':
-	case 'deactivateReviewForm':
-	case 'copyReviewForm':
-	case 'moveReviewForm':
-	case 'reviewFormElements':
-	case 'createReviewFormElement':
-	case 'editReviewFormElement':
-	case 'deleteReviewFormElement':
-	case 'updateReviewFormElement':
-	case 'moveReviewFormElement':
-	case 'copyReviewFormElement':
-		import('pages.manager.ReviewFormHandler');
-		define('HANDLER_CLASS', 'ReviewFormHandler');
-		break;
-	//
 	// E-mail Management
 	//
 	case 'emails':
