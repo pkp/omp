@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file classes/manager/listbuilder/PublicationFormatsListbuilderHandler.inc.php
+ * @file classes/manager/listbuilder/AuthorRolesListbuilderHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class PublicationFormatsListbuilderHandler
+ * @class AuthorRolesListbuilderHandler
  * @ingroup listbuilder
  *
- * @brief Class for adding new publication formats
+ * @brief Class for adding new author roles
  */
 
 import('controllers.listbuilder.ListbuilderHandler');
@@ -57,10 +57,10 @@ class AuthorRolesListbuilderHandler extends ListbuilderHandler {
 
 		// Basic configuration
 		$this->setId('authorRoles');
-		$this->setTitle('manager.setup.authorRoles');
+		$this->setTitle('manager.setup.authorRole');
 		$this->setSourceTitle('manager.setup.roleName');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
-		$this->setListTitle('manager.setup.authorRole');
+		$this->setListTitle('manager.setup.currentRoles');
 		$this->setAttributeNames(array('manager.setup.roleAbbrev'));
 
 		$this->loadList($request);

@@ -16,7 +16,7 @@
 	<tr class="heading" valign="bottom">
 		<td width="5%">{sort_search key="common.id" sort="id"}</td>
 		<td width="15%"><span class="disabled"></span><br />{sort_search key="submissions.submitted" sort="submitDate"}</td>
-		<td width="5%">{sort_search key="submissions.arrangement" sort="arrangement"}</td>
+		<td width="5%">{sort_search key="submissions.series" sort="series"}</td>
 		<td width="25%">{sort_search key="monograph.authors" sort="authors"}</td>
 		<td width="30%">{sort_search key="monograph.title" sort="title"}</td>
 		<td width="20%" align="right">{sort_search key="common.status" sort="status"}</td>
@@ -31,7 +31,7 @@
 	<tr valign="top">
 		<td>{$monographId|escape}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatShort}</td>
-		<td>{$submission->getArrangementAbbrev()|escape}</td>
+		<td>{$submission->getSeriesAbbrev()|escape}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
 		<td><a href="{url op="submissionEditing" path=$monographId}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}</a></td>
 		<td align="right">

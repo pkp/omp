@@ -50,7 +50,7 @@ class SponsorRowHandler extends GridRowHandler {
 		$emptyActions = array();
 		// Basic grid row configuration
 		$this->addColumn(new GridColumn('institution', 'grid.columns.institution', $emptyActions, 'controllers/grid/gridCellInSpan.tpl'));
-		$this->addColumn(new GridColumn('url', 'grid.columns.url'));		
+		$this->addColumn(new GridColumn('url', 'grid.columns.url'));
 
 		parent::initialize($request);
 	}
@@ -59,7 +59,7 @@ class SponsorRowHandler extends GridRowHandler {
 		// assumes row has already been initialized
 		// do the default configuration
 		parent::_configureRow($request, $args);
-		
+
 		// Actions
 		$router =& $request->getRouter();
 		$actionArgs = array(
@@ -83,9 +83,9 @@ class SponsorRowHandler extends GridRowHandler {
 				$router->url($request, null, 'grid.sponsor.SponsorRowHandler', 'deleteSponsor', null, $actionArgs),
 				'grid.action.delete',
 				'delete'
-			));		
+			));
 	}
-	
+
 	//
 	// Public Sponsor Row Actions
 	//
@@ -128,8 +128,8 @@ class SponsorRowHandler extends GridRowHandler {
 		if ($sponsorForm->validate()) {
 			$sponsorForm->execute($args, $request);
 
-			// prepare the grid row data			
-			$rowData = array('institution' => $sponsorForm->getData('institution'), 
+			// prepare the grid row data
+			$rowData = array('institution' => $sponsorForm->getData('institution'),
 							'url' => $sponsorForm->getData('url'));
 			$this->setId($sponsorForm->sponsorId);
 			$this->setData($rowData);
@@ -156,7 +156,7 @@ class SponsorRowHandler extends GridRowHandler {
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
- 
+
 		// get all of the sponsors
 		$sponsors = $pressSettingsDao->getSetting($press->getId(), 'sponsors');
  		$sponsorId = $this->getId();
@@ -166,7 +166,7 @@ class SponsorRowHandler extends GridRowHandler {
 			$pressSettingsDao->updateSetting($press->getId(), 'sponsors', $sponsors, 'object');
 			$json = new JSON('true');
 		} else {
-			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingSponsor'));
+			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingItem'));
 		}
 		echo $json->getString();
 	}

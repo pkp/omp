@@ -78,7 +78,7 @@
 	</td>
 	<td width="70%" class="value">
 		<input type="file" class="uploadField" name="bookFile" id="bookFile" />
-		{if $currentPress->getSetting('showEnsuringLink')}<a class="action" href="javascript:openHelp('{get_help_id key="editorial.acquisitionsEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.monograph.ensuringBlindReview"}</a>{/if}
+		{if $currentPress->getSetting('showEnsuringLink')}<a class="action" href="javascript:openHelp('{get_help_id key="editorial.seriesEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.monograph.ensuringBlindReview"}</a>{/if}
 	</td>
 </tr>
 <tr>

@@ -15,7 +15,7 @@
 
 <ul class="plain">
 	{if $currentPress->getLocalizedSetting('focusScopeDesc') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="focusAndScope"}">{translate key="about.focusAndScope"}</a></li>{/if}
-	{if count($arrangements) > 0}<li>&#187; <a href="{url op="editorialPolicies" anchor="arrangementPolicies"}">{translate key="about.arrangementPolicies"}</a></li>{/if}
+	{if count($series) > 0}<li>&#187; <a href="{url op="editorialPolicies" anchor="seriesPolicies"}">{translate key="about.seriesPolicies"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('reviewPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="peerReviewProcess"}">{translate key="about.peerReviewProcess"}</a></li>{/if}
 	{if $currentPress->getLocalizedSetting('openAccessPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
 	{foreach key=key from=$currentPress->getLocalizedSetting('customAboutItems') item=customAboutItem}
@@ -33,24 +33,24 @@
 </div>
 {/if}
 
-{if count($arrangements) > 0}
-<div id="arrangementPolicies"><h3>{translate key="about.arrangementPolicies"}</h3>
-{foreach from=$arrangements item=arrangement}{if !$arrangement->getHideAbout()}
-	<h4>{$arrangement->getLocalizedTitle()}</h4>
-	{if strlen($arrangement->getLocalizedPolicy()) > 0}
-		<p>{$arrangement->getLocalizedPolicy()|nl2br}</p>
+{if count($series) > 0}
+<div id="seriesPolicies"><h3>{translate key="about.seriesPolicies"}</h3>
+{foreach from=$series item=series}{if !$series->getHideAbout()}
+	<h4>{$series->getLocalizedTitle()}</h4>
+	{if strlen($series->getLocalizedPolicy()) > 0}
+		<p>{$series->getLocalizedPolicy()|nl2br}</p>
 	{/if}
 
 	{assign var="hasEditors" value=0}
-	{foreach from=$arrangementEditorEntriesByArrangement item=arrangementEditorEntries key=key}
-		{if $key == $arrangement->getId()}
-			{foreach from=$arrangementEditorEntries item=arrangementEditorEntry}
-				{assign var=arrangementEditor value=$arrangementEditorEntry.user}
+	{foreach from=$seriesEditorEntriesBySeries item=seriesEditorEntries key=key}
+		{if $key == $series->getId()}
+			{foreach from=$seriesEditorEntries item=seriesEditorEntry}
+				{assign var=seriesEditor value=$seriesEditorEntry.user}
 				{if 0 == $hasEditors++}
 				{translate key="user.role.editors"}
 				<ul class="plain">
 				{/if}
-				<li>{$arrangementEditor->getFirstName()|escape} {$arrangementEditor->getLastName()|escape}{if strlen($arrangementEditor->getAffiliation()) > 0}, {$arrangementEditor->getAffiliation()|escape}{/if}</li>
+				<li>{$seriesEditor->getFirstName()|escape} {$seriesEditor->getLastName()|escape}{if strlen($seriesEditor->getAffiliation()) > 0}, {$seriesEditor->getAffiliation()|escape}{/if}</li>
 			{/foreach}
 		{/if}
 	{/foreach}
@@ -58,8 +58,8 @@
 
 	<table class="plain" width="60%">
 		<tr>
-			<td width="50%">{if !$arrangement->getEditorRestricted()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.arrangement.open"}</td>
-			<td width="50%">{if $arrangement->getMetaIndexed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.arrangement.indexed"}</td>
+			<td width="50%">{if !$series->getEditorRestricted()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.series.open"}</td>
+			<td width="50%">{if $series->getMetaIndexed()}{icon name="checked"}{else}{icon name="unchecked"}{/if} {translate key="manager.series.indexed"}</td>
 		</tr>
 	</table>
 {/if}{/foreach}

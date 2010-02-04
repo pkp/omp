@@ -38,7 +38,7 @@ class EmailHandler extends UserHandler {
 		// First, conditions where access is OK.
 		// 1. User is submitter
 		if ($monograph && $monograph->getUserId() == $userId) return true;
-		// 2. User is acquisitions editor of monograph or full editor
+		// 2. User is series editor of monograph or full editor
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getByMonographId($monographId);
 		while ($editAssignment =& $editAssignments->next()) {
@@ -95,7 +95,7 @@ class EmailHandler extends UserHandler {
 		if (	!$press || empty($template) || (
 			!Validation::isPressManager($press->getId()) &&
 			!Validation::isEditor($press->getId()) &&
-			!Validation::isAcquisitionsEditor($press->getId())
+			!Validation::isSeriesEditor($press->getId())
 		)) {
 			$template = null;
 		}

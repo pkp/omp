@@ -31,7 +31,7 @@ switch ($op) {
 	case 'submissionEditing':
 	case 'submissionProduction':
 	case 'submissionHistory':
-	case 'changeAcquisitionsArrangement':
+	case 'changeSeries':
 	case 'recordDecision':
 	case 'recordReviewFiles':
 	case 'selectReviewer':
@@ -69,7 +69,7 @@ switch ($op) {
 	case 'archiveSubmission':
 	case 'unsuitableSubmission':
 	case 'restoreToQueue':
-	case 'updateAcquisitionsArrangement':
+	case 'updateSeries':
 	case 'updateCommentsStatus':
 	//
 	// Layout Editing
@@ -116,7 +116,7 @@ switch ($op) {
 	 * Scheduling functions
 	 */
 	case 'scheduleForPublication':	
-		import('pages.acquisitionsEditor.SubmissionEditHandler');
+		import('pages.seriesEditor.SubmissionEditHandler');
 		define('HANDLER_CLASS', 'SubmissionEditHandler');
 		break;
 	//
@@ -137,7 +137,7 @@ switch ($op) {
 	case 'editComment':
 	case 'saveComment':
 	case 'deleteComment':
-		import('pages.acquisitionsEditor.SubmissionCommentsHandler');
+		import('pages.seriesEditor.SubmissionCommentsHandler');
 		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
 		break;
 	case 'index':

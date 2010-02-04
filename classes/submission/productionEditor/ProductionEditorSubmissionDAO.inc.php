@@ -52,14 +52,14 @@ class ProductionEditorSubmissionDAO extends DAO {
 		$locale = Locale::getLocale();
 		$result =& $this->retrieve(
 			'SELECT	m.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
-				COALESCE(aal.setting_value, aapl.setting_value) AS arrangement_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(aal.setting_value, aapl.setting_value) AS series_abbrev
 			FROM monographs m
-				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = m.arrangement_id)
-				LEFT JOIN acquisitions_arrangements_settings stpl ON (s.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings stl ON (s.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings aapl ON (s.arrangement_id = aapl.arrangement_id AND aapl.setting_name = ? AND aapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings aal ON (s.arrangement_id = aal.arrangement_id AND aal.setting_name = ? AND aal.locale = ?)
+				LEFT JOIN series s ON (s.series_id = m.series_id)
+				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings aapl ON (s.series_id = aapl.series_id AND aapl.setting_name = ? AND aapl.locale = ?)
+				LEFT JOIN series_settings aal ON (s.series_id = aal.series_id AND aal.setting_name = ? AND aal.locale = ?)
 			WHERE m.monograph_id = ? AND m.press_id = ?',
 			array(
 				'title',
@@ -140,14 +140,14 @@ class ProductionEditorSubmissionDAO extends DAO {
 		$locale = Locale::getLocale();
 		$result =& $this->retrieveRange(
 			'SELECT	a.*,
-				COALESCE(atl.setting_value, atpl.setting_value) AS arrangement_title,
-				COALESCE(aal.setting_value, aapl.setting_value) AS arrangement_abbrev
+				COALESCE(atl.setting_value, atpl.setting_value) AS series_title,
+				COALESCE(aal.setting_value, aapl.setting_value) AS series_abbrev
 			FROM monographs a
-				LEFT JOIN acquisitions_arrangements s ON (s.arrangement_id = a.arrangement_id)
-				LEFT JOIN acquisitions_arrangements_settings atpl ON (s.arrangement_id = atpl.arrangement_id AND atpl.setting_name = ? AND atpl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings atl ON (s.arrangement_id = atl.arrangement_id AND atl.setting_name = ? AND atl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings aapl ON (s.arrangement_id = aapl.arrangement_id AND aapl.setting_name = ? AND aapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings aal ON (s.arrangement_id = aal.arrangement_id AND aal.setting_name = ? AND aal.locale = ?)
+				LEFT JOIN series s ON (s.series_id = a.series_id)
+				LEFT JOIN series_settings atpl ON (s.series_id = atpl.series_id AND atpl.setting_name = ? AND atpl.locale = ?)
+				LEFT JOIN series_settings atl ON (s.series_id = atl.series_id AND atl.setting_name = ? AND atl.locale = ?)
+				LEFT JOIN series_settings aapl ON (s.series_id = aapl.series_id AND aapl.setting_name = ? AND aapl.locale = ?)
+				LEFT JOIN series_settings aal ON (s.series_id = aal.series_id AND aal.setting_name = ? AND aal.locale = ?)
 			WHERE	a.user_id = ? AND a.press_id = ? AND ' .
 			($active?'a.status = 1':'(a.status <> 1 AND a.submission_progress = 0)'),
 			array(
@@ -238,7 +238,7 @@ class ProductionEditorSubmissionDAO extends DAO {
 		$user =& $this->userDao->_returnUserFromRowWithData($row);
 		$user->setData('isAssignedDesigner', $row['assigned']);
 
-		HookRegistry::call('AcquisitionsEditorSubmissionDAO::_returnReviewerUserFromRow', array(&$designer, &$row));
+		HookRegistry::call('SeriesEditorSubmissionDAO::_returnReviewerUserFromRow', array(&$designer, &$row));
 
 		return $user;
 	}

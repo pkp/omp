@@ -160,13 +160,13 @@ class DesignerAction extends Action {
 		} else {
 			$user =& Request::getUser();
 			if (!Request::getUserVar('continued')) {
-				$assignedAcquisitionsEditors = $email->toAssignedEditingAcquisitionsEditors($submission->getMonographId());
+				$assignedSeriesEditors = $email->toAssignedEditingSeriesEditors($submission->getMonographId());
 				$assignedEditors = $email->ccAssignedEditors($submission->getMonographId());
-				if (empty($assignedAcquisitionsEditors) && empty($assignedEditors)) {
+				if (empty($assignedSeriesEditors) && empty($assignedEditors)) {
 					$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 					$editorialContactName = $press->getSetting('contactName');
 				} else {
-					$editorialContact = array_shift($assignedAcquisitionsEditors);
+					$editorialContact = array_shift($assignedSeriesEditors);
 					if (!$editorialContact) $editorialContact = array_shift($assignedEditors);
 					$editorialContactName = $editorialContact->getEditorFullName();
 				}

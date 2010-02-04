@@ -146,55 +146,55 @@ class Monograph extends Submission {
 	}
 
 	//
-	// Acquisitions Arrangements
+	// Series
 	//
 
 	/**
-	 * Get the acquisitions arrangement id.
+	 * Get the series id.
 	 * @return int
 	 */
-	function getArrangementId() {
-		 return $this->getData('arrangementId');
+	function getSeriesId() {
+		 return $this->getData('seriesId');
 	}
 
 	/**
-	 * Set the acquisitions arrangement id.
+	 * Set the series id.
 	 * @param $id int
 	 */
-	function setArrangementId($id) {
-		 $this->setData('arrangementId', $id);
+	function setSeriesId($id) {
+		 $this->setData('seriesId', $id);
 	}
 
 	/**
-	 * Get the arrangement's abbreviated identifier.
+	 * Get the series's abbreviated identifier.
 	 * @return string
 	 */
-	function getArrangementAbbrev() {
-		 return $this->getData('arrangementAbbrev');
+	function getSeriesAbbrev() {
+		 return $this->getData('seriesAbbrev');
 	}
 
 	/**
-	 * Set the arrangement's abbreviated identifier.
+	 * Set the series's abbreviated identifier.
 	 * @param $abbrev string
 	 */
-	function setArrangementAbbrev($abbrev) {
-		 $this->setData('arrangementAbbrev', $abbrev);
+	function setSeriesAbbrev($abbrev) {
+		 $this->setData('seriesAbbrev', $abbrev);
 	}
 
 	/**
-	 * Get the arrangement's title.
+	 * Get the series's title.
 	 * @return string
 	 */
-	function getArrangementTitle() {
-		 return $this->getData('arrangementTitle');
+	function getSeriesTitle() {
+		 return $this->getData('seriesTitle');
 	}
 
 	/**
-	 * Set the arrangement title.
+	 * Set the series title.
 	 * @param $title string
 	 */
-	function setArrangementTitle($title) {
-		 $this->setData('arrangementTitle', $title);
+	function setSeriesTitle($title) {
+		 $this->setData('seriesTitle', $title);
 	}
 
 	//

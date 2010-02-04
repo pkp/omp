@@ -43,8 +43,8 @@
 		<td>{$submission->getDateSubmitted()|date_format:$datetimeFormatLong}</td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="submissions.arrangement"}</td>
-		<td width="80%" colspan="2" class="data">{$submission->getArrangementTitle()|escape|default:"&mdash;"}</td>
+		<td width="20%" class="label">{translate key="submissions.series"}</td>
+		<td width="80%" colspan="2" class="data">{$submission->getSeriesTitle()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="user.role.editor"}</td>

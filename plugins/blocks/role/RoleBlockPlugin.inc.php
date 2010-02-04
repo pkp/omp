@@ -105,11 +105,11 @@ class RoleBlockPlugin extends BlockPlugin {
 				$submissionsCount =& $editorSubmissionDao->getCount($press->getId());
 				$templateMgr->assign('submissionsCount', $submissionsCount);
 				return 'editor.tpl';
-			case 'acquisitionsEditor':
-				$acquisitionsEditorSubmissionDao =& DAORegistry::getDAO('AcquisitionsEditorSubmissionDAO');
-				$submissionsCount =& $acquisitionsEditorSubmissionDao->getAcquisitionsEditorSubmissionsCount($userId, $pressId);
+			case 'seriesEditor':
+				$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+				$submissionsCount =& $seriesEditorSubmissionDao->getSeriesEditorSubmissionsCount($userId, $pressId);
 				$templateMgr->assign('submissionsCount', $submissionsCount);
-				return 'acquisitionsEditor.tpl';
+				return 'seriesEditor.tpl';
 			case 'proofreader':
 				$proofreaderSubmissionDao =& DAORegistry::getDAO('ProofreaderSubmissionDAO');
 				$submissionsCount = $proofreaderSubmissionDao->getSubmissionsCount($userId, $pressId);

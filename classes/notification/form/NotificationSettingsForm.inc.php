@@ -72,7 +72,7 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 			$canOnlyRead = false;
 			$canOnlyReview = true;
 		}
-		if (Validation::isSiteAdmin() || Validation::isPressManager() || Validation::isEditor() || Validation::isAcquisitionsEditor() || Validation::isProductionEditor()) {
+		if (Validation::isSiteAdmin() || Validation::isPressManager() || Validation::isEditor() || Validation::isSeriesEditor() || Validation::isProductionEditor()) {
 			$canOnlyRead = false;
 			$canOnlyReview = false;
 		}

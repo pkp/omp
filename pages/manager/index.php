@@ -3,7 +3,7 @@
 /**
  * @defgroup pages_manager
  */
- 
+
 /**
  * @file pages/manager/index.php
  *
@@ -11,7 +11,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup pages_manager
- * @brief Handle requests for press management functions. 
+ * @brief Handle requests for press management functions.
  *
  */
 
@@ -51,27 +51,6 @@ switch ($op) {
 		define('HANDLER_CLASS', 'PeopleHandler');
 		break;
 	//
-	// Series Management
-	//
-	case 'series':
-	case 'createSeries':
-	case 'editSeries':
-	case 'updateSeries':
-	case 'deleteSeries':
-	case 'moveSeries':
-	//
-	// Submission Category Management
-	//
-	case 'submissionCategory':
-	case 'createSubmissionCategory':
-	case 'editSubmissionCategory':
-	case 'updateSubmissionCategory':
-	case 'deleteSubmissionCategory':
-	case 'moveSubmissionCategory':
-		import('pages.manager.AcquisitionsArrangementHandler');
-		define('HANDLER_CLASS', 'AcquisitionsArrangementHandler');
-		break;
-	//
 	// E-mail Management
 	//
 	case 'emails':
@@ -107,7 +86,7 @@ switch ($op) {
 		define('HANDLER_CLASS', 'FilesHandler');
 		break;
 	//
-	// Announcement Types 
+	// Announcement Types
 	//
 	case 'announcementTypes':
 	case 'deleteAnnouncementType':
@@ -115,7 +94,7 @@ switch ($op) {
 	case 'editAnnouncementType':
 	case 'updateAnnouncementType':
 	//
-	// Announcements 
+	// Announcements
 	//
 	case 'announcements':
 	case 'deleteAnnouncement':

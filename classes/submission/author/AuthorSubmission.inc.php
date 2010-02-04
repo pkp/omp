@@ -155,7 +155,7 @@ class AuthorSubmission extends Monograph {
 	 * or STATUS_QUEUED_EDITING). Note that this function never returns
 	 * a value of STATUS_QUEUED -- the three STATUS_QUEUED_... constants
 	 * indicate a queued submission. NOTE that this code is similar to
-	 * getSubmissionStatus in the AcquisitionsEditorSubmission class and
+	 * getSubmissionStatus in the SeriesEditorSubmission class and
 	 * changes here should be propagated.
 	 */
 	function getSubmissionStatus() {

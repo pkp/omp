@@ -49,7 +49,7 @@ class PeerReviewCommentForm extends CommentForm {
 		$templateMgr->assign('commentTitle', strip_tags($this->monograph->getLocalizedTitle()));
 		$templateMgr->assign('isLocked', isset($reviewAssignment) && $reviewAssignment->getDateCompleted() != null);
 		$templateMgr->assign('canEmail', false); // Previously, editors could always email.
-		$templateMgr->assign('showReviewLetters', ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_ACQUISITIONS_EDITOR) ? true : false);
+		$templateMgr->assign('showReviewLetters', ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SERIES_EDITOR) ? true : false);
 		$templateMgr->assign('reviewLetters', $reviewLetters);
 		$templateMgr->assign('reviewer', ROLE_ID_REVIEWER);
 		$templateMgr->assign('hiddenFormParams', 

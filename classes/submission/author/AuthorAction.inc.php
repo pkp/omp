@@ -166,24 +166,24 @@ class AuthorAction extends Action {
 			if (!Request::getUserVar('continued')) {
 				if (isset($copyeditor)) {
 					$email->addRecipient($copyeditor->getEmail(), $copyeditor->getFullName());
-					$assignedAcquisitionsEditors = $email->ccAssignedEditingAcquisitionsEditors($authorSubmission->getMonographId());
+					$assignedSeriesEditors = $email->ccAssignedEditingSeriesEditors($authorSubmission->getMonographId());
 					$assignedEditors = $email->ccAssignedEditors($authorSubmission->getMonographId());
-					if (empty($assignedAcquisitionsEditors) && empty($assignedEditors)) {
+					if (empty($assignedSeriesEditors) && empty($assignedEditors)) {
 						$email->addCc($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 						$editorName = $press->getSetting('contactName');
 					} else {
-						$editor = array_shift($assignedAcquisitionsEditors);
+						$editor = array_shift($assignedSeriesEditors);
 						if (!$editor) $editor = array_shift($assignedEditors);
 						$editorName = $editor->getEditorFullName();
 					}
 				} else {
-					$assignedAcquisitionsEditors = $email->toAssignedEditingAcquisitionsEditors($authorSubmission->getMonographId());
+					$assignedSeriesEditors = $email->toAssignedEditingSeriesEditors($authorSubmission->getMonographId());
 					$assignedEditors = $email->ccAssignedEditors($authorSubmission->getMonographId());
-					if (empty($assignedAcquisitionsEditors) && empty($assignedEditors)) {
+					if (empty($assignedSeriesEditors) && empty($assignedEditors)) {
 						$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 						$editorName = $press->getSetting('contactName');
 					} else {
-						$editor = array_shift($assignedAcquisitionsEditors);
+						$editor = array_shift($assignedSeriesEditors);
 						if (!$editor) $editor = array_shift($assignedEditors);
 						$editorName = $editor->getEditorFullName();
 					}

@@ -33,7 +33,7 @@ class SubmissionRolesListbuilderHandler extends ListbuilderHandler {
 		$press =& $request->getPress();
 
 		// Get items to populate listBuilder current item list
-		$roles = $flexibleRoleDao->getByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_SUBMISSION, $press->getId());
+		$roles = $flexibleRoleDao->getBySeriesId(FLEXIBLE_ROLE_SERIES_SUBMISSION, $press->getId());
 
 		$items = array();
 		foreach($roles as $item) {
@@ -57,7 +57,7 @@ class SubmissionRolesListbuilderHandler extends ListbuilderHandler {
 		$press =& $request->getPress();
 
 		// Get items to populate possible items list with
-		$currentRoleIds = $flexibleRoleDao->getIdsByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_SUBMISSION, $press->getId()); // Don't include current roles
+		$currentRoleIds = $flexibleRoleDao->getIdsBySeriesId(FLEXIBLE_ROLE_SERIES_SUBMISSION, $press->getId()); // Don't include current roles
 
 		$itemList = array();
 		$availableRoles = $flexibleRoleDao->getEnabledByPressId($press->getId());
@@ -132,9 +132,9 @@ class SubmissionRolesListbuilderHandler extends ListbuilderHandler {
 			echo $json->getString();
 		} else {
 			$flexibleRole =& $flexibleRoleDao->getById($flexibleRoleId);
-			// FIXME: Make sure associated arrangement doesn't already exist, else return an error modal
+			// FIXME: Make sure associated series doesn't already exist, else return an error modal
 
-			$flexibleRole->addAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_SUBMISSION);
+			$flexibleRole->addAssociatedSeries(FLEXIBLE_ROLE_SERIES_SUBMISSION);
 			$flexibleRoleDao->updateObject($flexibleRole);
 
 			// Return JSON with formatted HTML to insert into list
@@ -158,7 +158,7 @@ class SubmissionRolesListbuilderHandler extends ListbuilderHandler {
 		foreach($args as $flexibleRoleId) {
 			$flexibleRole =& $flexibleRoleDao->getById($flexibleRoleId);
 
-			$flexibleRole->removeAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_SUBMISSION);
+			$flexibleRole->removeAssociatedSeries(FLEXIBLE_ROLE_SERIES_SUBMISSION);
 			$flexibleRoleDao->updateObject($flexibleRole);
 
 			unset($flexibleRole);

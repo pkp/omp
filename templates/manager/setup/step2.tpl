@@ -40,6 +40,12 @@
 
 <h3>2.2 {translate key="manager.setup.divisionsAndSeries"}</h3>
 
+{url|assign:divisionsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.DivisionsListbuilderHandler" op="fetch"}
+{load_url_in_div id="divisionsContainer" url=$divisionsUrl}
+
+{url|assign:seriesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.series.SeriesGridHandler" op="fetchGrid"}
+{load_url_in_div id="seriesGridDiv" url=$seriesGridUrl}
+
 <div class="separator"></div>
 
 <h3>2.3 {translate key="manager.setup.authorGuidelines"}</h3>
@@ -141,7 +147,7 @@
 {fbvFormSection title="manager.setup.reviewOptions.blindReview" layout=$fbvStyles.layout.ONE_COLUMN}
 {fbvCustomElement}
 	{fbvCheckbox id="showEnsuringLink" value="1" checked=$showEnsuringLink}
-	{get_help_id|assign:"blindReviewHelpId" key="editorial.acquisitionsEditorsRole.review.blindPeerReview" url="true"}
+	{get_help_id|assign:"blindReviewHelpId" key="editorial.seriesEditorsRole.review.blindPeerReview" url="true"}
 	<label for="showEnsuringLink" class="choice">{translate key="manager.setup.reviewOptions.showEnsuringLink" blindReviewHelpId=$blindReviewHelpId}</label><br/>
 {/fbvCustomElement}
 {/fbvFormSection}

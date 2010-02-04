@@ -40,8 +40,8 @@ function confirmSubmissionCheck() {
 	<td width="80%" class="value">{$submission->getLocalizedTitle()|strip_unsafe_html}</td>
 </tr>
 <tr valign="top">
-	<td class="label">{translate key="submissions.arrangement"}</td>
-	<td class="value">{$submission->getArrangementTitle()|escape}</td>
+	<td class="label">{translate key="submissions.series"}</td>
+	<td class="value">{$submission->getSeriesTitle()|escape}</td>
 </tr>
 <tr valign="top">
 	<td class="label">{translate key="monograph.abstract"}</td>
@@ -290,7 +290,7 @@ function confirmSubmissionCheck() {
 
 			{if $currentPress->getSetting('showEnsuringLink')}
 			<span class="instruct">
-				<a class="action" href="javascript:openHelp('{get_help_id key="editorial.acquisitionsEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.monograph.ensuringBlindReview"}</a>
+				<a class="action" href="javascript:openHelp('{get_help_id key="editorial.seriesEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.monograph.ensuringBlindReview"}</a>
 			</span>
 			{/if}
 		{/if}

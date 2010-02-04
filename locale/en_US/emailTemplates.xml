@@ -171,14 +171,14 @@ An initial review of "{$monographTitle}" has made it clear that this submission 
 		<subject>Editorial Assignment</subject>
 		<body>{$editorialContactName}:
 
-The submission, "{$monographTitle}," to {$pressName} has been assigned to you to see through the editorial process in your role as Acquisitions Editor.  
+The submission, "{$monographTitle}," to {$pressName} has been assigned to you to see through the editorial process in your role as Series Editor.  
 
 Submission URL: {$submissionUrl}
 Username: {$editorUsername}
 
 Thank you,
 {$editorialContactSignature}</body>
-		<description>This email notifies a Acquisitions Editor that the Editor has assigned them the task of overseeing a submission through the editing process. It provides information about the submission and how to access the press site.</description>
+		<description>This email notifies a Series Editor that the Editor has assigned them the task of overseeing a submission through the editing process. It provides information about the submission and how to access the press site.</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
 		<subject>Manuscript Review Request</subject>
@@ -204,7 +204,7 @@ Thank you for considering this request.
 
 {$abstractTermIfEnabled}
 {$monographAbstract}</body>
-		<description>This email from the Acquisitions Editor to a Reviewer requests that the reviewer accept or decline the task of reviewing a submission. It provides information about the submission such as the title and abstract, a review due date, and how to access the submission itself. This message is used when the Standard Review Process is selected in Press Setup, Step 2. (Otherwise see REVIEW_REQUEST_ATTACHED.)</description>
+		<description>This email from the Series Editor to a Reviewer requests that the reviewer accept or decline the task of reviewing a submission. It provides information about the submission such as the title and abstract, a review due date, and how to access the submission itself. This message is used when the Standard Review Process is selected in Press Setup, Step 2. (Otherwise see REVIEW_REQUEST_ATTACHED.)</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ONECLICK">
 		<subject>Manuscript Review Request</subject>
@@ -228,7 +228,7 @@ Thank you for considering this request.
 
 {$abstractTermIfEnabled}
 {$monographAbstract}</body>
-		<description>This email from the Acquisitions Editor to a Reviewer requests that the reviewer accept or decline the task of reviewing a submission. It provides information about the submission such as the title and abstract, a review due date, and how to access the submission itself. This message is used when the Standard Review Process is selected in Press Setup, Step 2, and one-click reviewer access is enabled.</description>
+		<description>This email from the Series Editor to a Reviewer requests that the reviewer accept or decline the task of reviewing a submission. It provides information about the submission such as the title and abstract, a review due date, and how to access the submission itself. This message is used when the Standard Review Process is selected in Press Setup, Step 2, and one-click reviewer access is enabled.</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ATTACHED">
 		<subject>Manuscript Review Request</subject>
@@ -247,7 +247,7 @@ Review Guidelines
 
 {$reviewGuidelines}
 </body>
-		<description>This email is sent by the Acquisitions Editor to a Reviewer to request that they accept or decline the task of reviewing a submission. It includes the submission as an attachment. This message is used when the Email-Attachment Review Process is selected in Press Setup, Step 2. (Otherwise see REVIEW_REQUEST.)</description>
+		<description>This email is sent by the Series Editor to a Reviewer to request that they accept or decline the task of reviewing a submission. It includes the submission as an attachment. This message is used when the Email-Attachment Review Process is selected in Press Setup, Step 2. (Otherwise see REVIEW_REQUEST.)</description>
 	</email_text>
 	<email_text key="REVIEW_CANCEL">
 		<subject>Request for Review Cancelled</subject>
@@ -258,7 +258,7 @@ We have decided at this point to cancel our request for you to review the submis
 If you have any questions, please contact me.
 
 {$editorialContactSignature}</body>
-		<description>This email is sent by the Acquisitions Editor to a Reviewer who has a submission review in progress to notify them that the review has been cancelled.</description>
+		<description>This email is sent by the Series Editor to a Reviewer who has a submission review in progress to notify them that the review has been cancelled.</description>
 	</email_text>
 	<email_text key="REVIEW_CONFIRM">
 		<subject>Able to Review</subject>
@@ -267,7 +267,7 @@ If you have any questions, please contact me.
 I am able and willing to review the submission, "{$monographTitle}," for {$pressName}. Thank you for thinking of me, and I plan to have the review completed by its due date, {$reviewDueDate}, if not before.
 
 {$reviewerName}</body>
-		<description>This email is sent by a Reviewer to the Acquisitions Editor in response to a review request to notify the Acquisitions Editor that the review request has been accepted and will be completed by the specified date.</description>
+		<description>This email is sent by a Reviewer to the Series Editor in response to a review request to notify the Series Editor that the review request has been accepted and will be completed by the specified date.</description>
 	</email_text>
 	<email_text key="REVIEW_DECLINE">
 		<subject>Unable to Review</subject>
@@ -276,7 +276,7 @@ I am able and willing to review the submission, "{$monographTitle}," for {$press
 I am afraid that at this time I am unable to review the submission, "{$monographTitle}," for {$pressName}. Thank you for thinking of me, and another time feel free to call on me.
 
 {$reviewerName}</body>
-		<description>This email is sent by a Reviewer to the Acquisitions Editor in response to a review request to notify the Acquisitions Editor that the review request has been declined.</description>
+		<description>This email is sent by a Reviewer to the Series Editor in response to a review request to notify the Series Editor that the review request has been declined.</description>
 	</email_text>
 	<email_text key="REVIEW_COMPLETE">
 		<subject>Manuscript Review Completed</subject>
@@ -285,7 +285,7 @@ I am afraid that at this time I am unable to review the submission, "{$monograph
 I have now completed my review of "{$monographTitle}" for {$pressName}, and submitted my recommendation, "{$recommendation}."
 
 {$reviewerName}</body>
-		<description>This email is sent by a Reviewer to the Acquisitions Editor to notify them that a review has been completed and the comments and recommendations have been recorded on the press web site.</description>
+		<description>This email is sent by a Reviewer to the Series Editor to notify them that a review has been completed and the comments and recommendations have been recorded on the press web site.</description>
 	</email_text>
 	<email_text key="REVIEW_ACK">
 		<subject>Manuscript Review Acknowledgement</subject>
@@ -294,7 +294,7 @@ I have now completed my review of "{$monographTitle}" for {$pressName}, and subm
 Thank you for completing the review of the submission, "{$monographTitle}," for {$pressName}. We appreciate your contribution to the quality of the work that we publish.
 
 {$editorialContactSignature}</body>
-		<description>This email is sent by a Acquisitions Editor to confirm receipt of a completed review and thank the reviewer for their contributions.</description>
+		<description>This email is sent by a Series Editor to confirm receipt of a completed review and thank the reviewer for their contributions.</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND">
 		<subject>Submission Review Reminder</subject>
@@ -309,7 +309,7 @@ Submission URL: {$submissionReviewUrl}
 Please confirm your ability to complete this vital contribution to the work of the press. I look forward to hearing from you.
 
 {$editorialContactSignature}</body>
-		<description>This email is sent by a Acquisitions Editor to remind a reviewer that their review is due.</description>
+		<description>This email is sent by a Series Editor to remind a reviewer that their review is due.</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_ONECLICK">
 		<subject>Submission Review Reminder</subject>
@@ -322,7 +322,7 @@ Submission URL: {$submissionReviewUrl}
 Please confirm your ability to complete this vital contribution to the work of the press. I look forward to hearing from you.
 
 {$editorialContactSignature}</body>
-		<description>This email is sent by a Acquisitions Editor to remind a reviewer that their review is due.</description>
+		<description>This email is sent by a Series Editor to remind a reviewer that their review is due.</description>
 	</email_text>
 	<email_text key="REVIEW_REMIND_AUTO">
 		<subject>Automated Submission Review Reminder</subject>
@@ -362,7 +362,7 @@ Our decision is to:
 
 {$editorialContactSignature}
 </body>
-		<description>This email from the Editor or Acquisitions Editor to an Author notifies them of a final decision regarding their submission.</description>
+		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_REVISIONS">
 		<subject>Editor Decision</subject>
@@ -374,7 +374,7 @@ Our decision is to:
 
 {$editorialContactSignature}
 </body>
-		<description>This email from the Editor or Acquisitions Editor to an Author notifies them of a final decision regarding their submission.</description>
+		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_RESUBMIT">
 		<subject>Editor Decision</subject>
@@ -386,7 +386,7 @@ Our decision is to:
 
 {$editorialContactSignature}
 </body>
-		<description>This email from the Editor or Acquisitions Editor to an Author notifies them of a final decision regarding their submission.</description>
+		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
 	</email_text>
 	<email_text key="EDITOR_DECISION_DECLINE">
 		<subject>Editor Decision</subject>
@@ -398,7 +398,7 @@ Our decision is to:
 
 {$editorialContactSignature}
 </body>
-		<description>This email from the Editor or Acquisitions Editor to an Author notifies them of a final decision regarding their submission.</description>
+		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
 	</email_text>
 	<email_text key="EDITOR_REVIEW">
 		<subject>Editorial Review of Manuscript</subject>
@@ -416,7 +416,7 @@ Username: {$authorUsername}
 If you have any questions, please contact me.
 
 {$editorialContactSignature}</body>
-		<description>This email is sent by a Acquisitions Editor to a submission's Author to notify them that a decision has been reached in regard to a submission.</description>
+		<description>This email is sent by a Series Editor to a submission's Author to notify them that a decision has been reached in regard to a submission.</description>
 	</email_text>
 	<email_text key="COPYEDIT_REQUEST">
 		<subject>Copyediting Request</subject>
@@ -435,7 +435,7 @@ Submission URL: {$submissionCopyeditingUrl}
 Username: {$copyeditorUsername}
 
 {$editorialContactSignature}</body>
-		<description>This email is sent by a Acquisitions Editor to a submission's Copyeditor to request that they begin the copyediting process. It provides information about the submission and how to access it.</description>
+		<description>This email is sent by a Series Editor to a submission's Copyeditor to request that they begin the copyediting process. It provides information about the submission and how to access it.</description>
 	</email_text>
 	<email_text key="COPYEDIT_COMPLETE">
 		<subject>Copyediting Completed</subject>
@@ -466,7 +466,7 @@ please contact me. Thank you for your contribution to this press.
 Thank you for copyediting the manuscript, "{$monographTitle}," for {$pressName}. It will make an important contribution to the quality of this press.
 
 {$editorialContactSignature}</body>
-		<description>This email is sent by the Acquisitions Editor to a submission's Copyeditor to acknowledge that the Copyeditor has successfully completed the copyediting process and thank them for their contribution.</description>
+		<description>This email is sent by the Series Editor to a submission's Copyeditor to acknowledge that the Copyeditor has successfully completed the copyediting process and thank them for their contribution.</description>
 	</email_text>
 	<email_text key="COPYEDIT_AUTHOR_REQUEST">
 		<subject>Copyediting Review Request</subject>
@@ -491,7 +491,7 @@ This is the last opportunity to make substantial copyediting changes to the subm
 If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this press.
 
 {$editorialContactSignature}</body>
-		<description>This email is sent by the Acquisitions Editor to a submission's Author to request that they proofread the work of the copyeditor. It provides access information for the manuscript and warns that this is the last opportunity the author has to make substantial changes.</description>
+		<description>This email is sent by the Series Editor to a submission's Author to request that they proofread the work of the copyeditor. It provides access information for the manuscript and warns that this is the last opportunity the author has to make substantial changes.</description>
 	</email_text>
 	<email_text key="COPYEDIT_AUTHOR_COMPLETE">
 		<subject>Copyediting Review Completed</subject>
@@ -501,7 +501,7 @@ I have now reviewed the copyediting of the manuscript, "{$monographTitle}," for 
 
 Thank you for this contribution to my work,
 {$authorName}</body>
-		<description>This email is sent by the Author to the Acquisitions Editor to notify them that the Author's copyediting process has been completed.</description>
+		<description>This email is sent by the Author to the Series Editor to notify them that the Author's copyediting process has been completed.</description>
 	</email_text>
 	<email_text key="COPYEDIT_AUTHOR_ACK">
 		<subject>Copyediting Review Acknowledgement</subject>
@@ -510,7 +510,7 @@ Thank you for this contribution to my work,
 Thank you for reviewing the copyediting of your manuscript, "{$monographTitle}," for {$pressName}. We look forward to publishing this work.
 
 {$editorialContactSignature}</body>
-		<description>This email is sent by the Acquisitions Editor to a submission's Author to confirm completion of the Author's copyediting process and thank them for their contribution.</description>
+		<description>This email is sent by the Series Editor to a submission's Author to confirm completion of the Author's copyediting process and thank them for their contribution.</description>
 	</email_text>
 	<email_text key="COPYEDIT_FINAL_REQUEST">
 		<subject>Copyediting Final Review</subject>
@@ -529,7 +529,7 @@ Submission URL: {$submissionCopyeditingUrl}
 Username: {$copyeditorUsername}
 
 {$editorialContactSignature}</body>
-		<description>This email from the Acquisitions Editor to the Copyeditor requests that they perform a final round of copyediting on a submission before it enters the layout process.</description>
+		<description>This email from the Series Editor to the Copyeditor requests that they perform a final round of copyediting on a submission before it enters the layout process.</description>
 	</email_text>
 	<email_text key="COPYEDIT_FINAL_COMPLETE">
 		<subject>Copyediting Final Review Completed</subject>
@@ -538,7 +538,7 @@ Username: {$copyeditorUsername}
 I have now prepared a clean, copyedited version of the manuscript, "{$monographTitle}," for {$pressName}. It is ready for Layout and the preparation of the galleys.
 
 {$copyeditorName}</body>
-		<description>This email from the Copyeditor to the Acquisitions Editor notifies them that the final round of copyediting has been completed and that the layout process may now begin.</description>
+		<description>This email from the Copyeditor to the Series Editor notifies them that the final round of copyediting has been completed and that the layout process may now begin.</description>
 	</email_text>
 	<email_text key="COPYEDIT_FINAL_ACK">
 		<subject>Copyediting Final Review Acknowledgement</subject>
@@ -547,7 +547,7 @@ I have now prepared a clean, copyedited version of the manuscript, "{$monographT
 Thank you for completing the copyediting of the manuscript, "{$monographTitle}," for {$pressName}. This preparation of a "clean copy" for Layout is an important step in the editorial process.
 
 {$editorialContactSignature}</body>
-		<description>This email from the Acquisitions Editor to the Copyeditor acknowledges completion of the final round of copyediting and thanks them for their contribution.</description>
+		<description>This email from the Series Editor to the Copyeditor acknowledges completion of the final round of copyediting and thanks them for their contribution.</description>
 	</email_text>
 	<email_text key="LAYOUT_REQUEST">
 		<subject>Request Galleys</subject>
@@ -565,7 +565,7 @@ Username: {$layoutEditorUsername}
 If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this press.
 
 {$editorialContactSignature}</body>
-		<description>This email from the Acquisitions Editor to the Layout Editor notifies them that they have been assigned the task of performing layout editing on a submission. It provides information about the submission and how to access it.</description>
+		<description>This email from the Series Editor to the Layout Editor notifies them that they have been assigned the task of performing layout editing on a submission. It provides information about the submission and how to access it.</description>
 	</email_text>
 	<email_text key="LAYOUT_COMPLETE">
 		<subject>Galleys Complete</subject>
@@ -576,7 +576,7 @@ Galleys have now been prepared for the manuscript, "{$monographTitle}," for {$pr
 If you have any questions, please contact me.
 
 {$layoutEditorName}</body>
-		<description>This email from the Layout Editor to the Acquisitions Editor notifies them that the layout process has been completed.</description>
+		<description>This email from the Layout Editor to the Series Editor notifies them that the layout process has been completed.</description>
 	</email_text>
 	<email_text key="LAYOUT_ACK">
 		<subject>Layout Acknowledgement</subject>
@@ -585,7 +585,7 @@ If you have any questions, please contact me.
 Thank you for preparing the galleys for the manuscript, "{$monographTitle}," for {$pressName}. This is an important contribution to the publishing process.
 
 {$editorialContactSignature}</body>
-		<description>This email from the Acquisitions Editor to the Layout Editor acknowledges completion of the layout editing process and thanks the layout editor for their contribution.</description>
+		<description>This email from the Series Editor to the Layout Editor acknowledges completion of the layout editing process and thanks the layout editor for their contribution.</description>
 	</email_text>
 	<email_text key="PROOFREAD_AUTHOR_REQUEST">
 		<subject>Proofreading Request (Author)</subject>
@@ -603,7 +603,7 @@ Submission URL: {$submissionUrl}
 Username: {$authorUsername}
 
 {$editorialContactSignature}</body>
-		<description>This email from the Acquisitions Editor to the Author notifies them that a monograph's galleys are ready for proofreading. It provides information about the monograph and how to access it.</description>
+		<description>This email from the Series Editor to the Author notifies them that a monograph's galleys are ready for proofreading. It provides information about the monograph and how to access it.</description>
 	</email_text>
 	<email_text key="PROOFREAD_AUTHOR_COMPLETE">
 		<subject>Proofreading Completed (Author)</subject>
@@ -623,7 +623,7 @@ Thank you for proofreading the galleys for your manuscript, "{$monographTitle},"
 If you subscribe to our notification service, you will receive an email of the Table of Contents as soon as it is published. If you have any questions, please contact me.
 
 {$editorialContactSignature}</body>
-		<description>This email from the Acquisitions Editor to the Author acknowledges completion of the initial proofreading process and thanks them for their contribution.</description>
+		<description>This email from the Series Editor to the Author acknowledges completion of the initial proofreading process and thanks them for their contribution.</description>
 	</email_text>
 	<email_text key="PROOFREAD_REQUEST">
 		<subject>Proofreading Request</subject>
@@ -643,7 +643,7 @@ Username: {$proofreaderUsername}
 If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this press.
 
 {$editorialContactSignature}</body>
-		<description>This email from the Acquisitions Editor to the Proofreader requests that they perform proofreading of a monograph's galleys. It provides information about the monograph and how to access it.</description>
+		<description>This email from the Series Editor to the Proofreader requests that they perform proofreading of a monograph's galleys. It provides information about the monograph and how to access it.</description>
 	</email_text>
 	<email_text key="PROOFREAD_COMPLETE">
 		<subject>Proofreading Completed</subject>
@@ -652,7 +652,7 @@ If you are unable to undertake this work at this time or have any questions, ple
 I have completed proofreading the galleys for the manuscript, "{$monographTitle}," for {$pressName}. The galleys are now ready to have any final corrections made by the Layout Editor.
 
 {$proofreaderName}</body>
-		<description>This email from the Proofreader to the Acquisitions Editor notifies them that the Proofreader has completed the proofreading process.</description>
+		<description>This email from the Proofreader to the Series Editor notifies them that the Proofreader has completed the proofreading process.</description>
 	</email_text>
 	<email_text key="PROOFREAD_ACK">
 		<subject>Proofreading Acknowledgement</subject>
@@ -661,7 +661,7 @@ I have completed proofreading the galleys for the manuscript, "{$monographTitle}
 Thank you for proofreading the galleys for the manuscript, "{$monographTitle}," for {$pressName}. This work makes an important contribution to the quality of this press.
 
 {$editorialContactSignature}</body>
-		<description>This email from the Acquisitions Editor to the Proofreader confirms completion of the proofreader's proofreading process and thanks them for their contribution.</description>
+		<description>This email from the Series Editor to the Proofreader confirms completion of the proofreader's proofreading process and thanks them for their contribution.</description>
 	</email_text>
 	<email_text key="PROOFREAD_LAYOUT_REQUEST">
 		<subject>Proofreading Request (Layout Editor)</subject>
@@ -680,7 +680,7 @@ Username: {$layoutEditorUsername}
 If you are unable to undertake this work at this time or have any questions, please contact me. Thank you for your contribution to this press.
 
 {$editorialContactSignature}</body>
-		<description>This email from the Acquisitions Editor to the Layout Editor notifies them that a monograph's galleys are ready for final proofreading. It provides information on the monograph and how to access it.</description>
+		<description>This email from the Series Editor to the Layout Editor notifies them that a monograph's galleys are ready for final proofreading. It provides information on the monograph and how to access it.</description>
 	</email_text>
 	<email_text key="PROOFREAD_LAYOUT_COMPLETE">
 		<subject>Proofreading Completed (Layout Editor)</subject>
@@ -689,7 +689,7 @@ If you are unable to undertake this work at this time or have any questions, ple
 The galleys have now been corrected, following their proofreading, for the manuscript, "{$monographTitle}," for {$pressName}. This piece is now ready to publish.
 
 {$layoutEditorName}</body>
-		<description>This email from the Layout Editor to the Acquisitions Editor notifies them that the final stage of proofreading has been completed and the monograph is now ready to publish.</description>
+		<description>This email from the Layout Editor to the Series Editor notifies them that the final stage of proofreading has been completed and the monograph is now ready to publish.</description>
 	</email_text>
 	<email_text key="PROOFREAD_LAYOUT_ACK">
 		<subject>Proofreading Acknowledgement (Layout Editor)</subject>
@@ -698,7 +698,7 @@ The galleys have now been corrected, following their proofreading, for the manus
 Thank you for completing the proofreading corrections for the galleys associated with the manuscript, "{$monographTitle}," for {$pressName}. This represents an important contribution to the work of this press.
 
 {$editorialContactSignature}</body>
-		<description>This email from the Acquisitions Editor to the Layout Editor acknowledges completion of the final stage of proofreading and thanks them for their contribution.</description>
+		<description>This email from the Series Editor to the Layout Editor acknowledges completion of the final stage of proofreading and thanks them for their contribution.</description>
 	</email_text>
 	<email_text key="EMAIL_LINK">
 		<subject>Manuscript of Possible Interest</subject>

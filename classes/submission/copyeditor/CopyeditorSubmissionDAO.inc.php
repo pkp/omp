@@ -53,15 +53,15 @@ class CopyeditorSubmissionDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT m.*,
 				e.editor_id,
-				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM monographs m
 				LEFT JOIN edit_assignments e ON (m.monograph_id = e.monograph_id)
-				LEFT JOIN acquisitions_arrangements aa ON (aa.arrangement_id = m.arrangement_id)
-				LEFT JOIN acquisitions_arrangements_settings stpl ON (aa.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings stl ON (aa.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sapl ON (aa.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sal ON (aa.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN series aa ON (aa.series_id = m.series_id)
+				LEFT JOIN series_settings stpl ON (aa.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (aa.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (aa.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (aa.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE m.monograph_id = ?',
 			array(
 				'title',
@@ -138,11 +138,11 @@ class CopyeditorSubmissionDAO extends DAO {
 		$locale = Locale::getLocale();
 		$primaryLocale = Locale::getPrimaryLocale();
 		$params = array(
-			'title', // Arrangement title
+			'title', // Series title
 			$primaryLocale,
 			'title',
 			$locale,
-			'abbrev', // Arrangement abbrev
+			'abbrev', // Series abbrev
 			$primaryLocale,
 			'abbrev',
 			$locale,
@@ -247,18 +247,18 @@ class CopyeditorSubmissionDAO extends DAO {
 
 		$sql = 'SELECT DISTINCT
 				m.*,
-				COALESCE(stl.setting_value, stpl.setting_value) AS arrangement_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS arrangement_abbrev
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM
 				monographs m
 				INNER JOIN monograph_authors ma ON (ma.monograph_id = m.monograph_id)
-				LEFT JOIN acquisitions_arrangements aa ON (aa.arrangement_id = m.arrangement_id)
+				LEFT JOIN series aa ON (aa.series_id = m.series_id)
 				LEFT JOIN edit_assignments e ON (e.monograph_id = m.monograph_id)
 				LEFT JOIN users ed ON (e.editor_id = ed.user_id)
-				LEFT JOIN acquisitions_arrangements_settings stpl ON (aa.arrangement_id = stpl.arrangement_id AND stpl.setting_name = ? AND stpl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings stl ON (aa.arrangement_id = stl.arrangement_id AND stl.setting_name = ? AND stl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sapl ON (aa.arrangement_id = sapl.arrangement_id AND sapl.setting_name = ? AND sapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings sal ON (aa.arrangement_id = sal.arrangement_id AND sal.setting_name = ? AND sal.locale = ?)
+				LEFT JOIN series_settings stpl ON (aa.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (aa.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (aa.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (aa.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 				LEFT JOIN monograph_settings atl ON (m.monograph_id = atl.monograph_id AND atl.setting_name = ?)
 				LEFT JOIN signoffs scpf ON (m.monograph_id = scpf.assoc_id AND scpf.assoc_type = ? AND scpf.symbolic = ?)
 				LEFT JOIN signoffs sle ON (m.monograph_id = sle.assoc_id AND sle.assoc_type = ? AND sle.symbolic = ?)
@@ -292,7 +292,7 @@ class CopyeditorSubmissionDAO extends DAO {
 
 		$sql = 'SELECT scf.date_completed 
 			FROM monographs m
-			LEFT JOIN acquisitions_arrangements aa ON (aa.arrangement_id = m.arrangement_id)
+			LEFT JOIN series aa ON (aa.series_id = m.series_id)
 			LEFT JOIN signoffs scf ON (m.monograph_id = scf.assoc_id AND scf.assoc_type = ? AND scf.symbolic = ?)
 			LEFT JOIN signoffs sci ON (m.monograph_id = sci.assoc_id AND sci.assoc_type = ? AND sci.symbolic = ?)
 			WHERE m.press_id = ? AND 

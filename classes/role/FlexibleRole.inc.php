@@ -3,7 +3,7 @@
 /**
  * @defgroup role
  */
- 
+
 /**
  * @file classes/role/FlexibleRole.inc.php
  *
@@ -17,25 +17,26 @@
  * @brief Basic class describing a flexible role.
  */
 
-define('FLEXIBLE_ROLE_ARRANGEMENT_SUBMISSION',		1);
-define('FLEXIBLE_ROLE_ARRANGEMENT_INTERNAL_REVIEW',	2);
-define('FLEXIBLE_ROLE_ARRANGEMENT_EXTERNAL_REVIEW',	3);
-define('FLEXIBLE_ROLE_ARRANGEMENT_EDITORIAL',		4);
-define('FLEXIBLE_ROLE_ARRANGEMENT_PRODUCTION',		5);
+define('FLEXIBLE_ROLE_SERIES_SUBMISSION',		1);
+define('FLEXIBLE_ROLE_SERIES_INTERNAL_REVIEW',	2);
+define('FLEXIBLE_ROLE_SERIES_EXTERNAL_REVIEW',	3);
+define('FLEXIBLE_ROLE_SERIES_EDITORIAL',		4);
+define('FLEXIBLE_ROLE_SERIES_PRODUCTION',		5);
 
 define('FLEXIBLE_ROLE_CLASS_AUTHOR',	1);
 define('FLEXIBLE_ROLE_CLASS_PRESS',	2);
+define('FLEXIBLE_ROLE_CLASS_MANAGERIAL', 3);
 
 class FlexibleRole extends DataObject {
 
-	var $arrangements;
+	var $series;
 
 	/**
 	 * Constructor.
 	 */
 	function FlexibleRole() {
 		parent::DataObject();
-		$this->arrangements = array();
+		$this->series = array();
 	}
 
 	/**
@@ -46,14 +47,14 @@ class FlexibleRole extends DataObject {
 	function setName($name, $locale) {
 		$this->setData('name', $name, $locale);
 	}
-	
+
 	/**
 	 * Get the name of the role
 	 * @param $locale string
 	 * @return string
 	 */
 	function getName($locale) {
-		return $this->getData('name', $locale);	
+		return $this->getData('name', $locale);
 	}
 
 	/**
@@ -72,14 +73,14 @@ class FlexibleRole extends DataObject {
 	function setDesignation($designation, $locale) {
 		$this->setData('designation', $designation, $locale);
 	}
-	
+
 	/**
 	 * Get the role's designation
 	 * @param $locale string
 	 * @return string
 	 */
 	function getDesignation($locale) {
-		return $this->getData('designation', $locale);	
+		return $this->getData('designation', $locale);
 	}
 
 	/**
@@ -87,7 +88,7 @@ class FlexibleRole extends DataObject {
 	 * @return string
 	 */
 	function getLocalizedDesignation() {
-		return $this->getLocalizedData('designation');	
+		return $this->getLocalizedData('designation');
 	}
 
 	/**
@@ -98,14 +99,14 @@ class FlexibleRole extends DataObject {
 	function setPluralName($name, $locale) {
 		$this->setData('pluralName', $name, $locale);
 	}
-	
+
 	/**
 	 * Get the plural name of the role
 	 * @param $locale string
 	 * @return string
 	 */
 	function getPluralName($locale) {
-		return $this->getData('pluralName', $locale);	
+		return $this->getData('pluralName', $locale);
 	}
 
 	/**
@@ -128,7 +129,7 @@ class FlexibleRole extends DataObject {
 		return $this->getData('customRole') ? 'role' : $this->getData('path');
 	}
 
-	/** 
+	/**
 	 * Set the role's path
 	 * @param $path string
 	 */
@@ -144,7 +145,7 @@ class FlexibleRole extends DataObject {
 		return $this->getData('roleId');
 	}
 
-	/** 
+	/**
 	 * Set the role's constant identifier
 	 * @param $roleId int
 	 */
@@ -220,36 +221,36 @@ class FlexibleRole extends DataObject {
 	 * Return the associated workflow points for this role.
 	 * @return array workflow ids
 	 */
-	function getAssociatedArrangements() {
-		return $this->arrangements;
+	function getAssociatedSeries() {
+		return $this->series;
 	}
 
 	/**
-	 * Reset the associated arrangements array.
+	 * Reset the associated series array.
 	 */
-	function clearAssociatedArrangements() {
-		$this->arrangements = array();
+	function clearAssociatedSeries() {
+		$this->series = array();
 	}
 
 	/**
 	 * Associate a workflow point with this role.
-	 * @param $arrangementId int
+	 * @param $seriesId int
 	 */
-	function addAssociatedArrangement($arrangementId) {
-		if (!in_array($arrangementId, $this->arrangements)) {
-			array_push($this->arrangements, $arrangementId);
+	function addAssociatedSeries($seriesId) {
+		if (!in_array($seriesId, $this->series)) {
+			array_push($this->series, $seriesId);
 		}
 	}
-	
+
 	/**
 	 * Remove a workflow point from this role.
-	 * @param $arrangementId int
+	 * @param $seriesId int
 	 */
-	function removeAssociatedArrangement($arrangementId) {
-		$key = array_search($arrangementId, $this->arrangements);
+	function removeAssociatedSeries($seriesId) {
+		$key = array_search($seriesId, $this->series);
 
 		if (isset($key)) {
-			unset($this->arrangements[$key]);
+			unset($this->series[$key]);
 		}
 	}
 }

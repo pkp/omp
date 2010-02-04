@@ -21,7 +21,7 @@ import ('monograph.Monograph');
 define('MONOGRAPH_STATUS_UPCOMING', 0x00000001);
 define('MONOGRAPH_STATUS_PUBLISHED', 0x00000002);
 
-define('ARRANGEMENT_UNASSIGNED', 0);
+define('SERIES_UNASSIGNED', 0);
 
 class MonographDAO extends DAO {
 
@@ -122,14 +122,14 @@ class MonographDAO extends DAO {
 
 		$result =& $this->retrieve(
 			'SELECT	m.*,
-				COALESCE(atl.setting_value, atpl.setting_value) AS arrangement_title,
-				COALESCE(aal.setting_value, aapl.setting_value) AS arrangement_abbrev
+				COALESCE(atl.setting_value, atpl.setting_value) AS series_title,
+				COALESCE(aal.setting_value, aapl.setting_value) AS series_abbrev
 			FROM	monographs m
-				LEFT JOIN acquisitions_arrangements aa ON (aa.arrangement_id = m.arrangement_id)
-				LEFT JOIN acquisitions_arrangements_settings atpl ON (aa.arrangement_id = atpl.arrangement_id AND atpl.setting_name = ? AND atpl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings atl ON (aa.arrangement_id = atl.arrangement_id AND atl.setting_name = ? AND atl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings aapl ON (aa.arrangement_id = aapl.arrangement_id AND aapl.setting_name = ? AND aapl.locale = ?)
-				LEFT JOIN acquisitions_arrangements_settings aal ON (aa.arrangement_id = aal.arrangement_id AND aal.setting_name = ? AND aal.locale = ?)
+				LEFT JOIN series aa ON (aa.series_id = m.series_id)
+				LEFT JOIN series_settings atpl ON (aa.series_id = atpl.series_id AND atpl.setting_name = ? AND atpl.locale = ?)
+				LEFT JOIN series_settings atl ON (aa.series_id = atl.series_id AND atl.setting_name = ? AND atl.locale = ?)
+				LEFT JOIN series_settings aapl ON (aa.series_id = aapl.series_id AND aapl.setting_name = ? AND aapl.locale = ?)
+				LEFT JOIN series_settings aal ON (aa.series_id = aal.series_id AND aal.setting_name = ? AND aal.locale = ?)
 			WHERE	m.user_id = ?' .
 			(isset($pressId)?' AND m.journal_id = ?':''),
 			$params
@@ -239,7 +239,7 @@ class MonographDAO extends DAO {
 		$monograph->stampModified();
 		$this->update(
 			sprintf('INSERT INTO monographs
-				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, submission_file_id, revised_file_id, review_file_id, editor_file_id, pages, fast_tracked, hide_author, comments_status, edited_volume, arrangement_id, current_review_type, current_round)
+				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, submission_file_id, revised_file_id, review_file_id, editor_file_id, pages, fast_tracked, hide_author, comments_status, edited_volume, series_id, current_review_type, current_round)
 				VALUES
 				(?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
@@ -259,7 +259,7 @@ class MonographDAO extends DAO {
 				$monograph->getHideAuthor() === null ? 0 : $monograph->getHideAuthor(),
 				$monograph->getCommentsStatus() === null ? 0 : $monograph->getCommentsStatus(),
 				$monograph->getWorkType(),
-				$monograph->getArrangementId() ,
+				$monograph->getSeriesId() ,
 				$monograph->getCurrentReviewType() === null ? 6 : $monograph->getCurrentReviewType(),				
 				$monograph->getCurrentRound() === null ? 1 : $monograph->getCurrentRound()
 			)
@@ -338,7 +338,7 @@ class MonographDAO extends DAO {
 					review_file_id = ?,
 					editor_file_id = ?,
 					hide_author = ?,
-					arrangement_id = ?,
+					series_id = ?,
 					current_review_type = ?,
 					current_round = ?
 				WHERE monograph_id = ?',
@@ -356,7 +356,7 @@ class MonographDAO extends DAO {
 				$monograph->getReviewFileId(),
 				$monograph->getEditorFileId(),
 				$monograph->getHideAuthor() == null ? 0 : $monograph->getHideAuthor(),
-				$monograph->getArrangementId(),
+				$monograph->getSeriesId(),
 				$monograph->getCurrentReviewType(),
 				$monograph->getCurrentRound(),
 				$monograph->getMonographId()
@@ -554,7 +554,7 @@ class MonographDAO extends DAO {
 		$monograph->setMonographId($row['monograph_id']);
 		$monograph->setPressId($row['press_id']);
 		$monograph->setUserId($row['user_id']);
-		$monograph->setArrangementId($row['arrangement_id']);
+		$monograph->setSeriesId($row['series_id']);
 		$monograph->setSubmissionProgress($row['submission_progress']);
 		$monograph->setStatus($row['status']);
 		$monograph->setCommentsToEditor($row['comments_to_ed']);
@@ -572,10 +572,10 @@ class MonographDAO extends DAO {
 		$monograph->setWorkType($row['edited_volume']);
 		$monograph->setLastModified($this->datetimeFromDB($row['last_modified']));
 
-		if (isset($row['arrangement_abbrev']))
-			$monograph->setArrangementAbbrev($row['arrangement_abbrev']);
-		if (isset($row['arrangement_title']))
-			$monograph->setArrangementTitle($row['arrangement_title']);
+		if (isset($row['series_abbrev']))
+			$monograph->setSeriesAbbrev($row['series_abbrev']);
+		if (isset($row['series_title']))
+			$monograph->setSeriesTitle($row['series_title']);
 
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
 		$monograph->setAuthors($this->authorDao->getAuthorsByMonographId($row['monograph_id']));
@@ -594,15 +594,15 @@ class MonographDAO extends DAO {
 	}
 
 	/**
-	 * Remove all monographs from an acquisitions arrangement.
-	 * @param $arrangementId int
+	 * Remove all monographs from an series.
+	 * @param $seriesId int
 	 */
-	function removeMonographsFromAcquisitionsArrangement($arrangementId) {
+	function removeMonographsFromSeries($seriesId) {
 		return $this->update(
 				'UPDATE monographs
-				SET arrangement_id = ?
-				WHERE arrangement_id = ?',
-				array(ARRANGEMENT_UNASSIGNED, $arrangementId)
+				SET series_id = ?
+				WHERE series_id = ?',
+				array(SERIES_UNASSIGNED, $seriesId)
 			);
 	}
 }

@@ -36,6 +36,9 @@
 {url|assign:pressRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.PressRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="pressRolesContainer" url=$pressRolesUrl}
 
+{url|assign:managerialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.ManagerialRolesListbuilderHandler" op="fetch"}
+{load_url_in_div id="managerialRolesContainer" url=$managerialRolesUrl}
+
 <div class="separator"></div>
 
 <h3>3.2 {translate key="manager.setup.submissionRoles"}</h3>

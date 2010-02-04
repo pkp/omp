@@ -16,15 +16,15 @@
 // $Id$
 
 
-import('submission.acquisitionsEditor.AcquisitionsEditorSubmission');
+import('submission.seriesEditor.SeriesEditorSubmission');
 
-class EditorSubmission extends AcquisitionsEditorSubmission {
+class EditorSubmission extends SeriesEditorSubmission {
 
 	/**
 	 * Constructor.
 	 */
-	function EditorSubmission() { 
-		parent::AcquisitionsEditorSubmission();
+	function EditorSubmission() {
+		parent::SeriessEditorSubmission();
 	}
 }
 ?>

@@ -136,8 +136,8 @@ class AdminPeopleHandler extends AdminHandler {
 			$userSettingsDao->deleteSettings($oldUserId);
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 			$groupMembershipDao->deleteMembershipByUserId($oldUserId);
-			$acquisitionsEditorsDao =& DAORegistry::getDAO('AcquisitionsEditorsDAO');
-			$acquisitionsEditorsDao->deleteEditorsByUserId($oldUserId);
+			$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+			$seriesEditorsDao->deleteEditorsByUserId($oldUserId);
 
 			// Transfer old user's roles
 			$roles =& $roleDao->getRolesByUserId($oldUserId);
