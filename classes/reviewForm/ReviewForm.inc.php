@@ -31,7 +31,7 @@ class ReviewForm extends DataObject {
 	 * Get localized title.
 	 * @return string
 	 */
-	function getReviewFormTitle() {
+	function getLocalizedTitle() {
 		return $this->getLocalizedData('title');
 	}
 
@@ -39,7 +39,7 @@ class ReviewForm extends DataObject {
 	 * Get localized description.
 	 * @return array
 	 */
-	function getReviewFormDescription() {
+	function getLocalizedDescription() {
 		return $this->getLocalizedData('description');
 	}
 

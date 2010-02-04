@@ -90,6 +90,9 @@
 
 <h3>3.8 {translate key="manager.setup.reviewForms"}</h3>
 
+{url|assign:reviewFormGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.reviewForm.ReviewFormGridHandler" op="fetchGrid"}
+{load_url_in_div id="reviewFormGridDiv" url=$reviewFormGridUrl}
+
 <div class="separator"></div>
 
 <h3>3.9 {translate key="manager.setup.editorialRoles"}</h3>

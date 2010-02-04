@@ -77,6 +77,7 @@ class ReviewFormDAO extends DAO {
 	function &_returnReviewFormFromRow(&$row) {
 		$reviewForm = new ReviewForm();
 		$reviewForm->setReviewFormId($row['review_form_id']);
+		$reviewForm->setId($row['review_form_id']);
 		$reviewForm->setPressId($row['press_id']);
 		$reviewForm->setSequence($row['seq']);
 		$reviewForm->setActive($row['is_active']);
@@ -244,7 +245,7 @@ class ReviewFormDAO extends DAO {
 			$pressId
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnReviewFormFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnReviewFormFromRow', array('id'));
 		return $returner;
 	}
 

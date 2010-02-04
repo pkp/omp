@@ -34,7 +34,7 @@ class ReviewFormElement extends DataObject {
 	 * Get localized question.
 	 * @return string
 	 */
-	function getReviewFormElementQuestion() {
+	function getLocalizedQuestion() {
 		return $this->getLocalizedData('question');
 	}
 
@@ -42,7 +42,7 @@ class ReviewFormElement extends DataObject {
 	 * Get localized possible response.
 	 * @return array
 	 */
-	function getReviewFormElementPossibleResponses() {
+	function getLocalizedPossibleResponses() {
 		return $this->getLocalizedData('possibleResponses');
 	}
 

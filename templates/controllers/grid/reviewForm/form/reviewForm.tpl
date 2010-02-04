@@ -1,32 +1,14 @@
 {**
- * reviewFormForm.tpl
+ * reviewForm.tpl
  *
- * Copyright (c) 2003-2010 John Willinsky
+ * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Form to create/modify a review form.
  *
  *}
-{strip}
-{include file="common/header.tpl"}
-{/strip}
 
-{if $reviewFormId}
-	<ul class="menu">
-		<li class="current"><a href="{url op="editReviewForm" path=$reviewFormId}">{translate key="manager.reviewForms.edit"}</a></li>
-		<li><a href="{url op="reviewFormElements" path=$reviewFormId}">{translate key="manager.reviewFormElements"}</a></li>
-		<li><a href="{url op="previewReviewForm" path=$reviewFormId}">{translate key="manager.reviewForms.preview"}</a></li>
-	</ul>
-{/if}
-
-<br/>
-
-<form name="reviewFormForm" method="post" action="{url op="updateReviewForm"}">
-{if $reviewFormId}
-	<input type="hidden" name="reviewFormId" value="{$reviewFormId}"/>
-{/if}
-
-{include file="common/formErrors.tpl"}
+<form name="reviewFormForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.reviewForm.ReviewFormRowHandler" op="updateReviewForm"}">
 
 <table class="data" width="100%">
 {if count($formLocales) > 1}
@@ -51,9 +33,14 @@
 </tr>
 </table>
 
-<p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url op="reviewForms" escape=false}'" /></p>
+{if $gridId}
+	<input type="hidden" name="gridId" value="{$gridId|escape}" />
+{/if}
+{if $rowId}
+	<input type="hidden" name="rowId" value={$rowId|escape} />
+{/if}
+{if $reviewFormId}
+	<input type="hidden" name="reviewFormId" value="{$reviewFormId|escape}" />
+{/if}
+
 </form>
-
-<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
-
-{include file="common/footer.tpl"}
