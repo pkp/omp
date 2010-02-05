@@ -63,10 +63,10 @@ class SeriesRowHandler extends GridRowHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_APPLICATION_COMMON));
 	}
 
-	function _configureRow(&$request, $args = null) {
+	function configureRow(&$request, $args = null) {
 		// assumes row has already been initialized
 		// do the default configuration
-		parent::_configureRow($request, $args);
+		parent::configureRow($request, $args);
 
 		// Actions
 		$router =& $request->getRouter();
@@ -104,7 +104,7 @@ class SeriesRowHandler extends GridRowHandler {
 	 */
 	function editSeries(&$args, &$request) {
 		//FIXME: add validation here?
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 		$this->setupTemplate();
 
 		import('controllers.grid.series.form.SeriesForm');
@@ -128,7 +128,7 @@ class SeriesRowHandler extends GridRowHandler {
 		//FIXME: add validation here?
 		// -> seriesId must be present and valid
 		// -> htmlId must be present and valid
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 		$press =& $request->getPress();
 
 		import('controllers.grid.series.form.SeriesForm');
@@ -184,7 +184,7 @@ class SeriesRowHandler extends GridRowHandler {
 	 */
 	function deleteSeries(&$args, &$request) {
 		// FIXME: add validation here?
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);

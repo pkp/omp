@@ -129,7 +129,7 @@ class BookFileTypesListbuilderHandler extends ListbuilderHandler {
 			// Return JSON with formatted HTML to insert into list
 			$bookFileTypeRow =& $this->getRowHandler();
 			$rowData = array('item' => $bookFileName, 'attribute' => $bookFileDesignation);
-			$bookFileTypeRow->_configureRow($request);
+			$bookFileTypeRow->configureRow($request);
 			$bookFileTypeRow->setData($rowData);
 			$bookFileTypeRow->setId($publicationFormatId);
 

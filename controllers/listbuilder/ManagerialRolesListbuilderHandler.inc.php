@@ -132,7 +132,7 @@ class ManagerialRolesListbuilderHandler extends ListbuilderHandler {
 			// Return JSON with formatted HTML to insert into list
 			$flexibleRoleRow =& $this->getRowHandler();
 			$rowData = array('item' => $roleName, 'attribute' => $roleAbbrev);
-			$flexibleRoleRow->_configureRow($request);
+			$flexibleRoleRow->configureRow($request);
 			$flexibleRoleRow->setData($rowData);
 			$flexibleRoleRow->setId($flexibleRoleId);
 

@@ -121,7 +121,7 @@ class DivisionsListbuilderHandler extends ListbuilderHandler {
 			// Return JSON with formatted HTML to insert into list
 			$divisionRow =& $this->getRowHandler();
 			$rowData = array('item' => $divisionTitle);
-			$divisionRow->_configureRow($request);
+			$divisionRow->configureRow($request);
 			$divisionRow->setData($rowData);
 			$divisionRow->setId($divisionId);
 

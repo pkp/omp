@@ -139,7 +139,7 @@ class EditorialRolesListbuilderHandler extends ListbuilderHandler {
 			// Return JSON with formatted HTML to insert into list
 			$flexibleRoleRow =& $this->getRowHandler();
 			$rowData = array('item' => $flexibleRole->getLocalizedName(), 'attribute' => $flexibleRole->getDesignation());
-			$flexibleRoleRow->_configureRow($request);
+			$flexibleRoleRow->configureRow($request);
 			$flexibleRoleRow->setData($rowData);
 			$flexibleRoleRow->setId($publicationFormatId);
 

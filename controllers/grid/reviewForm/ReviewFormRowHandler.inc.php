@@ -65,10 +65,10 @@ class ReviewFormRowHandler extends GridRowHandler {
 		parent::initialize($request);
 	}
 
-	function _configureRow(&$request, $args = null) {
+	function configureRow(&$request, $args = null) {
 		// assumes row has already been initialized
 		// do the default configuration
-		parent::_configureRow($request, $args);
+		parent::configureRow($request, $args);
 
 		$actionArgs = array(
 			'gridId' => $this->getGridId(),
@@ -124,7 +124,7 @@ class ReviewFormRowHandler extends GridRowHandler {
 	 * @param $request PKPRequest	
 	 */
 	function editReviewForm(&$args, &$request) {
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 		$this->setupTemplate($args, $request);
 
 		$reviewFormId = $this->getId();
@@ -162,7 +162,7 @@ class ReviewFormRowHandler extends GridRowHandler {
 	 * @param $request PKPRequest
 	 */
 	function updateReviewForm(&$args, &$request) {
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		$reviewFormId = Request::getUserVar('reviewFormId') === null? null : (int) Request::getUserVar('reviewFormId');
 
@@ -210,7 +210,7 @@ class ReviewFormRowHandler extends GridRowHandler {
 	 * @return string
 	 */
 	function deleteReviewForm(&$args, &$request) {
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
@@ -243,7 +243,7 @@ class ReviewFormRowHandler extends GridRowHandler {
 	 * @param $request PKPRequest
 	 */
 	function previewReviewForm(&$args, &$request) {
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);

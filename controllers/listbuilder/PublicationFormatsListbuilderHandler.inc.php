@@ -126,7 +126,7 @@ class PublicationFormatsListbuilderHandler extends ListbuilderHandler {
 			// Return JSON with formatted HTML to insert into list
 			$publicationFormatRow =& $this->getRowHandler();
 			$rowData = array('item' => $publicationFormatName, 'attribute' => $publicationFormatDesignation);
-			$publicationFormatRow->_configureRow($request);
+			$publicationFormatRow->configureRow($request);
 			$publicationFormatRow->setData($rowData);
 			$publicationFormatRow->setId($publicationFormatId);
 

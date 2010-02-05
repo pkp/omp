@@ -75,10 +75,10 @@ class LibraryFileRowHandler extends GridRowHandler {
 		parent::initialize($request);
 	}
 
-	function _configureRow(&$request, $args = null) {
+	function configureRow(&$request, $args = null) {
 		// assumes row has already been initialized
 		// do the default configuration
-		parent::_configureRow($request, $args);
+		parent::configureRow($request, $args);
 		
 		// Actions
 		$router =& $request->getRouter();
@@ -109,7 +109,7 @@ class LibraryFileRowHandler extends GridRowHandler {
 	function editFile(&$args, &$request) {
 		//FIXME: add validation here?
 		$this->initialize($request);
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		import('controllers.grid.library.form.FileForm');
 		$fileForm = new FileForm($this->getFileType(), $this->getId());
@@ -131,7 +131,7 @@ class LibraryFileRowHandler extends GridRowHandler {
 	function uploadFile(&$args, &$request) {
 		//FIXME: add validation here?
 		$this->initialize($request);
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 		
 		import('controllers.grid.library.form.FileForm');
 		$fileForm = new FileForm($this->getFileType(), $this->getId());
@@ -175,7 +175,7 @@ class LibraryFileRowHandler extends GridRowHandler {
 	function deleteFile(&$args, &$request) {
 		// FIXME: add validation here?
 		$this->initialize($request);
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		$router =& $request->getRouter();
 		$press =& $router->getContext();
