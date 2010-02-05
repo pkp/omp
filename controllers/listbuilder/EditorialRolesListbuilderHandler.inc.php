@@ -33,7 +33,7 @@ class EditorialRolesListbuilderHandler extends ListbuilderHandler {
 		$press =& $request->getPress();
 
 		// Get items to populate listBuilder current item list
-		$roles = $flexibleRoleDao->getBySeriesId(FLEXIBLE_ROLE_SERIES_EDITORIAL, $press->getId());
+		$roles = $flexibleRoleDao->getByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_EDITORIAL, $press->getId());
 
 		$items = array();
 		foreach($roles as $item) {
@@ -57,7 +57,7 @@ class EditorialRolesListbuilderHandler extends ListbuilderHandler {
 		$press =& $request->getPress();
 
 		// Get items to populate possible items list with
-		$currentRoleIds = $flexibleRoleDao->getIdsBySeriesId(FLEXIBLE_ROLE_SERIES_EDITORIAL, $press->getId()); // Don't include current roles
+		$currentRoleIds = $flexibleRoleDao->getIdsByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_EDITORIAL, $press->getId()); // Don't include current roles
 
 		$itemList = array();
 		$availableRoles = $flexibleRoleDao->getEnabledByPressId($press->getId());
@@ -133,15 +133,15 @@ class EditorialRolesListbuilderHandler extends ListbuilderHandler {
 			$flexibleRole =& $flexibleRoleDao->getById($flexibleRoleId);
 
 			// FIXME: Make sure associated series doesn't already exist, else return an error modal
-			$flexibleRole->addAssociatedSeries(FLEXIBLE_ROLE_SERIES_EDITORIAL);
+			$flexibleRole->addAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_EDITORIAL);
 			$flexibleRoleDao->updateObject($flexibleRole);
 
 			// Return JSON with formatted HTML to insert into list
 			$flexibleRoleRow =& $this->getRowHandler();
-			$rowData = array('item' => $flexibleRole->getLocalizedName(), 'attribute' => $flexibleRole->getDesignation());
+			$rowData = array('item' => $flexibleRole->getLocalizedName(), 'attribute' => $flexibleRole->getLocalizedDesignation());
 			$flexibleRoleRow->configureRow($request);
 			$flexibleRoleRow->setData($rowData);
-			$flexibleRoleRow->setId($publicationFormatId);
+			$flexibleRoleRow->setId($flexibleRoleId);
 
 			$json = new JSON('true', $flexibleRoleRow->renderRowInternally($request));
 			echo $json->getString();
@@ -157,7 +157,7 @@ class EditorialRolesListbuilderHandler extends ListbuilderHandler {
 		foreach($args as $flexibleRoleId) {
 			$flexibleRole =& $flexibleRoleDao->getById($flexibleRoleId);
 
-			$flexibleRole->removeAssociatedSeries(FLEXIBLE_ROLE_SERIES_EDITORIAL);
+			$flexibleRole->removeAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_EDITORIAL);
 			$flexibleRoleDao->updateObject($flexibleRole);
 
 			unset($flexibleRole);

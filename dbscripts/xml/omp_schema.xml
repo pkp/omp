@@ -1409,14 +1409,14 @@
 
 	<!--
 	  *
-	  * TABLE flexible_role_series
+	  * TABLE flexible_role_arrangements
 	  *
 	  -->
-	<table name="flexible_role_series">
+	<table name="flexible_role_arrangements">
 		<field name="flexible_role_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="series_id" type="I8">
+		<field name="arrangement_id" type="I8">
 			<NOTNULL />
 		</field>
 		<descr>Flexible roles arranged by workflow identifiers.</descr>

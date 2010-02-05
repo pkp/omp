@@ -33,7 +33,7 @@ class ExternalReviewRolesListbuilderHandler extends ListbuilderHandler {
 		$press =& $request->getPress();
 
 		// Get items to populate listBuilder current item list
-		$roles = $flexibleRoleDao->getBySeriesId(FLEXIBLE_ROLE_SERIES_EXTERNAL_REVIEW, $press->getId());
+		$roles = $flexibleRoleDao->getByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_EXTERNAL_REVIEW, $press->getId());
 
 		$items = array();
 		foreach($roles as $item) {
@@ -57,7 +57,7 @@ class ExternalReviewRolesListbuilderHandler extends ListbuilderHandler {
 		$press =& $request->getPress();
 
 		// Get items to populate possible items list with
-		$currentRoleIds = $flexibleRoleDao->getIdsBySeriesId(FLEXIBLE_ROLE_SERIES_EXTERNAL_REVIEW, $press->getId()); // Don't include current roles
+		$currentRoleIds = $flexibleRoleDao->getIdsByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_EXTERNAL_REVIEW, $press->getId()); // Don't include current roles
 
 		$itemList = array();
 		$availableRoles = $flexibleRoleDao->getEnabledByPressId($press->getId());
@@ -138,12 +138,12 @@ class ExternalReviewRolesListbuilderHandler extends ListbuilderHandler {
 
 			// FIXME: Make sure associated series doesn't already exist, else return an error modal
 
-			$flexibleRole->addAssociatedSeries(FLEXIBLE_ROLE_SERIES_EXTERNAL_REVIEW);
+			$flexibleRole->addAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_EXTERNAL_REVIEW);
 			$flexibleRoleDao->updateObject($flexibleRole);
 
 			// Return JSON with formatted HTML to insert into list
 			$flexibleRoleRow =& $this->getRowHandler();
-			$rowData = array('item' => $flexibleRole->getLocalizedName(), 'attribute' => $flexibleRole->getDesignation());
+			$rowData = array('item' => $flexibleRole->getLocalizedName(), 'attribute' => $flexibleRole->getLocalizedDesignation());
 			$flexibleRoleRow->configureRow($request);
 			$flexibleRoleRow->setData($rowData);
 			$flexibleRoleRow->setId($flexibleRoleId);
@@ -162,7 +162,7 @@ class ExternalReviewRolesListbuilderHandler extends ListbuilderHandler {
 		foreach($args as $flexibleRoleId) {
 			$flexibleRole =& $flexibleRoleDao->getById($flexibleRoleId);
 
-			$flexibleRole->removeAssociatedSeries(FLEXIBLE_ROLE_SERIES_EXTERNAL_REVIEW);
+			$flexibleRole->removeAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_EXTERNAL_REVIEW);
 			$flexibleRoleDao->updateObject($flexibleRole);
 
 			unset($flexibleRole);
