@@ -62,10 +62,10 @@ class MastheadRowHandler extends GridRowHandler {
 		parent::initialize($request);
 	}
 
-	function _configureRow(&$request, $args = null) {
+	function configureRow(&$request, $args = null) {
 		// assumes row has already been initialized
 		// do the default configuration
-		parent::_configureRow($request, $args);
+		parent::configureRow($request, $args);
 
 		// Actions
 		$router =& $request->getRouter();
@@ -103,7 +103,7 @@ class MastheadRowHandler extends GridRowHandler {
 	 * @param $request PKPRequest
 	 */
 	function editGroup(&$args, &$request) {
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 		$groupId = $this->getId();
 // 	FIXME: add validation here
 		$this->validate($request, $groupId);
@@ -157,7 +157,7 @@ class MastheadRowHandler extends GridRowHandler {
 		}
 		$press =& $request->getContext();
 
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		import('controllers.grid.masthead.form.GroupForm');
 		$groupForm = new GroupForm($this->getId());
@@ -197,7 +197,7 @@ class MastheadRowHandler extends GridRowHandler {
 	 * @return string
 	 */
 	function deleteGroup(&$args, &$request) {
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 		$groupId = $this->getId();
 
 		$this->validate($request, $groupId);
@@ -215,7 +215,7 @@ class MastheadRowHandler extends GridRowHandler {
 	 * View group membership.
 	 */
 	function groupMembership(&$args, &$request) {
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 		$groupId = $this->getId();
 		$this->validate($request, $groupId);
 		$group =& $this->group;

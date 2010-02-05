@@ -55,10 +55,10 @@ class ContributorRowHandler extends GridRowHandler {
 		parent::initialize($request);
 	}
 
-	function _configureRow(&$request, $args = null) {
+	function configureRow(&$request, $args = null) {
 		// assumes row has already been initialized
 		// do the default configuration
-		parent::_configureRow($request, $args);
+		parent::configureRow($request, $args);
 
 		// Actions
 		$router =& $request->getRouter();
@@ -96,7 +96,7 @@ class ContributorRowHandler extends GridRowHandler {
 	 */
 	function editContributor(&$args, &$request) {
 		//FIXME: add validation here?
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		import('controllers.grid.contributor.form.ContributorForm');
 		$contributorForm = new ContributorForm($this->getId());
@@ -119,7 +119,7 @@ class ContributorRowHandler extends GridRowHandler {
 		//FIXME: add validation here?
 		// -> contributorId must be present and valid
 		// -> htmlId must be present and valid
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		import('controllers.grid.contributor.form.ContributorForm');
 		$contributorForm = new ContributorForm($this->getId());
@@ -151,7 +151,7 @@ class ContributorRowHandler extends GridRowHandler {
 	function deleteContributor(&$args, &$request) {
 		// FIXME: add validation here?
 
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);

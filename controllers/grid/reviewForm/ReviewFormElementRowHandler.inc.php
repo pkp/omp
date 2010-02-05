@@ -81,10 +81,10 @@ class ReviewFormElementRowHandler extends GridRowHandler {
 		parent::initialize($request);
 	}
 
-	function _configureRow(&$request, $args = null) {
+	function configureRow(&$request, $args = null) {
 		// assumes row has already been initialized
 		// do the default configuration
-		parent::_configureRow($request, $args);
+		parent::configureRow($request, $args);
 
 		$reviewFormId = $this->getReviewFormId();
 		if (!isset($reviewFormId)) {
@@ -126,7 +126,7 @@ class ReviewFormElementRowHandler extends GridRowHandler {
 	 */
 	function editReviewFormElement(&$args, &$request) {
 
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 		$this->setupTemplate($args, $request);
 
 		$reviewFormElementId = $this->getId();
@@ -166,7 +166,7 @@ class ReviewFormElementRowHandler extends GridRowHandler {
 	 * Save changes to a review form element.
 	 */
 	function updateReviewFormElement(&$args, &$request) {
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		$reviewFormId = Request::getUserVar('reviewFormId') === null? null : (int) Request::getUserVar('reviewFormId');
 		$reviewFormElementId = Request::getUserVar('reviewFormElementId') === null? null : (int) Request::getUserVar('reviewFormElementId');
@@ -244,7 +244,7 @@ class ReviewFormElementRowHandler extends GridRowHandler {
 	 * @param $args array ($reviewFormId, $reviewFormElementId)
 	 */
 	function deleteReviewFormElement(&$args, &$request) {
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		$reviewFormId = $this->getReviewFormId();
 		$reviewFormElementId = $this->getId();

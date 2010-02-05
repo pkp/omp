@@ -54,10 +54,10 @@ class SubmissionChecklistRowHandler extends GridRowHandler {
 		parent::initialize($request);
 	}
 
-	function _configureRow(&$request, $args = null) {
+	function configureRow(&$request, $args = null) {
 		// assumes row has already been initialized
 		// do the default configuration
-		parent::_configureRow($request, $args);
+		parent::configureRow($request, $args);
 
 		// Actions
 		$router =& $request->getRouter();
@@ -96,7 +96,7 @@ class SubmissionChecklistRowHandler extends GridRowHandler {
 	 */
 	function editItem(&$args, &$request) {
 		//FIXME: add validation here?
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		import('controllers.grid.submissionChecklist.form.SubmissionChecklistForm');
 		$submissionChecklistForm = new SubmissionChecklistForm($this->getId());
@@ -119,7 +119,7 @@ class SubmissionChecklistRowHandler extends GridRowHandler {
 		//FIXME: add validation here?
 		// -> submissionChecklistId must be present and valid
 		// -> htmlId must be present and valid
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		import('controllers.grid.submissionChecklist.form.SubmissionChecklistForm');
 		$submissionChecklistForm = new SubmissionChecklistForm($this->getId());
@@ -152,7 +152,7 @@ class SubmissionChecklistRowHandler extends GridRowHandler {
 	function deleteItem(&$args, &$request) {
 		// FIXME: add validation here?
 
-		$this->_configureRow($request, $args);
+		$this->configureRow($request, $args);
 
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);

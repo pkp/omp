@@ -118,7 +118,7 @@ class CataloguingMetadataListbuilderHandler extends ListbuilderHandler {
 			// Return JSON with formatted HTML to insert into list
 			$formatRow =& $this->getRowHandler();
 			$rowData = array('item' => $format);
-			$formatRow->_configureRow($request);
+			$formatRow->configureRow($request);
 			$formatRow->setData($rowData);
 			$formatRow->setId($format);
 

@@ -189,7 +189,7 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 			// Return JSON with formatted HTML to insert into list
 			$groupMembershipRow =& $this->getRowHandler();
 			$rowData = array('item' => $user->getFullName(), 'attribute' => $user->getUsername());
-			$groupMembershipRow->_configureRow($request);
+			$groupMembershipRow->configureRow($request);
 			$groupMembershipRow->setData($rowData);
 			$groupMembershipRow->setId($userId);
 
