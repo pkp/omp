@@ -17,26 +17,26 @@
  * @brief Basic class describing a flexible role.
  */
 
-define('FLEXIBLE_ROLE_SERIES_SUBMISSION',		1);
-define('FLEXIBLE_ROLE_SERIES_INTERNAL_REVIEW',	2);
-define('FLEXIBLE_ROLE_SERIES_EXTERNAL_REVIEW',	3);
-define('FLEXIBLE_ROLE_SERIES_EDITORIAL',		4);
-define('FLEXIBLE_ROLE_SERIES_PRODUCTION',		5);
+define('FLEXIBLE_ROLE_ARRANGEMENT_SUBMISSION',		1);
+define('FLEXIBLE_ROLE_ARRANGEMENT_INTERNAL_REVIEW',	2);
+define('FLEXIBLE_ROLE_ARRANGEMENT_EXTERNAL_REVIEW',	3);
+define('FLEXIBLE_ROLE_ARRANGEMENT_EDITORIAL',		4);
+define('FLEXIBLE_ROLE_ARRANGEMENT_PRODUCTION',		5);
 
-define('FLEXIBLE_ROLE_CLASS_AUTHOR',	1);
-define('FLEXIBLE_ROLE_CLASS_PRESS',	2);
-define('FLEXIBLE_ROLE_CLASS_MANAGERIAL', 3);
+define('FLEXIBLE_ROLE_CLASS_AUTHOR',		1);
+define('FLEXIBLE_ROLE_CLASS_PRESS',		2);
+define('FLEXIBLE_ROLE_CLASS_MANAGERIAL',	3);
 
 class FlexibleRole extends DataObject {
 
-	var $series;
+	var $arrangements;
 
 	/**
 	 * Constructor.
 	 */
 	function FlexibleRole() {
 		parent::DataObject();
-		$this->series = array();
+		$this->arrangements = array();
 	}
 
 	/**
@@ -221,36 +221,36 @@ class FlexibleRole extends DataObject {
 	 * Return the associated workflow points for this role.
 	 * @return array workflow ids
 	 */
-	function getAssociatedSeries() {
-		return $this->series;
+	function getAssociatedArrangements() {
+		return $this->arrangements;
 	}
 
 	/**
-	 * Reset the associated series array.
+	 * Reset the associated arrangements array.
 	 */
-	function clearAssociatedSeries() {
-		$this->series = array();
+	function clearAssociatedArrangements() {
+		$this->arrangements = array();
 	}
 
 	/**
 	 * Associate a workflow point with this role.
-	 * @param $seriesId int
+	 * @param $arrangementId int
 	 */
-	function addAssociatedSeries($seriesId) {
-		if (!in_array($seriesId, $this->series)) {
-			array_push($this->series, $seriesId);
+	function addAssociatedArrangement($arrangementId) {
+		if (!in_array($arrangementId, $this->arrangements)) {
+			array_push($this->arrangements, $arrangementId);
 		}
 	}
-
+	
 	/**
 	 * Remove a workflow point from this role.
-	 * @param $seriesId int
+	 * @param $arrangementId int
 	 */
-	function removeAssociatedSeries($seriesId) {
-		$key = array_search($seriesId, $this->series);
+	function removeAssociatedArrangement($arrangementId) {
+		$key = array_search($arrangementId, $this->arrangements);
 
 		if (isset($key)) {
-			unset($this->series[$key]);
+			unset($this->arrangements[$key]);
 		}
 	}
 }

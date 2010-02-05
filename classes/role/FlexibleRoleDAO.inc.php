@@ -124,20 +124,20 @@ class FlexibleRoleDAO extends DefaultSettingDAO
 	}
 
 	/**
-	 * Retrieve all flexible roles by series id.
-	 * @param $seriesId int
+	 * Retrieve all flexible roles by arrangement id.
+	 * @param $arrangementId int
 	 * @param $pressId int
 	 * @return mixed array
 	 */
-	function &getBySeriesId($seriesId, $pressId) {
+	function &getByArrangementId($arrangementId, $pressId) {
 
-		$sql = 'SELECT fr.* FROM flexible_role_series fra
+		$sql = 'SELECT fr.* FROM flexible_role_arrangements fra
 			LEFT JOIN flexible_roles fr ON (fr.flexible_role_id = fra.flexible_role_id)
-			WHERE fr.enabled = 1 AND fr.press_id = ? AND fra.series_id = ?';
+			WHERE fr.enabled = 1 AND fr.press_id = ? AND fra.arrangement_id = ?';
 
-		$result =& $this->retrieve($sql, array($pressId, $seriesId));
+		$result =& $this->retrieve($sql, array($pressId, $arrangementId));
 
-		$returner = null;
+		$returner = array();
 
 		while (!$result->EOF) {
 			$returner[] =& $this->_fromRow($result->GetRowAssoc(false));
@@ -151,20 +151,20 @@ class FlexibleRoleDAO extends DefaultSettingDAO
 	}
 
 	/**
-	 * Retrieve all flexible roles ids by series id.
-	 * @param $seriesId int
+	 * Retrieve all flexible roles ids by arrangement id.
+	 * @param $arrangementId int
 	 * @param $pressId int
 	 * @return mixed array
 	 */
-	function &getIdsBySeriesId($seriesId, $pressId) {
+	function &getIdsByArrangementId($arrangementId, $pressId) {
 
-		$sql = 'SELECT fr.flexible_role_id FROM flexible_role_series fra
+		$sql = 'SELECT fr.flexible_role_id FROM flexible_role_arrangements fra
 			LEFT JOIN flexible_roles fr ON (fr.flexible_role_id = fra.flexible_role_id)
-			WHERE fr.enabled = 1 AND fr.press_id = ? AND fra.series_id = ?';
+			WHERE fr.enabled = 1 AND fr.press_id = ? AND fra.arrangement_id = ?';
 
-		$result =& $this->retrieve($sql, array($pressId, $seriesId));
+		$result =& $this->retrieve($sql, array($pressId, $arrangementId));
 
-		$returner = null;
+		$returner = array();
 
 		while (!$result->EOF) {
 			$returner[] =& $result->fields['flexible_role_id'];
@@ -220,7 +220,7 @@ class FlexibleRoleDAO extends DefaultSettingDAO
 
 		$this->getDataObjectSettings('flexible_role_settings', 'flexible_role_id', $row['flexible_role_id'], $flexibleRole);
 
-		$this->setAssociatedSeries($flexibleRole);
+		$this->setAssociatedArrangements($flexibleRole);
 
 		return $flexibleRole;
 	}  
@@ -249,11 +249,11 @@ class FlexibleRoleDAO extends DefaultSettingDAO
 
 		$this->updateLocaleFields($role);
 
-		foreach ($role->getAssociatedSeries() as $series) {
+		foreach ($role->getAssociatedArrangements() as $arrangement) {
 			$this->update(
-				'INSERT INTO flexible_role_series (flexible_role_id, series_id)
+				'INSERT INTO flexible_role_arrangements (flexible_role_id, arrangement_id)
 				VALUES (?, ?)',
-				array($role->getId(), $series)
+				array($role->getId(), $arrangement)
 			);
 		}
 
@@ -281,29 +281,29 @@ class FlexibleRoleDAO extends DefaultSettingDAO
 
 		$this->updateLocaleFields($role);
 
-		$this->update('DELETE FROM flexible_role_series WHERE flexible_role_id = ?', $role->getId());
+		$this->update('DELETE FROM flexible_role_arrangements WHERE flexible_role_id = ?', $role->getId());
 
-		foreach ($role->getAssociatedSeries() as $series) {
+		foreach ($role->getAssociatedArrangements() as $arrangement) {
 			$this->update(
-				'INSERT INTO flexible_role_series (flexible_role_id, series_id)
+				'INSERT INTO flexible_role_arrangements (flexible_role_id, arrangement_id)
 				VALUES (?, ?)',
-				array($role->getId(), $series)
+				array($role->getId(), $arrangement)
 			);
 		}
 	}
 
 	/**
-	 * Set the associated workflow role series ids.
+	 * Set the associated workflow role arrangement ids.
 	 * @param $role FlexibleRole
 	 */
-	function setAssociatedSeries(&$role) {
+	function setAssociatedArrangements(&$role) {
 		$result =& $this->retrieve(
-			'SELECT series_id FROM flexible_role_series WHERE flexible_role_id = ?', $role->getId()
+			'SELECT arrangement_id FROM flexible_role_arrangements WHERE flexible_role_id = ?', $role->getId()
 		);
 
 		$returner = null;
 		while (!$result->EOF) {
-			$role->addAssociatedSeries($result->fields['series_id']);
+			$role->addAssociatedArrangement($result->fields['arrangement_id']);
 			$result->moveNext();
 		}
 		$result->Close();
