@@ -1,4 +1,5 @@
 <?php
+// test for git/cvs migration
 
 /**
  * @mainpage OMP API Reference
