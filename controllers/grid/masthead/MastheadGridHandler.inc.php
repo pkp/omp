@@ -65,7 +65,13 @@ class MastheadGridHandler extends GridMainHandler {
 		$context =& $router->getContext($request);
 		$groupDAO =& DAORegistry::getDAO('GroupDAO');
 		$groups = $groupDAO->getGroups(ASSOC_TYPE_PRESS, $context->getId());
-		$this->setData($groups);
+
+		$rowData = array();
+		while ($group =& $groups->next()) {
+			$groupId = $group->getId();
+			$rowData[$groupId] = array('groups' => $group->getLocalizedTitle());
+		}
+		$this->setData($rowData);
 
 		// Add grid-level actions
 		$router =& $request->getRouter();

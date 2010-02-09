@@ -81,16 +81,45 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 	//
 	// Overridden template methods
 	//
-/*
-	$templateMgr->assign('addUrl', $router->url($request, array(), null, 'additem'));
-	$templateMgr->assign('deleteUrl', $router->url($request, array(), null, 'deleteitems'));
+	/**
+	 * Need to override the fetch method to provide groupID as an argument
+	 */
 	function fetch(&$args, &$request) {
-		if (isset($args['groupId'])) {
-			$this->setGroupId($args['groupId']);
-		}
-		return parent::fetch($args, $request);
-	}
-*/
+		// FIXME: User validation
+
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate();
+		$router =& $request->getRouter();
+
+		// Let the subclass configure the listbuilder
+		$this->initialize($request);
+		$groupId = $request->getUserVar('groupId');
+		
+		$templateMgr->assign('itemId', $groupId); // Autocomplete fields require a unique ID to avoid JS conflicts
+		$templateMgr->assign('addUrl', $router->url($request, array(), null, 'additem', null, array('groupId' => $groupId)));
+		$templateMgr->assign('deleteUrl', $router->url($request, array(), null, 'deleteitems', null, array('groupId' => $groupId)));
+		$templateMgr->assign('autocompleteUrl', $router->url($request, array(), null, 'getautocompletesource', null));
+
+		// Translate modal submit/cancel buttons
+		$okButton = Locale::translate('common.ok');
+		$warning = Locale::translate('common.warning');
+		$templateMgr->assign('localizedButtons', "$okButton, $warning");
+
+		$rowHandler =& $this->getRowHandler();
+		// initialize to create the columns
+		$rowHandler->initialize($request);
+		$columns =& $rowHandler->getColumns();
+		$templateMgr->assign_by_ref('columns', $columns);
+		$templateMgr->assign('numColumns', count($columns));
+
+		// Render the rows
+		$rows = $this->_renderRowsInternally($request);
+		$templateMgr->assign_by_ref('rows', $rows);
+
+		$templateMgr->assign('listbuilder', $this);
+		echo $templateMgr->fetch('controllers/listbuilder/listbuilder.tpl');
+    }
+	
 	/*
 	 * Configure the grid
 	 * @param PKPRequest $request
@@ -102,7 +131,7 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 
 		// Basic configuration
 		$this->setId('mastheadMembership');
-		$this->setTitle('manager.groups.management');
+		$this->setTitle('manager.groups.membership.addMember');
 		$this->setSourceTitle('common.user');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_BOUND); // Free text input
 		$this->setListTitle('manager.groups.existingUsers');
@@ -167,17 +196,27 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$press =& $request->getPress();
 
-		$userId = $args['sourceId-mastheadMembership'];
-		$this->setGroupId($request->getUserVar('groupId'));
-
+		$groupId = $args['groupId'];
+		$index = "sourceId-mastheadMembership-$groupId";
+		$userId = $args[$index];
+		
 		if(empty($userId)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
 			echo $json->getString();
 		} else {
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 
+			$groupMembership =& $groupMembershipDao->getMembership($groupId, $userId);
+			// Make sure the membership doesn't already exist
+			if (isset($groupMembership)) {
+				$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
+				echo $json->getString();
+				return false;
+			}
+			unset($groupMembership);
+			
 			$groupMembership = new GroupMembership();
-			$groupMembership->setGroupId($this->getGroupId());
+			$groupMembership->setGroupId($request->getUserVar('groupId'));
 			$groupMembership->setUserId($userId);
 			// For now, all memberships are displayed in About
 			$groupMembership->setAboutDisplayed(true);
@@ -203,9 +242,10 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 	 */
 	function deleteitems(&$args, &$request) {
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
-
+		$groupId = array_shift($args);
+		
 		foreach($args as $userId) {
-			$groupMembershipDao->deleteMembershipById($this->getGroupId(), $userId);
+			$groupMembershipDao->deleteMembershipById($groupId, $userId);
 		}
 
 		$json = new JSON('true');

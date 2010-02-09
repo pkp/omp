@@ -92,6 +92,7 @@ class SeriesEditorsListbuilderHandler extends ListbuilderHandler {
 		$this->initialize($request);
 		$seriesId = $request->getUserVar('seriesId');
 
+		$templateMgr->assign('itemId', $seriesId); // Autocomplete fields require a unique ID to avoid JS conflicts
 		$templateMgr->assign('addUrl', $router->url($request, array(), null, 'additem', null, array('seriesId' => $seriesId)));
 		$templateMgr->assign('deleteUrl', $router->url($request, array(), null, 'deleteitems', null, array('seriesId' => $seriesId)));
 		$templateMgr->assign('autocompleteUrl', $router->url($request, array(), null, 'getautocompletesource'));
@@ -192,13 +193,24 @@ class SeriesEditorsListbuilderHandler extends ListbuilderHandler {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$press =& $request->getPress();
 
-		$userId = $args['sourceId-seriesEditors'];
-
+		$seriesId = $args['seriesId'];
+		$index = "sourceId-seriesEditors-$seriesId";
+		$userId = $args[$index];
+		
 		if(empty($userId)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
 			echo $json->getString();
 		} else {
 			$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+
+			// Make sure the membership doesn't already exist
+			if ($seriesEditorsDao->editorExists($press->getId(), $seriesId, $userId)) {
+				$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
+				echo $json->getString();
+				return false;
+			}
+			unset($groupMembership);
+			
 			$seriesEditorsDao->insertEditor($press->getId(), $request->getUserVar('seriesId'), $userId, true, true);
 
 			$userDao =& DAORegistry::getDAO('UserDAO');
@@ -222,9 +234,10 @@ class SeriesEditorsListbuilderHandler extends ListbuilderHandler {
 	function deleteitems(&$args, &$request) {
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
 		$press =& $request->getPress();
+		$seriesId = array_shift($args);
 
 		foreach($args as $userId) {
-			$seriesEditorsDao->deleteEditor($press->getId(), $request->getUserVar('seriesId'), $userId);
+			$seriesEditorsDao->deleteEditor($press->getId(), $seriesId, $userId);
 		}
 
 		$json = new JSON('true');

@@ -10,7 +10,7 @@
  * $Id$
  *}
 {**FIXME: fix URL action to use new Request URL method **}
-<form name="editSponsorForm" id="editSponsorForm" method="post" action="{$baseUrl}/index.php/dev/$$$call$$$/grid/sponsor/sponsor-row/update-sponsor"}
+<form name="editSponsorForm" id="editSponsorForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.sponsor.SponsorRowHandler" op="updateSponsor"}">
 {include file="common/formErrors.tpl"}
 
 <h3>1.5 {translate key="manager.setup.sponsors"}</h3>

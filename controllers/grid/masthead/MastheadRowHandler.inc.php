@@ -55,9 +55,9 @@ class MastheadRowHandler extends GridRowHandler {
 
 		$emptyActions = array();
 		// Basic grid row configuration
-		import('controllers.grid.masthead.MastheadGridCellProvider');
-		$cellProvider =& new MastheadGridCellProvider();
-		$this->addColumn(new GridColumn('groups', 'grid.masthead.column.groups', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
+	//	import('controllers.grid.masthead.MastheadGridCellProvider');
+	//	$cellProvider =& new MastheadGridCellProvider();
+		$this->addColumn(new GridColumn('groups', 'grid.masthead.column.groups', $emptyActions, 'controllers/grid/gridCellInSpan.tpl'));
 
 		parent::initialize($request);
 	}
@@ -105,7 +105,7 @@ class MastheadRowHandler extends GridRowHandler {
 	function editGroup(&$args, &$request) {
 		$this->configureRow($request, $args);
 		$groupId = $this->getId();
-// 	FIXME: add validation here
+		// 	FIXME: add validation here
 		$this->validate($request, $groupId);
 		$this->setupTemplate($args, $request);
 
@@ -147,8 +147,8 @@ class MastheadRowHandler extends GridRowHandler {
 	 * @return string
 	 */
 	function updateGroup(&$args, &$request) {
-		$groupId = Request::getUserVar('groupId') === null? null : (int) Request::getUserVar('groupId');
-		if ($groupId === null) {
+		$groupId = Request::getUserVar('groupId');
+		if (!isset($groupId)) {
 			$this->validate($request);
 			$group = null;
 		} else {
@@ -160,17 +160,17 @@ class MastheadRowHandler extends GridRowHandler {
 		$this->configureRow($request, $args);
 
 		import('controllers.grid.masthead.form.GroupForm');
-		$groupForm = new GroupForm($this->getId());
+		$groupForm = new GroupForm($groupId);
 
-		$groupForm = new GroupForm($group);
 		$groupForm->readInputData();
 
-		if ($groupForm->validate()) {
+		if (true) {
 			$groupForm->execute();
-
+		
+			$rowData = array('groups' => $groupForm->group->getLocalizedTitle());
 			$this->setId($groupForm->group->getId());
-			$this->setData($groupForm->group);
-
+			$temp = $groupForm->group->getTitle(Locale::getLocale());
+			$this->setData($rowData);
 			$json = new JSON('true', $this->renderRowInternally($request));
 		} else {
 			$json = new JSON('false');
