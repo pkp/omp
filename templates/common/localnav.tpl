@@ -46,7 +46,7 @@
 		<li>
 			<a href="#">!Settings</a>
 			<ul>
-				<li><a href="#">!Press Setup</a></li>
+				<li><a href="{url page="manager" op="setup"}">Press Setup</a></li>
 				<li><a href="#">!Data</a></li>
 				<li><a href="#">!System</a></li>
 				<li><a href="#">!User Management</a></li>

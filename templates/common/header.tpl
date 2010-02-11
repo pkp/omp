@@ -80,6 +80,17 @@
 			$('a.settings').live("click", (function() { // Initialize grid settings button handler
 				$(this).parent().siblings('.row_controls').toggle(300);
 			}));
+			{/literal}{if $validateId}{literal}
+			$("form[name={/literal}{$validateId}{literal}]").validate({
+				errorClass: "error",
+				highlight: function(element, errorClass) {
+					$(element).parent().parent().addClass(errorClass);
+				},
+				unhighlight: function(element, errorClass) {
+					$(element).parent().parent().removeClass(errorClass);
+				}
+			});
+			{/literal}{/if}{literal}
 		});
 		{/literal}
     </script>

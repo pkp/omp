@@ -30,8 +30,8 @@
 
 {fbvFormArea id="generalInformation"}
 {fbvFormSection title="common.name"}
-	{fbvElement type="text" label="manager.setup.pressName" name="name[$formLocale]" id="name" value=$name[$formLocale] maxlength="120" size=$fbvStyles.size.LARGE required="true"}
-	{fbvElement type="text" label="manager.setup.pressInitials" name="initials[$formLocale]" id="initials" value=$initials[$formLocale] maxlength="16" size=$fbvStyles.size.SMALL required="true"}
+	{fbvElement type="text" label="manager.setup.pressName" name="name[$formLocale]" id="name" value=$name[$formLocale] maxlength="120" size=$fbvStyles.size.LARGE}
+	{fbvElement type="text" label="manager.setup.pressInitials" name="initials[$formLocale]" id="initials" value=$initials[$formLocale] maxlength="16" size=$fbvStyles.size.SMALL}
 {/fbvFormSection}
 {fbvFormSection title="manager.setup.pressDescription" for="description" float=$fbvStyles.float.LEFT}
 	{fbvElement type="textarea" name="description[$formLocale]" id="description" value=$description[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
@@ -76,7 +76,7 @@
 
 {fbvFormArea id="principalContact"}
 {fbvFormSection title="user.name" required="true" for="contactName"}
-	{fbvElement type="text" id="contactName" value=$contactName maxlength="60" required="true"}
+	{fbvElement type="text" id="contactName" value=$contactName maxlength="60"}
 {/fbvFormSection}
 {fbvFormSection title="user.title" for="contactTitle"}
 	{fbvElement type="text" name="contactTitle[$formLocale]" id="contactTitle" value=$contactTitle[$formLocale] maxlength="90"}
@@ -85,7 +85,7 @@
 	{fbvElement type="textarea" name="contactAffiliation[$formLocale]" id="contactAffiliation" value=$contactAffiliation[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF2}
 {/fbvFormSection}
 {fbvFormSection title="user.email" for="contactEmail" required="true"}
-	{fbvElement type="text" id="contactEmail" value=$contactEmail maxlength="90" required="true"}
+	{fbvElement type="text" id="contactEmail" value=$contactEmail maxlength="90"}
 {/fbvFormSection}
 {fbvFormSection title="user.phone" for="contactPhone" float=$fbvStyles.float.LEFT}
 	{fbvElement type="text" id="contactPhone" value=$contactPhone maxlength="24"}
@@ -142,10 +142,10 @@
 
 {fbvFormArea id="technicalSupportContact"}
 {fbvFormSection title="user.name" for="supportName" required="true"}
-	{fbvElement type="text" id="supportName" value=$supportName maxlength="60" required="true"}
+	{fbvElement type="text" id="supportName" value=$supportName maxlength="60"}
 {/fbvFormSection}
 {fbvFormSection title="user.email" for="supportEmail" required="true" float=$fbvStyles.float.LEFT}
-	{fbvElement type="text" id="supportEmail" value=$supportEmail maxlength="90" required="true"}
+	{fbvElement type="text" id="supportEmail" value=$supportEmail maxlength="90"}
 {/fbvFormSection}
 {fbvFormSection title="user.phone" for="supportPhone" float=$fbvStyles.float.RIGHT}
 	{fbvElement type="text" id="supportPhone" value=$supportPhone maxlength="24"}
