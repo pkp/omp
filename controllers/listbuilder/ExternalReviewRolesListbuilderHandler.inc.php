@@ -50,7 +50,7 @@ class ExternalReviewRolesListbuilderHandler extends ListbuilderHandler {
 		return $this->possibleItems;
 	}
 
-	/* Get possible items to populate autocomplete list with */
+	/* Get possible items to populate drop-down list with */
 	function loadPossibleItemList(&$request) {
 		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
 

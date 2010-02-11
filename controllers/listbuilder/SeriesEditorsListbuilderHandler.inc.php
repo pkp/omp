@@ -75,6 +75,13 @@ class SeriesEditorsListbuilderHandler extends ListbuilderHandler {
 		return $itemList;
 	}
 
+	/**
+	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
+	 */
+	function getRemoteOperations() {
+		return array_merge(parent::getRemoteOperations(), array('getautocompletesource'));
+	}
+
 	//
 	// Overridden template methods
 	//
@@ -196,7 +203,7 @@ class SeriesEditorsListbuilderHandler extends ListbuilderHandler {
 		$seriesId = $args['seriesId'];
 		$index = "sourceId-seriesEditors-$seriesId";
 		$userId = $args[$index];
-		
+
 		if(empty($userId)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
 			echo $json->getString();
@@ -210,7 +217,7 @@ class SeriesEditorsListbuilderHandler extends ListbuilderHandler {
 				return false;
 			}
 			unset($groupMembership);
-			
+
 			$seriesEditorsDao->insertEditor($press->getId(), $request->getUserVar('seriesId'), $userId, true, true);
 
 			$userDao =& DAORegistry::getDAO('UserDAO');

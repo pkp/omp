@@ -78,6 +78,14 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 		return $itemList;
 	}
 
+	/**
+	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
+	 */
+	function getRemoteOperations() {
+		return array_merge(parent::getRemoteOperations(), array('getautocompletesource'));
+	}
+
+
 	//
 	// Overridden template methods
 	//
@@ -94,7 +102,7 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 		// Let the subclass configure the listbuilder
 		$this->initialize($request);
 		$groupId = $request->getUserVar('groupId');
-		
+
 		$templateMgr->assign('itemId', $groupId); // Autocomplete fields require a unique ID to avoid JS conflicts
 		$templateMgr->assign('addUrl', $router->url($request, array(), null, 'additem', null, array('groupId' => $groupId)));
 		$templateMgr->assign('deleteUrl', $router->url($request, array(), null, 'deleteitems', null, array('groupId' => $groupId)));
@@ -119,7 +127,7 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 		$templateMgr->assign('listbuilder', $this);
 		echo $templateMgr->fetch('controllers/listbuilder/listbuilder.tpl');
     }
-	
+
 	/*
 	 * Configure the grid
 	 * @param PKPRequest $request
@@ -199,7 +207,7 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 		$groupId = $args['groupId'];
 		$index = "sourceId-mastheadMembership-$groupId";
 		$userId = $args[$index];
-		
+
 		if(empty($userId)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
 			echo $json->getString();
@@ -214,7 +222,7 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 				return false;
 			}
 			unset($groupMembership);
-			
+
 			$groupMembership = new GroupMembership();
 			$groupMembership->setGroupId($request->getUserVar('groupId'));
 			$groupMembership->setUserId($userId);
@@ -243,7 +251,7 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 	function deleteitems(&$args, &$request) {
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 		$groupId = array_shift($args);
-		
+
 		foreach($args as $userId) {
 			$groupMembershipDao->deleteMembershipById($groupId, $userId);
 		}
