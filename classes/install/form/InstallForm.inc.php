@@ -3,7 +3,7 @@
 /**
  * @defgroup install_form
  */
- 
+
 /**
  * @file classes/install/form/InstallForm.inc.php
  *
@@ -23,8 +23,6 @@
 import('install.Install');
 import('site.VersionCheck');
 import('form.Form');
-
-define('PHP_REQUIRED_VERSION', '4.2.0');
 
 class InstallForm extends Form {
 
@@ -150,7 +148,7 @@ class InstallForm extends Form {
 			'databaseCharset' => '',
 			'encryption' => 'md5',
 			'filesDir' =>  $cwd . '/files',
-			'skipFilesDir' =>  0,			
+			'skipFilesDir' =>  0,
 			'databaseDriver' => 'mysql',
 			'databaseHost' => 'localhost',
 			'databaseUsername' => 'omp',
@@ -172,7 +170,7 @@ class InstallForm extends Form {
 			'connectionCharset',
 			'databaseCharset',
 			'filesDir',
-			'skipFilesDir',			
+			'skipFilesDir',
 			'encryption',
 			'adminUsername',
 			'adminPassword',
@@ -230,7 +228,7 @@ class InstallForm extends Form {
 	/**
 	 * Check if database drivers have the required PHP module loaded.
 	 * The names of drivers that appear to be unavailable are bracketed.
-	 * @return array 
+	 * @return array
 	 */
 	function checkDBDrivers() {
 		$dbDrivers = array();
