@@ -24,6 +24,12 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 */
 	function AuthorSubmitStep1Form($monograph = null) {
 		parent::AuthorSubmitForm($monograph);
+		$press =& Request::getPress();
+		
+		foreach ($press->getLocalizedSetting('submissionChecklist') as $checklistItem) {
+			$checklistId = 'checklist-' . $checklistItem['order'];
+			$this->addCheck(new FormValidator($this, $checklistId, 'required', 'author.submit.verifyChecklist'));		
+		}
 	}
 
 	/**
@@ -34,8 +40,8 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		$press =& Request::getPress();
 		// Get series for this press
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-		$templateMgr->assign('seriesOptions', array('0' => Locale::translate('common.select')) + $seriesDao->getTitlesByPressId($press->getId(), !true, SERIES_TYPE_CATEGORY));
-		parent::display();
+		$templateMgr->assign('seriesOptions', array($seriesDao->getTitlesByPressId($press->getId())));
+		parent::display();		
 	}
 
 	/**

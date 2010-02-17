@@ -35,10 +35,9 @@ class AuthorSubmissionSequence extends SubmissionFormSequence
 	 * Add individual forms to the sequence.
 	 */
 	function prepareFormSequences() {
-		$this->addForm('author.form.submit.AuthorSubmitStep1Form','AuthorSubmitStep1Form','author.submit.start','author.submit.stepHeading.start','1');
-		$this->addForm('author.form.submit.AuthorSubmitStep3Form','AuthorSubmitStep3Form','author.submit.upload','author.submit.stepHeading.upload','2');
-		$this->addForm('author.form.submit.AuthorSubmitStep2Form','AuthorSubmitStep2Form','author.submit.metadata','author.submit.stepHeading.metadata','3');
-		$this->addForm('author.form.submit.AuthorSubmitStep5Form','AuthorSubmitStep5Form','author.submit.confirmation','author.submit.stepHeading.confirmation','4');
+		$this->addForm('author.form.submit.AuthorSubmitStep1Form','AuthorSubmitStep1Form','author.submit.prepare','author.submit.prepare','1');
+		$this->addForm('author.form.submit.AuthorSubmitStep2Form','AuthorSubmitStep2Form','author.submit.upload','author.submit.upload','2');
+		$this->addForm('author.form.submit.AuthorSubmitStep3Form','AuthorSubmitStep3Form','author.submit.catalogue','author.submit.catalogue','3');
 	}
 
 	/**

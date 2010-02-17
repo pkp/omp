@@ -241,15 +241,10 @@ class SeriesDAO extends DAO {
 	 * Retrieve all series for a press.
 	 * @return DAOResultFactory containing Series ordered by sequence
 	 */
-	function &getByPressId($pressId, $rangeInfo = null, $type = null) {
+	function &getByPressId($pressId, $rangeInfo = null) {
 
 		$sql = 'SELECT * FROM series WHERE press_id = ?';
 		$params = array($pressId);
-
-		if ($type !== null) {
-			$sql.= 'AND series_type = ?';
-			$params[] = $type;
-		}
 
 		$result =& $this->retrieveRange($sql, $params, $rangeInfo);
 
@@ -261,10 +256,10 @@ class SeriesDAO extends DAO {
 	 * Retrieve the IDs and titles of the series for a press in an associative array.
 	 * @return array
 	 */
-	function &getTitlesByPressId($pressId, $submittableOnly = false, $type = null) {
+	function &getTitlesByPressId($pressId, $submittableOnly = false) {
 		$series = array();
 
-		$seriesIterator =& $this->getByPressId($pressId, null, $type);
+		$seriesIterator =& $this->getByPressId($pressId, null);
 		while (($series =& $seriesIterator->next())) {
 			if ($submittableOnly) {
 				if (!$series->getEditorRestricted()) {

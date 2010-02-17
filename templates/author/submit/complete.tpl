@@ -9,12 +9,23 @@
  * $Id$
  *}
 {strip}
-{assign var="pageTitle" value="author.track"}
-{include file="common/header.tpl"}
+{assign var="pageTitle" value="author.submit.nextSteps"}
+{include file="author/submit/submitStepHeader.tpl"}
 {/strip}
 
-<p>{translate key="author.submit.submissionComplete" pressName=$press->getLocalizedName()}</p>
+<h2>{translate key="author.submit.submissionComplete" pressName=$press->getLocalizedName()}</h2>
+<br />
+<div class="separator"></div>
 
-<p>&#187; <a href="{url page="author"}">{translate key="author.track"}</a></p>
+<h3>{translate key="author.submit.whatNext"}</h3>
+<p>{translate key="author.submit.whatNext.description"}</p>
+<p>{translate key="author.submit.whatNext.forNow"}</p>
 
+<ul class="plain">
+<li>&#187; <a href={url page="author"}>{translate key="author.submit.whatNext.review"}</a></li>
+<li>&#187; <a href={url op="submit"}>{translate key="author.submit.whatNext.create"}</a></li>
+<li>&#187; <a href={url page="author"}>{translate key="author.submit.whatNext.return"}</a></li>
+</ul>
+
+</div>
 {include file="common/footer.tpl"}

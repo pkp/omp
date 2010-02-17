@@ -104,4 +104,21 @@
 	<message key="author.monograph.copyeditedFile">Copyedited File</message>
 	<message key="author.monograph.authorRevisedFile">Author File</message>
 	<message key="author.submit.authorSubmitLoginMessage">A user account is required to submit to this press. This allows our editors to track your submissions and contact you when the status of your submission changes, or if additional information is required from you.</message>
+	<message key="author.submit.prepare">Prepare</message>
+	<message key="author.submit.catalogue">Catalogue</message>
+	<message key="author.submit.upload">Upload</message>
+	<message key="author.submit.nextSteps">Next Steps</message>
+	<message key="author.submit.submissionType">Submission Type</message>
+	<message key="author.submit.coverNote">Cover Note to Editor</message>
+	<message key="author.submit.generalInformation">General Information</message>
+	<message key="author.submit.whatNext">What Happens Next?</message>
+	<message key="author.submit.whatNext.description">The acquisitions editor has been notified of your submission, and you've been emailed a confirmation for your records.  Once the editor has reviewed the submission, they will contact you.</message>
+	<message key="author.submit.whatNext.forNow">For now, you can:</message>
+	<message key="author.submit.whatNext.review">Review this submission</message>
+	<message key="author.submit.whatNext.create">Create a new submission</message>
+	<message key="author.submit.whatNext.return">Return to your dashboard</message>
+	<message key="author.submit.checklistErrors.begin">Please read and check off the items in the submission checklist.  There are </message>
+	<message key="author.submit.checklistErrors.end">items left unchecked.</message>
+	<message key="author.submit.placement">Submission Placement</message>
+	
 </locale>

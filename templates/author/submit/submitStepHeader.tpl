@@ -16,26 +16,31 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="steplist">
-{foreach from=$steplist key=stepIndex item=step}
-{assign var="id" value=$step.identity}
-{if !$step.context}
-<li{if $submitStep == $stepIndex} class="current"{/if}>
-	{if $submissionProgress >= $stepIndex and $submitStep!=$stepIndex}
-		<a href="{url op="submit" path=$step.alias monographId=$monographId}">
-	{/if}
-	{$stepIndex}. {translate key=$step.tag}{$id}
-	{if $submissionProgress >= $stepIndex and $submitStep!=$stepIndex}
-		</a>
-	{/if}
-</li>
-{/if}
-{/foreach}
-</ul>
-{if isset($contextSteps)}
-{foreach from=$contextSteps item=contextStep}
-	<a href="{url op="submit" path=$steplist[$contextStep.step].alias monographId=$monographId}">
-		{translate key=$steplist[$contextStep.step].tag}
-	</a>
-{/foreach}
-{/if}
+
+{strip}
+{assign var="pageCrumbTitle" value="author.submit"}
+{url|assign:"currentUrl" op="submit"}
+{/strip}
+
+<!--
+	This is a representation of HTML generated via the jQueryUI framework for tabs.
+	Ideally, this process should use AJAX and jQueryUI to create this dynamically.
+	See: http://jqueryui.com/demos/tabs/#ajax
+-->
+
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+		<li{if $submitStep == 1} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+			<a href="{url op="submit" path="1"}">1. {translate key="author.submit.prepare"}</a>
+		</li>
+		<li{if $submitStep == 2} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+			<a href="{url op="submit" path="2"}">2. {translate key="author.submit.upload"}</a>
+		</li>
+		<li{if $submitStep == 3} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+			<a href="{url op="submit" path="3"}">3. {translate key="author.submit.catalogue"}</a>
+		</li>
+		<li{if $submitStep == 4} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+			<a href="{url op="submit" path="4"}">4. {translate key="author.submit.nextSteps"}</a>
+		</li>
+	</ul>
+

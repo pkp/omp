@@ -9,13 +9,14 @@
  * @class AuthorSubmitStep3Form
  * @ingroup author_form_submit
  *
- * @brief Form for Step 3 of author manuscript submission.
+ * @brief Form for Step 3 of author monograph submission.
  */
 
 // $Id$
 
 
 import('author.form.submit.AuthorSubmitForm');
+import('inserts.monographComponents.MonographComponentsInsert');
 
 class AuthorSubmitStep3Form extends AuthorSubmitForm {
 
@@ -27,96 +28,113 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 	}
 
 	/**
+	 * Initialize form data from current monograph.
+	 */
+	function initData() {
+
+		if (isset($this->monograph)) {
+
+			$monograph =& $this->monograph;
+			$this->_data = array_merge($this->_data,
+				array(
+					'title' => $monograph->getTitle(null), // Localized
+					'abstract' => $monograph->getAbstract(null), // Localized
+					'discipline' => $monograph->getDiscipline(null), // Localized
+					'subjectClass' => $monograph->getSubjectClass(null), // Localized
+					'subject' => $monograph->getSubject(null), // Localized
+					'coverageGeo' => $monograph->getCoverageGeo(null), // Localized
+					'coverageChron' => $monograph->getCoverageChron(null), // Localized
+					'coverageSample' => $monograph->getCoverageSample(null), // Localized
+					'type' => $monograph->getType(null), // Localized
+					'language' => $monograph->getLanguage(),
+					'sponsor' => $monograph->getSponsor(null), // Localized
+				)
+			);
+		}	
+
+	}
+
+	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(
-			array('bookFileType', 'selectedFiles')
-		);
+		$userVars = array('title',
+				'abstract',
+				'discipline',
+				'subjectClass',
+				'subject',
+				'coverageGeo',
+				'coverageChron',
+				'coverageSample',
+				'type',
+				'language',
+				'sponsor',
+				'isEditedVolume'
+				);
+
+
+		$this->readUserVars($userVars);
 	}
 
-	function getHelpTopicId() {
-		return 'submission.indexingAndMetadata';
+	/**
+	 * Get the names of fields for which data should be localized
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		$fields = array('title', 'abstract', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
+		$fields = array_merge($fields, $this->formComponent->getLocaleFieldNames());
+
+		return $fields;
 	}
-	function getTemplateFile() {
-		return 'author/submit/step3.tpl';
-	}
+
 	/**
 	 * Display the form.
 	 */
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
-
-		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-
-
-		$bookFileTypes =& $bookFileTypeDao->getEnabledByPressId($this->monograph->getPressId());
-		$monographFiles =& $monographFileDao->getByMonographId($this->monograph->getMonographId(), 'submission');
-
-		$templateMgr->assign_by_ref('bookFileTypes', $bookFileTypes);
-		$templateMgr->assign_by_ref('submissionFiles', $monographFiles);
-
+		$templateMgr->assign('validateId', 'submit');
+		
 		parent::display();
 	}
 
-	/**
-	 * Upload the book file.
-	 * @param $fileName string
-	 * @return boolean
-	 */
-	function uploadBookFile($fileName) {
-		import('file.MonographFileManager');
-
-		$manuscriptFileManager = new MonographFileManager($this->monograph->getMonographId());
-
-		if ($manuscriptFileManager->uploadedFileExists($fileName)) {
-			// upload new book file, overwriting previous if necessary
-			$bookFileTypeId = $this->getData('bookFileType');
-
-			$submissionFileId = $manuscriptFileManager->uploadBookFile(
-								$fileName, 
-								$bookFileTypeId
-							);
-		}
-
-		return !isset($submissionFileId) ? false : true;
+	function getHelpTopicId() {
+		return 'submission.indexingAndMetadata';
 	}
 
+	function getTemplateFile() {
+		return 'author/submit/step3.tpl';
+	}
+	
 	/**
 	 * Save changes to monograph.
 	 * @return int the monograph ID
 	 */
 	function execute() {
-		// Update monograph
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $this->monograph;
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 
-		if ($monograph->getSubmissionProgress() <= $this->sequence->currentStep) {
+		// Update monograph
+		$monograph =& $this->monograph;
+		$monograph->setTitle($this->getData('title'), null); // Localized
+		$monograph->setAbstract($this->getData('abstract'), null); // Localized
+		$monograph->setDiscipline($this->getData('discipline'), null); // Localized
+		$monograph->setSubject($this->getData('subject'), null); // Localized
+		$monograph->setSubjectClass($this->getData('subjectClass'), null); // Localized
+		$monograph->setCoverageGeo($this->getData('coverageGeo'), null); // Localized
+		$monograph->setCoverageChron($this->getData('coverageChron'), null); // Localized
+		$monograph->setCoverageSample($this->getData('coverageSample'), null); // Localized
+		$monograph->setType($this->getData('type'), null); // Localized
+		$monograph->setLanguage($this->getData('language'));
+		$monograph->setSponsor($this->getData('sponsor'), null); // Localized
+
+ 		if ($monograph->getSubmissionProgress() <= $this->sequence->currentStep) {
 			$monograph->stampStatusModified();
 			$monograph->setSubmissionProgress($this->sequence->currentStep + 1);
-			$monographDao->updateMonograph($monograph);
 		}
 
-		return $this->monograph->getMonographId();
-	}
-	function processEvents() {
-		$eventProcessed = false;
-		if (Request::getUserVar('uploadBookFile')) {
-			$eventProcessed = true;
-			$this->uploadBookFile('bookFile');
-		} else if (Request::getUserVar('deleteSelectedFiles')) {
-			$eventProcessed = true;
-			$checkedFiles = $this->getData('selectedFiles');
-			$monographFilesDao =& DAORegistry::getDAO('MonographFileDAO');
-			import('file.MonographFileManager');
-			$monographFileManager = new MonographFileManager($this->monograph->getMonographId());
-			foreach ($checkedFiles as $fileId) {
-				$monographFileManager->deleteFile($fileId);
-				$monographFilesDao->deleteMonographFileById($fileId);
-			}
-		}
-		return $eventProcessed;
+		$monographDao->updateMonograph($monograph);
+
+		return $monograph->getMonographId();
 	}
 }
 

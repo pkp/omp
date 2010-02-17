@@ -53,7 +53,7 @@ class AuthorSubmitForm extends SequenceForm {
 		}
 
 		$templateMgr->assign('helpTopicId', $this->getHelpTopicId());
-
+		
 		$press =& Request::getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$templateMgr->assign_by_ref('pressSettings', $settingsDao->getPressSettings($press->getId()));
