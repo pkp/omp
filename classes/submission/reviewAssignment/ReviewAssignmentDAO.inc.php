@@ -562,7 +562,7 @@ class ReviewAssignmentDAO extends DAO {
 	 * @return array
 	 */
 	function getAverageQualityRatings($pressId) {
-		$averageQualityRatings = Array();
+		$averageQualityRatings = array();
 		$result =& $this->retrieve(
 			'SELECT R.reviewer_id, AVG(R.quality) AS average, COUNT(R.quality) AS count FROM review_assignments R, monographs A WHERE R.monograph_id = A.monograph_id AND A.press_id = ? GROUP BY R.reviewer_id',
 			(int) $pressId
@@ -585,9 +585,9 @@ class ReviewAssignmentDAO extends DAO {
 	 * @return array
 	 */
 	function getCompletedReviewCounts($pressId) {
-		$returner = Array();
+		$returner = array();
 		$result =& $this->retrieve(
-			'SELECT r.reviewer_id, COUNT(r.review_id) AS count FROM review_assignments r, monographs a WHERE r.monograph_id = a.monograph_id AND a.press_id = ? AND r.date_completed IS NOT NULL GROUP BY r.reviewer_id',
+			'SELECT r.reviewer_id, COUNT(r.review_id) AS count FROM review_assignments r, monographs a WHERE r.monograph_id = a.monograph_id AND a.press_id = ? AND r.date_completed IS NOT NULL AND r.cancelled = 0 GROUP BY r.reviewer_id',
 			(int) $pressId
 			);
 
