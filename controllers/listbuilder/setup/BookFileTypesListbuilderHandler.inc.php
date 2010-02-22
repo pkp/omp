@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/manager/listbuilder/PublicationFormatsListbuilderHandler.inc.php
+ * @file controllers/listbuilder/setup/PublicationFormatsListbuilderHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -16,7 +16,7 @@ import('controllers.listbuilder.ListbuilderHandler');
 
 class BookFileTypesListbuilderHandler extends ListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
-	var $_rowHandlerInstantiated = false;
+	var $_rowInstantiated = false;
 
 	/**
 	 * Constructor
@@ -51,11 +51,8 @@ class BookFileTypesListbuilderHandler extends ListbuilderHandler {
 	 * @param PKPRequest $request
 	 */
 	function initialize(&$request) {
-		// Only initialize once
-		if ($this->getInitialized()) return;
-
+		parent::initialize($request);
 		// Basic configuration
-		$this->setId('bookFileTypes');
 		$this->setTitle('manager.setup.bookFileTypes');
 		$this->setSourceTitle('common.name');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
@@ -64,28 +61,9 @@ class BookFileTypesListbuilderHandler extends ListbuilderHandler {
 
 		$this->loadList($request);
 
-		parent::initialize($request);
+		$this->addColumn(new GridColumn('item', 'common.name'));
+		$this->addColumn(new GridColumn('attribute', 'common.designation'));
 	}
-
-	/**
-	 * Get the row handler - override the default row handler
-	 * @return SponsorRowHandler
-	 */
-	function &getRowHandler() {
-		if (!$this->_rowHandlerInstantiated) {
-			import('controllers.listbuilder.ListbuilderGridRowHandler');
-			$rowHandler =& new ListbuilderGridRowHandler();
-
-			// Basic grid row configuration
-			$rowHandler->addColumn(new GridColumn('item', 'common.name'));
-			$rowHandler->addColumn(new GridColumn('attribute', 'common.designation'));
-
-			$this->setRowHandler($rowHandler);
-			$this->_rowHandlerInstantiated = true;
-		}
-		return parent::getRowHandler();
-	}
-
 
 	//
 	// Public AJAX-accessible functions
@@ -94,14 +72,15 @@ class BookFileTypesListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle adding an item to the list
 	 */
-	function additem(&$args, &$request) {
+	function addItem(&$args, &$request) {
 		$this->setupTemplate();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$press =& $request->getPress();
 
-		$bookFileName = $args['sourceTitle-bookFileTypes'];
-		$bookFileDesignation = $args['attribute-1-bookFileTypes'];
-
+		$nameIndex = 'sourceTitle-' . $this->getId();
+		$bookFileName = $args[$nameIndex];
+		$abbrevIndex = 'attribute-1-' . $this->getId();
+		$bookFileDesignation = $args[$abbrevIndex];
 
 		if(empty($bookFileName) || empty($bookFileDesignation)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
@@ -121,19 +100,20 @@ class BookFileTypesListbuilderHandler extends ListbuilderHandler {
 
 			$bookFileType =& new BookFileType();
 
-			$bookFileType->setName($bookFileName);
-			$bookFileType->setDesignation($bookFileDesignation);
+			$bookFileType->setName($bookFileName, Locale::getLocale());
+			$bookFileType->setDesignation($bookFileDesignation, Locale::getLocale());
 
-			$bookFileTypeDao->insertObject($bookFileType);
+			$bookFileTypeId = $bookFileTypeDao->insertObject($bookFileType);
 
 			// Return JSON with formatted HTML to insert into list
-			$bookFileTypeRow =& $this->getRowHandler();
+			$row =& $this->getRowInstance();
+			$row->setGridId($this->getId());
+			$row->setId($bookFileTypeId);
 			$rowData = array('item' => $bookFileName, 'attribute' => $bookFileDesignation);
-			$bookFileTypeRow->configureRow($request);
-			$bookFileTypeRow->setData($rowData);
-			$bookFileTypeRow->setId($publicationFormatId);
+			$row->setData($rowData);
+			$row->initialize($request);
 
-			$json = new JSON('true', $bookFileTypeRow->renderRowInternally($request));
+			$json = new JSON('true', $this->_renderRowInternally($request, $row));
 			echo $json->getString();
 		}
 	}
@@ -141,7 +121,7 @@ class BookFileTypesListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle deleting items from the list
 	 */
-	function deleteitems(&$args, &$request) {
+	function deleteItems(&$args, &$request) {
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 
 		foreach($args as $bookFileId) {

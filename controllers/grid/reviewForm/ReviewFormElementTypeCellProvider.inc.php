@@ -23,9 +23,9 @@ class ReviewFormElementTypeCellProvider extends GridCellProvider {
 	}
 
 	/**
-	 * To be used by a GridRowHandler to generate a rendered representation of
+	 * To be used by a GridRow to generate a rendered representation of
 	 * the element for the given column.
-	 * @param $row GridRowHandler
+	 * @param $row GridRow
 	 * @param $column GridColumn
 	 * @return string the rendered representation of the element for the given column
 	 */

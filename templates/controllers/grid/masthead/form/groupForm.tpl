@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-<form name="groupForm" id="groupForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.masthead.MastheadRowHandler" op="updateGroup"}">
+<form name="groupForm" id="groupForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.masthead.MastheadGridHandler" op="updateGroup"}">
 
 {include file="common/formErrors.tpl"}
 <table class="data" width="100%">
@@ -46,7 +46,7 @@
 <br />
 {if $group}
 	<input type="hidden" name="groupId" value="{$group->getId()}"/>
-	{url|assign:mastheadMembersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.MastheadMembershipListbuilderHandler" op="fetch" groupId=$group->getId()}
+	{url|assign:mastheadMembersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.MastheadMembershipListbuilderHandler" op="fetch" groupId=$group->getId()}
 	{* Need a random div ID to load listbuilders in modals *}
 	{assign var='randomId' value=1|rand:99999}
 	{load_url_in_div id=$randomId url=$mastheadMembersUrl}

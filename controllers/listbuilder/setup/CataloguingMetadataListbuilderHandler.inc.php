@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/manager/listbuilder/CataloguingMetadataListbuilderHandler.inc.php
+ * @file controllers/listbuilder/setup/CataloguingMetadataListbuilderHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -16,7 +16,7 @@ import('controllers.listbuilder.ListbuilderHandler');
 
 class CataloguingMetadataListbuilderHandler extends ListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
-	var $_rowHandlerInstantiated = false;
+	var $_rowInstantiated = false;
 
 	/**
 	 * Constructor
@@ -49,11 +49,8 @@ class CataloguingMetadataListbuilderHandler extends ListbuilderHandler {
 	 * @param PKPRequest $request
 	 */
 	function initialize(&$request) {
-		// Only initialize once
-		if ($this->getInitialized()) return;
-
+		parent::initialize($request);
 		// Basic configuration
-		$this->setId('cataloguingMetadata');
 		$this->setTitle('manager.setup.cataloguingMetadata');
 		$this->setSourceTitle('common.name');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
@@ -61,27 +58,8 @@ class CataloguingMetadataListbuilderHandler extends ListbuilderHandler {
 
 		$this->loadList($request);
 
-		parent::initialize($request);
+		$this->addColumn(new GridColumn('item', 'manager.setup.currentFormats'));
 	}
-
-	/**
-	 * Get the row handler - override the default row handler
-	 * @return SponsorRowHandler
-	 */
-	function &getRowHandler() {
-		if (!$this->_rowHandlerInstantiated) {
-			import('controllers.listbuilder.ListbuilderGridRowHandler');
-			$rowHandler =& new ListbuilderGridRowHandler();
-
-			// Basic grid row configuration
-			$rowHandler->addColumn(new GridColumn('item', 'manager.setup.currentFormats'));
-
-			$this->setRowHandler($rowHandler);
-			$this->_rowHandlerInstantiated = true;
-		}
-		return parent::getRowHandler();
-	}
-
 
 	//
 	// Public AJAX-accessible functions
@@ -90,12 +68,13 @@ class CataloguingMetadataListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle adding an item to the list
 	 */
-	function additem(&$args, &$request) {
+	function addItem(&$args, &$request) {
 		$this->setupTemplate();
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$press =& $request->getPress();
 
-		$format = $args['sourceTitle-cataloguingMetadata'];
+		$index = 'sourceTitle-' . $this->getId();
+		$format = $args[$index];
 
 		if(!isset($format)) {
 			$json = new JSON('false');
@@ -116,13 +95,14 @@ class CataloguingMetadataListbuilderHandler extends ListbuilderHandler {
 			$pressSettingsDao->updateSetting($press->getId(), 'cataloguingMetadata', $formats, 'object');
 
 			// Return JSON with formatted HTML to insert into list
-			$formatRow =& $this->getRowHandler();
+			$row =& $this->getRowInstance();
+			$row->setGridId($this->getId());
+			$row->setId($format);
 			$rowData = array('item' => $format);
-			$formatRow->configureRow($request);
-			$formatRow->setData($rowData);
-			$formatRow->setId($format);
+			$row->setData($rowData);
+			$row->initialize($request);
 
-			$json = new JSON('true', $formatRow->renderRowInternally($request));
+			$json = new JSON('true', $this->_renderRowInternally($request, $row));
 			echo $json->getString();
 		}
 	}
@@ -130,7 +110,7 @@ class CataloguingMetadataListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle deleting items from the list
 	 */
-	function deleteitems(&$args, &$request) {
+	function deleteItems(&$args, &$request) {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$press =& $request->getPress();
 		$formats = $pressSettingsDao->getSetting($press->getId(), 'cataloguingMetadata');

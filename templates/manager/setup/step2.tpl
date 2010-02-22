@@ -40,7 +40,7 @@
 
 <h3>2.2 {translate key="manager.setup.divisionsAndSeries"}</h3>
 
-{url|assign:divisionsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.DivisionsListbuilderHandler" op="fetch"}
+{url|assign:divisionsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.DivisionsListbuilderHandler" op="fetch"}
 {load_url_in_div id="divisionsContainer" url=$divisionsUrl}
 
 {url|assign:seriesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.series.SeriesGridHandler" op="fetchGrid"}

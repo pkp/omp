@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-<form name="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.series.SeriesRowHandler" op="updateSeries"}">
+<form name="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.series.SeriesGridHandler" op="updateSeries"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="mastheadInfo"}
@@ -43,7 +43,8 @@
 
 <br />
 {if $seriesId}
-	{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.SeriesEditorsListbuilderHandler" op="fetch" seriesId=`$seriesId`}
+	<input type="hidden" name="seriesId" value="{$seriesId}"/>
+	{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.SeriesEditorsListbuilderHandler" op="fetch" seriesId=`$seriesId`}
 	{* Need a random div ID to load listbuilders in modals *}
 	{assign var='randomId' value=1|rand:99999}
 	{load_url_in_div id=$randomId url=$seriesEditorsUrl}

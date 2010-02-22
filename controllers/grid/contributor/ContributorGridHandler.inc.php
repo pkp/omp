@@ -12,37 +12,28 @@
  * @brief Handle contributor grid requests.
  */
 
-import('controllers.grid.GridMainHandler');
+// Import grid base classes
+import('controllers.grid.GridHandler');
 
-class ContributorGridHandler extends GridMainHandler {
+// Import Contributor grid specific classes
+import('controllers.grid.contributor.ContributorGridRow');
+
+class ContributorGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
 	function ContributorGridHandler() {
-		parent::GridMainHandler();
+		parent::GridHandler();
 	}
 
 	//
 	// Getters/Setters
 	//
 	/**
-	 * Get the row handler - override the default row handler
-	 * @return ContributorRowHandler
-	 */
-	function &getRowHandler() {
-		if (!$this->_rowHandler) {
-			import('controllers.grid.contributor.ContributorRowHandler');
-			$rowHandler =& new ContributorRowHandler();
-			$this->setRowHandler($rowHandler);
-		}
-		return parent::getRowHandler();
-	}
-
-	/**
 	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addContributor'));
+		return array_merge(parent::getRemoteOperations(), array('addContributor', 'editContributor', 'updateContributor', 'deleteContributor'));
 	}
 
 	//
@@ -53,17 +44,15 @@ class ContributorGridHandler extends GridMainHandler {
 	 * @param PKPRequest $request
 	 */
 	function initialize(&$request) {
-		// Only initialize once
-		if ($this->getInitialized()) return;
-
+		parent::initialize($request);
 		// Basic grid configuration
-		$this->setId('contributor');
 		$this->setTitle('grid.contributor.title');
 
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
 		$contributors = $context->getSetting('contributors');
+		$contributors = isset($contributors) ? $contributors : array();
 		$this->setData($contributors);
 
 		// Add grid-level actions
@@ -79,7 +68,22 @@ class ContributorGridHandler extends GridMainHandler {
 			GRID_ACTION_POSITION_ABOVE
 		);
 
-		parent::initialize($request);
+		$emptyActions = array();
+		// Basic grid row configuration
+		$this->addColumn(new GridColumn('institution', 'grid.columns.institution', $emptyActions, 'controllers/grid/gridCellInSpan.tpl'));
+		$this->addColumn(new GridColumn('url', 'grid.columns.url'));
+	}
+
+	//
+	// Overridden methods from GridHandler
+	//
+	/**
+	 * Get the row handler - override the default row handler
+	 * @return ContributorGridRow
+	 */
+	function &getRowInstance() {
+		$row = new ContributorGridRow();
+		return $row;
 	}
 
 	//
@@ -92,11 +96,92 @@ class ContributorGridHandler extends GridMainHandler {
 	 */
 	function addContributor(&$args, &$request) {
 		// Delegate to the row handler
-		import('controllers.grid.contributor.ContributorRowHandler');
-		$contributorRow =& new ContributorRowHandler();
+		import('controllers.grid.contributor.ContributorGridRow');
+		$contributorRow =& new ContributorGridRow();
 
 		// Calling editContributor with an empty row id will add
 		// a new contributor.
-		$contributorRow->editContributor($args, $request);
+		$this->editContributor($args, $request);
+	}
+
+	/**
+	 * An action to edit a contributor
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function editContributor(&$args, &$request) {
+		//FIXME: add validation here?
+
+		import('controllers.grid.contributor.form.ContributorForm');
+		$contributorForm = new ContributorForm($this->getId());
+
+		if ($contributorForm->isLocaleResubmit()) {
+			$contributorForm->readInputData();
+		} else {
+			$contributorForm->initData($args, $request);
+		}
+		$contributorForm->display();
+	}
+
+	/**
+	 * Update a contributor
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function updateContributor(&$args, &$request) {
+		//FIXME: add validation here?
+		// -> contributorId must be present and valid
+		// -> htmlId must be present and valid
+		$sponsorId = isset($args['sponsorId']) ? $args['sponsorId'] : null;
+		import('controllers.grid.contributor.form.ContributorForm');
+		$contributorForm = new ContributorForm($sponsorId);
+		$contributorForm->readInputData();
+
+		if ($contributorForm->validate()) {
+			$contributorForm->execute($args, $request);
+
+			// prepare the grid row data
+			$row =& $this->getRowInstance();
+			$row->setGridId($this->getId());
+			$row->setId($contributorForm->contributorId);
+			$rowData = array('institution' => $contributorForm->getData('institution'),
+							'url' => $contributorForm->getData('url'));
+			$row->setData($rowData);
+			$row->initialize($request);
+			
+			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+		} else {
+			$json = new JSON('false');
+		}
+
+		return $json->getString();
+	}
+
+	/**
+	 * Delete a contributor
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function deleteContributor(&$args, &$request) {
+		// FIXME: add validation here?
+
+		$router =& $request->getRouter();
+		$press =& $router->getContext($request);
+		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+
+		// get all of the contributors
+		$contributors = $pressSettingsDao->getSetting($press->getId(), 'contributors');
+ 		$contributorId = $this->getId();
+
+		if ( isset($contributors[$contributorId]) ) {
+			unset($contributors[$contributorId]);
+			$pressSettingsDao->updateSetting($press->getId(), 'contributors', $contributors, 'object');
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingItem'));
+		}
+		echo $json->getString();
 	}
 }

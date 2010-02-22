@@ -13,34 +13,25 @@
  *
 */
 
-import('controllers.grid.GridMainHandler');
+import('controllers.grid.GridHandler');
+import('controllers.grid.reviewForm.ReviewFormGridRow');
 
-class ReviewFormGridHandler extends GridMainHandler {
+class ReviewFormGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 **/
 	function ReviewFormGridHandler() {
-		parent::GridMainHandler();
+		parent::GridHandler();
 	}
 
+	//
+	// Getters/Setters
+	//
 	/**
 	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('createReviewForm'));
-	}
-
-	/**
-	 * Get the row handler - override the default row handler
-	 * @return ReviewFormRowHandler
-	 */
-	function &getRowHandler() {
-		if (!$this->_rowHandler) {
-			import('controllers.grid.reviewForm.ReviewFormRowHandler');
-			$rowHandler =& new ReviewFormRowHandler();
-			$this->setRowHandler($rowHandler);
-		}
-		return parent::getRowHandler();
+		return array_merge(parent::getRemoteOperations(), array('createReviewForm', 'editReviewForm', 'updateReviewForm', 'deleteReviewForm', 'previewReviewForm'));
 	}
 
 	/**
@@ -48,12 +39,12 @@ class ReviewFormGridHandler extends GridMainHandler {
 	 * @param PKPRequest $request
 	 */
 	function initialize(&$request) {
-		// Only initialize once
-		if ($this->getInitialized()) return;
-
+		parent::initialize($request);
 		// Basic grid configuration
 		$this->setId('reviewForm');
 		$this->setTitle('grid.reviewForm.title');
+
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
 
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();
@@ -75,8 +66,33 @@ class ReviewFormGridHandler extends GridMainHandler {
 			GRID_ACTION_POSITION_ABOVE
 		);
 
-		parent::initialize($request);
+		// Columns
+		$emptyActions = array();
+		// Basic grid row configuration
+		import('controllers.grid.reviewForm.ReviewFormGridCellProvider');
+		$cellProvider =& new ReviewFormGridCellProvider();
+		$this->addColumn(new GridColumn('titles', 'common.title', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
+
+		/* FIXME: http://pkp.sfu.ca/bugzilla/show_bug.cgi?id=5122 */
+		//$this->addColumn(new GridColumn('completeCount', 'common.completed'));
+		//$this->addColumn(new GridColumn('incompleteCount', 'common.title'));
 	}
+
+	//
+	// Overridden methods from GridHandler
+	//
+	/**
+	 * Get the row handler - override the default row handler
+	 * @return ReviewFormGridRow
+	 */
+	function &getRowInstance() {
+		$row = new ReviewFormGridRow();
+		return $row;
+	}
+
+	//
+	// Public Review Form Actions
+	//
 
 	/**
 	 * Display form to create a new review form.
@@ -85,11 +101,157 @@ class ReviewFormGridHandler extends GridMainHandler {
 	 */
 	function createReviewForm(&$args, &$request) {
 		// Delegate to the row handler
-		$reviewFormRow =& $this->getRowHandler();
+		$reviewFormRow =& $this->getRow();
 
 		// Calling editReviewForm with an empty row id will add a new review form.
-		$reviewFormRow->editReviewForm($args, $request);
+		$this->editReviewForm($args, $request);
 	}
+
+	/**
+	 * Display form to create/edit a review form.
+	 * @param $args array, first parameter is the ID of the review form to edit
+	 * @param $request PKPRequest
+	 */
+	function editReviewForm(&$args, &$request) {
+		$this->setupTemplate($args, $request);
+
+		$reviewFormId = $this->getId();
+
+		$press =& Request::getPress();
+		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
+
+		if ($reviewFormId != null && (!isset($reviewForm) || $reviewForm->getCompleteCount() != 0 || $reviewForm->getIncompleteCount() != 0)) {
+			Request::redirect(null, null, 'reviewForms');
+		} else {
+			$templateMgr =& TemplateManager::getManager();
+
+			if ($reviewFormId == null) {
+				$templateMgr->assign('pageTitle', 'manager.reviewForms.create');
+			} else {
+				$templateMgr->assign('pageTitle', 'manager.reviewForms.edit');
+			}
+
+			import('controllers.grid.reviewForm.form.ReviewFormForm');
+			$reviewFormForm = new ReviewFormForm($reviewFormId);
+
+			if ($reviewFormForm->isLocaleResubmit()) {
+				$reviewFormForm->readInputData();
+			} else {
+				$reviewFormForm->initData($args, $request);
+			}
+			$reviewFormForm->display();
+		}
+	}
+
+	/**
+	 * Save changes to a review form.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function updateReviewForm(&$args, &$request) {
+		$reviewFormId = Request::getUserVar('reviewFormId') === null? null : (int) Request::getUserVar('reviewFormId');
+
+		if ($reviewFormId === null) {
+			$reviewForm = null;
+		} else {
+			$router =& $request->getRouter();
+			$context =& $router->getContext($request);
+			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+			$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $context->getId());
+		}
+
+		$press =& Request::getPress();
+
+		import('controllers.grid.reviewForm.form.ReviewFormForm');
+		$reviewFormForm = new ReviewFormForm($reviewFormId);
+		$reviewFormForm->readInputData();
+
+		if ($reviewFormForm->validate()) {
+			$reviewFormForm->execute();
+
+			$row =& $this->getRowInstance();
+			$row->setGridId($this->getId());
+			$row->setId($reviewFormForm->reviewForm->getReviewFormId());
+			$row->setData($reviewFormForm->reviewForm);
+			$row->initialize($request);
+
+			$json = new JSON('true', $this->_renderRowInternally($request, row));
+		} else {
+			$json = new JSON('false');
+
+			$templateMgr =& TemplateManager::getManager();
+			if ($reviewFormId == null) {
+				$templateMgr->assign('pageTitle', 'manager.reviewForms.create');
+			} else {
+				$templateMgr->assign('pageTitle', 'manager.reviewForms.edit');
+			}
+
+			$reviewFormForm->display();
+		}
+		return $json->getString();
+	}
+
+	/**
+	 * Delete a review form.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function deleteReviewForm(&$args, &$request) {
+		$router =& $request->getRouter();
+		$press =& $router->getContext($request);
+
+		$reviewFormId = $this->getId();
+		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
+
+		if (isset($reviewForm) && $reviewForm->getCompleteCount() == 0 && $reviewForm->getIncompleteCount() == 0) {
+			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignments =& $reviewAssignmentDao->getByReviewFormId($reviewFormId);
+
+			foreach ($reviewAssignments as $reviewAssignment) {
+				$reviewAssignment->setReviewFormId('');
+				$reviewAssignmentDao->updateObject($reviewAssignment);
+			}
+
+			$reviewFormDao->deleteReviewFormById($reviewFormId, $press->getId());
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingReviewForm'));
+		}
+
+		echo $json->getString();
+	}
+
+	/**
+	 * Preview a review form.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function previewReviewForm(&$args, &$request) {
+		$router =& $request->getRouter();
+		$press =& $router->getContext($request);
+
+		$reviewFormId = $this->getId();
+
+		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
+		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+		$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
+
+		if (!isset($reviewForm)) {
+			return '';
+		}
+
+		$templateMgr =& TemplateManager::getManager();
+
+		$templateMgr->assign('pageTitle', 'manager.reviewForms.preview');
+		$templateMgr->assign_by_ref('reviewForm', $reviewForm);
+		$templateMgr->assign('reviewFormElements', $reviewFormElements);
+		$templateMgr->display('controllers/grid/reviewForm/previewReviewForm.tpl');
+	}
+
 }
 
 ?>

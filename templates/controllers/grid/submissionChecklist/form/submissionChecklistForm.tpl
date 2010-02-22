@@ -9,7 +9,7 @@
  *
  * $Id$
  *}
-<form name="editSubmissionChecklistForm" id="editSubmissionChecklistForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.submissionChecklist.SubmissionChecklistRowHandler" op="updateItem"}"}
+<form name="editSubmissionChecklistForm" id="editSubmissionChecklistForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.submissionChecklist.SubmissionChecklistGridHandler" op="updateItem"}"}
 {include file="common/formErrors.tpl"}
 
 <h3>1.5 {translate key="manager.setup.submissionPreparationChecklist"}</h3>

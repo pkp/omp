@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/manager/listbuilder/NavBarListbuilder.inc.php
+ * @file controllers/listbuilder/setup/NavBarListbuilder.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -9,31 +9,31 @@
  * @class InternalReviewRolesListbuilderHandler
  * @ingroup listbuilder
  *
- * @brief Class for editing external review roles
+ * @brief Class for editing internal review roles
  */
 
 import('controllers.listbuilder.ListbuilderHandler');
 
-class ExternalReviewRolesListbuilderHandler extends ListbuilderHandler {
+class SubmissionRolesListbuilderHandler extends ListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
-	var $_rowHandlerInstantiated = false;
+	var $_rowInstantiated = false;
 
 	/**
 	 * Constructor
 	 */
-	function ExternalReviewRolesListbuilderHandler() {
+	function SubmissionRolesListbuilderHandler() {
 		parent::ListbuilderHandler();
-
 	}
 
 	/* Load the list from an external source into the listbuilder structure */
 	function loadList(&$request) {
+		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
 
 		$press =& $request->getPress();
 
 		// Get items to populate listBuilder current item list
-		$roles = $flexibleRoleDao->getByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_EXTERNAL_REVIEW, $press->getId());
+		$roles = $flexibleRoleDao->getByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_SUBMISSION, $press->getId());
 
 		$items = array();
 		foreach($roles as $item) {
@@ -44,26 +44,26 @@ class ExternalReviewRolesListbuilderHandler extends ListbuilderHandler {
 		$this->setData($items);
 	}
 
-
 	/* Get possible items to populate drop-down list with */
 	function getPossibleItemList() {
 		return $this->possibleItems;
 	}
 
-	/* Get possible items to populate drop-down list with */
+	/* Load possible items to populate drop-down list with */
 	function loadPossibleItemList(&$request) {
+		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
 
 		$press =& $request->getPress();
 
 		// Get items to populate possible items list with
-		$currentRoleIds = $flexibleRoleDao->getIdsByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_EXTERNAL_REVIEW, $press->getId()); // Don't include current roles
+		$currentRoleIds = $flexibleRoleDao->getIdsByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_SUBMISSION, $press->getId()); // Don't include current roles
 
 		$itemList = array();
 		$availableRoles = $flexibleRoleDao->getEnabledByPressId($press->getId());
 		foreach ($availableRoles as $availableRole) {
-			if ($availableRole->getType() == FLEXIBLE_ROLE_CLASS_PRESS && !in_array($availableRole->getId(), $currentRoleIds)) {
-				$itemList[] = $this->buildListItemHTML($availableRole->getId(), $availableRole->getLocalizedName(), $availableRole->getLocalizedDesignation());
+			if ($availableRole->getType() == FLEXIBLE_ROLE_CLASS_AUTHOR && !in_array($availableRole->getId(), $currentRoleIds)) {
+				$itemList[] = $this->_buildListItemHTML($availableRole->getId(), $availableRole->getLocalizedName(), $availableRole->getLocalizedDesignation());
 			}
 		}
 
@@ -78,42 +78,19 @@ class ExternalReviewRolesListbuilderHandler extends ListbuilderHandler {
 	 * @param PKPRequest $request
 	 */
 	function initialize(&$request) {
-		// Only initialize once
-		if ($this->getInitialized()) return;
+		parent::initialize($request);
 
 		// Basic configuration
-		$this->setId('extRevRoles');
-		$this->setTitle('manager.setup.externalReviewRoles');
+		$this->setTitle('manager.setup.submissionRoles');
 		$this->setSourceTitle('manager.setup.availableRoles');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); //Select from drop-down list
 		$this->setListTitle('manager.setup.currentRoles');
 
-		// Add grid-level actions
-		$router =& $request->getRouter();
-
 		$this->loadPossibleItemList($request);
 		$this->loadList($request);
 
-		parent::initialize($request);
-	}
-
-	/**
-	 * Get the row handler - override the default row handler
-	 * @return SponsorRowHandler
-	 */
-	function &getRowHandler() {
-		if (!$this->_rowHandlerInstantiated) {
-			import('controllers.listbuilder.ListbuilderGridRowHandler');
-			$rowHandler =& new ListbuilderGridRowHandler();
-
-			// Basic grid row configuration
-			$rowHandler->addColumn(new GridColumn('item', 'common.name'));
-			$rowHandler->addColumn(new GridColumn('attribute', 'common.designation'));
-
-			$this->setRowHandler($rowHandler);
-			$this->_rowHandlerInstantiated = true;
-		}
-		return parent::getRowHandler();
+		$this->addColumn(new GridColumn('item', 'common.name'));
+		$this->addColumn(new GridColumn('attribute', 'common.designation'));
 	}
 
 	//
@@ -123,32 +100,33 @@ class ExternalReviewRolesListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle adding an item to the list
 	 */
-	function additem(&$args, &$request) {
+	function addItem(&$args, &$request) {
 		$this->setupTemplate();
 		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
 		$press =& $request->getPress();
 
-		$flexibleRoleId = (int) array_shift($args);
+		$index = 'selectList-' . $this->getId();
+		$flexibleRoleId = (int) $args[$index];
 
 		if(empty($flexibleRoleId)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.selectValidOption'));
 			echo $json->getString();
 		} else {
 			$flexibleRole =& $flexibleRoleDao->getById($flexibleRoleId);
-
 			// FIXME: Make sure associated series doesn't already exist, else return an error modal
 
-			$flexibleRole->addAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_EXTERNAL_REVIEW);
+			$flexibleRole->addAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_SUBMISSION);
 			$flexibleRoleDao->updateObject($flexibleRole);
 
 			// Return JSON with formatted HTML to insert into list
-			$flexibleRoleRow =& $this->getRowHandler();
+			$row =& $this->getRowInstance();
+			$row->setGridId($this->getId());
+			$row->setId($flexibleRoleId);
 			$rowData = array('item' => $flexibleRole->getLocalizedName(), 'attribute' => $flexibleRole->getLocalizedDesignation());
-			$flexibleRoleRow->configureRow($request);
-			$flexibleRoleRow->setData($rowData);
-			$flexibleRoleRow->setId($flexibleRoleId);
+			$row->setData($rowData);
+			$row->initialize($request);
 
-			$json = new JSON('true', $flexibleRoleRow->renderRowInternally($request));
+			$json = new JSON('true', $this->_renderRowInternally($request, $row));
 			echo $json->getString();
 		}
 	}
@@ -156,13 +134,13 @@ class ExternalReviewRolesListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle deleting items from the list
 	 */
-	function deleteitems(&$args, &$request) {
+	function deleteItems(&$args, &$request) {
 		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
 
 		foreach($args as $flexibleRoleId) {
 			$flexibleRole =& $flexibleRoleDao->getById($flexibleRoleId);
 
-			$flexibleRole->removeAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_EXTERNAL_REVIEW);
+			$flexibleRole->removeAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_SUBMISSION);
 			$flexibleRoleDao->updateObject($flexibleRole);
 
 			unset($flexibleRole);

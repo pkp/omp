@@ -52,6 +52,7 @@ class GroupForm extends Form {
 	 */
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
+		
 		$templateMgr->assign_by_ref('group', $this->group);
 		$templateMgr->assign('helpTopicId', 'press.managementPages.groups');
 		$templateMgr->assign('groupContextOptions', array(

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/manager/listbuilder/MastheadMembershipListbuilderHandler.inc.php
+ * @file controllers/listbuilder/setup/MastheadMembershipListbuilderHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -16,7 +16,7 @@ import('controllers.listbuilder.ListbuilderHandler');
 
 class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
-	var $_rowHandlerInstantiated = false;
+	var $_rowInstantiated = false;
 
 	/** @var The group ID for this listbuilder */
 	var $groupId;
@@ -82,7 +82,7 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('getautocompletesource'));
+		return array_merge(parent::getRemoteOperations(), array('getAutocompleteSource'));
 	}
 
 
@@ -104,19 +104,19 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 		$groupId = $request->getUserVar('groupId');
 
 		$templateMgr->assign('itemId', $groupId); // Autocomplete fields require a unique ID to avoid JS conflicts
-		$templateMgr->assign('addUrl', $router->url($request, array(), null, 'additem', null, array('groupId' => $groupId)));
-		$templateMgr->assign('deleteUrl', $router->url($request, array(), null, 'deleteitems', null, array('groupId' => $groupId)));
-		$templateMgr->assign('autocompleteUrl', $router->url($request, array(), null, 'getautocompletesource', null));
+		$templateMgr->assign('addUrl', $router->url($request, array(), null, 'addItem', null, array('groupId' => $groupId)));
+		$templateMgr->assign('deleteUrl', $router->url($request, array(), null, 'deleteItems', null, array('groupId' => $groupId)));
+		$templateMgr->assign('autocompleteUrl', $router->url($request, array(), null, 'getAutocompleteSource', null));
 
 		// Translate modal submit/cancel buttons
 		$okButton = Locale::translate('common.ok');
 		$warning = Locale::translate('common.warning');
 		$templateMgr->assign('localizedButtons', "$okButton, $warning");
 
-		$rowHandler =& $this->getRowHandler();
+		$row =& $this->getRowInstance();
 		// initialize to create the columns
-		$rowHandler->initialize($request);
-		$columns =& $rowHandler->getColumns();
+		$row->initialize($request);
+		$columns =& $this->getColumns();
 		$templateMgr->assign_by_ref('columns', $columns);
 		$templateMgr->assign('numColumns', count($columns));
 
@@ -133,12 +133,10 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 	 * @param PKPRequest $request
 	 */
 	function initialize(&$request) {
-		// Only initialize once
-		if ($this->getInitialized()) return;
+		parent::initialize($request);
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
 
 		// Basic configuration
-		$this->setId('mastheadMembership');
 		$this->setTitle('manager.groups.membership.addMember');
 		$this->setSourceTitle('common.user');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_BOUND); // Free text input
@@ -148,25 +146,7 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 
 		$this->loadList($request);
 
-		parent::initialize($request);
-	}
-
-	/**
-	 * Get the row handler - override the default row handler
-	 * @return SponsorRowHandler
-	 */
-	function &getRowHandler() {
-		if (!$this->_rowHandlerInstantiated) {
-			import('controllers.listbuilder.ListbuilderGridRowHandler');
-			$rowHandler =& new ListbuilderGridRowHandler();
-
-			// Basic grid row configuration
-			$rowHandler->addColumn(new GridColumn('item', 'common.name'));
-
-			$this->setRowHandler($rowHandler);
-			$this->_rowHandlerInstantiated = true;
-		}
-		return parent::getRowHandler();
+		$this->addColumn(new GridColumn('item', 'common.name'));
 	}
 
 	//
@@ -176,7 +156,7 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Fetch either a block of data for local autocomplete, or return a URL to another function for AJAX autocomplete
 	 */
-	function getautocompletesource(&$args, &$request) {
+	function getAutocompleteSource(&$args, &$request) {
 		//FIXME: add validation here?
 		$this->setupTemplate();
 
@@ -199,13 +179,13 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle adding an item to the list
 	 */
-	function additem(&$args, &$request) {
+	function addItem(&$args, &$request) {
 		$this->setupTemplate();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$press =& $request->getPress();
 
 		$groupId = $args['groupId'];
-		$index = "sourceId-mastheadMembership-$groupId";
+		$index = 'sourceId-' . $this->getId() . '-' . $groupId;
 		$userId = $args[$index];
 
 		if(empty($userId)) {
@@ -234,13 +214,14 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 			$user =& $userDao->getUser($userId);
 
 			// Return JSON with formatted HTML to insert into list
-			$groupMembershipRow =& $this->getRowHandler();
+			$row =& $this->getRowInstance();
+			$row->setGridId($this->getId());
+			$row->setId($userId);
 			$rowData = array('item' => $user->getFullName(), 'attribute' => $user->getUsername());
-			$groupMembershipRow->configureRow($request);
-			$groupMembershipRow->setData($rowData);
-			$groupMembershipRow->setId($userId);
+			$row->setData($rowData);
+			$row->initialize($request);
 
-			$json = new JSON('true', $groupMembershipRow->renderRowInternally($request));
+			$json = new JSON('true', $this->_renderRowInternally($request, $row));
 			echo $json->getString();
 		}
 	}
@@ -248,7 +229,7 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle deleting items from the list
 	 */
-	function deleteitems(&$args, &$request) {
+	function deleteItems(&$args, &$request) {
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 		$groupId = array_shift($args);
 

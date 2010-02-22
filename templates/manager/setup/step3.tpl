@@ -30,13 +30,13 @@
 
 <p>{translate key="manager.setup.pressRolesDescription"}</p>
 
-{url|assign:authorRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.AuthorRolesListbuilderHandler" op="fetch"}
+{url|assign:authorRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.AuthorRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="authorRolesContainer" url=$authorRolesUrl}
 
-{url|assign:pressRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.PressRolesListbuilderHandler" op="fetch"}
+{url|assign:pressRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.PressRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="pressRolesContainer" url=$pressRolesUrl}
 
-{url|assign:managerialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.ManagerialRolesListbuilderHandler" op="fetch"}
+{url|assign:managerialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.ManagerialRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="managerialRolesContainer" url=$managerialRolesUrl}
 
 <div class="separator"></div>
@@ -45,7 +45,7 @@
 
 <p>{translate key="manager.setup.submissionRolesDescription"}</p>
 
-{url|assign:submissionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.SubmissionRolesListbuilderHandler" op="fetch"}
+{url|assign:submissionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.SubmissionRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="submissionRolesContainer" url=$submissionRolesUrl}
 
 <div class="separator"></div>
@@ -54,7 +54,7 @@
 
 <p>{translate key="manager.setup.bookFileTypesDescription"}</p>
 
-{url|assign:bookFileTypesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.BookFileTypesListbuilderHandler" op="fetch"}
+{url|assign:bookFileTypesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.BookFileTypesListbuilderHandler" op="fetch"}
 {load_url_in_div id="bookFileTypesContainer" url=$bookFileTypesUrl}
 
 <div class="separator"></div>
@@ -70,7 +70,7 @@
 
 <p>{translate key="manager.setup.internalReviewRolesDescription"}</p>
 
-{url|assign:internalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.InternalReviewRolesListbuilderHandler" op="fetch"}
+{url|assign:internalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.InternalReviewRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="internalReviewRolesContainer" url=$internalReviewRolesUrl}
 
 <div class="separator"></div>
@@ -79,7 +79,7 @@
 
 <p>{translate key="manager.setup.externalReviewRolesDescription"}</p>
 
-{url|assign:externalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.ExternalReviewRolesListbuilderHandler" op="fetch"}
+{url|assign:externalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.ExternalReviewRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="externalReviewRolesContainer" url=$externalReviewRolesUrl}
 
 <div class="separator"></div>
@@ -102,7 +102,7 @@
 
 <p>{translate key="manager.setup.editorialRolesDescription"}</p>
 
-{url|assign:editorialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.EditorialRolesListbuilderHandler" op="fetch"}
+{url|assign:editorialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.EditorialRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="editorialRolesContainer" url=$editorialRolesUrl}
 
 <div class="separator"></div>
@@ -118,7 +118,7 @@
 
 <p>{translate key="manager.setup.productionRolesDescription"}</p>
 
-{url|assign:productionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.ProductionRolesListbuilderHandler" op="fetch"}
+{url|assign:productionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.ProductionRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="productionRolesContainer" url=$productionRolesUrl}
 
 <div class="separator"></div>
@@ -141,7 +141,7 @@
 
 <p>{translate key="manager.setup.publicationFormatsDescription"}</p>
 
-{url|assign:publicationFormatsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.PublicationFormatsListbuilderHandler" op="fetch"}
+{url|assign:publicationFormatsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.PublicationFormatsListbuilderHandler" op="fetch"}
 {load_url_in_div id="publicationFormatsContainer" url=$publicationFormatsUrl}
 
 <div class="separator"></div>

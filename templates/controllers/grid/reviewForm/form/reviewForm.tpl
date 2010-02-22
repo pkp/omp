@@ -8,7 +8,7 @@
  *
  *}
 
-<form name="reviewFormForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.reviewForm.ReviewFormRowHandler" op="updateReviewForm"}">
+<form name="reviewFormForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.reviewForm.ReviewFormGridHandler" op="updateReviewForm"}">
 
 <table class="data" width="100%">
 {if count($formLocales) > 1}

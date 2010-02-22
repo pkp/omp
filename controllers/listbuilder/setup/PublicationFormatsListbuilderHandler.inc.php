@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/manager/listbuilder/PublicationFormatsListbuilderHandler.inc.php
+ * @file controllers/listbuilder/setup/PublicationFormatsListbuilderHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -16,7 +16,7 @@ import('controllers.listbuilder.ListbuilderHandler');
 
 class PublicationFormatsListbuilderHandler extends ListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
-	var $_rowHandlerInstantiated = false;
+	var $_rowInstantiated = false;
 
 	/**
 	 * Constructor
@@ -51,11 +51,8 @@ class PublicationFormatsListbuilderHandler extends ListbuilderHandler {
 	 * @param PKPRequest $request
 	 */
 	function initialize(&$request) {
-		// Only initialize once
-		if ($this->getInitialized()) return;
-
+		parent::initialize($request);
 		// Basic configuration
-		$this->setId('publicationFormats');
 		$this->setTitle('manager.setup.publicationFormats');
 		$this->setSourceTitle('common.name');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
@@ -64,28 +61,9 @@ class PublicationFormatsListbuilderHandler extends ListbuilderHandler {
 
 		$this->loadList($request);
 
-		parent::initialize($request);
+		$this->addColumn(new GridColumn('item', 'common.name'));
+		$this->addColumn(new GridColumn('attribute', 'common.designation'));
 	}
-
-	/**
-	 * Get the row handler - override the default row handler
-	 * @return SponsorRowHandler
-	 */
-	function &getRowHandler() {
-		if (!$this->_rowHandlerInstantiated) {
-			import('controllers.listbuilder.ListbuilderGridRowHandler');
-			$rowHandler =& new ListbuilderGridRowHandler();
-
-			// Basic grid row configuration
-			$rowHandler->addColumn(new GridColumn('item', 'common.name'));
-			$rowHandler->addColumn(new GridColumn('attribute', 'common.designation'));
-
-			$this->setRowHandler($rowHandler);
-			$this->_rowHandlerInstantiated = true;
-		}
-		return parent::getRowHandler();
-	}
-
 
 	//
 	// Public AJAX-accessible functions
@@ -94,13 +72,15 @@ class PublicationFormatsListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle adding an item to the list
 	 */
-	function additem(&$args, &$request) {
+	function addItem(&$args, &$request) {
 		$this->setupTemplate();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$press =& $request->getPress();
 
-		$publicationFormatName = $args['sourceTitle-publicationFormats'];
-		$publicationFormatDesignation = $args['attribute-1-publicationFormats'];
+		$nameIndex = 'sourceTitle-' . $this->getId();
+		$publicationFormatName = $args[$nameIndex];
+		$abbrevIndex = 'attribute-1-' . $this->getId();
+		$publicationFormatDesignation = $args[$abbrevIndex];
 
 		if(empty($publicationFormatName) || empty($publicationFormatDesignation)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
@@ -124,13 +104,14 @@ class PublicationFormatsListbuilderHandler extends ListbuilderHandler {
 			$publicationFormatId = $publicationFormatDao->insertObject($publicationFormat);
 
 			// Return JSON with formatted HTML to insert into list
-			$publicationFormatRow =& $this->getRowHandler();
+			$row =& $this->getRowInstance();
+			$row->setGridId($this->getId());
+			$row->setId($publicationFormatId);
 			$rowData = array('item' => $publicationFormatName, 'attribute' => $publicationFormatDesignation);
-			$publicationFormatRow->configureRow($request);
-			$publicationFormatRow->setData($rowData);
-			$publicationFormatRow->setId($publicationFormatId);
+			$row->setData($rowData);
+			$row->initialize($request);
 
-			$json = new JSON('true', $publicationFormatRow->renderRowInternally($request));
+			$json = new JSON('true', $this->_renderRowInternally($request, $row));
 			echo $json->getString();
 		}
 	}
@@ -138,7 +119,7 @@ class PublicationFormatsListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle deleting items from the list
 	 */
-	function deleteitems(&$args, &$request) {
+	function deleteItems(&$args, &$request) {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 
 		foreach($args as $publicationFormatId) {

@@ -10,7 +10,7 @@
  *}
 
 <h3>{translate key="manager.setup.submissionLibrary"}</h3>
-<form name="uploadForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.library.LibraryFileRowHandler" op="uploadFile" fileType=$fileType}" id="uploadForm" method="post">
+<form name="uploadForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.library.LibraryFileGridHandler" op="uploadFile" fileType=$fileType}" id="uploadForm" method="post">
 	<!-- Max file size of 5 MB -->
 	<input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
 	{translate key='common.file'} <input type="file" name="libraryFile" />

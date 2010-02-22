@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/manager/listbuilder/DivisionsListbuilderHandler.inc.php
+ * @file controllers/listbuilder/setup/DivisionsListbuilderHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -17,7 +17,7 @@ import('press.Division');
 
 class DivisionsListbuilderHandler extends ListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
-	var $_rowHandlerInstantiated = false;
+	var $_rowInstantiated = false;
 
 	/**
 	 * Constructor
@@ -51,11 +51,8 @@ class DivisionsListbuilderHandler extends ListbuilderHandler {
 	 * @param PKPRequest $request
 	 */
 	function initialize(&$request) {
-		// Only initialize once
-		if ($this->getInitialized()) return;
-
+		parent::initialize($request);
 		// Basic configuration
-		$this->setId('divisions');
 		$this->setTitle('manager.setup.division');
 		$this->setSourceTitle('manager.setup.division');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
@@ -63,27 +60,8 @@ class DivisionsListbuilderHandler extends ListbuilderHandler {
 
 		$this->loadList($request);
 
-		parent::initialize($request);
+		$this->addColumn(new GridColumn('item', 'manager.setup.currentFormats'));
 	}
-
-	/**
-	 * Get the row handler - override the default row handler
-	 * @return SponsorRowHandler
-	 */
-	function &getRowHandler() {
-		if (!$this->_rowHandlerInstantiated) {
-			import('controllers.listbuilder.ListbuilderGridRowHandler');
-			$rowHandler =& new ListbuilderGridRowHandler();
-
-			// Basic grid row configuration
-			$rowHandler->addColumn(new GridColumn('item', 'manager.setup.currentFormats'));
-
-			$this->setRowHandler($rowHandler);
-			$this->_rowHandlerInstantiated = true;
-		}
-		return parent::getRowHandler();
-	}
-
 
 	//
 	// Public AJAX-accessible functions
@@ -92,13 +70,14 @@ class DivisionsListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle adding an item to the list
 	 */
-	function additem(&$args, &$request) {
+	function addItem(&$args, &$request) {
 		$this->setupTemplate();
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
 		$press =& $request->getPress();
 
-		$divisionTitle = $args['sourceTitle-divisions'];
+		$index = 'sourceTitle-' . $this->getId();
+		$divisionTitle = $args[$index];
 
 		if(!isset($divisionTitle)) {
 			$json = new JSON('false');
@@ -119,13 +98,14 @@ class DivisionsListbuilderHandler extends ListbuilderHandler {
 			$divisionId = $divisionDao->insertObject($division);
 
 			// Return JSON with formatted HTML to insert into list
-			$divisionRow =& $this->getRowHandler();
+			$row =& $this->getRowInstance();
+			$row->setGridId($this->getId());
+			$row->setId($divisionId);
 			$rowData = array('item' => $divisionTitle);
-			$divisionRow->configureRow($request);
-			$divisionRow->setData($rowData);
-			$divisionRow->setId($divisionId);
+			$row->setData($rowData);
+			$row->initialize($request);
 
-			$json = new JSON('true', $divisionRow->renderRowInternally($request));
+			$json = new JSON('true', $this->_renderRowInternally($request, $row));
 			echo $json->getString();
 		}
 	}
@@ -133,7 +113,7 @@ class DivisionsListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle deleting items from the list
 	 */
-	function deleteitems(&$args, &$request) {
+	function deleteItems(&$args, &$request) {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
 		$press =& $request->getPress();

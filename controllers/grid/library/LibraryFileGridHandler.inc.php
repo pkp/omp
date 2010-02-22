@@ -12,54 +12,42 @@
  * @brief Handle file grid requests.
  */
 
-import('controllers.grid.GridMainHandler');
+import('controllers.grid.GridHandler');
+import('controllers.grid.library.LibraryFileGridRow');
 
-class LibraryFileGridHandler extends GridMainHandler {
+class LibraryFileGridHandler extends GridHandler {
 	/** the FileType for this grid */
 	var $fileType;
-	
+
 	/**
 	 * Constructor
 	 */
 	function LibraryFileGridHandler() {
-		parent::GridMainHandler();
+		parent::GridHandler();
 	}
 
 	//
 	// Getters/Setters
 	//
 	/**
-	 * get the FileType 
+	 * get the FileType
 	 */
 	function getFileType() {
 		return $this->fileType;
 	}
-	
+
 	/**
 	 * set the fileType
 	 */
 	function setFileType($fileType)	{
 		$this->fileType = $fileType;
 	}
-	
-	/**
-	 * Get the row handler - override the default row handler
-	 * @return FileRowHandler
-	 */
-	function &getRowHandler() {
-		if (!$this->_rowHandler) {
-			import('controllers.grid.library.LibraryFileRowHandler');
-			$rowHandler =& new LibraryFileRowHandler();
-			$this->setRowHandler($rowHandler);
-		}
-		return parent::getRowHandler();
-	}
 
 	/**
 	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addFile'));
+		return array_merge(parent::getRemoteOperations(), array('addFile', 'editFile', 'uploadFile', 'deleteFile'));
 	}
 
 	//
@@ -70,9 +58,7 @@ class LibraryFileGridHandler extends GridMainHandler {
 	 * @param PKPRequest $request
 	 */
 	function initialize(&$request) {
-		// Only initialize once
-		if ($this->getInitialized()) return;
-
+		parent::initialize($request);
 		// Basic grid configuration
 		$this->setFileType($request->getUserVar('fileType'));
 		$this->setId('libraryFile' . ucwords(strtolower($this->getFileType())));
@@ -99,7 +85,24 @@ class LibraryFileGridHandler extends GridMainHandler {
 			GRID_ACTION_POSITION_ABOVE
 		);
 
-		parent::initialize($request);
+		// Columns
+		$emptyActions = array();
+		// Basic grid row configuration
+		import('controllers.grid.library.LibraryFileGridCellProvider');
+		$cellProvider =& new LibraryFileGridCellProvider();
+		$this->addColumn(new GridColumn('groups', 'grid.libraryFiles.column.files', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
+	}
+
+	//
+	// Overridden methods from GridHandler
+	//
+	/**
+	 * Get the row handler - override the default row handler
+	 * @return LibraryFileGridRow
+	 */
+	function &getRowInstance() {
+		$row = new LibraryFileGridRow();
+		return $row;
 	}
 
 	//
@@ -112,11 +115,94 @@ class LibraryFileGridHandler extends GridMainHandler {
 	 */
 	function addFile(&$args, &$request) {
 		// Delegate to the row handler
-		import('controllers.grid.library.LibraryFileRowHandler');
-		$libraryFileRow =& new LibraryFileRowHandler();
+		import('controllers.grid.library.LibraryFileGridRow');
+		$libraryFileRow =& new LibraryFileGridRow();
 
 		// Calling editSponsor with an empty row id will add
 		// a new sponsor.
-		$libraryFileRow->editFile($args, $request);
-	}	
+		$this->editFile($args, $request);
+	}
+
+	/**
+	 * An action to add a new file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function editFile(&$args, &$request) {
+		//FIXME: add validation here?
+		$this->initialize($request);
+
+		import('controllers.grid.library.form.FileForm');
+		$fileForm = new FileForm($this->getFileType(), $this->getId());
+
+		if ($fileForm->isLocaleResubmit()) {
+			$fileForm->readInputData();
+		} else {
+			$fileForm->initData($args, $request);
+		}
+		$fileForm->display();
+	}
+
+	/**
+	 * upload a file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function uploadFile(&$args, &$request) {
+		//FIXME: add validation here?
+		$this->initialize($request);
+
+		import('controllers.grid.library.form.FileForm');
+		$fileForm = new FileForm($this->getFileType(), $this->getId());
+		$fileForm->readInputData();
+
+		// newUpload parameter appears only once the file has been uploaded
+		if ( $request->getUserVar('newUpload') ) {
+			$fileId = $request->getUserVar('fileId');
+			$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
+			$libraryFile =& $libraryFileDao->getById($fileId);
+
+			import('controllers.grid.library.LibraryFileGridRow');
+			$fileRow =& new LibraryFileGridRow();
+			$fileRow->setId($fileId);
+			$fileRow->setData($libraryFile);
+
+			$json = new JSON('true', $fileRow->_renderRowInternally($request));
+			echo $json->getString();
+		} elseif ($fileForm->validate() && ($fileId = $fileForm->uploadFile($args, $request)) ) {
+			// form validated and file uploaded successfully
+			$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
+			$libraryFile =& $libraryFileDao->getById($fileId);
+
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->assign_by_ref('libraryFile', $libraryFile);
+			$templateMgr->display('controllers/grid/library/form/fileInfo.tpl');
+			exit;
+		} else {
+			echo Locale::translate("problem uploading file");
+		}
+
+	}
+
+
+	/**
+	 * Delete a file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function deleteFile(&$args, &$request) {
+		// FIXME: add validation here?
+		$this->initialize($request);
+
+		$router =& $request->getRouter();
+		$press =& $router->getContext();
+
+		import('file.LibraryFileManager');
+		$libraryFileManager = new LibraryFileManager($press->getId());
+		$libraryFileManager->deleteFile($this->getId());
+		$json = new JSON('true');
+		echo $json->getString();
+	}
 }
