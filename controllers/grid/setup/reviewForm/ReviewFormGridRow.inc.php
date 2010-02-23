@@ -71,7 +71,7 @@ class ReviewFormGridRow extends GridRow {
 					'previewReviewForm',
 					GRID_ACTION_MODE_MODAL,
 					GRID_ACTION_TYPE_NOTHING,
-					$router->url($request, null, 'grid.reviewForm.ReviewFormGridRow', 'previewReviewForm', null, $actionArgs),
+					$router->url($request, null, 'grid.setup.reviewForm.ReviewFormGridRow', 'previewReviewForm', null, $actionArgs),
 					'grid.action.preview'
 				));
 			$this->addAction(
@@ -79,7 +79,7 @@ class ReviewFormGridRow extends GridRow {
 					'reviewFormElements',
 					GRID_ACTION_MODE_MODAL,
 					GRID_ACTION_TYPE_NOTHING,
-					$router->url($request, null, 'grid.reviewForm.ReviewFormElementGridHandler', 'fetchGrid', null, $actionArgs),
+					$router->url($request, null, 'grid.setup.reviewForm.ReviewFormElementGridHandler', 'fetchGrid', null, $actionArgs),
 					'grid.action.reviewFormElements'
 				));
 		}

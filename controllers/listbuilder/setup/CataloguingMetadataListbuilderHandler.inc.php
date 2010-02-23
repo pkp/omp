@@ -12,9 +12,9 @@
  * @brief Class for adding cataloguing metadata
  */
 
-import('controllers.listbuilder.ListbuilderHandler');
+import('controllers.listbuilder.setup.SetupListbuilderHandler');
 
-class CataloguingMetadataListbuilderHandler extends ListbuilderHandler {
+class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
 	var $_rowInstantiated = false;
 
@@ -22,7 +22,7 @@ class CataloguingMetadataListbuilderHandler extends ListbuilderHandler {
 	 * Constructor
 	 */
 	function CataloguingMetadataListbuilderHandler() {
-		parent::ListbuilderHandler();
+		parent::SetupListbuilderHandler();
 	}
 
 

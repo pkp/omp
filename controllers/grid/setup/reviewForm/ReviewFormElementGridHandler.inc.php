@@ -13,15 +13,15 @@
  *
 */
 
-import('controllers.grid.GridHandler');
-import('controllers.grid.reviewForm.ReviewFormElementGridRow');
+import('controllers.grid.setup.SetupGridHandler');
+import('controllers.grid.setup.reviewForm.ReviewFormElementGridRow');
 
-class ReviewFormElementGridHandler extends GridHandler {
+class ReviewFormElementGridHandler extends SetupGridHandler {
 	/**
 	 * Constructor
 	 **/
 	function ReviewFormElementGridHandler() {
-		parent::GridHandler();
+		parent::SetupGridHandler();
 	}
 
 	/**
@@ -71,11 +71,11 @@ class ReviewFormElementGridHandler extends GridHandler {
 		$emptyActions = array();
 
 		// Basic grid row configuration
-		import('controllers.grid.reviewForm.ReviewFormElementGridCellProvider');
+		import('controllers.grid.setup.reviewForm.ReviewFormElementGridCellProvider');
 		$cellProvider =& new ReviewFormElementGridCellProvider();
 		$this->addColumn(new GridColumn('reviewFormElement', 'grid.reviewFormElements.column.elements', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
 
-		import('controllers.grid.reviewForm.ReviewFormElementTypeCellProvider');
+		import('controllers.grid.setup.reviewForm.ReviewFormElementTypeCellProvider');
 		$cellProvider =& new ReviewFormElementTypeCellProvider();
 		$this->addColumn(new GridColumn('elementType', 'common.type', $emptyActions, 'controllers/grid/gridCell.tpl', $cellProvider));
 	}
@@ -137,7 +137,7 @@ class ReviewFormElementGridHandler extends GridHandler {
 				$templateMgr->assign('pageTitle', 'manager.reviewFormElements.edit');
 			}
 
-			import('controllers.grid.reviewForm.form.ReviewFormElementForm');
+			import('controllers.grid.setup.reviewForm.form.ReviewFormElementForm');
 			$reviewFormElementForm = new ReviewFormElementForm($reviewFormId, $reviewFormElementId);
 			if ($reviewFormElementForm->isLocaleResubmit()) {
 				$reviewFormElementForm->readInputData();
@@ -167,7 +167,7 @@ class ReviewFormElementGridHandler extends GridHandler {
 			Request::redirect(null, null, 'reviewFormElements', array($reviewFormId));
 		}
 
-		import('controllers.grid.reviewForm.form.ReviewFormElementForm');
+		import('controllers.grid.setup.reviewForm.form.ReviewFormElementForm');
 		$reviewFormElementForm = new ReviewFormElementForm($reviewFormId, $reviewFormElementId);
 		$reviewFormElementForm->readInputData();
 		$formLocale = $reviewFormElementForm->getFormLocale();

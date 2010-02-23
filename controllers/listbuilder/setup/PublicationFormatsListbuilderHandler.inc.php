@@ -12,9 +12,9 @@
  * @brief Class for adding new publication formats
  */
 
-import('controllers.listbuilder.ListbuilderHandler');
+import('controllers.listbuilder.setup.SetupListbuilderHandler');
 
-class PublicationFormatsListbuilderHandler extends ListbuilderHandler {
+class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
 	var $_rowInstantiated = false;
 
@@ -22,7 +22,7 @@ class PublicationFormatsListbuilderHandler extends ListbuilderHandler {
 	 * Constructor
 	 */
 	function PublicationFormatsListbuilderHandler() {
-		parent::ListbuilderHandler();
+		parent::SetupListbuilderHandler();
 	}
 
 

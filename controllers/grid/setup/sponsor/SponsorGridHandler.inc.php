@@ -12,15 +12,15 @@
  * @brief Handle sponsor grid requests.
  */
 
-import('controllers.grid.GridHandler');
-import('controllers.grid.sponsor.SponsorGridRow');
+import('controllers.grid.setup.SetupGridHandler');
+import('controllers.grid.setup.sponsor.SponsorGridRow');
 
-class SponsorGridHandler extends GridHandler {
+class SponsorGridHandler extends SetupGridHandler {
 	/**
 	 * Constructor
 	 */
 	function SponsorGridHandler() {
-		parent::GridHandler();
+		parent::SetupGridHandler();
 	}
 
 	//
@@ -71,7 +71,7 @@ class SponsorGridHandler extends GridHandler {
 		$this->addColumn(new GridColumn('institution', 'grid.columns.institution', $emptyActions, 'controllers/grid/gridCellInSpan.tpl'));
 		$this->addColumn(new GridColumn('url', 'grid.columns.url'));
 	}
-
+	
 	//
 	// Overridden methods from GridHandler
 	//
@@ -94,7 +94,7 @@ class SponsorGridHandler extends GridHandler {
 	 */
 	function addSponsor(&$args, &$request) {
 		// Delegate to the row handler
-		import('controllers.grid.sponsor.SponsorGridRow');
+		import('controllers.grid.setup.sponsor.SponsorGridRow');
 		$sponsorRow =& new SponsorGridRow();
 
 		// Calling editSponsor with an empty row id will add
@@ -111,7 +111,7 @@ class SponsorGridHandler extends GridHandler {
 	function editSponsor(&$args, &$request) {
 		//FIXME: add validation here?
 
-		import('controllers.grid.sponsor.form.SponsorForm');
+		import('controllers.grid.setup.sponsor.form.SponsorForm');
 		$sponsorForm = new SponsorForm($this->getId());
 
 		if ($sponsorForm->isLocaleResubmit()) {
@@ -133,7 +133,7 @@ class SponsorGridHandler extends GridHandler {
 		// -> sponsorId must be present and valid
 		// -> htmlId must be present and valid
 
-		import('controllers.grid.sponsor.form.SponsorForm');
+		import('controllers.grid.setup.sponsor.form.SponsorForm');
 		$sponsorForm = new SponsorForm($this->getId());
 		$sponsorForm->readInputData();
 

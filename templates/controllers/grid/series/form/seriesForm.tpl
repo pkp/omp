@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-<form name="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.series.SeriesGridHandler" op="updateSeries"}">
+<form name="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.setup.series.SeriesGridHandler" op="updateSeries"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="mastheadInfo"}

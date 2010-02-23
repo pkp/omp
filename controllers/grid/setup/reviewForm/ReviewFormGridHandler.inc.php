@@ -13,15 +13,15 @@
  *
 */
 
-import('controllers.grid.GridHandler');
-import('controllers.grid.reviewForm.ReviewFormGridRow');
+import('controllers.grid.setup.SetupGridHandler');
+import('controllers.grid.setup.reviewForm.ReviewFormGridRow');
 
-class ReviewFormGridHandler extends GridHandler {
+class ReviewFormGridHandler extends SetupGridHandler {
 	/**
 	 * Constructor
 	 **/
 	function ReviewFormGridHandler() {
-		parent::GridHandler();
+		parent::SetupGridHandler();
 	}
 
 	//
@@ -69,7 +69,7 @@ class ReviewFormGridHandler extends GridHandler {
 		// Columns
 		$emptyActions = array();
 		// Basic grid row configuration
-		import('controllers.grid.reviewForm.ReviewFormGridCellProvider');
+		import('controllers.grid.setup.reviewForm.ReviewFormGridCellProvider');
 		$cellProvider =& new ReviewFormGridCellProvider();
 		$this->addColumn(new GridColumn('titles', 'common.title', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
 
@@ -132,7 +132,7 @@ class ReviewFormGridHandler extends GridHandler {
 				$templateMgr->assign('pageTitle', 'manager.reviewForms.edit');
 			}
 
-			import('controllers.grid.reviewForm.form.ReviewFormForm');
+			import('controllers.grid.setup.reviewForm.form.ReviewFormForm');
 			$reviewFormForm = new ReviewFormForm($reviewFormId);
 
 			if ($reviewFormForm->isLocaleResubmit()) {
@@ -163,7 +163,7 @@ class ReviewFormGridHandler extends GridHandler {
 
 		$press =& Request::getPress();
 
-		import('controllers.grid.reviewForm.form.ReviewFormForm');
+		import('controllers.grid.setup.reviewForm.form.ReviewFormForm');
 		$reviewFormForm = new ReviewFormForm($reviewFormId);
 		$reviewFormForm->readInputData();
 

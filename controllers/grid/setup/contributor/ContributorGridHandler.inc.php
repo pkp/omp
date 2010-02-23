@@ -13,17 +13,17 @@
  */
 
 // Import grid base classes
-import('controllers.grid.GridHandler');
+import('controllers.grid.setup.SetupGridHandler');
 
 // Import Contributor grid specific classes
-import('controllers.grid.contributor.ContributorGridRow');
+import('controllers.grid.setup.contributor.ContributorGridRow');
 
-class ContributorGridHandler extends GridHandler {
+class ContributorGridHandler extends SetupGridHandler {
 	/**
 	 * Constructor
 	 */
 	function ContributorGridHandler() {
-		parent::GridHandler();
+		parent::SetupGridHandler();
 	}
 
 	//
@@ -96,7 +96,7 @@ class ContributorGridHandler extends GridHandler {
 	 */
 	function addContributor(&$args, &$request) {
 		// Delegate to the row handler
-		import('controllers.grid.contributor.ContributorGridRow');
+		import('controllers.grid.setup.contributor.ContributorGridRow');
 		$contributorRow =& new ContributorGridRow();
 
 		// Calling editContributor with an empty row id will add
@@ -112,7 +112,7 @@ class ContributorGridHandler extends GridHandler {
 	function editContributor(&$args, &$request) {
 		//FIXME: add validation here?
 
-		import('controllers.grid.contributor.form.ContributorForm');
+		import('controllers.grid.setup.contributor.form.ContributorForm');
 		$contributorForm = new ContributorForm($this->getId());
 
 		if ($contributorForm->isLocaleResubmit()) {
@@ -134,7 +134,7 @@ class ContributorGridHandler extends GridHandler {
 		// -> contributorId must be present and valid
 		// -> htmlId must be present and valid
 		$sponsorId = isset($args['sponsorId']) ? $args['sponsorId'] : null;
-		import('controllers.grid.contributor.form.ContributorForm');
+		import('controllers.grid.setup.contributor.form.ContributorForm');
 		$contributorForm = new ContributorForm($sponsorId);
 		$contributorForm->readInputData();
 

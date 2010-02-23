@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-<form name="groupForm" id="groupForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.masthead.MastheadGridHandler" op="updateGroup"}">
+<form name="groupForm" id="groupForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.setup.masthead.MastheadGridHandler" op="updateGroup"}">
 
 {include file="common/formErrors.tpl"}
 <table class="data" width="100%">

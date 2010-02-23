@@ -12,9 +12,9 @@
  * @brief Class for adding new managerial roles
  */
 
-import('controllers.listbuilder.ListbuilderHandler');
+import('controllers.listbuilder.setup.SetupListbuilderHandler');
 
-class ManagerialRolesListbuilderHandler extends ListbuilderHandler {
+class ManagerialRolesListbuilderHandler extends SetupListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
 	var $_rowInstantiated = false;
 
@@ -22,7 +22,7 @@ class ManagerialRolesListbuilderHandler extends ListbuilderHandler {
 	 * Constructor
 	 */
 	function ManagerialRolesListbuilderHandler() {
-		parent::ListbuilderHandler();
+		parent::SetupListbuilderHandler();
 	}
 
 

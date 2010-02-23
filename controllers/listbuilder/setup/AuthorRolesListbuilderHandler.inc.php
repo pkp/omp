@@ -12,9 +12,9 @@
  * @brief Class for adding new author roles
  */
 
-import('controllers.listbuilder.ListbuilderHandler');
+import('controllers.listbuilder.setup.SetupListbuilderHandler');
 
-class AuthorRolesListbuilderHandler extends ListbuilderHandler {
+class AuthorRolesListbuilderHandler extends SetupListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
 	var $_rowInstantiated = false;
 
@@ -22,7 +22,7 @@ class AuthorRolesListbuilderHandler extends ListbuilderHandler {
 	 * Constructor
 	 */
 	function AuthorRolesListbuilderHandler() {
-		parent::ListbuilderHandler();
+		parent::SetupListbuilderHandler();
 	}
 
 

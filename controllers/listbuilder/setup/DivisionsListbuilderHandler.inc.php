@@ -12,10 +12,10 @@
  * @brief Class for adding Press Divisions
  */
 
-import('controllers.listbuilder.ListbuilderHandler');
+import('controllers.listbuilder.setup.SetupListbuilderHandler');
 import('press.Division');
 
-class DivisionsListbuilderHandler extends ListbuilderHandler {
+class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
 	var $_rowInstantiated = false;
 
@@ -23,7 +23,7 @@ class DivisionsListbuilderHandler extends ListbuilderHandler {
 	 * Constructor
 	 */
 	function DivisionsListbuilderHandler() {
-		parent::ListbuilderHandler();
+		parent::SetupListbuilderHandler();
 	}
 
 

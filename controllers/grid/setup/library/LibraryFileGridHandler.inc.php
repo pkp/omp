@@ -12,10 +12,10 @@
  * @brief Handle file grid requests.
  */
 
-import('controllers.grid.GridHandler');
-import('controllers.grid.library.LibraryFileGridRow');
+import('controllers.grid.setup.SetupGridHandler');
+import('controllers.grid.setup.library.LibraryFileGridRow');
 
-class LibraryFileGridHandler extends GridHandler {
+class LibraryFileGridHandler extends SetupGridHandler {
 	/** the FileType for this grid */
 	var $fileType;
 
@@ -23,7 +23,7 @@ class LibraryFileGridHandler extends GridHandler {
 	 * Constructor
 	 */
 	function LibraryFileGridHandler() {
-		parent::GridHandler();
+		parent::SetupGridHandler();
 	}
 
 	//
@@ -88,7 +88,7 @@ class LibraryFileGridHandler extends GridHandler {
 		// Columns
 		$emptyActions = array();
 		// Basic grid row configuration
-		import('controllers.grid.library.LibraryFileGridCellProvider');
+		import('controllers.grid.setup.library.LibraryFileGridCellProvider');
 		$cellProvider =& new LibraryFileGridCellProvider();
 		$this->addColumn(new GridColumn('groups', 'grid.libraryFiles.column.files', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
 	}
@@ -115,7 +115,7 @@ class LibraryFileGridHandler extends GridHandler {
 	 */
 	function addFile(&$args, &$request) {
 		// Delegate to the row handler
-		import('controllers.grid.library.LibraryFileGridRow');
+		import('controllers.grid.setup.library.LibraryFileGridRow');
 		$libraryFileRow =& new LibraryFileGridRow();
 
 		// Calling editSponsor with an empty row id will add
@@ -132,7 +132,7 @@ class LibraryFileGridHandler extends GridHandler {
 		//FIXME: add validation here?
 		$this->initialize($request);
 
-		import('controllers.grid.library.form.FileForm');
+		import('controllers.grid.setup.library.form.FileForm');
 		$fileForm = new FileForm($this->getFileType(), $this->getId());
 
 		if ($fileForm->isLocaleResubmit()) {
@@ -153,7 +153,7 @@ class LibraryFileGridHandler extends GridHandler {
 		//FIXME: add validation here?
 		$this->initialize($request);
 
-		import('controllers.grid.library.form.FileForm');
+		import('controllers.grid.setup.library.form.FileForm');
 		$fileForm = new FileForm($this->getFileType(), $this->getId());
 		$fileForm->readInputData();
 
@@ -163,7 +163,7 @@ class LibraryFileGridHandler extends GridHandler {
 			$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 			$libraryFile =& $libraryFileDao->getById($fileId);
 
-			import('controllers.grid.library.LibraryFileGridRow');
+			import('controllers.grid.setup.library.LibraryFileGridRow');
 			$fileRow =& new LibraryFileGridRow();
 			$fileRow->setId($fileId);
 			$fileRow->setData($libraryFile);

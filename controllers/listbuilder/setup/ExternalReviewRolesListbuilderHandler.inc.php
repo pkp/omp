@@ -12,9 +12,9 @@
  * @brief Class for editing external review roles
  */
 
-import('controllers.listbuilder.ListbuilderHandler');
+import('controllers.listbuilder.setup.SetupListbuilderHandler');
 
-class ExternalReviewRolesListbuilderHandler extends ListbuilderHandler {
+class ExternalReviewRolesListbuilderHandler extends SetupListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
 	var $_rowInstantiated = false;
 
@@ -22,7 +22,7 @@ class ExternalReviewRolesListbuilderHandler extends ListbuilderHandler {
 	 * Constructor
 	 */
 	function ExternalReviewRolesListbuilderHandler() {
-		parent::ListbuilderHandler();
+		parent::SetupListbuilderHandler();
 
 	}
 

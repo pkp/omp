@@ -12,9 +12,9 @@
  * @brief Class for adding new publication formats
  */
 
-import('controllers.listbuilder.ListbuilderHandler');
+import('controllers.listbuilder.setup.SetupListbuilderHandler');
 
-class BookFileTypesListbuilderHandler extends ListbuilderHandler {
+class BookFileTypesListbuilderHandler extends SetupListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
 	var $_rowInstantiated = false;
 
@@ -22,7 +22,7 @@ class BookFileTypesListbuilderHandler extends ListbuilderHandler {
 	 * Constructor
 	 */
 	function BookFileTypesListbuilderHandler() {
-		parent::ListbuilderHandler();
+		parent::SetupListbuilderHandler();
 	}
 
 

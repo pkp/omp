@@ -12,15 +12,15 @@
  * @brief Handle submissionChecklist grid requests.
  */
 
-import('controllers.grid.GridHandler');
-import('controllers.grid.submissionChecklist.SubmissionChecklistGridRow');
+import('controllers.grid.setup.SetupGridHandler');
+import('controllers.grid.setup.submissionChecklist.SubmissionChecklistGridRow');
 
-class SubmissionChecklistGridHandler extends GridHandler {
+class SubmissionChecklistGridHandler extends SetupGridHandler {
 	/**
 	 * Constructor
 	 */
 	function SubmissionChecklistGridHandler() {
-		parent::GridHandler();
+		parent::SetupGridHandler();
 	}
 
 	//
@@ -93,7 +93,7 @@ class SubmissionChecklistGridHandler extends GridHandler {
 	 */
 	function addItem(&$args, &$request) {
 		// Delegate to the row handler
-		import('controllers.grid.submissionChecklist.SubmissionChecklistGridRow');
+		import('controllers.grid.setup.submissionChecklist.SubmissionChecklistGridRow');
 		$submissionChecklistRow =& new SubmissionChecklistGridRow();
 
 		// Calling editSubmissionChecklist with an empty row id will add
@@ -109,7 +109,7 @@ class SubmissionChecklistGridHandler extends GridHandler {
 	function editItem(&$args, &$request) {
 		//FIXME: add validation here?
 
-		import('controllers.grid.submissionChecklist.form.SubmissionChecklistForm');
+		import('controllers.grid.setup.submissionChecklist.form.SubmissionChecklistForm');
 		$submissionChecklistForm = new SubmissionChecklistForm($this->getId());
 
 		if ($submissionChecklistForm->isLocaleResubmit()) {
@@ -131,7 +131,7 @@ class SubmissionChecklistGridHandler extends GridHandler {
 		// -> submissionChecklistId must be present and valid
 		// -> htmlId must be present and valid
 
-		import('controllers.grid.submissionChecklist.form.SubmissionChecklistForm');
+		import('controllers.grid.setup.submissionChecklist.form.SubmissionChecklistForm');
 		$submissionChecklistForm = new SubmissionChecklistForm($this->getId());
 		$submissionChecklistForm->readInputData();
 

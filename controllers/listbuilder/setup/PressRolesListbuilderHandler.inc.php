@@ -12,9 +12,9 @@
  * @brief Class for adding new press roles.
  */
 
-import('controllers.listbuilder.ListbuilderHandler');
+import('controllers.listbuilder.setup.SetupListbuilderHandler');
 
-class PressRolesListbuilderHandler extends ListbuilderHandler {
+class PressRolesListbuilderHandler extends SetupListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
 	var $_rowInstantiated = false;
 
@@ -22,7 +22,7 @@ class PressRolesListbuilderHandler extends ListbuilderHandler {
 	 * Constructor
 	 */
 	function PressRolesListbuilderHandler() {
-		parent::ListbuilderHandler();
+		parent::SetupListbuilderHandler();
 	}
 
 

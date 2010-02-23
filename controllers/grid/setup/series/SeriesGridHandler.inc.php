@@ -12,15 +12,15 @@
  * @brief Handle series grid requests.
  */
 
-import('controllers.grid.GridHandler');
-import('controllers.grid.series.SeriesGridRow');
+import('controllers.grid.setup.SetupGridHandler');
+import('controllers.grid.setup.series.SeriesGridRow');
 
-class SeriesGridHandler extends GridHandler {
+class SeriesGridHandler extends SetupGridHandler {
 	/**
 	 * Constructor
 	 */
 	function SeriesGridHandler() {
-		parent::GridHandler();
+		parent::SetupGridHandler();
 	}
 
 	//
@@ -144,7 +144,7 @@ class SeriesGridHandler extends GridHandler {
 		//FIXME: add validation here?
 		$this->setupTemplate();
 
-		import('controllers.grid.series.form.SeriesForm');
+		import('controllers.grid.setup.series.form.SeriesForm');
 		$seriesForm = new SeriesForm($seriesId);
 
 		if ($seriesForm->isLocaleResubmit()) {
@@ -169,7 +169,7 @@ class SeriesGridHandler extends GridHandler {
 		// -> htmlId must be present and valid
 		$press =& $request->getPress();
 
-		import('controllers.grid.series.form.SeriesForm');
+		import('controllers.grid.setup.series.form.SeriesForm');
 		$seriesForm = new SeriesForm($seriesId);
 		$seriesForm->readInputData();
 

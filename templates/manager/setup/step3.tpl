@@ -61,7 +61,7 @@
 
 <h3>3.4 {translate key="manager.setup.submissionLibrary"}</h3>
 
-{url|assign:submissionLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_SUBMISSION}
+{url|assign:submissionLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_SUBMISSION}
 {load_url_in_div id="submissionLibraryGridDiv" url=$submissionLibraryUrl}
 
 <div class="separator"></div>
@@ -86,14 +86,14 @@
 
 <h3>3.7 {translate key="manager.setup.reviewLibrary"}</h3>
 
-{url|assign:reviewLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_REVIEW}
+{url|assign:reviewLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_REVIEW}
 {load_url_in_div id="reviewLibraryGridDiv" url=$reviewLibraryGridUrl}
 
 <div class="separator"></div>
 
 <h3>3.8 {translate key="manager.setup.reviewForms"}</h3>
 
-{url|assign:reviewFormGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.reviewForm.ReviewFormGridHandler" op="fetchGrid"}
+{url|assign:reviewFormGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.reviewForm.ReviewFormGridHandler" op="fetchGrid"}
 {load_url_in_div id="reviewFormGridDiv" url=$reviewFormGridUrl}
 
 <div class="separator"></div>
@@ -109,7 +109,7 @@
 
 <h3>3.10 {translate key="manager.setup.editorialLibrary"}</h3>
 
-{url|assign:editorialLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_EDITORIAL}
+{url|assign:editorialLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_EDITORIAL}
 {load_url_in_div id="editorialLibraryGridDiv" url=$editorialLibraryGridUrl}
 
 <div class="separator"></div>
@@ -125,14 +125,14 @@
 
 <h3>3.12 {translate key="manager.setup.productionLibrary"}</h3>
 
-{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
+{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
 {load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
 
 <div class="separator"></div>
 
 <h3>3.13 {translate key="manager.setup.productionTemplates"}</h3>
 
-{url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
+{url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
 {load_url_in_div id="productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}
 
 <div class="separator"></div>

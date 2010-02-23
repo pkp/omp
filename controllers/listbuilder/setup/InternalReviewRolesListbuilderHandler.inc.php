@@ -12,9 +12,9 @@
  * @brief Class for editing internal review roles
  */
 
-import('controllers.listbuilder.ListbuilderHandler');
+import('controllers.listbuilder.setup.SetupListbuilderHandler');
 
-class InternalReviewRolesListbuilderHandler extends ListbuilderHandler {
+class InternalReviewRolesListbuilderHandler extends SetupListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
 	var $_rowInstantiated = false;
 
@@ -22,7 +22,7 @@ class InternalReviewRolesListbuilderHandler extends ListbuilderHandler {
 	 * Constructor
 	 */
 	function InternalReviewRolesListbuilderHandler() {
-		parent::ListbuilderHandler();
+		parent::SetupListbuilderHandler();
 	}
 
 	/* Load the list from an external source into the listbuilder structure */

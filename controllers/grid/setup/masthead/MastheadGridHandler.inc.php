@@ -12,15 +12,15 @@
  * @brief Handle masthead grid requests.
  */
 
-import('controllers.grid.GridHandler');
-import('controllers.grid.masthead.MastheadGridRow');
+import('controllers.grid.setup.SetupGridHandler');
+import('controllers.grid.setup.masthead.MastheadGridRow');
 
-class MastheadGridHandler extends GridHandler {
+class MastheadGridHandler extends SetupGridHandler {
 	/**
 	 * Constructor
 	 */
 	function MastheadGridHandler() {
-		parent::GridHandler();
+		parent::SetupGridHandler();
 	}
 
 	//
@@ -49,6 +49,7 @@ class MastheadGridHandler extends GridHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
 
 		// Elements to be displayed in the grid
+		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
 		$groupDAO =& DAORegistry::getDAO('GroupDAO');
 		$groups = $groupDAO->getGroups(ASSOC_TYPE_PRESS, $context->getId());
@@ -127,7 +128,7 @@ class MastheadGridHandler extends GridHandler {
 			}
 		} else $group = null;
 
-		import('controllers.grid.masthead.form.GroupForm');
+		import('controllers.grid.setup.masthead.form.GroupForm');
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -163,7 +164,7 @@ class MastheadGridHandler extends GridHandler {
 		}
 		$press =& $request->getContext();
 
-		import('controllers.grid.masthead.form.GroupForm');
+		import('controllers.grid.setup.masthead.form.GroupForm');
 		$groupForm = new GroupForm($groupId);
 
 		$groupForm->readInputData();

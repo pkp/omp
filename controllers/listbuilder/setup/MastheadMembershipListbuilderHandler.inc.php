@@ -12,9 +12,9 @@
  * @brief Class for adding new Press Divisions
  */
 
-import('controllers.listbuilder.ListbuilderHandler');
+import('controllers.listbuilder.setup.SetupListbuilderHandler');
 
-class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
+class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 	/** @var boolean internal state variable, true if row handler has been instantiated */
 	var $_rowInstantiated = false;
 
@@ -25,7 +25,7 @@ class MastheadMembershipListbuilderHandler extends ListbuilderHandler {
 	 * Constructor
 	 */
 	function PressDivisionsListbuilderHandler() {
-		parent::ListbuilderHandler();
+		parent::SetupListbuilderHandler();
 	}
 
 	function setGroupId($groupId) {

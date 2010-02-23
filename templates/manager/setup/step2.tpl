@@ -43,7 +43,7 @@
 {url|assign:divisionsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.DivisionsListbuilderHandler" op="fetch"}
 {load_url_in_div id="divisionsContainer" url=$divisionsUrl}
 
-{url|assign:seriesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.series.SeriesGridHandler" op="fetchGrid"}
+{url|assign:seriesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.series.SeriesGridHandler" op="fetchGrid"}
 {load_url_in_div id="seriesGridDiv" url=$seriesGridUrl}
 
 <div class="separator"></div>
@@ -62,7 +62,7 @@
 
 <p>{translate key="manager.setup.submissionPreparationChecklistDescription"}</p>
 
-{url|assign:submissionChecklistGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.submissionChecklist.SubmissionChecklistGridHandler" op="fetchGrid"}
+{url|assign:submissionChecklistGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.submissionChecklist.SubmissionChecklistGridHandler" op="fetchGrid"}
 {load_url_in_div id="submissionChecklistGridDiv" url=$submissionChecklistGridUrl}
 
 <div class="separator"></div>

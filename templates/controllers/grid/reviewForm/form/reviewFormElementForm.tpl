@@ -29,7 +29,7 @@ function togglePossibleResponses(newValue) {
 {/literal}
 </script>
 
-<form name="reviewFormElementForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.reviewForm.ReviewFormElementGridHandler" op="updateReviewFormElement"}">
+<form name="reviewFormElementForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.setup.reviewForm.ReviewFormElementGridHandler" op="updateReviewFormElement"}">
 
 <table class="data" width="100%">
 {if count($formLocales) > 1}
