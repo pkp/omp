@@ -29,7 +29,6 @@
 
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_KEY.title">不足しているキー</message>
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_EXTRA_KEY.title">余分なキー</message>
-	<message key="plugins.generic.translator.errors.LOCALE_ERROR_SUSPICIOUS_LENGTH.title">疑わしいキー長</message>
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_DIFFERING_PARAMS.title">異なっているパラメタリスト</message>
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_FILE.title">不足しているロケールファイル</message>
 	<message key="plugins.generic.translator.errors.EMAIL_ERROR_MISSING_EMAIL.title">不足しているメール文</message>
@@ -38,11 +37,6 @@
 
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_KEY.message">キー "{$key}" が "{$filename}"に設定されていません。英語版の値をデフォルト値として表示しています。</message>
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_EXTRA_KEY.message">きー "{$key}" はもやは使用されていませんので、削除することが出来ます。</message>
-	<message key="plugins.generic.translator.errors.LOCALE_ERROR_SUSPICIOUS_LENGTH.message"><![CDATA["{$filename}" のロケールキー "{$key}" の値は、参照元の値: と明らかに長さが異なります。
-<ul>
-		<li>{$value} ({$locale})</li>
-		<li>{$reference} ({$referenceLocale})</li>
-	</ul>]]></message>
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_DIFFERING_PARAMS.message">The locale key in "{$filename}" のロケールキー"{$key}" に使用されているパラメタは参照ロケールのパラメタとは異なります。異なるパラメタは以下の通りです。</message>
 	<message key="plugins.generic.translator.errors.LOCALE_ERROR_MISSING_FILE.message">ロケールファイル "{$filename}" が存在しない、または読むことができません。</message>
 	<message key="plugins.generic.translator.errors.EMAIL_ERROR_MISSING_EMAIL.message">メールメッセージ文 "{$key}" が翻訳ファイルに存在しません。</message>
