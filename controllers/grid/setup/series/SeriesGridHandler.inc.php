@@ -69,10 +69,12 @@ class SeriesGridHandler extends SetupGridHandler {
 			if(empty($assignedSeriesEditors)) {
 				$editorsString = Locale::translate('common.none');
 			} else {
+				$editors = array();
 				foreach ($assignedSeriesEditors as $seriesEditor) {
 					$user = $seriesEditor['user'];
-					$editorsString .= $user->getLastName() . ', ';
+					$editors[] = $user->getLastName();
 				}
+				$editorsString = implode(',', $editors);
 			}
 
 			$seriesId = $seriesItem->getId();
