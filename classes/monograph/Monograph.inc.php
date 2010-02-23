@@ -57,7 +57,8 @@ class Monograph extends Submission {
 	 * @return int
 	 */
 	function getMonographId() {
-		return $this->getData('monographId');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getId();
 	}
 
 	/**
@@ -65,7 +66,8 @@ class Monograph extends Submission {
 	 * @param $monographId int
 	 */
 	function setMonographId($monographId) {
-		return $this->setData('monographId', $monographId);
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setId($monographId);
 	}
 
 	/**
