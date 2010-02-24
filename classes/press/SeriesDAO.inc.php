@@ -257,21 +257,21 @@ class SeriesDAO extends DAO {
 	 * @return array
 	 */
 	function &getTitlesByPressId($pressId, $submittableOnly = false) {
-		$series = array();
+		$seriesTitles = array();
 
 		$seriesIterator =& $this->getByPressId($pressId, null);
 		while (($series =& $seriesIterator->next())) {
 			if ($submittableOnly) {
 				if (!$series->getEditorRestricted()) {
-					$series[$series->getId()] = $series->getLocalizedTitle();
+					$seriesTitles[$series->getId()] = $series->getLocalizedTitle();
 				}
 			} else {
-				$series[$series->getId()] = $series->getLocalizedTitle();
+				$seriesTitles[$series->getId()] = $series->getLocalizedTitle();
 			}
 			unset($series);
 		}
 
-		return $series;
+		return $seriesTitles;
 	}
 
 	/**
