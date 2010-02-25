@@ -26,7 +26,6 @@ class PluginSettingsDAO extends DAO {
 			$this->settingCache[$pressId] = array();
 		}
 		if (!isset($this->settingCache[$pressId][$pluginName])) {
-			import('cache.CacheManager');
 			$cacheManager =& CacheManager::getManager();
 			$this->settingCache[$pressId][$pluginName] = $cacheManager->getCache(
 				'pluginSettings-' . $pressId, $pluginName,

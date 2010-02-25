@@ -22,7 +22,6 @@ class PressSettingsDAO extends DAO {
 			$settingCache = array();
 		}
 		if (!isset($settingCache[$pressId])) {
-			import('cache.CacheManager');
 			$cacheManager =& CacheManager::getManager();
 			$settingCache[$pressId] = $cacheManager->getCache(
 				'pressSettings', $pressId,
