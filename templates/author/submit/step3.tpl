@@ -20,8 +20,6 @@
 {include file="common/formErrors.tpl"}
 
 
-{* include file="inserts/monographComponents/MonographComponentsInsert.tpl" *}
-
 <!--  General Information -->
 
 <h3>{translate key="author.submit.generalInformation"}</h3>
@@ -38,9 +36,11 @@
 
 <!--  Contributors -->
 
-<h3>-----------------------------------<br />
-Contributors grid goes here <br />
-----------------------------------<br /></h3>
+{url|assign:submissionContributorGridUrl router=$smarty.const.ROUTE_COMPONENT co
+mponent="grid.submissionContributor.SubmissionContributorGridHandler" op="fetchG
+rid" monographId=27}
+{load_div id="submissionContributorGridContainer" loadMessageId="submission.subm
+issionContributors.form.loadMessage" url="$submissionContributorGridUrl"}
 
 <div class="separator"></div>
 

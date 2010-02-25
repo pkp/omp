@@ -3,7 +3,7 @@
 /**
  * @defgroup author_form_submit
  */
- 
+
 /**
  * @file classes/author/form/submit/AuthorSubmitForm.inc.php
  *
@@ -18,27 +18,31 @@
 
 // $Id$
 
-import('submission.common.SequenceForm');
 
-class AuthorSubmitForm extends SequenceForm {
+import('form.Form');
+
+class AuthorSubmitForm extends Form {
+
 	/** @var int the ID of the monograph */
 	var $monographId;
 
 	/** @var Monograph current monograph */
 	var $monograph;
 
+	/** @var int the current step */
+	var $step;
+
 	/**
 	 * Constructor.
 	 * @param $monograph object
 	 * @param $step int
 	 */
-	function AuthorSubmitForm($monograph) {
-		parent::SequenceForm();
+	function AuthorSubmitForm($monograph, $step) {
+		parent::Form(sprintf('author/submit/step%d.tpl', $step));
 		$this->addCheck(new FormValidatorPost($this));
-
-		$this->monograph =& $monograph;
-		$this->monographId = $monograph ? $monograph->getMonographId() : null;
-
+		$this->step = (int) $step;
+		$this->monograph = $monograph;
+		$this->monographId = $monograph ? $monograph->getId() : null;
 	}
 
 	/**
@@ -46,14 +50,25 @@ class AuthorSubmitForm extends SequenceForm {
 	 */
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('submitStep', $this->sequence->currentStep);
+		$templateMgr->assign('monographId', $this->monographId);
+		$templateMgr->assign('submitStep', $this->step);
 
 		if (isset($this->monograph)) {
 			$templateMgr->assign('submissionProgress', $this->monograph->getSubmissionProgress());
 		}
 
-		$templateMgr->assign('helpTopicId', $this->getHelpTopicId());
-		
+		switch($this->step) {
+			case 3:
+				$helpTopicId = 'submission.indexingAndMetadata';
+				break;
+			case 4:
+				$helpTopicId = 'submission.supplementaryFiles';
+				break;
+			default:
+				$helpTopicId = 'submission.index';
+		}
+		$templateMgr->assign('helpTopicId', $helpTopicId);
+
 		$press =& Request::getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$templateMgr->assign_by_ref('pressSettings', $settingsDao->getPressSettings($press->getId()));
@@ -61,32 +76,25 @@ class AuthorSubmitForm extends SequenceForm {
 		parent::display();
 	}
 
-	function getHelpTopicId() {
-		return 'submission.index';
-	}
-
-
-
 	/**
-	 * Assign Series Editors to new submissions.
+	 * Automatically assign Series Editors to new submissions.
 	 * @param $monograph object
 	 * @return array of series editors
 	 */
 	function assignEditors(&$monograph) {
-		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$seriesId = $monograph->getSeriesId();
 		$press =& Request::getPress();
 
-		$seriesId = $monograph->getSeriesId();
+		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
+		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$seriesEditors =& $seriesEditorsDao->getEditorsBySeriesId($press->getId(), $seriesId);
 
-		$seriesEditors =& $seriesEditorsDao->getEditorsBySeriesId($seriesId, $press->getId());
-
-		foreach ($seriesEditors as $seriesEditor) {
+		foreach ($seriesEditors as $seriesEditorEntry) {
 			$editAssignment = new EditAssignment();
-			$editAssignment->setMonographId($monograph->getMonographId());
-			$editAssignment->setEditorId($seriesEditor['user']->getId());
-			$editAssignment->setCanReview($seriesEditor['canReview']);
-			$editAssignment->setCanEdit($seriesEditor['canEdit']);
+			$editAssignment->setMonographId($monograph->getId());
+			$editAssignment->setEditorId($seriesEditorEntry['user']->getId());
+			$editAssignment->setCanReview($seriesEditorEntry['canReview']);
+			$editAssignment->setCanEdit($seriesEditorEntry['canEdit']);
 			$editAssignmentDao->insertEditAssignment($editAssignment);
 			unset($editAssignment);
 		}

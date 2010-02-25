@@ -9,7 +9,7 @@
  * @class SubmitHandler
  * @ingroup pages_author
  *
- * @brief Handle requests for author monograph submission. 
+ * @brief Handle requests for author monograph submission.
  */
 
 // $Id$
@@ -26,7 +26,7 @@ class SubmitHandler extends AuthorHandler {
 	function SubmitHandler() {
 		parent::AuthorHandler();
 	}
-	
+
 	/**
 	 * Display author monograph submission.
 	 * Displays author index page if a valid step is not specified.
@@ -39,12 +39,11 @@ class SubmitHandler extends AuthorHandler {
 
 		$monograph =& $this->monograph;
 		$this->setupTemplate(true);
-		
-		import('author.form.submit.AuthorSubmissionSequence');
 
-		$sequence = new AuthorSubmissionSequence($monographId);
-		$submitForm = $sequence->getFormForStep($step);
+		$formClass = "AuthorSubmitStep{$step}Form";
+		import("author.form.submit.$formClass");
 
+		$submitForm = new $formClass($monograph);
 		if ($submitForm->isLocaleResubmit()) {
 			$submitForm->readInputData();
 		} else {
@@ -65,48 +64,69 @@ class SubmitHandler extends AuthorHandler {
 		$this->setupTemplate(true);
 		$monograph =& $this->monograph;
 
-		import('author.form.submit.AuthorSubmissionSequence');
-		$sequence = new AuthorSubmissionSequence($monographId);
-		$submitForm =& $sequence->getFormForStep($step);
+		$formClass = "AuthorSubmitStep{$step}Form";
+		import("author.form.submit.$formClass");
 
+		$submitForm = new $formClass($monograph);
 		$submitForm->readInputData();
 
-		$editData = $submitForm->processEvents();
+		if (!HookRegistry::call('SubmitHandler::saveSubmit', array($step, &$monograph, &$submitForm))) {
 
-		if (!$editData && $submitForm->validate()) {
-			$monographId = $submitForm->execute();
-			if ($sequence->isLastStep()) {
-				$press =& Request::getPress();
-				$templateMgr =& TemplateManager::getManager();
-				$templateMgr->assign_by_ref('press', $press);
-				
-				// Send a notification to associated users
-				import('notification.Notification');
-				$monographDao =& DAORegistry::getDAO('MonographDAO');
-				$monograph =& $monographDao->getMonograph($monographId);
-				$roleDao =& DAORegistry::getDAO('RoleDAO');
-				$notificationUsers = array();
-				$pressManagers = $roleDao->getUsersByRoleId(ROLE_ID_PRESS_MANAGER);
-				$allUsers = $pressManagers->toArray();
-				$editors = $roleDao->getUsersByRoleId(ROLE_ID_EDITOR);
-				array_merge($allUsers, $editors->toArray());
-				foreach ($allUsers as $user) {
-					$notificationUsers[] = array('id' => $user->getId());
+			// Check for any special cases before trying to save
+			switch ($step) {
+				case 2:
+					if (Request::getUserVar('uploadSubmissionFile')) {
+						$submitForm->uploadSubmissionFile('submissionFile');
+						$editData = true;
+					}
+					break;
+
+				case 4:
+					if (Request::getUserVar('submitUploadSuppFile')) {
+						SubmitHandler::submitUploadSuppFile();
+						return;
+					}
+					break;
+			}
+
+			if (!isset($editData) && $submitForm->validate()) {
+				$monographId = $submitForm->execute();
+
+				if ($step == 5) {
+					// Send a notification to associated users
+					import('notification.Notification');
+					$monographDao =& DAORegistry::getDAO('MonographDAO');
+					$monograph =& $monographDao->getMonograph($monographId);
+					$roleDao =& DAORegistry::getDAO('RoleDAO');
+					$notificationUsers = array();
+					$pressManagers = $roleDao->getUsersByRoleId(ROLE_ID_PRESS_MANAGER);
+					$allUsers = $pressManagers->toArray();
+					$editors = $roleDao->getUsersByRoleId(ROLE_ID_EDITOR);
+					array_merge($allUsers, $editors->toArray());
+					foreach ($allUsers as $user) {
+						$notificationUsers[] = array('id' => $user->getId());
+					}
+					foreach ($notificationUsers as $userRole) {
+						$url = Request::url(null, 'editor', 'submission', $monographId);
+						Notification::createNotification($userRole['id'], "notification.type.monographSubmitted",
+							$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED);
+					}
+
+					$press =& Request::getPress();
+					$templateMgr =& TemplateManager::getManager();
+					$templateMgr->assign_by_ref('press', $press);
+					// If this is an editor and there is a
+					// submission file, monograph can be expedited.
+					if (Validation::isEditor($press->getId()) && $monograph->getSubmissionFileId()) {
+						$templateMgr->assign('canExpedite', true);
+					}
+					$templateMgr->assign('monographId', $monographId);
+					$templateMgr->assign('helpTopicId','submission.index');
+					$templateMgr->display('author/submit/complete.tpl');
+
+				} else {
+					Request::redirect(null, null, 'submit', $step+1, array('monographId' => $monographId));
 				}
-				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, 'editor', 'submission', $monographId);
-					Notification::createNotification($userRole['id'], "notification.type.monographSubmitted",
-						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED);
-				}
-				
-				// If this is an editor and there is a
-				// submission file, monograph can be expedited.
-				if (Validation::isEditor($press->getId()) && $monograph->getSubmissionFileId()) {
-					$templateMgr->assign('canExpedite', true);
-				}
-				$templateMgr->assign('monographId', $monographId);
-				$templateMgr->assign('helpTopicId','submission.index');
-				$templateMgr->display('author/submit/complete.tpl');
 
 			} else {
 				Request::redirect(null, null, 'submit', $sequence->getNextStep(), array('monographId' => $monographId));
