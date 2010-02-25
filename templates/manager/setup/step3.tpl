@@ -54,7 +54,7 @@
 
 <p>{translate key="manager.setup.bookFileTypesDescription"}</p>
 
-{url|assign:bookFileTypesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.BookFileTypesListbuilderHandler" op="fetch"}
+{url|assign:bookFileTypesUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.bookFileType.BookFileTypeGridHandler" op="fetchGrid"}
 {load_url_in_div id="bookFileTypesContainer" url=$bookFileTypesUrl}
 
 <div class="separator"></div>
