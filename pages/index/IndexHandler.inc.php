@@ -54,8 +54,7 @@ class IndexHandler extends Handler {
 			$enableAnnouncements = $press->getSetting('enableAnnouncements');
 			$templateMgr->display('index/press.tpl');
 		} else {
-			$siteDao =& DAORegistry::getDAO('SiteDAO');
-			$site =& $siteDao->getSite();
+			$site =& Request::getSite();
 
 			if ($site->getRedirect() && ($press = $pressDao->getPress($site->getRedirect())) != null) {
 				Request::redirect($press->getPath());
