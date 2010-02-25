@@ -41,18 +41,18 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		// Get seriess for this press
+		// Get series for this press
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 
-		// If this user is a series editor or an editor, they are allowed
+		// FIXME: If this user is a series editor or an editor, they are allowed
 		// to submit to seriess flagged as "editor-only" for submissions.
 		// Otherwise, display only seriess they are allowed to submit to.
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR) || $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
 
-		//FIXME: this is copied from OJS but doesn't work.  review.
-		//$templateMgr->assign('seriesOptions', array('0' => Locale::translate('author.submit.selectSeries')) + $seriesDao->getTitlesByPressId($press->getId(), !$isEditor));
-		parent::display();
+		$seriesOptions = array_merge(array('0' => Locale::translate('author.submit.selectSeries')), $seriesDao->getTitlesByPressId($press->getId()));
+		$templateMgr->assign('seriesOptions', $seriesOptions);
+		parent::display();		
 	}
 
 	/**

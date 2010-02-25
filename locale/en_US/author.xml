@@ -21,6 +21,7 @@
 	<message key="author.submission.workType.description">Select the option that best matches the type of the work that you are submitting.</message>
 	<message key="author.submission.workType.editedVolume">Edited Volume</message>
 	<message key="author.submission.workType.authoredWork">Authored Work</message>
+	<message key="author.submission.workType.required">The type of work must be selected.</message>
 	<message key="author.submit.completedProspectus">Completed Prospectus</message>
 	<message key="author.submit.completedProspectus.description"><![CDATA[Upload a completed prospectus file that follows the guidelines of the <a href="{$prospectusGuideUrl}" class="action">press' prospectus guide</a>.]]></message>
 	<message key="author.submit.uploadProspectusFile">Upload Prospectus File</message>
@@ -120,5 +121,6 @@
 	<message key="author.submit.checklistErrors.begin">Please read and check off the items in the submission checklist.  There are </message>
 	<message key="author.submit.checklistErrors.end">items left unchecked.</message>
 	<message key="author.submit.placement">Submission Placement</message>
-	
+	<message key="author.submit.submissionFiles">Submission Files</message>
+
 </locale>
