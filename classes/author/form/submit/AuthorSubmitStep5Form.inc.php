@@ -23,7 +23,17 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 	 * Constructor.
 	 */
 	function AuthorSubmitStep5Form($monograph) {
-		parent::AuthorSubmitForm($monograph);
+		parent::AuthorSubmitForm($monograph, 5);
+
+		$this->addCheck(new FormValidatorCustom($this, 'qualifyForWaiver', 'optional', 'author.submit.mustEnterWaiverReason', array(&$this, 'checkWaiverReason')));
+	}
+
+	/**
+	 * Check that if the user choses a Waiver that they enter text in the comments to Editor
+	 */
+	function checkWaiverReason() {
+		if ( Request::getUserVar('qualifyForWaiver') == false ) return true;
+		else return  (Request::getUserVar('commentsToEditor') != '');
 	}
 
 	/**
@@ -36,17 +46,32 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
 		// Get monograph file for this monograph
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getByMonographId($this->monograph->getMonographId());
+		$monographFiles =& $monographFileDao->getMonographFilesByMonograph($this->monographId);
 
 		$templateMgr->assign_by_ref('files', $monographFiles);
 		$templateMgr->assign_by_ref('press', Request::getPress());
 
+		// Set up required Payment Related Information
+		import('payment.ojs.OJSPaymentManager');
+		$paymentManager =& OJSPaymentManager::getManager();
+		if ( $paymentManager->submissionEnabled() || $paymentManager->fastTrackEnabled() || $paymentManager->publicationEnabled()) {
+			$templateMgr->assign('authorFees', true);
+			$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
+			$monographId = $this->monographId;
+
+			if ( $paymentManager->submissionEnabled() ) {
+				$templateMgr->assign_by_ref('submissionPayment', $completedPaymentDAO->getSubmissionCompletedPayment ( $press->getId(), $monographId ));
+				$templateMgr->assign('manualPayment', $press->getSetting('paymentMethodPluginName') == 'ManualPayment');
+			}
+
+			if ( $paymentManager->fastTrackEnabled()  ) {
+				$templateMgr->assign_by_ref('fastTrackPayment', $completedPaymentDAO->getFastTrackCompletedPayment ( $press->getId(), $monographId ));
+			}
+		}
+
 		parent::display();
 	}
 
-	function getTemplateFile() {
-		return 'author/submit/step5.tpl';
-	}
 	/**
 	 * Initialize form data from current monograph.
 	 */
@@ -55,6 +80,46 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 			$this->_data = array(
 				'commentsToEditor' => $this->monograph->getCommentsToEditor()
 			);
+		}
+	}
+
+	/**
+	 * Assign form data to user-submitted data.
+	 */
+	function readInputData() {
+		$this->readUserVars(array('paymentSent', 'qualifyForWaiver', 'commentsToEditor'));
+	}
+
+	/**
+	 * Validate the form
+	 */
+	function validate() {
+		import('payment.ojs.OJSPaymentManager');
+		$paymentManager =& OJSPaymentManager::getManager();
+		if ( $paymentManager->submissionEnabled() ) {
+			if ( !parent::validate() ) return false;
+
+			$press =& Request::getPress();
+			$pressId = $press->getId();
+			$monographId = $this->monographId;
+			$user =& Request::getUser();
+
+			$completedPaymentDAO =& DAORegistry::getDAO('OJSCompletedPaymentDAO');
+			if ( $completedPaymentDAO->hasPaidSubmission ( $pressId, $monographId )  ) {
+				return parent::validate();
+			} elseif ( Request::getUserVar('qualifyForWaiver') && Request::getUserVar('commentsToEditor') != '') {
+				return parent::validate();
+			} elseif ( Request::getUserVar('paymentSent') ) {
+				return parent::validate();
+			} else {
+				$queuedPayment =& $paymentManager->createQueuedPayment($pressId, PAYMENT_TYPE_SUBMISSION, $user->getId(), $monographId, $press->getSetting('submissionFee'));
+				$queuedPaymentId = $paymentManager->queuePayment($queuedPayment);
+
+				$paymentManager->displayPaymentForm($queuedPaymentId, $queuedPayment);
+				exit;
+			}
+		} else {
+			return parent::validate();
 		}
 	}
 
@@ -125,6 +190,17 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 		$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 		if ($mail->isEnabled()) {
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
+			// If necessary, BCC the acknowledgement to someone.
+			if($press->getSetting('copySubmissionAckPrimaryContact')) {
+				$mail->addBcc(
+					$press->getSetting('contactEmail'),
+					$press->getSetting('contactName')
+				);
+			}
+			if($press->getSetting('copySubmissionAckSpecified')) {
+				$copyAddress = $press->getSetting('copySubmissionAckAddress');
+				if (!empty($copyAddress)) $mail->addBcc($copyAddress);
+			}
 
 			// Also BCC automatically assigned series editors
 			foreach ($seriesEditors as $seriesEditorEntry) {
@@ -148,6 +224,7 @@ class AuthorSubmitStep5Form extends AuthorSubmitForm {
 
 		return $monograph->getMonographId();
 	}
+
 }
 
 ?>

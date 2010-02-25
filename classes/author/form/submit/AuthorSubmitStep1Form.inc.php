@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('author.form.submit.AuthorSubmitForm');
+import("author.form.submit.AuthorSubmitForm");
 
 class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
@@ -23,25 +23,36 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 * Constructor.
 	 */
 	function AuthorSubmitStep1Form($monograph = null) {
-		parent::AuthorSubmitForm($monograph);
+		parent::AuthorSubmitForm($monograph, 1);
+
 		$press =& Request::getPress();
-		
-		foreach ($press->getLocalizedSetting('submissionChecklist') as $checklistItem) {
-			$checklistId = 'checklist-' . $checklistItem['order'];
-			$this->addCheck(new FormValidator($this, $checklistId, 'required', 'author.submit.verifyChecklist'));		
-		}
+
+		// Validation checks for this form
+		$this->addCheck(new FormValidator($this, 'seriesId', 'required', 'author.submit.form.seriesRequired'));
+		$this->addCheck(new FormValidatorCustom($this, 'seriesId', 'required', 'author.submit.form.seriesRequired', array(DAORegistry::getDAO('SeriesDAO'), 'seriesExists'), array($press->getId())));
 	}
 
 	/**
 	 * Display the form.
 	 */
 	function display() {
-		$templateMgr =& TemplateManager::getManager();
 		$press =& Request::getPress();
-		// Get series for this press
+		$user =& Request::getUser();
+
+		$templateMgr =& TemplateManager::getManager();
+
+		// Get seriess for this press
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-		$templateMgr->assign('seriesOptions', array($seriesDao->getTitlesByPressId($press->getId())));
-		parent::display();		
+
+		// If this user is a series editor or an editor, they are allowed
+		// to submit to seriess flagged as "editor-only" for submissions.
+		// Otherwise, display only seriess they are allowed to submit to.
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR) || $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
+
+		//FIXME: this is copied from OJS but doesn't work.  review.
+		//$templateMgr->assign('seriesOptions', array('0' => Locale::translate('author.submit.selectSeries')) + $seriesDao->getTitlesByPressId($press->getId(), !$isEditor));
+		parent::display();
 	}
 
 	/**
@@ -52,7 +63,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$this->_data = array(
 				'seriesId' => $this->monograph->getSeriesId(),
 				'isEditedVolume' => $this->monograph->getWorkType(),
-				'commentsToEditor' => $this->monograph->getCommentsToEditor(),
+				'commentsToEditor' => $this->monograph->getCommentsToEditor()
 			);
 		}
 	}
@@ -62,7 +73,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 */
 	function readInputData() {
 		$this->readUserVars(array('submissionChecklist', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor'));
-	}	
+	}
 
 	function getTemplateFile() {
 		return 'author/submit/step1.tpl';
@@ -74,17 +85,15 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 */
 	function execute() {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
+
 		if (isset($this->monograph)) {
 			// Update existing monograph
-
-			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
-			if ($this->monograph->getSubmissionProgress() <= $this->sequence->currentStep) {
-				$this->monograph->stampStatusModified();
-				$this->monograph->setSubmissionProgress($this->sequence->currentStep + 1);
-			}
-			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : 0);
 			$this->monograph->setSeriesId($this->getData('seriesId'));
-			$monographId = $this->monograph->getMonographId();
+			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
+			if ($this->monograph->getSubmissionProgress() <= $this->step) {
+				$this->monograph->stampStatusModified();
+				$this->monograph->setSubmissionProgress($this->step + 1);
+			}
 			$monographDao->updateMonograph($this->monograph);
 
 		} else {
@@ -95,14 +104,15 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$this->monograph = new Monograph();
 			$this->monograph->setUserId($user->getId());
 			$this->monograph->setPressId($press->getId());
+			$this->monograph->setSeriesId($this->getData('seriesId'));
 			$this->monograph->stampStatusModified();
-			$this->monograph->setSubmissionProgress($this->sequence->currentStep + 1);
+			$this->monograph->setSubmissionProgress($this->step + 1);
 			$this->monograph->setLanguage(String::substr($press->getPrimaryLocale(), 0, 2));
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
 			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : 0);
-			$this->monograph->setSeriesId($this->getData('seriesId'));
 
 			// Set user to initial author
+			$user =& Request::getUser();
 			$author = new Author();
 			$author->setFirstName($user->getFirstName());
 			$author->setMiddleName($user->getMiddleName());
@@ -116,11 +126,13 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$author->setPrimaryContact(1);
 			$this->monograph->addAuthor($author);
 
-			$monographId = $monographDao->insertMonograph($this->monograph);
+			$monographDao->insertMonograph($this->monograph);
+			$this->monographId = $this->monograph->getMonographId();
 		}
 
 		return $monographId;
 	}
+
 }
 
 ?>

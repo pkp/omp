@@ -23,39 +23,89 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	 * Constructor.
 	 */
 	function AuthorSubmitStep2Form($monograph) {
-		parent::AuthorSubmitForm($monograph);
+		parent::AuthorSubmitForm($monograph, 2);
+
+		// Validation checks for this form
+	}
+
+	/**
+	 * Initialize form data from current monograph.
+	 */
+	function initData() {
+		if (isset($this->monograph)) {
+			$monograph =& $this->monograph;
+			$this->_data = array(
+			);
+		}
 	}
 
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-
+		$this->readUserVars(
+			array(
+			)
+		);
 	}
 
-	function getHelpTopicId() {
-		return 'submission.indexingAndMetadata';
-	}
-	
-	function getTemplateFile() {
-		return 'author/submit/step2.tpl';
-	}
-	
 	/**
 	 * Display the form.
 	 */
 	function display() {
+		$templateMgr =& TemplateManager::getManager();
+
+		// Get supplementary files for this monograph
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		if ($this->monograph->getSubmissionFileId() != null) {
+			$templateMgr->assign_by_ref('submissionFile', $monographFileDao->getMonographFile($this->monograph->getSubmissionFileId()));
+		}
 		parent::display();
 	}
 
+	/**
+	 * Upload the submission file.
+	 * @param $fileName string
+	 * @return boolean
+	 */
+	function uploadSubmissionFile($fileName) {
+		import("file.MonographFileManager");
+
+		$monographFileManager = new MonographFileManager($this->monographId);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+
+		if ($monographFileManager->uploadedFileExists($fileName)) {
+			// upload new submission file, overwriting previous if necessary
+			$submissionFileId = $monographFileManager->uploadSubmissionFile($fileName, $this->monograph->getSubmissionFileId(), true);
+		}
+
+		if (isset($submissionFileId)) {
+			$this->monograph->setSubmissionFileId($submissionFileId);
+			return $monographDao->updateMonograph($this->monograph);
+
+		} else {
+			return false;
+		}
+	}
 
 	/**
 	 * Save changes to monograph.
 	 * @return int the monograph ID
 	 */
 	function execute() {
-		return true;
+		// Update monograph
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $this->monograph;
+
+		if ($monograph->getSubmissionProgress() <= $this->step) {
+			$monograph->stampStatusModified();
+			$monograph->setSubmissionProgress($this->step + 1);
+			$monographDao->updateMonograph($monograph);
+		}
+
+		return $this->monographId;
 	}
+
 }
 
 ?>
