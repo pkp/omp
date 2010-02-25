@@ -94,7 +94,7 @@ class BookFileTypeGridHandler extends GridHandler {
 				$cellProvider
 			)
 		);
-	//	$this->addColumn(new GridColumn('designation', 'common.designation'));
+		$this->addColumn(new GridColumn('designation', 'common.designation', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
 	}
 
 	//
@@ -156,7 +156,7 @@ class BookFileTypeGridHandler extends GridHandler {
 		//FIXME: add validation here?
 		$press =& $request->getPress();
 
-		import('controllers.grid.bookFileType.form.BookFileTypeForm');
+		import('controllers.grid.setup.bookFileType.form.BookFileTypeForm');
 		$bookFileTypeForm = new BookFileTypeForm($bookFileTypeId);
 		$bookFileTypeForm->readInputData();
 
@@ -168,13 +168,13 @@ class BookFileTypeGridHandler extends GridHandler {
 			// prepare the grid row data
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
-			$rowData = array(
-				'name' => $bookFileTypeForm->getData('title'),
-				'designation' => $divisionTitle
-			);
-			$row->setId($bookFileTypeForm->bookFileTypeId);
-			$row->setData($rowData);
+
+			$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+			$bookFileType =& $bookFileTypeDao->getById($bookFileTypeForm->bookFileTypeId, $press->getId());
+
 			$row->initialize($request);
+			$row->setData($bookFileType);
+			$row->setId($bookFileTypeForm->bookFileTypeId);
 
 			$json = new JSON('true', $this->_renderRowInternally($request, $row));
 		} else {

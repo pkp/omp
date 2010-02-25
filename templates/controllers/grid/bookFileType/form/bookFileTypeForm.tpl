@@ -9,7 +9,7 @@
  * $Id$
  *}
 
-<form name="bookFileTypeForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.bookFileType.BookFileTypeGridHandler" op="updateBookFileType"}">
+<form name="bookFileTypeForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.setup.bookFileType.BookFileTypeGridHandler" op="updateBookFileType"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="bookFileTypeInfo"}

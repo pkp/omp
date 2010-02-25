@@ -86,12 +86,11 @@ class BookFileTypeForm extends Form {
 
 		// Update or insert Book File Type
 		if (!isset($this->bookFileTypeId)) {
-			$series = $bookFileTypeDao->newDataObject();
+			$bookFileType = $bookFileTypeDao->newDataObject();
 		} else {
-			$series =& $bookFileTypeDao->getById($this->bookFileTypeId);
+			$bookFileType =& $bookFileTypeDao->getById($this->bookFileTypeId);
 		}
 
-		$bookFileType->setPressId($press->getId());
 		$bookFileType->setName($this->getData('name'), Locale::getLocale()); // Localized
 		$bookFileType->setDesignation($this->getData('designation'), Locale::getLocale()); // Localized
 		$bookFileType->setSortable($this->getData('sortable'));
