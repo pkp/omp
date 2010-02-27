@@ -209,7 +209,10 @@ class PressDAO extends DAO
 
 		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
 		$pluginSettingsDao->deleteSettingsByPressId($pressId);
-				
+
+		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
+		$reviewFormDao->deleteByAssocId(ASSOC_TYPE_PRESS, $pressId);
+
 		return $this->update(
 			'DELETE FROM presses WHERE press_id = ?', $pressId
 		);

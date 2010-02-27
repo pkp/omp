@@ -51,7 +51,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 		$press =& $router->getContext($request);
 
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForms =& $reviewFormDao->getPressReviewForms($press->getId());
+		$reviewForms =& $reviewFormDao->getByAssocId(ASSOC_TYPE_PRESS, $press->getId());
 		$this->setData($reviewForms);
 
 		// Add grid-level actions
@@ -119,7 +119,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_PRESS, $press->getId());
 
 		if ($reviewFormId != null && (!isset($reviewForm) || $reviewForm->getCompleteCount() != 0 || $reviewForm->getIncompleteCount() != 0)) {
 			Request::redirect(null, null, 'reviewForms');
@@ -158,7 +158,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 			$router =& $request->getRouter();
 			$context =& $router->getContext($request);
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-			$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $context->getId());
+			$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_PRESS, $context->getId());
 		}
 
 		$press =& Request::getPress();
@@ -172,7 +172,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
-			$row->setId($reviewFormForm->reviewForm->getReviewFormId());
+			$row->setId($reviewFormForm->reviewForm->getId());
 			$row->setData($reviewFormForm->reviewForm);
 			$row->initialize($request);
 
@@ -204,7 +204,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 
 		$reviewFormId = $this->getId();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_PRESS, $press->getId());
 
 		if (isset($reviewForm) && $reviewForm->getCompleteCount() == 0 && $reviewForm->getIncompleteCount() == 0) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -215,7 +215,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 				$reviewAssignmentDao->updateObject($reviewAssignment);
 			}
 
-			$reviewFormDao->deleteReviewFormById($reviewFormId, $press->getId());
+			$reviewFormDao->deleteById($reviewFormId);
 			$json = new JSON('true');
 		} else {
 			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingReviewForm'));
@@ -236,7 +236,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 		$reviewFormId = $this->getId();
 
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_PRESS, $press->getId());
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 

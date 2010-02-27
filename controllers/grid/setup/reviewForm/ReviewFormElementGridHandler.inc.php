@@ -123,7 +123,7 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 		$press =& $router->getContext($request);
 
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_PRESS, $press->getId());
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 
 		if (!isset($reviewForm) || $reviewForm->getCompleteCount() != 0 || $reviewForm->getIncompleteCount() != 0 || ($reviewFormElementId != null && !$reviewFormElementDao->reviewFormElementExists($reviewFormElementId, $reviewFormId))) {
@@ -159,11 +159,11 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 		$press =& Request::getPress();
 
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_PRESS, $press->getId());
 
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 
-		if (!$reviewFormDao->unusedReviewFormExists($reviewFormId, $press->getId()) || ($reviewFormElementId != null && !$reviewFormElementDao->reviewFormElementExists($reviewFormElementId, $reviewFormId))) {
+		if (!$reviewFormDao->unusedReviewFormExists($reviewFormId, ASSOC_TYPE_PRESS, $press->getId()) || ($reviewFormElementId != null && !$reviewFormElementDao->reviewFormElementExists($reviewFormElementId, $reviewFormId))) {
 			Request::redirect(null, null, 'reviewFormElements', array($reviewFormId));
 		}
 
@@ -238,9 +238,9 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$press =& Request::getPress();
 
-		if ($reviewFormDao->unusedReviewFormExists($reviewFormId, $press->getId())) {
+		if ($reviewFormDao->unusedReviewFormExists($reviewFormId, ASSOC_TYPE_PRESS, $press->getId())) {
 			$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
-			$reviewFormElementDao->deleteReviewFormElementById($reviewFormElementId);
+			$reviewFormElementDao->deleteById($reviewFormElementId);
 			$json = new JSON('true');
 		} else {
 			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingReviewForm'));
