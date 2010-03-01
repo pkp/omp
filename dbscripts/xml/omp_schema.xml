@@ -569,6 +569,39 @@
 
 	<!--
 	  *
+	  * TABLE monograph_file_settings
+	  *
+	  -->
+	<table name="monograph_file_settings">
+		<field name="file_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object|date)</descr>
+		</field>
+		<descr>Article supplementary file metadata.</descr>
+		<index name="monograph_file_settings_id">
+			<col>file_id</col>
+		</index>
+		<index name="monograph_file_settings_pkey">
+			<col>file_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE/>
+		</index>
+	</table>
+
+	<!--
+	  *
 	  * TABLE monograph_authors
 	  *
 	  -->

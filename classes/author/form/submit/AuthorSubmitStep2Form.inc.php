@@ -34,7 +34,7 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	function initData() {
 		if (isset($this->monograph)) {
 			$monograph =& $this->monograph;
-			$this->_data = array(
+			$this->_data = array('monographId' => $monograph->getId()
 			);
 		}
 	}
@@ -54,38 +54,13 @@ class AuthorSubmitStep2Form extends AuthorSubmitForm {
 	 */
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
-
+		$templateMgr->assign('monographId', $this->monograph->getId());
 		// Get supplementary files for this monograph
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		if ($this->monograph->getSubmissionFileId() != null) {
 			$templateMgr->assign_by_ref('submissionFile', $monographFileDao->getMonographFile($this->monograph->getSubmissionFileId()));
 		}
 		parent::display();
-	}
-
-	/**
-	 * Upload the submission file.
-	 * @param $fileName string
-	 * @return boolean
-	 */
-	function uploadSubmissionFile($fileName) {
-		import("file.MonographFileManager");
-
-		$monographFileManager = new MonographFileManager($this->monographId);
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-
-		if ($monographFileManager->uploadedFileExists($fileName)) {
-			// upload new submission file, overwriting previous if necessary
-			$submissionFileId = $monographFileManager->uploadSubmissionFile($fileName, $this->monograph->getSubmissionFileId(), true);
-		}
-
-		if (isset($submissionFileId)) {
-			$this->monograph->setSubmissionFileId($submissionFileId);
-			return $monographDao->updateMonograph($this->monograph);
-
-		} else {
-			return false;
-		}
 	}
 
 	/**

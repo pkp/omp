@@ -77,7 +77,7 @@ class MonographFileDAO extends DAO {
 
 		return $returner;
 	}
-  
+
 	/**
 	 * Retrieve all revisions of a monograph file.
 	 * @param $monographId int
@@ -139,7 +139,7 @@ class MonographFileDAO extends DAO {
 			$result =& $this->retrieve(
 				'SELECT a.* FROM monograph_files a WHERE file_id = ? AND revision >= ? AND revision <= ?',
 				array($fileId, $start, $end)
-			);		
+			);
 		}
 
 		while (!$result->EOF) {
@@ -151,6 +151,23 @@ class MonographFileDAO extends DAO {
 		unset($result);
 
 		return $monographFiles;
+	}
+	/**
+	 * Get the list of fields for which data is localized.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('name');
+	}
+
+	/**
+	 * Update the localized fields for this supp file.
+	 * @param $suppFile
+	 */
+	function updateLocaleFields(&$monographFile) {
+		$this->updateDataObjectSettings('monograph_file_settings', $monographFile, array(
+			'file_id' => $monographFile->getFileId()
+		));
 	}
 
 	/**
@@ -278,6 +295,8 @@ class MonographFileDAO extends DAO {
 			$monographFile->setAssocObject($bookFileType);
 		}
 
+		$this->getDataObjectSettings('monograph_file_settings', 'file_id', $row['file_id'], $monographFile);
+
 		HookRegistry::call('MonographFileDAO::_fromRow', array(&$monographFile, &$row));
 
 		return $monographFile;
@@ -287,7 +306,7 @@ class MonographFileDAO extends DAO {
 	 * Insert a new MonographFile.
 	 * @param $monographFile MonographFile
 	 * @return int
-	 */	
+	 */
 	function insertMonographFile(&$monographFile) {
 		$fileId = $monographFile->getFileId();
 		$params = array(
@@ -322,7 +341,7 @@ class MonographFileDAO extends DAO {
 		if (!$fileId) {
 			$monographFile->setFileId($this->getInsertMonographFileId());
 		}
-
+		$this->updateLocaleFields($monographFile);
 		return $monographFile->getFileId();
 	}
 
@@ -368,8 +387,8 @@ class MonographFileDAO extends DAO {
 			)
 		);
 
+		$this->updateLocaleFields($monographFile);
 		return $monographFile->getFileId();
-
 	}
 
 	/**
@@ -396,6 +415,7 @@ class MonographFileDAO extends DAO {
 				'DELETE FROM monograph_files WHERE file_id = ? AND revision = ?', array($fileId, $revision)
 			);
 		}
+		$this->update('DELETE FROM monograph_file_settings WHERE file_id = ?', $fileId);
 	}
 
 	/**

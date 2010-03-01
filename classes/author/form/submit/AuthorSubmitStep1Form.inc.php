@@ -130,7 +130,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$this->monographId = $this->monograph->getMonographId();
 		}
 
-		return $monographId;
+		return $this->monographId;
 	}
 
 }

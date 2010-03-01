@@ -40,8 +40,10 @@
 	{if $allowCDN}<script src="http://www.google.com/jsapi"></script>
 	<script>
 		google.load("jquery", "1");
-		google.load("jqueryui", "1");
+		//google.load("jqueryui", "1"); 
+		// FIXME: We need jqueryUi 1.8 for several things to work, Which is not on Google's CDN yet
 	</script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery-ui-1.8rc3.min.js"></script>
 	{else}
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>

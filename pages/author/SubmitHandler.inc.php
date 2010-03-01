@@ -33,7 +33,7 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
 	function submit($args) {
-		$step = isset($args[0]) ? $args[0] : 0;
+		$step = isset($args[0]) ? $args[0] : 1;
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId, 'author.submit.authorSubmitLoginMessage');
 
@@ -57,7 +57,7 @@ class SubmitHandler extends AuthorHandler {
 	 * @param $args array first parameter is the step being saved
 	 */
 	function saveSubmit($args) {
-		$step = isset($args[0]) ? $args[0] : 0;
+		$step = isset($args[0]) ? $args[0] : 1;
 		$monographId = Request::getUserVar('monographId');
 
 		$this->validate($monographId);
@@ -71,28 +71,10 @@ class SubmitHandler extends AuthorHandler {
 		$submitForm->readInputData();
 
 		if (!HookRegistry::call('SubmitHandler::saveSubmit', array($step, &$monograph, &$submitForm))) {
-
-			// Check for any special cases before trying to save
-			switch ($step) {
-				case 2:
-					if (Request::getUserVar('uploadSubmissionFile')) {
-						$submitForm->uploadSubmissionFile('submissionFile');
-						$editData = true;
-					}
-					break;
-
-				case 4:
-					if (Request::getUserVar('submitUploadSuppFile')) {
-						SubmitHandler::submitUploadSuppFile();
-						return;
-					}
-					break;
-			}
-
 			if (!isset($editData) && $submitForm->validate()) {
 				$monographId = $submitForm->execute();
 
-				if ($step == 5) {
+				if ($step == 3) {
 					// Send a notification to associated users
 					import('notification.Notification');
 					$monographDao =& DAORegistry::getDAO('MonographDAO');
@@ -129,7 +111,7 @@ class SubmitHandler extends AuthorHandler {
 				}
 
 			} else {
-				Request::redirect(null, null, 'submit', $sequence->getNextStep(), array('monographId' => $monographId));
+				Request::redirect(null, null, 'submit', $step+1, array('monographId' => $monographId));
 			}
 
 		} else {

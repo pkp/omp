@@ -29,7 +29,7 @@
 
 	<message key="author.submit.category">Submission Category</message>
 	<message key="author.submit.category.description">From the drop down list below, please select the category or series that best suits your submission. If you are unsure about what to select, or you haven't received special submission instructions from one of our editors, you can continue without selecting a particular series or submission category.</message>
-	
+
 	<message key="editor.monograph.decision">Decision</message>
 	<message key="submission.notifyEditor">Notify Editor</message>
 	<message key="author.monograph.uploadAuthorVersion">Upload Author Version</message>
@@ -104,9 +104,12 @@
 	<message key="author.monograph.uploadAuthorVersion">Upload Author Version</message>
 	<message key="author.monograph.copyeditedFile">Copyedited File</message>
 	<message key="author.monograph.authorRevisedFile">Author File</message>
+	<message key="author.submit.addSubmissionFile">Add Submission File</message>
 	<message key="author.submit.authorSubmitLoginMessage">A user account is required to submit to this press. This allows our editors to track your submissions and contact you when the status of your submission changes, or if additional information is required from you.</message>
 	<message key="author.submit.prepare">Prepare</message>
 	<message key="author.submit.catalogue">Catalogue</message>
+	<message key="author.submit.finishingUp">Finishing Up</message>
+	<message key="author.submit.metadata">Metadata</message>
 	<message key="author.submit.upload">Upload</message>
 	<message key="author.submit.nextSteps">Next Steps</message>
 	<message key="author.submit.submissionType">Submission Type</message>
@@ -122,5 +125,10 @@
 	<message key="author.submit.checklistErrors.end">items left unchecked.</message>
 	<message key="author.submit.placement">Submission Placement</message>
 	<message key="author.submit.submissionFiles">Submission Files</message>
+	<message key="author.submit.readOnlyInfo">Read-only Information</message>
+	<message key="author.submit.fileNameRequired">You must enter a file name for this file</message>
+	<message key="author.submit.fileAdded">Submission File Added</message>
+	<message key="author.submit.newFile">Upload Another File For This Submission</message>
+	<message key="author.submit.finishedUploading">I'm Finished Uploading Files</message>
 
 </locale>

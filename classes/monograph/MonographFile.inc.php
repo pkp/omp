@@ -135,7 +135,7 @@ class MonographFile extends DataObject {
 	 */
 	function setRevision($revision) {
 		return $this->setData('revision', $revision);
-	}	
+	}
 
 	/**
 	 * Get ID of monograph.
@@ -158,7 +158,7 @@ class MonographFile extends DataObject {
 	 * @param return string
 	 */
 	function getFileName() {
-		return $this->getData('fileName');	
+		return $this->getData('fileName');
 	}
 
 	/**
@@ -166,7 +166,7 @@ class MonographFile extends DataObject {
 	 * @param $fileName string
 	 */
 	function setFileName($fileName) {
-		return $this->setData('fileName', $fileName);	
+		return $this->setData('fileName', $fileName);
 	}
 
 	/**
@@ -174,7 +174,7 @@ class MonographFile extends DataObject {
 	 * @ return string
 	 */
 	function getFileType() {
-		return $this->getData('fileType');	
+		return $this->getData('fileType');
 	}
 
 	/**
@@ -182,7 +182,7 @@ class MonographFile extends DataObject {
 	 * @param $fileType string
 	 */
 	function setFileType($fileType) {
-		return $this->setData('fileType', $fileType);	
+		return $this->setData('fileType', $fileType);
 	}
 
 	/**
@@ -190,7 +190,7 @@ class MonographFile extends DataObject {
 	 * @param return string
 	 */
 	function getOriginalFileName() {
-		return $this->getData('originalFileName');	
+		return $this->getData('originalFileName');
 	}
 
 	/**
@@ -198,7 +198,7 @@ class MonographFile extends DataObject {
 	 * @param $originalFileName string
 	 */
 	function setOriginalFileName($originalFileName) {
-		return $this->setData('originalFileName', $originalFileName);	
+		return $this->setData('originalFileName', $originalFileName);
 	}
 
 	/**
@@ -206,7 +206,7 @@ class MonographFile extends DataObject {
 	 * @ return string
 	 */
 	function getType() {
-		return $this->getData('type');	
+		return $this->getData('type');
 	}
 
 	/**
@@ -214,7 +214,33 @@ class MonographFile extends DataObject {
 	 * @param $type string
 	 */
 	function setType($type) {
-		return $this->setData('type', $type);	
+		return $this->setData('type', $type);
+	}
+
+	/**
+	 * Set the name of the file
+	 * @param $name string
+	 * @param $locale string
+	 */
+	function setName($name, $locale) {
+		$this->setData('name', $name, $locale);
+	}
+
+	/**
+	 * Get the name of the file
+	 * @param $locale string
+	 * @return string
+	 */
+	function getName($locale) {
+		return $this->getData('name', $locale);
+	}
+
+	/**
+	 * Get the localized name of the file
+	 * @return string
+	 */
+	function getLocalizedName() {
+		return $this->getLocalizedData('name');
 	}
 
 	/**
@@ -222,7 +248,7 @@ class MonographFile extends DataObject {
 	 * @return date
 	 */
 	function getDateUploaded() {
-		return $this->getData('dateUploaded');	
+		return $this->getData('dateUploaded');
 	}
 
 	/**
@@ -238,7 +264,7 @@ class MonographFile extends DataObject {
 	 * @return date
 	 */
 	function getDateModified() {
-		return $this->getData('dateModified');	
+		return $this->getData('dateModified');
 	}
 
 
@@ -255,7 +281,7 @@ class MonographFile extends DataObject {
 	 * @return int
 	 */
 	function getFileSize() {
-		return $this->getData('fileSize');	
+		return $this->getData('fileSize');
 	}
 
 
@@ -280,7 +306,7 @@ class MonographFile extends DataObject {
 	 * @return int
 	 */
 	function getRound() {
-		return $this->getData('round');	
+		return $this->getData('round');
 	}
 
 
@@ -297,7 +323,7 @@ class MonographFile extends DataObject {
 	 * @return int
 	 */
 	function getReviewType() {
-		return $this->getData('reviewType');	
+		return $this->getData('reviewType');
 	}
 
 	/**
@@ -314,7 +340,7 @@ class MonographFile extends DataObject {
 	 */
 
 	function getViewable() {
-		return $this->getData('viewable');	
+		return $this->getData('viewable');
 	}
 
 	/**

@@ -34,12 +34,13 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 		$this->addCheck(new FormValidatorArrayCustom($this, 'authors', 'required', 'user.profile.form.urlInvalid', create_function('$url, $regExp', 'return empty($url) ? true : String::regexp_match($regExp, $url);'), array(FormValidatorUrl::getRegexp()), false, array('url')));
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'author.submit.form.titleRequired'));
 		
-		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-		$series = $seriesDao->getSeries($monograph->getSeriesId());
-		$abstractWordCount = $series->getAbstractWordCount();
-		if (isset($abstractWordCount) && $abstractWordCount > 0) {
-			$this->addCheck(new FormValidatorCustom($this, 'abstract', 'required', 'author.submit.form.wordCountAlert', create_function('$abstract, $wordCount', 'foreach ($abstract as $localizedAbstract) {return count(explode(" ",$localizedAbstract)) < $wordCount; }'), array($abstractWordCount)));
-		}
+		// FIXME: No abstract word count implemented--Should there be?
+//		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
+//		$series = $seriesDao->getById($monograph->getSeriesId());
+//		$abstractWordCount = $series->getAbstractWordCount();
+//		if (isset($abstractWordCount) && $abstractWordCount > 0) {
+//			$this->addCheck(new FormValidatorCustom($this, 'abstract', 'required', 'author.submit.form.wordCountAlert', create_function('$abstract, $wordCount', 'foreach ($abstract as $localizedAbstract) {return count(explode(" ",$localizedAbstract)) < $wordCount; }'), array($abstractWordCount)));
+//		}
 
 	}
 
@@ -64,7 +65,7 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 				'type' => $monograph->getType(null), // Localized
 				'language' => $monograph->getLanguage(),
 				'sponsor' => $monograph->getSponsor(null), // Localized
-				'series' => $seriesDao->getSeries($monograph->getSeriesId()),
+				'series' => $seriesDao->getById($monograph->getSeriesId()),
 				'citations' => $monograph->getCitations()
 			);
 
@@ -81,7 +82,8 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 						'country' => $authors[$i]->getCountry(),
 						'email' => $authors[$i]->getEmail(),
 						'url' => $authors[$i]->getUrl(),
-						'competingInterests' => $authors[$i]->getCompetingInterests(null),
+					//	FIXME: Authors don't have a competing interest function, should they?
+					//	'competingInterests' => $authors[$i]->getCompetingInterests(null),
 						'biography' => $authors[$i]->getBiography(null)
 					)
 				);

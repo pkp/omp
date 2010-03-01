@@ -52,7 +52,7 @@ class SubmissionFilesGridRow extends GridRow {
 
 		// add Grid Row Actions
 		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
-
+		$monographId = $request->getUserVar('monographId');
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
 		if (!empty($rowId) && is_numeric($rowId)) {
@@ -60,9 +60,18 @@ class SubmissionFilesGridRow extends GridRow {
 			$router =& $request->getRouter();
 			$actionArgs = array(
 				'gridId' => $this->getGridId(),
-				'rowId' => $rowId
+				'fileId' => $rowId,
+				'monographId' => $monographId
 			);
-
+			$this->addAction(
+				new GridAction(
+					'editFile',
+					GRID_ACTION_MODE_MODAL,
+					GRID_ACTION_TYPE_REPLACE,
+					$router->url($request, null, null, 'editFile', null, $actionArgs),
+					'grid.action.edit',
+					'edit'
+				));
 			$this->addAction(
 				new GridAction(
 					'deleteFile',
