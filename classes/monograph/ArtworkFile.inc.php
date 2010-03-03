@@ -1,16 +1,16 @@
 <?php
 
 /**
- * @file classes/monograph/MonographFile.inc.php
+ * @file classes/monograph/ArtworkFile.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class MonographFile
+ * @class ArtworkFile
  * @ingroup monograph
- * @see MonographFileDAO
+ * @see ArtworkFileDAO
  *
- * @brief Monograph file class.
+ * @brief Artwork file class.
  */
 
 // $Id$
@@ -22,7 +22,7 @@ define('MONOGRAPH_ARTWORK_TYPE_FIGURE',		3);
 define('MONOGRAPH_ARTWORK_PLACEMENT_OTHER',		1);
 define('MONOGRAPH_ARTWORK_PLACEMENT_BY_CHAPTER',	2);
 
-class MonographArtworkFile extends DataObject {
+class ArtworkFile extends DataObject {
 
 	//
 	// Get/set methods
