@@ -1,5 +1,5 @@
 {**
- * submission.tpl
+ * art.tpl
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -23,9 +23,5 @@
 {include file="productionEditor/submission/summary.tpl"}
 
 <div class="separator"></div>
-
-<form method="post" action="{url op="submitArtwork" path=$submission->getMonographId()}"  enctype="multipart/form-data">
-	{include file="inserts/artwork/ArtworkInsert.tpl"}
-</form>
 
 {include file="common/footer.tpl"}

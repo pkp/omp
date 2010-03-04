@@ -43,18 +43,31 @@ class ArtworkFileGridRow extends GridRow {
 			$router =& $request->getRouter();
 			$actionArgs = array(
 				'gridId' => $this->getGridId(),
-				'rowId' => $rowId
+				'artworkFileId' => $rowId,
+				'monographId' => $request->getUserVar('monographId')
 			);
 
 			$this->addAction(
 				new GridAction(
-					'deleteFile',
+					'editBookFileType',
+					GRID_ACTION_MODE_MODAL,
+					GRID_ACTION_TYPE_REPLACE,
+					$router->url($request, null, null, 'editBookFileType', null, $actionArgs),
+					'grid.action.edit',
+					'edit'
+				)
+			);
+
+			$this->addAction(
+				new GridAction(
+					'deleteArtworkFile',
 					GRID_ACTION_MODE_CONFIRM,
 					GRID_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'deleteArtworkFile', null, $actionArgs),
 					'grid.action.delete',
 					'delete'
-				));
+				)
+			);
 		}
 	}
 }
