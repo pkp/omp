@@ -15,9 +15,6 @@
 import('controllers.listbuilder.setup.SetupListbuilderHandler');
 
 class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
-	/** @var boolean internal state variable, true if row handler has been instantiated */
-	var $_rowInstantiated = false;
-
 	/** @var The group ID for this listbuilder */
 	var $seriesId;
 

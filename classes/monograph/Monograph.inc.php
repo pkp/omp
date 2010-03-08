@@ -523,6 +523,34 @@ class Monograph extends Submission {
 		unset($this->authors);
 		$this->authors = array();
 	}
+	
+	/**
+	 * Get localized supporting agencies array.
+	 * @return array
+	 */
+	function getLocalizedSupportingAgencies() {
+		return $this->getLocalizedData('supportingAgencies');
+	}
+
+	/**
+	 * Get supporting agencies.
+	 * @param $locale
+	 * @return array
+	 */
+	function getSupportingAgencies($locale) {
+		return $this->getData('supportingAgencies', $locale);
+	}
+
+	/**
+	 * Set supporting agencies.
+	 * @param $supportingAgencies array
+	 * @param $locale
+	 */
+	function setSupportingAgencies($title, $locale) {
+		return $this->setData('supportingAgencies', $title, $locale);
+	}
+
+	
 }
 
 ?>

@@ -36,19 +36,15 @@
 
 <!--  Contributors -->
 
-{url|assign:submissionContributorGridUrl router=$smarty.const.ROUTE_COMPONENT co
-mponent="grid.submissionContributor.SubmissionContributorGridHandler" op="fetchG
-rid" monographId=27}
-{load_div id="submissionContributorGridContainer" loadMessageId="submission.subm
-issionContributors.form.loadMessage" url="$submissionContributorGridUrl"}
+{*url|assign:submissionContributorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.submissionContributor.SubmissionContributorGridHandler" op="fetchGrid" monographId=$monographId*}
+{*load_url_in_div id="submissionContributorGridContainer" loadMessageId="submission.submissionContributors.form.loadMessage" url="$submissionContributorGridUrl"*}
 
 <div class="separator"></div>
 
 <!--  Indexing Information -->
 
-<h3>-----------------------------------<br />
-Indexing information listbuilder goes here <br />
-----------------------------------<br /></h3>
+{url|assign:indexingInformationUrl router=$smarty.const.ROUTE_COMPONENT  component="listbuilder.submit.IndexingInformationListbuilderHandler" op="fetch" monographId=$monographId}
+{load_url_in_div id="indexingInformationContainer" url=$indexingInformationUrl}
 
 <div class="separator"></div>
 

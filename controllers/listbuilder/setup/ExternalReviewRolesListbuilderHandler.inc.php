@@ -15,9 +15,6 @@
 import('controllers.listbuilder.setup.SetupListbuilderHandler');
 
 class ExternalReviewRolesListbuilderHandler extends SetupListbuilderHandler {
-	/** @var boolean internal state variable, true if row handler has been instantiated */
-	var $_rowInstantiated = false;
-
 	/**
 	 * Constructor
 	 */

@@ -16,9 +16,6 @@ import('controllers.listbuilder.setup.SetupListbuilderHandler');
 import('press.Division');
 
 class DivisionsListbuilderHandler extends SetupListbuilderHandler {
-	/** @var boolean internal state variable, true if row handler has been instantiated */
-	var $_rowInstantiated = false;
-
 	/**
 	 * Constructor
 	 */
