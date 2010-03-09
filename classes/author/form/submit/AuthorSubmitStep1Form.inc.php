@@ -50,9 +50,9 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR) || $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
 
-		$seriesOptions = array_merge(array('0' => Locale::translate('author.submit.selectSeries')), $seriesDao->getTitlesByPressId($press->getId()));
+		$seriesOptions = array('0' => Locale::translate('author.submit.selectSeries')) + $seriesDao->getTitlesByPressId($press->getId());
 		$templateMgr->assign('seriesOptions', $seriesOptions);
-		parent::display();		
+		parent::display();
 	}
 
 	/**
