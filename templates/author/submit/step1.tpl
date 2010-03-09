@@ -45,6 +45,7 @@
 <script type="text/javascript">
 	{literal}
         $(function(){
+        $("#messageBox").hide();
 		$("form[name=submit]").validate({
 			showErrors: function(errorMap, errorList) {
 				$("#messageBox").html("<ul><li class='error'>{/literal}{translate key='author.submit.checklistErrors.begin'}{literal} "
