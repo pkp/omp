@@ -52,7 +52,7 @@ class ArtworkFileGridRow extends GridRow {
 					'editBookFileType',
 					GRID_ACTION_MODE_MODAL,
 					GRID_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'editBookFileType', null, $actionArgs),
+					$router->url($request, null, null, 'editArtworkFile', null, $actionArgs),
 					'grid.action.edit',
 					'edit'
 				)

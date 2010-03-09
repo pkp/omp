@@ -20,12 +20,16 @@ class ArtworkFileForm extends Form {
 	/** @var ArtworkFile */
 	var $_artworkFile;
 
+	/** @var int */
+	var $_monographId;
+
 	/**
 	 * Constructor.
 	 */
-	function ArtworkFileForm($artworkFile) {
+	function ArtworkFileForm($artworkFile, $monographId) {
 		parent::Form('controllers/grid/artworkFile/form/artworkFileForm.tpl');
 
+		$this->_monographId = $monographId;
 		$this->_artworkFile =& $artworkFile;
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -47,9 +51,16 @@ class ArtworkFileForm extends Form {
 		$templateMgr =& TemplateManager::getManager();
 		$artworkFile =& $this->getArtworkFile();
 
+		$templateMgr->assign('monographId', $this->_monographId);
+
 		// artwork can be grouped by monograph component
-		$components =& $artworkFile ? $monographComponentDao->getMonographComponents($artworkFile->getMonographId()) : null;
-		$templateMgr->assign_by_ref('components', $components);
+		if ($artworkFile) {
+			$components =& $monographComponentDao->getMonographComponents($artworkFile->getMonographId());
+		} else {
+			$components = null;
+		}
+
+		$templateMgr->assign_by_ref('monographComponents', $components);
 
 		parent::display();
 	}
@@ -63,7 +74,7 @@ class ArtworkFileForm extends Form {
 
 		// grid related data
 		$this->_data['gridId'] = $args['gridId'];
-		$this->_data['rowId'] = isset($args['rowId']) ? $args['rowId'] : null;
+		$this->_data['artworkFileId'] = isset($args['artworkFileId']) ? $args['artworkFileId'] : null;
 	}
 
 	/**
@@ -72,7 +83,7 @@ class ArtworkFileForm extends Form {
 	function readInputData() {
 		$this->readUserVars(array(
 			'artwork', 'artwork_file', 'artwork_caption', 'artwork_credit', 'artwork_copyrightOwner', 'artwork_copyrightOwnerContact', 'artwork_permissionTerms', 'monographId', 
-			'artwork_permissionForm', 'artwork_type', 'artwork_otherType', 'artwork_contact', 'artwork_placement', 'artwork_otherPlacement', 'artwork_componentId', 'artwork_placementType'
+			'artwork_type', 'artwork_otherType', 'artwork_contact', 'artwork_placement', 'artwork_otherPlacement', 'artwork_componentId', 'artwork_placementType'
 		));
 		$this->readUserVars(array('gridId', 'artworkFileId'));
 	}

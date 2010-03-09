@@ -15,6 +15,7 @@
 import('controllers.grid.GridHandler');
 import('controllers.grid.DataObjectGridCellProvider');
 import('controllers.grid.artworkFile.ArtworkFileGridRow');
+import('controllers.grid.artworkFile.MonographFileGridCellProvider');
 
 class ArtworkFileGridHandler extends GridHandler {
 
@@ -32,7 +33,7 @@ class ArtworkFileGridHandler extends GridHandler {
 	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addArtworkFile', 'editArtworkFile', 'uploadArtworkFile', 'updateArtworkFile', 'deleteArtworkFile'));
+		return array_merge(parent::getRemoteOperations(), array('addArtworkFile', 'editArtworkFile', 'uploadArtworkFile', 'updateArtworkFile', 'deleteArtworkFile', 'viewFile'));
 	}
 
 	/**
@@ -77,6 +78,8 @@ class ArtworkFileGridHandler extends GridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));
+
 		// Basic grid configuration
 		$this->setTitle('grid.artworkFile.title');
 
@@ -107,8 +110,10 @@ class ArtworkFileGridHandler extends GridHandler {
 		// Columns
 		$emptyActions = array();
 		$cellProvider = new DataObjectGridCellProvider();
+		$monographFileCellProvider = new MonographFileGridCellProvider();
 		// Basic grid row configuration
-		$this->addColumn(new GridColumn('id', 'grid.libraryFiles.column.files', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('filename', 'grid.artworkFile.file', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $monographFileCellProvider));
+		$this->addColumn(new GridColumn('caption', 'grid.artworkFile.caption', $emptyActions, 'controllers/grid/gridCell.tpl', $cellProvider));
 	}
 
 	//
@@ -146,9 +151,11 @@ class ArtworkFileGridHandler extends GridHandler {
 		// Identify the artwork file to be updated
 		$artworkFile =& $this->_getArtworkFileFromArgs($args);
 
+		$monograph =& $this->getMonograph();
+
 		// Form handling
 		import('controllers.grid.artworkFile.form.ArtworkFileForm');
-		$artworkFileForm = new ArtworkFileForm($artworkFile);
+		$artworkFileForm = new ArtworkFileForm($artworkFile, $monograph->getId());
 
 		if ($artworkFileForm->isLocaleResubmit()) {
 			$artworkFileForm->readInputData();
@@ -158,7 +165,7 @@ class ArtworkFileGridHandler extends GridHandler {
 		$artworkFileForm->display();
 	}
 
-	function uploadArtworkFile() {
+	function uploadFile($permissionsFile = false) {
 
 		$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO');
 		import('file.MonographFileManager');
@@ -168,9 +175,11 @@ class ArtworkFileGridHandler extends GridHandler {
 		$monographFileManager = new MonographFileManager($monograph->getId());
 		
 		$fileId = null;
-		
-		if ($monographFileManager->uploadedFileExists('artwork_file')) {
-			$fileId = $monographFileManager->uploadArtworkFile('artwork_file');
+
+		$uploadName = $permissionsFile ? 'artwork_permissionForm' : 'artwork_file';
+
+		if ($monographFileManager->uploadedFileExists($uploadName)) {
+			$fileId = $monographFileManager->uploadArtworkFile($uploadName);
 		}
 
 		if ($fileId) {
@@ -182,6 +191,13 @@ class ArtworkFileGridHandler extends GridHandler {
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign_by_ref('artworkFile', $artworkFile);
+
+			$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
+
+			// artwork can be grouped by monograph component
+			$components =& $monographComponentDao->getMonographComponents($artworkFile->getMonographId());
+			$templateMgr->assign_by_ref('monographComponents', $components);
+
 			$templateMgr->display('controllers/grid/artworkFile/form/fileInfo.tpl');
 		}
 	}
@@ -198,12 +214,22 @@ class ArtworkFileGridHandler extends GridHandler {
 		$uploadArtworkFile = $request->getUserVar('uploadArtworkFile');
 
 		if ($uploadArtworkFile) {
-			$this->uploadArtworkFile();
+			$this->uploadFile();
 			exit;
 		}
+
+		$uploadPermissionsFile = $request->getUserVar('uploadArtworkFile');
+
+		if ($uploadPermissionsFile) {
+			$this->uploadFile(true);
+			exit;
+		}
+
+		$monograph =& $this->getMonograph();
+
 		// Form handling
 		import('controllers.grid.artworkFile.form.ArtworkFileForm');
-		$artworkFileForm = new ArtworkFileForm($artworkFile);
+		$artworkFileForm = new ArtworkFileForm($artworkFile, $monograph->getId());
 		$artworkFileForm->readInputData();
 		if ($artworkFileForm->validate()) {
 			$artworkFileForm->execute();
@@ -212,9 +238,9 @@ class ArtworkFileGridHandler extends GridHandler {
 
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
-			$row->initialize($request);
 			$row->setData($artworkFile);
 			$row->setId($artworkFile->getId());
+			$row->initialize($request);
 
 			$json = new JSON('true', $this->_renderRowInternally($request, $row));
 		} else {
@@ -242,6 +268,14 @@ class ArtworkFileGridHandler extends GridHandler {
 			$json = new JSON('false', Locale::translate('error'));
 		}
 		return $json->getString();
+	}
+
+	function viewFile(&$args, &$request) {
+
+		$monograph =& $this->getMonograph();
+
+		import('submission.common.Action');
+		Action::viewFile($monograph->getId(), $request->getUserVar('fileId'));
 	}
 
 	//

@@ -46,22 +46,14 @@ class ArtworkFileDAO extends DAO {
 	 * @param $monographId int
 	 * @return array ArtworkFiles
 	 */
-	function &getByMonographId($monographId) {
-		$artworkFiles = array();
-
+	function &getByMonographId($monographId, $rangeInfo = null) {
 		$result =& $this->retrieve(
-			'SELECT * FROM monograph_artwork_files WHERE monograph_id = ?', $monographId
+			'SELECT * FROM monograph_artwork_files WHERE monograph_id = ?', $monographId, $rangeInfo
 		);
 
-		while (!$result->EOF) {
-			$artworkFiles[] =& $this->_fromRow($result->GetRowAssoc(false));
-			$result->moveNext();
-		}
+		$returner = new DAOResultFactory($result, $this, '_fromRow', array('id'));
 
-		$result->Close();
-		unset($result);
-
-		return $artworkFiles;
+		return $returner;
 	}
 
 	/**

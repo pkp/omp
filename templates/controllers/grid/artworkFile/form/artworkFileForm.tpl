@@ -9,10 +9,12 @@
  * $Id$
  *}
 
-<h4>{translate key="submission.artwork.add"}</h4>
+<h4>{translate key="grid.artworkFile.form.title"}</h4>
 
-<form id="artworkUploadForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.artworkFile.ArtworkFileGridHandler" op="updateArtworkFile" monographId="1"}" method="post" enctype="multipart/form-data">
+<form id="artworkUploadForm{if $artworkFile}-{$artworkFile->getId()|escape}{/if}" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.artworkFile.ArtworkFileGridHandler" op="updateArtworkFile" monographId="1"}" method="post" enctype="multipart/form-data">
 
+{if !$artworkFile}
+<div id="artworkUploadInput">
 <table width="100%" class="data">
 	<tr>
 		<td>{translate key="common.file"}</td>
@@ -22,24 +24,37 @@
 		</td>
 	</tr>
 </table>
+</div>
+{/if}
 
-<div id="uploadOutput">
-
-
-
+<div id="uploadOutput{if $artworkFile}-{$artworkFile->getId()|escape}{/if}">
+{if $artworkFile}
+	{include file="controllers/grid/artworkFile/form/fileInfo.tpl"}
+{/if}
 </div>
 
 
 {if $gridId}
 	<input type="hidden" name="gridId" value="{$gridId|escape}" />	
 {/if}
-{if $rowId}
-	<input type="hidden" name="rowId" value="{$rowId|escape}" />
+{if $artworkFileId}
+	<input type="hidden" name="artworkFileId" value="{$artworkFileId|escape}" />
 {/if}
 
 </form>
 
 {url|assign:fileUploadUrl router=$smarty.const.ROUTE_COMPONENT component="grid.artworkFile.ArtworkFileGridHandler" op="uploadArtworkFile"}
-{ajax_upload url=$fileUploadUrl form="artworkUploadForm"}
+<script type="text/javascript">
+<!--
+{literal}
+// remove artwork file upload
+var callback = function removeArtworkUploadInput() {
+	$("#artworkUploadInput").children().remove();
+}
+{/literal}
+ajaxUpload('{$fileUploadUrl}', 'artworkUploadForm', callback);
+//-->
+</script>
+
 
 
