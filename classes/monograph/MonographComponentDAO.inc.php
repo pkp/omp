@@ -32,7 +32,7 @@ class MonographComponentDAO extends DAO {
 			$monographId
 		);
 
-		$returner = array();
+		$returner = null;
 
 		while (!$result->EOF) {
 			$returner[] =& $this->_fromRow($result->GetRowAssoc(false));;
@@ -41,7 +41,7 @@ class MonographComponentDAO extends DAO {
 
 		$result->Close();
 		unset($result);
-		
+
 		return $returner;
 	}
 

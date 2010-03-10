@@ -60,8 +60,9 @@ class MonographFileManager extends FileManager {
 	function MonographFileManager($monographId) {
 		$this->monographId = $monographId;
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$this->monograph =& $monographDao->getMonograph($monographId);
-		$pressId = $this->monograph->getPressId();
+		$monograph =& $monographDao->getMonograph($monographId);
+		$this->monograph =& $monograph;
+		$pressId = $monograph->getPressId();
 		$this->filesDir = Config::getVar('files', 'files_dir') . '/presses/' . $pressId .
 		'/monographs/' . $monographId . '/';
 	}
