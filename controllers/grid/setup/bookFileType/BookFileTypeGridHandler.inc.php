@@ -172,9 +172,9 @@ class BookFileTypeGridHandler extends GridHandler {
 			$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 			$bookFileType =& $bookFileTypeDao->getById($bookFileTypeForm->bookFileTypeId, $press->getId());
 
-			$row->initialize($request);
 			$row->setData($bookFileType);
 			$row->setId($bookFileTypeForm->bookFileTypeId);
+			$row->initialize($request);
 
 			$json = new JSON('true', $this->_renderRowInternally($request, $row));
 		} else {
