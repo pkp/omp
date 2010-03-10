@@ -25,9 +25,13 @@ class BookFileTypeDAO extends DefaultSettingDAO
 	 * @param $typeId int
 	 * @return BookFileType
 	 */
-	function &getById($typeId){
-		$result =& $this->retrieve('SELECT * FROM book_file_types WHERE entry_id = ?', $typeId);
-		
+	function &getById($typeId, $pressId = null){
+		$sqlParams = array($typeId);
+		if ($pressId) {
+			$sqlParams[] = $pressId;
+		}
+
+		$result =& $this->retrieve('SELECT * FROM book_file_types WHERE entry_id = ?'. ($pressId ? ' AND press_id = ?' : ''), $sqlParams);
 		$returner = null;
 		if ($result->RecordCount() != 0) {
 			$returner =& $this->_fromRow($result->GetRowAssoc(false));
@@ -38,20 +42,14 @@ class BookFileTypeDAO extends DefaultSettingDAO
 
 	/**
 	 * Retrieve all enabled book file types
-	 * @return array BookFileType
+	 * @return DAOResultFactory containing matching BookFileTypes
 	 */
-	function &getEnabledByPressId($pressId) {
-		$result =& $this->retrieve(
-			'SELECT * FROM book_file_types WHERE enabled = ? AND press_id = ?', array(1, $pressId)
-		);
+	function &getEnabledByPressId($pressId, $rangeInfo = null) {
+		$result =& $this->retrieveRange(
+			'SELECT * FROM book_file_types WHERE enabled = ? AND press_id = ?', array(1, $pressId), $rangeInfo
+ 		);
 
-		$returner = null;
-		while (!$result->EOF) {
-			$returner[] =& $this->_fromRow($result->GetRowAssoc(false));
-			$result->moveNext();
-		}
-		$result->Close();
-		unset($result);
+		$returner = new DAOResultFactory($result, $this, '_fromRow', array('id'));
 
 		return $returner;
 	}
@@ -128,6 +126,14 @@ class BookFileTypeDAO extends DefaultSettingDAO
 	function updateObject(&$bookFileType) {
 
 		$this->updateLocaleFields($bookFileType);
+	}
+
+	/**
+	 * Delete a book file type by id.
+	 * @param $bookFileType BookFileType
+	 */
+	function deleteObject($bookFileType) {
+		return $this->deleteById($bookFileType->getId());
 	}
 
 	/**
