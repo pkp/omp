@@ -64,7 +64,7 @@ class ReviewFormForm extends Form {
 		if ($this->reviewFormId != null) {
 			$press =& Request::getPress();
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-			$reviewForm =& $reviewFormDao->getReviewForm($this->reviewFormId, $press->getId());
+			$reviewForm =& $reviewFormDao->getReviewForm($this->reviewFormId, ASSOC_TYPE_PRESS, $press->getId());
 
 			$this->reviewForm =& $reviewForm;
 
@@ -100,7 +100,7 @@ class ReviewFormForm extends Form {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
 		if ($this->reviewFormId != null) {
-			$reviewForm =& $reviewFormDao->getReviewForm($this->reviewFormId, $pressId);
+			$reviewForm =& $reviewFormDao->getReviewForm($this->reviewFormId, ASSOC_TYPE_PRESS, $pressId);
 		}
 
 		if (!isset($reviewForm)) {
@@ -113,12 +113,12 @@ class ReviewFormForm extends Form {
 		$reviewForm->setTitle($this->getData('title'), null); // Localized
 		$reviewForm->setDescription($this->getData('description'), null); // Localized
 
-		if ($reviewForm->getReviewFormId() != null) {
-			$reviewFormDao->updateReviewForm($reviewForm);
-			$this->reviewFormId = $reviewForm->getReviewFormId();
+		if ($reviewForm->getId() != null) {
+			$reviewFormDao->updateObject($reviewForm);
+			$this->reviewFormId = $reviewForm->getId();
 		} else {
-			$this->reviewFormId = $reviewFormDao->insertReviewForm($reviewForm);
-			$reviewFormDao->resequenceReviewForms($pressId, 0);
+			$this->reviewFormId = $reviewFormDao->insertObject($reviewForm);
+			$reviewFormDao->resequenceReviewForms(ASSOC_TYPE_PRESS, $pressId);
 		}
 		$this->reviewForm = $reviewForm;
 	}

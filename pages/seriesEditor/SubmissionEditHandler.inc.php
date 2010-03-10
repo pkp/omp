@@ -181,7 +181,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		}
 
 		// get press published review form titles
-		$reviewFormTitles =& $reviewFormDao->getPressReviewFormTitles($press->getId(), 1);
+		$reviewFormTitles =& $reviewFormDao->getTitlesByAssocId(ASSOC_TYPE_PRESS, $press->getId(), 1);
 
 		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 		$reviewFormResponses = array();
@@ -192,7 +192,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		foreach ($submission->getReviewAssignments($reviewType, $round) as $reviewAssignment) {
 			$reviewForm =& $reviewFormDao->getReviewForm($reviewAssignment->getReviewFormId());
 			if ($reviewForm) {
-				$reviewFormTitles[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
+				$reviewFormTitles[$reviewForm->getId()] = $reviewForm->geLocalizedTitle();
 			}
 			unset($reviewForm);
 			$reviewFormResponses[$reviewAssignment->getReviewId()] = $reviewFormResponseDao->reviewFormResponseExists($reviewAssignment->getReviewId());
@@ -899,7 +899,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, $press->getId());
+		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_PRESS, $press->getId());
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -949,7 +949,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 			$press =& Request::getPress();
 			$rangeInfo =& Handler::getRangeInfo('reviewForms');
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-			$reviewForms =& $reviewFormDao->getPressActiveReviewForms($press->getId(), $rangeInfo);
+			$reviewForms =& $reviewFormDao->getActiveByAssocId(ASSOC_TYPE_PRESS, $press->getId(), $rangeInfo);
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 

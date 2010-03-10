@@ -49,7 +49,7 @@ class ReviewFormResponseForm extends Form {
 	function display() {
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
-		$reviewForm =& $reviewFormDao->getReviewForm($this->reviewFormId, $press->getId());
+		$reviewForm =& $reviewFormDao->getReviewForm($this->reviewFormId, ASSOC_TYPE_PRESS, $press->getId());
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($this->reviewFormId);
 		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
@@ -123,11 +123,11 @@ class ReviewFormResponseForm extends Form {
 					break;
 			}
 			if ($reviewFormResponse->getReviewFormElementId() != null && $reviewFormResponse->getReviewId() != null) {
-				$reviewFormResponseDao->updateReviewFormResponse($reviewFormResponse);
+				$reviewFormResponseDao->updateObject($reviewFormResponse);
 			} else {
 				$reviewFormResponse->setReviewFormElementId($reviewFormElementId);
 				$reviewFormResponse->setReviewId($this->reviewId);
-				$reviewFormResponseDao->insertReviewFormResponse($reviewFormResponse);
+				$reviewFormResponseDao->insertObject($reviewFormResponse);
 			}
 		}
 	}

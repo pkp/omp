@@ -120,7 +120,7 @@ class SeriesEditorAction extends Action {
 			$submissionId = $seriesEditorSubmission->getMonographId();
 			$series =& $seriesDao->getById($submissionId, $pressId);
 			if ($series && ($reviewFormId = (int) $series->getReviewFormId())) {
-				if ($reviewFormDao->reviewFormExists($reviewFormId, $pressId)) {
+				if ($reviewFormDao->reviewFormExists($reviewFormId, ASSOC_TYPE_PRESS, $pressId)) {
 					$reviewAssignment->setReviewFormId($reviewFormId);
 				}
 			}
@@ -1890,11 +1890,11 @@ class SeriesEditorAction extends Action {
 									$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n\n";
 								}
 								foreach ($reviewFormElements as $reviewFormElement) {
-									$body .= $reviewFormElement->getReviewFormElementQuestion() . ": \n";
-									$reviewFormResponse = $reviewFormResponseDao->getReviewFormResponse($reviewId, $reviewFormElement->getReviewFormElementId());
+									$body .= $reviewFormElement->getLocalizedQuestion() . ": \n";
+									$reviewFormResponse = $reviewFormResponseDao->getReviewFormResponse($reviewId, $reviewFormElement->getId());
 									
 									if ($reviewFormResponse) {
-										$possibleResponses = $reviewFormElement->getReviewFormElementPossibleResponses();
+										$possibleResponses = $reviewFormElement->getLocalizedPossibleResponses();
 										if (in_array($reviewFormElement->getElementType(), $reviewFormElement->getMultipleResponsesElementTypes())) {
 											if ($reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_CHECKBOXES) {
 												foreach ($reviewFormResponse->getValue() as $value) {

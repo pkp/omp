@@ -147,10 +147,10 @@ class SeriesForm extends Form {
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
-		$reviewForms =& $reviewFormDao->getPressActiveReviewForms($press->getId());
+		$reviewForms =& $reviewFormDao->getActiveByAssocId(ASSOC_TYPE_PRESS, $press->getId());
 		$reviewFormOptions = array();
 		while ($reviewForm =& $reviewForms->next()) {
-			$reviewFormOptions[$reviewForm->getReviewFormId()] = $reviewForm->getReviewFormTitle();
+			$reviewFormOptions[$reviewForm->getId()] = $reviewForm->getLocalizedTitle();
 		}
 
 		$templateMgr =& TemplateManager::getManager();

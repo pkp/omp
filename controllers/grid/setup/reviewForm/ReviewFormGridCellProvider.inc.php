@@ -37,7 +37,7 @@ class ReviewFormGridCellProvider extends GridCellProvider {
 		$label = $reviewForm->getLocalizedTitle();
 
 		// Construct a default cell id
-		$rowId = $reviewForm->getReviewFormId();
+		$rowId = $reviewForm->getId();
 		assert(!empty($rowId));
 
 		$row->setId($rowId);
