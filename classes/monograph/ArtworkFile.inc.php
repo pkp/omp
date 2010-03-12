@@ -22,7 +22,9 @@ define('MONOGRAPH_ARTWORK_TYPE_FIGURE',		3);
 define('MONOGRAPH_ARTWORK_PLACEMENT_OTHER',		1);
 define('MONOGRAPH_ARTWORK_PLACEMENT_BY_CHAPTER',	2);
 
-class ArtworkFile extends DataObject {
+import('monograph.MonographFile');
+
+class ArtworkFile extends MonographFile {
 
 	/** @var array */
 	var $_imageInfo;
@@ -30,11 +32,11 @@ class ArtworkFile extends DataObject {
 	/** @var MonographFile */
 	var $_monographFile;
 
-	/** @var MonographFile */
+	/** @var PermissionFile */
 	var $_permissionFile;
 
 	function ArtworkFile() {
-		parent::DataObject();
+		parent::MonographFile();
 
 		$this->_imageInfo = null;
 		$this->_monographFile = null;
@@ -44,38 +46,6 @@ class ArtworkFile extends DataObject {
 	//
 	// Get/set methods
 	//
-
-	/**
-	 * Get artwork file id.
-	 * @return int
-	 */
-	function getFileId() {
-		return $this->getData('fileId');
-	}
-
-	/**
-	 * Set artwork file id.
-	 * @param $fileId int
-	 */
-	function setFileId($fileId) {
-		return $this->setData('fileId', $fileId);
-	}
-
-	/**
-	 * Get the current monograph id.
-	 * @return int
-	 */
-	function getMonographId() {
-		return $this->getData('monographId');
-	}
-
-	/**
-	 * Set the current monograph id.
-	 * @param $monographId int
-	 */
-	function setMonographId($monographId) {
-		return $this->setData('monographId', $monographId);
-	}
 
 	/**
 	 * Get artwork caption.
@@ -209,7 +179,7 @@ class ArtworkFile extends DataObject {
 	 * Get the artwork type.
 	 * @return int
 	 */
-	function getType() {
+	function getArtworkType() {
 		return $this->getData('artworkType');
 	}
 
@@ -217,7 +187,7 @@ class ArtworkFile extends DataObject {
 	 * Set the artwork type.
 	 * @param $typeId int
 	 */
-	function setType($typeId) {
+	function setArtworkType($typeId) {
 		return $this->setData('artworkType', $typeId);
 	}
 

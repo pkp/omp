@@ -40,22 +40,70 @@ class ArtworkFileDAO extends DAO {
 
 		return $returner;
 	}
-  
+
+	/**
+	 * Retrieve a monograph artwork file by file ID (associated with monograph_files table).
+	 * @param $artworkFileId int
+	 * @return ArtworkFile
+	 */
+	function &getByFileId($fileId) {
+		$returner = null;
+
+		$result =& $this->retrieve(
+			'SELECT * FROM monograph_artwork_files WHERE file_id = ?', $fileId
+		);
+
+		if (isset($result) && $result->RecordCount() != 0) {
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
 	/**
 	 * Retrieve all artwork files for a monograph.
 	 * @param $monographId int
 	 * @return array ArtworkFiles
 	 */
 	function &getByMonographId($monographId, $rangeInfo = null) {
+		$artworkFiles = array();
+		
 		$result =& $this->retrieve(
 			'SELECT * FROM monograph_artwork_files WHERE monograph_id = ?', $monographId, $rangeInfo
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow', array('id'));
+		while (!$result->EOF) {
+			$artworkFiles[] =& $this->_fromRow($result->GetRowAssoc(false));
+			$result->moveNext();
+		}
+		
+		$result->Close();
+		unset($result);
 
-		return $returner;
+		return $artworkFiles;
 	}
 
+	/**
+	 * Get the list of fields for which data is localized.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array('name');
+	}
+
+	/**
+	 * Update the localized fields for this supp file.
+	 * @param $suppFile
+	 */
+	function updateLocaleFields(&$artworkFile) {
+		$this->updateDataObjectSettings('monograph_file_settings', $artworkFile, array(
+			'file_id' => $artworkFile->getFileId()
+		));
+	}
+	
 	/**
 	 * Construct a new data object corresponding to this DAO.
 	 * @return ArtworkFile
@@ -87,6 +135,10 @@ class ArtworkFileDAO extends DAO {
 		$artworkFile->setPermissionFileId($row['permission_file_id']);
 		$artworkFile->setCopyrightOwnerContactDetails($row['copyright_owner_contact']);
 
+		$this->getDataObjectSettings('monograph_file_settings', 'file_id', $row['file_id'], $artworkFile);
+		
+		HookRegistry::call('ArtworkFileDAO::_fromRow', array(&$artworkFile, &$row));
+
 		return $artworkFile;
 	}
 
@@ -94,7 +146,7 @@ class ArtworkFileDAO extends DAO {
 	 * Insert a new ArtworkFile.
 	 * @param $artworkFile ArtworkFile
 	 * @return int
-	 */	
+	 */
 	function insertObject(&$artworkFile) {
 		$this->update(
 			'INSERT INTO monograph_artwork_files
@@ -119,7 +171,7 @@ class ArtworkFileDAO extends DAO {
 		);
 
 		$artworkFile->setId($this->getInsertArtworkFileId());
-
+		$this->updateLocaleFields($artworkFile);
 		return $artworkFile->getFileId();
 	}
 
@@ -160,7 +212,7 @@ class ArtworkFileDAO extends DAO {
 				$artworkFile->getId()
 			)
 		);
-
+		$this->updateLocaleFields($artworkFile);
 		return $artworkFile->getId();
 
 	}

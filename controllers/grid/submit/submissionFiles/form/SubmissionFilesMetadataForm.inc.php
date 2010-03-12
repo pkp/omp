@@ -15,16 +15,21 @@
 import('form.Form');
 
 class SubmissionFilesMetadataForm extends Form {
-	/** the id of the file being edited */
-	var $_fileId; 
-	
+	/** @var int */
+	var $_fileId;
+
+	/** @var int */
+	var $_monographId;
+
 	/**
 	 * Constructor.
 	 */
-	function SubmissionFilesMetadataForm($fileId = null) {
-		$this->_fileId = $fileId;		
+	function SubmissionFilesMetadataForm($fileId = null, $monographId = null) {	
 		parent::Form('controllers/grid/submissionFiles/form/metadataForm.tpl');
 
+		$this->_fileId = $fileId;	
+		$this->_monographId = $monographId;
+		
 		$this->addCheck(new FormValidator($this, 'name', 'required', 'user.profile.form.lastNameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}

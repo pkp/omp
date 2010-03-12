@@ -32,6 +32,9 @@
     			$('#loading').throbber("disable");
 	    		$('#loading').hide();
 	    		if (returnString.status == true) {
+		    		$('#fileType').attr("disabled", "disabled");
+		    		$('#submissionFile').attr("disabled", "disabled");
+		    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('url', 0, returnString.fileFormUrl);
 		    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('url', 1, returnString.metadataUrl);
 		  			$('#continueButton-{/literal}{$fileId}{literal}').removeAttr("disabled");
 		    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('enable', 1);
@@ -59,7 +62,7 @@
 		{/fbvFormSection}
 		{if !$fileId}
 			{fbvFormSection title="author.submit.submissionFile"}
-				<input type="file" name="submissionFile" />
+				<input type="file" name="submissionFile" id="submissionFile" />
 				<input type="submit" value="{translate key='form.submit'}" />
 			{/fbvFormSection}
 		{else}

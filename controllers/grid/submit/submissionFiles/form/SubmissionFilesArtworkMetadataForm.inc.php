@@ -1,24 +1,22 @@
 <?php
  
 /**
- * @file controllers/grid/artworkFile/ArtworkFileForm.inc.php
+ * @file controllers/grid/artworkFile/SubmissionFilesArtworkMetadataForm.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class ArtworkFileForm
- * @ingroup controllers_grid_artworkFile_form
+ * @class SubmissionFilesArtworkMetadataForm
+ * @ingroup controllers_grid_file_form
  *
- * @brief Form for uploading artwork files and editing file metadata.
+ * @brief Form for editing artwork file metadata.
  */
-
 
 import('form.Form');
 
-class ArtworkFileForm extends Form {
-
-	/** @var ArtworkFile */
-	var $_artworkFile;
+class SubmissionFilesArtworkMetadataForm extends Form {
+	/** @var int */
+	var $_fileId;
 
 	/** @var int */
 	var $_monographId;
@@ -26,42 +24,51 @@ class ArtworkFileForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function ArtworkFileForm($artworkFile, $monographId) {
-		parent::Form('controllers/grid/artworkFile/form/artworkFileForm.tpl');
+	function SubmissionFilesArtworkMetadataForm($fileId = null, $monographId = null) {
+		parent::Form('controllers/grid/submissionFiles/form/artworkMetadataForm.tpl');
 
+		$this->_fileId = $fileId;
 		$this->_monographId = $monographId;
-		$this->_artworkFile =& $artworkFile;
+		
+		$this->addCheck(new FormValidator($this, 'name', 'required', 'user.profile.form.lastNameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
-	}
-
-	/**
-	 * Get the artwork file
-	 * @return ArtworkFile
-	 */
-	function &getArtworkFile() {
-		return $this->_artworkFile;
 	}
 
 	/**
 	 * Display the form.
 	 */
 	function display() {
-
-		$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
 		$templateMgr =& TemplateManager::getManager();
-		$artworkFile =& $this->getArtworkFile();
-
+		$templateMgr->assign('fileId', $this->_fileId);
 		$templateMgr->assign('monographId', $this->_monographId);
+		
+		//$templateMgr->assign('monographId', $this->_monographId);
+		$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO');
+		$artworkFile =& $artworkFileDao->getByFileId($this->_fileId);
+		$templateMgr->assign_by_ref('artworkFile', $artworkFile);
+		
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
+		$templateMgr->assign_by_ref('monographFile', $monographFile);
 
 		// artwork can be grouped by monograph component
 		if ($artworkFile) {
+			$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
 			$components =& $monographComponentDao->getMonographComponents($artworkFile->getMonographId());
+			$componentOptions = array();
+			if($components) {
+				foreach ($components as $component) {
+					$componentId = $component->getId();
+					$componentOptions[$componentId] = $component->getLocalizedTitle();
+				}	
+			}
+			$templateMgr->assign_by_ref('selectedComponent', $artworkFile->getComponentId());
 		} else {
 			$components = null;
 		}
 
-		$templateMgr->assign_by_ref('monographComponents', $components);
-
+		$templateMgr->assign_by_ref('componentOptions', $componentOptions);
+		
 		parent::display();
 	}
 
@@ -69,11 +76,18 @@ class ArtworkFileForm extends Form {
 	 * Initialize form data.
 	 */
 	function initData(&$args, &$request) {
-
-		$this->_data['artworkFile'] =& $this->getArtworkFile();
-
+		$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO');
+		$artworkFile =& $artworkFileDao->getByFileId($this->_fileId);
+		$this->_data['artworkFile'] =& $artworkFile;
+		
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
+		$this->_data['$monographFile'] =& $monographFile;
+		
 		// grid related data
 		$this->_data['gridId'] = $args['gridId'];
+		$this->_data['monographId'] = $this->_monographId;
+		$this->_data['fileId'] = $this->_fileId;
 		$this->_data['artworkFileId'] = isset($args['artworkFileId']) ? $args['artworkFileId'] : null;
 	}
 
@@ -82,7 +96,7 @@ class ArtworkFileForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array(
-			'artwork', 'artwork_file', 'artwork_caption', 'artwork_credit', 'artwork_copyrightOwner', 'artwork_copyrightOwnerContact', 'artwork_permissionTerms', 'monographId', 
+			'name', 'artwork', 'artwork_file', 'artwork_caption', 'artwork_credit', 'artwork_copyrightOwner', 'artwork_copyrightOwnerContact', 'artwork_permissionTerms', 'monographId', 
 			'artwork_type', 'artwork_otherType', 'artwork_contact', 'artwork_placement', 'artwork_otherPlacement', 'artwork_componentId', 'artwork_placementType'
 		));
 		$this->readUserVars(array('gridId', 'artworkFileId'));
@@ -99,16 +113,9 @@ class ArtworkFileForm extends Form {
 		$monographId = $this->getData('monographId');
 		$monographFileManager = new MonographFileManager($monographId);
 
-		$artworkFile =& $this->_artworkFile;
-		$artworkFileExists = false;
-		$permissionFileId = null;
-
-		if ($artworkFile) {
-			$artworkFileExists = true;
-		} else {
-			$artworkFile =& $artworkFileDao->newDataObject();
-		}
-
+		$artworkFile =& $artworkFileDao->getByFileId($this->_fileId);		
+		
+		$permissionFileId = null; 
 		if ($monographFileManager->uploadedFileExists('artwork_permissionForm')) {
 			$permissionFileId = $monographFileManager->uploadArtworkFile('artwork_permissionForm');
 		}
@@ -116,9 +123,13 @@ class ArtworkFileForm extends Form {
 		$otherType = $this->getData('artwork_type') == MONOGRAPH_ARTWORK_TYPE_OTHER ? $this->getData('artwork_otherType') : null;
 		$otherPlacement = $this->getData('artwork_placementType') == MONOGRAPH_ARTWORK_PLACEMENT_OTHER ? $this->getData('artwork_otherPlacement') : null;
 
-		$artworkFile->setFileId($this->getData('artworkFileId'));
+		$artworkFile->setName($this->getData('name'), Locale::getLocale());
+		$artworkFile->setFileId($this->_fileId);
 		$artworkFile->setMonographId($monographId);
-		$artworkFile->setCaption($this->getData('artwork_caption'));
+		//
+		// FIXME: Should caption, credit, or any other fields be localized?
+		//
+		$artworkFile->setCaption($this->getData('artwork_caption')); 
 		$artworkFile->setCredit($this->getData('artwork_credit'));
 		$artworkFile->setCopyrightOwner($this->getData('artwork_copyrightOwner'));
 		$artworkFile->setCopyrightOwnerContactDetails($this->getData('artwork_copyrightOwnerContact'));
@@ -141,13 +152,7 @@ class ArtworkFileForm extends Form {
 			$artworkFile->setComponentId($this->getData('artwork_componentId'));
 		}
 
-		if ($artworkFileExists) {
-			$artworkFileDao->updateObject($artworkFile);
-		} else {
-			$artworkFileDao->insertObject($artworkFile);
-		}
-
-		$this->_artworkFile = $artworkFile;
+		$artworkFileDao->updateObject($artworkFile);
 
 		return $artworkFile->getId();
 	}

@@ -152,6 +152,7 @@ class MonographFileDAO extends DAO {
 
 		return $monographFiles;
 	}
+
 	/**
 	 * Get the list of fields for which data is localized.
 	 * @return array

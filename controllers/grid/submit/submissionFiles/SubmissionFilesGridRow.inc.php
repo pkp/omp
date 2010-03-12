@@ -2,7 +2,7 @@
 
 /**
  * @file controllers/grid/submit/submissionFiles/SubmissionFilesGridRow.inc.php
- * 
+ *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
@@ -52,9 +52,14 @@ class SubmissionFilesGridRow extends GridRow {
 
 		// add Grid Row Actions
 		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
-		$monographId = $request->getUserVar('monographId');
+
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
+		
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$monographFile =& $monographFileDao->getMonographFile($rowId);
+		$monographId = $monographFile->getMonographId();
+		
 		if (!empty($rowId) && is_numeric($rowId)) {
 			// Actions
 			$router =& $request->getRouter();

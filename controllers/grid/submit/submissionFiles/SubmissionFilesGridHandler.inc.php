@@ -40,7 +40,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addFile', 'editFile', 'displayFileForm', 'uploadFile', 'deleteFile', 'editMetadata', 'saveMetadata', 'finishFileSubmission', 'returnFileRow'));
+		return array_merge(parent::getRemoteOperations(), array('addFile', 'editFile', 'displayFileForm', 'uploadFile', 
+			'deleteFile', 'editMetadata', 'saveMetadata', 'finishFileSubmission', 'returnFileRow', 'viewFile'));
 	}
 
 	//
@@ -62,17 +63,20 @@ class SubmissionFilesGridHandler extends GridHandler {
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
-
+		$rowData = array();
+		
+		// Load in book files
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFiles =& $monographFileDao->getByMonographId($this->_monographId);
 		
-		$rowData = array();
 		foreach ($monographFiles as $monographFile) {
 			$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
+			$fileName = $monographFile->getLocalizedName() != '' ? $monographFile->getLocalizedName() : Locale::translate('common.untitled');
 			$monographFileId = $monographFile->getFileId();
-			$rowData[$monographFileId] = array('name' => $monographFile->getLocalizedName(), 'type' => $fileType->getLocalizedName());
+			$rowData[$monographFileId] = array('name' => $fileName, 'type' => $fileType->getLocalizedName());
 		}
+
 		$this->setData($rowData);
 
 		// Add grid-level actions
@@ -180,9 +184,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$fileId = !empty($args['fileId']) ? ((int) $args['fileId']) : null;
 		$monographId = isset($args['monographId']) ? $args['monographId'] : null;
 
-		//FIXME: add validation here?
-		$this->initialize($request);
-
 		import('controllers.grid.submit.submissionFiles.form.SubmissionFilesUploadForm');
 		$fileForm = new SubmissionFilesUploadForm($fileId, $monographId);
 
@@ -214,7 +215,10 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign_by_ref('fileId', $fileId);
 			
-			$additionalAttributes = array('metadataUrl' => $router->url($request, null, null, 'editMetadata', null, array('gridId' => $this->getId(), 'fileId' => $fileId)));
+			$additionalAttributes = array(
+				'fileFormUrl' => $router->url($request, null, null, 'displayFileForm', null, array('gridId' => $this->getId(), 'fileId' => $fileId)),
+				'metadataUrl' => $router->url($request, null, null, 'editMetadata', null, array('gridId' => $this->getId(), 'fileId' => $fileId))
+			);
 			$json = new JSON('true', Locale::translate('submission.uploadSuccessful'), 'false', $fileId, $additionalAttributes);
 		} else {
 			$json = new JSON('false', Locale::translate('common.uploadFailed'));
@@ -231,14 +235,29 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 */
 	function editMetadata(&$args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
-		$monographId = $request->getUserVar('monographId');
-
-		import('controllers.grid.submit.submissionFiles.form.SubmissionFilesMetadataForm');
-		$metadataForm = new SubmissionFilesMetadataForm($fileId);
+		
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$monographFile =& $monographFileDao->getMonographFile($fileId);
+		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+		$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
+		$monographId = $monographFile->getMonographId();
+		
+		switch ($fileType->getId()) {
+			// FIXME: Need a way to determine artwork file type from user-specified artwork file types
+			case 1:
+				import('controllers.grid.submit.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
+				$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId, $monographId);
+				break;
+			default:
+				import('controllers.grid.submit.submissionFiles.form.SubmissionFilesMetadataForm');
+				$metadataForm = new SubmissionFilesMetadataForm($fileId, $monographId);
+				break;
+		}
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('gridId', $this->getId());
-
+		$templateMgr->assign('monographId', $monographId);
+		
 		if ($metadataForm->isLocaleResubmit()) {
 			$metadataForm->readInputData();
 		} else {
@@ -255,25 +274,38 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 */
 	function saveMetadata(&$args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
-		$monographId = $request->getUserVar('monographId');
-		
+
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
+		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+		$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
+		$monographId = $monographFile->getMonographId();
+		
 		if(isset($monographFile) && $monographFile->getLocalizedName() != '') { //Name exists, just updating it
 			$isEditing = true;
 		} else { 
 			$isEditing = false;
 		}
 
-		import('controllers.grid.submit.submissionFiles.form.SubmissionFilesMetadataForm');
-		$metadataForm = new SubmissionFilesMetadataForm($fileId);
+		switch ($fileType->getId()) {
+			// FIXME: Need a way to determine artwork file type from user-specified artwork file types
+			case 1:
+				import('controllers.grid.submit.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
+				$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId);
+				break;
+			default:
+				import('controllers.grid.submit.submissionFiles.form.SubmissionFilesMetadataForm');
+				$metadataForm = new SubmissionFilesMetadataForm($fileId);
+				break;
+		}
+
 		$metadataForm->readInputData();
 
 		if ($metadataForm->validate()) {
 			$metadataForm->execute($args, $request);
 			$router =& $request->getRouter();
 						
-			$additionalAttributes = array('isEditing' => $isEditing, 'finishingUpUrl' => $router->url($request, null, null, 'finishFileSubmission', null, array('gridId' => $this->getId(), 'fileId' => $fileId)));
+			$additionalAttributes = array('isEditing' => $isEditing, 'finishingUpUrl' => $router->url($request, null, null, 'finishFileSubmission', null, array('gridId' => $this->getId(), 'fileId' => $fileId, 'monographId' => $monographId)));
 			$json = new JSON('true', '', 'false', $fileId, $additionalAttributes);
 		} else {
 			$json = new JSON('false', Locale::translate('author.submit.fileNameRequired'));
@@ -289,7 +321,10 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 */
 	function finishFileSubmission(&$args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
+		$monographId = isset($args['monographId']) ? $args['monographId'] : null;
+				
 		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('monographId', $monographId);
 		$templateMgr->assign('fileId', $fileId);
 		$templateMgr->assign('gridId', $this->getId());
 		$templateMgr->display('controllers/grid/submissionFiles/form/fileSubmissionComplete.tpl');
@@ -306,7 +341,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
-		
+		$monographId = $monographFile->getMonographId();
+
 		if($monographFile) {
 			$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
 
@@ -345,5 +381,17 @@ class SubmissionFilesGridHandler extends GridHandler {
 		
 		$json = new JSON('true');
 		echo $json->getString();
+	}
+	
+	/**
+	 * Display an artwork file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function viewFile(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		import('submission.common.Action');
+		Action::viewFile($monographId, $request->getUserVar('fileId'));
 	}
 }
