@@ -49,9 +49,16 @@ class BookFileTypeDAO extends DefaultSettingDAO
 			'SELECT * FROM book_file_types WHERE enabled = ? AND press_id = ?', array(1, $pressId), $rangeInfo
  		);
 
-		$returner = new DAOResultFactory($result, $this, '_fromRow', array('id'));
-
-		return $returner;
+ 		$bookFileTypes = array();
+ 		while (!$result->EOF) {
+			$bookFileTypes[] =& $this->_fromRow($result->getRowAssoc(false));
+			$result->moveNext();
+ 		}
+ 		
+ 		$result->Close();
+ 		unset($result);
+ 		
+		return $bookFileTypes;
 	}
 
 	/**
@@ -92,6 +99,8 @@ class BookFileTypeDAO extends DefaultSettingDAO
 
 		$this->getDataObjectSettings('book_file_type_settings', 'entry_id', $row['entry_id'], $bookFileType);
 
+		HookRegistry::call('BookFileTypeDAO::_fromRow', array(&$bookFileType, &$row));
+		
 		return $bookFileType;
 	}  
 

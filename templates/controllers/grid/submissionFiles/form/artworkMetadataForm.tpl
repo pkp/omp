@@ -86,18 +86,18 @@
 			{assign var="isOther" value=true}
 		{/if}
 		
-		{fbvElement type="radio" name="artwork_type" id="artwork_type-0" value="$smarty.const.MONOGRAPH_ARTWORK_TYPE_TABLE" checked=$isTable label="grid.artworkFile.type.table"}
-		{fbvElement type="radio" name="artwork_type" id="artwork_type-1" value="$smarty.const.MONOGRAPH_ARTWORK_TYPE_FIGURE" checked=$isFigure label="grid.artworkFile.type.figure"}
-		{fbvElement float=$fbvStyles.float.LEFT type="radio" name="artwork_type" id="artwork_type-2" value="$smarty.const.MONOGRAPH_ARTWORK_TYPE_OTHER" checked=$isOther label="common.other"}
+		{fbvElement type="radio" name="artwork_type" id="artwork_type-0" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_TABLE checked=$isTable label="grid.artworkFile.type.table"}
+		{fbvElement type="radio" name="artwork_type" id="artwork_type-1" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_FIGURE checked=$isFigure label="grid.artworkFile.type.figure"}
+		{fbvElement float=$fbvStyles.float.LEFT type="radio" name="artwork_type" id="artwork_type-2" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_OTHER checked=$isOther label="common.other"}
 		{fbvElement float=$fbvStyles.float.RIGHT type="text" id="artwork_otherType" value=$artworkFile->getCustomType()}
 	{/fbvFormSection}
 	{fbvFormSection title="grid.artworkFile.placement" layout=$fbvStyles.layout.THREE_COLUMN}
-		{fbvElement type="radio" label="submission.chapter" name="artwork_placementType" id="artwork_placementType-0" value="$smarty.const.MONOGRAPH_ARTWORK_PLACEMENT_BY_CHAPTER"}
+		{fbvElement type="radio" label="submission.chapter" name="artwork_placementType" id="artwork_placementType-0" value=$smarty.const.MONOGRAPH_ARTWORK_PLACEMENT_BY_CHAPTER}
 		{fbvElement type="select" from=$componentOptions selected=$selectedComponent id="artwork_componentId" translate="true"}
 		{fbvElement type="text" label="grid.artworkFile.placementDetail" id="artwork_placement"}
 	{/fbvFormSection}
 	{fbvFormSection layout=$fbvStyles.layout.TWO_COLUMN}
-		{fbvElement type="radio" label="common.other" name="artwork_placementType" id="artwork_placementType-1" value="$smarty.const.MONOGRAPH_ARTWORK_PLACEMENT_OTHER" checked="checked"}
+		{fbvElement type="radio" label="common.other" name="artwork_placementType" id="artwork_placementType-1" value=$smarty.const.MONOGRAPH_ARTWORK_PLACEMENT_OTHER checked="checked"}
 		{fbvElement type="text" id="artwork_otherPlacement"}
 	{/fbvFormSection}	
 {/fbvFormArea}
