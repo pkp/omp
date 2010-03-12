@@ -30,17 +30,31 @@
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-		<li{if $submitStep == 1} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="submit" path="1"}">1. {translate key="author.submit.prepare"}</a>
-		</li>
-		<li{if $submitStep == 2} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="submit" path="2"}">2. {translate key="author.submit.upload"}</a>
-		</li>
-		<li{if $submitStep == 3} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="submit" path="3"}">3. {translate key="author.submit.catalogue"}</a>
-		</li>
-		<li{if $submitStep == 4} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="submit" path="4"}">4. {translate key="author.submit.nextSteps"}</a>
-		</li>
+		{if $monographId}
+			<li{if $submitStep == 1} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+				<a href="{url op="submit" path="1" mongraphId=$monographId}">1. {translate key="author.submit.prepare"}</a>
+			</li>
+			<li{if $submitStep == 2} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+				<a href="{url op="submit" path="2" mongraphId=$monographId}">2. {translate key="author.submit.upload"}</a>
+			</li>
+			<li{if $submitStep == 3} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+				<a href="{url op="submit" path="3" mongraphId=$monographId}">3. {translate key="author.submit.catalogue"}</a>
+			</li>
+			<li{if $submitStep == 4} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+				<a href="{url op="submit" path="4" mongraphId=$monographId}">4. {translate key="author.submit.nextSteps"}</a>
+			</li>
+		{else}
+			<li{if $submitStep == 1} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+				<a href="{url op="submit" path="1"}">1. {translate key="author.submit.prepare"}</a>
+			</li>
+			<li{if $submitStep == 2} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+				<a href="{url op="submit" path="2"}">2. {translate key="author.submit.upload"}</a>
+			</li>
+			<li{if $submitStep == 3} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+				<a href="{url op="submit" path="3"}">3. {translate key="author.submit.catalogue"}</a>
+			</li>
+			<li{if $submitStep == 4} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+				<a href="{url op="submit" path="4"}">4. {translate key="author.submit.nextSteps"}</a>
+			</li>
+		{/if}
 	</ul>
-
