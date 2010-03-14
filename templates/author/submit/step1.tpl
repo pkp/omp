@@ -13,6 +13,7 @@
 
 <form name="submit" method="post" action="{url op="saveSubmit" path=$submitStepAlias}">
 {if $monographId}<input type="hidden" name="monographId" value="{$monographId|escape}" />{/if}
+<input type="hidden" name="submissionChecklist" value="1" />
 
 {include file="common/formErrors.tpl"}
 
@@ -49,13 +50,13 @@
 		$("form[name=submit]").validate({
 			showErrors: function(errorMap, errorList) {
 				$("#messageBox").html("<ul><li class='error'>{/literal}{translate key='author.submit.checklistErrors.begin'}{literal} "
-											+ this.numberOfInvalids() 
+											+ this.numberOfInvalids()
 		     								+ " {/literal}{translate key='author.submit.checklistErrors.end'}{literal}</li></ul>");
 				if (this.numberOfInvalids() == 0) {
 					$("#messageBox").hide('slow');
 				}
 			}
-						
+
 		});
 	});
 	{/literal}
@@ -63,13 +64,13 @@
 <h3>{translate key="author.submit.submissionChecklist"}</h3>
 
 	<div id="messageBox"></div>
-	
+
 	{fbvFormArea id="checklist"}
 	{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
 	<p>{translate key="author.submit.submissionChecklistDescription"}</p>
 	{foreach name=checklist from=$currentPress->getLocalizedSetting('submissionChecklist') key=checklistId item=checklistItem}
 		{if $checklistItem.content}
-			{fbvElement type="checkbox" id="checklist-`$smarty.foreach.checklist.iteration`" required=true value="`$checklistId|escape`" label=`$checklistItem.content` translate=false}
+			{fbvElement type="checkbox" id="checklist-`$smarty.foreach.checklist.iteration`" required=true value="`$checklistId|escape`" label=`$checklistItem.content` translate=false checked=$monographId}
 		{/if}
 	{/foreach}
 	{/fbvFormSection}

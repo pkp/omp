@@ -51,7 +51,6 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 		if (isset($this->monograph)) {
 			$monograph =& $this->monograph;
 			$this->_data = array(
-				'authors' => array(),
 				'title' => $monograph->getTitle(null), // Localized
 				'abstract' => $monograph->getAbstract(null), // Localized
 				'discipline' => $monograph->getDiscipline(null), // Localized
@@ -67,28 +66,6 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 				'citations' => $monograph->getCitations()
 			);
 
-			$authors =& $monograph->getAuthors();
-			for ($i=0, $count=count($authors); $i < $count; $i++) {
-				array_push(
-					$this->_data['authors'],
-					array(
-						'authorId' => $authors[$i]->getId(),
-						'firstName' => $authors[$i]->getFirstName(),
-						'middleName' => $authors[$i]->getMiddleName(),
-						'lastName' => $authors[$i]->getLastName(),
-						'affiliation' => $authors[$i]->getAffiliation(),
-						'country' => $authors[$i]->getCountry(),
-						'email' => $authors[$i]->getEmail(),
-						'url' => $authors[$i]->getUrl(),
-					//	FIXME: Authors don't have a competing interest function, should they?
-					//	'competingInterests' => $authors[$i]->getCompetingInterests(null),
-						'biography' => $authors[$i]->getBiography(null)
-					)
-				);
-				if ($authors[$i]->getPrimaryContact()) {
-					$this->setData('primaryContact', $i);
-				}
-			}
 		}
 		return parent::initData();
 	}

@@ -63,9 +63,6 @@ class AuthorSubmitForm extends Form {
 			case 3:
 				$helpTopicId = 'submission.indexingAndMetadata';
 				break;
-			case 4:
-				$helpTopicId = 'submission.supplementaryFiles';
-				break;
 			default:
 				$helpTopicId = 'submission.index';
 		}

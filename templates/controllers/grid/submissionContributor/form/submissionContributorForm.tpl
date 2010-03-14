@@ -1,4 +1,3 @@
-
 {**
  * submissionContributorForm.tpl
  *
@@ -8,7 +7,7 @@
  * Submission Contributor grid form
  *
  *}
-<form name="editSponsorForm" id="editSponsorForm" method="post" action="{url op="updateSponsor"}">
+<form name="editSubmissionContributorForm" id="editSubmissionContributor" method="post" action="{url op="updateSubmissionContributor"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="profile"}
@@ -30,6 +29,9 @@
 	{/fbvFormSection}
 {/fbvFormArea}
 
+{if $monographId}
+	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+{/if}
 {if $gridId}
 	<input type="hidden" name="gridId" value="{$gridId|escape}" />
 {/if}

@@ -35,9 +35,8 @@
 <div class="separator"></div>
 
 <!--  Contributors -->
-
-{*url|assign:submissionContributorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.submissionContributor.SubmissionContributorGridHandler" op="fetchGrid" monographId=$monographId*}
-{*load_url_in_div id="submissionContributorGridContainer" loadMessageId="submission.submissionContributors.form.loadMessage" url="$submissionContributorGridUrl"*}
+{url|assign:submissionContributorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.submit.submissionContributor.SubmissionContributorGridHandler" op="fetchGrid" monographId=$monographId}
+{load_url_in_div id="submissionContributorGridContainer" loadMessageId="submission.submissionContributors.form.loadMessage" url="$submissionContributorGridUrl"}
 
 <div class="separator"></div>
 

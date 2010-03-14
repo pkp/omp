@@ -48,22 +48,13 @@ class AuthorDAO extends DAO {
 	 * @return array Authors ordered by sequence
 	 */
 	function &getAuthorsByMonographId($monographId) {
-		$authors = array();
-
 		$result =& $this->retrieve(
 			'SELECT * FROM monograph_authors WHERE monograph_id = ? ORDER BY seq',
 			$monographId
 		);
 
-		while (!$result->EOF) {
-			$authors[] =& $this->_returnAuthorFromRow($result->GetRowAssoc(false));
-			$result->moveNext();
-		}
-		
-		$result->Close();
-		unset($result);
-
-		return $authors;
+		$returner = new DAOResultFactory($result, $this, '_returnAuthorFromRow', array('id'));
+		return $returner;
 	}
 
 	/**
@@ -179,7 +170,6 @@ class AuthorDAO extends DAO {
 		$author->setUrl($row['url']);
 		$author->setPrimaryContact($row['primary_contact']);
 		$author->setSequence($row['seq']);
-		$author->setContributionType($row['contribution_type']);
 
 		$this->getDataObjectSettings('monograph_author_settings', 'author_id', $row['author_id'], $author);
 
@@ -191,13 +181,13 @@ class AuthorDAO extends DAO {
 	/**
 	 * Insert a new Author.
 	 * @param $author Author
-	 */	
+	 */
 	function insertAuthor(&$author) {
 		$this->update(
 			'INSERT INTO monograph_authors
-				(monograph_id, first_name, middle_name, last_name, affiliation, country, email, url, primary_contact, seq, contribution_type)
+				(monograph_id, first_name, middle_name, last_name, affiliation, country, email, url, primary_contact, seq)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$author->getMonographId(),
 				$author->getFirstName(),
@@ -208,8 +198,7 @@ class AuthorDAO extends DAO {
 				$author->getEmail(),
 				$author->getUrl(),
 				$author->getPrimaryContact(),
-				$author->getSequence(),
-				$author->getContributionType()
+				$author->getSequence()
 			)
 		);
 
@@ -235,8 +224,7 @@ class AuthorDAO extends DAO {
 					email = ?,
 					url = ?,
 					primary_contact = ?,
-					seq = ?,
-					contribution_type = ? 
+					seq = ?
 				WHERE author_id = ?',
 			array(
 				$author->getFirstName(),
@@ -248,7 +236,6 @@ class AuthorDAO extends DAO {
 				$author->getUrl(),
 				$author->getPrimaryContact(),
 				$author->getSequence(),
-				$author->getContributionType(),
 				$author->getId()
 			)
 		);
