@@ -46,15 +46,6 @@
 	<message key="user.accountInformation">Account Information</message>
 
 	<!-- review froms start -->
-	<message key="inserts.monographComponents.heading.info">Component Info</message>
-	<message key="inserts.monographComponents.heading.prep">Component Preparation</message>
-	<message key="inserts.monographComponents.heading.newComponent">New Component</message>
-	<message key="inserts.monographComponents.button.deleteComponent">Delete Component</message>
-	<message key="inserts.monographComponents.button.addComponent">Add Component</message>
-	<message key="inserts.monographComponents.button.removeAuthor">Remove Author</message>
-	<message key="inserts.monographComponents.newComponent.description">To enter a new component, please fill out the form below and click the 'Add Component' button.</message>
-	<message key="inserts.monographComponents.description">Books are divided into sections called monograph components. Chapters, table of contents, and prefaces are all monograph components.</message>
-
 	<message key="inserts.contributors.heading.info">Contributor Info</message>
 	<message key="inserts.contributors.button.addContributor">Add Contributor</message>
 	<message key="inserts.contributors.heading.newContributor">New Contributor</message>

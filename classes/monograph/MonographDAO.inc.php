@@ -16,17 +16,26 @@
 // $Id$
 
 
-import ('monograph.Monograph');
-
-define('MONOGRAPH_STATUS_UPCOMING', 0x00000001);
-define('MONOGRAPH_STATUS_PUBLISHED', 0x00000002);
-
-define('SERIES_UNASSIGNED', 0);
+import('monograph.Monograph');
 
 class MonographDAO extends DAO {
-
 	var $authorDao;
-	var $monographComponentDao;
+
+	var $cache;
+
+	function _cacheMiss(&$cache, $id) {
+		$monograph =& $this->getMonograph($id, null, false);
+		$cache->setCache($id, $monograph);
+		return $monograph;
+	}
+
+	function &_getCache() {
+		if (!isset($this->cache)) {
+			$cacheManager =& CacheManager::getManager();
+			$this->cache =& $cacheManager->getObjectCache('monographs', 0, array(&$this, '_cacheMiss'));
+		}
+		return $this->cache;
+	}
 
 	/**
 	 * Constructor.
@@ -34,29 +43,74 @@ class MonographDAO extends DAO {
 	function MonographDAO() {
 		parent::DAO();
 		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$this->monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
+	}
+
+	/**
+	 * Get a list of fields for which localized data is supported
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array(
+			'title', 'cleanTitle', 'abstract', 'coverPageAltText', 'showCoverPage', 'hideCoverPageToc', 'hideCoverPageAbstract', 'originalFileName', 'fileName', 'width', 'height',
+			'discipline', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
+	}
+
+	/**
+	 * Update the localized fields for this object.
+	 * @param $monograph
+	 */
+	function updateLocaleFields(&$monograph) {
+		$this->updateDataObjectSettings('monograph_settings', $monograph, array(
+			'monograph_id' => $monograph->getId()
+		));
 	}
 
 	/**
 	 * Retrieve Monograph by monograph id
 	 * @param $monographId int
-	 * @return Monograph object
+	 * @param $pressId int optional
+	 * @param $useCache boolean optional
+	 * @return Monograph
 	 */
-	function &getMonograph($monographId, $pressId = null) {
-
-		$sql = 'SELECT m.*
-			FROM monographs m
-			WHERE m.monograph_id = ?';
-		$sqlParams[] = $monographId;
-
-		if (isset($pressId)) {
-			$sql .= ' AND m.press_id = ?';
-			$sqlParams[] = $pressId;
+	function &getMonograph($monographId, $pressId = null, $useCache = false) {
+		if ($useCache) {
+			$cache =& $this->_getCache();
+			$returner =& $cache->get($monographId);
+			if ($returner && $pressId != null && $pressId != $returner->getPressId()) $returner = null;
+			return $returner;
 		}
 
-		$result =& $this->retrieve($sql, $sqlParams);
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+		$params = array(
+			'title',
+			$primaryLocale,
+			'title',
+			$locale,
+			'abbrev',
+			$primaryLocale,
+			'abbrev',
+			$locale,
+			$monographId
+		);
+		$sql = 'SELECT	a.*,
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
+			FROM	monographs a
+				LEFT JOIN series s ON s.series_id = a.series_id
+				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
+			WHERE	monograph_id = ?';
+		if ($pressId !== null) {
+			$sql .= ' AND a.press_id = ?';
+			$params[] = $pressId;
+		}
 
-		$monograph = null;
+		$result =& $this->retrieve($sql, $params);
+
+		$returner = null;
 		if ($result->RecordCount() != 0) {
 			$monograph =& $this->_fromRow($result->GetRowAssoc(false));
 
@@ -70,31 +124,278 @@ class MonographDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve Monograph by public monograph id
-	 * @param $publicMonographId string
-	 * @return Monograph object
+	 * Internal function to return an Monograph object from a row.
+	 * @param $row array
+	 * @return Monograph
 	 */
-	function &getMonographByPublicMonographId($publicMonographId, $pressId = null) {
-		if (isset($pressId)) {
-			$result =& $this->retrieve(
-				'SELECT m.* FROM monographs m WHERE public_monograph_id = ? AND press_id = ?',
-				array($publicMonographId, $pressId)
-			);
-		} else {
-			$result =& $this->retrieve(
-				'SELECT m.* FROM monographs m WHERE public_monograph_id = ?', $publicMonographId
-			);
-		}
-
-		$monograph = null;
-		if ($result->RecordCount() != 0) {
-			$monograph =& $this->_fromRow($result->GetRowAssoc(false));
-		}
-
-		$result->Close();
-		unset($result);
-
+	function &_fromRow(&$row) {
+		$monograph = new Monograph();
+		$this->_monographFromRow($monograph, $row);
 		return $monograph;
+	}
+
+	/**
+	 * Internal function to fill in the passed monograph object from the row.
+	 * @param $monograph Monograph output monograph
+	 * @param $row array input row
+	 */
+	function _monographFromRow(&$monograph, &$row) {
+
+		$monograph->setId($row['monograph_id']);
+		$monograph->setUserId($row['user_id']);
+		$monograph->setPressId($row['press_id']);
+		$monograph->setStatus($row['status']);
+		$monograph->setSeriesId($row['series_id']);
+		$monograph->setSeriesAbbrev(isset($row['series_abbrev'])?$row['series_abbrev']:null);
+		$monograph->setLanguage($row['language']);
+		$monograph->setCommentsToEditor($row['comments_to_ed']);
+		$monograph->setDateSubmitted($row['date_submitted']);
+		$monograph->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
+		$monograph->setLastModified($this->datetimeFromDB($row['last_modified']));
+		$monograph->setCurrentReviewType($row['current_review_type']);
+		$monograph->setCurrentRound($row['current_round']);
+		$monograph->setSubmissionFileId($row['submission_file_id']);
+		$monograph->setRevisedFileId($row['revised_file_id']);
+		$monograph->setReviewFileId($row['review_file_id']);
+		$monograph->setEditorFileId($row['editor_file_id']);
+		$monograph->setStatus($row['status']);
+		$monograph->setSubmissionProgress($row['submission_progress']);
+		$monograph->setWorkType($row['edited_volume']);
+
+		$monograph->setAuthors($this->authorDao->getAuthorsByMonographId($row['monograph_id']));
+		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
+
+
+		// set review rounds info
+		$reviewRoundsInfo = $this->getReviewRoundsInfoById($row['monograph_id']);
+		if ( empty($reviewRoundsInfo) ) $reviewRoundsInfo[$row['current_review_type']] = $row['current_round'];
+		$monograph->setReviewRoundsInfo($reviewRoundsInfo);
+
+		HookRegistry::call('MonographDAO::_monographFromRow', array(&$monograph, &$row));
+
+	}
+
+
+	/**
+	 * inserts a new monograph into monographs table
+	 * @param Monograph object
+	 * @return Monograph Id int
+	 */
+	function insertMonograph(&$monograph) {
+		$monograph->stampModified();
+		$this->update(
+			sprintf('INSERT INTO monographs
+				(user_id, press_id, series_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, current_review_type, current_round, submission_file_id, revised_file_id, review_file_id, editor_file_id, pages, hide_author, comments_status, edited_volume)
+				VALUES
+				(?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
+			array(
+				$monograph->getUserId(),
+				$monograph->getPressId(),
+				$monograph->getSeriesId() ,
+				$monograph->getLanguage(),
+				$monograph->getCommentsToEditor(),
+				$monograph->getStatus() === null ? 1 : $monograph->getStatus(),
+				$monograph->getSubmissionProgress() === null ? 1 : $monograph->getSubmissionProgress(),
+				$monograph->getCurrentReviewType() === null ? 6 : $monograph->getCurrentReviewType(),
+				$monograph->getCurrentRound() === null ? 1 : $monograph->getCurrentRound(),
+				$monograph->getSubmissionFileId(),
+				$monograph->getRevisedFileId(),
+				$monograph->getReviewFileId(),
+				$monograph->getEditorFileId(),
+				$monograph->getPages(),
+				$monograph->getHideAuthor() === null ? 0 : $monograph->getHideAuthor(),
+				$monograph->getCommentsStatus() === null ? 0 : $monograph->getCommentsStatus(),
+				$monograph->getWorkType()
+			)
+		);
+
+		$monograph->setId($this->getInsertMonographId());
+		$this->updateLocaleFields($monograph);
+
+		// Insert authors for this monograph
+		$authors =& $monograph->getAuthors();
+		for ($i=0, $count=count($authors); $i < $count; $i++) {
+			$authors[$i]->setMonographId($monograph->getId());
+			$this->authorDao->insertAuthor($authors[$i]);
+		}
+
+		return $monograph->getId();
+
+	}
+
+	/**
+	 * updates a monograph
+	 * @param Monograph object
+	 */
+	function updateMonograph($monograph) {
+
+		$this->update(
+			sprintf('UPDATE monographs
+				SET
+					user_id = ?,
+					series_id = ?,
+					language = ?,
+					comments_to_ed = ?,
+					date_submitted = %s,
+					date_status_modified = %s,
+					last_modified = %s,
+					status = ?,
+					press_id = ?,
+					submission_progress = ?,
+					current_review_type = ?,
+					current_round = ?,
+					edited_volume = ?,
+					submission_file_id = ?,
+					revised_file_id = ?,
+					review_file_id = ?,
+					editor_file_id = ?,
+					hide_author = ?
+
+				WHERE monograph_id = ?',
+				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
+			array(
+				$monograph->getUserId(),
+				$monograph->getSeriesId(),
+				$monograph->getLanguage(),
+				$monograph->getCommentsToEditor(),
+				$monograph->getStatus(),
+				$monograph->getPressId(),
+				$monograph->getSubmissionProgress(),
+				$monograph->getCurrentReviewType(),
+				$monograph->getCurrentRound(),
+				$monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME ? 1 : 0,
+				$monograph->getSubmissionFileId(),
+				$monograph->getRevisedFileId(),
+				$monograph->getReviewFileId(),
+				$monograph->getEditorFileId(),
+				$monograph->getHideAuthor() == null ? 0 : $monograph->getHideAuthor(),
+
+
+				$monograph->getId()
+			)
+		);
+		$this->updateLocaleFields($monograph);
+
+		$contributorMap = null;
+
+		// update authors for this monograph
+		$authors =& $monograph->getAuthors();
+		for ($i=0, $count=count($authors); $i < $count; $i++) {
+			if ($authors[$i]->getId() > 0) {
+				$this->authorDao->updateAuthor($authors[$i]);
+			} else {
+				$this->authorDao->insertAuthor($authors[$i]);
+			}
+		}
+
+		// Remove deleted authors
+		$removedAuthors = $monograph->getRemovedAuthors();
+		for ($i=0, $count=count($removedAuthors); $i < $count; $i++) {
+			$this->authorDao->deleteAuthorById($removedAuthors[$i], $monograph->getId());
+		}
+
+		// Update author sequence numbers
+		$this->authorDao->resequenceAuthors($monograph->getId());
+		$this->flushCache();
+	}
+
+	/**
+	 * Delete monograph by id.
+	 * @param $monograph object Monograph
+	 */
+	function deleteMonograph(&$monograph) {
+		return $this->deleteMonographById($monograph->getId());
+	}
+
+	/**
+	 * Delete an monograph by ID.
+	 * @param $monographId int
+	 */
+	function deleteMonographById($monographId) {
+		$this->authorDao->deleteAuthorsByMonograph($monographId);
+
+		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$seriesEditorSubmissionDao->deleteDecisionsByMonograph($monographId);
+		$seriesEditorSubmissionDao->deleteReviewRoundsByMonograph($monographId);
+
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao->deleteByMonographId($monographId);
+
+		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignmentDao->deleteByMonographId($monographId);
+
+		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$monographCommentDao->deleteMonographComments($monographId);
+
+		// Delete monograph files -- first from the filesystem, then from the database
+		import('file.MonographFileManager');
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$monographFiles =& $monographFileDao->getByMonographId($monographId);
+
+		$monographFileManager = new MonographFileManager($monographId);
+		foreach ($monographFiles as $monographFile) {
+			$monographFileManager->deleteFile($monographFile->getFileId());
+		}
+
+		$monographFileDao->deleteMonographFiles($monographId);
+
+		$this->update('DELETE FROM monograph_settings WHERE monograph_id = ?', $monographId);
+		$this->update('DELETE FROM monographs WHERE monograph_id = ?', $monographId);
+	}
+
+
+
+	/**
+	 * Get all monographs for a press.
+	 * @param $userId int
+	 * @param $pressId int
+	 * @return DAOResultFactory containing matching Monographs
+	 */
+	function &getMonographsByPressId($pressId) {
+		$primaryLocale = Locale::getPrimaryLocale();
+		$locale = Locale::getLocale();
+		$monographs = array();
+
+		$result =& $this->retrieve(
+			'SELECT	a.*,
+				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
+			FROM	monographs a
+				LEFT JOIN series s ON s.series_id = a.series_id
+				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
+				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
+				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
+				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
+			WHERE a.press_id = ?',
+			array(
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale,
+				$pressId
+			)
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_returnMonographFromRow');
+		return $returner;
+	}
+
+	/**
+	 * Delete all monographs by press ID.
+	 * @param $pressId int
+	 */
+	function deleteMonographsByPressId($pressId) {
+		$monographs = $this->getMonographsByPressId($pressId);
+
+		while (!$monographs->eof()) {
+			$monograph =& $monographs->next();
+			$this->deleteMonographById($monograph->getId());
+		}
 	}
 
 	/**
@@ -131,7 +432,7 @@ class MonographDAO extends DAO {
 				LEFT JOIN series_settings aapl ON (aa.series_id = aapl.series_id AND aapl.setting_name = ? AND aapl.locale = ?)
 				LEFT JOIN series_settings aal ON (aa.series_id = aal.series_id AND aal.setting_name = ? AND aal.locale = ?)
 			WHERE	m.user_id = ?' .
-			(isset($pressId)?' AND m.journal_id = ?':''),
+			(isset($pressId)?' AND m.press_id = ?':''),
 			$params
 		);
 
@@ -147,63 +448,7 @@ class MonographDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve Monograph by "best" monograph id -- public ID if it exists,
-	 * falling back on the internal monograph ID otherwise.
-	 * @param $monographId string
-	 * @return Monograph object
-	 */
-	function &getMonographByBestMonographId($monographId, $pressId = null) {
-		$monograph =& $this->getMonographByPublicMonographId($monographId, $pressId);
-		if (!isset($monograph)) $monograph =& $this->getMonographById((int) $monographId, $pressId);
-		return $monograph;
-	}
-
-	/**
-	 * Retrieve the last created monograph
-	 * @param $pressId int
-	 * @return Monograph object
-	 */
-	function &getLastCreatedMonograph($pressId) {
-		$result =& $this->retrieveLimit(
-			'SELECT m.* FROM monographs m WHERE press_id = ? ORDER BY monograph_id DESC', $pressId, 1
-		);
-
-		$monograph = null;
-		if ($result->RecordCount() != 0) {
-			$monograph =& $this->_fromRow($result->GetRowAssoc(false));
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $monograph;
-	}
-
-	/**
-	 * Retrieve upcoming monograph
-	 * @param $pressId int
-	 * @param $rangeInfo result ranges
-	 * @return Monograph object 
-	 */
-	function &getUpcomingMonographs($pressId, $rangeInfo = null) {
-		$result =& $this->retrieveRange(
-			'SELECT m.* FROM monographs m WHERE press_id = ? AND status = ?', array($pressId, MONOGRAPH_STATUS_UPCOMING), $rangeInfo
-		);
-
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
-	}	
-
-	/**
-	 * Get a list of fields for which localized data is supported
-	 * @return array
-	 */
-	function getLocaleFieldNames() {
-		return array('title', 'abstract', 'sponsor', 'discipline', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'supportingAgencies');
-	}
-
-	/**
-	 * Get the ID of the press a monograph is associated with.
+	 * Get the ID of the press a monograph is in.
 	 * @param $monographId int
 	 * @return int
 	 */
@@ -220,70 +465,48 @@ class MonographDAO extends DAO {
 	}
 
 	/**
-	 * Update the localized fields for this object.
-	 * @param $monograph
+	 * Check if the specified incomplete submission exists.
+	 * @param $monographId int
+	 * @param $userId int
+	 * @param $pressId int
+	 * @return int the submission progress
 	 */
-	function updateLocaleFields(&$monograph) {
-		$this->updateDataObjectSettings('monograph_settings', $monograph, array(
-			'monograph_id' => $monograph->getMonographId()
-		));
+	function incompleteSubmissionExists($monographId, $userId, $pressId) {
+		$result =& $this->retrieve(
+			'SELECT submission_progress FROM monographs WHERE monograph_id = ? AND user_id = ? AND press_id = ? AND date_submitted IS NULL',
+			array($monographId, $userId, $pressId)
+		);
+		$returner = isset($result->fields[0]) ? $result->fields[0] : false;
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
 	}
 
 	/**
-	 * inserts a new monograph into monographs table
-	 * @param Monograph object
-	 * @return Monograph Id int
+	 * Change the status of the monograph
+	 * @param $monographId int
+	 * @param $status int
 	 */
-	function insertMonograph(&$monograph) {
-
-		$monograph->stampModified();
+	function changeMonographStatus($monographId, $status) {
 		$this->update(
-			sprintf('INSERT INTO monographs
-				(user_id, press_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, submission_file_id, revised_file_id, review_file_id, editor_file_id, pages, fast_tracked, hide_author, comments_status, edited_volume, series_id, current_review_type, current_round)
-				VALUES
-				(?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
-			array(
-				$monograph->getUserId(),
-				$monograph->getPressId(),
-				$monograph->getLanguage(),
-				$monograph->getCommentsToEditor(),
-				$monograph->getStatus() === null ? 1 : $monograph->getStatus(),
-				$monograph->getSubmissionProgress() === null ? 1 : $monograph->getSubmissionProgress(),
-				$monograph->getSubmissionFileId(),
-				$monograph->getRevisedFileId(),
-				$monograph->getReviewFileId(),
-				$monograph->getEditorFileId(),
-				$monograph->getPages(),
-				$monograph->getFastTracked() ? 1 : 0,
-				$monograph->getHideAuthor() === null ? 0 : $monograph->getHideAuthor(),
-				$monograph->getCommentsStatus() === null ? 0 : $monograph->getCommentsStatus(),
-				$monograph->getWorkType(),
-				$monograph->getSeriesId() ,
-				$monograph->getCurrentReviewType() === null ? 6 : $monograph->getCurrentReviewType(),				
-				$monograph->getCurrentRound() === null ? 1 : $monograph->getCurrentRound()
-			)
+			'UPDATE monographs SET status = ? WHERE monograph_id = ?', array($status, $monographId)
 		);
 
-		$monograph->setMonographId($this->getInsertMonographId());
-		$this->updateLocaleFields($monograph);
+		$this->flushCache();
+	}
 
-		// Insert authors for this monograph
-		$authors =& $monograph->getAuthors();
-		for ($i=0, $count=count($authors); $i < $count; $i++) {
-			$authors[$i]->setMonographId($monograph->getMonographId());
-			$this->authorDao->insertAuthor($authors[$i]);
-		}
+	/**
+	 * Remove all monographs from an series.
+	 * @param $seriesId int
+	 */
+	function removeMonographsFromSeries($seriesId) {
+		$this->update(
+			'UPDATE monographs SET series_id = null WHERE series_id = ?', $seriesId
+		);
 
-		// Insert components for this monograph
-		$components =& $monograph->getComponents();
-		for ($i=0, $count=count($components); $i < $count; $i++) {
-			$components[$i]->setMonographId($monograph->getMonographId());
-			$this->monographComponentDao->insertObject($components[$i]);
-		}
-
-		return $monograph->getMonographId();
-
+		$this->flushCache();
 	}
 
 	/**
@@ -294,238 +517,25 @@ class MonographDAO extends DAO {
 		return $this->getInsertId('monographs', 'monograph_id');
 	}
 
-	/**
-	 * Check if the monograph is already in the database
-	 * @param $pressId int
-	 * @param $monographId int
-	 * @return boolean
-	 */
-	function monographExists($pressId, $monographId) {
-		$result =& $this->retrieve(
-			'SELECT m.* FROM monographs m WHERE press_id = ? AND monograph_id <> ?', 
-			array($pressId, $monographId)
-		);
-		$returner = $result->RecordCount() != 0 ? true : false;
+	function flushCache() {
+		// Because both publishedMonographs and monographs are cached by
+		// monograph ID, flush both caches on update.
+		$cache =& $this->_getCache();
+		$cache->flush();
+		unset($cache);
 
-		$result->Close();
-		unset($result);
-
-		return $returner;
+		//TODO: flush cash of publishedMonographDAO once created
 	}
 
-
-	/**
-	 * updates a monograph
-	 * @param Monograph object
-	 */
-	function updateMonograph($monograph) {
-
-		$this->update(
-			sprintf('UPDATE monographs
-				SET
-					user_id = ?,
-					language = ?,
-					comments_to_ed = ?,
-					date_submitted = %s,
-					date_status_modified = %s,
-					last_modified = %s,
-					status = ?,
-					press_id = ?,
-					submission_progress = ?,
-					edited_volume = ?,
-					submission_file_id = ?,
-					revised_file_id = ?,
-					review_file_id = ?,
-					editor_file_id = ?,
-					hide_author = ?,
-					series_id = ?,
-					current_review_type = ?,
-					current_round = ?
-				WHERE monograph_id = ?',
-				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
-			array(
-				$monograph->getUserId(),
-				$monograph->getLanguage(),
-				$monograph->getCommentsToEditor(),
-				$monograph->getStatus(),
-				$monograph->getPressId(),
-				$monograph->getSubmissionProgress(),
-				$monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME ? 1 : 0,
-				$monograph->getSubmissionFileId(),
-				$monograph->getRevisedFileId(),
-				$monograph->getReviewFileId(),
-				$monograph->getEditorFileId(),
-				$monograph->getHideAuthor() == null ? 0 : $monograph->getHideAuthor(),
-				$monograph->getSeriesId(),
-				$monograph->getCurrentReviewType(),
-				$monograph->getCurrentRound(),
-				$monograph->getMonographId()
-			)
-		);
-		$this->updateLocaleFields($monograph);
-
-		$contributorMap = null;
-
-		// update authors for this monograph
-		$authors =& $monograph->getAuthors();
-		for ($i=0, $count=count($authors); $i < $count; $i++) {
-
-			$pivotId = $authors[$i]->getData('pivotId');
-
-			if ($authors[$i]->getId() > 0) {
-				$this->authorDao->updateAuthor($authors[$i]);
-				$authorId = $authors[$i]->getId();
-			} else {
-				$authorId = $this->authorDao->insertAuthor($authors[$i]);
-			}
-
-			if ($pivotId !== null) {
-				$contributorMap[$pivotId] = $authorId;
-			}
-		}
-
-		// Remove deleted authors
-		$removedAuthors = $monograph->getRemovedAuthors();
-		for ($i=0, $count=count($removedAuthors); $i < $count; $i++) {
-			$this->authorDao->deleteAuthorById($removedAuthors[$i], $monograph->getMonographId());
-		}
-
-		// update monograph components
-		$components = $monograph->getComponents();
-		for ($i=0, $count=count($components); $i < $count; $i++) {
-			if (!empty($contributorMap)) {
-				$authors =& $components[$i]->getAuthors();
-				for ($j=0,$authorCount=count($authors); $j<$authorCount; $j++) {
-					if (isset($contributorMap[$authors[$j]->getId()])) {
-						$authors[$j]->setId($contributorMap[$authors[$j]->getId()]);
-					}
-				}
-				$primaryContact = $components[$i]->getPrimaryContact();
-				if (isset($contributorMap[$primaryContact])) {
-					$components[$i]->setPrimaryContact($contributorMap[$primaryContact]);
-				}
-			}
-
-			if ($components[$i]->getId() > 0) {
-				$this->monographComponentDao->updateObject($components[$i]);
-			} else {
-				$this->monographComponentDao->insertObject($components[$i]);
-			}
-		}
-
-		// Remove deleted components
-		$removedComponents = $monograph->getRemovedComponents();
-		for ($i=0, $count=count($removedComponents); $i < $count; $i++) {
-			$this->monographComponentDao->deleteById($removedComponents[$i], $monograph->getMonographId());
-		}
-
-		// Update author sequence numbers
-		$this->authorDao->resequenceAuthors($monograph->getMonographId());
-	}
-
-	/**
-	 * Delete monograph by id.
-	 * @param $monograph object Monograph
-	 */
-	function deleteMonographById($monographId) {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getMonograph((int) $monographId);
-		MonographDAO::deleteMonograph($monograph);
-	}
-
-	/**
-	 * Delete monograph. Deletes associated published monographs and cover file.
-	 * @param $monograph object Monograph
-	 */
-	function deleteMonograph(&$monograph) {
-		import('file.PublicFileManager');
-		$publicFileManager = new PublicFileManager();
-		
-		if (is_array($monograph->getFileName(null))) foreach ($monograph->getFileName(null) as $fileName) {
-			if ($fileName != '') {
-				$publicFileManager->removePressFile($monograph->getPressId(), $fileName);
-			}
-		}
-
-		$this->update('DELETE FROM monograph_settings WHERE monograph_id = ?', $monograph->getMonographId());
-		$this->update('DELETE FROM monographs WHERE monograph_id = ?', $monograph->getMonographId());
-
-		$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
-		$monographComponentDao->deleteByMonographId($monograph->getMonographId());
-	}
-
-	/**
-	 * Delete monographs by press id. Deletes dependent entities.
-	 * @param $pressId int
-	 */
-	function deleteMonographsByPress($pressId) {
-		$monographs =& $this->getMonographs($pressId);
-		while (($monograph =& $monographs->next())) {
-			$this->deleteMonograph($monograph);
-			unset($monograph);
-		}
-	}
-
-	/**
-	 * Checks if monograph exists
-	 * @param $publicMonographId string
-	 * @return boolean
-	 */
-	function monographIdExists($monographId, $pressId) {
-		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM monographs WHERE monograph_id = ? AND press_id = ?',
-			array($monographId, $pressId)
-		);
-		return $result->fields[0] ? true : false;
-	}
-
-	/**
-	 * Checks if public identifier exists
-	 * @param $publicMonographId string
-	 * @return boolean
-	 */
-	function publicMonographIdExists($publicMonographId, $monographId, $pressId) {
-		$result =& $this->retrieve(
-			'SELECT COUNT(*) FROM monographs WHERE public_monograph_id = ? AND monograph_id <> ? AND press_id = ?', array($publicMonographId, $monographId, $pressId)
-		);
-		$returner = $result->fields[0] ? true : false;
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
-	}
-
-	/**
-	 * Get all monographs organized by published date
-	 * @param $pressId int
-	 * @param $rangeInfo object DBResultRange (optional)
-	 * @return monographs object ItemIterator
-	 */
-	function &getMonographs($pressId, $rangeInfo = null) {
-
-		$sql = 'SELECT m.* FROM monographs m WHERE press_id = ? ORDER BY date_submitted DESC';
-		$result =& $this->retrieveRange($sql, $pressId, $rangeInfo);
-
-		$returner = new DAOResultFactory($result, $this, '_fromRow');
-		return $returner;
-	}
-
-	/**
-	 * return current round for each review type
-	 * @param $row array
-	 * @return array ($returned[review_type]=current_round_value)
-	 */
 	function &getReviewRoundsInfoById($monographId) {
 		$returner = array();
-
 		$result =& $this->retrieve(
-				'SELECT MAX(round) AS current_round, review_type, review_revision 
-				FROM review_rounds r 
-				WHERE monograph_id = ? 
-				GROUP BY review_type, r.review_revision', 
-				$monographId
-			);
+			'SELECT MAX(round) AS current_round, review_type, review_revision
+			FROM review_rounds r
+			WHERE monograph_id = ?
+			GROUP BY review_type, r.review_revision',
+			$monographId
+		);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -537,73 +547,6 @@ class MonographDAO extends DAO {
 		unset($result);
 
 		return $returner;
-	}
-
-	/**
-	 * creates and returns a monograph object from a row
-	 * @param $row array
-	 * @return Monograph object
-	 */
-	function &_fromRow(&$row) {
-		$monograph = new Monograph();
-		$this->_monographFromRow($monograph, $row);
-		return $monograph;
-	}
-	function _monographFromRow(&$monograph, &$row) {
-
-		$monograph->setMonographId($row['monograph_id']);
-		$monograph->setPressId($row['press_id']);
-		$monograph->setUserId($row['user_id']);
-		$monograph->setSeriesId($row['series_id']);
-		$monograph->setSubmissionProgress($row['submission_progress']);
-		$monograph->setStatus($row['status']);
-		$monograph->setCommentsToEditor($row['comments_to_ed']);
-		$monograph->setDateSubmitted($row['date_submitted']);
-		$monograph->setLanguage($row['language']);
-		$monograph->setSubmissionFileId($row['submission_file_id']);
-		$monograph->setRevisedFileId($row['revised_file_id']);
-		$monograph->setReviewFileId($row['review_file_id']);
-		$monograph->setEditorFileId($row['editor_file_id']);
-		$monograph->setStatus($row['status']);
-		$monograph->setDateStatusModified($this->datetimeFromDB($row['date_status_modified']));
-		$monograph->setCurrentReviewType($row['current_review_type']);
-		$monograph->setCurrentRound($row['current_round']);
-
-		$monograph->setWorkType($row['edited_volume']);
-		$monograph->setLastModified($this->datetimeFromDB($row['last_modified']));
-
-		if (isset($row['series_abbrev']))
-			$monograph->setSeriesAbbrev($row['series_abbrev']);
-		if (isset($row['series_title']))
-			$monograph->setSeriesTitle($row['series_title']);
-
-		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
-		$monograph->setAuthors($this->authorDao->getAuthorsByMonographId($row['monograph_id']));
-		
-		$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
-		$monographComponents =& $monographComponentDao->getMonographComponents($monograph->getMonographId());
-		$monograph->setComponents($monographComponents);
-
-		// set review rounds info
-		$reviewRoundsInfo = $this->getReviewRoundsInfoById($row['monograph_id']);
-		if ( empty($reviewRoundsInfo) ) $reviewRoundsInfo[$row['current_review_type']] = $row['current_round'];
-		$monograph->setReviewRoundsInfo($reviewRoundsInfo);
-
-		HookRegistry::call('MonographDAO::_monographFromRow', array(&$monograph, &$row));
-
-	}
-
-	/**
-	 * Remove all monographs from an series.
-	 * @param $seriesId int
-	 */
-	function removeMonographsFromSeries($seriesId) {
-		return $this->update(
-				'UPDATE monographs
-				SET series_id = ?
-				WHERE series_id = ?',
-				array(SERIES_UNASSIGNED, $seriesId)
-			);
 	}
 }
 

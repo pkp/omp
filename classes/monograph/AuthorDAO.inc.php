@@ -285,7 +285,7 @@ class AuthorDAO extends DAO {
 	 * @param $monographId int
 	 */
 	function deleteAuthorsByMonograph($monographId) {
-		$authors =& $this->getAuthorsByMonograph($monographId);
+		$authors =& $this->getAuthorsByMonographId($monographId);
 		foreach ($authors as $author) {
 			$this->deleteAuthor($author);
 		}

@@ -85,7 +85,6 @@ class Application extends PKPApplication {
 			'MonographEventLogDAO' => 'monograph.log.MonographEventLogDAO',
 			'ArtworkFileDAO' => 'monograph.ArtworkFileDAO',
 			'MonographCommentDAO' => 'monograph.MonographCommentDAO',
-			'MonographComponentDAO' => 'monograph.MonographComponentDAO',
 			'MonographSearchDAO' => 'search.MonographSearchDAO',
 			'MonographDAO' => 'monograph.MonographDAO',
 			'ProductionAssignmentDAO' => 'submission.productionAssignment.ProductionAssignmentDAO',

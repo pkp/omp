@@ -38,9 +38,6 @@ import('monograph.Author');
 
 class Monograph extends Submission {
 
-	var $components;
-	var $removedComponents;
-
  	/**
 	 * get monograph id
 	 * @return int
@@ -48,8 +45,6 @@ class Monograph extends Submission {
  	 */
 	function Monograph() {
 		parent::Submission();
-		$this->components = array();
-		$this->removedComponents = array();
  	}
 
 	/**
@@ -71,85 +66,20 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * Get a specific monograph component.
-	 * @param $componentId int
-	 * @return MonographComponent
+	 * get press id
+	 * @return int
 	 */
-	function &getComponent($componentId) {
-		$component = null;
-
-		if (!empty($componentId)) {
-			for ($i=0, $count=count($this->components); $i < $count && $components == null; $i++) {
-				if ($this->components[$i]->getId() == $componentId) {
-					$component =& $this->components[$i];
-				}
-			}
-		}
-		return $component;
+	function getPressId() {
+		return $this->getData('pressId');
 	}
 
 	/**
-	 * Add a monograph component.
-	 * @param $component MonographComponent
+	 * set press id
+	 * @param $pressId int
 	 */
-	function addComponent($component) {
-		if ($component->getSequence() == null) {
-			$component->setSequence(count($this->components) + 1);
-		}
-		array_push($this->components, $component);
+	function setPressId($pressId) {
+		return $this->setData('pressId', $pressId);
 	}
-
-	/**
-	 * Remove a monograph component.
-	 * @param $componentId ID of the component to remove
-	 * @return boolean component was removed
-	 */
-	function removeComponent($componentId) {
-		$found = false;
-
-		if (!empty($componentId)) {
-			// FIXME maintain a hash of ID to component for quicker get/remove
-			$components = array();
-			for ($i=0, $count=count($this->components); $i < $count; $i++) {
-				if ($this->components[$i]->getId() == $componentId) {
-					array_push($this->removedComponents, $componentId);
-					$found = true;
-				} else {
-					array_push($components, $this->components[$i]);
-				}
-			}
-			$this->components = $components;
- 		}
-		return $found;
- 	}
-
-	/**
-	 * Get the IDs of all components removed from this submission.
-	 * @return array int
-	 */
-	function &getRemovedComponents() {
-		return $this->removedComponents;
- 	}
-
-	/**
-	 * Set monograph components.
-	 * @param $components array MonographComponent
-	 */
-	function setComponents($components) {
-		$this->components = $components;
-	}
-
-	/**
-	 * Get all monograph components.
-	 * @return array MonographComponent
-	 */
-	function &getComponents() {
-		return $this->components;
-	}
-
-	//
-	// Series
-	//
 
 	/**
 	 * Get the series id.
@@ -168,6 +98,22 @@ class Monograph extends Submission {
 	}
 
 	/**
+	 * Get the series's title.
+	 * @return string
+	 */
+	function getSeriesTitle() {
+		 return $this->getData('seriesTitle');
+	}
+
+	/**
+	 * Set the series title.
+	 * @param $title string
+	 */
+	function setSeriesTitle($title) {
+		 $this->setData('seriesTitle', $title);
+	}
+
+	/**
 	 * Get the series's abbreviated identifier.
 	 * @return string
 	 */
@@ -183,20 +129,93 @@ class Monograph extends Submission {
 		 $this->setData('seriesAbbrev', $abbrev);
 	}
 
-	/**
-	 * Get the series's title.
-	 * @return string
+ 	/**
+	 * get date published
+	 * @return date
 	 */
-	function getSeriesTitle() {
-		 return $this->getData('seriesTitle');
+	function getDatePublished() {
+		return $this->getData('datePublished');
 	}
 
 	/**
-	 * Set the series title.
-	 * @param $title string
+	 * set date published
+	 * @param $datePublished date
 	 */
-	function setSeriesTitle($title) {
-		 $this->setData('seriesTitle', $title);
+	function setDatePublished($datePublished) {
+		return $this->setData('datePublished', $datePublished);
+	}
+
+	/**
+	 * Get the localized description
+	 * @return string
+	 */
+	function getMonographDescription() {
+		return $this->getLocalizedData('description');
+	}
+
+	/**
+	 * get description
+	 * @param $locale string
+	 * @return string
+	 */
+	function getDescription($locale) {
+		return $this->getData('description', $locale);
+	}
+
+	/**
+	 * set description
+	 * @param $description string
+	 * @param $locale string
+	 */
+	function setDescription($description, $locale) {
+		return $this->setData('description', $description, $locale);
+	}
+
+	/**
+	 * Get comments to editor.
+	 * @return string
+	 */
+	function getCommentsToEditor() {
+		return $this->getData('commentsToEditor');
+	}
+
+	/**
+	 * Set comments to editor.
+	 * @param $commentsToEditor string
+	 */
+	function setCommentsToEditor($commentsToEditor) {
+		return $this->setData('commentsToEditor', $commentsToEditor);
+	}
+	/**
+	 * Get editor file id.
+	 * @return int
+	 */
+	function getEditorFileId() {
+		return $this->getData('editorFileId');
+	}
+
+	/**
+	 * Set editor file id.
+	 * @param $editorFileId int
+	 */
+	function setEditorFileId($editorFileId) {
+		return $this->setData('editorFileId', $editorFileId);
+	}
+
+	/**
+	 * Return boolean indicating if author should be hidden in contributor statement.
+	 * @return boolean
+	 */
+	function getHideAuthor() {
+		return $this->getData('hideAuthor');
+	}
+
+	/**
+	 * Set if author should be hidden in the contributor statement.
+	 * @param $hideAuthor boolean
+	 */
+	function setHideAuthor($hideAuthor) {
+		return $this->setData('hideAuthor', $hideAuthor);
 	}
 
 	//
@@ -245,7 +264,7 @@ class Monograph extends Submission {
 	 * @return array User IDs
 	 */
 	function getAssociatedUserIds($authors = true, $reviewers = true, $editors = true, $proofreader = true, $copyeditor = true, $layoutEditor = true) {
-		$monographId = $this->getMonographId();
+		$monographId = $this->getId();
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		$userIds = array();
@@ -324,7 +343,7 @@ class Monograph extends Submission {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$signoff =& $signoffDao->build($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+		$signoff =& $signoffDao->build($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getId());
 
 		if (!$signoff) return false;
 		$user =& $userDao->getUser($signoff->getUserId());
@@ -344,186 +363,22 @@ class Monograph extends Submission {
 		return $signoff->getUserId();
 	}
 
-	function getMonographComponents() {
-
-		return $this->getData('components');
-	}
 	function getWorkType() {
 		return $this->getData('workType');
 	}
+
 	function setWorkType($type) {
 		$this->setData('workType', $type);
 	}
-	/**
-	 * get press id
-	 * @return int
-	 */
-	function getPressId() {
-		return $this->getData('pressId');
-	}
 
-	/**
-	 * set press id
-	 * @param $pressId int
-	 */
-	function setPressId($pressId) {
-		return $this->setData('pressId', $pressId);
-	}
-
- 	/**
-	 * get date published
-	 * @return date
-	 */
-	function getDatePublished() {
-		return $this->getData('datePublished');
-	}
-
-	/**
-	 * set date published
-	 * @param $datePublished date
-	 */
-	function setDatePublished($datePublished) {
-		return $this->setData('datePublished', $datePublished);
-	}
-
-	/**
-	 * Get the localized description
-	 * @return string
-	 */
-	function getMonographDescription() {
-		return $this->getLocalizedData('description');
-	}
-
-	/**
-	 * get description
-	 * @param $locale string
-	 * @return string
-	 */
-	function getDescription($locale) {
-		return $this->getData('description', $locale);
-	}
-
-	/**
-	 * set description
-	 * @param $description string
-	 * @param $locale string
-	 */
-	function setDescription($description, $locale) {
-		return $this->setData('description', $description, $locale);
-	}
-
-	/**
-	 * get public monograph id
-	 * @return string
-	 */
-	function getPublicMonographId() {
-		// Ensure that blanks are treated as nulls
-		$returner = $this->getData('publicMonographId');
-		if ($returner === '') return null;
-		return $returner;
-	}
-
-	/**
-	 * set public monograph id
-	 * @param $publicMonographId string
-	 */
-	function setPublicMonographId($publicMonographId) {
-		return $this->setData('publicMonographId', $publicMonographId);
-	}
-
-	/**
-	 * Return the "best" monograph ID -- If a public monograph ID is set,
-	 * use it; otherwise use the internal monograph Id. (Checks the monograph
-	 * settings to ensure that the public ID feature is enabled.)
-	 * @param $monograph object The press that is preparing this monograph
-	 * @return string
-	 */
-	function getBestMonographId($press = null) {
-		// Retrieve the press object, if necessary.
-		if (!isset($press)) {
-			$pressDao =& DAORegistry::getDAO('PressDAO');
-			$press = $pressDao->getPress($this->getPressId());
-		}
-
-		if ($press->getSetting('enablePublicMonographId')) {
-			$publicMonographId = $this->getPublicMonographId();
-			if (!empty($publicMonographId)) return $publicMonographId;
-		}
-		return $this->getMonographId();
-	}
-
-	/**
-	 * Get comments to editor.
-	 * @return string
-	 */
-	function getCommentsToEditor() {
-		return $this->getData('commentsToEditor');
-	}
-
-	/**
-	 * Set comments to editor.
-	 * @param $commentsToEditor string
-	 */
-	function setCommentsToEditor($commentsToEditor) {
-		return $this->setData('commentsToEditor', $commentsToEditor);
-	}
-	/**
-	 * Get editor file id.
-	 * @return int
-	 */
-	function getEditorFileId() {
-		return $this->getData('editorFileId');
-	}
-
-	/**
-	 * Set editor file id.
-	 * @param $editorFileId int
-	 */
-	function setEditorFileId($editorFileId) {
-		return $this->setData('editorFileId', $editorFileId);
-	}
-
-	/**
-	 * get expedited
-	 * @return boolean
-	 */
-	function getFastTracked() {
-		return $this->getData('fastTracked');
-	}
-
-	/**
-	 * set fastTracked
-	 * @param $fastTracked boolean
-	 */
-	function setFastTracked($fastTracked) {
-		return $this->setData('fastTracked',$fastTracked);
-	}
-	/**
-	 * Return boolean indicating if author should be hidden in contributor statement.
-	 * @return boolean
-	 */
-	function getHideAuthor() {
-		return $this->getData('hideAuthor');
-	}
-
-	/**
-	 * Set if author should be hidden in the contributor statement.
-	 * @param $hideAuthor boolean
-	 */
-	function setHideAuthor($hideAuthor) {
-		return $this->setData('hideAuthor', $hideAuthor);
-	}
 	function setEditedVolume($isVolume) {
 		$this->setData('edited_volume', $isVolume);
 	}
+
 	function getEditedVolume() {
 		$this->getData('edited_volume');
 	}
-	function resetAuthors() {
-		unset($this->authors);
-		$this->authors = array();
-	}
-	
+
 	/**
 	 * Get localized supporting agencies array.
 	 * @return array
@@ -550,7 +405,7 @@ class Monograph extends Submission {
 		return $this->setData('supportingAgencies', $title, $locale);
 	}
 
-	
+
 }
 
 ?>

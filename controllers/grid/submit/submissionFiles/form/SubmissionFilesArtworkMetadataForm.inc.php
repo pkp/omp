@@ -1,5 +1,5 @@
 <?php
- 
+
 /**
  * @file controllers/grid/artworkFile/SubmissionFilesArtworkMetadataForm.inc.php
  *
@@ -29,7 +29,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 
 		$this->_fileId = $fileId;
 		$this->_monographId = $monographId;
-		
+
 		$this->addCheck(new FormValidator($this, 'name', 'required', 'user.profile.form.lastNameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -41,34 +41,35 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('fileId', $this->_fileId);
 		$templateMgr->assign('monographId', $this->_monographId);
-		
+
 		//$templateMgr->assign('monographId', $this->_monographId);
 		$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO');
 		$artworkFile =& $artworkFileDao->getByFileId($this->_fileId);
 		$templateMgr->assign_by_ref('artworkFile', $artworkFile);
-		
+
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
 		$templateMgr->assign_by_ref('monographFile', $monographFile);
 
 		// artwork can be grouped by monograph component
-		if ($artworkFile) {
-			$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
-			$components =& $monographComponentDao->getMonographComponents($artworkFile->getMonographId());
-			$componentOptions = array();
-			if($components) {
-				foreach ($components as $component) {
-					$componentId = $component->getId();
-					$componentOptions[$componentId] = $component->getLocalizedTitle();
-				}	
-			}
-			$templateMgr->assign_by_ref('selectedComponent', $artworkFile->getComponentId());
-		} else {
-			$components = null;
-		}
+		//FIXME: Ask Matt/Tyler what to do with this
+//		if ($artworkFile) {
+//			$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
+//			$components =& $monographComponentDao->getMonographComponents($artworkFile->getMonographId());
+//			$componentOptions = array();
+//			if($components) {
+//				foreach ($components as $component) {
+//					$componentId = $component->getId();
+//					$componentOptions[$componentId] = $component->getLocalizedTitle();
+//				}
+//			}
+//			$templateMgr->assign_by_ref('selectedComponent', $artworkFile->getComponentId());
+//		} else {
+//			$components = null;
+//		}
+//
+//		$templateMgr->assign_by_ref('componentOptions', $componentOptions);
 
-		$templateMgr->assign_by_ref('componentOptions', $componentOptions);
-		
 		parent::display();
 	}
 
@@ -79,11 +80,11 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO');
 		$artworkFile =& $artworkFileDao->getByFileId($this->_fileId);
 		$this->_data['artworkFile'] =& $artworkFile;
-		
+
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
 		$this->_data['$monographFile'] =& $monographFile;
-		
+
 		// grid related data
 		$this->_data['gridId'] = $args['gridId'];
 		$this->_data['monographId'] = $this->_monographId;
@@ -96,7 +97,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array(
-			'name', 'artwork', 'artwork_file', 'artwork_caption', 'artwork_credit', 'artwork_copyrightOwner', 'artwork_copyrightOwnerContact', 'artwork_permissionTerms', 'monographId', 
+			'name', 'artwork', 'artwork_file', 'artwork_caption', 'artwork_credit', 'artwork_copyrightOwner', 'artwork_copyrightOwnerContact', 'artwork_permissionTerms', 'monographId',
 			'artwork_type', 'artwork_otherType', 'artwork_contact', 'artwork_placement', 'artwork_otherPlacement', 'artwork_componentId', 'artwork_placementType'
 		));
 		$this->readUserVars(array('gridId', 'artworkFileId'));
@@ -113,9 +114,9 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		$monographId = $this->getData('monographId');
 		$monographFileManager = new MonographFileManager($monographId);
 
-		$artworkFile =& $artworkFileDao->getByFileId($this->_fileId);		
-		
-		$permissionFileId = null; 
+		$artworkFile =& $artworkFileDao->getByFileId($this->_fileId);
+
+		$permissionFileId = null;
 		if ($monographFileManager->uploadedFileExists('artwork_permissionForm')) {
 			$permissionFileId = $monographFileManager->uploadArtworkFile('artwork_permissionForm');
 		}
@@ -129,7 +130,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		//
 		// FIXME: Should caption, credit, or any other fields be localized?
 		//
-		$artworkFile->setCaption($this->getData('artwork_caption')); 
+		$artworkFile->setCaption($this->getData('artwork_caption'));
 		$artworkFile->setCredit($this->getData('artwork_credit'));
 		$artworkFile->setCopyrightOwner($this->getData('artwork_copyrightOwner'));
 		$artworkFile->setCopyrightOwnerContactDetails($this->getData('artwork_copyrightOwnerContact'));
