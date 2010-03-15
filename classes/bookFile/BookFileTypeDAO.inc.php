@@ -96,6 +96,7 @@ class BookFileTypeDAO extends DefaultSettingDAO
 		$bookFileType = $this->newDataObject();
 		$bookFileType->setId($row['entry_id']);
 		$bookFileType->setSortable($row['sortable']);
+		$bookFileType->setFileGroup($row['group']);		
 
 		$this->getDataObjectSettings('book_file_type_settings', 'entry_id', $row['entry_id'], $bookFileType);
 
@@ -113,11 +114,11 @@ class BookFileTypeDAO extends DefaultSettingDAO
 
 		$this->update(
 			'INSERT INTO book_file_types
-				(sortable, press_id)
+				(sortable, press_id, group)
 			VALUES
 				(?, ?)',
 			array(
-				$bookFileType->getSortable() ? 1 : 0, $press->getId()
+				$bookFileType->getSortable() ? 1 : 0, $press->getId(), $bookFileType->getFileGroup()
 			)
 		);
 

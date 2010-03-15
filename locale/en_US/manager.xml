@@ -26,6 +26,7 @@
 	<message key="manager.setup.newBookFileTypeDescription">To create a new book file type, fill out the form below and click the 'Create' button.</message>
 	<message key="manager.setup.deleteSelected">Delete Selected</message>
 	<message key="manager.setup.restoreDefaults">Restore Default Settings</message>
+	<message key="manager.setup.groupType">File type grouping</message>
 
 	<message key="manager.setup.prospectus">Prospectus Guide</message>
 	<message key="manager.setup.prospectusDescription">The prospectus guide is a press prepared document that helps the author describe the submitted materials in a way that allows a press to determine the value of the submission. A prospectus can include a lot of items- from marketing potential to theoretical value; in any case, a press should create a prospectus guide that complements their publishing agenda.</message>

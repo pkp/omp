@@ -19,6 +19,8 @@
 
 // $Id$
 
+define('BOOK_FILE_GROUP_DOCUMENT', 1);
+define('BOOK_FILE_GROUP_ARTWORK', 2);
 
 define('BOOK_FILE_TYPE_SORTABLE_DESIGNATION', '##');
 
@@ -90,6 +92,22 @@ class BookFileType extends DataObject {
 	 */
 	function setSortable($sortable) {
 		return $this->setData('sortable', $sortable);
+	}
+	
+	/**
+	 * Get file group (e.g. artwork)
+	 * @return int
+	 */
+	function getFileGroup() {
+		return $this->getData('fileGroup');
+	}
+
+	/**
+	 * Set file group
+	 * @param $sortable bool
+	 */
+	function setFileGroup($fileGroup) {
+		return $this->setData('fileGroup', $fileGroup);
 	}
 }
 

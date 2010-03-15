@@ -15,30 +15,12 @@
 import('controllers.grid.GridRow');
 
 class SubmissionFilesGridRow extends GridRow {
-//	/** the FileType for this grid */
-//	var $fileType;
-
 	/**
 	 * Constructor
 	 */
 	function SubmissionFilesGridRow() {
 		parent::GridRow();
 	}
-
-//  Do we need file types?  Will be reusing this grid elsewhere?
-//	/**
-//	 * get the FileType
-//	 */
-//	function getFileType() {
-//		return $this->fileType;
-//	}
-//
-//	/**
-//	 * set the fileType
-//	 */
-//	function setFileType($fileType)	{
-//		$this->fileType = $fileType;
-//	}
 
 	//
 	// Overridden template methods

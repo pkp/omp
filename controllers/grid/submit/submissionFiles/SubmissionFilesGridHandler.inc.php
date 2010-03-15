@@ -242,9 +242,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
 		$monographId = $monographFile->getMonographId();
 		
-		switch ($fileType->getId()) {
+		switch ($fileType->getFileGroup()) {
 			// FIXME: Need a way to determine artwork file type from user-specified artwork file types
-			case 1:
+			case BOOK_FILE_GROUP_ARTWORK:
 				import('controllers.grid.submit.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
 				$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId, $monographId);
 				break;
@@ -287,9 +287,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$isEditing = false;
 		}
 
-		switch ($fileType->getId()) {
+		switch ($fileType->getFileGroup()) {
 			// FIXME: Need a way to determine artwork file type from user-specified artwork file types
-			case 1:
+			case BOOK_FILE_GROUP_ARTWORK:
 				import('controllers.grid.submit.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
 				$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId);
 				break;

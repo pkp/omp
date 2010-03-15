@@ -19,6 +19,7 @@
 	<message key="editor.regrets.link">View Regrets, Cancels, Previous Rounds</message>
 	<message key="editor.regrets.link">View Regrets, Cancels, Previous Rounds</message>
 	<message key="submission.art">Artwork</message>
+	<message key="submission.document">Document</message>
 
 	<message key="editor.monograph.reviewForms">Review Forms</message>
 	<message key="editor.monograph.selectReviewForm">Select Review Form</message>

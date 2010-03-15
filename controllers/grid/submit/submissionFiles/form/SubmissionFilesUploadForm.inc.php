@@ -78,11 +78,13 @@ class SubmissionFilesUploadForm extends Form {
 		$fileTypeId = $this->getData('fileType');
 		import("file.MonographFileManager");
 		$monographFileManager = new MonographFileManager($monographId);
+		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+		$bookFileType = $bookFileTypeDao->getById($fileTypeId);
 
 		if ($monographFileManager->uploadedFileExists('submissionFile')) {
-			switch ($fileTypeId) {
+			switch ($bookFileType->getFileGroup()) {
 				// FIXME: Need a way to determine artwork file type from user-specified artwork file types
-				case 1:
+				case BOOK_FILE_GROUP_ARTWORK:
 					$submissionFileId = $monographFileManager->uploadArtworkFile('submissionFile', $fileTypeId);
 					if (isset($submissionFileId)) {
 						$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO');

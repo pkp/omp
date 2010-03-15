@@ -45,7 +45,7 @@ class BookFileTypeGridHandler extends GridHandler {
 		parent::initialize($request);
 
 		// Load language components
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_APPLICATION_COMMON));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_GRID));
 
 		// Basic grid configuration
 		$this->setTitle('manager.setup.bookFileTypes');
@@ -55,8 +55,13 @@ class BookFileTypeGridHandler extends GridHandler {
 		// Elements to be displayed in the grid
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$bookFileTypes =& $bookFileTypeDao->getEnabledByPressId($press->getId());
-		$this->setData($bookFileTypes);
-
+		$rowData = array();
+		foreach ($bookFileTypes as $bookFileType) {
+			$designation = $bookFileType->getLocalizedDesignation();
+			$rowData[$bookFileTypeId] = array('name' => $bookFileType->getLocalizedName(), 'designation' => $bookFileType->getLocalizedDesignation());
+		}
+		$this->setData($rowData);
+		
 		// Add grid-level actions
 		$router =& $request->getRouter();
 		$actionArgs = array('gridId' => $this->getId());
@@ -85,16 +90,8 @@ class BookFileTypeGridHandler extends GridHandler {
 		$emptyActions = array();
 		$cellProvider = new DataObjectGridCellProvider();
 		$cellProvider->setLocale(Locale::getLocale());
-		$this->addColumn(
-			new GridColumn(
-				'name',
-				'common.name',
-				$emptyActions,
-				'controllers/grid/gridCellInSpan.tpl',
-				$cellProvider
-			)
-		);
-		$this->addColumn(new GridColumn('designation', 'common.designation', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('name', 'common.name', $emptyActions, 'controllers/grid/gridCellInSpan.tpl'));
+		$this->addColumn(new GridColumn('designation', 'common.designation'));
 	}
 
 	//

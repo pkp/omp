@@ -19,8 +19,11 @@
 {fbvFormSection title="common.designation" for="designation" required=1}
 	{fbvElement type="text" id="designation" value="$designation" maxlength="80" required=1}
 {/fbvFormSection}
-{fbvFormSection title="common.sortable" for="sortable" layout=$fbvStyles.layout.ONE_COLUMN}
-	{fbvElement type="checkbox" id="sortable" checked="$sortable" label="grid.bookFileType.form.sortable"}
+{fbvFormSection title="manager.setup.sortableByComponent"}
+	{fbvElement type="checkbox" id="sortable"  label="grid.bookFileType.form.sortable"}
+{/fbvFormSection}
+{fbvFormSection title="manager.setup.groupType" for="fileGroup"}
+	{fbvElement type="select" id="fileGroup" from=$fileGroups selected=$fileGroup translate=false}
 {/fbvFormSection}
 {/fbvFormArea}
 

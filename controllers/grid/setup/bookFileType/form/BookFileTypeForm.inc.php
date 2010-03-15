@@ -47,7 +47,8 @@ class BookFileTypeForm extends Form {
 				'bookFileTypeId' => $this->bookFileTypeId,
 				'name' => $bookFileType->getLocalizedName(),
 				'designation' => $bookFileType->getLocalizedDesignation(),
-				'sortable' => $bookFileType->getSortable()
+				'sortable' => $bookFileType->getSortable(),
+				'fileGroup' => $bookFileType->getFileGroup()
 			);
 		} else {
 			$this->_data = array(
@@ -65,6 +66,10 @@ class BookFileTypeForm extends Form {
 	 * Display
 	 */
 	function display() {
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('fileGroups', array(BOOK_FILE_GROUP_DOCUMENT => Locale::translate('submission.document'),
+					BOOK_FILE_GROUP_ARTWORK => Locale::translate('submission.art')));
+				
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 		parent::display();
 	}
@@ -73,7 +78,7 @@ class BookFileTypeForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('bookFileTypeId', 'name', 'designation', 'sortable'));
+		$this->readUserVars(array('bookFileTypeId', 'name', 'designation', 'sortable', 'fileGroup'));
 		$this->readUserVars(array('gridId', 'rowId'));
 	}
 
@@ -94,7 +99,8 @@ class BookFileTypeForm extends Form {
 		$bookFileType->setName($this->getData('name'), Locale::getLocale()); // Localized
 		$bookFileType->setDesignation($this->getData('designation'), Locale::getLocale()); // Localized
 		$bookFileType->setSortable($this->getData('sortable'));
-
+		$bookFileType->setFileGroup($this->getData('fileGroup'));
+		
 		if (!isset($this->bookFileTypeId)) {
 			$this->bookFileTypeId = $bookFileTypeDao->insertObject($bookFileType);
 		} else {
