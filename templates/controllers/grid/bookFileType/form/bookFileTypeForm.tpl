@@ -20,10 +20,10 @@
 	{fbvElement type="text" id="designation" value="$designation" maxlength="80" required=1}
 {/fbvFormSection}
 {fbvFormSection title="manager.setup.sortableByComponent"}
-	{fbvElement type="checkbox" id="sortable"  label="grid.bookFileType.form.sortable"}
+	{fbvElement type="checkbox" id="sortable" checked=$sortable label="grid.bookFileType.form.sortable"}
 {/fbvFormSection}
-{fbvFormSection title="manager.setup.groupType" for="fileGroup"}
-	{fbvElement type="select" id="fileGroup" from=$fileGroups selected=$fileGroup translate=false}
+{fbvFormSection title="manager.setup.groupType" for="category"}
+	{fbvElement type="select" id="category" from=$bookFileCategories selected=$category translate=false}
 {/fbvFormSection}
 {/fbvFormArea}
 
@@ -31,7 +31,7 @@
 	<input type="hidden" name="gridId" value="{$gridId|escape}" />
 {/if}
 {if $rowId}
-	<input type="hidden" name="rowId" value={$rowId|escape} />
+	<input type="hidden" name="rowId" value="{$rowId|escape}" />
 {/if}
 {if $bookFileTypeId}
 	<input type="hidden" name="bookFileTypeId" value="{$bookFileTypeId|escape}" />

@@ -55,12 +55,7 @@ class BookFileTypeGridHandler extends GridHandler {
 		// Elements to be displayed in the grid
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$bookFileTypes =& $bookFileTypeDao->getEnabledByPressId($press->getId());
-		$rowData = array();
-		foreach ($bookFileTypes as $bookFileType) {
-			$designation = $bookFileType->getLocalizedDesignation();
-			$rowData[$bookFileTypeId] = array('name' => $bookFileType->getLocalizedName(), 'designation' => $bookFileType->getLocalizedDesignation());
-		}
-		$this->setData($rowData);
+		$this->setData($bookFileTypes);
 		
 		// Add grid-level actions
 		$router =& $request->getRouter();
@@ -90,8 +85,8 @@ class BookFileTypeGridHandler extends GridHandler {
 		$emptyActions = array();
 		$cellProvider = new DataObjectGridCellProvider();
 		$cellProvider->setLocale(Locale::getLocale());
-		$this->addColumn(new GridColumn('name', 'common.name', $emptyActions, 'controllers/grid/gridCellInSpan.tpl'));
-		$this->addColumn(new GridColumn('designation', 'common.designation'));
+		$this->addColumn(new GridColumn('name', 'common.name', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('designation', 'common.designation', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
 	}
 
 	//

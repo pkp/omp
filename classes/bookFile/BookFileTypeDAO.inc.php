@@ -47,18 +47,10 @@ class BookFileTypeDAO extends DefaultSettingDAO
 	function &getEnabledByPressId($pressId, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
 			'SELECT * FROM book_file_types WHERE enabled = ? AND press_id = ?', array(1, $pressId), $rangeInfo
- 		);
+		);
 
- 		$bookFileTypes = array();
- 		while (!$result->EOF) {
-			$bookFileTypes[] =& $this->_fromRow($result->getRowAssoc(false));
-			$result->moveNext();
- 		}
- 		
- 		$result->Close();
- 		unset($result);
- 		
-		return $bookFileTypes;
+		$returner = new DAOResultFactory($result, $this, '_fromRow', array('id'));
+		return $returner;
 	}
 
 	/**
@@ -96,7 +88,7 @@ class BookFileTypeDAO extends DefaultSettingDAO
 		$bookFileType = $this->newDataObject();
 		$bookFileType->setId($row['entry_id']);
 		$bookFileType->setSortable($row['sortable']);
-		$bookFileType->setFileGroup($row['group']);		
+		$bookFileType->setCategory($row['category']);		
 
 		$this->getDataObjectSettings('book_file_type_settings', 'entry_id', $row['entry_id'], $bookFileType);
 
@@ -114,11 +106,11 @@ class BookFileTypeDAO extends DefaultSettingDAO
 
 		$this->update(
 			'INSERT INTO book_file_types
-				(sortable, press_id, group)
+				(sortable, press_id, category)
 			VALUES
-				(?, ?)',
+				(?, ?, ?)',
 			array(
-				$bookFileType->getSortable() ? 1 : 0, $press->getId(), $bookFileType->getFileGroup()
+				$bookFileType->getSortable() ? 1 : 0, $press->getId(), $bookFileType->getCategory()
 			)
 		);
 

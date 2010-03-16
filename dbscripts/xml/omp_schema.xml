@@ -178,7 +178,7 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
-		<field name="group" type="I1">
+		<field name="category" type="I8">
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
