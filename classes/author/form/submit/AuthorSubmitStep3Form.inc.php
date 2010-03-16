@@ -28,11 +28,9 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 		$press =& Request::getPress();
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidatorCustom($this, 'authors', 'required', 'author.submit.form.authorRequired', create_function('$authors', 'return count($authors) > 0;')));
-		$this->addCheck(new FormValidatorArray($this, 'authors', 'required', 'author.submit.form.authorRequiredFields', array('firstName', 'lastName')));
-		$this->addCheck(new FormValidatorArrayCustom($this, 'authors', 'required', 'author.submit.form.authorRequiredFields', create_function('$email, $regExp', 'return String::regexp_match($regExp, $email);'), array(ValidatorEmail::getRegexp()), false, array('email')));
-		$this->addCheck(new FormValidatorArrayCustom($this, 'authors', 'required', 'user.profile.form.urlInvalid', create_function('$url, $regExp', 'return empty($url) ? true : String::regexp_match($regExp, $url);'), array(ValidatorUrl::getRegexp()), false, array('url')));
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'author.submit.form.titleRequired'));
+		//FIXME: abstract optional as a Series setting?
+//		$this->addCheck(new FormValidatorLocale($this, 'abstract', 'required', 'author.submit.form.abstractRequired'));
 
 		// FIXME: No abstract word count implemented--Should there be?
 //		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
@@ -123,11 +121,6 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 		// determine whether or not to display indexing options.
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$this->_data['series'] =& $seriesDao->getById($this->monograph->getSeriesId(), $this->monograph->getPressId());
-
-		if ($this->_data['series']->getAbstractsNotRequired() == 0) {
-			$this->addCheck(new FormValidatorLocale($this, 'abstract', 'required', 'author.submit.form.abstractRequired'));
-		}
-
 	}
 
 	/**

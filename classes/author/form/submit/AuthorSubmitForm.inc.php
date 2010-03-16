@@ -50,6 +50,8 @@ class AuthorSubmitForm extends Form {
 	 */
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('validateId', 'submit');
+
 		$templateMgr->assign('monographId', $this->monographId);
 		$templateMgr->assign('submitStep', $this->step);
 

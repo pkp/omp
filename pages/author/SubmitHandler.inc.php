@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 /**
  * @file SubmitHandler.inc.php
@@ -32,35 +32,53 @@ class SubmitHandler extends AuthorHandler {
 	 * Displays author index page if a valid step is not specified.
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
-	function submit($args) {
+	function submit(&$args, &$request) {
 		$step = isset($args[0]) ? $args[0] : 1;
-		$monographId = Request::getUserVar('monographId');
-		$this->validate($monographId, 'author.submit.authorSubmitLoginMessage');
+		$monographId = $request->getUserVar('monographId');
+		$this->validate($request, $monographId, $step, 'author.submit.authorSubmitLoginMessage');
 
 		$monograph =& $this->monograph;
 		$this->setupTemplate(true);
 
-		$formClass = "AuthorSubmitStep{$step}Form";
-		import("author.form.submit.$formClass");
+		if ( $step < 4 ) {
+			$formClass = "AuthorSubmitStep{$step}Form";
+			import("author.form.submit.$formClass");
 
-		$submitForm = new $formClass($monograph);
-		if ($submitForm->isLocaleResubmit()) {
-			$submitForm->readInputData();
+			$submitForm = new $formClass($monograph);
+			if ($submitForm->isLocaleResubmit()) {
+				$submitForm->readInputData();
+			} else {
+				$submitForm->initData();
+			}
+			$submitForm->display();
 		} else {
-			$submitForm->initData();
+			$press =& $request->getPress();
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->assign_by_ref('press', $press);
+			// If this is an editor and there is a
+			// submission file, monograph can be expedited.
+			if (Validation::isEditor($press->getId()) && $monograph->getSubmissionFileId()) {
+				$templateMgr->assign('canExpedite', true);
+			}
+
+			$templateMgr->assign('monographId', $monographId);
+			$templateMgr->assign('submitStep', $step);
+			$templateMgr->assign('submissionProgress', $this->monograph->getSubmissionProgress());
+
+			$templateMgr->assign('helpTopicId','submission.index');
+			$templateMgr->display('author/submit/complete.tpl');
 		}
-		$submitForm->display();
 	}
 
 	/**
 	 * Save a submission step.
 	 * @param $args array first parameter is the step being saved
 	 */
-	function saveSubmit($args) {
+	function saveSubmit(&$args, &$request) {
 		$step = isset($args[0]) ? $args[0] : 1;
-		$monographId = Request::getUserVar('monographId');
+		$monographId = $request->getUserVar('monographId');
 
-		$this->validate($monographId);
+		$this->validate($request, $monographId, $step);
 		$this->setupTemplate(true);
 		$monograph =& $this->monograph;
 
@@ -71,7 +89,7 @@ class SubmitHandler extends AuthorHandler {
 		$submitForm->readInputData();
 
 		if (!HookRegistry::call('SubmitHandler::saveSubmit', array($step, &$monograph, &$submitForm))) {
-			if (!isset($editData) && $submitForm->validate()) {
+			if ($submitForm->validate()) {
 				$monographId = $submitForm->execute();
 
 				if ($step == 3) {
@@ -89,51 +107,32 @@ class SubmitHandler extends AuthorHandler {
 						$notificationUsers[] = array('id' => $user->getId());
 					}
 					foreach ($notificationUsers as $userRole) {
-						$url = Request::url(null, 'editor', 'submission', $monographId);
+						$url = $request->url(null, 'editor', 'submission', $monographId);
 						Notification::createNotification($userRole['id'], "notification.type.monographSubmitted",
 							$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED);
 					}
-
-					$press =& Request::getPress();
-					$templateMgr =& TemplateManager::getManager();
-					$templateMgr->assign_by_ref('press', $press);
-					// If this is an editor and there is a
-					// submission file, monograph can be expedited.
-					if (Validation::isEditor($press->getId()) && $monograph->getSubmissionFileId()) {
-						$templateMgr->assign('canExpedite', true);
-					}
-					$templateMgr->assign('monographId', $monographId);
-					$templateMgr->assign('helpTopicId','submission.index');
-					$templateMgr->display('author/submit/complete.tpl');
-
-				} else {
-					Request::redirect(null, null, 'submit', $step+1, array('monographId' => $monographId));
 				}
-
+				$request->redirect(null, null, 'submit', $step+1, array('monographId' => $monographId));
 			} else {
-				Request::redirect(null, null, 'submit', $step+1, array('monographId' => $monographId));
+				$submitForm->display();
 			}
-
-		} else {
-
-			$submitForm->display();
 		}
 	}
 
-	function expediteSubmission() {
-		$monographId = (int) Request::getUserVar('monographId');
-		$this->validate($monographId);
-		$press =& Request::getPress();
+	function expediteSubmission(&$args, &$request) {
+		$monographId = (int) $request->getUserVar('monographId');
+		$this->validate($request, $monographId, $step);
+		$press =& $request->getPress();
 		$monograph =& $this->monograph;
 
 		// The author must also be an editor to perform this task.
 		if (Validation::isEditor($press->getId()) && $monograph->getSubmissionFileId()) {
 			import('submission.editor.EditorAction');
 			EditorAction::expediteSubmission($monograph);
-			Request::redirect(null, 'editor', 'submissionEditing', array($monograph->getMonographId()));
+			$request->redirect(null, 'editor', 'submissionEditing', array($monograph->getMonographId()));
 		}
 
-		Request::redirect(null, null, 'track');
+		$request->redirect(null, null, 'track');
 	}
 
 	/**
@@ -141,11 +140,15 @@ class SubmitHandler extends AuthorHandler {
 	 * Checks that monograph ID is valid, if specified.
 	 * @param $monographId int
 	 */
-	function validate($monographId = null, $reason = null) {
+	function validate($request, $monographId = null, $step = false, $reason = null) {
 		parent::validate($reason);
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$user =& Request::getUser();
-		$press =& Request::getPress();
+		$user =& $request->getUser();
+		$press =& $request->getPress();
+
+		if ($step !== false && ($step < 1 || $step > 4 || (!isset($monographId) && $step != 1))) {
+			$request->redirect(null, null, 'submit', array(1));
+		}
 
 		$monograph = null;
 
@@ -153,10 +156,17 @@ class SubmitHandler extends AuthorHandler {
 		if (isset($monographId)) {
 			$monograph =& $monographDao->getMonograph((int) $monographId);
 			if (!$monograph || $monograph->getUserId() !== $user->getId() || $monograph->getPressId() !== $press->getId()) {
-				Request::redirect(null, null, 'submit');
+				$request->redirect(null, null, 'submit');
+			}
+			// if the submission is complete, redirect to the submission complete tab
+			if ( $step !== false && $step != 4 && $monograph->getSubmissionProgress() == 4 ) {
+				$request->redirect(null, null, 'submit', 4, array('monographId' => $monographId));
+			}
+			// do not go beyond the current submission progress
+			if ($step !== false && $step > $monograph->getSubmissionProgress()) {
+				$request->redirect(null, null, 'submit', $monograph->getSubmissionProgress(), array('monographId' => $monographId));
 			}
 		}
-
 		$this->monograph =& $monograph;
 		return true;
 	}
