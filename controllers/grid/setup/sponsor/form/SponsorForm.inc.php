@@ -79,8 +79,13 @@ class SponsorForm extends Form {
 	function execute() {
 		$press =& Request::getPress();
 		$sponsors = $press->getSetting('sponsors');
-		//FIXME: a bit of kludge to get unique sponsor id's
-		$this->sponsorId = ($this->sponsorId?$this->sponsorId:(max(array_keys($sponsors)) + 1));
+		if (empty($sponsors)) {
+			$sponsors = array();
+			$this->sponsorId = 1;
+		} else {
+			//FIXME: a bit of kludge to get unique sponsor id's
+			$this->sponsorId = ($this->sponsorId?$this->sponsorId:(max(array_keys($sponsors)) + 1));
+		}
 		$sponsors[$this->sponsorId] = array('institution' => $this->getData('institution'),
 							'url' => $this->getData('url'));
 

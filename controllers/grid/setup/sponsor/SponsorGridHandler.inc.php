@@ -48,8 +48,8 @@ class SponsorGridHandler extends SetupGridHandler {
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
-		$sponsors = array();
 		$sponsors = $context->getSetting('sponsors');
+		$sponsors = isset($sponsors) ? $sponsors : array();
 		$this->setData($sponsors);
 
 		// Add grid-level actions
@@ -110,9 +110,10 @@ class SponsorGridHandler extends SetupGridHandler {
 	 */
 	function editSponsor(&$args, &$request) {
 		//FIXME: add validation here?
+		$sponsorId = isset($args['rowId'])?$args['rowId']:null;
 
 		import('controllers.grid.setup.sponsor.form.SponsorForm');
-		$sponsorForm = new SponsorForm($this->getId());
+		$sponsorForm = new SponsorForm($sponsorId);
 
 		if ($sponsorForm->isLocaleResubmit()) {
 			$sponsorForm->readInputData();
@@ -132,9 +133,10 @@ class SponsorGridHandler extends SetupGridHandler {
 		//FIXME: add validation here?
 		// -> sponsorId must be present and valid
 		// -> htmlId must be present and valid
+		$sponsorId = isset($args['rowId'])?$args['rowId']:null;
 
 		import('controllers.grid.setup.sponsor.form.SponsorForm');
-		$sponsorForm = new SponsorForm($this->getId());
+		$sponsorForm = new SponsorForm($sponsorId);
 		$sponsorForm->readInputData();
 
 		if ($sponsorForm->validate()) {
