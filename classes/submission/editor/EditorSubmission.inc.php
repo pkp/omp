@@ -24,7 +24,7 @@ class EditorSubmission extends SeriesEditorSubmission {
 	 * Constructor.
 	 */
 	function EditorSubmission() {
-		parent::SeriessEditorSubmission();
+		parent::SeriesEditorSubmission();
 	}
 }
 ?>

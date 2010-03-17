@@ -84,6 +84,11 @@ class EditorHandler extends SeriesEditorHandler {
 		$pressId = $press->getId();
 		$user =& Request::getUser();
 
+		$sort = Request::getUserVar('sort');
+		$sort = isset($sort) ? $sort : 'id';
+		$sortDirection = Request::getUserVar('sortDirection');
+		$sortDirection = (isset($sortDirection) && ($sortDirection == 'ASC' || $sortDirection == 'DESC')) ? $sortDirection : 'ASC';
+
 		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
 
 		$page = isset($args[0]) ? $args[0] : '';
@@ -119,7 +124,11 @@ class EditorHandler extends SeriesEditorHandler {
 			null,
 			null,
 			null,
-			$rangeInfo);
+			null,
+			$rangeInfo,
+			$sort,
+			$sortDirection
+		);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageToDisplay', $page);

@@ -111,7 +111,8 @@ class SeriesEditorHandler extends Handler {
 			$fromDate,
 			$toDate,
 			$rangeInfo,
-			$seriesEditorSubmissionDao->getSortMapping($sort)
+			$sort,
+			$sortDirection
 		);
 
 		$templateMgr =& TemplateManager::getManager();

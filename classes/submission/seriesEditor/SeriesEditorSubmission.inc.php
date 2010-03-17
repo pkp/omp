@@ -509,7 +509,7 @@ class SeriesEditorSubmission extends Monograph {
 		$decisionsEmpty = true;
 		$lastDecisionDate = null;
 		$decisions = $this->getDecisions();
-		$decision = array_pop($decisions);
+		$decision = is_array($decisions) ? array_pop($decisions) : null;
 		if (!empty($decision)) {
 			$latestDecision = array_pop($decision);
 			if (is_array($latestDecision)) {

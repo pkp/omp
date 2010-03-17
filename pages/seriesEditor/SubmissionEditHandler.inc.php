@@ -208,7 +208,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		
 		$templateMgr->assign_by_ref('reviewType', $reviewType);
 		$templateMgr->assign('round', $round);
-		$templateMgr->assign_by_ref('editorDecisions', array_reverse($editorDecisions));
+		$templateMgr->assign_by_ref('editorDecisions', $editorDecisions);
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('reviewIndexes', $reviewAssignmentDao->getReviewIndexesForRound($monographId, $reviewType, $round));
 		$templateMgr->assign_by_ref('reviewAssignments', $submission->getReviewAssignments($reviewType, $round));
@@ -287,7 +287,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$templateMgr->assign('useCopyeditors', true);
 		$templateMgr->assign('useLayoutEditors', $useLayoutEditors);
 		$templateMgr->assign('useProofreaders', $useProofreaders);
-		$templateMgr->assign('submissionAccepted', $submissionAccepted);
+//		$templateMgr->assign('submissionAccepted', $submissionAccepted);
 
 		$templateMgr->assign('helpTopicId', 'editorial.seriesEditorsRole.editing');
 		$templateMgr->display('seriesEditor/submissionEditing.tpl');
