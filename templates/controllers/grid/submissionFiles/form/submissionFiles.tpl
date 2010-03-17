@@ -12,7 +12,7 @@
 <script type="text/javascript">
 	{literal}
 	$(function() {
-		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs();
+		$('div#fileUploadTabs-{/literal}{$fileId}{literal}').tabs();			
 		$('#fileUploadTabs-{/literal}{$fileId}{literal}').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
 	});
 	{/literal}

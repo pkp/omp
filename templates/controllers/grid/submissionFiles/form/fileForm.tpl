@@ -8,14 +8,17 @@
  *
  * $Id$
  *}
+<!--  Need a random ID to give to modal elements so that they are unique in the DOM (can not use 
+		fileId like elsewhere in the modal, because there may not be an associated file yet-->
+{assign var='randomId' value=1|rand:99999}
 
 <script type="text/javascript">
 	{literal}
 	$(function() {
 		{/literal}{if !$fileId}{literal}$('#fileUploadTabs-').tabs('option', 'disabled', [1,2,3,4]);{/literal}{/if}{literal}  // Disable next tabs when adding new file
 
-	    $('#uploadForm').ajaxForm({
-	        target: '#uploadOutput',  // target identifies the element(s) to update with the server response
+	    $('#uploadForm-{/literal}{$randomId}{literal}').ajaxForm({
+	        target: '#uploadOutput-{/literal}{$randomId}{literal}',  // target identifies the element(s) to update with the server response
 			iframe: true,
 			dataType: 'json',
 			beforeSubmit: function() {
@@ -24,7 +27,7 @@
 					speed: 1
 				});
 				$('#loading').throbber('enable');
-				$('#loadingText').fadeIn('slow');
+				$('#loadingText-{/literal}{$randomId}{literal}').fadeIn('slow');
 	    	},
 	        // success identifies the function to invoke when the server response
 	        // has been received; here we show a success message and enable the next tab
@@ -32,14 +35,14 @@
     			$('#loading').throbber("disable");
 	    		$('#loading').hide();
 	    		if (returnString.status == true) {
-		    		$('#fileType').attr("disabled", "disabled");
-		    		$('#submissionFile').attr("disabled", "disabled");
+		    		$('#fileType-{/literal}{$randomId}{literal}').attr("disabled", "disabled");
+		    		$('#submissionFile-{/literal}{$randomId}{literal}').attr("disabled", "disabled");
 		    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('url', 0, returnString.fileFormUrl);
 		    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('url', 1, returnString.metadataUrl);
 		  			$('#continueButton-{/literal}{$fileId}{literal}').removeAttr("disabled");
 		    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('enable', 1);
 	    		}
-	    		$('#loadingText').text(returnString.content);  // Set to error or success message
+	    		$('#loadingText-{/literal}{$randomId}{literal}').text(returnString.content);  // Set to error or success message
 	        }
 	    });
 
@@ -54,15 +57,15 @@
 	{/literal}
 </script>
 
-<form name="uploadForm" id="uploadForm" action="{url component="grid.submit.submissionFiles.SubmissionFilesGridHandler" op="uploadFile" monographId=$monographId fileId=$fileId}" method="post">
+<form name="uploadForm" id="uploadForm-{$randomId}" action="{url component="grid.submit.submissionFiles.SubmissionFilesGridHandler" op="uploadFile" monographId=$monographId fileId=$fileId}" method="post">
 	{fbvFormArea id="file"}
 		{fbvFormSection title="common.fileType"}
 			{if $fileId}{assign var="selectDisabled" value="disabled"}{/if}
-			{fbvSelect id="fileType" from=$bookFileTypes translate=false selected=$currentFileType disabled=$selectDisabled}
+			{fbvSelect name="fileType" id="fileType-$randomId" from=$bookFileTypes translate=false selected=$currentFileType disabled=$selectDisabled}
 		{/fbvFormSection}
 		{if !$fileId}
 			{fbvFormSection title="author.submit.submissionFile"}
-				<input type="file" name="submissionFile" id="submissionFile" />
+				<input type="file" name="submissionFile" id="submissionFile-{$randomId}" />
 				<input type="submit" value="{translate key='form.submit'}" />
 			{/fbvFormSection}
 		{else}
@@ -71,9 +74,9 @@
 			{/fbvFormSection}
 		{/if}
 	{/fbvFormArea}
-	<div id="uploadOutput">
+	<div id="uploadOutput-{$randomId}">
 		<div id='loading' class='throbber'></div>
-		<ul><li id='loadingText' style='display:none;'>{translate key='submission.loadMessage'}</li></ul> 
+		<ul><li id='loadingText-{$randomId}' style='display:none;'>{translate key='submission.loadMessage'}</li></ul> 
 	</div>
 	<div class="separator"></div>
 	{fbvFormArea id="buttons"}
