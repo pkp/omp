@@ -8,11 +8,6 @@
  *
  * $Id$
  *}
-{strip}
-{translate|assign:"pageTitleTranslated" key="submission.page.history" id=$submission->getMonographId()}
-{assign var="pageCrumbTitle" value="submission.history"}
-{include file="common/header.tpl"}
-{/strip}
 
 {literal}
 <script type="text/javascript">
@@ -44,14 +39,6 @@
 // -->
 </script>
 {/literal}
-
-<ul class="menu">
-	<li><a href="{url op="submission" path=$submission->getMonographId()}">{translate key="submission.summary"}</a></li>
-	{if $canReview}<li><a href="{url op="submissionReview" path=$submission->getMonographId()}">{translate key="submission.review"}</a></li>{/if}
-	{if $canEdit}<li><a href="{url op="submissionEditing" path=$submission->getMonographId()}">{translate key="submission.editing"}</a></li>
-	<li><a href="{url op="submissionProduction" path=$submission->getMonographId()}">{translate key="submission.production"}</a></li>{/if}
-	<li class="current"><a href="{url op="submissionHistory" path=$submission->getMonographId()}">{translate key="submission.history"}</a></li>
-</ul>
 
 <ul class="menu">
 	<li><a href="{url op="submissionEventLog" path=$submission->getMonographId()}">{translate key="submission.history.submissionEventLog"}</a></li>

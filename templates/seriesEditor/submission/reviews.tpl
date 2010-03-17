@@ -210,6 +210,3 @@
 {/foreach}
 <div class="separator"></div>
 {include file="seriesEditor/submission/editorDecision.tpl"}
-
-
-</div>

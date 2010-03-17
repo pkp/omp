@@ -8,19 +8,6 @@
  *
  * $Id$
  *}
-{strip}
-{translate|assign:"pageTitleTranslated" key="submission.page.editing" id=$submission->getMonographId()}
-{assign var="pageCrumbTitle" value="submission.editing"}
-{include file="common/header.tpl"}
-{/strip}
-
-<ul class="menu">
-	<li><a href="{url op="submission" path=$submission->getMonographId()}">{translate key="submission.summary"}</a></li>
-	{if $canReview}<li><a href="{url op="submissionReview" path=$submission->getMonographId()}">{translate key="submission.review"}</a></li>{/if}
-	<li class="current"><a href="{url op="submissionEditing" path=$submission->getMonographId()}">{translate key="submission.editing"}</a></li>
-	<li><a href="{url op="submissionProduction" path=$submission->getMonographId()}">{translate key="submission.production"}</a></li>
-	<li><a href="{url op="submissionHistory" path=$submission->getMonographId()}">{translate key="submission.history"}</a></li>
-</ul>
 
 {include file="seriesEditor/submission/summary.tpl"}
 
@@ -36,5 +23,3 @@
 <em>Copyedit not available</em>
 
 {/if}
-
-{include file="common/footer.tpl"}

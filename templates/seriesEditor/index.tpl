@@ -14,10 +14,18 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="menu">
-	<li{if ($pageToDisplay == "submissionsInReview")} class="current"{/if}><a href="{url path="submissionsInReview"}">{translate key="common.queue.short.submissionsInReview"}</a></li>
-	<li{if ($pageToDisplay == "submissionsInEditing")} class="current"{/if}><a href="{url path="submissionsInEditing"}">{translate key="common.queue.short.submissionsInEditing}</a></li>
-	<li{if ($pageToDisplay == "submissionsArchives")} class="current"{/if}><a href="{url path="submissionsArchives"}">{translate key="common.queue.short.submissionsArchives"}</a></li>
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+
+<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+	<li{if ($pageToDisplay == "submissionsInReview")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+		<a href="{url path="submissionsInReview"}">{translate key="common.queue.short.submissionsInReview"}</a>
+	</li>
+	<li{if ($pageToDisplay == "submissionsInEditing")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+		<a href="{url path="submissionsInEditing"}">{translate key="common.queue.short.submissionsInEditing}</a>
+	</li>
+	<li{if ($pageToDisplay == "submissionsArchives")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+		<a href="{url path="submissionsArchives"}">{translate key="common.queue.short.submissionsArchives"}</a>
+	</li>
 </ul>
 
 <form action="#">
@@ -83,5 +91,7 @@ function sortSearch(heading, direction) {
 <p>{translate key="editor.submissionReview.notes"}</p>
 </div>
 {/if}
+
+</div>
 
 {include file="common/footer.tpl"}

@@ -75,6 +75,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		$templateMgr->assign_by_ref('bookFileTypes', $bookFileTypes);
 		$templateMgr->assign_by_ref('submissionFiles', $monographFiles);
+		$templateMgr->assign('pageToDisplay', 'submissionSummary');
 
 		$templateMgr->assign_by_ref('series', $seriesDao->getTitlesByPressId($press->getId()));
 
@@ -205,7 +206,8 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$process =& $workflowDao->getCurrent($monographId, WORKFLOW_PROCESS_ASSESSMENT);
 		list($nextProcessType, $nextProcessId) = $workflowDao->getNext($process);
 		$processId = isset($process) ? $process->getProcessId() : null;
-		
+
+		$templateMgr->assign('pageToDisplay', 'submissionReview');
 		$templateMgr->assign_by_ref('reviewType', $reviewType);
 		$templateMgr->assign('round', $round);
 		$templateMgr->assign_by_ref('editorDecisions', $editorDecisions);
@@ -246,7 +248,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$templateMgr->assign('allowRecommendation', $allowRecommendation);
 		$templateMgr->assign('allowResubmit', $allowResubmit);
 		$templateMgr->assign('helpTopicId', 'editorial.seriesEditorsRole.review');
-		$templateMgr->display('seriesEditor/submissionReview.tpl');
+		$templateMgr->display('seriesEditor/submission.tpl');
 	}
 
 	function submissionEditing($args) {
@@ -279,6 +281,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$templateMgr->assign_by_ref('editorAuthorCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_AUTHOR'));
 		$templateMgr->assign_by_ref('finalCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_FINAL'));
 		$templateMgr->assign_by_ref('copyeditor', $submission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
+		$templateMgr->assign('pageToDisplay', 'submissionEditing');
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$user =& Request::getUser();
@@ -290,7 +293,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 //		$templateMgr->assign('submissionAccepted', $submissionAccepted);
 
 		$templateMgr->assign('helpTopicId', 'editorial.seriesEditorsRole.editing');
-		$templateMgr->display('seriesEditor/submissionEditing.tpl');
+		$templateMgr->display('seriesEditor/submission.tpl');
 	}
 
 	function submissionProduction($args) {
@@ -316,6 +319,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$currentProcess = $workflowDao->getCurrent($monographId);
 
 		$templateMgr->assign_by_ref('currentProcess', $currentProcess);
+		$templateMgr->assign('pageToDisplay', 'submissionProduction');
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('initialCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
@@ -333,7 +337,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$templateMgr->assign('submissionAccepted', $submissionAccepted);
 
 		$templateMgr->assign('helpTopicId', 'editorial.seriesEditorsRole.editing');
-		$templateMgr->display('seriesEditor/submissionProduction.tpl');
+		$templateMgr->display('seriesEditor/submission.tpl');
 	}
 
 	/**
@@ -355,12 +359,13 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 
+		$templateMgr->assign('pageToDisplay', 'submissionHistory');
 		$templateMgr->assign('isEditor', Validation::isEditor());
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('eventLogEntries', $eventLogEntries);
 		$templateMgr->assign_by_ref('emailLogEntries', $emailLogEntries);
 
-		$templateMgr->display('seriesEditor/submissionHistory.tpl');
+		$templateMgr->display('seriesEditor/submission.tpl');
 	}
 
 	function changeSeries() {

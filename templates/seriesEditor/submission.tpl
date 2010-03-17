@@ -4,40 +4,38 @@
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Submission summary.
+ * Submission workflow wrapper for editors.
  *
  * $Id$
  *}
 {strip}
-{translate|assign:"pageTitleTranslated" key="submission.page.summary" id=$submission->getMonographId()}
-{assign var="pageCrumbTitle" value="submission.summary"}
+{translate|assign:"pageTitleTranslated" key="submission.page.$pageToDisplay" id=$submission->getId()}
+{assign var="pageCrumbTitle" value="submission.crumb.$pageToDisplay"}
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="menu">
-	<li class="current"><a href="{url op="submission" path=$submission->getMonographId()}">{translate key="submission.summary"}</a></li>
-	{*if $canReview*}<li><a href="{url op="submissionReview" path=$submission->getMonographId()}">{translate key="submission.review"}</a></li>{*/if*}
-	{*if $canEdit*}<li><a href="{url op="submissionEditing" path=$submission->getMonographId()}">{translate key="submission.editing"}</a></li>{*/if*}
-	<li><a href="{url op="submissionProduction" path=$submission->getMonographId()}">{translate key="submission.production"}</a></li>
-	<li><a href="{url op="submissionHistory" path=$submission->getMonographId()}">{translate key="submission.history"}</a></li>
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+
+<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+	<li{if ($pageToDisplay == "submissionSummary")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+		<a href="{url op="submission" path=$submission->getMonographId()}">{translate key="submission.summary"}</a>
+	</li>
+	<li{if ($pageToDisplay == "submissionReview")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+		<a href="{url op="submissionReview" path=$submission->getMonographId()}">{translate key="submission.review"}</a>
+	</li>
+	<li{if ($pageToDisplay == "submissionEditing")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+		<a href="{url op="submissionEditing" path=$submission->getMonographId()}">{translate key="submission.editing"}</a>
+	</li>
+	<li{if ($pageToDisplay == "submissionProduction")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+		<a href="{url op="submissionProduction" path=$submission->getMonographId()}">{translate key="submission.production"}</a>
+	</li>
+	<li{if ($pageToDisplay == "submissionHistory")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+		<a href="{url op="submissionHistory" path=$submission->getMonographId()}">{translate key="submission.history"}</a>
+	</li>
 </ul>
 
-{include file="seriesEditor/submission/management.tpl"}
+{include file="seriesEditor/$pageToDisplay.tpl"}
 
-<div class="separator"></div>
-
-{include file="seriesEditor/submission/editors.tpl"}
-
-<div class="separator"></div>
-
-{include file="seriesEditor/submission/status.tpl"}
-
-<div class="separator"></div>
-
-{include file="seriesEditor/submission/bookFiles.tpl"}
-
-<div class="separator"></div>
-
-{include file="submission/metadata/metadata.tpl"}
+</div>
 
 {include file="common/footer.tpl"}
