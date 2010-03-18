@@ -7,26 +7,30 @@
  * Submission Contributor grid form
  *
  *}
-<form name="editSubmissionContributorForm" id="editSubmissionContributor" method="post" action="{url op="updateSubmissionContributor"}">
+<form name="editSubmissionContributorForm" id="editSubmissionContributor" method="post" action="{url op="updateSubmissionContributor" submissionContributorId=$authorId}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="profile"}
-	{fbvFormSection title="author.submit.name" layout=$fbvStyles.layout.THREE_COLUMN}
-		{fbvElement type="text" label="user.firstName" name="firstName" id="firstName" value=$firstName|escape maxlength="40" size=$fbvStyles.size.MEDIUM}
-		{fbvElement type="text" label="user.middleName" name="middleName" id="middleName" value=$middleName|escape maxlength="40" size=$fbvStyles.size.MEDIUM}
-		{fbvElement type="text" label="user.lastName" name="lastName" id="lastName" value=$lastName|escape maxlength="40" size=$fbvStyles.size.MEDIUM}
+	{fbvFormSection title="user.name" layout=$fbvStyles.layout.THREE_COLUMN}
+		{fbvElement type="text" label="user.firstName" id="firstName" value=$firstName|escape maxlength="40" size=$fbvStyles.size.MEDIUM}
+		{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName|escape maxlength="40" size=$fbvStyles.size.MEDIUM}
+		{fbvElement type="text" label="user.lastName" id="lastName" value=$lastName|escape maxlength="40" size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
-	{fbvFormSection layout=$fbvStyles.layout.TWO_COLUMN}
+	{fbvFormSection title="about.contact" layout=$fbvStyles.layout.TWO_COLUMN}
 		{fbvElement type="text" label="user.email" id="email" value=$email|escape maxlength="90" size=$fbvStyles.size.MEDIUM}
 		{fbvElement type="text" label="user.url" id="url" value=$url|escape maxlength="90" size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
-	{fbvFormSection layout=$fbvStyles.layout.TWO_COLUMN}
+	{fbvFormSection title="common.other" layout=$fbvStyles.layout.TWO_COLUMN}
 		{fbvElement type="text" label="user.affiliation" id="affiliation" value=$affiliation|escape maxlength="40" size=$fbvStyles.size.MEDIUM}
 		{fbvElement type="select" label="common.country" id="country" from=$countries selected=$country translate=false}
 	{/fbvFormSection}
+	<div style="width:550px;">
 	{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
 		{fbvElement type="textArea" label="user.biography" id="biography" value=$biography|escape size=$fbvStyles.size.MEDIUM}
+		{fbvElement type="checkbox" label="author.submit.selectPrincipalContact" id="primaryContact" checked=$primaryContact}
 	{/fbvFormSection}
+	</div>
+
 {/fbvFormArea}
 
 {if $monographId}

@@ -86,7 +86,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		parent::initialize($request);
 
 		// Load submission-specific translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR, LOCALE_COMPONENT_PKP_SUBMISSION));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
 
 		// Basic grid configuration
 		$this->setTitle('author.submit.addAuthor');
@@ -193,7 +193,10 @@ class SubmissionContributorGridHandler extends GridHandler {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
 		// Identify the submissionContributor to be updated
-		$submissionContributor =& $this->_getSubmissionContributorFromArgs($args);
+		$submissionContributorId = $request->getUserVar('submissionContributorId');
+		//$submissionContributor =& $this->_getSubmissionContributorFromArgs($args);
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$submissionContributor = $authorDao->getAuthor($submissionContributorId);
 
 		// Form handling
 		import('controllers.grid.submit.submissionContributor.form.SubmissionContributorForm');
@@ -214,24 +217,36 @@ class SubmissionContributorGridHandler extends GridHandler {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
 		// Identify the submissionContributor to be updated
-		$submissionContributor =& $this->_getSubmissionContributorFromArgs($args);
-
+		$submissionContributorId = $request->getUserVar('submissionContributorId');
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$submissionContributor =& $authorDao->getAuthor($submissionContributorId);
+		
 		// Form handling
 		import('controllers.grid.submit.submissionContributor.form.SubmissionContributorForm');
 		$submissionContributorForm = new SubmissionContributorForm($monographId, $submissionContributor);
 		$submissionContributorForm->readInputData();
 		if ($submissionContributorForm->validate()) {
-			$submissionContributorForm->execute();
+			$authorId = $submissionContributorForm->execute();
+			
+			if(!isset($submissionContributor)) {
+				// This is a new contributor
+				$submissionContributor =& $authorDao->getAuthor($authorId);
+			}
 
 			// Prepare the grid row data
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
-			$row->setId($submissionContributor->getId());
+			$row->setId($authorId);
 			$row->setData($submissionContributor);
 			$row->initialize($request);
-
+			
 			// Render the row into a JSON response
-			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			if($submissionContributor->getPrimaryContact()) {
+				$additionalAttributes = array('script' => 'updateItem(\'remove\', \'isPrimaryContact\')');
+				$json = new JSON('true', $this->_renderRowInternally($request, $row), 'true', null, $additionalAttributes);
+			} else {
+				$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			}
 		} else {
 			$json = new JSON('false', Locale::translate('author.submit.errorUpdatingSubmissionContributor'));
 		}
@@ -245,11 +260,13 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * @return string
 	 */
 	function deleteSubmissionContributor(&$args, &$request) {
+		// Identify the submission Id
+		$monographId = $request->getUserVar('monographId');
 		// Identify the submissionContributor to be deleted
-		$submissionContributor =& $this->_getSubmissionContributorFromArgs($args);
+		$submissionContributorId = $request->getUserVar('submissionContributorId');
 
-		$submissionContributorDAO = DAORegistry::getDAO('SubmissionContributorDAO');
-		$result = $submissionContributorDAO->deleteSubmissionContributor($submissionContributor);
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$result = $authorDao->deleteAuthorById($submissionContributorId, $monographId);
 
 		if ($result) {
 			$json = new JSON('true');
@@ -257,31 +274,5 @@ class SubmissionContributorGridHandler extends GridHandler {
 			$json = new JSON('false', Locale::translate('author.submit.errorDeletingSubmissionContributor'));
 		}
 		return $json->getString();
-	}
-
-	//
-	// Private helper function
-	//
-	/**
-	 * This will retrieve a submissionContributor object from the
-	 * grids data source based on the request arguments.
-	 * If no submissionContributor can be found then this will raise
-	 * a fatal error.
-	 * @param $args array
-	 * @param $createIfMissing boolean If this is set to true
-	 *  then a submissionContributor object will be instantiated if no
-	 *  submissionContributor id is in the request.
-	 * @return SubmissionContributor
-	 */
-	function &_getSubmissionContributorFromArgs(&$args) {
-		// Identify the submissionContributor id and retrieve the
-		// corresponding element from the grid's data source.
-		if (!isset($args['rowId'])) {
-			$submissionContributor = false;
-		} else {
-			$submissionContributor =& $this->getRowDataElement($args['rowId']);
-			if (is_null($submissionContributor)) fatalError('Invalid submissionContributor id!');
-		}
-		return $submissionContributor;
 	}
 }

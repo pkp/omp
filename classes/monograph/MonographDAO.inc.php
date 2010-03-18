@@ -279,24 +279,6 @@ class MonographDAO extends DAO {
 
 		$contributorMap = null;
 
-		// update authors for this monograph
-		$authors =& $monograph->getAuthors();
-		for ($i=0, $count=count($authors); $i < $count; $i++) {
-			if ($authors[$i]->getId() > 0) {
-				$this->authorDao->updateAuthor($authors[$i]);
-			} else {
-				$this->authorDao->insertAuthor($authors[$i]);
-			}
-		}
-
-		// Remove deleted authors
-		$removedAuthors = $monograph->getRemovedAuthors();
-		for ($i=0, $count=count($removedAuthors); $i < $count; $i++) {
-			$this->authorDao->deleteAuthorById($removedAuthors[$i], $monograph->getId());
-		}
-
-		// Update author sequence numbers
-		$this->authorDao->resequenceAuthors($monograph->getId());
 		$this->flushCache();
 	}
 

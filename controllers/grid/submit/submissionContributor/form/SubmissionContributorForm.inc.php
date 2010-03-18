@@ -30,27 +30,24 @@ class SubmissionContributorForm extends Form {
 		$this->_monographId = (int) $monographId;
 
 		//FIXME: Author?
-		assert(!$submissionContributor || is_a($submissionContributor, 'Author'));
+		//assert(!$submissionContributor || is_a($submissionContributor, 'Author'));
 		$this->_submissionContributor =& $submissionContributor;
 
 		// Validation checks for this form
-//		$this->addCheck(new FormValidator($this, 'firstName', 'required', 'author.submit.form.authorRequiredFields'));
-//		$this->addCheck(new FormValidatorCustom($this, 'authors', 'required', 'author.submit.form.authorRequired', create_function('$authors', 'return count($authors) > 0;')));
-//		$this->addCheck(new FormValidatorArray($this, 'authors', 'required', 'author.submit.form.authorRequiredFields', array('firstName', 'lastName')));
-//		$this->addCheck(new FormValidatorArrayCustom($this, 'authors', 'required', 'author.submit.form.authorRequiredFields', create_function('$email, $regExp', 'return String::regexp_match($regExp, $email);'), array(ValidatorEmail::getRegexp()), false, array('email')));
-//		$this->addCheck(new FormValidatorArrayCustom($this, 'authors', 'required', 'user.profile.form.urlInvalid', create_function('$url, $regExp', 'return empty($url) ? true : String::regexp_match($regExp, $url);'), array(ValidatorUrl::getRegexp()), false, array('url')));
-
-		//$this->addCheck(new FormValidator($this, 'editedSubmissionContributor', 'required', 'submission.submissionContributors.grid.editedSubmissionContributorRequired'));
-//		$this->addCheck(new FormValidatorPost($this));
+		$this->addCheck(new FormValidator($this, 'firstName', 'required', 'author.submit.form.authorRequiredFields'));
+		$this->addCheck(new FormValidator($this, 'lastName', 'required', 'author.submit.form.authorRequiredFields'));
+		$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'installer.form.emailRequired'));
+		$this->addCheck(new FormValidatorUrl($this, 'url', 'optional', 'user.profile.form.urlInvalid'));
+		$this->addCheck(new FormValidatorPost($this));
 	}
 
 	//
 	// Getters and Setters
 	//
 	/**
-	 * Get the submissionContributor
-	 * @return SubmissionContributor
-	 */
+	* Get the submissionContributor
+	* @return SubmissionContributor
+	*/
 	function &getSubmissionContributor() {
 		return $this->_submissionContributor;
 	}
@@ -67,9 +64,9 @@ class SubmissionContributorForm extends Form {
 	// Template methods from Form
 	//
 	/**
-	 * Initialize form data from the associated submissionContributor.
-	 * @param $submissionContributor SubmissionContributor
-	 */
+	* Initialize form data from the associated submissionContributor.
+	* @param $submissionContributor SubmissionContributor
+	*/
 	function initData() {
 		$submissionContributor =& $this->getSubmissionContributor();
 
@@ -83,12 +80,11 @@ class SubmissionContributorForm extends Form {
 				'country' => $submissionContributor->getCountry(),
 				'email' => $submissionContributor->getEmail(),
 				'url' => $submissionContributor->getUrl(),
-				'competingInterests' => $submissionContributor->getCompetingInterests(null),
-				'biography' => $submissionContributor->getBiography(null),
+				'biography' => $submissionContributor->getBiography(Locale::getLocale()),
 				'primaryContact' => $submissionContributor->getPrimaryContact(),
-				// FIXME: need to implement roles
+			// FIXME: need to implement roles
 				'role' => 'Author'
-			);
+				);
 		}
 	}
 
@@ -97,7 +93,7 @@ class SubmissionContributorForm extends Form {
 	 */
 	function display($request) {
 		$submissionContributor =& $this->getSubmissionContributor();
-		assert(!$submissionContributor || is_a($submissionContributor, 'Author'));
+		//assert(!$submissionContributor || is_a($submissionContributor, 'Author'));
 
 		$templateMgr =& TemplateManager::getManager();
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
@@ -131,9 +127,9 @@ class SubmissionContributorForm extends Form {
 	function execute() {
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$monographId = $this->getMonographId();
-		$submissionContributor =& $this->getSubmissionContributor();
 
-		if ( !$submissionContributor ) {
+		$submissionContributor =& $this->getSubmissionContributor();
+		if (!$submissionContributor) {
 			// this is a new submission contributor
 			$submissionContributor =& new Author();
 			$submissionContributor->setMonographId($monographId);
@@ -151,17 +147,17 @@ class SubmissionContributorForm extends Form {
 		$submissionContributor->setCountry($this->getData('country'));
 		$submissionContributor->setEmail($this->getData('email'));
 		$submissionContributor->setUrl($this->getData('url'));
-		$submissionContributor->setBiography($this->getData('biography'), null); // localized
-		$submissionContributor->setPrimaryContact(($this->getData('primaryContact') ? 1 : 0));
+		$submissionContributor->setBiography($this->getData('biography'), Locale::getLocale()); // localized
+		$submissionContributor->setPrimaryContact(($this->getData('primaryContact') ? true : false));
 
 		if ($existingSubmissionContributor) {
 			$authorDao->updateAuthor($submissionContributor);
+			$authorId = $submissionContributor->getId();
 		} else {
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$monograph =& $monographDao->getMonograph($monographId);
-			$monograph->addAuthor($submissionContributor);
-			$monographDao->updateMonograph($monograph);
+			$authorId = $authorDao->insertAuthor($submissionContributor);
 		}
+
+		return $authorId;
 	}
 }
 

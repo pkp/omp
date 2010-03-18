@@ -38,10 +38,14 @@ class SubmissionContributorGridCellProvider extends DataObjectGridCellProvider {
 				return $element->getFullName();
 			case 'role':
 				//FIXME: need to implement roles
-				return 'Author';
+				return Locale::translate('default.roles.author');
 			case 'email':
-			case 'primaryContact':
 				return parent::getLabel($element, $columnId);
+			case 'principalContact':
+				if($element->getPrimaryContact()) { 
+					$templateMgr =& TemplateManager::getManager();
+					return $templateMgr->fetch('controllers/grid/submissionContributor/primaryContact.tpl');
+				}
 		}
 	}
 }

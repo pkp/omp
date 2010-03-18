@@ -131,6 +131,25 @@ class AuthorDAO extends DAO {
 
 		return $authors;
 	}
+	
+	/**
+	 * Retrieve the number of authors assigned to a monograph
+	 * @param $monographId int
+	 * @return int
+	 */
+	function getAuthorCountByMonographId($monographId) {
+		$result =& $this->retrieve(
+			'SELECT count(*) FROM monograph_authors WHERE monograph_id = ?',
+			$monographId
+		);
+
+		$returner = $result->fields[0];
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
 
 	/**
 	 * Get field names for which data is localized.
@@ -145,7 +164,6 @@ class AuthorDAO extends DAO {
 	 * @param $author object
 	 */
 	function updateLocaleFields(&$author) {
-
 		$this->updateDataObjectSettings('monograph_author_settings', $author, array(
 			'author_id' => $author->getId()
 		));
@@ -183,6 +201,16 @@ class AuthorDAO extends DAO {
 	 * @param $author Author
 	 */
 	function insertAuthor(&$author) {
+		// Set author sequence to end of author list
+		if(!$author->getSequence()) {
+			$authorCount = $this->getAuthorCountByMonographId($author->getMonographId());
+			$author->setSequence($authorCount + 1);
+		}
+		// Reset primary contact for monograph to this author if applicable
+		if ($author->getPrimaryContact()) {
+			$this->resetPrimaryContact($author->getId(), $author->getMonographId());
+		}
+
 		$this->update(
 			'INSERT INTO monograph_authors
 				(monograph_id, first_name, middle_name, last_name, affiliation, country, email, url, primary_contact, seq)
@@ -213,6 +241,10 @@ class AuthorDAO extends DAO {
 	 * @param $author Author
 	 */
 	function updateAuthor($author) {
+		// Reset primary contact for monograph to this author if applicable
+		if ($author->getPrimaryContact()) {
+			$this->resetPrimaryContact($author->getId(), $author->getMonographId());
+		}
 		$returner = $this->update(
 			'UPDATE monograph_authors
 				SET
@@ -264,7 +296,10 @@ class AuthorDAO extends DAO {
 			($monographId?' AND monograph_id = ?':''),
 			$params
 		);
+		if ($monographId) $this->resequenceAuthors($monographId);
 		if ($returner) $this->update('DELETE FROM monograph_author_settings WHERE author_id = ?', array($authorId));
+		
+		return $returner;
 	}
 
 	/**
@@ -303,7 +338,23 @@ class AuthorDAO extends DAO {
 		$result->close();
 		unset($result);
 	}
-
+	
+	/**
+	 * Remove other primary contacts from a monograph and set to authorId
+	 * @param $authorId int
+	 * @param $monographId int
+	 */
+	function resetPrimaryContact($authorId, $monographId) {
+		$this->update(
+				'UPDATE monograph_authors SET primary_contact = 0 WHERE primary_contact = 1 AND monograph_id = ?',
+				array($monographId)
+			);
+		$this->update(
+				'UPDATE monograph_authors SET primary_contact = 1 WHERE author_id = ? AND monograph_id = ?',
+				array($authorId, $monographId)
+			);
+	}
+	
 	/**
 	 * Get the ID of the last inserted author.
 	 * @return int
