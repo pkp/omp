@@ -148,6 +148,7 @@ class UserManagementForm extends Form {
 					'country' => $user->getCountry(),
 					'biography' => $user->getBiography(null), // Localized
 					'interests' => $user->getInterests(null), // Localized
+					'gossip' => $user->getGossip(null), // Localized
 					'userLocales' => $user->getLocales()
 				);
 
@@ -190,6 +191,7 @@ class UserManagementForm extends Form {
 			'country',
 			'biography',
 			'interests',
+			'gossip',
 			'userLocales',
 			'generatePassword',
 			'sendNotify',
@@ -245,6 +247,7 @@ class UserManagementForm extends Form {
 		$user->setCountry($this->getData('country'));
 		$user->setBiography($this->getData('biography'), null); // Localized
 		$user->setInterests($this->getData('interests'), null); // Localized
+		$user->setGossip($this->getData('gossip'), null); // Localized
 		$user->setMustChangePassword($this->getData('mustChangePassword') ? 1 : 0);
 		$user->setAuthId((int) $this->getData('authId'));
 

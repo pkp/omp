@@ -88,7 +88,8 @@
 	{/fbvFormSection}
 
 	{fbvFormSection title="user.affiliation" for="affiliation" float=$fbvStyles.float.LEFT}
-		{fbvElement type="textarea" id="affiliation" value=$affiliation size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+		{fbvElement type="textarea" id="affiliation" value=$affiliation size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}<br/>
+		<span class="instruct">{translate key="user.affiliation.description"}</span>
 	{/fbvFormSection}
 
 	{fbvFormSection title="user.mailingAddress" for="mailingAddress" float=$fbvStyles.float.RIGHT}
