@@ -153,49 +153,6 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 			$monograph->setSubmissionProgress($this->step + 1);
 		}
 
-		// Update authors
-		$authors = $this->getData('authors');
-		for ($i=0, $count=count($authors); $i < $count; $i++) {
-			if ($authors[$i]['authorId'] > 0) {
-				// Update an existing author
-				$author =& $monograph->getAuthor($authors[$i]['authorId']);
-				$isExistingAuthor = true;
-
-			} else {
-				// Create a new author
-				$author = new Author();
-				$isExistingAuthor = false;
-			}
-
-			if ($author != null) {
-				$author->setMonographId($monograph->getId());
-				$author->setFirstName($authors[$i]['firstName']);
-				$author->setMiddleName($authors[$i]['middleName']);
-				$author->setLastName($authors[$i]['lastName']);
-				$author->setAffiliation($authors[$i]['affiliation']);
-				$author->setCountry($authors[$i]['country']);
-				$author->setEmail($authors[$i]['email']);
-				$author->setUrl($authors[$i]['url']);
-				if (array_key_exists('competingInterests', $authors[$i])) {
-					$author->setCompetingInterests($authors[$i]['competingInterests'], null);
-				}
-				$author->setBiography($authors[$i]['biography'], null);
-				$author->setPrimaryContact($this->getData('primaryContact') == $i ? 1 : 0);
-				$author->setSequence($authors[$i]['seq']);
-
-				if ($isExistingAuthor == false) {
-					$monograph->addAuthor($author);
-				}
-			}
-			unset($author);
-		}
-
-		// Remove deleted authors
-		$deletedAuthors = explode(':', $this->getData('deletedAuthors'));
-		for ($i=0, $count=count($deletedAuthors); $i < $count; $i++) {
-			$monograph->removeAuthor($deletedAuthors[$i]);
-		}
-
 		parent::execute();
 
 		// Save the monograph

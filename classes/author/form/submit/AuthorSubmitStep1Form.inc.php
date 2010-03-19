@@ -112,6 +112,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : 0);
 
 			// Set user to initial author
+			$authorDao =& DAORegistry::getDAO('AuthorDAO');
 			$user =& Request::getUser();
 			$author = new Author();
 			$author->setFirstName($user->getFirstName());
@@ -124,10 +125,11 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$author->setBiography($user->getBiography(null), null);
 			$author->setContributionType($this->getData('isEditedVolume') ? CONTRIBUTION_TYPE_VOLUME_EDITOR : CONTRIBUTION_TYPE_AUTHOR);
 			$author->setPrimaryContact(1);
-			$this->monograph->addAuthor($author);
 
 			$monographDao->insertMonograph($this->monograph);
 			$this->monographId = $this->monograph->getMonographId();
+			$author->setMonographId($this->monographId);
+			$authorDao->insertAuthor($author);
 		}
 
 		return $this->monographId;

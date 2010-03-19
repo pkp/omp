@@ -156,9 +156,9 @@ class MonographSearchIndex {
 	function indexMonographMetadata(&$monograph) {
 		// Build author keywords
 		$authorText = array();
-		$authors = $monograph->getAuthors();
-		for ($i=0, $count=count($authors); $i < $count; $i++) {
-			$author =& $authors[$i];
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$authors = $authorDao->getAuthorsByMonographId($monograph->getId());
+		while($author =& $authors->next()) {
 			array_push($authorText, $author->getFirstName());
 			array_push($authorText, $author->getMiddleName());
 			array_push($authorText, $author->getLastName());
@@ -167,6 +167,7 @@ class MonographSearchIndex {
 			if (is_array($bios)) foreach ($bios as $bio) { // Localized
 				array_push($authorText, strip_tags($bio));
 			}
+			unset($author);
 		}
 
 		// Update search index

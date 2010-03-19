@@ -162,7 +162,6 @@ class MonographDAO extends DAO {
 		$monograph->setSubmissionProgress($row['submission_progress']);
 		$monograph->setWorkType($row['edited_volume']);
 
-		$monograph->setAuthors($this->authorDao->getAuthorsByMonographId($row['monograph_id']));
 		$this->getDataObjectSettings('monograph_settings', 'monograph_id', $row['monograph_id'], $monograph);
 
 
@@ -212,13 +211,6 @@ class MonographDAO extends DAO {
 
 		$monograph->setId($this->getInsertMonographId());
 		$this->updateLocaleFields($monograph);
-
-		// Insert authors for this monograph
-		$authors =& $monograph->getAuthors();
-		for ($i=0, $count=count($authors); $i < $count; $i++) {
-			$authors[$i]->setMonographId($monograph->getId());
-			$this->authorDao->insertAuthor($authors[$i]);
-		}
 
 		return $monograph->getId();
 

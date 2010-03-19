@@ -404,8 +404,55 @@ class Monograph extends Submission {
 	function setSupportingAgencies($title, $locale) {
 		return $this->setData('supportingAgencies', $title, $locale);
 	}
+	
+	/**
+	 * Return string of author names, separated by the specified token
+	 * FIXME: Should be moved back to Submission class
+	 * @param $lastOnly boolean return list of lastnames only (default false)
+	 * @param $separator string separator for names (default comma+space)
+	 * @return string
+	 */
+	function getAuthorString($lastOnly = false, $separator = ', ') {
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$authors = $authorDao->getAuthorsByMonographId($this->getId());
+		
+		$str = '';
+		while($author =& $authors->next()) {
+			if (!empty($str)) {
+				$str .= $separator;
+			}
+			$str .= $lastOnly ? $author->getLastName() : $author->getFullName();
+			unset($author);
+		}
+		return $str;
+	}
 
-
+	/**
+	 * Return a list of author email addresses.
+	 * FIXME: Should be moved back to Submission class
+	 * @return array
+	 */
+	function getAuthorEmails() {
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		$authors = $authorDao->getAuthorsByMonographId($this->getId());
+		
+		import('mail.Mail');
+		$returner = array();
+		while($author =& $authors->next()) {
+			$returner[] = Mail::encodeDisplayName($author->getFullName()) . ' <' . $author->getEmail() . '>';
+			unset($author);
+		}
+		return $returner;
+	}
+	
+	/**
+	 * Get all authors of this submission.
+	 * @return array Authors
+	 */
+	function &getAuthors() {
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		return $authorDao->getAuthorsByMonographId($this->getId());
+	}
 }
 
 ?>
