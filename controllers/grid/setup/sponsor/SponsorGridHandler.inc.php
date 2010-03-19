@@ -93,10 +93,6 @@ class SponsorGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function addSponsor(&$args, &$request) {
-		// Delegate to the row handler
-		import('controllers.grid.setup.sponsor.SponsorGridRow');
-		$sponsorRow =& new SponsorGridRow();
-
 		// Calling editSponsor with an empty row id will add
 		// a new sponsor.
 		$this->editSponsor($args, $request);
@@ -109,7 +105,6 @@ class SponsorGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function editSponsor(&$args, &$request) {
-		//FIXME: add validation here?
 		$sponsorId = isset($args['rowId'])?$args['rowId']:null;
 
 		import('controllers.grid.setup.sponsor.form.SponsorForm');
@@ -130,7 +125,6 @@ class SponsorGridHandler extends SetupGridHandler {
 	 * @return string
 	 */
 	function updateSponsor(&$args, &$request) {
-		//FIXME: add validation here?
 		// -> sponsorId must be present and valid
 		// -> htmlId must be present and valid
 		$sponsorId = isset($args['rowId'])?$args['rowId']:null;
@@ -166,17 +160,15 @@ class SponsorGridHandler extends SetupGridHandler {
 	 * @return string
 	 */
 	function deleteSponsor(&$args, &$request) {
-		// FIXME: add validation here?
-
+		$sponsorId = isset($args['rowId'])?$args['rowId']:null;
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
 		// get all of the sponsors
 		$sponsors = $pressSettingsDao->getSetting($press->getId(), 'sponsors');
- 		$sponsorId = $this->getId();
 
-		if ( isset($sponsors[$sponsorId]) ) {
+		if (isset($sponsors[$sponsorId])) {
 			unset($sponsors[$sponsorId]);
 			$pressSettingsDao->updateSetting($press->getId(), 'sponsors', $sponsors, 'object');
 			$json = new JSON('true');

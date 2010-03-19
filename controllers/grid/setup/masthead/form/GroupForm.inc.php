@@ -28,14 +28,13 @@ class GroupForm extends Form {
 	 * @param group Group object; null to create new
 	 */
 	function GroupForm($group = null) {
+		$this->group =& $group;
 		parent::Form('controllers/grid/masthead/form/groupForm.tpl');
 
 		// Group title is provided
-		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.groups.form.groupTitleRequired'));
-
+		$this->addCheck(new FormValidator($this, 'title', 'required', 'manager.groups.form.groupTitleRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 
-		$this->group =& $group;
 	}
 
 	/**
@@ -52,7 +51,7 @@ class GroupForm extends Form {
 	 */
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
-		
+
 		$templateMgr->assign_by_ref('group', $this->group);
 		$templateMgr->assign('helpTopicId', 'press.managementPages.groups');
 		$templateMgr->assign('groupContextOptions', array(
@@ -86,7 +85,7 @@ class GroupForm extends Form {
 	}
 
 	/**
-	 * Save group group. 
+	 * Save group group.
 	 */
 	function execute() {
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
@@ -115,7 +114,7 @@ class GroupForm extends Form {
 			// Re-order the groups so the new one is at the end of the list.
 			$groupDao->resequenceGroups($this->group->getAssocType(), $this->group->getAssocId());
 		}
-		
+
 		return true;
 	}
 }

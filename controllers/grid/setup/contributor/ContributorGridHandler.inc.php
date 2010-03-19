@@ -95,10 +95,6 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function addContributor(&$args, &$request) {
-		// Delegate to the row handler
-		import('controllers.grid.setup.contributor.ContributorGridRow');
-		$contributorRow =& new ContributorGridRow();
-
 		// Calling editContributor with an empty row id will add
 		// a new contributor.
 		$this->editContributor($args, $request);
@@ -110,10 +106,9 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function editContributor(&$args, &$request) {
-		//FIXME: add validation here?
-
+		$contributorId = isset($args['rowId']) ? $args['rowId'] : null;
 		import('controllers.grid.setup.contributor.form.ContributorForm');
-		$contributorForm = new ContributorForm($this->getId());
+		$contributorForm = new ContributorForm($contributorId);
 
 		if ($contributorForm->isLocaleResubmit()) {
 			$contributorForm->readInputData();
@@ -130,12 +125,11 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * @return string
 	 */
 	function updateContributor(&$args, &$request) {
-		//FIXME: add validation here?
 		// -> contributorId must be present and valid
 		// -> htmlId must be present and valid
-		$sponsorId = isset($args['sponsorId']) ? $args['sponsorId'] : null;
+		$contributorId = isset($args['rowId']) ? $args['rowId'] : null;
 		import('controllers.grid.setup.contributor.form.ContributorForm');
-		$contributorForm = new ContributorForm($sponsorId);
+		$contributorForm = new ContributorForm($contributorId);
 		$contributorForm->readInputData();
 
 		if ($contributorForm->validate()) {
@@ -165,15 +159,13 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * @return string
 	 */
 	function deleteContributor(&$args, &$request) {
-		// FIXME: add validation here?
-
+		$contributorId = isset($args['rowId']) ? $args['rowId'] : null;
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
 		// get all of the contributors
 		$contributors = $pressSettingsDao->getSetting($press->getId(), 'contributors');
- 		$contributorId = $this->getId();
 
 		if ( isset($contributors[$contributorId]) ) {
 			unset($contributors[$contributorId]);

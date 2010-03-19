@@ -28,7 +28,7 @@ class SponsorForm extends Form {
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'institution', 'required', 'manager.setup.form.sponsors.institutionRequired'));
-		$this->addCheck(new FormValidator($this, 'url', 'required', 'manager.emails.form.sponsors.urlRequired'));
+		$this->addCheck(new FormValidatorUrl($this, 'url', 'required', 'manager.emails.form.sponsors.urlRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 

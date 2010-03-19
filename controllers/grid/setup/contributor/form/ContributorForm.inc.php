@@ -28,7 +28,7 @@ class ContributorForm extends Form {
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'institution', 'required', 'manager.setup.form.contributors.institutionRequired'));
-		$this->addCheck(new FormValidator($this, 'url', 'required', 'manager.emails.form.contributors.urlRequired'));
+		$this->addCheck(new FormValidatorUrl($this, 'url', 'required', 'manager.emails.form.contributors.urlRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 

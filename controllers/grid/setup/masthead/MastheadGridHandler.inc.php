@@ -155,21 +155,15 @@ class MastheadGridHandler extends SetupGridHandler {
 	 */
 	function updateGroup(&$args, &$request) {
 		$groupId = Request::getUserVar('groupId');
-		if (!isset($groupId)) {
-			$this->validate($request);
-			$group = null;
-		} else {
-			$this->validate($request, $groupId);
-			$group =& $this->group;
-		}
 		$press =& $request->getContext();
+		$groupDao =& DAORegistry::getDAO('GroupDAO');
+		$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_PRESS, $press->getId());
 
 		import('controllers.grid.setup.masthead.form.GroupForm');
-		$groupForm = new GroupForm($groupId);
+		$groupForm = new GroupForm($group);
 
 		$groupForm->readInputData();
-
-		if (true) {
+		if ($groupForm->validate()) {
 			$groupForm->execute();
 
 			$row =& $this->getRowInstance();
@@ -182,17 +176,6 @@ class MastheadGridHandler extends SetupGridHandler {
 			$json = new JSON('true', $this->_renderRowInternally($request, $row));
 		} else {
 			$json = new JSON('false');
-
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->append('pageHierarchy', array(Request::url(null, 'manager', 'groups'), 'manager.groups'));
-
-			$templateMgr->assign('pageTitle',
-				$group?
-					'manager.groups.editTitle':
-					'manager.groups.createTitle'
-			);
-
-//			$groupForm->display();
 		}
 
 		return $json->getString();
@@ -205,10 +188,10 @@ class MastheadGridHandler extends SetupGridHandler {
 	 * @return string
 	 */
 	function deleteGroup(&$args, &$request) {
-		$groupId = $this->getId();
-
-		$this->validate($request, $groupId);
-		$group =& $this->group;
+		$groupId = Request::getUserVar('rowId');
+		$press =& $request->getContext();
+		$groupDao =& DAORegistry::getDAO('GroupDAO');
+		$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_PRESS, $press->getId());
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteObject($group);
@@ -223,7 +206,6 @@ class MastheadGridHandler extends SetupGridHandler {
 	 */
 	function groupMembership(&$args, &$request) {
 		$groupId = $this->getId();
-		$this->validate($request, $groupId);
 		$group =& $this->group;
 
 		$rangeInfo =& $this->getRangeInfo('memberships');
