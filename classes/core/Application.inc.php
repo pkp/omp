@@ -118,8 +118,7 @@ class Application extends PKPApplication {
 			'FlexibleRoleDAO' => 'role.FlexibleRoleDAO',
 			'SeriesEditorSubmissionDAO' => 'submission.seriesEditor.SeriesEditorSubmissionDAO',
 			'UserDAO' => 'user.UserDAO',
-			'UserSettingsDAO' => 'user.UserSettingsDAO',
-			'SignoffEntityDAO' => 'signoff.SignoffEntityDAO'
+			'UserSettingsDAO' => 'user.UserSettingsDAO'
 		));
 	}
 
