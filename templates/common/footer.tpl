@@ -40,6 +40,19 @@
 {if $enableDebugStats}{include file=$pqpTemplate}{/if}
 
 </div><!-- page -->
+
+{if !empty($systemNotifications)}
+	<script type="text/javascript">
+	<!--
+	{foreach from=$systemNotifications item=notification}
+		{literal}
+			$.pnotify({pnotify_title: '{/literal}{translate|escape:"js" key="notification.notification"}{literal}', pnotify_text: '{/literal}{if $notification->getIsLocalized()}{translate|escape:"js" key=$notification->getContents() param=$notification->getParam()}{else}{$notification->getContents()|escape:"js"}{/if}{literal}'});
+		{/literal}
+	{/foreach}
+	// -->
+	</script>
+{/if}{* systemNotifications *}
+
 {$additionalFooterData}
 </body>
 </html>

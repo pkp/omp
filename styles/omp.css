@@ -10,6 +10,9 @@
 @import url("../lib/pkp/styles/oocss/mod.css");
 @import url("../lib/pkp/styles/oocss/mod_skins.css");
 
+/* Pines Notify - http://plugins.jquery.com/project/pnotify */
+@import url("../lib/pkp/styles/jquery.pnotify.default.css");
+
 /* Superfish - http://users.tpg.com.au/j_birch/plugins/superfish/ */
 @import url("../lib/pkp/styles/superfish/superfish.css");
 
