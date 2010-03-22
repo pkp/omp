@@ -79,7 +79,7 @@
 
 <table class="data" width="100%">
 	<tr valign="middle">
-		<td width="22%"><h3>{translate key=$reviewTypeTitle}</h3></td>
+		<td width="22%"><h3>{translate key="workflow.review.internalReview"}</h3></td>
 		<td width="14%"><h4>{translate key="submission.round" round=$round}</h4></td>
 		<td width="64%" class="nowrap">
 			<a href="{url op="selectReviewer" path=$submission->getMonographId()}" class="action">{translate key="editor.monograph.selectReviewer"}</a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -88,5 +88,7 @@
 	</tr>
 </table>
 {include file="seriesEditor/submission/reviews.tpl"}
+
+{include file="seriesEditor/submission/editorDecision.tpl"}
 
 </div>

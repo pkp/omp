@@ -11,7 +11,7 @@
 <div id="editorDecision">
 <h3>{translate key="submission.editorDecision"}</h3>
 
-<table width="100%" class="data">
+<table id="table1" width="100%" class="data">
 <tr valign="top">
 	<td class="label" width="20%">{translate key="editor.monograph.selectDecision"}</td>
 	<td width="80%" class="value">
@@ -21,7 +21,7 @@
 				{html_options_translate options=$editorDecisionOptions selected=$lastDecision}
 			</select>
 			<input type="submit" onclick="return confirm('{translate|escape:"jsparam" key="editor.submissionReview.confirmDecision"}')" name="submit" value="{translate key="editor.monograph.recordDecision"}" {if not $allowRecommendation}disabled="disabled"{/if} class="button" />
-			{if not $allowRecommendation}<br />{translate key="editor.monograph.cannotRecord}{/if}
+			{if not $allowRecommendation}&nbsp;&nbsp;{translate key="editor.monograph.cannotRecord}{/if}
 		</form>
 	</td>
 </tr>
@@ -54,7 +54,7 @@
 		{translate key="submission.editorAuthorRecord"}
 		{if $submission->getMostRecentEditorDecisionComment()}
 			{assign var="comment" value=$submission->getMostRecentEditorDecisionComment()}
-			<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getMonographId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a>&nbsp;&nbsp;{$comment->getDatePosted()|date_format:$dateFormatShort}
+			<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getMonographId() anchor=$comment->getId()}');" class="icon">{icon name="comment"}</a>&nbsp;&nbsp;{$comment->getDatePosted()|date_format:$dateFormatShort}
 		{else}
 			<a href="javascript:openComments('{url op="viewEditorDecisionComments" path=$submission->getMonographId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
 		{/if}
@@ -80,7 +80,7 @@
 	{assign var="reviewVersionExists" value=1}
 {/if}
 
-<table class="data" width="100%">
+<table id="table2" class="data" width="100%">
 	{if $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT}
 		<tr>
 			<td width="20%">&nbsp;</td>
@@ -93,9 +93,9 @@
 		<tr valign="top">
 			<td width="20%">&nbsp;</td>
 			<td width="80%">
-				{if !($editorRevisionExists or $authorRevisionExists or $reviewVersionExists)} {* or !$submission->getMostRecentEditorDecisionComment()*}{assign var=copyeditingUnavailable value=1}{else}{assign var=copyeditingUnavailable value=0}{/if}
-				{translate key="editor.monograph.sendFileToNextWorkflowProcess" nextProcessTitle=$nextProcessTitle}
-				<input type="submit" {if $copyeditingUnavailable}disabled="disabled" {/if}name="setAcceptedFile" value="{translate key="form.send"}" class="button" />
+				{if !($editorRevisionExists or $authorRevisionExists or $reviewVersionExists) or !$submission->getMostRecentEditorDecisionComment()}{assign var=copyeditingUnavailable value=1}{else}{assign var=copyeditingUnavailable value=0}{/if}
+				{translate key="editor.monograph.sendFileToCopyedit"}
+				<input type="submit" {if $copyeditingUnavailable}disabled="disabled" {/if}name="setCopyeditFile" value="{translate key="form.send"}" class="button" />
 				{if $copyeditingUnavailable}
 					<br/>
 					<span class="instruct">{translate key="editor.submissionReview.cannotSendToCopyediting"}</span>

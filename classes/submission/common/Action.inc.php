@@ -239,20 +239,6 @@ class Action {
 			}
 		}
 	}
-
-	/**
-	 * Move the submission along in the context of the workflow.
-	 * @param $monographId int
-	 * @param $pressId int
-	 */
-	function &endSignoffProcess($monographId) {
-
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-
-		$signoffProcess =& $workflowDao->proceed($monographId);
-
-		return $signoffProcess;
-	}
 }
 
 ?>

@@ -19,7 +19,6 @@
 import('submission.seriesEditor.SeriesEditorSubmission');
 
 // Bring in editor decision constants
-import('workflow.WorkflowProcess');
 import('submission.author.AuthorSubmission');
 import('submission.reviewer.ReviewerSubmission');
 

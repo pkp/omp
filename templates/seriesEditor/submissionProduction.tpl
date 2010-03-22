@@ -13,14 +13,5 @@
 
 <div class="separator"></div>
 
-{if $currentProcess != null and $currentProcess->getProcessId() == WORKFLOW_PROCESS_EDITING_COPYEDIT}
-
 {include file="seriesEditor/submission/production.tpl"}
-
-<div class="separator"></div>
-{else}
-
-<em>Production not available</em>
-
-{/if}
 

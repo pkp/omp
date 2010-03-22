@@ -200,12 +200,6 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		}
 
 		$templateMgr =& TemplateManager::getManager();
-		
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$reviewProcesses =& $workflowDao->getByEventType($monographId, WORKFLOW_PROCESS_ASSESSMENT);
-		$process =& $workflowDao->getCurrent($monographId, WORKFLOW_PROCESS_ASSESSMENT);
-		list($nextProcessType, $nextProcessId) = $workflowDao->getNext($process);
-		$processId = isset($process) ? $process->getProcessId() : null;
 
 		$templateMgr->assign('pageToDisplay', 'submissionReview');
 		$templateMgr->assign_by_ref('reviewType', $reviewType);
@@ -223,13 +217,6 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
 		$templateMgr->assign_by_ref('editorFile', $submission->getEditorFile());
 		$templateMgr->assign('rateReviewerOnQuality', $press->getSetting('rateReviewerOnQuality'));
-		if ( $reviewType == WORKFLOW_PROCESS_ASSESSMENT_INTERNAL ) 
-			$templateMgr->assign('reviewTypeTitle', 'submission.internalReview');
-		else 
-			$templateMgr->assign('reviewTypeTitle', 'submission.externalReview');
-			
-		$templateMgr->assign('nextProcessTitle', $workflowDao->getTitleByProcessId($nextProcessId));
-
 		$templateMgr->assign('editorDecisionOptions',
 			array(
 				'' => 'common.chooseOne',
@@ -270,10 +257,6 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$currentProcess = $workflowDao->getCurrent($monographId);
-
-		$templateMgr->assign_by_ref('currentProcess', $currentProcess);
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('copyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
@@ -315,10 +298,6 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$submissionAccepted = true;
 		$templateMgr =& TemplateManager::getManager();
 
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$currentProcess = $workflowDao->getCurrent($monographId);
-
-		$templateMgr->assign_by_ref('currentProcess', $currentProcess);
 		$templateMgr->assign('pageToDisplay', 'submissionProduction');
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
@@ -1003,59 +982,29 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 			SeriesEditorAction::uploadEditorVersion($submission);
 		}		
 
-		if (Request::getUserVar('setAcceptedFile')) {
-			// If the Accept button was pressed
+		if (Request::getUserVar('setCopyeditFile')) {
+			// If the Send To Copyedit button was pressed
 			$file = explode(',', Request::getUserVar('editorDecisionFile'));
-
 			if (isset($file[0]) && isset($file[1])) {
-				$reviewType = $submission->getCurrentReviewType();
-				$round = $submission->getCurrentRound();
+				if ($submission->getMostRecentEditorDecisionComment()) {
+					// The conditions are met for being able
+					// to send a file to copyediting.
+					SeriesEditorAction::setCopyeditFile($submission, $file[0], $file[1]);
 
-				// adva
-				$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-				$workflowDao->proceed($monographId);
-								
-				switch ($submission->getCurrentReviewType()) {
-					case WORKFLOW_PROCESS_ASSESSMENT_INTERNAL:
-						$submission->setReviewFileId($file[0]);
-						$submission->setReviewRevision($file[1]);
-						$submission->setCurrentReviewType(WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL);
-						$submission->setCurrentRound(1);
-						$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-						$seriesEditorSubmissionDao->updateSeriesEditorSubmission($submission);
-						break;
-					case WORKFLOW_PROCESS_ASSESSMENT_EXTERNAL:
-						$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-						SeriesEditorAction::setCopyeditFile($submission, $file[0], $file[1]);
-	
-						$copyeditAuthorSignoff = $signoffDao->build(
-										'SIGNOFF_COPYEDITING_AUTHOR', 
-										ASSOC_TYPE_MONOGRAPH, 
-										$submission->getMonographId()
-									  );
-						$copyeditFinalSignoff = $signoffDao->build(
-										'SIGNOFF_COPYEDITING_FINAL', 
-										ASSOC_TYPE_MONOGRAPH, 
-										$submission->getMonographId()
-									);
-						$copyeditAuthorSignoff->setUserId($submission->getUserId());
-						$copyeditFinalSignoff->setUserId(0);
-	
-						$signoffDao->updateObject($copyeditAuthorSignoff);
-						$signoffDao->updateObject($copyeditFinalSignoff);
-	
-						$redirectTarget = 'submissionEditing';
-						break;
+					$signoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_PRESS, $submission->getId());
+					$signoff->setFileId($file[0]);
+					$signoff->setFileRevision($file[1]);
+					$signoffDao->updateObject($signoff);
 				}
+				$redirectTarget = 'submissionEditing';
 			}
-
 		} else if (Request::getUserVar('resubmit')) {
 			// If the Resubmit button was pressed
 			$file = explode(',', Request::getUserVar('editorDecisionFile'));
 			if (isset($file[0]) && isset($file[1])) {
 				SeriesEditorAction::resubmitFile($submission, $file[0], $file[1]);
 
-				$signoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+				$signoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $submission->getId());
 				$signoff->setFileId($file[0]);
 				$signoff->setFileRevision($file[1]);
 				$signoffDao->updateObject($signoff);

@@ -35,7 +35,7 @@
 <h3>{translate key="author.submit.placement"}</h3>
 
 {fbvFormArea id="placement"}
-	{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvFormSection}
 		{fbvElement type="select" id="seriesId" from=$seriesOptions selected=$seriesId translate=false}
 	{/fbvFormSection}
 {/fbvFormArea}

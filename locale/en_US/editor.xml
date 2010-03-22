@@ -111,7 +111,6 @@
 	<message key="editor.monograph.resubmitForReview">Resubmit file for Review</message>
 	<message key="editor.monograph.resubmitFileForPeerReview">Resubmit selected file for peer review</message>
 	<message key="editor.monograph.sendToCopyedit">Send file to Copyediting</message>
-	<message key="editor.monograph.sendFileToNextWorkflowProcess">Select file for {$nextProcessTitle}</message>
 	<message key="editor.monograph.selectProofreader">Assign Proofreader</message>
 	<message key="editor.monograph.replaceProofreader">Replace Proofreader</message>
 	<message key="editor.monograph.authorComments">Author Comments</message>

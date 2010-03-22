@@ -188,20 +188,6 @@ class EditorHandler extends SeriesEditorHandler {
 
 			$this->setupTemplate(EDITOR_SERIES_SUBMISSIONS, $monographId, 'summary');
 
-			$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-
-			$workflowDao->build(
-					$monographId,
-					WORKFLOW_PROCESS_ASSESSMENT,
-					null
-				);
-			$workflowDao->build(
-					$monographId, 
-					WORKFLOW_PROCESS_ASSESSMENT, 
-					WORKFLOW_PROCESS_ASSESSMENT_INTERNAL, 
-					WORKFLOW_PROCESS_STATUS_CURRENT
-				);
-			
 			if (EditorAction::assignEditor($monographId, $editorId, $isEditor, Request::getUserVar('send'))) {
 				Request::redirect(null, null, 'submission', $monographId);
 			}

@@ -112,7 +112,6 @@ class Application extends PKPApplication {
 			'ReviewRoundDAO' => 'monograph.reviewRound.ReviewRoundDAO',
 			'ReviewFormElementDAO' => 'reviewForm.ReviewFormElementDAO',
 			'ReviewFormResponseDAO' => 'reviewForm.ReviewFormResponseDAO',
-			'WorkflowDAO' => 'workflow.WorkflowDAO',
 			'LibraryFileDAO' => 'press.LibraryFileDAO',
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
 			'RoleDAO' => 'security.RoleDAO',
