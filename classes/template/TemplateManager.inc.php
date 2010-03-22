@@ -50,6 +50,18 @@ class TemplateManager extends PKPTemplateManager {
 			$siteStyleFilename = PublicFileManager::getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
 			if (file_exists($siteStyleFilename)) $this->addStyleSheet(Request::getBaseUrl() . '/' . $siteStyleFilename);
 
+			$user =& Request::getUser();
+			if ($user) {
+				$notificationDao =& DAORegistry::getDAO('NotificationDAO');
+				$notifications =& $notificationDao->getNotificationsByUserId($user->getId(), NOTIFICATION_LEVEL_TRIVIAL);
+				$notificationsArray =& $notifications->toArray();
+				unset($notifications);
+				foreach ($notificationsArray as $notification) {
+					$notificationDao->deleteNotificationById($notification->getId());
+				}
+				$this->assign('systemNotifications', $notificationsArray);
+			}
+
 			$this->assign('homeContext', array());
 			if (isset($press)) {
 				$this->assign_by_ref('currentPress', $press);
