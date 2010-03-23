@@ -107,10 +107,6 @@ switch ($op) {
 	case 'selectReviewForm':
 	case 'previewReviewForm':
 	case 'viewReviewFormResponse':
-	/**
-	 * Workflow
-	 */
-	case 'endWorkflowProcess':
 	case 'selectInternalReviewer':
 	/**
 	 * Scheduling functions

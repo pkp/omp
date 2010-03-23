@@ -47,7 +47,6 @@ switch ($op) {
 	case 'index':
 	case 'setLocale':
 	case 'become':
-	case 'workflowSignoff':
 	case 'viewCaptcha':
 	case 'viewPublicProfile':
 		define('HANDLER_CLASS', 'UserHandler');

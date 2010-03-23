@@ -1332,42 +1332,4 @@
 		</field>
 		<descr>Flexible roles arranged by workflow identifiers.</descr>
 	</table>
-
-	<table name="signoff_processes">
-		<field name="process_id" type="I8">
-			<KEY/>
-			<AUTOINCREMENT/>
-		</field>
-		<field name="monograph_id" type="I8" />
-		<field name="status" type="I8" />
-		<field name="event_type" type="I8" />
-		<field name="event_id" type="I8" />
-		<field name="date_initiated" type="D" />
-		<field name="date_ended" type="D" />
-		<field name="date_signed" type="D" />
-		<descr>A part of the workflow or, a process, that is encapsulated by a signoff.</descr>
-	</table>
-
-	<table name="signoff_entities">
-		<field name="entity_type" type="I8" />
-		<field name="entity_id" type="I8" />
-		<field name="press_id" type="I8" />
-		<field name="event_type" type="I8" />
-		<field name="event_id" type="I8" />
-		<field name="vote" type="I8" />
-		<descr>For grouping users for signoff points.</descr>
-	</table>
-
-	<table name="workflow_signoffs">
-		<field name="user_id" type="I8">
-			<NOTNULL/>
-		</field>
-		<field name="date_signed" type="T">
-			<NOTNULL/>
-		</field>
-		<field name="process_id" type="I8">
-			<NOTNULL/>
-		</field>
-		<descr>Misc workflow signoffs.</descr>
-	</table>
 </schema>

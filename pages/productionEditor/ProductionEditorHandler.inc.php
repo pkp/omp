@@ -405,6 +405,8 @@ class ProductionEditorHandler extends Handler {
 		$templateMgr->assign('isEditor', $isEditor);
 		$templateMgr->assign('enableComments', $enableComments);
 
+		$templateMgr->assign('pageToDisplay', 'submissionSummary');
+
 		if ($enableComments) {
 			import('monograph.Monograph');
 			$templateMgr->assign('commentsStatus', $submission->getCommentsStatus());
@@ -417,41 +419,17 @@ class ProductionEditorHandler extends Handler {
 
 
 	}
-	function submitArtwork($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$this->setupTemplate(false, $monographId);
-
-		$user =& Request::getUser();
-		import('monograph.form.MonographArtworkForm');
-		$artworkForm = new MonographArtworkForm('productionEditor/art.tpl', $submission);
-
-		$editData = $artworkForm->processEvents();
-
-		if (!$editData && $artworkForm->validate()) {
-			$monographId = $artworkForm->execute();
-		}
-
-		Request::redirect(null, null, 'submissionArt', $submission->getMonographId());
-	}
 	function submissionArt($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
 		$submission =& $this->submission;
 		$this->setupTemplate(false, $monographId);
 
-		$user =& Request::getUser();
-		import('monograph.form.MonographArtworkForm');
-		$artworkForm = new MonographArtworkForm('productionEditor/art.tpl', $submission);
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('pageToDisplay', 'submissionArt');
+		$templateMgr->assign_by_ref('submission', $submission);
 
-		if ($artworkForm->isLocaleResubmit()) {
-			$artworkForm->readInputData();
-		} else {
-			$artworkForm->initData();
-		}
-
-		$artworkForm->display();
+		$templateMgr->display('productionEditor/submission.tpl');
 	}
 	function productionAssignment($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
@@ -580,8 +558,8 @@ class ProductionEditorHandler extends Handler {
 		$templateMgr->assign_by_ref('productionAssignmentTypes', $productionAssignmentTypes);
 		$templateMgr->assign('enableComments', $enableComments);
 		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign('artworkCount', $artworkCount);
-		$templateMgr->assign('galleys', $galleys);
+
+		$templateMgr->assign('pageToDisplay', 'submissionLayout');
 
 		if ($enableComments) {
 			import('monograph.Monograph');
@@ -589,11 +567,7 @@ class ProductionEditorHandler extends Handler {
 			$templateMgr->assign_by_ref('commentsStatusOptions', Monograph::getCommentsStatusOptions());
 		}
 
-		if ($isEditor) {
-			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary');
-		}
-
-		$templateMgr->display('productionEditor/layout.tpl');
+		$templateMgr->display('productionEditor/submission.tpl');
 	}
 
 	function viewMetadata($args) {

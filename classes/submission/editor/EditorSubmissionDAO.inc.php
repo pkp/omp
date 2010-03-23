@@ -19,7 +19,6 @@
 import('submission.editor.EditorSubmission');
 
 // Bring in editor decision constants
-import('workflow.WorkflowProcess');
 import('submission.author.AuthorSubmission');
 
 class EditorSubmissionDAO extends DAO {

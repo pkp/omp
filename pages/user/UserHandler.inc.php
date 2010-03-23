@@ -44,7 +44,6 @@ class UserHandler extends Handler {
 		$templateMgr->assign('helpTopicId', 'user.userHome');
 
 		$user =& Request::getUser();
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
 
 		if ($press == null) {
 			// Prevent variable clobbering
@@ -76,9 +75,6 @@ class UserHandler extends Handler {
 		} else { // Currently within a press' context.
 			// Show roles for the currently selected press
 			$roles =& $flexibleRoleDao->getByUserId($session->getUserId(), $press->getId());
-
-			$signoffTasks =& $workflowDao->getSignoffTasksByUserId($user->getId());
-			$templateMgr->assign('signoffTasks', $signoffTasks);
 
 			$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor'));
 			$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer'));
@@ -187,21 +183,6 @@ class UserHandler extends Handler {
 		if ($subclass) {
 			$templateMgr->assign('pageHierarchy', array(array(Request::url(null, 'user'), 'navigation.user')));
 		}
-	}
-
-	function workflowSignoff($args) {
-		$this->validate();
-		$processId = (int) array_shift($args);
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$user =& Request::getUser();
-		$process =& $workflowDao->getById($processId);
-
-		if ($process != null) {
-			$workflowDao->workflowSignoff($user->getId(), $processId);
-			$workflowDao->proceed($process->getMonographId());
-		}
-
-  		Request::redirect(null, 'user');
 	}
 
 	//

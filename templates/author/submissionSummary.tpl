@@ -1,20 +1,20 @@
 {**
- * submissionReview.tpl
+ * submissionSummary.tpl
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Author's submission review.
+ * Author's submission summary.
  *
  * $Id$
  *}
 
-{include file="author/submission/summary.tpl"}
+{include file="author/submission/management.tpl"}
 
 <div class="separator"></div>
 
-{include file="author/submission/peerReview.tpl"}
+{include file="author/submission/status.tpl"}
 
 <div class="separator"></div>
 
-{include file="author/submission/editorDecision.tpl"}
+{include file="submission/metadata/metadata.tpl"}

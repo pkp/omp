@@ -112,15 +112,13 @@ class Application extends PKPApplication {
 			'ReviewRoundDAO' => 'monograph.reviewRound.ReviewRoundDAO',
 			'ReviewFormElementDAO' => 'reviewForm.ReviewFormElementDAO',
 			'ReviewFormResponseDAO' => 'reviewForm.ReviewFormResponseDAO',
-			'WorkflowDAO' => 'workflow.WorkflowDAO',
 			'LibraryFileDAO' => 'press.LibraryFileDAO',
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
 			'RoleDAO' => 'security.RoleDAO',
 			'FlexibleRoleDAO' => 'role.FlexibleRoleDAO',
 			'SeriesEditorSubmissionDAO' => 'submission.seriesEditor.SeriesEditorSubmissionDAO',
 			'UserDAO' => 'user.UserDAO',
-			'UserSettingsDAO' => 'user.UserSettingsDAO',
-			'SignoffEntityDAO' => 'signoff.SignoffEntityDAO'
+			'UserSettingsDAO' => 'user.UserSettingsDAO'
 		));
 	}
 

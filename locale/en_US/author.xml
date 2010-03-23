@@ -40,7 +40,7 @@
 	<message key="author.submit.submitMonograph">Submit a Monograph</message>
 	<message key="author.submit.stepsToSubmit">Five Steps to Submit</message>
 	<message key="author.submit.startHereTitle">Start a New Submission</message>
-	<message key="author.submit.startHereLink"><![CDATA[<a href="{$submitUrl}" class="action">Click here</a> to go to step one of the five-step submission process.]]></message>
+	<message key="author.submit.startHereLink"><![CDATA[<a href="{$submitUrl}" class="action">Click here</a> to go to step one of the three-step submission process.]]></message>
 
 	<message key="author.submit.stepHeading.start">Starting the Submission</message>
 	<message key="author.submit.stepHeading.upload">Uploading the Submission</message>

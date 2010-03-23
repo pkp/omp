@@ -73,6 +73,9 @@
 	<message key="monograph.coverageSample"> Research sample characteristics</message>
 	<message key="monograph.type">Type, method or approach</message>
 
+	<message key="workflow.review.internalReview">Internal Review</message>
+	<message key="workflow.review.externalReview">External Review</message>
+
 	<message key="production.assignment.new">New Production Assignment</message>
 	<message key="production.assignment.description">Complete the form below to create an assignable task.</message>
 	<message key="production.assignment">Production Assignment</message>

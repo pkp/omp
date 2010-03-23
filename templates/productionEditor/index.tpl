@@ -13,13 +13,20 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="menu">
-	<li{if ($pageToDisplay == "active")} class="current"{/if}><a href="{url op="index" path="active"}">{translate key="common.queue.short.active"}</a></li>
-	<li{if ($pageToDisplay == "completed")} class="current"{/if}><a href="{url op="index" path="completed"}">{translate key="common.queue.short.completed"}</a></li>
+
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+
+<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+	<li{if ($pageToDisplay == "active")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+		<a href="{url path="active"}">{translate key="common.queue.short.active"}</a>
+	</li>
+	<li{if ($pageToDisplay == "completed")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+		<a href="{url path="completed"}">{translate key="common.queue.short.completed"}</a>
+	</li>
 </ul>
 
-<br />
-
 {include file="productionEditor/$pageToDisplay.tpl"}
+
+</div>
 
 {include file="common/footer.tpl"}

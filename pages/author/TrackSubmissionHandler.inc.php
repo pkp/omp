@@ -98,6 +98,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign('round', $round);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
+		$templateMgr->assign('pageToDisplay', 'submissionSummary');
 
 		import('submission.seriesEditor.SeriesEditorSubmission');
 		$templateMgr->assign_by_ref('editorDecisionOptions', SeriesEditorSubmission::getEditorDecisionOptions());
@@ -140,20 +141,17 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign_by_ref('reviewModifiedByRound', $reviewModifiedByRound);
 
 		$reviewIndexesByRound = array();
-		$workflowDao =& DAORegistry::getDAO('WorkflowDAO');
-		$reviewProcesses =& $workflowDao->getByEventType($monographId, WORKFLOW_PROCESS_ASSESSMENT);
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$reviewRounds =& $monographDao->getReviewRoundsInfoById($monographId);
 
-		foreach($reviewProcesses as $reviewProcess) {
-			$value = !isset($reviewRounds[$reviewProcess->getProcessId()]) ? 0 : $reviewRounds[$reviewProcess->getProcessId()];
-			for ($round=1; $round<=$value; $round++) {
-				$reviewIndexesByRound[$reviewProcess->getProcessId()][$round] = $reviewAssignmentDao->getReviewIndexesForRound($monographId, $authorSubmission->getCurrentReviewType(), $round);
-			}
+		$reviewIndexesByRound = array();
+		for ($round = 1; $round <= $authorSubmission->getCurrentRound(); $round++) {
+			$reviewIndexesByRound[$round] = $reviewAssignmentDao->getReviewIndexesForRound($articleId, $round);
 		}
-		$templateMgr->assign_by_ref('reviewProcesses', $reviewProcesses);
-		$templateMgr->assign_by_ref('reviewRounds', $reviewRounds);
 		$templateMgr->assign_by_ref('reviewIndexesByRound', $reviewIndexesByRound);
+
+		$templateMgr->assign('pageToDisplay', 'submissionReview');
+		$templateMgr->assign_by_ref('reviewRounds', $reviewRounds);
 		$templateMgr->assign('reviewEarliestNotificationByRound', $reviewEarliestNotificationByRound);
 		$templateMgr->assign_by_ref('submissionFile', $authorSubmission->getSubmissionFile());
 		$templateMgr->assign_by_ref('revisedFile', $authorSubmission->getRevisedFile());
@@ -168,7 +166,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 			)
 		);
 		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.review');
-		$templateMgr->display('author/submissionReview.tpl');
+		$templateMgr->display('author/submission.tpl');
 	}
 
 	/**
@@ -188,6 +186,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		ProofreaderAction::proofreadingUnderway($submission, 'SIGNOFF_PROOFREADING_AUTHOR');
 
 		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('pageToDisplay', 'submissionEditing');
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('copyeditor', $submission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
@@ -198,7 +197,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign('useLayoutEditors', $press->getSetting('useLayoutEditors'));
 		$templateMgr->assign('useProofreaders', $press->getSetting('useProofreaders'));
 		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.editing');	
-		$templateMgr->display('author/submissionEditing.tpl');
+		$templateMgr->display('author/submission.tpl');
 	}
 
 	/**
