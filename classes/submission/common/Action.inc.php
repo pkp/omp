@@ -85,12 +85,15 @@ class Action {
 				$metadataForm->execute();
 				
 				// Send a notification to associated users
-				import('notification.Notification');
+				import('notification.NotificationManager');
 				$notificationUsers = $monograph->getAssociatedUserIds();
+				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, $userRole['role'], 'submission', $monograph->getMonographId(), null, 'metadata');
-					Notification::createNotification($userRole['id'], "notification.type.metadataModified",
-						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_METADATA_MODIFIED);
+					$notificationManager->createNotification(
+						$userRole['id'], 'notification.type.metadataModified',
+						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_METADATA_MODIFIED
+					);
 				}
 
 				// Add log entry
@@ -204,12 +207,15 @@ class Action {
 				$commentForm->execute();
 				
 				// Send a notification to associated users
-				import('notification.Notification');
+				import('notification.NotificationManager');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, $userRole['role'], 'submissionReview', $monograph->getMonographId(), null, 'editorDecision');
-					Notification::createNotification($userRole['id'], "notification.type.submissionComment",
-						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUBMISSION_COMMENT);
+					$notificationManager->createNotification(
+						$userRole['id'], 'notification.type.submissionComment',
+						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUBMISSION_COMMENT
+					);
 				}
 
 				if ($emailComment) {
