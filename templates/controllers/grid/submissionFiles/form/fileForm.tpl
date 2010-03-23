@@ -39,6 +39,7 @@
 		    		$('#submissionFile-{/literal}{$randomId}{literal}').attr("disabled", "disabled");
 		    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('url', 0, returnString.fileFormUrl);
 		    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('url', 1, returnString.metadataUrl);
+		    		$('#deleteUrl').val(returnString.deleteUrl);
 		  			$('#continueButton-{/literal}{$fileId}{literal}').removeAttr("disabled");
 		    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('enable', 1);
 	    		}
@@ -51,11 +52,18 @@
 			$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('select', 1);
 		});
 		$("#cancelButton-{/literal}{$fileId}{literal}").click(function() {
+			// User has uploaded a file then pressed cancel--delete the file
+			deleteUrl = $('#deleteUrl').val();
+			if(deleteUrl != "") {
+				$.post(deleteUrl);
+			}
+
 			$('#fileUploadTabs-{/literal}{$fileId}{literal}').parent().dialog('close');
 		});
 	});
 	{/literal}
 </script>
+
 
 <form name="uploadForm" id="uploadForm-{$randomId}" action="{url component="grid.submit.submissionFiles.SubmissionFilesGridHandler" op="uploadFile" monographId=$monographId fileId=$fileId}" method="post">
 	{fbvFormArea id="file"}
@@ -89,6 +97,7 @@
 </form>
 
 <input type="hidden" name="monographId" value="{$monographId|escape}" />
+<input type="hidden" id="deleteUrl" name="deleteUrl" value="" />
 {if $gridId}
 <input type="hidden" name="gridId" value="{$gridId|escape}" />	
 {/if}

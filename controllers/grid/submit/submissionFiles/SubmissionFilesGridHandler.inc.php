@@ -158,6 +158,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 	*/
 	function addFile(&$args, &$request) {
 		// Calling editSponsor with an empty file id will add a new file
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('newFile', 'true');
 		$this->editFile($args, $request);
 	}
 
@@ -217,7 +219,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 			
 			$additionalAttributes = array(
 				'fileFormUrl' => $router->url($request, null, null, 'displayFileForm', null, array('gridId' => $this->getId(), 'fileId' => $fileId)),
-				'metadataUrl' => $router->url($request, null, null, 'editMetadata', null, array('gridId' => $this->getId(), 'fileId' => $fileId))
+				'metadataUrl' => $router->url($request, null, null, 'editMetadata', null, array('gridId' => $this->getId(), 'fileId' => $fileId)),
+				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('gridId' => $this->getId(), 'fileId' => $fileId))
 			);
 			$json = new JSON('true', Locale::translate('submission.uploadSuccessful'), 'false', $fileId, $additionalAttributes);
 		} else {

@@ -12,7 +12,8 @@
 <script type="text/javascript">
 	{literal}
 	$(function() {
-		$('div#fileUploadTabs-{/literal}{$fileId}{literal}').tabs();			
+		$('div#fileUploadTabs-{/literal}{$fileId}{literal}').tabs();		
+		$(".ui-dialog-titlebar-close").remove();  // Hide 'X' close button in dialog
 		$('#fileUploadTabs-{/literal}{$fileId}{literal}').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
 	});
 	{/literal}
@@ -32,3 +33,4 @@
 	<input type="hidden" name="fileId" value="{$fileId|escape}" />
 	{/if}
 </div>
+<input type="hidden" id="newFile" name="newFile" value="{$newFile}" />
