@@ -98,6 +98,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign('round', $round);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
+		$templateMgr->assign('pageToDisplay', 'submissionSummary');
 
 		import('submission.seriesEditor.SeriesEditorSubmission');
 		$templateMgr->assign_by_ref('editorDecisionOptions', SeriesEditorSubmission::getEditorDecisionOptions());
@@ -149,7 +150,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		}
 		$templateMgr->assign_by_ref('reviewIndexesByRound', $reviewIndexesByRound);
 
-		$templateMgr->assign_by_ref('reviewProcesses', $reviewProcesses);
+		$templateMgr->assign('pageToDisplay', 'submissionReview');
 		$templateMgr->assign_by_ref('reviewRounds', $reviewRounds);
 		$templateMgr->assign('reviewEarliestNotificationByRound', $reviewEarliestNotificationByRound);
 		$templateMgr->assign_by_ref('submissionFile', $authorSubmission->getSubmissionFile());
@@ -165,7 +166,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 			)
 		);
 		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.review');
-		$templateMgr->display('author/submissionReview.tpl');
+		$templateMgr->display('author/submission.tpl');
 	}
 
 	/**
@@ -185,6 +186,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		ProofreaderAction::proofreadingUnderway($submission, 'SIGNOFF_PROOFREADING_AUTHOR');
 
 		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('pageToDisplay', 'submissionEditing');
 		$templateMgr->assign_by_ref('submission', $submission);
 		$templateMgr->assign_by_ref('copyeditor', $submission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
@@ -195,7 +197,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign('useLayoutEditors', $press->getSetting('useLayoutEditors'));
 		$templateMgr->assign('useProofreaders', $press->getSetting('useProofreaders'));
 		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.editing');	
-		$templateMgr->display('author/submissionEditing.tpl');
+		$templateMgr->display('author/submission.tpl');
 	}
 
 	/**

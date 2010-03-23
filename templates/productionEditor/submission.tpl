@@ -9,21 +9,27 @@
  * $Id$
  *}
 {strip}
-{translate|assign:"pageTitleTranslated" key="submission.page.summary" id=$submission->getMonographId()}
-{assign var="pageCrumbTitle" value="submission.summary"}
+{translate|assign:"pageTitleTranslated" key="submission.page.$pageToDisplay" id=$submission->getMonographId()}
+{assign var="pageCrumbTitle" value="submission.crumb.$pageToDisplay"}
 {include file="common/header.tpl"}
 {/strip}
 
-<ul class="menu">
-	<li class="current"><a href="{url op="submission" path=$submission->getMonographId()}">{translate key="submission.summary"}</a></li>
-	<li><a href="{url op="submissionArt" path=$submission->getMonographId()}">{translate key="submission.art"}</a></li>
-	<li><a href="{url op="submissionLayout" path=$submission->getMonographId()}">{translate key="submission.layout"}</a></li>
+<div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+
+<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+	<li{if ($pageToDisplay == "submissionSummary")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+		<a href="{url op="submission" path=$submission->getId()}">{translate key="submission.summary"}</a>
+	</li>
+	<li{if ($pageToDisplay == "submissionArt")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+		<a href="{url op="submissionArt" path=$submission->getId()}">{translate key="submission.art"}</a>
+	</li>
+	<li{if ($pageToDisplay == "submissionLayout")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+		<a href="{url op="submissionLayout" path=$submission->getId()}">{translate key="submission.layout"}</a>
+	</li>
 </ul>
 
-{include file="productionEditor/submission/summary.tpl"}
+{include file="productionEditor/$pageToDisplay.tpl"}
 
-<div class="separator"></div>
-
-{include file="submission/metadata/metadata.tpl"}
+</div>
 
 {include file="common/footer.tpl"}
