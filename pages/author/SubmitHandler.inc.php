@@ -94,7 +94,8 @@ class SubmitHandler extends AuthorHandler {
 
 				if ($step == 3) {
 					// Send a notification to associated users
-					import('notification.Notification');
+					import('notification.NotificationManager');
+					$notificationManager = new NotificationManager();
 					$monographDao =& DAORegistry::getDAO('MonographDAO');
 					$monograph =& $monographDao->getMonograph($monographId);
 					$roleDao =& DAORegistry::getDAO('RoleDAO');
@@ -108,8 +109,10 @@ class SubmitHandler extends AuthorHandler {
 					}
 					foreach ($notificationUsers as $userRole) {
 						$url = $request->url(null, 'editor', 'submission', $monographId);
-						Notification::createNotification($userRole['id'], "notification.type.monographSubmitted",
-							$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED);
+						$notificationManager->createNotification(
+							$userRole['id'], 'notification.type.monographSubmitted',
+							$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED
+						);
 					}
 				}
 				$request->redirect(null, null, 'submit', $step+1, array('monographId' => $monographId));

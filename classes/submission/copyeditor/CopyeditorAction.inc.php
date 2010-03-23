@@ -313,15 +313,16 @@ class CopyeditorAction extends Action {
 				$commentForm->execute();
 
 				// Send a notification to associated users
-				import('notification.Notification');
+				import('notification.NotificationManager');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
-					Notification::createNotification(
-								$userRole['id'], "notification.type.layoutComment", 
-								$monograph->getLocalizedTitle(), $url, 1, 
-								NOTIFICATION_TYPE_LAYOUT_COMMENT
-							);
+					$notificationManager->createNotification(
+						$userRole['id'], "notification.type.layoutComment", 
+						$monograph->getLocalizedTitle(), $url, 1, 
+						NOTIFICATION_TYPE_LAYOUT_COMMENT
+					);
 				}
 				
 				if ($emailComment) {
@@ -365,16 +366,17 @@ class CopyeditorAction extends Action {
 				$commentForm->execute();
 
 				// Send a notification to associated users
-				import('notification.Notification');
+				import('notification.NotificationManager');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'coypedit');
-					Notification::createNotification(
-								$userRole['id'], 
-								"notification.type.copyeditComment", 
-								$monograph->getLocalizedTitle(), 
-								$url, 1, NOTIFICATION_TYPE_COPYEDIT_COMMENT
-							);
+					$notificationManager->createNotification(
+						$userRole['id'], 
+						'notification.type.copyeditComment', 
+						$monograph->getLocalizedTitle(), 
+						$url, 1, NOTIFICATION_TYPE_COPYEDIT_COMMENT
+					);
 				}
 				
 				if ($emailComment) {

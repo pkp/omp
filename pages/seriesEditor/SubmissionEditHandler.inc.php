@@ -1549,14 +1549,17 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 			$submitForm->execute();
 
 			// Send a notification to associated users
-			import('notification.Notification');
+			import('notification.NotificationManager');
+			$notificationManager =& new NotificationManager();
 			$monographDao =& DAORegistry::getDAO('MonographDAO'); 
 			$monograph =& $monographDao->getMonograph($monographId);
 			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
 				$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
-				Notification::createNotification($userRole['id'], "notification.type.galleyModified",
-					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_GALLEY_MODIFIED);
+				$notificationManager->createNotification(
+					$userRole['id'], 'notification.type.galleyModified',
+					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_GALLEY_MODIFIED
+				);
 			}
 
 			if (Request::getUserVar('uploadImage')) {

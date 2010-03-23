@@ -66,7 +66,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		$pressId = $press->getId();
 
 		// Send a notification to associated users
-		import('notification.Notification');
+		import('notification.NotificationManager');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$notificationUsers = array();
 		$allUsers = $roleDao->getUsersByPressId($pressId);
@@ -76,13 +76,19 @@ class AnnouncementForm extends PKPAnnouncementForm {
 			unset($user);
 		}
 		$url = Request::url(null, 'announcement', 'view', array(1));
+		$notificationManager = new NotificationManager();
 		foreach ($notificationUsers as $userRole) {
-			Notification::createNotification($userRole['id'], "notification.type.newAnnouncement",
-				null, $url, 1, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT);
+			$notificationManager->createNotification(
+				$userRole['id'], 'notification.type.newAnnouncement',
+				null, $url, 1, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT
+			);
 		}
-		$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-		$notificationDao->sendToMailingList(Notification::createNotification(0, "notification.type.newAnnouncement",
-				null, $url, 1, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT));
+		$notificationManager->sendToMailingList(
+			$notificationManager->createNotification(
+				0, 'notification.type.newAnnouncement',
+				null, $url, 1, NOTIFICATION_TYPE_NEW_ANNOUNCEMENT
+			)
+		);
 	}
 }
 

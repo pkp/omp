@@ -338,7 +338,8 @@ class ReviewerAction extends Action {
 				$reviewForm->execute();
 				
 				// Send a notification to associated users
-				import('notification.Notification');
+				import('notification.NotificationManager');
+				$notificationManager = new NotificationManager();
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 				$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
 				$monographId = $reviewAssignment->getMonographId();
@@ -347,8 +348,10 @@ class ReviewerAction extends Action {
 				$notificationUsers = $monograph->getAssociatedUserIds();
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, $userRole['role'], 'submissionReview', $monographId, null, 'peerReview');
-					Notification::createNotification($userRole['id'], "notification.type.reviewerFormComment",
-						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT);
+					$notificationManager->createNotification(
+						$userRole['id'], 'notification.type.reviewerFormComment',
+						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_FORM_COMMENT
+					);
 				}
 			} else {
 				$reviewForm->display();

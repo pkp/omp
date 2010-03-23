@@ -88,8 +88,9 @@ class AdminPressHandler extends AdminHandler {
 		if ($settingsForm->validate()) {
 			PluginRegistry::loadCategory('blocks');
 			$settingsForm->execute();
-			import('notification.Notification');
-			Notification::createTrivialNotification('common.changesSaved');
+			import('notification.NotificationManager');
+			$notificationManager =& new NotificationManager();
+			$notificationManager->createTrivialNotification('common.changesSaved');
 			Request::redirect(null, null, 'presses');
 		} else {
 			$settingsForm->display();
