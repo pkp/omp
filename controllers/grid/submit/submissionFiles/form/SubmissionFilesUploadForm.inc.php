@@ -51,9 +51,10 @@ class SubmissionFilesUploadForm extends Form {
 		$bookFileTypes = $bookFileTypeDao->getEnabledByPressId($context->getId());
 		
 		$bookFileTypeList = array();
-		foreach ($bookFileTypes as $bookFileType){
+		while($bookFileType =& $bookFileTypes->next()){
 			$bookFileTypeId = $bookFileType->getId();
 			$bookFileTypeList[$bookFileTypeId] = $bookFileType->getLocalizedName();
+			unset($bookFileType);
 		}
 
 		$this->_data['bookFileTypes'] = $bookFileTypeList;
@@ -83,7 +84,6 @@ class SubmissionFilesUploadForm extends Form {
 
 		if ($monographFileManager->uploadedFileExists('submissionFile')) {
 			switch ($bookFileType->getCategory()) {
-				// FIXME: Need a way to determine artwork file type from user-specified artwork file types
 				case BOOK_FILE_CATEGORY_ARTWORK:
 					$submissionFileId = $monographFileManager->uploadArtworkFile('submissionFile', $fileTypeId);
 					if (isset($submissionFileId)) {

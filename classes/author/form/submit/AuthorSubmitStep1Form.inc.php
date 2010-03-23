@@ -45,8 +45,8 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 
 		// FIXME: If this user is a series editor or an editor, they are allowed
-		// to submit to seriess flagged as "editor-only" for submissions.
-		// Otherwise, display only seriess they are allowed to submit to.
+		// to submit to series flagged as "editor-only" for submissions.
+		// Otherwise, display only series they are allowed to submit to.
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR) || $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
 
@@ -123,7 +123,6 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$author->setEmail($user->getEmail());
 			$author->setUrl($user->getUrl());
 			$author->setBiography($user->getBiography(null), null);
-			$author->setContributionType($this->getData('isEditedVolume') ? CONTRIBUTION_TYPE_VOLUME_EDITOR : CONTRIBUTION_TYPE_AUTHOR);
 			$author->setPrimaryContact(1);
 
 			$monographDao->insertMonograph($this->monograph);

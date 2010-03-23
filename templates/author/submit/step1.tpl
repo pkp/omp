@@ -25,7 +25,7 @@
 	{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
 	<p>{translate key="author.submission.workType.description"}</p>
 	{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-0" value="0" checked=`$isEditedVolume` label="author.submission.workType.editedVolume"}
-	{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-1" value="0" checked=`$isEditedVolume` label="author.submission.workType.authoredWork"}
+	{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-1" value="0" checked=`!$isEditedVolume` label="author.submission.workType.authoredWork"}
 	{/fbvFormSection}
 {/fbvFormArea}
 <div class="separator"></div>
