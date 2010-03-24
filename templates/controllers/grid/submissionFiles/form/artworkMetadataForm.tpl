@@ -45,6 +45,13 @@
 			validator = null;
 		});
 		$("#cancelButton2-{/literal}{$fileId}{literal}").click(function() {
+			//  The user has cancelled the modal without filling out the metadata form
+			deleteUrl = '{/literal}{url router=$smarty.const.ROUTE_COMPONENT component="grid.submit.submissionFiles.SubmissionFilesGridHandler" op="deleteFile" fileId=$fileId}{literal}';
+			newFile = $('#newFile').val();
+			if(newFile != "") {
+				$.post(deleteUrl);
+			}
+
 			$('#fileUploadTabs-{/literal}{$fileId}{literal}').parent().dialog('close');
 		});	
 	});
