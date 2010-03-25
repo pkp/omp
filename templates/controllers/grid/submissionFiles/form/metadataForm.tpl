@@ -18,8 +18,6 @@
 			dataType: 'json',
 	        success: function(returnString) {
 	    		if (returnString.status == true) {
-	    			$('#loading').throbber("disable");
-		    		$('#loading').hide();
 		    		if(returnString.isEditing) { // User was editing existing item, save and close
 			    		saveAndUpdate('{/literal}{url router=$smarty.const.ROUTE_COMPONENT component="grid.submit.submissionFiles.SubmissionFilesGridHandler" op="returnFileRow" fileId=$fileId}{literal}',
 			    				'replace',
@@ -51,7 +49,7 @@
 			if(newFile != "") {
 				$.post(deleteUrl);
 			}
-			
+
 			$('#fileUploadTabs-{/literal}{$fileId}{literal}').parent().dialog('close');
 		});
 	});

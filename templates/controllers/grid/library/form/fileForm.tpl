@@ -8,7 +8,7 @@
  *
  * $Id$
  *}
-<!--  Need a random ID to give to modal elements so that they are unique in the DOM (can not use 
+<!--  Need a random ID to give to modal elements so that they are unique in the DOM (can not use
 		fileId like elsewhere in the modal, because there may not be an associated file yet-->
 {assign var='randomId' value=1|rand:99999}
 
@@ -23,23 +23,18 @@
 			iframe: true,
 			dataType: 'json',
 			beforeSubmit: function() {
-				$('#loading').throbber({
-					bgcolor: "#CED7E1",
-					speed: 1
-				});
-				$('#loading').throbber('enable');
+				$('#loading').show();
 				$('#loadingText-{/literal}{$randomId}{literal}').fadeIn('slow');
 	    	},
 	        // success identifies the function to invoke when the server response
 	        // has been received; here we show a success message and enable the next tab
 	        success: function(returnString) {
-    			$('#loading').throbber("disable");
-	    		$('#loading').hide();
+    			$('#loading').hide();
 	    		if (returnString.status == true) {
 	    			$('#libraryFile-{/literal}{$randomId}{literal}').attr("disabled", "disabled");
 	    			$('#libraryFileSubmit-{/literal}{$randomId}{literal}').attr("disabled", "disabled");
 	    			$("#continueButton-{/literal}{$randomId}{literal}").removeAttr("disabled");
-		    		$('#deleteUrl').val(returnString.deleteUrl);
+		    		$('#deleteUrl-{/literal}{$randomId}{literal}').val(returnString.deleteUrl);
 	    			$("#metadataRowId-{/literal}{$randomId}{literal}").val(returnString.elementId);
 	    		}
 	    		$('#loadingText-{/literal}{$randomId}{literal}').text(returnString.content);  // Set to error or success message
@@ -48,17 +43,7 @@
 		// Handle metadata form
 	    $('#metadataForm-{/literal}{$randomId}{literal}').ajaxForm({
 			dataType: 'json',
-			beforeSubmit: function() {
-			alert('blah');
-				$('#loading').throbber({
-					bgcolor: "#CED7E1",
-					speed: 1
-				});
-				$('#loading').throbber('enable');
-	    	},
 	        success: function(returnString) {
-    			$('#loading').throbber("disable");
-	    		$('#loading').hide();
 	    		if (returnString.status == true) {
 		    		newFile = $('#newFile-{/literal}{$randomId}{literal}').val();
 		    		if(newFile != undefined && newFile != "") {
@@ -81,19 +66,18 @@
 			}
 			validator = null;
 		});
-		
+
 		$("#cancelButton-{/literal}{$randomId}{literal}").click(function() {
 			// User has uploaded a file then pressed cancel--delete the file
-			rowId = $('#metaDataRowId-{/literal}{$randomId}{literal}').val();
 			newFile = $('#newFile-{/literal}{$randomId}{literal}').val();
-			if(rowId != undefined && newFile != undefined && rowId != "" && newFile != "") {
-				deleteUrl = $('#deleteUrl').val();
+			deleteUrl = $('#deleteUrl-{/literal}{$randomId}{literal}').val();
+			if(deleteUrl != undefined && newFile != undefined && deleteUrl != "" && newFile != "") {
 				$.post(deleteUrl);
 			}
 
 			$('#uploadForm-{/literal}{$randomId}{literal}').parent().dialog('close');
 		});
-		
+
 	});
 	{/literal}
 </script>
@@ -115,10 +99,9 @@
 		{/if}
 	{/fbvFormArea}
 	<div id="uploadOutput-{$randomId}">
-		<div id='loading' class='throbber'></div>
-		<ul><li id='loadingText-{$randomId}' style='display:none;'>{translate key='submission.loadMessage'}</li></ul> 
+		<div id='loading' class='throbber' style="margin: 0px;"></div>
+		<ul><li id='loadingText-{$randomId}' style='display:none;'>{translate key='submission.loadMessage'}</li></ul>
 	</div>
-	<div class="separator"></div>
 </form>
 
 
@@ -139,8 +122,8 @@
 </form>
 
 {if $gridId}
-<input type="hidden" name="gridId" value="{$gridId|escape}" />	
+<input type="hidden" name="gridId" value="{$gridId|escape}" />
 {/if}
-<input type="hidden" id="deleteUrl" name="deleteUrl" value="" />
-<input type="hidden" id="newFile-{$randomId}" value="{$newFile}" />	
+<input type="hidden" id="deleteUrl-{$randomId}" value="" />
+<input type="hidden" id="newFile-{$randomId}" value="{$newFile}" />
 

@@ -13,16 +13,14 @@
 	{literal}
 	$(function() {
 		$('#fileUploadTabs-').attr("id","fileUploadTabs-{/literal}{$fileId}{literal}"); // Rename container to use unique id (necessary to prevent caching)
-		//$('#fileUploadTabs-').i  
 		$('#metadataForm').ajaxForm({
 			dataType: 'json',
 	        success: function(returnString) {
 	    		if (returnString.status == true) {
-	    			$('#loading').throbber("disable");
 		    		$('#loading').hide();
 		    		if(returnString.isEditing) { // User was editing existing item, save and close
-			    		saveAndUpdate('{/literal}{url router=$smarty.const.ROUTE_COMPONENT component="grid.submit.submissionFiles.SubmissionFilesGridHandler" op="returnFileRow" fileId=$fileId}{literal}', 
-			    				'replace', 
+			    		saveAndUpdate('{/literal}{url router=$smarty.const.ROUTE_COMPONENT component="grid.submit.submissionFiles.SubmissionFilesGridHandler" op="returnFileRow" fileId=$fileId}{literal}',
+			    				'replace',
 			    				'component-'+'{/literal}{$gridId}{literal}'+'-row-'+'{/literal}{$fileId}{literal}',
         						'#fileUploadTabs-{/literal}{$fileId}{literal}');
 		    		} else {
@@ -36,7 +34,7 @@
 	        }
 	    });
 
-		// Set cancel/continue button behaviors    
+		// Set cancel/continue button behaviors
 		$("#continueButton2-{/literal}{$fileId}{literal}").click(function() {
 			validator = $('#metadataForm').validate();
 			if($('#metadataForm').valid()) {
@@ -53,7 +51,7 @@
 			}
 
 			$('#fileUploadTabs-{/literal}{$fileId}{literal}').parent().dialog('close');
-		});	
+		});
 	});
 	{/literal}
 </script>
@@ -92,7 +90,7 @@
 		{elseif $artworkFile->getType() == $smarty.const.MONOGRAPH_ARTWORK_TYPE_OTHER}
 			{assign var="isOther" value=true}
 		{/if}
-		
+
 		{fbvElement type="radio" name="artwork_type" id="artwork_type-0" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_TABLE checked=$isTable label="grid.artworkFile.type.table"}
 		{fbvElement type="radio" name="artwork_type" id="artwork_type-1" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_FIGURE checked=$isFigure label="grid.artworkFile.type.figure"}
 		{fbvElement float=$fbvStyles.float.LEFT type="radio" name="artwork_type" id="artwork_type-2" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_OTHER checked=$isOther label="common.other"}
@@ -106,7 +104,7 @@
 	{fbvFormSection layout=$fbvStyles.layout.TWO_COLUMN}
 		{fbvElement type="radio" label="common.other" name="artwork_placementType" id="artwork_placementType-1" value=$smarty.const.MONOGRAPH_ARTWORK_PLACEMENT_OTHER checked="checked"}
 		{fbvElement type="text" id="artwork_otherPlacement"}
-	{/fbvFormSection}	
+	{/fbvFormSection}
 {/fbvFormArea}
 
 <div class="separator" />
@@ -136,7 +134,7 @@
 		{/fbvFormSection}
 		{fbvFormSection title="common.dateUploaded" float=$fbvStyles.float.LEFT}
 			{$monographFile->getDateUploaded()|date_format:$datetimeFormatShort}
-		{/fbvFormSection}				
+		{/fbvFormSection}
 	{/fbvFormArea}
 </div>
 
@@ -151,7 +149,7 @@
 		{fbvFormSection title="common.quality" float=$fbvStyles.float.LEFT}
 			{$image_width_on_device}''&nbsp;x&nbsp;{$image_height_on_device}'' @ 300 DPI/PPI<br />
 			({$artworkFile->getWidth()} x {$artworkFile->getHeight()} pixels)
-		{/fbvFormSection}			
+		{/fbvFormSection}
 	{/fbvFormArea}
 </div>
 
@@ -161,7 +159,7 @@
 			<a target="_blank" href="{url op="viewFile" monographId=$artworkFile->getMonographId() fileId=$monographFile->getFileId() fileRevision=$monographFile->getRevision()}">
 				<img class="thumbnail" width={$thumbnail_width} height={$thumbnail_height} src="{url op="viewFile" monographId=$artworkFile->getMonographId() fileId=$monographFile->getFileId()}" />
 			</a>
-		{/fbvFormSection}	
+		{/fbvFormSection}
 	{/fbvFormArea}
 </div>
 
@@ -173,11 +171,11 @@
 		{fbvButton id="continueButton2-$fileId" label="common.continue" float=$fbvStyles.float.RIGHT}
 	{/fbvFormSection}
 {/fbvFormArea}
-	
+
 </form>
 
 {if $gridId}
-	<input type="hidden" name="gridId" value="{$gridId|escape}" />	
+	<input type="hidden" name="gridId" value="{$gridId|escape}" />
 {/if}
 {if $fileId}
 	<input type="hidden" name="fileId" value="{$fileId|escape}" />
