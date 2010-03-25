@@ -35,7 +35,7 @@ class LibraryFileGridCellProvider extends GridCellProvider {
 
 		// Assume an array element by default
 		$file =& $row->getData();
-		$label = $file->getFileName();
+		$label = $file->getLocalizedName() != '' ? $file->getLocalizedName() : Locale::translate('common.untitled');
 
 		// Construct a default cell id
 		$rowId = $row->getId();

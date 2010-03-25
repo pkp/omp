@@ -25,11 +25,14 @@ class FileForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function FileForm($fileType, $fileId = null) {
+	function FileForm($fileType, $fileId = null, $isUploading = false) {
 		$this->fileType = $fileType;
 		$this->fileId = $fileId;		
 		parent::Form('controllers/grid/library/form/fileForm.tpl');
-
+		
+		if (!$isUploading) {
+			$this->addCheck(new FormValidator($this, 'name', 'required', 'submission.nameRequired'));
+		}
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -61,6 +64,7 @@ class FileForm extends Form {
 			assert(!is_null($libraryFile));
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign_by_ref('libraryFile', $libraryFile);
+			$templateMgr->assign_by_ref('libraryFileName', $libraryFile->getLocalizedName());
 		}
 		parent::display();
 	}
@@ -69,7 +73,7 @@ class FileForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('gridId'));
+		$this->readUserVars(array('gridId', 'rowId', 'name'));
 	}
 
 	function uploadFile(&$args, &$request) {
@@ -77,13 +81,23 @@ class FileForm extends Form {
 		$context =& $router->getContext($request);
 		import('file.LibraryFileManager');
 		$libraryFileManager = new LibraryFileManager($context->getId());
-		return $libraryFileManager->handleUpload($this->fileType, 'libraryFile', $this->fileId);
+		
+		if ($libraryFileManager->uploadedFileExists('libraryFile')) {
+			return $libraryFileManager->handleUpload($this->fileType, 'libraryFile', $this->fileId);
+		}
 	}
 
 	/**
-	 * Save email template.
+	 * Save name for library file
 	 */
 	function execute(&$args, &$request) {
+		$name = $this->getData('name');		
+		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
+		$libraryFile =& $libraryFileDao->getById($this->fileId);
+		$libraryFile->setName($name, Locale::getLocale());
+		$libraryFileDao->updateObject($libraryFile);
+		
+		return $libraryFile;
 	}
 }
 

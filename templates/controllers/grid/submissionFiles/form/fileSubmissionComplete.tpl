@@ -15,7 +15,7 @@
 		$('#newFile').click(function() {
     		saveAndUpdate('{/literal}{url component="grid.submit.submissionFiles.SubmissionFilesGridHandler" op="returnFileRow" fileId=$fileId}{literal}', 
     	    		'append', 
-    	    		'component-'+'{/literal}{$gridId}{literal}'+'-table > tbody',
+    	    		'component-'+'{/literal}{$gridId}{literal}'+'-table',
     	    		'#fileUploadTabs-{/literal}{$fileId}{literal}', true);
 		});
 
@@ -23,7 +23,7 @@
 		$('#exit').click(function() {
     		saveAndUpdate('{/literal}{url component="grid.submit.submissionFiles.SubmissionFilesGridHandler" op="returnFileRow" fileId=$fileId}{literal}', 
     	    		'append', 
-    	    		'component-'+'{/literal}{$gridId}{literal}'+'-table > tbody',
+    	    		'component-'+'{/literal}{$gridId}{literal}'+'-table',
     	    		'#fileUploadTabs-{/literal}{$fileId}{literal}');
 		});
 	});

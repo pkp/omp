@@ -349,6 +349,7 @@ class MonographFileDAO extends DAO {
 	/**
 	 * Update an existing monograph file.
 	 * @param $monograph MonographFile
+	 * @return int
 	 */
 	function updateMonographFile(&$monographFile) {
 		$this->update(

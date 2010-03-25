@@ -30,7 +30,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		$this->_fileId = $fileId;
 		$this->_monographId = $monographId;
 
-		$this->addCheck(new FormValidator($this, 'name', 'required', 'user.profile.form.lastNameRequired'));
+		$this->addCheck(new FormValidator($this, 'name', 'required', 'submission.nameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 

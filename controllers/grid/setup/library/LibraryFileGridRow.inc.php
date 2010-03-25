@@ -62,7 +62,15 @@ class LibraryFileGridRow extends GridRow {
 				'gridId' => $this->getGridId(),
 				'rowId' => $rowId
 			);
-
+			$this->addAction(
+				new GridAction(
+					'editFile',
+					GRID_ACTION_MODE_MODAL,
+					GRID_ACTION_TYPE_REPLACE,
+					$router->url($request, null, null, 'editFile', null, $actionArgs),
+					'grid.action.edit',
+					'edit'
+				));
 			$this->addAction(
 				new GridAction(
 					'deleteFile',

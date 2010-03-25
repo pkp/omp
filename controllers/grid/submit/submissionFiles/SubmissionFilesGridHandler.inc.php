@@ -222,7 +222,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 				'metadataUrl' => $router->url($request, null, null, 'editMetadata', null, array('gridId' => $this->getId(), 'fileId' => $fileId)),
 				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('gridId' => $this->getId(), 'fileId' => $fileId))
 			);
-			$json = new JSON('true', Locale::translate('submission.uploadSuccessful'), 'false', $fileId, $additionalAttributes);
+			$json = new JSON('true', Locale::translate('submission.uploadSuccessfulContinue'), 'false', $fileId, $additionalAttributes);
 		} else {
 			$json = new JSON('false', Locale::translate('common.uploadFailed'));
 		}

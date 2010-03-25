@@ -47,7 +47,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addFile', 'editFile', 'uploadFile', 'deleteFile'));
+		return array_merge(parent::getRemoteOperations(), array('addFile', 'editFile', 'uploadFile', 'saveMetadata', 'deleteFile'));
 	}
 
 	//
@@ -63,7 +63,9 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$this->setFileType($request->getUserVar('fileType'));
 		$this->setId('libraryFile' . ucwords(strtolower($this->getFileType())));
 		$this->setTitle('grid.libraryFiles.' . $this->getFileType() . '.title');
-
+		
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION));
+		
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
@@ -114,12 +116,10 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function addFile(&$args, &$request) {
-		// Delegate to the row handler
-		import('controllers.grid.setup.library.LibraryFileGridRow');
-		$libraryFileRow =& new LibraryFileGridRow();
-
 		// Calling editSponsor with an empty row id will add
 		// a new sponsor.
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('newFile', 'true');
 		$this->editFile($args, $request);
 	}
 
@@ -129,11 +129,11 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function editFile(&$args, &$request) {
-		//FIXME: add validation here?
 		$this->initialize($request);
+		$fileId = isset($args['rowId']) ? $args['rowId'] : null;
 
 		import('controllers.grid.setup.library.form.FileForm');
-		$fileForm = new FileForm($this->getFileType(), $this->getId());
+		$fileForm = new FileForm($this->getFileType(), $fileId);
 
 		if ($fileForm->isLocaleResubmit()) {
 			$fileForm->readInputData();
@@ -150,39 +150,64 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * @return string
 	 */
 	function uploadFile(&$args, &$request) {
-		//FIXME: add validation here?
-		$this->initialize($request);
-
+		$fileId = isset($args['rowId']) ? $args['rowId'] : null;
+		$fileType = isset($args['fileType']) ? $args['fileType'] : null;
+		$router =& $request->getRouter();
 		import('controllers.grid.setup.library.form.FileForm');
-		$fileForm = new FileForm($this->getFileType(), $this->getId());
+		$fileForm = new FileForm($fileType, $fileId, true);
 		$fileForm->readInputData();
 
-		// newUpload parameter appears only once the file has been uploaded
-		if ( $request->getUserVar('newUpload') ) {
-			$fileId = $request->getUserVar('fileId');
-			$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
-			$libraryFile =& $libraryFileDao->getById($fileId);
-
-			import('controllers.grid.setup.library.LibraryFileGridRow');
-			$fileRow =& new LibraryFileGridRow();
-			$fileRow->setId($fileId);
-			$fileRow->setData($libraryFile);
-
-			$json = new JSON('true', $fileRow->_renderRowInternally($request));
-			echo $json->getString();
-		} elseif ($fileForm->validate() && ($fileId = $fileForm->uploadFile($args, $request)) ) {
+		if ($fileForm->validate()) {
+			$fileId = $fileForm->uploadFile($args, $request);
 			// form validated and file uploaded successfully
 			$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 			$libraryFile =& $libraryFileDao->getById($fileId);
 
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->assign_by_ref('libraryFile', $libraryFile);
-			$templateMgr->display('controllers/grid/library/form/fileInfo.tpl');
-			exit;
+			//$templateMgr =& TemplateManager::getManager();
+			// FIXME: Display FileInfo in output?
+			//$templateMgr->assign_by_ref('libraryFile', $libraryFile);
+			//$templateMgr->display('controllers/grid/library/form/fileInfo.tpl');
+			$additionalAttributes = array(
+				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('gridId' => $this->getId(), 'rowId' => $fileId))
+			);
+			$json = new JSON('true', Locale::translate('submission.uploadSuccessful'), 'false', $fileId, $additionalAttributes);
 		} else {
-			echo Locale::translate("problem uploading file");
+			$json = new JSON('false', Locale::translate('common.uploadFailed'));
 		}
+		
+		echo '<textarea>' . $json->getString() . '</textarea>';
+	}
+	
+	/**
+	 * Save the name attribute for a file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function saveMetadata(&$args, &$request) {
+		$fileId = $request->getUserVar('rowId');
+		$name = $request->getUserVar('name');
+		$fileType = isset($args['fileType']) ? $args['fileType'] : null;
 
+		import('controllers.grid.setup.library.form.FileForm');
+		$fileForm = new FileForm($fileType, $fileId);
+		$fileForm->readInputData();
+
+		if ($fileForm->validate()) {
+			$libraryFile = $fileForm->execute($args, $request);
+			
+			$row =& $this->getRowInstance();
+			$row->setGridId($this->getId());
+			$row->setId($fileId);
+			$row->setData($libraryFile);
+			$row->initialize($request);
+
+			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+		} else {
+			$json = new JSON('false');
+		}
+		
+		echo $json->getString();
 	}
 
 
@@ -193,16 +218,18 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * @return string
 	 */
 	function deleteFile(&$args, &$request) {
-		// FIXME: add validation here?
-		$this->initialize($request);
-
+		$fileId = isset($args['rowId']) ? $args['rowId'] : null;
 		$router =& $request->getRouter();
-		$press =& $router->getContext();
+		$press =& $router->getContext($request);
 
-		import('file.LibraryFileManager');
-		$libraryFileManager = new LibraryFileManager($press->getId());
-		$libraryFileManager->deleteFile($this->getId());
-		$json = new JSON('true');
+		if($fileId) {
+			import('file.LibraryFileManager');
+			$libraryFileManager = new LibraryFileManager($press->getId());
+			$libraryFileManager->deleteFile($fileId);
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false');
+		}
 		echo $json->getString();
 	}
 }

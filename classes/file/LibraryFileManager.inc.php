@@ -48,9 +48,9 @@ class LibraryFileManager extends PKPPublicFileManager {
 	 */
 	function deleteFile($fileId) {
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
-		$f =& $libraryFileDao->getById($fileId);
+		$libraryFile =& $libraryFileDao->getById($fileId);
 
-		parent::deleteFile($this->filesDir . $f->getFileName());
+		parent::deleteFile($this->filesDir . $libraryFile->getFileName());
 
 		$libraryFileDao->deleteById($fileId);
 	}
@@ -63,8 +63,8 @@ class LibraryFileManager extends PKPPublicFileManager {
 		$baseName = String::substr($truncated, 0, String::strpos($originalFileName, $ext) - 1);
 
 		// try the following
-		$fileName = $baseName . '-' . $this->_getFileSuffixFromType($type) . '.' . $ext;
-		if ( !$libraryFileDao->filenameExists($this->pressId, $fileName) ) {
+		$fileName = $baseName . '-' . $suffix . '.' . $ext;
+		if (!$libraryFileDao->filenameExists($this->pressId, $fileName) ) {
 			return $fileName;
 		} else {
 			for ($i = 1; ; $i++) {
@@ -75,7 +75,8 @@ class LibraryFileManager extends PKPPublicFileManager {
 				$baseName = String::substr($truncated, 0, String::strpos($originalFileName, $ext) - 1);
 				
 				//try the following
-				$fileName = $baseName . '-' . $suffix . '.' . $ext;
+				unset($fileName);
+				$fileName = $baseName . '-' . $fullSuffix . '.' . $ext;
 				if (!$libraryFileDao->filenameExists($this->pressId, $fileName)) {
 					return $fileName;
 				}
