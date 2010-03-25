@@ -20,7 +20,7 @@
 	{if $currentPress->getLocalizedSetting('openAccessPolicy') != ''}<li>&#187; <a href="{url op="editorialPolicies" anchor="openAccessPolicy"}">{translate key="about.openAccessPolicy"}</a></li>{/if}
 	{foreach key=key from=$currentPress->getLocalizedSetting('customAboutItems') item=customAboutItem}
 		{if !empty($customAboutItem.title)}
-			<li>&#187; <a href="{url op="editorialPolicies" anchor=custom`$key`}">{$customAboutItem.title|escape}</a></li>
+			<li>&#187; <a href="{url op="editorialPolicies" anchor=custom-$key}">{$customAboutItem.title|escape}</a></li>
 		{/if}
 	{/foreach}
 </ul>
@@ -85,7 +85,7 @@
 
 {foreach key=key from=$currentPress->getLocalizedSetting('customAboutItems') item=customAboutItem name=customAboutItems}
 	{if !empty($customAboutItem.title)}
-		<div id="custom{$key|escape}"><h3>{$customAboutItem.title|escape}</h3>
+		<div id="custom-{$key|escape}"><h3>{$customAboutItem.title|escape}</h3>
 		<p>{$customAboutItem.content|nl2br}</p>
 		{if !$smarty.foreach.customAboutItems.last}<div class="separator">&nbsp;</div>{/if}
 		</div>

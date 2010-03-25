@@ -29,7 +29,7 @@
 
 {fbvFormArea id="mastheadInfo"}
 {fbvFormSection title="manager.groups.title" required="true" for="title"}
-	{fbvElement type="text" id="title" value="`$title[$formLocale]`" maxlength="80" required="true"}
+	{fbvElement type="text" id="title" value=$title.$formLocale maxlength="80" required="true"}
 {/fbvFormSection}
 {fbvFormSection title="common.type" for="context"}
 	{foreach from=$groupContextOptions item=groupContextOptionKey key=groupContextOptionValue}
@@ -38,7 +38,7 @@
 		{else}
 			{assign var="checked" value=false}
 		{/if}
-		{fbvElement type="radio" name="context" id="context-`$groupContextOptionValue`" value=$groupContextOptionValue checked=$checked label=$groupContextOptionKey}
+		{fbvElement type="radio" name="context" id="context-"|concat:$groupContextOptionValue value=$groupContextOptionValue checked=$checked label=$groupContextOptionKey}
 	{/foreach}
 {/fbvFormSection}
 {/fbvFormArea}

@@ -24,8 +24,9 @@
 {fbvFormArea id="submissionType"}
 	{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
 	<p>{translate key="author.submission.workType.description"}</p>
-	{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-0" value="0" checked=`$isEditedVolume` label="author.submission.workType.editedVolume"}
-	{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-1" value="0" checked=`!$isEditedVolume` label="author.submission.workType.authoredWork"}
+	{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-0" value="0" checked=$isEditedVolume label="author.submission.workType.editedVolume"}
+	{if $isEditedVolume}{assign var=notIsEditedVolume value=0}{else}{assign var=notIsEditedVolume value=1}{/if}
+	{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-1" value="0" checked=$notIsEditedVolume label="author.submission.workType.authoredWork"}
 	{/fbvFormSection}
 {/fbvFormArea}
 <div class="separator"></div>
@@ -70,7 +71,7 @@
 	<p>{translate key="author.submit.submissionChecklistDescription"}</p>
 	{foreach name=checklist from=$currentPress->getLocalizedSetting('submissionChecklist') key=checklistId item=checklistItem}
 		{if $checklistItem.content}
-			{fbvElement type="checkbox" id="checklist-`$smarty.foreach.checklist.iteration`" required=true value="`$checklistId|escape`" label=`$checklistItem.content` translate=false checked=$monographId}
+			{fbvElement type="checkbox" id="checklist-"|concat:$smarty.foreach.checklist.iteration required=true value=$checklistId|escape label=$checklistItem.content translate=false checked=$monographId}
 		{/if}
 	{/foreach}
 	{/fbvFormSection}

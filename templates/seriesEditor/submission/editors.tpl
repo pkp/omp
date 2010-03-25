@@ -30,7 +30,7 @@
 		<tr valign="top">
 			<td>{if $editAssignment->getIsEditor()}{translate key="user.role.editor"}{else}{assign var=acqEdListed value=1}{translate key="user.role.seriesEditor"}{/if}</td>
 			<td>
-				{assign var=emailString value="`$editAssignment->getEditorFullName()` <`$editAssignment->getEditorEmail()`>"}
+				{assign var=emailString value=$editAssignment->getEditorFullName()|concat:" <":$editAssignment->getEditorEmail():">"}
 				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags monographId=$submission->getMonographId()}
 				{$editAssignment->getEditorFullName()|escape} {icon name="mail" url=$url}
 			</td>

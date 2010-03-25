@@ -9,7 +9,7 @@
  *}
 
 {if $reviewFormElementId}
-	{assign var="possibleResponsesWrapperId" value="possibleResponsesWrapper-`$reviewFormElementId`"}
+	{assign var="possibleResponsesWrapperId" value="possibleResponsesWrapper-"|concat:$reviewFormElementId}
 {else}
 	{assign var="possibleResponsesWrapperId" value="possibleResponsesWrapper-0"}
 {/if}

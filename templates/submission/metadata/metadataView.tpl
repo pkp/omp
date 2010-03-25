@@ -46,7 +46,7 @@ function show(id) {
 	{/if}
 
 	<div class="{if $authorIndex % 2}oddSideIndicator{else}evenSideIndicator{/if}">
-		{assign var=emailString value="`$author.fullName` <`$author.email`>"}
+		{assign var=emailString value=$author.fullName|concat:" <":$author.email:">"}
 		{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$title[$formLocale]|strip_tags monographId=$monographId}
 		&nbsp;<a href="javascript:show('authors-{$author.authorId|escape}-display')">{$author.fullName}</a>&nbsp;{icon name="mail" url=$url}
 		{if $primaryContact == $author.authorId}<br />&nbsp;{translate key="author.submit.selectPrincipalContact"}{/if}
