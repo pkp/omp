@@ -14,6 +14,6 @@
  
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.block.selectRole.displayName">Select Role Block</message>
-	<message key="plugins.block.selectRole.description">This plugin allows you to quickly change roles within a journal</message>
+	<message key="plugins.block.selectRole.description">This plugin allows you to quickly change roles within a press</message>
 	<message key="plugins.block.selectRole.changeTo">Change roles</message>
 </locale>

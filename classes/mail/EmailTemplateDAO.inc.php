@@ -27,7 +27,7 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @return BaseEmailTemplate
 	 */
 	function &getBaseEmailTemplate($emailKey, $pressId) {
-		return parent::getBaseEmailTemplate($emailKey, ASSOC_TYPE_JOURNAL, $pressId);
+		return parent::getBaseEmailTemplate($emailKey, ASSOC_TYPE_PRESS, $pressId);
 	}
 
 	/**
@@ -37,7 +37,7 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @return LocaleEmailTemplate
 	 */
 	function &getLocaleEmailTemplate($emailKey, $pressId) {
-		return parent::getLocaleEmailTemplate($emailKey, ASSOC_TYPE_JOURNAL, $pressId);
+		return parent::getLocaleEmailTemplate($emailKey, ASSOC_TYPE_PRESS, $pressId);
 	}
 
 	/**
@@ -48,7 +48,7 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @return EmailTemplate
 	 */
 	function &getEmailTemplate($emailKey, $locale, $pressId) {
-		return parent::getEmailTemplate($emailKey, $locale, ASSOC_TYPE_JOURNAL, $pressId);
+		return parent::getEmailTemplate($emailKey, $locale, ASSOC_TYPE_PRESS, $pressId);
 	}
 
 	/**
@@ -57,7 +57,7 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @param $pressId int
 	 */
 	function deleteEmailTemplateByKey($emailKey, $pressId) {
-		return parent::deleteEmailTemplateByKey($emailKey, ASSOC_TYPE_JOURNAL, $pressId);
+		return parent::deleteEmailTemplateByKey($emailKey, ASSOC_TYPE_PRESS, $pressId);
 	}
 
 	/**
@@ -68,7 +68,7 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @return array Email templates
 	 */
 	function &getEmailTemplates($locale, $pressId, $rangeInfo = null) {
-		return parent::getEmailTemplates($locale, ASSOC_TYPE_JOURNAL, $pressId, $rangeInfo);
+		return parent::getEmailTemplates($locale, ASSOC_TYPE_PRESS, $pressId, $rangeInfo);
 	}
 
 	/**
@@ -76,7 +76,7 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @param $pressId int
 	 */
 	function deleteEmailTemplatesByPress($pressId) {
-		return parent::deleteEmailTemplatesByAssoc(ASSOC_TYPE_JOURNAL, $pressId);
+		return parent::deleteEmailTemplatesByAssoc(ASSOC_TYPE_PRESS, $pressId);
 	}
 
 	/**
@@ -86,7 +86,7 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @return boolean
 	 */
 	function templateExistsByKey($emailKey, $pressId) {
-		return parent::templateExistsByKey($emailKey, ASSOC_TYPE_JOURNAL, $pressId);
+		return parent::templateExistsByKey($emailKey, ASSOC_TYPE_PRESS, $pressId);
 	}
 
 	/**
@@ -96,7 +96,7 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @return boolean
 	 */
 	function customTemplateExistsByKey($emailKey, $pressId) {
-		return parent::customTemplateExistsByKey($emailKey, ASSOC_TYPE_JOURNAL, $pressId);
+		return parent::customTemplateExistsByKey($emailKey, ASSOC_TYPE_PRESS, $pressId);
 	}
 }
 
