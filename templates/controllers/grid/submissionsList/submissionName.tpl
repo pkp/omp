@@ -8,7 +8,11 @@
  *
  *}
 {if $roleId == $smarty.const.ROLE_ID_AUTHOR}
-	{url|assign:submissionUrl router=$smarty.const.ROUTE_PAGE page="author" op="submit" path=$submission->getSubmissionProgress() monographId=$submission->getMonographId()}
+	{if $submission->getSubmissionProgress() == 0}
+		{url|assign:submissionUrl router=$smarty.const.ROUTE_PAGE page="author" op="submission" path=$submission->getMonographId()}
+	{else}
+		{url|assign:submissionUrl router=$smarty.const.ROUTE_PAGE page="author" op="submit" path=$submission->getSubmissionProgress() monographId=$submission->getMonographId()}	
+	{/if}
 {elseif $roleId == $smarty.const.ROLE_ID_EDITOR}
 	{url|assign:submissionUrl router=$smarty.const.ROUTE_PAGE page="editor" op="submission" path=$submission->getMonographId()}
 {elseif $roleId == $smarty.const.ROLE_ID_REVIEWER}

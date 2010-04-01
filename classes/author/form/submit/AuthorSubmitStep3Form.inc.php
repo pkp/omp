@@ -149,8 +149,9 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 		$monograph->setSponsor($this->getData('sponsor'), null); // Localized
 		$monograph->setCitations($this->getData('citations'));
 		if ($monograph->getSubmissionProgress() <= $this->step) {
+			$monograph->setDateSubmitted(Core::getCurrentDate());
 			$monograph->stampStatusModified();
-			$monograph->setSubmissionProgress($this->step + 1);
+			$monograph->setSubmissionProgress(0);
 		}
 
 		// Designate this as the review version by default.

@@ -27,7 +27,7 @@
 {fbvFormSection title="monograph.title" for="title"}
 	{fbvElement type="text" name="title[$formLocale]" id="title" value=$title[$formLocale] maxlength="255" size=$fbvStyles.size.LARGE}
 {/fbvFormSection}
-{fbvFormSection title="monograph.abstract" for="abstract"}
+{fbvFormSection title="common.description" for="abstract"}
 	{fbvElement type="textarea" name="abstract[$formLocale]" id="abstract" value=$abstract[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 {/fbvFormSection}
 {/fbvFormArea}
