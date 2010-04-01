@@ -386,6 +386,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
+		$this->setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $monographId);
@@ -401,6 +402,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$galleyId = isset($args[1]) ? (int) $args[1] : 0;
 		$this->validate($monographId);
+		$this->setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $monographId);
