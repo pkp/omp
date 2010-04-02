@@ -26,12 +26,14 @@ class AdminLanguagesHandler extends AdminHandler {
 
 	/**
 	 * Display form to modify site language settings.
+	 * @param $args array
+	 * @param $request object
 	 */
-	function languages() {
+	function languages($args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$site =& Request::getSite();
+		$site =& $request->getSite();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('localeNames', Locale::getAllLocales());
@@ -59,15 +61,16 @@ class AdminLanguagesHandler extends AdminHandler {
 
 	/**
 	 * Update language settings.
+	 * @param @args array
+	 * @param $request object
 	 */
-	function saveLanguageSettings() {
+	function saveLanguageSettings($args, &$request) {
 		$this->validate();
-		$this->setupTemplate(true);
 
-		$site =& Request::getSite();
+		$site =& $request->getSite();
 
-		$primaryLocale = Request::getUserVar('primaryLocale');
-		$supportedLocales = Request::getUserVar('supportedLocales');
+		$primaryLocale = $request->getUserVar('primaryLocale');
+		$supportedLocales = $request->getUserVar('supportedLocales');
 
 		if (Locale::isLocaleValid($primaryLocale)) {
 			$site->setPrimaryLocale($primaryLocale);
@@ -89,27 +92,25 @@ class AdminLanguagesHandler extends AdminHandler {
 		$siteDao =& DAORegistry::getDAO('SiteDAO');
 		$siteDao->updateObject($site);
 
-		AdminLanguagesHandler::removeLocalesFromPresses();
+		$this->_removeLocalesFromPresses($request);
 
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign(array(
-			'currentUrl' => Request::url(null, null, 'languages'),
-			'pageTitle' => 'common.languages',
-			'message' => 'common.changesSaved',
-			'backLink' => Request::url(null, 'admin'),
-			'backLinkLabel' => 'admin.siteAdmin'
-		));
-		$templateMgr->display('common/message.tpl');
+		import('notification.NotificationManager');
+		$notificationManager = new NotificationManager();
+		$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
+  
+		$request->redirect(null, null, 'index');
 	}
 
 	/**
 	 * Install a new locale.
+	 * @param $args array
+	 * @param $request object
 	 */
-	function installLocale() {
+	function installLocale($args, &$request) {
 		$this->validate();
 
-		$site =& Request::getSite();
-		$installLocale = Request::getUserVar('installLocale');
+		$site =& $request->getSite();
+		$installLocale = $request->getUserVar('installLocale');
 
 		if (isset($installLocale) && is_array($installLocale)) {
 			$installedLocales = $site->getInstalledLocales();
@@ -126,17 +127,19 @@ class AdminLanguagesHandler extends AdminHandler {
 			$siteDao->updateObject($site);
 		}
 
-		Request::redirect(null, null, 'languages');
+		$request->redirect(null, null, 'languages');
 	}
 
 	/**
 	 * Uninstall a locale
+	 * @param $args array
+	 * @param $request object
 	 */
-	function uninstallLocale() {
+	function uninstallLocale($args, &$request) {
 		$this->validate();
 
-		$site =& Request::getSite();
-		$locale = Request::getUserVar('locale');
+		$site =& $request->getSite();
+		$locale = $request->getUserVar('locale');
 
 		if (isset($locale) && !empty($locale) && $locale != $site->getPrimaryLocale()) {
 			$installedLocales = $site->getInstalledLocales();
@@ -150,35 +153,38 @@ class AdminLanguagesHandler extends AdminHandler {
 				$siteDao =& DAORegistry::getDAO('SiteDAO');
 				$siteDao->updateObject($site);
 
-				AdminLanguagesHandler::removeLocalesFromPresses();
+				$this->_removeLocalesFromPresses($request);
 				Locale::uninstallLocale($locale);
 			}
 		}
 
-		Request::redirect(null, null, 'languages');
+		$request->redirect(null, null, 'languages');
 	}
 
 	/**
 	 * Reload data for an installed locale.
+	 * @param $args array
+	 * @param $request object
 	 */
-	function reloadLocale() {
+	function reloadLocale($args, &$request) {
 		$this->validate();
 
-		$site =& Request::getSite();
-		$locale = Request::getUserVar('locale');
+		$site =& $request->getSite();
+		$locale = $request->getUserVar('locale');
 
 		if (in_array($locale, $site->getInstalledLocales())) {
 			Locale::reloadLocale($locale);
 		}
 
-		Request::redirect(null, null, 'languages');
+		$request->redirect(null, null, 'languages');
 	}
 
 	/**
 	 * Helper function to remove unsupported locales from presses.
+	 * @param $request object
 	 */
-	function removeLocalesFromPresses() {
-		$site =& Request::getSite();
+	function _removeLocalesFromPresses(&$request) {
+		$site =& $request->getSite();
 		$siteSupportedLocales = $site->getSupportedLocales();
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
@@ -203,18 +209,20 @@ class AdminLanguagesHandler extends AdminHandler {
 
 	/**
 	 * Download a locale from the PKP web site.
+	 * @param $args array
+	 * @param $request object
 	 */
-	function downloadLocale() {
+	function downloadLocale($args, &$request) {
 		$this->validate();
-		$locale = Request::getUserVar('locale');
+		$locale = $request->getUserVar('locale');
 
 		import('i18n.LanguageAction');
 		$languageAction = new LanguageAction();
 
-		if (!$languageAction->isDownloadAvailable()) Request::redirect(null, null, 'languages');
+		if (!$languageAction->isDownloadAvailable()) $request->redirect(null, null, 'languages');
 
 		if (!preg_match('/^[a-z]{2}_[A-Z]{2}$/', $locale)) {
-			Request::redirect(null, null, 'languages');
+			$request->redirect(null, null, 'languages');
 		}
 
 		$templateMgr =& TemplateManager::getManager();
@@ -226,7 +234,7 @@ class AdminLanguagesHandler extends AdminHandler {
 			return;
 		}
 		$templateMgr->assign('messageTranslated', Locale::translate('admin.languages.localeInstalled', array('locale' => $locale)));
-		$templateMgr->assign('backLink', Request::url(null, null, 'languages'));
+		$templateMgr->assign('backLink', $request->url(null, null, 'languages'));
 		$templateMgr->assign('backLinkLabel', 'admin.languages.languageSettings');
 		$templateMgr->display('common/message.tpl');
 	}
