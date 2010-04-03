@@ -9,7 +9,7 @@
  * @class PressLanguagesHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for changing press language settings. 
+ * @brief Handle requests for changing press language settings.
  */
 
 // $Id$
@@ -19,11 +19,11 @@ import('pages.manager.ManagerHandler');
 class PressLanguagesHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 */	
+	 */
 	function PressLanguagesHandler() {
 		parent::ManagerHandler();
 	}
-	
+
 	/**
 	 * Display form to edit language settings.
 	 */
@@ -40,8 +40,10 @@ class PressLanguagesHandler extends ManagerHandler {
 
 	/**
 	 * Save changes to language settings.
+	 * @param $args array
+	 * @param $request object
 	 */
-	function saveLanguageSettings() {
+	function saveLanguageSettings($args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
@@ -52,54 +54,54 @@ class PressLanguagesHandler extends ManagerHandler {
 
 		if ($settingsForm->validate()) {
 			$settingsForm->execute();
-
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->assign(array(
-				'currentUrl' => Request::url(null, null, 'languages'),
-				'pageTitle' => 'common.languages',
-				'message' => 'common.changesSaved',
-				'backLink' => Request::url(null, Request::getRequestedPage()),
-				'backLinkLabel' => 'manager.pressManagement'
-			));
+			import('notification.NotificationManager');
+			$notificationManager =& new NotificationManager();
+			$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
+			$request->redirect(null, null, 'index');
 			$templateMgr->display('common/message.tpl');
-
 		} else {
 			$settingsForm->display();
 		}
 	}
-	
-	function reloadLocalizedDefaultSettings() {
+
+	/**
+	 * Reload the default localized settings for the press
+	 * @param $args array
+	 * @param $request object
+	 */
+	function reloadLocalizedDefaultSettings($args, &$request) {
 		// make sure the locale is valid
-		$locale = Request::getUserVar('localeToLoad');
+		$locale = $request->getUserVar('localeToLoad');
 		if ( !Locale::isLocaleValid($locale) ) {
-			Request::redirect(null, null, 'languages');
+			$request->redirect(null, null, 'languages');
 		}
 
 		$this->validate();
 		$this->setupTemplate(true);
-					
-		$press =& Request::getPress();
+
+		$press =& $request->getPress();
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$pressSettingsDao->reloadLocalizedDefaultSettings($press->getId(), 'registry/pressSettings.xml', array(
-				'indexUrl' => Request::getIndexUrl(),
+		$pressSettingsDao->reloadLocalizedDefaultSettings(
+			$press->getId(), 'registry/pressSettings.xml',
+			array(
+				'indexUrl' => $request->getIndexUrl(),
 				'pressPath' => $press->getData('path'),
 				'primaryLocale' => $press->getPrimaryLocale(),
 				'pressName' => $press->getName($press->getPrimaryLocale())
 			),
-			$locale);
+			$locale
+		);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign(array(
-			'currentUrl' => Request::url(null, null, 'languages'),
+			'currentUrl' => $request->url(null, null, 'languages'),
 			'pageTitle' => 'common.languages',
 			'message' => 'common.changesSaved',
-			'backLink' => Request::url(null, Request::getRequestedPage()),
+			'backLink' => $request->url(null, $request->getRequestedPage()),
 			'backLinkLabel' => 'manager.pressManagement'
 		));
 		$templateMgr->display('common/message.tpl');
 	}
-
-	
-
 }
+
 ?>
