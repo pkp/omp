@@ -30,13 +30,13 @@
 
 <p>{translate key="manager.setup.pressRolesDescription"}</p>
 
-{url|assign:authorRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.AuthorRolesListbuilderHandler" op="fetch"}
+{url|assign:authorRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.AuthorRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="authorRolesContainer" url=$authorRolesUrl}
 
-{url|assign:pressRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.PressRolesListbuilderHandler" op="fetch"}
+{url|assign:pressRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.PressRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="pressRolesContainer" url=$pressRolesUrl}
 
-{url|assign:managerialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.ManagerialRolesListbuilderHandler" op="fetch"}
+{url|assign:managerialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.ManagerialRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="managerialRolesContainer" url=$managerialRolesUrl}
 
 <div class="separator"></div>
@@ -45,7 +45,7 @@
 
 <p>{translate key="manager.setup.submissionRolesDescription"}</p>
 
-{url|assign:submissionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.SubmissionRolesListbuilderHandler" op="fetch"}
+{url|assign:submissionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SubmissionRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="submissionRolesContainer" url=$submissionRolesUrl}
 
 <div class="separator"></div>
@@ -54,14 +54,14 @@
 
 <p>{translate key="manager.setup.bookFileTypesDescription"}</p>
 
-{url|assign:bookFileTypesUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.bookFileType.BookFileTypeGridHandler" op="fetchGrid"}
+{url|assign:bookFileTypesUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.bookFileType.BookFileTypeGridHandler" op="fetchGrid"}
 {load_url_in_div id="bookFileTypesContainer" url=$bookFileTypesUrl}
 
 <div class="separator"></div>
 
 <h3>3.4 {translate key="manager.setup.submissionLibrary"}</h3>
 
-{url|assign:submissionLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_SUBMISSION}
+{url|assign:submissionLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_SUBMISSION}
 {load_url_in_div id="submissionLibraryGridDiv" url=$submissionLibraryUrl}
 
 <div class="separator"></div>
@@ -70,7 +70,7 @@
 
 <p>{translate key="manager.setup.internalReviewRolesDescription"}</p>
 
-{url|assign:internalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.InternalReviewRolesListbuilderHandler" op="fetch"}
+{url|assign:internalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.InternalReviewRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="internalReviewRolesContainer" url=$internalReviewRolesUrl}
 
 <div class="separator"></div>
@@ -79,21 +79,21 @@
 
 <p>{translate key="manager.setup.externalReviewRolesDescription"}</p>
 
-{url|assign:externalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.ExternalReviewRolesListbuilderHandler" op="fetch"}
+{url|assign:externalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.ExternalReviewRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="externalReviewRolesContainer" url=$externalReviewRolesUrl}
 
 <div class="separator"></div>
 
 <h3>3.7 {translate key="manager.setup.reviewLibrary"}</h3>
 
-{url|assign:reviewLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_REVIEW}
+{url|assign:reviewLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_REVIEW}
 {load_url_in_div id="reviewLibraryGridDiv" url=$reviewLibraryGridUrl}
 
 <div class="separator"></div>
 
 <h3>3.8 {translate key="manager.setup.reviewForms"}</h3>
 
-{url|assign:reviewFormGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.reviewForm.ReviewFormGridHandler" op="fetchGrid"}
+{url|assign:reviewFormGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.reviewForm.ReviewFormGridHandler" op="fetchGrid"}
 {load_url_in_div id="reviewFormGridDiv" url=$reviewFormGridUrl}
 
 <div class="separator"></div>
@@ -102,14 +102,14 @@
 
 <p>{translate key="manager.setup.editorialRolesDescription"}</p>
 
-{url|assign:editorialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.EditorialRolesListbuilderHandler" op="fetch"}
+{url|assign:editorialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.EditorialRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="editorialRolesContainer" url=$editorialRolesUrl}
 
 <div class="separator"></div>
 
 <h3>3.10 {translate key="manager.setup.editorialLibrary"}</h3>
 
-{url|assign:editorialLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_EDITORIAL}
+{url|assign:editorialLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_EDITORIAL}
 {load_url_in_div id="editorialLibraryGridDiv" url=$editorialLibraryGridUrl}
 
 <div class="separator"></div>
@@ -118,21 +118,21 @@
 
 <p>{translate key="manager.setup.productionRolesDescription"}</p>
 
-{url|assign:productionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.ProductionRolesListbuilderHandler" op="fetch"}
+{url|assign:productionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.ProductionRolesListbuilderHandler" op="fetch"}
 {load_url_in_div id="productionRolesContainer" url=$productionRolesUrl}
 
 <div class="separator"></div>
 
 <h3>3.12 {translate key="manager.setup.productionLibrary"}</h3>
 
-{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
+{url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
 {load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
 
 <div class="separator"></div>
 
 <h3>3.13 {translate key="manager.setup.productionTemplates"}</h3>
 
-{url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
+{url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
 {load_url_in_div id="productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}
 
 <div class="separator"></div>
@@ -141,7 +141,7 @@
 
 <p>{translate key="manager.setup.publicationFormatsDescription"}</p>
 
-{url|assign:publicationFormatsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.setup.PublicationFormatsListbuilderHandler" op="fetch"}
+{url|assign:publicationFormatsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.PublicationFormatsListbuilderHandler" op="fetch"}
 {load_url_in_div id="publicationFormatsContainer" url=$publicationFormatsUrl}
 
 <div class="separator"></div>

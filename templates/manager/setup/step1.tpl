@@ -100,7 +100,7 @@
 
 <div class="separator"></div>
 
-{url|assign:mastheadGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.masthead.mastheadGridHandler" op="fetchGrid"}
+{url|assign:mastheadGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.masthead.mastheadGridHandler" op="fetchGrid"}
 {load_url_in_div id="mastheadGridDiv" url=$mastheadGridUrl}
 
 <div class="separator"></div>
@@ -115,7 +115,7 @@
 {/fbvFormSection}
 {/fbvFormArea}
 
-{url|assign:sponsorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.sponsor.sponsorGridHandler" op="fetchGrid"}
+{url|assign:sponsorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.sponsor.sponsorGridHandler" op="fetchGrid"}
 {load_url_in_div id="sponsorGridDiv" url=$sponsorGridUrl}
 
 <div class="separator"></div>
@@ -131,7 +131,7 @@
 	</tr>
 </table>
 
-{url|assign:contributorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.setup.contributor.ContributorGridHandler" op="fetchGrid"}
+{url|assign:contributorGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.contributor.ContributorGridHandler" op="fetchGrid"}
 {load_url_in_div id="contributorGridDiv" url=$contributorGridUrl}
 
 <div class="separator"></div>
