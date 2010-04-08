@@ -42,9 +42,9 @@ class SubmissionContributorGridCellProvider extends DataObjectGridCellProvider {
 			case 'email':
 				return parent::getLabel($element, $columnId);
 			case 'principalContact':
-				if($element->getPrimaryContact()) { 
+				if($element->getPrimaryContact()) {
 					$templateMgr =& TemplateManager::getManager();
-					return $templateMgr->fetch('controllers/grid/submissionContributor/primaryContact.tpl');
+					return $templateMgr->fetch('controllers/grid/users/submissionContributor/primaryContact.tpl');
 				}
 		}
 	}

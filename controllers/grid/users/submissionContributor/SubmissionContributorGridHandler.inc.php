@@ -17,8 +17,8 @@ import('controllers.grid.GridHandler');
 
 
 // import submissionContributor grid specific classes
-import('controllers.grid.submissions.submissionContributor.SubmissionContributorGridCellProvider');
-import('controllers.grid.submissions.submissionContributor.SubmissionContributorGridRow');
+import('controllers.grid.users.submissionContributor.SubmissionContributorGridCellProvider');
+import('controllers.grid.users.submissionContributor.SubmissionContributorGridRow');
 
 class SubmissionContributorGridHandler extends GridHandler {
 	/** @var Monograph */
@@ -199,7 +199,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		$submissionContributor = $authorDao->getAuthor($submissionContributorId);
 
 		// Form handling
-		import('controllers.grid.submissions.submissionContributor.form.SubmissionContributorForm');
+		import('controllers.grid.users.submissionContributor.form.SubmissionContributorForm');
 		$submissionContributorForm = new SubmissionContributorForm($monographId, $submissionContributor);
 		$submissionContributorForm->initData();
 		$submissionContributorForm->display($request);
@@ -222,7 +222,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		$submissionContributor =& $authorDao->getAuthor($submissionContributorId);
 		
 		// Form handling
-		import('controllers.grid.submissions.submissionContributor.form.SubmissionContributorForm');
+		import('controllers.grid.users.submissionContributor.form.SubmissionContributorForm');
 		$submissionContributorForm = new SubmissionContributorForm($monographId, $submissionContributor);
 		$submissionContributorForm->readInputData();
 		if ($submissionContributorForm->validate()) {
