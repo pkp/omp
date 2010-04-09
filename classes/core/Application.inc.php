@@ -97,6 +97,8 @@ class Application extends PKPApplication {
 			'NotificationStatusDAO' => 'press.NotificationStatusDAO',
 			'AuthorDAO' => 'monograph.AuthorDAO',
 			'AuthorSubmissionDAO' => 'submission.author.AuthorSubmissionDAO',
+			'ChapterDAO' => 'monograph.ChapterDAO',
+			'ChapterAuthorDAO' => 'monograph.ChapterAuthorDAO',
 			'ProductionEditorSubmissionDAO' => 'submission.productionEditor.ProductionEditorSubmissionDAO',
 			'CopyeditorSubmissionDAO' => 'submission.copyeditor.CopyeditorSubmissionDAO',
 			'EditAssignmentDAO' => 'submission.editAssignment.EditAssignmentDAO',

@@ -383,7 +383,7 @@
 		<field name="type_id" type="I8"/>
 		<field name="custom_type" type="C2" size="255"/>
 		<field name="placement" type="C2" size="255"/>
-		<field name="component_id" type="I8"/>
+		<field name="chapter_id" type="I8"/>
 		<field name="contact_author" type="I8"/>
 		<descr>Book visuals.</descr>
 		<index name="monograph_artwork_files_artwork_id">
@@ -679,36 +679,36 @@
 
 	<!--
 	  *
-	  * TABLE monograph_components
+	  * TABLE monograph_chapterss
 	  *
 	  -->
-	<table name="monograph_components">
-		<field name="component_id" type="I8">
+	<table name="monograph_chapters">
+		<field name="chapter_id" type="I8">
 			<KEY />
 			<AUTOINCREMENT />
 		</field>
 		<field name="monograph_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="contact_author" type="I8">
-			<DEFAULT VALUE="0"/>
-		</field>
-		<field name="seq" type="F">
+		<field name="chapter_seq" type="F">
 			<NOTNULL />
 			<DEFAULT VALUE="0"/>
 		</field>
-		<index name="components_component_id">
-			<col>component_id</col>
+		<index name="chapters_chapter_id">
+			<col>chapter_id</col>
+		</index>
+		<index name="chapters_monograph_id">
+			<col>monograph_id</col>
 		</index>
 	</table>
 
 	<!--
 	  *
-	  * TABLE monograph_component_settings
+	  * TABLE monograph_chapter_settings
 	  *
 	  -->
-	<table name="monograph_component_settings">
-		<field name="component_id" type="I8">
+	<table name="monograph_chapter_settings">
+		<field name="chapter_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
@@ -723,12 +723,12 @@
 			<NOTNULL/>
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
-		<descr>Language dependent monograph component metadata.</descr>
-		<index name="monograph_component_settings_component_id">
-			<col>component_id</col>
+		<descr>Language dependent monograph chapter metadata.</descr>
+		<index name="monograph_chapter_settings_chapter_id">
+			<col>chapter_id</col>
 		</index>
-		<index name="monograph_component_settings_pkey">
-			<col>component_id</col>
+		<index name="monograph_chapter_settings_pkey">
+			<col>chapter_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE/>
@@ -737,26 +737,30 @@
 
 	<!--
 	  *
-	  * TABLE monograph_component_authors
+	  * TABLE monograph_chapter_authors
 	  *
 	  -->
-	<table name="monograph_component_authors">
+	<table name="monograph_chapter_authors">
 		<field name="author_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="component_id" type="I8">
+		<field name="chapter_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="monograph_id" type="I8">
 			<NOTNULL />
 		</field>
+		<field name="primary_contact" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
 		<field name="seq" type="F">
 			<NOTNULL />
 			<DEFAULT VALUE="0"/>
 		</field>
-		<index name="component_authors_pkey">
+		<index name="chapter_authors_pkey">
 			<col>author_id</col>
-			<col>component_id</col>
+			<col>chapter_id</col>
 			<UNIQUE />
 		</index>
 	</table>

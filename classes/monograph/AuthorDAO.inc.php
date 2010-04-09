@@ -9,6 +9,7 @@
  * @class AuthorDAO
  * @ingroup monograph
  * @see Author
+ * @see ChapterDAO (uses AuthorDAO)
  *
  * @brief Operations for retrieving and modifying Author objects.
  */
@@ -298,7 +299,7 @@ class AuthorDAO extends DAO {
 		);
 		if ($monographId) $this->resequenceAuthors($monographId);
 		if ($returner) $this->update('DELETE FROM monograph_author_settings WHERE author_id = ?', array($authorId));
-		
+
 		return $returner;
 	}
 
@@ -338,7 +339,7 @@ class AuthorDAO extends DAO {
 		$result->close();
 		unset($result);
 	}
-	
+
 	/**
 	 * Remove other primary contacts from a monograph and set to authorId
 	 * @param $authorId int
@@ -354,7 +355,7 @@ class AuthorDAO extends DAO {
 				array($authorId, $monographId)
 			);
 	}
-	
+
 	/**
 	 * Get the ID of the last inserted author.
 	 * @return int
