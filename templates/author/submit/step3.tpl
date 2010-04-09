@@ -32,20 +32,19 @@
 {/fbvFormSection}
 {/fbvFormArea}
 
-<div class="separator"></div>
-
 <!--  Contributors -->
 {url|assign:submissionContributorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.submissionContributor.SubmissionContributorGridHandler" op="fetchGrid" monographId=$monographId}
 {load_url_in_div id="submissionContributorGridContainer" loadMessageId="submission.submissionContributors.form.loadMessage" url="$submissionContributorGridUrl"}
-
-<div class="separator"></div>
 
 <!--  Indexing Information -->
 
 {url|assign:indexingInformationUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.submissions.IndexingInformationListbuilderHandler" op="fetch" monographId=$monographId}
 {load_url_in_div id="indexingInformationContainer" url=$indexingInformationUrl}
 
-<div class="separator"></div>
+<!--  Contributors -->
+{url|assign:chapterGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
+{load_url_in_div id="chaptersGridContainer" loadMessageId="submission.chapter.form.loadMessage" url="$chapterGridUrl"}
+
 
 <p><input type="submit" value="{translate key="author.submit.finishSubmission"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
 

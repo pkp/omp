@@ -130,5 +130,6 @@
 	<message key="author.submit.fileAdded">Submission File Added</message>
 	<message key="author.submit.newFile">Upload Another File For This Submission</message>
 	<message key="author.submit.finishedUploading">I'm Finished Uploading Files</message>
+	<message key="author.submit.currentContributors">Current Contributors</message>
 
 </locale>
