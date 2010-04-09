@@ -120,7 +120,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		$this->addColumn(
 			new GridColumn(
 				'name',
-				'author.submit.contributor.name',
+				'author.users.contributor.name',
 				$emptyColumnActions,
 				'controllers/grid/gridCellInSpan.tpl',
 				$cellProvider
@@ -129,7 +129,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		$this->addColumn(
 			new GridColumn(
 				'email',
-				'author.submit.contributor.email',
+				'author.users.contributor.email',
 				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
@@ -138,7 +138,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		$this->addColumn(
 			new GridColumn(
 				'role',
-				'author.submit.contributor.role',
+				'author.users.contributor.role',
 				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
@@ -147,7 +147,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		$this->addColumn(
 			new GridColumn(
 				'principalContact',
-				'author.submit.contributor.principalContact',
+				'author.users.contributor.principalContact',
 				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
@@ -220,14 +220,14 @@ class SubmissionContributorGridHandler extends GridHandler {
 		$submissionContributorId = $request->getUserVar('submissionContributorId');
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$submissionContributor =& $authorDao->getAuthor($submissionContributorId);
-		
+
 		// Form handling
 		import('controllers.grid.users.submissionContributor.form.SubmissionContributorForm');
 		$submissionContributorForm = new SubmissionContributorForm($monographId, $submissionContributor);
 		$submissionContributorForm->readInputData();
 		if ($submissionContributorForm->validate()) {
 			$authorId = $submissionContributorForm->execute();
-			
+
 			if(!isset($submissionContributor)) {
 				// This is a new contributor
 				$submissionContributor =& $authorDao->getAuthor($authorId);
@@ -239,7 +239,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 			$row->setId($authorId);
 			$row->setData($submissionContributor);
 			$row->initialize($request);
-			
+
 			// Render the row into a JSON response
 			if($submissionContributor->getPrimaryContact()) {
 				$additionalAttributes = array('script' => 'updateItem(\'remove\', \'isPrimaryContact\')');
