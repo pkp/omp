@@ -1,22 +1,22 @@
 <?php
 
 /**
- * @file controllers/listbuilder/settings/NavBarListbuilder.inc.php
+ * @file controllers/listbuilder/settings/UserGroupStageAssignmentListbuilderHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class InternalReviewRolesListbuilderHandler
+ * @class UserGroupStageAssignmentListbuilderHandler
  * @ingroup listbuilder
  *
- * @brief Class for editing internal review roles
+ * @brief Class for assigning/removing mappings of user groups to publication stages
  */
 
 //import publication stage id constants
 import('workflow.UserGroupStageAssignment');
 import('controllers.listbuilder.settings.SetupListbuilderHandler');
 
-class SubmissionRolesListbuilderHandler extends SetupListbuilderHandler {
+class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler {
 	/* @var the submission stage being assigned to/from */
 	var $stageId;
 
@@ -99,7 +99,7 @@ class SubmissionRolesListbuilderHandler extends SetupListbuilderHandler {
 		parent::initialize($request);
 
 		// Basic configuration
-		$this->setTitle('manager.setup.submissionRoles');
+		$this->setTitle($request->getUserVar('title'));
 		$this->setSourceTitle('manager.setup.availableRoles');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); //Select from drop-down list
 		$this->setListTitle('manager.setup.currentRoles');
