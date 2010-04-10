@@ -51,7 +51,7 @@ class SubmissionsListGridRow extends GridRow {
 					GRID_ACTION_MODE_CONFIRM,
 					GRID_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'deleteSubmission', null, $actionArgs),
-					'grid.action.delete',
+					Locale::translate('grid.action.delete'),
 					'delete'
 				)
 			);

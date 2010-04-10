@@ -82,7 +82,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addFile', null, array('gridId' => $this->getId(), 'fileType' => $this->getFileType())),
-				'grid.action.addItem'
+				Locale::translate('grid.action.addItem')
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);

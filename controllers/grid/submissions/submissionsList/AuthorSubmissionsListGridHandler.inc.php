@@ -63,7 +63,7 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 				GRID_ACTION_MODE_LINK,
 				GRID_ACTION_TYPE_NOTHING,
 				$dispatcher->url($request, 'page', null, 'author', 'submit'),
-				'author.submit',
+				Locale::translate('author.submit'),
 				'add'
 			)
 		);

@@ -27,7 +27,7 @@ class SubmissionFilesUploadForm extends Form {
 	function SubmissionFilesUploadForm($fileId = null, $monographId) {
 		$this->_fileId = $fileId;		
 		$this->_monographId = $monographId;		
-		parent::Form('controllers/grid/submissionFiles/form/fileForm.tpl');
+		parent::Form('controllers/grid/files/submissionFiles/form/fileForm.tpl');
 
 		$this->addCheck(new FormValidatorPost($this));
 	}

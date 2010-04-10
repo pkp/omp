@@ -115,7 +115,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
 		// Basic grid configuration
 		$this->setTitle('grid.chapters.title');
 
@@ -138,7 +138,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addChapter', null, $actionArgs),
-				'grid.action.addItem'
+				Locale::translate('grid.action.addItem')
 			)
 		);
 
@@ -269,7 +269,8 @@ class ChapterGridHandler extends CategoryGridHandler{
 			// Render the row into a JSON response
 			$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
 			$authors =& $chapterAuthorDao->getAuthors($monographId, $chapter->getId());
-			$json = new JSON('true', $this->_renderCategoryInternally($request, $categoryRow));
+			$groupIterator = $chapter->getId() % 5;
+			$json = new JSON('true', $this->_renderCategoryInternally($request, $categoryRow, $groupIterator));
 		} else {
 			// Return an error
 			$json = new JSON('false');

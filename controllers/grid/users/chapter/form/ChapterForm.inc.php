@@ -57,10 +57,11 @@ class ChapterForm extends Form {
 	 */
 	function initData() {
 		$this->setData('monographId', $this->_monographId);
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
 		$chapter =& $this->getChapter();
 		if ( $chapter ) {
 			$this->setData('chapterId', $chapter->getId());
-			$this->setData('title', $chapter->getTitle('en_US'));
+			$this->setData('title', $chapter->getLocalizedTitle());
 		} else {
 			$this->setData('title', null);
 		}

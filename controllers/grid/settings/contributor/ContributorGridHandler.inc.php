@@ -63,7 +63,7 @@ class ContributorGridHandler extends SetupGridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addContributor', null, array('gridId' => $this->getId())),
-				'grid.action.addItem'
+				Locale::translate('grid.action.addItem')
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);

@@ -40,7 +40,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addFile', 'editFile', 'displayFileForm', 'uploadFile', 
+		return array_merge(parent::getRemoteOperations(), array('addFile', 'editFile', 'displayFileForm', 'uploadFile',
 			'deleteFile', 'editMetadata', 'saveMetadata', 'finishFileSubmission', 'returnFileRow', 'viewFile'));
 	}
 
@@ -64,12 +64,12 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
 		$rowData = array();
-		
+
 		// Load in book files
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFiles =& $monographFileDao->getByMonographId($this->_monographId);
-		
+
 		foreach ($monographFiles as $monographFile) {
 			$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
 			$fileName = $monographFile->getLocalizedName() != '' ? $monographFile->getLocalizedName() : Locale::translate('common.untitled');
@@ -86,11 +86,11 @@ class SubmissionFilesGridHandler extends GridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addFile', null, array('gridId' => $this->getId(), 'monographId' => $this->_monographId)),
-				'grid.action.addItem'
+				Locale::translate('grid.action.addItem')
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);
-				
+
 		// Columns
 		$emptyActions = array();
 		// Basic grid row configuration
@@ -128,19 +128,19 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 		// 2) Only Authors may access
 		$this->addCheck(new HandlerValidatorRoles($this, false, 'Insufficient privileges!', null, array(ROLE_ID_AUTHOR)));
-		
+
 		// 3) Only this monograph's author may access
 		$monographId = $request->getUserVar('monographId');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph = $monographDao->getMonograph($monographId);
-		
+
 		if ( isset($user) && isset($monograph)) {
 			$userId = $user->getId();
 			$monographSubmiter = $monograph->getUserId();
 			import('handler.validation.HandlerValidatorCustom');
 			$this->addCheck(new HandlerValidatorCustom($this, false, 'Restricted site access!', null, create_function('$monographSubmitter, $userId', 'if ($monographSubmitter != $userId) return false; else return true;'), array($monographSubmiter, $userId)));
 		}
-		
+
 		// Execute standard checks
 		if (!parent::validate($requiredContexts, $request)) return false;
 
@@ -174,9 +174,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$templateMgr->assign('monographId', $this->_monographId);
 		$templateMgr->assign('fileId', $fileId);
 		$templateMgr->assign('gridId', $this->getId());
-		$templateMgr->display('controllers/grid/submissionFiles/form/submissionFiles.tpl');
+		$templateMgr->display('controllers/grid/files/submissionFiles/form/submissionFiles.tpl');
 	}
-	
+
 	/**
 	 * Display the file upload form
 	 * @param $args array
@@ -213,10 +213,10 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 		if ($fileForm->validate() && ($fileId = $fileForm->uploadFile($args, $request)) ) {
 			$router =& $request->getRouter();
-			
+
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign_by_ref('fileId', $fileId);
-			
+
 			$additionalAttributes = array(
 				'fileFormUrl' => $router->url($request, null, null, 'displayFileForm', null, array('gridId' => $this->getId(), 'fileId' => $fileId)),
 				'metadataUrl' => $router->url($request, null, null, 'editMetadata', null, array('gridId' => $this->getId(), 'fileId' => $fileId)),
@@ -238,13 +238,13 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 */
 	function editMetadata(&$args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
-		
+
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
 		$monographId = $monographFile->getMonographId();
-		
+
 		switch ($fileType->getCategory()) {
 			// FIXME: Need a way to determine artwork file type from user-specified artwork file types
 			case BOOK_FILE_CATEGORY_ARTWORK:
@@ -260,7 +260,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('gridId', $this->getId());
 		$templateMgr->assign('monographId', $monographId);
-		
+
 		if ($metadataForm->isLocaleResubmit()) {
 			$metadataForm->readInputData();
 		} else {
@@ -283,10 +283,10 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
 		$monographId = $monographFile->getMonographId();
-		
+
 		if(isset($monographFile) && $monographFile->getLocalizedName() != '') { //Name exists, just updating it
 			$isEditing = true;
-		} else { 
+		} else {
 			$isEditing = false;
 		}
 
@@ -307,7 +307,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		if ($metadataForm->validate()) {
 			$metadataForm->execute($args, $request);
 			$router =& $request->getRouter();
-						
+
 			$additionalAttributes = array('isEditing' => $isEditing, 'finishingUpUrl' => $router->url($request, null, null, 'finishFileSubmission', null, array('gridId' => $this->getId(), 'fileId' => $fileId, 'monographId' => $monographId)));
 			$json = new JSON('true', '', 'false', $fileId, $additionalAttributes);
 		} else {
@@ -316,7 +316,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 		echo $json->getString();
 	}
-	
+
 	/**
 	 * Display the final tab of the modal
 	 * @param $args array
@@ -325,14 +325,14 @@ class SubmissionFilesGridHandler extends GridHandler {
 	function finishFileSubmission(&$args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
 		$monographId = isset($args['monographId']) ? $args['monographId'] : null;
-				
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $monographId);
 		$templateMgr->assign('fileId', $fileId);
 		$templateMgr->assign('gridId', $this->getId());
-		$templateMgr->display('controllers/grid/submissionFiles/form/fileSubmissionComplete.tpl');
+		$templateMgr->display('controllers/grid/files/submissionFiles/form/fileSubmissionComplete.tpl');
 	}
-	
+
 	/**
 	 * Return a grid row with for the submission grid
 	 * @param $args array
@@ -340,7 +340,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 */
 	function returnFileRow(&$args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
-		
+
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
@@ -360,7 +360,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		} else {
 			$json = new JSON('false', Locale::translate("There was an error with trying to fetch the file"));
 		}
-		
+
 		echo $json->getString();
 	}
 
@@ -374,18 +374,18 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
-		
+
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFileDao->deleteMonographFileById($fileId);
 
 		import('file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($press->getId());
 		$monographFileManager->deleteFile($fileId);
-		
+
 		$json = new JSON('true');
 		echo $json->getString();
 	}
-	
+
 	/**
 	 * Display an artwork file
 	 * @param $args array

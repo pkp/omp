@@ -10,8 +10,8 @@
 <form name="editChapterForm" id="editChapterForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
 {include file="common/formErrors.tpl"}
 
-{fbvFormSection title="chapter.title" for="title"}
-	{fbvElement type="text" name="title[en_US]" id="title" value=$title maxlength="255" size=$fbvStyles.size.MEDIUM}
+{fbvFormSection title="common.title" for="title"}
+	{fbvElement type="text" name="title[en_US]" id="title" value=$title maxlength="255" size=$fbvStyles.size.LARGE}
 {/fbvFormSection}
 
 <input type="hidden" name="monographId" value="{$monographId|escape}" />

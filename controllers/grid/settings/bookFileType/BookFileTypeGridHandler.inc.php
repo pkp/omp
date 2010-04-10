@@ -66,7 +66,7 @@ class BookFileTypeGridHandler extends GridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addBookFileType', null, $actionArgs),
-				'grid.action.addItem'
+				Locale::translate('grid.action.addItem')
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);
@@ -76,7 +76,7 @@ class BookFileTypeGridHandler extends GridHandler {
 				GRID_ACTION_MODE_CONFIRM,
 				GRID_ACTION_TYPE_NOTHING,
 				$router->url($request, null, null, 'restoreBookFileTypes', null, $actionArgs),
-				'grid.action.restoreDefaults'
+				Locale::translate('grid.action.restoreDefaults')
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);

@@ -106,7 +106,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 
 		// Let the subclass configure the listbuilder
 		$this->initialize($request);
-		$templateMgr->assign('itemId', $monographId); // Autocomplete fields require a unique ID to avoid JS conflicts
+		$templateMgr->assign('itemId', $chapterId); // Autocomplete fields require a unique ID to avoid JS conflicts
 		$templateMgr->assign('addUrl', $router->url($request, array(), null, 'addItem', null, array('monographId' => $monographId, 'chapterId' => $chapterId)));
 		$templateMgr->assign('deleteUrl', $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId, 'chapterId' => $chapterId)));
 

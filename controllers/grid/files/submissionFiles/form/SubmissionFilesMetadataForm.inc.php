@@ -25,7 +25,7 @@ class SubmissionFilesMetadataForm extends Form {
 	 * Constructor.
 	 */
 	function SubmissionFilesMetadataForm($fileId = null, $monographId = null) {	
-		parent::Form('controllers/grid/submissionFiles/form/metadataForm.tpl');
+		parent::Form('controllers/grid/files/submissionFiles/form/metadataForm.tpl');
 
 		$this->_fileId = $fileId;	
 		$this->_monographId = $monographId;

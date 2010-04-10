@@ -11,7 +11,7 @@
 
 <h4>{translate key="grid.artworkFile.form.title"}</h4>
 
-<form id="artworkUploadForm{if $artworkFile}-{$artworkFile->getId()|escape}{/if}" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.files.SubmissionFilesGridHandler" op="updateArtworkFile" monographId="1"}" method="post" enctype="multipart/form-data">
+<form id="artworkUploadForm{if $artworkFile}-{$artworkFile->getId()|escape}{/if}" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionFilesGridHandler" op="updateArtworkFile" monographId="1"}" method="post" enctype="multipart/form-data">
 
 {if !$artworkFile}
 <div id="artworkUploadInput">
@@ -43,7 +43,7 @@
 
 </form>
 
-{url|assign:fileUploadUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.SubmissionFilesGridHandler" op="uploadArtworkFile"}
+{url|assign:fileUploadUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionFilesGridHandler" op="uploadArtworkFile"}
 <script type="text/javascript">
 <!--
 {literal}
