@@ -1219,86 +1219,49 @@
 
 	<!--
 	  *
-	  * TABLE roles
+	  * TABLE user_groups
 	  *
 	  -->
-	<table name="roles">
-		<field name="press_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="user_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="role_id" type="I8">
-			<NOTNULL />
-		</field>
-		<field name="flexible_role_id" type="I8">
-			<NOTNULL />
-		</field>
-		<descr>User roles in presss.</descr>
-		<index name="roles_press_id">
-			<col>press_id</col>
-		</index>
-		<index name="roles_user_id">
-			<col>user_id</col>
-		</index>
-		<index name="roles_role_id">
-			<col>role_id</col>
-		</index>
-		<index name="roles_flexible_role_id">
-			<col>flexible_role_id</col>
-		</index>
-		<index name="roles_pkey">
-			<col>press_id</col>
-			<col>user_id</col>
-			<col>role_id</col>
-			<col>flexible_role_id</col>
-			<UNIQUE />
-		</index>
-	</table>
-
-	<!--
-	  *
-	  * TABLE flexible_roles
-	  *
-	  -->
-	<table name="flexible_roles">
-		<field name="flexible_role_id" type="I8">
-			<KEY/>
+	<table name="user_groups">
+		<field name="user_group_id" type="I8">
+			<KEY />
 			<AUTOINCREMENT/>
 		</field>
 		<field name="press_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="type" type="I8">
-			<NOTNULL />
-		</field>
 		<field name="role_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="enabled" type="I1">
-			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
+		<field name="path" type="C2" size="30">
+			<NOTNULL />
 		</field>
-		<field name="custom_role" type="I1">
+		<field name="is_default" type="I1">
 			<NOTNULL/>
-			<DEFAULT VALUE="1"/>
+			<DEFAULT VALUE="0"/>
 		</field>
-		<field name="path" type="C2" size="30"/>
-		<field name="entry_key" type="C2" size="30"/>
-		<descr>A press's flexible roles.</descr>
-		<index name="flexible_roles_flexible_role_id">
-			<col>flexible_role_id</col>
+		<descr>User groups for a press.</descr>
+		<index name="user_groups_user_group_id">
+			<col>user_group_id</col>
+		</index>
+		<index name="user_groups_press_id">
+			<col>press_id</col>
+		</index>
+		<index name="user_groups_role_id">
+			<col>role_id</col>
+		</index>
+		<index name="user_groups_path">
+			<col>path</col>
 		</index>
 	</table>
 
 	<!--
 	  *
-	  * TABLE flexible_role_settings
+	  * TABLE user_group_settings
 	  *
 	  -->
-	<table name="flexible_role_settings">
-		<field name="flexible_role_id" type="I8">
+	<table name="user_group_settings">
+		<field name="user_group_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
@@ -1313,12 +1276,9 @@
 			<NOTNULL/>
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
-		<descr>Flexible role settings</descr>
-		<index name="flexible_role_settings_flexible_role_id">
-			<col>flexible_role_id</col>
-		</index>
-		<index name="flexible_role_settings_pkey">
-			<col>flexible_role_id</col>
+		<descr>User Group-specific settings</descr>
+		<index name="division_settings_pkey">
+			<col>user_group_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE />
@@ -1327,16 +1287,27 @@
 
 	<!--
 	  *
-	  * TABLE flexible_role_arrangements
+	  * TABLE user_user_groups
 	  *
 	  -->
-	<table name="flexible_role_arrangements">
-		<field name="flexible_role_id" type="I8">
+	<table name="user_user_groups">
+		<field name="user_group_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="arrangement_id" type="I8">
+		<field name="user_id" type="I8">
 			<NOTNULL />
 		</field>
-		<descr>Flexible roles arranged by workflow identifiers.</descr>
+		<desc>User group assignments (mapping of user to user groups)</desc>
+		<index name="user_user_groups_user_group_id">
+			<col>user_group_id</col>
+		</index>
+		<index name="user_user_groups_user_id">
+			<col>user_id</col>
+		</index>
+		<index name="user_user_groups_pkey">
+			<col>user_group_id</col>
+			<col>user_id</col>
+			<UNIQUE />
+		</index>
 	</table>
 </schema>

@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('security.Role');
+import('security.UserGroup');
 
 class Validation {
 
@@ -200,9 +200,8 @@ class Validation {
 		$session =& $sessionManager->getUserSession();
 		$user =& $session->getUser();
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-
-		return $roleDao->roleExists($pressId, $user->getId(), $roleId);
+		$roleDAO =& DAORegistry::getDAO('RoleDAO');
+		return $roleDAO->userHasRole($pressId, $user->getId(), $roleId);
 	}
 
 	/**
@@ -417,13 +416,15 @@ class Validation {
 		// Check for roles in other presses that this user
 		// doesn't have administrative rights over.
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$roles =& $roleDao->getRolesByUserId($userId);
-		foreach ($roles as $role) {
-			if ($role->getRoleId() == ROLE_ID_SITE_ADMIN) return false;
-			if (
-				$role->getPressId() != $pressId &&
-				!Validation::isPressManager($role->getPressId())
-			) return false;
+		if ( $roleDao->userHasRole(0, $userId, ROLE_ID_SITE_ADMIN) ) return false;
+
+		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$presses =& $pressDao->getPresses();
+		while ( !$presses->eof() ) {
+			$press =& $presses->next();
+			if ( $press->getId() != $pressId && !$roleDao->userHasRole($press->getId(), $userId, ROLE_ID_PRESS_MANAGER) ) {
+				return false;
+			}
 		}
 
 		// There were no conflicting roles.

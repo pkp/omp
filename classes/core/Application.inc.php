@@ -117,7 +117,8 @@ class Application extends PKPApplication {
 			'LibraryFileDAO' => 'press.LibraryFileDAO',
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
 			'RoleDAO' => 'security.RoleDAO',
-			'FlexibleRoleDAO' => 'role.FlexibleRoleDAO',
+			'UserGroupDAO' => 'security.UserGroupDAO',
+			'UserGroupAssignmentDAO' => 'security.UserGroupAssignmentDAO',
 			'SeriesEditorSubmissionDAO' => 'submission.seriesEditor.SeriesEditorSubmissionDAO',
 			'UserDAO' => 'user.UserDAO',
 			'UserSettingsDAO' => 'user.UserSettingsDAO'

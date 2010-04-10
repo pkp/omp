@@ -11,7 +11,7 @@
   *
   * $Id$
   -->
- 
+
 <locale name="en_US" full_name="U.S. English">
 	<!--
 	 *
@@ -43,54 +43,54 @@
 	<message key="default.publicationFormats.ebook">EBook</message>
 	<message key="default.publicationFormats.ebook.designation">EBook</message>
 
-	<message key="default.roles.pressManager">Press manager</message>
-	<message key="default.roles.pressManagers">Press managers</message>
-	<message key="default.roles.pressManager.designation">PM</message>
-	<message key="default.roles.director">Director</message>
-	<message key="default.roles.directors">Directors</message>
-	<message key="default.roles.director.designation">DIR</message>
-	<message key="default.roles.editor">Press editor</message>
-	<message key="default.roles.editors">Press editors</message>
-	<message key="default.roles.editor.designation">PE</message>
-	<message key="default.roles.productionEditor">Production editor</message>
-	<message key="default.roles.productionEditors">Production editors</message>
-	<message key="default.roles.productionEditor.designation">PE</message>
-	<message key="default.roles.seriesEditor">Series editor</message>
-	<message key="default.roles.seriesEditors">Series editors</message>
-	<message key="default.roles.seriesEditor.designation">AcqE</message>
-	<message key="default.roles.copyeditor">Copyeditor</message>
-	<message key="default.roles.copyeditors">Copyeditors</message>
-	<message key="default.roles.copyeditor.designation">CE</message>
-	<message key="default.roles.proofreader">Proofreader</message>
-	<message key="default.roles.proofreaders">Proofreaders</message>
-	<message key="default.roles.proofreader.designation">PR</message>
-	<message key="default.roles.designer">Designer</message>
-	<message key="default.roles.designers">Designers</message>
-	<message key="default.roles.designer.designation">Design</message>
-	<message key="default.roles.reviewer">Reviewer</message>
-	<message key="default.roles.reviewers">Reviewers</message>
-	<message key="default.roles.reviewer.designation">Reviewer</message>
-	<message key="default.roles.marketing">Marketing and sales coordinator</message>
-	<message key="default.roles.marketings">Marketing and sales coordinators</message>
-	<message key="default.roles.marketing.designation">MS</message>
-	<message key="default.roles.funding">Funding coordinator</message>
-	<message key="default.roles.fundings">Funding coordinators</message>
-	<message key="default.roles.funding.designation">FC</message>
-	<message key="default.roles.indexer">Indexer</message>
-	<message key="default.roles.indexers">Indexers</message>
-	<message key="default.roles.indexer.designation">IND</message>
-	<message key="default.roles.author">Author</message>
-	<message key="default.roles.authors">Authors</message>
-	<message key="default.roles.author.designation">Author</message>
-	<message key="default.roles.volumeEditor">Volume editor</message>
-	<message key="default.roles.volumeEditors">Volume editors</message>
-	<message key="default.roles.volumeEditor.designation">VE</message>
-	<message key="default.roles.translator">Translator</message>
-	<message key="default.roles.translators">Translators</message>
-	<message key="default.roles.translator.designation">TR</message>
-	<message key="default.roles.reader">Reader</message>
-	<message key="default.roles.readers">Readers</message>
-	<message key="default.roles.reader.designation">READ</message>
+	<message key="default.groups.name.pressManager">Press manager</message>
+	<message key="default.groups.plural.pressManager">Press managers</message>
+	<message key="default.groups.abbrev.pressManager">PM</message>
+	<message key="default.groups.name.director">Director</message>
+	<message key="default.groups.plural.director">Directors</message>
+	<message key="default.groups.abbrev.director">DIR</message>
+	<message key="default.groups.name.editor">Press editor</message>
+	<message key="default.groups.plural.editor">Press editors</message>
+	<message key="default.groups.abbrev.editor">PE</message>
+	<message key="default.groups.name.productionEditor">Production editor</message>
+	<message key="default.groups.plural.productionEditor">Production editors</message>
+	<message key="default.groups.abbrev.productionEditor">PE</message>
+	<message key="default.groups.name.seriesEditor">Series editor</message>
+	<message key="default.groups.plural.seriesEditor">Series editors</message>
+	<message key="default.groups.abbrev.seriesEditor">AcqE</message>
+	<message key="default.groups.name.copyeditor">Copyeditor</message>
+	<message key="default.groups.plural.copyeditor">Copyeditors</message>
+	<message key="default.groups.abbrev.copyeditor">CE</message>
+	<message key="default.groups.name.proofreader">Proofreader</message>
+	<message key="default.groups.plural.proofreader">Proofreaders</message>
+	<message key="default.groups.abbrev.proofreader">PR</message>
+	<message key="default.groups.name.designer">Designer</message>
+	<message key="default.groups.plural.designer">Designers</message>
+	<message key="default.groups.abbrev.designer">Design</message>
+	<message key="default.groups.name.reviewer">Reviewer</message>
+	<message key="default.groups.plural.reviewer">Reviewers</message>
+	<message key="default.groups.abbrev.reviewer">Reviewer</message>
+	<message key="default.groups.name.marketing">Marketing and sales coordinator</message>
+	<message key="default.groups.plural.marketing">Marketing and sales coordinators</message>
+	<message key="default.groups.abbrev.marketing">MS</message>
+	<message key="default.groups.name.funding">Funding coordinator</message>
+	<message key="default.groups.plural.funding">Funding coordinators</message>
+	<message key="default.groups.abbrev.funding">FC</message>
+	<message key="default.groups.name.indexer">Indexer</message>
+	<message key="default.groups.plural.indexer">Indexers</message>
+	<message key="default.groups.abbrev.indexer">IND</message>
+	<message key="default.groups.name.author">Author</message>
+	<message key="default.groups.plural.author">Authors</message>
+	<message key="default.groups.abbrev.author">Author</message>
+	<message key="default.groups.name.volumeEditor">Volume editor</message>
+	<message key="default.groups.plural.volumeEditor">Volume editors</message>
+	<message key="default.groups.abbrev.volumeEditor">VE</message>
+	<message key="default.groups.name.translator">Translator</message>
+	<message key="default.groups.plural.translator">Translators</message>
+	<message key="default.groups.abbrev.translator">TR</message>
+	<message key="default.groups.name.reader">Reader</message>
+	<message key="default.groups.plural.reader">Readers</message>
+	<message key="default.groups.abbrev.reader">READ</message>
 
 	<message key="default.pressSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another press for consideration (or an explanation has been provided in Comments to the Editor).</message>
 	<message key="default.pressSettings.checklist.fileFormat">The submission file is in the Microsoft Word, RTF, OpenDocument, or WordPerfect file format.</message>
@@ -99,19 +99,19 @@
 	<message key="default.pressSettings.checklist.bibliographicRequirements"><![CDATA[The text adheres to the stylistic and bibliographic requirements outlined in the <a href="{$indexUrl}/{$pressPath}/about/submissions#authorGuidelines" target="_new">Author Guidelines</a>, which is found in About the Press.]]></message>
 	<message key="default.pressSettings.privacyStatement">The names and email addresses entered in this press site will be used exclusively for the stated purposes of this press and will not be made available for any other purpose or to any other party.</message>
 	<message key="default.pressSettings.openAccessPolicy">This press provides immediate open access to its content on the principle that making research freely available to the public supports a greater global exchange of knowledge.</message>
-	<message key="default.pressSettings.copyeditInstructions"><![CDATA[The copyediting stage is intended to improve the flow, clarity, grammar, wording, and formatting of the monograph. It represents the last chance for the author to make any substantial changes to the text, as the next stage is restricted to typos and formatting corrections. 
+	<message key="default.pressSettings.copyeditInstructions"><![CDATA[The copyediting stage is intended to improve the flow, clarity, grammar, wording, and formatting of the monograph. It represents the last chance for the author to make any substantial changes to the text, as the next stage is restricted to typos and formatting corrections.
 
-The file to be copyedited is in Word or .rtf format and therefore can be easily edited as a word processing document. This set of  instructions displayed here proposes two approaches to copyediting. The one is based on Microsoft Word's Track Changes feature and requires that the copyeditor, editor and author have access to this program. A second system, that is software independent, has been borrowed, with permission, from the Harvard Educational Review. The press editor is in a position to modify these instructions, so suggestions can be made to improve the process for this press. 
+The file to be copyedited is in Word or .rtf format and therefore can be easily edited as a word processing document. This set of  instructions displayed here proposes two approaches to copyediting. The one is based on Microsoft Word's Track Changes feature and requires that the copyeditor, editor and author have access to this program. A second system, that is software independent, has been borrowed, with permission, from the Harvard Educational Review. The press editor is in a position to modify these instructions, so suggestions can be made to improve the process for this press.
 
 <h4>Copyediting Systems</h4>
 
 <strong>1. Microsoft Word's Track Changes</strong>
 
-Under Tools in the menu bar, the feature Track Changes enables the copyeditor to make insertions (text appears in color) and deletions (text appears crossed out in color or in the margins as deleted). The copyeditor can post queries to both the author (Author Queries) and to the editor (Editor Queries) by inserting these queries in square brackets. The copyedited version is then uploaded and the editor is notified. The editor then reviews the text and notifies the author. 
+Under Tools in the menu bar, the feature Track Changes enables the copyeditor to make insertions (text appears in color) and deletions (text appears crossed out in color or in the margins as deleted). The copyeditor can post queries to both the author (Author Queries) and to the editor (Editor Queries) by inserting these queries in square brackets. The copyedited version is then uploaded and the editor is notified. The editor then reviews the text and notifies the author.
 
-The editor and author should leave those changes with which they are satisfied. If further changes are necessary, the editor and author can make changes to the initial insertions or deletions, as well as make new insertions or deletions elsewhere in the text. Authors and editors should respond to each of the queries addressed to them, with responses placed inside the square brackets. 
+The editor and author should leave those changes with which they are satisfied. If further changes are necessary, the editor and author can make changes to the initial insertions or deletions, as well as make new insertions or deletions elsewhere in the text. Authors and editors should respond to each of the queries addressed to them, with responses placed inside the square brackets.
 
-After the text has been reviewed by editor and author, the copyeditor will make a final pass over the text accepting the changes in preparation for the layout and galley stage. 
+After the text has been reviewed by editor and author, the copyeditor will make a final pass over the text accepting the changes in preparation for the layout and galley stage.
 
 
 <strong>2. Harvard Educational Review </strong>
