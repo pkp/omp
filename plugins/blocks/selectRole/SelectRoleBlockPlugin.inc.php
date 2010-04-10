@@ -82,14 +82,14 @@ class SelectRoleBlockPlugin extends BlockPlugin {
 	}
 
 	function getContents(&$templateMgr) {
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 		$userId =& $user->getId();
 
-		$roles =& $roleDao->getRolesByUserId($userId, $press->getId());
+		$userGroups =& $userGroupDao->getByUserId($userId, $press->getId());
 
-		$templateMgr->assign_by_ref('roles', $roles);
+		$templateMgr->assign_by_ref('userGroups', $userGroups);
 		return parent::getContents($templateMgr);
 	}
 }

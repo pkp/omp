@@ -9,10 +9,9 @@
  * @class PeopleHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for people management functions. 
+ * @brief Handle requests for people management functions.
  */
 
-// $Id$
 
 import('pages.manager.ManagerHandler');
 
@@ -23,50 +22,47 @@ class PeopleHandler extends ManagerHandler {
 	function PeopleHandler() {
 		parent::ManagerHandler();
 	}
-	
+
 	/**
 	 * Display list of people in the selected role.
 	 * @param $args array first parameter is the role ID to display
-	 */	
-	function people($args) {
+	 */
+	function people(&$args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$press =& Request::getPress();
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
-		if (Request::getUserVar('roleSymbolic') != null) $roleSymbolic = Request::getUserVar('roleSymbolic');
-		else $roleSymbolic = isset($args[0]) ? $args[0] : 'all';
+		if ($request->getUserVar('userGroupId')!=null) $userGroupId = $request->getUserVar('userGroupId');
+		else $userGroupId = isset($args[0])?$args[0]:'all';
 
-		$customRoleId = null;
-		$role = null;
+		$sort = $request->getUserVar('sort');
+		$sort = isset($sort) ? $sort : 'name';
+		$sortDirection = $request->getUserVar('sortDirection');
 
-		if ($roleSymbolic != 'all') {
-			if (Request::getUserVar('customRoleId') != null && $roleSymbolic == FLEXIBLE_ROLE_DEFAULT_PATH || is_numeric($roleSymbolic)) {
-				$customRoleId = is_numeric($roleSymbolic) ? $roleSymbolic : Request::getUserVar('customRoleId');
-				$role =& $flexibleRoleDao->getById($customRoleId);
-			} else {
-				$role =& $flexibleRoleDao->getByPath($roleSymbolic, $press->getId());
+		$press =& $request->getPress();
+		if (is_numeric($userGroupId)) {
+			// use the pressId to ensure this group belongs to this press
+			$userGroup =& $userGroupDao->getById($userGroupId, $press->getId());
+			// in case an incorrect id was passed in
+			if ( !$userGroup ) {
+				$request->redirect(null, null, null, 'all');
 			}
-			if ($role == null) {
-				Request::redirect(null, null, null, 'all');
-			}
-			$roleName = $role->getLocalizedName();
 		} else {
-			$roleName = Locale::translate('manager.people.allUsers');
+			// unset userGroup and userGroupId
+			$userGroupId = 'all';
+			$userGroup = null;
 		}
 
-		$isReviewer = $role && $role->getRoleId() == ROLE_ID_REVIEWER ? true : false;
 		$templateMgr =& TemplateManager::getManager();
 
 		$searchType = null;
 		$searchMatch = null;
-		$search = Request::getUserVar('search');
-		$searchInitial = Request::getUserVar('searchInitial');
+		$search = $request->getUserVar('search');
+		$searchInitial = $request->getUserVar('searchInitial');
 		if (!empty($search)) {
-			$searchType = Request::getUserVar('searchField');
-			$searchMatch = Request::getUserVar('searchMatch');
+			$searchType = $request->getUserVar('searchField');
+			$searchMatch = $request->getUserVar('searchMatch');
 
 		} elseif (!empty($searchInitial)) {
 			$searchInitial = String::strtoupper($searchInitial);
@@ -74,12 +70,11 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = Handler::getRangeInfo('users');
+		$rangeInfo = $this->getRangeInfo('users');
 
-		if ($role) {
-			$users =& $roleDao->getUsersByRoleId($role->getRoleId(), $press->getId(), $searchType, $search, $searchMatch, $rangeInfo, $customRoleId);
-			$templateMgr->assign('customRoleId', $customRoleId);
-			switch($role->getRoleId()) {
+		if ($userGroup) {
+			$users =& $userGroupDao->getUsersById($userGroup->getId(), $press->getId(), $searchType, $search, $searchMatch, $rangeInfo, $sort);
+			switch($userGroup->getRoleId()) {
 				case ROLE_ID_PRESS_MANAGER:
 					$helpTopicId = 'press.roles.pressManager';
 					break;
@@ -87,13 +82,7 @@ class PeopleHandler extends ManagerHandler {
 					$helpTopicId = 'press.roles.editor';
 					break;
 				case ROLE_ID_SERIES_EDITOR:
-					$helpTopicId = 'press.roles.seriesEditor';
-					break;
-				case ROLE_ID_PRODUCTION_EDITOR:
-					$helpTopicId = 'press.roles.productionEditor';
-					break;
-				case ROLE_ID_DESIGNER:
-					$helpTopicId = 'press.roles.designer';
+					$helpTopicId = 'press.roles.sectionEditor';
 					break;
 				case ROLE_ID_REVIEWER:
 					$helpTopicId = 'press.roles.reviewer';
@@ -110,37 +99,51 @@ class PeopleHandler extends ManagerHandler {
 				case ROLE_ID_READER:
 					$helpTopicId = 'press.roles.reader';
 					break;
-				case ROLE_ID_DIRECTOR:
-					$helpTopicId = 'press.roles.director';
-					break;
-				case ROLE_ID_INDEXER:
-					$helpTopicId = 'press.roles.indexer';
-					break;					
 				default:
 					$helpTopicId = 'press.roles.index';
 					break;
 			}
 		} else {
-			$users =& $roleDao->getUsersByPressId($press->getId(), $searchType, $search, $searchMatch, $rangeInfo);
+			$users =& $userGroupDao->getUsersByPressId($press->getId(), $searchType, $search, $searchMatch, $rangeInfo, $sort);
 			$helpTopicId = 'press.users.allUsers';
 		}
 
-		$templateMgr->assign('currentUrl', Request::url(null, null, 'people', 'all'));
+		$templateMgr->assign('currentUrl', $request->url(null, null, 'people', 'all'));
 		$templateMgr->assign_by_ref('users', $users);
-		$templateMgr->assign_by_ref('thisUser', Request::getUser());
-		$templateMgr->assign('isReviewer', $isReviewer);
+		$templateMgr->assign_by_ref('thisUser', $request->getUser());
 
 		$templateMgr->assign('searchField', $searchType);
 		$templateMgr->assign('searchMatch', $searchMatch);
 		$templateMgr->assign('search', $search);
-		$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
+		$templateMgr->assign('searchInitial', $request->getUserVar('searchInitial'));
 
+		$isReviewer = $userGroup && ($userGroup->getRoleId() == ROLE_ID_REVIEWER);
+		$templateMgr->assign('isReviewer', $isReviewer);
 		if ($isReviewer) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$templateMgr->assign('rateReviewerOnQuality', $press->getSetting('rateReviewerOnQuality'));
 			$templateMgr->assign('qualityRatings', $press->getSetting('rateReviewerOnQuality') ? $reviewAssignmentDao->getAverageQualityRatings($press->getId()) : null);
 		}
 		$templateMgr->assign('helpTopicId', $helpTopicId);
+
+		// set the user group options for the HTML select
+		$userGroupOptions = array();
+		$userGroupPaths = array();
+		$allUserGroups =& $userGroupDao->getByPressId($press->getId());
+		while ( !$allUserGroups->eof() ) {
+			$tmpUserGroup =& $allUserGroups->next();
+			$userGroupOptions[$tmpUserGroup->getId()] = $tmpUserGroup->getLocalizedName();
+			$userGroupPaths[$tmpUserGroup->getPath()] = $tmpUserGroup->getLocalizedName();
+			unset($tmpUserGroup);
+		}
+		$templateMgr->assign('userGroupOptions', $userGroupOptions);
+		$templateMgr->assign('userGroupPaths', $userGroupPaths);
+
+		$searchOptions = array('is' => 'form.is',
+								'contains' => 'form.contains',
+								'startsWith' => 'form.startsWith');
+		$templateMgr->assign('searchOptions', $searchOptions);
+
 		$fieldOptions = Array(
 			USER_FIELD_FIRSTNAME => 'user.firstName',
 			USER_FIELD_LASTNAME => 'user.lastName',
@@ -150,17 +153,13 @@ class PeopleHandler extends ManagerHandler {
 		);
 		if ($isReviewer) $fieldOptions = array_merge(array(USER_FIELD_INTERESTS => 'user.interests'), $fieldOptions);
 		$templateMgr->assign('fieldOptions', $fieldOptions);
+
+		$templateMgr->assign_by_ref('userGroup', $userGroup);
 		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
+		$templateMgr->assign('sort', $sort);
 
-		$roles =& $flexibleRoleDao->getEnabledByPressId($press->getId());
-		$templateMgr->assign('roles', $roles);
-
-		$templateMgr->assign('contextRole', $role);
-		$templateMgr->assign('roleName', $roleName);
-		$templateMgr->assign('roleSymbolic', $roleSymbolic);
-
-		$session =& Request::getSession();
-		$session->setSessionVar('enrolmentReferrer', Request::getRequestedArgs());
+		$session =& $request->getSession();
+		$session->setSessionVar('enrolmentReferrer', $request->getRequestedArgs());
 
 		$templateMgr->display('manager/people/enrollment.tpl');
 	}
@@ -169,31 +168,32 @@ class PeopleHandler extends ManagerHandler {
 	 * Search for users to enroll in a specific role.
 	 * @param $args array first parameter is the selected role ID
 	 */
-	function enrollSearch($args) {
+	function enrollSearch(&$args, &$request) {
 		$this->validate();
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$flexibleRoleId = (int)(isset($args[0]) ? $args[0] : Request::getUserVar('flexibleRoleId'));
-		$press =& $pressDao->getPressByPath(Request::getRequestedPressPath());
+		$userGroupId = (int)(isset($args[0])?$args[0]:$request->getUserVar('userGroupId'));
+		$press =& $pressDao->getPressByPath($request->getRequestedPressPath());
+		$userGroup =& $userGroupDao->getById($userGroupId, $press->getId());
 
-		$role = null;
-		$role =& $flexibleRoleDao->getById($flexibleRoleId);
-		$isReviewer = $role && $role->getRoleId() == ROLE_ID_REVIEWER ? true : false;
+		$sort = $request->getUserVar('sort');
+		$sort = isset($sort) ? $sort : 'name';
+		$sortDirection = $request->getUserVar('sortDirection');
 
 		$templateMgr =& TemplateManager::getManager();
+
 		$this->setupTemplate(true);
 
 		$searchType = null;
 		$searchMatch = null;
-		$search = Request::getUserVar('search');
-		$searchInitial = Request::getUserVar('searchInitial');
+		$search = $request->getUserVar('search');
+		$searchInitial = $request->getUserVar('searchInitial');
 		if (!empty($search)) {
-			$searchType = Request::getUserVar('searchField');
-			$searchMatch = Request::getUserVar('searchMatch');
+			$searchType = $request->getUserVar('searchField');
+			$searchMatch = $request->getUserVar('searchMatch');
 
 		} elseif (!empty($searchInitial)) {
 			$searchInitial = String::strtoupper($searchInitial);
@@ -201,39 +201,35 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = Handler::getRangeInfo('users');
+		$rangeInfo = $this->getRangeInfo('users');
 
-		$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo);
+		$users =& $userDao->getUsersByField($searchType, $searchMatch, $search, true, $rangeInfo, $sort);
 
 		$templateMgr->assign('searchField', $searchType);
 		$templateMgr->assign('searchMatch', $searchMatch);
 		$templateMgr->assign('search', $search);
-		$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
+		$templateMgr->assign('searchInitial', $request->getUserVar('searchInitial'));
 
-		$templateMgr->assign('flexibleRoleId', $flexibleRoleId);
-		$templateMgr->assign('roleName', $role ? $role->getLocalizedName() : '');
-		$templateMgr->assign('contextRole', $role);
-
+		$templateMgr->assign('userGroupId', $userGroupId);
+		$templateMgr->assign_by_ref('userGroup', $userGroup);
 		$fieldOptions = Array(
 			USER_FIELD_FIRSTNAME => 'user.firstName',
 			USER_FIELD_LASTNAME => 'user.lastName',
 			USER_FIELD_USERNAME => 'user.username',
 			USER_FIELD_EMAIL => 'user.email'
 		);
-		if ($isReviewer) $fieldOptions = array_merge(array(USER_FIELD_INTERESTS => 'user.interests'), $fieldOptions);
+		if ($userGroup->getRoleId() == ROLE_ID_REVIEWER) $fieldOptions = array_merge(array(USER_FIELD_INTERESTS => 'user.interests'), $fieldOptions);
 		$templateMgr->assign('fieldOptions', $fieldOptions);
 		$templateMgr->assign_by_ref('users', $users);
-		$templateMgr->assign_by_ref('thisUser', Request::getUser());
+		$templateMgr->assign_by_ref('thisUser', $request->getUser());
 		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
 		$templateMgr->assign('helpTopicId', 'press.users.index');
+		$templateMgr->assign('sort', $sort);
 
-		$roles =& $flexibleRoleDao->getEnabledByPressId($press->getId());
-		$templateMgr->assign('roles', $roles);
-
-		$session =& Request::getSession();
+		$session =& $request->getSession();
 		$referrerUrl = $session->getSessionVar('enrolmentReferrer');
-		$templateMgr->assign('enrolmentReferrerUrl', isset($referrerUrl) ? Request::url(null,'manager','people',$referrerUrl) : Request::url(null,'manager'));
-		$session->unsetSessionVar('enrolmentReferrer');
+			$templateMgr->assign('enrolmentReferrerUrl', isset($referrerUrl) ? $request->url(null,'manager','people',$referrerUrl) : $request->url(null,'manager'));
+			$session->unsetSessionVar('enrolmentReferrer');
 
 		$templateMgr->display('manager/people/searchUsers.tpl');
 	}
@@ -241,7 +237,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Show users with no role.
 	 */
-	function showNoRole() {
+	function showNoRole(&$args, &$request) {
 		$this->validate();
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -250,13 +246,13 @@ class PeopleHandler extends ManagerHandler {
 
 		parent::setupTemplate(true);
 
-		$rangeInfo = Handler::getRangeInfo('users');
+		$rangeInfo = $this->getRangeInfo('users');
 
-		$users =& $userDao->getUsersWithNoRole(true, $rangeInfo);
+		$users =& $userDao->getUsersWithNoUserGroupAssignments(true, $rangeInfo);
 
 		$templateMgr->assign('omitSearch', true);
 		$templateMgr->assign_by_ref('users', $users);
-		$templateMgr->assign_by_ref('thisUser', Request::getUser());
+		$templateMgr->assign_by_ref('thisUser', $request->getUser());
 		$templateMgr->assign('helpTopicId', 'press.users.index');
 		$templateMgr->display('manager/people/searchUsers.tpl');
 	}
@@ -264,162 +260,69 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Enroll a user in a role.
 	 */
-	function enroll($args) {
+	function enroll(&$args, &$request) {
 		$this->validate();
-		$flexibleRoleId = (int)(isset($args[0]) ? $args[0] : Request::getUserVar('flexibleRoleId'));
+		$userGroupId = (int)(isset($args[0])?$args[0]:$request->getUserVar('userGroupId'));
 
 		// Get a list of users to enroll -- either from the
 		// submitted array 'users', or the single user ID in
 		// 'userId'
-		$users = Request::getUserVar('users');
-		if (!isset($users) && Request::getUserVar('userId') != null) {
-			$users = array(Request::getUserVar('userId'));
+		$users = $request->getUserVar('users');
+		if (!isset($users) && $request->getUserVar('userId') != null) {
+			$users = array($request->getUserVar('userId'));
 		}
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$press =& $pressDao->getPressByPath($request->getRequestedPressPath());
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroup =& $userGroupDao->getById($userGroupId, $press->getId());
 
-		$press =& $pressDao->getPressByPath(Request::getRequestedPressPath());
-
-		$flexibleRole =& $flexibleRoleDao->getById($flexibleRoleId);
-		$roleId = $flexibleRole ? $flexibleRole->getRoleId() : 0;
-		$rolePath = $flexibleRole ? $flexibleRole->getPath() : '';
-
-		if ($users != null && is_array($users) && $roleId != 0 && $roleId != ROLE_ID_SITE_ADMIN) {
+		if ($users != null && is_array($users) && $userGroup && $userGroup->getRoleId() != ROLE_ID_SITE_ADMIN) {
 			for ($i=0; $i<count($users); $i++) {
-				if (!$roleDao->roleExists($press->getId(), $users[$i], $roleId, $flexibleRoleId)) {
-					$role = new Role();
-					$role->setPressId($press->getId());
-					$role->setUserId($users[$i]);
-					$role->setRoleId($roleId);
-					$role->setFlexibleRoleId($flexibleRoleId);
-
-					$roleDao->insertRole($role);
+				if (!$userGroupDao->userInGroup($press->getId(), $users[$i], $userGroupId)) {
+					$userGroupDao->assignUserToGroup($users[$i], $userGroupId);
 				}
 			}
 		}
 
-		if ($roleId == ROLE_ID_FLEXIBLE_ROLE) {
-			Request::redirect(null, null, 'people', $rolePath, array('customRoleId' => $flexibleRoleId));
-		} else {
-			Request::redirect(null, null, 'people', $rolePath);
-		}
+		$request->redirect(null, null, 'people', $userGroupId);
 	}
 
 	/**
 	 * Unenroll a user from a role.
 	 */
-	function unEnroll($args) {
-		$flexibleRoleId = isset($args[0]) ? $args[0] : 0;
+	function unEnroll(&$args, &$request) {
+		$userGroupId = isset($args[0])?$args[0]:0;
 		$this->validate();
-
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
-
-		$press =& $pressDao->getPressByPath(Request::getRequestedPressPath());
-		$flexibleRole =& $flexibleRoleDao->getById($flexibleRoleId);
-
-		if ($flexibleRole) {
-			if ($flexibleRole->getRoleId() != ROLE_ID_SITE_ADMIN) {
-				$roleDao->deleteRoleByUserId(Request::getUserVar('userId'), $press->getId(), $flexibleRole->getRoleId(), $flexibleRoleId);
-			}
-
-		}
-
-		if ($flexibleRole->getRoleId() == ROLE_ID_FLEXIBLE_ROLE) {
-			Request::redirect(null, null, 'people', $flexibleRole->getPath(), array('customRoleId' => $flexibleRoleId));
-		} else {
-			Request::redirect(null, null, 'people', $flexibleRole->getPath());
-		}
-	}
-
-	/**
-	 * Show form to synchronize user enrollment with another press.
-	 */
-	function enrollSyncSelect($args) {
-		$this->validate();
-		$this->setupTemplate(true);
-
-		$rolePath = isset($args[0]) ? $args[0] : '';
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$roleId = $roleDao->getRoleIdFromPath($rolePath);
-		if ($roleId) {
-			$roleName = $roleDao->getRoleName($roleId, true);
-		} else {
-			$rolePath = '';
-			$roleName = '';
-		}
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$pressNames =& $pressDao->getPressNames();
+		$press =& $pressDao->getPressByPath($request->getRequestedPressPath());
 
-		$press =& Request::getPress();
-		unset($pressNames[$press->getId()]);
-
-		$templateMgr =& TemplateManager::getManager();
-
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
-		$roles =& $flexibleRoleDao->getEnabledByPressId($press->getId());
-
-		$templateMgr->assign('rolePath', $rolePath);
-		$templateMgr->assign('roleName', $roleName);
-		$templateMgr->assign_by_ref('roles', $roles);
-
-		$templateMgr->assign('pressOptions', $pressNames);
-		$templateMgr->display('manager/people/enrollSync.tpl');
-	}
-
-	/**
-	 * Synchronize user enrollment with another press.
-	 */
-	function enrollSync($args) {
-		$this->validate();
-
-		$press =& Request::getPress();
-		$rolePath = Request::getUserVar('rolePath');
-		$syncPress = Request::getUserVar('syncPress');
-
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
-
-		$roleId = $roleDao->getRoleIdFromPath($rolePath);
-
-		if ((!empty($roleId) || $rolePath == 'all') && !empty($syncPress)) {
-			$roles =& $roleDao->getRolesByPressId($syncPress == 'all' ? null : $syncPress, $roleId);
-			while (!$roles->eof()) {
-				$role =& $roles->next();
-				$role->setPressId($press->getId());
-
-				$flexibleRole =& $flexibleRoleDao->getByRoleId($role->getRoleId(), $press->getId());
-
-				if ($role->getRoleId() != ROLE_ID_FLEXIBLE_ROLE && $role->getRoleId() != ROLE_ID_SITE_ADMIN && !$roleDao->roleExists($role->getPressId(), $role->getUserId(), $role->getRoleId(), $flexibleRole->getId())) {
-					$roleDao->insertRole($role);
-				}
-				unset($flexibleRole);
-			}
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroup =& $userGroupDao->getById($userGroupId, $press->getId());
+		if ( $userGroup->getRoleId() != ROLE_ID_SITE_ADMIN ) {
+			$userGroupDao->removeUserFromGroup($request->getUserVar('userId'), $userGroupId);
 		}
 
-		Request::redirect(null, null, 'people', $rolePath);
+		$request->redirect(null, null, 'people', $userGroupId);
 	}
 
 	/**
 	 * Display form to create a new user.
 	 */
-	function createUser() {
-		$this->editUser();
+	function createUser(&$args, &$request) {
+		$this->editUser($args, $request);
 	}
 
 	/**
 	 * Get a suggested username, making sure it's not
 	 * already used by the system. (Poor-man's AJAX.)
 	 */
-	function suggestUsername() {
+	function suggestUsername(&$args, &$request) {
 		$this->validate();
 		$suggestion = Validation::suggestUsername(
-			Request::getUserVar('firstName'),
-			Request::getUserVar('lastName')
+			$request->getUserVar('firstName'),
+			$request->getUserVar('lastName')
 		);
 		echo $suggestion;
 	}
@@ -428,13 +331,13 @@ class PeopleHandler extends ManagerHandler {
 	 * Display form to create/edit a user profile.
 	 * @param $args array optional, if set the first parameter is the ID of the user to edit
 	 */
-	function editUser($args = array()) {
+	function editUser(&$args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 
-		$userId = isset($args[0]) ? $args[0] : null;
+		$userId = isset($args[0])?$args[0]:null;
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -443,91 +346,94 @@ class PeopleHandler extends ManagerHandler {
 			// over this user. Display an error.
 			$templateMgr->assign('pageTitle', 'manager.people');
 			$templateMgr->assign('errorMsg', 'manager.people.noAdministrativeRights');
-			$templateMgr->assign('backLink', Request::url(null, null, 'people', 'all'));
+			$templateMgr->assign('backLink', $request->url(null, null, 'people', 'all'));
 			$templateMgr->assign('backLinkLabel', 'manager.people.allUsers');
 			return $templateMgr->display('common/error.tpl');
 		}
 
 		import('manager.form.UserManagementForm');
 
-		$templateMgr->assign('currentUrl', Request::url(null, null, 'people', 'all'));
+		$templateMgr->assign('currentUrl', $request->url(null, null, 'people', 'all'));
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$userForm = new UserManagementForm($userId);
 		} else {
 			$userForm =& new UserManagementForm($userId);
 		}
+
 		if ($userForm->isLocaleResubmit()) {
 			$userForm->readInputData();
 		} else {
-			$userForm->initData();
+			$userForm->initData($args, $request);
 		}
-		$userForm->display();
+		$userForm->display($args, $request);
 	}
 
 	/**
 	 * Allow the Press Manager to merge user accounts, including attributed monographs etc.
 	 */
-	function mergeUsers($args) {
+	function mergeUsers(&$args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 		$pressId = $press->getId();
 		$templateMgr =& TemplateManager::getManager();
 
-		$oldUserId = Request::getUserVar('oldUserId');
-		$newUserId = Request::getUserVar('newUserId');
+		$oldUserIds = (array) $request->getUserVar('oldUserIds');
+		$newUserId = $request->getUserVar('newUserId');
 
 		// Ensure that we have administrative priveleges over the specified user(s).
+		$canAdministerAll = true;
+		foreach ($oldUserIds as $oldUserId) {
+			if (!Validation::canAdminister($pressId, $oldUserId)) $canAdministerAll = false;
+		}
+
 		if (
-			(!empty($oldUserId) && !Validation::canAdminister($pressId, $oldUserId)) ||
+			(!empty($oldUserIds) && !$canAdministerAll) ||
 			(!empty($newUserId) && !Validation::canAdminister($pressId, $newUserId))
 		) {
 			$templateMgr->assign('pageTitle', 'manager.people');
 			$templateMgr->assign('errorMsg', 'manager.people.noAdministrativeRights');
-			$templateMgr->assign('backLink', Request::url(null, null, 'people', 'all'));
+			$templateMgr->assign('backLink', $request->url(null, null, 'people', 'all'));
 			$templateMgr->assign('backLinkLabel', 'manager.people.allUsers');
 			return $templateMgr->display('common/error.tpl');
 		}
 
-		if (!empty($oldUserId) && !empty($newUserId)) {
+		if (!empty($oldUserIds) && !empty($newUserId)) {
 			import('user.UserAction');
-			UserAction::mergeUsers($oldUserId, $newUserId);
-			Request::redirect(null, 'manager');
-		}
-
-		if (!empty($oldUserId)) {
-			// Get the old username for the confirm prompt.
-			$oldUser =& $userDao->getUser($oldUserId);
-			$templateMgr->assign('oldUsername', $oldUser->getUsername());
-			unset($oldUser);
+			foreach ($oldUserIds as $oldUserId) {
+				UserAction::mergeUsers($oldUserId, $newUserId);
+			}
+			$request->redirect(null, 'manager');
 		}
 
 		// The manager must select one or both IDs.
-		if (Request::getUserVar('roleSymbolic')!=null) $roleSymbolic = Request::getUserVar('roleSymbolic');
-		else $roleSymbolic = isset($args[0])?$args[0]:'all';
+		if ($request->getUserVar('userGroupId')!=null) $userGroupId = $request->getUserVar('userGroupId');
+		else $userGroupId = isset($args[0])?$args[0]:'all';
 
-		if ($roleSymbolic != 'all' && String::regexp_match_get('/^(\w+)s$/', $roleSymbolic, $matches)) {
-			$roleId = $roleDao->getRoleIdFromPath($matches[1]);
-			if ($roleId == null) {
-				Request::redirect(null, null, null, 'all');
+		if ($userGroupId != 'all' && is_numeric($userGroupId)) {
+			$userGroup =& $userGroupDao->getById($userGroupId);
+			if ($userGroupId == null) {
+				$request->redirect(null, null, null, 'all');
 			}
-			$roleName = $roleDao->getRoleName($roleId, true);
 		} else {
-			$roleId = 0;
-			$roleName = 'manager.people.allUsers';
+			$userGroup = null;
 		}
+
+		$sort = $request->getUserVar('sort');
+		$sort = isset($sort) ? $sort : 'name';
+		$sortDirection = $request->getUserVar('sortDirection');
 
 		$searchType = null;
 		$searchMatch = null;
-		$search = Request::getUserVar('search');
-		$searchInitial = Request::getUserVar('searchInitial');
+		$search = $request->getUserVar('search');
+		$searchInitial = $request->getUserVar('searchInitial');
 		if (!empty($search)) {
-			$searchType = Request::getUserVar('searchField');
-			$searchMatch = Request::getUserVar('searchMatch');
+			$searchType = $request->getUserVar('searchField');
+			$searchMatch = $request->getUserVar('searchMatch');
 
 		} else if (!empty($searchInitial)) {
 			$searchInitial = String::strtoupper($searchInitial);
@@ -535,28 +441,31 @@ class PeopleHandler extends ManagerHandler {
 			$search = $searchInitial;
 		}
 
-		$rangeInfo = Handler::getRangeInfo('users');
+		$rangeInfo = $this->getRangeInfo('users');
 
-		if ($roleId) {
-			$users =& $roleDao->getUsersByRoleId($roleId, $pressId, $searchType, $search, $searchMatch, $rangeInfo);
-			$templateMgr->assign('roleId', $roleId);
+		if ($userGroup) {
+			$users =& $userGroupDao->getUsersById($userGroupId, $pressId, $searchType, $search, $searchMatch, $rangeInfo, $sort);
+			$templateMgr->assign_by_ref('userGroup', $userGroup);
+			$isReviewer = $userGroup->getRoleId() == ROLE_ID_REVIEWER;
 		} else {
-			$users =& $roleDao->getUsersByPressId($pressId, $searchType, $search, $searchMatch, $rangeInfo);
+			$users =& $userGroupDao->getUsersByPressId($pressId, $searchType, $search, $searchMatch, $rangeInfo, $sort);
+			$isReviewer = false;
 		}
 
-		$templateMgr->assign('currentUrl', Request::url(null, null, 'people', 'all'));
+		//$templateMgr->assign_by_ref('roleSettings', $this->retrieveRoleAssignmentPreferences($press->getId()));
+
+		$templateMgr->assign('currentUrl', $request->url(null, null, 'people', 'all'));
 		$templateMgr->assign('helpTopicId', 'press.managementPages.mergeUsers');
-		$templateMgr->assign('roleName', $roleName);
 		$templateMgr->assign_by_ref('users', $users);
-		$templateMgr->assign_by_ref('thisUser', Request::getUser());
-		$templateMgr->assign('isReviewer', $roleId == ROLE_ID_REVIEWER);
+		$templateMgr->assign_by_ref('thisUser', $request->getUser());
+		$templateMgr->assign('isReviewer', $isReviewer);
 
 		$templateMgr->assign('searchField', $searchType);
 		$templateMgr->assign('searchMatch', $searchMatch);
 		$templateMgr->assign('search', $search);
-		$templateMgr->assign('searchInitial', Request::getUserVar('searchInitial'));
+		$templateMgr->assign('searchInitial', $request->getUserVar('searchInitial'));
 
-		if ($roleId == ROLE_ID_REVIEWER) {
+		if ($isReviewer) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$templateMgr->assign('rateReviewerOnQuality', $press->getSetting('rateReviewerOnQuality'));
 			$templateMgr->assign('qualityRatings', $press->getSetting('rateReviewerOnQuality') ? $reviewAssignmentDao->getAverageQualityRatings($pressId) : null);
@@ -569,9 +478,10 @@ class PeopleHandler extends ManagerHandler {
 			USER_FIELD_INTERESTS => 'user.interests'
 		));
 		$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
-		$templateMgr->assign('oldUserId', $oldUserId);
-		$templateMgr->assign('rolePath', $roleDao->getRolePath($roleId));
-		$templateMgr->assign('roleSymbolic', $roleSymbolic);
+		$templateMgr->assign('oldUserIds', $oldUserIds);
+		$templateMgr->assign('userGroupId', $userGroupId);
+		$templateMgr->assign('sort', $sort);
+		$templateMgr->assign('sortDirection', $sortDirection);
 		$templateMgr->display('manager/people/selectMergeUser.tpl');
 	}
 
@@ -579,13 +489,13 @@ class PeopleHandler extends ManagerHandler {
 	 * Disable a user's account.
 	 * @param $args array the ID of the user to disable
 	 */
-	function disableUser($args) {
+	function disableUser(&$args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$userId = isset($args[0])?$args[0]:Request::getUserVar('userId');
-		$user =& Request::getUser();
-		$press =& Request::getPress();
+		$userId = isset($args[0])?$args[0]:$request->getUserVar('userId');
+		$user =& $request->getUser();
+		$press =& $request->getPress();
 
 		if ($userId != null && $userId != $user->getId()) {
 			if (!Validation::canAdminister($press->getId(), $userId)) {
@@ -594,7 +504,7 @@ class PeopleHandler extends ManagerHandler {
 				$templateMgr =& TemplateManager::getManager();
 				$templateMgr->assign('pageTitle', 'manager.people');
 				$templateMgr->assign('errorMsg', 'manager.people.noAdministrativeRights');
-				$templateMgr->assign('backLink', Request::url(null, null, 'people', 'all'));
+				$templateMgr->assign('backLink', $request->url(null, null, 'people', 'all'));
 				$templateMgr->assign('backLinkLabel', 'manager.people.allUsers');
 				return $templateMgr->display('common/error.tpl');
 			}
@@ -602,24 +512,24 @@ class PeopleHandler extends ManagerHandler {
 			$user =& $userDao->getUser($userId);
 			if ($user) {
 				$user->setDisabled(1);
-				$user->setDisabledReason(Request::getUserVar('reason'));
+				$user->setDisabledReason($request->getUserVar('reason'));
 			}
 			$userDao->updateObject($user);
 		}
 
-		Request::redirect(null, null, 'people', 'all');
+		$request->redirect(null, null, 'people', 'all');
 	}
 
 	/**
 	 * Enable a user's account.
 	 * @param $args array the ID of the user to enable
 	 */
-	function enableUser($args) {
+	function enableUser(&$args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:null;
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 
 		if ($userId != null && $userId != $user->getId()) {
 			$userDao =& DAORegistry::getDAO('UserDAO');
@@ -630,37 +540,38 @@ class PeopleHandler extends ManagerHandler {
 			$userDao->updateObject($user);
 		}
 
-		Request::redirect(null, null, 'people', 'all');
+		$request->redirect(null, null, 'people', 'all');
 	}
 
 	/**
 	 * Remove a user from all roles for the current press.
 	 * @param $args array the ID of the user to remove
 	 */
-	function removeUser($args) {
+	function removeUser(&$args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:null;
-		$user =& Request::getUser();
-		$press =& Request::getPress();
+		$user =& $request->getUser();
+		$press =& $request->getPress();
 
 		if ($userId != null && $userId != $user->getId()) {
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 			$roleDao->deleteRoleByUserId($userId, $press->getId());
 		}
 
-		Request::redirect(null, null, 'people', 'all');
+		$request->redirect(null, null, 'people', 'all');
 	}
 
 	/**
 	 * Save changes to a user profile.
 	 */
-	function updateUser() {
+	function updateUser(&$args, &$request) {
 		$this->validate();
-		$press =& Request::getPress();
-		$userId = Request::getUserVar('userId');
 		$this->setupTemplate(true);
+
+		$press =& $request->getPress();
+		$userId = $request->getUserVar('userId');
 
 		if (!empty($userId) && !Validation::canAdminister($press->getId(), $userId)) {
 			// We don't have administrative rights
@@ -668,7 +579,7 @@ class PeopleHandler extends ManagerHandler {
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('pageTitle', 'manager.people');
 			$templateMgr->assign('errorMsg', 'manager.people.noAdministrativeRights');
-			$templateMgr->assign('backLink', Request::url(null, null, 'people', 'all'));
+			$templateMgr->assign('backLink', $request->url(null, null, 'people', 'all'));
 			$templateMgr->assign('backLinkLabel', 'manager.people.allUsers');
 			return $templateMgr->display('common/error.tpl');
 		}
@@ -680,30 +591,31 @@ class PeopleHandler extends ManagerHandler {
 		} else {
 			$userForm =& new UserManagementForm($userId);
 		}
+
 		$userForm->readInputData();
 
-		if ($userForm->validate()) {
-			$userForm->execute();
+		if ($userForm->validate($args, $request)) {
+			$userForm->execute($args, $request);
 
-			if (Request::getUserVar('createAnother')) {
-				$this->setupTemplate(true);
+			if ($request->getUserVar('createAnother')) {
 				$templateMgr =& TemplateManager::getManager();
-				$templateMgr->assign('currentUrl', Request::url(null, null, 'people', 'all'));
+				$templateMgr->assign('currentUrl', $request->url(null, null, 'people', 'all'));
 				$templateMgr->assign('userCreated', true);
+				unset($userForm);
 				if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 					$userForm = new UserManagementForm();
 				} else {
 					$userForm =& new UserManagementForm();
 				}
-				$userForm->initData();
-				$userForm->display();
+				$userForm->initData($args, $request);
+				$userForm->display($args, $request);
 
 			} else {
-				if ($source = Request::getUserVar('source')) Request::redirectUrl($source);
-				else Request::redirect(null, null, 'people', 'all');
+				if ($source = $request->getUserVar('source')) $request->redirectUrl($source);
+				else $request->redirect(null, null, 'people', 'all');
 			}
 		} else {
-			$userForm->display();
+			$userForm->display($args, $request);
 		}
 	}
 
@@ -711,12 +623,12 @@ class PeopleHandler extends ManagerHandler {
 	 * Display a user's profile.
 	 * @param $args array first parameter is the ID or username of the user to display
 	 */
-	function userProfile($args) {
+	function userProfile(&$args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('currentUrl', Request::url(null, null, 'people', 'all'));
+		$templateMgr->assign('currentUrl', $request->url(null, null, 'people', 'all'));
 		$templateMgr->assign('helpTopicId', 'press.users.index');
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -733,15 +645,15 @@ class PeopleHandler extends ManagerHandler {
 			// Non-existent user requested
 			$templateMgr->assign('pageTitle', 'manager.people');
 			$templateMgr->assign('errorMsg', 'manager.people.invalidUser');
-			$templateMgr->assign('backLink', Request::url(null, null, 'people', 'all'));
+			$templateMgr->assign('backLink', $request->url(null, null, 'people', 'all'));
 			$templateMgr->assign('backLinkLabel', 'manager.people.allUsers');
 			$templateMgr->display('common/error.tpl');
 
 		} else {
-			$site =& Request::getSite();
-			$press =& Request::getPress();
-			$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
-			$roles =& $flexibleRoleDao->getByUserId($user->getId(), $press->getId());
+			$site =& $request->getSite();
+			$press =& $request->getPress();
+			$roleDao =& DAORegistry::getDAO('RoleDAO');
+			$roles =& $roleDao->getRolesByUserId($user->getId(), $press->getId());
 
 			$countryDao =& DAORegistry::getDAO('CountryDAO');
 			$country = null;

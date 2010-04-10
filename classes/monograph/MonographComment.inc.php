@@ -84,10 +84,8 @@ class MonographComment extends DataObject {
 	 * @return string
 	 */
 	function getRoleName() {
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$roleName = $roleDao->getRoleName($this->getData('roleId'));
-
-		return $roleName;
+		$role = new Role($this->getData('roleId'));
+		return $role->getRoleName();
 	}
 
 	/**
@@ -120,7 +118,7 @@ class MonographComment extends DataObject {
 	 */
 	function setAssocId($assocId) {
 		return $this->setData('assocId', $assocId);
-	}	
+	}
 
 	/**
 	 * get author id

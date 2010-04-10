@@ -24,7 +24,7 @@ class UserHandler extends Handler {
 	function UserHandler() {
 		parent::Handler();
 	}
-	
+
 	/**
 	 * Display user index page.
 	 */
@@ -34,8 +34,7 @@ class UserHandler extends Handler {
 		$sessionManager =& SessionManager::getManager();
 		$session =& $sessionManager->getUserSession();
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
 		$this->setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
@@ -55,14 +54,14 @@ class UserHandler extends Handler {
 
 			$allPresses = array();
 			$pressesToDisplay = array();
-			$rolesToDisplay = array();
+			$userGroupsToDisplay = array();
 
 			// Fetch the user's roles for each press
 			while ($press =& $presses->next()) {
-				$roles =& $flexibleRoleDao->getByUserId($session->getUserId(), $press->getId());
-				if (!empty($roles)) {
+				$userGroups =& $userGroupDao->getByUserId($user->getId(), $press->getId());
+				if (!empty($userGroups)) {
 					$pressesToDisplay[] = $press;
-					$rolesToDisplay[$press->getId()] =& $roles;
+					$userGroupsToDisplay[$press->getId()] =& $userGroups;
 				}
 				$allPresses[] =& $press;
 				unset($press);
@@ -74,17 +73,20 @@ class UserHandler extends Handler {
 
 		} else { // Currently within a press' context.
 			// Show roles for the currently selected press
-			$roles =& $flexibleRoleDao->getByUserId($session->getUserId(), $press->getId());
+			$userGroups =& $userGroupDao->getByUserId($user->getId(), $press->getId());
 
 			$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor'));
 			$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer'));
 
-			$rolesToDisplay[$press->getId()] =& $roles;
+			$userGroupsToDisplay[$press->getId()] =& $userGroups;
 			$templateMgr->assign_by_ref('userPress', $press);
 		}
 
-		$templateMgr->assign('isSiteAdmin', $roleDao->getRole(0, $session->getUserId(), ROLE_ID_SITE_ADMIN));
-		$templateMgr->assign('userRoles', $rolesToDisplay);
+		if ( Validation::isSiteAdmin() ) {
+			$adminGroup =& $userGroupDao->getDefaultByRoleId(0, ROLE_ID_SITE_ADMIN);
+			$templateMgr->assign_by_ref('isSiteAdmin', $adminGroup);
+		}
+		$templateMgr->assign('userGroups', $userGroupsToDisplay);
 		$templateMgr->display('user/index.tpl');
 	}
 
@@ -146,13 +148,9 @@ class UserHandler extends Handler {
 		}
 
 		if ($press->getSetting($setting)) {
-			$role = new Role();
-			$role->setPressId($press->getId());
-			$role->setRoleId($roleId);
-			$role->setUserId($user->getId());
-
-			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$roleDao->insertRole($role);
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$userGroup =& $userGroupDao->getDefaultByRoleId($press->getId(), $roleId);
+			$userGroupDao->assignUserToGroup($user->getId(), $userGroup->getId());
 			Request::redirectUrl(Request::getUserVar('source'));
 		} else {
 			$templateMgr =& TemplateManager::getManager();

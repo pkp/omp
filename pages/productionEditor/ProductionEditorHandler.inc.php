@@ -76,7 +76,7 @@ class ProductionEditorHandler extends Handler {
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		if ($userId && $monographId && $roleDao->roleExists($press->getId(), $userId, ROLE_ID_PROOFREADER)) {
+		if ($userId && $monographId && $roleDao->userHasRole($press->getId(), $userId, ROLE_ID_PROOFREADER)) {
 			import('submission.proofreader.ProofreaderAction');
 			ProofreaderAction::selectProofreader($userId, $assignmentId, $submission);
 			Request::redirect(null, null, 'submissionLayout', $monographId);
@@ -150,7 +150,7 @@ class ProductionEditorHandler extends Handler {
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		if ($userId && $monographId && $roleDao->roleExists($press->getId(), $userId, ROLE_ID_DESIGNER)) {
+		if ($userId && $monographId && $roleDao->userHasRole($press->getId(), $userId, ROLE_ID_DESIGNER)) {
 			import('submission.designer.DesignerAction');
 			DesignerAction::selectDesigner($userId, $assignmentId, $submission);
 			Request::redirect(null, null, 'submissionLayout', $monographId);
@@ -393,7 +393,7 @@ class ProductionEditorHandler extends Handler {
 		$pressSettings = $pressSettingsDao->getPressSettings($press->getId());
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR);
+		$isEditor = $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_EDITOR);
 
 		$enableComments = $press->getSetting('enableComments');
 

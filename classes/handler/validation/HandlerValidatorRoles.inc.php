@@ -15,15 +15,15 @@ import('handler.validation.HandlerValidator');
 
 class HandlerValidatorRoles extends HandlerValidator {
 	var $roles;
-	
+
 	var $all;
 
 	/**
 	 * Constructor.
 	 * @param $handler Handler the associated form
-	 * @param $roles array of role id's 
+	 * @param $roles array of role id's
 	 * @param $all bool flag for whether all roles must exist or just 1
-	 */	 
+	 */
 	function HandlerValidatorRoles(&$handler, $redirectLogin = true, $message = null, $additionalArgs = array(), $roles, $all = false) {
 		parent::HandlerValidator($handler, $redirectLogin, $message, $additionalArgs);
 		$this->roles = $roles;
@@ -46,9 +46,9 @@ class HandlerValidatorRoles extends HandlerValidator {
 		$returner = true;
 		foreach ( $this->roles as $roleId ) {
 			if ( $roleId == ROLE_ID_SITE_ADMIN ) {
-				$exists = $roleDao->roleExists(0, $user->getId(), $roleId);
+				$exists = $roleDao->userHasRole(0, $user->getId(), $roleId);
 			} else { 
-				$exists = $roleDao->roleExists($pressId, $user->getId(), $roleId);
+				$exists = $roleDao->userHasRole($pressId, $user->getId(), $roleId);
 			}
 			if ( !$this->all && $exists) return true;
 			$returner = $returner && $exists;

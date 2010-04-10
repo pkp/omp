@@ -1,5 +1,5 @@
 <?php
-/**	
+/**
  * @file classes/press/PressDAO.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
@@ -23,7 +23,7 @@ class PressDAO extends DAO
 	 */
 	function getPress($pressId){
 		$result =& $this->retrieve('SELECT * FROM presses WHERE press_id = ?', $pressId);
-		
+
 		$returner = null;
 		if ($result->RecordCount() != 0) {
 			$returner =& $this->_returnPressFromRow($result->GetRowAssoc(false));
@@ -65,7 +65,7 @@ class PressDAO extends DAO
 		HookRegistry::call('PressDAO::_returnPressFromRow', array(&$press, &$row));
 
 		return $press;
-	}  
+	}
 
 	/**
 	 * Check if a press exists with a specified path.
@@ -124,7 +124,7 @@ class PressDAO extends DAO
 	/**
 	 * Insert a new press.
 	 * @param $press Press
-	 */	
+	 */
 	function insertPress(&$press) {
 		$this->update(
 			'INSERT INTO presses
@@ -194,18 +194,19 @@ class PressDAO extends DAO
 	function deletePressById($pressId) {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$pressSettingsDao->deleteSettingsByPress($pressId);
-		
+
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$seriesDao->deleteByPressId($pressId);
-				
+
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplateDao->deleteEmailTemplatesByPress($pressId);
 
 		$monographDAO =& DAORegistry::getDAO('MonographDAO');
 		$monographDAO->deleteMonographsByPress($pressId);
-		
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$roleDao->deleteRolesByPressId($pressId);		
+
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao->deleteAssignmentsByPressId($pressId);
+		$userGroupDao->deleteByPressId($pressId);
 
 		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
 		$pluginSettingsDao->deleteSettingsByPressId($pressId);

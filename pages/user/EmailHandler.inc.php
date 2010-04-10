@@ -108,9 +108,9 @@ class EmailHandler extends UserHandler {
 		);
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		if ($press) {
-			$roles =& $roleDao->getRolesByUserId($user->getId(), $press->getId());
-			foreach ($roles as $role) {
-				if (in_array($role->getRoleId(), $unlimitedEmailRoles)) $canSendUnlimitedEmails = true;
+			$roles =& $roleDao->getByUserId($user->getId(), $press->getId());
+			foreach ($roles->toArray() as $role) {
+				if (in_array($role->getId(), $unlimitedEmailRoles)) $canSendUnlimitedEmails = true;
 			}
 		}
 

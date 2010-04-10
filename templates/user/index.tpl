@@ -15,7 +15,7 @@
 
 {if $isSiteAdmin}
 	{assign var="hasRole" value=1}
-	&#187; <a href="{url press="index" page=$isSiteAdmin->getRolePath()}">{$isSiteAdmin->getRoleName()|escape}</a>
+	&#187; <a href="{url press="index" page=$isSiteAdmin->getPath()}">{$isSiteAdmin->getLocalizedName()|escape}</a>
 	{call_hook name="Templates::User::Index::Site"}
 {/if}
 
@@ -28,16 +28,13 @@
 	<h4><a href="{url press=$press->getPath() page="user"}">{$press->getLocalizedName()|escape}</a></h4>
 	<ul class="plain">
 		{assign var="pressId" value=$press->getId()}
-		{section name=role loop=$userRoles[$pressId]}
-			{if $userRoles[$pressId][role]->getPath() != 'reader'}
-				{if $userRoles[$pressId][role]->isCustomRole()}
-					{url|assign:"rolePath" press=$press->getPath() page=$userRoles[$pressId][role]->getPath() roleId=$userRoles[$pressId][role]->getId()}
-				{else}
-					{url|assign:"rolePath" press=$press->getPath() page=$userRoles[$pressId][role]->getPath()}
-				{/if}
-				<li>&#187; <a href="{$rolePath|escape}">{$userRoles[$pressId][role]->getLocalizedName()|escape}</a></li>
-			{/if}
-		{/section}
+		{assign var=groupIterator value=$userGroups[$pressId]}
+		{iterate from=groupIterator item=userGroup}
+			{assign var="hasRole" value=1}
+			{if $userGroup->getPath() != 'reader'}
+				<li>&#187; <a href="{url press=$press->getPath() page=$userGroup->getPath()}">{$userGroup->getLocalizedName()|escape}</a></li>
+			{/if}	
+		{/iterate}
 		{call_hook name="Templates::User::Index::Press" press=$press}
 	</ul>
 {/foreach}
@@ -48,20 +45,17 @@
 <ul class="plain">
 	{if $isSiteAdmin && !$hasOtherPresses}
 		{assign var="hasRole" value=1}
-		<li>&#187; <a href="{url press="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
+		<li>&#187; <a href="{url press="index" page=$isSiteAdmin->getPath()}">{translate key=$isSiteAdmin->getLocalizedName()}</a></li>
 	{/if}
+	
 	{assign var="pressId" value=$userPress->getId()}
-	{section name=role loop=$userRoles[$pressId]}
-		{assign var="hasRole" value=1}
-		{if $userRoles[$pressId][role]->getPath() != 'reader'}
-			{if $userRoles[$pressId][role]->isCustomRole()}
-				{url|assign:"rolePath" press=$userPress->getPath() page=$userRoles[$pressId][role]->getPath() roleId=$userRoles[$pressId][role]->getId()}
-			{else}
-				{url|assign:"rolePath" press=$userPress->getPath() page=$userRoles[$pressId][role]->getPath()}
-			{/if}
-			<li>&#187; <a href="{$rolePath|escape}">{$userRoles[$pressId][role]->getLocalizedName()|escape}</a></li>
-		{/if}
-	{/section}
+		{assign var=groupIterator value=$userGroups[$pressId]}
+		{iterate from=groupIterator item=userGroup}
+			{assign var="hasRole" value=1}
+			{if $userGroup->getPath() != 'reader'}
+				<li>&#187; <a href="{url press=$userPress->getPath() page=$userGroup->getPath()}">{$userGroup->getLocalizedName()|escape}</a></li>
+			{/if}	
+	{/iterate}
 </ul>
 {/if}{* $showAllPresses *}
 

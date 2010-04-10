@@ -9,7 +9,7 @@
  * @class AdminPeopleHandler
  * @ingroup pages_admin
  *
- * @brief Handle requests for people management functions. 
+ * @brief Handle requests for people management functions.
  */
 
 // $Id$
@@ -23,7 +23,7 @@ class AdminPeopleHandler extends AdminHandler {
 	 function AdminPeopleHandler() {
 	 	parent::AdminHandler();
 	 }
-	 
+
 	/**
 	 * Allow the Site Administrator to merge user accounts, including attributed monographs etc.
 	 */
@@ -31,7 +31,7 @@ class AdminPeopleHandler extends AdminHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		$templateMgr =& TemplateManager::getManager();
@@ -140,14 +140,15 @@ class AdminPeopleHandler extends AdminHandler {
 			$seriesEditorsDao->deleteEditorsByUserId($oldUserId);
 
 			// Transfer old user's roles
-			$roles =& $roleDao->getRolesByUserId($oldUserId);
-			foreach ($roles as $role) {
-				if (!$roleDao->roleExists($role->getPressId(), $newUserId, $role->getRoleId())) {
-					$role->setUserId($newUserId);
-					$roleDao->insertRole($role);
+			$userGroups =& $userGroupDao->getByUserId($oldUserId);
+			while( !$userGroups->eof() ) {
+				$userGroup =& $userGroups->next();
+				if (!$userGroupDao->userInGroup($userGroup->getPressId(), $newUserId, $userGroup->getId())) {
+					$userGroupDao->assignUserToGroup($newUserId, $userGroup->getId());
 				}
+				unset($userGroup);
 			}
-			$roleDao->deleteRoleByUserId($oldUserId);
+			$userGroupDao->deleteAssignmentsByUserId($oldUserId);
 
 			$userDao->deleteUserById($oldUserId);
 

@@ -71,7 +71,7 @@ class UserAction {
 			$finalCopyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
 			$initialCopyeditSignoff->setUserId($newUserId);
 			$finalCopyeditSignoff->setUserId($newUserId);
-			$signoffDao->updateObject($initialCopyeditSignoff);			
+			$signoffDao->updateObject($initialCopyeditSignoff);
 			$signoffDao->updateObject($finalCopyeditSignoff);
 			unset($copyeditorSubmission);
 			unset($initialCopyeditSignoff);
@@ -122,17 +122,15 @@ class UserAction {
 		$seriesEditorsDao->deleteEditorsByUserId($oldUserId);
 
 		// Transfer old user's roles
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
-
-		$roles =& $roleDao->getRolesByUserId($oldUserId);
-		foreach ($roles as $role) {
-			if (!$roleDao->roleExists($role->getPressId(), $newUserId, $role->getRoleId())) {
-				$role->setUserId($newUserId);
-				$roleDao->insertRole($role);
+		$userGroups =& $userGroupDao->getByUserId($oldUserId);
+		while ( !$userGroups->eof() ) {
+			$userGroup =& $userGroups->next();
+			if (!$userGroupDao->userInGroup($userGroup->getPressId(), $newUserId, $userGroup->getId())) {
+				$userGroupDao->assignUserToGroup($newUserId, $userGroup->getId());
 			}
+			unset($userGroup);
 		}
-		$roleDao->deleteRoleByUserId($oldUserId);
+		$userGroupDao->deleteAssignmentsByUserId($oldUserId);
 
 		$userDao->deleteUserById($oldUserId);
 

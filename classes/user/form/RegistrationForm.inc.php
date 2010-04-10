@@ -277,7 +277,7 @@ class RegistrationForm extends Form {
 
 		foreach ($allowedRoles as $k => $v) {
 			$roleId = $roleDao->getRoleIdFromPath($k);
-			if ($this->getData($v) && !$roleDao->roleExists($press->getId(), $userId, $roleId)) {
+			if ($this->getData($v) && !$roleDao->userHasRole($press->getId(), $userId, $roleId)) {
 				$role = new Role();
 				$role->setPressId($press->getId());
 				$role->setUserId($userId);

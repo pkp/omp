@@ -9,7 +9,7 @@
  * @class SubmissionEditHandler
  * @ingroup pages_seriesEditor
  *
- * @brief Handle requests for submission tracking. 
+ * @brief Handle requests for submission tracking.
  */
 
 // $Id$
@@ -37,7 +37,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		if (!in_array($from, array('submission', 'submissionEditing'))) return $default;
 		return $from;
 	}
-	
+
 	function submission($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
@@ -52,7 +52,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$pressSettings = $pressSettingsDao->getPressSettings($press->getId());
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR);
+		$isEditor = $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_EDITOR);
 
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$series =& $seriesDao->getById($submission->getSeriesId());
@@ -88,7 +88,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		if ($isEditor) {
 			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary');
 		}
-		
+
 		$templateMgr->display('seriesEditor/submission.tpl');
 	}
 
@@ -106,7 +106,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$reviewAssignments =& $submission->getReviewAssignments();
 		$editorDecisions = $submission->getDecisions();
 		$numRounds = $submission->getCurrentRound();
-		
+
 		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 		$reviewFormResponses = array();
 		if (isset($reviewAssignments[$numRounds-1])) {
@@ -114,7 +114,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 				$reviewFormResponses[$reviewAssignment->getReviewId()] = $reviewFormResponseDao->reviewFormResponseExists($reviewAssignment->getReviewId());
 			}
 		}
-		
+
 		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign_by_ref('submission', $submission);
@@ -139,9 +139,9 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, SERIES_EDITOR_ACCESS_REVIEW);
 		$press =& Request::getPress();
-		$submission =& $this->submission;		
+		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId);
-		
+
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
@@ -151,7 +151,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$reviewType = isset($args[1]) ? $args[1] : $submission->getCurrentReviewType();
 		if ( isset($args[1]) && !isset($args[2]) ) {
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$reviewRoundsInfo =& $monographDao->getReviewRoundsInfoById($monographId);			
+			$reviewRoundsInfo =& $monographDao->getReviewRoundsInfoById($monographId);
 			$round = isset($reviewRoundsInfo[$reviewType]) ? isset($reviewRoundsInfo[$reviewType]) : 1;
 		} else {
 			$round = isset($args[2]) ? $args[2] : $submission->getCurrentRound();
@@ -242,7 +242,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, SERIES_EDITOR_ACCESS_EDIT);
 		$press =& Request::getPress();
-		$submission =& $this->submission;		
+		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId);
 
 		$useCopyeditors = $press->getSetting('useCopyeditors');
@@ -252,7 +252,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		// check if submission is accepted
 //		$round = isset($args[1]) ? $args[1] : $submission->getCurrentRound();
 //		$editorDecisions = $submission->getDecisions($round);
-//		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;				
+//		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;
 //		$submissionAccepted = ($lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT) ? true : false;
 
 		$templateMgr =& TemplateManager::getManager();
@@ -268,7 +268,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$user =& Request::getUser();
-		$templateMgr->assign('isEditor', $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR));
+		$templateMgr->assign('isEditor', $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_EDITOR));
 
 		$templateMgr->assign('useCopyeditors', true);
 		$templateMgr->assign('useLayoutEditors', $useLayoutEditors);
@@ -283,7 +283,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, SERIES_EDITOR_ACCESS_EDIT);
 		$press =& Request::getPress();
-		$submission =& $this->submission;		
+		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId);
 
 		$useCopyeditors = $press->getSetting('useCopyeditors');
@@ -293,7 +293,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		// check if submission is accepted
 //		$round = isset($args[1]) ? $args[1] : $submission->getCurrentRound();
 //		$editorDecisions = $submission->getDecisions($round);
-//		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;				
+//		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;
 //		$submissionAccepted = ($lastDecision == SUBMISSION_EDITOR_DECISION_ACCEPT) ? true : false;
 		$submissionAccepted = true;
 		$templateMgr =& TemplateManager::getManager();
@@ -306,7 +306,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$user =& Request::getUser();
-		$templateMgr->assign('isEditor', $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR));
+		$templateMgr->assign('isEditor', $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_EDITOR));
 
 		$templateMgr->assign('useCopyeditors', true);
 		$templateMgr->assign('useLayoutEditors', $useLayoutEditors);
@@ -586,21 +586,17 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$press =& Request::getPress();
 		$submission =& $this->submission;
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$roleId = $roleDao->getRoleIdFromPath('reviewer');
+		$reviewerUserGroup =& $userGroupDao->getDefaultByRoleId($press->getId, $roleId);
 
 		$users = Request::getUserVar('users');
 		if (!is_array($users) && Request::getUserVar('userId') != null) $users = array(Request::getUserVar('userId'));
 
 		// Enroll reviewer
 		for ($i=0; $i<count($users); $i++) {
-			if (!$roleDao->roleExists($press->getId(), $users[$i], $roleId)) {
-				$role = new Role();
-				$role->setPressId($press->getId());
-				$role->setUserId($users[$i]);
-				$role->setRoleId($roleId);
-
-				$roleDao->insertRole($role);
+			if (!$userGroupDao->userInGroup($press->getId(), $users[$i], $reviewerUserGroup->getId())) {
+				$userGroupDao->assignUserToGroup($users[$i], $reviewerUserGroup->getId());
 			}
 		}
 		Request::redirect(null, null, 'selectReviewer', $monographId);
@@ -640,7 +636,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$this->validate($monographId, SERIES_EDITOR_ACCESS_REVIEW);
 		$press =& Request::getPress();
 		$submission =& $this->submission;
-		
+
 		$reviewId = Request::getUserVar('reviewId');
 
 		$send = Request::getUserVar('send')?true:false;
@@ -879,7 +875,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$this->setupTemplate(true);
 
 		$reviewId = isset($args[0]) ? (int) $args[0] : null;
-		$reviewFormId = isset($args[1]) ? (int)$args[1] : null;			
+		$reviewFormId = isset($args[1]) ? (int)$args[1] : null;
 
 		$press =& Request::getPress();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
@@ -890,7 +886,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('pageTitle', 'manager.reviewForms.preview');	
+		$templateMgr->assign('pageTitle', 'manager.reviewForms.preview');
 		$templateMgr->assign_by_ref('reviewForm', $reviewForm);
 		$templateMgr->assign('reviewFormElements', $reviewFormElements);
 		$templateMgr->assign('reviewId', $reviewId);
@@ -908,12 +904,12 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$reviewId = isset($args[1]) ? (int) $args[1] : null;
 		$this->validate($monographId, SERIES_EDITOR_ACCESS_REVIEW);
 		$submission =& $this->submission;
-		
+
 		SeriesEditorAction::clearReviewForm($submission, $reviewId);
 
 		Request::redirect(null, null, 'submissionReview', $monographId);
 	}
-	
+
 	/**
 	 * Select a review form
 	 * @param $args array ($monographId, $reviewId, $reviewFormId)
@@ -922,7 +918,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, SERIES_EDITOR_ACCESS_REVIEW);
 		$submission =& $this->submission;
-				
+
 		$reviewId = isset($args[1]) ? (int) $args[1] : null;
 		$reviewFormId = isset($args[2]) ? (int) $args[2] : null;
 
@@ -939,7 +935,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 			$this->setupTemplate(true, $monographId, 'review');
 			$templateMgr =& TemplateManager::getManager();
-				
+
 			$templateMgr->assign('monographId', $monographId);
 			$templateMgr->assign('reviewId', $reviewId);
 			$templateMgr->assign('assignedReviewFormId', $reviewAssignment->getReviewFormId());
@@ -948,7 +944,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 			$templateMgr->display('seriesEditor/selectReviewForm.tpl');
 		}
 	}
-	
+
 	/**
 	 * View review form response.
 	 * @param $args array ($monographId, $reviewId)
@@ -960,9 +956,9 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		$reviewId = isset($args[1]) ? (int) $args[1] : null;
 
-		SeriesEditorAction::viewReviewFormResponse($submission, $reviewId);	
+		SeriesEditorAction::viewReviewFormResponse($submission, $reviewId);
 	}
-	
+
 	//
 	// Editor Review
 	//
@@ -980,7 +976,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$submit = Request::getUserVar('submit');
 		if ($submit != null) {
 			SeriesEditorAction::uploadEditorVersion($submission);
-		}		
+		}
 
 		if (Request::getUserVar('setCopyeditFile')) {
 			// If the Send To Copyedit button was pressed
@@ -1026,7 +1022,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		if (isset($args[1]) && $args[1] != null && $roleDao->roleExists($press->getId(), $args[1], ROLE_ID_COPYEDITOR)) {
+		if (isset($args[1]) && $args[1] != null && $roleDao->userHasRole($press->getId(), $args[1], ROLE_ID_COPYEDITOR)) {
 			SeriesEditorAction::selectCopyeditor($submission, $args[1]);
 			Request::redirect(null, null, 'submissionEditing', $monographId);
 		} else {
@@ -1224,7 +1220,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$revisionId = isset($args[2]) ? (int) $args[2] : 0;
 
 		$this->validate($monographId, SERIES_EDITOR_ACCESS_REVIEW);
-		$submission =& $this->submission;		
+		$submission =& $this->submission;
 		SeriesEditorAction::deleteMonographFile($submission, $fileId, $revisionId);
 
 		Request::redirect(null, null, 'submissionReview', $monographId);
@@ -1243,7 +1239,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 	function restoreToQueue($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$submission =& $this->submission;		
+		$submission =& $this->submission;
 
 		SeriesEditorAction::restoreToQueue($submission);
 
@@ -1253,7 +1249,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 	function unsuitableSubmission($args) {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$submission =& $this->submission;		
+		$submission =& $this->submission;
 
 		$send = Request::getUserVar('send')?true:false;
 		$this->setupTemplate(true, $monographId, 'summary');
@@ -1282,7 +1278,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 	function updateCommentsStatus($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
-		$submission =& $this->submission;	
+		$submission =& $this->submission;
 		SeriesEditorAction::updateCommentsStatus($submission, Request::getUserVar('commentsStatus'));
 		Request::redirect(null, null, 'submission', $monographId);
 	}
@@ -1351,7 +1347,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
-		if ($editorId && $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_PRODUCTION_EDITOR)) {
+		if ($editorId && $roleDao->userHasRole($press->getId(), $editorId, ROLE_ID_PRODUCTION_EDITOR)) {
 			SeriesEditorAction::assignProductionEditor($submission, $editorId);
 			if ($op == null)
 				$op = 'submissionProduction';
@@ -1500,7 +1496,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 			// Send a notification to associated users
 			import('notification.NotificationManager');
 			$notificationManager =& new NotificationManager();
-			$monographDao =& DAORegistry::getDAO('MonographDAO'); 
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
 			$monograph =& $monographDao->getMonograph($monographId);
 			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
@@ -1860,7 +1856,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		} else {
 			$templateMgr =& TemplateManager::getManager();
-						
+
 			if (Validation::isEditor()) {
 				// Make canReview and canEdit available to templates.
 				// Since this user is an editor, both are available.

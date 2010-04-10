@@ -3,7 +3,7 @@
 /**
  * @defgroup press
  */
- 
+
 /**
  * @file classes/press/Press.inc.php
  *
@@ -11,7 +11,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Press
- * @ingroup press 
+ * @ingroup press
  * @see PressDAO
  *
  * @brief Basic class describing a press.
@@ -50,12 +50,12 @@ class Press extends DataObject {
 	function setPressName($pressName) {
 		$this->setData('name', $pressName);
 	}
-	
+
 	/**
 	 * get the name of the press
 	 */
 	function getName($locale) {
-		return $this->getSetting('name', $locale);	
+		return $this->getSetting('name', $locale);
 	}
 
 	/**
@@ -179,6 +179,7 @@ class Press extends DataObject {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		return $pressSettingsDao->updateSetting($this->getId(), $name, $value, $type, $isLocalized);
 	}
+
 	function &getLocalizedSetting($name) {
 		$returner = $this->getSetting($name, Locale::getLocale());
 		if ($returner === null) {

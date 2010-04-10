@@ -106,7 +106,8 @@ class ProfileForm extends Form {
 		$site =& Request::getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupAssignmentDao =& DAORegistry::getDAO('UserGroupAssignmentDAO');
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$userSettingsDao =& DAORegistry::getDAO('UserSettingsDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -116,7 +117,7 @@ class ProfileForm extends Form {
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
-		
+
 		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 
 		$templateMgr->assign_by_ref('presses', $presses);
@@ -125,16 +126,22 @@ class ProfileForm extends Form {
 
 		$press =& Request::getPress();
 		if ($press) {
-			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$roles =& $roleDao->getRolesByUserId($user->getId(), $press->getId());
-			$roleNames = array();
-			foreach ($roles as $role) $roleNames[$role->getRolePath()] = $role->getRoleName();
+			// get all this user's userGroups
+			// TODO: maybe this needs to be part of the userGroupAssignmentDAO.
+			$userGroupAssignments =& $userGroupAssignmentDao->getByUserId($user->getId(), $press->getId());
+			$userGroupIds = array();
+			foreach ($userGroupAssignments->toArray() as $assignment) {
+				$userGroupIds[] = $assignment->getUserGroupId();
+			}
 			$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer'));
+			$templateMgr->assign_by_ref('reviewerUserGroups', $userGroupDao->getByRoleId($press->getId(), ROLE_ID_REVIEWER));
 			$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor'));
+			$templateMgr->assign_by_ref('authorUserGroups', $userGroupDao->getByRoleId($press->getId(), ROLE_ID_AUTHOR));
 			$templateMgr->assign('allowRegReader', $press->getSetting('allowRegReader'));
-			$templateMgr->assign('roles', $roleNames);
-		}
+			$templateMgr->assign_by_ref('readerUserGroups', $userGroupDao->getByRoleId($press->getId(), ROLE_ID_READER));
+			$templateMgr->assign('userGroupIds', $userGroupIds);
 
+		}
 		$templateMgr->assign('profileImage', $user->getSetting('profileImage'));
 
 		parent::display();
@@ -168,10 +175,7 @@ class ProfileForm extends Form {
 			'country' => $user->getCountry(),
 			'biography' => $user->getBiography(null), // Localized
 			'interests' => $user->getInterests(null), // Localized
-			'userLocales' => $user->getLocales(),
-			'isAuthor' => Validation::isAuthor(),
-			'isReader' => Validation::isReader(),
-			'isReviewer' => Validation::isReviewer()
+			'userLocales' => $user->getLocales()
 		);
 	}
 
@@ -196,10 +200,7 @@ class ProfileForm extends Form {
 			'country',
 			'biography',
 			'interests',
-			'userLocales',
-			'readerRole',
-			'authorRole',
-			'reviewerRole'
+			'userLocales'
 		));
 
 		if ($this->getData('userLocales') == null || !is_array($this->getData('userLocales'))) {
@@ -244,36 +245,33 @@ class ProfileForm extends Form {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$userDao->updateObject($user);
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$notificationStatusDao =& DAORegistry::getDAO('NotificationStatusDAO');
 
 		// Roles
 		$press =& Request::getPress();
 		if ($press) {
-			$role = new Role();
-			$role->setUserId($user->getId());
-			$role->setPressId($press->getId());
 			if ($press->getSetting('allowRegReviewer')) {
-				$role->setRoleId(ROLE_ID_REVIEWER);
-				$hasRole = Validation::isReviewer();
-				$wantsRole = Request::getUserVar('reviewerRole');
-				if ($hasRole && !$wantsRole) $roleDao->deleteRole($role);
-				if (!$hasRole && $wantsRole) $roleDao->insertRole($role);
+				foreach ($this->getData('reviewerGroup') as $groupId => $wantsGroup ) {
+					$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
+					if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId);
+					if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId);
+				}
 			}
 			if ($press->getSetting('allowRegAuthor')) {
-				$role->setRoleId(ROLE_ID_AUTHOR);
-				$hasRole = Validation::isAuthor();
-				$wantsRole = Request::getUserVar('authorRole');
-				if ($hasRole && !$wantsRole) $roleDao->deleteRole($role);
-				if (!$hasRole && $wantsRole) $roleDao->insertRole($role);
+				foreach ($this->getData('authorGroup') as $groupId => $wantsGroup ) {
+					$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
+					if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId);
+					if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId);
+				}
 			}
 			if ($press->getSetting('allowRegReader')) {
-				$role->setRoleId(ROLE_ID_READER);
-				$hasRole = Validation::isReader();
-				$wantsRole = Request::getUserVar('readerRole');
-				if ($hasRole && !$wantsRole) $roleDao->deleteRole($role);
-				if (!$hasRole && $wantsRole) $roleDao->insertRole($role);
+				foreach ($this->getData('readerGroup') as $groupId => $wantsGroup ) {
+					$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
+					if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId);
+					if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId);
+				}
 			}
 		}
 

@@ -170,13 +170,9 @@ class CreateReviewerForm extends Form {
 		$user->setDateRegistered(Core::getCurrentDate());
 		$userId = $userDao->insertUser($user);
 
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$press =& Request::getPress();
-		$role = new Role();
-		$role->setPressId($press->getId());
-		$role->setUserId($userId);
-		$role->setRoleId(ROLE_ID_REVIEWER);
-		$roleDao->insertRole($role);
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$reviewerGroup =& $userGroupDao->getDefaultByRoleId(ROLE_ID_REVIEWER);
+		$userGroupDao->assignUserToGroup($userId, $reviewerGroup->getId());
 
 		if ($sendNotify) {
 			// Send welcome email to user

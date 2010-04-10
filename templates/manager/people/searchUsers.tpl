@@ -10,7 +10,10 @@
  *
  *}
 {strip}
-{translate|assign:"pageTitleTranslated" key="manager.people.roleEnrollment" role=$roleName}
+{if $userGroup}
+	{assign var=userGroupName value=$userGroup->getLocalizedName()}
+{/if}
+{translate|assign:"pageTitleTranslated" key="manager.people.roleEnrollment" role=$userGroupName}
 {include file="common/header.tpl"}
 {/strip}
 
@@ -31,60 +34,86 @@ function confirmAndPrompt(userId) {
 
 	document.disableUser.submit();
 }
+
+function toggleChecked() {
+	var elements = document.enroll.elements;
+	for (var i=0; i < elements.length; i++) {
+		if (elements[i].name == 'users[]') {
+			elements[i].checked = !elements[i].checked;
+		}
+	}
+}
 // -->
 {/literal}
 </script>
 
 {if not $omitSearch}
 	<form method="post" name="submit" action="{url op="enrollSearch"}">
-	<input type="hidden" name="flexibleRoleId" value="{$flexibleRoleId|escape}"/>
+	<input type="hidden" name="userGroupId" value="{$userGroupId|escape}"/>
 		<select name="searchField" size="1" class="selectMenu">
 			{html_options_translate options=$fieldOptions selected=$searchField}
 		</select>
 		<select name="searchMatch" size="1" class="selectMenu">
 			<option value="contains"{if $searchMatch == 'contains'} selected="selected"{/if}>{translate key="form.contains"}</option>
 			<option value="is"{if $searchMatch == 'is'} selected="selected"{/if}>{translate key="form.is"}</option>
+			<option value="startsWith"{if $searchMatch == 'startsWith'} selected="selected"{/if}>{translate key="form.startsWith"}</option>
 		</select>
 		<input type="text" size="15" name="search" class="textField" value="{$search|escape}" />&nbsp;<input type="submit" value="{translate key="common.search"}" class="button" />
 	</form>
-{/if}
-<p>{foreach from=$alphaList item=letter}<a href="{url op="enrollSearch" searchInitial=$letter flexibleRoleId=$flexibleRoleId}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op="enrollSearch" flexibleRoleId=$flexibleRoleId}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
 
-<form name="enroll" action="{if $contextRole}{url op="enroll" path=$flexibleRoleId}{else}{url op="enroll"}{/if}" method="post">
-{if !$contextRole}
+	<p>{foreach from=$alphaList item=letter}<a href="{url op="enrollSearch" searchInitial=$letter userGroupId=$userGroupId}">{if $letter == $searchInitial}<strong>{$letter|escape}</strong>{else}{$letter|escape}{/if}</a> {/foreach}<a href="{url op="enrollSearch" userGroupId=$userGroupId}">{if $searchInitial==''}<strong>{translate key="common.all"}</strong>{else}{translate key="common.all"}{/if}</a></p>
+{/if}
+
+<form name="enroll" onsubmit="return enrollUser(0)" action="{if $userGroupId}{url op="enroll" path=$userGroupId}{else}{url op="enroll"}{/if}" method="post">
+{if !$userGroup}
 	<p>
-	{translate key="manager.people.enrollUserAs"} <select name="flexibleRoleId" size="1"  class="selectMenu">
+	{translate key="manager.people.enrollUserAs"} <select name="userGroup" size="1"  class="selectMenu">
 		<option value=""></option>
-	{foreach from=$roles item=role}
-		<option value="{$role->getId()|escape}">{$role->getLocalizedName()|escape}</option>
-	{/foreach}
+		<option value="{$smarty.const.ROLE_ID_PRESS_MANAGER}">{translate key="user.role.manager"}</option>
+		<option value="{$smarty.const.ROLE_ID_EDITOR}">{translate key="user.role.editor"}</option>
+		<option value="{$smarty.const.ROLE_ID_SECTION_EDITOR}">{translate key="user.role.sectionEditor"}</option>
+		{if $roleSettings.useLayoutEditors}
+			<option value="{$smarty.const.ROLE_ID_LAYOUT_EDITOR}">{translate key="user.role.layoutEditor"}</option>
+		{/if}
+		{if $roleSettings.useCopyeditors}
+			<option value="{$smarty.const.ROLE_ID_COPYEDITOR}">{translate key="user.role.copyeditor"}</option>
+		{/if}
+		{if $roleSettings.useProofreaders}
+			<option value="{$smarty.const.ROLE_ID_PROOFREADER}">{translate key="user.role.proofreader"}</option>
+		{/if}
+		<option value="{$smarty.const.ROLE_ID_REVIEWER}">{translate key="user.role.reviewer"}</option>
+		<option value="{$smarty.const.ROLE_ID_AUTHOR}">{translate key="user.role.author"}</option>
+		<option value="{$smarty.const.ROLE_ID_READER}">{translate key="user.role.reader"}</option>
+		<option value="{$smarty.const.ROLE_ID_SUBSCRIPTION_MANAGER}">{translate key="user.role.subscriptionManager"}</option>
+
 	</select>
 	</p>
 	<script type="text/javascript">
 	<!--
 	function enrollUser(userId) {ldelim}
-		var fakeUrl = '{url op="enroll" path="ROLE_ID" userId="USER_ID"}';
-		if (document.enroll.flexibleRoleId.options[document.enroll.flexibleRoleId.selectedIndex].value == '') {ldelim}
+		var fakeUrl = '{url op="enroll" path="USER_GROUP_ID" userId="USER_ID"}';
+		if (document.enroll.roleId.options[document.enroll.roleId.selectedIndex].value == '') {ldelim}
 			alert("{translate|escape:"javascript" key="manager.people.mustChooseRole"}");
 			return false;
 		{rdelim}
-		fakeUrl = fakeUrl.replace('ROLE_ID', document.enroll.flexibleRoleId.options[document.enroll.flexibleRoleId.selectedIndex].value);
+		if (userId != 0){ldelim}
+		fakeUrl = fakeUrl.replace('USER_GROUP_ID', document.enroll.userGroupId.selectedIndex);
 		fakeUrl = fakeUrl.replace('USER_ID', userId);
 		location.href = fakeUrl;
+	{rdelim}
 	{rdelim}
 	// -->
 	</script>
 {/if}
 
-<a name="users"></a>
-
+<div id="users">
 <table width="100%" class="listing">
 <tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
 <tr class="heading" valign="bottom">
 	<td width="5%">&nbsp;</td>
-	<td width="25%">{translate key="user.username"}</td>
-	<td width="30%">{translate key="user.name"}</td>
-	<td width="30%">{translate key="user.email"}</td>
+	<td width="25%">{sort_heading key="user.username" sort="username"}</td>
+	<td width="30%">{sort_heading key="user.name" sort="name"}</td>
+	<td width="10%">{sort_heading key="user.email" sort="email"}</td>
 	<td width="10%" align="right">{translate key="common.action"}</td>
 </tr>
 <tr><td colspan="5" class="headseparator">&nbsp;</td></tr>
@@ -101,8 +130,8 @@ function confirmAndPrompt(userId) {
 		{$user->getEmail()|truncate:20:"..."|escape}&nbsp;{icon name="mail" url=$url}
 	</td>
 	<td align="right" class="nowrap">
-		{if $contextRole}
-		<a href="{url op="enroll" path=$flexibleRoleId userId=$user->getId()}" class="action">{translate key="manager.people.enroll"}</a>
+		{if $userGroup}
+		<a href="{url op="enroll" path=$userGroupId userId=$user->getId()}" class="action">{translate key="manager.people.enroll"}</a>
 		{else}
 		<a href="#" onclick="enrollUser({$user->getId()})" class="action">{translate key="manager.people.enroll"}</a>
 		{/if}
@@ -125,12 +154,13 @@ function confirmAndPrompt(userId) {
 {else}
 	<tr>
 		<td colspan="3" align="left">{page_info iterator=$users}</td>
-		<td colspan="2" align="right">{page_links anchor="users" name="users" iterator=$users searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth flexibleRoleId=$flexibleRoleId}</td>
+		<td colspan="2" align="right">{page_links anchor="users" name="users" iterator=$users searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth userGroupId=$userGroupId sort=$sort sortDirection=$sortDirection}</td>
 	</tr>
 {/if}
 </table>
+</div>
 
-<input type="submit" value="{translate key="manager.people.enrollSelected"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="manager" escape=false}'" />
+<input type="submit" value="{translate key="manager.people.enrollSelected"}" class="button defaultButton" /> <input type="button" value="{translate key="common.selectAll"}" class="button" onclick="toggleChecked()" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="manager" escape=false}'" />
 
 </form>
 

@@ -9,7 +9,7 @@
  * @class AboutHandler
  * @ingroup pages_about
  *
- * @brief Handle requests for about functions. 
+ * @brief Handle requests for about functions.
  */
 
 // $Id$
@@ -340,22 +340,22 @@ class AboutHandler extends Handler {
 	function siteMap() {
 		$this->validate();
 		$this->setupTemplate(true);
-		
+
 		$templateMgr =& TemplateManager::getManager();
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 
 		$user =& Request::getUser();
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
 		if ($user) {
-			$rolesByPress = array();
+			$userGroupsByPress = array();
 			$presses =& $pressDao->getEnabledPresses();
 			// Fetch the user's roles for each press
 			foreach ($presses->toArray() as $press) {
-				$roles =& $roleDao->getRolesByUserId($user->getId(), $press->getId());
-				if (!empty($roles)) {
-					$rolesByPress[$press->getId()] =& $roles;
+				$userGroups =& $userGroupDao->getByUserId($user->getId(), $press->getId());
+				if (!empty($userGroups)) {
+					$userGroupsByPress[$press->getId()] =& $userGroups;
 				}
 			}
 		}
@@ -363,10 +363,13 @@ class AboutHandler extends Handler {
 		$presses =& $pressDao->getEnabledPresses();
 		$templateMgr->assign_by_ref('presses', $presses->toArray());
 		if (isset($rolesByPress)) {
-			$templateMgr->assign_by_ref('rolesByPress', $rolesByPress);
+			$templateMgr->assign_by_ref('userGroupsByPress', $userGroupsByPress);
 		}
 		if ($user) {
-			$templateMgr->assign('isSiteAdmin', $roleDao->getRole(0, $user->getId(), ROLE_ID_SITE_ADMIN));
+			if (Validation::isSiteAdmin()) {
+				$adminRole = new Role(ROLE_ID_SITE_ADMIN);
+				$templateMgr->assign('isSiteAdmin', $adminRole);
+			}
 		}
 
 		$templateMgr->display('about/siteMap.tpl');

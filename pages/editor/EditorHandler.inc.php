@@ -177,8 +177,8 @@ class EditorHandler extends SeriesEditorHandler {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$submission =& $this->submission;
 
-		$isSeriesEditor = $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_SERIES_EDITOR);
-		$isEditor = $roleDao->roleExists($press->getId(), $editorId, ROLE_ID_EDITOR);
+		$isSeriesEditor = $roleDao->userHasRole($press->getId(), $editorId, ROLE_ID_SERIES_EDITOR);
+		$isEditor = $roleDao->userHasRole($press->getId(), $editorId, ROLE_ID_EDITOR);
 
 		if (isset($editorId) && $editorId != null && ($isEditor || $isSeriesEditor)) {
 			// A valid series editor has already been chosen;

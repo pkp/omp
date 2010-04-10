@@ -67,7 +67,7 @@ class Locale extends PKPLocale {
 	/**
 	 * Return the key name of the user's currently selected locale (default
 	 * is "en_US" for U.S. English).
-	 * @return string 
+	 * @return string
 	 */
 	function getLocale() {
 		static $currentLocale;
@@ -178,8 +178,8 @@ class Locale extends PKPLocale {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormatDao->installLocale($locale);
 
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
-		$flexibleRoleDao->installLocale($locale);
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao->installLocale($locale);
 	}
 
 	/**
@@ -195,8 +195,8 @@ class Locale extends PKPLocale {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormatDao->uninstallLocale($locale);
 
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
-		$flexibleRoleDao->uninstallLocale($locale);
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao->deleteSettingsByLocale($locale);
 	}
 
 	/**

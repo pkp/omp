@@ -34,7 +34,7 @@ class Install extends PKPInstall {
 	 * @see install.form.InstallForm for the expected parameters
 	 * @param $params array installer parameters
 	 * @param $descriptor string descriptor path
-	 * @param $isPlugin boolean true iff a plugin is being installed	 
+	 * @param $isPlugin boolean true iff a plugin is being installed
 	 */
 	function Install($params, $descriptor = 'install.xml', $isPlugin = false) {
 		parent::PKPInstall($descriptor, $params, $isPlugin);
@@ -80,7 +80,7 @@ class Install extends PKPInstall {
 				}
 			}
 		} else {
-			// Add initial site data 
+			// Add initial site data
 
 			$locale = $this->getParam('locale');
 			$siteDao =& DAORegistry::getDAO('SiteDAO', $this->dbconn);
@@ -119,18 +119,32 @@ class Install extends PKPInstall {
 				$this->setError(INSTALLER_ERROR_DB, $this->dbconn->errorMsg());
 				return false;
 			}
-			$roleDao =& DAORegistry::getDao('RoleDAO', $this->dbconn);
-			$role = new Role();
-			$role->setPressId(0);
-			$role->setUserId($user->getId());
-			$role->setRoleId(ROLE_ID_SITE_ADMIN);
-			if (!$roleDao->insertRole($role)) {
+
+			// Create an admin user group
+			$userGroupDao =& DAORegistry::getDao('UserGroupDAO', $this->dbconn);
+			$adminUserGroup = new UserGroup();
+			$adminUserGroup->setRoleId(ROLE_ID_SITE_ADMIN);
+			$adminUserGroup->setPressId(0);
+			$adminUserGroup->setDefault(true);
+			foreach ($this->installedLocales as $locale) {
+				$name = Locale::translate('default.roles.admin', $locale);
+				$namePlural = Locale::translate('default.roles.admins', $locale);
+				$adminUserGroup->setSetting('name', $name, $locale);
+				$adminUserGroup->setSetting('namePlural', $namePlural, $locale);
+			}
+			if (!$userGroupDao->insertUserGroup($adminUserGroup)) {
 				$this->setError(INSTALLER_ERROR_DB, $this->dbconn->errorMsg());
 				return false;
 			}
-			
+
+			// put the installer into this user group
+			if (!$userGroupDao->assignUserToGroup($user->getId(), $adminUserGroup->getId())) {
+				$this->setError(INSTALLER_ERROR_DB, $this->dbconn->errorMsg());
+				return false;
+			}
+
 			// Add initial plugin data to versions table
-			$versionDao =& DAORegistry::getDAO('VersionDAO'); 
+			$versionDao =& DAORegistry::getDAO('VersionDAO');
 			import('site.VersionCheck');
 			$categories = PluginRegistry::getCategories();
 			foreach ($categories as $category) {
@@ -138,10 +152,10 @@ class Install extends PKPInstall {
 				$plugins = PluginRegistry::getPlugins($category);
 				foreach ($plugins as $plugin) {
 					$versionFile = $plugin->getPluginPath() . '/version.xml';
-		
+
 					if (FileManager::fileExists($versionFile)) {
 						$versionInfo =& VersionCheck::parseVersionXML($versionFile);
-						$pluginVersion = $versionInfo['version'];		
+						$pluginVersion = $versionInfo['version'];
 						$pluginVersion->setCurrent(1);
 						$versionDao->insertVersion($pluginVersion);
 					}  else {
@@ -158,7 +172,7 @@ class Install extends PKPInstall {
 					}
 				}
 			}
-			
+
 		}
 
 		return true;

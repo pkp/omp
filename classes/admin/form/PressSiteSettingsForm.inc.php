@@ -146,21 +146,17 @@ class PressSiteSettingsForm extends Form {
 			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 			$publicationFormatDao->installDefaults($pressId, $installedLocales);
 
-			// Install default roles
-			$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
-			$flexibleRoleDao->installDefaults($pressId, $installedLocales);
+			// Install default user groups
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$userGroupDao->installSettings($pressId, 'registry/userGroups.xml');
 
 			// Make the site administrator the press manager of newly created presses
 			$sessionManager =& SessionManager::getManager();
 			$userSession =& $sessionManager->getUserSession();
 			if ($userSession->getUserId() != null && $userSession->getUserId() != 0 && !empty($pressId)) {
-				$roleDao =& DAORegistry::getDAO('RoleDAO');
-				$role = new Role();
-				$role->setPressId($pressId);
-				$role->setUserId($userSession->getUserId());
-				$role->setRoleId(ROLE_ID_PRESS_MANAGER);
-
-				$roleDao->insertRole($role);
+				// get the default site admin user group
+				$managerUserGroup =& $userGroupDao->getDefaultByRoleId($pressId, ROLE_ID_PRESS_MANAGER);
+				$userGroupDao->assignUserToGroup($userSession->getUserId(), $managerUserGroup->getId());
 			}
 
 			// Install default press settings

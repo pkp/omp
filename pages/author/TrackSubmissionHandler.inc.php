@@ -9,7 +9,7 @@
  * @class TrackSubmissionHandler
  * @ingroup pages_author
  *
- * @brief Handle requests for submission tracking. 
+ * @brief Handle requests for submission tracking.
  */
 
 // $Id$
@@ -18,8 +18,8 @@ import('pages.author.AuthorHandler');
 
 class TrackSubmissionHandler extends AuthorHandler {
 	/** submission associated with this request **/
-	var $submission; 
-	
+	var $submission;
+
 	/**
 	 * Constructor
 	 **/
@@ -196,7 +196,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign('useCopyeditors', $press->getSetting('useCopyeditors'));
 		$templateMgr->assign('useLayoutEditors', $press->getSetting('useLayoutEditors'));
 		$templateMgr->assign('useProofreaders', $press->getSetting('useProofreaders'));
-		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.editing');	
+		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.editing');
 		$templateMgr->display('author/submission.tpl');
 	}
 
@@ -206,7 +206,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 	function uploadRevisedVersion() {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
-		$submission =& $this->submission;	
+		$submission =& $this->submission;
 		$this->setupTemplate(true);
 
 		AuthorAction::uploadRevisedVersion($submission);
@@ -280,7 +280,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
 		$submission =& $this->submission;
-		$this->setupTemplate(true);		
+		$this->setupTemplate(true);
 
 		if (AuthorAction::completeAuthorCopyedit($submission, Request::getUserVar('send'))) {
 			Request::redirect(null, null, 'submissionEditing', $monographId);
@@ -332,7 +332,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		parent::validate();
 
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$user =& Request::getUser();
 		$press =& Request::getPress();
 		$isValid = true;

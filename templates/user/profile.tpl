@@ -10,7 +10,8 @@
  *}
 {strip}
 {assign var="pageTitle" value="user.profile.editProfile"}
-{url|assign:"url" op="profile"}{include file="common/header.tpl"}
+{url|assign:"url" op="profile"}
+{include file="common/header.tpl"}
 {/strip}
 
 <form name="profile" method="post" action="{url op="saveProfile"}" enctype="multipart/form-data">
@@ -105,13 +106,19 @@
 		<td class="label">{translate key="user.roles"}</td>
 		<td class="value">
 			{if $allowRegReader}
-				<input type="checkbox" id="readerRole" name="readerRole" {if $isReader || $readerRole}checked="checked" {/if}/>&nbsp;{fieldLabel name="readerRole" key="user.role.reader"}<br/>
+				{iterate from=readerUserGroups item=userGroup}
+				<input type="checkbox" id="readerGroup-{$userGroup->getId()}" name="readerGroup[{$userGroup->getId()}]" {if in_array($userGroup->getId(), $userGroupIds)}checked="checked" {/if}/>&nbsp;{$userGroup->getLocalizedName()}<br/>
+				{/iterate}
 			{/if}
 			{if $allowRegAuthor}
-				<input type="checkbox" id="authorRole" name="authorRole" {if $isAuthor || $authorRole}checked="checked" {/if}/>&nbsp;{fieldLabel name="authorRole" key="user.role.author"}<br/>
+				{iterate from=authorUserGroups item=userGroup}
+				<input type="checkbox" id="authorGroup-{$userGroup->getId()}" name="authorGroup[{$userGroup->getId()}]" {if in_array($userGroup->getId(), $userGroupIds)}checked="checked" {/if}/>&nbsp;{$userGroup->getLocalizedName()}<br/>
+				{/iterate}
 			{/if}
 			{if $allowRegReviewer}
-				<input type="checkbox" id="reviewerRole" name="reviewerRole" {if $isReviewer || $reviewerRole}checked="checked" {/if}/>&nbsp;{fieldLabel name="reviewerRole" key="user.role.reviewer"}<br/>
+				{iterate from=authorUserGroups item=userGroup}
+				<input type="checkbox" id="reviewerGroup-{$userGroup->getId()}" name="reviewerGroup[{$userGroup->getId()}]" {if in_array($userGroup->getId(), $userGroupIds)}checked="checked" {/if}/>&nbsp;{$userGroup->getLocalizedName()}<br/>
+				{/iterate}
 			{/if}
 		</td>
 	</tr>

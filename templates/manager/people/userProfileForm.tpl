@@ -83,7 +83,7 @@
 	 <tr valign="top">
 	 	<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
 		<td width="80%" class="value">
-			{url|assign:"userFormUrl" page="manager" op="editUser" path=$userId}
+			{url|assign:"userFormUrl" page="manager" op="editUser" path=$userId escape=false}
 			{form_language_chooser form="userForm" url=$userFormUrl}
 			<span class="instruct">{translate key="form.formLanguage.description"}</span>
 		</td>
@@ -110,7 +110,7 @@
 		<td class="value">
 			<select name="gender" id="gender" size="1" class="selectMenu">
 				{html_options_translate options=$genderOptions selected=$gender}
- 			</select>
+			</select>
 		</td>
 	</tr>
 	<tr valign="top">
@@ -122,7 +122,7 @@
 		<td class="label">{fieldLabel name="enrollAs" key="manager.people.enrollUserAs"}</td>
 		<td class="value">
 			<select name="enrollAs[]" id="enrollAs" multiple="multiple" size="11" class="selectMenu">
-			{html_options options=$roleOptions selected=$enrollAs}
+			{html_options options=$userGroupOptions selected=$enrollAs}
 			</select>
 			<br />
 			<span class="instruct">{translate key="manager.people.enrollUserAsDescription"}</span>
@@ -189,7 +189,7 @@
 	<tr valign="top">
 		<td class="label">{fieldLabel name="affiliation" key="user.affiliation"}</td>
 		<td class="value">
-			<textarea name="affiliation" id="affiliation" rows="5" cols="40" maxlength="90" class="textArea">{$affiliation|escape}</textarea><br/>
+			<textarea name="affiliation" id="affiliation" rows="5" cols="40" class="textArea">{$affiliation|escape}</textarea><br/>
 			<span class="instruct">{translate key="user.affiliation.description"}</span>
 		</td>
 	</tr>

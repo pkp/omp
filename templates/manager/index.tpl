@@ -46,9 +46,9 @@
 <h3>{translate key="manager.roles"}</h3>
 
 <ul class="plain">
-{foreach from=$roles item=role}
-	<li>&#187; <a href="{url op="people" path=$role->getPath()}">{$role->getLocalizedPluralName()}</a></li>
-{/foreach}
+{iterate from=userGroups item=userGroup}
+	<li>&#187; <a href="{url op="people" path=$userGroup->getId()}">{$userGroup->getLocalizedName()}</a></li>
+{/iterate}
 	{call_hook name="Templates::Manager::Index::Roles"}
 </ul>
 

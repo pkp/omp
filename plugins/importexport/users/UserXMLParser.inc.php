@@ -255,7 +255,7 @@ class UserXMLParser {
 			foreach ($user->getRoles() as $role) {
 				$role->setUserId($user->getId());
 				$role->setPressId($this->pressId);
-				if (!$roleDao->roleExists($role->getPressId(), $role->getUserId(), $role->getRoleId())) {
+				if (!$roleDao->userHasRole($role->getPressId(), $role->getUserId(), $role->getRoleId())) {
 					if (!$roleDao->insertRole($role)) {
 						// Failed to add role!
 						$this->errors[] = sprintf('%s: %s - %s (%s)',

@@ -40,9 +40,8 @@
 					{if $isUserLoggedIn}
 						<ul class="plain">
 							{assign var=currentPressId value=$currentPress->getId()}
-							{foreach from=$rolesByPress[$currentPressId] item=role}
-								{translate|assign:"roleName" key=$role->getRoleName()}
-								<li><a href="{url press=$currentPress->getPath() page=$role->getRolePath()}">{$roleName|escape}</a></li>
+							{foreach from=$userGroupsByPress[$currentPressId]->toArray() item=userGroup}
+								<li><a href="{url press=$currentPress->getPath() page=$userGroup->getPath()}">{$userGroup->getLocalizedName()|escape}</a></li>
 							{/foreach}
 						</ul>
 					{else}
@@ -69,7 +68,7 @@
 	</ul>
 </li>
 {if $isSiteAdmin}
-	<li><a href="{url press="index" page=$isSiteAdmin->getRolePath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
+	<li><a href="{url press="index" page=$isSiteAdmin->getPath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
 {/if}
 <li><a href="http://pkp.sfu.ca/omp">{translate key="common.openMonographPress"}</a></li>
 <li><a href="javascript:openHelp('{url press="index" page="help"}')">{translate key="help.help"}</a></li>

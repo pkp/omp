@@ -92,6 +92,10 @@ class PressLanguagesHandler extends ManagerHandler {
 			$locale
 		);
 
+		// also reload the user group localizable data
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao->installLocale($locale, $press->getId());
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign(array(
 			'currentUrl' => $request->url(null, null, 'languages'),

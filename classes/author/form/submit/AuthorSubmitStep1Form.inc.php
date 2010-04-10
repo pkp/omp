@@ -48,7 +48,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		// to submit to series flagged as "editor-only" for submissions.
 		// Otherwise, display only series they are allowed to submit to.
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_EDITOR) || $roleDao->roleExists($press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
+		$isEditor = $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_EDITOR) || $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
 
 		$seriesOptions = array('0' => Locale::translate('author.submit.selectSeries')) + $seriesDao->getTitlesByPressId($press->getId());
 		$templateMgr->assign('seriesOptions', $seriesOptions);

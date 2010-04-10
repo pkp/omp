@@ -9,7 +9,7 @@
  * @class ManagerHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for press management functions. 
+ * @brief Handle requests for press management functions.
  */
 
 // $Id$
@@ -20,14 +20,14 @@ import('handler.Handler');
 class ManagerHandler extends Handler {
 	/**
 	 * Constructor
-	 */	
+	 */
 	function ManagerHandler() {
 		parent::Handler();
-		
+
 		$this->addCheck(new HandlerValidatorPress($this));
 		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER)));
 	}
-	
+
 	/**
 	 * Display press management index page.
 	 */
@@ -39,14 +39,14 @@ class ManagerHandler extends Handler {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$announcementsEnabled = $pressSettingsDao->getSetting($press->getId(), 'enableAnnouncements');
 		$customSignoffInternal = $pressSettingsDao->getSetting($press->getId(), 'useCustomInternalReviewSignoff');
-		$customSignoffExternal = $pressSettingsDao->getSetting($press->getId(), 'useCustomExternalReviewSignoff'); 
+		$customSignoffExternal = $pressSettingsDao->getSetting($press->getId(), 'useCustomExternalReviewSignoff');
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('customSingoffEnabled', $customSignoffInternal || $customSignoffExternal );
 
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
-		$roles =& $flexibleRoleDao->getEnabledByPressId($press->getId());
-		$templateMgr->assign_by_ref('roles', $roles);
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroups =& $userGroupDao->getByPressId($press->getId());
+		$templateMgr->assign_by_ref('userGroups', $userGroups);
 
 		$session =& Request::getSession();
 		$session->unsetSessionVar('enrolmentReferrer');
