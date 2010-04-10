@@ -1,42 +1,43 @@
 <?php
 
 /**
- * @file controllers/listbuilder/settings/PressRolesListbuilderHandler.inc.php
+ * @file controllers/listbuilder/settings/AuthorRolesListbuilderHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class PressRolesListbuilderHandler
+ * @class AuthorRolesListbuilderHandler
  * @ingroup listbuilder
  *
- * @brief Class for adding new press roles.
+ * @brief Class for adding new author roles
  */
 
 import('controllers.listbuilder.settings.SetupListbuilderHandler');
 
-class PressRolesListbuilderHandler extends SetupListbuilderHandler {
+class UserGroupListbuilderHandler extends SetupListbuilderHandler {
+	/* @var $roleId the roleId that is used for this userGroup builder */
+	 var $roleId;
+
 	/**
 	 * Constructor
 	 */
-	function PressRolesListbuilderHandler() {
+	function UserGroupListbuilderHandler() {
 		parent::SetupListbuilderHandler();
 	}
 
 
 	/* Load the list from an external source into the grid structure */
 	function loadList(&$request) {
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$press =& $request->getPress();
 
 		// Get items to populate listBuilder current item list
-		$availableRoles = $flexibleRoleDao->getEnabledByPressId($press->getId());
-
+		$userGroups = $userGroupDao->getByRoleId($press->getId(), $this->roleId);
 		$items = array();
-		foreach ($availableRoles as $availableRole) {
-			if ($availableRole->getType() == FLEXIBLE_ROLE_CLASS_PRESS) {
-				$id = $availableRole->getId();
-				$items[$id] = array('item' => $availableRole->getLocalizedName(), 'attribute' => $availableRole->getLocalizedDesignation());
-			}
+		while ($item =& $userGroups->next()) {
+			$id = $item->getId();
+			$items[$id] = array('item' => $item->getLocalizedName(), 'attribute' => $item->getLocalizedAbbrev());
+			unset($item);
 		}
 		$this->setData($items);
 	}
@@ -50,8 +51,20 @@ class PressRolesListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+
+		$roleId = $request->getUserVar('roleId');
+		assert(is_numeric($roleId));
+		$this->roleId = $roleId;
+
+		if ( $request->getUserVar('title') ) {
+			$title = $request->getUserVar('title');
+		} else {
+			$role =& new Role($roleId);
+			$title = $role->getRoleName();
+		}
+
 		// Basic configuration
-		$this->setTitle('manager.setup.pressRole');
+		$this->setTitle($title);
 		$this->setSourceTitle('manager.setup.roleName');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
 		$this->setListTitle('manager.setup.currentRoles');
@@ -72,52 +85,53 @@ class PressRolesListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function addItem(&$args, &$request) {
 		$this->setupTemplate();
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$press =& $request->getPress();
 
 		$nameIndex = 'sourceTitle-' . $this->getId();
-		$roleName = $args[$nameIndex];
+		$groupName = $args[$nameIndex];
 		$abbrevIndex = 'attribute-1-' . $this->getId();
-		$roleAbbrev = $args[$abbrevIndex];
+		$groupAbbrev = $args[$abbrevIndex];
 
-		if(empty($roleName) || empty($roleAbbrev)) {
+		$authorRole =& new Role($this->roleId);
+
+		if(empty($groupName) || empty($groupAbbrev)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
 			echo $json->getString();
 		} else {
 			// Make sure the role name or abbreviation doesn't already exist
-			$availableRoles = $flexibleRoleDao->getEnabledByPressId($press->getId());
-			foreach ($availableRoles as $availableRole) {
-				if ($availableRole->getType() == FLEXIBLE_ROLE_CLASS_PRESS && ($roleName == $availableRole->getLocalizedName() || $roleAbbrev == $availableRole->getLocalizedDesignation())) {
+			$authorGroups = $userGroupDao->getByRoleId($press->getId(), $this->roleId);
+			while($group =& $authorGroups->next()) {
+				if ($groupName == $group->getLocalizedName() || $groupAbbrev == $group->getLocalizedAbbrev()) {
 					$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
 					echo $json->getString();
 					return false;
 				}
+				unset($group);
 			}
 
 			$locale = Locale::getLocale();
 
-			$flexibleRole = $flexibleRoleDao->newDataObject();
-
-			$flexibleRole->setPressId($press->getId());
-			$flexibleRole->setName($roleName, $locale);
-			$flexibleRole->setDesignation($roleAbbrev, $locale);
-			$flexibleRole->setType(FLEXIBLE_ROLE_CLASS_PRESS);
-			$flexibleRole->setEnabled(true);
-
-			$flexibleRoleId = $flexibleRoleDao->insertObject($flexibleRole);
+			$userGroup =& $userGroupDao->newDataObject();
+			$userGroup->setRoleId($this->roleId);
+			$userGroup->setPressId($press->getId());
+			$userGroup->setPath($authorRole->getPath());
+			$userGroup->setName($groupName, Locale::getLocale());
+			$userGroup->setAbbrev($groupAbbrev, Locale::getLocale());
+			$userGroupDao->insertUserGroup($userGroup);
 
 			// Return JSON with formatted HTML to insert into list
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
-			$row->setId($flexibleRoleId);
-			$rowData = array('item' => $roleName, 'attribute' => $roleAbbrev);
+			$row->setId($userGroup->getId());
+			$rowData = array('item' => $groupName, 'attribute' => $groupAbbrev);
 			$row->setData($rowData);
 			$row->initialize($request);
 
 			// List other listbuilders on the page to add this item to
 			$additionalAttributes = array('addToSources' => 'true',
-										'sourceHtml' => $this->_buildListItemHTML($flexibleRoleId, $roleName, $roleAbbrev),
-										'sourceIds' => 'selectList-listbuilder-setup-internalreviewroleslistbuilder,selectList-listbuilder-setup-externalreviewroleslistbuilder,selectList-listbuilder-setup-editorialroleslistbuilder,selectList-listbuilder-setup-productionroleslistbuilder');
+										'sourceHtml' => $this->_buildListItemHTML($userGroup->getId(), $groupName, $groupAbbrev),
+										'sourceIds' => 'selectList-listbuilder-setup-submissionroleslistbuilder');
 
 			$json = new JSON('true', $this->_renderRowInternally($request, $row), 'false', 0, $additionalAttributes);
 			echo $json->getString();
@@ -128,18 +142,17 @@ class PressRolesListbuilderHandler extends SetupListbuilderHandler {
 	 * Handle deleting items from the list
 	 */
 	function deleteItems(&$args, &$request) {
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
-		$elementIds = array();
-		foreach($args as $flexibleRoleId) {
-			$flexibleRoleDao->deleteById($flexibleRoleId);
-			$itemIds[] = $flexibleRoleId;
+		foreach($args as $userGroupId) {
+			$userGroupDao->deleteById($userGroupId);
+			$itemIds[] = $userGroupId;
 		}
 
 		// List other listbuilders on the page to delete these items from
 		$additionalAttributes = array('removeFromSources' => 'true',
 									'itemIds' => implode(',', $itemIds),
-									'sourceIds' => 'selectList-listbuilder-setup-internalreviewroleslistbuilder,selectList-listbuilder-setup-externalreviewroleslistbuilder,selectList-listbuilder-setup-editorialroleslistbuilder,selectList-listbuilder-setup-productionroleslistbuilder');
+									'sourceIds' => 'selectList-listbuilder-setup-submissionroleslistbuilder');
 
 		$json = new JSON('true', '', 'false', 0, $additionalAttributes);
 		echo $json->getString();

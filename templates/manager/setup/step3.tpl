@@ -30,13 +30,13 @@
 
 <p>{translate key="manager.setup.pressRolesDescription"}</p>
 
-{url|assign:authorRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.AuthorRolesListbuilderHandler" op="fetch"}
+{url|assign:authorRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_AUTHOR title='manager.setup.authorRole'}
 {load_url_in_div id="authorRolesContainer" url=$authorRolesUrl}
 
-{url|assign:pressRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.PressRolesListbuilderHandler" op="fetch"}
+{url|assign:pressRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_REVIEWER title='manager.setup.pressRole'}
 {load_url_in_div id="pressRolesContainer" url=$pressRolesUrl}
 
-{url|assign:managerialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.ManagerialRolesListbuilderHandler" op="fetch"}
+{url|assign:managerialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_PRESS_MANAGER title='manager.setup.managerialRole'}
 {load_url_in_div id="managerialRolesContainer" url=$managerialRolesUrl}
 
 <div class="separator"></div>
