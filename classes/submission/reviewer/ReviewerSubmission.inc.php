@@ -379,6 +379,21 @@ class ReviewerSubmission extends Monograph {
 	}
 
 	/**
+	 * Get step.
+	 * @return int
+	 */
+	function getStep() {
+		return $this->getData('step');
+	}
+
+	/**
+	 * Set status.
+	 * @param $status int
+	 */
+	function setStep($step) {
+		return $this->setData('step', $step);
+	}
+	/**
 	 * Get review file id.
 	 * @return int
 	 */

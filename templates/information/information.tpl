@@ -8,10 +8,14 @@
  *
  * $Id$
  *}
-{strip}
-{include file="common/header.tpl"}
-{/strip}
+{if !$contentOnly}
+	{strip}
+	{include file="common/header.tpl"}
+	{/strip}
+{/if}
 
 <p>{$content|nl2br}</p>
 
-{include file="common/footer.tpl"}
+{if !$contentOnly}
+	{include file="common/footer.tpl"}
+{/if}

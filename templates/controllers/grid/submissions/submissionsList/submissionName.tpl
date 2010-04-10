@@ -16,7 +16,7 @@
 {elseif $roleId == $smarty.const.ROLE_ID_EDITOR}
 	{url|assign:submissionUrl router=$smarty.const.ROUTE_PAGE page="editor" op="submission" path=$submission->getMonographId()}
 {elseif $roleId == $smarty.const.ROLE_ID_REVIEWER}
-	{url|assign:submissionUrl router=$smarty.const.ROUTE_PAGE page="reviewer" op="submission" path=$submission->getMonographId()}
+	{url|assign:submissionUrl router=$smarty.const.ROUTE_PAGE page="reviewer" op="submission" path=$submission->getReviewId()}
 {/if}
 
 <a href="{$submissionUrl}" class="action">

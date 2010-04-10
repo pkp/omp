@@ -8,10 +8,12 @@
  *
  * $Id$
  *}
-{strip}
-{assign var="pageTitle" value="submission.viewMetadata"}
-{include file="common/header.tpl"}
-{/strip}
+{if !$contentOnly}
+	{strip}
+	{assign var="pageTitle" value="submission.viewMetadata"}
+	{include file="common/header.tpl"}
+	{/strip}
+{/if}
 
 {if $canViewAuthors}
 {literal}
@@ -115,4 +117,6 @@ function show(id) {
 	</tr>
 </table>
 
-{include file="common/footer.tpl"}
+{if !$contentOnly}
+	{include file="common/footer.tpl"}
+{/if}

@@ -55,11 +55,12 @@ class Action {
 	/**
 	 * View metadata of a monograph.
 	 * @param $monograph object
+	 * @param $contentOnly boolean display only metadata information, and not header/footer/sidebar
 	 */
-	function viewMetadata($monograph) {
+	function viewMetadata($monograph, $contentOnly = false) {
 		if (!HookRegistry::call('Action::viewMetadata', array(&$monograph, &$roleId))) {
 			import('submission.form.MetadataForm');
-			$metadataForm = new MetadataForm($monograph);
+			$metadataForm = new MetadataForm($monograph, $contentOnly);
 			if ($metadataForm->getCanEdit() && $metadataForm->isLocaleResubmit()) {
 				$metadataForm->readInputData();
 			} else {

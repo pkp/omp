@@ -34,156 +34,119 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * Display the submission review page.
 	 * @param $args array
 	 */
-	function submission($args) {
+	function submission(&$args, &$request) {
 		$press =& Request::getPress();
 		$reviewId = $args[0];
 
-		$this->validate($reviewId);
+		$this->validate($request, $reviewId);
 		$user =& $this->user;
 		$submission =& $this->submission;
+		$this->setupTemplate(true, $submission->getId(), $reviewId);
+		
+		$reviewStep = $submission->getStep(); // Get the current saved step from the DB
+		$userStep = $request->getUserVar('step');
+		$step = isset($userStep) ? $userStep: $reviewStep;
+		if($step > $reviewStep) $step = $reviewStep; // Reviewer can't go past incomplete steps
 
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
-
-		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
-
-		if ($submission->getDateConfirmed() == null) {
-			$confirmedStatus = 0;
+		if($step < 4) {
+			$formClass = "ReviewerReviewStep{$step}Form";
+			import("submission.reviewer.form.$formClass");
+			
+			$reviewerForm = new $formClass($submission);
+			
+			if ($reviewerForm->isLocaleResubmit()) {
+				$reviewerForm->readInputData();
+			} else {
+				$reviewerForm->initData();
+			}
+			$reviewerForm->display();			
 		} else {
-			$confirmedStatus = 1;
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->assign_by_ref('submission', $submission);
+			$templateMgr->assign('step', 4);
+			$templateMgr->display('reviewer/review/reviewCompleted.tpl');
 		}
+	}
+	
+	/**
+	 * Save a review step.
+	 * @param $args array first parameter is the step being saved
+	 */
+	function saveStep(&$args, &$request) {
+		$step = isset($args[0]) ? $args[0] : 1;
+		$reviewId = $request->getUserVar('reviewId');
 
-		$this->setupTemplate(true, $reviewAssignment->getMonographId(), $reviewId);
+		$this->validate($request, $reviewId);
+		$submission =& $this->submission;
+		$this->setupTemplate(true, $submission->getId(), $reviewId);
+		
+		$formClass = "ReviewerReviewStep{$step}Form";
+		import("submission.reviewer.form.$formClass");
+		
+		$reviewerForm = new $formClass($submission);
+		$reviewerForm->readInputData();
 
-		$templateMgr =& TemplateManager::getManager();
+		if ($reviewerForm->validate()) {
+			$reviewerForm->execute();
 
-		$templateMgr->assign_by_ref('user', $user);
-		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
-		$templateMgr->assign('confirmedStatus', $confirmedStatus);
-		$templateMgr->assign('declined', $submission->getDeclined());
-		$templateMgr->assign('reviewFormResponseExists', $reviewFormResponseDao->reviewFormResponseExists($reviewId));
-		$templateMgr->assign('round', $submission->getCurrentRound());
-		$templateMgr->assign('reviewType', $submission->getCurrentReviewType());
-		$templateMgr->assign_by_ref('reviewFile', $reviewAssignment->getReviewFile());
-		$templateMgr->assign_by_ref('reviewerFile', $submission->getReviewerFile());
-		$templateMgr->assign_by_ref('press', $press);
-		$templateMgr->assign_by_ref('reviewGuidelines', $press->getLocalizedSetting('reviewGuidelines'));
-
-		import('submission.reviewAssignment.ReviewAssignment');
-		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
-
-		$templateMgr->assign('helpTopicId', 'editorial.reviewersRole.review');		
-		$templateMgr->display('reviewer/submission.tpl');
+			$request->redirect(null, null, 'submission', $reviewId, array('step' => $step+1));
+		} else {
+			$reviewerForm->display();
+		}
 	}
 
 	/**
-	 * Confirm whether the review has been accepted or not.
+	 * Show a form for the reviewer to enter regrets into.
 	 * @param $args array optional
 	 */
-	function confirmReview($args = null) {
+	function showDeclineReview(&$args, &$request) {
 		$reviewId = Request::getUserVar('reviewId');
-		$declineReview = Request::getUserVar('declineReview');
-
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
-
-		$this->validate($reviewId);
+	
+		$this->validate($request, $reviewId);
 		$reviewerSubmission =& $this->submission;
-
+	
 		$this->setupTemplate();
-
-		$decline = isset($declineReview) ? 1 : 0;
-
-		if (!$reviewerSubmission->getCancelled()) {
-			if (ReviewerAction::confirmReview($reviewerSubmission, $decline, Request::getUserVar('send'))) {
-				Request::redirect(null, null, 'submission', $reviewId);
-			}
-		} else {
-			Request::redirect(null, null, 'submission', $reviewId);
-		}
+	
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign_by_ref('submission', $this->submission);
+		$templateMgr->display('reviewer/review/regretMessage.tpl');
 	}
-
+	
 	/**
-	 * Save the competing interests statement, if allowed.
+	 * Save the reviewer regrets form and decline the review.
+	 * @param $args array optional
 	 */
-	function saveCompetingInterests() {
+	function saveDeclineReview(&$args, &$request) {
 		$reviewId = Request::getUserVar('reviewId');
-		$this->validate($reviewId);
+		$declineReviewMessage = Request::getUserVar('declineReviewMessage');
+		
+		$this->validate($request, $reviewId);
 		$reviewerSubmission =& $this->submission;
-
-		if ($reviewerSubmission->getDateConfirmed() && !$reviewerSubmission->getDeclined() && !$reviewerSubmission->getCancelled() && !$reviewerSubmission->getRecommendation()) {
-			$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
-			$reviewerSubmission->setCompetingInterests(Request::getUserVar('competingInterests'));
-			$reviewerSubmissionDao->updateReviewerSubmission($reviewerSubmission);
-		}
-
-		Request::redirect(null, 'reviewer', 'submission', array($reviewId));
-	}
-
-	/**
-	 * Record the reviewer recommendation.
-	 */
-	function recordRecommendation() {
-		$reviewId = Request::getUserVar('reviewId');
-		$recommendation = Request::getUserVar('recommendation');
-
-		$this->validate($reviewId);
-		$reviewerSubmission =& $this->submission;
-
-		$this->setupTemplate(true);
-
-		if (!$reviewerSubmission->getCancelled()) {
-			if (ReviewerAction::recordRecommendation($reviewerSubmission, $recommendation, Request::getUserVar('send'))) {
-				Request::redirect(null, null, 'submission', $reviewId);
-			}
-		} else {
-			Request::redirect(null, null, 'submission', $reviewId);
-		}
+	
+		// Save regret message
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
+		$reviewAssignment->setRegretMessage($declineReviewMessage);
+		$reviewAssignmentDao->updateObject($reviewAssignment);
+	
+		ReviewerAction::confirmReview($reviewerSubmission, true, true);
+		$request->redirect($request->redirect(null, 'reviewer'));
 	}
 
 	/**
 	 * View the submission metadata
 	 * @param $args array
 	 */
-	function viewMetadata($args) {
-		$reviewId = $args[0];
-		$monographId = $args[1];
+	function viewMetadata(&$args, &$request) {
+		$reviewId = $request->getUserVar('reviewId');
 
-		$this->validate($reviewId);
+		$this->validate($request, $reviewId);
 		$reviewerSubmission =& $this->submission;
 
-		$this->setupTemplate(true, $monographId, $reviewId);
+		$this->setupTemplate(true, $reviewerSubmission->getMonographId(), $reviewId);
 
-		ReviewerAction::viewMetadata($reviewerSubmission);
+		ReviewerAction::viewMetadata($reviewerSubmission, true);
 	}
-
-	/**
-	 * Upload the reviewer's annotated version of a monograph.
-	 */
-	function uploadReviewerVersion() {
-		$reviewId = Request::getUserVar('reviewId');
-
-		$this->validate($reviewId);
-		$this->setupTemplate(true);
-		
-		ReviewerAction::uploadReviewerVersion($reviewId);
-		Request::redirect(null, null, 'submission', $reviewId);
-	}
-
-	/*
-	 * Delete one of the reviewer's annotated versions of a monograph.
-	 */
-	function deleteReviewerVersion($args) {		
-		$reviewId = isset($args[0]) ? (int) $args[0] : 0;
-		$fileId = isset($args[1]) ? (int) $args[1] : 0;
-		$revision = isset($args[2]) ? (int) $args[2] : null;
-
-		$this->validate($reviewId);
-		$reviewerSubmission =& $this->submission;
-
-		if (!$reviewerSubmission->getCancelled()) ReviewerAction::deleteReviewerVersion($reviewId, $fileId, $revision);
-			Request::redirect(null, null, 'submission', $reviewId);
-		}
 
 	//
 	// Misc
@@ -193,51 +156,17 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * Download a file.
 	 * @param $args array ($monographId, $fileId, [$revision])
 	 */
-	function downloadFile($args) {
+	function downloadFile(&$args, &$request) {
 		$reviewId = isset($args[0]) ? $args[0] : 0;
 		$monographId = isset($args[1]) ? $args[1] : 0;
 		$fileId = isset($args[2]) ? $args[2] : 0;
 		$revision = isset($args[3]) ? $args[3] : null;
 
-		$this->validate($reviewId);
+		$this->validate($request, $reviewId);
 		$reviewerSubmission =& $this->submission;
 
 		if (!ReviewerAction::downloadReviewerFile($reviewId, $reviewerSubmission, $fileId, $revision)) {
 			Request::redirect(null, null, 'submission', $reviewId);
-		}
-	}
-
-	//
-	// Review Form
-	//
-
-	/**
-	 * Edit or preview review form response.
-	 * @param $args array
-	 */
-	function editReviewFormResponse($args) {
-		$reviewId = isset($args[0]) ? $args[0] : 0;
-		
-		$this->validate($reviewId);
-		$reviewerSubmission =& $this->submission;
-
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
-		$reviewFormId = $reviewAssignment->getReviewFormId();
-		if ($reviewFormId != null) {
-			ReviewerAction::editReviewFormResponse($reviewId, $reviewFormId);		
-		}
-	}
-
-	/**
-	 * Save review form response
-	 * @param $args array
-	 */
-	function saveReviewFormResponse($args) {
-		$reviewId = isset($args[0]) ? $args[0] : 0;
-		$reviewFormId = isset($args[1]) ? $args[1] : 0;
-		if (ReviewerAction::saveReviewFormResponse($reviewId, $reviewFormId)) {
-					Request::redirect(null, null, 'submission', $reviewId);
 		}
 	}
 
@@ -250,10 +179,10 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * the monograph.
 	 * Redirects to reviewer index page if validation fails.
 	 */
-	function validate($reviewId) {
+	function validate(&$request, $reviewId) {
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
-		$press =& Request::getPress();
-		$user =& Request::getUser();
+		$press =& $request->getPress();
+		$user =& $request->getUser();
 
 		$isValid = true;
 		$newKey = Request::getUserVar('key');
@@ -262,7 +191,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 
 		if (!$reviewerSubmission || $reviewerSubmission->getPressId() != $press->getId()) {
 			$isValid = false;
-		} elseif ($user && empty($newKey)) {
+		} elseif ($user) {
 			if ($reviewerSubmission->getReviewerId() != $user->getId()) {
 				$isValid = false;
 			}

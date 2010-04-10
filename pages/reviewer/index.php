@@ -23,12 +23,15 @@ switch ($op) {
 	// Submission Tracking
 	//
 	case 'submission':
+	case 'saveStep':
 	case 'confirmReview':
 	case 'saveCompetingInterests':
 	case 'recordRecommendation':
 	case 'viewMetadata':
 	case 'uploadReviewerVersion':
 	case 'deleteReviewerVersion':
+	case 'showDeclineReview':
+	case 'saveDeclineReview':
 	//
 	// Misc.
 	//

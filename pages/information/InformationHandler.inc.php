@@ -32,6 +32,7 @@ class InformationHandler extends Handler {
 		$this->validate();
 		$this->setupTemplate();
 		$press = Request::getPress();
+		$contentOnly = Request::getUserVar('contentOnly');
 
 		if ($press == null) {
 			Request::redirect('index');
@@ -71,6 +72,7 @@ class InformationHandler extends Handler {
 		$templateMgr->assign('pageCrumbTitle', $pageCrumbTitle);
 		$templateMgr->assign('pageTitle', $pageTitle);
 		$templateMgr->assign('content', $content);
+		$templateMgr->assign('contentOnly', $contentOnly); // Hide the header and footer code
 		$templateMgr->display('information/information.tpl');
 	}
 

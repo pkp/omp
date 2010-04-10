@@ -125,7 +125,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$decisions =& $this->getEditorDecisions($row['monograph_id']);
 		$reviewerSubmission->setDecisions($decisions);
 
-		// Review Assignment 
+		// Review Assignment
 		$reviewerSubmission->setReviewId($row['review_id']);
 		$reviewerSubmission->setReviewerId($row['reviewer_id']);
 		$reviewerSubmission->setReviewerFullName($row['first_name'].' '.$row['last_name']);
@@ -143,10 +143,12 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setReviewerFileId($row['reviewer_file_id']);
 		$reviewerSubmission->setQuality($row['quality']);
 		$reviewerSubmission->setRound($row['round']);
+		$reviewerSubmission->setStep($row['step']);
 		$reviewerSubmission->setReviewType($row['review_type']);
 		$reviewerSubmission->setReviewFileId($row['review_file_id']);
 		$reviewerSubmission->setReviewRevision($row['review_revision']);
-
+		$reviewerSubmission->setMonographId($row['monograph_id']);
+		
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($reviewerSubmission, $row);
 
@@ -165,6 +167,7 @@ class ReviewerSubmissionDAO extends DAO {
 					reviewer_id = ?,
 					review_type = ?,
 					round = ?,
+					step = ?,
 					competing_interests = ?,
 					recommendation = ?,
 					declined = ?,
@@ -185,6 +188,7 @@ class ReviewerSubmissionDAO extends DAO {
 				$reviewerSubmission->getReviewerId(),
 				$reviewerSubmission->getReviewType(),
 				$reviewerSubmission->getRound(),
+				$reviewerSubmission->getStep(),
 				$reviewerSubmission->getCompetingInterests(),
 				$reviewerSubmission->getRecommendation(),
 				$reviewerSubmission->getDeclined(),
@@ -275,14 +279,14 @@ class ReviewerSubmissionDAO extends DAO {
 		$submissionsCount[0] = 0;
 		$submissionsCount[1] = 0;
 
-		$sql = 'SELECT r.date_completed, r.declined, r.cancelled 
-			FROM monographs a 
-			LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id) 
-			LEFT JOIN series s ON (s.series_id = a.series_id) 
-			LEFT JOIN users u ON (r.reviewer_id = u.user_id) 
-			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.review_type = r2.review_type AND r.round = r2.round) 
-			WHERE a.press_id = ? AND 
-				r.reviewer_id = ? AND 
+		$sql = 'SELECT r.date_completed, r.declined, r.cancelled
+			FROM monographs a
+			LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id)
+			LEFT JOIN series s ON (s.series_id = a.series_id)
+			LEFT JOIN users u ON (r.reviewer_id = u.user_id)
+			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.review_type = r2.review_type AND r.round = r2.round)
+			WHERE a.press_id = ? AND
+				r.reviewer_id = ? AND
 				r.date_notified IS NOT NULL';
 
 		$result =& $this->retrieve($sql, array($pressId, $reviewerId));
@@ -336,7 +340,7 @@ class ReviewerSubmissionDAO extends DAO {
 
 		return $decisions;
 	}
-	
+
 	/**
 	 * Map a column heading value to a database value for sorting
 	 * @param string

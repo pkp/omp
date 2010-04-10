@@ -150,8 +150,12 @@
 
 <div class="main">
 
-
-<h2>{$pageTitleTranslated}</h2>
+<table class='data' style='margin-left: 10px;'>
+	<tr>
+	<td><h2>{$pageTitleTranslated}</h2></td>
+	{if $additionalHeading}<td style="width:40%;"></td><td>{$additionalHeading}</td>{/if}
+	</tr>
+</table>
 
 {if $pageSubtitle && !$pageSubtitleTranslated}{translate|assign:"pageSubtitleTranslated" key=$pageSubtitle}{/if}
 {if $pageSubtitleTranslated}

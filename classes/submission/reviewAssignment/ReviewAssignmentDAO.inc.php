@@ -434,9 +434,9 @@ class ReviewAssignmentDAO extends DAO {
 	function insertObject(&$reviewAssignment) {
 		$this->update(
 			sprintf('INSERT INTO review_assignments
-				(monograph_id, reviewer_id, review_type, round, competing_interests, recommendation, declined, replaced, cancelled, date_assigned, date_notified, date_confirmed, date_completed, date_acknowledged, date_due, reviewer_file_id, quality, date_rated, last_modified, date_reminded, reminder_was_automatic, review_form_id)
+				(monograph_id, reviewer_id, review_type, round, competing_interests, regret_message recommendation, declined, replaced, cancelled, date_assigned, date_notified, date_confirmed, date_completed, date_acknowledged, date_due, reviewer_file_id, quality, date_rated, last_modified, date_reminded, reminder_was_automatic, review_form_id)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, ?, ?, %s, %s, %s, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, %s, %s, %s, %s, ?, ?, %s, %s, %s, ?, ?)',
 				$this->datetimeToDB($reviewAssignment->getDateAssigned()), $this->datetimeToDB($reviewAssignment->getDateNotified()), $this->datetimeToDB($reviewAssignment->getDateConfirmed()), $this->datetimeToDB($reviewAssignment->getDateCompleted()), $this->datetimeToDB($reviewAssignment->getDateAcknowledged()), $this->datetimeToDB($reviewAssignment->getDateDue()), $this->datetimeToDB($reviewAssignment->getDateRated()), $this->datetimeToDB($reviewAssignment->getLastModified()), $this->datetimeToDB($reviewAssignment->getDateReminded())),
 			array(
 				(int) $reviewAssignment->getMonographId(),
@@ -444,6 +444,7 @@ class ReviewAssignmentDAO extends DAO {
 				(int) $reviewAssignment->getReviewType(),	
 				max((int) $reviewAssignment->getRound(), 1),
 				$reviewAssignment->getCompetingInterests(),
+				$reviewAssignment->getRegretMessage(),
 				$reviewAssignment->getRecommendation(),
 				(int) $reviewAssignment->getDeclined(),
 				(int) $reviewAssignment->getReplaced(),
@@ -471,6 +472,7 @@ class ReviewAssignmentDAO extends DAO {
 					review_type = ?,
 					round = ?,
 					competing_interests = ?,
+					regret_message = ?,
 					recommendation = ?,
 					declined = ?,
 					replaced = ?,
@@ -496,6 +498,7 @@ class ReviewAssignmentDAO extends DAO {
 				(int) $reviewAssignment->getReviewType(),
 				(int) $reviewAssignment->getRound(),
 				$reviewAssignment->getCompetingInterests(),
+				$reviewAssignment->getRegretMessage(),
 				$reviewAssignment->getRecommendation(),
 				(int) $reviewAssignment->getDeclined(),
 				(int) $reviewAssignment->getReplaced(),
@@ -689,6 +692,7 @@ class ReviewAssignmentDAO extends DAO {
 		$reviewAssignment->setReviewerId($row['reviewer_id']);
 		$reviewAssignment->setReviewerFullName($row['first_name'].' '.$row['last_name']);
 		$reviewAssignment->setCompetingInterests($row['competing_interests']);
+		$reviewAssignment->setRegretMessage($row['regret_message']);
 		$reviewAssignment->setRecommendation($row['recommendation']);
 		$reviewAssignment->setDateAssigned($this->datetimeFromDB($row['date_assigned']));
 		$reviewAssignment->setDateNotified($this->datetimeFromDB($row['date_notified']));

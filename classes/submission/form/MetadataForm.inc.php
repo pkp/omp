@@ -29,11 +29,14 @@ class MetadataForm extends Form {
 
 	/** @var Insert monograph components insert */
 	var $componentsInsert;
+	
+	/** @var Display only metadata content (e.g. for a modal) */
+	var $contentOnly;
 
 	/**
 	 * Constructor.
 	 */
-	function MetadataForm(&$monograph) {
+	function MetadataForm(&$monograph, $contentOnly = false) {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
@@ -81,7 +84,7 @@ class MetadataForm extends Form {
 		}
 
 		$this->monograph = $monograph;
-
+		$this->contentOnly = $contentOnly;
 		$this->addCheck(new FormValidatorPost($this));
 
 	}
@@ -137,7 +140,8 @@ class MetadataForm extends Form {
 		$templateMgr->assign('pressSettings', $settingsDao->getPressSettings($press->getId()));
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
 		$templateMgr->assign('canViewAuthors', $this->canViewAuthors);
-
+		$templateMgr->assign('contentOnly', $this->contentOnly);
+		
 		$templateMgr->assign('helpTopicId','submission.indexingAndMetadata');
 
 		parent::display();

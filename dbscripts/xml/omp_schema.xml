@@ -1174,6 +1174,7 @@
 			<NOTNULL/>
 		</field>
 		<field name="competing_interests" type="X"/>
+		<field name="regret_message" type="X"/>
 		<field name="recommendation" type="I1"/>
 		<field name="date_assigned" type="T"/>
 		<field name="date_notified" type="T"/>
@@ -1204,6 +1205,10 @@
 		<field name="quality" type="I1"/>
 		<field name="review_type" type="I8"/>
 		<field name="round" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<field name="step" type="I1">
 			<NOTNULL/>
 			<DEFAULT VALUE="1"/>
 		</field>
