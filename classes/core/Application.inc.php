@@ -119,6 +119,7 @@ class Application extends PKPApplication {
 			'RoleDAO' => 'security.RoleDAO',
 			'UserGroupDAO' => 'security.UserGroupDAO',
 			'UserGroupAssignmentDAO' => 'security.UserGroupAssignmentDAO',
+			'UserGroupStageAssignmentDAO' => 'workflow.UserGroupStageAssignmentDAO',
 			'SeriesEditorSubmissionDAO' => 'submission.seriesEditor.SeriesEditorSubmissionDAO',
 			'UserDAO' => 'user.UserDAO',
 			'UserSettingsDAO' => 'user.UserSettingsDAO'

@@ -12,32 +12,42 @@
  * @brief Class for editing internal review roles
  */
 
+//import publication stage id constants
+import('workflow.UserGroupStageAssignment');
 import('controllers.listbuilder.settings.SetupListbuilderHandler');
 
 class SubmissionRolesListbuilderHandler extends SetupListbuilderHandler {
+	/* @var the submission stage being assigned to/from */
+	var $stageId;
+
+	/* @var the role id that can be used for this stage */
+	var $roleId;
+
 	/**
 	 * Constructor
 	 */
 	function SubmissionRolesListbuilderHandler() {
 		parent::SetupListbuilderHandler();
+		$this->stageId = PUBLICATION_STAGE_ID_SUBMISSION;
+		$this->roleId = ROLE_ID_AUTHOR;
 	}
 
 	/* Load the list from an external source into the listbuilder structure */
 	function loadList(&$request) {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO');
 
 		$press =& $request->getPress();
 
 		// Get items to populate listBuilder current item list
-		$roles = $flexibleRoleDao->getByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_SUBMISSION, $press->getId());
+		$userGroups =& $userGroupStageAssignmentDao->getUserGroupsByStage($press->getId(), $this->stageId);
 
 		$items = array();
-		foreach($roles as $item) {
-			$id = $item->getId();
-			$items[$id] = array('item' => $item->getLocalizedName(), 'attribute' => $item->getLocalizedDesignation());
+		while (!$userGroups->eof()) {
+			$userGroup =& $userGroups->next();
+			$items[$userGroup->getId()] = array('item' => $userGroup->getLocalizedName(), 'attribute' => $userGroup->getLocalizedAbbrev());
+			unset($userGroup);
 		}
-
 		$this->setData($items);
 	}
 
@@ -49,19 +59,30 @@ class SubmissionRolesListbuilderHandler extends SetupListbuilderHandler {
 	/* Load possible items to populate drop-down list with */
 	function loadPossibleItemList(&$request) {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO');
 
 		$press =& $request->getPress();
 
 		// Get items to populate possible items list with
-		$currentRoleIds = $flexibleRoleDao->getIdsByArrangementId(FLEXIBLE_ROLE_ARRANGEMENT_SUBMISSION, $press->getId()); // Don't include current roles
+		$currentGroups =& $userGroupStageAssignmentDao->getUserGroupsByStage($press->getId(), $this->stageId);
+		$currentGroupIds = array();
+		while (!$currentGroups->eof()) {
+			$currentGroup =& $currentGroups->next();
+			$currentGroupIds[] = $currentGroup->getId();
+			unset($currentGroup);
+		}
+
+		// all available groups
+		$availableGroups =& $userGroupDao->getByRoleId($press->getId(), $this->roleId);
 
 		$itemList = array();
-		$availableRoles = $flexibleRoleDao->getEnabledByPressId($press->getId());
-		foreach ($availableRoles as $availableRole) {
-			if ($availableRole->getType() == FLEXIBLE_ROLE_CLASS_AUTHOR && !in_array($availableRole->getId(), $currentRoleIds)) {
-				$itemList[] = $this->_buildListItemHTML($availableRole->getId(), $availableRole->getLocalizedName(), $availableRole->getLocalizedDesignation());
+		while (!$availableGroups->eof()) {
+			$availableGroup =& $availableGroups->next();
+			if ( !in_array($availableGroup->getId(), $currentGroupIds)) {
+				$itemList[] = $this->_buildListItemHTML($availableGroup->getId(), $availableGroup->getLocalizedName(), $availableGroup->getLocalizedAbbrev());
 			}
+			unset($availableGroup);
 		}
 
 		$this->possibleItems = $itemList;
@@ -99,27 +120,28 @@ class SubmissionRolesListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function addItem(&$args, &$request) {
 		$this->setupTemplate();
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO');
 		$press =& $request->getPress();
 
 		$index = 'selectList-' . $this->getId();
-		$flexibleRoleId = (int) $args[$index];
+		$userGroupId = (int) $args[$index];
 
-		if(empty($flexibleRoleId)) {
+		// check if $userGroupId is empty or if the assignment already exists
+		if(empty($userGroupId) || $userGroupStageAssignmentDao->assignmentExists($press->getId(), $userGroupId, $this->stageId)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.selectValidOption'));
 			echo $json->getString();
 		} else {
-			$flexibleRole =& $flexibleRoleDao->getById($flexibleRoleId);
-			// FIXME: Make sure associated series doesn't already exist, else return an error modal
-
-			$flexibleRole->addAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_SUBMISSION);
-			$flexibleRoleDao->updateObject($flexibleRole);
+			// Insert the assignment
+			$userGroupStageAssignmentDao->assignGroupToStage($press->getId(), $userGroupId, $this->stageId);
 
 			// Return JSON with formatted HTML to insert into list
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$userGroup =& $userGroupDao->getById($userGroupId);
+
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
-			$row->setId($flexibleRoleId);
-			$rowData = array('item' => $flexibleRole->getLocalizedName(), 'attribute' => $flexibleRole->getLocalizedDesignation());
+			$row->setId($userGroupId);
+			$rowData = array('item' => $userGroup->getLocalizedName(), 'attribute' => $userGroup->getLocalizedAbbrev());
 			$row->setData($rowData);
 			$row->initialize($request);
 
@@ -132,15 +154,12 @@ class SubmissionRolesListbuilderHandler extends SetupListbuilderHandler {
 	 * Handle deleting items from the list
 	 */
 	function deleteItems(&$args, &$request) {
-		$flexibleRoleDao =& DAORegistry::getDAO('FlexibleRoleDAO');
+		$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO');
 
-		foreach($args as $flexibleRoleId) {
-			$flexibleRole =& $flexibleRoleDao->getById($flexibleRoleId);
-
-			$flexibleRole->removeAssociatedArrangement(FLEXIBLE_ROLE_ARRANGEMENT_SUBMISSION);
-			$flexibleRoleDao->updateObject($flexibleRole);
-
-			unset($flexibleRole);
+		$press =& $request->getPress();
+		$pressId = $press->getId();
+		foreach($args as $userGroupId) {
+			$userGroupStageAssignmentDao->removeGroupFromStage($pressId, $userGroupId, $this->stageId);
 		}
 
 		$json = new JSON('true');

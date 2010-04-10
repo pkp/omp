@@ -1310,4 +1310,36 @@
 			<UNIQUE />
 		</index>
 	</table>
+
+	<!--
+	  *
+	  * TABLE user_group_stage_assignment
+	  *
+	  -->
+	<table name="user_group_stage">
+		<field name="press_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="user_group_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="publication_stage_id" type="I8">
+			<NOTNULL />
+		</field>
+		<desc>User groups assignments to stages in the workflow</desc>
+		<index name="user_group_stage_press_id">
+			<col>press_id</col>
+		</index>
+		<index name="user_group_stage_user_group_id">
+			<col>user_group_id</col>
+		</index>
+		<index name="user_group_stage_stage_id">
+			<col>stage_id</col>
+		</index>
+		<index name="user_group_stage_pkey">
+			<col>press_id</col>
+			<col>user_group_id</col>
+			<UNIQUE />
+		</index>
+	</table>
 </schema>
