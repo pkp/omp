@@ -1,4 +1,7 @@
-/cache/
-/public/
-/config.inc.php
+config.inc.php
 .DS_Store
+build
+temp
+files
+.project
+.htaccess
