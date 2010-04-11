@@ -34,7 +34,7 @@ class UserGroupStageAssignment extends DataObject {
 	 * @return int
 	 */
 	function &getPressId() {
-	 return $this->geData('pressId');
+	 return $this->getData('pressId');
 	}
 
 	/**
@@ -50,7 +50,7 @@ class UserGroupStageAssignment extends DataObject {
 	 * @return int
 	 */
 	function &getUserGroupId() {
-	 return $this->geData('userGroupId');
+	 return $this->getData('userGroupId');
 	}
 
 	/**
@@ -66,7 +66,7 @@ class UserGroupStageAssignment extends DataObject {
 	 * @return int
 	 */
 	function &getStageId() {
-	 return $this->geData('stageId');
+	 return $this->getData('stageId');
 	}
 }
 
