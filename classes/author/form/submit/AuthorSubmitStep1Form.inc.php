@@ -111,6 +111,10 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
 			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : 0);
 
+			// Get a default user group id for an Author
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$defaultAuthorGroup =& $userGroupDao->getDefaultByRoleId($press->getId(), ROLE_ID_AUTHOR);
+
 			// Set user to initial author
 			$authorDao =& DAORegistry::getDAO('AuthorDAO');
 			$user =& Request::getUser();
@@ -122,6 +126,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$author->setCountry($user->getCountry());
 			$author->setEmail($user->getEmail());
 			$author->setUrl($user->getUrl());
+			$author->setUserGroupId($defaultAuthorGroup->getId());
 			$author->setBiography($user->getBiography(null), null);
 			$author->setPrimaryContact(1);
 

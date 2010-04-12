@@ -132,7 +132,7 @@ class AuthorDAO extends DAO {
 
 		return $authors;
 	}
-	
+
 	/**
 	 * Retrieve the number of authors assigned to a monograph
 	 * @param $monographId int
@@ -187,6 +187,7 @@ class AuthorDAO extends DAO {
 		$author->setCountry($row['country']);
 		$author->setEmail($row['email']);
 		$author->setUrl($row['url']);
+		$author->setUserGroupId($row['user_group_id']);
 		$author->setPrimaryContact($row['primary_contact']);
 		$author->setSequence($row['seq']);
 
@@ -214,9 +215,9 @@ class AuthorDAO extends DAO {
 
 		$this->update(
 			'INSERT INTO monograph_authors
-				(monograph_id, first_name, middle_name, last_name, affiliation, country, email, url, primary_contact, seq)
+				(monograph_id, first_name, middle_name, last_name, affiliation, country, email, url, user_group_id, primary_contact, seq)
 				VALUES
-				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$author->getMonographId(),
 				$author->getFirstName(),
@@ -226,6 +227,7 @@ class AuthorDAO extends DAO {
 				$author->getCountry(),
 				$author->getEmail(),
 				$author->getUrl(),
+				$author->getUserGroupId(),
 				$author->getPrimaryContact(),
 				$author->getSequence()
 			)
@@ -256,6 +258,7 @@ class AuthorDAO extends DAO {
 					country = ?,
 					email = ?,
 					url = ?,
+					user_group_id = ?,
 					primary_contact = ?,
 					seq = ?
 				WHERE author_id = ?',
@@ -267,6 +270,7 @@ class AuthorDAO extends DAO {
 				$author->getCountry(),
 				$author->getEmail(),
 				$author->getUrl(),
+				$author->getUserGroupId(),
 				$author->getPrimaryContact(),
 				$author->getSequence(),
 				$author->getId()

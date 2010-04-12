@@ -36,9 +36,8 @@ class SubmissionContributorGridCellProvider extends DataObjectGridCellProvider {
 		switch ($columnId) {
 			case 'name':
 				return $element->getFullName();
-			case 'role':
-				//FIXME: need to implement roles
-				return Locale::translate('default.roles.author');
+			case 'userGroupId':
+				return $element->getLocalizedUserGroupName();
 			case 'email':
 				return parent::getLabel($element, $columnId);
 			case 'principalContact':

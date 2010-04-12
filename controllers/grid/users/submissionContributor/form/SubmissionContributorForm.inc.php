@@ -80,10 +80,9 @@ class SubmissionContributorForm extends Form {
 				'country' => $submissionContributor->getCountry(),
 				'email' => $submissionContributor->getEmail(),
 				'url' => $submissionContributor->getUrl(),
+				'userGroupId' => $submissionContributor->getUserGroupId(),
 				'biography' => $submissionContributor->getBiography(Locale::getLocale()),
-				'primaryContact' => $submissionContributor->getPrimaryContact(),
-			// FIXME: need to implement roles
-				'role' => 'Author'
+				'primaryContact' => $submissionContributor->getPrimaryContact()
 				);
 		}
 	}
@@ -93,12 +92,24 @@ class SubmissionContributorForm extends Form {
 	 */
 	function display($request) {
 		$submissionContributor =& $this->getSubmissionContributor();
-		//assert(!$submissionContributor || is_a($submissionContributor, 'Author'));
 
 		$templateMgr =& TemplateManager::getManager();
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
+
+		$router =& $request->getRouter();
+		$context =& $router->getContext($request);
+
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroups =& $userGroupDao->getByRoleId($context->getId(), ROLE_ID_AUTHOR);
+		$authorUserGroups = array();
+		while (!$userGroups->eof()) {
+			$userGroup =& $userGroups->next();
+			$authorUserGroups[$userGroup->getId()] = $userGroup->getLocalizedName();
+			unset($userGroup);
+		}
+		$templateMgr->assign_by_ref('authorUserGroups', $authorUserGroups);
 
 		$templateMgr->assign('monographId', $this->getMonographId());
 
@@ -117,6 +128,7 @@ class SubmissionContributorForm extends Form {
 									'country',
 									'email',
 									'url',
+									'userGroupId',
 									'biography',
 									'primaryContact'));
 	}
@@ -147,6 +159,7 @@ class SubmissionContributorForm extends Form {
 		$submissionContributor->setCountry($this->getData('country'));
 		$submissionContributor->setEmail($this->getData('email'));
 		$submissionContributor->setUrl($this->getData('url'));
+		$submissionContributor->setUserGroupId($this->getData('userGroupId'));
 		$submissionContributor->setBiography($this->getData('biography'), Locale::getLocale()); // localized
 		$submissionContributor->setPrimaryContact(($this->getData('primaryContact') ? true : false));
 

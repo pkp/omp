@@ -137,7 +137,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		);
 		$this->addColumn(
 			new GridColumn(
-				'role',
+				'userGroupId',
 				'author.users.contributor.role',
 				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',

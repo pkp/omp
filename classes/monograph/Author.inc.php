@@ -45,6 +45,33 @@ class Author extends PKPAuthor {
 	function setMonographId($monographId) {
 		return $this->setData('monographId', $monographId);
 	}
+
+	/**
+	 * Set the user group id
+	 * @param $userGroupId int
+	 */
+	function setUserGroupId($userGroupId) {
+	 $this->setData('userGroupId', $userGroupId);
+	}
+
+	/**
+	 * Get the user group id
+	 * @return int
+	 */
+	function getUserGroupId() {
+	 return $this->getData('userGroupId');
+	}
+
+	/**
+	 * Get a localized version of the User Group
+	 * @return string
+	 */
+	function getLocalizedUserGroupName() {
+		//FIXME: should this be queried when fetching Author from DB?
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroup =& $userGroupDao->getById($this->getUserGroupId());
+		return $userGroup->getLocalizedName();
+	}
 }
 
 ?>
