@@ -162,11 +162,12 @@ class SubmitHandler extends AuthorHandler {
 				$request->redirect(null, null, 'submit');
 			}
 			// if the submission is complete, redirect to the submission complete tab
-			if ( $step !== false && $step != 4 && $monograph->getSubmissionProgress() == 4 ) {
+			// submission progress == 0 means complete
+			if ( $step !== false && $step != 4 && $monograph->getSubmissionProgress() == 0 ) {
 				$request->redirect(null, null, 'submit', 4, array('monographId' => $monographId));
 			}
 			// do not go beyond the current submission progress
-			if ($step !== false && $step > $monograph->getSubmissionProgress()) {
+			if ($step !== false && $monograph->getSubmissionProgress() != 0 && $step > $monograph->getSubmissionProgress()) {
 				$request->redirect(null, null, 'submit', $monograph->getSubmissionProgress(), array('monographId' => $monographId));
 			}
 		}
