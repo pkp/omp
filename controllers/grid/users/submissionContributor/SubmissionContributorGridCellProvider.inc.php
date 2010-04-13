@@ -26,25 +26,23 @@ class SubmissionContributorGridCellProvider extends DataObjectGridCellProvider {
 	// Template methods from GridCellProvider
 	//
 	/**
-	 * This method extracts the label information from a contributor (Author)
-	 * @see DataObjectGridCellProvider::getLabel()
-	 * @param $element DataObject
+	 * Extracts variables for a given column from a data element
+	 * so that they may be assigned to template before rendering.
+	 * @param $element mixed
 	 * @param $columnId string
+	 * @return array
 	 */
-	function getLabel(&$element, $columnId) {
+	function getTemplateVarsFromElement(&$element, $columnId) {
 		assert(is_a($element, 'DataObject') && !empty($columnId));
 		switch ($columnId) {
 			case 'name':
-				return $element->getFullName();
+				return array('label' => $element->getFullName());
 			case 'userGroupId':
-				return $element->getLocalizedUserGroupName();
+				return array('label' => $element->getLocalizedUserGroupName());
 			case 'email':
-				return parent::getLabel($element, $columnId);
+				return parent::getTemplateVarsFromElement($element, $columnId);
 			case 'principalContact':
-				if($element->getPrimaryContact()) {
-					$templateMgr =& TemplateManager::getManager();
-					return $templateMgr->fetch('controllers/grid/users/submissionContributor/primaryContact.tpl');
-				}
+				return array('isPrincipalContact' => $element->getPrimaryContact());
 		}
 	}
 }
