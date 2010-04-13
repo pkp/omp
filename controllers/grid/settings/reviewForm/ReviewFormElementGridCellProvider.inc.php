@@ -23,34 +23,18 @@ class ReviewFormElementGridCellProvider extends GridCellProvider {
 	}
 
 	/**
-	 * To be used by a GridRow to generate a rendered representation of
-	 * the element for the given column.
-	 * @param $row GridRow
-	 * @param $column GridColumn
-	 * @return string the rendered representation of the element for the given column
+	 * Extracts variables for a given column from a data element
+	 * so that they may be assigned to template before rendering.
+	 * @param $element mixed
+	 * @param $columnId string
+	 * @return array
 	 */
-	function render(&$row, &$column) {
-		$columnId = $column->getId();
-		assert(!empty($columnId));
-
-		$reviewFormElement =& $row->getData();
-		$questionLabel = $reviewFormElement->getLocalizedQuestion();
-
-		// Construct a default cell id
-		$rowId = $reviewFormElement->getReviewFormId();
-		assert(!empty($rowId));
-
-		$cellId = $rowId.'-'.$columnId;
-
-		// Pass control to the view to render the cell
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('id', $cellId);
-		$templateMgr->assign('label', substr($questionLabel, 0, 20));
-		$templateMgr->assign_by_ref('column', $column);
-		$templateMgr->assign_by_ref('actions', $column->getActions());
-
-		$template = $column->getTemplate();
-		assert(!empty($template));
-		return $templateMgr->fetch($template);
+	function getTemplateVarsFromElement(&$element, $columnId) {
+		assert(is_a($element, 'DataObject') && !empty($columnId));
+		switch ($columnId) {
+			case 'titles':
+				$label = String::substr($element->getLocalizedQuestion(), 0, 20);
+				return array('label' => $label);
+		}
 	}
 }

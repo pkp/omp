@@ -63,9 +63,9 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$this->setFileType($request->getUserVar('fileType'));
 		$this->setId('libraryFile' . ucwords(strtolower($this->getFileType())));
 		$this->setTitle('grid.libraryFiles.' . $this->getFileType() . '.title');
-		
+
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION));
-		
+
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
@@ -92,7 +92,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		// Basic grid row configuration
 		import('controllers.grid.settings.library.LibraryFileGridCellProvider');
 		$cellProvider =& new LibraryFileGridCellProvider();
-		$this->addColumn(new GridColumn('groups', 'grid.libraryFiles.column.files', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('files', 'grid.libraryFiles.column.files', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
 	}
 
 	//
@@ -174,10 +174,10 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		} else {
 			$json = new JSON('false', Locale::translate('common.uploadFailed'));
 		}
-		
+
 		echo '<textarea>' . $json->getString() . '</textarea>';
 	}
-	
+
 	/**
 	 * Save the name attribute for a file
 	 * @param $args array
@@ -195,7 +195,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 
 		if ($fileForm->validate()) {
 			$libraryFile = $fileForm->execute($args, $request);
-			
+
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
 			$row->setId($fileId);
@@ -206,7 +206,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		} else {
 			$json = new JSON('false');
 		}
-		
+
 		echo $json->getString();
 	}
 
