@@ -138,7 +138,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addChapter', null, $actionArgs),
-				Locale::translate('grid.action.addItem')
+				'grid.action.addItem'
 			)
 		);
 
@@ -150,6 +150,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 			new GridColumn(
 				'name',
 				'author.users.contributor.name',
+				null,
 				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider

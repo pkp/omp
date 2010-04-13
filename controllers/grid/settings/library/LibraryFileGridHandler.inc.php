@@ -82,7 +82,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addFile', null, array('gridId' => $this->getId(), 'fileType' => $this->getFileType())),
-				Locale::translate('grid.action.addItem')
+				'grid.action.addItem'
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);
@@ -92,7 +92,12 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		// Basic grid row configuration
 		import('controllers.grid.settings.library.LibraryFileGridCellProvider');
 		$cellProvider =& new LibraryFileGridCellProvider();
-		$this->addColumn(new GridColumn('files', 'grid.libraryFiles.column.files', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('files',
+										'grid.libraryFiles.column.files',
+										null,
+										$emptyActions,
+										'controllers/grid/gridCellInSpan.tpl',
+										$cellProvider));
 	}
 
 	//

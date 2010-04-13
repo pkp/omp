@@ -63,15 +63,20 @@ class ContributorGridHandler extends SetupGridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addContributor', null, array('gridId' => $this->getId())),
-				Locale::translate('grid.action.addItem')
+				'grid.action.addItem'
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);
 
 		$emptyActions = array();
 		// Basic grid row configuration
-		$this->addColumn(new GridColumn('institution', 'grid.columns.institution', $emptyActions, 'controllers/grid/gridCellInSpan.tpl'));
-		$this->addColumn(new GridColumn('url', 'grid.columns.url'));
+		$this->addColumn(new GridColumn('institution',
+										'grid.columns.institution',
+										null,
+										$emptyActions,
+										'controllers/grid/gridCellInSpan.tpl'));
+		$this->addColumn(new GridColumn('url',
+										'grid.columns.url'));
 	}
 
 	//
@@ -143,7 +148,7 @@ class ContributorGridHandler extends SetupGridHandler {
 							'url' => $contributorForm->getData('url'));
 			$row->setData($rowData);
 			$row->initialize($request);
-			
+
 			$json = new JSON('true', $this->_renderRowInternally($request, $row));
 		} else {
 			$json = new JSON('false');

@@ -37,11 +37,11 @@ class SubmissionFilesGridRow extends GridRow {
 
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
-		
+
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($rowId);
 		$monographId = $monographFile->getMonographId();
-		
+
 		if (!empty($rowId) && is_numeric($rowId)) {
 			// Actions
 			$router =& $request->getRouter();
@@ -56,7 +56,8 @@ class SubmissionFilesGridRow extends GridRow {
 					GRID_ACTION_MODE_MODAL,
 					GRID_ACTION_TYPE_REPLACE,
 					$router->url($request, null, null, 'editFile', null, $actionArgs),
-					Locale::translate('grid.action.edit'),
+					'grid.action.edit',
+					null,
 					'edit'
 				));
 			$this->addAction(
@@ -65,7 +66,8 @@ class SubmissionFilesGridRow extends GridRow {
 					GRID_ACTION_MODE_CONFIRM,
 					GRID_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'deleteFile', null, $actionArgs),
-					Locale::translate('grid.action.delete'),
+					'grid.action.delete',
+					null,
 					'delete'
 				));
 		}

@@ -62,7 +62,6 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 		$itemList = array();
 		while($item =& $submissionContributors->next()) {
 			$id = $item->getId();
-			//var_dump($id);
 			if(!in_array($id, $contributorIds)) {
 				$itemList[] = $this->_buildListItemHTML($id, $item->getFullName());
 			}

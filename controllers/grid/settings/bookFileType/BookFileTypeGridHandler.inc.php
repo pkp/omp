@@ -56,7 +56,7 @@ class BookFileTypeGridHandler extends GridHandler {
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$bookFileTypes =& $bookFileTypeDao->getEnabledByPressId($press->getId());
 		$this->setData($bookFileTypes);
-		
+
 		// Add grid-level actions
 		$router =& $request->getRouter();
 		$actionArgs = array('gridId' => $this->getId());
@@ -66,7 +66,7 @@ class BookFileTypeGridHandler extends GridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addBookFileType', null, $actionArgs),
-				Locale::translate('grid.action.addItem')
+				'grid.action.addItem'
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);
@@ -76,7 +76,7 @@ class BookFileTypeGridHandler extends GridHandler {
 				GRID_ACTION_MODE_CONFIRM,
 				GRID_ACTION_TYPE_NOTHING,
 				$router->url($request, null, null, 'restoreBookFileTypes', null, $actionArgs),
-				Locale::translate('grid.action.restoreDefaults')
+				'grid.action.restoreDefaults'
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);
@@ -85,8 +85,18 @@ class BookFileTypeGridHandler extends GridHandler {
 		$emptyActions = array();
 		$cellProvider = new DataObjectGridCellProvider();
 		$cellProvider->setLocale(Locale::getLocale());
-		$this->addColumn(new GridColumn('name', 'common.name', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
-		$this->addColumn(new GridColumn('designation', 'common.designation', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('name',
+										'common.name',
+										null,
+										$emptyActions,
+										'controllers/grid/gridCellInSpan.tpl',
+										$cellProvider));
+		$this->addColumn(new GridColumn('designation',
+										'common.designation',
+										null,
+										$emptyActions,
+										'controllers/grid/gridCellInSpan.tpl',
+										$cellProvider));
 	}
 
 	//
@@ -121,7 +131,7 @@ class BookFileTypeGridHandler extends GridHandler {
 	 */
 	function editBookFileType(&$args, &$request) {
 		$bookFileTypeId = isset($args['bookFileTypeId']) ? $args['bookFileTypeId'] : null;
-		
+
 		//FIXME: add validation here?
 		$this->setupTemplate();
 
@@ -144,7 +154,7 @@ class BookFileTypeGridHandler extends GridHandler {
 	 */
 	function updateBookFileType(&$args, &$request) {
 		$bookFileTypeId = Request::getUserVar('rowId');
-		
+
 		//FIXME: add validation here?
 		$press =& $request->getPress();
 

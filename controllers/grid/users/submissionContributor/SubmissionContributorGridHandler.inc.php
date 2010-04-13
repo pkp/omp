@@ -110,7 +110,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addSubmissionContributor', null, $actionArgs),
-				Locale::translate('grid.action.addItem')
+				'grid.action.addItem'
 			)
 		);
 
@@ -121,6 +121,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 			new GridColumn(
 				'name',
 				'author.users.contributor.name',
+				null,
 				$emptyColumnActions,
 				'controllers/grid/gridCellInSpan.tpl',
 				$cellProvider
@@ -130,6 +131,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 			new GridColumn(
 				'email',
 				'author.users.contributor.email',
+				null,
 				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
@@ -139,6 +141,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 			new GridColumn(
 				'userGroupId',
 				'author.users.contributor.role',
+				null,
 				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
@@ -148,8 +151,9 @@ class SubmissionContributorGridHandler extends GridHandler {
 			new GridColumn(
 				'principalContact',
 				'author.users.contributor.principalContact',
+				null,
 				$emptyColumnActions,
-				'controllers/grid/gridCell.tpl',
+				'controllers/grid/users/submissionContributor/primaryContact.tpl',
 				$cellProvider
 			)
 		);

@@ -86,7 +86,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addFile', null, array('gridId' => $this->getId(), 'monographId' => $this->_monographId)),
-				Locale::translate('grid.action.addItem')
+				'grid.action.addItem'
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);
@@ -94,7 +94,11 @@ class SubmissionFilesGridHandler extends GridHandler {
 		// Columns
 		$emptyActions = array();
 		// Basic grid row configuration
-		$this->addColumn(new GridColumn('name', 'common.name', $emptyActions, 'controllers/grid/gridCellInSpan.tpl'));
+		$this->addColumn(new GridColumn('name',
+										'common.name',
+										null,
+										$emptyActions,
+										'controllers/grid/gridCellInSpan.tpl'));
 		$this->addColumn(new GridColumn('type', 'common.type'));
 	}
 

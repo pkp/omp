@@ -51,10 +51,10 @@ class ContributorForm extends Form {
 				'url' => ''
 			);
 		}
-		
+
 		// grid related data
 		$this->_data['gridId'] = $args['gridId'];
-		$this->_data['rowId'] = isset($args['rowId']) ? $args['rowId'] : null;	
+		$this->_data['rowId'] = isset($args['rowId']) ? $args['rowId'] : null;
 	}
 
 	/**
@@ -79,10 +79,15 @@ class ContributorForm extends Form {
 	function execute() {
 		$press =& Request::getPress();
 		$contributors = $press->getSetting('contributors');
-		//FIXME: a bit of kludge to get unique contributor id's
-		$this->contributorId = ($this->contributorId?$this->contributorId:(max(array_keys($contributors)) + 1));
-		$contributors[$this->contributorId] = array('institution' => $this->getData('institution'),
-							'url' => $this->getData('url'));
+		if (empty($contributors)) {
+			$contributors = array();
+			$this->contributorId = 1;
+		} else {
+			//FIXME: a bit of kludge to get unique contributor id's
+			$this->contributorId = ($this->contributorId?$this->contributorId:(max(array_keys($contributors)) + 1));
+			$contributors[$this->contributorId] = array('institution' => $this->getData('institution'),
+								'url' => $this->getData('url'));
+		}
 
 		$press->updateSetting('contributors', $contributors, 'object', false);
 		return true;

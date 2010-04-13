@@ -60,7 +60,7 @@ class SponsorGridHandler extends SetupGridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addSponsor', null, array('gridId' => $this->getId())),
-				Locale::translate('grid.action.addItem')
+				'grid.action.addItem'
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);
@@ -68,10 +68,14 @@ class SponsorGridHandler extends SetupGridHandler {
 		// Columns
 		$emptyActions = array();
 		// Basic grid row configuration
-		$this->addColumn(new GridColumn('institution', 'grid.columns.institution', $emptyActions, 'controllers/grid/gridCellInSpan.tpl'));
+		$this->addColumn(new GridColumn('institution',
+										'grid.columns.institution',
+										null,
+										$emptyActions,
+										'controllers/grid/gridCellInSpan.tpl'));
 		$this->addColumn(new GridColumn('url', 'grid.columns.url'));
 	}
-	
+
 	//
 	// Overridden methods from GridHandler
 	//

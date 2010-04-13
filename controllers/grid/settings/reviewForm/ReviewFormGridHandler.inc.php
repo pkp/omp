@@ -61,7 +61,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'createReviewForm', null, array('gridId' => $this->getId())),
-				Locale::translate('grid.action.addItem')
+				'grid.action.addItem'
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);
@@ -71,7 +71,12 @@ class ReviewFormGridHandler extends SetupGridHandler {
 		// Basic grid row configuration
 		import('controllers.grid.settings.reviewForm.ReviewFormGridCellProvider');
 		$cellProvider =& new ReviewFormGridCellProvider();
-		$this->addColumn(new GridColumn('titles', 'common.title', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('titles', '
+										common.title',
+										null,
+										$emptyActions,
+										'controllers/grid/gridCellInSpan.tpl',
+										$cellProvider));
 
 		/* FIXME: http://pkp.sfu.ca/bugzilla/show_bug.cgi?id=5122 */
 		//$this->addColumn(new GridColumn('completeCount', 'common.completed'));

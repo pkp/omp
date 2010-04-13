@@ -95,7 +95,7 @@ class SeriesGridHandler extends SetupGridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addSeries', null, array('gridId' => $this->getId())),
-				Locale::translate('grid.action.addItem')
+				'grid.action.addItem'
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);
@@ -103,7 +103,11 @@ class SeriesGridHandler extends SetupGridHandler {
 		// Columns
 		$emptyActions = array();
 		// Basic grid row configuration
-		$this->addColumn(new GridColumn('title', 'common.title', $emptyActions, 'controllers/grid/gridCellInSpan.tpl'));
+		$this->addColumn(new GridColumn('title',
+										'common.title',
+										null,
+										$emptyActions,
+										'controllers/grid/gridCellInSpan.tpl'));
 		$this->addColumn(new GridColumn('division', 'manager.setup.division'));
 		$this->addColumn(new GridColumn('editors', 'user.role.editors'));
 		$this->addColumn(new GridColumn('affiliation', 'user.affiliation'));
@@ -142,7 +146,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 */
 	function editSeries(&$args, &$request) {
 		$seriesId = isset($args['rowId']) ? $args['rowId'] : null;
-		
+
 		//FIXME: add validation here?
 		$this->setupTemplate();
 
@@ -165,7 +169,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 */
 	function updateSeries(&$args, &$request) {
 		$seriesId = Request::getUserVar('rowId');
-		
+
 		//FIXME: add validation here?
 		// -> seriesId must be present and valid
 		// -> htmlId must be present and valid

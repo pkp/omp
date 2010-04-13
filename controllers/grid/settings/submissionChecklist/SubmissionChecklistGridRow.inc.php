@@ -48,7 +48,8 @@ class SubmissionChecklistGridRow extends GridRow {
 					GRID_ACTION_MODE_MODAL,
 					GRID_ACTION_TYPE_REPLACE,
 					$router->url($request, null, null, 'editItem', null, $actionArgs),
-					Locale::translate('grid.action.edit'),
+					'grid.action.edit',
+					null,
 					'edit'
 				));
 			$this->addAction(
@@ -57,7 +58,8 @@ class SubmissionChecklistGridRow extends GridRow {
 					GRID_ACTION_MODE_CONFIRM,
 					GRID_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'deleteItem', null, $actionArgs),
-					Locale::translate('grid.action.delete'),
+					'grid.action.delete',
+					null,
 					'delete'
 				));
 		}

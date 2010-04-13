@@ -55,6 +55,7 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 					GRID_ACTION_MODE_MODAL,
 					GRID_ACTION_TYPE_REPLACE,
 					$router->url($request, null, null, 'editChapter', null, $actionArgs),
+					null,
 					$chapter->getLocalizedTitle()
 				)
 			);

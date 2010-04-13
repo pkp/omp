@@ -60,7 +60,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addItem', null, array('gridId' => $this->getId())),
-				Locale::translate('grid.action.addItem')
+				'grid.action.addItem'
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);
@@ -68,7 +68,15 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		// Columns
 		$emptyActions = array();
 		// Basic grid row configuration
-		$this->addColumn(new GridColumn('content', 'grid.submissionChecklist.column.checklistItem', $emptyActions, 'controllers/grid/gridCellInSpan.tpl'));
+		$this->addColumn(new GridColumn('content',
+										'grid.submissionChecklist.column.checklistItem',
+										null,
+										$emptyActions,
+										'controllers/grid/gridCellInSpan.tpl',
+										null,
+										array('multiline' => true)
+									)
+								);
 	}
 
 	//

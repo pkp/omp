@@ -69,7 +69,7 @@ class MastheadGridHandler extends SetupGridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addGroup', null, array('gridId' => $this->getId())),
-				Locale::translate('grid.action.addItem')
+				'grid.action.addItem'
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);
@@ -77,7 +77,11 @@ class MastheadGridHandler extends SetupGridHandler {
 		// Columns
 		$emptyActions = array();
 		// Basic grid row configuration
-		$this->addColumn(new GridColumn('groups', 'grid.masthead.column.groups', $emptyActions, 'controllers/grid/gridCellInSpan.tpl'));
+		$this->addColumn(new GridColumn('groups',
+										'grid.masthead.column.groups',
+										null,
+										$emptyActions,
+										'controllers/grid/gridCellInSpan.tpl'));
 	}
 
 	//
