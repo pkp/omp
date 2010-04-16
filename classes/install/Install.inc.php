@@ -125,12 +125,13 @@ class Install extends PKPInstall {
 			$adminUserGroup = new UserGroup();
 			$adminUserGroup->setRoleId(ROLE_ID_SITE_ADMIN);
 			$adminUserGroup->setPressId(0);
+			$adminUserGroup->setPath(ROLE_PATH_SITE_ADMIN);
 			$adminUserGroup->setDefault(true);
 			foreach ($this->installedLocales as $locale) {
 				$name = Locale::translate('default.roles.admin', $locale);
 				$namePlural = Locale::translate('default.roles.admins', $locale);
-				$adminUserGroup->setSetting('name', $name, $locale);
-				$adminUserGroup->setSetting('namePlural', $namePlural, $locale);
+				$adminUserGroup->setData('name', $name, $locale);
+				$adminUserGroup->setData('namePlural', $namePlural, $locale);
 			}
 			if (!$userGroupDao->insertUserGroup($adminUserGroup)) {
 				$this->setError(INSTALLER_ERROR_DB, $this->dbconn->errorMsg());
