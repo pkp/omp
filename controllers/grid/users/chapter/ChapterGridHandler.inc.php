@@ -160,6 +160,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 			new GridColumn(
 				'email',
 				'author.users.contributor.email',
+				null,
 				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
@@ -169,6 +170,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 			new GridColumn(
 				'role',
 				'author.users.contributor.role',
+				null,
 				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
@@ -178,6 +180,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 			new GridColumn(
 				'principalContact',
 				'author.users.contributor.principalContact',
+				null,
 				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
