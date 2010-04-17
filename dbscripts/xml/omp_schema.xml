@@ -305,6 +305,9 @@
 		<field name="user_id" type="I8">
 			<NOTNULL />
 		</field>
+		<field name="user_group_id" type="I8">
+			<NOTNULL />
+		</field>
 		<field name="press_id" type="I8">
 			<NOTNULL />
 		</field>
@@ -563,6 +566,7 @@
 		</field>
 		<field name="round" type="I8" />
 		<field name="review_type" type="I8" />
+		<field name="user_group_id" type="I8" />
 		<field name="assoc_type" type="I8"/>
 		<field name="assoc_id" type="I8"/>
 		<descr>Files associated with monograph. Includes submission files, etc.</descr>
