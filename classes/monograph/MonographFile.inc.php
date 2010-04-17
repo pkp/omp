@@ -354,6 +354,16 @@ class MonographFile extends DataObject {
 	}
 
 	/**
+	 * Get the file's document type (enumerated types)
+	 * @return string
+	 */
+	function getDocumentType() {
+		import('file.FileManager');
+		$fileManager = new FileManager();
+		return $fileManager->getDocumentType($this->getFileType());
+	}
+
+	/**
 	 * Set viewable.
 	 * @param $viewable boolean
 	 */
