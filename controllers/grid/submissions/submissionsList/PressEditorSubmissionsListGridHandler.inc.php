@@ -15,6 +15,9 @@
 // import grid base classes
 import('controllers.grid.submissions.submissionsList.SubmissionsListGridHandler');
 
+// import specific grid classes
+import('controllers.grid.submissions.submissionsList.PressEditorSubmissionsListGridCellProvider');
+
 // Filter editor
 define('FILTER_EDITOR_ALL', 0);
 define('FILTER_EDITOR_ME', 1);
@@ -26,6 +29,8 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	function PressEditorSubmissionsListGridHandler() {
 		parent::GridHandler();
 		$this->roleId = ROLE_ID_EDITOR;
+
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_EDITOR)));
 	}
 
 	//
@@ -40,9 +45,8 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	}
 
 	//
-	// Overridden methods from PKPHandler
+	// Overridden methods from SubmissionListGridHandler
 	//
-
 	/*
 	 * Configure the grid
 	 * @param PKPRequest $request
@@ -61,16 +65,43 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 		// Add author-specific columns
 		$emptyColumnActions = array();
-		$cellProvider = new SubmissionsListGridCellProvider();
+		$cellProvider = new PressEditorSubmissionsListGridCellProvider();
+
+		$session =& $request->getSession();
+		$actingAsUserGroupId = $session->getSessionVar('userGroupId');
+		// FIXME: need to implement acting as in session
+		$actingAsUserGroupId = 437;
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$actingAsUserGroup =& $userGroupDao->getById($actingAsUserGroupId);
+
+		// add a column for the role the user is acting as
 		$this->addColumn(
 			new GridColumn(
-				'status',
-				'common.status',
+				$actingAsUserGroup->getId(),
+				null,
+				$actingAsUserGroup->getLocalizedAbbrev(),
 				$emptyColumnActions,
-				'controllers/grid/gridCell.tpl',
+				'controllers/grid/common/cell/roleCell.tpl',
 				$cellProvider
 			)
 		);
+
+		// Add one column for each of the Author user groups
+		$authorUserGroups =& $userGroupDao->getByRoleId($press->getId(), ROLE_ID_AUTHOR);
+		while (!$authorUserGroups->eof()) {
+			$authorUserGroup =& $authorUserGroups->next();
+			$this->addColumn(
+				new GridColumn(
+					$authorUserGroup->getId(),
+					null,
+					$authorUserGroup->getLocalizedAbbrev(),
+					$emptyColumnActions,
+					'controllers/grid/common/cell/roleCell.tpl',
+					$cellProvider
+				)
+			);
+			unset($authorUserGroup);
+		}
 
 	}
 
@@ -86,10 +117,10 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function deleteSubmission(&$args, &$request) {
 		//FIXME: Implement
-		
+
 		return false;
 	}
-	
+
 	//
 	// Private helper functions
 	//
@@ -116,8 +147,8 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 		// TODO: nulls represent search options which have not yet been implemented
 		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
-		$submissions =& $editorSubmissionDao->$functionName($pressId, FILTER_EDITOR_ALL);
-		
+		$submissions =& $editorSubmissionDao->$functionName($pressId, 0, FILTER_EDITOR_ALL);
+
 		$data = array();
 		while($submission =& $submissions->next()) {
 			$submissionId = $submission->getId();
@@ -126,5 +157,12 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		}
 
 		return $data;
+	}
+
+	//
+	// Validator
+	//
+	function validate($requiredContexts, $request) {
+		return parent::validate($requiredContexts, $request);
 	}
 }

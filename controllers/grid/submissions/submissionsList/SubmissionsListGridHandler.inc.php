@@ -21,26 +21,18 @@ import('controllers.grid.submissions.submissionsList.SubmissionsListGridRow');
 import('submission.common.Action');
 
 class SubmissionsListGridHandler extends GridHandler {
-	/** @var int The current role */
-	var $roleId;
-	
+
 	/**
 	 * Constructor
 	 */
 	function SubmissionsListGridHandler() {
 		parent::GridHandler();
+		$this->addCheck(new HandlerValidatorPress($this));
 	}
 
 	//
 	// Getters/Setters
 	//
-	/**
-	 * @see PKPHandler::getRemoteOperations()
-	 * @return array
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array(null));
-	}
 
 	//
 	// Overridden methods from PKPHandler
@@ -55,10 +47,10 @@ class SubmissionsListGridHandler extends GridHandler {
 	function validate($requiredContexts, $request) {
 		// FIXME:
 		// Role ID in path equals user's role ID
-		
+
 		// User ID in path equals user's user ID
-		
-		return true;
+
+		return parent::validate($requiredContexts, $request);
 	}
 
 	/*
@@ -72,40 +64,14 @@ class SubmissionsListGridHandler extends GridHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_AUTHOR, LOCALE_COMPONENT_PKP_SUBMISSION));
 
 		$emptyColumnActions = array();
-		$cellProvider = new SubmissionsListGridCellProvider($this->roleId);
-		$this->addColumn(
-			new GridColumn(
-				'id',
-				'common.id',
-				$emptyColumnActions,
-				'controllers/grid/gridCellInSpan.tpl',
-				$cellProvider
-			)
-		);
-		$this->addColumn(
-			new GridColumn(
-				'dateSubmitted',
-				'submissions.submit',
-				$emptyColumnActions,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider
-			)
-		);
+		$cellProvider = new SubmissionsListGridCellProvider();
 		$this->addColumn(
 			new GridColumn(
 				'title',
-				'monograph.title',
+				'common.title',
+				null,
 				$emptyColumnActions,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider
-			)
-		);
-		$this->addColumn(
-			new GridColumn(
-				'authors',
-				'monograph.authors',
-				$emptyColumnActions,
-				'controllers/grid/gridCell.tpl',
+				'controllers/grid/gridCellInSpan.tpl',
 				$cellProvider
 			)
 		);
@@ -125,7 +91,7 @@ class SubmissionsListGridHandler extends GridHandler {
 		return $row;
 	}
 
-	
+
 	//
 	// Private helper functions
 	//
