@@ -47,22 +47,21 @@ class Monograph extends Submission {
 		parent::Submission();
  	}
 
+
 	/**
-	 * get monograph id
-	 * @return int
+	 * Set the submitter user group Id
+	 * @param $userGroupId int
 	 */
-	function getMonographId() {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->getId();
+	function setUserGroupId($userGroupId) {
+		$this->setData('userGroupId', $userGroupId);
 	}
 
 	/**
-	 * set monograph id
-	 * @param $monographId int
+	 * Get the submitter user group Id
+	 * @return int
 	 */
-	function setMonographId($monographId) {
-		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
-		return $this->setId($monographId);
+	function &getUserGroupId() {
+		return $this->getData('userGroupId');
 	}
 
 	/**
@@ -404,7 +403,7 @@ class Monograph extends Submission {
 	function setSupportingAgencies($title, $locale) {
 		return $this->setData('supportingAgencies', $title, $locale);
 	}
-	
+
 	/**
 	 * Return string of author names, separated by the specified token
 	 * FIXME: Should be moved back to Submission class
@@ -415,7 +414,7 @@ class Monograph extends Submission {
 	function getAuthorString($lastOnly = false, $separator = ', ') {
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$authors = $authorDao->getAuthorsByMonographId($this->getId());
-		
+
 		$str = '';
 		while($author =& $authors->next()) {
 			if (!empty($str)) {
@@ -435,7 +434,7 @@ class Monograph extends Submission {
 	function getAuthorEmails() {
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$authors = $authorDao->getAuthorsByMonographId($this->getId());
-		
+
 		import('mail.Mail');
 		$returner = array();
 		while($author =& $authors->next()) {
@@ -444,7 +443,7 @@ class Monograph extends Submission {
 		}
 		return $returner;
 	}
-	
+
 	/**
 	 * Get all authors of this submission.
 	 * @return array Authors

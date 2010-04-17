@@ -90,6 +90,22 @@ class MonographFile extends DataObject {
 	}
 
 	/**
+	 * Set the uploader's user group id
+	 * @param $userGroupId int
+	 */
+	function setUserGroupId($userGroupId) {
+	 $this->setData('userGroupId', $userGroupId);
+	}
+
+	/**
+	 * Get the uploader's user group id
+	 * @return int
+	 */
+	function getUserGroupId() {
+	 return $this->getData('userGroupId');
+	}
+
+	/**
 	 * Get associated ID of file. (Used, e.g., for email log attachments.)
 	 * @return int
 	 */

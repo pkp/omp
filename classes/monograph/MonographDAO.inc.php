@@ -143,6 +143,7 @@ class MonographDAO extends DAO {
 
 		$monograph->setId($row['monograph_id']);
 		$monograph->setUserId($row['user_id']);
+		$monograph->setUserGroupId($row['user_group_id']);
 		$monograph->setPressId($row['press_id']);
 		$monograph->setStatus($row['status']);
 		$monograph->setSeriesId($row['series_id']);
@@ -184,12 +185,13 @@ class MonographDAO extends DAO {
 		$monograph->stampModified();
 		$this->update(
 			sprintf('INSERT INTO monographs
-				(user_id, press_id, series_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, current_review_type, current_round, submission_file_id, revised_file_id, review_file_id, editor_file_id, pages, hide_author, comments_status, edited_volume)
+				(user_id, user_group_id, press_id, series_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, current_review_type, current_round, submission_file_id, revised_file_id, review_file_id, editor_file_id, pages, hide_author, comments_status, edited_volume)
 				VALUES
-				(?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
 				$monograph->getUserId(),
+				$monograph->getUserGroupId(),
 				$monograph->getPressId(),
 				$monograph->getSeriesId() ,
 				$monograph->getLanguage(),
@@ -226,6 +228,7 @@ class MonographDAO extends DAO {
 			sprintf('UPDATE monographs
 				SET
 					user_id = ?,
+					user_group_id = ?,
 					series_id = ?,
 					language = ?,
 					comments_to_ed = ?,
@@ -248,6 +251,7 @@ class MonographDAO extends DAO {
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
 				$monograph->getUserId(),
+				$monograph->getUserGroupId(),
 				$monograph->getSeriesId(),
 				$monograph->getLanguage(),
 				$monograph->getCommentsToEditor(),
