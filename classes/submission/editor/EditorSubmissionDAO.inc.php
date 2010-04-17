@@ -312,7 +312,7 @@ class EditorSubmissionDAO extends DAO {
 				scf.date_completed as copyedit_completed,
 				spr.date_completed as proofread_completed,
 				sle.date_completed as layout_completed,
-				atl.setting_value AS submission_title,
+				COALESCE(atl.setting_value, atpl.setting_value) AS submission_title,
 				aap.last_name AS author_name,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
@@ -444,7 +444,7 @@ class EditorSubmissionDAO extends DAO {
 	 * @param $seriesId int
 	 * @param $editorId int
 	 * @param $searchField int Symbolic SUBMISSION_FIELD_... identifier
-	 * @param $searchMatch string "is" or "contains"
+	 * @param $searchMatch string "is" or "contains" or "startsWith"
 	 * @param $search String to look in $searchField for
 	 * @param $dateField int Symbolic SUBMISSION_FIELD_DATE_... identifier
 	 * @param $dateFrom String date to search from
