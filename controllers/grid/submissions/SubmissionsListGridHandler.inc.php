@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/submissions/submissionsList/SubmissionsListGridHandler.inc.php
+ * @file controllers/grid/submissions/SubmissionsListGridHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -16,8 +16,7 @@
 import('controllers.grid.GridHandler');
 
 // import submissionsList grid specific classes
-import('controllers.grid.submissions.submissionsList.SubmissionsListGridCellProvider');
-import('controllers.grid.submissions.submissionsList.SubmissionsListGridRow');
+import('controllers.grid.submissions.SubmissionsListGridCellProvider');
 import('submission.common.Action');
 
 class SubmissionsListGridHandler extends GridHandler {
@@ -27,7 +26,7 @@ class SubmissionsListGridHandler extends GridHandler {
 	 */
 	function SubmissionsListGridHandler() {
 		parent::GridHandler();
-		$this->addCheck(new HandlerValidatorPress($this));
+		//$this->addCheck(new HandlerValidatorPress($this));
 	}
 
 	//
@@ -71,26 +70,11 @@ class SubmissionsListGridHandler extends GridHandler {
 				'common.title',
 				null,
 				$emptyColumnActions,
-				'controllers/grid/gridCellInSpan.tpl',
+				'controllers/grid/gridCell.tpl',
 				$cellProvider
 			)
 		);
 	}
-
-
-	//
-	// Overridden methods from GridHandler
-	//
-	/**
-	 * @see GridHandler::getRowInstance()
-	 * @return SubmissionContributorGridRow
-	 */
-	function &getRowInstance() {
-		// Return a submissionContributor row
-		$row = new SubmissionsListGridRow();
-		return $row;
-	}
-
 
 	//
 	// Private helper functions

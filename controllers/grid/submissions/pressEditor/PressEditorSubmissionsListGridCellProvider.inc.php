@@ -1,18 +1,18 @@
 <?php
 
 /**
- * @file classes/controllers/grid/submissions/submissionsList/SubmissionsListGridCellProvider.inc.php
+ * @file classes/controllers/grid/submissions/pressEditor/PressEditorSubmissionsListGridCellProvider.inc.php
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SubmissionsListGridCellProvider
- * @ingroup controllers_grid_submissionsList
+ * @class PressEditorSubmissionsListGridCellProvider.inc.php
+ * @ingroup controllers_grid_submissionsList_pressEditor
  *
  * @brief Class for a cell provider that can retrieve labels from submissions
  */
 
-import('controllers.grid.submissions.submissionsList.SubmissionsListGridCellProvider');
+import('controllers.grid.submissions.SubmissionsListGridCellProvider');
 
 class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCellProvider {
 	/**

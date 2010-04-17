@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/controllers/grid/submissions/submissionsList/SubmissionsListGridCellProvider.inc.php
+ * @file classes/controllers/grid/submissions/SubmissionsListGridCellProvider.inc.php
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -36,7 +36,9 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 		assert(is_a($element, 'DataObject') && !empty($columnId));
 		switch ($columnId) {
 			case 'title':
-				return array('label' => $element->getLocalizedTitle());
+				$title = $element->getLocalizedTitle();
+				if ( empty($title) ) $title = Locale::translate('common.untitled');
+				return array('label' => $title);
 		}
 	}
 }

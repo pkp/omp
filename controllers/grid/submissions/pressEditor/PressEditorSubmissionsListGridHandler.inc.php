@@ -1,22 +1,22 @@
 <?php
 
 /**
- * @file controllers/grid/submissions/submissionsList/SubmissionsListGridHandler.inc.php
+ * @file controllers/grid/submissions/pressEditor/PressEditorSubmissionsListGridHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SubmissionContributorGridHandler
- * @ingroup controllers_grid_submissionContributor
+ * @class PressEditorSubmissionsListGridHandler
+ * @ingroup controllers_grid_submissions_pressEditor
  *
  * @brief Handle press editor submissions list grid requests.
  */
 
 // import grid base classes
-import('controllers.grid.submissions.submissionsList.SubmissionsListGridHandler');
+import('controllers.grid.submissions.SubmissionsListGridHandler');
 
 // import specific grid classes
-import('controllers.grid.submissions.submissionsList.PressEditorSubmissionsListGridCellProvider');
+import('controllers.grid.submissions.pressEditor.PressEditorSubmissionsListGridCellProvider');
 
 // Filter editor
 define('FILTER_EDITOR_ALL', 0);

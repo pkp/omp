@@ -1,27 +1,29 @@
 <?php
 
 /**
- * @file controllers/grid/submissions/submissionsList/SubmissionsListGridHandler.inc.php
+ * @file controllers/grid/submissions/author/AuthorSubmissionsListGridHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SubmissionContributorGridHandler
- * @ingroup controllers_grid_submissionContributor
+ * @class AuthorSubmissionsListGridHandler
+ * @ingroup controllers_grid_submissionContributor_author
  *
  * @brief Handle author submissions list grid requests.
  */
 
 // import grid base classes
-import('controllers.grid.submissions.submissionsList.SubmissionsListGridHandler');
+import('controllers.grid.submissions.SubmissionsListGridHandler');
+
+// import author submissions list specific grid classes
+import('controllers.grid.submissions.author.AuthorSubmissionsListGridRow');
 
 class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	/**
 	 * Constructor
 	 */
 	function AuthorSubmissionsListGridHandler() {
-		parent::GridHandler();
-		$this->roleId = ROLE_ID_AUTHOR;
+		parent::SubmissionsListGridHandler();
 	}
 
 	//
@@ -36,7 +38,7 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	}
 
 	//
-	// Overridden methods from PKPHandler
+	// Overridden methods from GridHandler
 	//
 
 	/*
@@ -63,26 +65,46 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 				GRID_ACTION_MODE_LINK,
 				GRID_ACTION_TYPE_NOTHING,
 				$dispatcher->url($request, 'page', null, 'author', 'submit'),
-				Locale::translate('author.submit'),
+				'author.submit',
+				null,
 				'add'
 			)
 		);
 
+		// change the first column to use span (because we have actions)
+		$titleColumn =& $this->getColumn('title');
+		$titleColumn->setTemplate('controllers/grid/gridCellInSpan.tpl');
+
 		// Add author-specific columns
 		$emptyColumnActions = array();
-		$cellProvider = new SubmissionsListGridCellProvider();
-		$this->addColumn(
-			new GridColumn(
-				'status',
-				'common.status',
-				$emptyColumnActions,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider
-			)
-		);
+		$cellProvider = new DataObjectGridCellProvider();
+		$cellProvider->setLocale(Locale::getLocale());
+
+//		$this->addColumn(
+//			new GridColumn(
+//				'status',
+//				'common.status',
+//				null,
+//				$emptyColumnActions,
+//				'controllers/grid/gridCell.tpl',
+//				$cellProvider
+//			)
+//		);
 
 	}
 
+	//
+	// Overridden methods from GridHandler
+	//
+	/**
+	 * @see GridHandler::getRowInstance()
+	 * @return SubmissionContributorGridRow
+	 */
+	function &getRowInstance() {
+		// Return an AuthorSubmissionList row
+		$row = new AuthorSubmissionsListGridRow();
+		return $row;
+	}
 
 	//
 	// Public SubmissionsList Grid Actions
@@ -96,10 +118,10 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function deleteSubmission(&$args, &$request) {
 		//FIXME: Implement
-		
+
 		return false;
 	}
-	
+
 	//
 	// Private helper functions
 	//

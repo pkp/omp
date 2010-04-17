@@ -91,6 +91,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 			GRID_ACTION_POSITION_ABOVE
 		);
 
+		// Cell Provider
+		$cellProvider = new DataObjectGridCellProvider();
+		$cellProvider->setLocale(Locale::getLocale());
 		// Columns
 		$emptyActions = array();
 		// Basic grid row configuration
@@ -98,8 +101,14 @@ class SubmissionFilesGridHandler extends GridHandler {
 										'common.name',
 										null,
 										$emptyActions,
-										'controllers/grid/gridCellInSpan.tpl'));
-		$this->addColumn(new GridColumn('type', 'common.type'));
+										'controllers/grid/gridCellInSpan.tpl',
+										$cellProvider));
+		$this->addColumn(new GridColumn('type',
+										'common.type',
+										null,
+										$emptyActions,
+										null,
+										$cellProvider));
 	}
 
 	//
