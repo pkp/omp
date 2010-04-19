@@ -228,33 +228,18 @@ class SetupHandler extends ManagerHandler {
 			if (!isset($editData) && $setupForm->validate()) {
 				$setupForm->execute();
 
-				Request::redirect(null, null, 'setupSaved', $step);
+				// Create notification to indicate that setup was saved
+				import('notification.NotificationManager');
+				$notificationManager =& new NotificationManager();
+				$notificationManager->createTrivialNotification('notification.notification', 'manager.setup.pressSetupUpdated');
+
+				Request::redirect(null, null, 'setup', $step+1);
 			} else {
 				$setupForm->display();
 			}
 
 		} else {
 			Request::redirect();
-		}
-	}
-
-	/**
-	 * Display a "Settings Saved" message
-	 */
-	function setupSaved($args) {
-		$this->validate();
-
-		$step = isset($args[0]) ? (int) $args[0] : 0;
-
-		if ($step >= 1 && $step <= 5) {
-			$this->setupTemplate(true);
-
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->assign('setupStep', $step);
-			$templateMgr->assign('helpTopicId', 'press.managementPages.setup');
-			$templateMgr->display('manager/setup/settingsSaved.tpl');
-		} else {
-			Request::redirect(null, 'index');
 		}
 	}
 

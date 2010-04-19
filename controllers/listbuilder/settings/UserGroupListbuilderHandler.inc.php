@@ -52,7 +52,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		$roleId = $request->getUserVar('roleId');
+		$roleId = (int) $request->getUserVar('roleId');
 		assert(is_numeric($roleId));
 		$this->roleId = $roleId;
 

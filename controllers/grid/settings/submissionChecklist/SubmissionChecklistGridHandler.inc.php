@@ -69,14 +69,14 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		$emptyActions = array();
 		// Basic grid row configuration
 		$this->addColumn(new GridColumn('content',
-										'grid.submissionChecklist.column.checklistItem',
-										null,
-										$emptyActions,
-										'controllers/grid/gridCellInSpan.tpl',
-										null,
-										array('multiline' => true)
-									)
-								);
+				'grid.submissionChecklist.column.checklistItem',
+				null,
+				$emptyActions,
+				'controllers/grid/gridCellInSpan.tpl',
+				null,
+				array('multiline' => true)
+			)
+		);
 	}
 
 	//
@@ -115,10 +115,9 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function editItem(&$args, &$request) {
-		//FIXME: add validation here?
-
 		import('controllers.grid.settings.submissionChecklist.form.SubmissionChecklistForm');
-		$submissionChecklistForm = new SubmissionChecklistForm($this->getId());
+		$submissionChecklistId = isset($args['rowId']) ? $args['rowId'] : null;
+		$submissionChecklistForm = new SubmissionChecklistForm($submissionChecklistId);
 
 		if ($submissionChecklistForm->isLocaleResubmit()) {
 			$submissionChecklistForm->readInputData();
@@ -135,12 +134,12 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 * @return string
 	 */
 	function updateItem(&$args, &$request) {
-		//FIXME: add validation here?
 		// -> submissionChecklistId must be present and valid
 		// -> htmlId must be present and valid
 
 		import('controllers.grid.settings.submissionChecklist.form.SubmissionChecklistForm');
-		$submissionChecklistForm = new SubmissionChecklistForm($this->getId());
+		$submissionChecklistId = isset($args['rowId']) ? $args['rowId'] : null;
+		$submissionChecklistForm = new SubmissionChecklistForm($submissionChecklistId);
 		$submissionChecklistForm->readInputData();
 
 		if ($submissionChecklistForm->validate()) {

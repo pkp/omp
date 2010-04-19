@@ -36,7 +36,7 @@ class SubmissionChecklistGridRow extends GridRow {
 
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
-		if (!empty($rowId) && is_numeric($rowId)) {
+		if (isset($rowId) && is_numeric($rowId)) {
 			$router =& $request->getRouter();
 			$actionArgs = array(
 				'gridId' => $this->getGridId(),

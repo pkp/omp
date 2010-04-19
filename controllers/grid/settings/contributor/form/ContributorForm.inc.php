@@ -85,10 +85,10 @@ class ContributorForm extends Form {
 		} else {
 			//FIXME: a bit of kludge to get unique contributor id's
 			$this->contributorId = ($this->contributorId?$this->contributorId:(max(array_keys($contributors)) + 1));
-			$contributors[$this->contributorId] = array('institution' => $this->getData('institution'),
-								'url' => $this->getData('url'));
 		}
 
+		$contributors[$this->contributorId] = array('institution' => $this->getData('institution'),
+								'url' => $this->getData('url'));
 		$press->updateSetting('contributors', $contributors, 'object', false);
 		return true;
 	}
