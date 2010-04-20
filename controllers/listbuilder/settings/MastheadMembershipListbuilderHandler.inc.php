@@ -160,15 +160,19 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 		$sourceArray = $this->getPossibleItemList($request);
 
 		$sourceJson = new JSON('true', null, 'false', 'local');
-		$sourceContent = "[";
+		$sourceContent = array();
 		foreach ($sourceArray as $i => $item) {
-			$itemJson = new JSON('true', sprintf('%s (%s)', $item['name'], $item['abbrev']), 'false', $item['id']);
-			$sourceContent .= $itemJson->getString();
-			$sourceContent .= $item == end($sourceArray) ? "]" : ",";
+			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
+			$additionalAttributes = array(
+				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
+				'value' => $item['id']
+			);
+			$itemJson = new JSON('true', '', 'false', null, $additionalAttributes);
+			$sourceContent[] = $itemJson->getString();
 
 			unset($itemJson);
 		}
-		$sourceJson->setContent($sourceContent);
+		$sourceJson->setContent('[' . implode(',', $sourceContent) . ']');
 
 		echo $sourceJson->getString();
 	}
