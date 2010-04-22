@@ -66,6 +66,7 @@
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.form.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/ajax_upload.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/fontController.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/jquery.prettyfile.js"></script>
 
 	<!-- General JS -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/general.js"></script>
@@ -77,6 +78,7 @@
             $('ul.sf-menu').superfish(); // Initialize the navigation menu
 			jqueryValidatorI18n("{/literal}{$baseUrl}{literal}", "{/literal}{$currentLocale}{literal}"); // include the appropriate validation localization
 			fontSize("#sizer", ".page", 9, 12, 20); // Initialize the font sizer
+			$('.button').button();
 			$('a.settings').live("click", (function() { // Initialize grid settings button handler
 				$(this).parent().siblings('.row_controls').toggle(300);
 			}));

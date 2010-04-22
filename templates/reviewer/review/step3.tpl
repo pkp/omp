@@ -110,8 +110,7 @@
 		</table>
 		<form method="post" action="{url op="uploadReviewerVersion"}" style="margin-left:10px;" enctype="multipart/form-data">
 			<input type="hidden" name="reviewId" value="{$reviewId|escape}" />
-			<input type="file" name="upload" class="uploadField" />
-			<input type="submit" name="submit" value="{translate key="common.upload"}" class="button" />
+			{fbvFileInput id="upload" submit="submit"}
 		</form>
 	</div>
 </div>

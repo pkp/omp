@@ -52,8 +52,7 @@
 					{translate key="manager.plugins.uploadPluginDir"}
 			</td>
 			<td width="75%" class="value">
-				<input type="file" class="uploadField" name="newPlugin" id="newPlugin" /> 
-				<input name="uploadPlugin" type="submit" value="{translate key="common.continue"}" class="button defaultButton" />
+				{fbvFileInput id="newPlugin" submit="uploadPlugin"}
 			</td>
 		</tr>
 		</table>
@@ -96,8 +95,7 @@
 					{translate key="manager.plugins.uploadPluginDir"}
 			</td>
 			<td width="75%" class="value">
-				<input type="file" class="uploadField" name="newPlugin" id="newPlugin" />
-				<input name="uploadPlugin" type="submit" value="{translate key="common.continue"}" class="button defaultButton" />
+				{fbvFileInput id="newPlugin" submit="uploadPlugin"}
 			</td>
 		</tr>
 		</table>

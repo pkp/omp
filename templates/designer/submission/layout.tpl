@@ -140,7 +140,7 @@
 	<tr valign="top">
 		<td class="label">{translate key="common.file"}</td>
 		<td class="value">
-			<input type="file" name="galleyFile" size="10" class="uploadField" />
+			{fbvFileInput id="galleyFile"}
 		</td>
 	</tr>
 	<tr valign="top">

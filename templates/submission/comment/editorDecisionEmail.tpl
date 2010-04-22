@@ -135,7 +135,7 @@ function deleteAttachment(fileId) {
 
 		{if $attachmentNum != 1}<br/>{/if}
 
-		<input type="file" name="newAttachment" class="uploadField" /> <input name="addAttachment" type="submit" class="button" value="{translate key="common.upload"}" />
+		{fbvFileInput id="newAttachment" submit="addAttachment"}
 	</td>
 </tr>
 {/if}

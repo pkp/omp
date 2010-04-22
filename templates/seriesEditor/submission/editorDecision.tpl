@@ -165,8 +165,7 @@
 	<tr valign="top">
 		<td class="label">&nbsp;</td>
 		<td class="value">
-			<input type="file" name="upload" class="uploadField" />
-			<input type="submit" name="submit" value="{translate key="common.upload"}" class="button" />
+			{fbvFileInput id="upload" submit="submit"}
 		</td>
 	</tr>
 

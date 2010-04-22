@@ -68,8 +68,7 @@
 		{/fbvFormSection}
 		{if !$fileId}
 			{fbvFormSection title="author.submit.submissionFile"}
-				<input type="file" name="submissionFile" id="submissionFile-{$randomId}" />
-				<input type="submit" value="{translate key='form.submit'}" />
+				{fbvFileInput id="submissionFile" submit="submitFile"}
 			{/fbvFormSection}
 		{else}
 			{fbvFormSection title="common.file"}

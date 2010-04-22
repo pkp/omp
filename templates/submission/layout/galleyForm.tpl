@@ -67,7 +67,7 @@
 <tr valign="top">
 	<td class="label">{if $galleyId}{fieldLabel name="galleyFile" key="layoutEditor.galley.replaceGalley"}{else}{fieldLabel name="galleyFile" key="common.upload"}{/if}</td>
 	<td class="value">
-		<input type="file" name="galleyFile" id="galleyFile" class="uploadField" />&nbsp;&nbsp;{translate key="form.saveToUpload"}
+		{fbvFileInput id="galleyFile"} &nbsp;&nbsp;{translate key="form.saveToUpload"}
 	</td>
 </tr>
 </table>
@@ -113,7 +113,7 @@
 <tr valign="top">
 	<td width="20%" class="label">{fieldLabel name="styleFile" key="common.upload"}</td>
 	<td class="value">
-		<input type="file" name="styleFile" id="styleFile" class="uploadField" />&nbsp;&nbsp;{translate key="form.saveToUpload"}
+		{fbvFileInput id="styleFile"} &nbsp;&nbsp;{translate key="form.saveToUpload"}
 	</td>
 </tr>
 </table>
@@ -153,8 +153,7 @@
 {/foreach}
 </table>
 
-<input type="file" name="imageFile" id="imageFile" class="uploadField" />&nbsp;
-<input type="submit" name="uploadImage" class="button" value="{translate key="common.upload"}" />
+{fbvFileInput id="imageFile" submit="uploadImage"}
 </div>
 {/if}
 

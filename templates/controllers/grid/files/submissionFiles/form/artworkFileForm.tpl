@@ -19,8 +19,7 @@
 	<tr>
 		<td>{translate key="common.file"}</td>
 		<td>
-			<input type="file" name="artwork_file" size="10" class="uploadField" />
-			<input type="submit" name="uploadArtworkFile" value="{translate key='common.upload'}" />
+			{fbvFileInput id="artwork_file" submit="uploadArtworkFile"}
 		</td>
 	</tr>
 </table>

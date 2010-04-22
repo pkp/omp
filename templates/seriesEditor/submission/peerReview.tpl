@@ -65,8 +65,7 @@
 			<form method="post" action="{url op="uploadReviewVersion"}" enctype="multipart/form-data">
 				{translate key="editor.monograph.uploadReviewVersion"}
 				<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
-				<input type="file" name="upload" class="uploadField" />
-				<input type="submit" name="submit" value="{translate key="common.upload"}" class="button" />
+				{fbvFileInput id="upload" submit="submit"}
 			</form>
 		</td>
 	</tr>

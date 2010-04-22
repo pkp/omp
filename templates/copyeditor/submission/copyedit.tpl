@@ -55,8 +55,10 @@
 			<form method="post" action="{url op="uploadCopyeditVersion"}"  enctype="multipart/form-data">
 				<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
 				<input type="hidden" name="copyeditStage" value="initial" />
-				<input type="file" name="upload"{if not $initialCopyeditSignoff->getDateNotified() or $initialCopyeditSignoff->getDateCompleted()} disabled="disabled"{/if} class="uploadField" />
-				<input type="submit" class="button" value="{translate key="common.upload"}"{if not $initialCopyeditSignoff->getDateNotified() or $initialCopyeditSignoff->getDateCompleted()} disabled="disabled"{/if} />
+				{if not $initialCopyeditSignoff->getDateNotified() or $initialCopyeditSignoff->getDateCompleted()} 
+					{assign var="isDisabled" value="disabled"}
+				{/if}
+				{fbvFileInput id="upload" submit="submitFile" disabled=$isDisabled}
 			</form>
 		</td>
 	</tr>
@@ -115,8 +117,10 @@
 			<form method="post" action="{url op="uploadCopyeditVersion"}"  enctype="multipart/form-data">
 				<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
 				<input type="hidden" name="copyeditStage" value="final" />
-				<input type="file" name="upload"{if not $finalCopyeditSignoff->getDateNotified() or $finalCopyeditSignoff->getDateCompleted()} disabled="disabled"{/if} class="uploadField">
-				<input type="submit" class="button" value="{translate key="common.upload"}"{if not $finalCopyeditSignoff->getDateNotified() or $finalCopyeditSignoff->getDateCompleted()} disabled="disabled"{/if} />
+				{if not $finalCopyeditSignoff->getDateNotified() or $finalCopyeditSignoff->getDateCompleted()}
+					{assign var="isDisabled" value="disabled"}
+				{/if}
+				{fbvFileInput id="upload" submit="submitFile" disabled=$isDisabled}
 			</form>
 		</td>
 	</tr>

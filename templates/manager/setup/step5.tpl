@@ -119,7 +119,7 @@ function prepBlockFields() {
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label"><input type="radio" name="homeHeaderTitleType[{$formLocale|escape}]" id="homeHeaderTitleType-1" value="1"{if $homeHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="homeHeaderTitleType-1" key="manager.setup.useImageTitle"}</td>
-		<td width="80%" class="value"><input type="file" name="homeHeaderTitleImage" class="uploadField" /> <input type="submit" name="uploadHomeHeaderTitleImage" value="{translate key="common.upload"}" class="button" /></td>
+		<td width="80%" class="value">{fbvFileInput id="homeHeaderTitleImage" submit="uploadHomeHeaderTitleImage"}</td>
 	</tr>
 </table>
 
@@ -145,7 +145,7 @@ function prepBlockFields() {
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="manager.setup.useImageLogo"}</td>
-		<td width="80%" class="value"><input type="file" name="homeHeaderLogoImage" class="uploadField" /> <input type="submit" name="uploadHomeHeaderLogoImage" value="{translate key="common.upload"}" class="button" /></td>
+		<td width="80%" class="value">{fbvFileInput id="homeHeaderLogoImage" submit="uploadHomeHeaderLogoImage"}</td>
 	</tr>
 </table>
 
@@ -187,7 +187,7 @@ function prepBlockFields() {
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="manager.setup.homepageImage"}</td>
-		<td width="80%" class="value"><input type="file" name="homepageImage" class="uploadField" /> <input type="submit" name="uploadHomepageImage" value="{translate key="common.upload"}" class="button" /></td>
+		<td width="80%" class="value">{fbvFileInput id="homepageImage" submit="uploadHomepageImage"}</td>
 	</tr>
 </table>
 
@@ -286,7 +286,7 @@ function prepBlockFields() {
 </tr>
 <tr>
 	<td width="20%" class="label"><label for="pressStyleSheet">{translate key="manager.setup.usePressStyleSheet"}</label></td>
-	<td width="80%" class="value"><input type="file" name="pressStyleSheet" id="pressStyleSheet" class="uploadField" /> <input type="submit" name="uploadPressStyleSheet" value="{translate key="common.upload"}" class="button" /></td>
+	<td width="80%" class="value">{fbvFileInput id="pressStyleSheet" submit="uploadPressStyleSheet"}</td>
 </tr>
 </table>
 
@@ -359,7 +359,7 @@ function prepBlockFields() {
 	</tr>
 	<tr valign="top">
 		<td width="20%" class="label"><input type="radio" name="pageHeaderTitleType[{$formLocale|escape}]" id="pageHeaderTitleType-1" value="1"{if $pageHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="pageHeaderTitleType-1" key="manager.setup.useImageTitle"}</td>
-		<td width="80%" class="value"><input type="file" name="pageHeaderTitleImage" class="uploadField" /> <input type="submit" name="uploadPageHeaderTitleImage" value="{translate key="common.upload"}" class="button" /></td>
+		<td width="80%" class="value">{fbvFileInput id="pageHeaderTitleImage" submit="uploadPageHeaderTitleImage"}</td>
 	</tr>
 </table>
 
@@ -385,7 +385,7 @@ function prepBlockFields() {
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="manager.setup.useImageLogo"}</td>
-		<td width="80%" class="value"><input type="file" name="pageHeaderLogoImage" class="uploadField" /> <input type="submit" name="uploadPageHeaderLogoImage" value="{translate key="common.upload"}" class="button" /></td>
+		<td width="80%" class="value">{fbvFileInput id="pageHeaderLogoImage" submit="uploadPageHeaderLogoImage"}</td>
 	</tr>
 </table>
 

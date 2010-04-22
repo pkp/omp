@@ -169,8 +169,7 @@
 					{translate key="editor.monograph.uploadReviewForReviewer"}
 					<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
 					<input type="hidden" name="reviewId" value="{$reviewAssignment->getReviewId()}"/>
-					<input type="file" name="upload" class="uploadField" />
-					<input type="submit" name="submit" value="{translate key="common.upload"}" class="button" />
+					{fbvFileInput id="upload" submit="submit"}
 				</form>
 				{if $reviewAssignment->getDateConfirmed() && !$reviewAssignment->getDeclined()}
 					<a class="action" href="{url op="enterReviewerRecommendation" monographId=$submission->getMonographId() reviewId=$reviewAssignment->getReviewId()}">{translate key="editor.monograph.recommendation"}</a>

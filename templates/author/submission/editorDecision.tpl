@@ -79,8 +79,7 @@
 		<td class="value" width="80%">
 			<form method="post" action="{url op="uploadRevisedVersion"}" enctype="multipart/form-data">
 				<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
-				<input type="file" name="upload" class="uploadField" />
-				<input type="submit" name="submit" value="{translate key="common.upload"}" class="button" />
+				{fbvFileInput id="upload" submit="submit"}
 			</form>
 
 		</td>

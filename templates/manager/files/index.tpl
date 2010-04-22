@@ -69,8 +69,7 @@
 </table>
 
 <form method="post" action="{url op="fileUpload" path=$currentDir|explode:"/"}" enctype="multipart/form-data">
-	<input type="file" size="20" name="file" class="uploadField" />
-	<input type="submit" value="{translate key="manager.files.uploadFile"}" class="button" />
+	{fbvFileInput id="file" submit="submit"}
 </form>
 
 <form method="post" action="{url op="fileMakeDir" path=$currentDir|explode:"/"}" enctype="multipart/form-data">

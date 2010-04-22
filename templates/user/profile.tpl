@@ -136,7 +136,7 @@
 		{fieldLabel name="profileImage" key="user.profile.form.profileImage"}
 	</td>
 	<td class="value">
-		<input type="file" id="profileImage" name="profileImage" class="uploadField" /> <input type="submit" name="uploadProfileImage" value="{translate key="common.upload"}" class="button" />
+		{fbvFileInput id="profileImage" submit="uploadProfileImage"}
 		{if $profileImage}
 			{translate key="common.fileName"}: {$profileImage.name|escape} {$profileImage.dateUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteProfileImage" value="{translate key="common.delete"}" class="button" />
 			<br />

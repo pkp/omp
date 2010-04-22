@@ -89,8 +89,7 @@
 	{fbvFormArea id="file"}
 		{if !$libraryFile}
 			{fbvFormSection title="common.file"}
-				<input type="file" name="libraryFile" id="libraryFile-{$randomId}" />
-				<input type="submit" id="libraryFileSubmit-{$randomId}" value="{translate key='form.submit'}" />
+				{fbvFileInput id="libraryFile" submit="libraryFileSubmit-$randomId"}
 			{/fbvFormSection}
 		{else}
 			{fbvFormSection title="common.file"}

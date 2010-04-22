@@ -79,8 +79,10 @@
 			<form method="post" action="{url op="uploadCopyeditVersion"}"  enctype="multipart/form-data">
 				<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
 				<input type="hidden" name="copyeditStage" value="author" />
-				<input type="file" name="upload"{if not $copyeditAuthorSignoff->getDateNotified() or $copyeditAuthorSignoff->getDateCompleted()} disabled="disabled"{/if} class="uploadField" />
-				<input type="submit" class="button" value="{translate key="common.upload"}"{if not $copyeditAuthorSignoff->getDateNotified() or $copyeditAuthorSignoff->getDateCompleted()} disabled="disabled"{/if} />
+				{if not $copyeditAuthorSignoff->getDateNotified() or $copyeditAuthorSignoff->getDateCompleted()} 
+					{assign var="isDisabled" value="disabled"}
+				{/if}
+				{fbvFileInput id="upload" disabled=$isDisabled submit="uploadSubmit"}
 			</form>
 		</td>
 	</tr>

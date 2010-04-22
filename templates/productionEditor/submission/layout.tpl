@@ -56,8 +56,7 @@
 	<input type="hidden" name="from" value="submissionEditing" />
 	<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
 	{translate key="submission.layout.uploadLayoutVersion"}
-	<input type="file" name="layoutFile" size="10" class="uploadField" />
-	<input type="submit" value="{translate key="common.upload"}" class="button" />
+	{fbvFileInput id="layoutFile" submit="submit"}
 </form>
 
 <div class="separator"></div>
@@ -181,7 +180,7 @@
 	<tr valign="top">
 		<td class="label">File</td>
 		<td class="value">
-			<input type="file" name="galleyFile" size="10" class="uploadField" />
+			{fbvFileInput id="galleyFile"}
 		</td>
 	</tr>
 	<tr valign="top">

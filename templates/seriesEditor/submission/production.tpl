@@ -80,8 +80,7 @@
 <form method="post" action="{url op="uploadProductionVersion"}"  enctype="multipart/form-data">
 	<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
 	{translate key="submission.uploadFile"}
-	<input type="file" name="upload" size="10" class="uploadField" />
-	<input type="submit" value="{translate key="common.upload"}" class="button" />
+	{fbvFileInput id="upload" submit="submit"}
 </form>
 
 {/if}

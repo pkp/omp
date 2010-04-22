@@ -43,7 +43,7 @@
 <table width="100%" class="data">
 	<tr>
 		<td width="20%" class="label">{translate key="plugins.importexport.users.import.dataFile"}</td>
-		<td width="80%" class="value"><input type="file" name="userFile" id="userFile" class="uploadField" /></td>
+		<td width="80%" class="value">{fbvFileInput id="userFile"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="label"><input type="checkbox" name="sendNotify" id="sendNotify" value="1"{if $sendNotify} checked="checked"{/if} /> <label for="sendNotify">{translate key="plugins.importexport.users.import.sendNotify"}</label></td>
