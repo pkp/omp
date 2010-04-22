@@ -90,22 +90,6 @@ class ReviewerSubmission extends Monograph {
 	}
 
 	/**
-	 * Get ID of monograph.
-	 * @return int
-	 */
-	function getMonographId() {
-		return $this->getData('monographId');
-	}
-
-	/**
-	 * Set ID of monograph.
-	 * @param $monographId int
-	 */
-	function setMonographId($monographId) {
-		return $this->setData('monographId', $monographId);
-	}
-
-	/**
 	 * Get ID of reviewer.
 	 * @return int
 	 */
