@@ -1247,7 +1247,7 @@
 		<field name="round" type="I1">
 			<NOTNULL/>
 		</field>
-		<field name="file_id">
+		<field name="file_id" type="I8">
 			<NOTNULL/>
 		</field>
 		<descr>Monograph Files for each review round</descr>
