@@ -94,7 +94,7 @@ class MonographFile extends DataObject {
 	 * @param $userGroupId int
 	 */
 	function setUserGroupId($userGroupId) {
-	 $this->setData('userGroupId', $userGroupId);
+		$this->setData('userGroupId', $userGroupId);
 	}
 
 	/**
@@ -102,7 +102,7 @@ class MonographFile extends DataObject {
 	 * @return int
 	 */
 	function getUserGroupId() {
-	 return $this->getData('userGroupId');
+		return $this->getData('userGroupId');
 	}
 
 	/**

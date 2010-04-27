@@ -51,7 +51,7 @@ class CommentForm extends Form {
 		$this->monograph = $monograph;
 		$this->commentType = $commentType;
 		$this->roleId = $roleId;
-		$this->assocId = $assocId == null ? $monograph->getMonographId() : $assocId;
+		$this->assocId = $assocId == null ? $monograph->getId() : $assocId;
 
 		$this->user =& Request::getUser();
 
@@ -74,10 +74,10 @@ class CommentForm extends Form {
 		$monograph = $this->monograph;
 
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-		$monographComments =& $monographCommentDao->getMonographComments($monograph->getMonographId(), $this->commentType, $this->assocId);
+		$monographComments =& $monographCommentDao->getMonographComments($monograph->getId(), $this->commentType, $this->assocId);
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('monographId', $monograph->getMonographId());
+		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('commentTitle', strip_tags($monograph->getLocalizedTitle()));
 		$templateMgr->assign('userId', $this->user->getId());
 		$templateMgr->assign('monographComments', $monographComments);
@@ -110,7 +110,7 @@ class CommentForm extends Form {
 		$comment = new MonographComment();
 		$comment->setCommentType($this->commentType);
 		$comment->setRoleId($this->roleId);
-		$comment->setMonographId($monograph->getMonographId());
+		$comment->setMonographId($monograph->getId());
 		$comment->setAssocId($this->assocId);
 		$comment->setAuthorId($this->user->getId());
 		$comment->setCommentTitle($this->getData('commentTitle'));

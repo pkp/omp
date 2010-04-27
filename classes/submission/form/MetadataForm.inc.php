@@ -51,7 +51,7 @@ class MetadataForm extends Form {
 			$this->isEditor = true;
 		}
 
-		$copyeditInitialSignoff = $signoffDao->getBySymbolic('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $monograph->getMonographId());
+		$copyeditInitialSignoff = $signoffDao->getBySymbolic('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $monograph->getId());
 		// If the user is an author and the monograph hasn't passed the Copyediting stage, make the form editable.
 		if ($roleId == ROLE_ID_AUTHOR) {
 			if ($monograph->getStatus() != STATUS_PUBLISHED && ($copyeditInitialSignoff == null || $copyeditInitialSignoff->getDateCompleted() == null)) {
@@ -62,7 +62,7 @@ class MetadataForm extends Form {
 		// Copy editors are also allowed to edit metadata, but only if they have
 		// a current assignment to the monograph.
 		if ($roleId != null && ($roleId == ROLE_ID_COPYEDITOR)) {
-			$copyeditFinalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $monograph->getMonographId());
+			$copyeditFinalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $monograph->getId());
 			if ($copyeditFinalSignoff != null && $monograph->getStatus() != STATUS_PUBLISHED) {
 				if ($copyeditInitialSignoff->getDateNotified() != null && $copyeditFinalSignoff->getDateCompleted() == null) {
 					$this->canEdit = true;
@@ -192,7 +192,7 @@ class MetadataForm extends Form {
 		// Save the monograph
 		$monographDao->updateMonograph($monograph);
 
-		return $monograph->getMonographId();
+		return $monograph->getId();
 	}
 
 	/**

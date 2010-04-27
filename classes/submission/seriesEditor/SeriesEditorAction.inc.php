@@ -1716,7 +1716,7 @@ class SeriesEditorAction extends Action {
 			$notificationManager = new NotificationManager();
 			$notificationUsers = $monograph->getAssociatedUserIds();
 			foreach ($notificationUsers as $userRole) {
-				$url = Request::url(null, $userRole['role'], 'submissionReview', $monograph->getMonographId(), null, 'peerReview');
+				$url = Request::url(null, $userRole['role'], 'submissionReview', $monograph->getId(), null, 'peerReview');
 				$notificationManager->createNotification(
 					$userRole['id'], 'notification.type.reviewerComment',
 					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_COMMENT
@@ -1769,7 +1769,7 @@ class SeriesEditorAction extends Action {
 			$notificationManager = new NotificationManager();
 			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
-				$url = Request::url(null, $userRole['role'], 'submissionReview', $monograph->getMonographId(), null, 'editorDecision');
+				$url = Request::url(null, $userRole['role'], 'submissionReview', $monograph->getId(), null, 'editorDecision');
 				$notificationManager->createNotification(
 					$userRole['id'], 'notification.type.editorDecisionComment',
 					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_EDITOR_DECISION_COMMENT
@@ -1948,8 +1948,8 @@ class SeriesEditorAction extends Action {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 
-		$comments =& $commentDao->getMonographComments($monograph->getMonographId(), COMMENT_TYPE_EDITOR_DECISION);
-		$reviewAssignments =& $reviewAssignmentDao->getByMonographId($monograph->getMonographId(), $monograph->getCurrentRound());
+		$comments =& $commentDao->getMonographComments($monograph->getId(), COMMENT_TYPE_EDITOR_DECISION);
+		$reviewAssignments =& $reviewAssignmentDao->getByMonographId($monograph->getId(), $monograph->getCurrentRound());
 
 		$commentsText = "";
 		foreach ($comments as $comment) {
@@ -1982,7 +1982,7 @@ class SeriesEditorAction extends Action {
 				$email->assignParams($paramArray);
 			}
 
-			$email->displayEditForm(Request::url(null, null, 'blindCcReviewsToReviewers'), array('monographId' => $monograph->getMonographId()));
+			$email->displayEditForm(Request::url(null, null, 'blindCcReviewsToReviewers'), array('monographId' => $monograph->getId()));
 			return false;
 		}
 	}
@@ -2022,7 +2022,7 @@ class SeriesEditorAction extends Action {
 			$notificationManager = new NotificationManager();
 			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
-				$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'copyedit');
+				$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'copyedit');
 				$notificationManager->createNotification(
 					$userRole['id'], 'notification.type.copyeditComment',
 					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_COPYEDIT_COMMENT
@@ -2075,7 +2075,7 @@ class SeriesEditorAction extends Action {
 			$notificationManager = new NotificationManager();
 			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
-				$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
+				$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'layout');
 				$notificationManager->createNotification(
 					$userRole['id'], 'notification.type.layoutComment',
 					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_LAYOUT_COMMENT
@@ -2128,7 +2128,7 @@ class SeriesEditorAction extends Action {
 			$notificationManager = new NotificationManager();
 			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
-				$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'proofread');
+				$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'proofread');
 				$notificationManager->createNotification(
 					$userRole['id'], 'notification.type.proofreadComment',
 					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_PROOFREAD_COMMENT

@@ -57,7 +57,7 @@ class MonographMailTemplate extends MailTemplate {
 		$press = isset($this->press)?$this->press:Request::getPress();
 
 		$paramArray['monographTitle'] = strip_tags($monograph->getLocalizedTitle());
-		$paramArray['monographId'] = $monograph->getMonographId();
+		$paramArray['monographId'] = $monograph->getId();
 		$paramArray['pressName'] = strip_tags($press->getLocalizedName());
 		$paramArray['seriesName'] = strip_tags($monograph->getSeriesTitle());
 		$paramArray['monographAbstract'] = strip_tags($monograph->getLocalizedAbstract());
@@ -141,11 +141,11 @@ class MonographMailTemplate extends MailTemplate {
 		$entry->setBccs($this->getBccString());
 
 		// Add log entry
-		$logEntryId = MonographLog::logEmailEntry($monograph->getMonographId(), $entry);
+		$logEntryId = MonographLog::logEmailEntry($monograph->getId(), $entry);
 
 		// Add attachments
 		import('file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monograph->getMonographId());
+		$monographFileManager = new MonographFileManager($monograph->getId());
 		foreach ($this->getAttachmentFiles() as $attachment) {
 			$monographFileManager->temporaryFileToMonographFile(
 				$attachment,

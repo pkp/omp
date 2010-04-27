@@ -25,7 +25,7 @@ class CopyeditCommentForm extends CommentForm {
 	 * @param $monograph object
 	 */
 	function CopyeditCommentForm($monograph, $roleId) {
-		parent::CommentForm($monograph, COMMENT_TYPE_COPYEDIT, $roleId, $monograph->getMonographId());
+		parent::CommentForm($monograph, COMMENT_TYPE_COPYEDIT, $roleId, $monograph->getId());
 	}
 
 	/**
@@ -40,7 +40,7 @@ class CopyeditCommentForm extends CommentForm {
 		$templateMgr->assign('commentType', 'copyedit');
 		$templateMgr->assign('hiddenFormParams', 
 			array(
-				'monographId' => $monograph->getMonographId()
+				'monographId' => $monograph->getId()
 			)
 		);
 
@@ -79,7 +79,7 @@ class CopyeditCommentForm extends CommentForm {
 
 		// Get editors
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getEditAssignmentsByMonographId($monograph->getMonographId());
+		$editAssignments =& $editAssignmentDao->getEditAssignmentsByMonographId($monograph->getId());
 		$editAssignments =& $editAssignments->toArray();
 		$editorAddresses = array();
 		foreach ($editAssignments as $editAssignment) {
@@ -97,7 +97,7 @@ class CopyeditCommentForm extends CommentForm {
 		}
 
 		// Get copyeditor
-		$copySignoff = $signoffDao->getBySymbolic('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $monograph->getMonographId());
+		$copySignoff = $signoffDao->getBySymbolic('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $monograph->getId());
 		if ($copySignoff != null && $copySignoff->getUserId() > 0) {
 			$copyeditor =& $userDao->getUser($copySignoff->getUserId());
 		} else {

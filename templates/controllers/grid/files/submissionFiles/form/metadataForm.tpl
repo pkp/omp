@@ -13,7 +13,7 @@
 	{literal}
 	$(function() {
 		$('#fileUploadTabs-').attr("id","fileUploadTabs-{/literal}{$fileId}{literal}"); // Rename container to use unique id (necessary to prevent caching)
-		//$('#fileUploadTabs-').i
+		$('.button').button();
 		$('#metadataForm').ajaxForm({
 			dataType: 'json',
 	        success: function(returnString) {

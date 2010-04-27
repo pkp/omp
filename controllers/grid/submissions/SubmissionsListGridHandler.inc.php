@@ -19,6 +19,10 @@ import('controllers.grid.GridHandler');
 import('controllers.grid.submissions.SubmissionsListGridCellProvider');
 import('submission.common.Action');
 
+// import validation classes
+import('handler.validation.HandlerValidatorPress');
+import('handler.validation.HandlerValidatorRoles');
+
 class SubmissionsListGridHandler extends GridHandler {
 
 	/**

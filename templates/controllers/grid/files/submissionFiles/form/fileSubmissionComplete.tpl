@@ -12,6 +12,7 @@
 	{literal}
 	$(function() {
 		// On newFile button click, return row then restart modal
+		$('.button').button();
 		$('#newFile').click(function() {
     		saveAndUpdate('{/literal}{url component="grid.files.submissionFiles.SubmissionFilesGridHandler" op="returnFileRow" fileId=$fileId}{literal}', 
     	    		'append', 
@@ -33,8 +34,8 @@
 <div class="text_center">
 	<h2>{translate key="author.submit.fileAdded"}</h2> <br /> <br /> <br />
 	<form name="finishSubmissionForm" id="finishSubmissionForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionFilesGridHandler" op="returnFileRow" fileId=$fileId}" method="post">
-		<input type="button" name="newFile" value="{translate key='author.submit.newFile'}" id="newFile" /> <br /> <br /> <br />
-		<input type="button" name="exit" value="{translate key='author.submit.finishedUploading'}" id="exit" /> <br />
+		<input class="button" type="button" name="newFile" value="{translate key='author.submit.newFile'}" id="newFile" /> <br /> <br /> <br />
+		<input class="button" type="button" name="exit" value="{translate key='author.submit.finishedUploading'}" id="exit" /> <br />
 	</form>
 </div>
 

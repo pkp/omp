@@ -132,7 +132,7 @@ class SubmitHandler extends AuthorHandler {
 		if (Validation::isEditor($press->getId()) && $monograph->getSubmissionFileId()) {
 			import('submission.editor.EditorAction');
 			EditorAction::expediteSubmission($monograph);
-			$request->redirect(null, 'editor', 'submissionEditing', array($monograph->getMonographId()));
+			$request->redirect(null, 'editor', 'submissionEditing', array($monograph->getId()));
 		}
 
 		$request->redirect(null, null, 'track');

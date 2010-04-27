@@ -16,7 +16,7 @@
 	{literal}
 	$(function() {
 		{/literal}{if !$fileId}{literal}$('#fileUploadTabs-').tabs('option', 'disabled', [1,2,3,4]);{/literal}{/if}{literal}  // Disable next tabs when adding new file
-
+		$('.button').button();
 	    $('#uploadForm-{/literal}{$randomId}{literal}').ajaxForm({
 	        target: '#uploadOutput-{/literal}{$randomId}{literal}',  // target identifies the element(s) to update with the server response
 			iframe: true,
@@ -35,7 +35,7 @@
 		    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('url', 0, returnString.fileFormUrl);
 		    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('url', 1, returnString.metadataUrl);
 		    		$('#deleteUrl').val(returnString.deleteUrl);
-		  			$('#continueButton-{/literal}{$fileId}{literal}').removeAttr("disabled");
+		  			$('#continueButton-{/literal}{$fileId}{literal}').button( "option", "disabled", false );
 		    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('enable', 1);
 	    		}
 	    		$('#loadingText-{/literal}{$randomId}{literal}').text(returnString.content);  // Set to error or success message
@@ -68,7 +68,10 @@
 		{/fbvFormSection}
 		{if !$fileId}
 			{fbvFormSection title="author.submit.submissionFile"}
-				{fbvFileInput id="submissionFile" submit="submitFile"}
+				<div class="fileInputContainer">
+					<input type="file" id="submissionFile" name="submissionFile" />
+				</div>
+				<input type="submit" name="submitFile" value="{translate key="common.upload"}" class="button" />
 			{/fbvFormSection}
 		{else}
 			{fbvFormSection title="common.file"}

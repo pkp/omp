@@ -435,7 +435,7 @@ class MonographFileManager extends FileManager {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 
 		$monographFile = new MonographFile();
-		$monographFile->setMonographId($monograph->getMonographId());
+		$monographFile->setMonographId($monograph->getId());
 		$monographFile->setFileName('temp');
 		$monographFile->setOriginalFileName('temp');
 		$monographFile->setFileType('temp');

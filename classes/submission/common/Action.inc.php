@@ -90,7 +90,7 @@ class Action {
 				$notificationUsers = $monograph->getAssociatedUserIds();
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, $userRole['role'], 'submission', $monograph->getMonographId(), null, 'metadata');
+					$url = Request::url(null, $userRole['role'], 'submission', $monograph->getId(), null, 'metadata');
 					$notificationManager->createNotification(
 						$userRole['id'], 'notification.type.metadataModified',
 						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_METADATA_MODIFIED
@@ -101,7 +101,7 @@ class Action {
 				$user =& Request::getUser();
 				import('monograph.log.MonographLog');
 				import('monograph.log.MonographEventLogEntry');
-				MonographLog::logEvent($monograph->getMonographId(), MONOGRAPH_LOG_METADATA_UPDATE, MONOGRAPH_LOG_TYPE_DEFAULT, 0, 'log.editor.metadataModified', Array('editorName' => $user->getFullName()));
+				MonographLog::logEvent($monograph->getId(), MONOGRAPH_LOG_METADATA_UPDATE, MONOGRAPH_LOG_TYPE_DEFAULT, 0, 'log.editor.metadataModified', Array('editorName' => $user->getFullName()));
 
 				return true;
 			} else {
@@ -212,7 +212,7 @@ class Action {
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, $userRole['role'], 'submissionReview', $monograph->getMonographId(), null, 'editorDecision');
+					$url = Request::url(null, $userRole['role'], 'submissionReview', $monograph->getId(), null, 'editorDecision');
 					$notificationManager->createNotification(
 						$userRole['id'], 'notification.type.submissionComment',
 						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_SUBMISSION_COMMENT

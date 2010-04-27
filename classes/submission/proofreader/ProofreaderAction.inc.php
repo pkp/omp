@@ -43,7 +43,7 @@ class ProofreaderAction extends Action {
 			if (!isset($proofreader)) return;
 			import('monograph.log.MonographLog');
 			import('monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($monograph->getMonographId(), MONOGRAPH_LOG_PROOFREAD_ASSIGN, MONOGRAPH_LOG_TYPE_PROOFREAD, $user->getId(), 'log.proofread.assign', Array('assignerName' => $user->getFullName(), 'proofreaderName' => $proofreader->getFullName(), 'monographId' => $monograph->getMonographId()));
+			MonographLog::logEvent($monograph->getId(), MONOGRAPH_LOG_PROOFREAD_ASSIGN, MONOGRAPH_LOG_TYPE_PROOFREAD, $user->getId(), 'log.proofread.assign', Array('assignerName' => $user->getFullName(), 'proofreaderName' => $proofreader->getFullName(), 'monographId' => $monograph->getId()));
 		}
 	}
 
@@ -449,7 +449,7 @@ class ProofreaderAction extends Action {
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'proofread');
+					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'proofread');
 					$notificationManager->createNotification(
 						$userRole['id'], 'notification.type.proofreadComment',
 						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_PROOFREAD_COMMENT
@@ -502,7 +502,7 @@ class ProofreaderAction extends Action {
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
+					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'layout');
 					$notificationManager->createNotification(
 						$userRole['id'], 'notification.type.layoutComment',
 						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_LAYOUT_COMMENT

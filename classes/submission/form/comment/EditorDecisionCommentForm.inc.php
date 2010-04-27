@@ -24,7 +24,7 @@ class EditorDecisionCommentForm extends CommentForm {
 	 * @param $monograph object
 	 */
 	function EditorDecisionCommentForm($monograph, $roleId) {
-		parent::CommentForm($monograph, COMMENT_TYPE_EDITOR_DECISION, $roleId, $monograph->getMonographId());
+		parent::CommentForm($monograph, COMMENT_TYPE_EDITOR_DECISION, $roleId, $monograph->getId());
 	}
 
 	/**

@@ -63,17 +63,17 @@ class AuthorSubmissionDAO extends DAO {
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	a.monograph_id = ?',
-			array(
+		array(
 				'title',
-				$primaryLocale,
+		$primaryLocale,
 				'title',
-				$locale,
+		$locale,
 				'abbrev',
-				$primaryLocale,
+		$primaryLocale,
 				'abbrev',
-				$locale,
-				$monographId,
-			)
+		$locale,
+		$monographId,
+		)
 		);
 
 		$returner = null;
@@ -148,8 +148,8 @@ class AuthorSubmissionDAO extends DAO {
 	 */
 	function updateAuthorSubmission(&$authorSubmission) {
 		// Update monograph
-		if ($authorSubmission->getMonographId()) {
-			$monograph =& $this->monographDao->getMonograph($authorSubmission->getMonographId());
+		if ($authorSubmission->getId()) {
+			$monograph =& $this->monographDao->getMonograph($authorSubmission->getId());
 
 			// Only update fields that an author can actually edit.
 			$monograph->setRevisedFileId($authorSubmission->getRevisedFileId());
@@ -185,20 +185,20 @@ class AuthorSubmissionDAO extends DAO {
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
 			WHERE	a.user_id = ? AND a.press_id = ? AND ' .
-			($active?'a.status = 1':'(a.status <> 1 AND a.submission_progress = 0)'),
-			array(
+		($active?'a.status = 1':'(a.status <> 1 AND a.submission_progress = 0)'),
+		array(
 				'title',
-				$primaryLocale,
+		$primaryLocale,
 				'title',
-				$locale,
+		$locale,
 				'abbrev',
-				$primaryLocale,
+		$primaryLocale,
 				'abbrev',
-				$locale,
-				$authorId,
-				$pressId
-			),
-			$rangeInfo
+		$locale,
+		$authorId,
+		$pressId
+		),
+		$rangeInfo
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnAuthorSubmissionFromRow');
@@ -246,7 +246,7 @@ class AuthorSubmissionDAO extends DAO {
 		$submissionsCount[0] = 0;
 		$submissionsCount[1] = 0;
 
-		$sql = 'SELECT count(*), status FROM monographs m 
+		$sql = 'SELECT count(*), status FROM monographs m
 			LEFT JOIN series aa ON (aa.series_id = m.series_id) 
 			WHERE m.press_id = ? AND 
 				m.user_id = ? 

@@ -24,7 +24,7 @@ class LayoutCommentForm extends CommentForm {
 	 * @param $monograph object
 	 */
 	function LayoutCommentForm($monograph, $roleId) {
-		parent::CommentForm($monograph, COMMENT_TYPE_LAYOUT, $roleId, $monograph->getMonographId());
+		parent::CommentForm($monograph, COMMENT_TYPE_LAYOUT, $roleId, $monograph->getId());
 	}
 
 	/**

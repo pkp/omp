@@ -172,7 +172,7 @@ class MonographSearchIndex {
 
 		// Update search index
 		import('search.MonographSearch');
-		$monographId = $monograph->getMonographId();
+		$monographId = $monograph->getId();
 		MonographSearchIndex::updateTextIndex($monographId, MONOGRAPH_SEARCH_AUTHOR, $authorText);
 		MonographSearchIndex::updateTextIndex($monographId, MONOGRAPH_SEARCH_TITLE, $monograph->getTitle(null));
 		MonographSearchIndex::updateTextIndex($monographId, MONOGRAPH_SEARCH_ABSTRACT, $monograph->getAbstract(null));
@@ -191,10 +191,10 @@ class MonographSearchIndex {
 	function indexMonographFiles(&$monograph) {
 		// Index galley files
 		$monographGalleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
-		$files =& $monographGalleyDao->getByMonographId($monograph->getMonographId());
+		$files =& $monographGalleyDao->getByMonographId($monograph->getId());
 		foreach ($files as $file) {
 			if ($file->getFileId()) {
-				MonographSearchIndex::updateFileIndex($monograph->getMonographId(), MONOGRAPH_SEARCH_GALLEY_FILE, $file->getFileId());
+				MonographSearchIndex::updateFileIndex($monograph->getId(), MONOGRAPH_SEARCH_GALLEY_FILE, $file->getFileId());
 			}
 		}
 	}

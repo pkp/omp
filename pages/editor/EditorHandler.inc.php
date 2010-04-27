@@ -158,7 +158,7 @@ class EditorHandler extends SeriesEditorHandler {
 
 			if ($monograph && $monograph->getPressId() === $press->getId()) {
 				$editAssignmentDao->deleteById($editAssignment->getEditId());
-				Request::redirect(null, null, 'submission', $monograph->getMonographId());
+				Request::redirect(null, null, 'submission', $monograph->getId());
 			}
 		}
 

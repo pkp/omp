@@ -317,7 +317,7 @@ class CopyeditorAction extends Action {
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
+					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'layout');
 					$notificationManager->createNotification(
 						$userRole['id'], "notification.type.layoutComment", 
 						$monograph->getLocalizedTitle(), $url, 1, 
@@ -370,7 +370,7 @@ class CopyeditorAction extends Action {
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'coypedit');
+					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'coypedit');
 					$notificationManager->createNotification(
 						$userRole['id'], 
 						'notification.type.copyeditComment', 

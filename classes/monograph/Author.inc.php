@@ -51,7 +51,7 @@ class Author extends PKPAuthor {
 	 * @param $userGroupId int
 	 */
 	function setUserGroupId($userGroupId) {
-	 $this->setData('userGroupId', $userGroupId);
+		$this->setData('userGroupId', $userGroupId);
 	}
 
 	/**
@@ -59,7 +59,7 @@ class Author extends PKPAuthor {
 	 * @return int
 	 */
 	function getUserGroupId() {
-	 return $this->getData('userGroupId');
+		return $this->getData('userGroupId');
 	}
 
 	/**

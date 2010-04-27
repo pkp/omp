@@ -27,9 +27,6 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 		$press =& Request::getPress();
 
-		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'seriesId', 'required', 'author.submit.form.seriesRequired'));
-		$this->addCheck(new FormValidatorCustom($this, 'seriesId', 'required', 'author.submit.form.seriesRequired', array(DAORegistry::getDAO('SeriesDAO'), 'seriesExists'), array($press->getId())));
 	}
 
 	/**
@@ -103,6 +100,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 			$this->monograph = new Monograph();
 			$this->monograph->setUserId($user->getId());
+			$this->monograph->setUserGroupId(1);
 			$this->monograph->setPressId($press->getId());
 			$this->monograph->setSeriesId($this->getData('seriesId'));
 			$this->monograph->stampStatusModified();
@@ -131,7 +129,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$author->setPrimaryContact(1);
 
 			$monographDao->insertMonograph($this->monograph);
-			$this->monographId = $this->monograph->getMonographId();
+			$this->monographId = $this->monograph->getId();
 			$author->setMonographId($this->monographId);
 			$authorDao->insertAuthor($author);
 		}

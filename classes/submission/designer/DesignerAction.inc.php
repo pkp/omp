@@ -59,12 +59,12 @@ class DesignerAction extends Action {
 	 */
 	function orderGalley($monograph, $galleyId, $direction) {
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
-		$galley =& $galleyDao->getGalley($galleyId, $monograph->getMonographId());
+		$galley =& $galleyDao->getGalley($galleyId, $monograph->getId());
 
 		if (isset($galley)) {
 			$galley->setSequence($galley->getSequence() + ($direction == 'u' ? -1.5 : 1.5));
 			$galleyDao->updateObject($galley);
-			$galleyDao->resequenceGalleys($monograph->getMonographId(), $galley->getAssignmentId());
+			$galleyDao->resequenceGalleys($monograph->getId(), $galley->getAssignmentId());
 		}
 	}
 
@@ -77,15 +77,15 @@ class DesignerAction extends Action {
 		import('file.MonographFileManager');
 
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
-		$galley =& $galleyDao->getGalley($galleyId, $monograph->getMonographId());
+		$galley =& $galleyDao->getGalley($galleyId, $monograph->getId());
 
 		if (isset($galley) && !HookRegistry::call('DesignerAction::deleteGalley', array(&$monograph, &$galley))) {
-			$monographFileManager = new MonographFileManager($monograph->getMonographId());
+			$monographFileManager = new MonographFileManager($monograph->getId());
 
 			if ($galley->getFileId()) {
 				$monographFileManager->deleteFile($galley->getFileId());
 				import('search.MonographSearchIndex');
-				MonographSearchIndex::deleteTextIndex($monograph->getMonographId(), MONOGRAPH_SEARCH_GALLEY_FILE, $galley->getFileId());
+				MonographSearchIndex::deleteTextIndex($monograph->getId(), MONOGRAPH_SEARCH_GALLEY_FILE, $galley->getFileId());
 			}
 			if ($galley->isHTMLGalley()) {
 				if ($galley->getStyleFileId()) {
@@ -219,7 +219,7 @@ class DesignerAction extends Action {
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'layout');
+					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'layout');
 					$notificationManager->createNotification(
 						$userRole['id'], 'notification.type.layoutComment',
 						$monograph->getMonographTitle(), $url, 1, NOTIFICATION_TYPE_LAYOUT_COMMENT
@@ -271,7 +271,7 @@ class DesignerAction extends Action {
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getMonographId(), null, 'proofread');
+					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'proofread');
 					$notificationManager->createNotification(
 						$userRole['id'], "notification.type.proofreadComment",
 						$monograph->getMonographTitle(), $url, 1, NOTIFICATION_TYPE_PROOFREAD_COMMENT
@@ -311,13 +311,13 @@ class DesignerAction extends Action {
 		$layoutAssignment =& $signoffDao->build(
 						  'SIGNOFF_LAYOUT',
 						  ASSOC_TYPE_MONOGRAPH,
-						  $monograph->getMonographId()
+						  $monograph->getId()
 					);
 
 		if ($layoutAssignment->getFileId() == $fileId) {
 			$canDownload = true;
 
-		} else if($galleyDao->galleyExistsByFileId($monograph->getMonographId(), $fileId)) {
+		} else if($galleyDao->galleyExistsByFileId($monograph->getId(), $fileId)) {
 			$canDownload = true;
 
 		}
@@ -325,7 +325,7 @@ class DesignerAction extends Action {
 		$result = false;
 		if (!HookRegistry::call('LayoutEditorAction::downloadFile', array(&$monograph, &$fileId, &$revision, &$canDownload, &$result))) {
 			if ($canDownload) {
-				return parent::downloadFile($monograph->getMonographId(), $fileId, $revision);
+				return parent::downloadFile($monograph->getId(), $fileId, $revision);
 			} else {
 				return false;
 			}

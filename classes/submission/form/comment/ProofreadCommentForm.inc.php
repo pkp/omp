@@ -24,7 +24,7 @@ class ProofreadCommentForm extends CommentForm {
 	 * @param $monograph object
 	 */
 	function ProofreadCommentForm($monograph, $roleId) {
-		parent::CommentForm($monograph, COMMENT_TYPE_PROOFREAD, $roleId, $monograph->getMonographId());
+		parent::CommentForm($monograph, COMMENT_TYPE_PROOFREAD, $roleId, $monograph->getId());
 	}
 
 	/**
