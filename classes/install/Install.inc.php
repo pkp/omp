@@ -157,20 +157,13 @@ class Install extends PKPInstall {
 					if (FileManager::fileExists($versionFile)) {
 						$versionInfo =& VersionCheck::parseVersionXML($versionFile);
 						$pluginVersion = $versionInfo['version'];
-						$pluginVersion->setCurrent(1);
-						$versionDao->insertVersion($pluginVersion);
 					}  else {
-						$pluginVersion = new Version();
-						$pluginVersion->setMajor(1);
-						$pluginVersion->setMinor(0);
-						$pluginVersion->setRevision(0);
-						$pluginVersion->setBuild(0);
-						$pluginVersion->setDateInstalled(Core::getCurrentDate());
-						$pluginVersion->setCurrent(1);
-						$pluginVersion->setProductType('plugins.' . $category);
-						$pluginVersion->setProduct(basename($plugin->getPluginPath()));
-						$versionDao->insertVersion($pluginVersion);
+						$pluginVersion = new Version(
+							1, 0, 0, 0, Core::getCurrentDate(), 1,
+							'plugins.'.$category, basename($plugin->getPluginPath()), '', 0
+						);
 					}
+					$versionDao->insertVersion($pluginVersion, true);
 				}
 			}
 
