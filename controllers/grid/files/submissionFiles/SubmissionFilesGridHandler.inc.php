@@ -14,7 +14,6 @@
 
 // import grid base classes
 import('controllers.grid.GridHandler');
-import('controllers.grid.DataObjectGridCellProvider');
 
 // import submission files grid specific classes
 import('controllers.grid.files.submissionFiles.SubmissionFilesGridRow');
@@ -92,9 +91,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 			GRID_ACTION_POSITION_ABOVE
 		);
 
-		// Cell Provider
-	//	$cellProvider = new DataObjectGridCellProvider();
-	//	$cellProvider->setLocale(Locale::getLocale());
 		// Columns
 		$emptyActions = array();
 		// Basic grid row configuration
@@ -107,8 +103,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$this->addColumn(new GridColumn('type',
 										'common.type',
 										null,
-										$emptyActions,
-										null));
+										$emptyActions
+										));
 	}
 
 	//

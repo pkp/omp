@@ -100,6 +100,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 			$this->monograph = new Monograph();
 			$this->monograph->setUserId($user->getId());
+			// FIXME: needs to use the userGroupId stored in session
 			$this->monograph->setUserGroupId(1);
 			$this->monograph->setPressId($press->getId());
 			$this->monograph->setSeriesId($this->getData('seriesId'));
