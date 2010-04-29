@@ -17,7 +17,6 @@ import('plugins.BlockPlugin');
 
 class SelectRoleBlockPlugin extends BlockPlugin {
 	function register($category, $path) {
-
 		if (Config::getVar('general', 'installed')) {
 			$user =& Request::getUser();
 			$press =& Request::getPress();
@@ -27,27 +26,7 @@ class SelectRoleBlockPlugin extends BlockPlugin {
 		}
 
 		$success = parent::register($category, $path);
-		if ($success) {
-			$this->addLocaleData();
-		}
 		return $success;
-	}
-
-	/**
-	 * Get the supported contexts (e.g. BLOCK_CONTEXT_...) for this block.
-	 * @return array
-	 */
-	function getSupportedContexts() {
-		return array(BLOCK_CONTEXT_LEFT_SIDEBAR, BLOCK_CONTEXT_RIGHT_SIDEBAR);
-	}
-
-	/**
-	 * Get the name of this plugin. The name must be unique within
-	 * its category.
-	 * @return String name of plugin
-	 */
-	function getName() {
-		return 'SelectRoleBlockPlugin';
 	}
 
 	/**
@@ -62,7 +41,7 @@ class SelectRoleBlockPlugin extends BlockPlugin {
 	 * Install default settings on conference creation.
 	 * @return string
 	 */
-	function getNewConferencePluginSettingsFile() {
+	function getContextSpecificPluginSettingsFile() {
 		return $this->getPluginPath() . '/settings.xml';
 	}
 

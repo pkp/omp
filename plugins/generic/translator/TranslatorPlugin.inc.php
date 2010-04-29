@@ -20,8 +20,7 @@ import('classes.plugins.GenericPlugin');
 class TranslatorPlugin extends GenericPlugin {
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
-			$this->addLocaleData();
-			if ($this->getSetting(0, 'enabled')) {
+			if ($this->getEnabled()) {
 				$this->addHelpData();
 				HookRegistry::register ('LoadHandler', array(&$this, 'handleRequest'));
 			}
@@ -45,10 +44,6 @@ class TranslatorPlugin extends GenericPlugin {
 		return false;
 	}
 
-	function getName() {
-		return 'TranslatorPlugin';
-	}
-
 	function getDisplayName() {
 		return Locale::translate('plugins.generic.translator.name');
 	}
@@ -57,41 +52,29 @@ class TranslatorPlugin extends GenericPlugin {
 		return Locale::translate('plugins.generic.translator.description');
 	}
 
-	function getManagementVerbs() {
-		$isEnabled = $this->getSetting(0, 'enabled');
-
-		$verbs[] = array(
-			($isEnabled?'disable':'enable'),
-			Locale::translate($isEnabled?'manager.plugins.disable':'manager.plugins.enable')
-		);
-
-		if ($isEnabled) $verbs[] = array(
-			'translate',
-			Locale::translate('plugins.generic.translator.translate')
-		);
-
-		return $verbs;
-	}
-
-	function manage($verb, $args) {
-		if (!Validation::isSiteAdmin()) return false;
-
-		switch ($verb) {
-			case 'enable':
-				$this->updateSetting(0, 'enabled', true);
-				break;
-			case 'disable':
-				$this->updateSetting(0, 'enabled', false);
-				break;
-			case 'translate':
-				Request::redirect('index', 'translate');
-				break;
-		}
-		return false;
-	}
-
 	function isSitePlugin() {
 		return true;
+	}
+
+	function getManagementVerbs() {
+		$verbs = array();
+		if ($this->getEnabled()) {
+			$verbs[] = array('translate', Locale::translate('plugins.generic.translator.translate'));
+		}
+		return parent::getManagementVerbs($verbs);
+	}
+
+	function manage($verb, $args, &$message) {
+		if (!parent::manage($verb, $args, $message)) return false;
+		switch ($verb) {
+			case 'translate':
+				Request::redirect('index', 'translate');
+				return false;
+			default:
+				// Unknown management verb
+				assert(false);
+				return false;
+		}
 	}
 }
 
