@@ -25,10 +25,21 @@ class TemplateManager extends PKPTemplateManager {
 	/**
 	 * Constructor.
 	 * Initialize template engine and assign basic template variables.
+	 * @param $request PKPRequest FIXME: is optional for backwards compatibility only - make mandatory
 	 */
-	function TemplateManager() {
+	function TemplateManager($request = null) {
+		// FIXME: for backwards compatibility only - remove
+		if (!isset($request)) {
+			if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function call.');
+			$request =& Registry::get('request');
+		}
+		assert(is_a($request, 'PKPRequest'));
 
-		parent::PKPTemplateManager();
+		parent::PKPTemplateManager($request);
+
+		// Retrieve the router
+		$router =& $request->getRouter();
+		assert(is_a($router, 'PKPRouter'));
 
 		// Are we using implicit authentication?
 		$this->assign('implicitAuth', Config::getVar('security', 'implicit_auth'));
@@ -40,34 +51,22 @@ class TemplateManager extends PKPTemplateManager {
 			 * installer pages).
 			 */
 
-			$press =& Request::getPress();
-			$site =& Request::getSite();
+			$press =& $router->getPress();
+			$site =& $request->getSite();
 
-			$siteFilesDir = Request::getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath();
+			$siteFilesDir = $request->getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath();
 			$this->assign('sitePublicFilesDir', $siteFilesDir);
 			$this->assign('publicFilesDir', $siteFilesDir); // May be overridden by press
 
 			$siteStyleFilename = PublicFileManager::getSiteFilesPath() . '/' . $site->getSiteStyleFilename();
-			if (file_exists($siteStyleFilename)) $this->addStyleSheet(Request::getBaseUrl() . '/' . $siteStyleFilename);
-
-			$user =& Request::getUser();
-			if ($user) {
-				$notificationDao =& DAORegistry::getDAO('NotificationDAO');
-				$notifications =& $notificationDao->getNotificationsByUserId($user->getId(), NOTIFICATION_LEVEL_TRIVIAL);
-				$notificationsArray =& $notifications->toArray();
-				unset($notifications);
-				foreach ($notificationsArray as $notification) {
-					$notificationDao->deleteNotificationById($notification->getId());
-				}
-				$this->assign('systemNotifications', $notificationsArray);
-			}
+			if (file_exists($siteStyleFilename)) $this->addStyleSheet($request->getBaseUrl() . '/' . $siteStyleFilename);
 
 			$this->assign('homeContext', array());
 			if (isset($press)) {
 				$this->assign_by_ref('currentPress', $press);
 				$pressTitle = $press->getLocalizedName();
 				$this->assign('siteTitle', $pressTitle);
-				$this->assign('publicFilesDir', Request::getBaseUrl() . '/' . PublicFileManager::getPressFilesPath($press->getId()));
+				$this->assign('publicFilesDir', $request->getBaseUrl() . '/' . PublicFileManager::getPressFilesPath($press->getId()));
 
 				$this->assign('primaryLocale', $press->getPrimaryLocale());
 				$this->assign('alternateLocales', $press->getSetting('alternateLocales'));
@@ -98,7 +97,7 @@ class TemplateManager extends PKPTemplateManager {
 				// Assign stylesheets and footer
 				$pressStyleSheet = $press->getSetting('pressStyleSheet');
 				if ($pressStyleSheet) {
-					$this->addStyleSheet(Request::getBaseUrl() . '/' . PublicFileManager::getPressFilesPath($press->getId()) . '/' . $pressStyleSheet['uploadName']);
+					$this->addStyleSheet($request->getBaseUrl() . '/' . PublicFileManager::getPressFilesPath($press->getId()) . '/' . $pressStyleSheet['uploadName']);
 				}
 
 				$this->assign('pageFooter', $press->getLocalizedSetting('pressPageFooter'));
