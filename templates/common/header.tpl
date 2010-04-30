@@ -65,6 +65,7 @@
 	<!-- Other Jquery Plugins -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.form.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/ajax_upload.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/fontController.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/jquery.prettyfile.js"></script>
 
