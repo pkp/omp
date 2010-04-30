@@ -58,7 +58,6 @@ class PressLanguagesHandler extends ManagerHandler {
 			$notificationManager =& new NotificationManager();
 			$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
 			$request->redirect(null, null, 'index');
-			$templateMgr->display('common/message.tpl');
 		} else {
 			$settingsForm->display();
 		}
@@ -96,15 +95,11 @@ class PressLanguagesHandler extends ManagerHandler {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroupDao->installLocale($locale, $press->getId());
 
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign(array(
-			'currentUrl' => $request->url(null, null, 'languages'),
-			'pageTitle' => 'common.languages',
-			'message' => 'common.changesSaved',
-			'backLink' => $request->url(null, $request->getRequestedPage()),
-			'backLinkLabel' => 'manager.pressManagement'
-		));
-		$templateMgr->display('common/message.tpl');
+		// Display a notification
+		import('notification.NotificationManager');
+		$notificationManager = new NotificationManager();
+		$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
+		$request->redirect(null, null, 'languages');
 	}
 }
 
