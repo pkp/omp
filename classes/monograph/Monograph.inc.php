@@ -283,13 +283,13 @@ class Monograph extends Submission {
 			}
 		}
 
-		if($copyeditor) {
+/*		if($copyeditor) {
 			$copyedSignoff = $signoffDao->getBySymbolic('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $monographId);
 			$userId = $copyedSignoff->getUserId();
 			if ($userId) $userIds[] = array('id' => $userId, 'role' => 'copyeditor');
 		}
 
-/*		if($layoutEditor) {
+		if($layoutEditor) {
 			$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $monographId);
 			$userId = $layoutSignoff->getUserId();
 			if ($userId) $userIds[] = array('id' => $userId, 'role' => 'layoutEditor');

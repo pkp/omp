@@ -101,6 +101,11 @@ define('MONOGRAPH_LOG_LAYOUT_COMPLETE', 	0x70000005);
 //production events
 define('MONOGRAPH_LOG_PRODUCTION_ASSIGN',	0x80000000);
 
+//file events
+define('MONOGRAPH_LOG_FILE_UPLOADED',	0x90000001);
+define('MONOGRAPH_LOG_FILE_NOTE_POSTED',	0x90000002);
+define('MONOGRAPH_LOG_FILE_MESSAGE_SENT',	0x90000003);
+
 class MonographEventLogEntry extends DataObject {
 
 	/**

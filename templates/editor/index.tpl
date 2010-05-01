@@ -6,7 +6,6 @@
  *
  * Monograph editor index.
  *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="about.submissions"}
@@ -23,5 +22,10 @@
 		<li class="ui-state-default ui-corner-top"><a href="{url router=$smarty.const.ROUTE_COMPONENT component="grid.submissions.pressEditor.PressEditorSubmissionsListGridHandler" op="fetchGrid" status="submissionsArchives"}">{translate key="common.queue.short.submissionsArchives"}</a></li>
 	</ul>
 </div>
+
+
+{url|assign:"informationCenterUrl" page='informationCenter' op='viewInformationCenter' fileId='4'}
+{modal url="$informationCenterUrl" actOnType="nothing" actOnId="nothing" dialogText='informationCenter.informationCenter' button="#informationCenterButton"}
+<a id="informationCenterButton" href="informationCenterUrl">{translate key="informationCenter.informationCenter"}</a>
 
 {include file="common/footer.tpl"}
