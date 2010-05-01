@@ -87,7 +87,7 @@ class PressSetupStep5Form extends PressSetupForm {
 	function display() {
 		$press =& Request::getPress();
 
-		$allThemes =& PluginRegistry::loadCategory('themes', true);
+		$allThemes =& PluginRegistry::loadCategory('themes');
 		$pressThemes = array();
 		foreach ($allThemes as $key => $junk) {
 			$plugin =& $allThemes[$key]; // by ref
@@ -221,7 +221,7 @@ class PressSetupStep5Form extends PressSetupForm {
 			}
 
 			$uploadName = $settingName . '.css';
-			if($fileManager->uploadPressFile($press->getId(), $settingName, $uploadName)) {			
+			if($fileManager->uploadPressFile($press->getId(), $settingName, $uploadName)) {
 				$value = array(
 					'name' => $fileManager->getUploadedFileName($settingName),
 					'uploadName' => $uploadName,
