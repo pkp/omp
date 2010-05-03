@@ -51,7 +51,7 @@ class TemplateManager extends PKPTemplateManager {
 			 * installer pages).
 			 */
 
-			$press =& $router->getPress();
+			$press =& $router->getContext($request);
 			$site =& $request->getSite();
 
 			$siteFilesDir = $request->getBaseUrl() . '/' . PublicFileManager::getSiteFilesPath();
