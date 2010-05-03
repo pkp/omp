@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('handler.Handler');
+import('classes.handler.Handler');
 
 class UserHandler extends Handler {
 	/**
@@ -189,7 +189,7 @@ class UserHandler extends Handler {
 
 	function viewCaptcha($args) {
 		$captchaId = (int) array_shift($args);
-		import('captcha.CaptchaManager');
+		import('lib.pkp.classes.captcha.CaptchaManager');
 		$captchaManager = new CaptchaManager();
 		if ($captchaManager->isEnabled()) {
 			$captchaDao =& DAORegistry::getDAO('CaptchaDAO');

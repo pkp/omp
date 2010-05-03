@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('monograph.Monograph');
+import('classes.monograph.Monograph');
 
 class ProductionEditorSubmission extends Monograph {
 

@@ -15,8 +15,8 @@
 // $Id$
 
 
-import('submission.designer.DesignerAction');
-import('handler.Handler');
+import('classes.submission.designer.DesignerAction');
+import('classes.handler.Handler');
 
 class DesignerHandler extends Handler {
 	function DesignerHandler() {
@@ -116,7 +116,7 @@ class DesignerHandler extends Handler {
 		$pageHierarchy = $subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'designer'), 'user.role.designer'))
 				: array(array(Request::url(null, 'user'), 'navigation.user'));
 
-		import('submission.seriesEditor.SeriesEditorAction');
+		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$submissionCrumb = SeriesEditorAction::submissionBreadcrumb($monographId, $parentPage, 'designer');
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
@@ -129,7 +129,7 @@ class DesignerHandler extends Handler {
 	 * @param $args (type)
 	 */
 	function instructions($args) {
-		import('submission.proofreader.ProofreaderAction');
+		import('classes.submission.proofreader.ProofreaderAction');
 		if (!isset($args[0]) || !DesignerAction::instructions($args[0], array('layout', 'proof', 'referenceLinking'))) {
 			Request::redirect(null, Request::getRequestedPage());
 		}

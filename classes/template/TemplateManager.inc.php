@@ -18,8 +18,8 @@
 
 
 
-import('file.PublicFileManager');
-import('template.PKPTemplateManager');
+import('classes.file.PublicFileManager');
+import('lib.pkp.classes.template.PKPTemplateManager');
 
 class TemplateManager extends PKPTemplateManager {
 	/**
@@ -126,7 +126,7 @@ class TemplateManager extends PKPTemplateManager {
 	 * @return numerical help topic id
 	 */
 	function smartyGetHelpId($params, &$smarty) {
-		import('help.Help');
+		import('classes.help.Help');
 		$help =& Help::getHelp();
 		if (isset($params) && !empty($params)) {
 			if (isset($params['key'])) {
@@ -154,7 +154,7 @@ class TemplateManager extends PKPTemplateManager {
 	 * @return anchor link to related help topic
 	 */
 	function smartyHelpTopic($params, &$smarty) {
-		import('help.Help');
+		import('classes.help.Help');
 		$help =& Help::getHelp();
 		if (isset($params) && !empty($params)) {
 			$translatedKey = isset($params['key']) ? $help->translate($params['key']) : $help->translate('');

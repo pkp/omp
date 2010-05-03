@@ -33,8 +33,8 @@ define ('STATUS_INCOMPLETE', 8);
 define('WORK_TYPE_EDITED_VOLUME', 1);
 define('WORK_TYPE_AUTHORED_WORK', 2);
 
-import('submission.Submission');
-import('monograph.Author');
+import('lib.pkp.classes.submission.Submission');
+import('classes.monograph.Author');
 
 class Monograph extends Submission {
 
@@ -435,7 +435,7 @@ class Monograph extends Submission {
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$authors = $authorDao->getAuthorsByMonographId($this->getId());
 
-		import('mail.Mail');
+		import('lib.pkp.classes.mail.Mail');
 		$returner = array();
 		while($author =& $authors->next()) {
 			$returner[] = Mail::encodeDisplayName($author->getFullName()) . ' <' . $author->getEmail() . '>';

@@ -15,8 +15,8 @@
 // $Id$
 
 
-import('publicationFormat.PublicationFormat');
-import('press.DefaultSettingDAO');
+import('classes.publicationFormat.PublicationFormat');
+import('classes.press.DefaultSettingDAO');
 
 class PublicationFormatDAO extends DefaultSettingDAO
 {

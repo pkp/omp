@@ -14,7 +14,7 @@
 
 // $Id$
 
-import('core.JSON');
+import('lib.pkp.classes.core.JSON');
 import('pages.manager.ManagerHandler');
 
 class SetupHandler extends ManagerHandler {
@@ -42,7 +42,7 @@ class SetupHandler extends ManagerHandler {
 			switch ($step) {
 				case 3:
 					// import the file type constants
-					import('press.LibraryFile');
+					import('classes.press.LibraryFile');
 					break;
 			}
 
@@ -89,7 +89,7 @@ class SetupHandler extends ManagerHandler {
 				case 4:
 					$press =& Request::getPress();
 					$templates = $press->getSetting('templates');
-					import('file.PressFileManager');
+					import('classes.file.PressFileManager');
 					$pressFileManager = new PressFileManager($press);
 					if (Request::getUserVar('addTemplate')) {
 						// Add a layout template
@@ -229,7 +229,7 @@ class SetupHandler extends ManagerHandler {
 				$setupForm->execute();
 
 				// Create notification to indicate that setup was saved
-				import('notification.NotificationManager');
+				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationManager =& new NotificationManager();
 				$notificationManager->createTrivialNotification('notification.notification', 'manager.setup.pressSetupUpdated');
 
@@ -247,7 +247,7 @@ class SetupHandler extends ManagerHandler {
 		$this->validate();
 		$press =& Request::getPress();
 		$templates = $press->getSetting('templates');
-		import('file.PressFileManager');
+		import('classes.file.PressFileManager');
 		$pressFileManager = new PressFileManager($press);
 		$templateId = (int) array_shift($args);
 		if ($templateId >= count($templates) || $templateId < 0) Request::redirect(null, null, 'setup');

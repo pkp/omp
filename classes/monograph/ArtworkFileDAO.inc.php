@@ -15,7 +15,7 @@
 
 // $Id$
 
-import('monograph.ArtworkFile');
+import('classes.monograph.ArtworkFile');
 
 class ArtworkFileDAO extends DAO {
 

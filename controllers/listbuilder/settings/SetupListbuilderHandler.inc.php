@@ -12,11 +12,11 @@
  * @brief Base class for setup listbuilders
  */
 
-import('controllers.listbuilder.ListbuilderHandler');
+import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 
 // import validation classes
-import('handler.validation.HandlerValidatorPress');
-import('handler.validation.HandlerValidatorRoles');
+import('classes.handler.validation.HandlerValidatorPress');
+import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
 
 class SetupListbuilderHandler extends ListbuilderHandler {
 	/**

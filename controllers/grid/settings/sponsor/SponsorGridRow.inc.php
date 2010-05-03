@@ -12,7 +12,7 @@
  * @brief Handle sponsor grid row requests.
  */
 
-import('controllers.grid.GridRow');
+import('lib.pkp.classes.controllers.grid.GridRow');
 
 class SponsorGridRow extends GridRow {
 	/**

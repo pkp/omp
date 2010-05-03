@@ -12,7 +12,7 @@
  * @brief Handle Review Form Element grid row requests.
  */
 
-import('controllers.grid.GridRow');
+import('lib.pkp.classes.controllers.grid.GridRow');
 
 class ReviewFormElementGridRow extends GridRow {
 

@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('security.UserGroup');
+import('classes.security.UserGroup');
 
 class UserGroupDAO extends DAO {
 	/** @var a shorcut to get the userDao **/

@@ -12,7 +12,7 @@
  * @brief Class for adding supporting agencies to a monograph
  */
 
-import('controllers.listbuilder.ListbuilderHandler');
+import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 
 class IndexingInformationListbuilderHandler extends ListbuilderHandler {
 	/**

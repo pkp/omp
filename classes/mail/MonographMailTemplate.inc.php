@@ -17,8 +17,8 @@
 // $Id$
 
 
-import('mail.MailTemplate');
-import('monograph.log.MonographEmailLogEntry'); // Bring in log constants
+import('classes.mail.MailTemplate');
+import('classes.monograph.log.MonographEmailLogEntry'); // Bring in log constants
 
 class MonographMailTemplate extends MailTemplate {
 
@@ -122,8 +122,8 @@ class MonographMailTemplate extends MailTemplate {
 	 * Save the email in the monograph email log.
 	 */
 	function log() {
-		import('monograph.log.MonographEmailLogEntry');
-		import('monograph.log.MonographLog');
+		import('classes.monograph.log.MonographEmailLogEntry');
+		import('classes.monograph.log.MonographLog');
 		$entry = new MonographEmailLogEntry();
 		$monograph =& $this->monograph;
 
@@ -144,7 +144,7 @@ class MonographMailTemplate extends MailTemplate {
 		$logEntryId = MonographLog::logEmailEntry($monograph->getId(), $entry);
 
 		// Add attachments
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monograph->getId());
 		foreach ($this->getAttachmentFiles() as $attachment) {
 			$monographFileManager->temporaryFileToMonographFile(

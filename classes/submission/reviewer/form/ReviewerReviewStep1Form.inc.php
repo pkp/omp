@@ -15,7 +15,7 @@
 // $Id$
 
 
-import("submission.reviewer.form.ReviewerReviewForm");
+import('classes.submission.reviewer.form.ReviewerReviewForm');
 
 class ReviewerReviewStep1Form extends ReviewerReviewForm {
 
@@ -69,7 +69,7 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		$templateMgr->assign('competingInterestsText', $submission->getCompetingInterests());			
 			
 		
-		import('submission.reviewAssignment.ReviewAssignment');
+		import('classes.submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 
 		$templateMgr->assign('helpTopicId', 'editorial.reviewersRole.review');		

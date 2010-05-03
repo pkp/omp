@@ -16,10 +16,10 @@
 // $Id$
 
 
-import('submission.editor.EditorSubmission');
+import('classes.submission.editor.EditorSubmission');
 
 // Bring in editor decision constants
-import('submission.author.AuthorSubmission');
+import('classes.submission.author.AuthorSubmission');
 
 class EditorSubmissionDAO extends DAO {
 	var $monographDao;

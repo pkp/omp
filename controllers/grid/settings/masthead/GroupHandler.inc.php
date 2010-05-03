@@ -68,7 +68,7 @@ class GroupHandler extends ManagerHandler {
 		} else $group = null;
 
 		$this->setupTemplate($group, true);
-		import('manager.form.GroupForm');
+		import('classes.manager.form.GroupForm');
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -110,7 +110,7 @@ class GroupHandler extends ManagerHandler {
 		}
 		$this->setupTemplate($group);
 
-		import('manager.form.GroupForm');
+		import('classes.manager.form.GroupForm');
 
 		$groupForm = new GroupForm($group);
 		$groupForm->readInputData();

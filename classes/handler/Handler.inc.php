@@ -13,8 +13,8 @@
  */
 
 
-import('handler.PKPHandler');
-import('handler.validation.HandlerValidatorPress');
+import('lib.pkp.classes.handler.PKPHandler');
+import('classes.handler.validation.HandlerValidatorPress');
 
 class Handler extends PKPHandler{
 	function Handler() {

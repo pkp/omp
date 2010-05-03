@@ -13,8 +13,8 @@
  * @brief Operations for retrieving and modifying Role objects.
  */
 
-import('security.Role');
-import('security.UserGroupAssignment');
+import('classes.security.Role');
+import('classes.security.UserGroupAssignment');
 
 class RoleDAO extends DAO {
 	/** @var $userDao The User DAO to return User objects when necessary **/

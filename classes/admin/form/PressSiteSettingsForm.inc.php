@@ -15,8 +15,8 @@
 // $Id$
 
 
-import('db.DBDataXMLParser');
-import('form.Form');
+import('lib.pkp.classes.db.DBDataXMLParser');
+import('lib.pkp.classes.form.Form');
 
 class PressSiteSettingsForm extends Form {
 
@@ -131,7 +131,7 @@ class PressSiteSettingsForm extends Form {
 			$pressDao->resequencePresses();
 
 			// Make the file directories for the press
-			import('file.FileManager');
+			import('lib.pkp.classes.file.FileManager');
 			FileManager::mkdir(Config::getVar('files', 'files_dir') . '/presses/' . $pressId);
 			FileManager::mkdir(Config::getVar('files', 'files_dir'). '/presses/' . $pressId . '/monographs');
 			FileManager::mkdir(Config::getVar('files', 'public_files_dir') . '/presses/' . $pressId);

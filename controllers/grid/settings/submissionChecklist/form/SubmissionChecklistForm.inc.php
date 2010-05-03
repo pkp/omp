@@ -13,7 +13,7 @@
  * stores/retrieves from an associative array
  */
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class SubmissionChecklistForm extends Form {
 	/** the id for the submissionChecklist being edited **/

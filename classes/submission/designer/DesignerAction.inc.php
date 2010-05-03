@@ -19,7 +19,7 @@
 // $Id$
 
 
-import('submission.common.Action');
+import('classes.submission.common.Action');
 
 class DesignerAction extends Action {
 
@@ -35,8 +35,8 @@ class DesignerAction extends Action {
 
 		if (HookRegistry::call('DesignerAction::selectDesigner', array(&$submission, &$userId))) return;
 
-		import('monograph.log.MonographLog');
-		import('monograph.log.MonographEventLogEntry');
+		import('classes.monograph.log.MonographLog');
+		import('classes.monograph.log.MonographEventLogEntry');
 
 		$designSignoff = $signoffDao->build('PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT, $assignmentId);
 		$designer =& $userDao->getUser($userId);
@@ -74,7 +74,7 @@ class DesignerAction extends Action {
 	 * @param $galleyId int
 	 */
 	function deleteGalley($monograph, $galleyId) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		$galley =& $galleyDao->getGalley($galleyId, $monograph->getId());
@@ -84,7 +84,7 @@ class DesignerAction extends Action {
 
 			if ($galley->getFileId()) {
 				$monographFileManager->deleteFile($galley->getFileId());
-				import('search.MonographSearchIndex');
+				import('classes.search.MonographSearchIndex');
 				MonographSearchIndex::deleteTextIndex($monograph->getId(), MONOGRAPH_SEARCH_GALLEY_FILE, $galley->getFileId());
 			}
 			if ($galley->isHTMLGalley()) {
@@ -106,7 +106,7 @@ class DesignerAction extends Action {
 	 * @param $revision int (optional)
 	 */
 	function deleteMonographImage($submission, $fileId, $revision) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographGalleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		if (HookRegistry::call('DesignerAction::deleteMonographImage', array(&$submission, &$fileId, &$revision))) return;
 		foreach ($submission->getGalleys() as $galley) {
@@ -137,7 +137,7 @@ class DesignerAction extends Action {
 			return true;
 		}
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($submission, 'LAYOUT_COMPLETE');
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
@@ -152,8 +152,8 @@ class DesignerAction extends Action {
 
 			// Add log entry
 			$user =& Request::getUser();
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_COMPLETE, MONOGRAPH_LOG_TYPE_LAYOUT, $user->getId(), 'log.layout.layoutEditComplete', Array('editorName' => $user->getFullName(), 'monographId' => $submission->getMonographId()));
 
 			return true;
@@ -192,7 +192,7 @@ class DesignerAction extends Action {
 	 */
 	function viewLayoutComments($monograph) {
 		if (!HookRegistry::call('LayoutEditorAction::viewLayoutComments', array(&$monograph))) {
-			import('submission.form.comment.LayoutCommentForm');
+			import('classes.submission.form.comment.LayoutCommentForm');
 
 			$commentForm = new LayoutCommentForm($monograph, ROLE_ID_LAYOUT_EDITOR);
 			$commentForm->initData();
@@ -206,7 +206,7 @@ class DesignerAction extends Action {
 	 */
 	function postLayoutComment($monograph, $emailComment) {
 		if (!HookRegistry::call('LayoutEditorAction::postLayoutComment', array(&$monograph, &$emailComment))) {
-			import('submission.form.comment.LayoutCommentForm');
+			import('classes.submission.form.comment.LayoutCommentForm');
 
 			$commentForm = new LayoutCommentForm($monograph, ROLE_ID_LAYOUT_EDITOR);
 			$commentForm->readInputData();
@@ -215,7 +215,7 @@ class DesignerAction extends Action {
 				$commentForm->execute();
 				
 				// Send a notification to associated users
-				import('notification.NotificationManager');
+				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
@@ -244,7 +244,7 @@ class DesignerAction extends Action {
 	 */
 	function viewProofreadComments($monograph) {
 		if (!HookRegistry::call('LayoutEditorAction::viewProofreadComments', array(&$monograph))) {
-			import('submission.form.comment.ProofreadCommentForm');
+			import('classes.submission.form.comment.ProofreadCommentForm');
 
 			$commentForm = new ProofreadCommentForm($monograph, ROLE_ID_LAYOUT_EDITOR);
 			$commentForm->initData();
@@ -258,7 +258,7 @@ class DesignerAction extends Action {
 	 */
 	function postProofreadComment($monograph, $emailComment) {
 		if (!HookRegistry::call('LayoutEditorAction::postProofreadComment', array(&$monograph, &$emailComment))) {
-			import('submission.form.comment.ProofreadCommentForm');
+			import('classes.submission.form.comment.ProofreadCommentForm');
 
 			$commentForm = new ProofreadCommentForm($monograph, ROLE_ID_LAYOUT_EDITOR);
 			$commentForm->readInputData();
@@ -267,7 +267,7 @@ class DesignerAction extends Action {
 				$commentForm->execute();
 				
 				// Send a notification to associated users
-				import('notification.NotificationManager');
+				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {

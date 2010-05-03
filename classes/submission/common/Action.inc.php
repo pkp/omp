@@ -59,7 +59,7 @@ class Action {
 	 */
 	function viewMetadata($monograph, $contentOnly = false) {
 		if (!HookRegistry::call('Action::viewMetadata', array(&$monograph, &$roleId))) {
-			import('submission.form.MetadataForm');
+			import('classes.submission.form.MetadataForm');
 			$metadataForm = new MetadataForm($monograph, $contentOnly);
 			if ($metadataForm->getCanEdit() && $metadataForm->isLocaleResubmit()) {
 				$metadataForm->readInputData();
@@ -76,7 +76,7 @@ class Action {
 	 */
 	function saveMetadata($monograph) {
 		if (!HookRegistry::call('Action::saveMetadata', array(&$monograph))) {
-			import('submission.form.MetadataForm');
+			import('classes.submission.form.MetadataForm');
 			$metadataForm = new MetadataForm($monograph);
 			$metadataForm->readInputData();
 			$editData = false;
@@ -86,7 +86,7 @@ class Action {
 				$metadataForm->execute();
 				
 				// Send a notification to associated users
-				import('notification.NotificationManager');
+				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationUsers = $monograph->getAssociatedUserIds();
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
@@ -99,8 +99,8 @@ class Action {
 
 				// Add log entry
 				$user =& Request::getUser();
-				import('monograph.log.MonographLog');
-				import('monograph.log.MonographEventLogEntry');
+				import('classes.monograph.log.MonographLog');
+				import('classes.monograph.log.MonographEventLogEntry');
 				MonographLog::logEvent($monograph->getId(), MONOGRAPH_LOG_METADATA_UPDATE, MONOGRAPH_LOG_TYPE_DEFAULT, 0, 'log.editor.metadataModified', Array('editorName' => $user->getFullName()));
 
 				return true;
@@ -119,7 +119,7 @@ class Action {
 	 * @param $revision int
 	 */
 	function downloadFile($monographId, $fileId, $revision = null) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 		return $monographFileManager->downloadFile($fileId, $revision);
 	}
@@ -131,7 +131,7 @@ class Action {
 	 * @param $revision int
 	 */
 	function viewFile($monographId, $fileId, $revision = null) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 		return $monographFileManager->viewFile($fileId, $revision);
 	}
@@ -185,7 +185,7 @@ class Action {
 	 */
 	function editComment($monograph, $comment) {
 		if (!HookRegistry::call('Action::editComment', array(&$monograph, &$comment))) {
-			import("submission.form.comment.EditCommentForm");
+			import('classes.submission.form.comment.EditCommentForm');
 
 			$commentForm = new EditCommentForm($monograph, $comment);
 			$commentForm->initData();
@@ -199,7 +199,7 @@ class Action {
 	 */
 	function saveComment($monograph, &$comment, $emailComment) {
 		if (!HookRegistry::call('Action::saveComment', array(&$monograph, &$comment, &$emailComment))) {
-			import("submission.form.comment.EditCommentForm");
+			import('classes.submission.form.comment.EditCommentForm');
 
 			$commentForm = new EditCommentForm($monograph, $comment);
 			$commentForm->readInputData();
@@ -208,7 +208,7 @@ class Action {
 				$commentForm->execute();
 				
 				// Send a notification to associated users
-				import('notification.NotificationManager');
+				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {

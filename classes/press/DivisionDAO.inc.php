@@ -16,7 +16,7 @@
 // $Id$
 
 
-import ('press.Division');
+import ('classes.press.Division');
 
 class DivisionDAO extends DAO {
 	/**

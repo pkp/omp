@@ -14,7 +14,7 @@
  */
 
 // bring in role constants
-import('security.Role');
+import('classes.security.Role');
 
 class UserGroup extends DataObject {
 

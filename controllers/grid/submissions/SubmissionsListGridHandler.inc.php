@@ -13,15 +13,15 @@
  */
 
 // import grid base classes
-import('controllers.grid.GridHandler');
+import('lib.pkp.classes.controllers.grid.GridHandler');
 
 // import submissionsList grid specific classes
 import('controllers.grid.submissions.SubmissionsListGridCellProvider');
-import('submission.common.Action');
+import('classes.submission.common.Action');
 
 // import validation classes
-import('handler.validation.HandlerValidatorPress');
-import('handler.validation.HandlerValidatorRoles');
+import('classes.handler.validation.HandlerValidatorPress');
+import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
 
 class SubmissionsListGridHandler extends GridHandler {
 

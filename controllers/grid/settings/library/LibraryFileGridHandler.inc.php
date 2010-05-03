@@ -228,7 +228,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$press =& $router->getContext($request);
 
 		if($fileId) {
-			import('file.LibraryFileManager');
+			import('classes.file.LibraryFileManager');
 			$libraryFileManager = new LibraryFileManager($press->getId());
 			$libraryFileManager->deleteFile($fileId);
 			$json = new JSON('true');

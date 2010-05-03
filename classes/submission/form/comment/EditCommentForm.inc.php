@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class EditCommentForm extends Form {
 
@@ -293,7 +293,7 @@ class EditCommentForm extends Form {
 	 * @param $recipients array of recipients (email address => name)
 	 */
 	function email($recipients) {
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($this->monograph, 'SUBMISSION_COMMENT');
 		$press =& Request::getPress();
 		if ($press) $email->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));

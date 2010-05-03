@@ -15,8 +15,8 @@
 // $Id$
 
 
-import('submission.reviewer.ReviewerAction');
-import('handler.Handler');
+import('classes.submission.reviewer.ReviewerAction');
+import('classes.handler.Handler');
 
 class ReviewerHandler extends Handler {
 	/**
@@ -58,7 +58,7 @@ class ReviewerHandler extends Handler {
 		$templateMgr->assign('pageToDisplay', $page);
 		$templateMgr->assign_by_ref('submissions', $submissions);
 
-		import('submission.reviewAssignment.ReviewAssignment');
+		import('classes.submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 
 		$templateMgr->assign('helpTopicId', 'editorial.reviewersRole.submissions');
@@ -81,7 +81,7 @@ class ReviewerHandler extends Handler {
 
 		define('REVIEWER_ACCESS_KEY_SESSION_VAR', 'ReviewerAccessKey');
 
-		import('security.AccessKeyManager');
+		import('lib.pkp.classes.security.AccessKeyManager');
 		$accessKeyManager = new AccessKeyManager();
 
 		$session =& Request::getSession();

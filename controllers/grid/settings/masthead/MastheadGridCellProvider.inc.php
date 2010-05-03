@@ -12,7 +12,7 @@
  * @brief Subclass class for a Masthead grid column's cell provider
  */
 
-import('controllers.grid.GridCellProvider');
+import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
 class MastheadGridCellProvider extends GridCellProvider {
 	/**

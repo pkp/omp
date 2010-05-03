@@ -137,13 +137,13 @@ class EmailHandler extends UserHandler {
 			$hasAccess = $this->_monographAccessChecks($monographId, $user->getId());
 
 			if ($hasAccess) {
-				import('mail.MonographMailTemplate');
+				import('classes.mail.MonographMailTemplate');
 				$email = new MonographMailTemplate($monographDao->getMonograph($monographId, $template));
 			}
 		}
 
 		if ($email === null) {
-			import('mail.MailTemplate');
+			import('classes.mail.MailTemplate');
 			$email = new MailTemplate($template);
 		}
 

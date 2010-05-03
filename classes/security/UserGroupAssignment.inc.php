@@ -13,7 +13,7 @@
  * @brief Describes user roles within the system and the associated permissions.
  */
 
-import('security.UserGroup');
+import('classes.security.UserGroup');
 
 class UserGroupAssignment extends DataObject {
 	/** @var the UserGroup object associated with this assignment **/

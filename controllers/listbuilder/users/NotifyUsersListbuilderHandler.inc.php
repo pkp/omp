@@ -12,7 +12,7 @@
  * @brief Class for adding users to a information center notification
  */
 
-import('controllers.listbuilder.ListbuilderHandler');
+import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 
 class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	/**

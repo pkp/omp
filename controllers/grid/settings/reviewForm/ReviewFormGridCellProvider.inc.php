@@ -12,7 +12,7 @@
  * @brief Render the first column of the Review Form grid.
  */
 
-import('controllers.grid.GridCellProvider');
+import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
 class ReviewFormGridCellProvider extends GridCellProvider {
 	/**

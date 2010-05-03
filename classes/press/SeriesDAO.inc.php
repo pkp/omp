@@ -16,7 +16,7 @@
 // $Id$
 
 
-import ('press.Series');
+import ('classes.press.Series');
 
 class SeriesDAO extends DAO {
 	/**

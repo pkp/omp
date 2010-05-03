@@ -15,9 +15,9 @@
 // $Id$
 
 
-import('search.SearchFileParser');
-import('search.SearchHTMLParser');
-import('search.SearchHelperParser');
+import('lib.pkp.classes.search.SearchFileParser');
+import('lib.pkp.classes.search.SearchHTMLParser');
+import('lib.pkp.classes.search.SearchHelperParser');
 
 define('SEARCH_STOPWORDS_FILE', 'registry/stopwords.txt');
 
@@ -63,7 +63,7 @@ class MonographSearchIndex {
 	 * @param $fileId int
 	 */
 	function updateFileIndex($monographId, $type, $fileId) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$fileMgr = new MonographFileManager($monographId);
 		$file =& $fileMgr->getFile($fileId);
 
@@ -171,7 +171,7 @@ class MonographSearchIndex {
 		}
 
 		// Update search index
-		import('search.MonographSearch');
+		import('classes.search.MonographSearch');
 		$monographId = $monograph->getId();
 		MonographSearchIndex::updateTextIndex($monographId, MONOGRAPH_SEARCH_AUTHOR, $authorText);
 		MonographSearchIndex::updateTextIndex($monographId, MONOGRAPH_SEARCH_TITLE, $monograph->getTitle(null));

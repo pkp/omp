@@ -12,9 +12,9 @@
  * @brief Handle requests to view the information center for a file. 
  */
 
-import('handler.Handler');
-import('core.JSON');
-import('monograph.log.MonographEventLogEntry');
+import('classes.handler.Handler');
+import('lib.pkp.classes.core.JSON');
+import('classes.monograph.log.MonographEventLogEntry');
 
 class InformationCenterHandler extends Handler {
 	var $comment;
@@ -67,7 +67,7 @@ class InformationCenterHandler extends Handler {
 		$this->validate($fileId);
 		$this->setupTemplate(true);
 
-		import("informationCenter.form.InformationCenterNotesForm");
+		import('classes.informationCenter.form.InformationCenterNotesForm');
 		$notesForm = new InformationCenterNotesForm($fileId);
 		$notesForm->initData();
 		$notesForm->display();
@@ -81,7 +81,7 @@ class InformationCenterHandler extends Handler {
 		$this->validate($fileId);
 		$this->setupTemplate(true);
 
-		import("informationCenter.form.InformationCenterNotesForm");
+		import('classes.informationCenter.form.InformationCenterNotesForm');
 		$notesForm = new InformationCenterNotesForm($fileId);		
 		$notesForm->readInputData();
 
@@ -132,7 +132,7 @@ class InformationCenterHandler extends Handler {
 		$this->setupTemplate(true);
 
 		
-		import("informationCenter.form.InformationCenterNotifyForm");
+		import('classes.informationCenter.form.InformationCenterNotifyForm');
 		$notifyForm = new InformationCenterNotifyForm($fileId);
 		$notifyForm->initData();
 		$notifyForm->display();
@@ -147,7 +147,7 @@ class InformationCenterHandler extends Handler {
 		$this->setupTemplate(true);
 
 		
-		import("informationCenter.form.InformationCenterNotifyForm");
+		import('classes.informationCenter.form.InformationCenterNotifyForm');
 		$notifyForm = new InformationCenterNotifyForm($fileId);		
 		$notifyForm->readInputData();
 
@@ -214,7 +214,7 @@ class InformationCenterHandler extends Handler {
 		$entry->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
 		$entry->setAssocId($fileId);
 
-		import('monograph.log.MonographLog');
+		import('classes.monograph.log.MonographLog');
 		MonographLog::logEventEntry($monographFile->getMonographId(), $entry);
 		
 	}

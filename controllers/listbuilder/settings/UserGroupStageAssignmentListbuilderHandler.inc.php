@@ -13,7 +13,7 @@
  */
 
 //import publication stage id constants
-import('workflow.UserGroupStageAssignment');
+import('classes.workflow.UserGroupStageAssignment');
 import('controllers.listbuilder.settings.SetupListbuilderHandler');
 
 class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler {

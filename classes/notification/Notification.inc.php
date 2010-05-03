@@ -29,8 +29,8 @@ define('NOTIFICATION_TYPE_USER_COMMENT', 		0x1000014);
 define('NOTIFICATION_TYPE_PUBLISHED_MONOGRAPH', 	0x1000015);
 define('NOTIFICATION_TYPE_NEW_ANNOUNCEMENT', 		0x1000016);
 
-import('notification.PKPNotification');
-import('notification.NotificationDAO');
+import('lib.pkp.classes.notification.PKPNotification');
+import('lib.pkp.classes.notification.NotificationDAO');
 
 class Notification extends PKPNotification {
 
@@ -83,7 +83,7 @@ class Notification extends PKPNotification {
 	 * @param $template string The mail template to use
 	 */
 	function sendMailingListEmail($email, $password, $template) {
-		import('mail.MailTemplate');
+		import('classes.mail.MailTemplate');
 		$press = Request::getPress();
 		$site = Request::getSite();
 

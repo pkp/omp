@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('submission.seriesEditor.SeriesEditorAction');
+import('classes.submission.seriesEditor.SeriesEditorAction');
 
 class EditorAction extends SeriesEditorAction {
 	/**
@@ -40,7 +40,7 @@ class EditorAction extends SeriesEditorAction {
 		$seriesEditor =& $userDao->getUser($seriesEditorId);
 		if (!isset($seriesEditor)) return true;
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($editorSubmission, 'EDITOR_ASSIGN');
 
 		if ($user->getId() === $seriesEditorId || !$email->isEnabled() || ($send && !$email->hasErrors())) {
@@ -67,8 +67,8 @@ class EditorAction extends SeriesEditorAction {
 			$editorSubmissionDao->updateObject($editorSubmission);
 
 			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($monographId, MONOGRAPH_LOG_EDITOR_ASSIGN, MONOGRAPH_LOG_TYPE_EDITOR, $seriesEditorId, 'log.editor.editorAssigned', array('editorName' => $seriesEditor->getFullName(), 'monographId' => $monographId));
 			return true;
 		} else {

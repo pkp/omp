@@ -15,7 +15,7 @@
 
 //$Id$
 
-import('monograph.reviewRound.ReviewRound');
+import('classes.monograph.reviewRound.ReviewRound');
 
 class ReviewRoundDAO extends DAO {
 

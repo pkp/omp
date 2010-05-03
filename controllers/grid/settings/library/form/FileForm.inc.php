@@ -13,7 +13,7 @@
  * stores/retrieves from an associative array
  */
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class FileForm extends Form {
 	/** the type of file being uploaded */
@@ -79,7 +79,7 @@ class FileForm extends Form {
 	function uploadFile(&$args, &$request) {
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
-		import('file.LibraryFileManager');
+		import('classes.file.LibraryFileManager');
 		$libraryFileManager = new LibraryFileManager($context->getId());
 		
 		if ($libraryFileManager->uploadedFileExists('libraryFile')) {

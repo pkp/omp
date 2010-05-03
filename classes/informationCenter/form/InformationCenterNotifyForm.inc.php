@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class InformationCenterNotifyForm extends Form {
 	/** @var int The file this form is for */

@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('monograph.MonographGalley');
+import('classes.monograph.MonographGalley');
 
 class MonographGalleyDAO extends DAO {
 	/** Helper file DAOs. */

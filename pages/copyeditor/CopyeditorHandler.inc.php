@@ -15,8 +15,8 @@
 // $Id$
 
 
-import ('submission.copyeditor.CopyeditorAction');
-import('handler.Handler');
+import ('classes.submission.copyeditor.CopyeditorAction');
+import('classes.handler.Handler');
 
 class CopyeditorHandler extends Handler {
 	/**
@@ -116,7 +116,7 @@ class CopyeditorHandler extends Handler {
 		$pageHierarchy = $subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'copyeditor'), 'user.role.copyeditor'))
 				: array(array('user', 'navigation.user'), array('copyeditor', 'user.role.copyeditor'));
 
-		import('submission.seriesEditor.SeriesEditorAction');
+		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$submissionCrumb = SeriesEditorAction::submissionBreadcrumb($monographId, $parentPage, 'copyeditor');
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
@@ -129,7 +129,7 @@ class CopyeditorHandler extends Handler {
 	 * @param $args (type)
 	 */
 	function instructions($args) {
-		import('submission.proofreader.ProofreaderAction');
+		import('classes.submission.proofreader.ProofreaderAction');
 		if (!isset($args[0]) || !ProofreaderAction::instructions($args[0], array('copy'))) {
 			Request::redirect(null, Request::getRequestedPage());
 		}

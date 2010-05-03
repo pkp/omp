@@ -12,7 +12,7 @@
  * @brief Base class for a cell provider that can retrieve labels for submission contributors
  */
 
-import('controllers.grid.DataObjectGridCellProvider');
+import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
 class SubmissionContributorGridCellProvider extends DataObjectGridCellProvider {
 	/**

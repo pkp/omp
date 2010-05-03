@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class SeriesForm extends Form {
 	/** @var $seriesId int The ID of the series being edited */

@@ -12,7 +12,7 @@
  * @brief Form for editing a submission file's metadata
  */
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class SubmissionFilesMetadataForm extends Form {
 	/** @var int */

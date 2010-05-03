@@ -15,7 +15,7 @@
 
 // $Id$
 
-import('submission.common.Action');
+import('classes.submission.common.Action');
 
 class CopyeditorAction extends Action {
 
@@ -39,7 +39,7 @@ class CopyeditorAction extends Action {
 		}
 
 		$user =& Request::getUser();
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($copyeditorSubmission, 'COPYEDIT_COMPLETE');
 
 		$editAssignments = $copyeditorSubmission->getEditAssignments();
@@ -63,8 +63,8 @@ class CopyeditorAction extends Action {
 			
 
 			// Add log entry
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 
 			MonographLog::logEvent(
 					$copyeditorSubmission->getMonographId(), 
@@ -115,7 +115,7 @@ class CopyeditorAction extends Action {
 		}
 
 		$user =& Request::getUser();
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($copyeditorSubmission, 'COPYEDIT_FINAL_COMPLETE');
 
 		$editAssignments = $copyeditorSubmission->getEditAssignments();
@@ -135,7 +135,7 @@ class CopyeditorAction extends Action {
 				$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
 
 				if (!$layoutSignoff->getFileId()) {
-					import('file.MonographFileManager');
+					import('classes.file.MonographFileManager');
 					$monographFileManager = new MonographFileManager($copyeditorSubmission->getMonographId());
 					if ($layoutFileId = $monographFileManager->copyToLayoutFile($copyEdFile->getFileId(), $copyEdFile->getRevision())) {
 						$layoutSignoff->setFileId($layoutFileId);
@@ -145,8 +145,8 @@ class CopyeditorAction extends Action {
 			}
 
 			// Add log entry
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 
 			MonographLog::logEvent($copyeditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_FINAL, MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.finalEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $copyeditorSubmission->getMonographId()));
 
@@ -204,8 +204,8 @@ class CopyeditorAction extends Action {
 			if (isset($update)) {
 				// Add log entry
 				$user =& Request::getUser();
-				import('monograph.log.MonographLog');
-				import('monograph.log.MonographEventLogEntry');
+				import('classes.monograph.log.MonographLog');
+				import('classes.monograph.log.MonographEventLogEntry');
 
 				MonographLog::logEvent(
 						$copyeditorSubmission->getMonographId(), 
@@ -226,7 +226,7 @@ class CopyeditorAction extends Action {
 	 * @param $copyeditorSubmission object
 	 */
 	function uploadCopyeditVersion($copyeditorSubmission, $copyeditStage) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');		
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
@@ -262,8 +262,8 @@ class CopyeditorAction extends Action {
 			$signoffDao->updateObject($signoff);
 
 			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 
 			$entry = new MonographEventLogEntry();
 			$entry->setMonographId($copyeditorSubmission->getMonographId());
@@ -290,7 +290,7 @@ class CopyeditorAction extends Action {
 	 */
 	function viewLayoutComments($monograph) {
 		if (!HookRegistry::call('CopyeditorAction::viewLayoutComments', array(&$monograph))) {
-			import('submission.form.comment.LayoutCommentForm');
+			import('classes.submission.form.comment.LayoutCommentForm');
 
 			$commentForm = new LayoutCommentForm($monograph, ROLE_ID_COPYEDITOR);
 			$commentForm->initData();
@@ -304,7 +304,7 @@ class CopyeditorAction extends Action {
 	 */
 	function postLayoutComment($monograph, $emailComment) {
 		if (!HookRegistry::call('CopyeditorAction::postLayoutComment', array(&$monograph, &$emailComment))) {
-			import('submission.form.comment.LayoutCommentForm');
+			import('classes.submission.form.comment.LayoutCommentForm');
 
 			$commentForm = new LayoutCommentForm($monograph, ROLE_ID_COPYEDITOR);
 			$commentForm->readInputData();
@@ -313,7 +313,7 @@ class CopyeditorAction extends Action {
 				$commentForm->execute();
 
 				// Send a notification to associated users
-				import('notification.NotificationManager');
+				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
@@ -343,7 +343,7 @@ class CopyeditorAction extends Action {
 	 */
 	function viewCopyeditComments($monograph) {
 		if (!HookRegistry::call('CopyeditorAction::viewCopyeditComments', array(&$monograph))) {
-			import('submission.form.comment.CopyeditCommentForm');
+			import('classes.submission.form.comment.CopyeditCommentForm');
 
 			$commentForm = new CopyeditCommentForm($monograph, ROLE_ID_COPYEDITOR);
 			$commentForm->initData();
@@ -357,7 +357,7 @@ class CopyeditorAction extends Action {
 	 */
 	function postCopyeditComment($monograph, $emailComment) {
 		if (!HookRegistry::call('CopyeditorAction::postCopyeditComment', array(&$monograph, &$emailComment))) {
-			import('submission.form.comment.CopyeditCommentForm');
+			import('classes.submission.form.comment.CopyeditCommentForm');
 
 			$commentForm = new CopyeditCommentForm($monograph, ROLE_ID_COPYEDITOR);
 			$commentForm->readInputData();
@@ -366,7 +366,7 @@ class CopyeditorAction extends Action {
 				$commentForm->execute();
 
 				// Send a notification to associated users
-				import('notification.NotificationManager');
+				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {

@@ -12,7 +12,7 @@
  * @brief Render the 'type' column of the Review Form Element grid.
  */
 
-import('controllers.grid.GridCellProvider');
+import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
 class ReviewFormElementTypeCellProvider extends GridCellProvider {
 	/**

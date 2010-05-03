@@ -14,8 +14,8 @@
  * @brief Operations for retrieving and modifying Chapter objects.
  */
 
-import('monograph.Chapter');
-import('monograph.ChapterAuthor');
+import('classes.monograph.Chapter');
+import('classes.monograph.ChapterAuthor');
 
 class ChapterDAO extends DAO {
 	/**
@@ -85,7 +85,7 @@ class ChapterDAO extends DAO {
 			$monographId, $rangeInfo
 		);
 
-		import('core.ArrayItemIterator');
+		import('lib.pkp.classes.core.ArrayItemIterator');
 		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
 		$chapters = array();
 		$authors = array();

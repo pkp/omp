@@ -26,7 +26,7 @@
 // $Id$
 
 
-import('file.FileManager');
+import('lib.pkp.classes.file.FileManager');
 
 /* File type suffixes */
 define('MONOGRAPH_FILE_REVIEW',		'RV');

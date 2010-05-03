@@ -30,7 +30,7 @@ define('MONOGRAPH_SEARCH_GALLEY_FILE',		0x00000080);
 define('MONOGRAPH_SEARCH_SUPPLEMENTARY_FILE',	0x00000100);
 define('MONOGRAPH_SEARCH_INDEX_TERMS',		0x00000078);
 
-import('search.MonographSearchIndex');
+import('classes.search.MonographSearchIndex');
 
 class MonographSearch {
 
@@ -318,7 +318,7 @@ class MonographSearch {
 		$results =& MonographSearch::formatResults($results);
 
 		// Return the appropriate iterator.
-		import('core.VirtualArrayIterator');
+		import('lib.pkp.classes.core.VirtualArrayIterator');
 		$returner = new VirtualArrayIterator($results, $totalResults, $page, $itemsPerPage);
 		return $returner;
 	}

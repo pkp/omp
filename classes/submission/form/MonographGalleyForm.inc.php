@@ -20,7 +20,7 @@
 // $Id$
 
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class MonographGalleyForm extends Form {
 	/** @var int the Id of the monograph */
@@ -127,7 +127,7 @@ class MonographGalleyForm extends Form {
 	 * @return int the galley ID
 	 */
 	function execute($fileName = null, $assignmentId = null) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($this->monographId);
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 
@@ -147,7 +147,7 @@ class MonographGalleyForm extends Form {
 				}
 
 				// Update file search index
-				import('search.MonographSearchIndex');
+				import('classes.search.MonographSearchIndex');
 				MonographSearchIndex::updateFileIndex($this->monographId, MONOGRAPH_SEARCH_GALLEY_FILE, $galley->getFileId());
 			}
 
@@ -178,7 +178,7 @@ class MonographGalleyForm extends Form {
 				$fileId = $monographFileManager->uploadLayoutFile($fileName);
 
 				// Update file search index
-				import('search.MonographSearchIndex');
+				import('classes.search.MonographSearchIndex');
 				MonographSearchIndex::updateFileIndex($this->monographId, MONOGRAPH_SEARCH_GALLEY_FILE, $fileId);
 			} else {
 				$fileId = 0;
@@ -220,7 +220,7 @@ class MonographGalleyForm extends Form {
 	 * @param $imageName string file input key
 	 */
 	function uploadImage() {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$fileManager = new MonographFileManager($this->monographId);
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 
@@ -249,7 +249,7 @@ class MonographGalleyForm extends Form {
 	 * @param $imageId int the file ID of the image
 	 */
 	function deleteImage($imageId) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$fileManager = new MonographFileManager($this->monographId);
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 

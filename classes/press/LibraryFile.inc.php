@@ -181,7 +181,7 @@ class LibraryFile extends DataObject {
 	 * @return string
 	 */
 	function getExtension() {
-		import('file.FileManager');
+		import('lib.pkp.classes.file.FileManager');
 		$fileManager = new FileManager();
 		return strtoupper($fileManager->getExtension($this->getData('fileName')));
 	}

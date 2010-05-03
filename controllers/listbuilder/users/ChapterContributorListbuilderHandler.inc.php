@@ -12,7 +12,7 @@
  * @brief Class for adding contributors to a chapter
  */
 
-import('controllers.listbuilder.ListbuilderHandler');
+import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 
 class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 	/**

@@ -16,7 +16,7 @@
 // $Id$
 
 
-import ('monograph.log.MonographEventLogEntry');
+import ('classes.monograph.log.MonographEventLogEntry');
 
 class MonographEventLogDAO extends DAO {
 	/**

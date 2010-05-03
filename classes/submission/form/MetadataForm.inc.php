@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class MetadataForm extends Form {
 	/** @var Monograph current monograph */

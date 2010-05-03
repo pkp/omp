@@ -17,7 +17,7 @@
 // $Id$
 
 
-import('core.PKPApplication');
+import('lib.pkp.classes.core.PKPApplication');
 
 define('PHP_REQUIRED_VERSION', '4.2.0');
 
@@ -79,51 +79,51 @@ class Application extends PKPApplication {
 	 */
 	function getDAOMap() {
 		return array_merge(parent::getDAOMap(), array(
-			'AnnouncementDAO' => 'announcement.AnnouncementDAO',
-			'AnnouncementTypeDAO' => 'announcement.AnnouncementTypeDAO',
-			'BookFileTypeDAO' => 'bookFile.BookFileTypeDAO',
-			'MonographEmailLogDAO' => 'monograph.log.MonographEmailLogDAO',
-			'MonographEventLogDAO' => 'monograph.log.MonographEventLogDAO',
-			'ArtworkFileDAO' => 'monograph.ArtworkFileDAO',
-			'MonographCommentDAO' => 'monograph.MonographCommentDAO',
-			'MonographSearchDAO' => 'search.MonographSearchDAO',
-			'MonographDAO' => 'monograph.MonographDAO',
-			'ProductionAssignmentDAO' => 'submission.productionAssignment.ProductionAssignmentDAO',
-			'PublicationFormatDAO' => 'publicationFormat.PublicationFormatDAO',
-			'SeriesDAO' => 'press.SeriesDAO',
-			'DivisionDAO' => 'press.DivisionDAO',
-			'SeriesEditorsDAO' => 'press.SeriesEditorsDAO',
-			'MonographFileDAO' => 'monograph.MonographFileDAO',
-			'MonographGalleyDAO' => 'monograph.MonographGalleyDAO',
-			'NotificationStatusDAO' => 'press.NotificationStatusDAO',
-			'AuthorDAO' => 'monograph.AuthorDAO',
-			'AuthorSubmissionDAO' => 'submission.author.AuthorSubmissionDAO',
-			'ChapterDAO' => 'monograph.ChapterDAO',
-			'ChapterAuthorDAO' => 'monograph.ChapterAuthorDAO',
-			'ProductionEditorSubmissionDAO' => 'submission.productionEditor.ProductionEditorSubmissionDAO',
-			'CopyeditorSubmissionDAO' => 'submission.copyeditor.CopyeditorSubmissionDAO',
-			'EditAssignmentDAO' => 'submission.editAssignment.EditAssignmentDAO',
-			'EditorSubmissionDAO' => 'submission.editor.EditorSubmissionDAO',
-			'EmailTemplateDAO' => 'mail.EmailTemplateDAO',
-			'DesignerSubmissionDAO' => 'submission.designer.DesignerSubmissionDAO',
-			'PluginSettingsDAO' => 'plugins.PluginSettingsDAO',
-			'PressDAO' => 'press.PressDAO',
-			'PressSettingsDAO' => 'press.PressSettingsDAO',
-			'ReviewAssignmentDAO' => 'submission.reviewAssignment.ReviewAssignmentDAO',
-			'ReviewerSubmissionDAO' => 'submission.reviewer.ReviewerSubmissionDAO',
-			'ReviewFormDAO' => 'reviewForm.ReviewFormDAO',
-			'ReviewRoundDAO' => 'monograph.reviewRound.ReviewRoundDAO',
-			'ReviewFormElementDAO' => 'reviewForm.ReviewFormElementDAO',
-			'ReviewFormResponseDAO' => 'reviewForm.ReviewFormResponseDAO',
-			'LibraryFileDAO' => 'press.LibraryFileDAO',
+			'AnnouncementDAO' => 'classes.announcement.AnnouncementDAO',
+			'AnnouncementTypeDAO' => 'classes.announcement.AnnouncementTypeDAO',
+			'BookFileTypeDAO' => 'classes.bookFile.BookFileTypeDAO',
+			'MonographEmailLogDAO' => 'classes.monograph.log.MonographEmailLogDAO',
+			'MonographEventLogDAO' => 'classes.monograph.log.MonographEventLogDAO',
+			'ArtworkFileDAO' => 'classes.monograph.ArtworkFileDAO',
+			'MonographCommentDAO' => 'classes.monograph.MonographCommentDAO',
+			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
+			'MonographDAO' => 'classes.monograph.MonographDAO',
+			'ProductionAssignmentDAO' => 'classes.submission.productionAssignment.ProductionAssignmentDAO',
+			'PublicationFormatDAO' => 'classes.publicationFormat.PublicationFormatDAO',
+			'SeriesDAO' => 'classes.press.SeriesDAO',
+			'DivisionDAO' => 'classes.press.DivisionDAO',
+			'SeriesEditorsDAO' => 'classes.press.SeriesEditorsDAO',
+			'MonographFileDAO' => 'classes.monograph.MonographFileDAO',
+			'MonographGalleyDAO' => 'classes.monograph.MonographGalleyDAO',
+			'NotificationStatusDAO' => 'classes.press.NotificationStatusDAO',
+			'AuthorDAO' => 'classes.monograph.AuthorDAO',
+			'AuthorSubmissionDAO' => 'classes.submission.author.AuthorSubmissionDAO',
+			'ChapterDAO' => 'classes.monograph.ChapterDAO',
+			'ChapterAuthorDAO' => 'classes.monograph.ChapterAuthorDAO',
+			'ProductionEditorSubmissionDAO' => 'classes.submission.productionEditor.ProductionEditorSubmissionDAO',
+			'CopyeditorSubmissionDAO' => 'classes.submission.copyeditor.CopyeditorSubmissionDAO',
+			'EditAssignmentDAO' => 'classes.submission.editAssignment.EditAssignmentDAO',
+			'EditorSubmissionDAO' => 'classes.submission.editor.EditorSubmissionDAO',
+			'EmailTemplateDAO' => 'classes.mail.EmailTemplateDAO',
+			'DesignerSubmissionDAO' => 'classes.submission.designer.DesignerSubmissionDAO',
+			'PluginSettingsDAO' => 'classes.plugins.PluginSettingsDAO',
+			'PressDAO' => 'classes.press.PressDAO',
+			'PressSettingsDAO' => 'classes.press.PressSettingsDAO',
+			'ReviewAssignmentDAO' => 'classes.submission.reviewAssignment.ReviewAssignmentDAO',
+			'ReviewerSubmissionDAO' => 'classes.submission.reviewer.ReviewerSubmissionDAO',
+			'ReviewFormDAO' => 'lib.pkp.classes.reviewForm.ReviewFormDAO',
+			'ReviewRoundDAO' => 'classes.monograph.reviewRound.ReviewRoundDAO',
+			'ReviewFormElementDAO' => 'lib.pkp.classes.reviewForm.ReviewFormElementDAO',
+			'ReviewFormResponseDAO' => 'lib.pkp.classes.reviewForm.ReviewFormResponseDAO',
+			'LibraryFileDAO' => 'classes.press.LibraryFileDAO',
 			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
-			'RoleDAO' => 'security.RoleDAO',
-			'UserGroupDAO' => 'security.UserGroupDAO',
-			'UserGroupAssignmentDAO' => 'security.UserGroupAssignmentDAO',
-			'UserGroupStageAssignmentDAO' => 'workflow.UserGroupStageAssignmentDAO',
-			'SeriesEditorSubmissionDAO' => 'submission.seriesEditor.SeriesEditorSubmissionDAO',
-			'UserDAO' => 'user.UserDAO',
-			'UserSettingsDAO' => 'user.UserSettingsDAO'
+			'RoleDAO' => 'classes.security.RoleDAO',
+			'UserGroupDAO' => 'classes.security.UserGroupDAO',
+			'UserGroupAssignmentDAO' => 'classes.security.UserGroupAssignmentDAO',
+			'UserGroupStageAssignmentDAO' => 'classes.workflow.UserGroupStageAssignmentDAO',
+			'SeriesEditorSubmissionDAO' => 'classes.submission.seriesEditor.SeriesEditorSubmissionDAO',
+			'UserDAO' => 'classes.user.UserDAO',
+			'UserSettingsDAO' => 'classes.user.UserSettingsDAO'
 		));
 	}
 
@@ -145,7 +145,7 @@ class Application extends PKPApplication {
 	 * @return object
 	 */
 	function &instantiateHelp() {
-		import('help.Help');
+		import('classes.help.Help');
 		$help = new Help();
 		return $help;
 	}

@@ -39,7 +39,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		// If the submission is incomplete, allow the author to delete it.
 		if ($authorSubmission->getSubmissionProgress()!=0) {
-			import('file.MonographFileManager');
+			import('classes.file.MonographFileManager');
 			$monographFileManager = new MonographFileManager($monographId);
 			$monographFileManager->deleteMonographTree();
 
@@ -100,7 +100,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign_by_ref('revisedFile', $submission->getRevisedFile());
 		$templateMgr->assign('pageToDisplay', 'submissionSummary');
 
-		import('submission.seriesEditor.SeriesEditorSubmission');
+		import('classes.submission.seriesEditor.SeriesEditorSubmission');
 		$templateMgr->assign_by_ref('editorDecisionOptions', SeriesEditorSubmission::getEditorDecisionOptions());
 
 		$templateMgr->assign('helpTopicId','editorial.authorsRole');
@@ -182,7 +182,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$this->setupTemplate(true, $monographId);
 
 		AuthorAction::copyeditUnderway($submission);
-		import('submission.proofreader.ProofreaderAction');
+		import('classes.submission.proofreader.ProofreaderAction');
 		ProofreaderAction::proofreadingUnderway($submission, 'SIGNOFF_PROOFREADING_AUTHOR');
 
 		$templateMgr =& TemplateManager::getManager();
@@ -249,7 +249,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$submission =& $this->submission;
 		$press =& Request::getPress();
 
-		import('file.PublicFileManager');
+		import('classes.file.PublicFileManager');
 		$publicFileManager = new PublicFileManager();
 		$publicFileManager->removePressFile($press->getId(),$submission->getFileName($formLocale));
 		$submission->setFileName('', $formLocale);
@@ -370,7 +370,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 
 		$send = isset($args[0]) && $args[0] == 'send' ? true : false;
 
-		import('submission.proofreader.ProofreaderAction');
+		import('classes.submission.proofreader.ProofreaderAction');
 
 		if (ProofreaderAction::proofreadEmail($monographId,'PROOFREAD_AUTHOR_COMPLETE', $send?'':Request::url(null, 'author', 'authorProofreadingComplete', 'send'))) {
 			Request::redirect(null, null, 'submissionEditing', $monographId);
@@ -422,7 +422,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		$galley =& $galleyDao->getGalley($galleyId, $monographId);
 
-		import('file.MonographFileManager'); // FIXME
+		import('classes.file.MonographFileManager'); // FIXME
 
 		if (isset($galley)) {
 			if ($galley->isHTMLGalley()) {

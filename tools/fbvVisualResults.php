@@ -22,13 +22,13 @@ $application =& PKPApplication::getApplication();
 $request =& $application->getRequest();
 
 // FIXME: Write and use a CLIRouter here (see classdoc)
-import('core.PageRouter');
+import('classes.core.PageRouter');
 $router = new PageRouter();
 $router->setApplication($application);
 $request->setRouter($router);
 
-import('template.TemplateManager');
-import('form.Form');
+import('classes.template.TemplateManager');
+import('lib.pkp.classes.form.Form');
 
 // Extend the TemplateManager class to:
 // - access test templates

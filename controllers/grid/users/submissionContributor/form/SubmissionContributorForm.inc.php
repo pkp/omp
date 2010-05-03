@@ -12,7 +12,7 @@
  * @brief Form for adding/editing a submissionContributor
  */
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class SubmissionContributorForm extends Form {
 	/** The monograph associated with the submission contributor being edited **/

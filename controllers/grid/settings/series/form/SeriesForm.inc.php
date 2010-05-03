@@ -13,7 +13,7 @@
  * stores/retrieves from an associative array
  */
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class SeriesForm extends Form {
 	/** the id for the series being edited **/
@@ -98,7 +98,7 @@ class SeriesForm extends Form {
 
 		// Update or insert group group
 		if (!isset($this->seriesId)) {
-			import('press.Series');
+			import('classes.press.Series');
 			$series = new Series();
 
 			$series->setPressId($press->getId());

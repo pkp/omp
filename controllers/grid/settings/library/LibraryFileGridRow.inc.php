@@ -12,7 +12,7 @@
  * @brief Handle file grid row requests.
  */
 
-import('controllers.grid.GridRow');
+import('lib.pkp.classes.controllers.grid.GridRow');
 
 class LibraryFileGridRow extends GridRow {
 	/** the FileType for this grid */

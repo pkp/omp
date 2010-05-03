@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('monograph.MonographFile');
+import('classes.monograph.MonographFile');
 
 class MonographGalley extends MonographFile {
 

@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('monograph.Monograph');
+import('classes.monograph.Monograph');
 
 class MonographDAO extends DAO {
 	var $authorDao;
@@ -307,7 +307,7 @@ class MonographDAO extends DAO {
 		$monographCommentDao->deleteMonographComments($monographId);
 
 		// Delete monograph files -- first from the filesystem, then from the database
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFiles =& $monographFileDao->getByMonographId($monographId);
 

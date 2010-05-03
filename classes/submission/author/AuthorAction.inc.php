@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('submission.common.Action');
+import('classes.submission.common.Action');
 
 class AuthorAction extends Action {
 
@@ -36,7 +36,7 @@ class AuthorAction extends Action {
 	 * @param $designate boolean
 	 */
 	function designateReviewVersion($authorSubmission, $designate = false) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($authorSubmission->getId());
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
@@ -60,7 +60,7 @@ class AuthorAction extends Action {
 	 * @param $revisionId int
 	 */
 	function deleteMonographFile($monograph, $fileId, $revisionId) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 
 		$monographFileManager = new MonographFileManager($monograph->getId());
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
@@ -89,7 +89,7 @@ class AuthorAction extends Action {
 	 * @param $authorSubmission object
 	 */
 	function uploadRevisedVersion($authorSubmission) {
-		import("file.MonographFileManager");
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($authorSubmission->getMonographId());
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
@@ -110,8 +110,8 @@ class AuthorAction extends Action {
 
 			// Add log entry
 			$user =& Request::getUser();
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($authorSubmission->getMonographId(), MONOGRAPH_LOG_AUTHOR_REVISION, MONOGRAPH_LOG_TYPE_AUTHOR, $user->getId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'monographId' => $authorSubmission->getMonographId()));
 		}
 	}
@@ -132,7 +132,7 @@ class AuthorAction extends Action {
 		}
 
 		$user =& Request::getUser();
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($authorSubmission, 'COPYEDIT_AUTHOR_COMPLETE');
 
 		$editAssignments = $authorSubmission->getEditAssignments();
@@ -156,8 +156,8 @@ class AuthorAction extends Action {
 			$signoffDao->updateObject($finalSignoff);
 
 			// Add log entry
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($authorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_REVISION, MONOGRAPH_LOG_TYPE_AUTHOR, $user->getId(), 'log.copyedit.authorFile');
 
 			return true;
@@ -222,7 +222,7 @@ class AuthorAction extends Action {
 	 * @param $copyeditStage string
 	 */
 	function uploadCopyeditVersion($authorSubmission, $copyeditStage) {
-		import("file.MonographFileManager");
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($authorSubmission->getMonographId());
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
@@ -262,7 +262,7 @@ class AuthorAction extends Action {
 	 */
 	function viewLayoutComments($monograph) {
 		if (!HookRegistry::call('AuthorAction::viewLayoutComments', array(&$monograph))) {
-			import("submission.form.comment.LayoutCommentForm");
+			import('classes.submission.form.comment.LayoutCommentForm');
 			$commentForm = new LayoutCommentForm($monograph, ROLE_ID_EDITOR);
 			$commentForm->initData();
 			$commentForm->display();
@@ -276,7 +276,7 @@ class AuthorAction extends Action {
 	 */
 	function postLayoutComment($monograph, $emailComment) {
 		if (!HookRegistry::call('AuthorAction::postLayoutComment', array(&$monograph, &$emailComment))) {
-			import("submission.form.comment.LayoutCommentForm");
+			import('classes.submission.form.comment.LayoutCommentForm');
 
 			$commentForm = new LayoutCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->readInputData();
@@ -302,7 +302,7 @@ class AuthorAction extends Action {
 	 */
 	function viewEditorDecisionComments($monograph) {
 		if (!HookRegistry::call('AuthorAction::viewEditorDecisionComments', array(&$monograph))) {
-			import("submission.form.comment.EditorDecisionCommentForm");
+			import('classes.submission.form.comment.EditorDecisionCommentForm');
 
 			$commentForm = new EditorDecisionCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->initData();
@@ -320,7 +320,7 @@ class AuthorAction extends Action {
 		$press =& Request::getPress();
 
 		$user =& Request::getUser();
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($authorSubmission);
 
 		$editAssignments = $authorSubmission->getEditAssignments();
@@ -371,7 +371,7 @@ class AuthorAction extends Action {
 	 */
 	function viewCopyeditComments($monograph) {
 		if (!HookRegistry::call('AuthorAction::viewCopyeditComments', array(&$monograph))) {
-			import("submission.form.comment.CopyeditCommentForm");
+			import('classes.submission.form.comment.CopyeditCommentForm');
 
 			$commentForm = new CopyeditCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->initData();
@@ -385,7 +385,7 @@ class AuthorAction extends Action {
 	 */
 	function postCopyeditComment($monograph, $emailComment) {
 		if (!HookRegistry::call('AuthorAction::postCopyeditComment', array(&$monograph, &$emailComment))) {
-			import("submission.form.comment.CopyeditCommentForm");
+			import('classes.submission.form.comment.CopyeditCommentForm');
 
 			$commentForm = new CopyeditCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->readInputData();
@@ -411,7 +411,7 @@ class AuthorAction extends Action {
 	 */
 	function viewProofreadComments($monograph) {
 		if (!HookRegistry::call('AuthorAction::viewProofreadComments', array(&$monograph))) {
-			import("submission.form.comment.ProofreadCommentForm");
+			import('classes.submission.form.comment.ProofreadCommentForm');
 
 			$commentForm = new ProofreadCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->initData();
@@ -426,7 +426,7 @@ class AuthorAction extends Action {
 	 */
 	function postProofreadComment($monograph, $emailComment) {
 		if (!HookRegistry::call('AuthorAction::postProofreadComment', array(&$monograph, &$emailComment))) {
-			import("submission.form.comment.ProofreadCommentForm");
+			import('classes.submission.form.comment.ProofreadCommentForm');
 
 			$commentForm = new ProofreadCommentForm($monograph, ROLE_ID_AUTHOR);
 			$commentForm->readInputData();

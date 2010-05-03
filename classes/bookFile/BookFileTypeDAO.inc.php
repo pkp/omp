@@ -15,8 +15,8 @@
 // $Id$
 
 
-import('bookFile.BookFileType');
-import('press.DefaultSettingDAO');
+import('classes.bookFile.BookFileType');
+import('classes.press.DefaultSettingDAO');
 
 class BookFileTypeDAO extends DefaultSettingDAO
 {

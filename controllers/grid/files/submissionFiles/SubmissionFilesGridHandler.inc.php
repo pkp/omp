@@ -13,14 +13,14 @@
  */
 
 // import grid base classes
-import('controllers.grid.GridHandler');
+import('lib.pkp.classes.controllers.grid.GridHandler');
 
 // import submission files grid specific classes
 import('controllers.grid.files.submissionFiles.SubmissionFilesGridRow');
 
 // import validation classes
-import('handler.validation.HandlerValidatorPress');
-import('handler.validation.HandlerValidatorRoles');
+import('classes.handler.validation.HandlerValidatorPress');
+import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
 
 class SubmissionFilesGridHandler extends GridHandler {
 	var $_monographId;
@@ -146,7 +146,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		if ( isset($user) && isset($monograph)) {
 			$userId = $user->getId();
 			$monographSubmiter = $monograph->getUserId();
-			import('handler.validation.HandlerValidatorCustom');
+			import('lib.pkp.classes.handler.validation.HandlerValidatorCustom');
 			$this->addCheck(new HandlerValidatorCustom($this, false, 'Restricted site access!', null, create_function('$monographSubmitter, $userId', 'if ($monographSubmitter != $userId) return false; else return true;'), array($monographSubmiter, $userId)));
 		}
 
@@ -387,7 +387,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFileDao->deleteMonographFileById($fileId);
 
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($press->getId());
 		$monographFileManager->deleteFile($fileId);
 
@@ -403,7 +403,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	function viewFile(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
-		import('submission.common.Action');
+		import('classes.submission.common.Action');
 		Action::viewFile($monographId, $request->getUserVar('fileId'));
 	}
 }

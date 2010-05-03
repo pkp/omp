@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('xml.XMLCustomWriter');
+import('lib.pkp.classes.xml.XMLCustomWriter');
 
 define('USERS_DTD_URL', 'http://pkp.sfu.ca/omp/dtds/users.dtd');
 define('USERS_DTD_ID', '-//PKP/OMP Users XML//EN');

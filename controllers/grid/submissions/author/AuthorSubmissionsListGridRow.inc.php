@@ -11,7 +11,7 @@
  * @brief AuthorSubmissionsListGridRow grid row definition
  */
 
-import('controllers.grid.GridRow');
+import('lib.pkp.classes.controllers.grid.GridRow');
 
 class AuthorSubmissionsListGridRow extends GridRow {
 	/**

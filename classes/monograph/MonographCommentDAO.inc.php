@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('monograph.MonographComment');
+import('classes.monograph.MonographComment');
 
 class MonographCommentDAO extends DAO {
 	/**

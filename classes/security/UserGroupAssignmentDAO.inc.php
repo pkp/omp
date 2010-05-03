@@ -13,7 +13,7 @@
  * @brief Operations for retrieving and modifying user group assignments
  */
 
-import('security.UserGroupAssignment');
+import('classes.security.UserGroupAssignment');
 
 class UserGroupAssignmentDAO extends DAO {
 	/**

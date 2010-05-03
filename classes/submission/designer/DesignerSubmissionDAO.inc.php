@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('submission.designer.DesignerSubmission');
+import('classes.submission.designer.DesignerSubmission');
 
 class DesignerSubmissionDAO extends DAO {
 	/** Helper DAOs */

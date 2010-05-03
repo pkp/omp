@@ -13,7 +13,7 @@
  */
 
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class InformationCenterNotesForm extends Form {
 	/** @var int The file this form is for */
@@ -60,7 +60,7 @@ class InformationCenterNotesForm extends Form {
 	 * @return userId int
 	 */
 	function execute() {
-		import('note.NoteManager');
+		import('lib.pkp.classes.note.NoteManager');
 		$noteManager = new NoteManager();
 		
 		$user =& Request::getUser();

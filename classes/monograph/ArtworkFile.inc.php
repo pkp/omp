@@ -22,7 +22,7 @@ define('MONOGRAPH_ARTWORK_TYPE_FIGURE',		3);
 define('MONOGRAPH_ARTWORK_PLACEMENT_OTHER',		1);
 define('MONOGRAPH_ARTWORK_PLACEMENT_BY_CHAPTER',	2);
 
-import('monograph.MonographFile');
+import('classes.monograph.MonographFile');
 
 class ArtworkFile extends MonographFile {
 

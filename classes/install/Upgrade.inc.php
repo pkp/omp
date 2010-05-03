@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('install.Installer');
+import('lib.pkp.classes.install.Installer');
 
 class Upgrade extends Installer {
 

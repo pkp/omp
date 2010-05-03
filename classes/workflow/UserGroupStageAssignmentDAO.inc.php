@@ -12,7 +12,7 @@
  * @brief Class for managing user group to publication stage assignments
  */
 
-import('workflow.UserGroupStageAssignment');
+import('classes.workflow.UserGroupStageAssignment');
 
 class UserGroupStageAssignmentDAO extends DAO {
 

@@ -13,7 +13,7 @@
  * stores/retrieves from an associative array
  */
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class SponsorForm extends Form {
 	/** the id for the sponsor being edited **/

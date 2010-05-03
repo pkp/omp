@@ -170,7 +170,7 @@ class SubmissionCopyeditHandler extends CopyeditorHandler {
 
 		$send = Request::getUserVar('send') ? true : false;
 
-		import('submission.proofreader.ProofreaderAction');
+		import('classes.submission.proofreader.ProofreaderAction');
 
 		if (ProofreaderAction::proofreadEmail($monographId,'PROOFREAD_AUTHOR_COMPLETE', $send?'':Request::url(null, 'copyeditor', 'authorProofreadingComplete', 'send'))) {
 			Request::redirect(null, null, 'submission', $monographId);
@@ -220,7 +220,7 @@ class SubmissionCopyeditHandler extends CopyeditorHandler {
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		$galley =& $galleyDao->getGalley($galleyId, $monographId);
 
-		import('file.MonographFileManager'); // FIXME
+		import('classes.file.MonographFileManager'); // FIXME
 
 		if (isset($galley)) {
 			if ($galley->isHTMLGalley()) {
@@ -273,7 +273,7 @@ class SubmissionCopyeditHandler extends CopyeditorHandler {
 		$submission =& $this->submission;
 		$press =& Request::getPress();
 
-		import('file.PublicFileManager');
+		import('classes.file.PublicFileManager');
 		$publicFileManager = new PublicFileManager();
 		$publicFileManager->removePressFile($press->getId(),$submission->getFileName($formLocale));
 		$submission->setFileName('', $formLocale);

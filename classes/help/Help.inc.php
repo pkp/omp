@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('help.PKPHelp');
+import('lib.pkp.classes.help.PKPHelp');
 
 class Help extends PKPHelp {
 	/**
@@ -24,7 +24,7 @@ class Help extends PKPHelp {
 	 */
 	function Help() {
 		parent::PKPHelp();
-		import('help.OMPHelpMappingFile');
+		import('classes.help.OMPHelpMappingFile');
 		$mainMappingFile = new OMPHelpMappingFile();
 		$this->addMappingFile($mainMappingFile);
 	}

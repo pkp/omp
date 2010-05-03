@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('submission.common.Action');
+import('classes.submission.common.Action');
 
 class ReviewerAction extends Action {
 
@@ -43,7 +43,7 @@ class ReviewerAction extends Action {
 		// Only confirm the review for the reviewer if 
 		// he has not previously done so.
 		if ($reviewAssignment->getDateConfirmed() == null) {
-			import('mail.MonographMailTemplate');
+			import('classes.mail.MonographMailTemplate');
 			$email = new MonographMailTemplate($reviewerSubmission, $decline?'REVIEW_DECLINE':'REVIEW_CONFIRM');
 			// Must explicitly set sender because we may be here on an access
 			// key, in which case the user is not technically logged in
@@ -61,8 +61,8 @@ class ReviewerAction extends Action {
 				$reviewAssignmentDao->updateObject($reviewAssignment);
 
 				// Add log
-				import('monograph.log.MonographLog');
-				import('monograph.log.MonographEventLogEntry');
+				import('classes.monograph.log.MonographLog');
+				import('classes.monograph.log.MonographEventLogEntry');
 
 				$entry = new MonographEventLogEntry();
 				$entry->setMonographId($reviewAssignment->getMonographId());
@@ -126,7 +126,7 @@ class ReviewerAction extends Action {
 		// Only record the reviewers recommendation if
 		// no recommendation has previously been submitted.
 		if ($reviewAssignment->getRecommendation() === null || $reviewAssignment->getRecommendation === '') {
-			import('mail.MonographMailTemplate');
+			import('classes.mail.MonographMailTemplate');
 			$email = new MonographMailTemplate($reviewerSubmission, 'REVIEW_COMPLETE');
 			// Must explicitly set sender because we may be here on an access
 			// key, in which case the user is not technically logged in
@@ -145,8 +145,8 @@ class ReviewerAction extends Action {
 				$reviewAssignmentDao->updateObject($reviewAssignment);
 
 				// Add log
-				import('monograph.log.MonographLog');
-				import('monograph.log.MonographEventLogEntry');
+				import('classes.monograph.log.MonographLog');
+				import('classes.monograph.log.MonographEventLogEntry');
 
 				$entry = new MonographEventLogEntry();
 				$entry->setMonographId($reviewAssignment->getMonographId());
@@ -196,7 +196,7 @@ class ReviewerAction extends Action {
 	 * @param $reviewId int
 	 */
 	function uploadReviewerVersion($reviewId) {
-		import("file.MonographFileManager");
+		import('classes.file.MonographFileManager');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');		
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
@@ -222,8 +222,8 @@ class ReviewerAction extends Action {
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
@@ -248,7 +248,7 @@ class ReviewerAction extends Action {
 	 * @param $revision int If null, then all revisions are deleted.
 	 */
 	function deleteReviewerVersion($reviewId, $fileId, $revision = null) {
-		import("file.MonographFileManager");
+		import('classes.file.MonographFileManager');
 
 		$monographId = Request::getUserVar('monographId');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -268,7 +268,7 @@ class ReviewerAction extends Action {
 	 */
 	function viewPeerReviewComments(&$user, &$monograph, $reviewId) {
 		if (!HookRegistry::call('ReviewerAction::viewPeerReviewComments', array(&$user, &$monograph, &$reviewId))) {
-			import("submission.form.comment.PeerReviewCommentForm");
+			import('classes.submission.form.comment.PeerReviewCommentForm');
 
 			$commentForm = new PeerReviewCommentForm($monograph, $reviewId, ROLE_ID_REVIEWER);
 			$commentForm->setUser($user);
@@ -287,7 +287,7 @@ class ReviewerAction extends Action {
 	 */
 	function postPeerReviewComment(&$user, &$monograph, $reviewId, $emailComment) {
 		if (!HookRegistry::call('ReviewerAction::postPeerReviewComment', array(&$user, &$monograph, &$reviewId, &$emailComment))) {
-			import("submission.form.comment.PeerReviewCommentForm");
+			import('classes.submission.form.comment.PeerReviewCommentForm');
 
 			$commentForm = new PeerReviewCommentForm($monograph, $reviewId, ROLE_ID_REVIEWER);
 			$commentForm->setUser($user);
@@ -315,7 +315,7 @@ class ReviewerAction extends Action {
 	 */
 	function editReviewFormResponse($reviewId, $reviewFormId) {
 		if (!HookRegistry::call('ReviewerAction::editReviewFormResponse', array($reviewId, $reviewFormId))) {
-			import('submission.form.ReviewFormResponseForm');
+			import('classes.submission.form.ReviewFormResponseForm');
 
 			$reviewForm = new ReviewFormResponseForm($reviewId, $reviewFormId);
 			$reviewForm->initData();
@@ -330,7 +330,7 @@ class ReviewerAction extends Action {
 	 */
 	function saveReviewFormResponse($reviewId, $reviewFormId) {
 		if (!HookRegistry::call('ReviewerAction::saveReviewFormResponse', array($reviewId, $reviewFormId))) {
-			import('submission.form.ReviewFormResponseForm');
+			import('classes.submission.form.ReviewFormResponseForm');
 
 			$reviewForm = new ReviewFormResponseForm($reviewId, $reviewFormId);
 			$reviewForm->readInputData();
@@ -338,7 +338,7 @@ class ReviewerAction extends Action {
 				$reviewForm->execute();
 				
 				// Send a notification to associated users
-				import('notification.NotificationManager');
+				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 				$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
@@ -409,7 +409,7 @@ class ReviewerAction extends Action {
 	 */
 	function editComment ($monograph, $comment, $reviewId) {
 		if (!HookRegistry::call('ReviewerAction::editComment', array(&$monograph, &$comment, &$reviewId))) {
-			import ("submission.form.comment.EditCommentForm");
+			import ('classes.submission.form.comment.EditCommentForm');
 
 			$commentForm = new EditCommentForm ($monograph, $comment);
 			$commentForm->initData();

@@ -13,7 +13,7 @@
  */
 
 // import grid base classes
-import('controllers.grid.GridHandler');
+import('lib.pkp.classes.controllers.grid.GridHandler');
 
 
 // import submissionContributor grid specific classes

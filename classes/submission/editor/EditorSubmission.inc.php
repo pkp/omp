@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('submission.seriesEditor.SeriesEditorSubmission');
+import('classes.submission.seriesEditor.SeriesEditorSubmission');
 
 class EditorSubmission extends SeriesEditorSubmission {
 

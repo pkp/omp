@@ -21,8 +21,8 @@ define('EDITOR_SERIES_SUBMISSIONS', 1);
 define('FILTER_EDITOR_ALL', 0);
 define('FILTER_EDITOR_ME', 1);
 
-import('seriesEditor.SeriesEditorHandler');
-import('submission.editor.EditorAction');
+import('pages.seriesEditor.SeriesEditorHandler');
+import('classes.submission.editor.EditorAction');
 
 class EditorHandler extends SeriesEditorHandler {
 	/**
@@ -64,7 +64,7 @@ class EditorHandler extends SeriesEditorHandler {
 		$this->setupTemplate(EDITOR_SERIES_SUBMISSIONS);
 		
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
-		import('submission.common.Action');
+		import('classes.submission.common.Action');
 		Action::viewMetadata($submission);
 	}
 
@@ -301,7 +301,7 @@ class EditorHandler extends SeriesEditorHandler {
 		if ($level == EDITOR_SERIES_HOME) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'));
 		else if ($level == EDITOR_SERIES_SUBMISSIONS) $pageHierarchy = array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'editor'), 'user.role.editor'), array(Request::url(null, 'editor', 'submissions'), 'manuscript.submissions'));
 
-		import('submission.seriesEditor.SeriesEditorAction');
+		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$submissionCrumb = SeriesEditorAction::submissionBreadcrumb($monographId, $parentPage, 'editor');
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);

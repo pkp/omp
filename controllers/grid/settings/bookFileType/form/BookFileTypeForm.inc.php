@@ -12,7 +12,7 @@
  * @brief Form for adding/editing a Book File Type.
  */
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class BookFileTypeForm extends Form {
 	/** the id for the series being edited **/

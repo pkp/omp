@@ -14,8 +14,8 @@
 
 // $Id$
 
-import('press.LibraryFile');
-import('file.PKPPublicFileManager');
+import('classes.press.LibraryFile');
+import('lib.pkp.classes.file.PKPPublicFileManager');
 
 /* Library type suffixes */
 define('LIBRARY_FILE_SUFFIX_REVIEW', 'LRV');

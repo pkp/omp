@@ -38,7 +38,7 @@ class EmailHandler extends ManagerHandler {
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplates =& $emailTemplateDao->getEmailTemplates(Locale::getLocale(), $press->getId());
 
-		import('core.ArrayItemIterator');
+		import('lib.pkp.classes.core.ArrayItemIterator');
 		$emailTemplates =& ArrayItemIterator::fromRangeInfo($emailTemplates, $rangeInfo);
 
 		$templateMgr =& TemplateManager::getManager();
@@ -66,7 +66,7 @@ class EmailHandler extends ManagerHandler {
 
 		$emailKey = !isset($args) || empty($args) ? null : $args[0];
 
-		import('manager.form.EmailTemplateForm');
+		import('classes.manager.form.EmailTemplateForm');
 
 		$emailTemplateForm = new EmailTemplateForm($emailKey, $press);
 		$emailTemplateForm->initData();
@@ -81,7 +81,7 @@ class EmailHandler extends ManagerHandler {
 		$this->setupTemplate(true);
 		$press =& Request::getPress();
 
-		import('manager.form.EmailTemplateForm');
+		import('classes.manager.form.EmailTemplateForm');
 
 		$emailKey = Request::getUserVar('emailKey');
 

@@ -15,8 +15,8 @@
 // $Id$
 
 
-import('submission.author.AuthorAction');
-import('handler.Handler');
+import('classes.submission.author.AuthorAction');
+import('classes.handler.Handler');
 
 class AuthorHandler extends Handler {
 	/**
@@ -78,7 +78,7 @@ class AuthorHandler extends Handler {
 		$pageHierarchy = $subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'author'), 'user.role.author'), array(Request::url(null, 'author'), 'manuscript.submissions'))
 			: array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'author'), 'user.role.author'));
 
-		import('submission.seriesEditor.SeriesEditorAction');
+		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$submissionCrumb = SeriesEditorAction::submissionBreadcrumb($monographId, $parentPage, 'author');
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
@@ -92,7 +92,7 @@ class AuthorHandler extends Handler {
 	 * @param $args (type)
 	 */
 	function instructions($args) {
-		import('submission.proofreader.ProofreaderAction');
+		import('classes.submission.proofreader.ProofreaderAction');
 		if (!isset($args[0]) || !ProofreaderAction::instructions($args[0], array('copy', 'proof'))) {
 			Request::redirect(null, null, 'index');
 		}

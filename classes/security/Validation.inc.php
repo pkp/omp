@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('security.UserGroup');
+import('classes.security.UserGroup');
 
 class Validation {
 

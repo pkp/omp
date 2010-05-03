@@ -12,7 +12,7 @@
  * @brief Chapter grid category row definition
  */
 
-import('controllers.grid.GridCategoryRow');
+import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
 class ChapterGridCategoryRow extends GridCategoryRow {
 	/**

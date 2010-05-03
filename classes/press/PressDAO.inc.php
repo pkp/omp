@@ -12,7 +12,7 @@
  * @brief Operations for retrieving and modifying Press objects.
  */
 
-import('press.Press');
+import('classes.press.Press');
 
 class PressDAO extends DAO
 {

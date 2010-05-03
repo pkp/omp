@@ -54,7 +54,7 @@ class AdminPressHandler extends AdminHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('admin.form.PressSiteSettingsForm');
+		import('classes.admin.form.PressSiteSettingsForm');
 
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$settingsForm = new PressSiteSettingsForm(!isset($args) || empty($args) ? null : $args[0]);
@@ -76,7 +76,7 @@ class AdminPressHandler extends AdminHandler {
 		$this->validate();
 		$this->setupTemplate(true);
 
-		import('admin.form.PressSiteSettingsForm');
+		import('classes.admin.form.PressSiteSettingsForm');
 
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$settingsForm = new PressSiteSettingsForm(Request::getUserVar('pressId'));
@@ -88,7 +88,7 @@ class AdminPressHandler extends AdminHandler {
 		if ($settingsForm->validate()) {
 			PluginRegistry::loadCategory('blocks');
 			$settingsForm->execute();
-			import('notification.NotificationManager');
+			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager =& new NotificationManager();
 			$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
 			Request::redirect(null, null, 'presses');
@@ -111,13 +111,13 @@ class AdminPressHandler extends AdminHandler {
 			if ($pressDao->deletePressById($pressId)) {
 				// Delete press file tree
 				// FIXME move this somewhere better.
-				import('file.FileManager');
+				import('lib.pkp.classes.file.FileManager');
 				$fileManager = new FileManager();
 
 				$pressPath = Config::getVar('files', 'files_dir') . '/presses/' . $pressId;
 				$fileManager->rmtree($pressPath);
 
-				import('file.PublicFileManager');
+				import('classes.file.PublicFileManager');
 				$publicFileManager = new PublicFileManager();
 				$publicFileManager->rmtree($publicFileManager->getPressFilesPath($pressId));
 			}

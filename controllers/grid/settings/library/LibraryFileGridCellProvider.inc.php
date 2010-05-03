@@ -12,7 +12,7 @@
  * @brief Subclass class for a LibraryFile grid column's cell provider
  */
 
-import('controllers.grid.GridCellProvider');
+import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
 class LibraryFileGridCellProvider extends GridCellProvider {
 	/**

@@ -12,7 +12,7 @@
  * @brief SubmissionContributor grid row definition
  */
 
-import('controllers.grid.GridRow');
+import('lib.pkp.classes.controllers.grid.GridRow');
 
 class SubmissionContributorGridRow extends GridRow {
 	/**

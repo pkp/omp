@@ -95,7 +95,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
 
-		import('submission.form.MonographGalleyForm');
+		import('classes.submission.form.MonographGalleyForm');
 		$productionAssignmentId = Request::getUserVar('productionAssignmentId');
 
 		$galleyForm = new MonographGalleyForm($monographId);
@@ -117,7 +117,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 
 		$this->setupTemplate(true, $monographId, 'editing');
 
-		import('submission.form.MonographGalleyForm');
+		import('classes.submission.form.MonographGalleyForm');
 
 		$submitForm = new MonographGalleyForm($monographId, $galleyId);
 
@@ -141,7 +141,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'editing');
 
-		import('submission.form.MonographGalleyForm');
+		import('classes.submission.form.MonographGalleyForm');
 
 		$submitForm = new MonographGalleyForm($monographId, $galleyId);
 
@@ -268,7 +268,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 			$send = Request::getUserVar('send') ? true : false;
 		}
 
-		import('submission.proofreader.ProofreaderAction');
+		import('classes.submission.proofreader.ProofreaderAction');
 		if (ProofreaderAction::proofreadEmail($monographId,'PROOFREAD_LAYOUT_COMPLETE', $send?'':Request::url(null, 'designer', 'designerProofreadingComplete', 'send'))) {
 			Request::redirect(null, null, 'submission', $monographId);
 		}

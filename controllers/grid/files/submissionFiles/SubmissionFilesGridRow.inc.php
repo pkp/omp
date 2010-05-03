@@ -12,7 +12,7 @@
  * @brief Handle submission file grid row requests.
  */
 
-import('controllers.grid.GridRow');
+import('lib.pkp.classes.controllers.grid.GridRow');
 
 class SubmissionFilesGridRow extends GridRow {
 	/**

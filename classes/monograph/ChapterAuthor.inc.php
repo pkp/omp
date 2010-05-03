@@ -14,7 +14,7 @@
  * @brief Adds chapterId to an Author
  */
 
-import('monograph.Author');
+import('classes.monograph.Author');
 
 class ChapterAuthor extends Author {
 

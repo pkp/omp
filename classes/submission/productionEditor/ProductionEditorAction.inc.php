@@ -14,7 +14,7 @@
 
 // $Id$
 
-import('submission.designer.DesignerAction');
+import('classes.submission.designer.DesignerAction');
 
 class ProductionEditorAction extends DesignerAction {
 
@@ -27,7 +27,7 @@ class ProductionEditorAction extends DesignerAction {
 	 * @param $submission object
 	 */
 	function uploadLayoutVersion($submission) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($submission->getMonographId());
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
@@ -58,7 +58,7 @@ class ProductionEditorAction extends DesignerAction {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($submission, 'LAYOUT_REQUEST');
 		$designSignoff = $signoffDao->getBySymbolic('PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT, $assignmentId);
 		$designer =& $userDao->getUser($designSignoff->getUserId());
@@ -106,7 +106,7 @@ class ProductionEditorAction extends DesignerAction {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($submission, 'LAYOUT_ACK');
 
 		$layoutSignoff = $signoffDao->getBySymbolic('PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT, $assignmentId);
@@ -148,7 +148,7 @@ class ProductionEditorAction extends DesignerAction {
 	function viewLayoutComments($monograph) {
 		if (HookRegistry::call('SeriesEditorAction::viewLayoutComments', array(&$monograph))) return;
 
-		import('submission.form.comment.LayoutCommentForm');
+		import('classes.submission.form.comment.LayoutCommentForm');
 
 		$commentForm = new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->initData();
@@ -163,7 +163,7 @@ class ProductionEditorAction extends DesignerAction {
 	function postLayoutComment($monograph, $emailComment) {
 		if (HookRegistry::call('SeriesEditorAction::postLayoutComment', array(&$monograph, &$emailComment))) return;
 
-		import('submission.form.comment.LayoutCommentForm');
+		import('classes.submission.form.comment.LayoutCommentForm');
 
 		$commentForm = new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->readInputData();
@@ -189,7 +189,7 @@ class ProductionEditorAction extends DesignerAction {
 	function viewProofreadComments($monograph) {
 		if (HookRegistry::call('SeriesEditorAction::viewProofreadComments', array(&$monograph))) return;
 
-		import('submission.form.comment.ProofreadCommentForm');
+		import('classes.submission.form.comment.ProofreadCommentForm');
 
 		$commentForm = new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->initData();
@@ -204,7 +204,7 @@ class ProductionEditorAction extends DesignerAction {
 	function postProofreadComment($monograph, $emailComment) {
 		if (HookRegistry::call('SeriesEditorAction::postProofreadComment', array(&$monograph, &$emailComment))) return;
 
-		import('submission.form.comment.ProofreadCommentForm');
+		import('classes.submission.form.comment.ProofreadCommentForm');
 
 		$commentForm = new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->readInputData();

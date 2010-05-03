@@ -351,7 +351,7 @@ class PeopleHandler extends ManagerHandler {
 			return $templateMgr->display('common/error.tpl');
 		}
 
-		import('manager.form.UserManagementForm');
+		import('classes.manager.form.UserManagementForm');
 
 		$templateMgr->assign('currentUrl', $request->url(null, null, 'people', 'all'));
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
@@ -403,7 +403,7 @@ class PeopleHandler extends ManagerHandler {
 		}
 
 		if (!empty($oldUserIds) && !empty($newUserId)) {
-			import('user.UserAction');
+			import('classes.user.UserAction');
 			foreach ($oldUserIds as $oldUserId) {
 				UserAction::mergeUsers($oldUserId, $newUserId);
 			}
@@ -584,7 +584,7 @@ class PeopleHandler extends ManagerHandler {
 			return $templateMgr->display('common/error.tpl');
 		}
 
-		import('manager.form.UserManagementForm');
+		import('classes.manager.form.UserManagementForm');
 
 		if (checkPhpVersion('5.0.0')) { // WARNING: This form needs $this in constructor
 			$userForm = new UserManagementForm($userId);

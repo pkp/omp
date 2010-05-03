@@ -15,13 +15,13 @@
 
 
 define('CUSTOM_LOCALE_DIR', 'customLocale');
-import('classes.plugins.GenericPlugin');
+import('lib.pkp.classes.plugins.GenericPlugin');
 
 class CustomLocalePlugin extends GenericPlugin {
 	function register($category, $path) {
 		if (parent::register($category, $path)) {
 			if ($this->getEnabled()) {
-				import('file.FileManager');
+				import('lib.pkp.classes.file.FileManager');
 				$press = Request::getPress();
 				$pressId = $press->getId();
 				$locale = Locale::getLocale();

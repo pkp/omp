@@ -15,7 +15,7 @@
 // $Id$
 
 
-import("manager.form.setup.PressSetupForm");
+import('classes.manager.form.setup.PressSetupForm');
 
 class PressSetupStep5Form extends PressSetupForm {
 	var $images;
@@ -145,7 +145,7 @@ class PressSetupStep5Form extends PressSetupForm {
 		$press =& Request::getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
-		import('file.PublicFileManager');
+		import('classes.file.PublicFileManager');
 		$fileManager = new PublicFileManager();
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$type = $fileManager->getUploadedFileType($settingName);
@@ -186,7 +186,7 @@ class PressSetupStep5Form extends PressSetupForm {
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$setting = $settingsDao->getSetting($press->getId(), $settingName);
 
-		import('file.PublicFileManager');
+		import('classes.file.PublicFileManager');
 		$fileManager = new PublicFileManager();
 		if ($fileManager->removePressFile($press->getId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
 			$returner = $settingsDao->deleteSetting($press->getId(), $settingName, $locale);
@@ -212,7 +212,7 @@ class PressSetupStep5Form extends PressSetupForm {
 		$press =& Request::getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
-		import('file.PublicFileManager');
+		import('classes.file.PublicFileManager');
 		$fileManager = new PublicFileManager();
 		if ($fileManager->uploadedFileExists($settingName)) {
 			$type = $fileManager->getUploadedFileType($settingName);

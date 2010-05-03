@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class CommentForm extends Form {
 
@@ -130,7 +130,7 @@ class CommentForm extends Form {
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$press =& Request::getPress();
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'SUBMISSION_COMMENT');
 		$email->setFrom($this->user->getEmail(), $this->user->getFullName());
 

@@ -12,7 +12,7 @@
  * @brief Form for editing artwork file metadata.
  */
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class SubmissionFilesArtworkMetadataForm extends Form {
 	/** @var int */
@@ -110,7 +110,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO');
 
 		// manage artwork permissions file
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographId = $this->getData('monographId');
 		$monographFileManager = new MonographFileManager($monographId);
 

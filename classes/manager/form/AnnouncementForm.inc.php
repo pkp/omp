@@ -18,7 +18,7 @@
 
 // $Id$
 
-import('manager.form.PKPAnnouncementForm');
+import('lib.pkp.classes.manager.form.PKPAnnouncementForm');
 
 class AnnouncementForm extends PKPAnnouncementForm {
 	/**
@@ -66,7 +66,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		$pressId = $press->getId();
 
 		// Send a notification to associated users
-		import('notification.NotificationManager');
+		import('lib.pkp.classes.notification.NotificationManager');
 		$userGroupDao =& DAORegistry::getDAO('RoleAssignmentDAO');
 		$notificationUsers = array();
 		$allUsers = $userGroupDao->getUsersByPressId($pressId);

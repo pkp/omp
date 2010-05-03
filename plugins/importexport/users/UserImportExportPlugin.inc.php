@@ -17,7 +17,7 @@
 
 import('classes.plugins.ImportExportPlugin');
 
-import('xml.XMLCustomWriter');
+import('lib.pkp.classes.xml.XMLCustomWriter');
 
 class UserImportExportPlugin extends ImportExportPlugin {
 	/**
@@ -80,7 +80,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$sendNotify = (bool) Request::getUserVar('sendNotify');
 				$continueOnError = (bool) Request::getUserVar('continueOnError');
 
-				import('file.FileManager');
+				import('lib.pkp.classes.file.FileManager');
 				if (($userFile = FileManager::getUploadedFilePath('userFile')) !== false) {
 					// Import the uploaded file
 					$parser = new UserXMLParser($press->getId());
@@ -234,7 +234,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 				$sendNotify = in_array('send_notify', $flags);
 				$continueOnError = in_array('continue_on_error', $flags);
 
-				import('file.FileManager');
+				import('lib.pkp.classes.file.FileManager');
 
 				// Import the uploaded file
 				$parser = new UserXMLParser($press->getId());

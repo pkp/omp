@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('submission.productionEditor.ProductionEditorSubmission');
+import('classes.submission.productionEditor.ProductionEditorSubmission');
 
 class ProductionEditorSubmissionDAO extends DAO {
 	var $monographDao;

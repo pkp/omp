@@ -21,7 +21,7 @@
 // $Id$
 
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class AuthSourceSettingsForm extends Form {
 

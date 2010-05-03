@@ -20,7 +20,7 @@
 // $Id$
 
 
-import('monograph.Monograph');
+import('classes.monograph.Monograph');
 
 class ProofreaderSubmission extends Monograph {
 

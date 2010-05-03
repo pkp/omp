@@ -15,8 +15,8 @@
 
 // $Id$
 
-import('monograph.MonographFile');
-import('file.MonographFileManager');
+import('classes.monograph.MonographFile');
+import('classes.file.MonographFileManager');
 
 define('INLINEABLE_TYPES_FILE', Config::getVar('general', 'registry_dir') . DIRECTORY_SEPARATOR . 'inlineTypes.txt');
 
@@ -238,7 +238,7 @@ class MonographFileDAO extends DAO {
 	 * @return array MonographFiles
 	 */
 	function &getMonographFilesByAssocId($assocId, $type) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFiles = array();
 
 		$result =& $this->retrieve(

@@ -16,7 +16,7 @@
 // $Id$
 
 
-import('submission.productionAssignment.ProductionAssignment');
+import('classes.submission.productionAssignment.ProductionAssignment');
 
 class ProductionAssignmentDAO extends DAO {
 	var $monographFileDao;

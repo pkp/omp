@@ -15,7 +15,7 @@
 // $Id$
 
 
-import("submission.reviewer.form.ReviewerReviewForm");
+import('classes.submission.reviewer.form.ReviewerReviewForm');
 
 class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	

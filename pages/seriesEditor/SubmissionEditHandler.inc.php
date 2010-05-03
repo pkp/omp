@@ -19,7 +19,7 @@ define('SERIES_EDITOR_ACCESS_EDIT', 0x00001);
 define('SERIES_EDITOR_ACCESS_REVIEW', 0x00002);
 
 import('pages.seriesEditor.SeriesEditorHandler');
-import('submission.seriesEditor.SeriesEditorAction');
+import('classes.submission.seriesEditor.SeriesEditorAction');
 
 class SubmissionEditHandler extends SeriesEditorHandler {
 	/** The submission associated with this request **/
@@ -80,7 +80,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$templateMgr->assign_by_ref('series', $seriesDao->getTitlesByPressId($press->getId()));
 
 		if ($enableComments) {
-			import('monograph.Monograph');
+			import('classes.monograph.Monograph');
 			$templateMgr->assign('commentsStatus', $submission->getCommentsStatus());
 			$templateMgr->assign_by_ref('commentsStatusOptions', Monograph::getCommentsStatusOptions());
 		}
@@ -128,7 +128,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		$templateMgr->assign_by_ref('editorDecisionOptions', SeriesEditorSubmission::getEditorDecisionOptions());
 
-		import('submission.reviewAssignment.ReviewAssignment');
+		import('classes.submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRatingOptions', ReviewAssignment::getReviewerRatingOptions());
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 
@@ -171,7 +171,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		}
 
 		// Parse the list of email logs and populate the array.
-		import('monograph.log.MonographLog');
+		import('classes.monograph.log.MonographLog');
 		$emailLogEntries =& MonographLog::getEmailLogEntries($monographId);
 		foreach ($emailLogEntries->toArray() as $emailLog) {
 			if ($emailLog->getEventType() == MONOGRAPH_EMAIL_REVIEW_NOTIFY_REVIEWER) {
@@ -228,7 +228,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		);
 		$templateMgr->assign_by_ref('lastDecision', $lastDecision);
 
-		import('submission.reviewAssignment.ReviewAssignment');
+		import('classes.submission.reviewAssignment.ReviewAssignment');
 		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 		$templateMgr->assign_by_ref('reviewerRatingOptions', ReviewAssignment::getReviewerRatingOptions());
 
@@ -330,7 +330,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		$this->setupTemplate(true, $monographId);
 
-		import('monograph.log.MonographLog');
+		import('classes.monograph.log.MonographLog');
 		$rangeInfo =& Handler::getRangeInfo('eventLogEntries');
 		$eventLogEntries =& MonographLog::getEventLogEntries($monographId, $rangeInfo);
 		$rangeInfo =& Handler::getRangeInfo('emailLogEntries');
@@ -388,7 +388,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		$fileIds = Request::getUserVar('selectedFiles');
 
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 
 		foreach ($fileIds as $fileId) {
@@ -486,7 +486,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$press =& Request::getPress();
 		$submission =& $this->submission;
 
-		import('seriesEditor.form.CreateReviewerForm');
+		import('classes.seriesEditor.form.CreateReviewerForm');
 		$createReviewerForm = new CreateReviewerForm($monographId);
 		$this->setupTemplate(true, $monographId);
 
@@ -790,7 +790,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 			$templateMgr->assign('monographId', $monographId);
 			$templateMgr->assign('reviewId', $reviewId);
 
-			import('submission.reviewAssignment.ReviewAssignment');
+			import('classes.submission.reviewAssignment.ReviewAssignment');
 			$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
 
 			$templateMgr->display('seriesEditor/reviewerRecommendation.tpl');
@@ -1440,7 +1440,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$press =& Request::getPress();
 		$submission =& $this->submission;
 
-		import('submission.form.MonographGalleyForm');
+		import('classes.submission.form.MonographGalleyForm');
 
 		$galleyForm = new MonographGalleyForm($monographId);
 		$galleyId = $galleyForm->execute($fileName);
@@ -1461,7 +1461,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		$this->setupTemplate(true, $monographId, 'editing');
 
-		import('submission.form.MonographGalleyForm');
+		import('classes.submission.form.MonographGalleyForm');
 
 		$submitForm = new MonographGalleyForm($monographId, $galleyId);
 
@@ -1485,7 +1485,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$press =& Request::getPress();
 		$submission =& $this->submission;
 
-		import('submission.form.MonographGalleyForm');
+		import('classes.submission.form.MonographGalleyForm');
 
 		$submitForm = new MonographGalleyForm($monographId, $galleyId);
 
@@ -1494,7 +1494,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 			$submitForm->execute();
 
 			// Send a notification to associated users
-			import('notification.NotificationManager');
+			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager =& new NotificationManager();
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
 			$monograph =& $monographDao->getMonograph($monographId);
@@ -1596,7 +1596,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		$galley =& $galleyDao->getGalley($galleyId, $monographId);
 
-		import('file.MonographFileManager'); // FIXME
+		import('classes.file.MonographFileManager'); // FIXME
 
 		if (isset($galley)) {
 			if ($galley->isHTMLGalley()) {
@@ -1647,7 +1647,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		} else {
 			$rangeInfo =& Handler::getRangeInfo('eventLogEntries');
 
-			import('monograph.log.MonographLog');
+			import('classes.monograph.log.MonographLog');
 			$eventLogEntries =& MonographLog::getEventLogEntries($monographId, $rangeInfo);
 			$templateMgr->assign('eventLogEntries', $eventLogEntries);
 			$templateMgr->display('seriesEditor/submissionEventLog.tpl');
@@ -1715,7 +1715,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$templateMgr->assign_by_ref('submission', $submission);
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$templateMgr->assign('attachments', $monographFileDao->getMonographFilesByAssocId($logId, MONOGRAPH_FILE_ATTACHMENT));
 
 		if ($logId) {
@@ -1730,7 +1730,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		} else {
 			$rangeInfo =& Handler::getRangeInfo('emailLogEntries');
 
-			import('monograph.log.MonographLog');
+			import('classes.monograph.log.MonographLog');
 			$emailLogEntries =& MonographLog::getEmailLogEntries($monographId, $rangeInfo);
 			$templateMgr->assign_by_ref('emailLogEntries', $emailLogEntries);
 			$templateMgr->display('seriesEditor/submissionEmailLog.tpl');

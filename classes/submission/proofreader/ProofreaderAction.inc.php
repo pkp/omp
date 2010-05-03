@@ -18,7 +18,7 @@
 
 // $Id$
 
-import('submission.common.Action');
+import('classes.submission.common.Action');
 
 class ProofreaderAction extends Action {
 
@@ -41,8 +41,8 @@ class ProofreaderAction extends Action {
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$proofreader =& $userDao->getUser($userId);
 			if (!isset($proofreader)) return;
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($monograph->getId(), MONOGRAPH_LOG_PROOFREAD_ASSIGN, MONOGRAPH_LOG_TYPE_PROOFREAD, $user->getId(), 'log.proofread.assign', Array('assignerName' => $user->getFullName(), 'proofreaderName' => $proofreader->getFullName(), 'monographId' => $monograph->getId()));
 		}
 	}
@@ -63,7 +63,7 @@ class ProofreaderAction extends Action {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$ccs = array();
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($submission, $mailType);
 
 		switch($mailType) {
@@ -421,7 +421,7 @@ class ProofreaderAction extends Action {
 	 */
 	function viewProofreadComments($monograph) {
 		if (!HookRegistry::call('ProofreaderAction::viewProofreadComments', array(&$monograph))) {
-			import("submission.form.comment.ProofreadCommentForm");
+			import('classes.submission.form.comment.ProofreadCommentForm');
 
 			$commentForm = new ProofreadCommentForm($monograph, ROLE_ID_PROOFREADER);
 			$commentForm->initData();
@@ -436,7 +436,7 @@ class ProofreaderAction extends Action {
 	 */
 	function postProofreadComment($monograph, $emailComment) {
 		if (!HookRegistry::call('ProofreaderAction::postProofreadComment', array(&$monograph, &$emailComment))) {
-			import("submission.form.comment.ProofreadCommentForm");
+			import('classes.submission.form.comment.ProofreadCommentForm');
 
 			$commentForm = new ProofreadCommentForm($monograph, ROLE_ID_PROOFREADER);
 			$commentForm->readInputData();
@@ -445,7 +445,7 @@ class ProofreaderAction extends Action {
 				$commentForm->execute();
 
 				// Send a notification to associated users
-				import('notification.NotificationManager');
+				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
@@ -474,7 +474,7 @@ class ProofreaderAction extends Action {
 	 */
 	function viewLayoutComments($monograph) {
 		if (!HookRegistry::call('ProofreaderAction::viewLayoutComments', array(&$monograph))) {
-			import("submission.form.comment.LayoutCommentForm");
+			import('classes.submission.form.comment.LayoutCommentForm');
 
 			$commentForm = new LayoutCommentForm($monograph, ROLE_ID_PROOFREADER);
 			$commentForm->initData();
@@ -489,7 +489,7 @@ class ProofreaderAction extends Action {
 	 */
 	function postLayoutComment($monograph, $emailComment) {
 		if (!HookRegistry::call('ProofreaderAction::postLayoutComment', array(&$monograph, &$emailComment))) {
-			import("submission.form.comment.LayoutCommentForm");
+			import('classes.submission.form.comment.LayoutCommentForm');
 
 			$commentForm = new LayoutCommentForm($monograph, ROLE_ID_PROOFREADER);
 			$commentForm->readInputData();
@@ -498,7 +498,7 @@ class ProofreaderAction extends Action {
 				$commentForm->execute();
 								
 				// Send a notification to associated users
-				import('notification.NotificationManager');
+				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {

@@ -12,7 +12,7 @@
  * @brief Handle masthead grid row requests.
  */
 
-import('controllers.grid.GridRow');
+import('lib.pkp.classes.controllers.grid.GridRow');
 
 class MastheadGridRow extends GridRow {
 	/** @var group associated with the request **/

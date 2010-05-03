@@ -12,7 +12,7 @@
  * @brief Handle submissionChecklist grid row requests.
  */
 
-import('controllers.grid.GridRow');
+import('lib.pkp.classes.controllers.grid.GridRow');
 
 class SubmissionChecklistGridRow extends GridRow {
 	/**

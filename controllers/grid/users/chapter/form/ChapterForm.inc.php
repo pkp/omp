@@ -13,7 +13,7 @@
  * stores/retrieves from an associative array
  */
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class ChapterForm extends Form {
 	/** The monograph associated with the submission chapter being edited **/

@@ -12,7 +12,7 @@
  * @brief Form for adding/edditing a submission file
  */
 
-import('form.Form');
+import('lib.pkp.classes.form.Form');
 
 class SubmissionFilesUploadForm extends Form {
 	/** the id of the file being edited */
@@ -77,7 +77,7 @@ class SubmissionFilesUploadForm extends Form {
 	function uploadFile(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$fileTypeId = $this->getData('fileType');
-		import("file.MonographFileManager");
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$bookFileType = $bookFileTypeDao->getById($fileTypeId);

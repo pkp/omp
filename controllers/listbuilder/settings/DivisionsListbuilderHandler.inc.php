@@ -13,7 +13,7 @@
  */
 
 import('controllers.listbuilder.settings.SetupListbuilderHandler');
-import('press.Division');
+import('classes.press.Division');
 
 class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	/**

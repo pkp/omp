@@ -12,11 +12,11 @@
  * @brief Base class for setup grid handlers
  */
 
-import('controllers.grid.GridHandler');
+import('lib.pkp.classes.controllers.grid.GridHandler');
 
 // import validation classes
-import('handler.validation.HandlerValidatorPress');
-import('handler.validation.HandlerValidatorRoles');
+import('classes.handler.validation.HandlerValidatorPress');
+import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
 
 class SetupGridHandler extends GridHandler {
 	/**

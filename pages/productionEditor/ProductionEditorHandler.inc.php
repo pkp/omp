@@ -15,8 +15,8 @@
 // $Id$
 
 
-import('handler.Handler');
-import('submission.productionEditor.ProductionEditorAction');
+import('classes.handler.Handler');
+import('classes.submission.productionEditor.ProductionEditorAction');
 
 class ProductionEditorHandler extends Handler {
 
@@ -77,7 +77,7 @@ class ProductionEditorHandler extends Handler {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		if ($userId && $monographId && $roleDao->userHasRole($press->getId(), $userId, ROLE_ID_PROOFREADER)) {
-			import('submission.proofreader.ProofreaderAction');
+			import('classes.submission.proofreader.ProofreaderAction');
 			ProofreaderAction::selectProofreader($userId, $assignmentId, $submission);
 			Request::redirect(null, null, 'submissionLayout', $monographId);
 		} else {
@@ -151,7 +151,7 @@ class ProductionEditorHandler extends Handler {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
 		if ($userId && $monographId && $roleDao->userHasRole($press->getId(), $userId, ROLE_ID_DESIGNER)) {
-			import('submission.designer.DesignerAction');
+			import('classes.submission.designer.DesignerAction');
 			DesignerAction::selectDesigner($userId, $assignmentId, $submission);
 			Request::redirect(null, null, 'submissionLayout', $monographId);
 		} else {
@@ -220,7 +220,7 @@ class ProductionEditorHandler extends Handler {
 		$submission =& $this->submission;		
 		$this->setupTemplate(true, $monographId, 'editing');
 
-		import('submission.proofreader.ProofreaderAction');
+		import('classes.submission.proofreader.ProofreaderAction');
 		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_AUTHOR_REQUEST', $send?'':Request::url(null, null, 'notifyAuthorProofreader'))) {
 			Request::redirect(null, null, 'submissionEditing', $monographId);
 		}
@@ -237,7 +237,7 @@ class ProductionEditorHandler extends Handler {
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'editing');
 
-		import('submission.proofreader.ProofreaderAction');
+		import('classes.submission.proofreader.ProofreaderAction');
 		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_AUTHOR_ACK', $send?'':Request::url(null, null, 'thankAuthorProofreader'))) {
 			Request::redirect(null, null, 'submissionEditing', $monographId);
 		}
@@ -288,7 +288,7 @@ class ProductionEditorHandler extends Handler {
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'editing');
 
-		import('submission.proofreader.ProofreaderAction');
+		import('classes.submission.proofreader.ProofreaderAction');
 		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_REQUEST', $send?'':Request::url(null, null, 'notifyProofreader'))) {
 			Request::redirect(null, null, 'submissionEditing', $monographId);
 		}
@@ -305,7 +305,7 @@ class ProductionEditorHandler extends Handler {
 		$submission =& $this->submission;				
 		$this->setupTemplate(true, $monographId, 'editing');
 
-		import('submission.proofreader.ProofreaderAction');
+		import('classes.submission.proofreader.ProofreaderAction');
 		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_ACK', $send?'':Request::url(null, null, 'thankProofreader'))) {
 			Request::redirect(null, null, 'submissionEditing', $monographId);
 		}
@@ -357,7 +357,7 @@ class ProductionEditorHandler extends Handler {
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'editing');
 
-		import('submission.productionEditor.ProductionEditorAction');
+		import('classes.submission.productionEditor.ProductionEditorAction');
 		if (ProductionEditorAction::notifyDesigner($submission, $assignmentId, $send)) {
 			Request::redirect(null, null, 'submissionLayout', $monographId);
 		}
@@ -374,7 +374,7 @@ class ProductionEditorHandler extends Handler {
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'editing');
 
-		import('submission.proofreader.ProofreaderAction');
+		import('classes.submission.proofreader.ProofreaderAction');
 		if (ProofreaderAction::proofreadEmail($monographId, 'PROOFREAD_LAYOUT_ACK', $send?'':Request::url(null, null, 'thankLayoutEditorProofreader'))) {
 			Request::redirect(null, null, 'submissionEditing', $monographId);
 		}
@@ -408,7 +408,7 @@ class ProductionEditorHandler extends Handler {
 		$templateMgr->assign('pageToDisplay', 'submissionSummary');
 
 		if ($enableComments) {
-			import('monograph.Monograph');
+			import('classes.monograph.Monograph');
 			$templateMgr->assign('commentsStatus', $submission->getCommentsStatus());
 			$templateMgr->assign_by_ref('commentsStatusOptions', Monograph::getCommentsStatusOptions());
 		}
@@ -444,7 +444,7 @@ class ProductionEditorHandler extends Handler {
 			$productionAssignment =& $productionAssignmentDao->getById($productionAssignmentId);
 		}
 
-		import('submission.form.ProductionAssignmentForm');
+		import('classes.submission.form.ProductionAssignmentForm');
 		$form = new ProductionAssignmentForm($monographId, $productionAssignment);
 
 		$templateMgr =& TemplateManager::getManager();
@@ -498,7 +498,7 @@ class ProductionEditorHandler extends Handler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$fileId = isset($args[1]) ? (int) $args[1] : 0;
 
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 
 		$monographFileManager->deleteFile($fileId);
@@ -530,7 +530,7 @@ class ProductionEditorHandler extends Handler {
 		$monographId = Request::getUserVar('monographId');
 		$this->validate($monographId);
 
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 
 		if ($monographFileManager->uploadedFileExists('artworkFile')) {
@@ -562,7 +562,7 @@ class ProductionEditorHandler extends Handler {
 		$templateMgr->assign('pageToDisplay', 'submissionLayout');
 
 		if ($enableComments) {
-			import('monograph.Monograph');
+			import('classes.monograph.Monograph');
 			$templateMgr->assign('commentsStatus', $submission->getCommentsStatus());
 			$templateMgr->assign_by_ref('commentsStatusOptions', Monograph::getCommentsStatusOptions());
 		}
@@ -590,7 +590,7 @@ class ProductionEditorHandler extends Handler {
 
 		$this->validate($monographId);
 		$press =& Request::getPress();
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 		if (!$monographFileManager->viewFile($fileId, $revision)) {
 			Request::redirect(null, null, 'submissionLayout', $monographId);
@@ -608,7 +608,7 @@ class ProductionEditorHandler extends Handler {
 
 		$this->validate($monographId);
 		$press =& Request::getPress();
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 		if (!$monographFileManager->viewFile($fileId, $revision)) {
 			Request::redirect(null, null, 'submissionLayout', $monographId);
@@ -711,7 +711,7 @@ class ProductionEditorHandler extends Handler {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
 
-		import('submission.form.MonographGalleyForm');
+		import('classes.submission.form.MonographGalleyForm');
 		$productionAssignmentId = Request::getUserVar('productionAssignmentId');
 
 		$galleyForm = new MonographGalleyForm($monographId);
@@ -733,7 +733,7 @@ class ProductionEditorHandler extends Handler {
 
 		$this->setupTemplate(true, $monographId, 'editing');
 
-		import('submission.form.MonographGalleyForm');
+		import('classes.submission.form.MonographGalleyForm');
 
 		$submitForm = new MonographGalleyForm($monographId, $galleyId);
 
@@ -757,7 +757,7 @@ class ProductionEditorHandler extends Handler {
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'editing');
 
-		import('submission.form.MonographGalleyForm');
+		import('classes.submission.form.MonographGalleyForm');
 
 		$submitForm = new MonographGalleyForm($monographId, $galleyId);
 

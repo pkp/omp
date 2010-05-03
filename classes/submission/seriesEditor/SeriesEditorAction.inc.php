@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('submission.common.Action');
+import('classes.submission.common.Action');
 
 class SeriesEditorAction extends Action {
 
@@ -74,8 +74,8 @@ class SeriesEditorAction extends Action {
 
 			$decisions = SeriesEditorSubmission::getEditorDecisionOptions();
 			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR));
 			MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_DECISION, MONOGRAPH_LOG_TYPE_EDITOR, $user->getId(), 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getMonographId(), 'decision' => Locale::translate($decisions[$decision])));
 		}
@@ -136,8 +136,8 @@ class SeriesEditorAction extends Action {
 			if (isset($settings['numWeeksPerReview'])) SeriesEditorAction::setDueDate($seriesEditorSubmission->getMonographId(), $reviewAssignment->getReviewId(), null, $settings['numWeeksPerReview']);
 
 			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_ASSIGN, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getMonographId(), 'reviewType' => $reviewType, 'round' => $round));
 		}
 	}
@@ -162,8 +162,8 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
 			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_CLEAR, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getMonographId(), 'reviewType' => $reviewAssignment->getReviewType(), 'round' => $reviewAssignment->getRound()));
 		}
 	}
@@ -193,7 +193,7 @@ class SeriesEditorAction extends Action {
 		// in order to get the access key.)
 		$preventAddressChanges = $reviewerAccessKeysEnabled;
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 
 		$email = new MonographMailTemplate($seriesEditorSubmission, $isEmailBasedReview?'REVIEW_REQUEST_ATTACHED':($reviewerAccessKeysEnabled?'REVIEW_REQUEST_ONECLICK':'REVIEW_REQUEST'), null, $isEmailBasedReview?true:null);
 
@@ -210,7 +210,7 @@ class SeriesEditorAction extends Action {
 				if ($email->isEnabled()) {
 					$email->setAssoc(MONOGRAPH_EMAIL_REVIEW_NOTIFY_REVIEWER, MONOGRAPH_EMAIL_TYPE_REVIEW, $reviewId);
 					if ($reviewerAccessKeysEnabled) {
-						import('security.AccessKeyManager');
+						import('lib.pkp.classes.security.AccessKeyManager');
 						import('pages.reviewer.ReviewerHandler');
 						$accessKeyManager = new AccessKeyManager();
 
@@ -266,7 +266,7 @@ class SeriesEditorAction extends Action {
 					if ($isEmailBasedReview) {
 						// An email-based review process was selected. Attach
 						// the current review version.
-						import('file.TemporaryFileManager');
+						import('classes.file.TemporaryFileManager');
 						$temporaryFileManager = new TemporaryFileManager();
 						$reviewVersion =& $seriesEditorSubmission->getReviewFile();
 						if ($reviewVersion) {
@@ -304,7 +304,7 @@ class SeriesEditorAction extends Action {
 			// Only cancel the review if it is currently not cancelled but has previously
 			// been initiated, and has not been completed.
 			if ($reviewAssignment->getDateNotified() != null && !$reviewAssignment->getCancelled() && ($reviewAssignment->getDateCompleted() == null || $reviewAssignment->getDeclined())) {
-				import('mail.MonographMailTemplate');
+				import('classes.mail.MonographMailTemplate');
 				$email = new MonographMailTemplate($seriesEditorSubmission, 'REVIEW_CANCEL');
 
 				if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
@@ -321,8 +321,8 @@ class SeriesEditorAction extends Action {
 					$reviewAssignmentDao->updateObject($reviewAssignment);
 
 					// Add log
-					import('monograph.log.MonographLog');
-					import('monograph.log.MonographEventLogEntry');
+					import('classes.monograph.log.MonographLog');
+					import('classes.monograph.log.MonographEventLogEntry');
 					MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_CANCEL, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCancelled', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getMonographId(), 'round' => $reviewAssignment->getRound()));
 				} else {
 					if (!Request::getUserVar('continued')) {
@@ -366,7 +366,7 @@ class SeriesEditorAction extends Action {
 		// in order to get the access key.)
 		$preventAddressChanges = $reviewerAccessKeysEnabled;
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($seriesEditorSubmission, $reviewerAccessKeysEnabled?'REVIEW_REMIND_ONECLICK':'REVIEW_REMIND');
 
 		if ($preventAddressChanges) {
@@ -380,7 +380,7 @@ class SeriesEditorAction extends Action {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 
 			if ($reviewerAccessKeysEnabled) {
-				import('security.AccessKeyManager');
+				import('lib.pkp.classes.security.AccessKeyManager');
 				import('pages.reviewer.ReviewerHandler');
 				$accessKeyManager = new AccessKeyManager();
 
@@ -454,7 +454,7 @@ class SeriesEditorAction extends Action {
 
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($seriesEditorSubmission, 'REVIEW_ACK');
 
 		if ($reviewAssignment->getMonographId() == $seriesEditorSubmission->getMonographId()) {
@@ -516,8 +516,8 @@ class SeriesEditorAction extends Action {
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($monographId, MONOGRAPH_LOG_REVIEW_RATE, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewerRated', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $monographId, 'round' => $reviewAssignment->getRound()));
 		}
 	}
@@ -582,8 +582,8 @@ class SeriesEditorAction extends Action {
 
 			if ($logEntry) {
 				// Add log
-				import('monograph.log.MonographLog');
-				import('monograph.log.MonographEventLogEntry');
+				import('classes.monograph.log.MonographLog');
+				import('classes.monograph.log.MonographEventLogEntry');
 				MonographLog::logEvent(
 					$monographId,
 					MONOGRAPH_LOG_REVIEW_SET_DUE_DATE,
@@ -618,7 +618,7 @@ class SeriesEditorAction extends Action {
 		$author =& $userDao->getUser($seriesEditorSubmission->getUserId());
 		if (!isset($author)) return true;
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($seriesEditorSubmission, 'SUBMISSION_UNSUITABLE');
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
@@ -671,8 +671,8 @@ class SeriesEditorAction extends Action {
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($monographId, MONOGRAPH_LOG_REVIEW_RECOMMENDATION_BY_PROXY, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewRecommendationSetByProxy', array('editorName' => $user->getFullName(), 'reviewerName' => $reviewer->getFullName(), 'monographId' => $monographId, 'round' => $reviewAssignment->getRound()));
 		}
 	}
@@ -740,7 +740,7 @@ class SeriesEditorAction extends Action {
 		if (isset($reviewAssignment) && $reviewAssignment->getMonographId() == $seriesEditorSubmission->getMonographId()) {
 			$reviewFormId = $reviewAssignment->getReviewFormId();
 			if ($reviewFormId != null) {
-				import('submission.form.ReviewFormResponseForm');
+				import('classes.submission.form.ReviewFormResponseForm');
 				$reviewForm = new ReviewFormResponseForm($reviewId, $reviewFormId);
 				$reviewForm->initData();
 				$reviewForm->display();
@@ -756,7 +756,7 @@ class SeriesEditorAction extends Action {
 	 * TODO: SECURITY!
 	 */
 	function setCopyeditFile($seriesEditorSubmission, $fileId, $revision) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getMonographId());
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
@@ -779,8 +779,8 @@ class SeriesEditorAction extends Action {
 			$signoffDao->updateObject($copyeditSignoff);
 
 			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_SET_FILE, MONOGRAPH_LOG_TYPE_COPYEDIT, $newFileId, 'log.copyedit.copyeditFileSet');
 		}
 	}
@@ -793,7 +793,7 @@ class SeriesEditorAction extends Action {
 	 * TODO: SECURITY!
 	 */
 	function resubmitFile($seriesEditorSubmission, $fileId, $revision) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getMonographId());
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
@@ -839,8 +839,8 @@ class SeriesEditorAction extends Action {
 
 
 			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_RESUBMIT, MONOGRAPH_LOG_TYPE_EDITOR, $user->getId(), 'log.review.resubmit', array('monographId' => $seriesEditorSubmission->getMonographId()));
 		}
 	}
@@ -874,8 +874,8 @@ class SeriesEditorAction extends Action {
 			$copyeditor =& $userDao->getUser($copyeditorId);
 
 			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_ASSIGN, MONOGRAPH_LOG_TYPE_COPYEDIT, $copyeditorId, 'log.copyedit.copyeditorAssigned', array('copyeditorName' => $copyeditor->getFullName(), 'monographId' => $seriesEditorSubmission->getMonographId()));
 		}
 	}
@@ -891,7 +891,7 @@ class SeriesEditorAction extends Action {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($seriesEditorSubmission, 'COPYEDIT_REQUEST');
 
 		$copyeditor = $seriesEditorSubmission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL');
@@ -964,7 +964,7 @@ class SeriesEditorAction extends Action {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($seriesEditorSubmission, 'COPYEDIT_ACK');
 
 		$copyeditor =& $seriesEditorSubmission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL');
@@ -1017,7 +1017,7 @@ class SeriesEditorAction extends Action {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($seriesEditorSubmission, 'COPYEDIT_AUTHOR_REQUEST');
 
 		$author =& $userDao->getUser($seriesEditorSubmission->getUserId());
@@ -1078,7 +1078,7 @@ class SeriesEditorAction extends Action {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($seriesEditorSubmission, 'COPYEDIT_AUTHOR_ACK');
 
 		$author =& $userDao->getUser($seriesEditorSubmission->getUserId());
@@ -1127,7 +1127,7 @@ class SeriesEditorAction extends Action {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($seriesEditorSubmission, 'COPYEDIT_FINAL_REQUEST');
 
 		$copyeditor =& $seriesEditorSubmission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL');
@@ -1180,7 +1180,7 @@ class SeriesEditorAction extends Action {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($seriesEditorSubmission, 'COPYEDIT_FINAL_ACK');
 
 		$copyeditor =& $seriesEditorSubmission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL');
@@ -1230,7 +1230,7 @@ class SeriesEditorAction extends Action {
 	 * @param $seriesEditorSubmission object
 	 */
 	function uploadReviewVersion($seriesEditorSubmission) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getMonographId());
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 
@@ -1260,7 +1260,7 @@ class SeriesEditorAction extends Action {
 	 * @param $seriesEditorSubmission object
 	 */
 	function uploadEditorVersion($seriesEditorSubmission) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getMonographId());
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$user =& Request::getUser();
@@ -1280,8 +1280,8 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
 			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_FILE, MONOGRAPH_LOG_TYPE_EDITOR, $seriesEditorSubmission->getEditorFileId(), 'log.editor.editorFile');
 		}
 	}
@@ -1293,7 +1293,7 @@ class SeriesEditorAction extends Action {
 	 */
 	function uploadCopyeditVersion($seriesEditorSubmission, $copyeditStage) {
 		$monographId = $seriesEditorSubmission->getMonographId();
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
@@ -1353,8 +1353,8 @@ class SeriesEditorAction extends Action {
 		$signoffDao->updateObject($signoff);
 
 		// Add log entry
-		import('monograph.log.MonographLog');
-		import('monograph.log.MonographEventLogEntry');
+		import('classes.monograph.log.MonographLog');
+		import('classes.monograph.log.MonographEventLogEntry');
 		MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_INITIAL, MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.initialEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getMonographId()));
 	}
 
@@ -1383,7 +1383,7 @@ class SeriesEditorAction extends Action {
 			$productionSignoff = $signoffDao->build('SIGNOFF_PRODUCTION', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getMonographId());
 
 			if (!$productionSignoff->getFileId()) {
-				import('file.MonographFileManager');
+				import('classes.file.MonographFileManager');
 				$monographFileManager = new MonographFileManager($seriesEditorSubmission->getMonographId());
 				if ($productionFileId = $monographFileManager->copyToProductionFile($copyEdFile->getFileId(), $copyEdFile->getRevision())) {
 					$productionSignoff->setFileId($productionFileId);
@@ -1393,8 +1393,8 @@ class SeriesEditorAction extends Action {
 		}
 
 		// Add log entry
-		import('monograph.log.MonographLog');
-		import('monograph.log.MonographEventLogEntry');
+		import('classes.monograph.log.MonographLog');
+		import('classes.monograph.log.MonographEventLogEntry');
 		MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_FINAL, MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.finalEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getMonographId()));
 	}
 
@@ -1414,8 +1414,8 @@ class SeriesEditorAction extends Action {
 		$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
 		// Add log
-		import('monograph.log.MonographLog');
-		import('monograph.log.MonographEventLogEntry');
+		import('classes.monograph.log.MonographLog');
+		import('classes.monograph.log.MonographEventLogEntry');
 		MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_ARCHIVE, MONOGRAPH_LOG_TYPE_EDITOR, $seriesEditorSubmission->getMonographId(), 'log.editor.archived', array('monographId' => $seriesEditorSubmission->getMonographId()));
 	}
 
@@ -1434,8 +1434,8 @@ class SeriesEditorAction extends Action {
 		$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
 		// Add log
-		import('monograph.log.MonographLog');
-		import('monograph.log.MonographEventLogEntry');
+		import('classes.monograph.log.MonographLog');
+		import('classes.monograph.log.MonographEventLogEntry');
 		MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_RESTORE, MONOGRAPH_LOG_TYPE_EDITOR, $seriesEditorSubmission->getMonographId(), 'log.editor.restored', array('monographId' => $seriesEditorSubmission->getMonographId()));
 	}
 
@@ -1474,7 +1474,7 @@ class SeriesEditorAction extends Action {
 	 * @param $submission object
 	 */
 	function uploadLayoutVersion($submission) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($submission->getMonographId());
 		$submissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 
@@ -1515,8 +1515,8 @@ class SeriesEditorAction extends Action {
 
 			$productionEditor =& $userDao->getUser($editorId);
 
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_PRODUCTION_ASSIGN, MONOGRAPH_LOG_TYPE_PRODUCTION, $submission->getMonographId(), 'log.productionEditor.assigned', array('monographId' => $submission->getMonographId()));
 		}
 	}
@@ -1535,7 +1535,7 @@ class SeriesEditorAction extends Action {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($submission, 'LAYOUT_REQUEST');
 		$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
 		$layoutEditor =& $userDao->getUser($layoutSignoff->getUserId());
@@ -1584,7 +1584,7 @@ class SeriesEditorAction extends Action {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($submission, 'LAYOUT_ACK');
 
 		$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
@@ -1644,7 +1644,7 @@ class SeriesEditorAction extends Action {
 	 * @param $revision int (optional)
 	 */
 	function deleteMonographFile($submission, $fileId, $revision) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$file =& $submission->getEditorFile();
 
 		if (isset($file) && $file->getFileId() == $fileId && !HookRegistry::call('SeriesEditorAction::deleteMonographFile', array(&$submission, &$fileId, &$revision))) {
@@ -1660,7 +1660,7 @@ class SeriesEditorAction extends Action {
 	 * @param $revision int (optional)
 	 */
 	function deleteMonographImage($submission, $fileId, $revision) {
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographGalleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		if (HookRegistry::call('SeriesEditorAction::deleteMonographImage', array(&$submission, &$fileId, &$revision))) return;
 		foreach ($submission->getGalleys() as $galley) {
@@ -1687,7 +1687,7 @@ class SeriesEditorAction extends Action {
 	function viewPeerReviewComments(&$monograph, $reviewId) {
 		if (HookRegistry::call('SeriesEditorAction::viewPeerReviewComments', array(&$monograph, &$reviewId))) return;
 
-		import('submission.form.comment.PeerReviewCommentForm');
+		import('classes.submission.form.comment.PeerReviewCommentForm');
 
 		$commentForm = new PeerReviewCommentForm($monograph, $reviewId, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->initData();
@@ -1703,7 +1703,7 @@ class SeriesEditorAction extends Action {
 	function postPeerReviewComment(&$monograph, $reviewId, $emailComment) {
 		if (HookRegistry::call('SeriesEditorAction::postPeerReviewComment', array(&$monograph, &$reviewId, &$emailComment))) return;
 
-		import('submission.form.comment.PeerReviewCommentForm');
+		import('classes.submission.form.comment.PeerReviewCommentForm');
 
 		$commentForm = new PeerReviewCommentForm($monograph, $reviewId, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->readInputData();
@@ -1712,7 +1712,7 @@ class SeriesEditorAction extends Action {
 			$commentForm->execute();
 
 			// Send a notification to associated users
-			import('notification.NotificationManager');
+			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 			$notificationUsers = $monograph->getAssociatedUserIds();
 			foreach ($notificationUsers as $userRole) {
@@ -1741,7 +1741,7 @@ class SeriesEditorAction extends Action {
 	function viewEditorDecisionComments($monograph) {
 		if (HookRegistry::call('SeriesEditorAction::viewEditorDecisionComments', array(&$monograph))) return;
 
-		import('submission.form.comment.EditorDecisionCommentForm');
+		import('classes.submission.form.comment.EditorDecisionCommentForm');
 
 		$commentForm = new EditorDecisionCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->initData();
@@ -1756,7 +1756,7 @@ class SeriesEditorAction extends Action {
 	function postEditorDecisionComment($monograph, $emailComment) {
 		if (HookRegistry::call('SeriesEditorAction::postEditorDecisionComment', array(&$monograph, &$emailComment))) return;
 
-		import('submission.form.comment.EditorDecisionCommentForm');
+		import('classes.submission.form.comment.EditorDecisionCommentForm');
 
 		$commentForm = new EditorDecisionCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->readInputData();
@@ -1765,7 +1765,7 @@ class SeriesEditorAction extends Action {
 			$commentForm->execute();
 
 			// Send a notification to associated users
-			import('notification.NotificationManager');
+			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
@@ -1799,7 +1799,7 @@ class SeriesEditorAction extends Action {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 
 		$decisionTemplateMap = array(
 			SUBMISSION_EDITOR_DECISION_ACCEPT => 'EDITOR_DECISION_ACCEPT',
@@ -1957,7 +1957,7 @@ class SeriesEditorAction extends Action {
 		}
 
 		$user =& Request::getUser();
-		import('mail.MonographMailTemplate');
+		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'SUBMISSION_DECISION_REVIEWERS');
 
 		if ($send && !$email->hasErrors() && !$inhibitExistingEmail) {
@@ -1994,7 +1994,7 @@ class SeriesEditorAction extends Action {
 	function viewCopyeditComments($monograph) {
 		if (HookRegistry::call('SeriesEditorAction::viewCopyeditComments', array(&$monograph))) return;
 
-		import('submission.form.comment.CopyeditCommentForm');
+		import('classes.submission.form.comment.CopyeditCommentForm');
 
 		$commentForm = new CopyeditCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->initData();
@@ -2009,7 +2009,7 @@ class SeriesEditorAction extends Action {
 	function postCopyeditComment($monograph, $emailComment) {
 		if (HookRegistry::call('SeriesEditorAction::postCopyeditComment', array(&$monograph, &$emailComment))) return;
 
-		import('submission.form.comment.CopyeditCommentForm');
+		import('classes.submission.form.comment.CopyeditCommentForm');
 
 		$commentForm = new CopyeditCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->readInputData();
@@ -2018,7 +2018,7 @@ class SeriesEditorAction extends Action {
 			$commentForm->execute();
 
 			// Send a notification to associated users
-			import('notification.NotificationManager');
+			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
@@ -2047,7 +2047,7 @@ class SeriesEditorAction extends Action {
 	function viewLayoutComments($monograph) {
 		if (HookRegistry::call('SeriesEditorAction::viewLayoutComments', array(&$monograph))) return;
 
-		import('submission.form.comment.LayoutCommentForm');
+		import('classes.submission.form.comment.LayoutCommentForm');
 
 		$commentForm = new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->initData();
@@ -2062,7 +2062,7 @@ class SeriesEditorAction extends Action {
 	function postLayoutComment($monograph, $emailComment) {
 		if (HookRegistry::call('SeriesEditorAction::postLayoutComment', array(&$monograph, &$emailComment))) return;
 
-		import('submission.form.comment.LayoutCommentForm');
+		import('classes.submission.form.comment.LayoutCommentForm');
 
 		$commentForm = new LayoutCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->readInputData();
@@ -2071,7 +2071,7 @@ class SeriesEditorAction extends Action {
 			$commentForm->execute();
 
 			// Send a notification to associated users
-			import('notification.NotificationManager');
+			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
@@ -2100,7 +2100,7 @@ class SeriesEditorAction extends Action {
 	function viewProofreadComments($monograph) {
 		if (HookRegistry::call('SeriesEditorAction::viewProofreadComments', array(&$monograph))) return;
 
-		import('submission.form.comment.ProofreadCommentForm');
+		import('classes.submission.form.comment.ProofreadCommentForm');
 
 		$commentForm = new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->initData();
@@ -2115,7 +2115,7 @@ class SeriesEditorAction extends Action {
 	function postProofreadComment($monograph, $emailComment) {
 		if (HookRegistry::call('SeriesEditorAction::postProofreadComment', array(&$monograph, &$emailComment))) return;
 
-		import('submission.form.comment.ProofreadCommentForm');
+		import('classes.submission.form.comment.ProofreadCommentForm');
 
 		$commentForm = new ProofreadCommentForm($monograph, Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
 		$commentForm->readInputData();
@@ -2124,7 +2124,7 @@ class SeriesEditorAction extends Action {
 			$commentForm->execute();
 
 			// Send a notification to associated users
-			import('notification.NotificationManager');
+			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
 			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
 			foreach ($notificationUsers as $userRole) {
@@ -2170,8 +2170,8 @@ class SeriesEditorAction extends Action {
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 
 			$entry = new MonographEventLogEntry();
 			$entry->setMonographId($reviewAssignment->getMonographId());
@@ -2201,7 +2201,7 @@ class SeriesEditorAction extends Action {
 		if (HookRegistry::call('SeriesEditorAction::uploadReviewForReviewer', array(&$reviewAssignment, &$reviewer))) return;
 
 		// Upload the review file.
-		import('file.MonographFileManager');
+		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($reviewAssignment->getMonographId());
 		// Only upload the file if the reviewer has yet to submit a recommendation
 		if (($reviewAssignment->getRecommendation() === null || $reviewAssignment->getRecommendation() === '') && !$reviewAssignment->getCancelled()) {
@@ -2228,8 +2228,8 @@ class SeriesEditorAction extends Action {
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 
 			// Add log
-			import('monograph.log.MonographLog');
-			import('monograph.log.MonographEventLogEntry');
+			import('classes.monograph.log.MonographLog');
+			import('classes.monograph.log.MonographEventLogEntry');
 
 			$entry = new MonographEventLogEntry();
 			$entry->setMonographId($reviewAssignment->getMonographId());

@@ -18,7 +18,7 @@
 // Filter series
 define('FILTER_SERIES_ALL', 0);
 
-import('handler.Handler');
+import('classes.handler.Handler');
 
 class SeriesEditorHandler extends Handler {
 	/**
@@ -173,7 +173,7 @@ class SeriesEditorHandler extends Handler {
 		$pageHierarchy = $subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, $isEditor?'editor':'seriesEditor'), $isEditor?'user.role.editor':'user.role.seriesEditor'), array(Request::url(null, 'seriesEditor'), 'manuscript.submissions'))
 			: array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, $isEditor?'editor':'seriesEditor'), $isEditor?'user.role.editor':'user.role.seriesEditor'));
 
-		import('submission.seriesEditor.SeriesEditorAction');
+		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$submissionCrumb = SeriesEditorAction::submissionBreadcrumb($monographId, $parentPage, $page);
 		if (isset($submissionCrumb)) {
 			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);

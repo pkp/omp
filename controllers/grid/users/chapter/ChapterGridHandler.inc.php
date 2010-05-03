@@ -13,16 +13,16 @@
  */
 
 // import grid base classes
-import('controllers.grid.CategoryGridHandler');
-import('controllers.grid.DataObjectGridCellProvider');
+import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
+import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
 // import chapter grid specific classes
 import('controllers.grid.users.submissionContributor.SubmissionContributorGridCellProvider');
 import('controllers.grid.users.chapter.ChapterGridCategoryRow');
 
 // import validation classes
-import('handler.validation.HandlerValidatorPress');
-import('handler.validation.HandlerValidatorRoles');
+import('classes.handler.validation.HandlerValidatorPress');
+import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
 
 class ChapterGridHandler extends CategoryGridHandler{
 	/** @var Monograph */
@@ -86,7 +86,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 		if ( isset($user) && isset($monograph)) {
 			$userId = $user->getId();
 			$monographSubmiter = $monograph->getUserId();
-			import('handler.validation.HandlerValidatorCustom');
+			import('lib.pkp.classes.handler.validation.HandlerValidatorCustom');
 			$this->addCheck(new HandlerValidatorCustom($this, false, 'Restricted site access!', null, create_function('$monographSubmitter, $userId', 'if ($monographSubmitter != $userId) return false; else return true;'), array($monographSubmiter, $userId)));
 		}
 

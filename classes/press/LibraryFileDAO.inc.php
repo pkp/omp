@@ -15,8 +15,8 @@
 
 // $Id$
 
-import('press.LibraryFile');
-import('file.LibraryFileManager');
+import('classes.press.LibraryFile');
+import('classes.file.LibraryFileManager');
 
 class LibraryFileDAO extends DAO {
 	/**

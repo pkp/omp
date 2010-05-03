@@ -94,7 +94,7 @@ class SubmitHandler extends AuthorHandler {
 
 				if ($step == 3) {
 					// Send a notification to associated users
-					import('notification.NotificationManager');
+					import('lib.pkp.classes.notification.NotificationManager');
 					$notificationManager = new NotificationManager();
 					$monographDao =& DAORegistry::getDAO('MonographDAO');
 					$monograph =& $monographDao->getMonograph($monographId);
@@ -130,7 +130,7 @@ class SubmitHandler extends AuthorHandler {
 
 		// The author must also be an editor to perform this task.
 		if (Validation::isEditor($press->getId()) && $monograph->getSubmissionFileId()) {
-			import('submission.editor.EditorAction');
+			import('classes.submission.editor.EditorAction');
 			EditorAction::expediteSubmission($monograph);
 			$request->redirect(null, 'editor', 'submissionEditing', array($monograph->getId()));
 		}
