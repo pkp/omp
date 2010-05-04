@@ -128,7 +128,7 @@ class ArtworkFileDAO extends DAO {
 		$artworkFile->setPlacement($row['placement']);
 		$artworkFile->setCustomType($row['custom_type']);
 		$artworkFile->setMonographId($row['monograph_id']);
-		$artworkFile->setComponentId($row['component_id']);
+		$artworkFile->setChapterId($row['chapter_id']);
 		$artworkFile->setContactAuthor($row['contact_author']);
 		$artworkFile->setCopyrightOwner($row['copyright_owner']);
 		$artworkFile->setPermissionTerms($row['permission_terms']);
@@ -150,12 +150,12 @@ class ArtworkFileDAO extends DAO {
 	function insertObject(&$artworkFile) {
 		$this->update(
 			'INSERT INTO monograph_artwork_files
-			(caption, component_id, contact_author, copyright_owner, copyright_owner_contact, credit, custom_type, file_id, monograph_id, permission_file_id, permission_terms, type_id, placement)
+			(caption, chapter_id, contact_author, copyright_owner, copyright_owner_contact, credit, custom_type, file_id, monograph_id, permission_file_id, permission_terms, type_id, placement)
 			VALUES
 			(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$artworkFile->getCaption(),
-				$artworkFile->getComponentId(),
+				$artworkFile->getChapterId(),
 				$artworkFile->getContactAuthor(),
 				$artworkFile->getCopyrightOwner(),
 				$artworkFile->getCopyrightOwnerContactDetails(),
@@ -184,7 +184,7 @@ class ArtworkFileDAO extends DAO {
 			'UPDATE monograph_artwork_files
 				SET
 					caption = ?,
-					component_id = ?,
+					chapter_id = ?,
 					contact_author = ?,
 					copyright_owner = ?,
 					copyright_owner_contact = ?,
@@ -198,7 +198,7 @@ class ArtworkFileDAO extends DAO {
 				WHERE artwork_id = ?',
 			array(
 				$artworkFile->getCaption(),
-				$artworkFile->getComponentId(),
+				$artworkFile->getChapterId(),
 				$artworkFile->getContactAuthor(),
 				$artworkFile->getCopyrightOwner(),
 				$artworkFile->getCopyrightOwnerContactDetails(),

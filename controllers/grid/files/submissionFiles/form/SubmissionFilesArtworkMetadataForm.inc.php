@@ -51,24 +51,24 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
 		$templateMgr->assign_by_ref('monographFile', $monographFile);
 
-		// artwork can be grouped by monograph component
-		//FIXME: Ask Matt/Tyler what to do with this
-//		if ($artworkFile) {
-//			$monographComponentDao =& DAORegistry::getDAO('MonographComponentDAO');
-//			$components =& $monographComponentDao->getMonographComponents($artworkFile->getMonographId());
-//			$componentOptions = array();
-//			if($components) {
-//				foreach ($components as $component) {
-//					$componentId = $component->getId();
-//					$componentOptions[$componentId] = $component->getLocalizedTitle();
-//				}
-//			}
-//			$templateMgr->assign_by_ref('selectedComponent', $artworkFile->getComponentId());
-//		} else {
-//			$components = null;
-//		}
-//
-//		$templateMgr->assign_by_ref('componentOptions', $componentOptions);
+		// artwork can be grouped by monograph chapter
+		if ($artworkFile) {
+			$chapterDao =& DAORegistry::getDAO('ChapterDAO');
+			$chapters =& $chapterDao->getChapters($artworkFile->getMonographId());
+			$chapterOptions = array();
+			if($chapters) {
+				while($chapter =& $chapters->next()) {
+					$chapterId = $chapter->getId();
+					$chapterOptions[$chapterId] = $chapter->getLocalizedTitle();
+					unset($chapter);
+				}
+			}
+			$templateMgr->assign_by_ref('selectedChapter', $artworkFile->getChapterId());
+		} else {
+			$chapters = null;
+		}
+
+		$templateMgr->assign_by_ref('chapterOptions', $chapterOptions);
 
 		parent::display();
 	}
@@ -86,7 +86,6 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		$this->_data['$monographFile'] =& $monographFile;
 
 		// grid related data
-		$this->_data['gridId'] = $args['gridId'];
 		$this->_data['monographId'] = $this->_monographId;
 		$this->_data['fileId'] = $this->_fileId;
 		$this->_data['artworkFileId'] = isset($args['artworkFileId']) ? $args['artworkFileId'] : null;
@@ -98,9 +97,9 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 	function readInputData() {
 		$this->readUserVars(array(
 			'name', 'artwork', 'artwork_file', 'artwork_caption', 'artwork_credit', 'artwork_copyrightOwner', 'artwork_copyrightOwnerContact', 'artwork_permissionTerms', 'monographId',
-			'artwork_type', 'artwork_otherType', 'artwork_contact', 'artwork_placement', 'artwork_otherPlacement', 'artwork_componentId', 'artwork_placementType'
+			'artwork_type', 'artwork_otherType', 'artwork_contact', 'artwork_placement', 'artwork_otherPlacement', 'artwork_chapterId', 'artwork_placementType'
 		));
-		$this->readUserVars(array('gridId', 'artworkFileId'));
+		$this->readUserVars(array('artworkFileId'));
 	}
 
 	/**
@@ -146,11 +145,11 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		}
 
 		if ($otherPlacement) {
-			$artworkFile->setComponentId(null);
+			$artworkFile->setChapterId(null);
 			$artworkFile->setPlacement($otherPlacement);
 		} else {
 			$artworkFile->setPlacement($this->getData('artwork_placement'));
-			$artworkFile->setComponentId($this->getData('artwork_componentId'));
+			$artworkFile->setChapterId($this->getData('artwork_componentId'));
 		}
 
 		$artworkFileDao->updateObject($artworkFile);

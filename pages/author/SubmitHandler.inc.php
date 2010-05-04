@@ -42,7 +42,7 @@ class SubmitHandler extends AuthorHandler {
 
 		if ( $step < 4 ) {
 			$formClass = "AuthorSubmitStep{$step}Form";
-			import("author.form.submit.$formClass");
+			import("classes.author.form.submit.$formClass");
 
 			$submitForm = new $formClass($monograph);
 			if ($submitForm->isLocaleResubmit()) {
@@ -83,7 +83,7 @@ class SubmitHandler extends AuthorHandler {
 		$monograph =& $this->monograph;
 
 		$formClass = "AuthorSubmitStep{$step}Form";
-		import("author.form.submit.$formClass");
+		import("classes.author.form.submit.$formClass");
 
 		$submitForm = new $formClass($monograph);
 		$submitForm->readInputData();

@@ -77,7 +77,7 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		// add a column for the role the user is acting as
 		$this->addColumn(
 			new GridColumn(
-				$actingAsUserGroup->getId(),
+				$actingAsUserGroupId,
 				null,
 				$actingAsUserGroup->getLocalizedAbbrev(),
 				$emptyColumnActions,

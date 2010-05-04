@@ -14,7 +14,7 @@
 	$(function() {
 		$('#fileUploadTabs-').attr("id","fileUploadTabs-{/literal}{$fileId}{literal}"); // Rename container to use unique id (necessary to prevent caching)
 		$('.button').button();
-		$('#metadataForm').ajaxForm({
+		$('#metadataForm-{/literal}{$fileId}{literal}').ajaxForm({
 			dataType: 'json',
 	        success: function(returnString) {
 	    		if (returnString.status == true) {
@@ -36,9 +36,9 @@
 
 		// Set cancel/continue button behaviors
 		$("#continueButton2-{/literal}{$fileId}{literal}").click(function() {
-			validator = $('#metadataForm').validate();
-			if($('#metadataForm').valid()) {
-				$('#metadataForm').submit();   // Hands off further actions to the ajaxForm function above
+			validator = $('#metadataForm-{/literal}{$fileId}{literal}').validate();
+			if($('#metadataForm-{/literal}{$fileId}{literal}').valid()) {
+				$('#metadataForm-{/literal}{$fileId}{literal}').submit();   // Hands off further actions to the ajaxForm function above
 			}
 			validator = null;
 		});
@@ -56,7 +56,7 @@
 	{/literal}
 </script>
 
-<form name="metadataForm" id="metadataForm" action="{url component="grid.files.submissionFiles.SubmissionFilesGridHandler" op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
+<form name="metadataForm-{$fileId}" id="metadataForm-{$fileId}" action="{url component="grid.files.submissionFiles.SubmissionFilesGridHandler" op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
 	<h3>{translate key='submission.fileDetails'}</h3>
 	{fbvFormArea id="fileMetaData"}
 		{fbvFormSection title="common.name"}

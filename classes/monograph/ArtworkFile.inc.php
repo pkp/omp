@@ -163,16 +163,16 @@ class ArtworkFile extends MonographFile {
 	 * Get the monograph component id.
 	 * @return int
 	 */
-	function getComponentId() {
-		return $this->getData('componentId');
+	function getChapterId() {
+		return $this->getData('chapterId');
 	}
 
 	/**
-	 * Set the monograph component id.
-	 * @param $componentId int
+	 * Set the monograph chapter id.
+	 * @param $chapterId int
 	 */
-	function setComponentId($componentId) {
-		return $this->setData('componentId', $componentId);
+	function setChapterId($chapterId) {
+		return $this->setData('chapterId', $chapterId);
 	}
 
 	/**

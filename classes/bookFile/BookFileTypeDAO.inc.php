@@ -203,10 +203,10 @@ class BookFileTypeDAO extends DefaultSettingDAO
 			$attrs = $entry['attributes'];
 			$this->update(
 				'INSERT INTO book_file_types
-				(entry_key, sortable, press_id)
+				(entry_key, sortable, press_id, category)
 				VALUES
-				(?, ?, ?)',
-				array($attrs['key'], $attrs['sortable'] ? 1 : 0, $pressId)
+				(?, ?, ?, ?)',
+				array($attrs['key'], $attrs['sortable'] ? 1 : 0, $pressId, $attrs['category'])
 			);
 		}
 		return true;

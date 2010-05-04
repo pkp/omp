@@ -10,14 +10,14 @@
   * $Id$
   -->
 <bookFileTypes>
-	<bookFileType key="ARTWORK" sortable="1" localeKey="default.bookFileTypes.artwork"/>
-	<bookFileType key="APPENDIX" sortable="0" localeKey="default.bookFileTypes.appendix"/>
-	<bookFileType key="BIBLIOGRAPHY" sortable="0" localeKey="default.bookFileTypes.bibliography"/>
-	<bookFileType key="MANUSCRIPT" sortable="0" localeKey="default.bookFileTypes.manuscript"/>
-	<bookFileType key="CHAPTER" sortable="1" localeKey="default.bookFileTypes.chapter"/>
-	<bookFileType key="GLOSSARY" sortable="0" localeKey="default.bookFileTypes.glossary"/>
-	<bookFileType key="INDEX" sortable="0" localeKey="default.bookFileTypes.index"/>
-	<bookFileType key="PREFACE" sortable="0" localeKey="default.bookFileTypes.preface"/>
-	<bookFileType key="PROSPECTUS" sortable="0" localeKey="default.bookFileTypes.prospectus"/>
-	<bookFileType key="TABLES_AND_FIGURES" sortable="1" localeKey="default.bookFileTypes.tablesAndFigures"/>
+	<bookFileType key="ARTWORK" sortable="1" category="2" localeKey="default.bookFileTypes.artwork"/>
+	<bookFileType key="APPENDIX" sortable="0" category="1" localeKey="default.bookFileTypes.appendix"/>
+	<bookFileType key="BIBLIOGRAPHY" sortable="0" category="1" localeKey="default.bookFileTypes.bibliography"/>
+	<bookFileType key="MANUSCRIPT" sortable="0" category="1" localeKey="default.bookFileTypes.manuscript"/>
+	<bookFileType key="CHAPTER" sortable="1" category="1" localeKey="default.bookFileTypes.chapter"/>
+	<bookFileType key="GLOSSARY" sortable="0" category="1" localeKey="default.bookFileTypes.glossary"/>
+	<bookFileType key="INDEX" sortable="0" category="1" localeKey="default.bookFileTypes.index"/>
+	<bookFileType key="PREFACE" sortable="0" category="1" localeKey="default.bookFileTypes.preface"/>
+	<bookFileType key="PROSPECTUS" sortable="0" category="1" localeKey="default.bookFileTypes.prospectus"/>
+	<bookFileType key="TABLES_AND_FIGURES" sortable="1" category="1" localeKey="default.bookFileTypes.tablesAndFigures"/>
 </bookFileTypes>

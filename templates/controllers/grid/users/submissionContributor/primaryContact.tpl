@@ -8,5 +8,5 @@
  *
  *}
 {if $isPrincipalContact}
-	<div id="isPrimaryContact" style="padding-left: 40%;">{icon name="accept"}</div>
+	<div id="isPrimaryContact" style="padding-left: 40%; margin-top: 15px;">{icon name="accept"}</div>
 {/if}
