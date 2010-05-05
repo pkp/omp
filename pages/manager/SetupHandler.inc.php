@@ -47,7 +47,7 @@ class SetupHandler extends ManagerHandler {
 			}
 
 			$formClass = "PressSetupStep{$step}Form";
-			import("manager.form.setup.$formClass");
+			import("classes.manager.form.setup.$formClass");
 
 			$setupForm = new $formClass();
 			if ($setupForm->isLocaleResubmit()) {
