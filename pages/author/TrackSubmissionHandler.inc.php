@@ -233,7 +233,7 @@ class TrackSubmissionHandler extends AuthorHandler {
 		// the author from changing the metadata.
 
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+		$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $submission->getId());
 		if ($initialSignoff->getDateCompleted() != null || AuthorAction::saveMetadata($submission)) {
 			Request::redirect(null, null, 'submission', $monographId);
 		}

@@ -32,14 +32,14 @@
 	<tr><td colspan="7" class="headseparator">&nbsp;</td></tr>
 
 {iterate from=submissions item=submission}
-	{assign var="monographId" value=$submission->getMonographId()}
+	{assign var="monographId" value=$submission->getId()}
 	{assign var="highlightClass" value=$submission->getHighlightClass()}
 	<tr valign="top"{if $highlightClass} class="{$highlightClass|escape}"{/if}>
-		<td>{$submission->getMonographId()}</td>
+		<td>{$submission->getId()}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getSeriesAbbrev()|escape}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
-		<td><a href="{url op="submissionReview" path=$submission->getMonographId()}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:40:"..."}</a></td>
+		<td><a href="{url op="submissionReview" path=$submission->getId()}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:40:"..."}</a></td>
 		<td>
 		<table width="100%">
 			{foreach from=$submission->getReviewAssignments($submission->getCurrentReviewType()) item=reviewAssignments}

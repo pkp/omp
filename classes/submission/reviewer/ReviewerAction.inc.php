@@ -78,8 +78,8 @@ class ReviewerAction extends Action {
 				return true;
 			} else {
 				if (!Request::getUserVar('continued')) {
-					$assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getMonographId());
-					$reviewingSeriesEditors = $email->toAssignedReviewingSeriesEditors($reviewerSubmission->getMonographId());
+					$assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getId());
+					$reviewingSeriesEditors = $email->toAssignedReviewingSeriesEditors($reviewerSubmission->getId());
 					if (empty($assignedEditors) && empty($reviewingSeriesEditors)) {
 						$press =& Request::getPress();
 						$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
@@ -160,8 +160,8 @@ class ReviewerAction extends Action {
 				MonographLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
 			} else {
 				if (!Request::getUserVar('continued')) {
-					$assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getMonographId());
-					$reviewingSeriesEditors = $email->toAssignedReviewingSeriesEditors($reviewerSubmission->getMonographId());
+					$assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getId());
+					$reviewingSeriesEditors = $email->toAssignedReviewingSeriesEditors($reviewerSubmission->getId());
 					if (empty($assignedEditors) && empty($reviewingSeriesEditors)) {
 						$press =& Request::getPress();
 						$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));

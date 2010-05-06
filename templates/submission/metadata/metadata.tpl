@@ -24,7 +24,7 @@ function show(id) {
 <div id="metadata">
 <h3>{translate key="submission.metadata"}</h3>
 
-<p><a href="{url op="viewMetadata" path=$submission->getMonographId()}" class="action">{translate key="submission.editMetadata"}</a></p>
+<p><a href="{url op="viewMetadata" path=$submission->getId()}" class="action">{translate key="submission.editMetadata"}</a></p>
 
 {if $submission->getWorkType() != WORK_TYPE_EDITED_VOLUME}
 	<h4>{translate key="monograph.authors"}</h4>
@@ -47,7 +47,7 @@ function show(id) {
 
 	<div class="{if $authorIndex % 2}oddSideIndicator{else}evenSideIndicator{/if}">
 		{assign var=emailString value=$author->getFullName()|concat:" <":$author->getEmail():">"}
-		{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle()|strip_tags monographId=$submission->getMonographId()}
+		{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle()|strip_tags monographId=$submission->getId()}
 		&nbsp;<a href="javascript:show('authors-{$author->getId()|escape}-display')">{$author->getFullName()|escape}</a>&nbsp;{icon name="mail" url=$url}
 		{if $author->getPrimaryContact()}<br />&nbsp;{translate key="author.submit.selectPrincipalContact"}{/if}
 	<br />

@@ -37,7 +37,7 @@ class ProofreadCommentForm extends CommentForm {
 		$templateMgr->assign('commentType', 'proofread');
 		$templateMgr->assign('hiddenFormParams', 
 			array(
-				'monographId' => $this->monograph->getMonographId()
+				'monographId' => $this->monograph->getId()
 			)
 		);
 
@@ -74,7 +74,7 @@ class ProofreadCommentForm extends CommentForm {
 
 		// Get editors
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getMonographId());
+		$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getId());
 		$editorAddresses = array();
 		while (!$editAssignments->eof()) {
 			$editAssignment =& $editAssignments->next();
@@ -94,7 +94,7 @@ class ProofreadCommentForm extends CommentForm {
 
 		// Get layout editor
 		$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-		$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($this->monograph->getMonographId());
+		$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($this->monograph->getId());
 		if ($layoutAssignment != null && $layoutAssignment->getEditorId() > 0) {
 			$layoutEditor =& $userDao->getUser($layoutAssignment->getEditorId());
 		} else {
@@ -103,7 +103,7 @@ class ProofreadCommentForm extends CommentForm {
 
 		// Get proofreader
 		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($this->monograph->getMonographId());
+		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($this->monograph->getId());
 		if ($proofAssignment != null && $proofAssignment->getProofreaderId() > 0) {
 			$proofreader =& $userDao->getUser($proofAssignment->getProofreaderId());
 		} else {

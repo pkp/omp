@@ -249,7 +249,7 @@ class Monograph extends Submission {
 	 */
 	function getSignoff($signoffType) {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		return $signoffDao->getBySymbolic($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+		return $signoffDao->getBySymbolic($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getId());
 	}
 
 	/**
@@ -324,7 +324,7 @@ class Monograph extends Submission {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
-		$signoff = $signoffDao->getBySymbolic($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+		$signoff = $signoffDao->getBySymbolic($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getId());
 		if (!$signoff) return false;
 
 		if ($idOnly) return $signoff->getFileId();
@@ -356,7 +356,7 @@ class Monograph extends Submission {
 	 */
 	function getUserIdBySignoffType($signoffType) {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoff = $signoffDao->getBySymbolic($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
+		$signoff = $signoffDao->getBySymbolic($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getId());
 		if (!$signoff) return false;
 
 		return $signoff->getUserId();

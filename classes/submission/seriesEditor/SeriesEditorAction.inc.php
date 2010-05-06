@@ -77,7 +77,7 @@ class SeriesEditorAction extends Action {
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
 			Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR));
-			MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_DECISION, MONOGRAPH_LOG_TYPE_EDITOR, $user->getId(), 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getMonographId(), 'decision' => Locale::translate($decisions[$decision])));
+			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_EDITOR_DECISION, MONOGRAPH_LOG_TYPE_EDITOR, $user->getId(), 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'decision' => Locale::translate($decisions[$decision])));
 		}
 	}
 
@@ -100,13 +100,13 @@ class SeriesEditorAction extends Action {
 			$round = $seriesEditorSubmission->getCurrentRound();
 		}
 
-		$assigned = $seriesEditorSubmissionDao->reviewerExists($seriesEditorSubmission->getMonographId(), $reviewerId, $reviewType, $round);
+		$assigned = $seriesEditorSubmissionDao->reviewerExists($seriesEditorSubmission->getId(), $reviewerId, $reviewType, $round);
 
 		// Only add the reviewer if he has not already
 		// been assigned to review this monograph.
 		if (!$assigned && isset($reviewer) && !HookRegistry::call('SeriesEditorAction::addReviewer', array(&$seriesEditorSubmission, $reviewerId))) {
 			$reviewAssignment = new ReviewAssignment();
-			$reviewAssignment->setSubmissionId($seriesEditorSubmission->getMonographId());
+			$reviewAssignment->setSubmissionId($seriesEditorSubmission->getId());
 			$reviewAssignment->setReviewerId($reviewerId);
 			$reviewAssignment->setDateAssigned(Core::getCurrentDate());
 			$reviewAssignment->setReviewType($reviewType);
@@ -117,7 +117,7 @@ class SeriesEditorAction extends Action {
 			$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 
-			$submissionId = $seriesEditorSubmission->getMonographId();
+			$submissionId = $seriesEditorSubmission->getId();
 			$series =& $seriesDao->getById($submissionId, $pressId);
 			if ($series && ($reviewFormId = (int) $series->getReviewFormId())) {
 				if ($reviewFormDao->reviewFormExists($reviewFormId, ASSOC_TYPE_PRESS, $pressId)) {
@@ -129,7 +129,7 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
 			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment(
-				$seriesEditorSubmission->getMonographId(),
+				$seriesEditorSubmission->getId(),
 				$reviewerId,
 				$round,
 				$reviewType
@@ -138,12 +138,12 @@ class SeriesEditorAction extends Action {
 			$press =& Request::getPress();
 			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			$settings =& $settingsDao->getPressSettings($press->getId());
-			if (isset($settings['numWeeksPerReview'])) SeriesEditorAction::setDueDate($seriesEditorSubmission->getMonographId(), $reviewAssignment->getReviewId(), null, $settings['numWeeksPerReview']);
+			if (isset($settings['numWeeksPerReview'])) SeriesEditorAction::setDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getReviewId(), null, $settings['numWeeksPerReview']);
 
 			// Add log
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_ASSIGN, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getMonographId(), 'reviewType' => $reviewType, 'round' => $round));
+			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_REVIEW_ASSIGN, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'reviewType' => $reviewType, 'round' => $round));
 		}
 	}
 
@@ -160,7 +160,7 @@ class SeriesEditorAction extends Action {
 
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
-		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId() && !HookRegistry::call('SeriesEditorAction::clearReview', array(&$seriesEditorSubmission, $reviewAssignment))) {
+		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getId() && !HookRegistry::call('SeriesEditorAction::clearReview', array(&$seriesEditorSubmission, $reviewAssignment))) {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return false;
 			$seriesEditorSubmission->removeReviewAssignment($reviewId);
@@ -169,7 +169,7 @@ class SeriesEditorAction extends Action {
 			// Add log
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_CLEAR, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getMonographId(), 'reviewType' => $reviewAssignment->getReviewType(), 'round' => $reviewAssignment->getRound()));
+			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_REVIEW_CLEAR, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'reviewType' => $reviewAssignment->getReviewType(), 'round' => $reviewAssignment->getRound()));
 		}
 	}
 
@@ -280,7 +280,7 @@ class SeriesEditorAction extends Action {
 						}
 					}
 				}
-				$email->displayEditForm(Request::url(null, null, 'notifyReviewer'), array('reviewId' => $reviewId, 'monographId' => $seriesEditorSubmission->getMonographId()));
+				$email->displayEditForm(Request::url(null, null, 'notifyReviewer'), array('reviewId' => $reviewId, 'monographId' => $seriesEditorSubmission->getId()));
 				return false;
 			}
 		}
@@ -305,7 +305,7 @@ class SeriesEditorAction extends Action {
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return true;
 
-		if ($reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId()) {
+		if ($reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getId()) {
 			// Only cancel the review if it is currently not cancelled but has previously
 			// been initiated, and has not been completed.
 			if ($reviewAssignment->getDateNotified() != null && !$reviewAssignment->getCancelled() && ($reviewAssignment->getDateCompleted() == null || $reviewAssignment->getDeclined())) {
@@ -328,7 +328,7 @@ class SeriesEditorAction extends Action {
 					// Add log
 					import('classes.monograph.log.MonographLog');
 					import('classes.monograph.log.MonographEventLogEntry');
-					MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_CANCEL, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCancelled', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getMonographId(), 'round' => $reviewAssignment->getRound()));
+					MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_REVIEW_CANCEL, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCancelled', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'round' => $reviewAssignment->getRound()));
 				} else {
 					if (!Request::getUserVar('continued')) {
 						$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
@@ -341,7 +341,7 @@ class SeriesEditorAction extends Action {
 						);
 						$email->assignParams($paramArray);
 					}
-					$email->displayEditForm(Request::url(null, null, 'cancelReview', 'send'), array('reviewId' => $reviewId, 'monographId' => $seriesEditorSubmission->getMonographId()));
+					$email->displayEditForm(Request::url(null, null, 'cancelReview', 'send'), array('reviewId' => $reviewId, 'monographId' => $seriesEditorSubmission->getId()));
 					return false;
 				}
 			}
@@ -406,7 +406,7 @@ class SeriesEditorAction extends Action {
 			$reviewAssignment->setReminderWasAutomatic(0);
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 			return true;
-		} elseif ($reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId()) {
+		} elseif ($reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getId()) {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 
 			if (!Request::getUserVar('continued')) {
@@ -434,7 +434,7 @@ class SeriesEditorAction extends Action {
 				Request::url(null, null, 'remindReviewer', 'send'),
 				array(
 					'reviewerId' => $reviewer->getId(),
-					'monographId' => $seriesEditorSubmission->getMonographId(),
+					'monographId' => $seriesEditorSubmission->getId(),
 					'reviewId' => $reviewId
 				)
 			);
@@ -462,7 +462,7 @@ class SeriesEditorAction extends Action {
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($seriesEditorSubmission, 'REVIEW_ACK');
 
-		if ($reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId()) {
+		if ($reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getId()) {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return true;
 
@@ -486,7 +486,7 @@ class SeriesEditorAction extends Action {
 					);
 					$email->assignParams($paramArray);
 				}
-				$email->displayEditForm(Request::url(null, null, 'thankReviewer', 'send'), array('reviewId' => $reviewId, 'monographId' => $seriesEditorSubmission->getMonographId()));
+				$email->displayEditForm(Request::url(null, null, 'thankReviewer', 'send'), array('reviewId' => $reviewId, 'monographId' => $seriesEditorSubmission->getId()));
 				return false;
 			}
 		}
@@ -643,7 +643,7 @@ class SeriesEditorAction extends Action {
 				$email->assignParams($paramArray);
 				$email->addRecipient($author->getEmail(), $author->getFullName());
 			}
-			$email->displayEditForm(Request::url(null, null, 'unsuitableSubmission'), array('monographId' => $seriesEditorSubmission->getMonographId()));
+			$email->displayEditForm(Request::url(null, null, 'unsuitableSubmission'), array('monographId' => $seriesEditorSubmission->getId()));
 			return false;
 		}
 	}
@@ -693,7 +693,7 @@ class SeriesEditorAction extends Action {
 
 		if (HookRegistry::call('SeriesEditorAction::clearReviewForm', array(&$seriesEditorSubmission, &$reviewAssignment, &$reviewId))) return $reviewId;
 
-		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId()) {
+		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getId()) {
 			$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 			$responses = $reviewFormResponseDao->getReviewReviewFormResponseValues($reviewId);
 			if (!empty($responses)) {
@@ -716,7 +716,7 @@ class SeriesEditorAction extends Action {
 
 		if (HookRegistry::call('SeriesEditorAction::addReviewForm', array(&$seriesEditorSubmission, &$reviewAssignment, &$reviewId, &$reviewFormId))) return $reviewFormId;
 
-		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId()) {
+		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getId()) {
 			// Only add the review form if it has not already
 			// been assigned to the review.
 			if ($reviewAssignment->getReviewFormId() != $reviewFormId) {
@@ -742,7 +742,7 @@ class SeriesEditorAction extends Action {
 
 		if (HookRegistry::call('SeriesEditorAction::viewReviewFormResponse', array(&$seriesEditorSubmission, &$reviewAssignment, &$reviewId))) return $reviewId;
 
-		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId()) {
+		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getId()) {
 			$reviewFormId = $reviewAssignment->getReviewFormId();
 			if ($reviewFormId != null) {
 				import('classes.submission.form.ReviewFormResponseForm');
@@ -762,7 +762,7 @@ class SeriesEditorAction extends Action {
 	 */
 	function setCopyeditFile($seriesEditorSubmission, $fileId, $revision) {
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getMonographId());
+		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getId());
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
@@ -775,7 +775,7 @@ class SeriesEditorAction extends Action {
 			$copyeditSignoff = $signoffDao->build(
 								'SIGNOFF_COPYEDITING_INITIAL', 
 								ASSOC_TYPE_MONOGRAPH, 
-								$seriesEditorSubmission->getMonographId()
+								$seriesEditorSubmission->getId()
 							);
 
 			$copyeditSignoff->setFileId($newFileId);
@@ -786,7 +786,7 @@ class SeriesEditorAction extends Action {
 			// Add log
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_SET_FILE, MONOGRAPH_LOG_TYPE_COPYEDIT, $newFileId, 'log.copyedit.copyeditFileSet');
+			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_COPYEDIT_SET_FILE, MONOGRAPH_LOG_TYPE_COPYEDIT, $newFileId, 'log.copyedit.copyeditFileSet');
 		}
 	}
 
@@ -799,7 +799,7 @@ class SeriesEditorAction extends Action {
 	 */
 	function resubmitFile($seriesEditorSubmission, $fileId, $revision) {
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getMonographId());
+		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getId());
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$user =& Request::getUser();
@@ -846,7 +846,7 @@ class SeriesEditorAction extends Action {
 			// Add log
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_REVIEW_RESUBMIT, MONOGRAPH_LOG_TYPE_EDITOR, $user->getId(), 'log.review.resubmit', array('monographId' => $seriesEditorSubmission->getMonographId()));
+			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_REVIEW_RESUBMIT, MONOGRAPH_LOG_TYPE_EDITOR, $user->getId(), 'log.review.resubmit', array('monographId' => $seriesEditorSubmission->getId()));
 		}
 	}
 
@@ -863,7 +863,7 @@ class SeriesEditorAction extends Action {
 
 		// Check to see if the requested copyeditor is not already
 		// assigned to copyedit this monograph.
-		$assigned = $seriesEditorSubmissionDao->copyeditorExists($seriesEditorSubmission->getMonographId(), $copyeditorId);
+		$assigned = $seriesEditorSubmissionDao->copyeditorExists($seriesEditorSubmission->getId(), $copyeditorId);
 
 		// Only add the copyeditor if he has not already
 		// been assigned to review this monograph.
@@ -871,7 +871,7 @@ class SeriesEditorAction extends Action {
 			$copyeditInitialSignoff = $signoffDao->build(
 								'SIGNOFF_COPYEDITING_INITIAL', 
 								ASSOC_TYPE_MONOGRAPH, 
-								$seriesEditorSubmission->getMonographId()
+								$seriesEditorSubmission->getId()
 							); 
 			$copyeditInitialSignoff->setUserId($copyeditorId);
 			$signoffDao->updateObject($copyeditInitialSignoff);
@@ -881,7 +881,7 @@ class SeriesEditorAction extends Action {
 			// Add log
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_ASSIGN, MONOGRAPH_LOG_TYPE_COPYEDIT, $copyeditorId, 'log.copyedit.copyeditorAssigned', array('copyeditorName' => $copyeditor->getFullName(), 'monographId' => $seriesEditorSubmission->getMonographId()));
+			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_COPYEDIT_ASSIGN, MONOGRAPH_LOG_TYPE_COPYEDIT, $copyeditorId, 'log.copyedit.copyeditorAssigned', array('copyeditorName' => $copyeditor->getFullName(), 'monographId' => $seriesEditorSubmission->getId()));
 		}
 	}
 
@@ -905,13 +905,13 @@ class SeriesEditorAction extends Action {
 		if ($seriesEditorSubmission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL') && (!$email->isEnabled() || ($send && !$email->hasErrors()))) {
 			HookRegistry::call('SeriesEditorAction::notifyCopyeditor', array(&$seriesEditorSubmission, &$copyeditor, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_COPYEDITOR, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $seriesEditorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_COPYEDITOR, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $seriesEditorSubmission->getId());
 				$email->send();
 			}
 			$copyeditInitialSignoff = $signoffDao->build(
 								'SIGNOFF_COPYEDITING_INITIAL',
 								ASSOC_TYPE_MONOGRAPH,
-								$seriesEditorSubmission->getMonographId()
+								$seriesEditorSubmission->getId()
 							);
 			$copyeditInitialSignoff->setDateNotified(Core::getCurrentDate());
 			$copyeditInitialSignoff->setDateUnderway(null);
@@ -926,11 +926,11 @@ class SeriesEditorAction extends Action {
 					'copyeditorUsername' => $copyeditor->getUsername(),
 					'copyeditorPassword' => $copyeditor->getPassword(),
 					'editorialContactSignature' => $user->getContactSignature(),
-					'submissionCopyeditingUrl' => Request::url(null, 'copyeditor', 'submission', $seriesEditorSubmission->getMonographId())
+					'submissionCopyeditingUrl' => Request::url(null, 'copyeditor', 'submission', $seriesEditorSubmission->getId())
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, null, 'notifyCopyeditor', 'send'), array('monographId' => $seriesEditorSubmission->getMonographId()));
+			$email->displayEditForm(Request::url(null, null, 'notifyCopyeditor', 'send'), array('monographId' => $seriesEditorSubmission->getId()));
 			return false;
 		}
 		return true;
@@ -948,7 +948,7 @@ class SeriesEditorAction extends Action {
 		if ($seriesEditorSubmission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL') && !HookRegistry::call('SeriesEditorAction::initiateCopyedit', array(&$seriesEditorSubmission))) {
 			$signoffDao =& DAORegistry::getDAO('SignoffDAO');			
 			
-			$copyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getMonographId());
+			$copyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getId());
 			if (!$copyeditSignoff->getUserId()) {
 				$copyeditSignoff->setUserId($user->getId());
 			}
@@ -978,11 +978,11 @@ class SeriesEditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('SeriesEditorAction::thankCopyeditor', array(&$seriesEditorSubmission, &$copyeditor, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_ACKNOWLEDGE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $seriesEditorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_ACKNOWLEDGE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $seriesEditorSubmission->getId());
 				$email->send();
 			}
 
-			$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getMonographId());
+			$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getId());
 
 			$initialSignoff->setDateAcknowledged(Core::getCurrentDate());
 			$signoffDao->updateObject($initialSignoff);
@@ -990,7 +990,7 @@ class SeriesEditorAction extends Action {
 			$authorSignoff = $signoffDao->build(
 						'SIGNOFF_COPYEDITING_AUTHOR',
 						ASSOC_TYPE_MONOGRAPH,
-						$seriesEditorSubmission->getMonographId()
+						$seriesEditorSubmission->getId()
 					);
 			$authorSignoff->setFileId($initialSignoff->getFileId());
 			$authorSignoff->setFileRevision($initialSignoff->getFileRevision());
@@ -1005,7 +1005,7 @@ class SeriesEditorAction extends Action {
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, null, 'thankCopyeditor', 'send'), array('monographId' => $seriesEditorSubmission->getMonographId()));
+			$email->displayEditForm(Request::url(null, null, 'thankCopyeditor', 'send'), array('monographId' => $seriesEditorSubmission->getId()));
 			return false;
 		}
 		return true;
@@ -1031,19 +1031,19 @@ class SeriesEditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('SeriesEditorAction::notifyAuthorCopyedit', array(&$seriesEditorSubmission, &$author, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $seriesEditorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $seriesEditorSubmission->getId());
 				$email->send();
 			}
 			$initialSignoff = $signoffDao->build(
 						'SIGNOFF_COPYEDITING_INITIAL',
 						ASSOC_TYPE_MONOGRAPH,
-						$seriesEditorSubmission->getMonographId()
+						$seriesEditorSubmission->getId()
 					);
 
 			$authorSignoff = $signoffDao->build(
 						'SIGNOFF_COPYEDITING_AUTHOR',
 						ASSOC_TYPE_MONOGRAPH,
-						$seriesEditorSubmission->getMonographId()
+						$seriesEditorSubmission->getId()
 					);
 			$authorSignoff->setFileId($initialSignoff->getFileId());
 			$authorSignoff->setFileRevision($initialSignoff->getFileRevision());
@@ -1061,12 +1061,12 @@ class SeriesEditorAction extends Action {
 					'authorUsername' => $author->getUsername(),
 					'authorPassword' => $author->getPassword(),
 					'editorialContactSignature' => $user->getContactSignature(),
-					'submissionCopyeditingUrl' => Request::url(null, 'author', 'submission', $seriesEditorSubmission->getMonographId())
+					'submissionCopyeditingUrl' => Request::url(null, 'author', 'submission', $seriesEditorSubmission->getId())
 
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, null, 'notifyAuthorCopyedit', 'send'), array('monographId' => $seriesEditorSubmission->getMonographId()));
+			$email->displayEditForm(Request::url(null, null, 'notifyAuthorCopyedit', 'send'), array('monographId' => $seriesEditorSubmission->getId()));
 			return false;
 		}
 		return true;
@@ -1092,15 +1092,15 @@ class SeriesEditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('SeriesEditorAction::thankAuthorCopyedit', array(&$seriesEditorSubmission, &$author, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR_ACKNOWLEDGE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $seriesEditorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR_ACKNOWLEDGE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $seriesEditorSubmission->getId());
 				$email->send();
 			}
 
-			$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getMonographId());
+			$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getId());
 			$authorSignoff->setDateAcknowledged(Core::getCurrentDate());
 			$signoffDao->updateObject($authorSignoff);
 
-			$finalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getMonographId());
+			$finalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getId());
 			$finalSignoff->setFileId($authorSignoff->getFileId());
 			$finalSignoff->setFileRevision($authorSignoff->getFileRevision());
 			$signoffDao->updateObject($finalSignoff);
@@ -1114,7 +1114,7 @@ class SeriesEditorAction extends Action {
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, null, 'thankAuthorCopyedit', 'send'), array('monographId' => $seriesEditorSubmission->getMonographId()));
+			$email->displayEditForm(Request::url(null, null, 'thankAuthorCopyedit', 'send'), array('monographId' => $seriesEditorSubmission->getId()));
 			return false;
 		}
 		return true;
@@ -1141,13 +1141,13 @@ class SeriesEditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('SeriesEditorAction::notifyFinalCopyedit', array(&$seriesEditorSubmission, &$copyeditor, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_FINAL, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $seriesEditorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_FINAL, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $seriesEditorSubmission->getId());
 				$email->send();
 			}
 			$signoff = $signoffDao->build(
 						'SIGNOFF_COPYEDITING_FINAL',
 						ASSOC_TYPE_MONOGRAPH,
-						$seriesEditorSubmission->getMonographId()
+						$seriesEditorSubmission->getId()
 					);
 			$signoff->setUserId($copyeditor->getId());
 			$signoff->setDateNotified(Core::getCurrentDate());
@@ -1164,11 +1164,11 @@ class SeriesEditorAction extends Action {
 					'copyeditorUsername' => $copyeditor->getUsername(),
 					'copyeditorPassword' => $copyeditor->getPassword(),
 					'editorialContactSignature' => $user->getContactSignature(),
-					'submissionCopyeditingUrl' => Request::url(null, 'copyeditor', 'submission', $seriesEditorSubmission->getMonographId())
+					'submissionCopyeditingUrl' => Request::url(null, 'copyeditor', 'submission', $seriesEditorSubmission->getId())
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, null, 'notifyFinalCopyedit', 'send'), array('monographId' => $seriesEditorSubmission->getMonographId()));
+			$email->displayEditForm(Request::url(null, null, 'notifyFinalCopyedit', 'send'), array('monographId' => $seriesEditorSubmission->getId()));
 			return false;
 		}
 		return true;
@@ -1194,13 +1194,13 @@ class SeriesEditorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('SeriesEditorAction::thankFinalCopyedit', array(&$seriesEditorSubmission, &$copyeditor, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_FINAL_ACKNOWLEDGE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $seriesEditorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_FINAL_ACKNOWLEDGE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $seriesEditorSubmission->getId());
 				$email->send();
 			}
 			$signoff = $signoffDao->build(
 						'SIGNOFF_COPYEDITING_FINAL',
 						ASSOC_TYPE_MONOGRAPH,
-						$seriesEditorSubmission->getMonographId()
+						$seriesEditorSubmission->getId()
 					);
 			$signoff->setDateAcknowledged(Core::getCurrentDate());
 			$signoffDao->updateObject($signoff);
@@ -1208,7 +1208,7 @@ class SeriesEditorAction extends Action {
 			$productionSignoff = $signoffDao->build(
 						'SIGNOFF_PRODUCTION',
 						ASSOC_TYPE_MONOGRAPH,
-						$seriesEditorSubmission->getMonographId()
+						$seriesEditorSubmission->getId()
 					);
 
 			$productionSignoff->setFileId($signoff->getFileId());
@@ -1224,7 +1224,7 @@ class SeriesEditorAction extends Action {
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, null, 'thankFinalCopyedit', 'send'), array('monographId' => $seriesEditorSubmission->getMonographId()));
+			$email->displayEditForm(Request::url(null, null, 'thankFinalCopyedit', 'send'), array('monographId' => $seriesEditorSubmission->getId()));
 			return false;
 		}
 		return true;
@@ -1236,7 +1236,7 @@ class SeriesEditorAction extends Action {
 	 */
 	function uploadReviewVersion($seriesEditorSubmission) {
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getMonographId());
+		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getId());
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 
 		$fileName = 'upload';
@@ -1266,7 +1266,7 @@ class SeriesEditorAction extends Action {
 	 */
 	function uploadEditorVersion($seriesEditorSubmission) {
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getMonographId());
+		$monographFileManager = new MonographFileManager($seriesEditorSubmission->getId());
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$user =& Request::getUser();
 
@@ -1287,7 +1287,7 @@ class SeriesEditorAction extends Action {
 			// Add log
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_FILE, MONOGRAPH_LOG_TYPE_EDITOR, $seriesEditorSubmission->getEditorFileId(), 'log.editor.editorFile');
+			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_EDITOR_FILE, MONOGRAPH_LOG_TYPE_EDITOR, $seriesEditorSubmission->getEditorFileId(), 'log.editor.editorFile');
 		}
 	}
 
@@ -1297,7 +1297,7 @@ class SeriesEditorAction extends Action {
 	 * @param $copyeditStage string
 	 */
 	function uploadCopyeditVersion($seriesEditorSubmission, $copyeditStage) {
-		$monographId = $seriesEditorSubmission->getMonographId();
+		$monographId = $seriesEditorSubmission->getId();
 		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
@@ -1353,14 +1353,14 @@ class SeriesEditorAction extends Action {
 
 		if (HookRegistry::call('SeriesEditorAction::completeCopyedit', array(&$seriesEditorSubmission))) return;
 
-		$signoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getMonographId());
+		$signoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getId());
 		$signoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($signoff);
 
 		// Add log entry
 		import('classes.monograph.log.MonographLog');
 		import('classes.monograph.log.MonographEventLogEntry');
-		MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_INITIAL, MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.initialEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getMonographId()));
+		MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_COPYEDIT_INITIAL, MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.initialEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId()));
 	}
 
 	/**
@@ -1378,18 +1378,18 @@ class SeriesEditorAction extends Action {
 
 		if (HookRegistry::call('SeriesEditorAction::completeFinalCopyedit', array(&$seriesEditorSubmission))) return;
 
-		$copyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getMonographId());
+		$copyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getId());
 		$copyeditSignoff->setDateCompleted(Core::getCurrentDate());
 		$signoffDao->updateObject($copyeditSignoff);
 
 
 		if ($copyEdFile = $seriesEditorSubmission->getFileBySignoffType('SIGNOFF_COPYEDITING_FINAL')) {
 			// Set initial layout version to final copyedit version
-			$productionSignoff = $signoffDao->build('SIGNOFF_PRODUCTION', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getMonographId());
+			$productionSignoff = $signoffDao->build('SIGNOFF_PRODUCTION', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getId());
 
 			if (!$productionSignoff->getFileId()) {
 				import('classes.file.MonographFileManager');
-				$monographFileManager = new MonographFileManager($seriesEditorSubmission->getMonographId());
+				$monographFileManager = new MonographFileManager($seriesEditorSubmission->getId());
 				if ($productionFileId = $monographFileManager->copyToProductionFile($copyEdFile->getFileId(), $copyEdFile->getRevision())) {
 					$productionSignoff->setFileId($productionFileId);
 					$signoffDao->updateObject($productionSignoff);
@@ -1400,7 +1400,7 @@ class SeriesEditorAction extends Action {
 		// Add log entry
 		import('classes.monograph.log.MonographLog');
 		import('classes.monograph.log.MonographEventLogEntry');
-		MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_FINAL, MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.finalEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getMonographId()));
+		MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_COPYEDIT_FINAL, MONOGRAPH_LOG_TYPE_COPYEDIT, $user->getId(), 'log.copyedit.finalEditComplete', Array('copyeditorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId()));
 	}
 
 	/**
@@ -1421,7 +1421,7 @@ class SeriesEditorAction extends Action {
 		// Add log
 		import('classes.monograph.log.MonographLog');
 		import('classes.monograph.log.MonographEventLogEntry');
-		MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_ARCHIVE, MONOGRAPH_LOG_TYPE_EDITOR, $seriesEditorSubmission->getMonographId(), 'log.editor.archived', array('monographId' => $seriesEditorSubmission->getMonographId()));
+		MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_EDITOR_ARCHIVE, MONOGRAPH_LOG_TYPE_EDITOR, $seriesEditorSubmission->getId(), 'log.editor.archived', array('monographId' => $seriesEditorSubmission->getId()));
 	}
 
 	/**
@@ -1441,7 +1441,7 @@ class SeriesEditorAction extends Action {
 		// Add log
 		import('classes.monograph.log.MonographLog');
 		import('classes.monograph.log.MonographEventLogEntry');
-		MonographLog::logEvent($seriesEditorSubmission->getMonographId(), MONOGRAPH_LOG_EDITOR_RESTORE, MONOGRAPH_LOG_TYPE_EDITOR, $seriesEditorSubmission->getMonographId(), 'log.editor.restored', array('monographId' => $seriesEditorSubmission->getMonographId()));
+		MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_EDITOR_RESTORE, MONOGRAPH_LOG_TYPE_EDITOR, $seriesEditorSubmission->getId(), 'log.editor.restored', array('monographId' => $seriesEditorSubmission->getId()));
 	}
 
 	/**
@@ -1480,10 +1480,10 @@ class SeriesEditorAction extends Action {
 	 */
 	function uploadLayoutVersion($submission) {
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($submission->getMonographId());
+		$monographFileManager = new MonographFileManager($submission->getId());
 		$submissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 
-		$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+		$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getId());
 
 		$fileName = 'layoutFile';
 		if ($monographFileManager->uploadedFileExists($fileName) && !HookRegistry::call('SeriesEditorAction::uploadLayoutVersion', array(&$submission, &$layoutAssignment))) {
@@ -1513,7 +1513,7 @@ class SeriesEditorAction extends Action {
 			$productionSignoff = $signoffDao->build(
 							'SIGNOFF_PRODUCTION', 
 							ASSOC_TYPE_MONOGRAPH, 
-							$submission->getMonographId()
+							$submission->getId()
 						); 
 			$productionSignoff->setUserId($editorId);
 			$signoffDao->updateObject($productionSignoff);
@@ -1522,7 +1522,7 @@ class SeriesEditorAction extends Action {
 
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_PRODUCTION_ASSIGN, MONOGRAPH_LOG_TYPE_PRODUCTION, $submission->getMonographId(), 'log.productionEditor.assigned', array('monographId' => $submission->getMonographId()));
+			MonographLog::logEvent($submission->getId(), MONOGRAPH_LOG_PRODUCTION_ASSIGN, MONOGRAPH_LOG_TYPE_PRODUCTION, $submission->getId(), 'log.productionEditor.assigned', array('monographId' => $submission->getId()));
 		}
 	}
 
@@ -1542,7 +1542,7 @@ class SeriesEditorAction extends Action {
 
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($submission, 'LAYOUT_REQUEST');
-		$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+		$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getId());
 		$layoutEditor =& $userDao->getUser($layoutSignoff->getUserId());
 		if (!isset($layoutEditor)) return true;
 
@@ -1565,11 +1565,11 @@ class SeriesEditorAction extends Action {
 					'layoutEditorName' => $layoutDesigner->getFullName(),
 					'layoutEditorUsername' => $layoutDesigner->getUsername(),
 					'editorialContactSignature' => $user->getContactSignature(),
-					'submissionLayoutUrl' => Request::url(null, 'layoutDesigner', 'submission', $submission->getMonographId())
+					'submissionLayoutUrl' => Request::url(null, 'layoutDesigner', 'submission', $submission->getId())
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, null, 'notifyLayoutDesigner', 'send'), array('monographId' => $submission->getMonographId(), 'layoutAssignmentId' => $layoutAssignmentId));
+			$email->displayEditForm(Request::url(null, null, 'notifyLayoutDesigner', 'send'), array('monographId' => $submission->getId(), 'layoutAssignmentId' => $layoutAssignmentId));
 			return false;
 		}
 		return true;
@@ -1592,7 +1592,7 @@ class SeriesEditorAction extends Action {
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($submission, 'LAYOUT_ACK');
 
-		$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+		$layoutSignoff = $signoffDao->getBySymbolic('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getId());
 		$layoutEditor =& $userDao->getUser($layoutSignoff->getUserId());
 		if (!isset($layoutEditor)) return true;
 
@@ -1615,7 +1615,7 @@ class SeriesEditorAction extends Action {
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, null, 'thankLayoutEditor', 'send'), array('monographId' => $submission->getMonographId()));
+			$email->displayEditForm(Request::url(null, null, 'thankLayoutEditor', 'send'), array('monographId' => $submission->getId()));
 			return false;
 		}
 		return true;
@@ -1653,7 +1653,7 @@ class SeriesEditorAction extends Action {
 		$file =& $submission->getEditorFile();
 
 		if (isset($file) && $file->getFileId() == $fileId && !HookRegistry::call('SeriesEditorAction::deleteMonographFile', array(&$submission, &$fileId, &$revision))) {
-			$monographFileManager = new MonographFileManager($submission->getMonographId());
+			$monographFileManager = new MonographFileManager($submission->getId());
 			$monographFileManager->deleteFile($fileId, $revision);
 		}
 	}
@@ -1671,8 +1671,8 @@ class SeriesEditorAction extends Action {
 		foreach ($submission->getGalleys() as $galley) {
 			$images =& $monographGalleyDao->getGalleyImages($galley->getGalleyId());
 			foreach ($images as $imageFile) {
-				if ($imageFile->getMonographId() == $submission->getMonographId() && $fileId == $imageFile->getFileId() && $imageFile->getRevision() == $revision) {
-					$monographFileManager = new MonographFileManager($submission->getMonographId());
+				if ($imageFile->getMonographId() == $submission->getId() && $fileId == $imageFile->getFileId() && $imageFile->getRevision() == $revision) {
+					$monographFileManager = new MonographFileManager($submission->getId());
 					$monographFileManager->deleteFile($imageFile->getFileId(), $imageFile->getRevision());
 				}
 			}
@@ -1839,13 +1839,13 @@ class SeriesEditorAction extends Action {
 			$monographComment = new MonographComment();
 			$monographComment->setCommentType(COMMENT_TYPE_EDITOR_DECISION);
 			$monographComment->setRoleId(Validation::isEditor()?ROLE_ID_EDITOR:ROLE_ID_SERIES_EDITOR);
-			$monographComment->setMonographId($seriesEditorSubmission->getMonographId());
+			$monographComment->setMonographId($seriesEditorSubmission->getId());
 			$monographComment->setAuthorId($seriesEditorSubmission->getUserId());
 			$monographComment->setCommentTitle($email->getSubject());
 			$monographComment->setComments($email->getBody());
 			$monographComment->setDatePosted(Core::getCurrentDate());
 			$monographComment->setViewable(true);
-			$monographComment->setAssocId($seriesEditorSubmission->getMonographId());
+			$monographComment->setAssocId($seriesEditorSubmission->getId());
 			$monographCommentDao->insertMonographComment($monographComment);
 
 			return true;
@@ -1867,15 +1867,15 @@ class SeriesEditorAction extends Action {
 			} else {
 				if (Request::getUserVar('importPeerReviews')) {
 					$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-					$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($seriesEditorSubmission->getMonographId(), $seriesEditorSubmission->getCurrentRound());
-					$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getMonographId(), $seriesEditorSubmission->getCurrentRound());
+					$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
+					$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
 
 					$body = '';
 					foreach ($reviewAssignments as $reviewAssignment) {
 						// If the reviewer has completed the assignment, then import the review.
 						if ($reviewAssignment->getDateCompleted() != null && !$reviewAssignment->getCancelled()) {
 							// Get the comments associated with this review assignment
-							$monographComments =& $monographCommentDao->getMonographComments($seriesEditorSubmission->getMonographId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getReviewId());
+							$monographComments =& $monographCommentDao->getMonographComments($seriesEditorSubmission->getId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getReviewId());
 							
 							if($monographComments) { 
 								$body .= "------------------------------------------------------\n";
@@ -1934,7 +1934,7 @@ class SeriesEditorAction extends Action {
 				}
 			}
 
-			$email->displayEditForm(Request::url(null, null, 'emailEditorDecisionComment', 'send'), array('monographId' => $seriesEditorSubmission->getMonographId()), 'submission/comment/editorDecisionEmail.tpl', array('isAnEditor' => true));
+			$email->displayEditForm(Request::url(null, null, 'emailEditorDecisionComment', 'send'), array('monographId' => $seriesEditorSubmission->getId()), 'submission/comment/editorDecisionEmail.tpl', array('isAnEditor' => true));
 
 			return false;
 		}

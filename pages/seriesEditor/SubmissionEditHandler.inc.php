@@ -70,7 +70,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$templateMgr->assign('enableComments', $enableComments);
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getByMonographId($submission->getMonographId(), 'submission');
+		$monographFiles =& $monographFileDao->getByMonographId($submission->getId(), 'submission');
 		$templateMgr->assign_by_ref('submissionFiles', $monographFiles);
 
 		$templateMgr->assign_by_ref('bookFileTypes', $bookFileTypes);

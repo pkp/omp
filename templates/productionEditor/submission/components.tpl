@@ -10,9 +10,9 @@
  *}
 <h3>{translate key="manuscript.artwork"}</h3>
 
-<form method="post" action="{url op="submitArtwork" path=$submission->getMonographId()}"  enctype="multipart/form-data">
+<form method="post" action="{url op="submitArtwork" path=$submission->getId()}"  enctype="multipart/form-data">
 	<input type="hidden" name="from" value="submissionArt" />
-	<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
+	<input type="hidden" name="monographId" value="{$submission->getId()}" />
 <!--<h4>Cover</h4>
 
 
@@ -29,14 +29,14 @@
 
 <tr valign="middle">
 <td>
-<a target="_blank" href="{url op="viewFile" path=$submission->getMonographId()|to_array:$artwork->getFileId():$artwork->getRevision()}">
-  <img class="thumbnail" width="50" src="{url op="viewFile" path=$submission->getMonographId()|to_array:$artwork->getFileId():$artwork->getRevision()}" />
+<a target="_blank" href="{url op="viewFile" path=$submission->getId()|to_array:$artwork->getFileId():$artwork->getRevision()}">
+  <img class="thumbnail" width="50" src="{url op="viewFile" path=$submission->getId()|to_array:$artwork->getFileId():$artwork->getRevision()}" />
 </a>
 </td>
 <td>
 {$artwork->getIdentifier()|escape}<br />
 Revision: {$artwork->getRevision()}<br />
-<a href="{url op="removeArtworkFile" path=$submission->getMonographId()|to_array:$artwork->getFileId()}">Remove</a>
+<a href="{url op="removeArtworkFile" path=$submission->getId()|to_array:$artwork->getFileId()}">Remove</a>
 </td>
 </tr>
 {foreachelse}

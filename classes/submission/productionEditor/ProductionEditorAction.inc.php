@@ -28,10 +28,10 @@ class ProductionEditorAction extends DesignerAction {
 	 */
 	function uploadLayoutVersion($submission) {
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($submission->getMonographId());
+		$monographFileManager = new MonographFileManager($submission->getId());
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
-		$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+		$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getId());
 
 		$fileName = 'layoutFile';
 		if ($monographFileManager->uploadedFileExists($fileName) && !HookRegistry::call('SeriesEditorAction::uploadLayoutVersion', array(&$submission, &$layoutAssignment))) {
@@ -83,11 +83,11 @@ class ProductionEditorAction extends DesignerAction {
 					'layoutEditorName' => $designer->getFullName(),
 					'layoutEditorUsername' => $designer->getUsername(),
 					'editorialContactSignature' => $user->getContactSignature(),
-					'submissionLayoutUrl' => Request::url(null, 'designer', 'submission', $submission->getMonographId())
+					'submissionLayoutUrl' => Request::url(null, 'designer', 'submission', $submission->getId())
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, null, 'notifyDesigner', 'send'), array('monographId' => $submission->getMonographId(), 'assignmentId' => $assignmentId));
+			$email->displayEditForm(Request::url(null, null, 'notifyDesigner', 'send'), array('monographId' => $submission->getId(), 'assignmentId' => $assignmentId));
 			return false;
 		}
 		return true;
@@ -132,7 +132,7 @@ class ProductionEditorAction extends DesignerAction {
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, null, 'thankLayoutDesigner', 'send'), array('monographId' => $submission->getMonographId(), 'assignmentId' => $assignmentId));
+			$email->displayEditForm(Request::url(null, null, 'thankLayoutDesigner', 'send'), array('monographId' => $submission->getId(), 'assignmentId' => $assignmentId));
 			return false;
 		}
 		return true;

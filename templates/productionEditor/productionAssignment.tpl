@@ -9,13 +9,13 @@
  * $Id$
  *}
 {strip}
-{translate|assign:"pageTitleTranslated" key="production.assignment"" id=$submission->getMonographId()}
+{translate|assign:"pageTitleTranslated" key="production.assignment"" id=$submission->getId()}
 {assign var="pageCrumbTitle" value="production.assignment"}
 {include file="common/header.tpl"}
 {/strip} 
 
 
-<form action="{url op="productionAssignment" path=$submission->getMonographId()|to_array:$assignmentId}" method="post">
+<form action="{url op="productionAssignment" path=$submission->getId()|to_array:$assignmentId}" method="post">
 <input type="hidden" name="fromDesignAssignmentForm" value="1" />
 <h3>{translate key="production.assignment.new"}</h3>
 <p>{translate key="production.assignment.description"}</p>

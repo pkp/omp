@@ -42,13 +42,13 @@ class DesignerAction extends Action {
 		$designer =& $userDao->getUser($userId);
 		if ($designSignoff->getUserId()) {
 			$designer =& $userDao->getUser($designSignoff->getUserId());
-			MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_UNASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $designSignoff->getId(), 'log.layout.layoutEditorUnassigned', array('editorName' => $designer->getFullName(), 'monographId' => $submission->getMonographId()));
+			MonographLog::logEvent($submission->getId(), MONOGRAPH_LOG_LAYOUT_UNASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $designSignoff->getId(), 'log.layout.layoutEditorUnassigned', array('editorName' => $designer->getFullName(), 'monographId' => $submission->getId()));
 		}
 		
 		$designSignoff->setUserId($userId);
 		$signoffDao->updateObject($designSignoff);
 
-		MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_ASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $designSignoff->getId(), 'log.layout.layoutEditorAssigned', array('designerName' => $designer->getFullName(), 'monographId' => $submission->getMonographId()));
+		MonographLog::logEvent($submission->getId(), MONOGRAPH_LOG_LAYOUT_ASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $designSignoff->getId(), 'log.layout.layoutEditorAssigned', array('designerName' => $designer->getFullName(), 'monographId' => $submission->getId()));
 	}
 
 	/**
@@ -112,8 +112,8 @@ class DesignerAction extends Action {
 		foreach ($submission->getGalleys() as $galley) {
 			$images =& $monographGalleyDao->getGalleyImages($galley->getGalleyId());
 			foreach ($images as $imageFile) {
-				if ($imageFile->getMonographId() == $submission->getMonographId() && $fileId == $imageFile->getFileId() && $imageFile->getRevision() == $revision) {
-					$monographFileManager = new MonographFileManager($submission->getMonographId());
+				if ($imageFile->getMonographId() == $submission->getId() && $fileId == $imageFile->getFileId() && $imageFile->getRevision() == $revision) {
+					$monographFileManager = new MonographFileManager($submission->getId());
 					$monographFileManager->deleteFile($imageFile->getFileId(), $imageFile->getRevision());
 				}
 			}
@@ -154,14 +154,14 @@ class DesignerAction extends Action {
 			$user =& Request::getUser();
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($submission->getMonographId(), MONOGRAPH_LOG_LAYOUT_COMPLETE, MONOGRAPH_LOG_TYPE_LAYOUT, $user->getId(), 'log.layout.layoutEditComplete', Array('editorName' => $user->getFullName(), 'monographId' => $submission->getMonographId()));
+			MonographLog::logEvent($submission->getId(), MONOGRAPH_LOG_LAYOUT_COMPLETE, MONOGRAPH_LOG_TYPE_LAYOUT, $user->getId(), 'log.layout.layoutEditComplete', Array('editorName' => $user->getFullName(), 'monographId' => $submission->getId()));
 
 			return true;
 		} else {
 			$user =& Request::getUser();
 			if (!Request::getUserVar('continued')) {
-				$assignedSeriesEditors = $email->toAssignedEditingSeriesEditors($submission->getMonographId());
-				$assignedEditors = $email->ccAssignedEditors($submission->getMonographId());
+				$assignedSeriesEditors = $email->toAssignedEditingSeriesEditors($submission->getId());
+				$assignedEditors = $email->ccAssignedEditors($submission->getId());
 				if (empty($assignedSeriesEditors) && empty($assignedEditors)) {
 					$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 					$editorialContactName = $press->getSetting('contactName');
@@ -176,7 +176,7 @@ class DesignerAction extends Action {
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, 'designer', 'completeDesign', 'send'), array('monographId' => $submission->getMonographId(), 'assignmentId' => $assignmentId));
+			$email->displayEditForm(Request::url(null, 'designer', 'completeDesign', 'send'), array('monographId' => $submission->getId(), 'assignmentId' => $assignmentId));
 
 			return false;
 		}

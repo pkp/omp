@@ -30,12 +30,12 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$this->reviewAssignment = $reviewAssignmentDao->getReviewAssignment(
-			$this->reviewerSubmission->getMonographId(),
+			$this->reviewerSubmission->getId(),
 			$this->reviewerSubmission->getReviewerId(),
 			$this->reviewerSubmission->getCurrentRound(),
 			$this->reviewerSubmission->getCurrentReviewType()
 		);
-								
+
 		// Validation checks for this form
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 		$requiredReviewFormElementIds = $reviewFormElementDao->getRequiredReviewFormElementIds($this->reviewAssignment->getReviewFormId());

@@ -20,7 +20,7 @@
 
 <table width="100%" class="info">
 	<tr>
-		<td width="40%" colspan="2"><a class="action" href="{url op="viewMetadata" path=$submission->getMonographId()}">{translate key="submission.reviewMetadata"}</a></td>
+		<td width="40%" colspan="2"><a class="action" href="{url op="viewMetadata" path=$submission->getId()}">{translate key="submission.reviewMetadata"}</a></td>
 		<td width="20%" class="heading">{translate key="submission.request"}</td>
 		<td width="20%" class="heading">{translate key="submission.underway"}</td>
 		<td width="20%" class="heading">{translate key="submission.complete"}</td>
@@ -35,7 +35,7 @@
 			{if not $initialCopyeditSignoff->getDateNotified() or $initialCopyeditSignoff->getDateCompleted()}
 				{icon name="mail" disabled="disabled"}
 			{else}
-				{url|assign:"url" op="completeCopyedit" monographId=$submission->getMonographId()}
+				{url|assign:"url" op="completeCopyedit" monographId=$submission->getId()}
 				{translate|assign:"confirmMessage" key="common.confirmComplete"}
 				{icon name="mail" onclick="return confirm('$confirmMessage')" url=$url}
 			{/if}
@@ -47,13 +47,13 @@
 		<td colspan="4">
 			{translate key="common.file"}:
 			{if $initialCopyeditSignoff->getDateNotified() && $initialCopyeditFile}
-				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$initialCopyeditSignoff->getFileId():$initialCopyeditSignoff->getFileRevision()}" class="file">{$initialCopyeditFile->getFileName()|escape}</a> {$initialCopyeditFile->getDateModified()|date_format:$dateFormatShort}
+				<a href="{url op="downloadFile" path=$submission->getId()|to_array:$initialCopyeditSignoff->getFileId():$initialCopyeditSignoff->getFileRevision()}" class="file">{$initialCopyeditFile->getFileName()|escape}</a> {$initialCopyeditFile->getDateModified()|date_format:$dateFormatShort}
 			{else}
 				{translate key="common.none"}
 			{/if}
 			<br />
 			<form method="post" action="{url op="uploadCopyeditVersion"}"  enctype="multipart/form-data">
-				<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
+				<input type="hidden" name="monographId" value="{$submission->getId()}" />
 				<input type="hidden" name="copyeditStage" value="initial" />
 				{if not $initialCopyeditSignoff->getDateNotified() or $initialCopyeditSignoff->getDateCompleted()} 
 					{assign var="isDisabled" value="disabled"}
@@ -78,7 +78,7 @@
 		<td colspan="4">
 			{translate key="common.file"}:
 			{if $authorCopyeditSignoff->getDateCompleted() && $editorAuthorCopyeditFile}
-				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$authorCopyeditSignoff->getFileId():$authorCopyeditSignoff->getFileRevision()}" class="file">{$editorAuthorCopyeditFile->getFileName()|escape}</a> {$editorAuthorCopyeditFile->getDateModified()|date_format:$dateFormatShort}
+				<a href="{url op="downloadFile" path=$submission->getId()|to_array:$authorCopyeditSignoff->getFileId():$authorCopyeditSignoff->getFileRevision()}" class="file">{$editorAuthorCopyeditFile->getFileName()|escape}</a> {$editorAuthorCopyeditFile->getDateModified()|date_format:$dateFormatShort}
 			{else}
 				{translate key="common.none"}
 			{/if}
@@ -97,7 +97,7 @@
 			{if not $finalCopyeditSignoff->getDateNotified() or $finalCopyeditSignoff->getDateCompleted()}
 				{icon name="mail" disabled="disabled"}
 			{else}
-				{url|assign:"url" op="completeFinalCopyedit" monographId=$submission->getMonographId()}
+				{url|assign:"url" op="completeFinalCopyedit" monographId=$submission->getId()}
 				{translate|assign:"confirmMessage" key="common.confirmComplete"}
 				{icon name="mail" onclick="return confirm('$confirmMessage')" url=$url}
 			{/if}
@@ -109,13 +109,13 @@
 		<td colspan="4">
 			{translate key="common.file"}:
 			{if $finalCopyeditSignoff->getDateNotified() && $finalCopyeditFile}
-				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$finalCopyeditSignoff->getFileId():$finalCopyeditSignoff->getFileRevision()}" class="file">{$finalCopyeditFile->getFileName()|escape}</a> {$finalCopyeditFile->getDateModified()|date_format:$dateFormatShort}
+				<a href="{url op="downloadFile" path=$submission->getId()|to_array:$finalCopyeditSignoff->getFileId():$finalCopyeditSignoff->getFileRevision()}" class="file">{$finalCopyeditFile->getFileName()|escape}</a> {$finalCopyeditFile->getDateModified()|date_format:$dateFormatShort}
 			{else}
 				{translate key="common.none"}
 			{/if}
 			<br />
 			<form method="post" action="{url op="uploadCopyeditVersion"}"  enctype="multipart/form-data">
-				<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
+				<input type="hidden" name="monographId" value="{$submission->getId()}" />
 				<input type="hidden" name="copyeditStage" value="final" />
 				{if not $finalCopyeditSignoff->getDateNotified() or $finalCopyeditSignoff->getDateCompleted()}
 					{assign var="isDisabled" value="disabled"}
@@ -132,9 +132,9 @@
 {translate key="submission.copyedit.copyeditComments"}
 {if $submission->getMostRecentCopyeditComment()}
 	{assign var="comment" value=$submission->getMostRecentCopyeditComment()}
-	<a href="javascript:openComments('{url op="viewCopyeditComments" path=$submission->getMonographId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a>{$comment->getDatePosted()|date_format:$dateFormatShort}
+	<a href="javascript:openComments('{url op="viewCopyeditComments" path=$submission->getId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a>{$comment->getDatePosted()|date_format:$dateFormatShort}
 {else}
-	<a href="javascript:openComments('{url op="viewCopyeditComments" path=$submission->getMonographId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
+	<a href="javascript:openComments('{url op="viewCopyeditComments" path=$submission->getId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
 {/if}
 
 {if $currentPress->getLocalizedSetting('copyeditInstructions') != ''}

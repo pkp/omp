@@ -90,7 +90,7 @@ class AuthorAction extends Action {
 	 */
 	function uploadRevisedVersion($authorSubmission) {
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($authorSubmission->getMonographId());
+		$monographFileManager = new MonographFileManager($authorSubmission->getId());
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		$fileName = 'upload';
@@ -112,7 +112,7 @@ class AuthorAction extends Action {
 			$user =& Request::getUser();
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($authorSubmission->getMonographId(), MONOGRAPH_LOG_AUTHOR_REVISION, MONOGRAPH_LOG_TYPE_AUTHOR, $user->getId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'monographId' => $authorSubmission->getMonographId()));
+			MonographLog::logEvent($authorSubmission->getId(), MONOGRAPH_LOG_AUTHOR_REVISION, MONOGRAPH_LOG_TYPE_AUTHOR, $user->getId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'monographId' => $authorSubmission->getId()));
 		}
 	}
 
@@ -126,7 +126,7 @@ class AuthorAction extends Action {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$press =& Request::getPress();
 
-		$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getMonographId());
+		$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getId());
 		if ($authorSignoff->getDateCompleted() != null) {
 			return true;
 		}
@@ -142,13 +142,13 @@ class AuthorAction extends Action {
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
 			HookRegistry::call('AuthorAction::completeAuthorCopyedit', array(&$authorSubmission, &$email));
 			if ($email->isEnabled()) {
-				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR_COMPLETE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $authorSubmission->getMonographId());
+				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR_COMPLETE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $authorSubmission->getId());
 				$email->send();
 			}
 
 			$authorSignoff->setDateCompleted(Core::getCurrentDate());
 
-			$finalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getMonographId());
+			$finalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getId());
 			$finalSignoff->setUserId($copyeditor->getId());
 			$finalSignoff->setDateNotified(Core::getCurrentDate());
 
@@ -158,7 +158,7 @@ class AuthorAction extends Action {
 			// Add log entry
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($authorSubmission->getMonographId(), MONOGRAPH_LOG_COPYEDIT_REVISION, MONOGRAPH_LOG_TYPE_AUTHOR, $user->getId(), 'log.copyedit.authorFile');
+			MonographLog::logEvent($authorSubmission->getId(), MONOGRAPH_LOG_COPYEDIT_REVISION, MONOGRAPH_LOG_TYPE_AUTHOR, $user->getId(), 'log.copyedit.authorFile');
 
 			return true;
 
@@ -166,8 +166,8 @@ class AuthorAction extends Action {
 			if (!Request::getUserVar('continued')) {
 				if (isset($copyeditor)) {
 					$email->addRecipient($copyeditor->getEmail(), $copyeditor->getFullName());
-					$assignedSeriesEditors = $email->ccAssignedEditingSeriesEditors($authorSubmission->getMonographId());
-					$assignedEditors = $email->ccAssignedEditors($authorSubmission->getMonographId());
+					$assignedSeriesEditors = $email->ccAssignedEditingSeriesEditors($authorSubmission->getId());
+					$assignedEditors = $email->ccAssignedEditors($authorSubmission->getId());
 					if (empty($assignedSeriesEditors) && empty($assignedEditors)) {
 						$email->addCc($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 						$editorName = $press->getSetting('contactName');
@@ -177,8 +177,8 @@ class AuthorAction extends Action {
 						$editorName = $editor->getEditorFullName();
 					}
 				} else {
-					$assignedSeriesEditors = $email->toAssignedEditingSeriesEditors($authorSubmission->getMonographId());
-					$assignedEditors = $email->ccAssignedEditors($authorSubmission->getMonographId());
+					$assignedSeriesEditors = $email->toAssignedEditingSeriesEditors($authorSubmission->getId());
+					$assignedEditors = $email->ccAssignedEditors($authorSubmission->getId());
 					if (empty($assignedSeriesEditors) && empty($assignedEditors)) {
 						$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 						$editorName = $press->getSetting('contactName');
@@ -195,7 +195,7 @@ class AuthorAction extends Action {
 				);
 				$email->assignParams($paramArray);
 			}
-			$email->displayEditForm(Request::url(null, 'author', 'completeAuthorCopyedit', 'send'), array('monographId' => $authorSubmission->getMonographId()));
+			$email->displayEditForm(Request::url(null, 'author', 'completeAuthorCopyedit', 'send'), array('monographId' => $authorSubmission->getId()));
 
 			return false;
 		}
@@ -208,7 +208,7 @@ class AuthorAction extends Action {
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
-		$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getMonographId());
+		$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getId());
 		if ($authorSignoff->getDateNotified() != null && $authorSignoff->getDateUnderway() == null) {
 			HookRegistry::call('AuthorAction::copyeditUnderway', array(&$authorSubmission));
 			$authorSignoff->setDateUnderway(Core::getCurrentDate());
@@ -223,14 +223,14 @@ class AuthorAction extends Action {
 	 */
 	function uploadCopyeditVersion($authorSubmission, $copyeditStage) {
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($authorSubmission->getMonographId());
+		$monographFileManager = new MonographFileManager($authorSubmission->getId());
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		// Authors cannot upload if the assignment is not active, i.e.
 		// they haven't been notified or the assignment is already complete.
-		$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getMonographId());
+		$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $authorSubmission->getId());
 		if (!$authorSignoff->getDateNotified() || $authorSignoff->getDateCompleted()) return;
 
 		$fileName = 'upload';
@@ -337,13 +337,13 @@ class AuthorAction extends Action {
 			$monographComment = new MonographComment();
 			$monographComment->setCommentType(COMMENT_TYPE_EDITOR_DECISION);
 			$monographComment->setRoleId(ROLE_ID_AUTHOR);
-			$monographComment->setMonographId($authorSubmission->getMonographId());
+			$monographComment->setMonographId($authorSubmission->getId());
 			$monographComment->setAuthorId($authorSubmission->getUserId());
 			$monographComment->setCommentTitle($email->getSubject());
 			$monographComment->setComments($email->getBody());
 			$monographComment->setDatePosted(Core::getCurrentDate());
 			$monographComment->setViewable(true);
-			$monographComment->setAssocId($authorSubmission->getMonographId());
+			$monographComment->setAssocId($authorSubmission->getId());
 			$monographCommentDao->insertMonographComment($monographComment);
 
 			return true;
@@ -359,7 +359,7 @@ class AuthorAction extends Action {
 				}
 			}
 
-			$email->displayEditForm(Request::url(null, null, 'emailEditorDecisionComment', 'send'), array('monographId' => $authorSubmission->getMonographId()), 'submission/comment/editorDecisionEmail.tpl');
+			$email->displayEditForm(Request::url(null, null, 'emailEditorDecisionComment', 'send'), array('monographId' => $authorSubmission->getId()), 'submission/comment/editorDecisionEmail.tpl');
 
 			return false;
 		}
@@ -462,7 +462,7 @@ class AuthorAction extends Action {
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');		
 
 		$submission =& $authorSubmissionDao->getAuthorSubmission($monograph->getId());
-		$layoutSignoff =& $submission->getSignoff('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+		$layoutSignoff =& $submission->getSignoff('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getId());
 
 		$canDownload = false;
 

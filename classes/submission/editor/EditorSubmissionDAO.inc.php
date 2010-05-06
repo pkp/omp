@@ -123,7 +123,7 @@ class EditorSubmissionDAO extends DAO {
 				(?, ?, %s, %s, %s)',
 				$this->datetimeToDB($editorSubmission->getDateNotified()), $this->datetimeToDB($editorSubmission->getDateCompleted()), $this->datetimeToDB($editorSubmission->getDateAcknowledged())),
 			array(
-				$editorSubmission->getMonographId(),
+				$editorSubmission->getId(),
 				$editorSubmission->getEditorId()
 			)
 		);
@@ -133,7 +133,7 @@ class EditorSubmissionDAO extends DAO {
 		// Insert review assignments.
 		$reviewAssignments =& $editorSubmission->getReviewAssignments();
 		for ($i=0, $count=count($reviewAssignments); $i < $count; $i++) {
-			$reviewAssignments[$i]->setMonographId($editorSubmission->getMonographId());
+			$reviewAssignments[$i]->setMonographId($editorSubmission->getId());
 			$this->reviewAssignmentDao->insertObject($reviewAssignments[$i]);
 		}
 

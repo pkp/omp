@@ -136,7 +136,7 @@ class MetadataForm extends Form {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR)); // editor.cover.xxx locale keys; FIXME?
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('monographId', isset($this->monograph) ? $this->monograph->getMonographId():null);
+		$templateMgr->assign('monographId', isset($this->monograph) ? $this->monograph->getId():null);
 		$templateMgr->assign('pressSettings', $settingsDao->getPressSettings($press->getId()));
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
 		$templateMgr->assign('canViewAuthors', $this->canViewAuthors);

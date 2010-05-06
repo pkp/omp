@@ -18,19 +18,19 @@
 
 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 	<li{if ($pageToDisplay == "submissionSummary")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-		<a href="{url op="submission" path=$submission->getMonographId()}">{translate key="submission.summary"}</a>
+		<a href="{url op="submission" path=$submission->getId()}">{translate key="submission.summary"}</a>
 	</li>
 	<li{if ($pageToDisplay == "submissionReview")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-		<a href="{url op="submissionReview" path=$submission->getMonographId()}">{translate key="submission.review"}</a>
+		<a href="{url op="submissionReview" path=$submission->getId()}">{translate key="submission.review"}</a>
 	</li>
 	<li{if ($pageToDisplay == "submissionEditing")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-		<a href="{url op="submissionEditing" path=$submission->getMonographId()}">{translate key="submission.editing"}</a>
+		<a href="{url op="submissionEditing" path=$submission->getId()}">{translate key="submission.editing"}</a>
 	</li>
 	<li{if ($pageToDisplay == "submissionProduction")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-		<a href="{url op="submissionProduction" path=$submission->getMonographId()}">{translate key="submission.production"}</a>
+		<a href="{url op="submissionProduction" path=$submission->getId()}">{translate key="submission.production"}</a>
 	</li>
 	<li{if ($pageToDisplay == "submissionHistory")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-		<a href="{url op="submissionHistory" path=$submission->getMonographId()}">{translate key="submission.history"}</a>
+		<a href="{url op="submissionHistory" path=$submission->getId()}">{translate key="submission.history"}</a>
 	</li>
 </ul>
 

@@ -22,7 +22,7 @@
 	<tr><td colspan="6" class="headseparator">&nbsp;</td></tr>
 
 {iterate from=submissions item=submission}
-	{assign var="monographId" value=$submission->getMonographId()}
+	{assign var="monographId" value=$submission->getId()}
 	{assign var="reviewId" value=$submission->getReviewId()}
 
 	<tr valign="top">

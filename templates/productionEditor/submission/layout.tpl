@@ -24,7 +24,7 @@
 <tr>
 	<td>
 		{if $layoutFile}
-			<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$layoutFile->getFileId()}" class="file">{$layoutFile->getFileName()|escape}</a>&nbsp;&nbsp;{$layoutFile->getDateModified()|date_format:$dateFormatShort}
+			<a href="{url op="downloadFile" path=$submission->getId()|to_array:$layoutFile->getFileId()}" class="file">{$layoutFile->getFileName()|escape}</a>&nbsp;&nbsp;{$layoutFile->getDateModified()|date_format:$dateFormatShort}
 		{else}
 			{translate key="common.none"}
 		{/if}
@@ -39,7 +39,7 @@
 
 {if $artworkCount > 0}
 <tr>
-	<td><a href="{url op="submissionArt" path=$submission->getMonographId()}">{translate key="production.artworkFiles"}</a></td>
+	<td><a href="{url op="submissionArt" path=$submission->getId()}">{translate key="production.artworkFiles"}</a></td>
 	<td>{translate key="manuscript.artwork"}</td>
 	<td>{icon name="comment" disabled="disable"}</td>
 </tr>
@@ -54,7 +54,7 @@
 
 <form method="post" action="{url op="uploadLayoutFile"}"  enctype="multipart/form-data">
 	<input type="hidden" name="from" value="submissionEditing" />
-	<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
+	<input type="hidden" name="monographId" value="{$submission->getId()}" />
 	{translate key="submission.layout.uploadLayoutVersion"}
 	{fbvFileInput id="layoutFile" submit="submit"}
 </form>
@@ -62,9 +62,9 @@
 <div class="separator"></div>
 
 <h3>{translate key="production.assignments"}</h3>
-<p><a href="{url op="productionAssignment" path=$submission->getMonographId()}">{translate key="production.assignment.new"}</a></p>
+<p><a href="{url op="productionAssignment" path=$submission->getId()}">{translate key="production.assignment.new"}</a></p>
 <form method="post" action="{url op="deleteSelectedAssignments"}">
-<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
+<input type="hidden" name="monographId" value="{$submission->getId()}" />
 <table class="listing" width="100%">
 <tr>
 <td width="5%">&nbsp;</td>
@@ -93,27 +93,27 @@
 	</td>
 	<td>{icon name="comment" disabled="disable"}</td>
 	<td>
-		<a href="{url op="productionAssignment" path=$submission->getMonographId()|to_array:$productionAssignment->getId()}" class="action">{translate key="common.edit"}</a>
+		<a href="{url op="productionAssignment" path=$submission->getId()|to_array:$productionAssignment->getId()}" class="action">{translate key="common.edit"}</a>
 	</td>
 	<td>
 		{if !$designSignoff}
-			<a href="{url op="selectDesigner" path=$submission->getMonographId()|to_array:$assignmentId}">{translate key="common.assign"}</a>
+			<a href="{url op="selectDesigner" path=$submission->getId()|to_array:$assignmentId}">{translate key="common.assign"}</a>
 		{elseif $designSignoff->getDateAcknowledged()}
 			{translate key="common.complete"}
 			{$designSignoff->getDateAcknowledged()|date_format:$dateFormatShort|default:""}
 		{elseif $designSignoff->getDateCompleted()}
-			{url|assign:"url" op="thankLayoutDesigner" monographId=$submission->getMonographId() assignmentId=$assignmentId}
+			{url|assign:"url" op="thankLayoutDesigner" monographId=$submission->getId() assignmentId=$assignmentId}
 			{icon name="mail" url=$url}
 			{$designSignoff->getDateCompleted()|date_format:$dateFormatShort|default:""}
 		{elseif $designSignoff->getDateUnderway()}
 			{translate key="common.underway"}
 			{$designSignoff->getDateUnderway()|date_format:$dateFormatShort|default:""}
 		{elseif $designSignoff->getDateNotified()}
-			{url|assign:"url" op="notifyDesigner" monographId=$submission->getMonographId() assignmentId=$assignmentId}
+			{url|assign:"url" op="notifyDesigner" monographId=$submission->getId() assignmentId=$assignmentId}
 			{icon name="mail" url=$url}
 			{$designSignoff->getDateNotified()|date_format:$dateFormatShort|default:""}
 		{else}
-			{url|assign:"url" op="notifyDesigner" monographId=$submission->getMonographId() assignmentId=$assignmentId}
+			{url|assign:"url" op="notifyDesigner" monographId=$submission->getId() assignmentId=$assignmentId}
 			{icon name="mail" url=$url}
 		{/if}
 
@@ -122,7 +122,7 @@
 		{if $proofSignoff}
 			{$proofSignoff->getId()}
 		{else}
-			<a href="{url op="selectProofreader" path=$submission->getMonographId()|to_array:$assignmentId}">{translate key="common.assign"}</a>
+			<a href="{url op="selectProofreader" path=$submission->getId()|to_array:$assignmentId}">{translate key="common.assign"}</a>
 		{/if}
 	</td>
 	<td>{$proofSignoff}</td>
@@ -131,12 +131,12 @@
 <tr valign="top">
 	<td></td>
 	<td>
-		<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$galley->getFileId()}">{$galley->getFileName()|escape}</a>
+		<a href="{url op="downloadFile" path=$submission->getId()|to_array:$galley->getFileId()}">{$galley->getFileName()|escape}</a>
 	</td>
 	<td>{icon name="comment" disabled="disable"}</td>
 	<td>
-		<a href="{url op="orderGalley" d=u monographId=$submission->getMonographId() galleyId=$galley->getId()}" class="plain">&uarr;</a> <a href="{url op="orderGalley" d=d monographId=$submission->getMonographId() galleyId=$galley->getId()}" class="plain">&darr;</a>&nbsp;|&nbsp;<a href="{url op="editGalley" path=$submission->getMonographId()|to_array:$galley->getId()}" class="action">{translate key="common.edit"}</a>
-		&nbsp;|&nbsp;<a href="{url op="deleteGalley" path=$submission->getMonographId()|to_array:$galley->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.layout.confirmDeleteGalley"}')" class="action">{translate key="common.delete"}</a>
+		<a href="{url op="orderGalley" d=u monographId=$submission->getId() galleyId=$galley->getId()}" class="plain">&uarr;</a> <a href="{url op="orderGalley" d=d monographId=$submission->getId() galleyId=$galley->getId()}" class="plain">&darr;</a>&nbsp;|&nbsp;<a href="{url op="editGalley" path=$submission->getId()|to_array:$galley->getId()}" class="action">{translate key="common.edit"}</a>
+		&nbsp;|&nbsp;<a href="{url op="deleteGalley" path=$submission->getId()|to_array:$galley->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.layout.confirmDeleteGalley"}')" class="action">{translate key="common.delete"}</a>
 	</td>
 	<td></td>
 	<td></td>
@@ -161,7 +161,7 @@
 
 <br />
 {if count($productionAssignments)}
-<form action="{url op="uploadGalley" path=$submission->getMonographId()}" method="post" enctype="multipart/form-data">
+<form action="{url op="uploadGalley" path=$submission->getId()}" method="post" enctype="multipart/form-data">
 <div class="newItemContainer">
 	<h3>{translate key="production.uploadGalley"}</h3>
 	<p>{translate key="production.uploadGalley.description}</p>

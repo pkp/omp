@@ -56,7 +56,7 @@
 	</tr>
 	<tr><td colspan="8" class="headseparator">&nbsp;</td></tr>
 {iterate from=submissions item=submission}
-	{assign var="monographId" value=$submission->getMonographId()}
+	{assign var="monographId" value=$submission->getId()}
 	{assign var="initialCopyeditSignoff" value=$submission->getSignoff('SIGNOFF_COPYEDITING_INITIAL')}
 	{assign var="finalCopyeditSignoff" value=$submission->getSignoff('SIGNOFF_COPYEDITING_FINAL')}
 	<tr valign="top">

@@ -52,7 +52,7 @@ class SubmissionFormSequence
 		$templateMgr->assign('submitStepAlias', $this->currentStepAlias);
 		$templateMgr->assign_by_ref('steplist', $this->stepForms);
 		if(isset($this->monograph))
-			$templateMgr->assign('monographId', $this->monograph->getMonographId());
+			$templateMgr->assign('monographId', $this->monograph->getId());
 
 	}
 	function addForm($fullImportPath, $class, $guideTag, $title, $alias, $contextParent = null) {

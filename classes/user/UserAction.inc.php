@@ -67,8 +67,8 @@ class UserAction {
 		$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
 		$copyeditorSubmissions =& $copyeditorSubmissionDao->getByCopyeditorId($oldUserId);
 		while ($copyeditorSubmission =& $copyeditorSubmissions->next()) {
-			$initialCopyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
-			$finalCopyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getMonographId());
+			$initialCopyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getId());
+			$finalCopyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getId());
 			$initialCopyeditSignoff->setUserId($newUserId);
 			$finalCopyeditSignoff->setUserId($newUserId);
 			$signoffDao->updateObject($initialCopyeditSignoff);

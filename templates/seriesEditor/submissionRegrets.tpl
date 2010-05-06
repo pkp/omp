@@ -10,17 +10,17 @@
  * $Id$
  *}
 {strip}
-{translate|assign:"pageTitleTranslated" key="seriesEditor.regrets.title" monographId=$submission->getMonographId()}
+{translate|assign:"pageTitleTranslated" key="seriesEditor.regrets.title" monographId=$submission->getId()}
 {assign var=pageTitleTranslated value=$pageTitleTranslated|escape}
 {assign var="pageCrumbTitle" value="seriesEditor.regrets.breadcrumb"}
 {include file="common/header.tpl"}
 {/strip}
 
 <ul class="menu">
-	<li><a href="{url op="submission" path=$submission->getMonographId()}">{translate key="submission.summary"}</a></li>
-	{if $canReview}<li><a href="{url op="submissionReview" path=$submission->getMonographId()}">{translate key="submission.review"}</a></li>{/if}
-	{if $canEdit}<li><a href="{url op="submissionEditing" path=$submission->getMonographId()}">{translate key="submission.editing"}</a></li>{/if}
-	<li><a href="{url op="submissionHistory" path=$submission->getMonographId()}">{translate key="submission.history"}</a></li>
+	<li><a href="{url op="submission" path=$submission->getId()}">{translate key="submission.summary"}</a></li>
+	{if $canReview}<li><a href="{url op="submissionReview" path=$submission->getId()}">{translate key="submission.review"}</a></li>{/if}
+	{if $canEdit}<li><a href="{url op="submissionEditing" path=$submission->getId()}">{translate key="submission.editing"}</a></li>{/if}
+	<li><a href="{url op="submissionHistory" path=$submission->getId()}">{translate key="submission.history"}</a></li>
 </ul>
 
 {include file="seriesEditor/submission/summary.tpl"}

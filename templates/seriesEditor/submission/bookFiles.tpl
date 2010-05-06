@@ -13,7 +13,7 @@
 <h3>{translate key="common.bookFiles"}</h3>
 <p>{translate key="submission.selectFilesForReview"}</p>
 <form method="post" action="{url op="recordReviewFiles"}">
-<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
+<input type="hidden" name="monographId" value="{$submission->getId()}" />
 <table class="listing" width="100%">
 <tr valign="top">
 	<td width="5%">&nbsp;</td>
@@ -28,7 +28,7 @@
 {foreach from=$submissionFiles item=submissionFile}
 <tr valign="top">
 	<td><input type="checkbox" name="selectedFiles[]" value="{$submissionFile->getFileId()}" /></td>
-	<td><a href="{url op="download" path=$submission->getMonographId()|to_array:$submissionFile->getFileId():$submissionFile->getRevision()}">{$submissionFile->getFileName()|escape}</a></td>
+	<td><a href="{url op="download" path=$submission->getId()|to_array:$submissionFile->getFileId():$submissionFile->getRevision()}">{$submissionFile->getFileName()|escape}</a></td>
 	<td>{icon name="comment" disabled="disabled"}</td>
 	<td>
 		{assign var="assocObject" value=$submissionFile->getAssocObject()}

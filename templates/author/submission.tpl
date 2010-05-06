@@ -9,7 +9,7 @@
  * $Id$
  *}
 {strip}
-{translate|assign:"pageTitleTranslated" key="submission.page.$pageToDisplay" id=$submission->getMonographId()}
+{translate|assign:"pageTitleTranslated" key="submission.page.$pageToDisplay" id=$submission->getId()}
 {assign var="pageCrumbTitle" value="submission.crumb.$pageToDisplay"}
 {include file="common/header.tpl"}
 {/strip}
@@ -18,13 +18,13 @@
 
 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 	<li{if ($pageToDisplay == "submissionSummary")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-		<a href="{url op="submission" path=$submission->getMonographId()}">{translate key="submission.summary"}</a>
+		<a href="{url op="submission" path=$submission->getId()}">{translate key="submission.summary"}</a>
 	</li>
 	<li{if ($pageToDisplay == "submissionReview")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-		<a href="{url op="submissionReview" path=$submission->getMonographId()}">{translate key="submission.review"}</a>
+		<a href="{url op="submissionReview" path=$submission->getId()}">{translate key="submission.review"}</a>
 	</li>
 	<li{if ($pageToDisplay == "submissionEditing")} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-		<a href="{url op="submissionEditing" path=$submission->getMonographId()}">{translate key="submission.editing"}</a>
+		<a href="{url op="submissionEditing" path=$submission->getId()}">{translate key="submission.editing"}</a>
 	</li>
 </ul>
 

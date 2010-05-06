@@ -40,11 +40,11 @@
 	{assign var="highlightClass" value=$submission->getHighlightClass()}
 	{assign var="fastTracked" value=$submission->getFastTracked()}
 	<tr valign="top"{if $highlightClass || $fastTracked} class="{$highlightClass|escape} {if $fastTracked}fastTracked{/if}"{/if}>
-		<td>{$submission->getMonographId()}</td>
+		<td>{$submission->getId()}</td>
 		<td>{$submission->getDateSubmitted()|date_format:$dateFormatTrunc}</td>
 		<td>{$submission->getSeriesAbbrev()|escape}</td>
 		<td>{$submission->getAuthorString(true)|truncate:40:"..."|escape}</td>
-		<td><a href="{url op="submissionReview" path=$submission->getMonographId()}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:40:"..."}</a></td>
+		<td><a href="{url op="submissionReview" path=$submission->getId()}" class="action">{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:40:"..."}</a></td>
 		<td>
 			<table width="100%">
 			{foreach from=$submission->getReviewAssignments($submission->getCurrentReviewType()) item=reviewAssignments}

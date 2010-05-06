@@ -79,7 +79,7 @@ class ProofreaderAction extends Action {
 				if (!isset($receiver)) return true;
 				$receiverName = $receiver->getFullName();
 				$receiverAddress = $receiver->getEmail();
-				$email->ccAssignedEditingSeriesArrangmentEditors($submission->getMonographId());
+				$email->ccAssignedEditingSeriesArrangmentEditors($submission->getId());
 				$addParamArray = array(
 					'authorName' => $receiver->getFullName(),
 					'authorUsername' => $receiver->getUsername(),
@@ -98,7 +98,7 @@ class ProofreaderAction extends Action {
 				if (!isset($receiver)) return true;
 				$receiverName = $receiver->getFullName();
 				$receiverAddress = $receiver->getEmail();
-				$email->ccAssignedEditingSeriesArrangmentEditors($submission->getMonographId());
+				$email->ccAssignedEditingSeriesArrangmentEditors($submission->getId());
 				$addParamArray = array(
 					'authorName' => $receiver->getFullName(),
 					'editorialContactSignature' => $user->getContactSignature()
@@ -167,7 +167,7 @@ class ProofreaderAction extends Action {
 				if (!isset($receiver)) return true;
 				$receiverName = $receiver->getFullName();
 				$receiverAddress = $receiver->getEmail();
-				$email->ccAssignedEditingSeriesArrangmentEditors($submission->getMonographId());
+				$email->ccAssignedEditingSeriesArrangmentEditors($submission->getId());
 
 				$addParamArray = array(
 					'proofreaderName' => $receiverName,
@@ -188,7 +188,7 @@ class ProofreaderAction extends Action {
 				if (!isset($receiver)) return true;
 				$receiverName = $receiver->getFullName();
 				$receiverAddress = $receiver->getEmail();
-				$email->ccAssignedEditingSeriesArrangmentEditors($submission->getMonographId());
+				$email->ccAssignedEditingSeriesArrangmentEditors($submission->getId());
 
 				$addParamArray = array(
 					'proofreaderName' => $receiverName,
@@ -245,7 +245,7 @@ class ProofreaderAction extends Action {
 				if (!isset($receiver)) return true;
 				$receiverName = $receiver->getFullName();
 				$receiverAddress = $receiver->getEmail();
-				$email->ccAssignedEditingSeriesArrangmentEditors($submission->getMonographId());
+				$email->ccAssignedEditingSeriesArrangmentEditors($submission->getId());
 
 				$addParamArray = array(
 					'layoutEditorName' => $receiverName,
@@ -274,7 +274,7 @@ class ProofreaderAction extends Action {
 				if (!isset($receiver)) return true;
 				$receiverName = $receiver->getFullName();
 				$receiverAddress = $receiver->getEmail();
-				$email->ccAssignedEditingSeriesArrangmentEditors($submission->getMonographId());
+				$email->ccAssignedEditingSeriesArrangmentEditors($submission->getId());
 
 				$addParamArray = array(
 					'layoutEditorName' => $receiverName,
@@ -373,7 +373,7 @@ class ProofreaderAction extends Action {
 	 */
 	function proofreadingUnderway(&$submission, $signoffType) {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoff = $signoffDao->build($signoffType, ASSOC_TYPE_MONOGRAPH, $submission->getMonographId());
+		$signoff = $signoffDao->build($signoffType, ASSOC_TYPE_MONOGRAPH, $submission->getId());
 
 		if (!$signoff->getDateUnderway() && $signoff->getDateNotified() && !HookRegistry::call('ProofreaderAction::proofreadingUnderway', array(&$submission, &$signoffType))) {
 			$dateUnderway = Core::getCurrentDate();
@@ -407,7 +407,7 @@ class ProofreaderAction extends Action {
 		$result = false;
 		if (!HookRegistry::call('ProofreaderAction::downloadProofreaderFile', array(&$submission, &$fileId, &$revision, &$canDownload, &$result))) {
 			if ($canDownload) {
-				return Action::downloadFile($submission->getMonographId(), $fileId, $revision);
+				return Action::downloadFile($submission->getId(), $fileId, $revision);
 			} else {
 				return false;
 			}

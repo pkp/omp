@@ -33,7 +33,7 @@ class EditorDecisionCommentForm extends CommentForm {
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageTitle', 'submission.comments.editorAuthorCorrespondence');
-		$templateMgr->assign('monographId', $this->monograph->getMonographId());
+		$templateMgr->assign('monographId', $this->monograph->getId());
 		$templateMgr->assign('commentAction', 'postEditorDecisionComment');
 		$templateMgr->assign('hiddenFormParams', 
 			array(

@@ -9,12 +9,12 @@
  *}
 {if $roleId == $smarty.const.ROLE_ID_AUTHOR}
 	{if $submission->getSubmissionProgress() == 0}
-		{url|assign:submissionUrl router=$smarty.const.ROUTE_PAGE page="author" op="submission" path=$submission->getMonographId()}
+		{url|assign:submissionUrl router=$smarty.const.ROUTE_PAGE page="author" op="submission" path=$submission->getId()}
 	{else}
-		{url|assign:submissionUrl router=$smarty.const.ROUTE_PAGE page="author" op="submit" path=$submission->getSubmissionProgress() monographId=$submission->getMonographId()}	
+		{url|assign:submissionUrl router=$smarty.const.ROUTE_PAGE page="author" op="submit" path=$submission->getSubmissionProgress() monographId=$submission->getId()}	
 	{/if}
 {elseif $roleId == $smarty.const.ROLE_ID_EDITOR}
-	{url|assign:submissionUrl router=$smarty.const.ROUTE_PAGE page="editor" op="submission" path=$submission->getMonographId()}
+	{url|assign:submissionUrl router=$smarty.const.ROUTE_PAGE page="editor" op="submission" path=$submission->getId()}
 {elseif $roleId == $smarty.const.ROLE_ID_REVIEWER}
 	{url|assign:submissionUrl router=$smarty.const.ROUTE_PAGE page="reviewer" op="submission" path=$submission->getReviewId()}
 {/if}

@@ -24,7 +24,7 @@
 <tr>
 	<td>
 		{if $layoutFile}
-			<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$layoutFile->getFileId()}" class="file">{$layoutFile->getFileName()|escape}</a>&nbsp;&nbsp;{$layoutFile->getDateModified()|date_format:$dateFormatShort}
+			<a href="{url op="downloadFile" path=$submission->getId()|to_array:$layoutFile->getFileId()}" class="file">{$layoutFile->getFileName()|escape}</a>&nbsp;&nbsp;{$layoutFile->getDateModified()|date_format:$dateFormatShort}
 		{else}
 			{translate key="common.none"}
 		{/if}
@@ -61,7 +61,7 @@
 		<td>{$productionAssignment->getLabel()|escape}</td>
 		<td>{icon name="comment" disabled="disable"}</td>
 		<td>	{if !$designSignoff->getDateCompleted()}
-				<a href="{url op="completeDesign" monographId=$submission->getMonographId() assignmentId=$productionAssignment->getId()}">{translate key="common.complete"}</a>
+				<a href="{url op="completeDesign" monographId=$submission->getId() assignmentId=$productionAssignment->getId()}">{translate key="common.complete"}</a>
 			{else}
 				{translate key="common.complete"}
 				{$designSignoff->getDateCompleted()|date_format:$dateFormatShort|default:""}
@@ -72,13 +72,13 @@
 	<tr valign="top">
 		<td>&nbsp;</td>
 		<td>
-			<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$galley->getFileId()}">{$galley->getFileName()|escape}</a>
+			<a href="{url op="downloadFile" path=$submission->getId()|to_array:$galley->getFileId()}">{$galley->getFileName()|escape}</a>
 		</td>
 		<td>{icon name="comment" disabled="disable"}</td>
 		<td>
 			{if !$designSignoff->getDateAcknowledged()}
-			<a href="{url op="orderGalley" d=u monographId=$submission->getMonographId() galleyId=$galley->getId()}" class="plain">&uarr;</a> <a href="{url op="orderGalley" d=d monographId=$submission->getMonographId() galleyId=$galley->getId()}" class="plain">&darr;</a>&nbsp;|&nbsp;<a href="{url op="editGalley" path=$submission->getMonographId()|to_array:$galley->getId()}" class="action">{translate key="common.edit"}</a>
-			&nbsp;|&nbsp;<a href="{url op="deleteGalley" path=$submission->getMonographId()|to_array:$galley->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.layout.confirmDeleteGalley"}')" class="action">{translate key="common.delete"}</a>
+			<a href="{url op="orderGalley" d=u monographId=$submission->getId() galleyId=$galley->getId()}" class="plain">&uarr;</a> <a href="{url op="orderGalley" d=d monographId=$submission->getId() galleyId=$galley->getId()}" class="plain">&darr;</a>&nbsp;|&nbsp;<a href="{url op="editGalley" path=$submission->getId()|to_array:$galley->getId()}" class="action">{translate key="common.edit"}</a>
+			&nbsp;|&nbsp;<a href="{url op="deleteGalley" path=$submission->getId()|to_array:$galley->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.layout.confirmDeleteGalley"}')" class="action">{translate key="common.delete"}</a>
 			{else}&nbsp;{/if}
 		</td>
 		<td></td>
@@ -97,9 +97,9 @@
 {translate key="submission.layout.layoutComments"}
 {if $submission->getMostRecentLayoutComment()}
 	{assign var="comment" value=$submission->getMostRecentLayoutComment()}
-	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getMonographId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a>{$comment->getDatePosted()|date_format:$dateFormatShort}
+	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a>{$comment->getDatePosted()|date_format:$dateFormatShort}
 {else}
-	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getMonographId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
+	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
 {/if}
 
 {if $currentPress->getLocalizedSetting('layoutInstructions')}
@@ -117,7 +117,7 @@
 
 <br />
 
-<form action="{url op="uploadGalley" path=$submission->getMonographId()}" method="post" enctype="multipart/form-data">
+<form action="{url op="uploadGalley" path=$submission->getId()}" method="post" enctype="multipart/form-data">
 <div class="newItemContainer">
 	<h3>{translate key="production.uploadGalley"}</h3>
 	<p>{translate key="production.uploadGalley.description"}</p>

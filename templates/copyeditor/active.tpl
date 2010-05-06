@@ -23,7 +23,7 @@
 
 {iterate from=submissions item=submission}
 	{assign var="copyeditingInitialSignoff" value=$submission->getSignoff('SIGNOFF_COPYEDITING_INITIAL')}
-	{assign var="monographId" value=$submission->getMonographId()}
+	{assign var="monographId" value=$submission->getId()}
 	<tr valign="top">
 		<td>{$monographId|escape}</td>
 		<td>{$copyeditingInitialSignoff->getDateNotified()|date_format:$dateFormatTrunc}</td>

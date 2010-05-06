@@ -15,7 +15,7 @@
 	<tr>
 		<td width="20%" class="label">{translate key="monograph.authors"}</td>
 		<td width="80%">
-			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getAuthorEmails() subject=$submission->getLocalizedTitle() monographId=$submission->getMonographId()}
+			{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$submission->getAuthorEmails() subject=$submission->getLocalizedTitle() monographId=$submission->getId()}
 			{$submission->getAuthorString()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
@@ -33,7 +33,7 @@
 			{assign var=editAssignments value=$submission->getEditAssignments()}
 			{foreach from=$editAssignments item=editAssignment}
 				{assign var=emailString value=$editAssignment->getEditorFullName()|concat:" <":$editAssignment->getEditorEmail():">"}
-				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags monographId=$submission->getMonographId()}
+				{url|assign:"url" page="user" op="email" redirectUrl=$currentUrl to=$emailString|to_array subject=$submission->getLocalizedTitle|strip_tags monographId=$submission->getId()}
 				{$editAssignment->getEditorFullName()|escape} {icon name="mail" url=$url}
 				{if !$editAssignment->getCanEdit() || !$editAssignment->getCanReview()}
 					{if $editAssignment->getCanEdit()}
@@ -52,7 +52,7 @@
 		<td class="label" width="20%">{translate key="submission.reviewVersion"}</td>
 		{if $reviewFile}
 			<td width="80%" class="value">
-				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;
+				<a href="{url op="downloadFile" path=$submission->getId()|to_array:$reviewFile->getFileId():$reviewFile->getRevision()}" class="file">{$reviewFile->getFileName()|escape}</a>&nbsp;&nbsp;
 				{$reviewFile->getDateModified()|date_format:$dateFormatShort}{if $currentPress->getSetting('showEnsuringLink')}&nbsp;&nbsp;&nbsp;&nbsp;<a class="action" href="javascript:openHelp('{get_help_id key="editorial.sectionEditorsRole.review.blindPeerReview" url="true"}')">{translate key="reviewer.monograph.ensuringBlindReview"}</a>{/if}
 			</td>
 		{else}
@@ -64,7 +64,7 @@
 		<td>
 			<form method="post" action="{url op="uploadReviewVersion"}" enctype="multipart/form-data">
 				{translate key="editor.monograph.uploadReviewVersion"}
-				<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
+				<input type="hidden" name="monographId" value="{$submission->getId()}" />
 				{fbvFileInput id="upload" submit="submit"}
 			</form>
 		</td>
@@ -81,8 +81,8 @@
 		<td width="22%"><h3>{translate key="workflow.review.internalReview"}</h3></td>
 		<td width="14%"><h4>{translate key="submission.round" round=$round}</h4></td>
 		<td width="64%" class="nowrap">
-			<a href="{url op="selectReviewer" path=$submission->getMonographId()}" class="action">{translate key="editor.monograph.selectReviewer"}</a>&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="{url op="submissionRegrets" path=$submission->getMonographId()}" class="action">{translate|escape key="editor.regrets.link"}</a>
+			<a href="{url op="selectReviewer" path=$submission->getId()}" class="action">{translate key="editor.monograph.selectReviewer"}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			<a href="{url op="submissionRegrets" path=$submission->getId()}" class="action">{translate|escape key="editor.regrets.link"}</a>
 		</td>
 	</tr>
 </table>

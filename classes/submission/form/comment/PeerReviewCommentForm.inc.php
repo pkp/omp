@@ -40,7 +40,7 @@ class PeerReviewCommentForm extends CommentForm {
 	function display() {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($this->reviewId);
-		$reviewLetters =& $reviewAssignmentDao->getReviewIndexesForRound($this->monograph->getMonographId(), $this->monograph->getCurrentReviewType(), $this->monograph->getCurrentRound());
+		$reviewLetters =& $reviewAssignmentDao->getReviewIndexesForRound($this->monograph->getId(), $this->monograph->getCurrentReviewType(), $this->monograph->getCurrentRound());
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('commentType', 'peerReview');
@@ -54,7 +54,7 @@ class PeerReviewCommentForm extends CommentForm {
 		$templateMgr->assign('reviewer', ROLE_ID_REVIEWER);
 		$templateMgr->assign('hiddenFormParams', 
 			array(
-				'monographId' => $this->monograph->getMonographId(),
+				'monographId' => $this->monograph->getId(),
 				'reviewId' => $this->reviewId
 			)
 		);
@@ -88,7 +88,7 @@ class PeerReviewCommentForm extends CommentForm {
 		$comment = new MonographComment();
 		$comment->setCommentType($this->commentType);
 		$comment->setRoleId($this->roleId);
-		$comment->setMonographId($this->monograph->getMonographId());
+		$comment->setMonographId($this->monograph->getId());
 		$comment->setAssocId($this->assocId);
 		$comment->setAuthorId($this->user->getId());
 		$comment->setCommentTitle($this->getData('commentTitle'));

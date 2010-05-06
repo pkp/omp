@@ -41,8 +41,8 @@
 {/literal}
 
 <ul class="menu">
-	<li><a href="{url op="submissionEventLog" path=$submission->getMonographId()}">{translate key="submission.history.submissionEventLog"}</a></li>
-	<li><a href="{url op="submissionEmailLog" path=$submission->getMonographId()}">{translate key="submission.history.submissionEmailLog"}</a></li>
+	<li><a href="{url op="submissionEventLog" path=$submission->getId()}">{translate key="submission.history.submissionEventLog"}</a></li>
+	<li><a href="{url op="submissionEmailLog" path=$submission->getId()}">{translate key="submission.history.submissionEmailLog"}</a></li>
 </ul>
 
 {include file="sectionEditor/submission/summary.tpl"}
@@ -66,7 +66,7 @@
 		<td>{$logEntry->getLogLevel()}</td>
 		<td>
 			{assign var=emailString value=$logEntry->getUserFullName()|concat:" <":$logEntry->getUserEmail():">"}
-			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$logEntry->getEventTitle()|translate monographId=$submission->getMonographId()}
+			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$logEntry->getEventTitle()|translate monographId=$submission->getId()}
 			{$logEntry->getUserFullName()|escape} {icon name="mail" url=$url}
 		</td>
 		<td>
@@ -74,7 +74,7 @@
 			<br />
 			{$logEntry->getMessage()|strip_unsafe_html|truncate:60:"..."}
 		</td>
-		<td align="right">{if $logEntry->getAssocType()}<a href="{url op="submissionEventLogType" path=$submission->getMonographId()|to_array:$logEntry->getAssocType():$logEntry->getAssocId()}" class="action">{translate key="common.related"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="submissionEventLog" path=$submission->getMonographId()|to_array:$logEntry->getLogId()}" class="action">{translate key="common.view"}</a>{if $isEditor}&nbsp;|&nbsp;<a href="{url op="clearSubmissionEventLog" path=$submission->getMonographId()|to_array:$logEntry->getLogId()}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmDeleteLogEntry"}')">{translate key="common.delete"}</a>{/if}</td>
+		<td align="right">{if $logEntry->getAssocType()}<a href="{url op="submissionEventLogType" path=$submission->getId()|to_array:$logEntry->getAssocType():$logEntry->getAssocId()}" class="action">{translate key="common.related"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="submissionEventLog" path=$submission->getId()|to_array:$logEntry->getLogId()}" class="action">{translate key="common.view"}</a>{if $isEditor}&nbsp;|&nbsp;<a href="{url op="clearSubmissionEventLog" path=$submission->getId()|to_array:$logEntry->getLogId()}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmDeleteLogEntry"}')">{translate key="common.delete"}</a>{/if}</td>
 	</tr>
 	<tr valign="top">
 		<td colspan="5" class="{if $eventLogEntries->eof()}end{/if}separator">&nbsp;</td>
@@ -90,8 +90,8 @@
 {/if}
 </table>
 
-<a href="{url op="submissionEventLog" path=$submission->getMonographId()}" class="action">{translate key="submission.history.viewLog"}</a>{if $isEditor} |
-<a href="{url op="clearSubmissionEventLog" path=$submission->getMonographId()}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmClearLog"}')">{translate key="submission.history.clearLog"}</a>{/if}
+<a href="{url op="submissionEventLog" path=$submission->getId()}" class="action">{translate key="submission.history.viewLog"}</a>{if $isEditor} |
+<a href="{url op="clearSubmissionEventLog" path=$submission->getId()}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="submission.event.confirmClearLog"}')">{translate key="submission.history.clearLog"}</a>{/if}
 </div>
 <br /><br />
 
@@ -115,7 +115,7 @@
 		<td>{$logEntry->getFrom()|truncate:40:"..."|escape}</td>
 		<td>{$logEntry->getRecipients()|truncate:40:"..."|escape}</td>
 		<td>{$logEntry->getSubject()|truncate:60:"..."|escape}</td>
-		<td>{if $logEntry->getAssocType()}<a href="{url op="submissionEmailLogType" path=$submission->getMonographId()|to_array:$logEntry->getAssocType():$logEntry->getAssocId()}" class="action">{translate key="common.related"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="submissionEmailLog" path=$submission->getMonographId()|to_array:$logEntry->getLogId()}" class="action">{translate key="common.view"}</a>{if $isEditor}&nbsp;|&nbsp;<a href="{url op="clearSubmissionEmailLog" path=$submission->getMonographId()|to_array:$logEntry->getLogId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.email.confirmDeleteLogEntry"}')" class="action">{translate key="common.delete"}</a>{/if}</td>
+		<td>{if $logEntry->getAssocType()}<a href="{url op="submissionEmailLogType" path=$submission->getId()|to_array:$logEntry->getAssocType():$logEntry->getAssocId()}" class="action">{translate key="common.related"}</a>&nbsp;|&nbsp;{/if}<a href="{url op="submissionEmailLog" path=$submission->getId()|to_array:$logEntry->getLogId()}" class="action">{translate key="common.view"}</a>{if $isEditor}&nbsp;|&nbsp;<a href="{url op="clearSubmissionEmailLog" path=$submission->getId()|to_array:$logEntry->getLogId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.email.confirmDeleteLogEntry"}')" class="action">{translate key="common.delete"}</a>{/if}</td>
 	</tr>
 	<tr valign="top">
 		<td colspan="5" class="{if $emailLogEntries->eof()}end{/if}separator">&nbsp;</td>
@@ -131,8 +131,8 @@
 {/if}
 </table>
 
-<a class="action" href="{url op="submissionEmailLog" path=$submission->getMonographId()}">{translate key="submission.history.viewLog"}</a>{if $isEditor} |
-<a class="action" href="{url op="clearsubmissionEmailLog" path=$submission->getMonographId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.email.confirmClearLog"}')">{translate key="submission.history.clearLog"}</a>{/if}
+<a class="action" href="{url op="submissionEmailLog" path=$submission->getId()}">{translate key="submission.history.viewLog"}</a>{if $isEditor} |
+<a class="action" href="{url op="clearsubmissionEmailLog" path=$submission->getId()}" onclick="return confirm('{translate|escape:"jsparam" key="submission.email.confirmClearLog"}')">{translate key="submission.history.clearLog"}</a>{/if}
 </div>
 
 {include file="common/footer.tpl"}

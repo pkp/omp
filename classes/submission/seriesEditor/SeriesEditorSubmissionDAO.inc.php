@@ -198,7 +198,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 								$this->datetimeToDB($editorDecision['dateDecided'])
 							),
 							array(
-								$seriesEditorSubmission->getMonographId(),
+								$seriesEditorSubmission->getId(),
 								$reviewType,
 								$i, 
 								$editorDecision['editorId'], 

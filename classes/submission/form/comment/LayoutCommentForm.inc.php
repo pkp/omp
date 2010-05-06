@@ -37,7 +37,7 @@ class LayoutCommentForm extends CommentForm {
 		$templateMgr->assign('commentType', 'layout');
 		$templateMgr->assign('hiddenFormParams', 
 			array(
-				'monographId' => $this->monograph->getMonographId()
+				'monographId' => $this->monograph->getId()
 			)
 		);
 
@@ -75,7 +75,7 @@ class LayoutCommentForm extends CommentForm {
 		if ($this->roleId == ROLE_ID_EDITOR || $this->roleId == ROLE_ID_SERIES_EDITOR) {
 			// Then add layout editor
 			$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($this->monograph->getMonographId());
+			$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($this->monograph->getId());
 
 			// Check to ensure that there is a layout editor assigned to this monograph.
 			if ($layoutAssignment != null && $layoutAssignment->getEditorId() > 0) {
@@ -86,7 +86,7 @@ class LayoutCommentForm extends CommentForm {
 		} else {
 			// Then add editor
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-			$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getMonographId());
+			$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getId());
 			$editorAddresses = array();
 			while (!$editAssignments->eof()) {
 				$editAssignment =& $editAssignments->next();

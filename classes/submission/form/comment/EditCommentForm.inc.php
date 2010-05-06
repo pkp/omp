@@ -124,7 +124,7 @@ class EditCommentForm extends Form {
 
 		// Get editors for monograph
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getMonographId());
+		$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getId());
 		$editAssignments =& $editAssignments->toArray();
 		$editorAddresses = array();
 		foreach ($editAssignments as $editAssignment) {
@@ -143,7 +143,7 @@ class EditCommentForm extends Form {
 
 		// Get proofreader
 		$proofAssignmentDao =& DAORegistry::getDAO('ProofAssignmentDAO');
-		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($this->monograph->getMonographId());
+		$proofAssignment =& $proofAssignmentDao->getProofAssignmentByMonographId($this->monograph->getId());
 		if ($proofAssignment != null && $proofAssignment->getProofreaderId() > 0) {
 			$proofreader =& $userDao->getUser($proofAssignment->getProofreaderId());
 		} else {
@@ -152,7 +152,7 @@ class EditCommentForm extends Form {
 
 		// Get layout editor
 		$layoutAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-		$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($this->monograph->getMonographId());
+		$layoutAssignment =& $layoutAssignmentDao->getLayoutAssignmentByMonographId($this->monograph->getId());
 		if ($layoutAssignment != null && $layoutAssignment->getEditorId() > 0) {
 			$layoutEditor =& $userDao->getUser($layoutAssignment->getEditorId());
 		} else {
@@ -161,7 +161,7 @@ class EditCommentForm extends Form {
 
 		// Get copyeditor
 		$copyAssignmentDao =& DAORegistry::getDAO('CopyAssignmentDAO');
-		$copyAssignment =& $copyAssignmentDao->getCopyAssignmentByMonographId($this->monograph->getMonographId());
+		$copyAssignment =& $copyAssignmentDao->getCopyAssignmentByMonographId($this->monograph->getId());
 		if ($copyAssignment != null && $copyAssignment->getCopyeditorId() > 0) {
 			$copyeditor =& $userDao->getUser($copyAssignment->getCopyeditorId());
 		} else {

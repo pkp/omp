@@ -9,7 +9,7 @@
  * $Id$
  *}
 {strip}
-{translate|assign:"pageTitleTranslated" key="submission.page.$pageToDisplay" id=$submission->getMonographId()}
+{translate|assign:"pageTitleTranslated" key="submission.page.$pageToDisplay" id=$submission->getId()}
 {assign var="pageCrumbTitle" value="submission.crumb.$pageToDisplay"}
 {include file="common/header.tpl"}
 {/strip}

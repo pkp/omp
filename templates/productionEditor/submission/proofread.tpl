@@ -19,7 +19,7 @@
 	<tr>
 		<td width="20%" class="label">{translate key="user.role.proofreader"}</td>
 		{if $proofSignoff->getUserId()}<td class="value" width="20%">{$proofreader->getFullName()|escape}</td>{/if}
-		<td class="value"><a href="{url op="selectProofreader" path=$submission->getMonographId()}" class="action">{translate key="editor.monograph.selectProofreader"}</a></td>
+		<td class="value"><a href="{url op="selectProofreader" path=$submission->getId()}" class="action">{translate key="editor.monograph.selectProofreader"}</a></td>
 	</tr>
 </table>
 {/if}
@@ -37,7 +37,7 @@
 		<td width="26%">{translate key="user.role.author"}</td>
 		{assign var="authorProofreadSignoff" value=$submission->getSignoff('SIGNOFF_PROOFREADING_AUTHOR')}
 		<td>
-			{url|assign:"url" op="notifyAuthorProofreader" monographId=$submission->getMonographId()}
+			{url|assign:"url" op="notifyAuthorProofreader" monographId=$submission->getId()}
 			{if $authorProofreadSignoff->getDateUnderway()}
 				{translate|escape:"javascript"|assign:"confirmText" key="seriesEditor.author.confirmRenotify"}
 				{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
@@ -55,7 +55,7 @@
 		</td>
 		<td>
 			{if $authorProofreadSignoff->getDateCompleted() && !$authorProofreadSignoff->getDateAcknowledged()}
-				{url|assign:"url" op="thankAuthorProofreader" monographId=$submission->getMonographId()}
+				{url|assign:"url" op="thankAuthorProofreader" monographId=$submission->getId()}
 				{icon name="mail" url=$url}
 			{else}
 				{icon name="mail" disabled="disable"}
@@ -70,7 +70,7 @@
 		<td>
 			{if $useProofreaders}
 				{if $proofSignoff->getUserId() && $authorProofreadSignoff->getDateCompleted()}
-					{url|assign:"url" op="notifyProofreader" monographId=$submission->getMonographId()}
+					{url|assign:"url" op="notifyProofreader" monographId=$submission->getId()}
 					{if $proofreaderProofreadSignoff->getDateUnderway()}
 						{translate|escape:"javascript"|assign:"confirmText" key="seriesEditor.proofreader.confirmRenotify"}
 						{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
@@ -82,7 +82,7 @@
 				{/if}
 			{else}
 				{if !$proofreaderProofreadSignoff->getDateNotified()}
-					<a href="{url op="editorInitiateProofreader" monographId=$submission->getMonographId()}" class="action">{translate key="common.initiate"}</a>
+					<a href="{url op="editorInitiateProofreader" monographId=$submission->getId()}" class="action">{translate key="common.initiate"}</a>
 				{/if}
 			{/if}
 			{$proofreaderProofreadSignoff->getDateNotified()|date_format:$dateFormatShort|default:""}
@@ -96,7 +96,7 @@
 		</td>
 		<td>
 			{if !$useProofreaders && !$proofreaderProofreadSignoff->getDateCompleted() && $proofreaderProofreadSignoff->getDateNotified()}
-				<a href="{url op="editorCompleteProofreader" monographId=$submission->getMonographId()}" class="action">{translate key="common.complete"}</a>
+				<a href="{url op="editorCompleteProofreader" monographId=$submission->getId()}" class="action">{translate key="common.complete"}</a>
 			{else}
 				{$proofreaderProofreadSignoff->getDateCompleted()|date_format:$dateFormatShort|default:"&mdash;"}
 			{/if}
@@ -104,7 +104,7 @@
 		<td>
 			{if $useProofreaders}
 				{if $proofreaderProofreadSignoff->getDateCompleted() && !$proofreaderProofreadSignoff->getDateAcknowledged()}
-					{url|assign:"url" op="thankProofreader" monographId=$submission->getMonographId()}
+					{url|assign:"url" op="thankProofreader" monographId=$submission->getId()}
 					{icon name="mail" url=$url}
 				{else}
 					{icon name="mail" disabled="disable"}
@@ -123,7 +123,7 @@
 		<td>
 			{if $useLayoutEditors}
 				{if $layoutSignoff->getUserId() && $proofreaderProofreadSignoff->getDateCompleted()}
-					{url|assign:"url" op="notifyLayoutEditorProofreader" monographId=$submission->getMonographId()}
+					{url|assign:"url" op="notifyLayoutEditorProofreader" monographId=$submission->getId()}
 					{if $layoutEditorProofreadSignoff->getDateUnderway()}
 						{translate|escape:"javascript"|assign:"confirmText" key="seriesEditor.layout.confirmRenotify"}
 						{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
@@ -135,7 +135,7 @@
 				{/if}
 			{else}
 				{if !$layoutEditorProofreadSignoff->getDateNotified()}
-					<a href="{url op="editorInitiateLayoutEditor" monographId=$submission->getMonographId()}" class="action">{translate key="common.initiate"}</a>
+					<a href="{url op="editorInitiateLayoutEditor" monographId=$submission->getId()}" class="action">{translate key="common.initiate"}</a>
 				{/if}
 			{/if}
 				{$layoutEditorProofreadSignoff->getDateNotified()|date_format:$dateFormatShort|default:""}
@@ -153,7 +153,7 @@
 			{elseif $layoutEditorProofreadSignoff->getDateCompleted()}
 				{$layoutEditorProofreadSignoff->getDateCompleted()|date_format:$dateFormatShort}
 			{elseif $layoutEditorProofreadSignoff->getDateNotified()}
-				<a href="{url op="editorCompleteLayoutEditor" monographId=$submission->getMonographId()}" class="action">{translate key="common.complete"}</a>
+				<a href="{url op="editorCompleteLayoutEditor" monographId=$submission->getId()}" class="action">{translate key="common.complete"}</a>
 			{else}
 				&mdash;
 			{/if}
@@ -161,7 +161,7 @@
 		<td>
 			{if $useLayoutEditors}
 				{if $layoutEditorProofreadSignoff->getDateCompleted() && !$layoutEditorProofreadSignoff->getDateAcknowledged()}
-					{url|assign:"url" op="thankLayoutEditorProofreader" monographId=$submission->getMonographId()}
+					{url|assign:"url" op="thankLayoutEditorProofreader" monographId=$submission->getId()}
 					{icon name="mail" url=$url}
 				{else}
 					{icon name="mail" disabled="disable"}
@@ -180,9 +180,9 @@
 {translate key="submission.proofread.corrections"}
 {if $submission->getMostRecentProofreadComment()}
 	{assign var="comment" value=$submission->getMostRecentProofreadComment()}
-	<a href="javascript:openComments('{url op="viewProofreadComments" path=$submission->getMonographId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a>{$comment->getDatePosted()|date_format:$dateFormatShort}
+	<a href="javascript:openComments('{url op="viewProofreadComments" path=$submission->getId() anchor=$comment->getCommentId()}');" class="icon">{icon name="comment"}</a>{$comment->getDatePosted()|date_format:$dateFormatShort}
 {else}
-	<a href="javascript:openComments('{url op="viewProofreadComments" path=$submission->getMonographId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
+	<a href="javascript:openComments('{url op="viewProofreadComments" path=$submission->getId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
 {/if}
 
 {if $currentPress->getLocalizedSetting('proofInstructions')}

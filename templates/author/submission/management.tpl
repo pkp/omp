@@ -23,7 +23,7 @@
 		<td width="20%" class="label">{translate key="submission.originalFile"}</td>
 		<td width="80%" colspan="2" class="data">
 			{if $submissionFile}
-				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$submissionFile->getFileId():$submissionFile->getRevision()}" class="file">{$submissionFile->getFileName()|escape}</a>&nbsp;&nbsp;{$submissionFile->getDateModified()|date_format:$dateFormatShort}
+				<a href="{url op="downloadFile" path=$submission->getId()|to_array:$submissionFile->getFileId():$submissionFile->getRevision()}" class="file">{$submissionFile->getFileName()|escape}</a>&nbsp;&nbsp;{$submissionFile->getDateModified()|date_format:$dateFormatShort}
 			{else}
 				{translate key="common.none"}
 			{/if}
@@ -34,7 +34,7 @@
 		<td colspan="2" class="value">
 			{assign var="submitter" value=$submission->getUser()}
 			{assign var=emailString value=$submitter->getFullName()|concat:" <":$submitter->getEmail():">"}
-			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getMonographTitle|strip_tags monographId=$submission->getMonographId()}
+			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getMonographTitle|strip_tags monographId=$submission->getId()}
 			{$submitter->getFullName()|escape} {icon name="mail" url=$url}
 		</td>
 	</tr>
@@ -52,7 +52,7 @@
 		<td width="80%" colspan="2" class="data">
 			{foreach from=$editAssignments item=editAssignment}
 				{assign var=emailString value=$editAssignment->getEditorFullName()|concat:" <":$editAssignment->getEditorEmail():">"}
-				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getMonographTitle|strip_tags monographId=$submission->getMonographId()}
+				{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl subject=$submission->getMonographTitle|strip_tags monographId=$submission->getId()}
 				{$editAssignment->getEditorFullName()|escape} {icon name="mail" url=$url}
 				{if !$editAssignment->getCanEdit() || !$editAssignment->getCanReview()}
 					{if $editAssignment->getCanEdit()}

@@ -547,7 +547,7 @@ class ProductionEditorHandler extends Handler {
 		$press =& Request::getPress();
 		$user =& Request::getUser();
 
-//		$artworkCount = $monographFileDao->getArtworkFileCountByMonographId($submission->getMonographId());
+//		$artworkCount = $monographFileDao->getArtworkFileCountByMonographId($submission->getId());
 
 		$productionAssignmentDao =& DAORegistry::getDAO('ProductionAssignmentDAO');
 		$productionAssignmentTypes = $productionAssignmentDao->productionAssignmentTypeToLocaleKey();

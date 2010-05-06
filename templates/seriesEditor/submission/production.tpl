@@ -15,13 +15,13 @@
 	<tr>
 		<td width="20%" class="label">{translate key="user.role.productionEditor"}</td>
 		{if $submission->getUserIdBySignoffType('SIGNOFF_PRODUCTION')}<td width="20%" class="value">{$productionEditor->getFullName()|escape}</td>{/if}
-		<td class="value"><a href="{url op="assignProductionEditor" path=$submission->getMonographId()}" class="action">{translate key="editor.monograph.assignProductionEditor"}</a></td>
+		<td class="value"><a href="{url op="assignProductionEditor" path=$submission->getId()}" class="action">{translate key="editor.monograph.assignProductionEditor"}</a></td>
 	</tr>
 </table>
 {if $productionEditor}
 <table width="100%" class="info">
 	<tr>
-		<td width="28%" colspan="2"><a href="{url op="viewMetadata" path=$submission->getMonographId()}" class="action">{translate key="submission.reviewMetadata"}</a></td>
+		<td width="28%" colspan="2"><a href="{url op="viewMetadata" path=$submission->getId()}" class="action">{translate key="submission.reviewMetadata"}</a></td>
 		<td width="18%" class="heading">{translate key="submission.request"}</td>
 		<td width="18%" class="heading">{translate key="submission.underway"}</td>
 		<td width="18%" class="heading">{translate key="submission.complete"}</td>
@@ -33,7 +33,7 @@
 		<td width="26%">{translate key="submission.production.production"}</td>
 		<td>
 			{if $submission->getUserIdBySignoffType('SIGNOFF_PRODUCTION') && $initialProductionFile}
-				{url|assign:"url" op="notifyProductionEditor" monographId=$submission->getMonographId()}
+				{url|assign:"url" op="notifyProductionEditor" monographId=$submission->getId()}
 				{if $initialCopyeditSignoff->getDateUnderway()}
 					{translate|escape:"javascript"|assign:"confirmText" key="seriesEditor.copyedit.confirmRenotify"}
 					{icon name="mail" onclick="return confirm('$confirmText')" url=$url}
@@ -53,7 +53,7 @@
 		</td>
 		<td>
 			{if $submission->getUserIdBySignoffType('SIGNOFF_PRODUCTION') &&  $productionSignoff->getDateNotified() && !$productionSignoff->getDateAcknowledged()}
-				{url|assign:"url" op="thankProductionEditor" monographId=$submission->getMonographId()}
+				{url|assign:"url" op="thankProductionEditor" monographId=$submission->getId()}
 				{icon name="mail" url=$url}
 			{else}
 				{icon name="mail" disabled="disable"}
@@ -66,7 +66,7 @@
 		<td colspan="5">
 			{translate key="common.file"}:
 			{if $initialProductionFile}
-				<a href="{url op="downloadFile" path=$submission->getMonographId()|to_array:$initialProductionFile->getFileId():$initialProductionFile->getRevision()}" class="file">{$initialProductionFile->getFileName()|escape}</a>&nbsp;&nbsp;{$initialProductionFile->getDateModified()|date_format:$dateFormatShort}
+				<a href="{url op="downloadFile" path=$submission->getId()|to_array:$initialProductionFile->getFileId():$initialProductionFile->getRevision()}" class="file">{$initialProductionFile->getFileName()|escape}</a>&nbsp;&nbsp;{$initialProductionFile->getDateModified()|date_format:$dateFormatShort}
 			{else}
 				{translate key="submission.production.mustUploadFileForProduction"}
 			{/if}
@@ -78,7 +78,7 @@
 </table>
 
 <form method="post" action="{url op="uploadProductionVersion"}"  enctype="multipart/form-data">
-	<input type="hidden" name="monographId" value="{$submission->getMonographId()}" />
+	<input type="hidden" name="monographId" value="{$submission->getId()}" />
 	{translate key="submission.uploadFile"}
 	{fbvFileInput id="upload" submit="submit"}
 </form>
