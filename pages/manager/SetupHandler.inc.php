@@ -78,7 +78,7 @@ class SetupHandler extends ManagerHandler {
 			$this->setupTemplate(true);
 
 			$formClass = "PressSetupStep{$step}Form";
-			import("manager.form.setup.$formClass");
+			import("classes.manager.form.setup.$formClass");
 
 			$setupForm = new $formClass();
 			$setupForm->readInputData();
