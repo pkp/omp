@@ -29,7 +29,7 @@
 		<input style="float:right;" type="submit" id="submit" value="{translate key='reviewer.monograph.continueToStepThree'}" class="button" />
 	</p>
 </div>
-
+<br />
 </form>
 </div>
 {include file="common/footer.tpl"}

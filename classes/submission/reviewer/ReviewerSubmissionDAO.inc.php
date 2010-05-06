@@ -147,7 +147,6 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setReviewType($row['review_type']);
 		$reviewerSubmission->setReviewFileId($row['review_file_id']);
 		$reviewerSubmission->setReviewRevision($row['review_revision']);
-		$reviewerSubmission->setMonographId($row['monograph_id']);
 		
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($reviewerSubmission, $row);

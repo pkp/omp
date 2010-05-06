@@ -217,7 +217,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		if (isset($reviewType)) {
 			$reviewRound = $reviewRoundDao->build(
-							$seriesEditorSubmission->getMonographId(), 
+							$seriesEditorSubmission->getId(), 
 							$seriesEditorSubmission->getCurrentReviewType(), 
 							$round == null ? 1 : $round
 						);
@@ -250,9 +250,9 @@ class SeriesEditorSubmissionDAO extends DAO {
 		}
 
 		// Update monograph
-		if ($seriesEditorSubmission->getMonographId()) {
+		if ($seriesEditorSubmission->getId()) {
 
-			$monograph =& $this->monographDao->getMonograph($seriesEditorSubmission->getMonographId());
+			$monograph =& $this->monographDao->getMonograph($seriesEditorSubmission->getId());
 
 			// Only update fields that can actually be edited.
 			$monograph->setSeriesId($seriesEditorSubmission->getSeriesId());
@@ -796,10 +796,10 @@ class SeriesEditorSubmissionDAO extends DAO {
 				LEFT JOIN review_assignments ai ON (ai.reviewer_id = u.user_id AND ai.date_completed IS NULL)
 				LEFT JOIN review_assignments ar ON (ar.reviewer_id = u.user_id AND ar.cancelled = 0 AND ar.submission_id = ? AND ar.review_type = ? AND ar.round = ?)
 				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
-				LEFT JOIN roles r ON (r.user_id = u.user_id)
-			WHERE	u.user_id = r.user_id AND
-				r.press_id = ? AND
-				r.role_id = ? ' . $searchSql . 'GROUP BY u.user_id, u.last_name, ar.review_id' .
+				LEFT JOIN user_user_groups uug ON (uug.user_id = u.user_id)
+				LEFT JOIN user_groups ug ON (ug.user_group_id = uug.user_group_id)
+			WHERE	ug.press_id = ? AND
+				ug.user_group_id = ? ' . $searchSql . 'GROUP BY u.user_id, u.last_name, ar.review_id' .
 			($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
 			$paramArray, $rangeInfo
 		);
@@ -824,29 +824,23 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 * @return array matching Users
 	 */
 	function &getReviewersNotAssignedToMonograph($pressId, $monographId) {
-		$users = array();
 
 		$result =& $this->retrieve(
 			'SELECT	u.*
 			FROM	users u
-				LEFT JOIN roles r ON (r.user_id = u.user_id)
+				LEFT JOIN user_user_groups uug ON (uug.user_id = u.user_id)
+				LEFT JOIN user_groups ug ON (ug.user_group_id = uug.user_group_id)
 				LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id AND a.monograph_id = ?)
-			WHERE	r.press_id = ? AND
-				r.role_id = ? AND
-				m.monograph_id IS NULL
+			WHERE	ug.press_id = ? AND
+				ug.role_id = ? AND
+				a.monograph_id IS NULL
 			ORDER BY last_name, first_name',
 			array($monographId, $pressId, RoleDAO::getRoleIdFromPath('reviewer'))
 		);
 
-		while (!$result->EOF) {
-			$users[] =& $this->userDao->_returnUserFromRowWithData($result->GetRowAssoc(false));
-			$result->moveNext();
-		}
+		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
+		return $returner;
 
-		$result->Close();
-		unset($result);
-
-		return $users;
 	}
 
 	/**

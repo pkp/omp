@@ -93,8 +93,8 @@ class MonographFileManager extends FileManager {
 	 * @param $fileId int
 	 * @return int file ID, is false if failure
 	 */
-	function uploadReviewFile($fileName, $fileId = null) {
-		return $this->handleUpload($fileName, MONOGRAPH_FILE_REVIEW, $fileId);
+	function uploadReviewFile($fileName, $fileId = null, $reviewId = null) {
+		return $this->handleUpload($fileName, MONOGRAPH_FILE_REVIEW, $fileId, null, null, $reviewId);
 	}
 
 	/**
@@ -505,7 +505,7 @@ class MonographFileManager extends FileManager {
 	 * @param $overwrite boolean overwrite all previous revisions of the file (revision number is still incremented)
 	 * @return int the file ID (false if upload failed)
 	 */
-	function handleUpload($fileName, $type, $fileId = null, $overwrite = false, $bookFileTypeId = null) {
+	function handleUpload($fileName, $type, $fileId = null, $overwrite = false, $bookFileTypeId = null, $assocId = null) {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 
 		$typePath = $this->typeToPath($type);
@@ -523,6 +523,10 @@ class MonographFileManager extends FileManager {
 			$monographFile->setFileId($fileId);
 			$monographFile->setDateUploaded(Core::getCurrentDate());
 			$monographFile->setDateModified(Core::getCurrentDate());
+		}
+		
+		if(isset($assocId)) {
+			$monographFile->setAssocId($assocId);
 		}
 
 		$monographFile->setFileType($_FILES[$fileName]['type']);

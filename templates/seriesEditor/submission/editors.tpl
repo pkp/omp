@@ -22,8 +22,7 @@
 		{if $isEditor}<td width="10%">{translate key="common.action"}</td>{/if}
 	</tr>
 	{assign var=acqEdListed value=0}
-	{assign var=editAssignments value=$submission->getEditAssignments()}
-	{foreach from=$editAssignments item=editAssignment name=editAssignments}
+	{iterate from=editAssignments item=editAssignment}
 	{if $editAssignment->getEditorId() == $userId}
 		{assign var=selfAssigned value=1}
 	{/if}
@@ -65,9 +64,7 @@
 				<td><a href="{url op="deleteEditAssignment" path=$editAssignment->getEditId()}" class="action">{translate key="common.delete"}</a></td>
 			{/if}
 		</tr>
-	{foreachelse}
-		<tr><td colspan="{if $isEditor}6{else}5{/if}" class="nodata">{translate key="common.noneAssigned"}</td></tr>
-	{/foreach}
+	{/iterate}
 		<tr><td class="separator" colspan="{if $isEditor}6{else}5{/if}">&nbsp;</td></tr>
 </table>
 {if $isEditor}

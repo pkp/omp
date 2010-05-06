@@ -12,6 +12,7 @@
 <script type="text/javascript">
 	{literal}
 	$(function() {
+		$('.button').button();
 		$('#declineReview').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
 		$("#declineReviewSubmit").click(function() {
 			$('#declineReview').submit();

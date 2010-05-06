@@ -61,7 +61,8 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$this->addColumn(
 			new GridColumn(
 				'dateAssigned',
-				'common.status',
+				'common.assigned',
+				null,
 				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
@@ -70,7 +71,8 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$this->addColumn(
 			new GridColumn(
 				'dateDue',
-				'common.status',
+				'submission.due',
+				null,
 				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
@@ -79,7 +81,8 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$this->addColumn(
 			new GridColumn(
 				'reviewRound',
-				'common.status',
+				'common.round',
+				null,
 				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
@@ -124,13 +127,7 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
 		$submissions = $reviewerSubmissionDao->getReviewerSubmissionsByReviewerId($userId, $pressId, $active);
-		$data = array();
-		while($submission =& $submissions->next()) {
-			$submissionId = $submission->getId();
-			$data[$submissionId] = $submission;
-			unset($submision);
-		}
 
-		return $data;
+		return $submissions;
 	}
 }

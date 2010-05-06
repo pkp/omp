@@ -61,6 +61,9 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $submission);
+		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$editAssignments =& $editAssignmentDao->getByMonographId($monographId);
+		$templateMgr->assign_by_ref('editAssignments', $editAssignments);
 		$templateMgr->assign_by_ref('series', $series);
 		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
 		$templateMgr->assign_by_ref('reviewFile', $submission->getReviewFile());
@@ -442,8 +445,9 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 			}
 
 			$rangeInfo =& Handler::getRangeInfo('reviewers');
-			$reviewers =& $seriesEditorSubmissionDao->getReviewersForMonograph($press->getId(), $monographId, $reviewType, $round, $searchType, $search, $searchMatch, $rangeInfo);
-
+			//$reviewers =& $seriesEditorSubmissionDao->getReviewersForMonograph($press->getId(), $monographId, $reviewType, $round, $searchType, $search, $searchMatch, $rangeInfo);
+			$reviewers =& $seriesEditorSubmissionDao->getReviewersNotAssignedToMonograph($press->getId(), $monographId);
+			
 			$press = Request::getPress();
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 

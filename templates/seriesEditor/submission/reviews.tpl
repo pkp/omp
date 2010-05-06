@@ -7,7 +7,7 @@
 {if not $reviewAssignment->getCancelled() and not $reviewAssignment->getDeclined()}
 	{assign var="reviewIndex" value=$reviewIndexes[$reviewId]}
 
-	<table class="info" width="100%">
+	<table width="100%">
 	<tr>
 		<td colspan="3" class="separator">&nbsp;</td>
 	</tr>
@@ -24,7 +24,7 @@
 	</tr>
 	</table>
 
-	<table width="100%" class="data">
+	<table width="100%">
  	<tr valign="top">
 		<td class="label">{translate key="submission.reviewForm"}</td>
 		<td>
@@ -42,7 +42,7 @@
 	<tr valign="top">
 		<td class="label" width="20%">&nbsp;</td>
 		<td width="80%">
-			<table width="100%" class="info">
+			<table width="100%">
 				<tr>
 					<td class="heading" width="25%">{translate key="submission.request"}</td>
 					<td class="heading" width="25%">{translate key="submission.underway"}</td>
@@ -57,11 +57,8 @@
 							{if !$reviewAssignment->getDateCompleted()}
 								{icon name="mail" url=$reviewUrl}
 							{/if}
-						{elseif $reviewAssignment->getReviewFileId()}
-							{icon name="mail" url=$reviewUrl}
 						{else}
-							{icon name="mail" disabled="disabled" url=$reviewUrl}
-							{assign var=needsReviewFileNote value=1}
+							{icon name="mail" url=$reviewUrl}
 						{/if}
 					</td>
 					<td>
@@ -193,14 +190,6 @@
 					&nbsp;&nbsp;{$reviewAssignment->getDateRated()|date_format:$dateFormatShort}
 				{/if}
 			</form>
-			</td>
-		</tr>
-	{/if}
-	{if $needsReviewFileNote}
-		<tr valign="top">
-			<td>&nbsp;</td>
-			<td>
-				{translate key="submission.review.mustUploadFileForReview"}
 			</td>
 		</tr>
 	{/if}

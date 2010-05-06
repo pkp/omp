@@ -119,11 +119,11 @@ class SeriesEditorAction extends Action {
 
 			$submissionId = $seriesEditorSubmission->getId();
 			$series =& $seriesDao->getById($submissionId, $pressId);
-			if ($series && ($reviewFormId = (int) $series->getReviewFormId())) {
-				if ($reviewFormDao->reviewFormExists($reviewFormId, ASSOC_TYPE_PRESS, $pressId)) {
-					$reviewAssignment->setReviewFormId($reviewFormId);
-				}
-			}
+//			if ($series && ($reviewFormId = (int) $series->getReviewFormId())) {
+//				if ($reviewFormDao->reviewFormExists($reviewFormId, ASSOC_TYPE_PRESS, $pressId)) {
+//					$reviewAssignment->setReviewFormId($reviewFormId);
+//				}
+//			}
 
 			$seriesEditorSubmission->addReviewAssignment($reviewAssignment, $reviewType, $round);
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
@@ -206,7 +206,7 @@ class SeriesEditorAction extends Action {
 			$email->setAddressFieldsEnabled(false);
 		}
 
-		if ($reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId() && $reviewAssignment->getReviewFileId()) {
+		if ($reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getId() && $reviewAssignment->getReviewFileId()) {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return true;
 

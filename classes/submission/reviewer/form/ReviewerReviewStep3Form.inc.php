@@ -70,11 +70,12 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		$press = Request::getPress();
 		
 		$templateMgr->assign_by_ref('submission', $this->reviewerSubmission);
+		$templateMgr->assign_by_ref('press', $press);
 		$templateMgr->assign('step', 3);	
 		
 		$reviewAssignment =& $this->reviewAssignment;
+		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
 		if($reviewAssignment->getReviewFormId()) {
-			$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
 	
 			// Get the review form components
 			$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
@@ -86,7 +87,6 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			$reviewForm =& $reviewFormDao->getReviewForm($reviewAssignment->getReviewFormId(), ASSOC_TYPE_PRESS, $press->getId());
 					
 			$templateMgr->assign_by_ref('reviewForm', $reviewForm);
-			$templateMgr->assign_by_ref('press', $press);
 			$templateMgr->assign('reviewFormElements', $reviewFormElements);
 			$templateMgr->assign('reviewFormResponses', $reviewFormResponses);
 			$templateMgr->assign('isLocked', isset($reviewAssignment) && $reviewAssignment->getDateCompleted() != null);

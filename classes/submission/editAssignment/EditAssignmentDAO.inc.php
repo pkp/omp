@@ -25,11 +25,12 @@ class EditAssignmentDAO extends DAO {
 	 */
 	function &getById($editId) {
 		$result =& $this->retrieve(
-			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, r.role_id AS editor_role_id 
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, ug.role_id AS editor_role_id 
 			FROM monographs a 
 			LEFT JOIN edit_assignments e ON (a.monograph_id = e.monograph_id) 
 			LEFT JOIN users u ON (e.editor_id = u.user_id) 
-			LEFT JOIN roles r ON (r.user_id = e.editor_id AND r.role_id = ' . ROLE_ID_EDITOR . ' AND r.press_id = a.press_id) 
+			LEFT JOIN user_user_groups uug ON (uug.user_id = u.user_id)
+			LEFT JOIN user_groups ug ON (uug.user_group_id = ug.user_group_id AND ug.role_id = ' . ROLE_ID_EDITOR . ' AND ug.press_id = a.press_id) 
 			WHERE e.edit_id = ? AND 
 				a.monograph_id = e.monograph_id',
 			$editId
@@ -53,12 +54,10 @@ class EditAssignmentDAO extends DAO {
 	 */
 	function &getByMonographId($monographId) {
 		$result =& $this->retrieve(
-			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, ug.user_group_id AS editor_role_id 
+			'SELECT e.*, u.first_name, u.last_name, u.email, u.initials, e.can_edit AS editor_role_id 
 			FROM monographs a 
 			LEFT JOIN edit_assignments e ON (a.monograph_id = e.monograph_id) 
 			LEFT JOIN users u ON (e.editor_id = u.user_id) 
-			LEFT JOIN user_user_groups uug ON (uug.user_id = u.user_id)
-			LEFT JOIN user_groups ug ON (uug.user_group_id = ug.user_group_id AND ug.role_id = ' . ROLE_ID_EDITOR . ' AND ug.press_id = a.press_id)
 			WHERE e.monograph_id = ? AND 
 				a.monograph_id = e.monograph_id 
 			ORDER BY e.date_notified ASC',

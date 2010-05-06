@@ -50,7 +50,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 
 		if($step < 4) {
 			$formClass = "ReviewerReviewStep{$step}Form";
-			import("submission.reviewer.form.$formClass");
+			import("classes.submission.reviewer.form.$formClass");
 			
 			$reviewerForm = new $formClass($submission);
 			
@@ -81,7 +81,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$this->setupTemplate(true, $submission->getId(), $reviewId);
 		
 		$formClass = "ReviewerReviewStep{$step}Form";
-		import("submission.reviewer.form.$formClass");
+		import("classes.submission.reviewer.form.$formClass");
 		
 		$reviewerForm = new $formClass($submission);
 		$reviewerForm->readInputData();

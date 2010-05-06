@@ -34,17 +34,14 @@
 <div id="informationCenterNotifyTab">
 	<form name="notifyForm" id="notifyForm" action="{url router=$smarty.const.ROUTE_PAGE page="informationCenter" op="sendNotification" fileId=$fileId}" method="post">
 		{fbvFormArea id="notifyFormArea"}
-			{fbvFormSection title="email.to" for="supportName" required="true"}
+			{fbvFormSection title="email.to" for="notifyUsersContainer" required="true"}
 				{url|assign:notifyUsersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.NotifyUsersListbuilderHandler" op="fetch" fileId=$fileId}
 				{load_url_in_div id="notifyUsersContainer" url=$notifyUsersUrl}
 			{/fbvFormSection}
-			{fbvFormSection title="informationCenter.notify.template" for="supportName" required="true"}
-				{fbvElement type="text" id="supportName" value=$supportName maxlength="60"}
-			{/fbvFormSection}
-			{fbvFormSection title="common.subject" for="supportEmail" required="true"}
+			{fbvFormSection title="informationCenter.notify.template" for="template" required="true"}
 				{fbvSelect id="template" from=$notifyTemplates translate=false}
 			{/fbvFormSection}
-			{fbvFormSection title="informationCenter.notify.message" for="supportPhone" required="true"}
+			{fbvFormSection title="common.subject" for="subject" required="true"}
 				{fbvElement type="text" id="subject" maxlength="255"}
 			{/fbvFormSection}
 			{fbvFormSection title="informationCenter.notify.message" for="supportPhone" required="true"}

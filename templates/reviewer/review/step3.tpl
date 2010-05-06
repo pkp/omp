@@ -79,39 +79,8 @@
 	<br />
 
 	<div id="attachments">
-		<h4>{translate key="email.attachments"}</h4><br />
-		<table class="data" width="100%" style="margin-left:10px;">
-			{foreach from=$submission->getReviewerFileRevisions() item=reviewerFile key=key}
-				{assign var=uploadedFileExists value="1"}
-				<tr valign="top">
-				<td class="label" width="30%">
-					{if $key eq "0"}
-						{translate key="reviewer.monograph.uploadedFile"}
-					{/if}
-				</td>
-				<td class="value" width="70%">
-					<a href="{url op="downloadFile" path=$reviewId|to_array:$monographId:$reviewerFile->getFileId():$reviewerFile->getRevision()}" class="file">{$reviewerFile->getFileName()|escape}</a>
-					{$reviewerFile->getDateModified()|date_format:$dateFormatShort}
-					{if ($submission->getRecommendation() === null || $submission->getRecommendation() === '') && (!$submission->getCancelled())}
-						<a class="action" href="{url op="deleteReviewerVersion" path=$reviewId|to_array:$reviewerFile->getFileId():$reviewerFile->getRevision()}">{translate key="common.delete"}</a>
-					{/if}
-				</td>
-				</tr>
-			{foreachelse}
-				<tr valign="top">
-				<td class="label" width="30%">
-					{translate key="reviewer.monograph.uploadedFile"}
-				</td>
-				<td class="nodata">
-					{translate key="common.none"}
-				</td>
-				</tr>
-			{/foreach}
-		</table>
-		<form method="post" action="{url op="uploadReviewerVersion"}" style="margin-left:10px;" enctype="multipart/form-data">
-			<input type="hidden" name="reviewId" value="{$reviewId|escape}" />
-			{fbvFileInput id="upload" submit="submit"}
-		</form>
+		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.ReviewAttachmentsGridHandler" op="fetchGrid" reviewId=$submission->getReviewId()}
+		{load_url_in_div id="reviewAttachmentsGridContainer" loadMessageId="submission.submissionContributors.form.loadMessage" url="$reviewAttachmentsGridUrl"}
 	</div>
 </div>
 
@@ -123,7 +92,7 @@
 		<input style="float:right;" type="submit" id="submit" value="{translate key='reviewer.monograph.continueToStepFour'}" class="button" />
 	</p>
 </div>
-
+<br />
 </form>
 </div>
 {include file="common/footer.tpl"}

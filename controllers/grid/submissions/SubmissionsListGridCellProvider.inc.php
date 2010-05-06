@@ -39,6 +39,22 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				$title = $element->getLocalizedTitle();
 				if ( empty($title) ) $title = Locale::translate('common.untitled');
 				return array('label' => $title);
+				break;
+			case 'dateAssigned':
+				$dateAssigned = $element->getDateAssigned();
+				if ( empty($dateAssigned) ) $dateAssigned = '--';
+				return array('label' => $dateAssigned);
+				break;
+			case 'dateDue':
+				$dateDue = $element->getDateAssigned();
+				if ( empty($dateDue) ) $dateDue = '--';
+				return array('label' => $dateDue);
+				break;
+			case 'reviewRound':
+				$reviewRound = $element->getRound();
+				if ( empty($reviewRound) ) $reviewRound = '--';
+				return array('label' => $reviewRound);
+				break;
 		}
 	}
 }

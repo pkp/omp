@@ -32,8 +32,9 @@ function show(id) {
 
 {assign var="authorIndex" value=0} 
 {assign var="firstAuthor" value=false}
+{assign var="authors" value=$submission->getAuthors()}
 
-{iterate from=$submission->getAuthors() item=author}
+{iterate from=authors item=author}
 
 	{if $submission->getWorkType() == WORK_TYPE_EDITED_VOLUME}
 		{if $authorIndex == 0 && $author->getContributionType() == CONTRIBUTION_TYPE_VOLUME_EDITOR}
