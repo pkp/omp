@@ -25,19 +25,19 @@ class ReviewRound extends DataObject {
 	//
 
 	/**
-	 * get monograph id
+	 * get submission id
 	 * @return int
 	 */
-	function getMonographId() {
-		return $this->getData('monographId');
+	function getSubmissionId() {
+		return $this->getData('submissionId');
 	}
 
 	/**
-	 * set monograph id
-	 * @param $monographId int
+	 * set submission id
+	 * @param $submissionId int
 	 */
-	function setMonographId($monographId) {
-		return $this->setData('monographId', $monographId);
+	function setSubmissionId($submissionId) {
+		return $this->setData('submissionId', $submissionId);
 	}	
 
 	/**

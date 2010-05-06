@@ -26,15 +26,15 @@ class ReviewRoundDAO extends DAO {
 	 * @param $assocId int
 	 * @return $signoff
 	 */
-	function build($monographId, $reviewType, $round, $reviewRevision = null) {
+	function build($submissionId, $reviewType, $round, $reviewRevision = null) {
 		// If one exists, fetch and return.
-		$reviewRound = $this->getReviewRound($monographId, $reviewType, $round);
+		$reviewRound = $this->getReviewRound($submissionId, $reviewType, $round);
 		if ($reviewRound) return $reviewRound;
 
 		// Otherwise, build one.
 		unset($reviewRound);
 		$reviewRound = $this->newDataObject();
-		$reviewRound->setMonographId($monographId);
+		$reviewRound->setSubmissionId($submissionId);
 		$reviewRound->setRound($round);
 		$reviewRound->setReviewType($reviewType);
 		$reviewRound->setReviewRevision($reviewRevision);
@@ -58,7 +58,7 @@ class ReviewRoundDAO extends DAO {
 	function _fromRow(&$row) {
 		$reviewRound = $this->newDataObject();
 
-		$reviewRound->setMonographId($row['monograph_id']);
+		$reviewRound->setSubmissionId($row['submission_id']);
 		$reviewRound->setReviewType($row['review_type']);
 		$reviewRound->setRound($row['round']);
 		$reviewRound->setReviewRevision($row['review_revision']);
@@ -67,18 +67,18 @@ class ReviewRoundDAO extends DAO {
 	}
 
 	/**
-	 * Insert a new Signoff.
-	 * @param $signoff Signoff
+	 * Insert a new review round.
+	 * @param $reviewRound ReviewRound
 	 * @return int 
 	 */
 	function insertObject(&$reviewRound) {
 		$this->update(
 				'INSERT INTO review_rounds
-				(monograph_id, review_type, round, review_revision)
+				(submission_id, review_type, round, review_revision)
 				VALUES
 				(?, ?, ?, ?)',
 				array(
-					$reviewRound->getMonographid(),
+					$reviewRound->getSubmissionId(),
 					$reviewRound->getReviewType(),
 					$reviewRound->getRound(),
 					$reviewRound->getReviewRevision(),
@@ -88,30 +88,24 @@ class ReviewRoundDAO extends DAO {
 	}
 
 	/**
-	 * Update an existing signoff.
-	 * @param $signoff Signoff
+	 * Update an existing review round.
+	 * @param $reviewRound ReviewRound
 	 * @return boolean
 	 */
 	function updateObject(&$reviewRound) {
 		$returner = $this->update(
-				'UPDATE	review_rounds
-				SET	monograph_id = ?,
-					review_type = ?,
-					round = ?,
-					review_revision = ?
-				WHERE	monograph_id = ? AND
-					review_type = ? AND
-					round = ?',
-				array(
-					$reviewRound->getMonographId(),
-					$reviewRound->getReviewType(),
-					$reviewRound->getRound(),
-					$reviewRound->getReviewRevision(),
-					$reviewRound->getMonographId(),
-					$reviewRound->getReviewType(),
-					$reviewRound->getRound()
-				)
-			);
+			'UPDATE	review_rounds
+			SET	review_revision = ?
+			WHERE	submission_id = ? AND
+				review_type = ? AND
+				round = ?',
+			array(
+				$reviewRound->getReviewRevision(),
+				$reviewRound->getSubmissionId(),
+				$reviewRound->getReviewType(),
+				$reviewRound->getRound()
+			)
+		);
 		return $returner;
 	}
 
@@ -122,10 +116,10 @@ class ReviewRoundDAO extends DAO {
 	 * @param $assocType int
 	 * @param $assocId int
 	 */
-	function getReviewRound($monographId, $reviewType, $round) {
+	function getReviewRound($submissionId, $reviewType, $round) {
 		$result =& $this->retrieve(
-			'SELECT * FROM review_rounds WHERE monograph_id = ? AND review_type = ? AND round = ?',
-			array($monographId, (int) $reviewType, (int) $round)
+			'SELECT * FROM review_rounds WHERE submission_id = ? AND review_type = ? AND round = ?',
+			array($submissionId, (int) $reviewType, (int) $round)
 		);
 
 		$returner = null;

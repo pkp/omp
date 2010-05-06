@@ -23,6 +23,7 @@
 	<schema file="lib/pkp/xml/schema/controlledVocab.xml" />
 	<schema file="lib/pkp/xml/schema/announcements.xml"/>
 	<schema file="lib/pkp/xml/schema/signoff.xml" />
+	<schema file="lib/pkp/xml/schema/reviews.xml" />
 	<schema file="lib/pkp/xml/schema/reviewForms.xml" />
 	<schema file="dbscripts/xml/omp_schema.xml"/>
 	<schema file="dbscripts/xml/library_files.xml"/>	

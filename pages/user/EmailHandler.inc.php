@@ -48,7 +48,7 @@ class EmailHandler extends UserHandler {
 
 		// 3. User is reviewer
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		foreach ($reviewAssignmentDao->getByMonographId($monographId) as $reviewAssignment) {
+		foreach ($reviewAssignmentDao->getBySubmissionId($monographId) as $reviewAssignment) {
 			if ($reviewAssignment->getReviewerId() === $userId) return true;
 		}
 		// 4. User is a designer

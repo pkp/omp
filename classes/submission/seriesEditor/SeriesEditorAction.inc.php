@@ -106,7 +106,7 @@ class SeriesEditorAction extends Action {
 		// been assigned to review this monograph.
 		if (!$assigned && isset($reviewer) && !HookRegistry::call('SeriesEditorAction::addReviewer', array(&$seriesEditorSubmission, $reviewerId))) {
 			$reviewAssignment = new ReviewAssignment();
-			$reviewAssignment->setMonographId($seriesEditorSubmission->getMonographId());
+			$reviewAssignment->setSubmissionId($seriesEditorSubmission->getMonographId());
 			$reviewAssignment->setReviewerId($reviewerId);
 			$reviewAssignment->setDateAssigned(Core::getCurrentDate());
 			$reviewAssignment->setReviewType($reviewType);
@@ -128,7 +128,12 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmission->addReviewAssignment($reviewAssignment, $reviewType, $round);
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
-			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment($seriesEditorSubmission->getMonographId(), $reviewerId, $reviewType, $round);
+			$reviewAssignment = $reviewAssignmentDao->getReviewAssignment(
+				$seriesEditorSubmission->getMonographId(),
+				$reviewerId,
+				$round,
+				$reviewType
+			);
 
 			$press =& Request::getPress();
 			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
@@ -155,7 +160,7 @@ class SeriesEditorAction extends Action {
 
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
-		if (isset($reviewAssignment) && $reviewAssignment->getMonographId() == $seriesEditorSubmission->getMonographId() && !HookRegistry::call('SeriesEditorAction::clearReview', array(&$seriesEditorSubmission, $reviewAssignment))) {
+		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId() && !HookRegistry::call('SeriesEditorAction::clearReview', array(&$seriesEditorSubmission, $reviewAssignment))) {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return false;
 			$seriesEditorSubmission->removeReviewAssignment($reviewId);
@@ -201,7 +206,7 @@ class SeriesEditorAction extends Action {
 			$email->setAddressFieldsEnabled(false);
 		}
 
-		if ($reviewAssignment->getMonographId() == $seriesEditorSubmission->getMonographId() && $reviewAssignment->getReviewFileId()) {
+		if ($reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId() && $reviewAssignment->getReviewFileId()) {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return true;
 
@@ -300,7 +305,7 @@ class SeriesEditorAction extends Action {
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return true;
 
-		if ($reviewAssignment->getMonographId() == $seriesEditorSubmission->getMonographId()) {
+		if ($reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId()) {
 			// Only cancel the review if it is currently not cancelled but has previously
 			// been initiated, and has not been completed.
 			if ($reviewAssignment->getDateNotified() != null && !$reviewAssignment->getCancelled() && ($reviewAssignment->getDateCompleted() == null || $reviewAssignment->getDeclined())) {
@@ -401,7 +406,7 @@ class SeriesEditorAction extends Action {
 			$reviewAssignment->setReminderWasAutomatic(0);
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 			return true;
-		} elseif ($reviewAssignment->getMonographId() == $seriesEditorSubmission->getMonographId()) {
+		} elseif ($reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId()) {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 
 			if (!Request::getUserVar('continued')) {
@@ -457,7 +462,7 @@ class SeriesEditorAction extends Action {
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($seriesEditorSubmission, 'REVIEW_ACK');
 
-		if ($reviewAssignment->getMonographId() == $seriesEditorSubmission->getMonographId()) {
+		if ($reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId()) {
 			$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 			if (!isset($reviewer)) return true;
 
@@ -503,7 +508,7 @@ class SeriesEditorAction extends Action {
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
-		if ($reviewAssignment->getMonographId() == $monographId && !HookRegistry::call('SeriesEditorAction::rateReviewer', array(&$reviewAssignment, &$reviewer, &$quality))) {
+		if ($reviewAssignment->getSubmissionId() == $monographId && !HookRegistry::call('SeriesEditorAction::rateReviewer', array(&$reviewAssignment, &$reviewer, &$quality))) {
 			// Ensure that the value for quality
 			// is between 1 and 5.
 			if ($quality != null && ($quality >= 1 && $quality <= 5)) {
@@ -535,7 +540,7 @@ class SeriesEditorAction extends Action {
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$monographFile =& $monographFileDao->getMonographFile($fileId, $revision);
 
-		if ($reviewAssignment->getMonographId() == $monographId && $reviewAssignment->getReviewerFileId() == $fileId && !HookRegistry::call('SeriesEditorAction::makeReviewerFileViewable', array(&$reviewAssignment, &$monographFile, &$viewable))) {
+		if ($reviewAssignment->getSubmissionId() == $monographId && $reviewAssignment->getReviewerFileId() == $fileId && !HookRegistry::call('SeriesEditorAction::makeReviewerFileViewable', array(&$reviewAssignment, &$monographFile, &$viewable))) {
 			$monographFile->setViewable($viewable);
 			$monographFileDao->updateMonographFile($monographFile);
 		}
@@ -558,7 +563,7 @@ class SeriesEditorAction extends Action {
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
-		if ($reviewAssignment->getMonographId() == $monographId && !HookRegistry::call('SeriesEditorAction::setDueDate', array(&$reviewAssignment, &$reviewer, &$dueDate, &$numWeeks))) {
+		if ($reviewAssignment->getSubmissionId() == $monographId && !HookRegistry::call('SeriesEditorAction::setDueDate', array(&$reviewAssignment, &$reviewer, &$dueDate, &$numWeeks))) {
 			$today = getDate();
 			$todayTimestamp = mktime(0, 0, 0, $today['mon'], $today['mday'], $today['year']);
 			if ($dueDate != null) {
@@ -658,7 +663,7 @@ class SeriesEditorAction extends Action {
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId(), true);
 
-		if ($reviewAssignment->getMonographId() == $monographId && !HookRegistry::call('SeriesEditorAction::setReviewerRecommendation', array(&$reviewAssignment, &$reviewer, &$recommendation, &$acceptOption))) {
+		if ($reviewAssignment->getSubmissionId() == $monographId && !HookRegistry::call('SeriesEditorAction::setReviewerRecommendation', array(&$reviewAssignment, &$reviewer, &$recommendation, &$acceptOption))) {
 			$reviewAssignment->setRecommendation($recommendation);
 
 			$nowDate = Core::getCurrentDate();
@@ -688,7 +693,7 @@ class SeriesEditorAction extends Action {
 
 		if (HookRegistry::call('SeriesEditorAction::clearReviewForm', array(&$seriesEditorSubmission, &$reviewAssignment, &$reviewId))) return $reviewId;
 
-		if (isset($reviewAssignment) && $reviewAssignment->getMonographId() == $seriesEditorSubmission->getMonographId()) {
+		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId()) {
 			$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 			$responses = $reviewFormResponseDao->getReviewReviewFormResponseValues($reviewId);
 			if (!empty($responses)) {
@@ -711,7 +716,7 @@ class SeriesEditorAction extends Action {
 
 		if (HookRegistry::call('SeriesEditorAction::addReviewForm', array(&$seriesEditorSubmission, &$reviewAssignment, &$reviewId, &$reviewFormId))) return $reviewFormId;
 
-		if (isset($reviewAssignment) && $reviewAssignment->getMonographId() == $seriesEditorSubmission->getMonographId()) {
+		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId()) {
 			// Only add the review form if it has not already
 			// been assigned to the review.
 			if ($reviewAssignment->getReviewFormId() != $reviewFormId) {
@@ -737,7 +742,7 @@ class SeriesEditorAction extends Action {
 
 		if (HookRegistry::call('SeriesEditorAction::viewReviewFormResponse', array(&$seriesEditorSubmission, &$reviewAssignment, &$reviewId))) return $reviewId;
 
-		if (isset($reviewAssignment) && $reviewAssignment->getMonographId() == $seriesEditorSubmission->getMonographId()) {
+		if (isset($reviewAssignment) && $reviewAssignment->getSubmissionId() == $seriesEditorSubmission->getMonographId()) {
 			$reviewFormId = $reviewAssignment->getReviewFormId();
 			if ($reviewFormId != null) {
 				import('classes.submission.form.ReviewFormResponseForm');
@@ -1862,7 +1867,7 @@ class SeriesEditorAction extends Action {
 			} else {
 				if (Request::getUserVar('importPeerReviews')) {
 					$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-					$reviewAssignments =& $reviewAssignmentDao->getByMonographId($seriesEditorSubmission->getMonographId(), $seriesEditorSubmission->getCurrentRound());
+					$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($seriesEditorSubmission->getMonographId(), $seriesEditorSubmission->getCurrentRound());
 					$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getMonographId(), $seriesEditorSubmission->getCurrentRound());
 
 					$body = '';
@@ -1949,7 +1954,7 @@ class SeriesEditorAction extends Action {
 		$press =& Request::getPress();
 
 		$comments =& $commentDao->getMonographComments($monograph->getId(), COMMENT_TYPE_EDITOR_DECISION);
-		$reviewAssignments =& $reviewAssignmentDao->getByMonographId($monograph->getId(), $monograph->getCurrentRound());
+		$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($monograph->getId(), $monograph->getCurrentRound());
 
 		$commentsText = "";
 		foreach ($comments as $comment) {
@@ -2174,15 +2179,15 @@ class SeriesEditorAction extends Action {
 			import('classes.monograph.log.MonographEventLogEntry');
 
 			$entry = new MonographEventLogEntry();
-			$entry->setMonographId($reviewAssignment->getMonographId());
+			$entry->setMonographId($reviewAssignment->getSubmissionId());
 			$entry->setUserId($user->getId());
 			$entry->setDateLogged(Core::getCurrentDate());
 			$entry->setEventType(MONOGRAPH_LOG_REVIEW_CONFIRM_BY_PROXY);
-			$entry->setLogMessage($accept?'log.review.reviewAcceptedByProxy':'log.review.reviewDeclinedByProxy', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getMonographId(), 'round' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));
+			$entry->setLogMessage($accept?'log.review.reviewAcceptedByProxy':'log.review.reviewDeclinedByProxy', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getSubmissionId(), 'round' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));
 			$entry->setAssocType(MONOGRAPH_LOG_TYPE_REVIEW);
 			$entry->setAssocId($reviewAssignment->getReviewId());
 
-			MonographLog::logEventEntry($reviewAssignment->getMonographId(), $entry);
+			MonographLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
 		}
 	}
 
@@ -2202,7 +2207,7 @@ class SeriesEditorAction extends Action {
 
 		// Upload the review file.
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($reviewAssignment->getMonographId());
+		$monographFileManager = new MonographFileManager($reviewAssignment->getSubmissionId());
 		// Only upload the file if the reviewer has yet to submit a recommendation
 		if (($reviewAssignment->getRecommendation() === null || $reviewAssignment->getRecommendation() === '') && !$reviewAssignment->getCancelled()) {
 			$fileName = 'upload';
@@ -2232,15 +2237,15 @@ class SeriesEditorAction extends Action {
 			import('classes.monograph.log.MonographEventLogEntry');
 
 			$entry = new MonographEventLogEntry();
-			$entry->setMonographId($reviewAssignment->getMonographId());
+			$entry->setMonographId($reviewAssignment->getSubmissionId());
 			$entry->setUserId($user->getId());
 			$entry->setDateLogged(Core::getCurrentDate());
 			$entry->setEventType(MONOGRAPH_LOG_REVIEW_FILE_BY_PROXY);
-			$entry->setLogMessage('log.review.reviewFileByProxy', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getMonographId(), 'round' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));
+			$entry->setLogMessage('log.review.reviewFileByProxy', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getSubmissionId(), 'round' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));
 			$entry->setAssocType(MONOGRAPH_LOG_TYPE_REVIEW);
 			$entry->setAssocId($reviewAssignment->getReviewId());
 
-			MonographLog::logEventEntry($reviewAssignment->getMonographId(), $entry);
+			MonographLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
 		}
 	}
 

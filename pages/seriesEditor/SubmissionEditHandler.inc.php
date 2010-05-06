@@ -890,7 +890,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$templateMgr->assign_by_ref('reviewForm', $reviewForm);
 		$templateMgr->assign('reviewFormElements', $reviewFormElements);
 		$templateMgr->assign('reviewId', $reviewId);
-		$templateMgr->assign('monographId', $reviewAssignment->getMonographId());
+		$templateMgr->assign('monographId', $reviewAssignment->getSubmissionId());
 		//$templateMgr->assign('helpTopicId','press.managementPages.reviewForms');
 		$templateMgr->display('seriesEditor/previewReviewForm.tpl');
 	}

@@ -60,7 +60,7 @@ class ReviewFormResponseForm extends Form {
 		$editorPreview = Request::getRequestedPage() != 'reviewer';
 
 		if (!$editorPreview) {
-			ReviewerHandler::setupTemplate(true, $reviewAssignment->getMonographId(), $this->reviewId);
+			ReviewerHandler::setupTemplate(true, $reviewAssignment->getSubmissionId(), $this->reviewId);
 		}
 
 		$templateMgr =& TemplateManager::getManager();
@@ -69,7 +69,7 @@ class ReviewFormResponseForm extends Form {
 		$templateMgr->assign('reviewFormElements', $reviewFormElements);
 		$templateMgr->assign('reviewFormResponses', $reviewFormResponses);
 		$templateMgr->assign('reviewId', $this->reviewId);
-		$templateMgr->assign('monographId', $reviewAssignment->getMonographId());
+		$templateMgr->assign('monographId', $reviewAssignment->getSubmissionId());
 		$templateMgr->assign('isLocked', isset($reviewAssignment) && $reviewAssignment->getDateCompleted() != null);
 		$templateMgr->assign('editorPreview', $editorPreview);
 

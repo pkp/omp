@@ -303,7 +303,7 @@ class Monograph extends Submission {
 */
 		if($reviewers) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewAssignments =& $reviewAssignmentDao->getByMonographId($monographId);
+			$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($monographId);
 			foreach ($reviewAssignments as $reviewAssignment) {
 				$userId = $reviewAssignment->getReviewerId();
 				if ($userId) $userIds[] = array('id' => $userId, 'role' => 'reviewer');

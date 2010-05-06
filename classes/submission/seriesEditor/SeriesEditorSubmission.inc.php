@@ -52,8 +52,8 @@ class SeriesEditorSubmission extends Monograph {
 	 * @param $reviewAssignment ReviewAssignment
 	 */
 	function addReviewAssignment($reviewAssignment) {
-		if ($reviewAssignment->getMonographId() == null) {
-			$reviewAssignment->setMonographId($this->getMonographId());
+		if ($reviewAssignment->getSubmissionId() == null) {
+			$reviewAssignment->setSubmissionId($this->getMonographId());
 		}
 
 		if (isset($this->reviewAssignments[$reviewAssignment->getReviewType()][$reviewAssignment->getRound()])) {

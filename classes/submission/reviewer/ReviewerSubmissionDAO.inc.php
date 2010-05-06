@@ -58,10 +58,10 @@ class ReviewerSubmissionDAO extends DAO {
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	monographs a
-				LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id)
+				LEFT JOIN review_assignments r ON (a.monograph_id = r.submission_id)
 				LEFT JOIN series s ON (s.series_id = a.series_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_rounds r2 ON (a.monograph_id = r2.monograph_id AND r.review_type = r2.review_type AND r.round = r2.round)
+				LEFT JOIN review_rounds r2 ON (r.submission_id = r2.submission_id AND r.review_type = r2.review_type AND r.round = r2.round)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -219,11 +219,11 @@ class ReviewerSubmissionDAO extends DAO {
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	monographs a
-				LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id)
+				LEFT JOIN review_assignments r ON (a.monograph_id = r.submission_id)
 				LEFT JOIN monograph_settings atl ON (atl.monograph_id = a.monograph_id AND atl.setting_name = ? AND atl.locale = ?)
 				LEFT JOIN series s ON (s.series_id = a.series_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.review_type = r2.review_type AND r.round = r2.round)
+				LEFT JOIN review_rounds r2 ON (r.submission_id = r2.submission_id AND r.review_type = r2.review_type AND r.round = r2.round)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -279,13 +279,13 @@ class ReviewerSubmissionDAO extends DAO {
 		$submissionsCount[0] = 0;
 		$submissionsCount[1] = 0;
 
-		$sql = 'SELECT r.date_completed, r.declined, r.cancelled
-			FROM monographs a
-			LEFT JOIN review_assignments r ON (a.monograph_id = r.monograph_id)
-			LEFT JOIN series s ON (s.series_id = a.series_id)
-			LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-			LEFT JOIN review_rounds r2 ON (r.monograph_id = r2.monograph_id AND r.review_type = r2.review_type AND r.round = r2.round)
-			WHERE a.press_id = ? AND
+		$sql = 'SELECT	r.date_completed, r.declined, r.cancelled
+			FROM	monographs a
+				LEFT JOIN review_assignments r ON (a.monograph_id = r.submission_id)
+				LEFT JOIN series s ON (s.series_id = a.series_id)
+				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
+				LEFT JOIN review_rounds r2 ON (r.submission_id = r2.submission_id AND r.review_type = r2.review_type AND r.round = r2.round)
+			WHERE	a.press_id = ? AND
 				r.reviewer_id = ? AND
 				r.date_notified IS NOT NULL';
 

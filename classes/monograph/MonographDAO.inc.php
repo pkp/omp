@@ -451,7 +451,12 @@ class MonographDAO extends DAO {
 	 */
 	function incompleteSubmissionExists($monographId, $userId, $pressId) {
 		$result =& $this->retrieve(
-			'SELECT submission_progress FROM monographs WHERE monograph_id = ? AND user_id = ? AND press_id = ? AND date_submitted IS NULL',
+			'SELECT	submission_progress
+			FROM	monographs
+			WHERE	monograph_id = ? AND
+				user_id = ? AND
+				press_id = ? AND
+				date_submitted IS NULL',
 			array($monographId, $userId, $pressId)
 		);
 		$returner = isset($result->fields[0]) ? $result->fields[0] : false;
@@ -508,9 +513,9 @@ class MonographDAO extends DAO {
 	function &getReviewRoundsInfoById($monographId) {
 		$returner = array();
 		$result =& $this->retrieve(
-			'SELECT MAX(round) AS current_round, review_type, review_revision
-			FROM review_rounds r
-			WHERE monograph_id = ?
+			'SELECT	MAX(round) AS current_round, review_type, review_revision
+			FROM	review_rounds r
+			WHERE	submission_id = ?
 			GROUP BY review_type, r.review_revision',
 			$monographId
 		);

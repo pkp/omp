@@ -54,13 +54,14 @@ class ProductionEditorSubmissionDAO extends DAO {
 			'SELECT	m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(aal.setting_value, aapl.setting_value) AS series_abbrev
-			FROM monographs m
+			FROM	monographs m
 				LEFT JOIN series s ON (s.series_id = m.series_id)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings aapl ON (s.series_id = aapl.series_id AND aapl.setting_name = ? AND aapl.locale = ?)
 				LEFT JOIN series_settings aal ON (s.series_id = aal.series_id AND aal.setting_name = ? AND aal.locale = ?)
-			WHERE m.monograph_id = ? AND m.press_id = ?',
+			WHERE	m.monograph_id = ? AND
+				m.press_id = ?',
 			array(
 				'title',
 				$primaryLocale,
@@ -70,8 +71,8 @@ class ProductionEditorSubmissionDAO extends DAO {
 				$primaryLocale,
 				'abbrev',
 				$locale,
-				$monographId,
-				$pressId
+				(int) $monographId,
+				(int) $pressId
 			)
 		);
 

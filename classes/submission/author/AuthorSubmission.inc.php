@@ -69,8 +69,8 @@ class AuthorSubmission extends Monograph {
 	 * @param $reviewAssignment ReviewAssignment
 	 */
 	function addReviewAssignment($reviewAssignment) {
-		if ($reviewAssignment->getMonographId() == null) {
-			$reviewAssignment->setMonographId($this->getMonographId());
+		if ($reviewAssignment->getSubmissionId() == null) {
+			$reviewAssignment->setSubmissionId($this->getMonographId());
 		}
 
 		array_push($this->reviewAssignments, $reviewAssignment);

@@ -68,7 +68,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 				rr.review_revision AS review_revision
 			FROM	monographs m
 				LEFT JOIN series s ON (s.series_id = m.series_id)
-				LEFT JOIN review_rounds rr ON (m.monograph_id = rr.monograph_id AND m.current_review_type = rr.review_type AND m.current_round = rr.round)
+				LEFT JOIN review_rounds rr ON (m.monograph_id = rr.submission_id AND m.current_review_type = rr.review_type AND m.current_round = rr.round)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -155,7 +155,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		// Review Assignments
 		foreach ( $reviewRoundsInfo as $reviewType => $currentReviewRound) {
 			for ($i = 1; $i <= $currentReviewRound; $i++) {		
-				$seriesEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getByMonographId($row['monograph_id'], $reviewType, $i), $reviewType, $i);				
+				$seriesEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getBySubmissionId($row['monograph_id'], $i, $reviewType), $reviewType, $i);				
 			}
 		}
 	
@@ -290,7 +290,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 			FROM	monographs m
 				LEFT JOIN edit_assignments e ON (e.monograph_id = m.monograph_id)
 				LEFT JOIN series s ON (s.series_id = m.series_id)
-				LEFT JOIN review_rounds r2 ON (m.monograph_id = r2.monograph_id AND m.current_round = r2.round)
+				LEFT JOIN review_rounds r2 ON (m.monograph_id = r2.submission_id AND m.current_round = r2.round)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -462,7 +462,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 				LEFT JOIN users ce ON (scf.user_id = ce.user_id)
 				LEFT JOIN signoffs spr ON (m.monograph_id = spr.assoc_id AND spr.assoc_type = ? AND spr.symbolic = ?)
 				LEFT JOIN users pe ON (pe.user_id = spr.user_id)
-				LEFT JOIN review_rounds r2 ON (m.monograph_id = r2.monograph_id and m.current_review_type = r2.review_type AND m.current_round = r2.round)
+				LEFT JOIN review_rounds r2 ON (m.monograph_id = r2.submission_id and m.current_review_type = r2.review_type AND m.current_round = r2.round)
 				LEFT JOIN signoffs sle ON (m.monograph_id = sle.assoc_id AND sle.assoc_type = ? AND sle.symbolic = ?) LEFT JOIN users le ON (le.user_id = sle.user_id)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
@@ -639,7 +639,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 */
 	function deleteReviewRoundsByMonograph($monographId) {
 		return $this->update(
-			'DELETE FROM review_rounds WHERE monograph_id = ?',
+			'DELETE FROM review_rounds WHERE submission_id = ?',
 			$monographId
 		);
 	}
@@ -701,7 +701,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 */
 	function getMaxReviewRound($monographId, $reviewType) {
 		$result =& $this->retrieve(
-			'SELECT MAX(round) FROM review_rounds WHERE monograph_id = ? AND review_type = ?', array($monographId, $reviewType)
+			'SELECT MAX(round) FROM review_rounds WHERE submission_id = ? AND review_type = ?', array($monographId, $reviewType)
 		);
 		$returner = isset($result->fields[0]) ? $result->fields[0] : 0;
 
@@ -794,7 +794,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 			LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id)
 				LEFT JOIN review_assignments ac ON (ac.reviewer_id = u.user_id AND ac.date_completed IS NOT NULL)
 				LEFT JOIN review_assignments ai ON (ai.reviewer_id = u.user_id AND ai.date_completed IS NULL)
-				LEFT JOIN review_assignments ar ON (ar.reviewer_id = u.user_id AND ar.cancelled = 0 AND ar.monograph_id = ? AND ar.review_type = ? AND ar.round = ?)
+				LEFT JOIN review_assignments ar ON (ar.reviewer_id = u.user_id AND ar.cancelled = 0 AND ar.submission_id = ? AND ar.review_type = ? AND ar.round = ?)
 				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
 				LEFT JOIN roles r ON (r.user_id = u.user_id)
 			WHERE	u.user_id = r.user_id AND
@@ -952,20 +952,21 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Get counts of completed submissions
 		$result =& $this->retrieve(
-				'SELECT sc.user_id AS editor_id, COUNT(sc.assoc_id) AS complete 
-				FROM signoffs sc, monographs m 
-				WHERE sc.assoc_id = m.monograph_id AND 
-					sc.date_completed IS NOT NULL AND 
-					m.press_id = ? AND
-					sc.symbolic = ? AND
-					sc.assoc_type = ?
-				GROUP BY sc.user_id', 
-				array($pressId, 'PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
-			);
+			'SELECT	sc.user_id, COUNT(sc.assoc_id) AS complete 
+			FROM	signoffs sc,
+				monographs m 
+			WHERE	sc.assoc_id = m.monograph_id AND 
+				sc.date_completed IS NOT NULL AND 
+				m.press_id = ? AND
+				sc.symbolic = ? AND
+				sc.assoc_type = ?
+			GROUP BY sc.user_id', 
+			array((int) $pressId, 'PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
+		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
-			$statistics[$row['editor_id']]['complete'] = $row['complete'];
+			if (!isset($statistics[$row['user_id']])) $statistics[$row['editor_id']] = array();
+			$statistics[$row['user_id']]['complete'] = $row['complete'];
 			$result->MoveNext();
 		}
 
@@ -974,20 +975,21 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Get counts of incomplete submissions
 		$result =& $this->retrieve(
-				'SELECT sc.user_id AS editor_id, COUNT(sc.assoc_id) AS incomplete
-				FROM signoffs sc, monographs m 
-				WHERE sc.assoc_id = m.monograph_id AND 
-					sc.date_completed IS NULL AND 
-					m.press_id = ? AND
-					sc.symbolic = ? AND
-					sc.assoc_type = ?
-				GROUP BY sc.user_id', 
-				array($pressId, 'PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
-			);
+			'SELECT	sc.user_id, COUNT(sc.assoc_id) AS incomplete
+			FROM	signoffs sc,
+				monographs m 
+			WHERE	sc.assoc_id = m.monograph_id AND 
+				sc.date_completed IS NULL AND 
+				m.press_id = ? AND
+				sc.symbolic = ? AND
+				sc.assoc_type = ?
+			GROUP BY sc.user_id', 
+			array((int) $pressId, 'PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
+		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
-			$statistics[$row['editor_id']]['incomplete'] = $row['incomplete'];
+			if (!isset($statistics[$row['user_id']])) $statistics[$row['editor_id']] = array();
+			$statistics[$row['user_id']]['incomplete'] = $row['incomplete'];
 			$result->MoveNext();
 		}
 
@@ -996,19 +998,19 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Get last assignment date
 		$result =& $this->retrieve(
-				'SELECT sc.user_id AS editor_id, MAX(sc.date_notified) AS last_assigned 
-				FROM signoffs sc, monographs m 
-				WHERE sc.assoc_id = m.monograph_id AND 
-					m.press_id = ? AND
-					sc.symbolic = ? AND
-					sc.assoc_type = ?
-				GROUP BY sc.user_id', 
-				array($pressId, 'PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
-			);
+			'SELECT	sc.user_id, MAX(sc.date_notified) AS last_assigned 
+			FROM	signoffs sc, monographs m 
+			WHERE	sc.assoc_id = m.monograph_id AND 
+				m.press_id = ? AND
+				sc.symbolic = ? AND
+				sc.assoc_type = ?
+			GROUP BY sc.user_id', 
+			array((int) $pressId, 'PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
+		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
-			$statistics[$row['editor_id']]['last_assigned'] = $this->datetimeFromDB($row['last_assigned']);
+			if (!isset($statistics[$row['user_id']])) $statistics[$row['editor_id']] = array();
+			$statistics[$row['user_id']]['last_assigned'] = $this->datetimeFromDB($row['last_assigned']);
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -1026,17 +1028,17 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Get counts of completed submissions
 		$result =& $this->retrieve(
-				'SELECT ra.reviewer_id AS editor_id, MAX(ra.date_notified) AS last_notified 
-				FROM review_assignments ra, monographs m 
-				WHERE ra.monograph_id = m.monograph_id AND 
-					m.press_id = ? 
-				GROUP BY ra.reviewer_id', 
-				$pressId
-			);
+			'SELECT	r.reviewer_id, MAX(r.date_notified) AS last_notified 
+			FROM	review_assignments r, monographs m 
+			WHERE	r.submission_id = m.monograph_id AND 
+				m.press_id = ? 
+			GROUP BY r.reviewer_id', 
+			(int) $pressId
+		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			if (!isset($statistics[$row['editor_id']])) $statistics[$row['editor_id']] = array();
-			$statistics[$row['editor_id']]['last_notified'] = $this->datetimeFromDB($row['last_notified']);
+			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['editor_id']] = array();
+			$statistics[$row['reviewer_id']]['last_notified'] = $this->datetimeFromDB($row['last_notified']);
 			$result->MoveNext();
 		}
 
@@ -1045,16 +1047,16 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Get completion status
 		$result =& $this->retrieve(
-				'SELECT r.reviewer_id, COUNT(*) AS incomplete 
-				FROM review_assignments r, monographs m 
-				WHERE r.monograph_id = m.monograph_id AND 
-					r.date_notified IS NOT NULL AND 
-					r.date_completed IS NULL AND 
-					r.cancelled = 0 AND 
-					m.press_id = ? 
-				GROUP BY r.reviewer_id', 
-				$pressId
-			);
+			'SELECT	r.reviewer_id, COUNT(*) AS incomplete 
+			FROM	review_assignments r, monographs m 
+			WHERE	r.submission_id = m.monograph_id AND 
+				r.date_notified IS NOT NULL AND 
+				r.date_completed IS NULL AND 
+				r.cancelled = 0 AND 
+				m.press_id = ? 
+			GROUP BY r.reviewer_id', 
+			(int) $pressId
+		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
@@ -1067,15 +1069,15 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Calculate time taken for completed reviews
 		$result =& $this->retrieve(
-				'SELECT r.reviewer_id, r.date_notified, r.date_completed 
-				FROM review_assignments r, monographs m 
-				WHERE r.monograph_id = m.monograph_id AND 
-					r.date_notified IS NOT NULL AND 
-					r.date_completed IS NOT NULL AND 
-					r.declined = 0 AND 
-					m.press_id = ?', 
-				$pressId
-			);
+			'SELECT	r.reviewer_id, r.date_notified, r.date_completed 
+			FROM	review_assignments r, monographs m 
+			WHERE	r.submission_id = m.monograph_id AND 
+				r.date_notified IS NOT NULL AND 
+				r.date_completed IS NOT NULL AND 
+				r.declined = 0 AND 
+				m.press_id = ?', 
+			(int) $pressId
+		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();

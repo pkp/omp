@@ -71,7 +71,7 @@
 						{if $reviewAssignment->getDeclined()}
 							{translate key="seriesEditor.regrets"}
 						{else}
-							<a href="{url op="setDueDate" path=$reviewAssignment->getMonographId()|to_array:$reviewAssignment->getReviewId()}">{if $reviewAssignment->getDateDue()}{$reviewAssignment->getDateDue()|date_format:$dateFormatShort}{else}&mdash;{/if}</a>
+							<a href="{url op="setDueDate" path=$reviewAssignment->getSubmissionId()|to_array:$reviewAssignment->getReviewId()}">{if $reviewAssignment->getDateDue()}{$reviewAssignment->getDateDue()|date_format:$dateFormatShort}{else}&mdash;{/if}</a>
 						{/if}
 					</td>
 					<td>
