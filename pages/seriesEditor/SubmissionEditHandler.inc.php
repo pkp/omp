@@ -591,8 +591,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$submission =& $this->submission;
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$roleId = $roleDao->getRoleIdFromPath('reviewer');
-		$reviewerUserGroup =& $userGroupDao->getDefaultByRoleId($press->getId, $roleId);
+		$reviewerUserGroup =& $userGroupDao->getDefaultByRoleId($press->getId(), ROLE_ID_REVIEWER);
 
 		$users = Request::getUserVar('users');
 		if (!is_array($users) && Request::getUserVar('userId') != null) $users = array(Request::getUserVar('userId'));
