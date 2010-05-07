@@ -33,7 +33,7 @@ class InformationCenterNotesForm extends Form {
 	/**
 	 * Display the form.
 	 */
-	function display(&$request, $fetch = false) {
+	function display(&$request, $fetch = true) {
 		$templateMgr =& TemplateManager::getManager();
 
 		$noteDao =& DAORegistry::getDAO('NoteDAO');

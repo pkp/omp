@@ -54,7 +54,7 @@ class SubmissionFilesMetadataForm extends Form {
 	/**
 	 * Display
 	 */
-	function display(&$request, $fetch = false) {
+	function display(&$request, $fetch = true) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('fileId', $this->_fileId);
 		

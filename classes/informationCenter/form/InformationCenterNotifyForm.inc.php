@@ -34,7 +34,7 @@ class InformationCenterNotifyForm extends Form {
 	/**
 	 * Display the form.
 	 */
-	function display(&$request, $fetch = false) {
+	function display(&$request, $fetch = true) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('fileId', $this->fileId);
 
