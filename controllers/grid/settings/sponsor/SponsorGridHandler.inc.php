@@ -99,7 +99,7 @@ class SponsorGridHandler extends SetupGridHandler {
 	function addSponsor(&$args, &$request) {
 		// Calling editSponsor with an empty row id will add
 		// a new sponsor.
-		$this->editSponsor($args, $request);
+		return $this->editSponsor($args, $request);
 	}
 
 
@@ -119,7 +119,9 @@ class SponsorGridHandler extends SetupGridHandler {
 		} else {
 			$sponsorForm->initData($args, $request);
 		}
-		$sponsorForm->display();
+
+		$json = new JSON('true', $sponsorForm->fetch());
+		return $json->getString();
 	}
 
 	/**
@@ -179,6 +181,6 @@ class SponsorGridHandler extends SetupGridHandler {
 		} else {
 			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingItem'));
 		}
-		echo $json->getString();
+		return $json->getString();
 	}
 }

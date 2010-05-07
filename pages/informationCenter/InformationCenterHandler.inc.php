@@ -56,7 +56,9 @@ class InformationCenterHandler extends Handler {
 			$user =& $userDao->getUser($userId);
 			$templateMgr->assign_by_ref('lastEventUser', $user);
 		}
-		$templateMgr->display('informationCenter/informationCenter.tpl');
+		
+		$json = new JSON('true', $templateMgr->fetch('informationCenter/informationCenter.tpl'));
+		return $json->getString();
 	}
 
 	/**
@@ -70,7 +72,7 @@ class InformationCenterHandler extends Handler {
 		import('classes.informationCenter.form.InformationCenterNotesForm');
 		$notesForm = new InformationCenterNotesForm($fileId);
 		$notesForm->initData();
-		$notesForm->display();
+		$notesForm->display(); // FIXME: Should be wrapped in JSON: jQueryUI tabs needs to be modified to accept JSON
 	}
 	
 	/**
@@ -103,7 +105,7 @@ class InformationCenterHandler extends Handler {
 			$json = new JSON('false');					
 		}
 		
-		echo $json->getString();	
+		return $json->getString();	
 	}
 	
 	/**
@@ -120,7 +122,7 @@ class InformationCenterHandler extends Handler {
 		$additionalAttributes = array('script' => "$('#note-$noteId').hide('slow')");
 		$json = new JSON('true', '', 'true', null, $additionalAttributes);
 		
-		echo $json->getString();
+		return $json->getString();
 	}
 	
 	/**
@@ -135,7 +137,7 @@ class InformationCenterHandler extends Handler {
 		import('classes.informationCenter.form.InformationCenterNotifyForm');
 		$notifyForm = new InformationCenterNotifyForm($fileId);
 		$notifyForm->initData();
-		$notifyForm->display();
+		$notifyForm->display(); // FIXME: Should be wrapped in JSON: jQueryUI tabs needs to be modified to accept JSON
 	}
 	
 	/**
@@ -182,7 +184,7 @@ class InformationCenterHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('eventLogEntries', $fileEvents);
-		$templateMgr->display('informationCenter/history.tpl');
+		$templateMgr->display('informationCenter/history.tpl'); // FIXME: Should be wrapped in JSON: jQueryUI tabs needs to be modified to accept JSON
 	}
 	
 	/**
@@ -216,7 +218,6 @@ class InformationCenterHandler extends Handler {
 
 		import('classes.monograph.log.MonographLog');
 		MonographLog::logEventEntry($monographFile->getMonographId(), $entry);
-		
 	}
 
 
@@ -230,6 +231,7 @@ class InformationCenterHandler extends Handler {
 	function validate($fileId) {
 		parent::validate();
 
+		// FIXME: Implement validation
 		
 		return true;
 	}

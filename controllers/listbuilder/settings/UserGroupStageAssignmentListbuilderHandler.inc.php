@@ -129,7 +129,7 @@ class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler
 		// check if $userGroupId is empty or if the assignment already exists
 		if(empty($userGroupId) || $userGroupStageAssignmentDao->assignmentExists($press->getId(), $userGroupId, $this->stageId)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.selectValidOption'));
-			echo $json->getString();
+			return $json->getString();
 		} else {
 			// Insert the assignment
 			$userGroupStageAssignmentDao->assignGroupToStage($press->getId(), $userGroupId, $this->stageId);
@@ -146,7 +146,7 @@ class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler
 			$row->initialize($request);
 
 			$json = new JSON('true', $this->_renderRowInternally($request, $row));
-			echo $json->getString();
+			return $json->getString();
 		}
 	}
 
@@ -163,7 +163,7 @@ class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler
 		}
 
 		$json = new JSON('true');
-		echo $json->getString();
+		return $json->getString();
 	}
 
 }

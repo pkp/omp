@@ -121,7 +121,7 @@ class BookFileTypeGridHandler extends GridHandler {
 	 */
 	function addBookFileType(&$args, &$request) {
 		// Calling editBookFileType with an empty row id will add a new Book File Type.
-		$this->editBookFileType($args, $request);
+		return $this->editBookFileType($args, $request);
 	}
 
 	/**
@@ -143,7 +143,9 @@ class BookFileTypeGridHandler extends GridHandler {
 		} else {
 			$bookFileTypeForm->initData($args, $request);
 		}
-		$bookFileTypeForm->display();
+		
+		$json = new JSON('true', $bookFileTypeForm->fetch());
+		return $json->getString();
 	}
 
 	/**
@@ -204,7 +206,7 @@ class BookFileTypeGridHandler extends GridHandler {
 		} else {
 			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingItem'));
 		}
-		echo $json->getString();
+		return $json->getString();
 	}
 
 	/**

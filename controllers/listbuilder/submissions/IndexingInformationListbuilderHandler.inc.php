@@ -62,41 +62,18 @@ class IndexingInformationListbuilderHandler extends ListbuilderHandler {
 	}
 	
 	/**
-	 * Need to override the fetch method to provide groupID as an argument
+	 * Need to add additional data to the template via the fetch method
 	 */
 	function fetch(&$args, &$request) {
+		$router =& $request->getRouter();
 		$monographId = $request->getUserVar('monographId');
 
-		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate();
-		$router =& $request->getRouter();
+		$additionalVars = array('itemId' => $monographId,
+			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('monographId' => $monographId)),
+			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId))
+		);
 
-		// Let the subclass configure the listbuilder
-		$this->initialize($request);
-		$groupId = $request->getUserVar('groupId');
-
-		$templateMgr->assign('itemId', $monographId); // Autocomplete fields require a unique ID to avoid JS conflicts
-		$templateMgr->assign('addUrl', $router->url($request, array(), null, 'addItem', null, array('monographId' => $monographId)));
-		$templateMgr->assign('deleteUrl', $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId)));
-
-		// Translate modal submit/cancel buttons
-		$okButton = Locale::translate('common.ok');
-		$warning = Locale::translate('common.warning');
-		$templateMgr->assign('localizedButtons', "$okButton, $warning");
-
-		$row =& $this->getRowInstance();
-		// initialize to create the columns
-		$row->initialize($request);
-		$columns =& $this->getColumns();
-		$templateMgr->assign_by_ref('columns', $columns);
-		$templateMgr->assign('numColumns', count($columns));
-
-		// Render the rows
-		$rows = $this->_renderRowsInternally($request);
-		$templateMgr->assign_by_ref('rows', $rows);
-
-		$templateMgr->assign('listbuilder', $this);
-		echo $templateMgr->fetch('controllers/listbuilder/listbuilder.tpl');
+		return parent::fetch(&$args, &$request, $additionalVars)
     }
 	
 	/**
@@ -125,7 +102,7 @@ class IndexingInformationListbuilderHandler extends ListbuilderHandler {
 
 		if(!isset($supportingAgency)) {
 			$json = new JSON('false');
-			echo $json->getString();
+			return $json->getString();
 		} else {
 			// Make sure the item doesn't already exist
 			$supportingAgencies = $monograph->getLocalizedSupportingAgencies();
@@ -133,7 +110,7 @@ class IndexingInformationListbuilderHandler extends ListbuilderHandler {
 				foreach($supportingAgencies as $item) {
 					if($item['name'] == $supportingAgency) {
 						$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
-						echo $json->getString();
+						return $json->getString();
 						return false;
 					}
 				}
@@ -153,7 +130,7 @@ class IndexingInformationListbuilderHandler extends ListbuilderHandler {
 			$row->initialize($request);
 
 			$json = new JSON('true', $this->_renderRowInternally($request, $row));
-			echo $json->getString();
+			return $json->getString();
 		}
 	}
 		
@@ -179,7 +156,7 @@ class IndexingInformationListbuilderHandler extends ListbuilderHandler {
 		$monographDao->updateMonograph($monograph);
 
 		$json = new JSON('true');
-		echo $json->getString();
+		return $json->getString();
 	}
 }
 ?>

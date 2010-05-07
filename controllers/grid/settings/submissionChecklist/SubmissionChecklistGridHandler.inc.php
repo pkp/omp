@@ -106,7 +106,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 
 		// Calling editSubmissionChecklist with an empty row id will add
 		// a new submissionChecklist.
-		$this->editItem($args, $request);
+		return $this->editItem($args, $request);
 	}
 
 	/**
@@ -124,7 +124,9 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		} else {
 			$submissionChecklistForm->initData($args, $request);
 		}
-		$submissionChecklistForm->display();
+		
+		$json = new JSON('true', $submissionChecklistForm->fetch());
+		return $json->getString();
 	}
 
 	/**
@@ -187,7 +189,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 				// (this is the one that needs to be removed from the currently displayed grid)
 				if ( $locale == Locale::getLocale() ) {
 					$json = new JSON('false', Locale::translate('manager.setup.errorDeletingSubmissionChecklist'));
-					echo $json->getString();
+					return $json->getString();
 					exit;
 				}
 			}
@@ -195,6 +197,6 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 
 		$press->updateSetting('submissionChecklist', $submissionChecklistAll, 'object', true);
 		$json = new JSON('true');
-		echo $json->getString();
+		return $json->getString();
 	}
 }

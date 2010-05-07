@@ -87,42 +87,19 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 	// Overridden template methods
 	//
 	/**
-	 * Need to override the fetch method to provide groupID as an argument
+	 * Need to add additional data to the template via the fetch method
 	 */
 	function fetch(&$args, &$request) {
-		// FIXME: User validation
-
-		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate();
 		$router =& $request->getRouter();
-
-		// Let the subclass configure the listbuilder
-		$this->initialize($request);
 		$groupId = $request->getUserVar('groupId');
 
-		$templateMgr->assign('itemId', $groupId); // Autocomplete fields require a unique ID to avoid JS conflicts
-		$templateMgr->assign('addUrl', $router->url($request, array(), null, 'addItem', null, array('groupId' => $groupId)));
-		$templateMgr->assign('deleteUrl', $router->url($request, array(), null, 'deleteItems', null, array('groupId' => $groupId)));
-		$templateMgr->assign('autocompleteUrl', $router->url($request, array(), null, 'getAutocompleteSource', null));
+		$additionalVars = array('itemId' => $groupId,
+			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('groupId' => $groupId)),
+			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('groupId' => $groupId)),
+			'autocompleteUrl' => $router->url($request, array(), null, 'getAutocompleteSource', null)
+		);
 
-		// Translate modal submit/cancel buttons
-		$okButton = Locale::translate('common.ok');
-		$warning = Locale::translate('common.warning');
-		$templateMgr->assign('localizedButtons', "$okButton, $warning");
-
-		$row =& $this->getRowInstance();
-		// initialize to create the columns
-		$row->initialize($request);
-		$columns =& $this->getColumns();
-		$templateMgr->assign_by_ref('columns', $columns);
-		$templateMgr->assign('numColumns', count($columns));
-
-		// Render the rows
-		$rows = $this->_renderRowsInternally($request);
-		$templateMgr->assign_by_ref('rows', $rows);
-
-		$templateMgr->assign('listbuilder', $this);
-		echo $templateMgr->fetch('controllers/listbuilder/listbuilder.tpl');
+		return parent::fetch(&$args, &$request, $additionalVars)
     }
 
 	/*
@@ -174,7 +151,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 		}
 		$sourceJson->setContent('[' . implode(',', $sourceContent) . ']');
 
-		echo $sourceJson->getString();
+		return $sourceJson->getString();
 	}
 
 	/*
@@ -191,7 +168,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 
 		if(empty($userId)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
-			echo $json->getString();
+			return $json->getString();
 		} else {
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 
@@ -199,7 +176,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 			// Make sure the membership doesn't already exist
 			if (isset($groupMembership)) {
 				$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
-				echo $json->getString();
+				return $json->getString();
 				return false;
 			}
 			unset($groupMembership);
@@ -223,7 +200,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 			$row->initialize($request);
 
 			$json = new JSON('true', $this->_renderRowInternally($request, $row));
-			echo $json->getString();
+			return $json->getString();
 		}
 	}
 
@@ -239,7 +216,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 		}
 
 		$json = new JSON('true');
-		echo $json->getString();
+		return $json->getString();
 	}
 }
 ?>

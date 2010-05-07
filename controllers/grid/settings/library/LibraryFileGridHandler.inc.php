@@ -125,7 +125,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		// a new sponsor.
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('newFile', 'true');
-		$this->editFile($args, $request);
+		return $this->editFile($args, $request);
 	}
 
 	/**
@@ -145,7 +145,9 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		} else {
 			$fileForm->initData($args, $request);
 		}
-		$fileForm->display();
+
+		$json = new JSON('true', $fileForm->fetch());
+		return $json->getString();
 	}
 
 	/**
@@ -212,7 +214,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 			$json = new JSON('false');
 		}
 
-		echo $json->getString();
+		return $json->getString();
 	}
 
 
@@ -235,6 +237,6 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		} else {
 			$json = new JSON('false');
 		}
-		echo $json->getString();
+		return $json->getString();
 	}
 }

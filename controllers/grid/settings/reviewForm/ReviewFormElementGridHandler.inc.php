@@ -110,7 +110,7 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 		$reviewFormRow =& $this->getRow();
 
 		// Calling editReviewForm with an empty row id will add a new review form.
-		$reviewFormRow->editReviewFormElement($args, $request);
+		return $reviewFormRow->editReviewFormElement($args, $request);
 	}
 
 
@@ -150,7 +150,8 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 				$reviewFormElementForm->initData($args, $request);
 			}
 
-			$reviewFormElementForm->display();
+			$json = new JSON('true', $reviewFormElementForm->fetch());
+			return $json->getString();
 		}
 	}
 
@@ -250,7 +251,7 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 		} else {
 			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingReviewForm'));
 		}
-		echo $json->getString();
+		return $json->getString();
 	}
 }
 

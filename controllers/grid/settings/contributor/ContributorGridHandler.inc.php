@@ -102,7 +102,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	function addContributor(&$args, &$request) {
 		// Calling editContributor with an empty row id will add
 		// a new contributor.
-		$this->editContributor($args, $request);
+		return $this->editContributor($args, $request);
 	}
 
 	/**
@@ -120,7 +120,9 @@ class ContributorGridHandler extends SetupGridHandler {
 		} else {
 			$contributorForm->initData($args, $request);
 		}
-		$contributorForm->display();
+
+		$json = new JSON('true', $contributorForm->fetch());
+		return $json->getString();
 	}
 
 	/**
@@ -179,6 +181,6 @@ class ContributorGridHandler extends SetupGridHandler {
 		} else {
 			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingItem'));
 		}
-		echo $json->getString();
+		return $json->getString();
 	}
 }

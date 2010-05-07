@@ -136,7 +136,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	function addSeries(&$args, &$request) {
 		// Calling editSeries with an empty row id will add
 		// a new series.
-		$this->editSeries($args, $request);
+		return $this->editSeries($args, $request);
 	}
 
 	/**
@@ -158,7 +158,9 @@ class SeriesGridHandler extends SetupGridHandler {
 		} else {
 			$seriesForm->initData($args, $request);
 		}
-		$seriesForm->display();
+
+		$json = new JSON('true', $seriesForm->fetch());
+		return $json->getString();
 	}
 
 	/**
@@ -244,7 +246,7 @@ class SeriesGridHandler extends SetupGridHandler {
 		} else {
 			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingItem'));
 		}
-		echo $json->getString();
+		return $json->getString();
 	}
 
 }

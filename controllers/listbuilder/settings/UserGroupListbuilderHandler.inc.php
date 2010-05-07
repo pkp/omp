@@ -97,14 +97,14 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 
 		if(empty($groupName) || empty($groupAbbrev)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
-			echo $json->getString();
+			return $json->getString();
 		} else {
 			// Make sure the role name or abbreviation doesn't already exist
 			$authorGroups = $userGroupDao->getByRoleId($press->getId(), $this->roleId);
 			while($group =& $authorGroups->next()) {
 				if ($groupName == $group->getLocalizedName() || $groupAbbrev == $group->getLocalizedAbbrev()) {
 					$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
-					echo $json->getString();
+					return $json->getString();
 					return false;
 				}
 				unset($group);
@@ -134,7 +134,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 										'sourceIds' => 'selectList-listbuilder-setup-submissionroleslistbuilder');
 
 			$json = new JSON('true', $this->_renderRowInternally($request, $row), 'false', 0, $additionalAttributes);
-			echo $json->getString();
+			return $json->getString();
 		}
 	}
 
@@ -155,7 +155,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 									'sourceIds' => 'selectList-listbuilder-setup-submissionroleslistbuilder');
 
 		$json = new JSON('true', '', 'false', 0, $additionalAttributes);
-		echo $json->getString();
+		return $json->getString();
 	}
 }
 ?>

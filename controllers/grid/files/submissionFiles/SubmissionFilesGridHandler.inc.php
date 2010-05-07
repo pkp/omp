@@ -169,7 +169,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		// Calling editSponsor with an empty file id will add a new file
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('newFile', 'true');
-		$this->editFile($args, $request);
+		return $this->editFile($args, $request);
 	}
 
 	/**
@@ -183,7 +183,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$templateMgr->assign('monographId', $this->_monographId);
 		$templateMgr->assign('fileId', $fileId);
 		$templateMgr->assign('gridId', $this->getId());
-		$templateMgr->display('controllers/grid/files/submissionFiles/form/submissionFiles.tpl');
+		
+		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/submissionFiles.tpl'));
+		return $json->getString();
 	}
 
 	/**
@@ -203,7 +205,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 		} else {
 			$fileForm->initData($args, $request);
 		}
-		$fileForm->display();
+		
+		return $fileForm->fetch();  // FIXME: Should be wrapped in JSON: jQueryUI tabs needs to be modified to accept JSON
 	}
 
 	/**
@@ -237,7 +240,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		}
 
 		// The ajaxForm library requires the JSON to be wrapped in a textarea for it to be read by the client (See http://jquery.malsup.com/form/#file-upload)
-		echo '<textarea>' . $json->getString() . '</textarea>';
+		return '<textarea>' . $json->getString() . '</textarea>';
 	}
 
 	/**
@@ -275,7 +278,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 		} else {
 			$metadataForm->initData($args, $request);
 		}
-		$metadataForm->display();
+		
+		return $metadataForm->fetch();
 	}
 
 
@@ -323,7 +327,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$json = new JSON('false', Locale::translate('author.submit.fileNameRequired'));
 		}
 
-		echo $json->getString();
+		return $json->getString();
 	}
 
 	/**
@@ -339,7 +343,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$templateMgr->assign('monographId', $monographId);
 		$templateMgr->assign('fileId', $fileId);
 		$templateMgr->assign('gridId', $this->getId());
-		$templateMgr->display('controllers/grid/files/submissionFiles/form/fileSubmissionComplete.tpl');
+		
+		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/fileSubmissionComplete.tpl'));
+		return $json->getString();
 	}
 
 	/**
@@ -370,7 +376,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$json = new JSON('false', Locale::translate("There was an error with trying to fetch the file"));
 		}
 
-		echo $json->getString();
+		return $json->getString();
 	}
 
 	/**
@@ -392,7 +398,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$monographFileManager->deleteFile($fileId);
 
 		$json = new JSON('true');
-		echo $json->getString();
+		return $json->getString();
 	}
 
 	/**

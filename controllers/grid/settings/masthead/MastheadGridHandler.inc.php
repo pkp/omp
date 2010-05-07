@@ -107,7 +107,7 @@ class MastheadGridHandler extends SetupGridHandler {
 	function addGroup(&$args, &$request) {
 		// Calling editMasthead with an empty row id will add
 		// a new masthead.
-		$this->editGroup($args, $request);
+		return $this->editGroup($args, $request);
 	}
 
 	/**
@@ -148,7 +148,9 @@ class MastheadGridHandler extends SetupGridHandler {
 		} else {
 			$groupForm->initData();
 		}
-		$groupForm->display();
+		
+		$json = new JSON('true', $groupForm->fetch());
+		return $json->getString();
 	}
 
 	/**
@@ -202,7 +204,7 @@ class MastheadGridHandler extends SetupGridHandler {
 		$groupDao->resequenceGroups($group->getAssocType(), $group->getAssocId());
 
 		$json = new JSON('true');
-		echo $json->getString();
+		return $json->getString();
 	}
 
 	/**
@@ -219,7 +221,9 @@ class MastheadGridHandler extends SetupGridHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('memberships', $memberships);
 		$templateMgr->assign_by_ref('group', $group);
-		$templateMgr->display('controllers/grid/settings/masthead/memberships.tpl');
+		
+		$json = new JSON('true', $templateMgr->fetch('controllers/grid/settings/masthead/memberships.tpl'));
+		return $json->getString();
 	}
 
 }
