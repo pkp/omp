@@ -13,7 +13,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{init_tabs id="submissions"}
+{init_tabs id="#submissions"}
 
 <div id="submissions" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">

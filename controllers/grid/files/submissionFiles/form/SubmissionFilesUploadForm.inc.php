@@ -63,8 +63,8 @@ class SubmissionFilesUploadForm extends Form {
 	/**
 	 * Display
 	 */
-	function display() {
-		parent::display();
+	function display(&$request, $fetch = false) {
+		return parent::display($request, $fetch);
 	}
 
 	/**

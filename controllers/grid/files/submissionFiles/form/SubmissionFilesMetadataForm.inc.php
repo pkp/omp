@@ -54,7 +54,7 @@ class SubmissionFilesMetadataForm extends Form {
 	/**
 	 * Display
 	 */
-	function display() {
+	function display(&$request, $fetch = false) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('fileId', $this->_fileId);
 		
@@ -64,7 +64,7 @@ class SubmissionFilesMetadataForm extends Form {
 		
 		$templateMgr->assign('name', $monographFile->getLocalizedName());
 		
-		parent::display();
+		return parent::display($request, $fetch);
 	}
 
 	/**

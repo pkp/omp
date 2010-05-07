@@ -7,11 +7,10 @@
  * Display information center's main modal.
  *
  *}
-
+{init_tabs id="#informationCenterTabs-$fileId"}
 <script type="text/javascript">
 	{literal}
 	$(function() {
-		$('div#informationCenterTabs-{/literal}{$fileId}{literal}').tabs();		
 		$('#informationCenterTabs-{/literal}{$fileId}{literal}').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
 	});
 	{/literal}

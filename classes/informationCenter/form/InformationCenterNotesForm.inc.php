@@ -33,7 +33,7 @@ class InformationCenterNotesForm extends Form {
 	/**
 	 * Display the form.
 	 */
-	function display() {
+	function display(&$request, $fetch = false) {
 		$templateMgr =& TemplateManager::getManager();
 
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
@@ -42,7 +42,7 @@ class InformationCenterNotesForm extends Form {
 		$templateMgr->assign_by_ref('notes', $notes);
 		$templateMgr->assign_by_ref('fileId', $this->fileId);
 		
-		parent::display();
+		return parent::display($request, $fetch);
 	}
 
 	/**

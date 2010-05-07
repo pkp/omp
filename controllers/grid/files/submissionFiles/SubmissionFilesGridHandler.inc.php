@@ -205,8 +205,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 		} else {
 			$fileForm->initData($args, $request);
 		}
-		
-		return $fileForm->fetch();  // FIXME: Should be wrapped in JSON: jQueryUI tabs needs to be modified to accept JSON
+
+		$json = new JSON('true', $fileForm->fetch($request));
+		return $json->getString();
 	}
 
 	/**
@@ -279,7 +280,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$metadataForm->initData($args, $request);
 		}
 		
-		return $metadataForm->fetch();
+		$json = new JSON('true', $metadataForm->fetch($request));
+		return $json->getString();
 	}
 
 
