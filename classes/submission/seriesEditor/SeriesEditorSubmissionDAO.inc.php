@@ -830,10 +830,10 @@ class SeriesEditorSubmissionDAO extends DAO {
 			FROM	users u
 				LEFT JOIN user_user_groups uug ON (uug.user_id = u.user_id)
 				LEFT JOIN user_groups ug ON (ug.user_group_id = uug.user_group_id)
-				LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id AND a.monograph_id = ?)
+				LEFT JOIN review_assignments r ON (r.reviewer_id = u.user_id AND r.submission_id = ?)
 			WHERE	ug.press_id = ? AND
 				ug.role_id = ? AND
-				a.monograph_id IS NULL
+				r.submission_id IS NULL
 			ORDER BY last_name, first_name',
 			array($monographId, $pressId, RoleDAO::getRoleIdFromPath('reviewer'))
 		);

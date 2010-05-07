@@ -169,7 +169,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 		// Prepare an array to store the 'Notify Reviewer' email logs
 		$notifyReviewerLogs = array();
-		foreach ($submission->getReviewAssignments($reviewType, $round) as $reviewAssignment) {
+		foreach ((array) $submission->getReviewAssignments($reviewType, $round) as $reviewAssignment) {
 			$notifyReviewerLogs[$reviewAssignment->getReviewId()] = array();
 		}
 
@@ -193,7 +193,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewFormTitles = array();
 
-		foreach ($submission->getReviewAssignments($reviewType, $round) as $reviewAssignment) {
+		foreach ((array) $submission->getReviewAssignments($reviewType, $round) as $reviewAssignment) {
 			$reviewForm =& $reviewFormDao->getReviewForm($reviewAssignment->getReviewFormId());
 			if ($reviewForm) {
 				$reviewFormTitles[$reviewForm->getId()] = $reviewForm->geLocalizedTitle();
