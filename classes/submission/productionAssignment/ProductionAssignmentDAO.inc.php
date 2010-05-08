@@ -52,9 +52,9 @@ class ProductionAssignmentDAO extends DAO {
 	 */
 	function &getById($assignmentId) {
 		$result =& $this->retrieve(
-			'SELECT * 
+			'SELECT *
 			FROM production_assignments da
-			WHERE da.assignment_id = ?', 
+			WHERE da.assignment_id = ?',
 			(int) $assignmentId
 		);
 
@@ -185,7 +185,7 @@ class ProductionAssignmentDAO extends DAO {
 
 	/**
 	 * Construct a new data object corresponding to this DAO.
-	 * @return ControlledVocabEntry
+	 * @return ProductAssignment
 	 */
 	function newDataObject() {
 		return new ProductionAssignment();
@@ -215,7 +215,7 @@ class ProductionAssignmentDAO extends DAO {
 	 * Insert a new design assignment.
 	 * @param $designAssignment ProductionAssignment
 	 * @return int
-	 */	
+	 */
 	function insertObject(&$designAssignment) {
 		$this->update(
 			'INSERT INTO production_assignments
