@@ -19,11 +19,11 @@ import('pages.manager.ManagerHandler');
 class PluginHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 */
+	 */	
 	function PluginHandler() {
 		parent::ManagerHandler();
 	}
-
+	
 	/**
 	 * Display a list of plugins along with management options.
 	 */
@@ -56,7 +56,7 @@ class PluginHandler extends ManagerHandler {
 					$plugins = array_merge($plugins, PluginRegistry::loadCategory($category));
 				}
 			}
-
+			
 			$this->setupTemplate(true);
 			$templateMgr->assign('pageTitle', 'manager.plugins.pluginManagement');
 			$templateMgr->assign('pageHierarchy', PluginHandler::setBreadcrumbs(false));
@@ -78,7 +78,7 @@ class PluginHandler extends ManagerHandler {
 	 */
 	function plugin($args, &$request) {
 		$category = array_shift($args);
-		$plugin = String::strtolower(array_shift($args));
+		$plugin = array_shift($args);
 		$verb = array_shift($args);
 
 		$this->validate();
@@ -95,7 +95,7 @@ class PluginHandler extends ManagerHandler {
 			$request->redirect(null, null, 'plugins', array($category));
 		}
 	}
-
+	
 	/**
 	 * Set the page's breadcrumbs
 	 * @param $subclass boolean
@@ -114,7 +114,7 @@ class PluginHandler extends ManagerHandler {
 				false
 			)
 		);
-
+		
 		if ($subclass) {
 			$pageCrumbs[] = array(
 				Request::url(null, 'manager', 'plugins'),
@@ -125,7 +125,7 @@ class PluginHandler extends ManagerHandler {
 
 		return $pageCrumbs;
 	}
-
+	
 }
 
 ?>
