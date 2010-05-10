@@ -68,12 +68,10 @@ class ContributorGridHandler extends SetupGridHandler {
 			GRID_ACTION_POSITION_ABOVE
 		);
 
-		$emptyActions = array();
-		// Basic grid row configuration
+		// Columns
 		$this->addColumn(new GridColumn('institution',
 										'grid.columns.institution',
 										null,
-										$emptyActions,
 										'controllers/grid/gridCellInSpan.tpl'));
 		$this->addColumn(new GridColumn('url',
 										'grid.columns.url'));

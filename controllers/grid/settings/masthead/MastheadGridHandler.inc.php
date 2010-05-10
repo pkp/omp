@@ -75,12 +75,9 @@ class MastheadGridHandler extends SetupGridHandler {
 		);
 
 		// Columns
-		$emptyActions = array();
-		// Basic grid row configuration
 		$this->addColumn(new GridColumn('groups',
 										'grid.masthead.column.groups',
 										null,
-										$emptyActions,
 										'controllers/grid/gridCellInSpan.tpl'));
 	}
 
@@ -148,7 +145,7 @@ class MastheadGridHandler extends SetupGridHandler {
 		} else {
 			$groupForm->initData();
 		}
-		
+
 		$json = new JSON('true', $groupForm->fetch());
 		return $json->getString();
 	}
@@ -221,7 +218,7 @@ class MastheadGridHandler extends SetupGridHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('memberships', $memberships);
 		$templateMgr->assign_by_ref('group', $group);
-		
+
 		$json = new JSON('true', $templateMgr->fetch('controllers/grid/settings/masthead/memberships.tpl'));
 		return $json->getString();
 	}

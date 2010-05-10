@@ -67,14 +67,11 @@ class ReviewFormGridHandler extends SetupGridHandler {
 		);
 
 		// Columns
-		$emptyActions = array();
-		// Basic grid row configuration
 		import('controllers.grid.settings.reviewForm.ReviewFormGridCellProvider');
 		$cellProvider =& new ReviewFormGridCellProvider();
 		$this->addColumn(new GridColumn('titles', '
 										common.title',
 										null,
-										$emptyActions,
 										'controllers/grid/gridCellInSpan.tpl',
 										$cellProvider));
 

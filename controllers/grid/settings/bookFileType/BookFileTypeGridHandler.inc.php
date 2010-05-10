@@ -82,19 +82,16 @@ class BookFileTypeGridHandler extends GridHandler {
 		);
 
 		// Columns
-		$emptyActions = array();
 		$cellProvider = new DataObjectGridCellProvider();
 		$cellProvider->setLocale(Locale::getLocale());
 		$this->addColumn(new GridColumn('name',
 										'common.name',
 										null,
-										$emptyActions,
 										'controllers/grid/gridCellInSpan.tpl',
 										$cellProvider));
 		$this->addColumn(new GridColumn('designation',
 										'common.designation',
 										null,
-										$emptyActions,
 										'controllers/grid/gridCellInSpan.tpl',
 										$cellProvider));
 	}
@@ -143,7 +140,7 @@ class BookFileTypeGridHandler extends GridHandler {
 		} else {
 			$bookFileTypeForm->initData($args, $request);
 		}
-		
+
 		$json = new JSON('true', $bookFileTypeForm->fetch());
 		return $json->getString();
 	}

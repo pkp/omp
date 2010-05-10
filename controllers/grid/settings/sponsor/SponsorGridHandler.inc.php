@@ -66,12 +66,9 @@ class SponsorGridHandler extends SetupGridHandler {
 		);
 
 		// Columns
-		$emptyActions = array();
-		// Basic grid row configuration
 		$this->addColumn(new GridColumn('institution',
 										'grid.columns.institution',
 										null,
-										$emptyActions,
 										'controllers/grid/gridCellInSpan.tpl'));
 		$this->addColumn(new GridColumn('url', 'grid.columns.url'));
 	}

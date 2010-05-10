@@ -66,14 +66,12 @@ class SubmissionsListGridHandler extends GridHandler {
 		// Load submission-specific translations
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_AUTHOR, LOCALE_COMPONENT_PKP_SUBMISSION));
 
-		$emptyColumnActions = array();
 		$cellProvider = new SubmissionsListGridCellProvider();
 		$this->addColumn(
 			new GridColumn(
 				'title',
 				'common.title',
 				null,
-				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
 			)

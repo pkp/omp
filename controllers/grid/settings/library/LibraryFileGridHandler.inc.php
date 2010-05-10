@@ -88,14 +88,12 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		);
 
 		// Columns
-		$emptyActions = array();
 		// Basic grid row configuration
 		import('controllers.grid.settings.library.LibraryFileGridCellProvider');
 		$cellProvider =& new LibraryFileGridCellProvider();
 		$this->addColumn(new GridColumn('files',
 										'grid.libraryFiles.column.files',
 										null,
-										$emptyActions,
 										'controllers/grid/gridCellInSpan.tpl',
 										$cellProvider));
 	}

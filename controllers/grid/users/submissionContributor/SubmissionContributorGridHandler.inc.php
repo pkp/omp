@@ -115,14 +115,12 @@ class SubmissionContributorGridHandler extends GridHandler {
 		);
 
 		// Columns
-		$emptyColumnActions = array();
 		$cellProvider = new SubmissionContributorGridCellProvider();
 		$this->addColumn(
 			new GridColumn(
 				'name',
 				'author.users.contributor.name',
 				null,
-				$emptyColumnActions,
 				'controllers/grid/gridCellInSpan.tpl',
 				$cellProvider
 			)
@@ -132,7 +130,6 @@ class SubmissionContributorGridHandler extends GridHandler {
 				'email',
 				'author.users.contributor.email',
 				null,
-				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
 			)
@@ -142,7 +139,6 @@ class SubmissionContributorGridHandler extends GridHandler {
 				'userGroupId',
 				'author.users.contributor.role',
 				null,
-				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
 			)
@@ -152,7 +148,6 @@ class SubmissionContributorGridHandler extends GridHandler {
 				'principalContact',
 				'author.users.contributor.principalContact',
 				null,
-				$emptyColumnActions,
 				'controllers/grid/users/submissionContributor/primaryContact.tpl',
 				$cellProvider
 			)

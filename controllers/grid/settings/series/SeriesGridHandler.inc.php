@@ -101,12 +101,9 @@ class SeriesGridHandler extends SetupGridHandler {
 		);
 
 		// Columns
-		$emptyActions = array();
-		// Basic grid row configuration
 		$this->addColumn(new GridColumn('title',
 										'common.title',
 										null,
-										$emptyActions,
 										'controllers/grid/gridCellInSpan.tpl'));
 		$this->addColumn(new GridColumn('division', 'manager.setup.division'));
 		$this->addColumn(new GridColumn('editors', 'user.role.editors'));

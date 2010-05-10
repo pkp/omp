@@ -66,12 +66,9 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		);
 
 		// Columns
-		$emptyActions = array();
-		// Basic grid row configuration
 		$this->addColumn(new GridColumn('content',
 				'grid.submissionChecklist.column.checklistItem',
 				null,
-				$emptyActions,
 				'controllers/grid/gridCellInSpan.tpl',
 				null,
 				array('multiline' => true)
@@ -124,7 +121,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		} else {
 			$submissionChecklistForm->initData($args, $request);
 		}
-		
+
 		$json = new JSON('true', $submissionChecklistForm->fetch());
 		return $json->getString();
 	}

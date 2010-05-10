@@ -80,7 +80,6 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 				$actingAsUserGroupId,
 				null,
 				$actingAsUserGroup->getLocalizedAbbrev(),
-				$emptyColumnActions,
 				'controllers/grid/common/cell/roleCell.tpl',
 				$cellProvider
 			)

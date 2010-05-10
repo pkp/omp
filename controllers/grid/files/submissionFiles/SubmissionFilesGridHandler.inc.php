@@ -92,18 +92,14 @@ class SubmissionFilesGridHandler extends GridHandler {
 		);
 
 		// Columns
-		$emptyActions = array();
-		// Basic grid row configuration
 		$this->addColumn(new GridColumn('name',
 										'common.name',
 										null,
-										$emptyActions,
 										'controllers/grid/gridCellInSpan.tpl'
 										));
 		$this->addColumn(new GridColumn('type',
 										'common.type',
-										null,
-										$emptyActions
+										null
 										));
 	}
 
@@ -183,7 +179,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$templateMgr->assign('monographId', $this->_monographId);
 		$templateMgr->assign('fileId', $fileId);
 		$templateMgr->assign('gridId', $this->getId());
-		
+
 		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/submissionFiles.tpl'));
 		return $json->getString();
 	}
@@ -279,7 +275,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		} else {
 			$metadataForm->initData($args, $request);
 		}
-		
+
 		$json = new JSON('true', $metadataForm->fetch($request));
 		return $json->getString();
 	}
@@ -345,7 +341,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$templateMgr->assign('monographId', $monographId);
 		$templateMgr->assign('fileId', $fileId);
 		$templateMgr->assign('gridId', $this->getId());
-		
+
 		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/fileSubmissionComplete.tpl'));
 		return $json->getString();
 	}

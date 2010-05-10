@@ -68,19 +68,15 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 		);
 
 		// Columns
-		$emptyActions = array();
-
-		// Basic grid row configuration
 		import('controllers.grid.settings.reviewForm.ReviewFormElementGridCellProvider');
 		$cellProvider =& new ReviewFormElementGridCellProvider();
-		$this->addColumn(new GridColumn('reviewFormElement', 'grid.reviewFormElements.column.elements', $emptyActions, 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('reviewFormElement', 'grid.reviewFormElements.column.elements', 'controllers/grid/gridCellInSpan.tpl', $cellProvider));
 
 		import('controllers.grid.settings.reviewForm.ReviewFormElementTypeCellProvider');
 		$cellProvider =& new ReviewFormElementTypeCellProvider();
 		$this->addColumn(new GridColumn('elementType',
 										'common.type',
 										null,
-										$emptyActions,
 										'controllers/grid/gridCell.tpl',
 										$cellProvider));
 	}

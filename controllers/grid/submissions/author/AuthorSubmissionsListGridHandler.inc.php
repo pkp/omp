@@ -85,7 +85,6 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 //				'status',
 //				'common.status',
 //				null,
-//				$emptyColumnActions,
 //				'controllers/grid/gridCell.tpl',
 //				$cellProvider
 //			)

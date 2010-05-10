@@ -143,7 +143,6 @@ class ChapterGridHandler extends CategoryGridHandler{
 		);
 
 		// Columns
-		$emptyColumnActions = array();
 		// reuse the cell providers for the SubmissionContributorGrid
 		$cellProvider = new SubmissionContributorGridCellProvider();
 		$this->addColumn(
@@ -151,7 +150,6 @@ class ChapterGridHandler extends CategoryGridHandler{
 				'name',
 				'author.users.contributor.name',
 				null,
-				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
 			)
@@ -161,7 +159,6 @@ class ChapterGridHandler extends CategoryGridHandler{
 				'email',
 				'author.users.contributor.email',
 				null,
-				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
 			)
@@ -171,7 +168,6 @@ class ChapterGridHandler extends CategoryGridHandler{
 				'role',
 				'author.users.contributor.role',
 				null,
-				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
 			)
@@ -181,7 +177,6 @@ class ChapterGridHandler extends CategoryGridHandler{
 				'principalContact',
 				'author.users.contributor.principalContact',
 				null,
-				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
 			)

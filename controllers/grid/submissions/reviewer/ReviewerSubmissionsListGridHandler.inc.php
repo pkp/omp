@@ -56,14 +56,12 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$this->setData($this->_getSubmissions($request, $user->getId(), $press->getId()));
 
 		// Add reviewer-specific columns
-		$emptyColumnActions = array();
 		$cellProvider = new SubmissionsListGridCellProvider();
 		$this->addColumn(
 			new GridColumn(
 				'dateAssigned',
 				'common.assigned',
 				null,
-				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
 			)
@@ -73,7 +71,6 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 				'dateDue',
 				'submission.due',
 				null,
-				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
 			)
@@ -83,7 +80,6 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 				'reviewRound',
 				'common.round',
 				null,
-				$emptyColumnActions,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
 			)
@@ -104,10 +100,10 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function deleteSubmission(&$args, &$request) {
 		//FIXME: Implement
-		
+
 		return false;
 	}
-	
+
 	//
 	// Private helper functions
 	//
