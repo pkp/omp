@@ -29,7 +29,9 @@ class ReviewFormElementGridCellProvider extends GridCellProvider {
 	 * @param $columnId string
 	 * @return array
 	 */
-	function getTemplateVarsFromElement(&$element, $columnId) {
+	function getTemplateVarsFromRowColumn(&$row, $column) {
+		$element =& $row->getData();
+		$columnId = $column->getId();
 		assert(is_a($element, 'DataObject') && !empty($columnId));
 		switch ($columnId) {
 			case 'titles':
