@@ -11,6 +11,39 @@
 <div id="submission">
 <h3>{translate key="manuscript.submission"}</h3>
 
+<script type="text/javascript">
+	{literal}
+	$(function(){
+	    $('#editorReviewFileSelectionForm').ajaxForm({
+			dataType: 'json',
+			beforeSubmit: function() {
+		    	var idArray = [];
+				$(".editorReviewFileSelect:checked").each(function() {
+				    fullId = $(this).attr('id');
+				    id = fullId.substring(7);
+				    idArray.push(id);
+				    $('#selectedFiles').val(idArray.join(',') );
+				    alert($('#selectedFiles').val());
+				});
+	    	},
+	        // success identifies the function to invoke when the server response
+	        // has been received; here we show a success message and enable the next tab
+	        success: function(returnString) {
+	    		// FIXME: Do something
+	        }
+	    });
+	});		
+	{/literal}
+</script>
+
+{url|assign:editorReviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.editorReviewFileSelection.EditorReviewFileSelectionGridHandler" op="fetchGrid" monographId="5"}
+{load_url_in_div id="editorReviewFileSelectionGridContainer" loadMessageId="submission.submissionContributors.form.loadMessage" url="$editorReviewFileSelectionGridUrl"}
+
+<form method="post" id="editorReviewFileSelectionForm">
+	<input type="hidden" id="selectedFiles" value="">
+	<input type="submit" id="submitFiles" value='{translate key="Approve & Send to Review"}' />
+</form>
+
 <table width="100%" class="data">
 	<tr>
 		<td width="20%" class="label">{translate key="monograph.authors"}</td>
@@ -65,7 +98,7 @@
 			<form method="post" action="{url op="uploadReviewVersion"}" enctype="multipart/form-data">
 				{translate key="editor.monograph.uploadReviewVersion"}
 				<input type="hidden" name="monographId" value="{$submission->getId()}" />
-				{fbvFileInput id="upload" submit="submit"}
+				{** fbvFileInput id="upload" submit="submit"**}
 			</form>
 		</td>
 	</tr>
