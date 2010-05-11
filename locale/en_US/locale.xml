@@ -221,7 +221,7 @@ Note that if your site administrator has already registered this site with the P
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
 
-	<message key="monograph.abstract">Abstract</message>
+	<message key="monograph.description">Description</message>
 	<message key="monograph.language">Language</message>
 	<message key="monograph.authors">Authors</message>
 	<message key="monograph.title">Title</message>

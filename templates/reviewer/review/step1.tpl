@@ -37,7 +37,7 @@
 		<p>{$submission->getAuthorString()}</p>
 	{/if}
 	
-	<h4>{translate key="monograph.abstract"}</h4>
+	<h4>{translate key="monograph.description"}</h4>
 	<p>{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br}</p>
 
 

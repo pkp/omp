@@ -96,7 +96,7 @@ function show(id) {
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{translate key="monograph.abstract"}</td>
+		<td class="label">{translate key="monograph.description"}</td>
 		<td class="value">{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br|default:"&mdash;"}</td>
 	</tr>
 </table>

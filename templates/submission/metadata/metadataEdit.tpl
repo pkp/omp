@@ -51,7 +51,7 @@
 		<td colspan="2" class="separator">&nbsp;</td>
 	</tr>
 	<tr valign="top">
-		<td class="label">{translate key="monograph.abstract"}</td>
+		<td class="label">{translate key="monograph.description"}</td>
 		<td class="value"><textarea name="abstract[{$formLocale|escape}]" id="abstract" rows="15" cols="60" class="textArea">{$abstract[$formLocale]|escape}</textarea></td>
 	</tr>
 </table>
