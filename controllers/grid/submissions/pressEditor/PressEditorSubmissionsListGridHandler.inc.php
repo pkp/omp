@@ -17,6 +17,7 @@ import('controllers.grid.submissions.SubmissionsListGridHandler');
 
 // import specific grid classes
 import('controllers.grid.submissions.pressEditor.PressEditorSubmissionsListGridCellProvider');
+import('controllers.grid.submissions.pressEditor.PressEditorSubmissionsListGridRow');
 
 // Filter editor
 define('FILTER_EDITOR_ALL', 0);
@@ -34,6 +35,18 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	}
 
 	//
+	// Overridden methods from GridHandler
+	//
+	/**
+	* Get the row handler - override the default row handler
+	* @return PressEditorSubmissionsListGridRow
+	*/
+	function &getRowInstance() {
+		$row = new PressEditorSubmissionsListGridRow();
+		return $row;
+	}
+
+	//
 	// Getters/Setters
 	//
 	/**
@@ -41,7 +54,7 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * @return array
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('deleteSubmission'));
+		return array_merge(parent::getRemoteOperations(), array('editorAction'));
 	}
 
 	//
@@ -63,13 +76,17 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 		$this->setData($this->_getSubmissions($request, $user->getId(), $press->getId()));
 
+		// change the first column cell template to allow for actions
+		$titleColumn =& $this->getColumn('title');
+		$titleColumn->setTemplate('controllers/grid/gridCellInSpan.tpl');
+
 		// Add author-specific columns
 		$emptyColumnActions = array();
 		$cellProvider = new PressEditorSubmissionsListGridCellProvider();
 
 		$session =& $request->getSession();
 		$actingAsUserGroupId = $session->getSessionVar('userGroupId');
-		// FIXME: need to implement acting as in session
+		// FIXME: bug 5321 : need to implement acting as in session
 		$actingAsUserGroupId = 437;
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$actingAsUserGroup =& $userGroupDao->getById($actingAsUserGroupId);
@@ -94,7 +111,6 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 					$authorUserGroup->getId(),
 					null,
 					$authorUserGroup->getLocalizedAbbrev(),
-					$emptyColumnActions,
 					'controllers/grid/common/cell/roleCell.tpl',
 					$cellProvider
 				)
@@ -107,6 +123,18 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	//
 	// Public SubmissionsList Grid Actions
 	//
+	/**
+	 * Editor Column Actions
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function editorAction(&$args, &$request) {
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('monographId', $request->getUserVar('monographId'));
+		$json = new JSON('true', $templateMgr->fetch('controllers/grid/submissions/pressEditor/approveAndReview.tpl'));
+		return $json->getString();
+	}
 
 	/**
 	 * Delete a submission

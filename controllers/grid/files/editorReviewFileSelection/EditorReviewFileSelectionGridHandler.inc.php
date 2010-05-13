@@ -68,34 +68,29 @@ class EditorReviewFileSelectionGridHandler extends GridHandler {
 			$monographFileId = $monographFile->getFileId();
 			$rowData[$monographFileId] = $monographFile;
 		}
-		
+
 		$this->setData($rowData);
 
 		// Columns
-		$emptyActions = array();
-		// Basic grid row configuration
 		import('controllers.grid.files.editorReviewFileSelection.EditorReviewFileSelectionGridCellProvider');
 		$cellProvider =& new EditorReviewFileSelectionGridCellProvider();
 		$this->addColumn(new GridColumn('select',
 			'common.select',
 			null,
-			$emptyActions,
 			'controllers/grid/files/editorReviewFileSelection/selectRow.tpl',
 			$cellProvider)
 		);
-		
+
 		$this->addColumn(new GridColumn('name',
 			'common.file',
 			null,
-			$emptyActions,
 			'controllers/grid/gridCellInSpan.tpl',
 			$cellProvider)
 		);
-		
+
 		$this->addColumn(new GridColumn('type',
 			'common.type',
 			null,
-			$emptyActions,
 			'controllers/grid/gridCellInSpan.tpl',
 			$cellProvider)
 		);
@@ -112,7 +107,7 @@ class EditorReviewFileSelectionGridHandler extends GridHandler {
 		$row = new EditorReviewFileSelectionGridRow();
 		return $row;
 	}
-	
+
 	/**
 	 * Validate that the user is the assigned author for the monograph
 	 * Raises a fatal error if validation fails.
@@ -162,7 +157,7 @@ class EditorReviewFileSelectionGridHandler extends GridHandler {
 	 */
 	function editFile(&$args, &$request) {
 		$fileId = $request->getUserVar('rowId');
-		$reviewId = $request->getUserVar('reviewId'); 
+		$reviewId = $request->getUserVar('reviewId');
 
 		import('controllers.grid.files.editorReviewFileSelection.form.EditorReviewFileSelectionForm');
 		$editorReviewFileSelectionForm = new EditorReviewFileSelectionForm($reviewId, $fileId, $this->getId());
@@ -185,7 +180,7 @@ class EditorReviewFileSelectionGridHandler extends GridHandler {
 	function saveFile(&$args, &$request) {
 		$router =& $request->getRouter();
 		$reviewId = $request->getUserVar('reviewId');
-		
+
 		import('controllers.grid.files.editorReviewFileSelection.form.EditorReviewFileSelectionForm');
 		$editorReviewFileSelectionForm = new EditorReviewFileSelectionForm($reviewId, null, $this->getId());
 		$editorReviewFileSelectionForm->readInputData();
@@ -204,7 +199,7 @@ class EditorReviewFileSelectionGridHandler extends GridHandler {
 
 		return '<textarea>' . $json->getString() . '</textarea>';
 	}
-	
+
 	/**
 	 * Return a grid row with for the submission grid
 	 * @param $args array
@@ -250,5 +245,5 @@ class EditorReviewFileSelectionGridHandler extends GridHandler {
 		}
 		return $json->getString();
 	}
-	
+
 }

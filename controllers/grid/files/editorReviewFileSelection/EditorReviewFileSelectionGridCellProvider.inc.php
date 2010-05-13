@@ -25,12 +25,14 @@ class EditorReviewFileSelectionGridCellProvider extends GridCellProvider {
 	/**
 	 * Extracts variables for a given column from a data element
 	 * so that they may be assigned to template before rendering.
-	 * @param $element mixed
-	 * @param $columnId string
+	 * @param $row GridRow
+	 * @param $column GridColumn
 	 * @return array
 	 */
-	function getTemplateVarsFromElement(&$element, $columnId) {
-		assert(is_a($element, 'DataObject') && !empty($columnId));
+	function getTemplateVarsFromRowColumn(&$row, &$column) {
+		$element =& $row->getData();
+		$columnId = $column->getId();
+		assert(is_a($element, 'MonographFile') && !empty($columnId));
 		switch ($columnId) {
 			case 'select':
 				return array('rowId' => $element->getFileId());

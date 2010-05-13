@@ -22,18 +22,15 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 		parent::DataObjectGridCellProvider();
 	}
 
-	//
-	// Template methods from GridCellProvider
-	//
 	/**
-	 * Extracts variables for a given column from a data element
-	 * so that they may be assigned to template before rendering.
-	 * @param $element mixed
-	 * @param $columnId string
-	 * @return array
+	 * Gathers the state of a given cell given a $row/$column combination
+	 * @param $row GridRow
+	 * @param $column GridColumn
 	 */
-	function getTemplateVarsFromElement(&$element, $columnId) {
-		assert(is_a($element, 'DataObject') && !empty($columnId));
+	function getCellState(&$row, &$column) {
+		$columnId = $column->getId();
+		$monograph =& $row->getData();
+		assert(is_a($monograph, 'Monograph') && !empty($columnId));
 		// numeric means its a userGroupId column
 		if ( is_numeric($columnId) ) {
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -44,18 +41,73 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 				// Determine status of editor columns
 
 				// FIXME: need to implement different statuses
-				return array('status' => 'new');
+				return 'new';
 			} else if ( $roleId == ROLE_ID_AUTHOR ) {
 				// Following columns are potential submitters
-				if ( $columnId == $element->getUserGroupId() ) {
+				if ( $columnId == $monograph->getUserGroupId() ) {
 					// Show that this column's user group is the submitter
-					return array('status' => 'uploaded');
+					return 'uploaded';
 				}
 				// If column is not the submitter, cell is always empty.
-				return array('status' => '');
+				return '';
 			}
 		}
 
-		return parent::getTemplateVarsFromElement($element, $columnId);
+		return parent::getCellState($row, $column);
+	}
+
+	/**
+	 * Get cell actions associated with this row/column combination
+	 * @param $row GridRow
+	 * @param $column GridColumn
+	 * @return array an array of GridAction instances
+	 */
+	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
+		$state = $this->getCellState($row, $column);
+
+		$router =& $request->getRouter();
+		$actionArgs = array(
+			'gridId' => $row->getGridId(),
+			'monographId' => $row->getId()
+		);
+
+		switch ($state) {
+			case 'new':
+				$action =& new GridAction(
+								'editorAction',
+								GRID_ACTION_MODE_MODAL,
+								GRID_ACTION_TYPE_REPLACE,
+								$router->url($request, null, null, 'editorAction', null, $actionArgs),
+								'grid.action.approve',
+								null,
+								$state
+							);
+				return array($action);
+			case 'uploaded':
+				break;
+		}
+
+		return array();
+	}
+
+	//
+	// Template methods from GridCellProvider
+	//
+	/**
+	 * Extracts variables for a given column from a data element
+	 * so that they may be assigned to template before rendering.
+	 * @param $row GridRow
+	 * @param $column GridColumn
+	 * @return array
+	 */
+	function getTemplateVarsFromRowColumn(&$row, &$column) {
+		// numeric means its a userGroupId column
+		if ( is_numeric($column->getId())) {
+			$state = $this->getCellState($row, $column);
+			return array('status' => $state);
+		}
+
+		// if this is not a userGroupId column, then fallback on the parent.
+		return parent::getTemplateVarsFromRowColumn($row, $column);
 	}
 }
