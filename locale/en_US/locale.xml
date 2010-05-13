@@ -301,6 +301,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="common.pressHomepageImage.altText">Press Homepage Image</message>
 	<message key="common.designation">Designation</message>
 	<message key="common.name">Name</message>
+	<message key="common.personalMessage">Personal Message</message>
 
 	<!-- Navigation -->
 	<message key="navigation.pressHelp">Press Help</message>

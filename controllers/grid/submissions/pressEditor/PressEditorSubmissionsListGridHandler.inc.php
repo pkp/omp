@@ -54,7 +54,7 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * @return array
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('editorAction'));
+		return array_merge(parent::getRemoteOperations(), array('editorAction', 'showApprove', 'saveApprove', 'showApproveAndReview', 'saveApproveAndReview', 'showDecline', 'saveDecline', 'moreInfo'));
 	}
 
 	//
@@ -124,28 +124,129 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	// Public SubmissionsList Grid Actions
 	//
 	/**
-	 * Editor Column Actions
+	 * Show the submission approval modal
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
-	function editorAction(&$args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('monographId', $request->getUserVar('monographId'));
-		$json = new JSON('true', $templateMgr->fetch('controllers/grid/submissions/pressEditor/approveAndReview.tpl'));
+	function showApproveAndReview(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		import('controllers.grid.submissions.pressEditor.form.ApproveAndReviewSubmissionForm');
+		$approveForm = new ApproveAndReviewSubmissionForm($monographId);
+
+		if ($approveForm->isLocaleResubmit()) {
+			$approveForm->readInputData();
+		} else {
+			$approveForm->initData($args, $request);
+		}
+
+		$json = new JSON('true', $approveForm->fetch($request));
 		return $json->getString();
 	}
 
 	/**
-	 * Delete a submission
+	 * Save the submission approval modal
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
-	function deleteSubmission(&$args, &$request) {
-		//FIXME: Implement
+	function saveApproveAndReview(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
 
-		return false;
+		import('controllers.grid.submissions.pressEditor.form.ApproveAndReviewSubmissionForm');
+		$approveForm = new ApproveAndReviewSubmissionForm($monographId);
+
+		if ($approveForm->validate()) {
+			$approveForm->execute($args, $request);
+			$router =& $request->getRouter();
+var_dump($request->getUserVar('selectedFiles'));
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false');
+		}
+
+		return $json->getString();
+	}
+
+
+	/**
+	 * Show the submission approval modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function showApprove(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		import('controllers.grid.submissions.pressEditor.form.ApproveSubmissionForm');
+		$approveForm = new ApproveSubmissionForm($monographId);
+
+		if ($approveForm->isLocaleResubmit()) {
+			$approveForm->readInputData();
+		} else {
+			$approveForm->initData($args, $request);
+		}
+
+		$json = new JSON('true', $approveForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Save the submission approval modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function saveApprove(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		import('controllers.grid.submissions.pressEditor.form.ApproveSubmissionForm');
+		$approveForm = new ApproveSubmissionForm($monographId);
+
+		if ($approveForm->validate()) {
+			$approveForm->execute($args, $request);
+			$router =& $request->getRouter();
+
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false');
+		}
+
+		return $json->getString();
+	}
+
+	/**
+	 * Show the submission decline modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function showDecline(&$args, &$request) {
+
+	}
+
+	/**
+	 * Save the submission decline modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function saveDecline(&$args, &$request) {
+
+	}
+
+	/**
+	 * Show the information center for this submission
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function moreInfo(&$args, &$request) {
+		import('pages.informationCenter.informationCenterHandler');
+		$informationCenter =& new InformationCenterHandler();
+
+		return $informationCenter->viewInformationCenter($args, $request);
 	}
 
 	//

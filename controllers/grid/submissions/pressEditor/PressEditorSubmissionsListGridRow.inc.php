@@ -50,7 +50,7 @@ class PressEditorSubmissionsListGridRow extends GridRow {
 					'approve',
 					GRID_ACTION_MODE_MODAL,
 					GRID_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'approve', null, $actionArgs),
+					$router->url($request, null, null, 'showApprove', null, $actionArgs),
 					'grid.action.approve',
 					null,
 					'promote'
@@ -60,7 +60,7 @@ class PressEditorSubmissionsListGridRow extends GridRow {
 					'decline',
 					GRID_ACTION_MODE_MODAL,
 					GRID_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'decline', null, $actionArgs),
+					$router->url($request, null, null, 'showDecline', null, $actionArgs),
 					'grid.action.decline',
 					null,
 					'delete'

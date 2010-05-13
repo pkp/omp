@@ -74,10 +74,10 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 		switch ($state) {
 			case 'new':
 				$action =& new GridAction(
-								'editorAction',
+								'showApproveAndReview',
 								GRID_ACTION_MODE_MODAL,
 								GRID_ACTION_TYPE_REPLACE,
-								$router->url($request, null, null, 'editorAction', null, $actionArgs),
+								$router->url($request, null, null, 'showApproveAndReview', null, $actionArgs),
 								'grid.action.approve',
 								null,
 								$state
