@@ -28,7 +28,7 @@ class IndexingInformationListbuilderHandler extends ListbuilderHandler {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monographId = $request->getUserVar('monographId');
 		$monograph =& $monographDao->getMonograph($monographId);
-		
+
 		$supportingAgencies = $monograph->getLocalizedSupportingAgencies();
 
 		$items = array();
@@ -60,7 +60,7 @@ class IndexingInformationListbuilderHandler extends ListbuilderHandler {
 
 		$this->addColumn(new GridColumn('item', 'common.name'));
 	}
-	
+
 	/**
 	 * Need to add additional data to the template via the fetch method
 	 */
@@ -73,9 +73,9 @@ class IndexingInformationListbuilderHandler extends ListbuilderHandler {
 			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId))
 		);
 
-		return parent::fetch(&$args, &$request, $additionalVars)
+		return parent::fetch(&$args, &$request, $additionalVars);
     }
-	
+
 	/**
 	 * @see PKPHandler::setupTemplate()
 	 */
@@ -96,7 +96,7 @@ class IndexingInformationListbuilderHandler extends ListbuilderHandler {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monographId = $request->getUserVar('monographId');
 		$monograph =& $monographDao->getMonograph($monographId);
-		
+
 		$index = 'sourceTitle-' . $this->getId();
 		$supportingAgency = $args[$index];
 
@@ -120,7 +120,7 @@ class IndexingInformationListbuilderHandler extends ListbuilderHandler {
 
 			$monograph->setSupportingAgencies($supportingAgencies, Locale::getLocale());
 			$monographDao->updateMonograph($monograph);
-			
+
 			// Return JSON with formatted HTML to insert into list
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
@@ -133,7 +133,7 @@ class IndexingInformationListbuilderHandler extends ListbuilderHandler {
 			return $json->getString();
 		}
 	}
-		
+
 
 	/*
 	 * Handle deleting items from the list
@@ -143,7 +143,7 @@ class IndexingInformationListbuilderHandler extends ListbuilderHandler {
 		$monographId = array_shift($args);
 		$monograph =& $monographDao->getMonograph($monographId);
 		$supportingAgencies = $monograph->getLocalizedSupportingAgencies();
-		
+
 		foreach($args as $item) {
 			for ($i = 0; $i < count($supportingAgencies); $i++) {
 				if ($supportingAgencies[$i]['name'] == $item) {
