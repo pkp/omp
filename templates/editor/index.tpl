@@ -23,9 +23,4 @@
 	</ul>
 </div>
 
-
-{url|assign:"informationCenterUrl" page='informationCenter' op='viewInformationCenter' fileId='4'}
-{modal url="$informationCenterUrl" actOnType="nothing" actOnId="nothing" dialogText='informationCenter.informationCenter' button="#informationCenterButton"}
-<a id="informationCenterButton" href="informationCenterUrl">{translate key="informationCenter.informationCenter"}</a>
-
 {include file="common/footer.tpl"}

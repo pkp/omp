@@ -33,7 +33,7 @@
 </script>
 <div id="informationCenterNotesTab">
 	<div id="newNoteContainer">
-		<form name="newNoteForm" id="newNoteForm" action="{url router=$smarty.const.ROUTE_PAGE page="informationCenter" op="saveNote" fileId=$fileId}" method="post">
+		<form name="newNoteForm" id="newNoteForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="informationCenter.InformationCenterHandler" op="saveNote" assocId=$assocId assocType=$assocType}" method="post">
 			{fbvElement type="textarea" id="newNote" size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}<br/>
 			<div style="float:right;">{fbvButton type="submit" label="informationCenter.postNote"}</div>
 		</form>
@@ -42,7 +42,7 @@
 	<hr />
 	<div id="existingNotes">
 		{iterate from=notes item=note}
-			{include file="informationCenter/note.tpl"}
+			{include file="controllers/informationCenter/note.tpl"}
 		{/iterate}
 		{if $notes->wasEmpty()}
 			<h5 id="noNotes" class="text_center">{translate key="informationCenter.noNotes"}</h5>

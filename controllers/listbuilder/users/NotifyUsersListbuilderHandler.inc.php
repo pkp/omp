@@ -27,7 +27,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	 * @return string
 	 */
 	function getTemplate() {
-		$this->setTemplate('informationCenter/notifyListbuilder.tpl');
+		$this->setTemplate('controllers/informationCenter/notifyListbuilder.tpl');
 		return $this->_template;
 	}
 

@@ -10,7 +10,7 @@
 
 <div id="{$listbuilderId}">
 	<div class="wrapper">
-		<div class="unit size2of5" id="source-{$listbuilderId}{if $itemId}-{$itemId}{/if}">
+		<div class="unit size2of5" id="source-{$listbuilderId}{if $assocId}-{$assocId}{/if}">
  			<ul>
 		        <li>
 					<span>
@@ -23,10 +23,10 @@
 			</ul>
 		</div>
 		<div class="unit size1of10 listbuilder_controls">
-			<a href="#" id="add-{$listbuilderId}{if $itemId}-{$itemId}{/if}" onclick="return false;" class="add_item"></a>
-			<a href="#" id="delete-{$listbuilderId}{if $itemId}-{$itemId}{/if}" onclick="return false;" class="remove_item"></a>
+			<a href="#" id="add-{$listbuilderId}{if $assocId}-{$assocId}{/if}" onclick="return false;" class="add_item"></a>
+			<a href="#" id="delete-{$listbuilderId}{if $assocId}-{$assocId}{/if}" onclick="return false;" class="remove_item"></a>
 		</div>
-		<div id="results-{$listbuilderId}{if $itemId}-{$itemId}{/if}" class="unit size1of2 lastUnit listbuilder_results">
+		<div id="results-{$listbuilderId}{if $assocId}-{$assocId}{/if}" class="unit size1of2 lastUnit listbuilder_results">
 		    <ul>
 		        <li>
 		            <label class="desc">
@@ -39,9 +39,9 @@
 	</div>
 	<script type='text/javascript'>
 	{literal}
-		addItem("{/literal}{$addUrl}{literal}", "{/literal}{$listbuilderId}{if $itemId}-{$itemId}{/if}{literal}", "{/literal}{$localizedButtons}{literal}");
-		deleteItems("{/literal}{$deleteUrl}{literal}", "{/literal}{$listbuilderId}{if $itemId}-{$itemId}{/if}{literal}");
-		selectRow("{/literal}{$listbuilderId}{if $itemId}-{$itemId}{/if}{literal}");
+		addItem("{/literal}{$addUrl}{literal}", "{/literal}{$listbuilderId}{if $assocId}-{$assocId}{/if}{literal}", "{/literal}{$localizedButtons}{literal}");
+		deleteItems("{/literal}{$deleteUrl}{literal}", "{/literal}{$listbuilderId}{if $assocId}-{$assocId}{/if}{literal}");
+		selectRow("{/literal}{$listbuilderId}{if $assocId}-{$assocId}{/if}{literal}");
 	{/literal}
 	</script>
 </div>

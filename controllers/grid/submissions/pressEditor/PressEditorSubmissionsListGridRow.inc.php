@@ -69,8 +69,8 @@ class PressEditorSubmissionsListGridRow extends GridRow {
 				new GridAction(
 					'moreInfo',
 					GRID_ACTION_MODE_MODAL,
-					GRID_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'moreInfo', null, $actionArgs),
+					GRID_ACTION_TYPE_NOTHING,
+					$router->url($request, null, 'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter', null, array('assocId' => $rowId)),
 					'grid.action.moreInformation',
 					null,
 					'more_info'

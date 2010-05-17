@@ -25,7 +25,7 @@ class InformationCenterNotifyForm extends Form {
 	 * Constructor.
 	 */
 	function InformationCenterNotifyForm($fileId) {
-		parent::Form('informationCenter/notify.tpl');
+		parent::Form('controllers/informationCenter/notify.tpl');
 		$this->fileId = $fileId;
 		
 		$this->addCheck(new FormValidatorPost($this));

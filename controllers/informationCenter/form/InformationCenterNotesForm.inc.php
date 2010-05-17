@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file classes/informationCenter/form/InformationCenterNotesForm.inc.php
+ * @file controllers/informationCenter/form/InformationCenterNotesForm.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -17,15 +17,19 @@ import('lib.pkp.classes.form.Form');
 
 class InformationCenterNotesForm extends Form {
 	/** @var int The file this form is for */
-	var $fileId;
+	var $assocId;
+	
+	/** @var int The file this form is for */
+	var $assocType;
 
 	/**
 	 * Constructor.
 	 */
-	function InformationCenterNotesForm($fileId) {
-		parent::Form('informationCenter/notes.tpl');
+	function InformationCenterNotesForm($assocId, $assocType) {
+		parent::Form('controllers/informationCenter/notes.tpl');
 		
-		$this->fileId = $fileId;
+		$this->assocId = $assocId;
+		$this->assocType = $assocType;
 		
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -37,10 +41,11 @@ class InformationCenterNotesForm extends Form {
 		$templateMgr =& TemplateManager::getManager();
 
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
-		$blah = ASSOC_TYPE_MONOGRAPH_FILE;
-		$notes =& $noteDao->getNotesByAssoc($this->fileId, ASSOC_TYPE_MONOGRAPH_FILE); 
+		$notes =& $noteDao->getNotesByAssoc($this->assocId, $this->assocType); 
+
 		$templateMgr->assign_by_ref('notes', $notes);
-		$templateMgr->assign_by_ref('fileId', $this->fileId);
+		$templateMgr->assign_by_ref('assocId', $this->assocId);
+		$templateMgr->assign_by_ref('assocType', $this->assocType);
 		
 		return parent::display($request, $fetch);
 	}
@@ -65,7 +70,7 @@ class InformationCenterNotesForm extends Form {
 		
 		$user =& Request::getUser();
 		
-		return $noteManager->createNote($user->getId(), $this->getData('newNote'), ASSOC_TYPE_MONOGRAPH_FILE, $this->fileId);
+		return $noteManager->createNote($user->getId(), $this->getData('newNote'), $this->assocType, $this->assocId);
 	}
 }
 

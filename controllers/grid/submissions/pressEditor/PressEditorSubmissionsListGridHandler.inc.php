@@ -235,19 +235,6 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 	}
 
-	/**
-	 * Show the information center for this submission
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSON
-	 */
-	function moreInfo(&$args, &$request) {
-		import('pages.informationCenter.informationCenterHandler');
-		$informationCenter =& new InformationCenterHandler();
-
-		return $informationCenter->viewInformationCenter($args, $request);
-	}
-
 	//
 	// Private helper functions
 	//

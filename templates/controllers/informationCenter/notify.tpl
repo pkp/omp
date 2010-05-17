@@ -32,7 +32,7 @@
 	{/literal}
 </script>
 <div id="informationCenterNotifyTab">
-	<form name="notifyForm" id="notifyForm" action="{url router=$smarty.const.ROUTE_PAGE page="informationCenter" op="sendNotification" fileId=$fileId}" method="post">
+	<form name="notifyForm" id="notifyForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="informationCenter.InformationCenterHandler" op="sendNotification" assocId=$assocId}" method="post">
 		{fbvFormArea id="notifyFormArea"}
 			{fbvFormSection title="email.to" for="notifyUsersContainer" required="true"}
 				{url|assign:notifyUsersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.NotifyUsersListbuilderHandler" op="fetch" fileId=$fileId}
