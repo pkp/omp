@@ -16,6 +16,6 @@
 	
 	<p>{translate key="editor.monograph.selectFiles"}</p>
 	{** FIXME: need to set escape=false due to bug 5265 *}
-	{url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.editorReviewFileSelection.EditorReviewFileSelectionGridHandler" op="fetchGrid" monographId=$monographId reviewType=$reviewType round=$round escape=false}
+	{url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" isSelectable=1 monographId=$monographId reviewType=$reviewType round=$round escape=false}
 	{load_url_in_div id="reviewFileSelection" url=$reviewFileSelectionGridUrl}
 </form>
