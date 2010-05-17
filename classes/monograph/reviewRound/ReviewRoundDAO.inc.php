@@ -69,7 +69,7 @@ class ReviewRoundDAO extends DAO {
 	/**
 	 * Insert a new review round.
 	 * @param $reviewRound ReviewRound
-	 * @return int 
+	 * @return int
 	 */
 	function insertObject(&$reviewRound) {
 		$this->update(
@@ -128,6 +128,40 @@ class ReviewRoundDAO extends DAO {
 		}
 		$result->Close();
 		return $returner;
+	}
+
+	/**
+	 * Check if a review round exists for a specified monograph.
+	 * @param $monographIdId int
+	 * @param $round int
+	 * @return boolean
+	 */
+	function reviewRoundExists($monographId, $reviewType, $round) {
+		$result = &$this->retrieve(
+			'SELECT COUNT(*) FROM review_rounds WHERE submission_id = ? AND review_type = ? AND round = ?', array($monographId, $reviewType, $round)
+		);
+		$returner = isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
+	/**
+	 * Initiate a review round
+	 * @param int $monographId
+	 * @param int $round
+	 * @param int $reviewRevision
+	 */
+	function createReviewRound($monographId, $reviewType, $round, $reviewRevision) {
+		$this->update(
+			'INSERT INTO review_rounds
+				(submission_id, review_type, round, review_revision)
+				VALUES
+				(?, ?, ?, ?)',
+			array($monographId, $reviewType, $round, $reviewRevision)
+		);
 	}
 }
 

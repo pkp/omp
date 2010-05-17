@@ -117,7 +117,6 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 			);
 			unset($authorUserGroup);
 		}
-
 	}
 
 	//
@@ -156,11 +155,11 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 		import('controllers.grid.submissions.pressEditor.form.ApproveAndReviewSubmissionForm');
 		$approveForm = new ApproveAndReviewSubmissionForm($monographId);
+		$approveForm->readInputData();
 
 		if ($approveForm->validate()) {
 			$approveForm->execute($args, $request);
 			$router =& $request->getRouter();
-var_dump($request->getUserVar('selectedFiles'));
 			$json = new JSON('true');
 		} else {
 			$json = new JSON('false');

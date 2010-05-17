@@ -60,6 +60,31 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	}
 
 	/**
+	 * Assign file to be used for review assignments
+	 * @param $monographId int The MonographId
+	 * @param $reviewType int the review round type
+	 * @param $round int the review round number
+	 * @param $fileIds array int array of fileId being assigned
+	 */
+	function setFilesForReview($monographId, $reviewType, $round, $fileIds) {
+		// remove the file, in case its there currently in there and replace with the currently selected ones
+		$returner = $this->update('DELETE FROM review_round_files
+						WHERE monograph_id = ? AND review_type = ? AND round = ?',
+						array($monographId, $reviewType, $round));
+
+		// now insert the selected files
+		foreach ($fileIds as $fileId) {
+			$returner = $returner &&
+						$this->update('INSERT INTO review_round_files
+								(monograph_id, review_type, round, file_id)
+								VALUES (?, ?, ?, ?)',
+								array($monographId, $reviewType, $round, $fileId));
+		}
+
+		return $returner;
+	}
+
+	/**
 	 * Get a review file for a monograph for each round.
 	 * @param $monographId int
 	 * @return array MonographFiles
@@ -68,21 +93,25 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		$returner = array();
 
 		$result =& $this->retrieve(
-			'SELECT	a.*, r.review_type, r.round as round
-			FROM	review_rounds r,
-				monograph_files a,
-				monographs art
-			WHERE	art.monograph_id = r.submission_id AND
-				r.submission_id = ? AND
-				r.submission_id = a.monograph_id AND
-				a.file_id = art.review_file_id AND
-				a.revision = r.review_revision',
-			(int) $monographId
+			'SELECT	mf.*, rr.review_type, rr.round as round
+			FROM	review_rounds rr,
+				monographs m,
+				monograph_files mf,
+				review_round_files rrf
+			WHERE	rr.submission_id = ? AND
+				mf.monograph_id = rr.submission_id AND
+				m.monograph_id = rr.submission_id AND
+				rr.submission_id = mf.monograph_id AND
+				mf.revision = rr.review_revision AND
+				rrf.review_type = rr.review_type AND
+				rrf.round = rr.round AND
+				rrf.file_id = mf.file_id',
+					(int) $monographId
 		);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$returner[$row['review_type']][$row['round']] =& $this->monographFileDao->_fromRow($row);
+			$returner[$row['review_type']][$row['round']][$row['file_id']] =& $this->monographFileDao->_fromRow($row);
 			$result->MoveNext();
 		}
 

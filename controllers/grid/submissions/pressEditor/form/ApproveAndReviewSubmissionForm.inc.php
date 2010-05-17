@@ -32,31 +32,46 @@ class ApproveAndReviewSubmissionForm extends Form {
 	//
 	// Template methods from Form
 	//
-
 	/**
-	 * Display the form.
+	 * Initialize variables
 	 */
-	function display(&$request, $fetch = true) {
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('monographId', $this->_monographId);
+	function initData(&$args, &$request) {
+		$reviewType = (int) $args['reviewType'];
+		$round = (int) $args['round'];
 
-		return parent::display($request, $fetch);
+		$this->setData('monographId', $this->_monographId);
+		$this->setData('reviewType', $reviewType);
+		$this->setData('round', $round);
 	}
 
 	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('selectedFiles'));
+		$this->readUserVars(array('reviewType', 'round', 'selectedFiles'));
 	}
 
 	/**
 	 * Save submissionContributor
 	 */
-	function execute() {
+	function execute(&$args, &$request) {
+		$reviewType = $this->getData('reviewType');
+		$round = $this->getData('round');
+
 		// TODO:
 		// 1. Accept review
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		// FIXME: what do do about reviewRevision? being set to 1 for now.
+		// Create a review round if it doesn't exist
+		if ( !$reviewRoundDao->reviewRoundExists($this->_monographId, $reviewType, $round)) {
+			$reviewRoundDao->createReviewRound($this->_monographId, $reviewType, $round, 1);
+		}
+
 		// 2. Get selected files and put in DB somehow
+		$selectedFiles = $this->getData('selectedFiles');
+		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
+
+		$reviewAssignmentDAO->setFilesForReview($this->_monographId, $reviewType, $round, $selectedFiles);
 		// 3. Send Personal message to author
 	}
 }

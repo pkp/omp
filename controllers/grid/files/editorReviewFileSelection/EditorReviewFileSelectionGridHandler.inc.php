@@ -94,6 +94,15 @@ class EditorReviewFileSelectionGridHandler extends GridHandler {
 			'controllers/grid/gridCellInSpan.tpl',
 			$cellProvider)
 		);
+
+		// Set the already selected elements of the grid
+		$reviewType = (int) $request->getUserVar('reviewType');
+		$round = (int) $request->getUserVar('round');
+
+		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$selectedFiles =& $reviewAssignmentDAO->getReviewFilesByRound($monographId);
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('selectedFileIds', array_keys($selectedFiles[$reviewType][$round]));
 	}
 
 	//

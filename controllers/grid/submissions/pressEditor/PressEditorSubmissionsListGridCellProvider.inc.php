@@ -65,10 +65,13 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		$state = $this->getCellState($row, $column);
 
+		$monograph =& $row->getData();
 		$router =& $request->getRouter();
 		$actionArgs = array(
 			'gridId' => $row->getGridId(),
-			'monographId' => $row->getId()
+			'monographId' => $monograph->getId(),
+			'reviewType' => $monograph->getCurrentReviewType(),
+			'round' => $monograph->getCurrentRound()
 		);
 
 		switch ($state) {
