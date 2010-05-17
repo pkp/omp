@@ -811,7 +811,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 	function &_returnReviewerUserFromRow(&$row) { // FIXME
 		$user =& $this->userDao->_returnUserFromRowWithData($row);
-		$user->review_id = $row['review_id'];
+		if(isset($row['review_id'])) $user->review_id = $row['review_id'];
 
 		HookRegistry::call('SeriesEditorSubmissionDAO::_returnReviewerUserFromRow', array(&$user, &$row));
 
@@ -836,7 +836,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 				ug.role_id = ? AND
 				r.submission_id IS NULL
 			ORDER BY last_name, first_name',
-			array($monographId, $pressId, RoleDAO::getRoleIdFromPath('reviewer'))
+			array($monographId, $pressId, ROLE_ID_REVIEWER)
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');

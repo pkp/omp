@@ -331,6 +331,13 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		HookRegistry::call('ReviewAssignmentDAO::_fromRow', array(&$reviewAssignment, &$row));
 		return $reviewAssignment;
 	}
+
+	//
+	// Add class to temporarily consolidate PKPReviewAssignmentDAO and ReviewAssignmentDAO
+	//
+	function updateObject(&$reviewAssignment) {
+		parent::updateReviewAssignment($reviewAssignment);
+	}
 }
 
 ?>

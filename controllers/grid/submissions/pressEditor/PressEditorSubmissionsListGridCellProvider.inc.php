@@ -40,8 +40,17 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 				// First columns are the PressEditors and SeriesEditors
 				// Determine status of editor columns
 
-				// FIXME: need to implement different statuses
-				return 'new';
+				$monographId = $monograph->getId();
+				$reviewType = $monograph->getCurrentReviewType();
+				$round = $monograph->getCurrentRound();
+
+				// FIXME: need to implement more statuses
+				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+				if ( !$reviewRoundDao->reviewRoundExists($monographId, $reviewType, $round) ) {
+					return 'new';
+				} else {
+					return 'accepted';
+				}
 			} else if ( $roleId == ROLE_ID_AUTHOR ) {
 				// Following columns are potential submitters
 				if ( $columnId == $monograph->getUserGroupId() ) {
@@ -81,6 +90,17 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 								GRID_ACTION_MODE_MODAL,
 								GRID_ACTION_TYPE_REPLACE,
 								$router->url($request, null, null, 'showApproveAndReview', null, $actionArgs),
+								'grid.action.approve',
+								null,
+								$state
+							);
+				return array($action);
+			case 'accepted':
+				$action =& new GridAction(
+								'showReview',
+								GRID_ACTION_MODE_MODAL,
+								GRID_ACTION_TYPE_REPLACE,
+								$router->url($request, null, null, 'showReview', null, $actionArgs),
 								'grid.action.approve',
 								null,
 								$state

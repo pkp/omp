@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file controllers/grid/submissions/pressEditor/form/ApproveAndReviewSubmissionForm.inc.php
+ * @file controllers/grid/submissions/pressEditor/form/AddReviewFileForm.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class ApproveAndReviewSubmissionForm
+ * @class AddReviewFileForm
  * @ingroup controllers_grid_submissions_pressEditor
  *
  * @brief Form for approving a submission
@@ -14,14 +14,14 @@
 
 import('lib.pkp.classes.form.Form');
 
-class ApproveAndReviewSubmissionForm extends Form {
+class AddReviewFileForm extends Form {
 	/** The monograph associated with the submission contributor being edited **/
 	var $_monographId;
 
 	/**
 	 * Constructor.
 	 */
-	function ApproveAndReviewSubmissionForm($monographId) {
+	function AddReviewFileForm($monographId) {
 		parent::Form('controllers/grid/submissions/pressEditor/approveAndReview.tpl');
 		$this->_monographId = (int) $monographId;
 
@@ -65,11 +65,6 @@ class ApproveAndReviewSubmissionForm extends Form {
 		// Create a review round if it doesn't exist
 		if ( !$reviewRoundDao->reviewRoundExists($this->_monographId, $reviewType, $round)) {
 			$reviewRoundDao->createReviewRound($this->_monographId, $reviewType, $round, 1);
-
-			import('submission.editor.EditorAction');
-			// FIXME: this assignment should be done elsewhere, prior to this point.
-			$user =& $request->getUser();
-			EditorAction::assignEditor($this->_monographId, $user->getId(), true);
 		}
 
 		// 2. Get selected files and put in DB somehow
@@ -78,7 +73,6 @@ class ApproveAndReviewSubmissionForm extends Form {
 
 		$reviewAssignmentDAO->setFilesForReview($this->_monographId, $reviewType, $round, $selectedFiles);
 		// 3. Send Personal message to author
-		// FIXME: See ApproveSubmissionForm
 	}
 }
 

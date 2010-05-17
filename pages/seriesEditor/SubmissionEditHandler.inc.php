@@ -95,6 +95,16 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$templateMgr->display('seriesEditor/submission.tpl');
 	}
 
+	function showReview(&$args, &$request) {
+		$this->setupTemplate(EDITOR_SERIES_HOME);
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('rounds', array(1, 2, 3));
+		$templateMgr->assign('currentRound', 1);
+		$templateMgr->assign('currentReviewType', 6);
+		$templateMgr->assign('monographId', 8);
+		$templateMgr->display('seriesEditor/showReviewers.tpl');
+	}
+
 	function submissionRegrets($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
@@ -447,7 +457,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 			$rangeInfo =& Handler::getRangeInfo('reviewers');
 			//$reviewers =& $seriesEditorSubmissionDao->getReviewersForMonograph($press->getId(), $monographId, $reviewType, $round, $searchType, $search, $searchMatch, $rangeInfo);
 			$reviewers =& $seriesEditorSubmissionDao->getReviewersNotAssignedToMonograph($press->getId(), $monographId);
-			
+
 			$press = Request::getPress();
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 

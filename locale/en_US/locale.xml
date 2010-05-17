@@ -152,7 +152,7 @@ You have been selected as a potential reviewer of the following submission.  Bel
 
 {$personalNote}
 
-Sincerely, 
+Sincerely,
 {$editor}]]></message>
 	<message key="reviewer.step1.viewAllDetails">View All Submission Details</message>
 	<message key="reviewer.monograph.fileToBeReviewed">File to be reviewed</message>
@@ -260,6 +260,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="common.warning">Warning</message>
 	<message key="common.quality">Quality</message>
 	<message key="common.saveAndClose">Save And Close</message>
+	<message key="common.autocomplete">Autocomplete</message>
 
 	<message key="common.queue.short.submissionsUnassigned">Unassigned</message>
 	<message key="common.queue.short.submissionsInEditing">In Editing</message>

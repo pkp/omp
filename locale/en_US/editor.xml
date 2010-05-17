@@ -154,4 +154,10 @@
 	<message key="editor.monograph.uploaded">Uploaded</message>
 	<message key="editor.monograph.removeCoverPage">Remove cover image?</message>
 	<message key="editor.monograph.remove">Remove</message>
+
+	<!-- Review related -->
+	<message key="editor.review.personalMessageToReviewer">Personal message to reviewer</message>
+	<message key="editor.review.thisIsBlindReview">This is a blind review. Reviewer should not be shown author's identity</message>
+	<message key="editor.review.reviewDueDate">Review Due Date</message>
+	<message key="editor.review.responseDueDate">Response Due Date</message>
 </locale>

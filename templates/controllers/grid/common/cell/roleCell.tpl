@@ -12,6 +12,6 @@
 		{assign var=defaultCellAction value=$actions[0]}
 		{include file="controllers/grid/gridAction.tpl" id=$cellId|concat:"-action-":$defaultCellAction->getId() action=$defaultCellAction objectId=$cellId actionCss="task"}
 	{else}
-		<a href="#" class="task {$status}">status</a>
+		<a class="task {$status}">status</a>
 	{/if}
 </td>
