@@ -2,6 +2,6 @@ config.inc.php
 .DS_Store
 build
 temp
-files
+/files
 .project
 .htaccess
