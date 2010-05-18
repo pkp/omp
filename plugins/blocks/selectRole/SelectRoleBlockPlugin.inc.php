@@ -16,11 +16,22 @@
 import('lib.pkp.classes.plugins.BlockPlugin');
 
 class SelectRoleBlockPlugin extends BlockPlugin {
+
+	/** @var User */
+	var $_user;
+
+	/** @var Press */
+	var $_press;
+
 	function register($category, $path) {
 		if (Config::getVar('general', 'installed')) {
-			$user =& Request::getUser();
-			$press =& Request::getPress();
-			if (!$press || !$user) return false;
+			$request =& Registry::get('request');
+			$this->_user = $request->getUser();
+			if ($this->_user) {
+				$router =& $request->getRouter();
+				$this->_press =& $router->getContext($request);
+				if (!$this->_press) return false;
+			} else return false;
 		} else {
 			return false;
 		}
@@ -62,11 +73,9 @@ class SelectRoleBlockPlugin extends BlockPlugin {
 
 	function getContents(&$templateMgr) {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$press =& Request::getPress();
-		$user =& Request::getUser();
-		$userId =& $user->getId();
+		$userId =& $this->_user->getId();
 
-		$userGroups =& $userGroupDao->getByUserId($userId, $press->getId());
+		$userGroups =& $userGroupDao->getByUserId($userId, $this->_press->getId());
 
 		$templateMgr->assign_by_ref('userGroups', $userGroups);
 		return parent::getContents($templateMgr);

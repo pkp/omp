@@ -5,21 +5,34 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Common site sidebar menu -- user tools.
- *
- * $Id$
  *}
 
 {if $currentPress && $isUserLoggedIn}
-	<div class="block" id="sidebarUser">
+	<div class="block" id="sidebarSelectRole">
 		<span class="blockTitle">{translate key="user.roles"}</span>
 		<br />
-		<form>
-			<select id="toolbox_press_roles" name="toolbox_press_roles" class="field select" onchange="window.location.href=this.form.toolbox_press_roles.options[this.form.toolbox_press_roles.selectedIndex].value">
-				{iterate from=$userGroups item=group}
-					<option value="{url page=$group->getPath()}">{$group->getLocalizedName()}</option>
+		<form id="changeActingAsUserGroupForm" action="">
+			<select id="changedActingAsUserGroupId" name="changedActingAsUserGroupId" class="field select">
+				{iterate from="userGroups" item=group}
+					<option value="{$group->getId()}">{$group->getLocalizedName()}</option>
 				{/iterate}
 			</select>
+			<label for="toolbox_press_roles">{translate key="plugins.block.selectRole.changeTo"}</label>
+			{literal}<script type='text/javascript'>
+				$(function(){
+					$('#changedActingAsUserGroupId').change(function() {
+						$.post(
+							'{/literal}{url router=$smarty.const.ROUTE_COMPONENT component="api.user.RoleApiHandler" op="changeActingAsUserGroup"}{literal}',
+							$(this.form).serialize(),
+							function(jsonData) {
+								// Display error message (if any)
+								if (jsonData.status == false) alert(jsonData.content);
+							},
+							"json"
+						);
+					});
+				});
+			</script>{/literal}
 		</form>
-		<label for="toolbox_press_roles">{translate key="plugins.block.selectRole.changeTo"}</label>
 	</div>
 {/if}
