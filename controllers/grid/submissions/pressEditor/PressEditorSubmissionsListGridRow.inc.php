@@ -49,7 +49,7 @@ class PressEditorSubmissionsListGridRow extends GridRow {
 				new GridAction(
 					'approve',
 					GRID_ACTION_MODE_MODAL,
-					GRID_ACTION_TYPE_REPLACE,
+					GRID_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'showApprove', null, $actionArgs),
 					'grid.action.approve',
 					null,
@@ -59,7 +59,7 @@ class PressEditorSubmissionsListGridRow extends GridRow {
 				new GridAction(
 					'decline',
 					GRID_ACTION_MODE_MODAL,
-					GRID_ACTION_TYPE_REPLACE,
+					GRID_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'showDecline', null, $actionArgs),
 					'grid.action.decline',
 					null,

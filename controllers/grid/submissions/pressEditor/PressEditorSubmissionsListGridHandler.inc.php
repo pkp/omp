@@ -203,9 +203,9 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		import('controllers.grid.submissions.pressEditor.form.ApproveSubmissionForm');
 		$approveForm = new ApproveSubmissionForm($monographId);
 
+		$declineForm->readInputData();
 		if ($approveForm->validate()) {
 			$approveForm->execute($args, $request);
-			$router =& $request->getRouter();
 
 			$json = new JSON('true');
 		} else {
@@ -222,7 +222,19 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * @return JSON
 	 */
 	function showDecline(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
 
+		import('controllers.grid.submissions.pressEditor.form.DeclineSubmissionForm');
+		$declineForm = new DeclineSubmissionForm($monographId);
+
+		if ($declineForm->isLocaleResubmit()) {
+			$declineForm->readInputData();
+		} else {
+			$declineForm->initData($args, $request);
+		}
+
+		$json = new JSON('true', $declineForm->fetch($request));
+		return $json->getString();
 	}
 
 	/**
@@ -232,7 +244,21 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * @return JSON
 	 */
 	function saveDecline(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
 
+		import('controllers.grid.submissions.pressEditor.form.DeclineSubmissionForm');
+		$declineForm = new DeclineSubmissionForm($monographId);
+		
+		$declineForm->readInputData();
+		if ($declineForm->validate()) {
+			$declineForm->execute($args, $request);
+
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false');
+		}
+
+		return $json->getString();
 	}
 
 	//
