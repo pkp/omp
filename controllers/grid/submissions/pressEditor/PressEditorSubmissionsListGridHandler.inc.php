@@ -84,8 +84,7 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$cellProvider = new PressEditorSubmissionsListGridCellProvider();
 
 		$session =& $request->getSession();
-		$actingAsUserGroupId = $session->getSessionVar('userGroupId');
-$actingAsUserGroupId = $session->getSessionVar('actingAsUserGroupId');
+		$actingAsUserGroupId = $session->getSessionVar('actingAsUserGroupId');
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$actingAsUserGroup =& $userGroupDao->getById($actingAsUserGroupId);
 
@@ -153,7 +152,7 @@ $actingAsUserGroupId = $session->getSessionVar('actingAsUserGroupId');
 
 		import('controllers.grid.submissions.pressEditor.form.ApproveAndReviewSubmissionForm');
 		$approveForm = new ApproveAndReviewSubmissionForm($monographId);
-		
+
 		$approveForm->readInputData();
 		if ($approveForm->validate()) {
 			$approveForm->execute($args, $request);
@@ -246,7 +245,7 @@ $actingAsUserGroupId = $session->getSessionVar('actingAsUserGroupId');
 
 		import('controllers.grid.submissions.pressEditor.form.DeclineSubmissionForm');
 		$declineForm = new DeclineSubmissionForm($monographId);
-		
+
 		$declineForm->readInputData();
 		if ($declineForm->validate()) {
 			$declineForm->execute($args, $request);
