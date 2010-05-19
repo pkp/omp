@@ -73,6 +73,7 @@ class ApproveAndReviewSubmissionForm extends Form {
 
 		$reviewAssignmentDAO->setFilesForReview($this->_monographId, $reviewType, $round, $selectedFiles);
 		// 3. Send Personal message to author
+		// FIXME: See ApproveSubmissionForm
 	}
 }
 

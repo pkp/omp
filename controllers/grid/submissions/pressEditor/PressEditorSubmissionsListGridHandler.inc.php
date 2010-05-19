@@ -86,8 +86,7 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 		$session =& $request->getSession();
 		$actingAsUserGroupId = $session->getSessionVar('userGroupId');
-		// FIXME: bug 5321 : need to implement acting as in session
-		$actingAsUserGroupId = 437;
+$actingAsUserGroupId = $session->getSessionVar('actingAsUserGroupId');
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$actingAsUserGroup =& $userGroupDao->getById($actingAsUserGroupId);
 
@@ -123,7 +122,7 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	// Public SubmissionsList Grid Actions
 	//
 	/**
-	 * Show the submission approval modal
+	 * Show the submission approval->send to review modal
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return JSON
@@ -145,7 +144,7 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	}
 
 	/**
-	 * Save the submission approval modal
+	 * Save the submission approval->send to review modal
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return JSON
@@ -155,11 +154,11 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 		import('controllers.grid.submissions.pressEditor.form.ApproveAndReviewSubmissionForm');
 		$approveForm = new ApproveAndReviewSubmissionForm($monographId);
+		
 		$approveForm->readInputData();
-
 		if ($approveForm->validate()) {
 			$approveForm->execute($args, $request);
-			$router =& $request->getRouter();
+
 			$json = new JSON('true');
 		} else {
 			$json = new JSON('false');
@@ -203,7 +202,7 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		import('controllers.grid.submissions.pressEditor.form.ApproveSubmissionForm');
 		$approveForm = new ApproveSubmissionForm($monographId);
 
-		$declineForm->readInputData();
+		$approveForm->readInputData();
 		if ($approveForm->validate()) {
 			$approveForm->execute($args, $request);
 

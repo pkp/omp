@@ -83,8 +83,12 @@ class ApproveSubmissionForm extends Form {
 	 * Display the form.
 	 */
 	function display(&$request, $fetch = true) {
+		$reviewType = (int) $args['reviewType'];
+		$round = (int) $args['round'];
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $this->_monographId);
+		$this->setData('reviewType', $reviewType);
+		$this->setData('round', $round);
 
 		return parent::display($request, $fetch);
 	}

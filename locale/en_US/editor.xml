@@ -29,8 +29,10 @@
 	<message key="editor.monograph.decline">You are about to decline the submission</message>
 	<message key="editor.monograph.confirmApprove">Approve and send to review</message>
 	<message key="editor.monograph.selectFiles">Please select the files to move to the editorial stage</message>
+	<message key="editor.monograph.selectFilesForReview">Please select the files to move to the review stage</message>
 	<message key="editor.monograph.messageToAuthor">Message to Author</message>
 	<message key="editor.monograph.acceptToEditorial">Accept &amp; Send To Editorial</message>
+	<message key="editor.monograph.acceptToReview">Accept &amp; Send To Review</message>
 	<message key="editor.monograph.declineAndNotify">Decline &amp; Notify Submitter</message>
 	<message key="editor.home">Editor Home</message>
 	<message key="editor.submissionsAndPublishing">Submissions and Publishing</message>

@@ -37,13 +37,18 @@ class PressEditorSubmissionsListGridRow extends GridRow {
 
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
+		
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getMonograph($rowId);
 
 		if (!empty($rowId) && is_numeric($rowId)) {
 			// Actions
 			$router =& $request->getRouter();
 			$actionArgs = array(
 				'gridId' => $this->getGridId(),
-				'monographId' => $rowId
+				'monographId' => $rowId,
+				'reviewType' => $monograph->getCurrentReviewType(),
+				'round' => $monograph->getCurrentRound()
 			);
 			$this->addAction(
 				new GridAction(
