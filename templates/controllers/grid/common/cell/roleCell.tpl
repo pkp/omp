@@ -7,11 +7,11 @@
  * a regular grid cell (with or without actions)
  *}
 {assign var=cellId value="cell-"|concat:$id}
-<td id="{$cellId}">
+<span id="{$cellId}">
 	{if count($actions) gt 0}
 		{assign var=defaultCellAction value=$actions[0]}
 		{include file="controllers/grid/gridAction.tpl" id=$cellId|concat:"-action-":$defaultCellAction->getId() action=$defaultCellAction objectId=$cellId actionCss="task"}
 	{else}
 		<a class="task {$status}">status</a>
 	{/if}
-</td>
+</span>

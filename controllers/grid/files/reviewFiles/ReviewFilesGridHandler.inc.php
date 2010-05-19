@@ -149,7 +149,7 @@ class ReviewFilesGridHandler extends GridHandler {
 		$this->addColumn(new GridColumn('name',
 			'common.file',
 			null,
-			'controllers/grid/gridCellInSpan.tpl',
+			'controllers/grid/gridCell.tpl',
 			$cellProvider)
 		);
 

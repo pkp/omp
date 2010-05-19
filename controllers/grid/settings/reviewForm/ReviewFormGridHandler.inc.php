@@ -72,7 +72,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 		$this->addColumn(new GridColumn('titles', '
 										common.title',
 										null,
-										'controllers/grid/gridCellInSpan.tpl',
+										'controllers/grid/gridCell.tpl',
 										$cellProvider));
 
 		/* FIXME: http://pkp.sfu.ca/bugzilla/show_bug.cgi?id=5122 */

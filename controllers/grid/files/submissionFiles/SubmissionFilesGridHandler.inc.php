@@ -95,7 +95,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$this->addColumn(new GridColumn('name',
 										'common.name',
 										null,
-										'controllers/grid/gridCellInSpan.tpl'
+										'controllers/grid/gridCell.tpl'
 										));
 		$this->addColumn(new GridColumn('type',
 										'common.type',

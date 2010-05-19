@@ -127,7 +127,7 @@ class ReviewerGridHandler extends GridHandler {
 				'name',
 				'user.name',
 				null,
-				'controllers/grid/gridCellInSpan.tpl',
+				'controllers/grid/gridCell.tpl',
 				$cellProvider
 			)
 		);

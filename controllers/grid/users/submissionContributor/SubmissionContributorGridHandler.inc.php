@@ -121,7 +121,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 				'name',
 				'author.users.contributor.name',
 				null,
-				'controllers/grid/gridCellInSpan.tpl',
+				'controllers/grid/gridCell.tpl',
 				$cellProvider
 			)
 		);

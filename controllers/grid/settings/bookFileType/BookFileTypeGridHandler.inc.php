@@ -87,12 +87,12 @@ class BookFileTypeGridHandler extends GridHandler {
 		$this->addColumn(new GridColumn('name',
 										'common.name',
 										null,
-										'controllers/grid/gridCellInSpan.tpl',
+										'controllers/grid/gridCell.tpl',
 										$cellProvider));
 		$this->addColumn(new GridColumn('designation',
 										'common.designation',
 										null,
-										'controllers/grid/gridCellInSpan.tpl',
+										'controllers/grid/gridCell.tpl',
 										$cellProvider));
 	}
 

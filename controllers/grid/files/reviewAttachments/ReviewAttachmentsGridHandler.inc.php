@@ -92,7 +92,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 			'common.file',
 			null,
 			$emptyActions,
-			'controllers/grid/gridCellInSpan.tpl',
+			'controllers/grid/gridCell.tpl',
 			$cellProvider)
 		);
 	}

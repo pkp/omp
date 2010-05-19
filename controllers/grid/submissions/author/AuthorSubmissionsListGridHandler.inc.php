@@ -73,7 +73,7 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 		// change the first column to use span (because we have actions)
 		$titleColumn =& $this->getColumn('title');
-		$titleColumn->setTemplate('controllers/grid/gridCellInSpan.tpl');
+		$titleColumn->setTemplate('controllers/grid/gridCell.tpl');
 
 		// Add author-specific columns
 		$emptyColumnActions = array();

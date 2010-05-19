@@ -78,7 +78,6 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 		// change the first column cell template to allow for actions
 		$titleColumn =& $this->getColumn('title');
-		$titleColumn->setTemplate('controllers/grid/gridCellInSpan.tpl');
 
 		// Add author-specific columns
 		$emptyColumnActions = array();

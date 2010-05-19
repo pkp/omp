@@ -69,7 +69,7 @@ class SponsorGridHandler extends SetupGridHandler {
 		$this->addColumn(new GridColumn('institution',
 										'grid.columns.institution',
 										null,
-										'controllers/grid/gridCellInSpan.tpl'));
+										'controllers/grid/gridCell.tpl'));
 		$this->addColumn(new GridColumn('url', 'grid.columns.url'));
 	}
 
