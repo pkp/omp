@@ -23,7 +23,7 @@
 </ul>
 
 {** FIXME: need to set escape=false due to bug 5265 *}
-{url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$currentRound escape=false}
+{url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" showRoleColumns=1 monographId=$monographId reviewType=$currentReviewType round=$currentRound escape=false}
 {load_url_in_div id="reviewFileSelection" url=$reviewFileSelectionGridUrl}
 
 {url|assign:reviewersGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewer.ReviewerGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$currentRound escape=false}

@@ -33,6 +33,17 @@ class ReviewFilesGridCellProvider extends GridCellProvider {
 		$element =& $row->getData();
 		$columnId = $column->getId();
 		assert(is_a($element, 'MonographFile') && !empty($columnId));
+		// Numeric columns indicate a role-based column.
+		if ( is_numeric($columnId) ) {
+			if ( $columnId == $element->getUserGroupId() ) {
+				// Show that this column's user group is the submitter
+				return array('status' => 'uploaded');
+			}
+			// If column is not the submitter, cell is always empty.
+			return array('status' => '');
+		}
+
+		// all other columns
 		switch ($columnId) {
 			case 'select':
 				return array('rowId' => $element->getFileId());
