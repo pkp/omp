@@ -9,7 +9,7 @@
  * @class SubmissionReviewHandler
  * @ingroup pages_reviewer
  *
- * @brief Handle requests for submission tracking. 
+ * @brief Handle requests for submission tracking.
  */
 
 // $Id$
@@ -19,10 +19,10 @@ import('pages.reviewer.ReviewerHandler');
 class SubmissionReviewHandler extends ReviewerHandler {
 	/** submission associated with the request **/
 	var $submission;
-	
+
 	/** user associated with the request **/
 	var $user;
-		
+
 	/**
 	 * Constructor
 	 **/
@@ -42,7 +42,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$user =& $this->user;
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $submission->getId(), $reviewId);
-		
+
 		$reviewStep = $submission->getStep(); // Get the current saved step from the DB
 		$userStep = $request->getUserVar('step');
 		$step = isset($userStep) ? $userStep: $reviewStep;
@@ -51,15 +51,15 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		if($step < 4) {
 			$formClass = "ReviewerReviewStep{$step}Form";
 			import("classes.submission.reviewer.form.$formClass");
-			
+
 			$reviewerForm = new $formClass($submission);
-			
+
 			if ($reviewerForm->isLocaleResubmit()) {
 				$reviewerForm->readInputData();
 			} else {
 				$reviewerForm->initData();
 			}
-			$reviewerForm->display();			
+			$reviewerForm->display();
 		} else {
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign_by_ref('submission', $submission);
@@ -67,7 +67,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 			$templateMgr->display('reviewer/review/reviewCompleted.tpl');
 		}
 	}
-	
+
 	/**
 	 * Save a review step.
 	 * @param $args array first parameter is the step being saved
@@ -79,10 +79,10 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$this->validate($request, $reviewId);
 		$submission =& $this->submission;
 		$this->setupTemplate(true, $submission->getId(), $reviewId);
-		
+
 		$formClass = "ReviewerReviewStep{$step}Form";
 		import("classes.submission.reviewer.form.$formClass");
-		
+
 		$reviewerForm = new $formClass($submission);
 		$reviewerForm->readInputData();
 
@@ -101,17 +101,17 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 */
 	function showDeclineReview(&$args, &$request) {
 		$reviewId = Request::getUserVar('reviewId');
-	
+
 		$this->validate($request, $reviewId);
 		$reviewerSubmission =& $this->submission;
-	
+
 		$this->setupTemplate();
-	
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $this->submission);
 		$templateMgr->display('reviewer/review/regretMessage.tpl');
 	}
-	
+
 	/**
 	 * Save the reviewer regrets form and decline the review.
 	 * @param $args array optional
@@ -119,16 +119,16 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	function saveDeclineReview(&$args, &$request) {
 		$reviewId = Request::getUserVar('reviewId');
 		$declineReviewMessage = Request::getUserVar('declineReviewMessage');
-		
+
 		$this->validate($request, $reviewId);
 		$reviewerSubmission =& $this->submission;
-	
+
 		// Save regret message
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
 		$reviewAssignment->setRegretMessage($declineReviewMessage);
 		$reviewAssignmentDao->updateObject($reviewAssignment);
-	
+
 		ReviewerAction::confirmReview($reviewerSubmission, true, true);
 		$request->redirect($request->redirect(null, 'reviewer'));
 	}

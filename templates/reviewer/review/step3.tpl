@@ -16,10 +16,10 @@
 <form name="review" method="post" action="{url op="saveStep" path="3" reviewId=$submission->getReviewId()}">
 {include file="common/formErrors.tpl"}
 
-<div id="filesGrid">
-	<h3>{translate key=""}</h3>
-	<p>{translate key="files grid goes here"}</p>
-</div>
+{** FIXME: need to set escape=false due to bug 5265 *}
+{url|assign:reviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" monographId=$submission->getId() reviewType=$submission->getCurrentReviewType() round=$submission->getCurrentRound() escape=false}
+{load_url_in_div id="reviewFiles" url=$reviewFilesGridUrl}
+
 
 <div id="review">
 	<h3>{translate key="submission.review"}</h3>

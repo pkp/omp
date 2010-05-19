@@ -18,10 +18,10 @@
 import('classes.submission.reviewer.form.ReviewerReviewForm');
 
 class ReviewerReviewStep3Form extends ReviewerReviewForm {
-	
+
 	/** @var The review assignment object **/
 	var $reviewAssignment;
-	
+
 	/**
 	 * Constructor.
 	 */
@@ -39,7 +39,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		// Validation checks for this form
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 		$requiredReviewFormElementIds = $reviewFormElementDao->getRequiredReviewFormElementIds($this->reviewAssignment->getReviewFormId());
-		
+
 		$this->addCheck(new FormValidatorCustom($this, 'reviewFormResponses', 'required', 'reviewer.monograph.reviewFormResponse.form.responseRequired', create_function('$reviewFormResponses, $requiredReviewFormElementIds', 'foreach ($requiredReviewFormElementIds as $requiredReviewFormElementId) { if (!isset($reviewFormResponses[$requiredReviewFormElementId]) || $reviewFormResponses[$requiredReviewFormElementId] == \'\') return false; } return true;'), array($requiredReviewFormElementIds)));
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -68,15 +68,15 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 		$press = Request::getPress();
-		
+
 		$templateMgr->assign_by_ref('submission', $this->reviewerSubmission);
 		$templateMgr->assign_by_ref('press', $press);
-		$templateMgr->assign('step', 3);	
-		
+		$templateMgr->assign('step', 3);
+
 		$reviewAssignment =& $this->reviewAssignment;
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
 		if($reviewAssignment->getReviewFormId()) {
-	
+
 			// Get the review form components
 			$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 			$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewAssignment->getReviewFormId());
@@ -85,13 +85,13 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 			$reviewformid = $reviewAssignment->getReviewFormId();
 			$reviewForm =& $reviewFormDao->getReviewForm($reviewAssignment->getReviewFormId(), ASSOC_TYPE_PRESS, $press->getId());
-					
+
 			$templateMgr->assign_by_ref('reviewForm', $reviewForm);
 			$templateMgr->assign('reviewFormElements', $reviewFormElements);
 			$templateMgr->assign('reviewFormResponses', $reviewFormResponses);
 			$templateMgr->assign('isLocked', isset($reviewAssignment) && $reviewAssignment->getDateCompleted() != null);
 		}
-		
+
 		parent::display();
 	}
 
@@ -140,14 +140,18 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 				}
 			}
 		}
-		
+
 		// Set review to next step
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
 		if($this->reviewerSubmission->getStep() < 4) {
 			$this->reviewerSubmission->setStep(4);
 		}
 		$reviewerSubmissionDao->updateReviewerSubmission($this->reviewerSubmission);
-		
+
+		// Mark the review assignment as completed.
+		$reviewAssignment->setDateCompleted(Core::getCurrentDate());
+		$reviewAssignment->stampModified();
+		$reviewAssignmentDao->updateObject($reviewAssignment);
 	}
 }
 
