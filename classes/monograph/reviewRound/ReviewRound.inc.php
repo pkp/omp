@@ -41,7 +41,7 @@ class ReviewRound extends DataObject {
 	}	
 
 	/**
-	 * Get date review type.
+	 * Get review type (internal or external review).
 	 * @return int
 	 */
 	function getReviewType() {

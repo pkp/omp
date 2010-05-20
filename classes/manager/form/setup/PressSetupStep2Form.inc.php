@@ -28,6 +28,7 @@ class PressSetupStep2Form extends PressSetupForm {
 				'focusScopeDesc' => 'string',
 				'authorGuidelines' => 'string',
 				'numWeeksPerReview' => 'int',
+				'numWeeksPerResponse' => 'int',
 				'remindForInvite' => 'bool',
 				'remindForSubmit' => 'bool',
 				'numDaysBeforeInviteReminder' => 'int',

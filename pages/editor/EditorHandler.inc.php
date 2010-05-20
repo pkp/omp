@@ -14,9 +14,6 @@
 
 // $Id$
 
-define('EDITOR_SERIES_HOME', 0);
-define('EDITOR_SERIES_SUBMISSIONS', 1);
-
 // Filter editor
 define('FILTER_EDITOR_ALL', 0);
 define('FILTER_EDITOR_ME', 1);

@@ -49,7 +49,7 @@ class ReviewAssignment extends PKPReviewAssignment {
 	}
 
 	/**
-	 * Get the type of the review.
+	 * Get the type of the review (internal or external).
 	 * @return int
 	 */
 	function getReviewType() {
@@ -58,12 +58,28 @@ class ReviewAssignment extends PKPReviewAssignment {
 
 	/**
 	 * Set the type of review.
-	 * @param $monographId int
+	 * @param $type int
 	 */
 	function setReviewType($type) {
 		return $this->setData('reviewType', $type);
 	}
 
+	/**
+	 * Get the method of the review (open, blind, or double-blind).
+	 * @return int
+	 */
+	function getReviewMethod() {
+		return $this->getData('reviewMethod');
+	}
+
+	/**
+	 * Set the type of review.
+	 * @param $method int
+	 */
+	function setReviewMethod($method) {
+		return $this->setData('reviewMethod', $method);
+	}
+	
 	/**
 	 * Get an associative array matching reviewer recommendation codes with locale strings.
 	 * (Includes default '' => "Choose One" string.)

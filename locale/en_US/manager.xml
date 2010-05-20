@@ -416,6 +416,7 @@
 	<message key="manager.setup.reviewOptions.blindReview">Blind Review</message>
 	<message key="manager.setup.reviewOptions.noteOnModification">Can be modified during the editorial process.</message>
 	<message key="manager.setup.reviewOptions.numWeeksPerReview">The typical period of time allowed for reviews</message>
+	<message key="manager.setup.reviewOptions.numWeeksPerResponse">The typical period of time allowed for reviewers to respond to a review request</message>
 	<message key="manager.setup.reviewOptions.onQuality">Editors will rate reviewers on a five-point quality scale after each review.</message>
 	<message key="manager.setup.reviewOptions.remindForInvite1">If reviewer has not responded to a review request within</message>
 	<message key="manager.setup.reviewOptions.remindForInvite2">days.</message>

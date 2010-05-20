@@ -104,6 +104,7 @@
 
 <p>
 	<strong>{translate key="manager.setup.reviewOptions.reviewTime"}</strong><br/>
+	{translate key="manager.setup.reviewOptions.numWeeksPerResponse"}: <input type="text" name="numWeeksPerResponse" id="numWeeksPerResponse" value="{$numWeeksPerResponse|escape}" size="2" maxlength="8" class="textField" /> {translate key="common.weeks"}<br/>
 	{translate key="manager.setup.reviewOptions.numWeeksPerReview"}: <input type="text" name="numWeeksPerReview" id="numWeeksPerReview" value="{$numWeeksPerReview|escape}" size="2" maxlength="8" class="textField" /> {translate key="common.weeks"}<br/>
 	{translate key="common.note"}: {translate key="manager.setup.reviewOptions.noteOnModification"}
 </p>

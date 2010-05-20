@@ -18,6 +18,9 @@
 // Filter series
 define('FILTER_SERIES_ALL', 0);
 
+define('EDITOR_SERIES_HOME', 0);
+define('EDITOR_SERIES_SUBMISSIONS', 1);
+
 import('classes.handler.Handler');
 
 class SeriesEditorHandler extends Handler {

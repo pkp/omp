@@ -224,14 +224,13 @@ class ReviewerGridHandler extends GridHandler {
 		$reviewerForm = new ReviewerForm($monographId, $reviewAssignmentId);
 		$reviewerForm->readInputData();
 		if ($reviewerForm->validate()) {
-			$reviewerForm->execute($args, $request);
+			$reviewAssignment =& $reviewerForm->execute($args, $request);
 
 			// prepare the grid row data
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
-			$row->setId($reviewAssignmentId);
+			$row->setId($reviewAssignment->getId());
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($monographId, $request->getUserVar('reviewerId'), $request->getUserVar('round'), $request->getUserVar('reviewType'));
 
 			$row->setData($reviewAssignment);
 			$row->initialize($request);
@@ -282,9 +281,9 @@ class ReviewerGridHandler extends GridHandler {
 		$itemList = array();
 		foreach ($reviewers as $i => $reviewer) {
 			$itemList[] = array('id' => $reviewer->getId(),
-								 'name' => $reviewer->getFullName(),
-								 'abbrev' => $reviewer->getUsername()
-								);
+							 'name' => $reviewer->getFullName(),
+							 'abbrev' => $reviewer->getUsername()
+							);
 		}
 
 		import('lib.pkp.classes.core.JSON');

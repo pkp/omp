@@ -251,6 +251,22 @@ class ReviewerSubmission extends Monograph {
 	}
 
 	/**
+	 * Get the reviewer's response due date.
+	 * @return string
+	 */
+	function getDateResponseDue() {
+		return $this->getData('dateResponseDue');
+	}
+
+	/**
+	 * Set the reviewer's response due date.
+	 * @param $dateResponseDue string
+	 */
+	function setDateResponseDue($dateResponseDue) {
+		return $this->setData('dateResponseDue', $dateResponseDue);
+	}
+
+	/**
 	 * Get the declined value.
 	 * @return boolean
 	 */
@@ -346,6 +362,22 @@ class ReviewerSubmission extends Monograph {
 		return $this->setData('reviewType', $reviewType);
 	}
 
+	/**
+	 * Get the method of the review (open, blind, or double-blind).
+	 * @return int
+	 */
+	function getReviewMethod() {
+		return $this->getData('reviewMethod');
+	}
+
+	/**
+	 * Set the type of review.
+	 * @param $method int
+	 */
+	function setReviewMethod($method) {
+		return $this->setData('reviewMethod', $method);
+	}
+	
 	/**
 	 * Get round.
 	 * @return int

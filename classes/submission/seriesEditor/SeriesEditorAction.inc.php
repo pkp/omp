@@ -87,7 +87,7 @@ class SeriesEditorAction extends Action {
 	 * @param $seriesEditorSubmission object
 	 * @param $reviewerId int
 	 */
-	function addReviewer($seriesEditorSubmission, $reviewerId, $reviewType, $round = null) {
+	function addReviewer($seriesEditorSubmission, $reviewerId, $reviewType, $round = null, $reviewDueDate = null, $responseDueDate = null) {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -139,8 +139,9 @@ class SeriesEditorAction extends Action {
 			$press =& Request::getPress();
 			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			$settings =& $settingsDao->getPressSettings($press->getId());
-			if (isset($settings['numWeeksPerReview'])) SeriesEditorAction::setDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getReviewId(), null, $settings['numWeeksPerReview']);
-
+			if (isset($reviewDueDate)) SeriesEditorAction::setDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getReviewId(), null, $reviewDueDate);
+			if (isset($responseDueDate)) SeriesEditorAction::setResponseDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getReviewId(), null, $responseDueDate);
+			
 			// Add log
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
@@ -578,8 +579,8 @@ class SeriesEditorAction extends Action {
 				}
 			} else {
 				// Add the equivilant of $numWeeks weeks, measured in seconds, to $todaysTimestamp.
+				$numWeeks = max((int) $numWeeks, 2);
 				$newDueDateTimestamp = $todayTimestamp + ($numWeeks * 7 * 24 * 60 * 60);
-
 				$reviewAssignment->setDateDue(date('Y-m-d H:i:s', $newDueDateTimestamp));
 			}
 
@@ -609,6 +610,44 @@ class SeriesEditorAction extends Action {
 		}
 	}
 
+	/**
+	 * Sets the due date for a reviewer to respond to a review request.
+	 * @param $monographId int
+	 * @param $reviewId int
+	 * @param $dueDate string
+	 */
+	function setResponseDueDate($monographId, $reviewId, $dueDate = null, $numWeeks = null) {
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& Request::getUser();
+
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
+		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
+		if (!isset($reviewer)) return false;
+
+		if ($reviewAssignment->getSubmissionId() == $monographId && !HookRegistry::call('SeriesEditorAction::setDueDate', array(&$reviewAssignment, &$reviewer, &$dueDate, &$numWeeks))) {
+			$today = getDate();
+			$todayTimestamp = mktime(0, 0, 0, $today['mon'], $today['mday'], $today['year']);
+			if ($dueDate != null) {
+				$dueDateParts = explode('-', $dueDate);
+
+				// Ensure that the specified due date is today or after today's date.
+				if ($todayTimestamp <= strtotime($dueDate)) {
+					$reviewAssignment->setDateDue(date('Y-m-d H:i:s', mktime(0, 0, 0, $dueDateParts[1], $dueDateParts[2], $dueDateParts[0])));
+				} else {
+					$reviewAssignment->setDateDue(date('Y-m-d H:i:s', $todayTimestamp));
+				}
+			} else {
+				// Add the equivilant of $numWeeks weeks, measured in seconds, to $todaysTimestamp.
+				$numWeeks = max((int) $numWeeks, 2);
+				$newDueDateTimestamp = $todayTimestamp + ($numWeeks * 7 * 24 * 60 * 60);
+				$reviewAssignment->setDateDue(date('Y-m-d H:i:s', $newDueDateTimestamp));
+			}
+
+			$reviewAssignment->stampModified();
+			$reviewAssignmentDao->updateObject($reviewAssignment);
+		}
+	}
 	/**
 	 * Notifies an author that a submission was unsuitable.
 	 * @param $seriesEditorSubmission object
