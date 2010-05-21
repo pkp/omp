@@ -23,7 +23,10 @@ class ReviewFilesGridHandler extends GridHandler {
 	var $fileType;
 
 	/** Boolean flag if grid is selectable **/
-	var $isSelectable;
+	var $_isSelectable;
+
+	/** Boolean flag for showing role columns **/
+	var $_showRoleColumns;
 
 	/**
 	 * Constructor
@@ -39,7 +42,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array());
+		return array_merge(parent::getRemoteOperations(), array('downloadFile'));
 	}
 
 	/**
@@ -177,7 +180,7 @@ class ReviewFilesGridHandler extends GridHandler {
 			$uploaderUserGroup =& $userGroupDao->getById($monograph->getUserGroupId());
 			$this->addColumn(
 				new GridColumn(
-					$monograph->getUserGroupId(),
+					$uploaderUserGroup->getId(),
 					null,
 					$uploaderUserGroup->getLocalizedAbbrev(),
 					'controllers/grid/common/cell/roleCell.tpl',
@@ -222,6 +225,24 @@ class ReviewFilesGridHandler extends GridHandler {
 
 		return true;
 
+	}
+
+
+	//
+	// public methods
+	//
+	/**
+	 *
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function downloadFile(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+		$fileId = $request->getUserVar('fileId');
+		import('classes.file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($monographId);
+		$monographFileManager->downloadFile($fileId);
 	}
 
 }
