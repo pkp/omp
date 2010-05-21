@@ -60,7 +60,8 @@ class ContributorGridRow extends GridRow {
 					$router->url($request, null, null, 'deleteContributor', null, $actionArgs),
 					'grid.action.delete',
 					null,
-					'delete'
+					'delete',
+					'common.confirmDelete'
 				));
 
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');

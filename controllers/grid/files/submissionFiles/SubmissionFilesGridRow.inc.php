@@ -68,7 +68,8 @@ class SubmissionFilesGridRow extends GridRow {
 					$router->url($request, null, null, 'deleteFile', null, $actionArgs),
 					'grid.action.delete',
 					null,
-					'delete'
+					'delete',
+					'common.confirmDelete'
 				));
 		}
 	}

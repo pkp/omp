@@ -161,7 +161,7 @@ class ReviewerSubmissionDAO extends DAO {
 	 * @param $reviewSubmission ReviewSubmission
 	 */
 	function updateReviewerSubmission(&$reviewerSubmission) {
-		return $this->update(
+		$blah= $this->update(
 			sprintf('UPDATE review_assignments
 				SET	submission_id = ?,
 					reviewer_id = ?,
@@ -184,7 +184,7 @@ class ReviewerSubmissionDAO extends DAO {
 					reviewer_file_id = ?,
 					quality = ?
 				WHERE review_id = ?',
-				$this->datetimeToDB($reviewerSubmission->getDateAssigned()), $this->datetimeToDB($reviewerSubmission->getDateNotified()), $this->datetimeToDB($reviewerSubmission->getDateConfirmed()), $this->datetimeToDB($reviewerSubmission->getDateCompleted()), $this->datetimeToDB($reviewerSubmission->getDateAcknowledged()), $this->datetimeToDB($reviewerSubmission->getDateDue(), $this->datetimeToDB($reviewerSubmission->getDateResponseDue())),
+				$this->datetimeToDB($reviewerSubmission->getDateAssigned()), $this->datetimeToDB($reviewerSubmission->getDateNotified()), $this->datetimeToDB($reviewerSubmission->getDateConfirmed()), $this->datetimeToDB($reviewerSubmission->getDateCompleted()), $this->datetimeToDB($reviewerSubmission->getDateAcknowledged()), $this->datetimeToDB($reviewerSubmission->getDateDue()), $this->datetimeToDB($reviewerSubmission->getDateResponseDue())),
 			array(
 				$reviewerSubmission->getId(),
 				$reviewerSubmission->getReviewerId(),
@@ -202,6 +202,7 @@ class ReviewerSubmissionDAO extends DAO {
 				$reviewerSubmission->getReviewId()
 			)
 		);
+		return $blah;
 	}
 
 	/**

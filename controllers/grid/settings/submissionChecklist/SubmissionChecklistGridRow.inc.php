@@ -60,7 +60,8 @@ class SubmissionChecklistGridRow extends GridRow {
 					$router->url($request, null, null, 'deleteItem', null, $actionArgs),
 					'grid.action.delete',
 					null,
-					'delete'
+					'delete',
+					'common.confirmDelete'
 				));
 		}
 	}

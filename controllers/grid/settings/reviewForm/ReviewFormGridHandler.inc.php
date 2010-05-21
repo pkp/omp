@@ -143,7 +143,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 				$reviewFormForm->initData($args, $request);
 			}
 
-			$json = new JSON('true', $reviewFormForm->fetch());
+			$json = new JSON('true', $reviewFormForm->fetch($request));
 			return $json->getString();
 		}
 	}

@@ -141,7 +141,7 @@ class BookFileTypeGridHandler extends GridHandler {
 			$bookFileTypeForm->initData($args, $request);
 		}
 
-		$json = new JSON('true', $bookFileTypeForm->fetch());
+		$json = new JSON('true', $bookFileTypeForm->fetch($request));
 		return $json->getString();
 	}
 

@@ -83,8 +83,8 @@ class ApproveSubmissionForm extends Form {
 	 * Display the form.
 	 */
 	function display(&$request, $fetch = true) {
-		$reviewType = (int) $args['reviewType'];
-		$round = (int) $args['round'];
+		$reviewType = (int) $request->getUserVar('reviewType');
+		$round = (int) $request->getUserVar('round');
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $this->_monographId);
 		$this->setData('reviewType', $reviewType);

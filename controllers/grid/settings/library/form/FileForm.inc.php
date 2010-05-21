@@ -55,7 +55,7 @@ class FileForm extends Form {
 	/**
 	 * Display
 	 */
-	function display() {
+	function display(&$request, $fetch = true) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 
 		if ($this->fileId) {
@@ -66,7 +66,7 @@ class FileForm extends Form {
 			$templateMgr->assign_by_ref('libraryFile', $libraryFile);
 			$templateMgr->assign_by_ref('libraryFileName', $libraryFile->getLocalizedName());
 		}
-		parent::display();
+		return parent::display($request, $fetch);
 	}
 
 	/**

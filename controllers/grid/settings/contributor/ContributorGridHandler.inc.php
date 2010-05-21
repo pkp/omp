@@ -119,7 +119,7 @@ class ContributorGridHandler extends SetupGridHandler {
 			$contributorForm->initData($args, $request);
 		}
 
-		$json = new JSON('true', $contributorForm->fetch());
+		$json = new JSON('true', $contributorForm->fetch($request));
 		return $json->getString();
 	}
 

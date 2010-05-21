@@ -129,7 +129,7 @@ class MetadataForm extends Form {
 	/**
 	 * Display the form.
 	 */
-	function display() {
+	function display(&$request, $fetch = true) {
 		$press =& Request::getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 
@@ -144,7 +144,7 @@ class MetadataForm extends Form {
 		
 		$templateMgr->assign('helpTopicId','submission.indexingAndMetadata');
 
-		parent::display();
+		return parent::display($request, $fetch);
 	}
 
 

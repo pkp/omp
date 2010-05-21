@@ -261,6 +261,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="common.quality">Quality</message>
 	<message key="common.saveAndClose">Save And Close</message>
 	<message key="common.autocomplete">Autocomplete</message>
+	<message key="common.confirmDelete">Are you sure you wish to delete this item? This action cannot be undone.</message>
 
 	<message key="common.queue.short.submissionsUnassigned">Unassigned</message>
 	<message key="common.queue.short.submissionsInEditing">In Editing</message>

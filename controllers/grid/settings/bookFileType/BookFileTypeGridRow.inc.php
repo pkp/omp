@@ -60,7 +60,8 @@ class BookFileTypeGridRow extends GridRow {
 					$router->url($request, null, null, 'deleteBookFileType', null, $actionArgs),
 					'grid.action.delete',
 					null,
-					'delete'
+					'delete',
+					'common.confirmDelete'
 				));
 		}
 	}

@@ -144,7 +144,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 			$fileForm->initData($args, $request);
 		}
 
-		$json = new JSON('true', $fileForm->fetch());
+		$json = new JSON('true', $fileForm->fetch($request));
 		return $json->getString();
 	}
 

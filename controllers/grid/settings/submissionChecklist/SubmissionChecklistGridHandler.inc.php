@@ -122,7 +122,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 			$submissionChecklistForm->initData($args, $request);
 		}
 
-		$json = new JSON('true', $submissionChecklistForm->fetch());
+		$json = new JSON('true', $submissionChecklistForm->fetch($request));
 		return $json->getString();
 	}
 

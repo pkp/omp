@@ -49,7 +49,7 @@ class GroupForm extends Form {
 	/**
 	 * Display the form.
 	 */
-	function display() {
+	function display(&$request, $fetch = true) {
 		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign_by_ref('group', $this->group);
@@ -58,7 +58,7 @@ class GroupForm extends Form {
 			GROUP_CONTEXT_EDITORIAL_TEAM => 'manager.groups.context.editorialTeam',
 			GROUP_CONTEXT_PEOPLE => 'manager.groups.context.people'
 		));
-		parent::display();
+		return parent::display($request, $fetch);
 	}
 
 	/**

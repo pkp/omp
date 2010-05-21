@@ -57,7 +57,7 @@ class ReviewFormElementForm extends Form {
 	/**
 	 * Display the form.
 	 */
-	function display() {
+	function display(&$request, $fetch = true) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('reviewFormId', $this->reviewFormId);
 		$templateMgr->assign('reviewFormElementId', $this->reviewFormElementId);
@@ -66,7 +66,7 @@ class ReviewFormElementForm extends Form {
 		$templateMgr->assign('multipleResponsesElementTypesString', ';'.implode(';', ReviewFormElement::getMultipleResponsesElementTypes()).';');
 		import('lib.pkp.classes.reviewForm.ReviewFormElement');
 		$templateMgr->assign_by_ref('reviewFormElementTypeOptions', ReviewFormElement::getReviewFormElementTypeOptions());
-		parent::display();
+		return parent::display($request, $fetch);
 	}
 
 	/**

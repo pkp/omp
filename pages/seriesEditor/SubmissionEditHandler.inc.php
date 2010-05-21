@@ -101,7 +101,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$templateMgr->assign('rounds', array(1, 2, 3));
 		$templateMgr->assign('currentRound', 1);
 		$templateMgr->assign('currentReviewType', 6);
-		$templateMgr->assign('monographId', 7);
+		$templateMgr->assign('monographId', 9);
 		$templateMgr->display('seriesEditor/showReviewers.tpl');
 	}
 

@@ -146,7 +146,7 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 				$reviewFormElementForm->initData($args, $request);
 			}
 
-			$json = new JSON('true', $reviewFormElementForm->fetch());
+			$json = new JSON('true', $reviewFormElementForm->fetch($request));
 			return $json->getString();
 		}
 	}

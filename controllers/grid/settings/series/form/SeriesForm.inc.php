@@ -76,9 +76,9 @@ class SeriesForm extends Form {
 	/**
 	 * Display
 	 */
-	function display() {
+	function display(&$request, $fetch = true) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
-		parent::display();
+		return parent::display($request, $fetch);
 	}
 
 	/**

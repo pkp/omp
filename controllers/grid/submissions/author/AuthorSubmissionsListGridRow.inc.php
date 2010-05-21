@@ -52,7 +52,8 @@ class AuthorSubmissionsListGridRow extends GridRow {
 					$router->url($request, null, null, 'deleteSubmission', null, $actionArgs),
 					'grid.action.delete',
 					null,
-					'delete'
+					'delete',
+					'common.confirmDelete'
 				)
 			);
 

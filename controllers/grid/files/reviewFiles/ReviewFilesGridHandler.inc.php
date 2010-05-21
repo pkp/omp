@@ -128,7 +128,7 @@ class ReviewFilesGridHandler extends GridHandler {
 
 			// Set the already selected elements of the grid
 			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->assign('selectedFileIds', array_keys($selectedFiles[$reviewType][$round]));
+			if(!empty($selectedFiles)) $templateMgr->assign('selectedFileIds', array_keys($selectedFiles[$reviewType][$round]));
 		} else {
 			// set the grid data to be only the files that have already been selected
 			$this->setData($selectedFiles[$reviewType][$round]);
