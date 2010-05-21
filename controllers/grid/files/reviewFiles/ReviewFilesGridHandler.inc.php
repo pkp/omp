@@ -90,7 +90,7 @@ class ReviewFilesGridHandler extends GridHandler {
 		// Basic grid configuration
 		$monographId = $request->getUserVar('monographId');
 		$this->setId('editorReviewFileSelection');
-		$this->setTitle('common.file');
+		$this->setTitle('reviewer.monograph.reviewFiles');
 
 		// Set the Is Selectable boolean flag
 		$isSelectable = $request->getUserVar('isSelectable');

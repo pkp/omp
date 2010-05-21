@@ -155,6 +155,7 @@ You have been selected as a potential reviewer of the following submission.  Bel
 Sincerely,
 {$editor}]]></message>
 	<message key="reviewer.step1.viewAllDetails">View All Submission Details</message>
+	<message key="reviewer.monograph.reviewFiles">Review Files</message>
 	<message key="reviewer.monograph.fileToBeReviewed">File to be reviewed</message>
 	<message key="reviewer.monograph.notifyTheEditor">Notify The Editor</message>
 	<message key="reviewer.monograph.canDoReview">Will do the review</message>
