@@ -67,7 +67,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 			$monographFileId = $monographFile->getFileId();
 			$rowData[$monographFileId] = $monographFile;
 		}
-		
+
 		$this->setData($rowData);
 
 		// Add grid-level actions
@@ -79,8 +79,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addFile', null, array('reviewId' => $reviewId)),
 				'grid.action.addItem'
-			),
-			GRID_ACTION_POSITION_ABOVE
+			)
 		);
 
 		// Columns
@@ -91,7 +90,6 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 		$this->addColumn(new GridColumn('files',
 			'common.file',
 			null,
-			$emptyActions,
 			'controllers/grid/gridCell.tpl',
 			$cellProvider)
 		);
@@ -108,7 +106,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 		$row = new ReviewAttachmentsGridRow();
 		return $row;
 	}
-	
+
 	/**
 	 * Validate that the user is the assigned author for the monograph
 	 * Raises a fatal error if validation fails.
@@ -158,7 +156,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 */
 	function editFile(&$args, &$request) {
 		$fileId = $request->getUserVar('rowId');
-		$reviewId = $request->getUserVar('reviewId'); 
+		$reviewId = $request->getUserVar('reviewId');
 
 		import('controllers.grid.files.reviewAttachments.form.ReviewAttachmentsForm');
 		$reviewAttachmentsForm = new ReviewAttachmentsForm($reviewId, $fileId, $this->getId());
@@ -181,7 +179,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	function saveFile(&$args, &$request) {
 		$router =& $request->getRouter();
 		$reviewId = $request->getUserVar('reviewId');
-		
+
 		import('controllers.grid.files.reviewAttachments.form.ReviewAttachmentsForm');
 		$reviewAttachmentsForm = new ReviewAttachmentsForm($reviewId, null, $this->getId());
 		$reviewAttachmentsForm->readInputData();
@@ -200,7 +198,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 
 		return '<textarea>' . $json->getString() . '</textarea>';
 	}
-	
+
 	/**
 	 * Return a grid row with for the submission grid
 	 * @param $args array
@@ -246,5 +244,5 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 		}
 		return $json->getString();
 	}
-	
+
 }

@@ -80,7 +80,6 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$titleColumn =& $this->getColumn('title');
 
 		// Add author-specific columns
-		$emptyColumnActions = array();
 		$cellProvider = new PressEditorSubmissionsListGridCellProvider();
 
 		$session =& $request->getSession();
