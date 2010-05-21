@@ -42,7 +42,9 @@ class SubmissionContributorGridCellProvider extends DataObjectGridCellProvider {
 			case 'userGroupId':
 				return array('label' => $element->getLocalizedUserGroupName());
 			case 'email':
-				return parent::getTemplateVarsFromRowColumn($row, $column);
+				// FIXME: bug 5459.  Can return to calling parent after bug resolved
+				// return parent::getTemplateVarsFromRowColumn($row, $column);
+				return array('label' => $element->getData($columnId));
 			case 'principalContact':
 				return array('isPrincipalContact' => $element->getPrimaryContact());
 		}
