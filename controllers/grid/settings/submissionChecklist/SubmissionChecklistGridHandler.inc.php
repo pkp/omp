@@ -169,18 +169,17 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 * @return string
 	 */
 	function deleteItem(&$args, &$request) {
-		// FIXME: add validation here?
+		$rowId = $request->getUserVar('rowId');
 
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
 
 		// get all of the submissionChecklists
 		$submissionChecklistAll = $press->getSetting('submissionChecklist');
- 		$submissionChecklistId = $this->getId();
 
 		foreach (Locale::getSupportedLocales() as $locale => $name) {
-			if ( isset($submissionChecklistAll[$locale][$submissionChecklistId]) ) {
-				unset($submissionChecklistAll[$locale][$submissionChecklistId]);
+			if ( isset($submissionChecklistAll[$locale][$rowId]) ) {
+				unset($submissionChecklistAll[$locale][$rowId]);
 			} else {
 				// only fail if the currently displayed locale was not set
 				// (this is the one that needs to be removed from the currently displayed grid)
