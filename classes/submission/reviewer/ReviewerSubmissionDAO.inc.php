@@ -148,7 +148,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setReviewType($row['review_type']);
 		$reviewerSubmission->setReviewFileId($row['review_file_id']);
 		$reviewerSubmission->setReviewRevision($row['review_revision']);
-		
+
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($reviewerSubmission, $row);
 
@@ -161,7 +161,7 @@ class ReviewerSubmissionDAO extends DAO {
 	 * @param $reviewSubmission ReviewSubmission
 	 */
 	function updateReviewerSubmission(&$reviewerSubmission) {
-		$blah= $this->update(
+		$returner =& $this->update(
 			sprintf('UPDATE review_assignments
 				SET	submission_id = ?,
 					reviewer_id = ?,
@@ -202,7 +202,7 @@ class ReviewerSubmissionDAO extends DAO {
 				$reviewerSubmission->getReviewId()
 			)
 		);
-		return $blah;
+		return $returner;
 	}
 
 	/**
