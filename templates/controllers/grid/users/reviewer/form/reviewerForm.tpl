@@ -52,9 +52,4 @@
 		{fbvElement type="radio" name="reviewMethod" id="doubleBlindReview" label="editor.submissionReview.doubleBlind" checked=$doubleBlindReview}
 		{fbvElement type="radio" name="reviewMethod" id="openReview" label="editor.submissionReview.open" checked=$openReview}
 	{/fbvFormSection}
-
-	<!--  File selection grid -->
-	{** FIXME: need to set escape=false due to bug 5265 *}
-	{url|assign:reviewFilesSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" isSelectable=1 monographId=$monographId reviewType=$reviewType round=$round escape=false}
-	{load_url_in_div id="reviewFileSelection"|concat:$randomId url=$reviewFilesSelectionGridUrl}
 </form>

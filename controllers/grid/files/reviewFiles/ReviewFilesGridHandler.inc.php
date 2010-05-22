@@ -232,17 +232,17 @@ class ReviewFilesGridHandler extends GridHandler {
 	// public methods
 	//
 	/**
-	 *
+	 * Download the monograph file
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
 	function downloadFile(&$args, &$request) {
+		//FIXME: add validation
 		$monographId = $request->getUserVar('monographId');
 		$fileId = $request->getUserVar('fileId');
 		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 		$monographFileManager->downloadFile($fileId);
 	}
-
 }

@@ -62,11 +62,6 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				if ( empty($dateDue) ) $dateDue = '--';
 				return array('label' => $dateDue);
 				break;
-			case 'reviewRound':
-				$reviewRound = $element->getRound();
-				if ( empty($reviewRound) ) $reviewRound = '--';
-				return array('label' => $reviewRound);
-				break;
 		}
 	}
 }
