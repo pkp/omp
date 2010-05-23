@@ -121,13 +121,7 @@ class ReviewFilesGridHandler extends GridHandler {
 			// Set the files to all the available files to allow selection.
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 			$monographFiles =& $monographFileDao->getByMonographId($monographId);
-			$rowData = array();
-			foreach ($monographFiles as $monographFile) {
-				$monographFileId = $monographFile->getFileId();
-				$rowData[$monographFileId] = $monographFile;
-			}
-
-			$this->setData($rowData);
+			$this->setData($monographFiles);
 
 			// Set the already selected elements of the grid
 			$templateMgr =& TemplateManager::getManager();
