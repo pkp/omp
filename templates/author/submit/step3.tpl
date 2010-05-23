@@ -34,7 +34,7 @@
 
 <!--  Contributors -->
 {url|assign:submissionContributorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.submissionContributor.SubmissionContributorGridHandler" op="fetchGrid" monographId=$monographId}
-{load_url_in_div id="submissionContributorGridContainer" loadMessageId="submission.submissionContributors.form.loadMessage" url="$submissionContributorGridUrl"}
+{load_url_in_div id="submissionContributorGridContainer" url="$submissionContributorGridUrl"}
 
 <!--  Indexing Information -->
 
@@ -43,7 +43,7 @@
 
 <!--  Contributors -->
 {url|assign:chapterGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
-{load_url_in_div id="chaptersGridContainer" loadMessageId="submission.chapter.form.loadMessage" url="$chapterGridUrl"}
+{load_url_in_div id="chaptersGridContainer" url="$chapterGridUrl"}
 
 
 <p><input type="submit" value="{translate key="author.submit.finishSubmission"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
