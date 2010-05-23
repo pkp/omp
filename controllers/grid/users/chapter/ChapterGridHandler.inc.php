@@ -177,7 +177,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 				'principalContact',
 				'author.users.contributor.principalContact',
 				null,
-				'controllers/grid/gridCell.tpl',
+				'controllers/grid/users/submissionContributor/primaryContact.tpl',
 				$cellProvider
 			)
 		);

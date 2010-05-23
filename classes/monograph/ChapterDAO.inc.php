@@ -76,7 +76,7 @@ class ChapterDAO extends DAO {
 	 */
 	function getChaptersWithAuthors($monographId, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
-			'SELECT mc.chapter_id, mc.monograph_id, mc.chapter_seq, ma.author_id, ma.monograph_id, mca.primary_contact, mca.seq, ma.first_name, ma.middle_name, ma.last_name, ma.affiliation, ma.country, ma.email, ma.url
+			'SELECT mc.chapter_id, mc.monograph_id, mc.chapter_seq, ma.author_id, ma.monograph_id, mca.primary_contact, mca.seq, ma.first_name, ma.middle_name, ma.last_name, ma.affiliation, ma.country, ma.email, ma.url, ma.user_group_id
 			FROM monograph_chapters mc
 			LEFT JOIN monograph_chapter_authors mca ON mc.chapter_id = mca.chapter_id
 			LEFT JOIN monograph_authors ma ON ma.author_id = mca.author_id

@@ -39,7 +39,7 @@ class SubmissionContributorGridCellProvider extends DataObjectGridCellProvider {
 		switch ($columnId) {
 			case 'name':
 				return array('label' => $element->getFullName());
-			case 'userGroupId':
+			case 'role':
 				return array('label' => $element->getLocalizedUserGroupName());
 			case 'email':
 				// FIXME: bug 5459.  Can return to calling parent after bug resolved

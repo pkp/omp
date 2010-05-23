@@ -36,15 +36,13 @@
 {url|assign:submissionContributorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.submissionContributor.SubmissionContributorGridHandler" op="fetchGrid" monographId=$monographId}
 {load_url_in_div id="submissionContributorGridContainer" url="$submissionContributorGridUrl"}
 
-<!--  Indexing Information -->
-
-{url|assign:indexingInformationUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.submissions.IndexingInformationListbuilderHandler" op="fetch" monographId=$monographId}
-{load_url_in_div id="indexingInformationContainer" url=$indexingInformationUrl}
-
 <!--  Contributors -->
 {url|assign:chapterGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
 {load_url_in_div id="chaptersGridContainer" url="$chapterGridUrl"}
 
+<!--  Indexing Information -->
+{url|assign:indexingInformationUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.submissions.IndexingInformationListbuilderHandler" op="fetch" monographId=$monographId}
+{load_url_in_div id="indexingInformationContainer" url=$indexingInformationUrl}
 
 <p><input type="submit" value="{translate key="author.submit.finishSubmission"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
 

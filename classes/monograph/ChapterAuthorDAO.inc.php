@@ -33,7 +33,7 @@ class ChapterAuthorDAO extends DAO {
 		// get all the monograph_author fields,
 		// but replace the primary_contact and seq with monograph_chapter_authors.primary_contact
 
-		$sql = 'SELECT ma.author_id, ma.monograph_id, mca.chapter_id, mca.primary_contact, mca.seq, ma.first_name, ma.middle_name, ma.last_name, ma.affiliation, ma.country, ma.email, ma.url
+		$sql = 'SELECT ma.author_id, ma.monograph_id, mca.chapter_id, mca.primary_contact, mca.seq, ma.first_name, ma.middle_name, ma.last_name, ma.affiliation, ma.country, ma.email, ma.url, ma.user_group_id
 			FROM monograph_authors ma JOIN monograph_chapter_authors mca ON ma.author_id = mca.author_id' .
 		    ( (count($params)> 0)?' WHERE':'' ) .
 		    (  isset($monographId)?' ma.monograph_id = ?':'' ) .
@@ -134,9 +134,10 @@ class ChapterAuthorDAO extends DAO {
 		$chapterAuthor->setCountry($author->getCountry());
 		$chapterAuthor->setEmail($author->getEmail());
 		$chapterAuthor->setUrl($author->getUrl());
-		$chapterAuthor->setPrimaryContact($author->getPrimaryContact());
-		$chapterAuthor->setSequence($author->getSequence());
+		$chapterAuthor->setUserGroupId($author->getUserGroupId());
 		// and now the thing that is different
+		$chapterAuthor->setPrimaryContact($row['primary_contact']);
+		$chapterAuthor->setSequence($row['seq']);		;
 		$chapterAuthor->setChapterId($row['chapter_id']);
 
 		return $chapterAuthor;
