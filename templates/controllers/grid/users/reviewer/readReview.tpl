@@ -25,6 +25,6 @@
 <br />
 <div id="attachments">
 	{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.ReviewAttachmentsGridHandler" op="fetchGrid" readOnly=1 reviewId=$reviewAssignment->getId() escape=false}
-	{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
+	{load_url_in_div id="readReviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 </div>
  
