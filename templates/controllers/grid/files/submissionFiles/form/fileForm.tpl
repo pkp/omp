@@ -62,12 +62,12 @@
 
 <form name="uploadForm" id="uploadForm-{$randomId}" action="{url component="grid.files.submissionFiles.SubmissionFilesGridHandler" op="uploadFile" monographId=$monographId fileId=$fileId}" method="post">
 	{fbvFormArea id="file"}
-		{fbvFormSection title="common.fileType"}
+		{fbvFormSection title="common.fileType" required=1}
 			{if $fileId}{assign var="selectDisabled" value="disabled"}{/if}
 			{fbvSelect name="fileType" id="fileType-$randomId" from=$bookFileTypes translate=false selected=$currentFileType disabled=$selectDisabled}
 		{/fbvFormSection}
 		{if !$fileId}
-			{fbvFormSection title="author.submit.submissionFile"}
+			{fbvFormSection title="author.submit.selectFile"}
 				<div class="fileInputContainer">
 					<input type="file" id="submissionFile" name="submissionFile" />
 				</div>

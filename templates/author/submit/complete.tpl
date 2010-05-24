@@ -13,7 +13,8 @@
 {include file="author/submit/submitStepHeader.tpl"}
 {/strip}
 
-<h2>{translate key="author.submit.submissionComplete" pressName=$press->getLocalizedName()}</h2>
+<h2>{translate key="author.submit.submissionComplete"}</h2>
+<h4>{translate key="author.submit.submissionCompleteThanks" pressName=$press->getLocalizedName()}</h4>
 <br />
 <div class="separator"></div>
 

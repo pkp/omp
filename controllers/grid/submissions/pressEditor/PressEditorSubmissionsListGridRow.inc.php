@@ -56,7 +56,7 @@ class PressEditorSubmissionsListGridRow extends GridRow {
 					GRID_ACTION_MODE_MODAL,
 					GRID_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'showApprove', null, $actionArgs),
-					'grid.action.approve',
+					'grid.action.approveForPub',
 					null,
 					'promote'
 				));
@@ -66,7 +66,7 @@ class PressEditorSubmissionsListGridRow extends GridRow {
 					GRID_ACTION_MODE_MODAL,
 					GRID_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'showDecline', null, $actionArgs),
-					'grid.action.decline',
+					'editor.monograph.decision.decline',
 					null,
 					'delete'
 				));

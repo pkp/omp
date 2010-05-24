@@ -73,7 +73,7 @@
 			{$monographFile->getFileType()}
 		{/fbvFormSection}
 		{fbvFormSection title="common.size" float=$fbvStyles.float.RIGHT}
-			{$monographFile->getFileSize()}
+			{$monographFile->getNiceFileSize()}
 		{/fbvFormSection}
 		{fbvFormSection title="common.dateUploaded" float=$fbvStyles.float.LEFT}
 			{$monographFile->getDateUploaded()}

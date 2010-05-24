@@ -94,7 +94,7 @@ class ReviewerForm extends Form {
 			$reviewMethod = $reviewAssignment->getReviewMethod();
 		} else $reviewMethod = SUBMISSION_REVIEW_METHOD_BLIND;
 
-		// Load in the email to be used as the personal message
+		/* Load in the email to be used as the personal message
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($this->getMonograph(), 'REVIEW_REQUEST');
 		$user =& $request->getUser();
@@ -116,6 +116,7 @@ class ReviewerForm extends Form {
 			$numWeeks = max((int) $press->getSetting('numWeeksPerResponse'), 2);
 			$responseDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 		}
+		*/
 
 		$this->_data = array(
 			'monographId' => $this->getMonographId(),
@@ -124,7 +125,7 @@ class ReviewerForm extends Form {
 			'reviewMethod' => $reviewMethod,
 			'round' => (int) $request->getUserVar('round'),
 			'reviewerId' => $reviewerId,
-			'personalMessage' => $email->getBody(),
+			'personalMessage' => Locale::translate('reviewer.step1.requestBoilerplate'),
 			'responseDueDate' => $responseDueDate,
 			'reviewDueDate' => $reviewDueDate
 		);

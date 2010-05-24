@@ -21,17 +21,17 @@
 
 
 <!--  General Information -->
-
-<h3>{translate key="author.submit.generalInformation"}</h3>
-{fbvFormArea id="generalInformation" layout=$fbvStyles.layout.ONE_COLUMN}
-{fbvFormSection title="monograph.title" for="title"}
-	{fbvElement type="text" name="title[$formLocale]" id="title" value=$title[$formLocale] maxlength="255" size=$fbvStyles.size.LARGE}
-{/fbvFormSection}
-{fbvFormSection title="common.description" for="abstract"}
-	{fbvElement type="textarea" name="abstract[$formLocale]" id="abstract" value=$abstract[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
-{/fbvFormSection}
-{/fbvFormArea}
-
+<div id="bookMetadataContainer" style="width: 97%;">
+	<h3>{translate key="author.submit.generalInformation"}</h3>
+	{fbvFormArea id="generalInformation"}
+	{fbvFormSection title="monograph.title" for="title" layout=$fbvStyles.layout.ONE_COLUMN}
+		{fbvElement type="text" name="title[$formLocale]" id="title" value=$title[$formLocale] maxlength="255" size=$fbvStyles.size.LARGE}
+	{/fbvFormSection}
+	{fbvFormSection title="author.submit.briefSummary" for="abstract" layout=$fbvStyles.layout.ONE_COLUMN}
+		{fbvElement type="textarea" name="abstract[$formLocale]" id="abstract" value=$abstract[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{/fbvFormSection}
+	{/fbvFormArea}
+</div>
 <!--  Contributors -->
 {url|assign:submissionContributorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.submissionContributor.SubmissionContributorGridHandler" op="fetchGrid" monographId=$monographId}
 {load_url_in_div id="submissionContributorGridContainer" url="$submissionContributorGridUrl"}

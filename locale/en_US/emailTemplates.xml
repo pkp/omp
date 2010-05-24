@@ -182,9 +182,9 @@ Thank you,
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
 		<subject>Manuscript Review Request</subject>
-		<body>Dear [Reviewer],
+		<body>Dear {$reviewerName},
 
-You have been selected as a potential reviewer of the following submission.  Below is an overview of the submission, as well as the timeline for this review.  We hope that you are able to participate.
+{$messageToReviewer}
 
 Sincerely,
 {$editorialContactSignature}

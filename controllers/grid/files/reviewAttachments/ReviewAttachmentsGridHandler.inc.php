@@ -72,7 +72,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 		$reviewId = $request->getUserVar('reviewId');
 		$monographId = $request->getUserVar('monographId');
 		$this->setId('reviewAttachments');
-		$this->setTitle('email.attachments');
+		$this->setTitle('grid.reviewAttachments.title');
 		$this->setReadOnly($request->getUserVar('readOnly')?true:false);
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION));
@@ -100,7 +100,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 					GRID_ACTION_MODE_MODAL,
 					GRID_ACTION_TYPE_APPEND,
 					$router->url($request, null, null, 'addFile', null, array('reviewId' => $reviewId)),
-					'grid.action.addItem'
+					'grid.reviewAttachments.add'
 				)
 			);
 		}

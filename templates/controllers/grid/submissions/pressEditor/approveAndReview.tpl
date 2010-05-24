@@ -25,7 +25,6 @@
 </script>
 
 <form name="approveToReviewForm-{$monographId}" id="approveToReviewForm-{$monographId}" action="{url component="grid.submissions.pressEditor.PressEditorSubmissionsListGridHandler" op="saveApproveAndReview" monographId=$monographId|escape reviewType=$reviewType|escape round=$round|escape}" method="post">
-	<h4>{translate key="editor.monograph.approve"}</h4>
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="reviewType" value="{$reviewType|escape}" />
 	<input type="hidden" name="round" value="{$round|escape}" />

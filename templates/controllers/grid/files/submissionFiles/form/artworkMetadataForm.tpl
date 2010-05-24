@@ -60,25 +60,23 @@
 
 <form name="metadataForm-{$fileId}" id="metadataForm-{$fileId}" action="{url component="grid.files.submissionFiles.SubmissionFilesGridHandler" op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
 
-<h3>{translate key='submission.fileDetails'}</h3>
+<h3>{translate key='submission.artworkFileDetails'}</h3>
 
 <!-- Editable metadata -->
 
 {fbvFormArea id="fileMetaData"}
 	{fbvFormSection title="common.name" float=$fbvStyles.float.LEFT}
-		{fbvElement type="text" label="common.name" id="name" value=$artworkFile->getLocalizedName() maxlength="120" size=$fbvStyles.size.LARGE}
+		{fbvElement type="text" id="name" value=$artworkFile->getLocalizedName() maxlength="120" size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
-	{fbvFormSection title="grid.artworkFile.caption" float=$fbvStyles.float.RIGHT}
-		{fbvElement type="text" label="grid.artworkFile.caption" id="artwork_caption" value=$artworkFile->getCaption() size=$fbvStyles.size.LARGE}
+	{fbvFormSection title="grid.artworkFile.captionAndCredit"}
+		{fbvTextarea id="artwork_caption" value=$artworkFile->getCaption() size=$fbvStyles.size.SMALL}
 	{/fbvFormSection}
-	{fbvFormSection title="grid.artworkFile.credit"}
-		{fbvElement type="text" label="grid.artworkFile.credit" id="artwork_credit" value=$artworkFile->getCredit() size=$fbvStyles.size.LARGE}
-	{/fbvFormSection}
-	{fbvFormSection float=$fbvStyles.float.LEFT}
+	{fbvFormSection title="submission.artwork.permissions" float=$fbvStyles.float.LEFT}
 		{fbvElement type="text" label="grid.artworkFile.copyrightOwner" id="artwork_copyrightOwner" value=$artworkFile->getCopyrightOwner() size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 	{fbvFormSection float=$fbvStyles.float.RIGHT}
-		{fbvElement type="text" label="grid.artworkFile.copyrightContact" id="artwork_copyrightOwnerContact" value=$artworkFile->getCopyrightOwnerContactDetails() size=$fbvStyles.size.LARGE}
+		<br />
+		{fbvElement type="text" float=$fbvStyles.float.RIGHT label="grid.artworkFile.copyrightContact" id="artwork_copyrightOwnerContact" value=$artworkFile->getCopyrightOwnerContactDetails() size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 	{fbvFormSection float=$fbvStyles.float.LEFT}
 		{fbvElement type="text" label="grid.artworkFile.permissionTerms" id="artwork_permissionTerms" value=$artworkFile->getPermissionTerms() size=$fbvStyles.size.LARGE}

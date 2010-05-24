@@ -110,7 +110,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addSubmissionContributor', null, $actionArgs),
-				'grid.action.addItem'
+				'grid.action.addAuthor'
 			)
 		);
 

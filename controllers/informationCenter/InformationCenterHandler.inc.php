@@ -51,6 +51,7 @@ class InformationCenterHandler extends Handler {
 	 * Save a note.
 	 */
 	function saveNote(&$args, &$request) {
+		// FIXME: assocId and assocType should not be specified in request
 		$assocId = Request::getUserVar('assocId');
 		$assocType = Request::getUserVar('assocType');
 		$this->validate($assocId);
