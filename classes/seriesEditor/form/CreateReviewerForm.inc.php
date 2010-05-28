@@ -134,7 +134,6 @@ class CreateReviewerForm extends Form {
 		$user->setMailingAddress($this->getData('mailingAddress'));
 		$user->setCountry($this->getData('country'));
 		$user->setBiography($this->getData('biography'), null); // Localized
-		$user->setInterests($this->getData('interests'), null); // Localized
 		$user->setGossip($this->getData('gossip'), null); // Localized
 		$user->setMustChangePassword($this->getData('mustChangePassword') ? 1 : 0);
 
@@ -169,6 +168,13 @@ class CreateReviewerForm extends Form {
 
 		$user->setDateRegistered(Core::getCurrentDate());
 		$userId = $userDao->insertUser($user);
+		
+		// Add reviewer interests to interests table
+		$interestDao =& DAORegistry::getDAO('InterestDAO');
+		$interests = Request::getUserVar('interests');
+		if (empty($interests)) $interests = array();
+		elseif (!is_array($interests)) $interests = array($interests);
+		$interestDao->insertInterests($interests, $userId, true);
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$reviewerGroup =& $userGroupDao->getDefaultByRoleId(ROLE_ID_REVIEWER);

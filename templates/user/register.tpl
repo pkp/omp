@@ -13,6 +13,17 @@
 {include file="common/header.tpl"}
 {/strip}
 
+{literal}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#interests").tagit({
+			availableTags: [{/literal}{$existingInterests}{literal}]
+			{/literal}{if $currentTags}{literal}, currentTags: [{/literal}{$currentInterests}]{/if}{literal}
+		});
+	});
+</script>
+{/literal}
+
 <form name="register" method="post" action="{url op="registerUser"}">
 
 <p>{translate key="user.register.completeForm"}</p>
@@ -161,13 +172,15 @@
 			{fbvElement type="checkbox" id="registerAsReviewer" value="1" label=$regReviewerLabel checked="checked"}
 		{else}
 			{fbvElement type="checkbox" id="registerAsReviewer" value="1" label=$regReviewerLabel}
-			{fbvElement type="text" id="reviewerInterests" name="interests" value=$interests[$formLocale]}
 		{/if}
-		
 
 	{/if}
-
 	{/fbvFormSection}
+	<div id="reviewerInterestsContainer" style="margin-left:40px;">
+		<label class="desc">{translate key="user.register.reviewerInterests"}</label>
+		<ul id="interests"></ul>
+	</div>
+	<br />
   {/if}
 {if !$implicitAuth}
 	{if !existingUser}

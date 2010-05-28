@@ -134,11 +134,15 @@ class RegistrationForm extends Form {
 	/**
 	 * Initialize default data.
 	 */
-	function initData() {
+	function initData(&$args, &$request) {
 		$this->setData('registerAsReader', 1);
 		$this->setData('existingUser', $this->existingUser);
 		$this->setData('userLocales', array());
 		$this->setData('sendPassword', 1);
+		
+		$interestDao =& DAORegistry::getDAO('InterestsDAO');
+		$context = $request->getContext();
+		$this->setData('existingInterests', implode(",", $interestDao->getAllUniqueInterests()));
 	}
 
 	/**
@@ -215,9 +219,9 @@ class RegistrationForm extends Form {
 			$user->setFax($this->getData('fax'));
 			$user->setMailingAddress($this->getData('mailingAddress'));
 			$user->setBiography($this->getData('biography'), null); // Localized
-			$user->setInterests($this->getData('interests'), null); // Localized
 			$user->setDateRegistered(Core::getCurrentDate());
 			$user->setCountry($this->getData('country'));
+
 
 			$site =& Request::getSite();
 			$availableLocales = $site->getSupportedLocales();
@@ -252,6 +256,13 @@ class RegistrationForm extends Form {
 				return false;
 			}
 
+			// Add reviewer interests to interests table
+			$interestDao =& DAORegistry::getDAO('InterestsDAO');
+			$interests = Request::getUserVar('interests');
+			if (empty($interests)) $interests = array();
+			elseif (!is_array($interests)) $interests = array($interests);
+			$interestDao->insertInterests($interests, $userId, true);
+
 			$sessionManager =& SessionManager::getManager();
 			$session =& $sessionManager->getUserSession();
 			$session->setSessionVar('username', $user->getUsername());
@@ -283,7 +294,6 @@ class RegistrationForm extends Form {
 				$role->setUserId($userId);
 				$role->setRoleId($roleId);
 				$roleDao->insertRole($role);
-
 			}
 		}
 

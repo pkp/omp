@@ -578,7 +578,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.register.readerDescription">Notified by email on publication of a monograph.</message>
 	<message key="user.register.authorDescription">Able to submit items to the press.</message>
 	<message key="user.register.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the press.</message>
-	<message key="user.register.reviewerDescription">Willing to conduct peer review of submissions to the press. Identify reviewing interests (substantive areas and research methods).</message>
+	<message key="user.register.reviewerDescription">Willing to conduct peer review of submissions to the press.</message>
+	<message key="user.register.reviewerInterests">Identify reviewing interests (substantive areas and research methods):</message>
 
 
 
