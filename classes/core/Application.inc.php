@@ -88,6 +88,7 @@ class Application extends PKPApplication {
 			'MonographCommentDAO' => 'classes.monograph.MonographCommentDAO',
 			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
 			'MonographDAO' => 'classes.monograph.MonographDAO',
+			'NoteDAO' => 'classes.note.NoteDAO',
 			'ProductionAssignmentDAO' => 'classes.submission.productionAssignment.ProductionAssignmentDAO',
 			'PublicationFormatDAO' => 'classes.publicationFormat.PublicationFormatDAO',
 			'SeriesDAO' => 'classes.press.SeriesDAO',

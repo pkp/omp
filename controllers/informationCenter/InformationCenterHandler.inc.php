@@ -91,7 +91,7 @@ class InformationCenterHandler extends Handler {
 		$this->validate($assocId);
 
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
-		$noteDao->deleteNoteById($noteId);
+		$noteDao->deleteById($noteId);
 
 		$additionalAttributes = array('script' => "$('#note-$noteId').hide('slow')");
 		$json = new JSON('true', '', 'true', null, $additionalAttributes);

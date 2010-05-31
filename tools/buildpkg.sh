@@ -16,12 +16,12 @@
 GITREP=git://github.com/pkp/omp.git
 
 if [ -z "$1" ]; then
-	echo "Usage: $0 <version> [<tag>] [<patch_dir>]";
+	echo "Usage: $0 <version> [<tag>-<branch>] [<patch_dir>]";
 	exit 1;
 fi
 
 VERSION=$1
-TAG=${2-official/master}
+TAG=$2
 PATCHDIR=${3-}
 PREFIX=omp
 BUILD=$PREFIX-$VERSION
