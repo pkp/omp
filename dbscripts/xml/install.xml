@@ -14,7 +14,7 @@
 <install version="0.2.0.0">
 	<code function="createDirectories"/>
 	<code function="createDatabase"/>
-	
+
 	<schema file="lib/pkp/xml/schema/common.xml"/>
 	<schema file="lib/pkp/xml/schema/scheduledTasks.xml"/>
 	<schema file="lib/pkp/xml/schema/temporaryFiles.xml"/>
@@ -26,8 +26,9 @@
 	<schema file="lib/pkp/xml/schema/reviews.xml" />
 	<schema file="lib/pkp/xml/schema/reviewForms.xml" />
 	<schema file="dbscripts/xml/omp_schema.xml"/>
-	<schema file="dbscripts/xml/library_files.xml"/>	
-	
+	<schema file="dbscripts/xml/library_files.xml"/>
+	<schema file="lib/pkp/xml/schema/submissions.xml" />
+
 	<code function="createData"/>
 	<code function="createConfig"/>
 </install>

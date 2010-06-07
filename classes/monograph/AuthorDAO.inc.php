@@ -19,39 +19,25 @@
 
 import('classes.monograph.Author');
 import('classes.monograph.Monograph');
+import('lib.pkp.classes.submission.PKPAuthorDAO');
 
-class AuthorDAO extends DAO {
+class AuthorDAO extends PKPAuthorDAO {
 	/**
-	 * Retrieve an author by ID.
-	 * @param $authorId int
-	 * @return Author
+	 * Constructor
 	 */
-	function &getAuthor($authorId) {
-		$result =& $this->retrieve(
-			'SELECT * FROM monograph_authors WHERE author_id = ?', $authorId
-		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner =& $this->_returnAuthorFromRow($result->GetRowAssoc(false));
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
+	function AuthorDAO() {
+		parent::PKPAuthorDAO();
 	}
 
-
 	/**
-	 * Retrieve all authors for a monograph.
-	 * @param $monographId int
+	 * Retrieve all authors for a submission.
+	 * @param $submissionId int
 	 * @return array Authors ordered by sequence
 	 */
-	function &getAuthorsByMonographId($monographId) {
+	function &getAuthorsByMonographId($submissionId) {
 		$result =& $this->retrieve(
-			'SELECT * FROM monograph_authors WHERE monograph_id = ? ORDER BY seq',
-			$monographId
+			'SELECT * FROM authors WHERE submission_id = ? ORDER BY seq',
+			(int) $submissionId
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnAuthorFromRow', array('id'));
@@ -84,7 +70,7 @@ class AuthorDAO extends DAO {
 			'SELECT DISTINCT
 				CAST(\'\' AS CHAR) AS url,
 				0 AS author_id,
-				0 AS monograph_id,
+				0 AS submission_id,
 				CAST(\'\' AS CHAR) AS email,
 				0 AS primary_contact,
 				0 AS seq,
@@ -93,9 +79,9 @@ class AuthorDAO extends DAO {
 				ma.last_name AS last_name,
 				ma.affiliation AS affiliation,
 				ma.country
-			FROM	monograph_authors ma,
+			FROM	authors ma,
 				monographs a
-			WHERE	ma.monograph_id = a.monograph_id ' .
+			WHERE	ma.submission_id = a.monograph_id ' .
 				(isset($pressId)?'AND a.press_id = ? ':'') . '
 				AND a.status = ' . STATUS_PUBLISHED . '
 				AND (ma.last_name IS NOT NULL AND ma.last_name <> \'\')' .
@@ -110,92 +96,32 @@ class AuthorDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve the IDs of all authors for a monograph.
-	 * @param $monographId int
+	 * Retrieve the IDs of all authors for a submission.
+	 * @param $submissionId int
 	 * @return array int ordered by sequence
 	 */
-	function &getAuthorIdsByMonographId($monographId) {
-		$authors = array();
-
-		$result =& $this->retrieve(
-			'SELECT author_id FROM monograph_authors WHERE monograph_id = ? ORDER BY seq',
-			$monographId
-		);
-
-		while (!$result->EOF) {
-			$authors[] = $result->fields[0];
-			$result->moveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $authors;
-	}
-
-	/**
-	 * Retrieve the number of authors assigned to a monograph
-	 * @param $monographId int
-	 * @return int
-	 */
-	function getAuthorCountByMonographId($monographId) {
-		$result =& $this->retrieve(
-			'SELECT count(*) FROM monograph_authors WHERE monograph_id = ?',
-			$monographId
-		);
-
-		$returner = $result->fields[0];
-
-		$result->Close();
-		unset($result);
-
+	function &getAuthorIdsByMonographId($submissionId) {
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		$returner =& $this->getAuthorIdsBySubmissionId($submissionId);
 		return $returner;
 	}
 
 	/**
-	 * Get field names for which data is localized.
-	 * @return array
+	 * Retrieve the number of authors assigned to a submission
+	 * @param $submissionId int
+	 * @return int
 	 */
-	function getLocaleFieldNames() {
-		return array('biography', 'competingInterests');
+	function getAuthorCountByMonographId($submissionId) {
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getAuthorCountBySubmissionId($submissionId);
 	}
 
 	/**
-	 * Update the localized data for this object
-	 * @param $author object
+	 * Get a new data object
+	 * @return DataObject
 	 */
-	function updateLocaleFields(&$author) {
-		$this->updateDataObjectSettings('monograph_author_settings', $author, array(
-			'author_id' => $author->getId()
-		));
-
-	}
-
-	/**
-	 * Internal function to return an Author object from a row.
-	 * @param $row array
-	 * @return Author
-	 */
-	function &_returnAuthorFromRow(&$row) {
-		$author = new Author();
-		$author->setId($row['author_id']);
-		$author->setMonographId($row['monograph_id']);
-		$author->setFirstName($row['first_name']);
-		$author->setMiddleName($row['middle_name']);
-		$author->setLastName($row['last_name']);
-		$author->setAffiliation($row['affiliation']);
-		$author->setCountry($row['country']);
-		$author->setEmail($row['email']);
-		$author->setUrl($row['url']);
-		$author->setUserGroupId($row['user_group_id']);
-		$author->setPrimaryContact($row['primary_contact']);
-		$author->setSequence($row['seq']);
-
-		$this->getDataObjectSettings('monograph_author_settings', 'author_id', $row['author_id'], $author);
-
-		HookRegistry::call('AuthorDAO::_returnAuthorFromRow', array(&$author, &$row));
-
-		return $author;
+	function newDataObject() {
+		return new Author();
 	}
 
 	/**
@@ -214,12 +140,12 @@ class AuthorDAO extends DAO {
 		}
 
 		$this->update(
-			'INSERT INTO monograph_authors
-				(monograph_id, first_name, middle_name, last_name, affiliation, country, email, url, user_group_id, primary_contact, seq)
+			'INSERT INTO authors
+				(submission_id, first_name, middle_name, last_name, affiliation, country, email, url, user_group_id, primary_contact, seq)
 				VALUES
 				(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
-				$author->getMonographId(),
+				$author->getSubmissionId(),
 				$author->getFirstName(),
 				$author->getMiddleName() . '', // make non-null
 				$author->getLastName(),
@@ -227,9 +153,9 @@ class AuthorDAO extends DAO {
 				$author->getCountry(),
 				$author->getEmail(),
 				$author->getUrl(),
-				$author->getUserGroupId(),
-				$author->getPrimaryContact(),
-				$author->getSequence()
+				(int) $author->getUserGroupId(),
+				(int) $author->getPrimaryContact(),
+				(float) $author->getSequence()
 			)
 		);
 
@@ -249,19 +175,18 @@ class AuthorDAO extends DAO {
 			$this->resetPrimaryContact($author->getId(), $author->getMonographId());
 		}
 		$returner = $this->update(
-			'UPDATE monograph_authors
-				SET
-					first_name = ?,
-					middle_name = ?,
-					last_name = ?,
-					affiliation = ?,
-					country = ?,
-					email = ?,
-					url = ?,
-					user_group_id = ?,
-					primary_contact = ?,
-					seq = ?
-				WHERE author_id = ?',
+			'UPDATE	authors
+			SET	first_name = ?,
+				middle_name = ?,
+				last_name = ?,
+				affiliation = ?,
+				country = ?,
+				email = ?,
+				url = ?,
+				user_group_id = ?,
+				primary_contact = ?,
+				seq = ?
+			WHERE	author_id = ?',
 			array(
 				$author->getFirstName(),
 				$author->getMiddleName() . '', // make non-null
@@ -270,10 +195,10 @@ class AuthorDAO extends DAO {
 				$author->getCountry(),
 				$author->getEmail(),
 				$author->getUrl(),
-				$author->getUserGroupId(),
-				$author->getPrimaryContact(),
-				$author->getSequence(),
-				$author->getId()
+				(int) $author->getUserGroupId(),
+				(int) $author->getPrimaryContact(),
+				(float) $author->getSequence(),
+				(int) $author->getId()
 			)
 		);
 		$this->updateLocaleFields($author);
@@ -281,91 +206,14 @@ class AuthorDAO extends DAO {
 	}
 
 	/**
-	 * Delete an Author.
-	 * @param $author Author
+	 * Delete authors by submission.
+	 * @param $submissionId int
 	 */
-	function deleteAuthor(&$author) {
-		return $this->deleteAuthorById($author->getId());
-	}
-
-	/**
-	 * Delete an author by ID.
-	 * @param $authorId int
-	 * @param $monographId int optional
-	 */
-	function deleteAuthorById($authorId, $monographId = null) {
-		$params = array($authorId);
-		if ($monographId) $params[] = $monographId;
-		$returner = $this->update(
-			'DELETE FROM monograph_authors WHERE author_id = ?' .
-			($monographId?' AND monograph_id = ?':''),
-			$params
-		);
-		if ($monographId) $this->resequenceAuthors($monographId);
-		if ($returner) $this->update('DELETE FROM monograph_author_settings WHERE author_id = ?', array($authorId));
-
-		return $returner;
-	}
-
-	/**
-	 * Delete authors by monograph.
-	 * @param $monographId int
-	 */
-	function deleteAuthorsByMonograph($monographId) {
-		$authors =& $this->getAuthorsByMonographId($monographId);
+	function deleteAuthorsByMonograph($submissionId) {
+		$authors =& $this->getAuthorsByMonographId($submissionId);
 		foreach ($authors as $author) {
 			$this->deleteAuthor($author);
 		}
-	}
-
-	/**
-	 * Sequentially renumber a monograph's authors in their sequence order.
-	 * @param $monographId int
-	 */
-	function resequenceAuthors($monographId) {
-		$result =& $this->retrieve(
-			'SELECT author_id FROM monograph_authors WHERE monograph_id = ? ORDER BY seq', $monographId
-		);
-
-		for ($i=1; !$result->EOF; $i++) {
-			list($authorId) = $result->fields;
-			$this->update(
-				'UPDATE monograph_authors SET seq = ? WHERE author_id = ?',
-				array(
-					$i,
-					$authorId
-				)
-			);
-
-			$result->moveNext();
-		}
-
-		$result->close();
-		unset($result);
-	}
-
-	/**
-	 * Remove other primary contacts from a monograph and set to authorId
-	 * @param $authorId int
-	 * @param $monographId int
-	 */
-	function resetPrimaryContact($authorId, $monographId) {
-		$this->update(
-				'UPDATE monograph_authors SET primary_contact = 0 WHERE primary_contact = 1 AND monograph_id = ?',
-				array($monographId)
-			);
-		$this->update(
-				'UPDATE monograph_authors SET primary_contact = 1 WHERE author_id = ? AND monograph_id = ?',
-				array($authorId, $monographId)
-			);
-	}
-
-	/**
-	 * Get the ID of the last inserted author.
-	 * @return int
-	 */
-	function getInsertAuthorId() {
-		return $this->getInsertId('monograph_authors', 'author_id');
 	}
 }
 

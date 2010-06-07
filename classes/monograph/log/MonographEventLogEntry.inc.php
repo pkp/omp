@@ -31,8 +31,8 @@ define('MONOGRAPH_LOG_TYPE_COPYEDIT', 		0x04);
 define('MONOGRAPH_LOG_TYPE_LAYOUT', 		0x05);
 define('MONOGRAPH_LOG_TYPE_PROOFREAD', 		0x06);
 define('MONOGRAPH_LOG_TYPE_PRODUCTION',		0x07);
-define('MONOGRAPH_LOG_NOTE_POSTED',	0x08);
-define('MONOGRAPH_LOG_MESSAGE_SENT',	0x09);
+define('MONOGRAPH_LOG_NOTE_POSTED',		0x08);
+define('MONOGRAPH_LOG_MESSAGE_SENT',		0x09);
 
 // Log entry event types. All types must be defined here
 define('MONOGRAPH_LOG_DEFAULT', 0);
@@ -105,8 +105,6 @@ define('MONOGRAPH_LOG_PRODUCTION_ASSIGN',	0x80000000);
 
 //file events
 define('MONOGRAPH_LOG_FILE_UPLOADED',	0x90000001);
-define('MONOGRAPH_LOG_NOTE_POSTED',	0x90000002);
-define('MONOGRAPH_LOG_MESSAGE_SENT',	0x90000003);
 
 class MonographEventLogEntry extends DataObject {
 

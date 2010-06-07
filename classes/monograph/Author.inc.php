@@ -15,10 +15,10 @@
 
 // $Id$
 
+
 import('lib.pkp.classes.submission.PKPAuthor');
 
 class Author extends PKPAuthor {
-
 	/**
 	 * Constructor.
 	 */
@@ -35,7 +35,8 @@ class Author extends PKPAuthor {
 	 * @return int
 	 */
 	function getMonographId() {
-		return $this->getData('monographId');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->getSubmissionId();
 	}
 
 	/**
@@ -43,23 +44,8 @@ class Author extends PKPAuthor {
 	 * @param $monographId int
 	 */
 	function setMonographId($monographId) {
-		return $this->setData('monographId', $monographId);
-	}
-
-	/**
-	 * Set the user group id
-	 * @param $userGroupId int
-	 */
-	function setUserGroupId($userGroupId) {
-		$this->setData('userGroupId', $userGroupId);
-	}
-
-	/**
-	 * Get the user group id
-	 * @return int
-	 */
-	function getUserGroupId() {
-		return $this->getData('userGroupId');
+		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
+		return $this->setSubmissionId($monographId);
 	}
 
 	/**

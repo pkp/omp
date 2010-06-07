@@ -316,10 +316,9 @@ class EditorSubmissionDAO extends DAO {
 				aap.last_name AS author_name,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
-			FROM
-				monographs a
-				INNER JOIN monograph_authors aa ON (aa.monograph_id = a.monograph_id)
-				LEFT JOIN monograph_authors aap ON (aap.monograph_id = a.monograph_id AND aap.primary_contact = 1)
+			FROM	monographs a
+				LEFT JOIN authors aa ON (aa.submission_id = a.monograph_id)
+				LEFT JOIN authors aap ON (aap.submission_id = a.monograph_id AND aap.primary_contact = 1)
 				LEFT JOIN series s ON (s.series_id = a.series_id)
 				LEFT JOIN edit_assignments e ON (e.monograph_id = a.monograph_id)
 				LEFT JOIN users ed ON (e.editor_id = ed.user_id)

@@ -226,9 +226,8 @@ class DesignerSubmissionDAO extends DAO {
 				m.*,
 				COALESCE(atl.setting_value, atpl.setting_value) AS series_title,
 				COALESCE(aal.setting_value, aapl.setting_value) AS series_abbrev
-			FROM
-				monographs m
-				INNER JOIN monograph_authors ma ON (ma.monograph_id = m.monograph_id)
+			FROM	monographs m
+				LEFT JOIN authors ma ON (ma.submission_id = m.monograph_id)
 				LEFT JOIN series s ON (s.series_id = m.series_id)
 				LEFT JOIN series_settings atpl ON (s.series_id = atpl.series_id AND atpl.setting_name = ? AND atpl.locale = ?)
 				LEFT JOIN series_settings atl ON (s.series_id = atl.series_id AND atl.setting_name = ? AND atl.locale = ?)
