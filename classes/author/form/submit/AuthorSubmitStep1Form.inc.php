@@ -135,7 +135,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 			$monographDao->insertMonograph($this->monograph);
 			$this->monographId = $this->monograph->getId();
-			$author->setMonographId($this->monographId);
+			$author->setSubmissionId($this->monographId);
 			$authorDao->insertAuthor($author);
 		}
 

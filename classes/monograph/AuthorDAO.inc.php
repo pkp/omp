@@ -120,12 +120,12 @@ class AuthorDAO extends PKPAuthorDAO {
 	function insertAuthor(&$author) {
 		// Set author sequence to end of author list
 		if(!$author->getSequence()) {
-			$authorCount = $this->getAuthorCountByMonographId($author->getMonographId());
+			$authorCount = $this->getAuthorCountByMonographId($author->getSubmissionId());
 			$author->setSequence($authorCount + 1);
 		}
 		// Reset primary contact for monograph to this author if applicable
 		if ($author->getPrimaryContact()) {
-			$this->resetPrimaryContact($author->getId(), $author->getMonographId());
+			$this->resetPrimaryContact($author->getId(), $author->getSubmissionId());
 		}
 
 		$this->update(
@@ -161,7 +161,7 @@ class AuthorDAO extends PKPAuthorDAO {
 	function updateAuthor($author) {
 		// Reset primary contact for monograph to this author if applicable
 		if ($author->getPrimaryContact()) {
-			$this->resetPrimaryContact($author->getId(), $author->getMonographId());
+			$this->resetPrimaryContact($author->getId(), $author->getSubmissionId());
 		}
 		$returner = $this->update(
 			'UPDATE	authors
