@@ -140,7 +140,7 @@ class RegistrationForm extends Form {
 		$this->setData('userLocales', array());
 		$this->setData('sendPassword', 1);
 		
-		$interestDao =& DAORegistry::getDAO('InterestsDAO');
+		$interestDao =& DAORegistry::getDAO('InterestDAO');
 		$context = $request->getContext();
 		$this->setData('existingInterests', implode(",", $interestDao->getAllUniqueInterests()));
 	}
@@ -257,7 +257,7 @@ class RegistrationForm extends Form {
 			}
 
 			// Add reviewer interests to interests table
-			$interestDao =& DAORegistry::getDAO('InterestsDAO');
+			$interestDao =& DAORegistry::getDAO('InterestDAO');
 			$interests = Request::getUserVar('interests');
 			if (empty($interests)) $interests = array();
 			elseif (!is_array($interests)) $interests = array($interests);
