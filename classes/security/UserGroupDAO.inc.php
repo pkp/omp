@@ -106,6 +106,28 @@ class UserGroupDAO extends DAO {
 	function deleteUserGroup(&$userGroup) {
 		return $this->deleteById($userGroup->getId());
 	}
+	
+
+	/**
+	 * Delete a user group by its press id
+	 * @param $pressId int
+	 */
+	function deleteByPressId($pressId) {
+		$result =& $this->retrieve('SELECT user_group_id FROM user_groups WHERE press_id = ?', $pressId);
+			
+		$returner = true;
+		for ($i=1; !$result->EOF; $i++) {
+			list($userGroupId) = $result->fields;
+			
+			$ret1 = $this->update('DELETE FROM user_group_settings WHERE user_group_id = ?', (int) $userGroupId);
+			$ret2 = $this->update('DELETE FROM user_groups WHERE user_group_id = ?', (int) $userGroupId);
+
+			$returner = $returner && $ret1 && $ret2;
+			$result->moveNext();
+		}
+		
+		return $returner;
+	}
 
 	/**
 	 * Get the ID of the last inserted author.
