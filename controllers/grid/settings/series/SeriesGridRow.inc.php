@@ -62,7 +62,8 @@ class SeriesGridRow extends GridRow {
 					$router->url($request, null, null, 'deleteSeries', null, $actionArgs),
 					'grid.action.delete',
 					null,
-					'delete'
+					'delete',
+					'common.confirmDelete'
 				));
 		}
 

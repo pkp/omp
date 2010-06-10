@@ -91,7 +91,8 @@ class ReviewFormElementGridRow extends GridRow {
 					$router->url($request, null, null, 'deleteReviewFormElement', null, $actionArgs),
 					'grid.action.delete',
 					null,
-					'delete'
+					'delete',
+					'common.confirmDelete'
 				));
 		}
 

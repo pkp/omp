@@ -53,19 +53,14 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 				return array('label' => $title);
 				break;
 			case 'dateAssigned':
-				$dateAssigned = $element->getDateAssigned();
+				$dateAssigned = strftime(Config::getVar('general', 'date_format_short'), strtotime($element->getDateAssigned()));
 				if ( empty($dateAssigned) ) $dateAssigned = '--';
 				return array('label' => $dateAssigned);
 				break;
 			case 'dateDue':
-				$dateDue = $element->getDateAssigned();
+				$dateDue = strftime(Config::getVar('general', 'date_format_short'), strtotime($element->getDateDue()));
 				if ( empty($dateDue) ) $dateDue = '--';
 				return array('label' => $dateDue);
-				break;
-			case 'reviewRound':
-				$reviewRound = $element->getRound();
-				if ( empty($reviewRound) ) $reviewRound = '--';
-				return array('label' => $reviewRound);
 				break;
 		}
 	}

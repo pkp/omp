@@ -41,7 +41,7 @@ class InformationCenterNotesForm extends Form {
 		$templateMgr =& TemplateManager::getManager();
 
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
-		$notes =& $noteDao->getNotesByAssoc($this->assocId, $this->assocType); 
+		$notes =& $noteDao->getByAssoc($this->assocType, $this->assocId); 
 
 		$templateMgr->assign_by_ref('notes', $notes);
 		$templateMgr->assign_by_ref('assocId', $this->assocId);
@@ -65,12 +65,20 @@ class InformationCenterNotesForm extends Form {
 	 * @return userId int
 	 */
 	function execute() {
-		import('lib.pkp.classes.note.NoteManager');
-		$noteManager = new NoteManager();
-		
 		$user =& Request::getUser();
-		
-		return $noteManager->createNote($user->getId(), $this->getData('newNote'), $this->assocType, $this->assocId);
+		$context =& Request::getContext();
+		$contextId = $context?$context->getId():0;
+
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$note = $noteDao->newDataObject();
+
+		$note->setContextId($contextId);
+		$note->setUserId($user->getId());
+		$note->setContents($this->getData('newNote'));
+		$note->setAssocType($this->assocType);
+		$note->setAssocId($this->assocId);
+
+		return $noteDao->insertNote($note);
 	}
 }
 

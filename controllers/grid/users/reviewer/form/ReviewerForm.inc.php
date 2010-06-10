@@ -27,7 +27,7 @@ class ReviewerForm extends Form {
 	function ReviewerForm($monographId, $reviewAssignmentId) {
 		parent::Form('controllers/grid/users/reviewer/form/reviewerForm.tpl');
 		$this->_monographId = (int) $monographId;
-		$this->_reviewAssignmentId = (int) $reviewerId;
+		$this->_reviewAssignmentId = (int) $reviewAssignmentId;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'reviewerId', 'required', 'author.submit.form.authorRequiredFields'));
@@ -49,7 +49,16 @@ class ReviewerForm extends Form {
 	}
 
 	/**
-	 * Get the ReviewerId
+	 * Get the Monograph
+	 * @return object monograph
+	 */
+	function getMonograph() {
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		return $monographDao->getMonograph($this->_monographId);
+	}
+
+	/**
+	 * Get the Review assignment's Id
 	 * @return int reviewerId
 	 */
 	function getReviewAssignmentId() {
@@ -65,28 +74,61 @@ class ReviewerForm extends Form {
 	*/
 	function initData(&$args, &$request) {
 		$reviewerId = $request->getUserVar('reviewerId');
+		$press =& $request->getContext();
 		// The reviewer id has been set
 		if ( is_numeric($reviewerId) ) {
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
-			$press =& $request->getContext();
 
 			$user =& $userDao->getUser($reviewerId);
 			if ($user && $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_REVIEWER) ) {
 				$this->setData('userNameString', sprintf('%s (%s)', $user->getFullname(), $user->getUsername()));
 			}
 		}
+		
+		// Get the review method (open, blind, or double-blind)
+		$round = (int) $request->getUserVar('round');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($this->getMonographId(), $reviewerId, $round);
+		if(isset($reviewAssignment)) {
+			$reviewMethod = $reviewAssignment->getReviewMethod();
+		} else $reviewMethod = SUBMISSION_REVIEW_METHOD_BLIND;
+
+		/* Load in the email to be used as the personal message
+		import('classes.mail.MonographMailTemplate');
+		$email = new MonographMailTemplate($this->getMonograph(), 'REVIEW_REQUEST');
+		$user =& $request->getUser();
+		$paramArray = array(
+			'editorialContactSignature' => $user->getContactSignature(),
+		);
+		$email->assignParams($paramArray);
+		
+		// Get the response/review due dates or else set defaults
+		if (isset($reviewAssignment) && $reviewAssignment->getDueDate() != null) {
+			$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDueDate()));
+		} else {
+			$numWeeks = max((int) $press->getSetting('numWeeksPerReview'), 2);
+			$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
+		}
+		if (isset($reviewAssignment) && $reviewAssignment->getResponseDueDate() != null) {
+			$responseDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getResponseDueDate()));
+		} else {
+			$numWeeks = max((int) $press->getSetting('numWeeksPerResponse'), 2);
+			$responseDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
+		}
+		*/
 
 		$this->_data = array(
 			'monographId' => $this->getMonographId(),
 			'reviewAssignmentId' => $this->getReviewAssignmentId(),
 			'reviewType' => (int) $request->getUserVar('reviewType'),
+			'reviewMethod' => $reviewMethod,
 			'round' => (int) $request->getUserVar('round'),
 			'reviewerId' => $reviewerId,
-			'personalMessage' => $request->getUserVar('personalMessage'),
-			'responseDueDate' => $request->getUserVar('responseDueDate'),
-			'reviewDueDate' => $request->getUserVar('reviewDueDate'),
-			);
+			'personalMessage' => Locale::translate('reviewer.step1.requestBoilerplate'),
+			'responseDueDate' => $responseDueDate,
+			'reviewDueDate' => $reviewDueDate
+		);
 
 	}
 
@@ -112,9 +154,11 @@ class ReviewerForm extends Form {
 		$reviewerId = $this->getData('reviewerId');
 		$reviewType = $this->getData('reviewType');
 		$round = $this->getData('round');
+		$reviewDueDate = $this->getData('reviewDueDate');
+		$responseDueDate = $this->getData('responseDueDate');
 
-		import('submission.seriesEditor.SeriesEditorAction');
-		SeriesEditorAction::addReviewer($submission, $reviewerId, $reviewType, $round);
+		import('classes.submission.seriesEditor.SeriesEditorAction');
+		SeriesEditorAction::addReviewer($submission, $reviewerId, $reviewType, $round, $reviewDueDate, $responseDueDate);
 
 		// Get the reviewAssignment object now that it has been added
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -123,6 +167,8 @@ class ReviewerForm extends Form {
 		$reviewAssignment->setCancelled(0);
 		$reviewAssignment->stampModified();
 		$reviewAssignmentDao->updateObject($reviewAssignment);
+		
+		return $reviewAssignment;
 	}
 }
 

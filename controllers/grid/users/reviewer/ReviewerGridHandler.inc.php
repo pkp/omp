@@ -39,7 +39,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return array
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addReviewer', 'editReviewer', 'updateReviewer', 'deleteReviewer', 'getReviewerAutocomplete'));
+		return array_merge(parent::getRemoteOperations(), array('addReviewer', 'editReviewer', 'updateReviewer', 'deleteReviewer', 'getReviewerAutocomplete', 'readReview', 'sendReviews', 'showApprove', 'saveApprove', 'showDecline', 'saveDecline'));
 	}
 
 	/**
@@ -118,6 +118,49 @@ class ReviewerGridHandler extends GridHandler {
 				$router->url($request, null, null, 'addReviewer', null, $actionArgs),
 				'editor.monograph.addReviewer'
 			)
+		);
+
+		// Editorial decision actions
+		$this->addAction(
+			new GridAction(
+				'sendReviews',
+				GRID_ACTION_MODE_MODAL,
+				GRID_ACTION_TYPE_NOTHING,
+				$router->url($request, null, null, 'sendReviews', null, $actionArgs),
+				'editor.review.sendReviews'
+			),
+			GRID_ACTION_POSITION_BELOW
+		);
+
+		$this->addAction(
+			new GridAction(
+				'resubmit',
+				GRID_ACTION_MODE_MODAL,
+				GRID_ACTION_TYPE_NOTHING,
+				$router->url($request, null, null, 'resubmit', null, $actionArgs),
+				'editor.monograph.decision.resubmit'
+			),
+			GRID_ACTION_POSITION_BELOW
+		);
+		$this->addAction(
+			new GridAction(
+				'decline',
+				GRID_ACTION_MODE_MODAL,
+				GRID_ACTION_TYPE_NOTHING,
+				$router->url($request, null, null, 'showDecline', null, $actionArgs),
+				'editor.monograph.decision.decline'
+			),
+			GRID_ACTION_POSITION_BELOW
+		);
+		$this->addAction(
+			new GridAction(
+				'accept',
+				GRID_ACTION_MODE_MODAL,
+				GRID_ACTION_TYPE_NOTHING,
+				$router->url($request, null, null, 'showApprove', null, $actionArgs),
+				'editor.monograph.decision.accept'
+			),
+			GRID_ACTION_POSITION_BELOW
 		);
 
 		// Columns
@@ -224,14 +267,13 @@ class ReviewerGridHandler extends GridHandler {
 		$reviewerForm = new ReviewerForm($monographId, $reviewAssignmentId);
 		$reviewerForm->readInputData();
 		if ($reviewerForm->validate()) {
-			$reviewerForm->execute($args, $request);
+			$reviewAssignment =& $reviewerForm->execute($args, $request);
 
 			// prepare the grid row data
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
-			$row->setId($reviewAssignmentId);
+			$row->setId($reviewAssignment->getId());
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($monographId, $request->getUserVar('reviewerId'), $request->getUserVar('round'), $request->getUserVar('reviewType'));
 
 			$row->setData($reviewAssignment);
 			$row->initialize($request);
@@ -282,9 +324,9 @@ class ReviewerGridHandler extends GridHandler {
 		$itemList = array();
 		foreach ($reviewers as $i => $reviewer) {
 			$itemList[] = array('id' => $reviewer->getId(),
-								 'name' => $reviewer->getFullName(),
-								 'abbrev' => $reviewer->getUsername()
-								);
+							 'name' => $reviewer->getFullName(),
+							 'abbrev' => $reviewer->getUsername()
+							);
 		}
 
 		import('lib.pkp.classes.core.JSON');
@@ -304,5 +346,123 @@ class ReviewerGridHandler extends GridHandler {
 		$sourceJson->setContent('[' . implode(',', $sourceContent) . ']');
 
 		echo $sourceJson->getString();
+	}
+
+	function readReview(&$args, &$request) {
+		// FIXME: add validation
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$reviewAssignment =& $reviewAssignmentDao->getById($request->getUserVar('reviewId'));
+		$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
+		$templateMgr->assign_by_ref('monograph', $monograph);
+		$json =& new JSON('true', $templateMgr->fetch('controllers/grid/users/reviewer/readReview.tpl'));
+		return $json->getString();
+	}
+
+	function sendReviews(&$args, &$request) {
+		// FIXME: add validation
+		$monographId = $request->getUserVar('monographId');
+		// Form handling
+		import('controllers.grid.users.reviewer.form.SendReviewsForm');
+		$sendReviewsForm = new SendReviewsForm($monographId);
+		$sendReviewsForm->initData($args, $request);
+
+		$json = new JSON('true', $sendReviewsForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Show the submission approval modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function showApprove(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		import('controllers.grid.submissions.pressEditor.form.ApproveSubmissionForm');
+		$approveForm = new ApproveSubmissionForm($monographId);
+
+		if ($approveForm->isLocaleResubmit()) {
+			$approveForm->readInputData();
+		} else {
+			$approveForm->initData($args, $request);
+		}
+
+		$json = new JSON('true', $approveForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Save the submission approval modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function saveApprove(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		import('controllers.grid.submissions.pressEditor.form.ApproveSubmissionForm');
+		$approveForm = new ApproveSubmissionForm($monographId);
+
+		$approveForm->readInputData();
+		if ($approveForm->validate()) {
+			$approveForm->execute($args, $request);
+
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false');
+		}
+
+		return $json->getString();
+	}
+
+	/**
+	 * Show the submission decline modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function showDecline(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		import('controllers.grid.submissions.pressEditor.form.DeclineSubmissionForm');
+		$declineForm = new DeclineSubmissionForm($monographId);
+
+		if ($declineForm->isLocaleResubmit()) {
+			$declineForm->readInputData();
+		} else {
+			$declineForm->initData($args, $request);
+		}
+
+		$json = new JSON('true', $declineForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Save the submission decline modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function saveDecline(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		import('controllers.grid.submissions.pressEditor.form.DeclineSubmissionForm');
+		$declineForm = new DeclineSubmissionForm($monographId);
+
+		$declineForm->readInputData();
+		if ($declineForm->validate()) {
+			$declineForm->execute($args, $request);
+
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false');
+		}
+
+		return $json->getString();
 	}
 }

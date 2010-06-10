@@ -23,6 +23,34 @@ class ReviewFilesGridCellProvider extends GridCellProvider {
 	}
 
 	/**
+	 * Get cell actions associated with this row/column combination
+	 * @param $row GridRow
+	 * @param $column GridColumn
+	 * @return array an array of GridAction instances
+	 */
+	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
+		if ( $column->getId() == 'name' ) {
+			$monographFile =& $row->getData();
+			$router =& $request->getRouter();
+			$actionArgs = array(
+				'gridId' => $row->getGridId(),
+				'monographId' => $monographFile->getMonographId(),
+				'fileId' => $monographFile->getFileId()
+			);
+			$action =& new GridAction(
+							'downloadFile',
+							GRID_ACTION_MODE_LINK,
+							GRID_ACTION_TYPE_NOTHING,
+							$router->url($request, null, null, 'downloadFile', null, $actionArgs),
+							null,
+							$monographFile->getLocalizedName()
+						);
+			return array($action);
+		}
+		return parent::getCellActions($request, $row, $column, $position);
+	}
+
+	/**
 	 * Extracts variables for a given column from a data element
 	 * so that they may be assigned to template before rendering.
 	 * @param $row GridRow
@@ -47,9 +75,6 @@ class ReviewFilesGridCellProvider extends GridCellProvider {
 		switch ($columnId) {
 			case 'select':
 				return array('rowId' => $element->getFileId());
-			case 'name':
-				$label = $element->getLocalizedName() != '' ? $element->getLocalizedName() : Locale::translate('common.untitled');
-				return array('label' => $label);
 			case 'type':
 				$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 				$fileType = $bookFileTypeDao->getById($element->getAssocId());

@@ -60,7 +60,8 @@ class SponsorGridRow extends GridRow {
 					$router->url($request, null, null, 'deleteSponsor', null, $actionArgs),
 					'grid.action.delete',
 					null,
-					'delete'
+					'delete',
+					'common.confirmDelete'
 				));
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 

@@ -73,7 +73,10 @@ class InformationHandler extends Handler {
 		$templateMgr->assign('pageTitle', $pageTitle);
 		$templateMgr->assign('content', $content);
 		$templateMgr->assign('contentOnly', $contentOnly); // Hide the header and footer code
-		$templateMgr->display('information/information.tpl');
+
+		import('lib.pkp.classes.core.JSON');
+		$json = new JSON('true', $templateMgr->fetch('information/information.tpl'));
+		echo $json->getString();
 	}
 
 	function readers() {
@@ -89,7 +92,7 @@ class InformationHandler extends Handler {
 	}
 
 	function competingInterestGuidelines() {
-		$this->index(array('competingInterestGuidelines'));
+		return $this->index(array('competingInterestGuidelines'));
 	}
 
 	function sampleCopyrightWording() {

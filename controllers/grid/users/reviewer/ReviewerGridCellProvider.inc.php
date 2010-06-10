@@ -85,17 +85,17 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		$state = $this->getCellState($row, $column);
 
-		$monograph =& $row->getData();
+		$reviewAssignment =& $row->getData();
 		$router =& $request->getRouter();
 		$actionArgs = array(
 			'gridId' => $row->getGridId(),
-			'reviewId' => $monograph->getId()
+			'monographId' => $reviewAssignment->getMonographId(),
+			'reviewId' => $reviewAssignment->getId()
 		);
 
 		$action = false;
 		switch ($state) {
 			case 'linkReview':
-				$reviewAssignment =& $row->getData();
 				$action =& new GridAction(
 								'readReview',
 								GRID_ACTION_MODE_MODAL,
@@ -107,7 +107,6 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 			case 'new':
 				// The 'new' state could be for the editor or the reviewer
 				if ( is_numeric($column->getId()) ) {
-					$reviewAssignment =& $row->getData();
 					$action =& new GridAction(
 									'readReview',
 									GRID_ACTION_MODE_MODAL,

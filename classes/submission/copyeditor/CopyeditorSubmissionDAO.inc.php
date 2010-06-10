@@ -249,9 +249,8 @@ class CopyeditorSubmissionDAO extends DAO {
 				m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
-			FROM
-				monographs m
-				INNER JOIN monograph_authors ma ON (ma.monograph_id = m.monograph_id)
+			FROM	monographs m
+				LEFT JOIN authors ma ON (ma.submission_id = m.monograph_id)
 				LEFT JOIN series aa ON (aa.series_id = m.series_id)
 				LEFT JOIN edit_assignments e ON (e.monograph_id = m.monograph_id)
 				LEFT JOIN users ed ON (e.editor_id = ed.user_id)

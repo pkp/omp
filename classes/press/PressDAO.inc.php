@@ -202,7 +202,7 @@ class PressDAO extends DAO
 		$emailTemplateDao->deleteEmailTemplatesByPress($pressId);
 
 		$monographDAO =& DAORegistry::getDAO('MonographDAO');
-		$monographDAO->deleteMonographsByPress($pressId);
+		$monographDAO->deleteMonographsByPressId($pressId);
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroupDao->deleteAssignmentsByPressId($pressId);

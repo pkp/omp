@@ -126,7 +126,7 @@ class MonographFileManager extends FileManager {
 	 */
 	function uploadLayoutFile($fileName, $fileId = null, $overwrite = true) {
 		return $this->handleUpload($fileName, MONOGRAPH_FILE_LAYOUT, $fileId, $overwrite);
-	}	
+	}
 
 	/**
 	 * Upload a layout file.
@@ -137,7 +137,7 @@ class MonographFileManager extends FileManager {
 	 */
 	function uploadGalleyFile($fileName, $fileId = null, $overwrite = true) {
 		return $this->handleUpload($fileName, MONOGRAPH_FILE_GALLEY, $fileId, $overwrite);
-	}	
+	}
 
 	/**
 	 * Upload a public file.
@@ -148,7 +148,7 @@ class MonographFileManager extends FileManager {
 	 */
 	function uploadPublicFile($fileName, $fileId = null, $overwrite = true) {
 		return $this->handleUpload($fileName, MONOGRAPH_FILE_PUBLIC, $fileId, $overwrite);
-	}	
+	}
 
 	/**
 	 * Upload a note file.
@@ -381,7 +381,7 @@ class MonographFileManager extends FileManager {
 			$revision = $currentRevision + 1;
 		} else {
 			$revision = 1;
-		}	
+		}
 
 		$sourceMonographFile = $monographFileDao->getMonographFile($sourceFileId, $sourceRevision, $this->monographId);
 
@@ -472,7 +472,7 @@ class MonographFileManager extends FileManager {
 	 * @param $originalName The name of the original file
 	 */
 	function generateFilename(&$monographFile, $type, $originalName) {
-		$extension = $this->parseFileExtension($originalName);			
+		$extension = $this->parseFileExtension($originalName);
 		$newFileName = $monographFile->getMonographId().'-'.$monographFile->getFileId().'-'.$monographFile->getRevision().'-'.$type.'.'.$extension;
 		$monographFile->setFileName($newFileName);
 		return $newFileName;
@@ -524,7 +524,7 @@ class MonographFileManager extends FileManager {
 			$monographFile->setDateUploaded(Core::getCurrentDate());
 			$monographFile->setDateModified(Core::getCurrentDate());
 		}
-		
+
 		if(isset($assocId)) {
 			$monographFile->setAssocId($assocId);
 		}
@@ -536,10 +536,15 @@ class MonographFileManager extends FileManager {
 		$monographFile->setRound($this->monograph->getCurrentRound());
 		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 
+		// Set the uploader's userGroupId
+		$sessionMgr =& SessionManager::getManager();
+		$session =& $sessionMgr->getUserSession();
+		$monographFile->setUserGroupId($session->getActingAsUserGroupId());
+
 		if (isset($bookFileTypeId)) {
 			$newFileName = $this->generateBookFileName(
-					$monographFile, 
-					$this->getUploadedFileName($fileName), 
+					$monographFile,
+					$this->getUploadedFileName($fileName),
 					$bookFileTypeId
 				);
 			$monographFile->setAssocId($bookFileTypeId);

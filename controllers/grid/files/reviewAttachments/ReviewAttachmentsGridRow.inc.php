@@ -18,6 +18,9 @@ class ReviewAttachmentsGridRow extends GridRow {
 	/** the FileType for this grid */
 	var $fileType;
 
+	/** boolean flag to make grid read only **/
+	var $_readOnly;
+
 	/**
 	 * Constructor
 	 */
@@ -25,6 +28,9 @@ class ReviewAttachmentsGridRow extends GridRow {
 		parent::GridRow();
 	}
 
+	//
+	// Getters/Setters
+	//
 	/**
 	 * get the FileType
 	 */
@@ -39,6 +45,21 @@ class ReviewAttachmentsGridRow extends GridRow {
 		$this->fileType = $fileType;
 	}
 
+	/**
+	 * Set the boolean flag to make grid read only
+	 * @param $readOnly bool
+	 */
+	function setReadOnly($readOnly) {
+		$this->_readOnly = $readOnly;
+	}
+
+	/**
+	 * Get the boolean flag to make grid read only
+	 * @return bool
+	 */
+	function getReadOnly() {
+		return $this->_readOnly;
+	}
 	//
 	// Overridden template methods
 	//
@@ -49,13 +70,16 @@ class ReviewAttachmentsGridRow extends GridRow {
 	function initialize(&$request) {
 		parent::initialize($request);
 		$this->setFileType($request->getUserVar('fileType'));
+		$this->setReadOnly($request->getUserVar('readOnly')?true:false);
 
-		// add Grid Row Actions
-		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
+		if ( !$this->getReadOnly() ) {
+			// add Grid Row Actions
+			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
+		}
 
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
-		if (!empty($rowId) && is_numeric($rowId)) {
+		if (!empty($rowId) && is_numeric($rowId) && !$this->getReadOnly()) {
 			// Actions
 			$router =& $request->getRouter();
 			$actionArgs = array(

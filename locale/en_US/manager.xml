@@ -119,7 +119,7 @@
 	<message key="manager.plugins.fileSelectError">Please select a file first</message>
 	<message key="manager.plugins.versionFileNotFound">version.xml not found in plugin directory</message>
 	<message key="manager.plugins.versionFileInvalid">version.xml in plugin directory contains invalid data.</message>
-	<message key="manager.plugins.tarCommandNotFound">The tar command is not available. Please correctly configure it in your "confic.inc.php".</message>
+	<message key="manager.plugins.tarCommandNotFound">The tar command is not available. Please correctly configure it in your "config.inc.php".</message>
 	<message key="manager.plugins.copyError">Plugin was not successfully copied</message>
 	<message key="manager.plugins.pleaseUpgrade">Plugin already exists, but is newer than installed version.  Please upgrade instead</message>
 	<message key="manager.plugins.installedVersionOlder">Plugin already exists, and is older or equal to the installed version</message>
@@ -416,6 +416,7 @@
 	<message key="manager.setup.reviewOptions.blindReview">Blind Review</message>
 	<message key="manager.setup.reviewOptions.noteOnModification">Can be modified during the editorial process.</message>
 	<message key="manager.setup.reviewOptions.numWeeksPerReview">The typical period of time allowed for reviews</message>
+	<message key="manager.setup.reviewOptions.numWeeksPerResponse">The typical period of time allowed for reviewers to respond to a review request</message>
 	<message key="manager.setup.reviewOptions.onQuality">Editors will rate reviewers on a five-point quality scale after each review.</message>
 	<message key="manager.setup.reviewOptions.remindForInvite1">If reviewer has not responded to a review request within</message>
 	<message key="manager.setup.reviewOptions.remindForInvite2">days.</message>

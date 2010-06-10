@@ -23,7 +23,7 @@
 		{/if}
 	{/foreach}
 		<li>&nbsp;</li>
-		<li><b><a href="{url op="managePlugins" path=install}">{translate key="manager.plugins.install"}</a></b></li>
+		<li><a href="{url op="managePlugins" path=install}">{translate key="manager.plugins.install"}</a></li>
 	</ul>
 {else}
 	{foreach from=$plugins item=plugin}

@@ -23,6 +23,9 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	/** the FileType for this grid */
 	var $fileType;
 
+	/** boolean flag to make grid read only **/
+	var $_readOnly;
+
 	/**
 	 * Constructor
 	 */
@@ -34,10 +37,26 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	// Getters/Setters
 	//
 	/**
+	 * Set the boolean flag to make grid read only
+	 * @param $readOnly bool
+	 */
+	function setReadOnly($readOnly) {
+		$this->_readOnly = $readOnly;
+	}
+
+	/**
+	 * Get the boolean flag to make grid read only
+	 * @return bool
+	 */
+	function getReadOnly() {
+		return $this->_readOnly;
+	}
+
+	/**
 	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow'));
+		return array_merge(parent::getRemoteOperations(), array('addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));
 	}
 
 	//
@@ -51,8 +70,10 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 		parent::initialize($request);
 		// Basic grid configuration
 		$reviewId = $request->getUserVar('reviewId');
+		$monographId = $request->getUserVar('monographId');
 		$this->setId('reviewAttachments');
-		$this->setTitle('email.attachments');
+		$this->setTitle('grid.reviewAttachments.title');
+		$this->setReadOnly($request->getUserVar('readOnly')?true:false);
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION));
 
@@ -61,37 +82,35 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 		$context =& $router->getContext($request);
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getMonographFilesByAssocId($reviewId, MONOGRAPH_FILE_REVIEW);
-		$rowData = array();
-		foreach ($monographFiles as $monographFile) {
-			$monographFileId = $monographFile->getFileId();
-			$rowData[$monographFileId] = $monographFile;
+
+		// FIXME: should validate so that only editors can use this option.
+		if ( !$reviewId && $monographId ) {
+			$monographFiles =& $monographFileDao->getByMonographId($monographId, MonographFileManager::typeToPath(MONOGRAPH_FILE_REVIEW));
+		} else {
+			$monographFiles =& $monographFileDao->getMonographFilesByAssocId($reviewId, MONOGRAPH_FILE_REVIEW);
 		}
-		
-		$this->setData($rowData);
+		$this->setData($monographFiles);
 
 		// Add grid-level actions
-		$router =& $request->getRouter();
-		$this->addAction(
-			new GridAction(
-				'addFile',
-				GRID_ACTION_MODE_MODAL,
-				GRID_ACTION_TYPE_APPEND,
-				$router->url($request, null, null, 'addFile', null, array('reviewId' => $reviewId)),
-				'grid.action.addItem'
-			),
-			GRID_ACTION_POSITION_ABOVE
-		);
+		if ( !$this->getReadOnly() ) {
+			$router =& $request->getRouter();
+			$this->addAction(
+				new GridAction(
+					'addFile',
+					GRID_ACTION_MODE_MODAL,
+					GRID_ACTION_TYPE_APPEND,
+					$router->url($request, null, null, 'addFile', null, array('reviewId' => $reviewId)),
+					'grid.reviewAttachments.add'
+				)
+			);
+		}
 
-		// Columns
-		$emptyActions = array();
 		// Basic grid row configuration
 		import('controllers.grid.files.reviewAttachments.ReviewAttachmentsGridCellProvider');
 		$cellProvider =& new ReviewAttachmentsGridCellProvider();
 		$this->addColumn(new GridColumn('files',
 			'common.file',
 			null,
-			$emptyActions,
 			'controllers/grid/gridCell.tpl',
 			$cellProvider)
 		);
@@ -108,7 +127,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 		$row = new ReviewAttachmentsGridRow();
 		return $row;
 	}
-	
+
 	/**
 	 * Validate that the user is the assigned author for the monograph
 	 * Raises a fatal error if validation fails.
@@ -158,7 +177,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 */
 	function editFile(&$args, &$request) {
 		$fileId = $request->getUserVar('rowId');
-		$reviewId = $request->getUserVar('reviewId'); 
+		$reviewId = $request->getUserVar('reviewId');
 
 		import('controllers.grid.files.reviewAttachments.form.ReviewAttachmentsForm');
 		$reviewAttachmentsForm = new ReviewAttachmentsForm($reviewId, $fileId, $this->getId());
@@ -181,7 +200,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	function saveFile(&$args, &$request) {
 		$router =& $request->getRouter();
 		$reviewId = $request->getUserVar('reviewId');
-		
+
 		import('controllers.grid.files.reviewAttachments.form.ReviewAttachmentsForm');
 		$reviewAttachmentsForm = new ReviewAttachmentsForm($reviewId, null, $this->getId());
 		$reviewAttachmentsForm->readInputData();
@@ -200,7 +219,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 
 		return '<textarea>' . $json->getString() . '</textarea>';
 	}
-	
+
 	/**
 	 * Return a grid row with for the submission grid
 	 * @param $args array
@@ -246,5 +265,20 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 		}
 		return $json->getString();
 	}
-	
+
+	/**
+	 * Download the monograph file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function downloadFile(&$args, &$request) {
+		//FIXME: add validation
+		$monographId = $request->getUserVar('monographId');
+		$fileId = $request->getUserVar('fileId');
+		import('classes.file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($monographId);
+		$monographFileManager->downloadFile($fileId);
+	}
+
 }

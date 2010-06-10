@@ -177,7 +177,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 				'principalContact',
 				'author.users.contributor.principalContact',
 				null,
-				'controllers/grid/gridCell.tpl',
+				'controllers/grid/users/submissionContributor/primaryContact.tpl',
 				$cellProvider
 			)
 		);
@@ -207,7 +207,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 	function addChapter(&$args, &$request) {
 		// Calling editChapter() with an empty row id will add
 		// a new chapter.
-		$this->editChapter($args, $request);
+		return $this->editChapter($args, $request);
 	}
 
 	/**
@@ -229,10 +229,9 @@ class ChapterGridHandler extends CategoryGridHandler{
 		} else {
 			$chapterForm->initData();
 		}
-		$chapterForm->display($request);
 
-		// The form has already been displayed.
-		return '';
+		$json = new JSON('true', $chapterForm->display($request));
+		return $json->getString();
 	}
 
 	/**

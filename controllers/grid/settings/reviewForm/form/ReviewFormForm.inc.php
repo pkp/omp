@@ -51,10 +51,10 @@ class ReviewFormForm extends Form {
 	/**
 	 * Display the form.
 	 */
-	function display() {
+	function display(&$request, $fetch = true) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('reviewFormId', $this->reviewFormId);
-		parent::display();
+		return parent::display($request, $fetch);
 	}
 
 	/**

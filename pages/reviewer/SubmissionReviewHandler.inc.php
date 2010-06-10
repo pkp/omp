@@ -145,7 +145,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 
 		$this->setupTemplate(true, $reviewerSubmission->getId(), $reviewId);
 
-		ReviewerAction::viewMetadata($reviewerSubmission, true);
+		return ReviewerAction::viewMetadata($request, $reviewerSubmission, true);
 	}
 
 	//

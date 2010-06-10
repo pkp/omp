@@ -57,7 +57,7 @@ class Action {
 	 * @param $monograph object
 	 * @param $contentOnly boolean display only metadata information, and not header/footer/sidebar
 	 */
-	function viewMetadata($monograph, $contentOnly = false) {
+	function viewMetadata(&$request, $monograph, $contentOnly = false) {
 		if (!HookRegistry::call('Action::viewMetadata', array(&$monograph, &$roleId))) {
 			import('classes.submission.form.MetadataForm');
 			$metadataForm = new MetadataForm($monograph, $contentOnly);
@@ -66,7 +66,9 @@ class Action {
 			} else {
 				$metadataForm->initData();
 			}
-			$metadataForm->display();
+			import('lib.pkp.classes.core.JSON');
+			$json = new JSON('true', $metadataForm->fetch($request));
+			echo $json->getString();
 		}
 	}
 

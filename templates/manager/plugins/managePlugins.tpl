@@ -49,10 +49,11 @@
 		<table class="data" width="100%">
 		<tr>
 			<td width="25%" class="label">
-					{translate key="manager.plugins.uploadPluginDir"}
+				{translate key="manager.plugins.uploadPluginDir"}
 			</td>
 			<td width="75%" class="value">
-				{fbvFileInput id="newPlugin" submit="uploadPlugin"}
+				<input type="file" name="newPlugin" id="newPlugin" /> 
+				<input type="submit" name="uploadPlugin" value="{translate key="common.upload"}" class="button" />
 			</td>
 		</tr>
 		</table>
@@ -95,7 +96,8 @@
 					{translate key="manager.plugins.uploadPluginDir"}
 			</td>
 			<td width="75%" class="value">
-				{fbvFileInput id="newPlugin" submit="uploadPlugin"}
+				<input type="file" name="newPlugin" id="newPlugin" /> 
+				<input type="submit" name="uploadPlugin" value="{translate key="common.upload"}" class="button" />
 			</td>
 		</tr>
 		</table>

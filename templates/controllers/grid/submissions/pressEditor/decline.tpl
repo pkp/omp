@@ -29,7 +29,7 @@
 	<h4>{translate key="editor.monograph.decline"}</h4>
 	<br />
 	<p>{translate key="editor.monograph.messageToAuthor"}:</p>
-	{fbvElement type="textarea" id="personalMessage" value=$personalMessage size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}<br/>
+	{fbvElement type="textarea" id="personalMessage" value=$personalMessage size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}<br/>
 	
 	<!-- <div style="float:right;">{fbvButton type="submit" id="declineButton" label="editor.monograph.declineAndNotify" float=$fbvStyles.float.RIGHT}</div> -->
 </form>

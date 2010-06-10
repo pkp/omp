@@ -156,7 +156,7 @@ class SeriesGridHandler extends SetupGridHandler {
 			$seriesForm->initData($args, $request);
 		}
 
-		$json = new JSON('true', $seriesForm->fetch());
+		$json = new JSON('true', $seriesForm->fetch($request));
 		return $json->getString();
 	}
 

@@ -451,10 +451,9 @@ class SeriesEditorSubmissionDAO extends DAO {
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev,
 				r2.review_revision
-			FROM
-				monographs m
-				INNER JOIN monograph_authors aa ON (aa.monograph_id = m.monograph_id)
-				LEFT JOIN monograph_authors aap ON (aap.monograph_id = m.monograph_id AND aap.primary_contact = 1)
+			FROM	monographs m
+				LEFT JOIN authors aa ON (aa.submission_id = m.monograph_id)
+				LEFT JOIN authors aap ON (aap.submission_id = m.monograph_id AND aap.primary_contact = 1)
 				LEFT JOIN edit_assignments e ON (e.monograph_id = m.monograph_id)
 				LEFT JOIN users ed ON (e.editor_id = ed.user_id)
 				LEFT JOIN series s ON (s.series_id = m.series_id)

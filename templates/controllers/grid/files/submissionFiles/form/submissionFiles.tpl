@@ -11,7 +11,7 @@
 {init_tabs id="div#fileUploadTabs-$fileId"}
 <script type="text/javascript">
 	{literal}
-	
+	$(function() {
 		$(".ui-dialog-titlebar-close").remove();  // Hide 'X' close button in dialog
 		$('#fileUploadTabs-{/literal}{$fileId}{literal}').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
 	});

@@ -13,6 +13,17 @@
 {include file="common/header.tpl"}
 {/strip}
 
+{literal}
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#interests").tagit({
+			availableTags: [{/literal}{$existingInterests}{literal}]
+			{/literal}{if $currentInterests}{literal}, currentTags: [{/literal}{$currentInterests}]{/if}{literal}
+		});
+	});
+</script>
+{/literal}
+
 <form method="post" name="reviewerForm" action="{url op="createReviewer" path=$monographId|to_array:"create"}">
 
 {include file="common/formErrors.tpl"}
@@ -98,7 +109,7 @@
 	{/fbvFormSection}
 
 	{fbvFormSection title="user.interests" for="interests"}
-		{fbvElement type="text" id="interests" name="interests[$formLocale]" value=$interests[$formLocale]}
+		<ul id="interests"></ul>
 	{/fbvFormSection}
 
 	{fbvFormSection title="common.country" for="country"}

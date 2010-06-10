@@ -53,6 +53,7 @@ class SubmissionContributorGridRow extends GridRow {
 					GRID_ACTION_TYPE_REPLACE,
 					$router->url($request, null, null, 'editSubmissionContributor', null, $actionArgs),
 					'grid.action.edit',
+					null,
 					'edit'
 				)
 			);
@@ -63,6 +64,7 @@ class SubmissionContributorGridRow extends GridRow {
 					GRID_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'deleteSubmissionContributor', null, $actionArgs),
 					'grid.action.delete',
+					null,
 					'delete'
 				)
 			);

@@ -105,7 +105,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId, 'chapterId' => $chapterId))
 		);
 
-		return parent::fetch(&$args, &$request, $additionalVars)
+		return parent::fetch(&$args, &$request, $additionalVars);
     }
 
 	/**

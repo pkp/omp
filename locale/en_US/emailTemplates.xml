@@ -182,28 +182,13 @@ Thank you,
 	</email_text>
 	<email_text key="REVIEW_REQUEST">
 		<subject>Manuscript Review Request</subject>
-		<body>{$reviewerName}:
+		<body>Dear {$reviewerName},
 
-I believe that you would serve as an excellent reviewer of the manuscript, "{$monographTitle}," which has been submitted to {$pressName}. The submission's abstract is inserted below, and I hope that you will consider undertaking this important task for us.
+{$messageToReviewer}
 
-Please log into the press web site by {$weekLaterDate} to indicate whether you will undertake the review or not, as well as to access the submission and to record your review and recommendation. The web site is {$pressUrl}
-
-The review itself is due {$reviewDueDate}.
-
-If you do not have your username and password for the press's web site, you can use this link to reset your password (which will then be emailed to you along with your username). {$passwordResetUrl}
-
-Submission URL: {$submissionReviewUrl}
-
-Thank you for considering this request.
-
+Sincerely,
 {$editorialContactSignature}
-
-
-
-"{$monographTitle}"
-
-{$abstractTermIfEnabled}
-{$monographAbstract}</body>
+</body>
 		<description>This email from the Series Editor to a Reviewer requests that the reviewer accept or decline the task of reviewing a submission. It provides information about the submission such as the title and abstract, a review due date, and how to access the submission itself. This message is used when the Standard Review Process is selected in Press Setup, Step 2. (Otherwise see REVIEW_REQUEST_ATTACHED.)</description>
 	</email_text>
 	<email_text key="REVIEW_REQUEST_ONECLICK">

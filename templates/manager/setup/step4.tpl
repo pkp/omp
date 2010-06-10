@@ -39,19 +39,19 @@
 
 <script type="text/javascript">
 {literal}
-<!--
-function setRegAllowOpts(form) {
-	if(form.disableUserReg[0].checked) {
-		form.allowRegReader.disabled=false;
-		form.allowRegAuthor.disabled=false;
-		form.allowRegReviewer.disabled=false;
-	} else {
-		form.allowRegReader.disabled=true;
-		form.allowRegAuthor.disabled=true;
-		form.allowRegReviewer.disabled=true;
-	}
-}
-// -->
+	$(function(){
+		$('#disableUserReg-0').live("click", (function() { // Initialize grid settings button handler
+			$('#allowRegReader').removeAttr('disabled');
+			$('#allowRegAuthor').removeAttr('disabled');
+			$('#allowRegReviewer').removeAttr('disabled');
+		}));
+
+		$('#disableUserReg-1').live("click", (function() { // Initialize grid settings button handler
+			$('#allowRegReader').attr('disabled', true);
+			$('#allowRegAuthor').attr('disabled', true);
+			$('#allowRegReviewer').attr('disabled', true);
+		}));
+	});
 {/literal}
 </script>
 
@@ -61,11 +61,13 @@ function setRegAllowOpts(form) {
 	{fbvElement type="checkbox" id="restrictMonographAccess" value="1" checked=$restrictMonographAccess label="manager.setup.restrictMonographAccess"}
 {/fbvFormSection}
 {fbvFormSection title="manager.setup.userRegistration" layout=$fbvStyles.layout.ONE_COLUMN}
-	{fbvElement type="radio" id="disableUserReg-0" name="disableUserReg" value="0" onclick="setRegAllowOpts(this.form)" checked=!$disableUserReg label="manager.setup.enableUserRegistration"}
+	{fbvElement type="radio" id="disableUserReg-0" name="disableUserReg" value="0" onclick="setRegAllowOpts()" checked=!$disableUserReg label="manager.setup.enableUserRegistration"}
+	<div id="disableUserRegCheckboxes" style="padding-left: 20px;">	
 		{fbvElement type="checkbox" id="allowRegReader" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="manager.setup.enableUserRegistration.reader"}
 		{fbvElement type="checkbox" id="allowRegAuthor" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="manager.setup.enableUserRegistration.author"}
 		{fbvElement type="checkbox" id="allowRegReviewer" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="manager.setup.enableUserRegistration.reviewer"}
-	{fbvElement type="radio" id="disableUserReg-1" name="disableUserReg" value="1" onclick="setRegAllowOpts(this.form)" checked=$disableUserReg label="manager.setup.disableUserRegistration"}
+	</div>
+	{fbvElement type="radio" id="disableUserReg-1" name="disableUserReg" value="1" onclick="setRegAllowOpts()" checked=$disableUserReg label="manager.setup.disableUserRegistration"}
 {/fbvFormSection}
 {fbvFormSection title="manager.setup.loggingAndAuditing" layout=$fbvStyles.layout.ONE_COLUMN}
 	{fbvElement type="checkbox" id="monographEventLog" value="1" checked=$monographEventLog label="manager.setup.submissionEventLogging"}

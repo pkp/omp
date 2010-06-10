@@ -27,6 +27,7 @@
 	-->
 
 	<message key="submission.artwork.replaceFile">Replace File</message>
+	<message key="submission.artwork.permissions">Permissions</message>
 	<message key="submission.artwork.permissionForm">Permission Form</message>
 	<message key="submission.artwork.metadata">Artwork Metadata</message>
 	<message key="submission.artwork.caption">Artwork Caption</message>
@@ -146,15 +147,10 @@
 	<message key="reviewer.reviewSteps.guidelines">Guidelines</message>
 	<message key="reviewer.reviewSteps.download">Download &amp; Review</message>
 	<message key="reviewer.reviewSteps.nextSteps">Next Steps</message>
-	<message key="reviewer.step1.request">Request</message>
-	<message key="reviewer.step1.requestBoilerplate"><![CDATA[Dear {$reviewer},
-You have been selected as a potential reviewer of the following submission.  Below is an overview of the submission, as well as the timeline for this review.  We hope that you are able to participate.
-
-{$personalNote}
-
-Sincerely,
-{$editor}]]></message>
+	<message key="reviewer.step1.request">Request for Review</message>
+	<message key="reviewer.step1.requestBoilerplate">You have been selected as a potential reviewer of the following submission.  Below is an overview of the submission, as well as the timeline for this review.  We hope that you are able to participate.</message>
 	<message key="reviewer.step1.viewAllDetails">View All Submission Details</message>
+	<message key="reviewer.monograph.reviewFiles">Review Files</message>
 	<message key="reviewer.monograph.fileToBeReviewed">File to be reviewed</message>
 	<message key="reviewer.monograph.notifyTheEditor">Notify The Editor</message>
 	<message key="reviewer.monograph.canDoReview">Will do the review</message>
@@ -224,7 +220,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="monograph.description">Description</message>
 	<message key="monograph.language">Language</message>
 	<message key="monograph.authors">Authors</message>
-	<message key="monograph.title">Title</message>
+	<message key="monograph.title">Book Title</message>
 	<message key="monograph.contributors">Contributors</message>
 	<message key="monograph.commentsToEditor">Submitter Comments</message>
 
@@ -261,6 +257,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="common.quality">Quality</message>
 	<message key="common.saveAndClose">Save And Close</message>
 	<message key="common.autocomplete">Autocomplete</message>
+	<message key="common.confirmDelete">Are you sure you wish to delete this item? This action cannot be undone.</message>
 
 	<message key="common.queue.short.submissionsUnassigned">Unassigned</message>
 	<message key="common.queue.short.submissionsInEditing">In Editing</message>
@@ -563,7 +560,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="informationCenter.history.noItems">There are no events logged for this file.</message>
 	<message key="informationCenter.history.notePosted">Posted note on file.</message>
 	<message key="informationCenter.history.messageSent">Notification sent to users.</message>
-	<message key="informationCenter.notify.template">Template</message>
+	<message key="informationCenter.notify.template">Attach Template</message>
 	<message key="informationCenter.notify.message">Message</message>
 
 
@@ -581,7 +578,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.register.readerDescription">Notified by email on publication of a monograph.</message>
 	<message key="user.register.authorDescription">Able to submit items to the press.</message>
 	<message key="user.register.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the press.</message>
-	<message key="user.register.reviewerDescription">Willing to conduct peer review of submissions to the press. Identify reviewing interests (substantive areas and research methods).</message>
+	<message key="user.register.reviewerDescription">Willing to conduct peer review of submissions to the press.</message>
+	<message key="user.register.reviewerInterests">Identify reviewing interests (substantive areas and research methods):</message>
 
 
 

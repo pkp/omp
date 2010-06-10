@@ -10,11 +10,14 @@
 <script type="text/javascript">
 	{literal}
         $(function(){
+       	$('input:checkbox:checked').parent().parent().addClass('selected');
+            
 		$('.reviewFilesSelect').live("click", (function() {
-			$(this).parent().parent().toggleClass('selected');
 			if($(this).is(':checked')) {
+				$(this).parent().parent().addClass('selected');
 				$(this).attr('checked', true);
 			} else {
+				$(this).parent().parent().removeClass('selected');
 				$(this).attr('checked', false);
 			}
 		}));

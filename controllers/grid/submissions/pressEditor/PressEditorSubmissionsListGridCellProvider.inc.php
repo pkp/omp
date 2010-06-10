@@ -90,7 +90,7 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 								GRID_ACTION_MODE_MODAL,
 								GRID_ACTION_TYPE_REPLACE,
 								$router->url($request, null, null, 'showApproveAndReview', null, $actionArgs),
-								'grid.action.approve',
+								'grid.action.approveForReview',
 								null,
 								$state
 							);

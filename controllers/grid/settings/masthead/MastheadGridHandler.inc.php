@@ -146,7 +146,7 @@ class MastheadGridHandler extends SetupGridHandler {
 			$groupForm->initData();
 		}
 
-		$json = new JSON('true', $groupForm->fetch());
+		$json = new JSON('true', $groupForm->fetch($request));
 		return $json->getString();
 	}
 

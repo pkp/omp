@@ -52,7 +52,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		$roleId = (int) $request->getUserVar('roleId');
+		$roleId = $request->getUserVar('roleId');
 		assert(is_numeric($roleId));
 		$this->roleId = $roleId;
 
@@ -62,6 +62,9 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 			$role =& new Role($roleId);
 			$title = $role->getRoleName();
 		}
+		
+		// Need a unique ID for each group listbuilder
+		$this->setId($this->getId() . '-' . String::camelize(Locale::translate($title)));
 
 		// Basic configuration
 		$this->setTitle($title);
@@ -75,6 +78,21 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 		$this->addColumn(new GridColumn('item', 'manager.setup.roleName'));
 		$this->addColumn(new GridColumn('attribute', 'manager.setup.roleAbbrev'));
 	}
+	
+	/**
+	 * Need to add additional data to the template via the fetch method
+	 */
+	function fetch(&$args, &$request) {
+		$router =& $request->getRouter();
+		$groupId = $request->getUserVar('groupId');
+
+		$additionalVars = array('itemId' => $groupId,
+			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('roleId' => $this->roleId)),
+			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('groupId' => $this->roleId)),
+		);
+
+		return parent::fetch(&$args, &$request, $additionalVars);
+    }
 
 	//
 	// Public AJAX-accessible functions
@@ -87,13 +105,12 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 		$this->setupTemplate();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$press =& $request->getPress();
+		
+		$roleId = array_shift($args);
+		$groupName = array_shift($args);
+		$groupAbbrev = array_shift($args);
 
-		$nameIndex = 'sourceTitle-' . $this->getId();
-		$groupName = $args[$nameIndex];
-		$abbrevIndex = 'attribute-1-' . $this->getId();
-		$groupAbbrev = $args[$abbrevIndex];
-
-		$authorRole =& new Role($this->roleId);
+		$role =& new Role($roleId);
 
 		if(empty($groupName) || empty($groupAbbrev)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
@@ -115,7 +132,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 			$userGroup =& $userGroupDao->newDataObject();
 			$userGroup->setRoleId($this->roleId);
 			$userGroup->setPressId($press->getId());
-			$userGroup->setPath($authorRole->getPath());
+			$userGroup->setPath($role->getPath());
 			$userGroup->setName($groupName, Locale::getLocale());
 			$userGroup->setAbbrev($groupAbbrev, Locale::getLocale());
 			$userGroupDao->insertUserGroup($userGroup);

@@ -79,10 +79,10 @@ class UserGroupAssignmentDAO extends DAO {
 		$assignments =& new DAOResultFactory($result, $this, '_returnFromRow');
 		while ( !$assignments->eof() ) {
 			$assignment =& $assignments->next();
-			$this->deleteByUserId($assignment->getUserId(), $assignment->getId());
+			$this->deleteByUserId($assignment->getUserId(), $assignment->getUserGroupId());
 			unset($assignment);
 		}
-		return $returner;
+		return $assignments;
 	}
 
 

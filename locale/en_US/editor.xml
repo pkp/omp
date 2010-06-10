@@ -26,14 +26,14 @@
 	<message key="editor.monograph.clearReviewForm">Clear Review Form</message>
 	<message key="editor.monograph.confirmChangeReviewForm">Changing the review form will remove responses...</message>
 	<message key="editor.monograph.approve">You are about to approve the submission</message>
-	<message key="editor.monograph.decline">You are about to decline the submission</message>
+	<message key="editor.monograph.decline">To decline the submission, send email to author.</message>
 	<message key="editor.monograph.confirmApprove">Approve and send to review</message>
-	<message key="editor.monograph.selectFiles">Please select the files to move to the editorial stage</message>
-	<message key="editor.monograph.selectFilesForReview">Please select the files to move to the review stage</message>
-	<message key="editor.monograph.messageToAuthor">Message to Author</message>
-	<message key="editor.monograph.acceptToEditorial">Accept &amp; Send To Editorial</message>
-	<message key="editor.monograph.acceptToReview">Accept &amp; Send To Review</message>
-	<message key="editor.monograph.declineAndNotify">Decline &amp; Notify Submitter</message>
+	<message key="editor.monograph.selectFiles">To accept this submission for publication, select the files to be sent to the Editorial stage.</message>
+	<message key="editor.monograph.selectFilesForReview">Select files to send to the Review stage</message>
+	<message key="editor.monograph.messageToAuthor">Email to Author</message>
+	<message key="editor.monograph.acceptToEditorial">Send Files to Editorial Stage</message>
+	<message key="editor.monograph.acceptToReview">Send to Review Stage</message>
+	<message key="editor.monograph.declineAndNotify">Decline &amp; Send Email</message>
 	<message key="editor.home">Editor Home</message>
 	<message key="editor.submissionsAndPublishing">Submissions and Publishing</message>
 	<message key="editor.submissionQueue">Submission Queue</message>
@@ -49,6 +49,10 @@
 	<message key="editor.submissionReview.confirmDecision">Are you sure you wish to record this decision?</message>
 	<message key="editor.submissionReview.emailWillArchive">This submission will be archived after the Notify Author email is either sent or its Skip Email button is pressed.</message>
 	<message key="editor.submissionReview.cannotSendToCopyediting">Before you can send this submission to copyediting, you must ensure that a revision is available and that the author has been notified of the decision using the Notify Author link above.</message>
+	<message key="editor.submissionReview.reviewType">Review Type</message>
+	<message key="editor.submissionReview.open">Open</message>
+	<message key="editor.submissionReview.blind">Blind</message>
+	<message key="editor.submissionReview.doubleBlind">Double-blind</message>
 	<message key="editor.notifyUsers">Notify Users</message>
 	<message key="editor.notifyUsers.inProgress">Notifying users...</message>
 	<message key="editor.usersNotified">Users Notified</message>
@@ -156,8 +160,12 @@
 	<message key="editor.monograph.remove">Remove</message>
 
 	<!-- Review related -->
+	<message key="editor.review">Review</message>
 	<message key="editor.review.personalMessageToReviewer">Personal message to reviewer</message>
 	<message key="editor.review.thisIsBlindReview">This is a blind review. Reviewer should not be shown author's identity</message>
 	<message key="editor.review.reviewDueDate">Review Due Date</message>
 	<message key="editor.review.responseDueDate">Response Due Date</message>
+	<message key="editor.review.reviewCompleted">Review Completed</message>
+	<message key="editor.review.reviewerComments">Reviewer Comments</message>
+	<message key="editor.review.sendReviews">Send Reviews</message>
 </locale>

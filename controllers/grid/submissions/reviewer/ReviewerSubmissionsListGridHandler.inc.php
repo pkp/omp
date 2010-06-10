@@ -14,6 +14,8 @@
 
 // import grid base classes
 import('controllers.grid.submissions.SubmissionsListGridHandler');
+// import reviewer submissions list specific classes
+import('controllers.grid.submissions.reviewer.ReviewerSubmissionsListGridCellProvider');
 
 class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	/**
@@ -55,8 +57,12 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 		$this->setData($this->_getSubmissions($request, $user->getId(), $press->getId()));
 
+		// override the title column's cell provider
+		$cellProvider = new ReviewerSubmissionsListGridCellProvider();
+		$titleColumn =& $this->getColumn('title');
+		$titleColumn->setCellProvider($cellProvider);
+
 		// Add reviewer-specific columns
-		$cellProvider = new SubmissionsListGridCellProvider();
 		$this->addColumn(
 			new GridColumn(
 				'dateAssigned',
@@ -75,16 +81,6 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 				$cellProvider
 			)
 		);
-		$this->addColumn(
-			new GridColumn(
-				'reviewRound',
-				'common.round',
-				null,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider
-			)
-		);
-
 	}
 
 

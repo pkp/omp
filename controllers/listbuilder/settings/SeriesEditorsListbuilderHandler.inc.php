@@ -92,10 +92,10 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		$additionalVars = array('itemId' => $seriesId,
 			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('seriesId' => $seriesId)),
 			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('seriesId' => $seriesId)),
-			'autocompleteUrl' => $router->url($request, array(), null, 'getAutocompleteSource'))
+			'autocompleteUrl' => $router->url($request, array(), null, 'getAutocompleteSource')
 		);
 
-		return parent::fetch(&$args, &$request, $additionalVars)
+		return parent::fetch(&$args, &$request, $additionalVars);
     }
 
 	/*

@@ -61,15 +61,16 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 		$press =& $request->getPress();
 
 		// Get items to populate possible items list with
-		$users =& $roleDao->getUsersByPressId($press->getId());
-		$users =& $users->toArray();
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$users =& $userGroupDao->getUsersByPressId($press->getId());
 
 		$itemList = array();
-		foreach ($users as $i => $user) {
+		while($user =& $users->next()) {
 			$itemList[] = array('id' => $user->getId(),
 			 					'name' => $user->getFullName(),
 			 					'abbrev' => $user->getUsername()
 								);
+			unset($user);
 		}
 
 		return $itemList;
@@ -99,7 +100,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 			'autocompleteUrl' => $router->url($request, array(), null, 'getAutocompleteSource', null)
 		);
 
-		return parent::fetch(&$args, &$request, $additionalVars)
+		return parent::fetch(&$args, &$request, $additionalVars);
     }
 
 	/*

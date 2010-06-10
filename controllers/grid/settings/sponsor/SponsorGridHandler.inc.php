@@ -117,7 +117,7 @@ class SponsorGridHandler extends SetupGridHandler {
 			$sponsorForm->initData($args, $request);
 		}
 
-		$json = new JSON('true', $sponsorForm->fetch());
+		$json = new JSON('true', $sponsorForm->fetch($request));
 		return $json->getString();
 	}
 

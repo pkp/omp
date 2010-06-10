@@ -94,14 +94,18 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 			$monographDao->updateMonograph($this->monograph);
 
 		} else {
-			// Insert new monograph
 			$press =& Request::getPress();
 			$user =& Request::getUser();
 
+			// Get the session and the user group id currently used
+			$sessionMgr =& SessionManager::getManager();
+			$session =& $sessionMgr->getUserSession();
+			$actingAsUserGroupId = $session->getActingAsUserGroupId();
+
+			// Create new monograph
 			$this->monograph = new Monograph();
 			$this->monograph->setUserId($user->getId());
-			// FIXME: needs to use the userGroupId stored in session
-			$this->monograph->setUserGroupId(1);
+			$this->monograph->setUserGroupId($actingAsUserGroupId);
 			$this->monograph->setPressId($press->getId());
 			$this->monograph->setSeriesId($this->getData('seriesId'));
 			$this->monograph->stampStatusModified();
@@ -131,7 +135,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 			$monographDao->insertMonograph($this->monograph);
 			$this->monographId = $this->monograph->getId();
-			$author->setMonographId($this->monographId);
+			$author->setSubmissionId($this->monographId);
 			$authorDao->insertAuthor($author);
 		}
 

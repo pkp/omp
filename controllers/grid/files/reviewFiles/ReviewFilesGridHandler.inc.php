@@ -23,7 +23,10 @@ class ReviewFilesGridHandler extends GridHandler {
 	var $fileType;
 
 	/** Boolean flag if grid is selectable **/
-	var $isSelectable;
+	var $_isSelectable;
+
+	/** Boolean flag for showing role columns **/
+	var $_showRoleColumns;
 
 	/**
 	 * Constructor
@@ -39,7 +42,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array());
+		return array_merge(parent::getRemoteOperations(), array('downloadFile'));
 	}
 
 	/**
@@ -87,7 +90,7 @@ class ReviewFilesGridHandler extends GridHandler {
 		// Basic grid configuration
 		$monographId = $request->getUserVar('monographId');
 		$this->setId('editorReviewFileSelection');
-		$this->setTitle('common.file');
+		$this->setTitle('reviewer.monograph.reviewFiles');
 
 		// Set the Is Selectable boolean flag
 		$isSelectable = $request->getUserVar('isSelectable');
@@ -118,17 +121,11 @@ class ReviewFilesGridHandler extends GridHandler {
 			// Set the files to all the available files to allow selection.
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 			$monographFiles =& $monographFileDao->getByMonographId($monographId);
-			$rowData = array();
-			foreach ($monographFiles as $monographFile) {
-				$monographFileId = $monographFile->getFileId();
-				$rowData[$monographFileId] = $monographFile;
-			}
-
-			$this->setData($rowData);
+			$this->setData($monographFiles);
 
 			// Set the already selected elements of the grid
 			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->assign('selectedFileIds', array_keys($selectedFiles[$reviewType][$round]));
+			if(!empty($selectedFiles)) $templateMgr->assign('selectedFileIds', array_keys($selectedFiles[$reviewType][$round]));
 		} else {
 			// set the grid data to be only the files that have already been selected
 			$this->setData($selectedFiles[$reviewType][$round]);
@@ -177,7 +174,7 @@ class ReviewFilesGridHandler extends GridHandler {
 			$uploaderUserGroup =& $userGroupDao->getById($monograph->getUserGroupId());
 			$this->addColumn(
 				new GridColumn(
-					$monograph->getUserGroupId(),
+					$uploaderUserGroup->getId(),
 					null,
 					$uploaderUserGroup->getLocalizedAbbrev(),
 					'controllers/grid/common/cell/roleCell.tpl',
@@ -224,4 +221,22 @@ class ReviewFilesGridHandler extends GridHandler {
 
 	}
 
+
+	//
+	// public methods
+	//
+	/**
+	 * Download the monograph file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function downloadFile(&$args, &$request) {
+		//FIXME: add validation
+		$monographId = $request->getUserVar('monographId');
+		$fileId = $request->getUserVar('fileId');
+		import('classes.file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($monographId);
+		$monographFileManager->downloadFile($fileId);
+	}
 }

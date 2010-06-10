@@ -110,7 +110,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 				GRID_ACTION_MODE_MODAL,
 				GRID_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addSubmissionContributor', null, $actionArgs),
-				'grid.action.addItem'
+				'grid.action.addAuthor'
 			)
 		);
 
@@ -136,7 +136,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		);
 		$this->addColumn(
 			new GridColumn(
-				'userGroupId',
+				'role',
 				'author.users.contributor.role',
 				null,
 				'controllers/grid/gridCell.tpl',
@@ -180,7 +180,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 	function addSubmissionContributor(&$args, &$request) {
 		// Calling editSubmissionContributor() with an empty row id will add
 		// a new submissionContributor.
-		$this->editSubmissionContributor($args, $request);
+		return $this->editSubmissionContributor($args, $request);
 	}
 
 	/**
@@ -201,10 +201,9 @@ class SubmissionContributorGridHandler extends GridHandler {
 		import('controllers.grid.users.submissionContributor.form.SubmissionContributorForm');
 		$submissionContributorForm = new SubmissionContributorForm($monographId, $submissionContributor);
 		$submissionContributorForm->initData();
-		$submissionContributorForm->display($request);
 
-		// The form has already been displayed.
-		return '';
+		$json = new JSON('true', $submissionContributorForm->display($request));
+		return $json->getString();
 	}
 
 	/**
