@@ -43,6 +43,8 @@
 	<message key="default.publicationFormats.ebook">EBook</message>
 	<message key="default.publicationFormats.ebook.designation">EBook</message>
 
+	<message key="default.groups.name.siteAdmin">Site Admin</message>
+	<message key="default.groups.plural.siteAdmin">Site Admins</message>
 	<message key="default.groups.name.pressManager">Press manager</message>
 	<message key="default.groups.plural.pressManager">Press managers</message>
 	<message key="default.groups.abbrev.pressManager">PM</message>
