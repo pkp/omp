@@ -50,10 +50,10 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 		// Basic configuration
-		$this->setTitle('manager.setup.publicationFormats');
+		$this->setTitle('settings.setup.publicationFormats');
 		$this->setSourceTitle('common.name');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
-		$this->setListTitle('manager.setup.publicationFormats');
+		$this->setListTitle('settings.setup.publicationFormats');
 		$this->setAttributeNames(array('common.designation'));
 
 		$this->loadList($request);

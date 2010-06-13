@@ -48,7 +48,7 @@ class BookFileTypeGridHandler extends GridHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_GRID));
 
 		// Basic grid configuration
-		$this->setTitle('manager.setup.bookFileTypes');
+		$this->setTitle('settings.setup.bookFileTypes');
 
 		$press =& $request->getPress();
 
@@ -201,7 +201,7 @@ class BookFileTypeGridHandler extends GridHandler {
 		if ($result) {
 			$json = new JSON('true');
 		} else {
-			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingItem'));
+			$json = new JSON('false', Locale::translate('settings.setup.errorDeletingItem'));
 		}
 		return $json->getString();
 	}

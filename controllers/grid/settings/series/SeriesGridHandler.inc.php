@@ -105,7 +105,7 @@ class SeriesGridHandler extends SetupGridHandler {
 										'common.title',
 										null,
 										'controllers/grid/gridCell.tpl'));
-		$this->addColumn(new GridColumn('division', 'manager.setup.division'));
+		$this->addColumn(new GridColumn('division', 'settings.setup.division'));
 		$this->addColumn(new GridColumn('editors', 'user.role.editors'));
 		$this->addColumn(new GridColumn('affiliation', 'user.affiliation'));
 	}
@@ -241,7 +241,7 @@ class SeriesGridHandler extends SetupGridHandler {
 			$seriesDao->deleteObject($series);
 			$json = new JSON('true');
 		} else {
-			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingItem'));
+			$json = new JSON('false', Locale::translate('settings.setup.errorDeletingItem'));
 		}
 		return $json->getString();
 	}

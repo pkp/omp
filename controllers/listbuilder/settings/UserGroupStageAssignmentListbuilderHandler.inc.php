@@ -100,9 +100,9 @@ class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler
 
 		// Basic configuration
 		$this->setTitle($request->getUserVar('title'));
-		$this->setSourceTitle('manager.setup.availableRoles');
+		$this->setSourceTitle('settings.setup.availableRoles');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); //Select from drop-down list
-		$this->setListTitle('manager.setup.currentRoles');
+		$this->setListTitle('settings.setup.currentRoles');
 
 		$this->loadPossibleItemList($request);
 		$this->loadList($request);

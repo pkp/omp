@@ -14,7 +14,7 @@
 
 // $Id$
 
-import('classes.manager.form.setup.PressSetupForm');
+import('classes.settings.form.setup.PressSetupForm');
 
 class PressSetupStep3Form extends PressSetupForm {
 

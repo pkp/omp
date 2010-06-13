@@ -8,8 +8,8 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="manager.setup.pressPolicies"}
-{include file="manager/setup/setupHeader.tpl"}
+{assign var="pageTitle" value="settings.setup.pressPolicies"}
+{include file="settings/setup/setupHeader.tpl"}
 
 <form name="setupForm" method="post" action="{url op="saveSetup" path="2"}">
 {include file="common/formErrors.tpl"}
@@ -26,9 +26,9 @@
 {/fbvFormArea}
 {/if} {* count($formLocales) > 1*}
 
-<h3>2.1 {translate key="manager.setup.focusAndScopeOfPress"}</h3>
+<h3>2.1 {translate key="settings.setup.focusAndScopeOfPress"}</h3>
 
-<p>{translate key="manager.setup.focusAndScopeDescription"}</p>
+<p>{translate key="settings.setup.focusAndScopeDescription"}</p>
 
 {fbvFormArea id="focusAndScopeDescription"}
 {fbvFormSection}
@@ -38,7 +38,7 @@
 
 <div class="separator"></div>
 
-<h3>2.2 {translate key="manager.setup.divisionsAndSeries"}</h3>
+<h3>2.2 {translate key="settings.setup.divisionsAndSeries"}</h3>
 
 {url|assign:divisionsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.DivisionsListbuilderHandler" op="fetch"}
 {load_url_in_div id="divisionsContainer" url=$divisionsUrl}
@@ -48,9 +48,9 @@
 
 <div class="separator"></div>
 
-<h3>2.3 {translate key="manager.setup.authorGuidelines"}</h3>
+<h3>2.3 {translate key="settings.setup.authorGuidelines"}</h3>
 
-<p>{translate key="manager.setup.authorGuidelinesDescription"}</p>
+<p>{translate key="settings.setup.authorGuidelinesDescription"}</p>
 
 {fbvFormArea id="focusAndScopeDescription"}
 {fbvFormSection}
@@ -58,36 +58,36 @@
 {/fbvFormSection}
 {/fbvFormArea}
 
-<h4>{translate key="manager.setup.submissionPreparationChecklist"}</h4>
+<h4>{translate key="settings.setup.submissionPreparationChecklist"}</h4>
 
-<p>{translate key="manager.setup.submissionPreparationChecklistDescription"}</p>
+<p>{translate key="settings.setup.submissionPreparationChecklistDescription"}</p>
 
 {url|assign:submissionChecklistGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.submissionChecklist.SubmissionChecklistGridHandler" op="fetchGrid"}
 {load_url_in_div id="submissionChecklistGridDiv" url=$submissionChecklistGridUrl}
 
 <div class="separator"></div>
 
-<h3>2.4 {translate key="manager.setup.peerReviewPolicy"}</h3>
+<h3>2.4 {translate key="settings.setup.peerReviewPolicy"}</h3>
 
-<p>{translate key="manager.setup.peerReviewDescription"}</p>
+<p>{translate key="settings.setup.peerReviewDescription"}</p>
 
 {fbvFormArea id="peerReviewPolicy"}
-	{fbvFormSection title="manager.setup.reviewPolicy"}
+	{fbvFormSection title="settings.setup.reviewPolicy"}
 		{fbvElement type="textarea" name="reviewPolicy[$formLocale]" id="reviewPolicy" value=$reviewPolicy[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 	{/fbvFormSection}
-	{fbvFormSection title="manager.setup.reviewGuidelines"}
+	{fbvFormSection title="settings.setup.reviewGuidelines"}
 		{url|assign:"reviewFormsUrl" op="reviewForms"}
-		<p>{translate key="manager.setup.reviewGuidelinesDescription" reviewFormsUrl=$reviewFormsUrl}</p>
+		<p>{translate key="settings.setup.reviewGuidelinesDescription" reviewFormsUrl=$reviewFormsUrl}</p>
 		{fbvElement type="textarea" name="reviewGuidelines[$formLocale]" id="reviewGuidelines" value=$reviewGuidelines[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 	{/fbvFormSection}
-	{fbvFormSection title="manager.setup.reviewProcess" layout=$fbvStyles.layout.ONE_COLUMN}
-		<p>{translate key="manager.setup.reviewProcessDescription"}</p>
-		{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-0" value="0" checked=!$mailSubmissionsToReviewers label="manager.setup.reviewProcessStandard"}
-		{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-1" value="1" checked=$mailSubmissionsToReviewers label="manager.setup.reviewProcessEmail"}
+	{fbvFormSection title="settings.setup.reviewProcess" layout=$fbvStyles.layout.ONE_COLUMN}
+		<p>{translate key="settings.setup.reviewProcessDescription"}</p>
+		{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-0" value="0" checked=!$mailSubmissionsToReviewers label="settings.setup.reviewProcessStandard"}
+		{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-1" value="1" checked=$mailSubmissionsToReviewers label="settings.setup.reviewProcessEmail"}
 	{/fbvFormSection}
 {/fbvFormArea}
 
-<h4>{translate key="manager.setup.reviewOptions"}</h4>
+<h4>{translate key="settings.setup.reviewOptions"}</h4>
 
 	<script type="text/javascript">
 		{literal}
@@ -103,77 +103,77 @@
 	</script>
 
 <p>
-	<strong>{translate key="manager.setup.reviewOptions.reviewTime"}</strong><br/>
-	{translate key="manager.setup.reviewOptions.numWeeksPerResponse"}: <input type="text" name="numWeeksPerResponse" id="numWeeksPerResponse" value="{$numWeeksPerResponse|escape}" size="2" maxlength="8" class="textField" /> {translate key="common.weeks"}<br/>
-	{translate key="manager.setup.reviewOptions.numWeeksPerReview"}: <input type="text" name="numWeeksPerReview" id="numWeeksPerReview" value="{$numWeeksPerReview|escape}" size="2" maxlength="8" class="textField" /> {translate key="common.weeks"}<br/>
-	{translate key="common.note"}: {translate key="manager.setup.reviewOptions.noteOnModification"}
+	<strong>{translate key="settings.setup.reviewOptions.reviewTime"}</strong><br/>
+	{translate key="settings.setup.reviewOptions.numWeeksPerResponse"}: <input type="text" name="numWeeksPerResponse" id="numWeeksPerResponse" value="{$numWeeksPerResponse|escape}" size="2" maxlength="8" class="textField" /> {translate key="common.weeks"}<br/>
+	{translate key="settings.setup.reviewOptions.numWeeksPerReview"}: <input type="text" name="numWeeksPerReview" id="numWeeksPerReview" value="{$numWeeksPerReview|escape}" size="2" maxlength="8" class="textField" /> {translate key="common.weeks"}<br/>
+	{translate key="common.note"}: {translate key="settings.setup.reviewOptions.noteOnModification"}
 </p>
 
 	<p>
-		<strong>{translate key="manager.setup.reviewOptions.reviewerReminders"}</strong><br/>
-		{translate key="manager.setup.reviewOptions.automatedReminders"}:<br/>
+		<strong>{translate key="settings.setup.reviewOptions.reviewerReminders"}</strong><br/>
+		{translate key="settings.setup.reviewOptions.automatedReminders"}:<br/>
 		<input type="checkbox" name="remindForInvite" id="remindForInvite" value="1" onclick="toggleAllowSetInviteReminder(this.form)"{if !$scheduledTasksEnabled} disabled="disabled" {elseif $remindForInvite} checked="checked"{/if} />&nbsp;
-		<label for="remindForInvite">{translate key="manager.setup.reviewOptions.remindForInvite1"}</label>
+		<label for="remindForInvite">{translate key="settings.setup.reviewOptions.remindForInvite1"}</label>
 		<select name="numDaysBeforeInviteReminder" size="1" class="selectMenu"{if not $remindForInvite || !$scheduledTasksEnabled} disabled="disabled"{/if}>
 			{section name="inviteDayOptions" start=3 loop=11}
 			<option value="{$smarty.section.inviteDayOptions.index}"{if $numDaysBeforeInviteReminder eq $smarty.section.inviteDayOptions.index or ($smarty.section.inviteDayOptions.index eq 5 and not $remindForInvite)} selected="selected"{/if}>{$smarty.section.inviteDayOptions.index}</option>
 			{/section}
 		</select>
-		{translate key="manager.setup.reviewOptions.remindForInvite2"}
+		{translate key="settings.setup.reviewOptions.remindForInvite2"}
 		<br/>
 
 		<input type="checkbox" name="remindForSubmit" id="remindForSubmit" value="1" onclick="toggleAllowSetSubmitReminder(this.form)"{if !$scheduledTasksEnabled} disabled="disabled"{elseif $remindForSubmit} checked="checked"{/if} />&nbsp;
-		<label for="remindForSubmit">{translate key="manager.setup.reviewOptions.remindForSubmit1"}</label>
+		<label for="remindForSubmit">{translate key="settings.setup.reviewOptions.remindForSubmit1"}</label>
 		<select name="numDaysBeforeSubmitReminder" size="1" class="selectMenu"{if not $remindForSubmit || !$scheduledTasksEnabled} disabled="disabled"{/if}>
 			{section name="submitDayOptions" start=0 loop=11}
 				<option value="{$smarty.section.submitDayOptions.index}"{if $numDaysBeforeSubmitReminder eq $smarty.section.submitDayOptions.index} selected="selected"{/if}>{$smarty.section.submitDayOptions.index}</option>
 		{/section}
 		</select>
-		{translate key="manager.setup.reviewOptions.remindForSubmit2"}
+		{translate key="settings.setup.reviewOptions.remindForSubmit2"}
 		{if !$scheduledTasksEnabled}
 		<br/>
-		{translate key="manager.setup.reviewOptions.automatedRemindersDisabled"}
+		{translate key="settings.setup.reviewOptions.automatedRemindersDisabled"}
 		{/if}
 	</p>
 
 {fbvFormArea id="reviewProcessDetails"}
-{fbvFormSection title="manager.setup.reviewOptions.reviewerRatings" layout=$fbvStyles.layout.ONE_COLUMN}
-	{fbvElement type="checkbox" id="rateReviewerOnQuality" value="1" checked=$rateReviewerOnQuality label="manager.setup.reviewOptions.onQuality"}
+{fbvFormSection title="settings.setup.reviewOptions.reviewerRatings" layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvElement type="checkbox" id="rateReviewerOnQuality" value="1" checked=$rateReviewerOnQuality label="settings.setup.reviewOptions.onQuality"}
 {/fbvFormSection}
-{fbvFormSection title="manager.setup.reviewOptions.reviewerAccess" layout=$fbvStyles.layout.ONE_COLUMN}
-	{fbvElement type="checkbox" id="reviewerAccessKeysEnabled" value="1" checked=$reviewerAccessKeysEnabled label="manager.setup.reviewOptions.reviewerAccessKeysEnabled"}
-	<p>{translate key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"}</p><br />
-	{fbvElement type="checkbox" id="restrictReviewerFileAccess" value="1" checked=$restrictReviewerFileAccess label="manager.setup.reviewOptions.restrictReviewerFileAccess"}
+{fbvFormSection title="settings.setup.reviewOptions.reviewerAccess" layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvElement type="checkbox" id="reviewerAccessKeysEnabled" value="1" checked=$reviewerAccessKeysEnabled label="settings.setup.reviewOptions.reviewerAccessKeysEnabled"}
+	<p>{translate key="settings.setup.reviewOptions.reviewerAccessKeysEnabled.description"}</p><br />
+	{fbvElement type="checkbox" id="restrictReviewerFileAccess" value="1" checked=$restrictReviewerFileAccess label="settings.setup.reviewOptions.restrictReviewerFileAccess"}
 {/fbvFormSection}
-{fbvFormSection title="manager.setup.reviewOptions.blindReview" layout=$fbvStyles.layout.ONE_COLUMN}
+{fbvFormSection title="settings.setup.reviewOptions.blindReview" layout=$fbvStyles.layout.ONE_COLUMN}
 {fbvCustomElement}
 	{fbvCheckbox id="showEnsuringLink" value="1" checked=$showEnsuringLink}
 	{get_help_id|assign:"blindReviewHelpId" key="editorial.seriesEditorsRole.review.blindPeerReview" url="true"}
-	<label for="showEnsuringLink" class="choice">{translate key="manager.setup.reviewOptions.showEnsuringLink" blindReviewHelpId=$blindReviewHelpId}</label><br/>
+	<label for="showEnsuringLink" class="choice">{translate key="settings.setup.reviewOptions.showEnsuringLink" blindReviewHelpId=$blindReviewHelpId}</label><br/>
 {/fbvCustomElement}
 {/fbvFormSection}
 {/fbvFormArea}
 
 <div class="separator"></div>
 
-<h3>2.5 {translate key="manager.setup.authorCopyrightNotice"}</h3>
+<h3>2.5 {translate key="settings.setup.authorCopyrightNotice"}</h3>
 
 {url|assign:"sampleCopyrightWordingUrl" page="information" op="sampleCopyrightWording"}
-<p>{translate key="manager.setup.authorCopyrightNoticeDescription" sampleCopyrightWordingUrl=$sampleCopyrightWordingUrl}</p>
+<p>{translate key="settings.setup.authorCopyrightNoticeDescription" sampleCopyrightWordingUrl=$sampleCopyrightWordingUrl}</p>
 
 {fbvFormArea id="authorCopyrightNotice"}
 {fbvFormSection}
 	{fbvElement type="textarea" name="copyrightNotice[$formLocale]" id="copyrightNotice" value=$copyrightNotice[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 {/fbvFormSection}
 {fbvFormSection layout=$fbvStyles.layout.TWO_COLUMNS}
-	{fbvElement type="checkbox" id="includeCreativeCommons" value="1" checked=$includeCreativeCommons label="manager.setup.includeCreativeCommons"}
-	{fbvElement type="checkbox" id="copyrightNoticeAgree" value="1" checked=$copyrightNoticeAgree label="manager.setup.authorCopyrightNoticeAgree"}
+	{fbvElement type="checkbox" id="includeCreativeCommons" value="1" checked=$includeCreativeCommons label="settings.setup.includeCreativeCommons"}
+	{fbvElement type="checkbox" id="copyrightNoticeAgree" value="1" checked=$copyrightNoticeAgree label="settings.setup.authorCopyrightNoticeAgree"}
 {/fbvFormSection}
 {/fbvFormArea}
 
 <div class="separator"></div>
 
-<h3>2.6 {translate key="manager.setup.privacyStatement"}</h3>
+<h3>2.6 {translate key="settings.setup.privacyStatement"}</h3>
 
 {fbvFormArea id="privacyStatementContainer"}
 {fbvFormSection}

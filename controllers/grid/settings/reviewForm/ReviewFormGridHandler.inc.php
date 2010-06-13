@@ -222,7 +222,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 			$reviewFormDao->deleteById($reviewFormId);
 			$json = new JSON('true');
 		} else {
-			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingReviewForm'));
+			$json = new JSON('false', Locale::translate('settings.setup.errorDeletingReviewForm'));
 		}
 
 		return $json->getString();

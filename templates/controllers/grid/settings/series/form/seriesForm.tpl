@@ -16,7 +16,7 @@
 {fbvFormSection title="common.name" required="true" for="title"}
 	{fbvElement type="text" id="title" value="$title" maxlength="80" required="true"}
 {/fbvFormSection}
-{fbvFormSection title="manager.setup.division" for="context"}
+{fbvFormSection title="settings.setup.division" for="context"}
 <select name="division" class="field select">
 	<option>{translate key='common.none'}</option>
 	{foreach from=$divisions item=division}

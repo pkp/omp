@@ -24,6 +24,7 @@ define('LOCALE_COMPONENT_OMP_AUTHOR',   	0x00000104);
 define('LOCALE_COMPONENT_OMP_EDITOR',   	0x00000108);
 define('LOCALE_COMPONENT_OMP_ADMIN',   		0x0000010F);
 define('LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS',	0x00000111);
+define('LOCALE_COMPONENT_OMP_SETTINGS', 	0x0000010A);
 
 class Locale extends PKPLocale {
 	/**
@@ -212,6 +213,7 @@ class Locale extends PKPLocale {
 		$componentMap[LOCALE_COMPONENT_OMP_AUTHOR] = $baseDir . 'author.xml';
 		$componentMap[LOCALE_COMPONENT_OMP_EDITOR] = $baseDir . 'editor.xml';
 		$componentMap[LOCALE_COMPONENT_OMP_ADMIN] = $baseDir . 'admin.xml';
+		$componentMap[LOCALE_COMPONENT_OMP_SETTINGS] = $baseDir . 'settings.xml';
 		$componentMap[LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS] = $baseDir . 'defaultSettings.xml';
 		return $componentMap;
 	}

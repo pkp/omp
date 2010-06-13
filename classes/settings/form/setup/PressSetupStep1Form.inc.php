@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('classes.manager.form.setup.PressSetupForm');
+import('classes.settings.form.setup.PressSetupForm');
 
 class PressSetupStep1Form extends PressSetupForm {
 	/**
@@ -52,12 +52,12 @@ class PressSetupStep1Form extends PressSetupForm {
 		);
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'manager.setup.form.pressNameRequired'));
-		$this->addCheck(new FormValidatorLocale($this, 'initials', 'required', 'manager.setup.form.pressInitialsRequired'));
-		$this->addCheck(new FormValidator($this, 'contactName', 'required', 'manager.setup.form.contactNameRequired'));
-		$this->addCheck(new FormValidatorEmail($this, 'contactEmail', 'required', 'manager.setup.form.contactEmailRequired'));
-		$this->addCheck(new FormValidator($this, 'supportName', 'required', 'manager.setup.form.supportNameRequired'));
-		$this->addCheck(new FormValidatorEmail($this, 'supportEmail', 'required', 'manager.setup.form.supportEmailRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'settings.setup.form.pressNameRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'initials', 'required', 'settings.setup.form.pressInitialsRequired'));
+		$this->addCheck(new FormValidator($this, 'contactName', 'required', 'settings.setup.form.contactNameRequired'));
+		$this->addCheck(new FormValidatorEmail($this, 'contactEmail', 'required', 'settings.setup.form.contactEmailRequired'));
+		$this->addCheck(new FormValidator($this, 'supportName', 'required', 'settings.setup.form.supportNameRequired'));
+		$this->addCheck(new FormValidatorEmail($this, 'supportEmail', 'required', 'settings.setup.form.supportEmailRequired'));
 	}
 
 	/**

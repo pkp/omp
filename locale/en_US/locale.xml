@@ -105,7 +105,7 @@
 	<message key="submission.selectFilesForReview">Select the files that are to be reviewed by reviewers as part of this book's assessment and press Record.</message>
 	<message key="submission.stepX">Step {$step}.</message>
 	<message key="submission.files.downloadAll">Download All Files</message>
-	
+
 	<message key="submission.sent">Sent</message>
 	<message key="submission.internalReview"><![CDATA[Internal&nbsp;Review]]></message>
 	<message key="submission.externalReview"><![CDATA[External&nbsp;Review]]></message>
@@ -210,13 +210,6 @@
 	<message key="reviewer.monograph.noGuidelines">This press has not set any reviewer guidelines.</message>
 	<message key="reviewer.complete">Review Submitted</message>
 	<message key="reviewer.complete.whatNext">Your review has been submitted successfully.  The editor may contact you again for more information.</message>
-
-
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
-<br /><br />
-Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
 
 	<message key="monograph.description">Description</message>
 	<message key="monograph.language">Language</message>
@@ -454,52 +447,6 @@ Note that the OAI interface can be disabled for this site by editing the OMP sys
 
 	<message key="plugins.categories.oaiMetadataFormats">OAI Metadata Format Plugins</message>
 	<message key="plugins.categories.oaiMetadataFormats.description">These format plugins express metadata in OAI communications.</message>
-
-	<!-- Setup Step 1 -->
-
-	<message key="manager.setup.form.pressInitialsRequired">Press initials are required.</message>
-
-	<!-- Setup Step 2 -->
-
-
-	<message key="manager.setup.reviewProcessEmailDescription">Editors send
-	Reviewers the request to review with the submission attached to the email. Reviewers email editors their assent (or regrets), as well as the review and recommendation. Editors enter Reviewers' assent (or regrets), as well as the review and recommendation on the submission's Review page, to record the review process.</message>
-
-
-	<!-- Setup Step 3 -->
-	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Proposed Creative Commons Copyright Notices</h3>
-<h4>1. Proposed Policy for Presses That Offer Open Access</h4>
-Authors who publish with this press agree to the following terms:
-<ol type="a">
-	<li>Authors retain copyright and grant the press right of first publication with the work simultaneously licensed under a <a target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
-	<li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the press's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
-	<li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_new" href="http://opcit.eprints.org/oacitation-biblio.html">The Effect of Open Access</a>).</li>
-</ol>
-
-<h4>Proposed Policy for Presses That Offer Delayed Open Access</h4>
-Authors who publish with this press agree to the following terms:
-<ol type="a">
-	<li>Authors retain copyright and grant the press right of first publication, with the work [SPECIFY PERIOD OF TIME] after publication simultaneously licensed under a <a target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
-	 <li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the press's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
-	 <li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_new" href="http://opcit.eprints.org/oacitation-biblio.html"> The Effect of Open Access</a>).</li>
-</ol>]]></message>
-	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[Press will use a subject classification system available on the web.<br />
-Title of classification system]]></message>
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
-<br /><br />
-Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
-
-	<!-- Setup Step 4 -->
-	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Steps: Submission Queue &gt; Submission Review &gt; Submission Editing &gt; Table of Contents.<br /><br />
-Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Series Editors, go to Editors in Press Management.)]]></message>
-	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>To enable readers to locate online versions of the work cited by an author, the following options are available.</p>
-
-<ol>
-	<li><strong>Add a Reading Tool</strong><p>The Press Manager can add "Find References" to the Reading Tools that accompany published items, which enables readers to paste a reference's title and then search pre-selected scholarly databases for the cited work.</p></li>
-	<li><strong>Embed Links in the References</strong><p>The Layout Editor can add a link to references that can be found online by using the following instructions (which can be edited).</p></li>
-</ol>]]></message>
 
 
 	<!-- People Management -->
