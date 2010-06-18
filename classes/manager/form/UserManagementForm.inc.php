@@ -148,7 +148,7 @@ class UserManagementForm extends Form {
 					'country' => $user->getCountry(),
 					'biography' => $user->getBiography(null), // Localized
 					'existingInterests' => implode(",", $interestDao->getAllUniqueInterests()),
-					'currentInterests' => implode(",", $interestDao->getInterests($user->getId()))
+					'currentInterests' => implode(",", $interestDao->getInterests($user->getId())),
 					'gossip' => $user->getGossip(null), // Localized
 					'userLocales' => $user->getLocales()
 				);

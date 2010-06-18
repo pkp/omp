@@ -844,6 +844,28 @@ class SeriesEditorSubmissionDAO extends DAO {
 	}
 
 	/**
+	 * Retrieve a list of all reviewers in a press
+	 * @param $pressId int
+	 * @return array matching Users
+	 */
+	function &getAllReviewers($pressId) {
+		$result =& $this->retrieve(
+			'SELECT	u.*
+			FROM	users u
+				LEFT JOIN user_user_groups uug ON (uug.user_id = u.user_id)
+				LEFT JOIN user_groups ug ON (ug.user_group_id = uug.user_group_id)
+			WHERE	ug.press_id = ? AND
+				ug.role_id = ?
+			ORDER BY last_name, first_name',
+			array($pressId, ROLE_ID_REVIEWER)
+		);
+
+		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
+		return $returner;
+
+	}
+	
+	/**
 	 * Check if a copyeditor is assigned to a specified monograph.
 	 * @param $monographId int
 	 * @param $copyeditorId int
@@ -936,7 +958,100 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		return $users;
 	}
+	
+	/**
+	 * Get the number of reviews done, avg. number of days per review, days since last review, and num. of 
+	 * active reviews for all reviewers of the given press.
+	 * @return array
+	 */
+	function getAnonymousReviewerStatistics() {
+		// Setup default array -- Minimum values Will always be set to 0 (to accomodate reviewers that have never reviewed, and thus aren't in review_assignment)
+		$reviewerValues =  array('doneMin' => 0, // Will always be set to 0
+								'doneMax' => 0,
+								'avgMin' => 0, // Will always be set to 0
+								'avgMax' => 0,
+								'lastMin' => 0, // Will always be set to 0
+								'lastMax' => 0,
+								'activeMin' => 0, // Will always be set to 0
+								'activeMax' => 0);
 
+		// Get number of reviews completed
+		$result =& $this->retrieve(
+			'SELECT r.reviewer_id, COUNT(*) as completed_count
+			FROM review_assignments r
+			WHERE r.date_completed IS NOT NULL
+			GROUP BY r.reviewer_id'
+		);
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			if ($reviewerValues['doneMax'] < $row['completed_count']) $reviewerValues['doneMax'] = $row['completed_count'];
+			$result->MoveNext();
+		}
+		$result->Close();
+		unset($result);
+
+
+		
+		// Get average number of days per review and days since last review
+		$result =& $this->retrieve(
+			'SELECT r.reviewer_id, r.date_completed, r.date_notified
+			FROM review_assignments r
+			WHERE r.date_notified IS NOT NULL AND 
+				r.date_completed IS NOT NULL AND 
+				r.declined = 0' 
+		);
+		$averageTimeStats = array();
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			if (!isset($averageTimeStats[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
+			
+			$completed = strtotime($this->datetimeFromDB($row['date_completed']));
+			$notified = strtotime($this->datetimeFromDB($row['date_notified']));
+			$timeSinceNotified = time() - $notified;
+			if (isset($averageTimeStats[$row['reviewer_id']]['total_span'])) {
+				$averageTimeStats[$row['reviewer_id']]['total_span'] += $completed - $notified;
+				$averageTimeStats[$row['reviewer_id']]['completed_review_count'] += 1;
+			} else {
+				$averageTimeStats[$row['reviewer_id']]['total_span'] = $completed - $notified;
+				$averageTimeStats[$row['reviewer_id']]['completed_review_count'] = 1;
+			}
+
+			// Calculate the average length of review in days.
+			$averageTimeStats[$row['reviewer_id']]['average_span'] = (($averageTimeStats[$row['reviewer_id']]['total_span'] / $averageTimeStats[$row['reviewer_id']]['completed_review_count']) / 86400);
+			
+			// This reviewer has the highest average; put in global statistics array
+			if ($reviewerValues['avgMax'] < $averageTimeStats[$row['reviewer_id']]['average_span']) $reviewerValues['avgMax'] = round($averageTimeStats[$row['reviewer_id']]['average_span']);
+			if ($timeSinceNotified > $reviewerValues['lastMax']) $reviewerValues['lastMax'] = $timeSinceNotified;
+
+			$result->MoveNext();
+		}
+		$reviewerValues['lastMax'] = round($reviewerValues['lastMax'] / 86400); // Round to nearest day
+		$result->Close();
+		unset($result);
+		
+	
+		// Get number of currently active reviews
+		$result =& $this->retrieve(
+			'SELECT r.reviewer_id, COUNT(*) AS incomplete 
+			FROM review_assignments r
+			WHERE r.date_notified IS NOT NULL AND 
+				r.date_completed IS NULL AND 
+				r.cancelled = 0
+			GROUP BY r.reviewer_id' 
+		);
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+
+			if ($row['incomplete'] > $reviewerValues['activeMax']) $reviewerValues['activeMax'] = $row['incomplete'];
+			$result->MoveNext();
+		}
+		$result->Close();
+		unset($result);
+			
+
+		return $reviewerValues;
+	}
+	
 	/**
 	 * Get the assignment counts and last assigned date for all designers of the given press.
 	 * @return array
@@ -1014,11 +1129,71 @@ class SeriesEditorSubmissionDAO extends DAO {
 	}
 
 	/**
+	 * Given the ranges selected by the editor, produce a filtered list of reviewers
+	 * @param int $pressId
+	 * @param int $doneMin # of reviews completed
+	 * @param int $doneMax
+	 * @param int $avgMin Average period of time in days to complete a review
+	 * @param int $avgMax
+	 * @param int $lastMin Days since most recently completed review
+	 * @param int $lastMax
+	 * @param int $activeMin How many reviews are currently being considered or underway
+	 * @param int $activeMax
+	 * @param array $interests
+	 * @return array Users
+	 */
+	function getFilteredReviewers($pressId, $doneMin, $doneMax, $avgMin, $avgMax, $lastMin, $lastMax, $activeMin, $activeMax, $interests) {
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$interestDao =& DAORegistry::getDAO('InterestDAO');
+		$reviewerStats = $this->getReviewerStatistics($pressId);
+		
+		// Get userIds that match all interests
+		$allInterestIds = array();
+		foreach ($interests as $key => $interest) {
+			$interestIds = $interestDao->getUserIdsByInterest($interest);
+			if ($key == 0) $allInterestIds = $interestIds;
+			else $allInterestIds = array_intersect($allInterestIds, $interestIds);
+		}
+
+		$filteredReviewers = array();
+		foreach ($reviewerStats as $userId => $reviewerStat) {
+			// Get the days since the user was last notified for a review
+			if(!isset($reviewerStat['last_notified'])) {
+				$lastNotifiedInDays = 0;
+			} else {
+				$lastNotifiedInDays = round((time() - strtotime($reviewerStat['last_notified'])) / 86400);
+			} 
+			
+			// If there are interests to check, make sure user is in allInterestIds array
+			if(!empty($allInterestIds)) {
+				$interestCheck = in_array($userId, $allInterestIds);
+			} else $interestCheck = true;
+				
+			if ($interestCheck && $reviewerStat['completed_review_count'] <= $doneMax && $reviewerStat['completed_review_count'] >= $doneMin && 
+				$reviewerStat['average_span'] <= $avgMax && $reviewerStat['average_span'] >= $avgMin && $lastNotifiedInDays <= $lastMax  &&
+				$lastNotifiedInDays >= $lastMin && $reviewerStat['incomplete'] <= $activeMax && $reviewerStat['incomplete'] >= $activeMin) {
+					$filteredReviewers[] = $userDao->getUser($userId);
+				}
+		}
+		
+		return $filteredReviewers;
+	}
+	
+	/**
 	 * Get the last assigned and last completed dates for all reviewers of the given press.
 	 * @return array
 	 */
 	function getReviewerStatistics($pressId) {
+		// Build an array of all reviewers and provide a placeholder for all statistics (so even if they don't
+		//  have a value, it will be filled in as 0
 		$statistics = Array();
+		$reviewerStatsPlaceholder = array('last_notified' => null, 'incomplete' => 0, 'total_span' => 0, 'completed_review_count' => 0, 'average_span' => 0);
+		
+		$allReviewers =& $this->getAllReviewers($pressId);
+		while($reviewer =& $allReviewers->next()) {
+				$statistics[$reviewer->getId()] = $reviewerStatsPlaceholder;
+			unset($reviewer);
+		}
 
 		// Get counts of completed submissions
 		$result =& $this->retrieve(
@@ -1031,7 +1206,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
+			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = $reviewerStatsPlaceholder;
 			$statistics[$row['reviewer_id']]['last_notified'] = $this->datetimeFromDB($row['last_notified']);
 			$result->MoveNext();
 		}
@@ -1053,7 +1228,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
+			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = $reviewerStatsPlaceholder;
 			$statistics[$row['reviewer_id']]['incomplete'] = $row['incomplete'];
 			$result->MoveNext();
 		}
@@ -1074,7 +1249,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
+			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = $reviewerStatsPlaceholder;
 
 			$completed = strtotime($this->datetimeFromDB($row['date_completed']));
 			$notified = strtotime($this->datetimeFromDB($row['date_notified']));
@@ -1086,8 +1261,8 @@ class SeriesEditorSubmissionDAO extends DAO {
 				$statistics[$row['reviewer_id']]['completed_review_count'] = 1;
 			}
 
-			// Calculate the average length of review in weeks.
-			$statistics[$row['reviewer_id']]['average_span'] = (($statistics[$row['reviewer_id']]['total_span'] / $statistics[$row['reviewer_id']]['completed_review_count']) / 60 / 60 / 24 / 7);
+			// Calculate the average length of review in days.
+			$statistics[$row['reviewer_id']]['average_span'] = round(($statistics[$row['reviewer_id']]['total_span'] / $statistics[$row['reviewer_id']]['completed_review_count']) / 86400);
 			$result->MoveNext();
 		}
 

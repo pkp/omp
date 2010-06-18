@@ -13,6 +13,10 @@
 		getAutocompleteSource("{/literal}{url op="getReviewerAutocomplete" monographId=$monographId}", "{$randomId}{literal}");
 		$("#responseDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
 		$("#reviewDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
+		$("#reviewerSearch").accordion({
+			autoHeight: false,
+			collapsible: true
+		});
 	});
 {/literal}</script>
 
@@ -22,11 +26,23 @@
 	<input type="hidden" name="reviewType" value="{$reviewType|escape}" />
 	<input type="hidden" name="round" value="{$round|escape}" />
 	
+	<div id="reviewerSearch" style="margin:7px;">
 	<!--  Reviewer autosuggest selector -->
-	{fbvFormSection}
-		{fbvElement type="text" id="sourceTitle-"|concat:$randomId name="reviewerSelectAutocomplete" label="user.role.reviewer" value=$userNameString|escape }
-		<input type="hidden" id="sourceId-{$randomId}" name="reviewerId" />
-	{/fbvFormSection}
+	<h3><a href="#">{translate key="manager.reviewerSearch.searchByName"}</a></h3>
+		<div id="reviewerNameSearch">
+			{fbvFormSection}
+				{fbvElement type="text" id="sourceTitle-"|concat:$randomId name="reviewerSelectAutocomplete" label="user.role.reviewer" value=$userNameString|escape }
+				<input type="hidden" id="sourceId-{$randomId}" name="reviewerId" />
+			{/fbvFormSection}
+		</div>
+		
+		<!--  Advanced reviewer search -->
+		<h3><a href="#">{translate key="manager.reviewerSearch.advancedSearch"}</a></h3>
+		<div id="reviewerAdvancedSearch">
+			{url|assign:reviewerSelectorUrl router=$smarty.const.ROUTE_COMPONENT component="reviewerSelector.ReviewerSelectorHandler" op="fetchForm" monographId=$monographId}
+			{load_url_in_div id="reviewerSelectorContainer" url="$reviewerSelectorUrl"}
+		</div>
+	</div>
 
 	<!--  Message to reviewer textarea -->
 	{fbvFormSection}

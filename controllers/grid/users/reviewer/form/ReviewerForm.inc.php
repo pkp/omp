@@ -102,6 +102,7 @@ class ReviewerForm extends Form {
 			'editorialContactSignature' => $user->getContactSignature(),
 		);
 		$email->assignParams($paramArray);
+		*/
 		
 		// Get the response/review due dates or else set defaults
 		if (isset($reviewAssignment) && $reviewAssignment->getDueDate() != null) {
@@ -116,7 +117,7 @@ class ReviewerForm extends Form {
 			$numWeeks = max((int) $press->getSetting('numWeeksPerResponse'), 2);
 			$responseDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 		}
-		*/
+		
 
 		$this->_data = array(
 			'monographId' => $this->getMonographId(),

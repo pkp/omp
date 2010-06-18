@@ -168,4 +168,5 @@
 	<message key="editor.review.reviewCompleted">Review Completed</message>
 	<message key="editor.review.reviewerComments">Reviewer Comments</message>
 	<message key="editor.review.sendReviews">Send Reviews</message>
+	<message key="editor.review.days">Days</message>
 </locale>
