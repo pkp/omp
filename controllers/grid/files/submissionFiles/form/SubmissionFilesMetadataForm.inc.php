@@ -64,6 +64,10 @@ class SubmissionFilesMetadataForm extends Form {
 		
 		$templateMgr->assign('name', $monographFile->getLocalizedName());
 		
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $this->_fileId);
+		$templateMgr->assign('note', $notes->next()); 
+		
 		return parent::display($request, $fetch);
 	}
 
@@ -71,7 +75,7 @@ class SubmissionFilesMetadataForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('name'));
+		$this->readUserVars(array('name', 'note'));
 	}
 
 	/**
@@ -83,6 +87,22 @@ class SubmissionFilesMetadataForm extends Form {
 
 		$monographFile->setName($this->getData('name'), Locale::getLocale());		
 		$monographFileDao->updateMonographFile($monographFile);
+		
+		// Save the note if it exists
+		if ($this->getData('note')) {
+			$noteDao =& DAORegistry::getDAO('NoteDAO');
+			$note = $noteDao->newDataObject();
+			$press =& Request::getPress();
+			$user =& Request::getUser();
+	
+			$note->setContextId($press->getId());
+			$note->setUserId($user->getId());
+			$note->setContents($this->getData('note'));
+			$note->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
+			$note->setAssocId($this->_fileId);
+	
+		 	$noteDao->insertObject($note);
+		}
 	}
 }
 

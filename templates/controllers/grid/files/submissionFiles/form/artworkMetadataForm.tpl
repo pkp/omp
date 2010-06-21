@@ -104,6 +104,13 @@
 		{fbvElement type="radio" label="common.other" name="artwork_placementType" id="artwork_placementType-1" value=$smarty.const.MONOGRAPH_ARTWORK_PLACEMENT_OTHER checked="checked"}
 		{fbvElement type="text" id="artwork_otherPlacement"}
 	{/fbvFormSection}
+	{fbvFormSection title="common.note"}
+		{if $note}
+			{fbvTextarea id="note" value=$note->getContents() size=$fbvStyles.size.SMALL}
+		{else}
+			{fbvTextarea id="note" size=$fbvStyles.size.SMALL}
+		{/if}
+	{/fbvFormSection}
 {/fbvFormArea}
 
 <div class="separator" />

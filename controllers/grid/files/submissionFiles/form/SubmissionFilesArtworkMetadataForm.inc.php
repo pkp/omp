@@ -67,6 +67,10 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		} else {
 			$chapters = null;
 		}
+		
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $this->_fileId);
+		$templateMgr->assign('note', $notes->next()); 
 
 		$templateMgr->assign_by_ref('chapterOptions', $chapterOptions);
 
@@ -97,7 +101,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 	function readInputData() {
 		$this->readUserVars(array(
 			'name', 'artwork', 'artwork_file', 'artwork_caption', 'artwork_credit', 'artwork_copyrightOwner', 'artwork_copyrightOwnerContact', 'artwork_permissionTerms', 'monographId',
-			'artwork_type', 'artwork_otherType', 'artwork_contact', 'artwork_placement', 'artwork_otherPlacement', 'artwork_chapterId', 'artwork_placementType'
+			'artwork_type', 'artwork_otherType', 'artwork_contact', 'artwork_placement', 'artwork_otherPlacement', 'artwork_chapterId', 'artwork_placementType', 'note'
 		));
 		$this->readUserVars(array('artworkFileId'));
 	}
@@ -153,7 +157,23 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		}
 
 		$artworkFileDao->updateObject($artworkFile);
-
+		
+		// Save the note if it exists
+		if ($this->getData('note')) {
+			$noteDao =& DAORegistry::getDAO('NoteDAO');
+			$note = $noteDao->newDataObject();
+			$press =& Request::getPress();
+			$user =& Request::getUser();
+	
+			$note->setContextId($press->getId());
+			$note->setUserId($user->getId());
+			$note->setContents($this->getData('note'));
+			$note->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
+			$note->setAssocId($this->_fileId);
+	
+		 	$noteDao->insertObject($note);
+		}
+			
 		return $artworkFile->getId();
 	}
 

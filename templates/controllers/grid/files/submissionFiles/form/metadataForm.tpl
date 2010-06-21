@@ -63,6 +63,13 @@
 			{fbvElement type="text" label="common.name" id="name" value=$monographFile->getLocalizedName() maxlength="120" size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 	{/fbvFormArea}
+	{fbvFormSection title="common.note"}
+		{if $note}
+			{fbvTextarea id="note" value=$note->getContents() size=$fbvStyles.size.SMALL}
+		{else}
+			{fbvTextarea id="note" size=$fbvStyles.size.SMALL}
+		{/if}
+	{/fbvFormSection}
 
 	<h4>{translate key="author.submit.readOnlyInfo"}</h4>
 	{fbvFormArea id="fileInfo"}
