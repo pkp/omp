@@ -7,7 +7,8 @@
  * Step 3 of author monograph submission.
  *
  * $Id$
- *}
+ *} 
+ 
 {assign var="pageTitle" value="author.submit.step3"}
 {include file="author/submit/submitStepHeader.tpl"}
 
@@ -24,12 +25,17 @@
 <div id="bookMetadataContainer" style="width: 97%;">
 	<h3>{translate key="author.submit.generalInformation"}</h3>
 	{fbvFormArea id="generalInformation"}
-	{fbvFormSection title="monograph.title" for="title" layout=$fbvStyles.layout.ONE_COLUMN}
-		{fbvElement type="text" name="title[$formLocale]" id="title" value=$title[$formLocale] maxlength="255" size=$fbvStyles.size.LARGE}
-	{/fbvFormSection}
-	{fbvFormSection title="author.submit.briefSummary" for="abstract" layout=$fbvStyles.layout.ONE_COLUMN}
-		{fbvElement type="textarea" name="abstract[$formLocale]" id="abstract" value=$abstract[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
-	{/fbvFormSection}
+		{fbvFormSection title="monograph.title" for="title" layout=$fbvStyles.layout.ONE_COLUMN}
+			{fbvElement type="text" name="title[$formLocale]" id="title" value=$title[$formLocale] maxlength="255" size=$fbvStyles.size.LARGE}
+		{/fbvFormSection}
+		{fbvFormSection title="author.submit.briefSummary" for="abstract" layout=$fbvStyles.layout.ONE_COLUMN}
+			{fbvElement type="textarea" name="abstract[$formLocale]" id="abstract" value=$abstract[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+		{/fbvFormSection}
+		{fbvFormSection title="author.submit.metadata" layout=$fbvStyles.layout.ONE_COLUMN}
+			{fbvKeywordInput id="disciplines" label="search.discipline"} <br />
+			{fbvKeywordInput id="keyword" label="common.keywords"} <br />
+			{fbvKeywordInput id="agencies" label="submission.supportingAgencies"}
+		{/fbvFormSection}
 	{/fbvFormArea}
 </div>
 <!--  Contributors -->
@@ -39,10 +45,6 @@
 <!--  Contributors -->
 {url|assign:chapterGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
 {load_url_in_div id="chaptersGridContainer" url="$chapterGridUrl"}
-
-<!--  Indexing Information -->
-{url|assign:indexingInformationUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.submissions.IndexingInformationListbuilderHandler" op="fetch" monographId=$monographId}
-{load_url_in_div id="indexingInformationContainer" url=$indexingInformationUrl}
 
 <p><input type="submit" value="{translate key="author.submit.finishSubmission"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
 

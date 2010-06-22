@@ -83,7 +83,9 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 				'abstract',
 				'discipline',
 				'subjectClass',
-				'subject',
+				'disciplinesKeywords',
+				'keywordKeywords',
+				'agenciesKeywords',
 				'coverageGeo',
 				'coverageChron',
 				'coverageSample',
@@ -138,9 +140,12 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 		$monograph =& $this->monograph;
 		$monograph->setTitle($this->getData('title'), null); // Localized
 		$monograph->setAbstract($this->getData('abstract'), null); // Localized
-		$monograph->setDiscipline($this->getData('discipline'), null); // Localized
-		$monograph->setSubjectClass($this->getData('subjectClass'), null); // Localized
-		$monograph->setSubject($this->getData('subject'), null); // Localized
+		
+		$monograph->setSupportingAgencies(implode(", ", $this->getData('agenciesKeywords')), null); // Localized
+		$monograph->setDiscipline(implode(", ", $this->getData('disciplinesKeywords')), null); // Localized
+		$monograph->setSubject(implode(", ",$this->getData('keywordKeywords')), null); // Localized
+		// $monograph->setSubjectClass($this->getData('subjectClass'), null); // Localized -- FIXME: Unused?
+		
 		$monograph->setCoverageGeo($this->getData('coverageGeo'), null); // Localized
 		$monograph->setCoverageChron($this->getData('coverageChron'), null); // Localized
 		$monograph->setCoverageSample($this->getData('coverageSample'), null); // Localized
