@@ -104,7 +104,8 @@
 	<message key="submission.changeSeries">Change to</message>
 	<message key="submission.selectFilesForReview">Select the files that are to be reviewed by reviewers as part of this book's assessment and press Record.</message>
 	<message key="submission.stepX">Step {$step}.</message>
-
+	<message key="submission.files.downloadAll">Download All Files</message>
+	
 	<message key="submission.sent">Sent</message>
 	<message key="submission.internalReview"><![CDATA[Internal&nbsp;Review]]></message>
 	<message key="submission.externalReview"><![CDATA[External&nbsp;Review]]></message>

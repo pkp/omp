@@ -280,6 +280,34 @@ class MonographFileManager extends FileManager {
 			return false;
 		}
 	}
+	
+	/**
+	 * Download all monograph files as an archive
+	 * @return boolean
+	 */
+	function downloadFilesArchive(&$monographFiles) {
+		if(!isset($monographFiles)) {
+			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+			$monographFiles =& $monographFileDao->getByMonographId($this->monographId);
+		}
+		
+		$filePaths = array();
+		foreach ($monographFiles as $monographFile) {
+			// Remove absolute path so the archive doesn't include it (otherwise all files are organized by absolute path)
+			$filePath = str_replace($this->filesDir, '', $monographFile->getFilePath());
+			// Add files to be archived to array
+			$filePaths[] = escapeshellarg($filePath);
+		}
+		
+		// Create the archive and download the file
+		$archivePath = $this->filesDir . "monograph_" . $this->monographId . "_files.tar.gz";
+		$tarCommand = "tar czf ". $archivePath . " -C \"" . $this->filesDir . "\" " . implode(" ", $filePaths);
+		exec($tarCommand);
+		if (file_exists($archivePath)) {
+			parent::downloadFile($archivePath);
+			return true;
+		} else return false;		 
+	}
 
 	/**
 	 * View a file inline (variant of downloadFile).

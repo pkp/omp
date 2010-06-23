@@ -42,7 +42,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('downloadFile'));
+		return array_merge(parent::getRemoteOperations(), array('downloadFile', 'downloadAllFiles'));
 	}
 
 	/**
@@ -129,6 +129,22 @@ class ReviewFilesGridHandler extends GridHandler {
 		} else {
 			// set the grid data to be only the files that have already been selected
 			$this->setData($selectedFiles[$reviewType][$round]);
+		}
+
+		// Test whether the tar binary is available for the export to work, if so, add grid action
+		$tarBinary = Config::getVar('cli', 'tar');
+		if (isset($this->_data) && !empty($tarBinary) && file_exists($tarBinary)) {
+			$this->addAction(
+				new GridAction(
+					'downloadAll',
+					GRID_ACTION_MODE_LINK,
+					GRID_ACTION_TYPE_NOTHING,
+					$router->url($request, null, null, 'downloadAllFiles', null, array('monographId' => $monographId)),
+					'submission.files.downloadAll',
+					null,
+					'add'
+				)
+			);
 		}
 
 		import('controllers.grid.files.reviewFiles.ReviewFilesGridCellProvider');
@@ -232,11 +248,24 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @return JSON
 	 */
 	function downloadFile(&$args, &$request) {
-		//FIXME: add validation
 		$monographId = $request->getUserVar('monographId');
 		$fileId = $request->getUserVar('fileId');
 		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 		$monographFileManager->downloadFile($fileId);
+	}
+	
+	/**
+	 * Download all of the monograph files as one compressed file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function downloadAllFiles(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		import('classes.file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($monographId);
+		$monographFileManager->downloadFilesArchive($this->_data);				
 	}
 }
