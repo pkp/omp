@@ -4,4 +4,6 @@ build
 temp
 /files
 .project
+.buildpath
+.settings
 .htaccess
