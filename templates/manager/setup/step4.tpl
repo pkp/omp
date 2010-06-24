@@ -28,7 +28,7 @@
 
 <h3>4.1 {translate key="manager.setup.securitySettings"}</h3>
 
-{fbvFormArea id="openAccessPolicy"}
+{fbvFormArea id="openAccessPolicyContainer"}
 {fbvFormSection title="manager.setup.openAccessPolicy"}
 	<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
 	{fbvElement type="textarea" name="openAccessPolicy[$formLocale]" id="openAccessPolicy" value=$openAccessPolicy[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
@@ -107,7 +107,7 @@
 	{translate key="manager.setup.enableAnnouncementsHomepage2"}
 </p>
 
-{fbvFormArea id="announcementsIntroduction"}
+{fbvFormArea id="announcementsIntroductionContainer"}
 {fbvFormSection title="manager.setup.announcementsIntroduction"}
 	<p>{translate key="manager.setup.announcementsIntroductionDescription"}</p>
 	{fbvElement type="textarea" name="announcementsIntroduction[$formLocale]" id="announcementsIntroduction" value=$announcementsIntroduction[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}

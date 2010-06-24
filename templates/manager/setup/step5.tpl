@@ -420,7 +420,7 @@ function prepBlockFields() {
 
 <p>{translate key="manager.setup.pressPageFooterDescription"}</p>
 
-{fbvFormArea id="pressPageFooter"}
+{fbvFormArea id="pressPageFooterContainer"}
 {fbvFormSection}
 	{fbvElement type="textarea" name="pressPageFooter[$formLocale]" id="pressPageFooter" value=$pressPageFooter[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 {/fbvFormSection}

@@ -25,7 +25,7 @@
 	<h3>{translate key="submission.review"}</h3>
 	{confirm dialogText=$press->getLocalizedSetting('reviewGuidelines') translate=false button="#reviewGuidelines"}
 	<p style="float:right;"><a id="reviewGuidelines" href="#">{translate key="reviewer.monograph.guidelines"}</a></p>
-
+	<div style="clear:both;" />
 	{if $reviewAssignment->getReviewFormId()}
 	<!-- Display a review form if one is assigned -->
 	<div id="reviewForm">
@@ -71,8 +71,7 @@
 	</div>
 	{else}
 	<!-- Display a free text entry field if no review form is assigned -->
-	<!-- FIXME: Needs to be a rich text editor -->
-	<div id="freeFormReview">
+	<div id="freeFormReview" style="margin-left: 10px;">
 		<textarea id="comments" name="comments" class="textArea" style="width: 95%; height: 200px; margin-left: 10px;">{$reviewAssignment->getComments()|escape}</textarea></td>
 	</div>
 	{/if}

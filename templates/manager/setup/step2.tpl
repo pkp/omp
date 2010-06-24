@@ -175,7 +175,7 @@
 
 <h3>2.6 {translate key="manager.setup.privacyStatement"}</h3>
 
-{fbvFormArea id="privacyStatement"}
+{fbvFormArea id="privacyStatementContainer"}
 {fbvFormSection}
 	{fbvElement type="textarea" name="privacyStatement[$formLocale]" id="privacyStatement" value=$privacyStatement[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 {/fbvFormSection}

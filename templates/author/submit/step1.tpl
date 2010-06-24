@@ -83,7 +83,7 @@
 <!-- Cover Note To Editor-->
 <h3>{translate key="author.submit.coverNote"}</h3>
 
-{fbvFormArea id="commentsToEditor"}
+{fbvFormArea id="commentsToEditorContainer"}
 	{fbvFormSection for="commentsToEditor"}
 	{fbvElement type="textarea" name="commentsToEditor" id="commentsToEditor" size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 	{/fbvFormSection}

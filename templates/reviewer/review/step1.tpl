@@ -75,7 +75,7 @@
 <br />
 <div class="separator"></div>
 
-<div id="competingInterests">
+<div id="competingInterestsContainer" style="margin-right:20px;">
 {*if $currentPress->getSetting('requireReviewerCompetingInterests')*}
 {if true}
 	<h3>{translate key="reviewer.competingInterests"}</h3>

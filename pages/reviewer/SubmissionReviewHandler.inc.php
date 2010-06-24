@@ -15,6 +15,7 @@
 // $Id$
 
 import('pages.reviewer.ReviewerHandler');
+import('lib.pkp.classes.core.JSON');
 
 class SubmissionReviewHandler extends ReviewerHandler {
 	/** submission associated with the request **/
@@ -109,7 +110,9 @@ class SubmissionReviewHandler extends ReviewerHandler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $this->submission);
-		$templateMgr->display('reviewer/review/regretMessage.tpl');
+
+		$json = new JSON('true', $templateMgr->fetch('reviewer/review/regretMessage.tpl'));
+		echo $json->getString();
 	}
 
 	/**
