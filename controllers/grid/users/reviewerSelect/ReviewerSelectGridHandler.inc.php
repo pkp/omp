@@ -166,7 +166,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 		$lastMax = $request->getUserVar('lastMax');
 		$activeMin = $request->getUserVar('activeMin');
 		$activeMax = $request->getUserVar('activeMax');
-		$interests = $request->getUserVar('interests');
+		$interests = $request->getUserVar('interestsKeywords');
 		
 		$data =& $seriesEditorSubmissionDao->getFilteredReviewers($press->getId(), $doneMin, $doneMax, $avgMin, $avgMax, $lastMin, $lastMax, $activeMin, $activeMax, $interests);
 		$this->setData($data);	

@@ -191,7 +191,7 @@ class UserManagementForm extends Form {
 			'mailingAddress',
 			'country',
 			'biography',
-			'interests',
+			'interestsKeywords',
 			'gossip',
 			'userLocales',
 			'generatePassword',
@@ -247,6 +247,7 @@ class UserManagementForm extends Form {
 		$user->setMailingAddress($this->getData('mailingAddress'));
 		$user->setCountry($this->getData('country'));
 		$user->setBiography($this->getData('biography'), null); // Localized
+		$user->setInterests($this->getData('interestsKeywords'));
 		$user->setGossip($this->getData('gossip'), null); // Localized
 		$user->setMustChangePassword($this->getData('mustChangePassword') ? 1 : 0);
 		$user->setAuthId((int) $this->getData('authId'));

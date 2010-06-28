@@ -154,7 +154,7 @@ class RegistrationForm extends Form {
 			'salutation', 'firstName', 'middleName', 'lastName',
 			'gender', 'initials', 'country',
 			'affiliation', 'email', 'userUrl', 'phone', 'fax', 'signature',
-			'mailingAddress', 'biography', 'interests', 'userLocales',
+			'mailingAddress', 'biography', 'interestsKeywords', 'userLocales',
 			'registerAsReader', 'registerAsAuthor',
 			'registerAsReviewer', 'existingUser', 'sendPassword'
 		);
@@ -258,7 +258,7 @@ class RegistrationForm extends Form {
 
 			// Add reviewer interests to interests table
 			$interestDao =& DAORegistry::getDAO('InterestDAO');
-			$interests = Request::getUserVar('interests');
+			$interests = Request::getUserVar('interestsKeywords');
 			if (empty($interests)) $interests = array();
 			elseif (!is_array($interests)) $interests = array($interests);
 			$interestDao->insertInterests($interests, $userId, true);
