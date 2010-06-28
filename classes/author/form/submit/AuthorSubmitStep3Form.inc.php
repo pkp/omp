@@ -159,12 +159,6 @@ class AuthorSubmitStep3Form extends AuthorSubmitForm {
 			$monograph->setSubmissionProgress(0);
 		}
 
-		// Designate this as the review version by default.
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-		$authorSubmission =& $authorSubmissionDao->getAuthorSubmission($monograph->getId());
-		AuthorAction::designateReviewVersion($authorSubmission, true);
-		unset($authorSubmission);
-
 		// Save the monograph
 		$monographDao->updateMonograph($monograph);
 

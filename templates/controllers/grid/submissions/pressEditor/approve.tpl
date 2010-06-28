@@ -26,7 +26,7 @@
 
 <form name="approveForm-{$monographId}" id="approveForm-{$monographId}" action="{url component="grid.submissions.pressEditor.PressEditorSubmissionsListGridHandler" op="saveApprove" monographId=$monographId}" method="post">
 	<p>{translate key="editor.monograph.selectFiles"}</p> 
-	{url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" isSelectable=1 monographId=$monographId reviewType=$reviewType round=$round escape=false}
+	{url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" showRoleColumns=1 isSelectable=1 monographId=$monographId reviewType=$reviewType round=$round escape=false}
 	{load_url_in_div id="reviewFileSelectionToEditor" url=$reviewFileSelectionGridUrl}
 	
 	<br />

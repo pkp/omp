@@ -22,7 +22,7 @@ class AddReviewFileForm extends Form {
 	 * Constructor.
 	 */
 	function AddReviewFileForm($monographId) {
-		parent::Form('controllers/grid/submissions/pressEditor/approveAndReview.tpl');
+		parent::Form('controllers/grid/files/reviewFiles/addReviewFile.tpl');
 		$this->_monographId = (int) $monographId;
 
 		$this->addCheck(new FormValidatorPost($this));
@@ -36,12 +36,12 @@ class AddReviewFileForm extends Form {
 	 * Initialize variables
 	 */
 	function initData(&$args, &$request) {
-		$reviewType = (int) $args['reviewType'];
-		$round = (int) $args['round'];
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getMonograph($this->_monographId);
 
 		$this->setData('monographId', $this->_monographId);
-		$this->setData('reviewType', $reviewType);
-		$this->setData('round', $round);
+		$this->setData('reviewType', $monograph->getCurrentReviewType());
+		$this->setData('round', $monograph->getCurrentRound());
 	}
 
 	/**
@@ -58,21 +58,9 @@ class AddReviewFileForm extends Form {
 		$reviewType = $this->getData('reviewType');
 		$round = $this->getData('round');
 
-		// TODO:
-		// 1. Accept review
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		// FIXME: what do do about reviewRevision? being set to 1 for now.
-		// Create a review round if it doesn't exist
-		if ( !$reviewRoundDao->reviewRoundExists($this->_monographId, $reviewType, $round)) {
-			$reviewRoundDao->createReviewRound($this->_monographId, $reviewType, $round, 1);
-		}
-
-		// 2. Get selected files and put in DB somehow
 		$selectedFiles = $this->getData('selectedFiles');
 		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
-
 		$reviewAssignmentDAO->setFilesForReview($this->_monographId, $reviewType, $round, $selectedFiles);
-		// 3. Send Personal message to author
 	}
 }
 

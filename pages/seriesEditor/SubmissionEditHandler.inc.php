@@ -97,11 +97,22 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 
 	function showReview(&$args, &$request) {
 		$this->setupTemplate(EDITOR_SERIES_HOME);
+		$monographId = array_shift($args);
+		
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getMonograph($monographId);
+		
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('rounds', array(1, 2, 3));
-		$templateMgr->assign('currentRound', 1);
-		$templateMgr->assign('currentReviewType', 6);
-		$templateMgr->assign('monographId', $args[0]);
+		$currentRound = $monograph->getCurrentRound();
+		$templateMgr->assign('currentRound', $currentRound);
+
+		// Set allRounds to an array of all values > 0 and less than currentRound--This will determine the tabs to show
+		$allRounds = array();
+		for ($i = 1; $i <= $currentRound; $i++) $allRounds[] = $i;
+		$templateMgr->assign('rounds', $allRounds);
+		
+		$templateMgr->assign('currentReviewType', $monograph->getCurrentReviewType());
+		$templateMgr->assign('monographId', $monographId);
 		$templateMgr->display('seriesEditor/showReviewers.tpl');
 	}
 
