@@ -172,4 +172,6 @@
 	<message key="editor.review.reviewerComments">Reviewer Comments</message>
 	<message key="editor.review.sendReviews">Send Reviews</message>
 	<message key="editor.review.days">Days</message>
+	<message key="editor.review.mustSelect">You must select a reviewer</message>
+	<message key="editor.review.errorAddingReviewer">There was an error adding the reviewer.  Please try again.</message>
 </locale>

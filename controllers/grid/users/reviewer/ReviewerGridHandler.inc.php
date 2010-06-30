@@ -39,7 +39,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return array
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addReviewer', 'editReviewer', 'updateReviewer', 'deleteReviewer', 'getReviewerAutocomplete', 'readReview', 'sendReviews', 'showApprove', 'saveApprove', 'showDecline', 'saveDecline'));
+		return array_merge(parent::getRemoteOperations(), array('addReviewer', 'editReviewer', 'updateReviewer', 'deleteReviewer', 'getReviewerAutocomplete', 'readReview', 'sendReviews', 'showApprove', 'saveApprove', 'showDecline', 'saveDecline', 'createReviewer'));
 	}
 
 	/**
@@ -280,7 +280,7 @@ class ReviewerGridHandler extends GridHandler {
 
 			$json = new JSON('true', $this->_renderRowInternally($request, $row));
 		} else {
-			$json = new JSON('false', Locale::translate('author.submit.errorUpdatingReviewer'));
+			$json = new JSON('false', Locale::translate('editor.review.errorAddingReviewer'));
 		}
 		return $json->getString();
 	}

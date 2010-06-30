@@ -30,7 +30,6 @@ class ReviewerForm extends Form {
 		$this->_reviewAssignmentId = (int) $reviewAssignmentId;
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'reviewerId', 'required', 'author.submit.form.authorRequiredFields'));
 		$this->addCheck(new FormValidator($this, 'responseDueDate', 'required', 'author.submit.form.authorRequiredFields'));
 		$this->addCheck(new FormValidator($this, 'reviewDueDate', 'required', 'author.submit.form.authorRequiredFields'));
 
@@ -117,7 +116,7 @@ class ReviewerForm extends Form {
 			$numWeeks = max((int) $press->getSetting('numWeeksPerResponse'), 2);
 			$responseDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 		}
-		
+		$interestDao =& DAORegistry::getDAO('InterestDAO');		
 
 		$this->_data = array(
 			'monographId' => $this->getMonographId(),
@@ -128,7 +127,8 @@ class ReviewerForm extends Form {
 			'reviewerId' => $reviewerId,
 			'personalMessage' => Locale::translate('reviewer.step1.requestBoilerplate'),
 			'responseDueDate' => $responseDueDate,
-			'reviewDueDate' => $reviewDueDate
+			'reviewDueDate' => $reviewDueDate,
+			'existingInterests' => implode(",", $interestDao->getAllUniqueInterests())
 		);
 
 	}
@@ -137,26 +137,125 @@ class ReviewerForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('monographId',
+		$this->readUserVars(array('selectionType',
+								'monographId',
 								'reviewType',
 								'round',
 								'reviewerId',
 								'personalMessage',
 								'responseDueDate',
 								'reviewDueDate'));
+		
+		if($this->getData('selectionType') == 'createNew') {
+			$this->readUserVars(array('firstName',
+								'middleName',
+								'lastName',
+								'affiliation',
+								'interestsKeywords',
+								'username',
+								'email',
+								'sendNotify'));
+		}
 	}
+	
+	/**
+	 * Need to override validate function -- regular FormValidators won't work because hidden 
+	 *  form elements (i.e. in other accordion tabs) would throw errors when not filled in
+	 * @see lib/pkp/classes/form/Form::validate()
+	 */
+	function validate() {
+		$selectionType = $this->getData('selectionType');
+		$firstName = $this->getData('firstName');
+		$lastName = $this->getData('lastName');
+		$username = $this->getData('username');
+		$email = $this->getData('email');
+		$reviewerId = $this->getData('reviewerId');
 
+		$isValid = true;
+		if($selectionType == 'createNew') {
+			if(!empty($firstName) && !empty($lastName) && !empty($username) && !empty($email)) {
+				$userDao =& DAORegistry::getDAO('UserDAO');
+				if ($userDao->userExistsByEmail($email) || $userDao->userExistsByUsername($username)) {
+					$this->addError($fieldName, Locale::translate($property->getValidationMessage()));
+					$this->addErrorField($fieldName);
+				}
+			} else {
+				$this->addError('username', Locale::translate('editor.review.errorAddingReviewer'));
+				$this->addErrorField('username');
+			}
+		} else if (!isset($reviewerId)) {
+			$this->addError('reviewerId', Locale::translate('editor.review.errorAddingReviewer'));
+			$this->addErrorField('reviewerId');
+		}
+		return parent::validate();
+	}	
+	
 	/**
 	 * Save review assignment
 	 */
 	function execute(&$args, &$request) {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$submission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($this->getMonographId());
-		$reviewerId = $this->getData('reviewerId');
+		$press =& $request->getPress();
+		
 		$reviewType = $this->getData('reviewType');
 		$round = $this->getData('round');
 		$reviewDueDate = $this->getData('reviewDueDate');
 		$responseDueDate = $this->getData('responseDueDate');
+		
+		if($this->getData('selectionType') == 'createNew') {
+			$userDao =& DAORegistry::getDAO('UserDAO');
+			$user = new User();
+	
+			$user->setFirstName($this->getData('firstName'));
+			$user->setMiddleName($this->getData('middleName'));
+			$user->setLastName($this->getData('lastName'));
+			$user->setAffiliation($this->getData('affiliation'));
+			$user->setEmail($this->getData('email'));
+	
+			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
+			$auth =& $authDao->getDefaultPlugin();
+			$user->setAuthId($auth?$auth->getAuthId():0);
+
+			$user->setUsername($this->getData('username'));
+			$password = Validation::generatePassword();
+	
+			if (isset($auth)) {
+				$user->setPassword($password);
+				// FIXME Check result and handle failures
+				$auth->doCreateUser($user);
+				$user->setAuthId($auth->authId);
+				$user->setPassword(Validation::encryptCredentials($user->getId(), Validation::generatePassword())); // Used for PW reset hash only
+			} else {
+				$user->setPassword(Validation::encryptCredentials($this->getData('username'), $password));
+			}
+	
+			$user->setDateRegistered(Core::getCurrentDate());
+			$reviewerId = $userDao->insertUser($user);
+			
+			// Add reviewer interests to interests table
+			$interestDao =& DAORegistry::getDAO('InterestDAO');
+			$interests = Request::getUserVar('interestsKeywords');
+			if (empty($interests)) $interests = array();
+			elseif (!is_array($interests)) $interests = array($interests);
+			$interestDao->insertInterests($interests, $reviewerId, true);
+	
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+			$reviewerGroup =& $userGroupDao->getDefaultByRoleId($press->getId(), ROLE_ID_REVIEWER);
+			$userGroupDao->assignUserToGroup($reviewerId, $reviewerGroup->getId());
+	
+			if ($this->getData('sendNotify')) {
+				// Send welcome email to user
+				import('classes.mail.MailTemplate');
+				$mail = new MailTemplate('REVIEWER_REGISTER');
+				$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
+				$mail->assignParams(array('username' => $this->getData('username'), 'password' => $password, 'userFullName' => $user->getFullName()));
+				$mail->addRecipient($user->getEmail(), $user->getFullName());
+				$mail->send();
+			}
+		} else {
+			$reviewerId = $this->getData('reviewerId');
+		}
 
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		SeriesEditorAction::addReviewer($submission, $reviewerId, $reviewType, $round, $reviewDueDate, $responseDueDate);
@@ -168,7 +267,7 @@ class ReviewerForm extends Form {
 		$reviewAssignment->setCancelled(0);
 		$reviewAssignment->stampModified();
 		$reviewAssignmentDao->updateObject($reviewAssignment);
-		
+
 		return $reviewAssignment;
 	}
 }

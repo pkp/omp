@@ -13,9 +13,39 @@
 		getAutocompleteSource("{/literal}{url op="getReviewerAutocomplete" monographId=$monographId}", "{$randomId}{literal}");
 		$("#responseDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
 		$("#reviewDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
+		$("#sourceTitle-{/literal}{$randomId}{literal}").addClass('required');
 		$("#reviewerSearch").accordion({
 			autoHeight: false,
-			collapsible: true
+			collapsible: true,
+			change: function(event, ui) {
+				var newId = ui.newHeader.attr("id");
+				$("#selectionType").val(newId); // Set selection type input to id of open tab
+
+				// Make current selection type's required fields required
+				switch(newId){
+					case 'searchByName':
+						$("#sourceTitle-{/literal}{$randomId}{literal}").addClass('required');
+						$(".advancedReviewerSelect").removeClass('required');
+						$("#firstname, #lastname, #username, #email").removeClass('required');
+						break;
+					case 'advancedSearch':
+						$("#sourceTitle-{/literal}{$randomId}{literal}").removeClass('required');
+						$(".advancedReviewerSelect").addClass('required');
+						$("#firstname, #lastname, #username, #email").removeClass('required');
+						break;
+					case 'createNew':
+						$("#sourceTitle-{/literal}{$randomId}{literal}").removeClass('required');
+						$(".advancedReviewerSelect").removeClass('required');
+						$("#firstName, #lastName, #username, #email").addClass('required');
+						$("#email").addClass('email');
+						break;
+				}
+								
+			}
+		});
+
+		$("#interests").tagit({
+			availableTags: [{/literal}{$existingInterests}{literal}]
 		});
 	});
 {/literal}</script>
@@ -25,22 +55,50 @@
 	<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignmentId}" />
 	<input type="hidden" name="reviewType" value="{$reviewType|escape}" />
 	<input type="hidden" name="round" value="{$round|escape}" />
+	<input type="hidden" name="selectionType" id="selectionType" value="searchByName" /> <!--  Holds the type of reviewer selection being used -->
 	
 	<div id="reviewerSearch" style="margin:7px;">
-	<!--  Reviewer autosuggest selector -->
-	<h3><a href="#">{translate key="manager.reviewerSearch.searchByName"}</a></h3>
+		<!--  Reviewer autosuggest selector -->
+		<h3 id="searchByName"><a href="#">{translate key="manager.reviewerSearch.searchByName"}</a></h3>
 		<div id="reviewerNameSearch">
 			{fbvFormSection}
-				{fbvElement type="text" id="sourceTitle-"|concat:$randomId name="reviewerSelectAutocomplete" label="user.role.reviewer" value=$userNameString|escape }
+				{fbvElement type="text" id="sourceTitle-"|concat:$randomId name="reviewerSelectAutocomplete" label="user.role.reviewer" class="required" value=$userNameString|escape }
 				<input type="hidden" id="sourceId-{$randomId}" name="reviewerId" />
 			{/fbvFormSection}
 		</div>
 		
 		<!--  Advanced reviewer search -->
-		<h3><a href="#">{translate key="manager.reviewerSearch.advancedSearch"}</a></h3>
+		<h3 id="advancedSearch"><a href="#">{translate key="manager.reviewerSearch.advancedSearch"}</a></h3>
 		<div id="reviewerAdvancedSearch">
 			{url|assign:reviewerSelectorUrl router=$smarty.const.ROUTE_COMPONENT component="reviewerSelector.ReviewerSelectorHandler" op="fetchForm" monographId=$monographId}
 			{load_url_in_div id="reviewerSelectorContainer" url="$reviewerSelectorUrl"}
+		</div>
+		
+		<!--  Create New Reviewer -->
+		<h3 id="createNew"><a href="#">{translate key="seriesEditor.review.createReviewer"}</a></h3>
+		<div id="reviewerCreationForm">
+			{fbvFormSection title="common.name" layout=$fbvStyles.layout.THREE_COLUMNS}
+				{fbvElement type="text" label="user.firstName" id="firstName" value=$firstName required="true"}
+				{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName}
+				{fbvElement type="text" label="user.lastName" id="lastName" value=$lastName required="true"}
+			{/fbvFormSection}
+			
+			{fbvFormSection title="user.affiliation" for="affiliation" float=$fbvStyles.float.LEFT}
+				{fbvElement type="textarea" id="affiliation" value=$affiliation size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+			{/fbvFormSection}
+			
+			{fbvFormSection title="user.interests" for="interests"}
+				<ul id="interests"></ul>
+			{/fbvFormSection}
+			
+			{fbvFormSection title="user.accountInformation"}
+				{fbvElement type="text" label="user.username" id="username" value=$username required="true"} <br />
+			{/fbvFormSection}
+
+			{fbvFormSection title="user.email" for="email"}
+				{fbvElement type="text" id="email" value=$email required="true"}
+				{fbvElement type="checkbox" id="sendNotify" value="1" label="manager.people.createUserSendNotify" checked=$sendNotify}
+			{/fbvFormSection}
 		</div>
 	</div>
 

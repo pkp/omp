@@ -7,4 +7,4 @@
  * Display a radio button for selecting one reviewer from the grid
  *}
 
-<input type="radio" id="reviewer_{$rowId}" name="reviewerId" value={$rowId} />
+<input type="radio" id="reviewer_{$rowId}" name="reviewerId" class="advancedReviewerSelect" value={$rowId} />
