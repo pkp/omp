@@ -23,7 +23,13 @@ class SelectRoleBlockPlugin extends BlockPlugin {
 	/** @var Press */
 	var $_press;
 
-	function register($category, $path) {
+	/**
+	 * @see PKPPlugin::getEnabled()
+	 */
+	function getEnabled() {
+		// Only display the the block after installation
+		// and only if a user is logged in and we're in
+		// a press context.
 		if (Config::getVar('general', 'installed')) {
 			$request =& Registry::get('request');
 			$this->_user = $request->getUser();
@@ -31,13 +37,15 @@ class SelectRoleBlockPlugin extends BlockPlugin {
 				$router =& $request->getRouter();
 				$this->_press =& $router->getContext($request);
 				if (!$this->_press) return false;
+
+				// Delegate to the parent class to
+				// see whether the plug-in is enabled
+				// in the configuration.
+				return parent::getEnabled();
 			} else return false;
 		} else {
 			return false;
 		}
-
-		$success = parent::register($category, $path);
-		return $success;
 	}
 
 	/**
