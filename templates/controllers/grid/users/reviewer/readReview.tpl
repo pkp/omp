@@ -7,22 +7,29 @@
  * Screen to let user read a review
  *
  *}
-<h2>{translate key="editor.review"}: {$monograph->getLocalizedTitle()}</h2>
-<table width="100%">
+<h2>{translate key="editor.review"}: {$monograph->getLocalizedTitle()}</h2> <br />
+<table width="100%" style="margin-left: 12px;">
 	<tr>
-	<td>{translate key="user.role.reviewer"}</td>
-	<td>{translate key="editor.review.reviewCompleted"}</td>
+		<td><strong>{translate key="user.role.reviewer"}</strong></td>
+		<td><strong>{translate key="editor.review.reviewCompleted"}</strong></td>
 	</tr>
 	<tr>
-	<td>{$reviewAssignment->getReviewerFullName()}</td>
-	<td>{$reviewAssignment->getDateCompleted()}</td>
+		<td>{$reviewAssignment->getReviewerFullName()}</td>
+		<td>{$reviewAssignment->getDateCompleted()}</td>
 	</tr>	
 </table> 
-{** FIXME: add review forms **}
+
 <br />
-<h3>{translate key="editor.review.reviewerComments"}</h3>
-{** FIXME: the reviewer comments are not being saved yet **}
+
+{if $reviewAssignment->getReviewFormId()}
+	{** FIXME: add review forms **}
+{else}
+	<strong style="margin-left: 12px;">{translate key="editor.review.reviewerComments"}</strong>
+	<p>{$reviewerComment->getComments()}</p>
+{/if}
+
 <br />
+
 <div id="attachments">
 	{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.ReviewAttachmentsGridHandler" op="fetchGrid" readOnly=1 reviewId=$reviewAssignment->getId() escape=false}
 	{load_url_in_div id="readReviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}

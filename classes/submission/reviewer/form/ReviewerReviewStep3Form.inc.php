@@ -139,6 +139,19 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 					$reviewFormResponseDao->insertObject($reviewFormResponse);
 				}
 			}
+		} else {
+			$commentDao =& DAORegistry::getDAO('MonographCommentDAO');			
+			$comment = new MonographComment();
+			$comment->setCommentType('peerReview');
+			$comment->setRoleId(ROLE_ID_REVIEWER);
+			$comment->setAssocId($reviewAssignment->getRound());
+			$comment->setMonographId($reviewAssignment->getSubmissionId());
+			$comment->setAuthorId($reviewAssignment->getReviewerId());
+			$comment->setComments($this->getData('comments'));
+			$comment->setCommentTitle('');
+			$comment->setDatePosted(Core::getCurrentDate());
+			
+			$commentDao->insertMonographComment($comment);
 		}
 
 		// Set review to next step

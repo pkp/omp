@@ -352,12 +352,15 @@ class ReviewerGridHandler extends GridHandler {
 		// FIXME: add validation
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($request->getUserVar('reviewId'));
 		$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+		$monographComments =& $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getRound());
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
 		$templateMgr->assign_by_ref('monograph', $monograph);
+		$templateMgr->assign_by_ref('reviewerComment', $monographComments[0]);
 		$json =& new JSON('true', $templateMgr->fetch('controllers/grid/users/reviewer/readReview.tpl'));
 		return $json->getString();
 	}

@@ -99,7 +99,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				$action =& new GridAction(
 								'readReview',
 								GRID_ACTION_MODE_MODAL,
-								GRID_ACTION_TYPE_REPLACE,
+								GRID_ACTION_TYPE_NOTHING,
 								$router->url($request, null, null, 'readReview', null, $actionArgs),
 								null,
 								$reviewAssignment->getReviewerFullName()
