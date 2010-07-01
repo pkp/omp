@@ -104,6 +104,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 			// Create new monograph
 			$this->monograph = new Monograph();
+			$this->monograph->setLocale($press->getPrimaryLocale()); // FIXME in bug #5543
 			$this->monograph->setUserId($user->getId());
 			$this->monograph->setUserGroupId($actingAsUserGroupId);
 			$this->monograph->setPressId($press->getId());

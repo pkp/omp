@@ -338,18 +338,17 @@ class SeriesEditorSubmissionDAO extends DAO {
 			'SIGNOFF_PROOFREADING_PROOFREADER',
 			ASSOC_TYPE_MONOGRAPH,
 			'SIGNOFF_LAYOUT',
-			'title', // Series title
+			'title', // Series title (primary locale)
 			$primaryLocale,
-			'title',
+			'title', // Series title (current locale)
 			$locale,
-			'abbrev', // Series abbrev
+			'abbrev', // Series abbrev (primary locale)
 			$primaryLocale,
-			'abbrev',
+			'abbrev', // Series abbrev (current locale)
 			$locale,
-			'title', // Monograph title
+			'title', // Monograph title (monograph locale)
+			'title', // Monograph title (current locale)
 			$locale,
-			'title', // Monograph title
-			$primaryLocale,
 			$pressId,
 			$seriesEditorId
 		);
@@ -467,7 +466,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-				LEFT JOIN monograph_settings atpl ON (atpl.monograph_id = m.monograph_id AND atpl.setting_name = ? AND atpl.locale = ?)
+				LEFT JOIN monograph_settings atpl ON (atpl.monograph_id = m.monograph_id AND atpl.setting_name = ? AND atpl.locale = m.locale)
 				LEFT JOIN monograph_settings atl ON (m.monograph_id = atl.monograph_id AND atl.setting_name = ? AND atl.locale = ?)
 				LEFT JOIN edit_decisions edec ON (m.monograph_id = edec.monograph_id)
 				LEFT JOIN edit_decisions edec2 ON (m.monograph_id = edec2.monograph_id AND edec.edit_decision_id < edec2.edit_decision_id)

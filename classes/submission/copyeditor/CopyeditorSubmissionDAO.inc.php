@@ -138,13 +138,13 @@ class CopyeditorSubmissionDAO extends DAO {
 		$locale = Locale::getLocale();
 		$primaryLocale = Locale::getPrimaryLocale();
 		$params = array(
-			'title', // Series title
+			'title', // Series title (primary locale)
 			$primaryLocale,
-			'title',
+			'title', // Series title (current locale)
 			$locale,
-			'abbrev', // Series abbrev
+			'abbrev', // Series abbrev (primary locale)
 			$primaryLocale,
-			'abbrev',
+			'abbrev', // Series abbrev (current locale)
 			$locale,
 			'title', // Monograph title
 			ASSOC_TYPE_MONOGRAPH,
