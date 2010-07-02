@@ -159,7 +159,7 @@ class ReviewerForm extends Form {
 	}
 	
 	/**
-	 * Need to override validate function -- regular FormValidators won't work because hidden 
+	 * Need to override validate function -- Implementing FormValidators in constructor won't work because hidden 
 	 *  form elements (i.e. in other accordion tabs) would throw errors when not filled in
 	 * @see lib/pkp/classes/form/Form::validate()
 	 */
