@@ -98,10 +98,10 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 	function showReview(&$args, &$request) {
 		$this->setupTemplate(EDITOR_SERIES_HOME);
 		$monographId = array_shift($args);
-		
+
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getMonograph($monographId);
-		
+
 		$templateMgr =& TemplateManager::getManager();
 		$currentRound = $monograph->getCurrentRound();
 		$templateMgr->assign('currentRound', $currentRound);
@@ -110,10 +110,114 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$allRounds = array();
 		for ($i = 1; $i <= $currentRound; $i++) $allRounds[] = $i;
 		$templateMgr->assign('rounds', $allRounds);
-		
+
 		$templateMgr->assign('currentReviewType', $monograph->getCurrentReviewType());
 		$templateMgr->assign('monographId', $monographId);
 		$templateMgr->display('seriesEditor/showReviewers.tpl');
+	}
+
+	function sendReviews(&$args, &$request) {
+		// FIXME: add validation
+		$monographId = $request->getUserVar('monographId');
+		// Form handling
+		import('controllers.grid.users.reviewer.form.SendReviewsForm');
+		$sendReviewsForm = new SendReviewsForm($monographId);
+		$sendReviewsForm->initData($args, $request);
+
+		$json = new JSON('true', $sendReviewsForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Show the submission approval modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function showApprove(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		import('controllers.grid.submissions.pressEditor.form.ApproveSubmissionForm');
+		$approveForm = new ApproveSubmissionForm($monographId);
+
+		if ($approveForm->isLocaleResubmit()) {
+			$approveForm->readInputData();
+		} else {
+			$approveForm->initData($args, $request);
+		}
+
+		$json = new JSON('true', $approveForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Save the submission approval modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function saveApprove(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		import('controllers.grid.submissions.pressEditor.form.ApproveSubmissionForm');
+		$approveForm = new ApproveSubmissionForm($monographId);
+
+		$approveForm->readInputData();
+		if ($approveForm->validate()) {
+			$approveForm->execute($args, $request);
+
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false');
+		}
+
+		return $json->getString();
+	}
+
+	/**
+	 * Show the submission decline modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function showDecline(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		import('controllers.grid.submissions.pressEditor.form.DeclineSubmissionForm');
+		$declineForm = new DeclineSubmissionForm($monographId);
+
+		if ($declineForm->isLocaleResubmit()) {
+			$declineForm->readInputData();
+		} else {
+			$declineForm->initData($args, $request);
+		}
+
+		$json = new JSON('true', $declineForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Save the submission decline modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function saveDecline(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		import('controllers.grid.submissions.pressEditor.form.DeclineSubmissionForm');
+		$declineForm = new DeclineSubmissionForm($monographId);
+
+		$declineForm->readInputData();
+		if ($declineForm->validate()) {
+			$declineForm->execute($args, $request);
+
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false');
+		}
+
+		return $json->getString();
 	}
 
 	function submissionRegrets($args) {

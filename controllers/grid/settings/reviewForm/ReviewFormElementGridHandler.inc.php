@@ -57,10 +57,10 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 
 		// Add grid-level actions
 		$this->addAction(
-			new GridAction(
+			new LinkAction(
 				'createReviewFormElement',
-				GRID_ACTION_MODE_MODAL,
-				GRID_ACTION_TYPE_APPEND,
+				LINK_ACTION_MODE_MODAL,
+				LINK_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'createReviewFormElement', null, array('gridId' => $this->getId(), 'reviewFormId' => $reviewFormId)),
 				'grid.action.addItem'
 			),

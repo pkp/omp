@@ -61,20 +61,20 @@ class BookFileTypeGridHandler extends GridHandler {
 		$router =& $request->getRouter();
 		$actionArgs = array('gridId' => $this->getId());
 		$this->addAction(
-			new GridAction(
+			new LinkAction(
 				'addBookFileType',
-				GRID_ACTION_MODE_MODAL,
-				GRID_ACTION_TYPE_APPEND,
+				LINK_ACTION_MODE_MODAL,
+				LINK_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addBookFileType', null, $actionArgs),
 				'grid.action.addItem'
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);
 		$this->addAction(
-			new GridAction(
+			new LinkAction(
 				'restoreBookFileTypes',
-				GRID_ACTION_MODE_CONFIRM,
-				GRID_ACTION_TYPE_NOTHING,
+				LINK_ACTION_MODE_CONFIRM,
+				LINK_ACTION_TYPE_NOTHING,
 				$router->url($request, null, null, 'restoreBookFileTypes', null, $actionArgs),
 				'grid.action.restoreDefaults'
 			),

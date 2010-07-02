@@ -138,10 +138,10 @@ class ReviewFilesGridHandler extends GridHandler {
 		$tarBinary = Config::getVar('cli', 'tar');
 		if (isset($this->_data) && !empty($tarBinary) && file_exists($tarBinary)) {
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'downloadAll',
-					GRID_ACTION_MODE_LINK,
-					GRID_ACTION_TYPE_NOTHING,
+					LINK_ACTION_MODE_LINK,
+					LINK_ACTION_TYPE_NOTHING,
 					$router->url($request, null, null, 'downloadAllFiles', null, array('monographId' => $monographId)),
 					'submission.files.downloadAll',
 					null,
@@ -152,10 +152,10 @@ class ReviewFilesGridHandler extends GridHandler {
 		
 		if ($canAdd) {
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'addReviewFile',
-					GRID_ACTION_MODE_MODAL,
-					GRID_ACTION_TYPE_REPLACE_ALL,
+					LINK_ACTION_MODE_MODAL,
+					LINK_ACTION_TYPE_REPLACE_ALL,
 					$router->url($request, null, null, 'addReviewFile', null, array('monographId' => $monographId)),
 					'editor.submissionArchive.addReviewFile',
 					null,

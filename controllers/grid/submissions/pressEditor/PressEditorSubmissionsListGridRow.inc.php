@@ -51,30 +51,30 @@ class PressEditorSubmissionsListGridRow extends GridRow {
 				'round' => $monograph->getCurrentRound()
 			);
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'approve',
-					GRID_ACTION_MODE_MODAL,
-					GRID_ACTION_TYPE_REMOVE,
+					LINK_ACTION_MODE_MODAL,
+					LINK_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'showApprove', null, $actionArgs),
 					'grid.action.approveForPub',
 					null,
 					'promote'
 				));
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'decline',
-					GRID_ACTION_MODE_MODAL,
-					GRID_ACTION_TYPE_REMOVE,
+					LINK_ACTION_MODE_MODAL,
+					LINK_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'showDecline', null, $actionArgs),
 					'editor.monograph.decision.decline',
 					null,
 					'delete'
 				));
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'moreInfo',
-					GRID_ACTION_MODE_MODAL,
-					GRID_ACTION_TYPE_NOTHING,
+					LINK_ACTION_MODE_MODAL,
+					LINK_ACTION_TYPE_NOTHING,
 					$router->url($request, null, 'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter', null, array('assocId' => $rowId)),
 					'grid.action.moreInformation',
 					null,

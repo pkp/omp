@@ -80,7 +80,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 	 * Get cell actions associated with this row/column combination
 	 * @param $row GridRow
 	 * @param $column GridColumn
-	 * @return array an array of GridAction instances
+	 * @return array an array of LinkAction instances
 	 */
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		$state = $this->getCellState($row, $column);
@@ -96,10 +96,10 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		$action = false;
 		switch ($state) {
 			case 'linkReview':
-				$action =& new GridAction(
+				$action =& new LinkAction(
 								'readReview',
-								GRID_ACTION_MODE_MODAL,
-								GRID_ACTION_TYPE_NOTHING,
+								LINK_ACTION_MODE_MODAL,
+								LINK_ACTION_TYPE_NOTHING,
 								$router->url($request, null, null, 'readReview', null, $actionArgs),
 								null,
 								$reviewAssignment->getReviewerFullName()
@@ -107,10 +107,10 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 			case 'new':
 				// The 'new' state could be for the editor or the reviewer
 				if ( is_numeric($column->getId()) ) {
-					$action =& new GridAction(
+					$action =& new LinkAction(
 									'readReview',
-									GRID_ACTION_MODE_MODAL,
-									GRID_ACTION_TYPE_REPLACE,
+									LINK_ACTION_MODE_MODAL,
+									LINK_ACTION_TYPE_REPLACE,
 									$router->url($request, null, null, 'readReview', null, $actionArgs),
 									null,
 									null,
@@ -124,10 +124,10 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 			case 'completed':
 				break;
 			case 'overdue':
-				$action =& new GridAction(
+				$action =& new LinkAction(
 								'sendReminder',
-								GRID_ACTION_MODE_MODAL,
-								GRID_ACTION_TYPE_REPLACE,
+								LINK_ACTION_MODE_MODAL,
+								LINK_ACTION_TYPE_REPLACE,
 								$router->url($request, null, null, 'sendReminder', null, $actionArgs),
 								null,
 								null,

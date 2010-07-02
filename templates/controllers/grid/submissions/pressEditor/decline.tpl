@@ -13,7 +13,7 @@
 //		$('#declineForm-{/literal}{$fileId}{literal}').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
 //
 //		$('#declineButton-{/literal}{$monographId}{literal}').click(function() {
-//    		submitModalForm("#"+$("#declineForm-{/literal}{$monographId}{literal}").parent().attr('id'), 'GRID_ACTION_TYPE_REMOVE', 'component-grid-submissions-presseditor-presseditorsubmissionslistgrid-table');
+//    		submitModalForm("#"+$("#declineForm-{/literal}{$monographId}{literal}").parent().attr('id'), 'LINK_ACTION_TYPE_REMOVE', 'component-grid-submissions-presseditor-presseditorsubmissionslistgrid-table');
 //		});
 		var modalId = "#"+$("#declineForm-{/literal}{$monographId}{literal}").parent().attr('id');
 		$(modalId).dialog( "option", "buttons", { "{/literal}{translate key="editor.monograph.declineAndNotify"}{literal}": function() { 

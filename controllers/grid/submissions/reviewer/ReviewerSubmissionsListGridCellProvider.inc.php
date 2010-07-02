@@ -26,7 +26,7 @@ class ReviewerSubmissionsListGridCellProvider extends SubmissionsListGridCellPro
 	 * Get cell actions associated with this row/column combination
 	 * @param $row GridRow
 	 * @param $column GridColumn
-	 * @return array an array of GridAction instances
+	 * @return array an array of LinkAction instances
 	 */
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		if ( $column->getId() == 'title' ) {
@@ -43,10 +43,10 @@ class ReviewerSubmissionsListGridCellProvider extends SubmissionsListGridCellPro
 				'reviewId' => $reviewAssigment->getId()
 			);
 
-			$action =& new GridAction(
+			$action =& new LinkAction(
 							'performReview',
-							GRID_ACTION_MODE_LINK,
-							GRID_ACTION_TYPE_NOTHING,
+							LINK_ACTION_MODE_LINK,
+							LINK_ACTION_TYPE_NOTHING,
 							$dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', $reviewAssigment->getId()),
 							null,
 							$monograph->getLocalizedTitle(),

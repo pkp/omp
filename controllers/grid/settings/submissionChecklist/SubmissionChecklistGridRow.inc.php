@@ -43,20 +43,20 @@ class SubmissionChecklistGridRow extends GridRow {
 				'rowId' => $rowId
 			);
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'editSubmissionChecklist',
-					GRID_ACTION_MODE_MODAL,
-					GRID_ACTION_TYPE_REPLACE,
+					LINK_ACTION_MODE_MODAL,
+					LINK_ACTION_TYPE_REPLACE,
 					$router->url($request, null, null, 'editItem', null, $actionArgs),
 					'grid.action.edit',
 					null,
 					'edit'
 				));
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'deleteSubmissionChecklist',
-					GRID_ACTION_MODE_CONFIRM,
-					GRID_ACTION_TYPE_REMOVE,
+					LINK_ACTION_MODE_CONFIRM,
+					LINK_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'deleteItem', null, $actionArgs),
 					'grid.action.delete',
 					null,

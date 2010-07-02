@@ -45,10 +45,10 @@ class AuthorSubmissionsListGridRow extends GridRow {
 			);
 
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'deleteSubmission',
-					GRID_ACTION_MODE_CONFIRM,
-					GRID_ACTION_TYPE_REMOVE,
+					LINK_ACTION_MODE_CONFIRM,
+					LINK_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'deleteSubmission', null, $actionArgs),
 					'grid.action.delete',
 					null,

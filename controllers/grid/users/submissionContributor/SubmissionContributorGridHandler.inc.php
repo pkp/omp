@@ -105,10 +105,10 @@ class SubmissionContributorGridHandler extends GridHandler {
 		$router =& $request->getRouter();
 		$actionArgs = array('monographId' => $monographId);
 		$this->addAction(
-			new GridAction(
+			new LinkAction(
 				'addSubmissionContributor',
-				GRID_ACTION_MODE_MODAL,
-				GRID_ACTION_TYPE_APPEND,
+				LINK_ACTION_MODE_MODAL,
+				LINK_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addSubmissionContributor', null, $actionArgs),
 				'grid.action.addAuthor'
 			)

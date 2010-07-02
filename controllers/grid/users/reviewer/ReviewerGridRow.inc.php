@@ -47,10 +47,10 @@ class ReviewerGridRow extends GridRow {
 				'submissionContributorId' => $rowId
 			);
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'remove',
-					GRID_ACTION_MODE_CONFIRM,
-					GRID_ACTION_TYPE_REMOVE,
+					LINK_ACTION_MODE_CONFIRM,
+					LINK_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'editSubmissionContributor', null, $actionArgs),
 					'grid.action.remove',
 					null,
@@ -58,10 +58,10 @@ class ReviewerGridRow extends GridRow {
 				)
 			);
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'moreInfo',
-					GRID_ACTION_MODE_MODAL,
-					GRID_ACTION_TYPE_REMOVE,
+					LINK_ACTION_MODE_MODAL,
+					LINK_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'moreInformation', null, $actionArgs),
 					'grid.action.moreInformation',
 					null,

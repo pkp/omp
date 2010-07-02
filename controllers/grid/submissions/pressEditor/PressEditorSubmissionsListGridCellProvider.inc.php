@@ -69,7 +69,7 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 	 * Get cell actions associated with this row/column combination
 	 * @param $row GridRow
 	 * @param $column GridColumn
-	 * @return array an array of GridAction instances
+	 * @return array an array of LinkAction instances
 	 */
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		$state = $this->getCellState($row, $column);
@@ -85,10 +85,10 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 
 		switch ($state) {
 			case 'new':
-				$action =& new GridAction(
+				$action =& new LinkAction(
 								'showApproveAndReview',
-								GRID_ACTION_MODE_MODAL,
-								GRID_ACTION_TYPE_REPLACE,
+								LINK_ACTION_MODE_MODAL,
+								LINK_ACTION_TYPE_REPLACE,
 								$router->url($request, null, null, 'showApproveAndReview', null, $actionArgs),
 								'grid.action.approveForReview',
 								null,
@@ -96,10 +96,10 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 							);
 				return array($action);
 			case 'accepted':
-				$action =& new GridAction(
+				$action =& new LinkAction(
 								'showReview',
-								GRID_ACTION_MODE_MODAL,
-								GRID_ACTION_TYPE_REPLACE,
+								LINK_ACTION_MODE_MODAL,
+								LINK_ACTION_TYPE_REPLACE,
 								$router->url($request, null, null, 'showReview', null, $actionArgs),
 								'grid.action.approve',
 								null,

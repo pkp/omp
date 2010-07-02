@@ -60,10 +60,10 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		// Grid-level actions
 		$dispatcher =& Registry::get('dispatcher');
 		$this->addAction(
-			new GridAction(
+			new LinkAction(
 				'newSubmission',
-				GRID_ACTION_MODE_LINK,
-				GRID_ACTION_TYPE_NOTHING,
+				LINK_ACTION_MODE_LINK,
+				LINK_ACTION_TYPE_NOTHING,
 				$dispatcher->url($request, 'page', null, 'author', 'submit'),
 				'author.submit',
 				null,

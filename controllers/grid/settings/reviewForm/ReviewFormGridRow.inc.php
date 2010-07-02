@@ -49,36 +49,36 @@ class ReviewFormGridRow extends GridRow {
 			$router =& $request->getRouter();
 
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'editReviewForm',
-					GRID_ACTION_MODE_MODAL,
-					GRID_ACTION_TYPE_REPLACE,
+					LINK_ACTION_MODE_MODAL,
+					LINK_ACTION_TYPE_REPLACE,
 					$router->url($request, null, null, 'editReviewForm', null, $actionArgs),
 					'grid.action.edit',
 					'edit'
 				));
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'deleteReviewForm',
-					GRID_ACTION_MODE_CONFIRM,
-					GRID_ACTION_TYPE_REMOVE,
+					LINK_ACTION_MODE_CONFIRM,
+					LINK_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'deleteReviewForm', null, $actionArgs),
 					'grid.action.delete',
 					'delete'
 				));
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'previewReviewForm',
-					GRID_ACTION_MODE_MODAL,
-					GRID_ACTION_TYPE_NOTHING,
+					LINK_ACTION_MODE_MODAL,
+					LINK_ACTION_TYPE_NOTHING,
 					$router->url($request, null, 'grid.setup.reviewForm.ReviewFormGridRow', 'previewReviewForm', null, $actionArgs),
 					Locale::translate('grid.action.preview')
 				));
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'reviewFormElements',
-					GRID_ACTION_MODE_MODAL,
-					GRID_ACTION_TYPE_NOTHING,
+					LINK_ACTION_MODE_MODAL,
+					LINK_ACTION_TYPE_NOTHING,
 					$router->url($request, null, 'grid.setup.reviewForm.ReviewFormElementGridHandler', 'fetchGrid', null, $actionArgs),
 					Locale::translate('grid.action.reviewFormElements')
 				));

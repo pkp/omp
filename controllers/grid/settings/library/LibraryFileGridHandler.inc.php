@@ -77,10 +77,10 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		// Add grid-level actions
 		$router =& $request->getRouter();
 		$this->addAction(
-			new GridAction(
+			new LinkAction(
 				'addFile',
-				GRID_ACTION_MODE_MODAL,
-				GRID_ACTION_TYPE_APPEND,
+				LINK_ACTION_MODE_MODAL,
+				LINK_ACTION_TYPE_APPEND,
 				$router->url($request, null, null, 'addFile', null, array('gridId' => $this->getId(), 'fileType' => $this->getFileType())),
 				'grid.action.addItem'
 			),

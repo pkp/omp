@@ -74,20 +74,20 @@ class ReviewFormElementGridRow extends GridRow {
 			$router =& $request->getRouter();
 
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'editReviewForm',
-					GRID_ACTION_MODE_MODAL,
-					GRID_ACTION_TYPE_REPLACE,
+					LINK_ACTION_MODE_MODAL,
+					LINK_ACTION_TYPE_REPLACE,
 					$router->url($request, null, null, 'editReviewFormElement', null, $actionArgs),
 					'grid.action.edit',
 					null,
 					'edit'
 				));
 			$this->addAction(
-				new GridAction(
+				new LinkAction(
 					'deleteReviewForm',
-					GRID_ACTION_MODE_CONFIRM,
-					GRID_ACTION_TYPE_REMOVE,
+					LINK_ACTION_MODE_CONFIRM,
+					LINK_ACTION_TYPE_REMOVE,
 					$router->url($request, null, null, 'deleteReviewFormElement', null, $actionArgs),
 					'grid.action.delete',
 					null,
