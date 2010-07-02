@@ -30,8 +30,8 @@ class ReviewerForm extends Form {
 		$this->_reviewAssignmentId = (int) $reviewAssignmentId;
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'responseDueDate', 'required', 'author.submit.form.authorRequiredFields'));
-		$this->addCheck(new FormValidator($this, 'reviewDueDate', 'required', 'author.submit.form.authorRequiredFields'));
+		$this->addCheck(new FormValidator($this, 'responseDueDate', 'required', 'editor.review.errorAddingReviewer'));
+		$this->addCheck(new FormValidator($this, 'reviewDueDate', 'required', 'editor.review.errorAddingReviewer'));
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -165,27 +165,14 @@ class ReviewerForm extends Form {
 	 */
 	function validate() {
 		$selectionType = $this->getData('selectionType');
-		$firstName = $this->getData('firstName');
-		$lastName = $this->getData('lastName');
-		$username = $this->getData('username');
-		$email = $this->getData('email');
-		$reviewerId = $this->getData('reviewerId');
 
-		$isValid = true;
 		if($selectionType == 'createNew') {
-			if(!empty($firstName) && !empty($lastName) && !empty($username) && !empty($email)) {
-				$userDao =& DAORegistry::getDAO('UserDAO');
-				if ($userDao->userExistsByEmail($email) || $userDao->userExistsByUsername($username)) {
-					$this->addError($fieldName, Locale::translate($property->getValidationMessage()));
-					$this->addErrorField($fieldName);
-				}
-			} else {
-				$this->addError('username', Locale::translate('editor.review.errorAddingReviewer'));
-				$this->addErrorField('username');
-			}
-		} else if (!isset($reviewerId)) {
-			$this->addError('reviewerId', Locale::translate('editor.review.errorAddingReviewer'));
-			$this->addErrorField('reviewerId');
+			$this->addCheck(new FormValidator($this, 'firstName', 'required', 'editor.review.errorAddingReviewer'));
+			$this->addCheck(new FormValidator($this, 'lastName', 'required', 'editor.review.errorAddingReviewer'));
+			$this->addCheck(new FormValidator($this, 'username', 'required', 'editor.review.errorAddingReviewer'));
+			$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'editor.review.errorAddingReviewer'));
+		} else {
+			$this->addCheck(new FormValidator($this, 'reviewerId', 'required', 'editor.review.errorAddingReviewer'));
 		}
 		return parent::validate();
 	}	
