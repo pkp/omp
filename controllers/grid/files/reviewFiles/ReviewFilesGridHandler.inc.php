@@ -186,7 +186,7 @@ class ReviewFilesGridHandler extends GridHandler {
 		// either show the role columns or show the file type
 		if ( $this->getShowRoleColumns() ) {
 			$session =& $request->getSession();
-			$actingAsUserGroupId = $session->getSessionVar('actingAsUserGroupId');
+			$actingAsUserGroupId = $session->getActingAsUserGroupId();
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 			$actingAsUserGroup =& $userGroupDao->getById($actingAsUserGroupId);
 

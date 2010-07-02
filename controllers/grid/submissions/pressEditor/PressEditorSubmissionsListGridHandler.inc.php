@@ -83,7 +83,7 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$cellProvider = new PressEditorSubmissionsListGridCellProvider();
 
 		$session =& $request->getSession();
-		$actingAsUserGroupId = $session->getSessionVar('actingAsUserGroupId');
+		$actingAsUserGroupId = $session->getActingAsUserGroupId();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$actingAsUserGroup =& $userGroupDao->getById($actingAsUserGroupId);
 
