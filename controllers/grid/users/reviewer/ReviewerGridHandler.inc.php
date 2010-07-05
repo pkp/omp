@@ -39,7 +39,9 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return array
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addReviewer', 'editReviewer', 'updateReviewer', 'deleteReviewer', 'getReviewerAutocomplete', 'readReview', 'sendReviews', 'showApprove', 'saveApprove', 'showDecline', 'saveDecline', 'createReviewer'));
+		return array_merge(parent::getRemoteOperations(), array('addReviewer', 'editReviewer', 'updateReviewer', 'deleteReviewer', 
+			'getReviewerAutocomplete', 'readReview', 'sendReviews', 'showApprove', 'saveApprove', 'showDecline', 'saveDecline', 
+			'createReviewer', 'editReminder', 'sendReminder'));
 	}
 
 	/**
@@ -269,7 +271,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * Delete a reviewer
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function deleteReviewer(&$args, &$request) {
 		// Identify the submission Id
@@ -291,6 +293,9 @@ class ReviewerGridHandler extends GridHandler {
 
 	/**
 	* Get potential reviewers for editor's reviewer selection autocomplete.
+	* @param $args array
+	* @param $request PKPRequest
+	* @return JSON
 	*/
 	function getReviewerAutocomplete(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -328,8 +333,13 @@ class ReviewerGridHandler extends GridHandler {
 		echo $sourceJson->getString();
 	}
 
+	/**
+	 * Open a modal to read the reviewer's review and download any files they may have uploaded
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
 	function readReview(&$args, &$request) {
-		// FIXME: add validation
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
@@ -342,6 +352,48 @@ class ReviewerGridHandler extends GridHandler {
 		$templateMgr->assign_by_ref('monograph', $monograph);
 		$templateMgr->assign_by_ref('reviewerComment', $monographComments[0]);
 		$json =& new JSON('true', $templateMgr->fetch('controllers/grid/users/reviewer/readReview.tpl'));
+		return $json->getString();
+	}
+	
+	/**
+	 * Displays a modal to allow the editor to ender a message to send to the reviewer as a reminder
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function editReminder(&$args, &$request) {
+		// Identify the review assignment being updated
+		$reviewAssignmentId = $request->getUserVar('reviewId');
+
+		// Form handling
+		import('controllers.grid.users.reviewer.form.ReviewReminderForm');
+		$reviewReminderForm = new ReviewReminderForm($reviewAssignmentId);
+		$reviewReminderForm->initData($args, $request);
+
+		$json = new JSON('true', $reviewReminderForm->fetch($request));
+		return $json->getString();
+	}
+	
+	/**
+	 * Send the reviewer reminder and close the modal
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function sendReminder(&$args, &$request) {
+		// Identify the review assignment being updated
+ 		$reviewAssignmentId = $request->getUserVar('reviewAssignmentId');
+
+		// Form handling
+		import('controllers.grid.users.reviewer.form.ReviewReminderForm');
+		$reviewReminderForm = new ReviewReminderForm($reviewAssignmentId);
+		$reviewReminderForm->readInputData();
+		if ($reviewReminderForm->validate()) {
+			$reviewReminderForm->execute($args, $request);
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false', Locale::translate('editor.review.reminderError'));
+		}
 		return $json->getString();
 	}
 }

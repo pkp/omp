@@ -110,7 +110,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 					$action =& new LinkAction(
 									'readReview',
 									LINK_ACTION_MODE_MODAL,
-									LINK_ACTION_TYPE_REPLACE,
+									LINK_ACTION_TYPE_NOTHING,
 									$router->url($request, null, null, 'readReview', null, $actionArgs),
 									null,
 									null,
@@ -128,8 +128,8 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 								'sendReminder',
 								LINK_ACTION_MODE_MODAL,
 								LINK_ACTION_TYPE_REPLACE,
-								$router->url($request, null, null, 'sendReminder', null, $actionArgs),
-								null,
+								$router->url($request, null, null, 'editReminder', null, $actionArgs),
+								'editor.review.reminder',
 								null,
 								$state
 							);
