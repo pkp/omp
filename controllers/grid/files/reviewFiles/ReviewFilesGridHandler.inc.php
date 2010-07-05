@@ -25,6 +25,9 @@ class ReviewFilesGridHandler extends GridHandler {
 	/** Boolean flag if grid is selectable **/
 	var $_isSelectable;
 
+	/** Boolean flag if user can upload file to grid **/
+	var $_canUpload;
+
 	/** Boolean flag for showing role columns **/
 	var $_showRoleColumns;
 
@@ -42,7 +45,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('downloadFile', 'downloadAllFiles', 'addReviewFile', 'uploadReviewFile', 'updateReviewFiles'));
+		return array_merge(parent::getRemoteOperations(), array('downloadFile', 'downloadAllFiles', 'manageReviewFiles', 'uploadReviewFile', 'updateReviewFiles'));
 	}
 
 	/**
@@ -59,6 +62,22 @@ class ReviewFilesGridHandler extends GridHandler {
 	 */
 	function getIsSelectable() {
 	 return $this->_isSelectable;
+	}
+
+	/**
+	 * Set the canUpload flag
+	 * @param $canUpload bool
+	 */
+	function setCanUpload($canUpload) {
+	 $this->_canUpload = $canUpload;
+	}
+
+	/**
+	 * Get the canUpload flag
+	 * @return bool
+	 */
+	function getCanUpload() {
+	 return $this->_canUpload;
 	}
 
 	/**
@@ -96,6 +115,10 @@ class ReviewFilesGridHandler extends GridHandler {
 		$isSelectable = $request->getUserVar('isSelectable');
 		$this->setIsSelectable($isSelectable);
 
+		// Set the Can upload boolean flag
+		$canUpload = $request->getUserVar('canUpload');
+		$this->setCanUpload($canUpload);
+
 		// Set the show role columns boolean flag
 		$showRoleColumns = $request->getUserVar('showRoleColumns');
 		$this->setShowRoleColumns($showRoleColumns);
@@ -125,6 +148,7 @@ class ReviewFilesGridHandler extends GridHandler {
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 			$monographFiles =& $monographFileDao->getByMonographId($monographId);
 			$this->setData($monographFiles);
+			$this->setId('reviewFilesSelect'); // Need a unique ID since the 'manage review files' modal is in the same namespace as the 'view review files' modal
 
 			// Set the already selected elements of the grid
 			$templateMgr =& TemplateManager::getManager();
@@ -153,11 +177,25 @@ class ReviewFilesGridHandler extends GridHandler {
 		if ($canAdd) {
 			$this->addAction(
 				new LinkAction(
-					'addReviewFile',
+					'manageReviewFiles',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE_ALL,
-					$router->url($request, null, null, 'addReviewFile', null, array('monographId' => $monographId)),
-					'editor.submissionArchive.addReviewFile',
+					$router->url($request, null, null, 'manageReviewFiles', null, array('monographId' => $monographId)),
+					'editor.submissionArchive.manageReviewFiles',
+					null,
+					'add'
+				)
+			);
+		}
+
+		if ($canUpload) {
+			$this->addAction(
+				new LinkAction(
+					'uploadReviewFile',
+					LINK_ACTION_MODE_MODAL,
+					LINK_ACTION_TYPE_APPEND,
+					$router->url($request, null, 'grid.files.submissionFiles.SubmissionReviewFilesGridHandler', 'addFile', null, array('monographId' => $monographId)),
+					'editor.submissionArchive.uploadFile',
 					null,
 					'add'
 				)
@@ -167,7 +205,7 @@ class ReviewFilesGridHandler extends GridHandler {
 		import('controllers.grid.files.reviewFiles.ReviewFilesGridCellProvider');
 		$cellProvider =& new ReviewFilesGridCellProvider();
 		// Columns
-		if ( $this->getIsSelectable() ) {
+		if ($this->getIsSelectable()) {
 			$this->addColumn(new GridColumn('select',
 				'common.select',
 				null,
@@ -293,14 +331,14 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function addReviewFile(&$args, &$request) {
+	function manageReviewFiles(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
-		import('controllers.grid.files.reviewFiles.form.AddReviewFileForm');
-		$addReviewFileForm = new AddReviewFileForm($monographId);
+		import('controllers.grid.files.reviewFiles.form.ManageReviewFilesForm');
+		$manageReviewFilesForm = new ManageReviewFilesForm($monographId);
 
-		$addReviewFileForm->initData($args, $request);
-		$json = new JSON('true', $addReviewFileForm->fetch($request));
+		$manageReviewFilesForm->initData($args, $request);
+		$json = new JSON('true', $manageReviewFilesForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -313,11 +351,11 @@ class ReviewFilesGridHandler extends GridHandler {
 	function uploadReviewFile(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
-		import('controllers.grid.files.reviewFiles.form.AddReviewFileForm');
-		$addReviewFileForm = new AddReviewFileForm($monographId);
+		import('controllers.grid.files.reviewFiles.form.ManageReviewFilesForm');
+		$manageReviewFilesForm = new ManageReviewFilesForm($monographId);
 
-		$addReviewFileForm->initData($args, $request);
-		$json = new JSON('true', $addReviewFileForm->fetch($request));
+		$manageReviewFilesForm->initData($args, $request);
+		$json = new JSON('true', $manageReviewFilesForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -330,13 +368,13 @@ class ReviewFilesGridHandler extends GridHandler {
 	function updateReviewFiles(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
-		import('controllers.grid.files.reviewFiles.form.AddReviewFileForm');
-		$addReviewFileForm = new AddReviewFileForm($monographId);
+		import('controllers.grid.files.reviewFiles.form.ManageReviewFilesForm');
+		$manageReviewFilesForm = new ManageReviewFilesForm($monographId);
 
-		$addReviewFileForm->readInputData();
+		$manageReviewFilesForm->readInputData();
 
-		if ($addReviewFileForm->validate()) {
-			$addReviewFileForm->execute($args, $request);
+		if ($manageReviewFilesForm->validate()) {
+			$manageReviewFilesForm->execute($args, $request);
 
 			// Grab the files that are currently set for the review
 			$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');

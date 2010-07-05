@@ -60,7 +60,7 @@
 </script>
 
 
-<form name="uploadForm" id="uploadForm-{$randomId}" action="{url component="grid.files.submissionFiles.SubmissionFilesGridHandler" op="uploadFile" monographId=$monographId fileId=$fileId}" method="post">
+<form name="uploadForm" id="uploadForm-{$randomId}" action="{url op="uploadFile" monographId=$monographId fileId=$fileId}" method="post">
 	{fbvFormArea id="file"}
 		{fbvFormSection title="common.fileType" required=1}
 			{if $fileId}{assign var="selectDisabled" value="disabled"}{/if}

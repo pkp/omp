@@ -165,6 +165,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		// Calling editSponsor with an empty file id will add a new file
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('newFile', 'true');
+		
 		return $this->editFile($args, $request);
 	}
 

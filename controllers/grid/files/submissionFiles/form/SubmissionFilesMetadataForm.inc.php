@@ -20,7 +20,7 @@ class SubmissionFilesMetadataForm extends Form {
 
 	/** @var int */
 	var $_monographId;
-
+	
 	/**
 	 * Constructor.
 	 */

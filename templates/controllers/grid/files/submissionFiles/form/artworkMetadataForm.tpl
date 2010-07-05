@@ -20,7 +20,7 @@
 	    		if (returnString.status == true) {
 		    		$('#loading').hide();
 		    		if(returnString.isEditing) { // User was editing existing item, save and close
-			    		saveAndUpdate('{/literal}{url router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionFilesGridHandler" op="returnFileRow" fileId=$fileId}{literal}',
+			    		saveAndUpdate('{/literal}{url router=$smarty.const.ROUTE_COMPONENT op="returnFileRow" fileId=$fileId}{literal}',
 			    				'replace',
 			    				'component-'+'{/literal}{$gridId}{literal}'+'-row-'+'{/literal}{$fileId}{literal}',
         						'#fileUploadTabs-{/literal}{$fileId}{literal}');
@@ -45,7 +45,7 @@
 		});
 		$("#cancelButton2-{/literal}{$fileId}{literal}").click(function() {
 			//  The user has cancelled the modal without filling out the metadata form
-			deleteUrl = '{/literal}{url router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionFilesGridHandler" op="deleteFile" fileId=$fileId}{literal}';
+			deleteUrl = '{/literal}{url router=$smarty.const.ROUTE_COMPONENT op="deleteFile" fileId=$fileId}{literal}';
 			newFile = $('#newFile').val();
 			if(newFile != "") {
 				$.post(deleteUrl);
@@ -58,7 +58,7 @@
 </script>
 
 
-<form name="metadataForm-{$fileId}" id="metadataForm-{$fileId}" action="{url component="grid.files.submissionFiles.SubmissionFilesGridHandler" op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
+<form name="metadataForm-{$fileId}" id="metadataForm-{$fileId}" action="{url op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
 
 <h3>{translate key='submission.artworkFileDetails'}</h3>
 

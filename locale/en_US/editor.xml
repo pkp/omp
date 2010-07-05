@@ -43,7 +43,8 @@
 	<message key="editor.allSeries">All Series</message>
 	<message key="editor.allEditors">All Editors</message>
 	<message key="editor.me">Me</message>
-	<message key="editor.submissionArchive.addReviewFile">Add Review File</message>
+	<message key="editor.submissionArchive.manageReviewFiles">Manage Review Files</message>
+	<message key="editor.submissionArchive.uploadFile">Upload New Submission File</message>
 	<message key="editor.submissionArchive.currentFiles">Current Review Files For Round {$round}</message>
 	<message key="editor.submissionArchive.availableFiles">Available Submission Files</message>
 	<message key="editor.submissionArchive.noSubmissions">No submissions in the archive.</message>

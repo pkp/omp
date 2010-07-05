@@ -18,15 +18,16 @@ class SubmissionFilesUploadForm extends Form {
 	/** the id of the file being edited */
 	var $_fileId; 
 
-	/** the id of the file being edited */
+	/** the id of the monograph being edited */
 	var $_monographId; 
-	
+
 	/**
 	 * Constructor.
 	 */
 	function SubmissionFilesUploadForm($fileId = null, $monographId) {
 		$this->_fileId = $fileId;		
-		$this->_monographId = $monographId;		
+		$this->_monographId = $monographId;	
+
 		parent::Form('controllers/grid/files/submissionFiles/form/fileForm.tpl');
 
 		$this->addCheck(new FormValidatorPost($this));
