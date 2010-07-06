@@ -63,6 +63,8 @@ class SendReviewsForm extends Form {
 		$monograph =& $this->getMonograph();
 		$submitter = $monograph->getUser();
 
+		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION));
+
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'EDITOR_DECISION_ACCEPT');
 		$paramArray = array(

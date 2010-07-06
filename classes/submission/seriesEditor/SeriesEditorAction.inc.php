@@ -66,7 +66,7 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmission->setStatus(STATUS_QUEUED);
 			$seriesEditorSubmission->stampStatusModified();
 			$seriesEditorSubmission->addDecision(
-									$editorDecision, 
+									$editorDecision,
 									$seriesEditorSubmission->getCurrentReviewType(),
 									$seriesEditorSubmission->getCurrentRound()
 								);
@@ -141,7 +141,7 @@ class SeriesEditorAction extends Action {
 			$settings =& $settingsDao->getPressSettings($press->getId());
 			if (isset($reviewDueDate)) SeriesEditorAction::setDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getReviewId(), $reviewDueDate);
 			if (isset($responseDueDate)) SeriesEditorAction::setResponseDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getReviewId(), $responseDueDate);
-			
+
 			// Add log
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
@@ -602,7 +602,7 @@ class SeriesEditorAction extends Action {
 						'dueDate' => strftime(Config::getVar('general', 'date_format_short'),
 						strtotime($reviewAssignment->getDateDue())),
 						'monographId' => $monographId,
-						'reviewType' => $reviewAssignment->getReviewType(), 
+						'reviewType' => $reviewAssignment->getReviewType(),
 						'round' => $reviewAssignment->getRound()
 					)
 				);
@@ -813,8 +813,8 @@ class SeriesEditorAction extends Action {
 			$newFileId = $monographFileManager->copyToCopyeditFile($fileId, $revision);
 
 			$copyeditSignoff = $signoffDao->build(
-								'SIGNOFF_COPYEDITING_INITIAL', 
-								ASSOC_TYPE_MONOGRAPH, 
+								'SIGNOFF_COPYEDITING_INITIAL',
+								ASSOC_TYPE_MONOGRAPH,
 								$seriesEditorSubmission->getId()
 							);
 
@@ -909,10 +909,10 @@ class SeriesEditorAction extends Action {
 		// been assigned to review this monograph.
 		if (!$assigned && !HookRegistry::call('SeriesEditorAction::selectCopyeditor', array(&$seriesEditorSubmission, &$copyeditorId))) {
 			$copyeditInitialSignoff = $signoffDao->build(
-								'SIGNOFF_COPYEDITING_INITIAL', 
-								ASSOC_TYPE_MONOGRAPH, 
+								'SIGNOFF_COPYEDITING_INITIAL',
+								ASSOC_TYPE_MONOGRAPH,
 								$seriesEditorSubmission->getId()
-							); 
+							);
 			$copyeditInitialSignoff->setUserId($copyeditorId);
 			$signoffDao->updateObject($copyeditInitialSignoff);
 
@@ -986,14 +986,14 @@ class SeriesEditorAction extends Action {
 
 		// Only allow copyediting to be initiated if a copyedit file exists.
 		if ($seriesEditorSubmission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL') && !HookRegistry::call('SeriesEditorAction::initiateCopyedit', array(&$seriesEditorSubmission))) {
-			$signoffDao =& DAORegistry::getDAO('SignoffDAO');			
-			
+			$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+
 			$copyeditSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getId());
 			if (!$copyeditSignoff->getUserId()) {
 				$copyeditSignoff->setUserId($user->getId());
 			}
 			$copyeditSignoff->setDateNotified(Core::getCurrentDate());
-			
+
 			$signoffDao->updateObject($copyeditSignoff);
 		}
 	}
@@ -1551,10 +1551,10 @@ class SeriesEditorAction extends Action {
 		// been assigned to this monograph.
 		if (!HookRegistry::call('SeriesEditorAction::selectCopyeditor', array(&$seriesEditorSubmission, &$copyeditorId))) {
 			$productionSignoff = $signoffDao->build(
-							'SIGNOFF_PRODUCTION', 
-							ASSOC_TYPE_MONOGRAPH, 
+							'SIGNOFF_PRODUCTION',
+							ASSOC_TYPE_MONOGRAPH,
 							$submission->getId()
-						); 
+						);
 			$productionSignoff->setUserId($editorId);
 			$signoffDao->updateObject($productionSignoff);
 
@@ -1767,7 +1767,7 @@ class SeriesEditorAction extends Action {
 					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_REVIEWER_COMMENT
 				);
 			}
-				
+
 			if ($emailComment) {
 				$commentForm->email();
 			}
@@ -1820,7 +1820,7 @@ class SeriesEditorAction extends Action {
 					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_EDITOR_DECISION_COMMENT
 				);
 			}
-				
+
 			if ($emailComment) {
 				$commentForm->email();
 			}
@@ -1906,68 +1906,7 @@ class SeriesEditorAction extends Action {
 				}
 			} else {
 				if (Request::getUserVar('importPeerReviews')) {
-					$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-					$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
-					$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
-
-					$body = '';
-					foreach ($reviewAssignments as $reviewAssignment) {
-						// If the reviewer has completed the assignment, then import the review.
-						if ($reviewAssignment->getDateCompleted() != null && !$reviewAssignment->getCancelled()) {
-							// Get the comments associated with this review assignment
-							$monographComments =& $monographCommentDao->getMonographComments($seriesEditorSubmission->getId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getReviewId());
-							
-							if($monographComments) { 
-								$body .= "------------------------------------------------------\n";
-								$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n";
-								if (is_array($monographComments)) {
-									foreach ($monographComments as $comment) {
-										// If the comment is viewable by the author, then add the comment.
-										if ($comment->getViewable()) {
-											$body .= String::html2utf(strip_tags($comment->getComments())) . "\n\n";
-										}
-									}
-								}
-								$body .= "------------------------------------------------------\n\n";
-							} 
-							if ($reviewFormId = $reviewAssignment->getReviewFormId()) {
-								$reviewId = $reviewAssignment->getReviewId();
-								
-								$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
-								$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
-								$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
-								if(!$monographComments) {
-									$body .= "------------------------------------------------------\n";
-									$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n\n";
-								}
-								foreach ($reviewFormElements as $reviewFormElement) {
-									$body .= $reviewFormElement->getLocalizedQuestion() . ": \n";
-									$reviewFormResponse = $reviewFormResponseDao->getReviewFormResponse($reviewId, $reviewFormElement->getId());
-									
-									if ($reviewFormResponse) {
-										$possibleResponses = $reviewFormElement->getLocalizedPossibleResponses();
-										if (in_array($reviewFormElement->getElementType(), $reviewFormElement->getMultipleResponsesElementTypes())) {
-											if ($reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_CHECKBOXES) {
-												foreach ($reviewFormResponse->getValue() as $value) {
-													$body .= "\t" . String::html2utf(strip_tags($possibleResponses[$value-1]['content'])) . "\n";
-												}
-											} else {
-												$body .= "\t" . String::html2utf(strip_tags($possibleResponses[$reviewFormResponse->getValue()-1]['content'])) . "\n";
-											}
-											$body .= "\n";
-										} else {
-											$body .= "\t" . String::html2utf(strip_tags($reviewFormResponse->getValue())) . "\n\n";
-										}
-									}
-								
-								}
-								$body .= "------------------------------------------------------\n\n";
-					
-							}
-							
-							
-						}
-					}
+					$body = SeriesEditorAction::getPeerReviews($seriesEditorSubmission);
 					$oldBody = $email->getBody();
 					if (!empty($oldBody)) $oldBody .= "\n";
 					$email->setBody($oldBody . $body);
@@ -1978,6 +1917,81 @@ class SeriesEditorAction extends Action {
 
 			return false;
 		}
+	}
+
+
+	/**
+	 * Get the text of all peer reviews for a submission
+	 * @param $seriesEditorSubmission object
+	 * @return string
+	 */
+	function getPeerReviews($seriesEditorSubmission) {
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
+		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION));
+
+		$body = '';
+		foreach ($reviewAssignments as $reviewAssignment) {
+			// If the reviewer has completed the assignment, then import the review.
+			if ($reviewAssignment->getDateCompleted() != null && !$reviewAssignment->getCancelled()) {
+				// Get the comments associated with this review assignment
+				$monographComments =& $monographCommentDao->getMonographComments($seriesEditorSubmission->getId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getReviewId());
+
+				if($monographComments) {
+					$body .= "\n\n------------------------------------------------------\n";
+					$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n";
+					if (is_array($monographComments)) {
+						foreach ($monographComments as $comment) {
+							// If the comment is viewable by the author, then add the comment.
+							if ($comment->getViewable()) {
+								$body .= String::html2utf(strip_tags($comment->getComments())) . "\n\n";
+							}
+						}
+					}
+					$body .= "------------------------------------------------------\n\n";
+				}
+				if ($reviewFormId = $reviewAssignment->getReviewFormId()) {
+					$reviewId = $reviewAssignment->getReviewId();
+
+					$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
+					$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+					$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
+					if(!$monographComments) {
+						$body .= "------------------------------------------------------\n";
+						$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n\n";
+					}
+					foreach ($reviewFormElements as $reviewFormElement) {
+						$body .= $reviewFormElement->getLocalizedQuestion() . ": \n";
+						$reviewFormResponse = $reviewFormResponseDao->getReviewFormResponse($reviewId, $reviewFormElement->getId());
+
+						if ($reviewFormResponse) {
+							$possibleResponses = $reviewFormElement->getLocalizedPossibleResponses();
+							if (in_array($reviewFormElement->getElementType(), $reviewFormElement->getMultipleResponsesElementTypes())) {
+								if ($reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_CHECKBOXES) {
+									foreach ($reviewFormResponse->getValue() as $value) {
+										$body .= "\t" . String::html2utf(strip_tags($possibleResponses[$value-1]['content'])) . "\n";
+									}
+								} else {
+									$body .= "\t" . String::html2utf(strip_tags($possibleResponses[$reviewFormResponse->getValue()-1]['content'])) . "\n";
+								}
+								$body .= "\n";
+							} else {
+								$body .= "\t" . String::html2utf(strip_tags($reviewFormResponse->getValue())) . "\n\n";
+							}
+						}
+
+					}
+					$body .= "------------------------------------------------------\n\n";
+
+				}
+
+
+			}
+		}
+
+		return $body;
 	}
 
 	/**
@@ -2126,7 +2140,7 @@ class SeriesEditorAction extends Action {
 					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_LAYOUT_COMMENT
 				);
 			}
-				
+
 			if ($emailComment) {
 				$commentForm->email();
 			}
@@ -2178,8 +2192,8 @@ class SeriesEditorAction extends Action {
 					$userRole['id'], 'notification.type.proofreadComment',
 					$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_PROOFREAD_COMMENT
 				);
-			}	
-			
+			}
+
 			if ($emailComment) {
 				$commentForm->email();
 			}

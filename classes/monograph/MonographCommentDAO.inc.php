@@ -42,7 +42,7 @@ class MonographCommentDAO extends DAO {
 					'SELECT a.* FROM monograph_comments a WHERE monograph_id = ? AND comment_type = ? AND assoc_id = ? ORDER BY date_posted',
 					array($monographId, $commentType, $assocId)
 				);
-			}				
+			}
 		}
 
 		while (!$result->EOF) {
@@ -78,20 +78,20 @@ class MonographCommentDAO extends DAO {
 
 		return $monographComments;
 	}
-	
+
 	/**
 	 * Retrieve MonographComments made my reviewers on a monograph
 	 * @param $userId int
 	 * @return MonographComment objects array
 	 */
-	function &getReviewerCommentsByReviewerId($reviewerId, $monographId, $round = null) {
+	function &getReviewerCommentsByReviewerId($reviewerId, $monographId, $reviewId = null) {
 		$monographComments = array();
 		$params = array($reviewerId, $monographId);
 		if (isset($round)) {
-			$params[] = $round;
+			$params[] = $reviewId;
 		}
 		$result =& $this->retrieve(
-			'SELECT a.* FROM monograph_comments a WHERE author_id = ? AND monograph_id = ?' . ($round ? ' AND assoc_id = ?' : '') . ' ORDER BY date_posted', 
+			'SELECT a.* FROM monograph_comments a WHERE author_id = ? AND monograph_id = ?' . ($round ? ' AND assoc_id = ?' : '') . ' ORDER BY date_posted',
 			$params
 		);
 
@@ -132,7 +132,7 @@ class MonographCommentDAO extends DAO {
 					array($monographId, $commentType, $assocId),
 					1
 				);
-			}				
+			}
 		}
 
 		$returner = null;
@@ -162,7 +162,7 @@ class MonographCommentDAO extends DAO {
 		unset($result);
 
 		return $monographComment;
-	}	
+	}
 
 	/**
 	 * Creates and returns a monograph comment object from a row
@@ -213,7 +213,7 @@ class MonographCommentDAO extends DAO {
 		);
 
 		$monographComment->setCommentId($this->getInsertMonographCommentId());
-		return $monographComment->getCommentId();		
+		return $monographComment->getCommentId();
 	}
 
 	/**
@@ -222,7 +222,7 @@ class MonographCommentDAO extends DAO {
 	 */
 	function getInsertMonographCommentId() {
 		return $this->getInsertId('monograph_comments', 'comment_id');
-	}	
+	}
 
 	/**
 	 * removes a monograph comment from monograph_comments table

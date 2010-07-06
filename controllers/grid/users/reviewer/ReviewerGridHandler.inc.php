@@ -320,7 +320,7 @@ class ReviewerGridHandler extends GridHandler {
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($request->getUserVar('reviewId'));
 		$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
-		$monographComments =& $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getRound());
+		$monographComments =& $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getReviewId());
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);

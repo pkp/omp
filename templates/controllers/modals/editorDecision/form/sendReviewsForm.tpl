@@ -7,27 +7,43 @@
  * Form used to send reviews to author
  *
  *}
-{assign var='randomId' value=1|rand:99999} 
+{assign var='randomId' value=1|rand:99999}
 <script type="text/javascript">
 {literal}
 $(function() {
 	$('.button').button();
+
+	var url = '{/literal}{url op="importPeerReviews" monographId=$monographId}{literal}';
+	$('#importPeerReviews-'+{/literal}{$randomId}{literal}).click(function() {
+		$.getJSON(url, function(jsonData) {
+			if (jsonData.status === true) {
+				var currentContent = $("textarea#personalMessage-"+{/literal}{$randomId}{literal}).val();
+				$("textarea#personalMessage-"+{/literal}{$randomId}{literal}).val(currentContent + jsonData.content);
+			} else {
+				// Alert that the modal failed
+				alert(jsonData.content);
+			}
+		});
+	});
+});
 {/literal}
 </script>
 <h2>{translate key="editor.review.sendReviews"}: {$monograph->getLocalizedTitle()}</h2>
 <form name="sendReviews" id="sendReviews" method="post" action="{url op="sendReviews"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="decision" value="{$decision|escape}" />
-	
+
 	{fbvFormSection}
 		{fbvElement type="text" id="authorName" name="authorName" label="user.role.author" value=$authorName disabled=true}
 	{/fbvFormSection}
 
 	<!--  Message to reviewer textarea -->
+	<p style="text-align: right;"><a id="importPeerReviews-{$randomId}" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
+
 	{fbvFormSection}
-		{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToReviewer" value=$personalMessage|escape measure=$fbvStyles.measure.3OF4 size=$fbvStyles.size.MEDIUM}
+		{fbvElement type="textarea" name="personalMessage" id="personalMessage-$randomId" label="editor.review.personalMessageToReviewer" value=$personalMessage|escape measure=$fbvStyles.measure.1OF1 size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
-	</form> 
+	</form>
 	{** FIXME: this form was copied from reviewAttachments but must be changed **}
 	<form name="uploadForm" id="uploadForm-{$randomId}" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewAttachments.ReviewAttachmentsGridHandler" op="saveFile" reviewId=$reviewId}" method="post">
 		<!-- Max file size of 5 MB -->

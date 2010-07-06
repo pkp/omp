@@ -30,7 +30,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return array
 	 */
 	function getRemoteOperations() {
-		return array('sendReviews', 'requestRevisions', 'resubmit', 'decision', 'saveDecision');
+		return array('sendReviews', 'requestRevisions', 'resubmit', 'decision', 'saveDecision', 'importPeerReviews');
 	}
 
 	function decision(&$args, &$request) {
@@ -69,6 +69,28 @@ class EditorDecisionHandler extends Handler {
 			$json = new JSON('false');
 		}
 
+		return $json->getString();
+	}
+
+	/**
+	 * Import all free-text/review form reviews to paste into message
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function importPeerReviews(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($monographId);
+
+		import('classes.submission.seriesEditor.SeriesEditorAction');
+		$peerReviews = SeriesEditorAction::getPeerReviews($seriesEditorSubmission);
+
+		if(empty($peerReviews)) {
+			$json = new JSON('false', Locale::translate('editor.review.noReviews'));
+		} else {
+			$json = new JSON('true', $peerReviews);
+		}
 		return $json->getString();
 	}
 }
