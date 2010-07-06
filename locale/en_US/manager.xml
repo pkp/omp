@@ -84,9 +84,10 @@
 	<message key="manager.groups.noneCreated">No editorial team positions have been created.</message>
 	<message key="manager.pressManagement">Press Management</message>
  	<message key="manager.language.ui">UI</message>
+	<message key="manager.language.submissions">Submissions</message>
  	<message key="manager.language.forms">Forms</message>
 	<message key="manager.language.confirmDefaultSettingsOverwrite">This will replace any locale-specific press settings you had for this locale</message>
-	<message key="manager.language.reloadLocalizedDefaultSettings">Reload locale-specific default settings</message>
+	<message key="manager.language.reloadLocalizedDefaultSettings">Reload defaults</message>
 	<message key="manager.languages.languageInstructions"><![CDATA[OMP can be made available to users in any of several supported languages. As well, OMP can operate as a multilingual system, providing users with an ability to toggle between languages on each page, and allowing certain data to be entered in several additional languages.<br /><br/>If a language supported by OMP is not listed below, ask your site administrator to install the language from the site administration interface. For instructions on adding support for new languages, please consult the OMP documentation.]]></message>
 	<message key="manager.languages.noneAvailable">Sorry, no additional languages are available. Contact your site administrator if you wish to use additional languages with this press.</message>
 	<message key="manager.languages.primaryLocaleInstructions">This will be the default language for the press site.</message>

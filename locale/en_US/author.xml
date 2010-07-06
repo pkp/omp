@@ -67,6 +67,9 @@
 	<message key="author.submit.pressSection">Press Section</message>
 	<message key="author.submit.pressSectionDescription"><![CDATA[Select the appropriate section for this submission (see Sections and Policies in <a href="{$aboutUrl}" target="_new">About</a> the Press).]]></message>
 	<message key="author.submit.selectSeries">If applicable, please select a category...</message>
+	<message key="author.submit.submissionLocale">Submission Language</message>
+	<message key="author.submit.submissionLocaleDescription">This press accepts submissions in several languages. Choose the primary language of the submission from the pulldown below.</message>
+	<message key="author.submit.form.localeRequired">Please select a submission language.</message>
 	<message key="author.submit.submissionChecklist">Submission Checklist</message>
 	<message key="author.submit.submissionChecklistDescription">The following requirements for submissions to this press need to be completed and checked off before proceeding (comments to the editor can be added below).</message>
 	<message key="author.submit.verifyChecklist">You must make sure all items in the submission checklist are satisfied before continuing.</message>

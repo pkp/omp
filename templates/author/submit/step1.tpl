@@ -31,6 +31,24 @@
 {/fbvFormArea}
 <div class="separator"></div>
 
+{if count($supportedSubmissionLocaleNames) == 1}
+	{* There is only one supported submission locale; choose it invisibly *}
+	{foreach from=$supportedSubmissionLocaleNames item=locale}
+		<input type="hidden" name="locale" value="{$locale|escape}" />
+	{/foreach}
+{else}
+	{* There are several submission locales available; allow choice *}
+	<h3>{translate key="author.submit.submissionLocale"}</h3>
+	<p>{translate key="author.submit.submissionLocaleDescription"}</p>
+ 
+	{fbvFormArea id="submissionLocale"}
+		{fbvFormSection}
+			{fbvElement type="select" id="locale" from=$supportedSubmissionLocaleNames selected=$locale translate=false}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
+	<div class="separator"></div>
+{/if}{* count($supportedSubmissionLocaleNames) == 1 *}
 
 <!-- Submission Placement -->
 <h3>{translate key="author.submit.placement"}</h3>

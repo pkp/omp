@@ -26,7 +26,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		parent::AuthorSubmitForm($monograph, 1);
 
 		$press =& Request::getPress();
-
+		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'author.submit.form.localeRequired', $press->getSetting('supportedSubmissionLocales')));
 	}
 
 	/**
@@ -41,14 +41,27 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		// Get series for this press
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 
-		// FIXME: If this user is a series editor or an editor, they are allowed
-		// to submit to series flagged as "editor-only" for submissions.
-		// Otherwise, display only series they are allowed to submit to.
+		// FIXME: If this user is a series editor or an editor, they are
+		// allowed to submit to series flagged as "editor-only" for
+		// submissions. Otherwise, display only series they are allowed
+		// to submit to.
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isEditor = $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_EDITOR) || $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
 
 		$seriesOptions = array('0' => Locale::translate('author.submit.selectSeries')) + $seriesDao->getTitlesByPressId($press->getId());
 		$templateMgr->assign('seriesOptions', $seriesOptions);
+
+		// Provide available submission languages. (Convert the array
+		// of locale symbolic names xx_XX into an associative array
+		// of symbolic names => readable names.)
+		$templateMgr->assign(
+			'supportedSubmissionLocaleNames',
+			array_flip(array_intersect(
+				array_flip(Locale::getAllLocales()),
+				$press->getSetting('supportedSubmissionLocales')
+			))
+		);
+
 		parent::display();
 	}
 
@@ -59,9 +72,29 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		if (isset($this->monograph)) {
 			$this->_data = array(
 				'seriesId' => $this->monograph->getSeriesId(),
+				'locale' => $this->monograph->getLocale(),
 				'isEditedVolume' => $this->monograph->getWorkType(),
 				'commentsToEditor' => $this->monograph->getCommentsToEditor()
 			);
+		} else {
+			$press =& Request::getPress();
+			$supportedSubmissionLocales = $press->getSetting('supportedSubmissionLocales');
+			// Try these locales in order until we find one that's
+			// supported to use as a default.
+			$tryLocales = array(
+				$this->getFormLocale(), // Current form locale
+				Locale::getLocale(), // Current UI locale
+				$press->getPrimaryLocale(), // Press locale
+				$supportedSubmissionLocales[array_shift(array_keys($supportedSubmissionLocales))] // Fallback: first one on the list
+			);
+			$this->_data = array();
+			foreach ($tryLocales as $locale) {
+				if (in_array($locale, $supportedSubmissionLocales)) {
+					// Found a default to use
+					$this->_data['locale'] = $locale;
+					break;
+				}
+			}
 		}
 	}
 
@@ -69,7 +102,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('submissionChecklist', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor'));
+		$this->readUserVars(array('locale', 'submissionChecklist', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor'));
 	}
 
 	function getTemplateFile() {
@@ -86,6 +119,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		if (isset($this->monograph)) {
 			// Update existing monograph
 			$this->monograph->setSeriesId($this->getData('seriesId'));
+			$this->monograph->setLocale($this->getData('locale'));
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
 			if ($this->monograph->getSubmissionProgress() <= $this->step) {
 				$this->monograph->stampStatusModified();
@@ -104,7 +138,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 			// Create new monograph
 			$this->monograph = new Monograph();
-			$this->monograph->setLocale($press->getPrimaryLocale()); // FIXME in bug #5543
+			$this->monograph->setLocale($this->getData('locale'));
 			$this->monograph->setUserId($user->getId());
 			$this->monograph->setUserGroupId($actingAsUserGroupId);
 			$this->monograph->setPressId($press->getId());
@@ -142,7 +176,6 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 		return $this->monographId;
 	}
-
 }
 
 ?>
