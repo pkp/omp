@@ -17,6 +17,7 @@ $(function() {
 <h2>{translate key="editor.review.sendReviews"}: {$monograph->getLocalizedTitle()}</h2>
 <form name="sendReviews" id="sendReviews" method="post" action="{url op="sendReviews"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	<input type="hidden" name="decision" value="{$decision|escape}" />
 	
 	{fbvFormSection}
 		{fbvElement type="text" id="authorName" name="authorName" label="user.role.author" value=$authorName disabled=true}
@@ -27,7 +28,7 @@ $(function() {
 		{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToReviewer" value=$personalMessage|escape measure=$fbvStyles.measure.3OF4 size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
 	</form> 
-	{** FIXME: this form was copied from reviewAttachments but most be changed **}
+	{** FIXME: this form was copied from reviewAttachments but must be changed **}
 	<form name="uploadForm" id="uploadForm-{$randomId}" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewAttachments.ReviewAttachmentsGridHandler" op="saveFile" reviewId=$reviewId}" method="post">
 		<!-- Max file size of 5 MB -->
 		<input type="hidden" name="MAX_FILE_SIZE" value="5242880" />

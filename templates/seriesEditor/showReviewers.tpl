@@ -30,7 +30,9 @@
 {load_url_in_div id="reviewersGrid" url=$reviewersGridUrl}
 
 {** editorial decision actions *}
-
+{foreach from=$editorActions item=action}
+	{include file="linkAction/linkAction.tpl" action=$action id="editorAction"}
+{/foreach}
 
 </div>
 {include file="common/footer.tpl"}

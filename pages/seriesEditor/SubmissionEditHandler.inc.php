@@ -103,121 +103,80 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$monograph =& $monographDao->getMonograph($monographId);
 
 		$templateMgr =& TemplateManager::getManager();
+		// Get the review round currently being looked at
+		$currentReviewType = $monograph->getCurrentReviewType();
 		$currentRound = $monograph->getCurrentRound();
-		$templateMgr->assign('currentRound', $currentRound);
+
 
 		// Set allRounds to an array of all values > 0 and less than currentRound--This will determine the tabs to show
 		$allRounds = array();
 		for ($i = 1; $i <= $currentRound; $i++) $allRounds[] = $i;
 		$templateMgr->assign('rounds', $allRounds);
 
-		$templateMgr->assign('currentReviewType', $monograph->getCurrentReviewType());
+		// Grid actions
+		$actionArgs = array('monographId' => $monographId,
+							'reviewType' => $currentReviewType,
+							'round' => $currentRound);
+
+		// import action class
+		import('linkAction.LinkAction');
+		$dispatcher =& $this->getDispatcher();
+
+		$requestRevisionsAction =& new LinkAction(
+			'requestRevisions',
+			LINK_ACTION_MODE_MODAL,
+			LINK_ACTION_TYPE_NOTHING,
+			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'requestRevisions', null, $actionArgs),
+			'editor.monograph.decision.requestRevisions'
+		);
+
+		$resubmitAction =& new LinkAction(
+			'resubmit',
+			LINK_ACTION_MODE_MODAL,
+			LINK_ACTION_TYPE_NOTHING,
+			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'resubmit', null, $actionArgs),
+			'editor.monograph.decision.resubmit'
+		);
+
+		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW;
+		$externalReviewAction =& new LinkAction(
+			'externalReview',
+			LINK_ACTION_MODE_MODAL,
+			LINK_ACTION_TYPE_NOTHING,
+			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'decision', nul, $actionArgs),
+			'editor.monograph.decision.externalReview'
+		);
+
+		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_ACCEPT;
+		$acceptAction =& new LinkAction(
+			'accept',
+			LINK_ACTION_MODE_MODAL,
+			LINK_ACTION_TYPE_NOTHING,
+			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'decision', null, $actionArgs),
+			'editor.monograph.decision.accept'
+		);
+
+		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_DECLINE;
+		$declineAction =& new LinkAction(
+			'decline',
+			LINK_ACTION_MODE_MODAL,
+			LINK_ACTION_TYPE_NOTHING,
+			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'decision', null, $actionArgs),
+			'editor.monograph.decision.decline'
+		);
+
+		$editorActions = array($requestRevisionsAction,
+								$resubmitAction,
+								$externalReviewAction,
+								$acceptAction,
+								$declineAction
+								);
+
+		$templateMgr->assign('editorActions', $editorActions);
+		$templateMgr->assign('currentReviewType', $currentReviewType);
+		$templateMgr->assign('currentRound', $currentRound);
 		$templateMgr->assign('monographId', $monographId);
 		$templateMgr->display('seriesEditor/showReviewers.tpl');
-	}
-
-	function sendReviews(&$args, &$request) {
-		// FIXME: add validation
-		$monographId = $request->getUserVar('monographId');
-		// Form handling
-		import('controllers.grid.users.reviewer.form.SendReviewsForm');
-		$sendReviewsForm = new SendReviewsForm($monographId);
-		$sendReviewsForm->initData($args, $request);
-
-		$json = new JSON('true', $sendReviewsForm->fetch($request));
-		return $json->getString();
-	}
-
-	/**
-	 * Show the submission approval modal
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSON
-	 */
-	function showApprove(&$args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-
-		import('controllers.grid.submissions.pressEditor.form.ApproveSubmissionForm');
-		$approveForm = new ApproveSubmissionForm($monographId);
-
-		if ($approveForm->isLocaleResubmit()) {
-			$approveForm->readInputData();
-		} else {
-			$approveForm->initData($args, $request);
-		}
-
-		$json = new JSON('true', $approveForm->fetch($request));
-		return $json->getString();
-	}
-
-	/**
-	 * Save the submission approval modal
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSON
-	 */
-	function saveApprove(&$args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-
-		import('controllers.grid.submissions.pressEditor.form.ApproveSubmissionForm');
-		$approveForm = new ApproveSubmissionForm($monographId);
-
-		$approveForm->readInputData();
-		if ($approveForm->validate()) {
-			$approveForm->execute($args, $request);
-
-			$json = new JSON('true');
-		} else {
-			$json = new JSON('false');
-		}
-
-		return $json->getString();
-	}
-
-	/**
-	 * Show the submission decline modal
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSON
-	 */
-	function showDecline(&$args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-
-		import('controllers.grid.submissions.pressEditor.form.DeclineSubmissionForm');
-		$declineForm = new DeclineSubmissionForm($monographId);
-
-		if ($declineForm->isLocaleResubmit()) {
-			$declineForm->readInputData();
-		} else {
-			$declineForm->initData($args, $request);
-		}
-
-		$json = new JSON('true', $declineForm->fetch($request));
-		return $json->getString();
-	}
-
-	/**
-	 * Save the submission decline modal
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSON
-	 */
-	function saveDecline(&$args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-
-		import('controllers.grid.submissions.pressEditor.form.DeclineSubmissionForm');
-		$declineForm = new DeclineSubmissionForm($monographId);
-
-		$declineForm->readInputData();
-		if ($declineForm->validate()) {
-			$declineForm->execute($args, $request);
-
-			$json = new JSON('true');
-		} else {
-			$json = new JSON('false');
-		}
-
-		return $json->getString();
 	}
 
 	function submissionRegrets($args) {

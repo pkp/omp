@@ -119,9 +119,10 @@
 	<message key="editor.monograph.selectEditor">Select {$roleName}</message>
 	<message key="editor.monograph.selectDecision">Select decision</message>
 	<message key="editor.monograph.decision.accept">Accept Submission</message>
-	<message key="editor.monograph.decision.pendingRevisions">Revisions Required</message>
+	<message key="editor.monograph.decision.requestRevisions">Request Revisions</message>
 	<message key="editor.monograph.decision.resubmit">Resubmit for Review</message>
 	<message key="editor.monograph.decision.decline">Decline Submission</message>
+	<message key="editor.monograph.decision.externalReview">External Review</message>
 	<message key="editor.monograph.selectProductionEditor">Select Production Editor</message>
 	<message key="editor.monograph.replaceLayoutEditor">Replace Layout Editor</message>
 	<message key="editor.monograph.reviewSubmission">Review Submission</message>

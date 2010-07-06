@@ -200,7 +200,8 @@ class MonographDAO extends DAO {
 				$monograph->getCommentsToEditor(),
 				$monograph->getStatus() === null ? 1 : $monograph->getStatus(),
 				$monograph->getSubmissionProgress() === null ? 1 : $monograph->getSubmissionProgress(),
-				$monograph->getCurrentReviewType() === null ? 6 : $monograph->getCurrentReviewType(),
+				// Default review type == REVIEW_TYPE_INTERNAL == 1 (see ReviewRound.inc.php)
+				$monograph->getCurrentReviewType() === null ? 1 : $monograph->getCurrentReviewType(),
 				$monograph->getCurrentRound() === null ? 1 : $monograph->getCurrentRound(),
 				$monograph->getSubmissionFileId(),
 				$monograph->getRevisedFileId(),

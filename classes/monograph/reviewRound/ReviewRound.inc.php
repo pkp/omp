@@ -17,7 +17,8 @@
  * @brief Basic class describing a review round.
  */
 
-//$Id$
+define('REVIEW_TYPE_INTERNAL', 1);
+define('REVIEW_TYPE_EXTERNAL', 2);
 
 class ReviewRound extends DataObject {
 	//
@@ -38,7 +39,7 @@ class ReviewRound extends DataObject {
 	 */
 	function setSubmissionId($submissionId) {
 		return $this->setData('submissionId', $submissionId);
-	}	
+	}
 
 	/**
 	 * Get review type (internal or external review).
@@ -55,7 +56,7 @@ class ReviewRound extends DataObject {
 	function setReviewType($reviewType) {
 		return $this->setData('reviewType', $reviewType);
 	}
-	
+
 	/**
 	 * Get review round
 	 * @return int

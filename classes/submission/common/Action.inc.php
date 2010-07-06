@@ -3,7 +3,7 @@
 /**
  * @defgroup submission
  */
- 
+
 /**
  * @file classes/submission/common/Action.inc.php
  *
@@ -21,9 +21,10 @@
 
 /* These constants correspond to editing decision "decision codes". */
 define('SUBMISSION_EDITOR_DECISION_ACCEPT', 1);
-define('SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS', 2);
-define('SUBMISSION_EDITOR_DECISION_RESUBMIT', 3);
-define('SUBMISSION_EDITOR_DECISION_DECLINE', 4);
+define('SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW', 2);
+define('SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS', 3);
+define('SUBMISSION_EDITOR_DECISION_RESUBMIT', 4);
+define('SUBMISSION_EDITOR_DECISION_DECLINE', 5);
 
 /* These constants are used as search fields for the various submission lists */
 define('SUBMISSION_FIELD_AUTHOR', 1);
@@ -86,7 +87,7 @@ class Action {
 
 			if (!$editData && $metadataForm->validate()) {
 				$metadataForm->execute();
-				
+
 				// Send a notification to associated users
 				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationUsers = $monograph->getAssociatedUserIds();
@@ -208,7 +209,7 @@ class Action {
 
 			if ($commentForm->validate()) {
 				$commentForm->execute();
-				
+
 				// Send a notification to associated users
 				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationUsers = $monograph->getAssociatedUserIds(true, false);

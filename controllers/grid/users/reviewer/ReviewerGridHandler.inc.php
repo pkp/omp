@@ -39,9 +39,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return array
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addReviewer', 'editReviewer', 'updateReviewer', 'deleteReviewer', 
-			'getReviewerAutocomplete', 'readReview', 'sendReviews', 'showApprove', 'saveApprove', 'showDecline', 'saveDecline', 
-			'createReviewer', 'editReminder', 'sendReminder'));
+		return array_merge(parent::getRemoteOperations(), array('addReviewer', 'editReviewer', 'updateReviewer', 'deleteReviewer', 'getReviewerAutocomplete', 'readReview', 'createReviewer', 'editReminder', 'sendReminder'));
 	}
 
 	/**
@@ -120,29 +118,6 @@ class ReviewerGridHandler extends GridHandler {
 				$router->url($request, null, null, 'addReviewer', null, $actionArgs),
 				'editor.monograph.addReviewer'
 			)
-		);
-
-		// Editorial decision actions
-		$this->addAction(
-			new LinkAction(
-				'sendReviews',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_NOTHING,
-				$router->url($request, null, null, 'sendReviews', null, $actionArgs),
-				'editor.review.sendReviews'
-			),
-			GRID_ACTION_POSITION_BELOW
-		);
-
-		$this->addAction(
-			new LinkAction(
-				'resubmit',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_NOTHING,
-				$router->url($request, null, null, 'resubmit', null, $actionArgs),
-				'editor.monograph.decision.resubmit'
-			),
-			GRID_ACTION_POSITION_BELOW
 		);
 
 		// Columns
@@ -354,7 +329,7 @@ class ReviewerGridHandler extends GridHandler {
 		$json =& new JSON('true', $templateMgr->fetch('controllers/grid/users/reviewer/readReview.tpl'));
 		return $json->getString();
 	}
-	
+
 	/**
 	 * Displays a modal to allow the editor to ender a message to send to the reviewer as a reminder
 	 * @param $args array
@@ -373,7 +348,7 @@ class ReviewerGridHandler extends GridHandler {
 		$json = new JSON('true', $reviewReminderForm->fetch($request));
 		return $json->getString();
 	}
-	
+
 	/**
 	 * Send the reviewer reminder and close the modal
 	 * @param $args array
