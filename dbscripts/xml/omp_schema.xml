@@ -1169,7 +1169,7 @@
 		<field name="user_id" type="I8">
 			<NOTNULL />
 		</field>
-		<desc>User group assignments (mapping of user to user groups)</desc>
+		<descr>User group assignments (mapping of user to user groups)</descr>
 		<index name="user_user_groups_user_group_id">
 			<col>user_group_id</col>
 		</index>
@@ -1198,7 +1198,7 @@
 		<field name="publication_stage_id" type="I8">
 			<NOTNULL />
 		</field>
-		<desc>User groups assignments to stages in the workflow</desc>
+		<descr>User groups assignments to stages in the workflow</descr>
 		<index name="user_group_stage_press_id">
 			<col>press_id</col>
 		</index>
