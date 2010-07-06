@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @filecontrollers/grid/files/editorReviewFileSelection/ReviewFilesGridHandler.inc.php
+ * @file controllers/grid/files/editorReviewFileSelection/ReviewFilesGridHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class FileGridHandler
- * @ingroup controllers_grid_file
+ * @class ReviewFilesGridHandler
+ * @ingroup controllers_grid_files_reviewFiles
  *
  * @brief Handle the editor review file selection grid (selects which files to send to review)
  */
@@ -102,7 +102,7 @@ class ReviewFilesGridHandler extends GridHandler {
 
 		$reviewType = (int) $request->getUserVar('reviewType');
 		$round = (int) $request->getUserVar('round');
-		
+
 		// Check if the user can add files to the round
 		$canAdd = $request->getUserVar('canAdd');
 
@@ -149,7 +149,7 @@ class ReviewFilesGridHandler extends GridHandler {
 				)
 			);
 		}
-		
+
 		if ($canAdd) {
 			$this->addAction(
 				new LinkAction(
@@ -163,7 +163,7 @@ class ReviewFilesGridHandler extends GridHandler {
 				)
 			);
 		}
-		
+
 		import('controllers.grid.files.reviewFiles.ReviewFilesGridCellProvider');
 		$cellProvider =& new ReviewFilesGridCellProvider();
 		// Columns
@@ -267,12 +267,12 @@ class ReviewFilesGridHandler extends GridHandler {
 	function downloadFile(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$fileId = $request->getUserVar('fileId');
-		
+
 		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 		$monographFileManager->downloadFile($fileId);
 	}
-	
+
 	/**
 	 * Download all of the monograph files as one compressed file
 	 * @param $args array
@@ -284,7 +284,7 @@ class ReviewFilesGridHandler extends GridHandler {
 
 		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
-		$monographFileManager->downloadFilesArchive($this->_data);				
+		$monographFileManager->downloadFilesArchive($this->_data);
 	}
 
 	/**
@@ -301,9 +301,9 @@ class ReviewFilesGridHandler extends GridHandler {
 
 		$addReviewFileForm->initData($args, $request);
 		$json = new JSON('true', $addReviewFileForm->fetch($request));
-		return $json->getString();	
+		return $json->getString();
 	}
-	
+
 	/**
 	 * Allow the editor to upload a new file
 	 * @param $args array
@@ -318,9 +318,9 @@ class ReviewFilesGridHandler extends GridHandler {
 
 		$addReviewFileForm->initData($args, $request);
 		$json = new JSON('true', $addReviewFileForm->fetch($request));
-		return $json->getString();	
+		return $json->getString();
 	}
-	
+
 	/**
 	 * Save 'add review files' form
 	 * @param $args array
@@ -337,20 +337,20 @@ class ReviewFilesGridHandler extends GridHandler {
 
 		if ($addReviewFileForm->validate()) {
 			$addReviewFileForm->execute($args, $request);
-			
+
 			// Grab the files that are currently set for the review
 			$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$selectedFiles =& $reviewAssignmentDAO->getReviewFilesByRound($monographId);
-			
+
 			// Re-render the grid with the updated files
 			$this->setData($selectedFiles[$reviewType][$round]);
 			$this->initialize($request);
-				
+
 			// Pass to modal.js to reload the grid with the new content
 			$json = new JSON('true', implode(' ', $this->_renderRowsInternally($request)));
 		} else {
 			$json = new JSON('false');
 		}
-		return $json->getString();	
+		return $json->getString();
 	}
 }

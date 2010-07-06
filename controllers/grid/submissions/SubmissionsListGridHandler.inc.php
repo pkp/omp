@@ -6,10 +6,10 @@
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SubmissionContributorGridHandler
- * @ingroup controllers_grid_submissionContributor
+ * @class SubmissionsListGridHandler
+ * @ingroup controllers_grid_submissions
  *
- * @brief Handle submissionContributor grid requests.
+ * @brief Handle submission list grid requests.
  */
 
 // import grid base classes
@@ -32,10 +32,6 @@ class SubmissionsListGridHandler extends GridHandler {
 		parent::GridHandler();
 		//$this->addCheck(new HandlerValidatorPress($this));
 	}
-
-	//
-	// Getters/Setters
-	//
 
 	//
 	// Overridden methods from PKPHandler

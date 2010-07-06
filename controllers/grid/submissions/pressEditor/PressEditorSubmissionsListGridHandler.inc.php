@@ -54,7 +54,7 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * @return array
 	 */
 	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('showApprove', 'saveApprove', 'showApproveAndReview', 'saveApproveAndReview', 'showDecline', 'saveDecline', 'moreInfo'));
+		return array_merge(parent::getRemoteOperations(), array('showApprove', 'saveApprove', 'showApproveAndReview', 'saveApproveAndReview', 'showDecline', 'saveDecline'));
 	}
 
 	//

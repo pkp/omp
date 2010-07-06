@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/users/reviewer/form/ReviewerForm.inc.php
+ * @file controllers/grid/users/reviewer/form/SendReviewsForm.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class ReviewerForm
- * @ingroup controllers_grid_reviewer__form
+ * @class SendReviewsForm
+ * @ingroup controllers_grid_reviewer_form
  *
  * @brief Form for adding a reviewer to a submission
  */
