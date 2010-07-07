@@ -37,19 +37,15 @@ class SubmissionsListGridHandler extends GridHandler {
 	// Overridden methods from PKPHandler
 	//
 	/**
-	 * Validate that ...
-	 * fatal error if validation fails.
-	 * @param $requiredContexts array
-	 * @param $request PKPRequest
-	 * @return boolean
+	 * @see PKPHandler::authorize()
 	 */
-	function validate($requiredContexts, $request) {
+	function authorize($requiredContexts, $request) {
 		// FIXME:
 		// Role ID in path equals user's role ID
 
 		// User ID in path equals user's user ID
 
-		return parent::validate($requiredContexts, $request);
+		return parent::authorize($requiredContexts, $request);
 	}
 
 	/*

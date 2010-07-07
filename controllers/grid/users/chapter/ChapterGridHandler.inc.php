@@ -59,14 +59,9 @@ class ChapterGridHandler extends CategoryGridHandler{
 	// Overridden methods from PKPHandler
 	//
 	/**
-	 * Validate that the user is the assigned section editor for
-	 * the chapter's monograph, or is a managing editor. Raises a
-	 * fatal error if validation fails.
-	 * @param $requiredContexts array
-	 * @param $request PKPRequest
-	 * @return boolean
+	 * @see PKPHandler::authorize()
 	 */
-	function validate($requiredContexts, $request) {
+	function authorize($requiredContexts, $request) {
 		// Retrieve the request context
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);

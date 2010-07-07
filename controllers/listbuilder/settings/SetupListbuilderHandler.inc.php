@@ -27,12 +27,9 @@ class SetupListbuilderHandler extends ListbuilderHandler {
 	}
 
 	/**
-	 * Validate that the user is the Press Manager
-	 * @param $requiredContexts array
-	 * @param $request PKPRequest
-	 * @return boolean
+	 * @see PKPHandler::authorize()
 	 */
-	function validate($requiredContexts, $request) {
+	function authorize($requiredContexts, $request) {
 		// Retrieve the request context
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
@@ -44,7 +41,7 @@ class SetupListbuilderHandler extends ListbuilderHandler {
 		$this->addCheck(new HandlerValidatorRoles($this, false, 'Insufficient privileges!', null, array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SITE_ADMIN)));
 
 		// Execute standard checks
-		if (!parent::validate($requiredContexts, $request)) return false;
+		if (!parent::authorize($requiredContexts, $request)) return false;
 
 		return true;
 	}

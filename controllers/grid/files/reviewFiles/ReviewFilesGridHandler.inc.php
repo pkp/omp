@@ -267,13 +267,9 @@ class ReviewFilesGridHandler extends GridHandler {
 	//
 
 	/**
-	 * Validate that the user is the assigned author for the monograph
-	 * Raises a fatal error if validation fails.
-	 * @param $requiredContexts array
-	 * @param $request PKPRequest
-	 * @return boolean
+	 * @see PKPHandler::authorize()
 	 */
-	function validate($requiredContexts, $request) {
+	function authorize($requiredContexts, $request) {
 		// Retrieve the request context
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
@@ -286,7 +282,7 @@ class ReviewFilesGridHandler extends GridHandler {
 		$this->addCheck(new HandlerValidatorRoles($this, false, 'Insufficient privileges!', null, array(ROLE_ID_EDITOR)));
 
 		// Execute standard checks
-		if (!parent::validate($requiredContexts, $request)) return false;
+		if (!parent::authorize($requiredContexts, $request)) return false;
 
 		return true;
 

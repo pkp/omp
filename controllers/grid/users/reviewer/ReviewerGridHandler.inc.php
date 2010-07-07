@@ -54,13 +54,9 @@ class ReviewerGridHandler extends GridHandler {
 	// Overridden methods from PKPHandler
 	//
 	/**
-	 * Validate that ...
-	 * fatal error if validation fails.
-	 * @param $requiredContexts array
-	 * @param $request PKPRequest
-	 * @return boolean
+	 * @see PKPHandler::authorize()
 	 */
-	function validate($requiredContexts, $request) {
+	function authorize($requiredContexts, $request) {
 		// FIXME: implement validation
 		// Retrieve and validate the monograph id
 		$monographId =& $request->getUserVar('monographId');
