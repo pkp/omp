@@ -125,7 +125,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$requestRevisionsAction =& new LinkAction(
 			'requestRevisions',
 			LINK_ACTION_MODE_MODAL,
-			LINK_ACTION_TYPE_NOTHING,
+			null,
 			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'requestRevisions', null, $actionArgs),
 			'editor.monograph.decision.requestRevisions'
 		);
@@ -133,7 +133,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$resubmitAction =& new LinkAction(
 			'resubmit',
 			LINK_ACTION_MODE_MODAL,
-			LINK_ACTION_TYPE_NOTHING,
+			null,
 			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'resubmit', null, $actionArgs),
 			'editor.monograph.decision.resubmit'
 		);
@@ -142,8 +142,8 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$externalReviewAction =& new LinkAction(
 			'externalReview',
 			LINK_ACTION_MODE_MODAL,
-			LINK_ACTION_TYPE_NOTHING,
-			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'decision', null, $actionArgs),
+			null,
+			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'decision', nul, $actionArgs),
 			'editor.monograph.decision.externalReview'
 		);
 
@@ -151,7 +151,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$acceptAction =& new LinkAction(
 			'accept',
 			LINK_ACTION_MODE_MODAL,
-			LINK_ACTION_TYPE_NOTHING,
+			null,
 			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'decision', null, $actionArgs),
 			'editor.monograph.decision.accept'
 		);
@@ -160,7 +160,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$declineAction =& new LinkAction(
 			'decline',
 			LINK_ACTION_MODE_MODAL,
-			LINK_ACTION_TYPE_NOTHING,
+			null,
 			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'decision', null, $actionArgs),
 			'editor.monograph.decision.decline'
 		);

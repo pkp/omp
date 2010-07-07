@@ -30,7 +30,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return array
 	 */
 	function getRemoteOperations() {
-		return array('sendReviews', 'requestRevisions', 'resubmit', 'decision', 'saveDecision', 'importPeerReviews');
+		return array('sendReviews', 'requestRevisions', 'resubmit', 'decision', 'saveDecision', 'importPeerReviews', 'resubmit', 'saveResubmit');
 	}
 
 	function decision(&$args, &$request) {
@@ -91,6 +91,53 @@ class EditorDecisionHandler extends Handler {
 		} else {
 			$json = new JSON('true', $peerReviews);
 		}
+		return $json->getString();
+	}
+
+
+	/**
+	 * Display the 'resubmit for review' form, moving the review to the next round
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function resubmit(&$args, &$request) {
+		// FIXME: add validation
+		$monographId = $request->getUserVar('monographId');
+
+		// Form handling
+		import('controllers.modals.editorDecision.form.ResubmitForReviewForm');
+		$resubmitForReviewForm = new ResubmitForReviewForm($monographId);
+		$resubmitForReviewForm->initData($args, $request);
+
+		$json = new JSON('true', $resubmitForReviewForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Save the resubmit for review form
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function saveResubmit(&$args, &$request) {
+		// FIXME: add validation
+		$monographId = $request->getUserVar('monographId');
+
+		// Form handling
+		import('controllers.modals.editorDecision.form.ResubmitForReviewForm');
+		$resubmitForReviewForm = new ResubmitForReviewForm($monographId);
+
+
+		$resubmitForReviewForm->readInputData();
+		if ($resubmitForReviewForm->validate()) {
+			$resubmitForReviewForm->execute($args, $request);
+
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false');
+		}
+
 		return $json->getString();
 	}
 }
