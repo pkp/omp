@@ -1963,7 +1963,7 @@ class SeriesEditorAction extends Action {
 						$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n\n";
 					}
 					foreach ($reviewFormElements as $reviewFormElement) {
-						$body .= $reviewFormElement->getLocalizedQuestion() . ": \n";
+						$body .= strip_tags(String::html2utf($reviewFormElement->getLocalizedQuestion())) . ": \n";
 						$reviewFormResponse = $reviewFormResponseDao->getReviewFormResponse($reviewId, $reviewFormElement->getId());
 
 						if ($reviewFormResponse) {
