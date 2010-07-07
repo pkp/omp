@@ -27,7 +27,8 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @return BaseEmailTemplate
 	 */
 	function &getBaseEmailTemplate($emailKey, $pressId) {
-		return parent::getBaseEmailTemplate($emailKey, ASSOC_TYPE_PRESS, $pressId);
+		$returner =& parent::getBaseEmailTemplate($emailKey, ASSOC_TYPE_PRESS, $pressId);
+		return $returner;
 	}
 
 	/**
@@ -37,7 +38,8 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @return LocaleEmailTemplate
 	 */
 	function &getLocaleEmailTemplate($emailKey, $pressId) {
-		return parent::getLocaleEmailTemplate($emailKey, ASSOC_TYPE_PRESS, $pressId);
+		$returner =& parent::getLocaleEmailTemplate($emailKey, ASSOC_TYPE_PRESS, $pressId);
+		return $returner;
 	}
 
 	/**
@@ -48,7 +50,8 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @return EmailTemplate
 	 */
 	function &getEmailTemplate($emailKey, $locale, $pressId) {
-		return parent::getEmailTemplate($emailKey, $locale, ASSOC_TYPE_PRESS, $pressId);
+		$returner =& parent::getEmailTemplate($emailKey, $locale, ASSOC_TYPE_PRESS, $pressId);
+		return $returner;
 	}
 
 	/**
@@ -68,7 +71,8 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	 * @return array Email templates
 	 */
 	function &getEmailTemplates($locale, $pressId, $rangeInfo = null) {
-		return parent::getEmailTemplates($locale, ASSOC_TYPE_PRESS, $pressId, $rangeInfo);
+		$returner =& parent::getEmailTemplates($locale, ASSOC_TYPE_PRESS, $pressId, $rangeInfo);
+		return $returner;
 	}
 
 	/**
