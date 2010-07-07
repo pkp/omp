@@ -118,7 +118,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize($requiredContexts, $request) {
+	function authorize($request) {
 		// Retrieve the request context
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
@@ -143,7 +143,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		}
 
 		// Execute standard checks
-		if (!parent::authorize($requiredContexts, $request)) return false;
+		if (!parent::authorize($request)) return false;
 
 		return true;
 
@@ -161,7 +161,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		// Calling editSponsor with an empty file id will add a new file
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('newFile', 'true');
-		
+
 		return $this->editFile($args, $request);
 	}
 

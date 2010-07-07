@@ -56,7 +56,7 @@ class ReviewerGridHandler extends GridHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize($requiredContexts, $request) {
+	function authorize($request) {
 		// FIXME: implement validation
 		// Retrieve and validate the monograph id
 		$monographId =& $request->getUserVar('monographId');

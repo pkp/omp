@@ -61,7 +61,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize($requiredContexts, $request) {
+	function authorize($request) {
 		// Retrieve the request context
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);

@@ -131,7 +131,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize($requiredContexts, $request) {
+	function authorize($request) {
 		// Retrieve the request context
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
@@ -144,7 +144,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 		$this->addCheck(new HandlerValidatorRoles($this, false, 'Insufficient privileges!', null, array(ROLE_ID_REVIEWER, ROLE_ID_EDITOR)));
 
 		// Execute standard checks
-		if (!parent::authorize($requiredContexts, $request)) return false;
+		if (!parent::authorize($request)) return false;
 
 		return true;
 

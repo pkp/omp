@@ -39,13 +39,13 @@ class SubmissionsListGridHandler extends GridHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize($requiredContexts, $request) {
+	function authorize($request) {
 		// FIXME:
 		// Role ID in path equals user's role ID
 
 		// User ID in path equals user's user ID
 
-		return parent::authorize($requiredContexts, $request);
+		return parent::authorize($request);
 	}
 
 	/*

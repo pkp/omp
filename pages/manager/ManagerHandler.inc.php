@@ -23,9 +23,20 @@ class ManagerHandler extends Handler {
 	 */
 	function ManagerHandler() {
 		parent::Handler();
+	}
 
-		$this->addCheck(new HandlerValidatorPress($this));
-		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER)));
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize($request) {
+		// FIXME: We do not currently have a "manager" handler
+		// specified for OMP as we'll move away from role based
+		// pages. We use the already specified OmpPressSetupPolicy
+		// as a temporary workaround. Please fix when the final
+		// page structure is in place.
+		import('classes.security.authorization.OmpPressSetupPolicy');
+		$this->addPolicy(new OmpPressSetupPolicy($request));
+		return parent::authorize($request);
 	}
 
 	/**

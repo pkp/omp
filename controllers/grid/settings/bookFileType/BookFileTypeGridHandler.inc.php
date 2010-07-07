@@ -12,11 +12,11 @@
  * @brief Handle Book File Type grid requests.
  */
 
-import('lib.pkp.classes.controllers.grid.GridHandler');
+import('controllers.grid.settings.SetupGridHandler');
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 import('controllers.grid.settings.bookFileType.BookFileTypeGridRow');
 
-class BookFileTypeGridHandler extends GridHandler {
+class BookFileTypeGridHandler extends SetupGridHandler {
 	/**
 	 * Constructor
 	 */

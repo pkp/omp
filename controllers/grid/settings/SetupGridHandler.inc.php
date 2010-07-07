@@ -14,10 +14,6 @@
 
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
-// import validation classes
-import('classes.handler.validation.HandlerValidatorPress');
-import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
-
 class SetupGridHandler extends GridHandler {
 	/**
 	 * Constructor
@@ -29,20 +25,9 @@ class SetupGridHandler extends GridHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize($requiredContexts, $request) {
-		// Retrieve the request context
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
-
-		// 1) Ensure we're in a press
-		$this->addCheck(new HandlerValidatorPress($this, false, 'No press in context!'));
-
-		// 2) Only Press Managers and Admins may access
-		$this->addCheck(new HandlerValidatorRoles($this, false, 'Insufficient privileges!', null, array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SITE_ADMIN)));
-
-		// Execute standard checks
-		if (!parent::authorize($requiredContexts, $request)) return false;
-
-		return true;
+	function authorize($request) {
+		import('classes.security.authorization.OmpPressSetupPolicy');
+		$this->addPolicy(new OmpPressSetupPolicy($request));
+		return parent::authorize($request);
 	}
 }

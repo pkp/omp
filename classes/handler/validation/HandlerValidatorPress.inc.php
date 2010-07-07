@@ -9,29 +9,23 @@
  * @ingroup security
  *
  * @brief Class to represent a page validation check.
+ *
+ * NB: Deprecated - please use ContextRequiredPolicy instead.
  */
 
-import('lib.pkp.classes.handler.validation.HandlerValidator');
+import('lib.pkp.classes.handler.validation.HandlerValidatorPolicy');
+import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
 
-class HandlerValidatorPress extends HandlerValidator {
+class HandlerValidatorPress extends HandlerValidatorPolicy {
 	/**
 	 * Constructor.
-	 * @param $handler Handler the associated form
-	 * @param $message string the error message for validation failures (i18n key)
+	 * @see HandlerValidator::HandlerValidator()
 	 */
-	 
 	function HandlerValidatorPress(&$handler, $redirectToLogin = false, $message = null, $additionalArgs = array()) {
-		parent::HandlerValidator($handler, $redirectToLogin, $message, $additionalArgs);
-	}
-
-	/**
-	 * Check if field value is valid.
-	 * Value is valid if it is empty and optional or validated by user-supplied function.
-	 * @return boolean
-	 */
-	function isValid() {
-		$press =& Request::getPress();
-		return ($press)?true:false;
+		$application =& PKPApplication::getApplication();
+		$request =& $application->getRequest();
+		$policy = new ContextRequiredPolicy($request, $message);
+		parent::HandlerValidatorPolicy($policy, $handler, $redirectToLogin, $message, $additionalArgs);
 	}
 }
 
