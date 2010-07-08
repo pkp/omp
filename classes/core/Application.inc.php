@@ -124,7 +124,8 @@ class Application extends PKPApplication {
 			'UserGroupStageAssignmentDAO' => 'classes.workflow.UserGroupStageAssignmentDAO',
 			'SeriesEditorSubmissionDAO' => 'classes.submission.seriesEditor.SeriesEditorSubmissionDAO',
 			'UserDAO' => 'classes.user.UserDAO',
-			'UserSettingsDAO' => 'classes.user.UserSettingsDAO'
+			'UserSettingsDAO' => 'classes.user.UserSettingsDAO',
+			'ViewsDAO' => 'classes.views.ViewsDAO'
 		));
 	}
 

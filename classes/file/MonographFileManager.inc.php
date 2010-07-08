@@ -269,18 +269,26 @@ class MonographFileManager extends FileManager {
 	 * @return boolean
 	 */
 	function downloadFile($fileId, $revision = null, $inline = false) {
+		$returner = false;
 		$monographFile =& $this->getFile($fileId, $revision);
 		if (isset($monographFile)) {
 			$fileType = $monographFile->getFileType();
 			$filePath = $this->filesDir . $monographFile->getType() . '/' . $monographFile->getFileName();
 
-			return parent::downloadFile($filePath, $fileType, $inline);
+			// Mark the file as viewed by this user
+			$sessionManager =& SessionManager::getManager();
+			$session =& $sessionManager->getUserSession();
+			$user =& $session->getUser();
+			$viewsDao =& DAORegistry::getDAO('ViewsDAO');
+			$viewsDao->recordView(ASSOC_TYPE_MONOGRAPH_FILE, $fileId, $user->getId());
 
-		} else {
-			return false;
+			// Send the file to the user
+			$returner = parent::downloadFile($filePath, $fileType, $inline);
 		}
+
+		return $returner;
 	}
-	
+
 	/**
 	 * Download all monograph files as an archive
 	 * @return boolean
@@ -290,7 +298,7 @@ class MonographFileManager extends FileManager {
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 			$monographFiles =& $monographFileDao->getByMonographId($this->monographId);
 		}
-		
+
 		$filePaths = array();
 		foreach ($monographFiles as $monographFile) {
 			// Remove absolute path so the archive doesn't include it (otherwise all files are organized by absolute path)
@@ -298,7 +306,7 @@ class MonographFileManager extends FileManager {
 			// Add files to be archived to array
 			$filePaths[] = escapeshellarg($filePath);
 		}
-		
+
 		// Create the archive and download the file
 		$archivePath = $this->filesDir . "monograph_" . $this->monographId . "_files.tar.gz";
 		$tarCommand = "tar czf ". $archivePath . " -C \"" . $this->filesDir . "\" " . implode(" ", $filePaths);
@@ -306,7 +314,7 @@ class MonographFileManager extends FileManager {
 		if (file_exists($archivePath)) {
 			parent::downloadFile($archivePath);
 			return true;
-		} else return false;		 
+		} else return false;
 	}
 
 	/**
