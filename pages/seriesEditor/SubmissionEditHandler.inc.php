@@ -143,7 +143,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 			'externalReview',
 			LINK_ACTION_MODE_MODAL,
 			LINK_ACTION_TYPE_NOTHING,
-			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'decision', nul, $actionArgs),
+			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'decision', null, $actionArgs),
 			'editor.monograph.decision.externalReview'
 		);
 
