@@ -20,23 +20,21 @@ class SelectRoleBlockPlugin extends BlockPlugin {
 	/** @var User */
 	var $_user;
 
-	/** @var Press */
-	var $_press;
+	/** @var mixed */
+	var $_context;
 
 	/**
 	 * @see PKPPlugin::getEnabled()
 	 */
 	function getEnabled() {
 		// Only display the the block after installation
-		// and only if a user is logged in and we're in
-		// a press context.
+		// and only if a user is logged in.
 		if (Config::getVar('general', 'installed')) {
 			$request =& Registry::get('request');
 			$this->_user = $request->getUser();
 			if ($this->_user) {
 				$router =& $request->getRouter();
-				$this->_press =& $router->getContext($request);
-				if (!$this->_press) return false;
+				$this->_context =& $router->getContext($request);
 
 				// Delegate to the parent class to
 				// see whether the plug-in is enabled
@@ -83,7 +81,11 @@ class SelectRoleBlockPlugin extends BlockPlugin {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userId =& $this->_user->getId();
 
-		$userGroups =& $userGroupDao->getByUserId($userId, $this->_press->getId());
+		if ($this->_context) {
+			$userGroups =& $userGroupDao->getByUserId($userId, $this->_context->getId());
+		} else {
+			$userGroups =& $userGroupDao->getByUserId($userId);
+		}
 
 		$sessionManager =& SessionManager::getManager();
 		$session =& $sessionManager->getUserSession();

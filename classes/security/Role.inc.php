@@ -14,36 +14,41 @@
  */
 
 /** ID codes and paths for all default roles */
-//FIXME: some of these will be downgraded to user groups. needs review.
 define('ROLE_ID_SITE_ADMIN',		0x00000001);
 define('ROLE_PATH_SITE_ADMIN', 'admin');
 
 define('ROLE_ID_PRESS_MANAGER',		0x00000011);
 define('ROLE_PATH_PRESS_MANAGER', 'manager');
 
+define('ROLE_ID_SERIES_EDITOR',	0x00000201);
+define('ROLE_PATH_SERIES_EDITOR', 'seriesEditor');
+
+define('ROLE_ID_AUTHOR',		0x00010000);
+define('ROLE_PATH_AUTHOR', 'author');
+
+define('ROLE_ID_REVIEWER',		0x00001000);
+define('ROLE_PATH_REVIEWER', 'reviewer');
+
+
+//FIXME: The following new role (="press role") will have to be introduced:
+define('ROLE_ID_PRESS_ASSISTANT', 0x00001001);
+
+
+//FIXME: The following roles will have to be deleted:
 define('ROLE_ID_DIRECTOR',		0x00000012);
 define('ROLE_PATH_DIRECTOR', 'director');
 
 define('ROLE_ID_EDITOR',		0x00000100);
 define('ROLE_PATH_EDITOR', 'editor');
 
-define('ROLE_ID_SERIES_EDITOR',	0x00000201);
-define('ROLE_PATH_SERIES_EDITOR', 'seriesEditor');
-
 define('ROLE_ID_PRODUCTION_EDITOR',	0x00000401);
 define('ROLE_PATH_PRODUCTION_EDITOR', 'productionEditor');
-
-define('ROLE_ID_REVIEWER',		0x00001000);
-define('ROLE_PATH_REVIEWER', 'reviewer');
 
 define('ROLE_ID_COPYEDITOR',		0x00002000);
 define('ROLE_PATH_COPYEDITOR', 'copyeditor');
 
 define('ROLE_ID_PROOFREADER',		0x00004000);
 define('ROLE_PATH_PROOFREADER', 'proofreader');
-
-define('ROLE_ID_AUTHOR',		0x00010000);
-define('ROLE_PATH_AUTHOR', 'author');
 
 define('ROLE_ID_READER',		0x00020000);
 define('ROLE_PATH_READER', 'reader');

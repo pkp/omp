@@ -11,23 +11,19 @@
  * @brief Class to control access to OMP's press setup components
  */
 
-import('lib.pkp.classes.security.authorization.PolicySet');
+import('lib.pkp.classes.security.authorization.OmpPressPolicy');
 
-class OmpPressSetupPolicy extends PolicySet {
+class OmpPressSetupPolicy extends OmpPressPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
 	 */
 	function OmpPressSetupPolicy(&$request) {
-		parent::PolicySet();
+		parent::OmpPressPolicy($request);
 
-		// 1) Ensure we're in a press
-		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
-		$this->addPolicy(new ContextRequiredPolicy($request, 'No press in context!'));
-
-		// 2) Only Press Managers and Admins may access
+		// Only press managers may access setup pages.
 		import('lib.pkp.classes.security.authorization.HandlerOperationRolesPolicy');
-		$this->addPolicy(new HandlerOperationRolesPolicy($request, array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SITE_ADMIN), 'Insufficient privileges!'));
+		$this->addPolicy(new HandlerOperationRolesPolicy($request, ROLE_ID_PRESS_MANAGER, 'You are not a press manager!'));
 	}
 }
 

@@ -29,9 +29,15 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function PressEditorSubmissionsListGridHandler() {
 		parent::GridHandler();
-		$this->roleId = ROLE_ID_EDITOR;
+	}
 
-		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_EDITOR)));
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize($request) {
+		import('classes.security.authorization.OmpWorkflowStagePolicy');
+		$this->addPolicy(new OmpWorkflowStagePolicy($request));
+		return parent::authorize($request);
 	}
 
 	//
