@@ -85,7 +85,12 @@ class SelectRoleBlockPlugin extends BlockPlugin {
 
 		$userGroups =& $userGroupDao->getByUserId($userId, $this->_press->getId());
 
+		$sessionManager =& SessionManager::getManager();
+		$session =& $sessionManager->getUserSession();
+		$actingAsUserGroupId = $session->getActingAsUserGroupId();
+
 		$templateMgr->assign_by_ref('userGroups', $userGroups);
+		$templateMgr->assign('actingAsUserGroupId', $actingAsUserGroupId);
 		return parent::getContents($templateMgr);
 	}
 }
