@@ -68,13 +68,6 @@ class ChapterForm extends Form {
 	}
 
 	/**
-	 * Display the form.
-	 */
-	function display($request, $fetch = true) {
-		return parent::display($request, $fetch);
-	}
-
-	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {

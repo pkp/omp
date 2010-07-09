@@ -35,9 +35,9 @@ class InformationCenterNotesForm extends Form {
 	}
 
 	/**
-	 * Display the form.
+	 * Fetch the form.
 	 */
-	function display(&$request, $fetch = true) {
+	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
@@ -47,7 +47,7 @@ class InformationCenterNotesForm extends Form {
 		$templateMgr->assign_by_ref('assocId', $this->assocId);
 		$templateMgr->assign_by_ref('assocType', $this->assocType);
 		
-		return parent::display($request, $fetch);
+		return parent::fetch($request);
 	}
 
 	/**

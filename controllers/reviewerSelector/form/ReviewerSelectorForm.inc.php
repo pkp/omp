@@ -33,9 +33,9 @@ class ReviewerSelectorForm extends Form {
 
 
 	/**
-	 * Display
+	 * Fetch
 	 */
-	function display(&$request, $fetch = true) {
+	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 
 		$seriesEditorSubmissionDAO =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
@@ -43,7 +43,7 @@ class ReviewerSelectorForm extends Form {
 
 		$templateMgr->assign('reviewerValues', $reviewerValues);
 		
-		return parent::display($request, $fetch);
+		return parent::fetch($request);
 	}
 
 	/**

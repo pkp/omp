@@ -47,9 +47,9 @@ class GroupForm extends Form {
 	}
 
 	/**
-	 * Display the form.
+	 * Fetch the form.
 	 */
-	function display(&$request, $fetch = true) {
+	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign_by_ref('group', $this->group);
@@ -58,7 +58,7 @@ class GroupForm extends Form {
 			GROUP_CONTEXT_EDITORIAL_TEAM => 'manager.groups.context.editorialTeam',
 			GROUP_CONTEXT_PEOPLE => 'manager.groups.context.people'
 		));
-		return parent::display($request, $fetch);
+		return parent::fetch($request);
 	}
 
 	/**
@@ -102,7 +102,7 @@ class GroupForm extends Form {
 
 		// Eventually this will be a general Groups feature; for now,
 		// we're just using it to display press team entries in About.
-		$this->group->setAboutDisplayed(true);
+		$this->group->setAboutFetched(true);
 
 		// Update or insert group group
 		if ($this->group->getId() != null) {

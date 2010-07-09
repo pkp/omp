@@ -52,9 +52,9 @@ class SubmissionFilesMetadataForm extends Form {
 	}
 
 	/**
-	 * Display
+	 * Fetch
 	 */
-	function display(&$request, $fetch = true) {
+	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('fileId', $this->_fileId);
 		
@@ -68,7 +68,7 @@ class SubmissionFilesMetadataForm extends Form {
 		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $this->_fileId);
 		$templateMgr->assign('note', $notes->next()); 
 		
-		return parent::display($request, $fetch);
+		return parent::fetch($request);
 	}
 
 	/**

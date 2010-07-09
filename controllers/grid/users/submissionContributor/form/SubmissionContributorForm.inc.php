@@ -88,9 +88,9 @@ class SubmissionContributorForm extends Form {
 	}
 
 	/**
-	 * Display the form.
+	 * Fetch the form.
 	 */
-	function display($request, $fetch = true) {
+	function fetch($request) {
 		$submissionContributor =& $this->getSubmissionContributor();
 
 		$templateMgr =& TemplateManager::getManager();
@@ -113,7 +113,7 @@ class SubmissionContributorForm extends Form {
 
 		$templateMgr->assign('monographId', $this->getMonographId());
 
-		return parent::display($request, $fetch);
+		return parent::fetch($request);
 	}
 
 	/**

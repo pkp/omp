@@ -63,11 +63,11 @@ class SubmissionChecklistForm extends Form {
 	}
 
 	/**
-	 * Display
+	 * Fetch
 	 */
-	function display(&$request, $fetch = true) {
+	function fetch(&$request) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
-		return parent::display($request, $fetch);
+		return parent::fetch($request);
 	}
 
 	/**

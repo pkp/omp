@@ -63,15 +63,15 @@ class BookFileTypeForm extends Form {
 	}
 
 	/**
-	 * Display
+	 * Fetch
 	 */
-	function display(&$request, $fetch = true) {
+	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('bookFileCategories', array(BOOK_FILE_CATEGORY_DOCUMENT => Locale::translate('submission.document'),
 					BOOK_FILE_CATEGORY_ARTWORK => Locale::translate('submission.art')));
 				
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
-		return parent::display($request, $fetch);
+		return parent::fetch($request);
 	}
 
 	/**

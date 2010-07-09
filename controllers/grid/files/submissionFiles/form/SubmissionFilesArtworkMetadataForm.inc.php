@@ -35,9 +35,9 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 	}
 
 	/**
-	 * Display the form.
+	 * Fetch the form.
 	 */
-	function display(&$request, $fetch = true) {
+	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('fileId', $this->_fileId);
 		$templateMgr->assign('monographId', $this->_monographId);
@@ -74,7 +74,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 
 		$templateMgr->assign_by_ref('chapterOptions', $chapterOptions);
 
-		return parent::display($request, $fetch);
+		return parent::fetch($request);
 	}
 
 	/**
