@@ -19,16 +19,6 @@
 
 switch ($op) {
 	//
-	// Setup
-	//
-	case 'setup':
-	case 'saveSetup':
-	case 'setupSaved':
-	case 'downloadLayoutTemplate':
-		import('pages.manager.SetupHandler');
-		define('HANDLER_CLASS', 'SetupHandler');
-		break;
-	//
 	// People Management
 	//
 	case 'people':
