@@ -14,7 +14,7 @@
 		<form id="changeActingAsUserGroupForm" action="">
 			<select id="changedActingAsUserGroupId" name="changedActingAsUserGroupId" class="field select">
 				{iterate from="userGroups" item=group}
-					<option value="{$group->getId()}"{if $group->getId() eq $actingAsUserGroupId} selected{/if}>{$group->getLocalizedName()}</option>
+					<option value="{$group->getId()}" {if $group->getId() == $currentActingAsUserGroupId}selected="selected"{/if}>{$group->getLocalizedName()}</option>
 				{/iterate}
 			</select>
 			<label for="toolbox_press_roles">{translate key="plugins.block.selectRole.changeTo"}</label>

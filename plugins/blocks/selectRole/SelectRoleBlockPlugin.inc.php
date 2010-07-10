@@ -78,21 +78,22 @@ class SelectRoleBlockPlugin extends BlockPlugin {
 	}
 
 	function getContents(&$templateMgr) {
+		// Retrieve the user's user groups.
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userId =& $this->_user->getId();
-
 		if ($this->_context) {
 			$userGroups =& $userGroupDao->getByUserId($userId, $this->_context->getId());
 		} else {
 			$userGroups =& $userGroupDao->getByUserId($userId);
 		}
+		$templateMgr->assign_by_ref('userGroups', $userGroups);
+		
 
+		// Retrieve the currently selected user group.
 		$sessionManager =& SessionManager::getManager();
 		$session =& $sessionManager->getUserSession();
-		$actingAsUserGroupId = $session->getActingAsUserGroupId();
+		$templateMgr->assign('currentActingAsUserGroupId', $session->getActingAsUserGroupId());
 
-		$templateMgr->assign_by_ref('userGroups', $userGroups);
-		$templateMgr->assign('actingAsUserGroupId', $actingAsUserGroupId);
 		return parent::getContents($templateMgr);
 	}
 }
