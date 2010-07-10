@@ -87,7 +87,6 @@ class SelectRoleBlockPlugin extends BlockPlugin {
 			$userGroups =& $userGroupDao->getByUserId($userId);
 		}
 		$templateMgr->assign_by_ref('userGroups', $userGroups);
-		
 
 		// Retrieve the currently selected user group.
 		$sessionManager =& SessionManager::getManager();
