@@ -26,13 +26,8 @@ class EditorDecisionHandler extends Handler {
 	}
 
 	/**
-	 * @see PKPHandler::getRemoteOperations()
-	 * @return array
+	 * FIXME: add method doc
 	 */
-	function getRemoteOperations() {
-		return array('sendReviews', 'requestRevisions', 'resubmit', 'decision', 'saveDecision', 'importPeerReviews', 'resubmit', 'saveResubmit');
-	}
-
 	function decision(&$args, &$request) {
 		// FIXME: add validation
 		$monographId = $request->getUserVar('monographId');

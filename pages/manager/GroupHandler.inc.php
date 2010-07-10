@@ -9,7 +9,7 @@
  * @class GroupHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for editorial team management functions. 
+ * @brief Handle requests for editorial team management functions.
  */
 
 // $Id$
@@ -19,20 +19,24 @@ import('pages.manager.ManagerHandler');
 class GroupHandler extends ManagerHandler {
 	/** group associated with this request **/
 	var $group;
-	
+
 	/** user associated with this request **/
 	var $user;
-	
+
 	/** groupMembership associated with this request **/
 	var $groupMembershipDao;
-	
+
 	/**
 	 * Constructor
-	 */	
+	 */
 	function GroupHandler() {
 		parent::ManagerHandler();
+		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
+				array('addMembership', 'createGroup', 'deleteGroup', 'deleteMembership',
+				'editGroup', 'groupMembership', 'groups', 'moveGroup', 'moveMembership',
+				'setBoardEnabled', 'updateGroup'));
 	}
-	
+
 	/**
 	 * Display a list of groups for the current press.
 	 */

@@ -21,6 +21,10 @@ class PeopleHandler extends ManagerHandler {
 	 **/
 	function PeopleHandler() {
 		parent::ManagerHandler();
+		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
+				array('people', 'enrollSearch', 'showNoRole', 'enroll', 'unEnroll',
+				'createUser', 'suggestUsername', 'editUser', 'mergeUsers', 'disableUser',
+				'enableUser', 'removeUser', 'updateUser', 'userProfile'));
 	}
 
 	/**
@@ -28,7 +32,6 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array first parameter is the role ID to display
 	 */
 	function people(&$args, &$request) {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -169,8 +172,6 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array first parameter is the selected role ID
 	 */
 	function enrollSearch(&$args, &$request) {
-		$this->validate();
-
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -238,8 +239,6 @@ class PeopleHandler extends ManagerHandler {
 	 * Show users with no role.
 	 */
 	function showNoRole(&$args, &$request) {
-		$this->validate();
-
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		$templateMgr =& TemplateManager::getManager();
@@ -261,7 +260,6 @@ class PeopleHandler extends ManagerHandler {
 	 * Enroll a user in a role.
 	 */
 	function enroll(&$args, &$request) {
-		$this->validate();
 		$userGroupId = (int)(isset($args[0])?$args[0]:$request->getUserVar('userGroupId'));
 
 		// Get a list of users to enroll -- either from the
@@ -293,7 +291,6 @@ class PeopleHandler extends ManagerHandler {
 	 */
 	function unEnroll(&$args, &$request) {
 		$userGroupId = isset($args[0])?$args[0]:0;
-		$this->validate();
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$press =& $pressDao->getPressByPath($request->getRequestedPressPath());
@@ -319,7 +316,6 @@ class PeopleHandler extends ManagerHandler {
 	 * already used by the system. (Poor-man's AJAX.)
 	 */
 	function suggestUsername(&$args, &$request) {
-		$this->validate();
 		$suggestion = Validation::suggestUsername(
 			$request->getUserVar('firstName'),
 			$request->getUserVar('lastName')
@@ -332,7 +328,6 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array optional, if set the first parameter is the ID of the user to edit
 	 */
 	function editUser(&$args, &$request) {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		$press =& $request->getPress();
@@ -372,7 +367,6 @@ class PeopleHandler extends ManagerHandler {
 	 * Allow the Press Manager to merge user accounts, including attributed monographs etc.
 	 */
 	function mergeUsers(&$args, &$request) {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -490,7 +484,6 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array the ID of the user to disable
 	 */
 	function disableUser(&$args, &$request) {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:$request->getUserVar('userId');
@@ -525,7 +518,6 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array the ID of the user to enable
 	 */
 	function enableUser(&$args, &$request) {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:null;
@@ -548,7 +540,6 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array the ID of the user to remove
 	 */
 	function removeUser(&$args, &$request) {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:null;
@@ -567,7 +558,6 @@ class PeopleHandler extends ManagerHandler {
 	 * Save changes to a user profile.
 	 */
 	function updateUser(&$args, &$request) {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		$press =& $request->getPress();
@@ -624,7 +614,6 @@ class PeopleHandler extends ManagerHandler {
 	 * @param $args array first parameter is the ID or username of the user to display
 	 */
 	function userProfile(&$args, &$request) {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		$templateMgr =& TemplateManager::getManager();

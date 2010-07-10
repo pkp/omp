@@ -20,9 +20,46 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 	 */
 	function ChapterContributorListbuilderHandler() {
 		parent::ListbuilderHandler();
+		$this->addRoleAssignment(
+				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array('fetch', 'addItem', 'deleteItems'));
 	}
 
 
+	//
+	// Implement template methods from PKPHandler
+	//
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize(&$request, &$args, $roleAssignments) {
+		import('classes.security.authorization.OmpSubmissionWizardPolicy');
+		$this->addPolicy(new OmpSubmissionWizardPolicy($request, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	/*
+	 * Configure the grid
+	 * @param PKPRequest $request
+	 */
+	function initialize(&$request) {
+		parent::initialize($request);
+		// Basic configuration
+		$this->setTitle('inserts.contributors.button.addContributor');
+		$this->setSourceTitle('common.name');
+		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Free text input
+		$this->setListTitle('author.submit.currentContributors');
+
+		$this->loadList($request);
+		$this->loadPossibleItemList($request);
+
+		$this->addColumn(new GridColumn('item', 'common.name'));
+	}
+
+
+	//
+	// Public methods
+	//
 	/* Load the list from an external source into the grid structure */
 	function loadList(&$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -74,24 +111,6 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 	//
 	// Overridden template methods
 	//
-	/*
-	 * Configure the grid
-	 * @param PKPRequest $request
-	 */
-	function initialize(&$request) {
-		parent::initialize($request);
-		// Basic configuration
-		$this->setTitle('inserts.contributors.button.addContributor');
-		$this->setSourceTitle('common.name');
-		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Free text input
-		$this->setListTitle('author.submit.currentContributors');
-
-		$this->loadList($request);
-		$this->loadPossibleItemList($request);
-
-		$this->addColumn(new GridColumn('item', 'common.name'));
-	}
-
 	/**
 	 * Need to add additional data to the template via the fetch method
 	 */

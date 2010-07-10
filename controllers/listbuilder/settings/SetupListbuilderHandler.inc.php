@@ -14,25 +14,24 @@
 
 import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 
-// import validation classes
-import('classes.handler.validation.HandlerValidatorPress');
-import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
-
 class SetupListbuilderHandler extends ListbuilderHandler {
 	/**
 	 * Constructor
 	 */
 	function SetupListbuilderHandler() {
 		parent::ListbuilderHandler();
+		$this->addRoleAssignment(
+				ROLE_ID_PRESS_MANAGER,
+				array('fetch', 'addItem', 'deleteItems'));
 	}
 
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize($request) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpPressSetupPolicy');
-		$this->addPolicy(new OmpPressSetupPolicy($request));
-		return parent::authorize($request);
+		$this->addPolicy(new OmpPressSetupPolicy($request, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 }
 ?>

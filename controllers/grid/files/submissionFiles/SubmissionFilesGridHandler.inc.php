@@ -18,10 +18,6 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 // import submission files grid specific classes
 import('controllers.grid.files.submissionFiles.SubmissionFilesGridRow');
 
-// import validation classes
-import('classes.handler.validation.HandlerValidatorPress');
-import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
-
 class SubmissionFilesGridHandler extends GridHandler {
 	var $_monographId;
 
@@ -30,23 +26,27 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 */
 	function SubmissionFilesGridHandler() {
 		parent::GridHandler();
+		$this->addRoleAssignment(
+				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'addFile', 'editFile', 'displayFileForm', 'uploadFile',
+				'deleteFile', 'editMetadata', 'saveMetadata', 'finishFileSubmission',
+				'returnFileRow', 'viewFile'));
 	}
 
-	//
-	// Getters/Setters
-	//
 
+	//
+	// Implement template methods from PKPHandler
+	//
 	/**
-	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
+	 * @see PKPHandler::authorize()
 	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addFile', 'editFile', 'displayFileForm', 'uploadFile',
-			'deleteFile', 'editMetadata', 'saveMetadata', 'finishFileSubmission', 'returnFileRow', 'viewFile'));
+	function authorize(&$request, &$args, $roleAssignments) {
+		import('classes.security.authorization.OmpSubmissionWizardAuthorPolicy');
+		$this->addPolicy(new OmpSubmissionWizardAuthorPolicy($request, $args, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	//
-	// Overridden template methods
-	//
+
 	/*
 	* Configure the grid
 	* @param PKPRequest $request
@@ -54,7 +54,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
+		// Get the monograph id (has been authorized by now).
 		$this->_monographId = $request->getUserVar('monographId');
+
 		// Basic grid configuration
 		$this->setTitle('author.submit.submissionFiles');
 
@@ -113,40 +115,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 	function &getRowInstance() {
 		$row = new SubmissionFilesGridRow();
 		return $row;
-	}
-
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize($request) {
-		// Retrieve the request context
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
-		$user =& $request->getUser();
-
-		// 1) Ensure we're in a press
-		$this->addCheck(new HandlerValidatorPress($this, false, 'No press in context!'));
-
-		// 2) Only Authors may access
-		$this->addCheck(new HandlerValidatorRoles($this, false, 'Insufficient privileges!', null, array(ROLE_ID_AUTHOR)));
-
-		// 3) Only this monograph's author may access
-		$monographId = $request->getUserVar('monographId');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getMonograph($monographId);
-
-		if ( isset($user) && isset($monograph)) {
-			$userId = $user->getId();
-			$monographSubmiter = $monograph->getUserId();
-			import('lib.pkp.classes.handler.validation.HandlerValidatorCustom');
-			$this->addCheck(new HandlerValidatorCustom($this, false, 'Restricted site access!', null, create_function('$monographSubmitter, $userId', 'if ($monographSubmitter != $userId) return false; else return true;'), array($monographSubmiter, $userId)));
-		}
-
-		// Execute standard checks
-		if (!parent::authorize($request)) return false;
-
-		return true;
-
 	}
 
 	//

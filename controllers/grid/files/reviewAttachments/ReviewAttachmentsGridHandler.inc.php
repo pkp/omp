@@ -15,10 +15,6 @@
 import('controllers.grid.files.reviewAttachments.ReviewAttachmentsGridRow');
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
-// import validation classes
-import('classes.handler.validation.HandlerValidatorPress');
-import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
-
 class ReviewAttachmentsGridHandler extends GridHandler {
 	/** the FileType for this grid */
 	var $fileType;
@@ -31,6 +27,8 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 */
 	function ReviewAttachmentsGridHandler() {
 		parent::GridHandler();
+		$this->addRoleAssignment(ROLE_ID_REVIEWER,
+				array('fetchGrid', 'addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));
 	}
 
 	//
@@ -52,16 +50,19 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 		return $this->_readOnly;
 	}
 
+	//
+	// Implement template methods from PKPHandler
+	//
 	/**
-	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
+	 * @see PKPHandler::authorize()
 	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));
+	function authorize(&$request, &$args, $roleAssignments) {
+		// Make sure the request complies with the review page policy.
+		import('classes.security.authorization.OmpReviewPagePolicy');
+		$this->addPolicy(new OmpReviewPagePolicy($request, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	//
-	// Overridden template methods
-	//
 	/*
 	 * Configure the grid
 	 * @param PKPRequest $request
@@ -126,28 +127,6 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	function &getRowInstance() {
 		$row = new ReviewAttachmentsGridRow();
 		return $row;
-	}
-
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize($request) {
-		// Retrieve the request context
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
-		$user =& $request->getUser();
-
-		// 1) Ensure we're in a press
-		$this->addCheck(new HandlerValidatorPress($this, false, 'No press in context!'));
-
-		// 2) Only Authors may access
-		$this->addCheck(new HandlerValidatorRoles($this, false, 'Insufficient privileges!', null, array(ROLE_ID_REVIEWER, ROLE_ID_EDITOR)));
-
-		// Execute standard checks
-		if (!parent::authorize($request)) return false;
-
-		return true;
-
 	}
 
 	//

@@ -22,17 +22,11 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	 */
 	function BookFileTypeGridHandler() {
 		parent::GridHandler();
+		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'addBookFileType', 'editBookFileType', 'updateBookFileType',
+				'deleteBookFileType', 'restoreBookFileTypes'));
 	}
 
-	//
-	// Getters/Setters
-	//
-	/**
-	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addBookFileType', 'editBookFileType', 'updateBookFileType', 'deleteBookFileType', 'restoreBookFileTypes'));
-	}
 
 	//
 	// Overridden template methods

@@ -9,7 +9,7 @@
  * @class InformationCenterHandler
  * @ingroup pages_seriesEditor
  *
- * @brief Parent class for file/submission information center handlers. 
+ * @brief Parent class for file/submission information center handlers.
  */
 
 import('classes.handler.Handler');
@@ -22,16 +22,34 @@ class InformationCenterHandler extends Handler {
 	 */
 	function InformationCenterHandler() {
 		parent::Handler();
+		// FIXME: Please correctly distribute the operations among roles.
+		$this->addRoleAssignment(ROLE_ID_AUTHOR,
+				$authorOperations = array());
+		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT,
+				$pressAssistantOperations = array_merge($authorOperations, array()));
+		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array_merge($pressAssistantOperations,
+				array('viewInformationCenter', 'viewNotes', 'saveNote', 'deleteNote', 'viewNotify',
+				'sendNotification', 'viewHistory')));
 	}
-	
-	/**
-	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
-	 */
-	function getRemoteOperations() {
-		return array('viewInformationCenter', 'viewNotes', 'saveNote', 'deleteNote', 'viewNotify', 'sendNotification', 'viewHistory');
-	}
-	
 
+
+	//
+	// Implement template methods from PKPHandler.
+	//
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize(&$request, &$args, $roleAssignments) {
+		import('classes.security.authorization.OmpWorkflowStagePolicy');
+		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+
+	//
+	// Public operations
+	//
 	/**
 	 * Display the main information center modal.
 	 * NB: sub-classes must implement this method.
@@ -46,7 +64,7 @@ class InformationCenterHandler extends Handler {
 	function viewNotes(&$args, &$request) {
 		assert('false');
 	}
-	
+
 	/**
 	 * Save a note.
 	 */
@@ -58,7 +76,7 @@ class InformationCenterHandler extends Handler {
 		$this->setupTemplate(true);
 
 		import('controllers.informationCenter.form.InformationCenterNotesForm');
-		$notesForm = new InformationCenterNotesForm($assocId, $assocType);		
+		$notesForm = new InformationCenterNotesForm($assocId, $assocType);
 		$notesForm->readInputData();
 
 		if ($notesForm->validate()) {
@@ -68,20 +86,20 @@ class InformationCenterHandler extends Handler {
 			$templateMgr =& TemplateManager::getManager();
 			$noteDao =& DAORegistry::getDAO('NoteDAO');
 			$templateMgr->assign('note', $noteDao->getNoteById($noteId));
-			$json = new JSON('true', $templateMgr->fetch('controllers/informationCenter/note.tpl'), 'false', $noteId);		
-			
+			$json = new JSON('true', $templateMgr->fetch('controllers/informationCenter/note.tpl'), 'false', $noteId);
+
 			// Save to event log
 			$user =& $request->getUser();
 			$userId = $user->getId();
 			$this->_logEvent($assocId, MONOGRAPH_LOG_NOTE_POSTED, $userId);
 		} else {
 			// Failure--Return a JSON string indicating so
-			$json = new JSON('false');					
+			$json = new JSON('false');
 		}
-		
-		return $json->getString();	
+
+		return $json->getString();
 	}
-	
+
 	/**
 	 * Delete a note.
 	 */
@@ -95,10 +113,10 @@ class InformationCenterHandler extends Handler {
 
 		$additionalAttributes = array('script' => "$('#note-$noteId').hide('slow')");
 		$json = new JSON('true', '', 'true', null, $additionalAttributes);
-		
+
 		return $json->getString();
 	}
-	
+
 	/**
 	 * Display the notify tab.
 	 */
@@ -114,7 +132,7 @@ class InformationCenterHandler extends Handler {
 		$json = new JSON('true', $notifyForm->fetch($request));
 		return $json->getString();
 	}
-	
+
 	/**
 	 * Send a notification from the notify tab.
 	 */
@@ -123,24 +141,24 @@ class InformationCenterHandler extends Handler {
 		$this->validate($assocId);
 		$this->setupTemplate(true);
 
-		
+
 		import('controllers.informationCenter.form.InformationCenterNotifyForm');
-		$notifyForm = new InformationCenterNotifyForm($assocId);		
+		$notifyForm = new InformationCenterNotifyForm($assocId);
 		$notifyForm->readInputData();
 
 		if ($notifyForm->validate()) {
 			$noteId = $notifyForm->execute();
 
 			// Success--Return a JSON string indicating so (will clear the form on return, and indicate success)
-			$json = new JSON('true');		
+			$json = new JSON('true');
 		} else {
 			// Failure--Return a JSON string indicating so
-			$json = new JSON('false');					
+			$json = new JSON('false');
 		}
-		
-		return $json->getString();	
+
+		return $json->getString();
 	}
-	
+
 	/**
 	 * Display the history tab.
 	 * NB: sub-classes must implement this method.
@@ -148,7 +166,7 @@ class InformationCenterHandler extends Handler {
 	function viewHistory(&$args, &$request) {
 		assert(false);
 	}
-	
+
 	/**
 	 * Log an event for this item.
 	 * NB: sub-classes must implement this method.
@@ -168,7 +186,7 @@ class InformationCenterHandler extends Handler {
 		parent::validate();
 
 		// FIXME: Implement validation
-		
+
 		return true;
 	}
 }

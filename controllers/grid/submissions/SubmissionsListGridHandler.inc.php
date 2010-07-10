@@ -19,10 +19,6 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 import('controllers.grid.submissions.SubmissionsListGridCellProvider');
 import('classes.submission.common.Action');
 
-// import validation classes
-import('classes.handler.validation.HandlerValidatorPress');
-import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
-
 class SubmissionsListGridHandler extends GridHandler {
 
 	/**
@@ -30,24 +26,11 @@ class SubmissionsListGridHandler extends GridHandler {
 	 */
 	function SubmissionsListGridHandler() {
 		parent::GridHandler();
-		//$this->addCheck(new HandlerValidatorPress($this));
 	}
 
 	//
 	// Overridden methods from PKPHandler
 	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize($request) {
-		// FIXME:
-		// Role ID in path equals user's role ID
-
-		// User ID in path equals user's user ID
-
-		return parent::authorize($request);
-	}
-
 	/*
 	 * Configure the grid
 	 * @param PKPRequest $request

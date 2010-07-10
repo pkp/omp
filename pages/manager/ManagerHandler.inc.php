@@ -12,8 +12,6 @@
  * @brief Handle requests for press management functions.
  */
 
-// $Id$
-
 
 import('classes.handler.Handler');
 
@@ -23,27 +21,28 @@ class ManagerHandler extends Handler {
 	 */
 	function ManagerHandler() {
 		parent::Handler();
+		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
+				array('email', 'index'));
 	}
 
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize($request) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		// FIXME: We do not currently have a "manager" handler
 		// specified for OMP as we'll move away from role based
 		// pages. We use the already specified OmpPressSetupPolicy
 		// as a temporary workaround. Please fix when the final
 		// page structure is in place.
 		import('classes.security.authorization.OmpPressSetupPolicy');
-		$this->addPolicy(new OmpPressSetupPolicy($request));
-		return parent::authorize($request);
+		$this->addPolicy(new OmpPressSetupPolicy($request, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/**
 	 * Display press management index page.
 	 */
 	function index() {
-		$this->validate();
 		$this->setupTemplate();
 
 		$press =& Request::getPress();
@@ -71,8 +70,6 @@ class ManagerHandler extends Handler {
 	 * Send an email to a user or group of users.
 	 */
 	function email($args) {
-		parent::validate();
-
 		$this->setupTemplate(true);
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'press.users.emailUsers');

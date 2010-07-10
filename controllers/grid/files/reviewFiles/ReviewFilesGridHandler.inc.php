@@ -14,10 +14,6 @@
 
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
-// import validation classes
-import('classes.handler.validation.HandlerValidatorPress');
-import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
-
 class ReviewFilesGridHandler extends GridHandler {
 	/** the FileType for this grid */
 	var $fileType;
@@ -36,24 +32,26 @@ class ReviewFilesGridHandler extends GridHandler {
 	 */
 	function ReviewFilesGridHandler() {
 		parent::GridHandler();
+		// FIXME: Please correctly distribute the operations among roles.
+		$this->addRoleAssignment(ROLE_ID_AUTHOR,
+				$authorOperations = array());
+		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT,
+				$pressAssistantOperations = array_merge($authorOperations, array()));
+		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array_merge($pressAssistantOperations,
+				array('fetchGrid', 'downloadFile', 'downloadAllFiles', 'manageReviewFiles',
+				'uploadReviewFile', 'updateReviewFiles')));
 	}
 
 	//
 	// Getters/Setters
 	//
 	/**
-	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('downloadFile', 'downloadAllFiles', 'manageReviewFiles', 'uploadReviewFile', 'updateReviewFiles'));
-	}
-
-	/**
 	 * Set the selectable flag
 	 * @param $isSelectable bool
 	 */
 	function setIsSelectable($isSelectable) {
-	 $this->_isSelectable = $isSelectable;
+		$this->_isSelectable = $isSelectable;
 	}
 
 	/**
@@ -61,7 +59,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @return bool
 	 */
 	function getIsSelectable() {
-	 return $this->_isSelectable;
+		return $this->_isSelectable;
 	}
 
 	/**
@@ -69,7 +67,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @param $canUpload bool
 	 */
 	function setCanUpload($canUpload) {
-	 $this->_canUpload = $canUpload;
+		$this->_canUpload = $canUpload;
 	}
 
 	/**
@@ -77,7 +75,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @return bool
 	 */
 	function getCanUpload() {
-	 return $this->_canUpload;
+		return $this->_canUpload;
 	}
 
 	/**
@@ -85,7 +83,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @param $showRoleColumns bool
 	 */
 	function setShowRoleColumns($showRoleColumns) {
-	 $this->_showRoleColumns = $showRoleColumns;
+		$this->_showRoleColumns = $showRoleColumns;
 	}
 
 	/**
@@ -93,13 +91,22 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @return bool
 	 */
 	function getShowRoleColumns() {
-	 return $this->_showRoleColumns;
+		return $this->_showRoleColumns;
 	}
 
 
 	//
-	// Overridden template methods
+	// Implement template methods from PKPHandler
 	//
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize(&$request, &$args, $roleAssignments) {
+		import('classes.security.authorization.OmpWorkflowStagePolicy');
+		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
 	/*
 	 * Configure the grid
 	 * @param PKPRequest $request
@@ -263,34 +270,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	}
 
 	//
-	// Overridden methods from GridHandler
-	//
-
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize($request) {
-		// Retrieve the request context
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
-		$user =& $request->getUser();
-
-		// 1) Ensure we're in a press
-		$this->addCheck(new HandlerValidatorPress($this, false, 'No press in context!'));
-
-		// 2) Only Authors may access
-		$this->addCheck(new HandlerValidatorRoles($this, false, 'Insufficient privileges!', null, array(ROLE_ID_EDITOR)));
-
-		// Execute standard checks
-		if (!parent::authorize($request)) return false;
-
-		return true;
-
-	}
-
-
-	//
-	// public methods
+	// Public methods
 	//
 	/**
 	 * Download the monograph file

@@ -24,7 +24,10 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 */
 	function LibraryFileGridHandler() {
 		parent::SetupGridHandler();
+		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'addFile', 'editFile', 'uploadFile', 'saveMetadata', 'deleteFile'));
 	}
+
 
 	//
 	// Getters/Setters
@@ -43,12 +46,6 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$this->fileType = $fileType;
 	}
 
-	/**
-	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addFile', 'editFile', 'uploadFile', 'saveMetadata', 'deleteFile'));
-	}
 
 	//
 	// Overridden template methods

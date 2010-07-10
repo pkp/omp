@@ -23,6 +23,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function PressDivisionsListbuilderHandler() {
 		parent::SetupListbuilderHandler();
+		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER, 'getAutocompleteSource');
 	}
 
 	function setGroupId($groupId) {
@@ -74,13 +75,6 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 		}
 
 		return $itemList;
-	}
-
-	/**
-	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('getAutocompleteSource'));
 	}
 
 

@@ -22,13 +22,14 @@ class PressLanguagesHandler extends ManagerHandler {
 	 */
 	function PressLanguagesHandler() {
 		parent::ManagerHandler();
+		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
+				array('languages', 'saveLanguageSettings', 'reloadLocalizedDefaultSettings'));
 	}
 
 	/**
 	 * Display form to edit language settings.
 	 */
 	function languages() {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		import('classes.manager.form.LanguageSettingsForm');
@@ -44,7 +45,6 @@ class PressLanguagesHandler extends ManagerHandler {
 	 * @param $request object
 	 */
 	function saveLanguageSettings($args, &$request) {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		import('classes.manager.form.LanguageSettingsForm');
@@ -75,7 +75,6 @@ class PressLanguagesHandler extends ManagerHandler {
 			$request->redirect(null, null, 'languages');
 		}
 
-		$this->validate();
 		$this->setupTemplate(true);
 
 		$press =& $request->getPress();

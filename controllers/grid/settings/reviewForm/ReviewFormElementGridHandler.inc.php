@@ -22,15 +22,14 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 	 **/
 	function ReviewFormElementGridHandler() {
 		parent::SetupGridHandler();
+		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'createReviewFormElement', 'editReviewFormElement', 'updateReviewFormElement', 'deleteReviewFormElement'));
 	}
 
-	/**
-	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('createReviewFormElement', 'editReviewFormElement', 'updateReviewFormElement', 'deleteReviewFormElement'));
-	}
 
+	//
+	// Implementation of template methods from PKPHandler
+	//
 	/**
 	 * Configure the grid
 	 * @param PKPRequest $request

@@ -45,7 +45,7 @@
 
 <p>{translate key="settings.setup.submissionRolesDescription"}</p>
 
-{url|assign:submissionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_AUTHOR stageId=$smarty.const.PUBLICATION_STAGE_ID_SUBMISSION title="settings.setup.submissionRoles" escape=false}
+{url|assign:submissionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_AUTHOR stageId=$smarty.const.WORKFLOW_STAGE_ID_SUBMISSION title="settings.setup.submissionRoles" escape=false}
 {load_url_in_div id="submissionRolesContainer" url=$submissionRolesUrl}
 
 <div class="separator"></div>
@@ -70,7 +70,7 @@
 
 <p>{translate key="settings.setup.internalReviewRolesDescription"}</p>
 
-{url|assign:internalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_REVIEWER stageId=$smarty.const.PUBLICATION_STAGE_ID_INTERNAL_REVIEW title="settings.setup.internalReviewRoles" escape=false}
+{url|assign:internalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_REVIEWER stageId=$smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW title="settings.setup.internalReviewRoles" escape=false}
 {load_url_in_div id="internalReviewRolesContainer" url=$internalReviewRolesUrl}
 
 <div class="separator"></div>
@@ -79,7 +79,7 @@
 
 <p>{translate key="settings.setup.externalReviewRolesDescription"}</p>
 
-{url|assign:externalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_REVIEWER stageId=$smarty.const.PUBLICATION_STAGE_ID_EXTERNAL_REVIEW title="settings.setup.externalReviewRoles" escape=false}
+{url|assign:externalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_REVIEWER stageId=$smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW title="settings.setup.externalReviewRoles" escape=false}
 {load_url_in_div id="externalReviewRolesContainer" url=$externalReviewRolesUrl}
 
 <div class="separator"></div>
@@ -102,7 +102,7 @@
 
 <p>{translate key="settings.setup.editorialRolesDescription"}</p>
 
-{url|assign:editorialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_EDITOR stageId=$smarty.const.PUBLICATION_STAGE_ID_EDITING title="settings.setup.editorialRoles" escape=false}
+{url|assign:editorialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_EDITOR stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING title="settings.setup.editorialRoles" escape=false}
 {load_url_in_div id="editorialRolesContainer" url=$editorialRolesUrl}
 
 <div class="separator"></div>
@@ -118,7 +118,7 @@
 
 <p>{translate key="settings.setup.productionRolesDescription"}</p>
 
-{url|assign:productionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_EDITOR stageId=$smarty.const.PUBLICATION_STAGE_ID_PRODUCTION title="settings.setup.productionRoles" escape=false}
+{url|assign:productionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_EDITOR stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION title="settings.setup.productionRoles" escape=false}
 {load_url_in_div id="productionRolesContainer" url=$productionRolesUrl}
 
 <div class="separator"></div>

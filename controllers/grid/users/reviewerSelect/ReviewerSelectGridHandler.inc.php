@@ -26,34 +26,40 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 */
 	function ReviewerSelectGridHandler() {
 		parent::GridHandler();
+		// FIXME: Please correctly distribute the operations among roles.
+		$this->addRoleAssignment(ROLE_ID_AUTHOR,
+				$authorOperations = array());
+		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT,
+				$pressAssistantOperations = array_merge($authorOperations, array()));
+		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array_merge($pressAssistantOperations, array('fetchGrid', 'updateReviewerSelect')));
 	}
 
 	//
-	// Overridden methods from PKPHandler
+	// Implement template methods from PKPHandler
 	//
 	/**
-	 * @see PKPHandler::getRemoteOperations()
-	 * @return array
+	 * @see PKPHandler::authorize()
 	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('updateReviewerSelect'));
+	function authorize(&$request, &$args, $roleAssignments) {
+		import('classes.security.authorization.OmpWorkflowStagePolicy');
+		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
-	
+
 	/*
 	 * Configure the grid
 	 * @param PKPRequest $request
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-		$monographId =& $request->getUserVar('monographId');
-
 		$press =& $request->getPress();
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_PKP_SUBMISSION));
-		
+
 		// Retrieve the submissionContributors associated with this monograph to be displayed in the grid
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		
+
 		$doneMin = $request->getUserVar('doneMin');
 		$doneMax = $request->getUserVar('doneMax');
 		$avgMin = $request->getUserVar('avgMin');
@@ -63,10 +69,10 @@ class ReviewerSelectGridHandler extends GridHandler {
 		$activeMin = $request->getUserVar('activeMin');
 		$activeMax = $request->getUserVar('activeMax');
 		$interests = null;
-		
+
 		$data =& $seriesEditorSubmissionDao->getFilteredReviewers($press->getId(), $doneMin, $doneMax, $avgMin, $avgMax, $lastMin, $lastMax, $activeMin, $activeMax, $interests);
-		$this->setData($data);		
-		
+		$this->setData($data);
+
 		// Columns
 		$cellProvider = new ReviewerSelectGridCellProvider();
 		$this->addColumn(
@@ -157,7 +163,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 		$press =& $request->getPress();
 		// Retrieve the filtered list of reviewers
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		
+
 		$doneMin = $request->getUserVar('doneMin');
 		$doneMax = $request->getUserVar('doneMax');
 		$avgMin = $request->getUserVar('avgMin');
@@ -167,10 +173,10 @@ class ReviewerSelectGridHandler extends GridHandler {
 		$activeMin = $request->getUserVar('activeMin');
 		$activeMax = $request->getUserVar('activeMax');
 		$interests = $request->getUserVar('interestsKeywords');
-		
+
 		$data =& $seriesEditorSubmissionDao->getFilteredReviewers($press->getId(), $doneMin, $doneMax, $avgMin, $avgMax, $lastMin, $lastMax, $activeMin, $activeMax, $interests);
-		$this->setData($data);	
-		
+		$this->setData($data);
+
 
 		// Re-display the grid
 		return $this->fetchGrid($args,$request);

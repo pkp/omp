@@ -9,7 +9,7 @@
  * @class AnnouncementHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for announcement management functions. 
+ * @brief Handle requests for announcement management functions.
  */
 
 // $Id$
@@ -23,6 +23,7 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	function AnnouncementHandler() {
 		parent::PKPAnnouncementHandler();
 	}
+
 	/**
 	 * Display a list of announcements for the current press.
 	 */
@@ -40,7 +41,7 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 		$templateMgr->assign('helpTopicId', 'press.managementPages.announcements');
 		parent::announcementTypes();
 	}
-	
+
 	function &_getAnnouncements($rangeInfo = null) {
 		$press =& Request::getPress();
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
@@ -48,35 +49,35 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 
 		return $announcements;
 	}
-	
+
 	function &_getAnnouncementTypes($rangeInfo = null) {
 		$press =& Request::getPress();
 		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
 		$announcements =& $announcementTypeDao->getAnnouncementTypesByAssocId(ASSOC_TYPE_PRESS, $press->getId(), $rangeInfo);
 
 		return $announcements;
-	}	
+	}
 
 	/**
 	 * Checks the announcement to see if it belongs to this press or scheduled press
 	 * @param $announcementId int
 	 * return bool
-	 */	
+	 */
 	function _announcementIsValid($announcementId) {
-		if ($announcementId == null) 
+		if ($announcementId == null)
 			return true;
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		$announcement =& $announcementDao->getAnnouncement($announcementId);
-		
+
 		$press =& Request::getPress();
-		if ( $announcement && $press 
-			&& $announcement->getAssocType() == ASSOC_TYPE_PRESS 
+		if ( $announcement && $press
+			&& $announcement->getAssocType() == ASSOC_TYPE_PRESS
 			&& $announcement->getAssocId() == $press->getId())
 				return true;
-			
+
 		return false;
-	}	
+	}
 
 	/**
 	 * Checks the announcement type to see if it belongs to this press.  All announcement types are set at the press level.
@@ -87,7 +88,7 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 		$press =& Request::getPress();
 		$announcementTypeDao =& DAORegistry::getDAO('AnnouncementTypeDAO');
 		return (($typeId != null && $announcementTypeDao->getAnnouncementTypeAssocId($typeId) == $press->getId()) || $typeId == null);
-	}	
+	}
 }
 
 ?>

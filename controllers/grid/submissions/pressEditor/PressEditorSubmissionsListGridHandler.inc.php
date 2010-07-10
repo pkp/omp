@@ -29,43 +29,30 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function PressEditorSubmissionsListGridHandler() {
 		parent::GridHandler();
+		// FIXME: Please correctly distribute the operations among roles.
+		$this->addRoleAssignment(ROLE_ID_AUTHOR,
+				$authorOperations = array());
+		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT,
+				$pressAssistantOperations = array_merge($authorOperations, array()));
+		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array_merge($pressAssistantOperations,
+				array('fetchGrid', 'showApprove', 'saveApprove', 'showApproveAndReview',
+				'saveApproveAndReview', 'showDecline', 'saveDecline')));
 	}
 
+
+	//
+	// Implement template methods from PKPHandler
+	//
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize($request) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStagePolicy');
-		$this->addPolicy(new OmpWorkflowStagePolicy($request));
-		return parent::authorize($request);
+		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	//
-	// Overridden methods from GridHandler
-	//
-	/**
-	* Get the row handler - override the default row handler
-	* @return PressEditorSubmissionsListGridRow
-	*/
-	function &getRowInstance() {
-		$row = new PressEditorSubmissionsListGridRow();
-		return $row;
-	}
-
-	//
-	// Getters/Setters
-	//
-	/**
-	 * @see PKPHandler::getRemoteOperations()
-	 * @return array
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('showApprove', 'saveApprove', 'showApproveAndReview', 'saveApproveAndReview', 'showDecline', 'saveDecline'));
-	}
-
-	//
-	// Overridden methods from SubmissionListGridHandler
-	//
 	/*
 	 * Configure the grid
 	 * @param PKPRequest $request
@@ -120,6 +107,20 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 			unset($authorUserGroup);
 		}
 	}
+
+
+	//
+	// Overridden methods from GridHandler
+	//
+	/**
+	* Get the row handler - override the default row handler
+	* @return PressEditorSubmissionsListGridRow
+	*/
+	function &getRowInstance() {
+		$row = new PressEditorSubmissionsListGridRow();
+		return $row;
+	}
+
 
 	//
 	// Public SubmissionsList Grid Actions
@@ -299,12 +300,5 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		}
 
 		return $data;
-	}
-
-	//
-	// Validator
-	//
-	function validate($requiredContexts, $request) {
-		return parent::validate($requiredContexts, $request);
 	}
 }

@@ -26,28 +26,20 @@ class ReviewerSelectorHandler extends Handler {
 	function ReviewerSelectorHandler() {
 		parent::Handler();
 	}
-	
-	/**
-	 * @see PKPHandler::getRemoteOperations()
-	 * @return array
-	 */
-	function getRemoteOperations() {
-		return array('fetchForm');
-	}
-	
+
 	/**
 	 * Display the reviewer filtering form
 	 */
 	function fetchForm(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$interestDao =& DAORegistry::getDAO('InterestDAO');
-		
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $monographId);
 		$templateMgr->assign('existingInterests', implode(",", $interestDao->getAllUniqueInterests()));
-		
+
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
-		
+
 		// Form handling
 		import('controllers.reviewerSelector.form.ReviewerSelectorForm');
 		$reviewerSelectorForm = new ReviewerSelectorForm($monographId);
@@ -56,7 +48,7 @@ class ReviewerSelectorHandler extends Handler {
 		$json = new JSON('true', $reviewerSelectorForm->fetch($request));
 		return $json->getString();
 	}
-	
-	
+
+
 }
 ?>

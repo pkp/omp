@@ -12,7 +12,6 @@
  * @brief Handle requests for press setup functions.
  */
 
-// $Id$
 
 import('lib.pkp.classes.core.JSON');
 import('pages.settings.SettingsHandler');
@@ -23,6 +22,8 @@ class SetupHandler extends SettingsHandler {
 	 */
 	function SetupHandler() {
 		parent::SettingsHandler();
+		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
+				array('setup', 'saveSetup', 'downloadLayoutTemplate'));
 	}
 
 	/**
@@ -31,7 +32,6 @@ class SetupHandler extends SettingsHandler {
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
 	function setup(&$args, &$request) {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		$step = isset($args[0]) ? (int) $args[0] : 1;
@@ -66,8 +66,6 @@ class SetupHandler extends SettingsHandler {
 	 * @param $args array first parameter is the step being saved
 	 */
 	function saveSetup(&$args, &$request) {
-		$this->validate();
-
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
 		if ($step >= 1 && $step <= 5) {
@@ -241,7 +239,6 @@ class SetupHandler extends SettingsHandler {
 	}
 
 	function downloadLayoutTemplate($args) {
-		$this->validate();
 		$press =& Request::getPress();
 		$templates = $press->getSetting('templates');
 		import('classes.file.PressFileManager');

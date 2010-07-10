@@ -28,7 +28,7 @@ class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler
 	 */
 	function SubmissionRolesListbuilderHandler() {
 		parent::SetupListbuilderHandler();
-		$this->stageId = PUBLICATION_STAGE_ID_SUBMISSION;
+		$this->stageId = WORKFLOW_STAGE_ID_SUBMISSION;
 		$this->roleId = ROLE_ID_AUTHOR;
 	}
 

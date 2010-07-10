@@ -21,17 +21,10 @@ class SeriesGridHandler extends SetupGridHandler {
 	 */
 	function SeriesGridHandler() {
 		parent::SetupGridHandler();
+		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'addSeries', 'editSeries', 'updateSeries', 'deleteSeries'));
 	}
 
-	//
-	// Getters/Setters
-	//
-	/**
-	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addSeries', 'editSeries', 'updateSeries', 'deleteSeries'));
-	}
 
 	//
 	// Overridden template methods

@@ -20,10 +20,6 @@ import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 import('controllers.grid.users.submissionContributor.SubmissionContributorGridCellProvider');
 import('controllers.grid.users.chapter.ChapterGridCategoryRow');
 
-// import validation classes
-import('classes.handler.validation.HandlerValidatorPress');
-import('lib.pkp.classes.handler.validation.HandlerValidatorRoles');
-
 class ChapterGridHandler extends CategoryGridHandler{
 	/** @var Monograph */
 	var $_monograph;
@@ -33,19 +29,14 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 */
 	function ChapterGridHandler() {
 		parent::GridHandler();
+		$this->addRoleAssignment(
+				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'fetchCategory', 'addChapter', 'editChapter', 'updateChapter', 'deleteChapter'));
 	}
 
 	//
 	// Getters/Setters
 	//
-	/**
-	 * @see PKPHandler::getRemoteOperations()
-	 * @return array
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addChapter', 'editChapter', 'updateChapter', 'deleteChapter'));
-	}
-
 	/**
 	 * Get the monograph associated with this chapter grid.
 	 * @return Monograph
@@ -56,52 +47,15 @@ class ChapterGridHandler extends CategoryGridHandler{
 
 
 	//
-	// Overridden methods from PKPHandler
+	// Implement template methods from PKPHandler
 	//
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize($request) {
-		// Retrieve the request context
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
-		$user =& $request->getUser();
-
-		// 1) Ensure we're in a press
-		$this->addCheck(new HandlerValidatorPress($this, false, 'No press in context!'));
-
-		// 2) Only Authors may access
-		$this->addCheck(new HandlerValidatorRoles($this, false, 'Insufficient privileges!', null, array(ROLE_ID_AUTHOR)));
-
-		// 3) Only this monograph's author may access
-		$monographId = $request->getUserVar('monographId');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph = $monographDao->getMonograph($monographId);
-
-		if ( isset($user) && isset($monograph)) {
-			$userId = $user->getId();
-			$monographSubmiter = $monograph->getUserId();
-			import('lib.pkp.classes.handler.validation.HandlerValidatorCustom');
-			$this->addCheck(new HandlerValidatorCustom($this, false, 'Restricted site access!', null, create_function('$monographSubmitter, $userId', 'if ($monographSubmitter != $userId) return false; else return true;'), array($monographSubmiter, $userId)));
-		}
-
-		// Execute standard checks
-		if (!parent::validate($requiredContexts, $request)) return false;
-
-		$monographId =& $request->getUserVar('monographId');
-		if (!is_numeric($monographId)) return false;
-
-		// Retrieve the monograph associated with this citation grid
-		$monographDAO =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDAO->getMonograph($monographId);
-
-		// Monograph and editor validation
-		if (!is_a($monograph, 'Monograph')) return false;
-
-		// Validation successful
-		$this->_monograph =& $monograph;
-
-		return true;
+	function authorize(&$request, &$args, $roleAssignments) {
+		import('classes.security.authorization.OmpSubmissionWizardAuthorPolicy');
+		$this->addPolicy(new OmpSubmissionWizardAuthorPolicy($request, $args, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/*
@@ -110,6 +64,10 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+
+		// Retrieve the authorized monograph
+		$this->_monograph =& $this->getAuthorizedContext(ASSOC_TYPE_MONOGRAPH);
+
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
 		// Basic grid configuration
 		$this->setTitle('grid.chapters.title');

@@ -29,19 +29,16 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 */
 	function SubmissionContributorGridHandler() {
 		parent::GridHandler();
+		$this->addRoleAssignment(
+				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'addSubmissionContributor', 'editSubmissionContributor',
+				'updateSubmissionContributor', 'deleteSubmissionContributor'));
 	}
+
 
 	//
 	// Getters/Setters
 	//
-	/**
-	 * @see PKPHandler::getRemoteOperations()
-	 * @return array
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addSubmissionContributor', 'editSubmissionContributor', 'updateSubmissionContributor', 'deleteSubmissionContributor'));
-	}
-
 	/**
 	 * Get the monograph associated with this submissionContributor grid.
 	 * @return Monograph
@@ -50,28 +47,17 @@ class SubmissionContributorGridHandler extends GridHandler {
 		return $this->_monograph;
 	}
 
+
 	//
 	// Overridden methods from PKPHandler
 	//
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize($request) {
-		// FIXME: implement validation
-		// Retrieve and validate the monograph id
-		$monographId =& $request->getUserVar('monographId');
-		if (!is_numeric($monographId)) return false;
-
-		// Retrieve the monograph associated with this citation grid
-		$monographDAO =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDAO->getMonograph($monographId);
-
-		// Monograph and editor validation
-		if (!is_a($monograph, 'Monograph')) return false;
-
-		// Validation successful
-		$this->_monograph =& $monograph;
-		return true;
+	function authorize(&$request, &$args, $roleAssignments) {
+		import('classes.security.authorization.OmpSubmissionWizardPolicy');
+		$this->addPolicy(new OmpSubmissionWizardPolicy($request, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/*
@@ -80,6 +66,9 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+
+		// Retrieve the authorized monograph.
+		$this->_monograph =& $this->getAuthorizedContext(ASSOC_TYPE_MONOGRAPH);
 
 		// Load submission-specific translations
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));

@@ -11,17 +11,24 @@
  * @brief Class to control access to OMP's submission workflow stage components
  */
 
-import('lib.pkp.classes.security.authorization.OmpPressPolicy');
+import('classes.security.authorization.OmpPressPolicy');
 import('lib.pkp.classes.security.authorization.PolicySet');
-import('lib.pkp.classes.security.authorization.HandlerOperationRolesPolicy');
+import('lib.pkp.classes.security.authorization.RoleBasedHandlerOperationPolicy');
 
 class OmpWorkflowStagePolicy extends OmpPressPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
+	 * @param $args array request arguments
+	 * @param $roleAssignments array
 	 */
-	function OmpWorkflowStagePolicy(&$request) {
+	function OmpWorkflowStagePolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'monographId') {
 		parent::OmpPressPolicy($request);
+
+		// A workflow stage component can only be called if there's a
+		// valid series editor submission in the request.
+		import('classes.security.authorization.SeriesEditorSubmissionRequiredPolicy');
+		$this->addPolicy(new SeriesEditorSubmissionRequiredPolicy($request, $args, $submissionParameterName));
 
 		// Create an "allow overrides" policy set that specifies
 		// role-specific access to submission stage operations.
@@ -32,7 +39,7 @@ class OmpWorkflowStagePolicy extends OmpPressPolicy {
 		// Managerial role
 		//
 		// Press managers can access all operations for all submissions and all workflow stages.
-		$workflowStagePolicy->addPolicy(new HandlerOperationRolesPolicy($request, ROLE_ID_PRESS_MANAGER));
+		$workflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_MANAGER, $roleAssignments[ROLE_ID_PRESS_MANAGER]));
 
 
 		//
@@ -40,16 +47,16 @@ class OmpWorkflowStagePolicy extends OmpPressPolicy {
 		//
 		// 1) Series editors can access all operations ...
 		$seriesEditorWorkflowStagePolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-		$seriesEditorWorkflowStagePolicy->addPolicy(new HandlerOperationRolesPolicy($request, ROLE_ID_SERIES_EDITOR));
+		$seriesEditorWorkflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_SERIES_EDITOR, $roleAssignments[ROLE_ID_SERIES_EDITOR]));
 
 		// 2) ... if the requested workflow stage has been assigned to them in the press settings ...
-		import('lib.pkp.classes.security.authorization.WorkflowSettingsAssignmentPolicy');
-		$seriesEditorWorkflowStagePolicy->addPolicy(new WorkflowSettingsAssignmentPolicy($request)); // FIXME
+		import('classes.security.authorization.WorkflowSettingsAssignmentPolicy');
+		$seriesEditorWorkflowStagePolicy->addPolicy(new WorkflowSettingsAssignmentPolicy($request));
 		$workflowStagePolicy->addPolicy($seriesEditorWorkflowStagePolicy);
 
 		// 3) ... but only if the requested submission is part of their series.
-		import('lib.pkp.classes.security.authorization.SeriesAssignmentPolicy');
-		$seriesEditorWorkflowStagePolicy->addPolicy(new SeriesAssignmentPolicy($request)); // FIXME
+		import('classes.security.authorization.SeriesAssignmentPolicy');
+		$seriesEditorWorkflowStagePolicy->addPolicy(new SeriesAssignmentPolicy($request));
 		$workflowStagePolicy->addPolicy($seriesEditorWorkflowStagePolicy);
 
 
@@ -58,12 +65,11 @@ class OmpWorkflowStagePolicy extends OmpPressPolicy {
 		//
 		// 1) Press role user groups can access only the following whitelisted operations ...
 		$pressRoleWorkflowStagePolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-		$pressRoleOperationsWhitelist = array('please fill'); // FIXME
-		$pressRoleWorkflowStagePolicy->addPolicy(new HandlerOperationRolesPolicy($request, ROLE_ID_PRESS_ASSISTANT, 'This workflow stage operation has not been whitelisted for press role user groups!', $pressRoleOperationsWhitelist));
+		$pressRoleWorkflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_ASSISTANT, $roleAssignments[ROLE_ID_PRESS_ASSISTANT]));
 
 		// 2) ... and only if the requested workflow stage has been assigned to them in the requested submission.
-		import('lib.pkp.classes.security.authorization.WorkflowSubmissionAssignmentPolicy');
-		$pressRoleWorkflowStagePolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request)); // FIXME
+		import('classes.security.authorization.WorkflowSubmissionAssignmentPolicy');
+		$pressRoleWorkflowStagePolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request));
 		$workflowStagePolicy->addPolicy($pressRoleWorkflowStagePolicy);
 
 
@@ -72,17 +78,16 @@ class OmpWorkflowStagePolicy extends OmpPressPolicy {
 		//
 		// 1) Author role user groups can access only the following whitelisted operations ...
 		$authorRoleWorkflowStagePolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-		$authorRoleOperationsWhitelist = array('please fill'); // FIXME
-		$authorRoleWorkflowStagePolicy->addPolicy(new HandlerOperationRolesPolicy($request, ROLE_ID_AUTHOR, 'This workflow stage operation has not been whitelisted for authors!', $authorRoleOperationsWhitelist));
+		$authorRoleWorkflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
 
 		// 2) ... if the requested submission is their own ...
-		import('lib.pkp.classes.security.authorization.SubmissionAuthorPolicy');
-		$authorRoleWorkflowStagePolicy->addPolicy(new SubmissionAuthorPolicy($request)); // FIXME
+		import('classes.security.authorization.MonographAuthorPolicy');
+		$authorRoleWorkflowStagePolicy->addPolicy(new MonographAuthorPolicy($request));
 		$workflowStagePolicy->addPolicy($authorRoleWorkflowStagePolicy);
 
 		// 3) ... and only if the requested workflow stage has been assigned to them in the requested submission.
-		import('lib.pkp.classes.security.authorization.WorkflowSubmissionAssignmentPolicy');
-		$authorRoleWorkflowStagePolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request)); // FIXME
+		import('classes.security.authorization.WorkflowSubmissionAssignmentPolicy');
+		$authorRoleWorkflowStagePolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request));
 		$workflowStagePolicy->addPolicy($authorRoleWorkflowStagePolicy);
 
 

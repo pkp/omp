@@ -21,16 +21,8 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 */
 	function SubmissionChecklistGridHandler() {
 		parent::SetupGridHandler();
-	}
-
-	//
-	// Getters/Setters
-	//
-	/**
-	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addItem', 'editItem', 'updateItem', 'deleteItem'));
+		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'addItem', 'editItem', 'updateItem', 'deleteItem'));
 	}
 
 	//

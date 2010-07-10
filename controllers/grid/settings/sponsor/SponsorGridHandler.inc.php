@@ -21,16 +21,8 @@ class SponsorGridHandler extends SetupGridHandler {
 	 */
 	function SponsorGridHandler() {
 		parent::SetupGridHandler();
-	}
-
-	//
-	// Getters/Setters
-	//
-	/**
-	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addSponsor', 'editSponsor', 'updateSponsor', 'deleteSponsor'));
+		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'addSponsor', 'editSponsor', 'updateSponsor', 'deleteSponsor'));
 	}
 
 	//

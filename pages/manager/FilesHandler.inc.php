@@ -9,7 +9,7 @@
  * @class FilesHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for files browser functions. 
+ * @brief Handle requests for files browser functions.
  */
 
 // $Id$
@@ -19,16 +19,17 @@ import('pages.manager.ManagerHandler');
 class FilesHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 */	
+	 */
 	function FilesHandler() {
 		parent::ManagerHandler();
+		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
+				array('fileDelete', 'fileMakeDir', 'files', 'fileUpload'));
 	}
-	
+
 	/**
 	 * Display the files associated with a press.
 	 */
 	function files($args) {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		import('lib.pkp.classes.file.FileManager');
@@ -79,8 +80,6 @@ class FilesHandler extends ManagerHandler {
 	 * Upload a new file.
 	 */
 	function fileUpload($args) {
-		$this->validate();
-
 		FilesHandler::parseDirArg($args, $currentDir, $parentDir);
 		$currentPath = FilesHandler::getRealFilesDir($currentDir);
 
@@ -99,8 +98,6 @@ class FilesHandler extends ManagerHandler {
 	 * Create a new directory
 	 */
 	function fileMakeDir($args) {
-		$this->validate();
-
 		FilesHandler::parseDirArg($args, $currentDir, $parentDir);
 
 		if ($dirName = Request::getUserVar('dirName')) {
@@ -116,8 +113,6 @@ class FilesHandler extends ManagerHandler {
 	}
 
 	function fileDelete($args) {
-		$this->validate();
-
 		FilesHandler::parseDirArg($args, $currentDir, $parentDir);
 		$currentPath = FilesHandler::getRealFilesDir($currentDir);
 

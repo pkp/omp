@@ -9,10 +9,8 @@
  * @class AuthorHandler
  * @ingroup pages_author
  *
- * @brief Handle requests for monograph author functions. 
+ * @brief Handle requests for monograph author functions.
  */
-
-// $Id$
 
 
 import('classes.submission.author.AuthorAction');
@@ -36,7 +34,7 @@ class AuthorHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$this->validate();
 		$this->setupTemplate();
-		
+
 		$press =& Request::getPress();
 
 		$user =& Request::getUser();

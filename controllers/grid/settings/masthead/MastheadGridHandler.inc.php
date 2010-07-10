@@ -21,17 +21,10 @@ class MastheadGridHandler extends SetupGridHandler {
 	 */
 	function MastheadGridHandler() {
 		parent::SetupGridHandler();
+		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'addGroup', 'editGroup', 'updateGroup', 'deleteGroup', 'groupMembership'));
 	}
 
-	//
-	// Getters/Setters
-	//
-	/**
-	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addGroup', 'editGroup', 'updateGroup', 'deleteGroup', 'groupMembership'));
-	}
 
 	//
 	// Overridden template methods

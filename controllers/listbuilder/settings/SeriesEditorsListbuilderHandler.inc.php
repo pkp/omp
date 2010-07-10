@@ -23,6 +23,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function SeriesEditorsListbuilderHandler() {
 		parent::SetupListbuilderHandler();
+		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER, 'getAutocompleteSource');
 	}
 
 	function setSeriesId($seriesId) {
@@ -72,12 +73,6 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		return $itemList;
 	}
 
-	/**
-	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('getAutocompleteSource'));
-	}
 
 	//
 	// Overridden template methods

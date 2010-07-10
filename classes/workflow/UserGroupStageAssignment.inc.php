@@ -13,60 +13,112 @@
  * @brief Basic class describing user group to publication stage assignments
  */
 
-define('PUBLICATION_STAGE_ID_SUBMISSION',		1);
-define('PUBLICATION_STAGE_ID_INTERNAL_REVIEW',  2);
-define('PUBLICATION_STAGE_ID_EXTERNAL_REVIEW', 3);
-define('PUBLICATION_STAGE_ID_EDITING', 4);
-define('PUBLICATION_STAGE_ID_PRODUCTION', 5);
+define('WORKFLOW_STAGE_ID_SUBMISSION', 1);
+define('WORKFLOW_STAGE_PATH_SUBMISSION', 'submission');
+
+define('WORKFLOW_STAGE_ID_INTERNAL_REVIEW', 2);
+define('WORKFLOW_STAGE_PATH_INTERNAL_REVIEW', 'internalReview');
+
+define('WORKFLOW_STAGE_ID_EXTERNAL_REVIEW', 3);
+define('WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW', 'externalReview');
+
+define('WORKFLOW_STAGE_ID_EDITING', 4);
+define('WORKFLOW_STAGE_PATH_EDITING', 'editing');
+
+define('WORKFLOW_STAGE_ID_PRODUCTION', 5);
+define('WORKFLOW_STAGE_PATH_PRODUCTION', 'production');
 
 class UserGroupStageAssignment extends DataObject {
 
 	/**
-	 * Set the press id
-	 * @param $pressId int
-	 */
+		* Set the press id
+		* @param $pressId int
+		*/
 	function setPressId(&$pressId) {
-	 $this->setData('pressId', $pressId);
+		$this->setData('pressId', $pressId);
 	}
 
 	/**
-	 * Get the press id
-	 * @return int
-	 */
+		* Get the press id
+		* @return int
+		*/
 	function &getPressId() {
-	 return $this->getData('pressId');
+		return $this->getData('pressId');
 	}
 
 	/**
-	 * Set the the user group id
-	 * @param $userGroupId int
-	 */
+		* Set the the user group id
+		* @param $userGroupId int
+		*/
 	function setUserGroupId(&$userGroupId) {
-	 $this->setData('userGroupId', $userGroupId);
+		$this->setData('userGroupId', $userGroupId);
 	}
 
 	/**
-	 * Get the the user group id
-	 * @return int
-	 */
+		* Get the the user group id
+		* @return int
+		*/
 	function &getUserGroupId() {
-	 return $this->getData('userGroupId');
+		return $this->getData('userGroupId');
 	}
 
 	/**
-	 * Set the publication stage id
-	 * @param $stageId int
-	 */
+		* Set the publication stage id
+		* @param $stageId int
+		*/
 	function setStageId(&$stageId) {
-	 $this->setData('stageId', $stageId);
+		$this->setData('stageId', $stageId);
 	}
 
 	/**
-	 * Get the publication stage id
-	 * @return int
-	 */
+		* Get the publication stage id
+		* @return int
+		*/
 	function &getStageId() {
-	 return $this->getData('stageId');
+		return $this->getData('stageId');
+	}
+
+	//
+	// Public helper methods
+	//
+	/**
+	 * Convert a stage id into a stage path
+	 * @param $stageId integer
+	 * @return string|null
+	 */
+	function getPathFromId($stageId) {
+		static $stageMapping = array(
+			WORKFLOW_STAGE_ID_SUBMISSION => WORKFLOW_STAGE_PATH_SUBMISSION,
+			WORKFLOW_STAGE_ID_INTERNAL_REVIEW => WORKFLOW_STAGE_PATH_INTERNAL_REVIEW,
+			WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW,
+			WORKFLOW_STAGE_ID_EDITING => WORKFLOW_STAGE_PATH_EDITING,
+			WORKFLOW_STAGE_ID_PRODUCTION => WORKFLOW_STAGE_PATH_PRODUCTION
+		);
+		if (isset($stageMapping[$stageId])) {
+			return $stageMapping[$stageId];
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Convert a stage path into a stage id
+	 * @param $stagePath string
+	 * @return integer|null
+	 */
+	function getIdFromPath($stagePath) {
+		static $stageMapping = array(
+			WORKFLOW_STAGE_PATH_SUBMISSION => WORKFLOW_STAGE_ID_SUBMISSION,
+			WORKFLOW_STAGE_PATH_INTERNAL_REVIEW => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW => WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
+			WORKFLOW_STAGE_PATH_EDITING => WORKFLOW_STAGE_ID_EDITING,
+			WORKFLOW_STAGE_PATH_PRODUCTION => WORKFLOW_STAGE_ID_PRODUCTION
+		);
+		if (isset($stageMapping[$stagePath])) {
+			return $stageMapping[$stagePath];
+		} else {
+			return null;
+		}
 	}
 }
 

@@ -8,7 +8,8 @@
  * @class OmpPressPolicy
  * @ingroup security_authorization
  *
- * @brief Class to control basic access to OMP's press admin components
+ * @brief Policy that ensures availability of an OMP press in
+ *  the request context
  */
 
 import('lib.pkp.classes.security.authorization.PolicySet');
@@ -27,8 +28,8 @@ class OmpPressPolicy extends PolicySet {
 
 		// 2) Ensure the user is logged in with a
 		//    valid user group id.
-		import('lib.pkp.classes.security.authorization.HandlerOperationLoggedInPolicy');
-		$this->addPolicy(new HandlerOperationLoggedInPolicy($request));
+		import('lib.pkp.classes.security.authorization.LoggedInWithValidUserGroupPolicy');
+		$this->addPolicy(new LoggedInWithValidUserGroupPolicy($request));
 	}
 }
 

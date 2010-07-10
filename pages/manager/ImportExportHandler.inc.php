@@ -9,7 +9,7 @@
  * @class ImportExportHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for import/export functions. 
+ * @brief Handle requests for import/export functions.
  */
 
 // $Id$
@@ -21,13 +21,13 @@ define('IMPORTEXPORT_PLUGIN_CATEGORY', 'importexport');
 class ImportExportHandler extends ManagerHandler {
 	/**
 	 * Constructor
-	 */	
+	 */
 	function ImportExportHandler() {
 		parent::ManagerHandler();
+		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER, 'importexport');
 	}
-	
+
 	function importexport($args) {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		PluginRegistry::loadCategory(IMPORTEXPORT_PLUGIN_CATEGORY);
@@ -35,7 +35,7 @@ class ImportExportHandler extends ManagerHandler {
 
 		if (array_shift($args) === 'plugin') {
 			$pluginName = array_shift($args);
-			$plugin =& PluginRegistry::getPlugin(IMPORTEXPORT_PLUGIN_CATEGORY, $pluginName); 
+			$plugin =& PluginRegistry::getPlugin(IMPORTEXPORT_PLUGIN_CATEGORY, $pluginName);
 			if ($plugin) return $plugin->display($args);
 		}
 		$templateMgr->assign_by_ref('plugins', PluginRegistry::getPlugins(IMPORTEXPORT_PLUGIN_CATEGORY));

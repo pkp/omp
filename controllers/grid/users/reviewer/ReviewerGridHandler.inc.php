@@ -29,19 +29,21 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function ReviewerGridHandler() {
 		parent::GridHandler();
+		// FIXME: Please correctly distribute the operations among roles.
+		$this->addRoleAssignment(ROLE_ID_AUTHOR,
+				$authorOperations = array());
+		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT,
+				$pressAssistantOperations = array_merge($authorOperations, array()));
+		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array_merge($pressAssistantOperations,
+				array('fetchGrid', 'addReviewer', 'editReviewer', 'updateReviewer', 'deleteReviewer',
+				'getReviewerAutocomplete', 'readReview', 'createReviewer', 'editReminder', 'sendReminder')));
 	}
+
 
 	//
 	// Getters/Setters
 	//
-	/**
-	 * @see PKPHandler::getRemoteOperations()
-	 * @return array
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addReviewer', 'editReviewer', 'updateReviewer', 'deleteReviewer', 'getReviewerAutocomplete', 'readReview', 'createReviewer', 'editReminder', 'sendReminder'));
-	}
-
 	/**
 	 * Get the monograph associated with this reviewer grid.
 	 * @return Monograph
@@ -50,28 +52,17 @@ class ReviewerGridHandler extends GridHandler {
 		return $this->_submission;
 	}
 
+
 	//
 	// Overridden methods from PKPHandler
 	//
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize($request) {
-		// FIXME: implement validation
-		// Retrieve and validate the monograph id
-		$monographId =& $request->getUserVar('monographId');
-		if (!is_numeric($monographId)) return false;
-
-		// Retrieve the submission associated with this reviewers grid
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($monographId);
-
-		// Monograph and editor validation
-		if (!is_a($seriesEditorSubmission, 'SeriesEditorSubmission')) return false;
-
-		// Validation successful
-		$this->_submission =& $seriesEditorSubmission;
-		return true;
+	function authorize(&$request, &$args, $roleAssignments) {
+		import('classes.security.authorization.OmpWorkflowStagePolicy');
+		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/*
@@ -80,6 +71,9 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+
+		// Retrieve the authorized submission.
+		$this->_submission =& $this->getAuthorizedContext(ASSOC_TYPE_MONOGRAPH);
 
 		// Load submission-specific translations
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_EDITOR));

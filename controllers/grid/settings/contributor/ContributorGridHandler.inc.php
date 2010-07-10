@@ -24,16 +24,8 @@ class ContributorGridHandler extends SetupGridHandler {
 	 */
 	function ContributorGridHandler() {
 		parent::SetupGridHandler();
-	}
-
-	//
-	// Getters/Setters
-	//
-	/**
-	 * @see lib/pkp/classes/handler/PKPHandler#getRemoteOperations()
-	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('addContributor', 'editContributor', 'updateContributor', 'deleteContributor'));
+		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'addContributor', 'editContributor', 'updateContributor', 'deleteContributor'));
 	}
 
 	//

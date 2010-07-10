@@ -16,27 +16,41 @@
 import('controllers.grid.files.submissionFiles.SubmissionFilesGridHandler');
 
 class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
-	/** The monograph to add files to */
-	var $_monographId;
-
 	/**
 	 * Constructor
 	 */
 	function SubmissionReviewFilesGridHandler() {
 		parent::GridHandler();
+		// FIXME: If this class is to be part of the submission workflow
+		// then it cannot be a sub-class of the SubmissionFilesGridHandler
+		// which is part of the submission wizard.
+		// We need a common base class so that we can have different
+		// policies for both.
+		// Please add correct role assignments here once the problem is
+		// solved.
 	}
 
-	//
-	// Getters/Setters
-	//
 
 	//
-	// Overridden template methods
+	// Overridden methods from PKPHandler
 	//
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize(&$request, &$args, $roleAssignments) {
+		// FIXME: If this class is to be part of the submission workflow
+		// then it cannot be a sub-class of the SubmissionFilesGridHandler
+		// which is part of the submission wizard.
+		// We need a common base class so that we can have different
+		// policies for both.
+		// Please add correct policy here once the problem is solved.
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
 	/*
-	* Configure the grid
-	* @param PKPRequest $request
-	*/
+	 * Configure the grid
+	 * @param PKPRequest $request
+	 */
 	function initialize(&$request) {
 		parent::initialize($request);
 		$this->setId('reviewFiles');
@@ -64,32 +78,6 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	function &getRowInstance() {
 		$row = new SubmissionFilesGridRow();
 		return $row;
-	}
-
-	/**
-	 * Validate that the user is the assigned author for the monograph
-	 * Raises a fatal error if validation fails.
-	 * @param $requiredContexts array
-	 * @param $request PKPRequest
-	 * @return boolean
-	 */
-	function validate($requiredContexts, $request) {
-		// Retrieve the request context
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
-		$user =& $request->getUser();
-
-		// 1) Ensure we're in a press
-		$this->addCheck(new HandlerValidatorPress($this, false, 'No press in context!'));
-
-		// 2) Only Editors may access
-		$this->addCheck(new HandlerValidatorRoles($this, false, 'Insufficient privileges!', null, array(ROLE_ID_EDITOR)));
-
-		// Execute standard checks
-		if (!parent::validate($requiredContexts, $request)) return false;
-
-		return true;
-
 	}
 
 	/**

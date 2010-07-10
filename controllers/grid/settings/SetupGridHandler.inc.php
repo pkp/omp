@@ -25,9 +25,9 @@ class SetupGridHandler extends GridHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize($request) {
+	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpPressSetupPolicy');
-		$this->addPolicy(new OmpPressSetupPolicy($request));
-		return parent::authorize($request);
+		$this->addPolicy(new OmpPressSetupPolicy($request, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 }

@@ -9,7 +9,7 @@
  * @class EmailHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for email management functions. 
+ * @brief Handle requests for email management functions.
  */
 
 // $Id$
@@ -20,16 +20,18 @@ class EmailHandler extends ManagerHandler {
 
 	/**
 	 * Constructor
-	 */	
+	 */
 	function EmailHandler() {
 		parent::ManagerHandler();
+		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
+				array('createEmail', 'deleteCustomEmail', 'disableEmail', 'editEmail', 'emails',
+				'enableEmail', 'resetAllEmails', 'resetEmail', 'updateEmail'));
 	}
-	
+
 	/**
 	 * Display a list of the emails within the current press.
 	 */
 	function emails() {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		$rangeInfo = Handler::getRangeInfo('emails');
@@ -57,7 +59,6 @@ class EmailHandler extends ManagerHandler {
 	 * @param $args array optional, if set the first parameter is the key of the email template to edit
 	 */
 	function editEmail($args = array()) {
-		$this->validate();
 		$this->setupTemplate(true);
 
 		$press =& Request::getPress();
@@ -77,7 +78,6 @@ class EmailHandler extends ManagerHandler {
 	 * Save changes to an email.
 	 */
 	function updateEmail() {
-		$this->validate();
 		$this->setupTemplate(true);
 		$press =& Request::getPress();
 
@@ -102,7 +102,6 @@ class EmailHandler extends ManagerHandler {
 	 * @param $args array first parameter is the key of the email to delete
 	 */
 	function deleteCustomEmail($args) {
-		$this->validate();
 		$press =& Request::getPress();
 		$emailKey = array_shift($args);
 
@@ -119,8 +118,6 @@ class EmailHandler extends ManagerHandler {
 	 * @param $args array first parameter is the key of the email to reset
 	 */
 	function resetEmail($args) {
-		$this->validate();
-
 		if (isset($args) && !empty($args)) {
 			$press =& Request::getPress();
 
@@ -135,8 +132,6 @@ class EmailHandler extends ManagerHandler {
 	 * resets all email templates associated with the press.
 	 */
 	function resetAllEmails() {
-		$this->validate();
-
 		$press =& Request::getPress();
 		$emailTemplateDao =& DAORegistry::getDAO('EmailTemplateDAO');
 		$emailTemplateDao->deleteEmailTemplatesByPress($press->getId());
@@ -149,8 +144,6 @@ class EmailHandler extends ManagerHandler {
 	 * @param $args array first parameter is the key of the email to disable
 	 */
 	function disableEmail($args) {
-		$this->validate();
-
 		if (isset($args) && !empty($args)) {
 			$press =& Request::getPress();
 
@@ -182,8 +175,6 @@ class EmailHandler extends ManagerHandler {
 	 * @param $args array first parameter is the key of the email to enable
 	 */
 	function enableEmail($args) {
-		$this->validate();
-
 		if (isset($args) && !empty($args)) {
 			$press =& Request::getPress();
 

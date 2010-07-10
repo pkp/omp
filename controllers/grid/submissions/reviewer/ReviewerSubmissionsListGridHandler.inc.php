@@ -9,7 +9,7 @@
  * @class ReviewerSubmissionsListGridHandler
  * @ingroup controllers_grid_submissionContributor
  *
- * @brief Handle reviewer submissions lsit grid requests.
+ * @brief Handle reviewer submissions list grid requests.
  */
 
 // import grid base classes
@@ -23,23 +23,23 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function ReviewerSubmissionsListGridHandler() {
 		parent::GridHandler();
-		$this->roleId = ROLE_ID_REVIEWER;
+		$this->addRoleAssignment(ROLE_ID_REVIEWER,
+				array('fetchGrid', 'deleteSubmission'));
 	}
 
+
 	//
-	// Getters/Setters
+	// Implement template methods from PKPHandler
 	//
 	/**
-	 * @see PKPHandler::getRemoteOperations()
-	 * @return array
+	 * @see PKPHandler::authorize()
 	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('deleteSubmission'));
+	function authorize(&$request, &$args, $roleAssignments) {
+		// Make sure the request complies with the review page policy.
+		import('classes.security.authorization.OmpReviewPagePolicy');
+		$this->addPolicy(new OmpReviewPagePolicy($request, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
-
-	//
-	// Overridden methods from PKPHandler
-	//
 
 	/*
 	 * Configure the grid

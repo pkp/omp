@@ -24,22 +24,23 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function AuthorSubmissionsListGridHandler() {
 		parent::SubmissionsListGridHandler();
+		$this->addRoleAssignment(
+				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'deleteSubmission'));
 	}
 
+
 	//
-	// Getters/Setters
+	// Implement template methods from PKPHandler
 	//
 	/**
-	 * @see PKPHandler::getRemoteOperations()
-	 * @return array
+	 * @see PKPHandler::authorize()
 	 */
-	function getRemoteOperations() {
-		return array_merge(parent::getRemoteOperations(), array('deleteSubmission'));
+	function authorize(&$request, &$args, $roleAssignments) {
+		import('classes.security.authorization.OmpSubmissionWizardPolicy');
+		$this->addPolicy(new OmpSubmissionWizardPolicy($request, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
-
-	//
-	// Overridden methods from GridHandler
-	//
 
 	/*
 	 * Configure the grid
