@@ -7,7 +7,7 @@
  * Common site sidebar menu -- user tools.
  *}
 
-{if $currentPress && $isUserLoggedIn}
+{if $isUserLoggedIn}
 	<div class="block" id="sidebarSelectRole">
 		<span class="blockTitle">{translate key="user.roles"}</span>
 		<br />
