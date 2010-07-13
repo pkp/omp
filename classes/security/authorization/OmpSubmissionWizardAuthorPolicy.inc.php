@@ -19,9 +19,12 @@ class OmpSubmissionWizardAuthorPolicy extends OmpSubmissionWizardPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
+	 * @param $submissionParameterName string
 	 */
-	function OmpSubmissionWizardAuthorPolicy(&$request, &$args, $submissionParameterName = 'monographId') {
-		parent::OmpSubmissionWizardPolicy($request);
+	function OmpSubmissionWizardAuthorPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'monographId') {
+		parent::OmpSubmissionWizardPolicy($request, $roleAssignments);
 
 		// 1) There must be a monograph in the request.
 		import('classes.security.authorization.MonographRequiredPolicy');
