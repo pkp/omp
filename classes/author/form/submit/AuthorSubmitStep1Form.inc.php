@@ -26,7 +26,11 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		parent::AuthorSubmitForm($monograph, 1);
 
 		$press =& Request::getPress();
-		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'author.submit.form.localeRequired', $press->getSetting('supportedSubmissionLocales')));
+
+		// Validation checks for this form
+		$supportedSubmissionLocales = $press->getSetting('supportedSubmissionLocales');
+		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($press->getPrimaryLocale);
+		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'author.submit.form.localeRequired', $supportedSubmissionLocales));
 	}
 
 	/**
