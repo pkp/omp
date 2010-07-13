@@ -73,7 +73,7 @@ class ReviewerGridHandler extends GridHandler {
 		parent::initialize($request);
 
 		// Retrieve the authorized submission.
-		$this->_submission =& $this->getAuthorizedContext(ASSOC_TYPE_MONOGRAPH);
+		$this->_submission =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Load submission-specific translations
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_EDITOR));

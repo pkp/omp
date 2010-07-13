@@ -66,7 +66,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 		parent::initialize($request);
 
 		// Retrieve the authorized monograph
-		$this->_monograph =& $this->getAuthorizedContext(ASSOC_TYPE_MONOGRAPH);
+		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
 		// Basic grid configuration

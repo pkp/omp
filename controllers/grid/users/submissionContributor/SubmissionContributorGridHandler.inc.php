@@ -68,7 +68,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		parent::initialize($request);
 
 		// Retrieve the authorized monograph.
-		$this->_monograph =& $this->getAuthorizedContext(ASSOC_TYPE_MONOGRAPH);
+		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Load submission-specific translations
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
