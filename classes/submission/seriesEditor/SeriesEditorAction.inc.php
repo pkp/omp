@@ -264,7 +264,7 @@ class SeriesEditorAction extends Action {
 						'reviewerUsername' => $reviewer->getUsername(),
 						'reviewerPassword' => $reviewer->getPassword(),
 						'editorialContactSignature' => $user->getContactSignature(),
-						'reviewGuidelines' => $press->getLocalizedSetting('reviewGuidelines'),
+						'reviewGuidelines' => String::html2utf(strip_tags($press->getLocalizedSetting('reviewGuidelines'))),
 						'submissionReviewUrl' => $submissionUrl,
 						'abstractTermIfEnabled' => ($seriesEditorSubmission->getLocalizedAbstract() == ''?'':Locale::translate('monograph.description')),
 						'passwordResetUrl' => Request::url(null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId())))
