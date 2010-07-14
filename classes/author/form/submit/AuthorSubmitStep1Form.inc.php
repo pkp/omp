@@ -29,7 +29,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 
 		// Validation checks for this form
 		$supportedSubmissionLocales = $press->getSetting('supportedSubmissionLocales');
-		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($press->getPrimaryLocale);
+		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($press->getPrimaryLocale());
 		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'author.submit.form.localeRequired', $supportedSubmissionLocales));
 	}
 
@@ -58,11 +58,13 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		// Provide available submission languages. (Convert the array
 		// of locale symbolic names xx_XX into an associative array
 		// of symbolic names => readable names.)
+		$supportedSubmissionLocales = $press->getSetting('supportedSubmissionLocales');
+		if (empty($supportedSubmissionLocales)) $supportedSubmissionLocales = array($press->getPrimaryLocale());
 		$templateMgr->assign(
 			'supportedSubmissionLocaleNames',
 			array_flip(array_intersect(
 				array_flip(Locale::getAllLocales()),
-				$press->getSetting('supportedSubmissionLocales')
+				$supportedSubmissionLocales
 			))
 		);
 
