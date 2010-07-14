@@ -30,7 +30,7 @@ class EditorDecisionHandler extends Handler {
 				$pressAssistantOperations = array_merge($authorOperations, array()));
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array_merge($pressAssistantOperations,
-				array('decision', 'saveDecision', 'importPeerReviews', 'resubmit', 'saveResubmit')));
+				array('decision', 'saveDecision', 'importPeerReviews', 'resubmit', 'saveResubmit', 'newReviewRound', 'saveNewReviewRound')));
 	}
 
 	//
@@ -43,6 +43,59 @@ class EditorDecisionHandler extends Handler {
 		import('classes.security.authorization.OmpWorkflowStagePolicy');
 		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+
+	/**
+	 * Start a new review round
+	 * @return JSON
+	 */
+	function newReviewRound(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+		$decision = $request->getUserVar('decision');
+
+		// Form handling
+		import('controllers.modals.editorDecision.form.NewReviewRoundForm');
+		$newReviewRoundForm = new NewReviewRoundForm($monographId);
+		$newReviewRoundForm->initData($args, $request);
+
+		$json = new JSON('true', $newReviewRoundForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Start a new review round
+	 * @return JSON
+	 */
+	function saveNewReviewRound(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+
+		// Form handling
+		import('controllers.modals.editorDecision.form.NewReviewRoundForm');
+		$newReviewRoundForm = new NewReviewRoundForm($monographId);
+
+		$newReviewRoundForm->readInputData();
+		if ($newReviewRoundForm->validate()) {
+			$round = $newReviewRoundForm->execute($args, $request);
+
+			$router =& $request->getRouter();
+			$dispatcher =& $router->getDispatcher();
+			$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monographId, $round));
+
+
+			$additionalAttributes = array('script' => "$(\"<li class='ui-state-default ui-corner-top ui-state-active'><a href='"
+				. $url . "'>"
+				. Locale::translate('submission.round', array('round' => $round)) . "</a></li>\").insertBefore('#newRoundTabContainer');"
+			);
+
+			$json = new JSON('true', null, 'true', null, $additionalAttributes);
+		} else {
+			$json = new JSON('false');
+		}
+
+		return $json->getString();
 	}
 
 

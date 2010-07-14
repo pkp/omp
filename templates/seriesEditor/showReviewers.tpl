@@ -16,17 +16,22 @@
 
 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 	{foreach from=$rounds item=round}
-		<li{if ($round eq $currentRound)} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url path=$round}">{translate key="submission.round" round=$round}</a>
-		</li>
+	<li{if ($round eq $selectedRound)} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+		<a href="{url path=$round}">{translate key="submission.round" round=$round}</a>
+	</li>
 	{/foreach}
+	{url|assign:"newRoundUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.editorDecision.EditorDecisionHandler" op="newReviewRound" monographId=$monographId}
+	{modal url="$newRoundUrl" actOnId="nothing" dialogText='editor.monograph.newRound' button="#newRoundTab"}
+	<li id="newRoundTabContainer" class="ui-state-default ui-corner-top ui-state-active">
+		<a id="newRoundTab" href="#"><img class="ui-icon ui-icon-plus" style="float:left; margin-left:-5px;" />{translate key="editor.monograph.newRound"}</a>
+	</li>
 </ul>
 
 {** FIXME: need to set escape=false due to bug 5265 *}
-{url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$currentRound canAdd=1 escape=false}
+{url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$selectedRound canAdd=1 escape=false}
 {load_url_in_div id="reviewFileSelection" url=$reviewFileSelectionGridUrl}
 
-{url|assign:reviewersGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewer.ReviewerGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$currentRound escape=false}
+{url|assign:reviewersGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewer.ReviewerGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$selectedRound escape=false}
 {load_url_in_div id="reviewersGrid" url=$reviewersGridUrl}
 
 {** editorial decision actions *}

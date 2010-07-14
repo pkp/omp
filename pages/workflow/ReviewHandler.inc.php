@@ -28,6 +28,7 @@ class ReviewHandler extends Handler {
 	function review(&$args, &$request) {
 		$this->setupTemplate(EDITOR_SERIES_HOME);
 		$monographId = array_shift($args);
+		$selectedRound = array_shift($args);
 
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getMonograph($monographId);
@@ -36,7 +37,9 @@ class ReviewHandler extends Handler {
 		// Get the review round currently being looked at
 		$currentReviewType = $monograph->getCurrentReviewType();
 		$currentRound = $monograph->getCurrentRound();
-
+		if($selectedRound <= $currentRound) {
+			$selectedRound = $currentRound; // Make sure round is not higher than the monograph's latest round
+		}
 
 		// Set allRounds to an array of all values > 0 and less than currentRound--This will determine the tabs to show
 		$allRounds = array();
@@ -73,7 +76,7 @@ class ReviewHandler extends Handler {
 			'externalReview',
 			LINK_ACTION_MODE_MODAL,
 			null,
-			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'decision', nul, $actionArgs),
+			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'decision', null, $actionArgs),
 			'editor.monograph.decision.externalReview'
 		);
 
@@ -105,6 +108,7 @@ class ReviewHandler extends Handler {
 		$templateMgr->assign('editorActions', $editorActions);
 		$templateMgr->assign('currentReviewType', $currentReviewType);
 		$templateMgr->assign('currentRound', $currentRound);
+		$templateMgr->assign('selectedRound', $selectedRound);
 		$templateMgr->assign('monographId', $monographId);
 		$templateMgr->display('seriesEditor/showReviewers.tpl');
 	}
