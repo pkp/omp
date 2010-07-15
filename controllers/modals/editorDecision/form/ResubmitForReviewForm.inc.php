@@ -95,6 +95,10 @@ class ResubmitForReviewForm extends Form {
 
 		// 2. Create a new internal review round
 		// FIXME: what do do about reviewRevision? being set to 1 for now.
+		$currentRound = $reviewRoundDao->build($this->_monographId, REVIEW_TYPE_INTERNAL, $seriesEditorSubmission->getCurrentRound());
+		$currentRound->setStatus(REVIEW_ROUND_STATUS_RESUBMITTED);
+		$reviewRoundDao->update($currentRound);
+
 		$newRound = $seriesEditorSubmission->getCurrentRound() ? 1 : ($seriesEditorSubmission->getCurrentRound() + 1);
 		$reviewRoundDao->createReviewRound($this->_monographId, REVIEW_TYPE_INTERNAL, $newRound, 1);
 

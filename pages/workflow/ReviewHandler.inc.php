@@ -41,6 +41,9 @@ class ReviewHandler extends Handler {
 			$selectedRound = $currentRound; // Make sure round is not higher than the monograph's latest round
 		}
 
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRound =& $reviewRoundDao->build($monographId, $currentReviewType, $selectedRound);
+
 		// Set allRounds to an array of all values > 0 and less than currentRound--This will determine the tabs to show
 		$allRounds = array();
 		for ($i = 1; $i <= $currentRound; $i++) $allRounds[] = $i;
@@ -109,6 +112,7 @@ class ReviewHandler extends Handler {
 		$templateMgr->assign('currentReviewType', $currentReviewType);
 		$templateMgr->assign('currentRound', $currentRound);
 		$templateMgr->assign('selectedRound', $selectedRound);
+		$templateMgr->assign('roundStatus', $reviewRound->getStatusKey());
 		$templateMgr->assign('monographId', $monographId);
 		$templateMgr->display('seriesEditor/showReviewers.tpl');
 	}

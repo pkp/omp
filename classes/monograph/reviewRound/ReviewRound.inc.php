@@ -20,6 +20,14 @@
 define('REVIEW_TYPE_INTERNAL', 1);
 define('REVIEW_TYPE_EXTERNAL', 2);
 
+define('REVIEW_ROUND_STATUS_REVISIONS_REQUESTED', 1);
+define('REVIEW_ROUND_STATUS_RESUBMITTED', 2);
+define('REVIEW_ROUND_STATUS_SENT_TO_EXTERNAL', 3);
+define('REVIEW_ROUND_STATUS_ACCEPTED', 4);
+define('REVIEW_ROUND_STATUS_DECLINED', 5);
+define('REVIEW_ROUND_STATUS_PENDING_REVIEWERS', 6);
+define('REVIEW_ROUND_STATUS_PENDING_REVIEWS', 7);
+
 class ReviewRound extends DataObject {
 	//
 	// Get/set methods
@@ -87,6 +95,54 @@ class ReviewRound extends DataObject {
 	 */
 	function setReviewRevision($reviewRevision) {
 		return $this->setData('reviewRevision', $reviewRevision);
+	}
+
+	/**
+	 * Get current round status
+	 * @return int
+	 */
+	function getStatus() {
+		return $this->getData('status');
+	}
+
+	/**
+	 * Set current round status
+	 * @param $status int
+	 */
+	function setStatus($status) {
+		return $this->setData('status', $status);
+	}
+
+	/**
+	 * Get locale key associated with current status
+	 * @return int
+	 */
+	function getStatusKey() {
+		switch ($this->getStatus()) {
+			case REVIEW_ROUND_STATUS_REVISIONS_REQUESTED:
+				return 'editor.monograph.roundStatus.revisionsRequested';
+				break;
+			case REVIEW_ROUND_STATUS_RESUBMITTED:
+				return 'editor.monograph.roundStatus.resubmitted';
+				break;
+			case REVIEW_ROUND_STATUS_SENT_TO_EXTERNAL:
+				return 'editor.monograph.roundStatus.sentToExternal';
+				break;
+			case REVIEW_ROUND_STATUS_ACCEPTED:
+				return 'editor.monograph.roundStatus.accepted';
+				break;
+			case REVIEW_ROUND_STATUS_DECLINED:
+				return 'editor.monograph.roundStatus.declined';
+				break;
+			case REVIEW_ROUND_STATUS_PENDING_REVIEWERS:
+				return 'editor.monograph.roundStatus.pendingReviewers';
+				break;
+			case REVIEW_ROUND_STATUS_PENDING_REVIEWS:
+				return 'editor.monograph.roundStatus.pendingReviews';
+				break;
+			default: return null;
+		}
+
 	}
 }
 

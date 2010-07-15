@@ -26,7 +26,7 @@ class ReviewRoundDAO extends DAO {
 	 * @param $assocId int
 	 * @return $signoff
 	 */
-	function build($submissionId, $reviewType, $round, $reviewRevision = null) {
+	function build($submissionId, $reviewType, $round, $reviewRevision = null, $status = null) {
 		// If one exists, fetch and return.
 		$reviewRound = $this->getReviewRound($submissionId, $reviewType, $round);
 		if ($reviewRound) return $reviewRound;
@@ -38,6 +38,7 @@ class ReviewRoundDAO extends DAO {
 		$reviewRound->setRound($round);
 		$reviewRound->setReviewType($reviewType);
 		$reviewRound->setReviewRevision($reviewRevision);
+		$reviewRound->setStatus($status);
 		$this->insertObject($reviewRound);
 		return $reviewRound;
 	}
@@ -62,6 +63,7 @@ class ReviewRoundDAO extends DAO {
 		$reviewRound->setReviewType($row['review_type']);
 		$reviewRound->setRound($row['round']);
 		$reviewRound->setReviewRevision($row['review_revision']);
+		$reviewRound->setStatus($row['status']);
 
 		return $reviewRound;
 	}
@@ -74,7 +76,7 @@ class ReviewRoundDAO extends DAO {
 	function insertObject(&$reviewRound) {
 		$this->update(
 				'INSERT INTO review_rounds
-				(submission_id, review_type, round, review_revision)
+				(submission_id, review_type, round, review_revision, status)
 				VALUES
 				(?, ?, ?, ?)',
 				array(
@@ -82,6 +84,7 @@ class ReviewRoundDAO extends DAO {
 					$reviewRound->getReviewType(),
 					$reviewRound->getRound(),
 					$reviewRound->getReviewRevision(),
+					$reviewRound->getStatus()
 				)
 		);
 		return $reviewRound;
@@ -95,12 +98,14 @@ class ReviewRoundDAO extends DAO {
 	function updateObject(&$reviewRound) {
 		$returner = $this->update(
 			'UPDATE	review_rounds
-			SET	review_revision = ?
+			SET	review_revision = ?,
+				status = ?
 			WHERE	submission_id = ? AND
 				review_type = ? AND
 				round = ?',
 			array(
 				$reviewRound->getReviewRevision(),
+				$reviewRound->getStatus(),
 				$reviewRound->getSubmissionId(),
 				$reviewRound->getReviewType(),
 				$reviewRound->getRound()
@@ -154,13 +159,13 @@ class ReviewRoundDAO extends DAO {
 	 * @param int $round
 	 * @param int $reviewRevision
 	 */
-	function createReviewRound($monographId, $reviewType, $round, $reviewRevision) {
+	function createReviewRound($monographId, $reviewType, $round, $reviewRevision, $status = null) {
 		$this->update(
 			'INSERT INTO review_rounds
-				(submission_id, review_type, round, review_revision)
+				(submission_id, review_type, round, review_revision, status)
 				VALUES
-				(?, ?, ?, ?)',
-			array($monographId, $reviewType, $round, $reviewRevision)
+				(?, ?, ?, ?, ?)',
+			array($monographId, $reviewType, $round, $reviewRevision, $status)
 		);
 	}
 }

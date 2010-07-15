@@ -109,6 +109,9 @@ class SendReviewsForm extends Form {
 	function execute(&$args, &$request) {
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$decision = $this->getData('decision');
+		$monograph =& $this->getMonograph();
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$currentRound = $reviewRoundDao->build($this->_monographId, $monograph->getCurrentReviewType(), $monograph->getCurrentRound());
 
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_ACCEPT:
@@ -117,13 +120,15 @@ class SendReviewsForm extends Form {
 
 				// 2. select email key
 				$emailKey = 'EDITOR_DECISION_ACCEPT';
+
+				// 3. Set status of round
+				$status = REVIEW_ROUND_STATUS_ACCEPTED;
 				break;
 			case SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
 				// 1. Record the decision
 				SeriesEditorAction::recordDecision($monograph, SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW);
 
 				// Create a new review round
-				$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 				// FIXME: what do do about reviewRevision? being set to 1 for now.
 				// 2. Create a new external review round if it doesn't exist
 				if ( !$reviewRoundDao->reviewRoundExists($this->_monographId, REVIEW_TYPE_EXTERNAL, 1)) {
@@ -145,6 +150,9 @@ class SendReviewsForm extends Form {
 				// 4. select email key
 				// FIXME: will we have an email key for this decision?
 				$emailKey = 'EDITOR_DECISION_ACCEPT';
+
+				// 5. Set status of round
+				$status = REVIEW_ROUND_STATUS_SENT_TO_EXTERNAL;
 				break;
 			case SUBMISSION_EDITOR_DECISION_DECLINE:
 				// 1. Record the decision
@@ -152,14 +160,17 @@ class SendReviewsForm extends Form {
 
 				// 2. select email key
 				$emailKey = 'SUBMISSION_UNSUITABLE';
+
+				// 3. Set status of round
+				$status = REVIEW_ROUND_STATUS_DECLINED;
 				break;
 			default:
 				// only support the three decisions above
 				assert(false);
 		}
 
-
-
+		$currentReviewRound->setStatus($status);
+		$reviewRoundDao->update($currentReviewRound);
 
 		// n. Send Personal message to author
 		import('classes.mail.MonographMailTemplate');
