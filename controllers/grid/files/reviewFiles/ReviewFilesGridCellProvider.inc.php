@@ -75,6 +75,8 @@ class ReviewFilesGridCellProvider extends GridCellProvider {
 		switch ($columnId) {
 			case 'select':
 				return array('rowId' => $element->getFileId());
+			case 'name':
+				return array('label' => $element->getLocalizedName());
 			case 'type':
 				$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 				$fileType = $bookFileTypeDao->getById($element->getAssocId());

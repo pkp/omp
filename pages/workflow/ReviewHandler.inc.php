@@ -16,6 +16,7 @@
 
 import('classes.handler.Handler');
 import('lib.pkp.classes.core.JSON');
+import('classes.submission.common.Action');
 
 class ReviewHandler extends Handler {
 	/**
@@ -26,7 +27,7 @@ class ReviewHandler extends Handler {
 	}
 
 	function review(&$args, &$request) {
-		$this->setupTemplate(EDITOR_SERIES_HOME);
+		$this->setupTemplate();
 		$monographId = array_shift($args);
 		$selectedRound = array_shift($args);
 

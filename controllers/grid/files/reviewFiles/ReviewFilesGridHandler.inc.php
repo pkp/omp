@@ -162,7 +162,8 @@ class ReviewFilesGridHandler extends GridHandler {
 			if(!empty($selectedFiles)) $templateMgr->assign('selectedFileIds', array_keys($selectedFiles[$reviewType][$round]));
 		} else {
 			// set the grid data to be only the files that have already been selected
-			$this->setData($selectedFiles[$reviewType][$round]);
+			$data = isset($selectedFiles[$reviewType][$round]) ? $selectedFiles[$reviewType][$round] : array();
+			$this->setData($data);
 		}
 
 		// Test whether the tar binary is available for the export to work, if so, add grid action
