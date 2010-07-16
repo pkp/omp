@@ -29,15 +29,8 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function PressEditorSubmissionsListGridHandler() {
 		parent::GridHandler();
-		// FIXME: Please correctly distribute the operations among roles.
-		$this->addRoleAssignment(ROLE_ID_AUTHOR,
-				$authorOperations = array());
-		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT,
-				$pressAssistantOperations = array_merge($authorOperations, array()));
-		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array_merge($pressAssistantOperations,
-				array('fetchGrid', 'showApprove', 'saveApprove', 'showApproveAndReview',
-				'saveApproveAndReview', 'showDecline', 'saveDecline')));
+		// FIXME: Missing permission spec, see comment in the authorize() method.
+		// We have to enter a role assignement here once #5593 is fixed.
 	}
 
 
@@ -48,9 +41,11 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpWorkflowStagePolicy');
-		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
+		// FIXME: This component is being used on the editor's page which is
+		// not specified in the permission documentation or in the application
+		// specification, see #5593. We have to enter a policy here once we've
+		// specified the permissions for this component.
+		return true;
 	}
 
 	/*
