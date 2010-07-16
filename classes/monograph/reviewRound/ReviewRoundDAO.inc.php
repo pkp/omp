@@ -78,7 +78,7 @@ class ReviewRoundDAO extends DAO {
 				'INSERT INTO review_rounds
 				(submission_id, review_type, round, review_revision, status)
 				VALUES
-				(?, ?, ?, ?)',
+				(?, ?, ?, ?, ?)',
 				array(
 					$reviewRound->getSubmissionId(),
 					$reviewRound->getReviewType(),
