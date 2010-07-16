@@ -14,7 +14,7 @@
 {literal}
 	$(function() {
 		$('.button').button();
-		
+
 		// Initialize range selectors
 		$("#doneRange").slider({ // Initialize the slider control
 			range: true,
@@ -37,7 +37,7 @@
 		});
 		$("#avgAmountLabel").val(+ $("#avgRange").slider("values", 0) + ' - ' + $("#avgRange").slider("values", 1));  // Initialize the label above the slider
 		$("#lastRange").slider({ // Initialize the slider control
-			range: true,	
+			range: true,
 			min: {/literal}{$reviewerValues.lastMin}{literal},
 			max: {/literal}{$reviewerValues.lastMax}{literal},
 			values: [{/literal}{$reviewerValues.lastMin}{literal}, {/literal}{$reviewerValues.lastMax}{literal}],
@@ -56,18 +56,18 @@
 			}
 		});
 		$("#activeAmountLabel").val($("#activeRange").slider("values", 0) + ' - ' + $("#activeRange").slider("values", 1));  // Initialize the label above the slider
-	
+
 		// Initialize reviewer interests search field
 		$("#interests").tagit({
 			availableTags: [{/literal}{$existingInterests}{literal}]
 		});
 
-		
+
 		// Handler filter form submission
 		$('#reviewerFilterForm-{/literal}{$randomId}{literal}').ajaxForm({
 		        url: '{/literal}{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="updateReviewerSelect"}{literal}',
 				dataType: 'json',
-				data: {"doneMin": getMaxValue('doneRange'), "doneMax": getMaxValue('doneRange'), "avgMin": getMinValue('avgRange'), "avgMax": getMaxValue('avgRange'), 
+				data: {"doneMin": getMaxValue('doneRange'), "doneMax": getMaxValue('doneRange'), "avgMin": getMinValue('avgRange'), "avgMax": getMaxValue('avgRange'),
 					"lastMin": getMinValue('lastRange'), "lastMax": getMaxValue('lastRange'), "activeMin": getMinValue('activeRange'), "activeMax": getMaxValue('activeRange')},
 		        // Load the new grid below
 		        success: function(returnString) {
@@ -77,9 +77,9 @@
 		    		}
 		    		//$('#loadingText-{/literal}{$randomId}{literal}').text(returnString.content);  // Set to error or success message
 		        },
-		        beforeSubmit: function(arr, $form, options) { 
+		        beforeSubmit: function(arr, $form, options) {
 			        	// Need to reset form values to prevent cached values from being submitted
-						$.each(arr, function(index, value) { 
+						$.each(arr, function(index, value) {
 							switch(value.name) {
 								case 'doneMin':
 									getMinValue('doneRange');
@@ -104,7 +104,7 @@
 									break;
 								case 'activeMax':
 									getMaxValue('activeRange');
-									break;	
+									break;
 							}
 						});
  		        }
@@ -162,8 +162,7 @@
 	{/fbvFormSection}
 {/fbvFormArea}
 </form>
-
-{url|assign:reviewerSelectGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="fetchGrid" monographId=6 doneMin=$reviewerValues.doneMin 
+{url|assign:reviewerSelectGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="fetchGrid" monographId=$monographId doneMin=$reviewerValues.doneMin
 	doneMax=$reviewerValues.doneMax avgMin=$reviewerValues.avgMin avgMax=$reviewerValues.avgMax lastMin=$reviewerValues.lastMin lastMax=$reviewerValues.lastMax activeMin=$reviewerValues.activeMin activeMax=$reviewerValues.activeMax escape=false}
 {assign var=gridContainerId value="reviewerSelectGridContainer"|concat:"-":$randomId}
 {load_url_in_div id="$gridContainerId" url="$reviewerSelectGridUrl"}
