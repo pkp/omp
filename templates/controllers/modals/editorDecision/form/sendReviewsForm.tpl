@@ -67,5 +67,5 @@ $(function() {
 	</form>
 	<div id="attachments">
 		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.ReviewAttachmentsGridHandler" op="fetchGrid" readOnly=1 monographId=$monographId escape=false}
-		{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
+		{load_url_in_div id="#reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 	</div>

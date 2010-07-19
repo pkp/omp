@@ -16,9 +16,9 @@
 
 	<!-- All submission files -->
 	{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" isSelectable=1 canUpload=1 monographId=$monographId reviewType=$reviewType round=$round escape=false}
-	{load_url_in_div id="availableReviewFilesGrid" url=$availableReviewFilesGridUrl}
+	{load_url_in_div id="#availableReviewFilesGrid" url=$availableReviewFilesGridUrl}
 
 	<!-- Listbuilder of current reviewers (allow the editor to control which reviewers automatically get added to next round) -->
 	{url|assign:reSelectReviewersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.ReSelectReviewersListbuilderHandler" op="fetch" monographId=$monographId reviewType=$reviewType round=$round escape=false}
-	{load_url_in_div id="reSelectReviewersContainer" url=$reSelectReviewersUrl}
+	{load_url_in_div id="#reSelectReviewersContainer" url=$reSelectReviewersUrl}
 </form>

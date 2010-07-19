@@ -18,7 +18,7 @@
 
 {** FIXME: need to set escape=false due to bug 5265 *}
 {url|assign:reviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" monographId=$submission->getId() reviewType=$submission->getCurrentReviewType() round=$submission->getCurrentRound() escape=false}
-{load_url_in_div id="reviewFiles" url=$reviewFilesGridUrl}
+{load_url_in_div id="#reviewFiles" url=$reviewFilesGridUrl}
 
 
 <div id="review">
@@ -79,7 +79,7 @@
 
 	<div id="attachments">
 		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.ReviewAttachmentsGridHandler" op="fetchGrid" reviewId=$submission->getReviewId()}
-		{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
+		{load_url_in_div id="#reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 	</div>
 </div>
 

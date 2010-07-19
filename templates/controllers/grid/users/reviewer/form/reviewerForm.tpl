@@ -71,7 +71,7 @@
 		<h3 id="advancedSearch"><a href="#">{translate key="manager.reviewerSearch.advancedSearch"}</a></h3>
 		<div id="reviewerAdvancedSearch">
 			{url|assign:reviewerSelectorUrl router=$smarty.const.ROUTE_COMPONENT component="reviewerSelector.ReviewerSelectorHandler" op="fetchForm" monographId=$monographId}
-			{load_url_in_div id="reviewerSelectorContainer" url="$reviewerSelectorUrl"}
+			{load_url_in_div id="#reviewerSelectorContainer" url="$reviewerSelectorUrl"}
 		</div>
 		
 		<!--  Create New Reviewer -->

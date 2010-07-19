@@ -49,7 +49,7 @@
 	{url|assign:mastheadMembersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.MastheadMembershipListbuilderHandler" op="fetch" groupId=$group->getId()}
 	{* Need a random div ID to load listbuilders in modals *}
 	{assign var='randomId' value=1|rand:99999}
-	{load_url_in_div id=$randomId url=$mastheadMembersUrl}
+	{load_url_in_div id="#"|concat:$randomId url=$mastheadMembersUrl}
 {/if}
 
 </form>
