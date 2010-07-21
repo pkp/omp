@@ -27,7 +27,8 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 */
 	function ReviewAttachmentsGridHandler() {
 		parent::GridHandler();
-		$this->addRoleAssignment(ROLE_ID_REVIEWER,
+		// FIXME: #5600 - Distribute access differently to reviewers and editor roles
+		$this->addRoleAssignment(array(ROLE_ID_REVIEWER, ROLE_ID_PRESS_MANAGER, ROLE_ID_EDITOR),
 				array('fetchGrid', 'addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));
 	}
 
@@ -57,9 +58,9 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		// Make sure the request complies with the review page policy.
-		import('classes.security.authorization.OmpReviewPagePolicy');
-		$this->addPolicy(new OmpReviewPagePolicy($request, $roleAssignments));
+		// FIXME: #5600 - Distribute access differently to reviewers and editor roles
+		import('classes.security.authorization.OmpWorkflowStagePolicy');
+		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
