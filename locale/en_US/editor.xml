@@ -124,6 +124,7 @@
 	<message key="editor.monograph.decision.resubmitDescription">You are about to create a new review round for this submission.  Please select the files that you wish to move to the next round.  By Default, only the files used in the previous review round are selected.  Also, only reviewers from the previous review round have been selected to participate in the new round.</message>
 	<message key="editor.monograph.decision.decline">Decline Submission</message>
 	<message key="editor.monograph.decision.externalReview">External Review</message>
+	<message key="editor.monograph.filter">Filter</message>	
 	<message key="editor.monograph.roundStatus">Round {$round} Status</message>	
 	<message key="editor.monograph.roundStatus.revisionsRequested">Revisions have been requested.</message>
 	<message key="editor.monograph.roundStatus.resubmitted">Submission has been resubmitted for review.</message>
@@ -147,6 +148,7 @@
 	<message key="editor.monograph.createNewRound">Create New Review Round</message>
 	<message key="editor.monograph.newRound">New Review Round</message>
 	<message key="editor.monograph.newRoundDescription">You are about to create a new review round for this submission.  Files that have not been used in other review rounds are listed below.  By default, the reviewers from the previous review round have been selected to participate in this new review round.</message>
+	<message key="editor.monograph.revisions">Revisions</message>
 	<message key="editor.submissions.showBy">Show By</message>
 	<message key="editor.submissions.submitMMDD">Submit MM-DD</message>
 	<message key="editor.submissions.activeAssignments">Active Assignments</message>

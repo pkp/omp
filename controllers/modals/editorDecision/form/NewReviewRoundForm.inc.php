@@ -106,7 +106,11 @@ class NewReviewRoundForm extends Form {
 
 		// 4. Add the selected files to the new round
 		$selectedFiles = $this->getData('selectedFiles');
-		$reviewAssignmentDAO->setFilesForReview($this->_monographId, REVIEW_TYPE_INTERNAL, $newRound, $selectedFiles);
+		$filesWithRevisions = array();
+		foreach ($selectedFiles as $selectedFile) {
+			$filesWithRevisions[] = explode("-", $selectedFile);
+		}
+		$reviewAssignmentDAO->setFilesForReview($this->_monographId, REVIEW_TYPE_INTERNAL, $newRound, $filesWithRevisions);
 
 		return $newRound;
 	}

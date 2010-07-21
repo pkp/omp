@@ -13,7 +13,6 @@
 	{literal}
 	$(function() {
 		$('.button').button();
-
 	{/literal}
 </script>
 

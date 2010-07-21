@@ -31,14 +31,25 @@
 <div id="roundStatus" class="roundStatusContainer">
 	<p>{translate key="editor.monograph.roundStatus" round=$round}: {translate key="$roundStatus"}</p>
 </div>
+
+<br />
 {/if}
 
 {** FIXME: need to set escape=false due to bug 5265 *}
 {url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$selectedRound canAdd=1 escape=false}
 {load_url_in_div id="#reviewFileSelection" url=$reviewFileSelectionGridUrl}
 
+<br />
+
 {url|assign:reviewersGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewer.ReviewerGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$selectedRound escape=false}
 {load_url_in_div id="#reviewersGrid" url=$reviewersGridUrl}
+
+<br />
+
+{url|assign:revisionsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.revisions.RevisionsGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$selectedRound escape=false}
+{load_url_in_div id="#revisionsGrid" url=$revisionsGridUrl}
+
+<br />
 
 {** editorial decision actions *}
 {foreach from=$editorActions item=action}

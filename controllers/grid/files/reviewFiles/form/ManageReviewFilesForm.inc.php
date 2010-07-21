@@ -59,8 +59,16 @@ class ManageReviewFilesForm extends Form {
 		$round = $this->getData('round');
 
 		$selectedFiles = $this->getData('selectedFiles');
+		$filesWithRevisions = array();
+		foreach ($selectedFiles as $selectedFile) {
+			$filesWithRevisions[] = explode("-", $selectedFile);
+		}
 		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignmentDAO->setFilesForReview($this->_monographId, $reviewType, $round, $selectedFiles);
+		$reviewAssignmentDAO->setFilesForReview($this->_monographId, $reviewType, $round, $filesWithRevisions);
+
+		// Return the files that are currently set for the review
+		$selectedFiles =& $reviewAssignmentDAO->getReviewFilesByRound($this->_monographId);
+		return $selectedFiles[$reviewType][$round];
 	}
 }
 

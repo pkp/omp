@@ -1,20 +1,20 @@
 <?php
 
 /**
- * @file controllers/grid/files/editorReviewFileSelection/ReviewFilesGridHandler.inc.php
+ * @file controllers/grid/files/revisions/RevisionsGridHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class ReviewFilesGridHandler
- * @ingroup controllers_grid_files_reviewFiles
+ * @class RevisionsGridHandler
+ * @ingroup controllers_grid_files_revisions
  *
- * @brief Handle the editor review file selection grid (selects which files to send to review)
+ * @brief Display the file revisions authors have uploaded
  */
 
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
-class ReviewFilesGridHandler extends GridHandler {
+class RevisionsGridHandler extends GridHandler {
 	/** the FileType for this grid */
 	var $fileType;
 
@@ -30,7 +30,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 */
-	function ReviewFilesGridHandler() {
+	function RevisionsGridHandler() {
 		parent::GridHandler();
 		// FIXME: Please correctly distribute the operations among roles.
 		$this->addRoleAssignment(ROLE_ID_AUTHOR,
@@ -39,8 +39,7 @@ class ReviewFilesGridHandler extends GridHandler {
 				$pressAssistantOperations = array_merge($authorOperations, array()));
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array_merge($pressAssistantOperations,
-				array('fetchGrid', 'downloadFile', 'downloadAllFiles', 'manageReviewFiles',
-				'uploadReviewFile', 'updateReviewFiles')));
+				array('fetchGrid', 'downloadFile', 'downloadAllFiles')));
 	}
 
 	//
@@ -115,8 +114,8 @@ class ReviewFilesGridHandler extends GridHandler {
 		parent::initialize($request);
 		// Basic grid configuration
 		$monographId = $request->getUserVar('monographId');
-		$this->setId('reviewFiles');
-		$this->setTitle('reviewer.monograph.reviewFiles');
+		$this->setId('revisions');
+		$this->setTitle('editor.monograph.revisions');
 
 		// Set the Is Selectable boolean flag
 		$isSelectable = $request->getUserVar('isSelectable');
@@ -133,12 +132,9 @@ class ReviewFilesGridHandler extends GridHandler {
 		$reviewType = (int) $request->getUserVar('reviewType');
 		$round = (int) $request->getUserVar('round');
 
-		// Check if the user can add files to the round
-		$canAdd = $request->getUserVar('canAdd');
-
-		// Grab the files that are currently set for the review
+		// Grab the files that are the same as in the current review, but with later revisions
 		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$selectedFiles =& $reviewAssignmentDAO->getReviewFilesByRound($monographId);
+		$selectedFiles =& $reviewAssignmentDAO->getRevisionsOfCurrentReviewFiles($monographId, $round);
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_AUTHOR));
 
@@ -147,23 +143,39 @@ class ReviewFilesGridHandler extends GridHandler {
 		$context =& $router->getContext($request);
 
 		// Do different initialization if this is a selectable grid or if its a display only version of the grid.
-		if ( $isSelectable ) {
+		// The selectable grid will contain all submission files, but non-revised files will have a 'hide' flag
+		if ($isSelectable) {
 			// Load a different grid template
-			$this->setTemplate('controllers/grid/files/reviewFiles/grid.tpl');
+			$this->setTemplate('controllers/grid/files/revisions/grid.tpl');
 
 			// Set the files to all the available files to allow selection.
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 			$monographFiles =& $monographFileDao->getByMonographId($monographId);
 			$this->setData($monographFiles);
-			$this->setId('reviewFilesSelect'); // Need a unique ID since the 'manage review files' modal is in the same namespace as the 'view review files' modal
+			$this->setId('revisionsSelect'); // Need a unique ID since the 'manage review files' modal is in the same namespace as the 'view review files' modal
+
+			$this->addAction(
+				new LinkAction(
+					'filter',
+					LINK_ACTION_MODE_LINK,
+					LINK_ACTION_TYPE_NOTHING,
+					'#',
+					'editor.monograph.filter'
+				)
+			);
 
 			// Set the already selected elements of the grid
 			$templateMgr =& TemplateManager::getManager();
-			$selectedRevisions =& $reviewAssignmentDAO->getReviewFilesAndRevisionsByRound($monographId, $round, true);
-			if(!empty($selectedRevisions)) $templateMgr->assign('selectedFileIds', $selectedRevisions);
+			//if(!empty($selectedFiles)) $templateMgr->assign('selectedFileIds', array_keys($selectedFiles[$reviewType][$round]));
+			// Get IDs of selected files
+			$selectedFileIds = array();
+			foreach($selectedFiles as $selectedFile) {
+				$selectedFileIds[] = $selectedFile->getFileId() . "-" . $selectedFile->getRevision();
+			}
+			$templateMgr->assign('selectedFileIds', $selectedFileIds);
 		} else {
-			// set the grid data to be only the files that have already been selected
-			$data = isset($selectedFiles[$reviewType][$round]) ? $selectedFiles[$reviewType][$round] : array();
+			// Otherwise, only display revisions
+			$data = isset($selectedFiles) ? $selectedFiles : array();
 			$this->setData($data);
 		}
 
@@ -183,42 +195,14 @@ class ReviewFilesGridHandler extends GridHandler {
 			);
 		}
 
-		if ($canAdd) {
-			$this->addAction(
-				new LinkAction(
-					'manageReviewFiles',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REPLACE_ALL,
-					$router->url($request, null, null, 'manageReviewFiles', null, array('monographId' => $monographId)),
-					'editor.submissionArchive.manageReviewFiles',
-					null,
-					'add'
-				)
-			);
-		}
-
-		if ($canUpload) {
-			$this->addAction(
-				new LinkAction(
-					'uploadReviewFile',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_APPEND,
-					$router->url($request, null, 'grid.files.submissionFiles.SubmissionReviewFilesGridHandler', 'addFile', null, array('monographId' => $monographId)),
-					'editor.submissionArchive.uploadFile',
-					null,
-					'add'
-				)
-			);
-		}
-
-		import('controllers.grid.files.reviewFiles.ReviewFilesGridCellProvider');
-		$cellProvider =& new ReviewFilesGridCellProvider();
+		import('controllers.grid.files.revisions.RevisionsGridCellProvider');
+		$cellProvider =& new RevisionsGridCellProvider();
 		// Columns
 		if ($this->getIsSelectable()) {
 			$this->addColumn(new GridColumn('select',
 				'common.select',
 				null,
-				'controllers/grid/files/reviewFiles/gridRowSelectInput.tpl',
+				'controllers/grid/files/revisions/gridRowSelectInput.tpl',
 				$cellProvider)
 			);
 		}
@@ -301,68 +285,5 @@ class ReviewFilesGridHandler extends GridHandler {
 		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 		$monographFileManager->downloadFilesArchive($this->_data);
-	}
-
-	/**
-	 * Add a file that the Press Editor did not initally add to the review
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSON
-	 */
-	function manageReviewFiles(&$args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-
-		import('controllers.grid.files.reviewFiles.form.ManageReviewFilesForm');
-		$manageReviewFilesForm = new ManageReviewFilesForm($monographId);
-
-		$manageReviewFilesForm->initData($args, $request);
-		$json = new JSON('true', $manageReviewFilesForm->fetch($request));
-		return $json->getString();
-	}
-
-	/**
-	 * Allow the editor to upload a new file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSON
-	 */
-	function uploadReviewFile(&$args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-
-		import('controllers.grid.files.reviewFiles.form.ManageReviewFilesForm');
-		$manageReviewFilesForm = new ManageReviewFilesForm($monographId);
-
-		$manageReviewFilesForm->initData($args, $request);
-		$json = new JSON('true', $manageReviewFilesForm->fetch($request));
-		return $json->getString();
-	}
-
-	/**
-	 * Save 'manage review files' form
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSON
-	 */
-	function updateReviewFiles(&$args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-
-		import('controllers.grid.files.reviewFiles.form.ManageReviewFilesForm');
-		$manageReviewFilesForm = new ManageReviewFilesForm($monographId);
-
-		$manageReviewFilesForm->readInputData();
-
-		if ($manageReviewFilesForm->validate()) {
-			$selectedFiles =& $manageReviewFilesForm->execute($args, $request);
-
-			// Re-render the grid with the updated files
-			$this->setData($selectedFiles);
-			$this->initialize($request);
-
-			// Pass to modal.js to reload the grid with the new content
-			$json = new JSON('true', implode(' ', $this->_renderRowsInternally($request)));
-		} else {
-			$json = new JSON('false');
-		}
-		return $json->getString();
 	}
 }

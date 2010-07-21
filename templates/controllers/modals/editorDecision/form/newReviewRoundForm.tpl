@@ -14,9 +14,9 @@
 <form name="newRound" id="newRound" method="post" action="{url op="saveNewReviewRound"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 
-	<!-- All submission files -->
-	{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" isSelectable=1 monographId=$monographId reviewType=1 round=$round escape=false}
-	{load_url_in_div id="#availableReviewFilesGrid" url=$availableReviewFilesGridUrl}
+	<!-- Revision files grid (Displays only revisions at first, and hides all other files which can then be displayed with filter button -->
+	{url|assign:newRoundRevisionsUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.revisions.RevisionsGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$round isSelectable=1 escape=false}
+	{load_url_in_div id="#newRoundRevisionsGrid" url=$newRoundRevisionsUrl}
 </form>
 
 {init_button_bar id="#newRound" cancelId="#cancelButton-newRound" submitId="#okButton-newRound"}

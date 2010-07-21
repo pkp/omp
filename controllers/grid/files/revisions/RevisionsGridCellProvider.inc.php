@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @file controllers/grid/files/editorReviewFileSelection/EditorReviewFileSelectionGridCellProvder.inc.php
+ * @file controllers/grid/files/revisions/RevisionsGridHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class GridCellProvider
- * @ingroup controllers_grid_editorReviewFileSelection
+ * @class RevisionsGridCellProvider
+ * @ingroup controllers_grid_files_revisions
  *
- * @brief Subclass class for a EditorReviewFileSelection grid column's cell provider
+ * @brief Subclass class for a RevisionsGrid grid column's cell provider
  */
 
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
-class ReviewFilesGridCellProvider extends GridCellProvider {
+class RevisionsGridCellProvider extends GridCellProvider {
 	/**
 	 * Constructor
 	 */
-	function ReviewFilesGridCellProvider() {
+	function RevisionsGridCellProvider() {
 		parent::GridCellProvider();
 	}
 
@@ -64,8 +64,8 @@ class ReviewFilesGridCellProvider extends GridCellProvider {
 		$columnId = $column->getId();
 		assert(is_a($element, 'MonographFile') && !empty($columnId));
 		// Numeric columns indicate a role-based column.
-		if ( is_numeric($columnId) ) {
-			if ( $columnId == $element->getUserGroupId() ) {
+		if (is_numeric($columnId)) {
+			if ($columnId == $element->getUserGroupId() ) {
 				// Show that this column's user group is the submitter
 				return array('status' => 'uploaded');
 			}
