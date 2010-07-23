@@ -16,9 +16,6 @@ import('controllers.grid.files.reviewAttachments.ReviewAttachmentsGridRow');
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
 class ReviewAttachmentsGridHandler extends GridHandler {
-	/** the FileType for this grid */
-	var $fileType;
-
 	/** boolean flag to make grid read only **/
 	var $_readOnly;
 
@@ -28,17 +25,17 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	function ReviewAttachmentsGridHandler() {
 		parent::GridHandler();
 		// FIXME: #5600 - Distribute access differently to reviewers and editor roles
-		$this->addRoleAssignment(array(ROLE_ID_REVIEWER, ROLE_ID_PRESS_MANAGER, ROLE_ID_EDITOR),
-				array('fetchGrid', 'addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));
+		//$this->addRoleAssignment(array(ROLE_ID_REVIEWER, ROLE_ID_PRESS_MANAGER, ROLE_ID_EDITOR),
+		//		array('fetchGrid', 'addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));
 	}
 
 	//
 	// Getters/Setters
 	//
 	/**
-	 * Set the boolean flag to make grid read only
-	 * @param $readOnly bool
-	 */
+	* Set the boolean flag to make grid read only
+	* @param $readOnly bool
+	*/
 	function setReadOnly($readOnly) {
 		$this->_readOnly = $readOnly;
 	}
@@ -55,13 +52,14 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	// Implement template methods from PKPHandler
 	//
 	/**
-	 * @see PKPHandler::authorize()
-	 */
+	* @see PKPHandler::authorize()
+	*/
 	function authorize(&$request, &$args, $roleAssignments) {
 		// FIXME: #5600 - Distribute access differently to reviewers and editor roles
-		import('classes.security.authorization.OmpWorkflowStagePolicy');
+		/*import('classes.security.authorization.OmpWorkflowStagePolicy');
 		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
+		return parent::authorize($request, $args, $roleAssignments);*/
+		return true;
 	}
 
 	/*
@@ -71,8 +69,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 		// Basic grid configuration
-		$reviewId = $request->getUserVar('reviewId');
-		$monographId = $request->getUserVar('monographId');
+
 		$this->setId('reviewAttachments');
 		$this->setTitle('grid.reviewAttachments.title');
 		$this->setReadOnly($request->getUserVar('readOnly')?true:false);
@@ -82,30 +79,6 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
-
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-
-		// FIXME: should validate so that only editors can use this option.
-		if ( !$reviewId && $monographId ) {
-			$monographFiles =& $monographFileDao->getByMonographId($monographId, MonographFileManager::typeToPath(MONOGRAPH_FILE_REVIEW));
-		} else {
-			$monographFiles =& $monographFileDao->getMonographFilesByAssocId($reviewId, MONOGRAPH_FILE_REVIEW);
-		}
-		$this->setData($monographFiles);
-
-		// Add grid-level actions
-		if ( !$this->getReadOnly() ) {
-			$router =& $request->getRouter();
-			$this->addAction(
-				new LinkAction(
-					'addFile',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_APPEND,
-					$router->url($request, null, null, 'addFile', null, array('reviewId' => $reviewId)),
-					'grid.reviewAttachments.add'
-				)
-			);
-		}
 
 		// Basic grid row configuration
 		import('controllers.grid.files.reviewAttachments.ReviewAttachmentsGridCellProvider');
@@ -122,9 +95,9 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	// Overridden methods from GridHandler
 	//
 	/**
-	 * Get the row handler - override the default row handler
-	 * @return ReviewAttachmentsGridRow
-	 */
+	* Get the row handler - override the default row handler
+	* @return ReviewAttachmentsGridRow
+	*/
 	function &getRowInstance() {
 		$row = new ReviewAttachmentsGridRow();
 		return $row;
@@ -134,10 +107,10 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	// Public File Grid Actions
 	//
 	/**
-	 * An action to add a new file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
+	* An action to add a new file
+	* @param $args array
+	* @param $request PKPRequest
+	*/
 	function addFile(&$args, &$request) {
 		// Calling editSponsor with an empty row id will add
 		// a new sponsor.
@@ -152,19 +125,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 */
 	function editFile(&$args, &$request) {
-		$fileId = $request->getUserVar('rowId');
-		$reviewId = $request->getUserVar('reviewId');
-
-		import('controllers.grid.files.reviewAttachments.form.ReviewAttachmentsForm');
-		$reviewAttachmentsForm = new ReviewAttachmentsForm($reviewId, $fileId, $this->getId());
-
-		if ($reviewAttachmentsForm->isLocaleResubmit()) {
-			$reviewAttachmentsForm->readInputData();
-		} else {
-			$reviewAttachmentsForm->initData($args, $request);
-		}
-		$json = new JSON('true', $reviewAttachmentsForm->fetch($request));
-		return $json->getString();
+		assert(false); // Subclasses must implement
 	}
 
 	/**
@@ -174,26 +135,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 * @return string
 	 */
 	function saveFile(&$args, &$request) {
-		$router =& $request->getRouter();
-		$reviewId = $request->getUserVar('reviewId');
-
-		import('controllers.grid.files.reviewAttachments.form.ReviewAttachmentsForm');
-		$reviewAttachmentsForm = new ReviewAttachmentsForm($reviewId, null, $this->getId());
-		$reviewAttachmentsForm->readInputData();
-
-		if ($reviewAttachmentsForm->validate()) {
-			$fileId = $reviewAttachmentsForm->execute($args, $request);
-
-			$additionalAttributes = array(
-				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('rowId' => $fileId)),
-				'saveUrl' => $router->url($request, null, null, 'returnFileRow', null, array('rowId' => $fileId))
-			);
-			$json = new JSON('true', Locale::translate('submission.uploadSuccessful'), 'false', $fileId, $additionalAttributes);
-		} else {
-			$json = new JSON('false', Locale::translate('common.uploadFailed'));
-		}
-
-		return '<textarea>' . $json->getString() . '</textarea>';
+		assert(false); // Subclasses mustimplement
 	}
 
 	/**

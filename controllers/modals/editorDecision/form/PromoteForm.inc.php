@@ -1,20 +1,20 @@
 <?php
 
 /**
- * @file controllers/modals/editorDecision/form/ReviewerForm.inc.php
+ * @file controllers/modals/editorDecision/form/PromoteForm.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class ReviewerForm
- * @ingroup controllers_grid_reviewer__form
+ * @class PromoteForm
+ * @ingroup controllers_modals_editorDecision_form
  *
- * @brief Form for adding a reviewer to a submission
+ * @brief Form for promoting a submission (to external review or production)
  */
 
 import('lib.pkp.classes.form.Form');
 
-class SendReviewsForm extends Form {
+class PromoteForm extends Form {
 	/** The monograph associated with the review assignment **/
 	var $_monographId;
 
@@ -24,8 +24,8 @@ class SendReviewsForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function SendReviewsForm($monographId, $decision) {
-		parent::Form('controllers/modals/editorDecision/form/sendReviewsForm.tpl');
+	function PromoteForm($monographId, $decision) {
+		parent::Form('controllers/modals/editorDecision/form/promoteForm.tpl');
 		$this->_monographId = (int) $monographId;
 		$this->_decision = (int) $decision;
 
@@ -76,9 +76,8 @@ class SendReviewsForm extends Form {
 		$email->assignParams($paramArray);
 
 		import('classes.submission.common.Action');
-		$actionLabels = array(SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.requestRevisions',
-							  SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.monograph.decision.resubmit',
-							  SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.monograph.decision.decline');
+		$actionLabels = array(SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'editor.monograph.decision.externalReview',
+							  SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.monograph.decision.accept');
 
 		$this->_data = array(
 			'monographId' => $this->_monographId,
@@ -120,39 +119,46 @@ class SendReviewsForm extends Form {
 		$currentRound = $reviewRoundDao->build($this->_monographId, $monograph->getCurrentReviewType(), $monograph->getCurrentRound());
 
 		switch ($decision) {
-			case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
+			case SUBMISSION_EDITOR_DECISION_ACCEPT:
 				// 1. Record the decision
-				SeriesEditorAction::recordDecision($monograph, SUBMISSION_EDITOR_DECISION_DECLINE);
+				SeriesEditorAction::recordDecision($monograph, SUBMISSION_EDITOR_DECISION_ACCEPT);
 
 				// 2. select email key
-				$emailKey = 'SUBMISSION_UNSUITABLE';
+				$emailKey = 'EDITOR_DECISION_ACCEPT';
 
 				// 3. Set status of round
-				$status = REVIEW_ROUND_STATUS_REVISIONS_REQUESTED;
+				$status = REVIEW_ROUND_STATUS_ACCEPTED;
 				break;
-
-			case SUBMISSION_EDITOR_DECISION_RESUBMIT:
+			case SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
 				// 1. Record the decision
-				SeriesEditorAction::recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT);
+				SeriesEditorAction::recordDecision($monograph, SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW);
 
-				// 2.  Set status of round
-				$status = REVIEW_ROUND_STATUS_RESUBMITTED;
+				// Create a new review round
+				// FIXME: what do do about reviewRevision? being set to 1 for now.
+				// 2. Create a new external review round if it doesn't exist
+				if ( !$reviewRoundDao->reviewRoundExists($this->_monographId, REVIEW_TYPE_EXTERNAL, 1)) {
+					$reviewRoundDao->createReviewRound($this->_monographId, REVIEW_TYPE_EXTERNAL, 1, 1);
 
-				// 3.  Select email key
-				$emailKey = 'EDITOR_DECISION_RESUBMIT';
+					import('submission.editor.EditorAction');
+					// FIXME: bug # 5546: this assignment should be done elsewhere, prior to this point.
+					$user =& $request->getUser();
+					EditorAction::assignEditor($this->_monographId, $user->getId(), true);
+				}
+
+				// 3. Get selected files and put in DB somehow
+				// FIXME: this is probably not right now.  Need to review Exteral Review vs. New Review Round.
+				$selectedFiles = $this->getData('selectedFiles');
+				$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
+
+				$reviewAssignmentDAO->setFilesForReview($this->_monographId, $reviewType, $round, $selectedFiles);
+
+				// 4. select email key
+				// FIXME: will we have an email key for this decision?
+				$emailKey = 'EDITOR_DECISION_ACCEPT';
+
+				// 5. Set status of round
+				$status = REVIEW_ROUND_STATUS_SENT_TO_EXTERNAL;
 				break;
-
-			case SUBMISSION_EDITOR_DECISION_DECLINE:
-				// 1. Record the decision
-				SeriesEditorAction::recordDecision($monograph, SUBMISSION_EDITOR_DECISION_DECLINE);
-
-				// 2. select email key
-				$emailKey = 'SUBMISSION_UNSUITABLE';
-
-				// 3. Set status of round
-				$status = REVIEW_ROUND_STATUS_DECLINED;
-				break;
-
 			default:
 				// only support the three decisions above
 				assert(false);
