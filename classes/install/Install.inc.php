@@ -129,8 +129,8 @@ class Install extends PKPInstall {
 			$adminUserGroup->setPath(ROLE_PATH_SITE_ADMIN);
 			$adminUserGroup->setDefault(true);
 			foreach ($this->installedLocales as $locale) {
-				$name = Locale::translate('default.groups.name.siteAdmin', $locale);
-				$namePlural = Locale::translate('default.groups.plural.siteAdmin', $locale);
+				$name = Locale::translate('default.groups.name.siteAdmin', array(), $locale);
+				$namePlural = Locale::translate('default.groups.plural.siteAdmin', array(), $locale);
 				$adminUserGroup->setData('name', $name, $locale);
 				$adminUserGroup->setData('namePlural', $namePlural, $locale);
 			}
