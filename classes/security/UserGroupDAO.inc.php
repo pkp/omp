@@ -142,7 +142,7 @@ class UserGroupDAO extends DAO {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('name', 'abbrev');
+		return array('name', 'nameAbbrev');
 	}
 
 	/**
