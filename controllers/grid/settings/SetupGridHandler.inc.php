@@ -23,6 +23,14 @@ class SetupGridHandler extends GridHandler {
 	}
 
 	/**
+	 * @see GridHandler::initialize()
+	 */
+	function initialize(&$request) {
+		parent::initialize($request);
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SETTINGS));;
+	}
+
+	/**
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
