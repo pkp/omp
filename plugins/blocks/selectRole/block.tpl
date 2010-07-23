@@ -26,7 +26,12 @@
 							$(this.form).serialize(),
 							function(jsonData) {
 								// Display error message (if any)
-								if (jsonData.status == false) alert(jsonData.content);
+								if (jsonData.status == false) {
+									alert(jsonData.content);
+								} else {
+									// Reload the page
+									location.reload(true);
+								}
 							},
 							"json"
 						);
