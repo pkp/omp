@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file classes/author/form/submit/AuthorSubmitStep3Form.inc.php
+ * @file classes/author/form/submit/SubmissionSubmitStep3Form.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class AuthorSubmitStep3Form
+ * @class SubmissionSubmitStep3Form
  * @ingroup author_form_submit
  *
  * @brief Form for Step 3 of author monograph submission.
@@ -15,29 +15,29 @@
 // $Id$
 
 
-import('classes.author.form.submit.AuthorSubmitForm');
+import('classes.submission.form.submit.SubmissionSubmitForm');
 
-class AuthorSubmitStep3Form extends AuthorSubmitForm {
+class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 	/**
 	 * Constructor.
 	 */
-	function AuthorSubmitStep3Form($monograph) {
-		parent::AuthorSubmitForm($monograph, 3);
+	function SubmissionSubmitStep3Form($monograph) {
+		parent::SubmissionSubmitForm($monograph, 3);
 
 		$press =& Request::getPress();
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'author.submit.form.titleRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'submission.submit.form.titleRequired'));
 		//FIXME: abstract optional as a Series setting?
-//		$this->addCheck(new FormValidatorLocale($this, 'abstract', 'required', 'author.submit.form.abstractRequired'));
+//		$this->addCheck(new FormValidatorLocale($this, 'abstract', 'required', 'submission.submit.form.abstractRequired'));
 
 		// FIXME: No abstract word count implemented--Should there be?
 //		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 //		$series = $seriesDao->getById($monograph->getSeriesId());
 //		$abstractWordCount = $series->getAbstractWordCount();
 //		if (isset($abstractWordCount) && $abstractWordCount > 0) {
-//			$this->addCheck(new FormValidatorCustom($this, 'abstract', 'required', 'author.submit.form.wordCountAlert', create_function('$abstract, $wordCount', 'foreach ($abstract as $localizedAbstract) {return count(explode(" ",$localizedAbstract)) < $wordCount; }'), array($abstractWordCount)));
+//			$this->addCheck(new FormValidatorCustom($this, 'abstract', 'required', 'submission.submit.form.wordCountAlert', create_function('$abstract, $wordCount', 'foreach ($abstract as $localizedAbstract) {return count(explode(" ",$localizedAbstract)) < $wordCount; }'), array($abstractWordCount)));
 //		}
 
 	}

@@ -129,7 +129,7 @@
 {math assign="image_width_on_device" equation="w/300" w=$artworkFile->getWidth() format="%.2f"}
 {math assign="image_height_on_device" equation="h/300" h=$artworkFile->getHeight() format="%.2f"}
 
-<h4>{translate key="author.submit.readOnlyInfo"}</h4>
+<h4>{translate key="submission.submit.readOnlyInfo"}</h4>
 <div style="float:left;width:33%;">
 	{fbvFormArea id="fileInfo"}
 		{fbvFormSection title="common.fileName" float=$fbvStyles.float.LEFT}

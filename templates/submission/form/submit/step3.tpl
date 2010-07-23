@@ -9,29 +9,29 @@
  * $Id$
  *} 
  
-{assign var="pageTitle" value="author.submit.step3"}
-{include file="author/submit/submitStepHeader.tpl"}
+{assign var="pageTitle" value="submission.submit.step3"}
+{include file="submission/form/submit/submitStepHeader.tpl"}
 
 {url|assign:"competingInterestGuidelinesUrl" page="information" op="competingInterestGuidelines"}
 
 <div class="separator"></div>
 
-<form name="submit" method="post" action="{url op="saveSubmit" path=$submitStep}">
+<form name="submit" method="post" action="{url op="saveStep" path=$submitStep}">
 <input type="hidden" name="monographId" value="{$monographId|escape}" />
 {include file="common/formErrors.tpl"}
 
 
 <!--  General Information -->
 <div id="bookMetadataContainer" style="width: 97%;">
-	<h3>{translate key="author.submit.generalInformation"}</h3>
+	<h3>{translate key="submission.submit.generalInformation"}</h3>
 	{fbvFormArea id="generalInformation"}
 		{fbvFormSection title="monograph.title" for="title" layout=$fbvStyles.layout.ONE_COLUMN}
 			{fbvElement type="text" name="title[$formLocale]" id="title" value=$title[$formLocale] maxlength="255" size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
-		{fbvFormSection title="author.submit.briefSummary" for="abstract" layout=$fbvStyles.layout.ONE_COLUMN}
+		{fbvFormSection title="submission.submit.briefSummary" for="abstract" layout=$fbvStyles.layout.ONE_COLUMN}
 			{fbvElement type="textarea" name="abstract[$formLocale]" id="abstract" value=$abstract[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 		{/fbvFormSection}
-		{fbvFormSection title="author.submit.metadata" layout=$fbvStyles.layout.ONE_COLUMN}
+		{fbvFormSection title="submission.submit.metadata" layout=$fbvStyles.layout.ONE_COLUMN}
 			{fbvKeywordInput id="disciplines" label="search.discipline"} <br />
 			{fbvKeywordInput id="keyword" label="common.keywords"} <br />
 			{fbvKeywordInput id="agencies" label="submission.supportingAgencies"}
@@ -46,7 +46,7 @@
 {url|assign:chapterGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
 {load_url_in_div id="#chaptersGridContainer" url="$chapterGridUrl"}
 
-<p><input type="submit" value="{translate key="author.submit.finishSubmission"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="author.submit.cancelSubmission"}')" /></p>
+<p><input type="submit" value="{translate key="submission.submit.finishSubmission"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="submission.submit.cancelSubmission"}')" /></p>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 

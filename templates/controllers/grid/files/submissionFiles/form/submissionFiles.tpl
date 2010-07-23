@@ -19,9 +19,9 @@
 </script>
 <div id="fileUploadTabs-{$fileId}" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-		<li class="ui-state-default ui-corner-top"><a href="{url op="displayFileForm" monographId=$monographId fileId=$fileId}">1. {translate key="author.submit.upload"}</a></li>
-		<li class="ui-state-default ui-corner-top"><a href="{url op="editMetadata" monographId=$monographId fileId=$fileId}">2. {translate key="author.submit.metadata"}</a></li>
-		{if !$fileId}<li class="ui-state-default ui-corner-top"><a href="{url op="finishFileSubmissions" monographId=$monographId fileId=$fileId}">3. {translate key="author.submit.finishingUp"}</a></li>{/if}
+		<li class="ui-state-default ui-corner-top"><a href="{url op="displayFileForm" monographId=$monographId fileId=$fileId}">1. {translate key="submission.submit.upload"}</a></li>
+		<li class="ui-state-default ui-corner-top"><a href="{url op="editMetadata" monographId=$monographId fileId=$fileId}">2. {translate key="submission.submit.metadata"}</a></li>
+		{if !$fileId}<li class="ui-state-default ui-corner-top"><a href="{url op="finishFileSubmissions" monographId=$monographId fileId=$fileId}">3. {translate key="submission.submit.finishingUp"}</a></li>{/if}
 	</ul>
 
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />

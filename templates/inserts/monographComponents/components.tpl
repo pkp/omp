@@ -85,7 +85,7 @@ function moveComponent(dir, componentIndex) {
 		<br />
 		&nbsp;{$contributors[$pivotId].email}
 		<br />
-		<input type="radio" name="components[{$componentIndex}][primaryContact]" value="{$pivotId|escape}"{if $component.primaryContact == $pivotId} checked="checked"{/if} /> <label for="components[{$componentIndex|escape}][primaryContact]">{translate key="author.submit.selectPrincipalContact"}</label>
+		<input type="radio" name="components[{$componentIndex}][primaryContact]" value="{$pivotId|escape}"{if $component.primaryContact == $pivotId} checked="checked"{/if} /> <label for="components[{$componentIndex|escape}][primaryContact]">{translate key="submission.submit.selectPrincipalContact"}</label>
 		<br />
 		&nbsp;<input type="submit" name="removeComponentAuthor[{$componentIndex}][{$pivotId|escape}]" value="{translate key="inserts.monographComponents.button.removeAuthor"}" class="button" />
 	</div>

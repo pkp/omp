@@ -74,7 +74,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label" width="20%">
-			{translate key="author.monograph.uploadAuthorVersion"}
+			{translate key="submission.submit.uploadAuthorVersion"}
 		</td>
 		<td class="value" width="80%">
 			<form method="post" action="{url op="uploadRevisedVersion"}" enctype="multipart/form-data">

@@ -32,10 +32,10 @@
 </script>
 
 <div class="text_center">
-	<h2>{translate key="author.submit.fileAdded"}</h2> <br /> <br /> <br />
+	<h2>{translate key="submission.submit.fileAdded"}</h2> <br /> <br /> <br />
 	<form name="finishSubmissionForm" id="finishSubmissionForm" action="{url router=$smarty.const.ROUTE_COMPONENT op="returnFileRow" fileId=$fileId}" method="post">
-		<input class="button" type="button" name="newFile" value="{translate key='author.submit.newFile'}" id="newFile" /> <br /> <br /> <br />
-		<input class="button" type="button" name="exit" value="{translate key='author.submit.finishedUploading'}" id="exit" /> <br />
+		<input class="button" type="button" name="newFile" value="{translate key='submission.submit.newFile'}" id="newFile" /> <br /> <br /> <br />
+		<input class="button" type="button" name="exit" value="{translate key='submission.submit.finishedUploading'}" id="exit" /> <br />
 	</form>
 </div>
 

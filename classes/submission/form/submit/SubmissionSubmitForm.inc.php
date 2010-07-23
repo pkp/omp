@@ -5,12 +5,12 @@
  */
 
 /**
- * @file classes/author/form/submit/AuthorSubmitForm.inc.php
+ * @file classes/author/form/submit/SubmissionSubmitForm.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class AuthorSubmitForm
+ * @class SubmissionSubmitForm
  * @ingroup author_form_submit
  *
  * @brief Base class for author submit forms.
@@ -21,7 +21,7 @@
 
 import('lib.pkp.classes.form.Form');
 
-class AuthorSubmitForm extends Form {
+class SubmissionSubmitForm extends Form {
 
 	/** @var int the ID of the monograph */
 	var $monographId;
@@ -37,8 +37,8 @@ class AuthorSubmitForm extends Form {
 	 * @param $monograph object
 	 * @param $step int
 	 */
-	function AuthorSubmitForm($monograph, $step) {
-		parent::Form(sprintf('author/submit/step%d.tpl', $step));
+	function SubmissionSubmitForm($monograph, $step) {
+		parent::Form(sprintf('submission/form/submit/step%d.tpl', $step));
 		$this->addCheck(new FormValidatorPost($this));
 		$this->step = (int) $step;
 		$this->monograph = $monograph;

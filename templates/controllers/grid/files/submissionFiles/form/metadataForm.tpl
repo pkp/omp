@@ -71,7 +71,7 @@
 		{/if}
 	{/fbvFormSection}
 
-	<h4>{translate key="author.submit.readOnlyInfo"}</h4>
+	<h4>{translate key="submission.submit.readOnlyInfo"}</h4>
 	{fbvFormArea id="fileInfo"}
 		{fbvFormSection title="common.originalFileName" float=$fbvStyles.float.LEFT}
 			{$monographFile->getOriginalFileName()}

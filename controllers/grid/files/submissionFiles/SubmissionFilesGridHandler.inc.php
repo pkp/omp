@@ -41,8 +41,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionWizardAuthorPolicy');
-		$this->addPolicy(new OmpSubmissionWizardAuthorPolicy($request, $args, $roleAssignments));
+		import('classes.security.authorization.OmpSubmissionWizardMonographPolicy');
+		$this->addPolicy(new OmpSubmissionWizardMonographPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -58,9 +58,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$this->_monographId = $request->getUserVar('monographId');
 
 		// Basic grid configuration
-		$this->setTitle('author.submit.submissionFiles');
+		$this->setTitle('submission.submit.submissionFiles');
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));
 
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();
@@ -287,7 +287,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$additionalAttributes = array('isEditing' => $isEditing, 'finishingUpUrl' => $router->url($request, null, null, 'finishFileSubmission', null, array('gridId' => $this->getId(), 'fileId' => $fileId, 'monographId' => $monographId)));
 			$json = new JSON('true', '', 'false', $fileId, $additionalAttributes);
 		} else {
-			$json = new JSON('false', Locale::translate('author.submit.fileNameRequired'));
+			$json = new JSON('false', Locale::translate('submission.submit.fileNameRequired'));
 		}
 
 		return $json->getString();

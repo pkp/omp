@@ -34,8 +34,8 @@ class SubmissionContributorForm extends Form {
 		$this->_submissionContributor =& $submissionContributor;
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'firstName', 'required', 'author.submit.form.authorRequiredFields'));
-		$this->addCheck(new FormValidator($this, 'lastName', 'required', 'author.submit.form.authorRequiredFields'));
+		$this->addCheck(new FormValidator($this, 'firstName', 'required', 'submission.submit.form.authorRequiredFields'));
+		$this->addCheck(new FormValidator($this, 'lastName', 'required', 'submission.submit.form.authorRequiredFields'));
 		$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'installer.form.emailRequired'));
 		$this->addCheck(new FormValidatorUrl($this, 'url', 'optional', 'user.profile.form.urlInvalid'));
 		$this->addCheck(new FormValidatorPost($this));

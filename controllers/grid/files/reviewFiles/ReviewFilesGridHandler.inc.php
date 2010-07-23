@@ -142,7 +142,7 @@ class ReviewFilesGridHandler extends GridHandler {
 		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$selectedFiles =& $reviewAssignmentDAO->getReviewFilesByRound($monographId);
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_AUTHOR));
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();

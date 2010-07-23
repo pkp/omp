@@ -1,30 +1,30 @@
 <?php
 
 /**
- * @file AuthorHandler.inc.php
+ * @file SubmissionHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class AuthorHandler
- * @ingroup pages_author
+ * @class SubmissionHandler
+ * @ingroup pages_submission
  *
- * @brief Handle requests for monograph author functions.
+ * @brief Handle requests for monograph submission functions.
  */
 
 
 import('classes.submission.author.AuthorAction');
 import('classes.handler.Handler');
 
-class AuthorHandler extends Handler {
+class SubmissionHandler extends Handler {
 	/**
 	 * Constructor
 	 **/
-	function AuthorHandler() {
+	function SubmissionHandler() {
 		parent::Handler();
-
-		$this->addCheck(new HandlerValidatorPress($this));
-		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_AUTHOR)));
+		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array('index')
+				);
 	}
 
 	/**
@@ -83,17 +83,6 @@ class AuthorHandler extends Handler {
 		}
 
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
-	}
-
-	/**
-	 * Display submission management instructions.
-	 * @param $args (type)
-	 */
-	function instructions($args) {
-		import('classes.submission.proofreader.ProofreaderAction');
-		if (!isset($args[0]) || !ProofreaderAction::instructions($args[0], array('copy', 'proof'))) {
-			Request::redirect(null, null, 'index');
-		}
 	}
 }
 

@@ -250,7 +250,7 @@ class ReviewerGridHandler extends GridHandler {
 		if ($result) {
 			$json = new JSON('true');
 		} else {
-			$json = new JSON('false', Locale::translate('author.submit.errorDeletingReviewer'));
+			$json = new JSON('false', Locale::translate('submission.submit.errorDeletingReviewer'));
 		}
 		return $json->getString();
 	}
