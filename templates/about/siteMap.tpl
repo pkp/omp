@@ -73,7 +73,7 @@
 	<li><a href="{url press="index" page=$isSiteAdmin->getPath()}">{translate key=$isSiteAdmin->getRoleName()}</a></li>
 {/if}
 <li><a href="http://pkp.sfu.ca/omp">{translate key="common.openMonographPress"}</a></li>
-<li><a href="javascript:openHelp('{url press="index" page="help"}')">{translate key="help.help"}</a></li>
+<li><a class="openHelp" href="{url press="index" page="help"}">{translate key="help.help"}</a></li>
 </ul>
 
 {include file="common/footer.tpl"}

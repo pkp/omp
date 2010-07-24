@@ -227,7 +227,7 @@
 	<message key="settings.setup.reviewOptions.reviewerRatings">Reviewer Ratings</message>
 	<message key="settings.setup.reviewOptions.reviewerReminders">Reviewer Reminders</message>
 	<message key="settings.setup.reviewOptions.reviewTime">Review Time</message>
-	<message key="settings.setup.reviewOptions.showEnsuringLink"><![CDATA[Provide links to <a href="javascript:openHelp('{$blindReviewHelpId}')" class="action">Ensuring a Blind Review</a> on pages where authors and reviewers upload files.]]></message>
+	<message key="settings.setup.reviewOptions.showEnsuringLink"><![CDATA[Provide links to <a href="{$blindReviewHelpId}" class="action openHelp">Ensuring a Blind Review</a> on pages where authors and reviewers upload files.]]></message>
 	<message key="settings.setup.reviewPolicy">Review Policy</message>
 	<message key="settings.setup.reviewProcess">Review Process</message>
 	<message key="settings.setup.reviewProcessDescription"><![CDATA[OMP supports two models for managing the review process. The Standard Review Process is recommended because it steps reviewers through the process, ensures a complete review history for each submission, and takes advantage of automatic reminder notification, and standard recommendations for submissions (Accept; Accept with revisions; Submit for review; Submit elsewhere; Decline; See comments).<br /><br />Select one of the following:]]></message>

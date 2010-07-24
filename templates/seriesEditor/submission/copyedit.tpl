@@ -236,7 +236,7 @@
 
 {if $currentPress->getLocalizedSetting('copyeditInstructions')}
 &nbsp;&nbsp;
-<a href="javascript:openHelp('{url op="instructions" path="copy"}')" class="action">{translate key="submission.copyedit.instructions"}</a>
+<a href="{url op="instructions" path="copy"}" class="action openHelp">{translate key="submission.copyedit.instructions"}</a>
 {/if}
 </div>
 

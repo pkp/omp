@@ -106,11 +106,11 @@
 
 {if $currentPress->getLocalizedSetting('layoutInstructions')}
 &nbsp;&nbsp;
-<a href="javascript:openHelp('{url op="instructions" path="layout"}')" class="action">{translate key="submission.layout.instructions"}</a>
+<a class="openHelp" href="{url op="instructions" path="layout"}" class="action">{translate key="submission.layout.instructions"}</a>
 {/if}
 {if $currentPress->getSetting('provideRefLinkInstructions')}
 &nbsp;&nbsp;
-<a href="javascript:openHelp('{url op="instructions" path="referenceLinking"}')" class="action">{translate key="submission.layout.referenceLinking"}</a>
+<a href="{url op="instructions" path="referenceLinking"}" class="action openHelp">{translate key="submission.layout.referenceLinking"}</a>
 {/if}
 {foreach name=templates from=$templates key=templateId item=template}
 &nbsp;&nbsp;&nbsp;&nbsp;<a href="{url op="downloadLayoutTemplate" path=$templateId}" class="action">{$template.title|escape}</a>

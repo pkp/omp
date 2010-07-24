@@ -15,7 +15,7 @@
 		<ul class="flat_list installation_navigation">
 			<li><a href="{url page="index"}">{translate key="navigation.home"}</a></li>
 			<li><a href="{url page="about"}">{translate key="navigation.about"}</a></li>
-			<li><a href="javascript:openHelp('{if $helpTopicId}{get_help_id|escape key="$helpTopicId" url="true"}{else}{url page="help"}{/if}')">{translate key="help.help"}</a></li
+                        <li><a href="{if $helpTopicId}{get_help_id|escape key="$helpTopicId" url="true"}{else}{url page="help"}{/if}" class="openHelp">{translate key="help.help"}</a></li>
 		</ul>
 	</div>
 	{if $isUserLoggedIn}
