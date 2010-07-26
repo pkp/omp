@@ -28,10 +28,8 @@
 								// Display error message (if any)
 								if (jsonData.status == false) {
 									alert(jsonData.content);
-								} else {
-									// Reload the page
-									location.reload(true);
 								}
+								// #5321 FIXME: Refresh any components that are registered to refresh on role change
 							},
 							"json"
 						);
