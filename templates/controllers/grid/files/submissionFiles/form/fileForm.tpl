@@ -92,13 +92,3 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 </form>
-
-<input type="hidden" name="monographId" value="{$monographId|escape}" />
-<input type="hidden" id="deleteUrl" name="deleteUrl" value="" />
-{if $gridId}
-<input type="hidden" name="gridId" value="{$gridId|escape}" />
-{/if}
-{if $fileId}
-<input type="hidden" name="fileId" value="{$fileId|escape}" />
-{/if}
-

@@ -23,9 +23,4 @@
 		<li class="ui-state-default ui-corner-top"><a href="{url op="editMetadata" monographId=$monographId fileId=$fileId}">2. {translate key="submission.submit.metadata"}</a></li>
 		{if !$fileId}<li class="ui-state-default ui-corner-top"><a href="{url op="finishFileSubmissions" monographId=$monographId fileId=$fileId}">3. {translate key="submission.submit.finishingUp"}</a></li>{/if}
 	</ul>
-
-	<input type="hidden" name="monographId" value="{$monographId|escape}" />
-	<input type="hidden" name="gridId" value="{$gridId|escape}" />
-	<input type="hidden" name="fileId" value="{$fileId|escape}" />
 </div>
-<input type="hidden" id="newFile" name="newFile" value="{$newFile}" />

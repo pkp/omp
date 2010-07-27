@@ -14,7 +14,7 @@
 		// On newFile button click, return row then restart modal
 		$('.button').button();
 		$('#newFile').click(function() {
-    		saveAndUpdate('{/literal}{url component="grid.files.submissionFiles.SubmissionReviewFilesGridHandler" op="returnFileRow" fileId=$fileId isSelectable=1}{literal}',
+    		saveAndUpdate('{/literal}{url component="grid.files.submissionFiles.SubmissionReviewFilesGridHandler" op="returnFileRow" monographId=$monographId fileId=$fileId isSelectable=1 escape=false}{literal}',
     	    		'append',
     	    		'component-reviewFilesSelect-table > tbody:first',
     	    		'#fileUploadTabs-{/literal}{$fileId}{literal}', true);
@@ -22,7 +22,7 @@
 
 		// On exit button click, return row and close modal
 		$('#exit').click(function() {
-    		saveAndUpdate('{/literal}{url component="grid.files.submissionFiles.SubmissionReviewFilesGridHandler" op="returnFileRow" fileId=$fileId isSelectable=1}{literal}',
+    		saveAndUpdate('{/literal}{url component="grid.files.submissionFiles.SubmissionReviewFilesGridHandler" op="returnFileRow" monographId=$monographId fileId=$fileId isSelectable=1 escape=false}{literal}',
     	    		'append',
     	    		'component-reviewFilesSelect-table > tbody:first',
     	    		'#fileUploadTabs-{/literal}{$fileId}{literal}');
@@ -33,7 +33,7 @@
 
 <div class="text_center">
 	<h2>{translate key="submission.submit.fileAdded"}</h2> <br /> <br /> <br />
-	<form name="finishSubmissionForm" id="finishSubmissionForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionReviewFilesGridHandler" op="returnFileRow" fileId=$fileId}" method="post">
+	<form name="finishSubmissionForm" id="finishSubmissionForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionReviewFilesGridHandler" op="returnFileRow" monographId=$monographId fileId=$fileId escape=false}" method="post">
 		<input class="button" type="button" name="newFile" value="{translate key='submission.submit.newFile'}" id="newFile" /> <br /> <br /> <br />
 		<input class="button" type="button" name="exit" value="{translate key='submission.submit.finishedUploading'}" id="exit" /> <br />
 	</form>
