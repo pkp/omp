@@ -88,7 +88,7 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 				$action =& 	new LinkAction(
 					'accept',
 					LINK_ACTION_MODE_MODAL,
-					null,
+					LINK_ACTION_TYPE_REDIRECT,
 					$router->url($request, null, 'modals.editorDecision.EditorDecisionHandler', 'initiateReview', null, $actionArgs),
 					'editor.monograph.initiateReview',
 					null,
@@ -98,9 +98,9 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 			case 'accepted':
 				$action =& new LinkAction(
 								'showReview',
-								LINK_ACTION_MODE_MODAL,
-								LINK_ACTION_TYPE_REPLACE,
-								$router->url($request, null, null, 'showReview', null, $actionArgs),
+								LINK_ACTION_MODE_LINK,
+								LINK_ACTION_TYPE_NOTHING,
+								$router->url($request, null, 'workflow', 'review', null, $actionArgs),
 								'grid.action.approve',
 								null,
 								$state
