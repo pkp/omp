@@ -13,14 +13,14 @@
  */
 
 import('controllers.grid.files.reviewAttachments.ReviewAttachmentsGridRow');
-import('ontrollers.grid.files.reviewAttachments.ReviewAttachmentsGridHandler');
+import('controllers.grid.files.reviewAttachments.ReviewAttachmentsGridHandler');
 
 class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 	/**
 	 * Constructor
 	 */
-	function ReviewAttachmentsGridHandler() {
-		parent::GridHandler();
+	function ReviewerReviewAttachmentsGridHandler() {
+		parent::ReviewAttachmentsGridHandler();
 		// FIXME: #5600 - Distribute access differently to reviewers and editor roles
 		//$this->addRoleAssignment(array(ROLE_ID_REVIEWER, ROLE_ID_PRESS_MANAGER, ROLE_ID_EDITOR),
 		//		array('fetchGrid', 'addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));
@@ -58,7 +58,6 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 		}
 		$this->setData($monographFiles);
 
-
 		// Add grid-level actions
 		if (!$this->getReadOnly()) {
 			$router =& $request->getRouter();
@@ -88,7 +87,7 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 		$reviewId = $request->getUserVar('reviewId');
 
 		import('controllers.grid.files.reviewAttachments.form.ReviewerReviewAttachmentsForm');
-		$reviewAttachmentsForm = new ReviewAttachmentsForm($reviewId, $fileId, $this->getId());
+		$reviewAttachmentsForm = new ReviewerReviewAttachmentsForm($reviewId, $fileId, $this->getId());
 
 		if ($reviewAttachmentsForm->isLocaleResubmit()) {
 			$reviewAttachmentsForm->readInputData();
@@ -110,7 +109,7 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 		$reviewId = $request->getUserVar('reviewId');
 
 		import('controllers.grid.files.reviewAttachments.form.ReviewerReviewAttachmentsForm');
-		$reviewAttachmentsForm = new ReviewAttachmentsForm($reviewId, null, $this->getId());
+		$reviewAttachmentsForm = new ReviewerReviewAttachmentsForm($reviewId, null, $this->getId());
 		$reviewAttachmentsForm->readInputData();
 
 		if ($reviewAttachmentsForm->validate()) {

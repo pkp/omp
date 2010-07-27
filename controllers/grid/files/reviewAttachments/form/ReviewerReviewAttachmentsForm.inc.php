@@ -14,7 +14,7 @@
 
 import('lib.pkp.classes.form.Form');
 
-class ReviewAttachmentsForm extends Form {
+class ReviewerReviewAttachmentsForm extends Form {
 	/** the id of the review */
 	var $reviewId;
 
@@ -27,7 +27,7 @@ class ReviewAttachmentsForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function ReviewAttachmentsForm($reviewId = null, $fileId = null, $gridId = null) {
+	function ReviewerReviewAttachmentsForm($reviewId = null, $fileId = null, $gridId = null) {
 		$this->reviewId = $reviewId;
 		$this->fileId = $fileId;
 		$this->gridId = $gridId;

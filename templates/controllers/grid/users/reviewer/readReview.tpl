@@ -16,8 +16,8 @@
 	<tr>
 		<td>{$reviewAssignment->getReviewerFullName()}</td>
 		<td>{$reviewAssignment->getDateCompleted()}</td>
-	</tr>	
-</table> 
+	</tr>
+</table>
 
 <br />
 
@@ -34,4 +34,3 @@
 	{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" readOnly=1 reviewId=$reviewAssignment->getId() escape=false}
 	{load_url_in_div id="#readReviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 </div>
- 

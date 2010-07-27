@@ -20,7 +20,7 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 	 * Constructor
 	 */
 	function EditorReviewAttachmentsGridHandler() {
-		parent::GridHandler();
+		parent::ReviewAttachmentsGridHandler();
 		// FIXME: #5600 - Authorize editors
 		//$this->addRoleAssignment(array(ROLE_ID_REVIEWER, ROLE_ID_PRESS_MANAGER, ROLE_ID_EDITOR),
 		//		array('fetchGrid', 'addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));

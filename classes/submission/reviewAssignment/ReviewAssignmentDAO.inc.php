@@ -109,7 +109,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$idAndRevision = $row['file_id'] . "-" . isset($row['revision']) ? $row['revision'] : 1;
+			$idAndRevision = implode("-", array($row['file_id'], isset($row['revision']) ? $row['revision'] : 1));
 			$returner[$row['review_type']][$row['round']][$idAndRevision] =& $this->monographFileDao->_fromRow($row);
 			$result->MoveNext();
 		}
