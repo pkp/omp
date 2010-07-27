@@ -38,7 +38,7 @@ class ReviewHandler extends Handler {
 		// Get the review round currently being looked at
 		$currentReviewType = $monograph->getCurrentReviewType();
 		$currentRound = $monograph->getCurrentRound();
-		if($selectedRound <= $currentRound) {
+		if($selectedRound > $currentRound) {
 			$selectedRound = $currentRound; // Make sure round is not higher than the monograph's latest round
 		}
 

@@ -37,7 +37,7 @@ class PressEditorSubmissionsListGridRow extends GridRow {
 
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
-		
+
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getMonograph($rowId);
 
@@ -50,26 +50,29 @@ class PressEditorSubmissionsListGridRow extends GridRow {
 				'reviewType' => $monograph->getCurrentReviewType(),
 				'round' => $monograph->getCurrentRound()
 			);
+			$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_ACCEPT;
 			$this->addAction(
 				new LinkAction(
-					'approve',
+					'accept',
 					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'showApprove', null, $actionArgs),
-					'grid.action.approveForPub',
+					null,
+					$router->url($request, null, 'modals.editorDecision.EditorDecisionHandler', 'promote', null, $actionArgs),
+					'editor.monograph.decision.accept',
 					null,
 					'promote'
-				));
+					));
+			$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_DECLINE;
 			$this->addAction(
 				new LinkAction(
 					'decline',
 					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'showDecline', null, $actionArgs),
+					null,
+					$router->url($request, null, 'modals.editorDecision.EditorDecisionHandler', 'sendReviews', null, $actionArgs),
 					'editor.monograph.decision.decline',
 					null,
 					'delete'
-				));
+					));
+
 			$this->addAction(
 				new LinkAction(
 					'moreInfo',

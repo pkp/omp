@@ -36,7 +36,7 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 			$userGroup =& $userGroupDao->getById($columnId);
 			$roleId = $userGroup->getRoleId();
-			if ( $roleId == ROLE_ID_EDITOR || $roleId == ROLE_ID_SERIES_EDITOR ) {
+			if ( $roleId == ROLE_ID_PRESS_MANAGER || $roleId == ROLE_ID_SERIES_EDITOR ) {
 				// First columns are the PressEditors and SeriesEditors
 				// Determine status of editor columns
 
@@ -85,15 +85,15 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 
 		switch ($state) {
 			case 'new':
-				$action =& new LinkAction(
-								'showApproveAndReview',
-								LINK_ACTION_MODE_MODAL,
-								LINK_ACTION_TYPE_REPLACE,
-								$router->url($request, null, null, 'showApproveAndReview', null, $actionArgs),
-								'grid.action.approveForReview',
-								null,
-								$state
-							);
+				$action =& 	new LinkAction(
+					'accept',
+					LINK_ACTION_MODE_MODAL,
+					null,
+					$router->url($request, null, 'modals.editorDecision.EditorDecisionHandler', 'initiateReview', null, $actionArgs),
+					'editor.monograph.initiateReview',
+					null,
+					$state
+					);
 				return array($action);
 			case 'accepted':
 				$action =& new LinkAction(

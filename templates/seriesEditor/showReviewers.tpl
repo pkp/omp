@@ -17,7 +17,7 @@
 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 	{foreach from=$rounds item=round}
 	<li{if ($round eq $selectedRound)} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-		<a href="{url path=$round}">{translate key="submission.round" round=$round}</a>
+		<a href="{url path=$monographId|to_array:$round}">{translate key="submission.round" round=$round}</a>
 	</li>
 	{/foreach}
 	{url|assign:"newRoundUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.editorDecision.EditorDecisionHandler" op="newReviewRound" monographId=$monographId}

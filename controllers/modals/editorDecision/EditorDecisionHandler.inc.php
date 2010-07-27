@@ -30,7 +30,7 @@ class EditorDecisionHandler extends Handler {
 				$pressAssistantOperations = array_merge($authorOperations, array()));
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array_merge($pressAssistantOperations,
-				array('newReviewRound', 'saveNewReviewRound', 'sendReviews', 'saveSendReviews', 'promote', 'savePromote', 'importPeerReviews')));
+				array('newReviewRound', 'saveNewReviewRound', 'initiateReview', 'saveInitiateReview', 'sendReviews', 'saveSendReviews', 'promote', 'savePromote', 'importPeerReviews')));
 	}
 
 	//
@@ -52,7 +52,6 @@ class EditorDecisionHandler extends Handler {
 	 */
 	function newReviewRound(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
-		$decision = $request->getUserVar('decision');
 
 		// Form handling
 		import('controllers.modals.editorDecision.form.NewReviewRoundForm');
@@ -91,6 +90,47 @@ class EditorDecisionHandler extends Handler {
 			);
 
 			$json = new JSON('true', null, 'true', null, $additionalAttributes);
+		} else {
+			$json = new JSON('false');
+		}
+
+		return $json->getString();
+	}
+
+	/**
+	 * Start a new review round
+	 * @return JSON
+	 */
+	function initiateReview(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		// Form handling
+		import('controllers.modals.editorDecision.form.InitiateReviewForm');
+		$initiateReviewForm = new InitiateReviewForm($monographId);
+		$initiateReviewForm->initData($args, $request);
+
+		$json = new JSON('true', $initiateReviewForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Start a new review round
+	 * @return JSON
+	 */
+	function saveInitiateReview(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+
+		// Form handling
+		import('controllers.modals.editorDecision.form.InitiateReviewForm');
+		$initiateReviewForm = new InitiateReviewForm($monographId);
+
+		$initiateReviewForm->readInputData();
+		if ($initiateReviewForm->validate()) {
+			$initiateReviewForm->execute($args, $request);
+
+			$json = new JSON('true');
 		} else {
 			$json = new JSON('false');
 		}
