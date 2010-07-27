@@ -94,6 +94,10 @@
 		{fbvElement type="text" id="email" value=$email size=$fbvStyles.size.LARGE} {if $privacyStatement}<a class="action" href="#privacyStatement">{translate key="user.register.privacyStatement"}</a>{/if}
 	{/fbvFormSection}
 
+	{fbvFormSection title="user.confirmEmail" for="confirmEmail" required="true" float=$fbvStyles.float.LEFT}
+		{fbvElement type="text" id="confirmEmail" value=$confirmEmail size=$fbvStyles.size.LARGE}
+	{/fbvFormSection}
+
 	{fbvFormSection title="user.url" for="userUrl" float=$fbvStyles.float.RIGHT}
 		{fbvElement type="text" id="userUrl" value=$userUrl size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
