@@ -38,7 +38,7 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionWizardPolicy');
-		$this->addPolicy(new OmpSubmissionWizardPolicy($request, $roleAssignments));
+		$this->addPolicy(new OmpSubmissionWizardPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
