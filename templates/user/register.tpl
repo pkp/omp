@@ -16,6 +16,7 @@
 {literal}
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("#interestsTextOnly").hide();
 		$("#interests").tagit({
 			availableTags: [{/literal}{$existingInterests}{literal}]
 			{/literal}{if $currentTags}{literal}, currentTags: [{/literal}{$currentInterests}]{/if}{literal}
@@ -183,6 +184,7 @@
 	<div id="reviewerInterestsContainer" style="margin-left:40px;">
 		<label class="desc">{translate key="user.register.reviewerInterests"}</label>
 		<ul id="interests"></ul>
+		<textarea name="interests" id="interestsTextOnly" rows="5" cols="40" class="textArea">{$currentInterests|escape}</textarea>
 	</div>
 	<br />
   {/if}
