@@ -22,7 +22,7 @@
 				$(function(){
 					$('#changedActingAsUserGroupId').change(function() {
 						$.post(
-							'{/literal}{url router=$smarty.const.ROUTE_COMPONENT component="api.user.RoleApiHandler" op="changeActingAsUserGroup"}{literal}',
+							'{/literal}{url router=$smarty.const.ROUTE_COMPONENT component="api.user.UserApiHandler" op="changeActingAsUserGroup"}{literal}',
 							$(this.form).serialize(),
 							function(jsonData) {
 								// Display error message (if any)
