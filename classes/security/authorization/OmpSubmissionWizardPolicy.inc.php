@@ -20,15 +20,15 @@ class OmpSubmissionWizardPolicy extends OmpPressPolicy {
 	 * @param $request PKPRequest
 	 * @param $roleAssignments array
 	 */
-	function OmpSubmissionWizardPolicy(&$request, $roleAssignments) {
+	function OmpSubmissionWizardPolicy(&$request, $args, $roleAssignments) {
 		parent::OmpPressPolicy($request);
 
 		// Authors, series editors and press managers are allowed to submit.
-		$submissionWizardPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
-		$submissionWizardPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_MANAGER, $roleAssignments[ROLE_ID_PRESS_MANAGER]));
-		$submissionWizardPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_SERIES_EDITOR, $roleAssignments[ROLE_ID_SERIES_EDITOR]));
-		$submissionWizardPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
-		$this->addPolicy($submissionWizardPolicy);
+		$rolesPolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
+		$rolesPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_MANAGER, $roleAssignments[ROLE_ID_PRESS_MANAGER]));
+		$rolesPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_SERIES_EDITOR, $roleAssignments[ROLE_ID_SERIES_EDITOR]));
+		$rolesPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
+		$this->addPolicy($rolesPolicy);
 	}
 }
 

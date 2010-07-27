@@ -38,7 +38,7 @@ class ReviewHandler extends Handler {
 		// Get the review round currently being looked at
 		$currentReviewType = $monograph->getCurrentReviewType();
 		$currentRound = $monograph->getCurrentRound();
-		if($selectedRound <= $currentRound) {
+		if(!isset($selectedRound) || $selectedRound > $currentRound) {
 			$selectedRound = $currentRound; // Make sure round is not higher than the monograph's latest round
 		}
 
@@ -59,19 +59,21 @@ class ReviewHandler extends Handler {
 		import('linkAction.LinkAction');
 		$dispatcher =& $this->getDispatcher();
 
+		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS;
 		$requestRevisionsAction =& new LinkAction(
 			'requestRevisions',
 			LINK_ACTION_MODE_MODAL,
 			null,
-			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'requestRevisions', null, $actionArgs),
+			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'sendReviews', null, $actionArgs),
 			'editor.monograph.decision.requestRevisions'
 		);
 
+		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_RESUBMIT;
 		$resubmitAction =& new LinkAction(
 			'resubmit',
 			LINK_ACTION_MODE_MODAL,
 			null,
-			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'resubmit', null, $actionArgs),
+			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'sendReviews', null, $actionArgs),
 			'editor.monograph.decision.resubmit'
 		);
 
@@ -80,7 +82,7 @@ class ReviewHandler extends Handler {
 			'externalReview',
 			LINK_ACTION_MODE_MODAL,
 			null,
-			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'decision', null, $actionArgs),
+			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'promote', null, $actionArgs),
 			'editor.monograph.decision.externalReview'
 		);
 
@@ -89,7 +91,7 @@ class ReviewHandler extends Handler {
 			'accept',
 			LINK_ACTION_MODE_MODAL,
 			null,
-			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'decision', null, $actionArgs),
+			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'promote', null, $actionArgs),
 			'editor.monograph.decision.accept'
 		);
 
@@ -98,7 +100,7 @@ class ReviewHandler extends Handler {
 			'decline',
 			LINK_ACTION_MODE_MODAL,
 			null,
-			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'decision', null, $actionArgs),
+			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'sendReviews', null, $actionArgs),
 			'editor.monograph.decision.decline'
 		);
 

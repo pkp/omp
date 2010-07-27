@@ -53,8 +53,8 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionWizardAuthorPolicy');
-		$this->addPolicy(new OmpSubmissionWizardAuthorPolicy($request, $args, $roleAssignments));
+		import('classes.security.authorization.OmpSubmissionWizardMonographPolicy');
+		$this->addPolicy(new OmpSubmissionWizardMonographPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 

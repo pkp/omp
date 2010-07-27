@@ -17,14 +17,14 @@ import('lib.pkp.classes.controllers.grid.GridRow');
 class ReviewerSelectGridRow extends GridRow {
 	/** @var $reviewerStats array Contains reviewer statistics array */
 	var $reviewerStats;
-	
+
 	/**
 	 * Constructor
 	 */
 	function ReviewerSelectGridRow() {
 		parent::GridRow();
 	}
-	
+
 	/**
 	 * Return the reviewer Stats array
 	 * @param $userId int option userId
@@ -49,14 +49,10 @@ class ReviewerSelectGridRow extends GridRow {
 		// Do the default initialization
 		parent::initialize($request);
 		$press =& $request->getPress();
-		
+
 		$user =& $this->getData();
 		$this->setId($user->getId());
 
-		// Retrieve the monograph id from the request
-		$monographId = $request->getUserVar('monographId');
-		assert(is_numeric($monographId));
-		
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$this->reviewerStats =& $seriesEditorSubmissionDao->getReviewerStatistics($press->getId());
 	}

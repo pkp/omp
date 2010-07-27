@@ -48,7 +48,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 		$this->setTitle('inserts.contributors.button.addContributor');
 		$this->setSourceTitle('common.name');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Free text input
-		$this->setListTitle('author.submit.currentContributors');
+		$this->setListTitle('submission.submit.currentContributors');
 
 		$this->loadList($request);
 		$this->loadPossibleItemList($request);
@@ -133,7 +133,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 	function setupTemplate() {
 		parent::setupTemplate();
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR, LOCALE_COMPONENT_PKP_SUBMISSION));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION));
 	}
 
 	//

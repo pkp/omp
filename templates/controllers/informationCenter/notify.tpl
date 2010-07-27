@@ -36,7 +36,7 @@
 		{fbvFormArea id="notifyFormArea"}
 			{fbvFormSection title="email.to" for="notifyUsersContainer" required="true"}
 				{url|assign:notifyUsersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.NotifyUsersListbuilderHandler" op="fetch" fileId=$fileId}
-				{load_url_in_div id="notifyUsersContainer" url=$notifyUsersUrl}
+				{load_url_in_div id="#notifyUsersContainer" url=$notifyUsersUrl}
 			{/fbvFormSection}
 			{fbvFormSection title="informationCenter.notify.template" for="template"}
 				{fbvSelect id="template" from=$notifyTemplates translate=false}

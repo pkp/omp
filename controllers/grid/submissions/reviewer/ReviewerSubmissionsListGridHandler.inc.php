@@ -49,7 +49,7 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		parent::initialize($request);
 
 		// Load submission-specific translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_AUTHOR));
+		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);

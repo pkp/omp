@@ -1078,6 +1078,10 @@
 		<field name="file_id" type="I8">
 			<NOTNULL/>
 		</field>
+		<field name="revision" type="I8">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
 		<descr>Monograph Files for each review round</descr>
 		<index name="review_round_files_monograph_id">
 			<col>monograph_id</col>

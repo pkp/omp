@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file classes/author/form/submit/AuthorSubmitStep1Form.inc.php
+ * @file classes/author/form/submit/SubmissionSubmitStep1Form.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class AuthorSubmitStep1Form
+ * @class SubmissionSubmitStep1Form
  * @ingroup author_form_submit
  *
  * @brief Form for Step 1 of author monograph submission.
@@ -15,22 +15,22 @@
 // $Id$
 
 
-import('classes.author.form.submit.AuthorSubmitForm');
+import('classes.submission.form.submit.SubmissionSubmitForm');
 
-class AuthorSubmitStep1Form extends AuthorSubmitForm {
+class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 
 	/**
 	 * Constructor.
 	 */
-	function AuthorSubmitStep1Form($monograph = null) {
-		parent::AuthorSubmitForm($monograph, 1);
+	function SubmissionSubmitStep1Form($monograph = null) {
+		parent::SubmissionSubmitForm($monograph, 1);
 
 		$press =& Request::getPress();
 
 		// Validation checks for this form
 		$supportedSubmissionLocales = $press->getSetting('supportedSubmissionLocales');
 		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($press->getPrimaryLocale());
-		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'author.submit.form.localeRequired', $supportedSubmissionLocales));
+		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'submission.submit.form.localeRequired', $supportedSubmissionLocales));
 	}
 
 	/**
@@ -52,7 +52,7 @@ class AuthorSubmitStep1Form extends AuthorSubmitForm {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$isEditor = $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_EDITOR) || $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
 
-		$seriesOptions = array('0' => Locale::translate('author.submit.selectSeries')) + $seriesDao->getTitlesByPressId($press->getId());
+		$seriesOptions = array('0' => Locale::translate('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($press->getId());
 		$templateMgr->assign('seriesOptions', $seriesOptions);
 
 		// Provide available submission languages. (Convert the array

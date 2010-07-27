@@ -47,7 +47,7 @@
 	{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId}
 	{* Need a random div ID to load listbuilders in modals *}
 	{assign var='randomId' value=1|rand:99999}
-	{load_url_in_div id=$randomId url=$seriesEditorsUrl}
+	{load_url_in_div id="#"|concat:$randomId url=$seriesEditorsUrl}
 {/if}
 
 </form>

@@ -43,7 +43,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$this->validate($monographId);
 		$press =& Request::getPress();
 		$submission =& $this->submission;
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_OMP_AUTHOR));
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_READER, LOCALE_COMPONENT_OMP_SUBMISSION));
 		$this->setupTemplate(true, $monographId);
 
 		$user =& Request::getUser();

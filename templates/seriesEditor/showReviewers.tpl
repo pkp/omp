@@ -17,7 +17,7 @@
 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 	{foreach from=$rounds item=round}
 	<li{if ($round eq $selectedRound)} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-		<a href="{url path=$round}">{translate key="submission.round" round=$round}</a>
+		<a href="{url path=$monographId|to_array:$round}">{translate key="submission.round" round=$round}</a>
 	</li>
 	{/foreach}
 	{url|assign:"newRoundUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.editorDecision.EditorDecisionHandler" op="newReviewRound" monographId=$monographId}
@@ -31,14 +31,25 @@
 <div id="roundStatus" class="roundStatusContainer">
 	<p>{translate key="editor.monograph.roundStatus" round=$round}: {translate key="$roundStatus"}</p>
 </div>
+
+<br />
 {/if}
 
 {** FIXME: need to set escape=false due to bug 5265 *}
 {url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$selectedRound canAdd=1 escape=false}
-{load_url_in_div id="reviewFileSelection" url=$reviewFileSelectionGridUrl}
+{load_url_in_div id="#reviewFileSelection" url=$reviewFileSelectionGridUrl}
+
+<br />
 
 {url|assign:reviewersGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewer.ReviewerGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$selectedRound escape=false}
-{load_url_in_div id="reviewersGrid" url=$reviewersGridUrl}
+{load_url_in_div id="#reviewersGrid" url=$reviewersGridUrl}
+
+<br />
+
+{url|assign:revisionsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.revisions.RevisionsGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$selectedRound escape=false}
+{load_url_in_div id="#revisionsGrid" url=$revisionsGridUrl}
+
+<br />
 
 {** editorial decision actions *}
 {foreach from=$editorActions item=action}

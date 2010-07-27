@@ -68,7 +68,7 @@
 			</td>
 		{else}
 			<td><a href="{url op="submit" path=$progress monographId=$monographId}" class="action">{if $submission->getLocalizedTitle()}{$submission->getLocalizedTitle()|strip_unsafe_html|truncate:60:"..."}{else}{translate key="common.untitled"}{/if}</a></td>
-			<td align="right">{translate key="submissions.incomplete"}<br /><a href="{url op="deleteSubmission" path=$monographId}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="author.submissions.confirmDelete"}')">{translate key="common.delete"}</a></td>
+			<td align="right">{translate key="submissions.incomplete"}<br /><a href="{url op="deleteSubmission" path=$monographId}" class="action" onclick="return confirm('{translate|escape:"jsparam" key="submission.submit.confirmDelete"}')">{translate key="common.delete"}</a></td>
 		{/if}
 
 	</tr>

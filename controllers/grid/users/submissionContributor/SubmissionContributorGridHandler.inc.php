@@ -55,8 +55,8 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionWizardAuthorPolicy');
-		$this->addPolicy(new OmpSubmissionWizardAuthorPolicy($request, $args, $roleAssignments));
+		import('classes.security.authorization.OmpSubmissionWizardMonographPolicy');
+		$this->addPolicy(new OmpSubmissionWizardMonographPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -71,10 +71,10 @@ class SubmissionContributorGridHandler extends GridHandler {
 		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Load submission-specific translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
 
 		// Basic grid configuration
-		$this->setTitle('author.submit.addAuthor');
+		$this->setTitle('submission.submit.addAuthor');
 
 		// Get the monograph id
 		$monograph =& $this->getMonograph();
@@ -231,7 +231,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 				$json = new JSON('true', $this->_renderRowInternally($request, $row));
 			}
 		} else {
-			$json = new JSON('false', Locale::translate('author.submit.errorUpdatingSubmissionContributor'));
+			$json = new JSON('false', Locale::translate('submission.submit.errorUpdatingSubmissionContributor'));
 		}
 		return $json->getString();
 	}
@@ -254,7 +254,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		if ($result) {
 			$json = new JSON('true');
 		} else {
-			$json = new JSON('false', Locale::translate('author.submit.errorDeletingSubmissionContributor'));
+			$json = new JSON('false', Locale::translate('submission.submit.errorDeletingSubmissionContributor'));
 		}
 		return $json->getString();
 	}

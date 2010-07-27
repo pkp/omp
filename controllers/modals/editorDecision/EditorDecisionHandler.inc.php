@@ -30,7 +30,7 @@ class EditorDecisionHandler extends Handler {
 				$pressAssistantOperations = array_merge($authorOperations, array()));
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array_merge($pressAssistantOperations,
-				array('decision', 'saveDecision', 'importPeerReviews', 'resubmit', 'saveResubmit', 'newReviewRound', 'saveNewReviewRound')));
+				array('newReviewRound', 'saveNewReviewRound', 'initiateReview', 'saveInitiateReview', 'sendReviews', 'saveSendReviews', 'promote', 'savePromote', 'importPeerReviews')));
 	}
 
 	//
@@ -52,7 +52,6 @@ class EditorDecisionHandler extends Handler {
 	 */
 	function newReviewRound(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
-		$decision = $request->getUserVar('decision');
 
 		// Form handling
 		import('controllers.modals.editorDecision.form.NewReviewRoundForm');
@@ -98,11 +97,55 @@ class EditorDecisionHandler extends Handler {
 		return $json->getString();
 	}
 
+	/**
+	 * Start a new review round
+	 * @return JSON
+	 */
+	function initiateReview(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		// Form handling
+		import('controllers.modals.editorDecision.form.InitiateReviewForm');
+		$initiateReviewForm = new InitiateReviewForm($monographId);
+		$initiateReviewForm->initData($args, $request);
+
+		$json = new JSON('true', $initiateReviewForm->fetch($request));
+		return $json->getString();
+	}
 
 	/**
-	 * FIXME: add method doc
+	 * Start a new review round
+	 * @return JSON
 	 */
-	function decision(&$args, &$request) {
+	function saveInitiateReview(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+
+		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
+
+		// Form handling
+		import('controllers.modals.editorDecision.form.InitiateReviewForm');
+		$initiateReviewForm = new InitiateReviewForm($monographId);
+
+		$initiateReviewForm->readInputData();
+		if ($initiateReviewForm->validate()) {
+			$initiateReviewForm->execute($args, $request);
+
+			$dispatcher =& $this->getDispatcher();
+			$json = new JSON('true', $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monographId, 1)));
+		} else {
+			$json = new JSON('false');
+		}
+
+		return $json->getString();
+	}
+
+	/**
+	 * Show a save review form (responsible for request revisions, resubmit for review, and decline submission modals)
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function sendReviews(&$args, &$request) {
 		// FIXME: add validation
 		$monographId = $request->getUserVar('monographId');
 		$decision = $request->getUserVar('decision');
@@ -117,12 +160,12 @@ class EditorDecisionHandler extends Handler {
 	}
 
 	/**
-	 * Save the submission decline modal
+	 * Save the send review form
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function saveDecision(&$args, &$request) {
+	function saveSendReviews(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$decision = $request->getUserVar('decision');
 
@@ -132,6 +175,51 @@ class EditorDecisionHandler extends Handler {
 		$sendReviewsForm->readInputData();
 		if ($sendReviewsForm->validate()) {
 			$sendReviewsForm->execute($args, $request);
+
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false');
+		}
+
+		return $json->getString();
+	}
+
+	/**
+	 * Show a promote form (responsible for external review and accept submission modals)
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function promote(&$args, &$request) {
+		// FIXME: add validation
+		$monographId = $request->getUserVar('monographId');
+		$decision = $request->getUserVar('decision');
+
+		// Form handling
+		import('controllers.modals.editorDecision.form.PromoteForm');
+		$promoteForm = new PromoteForm($monographId, $decision);
+		$promoteForm->initData($args, $request);
+
+		$json = new JSON('true', $promoteForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Save the send review form
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function savePromote(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+		$decision = $request->getUserVar('decision');
+
+		import('controllers.modals.editorDecision.form.PromoteForm');
+		$sendReviewsForm = new PromoteForm($monographId, $decision);
+
+		$promoteForm->readInputData();
+		if ($promoteForm->validate()) {
+			$promoteForm->execute($args, $request);
 
 			$json = new JSON('true');
 		} else {
@@ -160,53 +248,6 @@ class EditorDecisionHandler extends Handler {
 		} else {
 			$json = new JSON('true', $peerReviews);
 		}
-		return $json->getString();
-	}
-
-
-	/**
-	 * Display the 'resubmit for review' form, moving the review to the next round
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSON
-	 */
-	function resubmit(&$args, &$request) {
-		// FIXME: add validation
-		$monographId = $request->getUserVar('monographId');
-
-		// Form handling
-		import('controllers.modals.editorDecision.form.ResubmitForReviewForm');
-		$resubmitForReviewForm = new ResubmitForReviewForm($monographId);
-		$resubmitForReviewForm->initData($args, $request);
-
-		$json = new JSON('true', $resubmitForReviewForm->fetch($request));
-		return $json->getString();
-	}
-
-	/**
-	 * Save the resubmit for review form
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return JSON
-	 */
-	function saveResubmit(&$args, &$request) {
-		// FIXME: add validation
-		$monographId = $request->getUserVar('monographId');
-
-		// Form handling
-		import('controllers.modals.editorDecision.form.ResubmitForReviewForm');
-		$resubmitForReviewForm = new ResubmitForReviewForm($monographId);
-
-
-		$resubmitForReviewForm->readInputData();
-		if ($resubmitForReviewForm->validate()) {
-			$resubmitForReviewForm->execute($args, $request);
-
-			$json = new JSON('true');
-		} else {
-			$json = new JSON('false');
-		}
-
 		return $json->getString();
 	}
 }

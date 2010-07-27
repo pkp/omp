@@ -38,7 +38,7 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionWizardPolicy');
-		$this->addPolicy(new OmpSubmissionWizardPolicy($request, $roleAssignments));
+		$this->addPolicy(new OmpSubmissionWizardPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -50,7 +50,7 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		parent::initialize($request);
 
 		// Load submission-specific translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_AUTHOR));
+		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
@@ -65,8 +65,8 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 				'newSubmission',
 				LINK_ACTION_MODE_LINK,
 				LINK_ACTION_TYPE_NOTHING,
-				$dispatcher->url($request, 'page', null, 'author', 'submit'),
-				'author.submit',
+				$dispatcher->url($request, 'page', null, 'submission', 'wizard'),
+				'submission.submit',
 				null,
 				'add'
 			)

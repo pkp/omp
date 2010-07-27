@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/modals/editorDecision/form/ResubmitForReviewForm.inc.php
+ * @file controllers/modals/editorDecision/form/NewReviewRoundForm.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -9,20 +9,20 @@
  * @class ResubmitForReviewForm
  * @ingroup controllers_modal_editorDecision_form
  *
- * @brief Form for adding resubmitting a submission to a new round of reviews
+ * @brief Form for creating a new review round
  */
 
 import('lib.pkp.classes.form.Form');
 
-class ResubmitForReviewForm extends Form {
+class InitiateReviewForm extends Form {
 	/** The monograph associated with the review assignment **/
 	var $_monographId;
 
 	/**
 	 * Constructor.
 	 */
-	function ResubmitForReviewForm($monographId) {
-		parent::Form('controllers/modals/editorDecision/form/resubmitForReviewForm.tpl');
+	function InitiateReviewForm($monographId) {
+		parent::Form('controllers/modals/editorDecision/form/initiateReviewForm.tpl');
 		$this->_monographId = (int) $monographId;
 
 		// Validation checks for this form
@@ -59,14 +59,12 @@ class ResubmitForReviewForm extends Form {
 
 	function fetch(&$request) {
 		$monograph =& $this->getMonograph();
-		$reviewType = (int) $request->getUserVar('reviewType');
-		$round = (int) $request->getUserVar('round');
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $this->_monographId);
 		$templateMgr->assign_by_ref('monograph', $monograph);
-		$this->setData('reviewType', $reviewType);
-		$this->setData('round', $round);
+//		$this->setData('reviewType', $reviewType);
+		$this->setData('round', $monograph->getCurrentRound());
 		return parent::fetch($request);
 	}
 
@@ -74,7 +72,7 @@ class ResubmitForReviewForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('selectedFiles', 'monographId', 'selected-listbuilder-users-reselectreviewerslistbuilder'));
+		$this->readUserVars(array('selectedFiles', 'monographId'));
 	}
 
 	/**
@@ -85,25 +83,11 @@ class ResubmitForReviewForm extends Form {
 		import('submission.editor.EditorAction');
 
 		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($this->_monographId);
-
-		// 1. Record the decision
-		SeriesEditorAction::recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT);
 
 		// 2. Create a new internal review round
 		// FIXME: what do do about reviewRevision? being set to 1 for now.
-		$currentRound = $reviewRoundDao->build($this->_monographId, REVIEW_TYPE_INTERNAL, $seriesEditorSubmission->getCurrentRound());
-		$currentRound->setStatus(REVIEW_ROUND_STATUS_RESUBMITTED);
-		$reviewRoundDao->update($currentRound);
-
-		$newRound = $seriesEditorSubmission->getCurrentRound() ? 1 : ($seriesEditorSubmission->getCurrentRound() + 1);
-		$reviewRoundDao->createReviewRound($this->_monographId, REVIEW_TYPE_INTERNAL, $newRound, 1);
-
-		$seriesEditorSubmission->setCurrentRound($newRound);
-		$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundDao->createReviewRound($this->_monographId, REVIEW_TYPE_INTERNAL, 1, 1, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
 
 		// 3. Assign the editor
 		// FIXME: bug # 5546: this assignment should be done elsewhere, prior to this point.
@@ -112,14 +96,13 @@ class ResubmitForReviewForm extends Form {
 
 		// 4. Add the selected files to the new round
 		$selectedFiles = $this->getData('selectedFiles');
-		$reviewAssignmentDAO->setFilesForReview($this->_monographId, REVIEW_TYPE_INTERNAL, $newRound, $selectedFiles);
-
-		// 5. Add the selected reviewers to the
-		$selectedReviewers = $this->getData('selected-listbuilder-users-reselectreviewerslistbuilder');
-		foreach ($selectedReviewers as $reviewerId) {
-			// FIXME: Last two parameters (review due dates) not set--Should these be defaults, or set in the modal?
-			SeriesEditorAction::addReviewer($seriesEditorSubmission, $reviewerId, REVIEW_TYPE_INTERNAL, $newRound);
+		$fileForReview = array();
+		foreach ($selectedFiles as $selectedFile) {
+			$fileForReview[] = explode("-", $selectedFile);
 		}
+		$reviewAssignmentDAO->setFilesForReview($this->_monographId, REVIEW_TYPE_INTERNAL, 1, $fileForReview);
+
+		return 1;
 	}
 }
 

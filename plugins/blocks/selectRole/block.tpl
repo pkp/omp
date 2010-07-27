@@ -22,11 +22,14 @@
 				$(function(){
 					$('#changedActingAsUserGroupId').change(function() {
 						$.post(
-							'{/literal}{url router=$smarty.const.ROUTE_COMPONENT component="api.user.RoleApiHandler" op="changeActingAsUserGroup"}{literal}',
+							'{/literal}{url router=$smarty.const.ROUTE_COMPONENT component="api.user.UserApiHandler" op="changeActingAsUserGroup"}{literal}',
 							$(this.form).serialize(),
 							function(jsonData) {
 								// Display error message (if any)
-								if (jsonData.status == false) alert(jsonData.content);
+								if (jsonData.status == false) {
+									alert(jsonData.content);
+								}
+								// #5321 FIXME: Refresh any components that are registered to refresh on role change
 							},
 							"json"
 						);

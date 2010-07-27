@@ -479,18 +479,6 @@ Active is how many reviews are currently being considered or underway.]]></messa
 
 	<message key="seriesEditor.review.createReviewer">Create New Reviewer</message>
 
-	<!-- Monograph Submission Step 3 -->
-	<message key="author.submit.uploadInstructions"><![CDATA[
-<p>To submit a file to this press, complete the following steps.</p>
-<ol>
-<li>On this page, click Browse (or Choose File) which opens a Choose File window for locating the file on the hard drive of your computer.</li>
-<li>Locate the file you wish to submit and highlight it.</li>
-<li>Click Open on the Choose File window, which places the name of the file on this page.</li>
-<li>Click Upload on this page, which uploads the file from the computer to the press' web site and renames it following the press' conventions.</li>
-<li>Repeat for additional files.</li>
-<li>Click Save and Continue at the bottom of this page.</li>
-</ol>]]></message>
-
 	<!-- Login -->
 	<message key="user.login.registerNewAccount">Not a user? Register with this site</message>
 	<message key="user.login.resetPasswordInstructions"><![CDATA[For security reasons, this system emails a reset password to registered users, rather than recalling the

@@ -102,9 +102,11 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpWorkflowStagePolicy');
+		// FIXME: #5600 - Distribute access differently to reviewers and editor roles
+		/*import('classes.security.authorization.OmpWorkflowStagePolicy');
 		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
+		return parent::authorize($request, $args, $roleAssignments);*/
+		return true;
 	}
 
 	/*
@@ -140,7 +142,7 @@ class ReviewFilesGridHandler extends GridHandler {
 		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$selectedFiles =& $reviewAssignmentDAO->getReviewFilesByRound($monographId);
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_AUTHOR));
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		// Elements to be displayed in the grid
 		$router =& $request->getRouter();
@@ -159,7 +161,8 @@ class ReviewFilesGridHandler extends GridHandler {
 
 			// Set the already selected elements of the grid
 			$templateMgr =& TemplateManager::getManager();
-			if(!empty($selectedFiles)) $templateMgr->assign('selectedFileIds', array_keys($selectedFiles[$reviewType][$round]));
+			$selectedRevisions =& $reviewAssignmentDAO->getReviewFilesAndRevisionsByRound($monographId, $round, true);
+			if(!empty($selectedRevisions)) $templateMgr->assign('selectedFileIds', $selectedRevisions);
 		} else {
 			// set the grid data to be only the files that have already been selected
 			$data = isset($selectedFiles[$reviewType][$round]) ? $selectedFiles[$reviewType][$round] : array();
@@ -187,7 +190,7 @@ class ReviewFilesGridHandler extends GridHandler {
 				new LinkAction(
 					'manageReviewFiles',
 					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REPLACE_ALL,
+					LINK_ACTION_TYPE_REPLACE,
 					$router->url($request, null, null, 'manageReviewFiles', null, array('monographId' => $monographId)),
 					'editor.submissionArchive.manageReviewFiles',
 					null,
@@ -337,7 +340,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Save 'add review files' form
+	 * Save 'manage review files' form
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return JSON
@@ -351,14 +354,10 @@ class ReviewFilesGridHandler extends GridHandler {
 		$manageReviewFilesForm->readInputData();
 
 		if ($manageReviewFilesForm->validate()) {
-			$manageReviewFilesForm->execute($args, $request);
-
-			// Grab the files that are currently set for the review
-			$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$selectedFiles =& $reviewAssignmentDAO->getReviewFilesByRound($monographId);
+			$selectedFiles =& $manageReviewFilesForm->execute($args, $request);
 
 			// Re-render the grid with the updated files
-			$this->setData($selectedFiles[$reviewType][$round]);
+			$this->setData($selectedFiles);
 			$this->initialize($request);
 
 			// Pass to modal.js to reload the grid with the new content

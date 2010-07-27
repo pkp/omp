@@ -90,7 +90,7 @@ function show(id) {
 		<em>{$author.email}</em>
 		<br />
 		{if $workType != WORK_TYPE_EDITED_VOLUME or ($workType == WORK_TYPE_EDITED_VOLUME and $author.contributionType == CONTRIBUTION_TYPE_VOLUME_EDITOR)}
-		<input type="radio" name="primaryContact" value="{$authorIndex|escape}"{if $primaryContact == $authorIndex} checked="checked"{/if} /> <label for="primaryContact">{translate key="author.submit.selectPrincipalContact"}</label>
+		<input type="radio" name="primaryContact" value="{$authorIndex|escape}"{if $primaryContact == $authorIndex} checked="checked"{/if} /> <label for="primaryContact">{translate key="submission.submit.selectPrincipalContact"}</label>
 		<br />
 		{/if}
 		<a href="javascript:show('authors-{$authorIndex|escape}-display')">{translate key="inserts.contributors.details"}</a>

@@ -121,6 +121,7 @@ class Install extends PKPInstall {
 			}
 
 			// Create an admin user group
+			Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
 			$userGroupDao =& DAORegistry::getDao('UserGroupDAO', $this->dbconn);
 			$adminUserGroup = new UserGroup();
 			$adminUserGroup->setRoleId(ROLE_ID_SITE_ADMIN);
@@ -128,8 +129,8 @@ class Install extends PKPInstall {
 			$adminUserGroup->setPath(ROLE_PATH_SITE_ADMIN);
 			$adminUserGroup->setDefault(true);
 			foreach ($this->installedLocales as $locale) {
-				$name = Locale::translate('default.groups.name.siteAdmin', $locale);
-				$namePlural = Locale::translate('default.groups.plural.siteAdmin', $locale);
+				$name = Locale::translate('default.groups.name.siteAdmin', array(), $locale);
+				$namePlural = Locale::translate('default.groups.plural.siteAdmin', array(), $locale);
 				$adminUserGroup->setData('name', $name, $locale);
 				$adminUserGroup->setData('namePlural', $namePlural, $locale);
 			}

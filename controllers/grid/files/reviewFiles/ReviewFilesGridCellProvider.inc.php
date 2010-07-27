@@ -37,13 +37,15 @@ class ReviewFilesGridCellProvider extends GridCellProvider {
 				'monographId' => $monographFile->getMonographId(),
 				'fileId' => $monographFile->getFileId()
 			);
+
+			$fileLabel = ($monographFile->getRevision() > 1) ? $monographFile->getLocalizedName() . " (" . $monographFile->getRevision() . ")" : $monographFile->getLocalizedName();
 			$action =& new LinkAction(
 							'downloadFile',
 							LINK_ACTION_MODE_LINK,
 							LINK_ACTION_TYPE_NOTHING,
 							$router->url($request, null, null, 'downloadFile', null, $actionArgs),
 							null,
-							$monographFile->getLocalizedName()
+							$fileLabel
 						);
 			return array($action);
 		}
@@ -74,7 +76,7 @@ class ReviewFilesGridCellProvider extends GridCellProvider {
 		// all other columns
 		switch ($columnId) {
 			case 'select':
-				return array('rowId' => $element->getFileId());
+				return array('rowId' => $element->getFileId() . "-" . $element->getRevision());
 			case 'name':
 				return array('label' => $element->getLocalizedName());
 			case 'type':

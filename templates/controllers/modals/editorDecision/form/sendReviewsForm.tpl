@@ -7,29 +7,35 @@
  * Form used to send reviews to author
  *
  *}
-{assign var='randomId' value=1|rand:99999}
-<script type="text/javascript">
-{literal}
-$(function() {
-	$('.button').button();
 
-	var url = '{/literal}{url op="importPeerReviews" monographId=$monographId}{literal}';
-	$('#importPeerReviews-'+{/literal}{$randomId}{literal}).click(function() {
-		$.getJSON(url, function(jsonData) {
-			if (jsonData.status === true) {
-				var currentContent = $("textarea#personalMessage-"+{/literal}{$randomId}{literal}).val();
-				$("textarea#personalMessage-"+{/literal}{$randomId}{literal}).val(currentContent + jsonData.content);
-			} else {
-				// Alert that the modal failed
-				alert(jsonData.content);
-			}
+{assign var='randomId' value=1|rand:99999}
+
+{translate|assign:"actionLabelTranslated" key="$actionLabel"}
+{assign var=titleTranslated value="$actionLabelTranslated"|concat:": ":$monograph->getLocalizedTitle()}
+{modal_title id="#sendReviews-$randomId" keyTranslated=$titleTranslated iconClass="fileManagement" canClose=1}
+
+<script type="text/javascript">
+	{literal}
+	$(function() {
+		$('.button').button();
+		var url = '{/literal}{url op="importPeerReviews" monographId=$monographId}{literal}';
+		$('#importPeerReviews-'+{/literal}{$randomId}{literal}).click(function() {
+			$.getJSON(url, function(jsonData) {
+				if (jsonData.status === true) {
+					var currentContent = $("textarea#personalMessage-"+{/literal}{$randomId}{literal}).val();
+					$("textarea#personalMessage-"+{/literal}{$randomId}{literal}).val(currentContent + jsonData.content);
+				} else {
+					// Alert that the modal failed
+					alert(jsonData.content);
+				}
+			});
+			return false;
 		});
 	});
-});
-{/literal}
+	{/literal}
 </script>
-<h2>{translate key="editor.review.sendReviews"}: {$monograph->getLocalizedTitle()}</h2>
-<form name="sendReviews" id="sendReviews" method="post" action="{url op="sendReviews"}" >
+
+<form name="sendReviews" id="sendReviews-{$randomId}" method="post" action="{url op="sendReviews"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="decision" value="{$decision|escape}" />
 
@@ -43,29 +49,18 @@ $(function() {
 	{fbvFormSection}
 		{fbvElement type="textarea" name="personalMessage" id="personalMessage-$randomId" label="editor.review.personalMessageToReviewer" value=$personalMessage|escape measure=$fbvStyles.measure.1OF1 size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
-	</form>
-	{** FIXME: this form was copied from reviewAttachments but must be changed **}
-	<form name="uploadForm" id="uploadForm-{$randomId}" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewAttachments.ReviewAttachmentsGridHandler" op="saveFile" reviewId=$reviewId}" method="post">
-		<!-- Max file size of 5 MB -->
-		<input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
-		{fbvFormArea id="file"}
-			{if !$attachmentFile}
-				{fbvFormSection title="common.file"}
-					<input type="file" id="attachment-{$randomId}" name="attachment" />
-					<input type="submit" name="attachmentFileSubmit-{$randomId}" value="{translate key="common.upload"}" class="button uploadFile" />
-				{/fbvFormSection}
-			{else}
-				{fbvFormSection title="common.file"}
-					{include file="controllers/grid/files/reviewAttachments/form/fileInfo.tpl"}
-				{/fbvFormSection}
-			{/if}
-		{/fbvFormArea}
-		<div id="uploadOutput-{$randomId}">
-			<div id='loading' class='throbber' style="margin: 0px;"></div>
-			<ul><li id='loadingText-{$randomId}' style='display:none;'>{translate key='submission.loadMessage'}</li></ul>
-		</div>
-	</form>
+
 	<div id="attachments">
-		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.ReviewAttachmentsGridHandler" op="fetchGrid" readOnly=1 monographId=$monographId escape=false}
-		{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
+		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId escape=false}
+		{load_url_in_div id="#reviewAttachmentsGridContainer-$randomId" url="$reviewAttachmentsGridUrl"}
 	</div>
+
+</form>
+
+{init_button_bar id="#sendReviews-$randomId" cancelId="#cancelButton-$randomId" submitId="#okButton-$randomId"}
+{fbvFormArea id="buttons"}
+    {fbvFormSection}
+        {fbvLink id="cancelButton-$randomId" label="common.cancel"}
+        {fbvButton id="okButton-$randomId" label="editor.submissionReview.recordDecision" align=$fbvStyles.align.RIGHT}
+    {/fbvFormSection}
+{/fbvFormArea}

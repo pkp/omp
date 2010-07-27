@@ -14,9 +14,9 @@
 
 import('lib.pkp.classes.form.Form');
 
-class ReviewAttachmentsForm extends Form {
-	/** the id of the review */
-	var $reviewId;
+class EditorReviewAttachmentsForm extends Form {
+	/** the id of the monograph */
+	var $monographId;
 
 	/** the id of the file being edited */
 	var $fileId;
@@ -27,8 +27,8 @@ class ReviewAttachmentsForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function ReviewAttachmentsForm($reviewId = null, $fileId = null, $gridId = null) {
-		$this->reviewId = $reviewId;
+	function EditorReviewAttachmentsForm($monographId, $fileId = null, $gridId = null) {
+		$this->monographId = $monographId;
 		$this->fileId = $fileId;
 		$this->gridId = $gridId;
 		parent::Form('controllers/grid/files/reviewAttachments/form/fileForm.tpl');
@@ -40,6 +40,7 @@ class ReviewAttachmentsForm extends Form {
 	 * Initialize form data from current settings.
 	 */
 	function initData(&$args, &$request) {
+		$this->_data['monographId'] = $this->monographId;
 		if ( isset($this->fileId) ) {
 			$this->_data['fileId'] = $this->fileId;
 		}
@@ -81,16 +82,10 @@ class ReviewAttachmentsForm extends Form {
 	 */
 	function execute(&$args, &$request) {
 		import('classes.file.MonographFileManager');
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment =& $reviewAssignmentDao->getById($this->reviewId);
 
-		$monographFileManager = new MonographFileManager($reviewAssignment->getMonographId());
+		$monographFileManager = new MonographFileManager($this->monographId);
 		if ($monographFileManager->uploadedFileExists('attachment')) {
-			if ($reviewAssignment->getReviewerFileId() != null) {
-				$fileId = $monographFileManager->uploadReviewFile('attachment', $reviewAssignment->getReviewerFileId(), $this->reviewId);
-			} else {
-				$fileId = $monographFileManager->uploadReviewFile('attachment', null, $this->reviewId);
-			}
+			$fileId = $monographFileManager->uploadReviewFile('attachment');
 		}
 
 		return $fileId;

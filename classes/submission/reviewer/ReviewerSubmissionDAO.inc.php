@@ -246,10 +246,6 @@ class ReviewerSubmissionDAO extends DAO {
 			$sql .=  ' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection);
 		}
 
-		if ($sortBy) {
-			$sql .=  ' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection);
-		}
-
 		$result =& $this->retrieveRange(
 			$sql,
 			array(

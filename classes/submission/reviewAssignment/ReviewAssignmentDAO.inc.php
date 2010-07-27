@@ -64,7 +64,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	 * @param $monographId int The MonographId
 	 * @param $reviewType int the review round type
 	 * @param $round int the review round number
-	 * @param $fileIds array int array of fileId being assigned
+	 * @param $fileIds 2D array of (fileId, revision) being assigned
 	 */
 	function setFilesForReview($monographId, $reviewType, $round, $fileIds) {
 		// remove the file, in case its there currently in there and replace with the currently selected ones
@@ -74,11 +74,12 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 
 		// now insert the selected files
 		foreach ($fileIds as $fileId) {
+			if (!isset($fileId[1])) $fileId[1] = 1; // If no revision is set, default to 1
 			$returner = $returner &&
 						$this->update('INSERT INTO review_round_files
-								(monograph_id, review_type, round, file_id)
-								VALUES (?, ?, ?, ?)',
-								array($monographId, $reviewType, $round, $fileId));
+								(monograph_id, review_type, round, file_id, revision)
+								VALUES (?, ?, ?, ?, ?)',
+								array($monographId, $reviewType, $round, $fileId[0], $fileId[1]));
 		}
 
 		return $returner;
@@ -95,23 +96,104 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		$result =& $this->retrieve(
 			'SELECT	mf.*, rr.review_type, rr.round as round
 			FROM	review_rounds rr,
-				monographs m,
 				monograph_files mf,
 				review_round_files rrf
 			WHERE	rr.submission_id = ? AND
 				mf.monograph_id = rr.submission_id AND
-				m.monograph_id = rr.submission_id AND
-				rr.submission_id = mf.monograph_id AND
-				mf.revision = rr.review_revision AND
 				rrf.review_type = rr.review_type AND
 				rrf.round = rr.round AND
-				rrf.file_id = mf.file_id',
+				rrf.file_id = mf.file_id AND
+				rrf.revision = mf.revision',
 					(int) $monographId
 		);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			$returner[$row['review_type']][$row['round']][$row['file_id']] =& $this->monographFileDao->_fromRow($row);
+			$idAndRevision = implode("-", array($row['file_id'], isset($row['revision']) ? $row['revision'] : 1));
+			$returner[$row['review_type']][$row['round']][$idAndRevision] =& $this->monographFileDao->_fromRow($row);
+			$result->MoveNext();
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
+	/**
+	 * Get a list of (file_ids, revisions)  for each round.
+	 * @param $monographId int
+	 * @return array MonographFiles
+	 */
+	function &getReviewFilesAndRevisionsByRound($monographId, $round, $concatenate = false) {
+		$returner = array();
+
+		$result =& $this->retrieve(
+			'SELECT	mf.file_id, mf.revision
+			FROM	review_rounds rr,
+				monograph_files mf,
+				review_round_files rrf
+			WHERE	rr.submission_id = ? AND
+				mf.monograph_id = rr.submission_id AND
+				rrf.review_type = rr.review_type AND
+				rrf.round = rr.round AND
+				rrf.file_id = mf.file_id AND
+				rrf.revision = mf.revision',
+					(int) $monographId
+		);
+
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			if($concatenate) $returner[] = $row['file_id'] . "-" . $row['revision'];
+			else $returner[] = array($row['file_id'], $row['revision']);
+			$result->MoveNext();
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $returner;
+	}
+
+	/**
+	 * Get all files that are in the current review round, but have later revisions.
+	 * @param $monographId int
+	 * @return array MonographFiles
+	 */
+	function &getRevisionsOfCurrentReviewFiles($monographId, $round) {
+		$returner = array();
+
+		// Get the maximum revision of each file in the review_round_files table; This is needed to avoid nested selects
+		$maxRevisions = $this->retrieve(
+			'SELECT rrf.file_id, MAX(revision) as revision
+			FROM review_round_files rrf
+			WHERE rrf.monograph_id = ? AND
+				rrf.round = ?
+			GROUP BY rrf.file_id',
+			array((int) $monographId, (int) $round)
+		);
+
+		$maxRevision = array();
+		while (!$maxRevisions->EOF) {
+			$row = $maxRevisions->GetRowAssoc(false);
+			$maxRevision[$row['file_id']] = $row['revision'];
+			$maxRevisions->MoveNext();
+		}
+
+		$result =& $this->retrieve(
+			'SELECT	mf.*, rrf.review_type, rrf.round as round
+			FROM monograph_files mf,
+				review_round_files rrf
+			WHERE rrf.monograph_id = ? AND
+				rrf.round = ? AND
+				rrf.file_id = mf.file_id AND
+				mf.revision > rrf.revision',
+			array((int) $monographId, (int) $round)
+		);
+
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			if($maxRevision[$row['file_id']] < $row['revision']) $returner[] =& $this->monographFileDao->_fromRow($row);
 			$result->MoveNext();
 		}
 

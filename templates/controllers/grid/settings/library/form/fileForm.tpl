@@ -51,7 +51,7 @@
 		    		} else {
 						actType = 'update';
 		    		}
-	    			updateItem(actType, 'component-'+'{/literal}{$gridId}{literal}'+'-table', returnString.content);
+	    			updateItem(actType, '#component-'+'{/literal}{$gridId}{literal}'+'-table', returnString.content);
 	    			$('#uploadForm-{/literal}{$randomId}{literal}').parent().dialog('close');
 	    		}
 	    		$('#loadingText-{/literal}{$randomId}{literal}').text(returnString.content);  // Set to error or success message

@@ -67,7 +67,7 @@
 			{fbvSelect name="fileType" id="fileType-$randomId" from=$bookFileTypes translate=false selected=$currentFileType disabled=$selectDisabled}
 		{/fbvFormSection}
 		{if !$fileId}
-			{fbvFormSection title="author.submit.selectFile"}
+			{fbvFormSection title="submission.submit.selectFile"}
 				<div class="fileInputContainer">
 					<input type="file" id="submissionFile" name="submissionFile" />
 				</div>
@@ -92,13 +92,3 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 </form>
-
-<input type="hidden" name="monographId" value="{$monographId|escape}" />
-<input type="hidden" id="deleteUrl" name="deleteUrl" value="" />
-{if $gridId}
-<input type="hidden" name="gridId" value="{$gridId|escape}" />
-{/if}
-{if $fileId}
-<input type="hidden" name="fileId" value="{$fileId|escape}" />
-{/if}
-

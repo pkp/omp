@@ -60,7 +60,7 @@ class EditorHandler extends SeriesEditorHandler {
 		$this->validate();
 		$this->setupTemplate(EDITOR_SERIES_SUBMISSIONS);
 		
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 		import('classes.submission.common.Action');
 		Action::viewMetadata($submission);
 	}

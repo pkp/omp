@@ -60,7 +60,7 @@
 
 <h3>{translate key="submission.supportingAgencies"}</h3>
 
-<p>{translate key="author.submit.submissionSupportingAgenciesDescription"}</p>
+<p>{translate key="submission.submit.submissionSupportingAgenciesDescription"}</p>
 
 <table width="100%" class="data">
 	<tr valign="top">

@@ -111,7 +111,7 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 	function setupTemplate() {
 		parent::setupTemplate();
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR, LOCALE_COMPONENT_PKP_SUBMISSION));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION));
 	}
 
 	//

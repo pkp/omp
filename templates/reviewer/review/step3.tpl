@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Show the step 3 review page 
+ * Show the step 3 review page
  *
  * $Id$
  *}
@@ -18,7 +18,7 @@
 
 {** FIXME: need to set escape=false due to bug 5265 *}
 {url|assign:reviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" monographId=$submission->getId() reviewType=$submission->getCurrentReviewType() round=$submission->getCurrentRound() escape=false}
-{load_url_in_div id="reviewFiles" url=$reviewFilesGridUrl}
+{load_url_in_div id="#reviewFiles" url=$reviewFilesGridUrl}
 
 
 <div id="review">
@@ -32,7 +32,7 @@
 		<div id="reviewFormResponse">
 		<h4>{$reviewForm->getLocalizedTitle()}</h4>
 		<p>{$reviewForm->getLocalizedDescription()}</p>
-		
+
 		<form name="saveReviewFormResponse" method="post" action="{url op="saveReviewFormResponse" path=$reviewId|to_array:$reviewForm->getId()}">
 			{foreach from=$reviewFormElements name=reviewFormElements key=elementId item=reviewFormElement}
 				<p>{$reviewFormElement->getLocalizedQuestion()} {if $reviewFormElement->getRequired() == 1}*{/if}</p>
@@ -64,8 +64,8 @@
 					{/if}
 				</p>
 			{/foreach}
-		
-			<br />		
+
+			<br />
 		</form>
 		</div>
 	</div>
@@ -78,8 +78,8 @@
 	<br />
 
 	<div id="attachments">
-		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.ReviewAttachmentsGridHandler" op="fetchGrid" reviewId=$submission->getReviewId()}
-		{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
+		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewAttachments.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" reviewId=$submission->getReviewId() monographId=$submission->getId() escape=false}
+		{load_url_in_div id="#reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 	</div>
 </div>
 

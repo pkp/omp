@@ -70,7 +70,7 @@ class AuthorHandler extends Handler {
 	 */
 	function setupTemplate($subclass = false, $monographId = 0, $parentPage = null) {
 		parent::setupTemplate();
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_AUTHOR, LOCALE_COMPONENT_PKP_SUBMISSION));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION));
 		$templateMgr =& TemplateManager::getManager();
 
 		$pageHierarchy = $subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'author'), 'user.role.author'), array(Request::url(null, 'author'), 'manuscript.submissions'))

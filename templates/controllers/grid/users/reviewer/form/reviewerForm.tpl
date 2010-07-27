@@ -8,6 +8,9 @@
  *
  *}
 {assign var='randomId' value=1|rand:99999}
+
+{modal_title id="#addReviewer-$randomId" key='editor.monograph.addReviewer' iconClass="fileManagement" canClose=1}
+
 <script type="text/javascript">{literal}
 	$(function() {
 		getAutocompleteSource("{/literal}{url op="getReviewerAutocomplete" monographId=$monographId}", "{$randomId}{literal}");
@@ -40,7 +43,7 @@
 						$("#email").addClass('email');
 						break;
 				}
-								
+
 			}
 		});
 
@@ -56,7 +59,7 @@
 	<input type="hidden" name="reviewType" value="{$reviewType|escape}" />
 	<input type="hidden" name="round" value="{$round|escape}" />
 	<input type="hidden" name="selectionType" id="selectionType" value="searchByName" /> <!--  Holds the type of reviewer selection being used -->
-	
+
 	<div id="reviewerSearch" style="margin:7px;">
 		<!--  Reviewer autosuggest selector -->
 		<h3 id="searchByName"><a href="#">{translate key="manager.reviewerSearch.searchByName"}</a></h3>
@@ -66,14 +69,14 @@
 				<input type="hidden" id="sourceId-{$randomId}" name="reviewerId" />
 			{/fbvFormSection}
 		</div>
-		
+
 		<!--  Advanced reviewer search -->
 		<h3 id="advancedSearch"><a href="#">{translate key="manager.reviewerSearch.advancedSearch"}</a></h3>
 		<div id="reviewerAdvancedSearch">
 			{url|assign:reviewerSelectorUrl router=$smarty.const.ROUTE_COMPONENT component="reviewerSelector.ReviewerSelectorHandler" op="fetchForm" monographId=$monographId}
-			{load_url_in_div id="reviewerSelectorContainer" url="$reviewerSelectorUrl"}
+			{load_url_in_div id="#reviewerSelectorContainer" url="$reviewerSelectorUrl"}
 		</div>
-		
+
 		<!--  Create New Reviewer -->
 		<h3 id="createNew"><a href="#">{translate key="seriesEditor.review.createReviewer"}</a></h3>
 		<div id="reviewerCreationForm">
@@ -82,15 +85,15 @@
 				{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName}
 				{fbvElement type="text" label="user.lastName" id="lastName" value=$lastName required="true"}
 			{/fbvFormSection}
-			
+
 			{fbvFormSection title="user.affiliation" for="affiliation" float=$fbvStyles.float.LEFT}
 				{fbvElement type="textarea" id="affiliation" value=$affiliation size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
 			{/fbvFormSection}
-			
+
 			{fbvFormSection title="user.interests" for="interests"}
 				<ul id="interests"></ul>
 			{/fbvFormSection}
-			
+
 			{fbvFormSection title="user.accountInformation"}
 				{fbvElement type="text" label="user.username" id="username" value=$username required="true"} <br />
 			{/fbvFormSection}
@@ -127,3 +130,11 @@
 		{fbvElement type="radio" name="reviewMethod" id="openReview" label="editor.submissionReview.open" checked=$openReview}
 	{/fbvFormSection}
 </form>
+
+{init_button_bar id="#addReviewer-$randomId" cancelId="#cancelButton-addReviewer" submitId="#okButton-addReviewer"}
+{fbvFormArea id="buttons"}
+    {fbvFormSection}
+        {fbvLink id="cancelButton-addReviewer" label="common.cancel"}
+        {fbvButton id="okButton-addReviewer" label="editor.monograph.addReviewer" align=$fbvStyles.align.RIGHT}
+    {/fbvFormSection}
+{/fbvFormArea}

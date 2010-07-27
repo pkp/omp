@@ -33,7 +33,7 @@
 {fbvFormArea id="submissionSpecific"}
 	{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
 		{fbvElement type="select" label="author.users.contributor.role" id="userGroupId" from=$authorUserGroups selected=$authorUserGroups translate=false}
-		{fbvElement type="checkbox" label="author.submit.selectPrincipalContact" id="primaryContact" checked=$primaryContact}
+		{fbvElement type="checkbox" label="submission.submit.selectPrincipalContact" id="primaryContact" checked=$primaryContact}
 	{/fbvFormSection}
 {/fbvFormArea}
 

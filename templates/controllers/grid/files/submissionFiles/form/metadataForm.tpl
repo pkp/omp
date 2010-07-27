@@ -19,7 +19,7 @@
 	        success: function(returnString) {
 	    		if (returnString.status == true) {
 		    		if(returnString.isEditing) { // User was editing existing item, save and close
-			    		saveAndUpdate('{/literal}{url router=$smarty.const.ROUTE_COMPONENT op="returnFileRow" fileId=$fileId}{literal}',
+			    		saveAndUpdate('{/literal}{url router=$smarty.const.ROUTE_COMPONENT op="returnFileRow" monographId=$monographId fileId=$fileId escape=false}{literal}',
 			    				'replace',
 			    				'component-'+'{/literal}{$gridId}{literal}'+'-row-'+'{/literal}{$fileId}{literal}',
         						'#fileUploadTabs-{/literal}{$fileId}{literal}');
@@ -71,7 +71,7 @@
 		{/if}
 	{/fbvFormSection}
 
-	<h4>{translate key="author.submit.readOnlyInfo"}</h4>
+	<h4>{translate key="submission.submit.readOnlyInfo"}</h4>
 	{fbvFormArea id="fileInfo"}
 		{fbvFormSection title="common.originalFileName" float=$fbvStyles.float.LEFT}
 			{$monographFile->getOriginalFileName()}
@@ -94,11 +94,3 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 </form>
-
-{if $gridId}
-	<input type="hidden" name="gridId" value="{$gridId|escape}" />
-{/if}
-{if $fileId}
-	<input type="hidden" name="fileId" value="{$fileId|escape}" />
-{/if}
-<br />
