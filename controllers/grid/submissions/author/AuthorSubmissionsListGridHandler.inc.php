@@ -65,7 +65,7 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 				'newSubmission',
 				LINK_ACTION_MODE_LINK,
 				LINK_ACTION_TYPE_NOTHING,
-				$dispatcher->url($request, 'page', null, 'submission', 'submit'),
+				$dispatcher->url($request, 'page', null, 'submission', 'wizard'),
 				'submission.submit',
 				null,
 				'add'
