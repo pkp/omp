@@ -143,7 +143,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$seriesEditorSubmission->setEditorFile($this->monographFileDao->getMonographFile($row['editor_file_id']));
 
 		foreach ( $reviewRoundsInfo as $reviewType => $currentReviewRound) {
-			for ($i = 1; $i <= $currentReviewRound; $i++) {				
+			for ($i = 1; $i <= $currentReviewRound; $i++) {
 				$seriesEditorSubmission->setEditorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['editor_file_id'], $reviewType, $i), $reviewType, $i);
 				$seriesEditorSubmission->setAuthorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['revised_file_id'], $reviewType, $i), $reviewType, $i);
 			}
@@ -154,11 +154,11 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Review Assignments
 		foreach ( $reviewRoundsInfo as $reviewType => $currentReviewRound) {
-			for ($i = 1; $i <= $currentReviewRound; $i++) {		
-				$seriesEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getBySubmissionId($row['monograph_id'], $i, $reviewType), $reviewType, $i);				
+			for ($i = 1; $i <= $currentReviewRound; $i++) {
+				$seriesEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getBySubmissionId($row['monograph_id'], $i, $reviewType), $reviewType, $i);
 			}
 		}
-	
+
 		// Proof Assignment
 
 		HookRegistry::call('SeriesEditorSubmissionDAO::_fromRow', array(&$seriesEditorSubmission, &$row));
@@ -200,8 +200,8 @@ class SeriesEditorSubmissionDAO extends DAO {
 							array(
 								$seriesEditorSubmission->getId(),
 								$reviewType,
-								$i, 
-								$editorDecision['editorId'], 
+								$i,
+								$editorDecision['editorId'],
 								$editorDecision['decision']
 							)
 						);
@@ -217,8 +217,8 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		if (isset($reviewType)) {
 			$reviewRound = $reviewRoundDao->build(
-							$seriesEditorSubmission->getId(), 
-							$seriesEditorSubmission->getCurrentReviewType(), 
+							$seriesEditorSubmission->getId(),
+							$seriesEditorSubmission->getCurrentReviewType(),
 							$round == null ? 1 : $round
 						);
 			if ($seriesEditorSubmission->getReviewRevision() != null) {
@@ -234,7 +234,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 			for ($i = 1; $i <= $round; $i++) {
 				foreach ($seriesEditorSubmission->getReviewAssignments($reviewType, $i) as $reviewAssignment) {
 					if (isset($removedReviewAssignments[$reviewAssignment->getReviewId()])) continue;
-		
+
 					if ($reviewAssignment->getReviewId() > 0) {
 						$this->reviewAssignmentDao->updateObject($reviewAssignment);
 					} else {
@@ -483,9 +483,9 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$result =& $this->retrieveRange($sql . ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
 			$params,
 			$rangeInfo
-		);	
+		);
 
-		return $result;	
+		return $result;
 	}
 
 	/**
@@ -651,35 +651,35 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		if ($reviewType == null) {
 			$result =& $this->retrieve(
-					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round 
-					FROM edit_decisions 
-					WHERE monograph_id = ? 
-					ORDER BY date_decided ASC', 
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round
+					FROM edit_decisions
+					WHERE monograph_id = ?
+					ORDER BY date_decided ASC',
 					$monographId
 				);
 		} elseif ($round == null) {
 			$result =& $this->retrieve(
-					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round 
-					FROM edit_decisions 
-					WHERE monograph_id = ? AND review_type = ? 
-					ORDER BY date_decided ASC', 
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round
+					FROM edit_decisions
+					WHERE monograph_id = ? AND review_type = ?
+					ORDER BY date_decided ASC',
 					array($monographId, $reviewType)
 				);
 		} else {
 			$result =& $this->retrieve(
-					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round 
-					FROM edit_decisions 
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round
+					FROM edit_decisions
 					WHERE monograph_id = ? AND review_type = ? AND round = ?
-					ORDER BY date_decided ASC', 
+					ORDER BY date_decided ASC',
 					array($monographId, $reviewType, $round)
 				);
 		}
-		
+
 		while (!$result->EOF) {
 			$value = array(
-					'editDecisionId' => $result->fields['edit_decision_id'], 
-					'editorId' => $result->fields['editor_id'], 
-					'decision' => $result->fields['decision'], 
+					'editDecisionId' => $result->fields['edit_decision_id'],
+					'editorId' => $result->fields['editor_id'],
+					'decision' => $result->fields['decision'],
 					'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
 				);
 
@@ -707,7 +707,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		unset($result);
 
 		return $returner;
-	}	
+	}
 
 	/**
 	 * Check if a reviewer is assigned to a specified monograph.
@@ -863,7 +863,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		return $returner;
 
 	}
-	
+
 	/**
 	 * Check if a copyeditor is assigned to a specified monograph.
 	 * @param $monographId int
@@ -872,9 +872,9 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 */
 	function copyeditorExists($monographId, $copyeditorId) {
 		$result =& $this->retrieve(
-			'SELECT COUNT(*) 
-			FROM signoffs 
-			WHERE assoc_id = ? AND assoc_type = ? AND user_id = ? AND symbolic = ?', 
+			'SELECT COUNT(*)
+			FROM signoffs
+			WHERE assoc_id = ? AND assoc_type = ? AND user_id = ? AND symbolic = ?',
 			array($monographId, ASSOC_TYPE_MONOGRAPH, $copyeditorId, 'SIGNOFF_COPYEDITING_INITIAL')
 		);
 		return isset($result->fields[0]) && $result->fields[0] == 1 ? true : false;
@@ -890,8 +890,8 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$users = array();
 
 		$paramArray = array(
-				'interests', $monographId, ASSOC_TYPE_MONOGRAPH, 
-				'SIGNOFF_COPYEDITING_INITIAL', 
+				'interests', $monographId, ASSOC_TYPE_MONOGRAPH,
+				'SIGNOFF_COPYEDITING_INITIAL',
 				$pressId, RoleDAO::getRoleIdFromPath('copyeditor')
 				);
 		$searchSql = '';
@@ -957,9 +957,9 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		return $users;
 	}
-	
+
 	/**
-	 * Get the number of reviews done, avg. number of days per review, days since last review, and num. of 
+	 * Get the number of reviews done, avg. number of days per review, days since last review, and num. of
 	 * active reviews for all reviewers of the given press.
 	 * @return array
 	 */
@@ -990,20 +990,20 @@ class SeriesEditorSubmissionDAO extends DAO {
 		unset($result);
 
 
-		
+
 		// Get average number of days per review and days since last review
 		$result =& $this->retrieve(
 			'SELECT r.reviewer_id, r.date_completed, r.date_notified
 			FROM review_assignments r
-			WHERE r.date_notified IS NOT NULL AND 
-				r.date_completed IS NOT NULL AND 
-				r.declined = 0' 
+			WHERE r.date_notified IS NOT NULL AND
+				r.date_completed IS NOT NULL AND
+				r.declined = 0'
 		);
 		$averageTimeStats = array();
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if (!isset($averageTimeStats[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = array();
-			
+
 			$completed = strtotime($this->datetimeFromDB($row['date_completed']));
 			$notified = strtotime($this->datetimeFromDB($row['date_notified']));
 			$timeSinceNotified = time() - $notified;
@@ -1017,7 +1017,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 			// Calculate the average length of review in days.
 			$averageTimeStats[$row['reviewer_id']]['average_span'] = (($averageTimeStats[$row['reviewer_id']]['total_span'] / $averageTimeStats[$row['reviewer_id']]['completed_review_count']) / 86400);
-			
+
 			// This reviewer has the highest average; put in global statistics array
 			if ($reviewerValues['avgMax'] < $averageTimeStats[$row['reviewer_id']]['average_span']) $reviewerValues['avgMax'] = round($averageTimeStats[$row['reviewer_id']]['average_span']);
 			if ($timeSinceNotified > $reviewerValues['lastMax']) $reviewerValues['lastMax'] = $timeSinceNotified;
@@ -1027,16 +1027,16 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$reviewerValues['lastMax'] = round($reviewerValues['lastMax'] / 86400); // Round to nearest day
 		$result->Close();
 		unset($result);
-		
-	
+
+
 		// Get number of currently active reviews
 		$result =& $this->retrieve(
-			'SELECT r.reviewer_id, COUNT(*) AS incomplete 
+			'SELECT r.reviewer_id, COUNT(*) AS incomplete
 			FROM review_assignments r
-			WHERE r.date_notified IS NOT NULL AND 
-				r.date_completed IS NULL AND 
+			WHERE r.date_notified IS NOT NULL AND
+				r.date_completed IS NULL AND
 				r.cancelled = 0
-			GROUP BY r.reviewer_id' 
+			GROUP BY r.reviewer_id'
 		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
@@ -1046,11 +1046,11 @@ class SeriesEditorSubmissionDAO extends DAO {
 		}
 		$result->Close();
 		unset($result);
-			
+
 
 		return $reviewerValues;
 	}
-	
+
 	/**
 	 * Get the assignment counts and last assigned date for all designers of the given press.
 	 * @return array
@@ -1060,15 +1060,15 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Get counts of completed submissions
 		$result =& $this->retrieve(
-			'SELECT	sc.user_id, COUNT(sc.assoc_id) AS complete 
+			'SELECT	sc.user_id, COUNT(sc.assoc_id) AS complete
 			FROM	signoffs sc,
-				monographs m 
-			WHERE	sc.assoc_id = m.monograph_id AND 
-				sc.date_completed IS NOT NULL AND 
+				monographs m
+			WHERE	sc.assoc_id = m.monograph_id AND
+				sc.date_completed IS NOT NULL AND
 				m.press_id = ? AND
 				sc.symbolic = ? AND
 				sc.assoc_type = ?
-			GROUP BY sc.user_id', 
+			GROUP BY sc.user_id',
 			array((int) $pressId, 'PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
 		);
 		while (!$result->EOF) {
@@ -1085,13 +1085,13 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT	sc.user_id, COUNT(sc.assoc_id) AS incomplete
 			FROM	signoffs sc,
-				monographs m 
-			WHERE	sc.assoc_id = m.monograph_id AND 
-				sc.date_completed IS NULL AND 
+				monographs m
+			WHERE	sc.assoc_id = m.monograph_id AND
+				sc.date_completed IS NULL AND
 				m.press_id = ? AND
 				sc.symbolic = ? AND
 				sc.assoc_type = ?
-			GROUP BY sc.user_id', 
+			GROUP BY sc.user_id',
 			array((int) $pressId, 'PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
 		);
 		while (!$result->EOF) {
@@ -1106,13 +1106,13 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Get last assignment date
 		$result =& $this->retrieve(
-			'SELECT	sc.user_id, MAX(sc.date_notified) AS last_assigned 
-			FROM	signoffs sc, monographs m 
-			WHERE	sc.assoc_id = m.monograph_id AND 
+			'SELECT	sc.user_id, MAX(sc.date_notified) AS last_assigned
+			FROM	signoffs sc, monographs m
+			WHERE	sc.assoc_id = m.monograph_id AND
 				m.press_id = ? AND
 				sc.symbolic = ? AND
 				sc.assoc_type = ?
-			GROUP BY sc.user_id', 
+			GROUP BY sc.user_id',
 			array((int) $pressId, 'PRODUCTION_DESIGN', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
 		);
 		while (!$result->EOF) {
@@ -1145,13 +1145,15 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$interestDao =& DAORegistry::getDAO('InterestDAO');
 		$reviewerStats = $this->getReviewerStatistics($pressId);
-		
+
 		// Get userIds that match all interests
 		$allInterestIds = array();
-		foreach ($interests as $key => $interest) {
-			$interestIds = $interestDao->getUserIdsByInterest($interest);
-			if ($key == 0) $allInterestIds = $interestIds;
-			else $allInterestIds = array_intersect($allInterestIds, $interestIds);
+		if(isset($interests)) {
+			foreach ($interests as $key => $interest) {
+				$interestIds = $interestDao->getUserIdsByInterest($interest);
+				if ($key == 0) $allInterestIds = $interestIds;
+				else $allInterestIds = array_intersect($allInterestIds, $interestIds);
+			}
 		}
 
 		$filteredReviewers = array();
@@ -1161,23 +1163,23 @@ class SeriesEditorSubmissionDAO extends DAO {
 				$lastNotifiedInDays = 0;
 			} else {
 				$lastNotifiedInDays = round((time() - strtotime($reviewerStat['last_notified'])) / 86400);
-			} 
-			
+			}
+
 			// If there are interests to check, make sure user is in allInterestIds array
 			if(!empty($allInterestIds)) {
 				$interestCheck = in_array($userId, $allInterestIds);
 			} else $interestCheck = true;
-				
-			if ($interestCheck && $reviewerStat['completed_review_count'] <= $doneMax && $reviewerStat['completed_review_count'] >= $doneMin && 
+
+			if ($interestCheck && $reviewerStat['completed_review_count'] <= $doneMax && $reviewerStat['completed_review_count'] >= $doneMin &&
 				$reviewerStat['average_span'] <= $avgMax && $reviewerStat['average_span'] >= $avgMin && $lastNotifiedInDays <= $lastMax  &&
 				$lastNotifiedInDays >= $lastMin && $reviewerStat['incomplete'] <= $activeMax && $reviewerStat['incomplete'] >= $activeMin) {
 					$filteredReviewers[] = $userDao->getUser($userId);
 				}
 		}
-		
+
 		return $filteredReviewers;
 	}
-	
+
 	/**
 	 * Get the last assigned and last completed dates for all reviewers of the given press.
 	 * @return array
@@ -1187,7 +1189,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		//  have a value, it will be filled in as 0
 		$statistics = Array();
 		$reviewerStatsPlaceholder = array('last_notified' => null, 'incomplete' => 0, 'total_span' => 0, 'completed_review_count' => 0, 'average_span' => 0);
-		
+
 		$allReviewers =& $this->getAllReviewers($pressId);
 		while($reviewer =& $allReviewers->next()) {
 				$statistics[$reviewer->getId()] = $reviewerStatsPlaceholder;
@@ -1196,11 +1198,11 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Get counts of completed submissions
 		$result =& $this->retrieve(
-			'SELECT	r.reviewer_id, MAX(r.date_notified) AS last_notified 
-			FROM	review_assignments r, monographs m 
-			WHERE	r.submission_id = m.monograph_id AND 
-				m.press_id = ? 
-			GROUP BY r.reviewer_id', 
+			'SELECT	r.reviewer_id, MAX(r.date_notified) AS last_notified
+			FROM	review_assignments r, monographs m
+			WHERE	r.submission_id = m.monograph_id AND
+				m.press_id = ?
+			GROUP BY r.reviewer_id',
 			(int) $pressId
 		);
 		while (!$result->EOF) {
@@ -1215,14 +1217,14 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Get completion status
 		$result =& $this->retrieve(
-			'SELECT	r.reviewer_id, COUNT(*) AS incomplete 
-			FROM	review_assignments r, monographs m 
-			WHERE	r.submission_id = m.monograph_id AND 
-				r.date_notified IS NOT NULL AND 
-				r.date_completed IS NULL AND 
-				r.cancelled = 0 AND 
-				m.press_id = ? 
-			GROUP BY r.reviewer_id', 
+			'SELECT	r.reviewer_id, COUNT(*) AS incomplete
+			FROM	review_assignments r, monographs m
+			WHERE	r.submission_id = m.monograph_id AND
+				r.date_notified IS NOT NULL AND
+				r.date_completed IS NULL AND
+				r.cancelled = 0 AND
+				m.press_id = ?
+			GROUP BY r.reviewer_id',
 			(int) $pressId
 		);
 		while (!$result->EOF) {
@@ -1237,13 +1239,13 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Calculate time taken for completed reviews
 		$result =& $this->retrieve(
-			'SELECT	r.reviewer_id, r.date_notified, r.date_completed 
-			FROM	review_assignments r, monographs m 
-			WHERE	r.submission_id = m.monograph_id AND 
-				r.date_notified IS NOT NULL AND 
-				r.date_completed IS NOT NULL AND 
-				r.declined = 0 AND 
-				m.press_id = ?', 
+			'SELECT	r.reviewer_id, r.date_notified, r.date_completed
+			FROM	review_assignments r, monographs m
+			WHERE	r.submission_id = m.monograph_id AND
+				r.date_notified IS NOT NULL AND
+				r.date_completed IS NOT NULL AND
+				r.declined = 0 AND
+				m.press_id = ?',
 			(int) $pressId
 		);
 		while (!$result->EOF) {
@@ -1280,14 +1282,14 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Get counts of completed submissions
 		$result =& $this->retrieve(
-				'SELECT sc.user_id AS editor_id, COUNT(sc.assoc_id) AS complete 
-				FROM signoffs sc, monographs m 
-				WHERE sc.assoc_id = m.monograph_id AND 
-					sc.date_completed IS NOT NULL AND 
+				'SELECT sc.user_id AS editor_id, COUNT(sc.assoc_id) AS complete
+				FROM signoffs sc, monographs m
+				WHERE sc.assoc_id = m.monograph_id AND
+					sc.date_completed IS NOT NULL AND
 					m.press_id = ? AND
 					sc.symbolic = ? AND
 					sc.assoc_type = ?
-				GROUP BY sc.user_id', 
+				GROUP BY sc.user_id',
 				array($pressId, 'SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH)
 			);
 		while (!$result->EOF) {
@@ -1303,13 +1305,13 @@ class SeriesEditorSubmissionDAO extends DAO {
 		// Get counts of incomplete submissions
 		$result =& $this->retrieve(
 				'SELECT sc.user_id AS editor_id, COUNT(sc.assoc_id) AS incomplete
-				FROM signoffs sc, monographs m 
-				WHERE sc.assoc_id = m.monograph_id AND 
-					sc.date_completed IS NULL AND 
+				FROM signoffs sc, monographs m
+				WHERE sc.assoc_id = m.monograph_id AND
+					sc.date_completed IS NULL AND
 					m.press_id = ? AND
 					sc.symbolic = ? AND
 					sc.assoc_type = ?
-				GROUP BY sc.user_id', 
+				GROUP BY sc.user_id',
 				array($pressId, 'SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH)
 			);
 		while (!$result->EOF) {
@@ -1324,13 +1326,13 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Get last assignment date
 		$result =& $this->retrieve(
-				'SELECT sc.user_id AS editor_id, MAX(sc.date_notified) AS last_assigned 
-				FROM signoffs sc, monographs m 
-				WHERE sc.assoc_id = m.monograph_id AND 
+				'SELECT sc.user_id AS editor_id, MAX(sc.date_notified) AS last_assigned
+				FROM signoffs sc, monographs m
+				WHERE sc.assoc_id = m.monograph_id AND
 					m.press_id = ? AND
 					sc.symbolic = ? AND
 					sc.assoc_type = ?
-				GROUP BY sc.user_id', 
+				GROUP BY sc.user_id',
 				array($pressId, 'SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH)
 			);
 		while (!$result->EOF) {
@@ -1355,14 +1357,14 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Get counts of completed submissions
 		$result =& $this->retrieve(
-				'SELECT sc.user_id AS editor_id, COUNT(sc.assoc_id) AS complete 
-				FROM signoffs sc, monographs m 
-				WHERE sc.assoc_id = m.monograph_id AND 
-					sc.date_completed IS NOT NULL AND 
+				'SELECT sc.user_id AS editor_id, COUNT(sc.assoc_id) AS complete
+				FROM signoffs sc, monographs m
+				WHERE sc.assoc_id = m.monograph_id AND
+					sc.date_completed IS NOT NULL AND
 					m.press_id = ? AND
 					sc.symbolic = ? AND
 					sc.assoc_type = ?
-				GROUP BY sc.user_id', 
+				GROUP BY sc.user_id',
 				array($pressId, 'PRODUCTION_PROOF_PROOFREADER', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
 			);
 		while (!$result->EOF) {
@@ -1378,13 +1380,13 @@ class SeriesEditorSubmissionDAO extends DAO {
 		// Get counts of incomplete submissions
 		$result =& $this->retrieve(
 				'SELECT sc.user_id AS editor_id, COUNT(sc.assoc_id) AS incomplete
-				FROM signoffs sc, monographs m 
-				WHERE sc.assoc_id = m.monograph_id AND 
-					sc.date_completed IS NULL AND 
+				FROM signoffs sc, monographs m
+				WHERE sc.assoc_id = m.monograph_id AND
+					sc.date_completed IS NULL AND
 					m.press_id = ? AND
 					sc.symbolic = ? AND
 					sc.assoc_type = ?
-				GROUP BY sc.user_id', 
+				GROUP BY sc.user_id',
 				array($pressId, 'PRODUCTION_PROOF_PROOFREADER', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
 			);
 		while (!$result->EOF) {
@@ -1399,13 +1401,13 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		// Get last assignment date
 		$result =& $this->retrieve(
-				'SELECT sc.user_id AS editor_id, MAX(sc.date_notified) AS last_assigned 
-				FROM signoffs sc, monographs m 
-				WHERE sc.assoc_id = m.monograph_id AND 
+				'SELECT sc.user_id AS editor_id, MAX(sc.date_notified) AS last_assigned
+				FROM signoffs sc, monographs m
+				WHERE sc.assoc_id = m.monograph_id AND
 					m.press_id = ? AND
 					sc.symbolic = ? AND
 					sc.assoc_type = ?
-				GROUP BY sc.user_id', 
+				GROUP BY sc.user_id',
 				array($pressId, 'PRODUCTION_PROOF_PROOFREADER', ASSOC_TYPE_PRODUCTION_ASSIGNMENT)
 			);
 		while (!$result->EOF) {
@@ -1419,7 +1421,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		return $statistics;
 	}
-	
+
 	/**
 	 * Map a column heading value to a database value for sorting
 	 * @param string
@@ -1432,7 +1434,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 			case 'series': return 'series_abbrev';
 			case 'authors': return 'author_name';
 			case 'title': return 'submission_title';
-			case 'active': return 'incomplete';		
+			case 'active': return 'incomplete';
 			case 'subCopyedit': return 'copyedit_completed';
 			case 'subLayout': return 'layout_completed';
 			case 'subProof': return 'proofread_completed';
