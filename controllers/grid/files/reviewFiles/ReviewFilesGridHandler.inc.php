@@ -190,7 +190,7 @@ class ReviewFilesGridHandler extends GridHandler {
 				new LinkAction(
 					'manageReviewFiles',
 					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REPLACE_ALL,
+					LINK_ACTION_TYPE_REPLACE,
 					$router->url($request, null, null, 'manageReviewFiles', null, array('monographId' => $monographId)),
 					'editor.submissionArchive.manageReviewFiles',
 					null,
