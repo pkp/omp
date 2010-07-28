@@ -172,6 +172,10 @@ class PressSiteSettingsForm extends Form {
 		}
 		$press->updateSetting('name', $this->getData('name'), 'string', true);
 		$press->updateSetting('description', $this->getData('description'), 'string', true);
+
+		// Make sure all plugins are loaded for settings preload
+		PluginRegistry::loadAllPlugins();
+
 		HookRegistry::call('PressSiteSettingsForm::execute', array(&$this, &$press, &$series, &$isNewPress));
 	}
 
