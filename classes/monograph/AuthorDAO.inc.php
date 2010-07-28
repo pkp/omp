@@ -204,8 +204,9 @@ class AuthorDAO extends PKPAuthorDAO {
 	 */
 	function deleteAuthorsByMonograph($submissionId) {
 		$authors =& $this->getAuthorsByMonographId($submissionId);
-		foreach ($authors as $author) {
+		while ($author =& $authors->next()) {
 			$this->deleteAuthor($author);
+			unset($author);
 		}
 	}
 }

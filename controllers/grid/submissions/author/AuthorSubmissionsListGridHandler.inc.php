@@ -80,17 +80,6 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$emptyColumnActions = array();
 		$cellProvider = new DataObjectGridCellProvider();
 		$cellProvider->setLocale(Locale::getLocale());
-
-//		$this->addColumn(
-//			new GridColumn(
-//				'status',
-//				'common.status',
-//				null,
-//				'controllers/grid/gridCell.tpl',
-//				$cellProvider
-//			)
-//		);
-
 	}
 
 	//
@@ -117,9 +106,27 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * @return string
 	 */
 	function deleteSubmission(&$args, &$request) {
-		//FIXME: Implement
+		$monographId = $request->getUserVar('monographId');
+		$this->validate($monographId);
 
-		return false;
+		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
+		$authorSubmission = $authorSubmissionDao->getAuthorSubmission($monographId);
+
+		// If the submission is incomplete, allow the author to delete it.
+		if ($authorSubmission->getSubmissionProgress()!=0) {
+			import('classes.file.MonographFileManager');
+			$monographFileManager = new MonographFileManager($monographId);
+			$monographFileManager->deleteMonographTree();
+
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$monographDao->deleteMonographById($monographId);
+
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false', Locale::translate('settings.setup.errorDeletingItem'));
+		}
+
+		return $json->getString();
 	}
 
 	//

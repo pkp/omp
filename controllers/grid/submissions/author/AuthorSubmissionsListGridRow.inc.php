@@ -53,7 +53,7 @@ class AuthorSubmissionsListGridRow extends GridRow {
 					'grid.action.delete',
 					null,
 					'delete',
-					'common.confirmDelete'
+					Locale::translate('common.confirmDelete')
 				)
 			);
 
