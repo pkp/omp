@@ -183,7 +183,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 			$chapterForm->initData();
 		}
 
-		$json = new JSON('true', $chapterForm->display($request));
+		$json = new JSON('true', $chapterForm->fetch($request));
 		return $json->getString();
 	}
 
