@@ -27,7 +27,10 @@ class ChapterAuthorDAO extends DAO {
 	 * @return DAOResultFactory
 	 */
 	function &getAuthors($monographId = null, $chapterId = null) {
-		$params = array();
+		$params = array(
+			'affiliation', Locale::getPrimaryLocale(),
+			'affiliation', Locale::getLocale()
+		);
 		if (isset($monographId)) $params[] = (int) $monographId;
 		if (isset($chapterId)) $params[] = (int) $chapterId;
 		// get all the monograph_author fields,
@@ -41,12 +44,17 @@ class ChapterAuthorDAO extends DAO {
 				ma.first_name,
 				ma.middle_name,
 				ma.last_name,
-				ma.affiliation,
+				asl.setting_value AS affiliation_l,
+				asl.locale,
+				aspl.setting_value AS affiliation_pl,
+				aspl.locale AS primary_locale,
 				ma.country,
 				ma.email,
 				ma.url,
 				ma.user_group_id
 			FROM	authors ma
+				LEFT JOIN author_settings aspl ON (aa.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
+				LEFT JOIN author_settings asl ON (aa.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)
 				JOIN monograph_chapter_authors mca ON (ma.author_id = mca.author_id)' .
 		    ( (count($params)> 0)?' WHERE':'' ) .
 		    (  isset($monographId)?' ma.submission_id = ?':'' ) .
@@ -143,7 +151,7 @@ class ChapterAuthorDAO extends DAO {
 		$chapterAuthor->setFirstName($author->getFirstName());
 		$chapterAuthor->setMiddleName($author->getMiddleName());
 		$chapterAuthor->setLastName($author->getLastName());
-		$chapterAuthor->setAffiliation($author->getAffiliation());
+		$chapterAuthor->setAffiliation($author->getAffiliation(null), null);
 		$chapterAuthor->setCountry($author->getCountry());
 		$chapterAuthor->setEmail($author->getEmail());
 		$chapterAuthor->setUrl($author->getUrl());

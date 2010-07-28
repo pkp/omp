@@ -120,7 +120,7 @@ function show(id) {
 			</tr>
 			<tr valign="top">
 				<td width="20%" class="label">{fieldLabel name="authors-$authorIndex-affiliation" key="user.affiliation"}</td>
-				<td width="80%" class="value"><textarea class="textField" name="contributors[{$authorIndex|escape}][affiliation]" id="authors-{$authorIndex|escape}-affiliation" rows="5" cols="40">{$author.affiliation|escape}</textarea></td>
+				<td width="80%" class="value"><textarea class="textField" name="contributors[{$authorIndex|escape}][affiliation][{$formLocale|escape}]" id="authors-{$authorIndex|escape}-affiliation" rows="5" cols="40">{$author.affiliation[$formLocale]|escape}</textarea></td>
 			</tr>
 			<tr valign="top">
 				<td width="20%" class="label">{fieldLabel name="authors-$authorIndex-country" key="common.country"}</td>

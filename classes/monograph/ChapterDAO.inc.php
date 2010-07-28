@@ -86,17 +86,27 @@ class ChapterDAO extends DAO {
 				ma.first_name,
 				ma.middle_name,
 				ma.last_name,
-				ma.affiliation,
+				asl.setting_value AS affiliation_l,
+				asl.locale,
+				aspl.setting_value AS affiliation_pl,
+				aspl.locale AS primary_locale,
 				ma.country,
 				ma.email,
 				ma.url,
 				ma.user_group_id
 			FROM	monograph_chapters mc
+				LEFT JOIN author_settings aspl ON (aa.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
+				LEFT JOIN author_settings asl ON (aa.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)
 				LEFT JOIN monograph_chapter_authors mca ON (mc.chapter_id = mca.chapter_id)
 				LEFT JOIN authors ma ON (ma.author_id = mca.author_id)
 			WHERE	mc.monograph_id = ?
 			ORDER BY mc.chapter_seq, mca.seq',
-			$monographId, $rangeInfo
+			array(
+				'affiliation', Locale::getPrimaryLocale(),
+				'affiliation', Locale::getLocale(),
+				(int) $monographId,
+			),
+			$rangeInfo
 		);
 
 		import('lib.pkp.classes.core.ArrayItemIterator');

@@ -71,7 +71,9 @@
 			<input type="hidden" name="{$userKey|escape}_fax" value="{$user->getFax()|escape}" />
 			<input type="hidden" name="{$userKey|escape}_phone" value="{$user->getPhone()|escape}" />
 			<input type="hidden" name="{$userKey|escape}_url" value="{$user->getUrl()|escape}" />
-			<input type="hidden" name="{$userKey|escape}_affiliation" value="{$user->getAffiliation()|escape}" />
+			{foreach from=$user->getAffiliation(null) key=locale item=value}
+				<input type="hidden" name="{$userKey|escape}_affiliation[{$locale|escape}]" value="{$value|escape}" />
+			{/foreach}
 			<input type="hidden" name="{$userKey|escape}_gender" value="{$user->getGender()|escape}" />
 			<input type="hidden" name="{$userKey|escape}_initials" value="{$user->getInitials()|escape}" />
 			<input type="hidden" name="{$userKey|escape}_salutation" value="{$user->getSalutation()|escape}" />

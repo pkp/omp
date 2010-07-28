@@ -76,7 +76,7 @@ class SubmissionContributorForm extends Form {
 				'firstName' => $submissionContributor->getFirstName(),
 				'middleName' => $submissionContributor->getMiddleName(),
 				'lastName' => $submissionContributor->getLastName(),
-				'affiliation' => $submissionContributor->getAffiliation(),
+				'affiliation' => $submissionContributor->getAffiliation(Locale::getLocale()),
 				'country' => $submissionContributor->getCountry(),
 				'email' => $submissionContributor->getEmail(),
 				'url' => $submissionContributor->getUrl(),
@@ -155,7 +155,7 @@ class SubmissionContributorForm extends Form {
 		$submissionContributor->setFirstName($this->getData('firstName'));
 		$submissionContributor->setMiddleName($this->getData('middleName'));
 		$submissionContributor->setLastName($this->getData('lastName'));
-		$submissionContributor->setAffiliation($this->getData('affiliation'));
+		$submissionContributor->setAffiliation($this->getData('affiliation'), Locale::getLocale()); // localized
 		$submissionContributor->setCountry($this->getData('country'));
 		$submissionContributor->setEmail($this->getData('email'));
 		$submissionContributor->setUrl($this->getData('url'));

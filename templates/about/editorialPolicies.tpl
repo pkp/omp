@@ -50,7 +50,7 @@
 				{translate key="user.role.editors"}
 				<ul class="plain">
 				{/if}
-				<li>{$seriesEditor->getFirstName()|escape} {$seriesEditor->getLastName()|escape}{if strlen($seriesEditor->getAffiliation()) > 0}, {$seriesEditor->getAffiliation()|escape}{/if}</li>
+				<li>{$seriesEditor->getFirstName()|escape} {$seriesEditor->getLastName()|escape}{if strlen($seriesEditor->getLocalizedAffiliation()) > 0}, {$seriesEditor->getLocalizedAffiliation()|escape}{/if}</li>
 			{/foreach}
 		{/if}
 	{/foreach}

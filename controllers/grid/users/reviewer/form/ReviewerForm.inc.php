@@ -197,7 +197,7 @@ class ReviewerForm extends Form {
 			$user->setFirstName($this->getData('firstName'));
 			$user->setMiddleName($this->getData('middleName'));
 			$user->setLastName($this->getData('lastName'));
-			$user->setAffiliation($this->getData('affiliation'));
+			$user->setAffiliation($this->getData('affiliation'), null);
 			$user->setEmail($this->getData('email'));
 	
 			$authDao =& DAORegistry::getDAO('AuthSourceDAO');

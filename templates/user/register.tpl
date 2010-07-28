@@ -54,8 +54,8 @@
 {if count($formLocales) > 1 && !$existingUser}
 	{fbvFormSection title="form.formLanguage" for="languageSelector"}
 		{fbvCustomElement}
-			{url|assign:"setupFormUrl" op="setup" path="1"}
-			{form_language_chooser form="setupForm" url=$setupFormUrl}
+			{url|assign:"registerFormUrl" op="register"}
+			{form_language_chooser form="register" url=$registerFormUrl}
 			<p>{translate key="form.formLanguage.description"}</p>
 		{/fbvCustomElement}
 	{/fbvFormSection}
