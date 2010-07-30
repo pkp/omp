@@ -14,18 +14,18 @@
 		// On newFile button click, return row then restart modal
 		$('.button').button();
 		$('#newFile').click(function() {
-    		saveAndUpdate('{/literal}{url op="returnFileRow" monographId=$monographId fileId=$fileId escape=false}{literal}', 
-    	    		'append', 
-    	    		'component-'+'{/literal}{$gridId}{literal}'+'-table',
-    	    		'#fileUploadTabs-{/literal}{$fileId}{literal}', true);
+    		saveAndUpdate('{/literal}{url op="returnFileRow" monographId=$monographId fileId=$fileId escape=false}{literal}',
+    	    		'append',
+    	    		'#component-'+'{/literal}{$gridId}{literal}'+'-table',
+    	    		'div#fileUploadTabs', true);
 		});
 
 		// On exit button click, return row and close modal
 		$('#exit').click(function() {
-    		saveAndUpdate('{/literal}{url op="returnFileRow" monographId=$monographId fileId=$fileId escape=false}{literal}', 
-    	    		'append', 
-    	    		'component-'+'{/literal}{$gridId}{literal}'+'-table',
-    	    		'#fileUploadTabs-{/literal}{$fileId}{literal}');
+    		saveAndUpdate('{/literal}{url op="returnFileRow" monographId=$monographId fileId=$fileId escape=false}{literal}',
+    	    		'append',
+    	    		'#component-'+'{/literal}{$gridId}{literal}'+'-table',
+    	    		'div#fileUploadTabs');
 		});
 	});
 	{/literal}

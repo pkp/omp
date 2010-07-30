@@ -9,7 +9,7 @@
  * @class FileInformationCenterHandler
  * @ingroup controllers_informationCenter
  *
- * @brief Handle requests to view the information center for a file. 
+ * @brief Handle requests to view the information center for a file.
  */
 
 import('controllers.informationCenter.InformationCenterHandler');
@@ -25,21 +25,32 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	}
 
 	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize(&$request, &$args, $roleAssignments) {
+		// FIXME: #5600 - Distribute access differently to reviewers and editor roles
+		/*import('classes.security.authorization.OmpWorkflowStagePolicy');
+		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);*/
+		return true;
+	}
+
+	/**
 	 * Display the main information center modal.
 	 */
 	function viewInformationCenter(&$args, &$request) {
 		$assocId = Request::getUserVar('assocId');
 		$this->validate($assocId);
 		$this->setupTemplate(true);
-		
+
 		// Get the file in question
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($assocId);
-		
+
 		// Get the latest history item to display in the header
 		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
 		$fileEvents =& $monographEventLogDao->getMonographLogEntriesByAssoc($monographFile->getMonographId(), ASSOC_TYPE_MONOGRAPH_FILE, $assocId);
-		$lastEvent =& $fileEvents->next(); 
+		$lastEvent =& $fileEvents->next();
 
 		// Assign variables to the template manager and display
 		$templateMgr =& TemplateManager::getManager();
@@ -54,11 +65,11 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 			$user =& $userDao->getUser($userId);
 			$templateMgr->assign_by_ref('lastEventUser', $user);
 		}
-		
+
 		$json = new JSON('true', $templateMgr->fetch('controllers/informationCenter/informationCenter.tpl'));
 		return $json->getString();
 	}
-	
+
 	/**
 	 * Display the notes tab.
 	 */
@@ -70,11 +81,11 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		import('controllers.informationCenter.form.InformationCenterNotesForm');
 		$notesForm = new InformationCenterNotesForm($assocId, ASSOC_TYPE_MONOGRAPH_FILE);
 		$notesForm->initData();
-		
+
 		$json = new JSON('true', $notesForm->fetch($request));
 		return $json->getString();
 	}
-	
+
 	/**
 	 * Display the history tab.
 	 */
@@ -82,11 +93,11 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$assocId = Request::getUserVar('assocId');
 		$this->validate($assocId);
 		$this->setupTemplate(true);
-		
+
 		// Get the file in question to get the monograph Id
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($assocId);
-		
+
 		// Get all monograph file events
 		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
 		$fileEvents =& $monographEventLogDao->getMonographLogEntriesByAssoc($monographFile->getMonographId(), ASSOC_TYPE_MONOGRAPH_FILE, $assocId);
@@ -101,7 +112,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 */
 	function _logEvent ($assocId, $eventType, $userId) {
 		assert(!empty($assocId) && !empty($eventType) && !empty($userId));
-		
+
 		// Get the log event message
 		switch($eventType) {
 			case MONOGRAPH_LOG_NOTE_POSTED:
@@ -111,11 +122,11 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 				$logMessage = 'informationCenter.history.messageSent';
 				break;
 		}
-		
+
 		// Get the file in question to get the monograph Id
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($assocId);
-		
+
 		$entry = new MonographEventLogEntry();
 		$entry->setMonographId($monographFile->getMonographId());
 		$entry->setUserId($userId);
@@ -128,6 +139,6 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		import('classes.monograph.log.MonographLog');
 		MonographLog::logEventEntry($monographFile->getMonographId(), $entry);
 	}
-	
+
 }
 ?>

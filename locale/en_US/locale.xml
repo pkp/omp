@@ -135,6 +135,7 @@
 	<message key="submission.externalPeerReview">External Peer Review</message>
 	<message key="submissions.series">Series</message>
 	<message key="submissions.queuedReview">In Review</message>
+	<message key="submissions.addRevision">Add Revision</message>
 	<message key="reviewer.completedReviews">Done</message>
 
 	<message key="manager.series.reviewed">Peer Reviewed</message>

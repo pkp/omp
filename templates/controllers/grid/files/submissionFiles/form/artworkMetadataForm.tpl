@@ -1,5 +1,5 @@
 {**
- * fileInfo.tpl
+ * artworkMetadataForm.tpl
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -8,13 +8,13 @@
  *
  * $Id$
  *}
+{assign var='randomId' value=1|rand:99999}
 
 <script type="text/javascript">
 	{literal}
 	$(function() {
-		$('#fileUploadTabs-').attr("id","fileUploadTabs-{/literal}{$fileId}{literal}"); // Rename container to use unique id (necessary to prevent caching)
 		$('.button').button();
-		$('#metadataForm-{/literal}{$fileId}{literal}').ajaxForm({
+		$('#metadataForm-{/literal}{$randomId}{literal}').ajaxForm({
 			dataType: 'json',
 	        success: function(returnString) {
 	    		if (returnString.status == true) {
@@ -22,12 +22,12 @@
 		    		if(returnString.isEditing) { // User was editing existing item, save and close
 			    		saveAndUpdate('{/literal}{url router=$smarty.const.ROUTE_COMPONENT op="returnFileRow" monographId=$monographId fileId=$fileId escape=false}{literal}',
 			    				'replace',
-			    				'component-'+'{/literal}{$gridId}{literal}'+'-row-'+'{/literal}{$fileId}{literal}',
-        						'#fileUploadTabs-{/literal}{$fileId}{literal}');
+			    				'#component-'+'{/literal}{$gridId}{literal}'+'-row-'+'{/literal}{$fileId}{literal}',
+        						'div#fileUploadTabs');
 		    		} else {
-			    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('url', 2, returnString.finishingUpUrl);
-			    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('enable', 2);
-			    		$('#fileUploadTabs-{/literal}{$fileId}{literal}').tabs('select', 2);
+			    		$('div#fileUploadTabs').last().tabs('url', 2, returnString.finishingUpUrl);
+			    		$('div#fileUploadTabs').last().tabs('enable', 2);
+			    		$('div#fileUploadTabs').last().tabs('select', 2);
 		    		}
 	    		} else {
 
@@ -36,29 +36,23 @@
 	    });
 
 		// Set cancel/continue button behaviors
-		$("#continueButton2-{/literal}{$fileId}{literal}").click(function() {
-			validator = $('#metadataForm-{/literal}{$fileId}{literal}').validate();
-			if($('#metadataForm-{/literal}{$fileId}{literal}').valid()) {
-				$('#metadataForm-{/literal}{$fileId}{literal}').submit();   // Hands off further actions to the ajaxForm function above
+		$("#continueButton2-{/literal}{$randomId}{literal}").click(function() {
+			validator = $('#metadataForm-{/literal}{$randomId}{literal}').validate();
+			if($('#metadataForm-{/literal}{$randomId}{literal}').valid()) {
+				$('#metadataForm-{/literal}{$randomId}{literal}').submit();   // Hands off further actions to the ajaxForm function above
 			}
 			validator = null;
 		});
-		$("#cancelButton2-{/literal}{$fileId}{literal}").click(function() {
-			//  The user has cancelled the modal without filling out the metadata form
-			deleteUrl = '{/literal}{url router=$smarty.const.ROUTE_COMPONENT op="deleteFile" fileId=$fileId}{literal}';
-			newFile = $('#newFile').val();
-			if(newFile != "") {
-				$.post(deleteUrl);
-			}
-
-			$('#fileUploadTabs-{/literal}{$fileId}{literal}').parent().dialog('close');
+		$("#cancelButton2-{/literal}{$randomId}{literal}").click(function() {
+			$('div#fileUploadTabs').last().parent().dialog('close');
+			return false;
 		});
 	});
 	{/literal}
 </script>
 
 
-<form name="metadataForm-{$fileId}" id="metadataForm-{$fileId}" action="{url op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
+<form name="metadataForm-{$randomId}" id="metadataForm-{$fileId}" action="{url op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
 
 <h3>{translate key='submission.artworkFileDetails'}</h3>
 
@@ -173,8 +167,8 @@
 
 {fbvFormArea id="buttons"}
 	{fbvFormSection}
-		{fbvButton id="cancelButton2-$fileId" label="common.cancel" float=$fbvStyles.float.LEFT}
-		{fbvButton id="continueButton2-$fileId" label="common.continue" float=$fbvStyles.float.RIGHT}
+		{fbvLink id="cancelButton2-$randomId" label="common.cancel"}
+		{fbvButton id="continueButton2-$randomId" label="common.continue" align=$fbvStyles.align.RIGHT}
 	{/fbvFormSection}
 {/fbvFormArea}
 

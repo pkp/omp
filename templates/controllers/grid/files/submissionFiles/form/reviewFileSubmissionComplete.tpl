@@ -17,7 +17,7 @@
     		saveAndUpdate('{/literal}{url component="grid.files.submissionFiles.SubmissionReviewFilesGridHandler" op="returnFileRow" monographId=$monographId fileId=$fileId isSelectable=1 escape=false}{literal}',
     	    		'append',
     	    		'component-reviewFilesSelect-table > tbody:first',
-    	    		'#fileUploadTabs-{/literal}{$fileId}{literal}', true);
+    	    		'div#fileUploadTabs ', true);
 		});
 
 		// On exit button click, return row and close modal
@@ -25,7 +25,7 @@
     		saveAndUpdate('{/literal}{url component="grid.files.submissionFiles.SubmissionReviewFilesGridHandler" op="returnFileRow" monographId=$monographId fileId=$fileId isSelectable=1 escape=false}{literal}',
     	    		'append',
     	    		'component-reviewFilesSelect-table > tbody:first',
-    	    		'#fileUploadTabs-{/literal}{$fileId}{literal}');
+    	    		'div#fileUploadTabs');
 		});
 	});
 	{/literal}

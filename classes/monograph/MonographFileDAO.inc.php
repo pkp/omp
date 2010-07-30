@@ -217,7 +217,9 @@ class MonographFileDAO extends DAO {
 
 		$result =& $this->retrieve(
 			'SELECT * FROM monograph_files
-			WHERE monograph_id = ?'.$sqlExtra, $sqlParams
+			WHERE monograph_id = ?' . $sqlExtra .
+			'ORDER BY file_id, revision ASC',
+			$sqlParams
 		);
 
 		while (!$result->EOF) {
@@ -395,6 +397,18 @@ class MonographFileDAO extends DAO {
 
 		$this->updateLocaleFields($monographFile);
 		return $monographFile->getFileId();
+	}
+
+	/**
+	 * Set a file as the latest revision of an existing file
+	 * @param $newFileId int
+	 * @param $oldFileId int
+	 */
+	function setAsLatestRevision($newFileId, $oldFileId) {
+		$revision = $this->getRevisionNumber($oldFileId) +1;
+		return $this->update(
+			'UPDATE monograph_files SET file_id = ?, revision = ? WHERE file_id = ?', array($oldFileId, $revision, $newFileId)
+		);
 	}
 
 	/**

@@ -71,20 +71,22 @@ class MonographFileManager extends FileManager {
 	 * Upload a book file.
 	 * @param $fileName string the name of the file used in the POST form
 	 * @param $typeId int book file type
+	 * @param $fileId int
 	 * @return int file ID, is false if failure
 	 */
-	function uploadBookFile($fileName, $typeId) {
-		return $this->handleUpload($fileName, MONOGRAPH_BOOKFILE_UPLOAD, null, false, $typeId);
+	function uploadBookFile($fileName, $typeId, $fileId = null) {
+		return $this->handleUpload($fileName, MONOGRAPH_BOOKFILE_UPLOAD, $fileId, false, $typeId);
 	}
 
 	/**
 	 * Upload an artwork file.
 	 * @param $fileName string the name of the file used in the POST form
 	 * @param $typeId int book file type
+	 * @param $fileId int
 	 * @return int file ID, is false if failure
 	 */
-	function uploadArtworkFile($fileName, $typeId) {
-		return $this->handleUpload($fileName, MONOGRAPH_ARTWORK_UPLOAD, null, false, $typeId);
+	function uploadArtworkFile($fileName, $typeId, $fileId = null) {
+		return $this->handleUpload($fileName, MONOGRAPH_ARTWORK_UPLOAD, $fileId, false, $typeId);
 	}
 
 	/**

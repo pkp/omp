@@ -88,8 +88,10 @@
 	<message key="submission.submit.form.authorRequiredFields">The first name, last name, and email address of each author is required.</message>
 	<message key="submission.submit.form.titleRequired">Please enter the title of your monograph.</message>
 	<message key="submission.submit.form.abstractRequired">Please enter the abstract of your monograph.</message>
+	<message key="submission.submit.currentFile">Current file</message>
 	<message key="submission.submit.selectFile">Select File</message>
 	<message key="submission.submit.submissionFile">Submission File</message>
+	<message key="submission.submit.uploadRevision">Upload revision</message>
 	<message key="submission.submit.uploadSubmissionFile">Upload submission file</message>
 	<message key="submission.submit.replaceSubmissionFile">Replace submission file</message>
 	<message key="submission.submit.noSubmissionFile">No submission file uploaded.</message>
@@ -131,4 +133,9 @@
 	<message key="submission.submit.newFile">Upload Another File For This Submission</message>
 	<message key="submission.submit.finishedUploading">Uploading Complete</message>
 	<message key="submission.submit.currentContributors">Current Contributors</message>
+
+	<message key="submission.upload.possibleRevision">Possible Revision Detected</message>
+	<message key="submission.upload.possibleRevisionDescription">It looks like you may be trying to upload a revision to an existing file. Is this the case?</message>
+	<message key="submission.upload.possibleRevisionConfirm">Yes, this is a revision</message>
+	<message key="submission.upload.possibleRevisionDeny">No, this is a new file</message>
 </locale>
