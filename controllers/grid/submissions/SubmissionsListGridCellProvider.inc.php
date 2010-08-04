@@ -32,6 +32,35 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 		return '';
 	}
 
+
+	/**
+	 * Get cell actions associated with this row/column combination
+	 * @param $row GridRow
+	 * @param $column GridColumn
+	 * @return array an array of LinkAction instances
+	 */
+	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
+		if ( $column->getId() == 'title' ) {
+			$monograph =& $row->getData();
+			$router =& $request->getRouter();
+			$dispatcher =& $router->getDispatcher();
+
+			$title = $monograph->getLocalizedTitle();
+			if ( empty($title) ) $title = Locale::translate('common.untitled');
+
+			$action =& new LinkAction(
+							'details',
+							LINK_ACTION_MODE_LINK,
+							LINK_ACTION_TYPE_NOTHING,
+							$dispatcher->url($request, ROUTE_PAGE, null, 'submission', 'details', $monograph->getId()),
+							null,
+							$title
+						);
+			return array($action);
+		}
+		return parent::getCellActions($request, $row, $column, $position);
+	}
+
 	//
 	// Template methods from GridCellProvider
 	//

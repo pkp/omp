@@ -17,6 +17,7 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 
 // import submission files grid specific classes
 import('controllers.grid.files.submissionFiles.SubmissionFilesGridRow');
+import('controllers.grid.files.submissionFiles.SubmissionFilesGridCellProvider');
 
 class SubmissionFilesGridHandler extends GridHandler {
 	var $_monographId;
@@ -30,7 +31,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'addFile', 'addRevision', 'editFile', 'displayFileForm', 'uploadFile',
 				'confirmRevision', 'deleteFile', 'editMetadata', 'saveMetadata', 'finishFileSubmission',
-				'returnFileRow', 'viewFile'));
+				'returnFileRow', 'downloadFile'));
 	}
 
 	//
@@ -66,19 +67,11 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$rowData = array();
 
 		// Load in book files
-		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFiles =& $monographFileDao->getByMonographId($this->_monographId);
-
 		foreach ($monographFiles as $monographFile) {
-			$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
-			$fileName = $monographFile->getLocalizedName() != '' ? $monographFile->getLocalizedName() : Locale::translate('common.untitled');
-			if ($monographFile->getRevision() > 1) $fileName .= ' (' . $monographFile->getRevision() . ')'; // Add revision number to label
-			$monographFileId = $monographFile->getFileId();
-			$rowData[$monographFileId] = array('name' => $fileName, 'type' => $fileType->getLocalizedName());
+			$rowData[$monographFile->getFileId()] = $monographFile;
 		}
-
-
 		$this->setData($rowData);
 
 		// Add grid-level actions
@@ -94,8 +87,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 		);
 
 		// Columns
-		$this->addColumn(new GridColumn('name',	'common.name', null, 'controllers/grid/gridCell.tpl'));
-		$this->addColumn(new GridColumn('type', 'common.type', null));
+		$cellProvider = new SubmissionFilesGridCellProvider();
+		$this->addColumn(new GridColumn('name',	'common.name', null, 'controllers/grid/gridCell.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('type', 'common.type', null, 'controllers/grid/gridCell.tpl', $cellProvider));
 	}
 
 	//
@@ -412,14 +406,14 @@ class SubmissionFilesGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Display an artwork file
+	 * Download a file
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function viewFile(&$args, &$request) {
+	function downloadFile(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
 		import('classes.submission.common.Action');
-		Action::viewFile($monographId, $request->getUserVar('fileId'));
+		Action::downloadFile($monographId, $request->getUserVar('fileId'));
 	}
 }
