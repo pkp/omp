@@ -70,13 +70,20 @@ class ReviewReminderForm extends Form {
 
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'REVIEW_REMIND');
+
+		// Format the review due date
+		$reviewDueDate = strtotime($reviewAssignment->getDateDue());
+		$dateFormatShort = Config::getVar('general', 'date_format_short');
+		if ($reviewDueDate == -1) $reviewDueDate = $dateFormatShort; // Default to something human-readable if no date specified
+		else $reviewDueDate = strftime($dateFormatShort, $reviewDueDate);
+
 		$paramArray = array(
-					'reviewerName' => $reviewer->getFullName(),
-					'reviewDueDate' => strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDateDue())),
-					'editorialContactSignature' => $user->getContactSignature(),
-					'passwordResetUrl' => Request::url(null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId()))),
-					'submissionReviewUrl' => Request::url(null, 'reviewer', 'submission', $reviewAssignment->getId())
-				);
+			'reviewerName' => $reviewer->getFullName(),
+			'reviewDueDate' => $reviewDueDate,
+			'editorialContactSignature' => $user->getContactSignature(),
+			'passwordResetUrl' => Request::url(null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId()))),
+			'submissionReviewUrl' => Request::url(null, 'reviewer', 'submission', $reviewAssignment->getId())
+		);
 		$email->assignParams($paramArray);
 
 		$this->_data = array(
