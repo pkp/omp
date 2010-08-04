@@ -24,8 +24,6 @@ class SubmissionSubmitStep2Form extends SubmissionSubmitForm {
 	 */
 	function SubmissionSubmitStep2Form($monograph) {
 		parent::SubmissionSubmitForm($monograph, 2);
-
-		// Validation checks for this form
 	}
 
 	/**

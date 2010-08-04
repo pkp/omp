@@ -35,7 +35,8 @@
 		    		$('div#fileUploadTabs').last().tabs('url', 0, returnString.fileFormUrl);
 		    		$('div#fileUploadTabs').last().tabs('url', 1, returnString.metadataUrl);
 		    		$('#deleteUrl-{/literal}{$randomId}{literal}').val(returnString.deleteUrl);
-		  			$('#continueButton-{/literal}{$randomId}{literal}').button( "option", "disabled", false );
+		    		$('#uploadButton-{/literal}{$randomId}{literal}').button("option", "disabled", true);
+					$('#continueButton-{/literal}{$randomId}{literal}').button( "option", "disabled", false);
 		    		$('div#fileUploadTabs').last().tabs('enable', 1);
 
 		    		// If the file name is similar to an existing filename, show the possible revision control
@@ -103,7 +104,7 @@
 			<div class="fileInputContainer">
 				<input type="file" id="submissionFile" name="submissionFile" />
 			</div>
-			<input type="submit" name="submitFile" value="{translate key="common.upload"}" class="button" />
+			<input type="submit" id="uploadButton-{$randomId}" name="submitFile" value="{translate key="common.upload"}" class="button" />
 		{/fbvFormSection}
 	{/fbvFormArea}
 	<div id="uploadOutput-{$randomId}">

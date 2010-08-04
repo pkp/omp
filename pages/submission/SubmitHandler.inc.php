@@ -76,7 +76,7 @@ class SubmitHandler extends SubmissionHandler {
 				$templateMgr->assign('canExpedite', true);
 			}
 
-			$templateMgr->assign('monographId', $monographId);
+			$templateMgr->assign('monographId', $monograph->getId());
 			$templateMgr->assign('submitStep', $step);
 			$templateMgr->assign('submissionProgress', $monograph->getSubmissionProgress());
 

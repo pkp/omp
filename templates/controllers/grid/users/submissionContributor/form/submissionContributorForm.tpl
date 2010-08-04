@@ -7,31 +7,35 @@
  * Submission Contributor grid form
  *
  *}
-<form name="editSubmissionContributorForm" id="editSubmissionContributor" method="post" action="{url op="updateSubmissionContributor" submissionContributorId=$authorId}">
+
+{assign var='randomId' value=1|rand:99999}
+{modal_title id="#editSubmissionContributor-$randomId" key="grid.action.addAuthor" iconClass="fileManagement" canClose=1}
+
+<form name="editSubmissionContributorForm" id="editSubmissionContributor-{$randomId}" method="post" action="{url op="updateSubmissionContributor" submissionContributorId=$authorId}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="profile"}
-	{fbvFormSection title="user.name" layout=$fbvStyles.layout.THREE_COLUMN}
+	{fbvFormSection title="user.name"}
 		{fbvElement type="text" label="user.firstName" id="firstName" value=$firstName|escape maxlength="40" size=$fbvStyles.size.MEDIUM}
 		{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName|escape maxlength="40" size=$fbvStyles.size.MEDIUM}
 		{fbvElement type="text" label="user.lastName" id="lastName" value=$lastName|escape maxlength="40" size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
-	{fbvFormSection title="about.contact" layout=$fbvStyles.layout.TWO_COLUMN}
+	{fbvFormSection title="about.contact"}
 		{fbvElement type="text" label="user.email" id="email" value=$email|escape maxlength="90" size=$fbvStyles.size.MEDIUM}
 		{fbvElement type="text" label="user.url" id="url" value=$url|escape maxlength="90" size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
-	{fbvFormSection title="common.other" layout=$fbvStyles.layout.TWO_COLUMN}
+	{fbvFormSection title="common.other"}
 		{fbvElement type="text" label="user.affiliation" id="affiliation" value=$affiliation|escape maxlength="40" size=$fbvStyles.size.MEDIUM}
 		{fbvElement type="select" label="common.country" id="country" from=$countries selected=$country translate=false}
 	{/fbvFormSection}
 	<div style="width:550px;">
-	{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvFormSection}
 		{fbvElement type="textArea" label="user.biography" id="biography" value=$biography|escape size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
 	</div>
 {/fbvFormArea}
 {fbvFormArea id="submissionSpecific"}
-	{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvFormSection}
 		{fbvElement type="select" label="author.users.contributor.role" id="userGroupId" from=$authorUserGroups selected=$authorUserGroups translate=false}
 		{fbvElement type="checkbox" label="submission.submit.selectPrincipalContact" id="primaryContact" checked=$primaryContact}
 	{/fbvFormSection}
@@ -47,3 +51,11 @@
 	<input type="hidden" name="rowId" value={$rowId|escape} />
 {/if}
 </form>
+
+{init_button_bar id="#editSubmissionContributor-$randomId" cancelId="#cancelButton-$randomId" submitId="#okButton-$randomId"}
+{fbvFormArea id="buttons"}
+    {fbvFormSection}
+        {fbvLink id="cancelButton-$randomId" label="common.cancel"}
+        {fbvButton id="okButton-$randomId" label="common.ok" align=$fbvStyles.align.RIGHT}
+    {/fbvFormSection}
+{/fbvFormArea}

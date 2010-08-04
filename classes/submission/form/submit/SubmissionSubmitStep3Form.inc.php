@@ -29,17 +29,6 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'submission.submit.form.titleRequired'));
-		//FIXME: abstract optional as a Series setting?
-//		$this->addCheck(new FormValidatorLocale($this, 'abstract', 'required', 'submission.submit.form.abstractRequired'));
-
-		// FIXME: No abstract word count implemented--Should there be?
-//		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
-//		$series = $seriesDao->getById($monograph->getSeriesId());
-//		$abstractWordCount = $series->getAbstractWordCount();
-//		if (isset($abstractWordCount) && $abstractWordCount > 0) {
-//			$this->addCheck(new FormValidatorCustom($this, 'abstract', 'required', 'submission.submit.form.wordCountAlert', create_function('$abstract, $wordCount', 'foreach ($abstract as $localizedAbstract) {return count(explode(" ",$localizedAbstract)) < $wordCount; }'), array($abstractWordCount)));
-//		}
-
 	}
 
 	/**
@@ -76,23 +65,11 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	function readInputData() {
 		$this->readUserVars(
 			array(
-				'authors',
-				'deletedAuthors',
-				'primaryContact',
 				'title',
 				'abstract',
-				'discipline',
-				'subjectClass',
 				'disciplinesKeywords',
 				'keywordKeywords',
 				'agenciesKeywords',
-				'coverageGeo',
-				'coverageChron',
-				'coverageSample',
-				'type',
-				'language',
-				'sponsor',
-				'citations'
 			)
 		);
 
@@ -107,7 +84,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	 * @return array
 	 */
 	function getLocaleFieldNames() {
-		return array('title', 'abstract', 'subjectClass', 'subject', 'coverageGeo', 'coverageChron', 'coverageSample', 'type', 'sponsor');
+		return array('title', 'abstract');
 	}
 
 	/**
@@ -118,8 +95,11 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
+		$monograph = $this->monograph;
+
 		$templateMgr->assign_by_ref('countries', $countries);
 		$templateMgr->assign('monographId', $this->monographId);
+		$templateMgr->assign('isEditedVolume', $monograph->getEditedVolume());
 
 		if (Request::getUserVar('addAuthor') || Request::getUserVar('delAuthor')  || Request::getUserVar('moveAuthor')) {
 			$templateMgr->assign('scrollToAuthor', true);
@@ -140,19 +120,11 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 		$monograph =& $this->monograph;
 		$monograph->setTitle($this->getData('title'), null); // Localized
 		$monograph->setAbstract($this->getData('abstract'), null); // Localized
-		
+
 		$monograph->setSupportingAgencies(implode(", ", $this->getData('agenciesKeywords')), null); // Localized
 		$monograph->setDiscipline(implode(", ", $this->getData('disciplinesKeywords')), null); // Localized
 		$monograph->setSubject(implode(", ",$this->getData('keywordKeywords')), null); // Localized
-		// $monograph->setSubjectClass($this->getData('subjectClass'), null); // Localized -- FIXME: Unused?
-		
-		$monograph->setCoverageGeo($this->getData('coverageGeo'), null); // Localized
-		$monograph->setCoverageChron($this->getData('coverageChron'), null); // Localized
-		$monograph->setCoverageSample($this->getData('coverageSample'), null); // Localized
-		$monograph->setType($this->getData('type'), null); // Localized
-		$monograph->setLanguage($this->getData('language'));
-		$monograph->setSponsor($this->getData('sponsor'), null); // Localized
-		$monograph->setCitations($this->getData('citations'));
+
 		if ($monograph->getSubmissionProgress() <= $this->step) {
 			$monograph->setDateSubmitted(Core::getCurrentDate());
 			$monograph->stampStatusModified();

@@ -29,7 +29,7 @@ class SubmissionFilesGridCellProvider extends DataObjectGridCellProvider {
 	 * @return array an array of LinkAction instances
 	 */
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
-		if ( $column->getId() == 'name' ) {
+		if ($column->getId() == 'name') {
 			$monographFile =& $row->getData();
 			$router =& $request->getRouter();
 			$dispatcher =& $router->getDispatcher();
@@ -80,7 +80,7 @@ class SubmissionFilesGridCellProvider extends DataObjectGridCellProvider {
 			case 'type':
 				$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 				$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
-				return array('label' => $fileType);
+				return array('label' => $fileType->getLocalizedName());
 				break;
 		}
 	}

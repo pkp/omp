@@ -52,7 +52,7 @@
 </script>
 
 
-<form name="metadataForm-{$randomId}" id="metadataForm-{$fileId}" action="{url op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
+<form name="metadataForm-{$randomId}" id="metadataForm-{$randomId}" action="{url op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
 
 <h3>{translate key='submission.artworkFileDetails'}</h3>
 

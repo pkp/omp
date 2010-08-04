@@ -361,18 +361,12 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
-		$monographId = $monographFile->getMonographId();
 
 		if($monographFile) {
-			$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
-			$fileName = $monographFile->getLocalizedName() != '' ? $monographFile->getLocalizedName() : Locale::translate('common.untitled');
-			if ($monographFile->getRevision() > 1) $fileName .= ' (' . $monographFile->getRevision() . ')'; // Add revision number to label
-
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
-			$row->setId($monographFile->getFileId());
-			$rowData = array('name' => $fileName, 'type' => $fileType->getLocalizedName());
-			$row->setData($rowData);
+			$row->setId($fileId);
+			$row->setData($monographFile);
 			$row->initialize($request);
 
 			$json = new JSON('true', $this->_renderRowInternally($request, $row));

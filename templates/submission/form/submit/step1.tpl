@@ -22,7 +22,7 @@
 <h3>{translate key="submission.workType"}</h3>
 
 {fbvFormArea id="submissionType"}
-	{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvFormSection}
 	<p>{translate key="submission.workType.description"}</p>
 	{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-0" value="0" checked=$isEditedVolume label="submission.workType.editedVolume"}
 	{if $isEditedVolume}{assign var=notIsEditedVolume value=0}{else}{assign var=notIsEditedVolume value=1}{/if}
@@ -40,7 +40,7 @@
 	{* There are several submission locales available; allow choice *}
 	<h3>{translate key="submission.submit.submissionLocale"}</h3>
 	<p>{translate key="submission.submit.submissionLocaleDescription"}</p>
- 
+
 	{fbvFormArea id="submissionLocale"}
 		{fbvFormSection}
 			{fbvElement type="select" id="locale" from=$supportedSubmissionLocaleNames selected=$locale translate=false}
@@ -85,7 +85,7 @@
 	<div id="messageBox"></div>
 
 	{fbvFormArea id="checklist"}
-	{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvFormSection}
 	<p>{translate key="submission.submit.submissionChecklistDescription"}</p>
 	{foreach name=checklist from=$currentPress->getLocalizedSetting('submissionChecklist') key=checklistId item=checklistItem}
 		{if $checklistItem.content}
@@ -103,7 +103,7 @@
 
 {fbvFormArea id="commentsToEditorContainer"}
 	{fbvFormSection for="commentsToEditor"}
-	{fbvElement type="textarea" name="commentsToEditor" id="commentsToEditor" size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{fbvElement type="textarea" name="commentsToEditor" id="commentsToEditor" value=$commentsToEditor size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 	{/fbvFormSection}
 {/fbvFormArea}
 

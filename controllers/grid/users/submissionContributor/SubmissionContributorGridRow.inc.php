@@ -65,7 +65,8 @@ class SubmissionContributorGridRow extends GridRow {
 					$router->url($request, null, null, 'deleteSubmissionContributor', null, $actionArgs),
 					'grid.action.delete',
 					null,
-					'delete'
+					'delete',
+					Locale::translate('common.confirmDelete')
 				)
 			);
 
