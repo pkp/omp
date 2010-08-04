@@ -17,7 +17,6 @@
  * @brief Class for a Monograph.
  */
 
-// $Id$
 
 // Submission status constants
 define('STATUS_ARCHIVED', 0);
@@ -47,6 +46,12 @@ class Monograph extends Submission {
 		parent::Submission();
  	}
 
+	/**
+	 * @see Submission::getAssocType()
+	 */
+	function getAssocType() {
+		return ASSOC_TYPE_MONOGRAPH;
+	}
 
 	/**
 	 * Set the submitter user group Id
