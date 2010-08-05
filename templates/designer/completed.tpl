@@ -47,7 +47,7 @@
 	<tr><td colspan="7" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
 		<td width="5%">{translate key="common.id"}</td>
-		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="common.assign"}</td>
+		<td width="5%"><span class="disabled">{translate key="submission.date.mmdd"}</span><br />{translate key="common.assign"}</td>
 		<td width="5%">{translate key="submissions.series"}</td>
 		<td width="25%">{translate key="monograph.authors"}</td>
 		<td width="30%">{translate key="monograph.title"}</td>

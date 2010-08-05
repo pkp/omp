@@ -13,7 +13,7 @@
 	<tr><td class="headseparator" colspan="{if $statViews}7{else}6{/if}">&nbsp;</td></tr>
 	<tr valign="bottom" class="heading">
 		<td width="5%">{translate key="common.id"}</td>
-		<td width="5%"><span class="disabled">MM-DD</span><br />{translate key="submissions.submit"}</td>
+		<td width="5%"><span class="disabled">{translate key="submission.date.mmdd"}</span><br />{translate key="submissions.submit"}</td>
 		<td width="5%">{translate key="submissions.series"}</td>
 		<td width="23%">{translate key="monograph.authors"}</td>
 		<td width="32%">{translate key="monograph.title"}</td>
