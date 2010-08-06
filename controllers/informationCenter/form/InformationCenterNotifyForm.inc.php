@@ -18,17 +18,24 @@
 import('lib.pkp.classes.form.Form');
 
 class InformationCenterNotifyForm extends Form {
-	/** @var int The file this form is for */
-	var $fileId;
+	/** @var int The file/monograph ID this form is for */
+	var $itemId;
+
+	/** @var int The type of item the form is for (used to determine which email template to use) */
+	var $itemType;
 
 	/**
 	 * Constructor.
 	 */
-	function InformationCenterNotifyForm($fileId) {
+	function InformationCenterNotifyForm($itemId, $itemType) {
 		parent::Form('controllers/informationCenter/notify.tpl');
-		$this->fileId = $fileId;
-		
+		$this->itemId = $itemId;
+		$this->itemType = $itemType;
+
 		$this->addCheck(new FormValidatorPost($this));
+		$this->addCheck(new FormValidator($this, 'message', 'required', 'common.required'));
+		$this->addCheck(new FormValidator($this, 'message', 'required', 'common.required'));
+		$this->addCheck(new FormValidatorArray($this, 'selected-listbuilder-users-notifyuserslistbuilder', 'required', 'common.required'));
 	}
 
 	/**
@@ -36,7 +43,15 @@ class InformationCenterNotifyForm extends Form {
 	 */
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign_by_ref('fileId', $this->fileId);
+		if($this->itemType == ASSOC_TYPE_MONOGRAPH) {
+			$monographId = $this->itemId;
+		} else {
+			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+			$monographFile =& $monographFileDao->getMonographFile($this->itemId);
+			$monographId = $monographFile->getMonographId();
+		}
+		$templateMgr->assign_by_ref('monographId', $monographId);
+		$templateMgr->assign_by_ref('itemId', $this->itemId);
 
 		return parent::fetch($request);
 	}
@@ -46,7 +61,7 @@ class InformationCenterNotifyForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array(
-			'note'
+			'message', 'selected-listbuilder-users-notifyuserslistbuilder'
 		));
 
 	}
@@ -55,8 +70,43 @@ class InformationCenterNotifyForm extends Form {
 	 * Register a new user.
 	 * @return userId int
 	 */
-	function execute() {
-		//FIXME: SEND NOTIFICATION
+	function execute(&$request) {
+		$user =& $request->getUser();
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$router =& $request->getRouter();
+		$dispatcher =& $router->getDispatcher();
+
+		$paramArray = array('sender' => $user->getFullName(),
+				'monographDetailsUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'submission', 'details', $this->itemId),
+				'message' => $this->getData('message')
+			);
+
+		switch ($this->itemType) {
+			case ASSOC_TYPE_MONOGRAPH_FILE:
+				$emailTemplate = 'NOTIFY_FILE';
+
+				$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+				$monographFile =& $monographFileDao->getMonographFile($this->itemId);
+				$monographId = $monographFile->getMonographId();
+				$paramArray['fileName'] = $monographFile->getLocalizedName();
+				break;
+			default:
+				$emailTemplate = 'NOTIFY_SUBMISSION';
+				$monographId = $this->itemId;
+				break;
+		}
+
+		import('classes.mail.MonographMailTemplate');
+		$email = new MonographMailTemplate($monographDao->getMonograph($monographId), $emailTemplate);
+		$email->assignParams($paramArray);
+
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		foreach($this->getData('selected-listbuilder-users-notifyuserslistbuilder') as $recipientId) {
+			$user =& $userDao->getUser($recipientId);
+			$email->addRecipient($user->getEmail(), $user->getFullName());
+		}
+
+		$email->send();
 	}
 }
 

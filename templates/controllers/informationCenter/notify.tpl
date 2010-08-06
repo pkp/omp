@@ -12,42 +12,37 @@
 	{literal}
 	$(function() {
 		$('.button').button();
-		$('#notifyForm').ajaxForm({
+		$('#notifyForm').last().ajaxForm({
 			dataType: 'json',
-			data: // FIXME: Need to serialize the listbuilder's grid to get the userIds to send to
 	        success: function(returnString) {
 	    		if (returnString.status == true) {
 		    		// Notify that email was sent and clear form fields
 		    		$("#notifyForm").find(':input').each(function() {
 						$(this).val('');
 			    	});
-		    		// FIXME: Display notification
+		    		$("#notifyWarning").remove();
+		    		// FIXME: Display system notification that the message was sent
 	    		} else {
-	    			var localizedButton = ['{/literal}{translate key="common.ok"}{literal}'];
-	    			modalAlert(returnString.content, localizedButton);
+	    			$("#message").last().after("<p id='notifyWarning'>"+returnString.content+"</p>");
 	    		}
 	        }
 	    });
+
 	});
 	{/literal}
 </script>
 <div id="informationCenterNotifyTab">
-	<form name="notifyForm" id="notifyForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="informationCenter.InformationCenterHandler" op="sendNotification" assocId=$assocId}" method="post">
+	<form name="notifyForm" id="notifyForm" action="{url op="sendNotification" monographId=$monographId itemId=$itemId}" method="post">
 		{fbvFormArea id="notifyFormArea"}
 			{fbvFormSection title="email.to" for="notifyUsersContainer" required="true"}
-				{url|assign:notifyUsersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.NotifyUsersListbuilderHandler" op="fetch" fileId=$fileId}
+				{url|assign:notifyUsersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.NotifyUsersListbuilderHandler" op="fetch" monographId=$monographId}
 				{load_url_in_div id="#notifyUsersContainer" url=$notifyUsersUrl}
 			{/fbvFormSection}
-			{fbvFormSection title="informationCenter.notify.template" for="template"}
-				{fbvSelect id="template" from=$notifyTemplates translate=false}
-			{/fbvFormSection}
-			{fbvFormSection title="common.subject" for="subject" required="true"}
-				{fbvElement type="text" id="subject" maxlength="255"}
-			{/fbvFormSection}
+
 			{fbvFormSection title="informationCenter.notify.message" for="supportPhone" required="true"}
-				{fbvElement type="textarea" id="message" size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+				{fbvElement type="textarea" id="message" size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.1OF1}
 			{/fbvFormSection}
-			<div style="float:right;">{fbvButton type="submit" id="notifyButton" label="common.notify" float=$fbvStyles.float.RIGHT}</div>
+			{fbvButton type="submit" id="notifyButton" label="common.notify" align=$fbvStyles.align.RIGHT}
 		{/fbvFormArea}
 	</form>
 </div>

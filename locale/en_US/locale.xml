@@ -499,6 +499,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="informationCenter.history.messageSent">Notification sent to users.</message>
 	<message key="informationCenter.notify.template">Attach Template</message>
 	<message key="informationCenter.notify.message">Message</message>
+	<message key="informationCenter.notify.selectUser">Please select users to send the message to.</message>
+	<message key="informationCenter.notify.warning">Please ensure that you have filled out the message field and selected at least one recipient.</message>
 
 
 	<!-- Registration -->

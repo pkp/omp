@@ -20,8 +20,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	 */
 	function NotifyUsersListbuilderHandler() {
 		parent::ListbuilderHandler();
-		$this->addRoleAssignment(
-				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array('fetch', 'addItem', 'deleteItems'));
 	}
 
@@ -32,11 +31,9 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		// FIXME: This list builder was not found in the permission specs.
-		// Please find out which policy applies and use it here.
 		import('classes.security.authorization.OmpWorkflowStagePolicy');
 		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
-		parent::authorize($request, $args, $roleAssignments);
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/*
@@ -62,10 +59,10 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	function fetch(&$args, &$request) {
 		$router =& $request->getRouter();
 
-		$fileId = $request->getUserVar('fileId');
-		$additionalVars = array('fileId' => $fileId,
-			'addUrl' =>  $router->url($request, array(), null, 'addItem', null, array('fileId' => $fileId)),
-			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('fileId' => $fileId))
+		$monographId = $request->getUserVar('monographId');
+		$additionalVars = array('monographId' => $monographId,
+			'addUrl' =>  $router->url($request, array(), null, 'addItem', null, array('monographId' => $monographId)),
+			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId))
 		);
 
 		return parent::fetch(&$args, &$request, $additionalVars);
@@ -124,13 +121,11 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 
 	/* Load possible items to populate drop-down list with */
 	function loadPossibleItemList(&$request) {
-		$fileId = $request->getUserVar('fileId');
+		$monographId = $request->getUserVar('monographId');
 
 		// Retrieve all users associated with the monograph to populate the drop-down list with
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($fileId);
-		$monograph =& $monographDao->getMonograph($monographFile->getMonographId());
+		$monograph =& $monographDao->getMonograph($monographId);
 		$associatedUsers = $monograph->getAssociatedUserIds(true, false);
 		$userDao =& DAORegistry::getDAO('UserDAO');
 

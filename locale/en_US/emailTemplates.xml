@@ -39,7 +39,7 @@ If you wish to stop receiving notification emails, please go to {$unsubscribeLin
 	<email_text key="NOTIFICATION_MAILLIST_WELCOME">
 		<subject>Welcome to the the {$siteTitle} mailing list!</subject>
 		<body>You have signed up to receive notifications from {$siteTitle}.
-			
+
 Please click on this link to confirm your request and add your email address to the mailing list: {$confirmLink}
 
 If you wish to stop receiving notification emails, please go to {$unsubscribeLink} and enter your email address and password.
@@ -161,7 +161,7 @@ An initial review of "{$monographTitle}" has made it clear that this submission 
 	<email_text key="SUBMISSION_DECISION_REVIEWERS">
 		<subject>Decision on "{$monographTitle}"</subject>
 		<body>As one of the reviewers for the submission, "{$monographTitle}," to {$pressName}, I am sending you the reviews and editorial decision sent to the author of this piece. Thank you again for your important contribution to this process.
- 
+
 {$editorialContactSignature}
 
 {$comments}</body>
@@ -171,7 +171,7 @@ An initial review of "{$monographTitle}" has made it clear that this submission 
 		<subject>Editorial Assignment</subject>
 		<body>{$editorialContactName}:
 
-The submission, "{$monographTitle}," to {$pressName} has been assigned to you to see through the editorial process in your role as Series Editor.  
+The submission, "{$monographTitle}," to {$pressName} has been assigned to you to see through the editorial process in your role as Series Editor.
 
 Submission URL: {$submissionUrl}
 Username: {$editorUsername}
@@ -411,7 +411,7 @@ I would ask that you undertake the copyediting of "{$monographTitle}" for {$pres
 1. Click on the Submission URL below.
 2. Log into the press and click on the File that appears in Step 1.
 3. Consult Copyediting Instructions posted on webpage.
-4. Open the downloaded file and copyedit, while adding Author Queries as needed. 
+4. Open the downloaded file and copyedit, while adding Author Queries as needed.
 5. Save copyedited file, and upload to Step 1 of Copyediting.
 6. Send the COMPLETE email to the editor.
 
@@ -429,8 +429,8 @@ Username: {$copyeditorUsername}
 We have now copyedited your submission "{$monographTitle}" for {$pressName}. To review the proposed changes and respond to Author Queries, please follow these steps:
 
 1. Log into the press using URL below with your username and password (use Forgot link if needed).
-2. Click on the file at 1. Initial Copyedit File to download and open copyedited version. 
-3. Review the copyediting, making changes using Track Changes in Word, and answer queries. 
+2. Click on the file at 1. Initial Copyedit File to download and open copyedited version.
+3. Review the copyediting, making changes using Track Changes in Word, and answer queries.
 4. Save file to desktop and upload it in 2. Author Copyedit.
 5. Click the email icon under COMPLETE and send email to the editor.
 
@@ -556,7 +556,7 @@ If you are unable to undertake this work at this time or have any questions, ple
 		<subject>Galleys Complete</subject>
 		<body>{$editorialContactName}:
 
-Galleys have now been prepared for the manuscript, "{$monographTitle}," for {$pressName} and are ready for proofreading. 
+Galleys have now been prepared for the manuscript, "{$monographTitle}," for {$pressName} and are ready for proofreading.
 
 If you have any questions, please contact me.
 
@@ -689,5 +689,23 @@ Thank you for completing the proofreading corrections for the galleys associated
 		<subject>Manuscript of Possible Interest</subject>
 		<body>Thought you might be interested in seeing "{$monographTitle}" by {$authorName} published in Vol {$volume}, No {$number} ({$year}) of {$pressName} at "{$monographUrl}".</body>
 		<description>This email template provides a registered reader with the opportunity to send information about a monograph to somebody who may be interested. It is available via the Reading Tools and must be enabled by the Press Manager in the Reading Tools Administration page.</description>
+	</email_text>
+		<email_text key="NOTIFY_SUBMISSION">
+		<subject>Submission Notification</subject>
+		<body>You have a message from {$sender} regarding "{$monographTitle}" ({$monographDetailsUrl}):
+
+		{$message}
+
+		</body>
+		<description>A notification from a user sent from a submission information center modal.</description>
+	</email_text>
+		<email_text key="NOTIFY_FILE">
+		<subject>Submission File Notification</subject>
+		<body>You have a message from {$sender} regarding the file "{$fileName}" in "{$monographTitle}" ({$monographDetailsUrl}):
+
+		{$message}
+
+		</body>
+		<description>A notification from a user sent from a file information center modal</description>
 	</email_text>
 </email_texts>

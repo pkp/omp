@@ -67,7 +67,7 @@ class SubmissionFilesGridRow extends GridRow {
 					'moreInfo',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_NOTHING,
-					$router->url($request, null, 'informationCenter.FileInformationCenterHandler', 'viewInformationCenter', null, array('assocId' => $rowId)),
+					$router->url($request, null, 'informationCenter.FileInformationCenterHandler', 'viewInformationCenter', null, array('monographId' => $monographId, 'itemId' => $rowId)),
 					'grid.action.moreInformation',
 					null,
 					'more_info'

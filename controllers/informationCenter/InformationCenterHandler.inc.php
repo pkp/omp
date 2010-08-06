@@ -22,15 +22,11 @@ class InformationCenterHandler extends Handler {
 	 */
 	function InformationCenterHandler() {
 		parent::Handler();
-		// FIXME: Please correctly distribute the operations among roles.
-		$this->addRoleAssignment(ROLE_ID_AUTHOR,
-				$authorOperations = array());
-		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT,
-				$pressAssistantOperations = array_merge($authorOperations, array()));
-		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array_merge($pressAssistantOperations,
+		// FIXME: Validate that the user can view the file
+
+		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array('viewInformationCenter', 'viewNotes', 'saveNote', 'deleteNote', 'viewNotify',
-				'sendNotification', 'viewHistory')));
+				'sendNotification', 'viewHistory'));
 	}
 
 
@@ -69,14 +65,12 @@ class InformationCenterHandler extends Handler {
 	 * Save a note.
 	 */
 	function saveNote(&$args, &$request) {
-		// FIXME: assocId and assocType should not be specified in request
-		$assocId = Request::getUserVar('assocId');
-		$assocType = Request::getUserVar('assocType');
-		$this->validate($assocId);
+		$itemId = Request::getUserVar('itemId');
+		$itemType = Request::getUserVar('itemType');
 		$this->setupTemplate(true);
 
 		import('controllers.informationCenter.form.InformationCenterNotesForm');
-		$notesForm = new InformationCenterNotesForm($assocId, $assocType);
+		$notesForm = new InformationCenterNotesForm($itemId, $itemType);
 		$notesForm->readInputData();
 
 		if ($notesForm->validate()) {
@@ -85,13 +79,13 @@ class InformationCenterHandler extends Handler {
 			// Success--Return a JSON string indicating so
 			$templateMgr =& TemplateManager::getManager();
 			$noteDao =& DAORegistry::getDAO('NoteDAO');
-			$templateMgr->assign('note', $noteDao->getNoteById($noteId));
+			$templateMgr->assign('note', $noteDao->getById($noteId));
 			$json = new JSON('true', $templateMgr->fetch('controllers/informationCenter/note.tpl'), 'false', $noteId);
 
 			// Save to event log
 			$user =& $request->getUser();
 			$userId = $user->getId();
-			$this->_logEvent($assocId, MONOGRAPH_LOG_NOTE_POSTED, $userId);
+			$this->_logEvent($itemId, MONOGRAPH_LOG_NOTE_POSTED, $userId);
 		} else {
 			// Failure--Return a JSON string indicating so
 			$json = new JSON('false');
@@ -105,8 +99,7 @@ class InformationCenterHandler extends Handler {
 	 */
 	function deleteNote(&$args, &$request) {
 		$noteId = Request::getUserVar('noteId');
-		$assocId = Request::getUserVar('assocId');
-		$this->validate($assocId);
+		$itemId = Request::getUserVar('itemId');
 
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$noteDao->deleteById($noteId);
@@ -121,42 +114,15 @@ class InformationCenterHandler extends Handler {
 	 * Display the notify tab.
 	 */
 	function viewNotify (&$args, &$request) {
-		$assocId = Request::getUserVar('assocId');
-		$this->validate($assocId);
-		$this->setupTemplate(true);
-
-		import('controllers.informationCenter.form.InformationCenterNotifyForm');
-		$notifyForm = new InformationCenterNotifyForm($assocId);
-		$notifyForm->initData();
-
-		$json = new JSON('true', $notifyForm->fetch($request));
-		return $json->getString();
+		assert(false);
 	}
 
 	/**
 	 * Send a notification from the notify tab.
+	 * NB: sub-classes must implement this method.
 	 */
 	function sendNotification (&$args, &$request) {
-		$assocId = Request::getUserVar('assocId');
-		$this->validate($assocId);
-		$this->setupTemplate(true);
-
-
-		import('controllers.informationCenter.form.InformationCenterNotifyForm');
-		$notifyForm = new InformationCenterNotifyForm($assocId);
-		$notifyForm->readInputData();
-
-		if ($notifyForm->validate()) {
-			$noteId = $notifyForm->execute();
-
-			// Success--Return a JSON string indicating so (will clear the form on return, and indicate success)
-			$json = new JSON('true');
-		} else {
-			// Failure--Return a JSON string indicating so
-			$json = new JSON('false');
-		}
-
-		return $json->getString();
+		assert(false);
 	}
 
 	/**
@@ -171,23 +137,8 @@ class InformationCenterHandler extends Handler {
 	 * Log an event for this item.
 	 * NB: sub-classes must implement this method.
 	 */
-	function _logEvent ($assocId, $eventType, $userId) {
+	function _logEvent ($itemId, $eventType, $userId) {
 		assert('false');
-	}
-
-	//
-	// Validation
-	//
-
-	/**
-	 * Validate that the user is the authorized to view the file.
-	 */
-	function validate($assocId) {
-		parent::validate();
-
-		// FIXME: Implement validation
-
-		return true;
 	}
 }
 ?>

@@ -16,21 +16,21 @@
 import('lib.pkp.classes.form.Form');
 
 class InformationCenterNotesForm extends Form {
+	/** @var int The file/submission this form is for */
+	var $itemId;
+
 	/** @var int The file this form is for */
-	var $assocId;
-	
-	/** @var int The file this form is for */
-	var $assocType;
+	var $itemType;
 
 	/**
 	 * Constructor.
 	 */
-	function InformationCenterNotesForm($assocId, $assocType) {
+	function InformationCenterNotesForm($itemId, $itemType) {
 		parent::Form('controllers/informationCenter/notes.tpl');
-		
-		$this->assocId = $assocId;
-		$this->assocType = $assocType;
-		
+
+		$this->itemId = $itemId;
+		$this->itemType = $itemType;
+
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -41,12 +41,20 @@ class InformationCenterNotesForm extends Form {
 		$templateMgr =& TemplateManager::getManager();
 
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
-		$notes =& $noteDao->getByAssoc($this->assocType, $this->assocId); 
+		$notes =& $noteDao->getByAssoc($this->itemType, $this->itemId);
 
 		$templateMgr->assign_by_ref('notes', $notes);
-		$templateMgr->assign_by_ref('assocId', $this->assocId);
-		$templateMgr->assign_by_ref('assocType', $this->assocType);
-		
+		$templateMgr->assign_by_ref('itemId', $this->itemId);
+		$templateMgr->assign_by_ref('itemType', $this->itemType);
+		if($this->itemType == ASSOC_TYPE_MONOGRAPH) {
+			$monographId = $this->itemId;
+		} else {
+			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+			$monographFile =& $monographFileDao->getMonographFile($this->itemId);
+			$monographId = $monographFile->getMonographId();
+		}
+		$templateMgr->assign_by_ref('monographId', $monographId);
+
 		return parent::fetch($request);
 	}
 
@@ -75,10 +83,10 @@ class InformationCenterNotesForm extends Form {
 		$note->setContextId($contextId);
 		$note->setUserId($user->getId());
 		$note->setContents($this->getData('newNote'));
-		$note->setAssocType($this->assocType);
-		$note->setAssocId($this->assocId);
+		$note->setAssocType($this->itemType);
+		$note->setAssocId($this->itemId);
 
-		return $noteDao->insertNote($note);
+		return $noteDao->insertObject($note);
 	}
 }
 
