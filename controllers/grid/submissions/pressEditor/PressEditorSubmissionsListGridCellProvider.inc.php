@@ -76,6 +76,8 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 
 		$monograph =& $row->getData();
 		$router =& $request->getRouter();
+		$dispatcher =& $router->getDispatcher();
+
 		$actionArgs = array(
 			'gridId' => $row->getGridId(),
 			'monographId' => $monograph->getId(),
@@ -100,7 +102,7 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 								'showReview',
 								LINK_ACTION_MODE_LINK,
 								LINK_ACTION_TYPE_NOTHING,
-								$router->url($request, null, 'workflow', 'review', null, $actionArgs),
+								$dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', $monograph->getId()),
 								'grid.action.approve',
 								null,
 								$state
