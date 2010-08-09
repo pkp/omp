@@ -204,7 +204,7 @@ class MonographFileDAO extends DAO {
 	 * @param $monographId int
 	 * @return array MonographFiles
 	 */
-	function &getByMonographId($monographId, $type = null) {
+	function &getByMonographId($monographId, $type = null, $hideAttachments = true) {
 		$monographFiles = array();
 
 		$sqlParams = array($monographId);
@@ -213,6 +213,11 @@ class MonographFileDAO extends DAO {
 		if (isset($type)) {
 			$sqlExtra .= ' AND type = ? ';
 			$sqlParams[] = $type;
+		}
+
+		// Prevent review attachments from showing up in submission file lists
+		if ($type != 'submission/review' && $hideAttachments) {
+			$sqlExtra .= ' AND type != \'submission/review\' ';
 		}
 
 		$result =& $this->retrieve(

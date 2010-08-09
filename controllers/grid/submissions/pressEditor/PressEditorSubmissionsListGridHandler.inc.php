@@ -62,6 +62,7 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$press =& $router->getContext($request);
 		$user =& $request->getUser();
 
+		$this->setTitle('common.queue.long.active');
 		$this->setData($this->_getSubmissions($request, $user->getId(), $press->getId()));
 
 		// change the first column cell template to allow for actions
@@ -120,29 +121,9 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	// Private helper functions
 	//
 	function _getSubmissions(&$request, $userId, $pressId) {
-		//$rangeInfo =& Handler::getRangeInfo('submissions');
-		$page = $request->getUserVar('status');
-		switch($page) {
-			case 'submissionsInReview':
-				$functionName = 'getInReview';
-				$this->setTitle('common.queue.long.submissionsInReview');
-			case 'submissionsInEditing':
-				$functionName = 'getInEditing';
-				$this->setTitle('common.queue.long.submissionsInEditing');
-				break;
-			case 'submissionsArchives':
-				$functionName = 'getArchives';
-				$this->setTitle('common.queue.long.submissionsArchives');
-				break;
-			default:
-				$functionName = 'getUnassigned';
-				$this->setTitle('common.queue.long.submissionsUnassigned');
-				break;
-		}
-
 		// TODO: nulls represent search options which have not yet been implemented
 		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
-		$submissions =& $editorSubmissionDao->$functionName($pressId, 0, FILTER_EDITOR_ALL);
+		$submissions =& $editorSubmissionDao->getUnassigned($pressId, 0, FILTER_EDITOR_ALL);
 
 		$data = array();
 		while($submission =& $submissions->next()) {

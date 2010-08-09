@@ -151,7 +151,11 @@ class RevisionsGridHandler extends GridHandler {
 			// Set the files to all the available files to allow selection.
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 			$monographFiles =& $monographFileDao->getByMonographId($monographId);
-			$this->setData($monographFiles);
+			$rowData = array();
+			foreach ($monographFiles as $monographFile) {
+				$rowData[$monographFile->getFileId()] = $monographFile;
+			}
+			$this->setData($rowData);
 			$this->setId('revisionsSelect'); // Need a unique ID since the 'manage review files' modal is in the same namespace as the 'view review files' modal
 
 			$this->addAction(

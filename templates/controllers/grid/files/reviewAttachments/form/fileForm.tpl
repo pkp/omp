@@ -47,7 +47,7 @@
 		$("#continueButton-{/literal}{$randomId}{literal}").click(function() {
 			saveAndUpdate($('#saveUrl-{/literal}{$randomId}{literal}').val(),
     	    		'append',
-    	    		'component-{/literal}{$gridId}{literal}-table',
+    	    		'#component-{/literal}{$gridId}{literal}-table',
     	    		'#uploadForm-{/literal}{$randomId}{literal}'
 			);
 		});
@@ -70,7 +70,6 @@
 	});
 	{/literal}
 </script>
-
 
 <form name="uploadForm" id="uploadForm-{$randomId}" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveFile" monographId=$monographId reviewId=$reviewId}" method="post">
 	<!-- Max file size of 5 MB -->
