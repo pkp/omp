@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file controllers/grid/files/submissionFiles/SubmissionFilesGridHandler.inc.php
+ * @file controllers/grid/files/submissionFiles/SubmissionReviewFilesGridHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SubmissionFilesGridHandler
+ * @class SubmissionReviewFilesGridHandler
  * @ingroup controllers_grid_file
  *
  * @brief Handle uploading files to the review files grid.
@@ -20,14 +20,13 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	 * Constructor
 	 */
 	function SubmissionReviewFilesGridHandler() {
-		parent::GridHandler();
-		// FIXME: If this class is to be part of the submission workflow
-		// then it cannot be a sub-class of the SubmissionFilesGridHandler
-		// which is part of the submission wizard.
-		// We need a common base class so that we can have different
-		// policies for both.
-		// Please add correct role assignments here once the problem is
-		// solved.
+		parent::SubmissionFilesGridHandler();
+
+		$this->addRoleAssignment(
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array('fetchGrid', 'addFile', 'addRevision', 'editFile', 'displayFileForm', 'uploadFile',
+			'confirmRevision', 'deleteFile', 'editMetadata', 'saveMetadata', 'finishFileSubmission',
+			'returnFileRow', 'downloadFile'));
 	}
 
 
@@ -38,12 +37,8 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		// FIXME: If this class is to be part of the submission workflow
-		// then it cannot be a sub-class of the SubmissionFilesGridHandler
-		// which is part of the submission wizard.
-		// We need a common base class so that we can have different
-		// policies for both.
-		// Please add correct policy here once the problem is solved.
+		import('classes.security.authorization.OmpWorkflowStagePolicy');
+		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -55,7 +50,6 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 		parent::initialize($request);
 		$this->setId('reviewFiles');
 
-		$this->setId('reviewFiles');
 		import('controllers.grid.files.reviewFiles.ReviewFilesGridCellProvider');
 		$cellProvider =& new ReviewFilesGridCellProvider();
 		$this->addColumn(new GridColumn('select',
@@ -69,16 +63,8 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	}
 
 	//
-	// Overridden methods from GridHandler
+	// Overridden public AJAX methods from SubmissionFilesGridHandler
 	//
-	/**
-	* Get the row handler - override the default row handler
-	* @return LibraryFileGridRow
-	*/
-	function &getRowInstance() {
-		$row = new SubmissionFilesGridRow();
-		return $row;
-	}
 
 	/**
 	 * Display the final tab of the modal
@@ -130,8 +116,4 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 
 		return $json->getString();
 	}
-
-
-
-
 }
