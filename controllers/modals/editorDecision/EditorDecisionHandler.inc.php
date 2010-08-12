@@ -215,7 +215,7 @@ class EditorDecisionHandler extends Handler {
 		$decision = $request->getUserVar('decision');
 
 		import('controllers.modals.editorDecision.form.PromoteForm');
-		$sendReviewsForm = new PromoteForm($monographId, $decision);
+		$promoteForm = new PromoteForm($monographId, $decision);
 
 		$promoteForm->readInputData();
 		if ($promoteForm->validate()) {

@@ -114,14 +114,15 @@ class PromoteForm extends Form {
 	function execute(&$args, &$request) {
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$decision = $this->getData('decision');
-		$monograph =& $this->getMonograph();
+		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($this->_monographId);
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$currentReviewRound = $reviewRoundDao->build($this->_monographId, $monograph->getCurrentReviewType(), $monograph->getCurrentRound());
+		$currentReviewRound = $reviewRoundDao->build($this->_monographId, $seriesEditorSubmission->getCurrentReviewType(), $seriesEditorSubmission->getCurrentRound());
 
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_ACCEPT:
 				// 1. Record the decision
-				SeriesEditorAction::recordDecision($monograph, SUBMISSION_EDITOR_DECISION_ACCEPT);
+				SeriesEditorAction::recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_ACCEPT);
 
 				// 2. select email key
 				$emailKey = 'EDITOR_DECISION_ACCEPT';
@@ -131,7 +132,7 @@ class PromoteForm extends Form {
 				break;
 			case SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
 				// 1. Record the decision
-				SeriesEditorAction::recordDecision($monograph, SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW);
+				SeriesEditorAction::recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW);
 
 				// Create a new review round
 				// FIXME: what do do about reviewRevision? being set to 1 for now.
@@ -168,8 +169,9 @@ class PromoteForm extends Form {
 		$reviewRoundDao->updateObject($currentReviewRound);
 
 		// n. Send Personal message to author
+		$submitter = $seriesEditorSubmission->getUser();
 		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($monograph, $emailKey);
+		$email = new MonographMailTemplate($seriesEditorSubmission, $emailKey);
 		$email->setBody($this->getData('personalMessage'));
 		$email->addRecipient($submitter->getEmail(), $submitter->getFullName());
 		$email->send();

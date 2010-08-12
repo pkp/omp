@@ -35,7 +35,7 @@ $(function() {
 {/literal}
 </script>
 
-<form name="promote" id="promote-{$randomId}" method="post" action="{url op="sendReviews"}" >
+<form name="promote" id="promote-{$randomId}" method="post" action="{url op="savePromote"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="decision" value="{$decision|escape}" />
 

@@ -115,14 +115,16 @@ class SendReviewsForm extends Form {
 	function execute(&$args, &$request) {
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$decision = $this->getData('decision');
-		$monograph =& $this->getMonograph();
+		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($this->_monographId);
+
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$currentRound = $reviewRoundDao->build($this->_monographId, $monograph->getCurrentReviewType(), $monograph->getCurrentRound());
+		$currentReviewRound = $reviewRoundDao->build($this->_monographId, $seriesEditorSubmission->getCurrentReviewType(), $seriesEditorSubmission->getCurrentRound());
 
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
 				// 1. Record the decision
-				SeriesEditorAction::recordDecision($monograph, SUBMISSION_EDITOR_DECISION_DECLINE);
+				SeriesEditorAction::recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_DECLINE);
 
 				// 2. select email key
 				$emailKey = 'SUBMISSION_UNSUITABLE';
@@ -144,7 +146,7 @@ class SendReviewsForm extends Form {
 
 			case SUBMISSION_EDITOR_DECISION_DECLINE:
 				// 1. Record the decision
-				SeriesEditorAction::recordDecision($monograph, SUBMISSION_EDITOR_DECISION_DECLINE);
+				SeriesEditorAction::recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_DECLINE);
 
 				// 2. select email key
 				$emailKey = 'SUBMISSION_UNSUITABLE';
@@ -162,8 +164,9 @@ class SendReviewsForm extends Form {
 		$reviewRoundDao->updateObject($currentReviewRound);
 
 		// n. Send Personal message to author
+		$submitter = $seriesEditorSubmission->getUser();
 		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($monograph, $emailKey);
+		$email = new MonographMailTemplate($seriesEditorSubmission, $emailKey);
 		$email->setBody($this->getData('personalMessage'));
 		$email->addRecipient($submitter->getEmail(), $submitter->getFullName());
 		$email->send();

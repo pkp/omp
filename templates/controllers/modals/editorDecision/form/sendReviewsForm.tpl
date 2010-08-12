@@ -35,7 +35,7 @@
 	{/literal}
 </script>
 
-<form name="sendReviews" id="sendReviews-{$randomId}" method="post" action="{url op="sendReviews"}" >
+<form name="sendReviews" id="sendReviews-{$randomId}" method="post" action="{url op="saveSendReviews"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="decision" value="{$decision|escape}" />
 
