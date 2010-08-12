@@ -116,8 +116,6 @@
 	{$displayPageHeaderTitle}
 {elseif $alternatePageHeader}
 	{$alternatePageHeader}
-{elseif $customLogoTemplate}
-	{include file=$customLogoTemplate}
 {elseif $siteTitle}
 	{$siteTitle}
 {else}
