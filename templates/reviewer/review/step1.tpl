@@ -31,12 +31,12 @@
 	<h3>{translate key="submission.overview"}</h3>
 	<h4>{translate key="monograph.title"}</h4>
 	<p>{$submission->getLocalizedTitle()|strip_unsafe_html}</p>
-	
+
 	{if !$blindReview}
 		<h4>{translate key="monograph.title"}</h4>
 		<p>{$submission->getAuthorString()}</p>
 	{/if}
-	
+
 	<h4>{translate key="monograph.description"}</h4>
 	<p>{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br}</p>
 
@@ -86,9 +86,9 @@
 		{url|assign:"competingInterestGuidelinesUrl" page="information" op="competingInterestGuidelines" contentOnly=true}
 		{modal url="$competingInterestGuidelinesUrl" actOnType="nothing" actOnId="nothing" dialogText='reviewer.competingInterests' button="#viewCompetingInterests"}
 		<a id="viewCompetingInterests" href="{$competingInterestGuidelinesUrl}">{translate key="reviewer.monograph.viewCompetingInterests"}</a><br />
-		
+
 		{fbvFormArea id="competingInterestForm"}
-			{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
+			{fbvFormSection}
 				{if $competingInterestsText != null}
 					{assign var="hasCI" value=true}
 					{assign var="noCI" value=false}
@@ -100,7 +100,7 @@
 				{fbvElement type="radio" value="hasCompetingInterests" id="hasCompetingInterests" name="competingInterestOption" checked=$hasCI label="reviewer.monograph.hasCompetingInterests"}
 				{fbvElement type="textarea" name="competingInterestsText" id="competingInterestsText" value=$competingInterestsText size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.2OF3}
 			{/fbvFormSection}
-		{/fbvFormArea}		
+		{/fbvFormArea}
 	</p>
 {/if}
 </div>
@@ -111,7 +111,7 @@
 		<p>
 			{url|assign:"declineRequestUrl" op='showDeclineReview' reviewId=$submission->getReviewId()}
 			{modal url="$declineRequestUrl" actOnType="nothing" actOnId="nothing" dialogText='reviewer.monograph.declineReview' button="#declineRequest"}
-			
+
 			<a id="declineRequest" href="{$declineRequestUrl}">{translate key="reviewer.monograph.declineReview"}</a>
 			<input style="float:right;" type="submit" id="submit" value="{translate key='reviewer.monograph.acceptReview'}" class="button" />
 		</p>

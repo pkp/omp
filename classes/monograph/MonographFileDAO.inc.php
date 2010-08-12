@@ -254,7 +254,9 @@ class MonographFileDAO extends DAO {
 		);
 
 		while (!$result->EOF) {
-			$monographFiles[] =& $this->_fromRow($result->GetRowAssoc(false));
+			$row =& $result->getRowAssoc(false);
+			$fileId = $row['file_id'];
+			$monographFiles[$fileId] =& $this->_fromRow($row);
 			$result->moveNext();
 		}
 

@@ -84,7 +84,7 @@ class ReviewerForm extends Form {
 				$this->setData('userNameString', sprintf('%s (%s)', $user->getFullname(), $user->getUsername()));
 			}
 		}
-		
+
 		// Get the review method (open, blind, or double-blind)
 		$round = (int) $request->getUserVar('round');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -102,7 +102,7 @@ class ReviewerForm extends Form {
 		);
 		$email->assignParams($paramArray);
 		*/
-		
+
 		// Get the response/review due dates or else set defaults
 		if (isset($reviewAssignment) && $reviewAssignment->getDueDate() != null) {
 			$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime($reviewAssignment->getDueDate()));
@@ -116,7 +116,7 @@ class ReviewerForm extends Form {
 			$numWeeks = max((int) $press->getSetting('numWeeksPerResponse'), 2);
 			$responseDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 		}
-		$interestDao =& DAORegistry::getDAO('InterestDAO');		
+		$interestDao =& DAORegistry::getDAO('InterestDAO');
 
 		$this->_data = array(
 			'monographId' => $this->getMonographId(),
@@ -145,7 +145,7 @@ class ReviewerForm extends Form {
 								'personalMessage',
 								'responseDueDate',
 								'reviewDueDate'));
-		
+
 		if($this->getData('selectionType') == 'createNew') {
 			$this->readUserVars(array('firstName',
 								'middleName',
@@ -157,9 +157,9 @@ class ReviewerForm extends Form {
 								'sendNotify'));
 		}
 	}
-	
+
 	/**
-	 * Need to override validate function -- Implementing FormValidators in constructor won't work because hidden 
+	 * Need to override validate function -- Implementing FormValidators in constructor won't work because hidden
 	 *  form elements (i.e. in other accordion tabs) would throw errors when not filled in
 	 * @see lib/pkp/classes/form/Form::validate()
 	 */
@@ -175,8 +175,8 @@ class ReviewerForm extends Form {
 			$this->addCheck(new FormValidator($this, 'reviewerId', 'required', 'editor.review.errorAddingReviewer'));
 		}
 		return parent::validate();
-	}	
-	
+	}
+
 	/**
 	 * Save review assignment
 	 */
@@ -184,29 +184,29 @@ class ReviewerForm extends Form {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$submission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($this->getMonographId());
 		$press =& $request->getPress();
-		
+
 		$reviewType = $this->getData('reviewType');
 		$round = $this->getData('round');
 		$reviewDueDate = $this->getData('reviewDueDate');
 		$responseDueDate = $this->getData('responseDueDate');
-		
+
 		if($this->getData('selectionType') == 'createNew') {
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$user = new User();
-	
+
 			$user->setFirstName($this->getData('firstName'));
 			$user->setMiddleName($this->getData('middleName'));
 			$user->setLastName($this->getData('lastName'));
 			$user->setAffiliation($this->getData('affiliation'), null);
 			$user->setEmail($this->getData('email'));
-	
+
 			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
 			$auth =& $authDao->getDefaultPlugin();
 			$user->setAuthId($auth?$auth->getAuthId():0);
 
 			$user->setUsername($this->getData('username'));
 			$password = Validation::generatePassword();
-	
+
 			if (isset($auth)) {
 				$user->setPassword($password);
 				// FIXME Check result and handle failures
@@ -216,21 +216,21 @@ class ReviewerForm extends Form {
 			} else {
 				$user->setPassword(Validation::encryptCredentials($this->getData('username'), $password));
 			}
-	
+
 			$user->setDateRegistered(Core::getCurrentDate());
 			$reviewerId = $userDao->insertUser($user);
-			
+
 			// Add reviewer interests to interests table
 			$interestDao =& DAORegistry::getDAO('InterestDAO');
 			$interests = Request::getUserVar('interestsKeywords');
 			if (empty($interests)) $interests = array();
 			elseif (!is_array($interests)) $interests = array($interests);
 			$interestDao->insertInterests($interests, $reviewerId, true);
-	
+
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 			$reviewerGroup =& $userGroupDao->getDefaultByRoleId($press->getId(), ROLE_ID_REVIEWER);
 			$userGroupDao->assignUserToGroup($reviewerId, $reviewerGroup->getId());
-	
+
 			if ($this->getData('sendNotify')) {
 				// Send welcome email to user
 				import('classes.mail.MailTemplate');
@@ -254,6 +254,14 @@ class ReviewerForm extends Form {
 		$reviewAssignment->setCancelled(0);
 		$reviewAssignment->stampModified();
 		$reviewAssignmentDao->updateObject($reviewAssignment);
+
+		// Update the review round status if this is the first reviewer added
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$currentReviewRound = $reviewRoundDao->build($this->getMonographId(), $submission->getCurrentReviewType(), $submission->getCurrentRound());
+		if ($currentReviewRound->getStatus() == REVIEW_ROUND_STATUS_PENDING_REVIEWERS) {
+			$currentReviewRound->setStatus(REVIEW_ROUND_STATUS_PENDING_REVIEWS);
+			$reviewRoundDao->updateObject($currentReviewRound);
+		}
 
 		return $reviewAssignment;
 	}

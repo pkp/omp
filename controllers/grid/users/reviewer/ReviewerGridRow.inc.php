@@ -44,28 +44,17 @@ class ReviewerGridRow extends GridRow {
 			$router =& $request->getRouter();
 			$actionArgs = array(
 				'monographId' => $monographId,
-				'submissionContributorId' => $rowId
+				'reviewId' => $rowId
 			);
 			$this->addAction(
 				new LinkAction(
 					'remove',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'editSubmissionContributor', null, $actionArgs),
+					$router->url($request, null, null, 'deleteReviewer', null, $actionArgs),
 					'grid.action.remove',
 					null,
 					'delete'
-				)
-			);
-			$this->addAction(
-				new LinkAction(
-					'moreInfo',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'moreInformation', null, $actionArgs),
-					'grid.action.moreInformation',
-					null,
-					'more_info'
 				)
 			);
 

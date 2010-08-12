@@ -69,7 +69,7 @@ class Action {
 			}
 			import('lib.pkp.classes.core.JSON');
 			$json = new JSON('true', $metadataForm->fetch($request));
-			echo $json->getString();
+			return $json->getString();
 		}
 	}
 

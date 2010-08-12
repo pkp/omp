@@ -116,7 +116,7 @@ class PromoteForm extends Form {
 		$decision = $this->getData('decision');
 		$monograph =& $this->getMonograph();
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$currentRound = $reviewRoundDao->build($this->_monographId, $monograph->getCurrentReviewType(), $monograph->getCurrentRound());
+		$currentReviewRound = $reviewRoundDao->build($this->_monographId, $monograph->getCurrentReviewType(), $monograph->getCurrentRound());
 
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_ACCEPT:
@@ -165,7 +165,7 @@ class PromoteForm extends Form {
 		}
 
 		$currentReviewRound->setStatus($status);
-		$reviewRoundDao->update($currentReviewRound);
+		$reviewRoundDao->updateObject($currentReviewRound);
 
 		// n. Send Personal message to author
 		import('classes.mail.MonographMailTemplate');

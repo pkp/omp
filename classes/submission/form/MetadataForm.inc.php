@@ -29,7 +29,7 @@ class MetadataForm extends Form {
 
 	/** @var Insert monograph components insert */
 	var $componentsInsert;
-	
+
 	/** @var Display only metadata content (e.g. for a modal) */
 	var $contentOnly;
 
@@ -108,7 +108,7 @@ class MetadataForm extends Form {
 				'coverageGeo' => $monograph->getCoverageGeo(null),
 				'coverageChron' => $monograph->getCoverageChron(null),
 				'coverageSample' => $monograph->getCoverageSample(null),
-				'type' => $monograph->getType(null)
+				'contentOnly' => $this->contentOnly
 			);
 
 		}
@@ -141,7 +141,7 @@ class MetadataForm extends Form {
 		$templateMgr->assign('rolePath', Request::getRequestedPage());
 		$templateMgr->assign('canViewAuthors', $this->canViewAuthors);
 		$templateMgr->assign('contentOnly', $this->contentOnly);
-		
+
 		$templateMgr->assign('helpTopicId','submission.indexingAndMetadata');
 
 		return parent::display($request, $fetch);

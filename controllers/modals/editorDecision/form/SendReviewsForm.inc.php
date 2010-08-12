@@ -159,7 +159,7 @@ class SendReviewsForm extends Form {
 		}
 
 		$currentReviewRound->setStatus($status);
-		$reviewRoundDao->update($currentReviewRound);
+		$reviewRoundDao->updateObject($currentReviewRound);
 
 		// n. Send Personal message to author
 		import('classes.mail.MonographMailTemplate');

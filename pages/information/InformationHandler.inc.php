@@ -24,7 +24,7 @@ class InformationHandler extends Handler {
 	function InformationHandler() {
 		parent::Handler();
 	}
-	
+
 	/**
 	 * Display the information page for the press..
 	 */
@@ -76,7 +76,7 @@ class InformationHandler extends Handler {
 
 		import('lib.pkp.classes.core.JSON');
 		$json = new JSON('true', $templateMgr->fetch('information/information.tpl'));
-		echo $json->getString();
+		return $json->getString();
 	}
 
 	function readers() {

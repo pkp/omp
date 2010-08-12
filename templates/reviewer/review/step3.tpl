@@ -87,7 +87,7 @@
 
 <div id="nextSteps">
 	<p>
-		<a href="{url op="submission" path=$submission->getReviewId() step=1}">{translate key="navigation.goBack"}</a>
+		<a href="{url op="submission" path=$submission->getReviewId() step=2}">{translate key="navigation.goBack"}</a>
 		<input style="float:right;" type="submit" id="submit" value="{translate key='reviewer.monograph.continueToStepFour'}" class="button" />
 	</p>
 </div>

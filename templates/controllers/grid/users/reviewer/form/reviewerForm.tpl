@@ -80,7 +80,7 @@
 		<!--  Create New Reviewer -->
 		<h3 id="createNew"><a href="#">{translate key="seriesEditor.review.createReviewer"}</a></h3>
 		<div id="reviewerCreationForm">
-			{fbvFormSection title="common.name" layout=$fbvStyles.layout.THREE_COLUMNS}
+			{fbvFormSection title="common.name"}
 				{fbvElement type="text" label="user.firstName" id="firstName" value=$firstName required="true"}
 				{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName}
 				{fbvElement type="text" label="user.lastName" id="lastName" value=$lastName required="true"}
@@ -111,7 +111,7 @@
 	{/fbvFormSection}
 
 	<!--  Reviewer due dates (see http://jqueryui.com/demos/datepicker/) -->
-	{fbvFormSection layout=$fbvStyles.layout.TWO_COLUMNS}
+	{fbvFormSection}
 		{fbvElement type="text" id="responseDueDate" name="responseDueDate" label="editor.review.responseDueDate" value=$responseDueDate }
 		{fbvElement type="text" id="reviewDueDate" name="reviewDueDate" label="editor.review.reviewDueDate" value=$reviewDueDate }
 	{/fbvFormSection}

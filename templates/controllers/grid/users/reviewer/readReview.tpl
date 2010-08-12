@@ -7,30 +7,37 @@
  * Screen to let user read a review
  *
  *}
-<h2>{translate key="editor.review"}: {$monograph->getLocalizedTitle()}</h2> <br />
-<table width="100%" style="margin-left: 12px;">
-	<tr>
-		<td><strong>{translate key="user.role.reviewer"}</strong></td>
-		<td><strong>{translate key="editor.review.reviewCompleted"}</strong></td>
-	</tr>
-	<tr>
-		<td>{$reviewAssignment->getReviewerFullName()}</td>
-		<td>{$reviewAssignment->getDateCompleted()}</td>
-	</tr>
-</table>
+{assign var='randomId' value=1|rand:99999}
 
-<br />
+{translate|assign:"reviewTranslated" key="editor.review"}
+{assign var=titleTranslated value="$reviewTranslated"|concat:": ":$monograph->getLocalizedTitle()}
+{modal_title id="#editorReview-$randomId" keyTranslated=$titleTranslated iconClass="fileManagement" canClose=1}
 
-{if $reviewAssignment->getReviewFormId()}
-	{** FIXME: add review forms **}
-{else}
-	<strong style="margin-left: 12px;">{translate key="editor.review.reviewerComments"}</strong>
-	<p>{$reviewerComment->getComments()}</p>
-{/if}
+<div id="editorReview-{$randomId}">
+	<table width="100%" style="margin-left: 12px;">
+		<tr>
+			<td><strong>{translate key="user.role.reviewer"}</strong></td>
+			<td><strong>{translate key="editor.review.reviewCompleted"}</strong></td>
+		</tr>
+		<tr>
+			<td>{$reviewAssignment->getReviewerFullName()}</td>
+			<td>{$reviewAssignment->getDateCompleted()}</td>
+		</tr>
+	</table>
 
-<br />
+	<br />
 
-<div id="attachments">
-	{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" readOnly=1 reviewId=$reviewAssignment->getId() escape=false}
-	{load_url_in_div id="#readReviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
+	{if $reviewAssignment->getReviewFormId()}
+		{** FIXME: add review forms **}
+	{else}
+		<strong style="margin-left: 12px;">{translate key="editor.review.reviewerComments"}</strong>
+		<p>{$reviewerComment->getComments()}</p>
+	{/if}
+
+	<br />
+
+	<div id="attachments">
+		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" readOnly=1 reviewId=$reviewAssignment->getId() escape=false}
+		{load_url_in_div id="#readReviewAttachmentsGridContainer-$randomId" url="$reviewAttachmentsGridUrl"}
+	</div>
 </div>

@@ -32,7 +32,7 @@ function show(id) {
 	<h4>{translate key="monograph.authors"}</h4>
 {/if}
 
-{assign var="authorIndex" value=0} 
+{assign var="authorIndex" value=0}
 {assign var="firstAuthor" value=false}
 
 {foreach name=authors from=$contributors item=author}
@@ -109,7 +109,7 @@ function show(id) {
 <div class="separator"></div>
 
 <h3>{translate key="submission.supportingAgencies"}</h3>
-	
+
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{translate key="submission.agencies"}</td>

@@ -241,11 +241,11 @@ class ReviewerGridHandler extends GridHandler {
 	function deleteReviewer(&$args, &$request) {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
-		// Identify the reviewer to be deleted
-		$reviewerId = $request->getUserVar('reviewerId');
+		// Identify the review assignment ID
+		$reviewId = $request->getUserVar('reviewId');
 
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$result = $authorDao->deleteAuthorById($reviewerId, $monographId);
+		import('classes.submission.seriesEditor.SeriesEditorAction');
+		$result = SeriesEditorAction::clearReview($monographId, $reviewId);
 
 		if ($result) {
 			$json = new JSON('true');
@@ -308,9 +308,16 @@ class ReviewerGridHandler extends GridHandler {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-		$reviewAssignment =& $reviewAssignmentDao->getById($request->getUserVar('reviewId'));
+		$viewsDao =& DAORegistry::getDAO('ViewsDAO');
+
+		$reviewId = $request->getUserVar('reviewId');
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
 		$monographComments =& $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getReviewId());
+
+		// Mark the latest read date of the review by the editor
+		$user =& $request->getUser();
+		$viewsDao->recordView(ASSOC_TYPE_REVIEW_RESPONSE, $reviewId, $user->getId());
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);

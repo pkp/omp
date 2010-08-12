@@ -39,13 +39,22 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				return ($element->getDateCompleted())?'linkReview':'';
 			case is_numeric($columnId):
 				// numeric implies a role column.
-				return ($element->getDateCompleted())?'new':'';
+				if ($element->getDateCompleted()) {
+					$viewsDao =& DAORegistry::getDAO('ViewsDAO');
+					$sessionManager =& SessionManager::getManager();
+					$session =& $sessionManager->getUserSession();
+					$user =& $session->getUser();
+					$lastViewed = $viewsDao->getLastViewDate(ASSOC_TYPE_REVIEW_RESPONSE, $element->getReviewId(), $user->getId());
+					if($lastViewed) {
+						return 'completed';
+					} else return 'new';
+				} else return '';
 			case 'reviewer':
-				if ( $element->getDateCompleted() ) {
+				if ($element->getDateCompleted()) {
 					return 'completed';
-				} elseif ( $element->getDateDue() < Core::getCurrentDate()) {
+				} elseif ($element->getDateDue() < Core::getCurrentDate()) {
 					return 'overdue';
-				} elseif ( $element->getDateConfirmed() ) {
+				} elseif ($element->getDateConfirmed()) {
 					return ($element->getDeclined())?'declined':'accepted';
 				}
 				return 'new';
@@ -106,7 +115,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 							);
 			case 'new':
 				// The 'new' state could be for the editor or the reviewer
-				if ( is_numeric($column->getId()) ) {
+				if (is_numeric($column->getId()) ) {
 					$action =& new LinkAction(
 									'readReview',
 									LINK_ACTION_MODE_MODAL,
@@ -122,6 +131,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 			case 'declined':
 			case 'accepted':
 			case 'completed':
+				// There are no actions for these states
 				break;
 			case 'overdue':
 				$action =& new LinkAction(

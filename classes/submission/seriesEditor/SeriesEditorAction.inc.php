@@ -154,8 +154,9 @@ class SeriesEditorAction extends Action {
 	 * @param $seriesEditorSubmission object
 	 * @param $reviewId int
 	 */
-	function clearReview($seriesEditorSubmission, $reviewId) {
+	function clearReview($submissionId, $reviewId) {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($submissionId);
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& Request::getUser();
@@ -172,7 +173,9 @@ class SeriesEditorAction extends Action {
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
 			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_REVIEW_CLEAR, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'reviewType' => $reviewAssignment->getReviewType(), 'round' => $reviewAssignment->getRound()));
-		}
+
+			return true;
+		} else return false;
 	}
 
 	/**
