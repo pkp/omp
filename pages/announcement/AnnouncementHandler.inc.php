@@ -9,10 +9,8 @@
  * @class AnnouncementHandler
  * @ingroup pages_announcement
  *
- * @brief Handle requests for public announcement functions. 
+ * @brief Handle requests for public announcement functions.
  */
-
-// $Id$
 
 
 import('lib.pkp.pages.announcement.PKPAnnouncementHandler');
@@ -24,29 +22,41 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	function AnnouncementHandler() {
 		parent::PKPAnnouncementHandler();
 	}
+
+	/**
+	 * @see PKPAnnouncementHandler::_getAnnouncementsEnabled()
+	 */
 	function _getAnnouncementsEnabled() {
 		$press =& Request::getPress();
 		return $press->getSetting('enableAnnouncements');
 	}
 
+	/**
+	 * @see PKPAnnouncementHandler::_getAnnouncements()
+	 */
 	function &_getAnnouncements($rangeInfo = null) {
 		$press =& Request::getPress();
 
 		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		$announcements =& $announcementDao->getAnnouncementsNotExpiredByAssocId(ASSOC_TYPE_PRESS, $press->getId(), $rangeInfo);
-		$announcementsIntroduction = $press->getLocalizedSetting('announcementsIntroduction');
 
 		return $announcements;
 	}
-	
+
+	/**
+	 * @see PKPAnnouncementHandler::_getAnnouncementsIntroduction()
+	 */
 	function _getAnnouncementsIntroduction() {
 		$press =& Request::getPress();
 		return $press->getLocalizedSetting('announcementsIntroduction');
 	}
-		
+
+	/**
+	 * @see PKPAnnouncementHandler::_announcementIsValid()
+	 */
 	function _announcementIsValid($announcementId) {
 		$press =& Request::getPress();
-		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');		
+		$announcementDao =& DAORegistry::getDAO('AnnouncementDAO');
 		return ($announcementId != null && $announcementDao->getAnnouncementAssocId($announcementId) == $press->getId());
 	}
 }
