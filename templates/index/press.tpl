@@ -1,3 +1,5 @@
+<!-- templates/index/press.tpl -->
+
 {**
  * index.tpl
  *
@@ -41,3 +43,6 @@
 {/if}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/index/press.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/files/submissionFiles/form/fileForm.tpl -->
+
 {**
  * fileForm.tpl
  *
@@ -136,3 +138,5 @@
 	<input type="hidden" id="deleteUrl-{$randomId}" name="deleteUrl" value="" />
 	<input type="hidden" id="confirmUrl-{$randomId}" name="confirmUrl" value="" />
 </form>
+<!-- / templates/controllers/grid/files/submissionFiles/form/fileForm.tpl -->
+

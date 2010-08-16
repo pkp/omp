@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/users/reviewerSelect/reviewerSelectRadioButton.tpl -->
+
 {**
  * reviewerSelectRadioButton.tpl
  *
@@ -8,3 +10,5 @@
  *}
 
 <input type="radio" id="reviewer_{$rowId}" name="reviewerId" class="advancedReviewerSelect" value={$rowId} />
+<!-- / templates/controllers/grid/users/reviewerSelect/reviewerSelectRadioButton.tpl -->
+

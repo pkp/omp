@@ -1,3 +1,5 @@
+<!-- templates/about/pressSponsorship.tpl -->
+
 {**
  * pressSponsorship.tpl
  *
@@ -53,3 +55,6 @@
 {/if}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/about/pressSponsorship.tpl -->
+

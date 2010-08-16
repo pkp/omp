@@ -1,3 +1,5 @@
+<!-- templates/controllers/modals/editorDecision/form/initiateReviewForm.tpl -->
+
 {**
  * sendReviewsForm.tpl
  *
@@ -26,3 +28,6 @@
         {fbvButton id="okButton-initiateReview" label="editor.monograph.createNewRound" align=$fbvStyles.align.RIGHT}
     {/fbvFormSection}
 {/fbvFormArea}
+
+<!-- / templates/controllers/modals/editorDecision/form/initiateReviewForm.tpl -->
+

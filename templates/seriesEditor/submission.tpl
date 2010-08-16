@@ -1,3 +1,5 @@
+<!-- templates/seriesEditor/submission.tpl -->
+
 {**
  * submission.tpl
  *
@@ -39,3 +41,6 @@
 </div>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/seriesEditor/submission.tpl -->
+

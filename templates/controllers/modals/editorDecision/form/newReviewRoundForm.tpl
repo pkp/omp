@@ -1,3 +1,5 @@
+<!-- templates/controllers/modals/editorDecision/form/newReviewRoundForm.tpl -->
+
 {**
  * sendReviewsForm.tpl
  *
@@ -26,3 +28,6 @@
         {fbvButton id="okButton-newRound" label="editor.monograph.createNewRound" align=$fbvStyles.align.RIGHT}
     {/fbvFormSection}
 {/fbvFormArea}
+
+<!-- / templates/controllers/modals/editorDecision/form/newReviewRoundForm.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/files/revisions/gridRowSelectInput.tpl -->
+
 {**
  * gridRowSelectInput.tpl
  *
@@ -7,3 +9,5 @@
  * Display a checkbox that also selects a grid row when ticked
  *}
 <input type="checkbox" id="select-{$rowId}" name="selectedFiles[]" value={$rowId} class="reviewFilesSelect field checkbox" {if in_array($rowId, $selectedFileIds)}checked{/if} />
+<!-- / templates/controllers/grid/files/revisions/gridRowSelectInput.tpl -->
+

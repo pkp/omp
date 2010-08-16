@@ -1,3 +1,5 @@
+<!-- templates/seriesEditor/submissionSummary.tpl -->
+
 {**
  * submissionSummary.tpl
  *
@@ -26,3 +28,6 @@
 <div class="separator"></div>
 
 {include file="submission/metadata/metadata.tpl"}
+
+<!-- / templates/seriesEditor/submissionSummary.tpl -->
+

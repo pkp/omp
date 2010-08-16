@@ -1,3 +1,5 @@
+<!-- templates/controllers/informationCenter/notes.tpl -->
+
 {**
  * notes.tpl
  *
@@ -49,4 +51,7 @@
 		{/if}
 	</div>
 </div>
+
+
+<!-- / templates/controllers/informationCenter/notes.tpl -->
 

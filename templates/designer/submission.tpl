@@ -1,3 +1,5 @@
+<!-- templates/designer/submission.tpl -->
+
 {**
  * submission.tpl
  *
@@ -23,3 +25,6 @@
 {include file="designer/submission/layout.tpl"}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/designer/submission.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/settings/setup/step1.tpl -->
+
 {**
  * step1.tpl
  *
@@ -162,3 +164,6 @@
 </div>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/settings/setup/step1.tpl -->
+

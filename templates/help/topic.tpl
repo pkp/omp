@@ -1,3 +1,5 @@
+<!-- templates/help/topic.tpl -->
+
 {**
  * topic.tpl
  *
@@ -29,3 +31,6 @@
 
 <br />
 <input type="button" onclick="window.close()" value="{translate key="common.close"}" class="button defaultButton"/>
+
+<!-- / templates/help/topic.tpl -->
+

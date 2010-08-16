@@ -1,3 +1,5 @@
+<!-- templates/productionEditor/productionAssignment.tpl -->
+
 {**
  * productionAssignment.tpl
  *
@@ -45,3 +47,5 @@
 </form>
 
 {include file="common/footer.tpl"}
+<!-- / templates/productionEditor/productionAssignment.tpl -->
+

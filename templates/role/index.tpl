@@ -1,3 +1,5 @@
+<!-- templates/role/index.tpl -->
+
 {**
  * index.tpl
  *
@@ -15,3 +17,6 @@
 
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/role/index.tpl -->
+

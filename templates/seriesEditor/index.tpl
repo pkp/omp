@@ -1,3 +1,5 @@
+<!-- templates/seriesEditor/index.tpl -->
+
 {**
  * index.tpl
  *
@@ -95,3 +97,6 @@ function sortSearch(heading, direction) {
 </div>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/seriesEditor/index.tpl -->
+

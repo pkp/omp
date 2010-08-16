@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/users/reviewer/form/reviewerForm.tpl -->
+
 {**
  * reviewerForm.tpl
  *
@@ -138,3 +140,5 @@
         {fbvButton id="okButton-addReviewer" label="editor.monograph.addReviewer" align=$fbvStyles.align.RIGHT}
     {/fbvFormSection}
 {/fbvFormArea}
+<!-- / templates/controllers/grid/users/reviewer/form/reviewerForm.tpl -->
+

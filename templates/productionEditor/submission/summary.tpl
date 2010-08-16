@@ -1,3 +1,5 @@
+<!-- templates/productionEditor/submission/summary.tpl -->
+
 {**
  * summary.tpl
  *
@@ -31,3 +33,5 @@
 	</tr>
 </table>
 </div>
+<!-- / templates/productionEditor/submission/summary.tpl -->
+

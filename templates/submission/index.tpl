@@ -1,3 +1,5 @@
+<!-- templates/submission/index.tpl -->
+
 {**
  * index.tpl
  *
@@ -20,3 +22,6 @@
 </div>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/submission/index.tpl -->
+

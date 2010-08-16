@@ -1,3 +1,5 @@
+<!-- templates/designer/submission/layout.tpl -->
+
 {**
  * layout.tpl
  *
@@ -150,3 +152,6 @@
 	</table>
 </div>
 </form>
+
+<!-- / templates/designer/submission/layout.tpl -->
+

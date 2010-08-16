@@ -1,3 +1,5 @@
+<!-- templates/submission/comment/editorDecisionComment.tpl -->
+
 {**
  * editorDecisionComment.tpl
  *
@@ -86,3 +88,6 @@ window.opener.location.reload();
 {/if}
 
 {include file="submission/comment/footer.tpl"}
+
+<!-- / templates/submission/comment/editorDecisionComment.tpl -->
+

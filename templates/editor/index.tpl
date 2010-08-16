@@ -1,3 +1,5 @@
+<!-- templates/editor/index.tpl -->
+
 {**
  * index.tpl
  *
@@ -16,3 +18,6 @@
 {load_url_in_div id="#editorSubmissionListGrid" url="$editorSubmissionListGridUrl"}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/editor/index.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/seriesEditor/submissionsInReview.tpl -->
+
 {**
  * submissionsInReview.tpl
  *
@@ -92,3 +94,6 @@
 {/if}
 </table>
 </div>
+
+<!-- / templates/seriesEditor/submissionsInReview.tpl -->
+

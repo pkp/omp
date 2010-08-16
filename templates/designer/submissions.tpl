@@ -1,3 +1,5 @@
+<!-- templates/designer/submissions.tpl -->
+
 {**
  * submissions.tpl
  *
@@ -23,3 +25,6 @@
 {include file="designer/$pageToDisplay.tpl"}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/designer/submissions.tpl -->
+

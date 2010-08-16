@@ -1,3 +1,5 @@
+<!-- templates/reviewer/review/step1.tpl -->
+
 {**
  * step1.tpl
  *
@@ -121,4 +123,7 @@
 </form>
 </div>
 {include file="common/footer.tpl"}
+
+
+<!-- / templates/reviewer/review/step1.tpl -->
 

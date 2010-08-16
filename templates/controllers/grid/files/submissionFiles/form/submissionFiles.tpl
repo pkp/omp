@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/files/submissionFiles/form/submissionFiles.tpl -->
+
 {**
  * fileForm.tpl
  *
@@ -34,3 +36,5 @@
 		{if !$fileId}<li class="ui-state-default ui-corner-top"><a href="{url op="finishFileSubmissions" monographId=$monographId fileId=$fileId}">3. {translate key="submission.submit.finishingUp"}</a></li>{/if}
 	</ul>
 </div>
+<!-- / templates/controllers/grid/files/submissionFiles/form/submissionFiles.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/seriesEditor/submissionRegrets.tpl -->
+
 {**
  * submissionRegrets.tpl
  *
@@ -30,3 +32,6 @@
 {include file="seriesEditor/submission/rounds.tpl"}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/seriesEditor/submissionRegrets.tpl -->
+

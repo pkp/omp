@@ -1,3 +1,5 @@
+<!-- templates/manager/people/enrollment.tpl -->
+
 {**
  * enrollment.tpl
  *
@@ -152,3 +154,6 @@ function confirmAndPrompt(userId) {
 {url|assign:"enrollmentUrl" path=$userGroupId searchInitial=$searchInitial searchField=$searchField searchMatch=$searchMatch search=$search dateFromDay=$dateFromDay dateFromYear=$dateFromYear dateFromMonth=$dateFromMonth dateToDay=$dateToDay dateToYear=$dateToYear dateToMonth=$dateToMonth searchInitial=$searchInitial}
 <a href="{if $userGroup}{url op="createUser" userGroupId=$userGroupId source=$enrollmentUrl}{else}{url op="createUser" source=$enrollmentUrl}{/if}" class="action">{translate key="manager.people.createUser"}</a> | <a href="{url op="enrollSyncSelect" path=$userGroupId}" class="action">{translate key="manager.people.enrollSync"}</a>
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/people/enrollment.tpl -->
+

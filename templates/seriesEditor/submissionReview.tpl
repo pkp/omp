@@ -1,3 +1,5 @@
+<!-- templates/seriesEditor/submissionReview.tpl -->
+
 {**
  * submissionReview.tpl
  *
@@ -10,3 +12,6 @@
  *}
 
 {include file="seriesEditor/submission/peerReview.tpl"}
+
+<!-- / templates/seriesEditor/submissionReview.tpl -->
+

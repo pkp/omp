@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/settings/series/memberships.tpl -->
+
 {**
  * memberships.tpl
  *
@@ -60,3 +62,5 @@
 
 <form action="test">
 	</form>
+<!-- / templates/controllers/grid/settings/series/memberships.tpl -->
+

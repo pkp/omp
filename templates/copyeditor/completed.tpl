@@ -1,3 +1,5 @@
+<!-- templates/copyeditor/completed.tpl -->
+
 {**
  * completed.tpl
  *
@@ -99,3 +101,6 @@
 {/if}
 </table>
 </div>
+
+<!-- / templates/copyeditor/completed.tpl -->
+

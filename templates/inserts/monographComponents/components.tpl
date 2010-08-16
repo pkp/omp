@@ -1,3 +1,5 @@
+<!-- templates/inserts/monographComponents/components.tpl -->
+
 {**
  * components.tpl
  *
@@ -147,3 +149,5 @@ components.scrollIntoView();
 </table>
 </div>
  
+<!-- / templates/inserts/monographComponents/components.tpl -->
+

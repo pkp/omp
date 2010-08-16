@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/files/revisions/grid.tpl -->
+
 {**
  * grid.tpl
  *
@@ -41,3 +43,5 @@
 </script>
 
 {include file='core:controllers/grid/grid.tpl'}
+<!-- / templates/controllers/grid/files/revisions/grid.tpl -->
+

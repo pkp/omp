@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/common/cell/roleCell.tpl -->
+
 {**
  * roleCell.tpl
  *
@@ -15,3 +17,6 @@
 		<a class="task {$status}">status</a>
 	{/if}
 </span>
+
+<!-- / templates/controllers/grid/common/cell/roleCell.tpl -->
+

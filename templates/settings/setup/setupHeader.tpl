@@ -1,3 +1,5 @@
+<!-- templates/settings/setup/setupHeader.tpl -->
+
 {**
  * setupHeader.tpl
  *
@@ -38,4 +40,7 @@
 			<a href="{url op="setup" path="5"}">5. {translate key="settings.setup.look"}</a>
 		</li>
 	</ul>
+
+
+<!-- / templates/settings/setup/setupHeader.tpl -->
 

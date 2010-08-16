@@ -1,3 +1,5 @@
+<!-- templates/controllers/informationCenter/notifyListbuilder.tpl -->
+
 {**
  * listbuilder.tpl
  *
@@ -45,4 +47,7 @@
 	{/literal}
 	</script>
 </div>
+
+
+<!-- / templates/controllers/informationCenter/notifyListbuilder.tpl -->
 

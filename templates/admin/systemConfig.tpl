@@ -1,3 +1,5 @@
+<!-- templates/admin/systemConfig.tpl -->
+
 {**
  * systemConfig.tpl
  *
@@ -38,3 +40,6 @@
 </form>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/admin/systemConfig.tpl -->
+

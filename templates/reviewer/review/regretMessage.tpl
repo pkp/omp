@@ -1,3 +1,5 @@
+<!-- templates/reviewer/review/regretMessage.tpl -->
+
 {**
  * regretMessage.tpl
  *
@@ -34,3 +36,6 @@
 		
 </form>
 </div>
+
+<!-- / templates/reviewer/review/regretMessage.tpl -->
+

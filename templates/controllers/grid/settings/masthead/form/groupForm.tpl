@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/settings/masthead/form/groupForm.tpl -->
+
 {**
  * groupForm.tpl
  *
@@ -53,3 +55,6 @@
 {/if}
 
 </form>
+
+<!-- / templates/controllers/grid/settings/masthead/form/groupForm.tpl -->
+

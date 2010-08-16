@@ -1,3 +1,5 @@
+<!-- templates/submission/metadata/metadataEdit.tpl -->
+
 {**
  * metadataEdit.tpl
  *
@@ -82,3 +84,6 @@
 </form>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/submission/metadata/metadataEdit.tpl -->
+

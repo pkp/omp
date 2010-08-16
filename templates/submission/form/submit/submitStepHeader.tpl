@@ -1,3 +1,5 @@
+<!-- templates/submission/form/submit/submitStepHeader.tpl -->
+
 {**
  * submitHeader.tpl
  *
@@ -58,3 +60,5 @@
 			</li>
 		{/if}
 	</ul>
+<!-- / templates/submission/form/submit/submitStepHeader.tpl -->
+

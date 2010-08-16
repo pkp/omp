@@ -1,3 +1,5 @@
+<!-- templates/designer/submission/summary.tpl -->
+
 {**
  * summary.tpl
  *
@@ -29,3 +31,5 @@
 	</tr>
 </table>
 </div>
+<!-- / templates/designer/submission/summary.tpl -->
+

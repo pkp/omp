@@ -1,3 +1,5 @@
+<!-- templates/seriesEditor/setDueDate.tpl -->
+
 {**
  * setDueDate.tpl
  *
@@ -43,3 +45,6 @@
 </form>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/seriesEditor/setDueDate.tpl -->
+

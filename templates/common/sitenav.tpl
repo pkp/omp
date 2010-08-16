@@ -1,3 +1,5 @@
+<!-- templates/common/sitenav.tpl -->
+
 {**
  * navbar.tpl
  *
@@ -35,3 +37,6 @@
 	{/if}{* $isUserLoggedIn *}
 
 </div>	<!-- /super_navigation -->
+
+<!-- / templates/common/sitenav.tpl -->
+

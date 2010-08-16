@@ -1,3 +1,5 @@
+<!-- templates/author/submissionEditing.tpl -->
+
 {**
  * submissionEditing.tpl
  *
@@ -14,3 +16,6 @@
 <div class="separator"></div>
 
 {include file="author/submission/copyedit.tpl"}
+
+<!-- / templates/author/submissionEditing.tpl -->
+

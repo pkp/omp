@@ -1,3 +1,5 @@
+<!-- templates/author/submissionSummary.tpl -->
+
 {**
  * submissionSummary.tpl
  *
@@ -18,3 +20,6 @@
 <div class="separator"></div>
 
 {include file="submission/metadata/metadata.tpl"}
+
+<!-- / templates/author/submissionSummary.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/users/submissionContributor/form/submissionContributorForm.tpl -->
+
 {**
  * submissionContributorForm.tpl
  *
@@ -59,3 +61,5 @@
         {fbvButton id="okButton-$randomId" label="common.ok" align=$fbvStyles.align.RIGHT}
     {/fbvFormSection}
 {/fbvFormArea}
+<!-- / templates/controllers/grid/users/submissionContributor/form/submissionContributorForm.tpl -->
+

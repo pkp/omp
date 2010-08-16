@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/files/reviewFiles/manageReviewFiles.tpl -->
+
 {**
  * manageReviewFiles.tpl
  *
@@ -29,3 +31,6 @@
 		{load_url_in_div id="#availableReviewFilesGrid" url=$availableReviewFilesGridUrl}
 	</form>
 </div>
+
+<!-- / templates/controllers/grid/files/reviewFiles/manageReviewFiles.tpl -->
+

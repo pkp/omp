@@ -1,3 +1,5 @@
+<!-- templates/common/sizer.tpl -->
+
 {**
  * sizer.tpl
  *
@@ -16,3 +18,6 @@
 	<link rel="alternate stylesheet" title="{translate key="icon.font_small.alt"}" href="{$baseUrl}/styles/fontSmall.css" type="text/css" />
 	<link rel="stylesheet" title="{translate key="icon.font_medium.alt"}" href="{$baseUrl}/styles/fontMedium.css" type="text/css" />
 	<link rel="alternate stylesheet" title="{translate key="icon.font_large.alt"}" href="{$baseUrl}/styles/fontLarge.css" type="text/css" />
+
+<!-- / templates/common/sizer.tpl -->
+

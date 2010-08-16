@@ -1,3 +1,5 @@
+<!-- templates/controllers/informationCenter/informationCenter.tpl -->
+
 {**
  * informationCenter.tpl
  *
@@ -30,3 +32,5 @@
 		<li class="ui-state-default ui-corner-top"><a href="{url op="viewHistory" monographId=$monographId itemId=$itemId}">{translate key="informationCenter.history"}</a></li>
 	</ul>
 </div>
+<!-- / templates/controllers/informationCenter/informationCenter.tpl -->
+

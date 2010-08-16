@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/users/submissionContributor/primaryContact.tpl -->
+
 {**
  * principalContact.tpl
  *
@@ -10,3 +12,6 @@
 {if $isPrincipalContact}
 	<div id="isPrimaryContact" style="padding-left: 40%; margin-top: 15px;">{icon name="accept"}</div>
 {/if}
+
+<!-- / templates/controllers/grid/users/submissionContributor/primaryContact.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/files/submissionFiles/form/fileSubmissionComplete.tpl -->
+
 {**
  * fileForm.tpl
  *
@@ -38,3 +40,5 @@
 		<input class="button" type="button" name="exit" value="{translate key='submission.submit.finishedUploading'}" id="exit" /> <br />
 	</form>
 </div>
+<!-- / templates/controllers/grid/files/submissionFiles/form/fileSubmissionComplete.tpl -->
+

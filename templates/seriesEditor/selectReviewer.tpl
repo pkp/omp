@@ -1,3 +1,5 @@
+<!-- templates/seriesEditor/selectReviewer.tpl -->
+
 {**
  * selectReviewer.tpl
  *
@@ -110,3 +112,6 @@
 </div>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/seriesEditor/selectReviewer.tpl -->
+

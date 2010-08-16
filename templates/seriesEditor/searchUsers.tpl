@@ -1,3 +1,5 @@
+<!-- templates/seriesEditor/searchUsers.tpl -->
+
 {**
  * searchUsers.tpl
  *
@@ -75,3 +77,6 @@
 {/if}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/seriesEditor/searchUsers.tpl -->
+

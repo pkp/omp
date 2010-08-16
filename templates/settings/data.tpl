@@ -1,3 +1,5 @@
+<!-- templates/settings/data.tpl -->
+
 {**
  * index.tpl
  *
@@ -15,3 +17,6 @@
 {/strip}
 <img src="{$baseUrl}/templates/images/wires/omp_settings_file_browser.png">
 {include file="common/footer.tpl"}
+
+<!-- / templates/settings/data.tpl -->
+

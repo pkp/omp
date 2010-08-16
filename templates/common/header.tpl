@@ -1,3 +1,5 @@
+<!-- templates/common/header.tpl -->
+
 {**
  * header.tpl
  *
@@ -162,3 +164,6 @@
 {/if}
 
 <div id="content">
+
+<!-- / templates/common/header.tpl -->
+

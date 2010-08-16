@@ -1,3 +1,5 @@
+<!-- templates/common/localnav.tpl -->
+
 {**
  * navbar.tpl
  *
@@ -79,3 +81,5 @@
 	</ul>
 </div>
 {/if}
+<!-- / templates/common/localnav.tpl -->
+

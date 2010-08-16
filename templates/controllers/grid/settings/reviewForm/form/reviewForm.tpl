@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/settings/reviewForm/form/reviewForm.tpl -->
+
 {**
  * reviewForm.tpl
  *
@@ -44,3 +46,6 @@
 {/if}
 
 </form>
+
+<!-- / templates/controllers/grid/settings/reviewForm/form/reviewForm.tpl -->
+

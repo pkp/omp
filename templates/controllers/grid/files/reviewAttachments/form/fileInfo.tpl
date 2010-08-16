@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/files/reviewAttachments/form/fileInfo.tpl -->
+
 {**
  * fileInfo.tpl
  *
@@ -29,3 +31,6 @@
 	<td width="70%" class="value">{$attachmentFile->getDateUploaded()|date_format:$datetimeFormatShort}</td>
 </tr>
 </table>
+
+<!-- / templates/controllers/grid/files/reviewAttachments/form/fileInfo.tpl -->
+

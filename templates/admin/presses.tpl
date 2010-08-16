@@ -1,3 +1,5 @@
+<!-- templates/admin/presses.tpl -->
+
 {**
  * presses.tpl
  *
@@ -59,3 +61,6 @@
 <p><a href="{url op="createPress"}" class="action">{translate key="admin.presses.create"}</a></p>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/admin/presses.tpl -->
+

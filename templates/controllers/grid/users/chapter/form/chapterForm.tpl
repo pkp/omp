@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/users/chapter/form/chapterForm.tpl -->
+
 {**
  * chapters.tpl
  *
@@ -26,3 +28,5 @@
 	{load_url_in_div id="#chapterContributorContainer-$randomId" url=$chapterContributorUrl}
 {/if}
 </form>
+<!-- / templates/controllers/grid/users/chapter/form/chapterForm.tpl -->
+

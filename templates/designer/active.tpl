@@ -1,3 +1,5 @@
+<!-- templates/designer/active.tpl -->
+
 {**
  * active.tpl
  *
@@ -59,3 +61,6 @@
 {/if}
 </table>
 </div>
+
+<!-- / templates/designer/active.tpl -->
+

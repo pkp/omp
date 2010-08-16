@@ -1,3 +1,5 @@
+<!-- templates/seriesEditor/submissionProduction.tpl -->
+
 {**
  * submissionProduction.tpl
  *
@@ -14,4 +16,7 @@
 <div class="separator"></div>
 
 {include file="seriesEditor/submission/production.tpl"}
+
+
+<!-- / templates/seriesEditor/submissionProduction.tpl -->
 

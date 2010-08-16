@@ -1,3 +1,5 @@
+<!-- templates/notification/settings.tpl -->
+
 {**
  * index.tpl
  *
@@ -241,3 +243,6 @@
 </form>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/notification/settings.tpl -->
+

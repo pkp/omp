@@ -1,3 +1,5 @@
+<!-- templates/reviewer/review/reviewStepHeader.tpl -->
+
 {**
  * reviewStepHeader.tpl
  *
@@ -48,3 +50,5 @@
 			<a href="{url op="submission" path=$submission->getReviewId() step=4}">4. {translate key="reviewer.reviewSteps.nextSteps"}</a>
 		</li>
 	</ul>
+<!-- / templates/reviewer/review/reviewStepHeader.tpl -->
+

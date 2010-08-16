@@ -1,3 +1,5 @@
+<!-- templates/settings/userManagement.tpl -->
+
 {**
  * index.tpl
  *
@@ -16,3 +18,6 @@
 <img src="{$baseUrl}/templates/images/wires/omp_settings_users.png">
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/settings/userManagement.tpl -->
+

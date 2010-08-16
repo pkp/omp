@@ -1,3 +1,5 @@
+<!-- templates/controllers/modals/editorDecision/form/promoteForm.tpl -->
+
 {**
  * sendReviewsForm.tpl
  *
@@ -68,3 +70,5 @@ $(function() {
         {fbvButton id="okButton-$randomId" label="editor.submissionReview.recordDecision" align=$fbvStyles.align.RIGHT}
     {/fbvFormSection}
 {/fbvFormArea}
+<!-- / templates/controllers/modals/editorDecision/form/promoteForm.tpl -->
+

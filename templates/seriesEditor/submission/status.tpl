@@ -1,3 +1,5 @@
+<!-- templates/seriesEditor/submission/status.tpl -->
+
 {**
  * status.tpl
  *
@@ -49,3 +51,5 @@
 {/if}
 </table>
 </div>
+<!-- / templates/seriesEditor/submission/status.tpl -->
+

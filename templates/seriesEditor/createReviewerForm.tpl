@@ -1,3 +1,5 @@
+<!-- templates/seriesEditor/createReviewerForm.tpl -->
+
 {**
  * createReviewerForm.tpl
  *
@@ -143,3 +145,6 @@
 </form>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/seriesEditor/createReviewerForm.tpl -->
+

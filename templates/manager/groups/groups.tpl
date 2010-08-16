@@ -1,3 +1,5 @@
+<!-- templates/manager/groups/groups.tpl -->
+
 {**
  * groups.tpl
  *
@@ -91,3 +93,6 @@
 </div>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/groups/groups.tpl -->
+

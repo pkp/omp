@@ -1,3 +1,5 @@
+<!-- templates/submission/metadata/metadata.tpl -->
+
 {**
  * metadata.tpl
  *
@@ -110,3 +112,6 @@ function show(id) {
 	</tr>
 </table>
 </div>
+
+<!-- / templates/submission/metadata/metadata.tpl -->
+

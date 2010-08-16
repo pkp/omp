@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/settings/library/form/fileForm.tpl -->
+
 {**
  * fileForm.tpl
  *
@@ -125,4 +127,7 @@
 {/if}
 <input type="hidden" id="deleteUrl-{$randomId}" value="" />
 <input type="hidden" id="newFile-{$randomId}" value="{$newFile}" />
+
+
+<!-- / templates/controllers/grid/settings/library/form/fileForm.tpl -->
 

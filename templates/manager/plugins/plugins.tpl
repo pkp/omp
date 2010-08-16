@@ -1,3 +1,5 @@
+<!-- templates/manager/plugins/plugins.tpl -->
+
 {**
  * plugins.tpl
  *
@@ -75,3 +77,6 @@
 {/if}
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/plugins/plugins.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/controllers/reviewerSelector/advancedSearchForm.tpl -->
+
 {**
  * advancedSearchForm.tpl
  *
@@ -166,3 +168,6 @@
 	doneMax=$reviewerValues.doneMax avgMin=$reviewerValues.avgMin avgMax=$reviewerValues.avgMax lastMin=$reviewerValues.lastMin lastMax=$reviewerValues.lastMax activeMin=$reviewerValues.activeMin activeMax=$reviewerValues.activeMax escape=false}
 {assign var=gridContainerId value="reviewerSelectGridContainer"|concat:"-":$randomId}
 {load_url_in_div id="#"|concat:$gridContainerId url="$reviewerSelectGridUrl"}
+
+<!-- / templates/controllers/reviewerSelector/advancedSearchForm.tpl -->
+

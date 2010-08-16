@@ -1,3 +1,5 @@
+<!-- templates/common/breadcrumbs.tpl -->
+
 {**
  * breadcrumbs.tpl
  *
@@ -17,3 +19,6 @@
 		<li>{if $requiresFormRequest}<span class="current">{else}<a href="{$currentUrl|escape}" class="current">{/if}{$pageCrumbTitleTranslated}{if $requiresFormRequest}</span>{else}</a>{/if}</li>
 	</ul>
 </div>
+
+<!-- / templates/common/breadcrumbs.tpl -->
+

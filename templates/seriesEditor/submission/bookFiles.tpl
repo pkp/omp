@@ -1,3 +1,5 @@
+<!-- templates/seriesEditor/submission/bookFiles.tpl -->
+
 {**
  * bookFiles.tpl
  *
@@ -49,3 +51,6 @@
 </form>
 
 </div>
+
+<!-- / templates/seriesEditor/submission/bookFiles.tpl -->
+

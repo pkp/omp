@@ -1,3 +1,5 @@
+<!-- templates/author/index.tpl -->
+
 {**
  * index.tpl
  *
@@ -23,3 +25,6 @@
 </div>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/author/index.tpl -->
+

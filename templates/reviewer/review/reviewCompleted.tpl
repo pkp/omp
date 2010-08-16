@@ -1,3 +1,5 @@
+<!-- templates/reviewer/review/reviewCompleted.tpl -->
+
 {**
  * reviewCompleted.tpl
  *
@@ -25,3 +27,6 @@
 </form>
 </div>
 {include file="common/footer.tpl"}
+
+<!-- / templates/reviewer/review/reviewCompleted.tpl -->
+

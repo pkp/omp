@@ -1,3 +1,5 @@
+<!-- templates/help/toc.tpl -->
+
 {**
  * toc.tpl
  *
@@ -51,4 +53,7 @@
 		{/foreach}
 	</ul>
 </div>
+
+
+<!-- / templates/help/toc.tpl -->
 

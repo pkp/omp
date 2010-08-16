@@ -1,3 +1,5 @@
+<!-- templates/manager/submissionCategory/submissionCategoryForm.tpl -->
+
 {**
  * submissionCategoryForm.tpl
  *
@@ -205,3 +207,6 @@ function checkEditorAssignments() {
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/submissionCategory/submissionCategoryForm.tpl -->
+

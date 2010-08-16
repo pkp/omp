@@ -1,3 +1,5 @@
+<!-- templates/inserts/contributors/ContributorInsert.tpl -->
+
 {**
  * ContributorInsert.tpl
  *
@@ -188,3 +190,6 @@ function show(id) {
 <br />
 
 {include file="inserts/contributors/NewContributorForm.tpl"}
+
+<!-- / templates/inserts/contributors/ContributorInsert.tpl -->
+

@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/settings/submissionChecklist/form/submissionChecklistForm.tpl -->
+
 
 {**
  * submissionChecklists.tpl
@@ -25,3 +27,5 @@
 {/if}
 
 </form>
+<!-- / templates/controllers/grid/settings/submissionChecklist/form/submissionChecklistForm.tpl -->
+

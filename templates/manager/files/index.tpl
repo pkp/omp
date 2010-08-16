@@ -1,3 +1,5 @@
+<!-- templates/manager/files/index.tpl -->
+
 {**
  * index.tpl
  *
@@ -80,3 +82,6 @@
 <p>{translate key="manager.files.note"}</p>
 
 {include file="common/footer.tpl"}
+
+<!-- / templates/manager/files/index.tpl -->
+

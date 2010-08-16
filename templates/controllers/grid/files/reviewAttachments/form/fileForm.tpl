@@ -1,3 +1,5 @@
+<!-- templates/controllers/grid/files/reviewAttachments/form/fileForm.tpl -->
+
 {**
  * fileForm.tpl
  *
@@ -109,4 +111,7 @@
 <input type="hidden" id="deleteUrl-{$randomId}" value="" />
 <input type="hidden" id="saveUrl-{$randomId}" value="" />
 <input type="hidden" id="newFile-{$randomId}" value="{$newFile}" />
+
+
+<!-- / templates/controllers/grid/files/reviewAttachments/form/fileForm.tpl -->
 
