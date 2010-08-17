@@ -30,7 +30,7 @@ class WorkflowSubmissionAssignmentPolicy extends AuthorizationPolicy {
 	 * @see AuthorizationPolicy::effect()
 	 */
 	function effect() {
-		// FIXME: Implement when workflow submission assignments have been implemented.
+		// FIXME: Implement when workflow submission assignments have been implemented, see #5557.
 		return AUTHORIZATION_PERMIT;
 	}
 }
