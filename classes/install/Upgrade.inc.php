@@ -12,8 +12,6 @@
  * @brief Perform system upgrade.
  */
 
-// $Id$
-
 
 import('lib.pkp.classes.install.Installer');
 
