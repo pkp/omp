@@ -70,7 +70,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		// remove the file, in case its there currently in there and replace with the currently selected ones
 		$returner = $this->update('DELETE FROM review_round_files
 						WHERE monograph_id = ? AND review_type = ? AND round = ?',
-						array($monographId, $reviewType, $round));
+						array((int)$monographId, (int)$reviewType, (int)$round));
 
 		// now insert the selected files
 		foreach ($fileIds as $fileId) {
@@ -79,7 +79,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 						$this->update('INSERT INTO review_round_files
 								(monograph_id, review_type, round, file_id, revision)
 								VALUES (?, ?, ?, ?, ?)',
-								array($monographId, $reviewType, $round, $fileId[0], $fileId[1]));
+								array((int)$monographId, (int)$reviewType, (int)$round, (int)$fileId[0], (int)$fileId[1]));
 		}
 
 		return $returner;
@@ -88,7 +88,9 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	/**
 	 * Get a review file for a monograph for each round.
 	 * @param $monographId int
-	 * @return array MonographFiles
+	 * @return array A three-dimensional array with the review type,
+	 *  the round and the corresponding MonographFiles. Returns an
+	 *  empty array if now files were found.
 	 */
 	function &getReviewFilesByRound($monographId) {
 		$returner = array();
@@ -104,7 +106,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 				rrf.round = rr.round AND
 				rrf.file_id = mf.file_id AND
 				rrf.revision = mf.revision',
-					(int) $monographId
+					(int)$monographId
 		);
 
 		while (!$result->EOF) {
