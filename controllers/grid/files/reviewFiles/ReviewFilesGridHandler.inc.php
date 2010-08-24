@@ -162,7 +162,7 @@ class ReviewFilesGridHandler extends GridHandler {
 			// Set the already selected elements of the grid
 			$templateMgr =& TemplateManager::getManager();
 			$selectedRevisions =& $reviewAssignmentDAO->getReviewFilesAndRevisionsByRound($monographId, $round, true);
-			if(!empty($selectedRevisions)) $templateMgr->assign('selectedFileIds', $selectedRevisions);
+			$templateMgr->assign('selectedFileIds', $selectedRevisions);
 		} else {
 			// set the grid data to be only the files that have already been selected
 			$data = isset($selectedFiles[$reviewType][$round]) ? $selectedFiles[$reviewType][$round] : array();
