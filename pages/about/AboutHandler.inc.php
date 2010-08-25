@@ -216,39 +216,21 @@ class AboutHandler extends Handler {
 
 		$user = null;
 		if ($press->getSetting('boardEnabled') != true) {
-			$editors =& $roleDao->getUsersByRoleId(ROLE_ID_EDITOR, $press->getId());
-			while ($potentialUser =& $editors->next()) {
-				if ($potentialUser->getId() == $userId)
-					$user =& $potentialUser;
-				unset($potentialUser);
-			}
-
-			$seriesEditors =& $roleDao->getUsersByRoleId(ROLE_ID_SERIES_EDITOR, $press->getId());
-			while ($potentialUser =& $seriesEditors->next()) {
-				if ($potentialUser->getId() == $userId)
-					$user =& $potentialUser;
-				unset($potentialUser);
-			}
-
-			$productionEditors =& $roleDao->getUsersByRoleId(ROLE_ID_PRODUCTION_EDITOR, $press->getId());
-			while ($potentialUser =& $productionEditors->next()) {
-				if ($potentialUser->getId() == $userId)
-					$user = $potentialUser;
-				unset($potentialUser);
-			}
-
-			$copyEditors =& $roleDao->getUsersByRoleId(ROLE_ID_COPYEDITOR, $press->getId());
-			while ($potentialUser =& $copyEditors->next()) {
-				if ($potentialUser->getId() == $userId)
-					$user = $potentialUser;
-				unset($potentialUser);
-			}
-
-			$proofreaders =& $roleDao->getUsersByRoleId(ROLE_ID_PROOFREADER, $press->getId());
-			while ($potentialUser =& $proofreaders->next()) {
-				if ($potentialUser->getId() == $userId)
-					$user = $potentialUser;
-				unset($potentialUser);
+			$roles =& $roleDao->getRolesByUserId($userId, $press->getId());
+			$acceptableRoles = array(
+				ROLE_ID_EDITOR,
+				ROLE_ID_SERIES_EDITOR,
+				ROLE_ID_PRODUCTION_EDITOR,
+				ROLE_ID_COPYEDITOR,
+				ROLE_ID_PROOFREADER
+			);
+			foreach ($roles as $role) {
+				$roleId = $role->getRoleId();
+				if (in_array($roleId, $acceptableRoles)) {
+					$userDao =& DAORegistry::getDAO('UserDAO');
+					$user =& $userDao->getUser($userId);
+					break;
+				}
 			}
 
 			// Currently we always publish emails in this mode.
