@@ -361,7 +361,18 @@ class ReviewFilesGridHandler extends GridHandler {
 			$this->initialize($request);
 
 			// Pass to modal.js to reload the grid with the new content
-			$json = new JSON('true', implode(' ', $this->_renderRowsInternally($request)));
+			$gridBodyParts = $this->_renderGridBodyPartsInternally($request);
+			if (count($gridBodyParts) == 0) {
+				// The following should usually be returned from a
+				// template also so we remain view agnostic. But as this
+				// is easy to migrate and we want to avoid the additional
+				// processing overhead, let's just return plain HTML.
+				$renderedGridRows = '<tbody> </tbody>';
+			} else {
+				assert(count($gridBodyParts) == 1);
+				$renderedGridRows = $gridBodyParts[0];
+			}
+			$json = new JSON('true', $renderedGridRows);
 		} else {
 			$json = new JSON('false');
 		}
