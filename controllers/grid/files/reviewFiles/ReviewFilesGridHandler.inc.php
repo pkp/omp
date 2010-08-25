@@ -116,27 +116,27 @@ class ReviewFilesGridHandler extends GridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 		// Basic grid configuration
-		$monographId = $request->getUserVar('monographId');
+		$monographId = (integer)$request->getUserVar('monographId');
 		$this->setId('reviewFiles');
 		$this->setTitle('reviewer.monograph.reviewFiles');
 
 		// Set the Is Selectable boolean flag
-		$isSelectable = $request->getUserVar('isSelectable');
+		$isSelectable = (boolean)$request->getUserVar('isSelectable');
 		$this->setIsSelectable($isSelectable);
 
 		// Set the Can upload boolean flag
-		$canUpload = $request->getUserVar('canUpload');
+		$canUpload = (boolean)$request->getUserVar('canUpload');
 		$this->setCanUpload($canUpload);
 
 		// Set the show role columns boolean flag
-		$showRoleColumns = $request->getUserVar('showRoleColumns');
+		$showRoleColumns = (boolean)$request->getUserVar('showRoleColumns');
 		$this->setShowRoleColumns($showRoleColumns);
 
-		$reviewType = (int) $request->getUserVar('reviewType');
-		$round = (int) $request->getUserVar('round');
+		$reviewType = (int)$request->getUserVar('reviewType');
+		$round = (int)$request->getUserVar('round');
 
 		// Check if the user can add files to the round
-		$canAdd = $request->getUserVar('canAdd');
+		$canAdd = (boolean)$request->getUserVar('canAdd');
 
 		// Grab the files that are currently set for the review
 		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');

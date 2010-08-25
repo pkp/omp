@@ -12,10 +12,9 @@
 {modal_title id="#existingFilesContainer" key='editor.submissionArchive.manageReviewFiles' iconClass="fileManagement" canClose=1}
 
 <script type="text/javascript">
-	{literal}
-	$(function() {
+	$(function() {ldelim}
 		$('.button').button();
-	{/literal}
+	{rdelim});
 </script>
 
 
