@@ -505,7 +505,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 
 	<!-- Registration -->
 	<message key="user.register.completeForm">Fill in this form to register with this press.</message>
-	<message key="user.register.repeatPassword">Repeat password</message>
 	<message key="user.register.selectPress">Select a press to register with</message>
 	<message key="user.register.noPresses">There are no presses you may register with on this site.</message>
 	<message key="user.register.privacyStatement">Privacy Statement</message>

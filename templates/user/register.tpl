@@ -68,7 +68,7 @@
 		{fbvElement type="text" label="user.username" id="username" value=$username required="true"}
 		{fbvElement type="text" label="user.password" id="password" value=$password required="true" password="true"}
 		{if !$existingUser}
-			{fbvElement type="text" label="user.register.repeatPassword" id="password2" value=$password2 required="true" password="true"}
+			{fbvElement type="text" label="user.repeatPassword" id="password2" value=$password2 required="true" password="true"}
 		{/if}{* !$existingUser *}
 	{/fbvFormSection}
 
