@@ -102,7 +102,7 @@ class GroupForm extends Form {
 
 		// Eventually this will be a general Groups feature; for now,
 		// we're just using it to display press team entries in About.
-		$this->group->setAboutFetched(true);
+		$this->group->setAboutDisplayed(true);
 
 		// Update or insert group group
 		if ($this->group->getId() != null) {
