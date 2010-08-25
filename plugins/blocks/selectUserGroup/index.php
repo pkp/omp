@@ -11,10 +11,9 @@
  * @brief Wrapper for user block plugin.
  */
 
-//$Id$
 
-require_once('SelectRoleBlockPlugin.inc.php');
+require_once('SelectUserGroupBlockPlugin.inc.php');
 
-return new SelectRoleBlockPlugin();
+return new SelectUserGroupBlockPlugin();
 
-?> 
+?>

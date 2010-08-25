@@ -1,12 +1,12 @@
 <?php
 
 /**
- * SelectRoleBlockPlugin.inc.php
+ * SelectUserGroupBlockPlugin.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SelectRoleBlockPlugin
+ * @class SelectUserGroupBlockPlugin
  * @ingroup plugins
  *
  * @brief Class for select role block plugin
@@ -15,7 +15,7 @@
 
 import('lib.pkp.classes.plugins.BlockPlugin');
 
-class SelectRoleBlockPlugin extends BlockPlugin {
+class SelectUserGroupBlockPlugin extends BlockPlugin {
 
 	/** @var User */
 	var $_user;
@@ -67,14 +67,14 @@ class SelectRoleBlockPlugin extends BlockPlugin {
 	 * @return String
 	 */
 	function getDisplayName() {
-		return Locale::translate('plugins.block.selectRole.displayName');
+		return Locale::translate('plugins.block.selectUserGroup.displayName');
 	}
 
 	/**
 	 * Get a description of the plugin.
 	 */
 	function getDescription() {
-		return Locale::translate('plugins.block.selectRole.description');
+		return Locale::translate('plugins.block.selectUserGroup.description');
 	}
 
 	function getContents(&$templateMgr) {

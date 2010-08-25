@@ -8,12 +8,10 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the en_US (U.S. English) locale.
-  *
-  * $Id$
   -->
  
 <locale name="en_US" full_name="U.S. English">
-	<message key="plugins.block.selectRole.displayName">Select Role Block</message>
-	<message key="plugins.block.selectRole.description">This plugin allows you to quickly change roles within a press</message>
-	<message key="plugins.block.selectRole.changeTo">Change roles</message>
+	<message key="plugins.block.selectUserGroup.displayName">Select Role Block</message>
+	<message key="plugins.block.selectUserGroup.description">This plugin allows you to quickly change roles within a press</message>
+	<message key="plugins.block.selectUserGroup.changeTo">Change roles</message>
 </locale>

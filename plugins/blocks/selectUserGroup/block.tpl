@@ -4,11 +4,11 @@
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Common site sidebar menu -- user tools.
+ * Common site sidebar menu -- user tools -- select user group block.
  *}
 
 {if $isUserLoggedIn}
-	<div class="block" id="sidebarSelectRole">
+	<div class="block" id="sidebarSelectUserGroup">
 		<span class="blockTitle">{translate key="user.roles"}</span>
 		<br />
 		<form id="changeActingAsUserGroupForm" action="">
@@ -17,7 +17,7 @@
 					<option value="{$group->getId()}" {if $group->getId() == $currentActingAsUserGroupId}selected="selected"{/if}>{$group->getLocalizedName()}</option>
 				{/iterate}
 			</select>
-			<label for="toolbox_press_roles">{translate key="plugins.block.selectRole.changeTo"}</label>
+			<label for="toolbox_press_roles">{translate key="plugins.block.selectUserGroup.changeTo"}</label>
 			{literal}<script type='text/javascript'>
 				$(function(){
 					$('#changedActingAsUserGroupId').change(function() {
