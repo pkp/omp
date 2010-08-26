@@ -27,7 +27,7 @@ class ContributorForm extends Form {
 		parent::Form('controllers/grid/settings/contributor/form/contributorForm.tpl');
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'institution', 'required', 'manager.setup.form.contributors.institutionRequired'));
+		$this->addCheck(new FormValidator($this, 'institution', 'required', 'settings.setup.form.contributors.institutionRequired'));
 		$this->addCheck(new FormValidatorUrl($this, 'url', 'required', 'manager.emails.form.contributors.urlRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}

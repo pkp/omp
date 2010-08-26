@@ -11,6 +11,7 @@
   -->
 
 <locale name="en_US" full_name = "English">
+	<message key="settings.settings">Settings</message>
 	<message key="settings.pressManagement">Press Management</message>
 	<message key="settings.setup">Setup</message>
 	<message key="settings.setup.aboutItemContent">Content</message>

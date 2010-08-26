@@ -56,7 +56,7 @@ function doSubmit() {
 	</tr>
 {/if}
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="name" key="manager.setup.pressName" required="true"}</td>
+		<td width="20%" class="label">{fieldLabel name="name" key="settings.setup.pressName" required="true"}</td>
 		<td width="80%" class="value"><input type="text" id="name" name="name[{$formLocale|escape}]" value="{$name[$formLocale]|escape}" size="40" maxlength="120" class="textField" /></td>
 	</tr>
 	<tr valign="top">

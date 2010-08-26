@@ -141,7 +141,7 @@
 		<name>cataloguingMetadata</name>
 		<value>
 			<array>
-				<element key="name">{translate key="manager.setup.division"}</element>
+				<element key="name">{translate key="settings.setup.division"}</element>
 				<element key="name">{translate key="manager.series.book"}</element>
 				<element key="name">{translate key="common.keywords"}</element>
 			</array>

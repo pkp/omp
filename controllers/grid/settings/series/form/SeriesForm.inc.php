@@ -27,7 +27,7 @@ class SeriesForm extends Form {
 		parent::Form('controllers/grid/settings/series/form/seriesForm.tpl');
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'title', 'required', 'manager.setup.form.series.nameRequired'));
+		$this->addCheck(new FormValidator($this, 'title', 'required', 'settings.setup.form.series.nameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 

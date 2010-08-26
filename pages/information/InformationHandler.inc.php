@@ -60,8 +60,8 @@ class InformationHandler extends Handler {
 				$pageTitle = $pageCrumbTitle = 'navigation.competingInterestGuidelines';
 				break;
 			case 'sampleCopyrightWording':
-				$content = Locale::translate('manager.setup.authorCopyrightNotice.sample');
-				$pageTitle = $pageCrumbTitle = 'manager.setup.copyrightNotice';
+				$content = Locale::translate('settings.setup.authorCopyrightNotice.sample');
+				$pageTitle = $pageCrumbTitle = 'settings.setup.copyrightNotice';
 				break;
 			default:
 				Request::redirect($press->getPath());

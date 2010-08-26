@@ -9,7 +9,7 @@
  * @class AdminHandler
  * @ingroup pages_admin
  *
- * @brief Handle requests for site administration functions. 
+ * @brief Handle requests for site administration functions.
  */
 
 // $Id$
@@ -26,7 +26,7 @@ class AdminHandler extends Handler {
 
 		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN)));
 		$this->addCheck(new HandlerValidatorCustom($this, true, null, null, create_function(null, 'return Request::getRequestedPressPath() == \'index\';')));
-	}		
+	}
 
 	/**
 	 * Display site admin index page.
@@ -47,7 +47,7 @@ class AdminHandler extends Handler {
 	function setupTemplate($subclass = false) {
 		parent::setupTemplate();
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_ADMIN));
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SETTINGS));
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_ADMIN));
 
 		$templateMgr =& TemplateManager::getManager();
