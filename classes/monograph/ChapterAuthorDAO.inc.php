@@ -53,9 +53,9 @@ class ChapterAuthorDAO extends DAO {
 				ma.url,
 				ma.user_group_id
 			FROM	authors ma
-				LEFT JOIN author_settings aspl ON (aa.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
-				LEFT JOIN author_settings asl ON (aa.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)
-				JOIN monograph_chapter_authors mca ON (ma.author_id = mca.author_id)' .
+				JOIN monograph_chapter_authors mca ON (ma.author_id = mca.author_id)
+				LEFT JOIN author_settings aspl ON (mca.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
+				LEFT JOIN author_settings asl ON (mca.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)' .
 		    ( (count($params)> 0)?' WHERE':'' ) .
 		    (  isset($monographId)?' ma.submission_id = ?':'' ) .
 		    (  (isset($monographId) && isset($chapterId))?' AND':'' ) .

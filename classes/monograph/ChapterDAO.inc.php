@@ -95,9 +95,9 @@ class ChapterDAO extends DAO {
 				ma.url,
 				ma.user_group_id
 			FROM	monograph_chapters mc
-				LEFT JOIN author_settings aspl ON (aa.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
-				LEFT JOIN author_settings asl ON (aa.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)
 				LEFT JOIN monograph_chapter_authors mca ON (mc.chapter_id = mca.chapter_id)
+				LEFT JOIN author_settings aspl ON (mca.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
+				LEFT JOIN author_settings asl ON (mca.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)
 				LEFT JOIN authors ma ON (ma.author_id = mca.author_id)
 			WHERE	mc.monograph_id = ?
 			ORDER BY mc.chapter_seq, mca.seq',

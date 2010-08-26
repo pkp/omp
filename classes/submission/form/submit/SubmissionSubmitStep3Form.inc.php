@@ -95,11 +95,10 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
-		$monograph = $this->monograph;
 
 		$templateMgr->assign_by_ref('countries', $countries);
 		$templateMgr->assign('monographId', $this->monographId);
-		$templateMgr->assign('isEditedVolume', $monograph->getEditedVolume());
+		$templateMgr->assign('isEditedVolume', $this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME ? true : false);
 
 		if (Request::getUserVar('addAuthor') || Request::getUserVar('delAuthor')  || Request::getUserVar('moveAuthor')) {
 			$templateMgr->assign('scrollToAuthor', true);

@@ -375,14 +375,6 @@ class Monograph extends Submission {
 		$this->setData('workType', $type);
 	}
 
-	function setEditedVolume($isVolume) {
-		$this->setData('edited_volume', $isVolume);
-	}
-
-	function getEditedVolume() {
-		$this->getData('edited_volume');
-	}
-
 	/**
 	 * Get localized supporting agencies array.
 	 * @return array
