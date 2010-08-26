@@ -11,7 +11,7 @@
  *
  * @brief Handle requests for monograph submission functions.
  *
- * FIXME: #5641 Flesh out these pages with more submission details, and make role-agnostic
+ * FIXME: #5807 Implement common user home page ("submission list")
  */
 
 
@@ -20,18 +20,42 @@ import('classes.handler.Handler');
 class SubmissionHandler extends Handler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function SubmissionHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('index')
-				);
+				array('index', 'details'));
 	}
 
+	//
+	// Implement template methods from PKPHandler
+	//
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize(&$request, &$args, $roleAssignments) {
+		// FIXME: #5815 Specify permission policy for SubmissionHandler and implement its authorize() method.
+
+		// Use a temporary user group based policy until #5815 is fixed.
+		import('lib.pkp.classes.security.authorization.LoggedInWithValidUserGroupPolicy');
+		$this->addPolicy(new LoggedInWithValidUserGroupPolicy($request));
+
+		import('lib.pkp.classes.security.authorization.PolicySet');
+		$temporaryRolePolicy = new PolicySet(COMBINING_PERMIT_OVERRIDES);
+		foreach($roleAssignments as $role => $operations) {
+			$temporaryRolePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, $role, $operations));
+		}
+		$this->addPolicy($temporaryRolePolicy);
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+
+	//
+	// Public handler methods
+	//
 	/**
 	 * Display index page (shows all submissions associated with user).
-
- 	 * @param $args array
+	 * @param $args array
 	 * @param $request PKPRequest
 	 */
 	function index(&$args, &$request) {
@@ -68,7 +92,7 @@ class SubmissionHandler extends Handler {
 	}
 
 	/**
-	 * Enter description here ...
+	 * Displays the details of a single submission.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
@@ -90,6 +114,10 @@ class SubmissionHandler extends Handler {
  		$templateMgr->display('submission/details.tpl');
 	}
 
+
+	//
+	// Protected helper methods
+	//
 	/**
 	 * Setup common template variables.
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
