@@ -50,8 +50,8 @@
 	<input type="hidden" name="groupId" value="{$group->getId()}"/>
 	{url|assign:mastheadMembersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.MastheadMembershipListbuilderHandler" op="fetch" groupId=$group->getId()}
 	{* Need a random div ID to load listbuilders in modals *}
-	{assign var='randomId' value=1|rand:99999}
-	{load_url_in_div id=$randomId url=$mastheadMembersUrl}
+	{assign var='timeStamp' value=$smarty.now}
+	{load_url_in_div id=$timeStamp url=$mastheadMembersUrl}
 {/if}
 
 </form>

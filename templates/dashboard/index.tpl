@@ -10,7 +10,7 @@
  *
  * $Id$
  *}
- 
+
 {strip}
 {assign var="pageTitle" value="dashboard.dashboard"}
 {include file="common/header.tpl"}

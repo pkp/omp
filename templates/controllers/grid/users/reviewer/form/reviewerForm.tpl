@@ -9,16 +9,16 @@
  * Review assignment form
  *
  *}
-{assign var='randomId' value=1|rand:99999}
+{assign var='timeStamp' value=$smarty.now}
 
-{modal_title id="#addReviewer-$randomId" key='editor.monograph.addReviewer' iconClass="fileManagement" canClose=1}
+{modal_title id="#addReviewer-$timeStamp" key='editor.monograph.addReviewer' iconClass="fileManagement" canClose=1}
 
 <script type="text/javascript">{literal}
 	$(function() {
-		getAutocompleteSource("{/literal}{url op="getReviewerAutocomplete" monographId=$monographId}", "{$randomId}{literal}");
+		getAutocompleteSource("{/literal}{url op="getReviewerAutocomplete" monographId=$monographId}", "{$timeStamp}{literal}");
 		$("#responseDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
 		$("#reviewDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
-		$("#sourceTitle-{/literal}{$randomId}{literal}").addClass('required');
+		$("#sourceTitle-{/literal}{$timeStamp}{literal}").addClass('required');
 		$("#reviewerSearch").accordion({
 			autoHeight: false,
 			collapsible: true,
@@ -29,17 +29,17 @@
 				// Make current selection type's required fields required
 				switch(newId){
 					case 'searchByName':
-						$("#sourceTitle-{/literal}{$randomId}{literal}").addClass('required');
+						$("#sourceTitle-{/literal}{$timeStamp}{literal}").addClass('required');
 						$(".advancedReviewerSelect").removeClass('required');
 						$("#firstname, #lastname, #username, #email").removeClass('required');
 						break;
 					case 'advancedSearch':
-						$("#sourceTitle-{/literal}{$randomId}{literal}").removeClass('required');
+						$("#sourceTitle-{/literal}{$timeStamp}{literal}").removeClass('required');
 						$(".advancedReviewerSelect").addClass('required');
 						$("#firstname, #lastname, #username, #email").removeClass('required');
 						break;
 					case 'createNew':
-						$("#sourceTitle-{/literal}{$randomId}{literal}").removeClass('required');
+						$("#sourceTitle-{/literal}{$timeStamp}{literal}").removeClass('required');
 						$(".advancedReviewerSelect").removeClass('required');
 						$("#firstName, #lastName, #username, #email").addClass('required');
 						$("#email").addClass('email');
@@ -55,7 +55,7 @@
 	});
 {/literal}</script>
 
-<form name="addReviewerForm" id="addReviewer-{$randomId}" method="post" action="{url op="updateReviewer"}" >
+<form name="addReviewerForm" id="addReviewer-{$timeStamp}" method="post" action="{url op="updateReviewer"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignmentId}" />
 	<input type="hidden" name="reviewType" value="{$reviewType|escape}" />
@@ -67,8 +67,8 @@
 		<h3 id="searchByName"><a href="#">{translate key="manager.reviewerSearch.searchByName"}</a></h3>
 		<div id="reviewerNameSearch">
 			{fbvFormSection}
-				{fbvElement type="text" id="sourceTitle-"|concat:$randomId name="reviewerSelectAutocomplete" label="user.role.reviewer" class="required" value=$userNameString|escape }
-				<input type="hidden" id="sourceId-{$randomId}" name="reviewerId" />
+				{fbvElement type="text" id="sourceTitle-"|concat:$timeStamp name="reviewerSelectAutocomplete" label="user.role.reviewer" class="required" value=$userNameString|escape }
+				<input type="hidden" id="sourceId-{$timeStamp}" name="reviewerId" />
 			{/fbvFormSection}
 		</div>
 
@@ -133,7 +133,7 @@
 	{/fbvFormSection}
 </form>
 
-{init_button_bar id="#addReviewer-$randomId" cancelId="#cancelButton-addReviewer" submitId="#okButton-addReviewer"}
+{init_button_bar id="#addReviewer-$timeStamp" cancelId="#cancelButton-addReviewer" submitId="#okButton-addReviewer"}
 {fbvFormArea id="buttons"}
     {fbvFormSection}
         {fbvLink id="cancelButton-addReviewer" label="common.cancel"}

@@ -10,13 +10,13 @@
  *
  * $Id$
  *}
-{assign var='randomId' value=1|rand:99999}
+{assign var='timeStamp' value=$smarty.now}
 
 <script type="text/javascript">
 	{literal}
 	$(function() {
 		$('.button').button();
-		$('#metadataForm-{/literal}{$randomId}{literal}').ajaxForm({
+		$('#metadataForm-{/literal}{$timeStamp}{literal}').ajaxForm({
 			dataType: 'json',
 	        success: function(returnString) {
 	    		if (returnString.status == true) {
@@ -38,14 +38,14 @@
 	    });
 
 		// Set cancel/continue button behaviors
-		$("#continueButton2-{/literal}{$randomId}{literal}").click(function() {
-			validator = $('#metadataForm-{/literal}{$randomId}{literal}').validate();
-			if($('#metadataForm-{/literal}{$randomId}{literal}').valid()) {
-				$('#metadataForm-{/literal}{$randomId}{literal}').submit();   // Hands off further actions to the ajaxForm function above
+		$("#continueButton2-{/literal}{$timeStamp}{literal}").click(function() {
+			validator = $('#metadataForm-{/literal}{$timeStamp}{literal}').validate();
+			if($('#metadataForm-{/literal}{$timeStamp}{literal}').valid()) {
+				$('#metadataForm-{/literal}{$timeStamp}{literal}').submit();   // Hands off further actions to the ajaxForm function above
 			}
 			validator = null;
 		});
-		$("#cancelButton2-{/literal}{$randomId}{literal}").click(function() {
+		$("#cancelButton2-{/literal}{$timeStamp}{literal}").click(function() {
 			$('div#fileUploadTabs').last().parent().dialog('close');
 			return false;
 		});
@@ -54,7 +54,7 @@
 </script>
 
 
-<form name="metadataForm-{$randomId}" id="metadataForm-{$randomId}" action="{url op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
+<form name="metadataForm-{$timeStamp}" id="metadataForm-{$timeStamp}" action="{url op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
 
 <h3>{translate key='submission.artworkFileDetails'}</h3>
 
@@ -169,8 +169,8 @@
 
 {fbvFormArea id="buttons"}
 	{fbvFormSection}
-		{fbvLink id="cancelButton2-$randomId" label="common.cancel"}
-		{fbvButton id="continueButton2-$randomId" label="common.continue" align=$fbvStyles.align.RIGHT}
+		{fbvLink id="cancelButton2-$timeStamp" label="common.cancel"}
+		{fbvButton id="continueButton2-$timeStamp" label="common.continue" align=$fbvStyles.align.RIGHT}
 	{/fbvFormSection}
 {/fbvFormArea}
 

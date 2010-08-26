@@ -9,11 +9,11 @@
  * Form used to send reviews to author
  *
  *}
-{assign var='randomId' value=1|rand:99999}
+{assign var='timeStamp' value=$smarty.now}
 
 {translate|assign:"actionLabelTranslated" key="$actionLabel"}
 {assign var=titleTranslated value="$actionLabelTranslated"|concat:": ":$monograph->getLocalizedTitle()}
-{modal_title id="#promote-$randomId" keyTranslated=$titleTranslated iconClass="fileManagement" canClose=1}
+{modal_title id="#promote-$timeStamp" keyTranslated=$titleTranslated iconClass="fileManagement" canClose=1}
 
 <script type="text/javascript">
 {literal}
@@ -21,11 +21,11 @@ $(function() {
 	$('.button').button();
 
 	var url = '{/literal}{url op="importPeerReviews" monographId=$monographId}{literal}';
-	$('#importPeerReviews-'+{/literal}{$randomId}{literal}).click(function() {
+	$('#importPeerReviews-'+{/literal}{$timeStamp}{literal}).click(function() {
 		$.getJSON(url, function(jsonData) {
 			if (jsonData.status === true) {
-				var currentContent = $("textarea#personalMessage-"+{/literal}{$randomId}{literal}).val();
-				$("textarea#personalMessage-"+{/literal}{$randomId}{literal}).val(currentContent + jsonData.content);
+				var currentContent = $("textarea#personalMessage-"+{/literal}{$timeStamp}{literal}).val();
+				$("textarea#personalMessage-"+{/literal}{$timeStamp}{literal}).val(currentContent + jsonData.content);
 			} else {
 				// Alert that the modal failed
 				alert(jsonData.content);
@@ -37,7 +37,7 @@ $(function() {
 {/literal}
 </script>
 
-<form name="promote" id="promote-{$randomId}" method="post" action="{url op="savePromote"}" >
+<form name="promote" id="promote-{$timeStamp}" method="post" action="{url op="savePromote"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="decision" value="{$decision|escape}" />
 
@@ -46,28 +46,28 @@ $(function() {
 	{/fbvFormSection}
 
 	<!--  Message to reviewer textarea -->
-	<p style="text-align: right;"><a id="importPeerReviews-{$randomId}" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
+	<p style="text-align: right;"><a id="importPeerReviews-{$timeStamp}" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
 
 	{fbvFormSection}
-		{fbvElement type="textarea" name="personalMessage" id="personalMessage-$randomId" label="editor.review.personalMessageToReviewer" value=$personalMessage|escape measure=$fbvStyles.measure.1OF1 size=$fbvStyles.size.MEDIUM}
+		{fbvElement type="textarea" name="personalMessage" id="personalMessage-$timeStamp" label="editor.review.personalMessageToReviewer" value=$personalMessage|escape measure=$fbvStyles.measure.1OF1 size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
 
 	<div id="attachments">
 		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId escape=false}
-		{load_url_in_div id="reviewAttachmentsGridContainer-$randomId" url="$reviewAttachmentsGridUrl"}
+		{load_url_in_div id="reviewAttachmentsGridContainer-$timeStamp" url="$reviewAttachmentsGridUrl"}
 	</div>
 
 	<div id="availableFiles">
 		{url|assign:newRoundRevisionsUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.revisions.RevisionsGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$round isSelectable=1 escape=false}
-		{load_url_in_div id="newRoundRevisionsGrid-$randomId" url=$newRoundRevisionsUrl}
+		{load_url_in_div id="newRoundRevisionsGrid-$timeStamp" url=$newRoundRevisionsUrl}
 	</div>
 </form>
 
-{init_button_bar id="#promote-$randomId" cancelId="#cancelButton-$randomId" submitId="#okButton-$randomId"}
+{init_button_bar id="#promote-$timeStamp" cancelId="#cancelButton-$timeStamp" submitId="#okButton-$timeStamp"}
 {fbvFormArea id="buttons"}
     {fbvFormSection}
-        {fbvLink id="cancelButton-$randomId" label="common.cancel"}
-        {fbvButton id="okButton-$randomId" label="editor.submissionReview.recordDecision" align=$fbvStyles.align.RIGHT}
+        {fbvLink id="cancelButton-$timeStamp" label="common.cancel"}
+        {fbvButton id="okButton-$timeStamp" label="editor.submissionReview.recordDecision" align=$fbvStyles.align.RIGHT}
     {/fbvFormSection}
 {/fbvFormArea}
 <!-- / templates/controllers/modals/editorDecision/form/promoteForm.tpl -->
