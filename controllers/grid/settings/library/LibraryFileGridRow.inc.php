@@ -81,7 +81,7 @@ class LibraryFileGridRow extends GridRow {
 					'grid.action.delete',
 					null,
 					'delete',
-					'common.confirmDelete'
+					Locale::translate('common.confirmDelete')
 				));
 		}
 	}

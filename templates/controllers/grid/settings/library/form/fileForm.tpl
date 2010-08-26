@@ -13,12 +13,13 @@
 <!--  Need a random ID to give to modal elements so that they are unique in the DOM (can not use
 		fileId like elsewhere in the modal, because there may not be an associated file yet-->
 {assign var='randomId' value=1|rand:99999}
+{modal_title id="#metadataForm-$randomId" key='settings.setup.addItem' iconClass="fileManagement"}
 
 <script type="text/javascript">
 	{literal}
 	$(function() {
+		$('.button').button();
 		$('#uploadForm-{/literal}{$randomId}{literal}').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
-		$(".ui-dialog-titlebar-close").remove();  // Hide 'X' close button in dialog
 		// Handle upload form
 	    $('#uploadForm-{/literal}{$randomId}{literal}').ajaxForm({
 	        target: '#uploadOutput-{/literal}{$randomId}{literal}',  // target identifies the element(s) to update with the server response
@@ -34,8 +35,8 @@
     			$('#loading').hide();
 	    		if (returnString.status == true) {
 	    			$('#libraryFile-{/literal}{$randomId}{literal}').attr("disabled", "disabled");
-	    			$('#libraryFileSubmit-{/literal}{$randomId}{literal}').attr("disabled", "disabled");
-	    			$("#continueButton-{/literal}{$randomId}{literal}").removeAttr("disabled");
+	    			$('#libraryFileSubmit-{/literal}{$randomId}{literal}').button("option", "disabled", true);
+	    			$("#continueButton-{/literal}{$randomId}{literal}").button( "option", "disabled", false);
 		    		$('#deleteUrl-{/literal}{$randomId}{literal}').val(returnString.deleteUrl);
 	    			$("#metadataRowId-{/literal}{$randomId}{literal}").val(returnString.elementId);
 	    		}
@@ -51,9 +52,9 @@
 		    		if(newFile != undefined && newFile != "") {
 						actType = 'append';
 		    		} else {
-						actType = 'update';
+						actType = 'replace';
 		    		}
-	    			updateItem(actType, '#component-'+'{/literal}{$gridId}{literal}'+'-table', returnString.content);
+	    			updateItem(actType, '#component-'+'{/literal}{$gridId}{literal}'+'-table>tbody:first', returnString.content);
 	    			$('#uploadForm-{/literal}{$randomId}{literal}').parent().dialog('close');
 	    		}
 	    		$('#loadingText-{/literal}{$randomId}{literal}').text(returnString.content);  // Set to error or success message
@@ -78,6 +79,7 @@
 			}
 
 			$('#uploadForm-{/literal}{$randomId}{literal}').parent().dialog('close');
+			return false;
 		});
 
 	});
@@ -91,7 +93,8 @@
 	{fbvFormArea id="file"}
 		{if !$libraryFile}
 			{fbvFormSection title="common.file"}
-				{fbvFileInput id="libraryFile" submit="libraryFileSubmit-$randomId"}
+				<input type="file" id="libraryFile" name="libraryFile" />
+				<input type="submit" id="libraryFileSubmit-{$randomId}" name="submitFile" value="{translate key="common.upload"}" class="button" />
 			{/fbvFormSection}
 		{else}
 			{fbvFormSection title="common.file"}
@@ -113,14 +116,16 @@
 			{fbvElement type="text" id="name" value=$libraryFileName maxlength="120" size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 	{/fbvFormArea}
+	{init_button_bar id="#buttons" cancelId="#cancelButton2-$randomId" submitId="#continueButton2-$randomId"}
 	{fbvFormArea id="buttons"}
 		{fbvFormSection}
-			{fbvButton id="cancelButton-$randomId" label="common.cancel" float=$fbvStyles.float.LEFT}
+			{fbvLink id="cancelButton-$randomId" label="common.cancel" float=$fbvStyles.float.LEFT}
 			{if !$rowId}{assign var="buttonDisabled" value="disabled"}{/if}
-			{fbvButton id="continueButton-$randomId" label="common.saveAndClose" disabled=$buttonDisabled float=$fbvStyles.float.RIGHT}
+			{fbvButton id="continueButton-$randomId" label="common.saveAndClose" disabled=$buttonDisabled align=$fbvStyles.align.RIGHT}
 		{/fbvFormSection}
 	{/fbvFormArea}
 </form>
+
 
 {if $gridId}
 <input type="hidden" name="gridId" value="{$gridId|escape}" />

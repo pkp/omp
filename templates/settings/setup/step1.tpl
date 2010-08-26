@@ -45,7 +45,7 @@
 		<span>{translate key="settings.setup.mailingAddressDescription"}</span>
 	{/fbvCustomElement}
 {/fbvFormSection}
-{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
+{fbvFormSection}
 	{fbvElement type="checkbox" id="pressEnabled" value="1" checked=$pressEnabled label="settings.setup.enablePressInstructions"}
 {/fbvFormSection}
 {/fbvFormArea}
