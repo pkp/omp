@@ -9,7 +9,10 @@
  * Chapters grid form
  *
  *}
-<form name="editChapterForm" id="editChapterForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
+{assign var='timeStamp' value=$smarty.now}
+{modal_title id="#editChapterForm-$timeStamp" key="submission.chapter.addChapter" iconClass="fileManagement" canClose=1}
+
+<form name="editChapterForm" id="editChapterForm-{$timeStamp}" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormSection title="common.title" for="title"}
@@ -28,5 +31,13 @@
 	{load_url_in_div id="chapterContributorContainer-$timeStamp" url=$chapterContributorUrl}
 {/if}
 </form>
+
+{init_button_bar id="#editChapterForm-$timeStamp" cancelId="#cancelButton-$timeStamp" submitId="#okButton-$timeStamp"}
+{fbvFormArea id="buttons"}
+    {fbvFormSection}
+        {fbvLink id="cancelButton-$timeStamp" label="common.cancel"}
+        {fbvButton id="okButton-$timeStamp" label="submission.chapter.addChapter" align=$fbvStyles.align.RIGHT}
+    {/fbvFormSection}
+{/fbvFormArea}
 <!-- / templates/controllers/grid/users/chapter/form/chapterForm.tpl -->
 
