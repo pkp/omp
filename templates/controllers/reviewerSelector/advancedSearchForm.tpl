@@ -167,7 +167,7 @@
 {url|assign:reviewerSelectGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="fetchGrid" monographId=$monographId doneMin=$reviewerValues.doneMin
 	doneMax=$reviewerValues.doneMax avgMin=$reviewerValues.avgMin avgMax=$reviewerValues.avgMax lastMin=$reviewerValues.lastMin lastMax=$reviewerValues.lastMax activeMin=$reviewerValues.activeMin activeMax=$reviewerValues.activeMax escape=false}
 {assign var=gridContainerId value="reviewerSelectGridContainer"|concat:"-":$randomId}
-{load_url_in_div id="#"|concat:$gridContainerId url="$reviewerSelectGridUrl"}
+{load_url_in_div id=$gridContainerId url="$reviewerSelectGridUrl"}
 
 <!-- / templates/controllers/reviewerSelector/advancedSearchForm.tpl -->
 

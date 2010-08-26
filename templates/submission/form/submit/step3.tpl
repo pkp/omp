@@ -42,12 +42,12 @@
 </div>
 <!--  Contributors -->
 {url|assign:submissionContributorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.submissionContributor.SubmissionContributorGridHandler" op="fetchGrid" monographId=$monographId}
-{load_url_in_div id="#submissionContributorGridContainer" url="$submissionContributorGridUrl"}
+{load_url_in_div id="submissionContributorGridContainer" url="$submissionContributorGridUrl"}
 
 <!--  Chapters -->
 {if $isEditedVolume}
 	{url|assign:chapterGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
-	{load_url_in_div id="#chaptersGridContainer" url="$chapterGridUrl"}
+	{load_url_in_div id="chaptersGridContainer" url="$chapterGridUrl"}
 {/if}
 
 <p><input type="submit" value="{translate key="submission.submit.finishSubmission"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="submission.submit.cancelSubmission"}')" /></p>

@@ -25,7 +25,7 @@
 	{** FIXME: can remove escape=false after fix of bug 5265 **}
 	{url|assign:chapterContributorUrl router=$smarty.const.ROUTE_COMPONENT  component="listbuilder.users.ChapterContributorListbuilderHandler" op="fetch" monographId=$monographId chapterId=$chapterId escape=false}
 	{assign var='randomId' value=1|rand:99999}
-	{load_url_in_div id="#chapterContributorContainer-$randomId" url=$chapterContributorUrl}
+	{load_url_in_div id="chapterContributorContainer-$randomId" url=$chapterContributorUrl}
 {/if}
 </form>
 <!-- / templates/controllers/grid/users/chapter/form/chapterForm.tpl -->

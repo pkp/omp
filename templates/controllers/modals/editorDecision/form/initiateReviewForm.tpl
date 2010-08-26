@@ -18,7 +18,7 @@
 
 	<!-- Available submission files -->
 	{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" isSelectable=1 canUpload=1 monographId=$monographId reviewType=$reviewType round=$round escape=false}
-	{load_url_in_div id="#availableReviewFilesGrid" url=$availableReviewFilesGridUrl}
+	{load_url_in_div id="availableReviewFilesGrid" url=$availableReviewFilesGridUrl}
 </form>
 
 {init_button_bar id="#initiateReview" cancelId="#cancelButton-initiateReview" submitId="#okButton-initiateReview"}

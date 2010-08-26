@@ -15,7 +15,7 @@
 {/strip}
 
 {url|assign:editorSubmissionListGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.submissions.pressEditor.PressEditorSubmissionsListGridHandler" op="fetchGrid"}
-{load_url_in_div id="#editorSubmissionListGrid" url="$editorSubmissionListGridUrl"}
+{load_url_in_div id="editorSubmissionListGrid" url="$editorSubmissionListGridUrl"}
 
 {include file="common/footer.tpl"}
 

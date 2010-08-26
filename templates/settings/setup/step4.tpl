@@ -137,7 +137,7 @@
 <h3>4.4 {translate key="settings.setup.cataloguingMetadata"}</h3>
 
 {url|assign:cataloguingMetadataUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.CataloguingMetadataListbuilderHandler" op="fetch"}
-{load_url_in_div id="#cataloguingMetadataContainer" url=$cataloguingMetadataUrl}
+{load_url_in_div id="cataloguingMetadataContainer" url=$cataloguingMetadataUrl}
 
 <div class="separator"></div>
 

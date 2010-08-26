@@ -33,13 +33,13 @@
 <p>{translate key="settings.setup.pressRolesDescription"}</p>
 
 {url|assign:authorRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_AUTHOR title='settings.setup.authorRole'}
-{load_url_in_div id="#authorRolesContainer" url=$authorRolesUrl}
+{load_url_in_div id="authorRolesContainer" url=$authorRolesUrl}
 
 {url|assign:pressRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_REVIEWER title='settings.setup.pressRole'}
-{load_url_in_div id="#pressRolesContainer" url=$pressRolesUrl}
+{load_url_in_div id="pressRolesContainer" url=$pressRolesUrl}
 
 {url|assign:settingsialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_PRESS_MANAGER title='settings.setup.settingsialRole'}
-{load_url_in_div id="#settingsialRolesContainer" url=$settingsialRolesUrl}
+{load_url_in_div id="settingsialRolesContainer" url=$settingsialRolesUrl}
 
 <div class="separator"></div>
 
@@ -48,7 +48,7 @@
 <p>{translate key="settings.setup.submissionRolesDescription"}</p>
 
 {url|assign:submissionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_AUTHOR stageId=$smarty.const.WORKFLOW_STAGE_ID_SUBMISSION title="settings.setup.submissionRoles" escape=false}
-{load_url_in_div id="#submissionRolesContainer" url=$submissionRolesUrl}
+{load_url_in_div id="submissionRolesContainer" url=$submissionRolesUrl}
 
 <div class="separator"></div>
 
@@ -57,14 +57,14 @@
 <p>{translate key="settings.setup.bookFileTypesDescription"}</p>
 
 {url|assign:bookFileTypesUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.bookFileType.BookFileTypeGridHandler" op="fetchGrid"}
-{load_url_in_div id="#bookFileTypesContainer" url=$bookFileTypesUrl}
+{load_url_in_div id="bookFileTypesContainer" url=$bookFileTypesUrl}
 
 <div class="separator"></div>
 
 <h3>3.4 {translate key="settings.setup.submissionLibrary"}</h3>
 
 {url|assign:submissionLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_SUBMISSION}
-{load_url_in_div id="#submissionLibraryGridDiv" url=$submissionLibraryUrl}
+{load_url_in_div id="submissionLibraryGridDiv" url=$submissionLibraryUrl}
 
 <div class="separator"></div>
 
@@ -73,7 +73,7 @@
 <p>{translate key="settings.setup.internalReviewRolesDescription"}</p>
 
 {url|assign:internalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_REVIEWER stageId=$smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW title="settings.setup.internalReviewRoles" escape=false}
-{load_url_in_div id="#internalReviewRolesContainer" url=$internalReviewRolesUrl}
+{load_url_in_div id="internalReviewRolesContainer" url=$internalReviewRolesUrl}
 
 <div class="separator"></div>
 
@@ -82,21 +82,21 @@
 <p>{translate key="settings.setup.externalReviewRolesDescription"}</p>
 
 {url|assign:externalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_REVIEWER stageId=$smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW title="settings.setup.externalReviewRoles" escape=false}
-{load_url_in_div id="#externalReviewRolesContainer" url=$externalReviewRolesUrl}
+{load_url_in_div id="externalReviewRolesContainer" url=$externalReviewRolesUrl}
 
 <div class="separator"></div>
 
 <h3>3.7 {translate key="settings.setup.reviewLibrary"}</h3>
 
 {url|assign:reviewLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_REVIEW}
-{load_url_in_div id="#reviewLibraryGridDiv" url=$reviewLibraryGridUrl}
+{load_url_in_div id="reviewLibraryGridDiv" url=$reviewLibraryGridUrl}
 
 <div class="separator"></div>
 
 <h3>3.8 {translate key="settings.setup.reviewForms"}</h3>
 
 {url|assign:reviewFormGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.reviewForm.ReviewFormGridHandler" op="fetchGrid"}
-{load_url_in_div id="#reviewFormGridDiv" url=$reviewFormGridUrl}
+{load_url_in_div id="reviewFormGridDiv" url=$reviewFormGridUrl}
 
 <div class="separator"></div>
 
@@ -105,14 +105,14 @@
 <p>{translate key="settings.setup.editorialRolesDescription"}</p>
 
 {url|assign:editorialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_EDITOR stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING title="settings.setup.editorialRoles" escape=false}
-{load_url_in_div id="#editorialRolesContainer" url=$editorialRolesUrl}
+{load_url_in_div id="editorialRolesContainer" url=$editorialRolesUrl}
 
 <div class="separator"></div>
 
 <h3>3.10 {translate key="settings.setup.editorialLibrary"}</h3>
 
 {url|assign:editorialLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_EDITORIAL}
-{load_url_in_div id="#editorialLibraryGridDiv" url=$editorialLibraryGridUrl}
+{load_url_in_div id="editorialLibraryGridDiv" url=$editorialLibraryGridUrl}
 
 <div class="separator"></div>
 
@@ -121,21 +121,21 @@
 <p>{translate key="settings.setup.productionRolesDescription"}</p>
 
 {url|assign:productionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_EDITOR stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION title="settings.setup.productionRoles" escape=false}
-{load_url_in_div id="#productionRolesContainer" url=$productionRolesUrl}
+{load_url_in_div id="productionRolesContainer" url=$productionRolesUrl}
 
 <div class="separator"></div>
 
 <h3>3.12 {translate key="settings.setup.productionLibrary"}</h3>
 
 {url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
-{load_url_in_div id="#productionLibraryGridDiv" url=$productionLibraryGridUrl}
+{load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
 
 <div class="separator"></div>
 
 <h3>3.13 {translate key="settings.setup.productionTemplates"}</h3>
 
 {url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
-{load_url_in_div id="#productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}
+{load_url_in_div id="productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}
 
 <div class="separator"></div>
 
@@ -144,7 +144,7 @@
 <p>{translate key="settings.setup.publicationFormatsDescription"}</p>
 
 {url|assign:publicationFormatsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.PublicationFormatsListbuilderHandler" op="fetch"}
-{load_url_in_div id="#publicationFormatsContainer" url=$publicationFormatsUrl}
+{load_url_in_div id="publicationFormatsContainer" url=$publicationFormatsUrl}
 
 <div class="separator"></div>
 

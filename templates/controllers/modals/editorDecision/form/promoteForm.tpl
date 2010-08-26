@@ -54,12 +54,12 @@ $(function() {
 
 	<div id="attachments">
 		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId escape=false}
-		{load_url_in_div id="#reviewAttachmentsGridContainer-$randomId" url="$reviewAttachmentsGridUrl"}
+		{load_url_in_div id="reviewAttachmentsGridContainer-$randomId" url="$reviewAttachmentsGridUrl"}
 	</div>
 
 	<div id="availableFiles">
 		{url|assign:newRoundRevisionsUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.revisions.RevisionsGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$round isSelectable=1 escape=false}
-		{load_url_in_div id="#newRoundRevisionsGrid-$randomId" url=$newRoundRevisionsUrl}
+		{load_url_in_div id="newRoundRevisionsGrid-$randomId" url=$newRoundRevisionsUrl}
 	</div>
 </form>
 

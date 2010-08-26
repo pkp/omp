@@ -15,7 +15,7 @@
 {/strip}
 
 {url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
-{load_url_in_div id="#submissionFilesGridDiv" url=$submissionFilesGridUrl}
+{load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 
 {include file="common/footer.tpl"}
 
