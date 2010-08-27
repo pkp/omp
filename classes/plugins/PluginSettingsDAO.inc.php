@@ -219,6 +219,9 @@ class PluginSettingsDAO extends DAO {
 			return false;
 		}
 
+		// Check for existing settings and leave them if they are already in place.
+		$currentSettings =& $this->getPluginSettings($pressId, $pluginName);
+
 		foreach ($tree->getChildren() as $setting) {
 			$nameNode =& $setting->getChildByName('name');
 			$valueNode =& $setting->getChildByName('value');
@@ -226,6 +229,9 @@ class PluginSettingsDAO extends DAO {
 			if (isset($nameNode) && isset($valueNode)) {
 				$type = $setting->getAttribute('type');
 				$name =& $nameNode->getValue();
+
+				// If the setting already exists, respect it.
+				if (isset($currentSettings[$name])) continue;
 
 				if ($type == 'object') {
 					$arrayNode =& $valueNode->getChildByName('array');
