@@ -48,8 +48,8 @@
 	<input type="hidden" name="seriesId" value="{$seriesId}"/>
 	{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId}
 	{* Need a random div ID to load listbuilders in modals *}
-	{assign var='timeStamp' value=$smarty.now}
-	{load_url_in_div id=$timeStamp url=$seriesEditorsUrl}
+	{assign var='uniqueId' value=""|uniqid}
+	{load_url_in_div id=$uniqueId url=$seriesEditorsUrl}
 {/if}
 
 </form>

@@ -9,13 +9,13 @@
  * Screen to let user read a review
  *
  *}
-{assign var='timeStamp' value=$smarty.now}
+{assign var='uniqueId' value=""|uniqid}
 
 {translate|assign:"reviewTranslated" key="editor.review"}
 {assign var=titleTranslated value="$reviewTranslated"|concat:": ":$monograph->getLocalizedTitle()}
-{modal_title id="#editorReview-$timeStamp" keyTranslated=$titleTranslated iconClass="fileManagement" canClose=1}
+{modal_title id="#editorReview-$uniqueId" keyTranslated=$titleTranslated iconClass="fileManagement" canClose=1}
 
-<div id="editorReview-{$timeStamp}">
+<div id="editorReview-{$uniqueId}">
 	<table width="100%" style="margin-left: 12px;">
 		<tr>
 			<td><strong>{translate key="user.role.reviewer"}</strong></td>
@@ -40,7 +40,7 @@
 
 	<div id="attachments">
 		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" readOnly=1 reviewId=$reviewAssignment->getId() escape=false}
-		{load_url_in_div id="readReviewAttachmentsGridContainer-$timeStamp" url="$reviewAttachmentsGridUrl"}
+		{load_url_in_div id="readReviewAttachmentsGridContainer-$uniqueId" url="$reviewAttachmentsGridUrl"}
 	</div>
 </div>
 

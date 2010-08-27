@@ -12,75 +12,75 @@
  *}
 <!--  Need a random ID to give to modal elements so that they are unique in the DOM (can not use
 		fileId like elsewhere in the modal, because there may not be an associated file yet-->
-{assign var='timeStamp' value=$smarty.now}
-{modal_title id="#uploadForm-$timeStamp" key='grid.reviewAttachments.add' iconClass="fileManagement" canClose=1}
+{assign var='uniqueId' value=""|uniqid}
+{modal_title id="#uploadForm-$uniqueId" key='grid.reviewAttachments.add' iconClass="fileManagement" canClose=1}
 
 <script type="text/javascript">
 	{literal}
 	$(function() {
 		$('.button').button();
-		$('#uploadForm-{/literal}{$timeStamp}{literal}').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
+		$('#uploadForm-{/literal}{$uniqueId}{literal}').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
 		$(".ui-dialog-titlebar-close").remove();  // Hide 'X' close button in dialog
 		// Handle upload form
-	    $('#uploadForm-{/literal}{$timeStamp}{literal}').ajaxForm({
-	        target: '#uploadOutput-{/literal}{$timeStamp}{literal}',  // target identifies the element(s) to update with the server response
+	    $('#uploadForm-{/literal}{$uniqueId}{literal}').ajaxForm({
+	        target: '#uploadOutput-{/literal}{$uniqueId}{literal}',  // target identifies the element(s) to update with the server response
 			iframe: true,
 			dataType: 'json',
 			beforeSubmit: function() {
 				$('#loading').show();
-				$('#loadingText-{/literal}{$timeStamp}{literal}').fadeIn('slow');
+				$('#loadingText-{/literal}{$uniqueId}{literal}').fadeIn('slow');
 	    	},
 	        // success identifies the function to invoke when the server response
 	        // has been received; here we show a success message and enable the continue button
 	        success: function(returnString) {
     			$('#loading').hide();
 	    		if (returnString.status == true) {
-	    			$('#attachment-{/literal}{$timeStamp}{literal}').attr("disabled", "disabled");
-	    			$('#attachmentFileSubmit-{/literal}{$timeStamp}{literal}').button("option", "disabled", true);
-	    			$("#continueButton-{/literal}{$timeStamp}{literal}").button("option", "disabled", false);
-		    		$('#deleteUrl-{/literal}{$timeStamp}{literal}').val(returnString.deleteUrl);
-		    		$('#saveUrl-{/literal}{$timeStamp}{literal}').val(returnString.saveUrl);
+	    			$('#attachment-{/literal}{$uniqueId}{literal}').attr("disabled", "disabled");
+	    			$('#attachmentFileSubmit-{/literal}{$uniqueId}{literal}').button("option", "disabled", true);
+	    			$("#continueButton-{/literal}{$uniqueId}{literal}").button("option", "disabled", false);
+		    		$('#deleteUrl-{/literal}{$uniqueId}{literal}').val(returnString.deleteUrl);
+		    		$('#saveUrl-{/literal}{$uniqueId}{literal}').val(returnString.saveUrl);
 	    		}
-	    		$('#loadingText-{/literal}{$timeStamp}{literal}').text(returnString.content);  // Set to error or success message
+	    		$('#loadingText-{/literal}{$uniqueId}{literal}').text(returnString.content);  // Set to error or success message
 	        }
 	    });
 
 		// Set cancel/continue button behaviors
-		$("#continueButton-{/literal}{$timeStamp}{literal}").click(function() {
-			saveAndUpdate($('#saveUrl-{/literal}{$timeStamp}{literal}').val(),
+		$("#continueButton-{/literal}{$uniqueId}{literal}").click(function() {
+			saveAndUpdate($('#saveUrl-{/literal}{$uniqueId}{literal}').val(),
     	    		'append',
     	    		'#component-{/literal}{$gridId}{literal}-table',
-    	    		'#uploadForm-{/literal}{$timeStamp}{literal}'
+    	    		'#uploadForm-{/literal}{$uniqueId}{literal}'
 			);
 		});
 
-		$("#cancelButton-{/literal}{$timeStamp}{literal}").click(function() {
+		$("#cancelButton-{/literal}{$uniqueId}{literal}").click(function() {
 			// User has uploaded a file then pressed cancel--delete the file
-			newFile = $('#newFile-{/literal}{$timeStamp}{literal}').val();
-			deleteUrl = $('#deleteUrl-{/literal}{$timeStamp}{literal}').val();
+			newFile = $('#newFile-{/literal}{$uniqueId}{literal}').val();
+			deleteUrl = $('#deleteUrl-{/literal}{$uniqueId}{literal}').val();
 			if(deleteUrl != undefined && newFile != undefined && deleteUrl != "" && newFile != "") {
 				$.post(deleteUrl);
 			}
 
-			$('#uploadForm-{/literal}{$timeStamp}{literal}').parent().dialog('close');
+			$('#uploadForm-{/literal}{$uniqueId}{literal}').parent().dialog('close');
 		});
 
-		$("#okButton-{/literal}{$timeStamp}{literal}").click(function() {
+		$("#okButton-{/literal}{$uniqueId}{literal}").click(function() {
 			// User is looking at an existing file, just close when okay is clicked
-			$('#uploadForm-{/literal}{$timeStamp}{literal}').parent().dialog('close');
+			$('#uploadForm-{/literal}{$uniqueId}{literal}').parent().dialog('close');
 		});
 	});
 	{/literal}
 </script>
 
-<form name="uploadForm" id="uploadForm-{$timeStamp}" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveFile" monographId=$monographId reviewId=$reviewId}" method="post">
+<form name="uploadForm" id="uploadForm-{$uniqueId}" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveFile" monographId=$monographId reviewId=$reviewId}" method="post">
 	<!-- Max file size of 5 MB -->
 	<input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
 	{fbvFormArea id="file"}
 		{if !$attachmentFile}
 			{fbvFormSection title="common.file"}
-				<input type="file" id="attachment-{$timeStamp}" name="attachment" />
-				<input type="submit" name="attachmentFileSubmit-{$timeStamp}" value="{translate key="common.upload"}" class="button uploadFile" />
+				<input type="file" id="attachment-{$uniqueId}" name="attachment" />
+				<input type="submit" name="attachmentFileSubmit-{$uniqueId}" value="{translate key="common.upload"}" class="button uploadFile" />
 			{/fbvFormSection}
 		{else}
 			{fbvFormSection title="common.file"}
@@ -88,18 +88,18 @@
 			{/fbvFormSection}
 		{/if}
 	{/fbvFormArea}
-	<div id="uploadOutput-{$timeStamp}">
+	<div id="uploadOutput-{$uniqueId}">
 		<div id='loading' class='throbber' style="margin: 0px;"></div>
-		<ul><li id='loadingText-{$timeStamp}' style='display:none;'>{translate key='submission.loadMessage'}</li></ul>
+		<ul><li id='loadingText-{$uniqueId}' style='display:none;'>{translate key='submission.loadMessage'}</li></ul>
 	</div>
-	{init_button_bar id="#uploadForm-$timeStamp" cancelId="#cancelButton-$timeStamp" submitId="#continueButton-$timeStamp"}
+	{init_button_bar id="#uploadForm-$uniqueId" cancelId="#cancelButton-$uniqueId" submitId="#continueButton-$uniqueId"}
 	{fbvFormArea id="buttons"}
 	    {fbvFormSection}
 	    	{if !$rowId}
-	       		{fbvLink id="cancelButton-$timeStamp" label="common.cancel"}
-	       		{fbvButton id="continueButton-$timeStamp" label="common.saveAndClose" disabled="disabled" align=$fbvStyles.align.RIGHT}
+	       		{fbvLink id="cancelButton-$uniqueId" label="common.cancel"}
+	       		{fbvButton id="continueButton-$uniqueId" label="common.saveAndClose" disabled="disabled" align=$fbvStyles.align.RIGHT}
 	       	{else}
-	        	{fbvButton id="okButton-$timeStamp" label="common.saveAndClose" align=$fbvStyles.align.RIGHT}
+	        	{fbvButton id="okButton-$uniqueId" label="common.saveAndClose" align=$fbvStyles.align.RIGHT}
 	        {/if}
 	    {/fbvFormSection}
 	{/fbvFormArea}
@@ -108,9 +108,9 @@
 {if $gridId}
 <input type="hidden" name="gridId" value="{$gridId|escape}" />
 {/if}
-<input type="hidden" id="deleteUrl-{$timeStamp}" value="" />
-<input type="hidden" id="saveUrl-{$timeStamp}" value="" />
-<input type="hidden" id="newFile-{$timeStamp}" value="{$newFile}" />
+<input type="hidden" id="deleteUrl-{$uniqueId}" value="" />
+<input type="hidden" id="saveUrl-{$uniqueId}" value="" />
+<input type="hidden" id="newFile-{$uniqueId}" value="{$newFile}" />
 
 
 <!-- / templates/controllers/grid/files/reviewAttachments/form/fileForm.tpl -->
