@@ -18,7 +18,7 @@
 		$('#newFile').click(function() {
     		saveAndUpdate('{/literal}{url component="grid.files.submissionFiles.SubmissionReviewFilesGridHandler" op="returnFileRow" monographId=$monographId fileId=$fileId isSelectable=1 escape=false}{literal}',
     	    		'append',
-    	    		'component-reviewFilesSelect-table > tbody:first',
+    	    		'table#component-reviewFilesSelect-table > tbody:first',
     	    		'div#fileUploadTabs ', true);
 		});
 
@@ -26,7 +26,7 @@
 		$('#exit').click(function() {
     		saveAndUpdate('{/literal}{url component="grid.files.submissionFiles.SubmissionReviewFilesGridHandler" op="returnFileRow" monographId=$monographId fileId=$fileId isSelectable=1 escape=false}{literal}',
     	    		'append',
-    	    		'component-reviewFilesSelect-table > tbody:first',
+    	    		'table#component-reviewFilesSelect-table > tbody:first',
     	    		'div#fileUploadTabs');
 		});
 	});
