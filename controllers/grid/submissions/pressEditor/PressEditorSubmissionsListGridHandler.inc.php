@@ -65,9 +65,6 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$this->setTitle('common.queue.long.active');
 		$this->setData($this->_getSubmissions($request, $user->getId(), $press->getId()));
 
-		// change the first column cell template to allow for actions
-		$titleColumn =& $this->getColumn('title');
-
 		// Add author-specific columns
 		$cellProvider = new PressEditorSubmissionsListGridCellProvider();
 
