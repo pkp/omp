@@ -16,13 +16,12 @@
 // $Id$
 
 
-import('classes.submission.proofreader.ProofreaderSubmission');
+/* FIXME #5557: We need a general code cleanup here (remove useless functions), and to integrate with monograph_stage_assignments table */
 
 class ProofreaderSubmissionDAO extends DAO {
 	/** Helper DAOs */
 	var $monographDao;
 	var $monographCommentDao;
-	var $editAssignmentDao;
 	var $galleyDao;
 
 	/**
@@ -33,7 +32,6 @@ class ProofreaderSubmissionDAO extends DAO {
 
 		$this->monographDao =& DAORegistry::getDAO('MonographDAO');
 		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 	}
 
@@ -96,6 +94,7 @@ class ProofreaderSubmissionDAO extends DAO {
 		$submission->setMostRecentProofreadComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PROOFREAD, $row['monograph_id']));
 
 		// Editor Assignment
+		// FIXME #5557: Ensure compatibility with monograph stage assignment DAO
 		$editAssignments =& $this->editAssignmentDao->getEditAssignmentsByMonographId($row['monograph_id']);
 		$submission->setEditAssignments($editAssignments->toArray());
 
@@ -136,13 +135,13 @@ class ProofreaderSubmissionDAO extends DAO {
 			'abbrev',
 			$locale,
 			'title',
-			ASSOC_TYPE_MONOGRAPH, 
+			ASSOC_TYPE_MONOGRAPH,
 			'SIGNOFF_COPYEDITING_FINAL',
-			ASSOC_TYPE_MONOGRAPH, 
+			ASSOC_TYPE_MONOGRAPH,
 			'SIGNOFF_LAYOUT',
-			ASSOC_TYPE_MONOGRAPH, 
+			ASSOC_TYPE_MONOGRAPH,
 			'SIGNOFF_PROOFREADING_PROOFREADER',
-			ASSOC_TYPE_MONOGRAPH, 
+			ASSOC_TYPE_MONOGRAPH,
 			'SIGNOFF_COPYEDITING_INITIAL',
 			$proofreaderId
 		);
@@ -263,7 +262,7 @@ class ProofreaderSubmissionDAO extends DAO {
 		if ($active) {
 			$sql .= ' AND spr.date_completed IS NULL';
 		} else {
-			$sql .= ' AND spr.date_completed IS NOT NULL';		
+			$sql .= ' AND spr.date_completed IS NOT NULL';
 		}
 
 		$result =& $this->retrieveRange($sql . ' ' . $searchSql . ($sortBy?(' ORDER BY ' . $sortBy . ' ' . $sortDirection) : ''), $params, $rangeInfo);
@@ -282,13 +281,13 @@ class ProofreaderSubmissionDAO extends DAO {
 		$submissionsCount[0] = 0;
 		$submissionsCount[1] = 0;
 
-		$sql = 'SELECT 
-					spp.date_completed 
-				FROM 
-					monographs a 
+		$sql = 'SELECT
+					spp.date_completed
+				FROM
+					monographs a
 					LEFT JOIN signoffs spp ON (a.monograph_id = spp.assoc_id AND spp.assoc_type = ? AND spp.symbolic = ?)
-					LEFT JOIN series_arrangments aa ON aa.series_arrangment_id = a.series_arrangment_id 
-				WHERE 
+					LEFT JOIN series_arrangments aa ON aa.series_arrangment_id = a.series_arrangment_id
+				WHERE
 					spp.user_id = ? AND a.press_id = ? AND spp.date_notified IS NOT NULL';
 
 		$result =& $this->retrieve($sql, array(ASSOC_TYPE_MONOGRAPH, 'SIGNOFF_PROOFREADING_PROOFREADER', $proofreaderId, $pressId));
@@ -304,7 +303,7 @@ class ProofreaderSubmissionDAO extends DAO {
 
 		return $submissionsCount;
 	}
-	
+
 	/**
 	 * Map a column heading value to a database value for sorting
 	 * @param string

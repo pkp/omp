@@ -29,8 +29,8 @@ class EditorAction extends SeriesEditorAction {
 	 * @return boolean true iff ready for redirect
 	 */
 	function assignEditor($monographId, $seriesEditorId, $isEditor = false, $send = false) {
+		// FIXME #5557: Either implement assignments with signoffs here, or make sure they are done elsewhere
 		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		$user =& Request::getUser();

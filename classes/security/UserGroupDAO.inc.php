@@ -534,6 +534,7 @@ class UserGroupDAO extends DAO {
 			$roleId = hexdec($setting->getAttribute('roleId'));
 			$nameKey = $setting->getAttribute('name');
 			$abbrevKey = $setting->getAttribute('abbrev');
+			$defaultStages = explode(",", $setting->getAttribute('stages'));
 			$userGroup =& $this->newDataObject();
 
 			// create a role associated with this user group
@@ -545,7 +546,15 @@ class UserGroupDAO extends DAO {
 			$userGroup->setDefault(true);
 
 			// insert the group into the DB
-			$this->insertUserGroup($userGroup);
+			$userGroupId = $this->insertUserGroup($userGroup);
+
+			// Install default groups for each stage
+			foreach ($defaultStages as $stageId) {
+				if (!empty($stageId) && $stageId <= WORKFLOW_STAGE_ID_PRODUCTION && $stageId >= WORKFLOW_STAGE_ID_SUBMISSION) {
+					$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO');
+					$userGroupStageAssignmentDao->assignGroupToStage($pressId, $userGroupId, $stageId);
+				}
+			}
 
 			// add the i18n keys to the settings table so that they
 			// can be used when a new locale is added/reloaded

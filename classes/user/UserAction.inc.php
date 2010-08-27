@@ -32,6 +32,8 @@ class UserAction {
 	 * Merge user accounts, including attributed monographs etc.
 	 */
 	function mergeUsers($oldUserId, $newUserId) {
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+
 		// Need both user ids for merge
 		if (empty($oldUserId) || empty($newUserId)) {
 			return false;
@@ -44,12 +46,11 @@ class UserAction {
 			unset($monograph);
 		}
 
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getByUserId($oldUserId);
-		while ($editAssignment =& $editAssignments->next()) {
-			$editAssignment->setEditorId($newUserId);
-			$editAssignmentDao->updateEditAssignment($editAssignment);
-			unset($editAssignment);
+		$stageSignoffs =& $signoffDao->getByUserId($oldUserId);
+		while ($stageSignoff =& $stageSignoffs->next()) {
+			$stageSignoff->setUserId($newUserId);
+			$signoffDao->updateObject($stageSignoff);
+			unset($stageSignoff);
 		}
 
 		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
@@ -62,7 +63,6 @@ class UserAction {
 			unset($reviewAssignment);
 		}
 
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
 		$copyeditorSubmissions =& $copyeditorSubmissionDao->getByCopyeditorId($oldUserId);

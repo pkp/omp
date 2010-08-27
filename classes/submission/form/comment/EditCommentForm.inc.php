@@ -58,7 +58,7 @@ class EditCommentForm extends Form {
 			'comments' => $comment->getComments(),
 			'viewable' => $comment->getViewable(),
 		);
-	}	
+	}
 
 	/**
 	 * Display the form.
@@ -101,7 +101,7 @@ class EditCommentForm extends Form {
 	function execute() {
 		$commentDao =& DAORegistry::getDAO('MonographCommentDAO');
 
-		// Update comment		
+		// Update comment
 		$comment = $this->comment;
 		$comment->setCommentTitle($this->getData('commentTitle'));
 		$comment->setComments($this->getData('comments'));
@@ -123,6 +123,7 @@ class EditCommentForm extends Form {
 		$recipients = array();
 
 		// Get editors for monograph
+		// FIXME #5557: Get IDs from Monograph->getAssociatedUserIds
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getId());
 		$editAssignments =& $editAssignments->toArray();
@@ -305,7 +306,7 @@ class EditCommentForm extends Form {
 			$paramArray = array(
 				'name' => $name,
 				'commentName' => $this->user->getFullName(),
-				'comments' => $this->getData('comments')	
+				'comments' => $this->getData('comments')
 			);
 			$email->assignParams($paramArray);
 

@@ -37,7 +37,7 @@ class AuthorSubmissionDAO extends DAO {
 		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$this->userDao =& DAORegistry::getDAO('UserDAO');
 		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$this->signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$this->copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
 		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
@@ -99,8 +99,9 @@ class AuthorSubmissionDAO extends DAO {
 		$this->monographDao->_monographFromRow($authorSubmission, $row);
 
 		// Editor Assignment
-		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
-		$authorSubmission->setEditAssignments($editAssignments->toArray());
+		// FIXME #5557 Make sure this works with signoffs
+		$signoffs =& $this->signoffDao->getBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $row['monograph_id']);
+		$authorSubmission->setEditAssignments($signoffs);
 
 
 		$reviewRounds =& $authorSubmission->getReviewRoundsInfo();
@@ -247,9 +248,9 @@ class AuthorSubmissionDAO extends DAO {
 		$submissionsCount[1] = 0;
 
 		$sql = 'SELECT count(*), status FROM monographs m
-			LEFT JOIN series aa ON (aa.series_id = m.series_id) 
-			WHERE m.press_id = ? AND 
-				m.user_id = ? 
+			LEFT JOIN series aa ON (aa.series_id = m.series_id)
+			WHERE m.press_id = ? AND
+				m.user_id = ?
 			GROUP BY m.status';
 
 		$result =& $this->retrieve($sql, array($pressId, $authorId));

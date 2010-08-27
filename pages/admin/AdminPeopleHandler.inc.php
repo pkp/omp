@@ -33,6 +33,7 @@ class AdminPeopleHandler extends AdminHandler {
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -64,12 +65,11 @@ class AdminPeopleHandler extends AdminHandler {
 				unset($monographNote);
 			}
 
-			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-			$editAssignments =& $editAssignmentDao->getByUserId($oldUserId);
-			while ($editAssignment =& $editAssignments->next()) {
-				$editAssignment->setEditorId($newUserId);
-				$editAssignmentDao->updateEditAssignment($editAssignment);
-				unset($editAssignment);
+			$stageSignoffs =& $signoffDao->getByUserId($oldUserId);
+			while ($stageSignoff =& $stageSignoffs->next()) {
+				$stageSignoff->setUserId($newUserId);
+				$signoffDao->updateObject($stageSignoff);
+				unset($stageSignoff);
 			}
 
 			$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');

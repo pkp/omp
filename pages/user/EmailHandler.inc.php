@@ -40,7 +40,9 @@ class EmailHandler extends UserHandler {
 		if ($monograph && $monograph->getUserId() == $userId) return true;
 		// 2. User is series editor of monograph or full editor
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getByMonographId($monographId);
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupId = $userGroupDao->getByRoleId($monograph->getPressId(), ROLE_ID_EDITOR);
+		$editAssignments =& $editAssignmentDao->getByMonographId($monographId, null, $userGroupId);
 		while ($editAssignment =& $editAssignments->next()) {
 			if ($editAssignment->getEditorId() === $userId) return true;
 		}

@@ -13,67 +13,58 @@
  * @brief Basic class describing user group to publication stage assignments
  */
 
-define('WORKFLOW_STAGE_ID_SUBMISSION', 1);
 define('WORKFLOW_STAGE_PATH_SUBMISSION', 'submission');
-
-define('WORKFLOW_STAGE_ID_INTERNAL_REVIEW', 2);
 define('WORKFLOW_STAGE_PATH_INTERNAL_REVIEW', 'internalReview');
-
-define('WORKFLOW_STAGE_ID_EXTERNAL_REVIEW', 3);
 define('WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW', 'externalReview');
-
-define('WORKFLOW_STAGE_ID_EDITING', 4);
 define('WORKFLOW_STAGE_PATH_EDITING', 'editing');
-
-define('WORKFLOW_STAGE_ID_PRODUCTION', 5);
 define('WORKFLOW_STAGE_PATH_PRODUCTION', 'production');
 
 class UserGroupStageAssignment extends DataObject {
 
 	/**
-		* Set the press id
-		* @param $pressId int
-		*/
+	 * Set the press id
+	 * @param $pressId int
+	 */
 	function setPressId(&$pressId) {
 		$this->setData('pressId', $pressId);
 	}
 
 	/**
-		* Get the press id
-		* @return int
-		*/
+	 * Get the press id
+	 * @return int
+	 */
 	function &getPressId() {
 		return $this->getData('pressId');
 	}
 
 	/**
-		* Set the the user group id
-		* @param $userGroupId int
-		*/
+	 * Set the the user group id
+	 * @param $userGroupId int
+	 */
 	function setUserGroupId(&$userGroupId) {
 		$this->setData('userGroupId', $userGroupId);
 	}
 
 	/**
-		* Get the the user group id
-		* @return int
-		*/
+	 * Get the the user group id
+	 * @return int
+	 */
 	function &getUserGroupId() {
 		return $this->getData('userGroupId');
 	}
 
 	/**
-		* Set the publication stage id
-		* @param $stageId int
-		*/
+	 * Set the publication stage id
+	 * @param $stageId int
+	 */
 	function setStageId(&$stageId) {
 		$this->setData('stageId', $stageId);
 	}
 
 	/**
-		* Get the publication stage id
-		* @return int
-		*/
+	 * Get the publication stage id
+	 * @return int
+	 */
 	function &getStageId() {
 		return $this->getData('stageId');
 	}

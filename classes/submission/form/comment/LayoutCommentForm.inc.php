@@ -35,7 +35,7 @@ class LayoutCommentForm extends CommentForm {
 		$templateMgr->assign('pageTitle', 'submission.comments.comments');
 		$templateMgr->assign('commentAction', 'postLayoutComment');
 		$templateMgr->assign('commentType', 'layout');
-		$templateMgr->assign('hiddenFormParams', 
+		$templateMgr->assign('hiddenFormParams',
 			array(
 				'monographId' => $this->monograph->getId()
 			)
@@ -85,6 +85,7 @@ class LayoutCommentForm extends CommentForm {
 			}
 		} else {
 			// Then add editor
+			// FIXME #5557: Get IDs from Monograph->getAssociatedUserIds
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 			$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getId());
 			$editorAddresses = array();

@@ -49,9 +49,9 @@ class SeriesEditorAction extends Action {
 	 * @param $decision int
 	 */
 	function recordDecision($seriesEditorSubmission, $decision) {
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignments =& $editAssignmentDao->getByMonographId($seriesEditorSubmission->getId());
-		if (empty($editAssignments)) return;
+		// FIXME #5557 Make sure this works with signoffs
+		$signoffs =& $this->signoffDao->getBySybmolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $row['monograph_id']);
+		if (empty($signoffs)) return;
 
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$user =& Request::getUser();

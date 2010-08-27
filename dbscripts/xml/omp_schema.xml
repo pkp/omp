@@ -349,6 +349,10 @@
 			<NOTNULL/>
 			<DEFAULT VALUE="0"/>
 		</field>
+		<field name="stage_id" type="I8">
+			<NOTNULL/>
+			<DEFAULT VALUE="0"/>
+		</field>
 		<field name="current_review_type" type="I8"/>
 		<field name="current_round" type="I8"/>
 		<descr>Monographs.</descr>
@@ -1199,7 +1203,7 @@
 		<field name="user_group_id" type="I8">
 			<NOTNULL />
 		</field>
-		<field name="publication_stage_id" type="I8">
+		<field name="stage_id" type="I8">
 			<NOTNULL />
 		</field>
 		<descr>User groups assignments to stages in the workflow</descr>
@@ -1215,6 +1219,7 @@
 		<index name="user_group_stage_pkey">
 			<col>press_id</col>
 			<col>user_group_id</col>
+			<col>stage_id</col>
 			<UNIQUE />
 		</index>
 	</table>

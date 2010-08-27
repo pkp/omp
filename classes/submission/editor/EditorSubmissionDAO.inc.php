@@ -13,8 +13,7 @@
  * @brief Operations for retrieving and modifying EditorSubmission objects.
  */
 
-// $Id$
-
+/* FIXME #5557: We need a general code cleanup here (remove useless functions), and to integrate with monograph_stage_assignments table */
 
 import('classes.submission.editor.EditorSubmission');
 
@@ -111,34 +110,6 @@ class EditorSubmissionDAO extends DAO {
 		return $editorSubmission;
 	}
 
-	/**
-	 * Insert a new EditorSubmission.
-	 * @param $editorSubmission EditorSubmission
-	 */	
-	function insertEditorSubmission(&$editorSubmission) {
-		$this->update(
-			sprintf('INSERT INTO edit_assignments
-				(monograph_id, editor_id, date_notified, date_completed, date_acknowledged)
-				VALUES
-				(?, ?, %s, %s, %s)',
-				$this->datetimeToDB($editorSubmission->getDateNotified()), $this->datetimeToDB($editorSubmission->getDateCompleted()), $this->datetimeToDB($editorSubmission->getDateAcknowledged())),
-			array(
-				$editorSubmission->getId(),
-				$editorSubmission->getEditorId()
-			)
-		);
-
-		$editorSubmission->setEditId($this->getInsertEditId());
-
-		// Insert review assignments.
-		$reviewAssignments =& $editorSubmission->getReviewAssignments();
-		for ($i=0, $count=count($reviewAssignments); $i < $count; $i++) {
-			$reviewAssignments[$i]->setMonographId($editorSubmission->getId());
-			$this->reviewAssignmentDao->insertObject($reviewAssignments[$i]);
-		}
-
-		return $editorSubmission->getEditId();
-	}
 
 	/**
 	 * Update an existing monograph.
@@ -148,6 +119,7 @@ class EditorSubmissionDAO extends DAO {
 		// update edit assignments
 		$editAssignments = $editorSubmission->getEditAssignments();
 		foreach ($editAssignments as $editAssignment) {
+			// FIXME #5557: Ensure compatibility with monograph stage assignment DAO
 			if ($editAssignment->getEditId() > 0) {
 				$this->editAssignmentDao->updateEditAssignment($editAssignment);
 			} else {
@@ -579,35 +551,35 @@ class EditorSubmissionDAO extends DAO {
 
 		if ($reviewType == null) {
 			$result =& $this->retrieve(
-					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round 
-					FROM edit_decisions 
-					WHERE monograph_id = ? 
-					ORDER BY date_decided ASC', 
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round
+					FROM edit_decisions
+					WHERE monograph_id = ?
+					ORDER BY date_decided ASC',
 					$monographId
 				);
 		} elseif ($round == null) {
 			$result =& $this->retrieve(
-					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round 
-					FROM edit_decisions 
-					WHERE monograph_id = ? AND review_type = ? 
-					ORDER BY date_decided ASC', 
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round
+					FROM edit_decisions
+					WHERE monograph_id = ? AND review_type = ?
+					ORDER BY date_decided ASC',
 					array($monographId, $reviewType)
 				);
 		} else {
 			$result =& $this->retrieve(
-					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round 
-					FROM edit_decisions 
+					'SELECT edit_decision_id, editor_id, decision, date_decided, review_type, round
+					FROM edit_decisions
 					WHERE monograph_id = ? AND review_type = ? AND round = ?
-					ORDER BY date_decided ASC', 
+					ORDER BY date_decided ASC',
 					array($monographId, $reviewType, $round)
 				);
 		}
-		
+
 		while (!$result->EOF) {
 			$value = array(
-					'editDecisionId' => $result->fields['edit_decision_id'], 
-					'editorId' => $result->fields['editor_id'], 
-					'decision' => $result->fields['decision'], 
+					'editDecisionId' => $result->fields['edit_decision_id'],
+					'editorId' => $result->fields['editor_id'],
+					'decision' => $result->fields['decision'],
 					'dateDecided' => $this->datetimeFromDB($result->fields['date_decided'])
 				);
 
@@ -725,7 +697,7 @@ class EditorSubmissionDAO extends DAO {
 	function getInsertEditId() {
 		return $this->getInsertId('edit_assignments', 'edit_id');
 	}
-	
+
 	/**
 	 * Map a column heading value to a database value for sorting
 	 * @param string
@@ -738,7 +710,7 @@ class EditorSubmissionDAO extends DAO {
 			case 'section': return 'section_abbrev';
 			case 'authors': return 'author_name';
 			case 'title': return 'submission_title';
-			case 'active': return 'a.submission_progress';		
+			case 'active': return 'a.submission_progress';
 			case 'subCopyedit': return 'copyedit_completed';
 			case 'subLayout': return 'layout_completed';
 			case 'subProof': return 'proofread_completed';

@@ -38,7 +38,7 @@ class CopyeditCommentForm extends CommentForm {
 		$templateMgr->assign('pageTitle', 'submission.comments.copyeditComments');
 		$templateMgr->assign('commentAction', 'postCopyeditComment');
 		$templateMgr->assign('commentType', 'copyedit');
-		$templateMgr->assign('hiddenFormParams', 
+		$templateMgr->assign('hiddenFormParams',
 			array(
 				'monographId' => $monograph->getId()
 			)
@@ -78,6 +78,7 @@ class CopyeditCommentForm extends CommentForm {
 		// excluding whomever posted the comment.
 
 		// Get editors
+		// FIXME #5557: Ensure compatibility with monograph stage assignment DAO
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getEditAssignmentsByMonographId($monograph->getId());
 		$editAssignments =& $editAssignments->toArray();

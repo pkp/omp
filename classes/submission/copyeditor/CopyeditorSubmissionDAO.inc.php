@@ -22,7 +22,6 @@ class CopyeditorSubmissionDAO extends DAO {
 	var $monographDao;
 	var $authorDao;
 	var $userDao;
-	var $editAssignmentDao;
 	var $monographFileDao;
 	var $galleyDao;
 	var $monographCommentDao;
@@ -35,7 +34,7 @@ class CopyeditorSubmissionDAO extends DAO {
 		$this->monographDao =& DAORegistry::getDAO('MonographDAO');
 		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$this->userDao =& DAORegistry::getDAO('UserDAO');
-		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		$this->signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$this->monographDao =& DAORegistry::getDAO('MonographDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
@@ -48,6 +47,7 @@ class CopyeditorSubmissionDAO extends DAO {
 	 * @return CopyeditorSubmission
 	 */
 	function &getCopyeditorSubmission($monographId) {
+		// FIXME #5557: Integrate with monograph_stage_assignments table
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$result =& $this->retrieve(
@@ -107,8 +107,9 @@ class CopyeditorSubmissionDAO extends DAO {
 		$this->monographDao->_monographFromRow($copyeditorSubmission, $row);
 
 		// Editor Assignment
-		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
-		$copyeditorSubmission->setEditAssignments($editAssignments->toArray());
+		// FIXME #5557 Make sure this works with signoffs
+		$signoffs =& $this->signoffDao->getBySybmolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $row['monograph_id']);
+		$copyeditorSubmission->setEditAssignments($signoffs);
 
 		// Comments
 		$copyeditorSubmission->setMostRecentCopyeditComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_COPYEDIT, $row['monograph_id']));
@@ -245,6 +246,7 @@ class CopyeditorSubmissionDAO extends DAO {
 				break;
 		}
 
+		// FIXME #5557: Integrate with monograph_stage_assignments table
 		$sql = 'SELECT DISTINCT
 				m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
@@ -265,8 +267,8 @@ class CopyeditorSubmissionDAO extends DAO {
 				LEFT JOIN signoffs scpi ON (m.monograph_id = scpi.assoc_id AND scpi.assoc_type = ? AND scpi.symbolic = ?)
 			WHERE ' . (isset($pressId)?'m.press_id = ? AND':'') . '
 				scpi.user_id = ? AND
-				(' . ($active?'':'NOT ') . ' 
-					((scpi.date_notified IS NOT NULL AND scpi.date_completed IS NULL) OR 
+				(' . ($active?'':'NOT ') . '
+					((scpi.date_notified IS NOT NULL AND scpi.date_completed IS NULL) OR
 					(scpf.date_notified IS NOT NULL AND scpf.date_completed IS NULL))
 				) ';
 
@@ -289,23 +291,23 @@ class CopyeditorSubmissionDAO extends DAO {
 		$submissionsCount[0] = 0;
 		$submissionsCount[1] = 0;
 
-		$sql = 'SELECT scf.date_completed 
+		$sql = 'SELECT scf.date_completed
 			FROM monographs m
 			LEFT JOIN series aa ON (aa.series_id = m.series_id)
 			LEFT JOIN signoffs scf ON (m.monograph_id = scf.assoc_id AND scf.assoc_type = ? AND scf.symbolic = ?)
 			LEFT JOIN signoffs sci ON (m.monograph_id = sci.assoc_id AND sci.assoc_type = ? AND sci.symbolic = ?)
-			WHERE m.press_id = ? AND 
-				sci.user_id = ? AND 
+			WHERE m.press_id = ? AND
+				sci.user_id = ? AND
 				sci.date_notified IS NOT NULL';
-					
+
 		$result =& $this->retrieve(
-					$sql, 
+					$sql,
 					array(
-						ASSOC_TYPE_MONOGRAPH, 
-						'SIGNOFF_COPYEDITING_FINAL', 
-						ASSOC_TYPE_MONOGRAPH, 
-						'SIGNOFF_COPYEDITING_INITIAL', 
-						$pressId, 
+						ASSOC_TYPE_MONOGRAPH,
+						'SIGNOFF_COPYEDITING_FINAL',
+						ASSOC_TYPE_MONOGRAPH,
+						'SIGNOFF_COPYEDITING_INITIAL',
+						$pressId,
 						$copyeditorId
 					)
 				);

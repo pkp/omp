@@ -13,7 +13,7 @@
  * @brief Operations for retrieving and modifying SeriesEditorSubmission objects.
  */
 
-// $Id$
+/* FIXME #5557: We need a general code cleanup here (remove useless functions), and to integrate with monograph_stage_assignments table */
 
 
 import('classes.submission.seriesEditor.SeriesEditorSubmission');
@@ -26,7 +26,6 @@ class SeriesEditorSubmissionDAO extends DAO {
 	var $monographDao;
 	var $authorDao;
 	var $userDao;
-	var $editAssignmentDao;
 	var $reviewAssignmentDao;
 	var $copyeditorSubmissionDao;
 	var $monographFileDao;
@@ -43,7 +42,6 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$this->monographDao =& DAORegistry::getDAO('MonographDAO');
 		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$this->userDao =& DAORegistry::getDAO('UserDAO');
-		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$this->copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
 		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
@@ -118,8 +116,11 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$this->monographDao->_monographFromRow($seriesEditorSubmission, $row);
 
 		// Editor Assignment
-		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
-		$seriesEditorSubmission->setEditAssignments($editAssignments->toArray());
+		// FIXME #5557: Ensure compatibility with monograph stage assignment DAO
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupId = $userGroupDao->getByRoleId($seriesEditorSubmission->getPressId(), ROLE_ID_EDITOR);
+		$signoffs =& $this->signoffDao->getBySybmolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $row['monograph_id'], null, $userGroupId);
+		$seriesEditorSubmission->setEditAssignments($signoffs);
 
 		$reviewRoundsInfo =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);
 
@@ -174,6 +175,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		// update edit assignment
 		$editAssignments =& $seriesEditorSubmission->getEditAssignments();
 		foreach ($editAssignments as $editAssignment) {
+			// FIXME #5557: Ensure compatibility with monograph stage assignment DAO
 			if ($editAssignment->getEditId() > 0) {
 				$this->editAssignmentDao->updateEditAssignment($editAssignment);
 			} else {

@@ -29,6 +29,12 @@ define('ASSOC_TYPE_REVIEW_RESPONSE',	0x0000204);
 
 define('CONTEXT_PRESS', 1);
 
+define('WORKFLOW_STAGE_ID_SUBMISSION', 1);
+define('WORKFLOW_STAGE_ID_INTERNAL_REVIEW', 2);
+define('WORKFLOW_STAGE_ID_EXTERNAL_REVIEW', 3);
+define('WORKFLOW_STAGE_ID_EDITING', 4);
+define('WORKFLOW_STAGE_ID_PRODUCTION', 5);
+
 class Application extends PKPApplication {
 	function Application() {
 		parent::PKPApplication();
@@ -104,7 +110,6 @@ class Application extends PKPApplication {
 			'ChapterAuthorDAO' => 'classes.monograph.ChapterAuthorDAO',
 			'ProductionEditorSubmissionDAO' => 'classes.submission.productionEditor.ProductionEditorSubmissionDAO',
 			'CopyeditorSubmissionDAO' => 'classes.submission.copyeditor.CopyeditorSubmissionDAO',
-			'EditAssignmentDAO' => 'classes.submission.editAssignment.EditAssignmentDAO',
 			'EditorSubmissionDAO' => 'classes.submission.editor.EditorSubmissionDAO',
 			'EmailTemplateDAO' => 'classes.mail.EmailTemplateDAO',
 			'DesignerSubmissionDAO' => 'classes.submission.designer.DesignerSubmissionDAO',

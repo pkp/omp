@@ -35,7 +35,7 @@ class ProofreadCommentForm extends CommentForm {
 		$templateMgr->assign('pageTitle', 'submission.comments.corrections');
 		$templateMgr->assign('commentAction', 'postProofreadComment');
 		$templateMgr->assign('commentType', 'proofread');
-		$templateMgr->assign('hiddenFormParams', 
+		$templateMgr->assign('hiddenFormParams',
 			array(
 				'monographId' => $this->monograph->getId()
 			)
@@ -64,7 +64,7 @@ class ProofreadCommentForm extends CommentForm {
 	function email() {
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$press =& Request::getPress();	
+		$press =& Request::getPress();
 
 		// Create list of recipients:
 		$recipients = array();
@@ -73,6 +73,7 @@ class ProofreadCommentForm extends CommentForm {
 		// excluding whomever posted the comment.
 
 		// Get editors
+		// FIXME #5557: Get IDs from Monograph->getAssociatedUserIds
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getId());
 		$editorAddresses = array();

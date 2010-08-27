@@ -26,10 +26,8 @@ class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler
 	/**
 	 * Constructor
 	 */
-	function SubmissionRolesListbuilderHandler() {
+	function UserGroupStageAssignmentListbuilderHandler() {
 		parent::SetupListbuilderHandler();
-		$this->stageId = WORKFLOW_STAGE_ID_SUBMISSION;
-		$this->roleId = ROLE_ID_AUTHOR;
 	}
 
 	/* Load the list from an external source into the listbuilder structure */
@@ -97,6 +95,9 @@ class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+
+		$this->roleId = $request->getUserVar('roleId');
+		$this->stageId = $request->getUserVar('stageId');
 
 		// Basic configuration
 		$this->setTitle($request->getUserVar('title'));

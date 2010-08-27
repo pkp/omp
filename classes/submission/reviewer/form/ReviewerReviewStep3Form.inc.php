@@ -38,7 +38,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 
 		// Validation checks for this form
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
-		$requiredReviewFormElementIds = $reviewFormElementDao->getRequiredReviewFormElementIds($this->reviewAssignment->getReviewFormId());
+		//$requiredReviewFormElementIds = $reviewFormElementDao->getRequiredReviewFormElementIds($this->reviewAssignment->getReviewFormId());
 
 		$this->addCheck(new FormValidatorCustom($this, 'reviewFormResponses', 'required', 'reviewer.monograph.reviewFormResponse.form.responseRequired', create_function('$reviewFormResponses, $requiredReviewFormElementIds', 'foreach ($requiredReviewFormElementIds as $requiredReviewFormElementId) { if (!isset($reviewFormResponses[$requiredReviewFormElementId]) || $reviewFormResponses[$requiredReviewFormElementId] == \'\') return false; } return true;'), array($requiredReviewFormElementIds)));
 		$this->addCheck(new FormValidatorPost($this));
@@ -75,7 +75,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 
 		$reviewAssignment =& $this->reviewAssignment;
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
-		if($reviewAssignment->getReviewFormId()) {
+	/*	if($reviewAssignment->getReviewFormId()) {
 
 			// Get the review form components
 			$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
@@ -90,7 +90,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			$templateMgr->assign('reviewFormElements', $reviewFormElements);
 			$templateMgr->assign('reviewFormResponses', $reviewFormResponses);
 			$templateMgr->assign('isLocked', isset($reviewAssignment) && $reviewAssignment->getDateCompleted() != null);
-		}
+		}*/
 
 		parent::display();
 	}

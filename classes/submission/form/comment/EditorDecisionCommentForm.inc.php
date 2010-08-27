@@ -35,7 +35,7 @@ class EditorDecisionCommentForm extends CommentForm {
 		$templateMgr->assign('pageTitle', 'submission.comments.editorAuthorCorrespondence');
 		$templateMgr->assign('monographId', $this->monograph->getId());
 		$templateMgr->assign('commentAction', 'postEditorDecisionComment');
-		$templateMgr->assign('hiddenFormParams', 
+		$templateMgr->assign('hiddenFormParams',
 			array(
 				'monographId' => $this->monograph->getMonographId()
 			)
@@ -87,6 +87,7 @@ class EditorDecisionCommentForm extends CommentForm {
 			if ($user) $recipients = array_merge($recipients, array($user->getEmail() => $user->getFullName()));
 		} else {
 			// Then add editor
+			// FIXME #5557: Get IDs from Monograph->getAssociatedUserIds
 			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 			$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getMonographId());
 			$editorAddresses = array();
@@ -107,7 +108,7 @@ class EditorDecisionCommentForm extends CommentForm {
 			$recipients = array_merge($recipients, $editorAddresses);
 		}
 
-		parent::email($recipients);	
+		parent::email($recipients);
 	}
 }
 

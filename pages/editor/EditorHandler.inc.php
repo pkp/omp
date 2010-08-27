@@ -9,7 +9,7 @@
  * @class EditorHandler
  * @ingroup pages_editor
  *
- * @brief Handle requests for editor functions. 
+ * @brief Handle requests for editor functions.
  */
 
 // $Id$
@@ -52,14 +52,14 @@ class EditorHandler extends SeriesEditorHandler {
 		$templateMgr->assign('helpTopicId', 'editorial.editorsRole');
 		$templateMgr->display('editor/index.tpl');
 	}
-	
+
 	function viewMetadata($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$submission =& $monographDao->getMonograph($monographId);
 		$this->validate();
 		$this->setupTemplate(EDITOR_SERIES_SUBMISSIONS);
-		
+
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 		import('classes.submission.common.Action');
 		Action::viewMetadata($submission);
@@ -69,7 +69,7 @@ class EditorHandler extends SeriesEditorHandler {
 		import('pages.seriesEditor.SubmissionEditHandler');
 		SubmissionEditHandler::selectReviewer($args);
 	}
-	
+
 	/**
 	 * Display editor submission queue pages.
 	 */
@@ -135,31 +135,6 @@ class EditorHandler extends SeriesEditorHandler {
 
 		$templateMgr->assign('helpTopicId', $helpTopicId);
 		$templateMgr->display('editor/submissions.tpl');
-	}
-
-	/**
-	 * Delete the specified edit assignment.
-	 */
-	function deleteEditAssignment($args) {
-		$this->validate();
-
-		$press =& Request::getPress();
-		$editId = (int) (isset($args[0])?$args[0]:0);
-
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$editAssignment =& $editAssignmentDao->getById($editId);
-
-		if ($editAssignment) {
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$monograph =& $monographDao->getMonograph($editAssignment->getMonographId());
-
-			if ($monograph && $monograph->getPressId() === $press->getId()) {
-				$editAssignmentDao->deleteById($editAssignment->getEditId());
-				Request::redirect(null, null, 'submission', $monograph->getId());
-			}
-		}
-
-		Request::redirect(null, null, 'submissions');
 	}
 
 	/**
@@ -231,11 +206,12 @@ class EditorHandler extends SeriesEditorHandler {
 			$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 			$seriesEditorSeries =& $seriesDao->getEditorSeries($press->getId());
 
-			$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-			$editorStatistics = $editAssignmentDao->getEditorStatistics($press->getId());
+			// FIXME #5557: Ensure compatibility with monograph stage assignment DAO
+			//$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+			//$editorStatistics = $editAssignmentDao->getEditorStatistics($press->getId());
 
 			$templateMgr->assign_by_ref('editorSeries', $seriesEditorSeries);
-			$templateMgr->assign('editorStatistics', $editorStatistics);
+			//$templateMgr->assign('editorStatistics', $editorStatistics);
 
 			$templateMgr->assign('searchField', $searchType);
 			$templateMgr->assign('searchMatch', $searchMatch);
@@ -249,7 +225,7 @@ class EditorHandler extends SeriesEditorHandler {
 				USER_FIELD_EMAIL => 'user.email'
 			));
 			$templateMgr->assign('alphaList', explode(' ', Locale::translate('common.alphaList')));
-			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary.submissionManagement');	
+			$templateMgr->assign('helpTopicId', 'editorial.editorsRole.submissionSummary.submissionManagement');
 			$templateMgr->display('editor/selectSeriesEditor.tpl');
 		}
 	}
@@ -258,6 +234,7 @@ class EditorHandler extends SeriesEditorHandler {
 	 * Set the canEdit / canReview flags for this submission's edit assignments.
 	 */
 	function setEditorFlags($args) {
+		// FIXME #5557: Is this function necessary?  If so, ensure compatibility with monograph stage assignment DAO
 		$this->validate();
 
 		$press =& Request::getPress();
