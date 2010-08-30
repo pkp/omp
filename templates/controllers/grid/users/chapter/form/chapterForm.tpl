@@ -10,9 +10,9 @@
  *
  *}
 {assign var='uniqueId' value=""|uniqid}
-{modal_title id="#editChapterForm-$uniqueId" key="submission.chapter.addChapter" iconClass="fileManagement" canClose=1}
+{modal_title id="#editChapterForm" key="submission.chapter.addChapter" iconClass="fileManagement" canClose=1}
 
-<form name="editChapterForm" id="editChapterForm-{$uniqueId}" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
+<form name="editChapterForm" id="editChapterForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormSection title="common.title" for="title"}
@@ -28,15 +28,15 @@
 	{** FIXME: can remove escape=false after fix of bug 5265 **}
 	{url|assign:chapterContributorUrl router=$smarty.const.ROUTE_COMPONENT  component="listbuilder.users.ChapterContributorListbuilderHandler" op="fetch" monographId=$monographId chapterId=$chapterId escape=false}
 	{assign var='uniqueId' value=""|uniqid}
-	{load_url_in_div id="chapterContributorContainer-$uniqueId" url=$chapterContributorUrl}
+	{load_url_in_div id="chapterContributorContainer" url=$chapterContributorUrl}
 {/if}
 </form>
 
-{init_button_bar id="#editChapterForm-$uniqueId" cancelId="#cancelButton-$uniqueId" submitId="#okButton-$uniqueId"}
+{init_button_bar id="#editChapterForm" cancelId="#cancelButton" submitId="#okButton"}
 {fbvFormArea id="buttons"}
     {fbvFormSection}
-        {fbvLink id="cancelButton-$uniqueId" label="common.cancel"}
-        {fbvButton id="okButton-$uniqueId" label="submission.chapter.addChapter" align=$fbvStyles.align.RIGHT}
+        {fbvLink id="cancelButton" label="common.cancel"}
+        {fbvButton id="okButton" label="submission.chapter.addChapter" align=$fbvStyles.align.RIGHT}
     {/fbvFormSection}
 {/fbvFormArea}
 <!-- / templates/controllers/grid/users/chapter/form/chapterForm.tpl -->

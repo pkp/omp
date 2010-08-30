@@ -25,11 +25,11 @@
 	{literal}
 	$(function() {
 		$(".ui-dialog-titlebar").remove(); // Make sure title bar is removed on successive calls to the same modal
-		$('.{/literal}{$uniqueId}{literal}').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
+		$('.fileUpload').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
 	});
 	{/literal}
 </script>
-<div id="fileUploadTabs" class="{$uniqueId} ui-tabs ui-widget ui-widget-content ui-corner-all">
+<div id="fileUploadTabs" class="fileUpload ui-tabs ui-widget ui-widget-content ui-corner-all">
 	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 		<li class="ui-state-default ui-corner-top"><a href="{url op="displayFileForm" monographId=$monographId fileId=$fileId isRevision=$isRevision}">1. {translate key="submission.submit.upload"}</a></li>
 		<li class="ui-state-default ui-corner-top"><a href="{url op="editMetadata" monographId=$monographId fileId=$fileId}">2. {translate key="submission.submit.metadata"}</a></li>

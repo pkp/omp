@@ -40,7 +40,7 @@
 		{else}
 			{assign var="checked" value=false}
 		{/if}
-		{fbvElement type="radio" name="context" id="context-"|concat:$groupContextOptionValue value=$groupContextOptionValue checked=$checked label=$groupContextOptionKey}
+		{fbvElement type="radio" name="context" id="context"|concat:$groupContextOptionValue value=$groupContextOptionValue checked=$checked label=$groupContextOptionKey}
 	{/foreach}
 {/fbvFormSection}
 {/fbvFormArea}
@@ -51,7 +51,7 @@
 	{url|assign:mastheadMembersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.MastheadMembershipListbuilderHandler" op="fetch" groupId=$group->getId()}
 	{* Need a random div ID to load listbuilders in modals *}
 	{assign var='uniqueId' value=""|uniqid}
-	{load_url_in_div id=$uniqueId url=$mastheadMembersUrl}
+	{load_url_in_div id= url=$mastheadMembersUrl}
 {/if}
 
 </form>

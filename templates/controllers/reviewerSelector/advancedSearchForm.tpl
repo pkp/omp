@@ -66,7 +66,7 @@
 
 
 		// Handler filter form submission
-		$('#reviewerFilterForm-{/literal}{$uniqueId}{literal}').ajaxForm({
+		$('#reviewerFilterForm').ajaxForm({
 		        url: '{/literal}{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="updateReviewerSelect"}{literal}',
 				dataType: 'json',
 				data: {"doneMin": getMaxValue('doneRange'), "doneMax": getMaxValue('doneRange'), "avgMin": getMinValue('avgRange'), "avgMax": getMaxValue('avgRange'),
@@ -75,9 +75,9 @@
 		        success: function(returnString) {
 	    			//$('#loading').hide();
 		    		if (returnString.status == true) {
-		    			$('#reviewerSelectGridContainer-{/literal}{$uniqueId}{literal}').html(returnString.content);
+		    			$('#reviewerSelectGridContainer').html(returnString.content);
 		    		}
-		    		//$('#loadingText-{/literal}{$uniqueId}{literal}').text(returnString.content);  // Set to error or success message
+		    		//$('#loadingText').text(returnString.content);  // Set to error or success message
 		        },
 		        beforeSubmit: function(arr, $form, options) {
 			        	// Need to reset form values to prevent cached values from being submitted
@@ -126,7 +126,7 @@
 {/literal}
 </script>
 
-<form name="reviewerFilterForm" id="reviewerFilterForm-{$uniqueId}" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="updateReviewerSelect"}" method="post">
+<form name="reviewerFilterForm" id="reviewerFilterForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="updateReviewerSelect"}" method="post">
 {fbvFormArea id="reviewerSearchForm"}
 	{fbvFormSection float=$fbvStyles.float.LEFT}
 		<p class="sliderLabel">
@@ -166,7 +166,7 @@
 </form>
 {url|assign:reviewerSelectGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="fetchGrid" monographId=$monographId doneMin=$reviewerValues.doneMin
 	doneMax=$reviewerValues.doneMax avgMin=$reviewerValues.avgMin avgMax=$reviewerValues.avgMax lastMin=$reviewerValues.lastMin lastMax=$reviewerValues.lastMax activeMin=$reviewerValues.activeMin activeMax=$reviewerValues.activeMax escape=false}
-{assign var=gridContainerId value="reviewerSelectGridContainer"|concat:"-":$uniqueId}
+{assign var=gridContainerId value="reviewerSelectGridContainer"|concat:"-":}
 {load_url_in_div id=$gridContainerId url="$reviewerSelectGridUrl"}
 
 <!-- / templates/controllers/reviewerSelector/advancedSearchForm.tpl -->

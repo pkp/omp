@@ -13,9 +13,9 @@
 
 {translate|assign:"reviewTranslated" key="editor.review"}
 {assign var=titleTranslated value="$reviewTranslated"|concat:": ":$monograph->getLocalizedTitle()}
-{modal_title id="#editorReview-$uniqueId" keyTranslated=$titleTranslated iconClass="fileManagement" canClose=1}
+{modal_title id="#editorReview" keyTranslated=$titleTranslated iconClass="fileManagement" canClose=1}
 
-<div id="editorReview-{$uniqueId}">
+<div id="editorReview">
 	<table width="100%" style="margin-left: 12px;">
 		<tr>
 			<td><strong>{translate key="user.role.reviewer"}</strong></td>
@@ -40,7 +40,7 @@
 
 	<div id="attachments">
 		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.ReviewerReviewAttachmentsGridHandler" op="fetchGrid" readOnly=1 reviewId=$reviewAssignment->getId() escape=false}
-		{load_url_in_div id="readReviewAttachmentsGridContainer-$uniqueId" url="$reviewAttachmentsGridUrl"}
+		{load_url_in_div id="readReviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 	</div>
 </div>
 

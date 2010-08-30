@@ -11,9 +11,9 @@
  *}
 
 {assign var='uniqueId' value=""|uniqid}
-{modal_title id="#editSubmissionContributor-$uniqueId" key="grid.action.addAuthor" iconClass="fileManagement" canClose=1}
+{modal_title id="#editSubmissionContributor" key="grid.action.addAuthor" iconClass="fileManagement" canClose=1}
 
-<form name="editSubmissionContributorForm" id="editSubmissionContributor-{$uniqueId}" method="post" action="{url op="updateSubmissionContributor" submissionContributorId=$authorId}">
+<form name="editSubmissionContributorForm" id="editSubmissionContributor" method="post" action="{url op="updateSubmissionContributor" submissionContributorId=$authorId}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="profile"}
@@ -54,11 +54,11 @@
 {/if}
 </form>
 
-{init_button_bar id="#editSubmissionContributor-$uniqueId" cancelId="#cancelButton-$uniqueId" submitId="#okButton-$uniqueId"}
+{init_button_bar id="#editSubmissionContributor" cancelId="#cancelButton" submitId="#okButton"}
 {fbvFormArea id="buttons"}
     {fbvFormSection}
-        {fbvLink id="cancelButton-$uniqueId" label="common.cancel"}
-        {fbvButton id="okButton-$uniqueId" label="common.ok" align=$fbvStyles.align.RIGHT}
+        {fbvLink id="cancelButton" label="common.cancel"}
+        {fbvButton id="okButton" label="common.ok" align=$fbvStyles.align.RIGHT}
     {/fbvFormSection}
 {/fbvFormArea}
 <!-- / templates/controllers/grid/users/submissionContributor/form/submissionContributorForm.tpl -->

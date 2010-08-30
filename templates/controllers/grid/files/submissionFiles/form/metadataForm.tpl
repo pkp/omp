@@ -16,7 +16,7 @@
 	{literal}
 	$(function() {
 		$('.button').button();
-		$('#metadataForm-{/literal}{$uniqueId}{literal}').ajaxForm({
+		$('#metadataForm').ajaxForm({
 			dataType: 'json',
 	        success: function(returnString) {
 	    		if (returnString.status == true) {
@@ -37,14 +37,14 @@
 	    });
 
 		// Set cancel/continue button behaviors
-		$("#continueButton2-{/literal}{$uniqueId}{literal}").click(function() {
-			validator = $('#metadataForm-{/literal}{$uniqueId}{literal}').validate();
-			if($('#metadataForm-{/literal}{$uniqueId}{literal}').valid()) {
-				$('#metadataForm-{/literal}{$uniqueId}{literal}').submit();   // Hands off further actions to the ajaxForm function above
+		$("#continueButton2").click(function() {
+			validator = $('#metadataForm').validate();
+			if($('#metadataForm').valid()) {
+				$('#metadataForm').submit();   // Hands off further actions to the ajaxForm function above
 			}
 			validator = null;
 		});
-		$("#cancelButton2-{/literal}{$uniqueId}{literal}").click(function() {
+		$("#cancelButton2").click(function() {
 			$('div#fileUploadTabs').last().parent().dialog('close');
 			return false;
 		});
@@ -52,7 +52,7 @@
 	{/literal}
 </script>
 
-<form name="metadataForm-{$uniqueId}" id="metadataForm-{$uniqueId}" action="{url op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
+<form name="metadataForm" id="metadataForm" action="{url op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
 	<h3>{translate key='submission.fileDetails'}</h3>
 	{fbvFormArea id="fileMetaData"}
 		{fbvFormSection title="common.name"}
@@ -85,8 +85,8 @@
 
 	{fbvFormArea id="buttons"}
 		{fbvFormSection}
-			{fbvLink id="cancelButton2-$uniqueId" label="common.cancel"}
-			{fbvButton id="continueButton2-$uniqueId" label="common.continue" align=$fbvStyles.align.RIGHT}
+			{fbvLink id="cancelButton2" label="common.cancel"}
+			{fbvButton id="continueButton2" label="common.continue" align=$fbvStyles.align.RIGHT}
 		{/fbvFormSection}
 	{/fbvFormArea}
 </form>
