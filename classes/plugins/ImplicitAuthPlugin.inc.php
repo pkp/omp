@@ -31,9 +31,8 @@ class ImplicitAuthPlugin extends Plugin {
 	 * 	was successful; otherwise, the method should not return (i.e.
 	 *	the request should be redirected to login or elsewhere).
 	 */
-
 	function implicitAuth() {
-		die('ABSTRACT METHOD');
+		assert(false); // Should always be overridden
 	}
 }
 
