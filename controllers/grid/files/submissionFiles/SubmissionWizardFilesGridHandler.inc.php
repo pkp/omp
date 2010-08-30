@@ -41,8 +41,8 @@ class SubmissionWizardFilesGridHandler extends SubmissionFilesGridHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionWizardMonographPolicy');
-		$this->addPolicy(new OmpSubmissionWizardMonographPolicy($request, $args, $roleAssignments));
+		import('classes.security.authorization.OmpSubmissionAccessPolicy');
+		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 }

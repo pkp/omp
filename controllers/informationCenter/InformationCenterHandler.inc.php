@@ -37,8 +37,8 @@ class InformationCenterHandler extends Handler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpWorkflowStagePolicy');
-		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
+		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 

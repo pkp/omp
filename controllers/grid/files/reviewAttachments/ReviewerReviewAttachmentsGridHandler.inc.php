@@ -34,8 +34,8 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		// FIXME: #5600 - Distribute access differently to reviewers and editor roles
-		/*import('classes.security.authorization.OmpWorkflowStagePolicy');
-		$this->addPolicy(new OmpWorkflowStagePolicy($request, $args, $roleAssignments));
+		/*import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);*/
 		return true;
 	}
