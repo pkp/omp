@@ -151,7 +151,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$this->monograph->setSubmissionProgress($this->step + 1);
 			$this->monograph->setLanguage(String::substr($press->getPrimaryLocale(), 0, 2));
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
-			$this->monograph->setWorkType($this->getData('workType') ? WORK_TYPE_EDITED_VOLUME : 0);
+			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : WORK_TYPE_AUTHORED_WORK);
 
 			// Get a default user group id for an Author
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
