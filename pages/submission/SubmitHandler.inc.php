@@ -33,9 +33,49 @@ class SubmitHandler extends Handler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionWizardStepsPolicy');
-		$this->addPolicy(new OmpSubmissionWizardStepsPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
+		// The policy for the submission handler depends on the
+		// step currently requested.
+		$step = isset($args[0]) ? (int) $args[0] : 1;
+		if ($step<1 || $step>4) return false;
+
+		// Do we have a monograph present in the request?
+		$monographId = (int)$request->getUserVar('monographId');
+
+		// Are we in step one without a monograph present?
+		if ($step === 1 && $monographId === 0) {
+			// Authorize submission creation.
+			import('classes.security.authorization.OmpPressAccessPolicy');
+			$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
+		} else {
+			// Authorize editing of incomplete submissions.
+			import('classes.security.authorization.OmpSubmissionAccessPolicy');
+			$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments, 'monographId'));
+		}
+
+		// Do policy checking.
+		if (!parent::authorize($request, $args, $roleAssignments)) return false;
+
+		// Execute additional checking of the step.
+		// NB: Move this to its own policy for reuse when required in other places.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		// Permit if there is no monograph set, but request is for initial step.
+		if (!is_a($monograph, 'Monograph') && $step == 1) return true;
+
+		// In all other cases we expect an authorized monograph due to the
+		// submission access policy above.
+		assert(is_a($monograph, 'Monograph'));
+
+		// FIXME: What happens when returning to a prior step? See #5813.
+		// FIXME: What happens when returning to an incomplete submission? See #5752.
+		// Deny if submission is complete (==0 means complete) and at
+		// any step other than the "complete" step (=4)
+		if ($monograph->getSubmissionProgress() == 0 && $step != 4 ) return false;
+
+		// Deny if trying to access a step greater than the current progress
+		if ($monograph->getSubmissionProgress() != 0 && $step > $monograph->getSubmissionProgress()) return false;
+
+		return true;
 	}
 
 
