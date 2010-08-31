@@ -12,10 +12,10 @@
  * @brief Handle press editor submissions list grid requests.
  */
 
-// import grid base classes
+// Import grid base classes.
 import('controllers.grid.submissions.SubmissionsListGridHandler');
 
-// import specific grid classes
+// Import press editor submissions list specific grid classes.
 import('controllers.grid.submissions.pressEditor.PressEditorSubmissionsListGridCellProvider');
 import('controllers.grid.submissions.pressEditor.PressEditorSubmissionsListGridRow');
 
@@ -29,8 +29,9 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function PressEditorSubmissionsListGridHandler() {
 		parent::GridHandler();
-		// FIXME: Missing permission spec, see comment in the authorize() method.
-		// We have to enter a role assignement here once #5593 is fixed.
+		$this->addRoleAssignment(
+				array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
+				array('fetchGrid'));
 	}
 
 
@@ -38,45 +39,23 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	// Implement template methods from PKPHandler
 	//
 	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, &$args, $roleAssignments) {
-		// FIXME: This component is being used on the editor's page which is
-		// not specified in the permission documentation or in the application
-		// specification, see #5593. We have to enter a policy here once we've
-		// specified the permissions for this component.
-		return true;
-	}
-
-	/*
-	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		// Load submission-specific translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR));
-
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
-		$user =& $request->getUser();
-
+		// Set title.
 		$this->setTitle('common.queue.long.active');
-		$this->setData($this->_getSubmissions($request, $user->getId(), $press->getId()));
 
-		// Add author-specific columns
+		// Instantiate the cell provider.
 		$cellProvider = new PressEditorSubmissionsListGridCellProvider();
 
-		$session =& $request->getSession();
-		$actingAsUserGroupId = $session->getActingAsUserGroupId();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$actingAsUserGroup =& $userGroupDao->getById($actingAsUserGroupId);
-
-		// add a column for the role the user is acting as
+		// Add press editor specific columns:
+		// 1) Add a column for the role the user is acting as.
+		$actingAsUserGroup =& $this->getAuthorizedContextObject(ASSOC_TYPE_USER_GROUP);
 		$this->addColumn(
 			new GridColumn(
-				$actingAsUserGroupId,
+				$actingAsUserGroup->getId(),
 				null,
 				$actingAsUserGroup->getLocalizedAbbrev(),
 				'controllers/grid/common/cell/roleCell.tpl',
@@ -84,7 +63,10 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 			)
 		);
 
-		// Add one column for each of the Author user groups
+		// 2) Add one column for each of the Author user groups
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$router =& $request->getRouter();
+		$press =& $router->getContext($request);
 		$authorUserGroups =& $userGroupDao->getByRoleId($press->getId(), ROLE_ID_AUTHOR);
 		while (!$authorUserGroups->eof()) {
 			$authorUserGroup =& $authorUserGroups->next();
@@ -103,22 +85,12 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 
 	//
-	// Overridden methods from GridHandler
+	// Implement template methods from SubmissionListGridHandler
 	//
 	/**
-	* Get the row handler - override the default row handler
-	* @return PressEditorSubmissionsListGridRow
-	*/
-	function &getRowInstance() {
-		$row = new PressEditorSubmissionsListGridRow();
-		return $row;
-	}
-
-	//
-	// Private helper functions
-	//
-	function _getSubmissions(&$request, $userId, $pressId) {
-		// TODO: nulls represent search options which have not yet been implemented
+	 * @see SubmissionListGridHandler::getSubmissions()
+	 */
+	function getSubmissions(&$request, $userId, $pressId) {
 		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
 		$submissions =& $editorSubmissionDao->getUnassigned($pressId, 0, FILTER_EDITOR_ALL);
 
@@ -130,5 +102,18 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		}
 
 		return $data;
+	}
+
+
+	//
+	// Overridden methods from GridHandler
+	//
+	/**
+	* Get the row handler - override the default row handler
+	* @return PressEditorSubmissionsListGridRow
+	*/
+	function &getRowInstance() {
+		$row = new PressEditorSubmissionsListGridRow();
+		return $row;
 	}
 }

@@ -12,10 +12,10 @@
  * @brief Handle submission list grid requests.
  */
 
-// import grid base classes
+// Import grid base classes.
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
-// import submissionsList grid specific classes
+// Import submissions list grid specific classes.
 import('controllers.grid.submissions.SubmissionsListGridCellProvider');
 import('classes.submission.common.Action');
 
@@ -28,19 +28,49 @@ class SubmissionsListGridHandler extends GridHandler {
 		parent::GridHandler();
 	}
 
+
 	//
-	// Overridden methods from PKPHandler
+	// Implement template methods from PKPHandler
 	//
-	/*
-	 * Configure the grid
-	 * @param PKPRequest $request
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize(&$request, &$args, $roleAssignments) {
+		$router =& $request->getRouter();
+		$operation = $router->getRequestedOp($request);
+
+		switch($operation) {
+			case 'fetchGrid':
+				// The user only needs press-level permission to see a list
+				// of submissions.
+				import('classes.security.authorization.OmpPressAccessPolicy');
+				$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
+				break;
+
+			default:
+				// All other operations require full submission access.
+				import('classes.security.authorization.OmpSubmissionAccessPolicy');
+				$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
+		}
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	/**
+	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		// Load submission-specific translations
+		// Load submission-specific translations.
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION));
 
+		// Load submissions.
+		$router =& $request->getRouter();
+		$press =& $router->getContext($request);
+		$user =& $request->getUser();
+		$this->setData($this->getSubmissions($request, $user->getId(), $press->getId()));
+
+		// Add title column which is common to all submission lists.
 		$cellProvider = new SubmissionsListGridCellProvider();
 		$this->addColumn(
 			new GridColumn(
@@ -53,10 +83,19 @@ class SubmissionsListGridHandler extends GridHandler {
 		);
 	}
 
+
 	//
-	// Private helper functions
+	// Protected template methods to be overridden by sub-classes.
 	//
-	function _getSubmissions(&$request, $userId, $pressId) {
+	/**
+	 * Return a list of submissions.
+	 * @param $request Request
+	 * @param $userId integer
+	 * @param $pressId integer
+	 * @return array a list of submission objects
+	 */
+	function getSubmissions(&$request, $userId, $pressId) {
+		// Must be implemented by sub-classes.
 		assert(false);
 	}
 }

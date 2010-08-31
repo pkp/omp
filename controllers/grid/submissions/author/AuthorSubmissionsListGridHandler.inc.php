@@ -7,15 +7,15 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class AuthorSubmissionsListGridHandler
- * @ingroup controllers_grid_submissionContributor_author
+ * @ingroup controllers_grid_submissions_author
  *
  * @brief Handle author submissions list grid requests.
  */
 
-// import grid base classes
+// Import grid base classes.
 import('controllers.grid.submissions.SubmissionsListGridHandler');
 
-// import author submissions list specific grid classes
+// Import author submissions list specific grid classes.
 import('controllers.grid.submissions.author.AuthorSubmissionsListGridRow');
 
 class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
@@ -24,9 +24,7 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function AuthorSubmissionsListGridHandler() {
 		parent::SubmissionsListGridHandler();
-		$this->addRoleAssignment(
-				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'deleteSubmission'));
+		$this->addRoleAssignment(ROLE_ID_AUTHOR, array('fetchGrid', 'deleteSubmission'));
 	}
 
 
@@ -34,29 +32,10 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	// Implement template methods from PKPHandler
 	//
 	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionWizardPolicy');
-		$this->addPolicy(new OmpSubmissionWizardPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/*
-	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-
-		// Load submission-specific translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION));
-
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
-		$user =& $request->getUser();
-
-		$this->setData($this->_getSubmissions($request, $user->getId(), $press->getId()));
 
 		// Grid-level actions
 		$dispatcher =& Registry::get('dispatcher');
@@ -65,7 +44,7 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 				'newSubmission',
 				LINK_ACTION_MODE_LINK,
 				LINK_ACTION_TYPE_NOTHING,
-				$dispatcher->url($request, 'page', null, 'submission', 'wizard'),
+				$dispatcher->url($request, ROUTE_PAGE, null, 'submission', 'wizard'),
 				'submission.submit',
 				null,
 				'add'
@@ -73,23 +52,10 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		);
 	}
 
-	//
-	// Overridden methods from GridHandler
-	//
-	/**
-	 * @see GridHandler::getRowInstance()
-	 * @return SubmissionContributorGridRow
-	 */
-	function &getRowInstance() {
-		// Return an AuthorSubmissionList row
-		$row = new AuthorSubmissionsListGridRow();
-		return $row;
-	}
 
 	//
-	// Public SubmissionsList Grid Actions
+	// Public Handler Actions
 	//
-
 	/**
 	 * Delete a submission
 	 * @param $args array
@@ -120,10 +86,14 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		return $json->getString();
 	}
 
+
 	//
-	// Private helper functions
+	// Implement template methods from SubmissionListGridHandler
 	//
-	function _getSubmissions(&$request, $userId, $pressId) {
+	/**
+	 * @see SubmissionListGridHandler::getSubmissions()
+	 */
+	function getSubmissions(&$request, $userId, $pressId) {
 		//$rangeInfo =& Handler::getRangeInfo('submissions');
 		$page = $request->getUserVar('status');
 		switch($page) {
@@ -147,5 +117,19 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		}
 
 		return $data;
+	}
+
+
+	//
+	// Overridden methods from GridHandler
+	//
+	/**
+	 * @see GridHandler::getRowInstance()
+	 * @return SubmissionContributorGridRow
+	 */
+	function &getRowInstance() {
+		// Return an AuthorSubmissionList row
+		$row = new AuthorSubmissionsListGridRow();
+		return $row;
 	}
 }

@@ -32,27 +32,6 @@ class EditorHandler extends SeriesEditorHandler {
 		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_EDITOR)));
 	}
 
-	/**
-	 * Displays the editor role selection page.
-	 */
-
-	function index($args) {
-		$this->validate();
-		$this->setupTemplate();
-
-		$templateMgr =& TemplateManager::getManager();
-		$press =& Request::getPress();
-		$pressId = $press->getId();
-		$user =& Request::getUser();
-
-		$editorSubmissionDao =& DAORegistry::getDAO('EditorSubmissionDAO');
-
-		$submissionsCount =& $editorSubmissionDao->getCount($press->getId());
-		$templateMgr->assign('submissionsCount', $submissionsCount);
-		$templateMgr->assign('helpTopicId', 'editorial.editorsRole');
-		$templateMgr->display('editor/index.tpl');
-	}
-
 	function viewMetadata($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$monographDao =& DAORegistry::getDAO('MonographDAO');

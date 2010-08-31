@@ -1,20 +1,21 @@
 <?php
 
 /**
- * @file controllers/grid/submissions/ReviewerSubmissionsListGridHandler.inc.php
+ * @file controllers/grid/submissions/reviewer/ReviewerSubmissionsListGridHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewerSubmissionsListGridHandler
- * @ingroup controllers_grid_submissionContributor
+ * @ingroup controllers_grid_submissions_reviewer
  *
  * @brief Handle reviewer submissions list grid requests.
  */
 
-// import grid base classes
+// Import grid base classes.
 import('controllers.grid.submissions.SubmissionsListGridHandler');
-// import reviewer submissions list specific classes
+
+// Import reviewer submissions list specific grid classes.
 import('controllers.grid.submissions.reviewer.ReviewerSubmissionsListGridCellProvider');
 
 class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
@@ -23,8 +24,7 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 */
 	function ReviewerSubmissionsListGridHandler() {
 		parent::GridHandler();
-		$this->addRoleAssignment(ROLE_ID_REVIEWER,
-				array('fetchGrid', 'deleteSubmission'));
+		$this->addRoleAssignment(ROLE_ID_REVIEWER, array('fetchGrid', 'deleteSubmission'));
 	}
 
 
@@ -32,37 +32,17 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	// Implement template methods from PKPHandler
 	//
 	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, &$args, $roleAssignments) {
-		// Make sure the request complies with the review page policy.
-		import('classes.security.authorization.OmpReviewPagePolicy');
-		$this->addPolicy(new OmpReviewPagePolicy($request, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/*
-	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		// Load submission-specific translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_SUBMISSION));
-
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
-		$user =& $request->getUser();
-
-		$this->setData($this->_getSubmissions($request, $user->getId(), $press->getId()));
-
-		// override the title column's cell provider
+		// Override the title column's cell provider.
 		$cellProvider = new ReviewerSubmissionsListGridCellProvider();
 		$titleColumn =& $this->getColumn('title');
 		$titleColumn->setCellProvider($cellProvider);
 
-		// Add reviewer-specific columns
+		// Add reviewer-specific columns.
 		$this->addColumn(
 			new GridColumn(
 				'dateAssigned',
@@ -85,9 +65,8 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 
 	//
-	// Public SubmissionsList Grid Actions
+	// Public Grid Actions
 	//
-
 	/**
 	 * Delete a submission
 	 * @param $args array
@@ -100,11 +79,14 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		return false;
 	}
 
+
 	//
-	// Private helper functions
+	// Implement template methods from SubmissionListGridHandler
 	//
-	function _getSubmissions(&$request, $userId, $pressId) {
-		//$rangeInfo =& Handler::getRangeInfo('submissions');
+	/**
+	 * @see SubmissionListGridHandler::getSubmissions()
+	 */
+	function getSubmissions(&$request, $userId, $pressId) {
 		$page = $request->getUserVar('status');
 		switch($page) {
 			case 'completed':

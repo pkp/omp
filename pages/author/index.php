@@ -3,7 +3,7 @@
 /**
  * @defgroup pages_author
  */
- 
+
 /**
  * @file pages/author/index.php
  *
@@ -11,11 +11,10 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup pages_author
- * @brief Handle requests for press author functions. 
+ * @brief Handle requests for press author functions.
  *
  */
 
-// $Id$
 
 switch ($op) {
 	//
@@ -54,7 +53,7 @@ switch ($op) {
 	case 'proofGalley':
 	case 'proofGalleyTop':
 	case 'proofGalleyFile':
-	// 
+	//
 	// Payment Actions
 	//
 	case 'paySubmissionFee':
@@ -79,7 +78,6 @@ switch ($op) {
 		import('pages.author.SubmissionCommentsHandler');
 		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
 		break;
-	case 'index':
 	case 'instructions':
 		define('HANDLER_CLASS', 'AuthorHandler');
 		import('pages.author.AuthorHandler');

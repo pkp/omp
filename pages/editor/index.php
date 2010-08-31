@@ -3,7 +3,7 @@
 /**
  * @defgroup pages_editor
  */
- 
+
 /**
  * @file pages/editor/index.php
  *
@@ -11,11 +11,10 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup pages_editor
- * @brief Handle requests for editor functions. 
+ * @brief Handle requests for editor functions.
  *
  */
 
-// $Id$
 
 switch ($op) {
 	//
@@ -111,7 +110,7 @@ switch ($op) {
 	/**
 	 * Scheduling functions
 	 */
-	case 'scheduleForPublication':	
+	case 'scheduleForPublication':
 		import('pages.seriesEditor.SubmissionEditHandler');
 		define('HANDLER_CLASS', 'SubmissionEditHandler');
 		break;
@@ -136,7 +135,6 @@ switch ($op) {
 		import('pages.seriesEditor.SubmissionCommentsHandler');
 		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
 		break;
-	case 'index':
 	case 'viewMetadata':
 	case 'selectReviewer':
 	case 'submissions':
