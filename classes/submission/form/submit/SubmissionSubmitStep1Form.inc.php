@@ -149,7 +149,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$this->monograph->setSeriesId($this->getData('seriesId'));
 			$this->monograph->stampStatusModified();
 			$this->monograph->setSubmissionProgress($this->step + 1);
-			$this->monograph->setLanguage(String::substr($press->getPrimaryLocale(), 0, 2));
+			$this->monograph->setLanguage(String::substr($this->monograph->getLocale(), 0, 2));
 			$this->monograph->setCommentsToEditor($this->getData('commentsToEditor'));
 			$this->monograph->setWorkType($this->getData('isEditedVolume') ? WORK_TYPE_EDITED_VOLUME : WORK_TYPE_AUTHORED_WORK);
 
