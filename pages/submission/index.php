@@ -21,7 +21,6 @@ switch ($op) {
 	//
 	case 'wizard':
 	case 'saveStep':
-	case 'expediteSubmission':
 		import('pages.submission.SubmitHandler');
 		define('HANDLER_CLASS', 'SubmitHandler');
 		break;

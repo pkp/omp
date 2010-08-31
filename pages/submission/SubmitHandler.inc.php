@@ -20,9 +20,7 @@ class SubmitHandler extends Handler {
 	 */
 	function SubmitHandler() {
 		parent::Handler();
-		$this->addRoleAssignment(ROLE_ID_AUTHOR, $authorOperations = array('wizard', 'saveStep'));
-		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array_merge($authorOperations, array('expediteSubmission')));
+		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER), array('wizard', 'saveStep'));
 	}
 
 
@@ -177,30 +175,6 @@ class SubmitHandler extends Handler {
 				$submitForm->display();
 			}
 		}
-	}
-
-
-	/**
-	 * FIXME: missing method doc, calls inexistent
-	 * method EditorAction::expediteSubmission(), not part
-	 * of the authorized methods, see #5824.
-	 * @param $args array
-	 * @param $request Request
-	 */
-	function expediteSubmission(&$args, &$request) {
-		$router =& $request->getRouter();
-		$press =& $router->getContext($request);
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
-		// The author must also be an editor to perform this task.
-		if (Validation::isEditor($press->getId()) && $monograph->getSubmissionFileId()) {
-			import('classes.submission.editor.EditorAction');
-			// FIXME: EditorAction::expediteSubmission() must be implemented, see #5824.
-			EditorAction::expediteSubmission($monograph);
-			$request->redirect(null, 'editor', 'submissionEditing', array($monograph->getId()));
-		}
-
-		$request->redirect(null, null, 'track');
 	}
 
 
