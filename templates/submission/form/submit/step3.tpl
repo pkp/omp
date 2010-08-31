@@ -7,8 +7,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Step 3 of author monograph submission.
- *
- * $Id$
  *}
 
 {assign var="pageTitle" value="submission.submit.step3"}

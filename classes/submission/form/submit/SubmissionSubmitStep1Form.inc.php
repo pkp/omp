@@ -12,8 +12,6 @@
  * @brief Form for Step 1 of author monograph submission.
  */
 
-// $Id$
-
 
 import('classes.submission.form.submit.SubmissionSubmitForm');
 

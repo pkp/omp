@@ -7,13 +7,11 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Step 1 of author monograph submission.
- *
- * $Id$
  *}
 {assign var="pageTitle" value="submission.submit.step1"}
 {include file="submission/form/submit/submitStepHeader.tpl"}
 
-<form name="submit" method="post" action="{url op="saveStep" path=$submitStepAlias}">
+<form name="submit" method="post" action="{url op="saveStep" path=$submitStep}">
 {if $monographId}<input type="hidden" name="monographId" value="{$monographId|escape}" />{/if}
 <input type="hidden" name="submissionChecklist" value="1" />
 

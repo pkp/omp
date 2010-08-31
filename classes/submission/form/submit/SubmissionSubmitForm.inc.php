@@ -16,8 +16,6 @@
  * @brief Base class for author submit forms.
  */
 
-// $Id$
-
 
 import('lib.pkp.classes.form.Form');
 

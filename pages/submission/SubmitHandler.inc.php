@@ -12,26 +12,23 @@
  * @brief Handle requests for submission monograph submission.
  */
 
-// $Id$
+import('classes.handler.Handler');
 
-import('pages.submission.SubmissionHandler');
-
-class SubmitHandler extends SubmissionHandler {
-	/** monograph associated with the request **/
-	var $monograph;
-
+class SubmitHandler extends Handler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function SubmitHandler() {
-		parent::SubmissionHandler();
-		$this->addRoleAssignment(ROLE_ID_AUTHOR,
-				$authorOperations = array('wizard', 'saveStep'));
+		parent::Handler();
+		$this->addRoleAssignment(ROLE_ID_AUTHOR, $authorOperations = array('wizard', 'saveStep'));
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array_merge($authorOperations, array('expediteSubmission')));
-
 	}
 
+
+	//
+	// Implement template methods from PKPHandler
+	//
 	/**
 	 * @see PKPHandler::authorize()
 	 */
@@ -41,16 +38,21 @@ class SubmitHandler extends SubmissionHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
+
+	//
+	// Public Handler Methods
+	//
 	/**
 	 * Display submission monograph submission.
 	 * Displays submission index page if a valid step is not specified.
-	 * @param $args array optional, if set the first parameter is the step to display
+	 * @param $args array
+	 * @param $request Request
 	 */
 	function wizard(&$args, &$request) {
 		$step = isset($args[0]) ? (int) $args[0] : 1;
-		// FIXME: bug #5626. should get press from AuthorizedContextObject
-		// $press =& $this->getAuthorizedContextObject(ASSOC_TYPE_PRESS);
-		$press =& $request->getContext();
+
+		$router =& $request->getRouter();
+		$press =& $router->getContext($request);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		$this->setupTemplate(true);
@@ -66,10 +68,10 @@ class SubmitHandler extends SubmissionHandler {
 				$submitForm->initData();
 			}
 			$submitForm->display();
-		} else {
-
+		} elseif($step == 4) {
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign_by_ref('press', $press);
+
 			// If this is an editor and there is a
 			// submission file, monograph can be expedited.
 			if (Validation::isEditor($press->getId()) && $monograph->getSubmissionFileId()) {
@@ -88,12 +90,13 @@ class SubmitHandler extends SubmissionHandler {
 	/**
 	 * Save a submission step.
 	 * @param $args array first parameter is the step being saved
+	 * @param $request Request
 	 */
 	function saveStep(&$args, &$request) {
 		$step = isset($args[0]) ? (int) $args[0] : 1;
-		// FIXME: bug #5626. should get press from AuthorizedContextObject
-		// $press =& $this->getAuthorizedContextObject(ASSOC_TYPE_PRESS);
-		$press =& $request->getContext();
+
+		$router =& $request->getRouter();
+		$press =& $router->getContext($request);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		$this->setupTemplate(true);
@@ -136,20 +139,56 @@ class SubmitHandler extends SubmissionHandler {
 		}
 	}
 
+
+	/**
+	 * FIXME: missing method doc, calls inexistent
+	 * method EditorAction::expediteSubmission(), not part
+	 * of the authorized methods, see #5824.
+	 * @param $args array
+	 * @param $request Request
+	 */
 	function expediteSubmission(&$args, &$request) {
-		// FIXME: bug #5626. should get press from AuthorizedContextObject
-		// $press =& $this->getAuthorizedContextObject(ASSOC_TYPE_PRESS);
-		$press =& $request->getContext();
+		$router =& $request->getRouter();
+		$press =& $router->getContext($request);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// The author must also be an editor to perform this task.
 		if (Validation::isEditor($press->getId()) && $monograph->getSubmissionFileId()) {
 			import('classes.submission.editor.EditorAction');
+			// FIXME: EditorAction::expediteSubmission() must be implemented, see #5824.
 			EditorAction::expediteSubmission($monograph);
 			$request->redirect(null, 'editor', 'submissionEditing', array($monograph->getId()));
 		}
 
 		$request->redirect(null, null, 'track');
+	}
+
+
+	//
+	// Protected helper methods
+	//
+	/**
+	 * Setup common template variables.
+	 * FIXME: Put this method in a common base class with the SubmissionHandler? Can we clean it up? See #5844.
+	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
+	 * @param $monographId integer
+	 * @param $parentPage string name of submission component
+	 */
+	function setupTemplate($subclass = false, $monographId = 0, $parentPage = null) {
+		parent::setupTemplate();
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION));
+		$templateMgr =& TemplateManager::getManager();
+
+		$pageHierarchy = $subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'author'), 'user.role.author'), array(Request::url(null, 'author'), 'manuscript.submissions'))
+			: array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'author'), 'user.role.author'));
+
+		import('classes.submission.seriesEditor.SeriesEditorAction');
+		$submissionCrumb = SeriesEditorAction::submissionBreadcrumb($monographId, $parentPage, 'author');
+		if (isset($submissionCrumb)) {
+			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
+		}
+
+		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 }
 ?>

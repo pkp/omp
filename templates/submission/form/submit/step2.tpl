@@ -7,8 +7,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Step 2 of author monograph submission.
- *
- * $Id$
  *}
 {assign var="pageTitle" value="submission.submit.step2"}
 {include file="submission/form/submit/submitStepHeader.tpl"}

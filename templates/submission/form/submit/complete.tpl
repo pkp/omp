@@ -7,8 +7,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * The submission process has been completed; notify the author.
- *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="submission.submit.nextSteps"}
