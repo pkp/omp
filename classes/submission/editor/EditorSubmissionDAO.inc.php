@@ -11,9 +11,9 @@
  * @see EditorSubmission
  *
  * @brief Operations for retrieving and modifying EditorSubmission objects.
+ * FIXME #5557: We need a general code cleanup here (remove useless functions), and to integrate with monograph_stage_assignments table
  */
 
-/* FIXME #5557: We need a general code cleanup here (remove useless functions), and to integrate with monograph_stage_assignments table */
 
 import('classes.submission.editor.EditorSubmission');
 
@@ -34,7 +34,8 @@ class EditorSubmissionDAO extends DAO {
 		$this->monographDao =& DAORegistry::getDAO('MonographDAO');
 		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$this->userDao =& DAORegistry::getDAO('UserDAO');
-		$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
+		// FIXME: Edit assignment DAO has been removed, see #5557.
+		//$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 	}
 
 	/**
@@ -93,8 +94,9 @@ class EditorSubmissionDAO extends DAO {
 		$this->monographDao->_monographFromRow($editorSubmission, $row);
 
 		// Editor Assignment
-		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
-		$editorSubmission->setEditAssignments($editAssignments->toArray());
+		// FIXME: #5557 breaks this code.
+		// $editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
+		// $editorSubmission->setEditAssignments($editAssignments->toArray());
 
 		// Editor Decisions
 		$reviewRoundsInfo =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);
