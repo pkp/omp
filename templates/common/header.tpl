@@ -70,33 +70,7 @@
 
 	<!-- General JS -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/general.js"></script>
-
-	<script type="text/javascript">
-        // initialise plugins
-		{literal}
-        $(function(){
-            $('ul.sf-menu').superfish(); // Initialize the navigation menu
-			jqueryValidatorI18n("{/literal}{$baseUrl}{literal}", "{/literal}{$currentLocale}{literal}"); // include the appropriate validation localization
-			fontSize("#sizer", ".page", 9, 12, 20); // Initialize the font sizer
-			$('.button').button();
-			$('a.settings').live("click", (function() { // Initialize grid settings button handler
-				$(this).parent().siblings('.row_controls').toggle(300);
-			}));
-			{/literal}{if $validateId}{literal}
-			$("form[name={/literal}{$validateId}{literal}]").validate({
-				errorClass: "error",
-				highlight: function(element, errorClass) {
-					$(element).parent().parent().addClass(errorClass);
-				},
-				unhighlight: function(element, errorClass) {
-					$(element).parent().parent().removeClass(errorClass);
-				}
-			});
-			{/literal}{/if}{literal}
-		});
-		{/literal}
-    </script>
-    <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/omp.js"></script>
+	{include file="common/javascriptInit.tpl"}
 
 	{$additionalHeadData}
 </head>
