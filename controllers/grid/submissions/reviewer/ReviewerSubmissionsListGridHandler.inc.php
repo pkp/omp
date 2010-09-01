@@ -74,7 +74,7 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * @return string
 	 */
 	function deleteSubmission(&$args, &$request) {
-		//FIXME: Implement
+		//FIXME: Implement, see #5864.
 
 		return false;
 	}

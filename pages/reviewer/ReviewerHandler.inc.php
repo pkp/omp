@@ -9,7 +9,7 @@
  * @class ReviewerHandler
  * @ingroup pages_reviewer
  *
- * @brief Handle requests for reviewer functions. 
+ * @brief Handle requests for reviewer functions.
  */
 
 // $Id$
@@ -26,43 +26,7 @@ class ReviewerHandler extends Handler {
 		parent::Handler();
 
 		$this->addCheck(new HandlerValidatorPress($this));
-		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_REVIEWER)));		
-	}
-
-	/**
-	 * Display reviewer index page.
-	 */
-	function index($args) {
-		$this->validate();
-		$this->setupTemplate();
-
-		$press =& Request::getPress();
-		$user =& Request::getUser();
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
-		$rangeInfo = Handler::getRangeInfo('submissions');
-
-		$page = isset($args[0]) ? $args[0] : '';
-		switch($page) {
-			case 'completed':
-				$active = false;
-				break;
-			default:
-				$page = 'active';
-				$active = true;
-		}
-
-		$submissions = $reviewerSubmissionDao->getReviewerSubmissionsByReviewerId($user->getId(), $press->getId(), $active, $rangeInfo);
-
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
-		$templateMgr->assign('pageToDisplay', $page);
-		$templateMgr->assign_by_ref('submissions', $submissions);
-
-		import('classes.submission.reviewAssignment.ReviewAssignment');
-		$templateMgr->assign_by_ref('reviewerRecommendationOptions', ReviewAssignment::getReviewerRecommendationOptions());
-
-		$templateMgr->assign('helpTopicId', 'editorial.reviewersRole.submissions');
-		$templateMgr->display('reviewer/index.tpl');
+		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_REVIEWER)));
 	}
 
 	/**
