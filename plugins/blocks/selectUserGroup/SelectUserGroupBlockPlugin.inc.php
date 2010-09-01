@@ -82,10 +82,11 @@ class SelectUserGroupBlockPlugin extends BlockPlugin {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userId =& $this->_user->getId();
 		if ($this->_context) {
-			$userGroups =& $userGroupDao->getByUserId($userId, $this->_context->getId());
+			$userGroupsFactory =& $userGroupDao->getByUserId($userId, $this->_context->getId());
 		} else {
-			$userGroups =& $userGroupDao->getByUserId($userId);
+			$userGroupsFactory =& $userGroupDao->getByUserId($userId);
 		}
+		$userGroups = $userGroupsFactory->toArray();
 		$templateMgr->assign_by_ref('userGroups', $userGroups);
 
 		// Retrieve the currently selected user group.
