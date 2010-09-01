@@ -45,6 +45,25 @@ class AuthorDAO extends PKPAuthorDAO {
 	}
 
 	/**
+	 * Retrieve the primary author for a submission.
+	 * @param $submissionId int
+	 * @return object
+	 */
+	function &getPrimaryAuthorByMonographId($submissionId) {
+		$result =& $this->retrieve(
+			'SELECT * FROM authors WHERE submission_id = ? AND primary_contact = 1',
+			(int) $submissionId
+		);
+
+		$returner = null;
+		if ($result->RecordCount() != 0) {
+			$returner = $this->_returnAuthorFromRow($result->GetRowAssoc(false));
+		}
+		$result->Close();
+		return $returner;
+	}
+
+	/**
 	 * Retrieve all published authors for a press in an associative array by
 	 * the first letter of the last name, for example:
 	 * $returnedArray['S'] gives array($misterSmithObject, $misterSmytheObject, ...)

@@ -389,8 +389,24 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 */
 	function downloadFile(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
+		$fileId = $request->getUserVar('fileId');
+		$revision = $request->getUserVar('fileRevision');
 
 		import('classes.submission.common.Action');
-		Action::downloadFile($monographId, $request->getUserVar('fileId'));
+		Action::downloadFile($monographId, $fileId, $revision);
+	}
+
+	/**
+	 * Download a file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function viewFile(&$args, &$request) {
+		$monographId = $request->getUserVar('monographId');
+		$fileId = $request->getUserVar('fileId');
+		$revision = $request->getUserVar('fileRevision');
+
+		import('classes.submission.common.Action');
+		Action::viewFile($monographId, $fileId, $revision);
 	}
 }

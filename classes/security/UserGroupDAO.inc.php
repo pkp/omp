@@ -329,9 +329,9 @@ class UserGroupDAO extends DAO {
         $paramArray = array('interests');
         if (isset($userGroupId)) $paramArray[] = (int) $userGroupId;
         if (isset($pressId)) $paramArray[] = (int) $pressId;
-        // For security / resource usage reasons, a role or press ID
+        // For security / resource usage reasons, a user group or press ID
         // must be specified. Don't allow calls supplying neither.
-        if ($pressId === null && $roleId === null) return null;
+        if ($pressId === null && $userGroupId === null) return null;
 
         $searchSql = '';
 

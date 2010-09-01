@@ -31,7 +31,7 @@ class SubmissionWizardFilesGridHandler extends SubmissionFilesGridHandler {
 				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'addFile', 'addRevision', 'editFile', 'displayFileForm', 'uploadFile',
 				'confirmRevision', 'deleteFile', 'editMetadata', 'saveMetadata', 'finishFileSubmission',
-				'returnFileRow', 'downloadFile'));
+				'returnFileRow', 'downloadFile', 'viewFile'));
 	}
 
 	//

@@ -15,6 +15,7 @@
 <locale name="en_US" full_name = "English">
 	<message key="author.track">Active Submissions</message>
 
+	<message key="submission.submission">Submission</message>
 	<message key="submission.workType">Type of Book</message>
 	<message key="submission.workType.description">Select the option that best matches the type of the work that you are submitting.</message>
 	<message key="submission.workType.editedVolume">Edited Volume</message>
@@ -24,6 +25,7 @@
 	<message key="submission.submit.completedProspectus.description"><![CDATA[Upload a completed prospectus file that follows the guidelines of the <a href="{$prospectusGuideUrl}" class="action">press' prospectus guide</a>.]]></message>
 	<message key="submission.submit.uploadProspectusFile">Upload Prospectus File</message>
 	<message key="submission.submit.replaceProspectusFile">Replace Prospectus File</message>
+	<message key="submission.editorial">Editorial</message>
 
 	<message key="submission.submit.category">Submission Category</message>
 	<message key="submission.submit.category.description">From the drop down list below, please select the category or series that best suits your submission. If you are unsure about what to select, or you haven't received special submission instructions from one of our editors, you can continue without selecting a particular series or submission category.</message>
@@ -132,7 +134,11 @@
 	<message key="submission.submit.fileAdded">Submission File Added</message>
 	<message key="submission.submit.newFile">Upload Another File For This Submission</message>
 	<message key="submission.submit.finishedUploading">Uploading Complete</message>
-	<message key="submission.submit.currentContributors">Current Contributors</message>
+	<message key="submission.submit.allParticipants">All Participants</message>
+	<message key="submission.submit.currentParticipants">Current Participants</message>
+	<message key="submission.submit.stageParticipants">Stage Participants</message>
+	<message key="submission.submit.addStageParticipant">Add Stage Participant</message>
+	<message key="submission.submit.addStageParticipant.description">To add a participant to this stage of the submission, select a user group from the drop-down menu, then add members of the user group through the list builder control.</message>
 
 	<message key="submission.upload.possibleRevision">Possible Revision Detected</message>
 	<message key="submission.upload.possibleRevisionDescription">It looks like you may be trying to upload a revision to an existing file. Is this the case?</message>

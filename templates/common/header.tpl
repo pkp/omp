@@ -128,7 +128,9 @@
 
 {include file="common/localnav.tpl"}
 
-{include file="common/breadcrumbs.tpl"}
+{** FIXME #5734: What should we do with breadcrumbs?
+	They don't appear on submission pages, are they visible anywhere?
+	include file="common/breadcrumbs.tpl" **}
 
 </div> <!-- /head -->
 
@@ -150,13 +152,6 @@
 {/if}
 
 <div class="main">
-
-<table class='data' style='margin-left: 10px;'>
-	<tr>
-	<td><h2>{$pageTitleTranslated}</h2></td>
-	{if $additionalHeading}<td style="width:40%;"></td><td>{$additionalHeading}</td>{/if}
-	</tr>
-</table>
 
 {if $pageSubtitle && !$pageSubtitleTranslated}{translate|assign:"pageSubtitleTranslated" key=$pageSubtitle}{/if}
 {if $pageSubtitleTranslated}

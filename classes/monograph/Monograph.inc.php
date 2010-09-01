@@ -485,6 +485,15 @@ class Monograph extends Submission {
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		return $authorDao->getAuthorsByMonographId($this->getId());
 	}
+
+	/**
+	 * Get the primary author of this submission.
+	 * @return object Author
+	 */
+	function &getPrimaryAuthor() {
+		$authorDao =& DAORegistry::getDAO('AuthorDAO');
+		return $authorDao->getPrimaryAuthorByMonographId($this->getId());
+	}
 }
 
 ?>

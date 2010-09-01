@@ -116,6 +116,7 @@ class ReviewHandler extends Handler {
 		$templateMgr->assign('currentRound', $currentRound);
 		$templateMgr->assign('selectedRound', $selectedRound);
 		$templateMgr->assign('roundStatus', $reviewRound->getStatusKey());
+		$templateMgr->assign('monograph', $monograph);
 		$templateMgr->assign('monographId', $monographId);
 		$templateMgr->display('seriesEditor/showReviewers.tpl');
 	}
@@ -125,7 +126,7 @@ class ReviewHandler extends Handler {
 	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate() {
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR));
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
 		parent::setupTemplate();
 	}
 }

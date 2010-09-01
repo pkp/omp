@@ -14,6 +14,8 @@
 {include file="common/header.tpl"}
 {/strip}
 
+{include file="submission/header.tpl"}
+
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 
 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
@@ -30,7 +32,7 @@
 </ul>
 
 {if $roundStatus}
-<div id="roundStatus" class="roundStatusContainer">
+<div id="roundStatus" class="statusContainer">
 	<p>{translate key="editor.monograph.roundStatus" round=$round}: {translate key="$roundStatus"}</p>
 </div>
 
