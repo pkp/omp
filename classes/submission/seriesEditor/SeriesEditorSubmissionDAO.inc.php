@@ -11,9 +11,9 @@
  * @see SeriesEditorSubmission
  *
  * @brief Operations for retrieving and modifying SeriesEditorSubmission objects.
+ * FIXME #5557: We need a general code cleanup here (remove useless functions), and to integrate with monograph_stage_assignments table
  */
 
-/* FIXME #5557: We need a general code cleanup here (remove useless functions), and to integrate with monograph_stage_assignments table */
 
 
 import('classes.submission.seriesEditor.SeriesEditorSubmission');
@@ -116,11 +116,11 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$this->monographDao->_monographFromRow($seriesEditorSubmission, $row);
 
 		// Editor Assignment
-		// FIXME #5557: Ensure compatibility with monograph stage assignment DAO
+		// FIXME #5557: Breaks this code
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroupId = $userGroupDao->getByRoleId($seriesEditorSubmission->getPressId(), ROLE_ID_EDITOR);
-		$signoffs =& $this->signoffDao->getBySybmolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $row['monograph_id'], null, $userGroupId);
-		$seriesEditorSubmission->setEditAssignments($signoffs);
+	//	$signoffs =& $this->signoffDao->getBySybmolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $row['monograph_id'], null, $userGroupId);
+	//	$seriesEditorSubmission->setEditAssignments($signoffs);
 
 		$reviewRoundsInfo =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);
 

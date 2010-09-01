@@ -113,6 +113,8 @@ class SubmissionHandler extends Handler {
 	function setupTemplate($parentPage = null) {
 		parent::setupTemplate();
 
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_SUBMISSION));
+
 		$templateMgr =& TemplateManager::getManager();
 		$pageHierarchy = array(
 			array(Request::url(null, 'user'), 'navigation.user'),
