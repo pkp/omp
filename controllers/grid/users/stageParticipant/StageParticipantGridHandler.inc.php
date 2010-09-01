@@ -30,7 +30,7 @@ class StageParticipantGridHandler extends GridHandler {
 	function StageParticipantGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'addStageParticipant', 'editStageParticipant',
 				'saveStageParticipant', 'deleteStageParticipant'));
 	}
@@ -55,8 +55,9 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
+		$stageId = $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments));
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -88,7 +89,7 @@ class StageParticipantGridHandler extends GridHandler {
 
 		// Grid actions
 		$router =& $request->getRouter();
-		$actionArgs = array('monographId' => $monographId);
+		$actionArgs = array('monographId' => $monographId, 'stageId' => $monograph->getCurrentStageId());
 		$this->addAction(
 			new LinkAction(
 				'addStageParticipant',

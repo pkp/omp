@@ -50,6 +50,10 @@ class PressEditorSubmissionsListGridRow extends GridRow {
 				'reviewType' => $monograph->getCurrentReviewType(),
 				'round' => $monograph->getCurrentRound()
 			);
+
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$monograph =& $monographDao->getMonograph($rowId);
+
 			$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_ACCEPT;
 			$this->addAction(
 				new LinkAction(
@@ -78,7 +82,7 @@ class PressEditorSubmissionsListGridRow extends GridRow {
 					'moreInfo',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_NOTHING,
-					$router->url($request, null, 'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter', null, array('monographId' => $rowId, 'itemId' => $rowId)),
+					$router->url($request, null, 'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter', null, array('monographId' => $rowId, 'itemId' => $rowId, 'monographId' => $monograph->getCurrentStageId())),
 					'grid.action.moreInformation',
 					null,
 					'more_info'

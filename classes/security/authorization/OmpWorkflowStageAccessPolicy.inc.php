@@ -22,7 +22,7 @@ class OmpWorkflowStageAccessPolicy extends PressPolicy {
 	 * @param $args array request arguments
 	 * @param $roleAssignments array
 	 */
-	function OmpWorkflowStageAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'monographId') {
+	function OmpWorkflowStageAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'monographId', $stageId = null) {
 		parent::PressPolicy($request);
 
 		// A workflow stage component can only be called if there's a
@@ -68,7 +68,7 @@ class OmpWorkflowStageAccessPolicy extends PressPolicy {
 
 		// 2) ... but only if the requested workflow stage has been assigned to them in the requested submission.
 		import('classes.security.authorization.internal.WorkflowSubmissionAssignmentPolicy');
-		$pressRoleWorkflowStagePolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request));
+		$pressRoleWorkflowStagePolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request, $stageId));
 		$workflowStagePolicy->addPolicy($pressRoleWorkflowStagePolicy);
 
 
@@ -85,7 +85,7 @@ class OmpWorkflowStageAccessPolicy extends PressPolicy {
 
 		// 3) ... and only if the requested workflow stage has been assigned to them in the requested submission.
 		import('classes.security.authorization.internal.WorkflowSubmissionAssignmentPolicy');
-		$authorRoleWorkflowStagePolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request));
+		$authorRoleWorkflowStagePolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request, $stageId));
 		$workflowStagePolicy->addPolicy($authorRoleWorkflowStagePolicy);
 
 

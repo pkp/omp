@@ -44,6 +44,9 @@ class AuthorSubmissionsListGridRow extends GridRow {
 				'monographId' => $rowId,
 			);
 
+			$monographDao =& DAORegistry::getDAO('MonographDAO');
+			$monograph =& $monographDao->getMonograph($rowId);
+
 			$this->addAction(
 				new LinkAction(
 					'deleteSubmission',
@@ -62,7 +65,7 @@ class AuthorSubmissionsListGridRow extends GridRow {
 					'moreInfo',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_NOTHING,
-					$router->url($request, null, 'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter', null, array('monographId' => $rowId, 'itemId' => $rowId)),
+					$router->url($request, null, 'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter', null, array('monographId' => $rowId, 'itemId' => $rowId, 'stageId' => $monograph->getCurrentStageId())),
 					'grid.action.moreInformation',
 					null,
 					'more_info'

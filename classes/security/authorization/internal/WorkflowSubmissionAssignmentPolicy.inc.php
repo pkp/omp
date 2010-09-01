@@ -21,14 +21,19 @@ class WorkflowSubmissionAssignmentPolicy extends AuthorizationPolicy {
 	/** @var Request */
 	var $_request;
 
+	/** @var Request */
+	var $_stageId;
+
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
 	 * @param $anyStep boolean true if the requested submission is assigned
 	 *  to any workflow step for the requested submission.
 	 */
-	function WorkflowSubmissionAssignmentPolicy(&$request) {
+	function WorkflowSubmissionAssignmentPolicy(&$request, $stageId) {
 		$this->_request =& $request;
+		$this->_stageId =& $stageId;
+
 		parent::AuthorizationPolicy();
 	}
 
@@ -39,31 +44,33 @@ class WorkflowSubmissionAssignmentPolicy extends AuthorizationPolicy {
 	 * @see AuthorizationPolicy::effect()
 	 */
 	function effect() {
-		// FIXME: Implement when workflow submission assignments have been implemented, see #5557.
-
-		// Retrieve the user.
+		// Get the user
 		$user =& $this->_request->getUser();
-		if (!is_a($user, 'User')) return AUTHORIZATION_DENY;
+		if (!is_a($user, 'PKPUser')) return AUTHORIZATION_DENY;
 
-		// Retrieve the authorized submission.
-		if (!$this->hasAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH)) return AUTHORIZATION_DENY;
-		$submission =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		// Get the press
+		$router =& $this->_request->getRouter();
+		$press =& $router->getContext($this->_request);
+		if (!is_a($press, 'Press')) return AUTHORIZATION_DENY;
 
-		// Retrieve the authorized user group.
-		if (!$this->hasAuthorizedContextObject(ASSOC_TYPE_USER_GROUP)) return AUTHORIZATION_DENY;
-		$userGroup =& $this->getAuthorizedContextObject(ASSOC_TYPE_USER_GROUP);
+		// Get the monograph
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 
-		// Retrieve the workflow step from the request.
-		// FIXME.
+		// Get the monograph's current stage
+		if (!isset($this->_stageId)) return AUTHORIZATION_DENY;
 
-		// Deny access if no valid workflow step was found in the request.
-		// FIXME.
+		// Get the currently acting as user group ID
+		$userGroup = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_GROUP);
+		if (!is_a($userGroup, 'UserGroup')) return AUTHORIZATION_DENY;
 
-		// Check whether the user is assigned to the submission in the current
-		// user group for the given workflow step.
-		// FIXME.
+		// Check whether the user is assigned to the submission in the current user group for the given workflow step.
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		if(!$signoffDao->signoffExists('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), $this->_stageId, $userGroup->getId())) {
+			return AUTHORIZATION_DENY;
+		}
 
-		// Access has been authorized.
+		// Access has been authorized
 		return AUTHORIZATION_PERMIT;
 	}
 }

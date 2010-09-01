@@ -24,9 +24,6 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 */
 	function ReviewAttachmentsGridHandler() {
 		parent::GridHandler();
-		// FIXME: #5600 - Distribute access differently to reviewers and editor roles
-		//$this->addRoleAssignment(array(ROLE_ID_REVIEWER, ROLE_ID_PRESS_MANAGER, ROLE_ID_EDITOR),
-		//		array('fetchGrid', 'addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));
 	}
 
 	//
@@ -55,11 +52,9 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	* @see PKPHandler::authorize()
 	*/
 	function authorize(&$request, &$args, $roleAssignments) {
-		// FIXME: #5600 - Distribute access differently to reviewers and editor roles
-		/*import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);*/
-		return true;
+		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, WORKFLOW_STAGE_ID_INTERNAL_REVIEW));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/*

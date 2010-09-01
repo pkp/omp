@@ -54,7 +54,7 @@
 			**}
 		</div>
 		<div class="stageParticipants">
-			{url|assign:stageParticipantGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.stageParticipant.StageParticipantGridHandler" op="fetchGrid" monographId=$monograph->getId()}
+			{url|assign:stageParticipantGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.stageParticipant.StageParticipantGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$monograph->getCurrentStageId() escape=false}
 			{load_url_in_div id="stageParticipantGridContainer" url="$stageParticipantGridUrl"}
 		</div>
 	</div>

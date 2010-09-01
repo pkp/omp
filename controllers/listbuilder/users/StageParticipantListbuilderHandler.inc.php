@@ -21,7 +21,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 	function StageParticipantListbuilderHandler() {
 		parent::ListbuilderHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array('fetch', 'addItem', 'deleteItems'));
 	}
 
@@ -33,8 +33,9 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionWizardMonographPolicy');
-		$this->addPolicy(new OmpSubmissionWizardMonographPolicy($request, $args, $roleAssignments));
+		$stageId = $request->getUserVar('stageId');
+		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 

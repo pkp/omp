@@ -41,6 +41,8 @@ class SubmissionFilesGridRow extends GridRow {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($rowId);
 		$monographId = $monographFile->getMonographId();
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getMonograph($monographId);
 
 		if (!empty($rowId) && is_numeric($rowId)) {
 			// Actions
@@ -48,7 +50,7 @@ class SubmissionFilesGridRow extends GridRow {
 			$actionArgs = array(
 				'gridId' => $this->getGridId(),
 				'fileId' => $rowId,
-				'monographId' => $monographId
+				'monographId' => $monographId,
 			);
 
 			$this->addAction(
@@ -67,7 +69,7 @@ class SubmissionFilesGridRow extends GridRow {
 					'moreInfo',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_NOTHING,
-					$router->url($request, null, 'informationCenter.FileInformationCenterHandler', 'viewInformationCenter', null, array('monographId' => $monographId, 'itemId' => $rowId)),
+					$router->url($request, null, 'informationCenter.FileInformationCenterHandler', 'viewInformationCenter', null, array('monographId' => $monographId, 'itemId' => $rowId, 'stageId' => $monograph->getCurrentStageId())),
 					'grid.action.moreInformation',
 					null,
 					'more_info'

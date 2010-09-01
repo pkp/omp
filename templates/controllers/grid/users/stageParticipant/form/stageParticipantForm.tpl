@@ -41,8 +41,8 @@
 	<p>{translate key="submission.submit.addStageParticipant.description"}</p>
 
 	<span style="padding-left:10px;">{fbvSelect name="userGroupId" id="userGroupId" from=$userGroupOptions translate=false}</span>
-{** FIXME: STATIC USERGROUPID -- pass in first option's id **}
-	{url|assign:submissionParticipantsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.StageParticipantListbuilderHandler" op="fetch" userGroupId=$firstUserGroupId monographId=$monographId escape=false}
+
+	{url|assign:submissionParticipantsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.StageParticipantListbuilderHandler" op="fetch" userGroupId=$firstUserGroupId monographId=$monographId stageId=$stageId escape=false}
 	{load_url_in_div id="submissionParticipantsContainer" url=$submissionParticipantsUrl}
 
 {if $monographId}
