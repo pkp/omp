@@ -3,7 +3,7 @@
 /**
  * @defgroup pages_user
  */
- 
+
 /**
  * @file pages/user/index.php
  *
@@ -11,7 +11,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup pages_user
- * @brief Handle requests for user functions. 
+ * @brief Handle requests for user functions.
  *
  */
 
@@ -43,10 +43,11 @@ switch ($op) {
 	case 'email':
 		import('pages.user.EmailHandler');
 		define('HANDLER_CLASS', 'EmailHandler');
-		break;	
+		break;
 	case 'index':
 	case 'setLocale':
 	case 'become':
+	case 'authorizationDenied':
 	case 'viewCaptcha':
 	case 'viewPublicProfile':
 		define('HANDLER_CLASS', 'UserHandler');

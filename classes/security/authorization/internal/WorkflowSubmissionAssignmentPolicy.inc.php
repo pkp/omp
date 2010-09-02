@@ -33,7 +33,7 @@ class WorkflowSubmissionAssignmentPolicy extends AuthorizationPolicy {
 		$this->_request =& $request;
 		$this->_stageId = (int) $stageId;
 
-		parent::AuthorizationPolicy();
+		parent::AuthorizationPolicy('user.authorization.workflowStageAssignmentMissing');
 	}
 
 	//

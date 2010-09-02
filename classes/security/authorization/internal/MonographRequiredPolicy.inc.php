@@ -22,7 +22,7 @@ class MonographRequiredPolicy extends SubmissionRequiredPolicy {
 	 *  the submission id in.
 	 */
 	function MonographRequiredPolicy(&$request, &$args, $submissionParameterName = 'monographId') {
-		parent::SubmissionRequiredPolicy($request, $args, $submissionParameterName, 'Invalid monograph or no monograph requested!');
+		parent::SubmissionRequiredPolicy($request, $args, $submissionParameterName, 'user.authorization.invalidMonograph');
 	}
 
 	//

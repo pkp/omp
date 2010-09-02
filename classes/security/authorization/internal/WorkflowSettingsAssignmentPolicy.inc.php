@@ -24,7 +24,7 @@ class WorkflowSettingsAssignmentPolicy extends AuthorizationPolicy {
 	 * @param $request PKPRequest
 	 */
 	function WorkflowSettingsAssignmentPolicy(&$request) {
-		parent::AuthorizationPolicy();
+		parent::AuthorizationPolicy('user.authorization.workflowStageSettingMissing');
 		$this->_request =& $request;
 	}
 

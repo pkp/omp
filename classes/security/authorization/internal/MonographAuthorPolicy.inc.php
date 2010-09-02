@@ -29,7 +29,7 @@ class MonographAuthorPolicy extends AuthorizationPolicy {
 	 * @param $request PKPRequest
 	 */
 	function MonographAuthorPolicy(&$request) {
-		parent::AuthorizationPolicy();
+		parent::AuthorizationPolicy('user.authorization.monographAuthor');
 		$this->_request =& $request;
 	}
 

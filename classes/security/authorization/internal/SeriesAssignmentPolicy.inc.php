@@ -25,7 +25,7 @@ class SeriesAssignmentPolicy extends AuthorizationPolicy {
 	 * @param $request PKPRequest
 	 */
 	function SeriesAssignmentPolicy(&$request) {
-		parent::AuthorizationPolicy();
+		parent::AuthorizationPolicy('user.authorization.seriesAssignment');
 		$this->_request =& $request;
 	}
 
