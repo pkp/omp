@@ -10,8 +10,6 @@
  * @ingroup pages_submission
  *
  * @brief Handle requests for monograph submission functions.
- *
- * FIXME: #5807 Implement common user home page ("submission list")
  */
 
 
@@ -68,7 +66,7 @@ class SubmissionHandler extends Handler {
 	function index(&$args, &$request) {
 		// Set up the template.
 		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate();
+		$this->setupTemplate($request);
 
 		// Retrieve the authorized user group.
 		$activeUserGroup =& $this->getAuthorizedContextObject(ASSOC_TYPE_USER_GROUP);
@@ -86,18 +84,11 @@ class SubmissionHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function details(&$args, &$request) {
-		$monographId = array_shift($args);
-
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getMonograph($monographId);
-
-		$this->setupTemplate();
-
-		$user =& Request::getUser();
-		$rangeInfo =& Handler::getRangeInfo('submissions');
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-
+		$this->setupTemplate($request);
 		$templateMgr =& TemplateManager::getManager();
+
+		// Pass the authorized monograph on to the template.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$templateMgr->assign_by_ref('monograph', $monograph);
 
  		$templateMgr->display('submission/details.tpl');
@@ -109,17 +100,20 @@ class SubmissionHandler extends Handler {
 	//
 	/**
 	 * Setup common template variables.
+	 * @param $request Request
 	 */
-	function setupTemplate($parentPage = null) {
+	function setupTemplate($request) {
 		parent::setupTemplate();
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_SUBMISSION));
 
-		$templateMgr =& TemplateManager::getManager();
+		$router =& $request->getRouter();
+
 		$pageHierarchy = array(
-			array(Request::url(null, 'user'), 'navigation.user'),
-			array(Request::url(null, 'author'), 'manuscript.submissions')
+			array($router->url($request, null, 'user'), 'navigation.user')
 		);
+
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 }

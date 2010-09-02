@@ -93,7 +93,7 @@ class SubmitHandler extends Handler {
 		$press =& $router->getContext($request);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		$this->setupTemplate(true);
+		$this->setupTemplate($request);
 
 		if ( $step < 4 ) {
 			$formClass = "SubmissionSubmitStep{$step}Form";
@@ -137,7 +137,7 @@ class SubmitHandler extends Handler {
 		$press =& $router->getContext($request);
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		$this->setupTemplate(true);
+		$this->setupTemplate($request);
 
 		$formClass = "SubmissionSubmitStep{$step}Form";
 		import("classes.submission.form.submit.$formClass");
@@ -183,25 +183,19 @@ class SubmitHandler extends Handler {
 	//
 	/**
 	 * Setup common template variables.
-	 * FIXME: Put this method in a common base class with the SubmissionHandler? Can we clean it up? See #5844.
-	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
-	 * @param $monographId integer
-	 * @param $parentPage string name of submission component
+	 * @param $request Request
 	 */
-	function setupTemplate($subclass = false, $monographId = 0, $parentPage = null) {
+	function setupTemplate(&$request) {
 		parent::setupTemplate();
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION));
+
+		$router =& $request->getRouter();
+		$pageHierarchy = array(
+			array($router->url($request, null, 'user'), 'navigation.user'),
+			array($router->url($request, null, 'submission'), 'manuscript.submissions')
+		);
+
 		$templateMgr =& TemplateManager::getManager();
-
-		$pageHierarchy = $subclass ? array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'author'), 'user.role.author'), array(Request::url(null, 'author'), 'manuscript.submissions'))
-			: array(array(Request::url(null, 'user'), 'navigation.user'), array(Request::url(null, 'author'), 'user.role.author'));
-
-		import('classes.submission.seriesEditor.SeriesEditorAction');
-		$submissionCrumb = SeriesEditorAction::submissionBreadcrumb($monographId, $parentPage, 'author');
-		if (isset($submissionCrumb)) {
-			$pageHierarchy = array_merge($pageHierarchy, $submissionCrumb);
-		}
-
 		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 }
