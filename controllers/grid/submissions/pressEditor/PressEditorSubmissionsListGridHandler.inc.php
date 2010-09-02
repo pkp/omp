@@ -81,6 +81,9 @@ class PressEditorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 			);
 			unset($authorUserGroup);
 		}
+
+		// Add editor specific locale component.
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR));
 	}
 
 
