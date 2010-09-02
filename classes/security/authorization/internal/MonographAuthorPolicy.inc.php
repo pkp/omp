@@ -1,12 +1,12 @@
 <?php
 /**
- * @file classes/security/authorization/MonographAuthorPolicy.inc.php
+ * @file classes/security/authorization/internal/MonographAuthorPolicy.inc.php
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MonographAuthorPolicy
- * @ingroup security_authorization
+ * @ingroup security_authorization_internal
  *
  * @brief Class to control access to a monograph base on authorship.
  *

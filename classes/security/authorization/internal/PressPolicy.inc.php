@@ -1,12 +1,12 @@
 <?php
 /**
- * @file classes/security/authorization/PressPolicy.inc.php
+ * @file classes/security/authorization/internal/PressPolicy.inc.php
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PressPolicy
- * @ingroup security_authorization
+ * @ingroup security_authorization_internal
  *
  * @brief Basic policy that ensures availability of an OMP press in
  *  the request context and a valid user group. All press based policies

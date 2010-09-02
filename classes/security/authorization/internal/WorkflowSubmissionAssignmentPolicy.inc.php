@@ -1,12 +1,12 @@
 <?php
 /**
- * @file classes/security/authorization/WorkflowSubmissionAssignmentPolicy.inc.php
+ * @file classes/security/authorization/internal/WorkflowSubmissionAssignmentPolicy.inc.php
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class WorkflowSubmissionAssignmentPolicy
- * @ingroup security_authorization
+ * @ingroup security_authorization_internal
  *
  * @brief Class to control access to OMP's workflow stages based on
  *  user-group - user - submission - workflow step assignments.

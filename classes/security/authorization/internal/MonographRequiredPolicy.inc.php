@@ -1,12 +1,12 @@
 <?php
 /**
- * @file classes/security/authorization/MonographRequiredPolicy.inc.php
+ * @file classes/security/authorization/internal/MonographRequiredPolicy.inc.php
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MonographRequiredPolicy
- * @ingroup security_authorization
+ * @ingroup security_authorization_internal
  *
  * @brief Policy that ensures that the request contains a valid monograph.
  */
