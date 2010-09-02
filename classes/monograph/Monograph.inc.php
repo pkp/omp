@@ -154,7 +154,7 @@ class Monograph extends Submission {
 	 * @return string
 	 */
 	function getMonographDescription() {
-		return $this->getLocalizedData('description');
+		return $this->getLocalizedData('abstract');
 	}
 
 	/**
@@ -163,7 +163,7 @@ class Monograph extends Submission {
 	 * @return string
 	 */
 	function getDescription($locale) {
-		return $this->getData('description', $locale);
+		return $this->getData('abstract', $locale);
 	}
 
 	/**
@@ -172,7 +172,7 @@ class Monograph extends Submission {
 	 * @param $locale string
 	 */
 	function setDescription($description, $locale) {
-		return $this->setData('description', $description, $locale);
+		return $this->setData('abstract', $description, $locale);
 	}
 
 	/**

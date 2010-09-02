@@ -17,15 +17,13 @@
 		</div>
 
 		<div class="action">
-			{** FIXME #5691 Use a review information modal for this information  **}
-			{url|assign:"allParticipantsUrl" op='viewMetadata' reviewId=2}
+			{url|assign:"allParticipantsUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionParticipants.SubmissionParticipantsHandler" op="fetch" stageId=$monograph->getCurrentStageId() monographId=$monograph->getId() escape=false}
 			{modal url="$allParticipantsUrl" actOnType="nothing" actOnId="nothing" dialogText='reviewer.step1.viewAllDetails' button="#allParticipants"}
 			<a id="allParticipants"  class="user_list" href="{$metadataUrl}">{translate key="submission.submit.allParticipants"}</a>
 		</div>
 
 		<div class="action">
-			{** FIXME #5691 Use a review information modal for this information  **}
-			{url|assign:"metadataUrl" op='viewMetadata' reviewId=2}
+			{url|assign:"metadataUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.SubmissionMetadataHandler" op="fetch" stageId=$monograph->getCurrentStageId() monographId=$monograph->getId() escape=false}
 			{modal url="$metadataUrl" actOnType="nothing" actOnId="nothing" dialogText='reviewer.step1.viewAllDetails' button="#viewMetadata"}
 			<a id="viewMetadata" class="more_info" href="{$metadataUrl}">{translate key="submission.submit.metadata"}</a>
 		</div>
