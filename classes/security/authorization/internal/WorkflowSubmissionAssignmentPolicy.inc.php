@@ -26,13 +26,12 @@ class WorkflowSubmissionAssignmentPolicy extends AuthorizationPolicy {
 
 	/**
 	 * Constructor
-	 * @param $request PKPRequest
-	 * @param $anyStep boolean true if the requested submission is assigned
-	 *  to any workflow step for the requested submission.
+	 * @param $request Request
+	 * @param $stageId integer the stage the user has to be assigned to.
 	 */
 	function WorkflowSubmissionAssignmentPolicy(&$request, $stageId) {
 		$this->_request =& $request;
-		$this->_stageId =& $stageId;
+		$this->_stageId = (int) $stageId;
 
 		parent::AuthorizationPolicy();
 	}
@@ -44,33 +43,34 @@ class WorkflowSubmissionAssignmentPolicy extends AuthorizationPolicy {
 	 * @see AuthorizationPolicy::effect()
 	 */
 	function effect() {
-		// Get the user
+		// Get the user.
 		$user =& $this->_request->getUser();
 		if (!is_a($user, 'PKPUser')) return AUTHORIZATION_DENY;
 
-		// Get the press
+		// Get the press.
 		$router =& $this->_request->getRouter();
 		$press =& $router->getContext($this->_request);
 		if (!is_a($press, 'Press')) return AUTHORIZATION_DENY;
 
-		// Get the monograph
+		// Get the authorized monograph.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 
-		// Get the monograph's current stage
-		if (!isset($this->_stageId)) return AUTHORIZATION_DENY;
+		// Check whether a valid workflow stage has been defined for this policy.
+		if ($this->_stageId < WORKFLOW_STAGE_ID_SUBMISSION || $this->_stageId > WORKFLOW_STAGE_ID_PRODUCTION) return AUTHORIZATION_DENY;
 
-		// Get the currently acting as user group ID
+		// Get the authorized user group.
 		$userGroup = $this->getAuthorizedContextObject(ASSOC_TYPE_USER_GROUP);
 		if (!is_a($userGroup, 'UserGroup')) return AUTHORIZATION_DENY;
 
-		// Check whether the user is assigned to the submission in the current user group for the given workflow step.
+		// Check whether the user is assigned to the submission in
+		// the current user group for the given workflow step.
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		if(!$signoffDao->signoffExists('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), $this->_stageId, $userGroup->getId())) {
 			return AUTHORIZATION_DENY;
 		}
 
-		// Access has been authorized
+		// Access has been authorized.
 		return AUTHORIZATION_PERMIT;
 	}
 }
