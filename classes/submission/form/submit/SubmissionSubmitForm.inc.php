@@ -79,23 +79,17 @@ class SubmissionSubmitForm extends Form {
 	 * @return array of series editors
 	 */
 	function assignEditors(&$monograph) {
-		/* FIXME #5557: Assign users as per permission spec:
-			- A user group that has been checked in the settings for a given
-			workflow stage will automatically appear at the top of the stage for new
-			submissions, awaiting assignment to a user in that group.
-			- If there is only one user assigned to a given user group then that
-			user will be preassigned by default.
-		*/
-
 		$seriesId = $monograph->getSeriesId();
 		$press =& Request::getPress();
 
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$seriesEditors =& $seriesEditorsDao->getEditorsBySeriesId($press->getId(), $seriesId);
 
+		$seriesEditorUserGroup = $userGroupDao->getDefaultByRoleId($press->getId(), ROLE_ID_SERIES_EDITOR);
 		foreach ($seriesEditors as $seriesEditorEntry) {
-			$signoffDao->build('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), WORKFLOW_STAGE_ID_SUBMISSION, $seriesEditorEntry['user']->getId(), ROLE_ID_SERIES_EDITOR);
+			$signoffDao->build('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), WORKFLOW_STAGE_ID_SUBMISSION, $seriesEditorEntry['user']->getId(), $seriesEditorUserGroup->getId());
 		}
 
 		return $seriesEditors;
