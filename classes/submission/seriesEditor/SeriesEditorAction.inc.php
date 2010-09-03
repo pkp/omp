@@ -1818,7 +1818,7 @@ class SeriesEditorAction extends Action {
 			// Send a notification to associated users
 			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
-			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+			$notificationUsers = $monograph->getAssociatedUserIds();
 			foreach ($notificationUsers as $userRole) {
 				$url = Request::url(null, $userRole['role'], 'submissionReview', $monograph->getId(), null, 'editorDecision');
 				$notificationManager->createNotification(
@@ -2085,7 +2085,7 @@ class SeriesEditorAction extends Action {
 			// Send a notification to associated users
 			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
-			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+			$notificationUsers = $monograph->getAssociatedUserIds();
 			foreach ($notificationUsers as $userRole) {
 				$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'copyedit');
 				$notificationManager->createNotification(
@@ -2138,7 +2138,7 @@ class SeriesEditorAction extends Action {
 			// Send a notification to associated users
 			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
-			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+			$notificationUsers = $monograph->getAssociatedUserIds();
 			foreach ($notificationUsers as $userRole) {
 				$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'layout');
 				$notificationManager->createNotification(
@@ -2191,7 +2191,7 @@ class SeriesEditorAction extends Action {
 			// Send a notification to associated users
 			import('lib.pkp.classes.notification.NotificationManager');
 			$notificationManager = new NotificationManager();
-			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+			$notificationUsers = $monograph->getAssociatedUserIds();
 			foreach ($notificationUsers as $userRole) {
 				$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'proofread');
 				$notificationManager->createNotification(

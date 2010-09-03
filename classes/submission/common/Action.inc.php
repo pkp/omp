@@ -210,7 +210,7 @@ class Action extends PKPAction {
 
 				// Send a notification to associated users
 				import('lib.pkp.classes.notification.NotificationManager');
-				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+				$notificationUsers = $monograph->getAssociatedUserIds();
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, $userRole['role'], 'submissionReview', $monograph->getId(), null, 'editorDecision');

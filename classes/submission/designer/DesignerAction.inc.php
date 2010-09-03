@@ -3,7 +3,7 @@
 /**
  * @defgroup submission_designer_DesignerAction
  */
- 
+
 /**
  * @file classes/submission/designer/DesignerAction.inc.php
  *
@@ -44,7 +44,7 @@ class DesignerAction extends Action {
 			$designer =& $userDao->getUser($designSignoff->getUserId());
 			MonographLog::logEvent($submission->getId(), MONOGRAPH_LOG_LAYOUT_UNASSIGN, MONOGRAPH_LOG_TYPE_LAYOUT, $designSignoff->getId(), 'log.layout.layoutEditorUnassigned', array('editorName' => $designer->getFullName(), 'monographId' => $submission->getId()));
 		}
-		
+
 		$designSignoff->setUserId($userId);
 		$signoffDao->updateObject($designSignoff);
 
@@ -213,10 +213,10 @@ class DesignerAction extends Action {
 
 			if ($commentForm->validate()) {
 				$commentForm->execute();
-				
+
 				// Send a notification to associated users
 				import('lib.pkp.classes.notification.NotificationManager');
-				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+				$notificationUsers = $monograph->getAssociatedUserIds();
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'layout');
@@ -225,7 +225,7 @@ class DesignerAction extends Action {
 						$monograph->getMonographTitle(), $url, 1, NOTIFICATION_TYPE_LAYOUT_COMMENT
 					);
 				}
-				
+
 				if ($emailComment) {
 					$commentForm->email();
 				}
@@ -265,10 +265,10 @@ class DesignerAction extends Action {
 
 			if ($commentForm->validate()) {
 				$commentForm->execute();
-				
+
 				// Send a notification to associated users
 				import('lib.pkp.classes.notification.NotificationManager');
-				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+				$notificationUsers = $monograph->getAssociatedUserIds();
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'proofread');
@@ -277,7 +277,7 @@ class DesignerAction extends Action {
 						$monograph->getMonographTitle(), $url, 1, NOTIFICATION_TYPE_PROOFREAD_COMMENT
 					);
 				}
-				
+
 				if ($emailComment) {
 					$commentForm->email();
 				}

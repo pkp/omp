@@ -275,80 +275,47 @@ class Monograph extends Submission {
 
 	/**
 	 * Get an array of user IDs associated with this monograph
-	 * @param $authors boolean
-	 * @param $reviewers boolean
-	 * @param $editors boolean
-	 * @param $proofreader boolean
-	 * @param $copyeditor boolean
-	 * @param $layoutEditor boolean
+	 * @param $includeReviewers boolean Include reviewers in the array
+	 * @param $userGroupIds array Only look up the user group IDs in the array
 	 * @return array User IDs
 	 */
-	function getAssociatedUserIds($authors = true, $reviewers = true, $editors = true, $seriesEditors = true, $proofreader = true, $copyeditor = true, $layoutEditor = true) {
-		// FIXME #5557: We should just use an array for the third parameter containing all editor role IDs, then iterate over them
+	function getAssociatedUserIds($includeReviewers = false, $userGroupIds = null) {
 		$monographId = $this->getId();
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
 		$userIds = array();
 
-		if($authors) {
-			$userId = $this->getUserId();
-			if ($userId) $userIds[] = array('id' => $userId, 'role' => 'author');
+		// If $userGroupIds is set, iterate through them, adding getUsers to array (with keys as userId)
+		if (is_array($userGroupIds)) {
+			foreach($userGroupIds as $userGroupId) {
+				$users =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $userGroupId);
+				while ($user =& $users->next()) {
+					$userId = $user->getUserId();
+					if ($userId) $userIds[$userId] = array('id' => $userId);
+					unset($user);
+				}
+				unset($users);
+			}
+		} else {
+				$users =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId);
+
+				while ($user =& $users->next()) {
+					$userId = $user->getUserId();
+					if ($userId) $userIds[$userId] = array('id' => $userId);
+					unset($user);
+				}
+
 		}
 
-		if($reviewers) {
+		// Get reviewers if necessary
+		if($includeReviewers) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($monographId);
 			foreach ($reviewAssignments as $reviewAssignment) {
 				$userId = $reviewAssignment->getReviewerId();
-				if ($userId) $userIds[] = array('id' => $userId, 'role' => 'reviewer');
+				if ($userId) $userIds[$userId] = array('id' => $userId, 'role' => 'reviewer');
 				unset($reviewAssignment);
-			}
-		}
-
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-
-		if($editors) {
-			$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-			$userGroupId = $userGroupDao->getByRoleId($this->getPressId(), ROLE_ID_EDITOR);
-			$users =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $userGroupId);
-			while ($user =& $users->next()) {
-				$userId = $user->getUserId();
-				if ($userId) $userIds[] = array('id' => $userId, 'role' => 'editor');
-				unset($user);
-			}
-		}
-
-		if($seriesEditor) {
-			$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-			$userGroupId = $userGroupDao->getByRoleId($this->getPressId(), ROLE_ID_SERIES_EDITOR);
-			$users =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $userGroupId);
-			while ($user =& $users->next()) {
-				$userId = $user->getUserId();
-				if ($userId) $userIds[] = array('id' => $userId, 'role' => 'editor');
-				unset($user);
-			}
-		}
-
-		if($copyeditor) {
-			$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-			$userGroupId = $userGroupDao->getByRoleId($this->getPressId(), ROLE_ID_COPYEDITOR);
-			$users =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $userGroupId);
-			while ($user =& $users->next()) {
-				$userId = $user->getUserId();
-				if ($userId) $userIds[] = array('id' => $userId, 'role' => 'editor');
-				unset($user);
-			}
-		}
-
-
-		if($proofreader) {
-			$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-			$userGroupId = $userGroupDao->getByRoleId($this->getPressId(), ROLE_ID_PROOFREADER);
-			$users =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $userGroupId);
-			while ($user =& $users->next()) {
-				$userId = $user->getUserId();
-				if ($userId) $userIds[] = array('id' => $userId, 'role' => 'editor');
-				unset($user);
 			}
 		}
 

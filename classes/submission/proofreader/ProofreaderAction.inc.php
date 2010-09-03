@@ -3,7 +3,7 @@
 /**
  * @defgroup submission_proofreader_ProofreaderAction
  */
- 
+
 /**
  * @file classes/submission/proofreader/ProofreaderAction.inc.php
  *
@@ -162,7 +162,7 @@ class ProofreaderAction extends Action {
 				$signoffType = 'SIGNOFF_PROOFREADING_PROOFREADER';
 				$setDateField = 'setDateNotified';
 				$nullifyDateFields = array('setDateUnderway', 'setDateCompleted', 'setDateAcknowledged');
-				
+
 				$receiver = $submission->getUserBySignoffType($signoffType);
 				if (!isset($receiver)) return true;
 				$receiverName = $receiver->getFullName();
@@ -183,7 +183,7 @@ class ProofreaderAction extends Action {
 				$assocType = MONOGRAPH_EMAIL_TYPE_PROOFREAD;
 				$signoffType = 'SIGNOFF_PROOFREADING_PROOFREADER';
 				$setDateField = 'setDateAcknowledged';
-			
+
 				$receiver = $submission->getUserBySignoffType($signoffType);
 				if (!isset($receiver)) return true;
 				$receiverName = $receiver->getFullName();
@@ -202,7 +202,7 @@ class ProofreaderAction extends Action {
 				$signoffType = 'SIGNOFF_PROOFREADING_PROOFREADER';
 				$setDateField = 'setDateCompleted';
 				$getDateField = 'getDateCompleted';
-				
+
 				$setNextDateField = 'setDateNotified';
 				$nextSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_MONOGRAPH, $monographId);
 
@@ -278,7 +278,7 @@ class ProofreaderAction extends Action {
 
 				$addParamArray = array(
 					'layoutEditorName' => $receiverName,
-					'editorialContactSignature' => $user->getContactSignature() 	
+					'editorialContactSignature' => $user->getContactSignature()
 				);
 				break;
 
@@ -315,13 +315,13 @@ class ProofreaderAction extends Action {
 				break;
 
 			default:
-				return true;	
+				return true;
 		}
 
 		$signoff = $signoffDao->build($signoffType, ASSOC_TYPE_PRODUCTION_ASSIGNMENT, $assignmentId);
 
 		if (isset($getDateField)) {
-			$date = $signoff->$getDateField();		
+			$date = $signoff->$getDateField();
 			if (isset($date)) {
 				Request::redirect(null, null, 'submission', $monographId);
 			}
@@ -357,10 +357,10 @@ class ProofreaderAction extends Action {
 			if (isset($nullifyDateFields)) foreach ($nullifyDateFields as $fieldSetter) {
 				$signoff->$fieldSetter(null);
 			}
-			
+
 			$signoffDao->updateObject($signoff);
 			if(isset($nextSignoff)) $signoffDao->updateObject($nextSignoff);
-		
+
 			return true;
 		}
 
@@ -446,7 +446,7 @@ class ProofreaderAction extends Action {
 
 				// Send a notification to associated users
 				import('lib.pkp.classes.notification.NotificationManager');
-				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+				$notificationUsers = $monograph->getAssociatedUserIds();
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'proofread');
@@ -455,7 +455,7 @@ class ProofreaderAction extends Action {
 						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_PROOFREAD_COMMENT
 					);
 				}
-				
+
 				if ($emailComment) {
 					$commentForm->email();
 				}
@@ -496,10 +496,10 @@ class ProofreaderAction extends Action {
 
 			if ($commentForm->validate()) {
 				$commentForm->execute();
-								
+
 				// Send a notification to associated users
 				import('lib.pkp.classes.notification.NotificationManager');
-				$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+				$notificationUsers = $monograph->getAssociatedUserIds();
 				$notificationManager = new NotificationManager();
 				foreach ($notificationUsers as $userRole) {
 					$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'layout');
@@ -508,7 +508,7 @@ class ProofreaderAction extends Action {
 						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_LAYOUT_COMMENT
 					);
 				}
-				
+
 				if ($emailComment) {
 					$commentForm->email();
 				}

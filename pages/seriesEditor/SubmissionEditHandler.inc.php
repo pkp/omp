@@ -1502,7 +1502,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 			$notificationManager =& new NotificationManager();
 			$monographDao =& DAORegistry::getDAO('MonographDAO');
 			$monograph =& $monographDao->getMonograph($monographId);
-			$notificationUsers = $monograph->getAssociatedUserIds(true, false);
+			$notificationUsers = $monograph->getAssociatedUserIds();
 			foreach ($notificationUsers as $userRole) {
 				$url = Request::url(null, $userRole['role'], 'submissionEditing', $monograph->getId(), null, 'layout');
 				$notificationManager->createNotification(

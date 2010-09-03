@@ -123,7 +123,7 @@ class EditCommentForm extends Form {
 		$recipients = array();
 
 		// Get editors for monograph
-		// FIXME #5557: Get IDs from Monograph->getAssociatedUserIds
+		// FIXME #5880: Get IDs from Monograph->getAssociatedUserIds, or remove this class if not needed
 		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 		$editAssignments =& $editAssignmentDao->getByIdsByMonographId($this->monograph->getId());
 		$editAssignments =& $editAssignments->toArray();

@@ -127,7 +127,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		// Retrieve all users associated with the monograph to populate the drop-down list with
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getMonograph($monographId);
-		$associatedUsers = $monograph->getAssociatedUserIds(true, false);
+		$associatedUsers = $monograph->getAssociatedUserIds();
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		$itemList = array();
