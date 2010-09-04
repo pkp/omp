@@ -98,12 +98,6 @@ class AuthorSubmissionDAO extends DAO {
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($authorSubmission, $row);
 
-		// Editor Assignment
-		// FIXME #5557 Make sure this works with signoffs
-		$signoffs =& $this->signoffDao->getBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $row['monograph_id']);
-		$authorSubmission->setEditAssignments($signoffs);
-
-
 		$reviewRounds =& $authorSubmission->getReviewRoundsInfo();
 
 		$authorSubmission->setDecisions($this->getEditorDecisions($row['monograph_id']));

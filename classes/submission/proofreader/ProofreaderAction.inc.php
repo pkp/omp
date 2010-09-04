@@ -123,6 +123,7 @@ class ProofreaderAction extends Action {
 					$receiverAddress = $proofreader->getEmail();
 
 					$editorAdded = false;
+					// FIXME #5880: Get IDs from Monograph->getAssociatedUserIds, or remove this function if not needed
 					foreach ($editAssignments as $editAssignment) {
 						if ($editAssignment->getIsEditor() || $editAssignment->getCanEdit()) {
 							$ccs[$editAssignment->getEditorEmail()] = $editAssignment->getEditorFullName();
@@ -133,6 +134,7 @@ class ProofreaderAction extends Action {
 				} else {
 					$editorAdded = false;
 					$assignmentIndex = 0;
+					// FIXME #5880: Get IDs from Monograph->getAssociatedUserIds, or remove this class if not needed
 					foreach ($editAssignments as $editAssignment) {
 						if ($editAssignment->getIsEditor() || $editAssignment->getCanEdit()) {
 							if ($assignmentIndex++ == 0) {
@@ -211,6 +213,7 @@ class ProofreaderAction extends Action {
 				$receiver = $submission->getUserBySignoffType($signoffType);
 
 				$editorAdded = false;
+				// FIXME #5880: Get IDs from Monograph->getAssociatedUserIds, or remove this class if not needed
 				foreach ($editAssignments as $editAssignment) {
 					if ($editAssignment->getIsEditor() || $editAssignment->getCanEdit()) {
 						$ccs[$editAssignment->getEditorEmail()] = $editAssignment->getEditorFullName();
@@ -292,6 +295,7 @@ class ProofreaderAction extends Action {
 				$editAssignments =& $submission->getEditAssignments();
 				$assignmentIndex = 0;
 				$editorAdded = false;
+				// FIXME #5880: Get IDs from Monograph->getAssociatedUserIds, or remove this class if not needed
 				foreach ($editAssignments as $editAssignment) {
 					if ($editAssignment->getIsEditor() || $editAssignment->getCanEdit()) {
 						if ($assignmentIndex++ == 0) {

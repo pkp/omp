@@ -48,23 +48,6 @@ class AuthorSubmission extends Monograph {
 	 */
 
 	/**
-	 * Get edit assignments for this monograph.
-	 * @return array
-	 */
-	function &getEditAssignments() {
-		$editAssignments =& $this->getData('editAssignments');
-		return $editAssignments;
-	}
-
-	/**
-	 * Set edit assignments for this monograph.
-	 * @param $editAssignments array
-	 */
-	function setEditAssignments($editAssignments) {
-		return $this->setData('editAssignments', $editAssignments);
-	}
-
-	/**
 	 * Add a review assignment for this monograph.
 	 * @param $reviewAssignment ReviewAssignment
 	 */
@@ -108,7 +91,7 @@ class AuthorSubmission extends Monograph {
 		if ($reviewType == null) {
 			return $this->reviewAssignments;
 		} else {
-			$returner = $round != null && isset($this->reviewAssignments[$reviewType][$round]) ? 
+			$returner = $round != null && isset($this->reviewAssignments[$reviewType][$round]) ?
 						$this->reviewAssignments[$reviewType][$round] : null;
 		}
 		return $returner;
@@ -134,7 +117,7 @@ class AuthorSubmission extends Monograph {
 		if ($reviewType == null) {
 			return $this->editorDecisions;
 		} else {
-			return $round != null && isset($this->editorDecisions[$reviewType][$round]) ? 
+			return $round != null && isset($this->editorDecisions[$reviewType][$round]) ?
 					$this->editorDecisions[$reviewType][$round] : null;
 		}
 	}
@@ -166,10 +149,9 @@ class AuthorSubmission extends Monograph {
 		// The submission is STATUS_QUEUED or the author's submission was STATUS_INCOMPLETE.
 		if ($this->getSubmissionProgress()) return (STATUS_INCOMPLETE);
 
-		// The submission is STATUS_QUEUED. Find out where it's queued.
-		$editAssignments = $this->getEditAssignments();
-		if (empty($editAssignments)) 
-			return (STATUS_QUEUED_UNASSIGNED);
+		if($this->getCurrentStageId() == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $this->getCurrentStageId() == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+			return STATUS_QUEUED_REVIEW;
+		}
 
 		$decisions = $this->getDecisions();
 		if (!is_array($decisions)) {
@@ -182,7 +164,8 @@ class AuthorSubmission extends Monograph {
 				return STATUS_QUEUED_EDITING;
 			}
 		}
-		return STATUS_QUEUED_REVIEW;
+
+		return STATUS_QUEUED_UNASSIGNED;
 	}
 
 	//

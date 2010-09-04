@@ -164,8 +164,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$editorDecisions = $submission->getDecisions($reviewType, $round);
 		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1]['decision'] : null;
 
-		$editAssignments =& $submission->getEditAssignments();
-		$allowRecommendation = $submission->getCurrentReviewType() == $reviewType && $submission->getCurrentRound() == $round && $submission->getReviewFileId() != null && !empty($editAssignments);
+		$allowRecommendation = $submission->getCurrentReviewType() == $reviewType && $submission->getCurrentRound() == $round && $submission->getReviewFileId() != null;
 		$allowResubmit = $lastDecision == SUBMISSION_EDITOR_DECISION_RESUBMIT && $seriesEditorSubmissionDao->getMaxReviewRound($monographId, $reviewType) == $round ? true : false;
 
 		// Prepare an array to store the 'Notify Reviewer' email logs

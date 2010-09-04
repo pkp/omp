@@ -76,7 +76,7 @@ class SeriesEditorSubmission extends Monograph {
 		if (isset($this->editorDecisions[$reviewType][$round]) && is_array($this->editorDecisions[$reviewType][$round])) {
 			array_push($this->editorDecisions[$reviewType][$round], $editorDecision);
 		}
-		else $this->editorDecisions[$reviewType][$round] = Array($editorDecision);		
+		else $this->editorDecisions[$reviewType][$round] = Array($editorDecision);
 	}
 
 	/**
@@ -138,48 +138,30 @@ class SeriesEditorSubmission extends Monograph {
 	 * the AuthorSubmission class and changes should be made there as well.
 	 */
 	function getSubmissionStatus() {
-		$status = $this->getStatus();
+			$status = $this->getStatus();
 		if ($status == STATUS_ARCHIVED || $status == STATUS_PUBLISHED ||
 		    $status == STATUS_DECLINED) return $status;
 
 		// The submission is STATUS_QUEUED or the author's submission was STATUS_INCOMPLETE.
 		if ($this->getSubmissionProgress()) return (STATUS_INCOMPLETE);
 
-		// The submission is STATUS_QUEUED. Find out where it's queued.
-		$editAssignments = $this->getEditAssignments();
-		if (empty($editAssignments))
-			return (STATUS_QUEUED_UNASSIGNED);
+		if($this->getCurrentStageId() == WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $this->getCurrentStageId() == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+			return STATUS_QUEUED_REVIEW;
+		}
 
 		$decisions = $this->getDecisions();
-		$decision = is_array($decisions) ? array_pop($decisions) : null;
+		if (!is_array($decisions)) {
+			$decisions = array($decisions);
+		}
+		$decision = array_pop($decisions);
 		if (!empty($decision)) {
 			$latestDecision = array_pop($decision);
-			if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) {
+			if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT || $latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_DECLINE) {
 				return STATUS_QUEUED_EDITING;
 			}
 		}
-		return STATUS_QUEUED_REVIEW;
-	}
 
-	/**
-	 * Get/Set Methods.
-	 */
-
-	/**
-	 * Get edit assignments for this monograph.
-	 * @return array
-	 */
-	function &getEditAssignments() {
-		$editAssignments =& $this->getData('editAssignments');
-		return $editAssignments;
-	}
-
-	/**
-	 * Set edit assignments for this monograph.
-	 * @param $editAssignments array
-	 */
-	function setEditAssignments($editAssignments) {
-		return $this->setData('editAssignments', $editAssignments);
+		return STATUS_QUEUED_UNASSIGNED;
 	}
 
 	//
@@ -234,7 +216,7 @@ class SeriesEditorSubmission extends Monograph {
 		}
 
 		return null;
-		
+
 	}
 
 	/**
@@ -247,9 +229,9 @@ class SeriesEditorSubmission extends Monograph {
 		$this->editorDecisions[$reviewType][$round] = $editorDecisions;
 	}
 
-	// 
+	//
 	// Files
-	//	
+	//
 
 	/**
 	 * Get submission file for this monograph.
@@ -484,275 +466,6 @@ class SeriesEditorSubmission extends Monograph {
 		return $editorDecisionOptions;
 	}
 
-	/**
-	 * Get the CSS class for highlighting this submission in a list, based on status.
-	 * @return string
-	 */
-	function getHighlightClass() {
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$highlightClass = 'highlight';
-		$overdueSeconds = 60 * 60 * 24 * 14; // Two weeks
-
-		// Submissions that are not still queued (i.e. published) are not highlighted.
-		if ($this->getStatus() != STATUS_QUEUED) return null;
-
-		// Awaiting assignment.
-		$editAssignments = $this->getEditAssignments();
-		if (empty($editAssignments)) return $highlightClass;
-
-		$press =& Request::getPress();
-		// Sanity check
-		if (!$press || $press->getId() != $this->getId()) return null;
-
-		// Check whether it's in review or editing.
-		$inEditing = false;
-		$decisionsEmpty = true;
-		$lastDecisionDate = null;
-		$decisions = $this->getDecisions();
-		$decision = is_array($decisions) ? array_pop($decisions) : null;
-		if (!empty($decision)) {
-			$latestDecision = array_pop($decision);
-			if (is_array($latestDecision)) {
-				if ($latestDecision['decision'] == SUBMISSION_EDITOR_DECISION_ACCEPT) $inEditing = true;
-				$decisionsEmpty = false;
-				$lastDecisionDate = strtotime($latestDecision['dateDecided']);
-			}
-		}
-
-		if ($inEditing) {
-			// ---
-			// --- Highlighting conditions for submissions in editing
-			// ---
-
-			// COPYEDITING
-
-			// First round of copyediting
-			$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
-			$dateCopyeditorNotified = $initialSignoff->getDateNotified() ?
-				strtotime($initialSignoff->getDateNotified()) : 0;
-			$dateCopyeditorUnderway = $initialSignoff->getDateUnderway() ?
-				strtotime($initialSignoff->getDateUnderway()) : 0;
-			$dateCopyeditorCompleted = $initialSignoff->getDateCompleted() ?
-				strtotime($initialSignoff->getDateCompleted()) : 0;
-			$dateCopyeditorAcknowledged = $initialSignoff->getDateAcknowledged() ?
-				strtotime($initialSignoff->getDateAcknowledged()) : 0;
-			$dateLastCopyeditor = max($dateCopyeditorNotified, $dateCopyeditorUnderway);
-
-			// If the Copyeditor has not been notified, highlight.
-			if (!$dateCopyeditorNotified) return $highlightClass;
-
-			// Check if the copyeditor is overdue on round 1
-			if (	$dateLastCopyeditor &&
-				!$dateCopyeditorCompleted &&
-				$dateLastCopyeditor + $overdueSeconds < time()
-			) return $highlightClass;
-
-			// Check if acknowledgement is overdue for CE round 1
-			if ($dateCopyeditorCompleted && !$dateCopyeditorAcknowledged) return $highlightClass;
-
-			// Second round of copyediting
-			$authorSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
-			$dateCopyeditorAuthorNotified = $authorSignoff->getDateNotified() ?
-				strtotime($authorSignoff->getDateNotified()) : 0;
-			$dateCopyeditorAuthorUnderway = $authorSignoff->getDateUnderway() ?
-				strtotime($authorSignoff->getDateUnderway()) : 0;
-			$dateCopyeditorAuthorCompleted = $authorSignoff->getDateCompleted() ?
-				strtotime($authorSignoff->getDateCompleted()) : 0;
-			$dateCopyeditorAuthorAcknowledged = $authorSignoff->getDateAcknowledged() ?
-				strtotime($authorSignoff->getDateAcknowledged()) : 0;
-			$dateLastCopyeditorAuthor = max($dateCopyeditorAuthorNotified, $dateCopyeditorAuthorUnderway);
-
-			// Check if round 2 is awaiting notification.
-			if ($dateCopyeditorAcknowledged && !$dateCopyeditorAuthorNotified) return $highlightClass;
-
-			// Check if acknowledgement is overdue for CE round 2
-			if ($dateCopyeditorAuthorCompleted && !$dateCopyeditorAuthorAcknowledged) return $highlightClass;
-
-			// Check if author is overdue on CE round 2
-			if (	$dateLastCopyeditorAuthor &&
-				!$dateCopyeditorAuthorCompleted &&
-				$dateLastCopyeditorAuthor + $overdueSeconds < time()
-			) return $highlightClass;
-
-			// Third round of copyediting
-			$finalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
-			$dateCopyeditorFinalNotified = $finalSignoff->getDateNotified() ?
-				strtotime($finalSignoff->getDateNotified()) : 0;
-			$dateCopyeditorFinalUnderway = $finalSignoff->getDateUnderway() ?
-				strtotime($finalSignoff->getDateUnderway()) : 0;
-			$dateCopyeditorFinalCompleted = $finalSignoff->getDateCompleted() ?
-				strtotime($finalSignoff->getDateCompleted()) : 0;
-			$dateLastCopyeditorFinal = max($dateCopyeditorFinalNotified, $dateCopyeditorUnderway);
-
-			// Check if round 3 is awaiting notification.
-			if ($dateCopyeditorAuthorAcknowledged && !$dateCopyeditorFinalNotified) return $highlightClass;
-
-			// Check if copyeditor is overdue on round 3
-			if (	$dateLastCopyeditorFinal &&
-				!$dateCopyeditorFinalCompleted &&
-				$dateLastCopyeditorFinal + $overdueSeconds < time()
-			) return $highlightClass;
-
-			// Check if acknowledgement is overdue for CE round 3
-			if ($dateCopyeditorFinalCompleted && !$dateCopyeditorFinalAcknowledged) return $highlightClass;
-
-			// LAYOUT EDITING
-			$layoutSignoff = $signoffDao->build('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
-			$dateLayoutNotified = $layoutSignoff->getDateNotified() ?
-				strtotime($layoutSignoff->getDateNotified()) : 0;
-			$dateLayoutUnderway = $layoutSignoff->getDateUnderway() ?
-				strtotime($layoutSignoff->getDateUnderway()) : 0;
-			$dateLayoutCompleted = $layoutSignoff->getDateCompleted() ?
-				strtotime($layoutSignoff->getDateCompleted()) : 0;
-			$dateLayoutAcknowledged = $layoutSignoff->getDateAcknowledged() ?
-				strtotime($layoutSignoff->getDateAcknowledged()) : 0;
-			$dateLastLayout = max($dateLayoutNotified, $dateLayoutUnderway);
-
-			// Check if Layout Editor needs to be notified.
-			if ($dateLastCopyeditorFinal && !$dateLayoutNotified) return $highlightClass;
-
-			// Check if layout editor is overdue
-			if (	$dateLastLayout &&
-				!$dateLayoutCompleted &&
-				$dateLastLayout + $overdueSeconds < time()
-			) return $highlightClass;
-
-			// Check if acknowledgement is overdue for layout
-			if ($dateLayoutCompleted && !$dateLayoutAcknowledged) return $highlightClass;
-
-			// PROOFREADING
-
-			// First round of proofreading
-			$authorSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_AUTHOR', ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
-			$dateAuthorNotified = $authorSignoff->getDateNotified() ?
-				strtotime($authorSignoff->getDateNotified()) : 0;
-			$dateAuthorUnderway = $authorSignoff->getDateUnderway() ?
-				strtotime($authorSignoff->getDateUnderway()) : 0;
-			$dateAuthorCompleted = $authorSignoff->getDateCompleted() ?
-				strtotime($authorSignoff->getDateCompleted()) : 0;
-			$dateAuthorAcknowledged = $authorSignoff->getDateAcknowledged() ?
-				strtotime($authorSignoff->getDateAcknowledged()) : 0;
-			$dateLastAuthor = max($dateNotified, $dateAuthorUnderway);
-
-			// Check if the author is awaiting proofreading notification.
-			if ($dateLayoutAcknowledged && !$dateAuthorNotified) return $highlightClass;
-
-			// Check if the author is overdue on round 1 of proofreading
-			if (	$dateLastAuthor &&
-				!$dateAuthorCompleted &&
-				$dateLastAuthor + $overdueSeconds < time()
-			) return $highlightClass;
-
-			// Check if acknowledgement is overdue for proofreading round 1
-			if ($dateAuthorCompleted && !$dateAuthorAcknowledged) return $highlightClass;
-
-			// Second round of proofreading
-			$proofreaderSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
-			$dateProofreaderNotified = $proofreaderSignoff->getDateNotified() ?
-				strtotime($proofreaderSignoff->getDateNotified()) : 0;
-			$dateProofreaderUnderway = $proofreaderSignoff->getDateUnderway() ?
-				strtotime($proofreaderSignoff->getDateUnderway()) : 0;
-			$dateProofreaderCompleted = $proofreaderSignoff->getDateCompleted() ?
-				strtotime($proofreaderSignoff->getDateCompleted()) : 0;
-			$dateProofreaderAcknowledged = $proofreaderSignoff->getDateAcknowledged() ?
-				strtotime($proofreaderSignoff->getDateAcknowledged()) : 0;
-			$dateLastProofreader = max($dateProofreaderNotified, $dateProofreaderUnderway);
-
-			// Check if the proofreader is awaiting notification.
-			if ($dateAuthorAcknowledged && !$dateProofreaderNotified) return $highlightClass;
-
-			// Check if acknowledgement is overdue for proofreading round 2
-			if ($dateProofreaderCompleted && !$dateProofreaderAcknowledged) return $highlightClass;
-
-			// Check if proofreader is overdue on proofreading round 2
-			if (	$dateLastProofreader &&
-				!$dateProofreaderCompleted &&
-				$dateLastProofreader + $overdueSeconds < time()
-			) return $highlightClass;
-
-			// Third round of proofreading
-			$layoutEditorSignoff = $signoffDao->build('SIGNOFF_PROOFREADING_LAYOUT', ASSOC_TYPE_MONOGRAPH, $this->getMonographId());
-			$dateLayoutEditorNotified = $layoutEditorSignoff->getDateNotified() ?
-				strtotime($layoutEditorSignoff->getDateNotified()) : 0;
-			$dateLayoutEditorUnderway = $layoutEditorSignoff->getDateUnderway() ?
-				strtotime($layoutEditorSignoff->getDateUnderway()) : 0;
-			$dateLayoutEditorCompleted = $layoutEditorSignoff->getDateCompleted() ?
-				strtotime($layoutEditorSignoff->getDateCompleted()) : 0;
-			$dateLastLayoutEditor = max($dateLayoutEditorNotified, $dateCopyeditorUnderway);
-
-			// Check if the layout editor is awaiting notification.
-			if ($dateProofreaderAcknowledged && !$dateLayoutEditorNotified) return $highlightClass;
-
-			// Check if proofreader is overdue on round 3 of proofreading
-			if (	$dateLastLayoutEditor &&
-				!$dateLayoutEditorCompleted &&
-				$dateLastLayoutEditor + $overdueSeconds < time()
-			) return $highlightClass;
-
-			// Check if acknowledgement is overdue for proofreading round 3
-			if ($dateLayoutEditorCompleted && !$dateLayoutEditorAcknowledged) return $highlightClass;
-		} else {
-			// ---
-			// --- Highlighting conditions for submissions in review
-			// ---
-			$reviewAssignments =& $this->getReviewAssignments($this->getCurrentRound());
-			if (is_array($reviewAssignments) && !empty($reviewAssignments)) {
-				$allReviewsComplete = true;
-				foreach ($reviewAssignments as $i => $junk) {
-					$reviewAssignment =& $reviewAssignments[$i];
-
-					// If the reviewer has not been notified, highlight.
-					if ($reviewAssignment->getDateNotified() === null) return $highlightClass;
-
-					// Check review status.
-					if (!$reviewAssignment->getCancelled() && !$reviewAssignment->getDeclined()) {
-						if (!$reviewAssignment->getDateCompleted()) $allReviewsComplete = false;
-
-						$dateReminded = $reviewAssignment->getDateReminded() ?
-							strtotime($reviewAssignment->getDateReminded()) : 0;
-						$dateNotified = $reviewAssignment->getDateNotified() ?
-							strtotime($reviewAssignment->getDateNotified()) : 0;
-						$dateConfirmed = $reviewAssignment->getDateConfirmed() ?
-							strtotime($reviewAssignment->getDateConfirmed()) : 0;
-
-						// Check whether a reviewer is overdue to confirm invitation
-						if (	!$reviewAssignment->getDateCompleted() &&
-							!$dateConfirmed &&
-							!$press->getSetting('remindForInvite') &&
-							max($dateReminded, $dateNotified) + $overdueSeconds < time()
-						) return $highlightClass;
-
-						// Check whether a reviewer is overdue to complete review
-						if (	!$reviewAssignment->getDateCompleted() &&
-							$dateConfirmed &&
-							!$press->getSetting('remindForSubmit') &&
-							max($dateReminded, $dateConfirmed) + $overdueSeconds < time()
-						) return $highlightClass;
-					}
-
-					unset($reviewAssignment);
-				}
-				// If all reviews are complete but no decision is recorded, highlight.
-				if ($allReviewsComplete && $decisionsEmpty) return $highlightClass;
-
-				// If the author's last file upload hasn't been taken into account in
-				// the most recent decision or author/editor correspondence, highlight.
-				$comment = $this->getMostRecentEditorDecisionComment();
-				$commentDate = $comment ? strtotime($comment->getDatePosted()) : 0;
-				$authorFileRevisions = $this->getAuthorFileRevisions($this->getCurrentRound());
-				$authorFileDate = null;
-				if (is_array($authorFileRevisions) && !empty($authorFileRevisions)) {
-					$authorFile = array_pop($authorFileRevisions);
-					$authorFileDate = strtotime($authorFile->getDateUploaded());
-				}
-				if (	($lastDecisionDate || $commentDate) &&
-					$authorFileDate &&
-					$authorFileDate > max($lastDecisionDate, $commentDate)
-				) return $highlightClass;
-			}
-		}
-		return null;
-	}
 }
 
 ?>

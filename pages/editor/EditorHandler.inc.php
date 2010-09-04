@@ -213,7 +213,7 @@ class EditorHandler extends SeriesEditorHandler {
 	 * Set the canEdit / canReview flags for this submission's edit assignments.
 	 */
 	function setEditorFlags($args) {
-		// FIXME #5557: Is this function necessary?  If so, ensure compatibility with monograph stage assignment DAO
+		// FIXME #5880: Get IDs from signoffDao, or remove this class if not needed
 		$this->validate();
 
 		$press =& Request::getPress();

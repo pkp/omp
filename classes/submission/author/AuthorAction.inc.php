@@ -323,6 +323,7 @@ class AuthorAction extends Action {
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($authorSubmission);
 
+		// FIXME #5880: Get IDs from Monograph->getAssociatedUserIds, or remove this class if not needed
 		$editAssignments = $authorSubmission->getEditAssignments();
 		$editors = array();
 		foreach ($editAssignments as $editAssignment) {

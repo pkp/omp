@@ -38,14 +38,7 @@ class EmailHandler extends UserHandler {
 		// First, conditions where access is OK.
 		// 1. User is submitter
 		if ($monograph && $monograph->getUserId() == $userId) return true;
-		// 2. User is series editor of monograph or full editor
-		$editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroupId = $userGroupDao->getByRoleId($monograph->getPressId(), ROLE_ID_EDITOR);
-		$editAssignments =& $editAssignmentDao->getByMonographId($monographId, null, $userGroupId);
-		while ($editAssignment =& $editAssignments->next()) {
-			if ($editAssignment->getEditorId() === $userId) return true;
-		}
+		// 2. User is full editor
 		if (Validation::isEditor($press->getId())) return true;
 
 		// 3. User is reviewer
@@ -53,26 +46,9 @@ class EmailHandler extends UserHandler {
 		foreach ($reviewAssignmentDao->getBySubmissionId($monographId) as $reviewAssignment) {
 			if ($reviewAssignment->getReviewerId() === $userId) return true;
 		}
-		// 4. User is a designer
-		$designerAssignmentDao =& DAORegistry::getDAO('LayoutAssignmentDAO');
-		foreach ($designerAssignmentDao->getByMonographId($monographId) as $designAssignment) {
-			if ($designAssignment->getDesignerId() === $userId) return true;
-		}
-		// 5. User is copyeditor
-		$copyedSignoff =& $signoffDao->getBySymbolic('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $monographId);
-		if ($copyedSignoff && $copyedSignoff->getUserId() === $userId) return true;
-		// 6. User is production editor
-		$productionSignoff =& $signoffDao->getBySymbolic('SIGNOFF_PRODUCTION', ASSOC_TYPE_MONOGRAPH, $monographId);
-		if ($productionSignoff && $productionSignoff->getUserId() === $userId) return true;
-		// 7. User is proofreader
-		$proofSignoff =& $signoffDao->getBySymbolic('SIGNOFF_PROOFREADING_PROOFREADER', ASSOC_TYPE_MONOGRAPH, $monographId);
-		if ($proofSignoff && $proofSignoff->getUserId() === $userId) return true;
-		// 8. User is indexer
-		$indexSignoff =& $signoffDao->getBySymbolic('SIGNOFF_INDEXING', ASSOC_TYPE_MONOGRAPH, $monographId);
-		if ($indexSignoff && $indexSignoff->getUserId() === $userId) return true;
 
-		// 9. User is director
-		if (Validation::isDirector($press->getId())) return true;
+		// 4. User is otherwise assigned to the monograph
+		if($signoffDao->signoffExists('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $userId)) return true;
 
 		// Last, "deal-breakers" -- access is not allowed.
 		if (!$monograph || ($monograph && $monograph->getPressId() !== $press->getId())) return false;

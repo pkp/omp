@@ -42,15 +42,6 @@
 	<h4>{translate key="monograph.description"}</h4>
 	<p>{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br}</p>
 
-
-	<h4>{translate key="reviewer.monograph.submissionEditor"}</h4>
-	<p>
-		{foreach from=$editAssignments item=editor}
-			{$editor->getEditorFullName()}
-			<br/>
-		{/foreach}
-	</p>
-
 	<p>
 		{url|assign:"metadataUrl" op='viewMetadata' reviewId=$submission->getReviewId()}
 		{modal url="$metadataUrl" actOnType="nothing" actOnId="nothing" dialogText='reviewer.step1.viewAllDetails' button="#viewMetadata"}

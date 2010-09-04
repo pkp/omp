@@ -41,23 +41,6 @@ class ReviewerSubmission extends Monograph {
 	 */
 
 	/**
-	 * Get edit assignments for this monograph.
-	 * @return array
-	 */
-	function &getEditAssignments() {
-		$editAssignments =& $this->getData('editAssignments');
-		return $editAssignments;
-	}
-
-	/**
-	 * Set edit assignments for this monograph.
-	 * @param $editAssignments array
-	 */
-	function setEditAssignments($editAssignments) {
-		return $this->setData('editAssignments', $editAssignments);
-	}
-
-	/**
 	 * Get the competing interests for this monograph.
 	 * @return string
 	 */
@@ -377,7 +360,7 @@ class ReviewerSubmission extends Monograph {
 	function setReviewMethod($method) {
 		return $this->setData('reviewMethod', $method);
 	}
-	
+
 	/**
 	 * Get round.
 	 * @return int

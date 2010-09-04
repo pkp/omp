@@ -106,11 +106,6 @@ class CopyeditorSubmissionDAO extends DAO {
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($copyeditorSubmission, $row);
 
-		// Editor Assignment
-		// FIXME #5557 Make sure this works with signoffs
-		$signoffs =& $this->signoffDao->getBySybmolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $row['monograph_id']);
-		$copyeditorSubmission->setEditAssignments($signoffs);
-
 		// Comments
 		$copyeditorSubmission->setMostRecentCopyeditComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_COPYEDIT, $row['monograph_id']));
 		$copyeditorSubmission->setMostRecentLayoutComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_LAYOUT, $row['monograph_id']));

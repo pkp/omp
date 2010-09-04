@@ -83,23 +83,6 @@ class ProofreaderSubmission extends Monograph {
 	function setMostRecentProofreadComment($mostRecentProofreadComment) {
 		return $this->setData('mostRecentProofreadComment', $mostRecentProofreadComment);
 	}
-
-	/**
-	 * Get edit assignments for this monograph.
-	 * @return array
-	 */
-	function &getEditAssignments() {
-		$editAssignments =& $this->getData('editAssignments');
-		return $editAssignments;
-	}
-
-	/**
-	 * Set edit assignments for this monograph.
-	 * @param $editAssignments array
-	 */
-	function setEditAssignments($editAssignments) {
-		return $this->setData('editAssignments', $editAssignments);
-	}
 }
 
 ?>

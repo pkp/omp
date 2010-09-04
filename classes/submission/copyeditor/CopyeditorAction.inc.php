@@ -42,12 +42,10 @@ class CopyeditorAction extends Action {
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($copyeditorSubmission, 'COPYEDIT_COMPLETE');
 
-		$editAssignments = $copyeditorSubmission->getEditAssignments();
-
 		$author = $copyeditorSubmission->getUser();
 
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('CopyeditorAction::completeCopyedit', array(&$copyeditorSubmission, &$editAssignments, &$author, &$email));
+			HookRegistry::call('CopyeditorAction::completeCopyedit', array(&$copyeditorSubmission, &$author, &$email));
 			if ($email->isEnabled()) {
 				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_COMPLETE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $copyeditorSubmission->getId());
 				$email->send();
@@ -118,10 +116,8 @@ class CopyeditorAction extends Action {
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($copyeditorSubmission, 'COPYEDIT_FINAL_COMPLETE');
 
-		$editAssignments = $copyeditorSubmission->getEditAssignments();
-
 		if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-			HookRegistry::call('CopyeditorAction::completeFinalCopyedit', array(&$copyeditorSubmission, &$editAssignments, &$email));
+			HookRegistry::call('CopyeditorAction::completeFinalCopyedit', array(&$copyeditorSubmission, &$email));
 			if ($email->isEnabled()) {
 				$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_FINAL_COMPLETE, MONOGRAPH_EMAIL_TYPE_COPYEDIT, $copyeditorSubmission->getId());
 				$email->send();

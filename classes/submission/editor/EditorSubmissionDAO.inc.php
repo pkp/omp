@@ -24,7 +24,6 @@ class EditorSubmissionDAO extends DAO {
 	var $monographDao;
 	var $authorDao;
 	var $userDao;
-	var $editAssignmentDao;
 
 	/**
 	 * Constructor.
@@ -34,8 +33,6 @@ class EditorSubmissionDAO extends DAO {
 		$this->monographDao =& DAORegistry::getDAO('MonographDAO');
 		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$this->userDao =& DAORegistry::getDAO('UserDAO');
-		// FIXME: Edit assignment DAO has been removed, see #5557.
-		//$this->editAssignmentDao =& DAORegistry::getDAO('EditAssignmentDAO');
 	}
 
 	/**
@@ -92,11 +89,6 @@ class EditorSubmissionDAO extends DAO {
 		$editorSubmission = new EditorSubmission();
 
 		$this->monographDao->_monographFromRow($editorSubmission, $row);
-
-		// Editor Assignment
-		// FIXME: #5557 breaks this code.
-		// $editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
-		// $editorSubmission->setEditAssignments($editAssignments->toArray());
 
 		// Editor Decisions
 		$reviewRoundsInfo =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);

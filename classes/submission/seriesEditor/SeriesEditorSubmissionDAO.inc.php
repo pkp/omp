@@ -115,13 +115,6 @@ class SeriesEditorSubmissionDAO extends DAO {
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($seriesEditorSubmission, $row);
 
-		// Editor Assignment
-		// FIXME #5557: Breaks this code
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroupId = $userGroupDao->getByRoleId($seriesEditorSubmission->getPressId(), ROLE_ID_EDITOR);
-	//	$signoffs =& $this->signoffDao->getBySybmolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $row['monograph_id'], null, $userGroupId);
-	//	$seriesEditorSubmission->setEditAssignments($signoffs);
-
 		$reviewRoundsInfo =& $this->monographDao->getReviewRoundsInfoById($row['monograph_id']);
 
 		// Editor Decisions

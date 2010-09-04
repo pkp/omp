@@ -25,27 +25,6 @@ class CopyeditorSubmission extends Monograph {
 	 */
 
 	//
-	// Editor
-	//	
-
-	/**
-	 * Get edit assignments for this monograph.
-	 * @return array
-	 */
-	function &getEditAssignments() {
-		$editAssignments =& $this->getData('editAssignments');
-		return $editAssignments;
-	}
-
-	/**
-	 * Set edit assignments for this monograph.
-	 * @param $editAssignments array
-	 */
-	function setEditAssignments($editAssignments) {
-		return $this->setData('editAssignments', $editAssignments);
-	}
-
-	//
 	// Comments
 	//
 

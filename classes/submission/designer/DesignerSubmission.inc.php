@@ -3,7 +3,7 @@
 /**
  * @defgroup submission_designer
  */
- 
+
 /**
  * @file classes/submission/designer/DesignerSubmission.inc.php
  *
@@ -94,25 +94,6 @@ class DesignerSubmission extends Monograph {
 	 */
 	function setGalleys(&$galleys) {
 		return $this->setData('galleys', $galleys);
-	}
-
-	// FIXME These should probably be in an abstract "Submission" base class
-
-	/**
-	 * Get edit assignments for this monograph.
-	 * @return array
-	 */
-	function &getEditAssignments() {
-		$editAssignments =& $this->getData('editAssignments');
-		return $editAssignments;
-	}
-
-	/**
-	 * Set edit assignments for this monograph.
-	 * @param $editAssignments array
-	 */
-	function setEditAssignments($editAssignments) {
-		return $this->setData('editAssignments', $editAssignments);
 	}
 
 	//
