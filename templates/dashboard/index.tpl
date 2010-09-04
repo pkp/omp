@@ -20,6 +20,7 @@
 	<h3>Temporary</h3>
 <ul>
 	<li><a href="{url page="user"}">User Home</a></li>
+	<li><a href="{url page="submission"}">Submission lists</a></li>
 </ul>
 </div>
 <div class="unit size2of2 lastUnit">
