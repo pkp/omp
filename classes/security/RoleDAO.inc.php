@@ -14,7 +14,7 @@
  */
 
 import('classes.security.Role');
-import('classes.security.UserGroupAssignment');
+import('lib.pkp.classes.security.UserGroupAssignment');
 
 class RoleDAO extends DAO {
 	/** @var $userDao The User DAO to return User objects when necessary **/

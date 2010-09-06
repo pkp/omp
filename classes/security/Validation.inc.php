@@ -12,10 +12,8 @@
  * @brief Class providing user validation/authentication operations.
  */
 
-// $Id$
 
-
-import('classes.security.UserGroup');
+import('lib.pkp.classes.security.UserGroup');
 
 class Validation {
 

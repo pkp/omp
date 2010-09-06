@@ -13,8 +13,6 @@
  * @brief Basic class describing users existing in the system.
  */
 
-// $Id$
-
 
 import('lib.pkp.classes.user.PKPUser');
 
