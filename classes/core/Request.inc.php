@@ -14,26 +14,10 @@
  * <press_id> is assumed to be "index" for top-level site requests.
  */
 
-// $Id$
-
 
 import('lib.pkp.classes.core.PKPRequest');
 
 class Request extends PKPRequest {
-	/**
-	 * Redirect to the specified page within OMP. Shorthand for a common call to Request::redirect(Request::url(...)).
-	 * @param $pressPath string The path of the Press to redirect to.
-	 * @param $page string The name of the op to redirect to.
-	 * @param $op string optional The name of the op to redirect to.
-	 * @param $path mixed string or array containing path info for redirect.
-	 * @param $params array Map of name => value pairs for additional parameters
-	 * @param $anchor string Name of desired anchor on the target page
-	 */
-	function redirect($pressPath = null, $page = null, $op = null, $path = null, $params = null, $anchor = null) {
-		$_this =& PKPRequest::_checkThis();
-		$_this->redirectUrl($_this->url($pressPath, $page, $op, $path, $params, $anchor));
-	}
-
 	/**
 	 * Deprecated
 	 * @see PKPPageRouter::getRequestedContextPath()
