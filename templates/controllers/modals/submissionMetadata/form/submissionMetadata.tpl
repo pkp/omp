@@ -28,12 +28,7 @@
 	{/if}
 {/fbvFormArea}
 
-{init_button_bar id="#submissionMetadata" submitId="#okButton"}
-{fbvFormArea id="buttons"}
-    {fbvFormSection}
-        {fbvButton id="okButton" label="common.ok" align=$fbvStyles.align.RIGHT}
-    {/fbvFormSection}
-{/fbvFormArea}
+{init_button_bar id="#submissionMetadata"}
 
 <!-- / templates/controllers/modals/editorDecision/form/initiateReviewForm.tpl -->
 

@@ -41,7 +41,7 @@
 	<message key="submission.artwork.placementDetail">Table/Fig. No.</message>
 	<message key="submission.artwork.add">Add Artwork w/Permissions</message>
 	<message key="submission.chapter">Chapter</message>
-	<message key="submission.chapter.addChapter">Chapter</message>
+	<message key="submission.chapter.addChapter">Add Chapter</message>
 	<message key="common.details">Details</message>
 	<message key="user.accountInformation">Account Information</message>
 

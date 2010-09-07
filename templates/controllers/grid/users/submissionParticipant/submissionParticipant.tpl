@@ -50,10 +50,4 @@
 {/if}
 </form>
 
-{init_button_bar id="#addStageParticipant" cancelId="#cancelButton" submitId="#okButton"}
-{fbvFormArea id="buttons"}
-    {fbvFormSection}
-        {fbvLink id="cancelButton" label="common.cancel"}
-        {fbvButton id="okButton" label="common.ok" align=$fbvStyles.align.RIGHT}
-    {/fbvFormSection}
-{/fbvFormArea}
+{init_button_bar id="#addStageParticipant"}

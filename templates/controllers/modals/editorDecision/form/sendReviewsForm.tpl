@@ -59,12 +59,7 @@
 
 </form>
 
-{init_button_bar id="#sendReviews" cancelId="#cancelButton" submitId="#okButton"}
-{fbvFormArea id="buttons"}
-    {fbvFormSection}
-        {fbvLink id="cancelButton" label="common.cancel"}
-        {fbvButton id="okButton" label="editor.submissionReview.recordDecision" align=$fbvStyles.align.RIGHT}
-    {/fbvFormSection}
-{/fbvFormArea}
+{init_button_bar id="#sendReviews" submitText="editor.submissionReview.recordDecision"}
+
 <!-- / templates/controllers/modals/editorDecision/form/sendReviewsForm.tpl -->
 

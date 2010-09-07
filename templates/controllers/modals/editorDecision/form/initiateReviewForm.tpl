@@ -21,13 +21,7 @@
 	{load_url_in_div id="availableReviewFilesGrid" url=$availableReviewFilesGridUrl}
 </form>
 
-{init_button_bar id="#initiateReview" cancelId="#cancelButton-initiateReview" submitId="#okButton-initiateReview"}
-{fbvFormArea id="buttons"}
-    {fbvFormSection}
-        {fbvLink id="cancelButton-initiateReview" label="common.cancel"}
-        {fbvButton id="okButton-initiateReview" label="editor.monograph.createNewRound" align=$fbvStyles.align.RIGHT}
-    {/fbvFormSection}
-{/fbvFormArea}
+{init_button_bar id="#initiateReview" submitText="editor.monograph.createNewRound"}
 
 <!-- / templates/controllers/modals/editorDecision/form/initiateReviewForm.tpl -->
 

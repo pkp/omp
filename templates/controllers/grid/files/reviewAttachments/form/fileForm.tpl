@@ -37,7 +37,7 @@
 	    		if (returnString.status == true) {
 	    			$('#attachment').attr("disabled", "disabled");
 	    			$('#attachmentFileSubmit').button("option", "disabled", true);
-	    			$("#continueButton").button("option", "disabled", false);
+	    			$("#submitModalButton").button("option", "disabled", false);
 		    		$('#deleteUrl').val(returnString.deleteUrl);
 		    		$('#saveUrl').val(returnString.saveUrl);
 	    		}
@@ -46,7 +46,7 @@
 	    });
 
 		// Set cancel/continue button behaviors
-		$("#continueButton").click(function() {
+		$("#submitModalButton").click(function() {
 			saveAndUpdate($('#saveUrl').val(),
     	    		'append',
     	    		'#component-{/literal}{$gridId}{literal}-table',
@@ -54,7 +54,7 @@
 			);
 		});
 
-		$("#cancelButton").click(function() {
+		$("#cancelModalButton").click(function() {
 			// User has uploaded a file then pressed cancel--delete the file
 			newFile = $('#newFile').val();
 			deleteUrl = $('#deleteUrl').val();
@@ -62,11 +62,6 @@
 				$.post(deleteUrl);
 			}
 
-			$('#uploadForm').parent().dialog('close');
-		});
-
-		$("#okButton").click(function() {
-			// User is looking at an existing file, just close when okay is clicked
 			$('#uploadForm').parent().dialog('close');
 		});
 	});
@@ -92,17 +87,9 @@
 		<div id='loading' class='throbber' style="margin: 0px;"></div>
 		<ul><li id='loadingText' style='display:none;'>{translate key='submission.loadMessage'}</li></ul>
 	</div>
-	{init_button_bar id="#uploadForm" cancelId="#cancelButton" submitId="#continueButton"}
-	{fbvFormArea id="buttons"}
-	    {fbvFormSection}
-	    	{if !$rowId}
-	       		{fbvLink id="cancelButton" label="common.cancel"}
-	       		{fbvButton id="continueButton" label="common.saveAndClose" disabled="disabled" align=$fbvStyles.align.RIGHT}
-	       	{else}
-	        	{fbvButton id="okButton" label="common.saveAndClose" align=$fbvStyles.align.RIGHT}
-	        {/if}
-	    {/fbvFormSection}
-	{/fbvFormArea}
+
+	{if !$rowId}{assign var="buttonDisabled" value="true"}{/if}
+	{init_button_bar id="#uploadForm" submitText="common.saveAndClose" submitDisabled=$buttonDisabled}
 </form>
 
 {if $gridId}

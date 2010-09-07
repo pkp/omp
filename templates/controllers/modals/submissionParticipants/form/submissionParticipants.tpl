@@ -17,12 +17,7 @@
 	{load_url_in_div id="submissionParticipantsGrid" url=$submissionParticipantsGridUrl}
 </div>
 
-{init_button_bar id="#submissionParticipants" submitId="#okButton"}
-{fbvFormArea id="buttons"}
-    {fbvFormSection}
-        {fbvButton id="okButton" label="common.ok" align=$fbvStyles.align.RIGHT}
-    {/fbvFormSection}
-{/fbvFormArea}
+{init_button_bar id="#submissionParticipants"}
 
 <!-- / templates/controllers/modals/editorDecision/form/initiateReviewForm.tpl -->
 

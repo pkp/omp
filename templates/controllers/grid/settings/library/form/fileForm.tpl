@@ -36,7 +36,7 @@
 	    		if (returnString.status == true) {
 	    			$('#libraryFile').attr("disabled", "disabled");
 	    			$('#libraryFileSubmit').button("option", "disabled", true);
-	    			$("#continueButton").button( "option", "disabled", false);
+	    			$("#submitModalButton").button( "option", "disabled", false);
 		    		$('#deleteUrl').val(returnString.deleteUrl);
 	    			$("#metadataRowId").val(returnString.elementId);
 	    		}
@@ -62,7 +62,7 @@
 	    });
 
 		// Set cancel/continue button behaviors
-		$("#continueButton").click(function() {
+		$("#submitModalButton").click(function() {
 			validator = $('#metadataForm').validate();
 			if($('#metadataForm').valid()) {
 				$('#metadataForm').submit();   // Hands off further actions to the ajaxForm function above
@@ -70,7 +70,7 @@
 			validator = null;
 		});
 
-		$("#cancelButton").click(function() {
+		$("#cancelModalButton").click(function() {
 			// User has uploaded a file then pressed cancel--delete the file
 			newFile = $('#newFile').val();
 			deleteUrl = $('#deleteUrl').val();
@@ -116,14 +116,10 @@
 			{fbvElement type="text" id="name" value=$libraryFileName maxlength="120" size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 	{/fbvFormArea}
-	{init_button_bar id="#buttons" cancelId="#cancelButton2" submitId="#continueButton2"}
-	{fbvFormArea id="buttons"}
-		{fbvFormSection}
-			{fbvLink id="cancelButton" label="common.cancel" float=$fbvStyles.float.LEFT}
-			{if !$rowId}{assign var="buttonDisabled" value="disabled"}{/if}
-			{fbvButton id="continueButton" label="common.saveAndClose" disabled=$buttonDisabled align=$fbvStyles.align.RIGHT}
-		{/fbvFormSection}
-	{/fbvFormArea}
+
+	{if !$rowId}{assign var="buttonDisabled" value="true"}{/if}
+	{init_button_bar id="#buttons" submitText="common.saveAndClose" submitDisabled=$buttonDisabled}
+
 </form>
 
 

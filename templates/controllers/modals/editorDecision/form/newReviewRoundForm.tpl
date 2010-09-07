@@ -21,13 +21,7 @@
 	{load_url_in_div id="newRoundRevisionsGrid" url=$newRoundRevisionsUrl}
 </form>
 
-{init_button_bar id="#newRound" cancelId="#cancelButton-newRound" submitId="#okButton-newRound"}
-{fbvFormArea id="buttons"}
-    {fbvFormSection}
-        {fbvLink id="cancelButton-newRound" label="common.cancel"}
-        {fbvButton id="okButton-newRound" label="editor.monograph.createNewRound" align=$fbvStyles.align.RIGHT}
-    {/fbvFormSection}
-{/fbvFormArea}
+{init_button_bar id="#newRound" submitText="editor.monograph.createNewRound"}
 
 <!-- / templates/controllers/modals/editorDecision/form/newReviewRoundForm.tpl -->
 

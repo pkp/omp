@@ -133,12 +133,6 @@
 	{/fbvFormSection}
 </form>
 
-{init_button_bar id="#addReviewer" cancelId="#cancelButton-addReviewer" submitId="#okButton-addReviewer"}
-{fbvFormArea id="buttons"}
-    {fbvFormSection}
-        {fbvLink id="cancelButton-addReviewer" label="common.cancel"}
-        {fbvButton id="okButton-addReviewer" label="editor.monograph.addReviewer" align=$fbvStyles.align.RIGHT}
-    {/fbvFormSection}
-{/fbvFormArea}
-<!-- / templates/controllers/grid/users/reviewer/form/reviewerForm.tpl -->
+{init_button_bar id="#addReviewer" submitText="editor.monograph.addReviewer"}
 
+<!-- / templates/controllers/grid/users/reviewer/form/reviewerForm.tpl -->

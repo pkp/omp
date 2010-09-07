@@ -38,14 +38,14 @@
 	    });
 
 		// Set cancel/continue button behaviors
-		$("#continueButton2").click(function() {
+		$("submitModalButton").click(function() {
 			validator = $('#metadataForm').validate();
 			if($('#metadataForm').valid()) {
 				$('#metadataForm').submit();   // Hands off further actions to the ajaxForm function above
 			}
 			validator = null;
 		});
-		$("#cancelButton2").click(function() {
+		$("#cancelModalButton").click(function() {
 			$('div#fileUploadTabs').last().parent().dialog('close');
 			return false;
 		});
