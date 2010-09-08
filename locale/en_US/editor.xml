@@ -184,6 +184,7 @@
 	<!-- Review related -->
 	<message key="editor.review">Review</message>
 	<message key="editor.review.personalMessageToReviewer">Personal message to reviewer</message>
+	<message key="editor.review.personalMessageToAuthor">Personal message to author</message>
 	<message key="editor.review.dateAccepted">Review Acceptance Date</message>
 	<message key="editor.review.noReviews">No peer reviews to import</message>
 	<message key="editor.review.thisIsBlindReview">This is a blind review. Reviewer should not be shown author's identity</message>
