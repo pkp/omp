@@ -104,7 +104,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	function authorize(&$request, &$args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, $stageId));
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
