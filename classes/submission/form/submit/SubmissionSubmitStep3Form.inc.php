@@ -118,9 +118,9 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 		$monograph->setTitle($this->getData('title'), null); // Localized
 		$monograph->setAbstract($this->getData('abstract'), null); // Localized
 
-		$monograph->setSupportingAgencies(implode(", ", $this->getData('agenciesKeywords')), null); // Localized
-		$monograph->setDiscipline(implode(", ", $this->getData('disciplinesKeywords')), null); // Localized
-		$monograph->setSubject(implode(", ",$this->getData('keywordKeywords')), null); // Localized
+		if(is_array($this->getData('agenciesKeywords'))) $monograph->setSupportingAgencies(implode(", ", $this->getData('agenciesKeywords')), null); // Localized
+		if(is_array($this->getData('disciplinesKeywords'))) $monograph->setDiscipline(implode(", ", $this->getData('disciplinesKeywords')), null); // Localized
+		if(is_array($this->getData('keywordKeywords'))) $monograph->setSubject(implode(", ",$this->getData('keywordKeywords')), null); // Localized
 
 		if ($monograph->getSubmissionProgress() <= $this->step) {
 			$monograph->setDateSubmitted(Core::getCurrentDate());
