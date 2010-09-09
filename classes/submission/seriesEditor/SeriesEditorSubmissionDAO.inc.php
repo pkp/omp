@@ -712,79 +712,25 @@ class SeriesEditorSubmissionDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve a list of all reviewers along with information about their current status with respect to an monograph's current round.
+	 * Retrieve a list of all reviewers assigned to a monograph.
 	 * @param $pressId int
 	 * @param $monographId int
-	 * @param $round int
-	 * @param $searchType int USER_FIELD_...
-	 * @param $search string
-	 * @param $searchMatch string "is" or "contains" or "startsWith"
-	 * @param $rangeInfo RangeInfo optional
+	 * @param $round int optional
 	 * @return DAOResultFactory containing matching Users
 	 */
-	function &getReviewersForMonograph($pressId, $monographId, $reviewType, $round = null, $searchType = null, $search = null, $searchMatch = null, $rangeInfo = null,  $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
-		$paramArray = array($monographId, $reviewType, $round, 'interests', $pressId, RoleDAO::getRoleIdFromPath('reviewer'));
-		$searchSql = '';
-
-		$searchTypeMap = array(
-			USER_FIELD_FIRSTNAME => 'u.first_name',
-			USER_FIELD_LASTNAME => 'u.last_name',
-			USER_FIELD_USERNAME => 'u.username',
-			USER_FIELD_EMAIL => 'u.email',
-			USER_FIELD_INTERESTS => 's.setting_value'
-		);
-
-		if (isset($search) && isset($searchTypeMap[$searchType])) {
-			$fieldName = $searchTypeMap[$searchType];
-			switch ($searchMatch) {
-				case 'is':
-					$searchSql = "AND LOWER($fieldName) = LOWER(?)";
-					$paramArray[] = $search;
-					break;
-				case 'contains':
-					$searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
-					$paramArray[] = '%' . $search . '%';
-					break;
-				case 'startsWith':
-					$searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
-					$paramArray[] = $search . '%';
-					break;
-			}
-		} elseif (isset($search)) switch ($searchType) {
-			case USER_FIELD_USERID:
-				$searchSql = 'AND user_id=?';
-				$paramArray[] = $search;
-				break;
-			case USER_FIELD_INITIAL:
-				$searchSql = 'AND (LOWER(last_name) LIKE LOWER(?) OR LOWER(username) LIKE LOWER(?))';
-				$paramArray[] = $search . '%';
-				$paramArray[] = $search . '%';
-				break;
-		}
-
-		$result =& $this->retrieveRange(
-			'SELECT DISTINCT
-				u.user_id,
-				u.last_name,
-				ar.review_id,
-				AVG(a.quality) AS average_quality,
-				COUNT(ac.review_id) AS completed,
-				COUNT(ai.review_id) AS incomplete,
-				MAX(ac.date_notified) AS latest,
-				AVG(ac.date_completed-ac.date_notified) AS average
+	function &getReviewersForMonograph($pressId, $monographId, $round) {
+		$result =& $this->retrieve(
+			'SELECT	u.*
 			FROM	users u
-			LEFT JOIN review_assignments a ON (a.reviewer_id = u.user_id)
-				LEFT JOIN review_assignments ac ON (ac.reviewer_id = u.user_id AND ac.date_completed IS NOT NULL)
-				LEFT JOIN review_assignments ai ON (ai.reviewer_id = u.user_id AND ai.date_completed IS NULL)
-				LEFT JOIN review_assignments ar ON (ar.reviewer_id = u.user_id AND ar.cancelled = 0 AND ar.submission_id = ? AND ar.review_type = ? AND ar.round = ?)
-				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
 				LEFT JOIN user_user_groups uug ON (uug.user_id = u.user_id)
 				LEFT JOIN user_groups ug ON (ug.user_group_id = uug.user_group_id)
-				LEFT JOIN monographs m ON (m.monograph_id = a.submission_id)
+				LEFT JOIN review_assignments r ON (r.reviewer_id = u.user_id)
 			WHERE	ug.press_id = ? AND
-				ug.user_group_id = ? ' . $searchSql . 'GROUP BY u.user_id, u.last_name, ar.review_id' .
-			($sortBy?(' ORDER BY ' . $this->getSortMapping($sortBy) . ' ' . $this->getDirectionMapping($sortDirection)) : ''),
-			$paramArray, $rangeInfo
+					ug.role_id = ? AND
+					r.submission_id = ? AND
+					r.round = ?
+			ORDER BY last_name, first_name',
+			array((int) $pressId, ROLE_ID_REVIEWER, (int) $monographId, (int) $round)
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');

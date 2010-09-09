@@ -50,7 +50,8 @@ class SeriesEditorAction extends Action {
 	 */
 	function recordDecision($seriesEditorSubmission, $decision) {
 		// FIXME #5557 Make sure this works with signoffs
-		$signoffs =& $this->signoffDao->getBySybmolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $row['monograph_id']);
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoffs =& $signoffDao->getBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getId());
 		if (empty($signoffs)) return;
 
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');

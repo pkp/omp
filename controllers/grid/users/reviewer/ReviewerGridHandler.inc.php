@@ -264,19 +264,25 @@ class ReviewerGridHandler extends GridHandler {
 	*/
 	function getReviewerAutocomplete(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
+		$round = $request->getUserVar('round');
 		$press =& $request->getPress();
 		$seriesEditorSubmissionDAO =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 
+		$monograph =& $this->getSubmission();
+
 		// Get items to populate possible items list with
-		$reviewers =& $seriesEditorSubmissionDAO->getReviewersNotAssignedToMonograph($press->getId(), $monographId);
-		$reviewers =& $reviewers->toArray();
+		$allReviewers = $seriesEditorSubmissionDAO->getAllReviewers($press->getId());
+		$currentRoundReviewers =& $seriesEditorSubmissionDAO->getReviewersForMonograph($press->getId(), $monographId, $round);
+		$currentRoundReviewerIds = array_keys($currentRoundReviewers->toAssociativeArray('id'));
 
 		$itemList = array();
-		foreach ($reviewers as $i => $reviewer) {
-			$itemList[] = array('id' => $reviewer->getId(),
-							 'name' => $reviewer->getFullName(),
-							 'abbrev' => $reviewer->getUsername()
-							);
+		foreach ($allReviewers->toAssociativeArray('id') as $i => $reviewer) {
+			// Check that the reviewer is not in the current round.  We need to do the comparison here to avoid nested selects.
+			if (!in_array($i, $currentRoundReviewerIds)) {
+				$itemList[] = array('id' => $reviewer->getId(),
+									'name' => $reviewer->getFullName(),
+								 	'abbrev' => $reviewer->getUsername());
+			}
 		}
 
 		import('lib.pkp.classes.core.JSON');

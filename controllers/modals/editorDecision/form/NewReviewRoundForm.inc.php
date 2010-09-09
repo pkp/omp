@@ -99,12 +99,7 @@ class NewReviewRoundForm extends Form {
 		$seriesEditorSubmission->setCurrentRound($newRound);
 		$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
-		// 3. Assign the editor
-		// FIXME: bug # 5546: this assignment should be done elsewhere, prior to this point.
-		$user =& $request->getUser();
-		EditorAction::assignEditor($this->_monographId, $user->getId(), true);
-
-		// 4. Add the selected files to the new round
+		// 3. Add the selected files to the new round
 		$selectedFiles = $this->getData('selectedFiles');
 		$filesWithRevisions = array();
 		foreach ($selectedFiles as $selectedFile) {

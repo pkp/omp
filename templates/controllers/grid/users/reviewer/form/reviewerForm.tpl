@@ -15,7 +15,7 @@
 
 <script type="text/javascript">{literal}
 	$(function() {
-		getAutocompleteSource("{/literal}{url op="getReviewerAutocomplete" monographId=$monographId}{literal}", "");
+		getAutocompleteSource("{/literal}{url op="getReviewerAutocomplete" monographId=$monographId round=$round escape=false}{literal}", "");
 		$("#responseDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
 		$("#reviewDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
 		$("#sourceTitle").addClass('required');
