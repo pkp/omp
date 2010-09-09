@@ -165,17 +165,6 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 */
 	function updateSeriesEditorSubmission(&$seriesEditorSubmission) {
-		// update edit assignment
-		$editAssignments =& $seriesEditorSubmission->getEditAssignments();
-		foreach ($editAssignments as $editAssignment) {
-			// FIXME #5557: Ensure compatibility with monograph stage assignment DAO
-			if ($editAssignment->getEditId() > 0) {
-				$this->editAssignmentDao->updateEditAssignment($editAssignment);
-			} else {
-				$this->editAssignmentDao->insertEditAssignment($editAssignment);
-			}
-		}
-
 		$reviewRounds = $seriesEditorSubmission->getReviewRoundsInfo();
 
 		// Update editor decisions

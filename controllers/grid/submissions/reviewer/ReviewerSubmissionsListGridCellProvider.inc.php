@@ -49,8 +49,7 @@ class ReviewerSubmissionsListGridCellProvider extends SubmissionsListGridCellPro
 							LINK_ACTION_TYPE_NOTHING,
 							$dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', $reviewAssigment->getId()),
 							null,
-							$monograph->getLocalizedTitle(),
-							$state
+							$monograph->getLocalizedTitle()
 						);
 			return array($action);
 		}

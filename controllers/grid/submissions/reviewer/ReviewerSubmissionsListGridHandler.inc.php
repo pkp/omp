@@ -65,22 +65,6 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 
 
 	//
-	// Public Grid Actions
-	//
-	/**
-	 * Delete a submission
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string
-	 */
-	function deleteSubmission(&$args, &$request) {
-		//FIXME: Implement, see #5864.
-
-		return false;
-	}
-
-
-	//
 	// Implement template methods from SubmissionListGridHandler
 	//
 	/**

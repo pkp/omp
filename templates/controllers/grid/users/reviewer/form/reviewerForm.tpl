@@ -15,7 +15,7 @@
 
 <script type="text/javascript">{literal}
 	$(function() {
-		getAutocompleteSource("{/literal}{url op="getReviewerAutocomplete" monographId=$monographId}", "{}{literal}");
+		getAutocompleteSource("{/literal}{url op="getReviewerAutocomplete" monographId=$monographId}{literal}", "");
 		$("#responseDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
 		$("#reviewDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
 		$("#sourceTitle").addClass('required');
@@ -67,8 +67,8 @@
 		<h3 id="searchByName"><a href="#">{translate key="manager.reviewerSearch.searchByName"}</a></h3>
 		<div id="reviewerNameSearch">
 			{fbvFormSection}
-				{fbvElement type="text" id="sourceTitle"|concat: name="reviewerSelectAutocomplete" label="user.role.reviewer" class="required" value=$userNameString|escape }
-				<input type="hidden" id="sourceId" name="reviewerId" />
+				{fbvElement type="text" id="sourceTitle-" name="reviewerSelectAutocomplete" label="user.role.reviewer" class="required" value=$userNameString|escape }
+				<input type="hidden" id="sourceId-" name="reviewerId" />
 			{/fbvFormSection}
 		</div>
 

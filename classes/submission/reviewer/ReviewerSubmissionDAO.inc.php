@@ -105,11 +105,6 @@ class ReviewerSubmissionDAO extends DAO {
 	function &_fromRow(&$row) {
 		$reviewerSubmission = $this->newDataObject();
 
-		// Editor Assignment
-		// FIXME #5557: Ensure compatibility with monograph stage assignment DAO
-		$editAssignments =& $this->editAssignmentDao->getByMonographId($row['monograph_id']);
-		$reviewerSubmission->setEditAssignments($editAssignments->toArray());
-
 		// Files
 		$reviewerSubmission->setSubmissionFile($this->monographFileDao->getMonographFile($row['submission_file_id']));
 		$reviewerSubmission->setRevisedFile($this->monographFileDao->getMonographFile($row['revised_file_id']));
