@@ -84,6 +84,12 @@ class InitiateReviewForm extends Form {
 
 		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
 
+		// 1. Increment the monograph's workflow stage
+		$monograph =& $this->getMonograph();
+		$monograph->setCurrentStageId(WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monographDao->updateMonograph($monograph);
+
 		// 2. Create a new internal review round
 		// FIXME: what do do about reviewRevision? being set to 1 for now.
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');

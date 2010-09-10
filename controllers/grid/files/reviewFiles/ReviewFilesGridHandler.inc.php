@@ -37,10 +37,10 @@ class ReviewFilesGridHandler extends GridHandler {
 				$authorOperations = array());
 		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT,
 				$pressAssistantOperations = array_merge($authorOperations, array()));
+		$this->addRoleAssignment(ROLE_ID_REVIEWER,
+				$reviewerOperations = array_merge($pressAssistantOperations, array('fetchGrid', 'downloadFile', 'downloadAllFiles')));
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array_merge($pressAssistantOperations,
-				array('fetchGrid', 'downloadFile', 'downloadAllFiles', 'manageReviewFiles',
-				'uploadReviewFile', 'updateReviewFiles')));
+				array_merge($reviewerOperations, array('manageReviewFiles',	'uploadReviewFile', 'updateReviewFiles')));
 	}
 
 	//

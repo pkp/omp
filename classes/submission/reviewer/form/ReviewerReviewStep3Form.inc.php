@@ -37,10 +37,11 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		);
 
 		// Validation checks for this form
-		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+		// FIXME #5123: Include when review form infrastructure is in place
+		//$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 		//$requiredReviewFormElementIds = $reviewFormElementDao->getRequiredReviewFormElementIds($this->reviewAssignment->getReviewFormId());
+		//$this->addCheck(new FormValidatorCustom($this, 'reviewFormResponses', 'required', 'reviewer.monograph.reviewFormResponse.form.responseRequired', create_function('$reviewFormResponses, $requiredReviewFormElementIds', 'foreach ($requiredReviewFormElementIds as $requiredReviewFormElementId) { if (!isset($reviewFormResponses[$requiredReviewFormElementId]) || $reviewFormResponses[$requiredReviewFormElementId] == \'\') return false; } return true;'), array($requiredReviewFormElementIds)));
 
-		$this->addCheck(new FormValidatorCustom($this, 'reviewFormResponses', 'required', 'reviewer.monograph.reviewFormResponse.form.responseRequired', create_function('$reviewFormResponses, $requiredReviewFormElementIds', 'foreach ($requiredReviewFormElementIds as $requiredReviewFormElementId) { if (!isset($reviewFormResponses[$requiredReviewFormElementId]) || $reviewFormResponses[$requiredReviewFormElementId] == \'\') return false; } return true;'), array($requiredReviewFormElementIds)));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -48,9 +49,9 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		//FIXME: NEED TO LOAD IN REVIEW FORM IF SUBMISSION USES ONE, ELSE LOAD IN REVIEW TEXT
+		// FIXME #5123: Include when review form infrastructure is in place
 		$this->readUserVars(
-			array('reviewFormResponses', 'comments')
+			array(/*'reviewFormResponses', */ 'comments')
 		);
 	}
 
@@ -75,7 +76,9 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 
 		$reviewAssignment =& $this->reviewAssignment;
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
-	/*	if($reviewAssignment->getReviewFormId()) {
+
+		/*  FIXME #5123: Include when review form infrastructure is in place
+		if($reviewAssignment->getReviewFormId()) {
 
 			// Get the review form components
 			$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
@@ -105,6 +108,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 
 		if($reviewAssignment->getReviewFormId()) {
 			$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
+			/* FIXME #5123: Include when review form infrastructure is in place
 			$reviewFormResponses = $this->getData('reviewFormResponses');
 			if (is_array($reviewFormResponses)) foreach ($reviewFormResponses as $reviewFormElementId => $reviewFormResponseValue) {
 				$reviewFormResponse =& $reviewFormResponseDao->getReviewFormResponse($reviewAssignment->getReviewId(), $reviewFormElementId);
@@ -138,7 +142,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 					$reviewFormResponse->setReviewId($reviewAssignment->getReviewId());
 					$reviewFormResponseDao->insertObject($reviewFormResponse);
 				}
-			}
+			} */
 		} else {
 			$commentDao =& DAORegistry::getDAO('MonographCommentDAO');
 			$comment = new MonographComment();

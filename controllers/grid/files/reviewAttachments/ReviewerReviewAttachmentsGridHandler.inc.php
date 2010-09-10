@@ -12,7 +12,6 @@
  * @brief Handle file grid requests.
  */
 
-import('controllers.grid.files.reviewAttachments.ReviewAttachmentsGridRow');
 import('controllers.grid.files.reviewAttachments.ReviewAttachmentsGridHandler');
 
 class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
@@ -21,8 +20,8 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	 */
 	function ReviewerReviewAttachmentsGridHandler() {
 		parent::ReviewAttachmentsGridHandler();
-		$this->addRoleAssignment(array(ROLE_ID_REVIEWER),
-				array('fetchGrid', 'addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));
+		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER), array());
+		$this->addRoleAssignment(ROLE_ID_REVIEWER, array('fetchGrid', 'addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));
 	}
 
 	//
