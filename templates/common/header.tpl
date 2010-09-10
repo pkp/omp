@@ -27,6 +27,7 @@
 	{$metaCustomHeaders}
 	{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" />{/if}
 
+	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/pkp.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/styles/omp.css" />
 
 	{call_hook|assign:"leftSidebarCode" name="Templates::Common::LeftSidebar"}
