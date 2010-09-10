@@ -12,15 +12,11 @@
  *}
 <!--  Need a random ID to give to modal elements so that they are unique in the DOM (can not use
 		fileId like elsewhere in the modal, because there may not be an associated file yet-->
-{assign var='uniqueId' value=""|uniqid}
-{modal_title id="#uploadForm-" key='grid.reviewAttachments.add' iconClass="fileManagement" canClose=1}
+{modal_title id="#uploadForm" key='grid.reviewAttachments.add' iconClass="fileManagement" canClose=1}
 
 <script type="text/javascript">
 	{literal}
 	$(function() {
-		$('.button').button();
-		$('#uploadForm').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
-		$(".ui-dialog-titlebar-close").remove();  // Hide 'X' close button in dialog
 		// Handle upload form
 	    $('#uploadForm').ajaxForm({
 	        target: '#uploadOutput',  // target identifies the element(s) to update with the server response

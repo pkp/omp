@@ -178,7 +178,6 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 * @return JSON
 	 */
 	function downloadFile(&$args, &$request) {
-		//FIXME: add validation
 		$monographId = $request->getUserVar('monographId');
 		$fileId = $request->getUserVar('fileId');
 		import('classes.file.MonographFileManager');

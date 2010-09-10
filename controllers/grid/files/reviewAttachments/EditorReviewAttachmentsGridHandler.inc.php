@@ -16,13 +16,36 @@ import('controllers.grid.files.reviewAttachments.ReviewAttachmentsGridRow');
 import('controllers.grid.files.reviewAttachments.ReviewAttachmentsGridHandler');
 
 class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
+	/** Boolean flag if grid is selectable **/
+	var $_isSelectable;
+
 	/**
 	 * Constructor
 	 */
 	function EditorReviewAttachmentsGridHandler() {
 		parent::ReviewAttachmentsGridHandler();
+		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER), array());
 		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));
+	}
+
+	//
+	// Getters/Setters
+	//
+	/**
+	 * Set the selectable flag
+	 * @param $isSelectable bool
+	 */
+	function setIsSelectable($isSelectable) {
+		$this->_isSelectable = $isSelectable;
+	}
+
+	/**
+	 * Get the selectable flag
+	 * @return bool
+	 */
+	function getIsSelectable() {
+		return $this->_isSelectable;
 	}
 
 	//
@@ -42,8 +65,22 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 	 * @param PKPRequest $request
 	 */
 	function initialize(&$request) {
+		// Set the Is Selectable boolean flag
+		$isSelectable = (boolean)$request->getUserVar('isSelectable');
+		$this->setIsSelectable($isSelectable);
+		// Columns
+		import('controllers.grid.files.reviewAttachments.ReviewAttachmentsGridCellProvider');
+		$cellProvider =& new ReviewAttachmentsGridCellProvider();
+		if ($this->getIsSelectable()) {
+			$this->addColumn(new GridColumn('select',
+				'common.select',
+				null,
+				'controllers/grid/files/reviewAttachments/gridRowSelectInput.tpl',
+				$cellProvider)
+			);
+		}
 		parent::initialize($request);
-		$monographId = $request->getUserVar('monographId');
+		$monographId = (int) $request->getUserVar('monographId');
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFiles =& $monographFileDao->getByMonographId($monographId, MonographFileManager::typeToPath(MONOGRAPH_FILE_REVIEW));
@@ -53,6 +90,14 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 		}
 		$this->setData($rowData);
 
+		if($isSelectable) {
+			// Load a different grid template
+			$this->setTemplate('controllers/grid/files/reviewFiles/grid.tpl');
+
+			// There are no pre-selected files--Assign an empty array to gridRowSelectInput.tpl to avoid warnings
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->assign('selectedFileIds', array());
+		}
 
 		// Add grid-level actions
 		if (!$this->getReadOnly()) {
@@ -67,6 +112,20 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 				)
 			);
 		}
+
+
+	}
+
+	//
+	// Overridden methods from GridHandler
+	//
+	/**
+	* Get the row handler - override the default row handler
+	* @return ReviewAttachmentsGridRow
+	*/
+	function &getRowInstance() {
+		$row = new GridRow();
+		return $row;
 	}
 
 	//

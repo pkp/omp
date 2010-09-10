@@ -49,4 +49,25 @@ class ReviewAttachmentsGridCellProvider extends DataObjectGridCellProvider {
 		}
 		return parent::getCellActions($request, $row, $column, $position);
 	}
+
+	/**
+	 * Extracts variables for a given column from a data element
+	 * so that they may be assigned to template before rendering.
+	 * @param $row GridRow
+	 * @param $column GridColumn
+	 * @return array
+	 */
+	function getTemplateVarsFromRowColumn(&$row, &$column) {
+		$element =& $row->getData();
+		$columnId = $column->getId();
+		assert(is_a($element, 'MonographFile') && !empty($columnId));
+
+		// all other columns
+		switch ($columnId) {
+			case 'select':
+				return array('rowId' => $element->getFileId());
+			case 'files':
+				return array('label' => $element->getOriginalFileName());
+		}
+	}
 }

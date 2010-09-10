@@ -12,7 +12,11 @@
 	{literal}
         $(function(){
 	       	$('input:checkbox:checked').parent().parent().addClass('selected');
-	            
+
+	       	// Check all by default
+	       	$("input.reviewFilesSelect").attr('checked', true);
+
+            // Highlight the row when checkbox is clicked
 			$('.reviewFilesSelect').live("click", function() {
 				$this = $(this);
 				if($this.is(':checked')) {

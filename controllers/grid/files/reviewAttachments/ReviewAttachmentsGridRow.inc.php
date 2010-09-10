@@ -60,6 +60,23 @@ class ReviewAttachmentsGridRow extends GridRow {
 	function getReadOnly() {
 		return $this->_readOnly;
 	}
+
+	/**
+	 * Set the selectable flag
+	 * @param $isSelectable bool
+	 */
+	function setIsSelectable($isSelectable) {
+		$this->_isSelectable = $isSelectable;
+	}
+
+	/**
+	 * Get the selectable flag
+	 * @return bool
+	 */
+	function getIsSelectable() {
+		return $this->_isSelectable;
+	}
+
 	//
 	// Overridden template methods
 	//
@@ -71,11 +88,16 @@ class ReviewAttachmentsGridRow extends GridRow {
 		parent::initialize($request);
 		$this->setFileType($request->getUserVar('fileType'));
 		$this->setReadOnly($request->getUserVar('readOnly')?true:false);
+		$this->setIsSelectable($request->getUserVar('isSelectable')?true:false);
 
 		if ( !$this->getReadOnly() ) {
 			// add Grid Row Actions
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
+
+		// Retrieve the monograph id from the request
+		$monographId = $request->getUserVar('monographId');
+		assert(is_numeric($monographId));
 
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
@@ -84,28 +106,30 @@ class ReviewAttachmentsGridRow extends GridRow {
 			$router =& $request->getRouter();
 			$actionArgs = array(
 				'gridId' => $this->getGridId(),
-				'rowId' => $rowId
+				'rowId' => $rowId,
+				'monographId' => $monographId
 			);
-			$this->addAction(
-				new LinkAction(
-					'editFile',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'editFile', null, $actionArgs),
-					'grid.action.edit',
-					null,
-					'edit'
-				));
-			$this->addAction(
-				new LinkAction(
-					'deleteFile',
-					LINK_ACTION_MODE_CONFIRM,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'deleteFile', null, $actionArgs),
-					'grid.action.delete',
-					null,
-					'delete'
-				));
+				$this->addAction(
+					new LinkAction(
+						'editFile',
+						LINK_ACTION_MODE_MODAL,
+						LINK_ACTION_TYPE_REPLACE,
+						$router->url($request, null, null, 'editFile', null, $actionArgs),
+						'grid.action.edit',
+						null,
+						'edit'
+					));
+				$this->addAction(
+					new LinkAction(
+						'deleteFile',
+						LINK_ACTION_MODE_CONFIRM,
+						LINK_ACTION_TYPE_REMOVE,
+						$router->url($request, null, null, 'deleteFile', null, $actionArgs),
+						'grid.action.delete',
+						null,
+						'delete'
+					));
+
 		}
 	}
 }

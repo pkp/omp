@@ -21,7 +21,7 @@
 	$(function() {
 		$('.button').button();
 		var url = '{/literal}{url op="importPeerReviews" monographId=$monographId}{literal}';
-		$('#importPeerReviews-'+{/literal}{}{literal}).click(function() {
+		$('#importPeerReviews').live('click', function() {
 			$.getJSON(url, function(jsonData) {
 				if (jsonData.status === true) {
 					var currentContent = $("textarea#personalMessage").val();
@@ -53,7 +53,7 @@
 	{/fbvFormSection}
 
 	<div id="attachments">
-		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId escape=false}
+		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId isSelectable=1 escape=false}
 		{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 	</div>
 

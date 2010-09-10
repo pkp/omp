@@ -105,7 +105,7 @@ class PromoteForm extends Form {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('monographId', 'decision', 'personalMessage'));
+		$this->readUserVars(array('monographId', 'decision', 'personalMessage', 'selectedFiles', 'selectedAttachments'));
 	}
 
 	/**
@@ -139,11 +139,6 @@ class PromoteForm extends Form {
 				// 2. Create a new external review round if it doesn't exist
 				if ( !$reviewRoundDao->reviewRoundExists($this->_monographId, REVIEW_TYPE_EXTERNAL, 1)) {
 					$reviewRoundDao->createReviewRound($this->_monographId, REVIEW_TYPE_EXTERNAL, 1, 1);
-
-					import('submission.editor.EditorAction');
-					// FIXME: bug # 5546: this assignment should be done elsewhere, prior to this point.
-					$user =& $request->getUser();
-					EditorAction::assignEditor($this->_monographId, $user->getId(), true);
 				}
 
 				// 3. Get selected files and put in DB somehow
@@ -171,9 +166,24 @@ class PromoteForm extends Form {
 		// n. Send Personal message to author
 		$submitter = $seriesEditorSubmission->getUser();
 		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($seriesEditorSubmission, $emailKey);
+		$email = new MonographMailTemplate($seriesEditorSubmission, $emailKey, null, true);
 		$email->setBody($this->getData('personalMessage'));
 		$email->addRecipient($submitter->getEmail(), $submitter->getFullName());
+
+		// Attach the selected reviewer attachments
+		import('classes.file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($this->_monographId);
+		$selectedAttachments = $this->getData('selectedAttachments');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
+		foreach ($selectedAttachments as $attachmentId) {
+			$monographFile =& $monographFileManager->getFile($attachmentId);
+			$fileName = $monographFile->getOriginalFileName();
+			$reviewAssignmentId = $monographFile->getAssocId();
+			$reviewerPrefix = chr(ord('A') + $reviewIndexes[$reviewAssignmentId]);
+			$email->addAttachment($monographFile->getFilePath(), $reviewerPrefix . '-' . $monographFile->getOriginalFileName());
+		}
+
 		$email->send();
 	}
 }
