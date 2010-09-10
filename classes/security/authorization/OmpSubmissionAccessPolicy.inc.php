@@ -61,13 +61,25 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 		// Author role
 		//
 		// 1) Author role user groups can access whitelisted operations ...
-		$authorRoleWorkflowStagePolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-		$authorRoleWorkflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
+		$authorSubmissionAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
+		$authorSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
 
 		// 2) ... if the requested submission is their own ...
 		import('classes.security.authorization.internal.MonographAuthorPolicy');
-		$authorRoleWorkflowStagePolicy->addPolicy(new MonographAuthorPolicy($request));
-		$submissionAccessPolicy->addPolicy($authorRoleWorkflowStagePolicy);
+		$authorSubmissionAccessPolicy->addPolicy(new MonographAuthorPolicy($request));
+		$submissionAccessPolicy->addPolicy($authorSubmissionAccessPolicy);
+
+
+		//
+		// Reviewer role
+		//
+		// 1) Reviewers can access whitelisted operations ...
+		$reviewerSubmissionAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
+		$reviewerSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_REVIEWER, $roleAssignments[ROLE_ID_REVIEWER]));
+
+		// 2) ... but only if they have been assigned to the submission as reviewers.
+		// FIXME: add the review assignments policy here.
+		$submissionAccessPolicy->addPolicy($reviewerSubmissionAccessPolicy);
 
 
 		$this->addPolicy($submissionAccessPolicy);
