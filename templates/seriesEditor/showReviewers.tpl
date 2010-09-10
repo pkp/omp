@@ -40,7 +40,7 @@
 {/if}
 
 {** FIXME: need to set escape=false due to bug 5265 *}
-{url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewFilesGridHandler" op="fetchGrid" stageId=$smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW monographId=$monographId reviewType=$currentReviewType round=$selectedRound canAdd=1 escape=false}
+{url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.EditorReviewFilesGridHandler" op="fetchGrid" stageId=$smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW monographId=$monographId reviewType=$currentReviewType round=$selectedRound canAdd=1 escape=false}
 {load_url_in_div id="reviewFileSelection" url=$reviewFileSelectionGridUrl}
 
 <br />

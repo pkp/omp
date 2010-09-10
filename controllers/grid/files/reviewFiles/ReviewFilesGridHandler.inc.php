@@ -33,14 +33,6 @@ class ReviewFilesGridHandler extends GridHandler {
 	function ReviewFilesGridHandler() {
 		parent::GridHandler();
 
-		$this->addRoleAssignment(ROLE_ID_AUTHOR,
-				$authorOperations = array());
-		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT,
-				$pressAssistantOperations = array_merge($authorOperations, array()));
-		$this->addRoleAssignment(ROLE_ID_REVIEWER,
-				$reviewerOperations = array_merge($pressAssistantOperations, array('fetchGrid', 'downloadFile', 'downloadAllFiles')));
-		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array_merge($reviewerOperations, array('manageReviewFiles',	'uploadReviewFile', 'updateReviewFiles')));
 	}
 
 	//
@@ -98,15 +90,6 @@ class ReviewFilesGridHandler extends GridHandler {
 	//
 	// Implement template methods from PKPHandler
 	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, &$args, $roleAssignments) {
-		$stageId = $request->getUserVar('stageId');
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
 
 	/*
 	 * Configure the grid

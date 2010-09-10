@@ -776,13 +776,14 @@ Validation may fail on search URLs that require posted form data.]]></message>
 	-->
 	<!-- Authorization -->
 	<message key="user.authorization.monographAuthor">You have been denied access because you do not seem to be the author of this monograph.</message>
+	<message key="user.authorization.monographReviewer">You have been denied access because you do not seem to be an assigned reviewer of this monograph.</message>
 	<message key="user.authorization.invalidMonograph">Invalid monograph or no monograph requested!</message>
 	<message key="user.authorization.invalidSeriesEditorSubmission">Invalid series editor submission or no series editor submission requested!</message>
 	<message key="user.authorization.noPress">No press in context!</message>
 	<message key="user.authorization.seriesAssignment">You are trying to access a monograph that is not part of your series.</message>
 	<message key="user.authorization.workflowStageAssignmentMissing">Access denied! You have not been assigned to this monograph's current workflow stage in your currently active user group.</message>
 	<message key="user.authorization.workflowStageSettingMissing">Access denied! The user group you are currently acting under has not been assigned to this workflow stage. Please check your press settings.</message>
-	
+
 	<!-- Icons: Default "alt" text -->
 
 	<!-- Debug messages -->

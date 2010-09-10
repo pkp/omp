@@ -48,14 +48,6 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	//
 	// Implement template methods from PKPHandler
 	//
-	/**
-	* @see PKPHandler::authorize()
-	*/
-	function authorize(&$request, &$args, $roleAssignments) {
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_INTERNAL_REVIEW));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
 
 	/*
 	 * Configure the grid
