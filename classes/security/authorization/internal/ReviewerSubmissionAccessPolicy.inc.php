@@ -49,7 +49,7 @@ class ReviewerSubmissionAccessPolicy extends AuthorizationPolicy {
 		if (!is_a($monograph, 'Monograph')) return AUTHORIZATION_DENY;
 
 		// Check if a review assignment exists between the submission and the user
-		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($monograph->getId(), $user->getId(), $monograph->getCurrentRound());
 
 		if (is_a($reviewAssignment, 'ReviewAssignment')) {
