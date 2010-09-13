@@ -34,6 +34,7 @@ class SubmissionDetailsFilesGridHandler extends SubmissionFilesGridHandler {
 				'returnFileRow', 'downloadFile'));
 	}
 
+
 	//
 	// Implement template methods from PKPHandler
 	//

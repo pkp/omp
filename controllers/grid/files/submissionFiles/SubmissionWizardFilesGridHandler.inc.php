@@ -20,8 +20,6 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 import('controllers.grid.files.submissionFiles.SubmissionFilesGridHandler');
 
 class SubmissionWizardFilesGridHandler extends SubmissionFilesGridHandler {
-	var $_monographId;
-
 	/**
 	 * Constructor
 	 */
@@ -33,6 +31,7 @@ class SubmissionWizardFilesGridHandler extends SubmissionFilesGridHandler {
 				'confirmRevision', 'deleteFile', 'editMetadata', 'saveMetadata', 'finishFileSubmission',
 				'returnFileRow', 'downloadFile', 'viewFile'));
 	}
+
 
 	//
 	// Implement template methods from PKPHandler

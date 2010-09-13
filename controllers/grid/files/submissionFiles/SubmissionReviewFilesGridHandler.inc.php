@@ -31,7 +31,7 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 
 
 	//
-	// Overridden methods from PKPHandler
+	// Implement template methods from PKPHandler
 	//
 	/**
 	 * @see PKPHandler::authorize()
@@ -62,10 +62,10 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 
 	}
 
+
 	//
 	// Overridden public AJAX methods from SubmissionFilesGridHandler
 	//
-
 	/**
 	 * Display the final tab of the modal
 	 * @param $args array
