@@ -79,7 +79,7 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 
 		// 2) ... but only if they have been assigned to the submission as reviewers.
 		import('classes.security.authorization.internal.ReviewerSubmissionAccessPolicy');
-		$authorSubmissionAccessPolicy->addPolicy(new ReviewerSubmissionAccessPolicy($request));
+		$reviewerSubmissionAccessPolicy->addPolicy(new ReviewerSubmissionAccessPolicy($request));
 		$submissionAccessPolicy->addPolicy($reviewerSubmissionAccessPolicy);
 
 

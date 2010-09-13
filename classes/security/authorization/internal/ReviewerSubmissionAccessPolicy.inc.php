@@ -5,7 +5,7 @@
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class MonographAuthorPolicy
+ * @class ReviewerSubmissionAccessPolicy
  * @ingroup security_authorization_internal
  *
  * @brief Class to control access to a monograph based on whether the user is an assigned reviewer.
