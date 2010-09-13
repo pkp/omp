@@ -40,48 +40,55 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 		//
 		// Managerial role
 		//
-		// Press managers have access to all submissions.
-		$submissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_MANAGER, $roleAssignments[ROLE_ID_PRESS_MANAGER]));
+		if (isset($roleAssignments[ROLE_ID_PRESS_MANAGER])) {
+			// Press managers have access to all submissions.
+			$submissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_MANAGER, $roleAssignments[ROLE_ID_PRESS_MANAGER]));
+		}
 
 
 		//
 		// Series editor role
 		//
-		// 1) Series editors can access all operations on submissions ...
-		$seriesEditorSubmissionAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-		$seriesEditorSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_SERIES_EDITOR, $roleAssignments[ROLE_ID_SERIES_EDITOR]));
+		if (isset($roleAssignments[ROLE_ID_SERIES_EDITOR])) {
+			// 1) Series editors can access all operations on submissions ...
+			$seriesEditorSubmissionAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
+			$seriesEditorSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_SERIES_EDITOR, $roleAssignments[ROLE_ID_SERIES_EDITOR]));
 
-		// 2) ... but only if the requested submission is part of their series.
-		import('classes.security.authorization.internal.SeriesAssignmentPolicy');
-		$seriesEditorSubmissionAccessPolicy->addPolicy(new SeriesAssignmentPolicy($request));
-		$submissionAccessPolicy->addPolicy($seriesEditorSubmissionAccessPolicy);
+			// 2) ... but only if the requested submission is part of their series.
+			import('classes.security.authorization.internal.SeriesAssignmentPolicy');
+			$seriesEditorSubmissionAccessPolicy->addPolicy(new SeriesAssignmentPolicy($request));
+			$submissionAccessPolicy->addPolicy($seriesEditorSubmissionAccessPolicy);
+		}
 
 
 		//
 		// Author role
 		//
-		// 1) Author role user groups can access whitelisted operations ...
-		$authorSubmissionAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-		$authorSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
+		if (isset($roleAssignments[ROLE_ID_AUTHOR])) {
+			// 1) Author role user groups can access whitelisted operations ...
+			$authorSubmissionAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
+			$authorSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
 
-		// 2) ... if the requested submission is their own ...
-		import('classes.security.authorization.internal.MonographAuthorPolicy');
-		$authorSubmissionAccessPolicy->addPolicy(new MonographAuthorPolicy($request));
-		$submissionAccessPolicy->addPolicy($authorSubmissionAccessPolicy);
+			// 2) ... if the requested submission is their own ...
+			import('classes.security.authorization.internal.MonographAuthorPolicy');
+			$authorSubmissionAccessPolicy->addPolicy(new MonographAuthorPolicy($request));
+			$submissionAccessPolicy->addPolicy($authorSubmissionAccessPolicy);
+		}
 
 
 		//
 		// Reviewer role
 		//
-		// 1) Reviewers can access whitelisted operations ...
-		$reviewerSubmissionAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-		$reviewerSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_REVIEWER, $roleAssignments[ROLE_ID_REVIEWER]));
+		if (isset($roleAssignments[ROLE_ID_REVIEWER])) {
+			// 1) Reviewers can access whitelisted operations ...
+			$reviewerSubmissionAccessPolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
+			$reviewerSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_REVIEWER, $roleAssignments[ROLE_ID_REVIEWER]));
 
-		// 2) ... but only if they have been assigned to the submission as reviewers.
-		import('classes.security.authorization.internal.ReviewerSubmissionAccessPolicy');
-		$reviewerSubmissionAccessPolicy->addPolicy(new ReviewerSubmissionAccessPolicy($request));
-		$submissionAccessPolicy->addPolicy($reviewerSubmissionAccessPolicy);
-
+			// 2) ... but only if they have been assigned to the submission as reviewers.
+			import('classes.security.authorization.internal.ReviewerSubmissionAccessPolicy');
+			$reviewerSubmissionAccessPolicy->addPolicy(new ReviewerSubmissionAccessPolicy($request));
+			$submissionAccessPolicy->addPolicy($reviewerSubmissionAccessPolicy);
+		}
 
 		$this->addPolicy($submissionAccessPolicy);
 	}

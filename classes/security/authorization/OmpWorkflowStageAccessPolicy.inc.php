@@ -38,55 +38,63 @@ class OmpWorkflowStageAccessPolicy extends PressPolicy {
 		//
 		// Managerial role
 		//
-		// Press managers can access all whitelisted operations for all submissions and all workflow stages.
-		$workflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_MANAGER, $roleAssignments[ROLE_ID_PRESS_MANAGER]));
+		if (isset($roleAssignments[ROLE_ID_PRESS_MANAGER])) {
+			// Press managers can access all whitelisted operations for all submissions and all workflow stages.
+			$workflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_MANAGER, $roleAssignments[ROLE_ID_PRESS_MANAGER]));
+		}
 
 
 		//
 		// Series editor role
 		//
-		// 1) Series editors can access whitelisted operations ...
-		$seriesEditorWorkflowStagePolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-		$seriesEditorWorkflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_SERIES_EDITOR, $roleAssignments[ROLE_ID_SERIES_EDITOR]));
+		if (isset($roleAssignments[ROLE_ID_PRESS_MANAGER])) {
+			// 1) Series editors can access whitelisted operations ...
+			$seriesEditorWorkflowStagePolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
+			$seriesEditorWorkflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_SERIES_EDITOR, $roleAssignments[ROLE_ID_SERIES_EDITOR]));
 
-		// 2) ... if the requested workflow stage has been assigned to them in the press settings ...
-		import('classes.security.authorization.internal.WorkflowSettingsAssignmentPolicy');
-		$seriesEditorWorkflowStagePolicy->addPolicy(new WorkflowSettingsAssignmentPolicy($request));
+			// 2) ... if the requested workflow stage has been assigned to them in the press settings ...
+			import('classes.security.authorization.internal.WorkflowSettingsAssignmentPolicy');
+			$seriesEditorWorkflowStagePolicy->addPolicy(new WorkflowSettingsAssignmentPolicy($request));
 
-		// 3) ... but only if the requested submission is part of their series.
-		import('classes.security.authorization.internal.SeriesAssignmentPolicy');
-		$seriesEditorWorkflowStagePolicy->addPolicy(new SeriesAssignmentPolicy($request));
-		$workflowStagePolicy->addPolicy($seriesEditorWorkflowStagePolicy);
+			// 3) ... but only if the requested submission is part of their series.
+			import('classes.security.authorization.internal.SeriesAssignmentPolicy');
+			$seriesEditorWorkflowStagePolicy->addPolicy(new SeriesAssignmentPolicy($request));
+			$workflowStagePolicy->addPolicy($seriesEditorWorkflowStagePolicy);
+		}
 
 
 		//
 		// Press role
 		//
-		// 1) Press role user groups can access whitelisted operations ...
-		$pressRoleWorkflowStagePolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-		$pressRoleWorkflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_ASSISTANT, $roleAssignments[ROLE_ID_PRESS_ASSISTANT]));
+		if (isset($roleAssignments[ROLE_ID_PRESS_MANAGER])) {
+			// 1) Press role user groups can access whitelisted operations ...
+			$pressRoleWorkflowStagePolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
+			$pressRoleWorkflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_ASSISTANT, $roleAssignments[ROLE_ID_PRESS_ASSISTANT]));
 
-		// 2) ... but only if the requested workflow stage has been assigned to them in the requested submission.
-		import('classes.security.authorization.internal.WorkflowSubmissionAssignmentPolicy');
-		$pressRoleWorkflowStagePolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request, $stageId));
-		$workflowStagePolicy->addPolicy($pressRoleWorkflowStagePolicy);
+			// 2) ... but only if the requested workflow stage has been assigned to them in the requested submission.
+			import('classes.security.authorization.internal.WorkflowSubmissionAssignmentPolicy');
+			$pressRoleWorkflowStagePolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request, $stageId));
+			$workflowStagePolicy->addPolicy($pressRoleWorkflowStagePolicy);
+		}
 
 
 		//
 		// Author role
 		//
-		// 1) Author role user groups can access whitelisted operations ...
-		$authorRoleWorkflowStagePolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
-		$authorRoleWorkflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
+		if (isset($roleAssignments[ROLE_ID_PRESS_MANAGER])) {
+			// 1) Author role user groups can access whitelisted operations ...
+			$authorRoleWorkflowStagePolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
+			$authorRoleWorkflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
 
-		// 2) ... if the requested submission is their own ...
-		import('classes.security.authorization.internal.MonographAuthorPolicy');
-		$authorRoleWorkflowStagePolicy->addPolicy(new MonographAuthorPolicy($request));
+			// 2) ... if the requested submission is their own ...
+			import('classes.security.authorization.internal.MonographAuthorPolicy');
+			$authorRoleWorkflowStagePolicy->addPolicy(new MonographAuthorPolicy($request));
 
-		// 3) ... and only if the requested workflow stage has been assigned to them in the requested submission.
-		import('classes.security.authorization.internal.WorkflowSubmissionAssignmentPolicy');
-		$authorRoleWorkflowStagePolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request, $stageId));
-		$workflowStagePolicy->addPolicy($authorRoleWorkflowStagePolicy);
+			// 3) ... and only if the requested workflow stage has been assigned to them in the requested submission.
+			import('classes.security.authorization.internal.WorkflowSubmissionAssignmentPolicy');
+			$authorRoleWorkflowStagePolicy->addPolicy(new WorkflowSubmissionAssignmentPolicy($request, $stageId));
+			$workflowStagePolicy->addPolicy($authorRoleWorkflowStagePolicy);
+		}
 
 
 		// Add the role-specific policies to this policy set.
