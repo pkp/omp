@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class StageParticipantGridRow
- * @ingroup controllers_grid_stageParticipant
+ * @ingroup controllers_grid_users_stageParticipant
  *
  * @brief StageParticipant grid row definition
  */

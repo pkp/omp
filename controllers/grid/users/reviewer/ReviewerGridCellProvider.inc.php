@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file classes/controllers/grid/users/ReviewerGridCellProvider.inc.php
+ * @file classes/controllers/grid/users/reviewer/ReviewerGridCellProvider.inc.php
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class DataObjectGridCellProvider
- * @ingroup controllers_grid
+ * @class ReviewerGridCellProvider
+ * @ingroup controllers_grid_users_reviewer
  *
- * @brief Base class for a cell provider that can retrieve labels for submission contributors
+ * @brief Base class for a cell provider that can retrieve labels for reviewer grid rows
  */
 
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
@@ -29,6 +29,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 	 * Gathers the state of a given cell given a $row/$column combination
 	 * @param $row GridRow
 	 * @param $column GridColumn
+	 * @return string
 	 */
 	function getCellState(&$row, &$column) {
 		$element =& $row->getData();

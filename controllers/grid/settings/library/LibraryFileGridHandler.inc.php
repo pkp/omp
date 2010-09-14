@@ -6,8 +6,8 @@
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class FileGridHandler
- * @ingroup controllers_grid_file
+ * @class LibraryFileGridHandler
+ * @ingroup controllers_grid_settings_library
  *
  * @brief Handle file grid requests.
  */
@@ -52,7 +52,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	//
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -127,6 +127,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * An action to add a new file
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editFile(&$args, &$request) {
 		$this->initialize($request);
@@ -184,7 +185,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * Save the name attribute for a file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function saveMetadata(&$args, &$request) {
 		$fileId = $request->getUserVar('rowId');
@@ -217,7 +218,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * Delete a file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function deleteFile(&$args, &$request) {
 		$fileId = isset($args['rowId']) ? $args['rowId'] : null;

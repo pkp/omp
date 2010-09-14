@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFilesArtworkMetadataForm
- * @ingroup controllers_grid_file_form
+ * @ingroup controllers_grid_files_submissionFiles_form
  *
  * @brief Form for editing artwork file metadata.
  */
@@ -67,10 +67,10 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		} else {
 			$chapters = null;
 		}
-		
+
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $this->_fileId);
-		$templateMgr->assign('note', $notes->next()); 
+		$templateMgr->assign('note', $notes->next());
 
 		$templateMgr->assign_by_ref('chapterOptions', $chapterOptions);
 
@@ -157,23 +157,23 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		}
 
 		$artworkFileDao->updateObject($artworkFile);
-		
+
 		// Save the note if it exists
 		if ($this->getData('note')) {
 			$noteDao =& DAORegistry::getDAO('NoteDAO');
 			$note = $noteDao->newDataObject();
 			$press =& Request::getPress();
 			$user =& Request::getUser();
-	
+
 			$note->setContextId($press->getId());
 			$note->setUserId($user->getId());
 			$note->setContents($this->getData('note'));
 			$note->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
 			$note->setAssocId($this->_fileId);
-	
+
 		 	$noteDao->insertObject($note);
 		}
-			
+
 		return $artworkFile->getId();
 	}
 

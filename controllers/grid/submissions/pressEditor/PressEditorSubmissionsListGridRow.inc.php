@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file controllers/grid/files/submissionFiles/SubmissionFilesGridRow.inc.php
+ * @file controllers/grid/submissions/pressEditor/PressEditorSubmissionsListGridRow.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class FileRow
- * @ingroup controllers_grid_file
+ * @ingroup controllers_grid_submissions_pressEditor
  *
- * @brief Handle submission file grid row requests.
+ * @brief Handle editor submission list grid row requests.
  */
 
 import('lib.pkp.classes.controllers.grid.GridRow');
@@ -27,7 +27,7 @@ class PressEditorSubmissionsListGridRow extends GridRow {
 	//
 	/*
 	 * Configure the grid row
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);

@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionChecklistForm
- * @ingroup controllers_grid_submissionChecklist_form
+ * @ingroup controllers_grid_settings_submissionChecklist_form
  *
  * @brief Form for adding/edditing a submissionChecklist
  * stores/retrieves from an associative array
@@ -32,6 +32,8 @@ class SubmissionChecklistForm extends Form {
 
 	/**
 	 * Initialize form data from current settings.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function initData(&$args, &$request) {
 		$press =& Request::getPress();
@@ -64,6 +66,7 @@ class SubmissionChecklistForm extends Form {
 
 	/**
 	 * Fetch
+	 * @param $request PKPRequest
 	 */
 	function fetch(&$request) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));

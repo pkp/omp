@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SponsorGridRow
- * @ingroup controllers_grid_sponsor
+ * @ingroup controllers_grid_settings_sponsor
  *
  * @brief Handle sponsor grid row requests.
  */
@@ -27,7 +27,7 @@ class SponsorGridRow extends GridRow {
 	//
 	/*
 	 * Configure the grid row
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);

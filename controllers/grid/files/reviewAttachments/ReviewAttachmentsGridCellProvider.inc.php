@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class GridCellProvider
- * @ingroup controllers_grid_reviewAttachments
+ * @ingroup controllers_grid_files_reviewAttachments
  *
  * @brief Subclass class for a ReviewAttachments grid column's cell provider
  */

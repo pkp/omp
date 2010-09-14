@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/files/editorReviewFileSelection/ReviewFilesGridHandler.inc.php
+ * @file controllers/grid/files/reviewFiles/ReviewFilesGridHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -93,7 +93,7 @@ class ReviewFilesGridHandler extends GridHandler {
 
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);

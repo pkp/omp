@@ -32,7 +32,7 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 	//
 	/**
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -112,6 +112,8 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 	/**
 	 * Display form to create/edit a review form element.
 	 * @param $args ($reviewFormId, $reviewFormElementId)
+	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editReviewFormElement(&$args, &$request) {
 		$this->setupTemplate($args, $request);
@@ -152,6 +154,9 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 
 	/**
 	 * Save changes to a review form element.
+	 * @param $args ($reviewFormId, $reviewFormElementId)
+	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function updateReviewFormElement(&$args, &$request) {
 		$reviewFormId = Request::getUserVar('reviewFormId') === null? null : (int) Request::getUserVar('reviewFormId');
@@ -230,7 +235,9 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 
 	/**
 	 * Delete a review form element.
-	 * @param $args array ($reviewFormId, $reviewFormElementId)
+	 * @param $args ($reviewFormId, $reviewFormElementId)
+	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function deleteReviewFormElement(&$args, &$request) {
 		$reviewFormId = $this->getReviewFormId();

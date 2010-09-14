@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SetupGridHandler
- * @ingroup controllers_grid
+ * @ingroup controllers_grid_settings
  *
  * @brief Base class for setup grid handlers
  */
@@ -32,6 +32,9 @@ class SetupGridHandler extends GridHandler {
 
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpPressAccessPolicy');

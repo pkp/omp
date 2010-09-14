@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ManageReviewFilesForm
- * @ingroup controllers_grid_submissions_pressEditor
+ * @ingroup controllers_grid_files_reviewFiles_form
  *
  * @brief Form for add or removing files from a review
  */

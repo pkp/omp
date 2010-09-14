@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewFormGridHandler
- * @ingroup controllers_grid_reviewForm
+ * @ingroup controllers_grid_settings_reviewForm
  *
  * @brief Handle requests for Review Form management functions.
  *
@@ -33,7 +33,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 	//
 	/**
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -110,6 +110,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 	 * Display form to create/edit a review form.
 	 * @param $args array, first parameter is the ID of the review form to edit
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editReviewForm(&$args, &$request) {
 		$this->setupTemplate($args, $request);
@@ -149,6 +150,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 	 * Save changes to a review form.
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function updateReviewForm(&$args, &$request) {
 		$reviewFormId = Request::getUserVar('reviewFormId') === null? null : (int) Request::getUserVar('reviewFormId');
@@ -197,7 +199,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 	 * Delete a review form.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function deleteReviewForm(&$args, &$request) {
 		$router =& $request->getRouter();

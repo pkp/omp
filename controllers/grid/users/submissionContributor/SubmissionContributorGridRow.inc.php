@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionContributorGridRow
- * @ingroup controllers_grid_submissionContributor
+ * @ingroup controllers_grid_users_submissionContributor
  *
  * @brief SubmissionContributor grid row definition
  */

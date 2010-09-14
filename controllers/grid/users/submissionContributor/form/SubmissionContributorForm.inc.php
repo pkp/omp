@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionContributorForm
- * @ingroup controllers_grid_submit_submissionContributor_form
+ * @ingroup controllers_grid_users_submissionContributor_form
  *
  * @brief Form for adding/editing a submissionContributor
  */

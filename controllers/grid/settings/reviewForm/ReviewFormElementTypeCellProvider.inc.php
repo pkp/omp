@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewFormElementTypeCellProvider
- * @ingroup controllers_grid_reviewForm
+ * @ingroup controllers_grid_settings_reviewForm
  *
  * @brief Render the 'type' column of the Review Form Element grid.
  */

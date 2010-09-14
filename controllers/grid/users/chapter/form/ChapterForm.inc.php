@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ChapterForm
- * @ingroup controllers_grid_chapterId_form
+ * @ingroup controllers_grid_users_chapter_form
  *
  * @brief Form for adding/editing a chapter
  * stores/retrieves from an associative array

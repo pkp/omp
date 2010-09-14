@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file controllers/grid/files/editorReviewFileSelection/EditorReviewFileSelectionGridCellProvder.inc.php
+ * @file controllers/grid/files/reviewFiles/ReviewFilesGridCellProvider.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class GridCellProvider
- * @ingroup controllers_grid_editorReviewFileSelection
+ * @class ReviewFilesGridCellProvider
+ * @ingroup controllers_grid_files_reviewFiles
  *
- * @brief Subclass class for a EditorReviewFileSelection grid column's cell provider
+ * @brief Displays files that will be used in the review stage of a submission workflow
  */
 
 import('lib.pkp.classes.controllers.grid.GridCellProvider');

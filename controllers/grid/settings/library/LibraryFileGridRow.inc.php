@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file controllers/grid/file/FileRow.inc.php
+ * @file controllers/grid/settings/library/LibraryFileGridRow.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class FileRow
- * @ingroup controllers_grid_file
+ * @class LibraryFileGridRow
+ * @ingroup controllers_grid_settings_library
  *
- * @brief Handle file grid row requests.
+ * @brief Handle library file grid row requests.
  */
 
 import('lib.pkp.classes.controllers.grid.GridRow');
@@ -44,7 +44,7 @@ class LibraryFileGridRow extends GridRow {
 	//
 	/*
 	 * Configure the grid row
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);

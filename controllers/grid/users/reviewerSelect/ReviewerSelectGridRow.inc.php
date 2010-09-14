@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewerSelectGridRow
- * @ingroup controllers_grid_reviewerSelect
+ * @ingroup controllers_grid_users_reviewerSelect
  *
  * @brief ReviewerSelect grid row definition
  */
@@ -46,7 +46,6 @@ class ReviewerSelectGridRow extends GridRow {
 	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
-		// Do the default initialization
 		parent::initialize($request);
 		$press =& $request->getPress();
 

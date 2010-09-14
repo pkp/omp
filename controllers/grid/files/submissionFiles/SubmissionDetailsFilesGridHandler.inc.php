@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/files/submissionFiles/SubmissionFilesGridHandler.inc.php
+ * @file controllers/grid/files/submissionFiles/SubmissionDetailsFilesGridHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SubmissionFilesGridHandler
- * @ingroup controllers_grid_file
+ * @class SubmissionDetailsFilesGridHandler
+ * @ingroup controllers_grid_files_submissionFiles
  *
  * @brief Handle submission file grid requests on the submission details page.
  * The submission author and all press/editor roles have access to this grid.
@@ -40,6 +40,9 @@ class SubmissionDetailsFilesGridHandler extends SubmissionFilesGridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');

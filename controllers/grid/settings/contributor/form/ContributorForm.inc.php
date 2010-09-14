@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ContributorForm
- * @ingroup controllers_grid_contributor_form
+ * @ingroup controllers_grid_settings_contributor_form
  *
  * @brief Form for adding/edditing a contributor
  * stores/retrieves from an associative array
@@ -34,6 +34,8 @@ class ContributorForm extends Form {
 
 	/**
 	 * Initialize form data from current settings.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function initData(&$args, &$request) {
 		$press =& Request::getPress();
@@ -59,6 +61,7 @@ class ContributorForm extends Form {
 
 	/**
 	 * Fetch
+	 * @param $request PKPRequest
 	 */
 	function fetch(&$request) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));

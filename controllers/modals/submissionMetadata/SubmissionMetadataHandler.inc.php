@@ -23,23 +23,6 @@ class SubmissionMetadataHandler extends Handler {
 	 */
 	function SubmissionMetadataHandler() {
 		parent::Handler();
-
-		$this->addRoleAssignment(
-			array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-			array('fetch'));
-	}
-
-	//
-	// Implement template methods from PKPHandler.
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, &$args, $roleAssignments) {
-		$stageId = $request->getUserVar('stageId');
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
-		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 

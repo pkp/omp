@@ -64,7 +64,7 @@
 	{/literal}
 </script>
 
-<form name="uploadForm" id="uploadForm" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveFile" monographId=$monographId reviewId=$reviewId}" method="post">
+<form name="uploadForm" id="uploadForm" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveFile" monographId=$monographId reviewId=$reviewId escape=false}" method="post">
 	<!-- Max file size of 5 MB -->
 	<input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
 	{fbvFormArea id="file"}

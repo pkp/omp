@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/files/revisions/RevisionsGridHandler.inc.php
+ * @file controllers/grid/files/revisions/RevisionsGridCellProvider.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.

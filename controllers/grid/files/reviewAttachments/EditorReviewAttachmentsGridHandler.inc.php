@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @filecontrollers/grid/files/reviewAttachments/ReviewAttachmentsGridHandler.inc.php
+ * @file controllers/grid/files/reviewAttachments/EditorReviewAttachmentsGridHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class FileGridHandler
- * @ingroup controllers_grid_file
+ * @class EditorReviewAttachmentsGridHandler
+ * @ingroup controllers_grid_files_reviewAttachments
  *
- * @brief Handle file grid requests.
+ * @brief Handle review attachment grid requests (editor's perspective)
  */
 
 import('controllers.grid.files.reviewAttachments.ReviewAttachmentsGridRow');
@@ -53,6 +53,9 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
@@ -62,7 +65,7 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		// Set the Is Selectable boolean flag
@@ -136,6 +139,7 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 	 * An action to add a new file
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editFile(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');

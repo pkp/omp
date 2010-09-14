@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class StageParticipantGridHandler
- * @ingroup controllers_grid_stageParticipant
+ * @ingroup controllers_grid_users_stageParticipant
  *
  * @brief Handle stageParticipant grid requests.
  */
@@ -53,6 +53,9 @@ class StageParticipantGridHandler extends GridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId');
@@ -63,7 +66,7 @@ class StageParticipantGridHandler extends GridHandler {
 
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -131,7 +134,6 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @return StageParticipantGridRow
 	 */
 	function &getRowInstance() {
-		// Return a reviewer row
 		$row = new StageParticipantGridRow();
 		return $row;
 	}
@@ -143,6 +145,7 @@ class StageParticipantGridHandler extends GridHandler {
 	 * An action to manually add a new stage participant
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function addStageParticipant(&$args, &$request) {
 		// Identify the submission Id
@@ -161,6 +164,7 @@ class StageParticipantGridHandler extends GridHandler {
 	 * Save the 'add stage participant' form.
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function saveStageParticipant(&$args, &$request) {
 		// Identify the submission Id

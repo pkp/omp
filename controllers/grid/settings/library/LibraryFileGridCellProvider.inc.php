@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file classes/controllers/grid/column/GridCellProvider.inc.php
+ * @file classes/controllers/grid/settings/library/LibraryFileGridCellProvider.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class GridCellProvider
- * @ingroup controllers_grid_libraryFile
+ * @class LibraryFileGridCellProvider
+ * @ingroup controllers_grid_settings_library
  *
  * @brief Subclass class for a LibraryFile grid column's cell provider
  */

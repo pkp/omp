@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @filecontrollers/grid/files/reviewAttachments/ReviewAttachmentsGridHandler.inc.php
+ * @filecontrollers/grid/files/reviewAttachments/ReviewerReviewAttachmentsGridHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class FileGridHandler
- * @ingroup controllers_grid_file
+ * @class ReviewerReviewAttachmentsGridHandler
+ * @ingroup controllers_grid_files_reviewAttachments
  *
  * @brief Handle file grid requests.
  */
@@ -29,6 +29,9 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
@@ -38,7 +41,7 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -77,6 +80,7 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	 * An action to add a new file
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editFile(&$args, &$request) {
 		$fileId = $request->getUserVar('rowId');
@@ -102,7 +106,7 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	 */
 	function saveFile(&$args, &$request) {
 		$router =& $request->getRouter();
-		$reviewId = $request->getUserVar('reviewId');
+		$reviewId = (int) $request->getUserVar('reviewId');
 
 		import('controllers.grid.files.reviewAttachments.form.ReviewerReviewAttachmentsForm');
 		$reviewAttachmentsForm = new ReviewerReviewAttachmentsForm($reviewId, null, $this->getId());
@@ -110,10 +114,12 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 
 		if ($reviewAttachmentsForm->validate()) {
 			$fileId = $reviewAttachmentsForm->execute($args, $request);
+			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 			$additionalAttributes = array(
-				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('rowId' => $fileId)),
-				'saveUrl' => $router->url($request, null, null, 'returnFileRow', null, array('rowId' => $fileId))
+				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('monographId' => $reviewAssignment->getSubmissionId(), 'rowId' => $fileId)),
+				'saveUrl' => $router->url($request, null, null, 'returnFileRow', null, array('monographId' => $reviewAssignment->getSubmissionId(), 'rowId' => $fileId))
 			);
 			$json = new JSON('true', Locale::translate('submission.uploadSuccessful'), 'false', $fileId, $additionalAttributes);
 		} else {

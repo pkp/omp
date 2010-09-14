@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class PressEditorSubmissionsListGridCellProvider.inc.php
- * @ingroup controllers_grid_submissionsList_pressEditor
+ * @ingroup controllers_grid_submissions_pressEditor
  *
  * @brief Class for a cell provider that can retrieve labels from submissions
  */
@@ -18,7 +18,7 @@ class PressEditorSubmissionsListGridCellProvider extends SubmissionsListGridCell
 	/**
 	 * Constructor
 	 */
-	function SubmissionsListGridCellProvider() {
+	function PressEditorSubmissionsListGridCellProvider() {
 		parent::DataObjectGridCellProvider();
 	}
 

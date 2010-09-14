@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFilesGridCellProvider
- * @ingroup controllers_grid_submissionsList
+ * @ingroup controllers_grid_files_submissionFiles
  *
  * @brief Class for a cell provider that can retrieve labels from submission files
  */

@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class GroupForm
- * @ingroup manager_form
+ * @ingroup controllers_grid_settings_masthead_form
  * @see Group
  *
  * @brief Form for press managers to create/edit groups.

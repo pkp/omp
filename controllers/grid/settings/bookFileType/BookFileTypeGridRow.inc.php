@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class BookFileTypeGridRow
- * @ingroup controllers_grid_bookFileType
+ * @ingroup controllers_grid_settings_bookFileType
  *
  * @brief Handle Book File Type grid row requests.
  */
@@ -27,7 +27,7 @@ class BookFileTypeGridRow extends GridRow {
 	//
 	/**
 	 * @see GridRow::initialize()
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);

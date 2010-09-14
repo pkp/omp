@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFilesGridHandler
- * @ingroup controllers_grid_file
+ * @ingroup controllers_grid_files_submissionFiles
  *
  * @brief Handle submission file grid requests.
  */
@@ -31,7 +31,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 	/*
 	* Configure the grid
-	* @param PKPRequest $request
+	* @param $request PKPRequest
 	*/
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -94,6 +94,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	* An action to add a new file
 	* @param $args array
 	* @param $request PKPRequest
+	* @return JSON
 	*/
 	function addFile(&$args, &$request) {
 		// Calling editSponsor with an empty file id will add a new file
@@ -103,6 +104,12 @@ class SubmissionFilesGridHandler extends GridHandler {
 		return $this->editFile($args, $request);
 	}
 
+	/**
+	* An action to add a revision to an existing file
+	* @param $args array
+	* @param $request PKPRequest
+	* @return JSON
+	*/
 	function addRevision(&$args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('isRevision', 'true');
@@ -114,6 +121,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * Action to edit an existing file (or a new one where the file id is null)
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editFile(&$args, &$request) {
 		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
@@ -131,6 +139,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * Display the file upload form
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function displayFileForm(&$args, &$request) {
 		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
@@ -201,6 +210,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return JSON
+	 * @return JSON
 	 */
 	function confirmRevision(&$args, &$request) {
 		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
@@ -231,6 +241,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * Edit the metadata of a submission file
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editMetadata(&$args, &$request) {
 		$fileId = $request->getUserVar('fileId');
@@ -272,6 +283,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * Save the metadata of a submission file
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function saveMetadata(&$args, &$request) {
 		$fileId = $request->getUserVar('fileId');
@@ -319,6 +331,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * Display the final tab of the modal
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function finishFileSubmission(&$args, &$request) {
 		$fileId = $request->getUserVar('fileId');
@@ -337,6 +350,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * Return a grid row with for the submission grid
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function returnFileRow(&$args, &$request) {
 		$fileId = $request->getUserVar('fileId');
@@ -364,7 +378,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * Delete a file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function deleteFile(&$args, &$request) {
 		$fileId = $request->getUserVar('fileId');

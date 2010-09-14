@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SeriesGridRow
- * @ingroup controllers_grid_series
+ * @ingroup controllers_grid_settings_series
  *
  * @brief Handle series grid row requests.
  */
@@ -27,7 +27,7 @@ class SeriesGridRow extends GridRow {
 	//
 	/*
 	 * Configure the grid row
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);

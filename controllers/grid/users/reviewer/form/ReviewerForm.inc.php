@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewerForm
- * @ingroup controllers_grid_reviewer__form
+ * @ingroup controllers_grid_users_reviewer_form
  *
  * @brief Form for adding a reviewer to a submission
  */
@@ -92,16 +92,6 @@ class ReviewerForm extends Form {
 		if(isset($reviewAssignment)) {
 			$reviewMethod = $reviewAssignment->getReviewMethod();
 		} else $reviewMethod = SUBMISSION_REVIEW_METHOD_BLIND;
-
-		/* Load in the email to be used as the personal message
-		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($this->getMonograph(), 'REVIEW_REQUEST');
-		$user =& $request->getUser();
-		$paramArray = array(
-			'editorialContactSignature' => $user->getContactSignature(),
-		);
-		$email->assignParams($paramArray);
-		*/
 
 		// Get the response/review due dates or else set defaults
 		if (isset($reviewAssignment) && $reviewAssignment->getDueDate() != null) {

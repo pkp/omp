@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class GridCellProvider
- * @ingroup controllers_grid_masthead
+ * @ingroup controllers_grid_settings_masthead
  *
  * @brief Subclass class for a Masthead grid column's cell provider
  */

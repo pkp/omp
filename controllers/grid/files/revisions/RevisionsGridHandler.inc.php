@@ -99,6 +99,7 @@ class RevisionsGridHandler extends GridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 *
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
@@ -108,7 +109,7 @@ class RevisionsGridHandler extends GridHandler {
 
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);

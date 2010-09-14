@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SponsorGridHandler
- * @ingroup controllers_grid_sponsor
+ * @ingroup controllers_grid_settings_sponsor
  *
  * @brief Handle sponsor grid requests.
  */
@@ -30,7 +30,7 @@ class SponsorGridHandler extends SetupGridHandler {
 	//
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -96,6 +96,7 @@ class SponsorGridHandler extends SetupGridHandler {
 	 * An action to edit a sponsor
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editSponsor(&$args, &$request) {
 		$sponsorId = isset($args['rowId'])?$args['rowId']:null;
@@ -117,7 +118,7 @@ class SponsorGridHandler extends SetupGridHandler {
 	 * Update a sponsor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function updateSponsor(&$args, &$request) {
 		// -> sponsorId must be present and valid
@@ -152,7 +153,7 @@ class SponsorGridHandler extends SetupGridHandler {
 	 * Delete a sponsor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function deleteSponsor(&$args, &$request) {
 		$sponsorId = isset($args['rowId'])?$args['rowId']:null;

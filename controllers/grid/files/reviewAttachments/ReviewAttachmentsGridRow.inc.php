@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class FileRow
- * @ingroup controllers_grid_file
+ * @ingroup controllers_grid_files_reviewAttachments
  *
  * @brief Handle file grid row requests.
  */
@@ -82,7 +82,7 @@ class ReviewAttachmentsGridRow extends GridRow {
 	//
 	/*
 	 * Configure the grid row
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);

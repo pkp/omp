@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewerSelectGridHandler
- * @ingroup controllers_grid_reviewerSelect
+ * @ingroup controllers_grid_users_reviewerSelect
  *
  * @brief Handle reviewer selector grid requests.
  */
@@ -40,6 +40,9 @@ class ReviewerSelectGridHandler extends GridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
@@ -49,7 +52,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -149,7 +152,6 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 * @return ReviewerSelectGridRow
 	 */
 	function &getRowInstance() {
-		// Return a submissionContributor row
 		$row = new ReviewerSelectGridRow();
 		return $row;
 	}
@@ -176,7 +178,6 @@ class ReviewerSelectGridHandler extends GridHandler {
 
 		$data =& $seriesEditorSubmissionDao->getFilteredReviewers($press->getId(), $doneMin, $doneMax, $avgMin, $avgMax, $lastMin, $lastMax, $activeMin, $activeMax, $interests);
 		$this->setData($data);
-
 
 		// Re-display the grid
 		return $this->fetchGrid($args,$request);

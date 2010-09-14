@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/chapter/ChapterGridHandler.inc.php
+ * @file controllers/grid/users/chapter/ChapterGridHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ChapterGridHandler
- * @ingroup controllers_grid_chapter
+ * @ingroup controllers_grid_users_chapter
  *
  * @brief Handle chapter grid requests.
  */
@@ -51,6 +51,9 @@ class ChapterGridHandler extends CategoryGridHandler{
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
@@ -60,7 +63,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -145,7 +148,6 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 * @return ChapterGridRow
 	 */
 	function &getCategoryRowInstance() {
-		// Return a chapter row
 		$row = new ChapterGridCategoryRow();
 		return $row;
 	}
@@ -167,6 +169,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 * Edit a chapter
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editChapter(&$args, &$request) {
 		// Identify the monograph being worked on
@@ -191,7 +194,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 * Update a chapter
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function updateChapter(&$args, &$request) {
 		// Identify the monograph being worked on
@@ -235,7 +238,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 * Delete a chapter
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function deleteChapter(&$args, &$request) {
 		// Identify the chapter to be deleted

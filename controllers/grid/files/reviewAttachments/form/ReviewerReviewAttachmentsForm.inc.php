@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/files/reviewAttachments/form/ReviewAttachmentsForm.inc.php
+ * @file controllers/grid/files/reviewAttachments/form/ReviewerReviewAttachmentsForm.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class FileForm
- * @ingroup controllers_grid_file_form
+ * @class ReviewerReviewAttachmentsForm
+ * @ingroup controllers_grid_files_reviewAttachments_form
  *
  * @brief Form for adding/editing a review attachment file
  */
@@ -27,7 +27,7 @@ class ReviewerReviewAttachmentsForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function ReviewerReviewAttachmentsForm($reviewId = null, $fileId = null, $gridId = null) {
+	function ReviewerReviewAttachmentsForm($reviewId, $fileId = null, $gridId = null) {
 		$this->reviewId = $reviewId;
 		$this->fileId = $fileId;
 		$this->gridId = $gridId;
@@ -38,6 +38,8 @@ class ReviewerReviewAttachmentsForm extends Form {
 
 	/**
 	 * Initialize form data from current settings.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function initData(&$args, &$request) {
 		if ( isset($this->fileId) ) {
@@ -53,11 +55,16 @@ class ReviewerReviewAttachmentsForm extends Form {
 
 	/**
 	 * Fetch
+	 * @param $request PKPRequest
 	 */
 	function fetch(&$request) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('reviewId', $this->reviewId);
+
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignment =& $reviewAssignmentDao->getById($this->reviewId);
+		$templateMgr->assign('monographId', $reviewAssignment->getSubmissionId());
 
 		if ($this->fileId) {
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
@@ -85,6 +92,7 @@ class ReviewerReviewAttachmentsForm extends Form {
 		$reviewAssignment =& $reviewAssignmentDao->getById($this->reviewId);
 
 		$monographFileManager = new MonographFileManager($reviewAssignment->getMonographId());
+		$fileId = null;
 		if ($monographFileManager->uploadedFileExists('attachment')) {
 			if ($reviewAssignment->getReviewerFileId() != null) {
 				$fileId = $monographFileManager->uploadReviewFile('attachment', $reviewAssignment->getReviewerFileId(), $this->reviewId);

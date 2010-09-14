@@ -18,18 +18,18 @@ import('lib.pkp.classes.form.Form');
 class FileForm extends Form {
 	/** the type of file being uploaded */
 	var $fileType;
-	
+
 	/** the id of the file being edited */
-	var $fileId; 
-	
+	var $fileId;
+
 	/**
 	 * Constructor.
 	 */
 	function FileForm($fileType, $fileId = null, $isUploading = false) {
 		$this->fileType = $fileType;
-		$this->fileId = $fileId;		
+		$this->fileId = $fileId;
 		parent::Form('controllers/grid/settings/library/form/fileForm.tpl');
-		
+
 		if (!$isUploading) {
 			$this->addCheck(new FormValidator($this, 'name', 'required', 'submission.nameRequired'));
 		}
@@ -38,12 +38,14 @@ class FileForm extends Form {
 
 	/**
 	 * Initialize form data from current settings.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function initData(&$args, &$request) {
 		if ( isset($this->fileId) ) {
 			$this->_data['fileId'] = $this->fileId;
 		}
-		
+
 		$this->_data['fileType'] = $this->fileType;
 		// grid related data
 		$this->_data['gridId'] = $args['gridId'];
@@ -54,6 +56,7 @@ class FileForm extends Form {
 
 	/**
 	 * Fetch
+	 * @param $request PKPRequest
 	 */
 	function fetch(&$request) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
@@ -81,7 +84,7 @@ class FileForm extends Form {
 		$context =& $router->getContext($request);
 		import('classes.file.LibraryFileManager');
 		$libraryFileManager = new LibraryFileManager($context->getId());
-		
+
 		if ($libraryFileManager->uploadedFileExists('libraryFile')) {
 			return $libraryFileManager->handleUpload($this->fileType, 'libraryFile', $this->fileId);
 		}
@@ -91,12 +94,12 @@ class FileForm extends Form {
 	 * Save name for library file
 	 */
 	function execute(&$args, &$request) {
-		$name = $this->getData('name');		
+		$name = $this->getData('name');
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$libraryFile =& $libraryFileDao->getById($this->fileId);
 		$libraryFile->setName($name, Locale::getLocale());
 		$libraryFileDao->updateObject($libraryFile);
-		
+
 		return $libraryFile;
 	}
 }

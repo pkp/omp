@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SeriesForm
- * @ingroup controllers_grid_series_form
+ * @ingroup controllers_grid_settings_series_form
  *
  * @brief Form for adding/edditing a series
  * stores/retrieves from an associative array
@@ -33,6 +33,8 @@ class SeriesForm extends Form {
 
 	/**
 	 * Initialize form data from current settings.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function initData(&$args, &$request) {
 		$press =& $request->getPress();
@@ -75,6 +77,7 @@ class SeriesForm extends Form {
 
 	/**
 	 * Fetch
+	 * @param $request PKPRequest
 	 */
 	function fetch(&$request) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
@@ -91,6 +94,8 @@ class SeriesForm extends Form {
 
 	/**
 	 * Save email template.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function execute($args, $request) {
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');

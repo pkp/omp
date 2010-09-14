@@ -6,8 +6,8 @@
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class ReviewerSubmissionsListGridCellProvider.inc.php
- * @ingroup controllers_grid_submissionsList_reviewer
+ * @class ReviewerSubmissionsListGridCellProvider
+ * @ingroup controllers_grid_submissions_reviewer
  *
  * @brief Class for a cell provider that can retrieve labels from submissions
  */

@@ -22,12 +22,13 @@
 {url|assign:reviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.ReviewerReviewFilesGridHandler" op="fetchGrid" monographId=$submission->getId() reviewType=$submission->getCurrentReviewType() round=$submission->getCurrentRound() escape=false}
 {load_url_in_div id="reviewFiles" url=$reviewFilesGridUrl}
 
-
 <div id="review">
 	<h3>{translate key="submission.review"}</h3>
-	{confirm dialogText=$press->getLocalizedSetting('reviewGuidelines') translate=false button="#reviewGuidelines"}
-	<p style="float:right;"><a id="reviewGuidelines" href="#">{translate key="reviewer.monograph.guidelines"}</a></p>
-	<div style="clear:both;" />
+	{if $press->getLocalizedSetting('reviewGuidelines')}
+		{confirm dialogText=$press->getLocalizedSetting('reviewGuidelines') translate=false button="#reviewGuidelines"}
+		<p style="float:right;"><a id="reviewGuidelines" href="#">{translate key="reviewer.monograph.guidelines"}</a></p>
+		<div style="clear:both;" />
+	{/if}
 	{if $reviewAssignment->getReviewFormId()}
 	<!-- Display a review form if one is assigned -->
 	<div id="reviewForm">

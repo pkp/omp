@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFilesUploadForm
- * @ingroup controllers_grid_file_form
+ * @ingroup controllers_grid_files_submissionFiles_form
  *
  * @brief Form for adding/edditing a submission file
  */
@@ -35,6 +35,8 @@ class SubmissionFilesUploadForm extends Form {
 
 	/**
 	 * Initialize form data from current settings.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function initData(&$args, &$request) {
 		$this->_data['monographId'] = $this->_monographId;
@@ -63,6 +65,7 @@ class SubmissionFilesUploadForm extends Form {
 
 	/**
 	 * Fetch
+	 * @param $request PKPRequest
 	 */
 	function fetch(&$request) {
 		return parent::fetch($request);

@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFilesGridHandler
- * @ingroup controllers_grid_file
+ * @ingroup controllers_grid_files_submissionFiles
  *
  * @brief Handle submission file grid requests at the author submission wizard.
  * The submission author and all press/editor roles have access to this grid.
@@ -38,6 +38,9 @@ class SubmissionWizardFilesGridHandler extends SubmissionFilesGridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');

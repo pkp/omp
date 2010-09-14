@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/files/reviewAttachments/form/ReviewAttachmentsForm.inc.php
+ * @file controllers/grid/files/reviewAttachments/form/EditorReviewAttachmentsForm.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class FileForm
- * @ingroup controllers_grid_file_form
+ * @class EditorReviewAttachmentsForm
+ * @ingroup controllers_grid_files_reviewAttachments_form
  *
  * @brief Form for adding/editing a review attachment file
  */
@@ -38,6 +38,8 @@ class EditorReviewAttachmentsForm extends Form {
 
 	/**
 	 * Initialize form data from current settings.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function initData(&$args, &$request) {
 		$this->_data['monographId'] = $this->monographId;
@@ -54,6 +56,7 @@ class EditorReviewAttachmentsForm extends Form {
 
 	/**
 	 * Fetch
+	 * @param $request PKPRequest
 	 */
 	function fetch(&$request) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));

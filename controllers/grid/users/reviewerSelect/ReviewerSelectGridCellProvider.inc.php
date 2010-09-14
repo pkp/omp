@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class DataObjectGridCellProvider
- * @ingroup controllers_grid
+ * @ingroup controllers_grid_users_reviewerSelect
  *
  * @brief Base class for a cell provider that retrieves statistics and other data for selectinga reviewer
  */

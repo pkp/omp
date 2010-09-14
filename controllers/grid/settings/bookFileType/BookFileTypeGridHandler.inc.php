@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class BookFileTypeGridHandler
- * @ingroup controllers_grid_bookFileType
+ * @ingroup controllers_grid_settings_bookFileType
  *
  * @brief Handle Book File Type grid requests.
  */
@@ -33,7 +33,7 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	//
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -119,11 +119,11 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	 * An action to edit a Book File Type
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editBookFileType(&$args, &$request) {
 		$bookFileTypeId = isset($args['bookFileTypeId']) ? $args['bookFileTypeId'] : null;
 
-		//FIXME: add validation here?
 		$this->setupTemplate();
 
 		import('controllers.grid.settings.bookFileType.form.BookFileTypeForm');
@@ -143,12 +143,10 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	 * Update a Book File Type
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function updateBookFileType(&$args, &$request) {
 		$bookFileTypeId = Request::getUserVar('rowId');
-
-		//FIXME: add validation here?
 		$press =& $request->getPress();
 
 		import('controllers.grid.settings.bookFileType.form.BookFileTypeForm');
@@ -183,7 +181,7 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	 * Delete a Book File Type.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function deleteBookFileType(&$args, &$request) {
 		// Identify the Book File Type to be deleted

@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MastheadGridRow
- * @ingroup controllers_grid_masthead
+ * @ingroup controllers_grid_settings_masthead
  *
  * @brief Handle masthead grid row requests.
  */
@@ -33,7 +33,7 @@ class MastheadGridRow extends GridRow {
 	//
 	/*
 	 * Configure the grid row
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);

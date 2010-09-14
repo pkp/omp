@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewFormElementGridRow
- * @ingroup controllers_grid_reviewForm
+ * @ingroup controllers_grid_settings_reviewForm
  *
  * @brief Handle Review Form Element grid row requests.
  */
@@ -51,7 +51,7 @@ class ReviewFormElementGridRow extends GridRow {
 	//
 	/**
 	 * Configure the grid row
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);

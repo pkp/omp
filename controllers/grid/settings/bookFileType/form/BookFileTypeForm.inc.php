@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class BookFileTypeForm
- * @ingroup controllers_grid_bookFileType_form
+ * @ingroup controllers_grid_settings_bookFileType_form
  *
  * @brief Form for adding/editing a Book File Type.
  */
@@ -32,6 +32,8 @@ class BookFileTypeForm extends Form {
 
 	/**
 	 * Initialize form data from current settings.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function initData(&$args, &$request) {
 		$press =& $request->getPress();
@@ -64,12 +66,13 @@ class BookFileTypeForm extends Form {
 
 	/**
 	 * Fetch
+	 * @param $request PKPRequest
 	 */
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('bookFileCategories', array(BOOK_FILE_CATEGORY_DOCUMENT => Locale::translate('submission.document'),
 					BOOK_FILE_CATEGORY_ARTWORK => Locale::translate('submission.art')));
-				
+
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 		return parent::fetch($request);
 	}
@@ -84,6 +87,8 @@ class BookFileTypeForm extends Form {
 
 	/**
 	 * Save email template.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function execute($args, $request) {
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
@@ -100,7 +105,7 @@ class BookFileTypeForm extends Form {
 		$bookFileType->setDesignation($this->getData('designation'), Locale::getLocale()); // Localized
 		$bookFileType->setSortable($this->getData('sortable'));
 		$bookFileType->setCategory($this->getData('category'));
-		
+
 		if (!isset($this->bookFileTypeId)) {
 			$this->bookFileTypeId = $bookFileTypeDao->insertObject($bookFileType);
 		} else {

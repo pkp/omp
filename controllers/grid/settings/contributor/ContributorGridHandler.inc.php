@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ContributorGridHandler
- * @ingroup controllers_grid_contributor
+ * @ingroup controllers_grid_settings_contributor
  *
  * @brief Handle contributor grid requests.
  */
@@ -33,7 +33,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	//
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -88,6 +88,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * An action to add a new contributor
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function addContributor(&$args, &$request) {
 		// Calling editContributor with an empty row id will add
@@ -99,6 +100,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * An action to edit a contributor
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editContributor(&$args, &$request) {
 		$contributorId = isset($args['rowId']) ? $args['rowId'] : null;
@@ -119,7 +121,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * Update a contributor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function updateContributor(&$args, &$request) {
 		// -> contributorId must be present and valid
@@ -153,7 +155,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * Delete a contributor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function deleteContributor(&$args, &$request) {
 		$contributorId = isset($args['rowId']) ? $args['rowId'] : null;

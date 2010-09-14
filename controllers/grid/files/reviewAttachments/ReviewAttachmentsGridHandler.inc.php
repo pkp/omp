@@ -6,10 +6,10 @@
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class FileGridHandler
- * @ingroup controllers_grid_file
+ * @class ReviewAttachmentsGridHandler
+ * @ingroup controllers_grid_files_reviewAttachments
  *
- * @brief Handle file grid requests.
+ * @brief Handle review attachments grid requests.
  */
 
 import('controllers.grid.files.reviewAttachments.ReviewAttachmentsGridRow');
@@ -51,7 +51,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -129,6 +129,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 * Return a grid row with for the submission grid
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function returnFileRow(&$args, &$request) {
 		$fileId = isset($args['rowId']) ? $args['rowId'] : null;

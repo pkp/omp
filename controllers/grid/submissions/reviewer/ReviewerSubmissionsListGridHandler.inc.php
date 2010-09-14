@@ -83,9 +83,17 @@ class ReviewerSubmissionsListGridHandler extends SubmissionsListGridHandler {
 				$active = true;
 		}
 
+		$data = array();
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
-		$submissions = $reviewerSubmissionDao->getReviewerSubmissionsByReviewerId($userId, $pressId, $active);
 
-		return $submissions;
+		$submissions = $reviewerSubmissionDao->getReviewerSubmissionsByReviewerId($userId, $pressId, $active);
+		while($submission =& $submissions->next()) {
+			$reviewId = $submission->getReviewId();
+			$data[$reviewId] = $submission;
+			unset($submision);
+		}
+
+		return $data;
 	}
+
 }

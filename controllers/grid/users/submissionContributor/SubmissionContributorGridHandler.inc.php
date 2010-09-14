@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionContributorGridHandler
- * @ingroup controllers_grid_submissionContributor
+ * @ingroup controllers_grid_users_submissionContributor
  *
  * @brief Handle submissionContributor grid requests.
  */
@@ -53,6 +53,9 @@ class SubmissionContributorGridHandler extends GridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
@@ -62,7 +65,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -148,7 +151,6 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * @return SubmissionContributorGridRow
 	 */
 	function &getRowInstance() {
-		// Return a submissionContributor row
 		$row = new SubmissionContributorGridRow();
 		return $row;
 	}
@@ -172,13 +174,14 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * Edit a submissionContributor
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editSubmissionContributor(&$args, &$request) {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
 		// Identify the submissionContributor to be updated
 		$submissionContributorId = $request->getUserVar('submissionContributorId');
-		//$submissionContributor =& $this->_getSubmissionContributorFromArgs($args);
+
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$submissionContributor = $authorDao->getAuthor($submissionContributorId);
 
@@ -195,12 +198,14 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * Edit a submissionContributor
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function updateSubmissionContributor(&$args, &$request) {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
 		// Identify the submissionContributor to be updated
 		$submissionContributorId = $request->getUserVar('submissionContributorId');
+
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$submissionContributor =& $authorDao->getAuthor($submissionContributorId);
 
@@ -240,7 +245,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * Delete a submissionContributor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function deleteSubmissionContributor(&$args, &$request) {
 		// Identify the submission Id

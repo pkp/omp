@@ -43,7 +43,7 @@
 	<p>{$submission->getLocalizedAbstract()|strip_unsafe_html|nl2br}</p>
 
 	<p>
-		{url|assign:"metadataUrl" op='viewMetadata' reviewId=$submission->getReviewId()}
+		{url|assign:"metadataUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionMetadata.ReviewerSubmissionMetadataHandler" op="fetch" monographId=$submission->getId()}
 		{modal url="$metadataUrl" actOnType="nothing" actOnId="nothing" dialogText='reviewer.step1.viewAllDetails' button="#viewMetadata"}
 		<a id="viewMetadata" href="{$metadataUrl}">{translate key="reviewer.step1.viewAllDetails"}</a>
 	</p>
@@ -76,7 +76,7 @@
 	<p>
 		{translate key="reviewer.monograph.enterCompetingInterests"}<br /><br />
 
-		{url|assign:"competingInterestGuidelinesUrl" page="information" op="competingInterestGuidelines" contentOnly=true}
+		{url|assign:"competingInterestGuidelinesUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.competingInterests.CompetingInterestsHandler" op="fetch" monographId=$submission->getId() pressId=$submission->getPressId() escape=false}
 		{modal url="$competingInterestGuidelinesUrl" actOnType="nothing" actOnId="nothing" dialogText='reviewer.competingInterests' button="#viewCompetingInterests"}
 		<a id="viewCompetingInterests" href="{$competingInterestGuidelinesUrl}">{translate key="reviewer.monograph.viewCompetingInterests"}</a><br />
 

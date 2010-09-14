@@ -60,7 +60,7 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * Delete a submission
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function deleteSubmission(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -125,10 +125,9 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	//
 	/**
 	 * @see GridHandler::getRowInstance()
-	 * @return SubmissionContributorGridRow
+	 * @return AuthorSubmissionsListGridRow
 	 */
 	function &getRowInstance() {
-		// Return an AuthorSubmissionList row
 		$row = new AuthorSubmissionsListGridRow();
 		return $row;
 	}

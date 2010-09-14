@@ -91,7 +91,7 @@ class MonographCommentDAO extends DAO {
 			$params[] = $reviewId;
 		}
 		$result =& $this->retrieve(
-			'SELECT a.* FROM monograph_comments a WHERE author_id = ? AND monograph_id = ?' . ($round ? ' AND assoc_id = ?' : '') . ' ORDER BY date_posted',
+			'SELECT a.* FROM monograph_comments a WHERE author_id = ? AND monograph_id = ?' . (isset($round) ? ' AND assoc_id = ?' : '') . ' ORDER BY date_posted',
 			$params
 		);
 

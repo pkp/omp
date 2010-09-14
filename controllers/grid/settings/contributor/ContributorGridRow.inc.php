@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ContributorGridRow
- * @ingroup controllers_grid_contributor
+ * @ingroup controllers_grid_settings_contributor
  *
  * @brief Handle contributor grid row requests.
  */
@@ -27,7 +27,7 @@ class ContributorGridRow extends GridRow {
 	//
 	/*
 	 * Configure the grid row
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);

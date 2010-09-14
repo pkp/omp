@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file contorllers/grid/reviewForm/ReviewFormGridCellProvider.inc.php
+ * @file contorllers/grid/settings/reviewForm/ReviewFormGridCellProvider.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewFormGridCellProvider
- * @ingroup controllers_grid_reviewForm
+ * @ingroup controllers_grid_settings_reviewForm
  *
  * @brief Render the first column of the Review Form grid.
  */

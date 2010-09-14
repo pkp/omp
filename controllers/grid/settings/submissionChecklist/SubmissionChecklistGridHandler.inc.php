@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionChecklistGridHandler
- * @ingroup controllers_grid_submissionChecklist
+ * @ingroup controllers_grid_settings_submissionChecklist
  *
  * @brief Handle submissionChecklist grid requests.
  */
@@ -30,7 +30,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	//
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -102,6 +102,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 * An action to edit a submissionChecklist
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editItem(&$args, &$request) {
 		import('controllers.grid.settings.submissionChecklist.form.SubmissionChecklistForm');
@@ -122,7 +123,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 * Update a submissionChecklist
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function updateItem(&$args, &$request) {
 		// -> submissionChecklistId must be present and valid
@@ -158,7 +159,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 * Delete a submissionChecklist
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function deleteItem(&$args, &$request) {
 		$rowId = $request->getUserVar('rowId');

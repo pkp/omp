@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewerGridHandler
- * @ingroup controllers_grid_reviewer
+ * @ingroup controllers_grid_users_reviewer
  *
  * @brief Handle reviewer grid requests.
  */
@@ -58,6 +58,9 @@ class ReviewerGridHandler extends GridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
@@ -67,7 +70,7 @@ class ReviewerGridHandler extends GridHandler {
 
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -158,7 +161,6 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return ReviewerGridRow
 	 */
 	function &getRowInstance() {
-		// Return a reviewer row
 		$row = new ReviewerGridRow();
 		return $row;
 	}
@@ -182,6 +184,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * Edit a reviewer
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editReviewer(&$args, &$request) {
 		// Identify the submission Id
@@ -202,6 +205,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * Edit a reviewer
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function updateReviewer(&$args, &$request) {
 		// Identify the submission Id

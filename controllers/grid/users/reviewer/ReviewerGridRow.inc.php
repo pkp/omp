@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file controllers/grid/users/submissionContributor/ReviewerGridRow.inc.php
+ * @file controllers/grid/users/reviewer/ReviewerGridRow.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewerGridRow
- * @ingroup controllers_grid_submissionContributor
+ * @ingroup controllers_grid_users_reviewer
  *
- * @brief SubmissionContributor grid row definition
+ * @brief Reviewer grid row definition
  */
 
 import('lib.pkp.classes.controllers.grid.GridRow');
@@ -30,7 +30,6 @@ class ReviewerGridRow extends GridRow {
 	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
-		// Do the default initialization
 		parent::initialize($request);
 
 		// Retrieve the monograph id from the request

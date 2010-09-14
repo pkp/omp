@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionChecklistGridRow
- * @ingroup controllers_grid_submissionChecklist
+ * @ingroup controllers_grid_settings_submissionChecklist
  *
  * @brief Handle submissionChecklist grid row requests.
  */
@@ -27,7 +27,7 @@ class SubmissionChecklistGridRow extends GridRow {
 	//
 	/*
 	 * Configure the grid row
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);

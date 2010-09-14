@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class DataObjectGridCellProvider
- * @ingroup controllers_grid
+ * @ingroup controllers_grid_users_submissionParticipant
  *
  * @brief Base class for a cell provider that can retrieve labels for submission participants
  */
@@ -38,9 +38,6 @@ class SubmissionParticipantGridCellProvider extends DataObjectGridCellProvider {
 		assert(is_a($element, 'User') && !empty($columnId));
 		switch ($columnId) {
 			case 'name':
-				$userId = $element->getUserId();
-			////	$userDao =& DAORegistry::getDAO('UserDAO');
-			//	$user =& $userDao->getUser($userId);
 				return array('label' => $element->getFullName());
 		}
 	}

@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionReviewFilesGridHandler
- * @ingroup controllers_grid_file
+ * @ingroup controllers_grid_files_submissionFiles
  *
  * @brief Handle uploading files to the review files grid.
  */
@@ -35,6 +35,9 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
@@ -44,7 +47,7 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -70,6 +73,7 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	 * Display the final tab of the modal
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function finishFileSubmission(&$args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
@@ -88,6 +92,7 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	 * Return a grid row with for the submission grid
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function returnFileRow(&$args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;

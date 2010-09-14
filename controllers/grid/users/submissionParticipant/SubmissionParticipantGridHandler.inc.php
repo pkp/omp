@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionParticipantGridHandler
- * @ingroup controllers_grid_submissionParticipant
+ * @ingroup controllers_grid_users_submissionParticipant
  *
  * @brief Handle submissionParticipant grid requests.
  */
@@ -51,6 +51,9 @@ class SubmissionParticipantGridHandler extends GridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId');
@@ -61,7 +64,7 @@ class SubmissionParticipantGridHandler extends GridHandler {
 
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);

@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewReminderForm
- * @ingroup controllers_grid_reviewer_form
+ * @ingroup controllers_grid_users_reviewer_form
  *
  * @brief Form for sending a review reminder to a reviewer
  */
@@ -39,7 +39,7 @@ class ReviewReminderForm extends Form {
 	function getReviewAssignmentId() {
 		return $this->_reviewAssignmentId;
 	}
-	
+
 	/**
 	 * Get the Monograph
 	 * @return object monograph
@@ -48,15 +48,16 @@ class ReviewReminderForm extends Form {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		return $reviewAssignmentDao->getById($this->_reviewAssignmentId);
 	}
-	
+
 
 	//
 	// Template methods from Form
 	//
 	/**
-	* Initialize form data from the associated submissionContributor.
-	* @param $submissionContributor Reviewer
-	*/
+	 * Initialize form data from the associated submissionContributor.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
 	function initData(&$args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& $request->getUser();
@@ -64,7 +65,7 @@ class ReviewReminderForm extends Form {
 		$reviewAssignment =& $this->getReviewAssignment();
 		$reviewerId = $reviewAssignment->getReviewerId();
 		$reviewer =& $userDao->getUser($reviewerId);
-		
+
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getMonograph($reviewAssignment->getMonographId());
 
@@ -100,9 +101,9 @@ class ReviewReminderForm extends Form {
 	 */
 	function readInputData() {
 		$this->readUserVars(array('message'));
-		
+
 	}
-	
+
 	/**
 	 * Save review assignment
 	 */
@@ -117,7 +118,7 @@ class ReviewReminderForm extends Form {
 
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'REVIEW_REMIND');
-		
+
 		$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 		$email->setBody($this->getData('message'));
 		$email->send();

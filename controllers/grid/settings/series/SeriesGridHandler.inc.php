@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SeriesGridHandler
- * @ingroup controllers_grid_series
+ * @ingroup controllers_grid_settings_series
  *
  * @brief Handle series grid requests.
  */
@@ -31,7 +31,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	//
 	/*
 	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -133,6 +133,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * An action to edit a series
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return JSON
 	 */
 	function editSeries(&$args, &$request) {
 		$seriesId = isset($args['rowId']) ? $args['rowId'] : null;
@@ -157,7 +158,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * Update a series
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function updateSeries(&$args, &$request) {
 		$seriesId = Request::getUserVar('rowId');
@@ -219,7 +220,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * Delete a series
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return JSON
 	 */
 	function deleteSeries(&$args, &$request) {
 		// FIXME: add validation here?

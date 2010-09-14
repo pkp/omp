@@ -17,7 +17,7 @@ class AuthorSubmissionsListGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function SubmissionsListGridRow() {
+	function AuthorSubmissionsListGridRow() {
 		parent::GridRow();
 	}
 

@@ -9,7 +9,7 @@
  * @class SendReviewsForm
  * @ingroup controllers_grid_reviewer_form
  *
- * @brief Form for adding a reviewer to a submission
+ * @brief Form for sending reviews to an author
  */
 
 import('lib.pkp.classes.form.Form');

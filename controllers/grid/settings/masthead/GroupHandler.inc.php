@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class GroupHandler
- * @ingroup pages_manager
+ * @ingroup controllers_grid_settings_masthead
  *
  * @brief Handle requests for editorial team management functions.
  */
@@ -89,6 +89,7 @@ class GroupHandler extends ManagerHandler {
 
 	/**
 	 * Display form to create new group.
+	 * @param $args array
 	 */
 	function createGroup($args) {
 		$this->editGroup($args);
@@ -136,6 +137,7 @@ class GroupHandler extends ManagerHandler {
 
 	/**
 	 * Add group membership (or list users if none chosen).
+	 * @param $args array
 	 */
 	function addMembership($args) {
 		$groupId = isset($args[0])?(int)$args[0]:0;
@@ -210,6 +212,7 @@ class GroupHandler extends ManagerHandler {
 
 	/**
 	 * Delete group membership.
+	 * @param $args array
 	 */
 	function deleteMembership($args) {
 		$groupId = isset($args[0])?(int)$args[0]:0;
@@ -233,7 +236,8 @@ class GroupHandler extends ManagerHandler {
 	}
 
 	/**
-	 * Change the sequence of a group membership.
+	 * Reorder group membership.
+	 * @param $args array
 	 */
 	function moveMembership() {
 		$groupId = (int) Request::getUserVar('groupId');
@@ -252,6 +256,10 @@ class GroupHandler extends ManagerHandler {
 		Request::redirect(null, null, 'groupMembership', $group->getId());
 	}
 
+	/**
+	 * Update boardEnabled setting
+	 * @param $args array
+	 */
 	function setBoardEnabled($args) {
 		$this->validate();
 		$press =& Request::getPress();
