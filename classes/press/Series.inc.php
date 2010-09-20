@@ -13,8 +13,6 @@
  * @brief Describes basic series properties.
  */
 
-// $Id$
-
 
 define('SERIES_TYPE_SERIES',	1);
 define('SERIES_TYPE_CATEGORY',	2);

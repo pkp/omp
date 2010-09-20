@@ -29,7 +29,6 @@ class Author extends PKPAuthor {
 	//
 	// Get/set methods
 	//
-
 	/**
 	 * Get ID of monograph.
 	 * @return int
