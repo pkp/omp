@@ -7,28 +7,27 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Installation descriptor file.
-  *
-  * $Id$
   -->
 
 <install version="0.2.0.0">
-	<code function="createDirectories"/>
-	<code function="createDatabase"/>
+	<code function="createDirectories" />
+	<code function="createDatabase" />
 
-	<schema file="lib/pkp/xml/schema/common.xml"/>
-	<schema file="lib/pkp/xml/schema/scheduledTasks.xml"/>
-	<schema file="lib/pkp/xml/schema/temporaryFiles.xml"/>
+	<schema file="lib/pkp/xml/schema/common.xml" />
+	<schema file="lib/pkp/xml/schema/scheduledTasks.xml" />
+	<schema file="lib/pkp/xml/schema/temporaryFiles.xml" />
 	<schema file="lib/pkp/xml/schema/groups.xml" />
 	<schema file="lib/pkp/xml/schema/notes.xml" />
 	<schema file="lib/pkp/xml/schema/controlledVocab.xml" />
-	<schema file="lib/pkp/xml/schema/announcements.xml"/>
+	<schema file="lib/pkp/xml/schema/announcements.xml" />
 	<schema file="lib/pkp/xml/schema/signoff.xml" />
 	<schema file="lib/pkp/xml/schema/reviews.xml" />
 	<schema file="lib/pkp/xml/schema/reviewForms.xml" />
-	<schema file="dbscripts/xml/omp_schema.xml"/>
-	<schema file="dbscripts/xml/library_files.xml"/>
 	<schema file="lib/pkp/xml/schema/submissions.xml" />
+	<schema file="dbscripts/xml/omp_schema.xml" />
 
-	<code function="createData"/>
-	<code function="createConfig"/>
+	<code function="createData" />
+	<code function="createConfig" />
+
+	<data file="dbscripts/xml/controlled_vocab.xml" />
 </install>
