@@ -8,8 +8,6 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * OMP database schema in XML.
-  *
-  * $Id$
   -->
 
 <schema version="0.2">
@@ -1244,6 +1242,76 @@
 			<col>assoc_id</col>
 			<col>user_id</col>
 			<UNIQUE />
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE library_files
+	  *
+	  -->
+	<table name="library_files">
+		<field name="file_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="press_id" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="file_name" type="C2" size="255">
+			<NOTNULL/>
+		</field>
+		<field name="file_type" type="C2" size="255">
+			<NOTNULL/>
+		</field>
+		<field name="file_size" type="I8">
+			<NOTNULL/>
+		</field>
+		<field name="type" type="C2" size="40">
+			<NOTNULL/>
+		</field>
+		<field name="date_uploaded" type="T">
+			<NOTNULL/>
+		</field>
+		<field name="date_modified" type="T">
+			<NOTNULL/>
+		</field>
+		<descr>Library files for a press</descr>
+		<index name="library_files_press_id">
+			<col>press_id</col>
+		</index>
+	</table>
+	
+	<!--
+	  *
+	  * TABLE library_file_settings
+	  *
+	  -->
+	<table name="library_file_settings">
+		<field name="file_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object|date)</descr>
+		</field>
+		<descr>Library file metadata.</descr>
+		<index name="library_file_settings_id">
+			<col>file_id</col>
+		</index>
+		<index name="library_file_settings_pkey">
+			<col>file_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE/>
 		</index>
 	</table>
 </schema>
