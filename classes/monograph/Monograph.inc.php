@@ -406,7 +406,7 @@ class Monograph extends Submission {
 
 	/**
 	 * Return string of author names, separated by the specified token
-	 * FIXME: Should be moved back to Submission class
+	 * FIXME: Should be moved back to Submission class, see #5913
 	 * @param $lastOnly boolean return list of lastnames only (default false)
 	 * @param $separator string separator for names (default comma+space)
 	 * @return string
@@ -428,7 +428,7 @@ class Monograph extends Submission {
 
 	/**
 	 * Return a list of author email addresses.
-	 * FIXME: Should be moved back to Submission class
+	 * FIXME: Should be moved back to Submission class, see #5913
 	 * @return array
 	 */
 	function getAuthorEmails() {
@@ -446,6 +446,7 @@ class Monograph extends Submission {
 
 	/**
 	 * Get all authors of this submission.
+	 * FIXME: should be in Submission, see #5913
 	 * @return array Authors
 	 */
 	function &getAuthors() {
@@ -455,6 +456,7 @@ class Monograph extends Submission {
 
 	/**
 	 * Get the primary author of this submission.
+	 * FIXME: should be in Submission, see #5913
 	 * @return object Author
 	 */
 	function &getPrimaryAuthor() {
