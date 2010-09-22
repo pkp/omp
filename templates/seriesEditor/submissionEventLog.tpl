@@ -1,5 +1,3 @@
-<!-- templates/seriesEditor/submissionEventLog.tpl -->
-
 {**
  * submissionEventLog.tpl
  *
@@ -84,6 +82,4 @@
 {/if}
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/seriesEditor/submissionEventLog.tpl -->
 

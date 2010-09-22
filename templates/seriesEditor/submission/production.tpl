@@ -1,5 +1,3 @@
-<!-- templates/seriesEditor/submission/production.tpl -->
-
 {**
  * copyedit.tpl
  *
@@ -86,6 +84,4 @@
 </form>
 
 {/if}
-
-<!-- / templates/seriesEditor/submission/production.tpl -->
 

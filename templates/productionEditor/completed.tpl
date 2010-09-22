@@ -1,5 +1,3 @@
-<!-- templates/productionEditor/completed.tpl -->
-
 {**
  * completed.tpl
  *
@@ -73,6 +71,4 @@
 {/if}
 </table>
 </div>
-
-<!-- / templates/productionEditor/completed.tpl -->
 

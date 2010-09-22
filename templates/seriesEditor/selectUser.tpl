@@ -1,5 +1,3 @@
-<!-- templates/seriesEditor/selectUser.tpl -->
-
 {**
  * selectUser.tpl
  *
@@ -75,6 +73,4 @@
 {/if}
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/seriesEditor/selectUser.tpl -->
 

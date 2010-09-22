@@ -1,5 +1,3 @@
-<!-- templates/inserts/contributors/NewContributorForm.tpl -->
-
 {**
  * NewContributorForm.tpl
  *
@@ -93,6 +91,4 @@ window.location.hash="inserts_ContributorInsert_formErrors";
 </tr>
 </table>
 </div>
-
-<!-- / templates/inserts/contributors/NewContributorForm.tpl -->
 

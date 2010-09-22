@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/files/submissionFiles/form/metadataForm.tpl -->
-
 {**
  * fileForm.tpl
  *
@@ -90,6 +88,4 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 </form>
-
-<!-- / templates/controllers/grid/files/submissionFiles/form/metadataForm.tpl -->
 

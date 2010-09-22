@@ -1,5 +1,3 @@
-<!-- templates/controllers/informationCenter/notify.tpl -->
-
 {**
  * notify.tpl
  *
@@ -48,5 +46,3 @@
 		{/fbvFormArea}
 	</form>
 </div>
-<!-- / templates/controllers/informationCenter/notify.tpl -->
-

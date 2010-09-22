@@ -1,5 +1,3 @@
-<!-- templates/common/footer.tpl -->
-
 {**
  * footer.tpl
  *
@@ -64,6 +62,4 @@
 {$additionalFooterData}
 </body>
 </html>
-
-<!-- / templates/common/footer.tpl -->
 

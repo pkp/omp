@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/files/submissionFiles/form/artworkMetadataForm.tpl -->
-
 {**
  * artworkMetadataForm.tpl
  *
@@ -175,5 +173,3 @@
 {/fbvFormArea}
 
 </form>
-<!-- / templates/controllers/grid/files/submissionFiles/form/artworkMetadataForm.tpl -->
-

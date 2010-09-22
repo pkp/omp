@@ -1,5 +1,3 @@
-<!-- templates/admin/systemInfo.tpl -->
-
 {**
  * systemInfo.tpl
  *
@@ -98,6 +96,4 @@
 <a href="{url op="phpInfo"}" target="_blank">{translate key="admin.phpInfo"}</a>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/admin/systemInfo.tpl -->
 

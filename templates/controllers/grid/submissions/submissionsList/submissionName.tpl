@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/submissions/submissionsList/submissionName.tpl -->
-
 {**
  * submissionName.tpl
  *
@@ -27,6 +25,4 @@
 {else}
 	{translate key="common.untitled"}
 {/if}</a>
-
-<!-- / templates/controllers/grid/submissions/submissionsList/submissionName.tpl -->
 

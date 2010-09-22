@@ -1,5 +1,3 @@
-<!-- templates/settings/setup/setupHeader.tpl -->
-
 {**
  * setupHeader.tpl
  *
@@ -41,6 +39,4 @@
 		</li>
 	</ul>
 
-
-<!-- / templates/settings/setup/setupHeader.tpl -->
 

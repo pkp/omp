@@ -1,5 +1,3 @@
-<!-- templates/author/submissionReview.tpl -->
-
 {**
  * submissionReview.tpl
  *
@@ -20,6 +18,4 @@
 <div class="separator"></div>
 
 {include file="author/submission/editorDecision.tpl"}
-
-<!-- / templates/author/submissionReview.tpl -->
 

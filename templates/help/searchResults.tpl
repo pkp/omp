@@ -1,5 +1,3 @@
-<!-- templates/help/searchResults.tpl -->
-
 {**
  * searchResults.tpl
  *
@@ -71,6 +69,4 @@
 </div>
 
 {include file="help/footer.tpl"}
-
-<!-- / templates/help/searchResults.tpl -->
 

@@ -1,5 +1,3 @@
-<!-- templates/editor/submissionsUnassigned.tpl -->
-
 {**
  * submissionsUnassigned.tpl
  *
@@ -53,6 +51,4 @@
 	</tr>
 {/if}
 </table>
-
-<!-- / templates/editor/submissionsUnassigned.tpl -->
 

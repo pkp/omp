@@ -1,5 +1,3 @@
-<!-- templates/seriesEditor/submissionEditing.tpl -->
-
 {**
  * submissionEditing.tpl
  *
@@ -16,6 +14,4 @@
 <div class="separator"></div>
 
 {include file="seriesEditor/submission/copyedit.tpl"}
-
-<!-- / templates/seriesEditor/submissionEditing.tpl -->
 

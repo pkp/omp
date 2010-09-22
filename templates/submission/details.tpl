@@ -1,5 +1,3 @@
-<!-- templates/submission/details.tpl -->
-
 {**
  * details.tpl
  *
@@ -20,6 +18,4 @@
 {load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/submission/details.tpl -->
 

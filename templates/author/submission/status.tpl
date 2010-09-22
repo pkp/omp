@@ -1,5 +1,3 @@
-<!-- templates/author/submission/status.tpl -->
-
 {**
  * status.tpl
  *
@@ -37,5 +35,3 @@
 	</tr>
 </table>
 </div>
-<!-- / templates/author/submission/status.tpl -->
-

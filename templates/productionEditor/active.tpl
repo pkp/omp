@@ -1,5 +1,3 @@
-<!-- templates/productionEditor/active.tpl -->
-
 {**
  * active.tpl
  *
@@ -54,6 +52,4 @@
 {/if}
 </table>
 </div>
-
-<!-- / templates/productionEditor/active.tpl -->
 

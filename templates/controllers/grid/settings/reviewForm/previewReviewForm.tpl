@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/settings/reviewForm/previewReviewForm.tpl -->
-
 {**
  * previewReviewForm.tpl
  *
@@ -47,6 +45,4 @@
 		{/if}
 	</p>
 {/foreach}
-
-<!-- / templates/controllers/grid/settings/reviewForm/previewReviewForm.tpl -->
 

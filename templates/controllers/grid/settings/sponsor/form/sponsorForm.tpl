@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/settings/sponsor/form/sponsorForm.tpl -->
-
 
 {**
  * sponsors.tpl
@@ -34,6 +32,4 @@
 {/if}
 
 </form>
-
-<!-- / templates/controllers/grid/settings/sponsor/form/sponsorForm.tpl -->
 

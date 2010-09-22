@@ -1,5 +1,3 @@
-<!-- templates/controllers/informationCenter/notifyListbuilder.tpl -->
-
 {**
  * listbuilder.tpl
  *
@@ -48,6 +46,4 @@
 	</script>
 </div>
 
-
-<!-- / templates/controllers/informationCenter/notifyListbuilder.tpl -->
 

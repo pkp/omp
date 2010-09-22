@@ -1,5 +1,3 @@
-<!-- templates/author/submission.tpl -->
-
 {**
  * submission.tpl
  *
@@ -35,6 +33,4 @@
 </div>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/author/submission.tpl -->
 

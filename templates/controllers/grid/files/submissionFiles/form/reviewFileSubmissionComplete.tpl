@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/files/submissionFiles/form/reviewFileSubmissionComplete.tpl -->
-
 {**
  * fileForm.tpl
  *
@@ -48,6 +46,4 @@
 	<input type="hidden" name="fileId" value="{$fileId|escape}" />
 {/if}
 <br />
-
-<!-- / templates/controllers/grid/files/submissionFiles/form/reviewFileSubmissionComplete.tpl -->
 

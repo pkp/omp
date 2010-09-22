@@ -1,5 +1,3 @@
-<!-- templates/seriesEditor/modals/reviewDecision.tpl -->
-
 {**
  * createReviewerForm.tpl
  *
@@ -9,6 +7,4 @@
  * Form for editors to create reviewers.
  *
  *}
-
-<!-- / templates/seriesEditor/modals/reviewDecision.tpl -->
 

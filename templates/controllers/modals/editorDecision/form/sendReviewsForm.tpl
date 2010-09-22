@@ -1,5 +1,3 @@
-<!-- templates/controllers/modals/editorDecision/form/sendReviewsForm.tpl -->
-
 {**
  * sendReviewsForm.tpl
  *
@@ -60,6 +58,4 @@
 </form>
 
 {init_button_bar id="#sendReviews" submitText="editor.submissionReview.recordDecision"}
-
-<!-- / templates/controllers/modals/editorDecision/form/sendReviewsForm.tpl -->
 

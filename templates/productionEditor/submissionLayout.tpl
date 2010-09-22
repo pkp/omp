@@ -1,5 +1,3 @@
-<!-- templates/productionEditor/submissionLayout.tpl -->
-
 {**
  * submissionLayout.tpl
  *
@@ -12,6 +10,4 @@
  *}
 
 {include file="productionEditor/submission/layout.tpl"}
-
-<!-- / templates/productionEditor/submissionLayout.tpl -->
 

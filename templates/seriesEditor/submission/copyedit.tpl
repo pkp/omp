@@ -1,5 +1,3 @@
-<!-- templates/seriesEditor/submission/copyedit.tpl -->
-
 {**
  * copyedit.tpl
  *
@@ -239,6 +237,4 @@
 <a href="{url op="instructions" path="copy"}" class="action openHelp">{translate key="submission.copyedit.instructions"}</a>
 {/if}
 </div>
-
-<!-- / templates/seriesEditor/submission/copyedit.tpl -->
 

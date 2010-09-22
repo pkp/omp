@@ -1,5 +1,3 @@
-<!-- templates/productionEditor/submission/layout.tpl -->
-
 {**
  * layout.tpl
  *
@@ -195,6 +193,4 @@
 {/if}
 
 </div>
-
-<!-- / templates/productionEditor/submission/layout.tpl -->
 

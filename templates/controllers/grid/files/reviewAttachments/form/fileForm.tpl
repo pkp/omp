@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/files/reviewAttachments/form/fileForm.tpl -->
-
 {**
  * fileForm.tpl
  *
@@ -95,6 +93,4 @@
 <input type="hidden" id="saveUrl" value="" />
 <input type="hidden" id="newFile" value="{$newFile}" />
 
-
-<!-- / templates/controllers/grid/files/reviewAttachments/form/fileForm.tpl -->
 

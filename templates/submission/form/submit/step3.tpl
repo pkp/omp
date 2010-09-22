@@ -1,5 +1,3 @@
-<!-- templates/submission/form/submit/step3.tpl -->
-
 {**
  * step3.tpl
  *
@@ -55,6 +53,4 @@
 </form>
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/submission/form/submit/step3.tpl -->
 

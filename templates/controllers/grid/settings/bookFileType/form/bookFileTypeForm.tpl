@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/settings/bookFileType/form/bookFileTypeForm.tpl -->
-
 {**
  * bookFileTypeForm.tpl
  *
@@ -40,6 +38,4 @@
 {/if}
 
 </form>
-
-<!-- / templates/controllers/grid/settings/bookFileType/form/bookFileTypeForm.tpl -->
 

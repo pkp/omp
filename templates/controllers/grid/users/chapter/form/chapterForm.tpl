@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/users/chapter/form/chapterForm.tpl -->
-
 {**
  * chapters.tpl
  *
@@ -31,5 +29,3 @@
 </form>
 
 {init_button_bar id="#editChapterForm" submitText="submission.chapter.addChapter"}
-<!-- / templates/controllers/grid/users/chapter/form/chapterForm.tpl -->
-

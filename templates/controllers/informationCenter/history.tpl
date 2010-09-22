@@ -1,5 +1,3 @@
-<!-- templates/controllers/informationCenter/history.tpl -->
-
 {**
  * history.tpl
  *
@@ -34,6 +32,4 @@
 {/if}
 </table>
 </div>
-
-<!-- / templates/controllers/informationCenter/history.tpl -->
 

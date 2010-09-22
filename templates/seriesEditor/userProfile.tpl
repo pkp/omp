@@ -1,5 +1,3 @@
-<!-- templates/seriesEditor/userProfile.tpl -->
-
 {**
  * userProfile.tpl
  *
@@ -112,6 +110,4 @@
 </table>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/seriesEditor/userProfile.tpl -->
 

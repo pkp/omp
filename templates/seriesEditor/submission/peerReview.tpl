@@ -1,5 +1,3 @@
-<!-- templates/seriesEditor/submission/peerReview.tpl -->
-
 {**
  * peerReview.tpl
  *
@@ -93,6 +91,4 @@
 {include file="seriesEditor/submission/editorDecision.tpl"}
 
 </div>
-
-<!-- / templates/seriesEditor/submission/peerReview.tpl -->
 

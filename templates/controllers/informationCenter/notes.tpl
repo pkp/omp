@@ -1,5 +1,3 @@
-<!-- templates/controllers/informationCenter/notes.tpl -->
-
 {**
  * notes.tpl
  *
@@ -52,6 +50,4 @@
 	</div>
 </div>
 
-
-<!-- / templates/controllers/informationCenter/notes.tpl -->
 

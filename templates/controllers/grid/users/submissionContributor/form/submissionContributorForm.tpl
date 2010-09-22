@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/users/submissionContributor/form/submissionContributorForm.tpl -->
-
 {**
  * submissionContributorForm.tpl
  *
@@ -55,6 +53,4 @@
 </form>
 
 {init_button_bar id="#editSubmissionContributor"}
-
-<!-- / templates/controllers/grid/users/submissionContributor/form/submissionContributorForm.tpl -->
 

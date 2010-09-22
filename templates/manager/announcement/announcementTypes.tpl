@@ -1,5 +1,3 @@
-<!-- templates/manager/announcement/announcementTypes.tpl -->
-
 {**
  * announcementTypes.tpl
  *
@@ -63,6 +61,4 @@
 <a href="{url op="createAnnouncementType"}" class="action">{translate key="manager.announcementTypes.create"}</a>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/announcement/announcementTypes.tpl -->
 

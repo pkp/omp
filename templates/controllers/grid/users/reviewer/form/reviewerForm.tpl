@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/users/reviewer/form/reviewerForm.tpl -->
-
 {**
  * reviewerForm.tpl
  *
@@ -135,4 +133,3 @@
 
 {init_button_bar id="#addReviewer" submitText="editor.monograph.addReviewer"}
 
-<!-- / templates/controllers/grid/users/reviewer/form/reviewerForm.tpl -->

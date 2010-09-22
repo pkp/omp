@@ -1,5 +1,3 @@
-<!-- templates/controllers/informationCenter/note.tpl -->
-
 {**
  * note.tpl
  *
@@ -29,6 +27,4 @@
 	</table>
 	<hr />
 </div>
-
-<!-- / templates/controllers/informationCenter/note.tpl -->
 

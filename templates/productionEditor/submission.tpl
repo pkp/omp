@@ -1,5 +1,3 @@
-<!-- templates/productionEditor/submission.tpl -->
-
 {**
  * submission.tpl
  *
@@ -35,6 +33,4 @@
 </div>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/productionEditor/submission.tpl -->
 

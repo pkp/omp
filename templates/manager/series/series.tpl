@@ -1,5 +1,3 @@
-<!-- templates/manager/series/series.tpl -->
-
 {**
  * series.tpl
  *
@@ -60,6 +58,4 @@
 </div>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/series/series.tpl -->
 

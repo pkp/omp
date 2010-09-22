@@ -1,5 +1,3 @@
-<!-- templates/submission/form/submit/complete.tpl -->
-
 {**
  * complete.tpl
  *
@@ -30,6 +28,4 @@
 
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/submission/form/submit/complete.tpl -->
 

@@ -1,5 +1,3 @@
-<!-- templates/seriesEditor/submissionHistory.tpl -->
-
 {**
  * submissionHistory.tpl
  *
@@ -138,6 +136,4 @@
 </div>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/seriesEditor/submissionHistory.tpl -->
 

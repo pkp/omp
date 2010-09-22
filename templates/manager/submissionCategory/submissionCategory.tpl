@@ -1,5 +1,3 @@
-<!-- templates/manager/submissionCategory/submissionCategory.tpl -->
-
 {**
  * submissionCategory.tpl
  *
@@ -60,6 +58,4 @@
 </div>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/submissionCategory/submissionCategory.tpl -->
 

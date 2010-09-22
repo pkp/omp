@@ -1,5 +1,3 @@
-<!-- templates/settings/system.tpl -->
-
 {**
  * index.tpl
  *
@@ -17,6 +15,4 @@
 {/strip}
 <img src="{$baseUrl}/templates/images/wires/omp_settings_archiving.png">
 {include file="common/footer.tpl"}
-
-<!-- / templates/settings/system.tpl -->
 

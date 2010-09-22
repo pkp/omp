@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/users/reviewer/form/reviewReminderForm.tpl -->
-
 {**
  * reviewReminderForm.tpl
  *
@@ -36,5 +34,3 @@
 	</table> 
 
 </form>
-<!-- / templates/controllers/grid/users/reviewer/form/reviewReminderForm.tpl -->
-

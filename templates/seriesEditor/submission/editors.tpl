@@ -1,5 +1,3 @@
-<!-- templates/seriesEditor/submission/editors.tpl -->
-
 {**
  * editors.tpl
  *
@@ -77,6 +75,4 @@
 {/if}
 </form>
 </div>
-
-<!-- / templates/seriesEditor/submission/editors.tpl -->
 

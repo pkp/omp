@@ -1,5 +1,3 @@
-<!-- templates/submission/form/submit/step2.tpl -->
-
 {**
  * step2.tpl
  *
@@ -39,6 +37,4 @@
 </form>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/submission/form/submit/step2.tpl -->
 

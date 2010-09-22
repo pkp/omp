@@ -1,5 +1,3 @@
-<!-- templates/author/submission/proofread.tpl -->
-
 {**
  * proofread.tpl
  *
@@ -78,5 +76,4 @@
 &nbsp;&nbsp;
 <a href="{url op="instructions" path="proof"}" class="action openHelp">{translate key="submission.proofread.instructions"}</a>
 {/if}
-</div><!-- / templates/author/submission/proofread.tpl -->
-
+</div>

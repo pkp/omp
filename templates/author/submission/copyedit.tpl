@@ -1,5 +1,3 @@
-<!-- templates/author/submission/copyedit.tpl -->
-
 {**
  * copyedit.tpl
  *
@@ -127,5 +125,4 @@
 &nbsp;&nbsp;
 <a href="{url op="instructions" path="copy"}" class="action openHelp">{translate key="submission.copyedit.instructions"}</a>
 {/if}
-</div><!-- / templates/author/submission/copyedit.tpl -->
-
+</div>

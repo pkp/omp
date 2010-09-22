@@ -1,5 +1,3 @@
-<!-- templates/controllers/modals/submissionMetadata/submissionMetadata.tpl -->
-
 {**
  * submissionMetadata.tpl
  *
@@ -29,6 +27,4 @@
 {/fbvFormArea}
 
 {init_button_bar id="#submissionMetadata"}
-
-<!-- / templates/controllers/modals/editorDecision/form/initiateReviewForm.tpl -->
 

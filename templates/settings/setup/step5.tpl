@@ -1,5 +1,3 @@
-<!-- templates/settings/setup/step5.tpl -->
-
 {**
  * step5.tpl
  *
@@ -485,6 +483,4 @@ function prepBlockFields() {
 </div>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/settings/setup/step5.tpl -->
 

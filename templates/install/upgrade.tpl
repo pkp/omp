@@ -1,5 +1,3 @@
-<!-- templates/install/upgrade.tpl -->
-
 {**
  * upgrade.tpl
  *
@@ -39,6 +37,4 @@
 </form>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/install/upgrade.tpl -->
 

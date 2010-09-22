@@ -1,4 +1,3 @@
-<!-- templates/common/javascriptInit.tpl -->
 {**
  * javascriptInit.tpl
  *
@@ -33,6 +32,4 @@
 			});
 		});
 	{/literal}</script>
-
-<!-- / templates/common/javascriptInit.tpl -->
 

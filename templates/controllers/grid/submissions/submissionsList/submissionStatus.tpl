@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/submissions/submissionsList/submissionStatus.tpl -->
-
 {**
  * submissionStatus.tpl
  *
@@ -18,5 +16,3 @@
 {elseif $status==STATUS_PUBLISHED}{translate key="submissions.published"}
 {elseif $status==STATUS_DECLINED}{translate key="submissions.declined"}
 {/if}
-<!-- / templates/controllers/grid/submissions/submissionsList/submissionStatus.tpl -->
-

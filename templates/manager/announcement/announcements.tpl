@@ -1,5 +1,3 @@
-<!-- templates/manager/announcement/announcements.tpl -->
-
 {**
  * announcements.tpl
  *
@@ -67,6 +65,4 @@
 <a href="{url op="createAnnouncement"}" class="action">{translate key="manager.announcements.create"}</a>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/manager/announcement/announcements.tpl -->
 

@@ -1,5 +1,3 @@
-<!-- templates/productionEditor/submission/components.tpl -->
-
 {**
  * summary.tpl
  *
@@ -83,6 +81,4 @@ Revision: {$artwork->getRevision()}<br />
 </form>
 
 </div>
-
-<!-- / templates/productionEditor/submission/components.tpl -->
 

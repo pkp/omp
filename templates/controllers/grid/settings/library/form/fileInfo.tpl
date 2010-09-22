@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/settings/library/form/fileInfo.tpl -->
-
 {**
  * fileInfo.tpl
  *
@@ -27,6 +25,4 @@
 	<td width="80%" class="value">{$libraryFile->getDateUploaded()|date_format:$datetimeFormatShort}</td>
 </tr>
 </table>
-
-<!-- / templates/controllers/grid/settings/library/form/fileInfo.tpl -->
 

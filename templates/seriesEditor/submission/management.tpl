@@ -1,5 +1,3 @@
-<!-- templates/seriesEditor/submission/management.tpl -->
-
 {**
  * management.tpl
  *
@@ -53,6 +51,4 @@
 	{/if}
 </table>
 </div>
-
-<!-- / templates/seriesEditor/submission/management.tpl -->
 

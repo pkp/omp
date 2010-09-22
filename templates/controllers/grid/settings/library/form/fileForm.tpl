@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/settings/library/form/fileForm.tpl -->
-
 {**
  * fileForm.tpl
  *
@@ -129,6 +127,4 @@
 <input type="hidden" id="deleteUrl" value="" />
 <input type="hidden" id="newFile" value="{$newFile}" />
 
-
-<!-- / templates/controllers/grid/settings/library/form/fileForm.tpl -->
 

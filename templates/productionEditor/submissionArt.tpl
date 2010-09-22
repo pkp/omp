@@ -1,5 +1,3 @@
-<!-- templates/productionEditor/submissionArt.tpl -->
-
 {**
  * submissionArt.tpl
  *
@@ -12,6 +10,4 @@
  *}
 
 {include file="productionEditor/submission/summary.tpl"}
-
-<!-- / templates/productionEditor/submissionArt.tpl -->
 

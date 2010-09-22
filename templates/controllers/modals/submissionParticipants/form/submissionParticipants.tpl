@@ -1,5 +1,3 @@
-<!-- templates/controllers/modals/editorDecision/form/initiateReviewForm.tpl -->
-
 {**
  * initiateReviewForm.tpl
  *
@@ -18,6 +16,4 @@
 </div>
 
 {init_button_bar id="#submissionParticipants"}
-
-<!-- / templates/controllers/modals/editorDecision/form/initiateReviewForm.tpl -->
 

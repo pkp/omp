@@ -1,5 +1,3 @@
-<!-- templates/controllers/modals/editorDecision/form/newReviewRoundForm.tpl -->
-
 {**
  * sendReviewsForm.tpl
  *
@@ -22,6 +20,4 @@
 </form>
 
 {init_button_bar id="#newRound" submitText="editor.monograph.createNewRound"}
-
-<!-- / templates/controllers/modals/editorDecision/form/newReviewRoundForm.tpl -->
 

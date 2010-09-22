@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/settings/masthead/memberships.tpl -->
-
 {**
  * memberships.tpl
  *
@@ -62,5 +60,3 @@
 
 <form action="test">
 	</form>
-<!-- / templates/controllers/grid/settings/masthead/memberships.tpl -->
-

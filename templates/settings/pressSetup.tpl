@@ -1,5 +1,3 @@
-<!-- templates/settings/pressSetup.tpl -->
-
 {**
  * index.tpl
  *
@@ -20,6 +18,4 @@
 <a href="{url page="manager" op="setup"}">Press Setup</a>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/settings/pressSetup.tpl -->
 

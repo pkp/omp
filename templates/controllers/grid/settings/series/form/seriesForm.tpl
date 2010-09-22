@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/settings/series/form/seriesForm.tpl -->
-
 {**
  * seriesForm.tpl
  *
@@ -53,6 +51,4 @@
 {/if}
 
 </form>
-
-<!-- / templates/controllers/grid/settings/series/form/seriesForm.tpl -->
 

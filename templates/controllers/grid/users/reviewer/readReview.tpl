@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/users/reviewer/readReview.tpl -->
-
 {**
  * readReview.tpl
  *
@@ -43,6 +41,4 @@
 		{load_url_in_div id="readReviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 	</div>
 </div>
-
-<!-- / templates/controllers/grid/users/reviewer/readReview.tpl -->
 

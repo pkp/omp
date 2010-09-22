@@ -1,5 +1,3 @@
-<!-- templates/information/information.tpl -->
-
 {**
  * information.tpl
  *
@@ -21,6 +19,4 @@
 {if !$contentOnly}
 	{include file="common/footer.tpl"}
 {/if}
-
-<!-- / templates/information/information.tpl -->
 

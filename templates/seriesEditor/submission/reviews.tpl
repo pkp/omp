@@ -1,5 +1,3 @@
-<!-- templates/seriesEditor/submission/reviews.tpl -->
-
 
 
 {assign var="start" value="A"|ord}
@@ -200,6 +198,4 @@
 {/foreach}
 <div class="separator"></div>
 
-
-<!-- / templates/seriesEditor/submission/reviews.tpl -->
 

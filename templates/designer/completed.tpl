@@ -1,5 +1,3 @@
-<!-- templates/designer/completed.tpl -->
-
 {**
  * completed.tpl
  *
@@ -100,6 +98,4 @@
 {/if}
 </table>
 </div>
-
-<!-- / templates/designer/completed.tpl -->
 

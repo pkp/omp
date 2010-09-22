@@ -1,5 +1,3 @@
-<!-- templates/seriesEditor/submission/proofread.tpl -->
-
 {**
  * proofread.tpl
  *
@@ -185,6 +183,4 @@
 <a href="{url op="instructions" path="proof"}" class="action openHelp">{translate key="submission.proofread.instructions"}</a>
 {/if}
 </div>
-
-<!-- / templates/seriesEditor/submission/proofread.tpl -->
 

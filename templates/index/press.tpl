@@ -1,5 +1,3 @@
-<!-- templates/index/press.tpl -->
-
 {**
  * index.tpl
  *
@@ -33,7 +31,7 @@
 	{* Display announcements *}
 	<div id="announcementsHome">
 		<h3>{translate key="announcement.announcementsHome"}</h3>
-		{include file="announcement/list.tpl"}	
+		{include file="announcement/list.tpl"}
 		<table class="announcementsMore">
 			<tr>
 				<td><a href="{url page="announcement"}">{translate key="announcement.moreAnnouncements"}</a></td>
@@ -43,6 +41,3 @@
 {/if}
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/index/press.tpl -->
-

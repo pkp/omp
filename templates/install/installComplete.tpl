@@ -1,5 +1,3 @@
-<!-- templates/install/installComplete.tpl -->
-
 {**
  * installComplete.tpl
  *
@@ -45,6 +43,4 @@
 {/if}
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/install/installComplete.tpl -->
 

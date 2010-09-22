@@ -1,5 +1,3 @@
-<!-- templates/controllers/modals/competingInterests/form/competingInterests.tpl -->
-
 {**
  * competingInterests.tpl
  *
@@ -18,6 +16,4 @@
 {/fbvFormArea}
 
 {init_button_bar id="#competingInterests"}
-
-<!-- / templates/controllers/modals/competingInterests/form/competingInterests.tpl -->
 

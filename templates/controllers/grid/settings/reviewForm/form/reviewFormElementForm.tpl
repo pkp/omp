@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/settings/reviewForm/form/reviewFormElementForm.tpl -->
-
 {**
  * reviewFormElementForm.tpl
  *
@@ -84,6 +82,4 @@ function togglePossibleResponses(newValue) {
 {/if}
 
 </form>
-
-<!-- / templates/controllers/grid/settings/reviewForm/form/reviewFormElementForm.tpl -->
 

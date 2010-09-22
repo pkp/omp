@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/settings/contributor/form/contributorForm.tpl -->
-
 
 {**
  * sponsors.tpl
@@ -35,6 +33,4 @@
 {/if}
 
 </form>
-
-<!-- / templates/controllers/grid/settings/contributor/form/contributorForm.tpl -->
 

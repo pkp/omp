@@ -1,5 +1,3 @@
-<!-- templates/seriesEditor/selectReviewForm.tpl -->
-
 {**
  * selectReviewForm.tpl
  *
@@ -56,6 +54,4 @@
 </div>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/seriesEditor/selectReviewForm.tpl -->
 

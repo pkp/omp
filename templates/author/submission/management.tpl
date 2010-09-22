@@ -1,5 +1,3 @@
-<!-- templates/author/submission/management.tpl -->
-
 {**
  * management.tpl
  *
@@ -78,6 +76,4 @@
 
 </table>
 </div>
-
-<!-- / templates/author/submission/management.tpl -->
 

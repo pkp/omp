@@ -1,5 +1,3 @@
-<!-- templates/about/site.tpl -->
-
 {**
  * site.tpl
  *
@@ -29,6 +27,4 @@
 <a href="{url op="aboutThisPublishingSystem"}">{translate key="about.aboutThisPublishingSystem"}</a>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/about/site.tpl -->
 

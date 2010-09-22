@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/files/submissionFiles/form/fileForm.tpl -->
-
 {**
  * fileForm.tpl
  *
@@ -138,5 +136,3 @@
 	<input type="hidden" id="deleteUrl" name="deleteUrl" value="" />
 	<input type="hidden" id="confirmUrl" name="confirmUrl" value="" />
 </form>
-<!-- / templates/controllers/grid/files/submissionFiles/form/fileForm.tpl -->
-

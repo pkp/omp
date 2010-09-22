@@ -1,5 +1,3 @@
-<!-- templates/about/editorialTeam.tpl -->
-
 {**
  * editorialTeam.tpl
  *
@@ -86,6 +84,4 @@
 {/if}
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/about/editorialTeam.tpl -->
 

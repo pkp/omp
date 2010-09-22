@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/settings/series/selectUser.tpl -->
-
 {**
  * selectUser.tpl
  *
@@ -65,6 +63,4 @@
 </div>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/controllers/grid/settings/series/selectUser.tpl -->
 

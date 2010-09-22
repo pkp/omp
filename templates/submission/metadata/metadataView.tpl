@@ -1,5 +1,3 @@
-<!-- templates/submission/metadata/metadataView.tpl -->
-
 {**
  * metadata_view.tpl
  *
@@ -122,6 +120,4 @@ function show(id) {
 {if !$contentOnly}
 	{include file="common/footer.tpl"}
 {/if}
-
-<!-- / templates/submission/metadata/metadataView.tpl -->
 

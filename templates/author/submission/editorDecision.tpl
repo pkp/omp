@@ -1,5 +1,3 @@
-<!-- templates/author/submission/editorDecision.tpl -->
-
 {**
  * peerReview.tpl
  *
@@ -88,5 +86,3 @@
 	</tr>
 </table>
 </div>
-<!-- / templates/author/submission/editorDecision.tpl -->
-

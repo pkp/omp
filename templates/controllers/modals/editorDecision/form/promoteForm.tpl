@@ -1,5 +1,3 @@
-<!-- templates/controllers/modals/editorDecision/form/promoteForm.tpl -->
-
 {**
  * sendReviewsForm.tpl
  *
@@ -61,6 +59,4 @@ $(function() {
 </form>
 
 {init_button_bar id="#promote" submitText="editor.submissionReview.recordDecision"}
-
-<!-- / templates/controllers/modals/editorDecision/form/promoteForm.tpl -->
 

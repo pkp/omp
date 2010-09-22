@@ -1,5 +1,3 @@
-<!-- templates/designer/index.tpl -->
-
 {**
  * index.tpl
  *
@@ -23,6 +21,4 @@
 </ul>
 
 {include file="common/footer.tpl"}
-
-<!-- / templates/designer/index.tpl -->
 

@@ -1,5 +1,3 @@
-<!-- templates/editor/selectSeriesEditor.tpl -->
-
 {**
  * selectSeriesEditor.tpl
  *
@@ -86,6 +84,4 @@
 </table>
 </div>
 {include file="common/footer.tpl"}
-
-<!-- / templates/editor/selectSeriesEditor.tpl -->
 

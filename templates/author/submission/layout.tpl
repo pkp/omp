@@ -1,5 +1,3 @@
-<!-- templates/author/submission/layout.tpl -->
-
 {**
  * layout.tpl
  *
@@ -88,5 +86,3 @@
 	<a href="javascript:openComments('{url op="viewLayoutComments" path=$submission->getId()}');" class="icon">{icon name="comment"}</a>{translate key="common.noComments"}
 {/if}
 </div>
-<!-- / templates/author/submission/layout.tpl -->
-
