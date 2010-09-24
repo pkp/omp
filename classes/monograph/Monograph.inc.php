@@ -333,9 +333,15 @@ class Monograph extends Submission {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		$signoff = $signoffDao->getBySymbolic($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getId());
-		if (!$signoff) return false;
+		if (!$signoff) {
+			$returner = false;
+			return $returner;
+		}
 
-		if ($idOnly) return $signoff->getFileId();
+		if ($idOnly) {
+			$returner = $signoff->getFileId();
+			return $returner;
+		}
 
 		$monographFile =& $monographFileDao->getMonographFile($signoff->getFileId(), $signoff->getFileRevision());
 		return $monographFile;
