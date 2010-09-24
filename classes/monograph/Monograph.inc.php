@@ -328,7 +328,7 @@ class Monograph extends Submission {
 	 * @param $idOnly boolean Return only file ID
 	 * @return MonographFile
 	 */
-	function getFileBySignoffType($signoffType, $idOnly = false) {
+	function &getFileBySignoffType($signoffType, $idOnly = false) {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
@@ -346,7 +346,7 @@ class Monograph extends Submission {
 	 * @param $signoffType string
 	 * @return User
 	 */
-	function getUserBySignoffType($signoffType) {
+	function &getUserBySignoffType($signoffType) {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
