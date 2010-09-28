@@ -10,14 +10,10 @@
   *
   * This file lists all locales available to the system.
   * (i.e., existing under the locales/ directory)
-  *
-  * $Id$
   -->
 
 <!DOCTYPE locales SYSTEM "../lib/pkp/dtd/locales.dtd">
 
 <locales>
-	<locale key="en_US" name="English"/>
-	<locale key="de_DE" name="German"/>
-	<locale key="te_ST" name="Test"/>
+	<locale key="en_US" complete="false" name="English" iso639-2b="eng" />
 </locales>
