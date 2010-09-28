@@ -41,7 +41,7 @@ class EditorReviewAttachmentsForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		$this->_data['monographId'] = $this->monographId;
 		if ( isset($this->fileId) ) {
 			$this->_data['fileId'] = $this->fileId;
@@ -83,7 +83,7 @@ class EditorReviewAttachmentsForm extends Form {
 	/**
 	 * Save name for library file
 	 */
-	function execute(&$args, &$request) {
+	function execute($args, &$request) {
 		import('classes.file.MonographFileManager');
 
 		$monographFileManager = new MonographFileManager($this->monographId);

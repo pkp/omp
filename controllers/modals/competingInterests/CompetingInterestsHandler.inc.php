@@ -34,7 +34,7 @@ class CompetingInterestsHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
 		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -45,7 +45,7 @@ class CompetingInterestsHandler extends Handler {
 	 * Display the submission's metadata
 	 * @return JSON
 	 */
-	function fetch(&$args, &$request) {
+	function fetch($args, &$request) {
 		// Identify the press Id
 		$pressId = $request->getUserVar('pressId');
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));

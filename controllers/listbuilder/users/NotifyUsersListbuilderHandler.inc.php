@@ -30,7 +30,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
@@ -57,7 +57,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	/**
 	 * Need to add additional data to the template via the fetch method
 	 */
-	function fetch(&$args, &$request) {
+	function fetch($args, &$request) {
 		$router =& $request->getRouter();
 
 		$monographId = $request->getUserVar('monographId');
@@ -66,7 +66,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId))
 		);
 
-		return parent::fetch(&$args, &$request, $additionalVars);
+		return parent::fetch($args, &$request, $additionalVars);
     }
 
 
@@ -77,7 +77,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle adding an item to the list
 	 */
-	function addItem(&$args, &$request) {
+	function addItem($args, &$request) {
 		$rowId = "selectList-" . $this->getId();
 		$userId = (int) $args[$rowId];
 
@@ -100,7 +100,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle deleting items from the list
 	 */
-	function deleteItems(&$args, &$request) {
+	function deleteItems($args, &$request) {
 		$json = new JSON('true');
 		return $json->getString();
 	}

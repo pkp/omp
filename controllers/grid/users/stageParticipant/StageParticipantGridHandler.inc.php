@@ -57,7 +57,7 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
@@ -147,7 +147,7 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function addStageParticipant(&$args, &$request) {
+	function addStageParticipant($args, &$request) {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
 
@@ -166,7 +166,7 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function saveStageParticipant(&$args, &$request) {
+	function saveStageParticipant($args, &$request) {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
@@ -207,7 +207,7 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function deleteStageParticipant(&$args, &$request) {
+	function deleteStageParticipant($args, &$request) {
 		// Identify the submission Id
 		$signoffId = $request->getUserVar('signoffId');
 

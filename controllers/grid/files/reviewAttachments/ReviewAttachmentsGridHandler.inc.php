@@ -98,7 +98,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	* @param $args array
 	* @param $request PKPRequest
 	*/
-	function addFile(&$args, &$request) {
+	function addFile($args, &$request) {
 		// Calling editSponsor with an empty row id will add
 		// a new sponsor.
 		$templateMgr =& TemplateManager::getManager();
@@ -111,7 +111,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function editFile(&$args, &$request) {
+	function editFile($args, &$request) {
 		assert(false); // Subclasses must implement
 	}
 
@@ -121,7 +121,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function saveFile(&$args, &$request) {
+	function saveFile($args, &$request) {
 		assert(false); // Subclasses mustimplement
 	}
 
@@ -131,7 +131,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function returnFileRow(&$args, &$request) {
+	function returnFileRow($args, &$request) {
 		$fileId = isset($args['rowId']) ? $args['rowId'] : null;
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
@@ -158,7 +158,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function deleteFile(&$args, &$request) {
+	function deleteFile($args, &$request) {
 		$fileId = $request->getUserVar('rowId');
 
 		if($fileId) {
@@ -178,7 +178,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function downloadFile(&$args, &$request) {
+	function downloadFile($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$fileId = $request->getUserVar('fileId');
 		import('classes.file.MonographFileManager');

@@ -31,7 +31,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Display list of people in the selected role.
 	 * @param $args array first parameter is the role ID to display
 	 */
-	function people(&$args, &$request) {
+	function people($args, &$request) {
 		$this->setupTemplate(true);
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -171,7 +171,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Search for users to enroll in a specific role.
 	 * @param $args array first parameter is the selected role ID
 	 */
-	function enrollSearch(&$args, &$request) {
+	function enrollSearch($args, &$request) {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -238,7 +238,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Show users with no role.
 	 */
-	function showNoRole(&$args, &$request) {
+	function showNoRole($args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
 		$templateMgr =& TemplateManager::getManager();
@@ -259,7 +259,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Enroll a user in a role.
 	 */
-	function enroll(&$args, &$request) {
+	function enroll($args, &$request) {
 		$userGroupId = (int)(isset($args[0])?$args[0]:$request->getUserVar('userGroupId'));
 
 		// Get a list of users to enroll -- either from the
@@ -289,7 +289,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Unenroll a user from a role.
 	 */
-	function unEnroll(&$args, &$request) {
+	function unEnroll($args, &$request) {
 		$userGroupId = isset($args[0])?$args[0]:0;
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
@@ -307,7 +307,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Display form to create a new user.
 	 */
-	function createUser(&$args, &$request) {
+	function createUser($args, &$request) {
 		$this->editUser($args, $request);
 	}
 
@@ -315,7 +315,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Get a suggested username, making sure it's not
 	 * already used by the system. (Poor-man's AJAX.)
 	 */
-	function suggestUsername(&$args, &$request) {
+	function suggestUsername($args, &$request) {
 		$suggestion = Validation::suggestUsername(
 			$request->getUserVar('firstName'),
 			$request->getUserVar('lastName')
@@ -327,7 +327,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Display form to create/edit a user profile.
 	 * @param $args array optional, if set the first parameter is the ID of the user to edit
 	 */
-	function editUser(&$args, &$request) {
+	function editUser($args, &$request) {
 		$this->setupTemplate(true);
 
 		$press =& $request->getPress();
@@ -366,7 +366,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Allow the Press Manager to merge user accounts, including attributed monographs etc.
 	 */
-	function mergeUsers(&$args, &$request) {
+	function mergeUsers($args, &$request) {
 		$this->setupTemplate(true);
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -483,7 +483,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Disable a user's account.
 	 * @param $args array the ID of the user to disable
 	 */
-	function disableUser(&$args, &$request) {
+	function disableUser($args, &$request) {
 		$this->setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:$request->getUserVar('userId');
@@ -517,7 +517,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Enable a user's account.
 	 * @param $args array the ID of the user to enable
 	 */
-	function enableUser(&$args, &$request) {
+	function enableUser($args, &$request) {
 		$this->setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:null;
@@ -539,7 +539,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Remove a user from all roles for the current press.
 	 * @param $args array the ID of the user to remove
 	 */
-	function removeUser(&$args, &$request) {
+	function removeUser($args, &$request) {
 		$this->setupTemplate(true);
 
 		$userId = isset($args[0])?$args[0]:null;
@@ -557,7 +557,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Save changes to a user profile.
 	 */
-	function updateUser(&$args, &$request) {
+	function updateUser($args, &$request) {
 		$this->setupTemplate(true);
 
 		$press =& $request->getPress();
@@ -613,7 +613,7 @@ class PeopleHandler extends ManagerHandler {
 	 * Display a user's profile.
 	 * @param $args array first parameter is the ID or username of the user to display
 	 */
-	function userProfile(&$args, &$request) {
+	function userProfile($args, &$request) {
 		$this->setupTemplate(true);
 
 		$templateMgr =& TemplateManager::getManager();

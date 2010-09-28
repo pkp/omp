@@ -33,7 +33,7 @@ class SubmissionHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		$router =& $request->getRouter();
 		$operation = $router->getRequestedOp($request);
 
@@ -63,7 +63,7 @@ class SubmissionHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function index(&$args, &$request) {
+	function index($args, &$request) {
 		// Set up the template.
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate($request);
@@ -83,7 +83,7 @@ class SubmissionHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function details(&$args, &$request) {
+	function details($args, &$request) {
 		$this->setupTemplate($request);
 		$templateMgr =& TemplateManager::getManager();
 

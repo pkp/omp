@@ -39,7 +39,7 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_INTERNAL_REVIEW));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -75,7 +75,7 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function finishFileSubmission(&$args, &$request) {
+	function finishFileSubmission($args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
 		$monographId = isset($args['monographId']) ? $args['monographId'] : null;
 
@@ -94,7 +94,7 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function returnFileRow(&$args, &$request) {
+	function returnFileRow($args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
 
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');

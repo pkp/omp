@@ -35,7 +35,7 @@ class SubmissionParticipantsHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
@@ -47,7 +47,7 @@ class SubmissionParticipantsHandler extends Handler {
 	 * Display the submission participants grid
 	 * @return JSON
 	 */
-	function fetch(&$args, &$request) {
+	function fetch($args, &$request) {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
 

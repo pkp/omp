@@ -484,7 +484,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 	/**
 	 * Create a new user as a reviewer.
 	 */
-	function createReviewer(&$args, &$request) {
+	function createReviewer($args, &$request) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId, SERIES_EDITOR_ACCESS_REVIEW);
 		$press =& Request::getPress();

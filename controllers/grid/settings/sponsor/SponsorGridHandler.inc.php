@@ -85,7 +85,7 @@ class SponsorGridHandler extends SetupGridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function addSponsor(&$args, &$request) {
+	function addSponsor($args, &$request) {
 		// Calling editSponsor with an empty row id will add
 		// a new sponsor.
 		return $this->editSponsor($args, $request);
@@ -98,7 +98,7 @@ class SponsorGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editSponsor(&$args, &$request) {
+	function editSponsor($args, &$request) {
 		$sponsorId = isset($args['rowId'])?$args['rowId']:null;
 
 		import('controllers.grid.settings.sponsor.form.SponsorForm');
@@ -120,7 +120,7 @@ class SponsorGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function updateSponsor(&$args, &$request) {
+	function updateSponsor($args, &$request) {
 		// -> sponsorId must be present and valid
 		// -> htmlId must be present and valid
 		$sponsorId = isset($args['rowId'])?$args['rowId']:null;
@@ -155,7 +155,7 @@ class SponsorGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function deleteSponsor(&$args, &$request) {
+	function deleteSponsor($args, &$request) {
 		$sponsorId = isset($args['rowId'])?$args['rowId']:null;
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);

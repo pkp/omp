@@ -57,7 +57,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
 		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -164,7 +164,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function addSubmissionContributor(&$args, &$request) {
+	function addSubmissionContributor($args, &$request) {
 		// Calling editSubmissionContributor() with an empty row id will add
 		// a new submissionContributor.
 		return $this->editSubmissionContributor($args, $request);
@@ -176,7 +176,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editSubmissionContributor(&$args, &$request) {
+	function editSubmissionContributor($args, &$request) {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
 		// Identify the submissionContributor to be updated
@@ -200,7 +200,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function updateSubmissionContributor(&$args, &$request) {
+	function updateSubmissionContributor($args, &$request) {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
 		// Identify the submissionContributor to be updated
@@ -247,7 +247,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function deleteSubmissionContributor(&$args, &$request) {
+	function deleteSubmissionContributor($args, &$request) {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
 		// Identify the submissionContributor to be deleted

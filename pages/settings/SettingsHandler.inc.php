@@ -24,7 +24,7 @@ class SettingsHandler extends Handler {
     /**
      * Display settings index page.
      */
-    function index(&$request, &$args) {
+    function index(&$request, $args) {
         $templateMgr =& TemplateManager::getManager();
         $this->setupTemplate();
         $templateMgr->display('settings/index.tpl');
@@ -33,7 +33,7 @@ class SettingsHandler extends Handler {
     /**
      * Display settings index page.
      */
-    function data(&$request, &$args) {
+    function data(&$request, $args) {
         $templateMgr =& TemplateManager::getManager();
         $this->setupTemplate();
         $templateMgr->display('settings/data.tpl');
@@ -42,7 +42,7 @@ class SettingsHandler extends Handler {
     /**
      * Display settings index page.
      */
-    function system(&$request, &$args) {
+    function system(&$request, $args) {
         $templateMgr =& TemplateManager::getManager();
         $this->setupTemplate();
         $templateMgr->display('settings/system.tpl');
@@ -51,7 +51,7 @@ class SettingsHandler extends Handler {
     /**
      * Display settings index page.
      */
-    function users(&$request, &$args) {
+    function users(&$request, $args) {
         $templateMgr =& TemplateManager::getManager();
         $this->setupTemplate();
         $templateMgr->display('settings/userManagement.tpl');

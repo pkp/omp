@@ -65,7 +65,7 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	/*
 	 * Handle adding an item to the list
 	 */
-	function addItem(&$args, &$request) {
+	function addItem($args, &$request) {
 		$this->setupTemplate();
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$press =& $request->getPress();
@@ -107,7 +107,7 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	/*
 	 * Handle deleting items from the list
 	 */
-	function deleteItems(&$args, &$request) {
+	function deleteItems($args, &$request) {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$press =& $request->getPress();
 		$formats = $pressSettingsDao->getSetting($press->getId(), 'cataloguingMetadata');

@@ -90,7 +90,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function addContributor(&$args, &$request) {
+	function addContributor($args, &$request) {
 		// Calling editContributor with an empty row id will add
 		// a new contributor.
 		return $this->editContributor($args, $request);
@@ -102,7 +102,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editContributor(&$args, &$request) {
+	function editContributor($args, &$request) {
 		$contributorId = isset($args['rowId']) ? $args['rowId'] : null;
 		import('controllers.grid.settings.contributor.form.ContributorForm');
 		$contributorForm = new ContributorForm($contributorId);
@@ -123,7 +123,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function updateContributor(&$args, &$request) {
+	function updateContributor($args, &$request) {
 		// -> contributorId must be present and valid
 		// -> htmlId must be present and valid
 		$contributorId = isset($args['rowId']) ? $args['rowId'] : null;
@@ -157,7 +157,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function deleteContributor(&$args, &$request) {
+	function deleteContributor($args, &$request) {
 		$contributorId = isset($args['rowId']) ? $args['rowId'] : null;
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);

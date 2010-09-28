@@ -49,7 +49,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 		return Locale::translate('plugins.importexport.users.description');
 	}
 
-	function display(&$args) {
+	function display($args) {
 		$templateMgr =& TemplateManager::getManager();
 		parent::display($args);
 
@@ -208,7 +208,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 	 * Execute import/export tasks using the command-line interface.
 	 * @param $args Parameters to the plugin
 	 */ 
-	function executeCLI($scriptName, &$args) {
+	function executeCLI($scriptName, $args) {
 		$command = array_shift($args);
 		$xmlFile = array_shift($args);
 		$pressPath = array_shift($args);

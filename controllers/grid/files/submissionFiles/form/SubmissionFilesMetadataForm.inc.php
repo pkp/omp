@@ -49,7 +49,7 @@ class SubmissionFilesMetadataForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		if ( isset($this->fileId) ) {
 			$this->_data['fileId'] = $this->fileId;
 		}
@@ -88,7 +88,7 @@ class SubmissionFilesMetadataForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function execute(&$args, &$request) {
+	function execute($args, &$request) {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
 

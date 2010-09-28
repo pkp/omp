@@ -55,7 +55,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
 		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -159,7 +159,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 	//
 	// Public Chapter Grid Actions
 	//
-	function addChapter(&$args, &$request) {
+	function addChapter($args, &$request) {
 		// Calling editChapter() with an empty row id will add
 		// a new chapter.
 		return $this->editChapter($args, $request);
@@ -171,7 +171,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editChapter(&$args, &$request) {
+	function editChapter($args, &$request) {
 		// Identify the monograph being worked on
 		$monographId = $request->getUserVar('monographId');
 		// Identify the chapter to be updated
@@ -196,7 +196,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function updateChapter(&$args, &$request) {
+	function updateChapter($args, &$request) {
 		// Identify the monograph being worked on
 		$monographId = $request->getUserVar('monographId');
 		// Identify the chapter to be updated
@@ -240,7 +240,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function deleteChapter(&$args, &$request) {
+	function deleteChapter($args, &$request) {
 		// Identify the chapter to be deleted
 		$chapter =& $this->_getChapterFromArgs($args);
 

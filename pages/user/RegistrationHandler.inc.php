@@ -27,7 +27,7 @@ class RegistrationHandler extends UserHandler {
 	/**
 	 * Display registration form for new users.
 	 */
-	function register(&$args, &$request) {
+	function register($args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 
@@ -62,7 +62,7 @@ class RegistrationHandler extends UserHandler {
 	/**
 	 * Validate user registration information and register new user.
 	 */
-	function registerUser(&$args, &$request) {
+	function registerUser($args, &$request) {
 		$this->validate();
 		$this->setupTemplate(true);
 		import('classes.user.form.RegistrationForm');

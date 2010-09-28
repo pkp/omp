@@ -56,7 +56,7 @@ class SendReviewsForm extends Form {
 	* Initialize form data from the associated submissionContributor.
 	* @param $submissionContributor Reviewer
 	*/
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		$monograph =& $this->getMonograph();
 		$this->setData('authorName', $monograph->getAuthorString());
 		$this->setData('monographId', $this->_monographId);
@@ -79,7 +79,7 @@ class SendReviewsForm extends Form {
 	/**
 	 * Save review assignment
 	 */
-	function execute(&$args, &$request) {
+	function execute($args, &$request) {
 	}
 }
 

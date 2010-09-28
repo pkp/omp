@@ -49,7 +49,7 @@ class SubmissionMetadataForm extends Form {
 	* @param $args array
 	* @param $request PKPRequest
 	*/
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		$this->_data = array(

@@ -44,7 +44,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_INTERNAL_REVIEW));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -161,7 +161,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function updateReviewerSelect(&$args, &$request) {
+	function updateReviewerSelect($args, &$request) {
 		$press =& $request->getPress();
 		// Retrieve the filtered list of reviewers
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');

@@ -37,7 +37,7 @@ class ContributorForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		$press =& Request::getPress();
 
 		$contributors = $press->getSetting('contributors');

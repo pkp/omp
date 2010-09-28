@@ -36,7 +36,7 @@ class InformationCenterHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
@@ -51,21 +51,21 @@ class InformationCenterHandler extends Handler {
 	 * Display the main information center modal.
 	 * NB: sub-classes must implement this method.
 	 */
-	function viewInformationCenter(&$args, &$request) {
+	function viewInformationCenter($args, &$request) {
 		assert(false);
 	}
 
 	/**
 	 * Display the notes tab.
 	 */
-	function viewNotes(&$args, &$request) {
+	function viewNotes($args, &$request) {
 		assert('false');
 	}
 
 	/**
 	 * Save a note.
 	 */
-	function saveNote(&$args, &$request) {
+	function saveNote($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
 		$itemType = Request::getUserVar('itemType');
 		$this->setupTemplate(true);
@@ -98,7 +98,7 @@ class InformationCenterHandler extends Handler {
 	/**
 	 * Delete a note.
 	 */
-	function deleteNote(&$args, &$request) {
+	function deleteNote($args, &$request) {
 		$noteId = Request::getUserVar('noteId');
 		$itemId = Request::getUserVar('itemId');
 
@@ -114,7 +114,7 @@ class InformationCenterHandler extends Handler {
 	/**
 	 * Display the notify tab.
 	 */
-	function viewNotify (&$args, &$request) {
+	function viewNotify ($args, &$request) {
 		assert(false);
 	}
 
@@ -122,7 +122,7 @@ class InformationCenterHandler extends Handler {
 	 * Send a notification from the notify tab.
 	 * NB: sub-classes must implement this method.
 	 */
-	function sendNotification (&$args, &$request) {
+	function sendNotification ($args, &$request) {
 		assert(false);
 	}
 
@@ -130,7 +130,7 @@ class InformationCenterHandler extends Handler {
 	 * Display the history tab.
 	 * NB: sub-classes must implement this method.
 	 */
-	function viewHistory(&$args, &$request) {
+	function viewHistory($args, &$request) {
 		assert(false);
 	}
 

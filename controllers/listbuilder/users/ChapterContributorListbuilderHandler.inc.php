@@ -32,7 +32,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
 		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -114,7 +114,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 	/**
 	 * Need to add additional data to the template via the fetch method
 	 */
-	function fetch(&$args, &$request) {
+	function fetch($args, &$request) {
 		$router =& $request->getRouter();
 
 		$monographId = $request->getUserVar('monographId');
@@ -124,7 +124,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId, 'chapterId' => $chapterId))
 		);
 
-		return parent::fetch(&$args, &$request, $additionalVars);
+		return parent::fetch($args, &$request, $additionalVars);
     }
 
 	/**
@@ -143,7 +143,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle adding an item to the list
 	 */
-	function addItem(&$args, &$request) {
+	function addItem($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$chapterId = $request->getUserVar('chapterId');
 		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
@@ -184,7 +184,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 	/*
 	 * Handle deleting items from the list
 	 */
-	function deleteItems(&$args, &$request) {
+	function deleteItems($args, &$request) {
 		$monographId = array_shift($args);
 		$chapterId = array_shift($args);
 

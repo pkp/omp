@@ -27,7 +27,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	/**
 	 * Display the main information center modal.
 	 */
-	function viewInformationCenter(&$args, &$request) {
+	function viewInformationCenter($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
 		$this->setupTemplate(true);
 
@@ -61,7 +61,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	/**
 	 * Display the notes tab.
 	 */
-	function viewNotes(&$args, &$request) {
+	function viewNotes($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
 		$this->setupTemplate(true);
 
@@ -76,7 +76,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	/**
 	 * Display the notify tab.
 	 */
-	function viewNotify (&$args, &$request) {
+	function viewNotify ($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
 		$this->setupTemplate(true);
 
@@ -91,7 +91,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	/**
 	 * Send a notification from the notify tab.
 	 */
-	function sendNotification (&$args, &$request) {
+	function sendNotification ($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
 		$this->setupTemplate(true);
 
@@ -115,7 +115,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	/**
 	 * Display the history tab.
 	 */
-	function viewHistory(&$args, &$request) {
+	function viewHistory($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
 		$this->setupTemplate(true);
 

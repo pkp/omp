@@ -60,7 +60,7 @@ class ReviewFormForm extends Form {
 	/**
 	 * Initialize form data from current review form.
 	 */
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		if ($this->reviewFormId != null) {
 			$press =& Request::getPress();
 			$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');

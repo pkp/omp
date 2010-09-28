@@ -35,7 +35,7 @@ class BookFileTypeForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		$press =& $request->getPress();
 
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');

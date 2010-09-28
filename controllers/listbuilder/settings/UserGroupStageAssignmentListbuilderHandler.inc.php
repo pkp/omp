@@ -119,7 +119,7 @@ class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler
 	/*
 	 * Handle adding an item to the list
 	 */
-	function addItem(&$args, &$request) {
+	function addItem($args, &$request) {
 		$this->setupTemplate();
 		$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO');
 		$press =& $request->getPress();
@@ -154,7 +154,7 @@ class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler
 	/*
 	 * Handle deleting items from the list
 	 */
-	function deleteItems(&$args, &$request) {
+	function deleteItems($args, &$request) {
 		$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO');
 
 		$press =& $request->getPress();

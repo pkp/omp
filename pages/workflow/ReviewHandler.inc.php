@@ -26,7 +26,7 @@ class ReviewHandler extends Handler {
 		parent::Handler();
 	}
 
-	function review(&$args, &$request) {
+	function review($args, &$request) {
 		$this->setupTemplate();
 		$monographId = array_shift($args);
 		$selectedRound = array_shift($args);

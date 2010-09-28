@@ -31,7 +31,7 @@ class SetupHandler extends SettingsHandler {
 	 * Displays setup index page if a valid step is not specified.
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
-	function setup(&$args, &$request) {
+	function setup($args, &$request) {
 		$this->setupTemplate(true);
 
 		$step = isset($args[0]) ? (int) $args[0] : 1;
@@ -65,7 +65,7 @@ class SetupHandler extends SettingsHandler {
 	 * Save changes to press settings.
 	 * @param $args array first parameter is the step being saved
 	 */
-	function saveSetup(&$args, &$request) {
+	function saveSetup($args, &$request) {
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
 		if ($step >= 1 && $step <= 5) {

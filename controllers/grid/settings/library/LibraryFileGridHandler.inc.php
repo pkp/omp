@@ -115,7 +115,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function addFile(&$args, &$request) {
+	function addFile($args, &$request) {
 		// Calling editSponsor with an empty row id will add
 		// a new sponsor.
 		$templateMgr =& TemplateManager::getManager();
@@ -129,7 +129,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editFile(&$args, &$request) {
+	function editFile($args, &$request) {
 		$this->initialize($request);
 		$fileId = isset($args['rowId']) ? $args['rowId'] : null;
 
@@ -152,7 +152,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function uploadFile(&$args, &$request) {
+	function uploadFile($args, &$request) {
 		$fileId = isset($args['rowId']) ? $args['rowId'] : null;
 		$fileType = isset($args['fileType']) ? $args['fileType'] : null;
 		$router =& $request->getRouter();
@@ -187,7 +187,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function saveMetadata(&$args, &$request) {
+	function saveMetadata($args, &$request) {
 		$fileId = $request->getUserVar('rowId');
 		$name = $request->getUserVar('name');
 		$fileType = isset($args['fileType']) ? $args['fileType'] : null;
@@ -220,7 +220,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function deleteFile(&$args, &$request) {
+	function deleteFile($args, &$request) {
 		$fileId = isset($args['rowId']) ? $args['rowId'] : null;
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);

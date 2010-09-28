@@ -57,7 +57,7 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_INTERNAL_REVIEW));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -141,7 +141,7 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editFile(&$args, &$request) {
+	function editFile($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$fileId = $request->getUserVar('rowId');
 
@@ -163,7 +163,7 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function saveFile(&$args, &$request) {
+	function saveFile($args, &$request) {
 		$router =& $request->getRouter();
 		$monographId = $request->getUserVar('monographId');
 

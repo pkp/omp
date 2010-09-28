@@ -40,7 +40,7 @@ class ReviewerSelectorHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_INTERNAL_REVIEW));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -50,7 +50,7 @@ class ReviewerSelectorHandler extends Handler {
 	/**
 	 * Display the reviewer filtering form
 	 */
-	function fetchForm(&$args, &$request) {
+	function fetchForm($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$interestDao =& DAORegistry::getDAO('InterestDAO');
 

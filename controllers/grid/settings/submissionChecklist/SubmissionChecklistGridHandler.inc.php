@@ -88,7 +88,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function addItem(&$args, &$request) {
+	function addItem($args, &$request) {
 		// Delegate to the row handler
 		import('controllers.grid.settings.submissionChecklist.SubmissionChecklistGridRow');
 		$submissionChecklistRow =& new SubmissionChecklistGridRow();
@@ -104,7 +104,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editItem(&$args, &$request) {
+	function editItem($args, &$request) {
 		import('controllers.grid.settings.submissionChecklist.form.SubmissionChecklistForm');
 		$submissionChecklistId = isset($args['rowId']) ? $args['rowId'] : null;
 		$submissionChecklistForm = new SubmissionChecklistForm($submissionChecklistId);
@@ -125,7 +125,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function updateItem(&$args, &$request) {
+	function updateItem($args, &$request) {
 		// -> submissionChecklistId must be present and valid
 		// -> htmlId must be present and valid
 
@@ -161,7 +161,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function deleteItem(&$args, &$request) {
+	function deleteItem($args, &$request) {
 		$rowId = $request->getUserVar('rowId');
 
 		$router =& $request->getRouter();

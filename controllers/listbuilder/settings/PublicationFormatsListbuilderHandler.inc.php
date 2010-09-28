@@ -69,7 +69,7 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	/*
 	 * Handle adding an item to the list
 	 */
-	function addItem(&$args, &$request) {
+	function addItem($args, &$request) {
 		$this->setupTemplate();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$press =& $request->getPress();
@@ -116,7 +116,7 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	/*
 	 * Handle deleting items from the list
 	 */
-	function deleteItems(&$args, &$request) {
+	function deleteItems($args, &$request) {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 
 		foreach($args as $publicationFormatId) {

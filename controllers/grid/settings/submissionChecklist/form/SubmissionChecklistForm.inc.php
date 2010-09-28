@@ -35,7 +35,7 @@ class SubmissionChecklistForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		$press =& Request::getPress();
 
 		$submissionChecklistAll = $press->getSetting('submissionChecklist');
@@ -84,7 +84,7 @@ class SubmissionChecklistForm extends Form {
 	/**
 	 * Save email template.
 	 */
-	function execute(&$args, &$request) {
+	function execute($args, &$request) {
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
 		$submissionChecklistAll = $press->getSetting('submissionChecklist');

@@ -84,7 +84,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 	/**
 	 * Need to add additional data to the template via the fetch method
 	 */
-	function fetch(&$args, &$request) {
+	function fetch($args, &$request) {
 		$router =& $request->getRouter();
 		$groupId = $request->getUserVar('groupId');
 
@@ -94,7 +94,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 			'autocompleteUrl' => $router->url($request, array(), null, 'getAutocompleteSource', null)
 		);
 
-		return parent::fetch(&$args, &$request, $additionalVars);
+		return parent::fetch($args, &$request, $additionalVars);
     }
 
 	/*
@@ -125,7 +125,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 	/*
 	 * Fetch either a block of data for local autocomplete, or return a URL to another function for AJAX autocomplete
 	 */
-	function getAutocompleteSource(&$args, &$request) {
+	function getAutocompleteSource($args, &$request) {
 		//FIXME: add validation here?
 		$this->setupTemplate();
 
@@ -152,7 +152,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 	/*
 	 * Handle adding an item to the list
 	 */
-	function addItem(&$args, &$request) {
+	function addItem($args, &$request) {
 		$this->setupTemplate();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$press =& $request->getPress();
@@ -202,7 +202,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 	/*
 	 * Handle deleting items from the list
 	 */
-	function deleteItems(&$args, &$request) {
+	function deleteItems($args, &$request) {
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
 		$groupId = array_shift($args);
 

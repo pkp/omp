@@ -38,7 +38,7 @@ class SubmissionFilesUploadForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		$this->_data['monographId'] = $this->_monographId;
 		if (isset($this->_fileId) ) {
 			$this->_data['fileId'] = $this->_fileId;
@@ -84,7 +84,7 @@ class SubmissionFilesUploadForm extends Form {
 	 * @param $request PKPRequest
 	 * @return int MonographFile Id
 	 */
-	function checkForRevision(&$args, &$request) {
+	function checkForRevision($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
 		import('classes.file.MonographFileManager');
@@ -104,7 +104,7 @@ class SubmissionFilesUploadForm extends Form {
 	 * @param $request PKPRequest
 	 * @return int
 	 */
-	function uploadFile(&$args, &$request) {
+	function uploadFile($args, &$request) {
 		$monographId = $this->_monographId;
 		$fileId = $this->_fileId;
 		$fileTypeId = $this->getData('fileType');

@@ -80,7 +80,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 	/**
 	 * Initialize form data.
 	 */
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO');
 		$artworkFile =& $artworkFileDao->getByFileId($this->_fileId);
 		$this->_data['artworkFile'] =& $artworkFile;

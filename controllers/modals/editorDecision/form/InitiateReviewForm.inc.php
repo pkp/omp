@@ -49,7 +49,7 @@ class InitiateReviewForm extends Form {
 	* @param $args array
 	* @param $request PKPRequest
 	*/
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION));
 
 		$this->_data = array(
@@ -78,7 +78,7 @@ class InitiateReviewForm extends Form {
 	/**
 	 * Save review assignment
 	 */
-	function execute(&$args, &$request) {
+	function execute($args, &$request) {
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		import('submission.editor.EditorAction');
 

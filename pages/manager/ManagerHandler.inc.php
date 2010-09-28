@@ -28,7 +28,7 @@ class ManagerHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		// FIXME: We do not currently have a "manager" handler
 		// specified for OMP as we'll move away from role based
 		// pages. We use the already specified OmpPressAccessPolicy

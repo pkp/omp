@@ -33,7 +33,7 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
 		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -82,7 +82,7 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editFile(&$args, &$request) {
+	function editFile($args, &$request) {
 		$fileId = $request->getUserVar('rowId');
 		$reviewId = $request->getUserVar('reviewId');
 
@@ -104,7 +104,7 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function saveFile(&$args, &$request) {
+	function saveFile($args, &$request) {
 		$router =& $request->getRouter();
 		$reviewId = (int) $request->getUserVar('reviewId');
 

@@ -62,7 +62,7 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function deleteSubmission(&$args, &$request) {
+	function deleteSubmission($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$this->validate($monographId);
 

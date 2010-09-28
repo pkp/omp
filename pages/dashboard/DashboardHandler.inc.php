@@ -24,7 +24,7 @@ class DashboardHandler extends Handler {
     /**
      * Display about index page.
      */
-    function index(&$request, &$args) {
+    function index(&$request, $args) {
         $templateMgr = &TemplateManager::getManager();
         $this->setupTemplate();
         $templateMgr->display('dashboard/index.tpl');

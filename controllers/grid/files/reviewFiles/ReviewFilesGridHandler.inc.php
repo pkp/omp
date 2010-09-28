@@ -264,7 +264,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function downloadFile(&$args, &$request) {
+	function downloadFile($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$fileId = $request->getUserVar('fileId');
 
@@ -279,7 +279,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function downloadAllFiles(&$args, &$request) {
+	function downloadAllFiles($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
 		import('classes.file.MonographFileManager');
@@ -293,7 +293,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function manageReviewFiles(&$args, &$request) {
+	function manageReviewFiles($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
 		import('controllers.grid.files.reviewFiles.form.ManageReviewFilesForm');
@@ -310,7 +310,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function uploadReviewFile(&$args, &$request) {
+	function uploadReviewFile($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
 		import('controllers.grid.files.reviewFiles.form.ManageReviewFilesForm');
@@ -327,7 +327,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function updateReviewFiles(&$args, &$request) {
+	function updateReviewFiles($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
 		import('controllers.grid.files.reviewFiles.form.ManageReviewFilesForm');

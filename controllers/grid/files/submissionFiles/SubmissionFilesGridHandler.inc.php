@@ -96,7 +96,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	* @param $request PKPRequest
 	* @return JSON
 	*/
-	function addFile(&$args, &$request) {
+	function addFile($args, &$request) {
 		// Calling editSponsor with an empty file id will add a new file
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('newFile', 'true');
@@ -110,7 +110,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	* @param $request PKPRequest
 	* @return JSON
 	*/
-	function addRevision(&$args, &$request) {
+	function addRevision($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('isRevision', 'true');
 
@@ -123,7 +123,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editFile(&$args, &$request) {
+	function editFile($args, &$request) {
 		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
 
 		$templateMgr =& TemplateManager::getManager();
@@ -141,7 +141,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function displayFileForm(&$args, &$request) {
+	function displayFileForm($args, &$request) {
 		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
 		$monographId = $request->getUserVar('monographId');
 
@@ -164,7 +164,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function uploadFile(&$args, &$request) {
+	function uploadFile($args, &$request) {
 		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
 		$monographId = $request->getUserVar('monographId');
 
@@ -174,7 +174,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 		// Check to see if the file uploaded might be a revision to an existing file
 		if(!$fileId) {
-			$possibleRevision = $fileForm->checkForRevision(&$args, &$request);
+			$possibleRevision = $fileForm->checkForRevision($args, &$request);
 		} else $possibleRevision = false;
 
 		if ($fileForm->validate() && ($fileId = $fileForm->uploadFile($args, $request)) ) {
@@ -212,7 +212,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @return JSON
 	 * @return JSON
 	 */
-	function confirmRevision(&$args, &$request) {
+	function confirmRevision($args, &$request) {
 		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
 		$revisionId = $request->getUserVar('revisionId');
 
@@ -243,7 +243,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editMetadata(&$args, &$request) {
+	function editMetadata($args, &$request) {
 		$fileId = $request->getUserVar('fileId');
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
@@ -285,7 +285,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function saveMetadata(&$args, &$request) {
+	function saveMetadata($args, &$request) {
 		$fileId = $request->getUserVar('fileId');
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
@@ -333,7 +333,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function finishFileSubmission(&$args, &$request) {
+	function finishFileSubmission($args, &$request) {
 		$fileId = $request->getUserVar('fileId');
 		$monographId = $request->getUserVar('monographId');
 
@@ -352,7 +352,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function returnFileRow(&$args, &$request) {
+	function returnFileRow($args, &$request) {
 		$fileId = $request->getUserVar('fileId');
 
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
@@ -380,7 +380,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function deleteFile(&$args, &$request) {
+	function deleteFile($args, &$request) {
 		$fileId = $request->getUserVar('fileId');
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
@@ -401,7 +401,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function downloadFile(&$args, &$request) {
+	function downloadFile($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$fileId = $request->getUserVar('fileId');
 		$revision = $request->getUserVar('fileRevision');
@@ -415,7 +415,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function viewFile(&$args, &$request) {
+	function viewFile($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$fileId = $request->getUserVar('fileId');
 		$revision = $request->getUserVar('fileRevision');

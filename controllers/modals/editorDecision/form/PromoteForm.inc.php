@@ -58,7 +58,7 @@ class PromoteForm extends Form {
 	* @param $args array
 	* @param $request PKPRequest
 	*/
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		$press =& $request->getPress();
 		$monograph =& $this->getMonograph();
 		$submitter = $monograph->getUser();
@@ -111,7 +111,7 @@ class PromoteForm extends Form {
 	/**
 	 * Save review assignment
 	 */
-	function execute(&$args, &$request) {
+	function execute($args, &$request) {
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$decision = $this->getData('decision');
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');

@@ -82,7 +82,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 	/**
 	 * Need to add additional data to the template via the fetch method
 	 */
-	function fetch(&$args, &$request) {
+	function fetch($args, &$request) {
 		$router =& $request->getRouter();
 		$groupId = $request->getUserVar('groupId');
 
@@ -91,7 +91,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('groupId' => $this->roleId)),
 		);
 
-		return parent::fetch(&$args, &$request, $additionalVars);
+		return parent::fetch($args, &$request, $additionalVars);
     }
 
 	//
@@ -101,7 +101,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 	/*
 	 * Handle adding an item to the list
 	 */
-	function addItem(&$args, &$request) {
+	function addItem($args, &$request) {
 		$this->setupTemplate();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$press =& $request->getPress();
@@ -158,7 +158,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 	/*
 	 * Handle deleting items from the list
 	 */
-	function deleteItems(&$args, &$request) {
+	function deleteItems($args, &$request) {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
 		foreach($args as $userGroupId) {

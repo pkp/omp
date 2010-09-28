@@ -123,7 +123,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function addSeries(&$args, &$request) {
+	function addSeries($args, &$request) {
 		// Calling editSeries with an empty row id will add
 		// a new series.
 		return $this->editSeries($args, $request);
@@ -135,7 +135,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editSeries(&$args, &$request) {
+	function editSeries($args, &$request) {
 		$seriesId = isset($args['rowId']) ? $args['rowId'] : null;
 
 		//FIXME: add validation here?
@@ -160,7 +160,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function updateSeries(&$args, &$request) {
+	function updateSeries($args, &$request) {
 		$seriesId = Request::getUserVar('rowId');
 
 		//FIXME: add validation here?
@@ -222,7 +222,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function deleteSeries(&$args, &$request) {
+	function deleteSeries($args, &$request) {
 		// FIXME: add validation here?
 
 		$router =& $request->getRouter();

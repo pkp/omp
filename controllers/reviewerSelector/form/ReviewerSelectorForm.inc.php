@@ -49,7 +49,7 @@ class ReviewerSelectorForm extends Form {
 	/**
 	 * Save submission file
 	 */
-	function execute(&$args, &$request) {
+	function execute($args, &$request) {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
 

@@ -31,7 +31,7 @@ class SubmitHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		// The policy for the submission handler depends on the
 		// step currently requested.
 		$step = isset($args[0]) ? (int) $args[0] : 1;
@@ -87,7 +87,7 @@ class SubmitHandler extends Handler {
 	 * @param $args array
 	 * @param $request Request
 	 */
-	function wizard(&$args, &$request) {
+	function wizard($args, &$request) {
 		$step = isset($args[0]) ? (int) $args[0] : 1;
 
 		$router =& $request->getRouter();
@@ -131,7 +131,7 @@ class SubmitHandler extends Handler {
 	 * @param $args array first parameter is the step being saved
 	 * @param $request Request
 	 */
-	function saveStep(&$args, &$request) {
+	function saveStep($args, &$request) {
 		$step = isset($args[0]) ? (int) $args[0] : 1;
 
 		$router =& $request->getRouter();

@@ -62,7 +62,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $roleAssignments array
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_INTERNAL_REVIEW));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -174,7 +174,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function addReviewer(&$args, &$request) {
+	function addReviewer($args, &$request) {
 		// Calling editReviewer() with an empty row id will add
 		// a new reviewer.
 		return $this->editReviewer($args, $request);
@@ -186,7 +186,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editReviewer(&$args, &$request) {
+	function editReviewer($args, &$request) {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
 		// Identify the review assignment being updated
@@ -207,7 +207,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function updateReviewer(&$args, &$request) {
+	function updateReviewer($args, &$request) {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
 		// Identify the review assignment being updated
@@ -242,7 +242,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function deleteReviewer(&$args, &$request) {
+	function deleteReviewer($args, &$request) {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
 		// Identify the review assignment ID
@@ -266,7 +266,7 @@ class ReviewerGridHandler extends GridHandler {
 	* @param $request PKPRequest
 	* @return JSON
 	*/
-	function getReviewerAutocomplete(&$args, &$request) {
+	function getReviewerAutocomplete($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$round = $request->getUserVar('round');
 		$press =& $request->getPress();
@@ -314,7 +314,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function readReview(&$args, &$request) {
+	function readReview($args, &$request) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
@@ -343,7 +343,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editReminder(&$args, &$request) {
+	function editReminder($args, &$request) {
 		// Identify the review assignment being updated
 		$reviewAssignmentId = $request->getUserVar('reviewId');
 
@@ -362,7 +362,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function sendReminder(&$args, &$request) {
+	function sendReminder($args, &$request) {
 		// Identify the review assignment being updated
  		$reviewAssignmentId = $request->getUserVar('reviewAssignmentId');
 

@@ -39,7 +39,7 @@ class EditorDecisionHandler extends Handler {
 	/**
 	 * @see PKPHandler::authorize()
 	 */
-	function authorize(&$request, &$args, $roleAssignments) {
+	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_SUBMISSION));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -50,7 +50,7 @@ class EditorDecisionHandler extends Handler {
 	 * Start a new review round
 	 * @return JSON
 	 */
-	function newReviewRound(&$args, &$request) {
+	function newReviewRound($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
 		// Form handling
@@ -66,7 +66,7 @@ class EditorDecisionHandler extends Handler {
 	 * Start a new review round
 	 * @return JSON
 	 */
-	function saveNewReviewRound(&$args, &$request) {
+	function saveNewReviewRound($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
@@ -101,7 +101,7 @@ class EditorDecisionHandler extends Handler {
 	 * Start a new review round
 	 * @return JSON
 	 */
-	function initiateReview(&$args, &$request) {
+	function initiateReview($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
 		// Form handling
@@ -117,7 +117,7 @@ class EditorDecisionHandler extends Handler {
 	 * Start a new review round
 	 * @return JSON
 	 */
-	function saveInitiateReview(&$args, &$request) {
+	function saveInitiateReview($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
@@ -145,7 +145,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function sendReviews(&$args, &$request) {
+	function sendReviews($args, &$request) {
 		// FIXME: add validation
 		$monographId = $request->getUserVar('monographId');
 		$decision = $request->getUserVar('decision');
@@ -165,7 +165,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function saveSendReviews(&$args, &$request) {
+	function saveSendReviews($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$decision = $request->getUserVar('decision');
 
@@ -190,7 +190,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function promote(&$args, &$request) {
+	function promote($args, &$request) {
 		// FIXME: add validation
 		$monographId = $request->getUserVar('monographId');
 		$decision = $request->getUserVar('decision');
@@ -210,7 +210,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function savePromote(&$args, &$request) {
+	function savePromote($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$decision = $request->getUserVar('decision');
 
@@ -235,7 +235,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function importPeerReviews(&$args, &$request) {
+	function importPeerReviews($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($monographId);

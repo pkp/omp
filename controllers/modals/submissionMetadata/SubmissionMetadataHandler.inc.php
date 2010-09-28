@@ -30,7 +30,7 @@ class SubmissionMetadataHandler extends Handler {
 	 * Display the submission's metadata
 	 * @return JSON
 	 */
-	function fetch(&$args, &$request) {
+	function fetch($args, &$request) {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));

@@ -110,7 +110,7 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function addBookFileType(&$args, &$request) {
+	function addBookFileType($args, &$request) {
 		// Calling editBookFileType with an empty row id will add a new Book File Type.
 		return $this->editBookFileType($args, $request);
 	}
@@ -121,7 +121,7 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editBookFileType(&$args, &$request) {
+	function editBookFileType($args, &$request) {
 		$bookFileTypeId = isset($args['bookFileTypeId']) ? $args['bookFileTypeId'] : null;
 
 		$this->setupTemplate();
@@ -145,7 +145,7 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function updateBookFileType(&$args, &$request) {
+	function updateBookFileType($args, &$request) {
 		$bookFileTypeId = Request::getUserVar('rowId');
 		$press =& $request->getPress();
 
@@ -183,7 +183,7 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function deleteBookFileType(&$args, &$request) {
+	function deleteBookFileType($args, &$request) {
 		// Identify the Book File Type to be deleted
 		$bookFileType =& $this->_getBookFileTypeFromArgs($args);
 
@@ -205,7 +205,7 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function restoreBookFileTypes(&$args, &$request) {
+	function restoreBookFileTypes($args, &$request) {
 		$press =& $request->getPress();
 
 		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
@@ -225,7 +225,7 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	* @param $args array
 	* @return BookFileType
 	*/
-	function &_getBookFileTypeFromArgs(&$args) {
+	function &_getBookFileTypeFromArgs($args) {
 		// Identify the Book File Type Id and retrieve the
 		// corresponding element from the grid's data source.
 		if (!isset($args['bookFileTypeId'])) {

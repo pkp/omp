@@ -35,7 +35,7 @@ class ManageReviewFilesForm extends Form {
 	/**
 	 * Initialize variables
 	 */
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getMonograph($this->_monographId);
 
@@ -54,7 +54,7 @@ class ManageReviewFilesForm extends Form {
 	/**
 	 * Save submissionContributor
 	 */
-	function &execute(&$args, &$request) {
+	function &execute($args, &$request) {
 		$reviewType = (integer)$this->getData('reviewType');
 		$round = (integer)$this->getData('round');
 

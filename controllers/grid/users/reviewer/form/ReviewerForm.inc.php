@@ -71,7 +71,7 @@ class ReviewerForm extends Form {
 	* Initialize form data from the associated submissionContributor.
 	* @param $submissionContributor Reviewer
 	*/
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		$reviewerId = $request->getUserVar('reviewerId');
 		$press =& $request->getContext();
 		// The reviewer id has been set
@@ -170,7 +170,7 @@ class ReviewerForm extends Form {
 	/**
 	 * Save review assignment
 	 */
-	function execute(&$args, &$request) {
+	function execute($args, &$request) {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$submission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($this->getMonographId());
 		$press =& $request->getPress();

@@ -35,7 +35,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * Display the submission review page.
 	 * @param $args array
 	 */
-	function submission(&$args, &$request) {
+	function submission($args, &$request) {
 		$press =& Request::getPress();
 		$reviewId = $args[0];
 
@@ -73,7 +73,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * Save a review step.
 	 * @param $args array first parameter is the step being saved
 	 */
-	function saveStep(&$args, &$request) {
+	function saveStep($args, &$request) {
 		$step = isset($args[0]) ? $args[0] : 1;
 		$reviewId = $request->getUserVar('reviewId');
 
@@ -100,7 +100,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * Show a form for the reviewer to enter regrets into.
 	 * @param $args array optional
 	 */
-	function showDeclineReview(&$args, &$request) {
+	function showDeclineReview($args, &$request) {
 		$reviewId = Request::getUserVar('reviewId');
 
 		$this->validate($request, $reviewId);
@@ -119,7 +119,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * Save the reviewer regrets form and decline the review.
 	 * @param $args array optional
 	 */
-	function saveDeclineReview(&$args, &$request) {
+	function saveDeclineReview($args, &$request) {
 		$reviewId = Request::getUserVar('reviewId');
 		$declineReviewMessage = Request::getUserVar('declineReviewMessage');
 
@@ -140,7 +140,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * View the submission metadata
 	 * @param $args array
 	 */
-	function viewMetadata(&$args, &$request) {
+	function viewMetadata($args, &$request) {
 		$reviewId = $request->getUserVar('reviewId');
 
 		$this->validate($request, $reviewId);
@@ -159,7 +159,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * Download a file.
 	 * @param $args array ($monographId, $fileId, [$revision])
 	 */
-	function downloadFile(&$args, &$request) {
+	function downloadFile($args, &$request) {
 		$reviewId = isset($args[0]) ? $args[0] : 0;
 		$monographId = isset($args[1]) ? $args[1] : 0;
 		$fileId = isset($args[2]) ? $args[2] : 0;

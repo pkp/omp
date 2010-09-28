@@ -36,7 +36,7 @@ class SeriesForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		$press =& $request->getPress();
 
 		$divisionDao =& DAORegistry::getDAO('DivisionDAO');

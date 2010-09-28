@@ -41,7 +41,7 @@ class ReviewerReviewAttachmentsForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		if ( isset($this->fileId) ) {
 			$this->_data['fileId'] = $this->fileId;
 		}
@@ -86,7 +86,7 @@ class ReviewerReviewAttachmentsForm extends Form {
 	/**
 	 * Save name for library file
 	 */
-	function execute(&$args, &$request) {
+	function execute($args, &$request) {
 		import('classes.file.MonographFileManager');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($this->reviewId);

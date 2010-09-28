@@ -98,7 +98,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function createReviewForm(&$args, &$request) {
+	function createReviewForm($args, &$request) {
 		// Delegate to the row handler
 		$reviewFormRow =& $this->getRow();
 
@@ -112,7 +112,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editReviewForm(&$args, &$request) {
+	function editReviewForm($args, &$request) {
 		$this->setupTemplate($args, $request);
 
 		$reviewFormId = $this->getId();
@@ -152,7 +152,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function updateReviewForm(&$args, &$request) {
+	function updateReviewForm($args, &$request) {
 		$reviewFormId = Request::getUserVar('reviewFormId') === null? null : (int) Request::getUserVar('reviewFormId');
 
 		if ($reviewFormId === null) {
@@ -201,7 +201,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function deleteReviewForm(&$args, &$request) {
+	function deleteReviewForm($args, &$request) {
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
 
@@ -232,7 +232,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function previewReviewForm(&$args, &$request) {
+	function previewReviewForm($args, &$request) {
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
 

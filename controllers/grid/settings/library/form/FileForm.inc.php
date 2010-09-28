@@ -41,7 +41,7 @@ class FileForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function initData(&$args, &$request) {
+	function initData($args, &$request) {
 		if ( isset($this->fileId) ) {
 			$this->_data['fileId'] = $this->fileId;
 		}
@@ -79,7 +79,7 @@ class FileForm extends Form {
 		$this->readUserVars(array('gridId', 'rowId', 'name'));
 	}
 
-	function uploadFile(&$args, &$request) {
+	function uploadFile($args, &$request) {
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
 		import('classes.file.LibraryFileManager');
@@ -93,7 +93,7 @@ class FileForm extends Form {
 	/**
 	 * Save name for library file
 	 */
-	function execute(&$args, &$request) {
+	function execute($args, &$request) {
 		$name = $this->getData('name');
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$libraryFile =& $libraryFileDao->getById($this->fileId);

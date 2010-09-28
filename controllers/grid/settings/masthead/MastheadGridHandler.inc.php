@@ -94,7 +94,7 @@ class MastheadGridHandler extends SetupGridHandler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function addGroup(&$args, &$request) {
+	function addGroup($args, &$request) {
 		// Calling editMasthead with an empty row id will add
 		// a new masthead.
 		return $this->editGroup($args, $request);
@@ -106,7 +106,7 @@ class MastheadGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function editGroup(&$args, &$request) {
+	function editGroup($args, &$request) {
 		$groupId = isset($args['rowId']) ? $args['rowId'] : null;
 
 		$router =& $request->getRouter();
@@ -148,7 +148,7 @@ class MastheadGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function updateGroup(&$args, &$request) {
+	function updateGroup($args, &$request) {
 		$groupId = Request::getUserVar('groupId');
 		$press =& $request->getContext();
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
@@ -182,7 +182,7 @@ class MastheadGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function deleteGroup(&$args, &$request) {
+	function deleteGroup($args, &$request) {
 		$groupId = Request::getUserVar('rowId');
 		$press =& $request->getContext();
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
@@ -202,7 +202,7 @@ class MastheadGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 * @return JSON
 	 */
-	function groupMembership(&$args, &$request) {
+	function groupMembership($args, &$request) {
 		$groupId = $this->getId();
 		$group =& $this->group;
 
