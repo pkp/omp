@@ -23,15 +23,15 @@
 		</row>
 		<row>
 			<field name="controlled_vocab_id">4</field>
-			<field name="symbolic">mods43-typeOfResource</field>
+			<field name="symbolic">mods34-typeOfResource</field>
 		</row>
 		<row>
 			<field name="controlled_vocab_id">5</field>
-			<field name="symbolic">mods43-genre-marcgt</field>
+			<field name="symbolic">mods34-genre-marcgt</field>
 		</row>
 		<row>
 			<field name="controlled_vocab_id">6</field>
-			<field name="symbolic">mods43-physicalDescription-form-marcform</field>
+			<field name="symbolic">mods34-physicalDescription-form-marcform</field>
 		</row>
 	</table>
 	<table name="controlled_vocab_entries">
