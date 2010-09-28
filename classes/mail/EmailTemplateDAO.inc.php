@@ -57,10 +57,10 @@ class EmailTemplateDAO extends PKPEmailTemplateDAO {
 	/**
 	 * Delete an email template by key.
 	 * @param $emailKey string
-	 * @param $pressId int
+	 * @param $pressId int optional
 	 */
-	function deleteEmailTemplateByKey($emailKey, $pressId) {
-		return parent::deleteEmailTemplateByKey($emailKey, ASSOC_TYPE_PRESS, $pressId);
+	function deleteEmailTemplateByKey($emailKey, $pressId = null) {
+		return parent::deleteEmailTemplateByKey($emailKey, $pressId !== null?ASSOC_TYPE_PRESS:null, $pressId);
 	}
 
 	/**
