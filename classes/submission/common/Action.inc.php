@@ -247,6 +247,50 @@ class Action extends PKPAction {
 			}
 		}
 	}
+
+	/**
+	 * Assign the default participants to a workflow stage.
+	 * @param $monographId int
+	 * @param $stageId int
+	 */
+	function assignDefaultStageParticipants($monographId, $stageId) {
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO');
+		$monographDao =& DAORegistry::getDAO('MonographDAO');
+		$monograph =& $monographDao->getMonograph($monographId);
+
+		// Managerial roles are skipped -- They have access by default and
+		//  are assigned for informational purposes only
+
+		// Series editor roles are skipped -- They are assigned by PM roles
+		//  or by other series editors
+
+		// Press roles -- For each press role user group assigned to this
+		//  stage in setup, iff there is only one user for the group,
+		//  automatically assign the user to the stage
+		$submissionStageGroups =& $userGroupStageAssignmentDao->getUserGroupsByStage($monograph->getPressId(), $stageId);
+		while ($userGroup =& $submissionStageGroups->next()) {
+			if($userGroup->getRoleId() == ROLE_ID_PRESS_ASSISTANT) {
+				$users =& $userGroupDao->getUsersById($userGroup->getId());
+				if($users->getCount() == 1) {
+					$user =& $users->next();
+					$signoffDao->build('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, $user->getId(), $stageId, $userGroup->getId());
+				}
+			}
+		}
+
+		// Author roles -- Assign only the submitter
+		// FIXME #6001: If the submission is a monograph, then the user group
+		//   assigned for the submitter should be author; If its a volume,
+		// 	 it should be a volume editor user group.
+		$authorUserGroup =& $userGroupDao->getDefaultByRoleId($monograph->getPressId(), ROLE_ID_AUTHOR);
+		$signoffDao->build('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, $monograph->getUserId(), $stageId, $authorUserGroup->getId());
+
+		// Reviewer roles -- Do nothing
+		// FIXME #6002: Need to review this -- Not sure if reviewers should be
+		//  added as stage participants
+	}
 }
 
 ?>

@@ -100,6 +100,8 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 
 		// Retrieve all users that belong to the current user group
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+
+		// FIXME #6000: If user group is in the series editor role, only allow it if the series editor is assigned to the monograph's series.
 		$users =& $userGroupDao->getUsersById($userGroupId);
 
 		$itemList = array();

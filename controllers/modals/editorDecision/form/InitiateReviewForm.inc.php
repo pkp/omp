@@ -95,10 +95,9 @@ class InitiateReviewForm extends Form {
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 		$reviewRoundDao->createReviewRound($this->_monographId, REVIEW_TYPE_INTERNAL, 1, 1, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
 
-		// 3. Assign the editor
-		// FIXME: bug # 5546: this assignment should be done elsewhere, prior to this point.
-		$user =& $request->getUser();
-		EditorAction::assignEditor($this->_monographId, $user->getId(), true);
+		// 3. Assign the default users
+		import('classes.submission.common.Action');
+		Action::assignDefaultStageParticipants($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
 
 		// 4. Add the selected files to the new round
 		$selectedFiles = $this->getData('selectedFiles');

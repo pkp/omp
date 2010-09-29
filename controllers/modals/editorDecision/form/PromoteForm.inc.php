@@ -129,6 +129,11 @@ class PromoteForm extends Form {
 
 				// 3. Set status of round
 				$status = REVIEW_ROUND_STATUS_ACCEPTED;
+
+				// 3. Assign the default users to the next workflow stage
+				import('classes.submission.common.Action');
+				Action::assignDefaultStageParticipants($this->_monographId, WORKFLOW_STAGE_ID_EDITING);
+
 				break;
 			case SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
 				// 1. Record the decision

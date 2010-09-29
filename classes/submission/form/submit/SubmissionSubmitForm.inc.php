@@ -72,28 +72,6 @@ class SubmissionSubmitForm extends Form {
 
 		parent::display();
 	}
-
-	/**
-	 * Automatically assign Series Editors to new submissions.
-	 * @param $monograph object
-	 * @return array of series editors
-	 */
-	function assignEditors(&$monograph) {
-		$seriesId = $monograph->getSeriesId();
-		$press =& Request::getPress();
-
-		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$seriesEditors =& $seriesEditorsDao->getEditorsBySeriesId($press->getId(), $seriesId);
-
-		$seriesEditorUserGroup = $userGroupDao->getDefaultByRoleId($press->getId(), ROLE_ID_SERIES_EDITOR);
-		foreach ($seriesEditors as $seriesEditorEntry) {
-			$signoffDao->build('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), WORKFLOW_STAGE_ID_SUBMISSION, $seriesEditorEntry['user']->getId(), $seriesEditorUserGroup->getId());
-		}
-
-		return $seriesEditors;
-	}
 }
 
 ?>
