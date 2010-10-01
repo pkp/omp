@@ -15,7 +15,7 @@
 		        <li>
 					<span>
 						<select name="selectList-{$listbuilderId}" id="selectList-{$listbuilderId}" class="field select">
-							<option>{translate key='settings.setup.selectOne'}</option>
+							<option>{translate key='manager.setup.selectOne'}</option>
 							{foreach from=$listbuilder->getPossibleItemList() item=item}{$item}{/foreach}
 						</select>
 					</span>

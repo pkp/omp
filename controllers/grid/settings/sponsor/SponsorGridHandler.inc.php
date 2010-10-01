@@ -169,7 +169,7 @@ class SponsorGridHandler extends SetupGridHandler {
 			$pressSettingsDao->updateSetting($press->getId(), 'sponsors', $sponsors, 'object');
 			$json = new JSON('true');
 		} else {
-			$json = new JSON('false', Locale::translate('settings.setup.errorDeletingItem'));
+			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingItem'));
 		}
 		return $json->getString();
 	}

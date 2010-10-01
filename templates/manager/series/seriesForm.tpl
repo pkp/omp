@@ -83,15 +83,15 @@ function checkEditorAssignments() {
 	<td class="value"><textarea name="policy[{$formLocale|escape}]" rows="4" cols="40" id="policy" class="textArea">{$policy[$formLocale]|escape}</textarea></td>
 </tr>
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="printIssn" key="settings.setup.printIssn"}</td>
+		<td width="20%" class="label">{fieldLabel name="printIssn" key="manager.setup.printIssn"}</td>
 		<td width="80%" class="value"><input type="text" name="printIssn" id="printIssn" value="{$printIssn|escape}" size="8" maxlength="16" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="onlineIssn" key="settings.setup.onlineIssn"}</td>
+		<td width="20%" class="label">{fieldLabel name="onlineIssn" key="manager.setup.onlineIssn"}</td>
 		<td width="80%" class="value">
 			<input type="text" name="onlineIssn" id="onlineIssn" value="{$onlineIssn|escape}" size="8" maxlength="16" class="textField" />
 			<br />
-			<span class="instruct">{translate key="settings.setup.issnDescription"}</span>
+			<span class="instruct">{translate key="manager.setup.issnDescription"}</span>
 		</td>
 	</tr>
 <tr valign="top">

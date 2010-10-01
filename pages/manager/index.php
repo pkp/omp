@@ -15,9 +15,27 @@
  *
  */
 
-// $Id$
-
 switch ($op) {
+	//
+	// Setup
+	//
+	case 'setup':
+	case 'saveSetup':
+	case 'setupSaved':
+	case 'downloadLayoutTemplate':
+		import('pages.manager.SetupHandler');
+		define('HANDLER_CLASS', 'SetupHandler');
+		break;
+	//
+	// Settings
+	//
+	case 'settings':
+	case 'data':
+	case 'system':
+	case 'users':
+		import('pages.manager.SettingsHandler');
+		define('HANDLER_CLASS', 'SettingsHandler');
+		break;
 	//
 	// People Management
 	//

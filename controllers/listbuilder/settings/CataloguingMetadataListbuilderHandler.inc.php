@@ -48,14 +48,14 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 		// Basic configuration
-		$this->setTitle('settings.setup.cataloguingMetadata');
+		$this->setTitle('manager.setup.cataloguingMetadata');
 		$this->setSourceTitle('common.name');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
-		$this->setListTitle('settings.setup.currentFormats');
+		$this->setListTitle('manager.setup.currentFormats');
 
 		$this->loadList($request);
 
-		$this->addColumn(new GridColumn('item', 'settings.setup.currentFormats'));
+		$this->addColumn(new GridColumn('item', 'manager.setup.currentFormats'));
 	}
 
 	//

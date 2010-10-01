@@ -15,7 +15,7 @@
 // $Id$
 
 
-import('classes.settings.form.setup.PressSetupForm');
+import('classes.manager.form.setup.PressSetupForm');
 
 class PressSetupStep5Form extends PressSetupForm {
 	var $images;

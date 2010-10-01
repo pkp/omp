@@ -8,8 +8,8 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="settings.setup.gettingDownTheDetails"}
-{include file="settings/setup/setupHeader.tpl"}
+{assign var="pageTitle" value="manager.setup.gettingDownTheDetails"}
+{include file="manager/setup/setupHeader.tpl"}
 
 <form name="setupForm" method="post" action="{url op="saveSetup" path="1"}">
 {include file="common/formErrors.tpl"}
@@ -26,53 +26,53 @@
 {/fbvFormArea}
 {/if} {* count($formLocales) > 1*}
 
-<h3>1.1 {translate key="settings.setup.generalInformation"}</h3>
+<h3>1.1 {translate key="manager.setup.generalInformation"}</h3>
 
 {fbvFormArea id="generalInformation"}
 {fbvFormSection title="common.name"}
-	{fbvElement type="text" label="settings.setup.pressName" name="name[$formLocale]" id="name" value=$name[$formLocale] maxlength="120" size=$fbvStyles.size.LARGE}
-	{fbvElement type="text" label="settings.setup.pressInitials" name="initials[$formLocale]" id="initials" value=$initials[$formLocale] maxlength="16" size=$fbvStyles.size.SMALL}
+	{fbvElement type="text" label="manager.setup.pressName" name="name[$formLocale]" id="name" value=$name[$formLocale] maxlength="120" size=$fbvStyles.size.LARGE}
+	{fbvElement type="text" label="manager.setup.pressInitials" name="initials[$formLocale]" id="initials" value=$initials[$formLocale] maxlength="16" size=$fbvStyles.size.SMALL}
 {/fbvFormSection}
-{fbvFormSection title="settings.setup.pressDescription" for="description" float=$fbvStyles.float.LEFT}
+{fbvFormSection title="manager.setup.pressDescription" for="description" float=$fbvStyles.float.LEFT}
 	{fbvElement type="textarea" name="description[$formLocale]" id="description" value=$description[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 {/fbvFormSection}
 {fbvFormSection title="common.mailingAddress" for="mailingAddress" group="true" float=$fbvStyles.float.RIGHT}
 	{fbvCustomElement}
 		{fbvTextarea id="mailingAddress" value=$mailingAddress size=$fbvStyles.size.SMALL}
 		<br />
-		<span>{translate key="settings.setup.mailingAddressDescription"}</span>
+		<span>{translate key="manager.setup.mailingAddressDescription"}</span>
 	{/fbvCustomElement}
 {/fbvFormSection}
-{fbvFormSection}
-	{fbvElement type="checkbox" id="pressEnabled" value="1" checked=$pressEnabled label="settings.setup.enablePressInstructions"}
+{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvElement type="checkbox" id="pressEnabled" value="1" checked=$pressEnabled label="manager.setup.enablePressInstructions"}
 {/fbvFormSection}
 {/fbvFormArea}
 
 <div class="separator"></div>
 
-<h3>1.2 {translate key="settings.setup.emails"}</h3>
+<h3>1.2 {translate key="manager.setup.emails"}</h3>
 
-<p>{translate key="settings.setup.emailSignatureDescription"}</p>
+<p>{translate key="manager.setup.emailSignatureDescription"}</p>
 
 {fbvFormArea id="emails"}
-{fbvFormSection title="settings.setup.emailSignature" for="emailSignature"}
+{fbvFormSection title="manager.setup.emailSignature" for="emailSignature"}
 	{fbvElement type="textarea" id="emailSignature" value=$emailSignature size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.2OF3}
 {/fbvFormSection}
-{fbvFormSection title="settings.setup.emailBounceAddress" for="envelopeSender"}
-	<p>{translate key="settings.setup.emailBounceAddressDescription"}</p>
+{fbvFormSection title="manager.setup.emailBounceAddress" for="envelopeSender"}
+	<p>{translate key="manager.setup.emailBounceAddressDescription"}</p>
 	{fbvElement type="text" id="envelopeSender" value=$envelopeSender maxlength="90" disabled=!$envelopeSenderEnabled size=$fbvStyles.size.LARGE}
 	{if !$envelopeSenderEnabled}
 		<div class="clear"></div>
-		<p>{translate key="settings.setup.emailBounceAddressDisabled"}</p>
+		<p>{translate key="manager.setup.emailBounceAddressDisabled"}</p>
 	{/if}
 {/fbvFormSection}
 {/fbvFormArea}
 
 <div class="separator"></div>
 
-<h3>1.3 {translate key="settings.setup.principalContact"}</h3>
+<h3>1.3 {translate key="manager.setup.principalContact"}</h3>
 
-<p>{translate key="settings.setup.principalContactDescription"}</p>
+<p>{translate key="manager.setup.principalContactDescription"}</p>
 
 {fbvFormArea id="principalContact"}
 {fbvFormSection title="user.name" required="true" for="contactName"}
@@ -105,12 +105,12 @@
 
 <div class="separator"></div>
 
-<h3>1.5 {translate key="settings.setup.sponsors"}</h3>
+<h3>1.5 {translate key="manager.setup.sponsors"}</h3>
 
-<p>{translate key="settings.setup.sponsorsDescription"}</p>
+<p>{translate key="manager.setup.sponsorsDescription"}</p>
 
 {fbvFormArea id="sponsors"}
-{fbvFormSection title="settings.setup.note" for="sponsorNote"}
+{fbvFormSection title="manager.setup.note" for="sponsorNote"}
 	{fbvElement type="textarea" name="sponsorNote[$formLocale]" id="sponsorNote" value=$sponsorNote[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
 {/fbvFormSection}
 {/fbvFormArea}
@@ -120,13 +120,13 @@
 
 <div class="separator"></div>
 
-<h3>1.6 {translate key="settings.setup.contributors"}</h3>
+<h3>1.6 {translate key="manager.setup.contributors"}</h3>
 
-<p>{translate key="settings.setup.contributorsDescription"}</p>
+<p>{translate key="manager.setup.contributorsDescription"}</p>
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="contributorNote" key="settings.setup.note"}</td>
+		<td width="20%" class="label">{fieldLabel name="contributorNote" key="manager.setup.note"}</td>
 		<td width="80%" class="value"><textarea name="contributorNote[{$formLocale|escape}]" id="contributorNote" rows="5" cols="40" class="textArea">{$contributorNote[$formLocale]|escape}</textarea></td>
 	</tr>
 </table>
@@ -136,9 +136,9 @@
 
 <div class="separator"></div>
 
-<h3>1.7 {translate key="settings.setup.technicalSupportContact"}</h3>
+<h3>1.7 {translate key="manager.setup.technicalSupportContact"}</h3>
 
-<p>{translate key="settings.setup.technicalSupportContactDescription"}</p>
+<p>{translate key="manager.setup.technicalSupportContactDescription"}</p>
 
 {fbvFormArea id="technicalSupportContact"}
 {fbvFormSection title="user.name" for="supportName" required="true"}
@@ -162,4 +162,3 @@
 </div>
 
 {include file="common/footer.tpl"}
-

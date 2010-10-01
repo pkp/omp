@@ -47,7 +47,7 @@ class AdminHandler extends Handler {
 	function setupTemplate($subclass = false) {
 		parent::setupTemplate();
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_ADMIN));
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SETTINGS));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_ADMIN));
 
 		$templateMgr =& TemplateManager::getManager();

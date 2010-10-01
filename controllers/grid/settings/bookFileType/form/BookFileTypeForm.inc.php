@@ -26,7 +26,7 @@ class BookFileTypeForm extends Form {
 		parent::Form('controllers/grid/settings/bookFileType/form/bookFileTypeForm.tpl');
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'name', 'required', 'settings.setup.form.bookFileType.nameRequired'));
+		$this->addCheck(new FormValidator($this, 'name', 'required', 'manager.setup.form.bookFileType.nameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 

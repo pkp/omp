@@ -3,7 +3,7 @@
 /**
  * @defgroup manager_form_setup
  */
- 
+
 /**
  * @file classes/manager/form/setup/PressSetupForm.inc.php
  *
@@ -30,7 +30,7 @@ class PressSetupForm extends Form {
 	 * @param $settings an associative array with the setting names as keys and associated types as values
 	 */
 	function PressSetupForm($step, $settings) {
-		parent::Form(sprintf('settings/setup/step%d.tpl', $step));
+		parent::Form(sprintf('manager/setup/step%d.tpl', $step));
 		$this->addCheck(new FormValidatorPost($this));
 		$this->step = $step;
 		$this->settings = $settings;
@@ -59,7 +59,7 @@ class PressSetupForm extends Form {
 	/**
 	 * Read user input.
 	 */
-	function readInputData() {		
+	function readInputData() {
 		$this->readUserVars(array_keys($this->settings));
 	}
 

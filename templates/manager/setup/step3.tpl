@@ -8,8 +8,8 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="settings.setup.preparingWorkflow"}
-{include file="settings/setup/setupHeader.tpl"}
+{assign var="pageTitle" value="manager.setup.preparingWorkflow"}
+{include file="manager/setup/setupHeader.tpl"}
 
 <form name="setupForm" method="post" action="{url op="saveSetup" path="3"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
@@ -26,120 +26,120 @@
 {/fbvFormArea}
 {/if} {* count($formLocales) > 1*}
 
-<h3>3.1 {translate key="settings.setup.pressRoles"}</h3>
+<h3>3.1 {translate key="manager.setup.pressRoles"}</h3>
 
-<p>{translate key="settings.setup.pressRolesDescription"}</p>
+<p>{translate key="manager.setup.pressRolesDescription"}</p>
 
-{url|assign:authorRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_AUTHOR title='settings.setup.authorRole'}
+{url|assign:authorRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_AUTHOR title='manager.setup.authorRole'}
 {load_url_in_div id="authorRolesContainer" url=$authorRolesUrl}
 
-{url|assign:pressRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_REVIEWER title='settings.setup.pressRole'}
+{url|assign:pressRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_REVIEWER title='manager.setup.pressRole'}
 {load_url_in_div id="pressRolesContainer" url=$pressRolesUrl}
 
-{url|assign:settingsialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_PRESS_MANAGER title='settings.setup.settingsialRole'}
-{load_url_in_div id="settingsialRolesContainer" url=$settingsialRolesUrl}
+{url|assign:managerialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_PRESS_MANAGER title='manager.setup.managerialRole'}
+{load_url_in_div id="managerialRolesContainer" url=$managerialRolesUrl}
 
 <div class="separator"></div>
 
-<h3>3.2 {translate key="settings.setup.submissionRoles"}</h3>
+<h3>3.2 {translate key="manager.setup.submissionRoles"}</h3>
 
-<p>{translate key="settings.setup.submissionRolesDescription"}</p>
+<p>{translate key="manager.setup.submissionRolesDescription"}</p>
 
-{url|assign:submissionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_AUTHOR stageId=$smarty.const.WORKFLOW_STAGE_ID_SUBMISSION title="settings.setup.submissionRoles" escape=false}
+{url|assign:submissionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_AUTHOR stageId=$smarty.const.PUBLICATION_STAGE_ID_SUBMISSION title="manager.setup.submissionRoles" escape=false}
 {load_url_in_div id="submissionRolesContainer" url=$submissionRolesUrl}
 
 <div class="separator"></div>
 
-<h3>3.3 {translate key="settings.setup.bookFileTypes"}</h3>
+<h3>3.3 {translate key="manager.setup.bookFileTypes"}</h3>
 
-<p>{translate key="settings.setup.bookFileTypesDescription"}</p>
+<p>{translate key="manager.setup.bookFileTypesDescription"}</p>
 
 {url|assign:bookFileTypesUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.bookFileType.BookFileTypeGridHandler" op="fetchGrid"}
 {load_url_in_div id="bookFileTypesContainer" url=$bookFileTypesUrl}
 
 <div class="separator"></div>
 
-<h3>3.4 {translate key="settings.setup.submissionLibrary"}</h3>
+<h3>3.4 {translate key="manager.setup.submissionLibrary"}</h3>
 
 {url|assign:submissionLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_SUBMISSION}
 {load_url_in_div id="submissionLibraryGridDiv" url=$submissionLibraryUrl}
 
 <div class="separator"></div>
 
-<h3>3.5 {translate key="settings.setup.internalReviewRoles"}</h3>
+<h3>3.5 {translate key="manager.setup.internalReviewRoles"}</h3>
 
-<p>{translate key="settings.setup.internalReviewRolesDescription"}</p>
+<p>{translate key="manager.setup.internalReviewRolesDescription"}</p>
 
-{url|assign:internalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_REVIEWER stageId=$smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW title="settings.setup.internalReviewRoles" escape=false}
+{url|assign:internalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_REVIEWER stageId=$smarty.const.PUBLICATION_STAGE_ID_INTERNAL_REVIEW title="manager.setup.internalReviewRoles" escape=false}
 {load_url_in_div id="internalReviewRolesContainer" url=$internalReviewRolesUrl}
 
 <div class="separator"></div>
 
-<h3>3.6 {translate key="settings.setup.externalReviewRoles"}</h3>
+<h3>3.6 {translate key="manager.setup.externalReviewRoles"}</h3>
 
-<p>{translate key="settings.setup.externalReviewRolesDescription"}</p>
+<p>{translate key="manager.setup.externalReviewRolesDescription"}</p>
 
-{url|assign:externalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_REVIEWER stageId=$smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW title="settings.setup.externalReviewRoles" escape=false}
+{url|assign:externalReviewRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_REVIEWER stageId=$smarty.const.PUBLICATION_STAGE_ID_EXTERNAL_REVIEW title="manager.setup.externalReviewRoles" escape=false}
 {load_url_in_div id="externalReviewRolesContainer" url=$externalReviewRolesUrl}
 
 <div class="separator"></div>
 
-<h3>3.7 {translate key="settings.setup.reviewLibrary"}</h3>
+<h3>3.7 {translate key="manager.setup.reviewLibrary"}</h3>
 
 {url|assign:reviewLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_REVIEW}
 {load_url_in_div id="reviewLibraryGridDiv" url=$reviewLibraryGridUrl}
 
 <div class="separator"></div>
 
-<h3>3.8 {translate key="settings.setup.reviewForms"}</h3>
+<h3>3.8 {translate key="manager.setup.reviewForms"}</h3>
 
 {url|assign:reviewFormGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.reviewForm.ReviewFormGridHandler" op="fetchGrid"}
 {load_url_in_div id="reviewFormGridDiv" url=$reviewFormGridUrl}
 
 <div class="separator"></div>
 
-<h3>3.9 {translate key="settings.setup.editorialRoles"}</h3>
+<h3>3.9 {translate key="manager.setup.editorialRoles"}</h3>
 
-<p>{translate key="settings.setup.editorialRolesDescription"}</p>
+<p>{translate key="manager.setup.editorialRolesDescription"}</p>
 
-{url|assign:editorialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_EDITOR stageId=$smarty.const.WORKFLOW_STAGE_ID_EDITING title="settings.setup.editorialRoles" escape=false}
+{url|assign:editorialRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_EDITOR stageId=$smarty.const.PUBLICATION_STAGE_ID_EDITING title="manager.setup.editorialRoles" escape=false}
 {load_url_in_div id="editorialRolesContainer" url=$editorialRolesUrl}
 
 <div class="separator"></div>
 
-<h3>3.10 {translate key="settings.setup.editorialLibrary"}</h3>
+<h3>3.10 {translate key="manager.setup.editorialLibrary"}</h3>
 
 {url|assign:editorialLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_EDITORIAL}
 {load_url_in_div id="editorialLibraryGridDiv" url=$editorialLibraryGridUrl}
 
 <div class="separator"></div>
 
-<h3>3.11 {translate key="settings.setup.productionRoles"}</h3>
+<h3>3.11 {translate key="manager.setup.productionRoles"}</h3>
 
-<p>{translate key="settings.setup.productionRolesDescription"}</p>
+<p>{translate key="manager.setup.productionRolesDescription"}</p>
 
-{url|assign:productionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_EDITOR stageId=$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION title="settings.setup.productionRoles" escape=false}
+{url|assign:productionRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupStageAssignmentListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_EDITOR stageId=$smarty.const.PUBLICATION_STAGE_ID_PRODUCTION title="manager.setup.productionRoles" escape=false}
 {load_url_in_div id="productionRolesContainer" url=$productionRolesUrl}
 
 <div class="separator"></div>
 
-<h3>3.12 {translate key="settings.setup.productionLibrary"}</h3>
+<h3>3.12 {translate key="manager.setup.productionLibrary"}</h3>
 
 {url|assign:productionLibraryGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION}
 {load_url_in_div id="productionLibraryGridDiv" url=$productionLibraryGridUrl}
 
 <div class="separator"></div>
 
-<h3>3.13 {translate key="settings.setup.productionTemplates"}</h3>
+<h3>3.13 {translate key="manager.setup.productionTemplates"}</h3>
 
 {url|assign:productionTemplateLibraryUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="fetchGrid" fileType=$smarty.const.LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE}
 {load_url_in_div id="productionTemplateLibraryDiv" url=$productionTemplateLibraryUrl}
 
 <div class="separator"></div>
 
-<h3>3.14 {translate key="settings.setup.publicationFormats"}</h3>
+<h3>3.14 {translate key="manager.setup.publicationFormats"}</h3>
 
-<p>{translate key="settings.setup.publicationFormatsDescription"}</p>
+<p>{translate key="manager.setup.publicationFormatsDescription"}</p>
 
 {url|assign:publicationFormatsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.PublicationFormatsListbuilderHandler" op="fetch"}
 {load_url_in_div id="publicationFormatsContainer" url=$publicationFormatsUrl}
@@ -154,4 +154,3 @@
 </div>
 
 {include file="common/footer.tpl"}
-

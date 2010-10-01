@@ -8,8 +8,8 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="settings.setup.customizingTheLook"}
-{include file="settings/setup/setupHeader.tpl"}
+{assign var="pageTitle" value="manager.setup.customizingTheLook"}
+{include file="manager/setup/setupHeader.tpl"}
 
 <script type="text/javascript">
 {literal}
@@ -106,19 +106,19 @@ function prepBlockFields() {
 {/fbvFormArea}
 {/if} {* count($formLocales) > 1*}
 
-<h3>5.1 {translate key="settings.setup.pressHomepageHeader"}</h3>
+<h3>5.1 {translate key="manager.setup.pressHomepageHeader"}</h3>
 
-<p>{translate key="settings.setup.pressHomepageHeaderDescription"}</p>
+<p>{translate key="manager.setup.pressHomepageHeaderDescription"}</p>
 
-<h4>{translate key="settings.setup.pressName"}</h4>
+<h4>{translate key="manager.setup.pressName"}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label"><input type="radio" name="homeHeaderTitleType[{$formLocale|escape}]" id="homeHeaderTitleType-0" value="0"{if not $homeHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="homeHeaderTitleType-0" key="settings.setup.useTextTitle"}</td>
+		<td width="20%" class="label"><input type="radio" name="homeHeaderTitleType[{$formLocale|escape}]" id="homeHeaderTitleType-0" value="0"{if not $homeHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="homeHeaderTitleType-0" key="manager.setup.useTextTitle"}</td>
 		<td width="80%" class="value"><input type="text" name="homeHeaderTitle[{$formLocale|escape}]" value="{$homeHeaderTitle[$formLocale]|escape}" size="40" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label"><input type="radio" name="homeHeaderTitleType[{$formLocale|escape}]" id="homeHeaderTitleType-1" value="1"{if $homeHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="homeHeaderTitleType-1" key="settings.setup.useImageTitle"}</td>
+		<td width="20%" class="label"><input type="radio" name="homeHeaderTitleType[{$formLocale|escape}]" id="homeHeaderTitleType-1" value="1"{if $homeHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="homeHeaderTitleType-1" key="manager.setup.useImageTitle"}</td>
 		<td width="80%" class="value">{fbvFileInput id="homeHeaderTitleImage" submit="uploadHomeHeaderTitleImage"}</td>
 	</tr>
 </table>
@@ -140,11 +140,11 @@ function prepBlockFields() {
 </table>
 {/if}
 
-<h4>{translate key="settings.setup.pressLogo"}</h4>
+<h4>{translate key="manager.setup.pressLogo"}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="settings.setup.useImageLogo"}</td>
+		<td width="20%" class="label">{translate key="manager.setup.useImageLogo"}</td>
 		<td width="80%" class="value">{fbvFileInput id="homeHeaderLogoImage" submit="uploadHomeHeaderLogoImage"}</td>
 	</tr>
 </table>
@@ -169,24 +169,24 @@ function prepBlockFields() {
 <div class="separator"></div>
 
 
-<h3>5.2 {translate key="settings.setup.pressHomepageContent"}</h3>
+<h3>5.2 {translate key="manager.setup.pressHomepageContent"}</h3>
 
-<p>{translate key="settings.setup.pressHomepageContentDescription"}</p>
+<p>{translate key="manager.setup.pressHomepageContentDescription"}</p>
 
 {fbvFormArea id="pressDescription"}
-	{fbvFormSection title="settings.setup.pressDescription"}
-		<p>{translate key="settings.setup.pressDescriptionDescription"}</p>
+	{fbvFormSection title="manager.setup.pressDescription"}
+		<p>{translate key="manager.setup.pressDescriptionDescription"}</p>
 		{fbvElement type="textarea" name="description[$formLocale]" id="description" value=$description[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
 	{/fbvFormSection}
 {/fbvFormArea}
 
-<h4>{translate key="settings.setup.homepageImage"}</h4>
+<h4>{translate key="manager.setup.homepageImage"}</h4>
 
-<p>{translate key="settings.setup.homepageImageDescription"}</p>
+<p>{translate key="manager.setup.homepageImageDescription"}</p>
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="settings.setup.homepageImage"}</td>
+		<td width="20%" class="label">{translate key="manager.setup.homepageImage"}</td>
 		<td width="80%" class="value">{fbvFileInput id="homepageImage" submit="uploadHomepageImage"}</td>
 	</tr>
 </table>
@@ -208,73 +208,73 @@ function prepBlockFields() {
 </table>
 {/if}
 
-<h4>{translate key="settings.setup.recentTitles"}</h4>
+<h4>{translate key="manager.setup.recentTitles"}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="40%" class="label">{translate key="settings.setup.numRecentTitlesOnHomepage"}</td>
+		<td width="40%" class="label">{translate key="manager.setup.numRecentTitlesOnHomepage"}</td>
 		<td width="60%" class="value"><input type="text" size="3" name="numRecentTitlesOnHomepage" class="textField" value="{$numRecentTitlesOnHomepage|escape}" /></td>
 	</tr>
 </table>
 
 {fbvFormArea id="additionalContent"}
-	{fbvFormSection title="settings.setup.additionalContent"}
-		<p>{translate key="settings.setup.additionalContentDescription"}</p>
+	{fbvFormSection title="manager.setup.additionalContent"}
+		<p>{translate key="manager.setup.additionalContentDescription"}</p>
 		{fbvElement type="textarea" name="additionalHomeContent[$formLocale]" id="additionalHomeContent" value=$additionalHomeContent[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 	{/fbvFormSection}
 {/fbvFormArea}
 
 <div class="separator"></div>
 
-<h3>5.3 {translate key="settings.setup.addItemtoAboutPress"}</h3>
+<h3>5.3 {translate key="manager.setup.addItemtoAboutPress"}</h3>
 
 {fbvFormArea id="addItemtoAboutPress"}
 {foreach name=customAboutItems from=$customAboutItems[$formLocale] key=aboutId item=aboutItem}
 	{fbvFormSection title="common.title" for="customAboutItems-$aboutId-title"}
 		{fbvElement type="text" name="customAboutItems[$formLocale][$aboutId][title]" id="customAboutItems-$aboutId-title" value=$aboutItem.title maxlength="255"}
 	{/fbvFormSection}
-	{fbvFormSection title="settings.setup.aboutItemContent" for="customAboutItems-$aboutId-content"}
+	{fbvFormSection title="manager.setup.aboutItemContent" for="customAboutItems-$aboutId-content"}
 		{fbvElement type="textarea" name="customAboutItems[$formLocale][$aboutId][content]" id="customAboutItems-$aboutId-content" value=$aboutItem.content size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
 	{/fbvFormSection}
 {foreachelse}
 	{fbvFormSection title="common.title" for="customAboutItems-0-title"}
 		{fbvElement type="text" name="customAboutItems[$formLocale][0][title]" id="customAboutItems-0-title" value="" maxlength="255"}
 	{/fbvFormSection}
-	{fbvFormSection title="settings.setup.aboutItemContent" for="customAboutItems-0-content"}
+	{fbvFormSection title="manager.setup.aboutItemContent" for="customAboutItems-0-content"}
 		{fbvElement type="textarea" name="customAboutItems[$formLocale][0][content]" id="customAboutItems-0-content" value="" size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
 	{/fbvFormSection}
 {/foreach}
 {/fbvFormArea}
 
-<p><input type="submit" name="addCustomAboutItem" value="{translate key="settings.setup.addAboutItem"}" class="button" /></p>
+<p><input type="submit" name="addCustomAboutItem" value="{translate key="manager.setup.addAboutItem"}" class="button" /></p>
 
 <div class="separator"></div>
 
-<h3>5.4 {translate key="settings.setup.information"}</h3>
+<h3>5.4 {translate key="manager.setup.information"}</h3>
 
-<p>{translate key="settings.setup.information.description"}</p>
+<p>{translate key="manager.setup.information.description"}</p>
 
 {fbvFormArea id="information"}
-	{fbvFormSection title="settings.setup.information.forReaders"}
+	{fbvFormSection title="manager.setup.information.forReaders"}
 		{fbvElement type="textarea" name="readerInformation[$formLocale]" id="readerInformation" value=$readerInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 	{/fbvFormSection}
-	{fbvFormSection title="settings.setup.information.forAuthors"}
+	{fbvFormSection title="manager.setup.information.forAuthors"}
 		{fbvElement type="textarea" name="authorInformation[$formLocale]" id="authorInformation" value=$authorInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 	{/fbvFormSection}
-	{fbvFormSection title="settings.setup.information.forLibrarians"}
+	{fbvFormSection title="manager.setup.information.forLibrarians"}
 		{fbvElement type="textarea" name="librarianInformation[$formLocale]" id="librarianInformation" value=$librarianInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 	{/fbvFormSection}
 {/fbvFormArea}
 
 <div class="separator"></div>
 
-<h3>5.5 {translate key="settings.setup.pressLayout"}</h3>
+<h3>5.5 {translate key="manager.setup.pressLayout"}</h3>
 
-<p>{translate key="settings.setup.pressLayoutDescription"}</p>
+<p>{translate key="manager.setup.pressLayoutDescription"}</p>
 
 <table width="100%" class="data">
 <tr>
-	<td width="20%" class="label"><label for="pressTheme">{translate key="settings.setup.pressTheme"}</label></td>
+	<td width="20%" class="label"><label for="pressTheme">{translate key="manager.setup.pressTheme"}</label></td>
 	<td width="80%" class="value">
 		<select name="pressTheme" class="selectMenu" id="pressTheme"{if empty($pressThemes)} disabled="disabled"{/if}>
 			<option value="">{translate key="common.none"}</option>
@@ -285,7 +285,7 @@ function prepBlockFields() {
 	</td>
 </tr>
 <tr>
-	<td width="20%" class="label"><label for="pressStyleSheet">{translate key="settings.setup.usePressStyleSheet"}</label></td>
+	<td width="20%" class="label"><label for="pressStyleSheet">{translate key="manager.setup.usePressStyleSheet"}</label></td>
 	<td width="80%" class="value">{fbvFileInput id="pressStyleSheet" submit="uploadPressStyleSheet"}</td>
 </tr>
 </table>
@@ -297,7 +297,7 @@ function prepBlockFields() {
 <table border="0" align="center">
 	<tr align="center">
 		<td rowspan="2">
-			{translate key="settings.setup.layout.leftSidebar"}<br/>
+			{translate key="manager.setup.layout.leftSidebar"}<br/>
 			<input class="button defaultButton" style="width: 130px;" type="button" value="&uarr;" onclick="moveUp(this.form.elements['blockSelectLeftWidget']);" /><br/>
 			<select name="blockSelectLeftWidget" multiple="multiple" size="10" class="selectMenu" style="width: 130px; height:200px">
 				{foreach from=$leftBlockPlugins item=block}
@@ -311,7 +311,7 @@ function prepBlockFields() {
 			<input class="button defaultButton" style="width: 30px;" type="button" value="&rarr;" onclick="jumpList(this.form.elements['blockSelectLeftWidget'],this.form.elements['blockUnselectedWidget']);" />
 		</td>
 		<td valign="top">
-			{translate key="settings.setup.layout.unselected"}<br/>
+			{translate key="manager.setup.layout.unselected"}<br/>
 			<select name="blockUnselectedWidget" multiple="multiple" size="10" class="selectMenu" style="width: 120px; height:180px;" >
 				{foreach from=$disabledBlockPlugins item=block}
 					<option value="{$block->getName()|escape}">{$block->getDisplayName()|escape}</option>
@@ -323,7 +323,7 @@ function prepBlockFields() {
 			<input class="button defaultButton" style="width: 30px;" type="button" value="&rarr;" onclick="jumpList(this.form.elements['blockUnselectedWidget'],this.form.elements['blockSelectRightWidget']);" />
 		</td>
 		<td rowspan="2">
-			{translate key="settings.setup.layout.rightSidebar"}<br/>
+			{translate key="manager.setup.layout.rightSidebar"}<br/>
 			<input class="button defaultButton" style="width: 130px;" type="button" value="&uarr;" onclick="moveUp(this.form.elements['blockSelectRightWidget']);" /><br/>
 			<select name="blockSelectRightWidget" multiple="multiple" size="10" class="selectMenu" style="width: 130px; height:200px" >
 				{foreach from=$rightBlockPlugins item=block}
@@ -346,19 +346,19 @@ function prepBlockFields() {
 
 <div class="separator"></div>
 
-<h3>5.6 {translate key="settings.setup.pressPageHeader"}</h3>
+<h3>5.6 {translate key="manager.setup.pressPageHeader"}</h3>
 
-<p>{translate key="settings.setup.pressPageHeaderDescription"}</p>
+<p>{translate key="manager.setup.pressPageHeaderDescription"}</p>
 
-<h4>{translate key="settings.setup.pressName"}</h4>
+<h4>{translate key="manager.setup.pressName"}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label"><input type="radio" name="pageHeaderTitleType[{$formLocale|escape}]" id="pageHeaderTitleType-0" value="0"{if not $pageHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="pageHeaderTitleType-0" key="settings.setup.useTextTitle"}</td>
+		<td width="20%" class="label"><input type="radio" name="pageHeaderTitleType[{$formLocale|escape}]" id="pageHeaderTitleType-0" value="0"{if not $pageHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="pageHeaderTitleType-0" key="manager.setup.useTextTitle"}</td>
 		<td width="80%" class="value"><input type="text" name="pageHeaderTitle[{$formLocale|escape}]" value="{$pageHeaderTitle[$formLocale]|escape}" size="40" maxlength="255" class="textField" /></td>
 	</tr>
 	<tr valign="top">
-		<td width="20%" class="label"><input type="radio" name="pageHeaderTitleType[{$formLocale|escape}]" id="pageHeaderTitleType-1" value="1"{if $pageHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="pageHeaderTitleType-1" key="settings.setup.useImageTitle"}</td>
+		<td width="20%" class="label"><input type="radio" name="pageHeaderTitleType[{$formLocale|escape}]" id="pageHeaderTitleType-1" value="1"{if $pageHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="pageHeaderTitleType-1" key="manager.setup.useImageTitle"}</td>
 		<td width="80%" class="value">{fbvFileInput id="pageHeaderTitleImage" submit="uploadPageHeaderTitleImage"}</td>
 	</tr>
 </table>
@@ -380,11 +380,11 @@ function prepBlockFields() {
 </table>
 {/if}
 
-<h4>{translate key="settings.setup.pressLogo"}</h4>
+<h4>{translate key="manager.setup.pressLogo"}</h4>
 
 <table width="100%" class="data">
 	<tr valign="top">
-		<td width="20%" class="label">{translate key="settings.setup.useImageLogo"}</td>
+		<td width="20%" class="label">{translate key="manager.setup.useImageLogo"}</td>
 		<td width="80%" class="value">{fbvFileInput id="pageHeaderLogoImage" submit="uploadPageHeaderLogoImage"}</td>
 	</tr>
 </table>
@@ -407,8 +407,8 @@ function prepBlockFields() {
 {/if}
 
 {fbvFormArea id="alternateHeader"}
-{fbvFormSection title="settings.setup.alternateHeader"}
-	<p>{translate key="settings.setup.alternateHeaderDescription"}</p>
+{fbvFormSection title="manager.setup.alternateHeader"}
+	<p>{translate key="manager.setup.alternateHeaderDescription"}</p>
 	{fbvElement type="textarea" name="pressPageHeader[$formLocale]" id="pressPageHeader" value=$pressPageHeader[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 {/fbvFormSection}
 {/fbvFormArea}
@@ -416,9 +416,9 @@ function prepBlockFields() {
 <div class="separator"></div>
 
 
-<h3>5.7 {translate key="settings.setup.pressPageFooter"}</h3>
+<h3>5.7 {translate key="manager.setup.pressPageFooter"}</h3>
 
-<p>{translate key="settings.setup.pressPageFooterDescription"}</p>
+<p>{translate key="manager.setup.pressPageFooterDescription"}</p>
 
 {fbvFormArea id="pressPageFooterContainer"}
 {fbvFormSection}
@@ -428,47 +428,47 @@ function prepBlockFields() {
 
 <div class="separator"></div>
 
-<h3>5.8 {translate key="settings.setup.navigationBar"}</h3>
+<h3>5.8 {translate key="manager.setup.navigationBar"}</h3>
 
-<p>{translate key="settings.setup.itemsDescription"}</p>
+<p>{translate key="manager.setup.itemsDescription"}</p>
 
 
 {fbvFormArea id="navigationBar"}
 {foreach name=navItems from=$navItems[$formLocale] key=navItemId item=navItem}
-	{fbvFormSection title="settings.setup.labelName" for="navItems-$navItemId-name" float=$fbvStyles.float.LEFT}
+	{fbvFormSection title="manager.setup.labelName" for="navItems-$navItemId-name" float=$fbvStyles.float.LEFT}
 		{fbvElement type="text" name="navItems[$formLocale][$navItemId][name]" id="navItems-$navItemId-name" value=$navItem.name size=$fbvStyles.size.SMALL maxlength="90"}
 		<input type="submit" name="delNavItem[{$navItemId|escape}]" value="{translate key="common.delete"}" class="button" />
-		{fbvElement type="checkbox" id="navItems-$navItemId-isLiteral" name="navItems[$formLocale][$navItemId][isLiteral]" value="1" checked=$navItem.isLiteral label="settings.setup.navItemIsLiteral"}
+		{fbvElement type="checkbox" id="navItems-$navItemId-isLiteral" name="navItems[$formLocale][$navItemId][isLiteral]" value="1" checked=$navItem.isLiteral label="manager.setup.navItemIsLiteral"}
 	{/fbvFormSection}
 	{fbvFormSection title="common.url" for="navItems-$navItemId-url" float=$fbvStyles.float.RIGHT}
 		{fbvElement type="text" name="navItems[$formLocale][$navItemId][url]" id="navItems-$navItemId-url" value=$navItem.url size=$fbvStyles.size.SMALL maxlength="255"}
-		{fbvElement type="checkbox" id="navItems-$navItemId-isAbsolute" name="navItems[$formLocale][$navItemId][isAbsolute]" value="1" checked=$navItem.isAbsolute label="settings.setup.navItemIsAbsolute"}
+		{fbvElement type="checkbox" id="navItems-$navItemId-isAbsolute" name="navItems[$formLocale][$navItemId][isAbsolute]" value="1" checked=$navItem.isAbsolute label="manager.setup.navItemIsAbsolute"}
 	{/fbvFormSection}
 {foreachelse}
-	{fbvFormSection title="settings.setup.labelName" for="navItems-0-name" float=$fbvStyles.float.LEFT}
+	{fbvFormSection title="manager.setup.labelName" for="navItems-0-name" float=$fbvStyles.float.LEFT}
 		{fbvElement type="text" name="navItems[$formLocale][0][name]" id="navItems-0-name" value=$navItem.name size=$fbvStyles.size.SMALL maxlength="90"}
-		{fbvElement type="checkbox" id="navItems-0-isLiteral" name="navItems[$formLocale][0][isLiteral]" value="1" checked=$navItem.isLiteral label="settings.setup.navItemIsLiteral"}
+		{fbvElement type="checkbox" id="navItems-0-isLiteral" name="navItems[$formLocale][0][isLiteral]" value="1" checked=$navItem.isLiteral label="manager.setup.navItemIsLiteral"}
 	{/fbvFormSection}
 	{fbvFormSection title="common.url" for="navItems-0-url" float=$fbvStyles.float.RIGHT}
 		{fbvElement type="text" name="navItems[$formLocale][0][url]" id="navItems-0-url" value=$navItem.url size=$fbvStyles.size.SMALL maxlength="255"}
-		{fbvElement type="checkbox" id="navItems-0-isAbsolute" name="navItems[$formLocale][0][isAbsolute]" value="1" checked=$navItem.isAbsolute label="settings.setup.navItemIsAbsolute"}
+		{fbvElement type="checkbox" id="navItems-0-isAbsolute" name="navItems[$formLocale][0][isAbsolute]" value="1" checked=$navItem.isAbsolute label="manager.setup.navItemIsAbsolute"}
 	{/fbvFormSection}
 {/foreach}
 {/fbvFormArea}
 
-<p><input type="submit" name="addNavItem" value="{translate key="settings.setup.addNavItem"}" class="button" /></p>
+<p><input type="submit" name="addNavItem" value="{translate key="manager.setup.addNavItem"}" class="button" /></p>
 
 
 <div class="separator"></div>
 
-<h3>5.9 {translate key="settings.setup.lists"}</h3>
-<p>{translate key="settings.setup.listsDescription"}</p>
+<h3>5.9 {translate key="manager.setup.lists"}</h3>
+<p>{translate key="manager.setup.listsDescription"}</p>
 
 {fbvFormArea id="lists"}
-{fbvFormSection float=$fbvStyles.float.LEFT title="settings.setup.itemsPerPage"}
+{fbvFormSection float=$fbvStyles.float.LEFT title="manager.setup.itemsPerPage"}
 	{fbvElement type="text" id="itemsPerPage" value=$itemsPerPage size=$fbvStyles.size.SMALL}
 {/fbvFormSection}
-{fbvFormSection float=$fbvStyles.float.RIGHT title="settings.setup.numPageLinks"}
+{fbvFormSection float=$fbvStyles.float.RIGHT title="manager.setup.numPageLinks"}
 	{fbvElement type="text" id="numPageLinks" value=$numPageLinks size=$fbvStyles.size.SMALL}
 {/fbvFormSection}
 {/fbvFormArea}
@@ -483,4 +483,3 @@ function prepBlockFields() {
 </div>
 
 {include file="common/footer.tpl"}
-

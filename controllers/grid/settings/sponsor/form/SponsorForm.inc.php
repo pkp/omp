@@ -27,7 +27,7 @@ class SponsorForm extends Form {
 		parent::Form('controllers/grid/settings/sponsor/form/sponsorForm.tpl');
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'institution', 'required', 'settings.setup.form.sponsors.institutionRequired'));
+		$this->addCheck(new FormValidator($this, 'institution', 'required', 'manager.setup.form.sponsors.institutionRequired'));
 		$this->addCheck(new FormValidatorUrl($this, 'url', 'required', 'manager.emails.form.sponsors.urlRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}

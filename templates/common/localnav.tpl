@@ -44,12 +44,13 @@
 		</li>
 		<li><a href="{url page="issue" op="archive"}">{translate key="navigation.published"}</a></li>
 		<li>
-			<a href="{url page="settings"}">!Settings</a>
+			<a href="#">!Settings</a>
+				<a href="{url page="manager" op="settings"}">!Settings</a>
 			<ul>
-				<li><a href="{url page="settings" op="setup"}">Press Setup</a></li>
-				<li><a href="{url page="settings" op="data"}">!Data</a></li>
-				<li><a href="{url page="settings" op="system"}">!System</a></li>
-				<li><a href="{url page="settings" op="users"}">!User Management</a></li>
+				<li><a href="{url page="manager" op="setup"}">Press Setup</a></li>
+				<li><a href="{url page="manager" op="data"}">!Data</a></li>
+				<li><a href="{url page="manager" op="system"}">!System</a></li>
+				<li><a href="{url page="manager" op="users"}">!User Management</a></li>
 			</ul>
 		</li>
 		<li><a href="{url page="search"}">!{translate key="navigation.search"}</a></li>

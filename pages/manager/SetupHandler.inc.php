@@ -7,23 +7,32 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SetupHandler
- * @ingroup pages_settings
+ * @ingroup pages_manager
  *
  * @brief Handle requests for press setup functions.
  */
 
-
 import('lib.pkp.classes.core.JSON');
-import('pages.settings.SettingsHandler');
+import('pages.manager.ManagerHandler');
 
-class SetupHandler extends SettingsHandler {
+class SetupHandler extends ManagerHandler {
 	/**
 	 * Constructor
 	 */
 	function SetupHandler() {
-		parent::SettingsHandler();
+		parent::ManagerHandler();
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
-				array('setup', 'saveSetup', 'downloadLayoutTemplate'));
+				array(
+					'setup',
+					'saveSetup',
+					'downloadLayoutTemplate'));
+	}
+
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize(&$request, $args, $roleAssignments) {
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/**
@@ -31,16 +40,15 @@ class SetupHandler extends SettingsHandler {
 	 * Displays setup index page if a valid step is not specified.
 	 * @param $args array optional, if set the first parameter is the step to display
 	 */
-	function setup($args, &$request) {
+	function setup(&$args, &$request) {
 		$this->setupTemplate(true);
 
 		$step = isset($args[0]) ? (int) $args[0] : 1;
-		// default to step 1
-		if ( !($step >= 1 && $step <= 5) ) {
+
+		if (!($step >= 1 && $step <= 5)) {
 			$step = 1;
 		}
 
-		$templateMgr =& TemplateManager::getManager();
 		$dispatcher =& $this->getDispatcher();
 		switch ($step) {
 			case 3:
@@ -50,7 +58,7 @@ class SetupHandler extends SettingsHandler {
 		}
 
 		$formClass = "PressSetupStep{$step}Form";
-		import("classes.settings.form.setup.$formClass");
+		import("classes.manager.form.setup.$formClass");
 
 		$setupForm = new $formClass();
 		if ($setupForm->isLocaleResubmit()) {
@@ -65,7 +73,7 @@ class SetupHandler extends SettingsHandler {
 	 * Save changes to press settings.
 	 * @param $args array first parameter is the step being saved
 	 */
-	function saveSetup($args, &$request) {
+	function saveSetup(&$args, &$request) {
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
 		if ($step >= 1 && $step <= 5) {
@@ -73,7 +81,7 @@ class SetupHandler extends SettingsHandler {
 			$this->setupTemplate(true);
 
 			$formClass = "PressSetupStep{$step}Form";
-			import("classes.settings.form.setup.$formClass");
+			import("classes.manager.form.setup.$formClass");
 
 			$setupForm = new $formClass();
 			$setupForm->readInputData();
@@ -121,7 +129,7 @@ class SetupHandler extends SettingsHandler {
 						if ($setupForm->uploadImage('homeHeaderTitleImage', $formLocale)) {
 							$editData = true;
 						} else {
-							$setupForm->addError('homeHeaderTitleImage', Locale::translate('settings.setup.homeTitleImageInvalid'));
+							$setupForm->addError('homeHeaderTitleImage', Locale::translate('manager.setup.homeTitleImageInvalid'));
 						}
 
 					} else if (Request::getUserVar('deleteHomeHeaderTitleImage')) {
@@ -132,7 +140,7 @@ class SetupHandler extends SettingsHandler {
 						if ($setupForm->uploadImage('homeHeaderLogoImage', $formLocale)) {
 							$editData = true;
 						} else {
-							$setupForm->addError('homeHeaderLogoImage', Locale::translate('settings.setup.homeHeaderImageInvalid'));
+							$setupForm->addError('homeHeaderLogoImage', Locale::translate('manager.setup.homeHeaderImageInvalid'));
 						}
 
 					} else if (Request::getUserVar('deleteHomeHeaderLogoImage')) {
@@ -143,7 +151,7 @@ class SetupHandler extends SettingsHandler {
 						if ($setupForm->uploadImage('pageHeaderTitleImage', $formLocale)) {
 							$editData = true;
 						} else {
-							$setupForm->addError('pageHeaderTitleImage', Locale::translate('settings.setup.pageHeaderTitleImageInvalid'));
+							$setupForm->addError('pageHeaderTitleImage', Locale::translate('manager.setup.pageHeaderTitleImageInvalid'));
 						}
 
 					} else if (Request::getUserVar('deletePageHeaderTitleImage')) {
@@ -154,7 +162,7 @@ class SetupHandler extends SettingsHandler {
 						if ($setupForm->uploadImage('pageHeaderLogoImage', $formLocale)) {
 							$editData = true;
 						} else {
-							$setupForm->addError('pageHeaderLogoImage', Locale::translate('settings.setup.pageHeaderLogoImageInvalid'));
+							$setupForm->addError('pageHeaderLogoImage', Locale::translate('manager.setup.pageHeaderLogoImageInvalid'));
 						}
 
 					} else if (Request::getUserVar('deletePageHeaderLogoImage')) {
@@ -165,7 +173,7 @@ class SetupHandler extends SettingsHandler {
 						if ($setupForm->uploadImage('homepageImage', $formLocale)) {
 							$editData = true;
 						} else {
-							$setupForm->addError('homepageImage', Locale::translate('settings.setup.homepageImageInvalid'));
+							$setupForm->addError('homepageImage', Locale::translate('manager.setup.homepageImageInvalid'));
 						}
 
 					} else if (Request::getUserVar('deleteHomepageImage')) {
@@ -175,7 +183,7 @@ class SetupHandler extends SettingsHandler {
 						if ($setupForm->uploadStyleSheet('pressStyleSheet')) {
 							$editData = true;
 						} else {
-							$setupForm->addError('pressStyleSheet', Locale::translate('settings.setup.pressStyleSheetInvalid'));
+							$setupForm->addError('pressStyleSheet', Locale::translate('manager.setup.pressStyleSheetInvalid'));
 						}
 
 					} else if (Request::getUserVar('deletePressStyleSheet')) {
@@ -226,7 +234,7 @@ class SetupHandler extends SettingsHandler {
 				// Create notification to indicate that setup was saved
 				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationManager =& new NotificationManager();
-				$notificationManager->createTrivialNotification('notification.notification', 'settings.setup.pressSetupUpdated');
+				$notificationManager->createTrivialNotification('notification.notification', 'manager.setup.pressSetupUpdated');
 
 				Request::redirect(null, null, 'setup', $step+1);
 			} else {

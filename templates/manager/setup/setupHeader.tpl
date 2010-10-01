@@ -9,7 +9,7 @@
  * $Id$
  *}
 {strip}
-{assign var="pageCrumbTitle" value="settings.setup.pressSetup"}
+{assign var="pageCrumbTitle" value="manager.setup.pressSetup"}
 {url|assign:"currentUrl" op="setup"}
 {include file="common/header.tpl"}
 {/strip}
@@ -23,20 +23,19 @@
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 		<li{if $setupStep == 1} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="setup" path="1"}">1. {translate key="settings.setup.details"}</a>
+			<a href="{url op="setup" path="1"}">1. {translate key="manager.setup.details"}</a>
 		</li>
 		<li{if $setupStep == 2} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="setup" path="2"}">2. {translate key="settings.setup.policies"}</a>
+			<a href="{url op="setup" path="2"}">2. {translate key="manager.setup.policies"}</a>
 		</li>
 		<li{if $setupStep == 3} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="setup" path="3"}">3. {translate key="settings.setup.workflow"}</a>
+			<a href="{url op="setup" path="3"}">3. {translate key="manager.setup.workflow"}</a>
 		</li>
 		<li{if $setupStep == 4} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="setup" path="4"}">4. {translate key="settings.setup.settings"}</a>
+			<a href="{url op="setup" path="4"}">4. {translate key="manager.setup.settings"}</a>
 		</li>
 		<li{if $setupStep == 5} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="setup" path="5"}">5. {translate key="settings.setup.look"}</a>
+			<a href="{url op="setup" path="5"}">5. {translate key="manager.setup.look"}</a>
 		</li>
 	</ul>
-
 

@@ -22,7 +22,7 @@
 		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>
 	<tr valign="top" class="heading">
-		<td width="35%">{translate key="settings.setup.pressName"}</td>
+		<td width="35%">{translate key="manager.setup.pressName"}</td>
 		<td width="35%">{translate key="press.path"}</td>
 		<td width="10%">{translate key="common.order"}</td>
 		<td width="20%" align="right">{translate key="common.action"}</td>

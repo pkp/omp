@@ -8,8 +8,8 @@
  *
  * $Id$
  *}
-{assign var="pageTitle" value="settings.setup.managingThePress"}
-{include file="settings/setup/setupHeader.tpl"}
+{assign var="pageTitle" value="manager.setup.managingThePress"}
+{include file="manager/setup/setupHeader.tpl"}
 
 <form name="setupForm" method="post" action="{url op="saveSetup" path="4"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
@@ -26,16 +26,16 @@
 {/fbvFormArea}
 {/if} {* count($formLocales) > 1*}
 
-<h3>4.1 {translate key="settings.setup.securitySettings"}</h3>
+<h3>4.1 {translate key="manager.setup.securitySettings"}</h3>
 
 {fbvFormArea id="openAccessPolicyContainer"}
-{fbvFormSection title="settings.setup.openAccessPolicy"}
-	<p>{translate key="settings.setup.openAccessPolicyDescription"}</p>
+{fbvFormSection title="manager.setup.openAccessPolicy"}
+	<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
 	{fbvElement type="textarea" name="openAccessPolicy[$formLocale]" id="openAccessPolicy" value=$openAccessPolicy[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 {/fbvFormSection}
 {/fbvFormArea}
 
-<p>{translate key="settings.setup.securitySettingsDescription"}</p>
+<p>{translate key="manager.setup.securitySettingsDescription"}</p>
 
 <script type="text/javascript">
 {literal}
@@ -56,30 +56,30 @@
 </script>
 
 {fbvFormArea id="siteAccess"}
-{fbvFormSection title="settings.setup.siteAccess" layout=$fbvStyles.layout.ONE_COLUMN}
-	{fbvElement type="checkbox" id="restrictSiteAccess" value="1" checked=$restrictSiteAccess label="settings.setup.restrictSiteAccess"}
-	{fbvElement type="checkbox" id="restrictMonographAccess" value="1" checked=$restrictMonographAccess label="settings.setup.restrictMonographAccess"}
+{fbvFormSection title="manager.setup.siteAccess" layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvElement type="checkbox" id="restrictSiteAccess" value="1" checked=$restrictSiteAccess label="manager.setup.restrictSiteAccess"}
+	{fbvElement type="checkbox" id="restrictMonographAccess" value="1" checked=$restrictMonographAccess label="manager.setup.restrictMonographAccess"}
 {/fbvFormSection}
-{fbvFormSection title="settings.setup.userRegistration" layout=$fbvStyles.layout.ONE_COLUMN}
-	{fbvElement type="radio" id="disableUserReg-0" name="disableUserReg" value="0" onclick="setRegAllowOpts()" checked=!$disableUserReg label="settings.setup.enableUserRegistration"}
+{fbvFormSection title="manager.setup.userRegistration" layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvElement type="radio" id="disableUserReg-0" name="disableUserReg" value="0" onclick="setRegAllowOpts()" checked=!$disableUserReg label="manager.setup.enableUserRegistration"}
 	<div id="disableUserRegCheckboxes" style="padding-left: 20px;">	
-		{fbvElement type="checkbox" id="allowRegReader" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="settings.setup.enableUserRegistration.reader"}
-		{fbvElement type="checkbox" id="allowRegAuthor" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="settings.setup.enableUserRegistration.author"}
-		{fbvElement type="checkbox" id="allowRegReviewer" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="settings.setup.enableUserRegistration.reviewer"}
+		{fbvElement type="checkbox" id="allowRegReader" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="manager.setup.enableUserRegistration.reader"}
+		{fbvElement type="checkbox" id="allowRegAuthor" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="manager.setup.enableUserRegistration.author"}
+		{fbvElement type="checkbox" id="allowRegReviewer" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="manager.setup.enableUserRegistration.reviewer"}
 	</div>
-	{fbvElement type="radio" id="disableUserReg-1" name="disableUserReg" value="1" onclick="setRegAllowOpts()" checked=$disableUserReg label="settings.setup.disableUserRegistration"}
+	{fbvElement type="radio" id="disableUserReg-1" name="disableUserReg" value="1" onclick="setRegAllowOpts()" checked=$disableUserReg label="manager.setup.disableUserRegistration"}
 {/fbvFormSection}
-{fbvFormSection title="settings.setup.loggingAndAuditing" layout=$fbvStyles.layout.ONE_COLUMN}
-	{fbvElement type="checkbox" id="monographEventLog" value="1" checked=$monographEventLog label="settings.setup.submissionEventLogging"}
-	{fbvElement type="checkbox" id="monographEmailLog" value="1" checked=$monographEmailLog label="settings.setup.submissionEmailLogging"}
+{fbvFormSection title="manager.setup.loggingAndAuditing" layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvElement type="checkbox" id="monographEventLog" value="1" checked=$monographEventLog label="manager.setup.submissionEventLogging"}
+	{fbvElement type="checkbox" id="monographEmailLog" value="1" checked=$monographEmailLog label="manager.setup.submissionEmailLogging"}
 {/fbvFormSection}
 {/fbvFormArea}
 
 <div class="separator"></div>
 
-<h3>4.2 {translate key="settings.setup.announcements"}</h3>
+<h3>4.2 {translate key="manager.setup.announcements"}</h3>
 
-<p>{translate key="settings.setup.announcementsDescription"}</p>
+<p>{translate key="manager.setup.announcementsDescription"}</p>
 
 	<script type="text/javascript">
 		{literal}
@@ -93,55 +93,55 @@
 
 <p>
 	<input type="checkbox" name="enableAnnouncements" id="enableAnnouncements" value="1" {if $enableAnnouncements} checked="checked"{/if} />&nbsp;
-	<label for="enableAnnouncements">{translate key="settings.setup.enableAnnouncements"}</label>
+	<label for="enableAnnouncements">{translate key="manager.setup.enableAnnouncements"}</label>
 </p>
 
 <p>
 	<input type="checkbox" name="enableAnnouncementsHomepage" id="enableAnnouncementsHomepage" value="1" onclick="toggleEnableAnnouncementsHomepage(this.form)"{if $enableAnnouncementsHomepage} checked="checked"{/if} />&nbsp;
-	<label for="enableAnnouncementsHomepage">{translate key="settings.setup.enableAnnouncementsHomepage1"}</label>
+	<label for="enableAnnouncementsHomepage">{translate key="manager.setup.enableAnnouncementsHomepage1"}</label>
 	<select name="numAnnouncementsHomepage" size="1" class="selectMenu" {if not $enableAnnouncementsHomepage}disabled="disabled"{/if}>
 		{section name="numAnnouncementsHomepageOptions" start=1 loop=11}
 		<option value="{$smarty.section.numAnnouncementsHomepageOptions.index}"{if $numAnnouncementsHomepage eq $smarty.section.numAnnouncementsHomepageOptions.index or ($smarty.section.numAnnouncementsHomepageOptions.index eq 1 and not $numAnnouncementsHomepage)} selected="selected"{/if}>{$smarty.section.numAnnouncementsHomepageOptions.index}</option>
 		{/section}
 	</select>
-	{translate key="settings.setup.enableAnnouncementsHomepage2"}
+	{translate key="manager.setup.enableAnnouncementsHomepage2"}
 </p>
 
 {fbvFormArea id="announcementsIntroductionContainer"}
-{fbvFormSection title="settings.setup.announcementsIntroduction"}
-	<p>{translate key="settings.setup.announcementsIntroductionDescription"}</p>
+{fbvFormSection title="manager.setup.announcementsIntroduction"}
+	<p>{translate key="manager.setup.announcementsIntroductionDescription"}</p>
 	{fbvElement type="textarea" name="announcementsIntroduction[$formLocale]" id="announcementsIntroduction" value=$announcementsIntroduction[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 {/fbvFormSection}
 {/fbvFormArea}
 
 <div class="separator"></div>
 
-<h3>4.3 {translate key="settings.setup.publicIdentifier"}</h3>
+<h3>4.3 {translate key="manager.setup.publicIdentifier"}</h3>
 
 {fbvFormArea id="publicIdentifier"}
-{fbvFormSection title="settings.setup.uniqueIdentifier" layout=$fbvStyles.layout.ONE_COLUMN}
-	<p>{translate key="settings.setup.uniqueIdentifierDescription"}</p>
+{fbvFormSection title="manager.setup.uniqueIdentifier" layout=$fbvStyles.layout.ONE_COLUMN}
+	<p>{translate key="manager.setup.uniqueIdentifierDescription"}</p>
 	<br />
-	{fbvElement type="checkbox" id="enablePublicMonographId" value="1" checked=$enablePublicMonographId label="settings.setup.enablePublicMonographId"}
-	{fbvElement type="checkbox" id="enablePublicGalleyId" value="1" checked=$enablePublicGalleyId label="settings.setup.enablePublicGalleyId"}
+	{fbvElement type="checkbox" id="enablePublicMonographId" value="1" checked=$enablePublicMonographId label="manager.setup.enablePublicMonographId"}
+	{fbvElement type="checkbox" id="enablePublicGalleyId" value="1" checked=$enablePublicGalleyId label="manager.setup.enablePublicGalleyId"}
 {/fbvFormSection}
-{fbvFormSection title="settings.setup.pageNumberIdentifier" layout=$fbvStyles.layout.ONE_COLUMN}
-	{fbvElement type="checkbox" id="enablePageNumber" value="1" checked=$enablePageNumber label="settings.setup.enablePageNumber"}
+{fbvFormSection title="manager.setup.pageNumberIdentifier" layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvElement type="checkbox" id="enablePageNumber" value="1" checked=$enablePageNumber label="manager.setup.enablePageNumber"}
 {/fbvFormSection}
 {/fbvFormArea}
 
 <div class="separator"></div>
 
-<h3>4.4 {translate key="settings.setup.cataloguingMetadata"}</h3>
+<h3>4.4 {translate key="manager.setup.cataloguingMetadata"}</h3>
 
 {url|assign:cataloguingMetadataUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.CataloguingMetadataListbuilderHandler" op="fetch"}
 {load_url_in_div id="cataloguingMetadataContainer" url=$cataloguingMetadataUrl}
 
 <div class="separator"></div>
 
-<h3>4.5 {translate key="settings.setup.searchEngineIndexing"}</h3>
+<h3>4.5 {translate key="manager.setup.searchEngineIndexing"}</h3>
 
-<p>{translate key="settings.setup.searchEngineIndexingDescription"}</p>
+<p>{translate key="manager.setup.searchEngineIndexingDescription"}</p>
 
 {fbvFormArea id="searchEngineIndexing"}
 {fbvFormSection title="common.description" float=$fbvStyles.float.LEFT}
@@ -150,18 +150,18 @@
 {fbvFormSection title="common.keywords" float=$fbvStyles.float.RIGHT}
 	{fbvElement type="text" id="searchKeywords" name="searchKeywords[$formLocale]" value=$searchKeywords[$formLocale] size=$fbvStyles.size.LARGE}
 {/fbvFormSection}
-{fbvFormSection title="settings.setup.customTags"}
+{fbvFormSection title="manager.setup.customTags"}
 	{fbvElement type="textarea" id="customHeaders" name="customHeaders[$formLocale]" value=$customHeaders[$formLocale] measure=$fbvStyles.measure.1OF2}
 {/fbvFormSection}
 {/fbvFormArea}
 
 <div class="separator"></div>
 
-<h3>4.6 {translate key="settings.setup.registerPressForIndexing"}</h3>
+<h3>4.6 {translate key="manager.setup.registerPressForIndexing"}</h3>
 
 {url|assign:"oaiSiteUrl" press=$currentPress->getPath()}
 {url|assign:"oaiUrl" page="oai"}
-<p>{translate key="settings.setup.registerPressForIndexingDescription" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
+<p>{translate key="manager.setup.registerPressForIndexingDescription" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
 
 <div class="separator"></div>
 
@@ -173,4 +173,3 @@
 </div>
 
 {include file="common/footer.tpl"}
-
