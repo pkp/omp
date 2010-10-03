@@ -5,7 +5,7 @@
  */
 
 /**
- * @file tests/plugins/metadata/mods/Mods34MetadataPluginTest.inc.php
+ * @file tests/plugins/metadata/mods34/Mods34MetadataPluginTest.inc.php
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -45,7 +45,7 @@ class Mods34MetadataPluginTest extends PKPTestCase {
 
 		// Parse the plug-ins version.xml.
 		import('lib.pkp.classes.site.VersionCheck');
-		self::assertFileExists($versionFile = './plugins/metadata/mods/version.xml');
+		self::assertFileExists($versionFile = './plugins/metadata/mods34/version.xml');
 		self::assertArrayHasKey('version', $versionInfo =& VersionCheck::parseVersionXML($versionFile));
 		self::assertType('Version', $pluginVersion =& $versionInfo['version']);
 		$installer->setCurrentVersion($pluginVersion);
