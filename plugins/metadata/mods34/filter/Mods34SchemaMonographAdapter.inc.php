@@ -43,16 +43,16 @@ class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
 	//
 	/**
 	 * @see MetadataDataObjectAdapter::injectMetadataIntoDataObject()
-	 * @param $modsDescription MetadataDescription
+	 * @param $mods34Description MetadataDescription
 	 * @param $monograph Monograph
 	 * @param $replace boolean whether to replace the existing monograph
 	 */
-	function &injectMetadataIntoDataObject(&$modsDescription, &$monograph, $replace) {
+	function &injectMetadataIntoDataObject(&$mods34Description, &$monograph, $replace) {
 		assert(is_a($monograph, 'Monograph'));
-		$monograph =& parent::injectMetadataIntoDataObject($modsDescription, $monograph, $replace, 'classes.monograph.Author');
+		$monograph =& parent::injectMetadataIntoDataObject($mods34Description, $monograph, $replace, 'classes.monograph.Author');
 
 		// Publication date
-		$publicationDate = $modsDescription->getStatement('originInfo/dateIssued[@keyDate="yes" @encoding="w3cdtf"]');
+		$publicationDate = $mods34Description->getStatement('originInfo/dateIssued[@keyDate="yes" @encoding="w3cdtf"]');
 		if ($publicationDate) {
 			$monograph->setDatePublished($publicationDate);
 		}
@@ -81,12 +81,12 @@ class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
 			// Marcrelator author role
 			$authorMarcrelatorRole = 'aut';
 		}
-		$modsDescription =& parent::extractMetadataFromDataObject($monograph, $authorMarcrelatorRole);
+		$mods34Description =& parent::extractMetadataFromDataObject($monograph, $authorMarcrelatorRole);
 
 		// Publication date
 		$publicationDate = $monograph->getDatePublished();
 		if ($publicationDate) {
-			$modsDescription->addStatement('originInfo/dateIssued[@keyDate="yes" @encoding="w3cdtf"]', $publicationDate);
+			$mods34Description->addStatement('originInfo/dateIssued[@keyDate="yes" @encoding="w3cdtf"]', $publicationDate);
 		}
 
 		// ...
@@ -94,7 +94,7 @@ class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
 		// information needs to be added, e.g. from Press, press settings
 		// or site settings.
 
-		return $modsDescription;
+		return $mods34Description;
 	}
 }
 ?>
