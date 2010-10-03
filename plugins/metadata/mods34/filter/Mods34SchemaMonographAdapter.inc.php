@@ -1,13 +1,17 @@
 <?php
 
 /**
+ * @defgroup plugins_metadata_mods34_filter
+ */
+
+/**
  * @file plugins/metadata/mods34/filter/Mods34SchemaMonographAdapter.inc.php
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Mods34SchemaMonographAdapter
- * @ingroup plugins_metadata_mods_filter
+ * @ingroup plugins_metadata_mods34_filter
  * @see Monograph
  * @see Mods34Schema
  *
