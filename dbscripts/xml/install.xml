@@ -19,6 +19,7 @@
 	<schema file="lib/pkp/xml/schema/groups.xml" />
 	<schema file="lib/pkp/xml/schema/notes.xml" />
 	<schema file="lib/pkp/xml/schema/controlledVocab.xml" />
+	<schema file="lib/pkp/xml/schema/metadata.xml" />
 	<schema file="lib/pkp/xml/schema/announcements.xml" />
 	<schema file="lib/pkp/xml/schema/signoff.xml" />
 	<schema file="lib/pkp/xml/schema/reviews.xml" />
@@ -28,6 +29,4 @@
 
 	<code function="createData" />
 	<code function="createConfig" />
-
-	<data file="dbscripts/xml/controlled_vocab.xml" />
 </install>

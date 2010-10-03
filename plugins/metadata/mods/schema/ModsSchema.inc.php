@@ -5,28 +5,28 @@
  */
 
 /**
- * @file plugins/metadata/mods/schema/ModsSchema.inc.php
+ * @file plugins/metadata/mods/schema/Mods34Schema.inc.php
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class ModsSchema
+ * @class Mods34Schema
  * @ingroup plugins_metadata_mods_schema
- * @see PKPModsSchema
+ * @see PKPMods34Schema
  *
- * @brief OMP-specific implementation of the ModsSchema.
+ * @brief OMP-specific implementation of the Mods34Schema.
  */
 
 
-import('lib.pkp.plugins.metadata.mods.schema.PKPModsSchema');
+import('lib.pkp.plugins.metadata.mods34.schema.PKPMods34Schema');
 
-class ModsSchema extends PKPModsSchema {
+class Mods34Schema extends PKPMods34Schema {
 	/**
 	 * Constructor
 	 */
-	function ModsSchema() {
+	function Mods34Schema() {
 		// Configure the MODS schema.
-		parent::PKPModsSchema(ASSOC_TYPE_MONOGRAPH);
+		parent::PKPMods34Schema(ASSOC_TYPE_MONOGRAPH);
 	}
 }
 ?>

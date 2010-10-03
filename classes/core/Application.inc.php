@@ -142,6 +142,7 @@ class Application extends PKPApplication {
 			'blocks',
 			'generic',
 			'importexport',
+			'metadata',
 			'themes'
 		);
 	}

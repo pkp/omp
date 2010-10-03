@@ -1,23 +1,43 @@
 <?php
 
 /**
- * @file plugins/metadata/mods/filter/ModsSchemaMonographAdapter.inc.php
+ * @file plugins/metadata/mods/filter/Mods34SchemaMonographAdapter.inc.php
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class ModsSchemaMonographAdapter
+ * @class Mods34SchemaMonographAdapter
  * @ingroup plugins_metadata_mods_filter
  * @see Monograph
- * @see ModsSchema
+ * @see Mods34Schema
  *
  * @brief Class that inject/extract MODS schema compliant meta-data
  *  into/from a Monograph object.
  */
 
-import('lib.pkp.plugins.metadata.filter.ModsSchemaSubmissionAdapter');
+import('lib.pkp.plugins.metadata.mods34.filter.Mods34SchemaSubmissionAdapter');
 
-class ModsSchemaMonographAdapter extends ModsSchemaSubmissionAdapter {
+class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
+	/**
+	 * Constructor
+	 */
+	function Mods34SchemaMonographAdapter() {
+		// Configure the submission adapter
+		parent::Mods34SchemaSubmissionAdapter(ASSOC_TYPE_MONOGRAPH);
+	}
+
+
+	//
+	// Implement template methods from Filter
+	//
+	/**
+	 * @see Filter::getClassName()
+	 */
+	function getClassName() {
+		return 'plugins.metadata.mods34.filter.Mods34SchemaMonographAdapter';
+	}
+
+
 	//
 	// Implement template methods from MetadataDataObjectAdapter
 	//
