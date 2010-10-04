@@ -172,9 +172,17 @@ class CreateReviewerForm extends Form {
 		// Add reviewer interests to interests table
 		$interestDao =& DAORegistry::getDAO('InterestDAO');
 		$interests = Request::getUserVar('interestsKeywords');
-		if (empty($interests)) $interests = array();
-		elseif (!is_array($interests)) $interests = array($interests);
-		$interestDao->insertInterests($interests, $userId, true);
+		$interestTextOnly = Request::getUserVar('interests');
+		if(!empty($interestsTextOnly)) {
+			// If JS is disabled, this will be the input to read
+			$interestsTextOnly = explode(",", $interestTextOnly);
+		} else $interestsTextOnly = null;
+		if ($interestsTextOnly && !isset($interests)) {
+			$interests = $interestsTextOnly;
+		} elseif (isset($interests) && !is_array($interests)) {
+			$interests = array($interests);
+		}
+		$interestDao->insertInterests($interests, $user->getId(), true);
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$reviewerGroup =& $userGroupDao->getDefaultByRoleId(ROLE_ID_REVIEWER);

@@ -3,7 +3,7 @@
 /**
  * @defgroup user_form
  */
- 
+
 /**
  * @file classes/user/form/RegistrationForm.inc.php
  *
@@ -47,22 +47,22 @@ class RegistrationForm extends Form {
 			$this->existingUser = 1;
 		} else {
 			$this->existingUser = Request::getUserVar('existingUser') ? 1 : 0;
-	
+
 			import('lib.pkp.classes.captcha.CaptchaManager');
 			$captchaManager = new CaptchaManager();
 			$this->captchaEnabled = ($captchaManager->isEnabled() && Config::getVar('captcha', 'captcha_on_register'))?true:false;
-	
+
 			// Validation checks for this form
 			$this->addCheck(new FormValidator($this, 'username', 'required', 'user.profile.form.usernameRequired'));
 			$this->addCheck(new FormValidator($this, 'password', 'required', 'user.profile.form.passwordRequired'));
-	
+
 			if ($this->existingUser) {
 				// Existing user -- check login
 				$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.login.loginError', create_function('$username,$form', 'return Validation::checkCredentials($form->getData(\'username\'), $form->getData(\'password\'));'), array(&$this)));
 			} else {
 				// New user -- check required profile fields
 				$site =& Request::getSite();
-	
+
 				$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.register.form.usernameExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByUsername'), array(), true));
 				$this->addCheck(new FormValidatorAlphaNum($this, 'username', 'required', 'user.register.form.usernameAlphaNumeric'));
 				$this->addCheck(new FormValidatorLength($this, 'password', 'required', 'user.register.form.passwordLengthTooShort', '>=', $site->getMinPasswordLength()));
@@ -76,7 +76,7 @@ class RegistrationForm extends Form {
 				if ($this->captchaEnabled) {
 					$this->addCheck(new FormValidatorCaptcha($this, 'captcha', 'captchaId', 'common.captchaField.badCaptcha'));
 				}
-	
+
 				$authDao =& DAORegistry::getDAO('AuthSourceDAO');
 				$this->defaultAuth =& $authDao->getDefaultPlugin();
 				if (isset($this->defaultAuth)) {
@@ -110,7 +110,7 @@ class RegistrationForm extends Form {
 		$countryDao =& DAORegistry::getDAO('CountryDAO');
 		$countries =& $countryDao->getCountries();
 		$templateMgr->assign_by_ref('countries', $countries);
-		
+
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$templateMgr->assign('genderOptions', $userDao->getGenderOptions());
 
@@ -123,7 +123,7 @@ class RegistrationForm extends Form {
 		$site =& Request::getSite();
 		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
 
-		$templateMgr->assign('helpTopicId', 'user.registerAndProfile');		
+		$templateMgr->assign('helpTopicId', 'user.registerAndProfile');
 		parent::display();
 	}
 
@@ -140,9 +140,13 @@ class RegistrationForm extends Form {
 		$this->setData('existingUser', $this->existingUser);
 		$this->setData('userLocales', array());
 		$this->setData('sendPassword', 1);
-		
+
 		$interestDao =& DAORegistry::getDAO('InterestDAO');
-		$this->setData('existingInterests', implode(",", $interestDao->getAllUniqueInterests()));
+		// Get all available interests to populate the autocomplete with
+		if ($interestDao->getAllUniqueInterests()) {
+			$existingInterests = $interestDao->getAllUniqueInterests();
+		} else $existingInterests = null;
+		$this->setData('existingInterests', $existingInterests);
 	}
 
 	/**
@@ -180,20 +184,20 @@ class RegistrationForm extends Form {
 	 */
 	function execute() {
 		$requireValidation = Config::getVar('email', 'require_validation');
-		
+
 		if ($this->existingUser) { // If using implicit auth - we hardwire that we are working on an existing user
 			// Existing user in the system
 			$userDao =& DAORegistry::getDAO('UserDAO');
-			
+
 			if ($this->implicitAuth) { // If we are using implicit auth - then use the session username variable - rather than data from the form
 				$sessionManager =& SessionManager::getManager();
 				$session =& $sessionManager->getUserSession();
-				
+
 				$user =& $userDao->getUserByUsername($session->getSessionVar('username'));
 			} else {
 				$user =& $userDao->getUserByUsername($this->getData('username'));
 			}
-			
+
 			if ($user == null) {
 				return false;
 			}
@@ -256,19 +260,24 @@ class RegistrationForm extends Form {
 				return false;
 			}
 
-			// Add reviewer interests to interests table
+			// Add reviewing interests to interests table
 			$interestDao =& DAORegistry::getDAO('InterestDAO');
 			$interests = Request::getUserVar('interestsKeywords');
-			$interestsTextOnly = explode(",", str_replace("\"", "", Request::getUserVar('interests'))); // If JS is disabled, this will be the control to read
-			if (isset($interestsTextOnly) && !isset($interests)) $interests = $interestsTextOnly;
-			if (empty($interests))  $interests = array();
-			elseif (!is_array($interests)) $interests = array($interests);
-			$interestDao->insertInterests($interests, $userId, true);
+			$interestTextOnly = Request::getUserVar('interests');
+			if(!empty($interestsTextOnly)) {
+				// If JS is disabled, this will be the input to read
+				$interestsTextOnly = explode(",", $interestTextOnly);
+			} else $interestsTextOnly = null;
+			if ($interestsTextOnly && !isset($interests)) {
+				$interests = $interestsTextOnly;
+			} elseif (isset($interests) && !is_array($interests)) {
+				$interests = array($interests);
+			}
+			$interestDao->insertInterests($interests, $user->getId(), true);
 
 			$sessionManager =& SessionManager::getManager();
 			$session =& $sessionManager->getUserSession();
 			$session->setSessionVar('username', $user->getUsername());
-
 		}
 
 		$press =& Request::getPress();

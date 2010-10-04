@@ -18,8 +18,8 @@
 	$(document).ready(function(){
 		$("#interestsTextOnly").hide();
 		$("#interests").tagit({
-			availableTags: [{/literal}{$existingInterests}{literal}]
-			{/literal}{if $currentTags}{literal}, currentTags: [{/literal}{$currentInterests}]{/if}{literal}
+			{/literal}{if $existingInterests}{literal} availableTags: [{/literal}{foreach name=existingInterests from=$existingInterests item=interest}"{$interest|escape:"javascript"}"{if !$smarty.foreach.existingInterests.last}, {/if}{/foreach}{literal}],{/literal}{/if}
+			{literal}currentTags: []
 		});
 	});
 </script>
@@ -184,7 +184,7 @@
 	<div id="reviewerInterestsContainer" style="margin-left:40px;">
 		<label class="desc">{translate key="user.register.reviewerInterests"}</label>
 		<ul id="interests"></ul>
-		<textarea name="interests" id="interestsTextOnly" rows="5" cols="40" class="textArea">{$currentInterests|escape}</textarea>
+		<textarea name="interests" id="interestsTextOnly" rows="5" cols="40" class="textArea"></textarea>
 	</div>
 	<br />
   {/if}
