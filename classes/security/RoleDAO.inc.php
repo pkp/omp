@@ -38,88 +38,90 @@ class RoleDAO extends DAO {
 	 * @param $dbResultRange object DBRangeInfo object describing range of results to return
 	 * @return array matching Users
 	 */
-    function &getUsersByRoleId($roleId = null, $pressId = null, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null) {
-        $users = array();
+	function &getUsersByRoleId($roleId = null, $pressId = null, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null) {
+		$users = array();
 
-        $paramArray = array('interests');
-        if (isset($roleId)) $paramArray[] = (int) $roleId;
-        if (isset($pressId)) $paramArray[] = (int) $pressId;
-        // For security / resource usage reasons, a role or press ID
-        // must be specified. Don't allow calls supplying neither.
-        if ($pressId === null && $roleId === null) return null;
+		$paramArray = array('interest');
+		if (isset($roleId)) $paramArray[] = (int) $roleId;
+		if (isset($pressId)) $paramArray[] = (int) $pressId;
+		// For security / resource usage reasons, a role or press ID
+		// must be specified. Don't allow calls supplying neither.
+		if ($pressId === null && $roleId === null) return null;
 
-        $searchSql = '';
+		$searchSql = '';
 
-        $searchTypeMap = array(
-            USER_FIELD_FIRSTNAME => 'u.first_name',
-            USER_FIELD_LASTNAME => 'u.last_name',
-            USER_FIELD_USERNAME => 'u.username',
-            USER_FIELD_EMAIL => 'u.email',
-            USER_FIELD_INTERESTS => 's.setting_value'
-        );
+		$searchTypeMap = array(
+			USER_FIELD_FIRSTNAME => 'u.first_name',
+			USER_FIELD_LASTNAME => 'u.last_name',
+			USER_FIELD_USERNAME => 'u.username',
+			USER_FIELD_EMAIL => 'u.email',
+			USER_FIELD_INTERESTS => 'cves.setting_value'
+		);
 
-        if (!empty($search) && isset($searchTypeMap[$searchType])) {
-            $fieldName = $searchTypeMap[$searchType];
-            switch ($searchMatch) {
-                case 'is':
-                    $searchSql = "AND LOWER($fieldName) = LOWER(?)";
-                    $paramArray[] = $search;
-                    break;
-                case 'contains':
-                    $searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
-                    $paramArray[] = '%' . $search . '%';
-                    break;
-                case 'startsWith':
-                    $searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
-                    $paramArray[] = $search . '%';
-                    break;
-            }
-        } elseif (!empty($search)) switch ($searchType) {
-            case USER_FIELD_USERID:
-                $searchSql = 'AND u.user_id=?';
-                $paramArray[] = $search;
-                break;
-            case USER_FIELD_INITIAL:
-                $searchSql = 'AND LOWER(u.last_name) LIKE LOWER(?)';
-                $paramArray[] = $search . '%';
-                break;
-        }
+		if (!empty($search) && isset($searchTypeMap[$searchType])) {
+			$fieldName = $searchTypeMap[$searchType];
+			switch ($searchMatch) {
+				case 'is':
+					$searchSql = "AND LOWER($fieldName) = LOWER(?)";
+					$paramArray[] = $search;
+					break;
+				case 'contains':
+					$searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
+					$paramArray[] = '%' . $search . '%';
+					break;
+				case 'startsWith':
+					$searchSql = "AND LOWER($fieldName) LIKE LOWER(?)";
+					$paramArray[] = $search . '%';
+					break;
+			}
+		} elseif (!empty($search)) switch ($searchType) {
+			case USER_FIELD_USERID:
+				$searchSql = 'AND u.user_id=?';
+				$paramArray[] = $search;
+				break;
+			case USER_FIELD_INITIAL:
+				$searchSql = 'AND LOWER(u.last_name) LIKE LOWER(?)';
+				$paramArray[] = $search . '%';
+				break;
+		}
 
-        $searchSql .= ' ORDER BY u.last_name, u.first_name'; // FIXME Add "sort field" parameter?
+		$searchSql .= ' ORDER BY u.last_name, u.first_name'; // FIXME Add "sort field" parameter?
 
-        $result =& $this->retrieveRange(
-            'SELECT DISTINCT u.* FROM users AS u
-            LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?), user_groups AS ug, user_user_groups AS uug
-            WHERE ug.user_group_id = uug.user_group_id AND u.user_id = uug.user_id' . (isset($roleId) ? ' AND ug.role_id = ?' : '') . (isset($pressId) ? ' AND ug.press_id = ?' : '') . ' ' . $searchSql,
-            $paramArray,
-            $dbResultRange
-        );
+		$result =& $this->retrieveRange(
+			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN controlled_vocabs cv ON (cv.assoc_id = u.user_id AND cv.symbolic = ?)
+			LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
+			LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id),
+			user_groups AS ug, user_user_groups AS uug
+			WHERE ug.user_group_id = uug.user_group_id AND u.user_id = uug.user_id' . (isset($roleId) ? ' AND ug.role_id = ?' : '') . (isset($pressId) ? ' AND ug.press_id = ?' : '') . ' ' . $searchSql,
+			$paramArray,
+			$dbResultRange
+		);
 
-        $returner = new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
-        return $returner;
-    }
+		$returner = new DAOResultFactory($result, $this->userDao, '_returnUserFromRowWithData');
+		return $returner;
+	}
 
    	/**
-     * Validation check to see if a user belongs to any group that has a given role
-     * DEPRECATE: keeping around because HandlerValidatorRoles in pkp-lib uses
-     * until we port user groups to OxS
-     * @param $pressId
-     * @param $userId
-     * @param $roleId
-     * @return bool
-     */
+	 * Validation check to see if a user belongs to any group that has a given role
+	 * DEPRECATE: keeping around because HandlerValidatorRoles in pkp-lib uses
+	 * until we port user groups to OxS
+	 * @param $pressId
+	 * @param $userId
+	 * @param $roleId
+	 * @return bool
+	 */
 	function roleExists($pressId, $userId, $roleId) {
 		if (Config::getVar('debug', 'deprecation_warnings')) trigger_error('Deprecated function.');
 		return $this->userHasRole($pressId, $userId, $roleId);
 	}
 
-    /**
-     * Validation check to see if a user belongs to any group that has a given role
-     * @param $pressId
-     * @param $userId
-     * @param $roleId
-     * @return bool
-     */
+	/**
+	 * Validation check to see if a user belongs to any group that has a given role
+	 * @param $pressId
+	 * @param $userId
+	 * @param $roleId
+	 * @return bool
+	 */
 	function userHasRole($pressId, $userId, $roleId) {
 		$result =& $this->retrieve(
 			'SELECT count(*) FROM user_groups ug JOIN user_user_groups uug ON ug.user_group_id = uug.user_group_id

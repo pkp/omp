@@ -820,7 +820,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$users = array();
 
 		$paramArray = array(
-				'interests', $monographId, ASSOC_TYPE_MONOGRAPH,
+				'interest', $monographId, ASSOC_TYPE_MONOGRAPH,
 				'SIGNOFF_COPYEDITING_INITIAL',
 				$pressId, RoleDAO::getRoleIdFromPath('copyeditor')
 				);
@@ -831,7 +831,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 			USER_FIELD_LASTNAME => 'u.last_name',
 			USER_FIELD_USERNAME => 'u.username',
 			USER_FIELD_EMAIL => 'u.email',
-			USER_FIELD_INTERESTS => 's.setting_value'
+			USER_FIELD_INTERESTS => 'cves.setting_value'
 		);
 
 		if (isset($search) && isset($searchTypeMap[$searchType])) {
@@ -865,7 +865,9 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT	u.*
 			FROM	users u
-				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
+				LEFT JOIN controlled_vocabs cv ON (cv.assoc_id = u.user_id AND cv.symbolic = ?)
+				LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
+				LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id)
 				LEFT JOIN roles r ON (r.user_id = u.user_id)
 				LEFT JOIN signoffs sci ON (sci.user_id = u.user_id AND sci.assoc_id = ? AND sci.assoc_type = ? AND sci.symbolic = ?)
 			WHERE	r.press_id = ? AND

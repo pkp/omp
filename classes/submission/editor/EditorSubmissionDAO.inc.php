@@ -607,7 +607,7 @@ class EditorSubmissionDAO extends DAO {
 	function &getUsersNotAssignedToMonograph($pressId, $monographId, $roleId, $searchType=null, $search=null, $searchMatch=null, $rangeInfo = null) {
 		$users = array();
 
-		$paramArray = array('interests', $monographId, $pressId, $roleId);
+		$paramArray = array('interest', $monographId, $pressId, $roleId);
 		$searchSql = '';
 
 		$searchTypeMap = array(
@@ -615,7 +615,7 @@ class EditorSubmissionDAO extends DAO {
 			USER_FIELD_LASTNAME => 'u.last_name',
 			USER_FIELD_USERNAME => 'u.username',
 			USER_FIELD_EMAIL => 'u.email',
-			USER_FIELD_INTERESTS => 's.setting_value'
+			USER_FIELD_INTERESTS => 'cves.setting_value'
 		);
 
 		if (!empty($search) && isset($searchTypeMap[$searchType])) {
@@ -670,7 +670,9 @@ class EditorSubmissionDAO extends DAO {
 			'SELECT DISTINCT
 				u.*
 			FROM	users u
-				LEFT JOIN user_settings s ON (u.user_id = s.user_id AND s.setting_name = ?)
+				LEFT JOIN controlled_vocabs cv ON (cv.assoc_id = u.user_id AND cv.symbolic = ?)
+				LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
+				LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id)
 				LEFT JOIN roles r ON (r.user_id = u.user_id)
 				LEFT JOIN edit_assignments e ON (e.editor_id = u.user_id AND e.monograph_id = ?)
 			WHERE	r.press_id = ? AND
