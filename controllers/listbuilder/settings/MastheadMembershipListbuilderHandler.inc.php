@@ -95,7 +95,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 		);
 
 		return parent::fetch($args, &$request, $additionalVars);
-    }
+	}
 
 	/*
 	 * Configure the grid

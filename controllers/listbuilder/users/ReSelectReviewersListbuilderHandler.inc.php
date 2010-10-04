@@ -103,7 +103,7 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 		);
 
 		return parent::fetch($args, &$request, $additionalVars);
-    }
+	}
 
 	/**
 	 * @see PKPHandler::setupTemplate()

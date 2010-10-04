@@ -56,10 +56,10 @@ class ChapterAuthorDAO extends DAO {
 				JOIN monograph_chapter_authors mca ON (ma.author_id = mca.author_id)
 				LEFT JOIN author_settings aspl ON (mca.author_id = aspl.author_id AND aspl.setting_name = ? AND aspl.locale = ?)
 				LEFT JOIN author_settings asl ON (mca.author_id = asl.author_id AND asl.setting_name = ? AND asl.locale = ?)' .
-		    ( (count($params)> 0)?' WHERE':'' ) .
-		    (  isset($monographId)?' ma.submission_id = ?':'' ) .
-		    (  (isset($monographId) && isset($chapterId))?' AND':'' ) .
-		    (  isset($chapterId)?' mca.chapter_id = ?':'' ) .
+			( (count($params)> 0)?' WHERE':'' ) .
+			(  isset($monographId)?' ma.submission_id = ?':'' ) .
+			(  (isset($monographId) && isset($chapterId))?' AND':'' ) .
+			(  isset($chapterId)?' mca.chapter_id = ?':'' ) .
 			' ORDER BY mca.chapter_id, mca.seq';
 
 		$result =& $this->retrieve($sql, $params);

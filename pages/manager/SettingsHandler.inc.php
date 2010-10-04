@@ -15,10 +15,10 @@ import('lib.pkp.classes.core.JSON');
 import('pages.manager.ManagerHandler');
 
 class SettingsHandler extends ManagerHandler {
-    /**
-     * Constructor
-     */
-    function SettingsHandler() {
+	/**
+	 * Constructor
+	 */
+	function SettingsHandler() {
 		parent::ManagerHandler();
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
 				array(
@@ -36,40 +36,40 @@ class SettingsHandler extends ManagerHandler {
 	}
  
    /**
-     * Display settings index page.
-     */
-    function settings(&$request, &$args) {
-        $templateMgr =& TemplateManager::getManager();
-        $this->setupTemplate(true);
-        $templateMgr->display('manager/settings/index.tpl');
-    }
+	 * Display settings index page.
+	 */
+	function settings(&$request, &$args) {
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate(true);
+		$templateMgr->display('manager/settings/index.tpl');
+	}
 
-    /**
-     * Display data settings index page.
-     */
-    function data(&$request, &$args) {
-        $templateMgr =& TemplateManager::getManager();
-        $this->setupTemplate(true);
-        $templateMgr->display('manager/data/index.tpl');
-    }
+	/**
+	 * Display data settings index page.
+	 */
+	function data(&$request, &$args) {
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate(true);
+		$templateMgr->display('manager/data/index.tpl');
+	}
 
-    /**
-     * Display system settings index page.
-     */
-    function system(&$request, &$args) {
-        $templateMgr =& TemplateManager::getManager();
-        $this->setupTemplate(true);
-        $templateMgr->display('manager/system/index.tpl');
-    }
+	/**
+	 * Display system settings index page.
+	 */
+	function system(&$request, &$args) {
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate(true);
+		$templateMgr->display('manager/system/index.tpl');
+	}
 
-    /**
-     * Display users settings index page.
-     */
-    function users(&$request, &$args) {
-        $templateMgr =& TemplateManager::getManager();
-        $this->setupTemplate(true);
-        $templateMgr->display('manager/users/index.tpl');
-    }
+	/**
+	 * Display users settings index page.
+	 */
+	function users(&$request, &$args) {
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate(true);
+		$templateMgr->display('manager/users/index.tpl');
+	}
 }
 
 ?>

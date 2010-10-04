@@ -67,7 +67,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		);
 
 		return parent::fetch($args, &$request, $additionalVars);
-    }
+	}
 
 
 	//

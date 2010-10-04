@@ -14,21 +14,21 @@
 import('handler.Handler');
 
 class DashboardHandler extends Handler {
-    /**
-     * Constructor
-     */
-    function DashboardHandler() {
-        parent::Handler();
-    }
-    
-    /**
-     * Display about index page.
-     */
-    function index(&$request, $args) {
-        $templateMgr = &TemplateManager::getManager();
-        $this->setupTemplate();
-        $templateMgr->display('dashboard/index.tpl');
-    }
+	/**
+	 * Constructor
+	 */
+	function DashboardHandler() {
+		parent::Handler();
+	}
+	
+	/**
+	 * Display about index page.
+	 */
+	function index(&$request, $args) {
+		$templateMgr = &TemplateManager::getManager();
+		$this->setupTemplate();
+		$templateMgr->display('dashboard/index.tpl');
+	}
 	
 	
 	/**
