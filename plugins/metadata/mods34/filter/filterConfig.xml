@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filterConfig SYSTEM "../../../../lib/pkp/dtd/filterConfig.dtd">
+
+<!--
+  * filterConfig.xml
+  *
+  * Copyright (c) 2003-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Filter Configuration.
+  -->
+<filterConfig>
+	<filterGroups>
+		<filterGroup
+			symbolic="monograph=>mods34"
+			displayName="plugins.metadata.mods34.monographAdapter.displayName"
+			description="plugins.metadata.mods34.monographAdapter.description"
+			inputType="class::classes.monograph.Monograph"
+			outputType="metadata::plugins.metadata.mods34.schema.Mods34Schema(MONOGRAPH)" />
+		<filterGroup
+			symbolic="mods34=>monograph"
+			displayName="plugins.metadata.mods34.monographAdapter.displayName"
+			description="plugins.metadata.mods34.monographAdapter.description"
+			inputType="metadata::plugins.metadata.mods34.schema.Mods34Schema(MONOGRAPH)"
+			outputType="class::classes.monograph.Monograph" />
+	</filterGroups>
+	<filters>
+		<filter
+			inGroup="monograph=>mods34"
+			class="plugins.metadata.mods34.filter.Mods34SchemaMonographAdapter"
+			isTemplate="0" />
+		<filter
+			inGroup="mods34=>monograph"
+			class="plugins.metadata.mods34.filter.Mods34SchemaMonographAdapter"
+			isTemplate="0" />
+	</filters>
+</filterConfig>

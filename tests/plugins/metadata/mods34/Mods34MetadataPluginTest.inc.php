@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @defgroup tests_plugins_metadata_mods
+ * @defgroup tests_plugins_metadata_mods34
  */
 
 /**
@@ -11,62 +11,27 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Mods34MetadataPluginTest
- * @ingroup tests_plugins_metadata_mods
+ * @ingroup tests_plugins_metadata_mods34
  * @see Mods34MetadataPlugin
  *
  * @brief Test class for Mods34MetadataPlugin.
  */
 
-import('lib.pkp.tests.PKPTestCase');
-import('plugins.metadata.mods34.Mods34MetadataPlugin');
 
-class Mods34MetadataPluginTest extends PKPTestCase {
+import('lib.pkp.tests.plugins.metadata.MetadataPluginTestCase');
+
+class Mods34MetadataPluginTest extends MetadataPluginTestCase {
 	/**
 	 * @covers Mods34MetadataPlugin
+	 * @covers PKPMods34MetadataPlugin
 	 */
 	public function testMods34MetadataPlugin() {
-		// Mock request and router.
-		import('lib.pkp.classes.core.PKPRouter');
-		$mockRequest = $this->getMock('Request', array('getRouter', 'getUser'));
-		$router = new PKPRouter();
-		$mockRequest->expects($this->any())
-		            ->method('getRouter')
-		            ->will($this->returnValue($router));
-		$mockRequest->expects($this->any())
-		            ->method('getUser')
-		            ->will($this->returnValue(null));
-		Registry::set('request', $mockRequest);
-
-		// Instantiate the installer.
-		import('classes.install.Install');
-		$installFile = './lib/pkp/tests/plugins/testPluginInstall.xml';
-		$params = $this->getConnectionParams();
-		$installer = new Install($params, $installFile, true);
-
-		// Parse the plug-ins version.xml.
-		import('lib.pkp.classes.site.VersionCheck');
-		self::assertFileExists($versionFile = './plugins/metadata/mods34/version.xml');
-		self::assertArrayHasKey('version', $versionInfo =& VersionCheck::parseVersionXML($versionFile));
-		self::assertType('Version', $pluginVersion =& $versionInfo['version']);
-		$installer->setCurrentVersion($pluginVersion);
-
-		self::assertTrue($installer->execute());
-	}
-
-	/**
-	 * Load database connection parameters into an array (needed for upgrade).
-	 * @return array
-	 */
-	function getConnectionParams() {
-		return array(
-			'clientCharset' => Config::getVar('i18n', 'client_charset'),
-			'connectionCharset' => Config::getVar('i18n', 'connection_charset'),
-			'databaseCharset' => Config::getVar('i18n', 'database_charset'),
-			'databaseDriver' => Config::getVar('database', 'driver'),
-			'databaseHost' => Config::getVar('database', 'host'),
-			'databaseUsername' => Config::getVar('database', 'username'),
-			'databasePassword' => Config::getVar('database', 'password'),
-			'databaseName' => Config::getVar('database', 'name')
+		$this->executeMetadataPluginTest(
+			'mods34',
+			'Mods34MetadataPlugin',
+			array('monograph=>mods34', 'mods34=>monograph'),
+			array('mods34-name-types', 'mods34-name-role-roleTerms-marcrelator',
+				'mods34-typeOfResource', 'mods34-genre-marcgt', 'mods34-physicalDescription-form-marcform')
 		);
 	}
 }

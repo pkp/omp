@@ -24,10 +24,11 @@ import('lib.pkp.plugins.metadata.mods34.filter.Mods34SchemaSubmissionAdapter');
 class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
 	/**
 	 * Constructor
+	 * @param $filterGroup FilterGroup
 	 */
-	function Mods34SchemaMonographAdapter() {
+	function Mods34SchemaMonographAdapter(&$filterGroup) {
 		// Configure the submission adapter
-		parent::Mods34SchemaSubmissionAdapter(ASSOC_TYPE_MONOGRAPH);
+		parent::Mods34SchemaSubmissionAdapter($filterGroup);
 	}
 
 
@@ -49,11 +50,10 @@ class Mods34SchemaMonographAdapter extends Mods34SchemaSubmissionAdapter {
 	 * @see MetadataDataObjectAdapter::injectMetadataIntoDataObject()
 	 * @param $mods34Description MetadataDescription
 	 * @param $monograph Monograph
-	 * @param $replace boolean whether to replace the existing monograph
 	 */
-	function &injectMetadataIntoDataObject(&$mods34Description, &$monograph, $replace) {
+	function &injectMetadataIntoDataObject(&$mods34Description, &$monograph) {
 		assert(is_a($monograph, 'Monograph'));
-		$monograph =& parent::injectMetadataIntoDataObject($mods34Description, $monograph, $replace, 'classes.monograph.Author');
+		$monograph =& parent::injectMetadataIntoDataObject($mods34Description, $monograph, 'classes.monograph.Author');
 
 		// Publication date
 		$publicationDate = $mods34Description->getStatement('originInfo/dateIssued[@keyDate="yes" @encoding="w3cdtf"]');

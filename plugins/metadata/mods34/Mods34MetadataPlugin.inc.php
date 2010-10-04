@@ -13,21 +13,18 @@
  * @class Mods34MetadataPlugin
  * @ingroup plugins_metadata_mods34
  *
- * @brief MODS metadata plugin
+ * @brief MODS 3.4 metadata plugin
  */
 
 
 import('lib.pkp.plugins.metadata.mods34.PKPMods34MetadataPlugin');
 
 class Mods34MetadataPlugin extends PKPMods34MetadataPlugin {
-	//
-	// Override protected template methods from MetadataPlugin.
-	//
 	/**
-	 * @see MetadataPlugin::getMetadataAdapterNames()
+	 * Constructor
 	 */
-	function getMetadataAdapterNames() {
-		return array('plugins.metadata.mods34.filter.Mods34SchemaMonographAdapter');
+	function Mods34MetadataPlugin() {
+		parent::PKPMods34MetadataPlugin();
 	}
 }
 

@@ -142,6 +142,9 @@ class Application extends PKPApplication {
 			'blocks',
 			'generic',
 			'importexport',
+			'citationLookup',
+			'citationOutput',
+			'citationParser',
 			'metadata',
 			'themes'
 		);

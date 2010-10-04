@@ -13,8 +13,6 @@
  * @brief Operations for retrieving and modifying plugin settings.
  */
 
-// $Id$
-
 
 class PluginSettingsDAO extends DAO {
 	function &_getCache($pressId, $pluginName) {
@@ -151,7 +149,7 @@ class PluginSettingsDAO extends DAO {
 		$cache->flush();
 
 		return $this->update(
-			'DELETE FROM plugin_settings WHERE press_id = ? AND plugin_name = ?', 
+			'DELETE FROM plugin_settings WHERE press_id = ? AND plugin_name = ?',
 			array($pressId, $pluginName)
 		);
 	}
