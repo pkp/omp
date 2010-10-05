@@ -110,7 +110,7 @@
 	{/fbvFormSection}
 
 	{fbvFormSection title="user.interests" for="interests"}
-+		<ul id="interests"></ul><br /><textarea name="interests" id="interestsTextOnly" rows="5" cols="40" class="textArea"></textarea>
+		<ul id="interests"></ul><br /><textarea name="interests" id="interestsTextOnly" rows="5" cols="40" class="textArea">{foreach name=currentInterests from=$interestsKeywords item=interest}{$interest|urldecode}{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}</textarea>
 	{/fbvFormSection}
 
 	{fbvFormSection title="common.country" for="country"}

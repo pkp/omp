@@ -193,7 +193,7 @@ class ProfileForm extends Form {
 			'biography' => $user->getBiography(null), // Localized
 			'userLocales' => $user->getLocales(),
 			'existingInterests' => $existingInterests,
-			'currentInterests' => $currentInterests
+			'interestsKeywords' => $currentInterests
 		);
 	}
 
