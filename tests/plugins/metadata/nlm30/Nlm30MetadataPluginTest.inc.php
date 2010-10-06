@@ -31,8 +31,8 @@ class Nlm30MetadataPluginTest extends MetadataPluginTestCase {
 			'Nlm30MetadataPlugin',
 			array('citation=>nlm30', 'nlm30=>citation', 'plaintext=>nlm30-element-citation',
 					'nlm30-element-citation=>nlm30-element-citation', 'nlm30-element-citation=>plaintext',
-					'submission=>nlm30-article', 'submission=>nlm23-article', 'nlm30-article=>nlm23-article',
-					'submission=>reference-list'),
+					'nlm30-element-citation=>nlm30-xml', 'submission=>nlm23-article-xml', 'submission=>nlm30-article-xml',
+					'nlm30-article-xml=>nlm23-article-xml', 'submission=>reference-list'),
 			array('nlm30-publication-types')
 		);
 	}

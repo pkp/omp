@@ -11,6 +11,7 @@
   -->
 <filterConfig>
 	<filterGroups>
+		<!-- MODS 3.4 monograph adapters -->
 		<filterGroup
 			symbolic="monograph=>mods34"
 			displayName="plugins.metadata.mods34.monographAdapter.displayName"
@@ -25,6 +26,7 @@
 			outputType="class::classes.monograph.Monograph" />
 	</filterGroups>
 	<filters>
+		<!-- MODS 3.4 monograph adapters -->
 		<filter
 			inGroup="monograph=>mods34"
 			class="plugins.metadata.mods34.filter.Mods34SchemaMonographAdapter"

@@ -29,7 +29,7 @@ class Mods34MetadataPluginTest extends MetadataPluginTestCase {
 		$this->executeMetadataPluginTest(
 			'mods34',
 			'Mods34MetadataPlugin',
-			array('monograph=>mods34', 'mods34=>monograph'),
+			array('monograph=>mods34', 'mods34=>monograph', 'mods34=>mods34-xml'),
 			array('mods34-name-types', 'mods34-name-role-roleTerms-marcrelator',
 				'mods34-typeOfResource', 'mods34-genre-marcgt', 'mods34-physicalDescription-form-marcform')
 		);
