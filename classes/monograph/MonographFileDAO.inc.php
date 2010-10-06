@@ -202,6 +202,7 @@ class MonographFileDAO extends DAO {
 	/**
 	 * Retrieve all monograph files for a monograph.
 	 * @param $monographId int
+	 * @param $type int
 	 * @return array MonographFiles
 	 */
 	function &getByMonographId($monographId, $type = null, $hideAttachments = true) {
@@ -216,8 +217,8 @@ class MonographFileDAO extends DAO {
 		}
 
 		// Prevent review attachments from showing up in submission file lists
-		if ($type != 'submission/review' && $hideAttachments) {
-			$sqlExtra .= ' AND type != \'submission/review\' ';
+		if ($type != MONOGRAPH_FILE_REVIEW && $hideAttachments) {
+			$sqlExtra .= ' AND type != '.MONOGRAPH_FILE_REVIEW.' ';
 		}
 
 		$result =& $this->retrieve(
@@ -250,7 +251,7 @@ class MonographFileDAO extends DAO {
 
 		$result =& $this->retrieve(
 			'SELECT * FROM monograph_files WHERE assoc_id = ? AND type = ?',
-			array($assocId, MonographFileManager::typeToPath($type))
+			array($assocId, $type)
 		);
 
 		while (!$result->EOF) {

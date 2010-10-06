@@ -79,9 +79,6 @@ class InitiateReviewForm extends Form {
 	 * Save review assignment
 	 */
 	function execute($args, &$request) {
-		import('classes.submission.seriesEditor.SeriesEditorAction');
-		import('submission.editor.EditorAction');
-
 		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
 
 		// 1. Increment the monograph's workflow stage

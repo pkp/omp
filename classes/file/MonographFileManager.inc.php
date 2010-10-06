@@ -28,19 +28,6 @@
 
 import('lib.pkp.classes.file.FileManager');
 
-/* File type suffixes */
-define('MONOGRAPH_FILE_REVIEW',		'RV');
-define('MONOGRAPH_FILE_EDITOR',		'ED');
-define('MONOGRAPH_FILE_COPYEDIT',	'CE');
-define('MONOGRAPH_FILE_LAYOUT',		'LE');
-define('MONOGRAPH_FILE_PUBLIC',		'PB');
-define('MONOGRAPH_FILE_NOTE',		'NT');
-define('MONOGRAPH_FILE_ATTACHMENT',	'AT');
-define('MONOGRAPH_FILE_GALLEY',		'GA');
-define('MONOGRAPH_FILE_PRODUCTION',	'PRD');
-define('MONOGRAPH_BOOKFILE_UPLOAD',	'BK');
-define('MONOGRAPH_ARTWORK_UPLOAD',	'ART');
-
 class MonographFileManager extends FileManager {
 
 	/** @var string the path to location of the files */
@@ -75,7 +62,7 @@ class MonographFileManager extends FileManager {
 	 * @return int file ID, is false if failure
 	 */
 	function uploadBookFile($fileName, $typeId, $fileId = null) {
-		return $this->handleUpload($fileName, MONOGRAPH_BOOKFILE_UPLOAD, $fileId, false, $typeId);
+		return $this->handleUpload($fileName, MONOGRAPH_FILE_SUBMISSION, $fileId, false, $typeId);
 	}
 
 	/**
@@ -86,7 +73,7 @@ class MonographFileManager extends FileManager {
 	 * @return int file ID, is false if failure
 	 */
 	function uploadArtworkFile($fileName, $typeId, $fileId = null) {
-		return $this->handleUpload($fileName, MONOGRAPH_ARTWORK_UPLOAD, $fileId, false, $typeId);
+		return $this->handleUpload($fileName, MONOGRAPH_FILE_ARTWORK, $fileId, false, $typeId);
 	}
 
 	/**
@@ -387,10 +374,12 @@ class MonographFileManager extends FileManager {
 	function typeToPath($type) {
 		switch ($type) {
 			case MONOGRAPH_FILE_PUBLIC: return 'public';
-			case MONOGRAPH_BOOKFILE_UPLOAD: return 'submission';
-			case MONOGRAPH_ARTWORK_UPLOAD: return 'artwork';
+			case MONOGRAPH_FILE_SUBMISSION: return 'submission';
+			case MONOGRAPH_FILE_ARTWORK: return 'artwork';
 			case MONOGRAPH_FILE_NOTE: return 'note';
 			case MONOGRAPH_FILE_REVIEW: return 'submission/review';
+			case MONOGRAPH_FILE_FINAL: return 'submission/final';
+			case MONOGRAPH_FILE_FAIR_COPY: return 'submission/fairCopy';
 			case MONOGRAPH_FILE_EDITOR: return 'submission/editor';
 			case MONOGRAPH_FILE_COPYEDIT: return 'submission/copyedit';
 			case MONOGRAPH_FILE_PRODUCTION: return 'submission/production';
@@ -439,7 +428,7 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileType($sourceMonographFile->getFileType());
 		$monographFile->setFileSize($sourceMonographFile->getFileSize());
 		$monographFile->setOriginalFileName($sourceMonographFile->getFileName());
-		$monographFile->setType($destTypePath);
+		$monographFile->setType($destType);
 		$monographFile->setDateUploaded(Core::getCurrentDate());
 		$monographFile->setDateModified(Core::getCurrentDate());
 		$monographFile->setRound($this->monograph->getCurrentRound());
@@ -449,7 +438,7 @@ class MonographFileManager extends FileManager {
 
 		// Rename the file.
 		$fileExtension = $this->parseFileExtension($sourceMonographFile->getFileName());
-		$newFileName = $this->monographId.'-'.$fileId.'-'.$revision.'-'.$destType.'.'.$fileExtension;
+		$newFileName = $this->monographId.'-'.$fileId.'-'.$revision.'-'.$this->typeToAbbrev($destType).'.'.$fileExtension;
 
 		if (!$this->fileExists($destDir, 'dir')) {
 			// Try to create destination directory
@@ -511,7 +500,7 @@ class MonographFileManager extends FileManager {
 	 */
 	function generateFilename(&$monographFile, $type, $originalName) {
 		$extension = $this->parseFileExtension($originalName);
-		$newFileName = $monographFile->getMonographId().'-'.$monographFile->getFileId().'-'.$monographFile->getRevision().'-'.$type.'.'.$extension;
+		$newFileName = $monographFile->getMonographId().'-'.$monographFile->getFileId().'-'.$monographFile->getRevision().'-'.$this->typeToAbbrev($type).'.'.$extension;
 		$monographFile->setFileName($newFileName);
 		return $newFileName;
 	}
@@ -538,7 +527,7 @@ class MonographFileManager extends FileManager {
 	/**
 	 * PRIVATE routine to upload the file and add it to the database.
 	 * @param $fileName string index into the $_FILES array
-	 * @param $type string identifying type
+	 * @param $type int identifying type
 	 * @param $fileId int ID of an existing file to update
 	 * @param $overwrite boolean overwrite all previous revisions of the file (revision number is still incremented)
 	 * @return int the file ID (false if upload failed)
@@ -570,7 +559,7 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileType($_FILES[$fileName]['type']);
 		$monographFile->setFileSize($_FILES[$fileName]['size']);
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($_FILES[$fileName]['name'], 127));
-		$monographFile->setType($typePath);
+		$monographFile->setType($type);
 		$monographFile->setRound($this->monograph->getCurrentRound());
 		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 
@@ -609,7 +598,7 @@ class MonographFileManager extends FileManager {
 	 * @param $fileName original filename of the file
 	 * @param $contents string contents of the file to write
 	 * @param $mimeType string the mime type of the file
-	 * @param $type string identifying type
+	 * @param $type int identifying type
 	 * @param $fileId int ID of an existing file to update
 	 * @param $overwrite boolean overwrite all previous revisions of the file (revision number is still incremented)
 	 * @return int the file ID (false if upload failed)
@@ -637,7 +626,7 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileType($mimeType);
 		$monographFile->setFileSize(strlen($contents));
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($fileName, 127));
-		$monographFile->setType($typePath);
+		$monographFile->setType($type);
 		$monographFile->setRound($this->monograph->getCurrentRound());
 		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 
@@ -662,7 +651,7 @@ class MonographFileManager extends FileManager {
 	 * PRIVATE routine to copy a monograph file and add it to the database.
 	 * @param $url original filename/url of the file
 	 * @param $mimeType string the mime type of the file
-	 * @param $type string identifying type
+	 * @param $type int identifying type
 	 * @param $fileId int ID of an existing file to update
 	 * @param $overwrite boolean overwrite all previous revisions of the file (revision number is still incremented)
 	 * @return int the file ID (false if upload failed)
@@ -689,7 +678,7 @@ class MonographFileManager extends FileManager {
 
 		$monographFile->setFileType($mimeType);
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName(basename($url), 127));
-		$monographFile->setType($typePath);
+		$monographFile->setType($type);
 		$monographFile->setRound($this->monograph->getCurrentRound());
 		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 
@@ -728,7 +717,7 @@ class MonographFileManager extends FileManager {
 		$monographFile =& $this->generateDummyFile($this->monograph, $type);
 		$monographFile->setFileType($temporaryFile->getFileType());
 		$monographFile->setOriginalFileName($temporaryFile->getOriginalFileName());
-		$monographFile->setType($typePath);
+		$monographFile->setType($type);
 		$monographFile->setRound($this->monograph->getCurrentRound());
 		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 		$monographFile->setAssocId($assocId);
