@@ -195,8 +195,11 @@ class SubmissionFilesGridHandler extends GridHandler {
 				$additionalAttributes['revisionConfirmUrl'] = $router->url($request, null, null, 'confirmRevision', null, array('fileId' => $fileId, 'monographId' => $monographId, 'revisionId' => $possibleRevision));
 			}
 
+			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+			$monographFile =& $monographFileDao->getMonographFile($fileId);
+			$fileName = $monographFile->getOriginalFilename();
 
-			$json = new JSON('true', Locale::translate('submission.uploadSuccessfulContinue'), 'false', $fileId, $additionalAttributes);
+			$json = new JSON('true', Locale::translate('submission.uploadSuccessfulContinue', array('fileName' => $fileName)), 'false', $fileId, $additionalAttributes);
 		} else {
 			$json = new JSON('false', Locale::translate('common.uploadFailed'));
 		}
