@@ -43,6 +43,9 @@ class Monograph extends Submission {
 	 * Constructor.
  	 */
 	function Monograph() {
+		// Switch on meta-data adapter support.
+		$this->setHasLoadableAdapters(true);
+
 		parent::Submission();
  	}
 
