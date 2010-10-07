@@ -71,7 +71,7 @@
 			{$monographFile->getOriginalFileName()}
 		{/fbvFormSection}
 		{fbvFormSection title="common.type" float=$fbvStyles.float.LEFT}
-			{$monographFile->getFileType()}
+			{$monographFile->getDocumentType()}
 		{/fbvFormSection}
 		{fbvFormSection title="common.size" float=$fbvStyles.float.RIGHT}
 			{$monographFile->getNiceFileSize()}
