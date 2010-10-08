@@ -18,21 +18,16 @@
  */
 
 
-import('lib.pkp.tests.plugins.metadata.MetadataPluginTestCase');
+import('lib.pkp.tests.plugins.metadata.mods34.PKPMods34MetadataPluginTest');
 
-class Mods34MetadataPluginTest extends MetadataPluginTestCase {
+class Mods34MetadataPluginTest extends PKPMods34MetadataPluginTest {
 	/**
 	 * @covers Mods34MetadataPlugin
 	 * @covers PKPMods34MetadataPlugin
 	 */
 	public function testMods34MetadataPlugin() {
-		$this->executeMetadataPluginTest(
-			'mods34',
-			'Mods34MetadataPlugin',
-			array('monograph=>mods34', 'mods34=>monograph', 'mods34=>mods34-xml'),
-			array('mods34-name-types', 'mods34-name-role-roleTerms-marcrelator',
-				'mods34-typeOfResource', 'mods34-genre-marcgt', 'mods34-physicalDescription-form-marcform')
-		);
+		parent::testMods34MetadataPlugin(
+				array('monograph=>mods34', 'mods34=>monograph'));
 	}
 }
 ?>

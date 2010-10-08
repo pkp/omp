@@ -18,20 +18,15 @@
  */
 
 
-import('lib.pkp.tests.plugins.metadata.MetadataPluginTestCase');
+import('lib.pkp.tests.plugins.metadata.openurl10.PKPOpenurl10MetadataPluginTest');
 
-class Openurl10MetadataPluginTest extends MetadataPluginTestCase {
+class Openurl10MetadataPluginTest extends PKPOpenurl10MetadataPluginTest {
 	/**
 	 * @covers Openurl10MetadataPlugin
 	 * @covers PKPOpenurl10MetadataPlugin
 	 */
 	public function testOpenurl10MetadataPlugin() {
-		$this->executeMetadataPluginTest(
-			'openurl10',
-			'Openurl10MetadataPlugin',
-			array(),
-			array('openurl10-journal-genres', 'openurl10-book-genres')
-		);
+		parent::testOpenurl10MetadataPlugin();
 	}
 }
 ?>

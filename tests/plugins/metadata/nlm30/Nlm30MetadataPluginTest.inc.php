@@ -18,23 +18,15 @@
  */
 
 
-import('lib.pkp.tests.plugins.metadata.MetadataPluginTestCase');
+import('lib.pkp.tests.plugins.metadata.nlm30.PKPNlm30MetadataPluginTest');
 
-class Nlm30MetadataPluginTest extends MetadataPluginTestCase {
+class Nlm30MetadataPluginTest extends PKPNlm30MetadataPluginTest {
 	/**
 	 * @covers Nlm30MetadataPlugin
 	 * @covers PKPNlm30MetadataPlugin
 	 */
 	public function testNlm30MetadataPlugin() {
-		$this->executeMetadataPluginTest(
-			'nlm30',
-			'Nlm30MetadataPlugin',
-			array('citation=>nlm30', 'nlm30=>citation', 'plaintext=>nlm30-element-citation',
-					'nlm30-element-citation=>nlm30-element-citation', 'nlm30-element-citation=>plaintext',
-					'nlm30-element-citation=>nlm30-xml', 'submission=>nlm23-article-xml', 'submission=>nlm30-article-xml',
-					'nlm30-article-xml=>nlm23-article-xml', 'submission=>reference-list'),
-			array('nlm30-publication-types')
-		);
+		parent::testNlm30MetadataPlugin();
 	}
 }
 ?>
