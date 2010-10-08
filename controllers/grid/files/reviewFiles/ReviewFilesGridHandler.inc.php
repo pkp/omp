@@ -153,13 +153,14 @@ class ReviewFilesGridHandler extends GridHandler {
 
 		// Test whether the tar binary is available for the export to work, if so, add grid action
 		$tarBinary = Config::getVar('cli', 'tar');
+		$params = array('monographId' => $monographId, 'reviewType' => $reviewType, 'round' => $round);
 		if (isset($this->_data) && !empty($tarBinary) && file_exists($tarBinary)) {
 			$this->addAction(
 				new LinkAction(
 					'downloadAll',
 					LINK_ACTION_MODE_LINK,
 					LINK_ACTION_TYPE_NOTHING,
-					$router->url($request, null, null, 'downloadAllFiles', null, array('monographId' => $monographId)),
+					$router->url($request, null, null, 'downloadAllFiles', null, $params),
 					'submission.files.downloadAll',
 					null,
 					'getPackage'
@@ -173,7 +174,7 @@ class ReviewFilesGridHandler extends GridHandler {
 					'manageReviewFiles',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'manageReviewFiles', null, array('monographId' => $monographId)),
+					$router->url($request, null, null, 'manageReviewFiles', null, $params),
 					'editor.submissionArchive.manageReviewFiles',
 					null,
 					'add'
@@ -187,7 +188,7 @@ class ReviewFilesGridHandler extends GridHandler {
 					'uploadReviewFile',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_APPEND,
-					$router->url($request, null, 'grid.files.submissionFiles.SubmissionReviewFilesGridHandler', 'addFile', null, array('monographId' => $monographId)),
+					$router->url($request, null, 'grid.files.submissionFiles.SubmissionReviewFilesGridHandler', 'addFile', null, $params),
 					'editor.submissionArchive.uploadFile',
 					null,
 					'add'
@@ -284,7 +285,7 @@ class ReviewFilesGridHandler extends GridHandler {
 
 		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
-		$monographFileManager->downloadFilesArchive($this->_data);
+		$monographFileManager->downloadFilesArchive($this->getData());
 	}
 
 	/**

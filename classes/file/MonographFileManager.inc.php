@@ -280,6 +280,7 @@ class MonographFileManager extends FileManager {
 
 	/**
 	 * Download all monograph files as an archive
+	 * @param $monographFiles ArrayItemIterator
 	 * @return boolean
 	 */
 	function downloadFilesArchive(&$monographFiles) {
@@ -289,7 +290,7 @@ class MonographFileManager extends FileManager {
 		}
 
 		$filePaths = array();
-		foreach ($monographFiles as $monographFile) {
+		while ($monographFile =& $monographFiles->next()) {
 			// Remove absolute path so the archive doesn't include it (otherwise all files are organized by absolute path)
 			$filePath = str_replace($this->filesDir, '', $monographFile->getFilePath());
 			// Add files to be archived to array
