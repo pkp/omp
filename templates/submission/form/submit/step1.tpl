@@ -9,7 +9,7 @@
 {assign var="pageTitle" value="submission.submit.step1"}
 {include file="submission/form/submit/submitStepHeader.tpl"}
 
-<form name="submit" method="post" action="{url op="saveStep" path=$submitStep}">
+<form name="submitStep1" method="post" action="{url op="saveStep" path=$submitStep}">
 {if $monographId}<input type="hidden" name="monographId" value="{$monographId|escape}" />{/if}
 <input type="hidden" name="submissionChecklist" value="1" />
 
@@ -62,9 +62,9 @@
 {if $currentPress->getLocalizedSetting('submissionChecklist')}
 <script type="text/javascript">
 	{literal}
-        $(function(){
-        $("#messageBox").hide();
-		$("form[name=submit]").validate({
+        	$(function(){
+        	//$("#messageBox").hide();
+		$("form[name=submitStep1]").validate({
 			showErrors: function(errorMap, errorList) {
 				$("#messageBox").html("<ul><li class='error'>{/literal}{translate key='submission.submit.checklistErrors.begin'}{literal} "
 											+ this.numberOfInvalids()
