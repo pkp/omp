@@ -12,21 +12,27 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<h3>{translate key="manager.settings"}</h3>
+
 <div class="unit size1of2">
-	<h3>Press</h3>
-	<a href="{url page="manager" op="setup"}">Setup</a>
+	<h4>{translate key="manager.settings.press"}</h4>
+	<p>{translate key="manager.settings.pressDescription"}</p>
+	<a href="{url page="manager" op="setup"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
 </div>
 <div class="unit size2of2 lastUnit">
-	<h3>Data</h3>
-	<a href="{url page="manager" op="data"}">Data</a>
+	<h4>{translate key="manager.settings.data"}</h4>
+	<p>{translate key="manager.settings.dataDescription"}</p>
+	<a href="{url page="manager" op="data"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
 </div>
 <div class="unit size1of2">
-	<h3>System</h3>
-	<a href="{url page="manager" op="system"}">System</a>
+	<h4>{translate key="manager.settings.system"}</h4>
+	<p>{translate key="manager.settings.systemDescription"}</p>
+	<a href="{url page="manager" op="system"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
 </div>
 <div class="unit size2of2 lastUnit">
-	<h3>Users &amp; Roles</h3>
-	<a href="{url page="manager" op="users"}">Users &amp; Roles</a>
+	<h4>{translate key="manager.settings.users"}</h4>
+	<p>{translate key="manager.settings.usersDescription"}</p>
+	<a href="{url page="manager" op="users"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
 </div>
 
 {include file="common/footer.tpl"}

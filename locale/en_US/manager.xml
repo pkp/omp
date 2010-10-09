@@ -212,7 +212,23 @@
 	<message key="manager.categories.form.titleRequired">A title is required for the category.</message>
 	<message key="manager.categories.noneCreated">No categories have been created.</message>
 
-	<!-- *** -->
+	<!--
+		* settings
+		* setup
+		* data
+		* system
+		* users
+	 -->
+
+	<message key="manager.settings">Settings</message>
+	<message key="manager.settings.press">Press</message>
+	<message key="manager.settings.pressDescription">All settings specific to the press (details, policies, workflow, look and feel).</message>
+	<message key="manager.settings.data">Data</message>
+	<message key="manager.settings.dataDescription">All settings that allow for manipulation of data (file browser, reviewer database, reports, import/export, COUNTER stats).</message>
+	<message key="manager.settings.system">System</message>
+	<message key="manager.settings.systemDescription">All settings specific to the OMP system for this press (archiving, prepared emails, reading tools, languages, payments, plugins).</message>
+	<message key="manager.settings.users">Users</message>
+	<message key="manager.settings.usersDescription">All settings related to user management for this press (enrollment, manage users, manage roles).</message>
 
 	<message key="manager.setup">Setup</message>
 	<message key="manager.setup.aboutItemContent">Content</message>

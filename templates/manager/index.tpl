@@ -23,7 +23,7 @@
 	<li>&#187; <a href="{url op="languages"}">{translate key="common.languages"}</a></li>
 	<li>&#187; <a href="{url op="groups"}">{translate key="manager.groups"}</a></li>
 	<li>&#187; <a href="{url op="emails"}">{translate key="manager.emails"}</a></li>
-	<li>&#187; <a href="{url op="setup"}">{translate key="manager.setup"}</a></li>
+	<li>&#187; <a href="{url op="settings"}">{translate key="manager.settings"}</a></li>
 	<li>&#187; <a href="{url op="plugins"}">{translate key="manager.plugins"}</a></li>
 	<li>&#187; <a href="{url op="importexport"}">{translate key="manager.importExport"}</a></li>
 	{call_hook name="Templates::Manager::Index::ManagementPages"}
