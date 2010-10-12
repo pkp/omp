@@ -63,8 +63,8 @@
 </script>
 
 <form name="uploadForm" id="uploadForm" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveFile" monographId=$monographId reviewId=$reviewId escape=false}" method="post">
-	<!-- Max file size of 5 MB -->
-	<input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
+	<!-- Max file size of 20 MB -->
+	<input type="hidden" name="MAX_FILE_SIZE" value="20971520" />
 	{fbvFormArea id="file"}
 		{if !$attachmentFile}
 			{fbvFormSection title="common.file"}
