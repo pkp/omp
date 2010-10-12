@@ -156,9 +156,12 @@
 <div style="float:left;padding:1.5em;">
 	{fbvFormArea id="fileInfo"}
 		{fbvFormSection title="common.preview" float=$fbvStyles.float.Right}
-			<a target="_blank" href="{url op="viewFile" monographId=$artworkFile->getMonographId() fileId=$monographFile->getFileId() fileRevision=$monographFile->getRevision()}">
+			{if $monographFile->getFileType() == 'image/tiff'}
+				<embed width={$thumbnail_width} height={$thumbnail_height} src="{url op="viewFile" monographId=$artworkFile->getMonographId() fileId=$monographFile->getFileId()}" type="image/tiff" negative=yes>
+			{else}<a target="_blank" href="{url op="viewFile" monographId=$artworkFile->getMonographId() fileId=$monographFile->getFileId() fileRevision=$monographFile->getRevision()}">
 				<img class="thumbnail" width={$thumbnail_width} height={$thumbnail_height} src="{url op="viewFile" monographId=$artworkFile->getMonographId() fileId=$monographFile->getFileId()}" />
-			</a>
+			</a>{/if}
+
 		{/fbvFormSection}
 	{/fbvFormArea}
 </div>

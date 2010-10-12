@@ -262,7 +262,7 @@ class MonographFileManager extends FileManager {
 		$monographFile =& $this->getFile($fileId, $revision);
 		if (isset($monographFile)) {
 			$fileType = $monographFile->getFileType();
-			$filePath = $this->filesDir . $monographFile->getType() . '/' . $monographFile->getFileName();
+			$filePath = $monographFile->getFilePath();
 
 			// Mark the file as viewed by this user
 			$sessionManager =& SessionManager::getManager();

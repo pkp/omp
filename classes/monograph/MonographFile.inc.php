@@ -51,8 +51,11 @@ class MonographFile extends SubmissionFile {
 		$monograph =& $monographDao->getMonograph($this->getMonographId());
 		$pressId = $monograph->getPressId();
 
+		import('classes.file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($this->getMonographId());
+
 		return Config::getVar('files', 'files_dir') . '/presses/' . $pressId .
-		'/monographs/' . $this->getMonographId() . '/' . $this->getType() . '/' . $this->getFileName();
+		'/monographs/' . $this->getMonographId() . '/' . $monographFileManager->typeToPath($this->getType()) . '/' . $this->getFileName();
 	}
 
 	//
