@@ -82,8 +82,13 @@ class SubmissionParticipantGridHandler extends GridHandler {
 
 		// Retrieve the submissionParticipants associated with this monograph to be displayed in the grid
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$data =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId);
-		$this->setData($data);
+		$users =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId);
+		$rowData = array();
+		while ($user =& $users->next()) {
+			$userId = $user->getId();
+			$rowData[$userId] = $user;
+		}
+		$this->setData($rowData);
 
 		// Columns
 		$cellProvider = new SubmissionParticipantGridCellProvider();

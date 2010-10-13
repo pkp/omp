@@ -253,13 +253,6 @@ class ReviewerForm extends Form {
 			$reviewRoundDao->updateObject($currentReviewRound);
 		}
 
-		// Insert the reviewer into the current workflow stage
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		// Fixme: What if the user is another reviewer role user group other than reviewer?
-		$userGroupDao = DAORegistry::getDAO('UserGroupDAO');
-		$reviewerUserGroup =& $userGroupDao->getDefaultByRoleId($press->getId(), ROLE_ID_REVIEWER);
-		$signoffDao->build('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $submission->getId(), $reviewerId, $submission->getCurrentStageId(), $reviewerUserGroup->getId());
-
 		return $reviewAssignment;
 	}
 }
