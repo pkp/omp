@@ -53,7 +53,7 @@
 <form name="metadataForm" id="metadataForm" action="{url op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
 	<h3>{translate key='submission.fileDetails'}</h3>
 	{fbvFormArea id="fileMetaData"}
-		{fbvFormSection title="common.name"}
+		{fbvFormSection title="common.name" required=1}
 			{fbvElement type="text" label="common.name" id="name" value=$monographFile->getLocalizedName() maxlength="120" size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 	{/fbvFormArea}

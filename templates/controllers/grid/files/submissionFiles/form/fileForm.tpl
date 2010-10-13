@@ -66,6 +66,7 @@
 		});
 		$("#denyRevision").click(function() {
 			$("#possibleRevision").hide();
+			return false;
 		});
 
 		// Set cancel/continue button behaviors

@@ -16,23 +16,21 @@
 		$('.button').button();
 		$('#metadataForm').ajaxForm({
 			dataType: 'json',
-	        success: function(returnString) {
-	    		if (returnString.status == true) {
-		    		$('#loading').hide();
-		    		if(returnString.isEditing) { // User was editing existing item, save and close
-			    		saveAndUpdate('{/literal}{url router=$smarty.const.ROUTE_COMPONENT op="returnFileRow" monographId=$monographId fileId=$fileId escape=false}{literal}',
-			    				'replace',
-			    				'#component-'+'{/literal}{$gridId}{literal}'+'-row-'+'{/literal}{$fileId}{literal}',
-        						'div#fileUploadTabs');
-		    		} else {
-			    		$('div#fileUploadTabs').last().tabs('url', 2, returnString.finishingUpUrl);
-			    		$('div#fileUploadTabs').last().tabs('enable', 2);
-			    		$('div#fileUploadTabs').last().tabs('select', 2);
+	        	success: function(returnString) {
+	    			if (returnString.status == true) {
+			    		$('#loading').hide();
+			    		if(returnString.isEditing) { // User was editing existing item, save and close
+				    		saveAndUpdate('{/literal}{url router=$smarty.const.ROUTE_COMPONENT op="returnFileRow" monographId=$monographId fileId=$fileId escape=false}{literal}',
+				    				'replace',
+				    				'#component-'+'{/literal}{$gridId}{literal}'+'-row-'+'{/literal}{$fileId}{literal}',
+	        						'div#fileUploadTabs');
+			    		} else {
+				    		$('div#fileUploadTabs').last().tabs('url', 2, returnString.finishingUpUrl);
+				    		$('div#fileUploadTabs').last().tabs('enable', 2);
+				    		$('div#fileUploadTabs').last().tabs('select', 2);
+			    		}
 		    		}
-	    		} else {
-
-	    		}
-	        }
+			}
 	    });
 
 		// Set cancel/continue button behaviors
@@ -59,7 +57,7 @@
 <!-- Editable metadata -->
 
 {fbvFormArea id="fileMetaData"}
-	{fbvFormSection title="common.name" float=$fbvStyles.float.LEFT}
+	{fbvFormSection required=1 title="common.name" float=$fbvStyles.float.LEFT}
 		{fbvElement type="text" id="name" value=$artworkFile->getLocalizedName() maxlength="120" size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 	{fbvFormSection title="grid.artworkFile.captionAndCredit"}
