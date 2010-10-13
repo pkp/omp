@@ -36,14 +36,14 @@
 	    });
 
 		// Set cancel/continue button behaviors
-		$("submitModalButton").click(function() {
+		$("#continueButton2").click(function() {
 			validator = $('#metadataForm').validate();
 			if($('#metadataForm').valid()) {
 				$('#metadataForm').submit();   // Hands off further actions to the ajaxForm function above
 			}
 			validator = null;
 		});
-		$("#cancelModalButton").click(function() {
+		$("#cancelButton2").click(function() {
 			$('div#fileUploadTabs').last().parent().dialog('close');
 			return false;
 		});
@@ -63,44 +63,44 @@
 		{fbvElement type="text" id="name" value=$artworkFile->getLocalizedName() maxlength="120" size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 	{fbvFormSection title="grid.artworkFile.captionAndCredit"}
-		{fbvTextarea id="artwork_caption" value=$artworkFile->getCaption() size=$fbvStyles.size.SMALL}
+		{fbvTextarea id="artworkCaption" value=$artworkFile->getCaption() size=$fbvStyles.size.SMALL}
 	{/fbvFormSection}
 	{fbvFormSection title="submission.artwork.permissions" float=$fbvStyles.float.LEFT}
-		{fbvElement type="text" label="grid.artworkFile.copyrightOwner" id="artwork_copyrightOwner" value=$artworkFile->getCopyrightOwner() size=$fbvStyles.size.LARGE}
+		{fbvElement type="text" label="grid.artworkFile.copyrightOwner" id="artworkCopyrightOwner" value=$artworkFile->getCopyrightOwner() size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 	{fbvFormSection float=$fbvStyles.float.RIGHT}
 		<br />
-		{fbvElement type="text" float=$fbvStyles.float.RIGHT label="grid.artworkFile.copyrightContact" id="artwork_copyrightOwnerContact" value=$artworkFile->getCopyrightOwnerContactDetails() size=$fbvStyles.size.LARGE}
+		{fbvElement type="text" float=$fbvStyles.float.RIGHT label="grid.artworkFile.copyrightContact" id="artworkCopyrightOwnerContact" value=$artworkFile->getCopyrightOwnerContactDetails() size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 	{fbvFormSection float=$fbvStyles.float.LEFT}
-		{fbvElement type="text" label="grid.artworkFile.permissionTerms" id="artwork_permissionTerms" value=$artworkFile->getPermissionTerms() size=$fbvStyles.size.LARGE}
+		{fbvElement type="text" label="grid.artworkFile.permissionTerms" id="artworkPermissionTerms" value=$artworkFile->getPermissionTerms() size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 	{fbvFormSection title='grid.artworkFile.type' layout=$fbvStyles.layout.TWO_COLUMN}
 		{if !$artworkFile->getType() || $artworkFile->getType() == $smarty.const.MONOGRAPH_ARTWORK_TYPE_TABLE}
 			{assign var="isTable" value=true}
 		{elseif $artworkFile->getType() == $smarty.const.MONOGRAPH_ARTWORK_TYPE_FIGURE}
 			{assign var="isFigure" value=true}
+		{elseif $artworkFile->getType() == $smarty.const.MONOGRAPH_ARTWORK_TYPE_PHOTO}
+			{assign var="isPhoto" value=true}
+		{elseif $artworkFile->getType() == $smarty.const.MONOGRAPH_ARTWORK_TYPE_ILLUSTRATION}
+			{assign var="isIllustration" value=true}
 		{elseif $artworkFile->getType() == $smarty.const.MONOGRAPH_ARTWORK_TYPE_OTHER}
 			{assign var="isOther" value=true}
 		{/if}
 
-		{fbvElement type="radio" name="artwork_type" id="artwork_type-0" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_TABLE checked=$isTable label="grid.artworkFile.type.table"}
-		{fbvElement type="radio" name="artwork_type" id="artwork_type-1" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_FIGURE checked=$isFigure label="grid.artworkFile.type.figure"}
-		{fbvElement float=$fbvStyles.float.LEFT type="radio" name="artwork_type" id="artwork_type-2" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_OTHER checked=$isOther label="common.other"}
-		{fbvElement float=$fbvStyles.float.RIGHT type="text" id="artwork_otherType" value=$artworkFile->getCustomType()}
+		{fbvElement type="radio" name="artworkType" id="artworkType-0" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_TABLE checked=$isTable label="grid.artworkFile.type.table"}
+		{fbvElement type="radio" name="artworkType" id="artworkType-1" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_FIGURE checked=$isFigure label="grid.artworkFile.type.figure"}
+		{fbvElement type="radio" name="artworkType" id="artworkType-1" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_PHOTO checked=$isPhoto label="grid.artworkFile.type.photo"}
+		{fbvElement type="radio" name="artworkType" id="artworkType-1" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_ILLUSTRATION checked=$isIllustration label="grid.artworkFile.type.illustration"}
+		{fbvElement float=$fbvStyles.float.LEFT type="radio" name="artworkType" id="artworkType-2" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_OTHER checked=$isOther label="common.other"}
+		{fbvElement float=$fbvStyles.float.RIGHT type="text" id="artworkOtherType" value=$artworkFile->getCustomType()}
 	{/fbvFormSection}
-	{fbvFormSection title="grid.artworkFile.placement" layout=$fbvStyles.layout.THREE_COLUMN}
-		{fbvElement type="radio" label="submission.chapter" name="artwork_placementType" id="artwork_placementType-0" value=$smarty.const.MONOGRAPH_ARTWORK_PLACEMENT_BY_CHAPTER}
-		{fbvElement type="select" from=$componentOptions selected=$selectedComponent id="artwork_componentId" translate="true"}
-		{fbvElement type="text" label="grid.artworkFile.placementDetail" id="artwork_placement"}
-	{/fbvFormSection}
-	{fbvFormSection layout=$fbvStyles.layout.TWO_COLUMN}
-		{fbvElement type="radio" label="common.other" name="artwork_placementType" id="artwork_placementType-1" value=$smarty.const.MONOGRAPH_ARTWORK_PLACEMENT_OTHER checked="checked"}
-		{fbvElement type="text" id="artwork_otherPlacement"}
+	{fbvFormSection title="grid.artworkFile.placement"}
+		{fbvElement type="text" id="artworkPlacement"}
 	{/fbvFormSection}
 	{fbvFormSection title="common.note"}
 		{if $note}
-			{fbvTextarea id="note" value=$note->getContents() size=$fbvStyles.size.SMALL}
+			{fbvTextarea id="note" value=$note->getContents() size=$fbvStyles.size.LARGE}
 		{else}
 			{fbvTextarea id="note" size=$fbvStyles.size.SMALL}
 		{/if}
@@ -113,15 +113,15 @@
 
 {** get scaled thumbnail dimensions to 100px **}
 {if $artworkFile->getWidth() > $artworkFile->getHeight()}
-	{math assign="thumbnail_height" equation="(h*100)/w" h=$artworkFile->getHeight() w=$artworkFile->getWidth()}
-	{assign var="thumbnail_width" value=100}
+	{math assign="thumbnailHeight" equation="(h*100)/w" h=$artworkFile->getHeight() w=$artworkFile->getWidth()}
+	{assign var="thumbnailWidth" value=100}
 {else}
-	{math assign="thumbnail_height" equation="(w*100)/h" w=$artworkFile->getWidth() h=$artworkFile->getHeight()}
-	{assign var="thumbnail_width" value=100}
+	{math assign="thumbnailHeight" equation="(w*100)/h" w=$artworkFile->getWidth() h=$artworkFile->getHeight()}
+	{assign var="thumbnailWidth" value=100}
 {/if}
 
-{math assign="image_width_on_device" equation="w/300" w=$artworkFile->getWidth() format="%.2f"}
-{math assign="image_height_on_device" equation="h/300" h=$artworkFile->getHeight() format="%.2f"}
+{math assign="imageWidthOnDevice" equation="w/300" w=$artworkFile->getWidth() format="%.2f"}
+{math assign="imageHeightOnDevice" equation="h/300" h=$artworkFile->getHeight() format="%.2f"}
 
 <h4>{translate key="submission.submit.readOnlyInfo"}</h4>
 <div style="float:left;width:33%;">
@@ -147,7 +147,7 @@
 			{$monographFile->getNiceFileSize()}
 		{/fbvFormSection}
 		{fbvFormSection title="common.quality" float=$fbvStyles.float.LEFT}
-			{$image_width_on_device}''&nbsp;x&nbsp;{$image_height_on_device}'' @ 300 DPI/PPI<br />
+			{$imageWidthOnDevice}''&nbsp;x&nbsp;{$imageHeightOnDevice}'' @ 300 DPI/PPI<br />
 			({$artworkFile->getWidth()} x {$artworkFile->getHeight()} pixels)
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -157,9 +157,9 @@
 	{fbvFormArea id="fileInfo"}
 		{fbvFormSection title="common.preview" float=$fbvStyles.float.Right}
 			{if $monographFile->getFileType() == 'image/tiff'}
-				<embed width={$thumbnail_width} height={$thumbnail_height} src="{url op="viewFile" monographId=$artworkFile->getMonographId() fileId=$monographFile->getFileId()}" type="image/tiff" negative=yes>
+				<embed width={$thumbnailWidth} height={$thumbnailHeight} src="{url op="viewFile" monographId=$artworkFile->getMonographId() fileId=$monographFile->getFileId()}" type="image/tiff" negative=yes>
 			{else}<a target="_blank" href="{url op="viewFile" monographId=$artworkFile->getMonographId() fileId=$monographFile->getFileId() fileRevision=$monographFile->getRevision()}">
-				<img class="thumbnail" width={$thumbnail_width} height={$thumbnail_height} src="{url op="viewFile" monographId=$artworkFile->getMonographId() fileId=$monographFile->getFileId()}" />
+				<img class="thumbnail" width={$thumbnailWidth} height={$thumbnailHeight} src="{url op="viewFile" monographId=$artworkFile->getMonographId() fileId=$monographFile->getFileId()}" />
 			</a>{/if}
 
 		{/fbvFormSection}
@@ -169,10 +169,10 @@
 <div style="clear:both"></div>
 
 {fbvFormArea id="buttons"}
-	{fbvFormSection}
-		{fbvLink id="cancelButton2" label="common.cancel"}
-		{fbvButton id="continueButton2" label="common.continue" align=$fbvStyles.align.RIGHT}
-	{/fbvFormSection}
+    {fbvFormSection}
+        {fbvLink id="cancelButton2" label="common.cancel"}
+        {fbvButton id="continueButton2" label="common.continue" align=$fbvStyles.align.RIGHT}
+    {/fbvFormSection}
 {/fbvFormArea}
 
 </form>

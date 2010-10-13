@@ -17,7 +17,7 @@
     		saveAndUpdate('{/literal}{url op="returnFileRow" monographId=$monographId fileId=$fileId escape=false}{literal}',
     	    		'append',
     	    		'#component-'+'{/literal}{$gridId}{literal}'+'-table',
-    	    		'div#fileUploadTabs', true);
+    	    		'div#fileUploadTabs', true, '#component-'+'{/literal}{$gridId}{literal}'+'-addFile-button');
 		});
 
 		// On exit button click, return row and close modal

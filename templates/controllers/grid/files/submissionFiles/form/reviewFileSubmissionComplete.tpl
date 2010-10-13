@@ -17,7 +17,7 @@
     		saveAndUpdate('{/literal}{url component="grid.files.submissionFiles.SubmissionReviewFilesGridHandler" op="returnFileRow" monographId=$monographId fileId=$fileId isSelectable=1 escape=false}{literal}',
     	    		'append',
     	    		'table#component-reviewFilesSelect-table > tbody:first',
-    	    		'div#fileUploadTabs ', true);
+    	    		'div#fileUploadTabs ', true,  '#component-'+'{/literal}{$gridId}{literal}'+'-addFile-button');
 		});
 
 		// On exit button click, return row and close modal
