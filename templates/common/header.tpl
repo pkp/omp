@@ -72,6 +72,7 @@
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/jquery.cookie.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/fontController.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/tag-it.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/imgpreview.js"></script>
 
 	<!-- General JS -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/general.js"></script>

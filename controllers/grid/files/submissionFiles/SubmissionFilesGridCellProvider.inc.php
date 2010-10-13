@@ -49,7 +49,8 @@ class SubmissionFilesGridCellProvider extends DataObjectGridCellProvider {
 							LINK_ACTION_TYPE_NOTHING,
 							$router->url($request, null, null, 'downloadFile', null, $actionArgs),
 							null,
-							$fileName
+							$fileName,
+							($monographFile->getType() == MONOGRAPH_FILE_ARTWORK)?'imageFile':null
 						);
 			return array($action);
 		}
@@ -76,6 +77,9 @@ class SubmissionFilesGridCellProvider extends DataObjectGridCellProvider {
 				if ($monographFile->getRevision() > 1) $fileName .= ' (' . $monographFile->getRevision() . ')'; // Add revision number to label
 				if ( empty($title) ) $title = Locale::translate('common.untitled');
 				return array('label' => $fileName);
+				break;
+			case 'fileType':
+				return array('label' => $monographFile->getExtension());
 				break;
 			case 'type':
 				$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');

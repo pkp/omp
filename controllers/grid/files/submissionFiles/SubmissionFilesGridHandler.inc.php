@@ -72,6 +72,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		// Columns
 		$cellProvider = new SubmissionFilesGridCellProvider();
 		$this->addColumn(new GridColumn('name',	'common.name', null, 'controllers/grid/gridCell.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('fileType',	'common.fileType', null, 'controllers/grid/gridCell.tpl', $cellProvider));
 		$this->addColumn(new GridColumn('type', 'common.type', null, 'controllers/grid/gridCell.tpl', $cellProvider));
 	}
 
@@ -410,7 +411,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$revision = $request->getUserVar('fileRevision');
 
 		import('classes.submission.common.Action');
-		Action::downloadFile($monographId, $fileId, $revision);
+		Action::viewFile($monographId, $fileId, $revision);
 	}
 
 	/**
