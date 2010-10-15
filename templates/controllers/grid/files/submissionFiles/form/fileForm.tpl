@@ -8,35 +8,34 @@
  *
  * $Id$
  *}
-<!--  Need a random ID to give to modal elements so that they are unique in the DOM (can not use
-		fileId like elsewhere in the modal, because there may not be an associated file yet-->
-{assign var='uniqueId' value=""|uniqid}
 
-<script type="text/javascript">
-	{literal}
-	$(function() {
-		{/literal}{if !$fileId}{literal}$('div#fileUploadTabs').last().tabs('option', 'disabled', [1,2,3,4]);{/literal}{/if}{literal}  // Disable next tabs when adding new file
-		$('.button').button();
-	    $('#uploadForm').ajaxForm({
-	        target: '#uploadOutput',  // target identifies the element(s) to update with the server response
-			iframe: true,
-			dataType: 'json',
-			beforeSubmit: function() {
-				$('#loading').show();
-				$('#loadingText').fadeIn('slow');
-	    	},
-	        // success identifies the function to invoke when the server response
-	        // has been received; here we show a success message and enable the next tab
-	        success: function(returnString) {
-	    		$('#loading').hide();
-	    		if (returnString.status == true) {
+<script type="text/javascript">{literal}
+
+	// Create callbacks to handle plupload actions
+	function attachCallbacks(uploader) {
+		// Prevent > 1 files from being added
+		uploader.bind('FilesAdded', function(up, files) {
+			if(up.files.length > 1) {
+				up.splice(0,1);
+				up.refresh();
+			}
+		});
+
+		// Add the file type field to the form
+		uploader.bind('QueueChanged', function(up, files) {
+			$("#plupload").pluploadQueue().settings.multipart_params = { fileType : $('#fileType').val()};
+		});
+
+		// Handler the server's JSON response
+		uploader.bind('FileUploaded', function(up, files, ret) {
+			returnString = eval("("+ret.response+")");
+
+			if (returnString.status == true) {
 		    		$('#fileType').attr("disabled", "disabled");
-		    		$('#submissionFile').attr("disabled", "disabled");
 		    		$('div#fileUploadTabs').last().tabs('url', 0, returnString.fileFormUrl);
 		    		$('div#fileUploadTabs').last().tabs('url', 1, returnString.metadataUrl);
 		    		$('#deleteUrl').val(returnString.deleteUrl);
-		    		$('#uploadButton').button("option", "disabled", true);
-					$('#continueButton').button( "option", "disabled", false);
+				$('#continueButton').button( "option", "disabled", false);
 		    		$('div#fileUploadTabs').last().tabs('enable', 1);
 
 		    		// If the file name is similar to an existing filename, show the possible revision control
@@ -44,10 +43,33 @@
 		    			$('#confirmUrl').val(returnString.revisionConfirmUrl);
 		    			$('#possibleRevision').show('slide');
 		    		}
-				}
-	    		$('#loadingText').text(returnString.content);  // Set to error or success message
-	        }
-	    });
+			} else {
+				alert(returnString.content);
+			}
+		});
+	}
+
+	$(function() {
+		// Setup the upload widget
+		$("#plupload").pluploadQueue({
+			// General settings
+			setup: attachCallbacks,
+			runtimes : 'html5,flash,silverlight,html4',
+			url : '{/literal}{url op="uploadFile" monographId=$monographId fileId=$fileId escape=false}{literal}',
+			max_file_size : '20mb',
+			multi_selection: false,
+			file_data_name: 'submissionFile',
+			multipart: true,
+			multipart_params : {fileType : $('#fileType').val()},
+
+			// Flash settings
+			flash_swf_url : '{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/plupload/plupload.flash.swf',
+
+			// Silverlight settings
+			silverlight_xap_url : '{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/plupload/plupload.silverlight.xap'
+		});
+		{/literal}{if !$fileId}{literal}$('div#fileUploadTabs').last().tabs('option', 'disabled', [1,2,3,4]);{/literal}{/if}{literal}  // Disable next tabs when adding new file
+		$('.button').button();
 
 		// Set 'confirm revision' button behavior
 		$("#confirmRevision").click(function() {
@@ -104,16 +126,9 @@
 			{/fbvFormSection}
 		{/if}
 		{fbvFormSection title="submission.submit.selectFile"}
-			<div class="fileInputContainer">
-				<input type="file" id="submissionFile" name="submissionFile" />
-			</div>
-			<input type="submit" id="uploadButton" name="submitFile" value="{translate key="common.upload"}" class="button" />
+			<div id="plupload"></div>
 		{/fbvFormSection}
 	{/fbvFormArea}
-	<div id="uploadOutput">
-		<div id='loading' class='throbber' style='margin: 0px;' ></div>
-		<ul><li id='loadingText' style='display:none;'>{translate key='submission.loadMessage'}</li></ul>
-	</div>
 
 	<div id="possibleRevision" class="possibleRevision response" style="display: none;">
 		<div id="revisionWarningIcon" class="warning"></div>

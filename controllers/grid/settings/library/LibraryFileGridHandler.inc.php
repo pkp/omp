@@ -14,6 +14,8 @@
 
 import('controllers.grid.settings.SetupGridHandler');
 import('controllers.grid.settings.library.LibraryFileGridRow');
+import('controllers.grid.settings.library.LibraryFileGridRow');
+import('classes.press.LibraryFile');
 
 class LibraryFileGridHandler extends SetupGridHandler {
 	/** the FileType for this grid */
@@ -43,9 +45,22 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * set the fileType
 	 */
 	function setFileType($fileType)	{
-		$this->fileType = $fileType;
+		$this->fileType = (int) $fileType;
 	}
 
+	/**
+	 * Get the symbolic name from the type ID
+	 * @param $typeId int
+	 */
+	function getNameFromTypeId($typeId) {
+		switch ($typeId) {
+			case LIBRARY_FILE_TYPE_REVIEW: return 'review';
+			case LIBRARY_FILE_TYPE_PRODUCTION: return 'production';
+			case LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE: return 'productionTemplate';
+			case LIBRARY_FILE_TYPE_EDITORIAL: return 'editorial';
+			case LIBRARY_FILE_TYPE_SUBMISSION: default: return 'submission';
+		}
+	}
 
 	//
 	// Overridden template methods
@@ -58,8 +73,8 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		parent::initialize($request);
 		// Basic grid configuration
 		$this->setFileType($request->getUserVar('fileType'));
-		$this->setId('libraryFile' . ucwords(strtolower($this->getFileType())));
-		$this->setTitle('grid.libraryFiles.' . $this->getFileType() . '.title');
+		$this->setId('libraryFile' . ucwords(strtolower($this->getNameFromTypeId($this->getFileType()))));
+		$this->setTitle('grid.libraryFiles.' . $this->getNameFromTypeId($this->getFileType()) . '.title');
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION));
 
@@ -166,10 +181,6 @@ class LibraryFileGridHandler extends SetupGridHandler {
 			$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 			$libraryFile =& $libraryFileDao->getById($fileId);
 
-			//$templateMgr =& TemplateManager::getManager();
-			// FIXME: Display FileInfo in output?
-			//$templateMgr->assign_by_ref('libraryFile', $libraryFile);
-			//$templateMgr->display('controllers/grid/settings/library/form/fileInfo.tpl');
 			$additionalAttributes = array(
 				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('gridId' => $this->getId(), 'rowId' => $fileId))
 			);
@@ -178,7 +189,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 			$json = new JSON('false', Locale::translate('common.uploadFailed'));
 		}
 
-		echo '<textarea>' . $json->getString() . '</textarea>';
+		echo $json->getString();
 	}
 
 	/**

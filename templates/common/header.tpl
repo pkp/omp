@@ -74,6 +74,11 @@
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/tag-it.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/imgpreview.js"></script>
 
+	<!-- Plupload -->
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/plupload.full.min.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/jquery.plupload.queue.min.js"></script>
+	{if $currentLocale !== 'en_US'}<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/i18n/{$currentLocale}.js"></script>{/if}
+
 	<!-- General JS -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/general.js"></script>
 	{include file="common/javascriptInit.tpl"}

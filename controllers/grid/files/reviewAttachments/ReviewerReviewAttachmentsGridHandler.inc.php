@@ -126,6 +126,6 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 			$json = new JSON('false', Locale::translate('common.uploadFailed'));
 		}
 
-		return '<textarea>' . $json->getString() . '</textarea>';
+		return $json->getString();
 	}
 }

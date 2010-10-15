@@ -22,6 +22,8 @@
 /* Theme */
 @import url("../lib/pkp/styles/themes/default/theme.css");
 
+/* Theme */
+@import url("../lib/pkp/styles/plupload.queue.css");
 
 /* @end */
 

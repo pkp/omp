@@ -13,13 +13,11 @@
  * @brief Library file class.
  */
 
-// $Id$
-
-define('LIBRARY_FILE_TYPE_SUBMISSION', 'submission');
-define('LIBRARY_FILE_TYPE_REVIEW', 'review');
-define('LIBRARY_FILE_TYPE_PRODUCTION', 'production');
-define('LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE', 'productionTemplate');
-define('LIBRARY_FILE_TYPE_EDITORIAL', 'editorial');
+define('LIBRARY_FILE_TYPE_SUBMISSION', 0x00001);
+define('LIBRARY_FILE_TYPE_REVIEW', 0x00002);
+define('LIBRARY_FILE_TYPE_PRODUCTION', 0x00003);
+define('LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE', 0x00004);
+define('LIBRARY_FILE_TYPE_EDITORIAL', 0x00005);
 
 class LibraryFile extends DataObject {
 
@@ -64,7 +62,7 @@ class LibraryFile extends DataObject {
 	 * @param return string
 	 */
 	function getFileName() {
-		return $this->getData('fileName');	
+		return $this->getData('fileName');
 	}
 
 	/**
@@ -72,10 +70,10 @@ class LibraryFile extends DataObject {
 	 * @param $fileName string
 	 */
 	function setFileName($fileName) {
-		return $this->setData('fileName', $fileName);	
+		return $this->setData('fileName', $fileName);
 	}
-	
-	
+
+
 	/**
 	 * Set the name of the file
 	 * @param $name string
@@ -101,14 +99,14 @@ class LibraryFile extends DataObject {
 	function getLocalizedName() {
 		return $this->getLocalizedData('name');
 	}
-	
+
 
 	/**
 	 * Get file type of the file.
 	 * @ return string
 	 */
 	function getFileType() {
-		return $this->getData('fileType');	
+		return $this->getData('fileType');
 	}
 
 	/**
@@ -116,7 +114,7 @@ class LibraryFile extends DataObject {
 	 * @param $fileType string
 	 */
 	function setFileType($fileType) {
-		return $this->setData('fileType', $fileType);	
+		return $this->setData('fileType', $fileType);
 	}
 
 	/**
@@ -124,7 +122,7 @@ class LibraryFile extends DataObject {
 	 * @ return string
 	 */
 	function getType() {
-		return $this->getData('type');	
+		return $this->getData('type');
 	}
 
 	/**
@@ -132,7 +130,7 @@ class LibraryFile extends DataObject {
 	 * @param $type string
 	 */
 	function setType($type) {
-		return $this->setData('type', $type);	
+		return $this->setData('type', $type);
 	}
 
 	/**
@@ -140,7 +138,7 @@ class LibraryFile extends DataObject {
 	 * @return date
 	 */
 	function getDateUploaded() {
-		return $this->getData('dateUploaded');	
+		return $this->getData('dateUploaded');
 	}
 
 	/**
@@ -156,7 +154,7 @@ class LibraryFile extends DataObject {
 	 * @return int
 	 */
 	function getFileSize() {
-		return $this->getData('fileSize');	
+		return $this->getData('fileSize');
 	}
 
 

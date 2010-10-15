@@ -108,6 +108,7 @@ class SubmissionFilesUploadForm extends Form {
 		$monographId = $this->_monographId;
 		$fileId = $this->_fileId;
 		$fileTypeId = $this->getData('fileType');
+		assert(!empty($fileTypeId));
 
 		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);

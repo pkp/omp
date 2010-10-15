@@ -439,7 +439,7 @@ class MonographFileManager extends FileManager {
 
 		// Rename the file.
 		$fileExtension = $this->parseFileExtension($sourceMonographFile->getFileName());
-		$newFileName = $this->monographId.'-'.$fileId.'-'.$revision.'-'.$this->typeToAbbrev($destType).'.'.$fileExtension;
+		$newFileName = $this->monographId.'-'.$fileId.'-'.$revision.'-'.$destType.'.'.$fileExtension;
 
 		if (!$this->fileExists($destDir, 'dir')) {
 			// Try to create destination directory
@@ -501,7 +501,7 @@ class MonographFileManager extends FileManager {
 	 */
 	function generateFilename(&$monographFile, $type, $originalName) {
 		$extension = $this->parseFileExtension($originalName);
-		$newFileName = $monographFile->getMonographId().'-'.$monographFile->getFileId().'-'.$monographFile->getRevision().'-'.$this->typeToAbbrev($type).'.'.$extension;
+		$newFileName = $monographFile->getMonographId().'-'.$monographFile->getFileId().'-'.$monographFile->getRevision().'-'.$type.'.'.$extension;
 		$monographFile->setFileName($newFileName);
 		return $newFileName;
 	}

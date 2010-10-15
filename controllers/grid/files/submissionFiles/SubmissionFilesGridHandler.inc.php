@@ -205,8 +205,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$json = new JSON('false', Locale::translate('common.uploadFailed'));
 		}
 
-		// The ajaxForm library requires the JSON to be wrapped in a textarea for it to be read by the client (See http://jquery.malsup.com/form/#file-upload)
-		return '<textarea>' . $json->getString() . '</textarea>';
+		return $json->getString();
 	}
 
 	/**

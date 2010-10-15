@@ -27,10 +27,10 @@ define('LIBRARY_FILE_SUFFIX_PRODUCTION_TEMPLATES', 'LPT');
 class LibraryFileManager extends PKPPublicFileManager {
 	/* @var $pressId Press id for the current press */
 	var $pressId;
-	
+
 	/* @var $fileDir Directory where library files live */
 	var $filesDir;
-	
+
 	/**
 	 * Constructor
 	 * @param $pressId int
@@ -54,7 +54,7 @@ class LibraryFileManager extends PKPPublicFileManager {
 
 		$libraryFileDao->deleteById($fileId);
 	}
-	
+
 	function generateFileName($type, $originalFileName) {
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$suffix = $this->_getFileSuffixFromType($type);
@@ -70,10 +70,10 @@ class LibraryFileManager extends PKPPublicFileManager {
 			for ($i = 1; ; $i++) {
 				$fullSuffix = $suffix . '-' . $i;
 				//truncate more if necessary
-				$truncated = $this->truncateFileName($originalFileName, 127 - String::strlen($fullSuffix) - 1);				
+				$truncated = $this->truncateFileName($originalFileName, 127 - String::strlen($fullSuffix) - 1);
 				// get the base name and append the suffix
 				$baseName = String::substr($truncated, 0, String::strpos($originalFileName, $ext) - 1);
-				
+
 				//try the following
 				unset($fileName);
 				$fileName = $baseName . '-' . $fullSuffix . '.' . $ext;
@@ -82,12 +82,12 @@ class LibraryFileManager extends PKPPublicFileManager {
 				}
 			}
 		}
-		
+
 	}
 
 	/**
 	 * PRIVATE routine to upload the file and add it to the database.
-	 * @param $pressId int The id of the press 
+	 * @param $pressId int The id of the press
 	 * @param $fileName string index into the $_FILES array
 	 * @param $type string identifying type
 	 * @param $fileId int ID of file being replaced (null for new file)
@@ -106,28 +106,28 @@ class LibraryFileManager extends PKPPublicFileManager {
 		$libraryFile->setFileName($newFileName);
 
 		// remove the previous file
-		if ($fileId) {
+ 		if ($fileId) {
 			$libraryFile->setId($fileId);
 			$this->deleteById($fileId);
-		} 
-		
+		}
+
 		if (!$this->uploadFile($fileName, $this->filesDir.$newFileName)) {
 			return false;
 		} else {
-			// file upload was successful 
+			// file upload was successful
 			$libraryFileDao->insertObject($libraryFile);
 		}
 
 		return $libraryFile->getId();
 	}
-	
+
 	function _getFileSuffixFromType($type) {
 		switch ($type) {
 			case LIBRARY_FILE_TYPE_REVIEW: return LIBRARY_FILE_SUFFIX_REVIEW;
 			case LIBRARY_FILE_TYPE_SUBMISSION: return LIBRARY_FILE_SUFFIX_SUBMISSION;
 			case LIBRARY_FILE_TYPE_PRODUCTION: return LIBRARY_FILE_SUFFIX_PRODUCTION;
 			case LIBRARY_FILE_TYPE_EDITORIAL: return LIBRARY_FILE_SUFFIX_EDITORIAL;
-			case LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE: return LIBRARY_FILE_SUFFIX_PRODUCTION_TEMPLATES;		
+			case LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE: return LIBRARY_FILE_SUFFIX_PRODUCTION_TEMPLATES;
 		}
 	}
 }

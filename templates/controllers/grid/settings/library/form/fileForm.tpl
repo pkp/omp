@@ -13,51 +13,70 @@
 {assign var='uniqueId' value=""|uniqid}
 {modal_title id="#metadataForm" key='settings.setup.addItem' iconClass="fileManagement"}
 
-<script type="text/javascript">
-	{literal}
-	$(function() {
-		$('.button').button();
-		$('#uploadForm').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
-		// Handle upload form
-	    $('#uploadForm').ajaxForm({
-	        target: '#uploadOutput',  // target identifies the element(s) to update with the server response
-			iframe: true,
-			dataType: 'json',
-			beforeSubmit: function() {
-				$('#loading').show();
-				$('#loadingText').fadeIn('slow');
-	    	},
-	        // success identifies the function to invoke when the server response
-	        // has been received; here we show a success message and enable the next tab
-	        success: function(returnString) {
-    			$('#loading').hide();
-	    		if (returnString.status == true) {
-	    			$('#libraryFile').attr("disabled", "disabled");
-	    			$('#libraryFileSubmit').button("option", "disabled", true);
+<script type="text/javascript">{literal}
+	//Create callbacks to handle plupload actions
+	function attachCallbacks(uploader) {
+		// Prevent > 1 files from being added
+		uploader.bind('FilesAdded', function(up, files) {
+			if(up.files.length > 1) {
+				up.splice(0,1);
+				up.refresh();
+			}
+		});
+
+		// Handler the server's JSON response
+		uploader.bind('FileUploaded', function(up, files, ret) {
+			returnString = eval("("+ret.response+")");
+
+			if (returnString.status == true) {
 	    			$("#submitModalButton").button( "option", "disabled", false);
 		    		$('#deleteUrl').val(returnString.deleteUrl);
 	    			$("#metadataRowId").val(returnString.elementId);
-	    		}
-	    		$('#loadingText').text(returnString.content);  // Set to error or success message
-	        }
-	    });
+			} else {
+				alert(returnString.content);
+			}
+		});
+	}
+
+	$(function() {
+		$('.button').button();
+		$('#uploadForm').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
+
+		// Setup the upload widget
+		$("#plupload").pluploadQueue({
+			// General settings
+			setup: attachCallbacks,
+			runtimes : 'html5,flash,silverlight,html4',
+			url : '{/literal}{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="uploadFile" fileType=$fileType escape=false}{literal}',
+			max_file_size : '20mb',
+			multi_selection: false,
+			file_data_name: 'libraryFile',
+
+			// Flash settings
+			flash_swf_url : '{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/plupload/plupload.flash.swf',
+
+			// Silverlight settings
+			silverlight_xap_url : '{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/plupload/plupload.silverlight.xap'
+		});
+
 		// Handle metadata form
-	    $('#metadataForm').ajaxForm({
+		$('#metadataForm').ajaxForm({
 			dataType: 'json',
-	        success: function(returnString) {
-	    		if (returnString.status == true) {
-		    		newFile = $('#newFile').val();
-		    		if(newFile != undefined && newFile != "") {
+			success: function(returnString) {
+				if (returnString.status == true) {
+					newFile = $('#newFile').val();
+					if(newFile != undefined && newFile != "") {
 						actType = 'append';
-		    		} else {
+					} else {
 						actType = 'replace';
-		    		}
-	    			updateItem(actType, '#component-'+'{/literal}{$gridId}{literal}'+'-table>tbody:first', returnString.content);
-	    			$('#uploadForm').parent().dialog('close');
-	    		}
-	    		$('#loadingText').text(returnString.content);  // Set to error or success message
-	        }
-	    });
+			    		}
+					updateItem(actType, '#component-'+'{/literal}{$gridId}{literal}'+'-table>tbody:first', returnString.content);
+					$('#uploadForm').parent().dialog('close');
+				}
+
+				$('#loadingText').text(returnString.content);  // Set to error or success message
+        		}
+		});
 
 		// Set cancel/continue button behaviors
 		$("#submitModalButton").click(function() {
@@ -79,20 +98,16 @@
 			$('#uploadForm').parent().dialog('close');
 			return false;
 		});
-
 	});
 	{/literal}
 </script>
 
 
 <form name="uploadForm" id="uploadForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="uploadFile" fileType=$fileType}" method="post">
-	<!-- Max file size of 20 MB -->
-	<input type="hidden" name="MAX_FILE_SIZE" value="20971520" />
 	{fbvFormArea id="file"}
 		{if !$libraryFile}
 			{fbvFormSection title="common.file"}
-				<input type="file" id="libraryFile" name="libraryFile" />
-				<input type="submit" id="libraryFileSubmit" name="submitFile" value="{translate key="common.upload"}" class="button" />
+				<div id="plupload"></div>
 			{/fbvFormSection}
 		{else}
 			{fbvFormSection title="common.file"}
@@ -100,10 +115,6 @@
 			{/fbvFormSection}
 		{/if}
 	{/fbvFormArea}
-	<div id="uploadOutput">
-		<div id='loading' class='throbber' style="margin: 0px;"></div>
-		<ul><li id='loadingText' style='display:none;'>{translate key='submission.loadMessage'}</li></ul>
-	</div>
 </form>
 
 

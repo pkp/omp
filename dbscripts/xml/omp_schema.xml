@@ -1267,7 +1267,7 @@
 		<field name="file_size" type="I8">
 			<NOTNULL/>
 		</field>
-		<field name="type" type="C2" size="40">
+		<field name="type" type="I1">
 			<NOTNULL/>
 		</field>
 		<field name="date_uploaded" type="T">
