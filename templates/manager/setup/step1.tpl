@@ -38,7 +38,7 @@
 {/fbvFormSection}
 {fbvFormSection title="common.mailingAddress" for="mailingAddress" group="true" float=$fbvStyles.float.RIGHT}
 	{fbvCustomElement}
-		{fbvTextarea id="mailingAddress" value=$mailingAddress size=$fbvStyles.size.SMALL}
+		{fbvTextArea id="mailingAddress" value=$mailingAddress size=$fbvStyles.size.SMALL}
 		<br />
 		<span>{translate key="manager.setup.mailingAddressDescription"}</span>
 	{/fbvCustomElement}

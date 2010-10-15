@@ -59,9 +59,9 @@
 	{/fbvFormArea}
 	{fbvFormSection title="common.note"}
 		{if $note}
-			{fbvTextarea id="note" value=$note->getContents() size=$fbvStyles.size.SMALL}
+			{fbvTextArea id="note" value=$note->getContents() size=$fbvStyles.size.SMALL}
 		{else}
-			{fbvTextarea id="note" size=$fbvStyles.size.SMALL}
+			{fbvTextArea id="note" size=$fbvStyles.size.SMALL}
 		{/if}
 	{/fbvFormSection}
 

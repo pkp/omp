@@ -61,7 +61,7 @@
 		{fbvElement type="text" id="name" value=$artworkFile->getLocalizedName() maxlength="120" size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 	{fbvFormSection title="grid.artworkFile.captionAndCredit"}
-		{fbvTextarea id="artworkCaption" value=$artworkFile->getCaption() size=$fbvStyles.size.SMALL}
+		{fbvTextArea id="artworkCaption" value=$artworkFile->getCaption() size=$fbvStyles.size.SMALL}
 	{/fbvFormSection}
 	{fbvFormSection title="submission.artwork.permissions" float=$fbvStyles.float.LEFT}
 		{fbvElement type="text" label="grid.artworkFile.copyrightOwner" id="artworkCopyrightOwner" value=$artworkFile->getCopyrightOwner() size=$fbvStyles.size.LARGE}
@@ -98,9 +98,9 @@
 	{/fbvFormSection}
 	{fbvFormSection title="common.note"}
 		{if $note}
-			{fbvTextarea id="note" value=$note->getContents() size=$fbvStyles.size.LARGE}
+			{fbvTextArea id="note" value=$note->getContents() size=$fbvStyles.size.LARGE}
 		{else}
-			{fbvTextarea id="note" size=$fbvStyles.size.SMALL}
+			{fbvTextArea id="note" size=$fbvStyles.size.SMALL}
 		{/if}
 	{/fbvFormSection}
 {/fbvFormArea}
