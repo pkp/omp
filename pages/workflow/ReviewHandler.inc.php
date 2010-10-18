@@ -90,7 +90,7 @@ class ReviewHandler extends Handler {
 		$acceptAction =& new LinkAction(
 			'accept',
 			LINK_ACTION_MODE_MODAL,
-			null,
+			LINK_ACTION_TYPE_REDIRECT,
 			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'promote', null, $actionArgs),
 			'editor.monograph.decision.accept'
 		);

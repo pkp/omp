@@ -34,6 +34,7 @@
 	<message key="editor.monograph.acceptToEditorial">Send Files to Editorial Stage</message>
 	<message key="editor.monograph.acceptToReview">Send to Review Stage</message>
 	<message key="editor.monograph.declineAndNotify">Decline &amp; Send Email</message>
+	<message key="editor.monograph.addUserError">There was an error trying to add the user.  Please Try again.</message>
 	<message key="editor.home">Editor Home</message>
 	<message key="editor.submissionsAndPublishing">Submissions and Publishing</message>
 	<message key="editor.submissionQueue">Submission Queue</message>
@@ -124,6 +125,8 @@
 	<message key="editor.monograph.decision.resubmit">Resubmit for Review</message>
 	<message key="editor.monograph.decision.resubmitDescription">You are about to create a new review round for this submission.  Please select the files that you wish to move to the next round.  By Default, only the files used in the previous review round are selected.  Also, only reviewers from the previous review round have been selected to participate in the new round.</message>
 	<message key="editor.monograph.decision.decline">Decline Submission</message>
+	<message key="editor.monograph.decision.sendToProduction">Send To Production</message>
+	<message key="editor.monograph.decision.sendToProduction.confirm">Are you sure you wish to send this submission to the production stage?</message>
 	<message key="editor.monograph.decision.externalReview">External Review</message>
 	<message key="editor.monograph.filter">Filter</message>
 	<message key="editor.monograph.roundStatus">Round {$round} Status</message>
@@ -180,6 +183,16 @@
 	<message key="editor.monograph.uploaded">Uploaded</message>
 	<message key="editor.monograph.removeCoverPage">Remove cover image?</message>
 	<message key="editor.monograph.remove">Remove</message>
+	<message key="editor.monograph.manageFinalDraftFiles">Manage Final Draft Files</message>
+	<message key="editor.monograph.fairCopy">Fair Copy</message>
+	<message key="editor.monograph.fairCopy.addFile">Add File</message>
+	<message key="editor.monograph.copyediting.addFile">Add File</message>
+	<message key="editor.monograph.copyediting.addUser">Add User</message>
+	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>
+	<message key="editor.monograph.copyediting.personalMessageTouser">Personal message to user</message>
+	<message key="editor.monograph.copyediting.form.userRequired">You must select a user to assign.</message>
+	<message key="editor.monograph.copyediting.form.fileRequired">You must select at least one file to assign the user to.</message>
+	<message key="editor.monograph.copyediting.form.messageRequired">You must include a personal message.</message>
 
 	<!-- Review related -->
 	<message key="editor.review">Review</message>

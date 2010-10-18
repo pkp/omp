@@ -196,7 +196,7 @@ class StageParticipantGridHandler extends GridHandler {
 			}
 			$json = new JSON('true', $renderedGridRows);
 		} else {
-			$json = new JSON('false', Locale::translate('submission.submit.errorUpdatingStageParticipant'));
+			$json = new JSON('false', Locale::translate('editor.monograph.addUserError'));
 		}
 		return $json->getString();
 	}

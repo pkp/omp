@@ -15,18 +15,22 @@
 import('lib.pkp.classes.form.Form');
 
 class SubmissionFilesUploadForm extends Form {
-	/** the id of the file being edited */
+	/** The id of the file being edited */
 	var $_fileId;
 
-	/** the id of the monograph being edited */
+	/** The id of the monograph being edited */
 	var $_monographId;
+
+	/** The stage of the file being uploaded (i.e., the 'type') */
+	var $_fileStage;
 
 	/**
 	 * Constructor.
 	 */
-	function SubmissionFilesUploadForm($fileId = null, $monographId) {
+	function SubmissionFilesUploadForm($fileId = null, $monographId, $fileStage = 'submission') {
 		$this->_fileId = $fileId;
 		$this->_monographId = $monographId;
+		$this->_fileStage = $fileStage;
 
 		parent::Form('controllers/grid/files/submissionFiles/form/fileForm.tpl');
 
@@ -61,6 +65,7 @@ class SubmissionFilesUploadForm extends Form {
 		}
 
 		$this->_data['bookFileTypes'] = $bookFileTypeList;
+		$this->_data['fileStage'] = $this->_fileStage;
 	}
 
 	/**
@@ -124,6 +129,7 @@ class SubmissionFilesUploadForm extends Form {
 						$artworkFile =& $artworkFileDao->newDataObject();
 						$artworkFile->setFileId($submissionFileId);
 						$artworkFile->setMonographId($monographId);
+						$artworkFile->setType($this->_fileStage);
 						$artworkFileDao->insertObject($artworkFile);
 					}
 					break;
@@ -131,6 +137,12 @@ class SubmissionFilesUploadForm extends Form {
 					$submissionFileId = $monographFileManager->uploadBookFile('submissionFile', $fileTypeId, $fileId);
 					if (isset($submissionFileId)) {
 						$monographDao =& DAORegistry::getDAO('MonographDAO');
+						$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+
+						$monographFile =& $monographFileDao->getMonographFile($submissionFileId);
+						$monographFile->setType($this->_fileStage);
+						$monographFileDao->updateMonographFile($monographFile);
+
 						$monograph = $monographDao->getMonograph($monographId);
 						$monograph->setSubmissionFileId($submissionFileId);
 						$monographDao->updateMonograph($monograph);

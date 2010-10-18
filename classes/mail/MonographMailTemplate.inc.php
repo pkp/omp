@@ -40,7 +40,7 @@ class MonographMailTemplate extends MailTemplate {
 	/**
 	 * Constructor.
 	 * @param $monograph object
-	 * @param $emailType string optional
+	 * @param $emailKey string optional
 	 * @param $locale string optional
 	 * @param $enableAttachments boolean optional
 	 * @param $press object optional

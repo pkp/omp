@@ -112,10 +112,7 @@
 	{/literal}
 </script>
 
-
-<form name="uploadForm" id="uploadForm" action="{url op="uploadFile" monographId=$monographId fileId=$fileId}" method="post">
-	<!-- Max file size of 20 MB -->
-	<input type="hidden" name="MAX_FILE_SIZE" value="20971520" />
+<form name="uploadForm" id="uploadForm" action="{url op="uploadFile" monographId=$monographId fileId=$fileId fileStage=$fileStage}" method="post">
 	{fbvFormArea id="file"}
 		{fbvFormSection title="common.fileType" required=1}
 			{fbvSelect name="fileType" id="fileType" from=$bookFileTypes translate=false selected=$currentFileType}

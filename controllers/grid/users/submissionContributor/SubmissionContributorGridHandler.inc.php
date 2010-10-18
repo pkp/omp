@@ -236,7 +236,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 				$json = new JSON('true', $this->_renderRowInternally($request, $row));
 			}
 		} else {
-			$json = new JSON('false', Locale::translate('submission.submit.errorUpdatingSubmissionContributor'));
+			$json = new JSON('false', Locale::translate('editor.monograph.addUserError'));
 		}
 		return $json->getString();
 	}

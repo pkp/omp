@@ -221,7 +221,12 @@ class EditorDecisionHandler extends Handler {
 		if ($promoteForm->validate()) {
 			$promoteForm->execute($args, $request);
 
-			$json = new JSON('true');
+			if ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
+				$dispatcher =& $this->getDispatcher();
+				$json = new JSON('true', $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'copyediting', array($monographId)));
+			} else {
+				$json = new JSON('true');
+			}
 		} else {
 			$json = new JSON('false');
 		}
@@ -248,6 +253,20 @@ class EditorDecisionHandler extends Handler {
 		} else {
 			$json = new JSON('true', $peerReviews);
 		}
+		return $json->getString();
+	}
+
+	/**
+	 * Promote the submission into the production stage
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return JSON
+	 */
+	function sendToProduction(&$args, &$request) {
+		// FIXME #5898 : Implement -- Is this just a confirm dialog or a modal?
+		$monographId = $request->getUserVar('monographId');
+
+		$json = new JSON('true');
 		return $json->getString();
 	}
 }

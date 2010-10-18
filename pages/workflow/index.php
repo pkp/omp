@@ -16,9 +16,14 @@
  */
 
 switch ($op) {
+	case 'copyediting':
+		define('HANDLER_CLASS', 'CopyeditingHandler');
+		import('pages.workflow.CopyeditingHandler');
+		break;
 	case 'review':
 		define('HANDLER_CLASS', 'ReviewHandler');
 		import('pages.workflow.ReviewHandler');
+		break;
 }
 
 ?>

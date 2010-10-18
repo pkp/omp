@@ -91,6 +91,19 @@ class SubmissionHandler extends Handler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$templateMgr->assign_by_ref('monograph', $monograph);
 
+		// FIXME #5898: This may have to be changed pending discussion with Brent on how to get to copyediting stage
+		$session =& $request->getSession();
+		$actingAsUserGroupId = $session->getActingAsUserGroupId();
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$actingAsUserGroup =& $userGroupDao->getById($actingAsUserGroupId); /* @var $actingAsUserGroup UserGroup */
+		$roleId = $actingAsUserGroup->getRoleId();
+
+		if($roleId == ROLE_ID_PRESS_MANAGER || $roleId == ROLE_ID_SERIES_EDITOR) {
+			$templateMgr->assign('hasFullAccess', true);
+		} elseif ($roleId == ROLE_ID_AUTHOR) {
+			$templateMgr->assign('isAuthor', true);
+		}
+
  		$templateMgr->display('submission/details.tpl');
 	}
 
