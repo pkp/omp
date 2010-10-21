@@ -1,28 +1,29 @@
 <?php
 
 /**
- * @file controllers/grid/submissions/author/AuthorSubmissionsListGridHandler.inc.php
+ * @file controllers/grid/submissions/mySubmissions/MySubmissionsListGridHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class AuthorSubmissionsListGridHandler
- * @ingroup controllers_grid_submissions_author
+ * @class MySubmissionsListGridHandler
+ * @ingroup controllers_grid_submissions_mySubmissions
  *
- * @brief Handle author submissions list grid requests.
+ * @brief Handle author's submissions list grid requests (submissions the user has made).
  */
 
 // Import grid base classes.
 import('controllers.grid.submissions.SubmissionsListGridHandler');
+import('controllers.grid.submissions.SubmissionsListGridRow');
 
-// Import author submissions list specific grid classes.
-import('controllers.grid.submissions.author.AuthorSubmissionsListGridRow');
+// Import 'my submissions' list specific grid classes.
+import('controllers.grid.submissions.mySubmissions.MySubmissionsListGridCellProvider');
 
-class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
+class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 	/**
 	 * Constructor
 	 */
-	function AuthorSubmissionsListGridHandler() {
+	function MySubmissionsListGridHandler() {
 		parent::SubmissionsListGridHandler();
 		$this->addRoleAssignment(ROLE_ID_AUTHOR, array('fetchGrid', 'deleteSubmission'));
 	}
@@ -37,17 +38,25 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		// Grid-level actions
-		$dispatcher =& Registry::get('dispatcher');
-		$this->addAction(
-			new LinkAction(
-				'newSubmission',
-				LINK_ACTION_MODE_LINK,
-				LINK_ACTION_TYPE_NOTHING,
-				$dispatcher->url($request, ROUTE_PAGE, null, 'submission', 'wizard'),
-				'submission.submit',
+		$cellProvider = new MySubmissionsListGridCellProvider();
+		$this->addColumn(
+			new GridColumn(
+				'title',
+				'monograph.title',
 				null,
-				'add'
+				'controllers/grid/gridCell.tpl',
+				$cellProvider
+			)
+		);
+
+		$cellProvider = new SubmissionsListGridCellProvider();
+		$this->addColumn(
+			new GridColumn(
+				'status',
+				'common.status',
+				null,
+				'controllers/grid/gridCell.tpl',
+				$cellProvider
 			)
 		);
 	}
@@ -93,22 +102,12 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	/**
 	 * @see SubmissionListGridHandler::getSubmissions()
 	 */
-	function getSubmissions(&$request, $userId, $pressId) {
-		//$rangeInfo =& Handler::getRangeInfo('submissions');
-		$page = $request->getUserVar('status');
-		switch($page) {
-			case 'completed':
-				$active = false;
-				$this->setTitle('common.queue.long.completed');
-				break;
-			default:
-				$page = 'active';
-				$this->setTitle('common.queue.long.active');
-				$active = true;
-		}
+	function getSubmissions(&$request, $userId) {
+		$this->setTitle('submission.mySubmissions');
+		$active = true;
 
 		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-		$submissions = $authorSubmissionDao->getAuthorSubmissions($userId, $pressId, $active);
+		$submissions = $authorSubmissionDao->getAuthorSubmissions($userId);
 		$data = array();
 		while($submission =& $submissions->next()) {
 			$submissionId = $submission->getId();
@@ -125,10 +124,10 @@ class AuthorSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	//
 	/**
 	 * @see GridHandler::getRowInstance()
-	 * @return AuthorSubmissionsListGridRow
+	 * @return SubmissionsListGridRow
 	 */
 	function &getRowInstance() {
-		$row = new AuthorSubmissionsListGridRow();
+		$row = new SubmissionsListGridRow();
 		return $row;
 	}
 }

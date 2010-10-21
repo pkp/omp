@@ -206,7 +206,7 @@ class ReviewerSubmissionDAO extends DAO {
 	 * @param $rangeInfo object
 	 * @return array ReviewerSubmissions
 	 */
-	function &getReviewerSubmissionsByReviewerId($reviewerId, $pressId, $active = true, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
+	function &getReviewerSubmissionsByReviewerId($reviewerId, $pressId = null, $active = true, $rangeInfo = null, $sortBy = null, $sortDirection = SORT_DIRECTION_ASC) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
 		$sql = 'SELECT	a.*,
@@ -226,9 +226,8 @@ class ReviewerSubmissionDAO extends DAO {
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE	a.press_id = ?
-				AND r.reviewer_id = ?
-				AND r.date_notified IS NOT NULL';
+			WHERE r.reviewer_id = ?' . ($pressId?	' AND a.press_id = ? ':'') .
+				'AND r.date_notified IS NOT NULL';
 
 		if ($active) {
 			$sql .=  ' AND r.date_completed IS NULL AND r.declined <> 1 AND (r.cancelled = 0 OR r.cancelled IS NULL)';
@@ -240,24 +239,22 @@ class ReviewerSubmissionDAO extends DAO {
 			$sql .=  ' ORDER BY ' . $sortBy . ' ' . $this->getDirectionMapping($sortDirection);
 		}
 
-		$result =& $this->retrieveRange(
-			$sql,
-			array(
-				'title',
-				$locale,
-				'title',
-				$primaryLocale,
-				'title',
-				$locale,
-				'abbrev',
-				$primaryLocale,
-				'abbrev',
-				$locale,
-				$pressId,
-				$reviewerId
-			),
-			$rangeInfo
-		);
+		$params = array(
+					'title',
+					$locale,
+					'title',
+					$primaryLocale,
+					'title',
+					$locale,
+					'abbrev',
+					$primaryLocale,
+					'abbrev',
+					$locale,
+					$reviewerId
+				);
+		if($pressId) $params[] = $pressId;
+
+		$result =& $this->retrieveRange($sql, $params, $rangeInfo);
 
 		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;

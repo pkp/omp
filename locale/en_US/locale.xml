@@ -104,6 +104,7 @@
 	<message key="submission.selectFilesForReview">Select the files that are to be reviewed by reviewers as part of this book's assessment and press Record.</message>
 	<message key="submission.stepX">Step {$step}.</message>
 	<message key="submission.files.downloadAll">Download All Files</message>
+	<message key="submission.mySubmissions">My Submissions</message>
 
 	<message key="submission.sent">Sent</message>
 	<message key="submission.internalReview"><![CDATA[Internal&nbsp;Review]]></message>
@@ -260,6 +261,8 @@ Note that if your site administrator has already registered this site with the P
 	<message key="common.takeMeThere">Take Me There</message>
 	<message key="common.autocomplete">Autocomplete</message>
 	<message key="common.confirmDelete">Are you sure you wish to delete this item? This action cannot be undone.</message>
+	<message key="common.tasks">Tasks</message>
+	<message key="common.overview">Overview</message>
 
 	<message key="common.queue.short.submissionsUnassigned">Unassigned</message>
 	<message key="common.queue.short.submissionsInEditing">In Editing</message>
@@ -273,6 +276,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="common.queue.long.submissionsInReview">Submissions In Review</message>
 	<message key="common.queue.long.submissionsArchives">Archives</message>
 	<message key="common.queue.long.active">Active Submissions</message>
+	<message key="common.queue.long.myAssigned">My Assigned Submissions</message>
 	<message key="common.queue.long.completed">Archive</message>
 
 	<message key="common.listbuilder.completeForm">Please fill out the form completely.</message>

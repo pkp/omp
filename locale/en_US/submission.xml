@@ -145,4 +145,9 @@
 	<message key="submission.upload.possibleRevisionDescription">It looks like you may be trying to upload a revision to an existing file. Is this the case?</message>
 	<message key="submission.upload.possibleRevisionConfirm">Yes, this is a revision</message>
 	<message key="submission.upload.possibleRevisionDeny">No, this is a new file</message>
+
+	<message key="submission.status.editorial">In Copyediting</message>
+	<message key="submission.status.production">In Proofreading</message>
+	<message key="submission.status.review">In Review</message>
+	<message key="submission.status.submission">Awaiting Editor Decision</message>
 </locale>

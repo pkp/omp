@@ -166,9 +166,23 @@ class AuthorSubmissionDAO extends DAO {
 	 * @param $authorId int
 	 * @return DAOResultFactory continaing AuthorSubmissions
 	 */
-	function &getAuthorSubmissions($authorId, $pressId, $active = true, $rangeInfo = null) {
+	function &getAuthorSubmissions($authorId, $pressId = null, $active = true, $rangeInfo = null) {
 		$primaryLocale = Locale::getPrimaryLocale();
 		$locale = Locale::getLocale();
+
+		$params = array(
+				'title',
+				$primaryLocale,
+				'title',
+				$locale,
+				'abbrev',
+				$primaryLocale,
+				'abbrev',
+				$locale,
+				$authorId,
+			);
+		if($pressId) $params[] = $pressId;
+
 		$result =& $this->retrieveRange(
 			'SELECT	a.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
@@ -179,21 +193,11 @@ class AuthorSubmissionDAO extends DAO {
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
 				LEFT JOIN series_settings sal ON (s.series_id = sal.series_id AND sal.setting_name = ? AND sal.locale = ?)
-			WHERE	a.user_id = ? AND a.press_id = ? AND ' .
-		($active?'a.status = 1':'(a.status <> 1 AND a.submission_progress = 0)'),
-		array(
-				'title',
-		$primaryLocale,
-				'title',
-		$locale,
-				'abbrev',
-		$primaryLocale,
-				'abbrev',
-		$locale,
-		$authorId,
-		$pressId
-		),
-		$rangeInfo
+			WHERE	a.user_id = ?'.
+			($pressId?' AND a.press_id = ?':'').
+			($active?' AND a.status = 1':'AND (a.status <> 1 AND a.submission_progress = 0)'),
+			$params,
+			$rangeInfo
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnAuthorSubmissionFromRow');

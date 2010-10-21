@@ -44,6 +44,10 @@ class SubmissionHandler extends Handler {
 				import('classes.security.authorization.OmpPressAccessPolicy');
 				$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
 				break;
+			case 'authorDetails':
+				// User must be author of submission
+
+
 
 			default:
 				// All other operations require full submission access.
@@ -91,19 +95,41 @@ class SubmissionHandler extends Handler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$templateMgr->assign_by_ref('monograph', $monograph);
 
-		// FIXME #5898: This may have to be changed pending discussion with Brent on how to get to copyediting stage
-		$session =& $request->getSession();
-		$actingAsUserGroupId = $session->getActingAsUserGroupId();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-		$actingAsUserGroup =& $userGroupDao->getById($actingAsUserGroupId); /* @var $actingAsUserGroup UserGroup */
-		$roleId = $actingAsUserGroup->getRoleId();
+		import('classes.submission.common.Action');
+		import('linkAction.LinkAction');
+		$dispatcher =& $this->getDispatcher();
+		$actionArgs['monographId'] = $monograph->getId();
+		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_ACCEPT;
+		$acceptDecision = new LinkAction(
+				'accept',
+				LINK_ACTION_MODE_MODAL,
+				null,
+				$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'promote', null, $actionArgs),
+				'editor.monograph.decision.accept',
+				null,
+				'promote'
+				);
+		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_DECLINE;
+		$declineDecision = new LinkAction(
+				'decline',
+				LINK_ACTION_MODE_MODAL,
+				null,
+				$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'sendReviews', null, $actionArgs),
+				'editor.monograph.decision.decline',
+				null,
+				'delete'
+				);
+		$sendToReviewDecision = new LinkAction(
+				'initiateReview',
+				LINK_ACTION_MODE_MODAL,
+				LINK_ACTION_TYPE_REDIRECT,
+				$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'initiateReview', null, $actionArgs),
+				'editor.monograph.initiateReview',
+				null,
+				'add_item'
+			);
 
-		if($roleId == ROLE_ID_PRESS_MANAGER || $roleId == ROLE_ID_SERIES_EDITOR) {
-			$templateMgr->assign('hasFullAccess', true);
-		} elseif ($roleId == ROLE_ID_AUTHOR) {
-			$templateMgr->assign('isAuthor', true);
-		}
-
+		$templateMgr->assign('editorActions', array($acceptDecision, $declineDecision, $sendToReviewDecision));
  		$templateMgr->display('submission/details.tpl');
 	}
 
@@ -118,7 +144,7 @@ class SubmissionHandler extends Handler {
 	function setupTemplate($request) {
 		parent::setupTemplate();
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_SUBMISSION));
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR));
 
 		$router =& $request->getRouter();
 

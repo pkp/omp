@@ -369,7 +369,7 @@ class MonographDAO extends DAO {
 			)
 		);
 
-		$returner = new DAOResultFactory($result, $this, '_returnMonographFromRow');
+		$returner = new DAOResultFactory($result, $this, '_fromRow');
 		return $returner;
 	}
 

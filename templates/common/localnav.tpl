@@ -32,7 +32,7 @@
 				<li><a href="{url page="search"}">{translate key="navigation.search"}</a></li>
 			</ul>
 		</li>
-		<li><a href="{url page="dashboard"}">{translate key="navigation.dashboard"}</a></li>
+		<li><a href="{url context="index" page="dashboard"}">{translate key="navigation.dashboard"}</a></li>
 		<li>
 			<a href="#">!In Progress</a>
 			<ul>

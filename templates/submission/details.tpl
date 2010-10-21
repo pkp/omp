@@ -14,14 +14,10 @@
 
 {include file="submission/header.tpl"}
 
-{** FIXME #5898: This may have to be changed pending discussion with Brent on how to get to copyediting stage **}
-{if $hasFullAccess}
-	{** If user is currently in a Press Manager or Series editor role, show link to copyediting page **}
-	<h1><a href="{url page="workflow" op="copyediting" path=$monograph->getId()}" style="size: 3em; text">{translate key="submission.copyediting"}</a></h1>
-{elseif $isAuthor}
-	{url|assign:copyeditingGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyeditingFiles.CopyeditingFilesGridHandler" op="fetchGrid" monographId=$monographId}
-	{load_url_in_div id="copyeditingGrid" url=$copyeditingGridUrl}
-{/if}
+<!-- Editorial decision actions -->
+{foreach from=$editorActions item=action}
+	{include file="linkAction/linkAction.tpl" action=$action id="editorAction"}
+{/foreach}
 
 {url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
 {load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}

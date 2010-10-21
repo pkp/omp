@@ -39,23 +39,8 @@ class SubmissionsListGridHandler extends GridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		$router =& $request->getRouter();
-		$operation = $router->getRequestedOp($request);
-
-		switch($operation) {
-			case 'fetchGrid':
-				// The user only needs press-level permission to see a list
-				// of submissions.
-				import('classes.security.authorization.OmpPressAccessPolicy');
-				$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
-				break;
-
-			default:
-				// All other operations require full submission access.
-				import('classes.security.authorization.OmpSubmissionAccessPolicy');
-				$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
-		}
-		return parent::authorize($request, $args, $roleAssignments);
+		// FIXME: Implement site access policy
+		return true;
 	}
 
 	/**
@@ -71,19 +56,33 @@ class SubmissionsListGridHandler extends GridHandler {
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
 		$user =& $request->getUser();
-		$this->setData($this->getSubmissions($request, $user->getId(), $press->getId()));
+		$this->setData($this->getSubmissions($request, $user->getId()));
 
-		// Add title column which is common to all submission lists.
+		// If there is more than one press in the system, add a press column
+		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$presses =& $pressDao->getPresses();
 		$cellProvider = new SubmissionsListGridCellProvider();
+		if($presses->getCount() > 1) {
+			$this->addColumn(
+				new GridColumn(
+					'press',
+					'press.press',
+					null,
+					'controllers/grid/gridCell.tpl',
+					$cellProvider
+				)
+			);
+		}
+
 		$this->addColumn(
-			new GridColumn(
-				'title',
-				'monograph.title',
-				null,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider
-			)
-		);
+				new GridColumn(
+					'author',
+					'monograph.authors',
+					null,
+					'controllers/grid/gridCell.tpl',
+					$cellProvider
+				)
+			);
 	}
 
 
@@ -97,7 +96,7 @@ class SubmissionsListGridHandler extends GridHandler {
 	 * @param $pressId integer
 	 * @return array a list of submission objects
 	 */
-	function getSubmissions(&$request, $userId, $pressId) {
+	function getSubmissions(&$request, $userId) {
 		// Must be implemented by sub-classes.
 		assert(false);
 	}
