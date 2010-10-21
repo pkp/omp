@@ -30,7 +30,7 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	function AssignedSubmissionsListGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
+				array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER, ROLE_ID_PRESS_ASSISTANT),
 				array('fetchGrid'));
 	}
 

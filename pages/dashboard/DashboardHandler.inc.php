@@ -21,7 +21,7 @@ class DashboardHandler extends Handler {
 	function DashboardHandler() {
 		parent::Handler();
 
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER,
+		$this->addRoleAssignment(array(ROLE_ID_SITE_ADMIN, ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_REVIEWER, ROLE_ID_PRESS_ASSISTANT),
 				array('index', 'overview', 'tasks', 'status'));
 	}
 
@@ -29,11 +29,9 @@ class DashboardHandler extends Handler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		// FIXME: Implement site access policy
-		return true;
-		/*import('classes.security.authorization.OmpSiteAccessPolicy');
-		$this->addPolicy(new OmpSiteAccessPolicy($request, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);*/
+		import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
+		$this->addPolicy(new PKPSiteAccessPolicy($request, null, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/**

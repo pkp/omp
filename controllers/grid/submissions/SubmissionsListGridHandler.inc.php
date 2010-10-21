@@ -17,6 +17,7 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 
 // Import submissions list grid specific classes.
 import('controllers.grid.submissions.SubmissionsListGridCellProvider');
+
 import('classes.submission.common.Action');
 
 class SubmissionsListGridHandler extends GridHandler {
@@ -39,8 +40,9 @@ class SubmissionsListGridHandler extends GridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		// FIXME: Implement site access policy
-		return true;
+		import('lib.pkp.classes.security.authorization.PKPSiteAccessPolicy');
+		$this->addPolicy(new PKPSiteAccessPolicy($request, null, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/**
