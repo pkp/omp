@@ -142,30 +142,6 @@ class Install extends PKPInstall {
 				$this->setError(INSTALLER_ERROR_DB, $this->dbconn->errorMsg());
 				return false;
 			}
-
-			// Add initial plugin data to versions table
-			$versionDao =& DAORegistry::getDAO('VersionDAO');
-			import('lib.pkp.classes.site.VersionCheck');
-			$categories = PluginRegistry::getCategories();
-			foreach ($categories as $category) {
-				PluginRegistry::loadCategory($category);
-				$plugins = PluginRegistry::getPlugins($category);
-				foreach ($plugins as $plugin) {
-					$versionFile = $plugin->getPluginPath() . '/version.xml';
-
-					if (FileManager::fileExists($versionFile)) {
-						$versionInfo =& VersionCheck::parseVersionXML($versionFile);
-						$pluginVersion = $versionInfo['version'];
-					}  else {
-						$pluginVersion = new Version(
-							1, 0, 0, 0, Core::getCurrentDate(), 1,
-							'plugins.'.$category, basename($plugin->getPluginPath()), '', 0, $plugin->isSitePlugin()
-						);
-					}
-					$versionDao->insertVersion($pluginVersion, true);
-				}
-			}
-
 		}
 
 		return true;
