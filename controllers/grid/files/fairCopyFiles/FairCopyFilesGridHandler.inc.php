@@ -97,7 +97,7 @@ class FairCopyFilesGridHandler extends GridHandler {
 
 		// Grab the fair copy files
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getByMonographId($monographId, 'submission/fairCopy');
+		$monographFiles =& $monographFileDao->getByMonographId($monographId, MONOGRAPH_FILE_FAIR_COPY);
 		$rowData = array();
 		foreach ($monographFiles as $monographFile) {
 			$rowData[$monographFile->getFileId()] = $monographFile;
@@ -126,7 +126,7 @@ class FairCopyFilesGridHandler extends GridHandler {
 					'uploadFile',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_APPEND,
-					$router->url($request, null, 'grid.files.submissionFiles.CopyeditingSubmissionFilesGridHandler', 'addFile', null, array('monographId' => $monographId, 'fileStage' => 'submission/fairCopy')),
+					$router->url($request, null, 'grid.files.submissionFiles.CopyeditingSubmissionFilesGridHandler', 'addFile', null, array('monographId' => $monographId, 'fileStage' => MONOGRAPH_FILE_FAIR_COPY)),
 					'editor.monograph.fairCopy.addFile',
 					null,
 					'add'

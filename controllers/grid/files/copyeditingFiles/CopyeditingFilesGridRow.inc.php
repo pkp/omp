@@ -13,7 +13,6 @@
  */
 
 import('lib.pkp.classes.controllers.grid.GridRow');
-import('controllers.grid.files.copyeditingFiles.CopyeditingFilesGridRow');
 
 class CopyeditingFilesGridRow extends GridRow {
 	/**

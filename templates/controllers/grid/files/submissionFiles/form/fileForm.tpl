@@ -23,7 +23,15 @@
 
 		// Add the file type field to the form
 		uploader.bind('QueueChanged', function(up, files) {
-			$("#plupload").pluploadQueue().settings.multipart_params = { fileType : $('#fileType').val()};
+			$("#plupload").pluploadQueue().settings.multipart_params = {{/literal} fileStage: {$fileStage},
+															{if $isRevision}
+																isRevision: true, submissionFileId: $('#submissionFiles').val()
+															{elseif $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}
+																copyeditingSignoffId: $('#copyeditingFiles').val()
+															{else}
+																fileType : $('#fileType').val()
+															{/if}
+															{literal}};
 		});
 
 		// Handler the server's JSON response
@@ -41,6 +49,7 @@
 		    		// If the file name is similar to an existing filename, show the possible revision control
 		    		if(returnString.possibleRevision == true) {
 		    			$('#confirmUrl').val(returnString.revisionConfirmUrl);
+		    			$("#existingFiles").val(returnString.possibleRevisionId);
 		    			$('#possibleRevision').show('slide');
 		    		}
 			} else {
@@ -58,9 +67,17 @@
 			url : '{/literal}{url op="uploadFile" monographId=$monographId fileId=$fileId escape=false}{literal}',
 			max_file_size : '20mb',
 			multi_selection: false,
-			file_data_name: 'submissionFile',
+			file_data_name: {/literal}{if $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}'copyeditingFile'{else}'submissionFile'{/if}{literal},
 			multipart: true,
-			multipart_params : {fileType : $('#fileType').val()},
+			multipart_params : {{/literal} fileStage: {$fileStage},
+							{if $isRevision}
+								isRevision: true, submissionFileId: $('#submissionFiles').val()
+							{elseif $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}
+								copyeditingSignoffId: $('#copyeditingFiles').val()
+							{else}
+								fileType : $('#fileType').val()
+							{/if}
+							{literal}},
 
 			// Flash settings
 			flash_swf_url : '{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/plupload/plupload.flash.swf',
@@ -75,7 +92,8 @@
 		$("#confirmRevision").click(function() {
 			confirmUrl = $('#confirmUrl').val();
 			if(confirmUrl != "") {
-				$.getJSON(confirmUrl, function(jsonData) {
+				var existingFileId = $("#existingFiles").val();
+				$.getJSON(confirmUrl, {existingFileId: existingFileId}, function(jsonData) {
 					if (jsonData.status === true) {
 						$("#possibleRevision").hide();
 						$('div#fileUploadTabs').last().tabs('url', 0, jsonData.fileFormUrl);
@@ -112,30 +130,46 @@
 	{/literal}
 </script>
 
-<form name="uploadForm" id="uploadForm" action="{url op="uploadFile" monographId=$monographId fileId=$fileId fileStage=$fileStage}" method="post">
+<form name="uploadForm" id="uploadForm" action="{url op="uploadFile" monographId=$monographId fileId=$fileId fileStage=$fileStage isRevision=$isRevision}" method="post">
 	{fbvFormArea id="file"}
-		{fbvFormSection title="common.fileType" required=1}
-			{fbvSelect name="fileType" id="fileType" from=$bookFileTypes translate=false selected=$currentFileType}
-		{/fbvFormSection}
-		{if $fileId}
-			{fbvFormSection title="submission.submit.currentFile"}
-				{$monographFileName}
+		{if $isRevision}
+			{fbvFormSection title="submission.originalFile" required=1}
+				<p>{translate key="submission.upload.selectFileToRevise"}</p>
+				{fbvSelect name="submissionFiles" id="submissionFiles" from=$monographFileOptions translate=false} <br />
 			{/fbvFormSection}
+		{elseif $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}
+			{fbvFormSection title="submission.originalFile" required=1}
+				<p>{translate key="submission.upload.selectCopyeditedFile"}</p>
+				{fbvSelect name="copyeditingFiles" id="copyeditingFiles" from=$monographFileOptions translate=false} <br />
+			{/fbvFormSection}
+		{else}
+			{fbvFormSection title="common.fileType" required=1}
+				{fbvSelect name="fileType" id="fileType" from=$bookFileTypes translate=false selected=$currentFileType}
+			{/fbvFormSection}
+			{if $fileId}
+				{fbvFormSection title="submission.submit.currentFile"}
+					{$monographFileName}
+				{/fbvFormSection}
+			{/if}
 		{/if}
-		{fbvFormSection title="submission.submit.selectFile"}
+
+		{fbvFormSection title="submission.submit.selectFile" required=1}
 			<div id="plupload"></div>
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	<div id="possibleRevision" class="possibleRevision response" style="display: none;">
+	{if $fileStage == $smarty.const.MONOGRAPH_FILE_SUBMISSION || $fileStage == $smarty.const.MONOGRAPH_FILE_ARTWORK || $fileStage == $smarty.const.MONOGRAPH_FILE_REVIEW}
+	<div id="possibleRevision" class="possibleRevision response" style="display:none;">
 		<div id="revisionWarningIcon" class="warning"></div>
 		<div id="revisionWarningText">
 			<h5>{translate key="submission.upload.possibleRevision"}</h5>
 			<p>{translate key="submission.upload.possibleRevisionDescription"}</p>
+			{fbvSelect name="existingFiles" id="existingFiles" from=$monographFileOptions translate=false} <br />
 			<span><a href="#" id="confirmRevision">{translate key="submission.upload.possibleRevisionConfirm"}</a></span>
 			<span><a href="#" id="denyRevision">{translate key="submission.upload.possibleRevisionDeny"}</a></span>
 		</div>
 	</div>
+	{/if}
 
 	<div class="separator"></div>
 

@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/modals/submissionMetadata/SubmissionHeaderSubmissionMetadataHandler.inc.php
+ * @file controllers/modals/submissionMetadata/SubmissionetailsSubmissionMetadataHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SubmissionHeaderSubmissionMetadataHandler
- * @ingroup controllers_modals_submissionHeaderSubmissionMetadata
+ * @class SubmissionDetailsSubmissionMetadataHandler
+ * @ingroup controllers_modals_submissionDetailsSubmissionMetadata
  *
  * @brief Handle requests for non-reviewers to see a submission's metadata
  */
@@ -17,11 +17,11 @@ import('controllers.modals.submissionMetadata.SubmissionMetadataHandler');
 // import JSON class for use with all AJAX requests
 import('lib.pkp.classes.core.JSON');
 
-class SubmissionHeaderSubmissionMetadataHandler extends SubmissionMetadataHandler {
+class SubmissionDetailsSubmissionMetadataHandler extends SubmissionMetadataHandler {
 	/**
 	 * Constructor.
 	 */
-	function SubmissionHeaderSubmissionMetadataHandler() {
+	function SubmissionDetailsSubmissionMetadataHandler() {
 		parent::SubmissionMetadataHandler();
 
 		$this->addRoleAssignment(

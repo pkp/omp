@@ -85,6 +85,7 @@ class CopyeditingUserForm extends Form {
 		$email->setBody($this->getData('personalMessage'));
 		$user =& $userDao->getUser($userId);
 		$email->addRecipient($user->getEmail(), $user->getFullName());
+		$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_COPYEDIT, MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
 		$email->send();
 	}
 }

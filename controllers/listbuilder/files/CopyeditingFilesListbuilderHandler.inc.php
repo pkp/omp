@@ -76,7 +76,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		$monographId = $request->getUserVar('monographId');
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getByMonographId($monographId, 'submission/copyediting');
+		$monographFiles =& $monographFileDao->getByMonographId($monographId, MONOGRAPH_FILE_COPYEDIT);
 		$itemList = array();
 		foreach ($monographFiles as $item) {
 			$id = $item->getFileId();

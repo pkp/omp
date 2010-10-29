@@ -100,9 +100,9 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 	 * @return JSON
 	 */
 	function uploadFile(&$args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
-		$fileStage = $request->getUserVar('fileStage') ? $request->getUserVar('fileStage'): null;
+		$monographId = (int) $request->getUserVar('monographId');
+		$fileId = $request->getUserVar('fileId') ? (int) $request->getUserVar('fileId'): null;
+		$fileStage = $request->getUserVar('fileStage') ? (int) $request->getUserVar('fileStage'): null;
 
 		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
 		$fileForm = new SubmissionFilesUploadForm($fileId, $monographId, $fileStage);
@@ -138,7 +138,7 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 		}
 
 		// The ajaxForm library requires the JSON to be wrapped in a textarea for it to be read by the client (See http://jquery.malsup.com/form/#file-upload)
-		return '<textarea>' . $json->getString() . '</textarea>';
+		return $json->getString();
 	}
 
 	/**
@@ -159,9 +159,9 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 		$templateMgr->assign('fileId', $fileId);
 
 		// Get the grid ID from the file type, so fileSubmissionComplete.tpl knows which grid to update
-		$fileTypeToGridId = array('submission/finalDraft' => 'finalDraftFiles',
-									'submission/copyediting' => 'copyeditingFiles',
-									'submission/fairCopy' => 'fairCopyFiles');
+		$fileTypeToGridId = array(MONOGRAPH_FILE_FINAL => 'finalDraftFiles',
+									MONOGRAPH_FILE_COPYEDIT => 'copyeditingFiles',
+									MONOGRAPH_FILE_FAIR_COPY => 'fairCopyFiles');
 		$templateMgr->assign('gridId', $fileTypeToGridId[$monographFile->getType()]);
 
 		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/fileSubmissionComplete.tpl'));
@@ -184,12 +184,12 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 
 		if($monographFile) {
 			// Get the handler path and name from the file type, so fileSubmissionComplete.tpl knows which grid to update
-			$fileTypeToHandlerPath = array('submission/finalDraft' => 'controllers.grid.files.finalDraftFiles.FinalDraftFilesGridHandler',
-									'submission/copyediting' => 'controllers.grid.files.copyeditingFiles.CopyeditingFilesGridHandler',
-									'submission/fairCopy' => 'controllers.grid.files.fairCopyFiles.FairCopyFilesGridHandler');
-			$fileTypeToHandlerName = array('submission/finalDraft' => 'FinalDraftFilesGridHandler',
-									'submission/copyediting' => 'CopyeditingFilesGridHandler',
-									'submission/fairCopy' => 'FairCopyFilesGridHandler');
+			$fileTypeToHandlerPath = array(MONOGRAPH_FILE_FINAL => 'controllers.grid.files.finalDraftFiles.FinalDraftFilesGridHandler',
+									MONOGRAPH_FILE_COPYEDIT => 'controllers.grid.files.copyeditingFiles.CopyeditingFilesGridHandler',
+									MONOGRAPH_FILE_FAIR_COPY => 'controllers.grid.files.fairCopyFiles.FairCopyFilesGridHandler');
+			$fileTypeToHandlerName = array(MONOGRAPH_FILE_FINAL => 'FinalDraftFilesGridHandler',
+									MONOGRAPH_FILE_COPYEDIT => 'CopyeditingFilesGridHandler',
+									MONOGRAPH_FILE_FAIR_COPY => 'FairCopyFilesGridHandler');
 			import($fileTypeToHandlerPath[$monographFile->getType()]);
 			$filesGridHandler =& new $fileTypeToHandlerName[$monographFile->getType()]();
 			$filesGridHandler->initialize($request);

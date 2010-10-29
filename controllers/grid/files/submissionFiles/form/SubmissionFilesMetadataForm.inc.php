@@ -19,18 +19,18 @@ class SubmissionFilesMetadataForm extends Form {
 	var $_fileId;
 
 	/** @var int */
-	var $_monographId;
+	var $_signoffId;
 
 	/**
 	 * Constructor.
 	 * @param $fileId int
 	 * @param @monographId int
 	 */
-	function SubmissionFilesMetadataForm($fileId = null, $monographId = null) {
+	function SubmissionFilesMetadataForm($fileId, $signoffId = null) {
 		parent::Form('controllers/grid/files/submissionFiles/form/metadataForm.tpl');
 
 		$this->_fileId = (int) $fileId;
-		$this->_monographId = (int) $monographId;
+		$this->_signoffId = (int) $signoffId;
 
 		$this->addCheck(new FormValidator($this, 'name', 'required', 'user.profile.form.lastNameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
@@ -50,8 +50,12 @@ class SubmissionFilesMetadataForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
-		if ( isset($this->fileId) ) {
-			$this->_data['fileId'] = $this->fileId;
+		if (isset($this->_fileId)) {
+			$this->_data['fileId'] = $this->_fileId;
+		}
+
+		if (isset($this->_signoffId)) {
+			$this->_data['signoffId'] = $this->_signoffId;
 		}
 	}
 
@@ -61,11 +65,11 @@ class SubmissionFilesMetadataForm extends Form {
 	 */
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('fileId', $this->_fileId);
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
 		$templateMgr->assign('monographFile', $monographFile);
+		$templateMgr->assign('monographId', $monographFile->getMonographId());
 
 		$templateMgr->assign('name', $monographFile->getLocalizedName());
 

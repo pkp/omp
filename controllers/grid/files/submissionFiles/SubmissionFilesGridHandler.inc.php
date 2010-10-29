@@ -42,6 +42,12 @@ class SubmissionFilesGridHandler extends GridHandler {
 		// Basic grid configuration
 		$this->setTitle('submission.submit.submissionFiles');
 
+		// Check wether to display the 'add file' grid action (true for all cases but the author's submission summary page)
+		$canAdd = true;
+		if($request->getUserVar('canAdd') == "false") {
+			$canAdd = false;
+		}
+
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));
 
 		// Elements to be displayed in the grid
@@ -58,16 +64,18 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$this->setData($rowData);
 
 		// Add grid-level actions
-		$this->addAction(
-			new LinkAction(
-				'addFile',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, null, 'addFile', null, array('gridId' => $this->getId(), 'monographId' => $this->_monographId)),
-				'grid.action.addItem'
-			),
-			GRID_ACTION_POSITION_ABOVE
-		);
+		if($canAdd) {
+			$this->addAction(
+				new LinkAction(
+					'addFile',
+					LINK_ACTION_MODE_MODAL,
+					LINK_ACTION_TYPE_APPEND,
+					$router->url($request, null, null, 'addFile', null, array('gridId' => $this->getId(), 'monographId' => $this->_monographId)),
+					'submission.addFile'
+				),
+				GRID_ACTION_POSITION_ABOVE
+			);
+		}
 
 		// Columns
 		$cellProvider = new SubmissionFilesGridCellProvider();
@@ -126,10 +134,12 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 */
 	function editFile($args, &$request) {
 		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
+		$fileStage = $request->getUserVar('fileStage') ? $request->getUserVar('fileStage') : null;
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $this->_monographId);
 		$templateMgr->assign('fileId', $fileId);
+		$templateMgr->assign('fileStage', $fileStage);
 		$templateMgr->assign('gridId', $this->getId());
 
 		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/submissionFiles.tpl'));
@@ -145,9 +155,11 @@ class SubmissionFilesGridHandler extends GridHandler {
 	function displayFileForm($args, &$request) {
 		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
 		$monographId = $request->getUserVar('monographId');
+		$fileStage = $request->getUserVar('fileStage') ? $request->getUserVar('fileStage') : null;
+		$isRevision = $request->getUserVar('isRevision') ? $request->getUserVar('isRevision') : false;
 
 		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
-		$fileForm = new SubmissionFilesUploadForm($fileId, $monographId);
+		$fileForm = new SubmissionFilesUploadForm($fileId, $monographId, $fileStage, $isRevision);
 
 		if ($fileForm->isLocaleResubmit()) {
 			$fileForm->readInputData();
@@ -168,39 +180,47 @@ class SubmissionFilesGridHandler extends GridHandler {
 	function uploadFile($args, &$request) {
 		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
 		$monographId = $request->getUserVar('monographId');
+		$fileStage = $request->getUserVar('fileStage') ? $request->getUserVar('fileStage') : null;
+		$isRevision = $request->getUserVar('isRevision') ? $request->getUserVar('isRevision') : false;
 
 		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
-		$fileForm = new SubmissionFilesUploadForm($fileId, $monographId);
+		$fileForm = new SubmissionFilesUploadForm($fileId, $monographId, $fileStage, $isRevision);
 		$fileForm->readInputData();
 
 		// Check to see if the file uploaded might be a revision to an existing file
-		if(!$fileId) {
+		if(!$fileId && !$isRevision && ($fileStage == MONOGRAPH_FILE_SUBMISSION || $fileStage == MONOGRAPH_FILE_ARTWORK || $fileStage == MONOGRAPH_FILE_REVIEW)) {
 			$possibleRevision = $fileForm->checkForRevision($args, &$request);
 		} else $possibleRevision = false;
 
 		if ($fileForm->validate() && ($fileId = $fileForm->uploadFile($args, $request)) ) {
+			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 			$router =& $request->getRouter();
+
+			// If isRevision is set, the user is purposefully uploading a revision
+			if($isRevision) {
+				list($fileId, $revision) = $this->confirmRevision($args, $request, $fileId);
+			} else $fileId = 1;
 
 			$templateMgr =& TemplateManager::getManager();
 
 			$templateMgr->assign_by_ref('fileId', $fileId);
 
 			$additionalAttributes = array(
-				'fileFormUrl' => $router->url($request, null, null, 'displayFileForm', null, array('gridId' => $this->getId(), 'monographId' => $monographId, 'fileId' => $fileId)),
+ 				'fileFormUrl' => $router->url($request, null, null, 'displayFileForm', null, array('gridId' => $this->getId(), 'monographId' => $monographId, 'fileId' => $fileId)),
 				'metadataUrl' => $router->url($request, null, null, 'editMetadata', null, array('gridId' => $this->getId(), 'monographId' => $monographId, 'fileId' => $fileId)),
 				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('monographId' => $monographId, 'fileId' => $fileId))
 			);
 
-			if ($possibleRevision) {
+			if ($possibleRevision && !$isRevision) {
 				$additionalAttributes['possibleRevision'] = true;
-				$additionalAttributes['revisionConfirmUrl'] = $router->url($request, null, null, 'confirmRevision', null, array('fileId' => $fileId, 'monographId' => $monographId, 'revisionId' => $possibleRevision));
+				$additionalAttributes['possibleRevisionId'] = $possibleRevision;
+				$additionalAttributes['revisionConfirmUrl'] = $router->url($request, null, null, 'confirmRevision', null, array('fileId' => $fileId, 'monographId' => $monographId));
 			}
 
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFile =& $monographFileDao->getMonographFile($fileId);
+			$monographFile =& $monographFileDao->getMonographFile($fileId, $revision);
 			$fileName = $monographFile->getOriginalFilename();
 
-			$json = new JSON('true', Locale::translate('submission.uploadSuccessfulContinue', array('fileName' => $fileName)), 'false', $fileId, $additionalAttributes);
+			$json = new JSON('true', Locale::translate('submission.uploadSuccessfulContinue', array('fileName' => $fileName)), 'false', $possibleRevision, $additionalAttributes);
 		} else {
 			$json = new JSON('false', Locale::translate('common.uploadFailed'));
 		}
@@ -215,29 +235,41 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @return JSON
 	 * @return JSON
 	 */
-	function confirmRevision($args, &$request) {
-		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
-		$revisionId = $request->getUserVar('revisionId');
+	function confirmRevision($args, &$request, $fileId = null) {
+		if(!$fileId) {
+			// This is being confirmed through the modal's 'Yes this is a revision' link
+			$newId = $request->getUserVar('fileId');
+			$oldId = $request->getUserVar('existingFileId');
+		} else {
+			// The user is going through the 'Upload revision' modal
+			$newId = $fileId;
+			$oldId = $request->getUserVar('submissionFileId');
+		}
+
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
-		$revisionFile =& $monographFileDao->getMonographFile($revisionId);
 
 		// Set ID and revision of new file
-		$monographFileDao->setAsLatestRevision($fileId, $revisionId);
+		$revision = $monographFileDao->setAsLatestRevision($newId, $oldId);
 
-		// Need to reset the modal's URLs to the new file id
-		$router =& $request->getRouter();
-		$monographId = $monographFile->getMonographId();
-		$additionalAttributes = array(
-			'fileFormUrl' => $router->url($request, null, null, 'displayFileForm', null, array('monographId' => $monographId, 'fileId' => $revisionId)),
-			'metadataUrl' => $router->url($request, null, null, 'editMetadata', null, array('monographId' => $monographId, 'fileId' => $revisionId)),
-			'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('monographId' => $monographId, 'fileId' => $revisionId))
-		);
 
-		$json = new JSON('true', $revisionId, 'false', null, $additionalAttributes);
+		if($fileId) {
+			return array($oldId, $revision);
+		} else {
+			// Need to reset the modal's URLs to the new file id
+			$router =& $request->getRouter();
+			$monographId = $monographFile->getMonographId();
+			$additionalAttributes = array(
+				'fileFormUrl' => $router->url($request, null, null, 'displayFileForm', null, array('monographId' => $monographId, 'fileId' => $newId)),
+				'metadataUrl' => $router->url($request, null, null, 'editMetadata', null, array('monographId' => $monographId, 'fileId' => $newId)),
+				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('monographId' => $monographId, 'fileId' => $newId))
+			);
 
-		return $json->getString();
+			$json = new JSON('true', $newId, 'false', null, $additionalAttributes);
+
+			return $json->getString();
+		}
 	}
 
 	/**

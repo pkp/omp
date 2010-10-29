@@ -19,16 +19,16 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 	var $_fileId;
 
 	/** @var int */
-	var $_monographId;
+	var $_signoffId;
 
 	/**
 	 * Constructor.
 	 */
-	function SubmissionFilesArtworkMetadataForm($fileId = null, $monographId = null) {
+	function SubmissionFilesArtworkMetadataForm($fileId, $signoffId = null) {
 		parent::Form('controllers/grid/files/submissionFiles/form/artworkMetadataForm.tpl');
 
-		$this->_fileId = $fileId;
-		$this->_monographId = $monographId;
+		$this->_fileId = (int) $fileId;
+		$this->_signoffId = (int) $signoffId;
 
 		$this->addCheck(new FormValidator($this, 'name', 'required', 'submission.nameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
@@ -40,7 +40,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('fileId', $this->_fileId);
-		$templateMgr->assign('monographId', $this->_monographId);
+		$templateMgr->assign('signoffId', $this->_signoffId);
 
 		//$templateMgr->assign('monographId', $this->_monographId);
 		$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO');
@@ -50,6 +50,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
 		$templateMgr->assign_by_ref('monographFile', $monographFile);
+		$templateMgr->assign_by_ref('monographId', $monographFile->getMonographId());
 
 		// artwork can be grouped by monograph chapter
 		if ($artworkFile) {

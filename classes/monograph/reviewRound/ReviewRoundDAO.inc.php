@@ -20,7 +20,7 @@ import('classes.monograph.reviewRound.ReviewRound');
 class ReviewRoundDAO extends DAO {
 
 	/**
-	 * Fetch a signoff by symbolic info, building it if needed.
+	 * Fetch a review round, creating it if needed.
 	 * @param $symbolic string
 	 * @param $assocType int
 	 * @param $assocId int
@@ -52,7 +52,7 @@ class ReviewRoundDAO extends DAO {
 	}
 
 	/**
-	 * Internal function to return an Signoff object from a row.
+	 * Internal function to return a review round object from a row.
 	 * @param $row array
 	 * @return Signoff
 	 */
@@ -115,8 +115,7 @@ class ReviewRoundDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve an array of signoffs matching the specified
-	 * symbolic name and assoc info.
+	 * Retrieve a review round
 	 * @param $symbolic string
 	 * @param $assocType int
 	 * @param $assocId int

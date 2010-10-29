@@ -64,26 +64,6 @@ class SubmissionFilesGridRow extends GridRow {
 					'delete',
 					Locale::translate('common.confirmDelete')
 				));
-			$this->addAction(
-				new LinkAction(
-					'moreInfo',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_NOTHING,
-					$router->url($request, null, 'informationCenter.FileInformationCenterHandler', 'viewInformationCenter', null, array('monographId' => $monographId, 'itemId' => $rowId, 'stageId' => $monograph->getCurrentStageId())),
-					'grid.action.moreInformation',
-					null,
-					'more_info'
-				));
-			$this->addAction(
-				new LinkAction(
-					'addRevision',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_NOTHING,
-					$router->url($request, null, null, 'addRevision', null, $actionArgs),
-					'submissions.addRevision',
-					null,
-					'edit'
-				));
 		}
 	}
 }

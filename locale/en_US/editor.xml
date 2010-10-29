@@ -197,6 +197,7 @@
 	<!-- Review related -->
 	<message key="editor.review">Review</message>
 	<message key="editor.review.personalMessageToReviewer">Personal message to reviewer</message>
+	<message key="editor.review.personalMessageFromEditor">Personal message from the editor</message>
 	<message key="editor.review.personalMessageToAuthor">Personal message to author</message>
 	<message key="editor.review.dateAccepted">Review Acceptance Date</message>
 	<message key="editor.review.noReviews">No peer reviews to import</message>

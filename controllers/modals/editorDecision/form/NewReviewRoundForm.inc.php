@@ -80,7 +80,6 @@ class NewReviewRoundForm extends Form {
 	 */
 	function execute($args, &$request) {
 		import('classes.submission.seriesEditor.SeriesEditorAction');
-		import('submission.editor.EditorAction');
 
 		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');

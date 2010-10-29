@@ -76,8 +76,6 @@
 
 
 <form name="uploadForm" id="uploadForm" action="{url op="returnSignoffRow" monographId=$monographId signoffId=$signoffId escape=false}" method="post">
-	<!-- Max file size of 5 MB -->
-	<input type="hidden" name="MAX_FILE_SIZE" value="5242880" />
 	{fbvFormArea id="file"}
 		{if !$copyeditingFile}
 			{fbvFormSection title="common.file"}

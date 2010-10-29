@@ -19,9 +19,9 @@
 	        success: function(returnString) {
 	    		if (returnString.status == true) {
 		    		if(returnString.isEditing) { // User was editing existing item, save and close
-			    		saveAndUpdate('{/literal}{url router=$smarty.const.ROUTE_COMPONENT op="returnFileRow" monographId=$monographId fileId=$fileId escape=false}{literal}',
+			    		saveAndUpdate('{/literal}{url router=$smarty.const.ROUTE_COMPONENT op="returnFileRow" monographId=$monographId fileId=$fileId signoffId=$signoffId escape=false}{literal}',
 			    				'replace',
-			    				'#component-'+'{/literal}{$gridId}{literal}'+'-row-'+'{/literal}{$fileId}{literal}',
+			    				'#component-'+'{/literal}{$gridId}{literal}'+'-row-'+'{/literal}{if $signoffId}{$signoffId}{else}{$fileId}{/if}{literal}',
         						'div#fileUploadTabs');
 		    		} else {
 			    		$('div#fileUploadTabs').last().tabs('url', 2, returnString.finishingUpUrl);

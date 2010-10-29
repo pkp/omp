@@ -31,6 +31,11 @@
 	<message key="submission.submit.category">Submission Category</message>
 	<message key="submission.submit.category.description">From the drop down list below, please select the category or series that best suits your submission. If you are unsure about what to select, or you haven't received special submission instructions from one of our editors, you can continue without selecting a particular series or submission category.</message>
 	<message key="submission.notifyEditor">Notify Editor</message>
+	<message key="submission.addFileToBook">Add A File To My Book</message>
+	<message key="submission.addFile">Add A File</message>
+	<message key="submission.uploadARevision">Upload A Revision</message>
+	<message key="submission.uploadACopyeditedVersion">Upload A Copyedited Version</message>
+	<message key="submission.notifyEditor">Notify Editor</message>
 	<message key="submission.submit.uploadAuthorVersion">Upload Author Version</message>
 
 	<message key="submission.submit">Start New Book Submission</message>
@@ -142,9 +147,11 @@
 	<message key="submission.submit.addStageParticipant.description">To add a participant to this stage of the submission, select a user group from the drop-down menu, then add members of the user group through the list builder control.</message>
 
 	<message key="submission.upload.possibleRevision">Possible Revision Detected</message>
-	<message key="submission.upload.possibleRevisionDescription">It looks like you may be trying to upload a revision to an existing file. Is this the case?</message>
+	<message key="submission.upload.possibleRevisionDescription">It looks like you may be trying to upload a revision to this file. Is this the case?  If you are uploading a revision for another file, please select it below.</message>
 	<message key="submission.upload.possibleRevisionConfirm">Yes, this is a revision</message>
 	<message key="submission.upload.possibleRevisionDeny">No, this is a new file</message>
+	<message key="submission.upload.selectFileToRevise">Please select the file you would like to upload a revision for.</message>
+	<message key="submission.upload.selectCopyeditedFile">Please select the file you would like to upload copyedited version for.</message>
 
 	<message key="submission.status.editorial">In Copyediting</message>
 	<message key="submission.status.production">In Proofreading</message>

@@ -134,6 +134,9 @@ class PromoteForm extends Form {
 				import('classes.submission.common.Action');
 				Action::assignDefaultStageParticipants($this->_monographId, WORKFLOW_STAGE_ID_EDITING);
 
+				$seriesEditorSubmission->setCurrentStageId(4);
+				$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
+
 				break;
 			case SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
 				// 1. Record the decision
@@ -142,7 +145,7 @@ class PromoteForm extends Form {
 				// Create a new review round
 				// FIXME: what do do about reviewRevision? being set to 1 for now.
 				// 2. Create a new external review round if it doesn't exist
-				if ( !$reviewRoundDao->reviewRoundExists($this->_monographId, REVIEW_TYPE_EXTERNAL, 1)) {
+				if (!$reviewRoundDao->reviewRoundExists($this->_monographId, REVIEW_TYPE_EXTERNAL, 1)) {
 					$reviewRoundDao->createReviewRound($this->_monographId, REVIEW_TYPE_EXTERNAL, 1, 1);
 				}
 
@@ -174,10 +177,12 @@ class PromoteForm extends Form {
 		$email = new MonographMailTemplate($seriesEditorSubmission, $emailKey, null, true);
 		$email->setBody($this->getData('personalMessage'));
 		$email->addRecipient($submitter->getEmail(), $submitter->getFullName());
+		$email->setAssoc(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_EDITOR, $currentReviewRound->getRound());
 
 		// Attach the selected reviewer attachments
 		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($this->_monographId);
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$selectedAttachments = $this->getData('selectedAttachments') ? $this->getData('selectedAttachments') : array();
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
@@ -187,6 +192,10 @@ class PromoteForm extends Form {
 			$reviewAssignmentId = $monographFile->getAssocId();
 			$reviewerPrefix = chr(ord('A') + $reviewIndexes[$reviewAssignmentId]);
 			$email->addAttachment($monographFile->getFilePath(), $reviewerPrefix . '-' . $monographFile->getOriginalFileName());
+
+			// Update monograph to set viewable as true, so author can view the file on their submission summary page
+			$monographFile->setViewable(true);
+			$monographFileDao->updateMonographFile($monographFile);
 		}
 
 		$email->send();

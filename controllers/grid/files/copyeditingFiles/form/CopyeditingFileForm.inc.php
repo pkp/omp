@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/files/copyeditingFiles/form/CopyeditingCopyeditingFileForm.inc.php
+ * @file controllers/grid/files/copyeditingFiles/form/CopyeditingFileForm.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -25,10 +25,14 @@ class CopyeditingFileForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function CopyeditingFileForm($monographId, $signoffId) {
+	function CopyeditingFileForm($monographId, $signoffId, $template = null) {
 		$this->_monographId = $monographId;
 		$this->_signoffId = $signoffId;
-		parent::Form('controllers/grid/files/copyeditingFiles/form/copyeditingFileForm.tpl');
+		if(!$template) {
+			parent::Form('controllers/grid/files/copyeditingFiles/form/copyeditingFileForm.tpl');
+		} else {
+			parent::Form($template);
+		}
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -52,7 +56,7 @@ class CopyeditingFileForm extends Form {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff =& $signoffDao->getById($this->_signoffId);
 
-		if ($copyeditedFileId = $signoff->getFileId()) {
+		if ($signoff && $copyeditedFileId = $signoff->getFileId()) {
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 			$copyeditedFile =& $monographFileDao->getMonographFile($copyeditedFileId);
 
@@ -99,13 +103,14 @@ class CopyeditingFileForm extends Form {
 				$signoffDao->updateObject($signoff);
 
 				$copyeditedFile =& $monographFileDao->getMonographFile($copyeditedFileId);
+				// Transfer some of the original file's metadata over to the new file
 				$copyeditedFile->setName($copyeditingFile->getLocalizedName(), Locale::getLocale());
+				$copyeditedFile->setAssocId($copyeditingFile->getAssocId());
 				$monographFileDao->updateMonographFile($copyeditedFile);
 			}
 
 		}
-
-
+		return $copyeditedFileId;
 	}
 }
 
