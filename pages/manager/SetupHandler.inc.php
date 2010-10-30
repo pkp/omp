@@ -21,11 +21,14 @@ class SetupHandler extends ManagerHandler {
 	 */
 	function SetupHandler() {
 		parent::ManagerHandler();
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
-				array(
-					'setup',
-					'saveSetup',
-					'downloadLayoutTemplate'));
+		$this->addRoleAssignment(
+			ROLE_ID_PRESS_MANAGER,
+			array (
+				'setup',
+				'saveSetup',
+				'downloadLayoutTemplate'
+			)
+		);
 	}
 
 	/**

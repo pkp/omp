@@ -25,7 +25,8 @@ class SettingsHandler extends ManagerHandler {
 					'settings',
 					'data',
 					'system',
-					'users'));
+				)
+		);
 	}
 
 	/**
@@ -60,15 +61,6 @@ class SettingsHandler extends ManagerHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
 		$templateMgr->display('manager/system/index.tpl');
-	}
-
-	/**
-	 * Display users settings index page.
-	 */
-	function users(&$request, &$args) {
-		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate(true);
-		$templateMgr->display('manager/users/index.tpl');
 	}
 }
 

@@ -32,9 +32,15 @@ switch ($op) {
 	case 'settings':
 	case 'data':
 	case 'system':
-	case 'users':
 		import('pages.manager.SettingsHandler');
 		define('HANDLER_CLASS', 'SettingsHandler');
+		break;
+	// Users and Roles
+	case 'users':
+	case 'roles':
+	case 'enrollment':
+		import('pages.manager.UsersHandler');
+		define('HANDLER_CLASS', 'UsersHandler');
 		break;
 	//
 	// People Management

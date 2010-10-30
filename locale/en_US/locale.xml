@@ -361,6 +361,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="user.role.manager">Press Manager</message>
 	<message key="user.role.editor">Editor</message>
 	<message key="user.role.seriesEditor">Series Editor</message>
+	<message key="user.role.pressAssistant">Press Assistant</message>
 	<message key="user.role.designer">Designer</message>
 	<message key="user.role.copyeditor">Copyeditor</message>
 	<message key="user.role.seriesEditor">Series Editor</message>

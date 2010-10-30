@@ -229,8 +229,18 @@
 	<message key="manager.settings.dataDescription">All settings that allow for manipulation of data (file browser, reviewer database, reports, import/export, COUNTER stats).</message>
 	<message key="manager.settings.system">System</message>
 	<message key="manager.settings.systemDescription">All settings specific to the OMP system for this press (archiving, prepared emails, reading tools, languages, payments, plugins).</message>
-	<message key="manager.settings.users">Users</message>
+	<message key="manager.settings.users"><![CDATA[Users &amp; Roles]]></message>
 	<message key="manager.settings.usersDescription">All settings related to user management for this press (enrollment, manage users, manage roles).</message>
+
+
+	<message key="manager.users">User Management</message>
+	<message key="manager.users.users">Users</message>
+	<message key="manager.users.roles">Roles</message>
+	<message key="manager.users.availableRoles">Available Roles</message>
+	<message key="manager.users.currentRoles">Current Roles</message>
+	<message key="manager.users.enrollment">Enrollment</message>
+	<message key="manager.users.selectRole">Select Role</message>
+
 
 	<message key="manager.setup">Setup</message>
 	<message key="manager.setup.aboutItemContent">Content</message>

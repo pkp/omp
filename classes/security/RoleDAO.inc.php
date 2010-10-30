@@ -225,6 +225,22 @@ class RoleDAO extends DAO {
 			default: return null;
 		}
 	}
+
+	/**
+	 * Get a mapping of role keys and i18n key names.
+	 * @return array
+	 */
+	function getRoleNames() {
+		$roleNames = array(
+			ROLE_ID_SITE_ADMIN => 'user.role.siteAdmin',
+			ROLE_ID_PRESS_MANAGER => 'user.role.manager',
+			ROLE_ID_SERIES_EDITOR => 'user.role.seriesEditor',
+			ROLE_ID_PRESS_ASSISTANT => 'user.role.pressAssistant',
+			ROLE_ID_AUTHOR => 'user.role.author',
+			ROLE_ID_REVIEWER => 'user.role.reviewer'
+		);
+		return $roleNames;
+	}
 }
 
 ?>
