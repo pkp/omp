@@ -12,27 +12,26 @@
 	<div class="unit size1of2">
 		<ul class="flat_list installation_navigation">
 			<li><a href="{url page="index"}">{translate key="navigation.home"}</a></li>
-			<li><a href="{url page="about"}">{translate key="navigation.about"}</a></li>
-                        <li><a href="{if $helpTopicId}{get_help_id|escape key="$helpTopicId" url="true"}{else}{url page="help"}{/if}" class="openHelp">{translate key="help.help"}</a></li>
+			{if $isUserLoggedIn}
+				<li><a href="#">{translate key="navigation.admin"}</a></li>
+			{/if}
 		</ul>
 	</div>
-	{if $isUserLoggedIn}
 	<div class="unit size1of2 lastUnit align_right">
 		<ul class="flat_list user_navigation">
 			<li><div id="sizer"></div></li>
-			<li><a href="{url page="user" op="profile"}">{translate key="user.profile"}</a></li>
-			<li><a href="{url page="login" op="signOut"}">{translate key="user.logOut"}</a></li>
+			{if $isUserLoggedIn}
+				<li><a href="{url page="user" op="profile"}">{translate key="user.profile"}</a></li>
+				<li><a href="{url page="login" op="signOut"}">{translate key="user.logOut"}</a></li>
+			{else}
+				<li><a href="{url page="login"}">{translate key="navigation.login"}</a></li>
+				<li><a href="{url page="user" op="register"}">{translate key="navigation.register"}</a></li>
+			{/if}
+			<li><a href="{url page="search"}">{translate key="navigation.search"}</a></li>
+			{if !$isUserLoggedIn}
+				<li><a href="#">{translate key="navigation.sitemap"}</a></li>
+			{/if}
 		</ul>
 	</div>
-	{else}
-	<div class="unit size1of2 lastUnit align_right">
-		<ul class="flat_list user_navigation">
-			<li><div id="sizer"></div></li>
-			<li><a href="{url page="login"}">{translate key="navigation.login"}</a></li>
-			<li><a href="{url page="user" op="register"}">{translate key="navigation.register"}</a></li>
-		</ul>
-	</div>
-	{/if}{* $isUserLoggedIn *}
-
-</div>	<!-- /super_navigation -->
+</div>
 

@@ -308,21 +308,18 @@ Note that if your site administrator has already registered this site with the P
 	<message key="common.personalMessage">Personal Message</message>
 
 	<!-- Navigation -->
-	<message key="navigation.pressHelp">Press Help</message>
-	<message key="navigation.archives">Published Works</message>
-	<message key="navigation.current">Upcoming</message>
-	<message key="navigation.otherPresses">Other Presses</message>
-	<message key="navigation.browseByAuthor">By Author</message>
+	<message key="navigation.backlist">Backlist</message>
+	<message key="navigation.catalog">Catalog</message>
+	<message key="navigation.competingInterestGuidelines">Competing Interest Guidelines</message>
+	<message key="navigation.featuredBooks">Featured Books</message>
+	<message key="navigation.goBack">Go Back</message>
 	<message key="navigation.infoForAuthors">For Authors</message>
 	<message key="navigation.infoForLibrarians">For Librarians</message>
-	<message key="navigation.competingInterestGuidelines">Competing Interest Guidelines</message>
 	<message key="navigation.infoForAuthors.long">Information For Authors</message>
 	<message key="navigation.infoForLibrarians.long">Information For Librarians</message>
-	<message key="navigation.currentCatalogue">Current Catalogue</message>
-	<message key="navigation.backCatalogue">Back Catalogue</message>
-	<message key="navigation.pressHome">Press Home</message>
+	<message key="navigation.newReleases">New Releases</message>
 	<message key="navigation.published">Published</message>
-	<message key="navigation.goBack">Go Back</message>
+	<message key="navigation.seriesAndEditions">Series &amp; Editions</message>
 
 	<!-- Submission History -->
 	<message key="submission.logType.monograph">Monograph</message>
