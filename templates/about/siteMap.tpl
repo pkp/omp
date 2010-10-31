@@ -5,10 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * About the Press / Site Map.
- *
- * TODO: Show the site map.
- *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="about.siteMap"}

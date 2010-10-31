@@ -9,10 +9,9 @@
  * @class $this->
  * @ingroup pages_admin
  *
- * @brief Handle requests for press management in site administration. 
+ * @brief Handle requests for press management in site administration.
  */
 
-// $Id$this->.inc.php,v 1.4 2009/05/06 16:44:10 jalperin Exp $
 
 import('pages.admin.AdminHandler');
 

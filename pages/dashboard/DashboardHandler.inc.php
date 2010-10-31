@@ -11,7 +11,7 @@
  * @brief Handle requests for user's dashboard.
  */
 
-import('handler.Handler');
+import('classes.handler.Handler');
 import('lib.pkp.classes.core.JSON');
 
 class DashboardHandler extends Handler {

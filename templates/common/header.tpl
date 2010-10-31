@@ -89,35 +89,32 @@
 <div class="page {$cssBodyClass} {$liquid}">
 
 <div class="head">
-
-{include file="common/sitenav.tpl"}
-
-<div class="masthead">
-<h1>
-{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
-	<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
-{/if}
-{if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
-	<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
-{elseif $displayPageHeaderTitle}
-	{$displayPageHeaderTitle}
-{elseif $alternatePageHeader}
-	{$alternatePageHeader}
-{elseif $siteTitle}
-	{$siteTitle}
-{else}
-	{$applicationName}
-{/if}
-</h1>
-</div> <!-- /masthead -->
-
-{include file="common/localnav.tpl"}
-
-{** FIXME #5734: What should we do with breadcrumbs?
-	They don't appear on submission pages, are they visible anywhere?
-	include file="common/breadcrumbs.tpl" **}
-
-</div> <!-- /head -->
+	{include file="common/sitenav.tpl"}
+	<div class="masthead">
+		<h1>
+		{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
+			<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
+		{/if}
+		{if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
+			<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
+		{elseif $displayPageHeaderTitle}
+			{$displayPageHeaderTitle}
+		{elseif $alternatePageHeader}
+			{$alternatePageHeader}
+		{elseif $siteTitle}
+			{$siteTitle}
+		{else}
+			{$applicationName}
+		{/if}
+		</h1>
+	</div>
+	
+	{include file="common/localnav.tpl"}
+	
+	{** FIXME #5734: What should we do with breadcrumbs?
+		They don't appear on submission pages, are they visible anywhere?
+		include file="common/breadcrumbs.tpl" **}
+</div>
 
 <div class="body">
 

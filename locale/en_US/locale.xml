@@ -175,35 +175,35 @@
 	<message key="reviewer.monograph.uploadedFile">Uploaded files</message>
 	<message key="reviewer.monograph.reviewersAnnotatedVersion">Version uploaded by reviewer</message>
 	<message key="reviewer.monograph.reviewersAnnotatedVersionDescription">(If you want to annotate the file, for the editor, save on your hard drive and use Browse/Upload.)</message>
-        <message key="reviewer.monograph.schedule.request">Editor's Request</message>
-        <message key="reviewer.monograph.schedule.response">Your Response</message>
-        <message key="reviewer.monograph.schedule.submitted">Review Submitted</message>
-        <message key="reviewer.monograph.schedule.due">Review Due</message>
+	<message key="reviewer.monograph.schedule.request">Editor's Request</message>
+	<message key="reviewer.monograph.schedule.response">Your Response</message>
+	<message key="reviewer.monograph.schedule.submitted">Review Submitted</message>
+	<message key="reviewer.monograph.schedule.due">Review Due</message>
 	<message key="reviewer.monograph.decision.accept">Accept Submission</message>
 	<message key="reviewer.monograph.decision.pendingRevisions">Revisions Required</message>
 	<message key="reviewer.monograph.decision.resubmitHere">Resubmit for Review</message>
-        <message key="reviewer.monograph.decision.resubmitElsewhere">Resubmit Elsewhere</message>
+	<message key="reviewer.monograph.decision.resubmitElsewhere">Resubmit Elsewhere</message>
 	<message key="reviewer.monograph.decision.decline">Decline Submission</message>
 	<message key="reviewer.monograph.decision.seeComments">See Comments</message>
 	<message key="reviewer.monograph.schedule">Schedule</message>
-        <message key="reviewer.monograph.submissionToBeReviewed">Submission To Be Reviewed</message>
-        <message key="reviewer.monograph.reviewSchedule">Review Schedule</message>
-        <message key="reviewer.monograph.reviewRequestDate">Review Request Date</message>
-        <message key="reviewer.monograph.reviewDueDate">Review Due Date</message>
-        <message key="reviewer.monograph.reviewSteps">Review Steps</message>
-        <message key="reviewer.monograph.reviewerGuidelines">Reviewer Guidelines</message>
-        <message key="reviewer.monograph.notifyEditorA">Notify the submission's editor</message>
-        <message key="reviewer.monograph.notifyEditorB">as to whether you will undertake the review.</message>
-        <message key="reviewer.monograph.consultGuidelines">If you are going to do the review, consult Reviewer Guidelines below.</message>
-        <message key="reviewer.monograph.downloadSubmission">Click on file names to download and review (on screen or by printing) the files associated with this submission.</message>
-        <message key="reviewer.monograph.enterCompetingInterests">This press has a policy for disclosure of potential competing interests from its reviewers.  Please take a moment to review this policy.</message>
-        <message key="reviewer.monograph.viewCompetingInterests">View Competing Interests Policy</message>
-        <message key="reviewer.monograph.noCompetingInterests">I do not have any competing interests</message>
-        <message key="reviewer.monograph.hasCompetingInterests">I may have competing interests (Specify below)</message>
+	<message key="reviewer.monograph.submissionToBeReviewed">Submission To Be Reviewed</message>
+	<message key="reviewer.monograph.reviewSchedule">Review Schedule</message>
+	<message key="reviewer.monograph.reviewRequestDate">Review Request Date</message>
+	<message key="reviewer.monograph.reviewDueDate">Review Due Date</message>
+	<message key="reviewer.monograph.reviewSteps">Review Steps</message>
+	<message key="reviewer.monograph.reviewerGuidelines">Reviewer Guidelines</message>
+	<message key="reviewer.monograph.notifyEditorA">Notify the submission's editor</message>
+	<message key="reviewer.monograph.notifyEditorB">as to whether you will undertake the review.</message>
+	<message key="reviewer.monograph.consultGuidelines">If you are going to do the review, consult Reviewer Guidelines below.</message>
+	<message key="reviewer.monograph.downloadSubmission">Click on file names to download and review (on screen or by printing) the files associated with this submission.</message>
+	<message key="reviewer.monograph.enterCompetingInterests">This press has a policy for disclosure of potential competing interests from its reviewers.  Please take a moment to review this policy.</message>
+	<message key="reviewer.monograph.viewCompetingInterests">View Competing Interests Policy</message>
+	<message key="reviewer.monograph.noCompetingInterests">I do not have any competing interests</message>
+	<message key="reviewer.monograph.hasCompetingInterests">I may have competing interests (Specify below)</message>
 	<message key="reviewer.competingInterests">Competing Interests</message>
-        <message key="reviewer.monograph.enterReviewA">Click on icon to enter (or paste) your review of this submission.</message>
-        <message key="reviewer.monograph.uploadFile">In addition, you can upload files for the editor and/or author to consult.</message>
-        <message key="reviewer.monograph.selectRecommendation">Select a recommendation and submit the review to complete the process. You must enter a review or upload a file before selecting a recommendation.</message>
+	<message key="reviewer.monograph.enterReviewA">Click on icon to enter (or paste) your review of this submission.</message>
+	<message key="reviewer.monograph.uploadFile">In addition, you can upload files for the editor and/or author to consult.</message>
+	<message key="reviewer.monograph.selectRecommendation">Select a recommendation and submit the review to complete the process. You must enter a review or upload a file before selecting a recommendation.</message>
 	<message key="reviewer.monograph.mustSelectDecision">No recommendation was selected. You must choose a recommendation to submit.</message>
 	<message key="reviewer.monograph.confirmDecision">Once you have recorded a decision you will no longer be able to make changes to this review. Are you sure you wish to continue?</message>
 	<message key="reviewer.monograph.ensuringBlindReview">Ensuring a Blind Review</message>
@@ -447,17 +447,10 @@ Note that the OAI interface can be disabled for this site by editing the OMP sys
 
 	<!-- General plugin information -->
 	<message key="plugins.categories.auth.description">Authorization Plugins allow Open Monograph Press to delegate user authentication tasks to other systems, such as LDAP servers.</message>
-
-
 	<message key="plugins.categories.citationFormats.description">Citation format plugins provide users with various formats in which to access monograph citations.</message>
-
-
 	<message key="plugins.categories.generic.description">Generic plugins are used to extend Open Monograph Press in a variety of ways that are not supported by the other plugin categories.</message>
-
 	<message key="plugins.categories.implicitAuth">Implicit Authentication Plugins</message>
 	<message key="plugins.categories.implicitAuth.description">Implicit Authentication plugins implement support for authenticating users based on http headers.</message>
-
-
 	<message key="plugins.categories.oaiMetadataFormats">OAI Metadata Format Plugins</message>
 	<message key="plugins.categories.oaiMetadataFormats.description">These format plugins express metadata in OAI communications.</message>
 

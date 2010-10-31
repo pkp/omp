@@ -54,7 +54,6 @@
  * dispatcher to delegate to the appropriate request handler.
  */
 
-// $Id$
 
 // Initialize global environment
 define('INDEX_FILE_LOCATION', __FILE__);
