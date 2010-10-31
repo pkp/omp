@@ -12,8 +12,6 @@
  * @brief Class providing OMP-specific page routing.
  */
 
-// $Id$
-
 
 import('lib.pkp.classes.core.PKPPageRouter');
 
@@ -41,10 +39,8 @@ class PageRouter extends PKPPageRouter {
 			if($userGroups->getCount() == 1) {
 				$userGroup =& $userGroups->next();
 				if ($userGroup->getRoleId() == ROLE_ID_READER) $request->redirect(null, 'index');
-				$request->redirect(null, $userGroup->getPath());
-			} else {
-				$request->redirect(null, 'user');
 			}
+			$request->redirect(null, 'dashboard');
 		} else {
 			// The user is at the site context, check to see if they are
 			// only registered in one place w/ one role
@@ -54,10 +50,10 @@ class PageRouter extends PKPPageRouter {
 				$pressDao =& DAORegistry::getDAO('PressDAO');
 				$userGroup =& $userGroups->next();
 				$press =& $pressDao->getPress($userGroup->getPressId());
-				if (!isset($press)) $request->redirect('index', 'user');;
+				if (!isset($press)) $request->redirect('index', 'dashboard');;
 				if ($userGroup->getRoleId() == ROLE_ID_READER) $request->redirect(null, 'index');
-				$request->redirect($press->getPath(), $userGroup->getPath());
-			} else $request->redirect('index', 'user');
+			}
+			$request->redirect('index', 'dashboard');
 		}
 	}
 }
