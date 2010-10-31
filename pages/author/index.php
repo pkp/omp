@@ -18,14 +18,6 @@
 
 switch ($op) {
 	//
-	// Monograph Submission
-	//
-	case 'submit':
-	case 'saveSubmit':
-		import('pages.author.SubmitHandler');
-		define('HANDLER_CLASS', 'SubmitHandler');
-		break;
-	//
 	// Submission Tracking
 	//
 	case 'deleteMonographFile':
