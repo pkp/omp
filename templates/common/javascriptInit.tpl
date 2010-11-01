@@ -38,6 +38,9 @@
 					imgCSS: { width: 300 }
 				});
 			});
+			$(".tagit").live('click', function() {
+				$(this).find('input').focus();
+			});
 		});
 	{/literal}</script>
 
