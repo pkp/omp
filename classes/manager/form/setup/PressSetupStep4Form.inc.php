@@ -31,8 +31,6 @@ class PressSetupStep4Form extends PressSetupForm {
 				'allowRegReviewer' => 'bool',
 				'restrictSiteAccess' => 'bool',
 				'restrictMonographAccess' => 'bool',
-				'monographEventLog' => 'bool',
-				'monographEmailLog' => 'bool',
 				'showGalleyLinks' => 'bool',
 				'openAccessPolicy' => 'string',
 				'enableAnnouncements' => 'bool',

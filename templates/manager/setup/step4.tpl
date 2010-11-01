@@ -62,16 +62,12 @@
 {/fbvFormSection}
 {fbvFormSection title="manager.setup.userRegistration" layout=$fbvStyles.layout.ONE_COLUMN}
 	{fbvElement type="radio" id="disableUserReg-0" name="disableUserReg" value="0" onclick="setRegAllowOpts()" checked=!$disableUserReg label="manager.setup.enableUserRegistration"}
-	<div id="disableUserRegCheckboxes" style="padding-left: 20px;">	
+	<div id="disableUserRegCheckboxes" style="padding-left: 20px;">
 		{fbvElement type="checkbox" id="allowRegReader" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="manager.setup.enableUserRegistration.reader"}
 		{fbvElement type="checkbox" id="allowRegAuthor" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="manager.setup.enableUserRegistration.author"}
 		{fbvElement type="checkbox" id="allowRegReviewer" value="1" checked=$restrictMonographAccess disabled=$disableUserReg label="manager.setup.enableUserRegistration.reviewer"}
 	</div>
 	{fbvElement type="radio" id="disableUserReg-1" name="disableUserReg" value="1" onclick="setRegAllowOpts()" checked=$disableUserReg label="manager.setup.disableUserRegistration"}
-{/fbvFormSection}
-{fbvFormSection title="manager.setup.loggingAndAuditing" layout=$fbvStyles.layout.ONE_COLUMN}
-	{fbvElement type="checkbox" id="monographEventLog" value="1" checked=$monographEventLog label="manager.setup.submissionEventLogging"}
-	{fbvElement type="checkbox" id="monographEmailLog" value="1" checked=$monographEmailLog label="manager.setup.submissionEmailLogging"}
 {/fbvFormSection}
 {/fbvFormArea}
 

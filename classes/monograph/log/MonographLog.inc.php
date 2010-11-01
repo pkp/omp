@@ -3,7 +3,7 @@
 /**
  * @defgroup monograph_log
  */
- 
+
 /**
  * @file classes/monograph/log/MonographLog.inc.php
  *
@@ -32,12 +32,6 @@ class MonographLog {
 
 		if (!$pressId) {
 			// Invalid monograph
-			return false;
-		}
-
-		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		if (!$settingsDao->getSetting($pressId, 'monographEventLog')) {
-			// Event logging is disabled
 			return false;
 		}
 
@@ -112,12 +106,6 @@ class MonographLog {
 
 		if (!$pressId) {
 			// Invalid monograph
-			return false;
-		}
-
-		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		if (!$settingsDao->getSetting($pressId, 'monographEmailLog')) {
-			// Email logging is disabled
 			return false;
 		}
 
