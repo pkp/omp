@@ -67,8 +67,7 @@ class SubmissionHandler extends Handler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$templateMgr->assign_by_ref('monograph', $monograph);
 
-		import('classes.submission.common.Action');
-		import('classes.linkAction.LinkAction');
+		import('lib.pkp.classes.linkAction.LinkAction');
 		$dispatcher =& $this->getDispatcher();
 		$actionArgs = array('monographId' => $monograph->getId(), 'stageId' => $monograph->getCurrentStageId());
 
@@ -120,7 +119,7 @@ class SubmissionHandler extends Handler {
 		$templateMgr->assign_by_ref('monograph', $monograph);
 
 		// Setup author actions
-		import('linkAction.LinkAction');
+		import('lib.pkp.classes.linkAction.LinkAction');
 		$router =& $request->getRouter();
 		$dispatcher =& $this->getDispatcher();
 		$actionArgs = array('monographId' => $monograph->getId(), 'stageId' => $monograph->getCurrentStageId());

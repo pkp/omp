@@ -55,7 +55,7 @@ class ReviewHandler extends Handler {
 							'round' => $currentRound);
 
 		// import action class
-		import('linkAction.LinkAction');
+		import('lib.pkp.classes.linkAction.LinkAction');
 		$dispatcher =& $this->getDispatcher();
 
 		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS;

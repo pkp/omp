@@ -38,7 +38,7 @@ class CopyeditingHandler extends Handler {
 		$actionArgs = array('monographId' => $monographId);
 
 		// import action class
-		import('linkAction.LinkAction');
+		import('lib.pkp.classes.linkAction.LinkAction');
 		$dispatcher =& $this->getDispatcher();
 
 		$promoteAction =& new LinkAction(
