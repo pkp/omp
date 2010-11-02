@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying ProductionEditorSubmission objects.
  */
 
-// $Id$
 
 
 import('classes.submission.productionEditor.ProductionEditorSubmission');

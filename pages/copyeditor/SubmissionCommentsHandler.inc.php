@@ -12,7 +12,6 @@
  * @brief Handle requests for submission comments. 
  */
 
-// $Id$
 
 
 import('pages.copyeditor.SubmissionCopyeditHandler');

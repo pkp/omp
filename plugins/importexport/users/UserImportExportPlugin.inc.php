@@ -12,7 +12,6 @@
  * @brief Users import/export plugin
  */
 
-// $Id$
 
 
 import('classes.plugins.ImportExportPlugin');

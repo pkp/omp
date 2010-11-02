@@ -7,8 +7,6 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localized email templates XML file.
-  *
-  * $Id$
   -->
 <email_texts locale="en_US">
 	<email_text key="NOTIFICATION">

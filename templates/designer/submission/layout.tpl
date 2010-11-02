@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Subtemplate defining the layout editor's layout editing table.
- *
- * $Id$
+
  *}
 {assign var=galleys value=$submission->getGalleys()}
 

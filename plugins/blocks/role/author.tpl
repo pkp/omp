@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Author navigation sidebar.
- *
- * $Id$
+
  *}
 <div class="block" id="sidebarAuthor">
 	<span class="blockTitle">{translate key="user.role.author"}</span> <br  />

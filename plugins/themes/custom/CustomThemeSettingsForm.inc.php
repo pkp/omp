@@ -12,7 +12,6 @@
  * @brief Form for press managers to modify custom theme plugin settings
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

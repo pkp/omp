@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Group form under press management.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="pageId" value="manager.groups.groupForm"}

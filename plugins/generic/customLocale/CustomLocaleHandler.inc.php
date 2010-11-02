@@ -12,7 +12,6 @@
  * @brief This handles requests for the customLocale plugin.
  */
 
-// $Id$
 
 
 require_once('CustomLocalePlugin.inc.php');

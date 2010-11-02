@@ -15,14 +15,12 @@
   * Giannis Tsakonas (john@lis.upatras.gr),
   * Kiriazis Vasilis (vaskir@lis.upatras.gr),
   * Papaxristopoulos Leonidas (leonidasp@lis.upatras.gr)
-  *
-  * $Id$
   -->
- 
+
 <locale name="el_GR" full_name="Greek">
 	<message key="plugins.auth.ldap.displayName">LDAP</message>
 	<message key="plugins.auth.ldap.description">Το plugin αυτό υποστηρίζει την πιστοποίηση και τον συγχρονισμό των λογαριασμών χρηστών βάση μιας εξωτερικής LDAP πηγής.</message>
-	
+
 	<message key="plugins.auth.ldap.settings">Ρυθμίσεις LDAP </message>
 	<message key="plugins.auth.ldap.settings.hostname">Server hostname</message>
 	<message key="plugins.auth.ldap.settings.hostname.description">Π.χ., "ldap.example.com", ή "ldaps://ldap.example.com" (για χρήση SSL)</message>

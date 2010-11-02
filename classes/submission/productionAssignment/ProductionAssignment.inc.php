@@ -17,7 +17,6 @@
  * @brief Describes production assignments.
  */
 
-// $Id$
 
 
 define('DESIGN_ASSIGNMENT_TYPE_LAYOUT',		1);

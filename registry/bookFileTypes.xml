@@ -6,8 +6,6 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Email templates XML file.
-  *
-  * $Id$
   -->
 <bookFileTypes>
 	<bookFileType key="ARTWORK" sortable="1" category="2" localeKey="default.bookFileTypes.artwork"/>

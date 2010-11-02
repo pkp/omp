@@ -12,7 +12,6 @@
  * @brief Form for Step 1 of the press setup.
  */
 
-// $Id$
 
 
 import('classes.manager.form.setup.PressSetupForm');

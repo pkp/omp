@@ -17,7 +17,6 @@
  * @brief Basic class describing a publication format.
  */
 
-// $Id$
 
 
 class PublicationFormat extends DataObject {

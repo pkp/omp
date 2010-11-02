@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Subtemplate defining the author's proofreading table.
- *
- * $Id$
+
  *}
 <div id="proofread">
 <h3>{translate key="submission.proofreading"}</h3>

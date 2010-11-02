@@ -5,8 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Vanilla theme.
- *
- * $Id$
  */
 
 body {
@@ -49,7 +47,7 @@ input.defaultButton {
 	background-color: #ffffff;
 	border-left: 1px solid black;
 	border-right: 1px solid black;
-	border-bottom: 1px solid black;	
+	border-bottom: 1px solid black;
 }
 
 #main h2 {
@@ -68,7 +66,7 @@ td.tocGalleys {
 #breadcrumb {
 	padding-left: 10px;
 	padding-bottom: 10px;
-	border-bottom: 1px solid black;	
+	border-bottom: 1px solid black;
 }
 
 #content {

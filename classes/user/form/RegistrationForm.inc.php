@@ -16,7 +16,6 @@
  * @brief Form for user registration.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

@@ -12,7 +12,6 @@
  * @brief This handles requests for the translator plugin.
  */
 
-// $Id$
 
 
 require_once('TranslatorAction.inc.php');
@@ -468,8 +467,6 @@ class TranslatorHandler extends Handler {
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localized email templates XML file.
-  *
-  * $Id$
   -->
 <email_texts locale="' . $locale . '">
 </email_texts>');

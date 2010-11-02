@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Form to add/edit a galley.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="pageTitle" value="submission.galley"}

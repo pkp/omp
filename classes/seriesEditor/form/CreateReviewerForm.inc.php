@@ -16,7 +16,6 @@
  * @brief Form for series editors to create reviewers.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

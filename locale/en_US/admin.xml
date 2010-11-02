@@ -8,8 +8,6 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the en_US (English) locale.
-  *
-  * $Id$
   -->
 
 <locale name="en_US" full_name = "English">
@@ -17,7 +15,7 @@
 	<message key="admin.settings.pressRedirect">Press redirect</message>
 	<message key="admin.settings.pressRedirectInstructions">Requests to the main site will be redirected to this press. This may be useful if the site is hosting only a single press, for example.</message>
 	<message key="admin.settings.noPressRedirect">Do not redirect</message>
-	
+
 	<message key="admin.languages.primaryLocaleInstructions">This will be the default language for the site and any hosted presses.</message>
 	<message key="admin.languages.supportedLocalesInstructions">Select all locales to support on the site. The selected locales will be available for use by all presses hosted on the site, and also appear in a language select menu to appear on each site page (which can be overridden on press-specific pages). If multiple locales are not selected, the language toggle menu will not appear and extended language settings will not be available to presses.</message>
 	<message key="admin.locale.maybeIncomplete">Marked locales may be incomplete.</message>
@@ -26,7 +24,7 @@
 	<message key="admin.languages.downloadLocales">Download Locales</message>
 	<message key="admin.languages.downloadFailed">The locale download failed. The error message(s) below describe the failure.</message>
 	<message key="admin.languages.localeInstalled">The "{$locale}" locale has been installed. </message>
-	
+
 	<message key="admin.languages.download">Download Locale</message>
 	<message key="admin.languages.download.cannotOpen">Cannot open language descriptor from PKP web site.</message>
 	<message key="admin.languages.download.cannotModifyRegistry">Cannot add the new locale to the locale registry file, typically "registry/locales.xml".</message>
@@ -51,7 +49,7 @@
 	<message key="admin.presses.form.pathExists">The selected path is already in use by another press.</message>
 	<message key="admin.presses.enablePressInstructions">Enable this press to appear publicly on the site</message>
 	<message key="admin.presses.pressDescription">Press description</message>
-	
+
 	<message key="admin.press.pathImportInstructions">Existing press path or path to create (e.g., "omp").</message>
 	<message key="admin.presses.transcode">Transcode monograph metadata from ISO8859-1</message>
 	<message key="admin.presses.form.importPathRequired">The import path is required.</message>

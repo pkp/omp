@@ -13,7 +13,6 @@
  * @brief Describes basic Division properties.
  */
 
-// $Id$
 
 class Division extends DataObject {
 

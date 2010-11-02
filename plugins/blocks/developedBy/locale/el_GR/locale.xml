@@ -15,10 +15,8 @@
   * Giannis Tsakonas (john@lis.upatras.gr),
   * Kiriazis Vasilis (vaskir@lis.upatras.gr),
   * Papaxristopoulos Leonidas (leonidasp@lis.upatras.gr)
-  *
-  * $Id$
   -->
- 
+
 <locale name="el_GR" full_name="Greek">
 	<message key="plugins.block.developedBy.displayName">"Αναπτύχθηκε από" Block</message>
 	<message key="plugins.block.developedBy.description">Το plugin αυτό παρέχει ένα σύνδεσμο "Αναπτύχθηκε από" στην πλαϊνή μπάρα.</message>

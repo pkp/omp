@@ -12,7 +12,6 @@
  * @brief ReviewerAction class.
  */
 
-// $Id$
 
 
 import('classes.submission.common.Action');

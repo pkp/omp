@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the en_US (U.S. English) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.block.developedBy.displayName">"Developed By" Block</message>
 	<message key="plugins.block.developedBy.description">This plugin provides sidebar "Developed By" link.</message>

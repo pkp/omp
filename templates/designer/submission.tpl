@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Layout editor's view of submission details.
- *
- * $Id$
+
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="submission.page.editing" id=$submission->getId()}

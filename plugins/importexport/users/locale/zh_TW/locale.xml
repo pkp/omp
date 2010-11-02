@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   * 翻譯：鄭凱元
   * Localization strings for the Chinese locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="zh_TW" full_name="繁體中文">
 	<message key="plugins.importexport.users.displayName">使用者XML外掛程式</message>
 	<message key="plugins.importexport.users.description">匯入與匯出使用者</message>

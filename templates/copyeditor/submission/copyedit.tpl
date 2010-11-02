@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Subtemplate defining the copyeditor's submission management table.
- *
- * $Id$
+
  *}
 <div id="copyedit">
 <h3>{translate key="submission.copyedit"}</h3>

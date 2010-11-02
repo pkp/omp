@@ -8,14 +8,12 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * LDAP authentication plugin localization strings for the en_US (U.S. English) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.auth.ldap.displayName">LDAP</message>
 	<message key="plugins.auth.ldap.description">This plugin allows for authentication and synchronization of user accounts against an external LDAP data source.</message>
-	
+
 	<message key="plugins.auth.ldap.settings">LDAP Settings</message>
 	<message key="plugins.auth.ldap.settings.hostname">Server hostname</message>
 	<message key="plugins.auth.ldap.settings.hostname.description">E.g., "ldap.example.com", or "ldaps://ldap.example.com" (to use SSL)</message>

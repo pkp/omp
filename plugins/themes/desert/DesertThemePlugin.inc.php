@@ -12,7 +12,6 @@
  * @brief "Desert" theme plugin
  */
 
-// $Id$
 
 
 import('classes.plugins.ThemePlugin');

@@ -13,7 +13,6 @@
  * @brief Form for press managers to create/edit groups.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

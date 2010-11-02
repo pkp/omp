@@ -12,7 +12,6 @@
  * @brief Edit comment form.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

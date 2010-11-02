@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the es_ES (Español (España)) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.generic.translator.name">Complemento de traducción</message>
 	<message key="plugins.generic.translator.description">Este complemento permite el mantenimiento on-line de los ficheros de traducción.</message>

@@ -8,10 +8,8 @@
   * Weitergabe nach GNU GPL v2. Vollständiger Text s. docs/COPYING.
   *
   * Regionalisierungszeichenketten für die de_DE (Deutsche) Regionaleinstellung.
-  *
-  * $Id$
   -->
- 
+
 <locale name="de_DE" full_name="German">
 	<message key="plugins.importexport.users.displayName">Benutzer XML Einschub</message>
 	<message key="plugins.importexport.users.description">Benutzer Import und Export</message>

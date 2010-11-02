@@ -12,7 +12,6 @@
  * @brief Handle requests related to submission layout editing. 
  */
 
-// $Id$
 
 import('pages.designer.DesignerHandler');
 

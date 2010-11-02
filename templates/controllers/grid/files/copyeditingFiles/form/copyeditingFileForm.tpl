@@ -7,8 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Copyediting Files grid form -- Allow users to upload files to their copyediting responses
- *
- * $Id$
+
  *}
 
 {modal_title id="#uploadForm" key='editor.monograph.fairCopy.addFile' iconClass="fileManagement"}

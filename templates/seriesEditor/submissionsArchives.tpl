@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Show section editor's submission archive.
- *
- * $Id$
+
  *}
 <div id="submissions">
 <table width="100%" class="listing">

@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying Division objects.
  */
 
-// $Id$
 
 
 import ('classes.press.Division');

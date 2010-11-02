@@ -15,11 +15,9 @@
   * Giannis Tsakonas (john@lis.upatras.gr),
   * Kiriazis Vasilis (vaskir@lis.upatras.gr),
   * Papaxristopoulos Leonidas (leonidasp@lis.upatras.gr)
-  *
-  * $Id$
   -->
- 
-<locale name="el_GR" full_name="Greek">	
+
+<locale name="el_GR" full_name="Greek">
 	<message key="plugins.generic.translator.name">Plugin Μετάφρασης</message>
 	<message key="plugins.generic.translator.description">Το plugin αυτό επιτρέπει την δικτυακή διαχείριση των μεταφρασμένων αρχείων.</message>
 	<message key="plugins.generic.translator.longdescription">Σε αυτή την περιοχή ο Διαχειριστής του Ιστοτόπου μπορεί να δημιουργήσει, επεξεργαστεί και να ελέγξει τις μεταφράσεις του OMP. Αυτό γίνεται σε επίπεδο συλλογής και δεν θα πρέπει να χρησιμοποιείται για ένα μοναδικό περιοδικό. Αν διορθώνεται ή δημιουργείτε μια μετάφραση, παρακαλούμε σκεφτείτε το ενδεχόμενο να την υποβάλλετε στο Public Knowledge Project για διανομή με μελλοντικές εκδόσεις.</message>

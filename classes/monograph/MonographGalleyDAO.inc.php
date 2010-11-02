@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying MonographGalley/MonographHTMLGalley objects.
  */
 
-// $Id$
 
 
 import('classes.monograph.MonographGalley');

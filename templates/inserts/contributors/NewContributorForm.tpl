@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Form for creating new contributors from within the Contributors insert.
- *
- * $Id$
+
  *}
 
 <div class="newItemContainer">

@@ -13,7 +13,6 @@
  * @brief Describes an entry in the monograph history log.
  */
 
-// $Id$
 
 
 // Log levels

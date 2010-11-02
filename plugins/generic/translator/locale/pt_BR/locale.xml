@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the pt_BR (Português (Brasil)) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="pt_BR" full_name="Português do Brasil">
 	<message key="plugins.generic.translator.name">Plugin de Tradução</message>
 	<message key="plugins.generic.translator.description">Este plugin permite a manutenção, via browser, dos arquivos de tradução.</message>

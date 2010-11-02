@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying ProofreaderSubmission objects.
  */
 
-// $Id$
 
 
 /* FIXME #5557: We need a general code cleanup here (remove useless functions), and to integrate with monograph_stage_assignments table */

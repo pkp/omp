@@ -16,7 +16,6 @@
  * @brief Base class for reviewer forms.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

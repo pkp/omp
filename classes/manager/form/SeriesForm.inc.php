@@ -12,7 +12,6 @@
  * @brief Form for creating and modifying series.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

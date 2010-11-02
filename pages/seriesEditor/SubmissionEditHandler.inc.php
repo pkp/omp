@@ -12,7 +12,6 @@
  * @brief Handle requests for submission tracking.
  */
 
-// $Id$
 
 
 define('SERIES_EDITOR_ACCESS_EDIT', 0x00001);

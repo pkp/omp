@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Form for editors to create reviewers.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="pageTitle" value="seriesEditor.review.createReviewer"}

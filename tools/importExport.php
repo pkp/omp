@@ -12,7 +12,6 @@
  * @brief CLI tool to perform import/export tasks
  */
 
-// $Id$
 
 
 require(dirname(__FILE__) . '/bootstrap.inc.php');

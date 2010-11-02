@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Submission workflow wrapper for editors.
- *
- * $Id$
+
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="submission.page.$pageToDisplay" id=$submission->getId()}

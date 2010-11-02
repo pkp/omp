@@ -12,7 +12,6 @@
  * @brief CLI tool to generate a test locale file by munging the message strings of a real locale file.
  */
 
-// $Id$
 
 
 require(dirname(__FILE__) . '/bootstrap.inc.php');

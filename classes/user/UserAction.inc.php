@@ -13,7 +13,6 @@
  * @brief UserAction class.
  */
 
-// $Id$
 
 
 class UserAction {

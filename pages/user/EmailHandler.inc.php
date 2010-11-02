@@ -12,7 +12,6 @@
  * @brief Handle requests for user emails.
  */
 
-// $Id$
 
 import('pages.user.UserHandler');
 

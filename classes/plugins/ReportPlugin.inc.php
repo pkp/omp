@@ -12,7 +12,6 @@
  * @brief Abstract class for report plugins
  */
 
-// $Id$
 
 
 import('classes.plugins.Plugin');

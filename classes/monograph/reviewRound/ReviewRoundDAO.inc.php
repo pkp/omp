@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying ReviewRound objects.
  */
 
-//$Id$
 
 import('classes.monograph.reviewRound.ReviewRound');
 

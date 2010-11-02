@@ -11,10 +11,9 @@
  * @brief Wrapper for press block plugin.
  */
 
-//$Id$
 
 require_once('SelectPressBlockPlugin.inc.php');
 
 return new SelectPressBlockPlugin();
 
-?> 
+?>

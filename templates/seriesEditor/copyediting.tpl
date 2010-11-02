@@ -7,8 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Series editor index.
- *
- * $Id$
+
  *}
 {strip}
 {include file="common/header.tpl"}

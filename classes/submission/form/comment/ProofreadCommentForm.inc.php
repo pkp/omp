@@ -12,7 +12,6 @@
  * @brief ProofreadComment form.
  */
 
-// $Id$
 
 
 import('classes.submission.form.comment.CommentForm');

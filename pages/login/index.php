@@ -15,7 +15,6 @@
  * @ingroup pages_login
  */
 
-// $Id$
 
 
 switch ($op) {

@@ -12,7 +12,6 @@
  * @brief Handle requests for series editor functions.
  */
 
-// $Id$
 
 
 // Filter series

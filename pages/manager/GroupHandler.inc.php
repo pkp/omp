@@ -12,7 +12,6 @@
  * @brief Handle requests for editorial team management functions.
  */
 
-// $Id$
 
 import('pages.manager.ManagerHandler');
 

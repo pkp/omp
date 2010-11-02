@@ -12,7 +12,6 @@
  * @brief Wrapper class for uploading files to a site/press' public directory.
  */
 
-// $Id$
 
 import('classes.press.LibraryFile');
 import('lib.pkp.classes.file.PKPPublicFileManager');

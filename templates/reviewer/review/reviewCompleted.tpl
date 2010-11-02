@@ -6,8 +6,7 @@
  *
  * Show the review completed page.
  *
- *
- * $Id$
+
  *}
 
 {strip}

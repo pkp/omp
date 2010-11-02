@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying Series objects.
  */
 
-// $Id$
 
 
 import ('classes.press.Series');

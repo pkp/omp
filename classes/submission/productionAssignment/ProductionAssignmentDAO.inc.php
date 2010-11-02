@@ -13,7 +13,6 @@
  * @brief DAO class for production assignments.
  */
 
-// $Id$
 
 
 import('classes.submission.productionAssignment.ProductionAssignment');

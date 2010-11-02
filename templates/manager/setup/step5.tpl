@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Step 5 of press setup.
- *
- * $Id$
+
  *}
 {assign var="pageTitle" value="manager.setup.customizingTheLook"}
 {include file="manager/setup/setupHeader.tpl"}

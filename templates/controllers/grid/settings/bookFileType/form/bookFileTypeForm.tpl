@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Book File Type form under press management.
- *
- * $Id$
+
  *}
 
 <form name="bookFileTypeForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.bookFileType.BookFileTypeGridHandler" op="updateBookFileType"}">

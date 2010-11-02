@@ -13,7 +13,6 @@
  * @brief Basic class describing users existing in the system.
  */
 
-// $Id$
 
 
 import('classes.user.User');

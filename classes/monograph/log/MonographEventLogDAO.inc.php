@@ -13,7 +13,6 @@
  * @brief Class for inserting/accessing monograph history log entries.
  */
 
-// $Id$
 
 
 import ('classes.monograph.log.MonographEventLogEntry');

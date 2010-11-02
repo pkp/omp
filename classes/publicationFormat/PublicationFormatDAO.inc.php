@@ -12,7 +12,6 @@
  * @brief Operations for retrieving and modifying PublicationFormat objects.
  */
 
-// $Id$
 
 
 import('classes.publicationFormat.PublicationFormat');

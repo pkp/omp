@@ -14,7 +14,6 @@
  * This allows for monograph-specific functionality like logging, etc.
  */
 
-// $Id$
 
 
 import('classes.mail.MailTemplate');

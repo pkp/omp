@@ -23,7 +23,6 @@
  * [monograph id]/attachment
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.file.FileManager');

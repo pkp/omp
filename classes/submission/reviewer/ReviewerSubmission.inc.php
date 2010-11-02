@@ -13,7 +13,6 @@
  * @brief ReviewerSubmission class.
  */
 
-// $Id$
 
 
 import('classes.monograph.Monograph');

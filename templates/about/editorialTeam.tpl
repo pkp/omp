@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * About the Press index.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="pageTitle" value="about.editorialTeam"}

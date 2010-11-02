@@ -8,14 +8,12 @@
   * Weitergabe nach GNU GPL v2. Vollständiger Text s. docs/COPYING.
   *
   * LDAP Berechtigungsnachweiseinschub, Regionalisierungszeichenketten für die de_DE (deutsche) Regionaleinstellung.
-  *
-  * $Id$
   -->
- 
+
 <locale name="de_DE" full_name="German">
 	<message key="plugins.auth.ldap.displayName">LDAP</message>
 	<message key="plugins.auth.ldap.description">Dieser Einschub ermöglicht es, den Berechtigungsnachweis über eine externe LDAP Datenquelle zu beziehen und Benutzerkonten mit dieser Quelle zu synchronisieren.</message>
-	
+
 	<message key="plugins.auth.ldap.settings">LDAP Einstellungen</message>
 	<message key="plugins.auth.ldap.settings.hostname">Name des Hostservers</message>
 	<message key="plugins.auth.ldap.settings.hostname.description">z.B. "ldap.beispiel.com", or "ldaps://ldap.beispiel.com" (bei Verwendung von SSL)</message>

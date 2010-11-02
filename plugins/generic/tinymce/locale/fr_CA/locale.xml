@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the fr_CA (Canadian French) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.generic.tinymce.name">Plugiciel TinyMCE</message>
 	<message key="plugins.generic.tinymce.description"><![CDATA[Ce plugiciel permet l'édition tel écran - tel écrit de zones de textes de l'OMP, en utilisant l'éditeur de contenu <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a>.]]></message>

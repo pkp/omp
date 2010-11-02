@@ -15,7 +15,6 @@
  * TODO: Support importing user accounts from the authentication source into OMP.
  */
 
-// $Id$
 
 
 define('AUTH_PLUGIN_CATEGORY', 'auth');

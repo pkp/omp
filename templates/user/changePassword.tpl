@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Form to change a user's password.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="pageTitle" value="user.changePassword"}

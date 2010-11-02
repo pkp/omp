@@ -18,7 +18,6 @@
  * @brief Form for editing authentication source settings.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

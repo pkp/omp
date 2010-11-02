@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Files grid form
- *
- * $Id$
+
  *}
 {assign var='uniqueId' value=""|uniqid}
 

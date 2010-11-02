@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the ru_RU (Russian) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="ru_RU" full_name="Russian">
 	<!-- FIXME: We need a Russian translation. -->
 </locale>

@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Subtemplate defining the author's submission summary table.
- *
- * $Id$
+
  *}
 <div id="submission">
 <h3>{translate key="manuscript.submission"}</h3>

@@ -12,7 +12,6 @@
  * @brief Handle requests for modifying user profiles.
  */
 
-// $Id$
 
 import('pages.user.UserHandler');
 

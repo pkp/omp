@@ -12,7 +12,6 @@
  * @brief CLI tool for merging two OMP 2 user accounts.
  */
 
-// $Id$
 
 
 require(dirname(__FILE__) . '/bootstrap.inc.php');

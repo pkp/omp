@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * List a set of users and allow one to be selected.
- *
- * $Id$
+
  *}
 {strip}
 {assign var=pageTitle value="manager.groups.membership.addMember"}

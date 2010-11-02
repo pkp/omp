@@ -12,7 +12,6 @@
  * @brief "ClassicBlue" theme plugin
  */
 
-// $Id$
 
 
 import('classes.plugins.ThemePlugin');

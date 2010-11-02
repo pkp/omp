@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the da_DK (Dutch) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="da_DK" full_name="Dutch">
 	<message key="plugins.generic.tinymce.name">TinyMCE Plugin</message>
 	<message key="plugins.generic.tinymce.description"><![CDATA[Dette plugin aktiverer WYSIWYG redigering af OMP tekstfelter ved hjælp af <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> tekstbehandleren.]]></message>

@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Submission summary.
- *
- * $Id$
+
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="submission.page.$pageToDisplay" id=$submission->getId()}

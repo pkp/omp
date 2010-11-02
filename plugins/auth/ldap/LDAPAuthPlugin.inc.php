@@ -12,7 +12,6 @@
  * @brief LDAP authentication plugin.
  */
 
-// $Id$
 
 
 import('classes.plugins.AuthPlugin');

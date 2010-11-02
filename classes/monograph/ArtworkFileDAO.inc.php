@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying ArtworkFile objects.
  */
 
-// $Id$
 
 import('classes.monograph.ArtworkFile');
 

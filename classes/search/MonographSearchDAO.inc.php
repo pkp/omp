@@ -13,7 +13,6 @@
  * @brief DAO class for monograph search index.
  */
 
-// $Id$
 
 
 import('classes.search.MonographSearch');

@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Header for the manuscript submission pages.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="pageCrumbTitle" value="submission.submit"}

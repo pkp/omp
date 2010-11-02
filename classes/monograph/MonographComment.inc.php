@@ -12,7 +12,6 @@
  * @brief Class for MonographComment.
  */
 
-// $Id$
 
 
 /** Comment associative types. All types must be defined here. */

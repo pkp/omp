@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the en_US (U.S. English) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.generic.customLocale.name">Plugiciel de langue personnalisée</message>
 	<message key="plugins.generic.customLocale.description">Ce plugiciel permet de personnaliser le texte de l'interface utilisateur par défaut utilisé par OMP.</message>

@@ -14,7 +14,6 @@
  * @brief Operations for retrieving and modifying Author objects.
  */
 
-// $Id$
 
 
 import('classes.monograph.Author');

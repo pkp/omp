@@ -13,7 +13,6 @@
  * @brief Artwork file class.
  */
 
-// $Id$
 
 define('MONOGRAPH_ARTWORK_TYPE_OTHER',			1);
 define('MONOGRAPH_ARTWORK_TYPE_TABLE',			2);

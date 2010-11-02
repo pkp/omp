@@ -12,7 +12,6 @@
  * @brief Form to edit user profile.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

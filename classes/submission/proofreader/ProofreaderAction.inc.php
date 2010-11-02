@@ -16,7 +16,6 @@
  * @brief ProofreaderAction class.
  */
 
-// $Id$
 
 import('classes.submission.common.Action');
 

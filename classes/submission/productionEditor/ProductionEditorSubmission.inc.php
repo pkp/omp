@@ -13,7 +13,6 @@
  * @brief ProductionEditorSubmission class.
  */
 
-// $Id$
 
 
 import('classes.monograph.Monograph');

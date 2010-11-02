@@ -12,7 +12,6 @@
  * @brief Form to create or edit a production assignment.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

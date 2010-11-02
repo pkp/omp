@@ -12,7 +12,6 @@
  * @brief Operations for retrieving and modifying BookFileType objects.
  */
 
-// $Id$
 
 
 import('classes.bookFile.BookFileType');

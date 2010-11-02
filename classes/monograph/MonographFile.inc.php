@@ -13,7 +13,6 @@
  * @brief Monograph file class.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.submission.SubmissionFile');

@@ -13,7 +13,6 @@
  * @brief A galley is a final presentation version of the full-text of a monograph.
  */
 
-// $Id$
 
 
 import('classes.monograph.MonographFile');

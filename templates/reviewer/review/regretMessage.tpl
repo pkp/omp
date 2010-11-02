@@ -6,8 +6,7 @@
  *
  * Display a field for reviewers to enter regret messages
  *
- *
- * $Id$
+
  *}
 <script type="text/javascript">
 	{literal}

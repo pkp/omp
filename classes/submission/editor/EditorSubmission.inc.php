@@ -13,7 +13,6 @@
  * @brief AcquisitionsEditorSubmission class.
  */
 
-// $Id$
 
 
 import('classes.submission.seriesEditor.SeriesEditorSubmission');

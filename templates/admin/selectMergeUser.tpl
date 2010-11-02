@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * List users so the site administrator can choose users to merge.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="pageTitle" value="admin.mergeUsers"}

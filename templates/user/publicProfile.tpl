@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Public user profile display.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="pageTitle" value="user.profile.publicProfile"}

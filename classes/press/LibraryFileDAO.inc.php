@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying LibraryFile objects.
  */
 
-// $Id$
 
 import('classes.press.LibraryFile');
 import('classes.file.LibraryFileManager');

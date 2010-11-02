@@ -12,7 +12,6 @@
  * @brief CLI tool to execute a set of scheduled tasks.
  */
 
-// $Id$
 
 
 require(dirname(__FILE__) . '/bootstrap.inc.php');

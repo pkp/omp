@@ -8,8 +8,6 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the en_US (U.S. English) locale (default press settings).
-  *
-  * $Id$
   -->
 
 <locale name="en_US" full_name="U.S. English">
@@ -83,7 +81,7 @@
 	<message key="default.groups.abbrev.layoutEditor">LE</message>
 	<message key="default.groups.name.author">Author</message>
 	<message key="default.groups.plural.author">Authors</message>
-	<message key="default.groups.abbrev.author">Author</message>	
+	<message key="default.groups.abbrev.author">Author</message>
 	<message key="default.groups.name.chapterAuthor">Chapter Author</message>
 	<message key="default.groups.plural.chapterAuthor">Chapter Authors</message>
 	<message key="default.groups.abbrev.chapterAuthor">CA</message>

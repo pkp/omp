@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the es_ES (Español (España)) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="es_ES" full_name="Español (España)">
 	<message key="plugins.block.information.displayName">Information Block</message>
 	<message key="plugins.block.information.description">Este Complemento proporciona un vínculo de "Información" en la barra lateral.</message>

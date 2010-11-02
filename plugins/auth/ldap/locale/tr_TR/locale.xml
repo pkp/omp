@@ -8,14 +8,12 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * LDAP authentication plugin localization strings for the tr_TR (Türkiye Türkçesi) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="tr_TR" full_name="Türkiye Türkçesi">
 	<message key="plugins.auth.ldap.displayName">LDAP</message>
 	<message key="plugins.auth.ldap.description">LDAP kullanıcı tanıma eklentisi.</message>
-	
+
 	<message key="plugins.auth.ldap.settings">LDAP Ayarları</message>
 	<message key="plugins.auth.ldap.settings.hostname">Sunucu adı</message>
 	<message key="plugins.auth.ldap.settings.hostname.description">Örneğin "ldap.example.com", veya "ldaps://ldap.example.com" (SSL erişimi var ise)</message>

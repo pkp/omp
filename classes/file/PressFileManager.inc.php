@@ -12,7 +12,6 @@
  * @brief Class defining operations for private press file management.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.file.FileManager');

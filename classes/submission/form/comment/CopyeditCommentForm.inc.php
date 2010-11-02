@@ -13,7 +13,6 @@
  * @brief CopyeditComment form.
  */
 
-// $Id$
 
 
 import('classes.submission.form.comment.CommentForm');

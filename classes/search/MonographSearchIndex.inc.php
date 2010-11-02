@@ -12,7 +12,6 @@
  * @brief Class to add content to the monograph search index.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.search.SearchFileParser');

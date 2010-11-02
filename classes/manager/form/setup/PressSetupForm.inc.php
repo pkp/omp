@@ -16,7 +16,6 @@
  * @brief Base class for press setup forms.
  */
 
-// $Id$
 
 import('lib.pkp.classes.form.Form');
 

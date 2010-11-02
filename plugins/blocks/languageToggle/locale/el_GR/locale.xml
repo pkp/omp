@@ -15,10 +15,8 @@
   * Giannis Tsakonas (john@lis.upatras.gr),
   * Kiriazis Vasilis (vaskir@lis.upatras.gr),
   * Papaxristopoulos Leonidas (leonidasp@lis.upatras.gr)
-  *
-  * $Id$
   -->
- 
+
 <locale name="el_GR" full_name="Greek">
 	<message key="plugins.block.languageToggle.displayName">Block Αλλαγής Γλώσσας</message>
 	<message key="plugins.block.languageToggle.description">Το plugin αυτό παρέχει ένα εργαλείο Αλλαγής γλώσσας στην πλαϊνή μπάρα.</message>

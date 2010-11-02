@@ -6,8 +6,7 @@
  *
  * Generic progress bar page.
  * Displays a simple message and progress bar.
- *
- * $Id$
+
  *}
 {strip}
 {include file="common/header.tpl"}

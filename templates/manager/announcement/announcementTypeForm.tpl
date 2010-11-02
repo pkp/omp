@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Announcement type form under management role.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="pageCrumbTitle" value="$announcementTypeTitle"}

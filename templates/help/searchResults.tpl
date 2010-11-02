@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Show help search results.
- *
- * $Id$
+
  *}
 {strip}
 {include file="help/header.tpl"}

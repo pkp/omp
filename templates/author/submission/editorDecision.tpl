@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Subtemplate defining the author's editor decision table.
- *
- * $Id$
+
  *}
 <div id="editorDecision">
 <h3>{translate key="submission.editorDecision"}</h3>

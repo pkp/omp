@@ -13,7 +13,6 @@
  * @brief Class for inserting/accessing monograph email log entries.
  */
 
-// $Id$
 
 
 import ('classes.monograph.log.MonographEmailLogEntry');

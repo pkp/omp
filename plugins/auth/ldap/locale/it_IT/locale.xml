@@ -9,14 +9,12 @@
   *
   * LDAP authentication plugin localization strings for the it_IT (Italiano) locale.
   * Contributed by AePIC Team CILEA.
-  *
-  * $Id$
   -->
- 
+
 <locale name="it_IT" full_name="Italiano">
 	<message key="plugins.auth.ldap.displayName">LDAP</message>
 	<message key="plugins.auth.ldap.description">LDAP plugin di autenticazione.</message>
-	
+
 	<message key="plugins.auth.ldap.settings">LDAP inpostazioni</message>
 	<message key="plugins.auth.ldap.settings.hostname">Server hostname</message>
 	<message key="plugins.auth.ldap.settings.hostname.description">E.g., "ldap.example.com", o "ldaps://ldap.example.com" (per usare SSL)</message>

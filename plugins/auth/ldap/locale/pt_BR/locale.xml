@@ -8,14 +8,12 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * LDAP authentication plugin localization strings for the pt_BR locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="pt_BR" full_name="Português do Brasil">
 	<message key="plugins.auth.ldap.displayName">LDAP</message>
 	<message key="plugins.auth.ldap.description">Plugin de Autenticação LDAP.</message>
-	
+
 	<message key="plugins.auth.ldap.settings">Configurações LDAP</message>
 	<message key="plugins.auth.ldap.settings.hostname">Servidor</message>
 	<message key="plugins.auth.ldap.settings.hostname.description">Ex.: "ldap.example.com", ou "ldaps://ldap.example.com" (para uso com SSL)</message>

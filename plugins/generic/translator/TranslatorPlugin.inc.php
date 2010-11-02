@@ -12,7 +12,6 @@
  * @brief This plugin helps with translation maintenance.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.plugins.GenericPlugin');

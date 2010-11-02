@@ -12,7 +12,6 @@
  * @brief Handle requests for site administrative/maintenance functions. 
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.site.Version');

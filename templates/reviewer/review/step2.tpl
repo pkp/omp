@@ -6,8 +6,7 @@
  *
  * Show the step 2 review page
  *
- *
- * $Id$
+
  *}
 
 {strip}

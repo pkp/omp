@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Show listing of unassigned submissions.
- *
- * $Id$
+
  *}
 <a name="submissions"></a>
 

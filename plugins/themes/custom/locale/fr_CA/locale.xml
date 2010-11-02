@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the en_US (U.S. English) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="en_US" full_name="U.S. English">
 	<message key="plugins.theme.custom.name">Plugiciel de thème personnalisé</message>
 	<message key="plugins.theme.custom.description">Ce plugiciel met en place un thème personnalisable.</message>

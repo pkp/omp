@@ -12,7 +12,6 @@
  * @brief Handle requests for files browser functions.
  */
 
-// $Id$
 
 import('pages.manager.ManagerHandler');
 

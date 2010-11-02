@@ -7,8 +7,7 @@
  * About the Press / About This Publishing System.
  *
  * TODO: Display the image describing the system.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="pageTitle" value="about.aboutThisPublishingSystem"}

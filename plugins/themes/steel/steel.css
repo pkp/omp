@@ -5,8 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Steel theme.
- *
- * $Id$
  */
 
 body {
@@ -64,7 +62,7 @@ input.defaultButton {
 	background-color: #f9f9f9;
 	border-left: 1px solid black;
 	border-right: 1px solid black;
-	border-bottom: 1px solid black;	
+	border-bottom: 1px solid black;
 }
 
 #main h2 {

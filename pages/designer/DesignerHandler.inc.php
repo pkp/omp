@@ -12,7 +12,6 @@
  * @brief Handle requests for designer functions. 
  */
 
-// $Id$
 
 
 import('classes.submission.designer.DesignerAction');

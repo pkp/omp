@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display error messages associated with a failed language download.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="pageTitle" value="common.languages"}

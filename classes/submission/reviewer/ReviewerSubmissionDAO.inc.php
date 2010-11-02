@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying ReviewerSubmission objects.
  */
 
-// $Id$
 
 
 import('classes.submission.reviewer.ReviewerSubmission');

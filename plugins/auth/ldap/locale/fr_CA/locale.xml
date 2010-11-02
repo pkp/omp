@@ -8,15 +8,13 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the fr_CA (Canadian French) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.auth.ldap.displayName">Protocole LDAP</message>
 	<message key="plugins.auth.ldap.description">Ce plugiciel permet l'authentification et la synchronisation de comptes d'utilisateurs au moyen d'
 une source de données LDAP externe.</message>
-	
+
 	<message key="plugins.auth.ldap.settings">Paramètres LDAP</message>
 	<message key="plugins.auth.ldap.settings.hostname">Nom d'hôte du serveur</message>
 	<message key="plugins.auth.ldap.settings.hostname.description">Par ex. : "ldap.exemple.com", ou "ldaps://ldap.exemple.com" (pour utiliser SSL)</message>

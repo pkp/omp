@@ -12,7 +12,6 @@
  * @brief Handle requests for import/export functions.
  */
 
-// $Id$
 
 import('pages.manager.ManagerHandler');
 

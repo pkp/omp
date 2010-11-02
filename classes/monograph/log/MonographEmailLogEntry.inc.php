@@ -13,7 +13,6 @@
  * @brief Describes an entry in the monograph email log.
  */
 
-// $Id$
 
 
 // Email associative types. All types must be defined here

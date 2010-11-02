@@ -12,7 +12,6 @@
  * @brief Handle requests for copyeditor functions. 
  */
 
-// $Id$
 
 
 import ('classes.submission.copyeditor.CopyeditorAction');

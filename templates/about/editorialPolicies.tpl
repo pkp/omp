@@ -5,8 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * About the Press / Editorial Policies.
- * 
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="about.editorialPolicies"}
@@ -75,7 +73,7 @@
 </div>
 {/if}
 
-{if $currentPress->getLocalizedSetting('openAccessPolicy') != ''} 
+{if $currentPress->getLocalizedSetting('openAccessPolicy') != ''}
 <div id="openAccessPolicy"><h3>{translate key="about.openAccessPolicy"}</h3>
 <p>{$currentPress->getLocalizedSetting('openAccessPolicy')|nl2br}</p>
 

@@ -5,8 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Night theme.
- *
- * $Id$
  */
 
 body {
@@ -49,14 +47,14 @@ input.defaultButton {
 }
 
 #headerTitle {
-	color: #ffffff;	
+	color: #ffffff;
 }
 
 #main {
 	background-color: #000000;
 	border-left: 1px solid black;
 	border-right: 1px solid black;
-	border-bottom: 1px solid black;	
+	border-bottom: 1px solid black;
 }
 
 #navbar {
@@ -64,8 +62,8 @@ input.defaultButton {
 }
 
 #breadcrumb {
-	padding-bottom: 10px;	
-	border-bottom: 1px solid red;	
+	padding-bottom: 10px;
+	border-bottom: 1px solid red;
 }
 
 #content {

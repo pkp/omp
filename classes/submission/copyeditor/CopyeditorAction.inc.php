@@ -13,7 +13,6 @@
  * @brief CopyeditorAction class.
  */
 
-// $Id$
 
 import('classes.submission.common.Action');
 

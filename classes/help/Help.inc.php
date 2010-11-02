@@ -13,7 +13,6 @@
  * help ids.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.help.PKPHelp');

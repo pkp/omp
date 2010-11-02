@@ -12,7 +12,6 @@
  * @brief CLI tool for installing OMP.
  */
 
-// $Id$
 
 
 require(dirname(__FILE__) . '/bootstrap.inc.php');

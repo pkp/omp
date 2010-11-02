@@ -12,7 +12,6 @@
  * @brief Handle requests for reviewer functions.
  */
 
-
 import('classes.submission.reviewer.ReviewerAction');
 import('classes.handler.Handler');
 

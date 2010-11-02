@@ -10,8 +10,6 @@
 #
 # Usage: buildpkg.sh <version> [<tag>] [<patch_dir>]
 #
-# $Id$
-#
 
 GITREP=git://github.com/pkp/omp.git
 

@@ -16,7 +16,6 @@
  * @brief DesignerAction class.
  */
 
-// $Id$
 
 
 import('classes.submission.common.Action');

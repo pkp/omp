@@ -12,7 +12,6 @@
  * @brief Form to change metadata information for a submission.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

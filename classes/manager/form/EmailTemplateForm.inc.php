@@ -13,7 +13,6 @@
  * @brief Form for creating and modifying email templates.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

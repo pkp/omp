@@ -12,7 +12,6 @@
  * @brief Handle requests for editor functions.
  */
 
-// $Id$
 
 // Filter editor
 define('FILTER_EDITOR_ALL', 0);

@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the ja_JP (日本語) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="ja_JP" full_name="日本語">
 	<message key="plugins.generic.tinymce.name">TinyMCEプラグイン</message>
 	<message key="plugins.generic.tinymce.description"><![CDATA[<a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a>コンテンツエディタを使って、テキストエリアの内容をWSYWIGで編集できるようにします。]]></message>

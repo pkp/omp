@@ -9,9 +9,7 @@
  * @class AdminSettingsHandler
  * @ingroup pages_admin
  *
- * @brief Handle requests for changing site admin settings. 
- *
- * $Id$
+ * @brief Handle requests for changing site admin settings.
  */
 
 import('pages.admin.AdminHandler');

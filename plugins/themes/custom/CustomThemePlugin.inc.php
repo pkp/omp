@@ -12,7 +12,6 @@
  * @brief "Custom" theme plugin
  */
 
-// $Id$
 
 
 import('classes.plugins.ThemePlugin');

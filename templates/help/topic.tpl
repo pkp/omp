@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Help topic.
- *
- * $Id$
+
  *}
 {foreach name=sections from=$topic->getSections() item=section}
 	<a name="section{math equation="counter - 1" counter=$smarty.foreach.sections.iteration}"></a>

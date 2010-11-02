@@ -12,7 +12,6 @@
  * @brief Handle requests for announcement management functions.
  */
 
-// $Id$
 
 import('lib.pkp.pages.manager.PKPAnnouncementHandler');
 

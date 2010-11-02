@@ -15,7 +15,6 @@
  *
  */
 
-// $Id$
 
 
 require_once('LilacThemePlugin.inc.php');

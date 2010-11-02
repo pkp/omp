@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying MonographComment objects.
  */
 
-// $Id$
 
 
 import('classes.monograph.MonographComment');

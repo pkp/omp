@@ -10,10 +10,8 @@
   * Localization strings for the nl_NL (Nederlands) locale.
   *
   * Translated by Martin van Luijt, m.van.luijt 'at' hccnet.nl
-  *
-  * $Id$
   -->
- 
+
 <locale name="nl_NL" full_name="Nederlands">
 	<message key="plugins.generic.tinymce.name">TinyMCE Plugin</message>
 	<message key="plugins.generic.tinymce.description"><![CDATA[Deze plugin verzorgt WYSIWYG bewerken in OMP tekstvelden met behulp van de <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a> content editor.]]></message>

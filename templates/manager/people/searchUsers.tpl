@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Search form for enrolled users.
- *
- * $Id$
+
  *
  *}
 {strip}

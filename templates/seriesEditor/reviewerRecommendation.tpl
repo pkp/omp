@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Form to set the due date for a review.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="pageTitle" value="submission.recommendation"}

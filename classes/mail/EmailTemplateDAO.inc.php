@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying Email Template objects.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.mail.PKPEmailTemplateDAO');

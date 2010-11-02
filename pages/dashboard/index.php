@@ -14,7 +14,6 @@
  *
  */
  
-// $Id$
 
 define('HANDLER_CLASS', 'DashboardHandler');
 import('pages.dashboard.DashboardHandler');

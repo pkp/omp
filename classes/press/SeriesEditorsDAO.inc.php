@@ -12,7 +12,6 @@
  * @brief Class for DAO relating series to editors.
  */
 
-// $Id$
 
 
 class SeriesEditorsDAO extends DAO {

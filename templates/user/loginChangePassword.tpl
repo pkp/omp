@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Form to change a user's password in order to login.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="passwordLengthRestrictionLocaleKey" value="user.register.passwordLengthRestriction"}

@@ -13,7 +13,6 @@
  * @brief OMP extension of PKPNoteDAO
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.note.PKPNoteDAO');

@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the hr_HR (hrvatski) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="hr_HR" full_name="Hrvatski">
 	<message key="plugins.generic.translator.name">Dodatak za prevođenje</message>
 	<message key="plugins.generic.translator.description">Ovaj dodatak omogućuje izradu i ažuriranje datoteka prijevoda sustava preko mrežnog sučelja.</message>

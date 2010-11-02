@@ -12,7 +12,6 @@
  * @brief Form to notify a user regarding a file
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

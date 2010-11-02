@@ -6,8 +6,7 @@
  *
  * Show submission regrets/cancels/earlier rounds
  *
- *
- * $Id$
+
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="seriesEditor.regrets.title" monographId=$submission->getId()}

@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the fr_CA (Canadian French) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.importexport.users.displayName">Plugiciel XML pour utilisateurs</message>
 	<message key="plugins.importexport.users.description">Importer et exporter des utilisateurs</message>

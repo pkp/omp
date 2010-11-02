@@ -18,7 +18,6 @@
  *
  */
 
-// $Id$
 
 import('lib.pkp.classes.announcement.PKPAnnouncement');
 

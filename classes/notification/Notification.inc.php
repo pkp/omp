@@ -12,7 +12,6 @@
  * @brief OMP subclass for Notifications (defines OMP-specific types and icons).
  */
 
-// $Id$
 
 /** Notification associative types. */
 define('NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED', 	0x1000001);

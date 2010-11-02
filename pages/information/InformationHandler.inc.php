@@ -12,7 +12,6 @@
  * @brief Display press information.
  */
 
-// $Id$
 
 
 import('classes.handler.Handler');

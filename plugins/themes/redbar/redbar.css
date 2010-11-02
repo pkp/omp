@@ -5,8 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Redbar theme.
- *
- * $Id$
  */
 
 body {
@@ -92,6 +90,6 @@ input.defaultButton {
 #navbar a {
 	background-color: red;
 	padding: 5px;
-	color: white;	
+	color: white;
 }
 

@@ -12,7 +12,6 @@
  * @brief Handle requests for changing site language settings. 
  */
 
-// $Id$
 
 import('pages.admin.AdminHandler');
 

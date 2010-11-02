@@ -12,7 +12,6 @@
  * @brief Handle requests for submission tracking.
  */
 
-// $Id$
 
 import('pages.author.AuthorHandler');
 

@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Subtemplate defining the submission status table.
- *
- * $Id$
+
  *}
 <div id="status">
 <h3>{translate key="common.status"}</h3>

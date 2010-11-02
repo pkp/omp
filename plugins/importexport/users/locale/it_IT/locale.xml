@@ -9,10 +9,8 @@
   *
   * Localization strings for the en_US (Italian) locale.
   * Contributed by AePIC Team CILEA.
-  *
-  * $Id$
   -->
- 
+
 <locale name="it_IT" full_name="Italiano">
 	<message key="plugins.importexport.users.displayName">XML Plugin Utenti</message>
 	<message key="plugins.importexport.users.description">Importa e esporta utenti</message>

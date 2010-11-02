@@ -17,7 +17,6 @@
  * @brief Basic class describing a book file type.
  */
 
-// $Id$
 
 define('BOOK_FILE_CATEGORY_DOCUMENT', 1);
 define('BOOK_FILE_CATEGORY_ARTWORK', 2);

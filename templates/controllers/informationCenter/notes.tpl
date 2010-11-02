@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display submission file notes/note form.
- *
- * $Id$
+
  *}
 <script type="text/javascript">
 	{literal}

@@ -12,7 +12,6 @@
  * @brief OMP subclass for Notes (defines OMP-specific types)
  */
 
-// $Id$
 
 /** Notification associative types. */
 define('NOTE_TYPE_EDITOR_TO_REVIEWER', 	0x1000001);

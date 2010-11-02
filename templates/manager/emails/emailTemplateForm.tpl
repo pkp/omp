@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Basic press settings under site administration.
- *
- * $Id$
+
  *}
 {strip}
 {if !$isNewTemplate}

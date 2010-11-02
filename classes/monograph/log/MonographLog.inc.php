@@ -16,7 +16,6 @@
  * @brief Static class for adding / accessing monograph log entries.
  */
 
-// $Id$
 
 
 class MonographLog {

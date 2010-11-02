@@ -13,7 +13,6 @@
  * @brief Operations for retrieving and modifying DesignerSubmission objects.
  */
 
-// $Id$
 
 
 import('classes.submission.designer.DesignerSubmission');

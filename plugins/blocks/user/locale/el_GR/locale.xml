@@ -15,10 +15,8 @@
   * Giannis Tsakonas (john@lis.upatras.gr),
   * Kiriazis Vasilis (vaskir@lis.upatras.gr),
   * Papaxristopoulos Leonidas (leonidasp@lis.upatras.gr)
-  *
-  * $Id$
   -->
- 
+
 <locale name="el_GR" full_name="Greek">
 	<message key="plugins.block.user.displayName">Block Χρήστη</message>
 	<message key="plugins.block.user.description">Το plugin αυτό εμφανίζει στην πλαϊνή μπάρα εργαλεία διαχείρισης του λογαριασμού του χρήστη (π.χ. σύνδεση, αποσύνδεση, σύνδεσμος προφίλ χρήστη κλπ).</message>

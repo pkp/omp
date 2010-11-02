@@ -17,7 +17,6 @@
  * @brief Form for system installation.
  */
 
-// $Id$
 
 
 import('classes.install.Install');

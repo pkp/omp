@@ -5,8 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Desert theme.
- *
- * $Id$
  */
 
 body {
@@ -31,7 +29,7 @@ a:hover {
 }
 
 #header {
-	background: #e5e5c7; 
+	background: #e5e5c7;
 	border-bottom: 2px solid #898e79;
 }
 
@@ -39,7 +37,7 @@ a:hover {
 	padding-bottom: 10px;
 	padding-top: 50px;
 	height: 97px;
-	background: #e5e5c7;	
+	background: #e5e5c7;
 }
 
 #header h1 {

@@ -9,13 +9,13 @@
   *
   * LDAP authentication plugin localization strings for the Chinese locale.
   * 翻譯：鄭凱元
-  * $Id$
+
   -->
- 
+
 <locale name="zh_TW" full_name="繁體中文">
 	<message key="plugins.auth.ldap.displayName">LDAP</message>
 	<message key="plugins.auth.ldap.description">這個外掛程式可以讓你透過一個外部的LDAP資料來源來認證與同步化使用者的帳號資料。</message>
-	
+
 	<message key="plugins.auth.ldap.settings">LDAP設定</message>
 	<message key="plugins.auth.ldap.settings.hostname">伺服器主機名稱</message>
 	<message key="plugins.auth.ldap.settings.hostname.description">例如："ldap.example.com",或者 "ldaps://ldap.example.com" (使用SSL)</message>

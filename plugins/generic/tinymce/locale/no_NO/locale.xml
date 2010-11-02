@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the no_NO (Norwegian) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="no_NO" full_name="Norwegian">
 	<message key="plugins.generic.tinymce.name">TinyMCE-plugin</message>
 	<message key="plugins.generic.tinymce.description"><![CDATA[Denne plugin'en oppretter WYSIWYG-redigering i OMP tekstfelt ved bruk av <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a>-editor.]]></message>

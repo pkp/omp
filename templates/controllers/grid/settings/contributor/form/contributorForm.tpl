@@ -6,8 +6,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Sponsors grid form
- *
- * $Id$
+
  *}
 
 <form name="editSponsorForm" id="editSponsorForm" method="post" action="{url component="grid.settings.contributor.ContributorGridHandler" op="updateContributor"}">

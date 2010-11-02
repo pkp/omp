@@ -12,7 +12,6 @@
  * @brief Form for press managers to edit user profiles.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

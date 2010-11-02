@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the fr_CA (Français (Canada)) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="fr_CA" full_name="Français (Canada)">
 	<message key="plugins.block.information.displayName">Bloc d'informations</message>
 	<message key="plugins.block.information.description">Ce plugiciel offre un lien d'information dans l'encadré latéral.</message>

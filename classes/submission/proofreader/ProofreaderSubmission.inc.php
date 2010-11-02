@@ -17,7 +17,6 @@
  * @brief Describes a proofreader's view of a submission
  */
 
-// $Id$
 
 
 import('classes.monograph.Monograph');

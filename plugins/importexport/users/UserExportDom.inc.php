@@ -12,7 +12,6 @@
  * @brief User plugin DOM functions for export
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.xml.XMLCustomWriter');

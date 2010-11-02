@@ -17,7 +17,6 @@
  * @brief Monograph galley editing form.
  */
 
-// $Id$
 
 
 import('lib.pkp.classes.form.Form');

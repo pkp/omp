@@ -17,7 +17,6 @@
  * @brief Describes a designer's view of a submission
  */
 
-// $Id$
 
 
 import('classes.monograph.Monograph');

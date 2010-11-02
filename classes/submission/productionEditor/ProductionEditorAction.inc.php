@@ -12,7 +12,6 @@
  * @brief ProductionEditorAction class.
  */
 
-// $Id$
 
 import('classes.submission.designer.DesignerAction');
 

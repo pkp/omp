@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Library Files grid form
- *
- * $Id$
+
  *}
 <!--  Need a random ID to give to modal elements so that they are unique in the DOM (can not use
 		fileId like elsewhere in the modal, because there may not be an associated file yet-->

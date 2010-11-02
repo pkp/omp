@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the ja_JP (日本語) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="ja_JP" full_name="日本語">
 	<message key="plugins.importexport.users.displayName">ユーザXMLプラグイン</message>
 	<message key="plugins.importexport.users.description">ユーザのインポート・エクスポート</message>

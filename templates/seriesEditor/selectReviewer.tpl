@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * List reviewers and give the ability to select a reviewer.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="pageTitle" value="user.role.reviewers"}

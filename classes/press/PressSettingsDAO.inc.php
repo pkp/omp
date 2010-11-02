@@ -12,7 +12,6 @@
  * @brief Operations for retrieving and modifying press settings.
  */
 
-// $Id$
 
 
 class PressSettingsDAO extends DAO {

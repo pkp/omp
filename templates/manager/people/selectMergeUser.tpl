@@ -5,8 +5,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * List enrolled users so the manager can choose users to merge.
- *
- * $Id$
+
  *}
 {strip}
 {assign var="pageTitle" value="manager.people.mergeUsers"}

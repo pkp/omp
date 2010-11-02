@@ -21,8 +21,6 @@
   * 	<descr>Send reviewer reminder emails, once per hour.</descr>
   * 	<frequency minute="0"/>
   * </task>
-  *
-  * $Id$
   -->
 
 <!DOCTYPE scheduled_tasks [

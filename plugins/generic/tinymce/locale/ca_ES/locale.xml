@@ -8,10 +8,8 @@
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Localization strings for the ca_ES (Català) locale.
-  *
-  * $Id$
   -->
- 
+
 <locale name="ca_ES" full_name="Català">
 	<message key="plugins.generic.tinymce.name">Connector TinyMCE</message>
 	<message key="plugins.generic.tinymce.description"><![CDATA[Aquest connector habilita l'edició WYSIWYG de les àrees de text de l'OMP mitjançant l'editor de continguts <a href="http://tinymce.moxiecode.com" target="_new">TinyMCE</a>.]]></message>

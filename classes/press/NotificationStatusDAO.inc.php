@@ -12,7 +12,6 @@
  * @brief Operations for retrieving and modifying users' press notification status.
  */
 
-// $Id$
 
 
 class NotificationStatusDAO extends DAO {

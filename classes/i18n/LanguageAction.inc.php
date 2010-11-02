@@ -16,7 +16,6 @@
  * @brief LanguageAction class.
  */
 
-// $Id$
 
 
 define('LANGUAGE_PACK_DESCRIPTOR_URL', 'http://pkp.sfu.ca/omp/xml/%s/locales.xml');

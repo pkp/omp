@@ -15,7 +15,6 @@
  * FIXME: NEAR; precedence w/o parens?; stemming; weighted counting
  */
 
-// $Id$
 
 
 // Search types

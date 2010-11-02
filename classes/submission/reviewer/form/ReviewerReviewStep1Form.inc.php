@@ -12,7 +12,6 @@
  * @brief Form for Step 1 of a review.
  */
 
-// $Id$
 
 
 import('classes.submission.reviewer.form.ReviewerReviewForm');
