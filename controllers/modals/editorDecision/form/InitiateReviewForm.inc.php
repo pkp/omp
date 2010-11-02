@@ -98,13 +98,13 @@ class InitiateReviewForm extends Form {
 
 		// 4. Add the selected files to the new round
 		$selectedFiles = $this->getData('selectedFiles');
-		$fileForReview = array();
-		foreach ($selectedFiles as $selectedFile) {
-			$fileForReview[] = explode("-", $selectedFile);
+		if(is_array($selectedFiles)) {
+			$filesForReview = array();
+			foreach ($selectedFiles as $selectedFile) {
+				$filesForReview[] = explode("-", $selectedFile);
+			}
+			$reviewAssignmentDAO->setFilesForReview($this->_monographId, REVIEW_TYPE_INTERNAL, 1, $filesForReview);
 		}
-		$reviewAssignmentDAO->setFilesForReview($this->_monographId, REVIEW_TYPE_INTERNAL, 1, $fileForReview);
-
-		return 1;
 	}
 }
 
