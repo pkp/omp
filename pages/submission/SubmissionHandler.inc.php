@@ -92,7 +92,7 @@ class SubmissionHandler extends Handler {
 		$templateMgr->assign_by_ref('monograph', $monograph);
 
 		import('classes.submission.common.Action');
-		import('linkAction.LinkAction');
+		import('classes.linkAction.LinkAction');
 		$dispatcher =& $this->getDispatcher();
 		$actionArgs = array('monographId' => $monograph->getId(), 'stageId' => $monograph->getCurrentStageId());
 
