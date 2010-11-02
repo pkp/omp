@@ -30,7 +30,7 @@ class ManageFinalDraftFilesForm extends Form {
 
 
 	//
-	// Template methods from Form
+	// Overridden template methods
 	//
 	/**
 	 * Initialize variables
@@ -46,6 +46,7 @@ class ManageFinalDraftFilesForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('reviewType', 'round', 'selectedFiles'));

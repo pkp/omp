@@ -49,7 +49,7 @@ class ChapterForm extends Form {
 	}
 
 	//
-	// Template methods from Form
+	// Overridden template methods
 	//
 	/**
 	 * Initialize form data from the associated chapter.
@@ -69,6 +69,7 @@ class ChapterForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('title'));
@@ -76,6 +77,7 @@ class ChapterForm extends Form {
 
 	/**
 	 * Save chapter
+	 * @see Form::execute()
 	 */
 	function execute() {
 		$chapterDao =& DAORegistry::getDAO('ChapterDAO');

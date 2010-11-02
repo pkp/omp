@@ -46,6 +46,7 @@ class SubmissionParticipantsHandler extends Handler {
 	/**
 	 * Display the submission participants grid
 	 * @return JSON
+	 * @see Form::fetch()
 	 */
 	function fetch($args, &$request) {
 		// Identify the submission Id

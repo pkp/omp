@@ -34,7 +34,7 @@ class InitiateReviewForm extends Form {
 	//
 	/**
 	 * Get the Monograph
-	 * @return object monograph
+	 * @return Monograph
 	 */
 	function getMonograph() {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
@@ -42,7 +42,7 @@ class InitiateReviewForm extends Form {
 	}
 
 	//
-	// Template methods from Form
+	// Overridden template methods
 	//
 	/**
 	* Initialize form data with the author name and the monograph id.
@@ -63,13 +63,13 @@ class InitiateReviewForm extends Form {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $this->_monographId);
 		$templateMgr->assign_by_ref('monograph', $monograph);
-//		$this->setData('reviewType', $reviewType);
 		$this->setData('round', $monograph->getCurrentRound());
 		return parent::fetch($request);
 	}
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('selectedFiles', 'monographId'));

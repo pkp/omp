@@ -31,9 +31,8 @@ class CopyeditingUserForm extends Form {
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
-
 	//
-	// Template methods from Form
+	// Overridden template methods
 	//
 	/**
 	 * Initialize variables
@@ -44,6 +43,7 @@ class CopyeditingUserForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('userId', 'selected-listbuilder-files-copyeditingfileslistbuilder', 'responseDueDate', 'personalMessage'));
@@ -51,6 +51,7 @@ class CopyeditingUserForm extends Form {
 
 	/**
 	 * Assign user to copyedit the selected files
+	 * @see Form::execute()
 	 */
 	function execute() {
 		$monographId = $this->_monographId;

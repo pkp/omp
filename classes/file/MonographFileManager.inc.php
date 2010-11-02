@@ -456,7 +456,7 @@ class MonographFileManager extends FileManager {
 	/**
 	 * PRIVATE routine to generate a dummy file. Used in handleUpload.
 	 * @param $monograph object
-	 * @return object monographFile
+	 * @return MonographFile
 	 */
 	function &generateDummyFile(&$monograph, $type) {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');

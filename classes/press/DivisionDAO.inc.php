@@ -81,7 +81,7 @@ class DivisionDAO extends DAO {
 	/**
 	 * Internal function to return an Division object from a row.
 	 * @param $row array
-	 * @return Object
+	 * @return Division
 	 */
 	function _fromRow(&$row) {
 		$division = $this->newDataObject();

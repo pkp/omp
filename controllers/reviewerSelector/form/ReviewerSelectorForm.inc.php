@@ -22,18 +22,19 @@ class ReviewerSelectorForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function ReviewerSelectorForm($monographId = null) {	
+	function ReviewerSelectorForm($monographId = null) {
 		parent::Form('controllers/reviewerSelector/advancedSearchForm.tpl');
 
 		$this->_monographId = $monographId;
-		
+
 		$this->addCheck(new FormValidatorPost($this));
 	}
-	
+
 
 
 	/**
 	 * Fetch
+	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
@@ -42,7 +43,7 @@ class ReviewerSelectorForm extends Form {
 		$reviewerValues = $seriesEditorSubmissionDAO->getAnonymousReviewerStatistics();
 
 		$templateMgr->assign('reviewerValues', $reviewerValues);
-		
+
 		return parent::fetch($request);
 	}
 
@@ -53,7 +54,7 @@ class ReviewerSelectorForm extends Form {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
 
-		$monographFile->setName($this->getData('name'), Locale::getLocale());		
+		$monographFile->setName($this->getData('name'), Locale::getLocale());
 		$monographFileDao->updateMonographFile($monographFile);
 	}
 }

@@ -43,7 +43,7 @@ class PromoteForm extends Form {
 	//
 	/**
 	 * Get the Monograph
-	 * @return object monograph
+	 * @return Monograph
 	 */
 	function getMonograph() {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
@@ -51,7 +51,7 @@ class PromoteForm extends Form {
 	}
 
 	//
-	// Template methods from Form
+	// Overridden template methods
 	//
 	/**
 	* Initialize form data with the author name and the monograph id.
@@ -103,6 +103,7 @@ class PromoteForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('monographId', 'decision', 'personalMessage', 'selectedFiles', 'selectedAttachments'));
@@ -117,7 +118,7 @@ class PromoteForm extends Form {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($this->_monographId);
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$currentReviewRound = $reviewRoundDao->build($this->_monographId, $seriesEditorSubmission->getCurrentReviewType(), $seriesEditorSubmission->getCurrentRound());
+		$currentReviewRound =& $reviewRoundDao->build($this->_monographId, $seriesEditorSubmission->getCurrentReviewType(), $seriesEditorSubmission->getCurrentRound());
 
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_ACCEPT:

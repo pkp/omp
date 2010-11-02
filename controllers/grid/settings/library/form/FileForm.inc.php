@@ -57,6 +57,7 @@ class FileForm extends Form {
 	/**
 	 * Fetch
 	 * @param $request PKPRequest
+	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
@@ -74,6 +75,7 @@ class FileForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('gridId', 'rowId', 'name'));

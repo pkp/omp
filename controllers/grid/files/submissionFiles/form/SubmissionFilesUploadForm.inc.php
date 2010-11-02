@@ -87,6 +87,7 @@ class SubmissionFilesUploadForm extends Form {
 	/**
 	 * Fetch
 	 * @param $request PKPRequest
+	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
 		return parent::fetch($request);
@@ -94,6 +95,7 @@ class SubmissionFilesUploadForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('gridId', 'fileType'));

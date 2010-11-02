@@ -46,6 +46,7 @@ class UserEmailForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(
@@ -73,7 +74,7 @@ class UserEmailForm extends Form {
 	}
 
 	/**
-	 * Send the email 
+	 * Send the email
 	 */
 	function execute($args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');

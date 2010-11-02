@@ -61,7 +61,7 @@ class SubmissionContributorForm extends Form {
 	}
 
 	//
-	// Template methods from Form
+	// Overridden template methods
 	//
 	/**
 	* Initialize form data from the associated submissionContributor.
@@ -89,6 +89,7 @@ class SubmissionContributorForm extends Form {
 
 	/**
 	 * Fetch the form.
+	 * @see Form::fetch()
 	 */
 	function fetch($request) {
 		$submissionContributor =& $this->getSubmissionContributor();
@@ -118,6 +119,7 @@ class SubmissionContributorForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('authorId',
@@ -135,6 +137,8 @@ class SubmissionContributorForm extends Form {
 
 	/**
 	 * Save submissionContributor
+	 * @see Form::execute()
+	 * @see Form::execute()
 	 */
 	function execute() {
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');

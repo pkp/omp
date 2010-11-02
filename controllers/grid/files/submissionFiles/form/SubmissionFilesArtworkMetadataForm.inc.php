@@ -36,6 +36,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 
 	/**
 	 * Fetch the form.
+	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
@@ -98,6 +99,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array(
@@ -109,6 +111,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 
 	/**
 	 * Save settings.
+	 * @see Form::execute()
 	 */
 	function execute() {
 		$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO');

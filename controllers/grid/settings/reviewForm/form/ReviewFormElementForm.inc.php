@@ -56,6 +56,7 @@ class ReviewFormElementForm extends Form {
 
 	/**
 	 * Fetch the form.
+	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
@@ -98,6 +99,7 @@ class ReviewFormElementForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('question', 'required', 'elementType', 'possibleResponses'));
@@ -105,6 +107,7 @@ class ReviewFormElementForm extends Form {
 
 	/**
 	 * Save review form element.
+	 * @see Form::execute()
 	 */
 	function execute() {
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');

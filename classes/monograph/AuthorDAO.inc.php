@@ -46,7 +46,7 @@ class AuthorDAO extends PKPAuthorDAO {
 	/**
 	 * Retrieve the primary author for a submission.
 	 * @param $submissionId int
-	 * @return object
+	 * @return Author
 	 */
 	function &getPrimaryAuthorByMonographId($submissionId) {
 		$result =& $this->retrieve(

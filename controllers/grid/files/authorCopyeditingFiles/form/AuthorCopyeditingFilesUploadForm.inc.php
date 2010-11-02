@@ -57,6 +57,7 @@ class AuthorCopyeditingFilesUploadForm extends CopyeditingFileForm {
 	/**
 	 * Fetch
 	 * @param $request PKPRequest
+	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
 		return parent::fetch($request);
@@ -64,6 +65,7 @@ class AuthorCopyeditingFilesUploadForm extends CopyeditingFileForm {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('gridId', 'fileType'));

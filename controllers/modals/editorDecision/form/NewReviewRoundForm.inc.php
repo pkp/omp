@@ -34,7 +34,7 @@ class NewReviewRoundForm extends Form {
 	//
 	/**
 	 * Get the Monograph
-	 * @return object monograph
+	 * @return Monograph
 	 */
 	function getMonograph() {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
@@ -42,7 +42,7 @@ class NewReviewRoundForm extends Form {
 	}
 
 	//
-	// Template methods from Form
+	// Overridden template methods
 	//
 	/**
 	* Initialize form data with the author name and the monograph id.
@@ -70,6 +70,7 @@ class NewReviewRoundForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('selectedFiles', 'monographId'));

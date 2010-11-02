@@ -93,6 +93,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	//
 	/**
 	 * Need to add additional data to the template via the fetch method
+	 * @see Form::fetch()
 	 */
 	function fetch(&$args, &$request) {
 		$router =& $request->getRouter();

@@ -62,7 +62,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 			$role =& new Role($roleId);
 			$title = $role->getRoleName();
 		}
-		
+
 		// Need a unique ID for each group listbuilder
 		$this->setId($this->getId() . '-' . String::camelize(Locale::translate($title)));
 
@@ -78,9 +78,10 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 		$this->addColumn(new GridColumn('item', 'manager.setup.roleName'));
 		$this->addColumn(new GridColumn('attribute', 'manager.setup.roleAbbrev'));
 	}
-	
+
 	/**
 	 * Need to add additional data to the template via the fetch method
+	 * @see Form::fetch()
 	 */
 	function fetch($args, &$request) {
 		$router =& $request->getRouter();
@@ -105,7 +106,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 		$this->setupTemplate();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$press =& $request->getPress();
-		
+
 		$roleId = array_shift($args);
 		$groupName = array_shift($args);
 		$groupAbbrev = array_shift($args);

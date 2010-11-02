@@ -466,7 +466,7 @@ class Monograph extends Submission {
 	/**
 	 * Get the primary author of this submission.
 	 * FIXME: should be in Submission, see #5913
-	 * @return object Author
+	 * @return Author
 	 */
 	function &getPrimaryAuthor() {
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');

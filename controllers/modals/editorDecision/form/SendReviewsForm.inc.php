@@ -1,22 +1,23 @@
 <?php
 
 /**
- * @file controllers/modals/editorDecision/form/ReviewerForm.inc.php
+ * @file controllers/modals/editorDecision/form/SendReviewsForm.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class ReviewerForm
- * @ingroup controllers_grid_reviewer__form
+ * @class SendReviewsForm
+ * @ingroup controllers_modals_editorDecision_form
  *
- * @brief Form for adding a reviewer to a submission
+ * @brief Form to request additional work from the author (Request revisions or
+ *         resubmit for review), or to decline the submission.
  */
 
 import('lib.pkp.classes.form.Form');
 
 class SendReviewsForm extends Form {
 	/** The monograph associated with the review assignment **/
-	var $_monographId;
+	var $_monograph;
 
 	/** The decision being taken **/
 	var $_decision;
@@ -24,18 +25,13 @@ class SendReviewsForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function SendReviewsForm($monographId, $decision) {
+	function SendReviewsForm($monograph, $decision) {
 		parent::Form('controllers/modals/editorDecision/form/sendReviewsForm.tpl');
-		$this->_monographId = (int) $monographId;
+		$this->_monograph = $monograph;
 		$this->_decision = (int) $decision;
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorPost($this));
-// FIXME: implement this check
-//		$this->addCheck(new FormValidatorCustom($this, 'decision', 'required', 'invalid decision',
-//														'in_array($decision, array(\'EDITOR_DECISION_ACCEPT\',
-//																					\'EDITOR_DECISION_DECLINE\',
-//																					\'EDITOR_DECISION_EXTERNAL_REVIEW\'))'));
 	}
 
 	//
@@ -43,21 +39,20 @@ class SendReviewsForm extends Form {
 	//
 	/**
 	 * Get the Monograph
-	 * @return object monograph
+	 * @return Monograph
 	 */
 	function getMonograph() {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		return $monographDao->getMonograph($this->_monographId);
+		return $this->_monograph;
 	}
 
 	//
-	// Template methods from Form
+	// Overridden template methods
 	//
 	/**
-	* Initialize form data with the author name and the monograph id.
-	* @param $args array
-	* @param $request PKPRequest
-	*/
+	 * Initialize form data with the author name and the monograph id.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
 	function initData($args, &$request) {
 		$press =& $request->getPress();
 		$monograph =& $this->getMonograph();
@@ -90,10 +85,17 @@ class SendReviewsForm extends Form {
 
 	}
 
+	/**
+	 * Fetch the modal content
+	 * @param $request PKPRequest
+	 * @see Form::fetch()
+	 */
 	function fetch(&$request) {
 		$monograph =& $this->getMonograph();
-		$reviewType = (int) $request->getUserVar('reviewType');
+		$reviewType = (int) $request->getUserVar('reviewType'); //FIXME #6102: What to do with reviewType?
 		$round = (int) $request->getUserVar('round');
+		assert($round <= $monograph->getCurrentReviewRound() && $round > 0);
+
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $this->_monographId);
 		$templateMgr->assign_by_ref('monograph', $monograph);
@@ -104,27 +106,33 @@ class SendReviewsForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('monographId', 'decision', 'personalMessage'));
+		$this->readUserVars(array('decision', 'personalMessage', 'selectedAttachments'));
 	}
 
 	/**
 	 * Save review assignment
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @see Form::execute()
 	 */
 	function execute($args, &$request) {
-		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$decision = $this->getData('decision');
+		$monograph =& $this->getMonograph();
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($this->_monographId);
+		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($monograph->getMonographId());
 
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$currentReviewRound = $reviewRoundDao->build($this->_monographId, $seriesEditorSubmission->getCurrentReviewType(), $seriesEditorSubmission->getCurrentRound());
+		$currentReviewRound =& $reviewRoundDao->build($monograph->getMonographId(), $seriesEditorSubmission->getCurrentReviewType(), $seriesEditorSubmission->getCurrentRound());
 
+		import('classes.submission.seriesEditor.SeriesEditorAction');
+		$seriesEditorAction =& new SeriesEditorAction();
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
 				// 1. Record the decision
-				SeriesEditorAction::recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_DECLINE);
+				$seriesEditorAction->recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_DECLINE);
 
 				// 2. select email key
 				$emailKey = 'SUBMISSION_UNSUITABLE';
@@ -135,7 +143,7 @@ class SendReviewsForm extends Form {
 
 			case SUBMISSION_EDITOR_DECISION_RESUBMIT:
 				// 1. Record the decision
-				SeriesEditorAction::recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT);
+				$seriesEditorAction->recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT);
 
 				// 2.  Set status of round
 				$status = REVIEW_ROUND_STATUS_RESUBMITTED;
@@ -146,7 +154,7 @@ class SendReviewsForm extends Form {
 
 			case SUBMISSION_EDITOR_DECISION_DECLINE:
 				// 1. Record the decision
-				SeriesEditorAction::recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_DECLINE);
+				$seriesEditorAction->recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_DECLINE);
 
 				// 2. select email key
 				$emailKey = 'SUBMISSION_UNSUITABLE';
@@ -172,17 +180,23 @@ class SendReviewsForm extends Form {
 		$email->setAssoc(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_EDITOR, $currentReviewRound->getRound());
 
 		// Attach the selected reviewer attachments
-		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($this->_monographId);
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$selectedAttachments = $this->getData('selectedAttachments') ? $this->getData('selectedAttachments') : array();
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
+		assert(is_array($reviewAssignmentId));
 		foreach ($selectedAttachments as $attachmentId) {
-			$monographFile =& $monographFileManager->getFile($attachmentId);
+			$monographFile =& $monographFileDao->getMonographFile($attachmentId);
+			assert(is_a($monographFile, 'MonographFile'));
+
 			$fileName = $monographFile->getOriginalFileName();
 			$reviewAssignmentId = $monographFile->getAssocId();
-			$reviewerPrefix = chr(ord('A') + $reviewIndexes[$reviewAssignmentId]);
+			assert(is_numeric($reviewAssignmentId));
+
+			$reviewIndex = $reviewIndexes[$reviewAssignmentId];
+			assert(!is_null($reviewIndex));
+
+			$reviewerPrefix = chr(ord('A') + $reviewIndex);
 			$email->addAttachment($monographFile->getFilePath(), $reviewerPrefix . '-' . $monographFile->getOriginalFileName());
 
 			// Update monograph to set viewable as true, so author can view the file on their submission summary page

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/users/user/form/UserForm.inc.php 
+ * @file controllers/grid/users/user/form/UserForm.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -145,6 +145,7 @@ class UserForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array(
@@ -188,7 +189,7 @@ class UserForm extends Form {
 	}
 
 	/**
-	 * Get all locale field names 
+	 * Get all locale field names
 	 */
 	function getLocaleFieldNames() {
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -203,7 +204,7 @@ class UserForm extends Form {
 		$press =& $request->getPress();
 
 		if (isset($this->userId)) {
-			$userId = $this->userId; 
+			$userId = $this->userId;
 			$user =& $userDao->getUser($userId);
 		}
 

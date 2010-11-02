@@ -50,6 +50,7 @@ class ReviewFormForm extends Form {
 
 	/**
 	 * Fetch the form.
+	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
@@ -85,6 +86,7 @@ class ReviewFormForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('title', 'description'));
@@ -92,6 +94,7 @@ class ReviewFormForm extends Form {
 
 	/**
 	 * Save review form.
+	 * @see Form::execute()
 	 */
 	function execute() {
 		$press =& Request::getPress();

@@ -43,8 +43,8 @@
 		{fbvElement type="text" id="authorName" name="authorName" label="user.role.author" value=$authorName disabled=true}
 	{/fbvFormSection}
 
-	<!--  Message to reviewer textarea -->
-	<p style="text-align: right;"><a id="importPeerReviews" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
+	<!-- Message to reviewer textarea -->
+	<p class="text_right"><a id="importPeerReviews" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
 
 	{fbvFormSection}
 		{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToAuthor" value=$personalMessage measure=$fbvStyles.measure.1OF1 size=$fbvStyles.size.MEDIUM}

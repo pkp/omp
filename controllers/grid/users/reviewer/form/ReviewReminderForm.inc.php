@@ -42,7 +42,7 @@ class ReviewReminderForm extends Form {
 
 	/**
 	 * Get the Monograph
-	 * @return object monograph
+	 * @return ReviewAssignment
 	 */
 	function getReviewAssignment() {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -51,7 +51,7 @@ class ReviewReminderForm extends Form {
 
 
 	//
-	// Template methods from Form
+	// Overridden template methods
 	//
 	/**
 	 * Initialize form data from the associated submissionContributor.
@@ -98,6 +98,7 @@ class ReviewReminderForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('message'));

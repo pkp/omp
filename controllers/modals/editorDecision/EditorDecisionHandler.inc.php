@@ -23,7 +23,7 @@ class EditorDecisionHandler extends Handler {
 	 */
 	function EditorDecisionHandler() {
 		parent::Handler();
-		// FIXME: Please correctly distribute the operations among roles.
+
 		$this->addRoleAssignment(ROLE_ID_AUTHOR,
 				$authorOperations = array());
 		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT,
@@ -33,11 +33,11 @@ class EditorDecisionHandler extends Handler {
 				array('newReviewRound', 'saveNewReviewRound', 'initiateReview', 'saveInitiateReview', 'sendReviews', 'saveSendReviews', 'promote', 'savePromote', 'importPeerReviews')));
 	}
 
-	//
-	// Implement template methods from PKPHandler.
-	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
@@ -48,6 +48,8 @@ class EditorDecisionHandler extends Handler {
 
 	/**
 	 * Start a new review round
+	 * @param $args array
+	 * @param $request PKPRequest
 	 * @return JSON
 	 */
 	function newReviewRound($args, &$request) {
@@ -64,6 +66,8 @@ class EditorDecisionHandler extends Handler {
 
 	/**
 	 * Start a new review round
+	 * @param $args array
+	 * @param $request PKPRequest
 	 * @return JSON
 	 */
 	function saveNewReviewRound($args, &$request) {
@@ -99,6 +103,8 @@ class EditorDecisionHandler extends Handler {
 
 	/**
 	 * Start a new review round
+	 * @param $args array
+	 * @param $request PKPRequest
 	 * @return JSON
 	 */
 	function initiateReview($args, &$request) {
@@ -115,6 +121,8 @@ class EditorDecisionHandler extends Handler {
 
 	/**
 	 * Start a new review round
+	 * @param $args array
+	 * @param $request PKPRequest
 	 * @return JSON
 	 */
 	function saveInitiateReview($args, &$request) {
@@ -146,13 +154,13 @@ class EditorDecisionHandler extends Handler {
 	 * @return JSON
 	 */
 	function sendReviews($args, &$request) {
-		// FIXME: add validation
-		$monographId = $request->getUserVar('monographId');
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$decision = $request->getUserVar('decision');
 
 		// Form handling
 		import('controllers.modals.editorDecision.form.SendReviewsForm');
-		$sendReviewsForm = new SendReviewsForm($monographId, $decision);
+		$sendReviewsForm = new SendReviewsForm($monograph, $decision);
 		$sendReviewsForm->initData($args, $request);
 
 		$json = new JSON('true', $sendReviewsForm->fetch($request));
@@ -166,11 +174,12 @@ class EditorDecisionHandler extends Handler {
 	 * @return JSON
 	 */
 	function saveSendReviews($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
+		// Retrieve the authorized monograph.
+		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$decision = $request->getUserVar('decision');
 
 		import('controllers.modals.editorDecision.form.SendReviewsForm');
-		$sendReviewsForm = new SendReviewsForm($monographId, $decision);
+		$sendReviewsForm = new SendReviewsForm($monograph, $decision);
 
 		$sendReviewsForm->readInputData();
 		if ($sendReviewsForm->validate()) {

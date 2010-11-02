@@ -50,7 +50,7 @@ class StageParticipantForm extends Form {
 
 	/**
 	 * Get the Monograph
-	 * @return object monograph
+	 * @return Monograph
 	 */
 	function getMonograph() {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
@@ -58,11 +58,12 @@ class StageParticipantForm extends Form {
 	}
 
 	//
-	// Template methods from Form
+	// Overridden template methods
 	//
 
 	/**
 	 * Fetch the form.
+	 * @see Form::fetch()
 	 */
 	function fetch($request) {
 		$templateMgr =& TemplateManager::getManager();
@@ -91,6 +92,7 @@ class StageParticipantForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('userGroupId', 'userId'));

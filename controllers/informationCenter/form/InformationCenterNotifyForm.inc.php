@@ -39,6 +39,7 @@ class InformationCenterNotifyForm extends Form {
 
 	/**
 	 * Fetch the form.
+	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
@@ -57,6 +58,7 @@ class InformationCenterNotifyForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array(

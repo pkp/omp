@@ -47,6 +47,7 @@ class GroupForm extends Form {
 
 	/**
 	 * Fetch the form.
+	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
@@ -78,6 +79,7 @@ class GroupForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('title', 'context'));
@@ -85,6 +87,7 @@ class GroupForm extends Form {
 
 	/**
 	 * Save group group.
+	 * @see Form::execute()
 	 */
 	function execute() {
 		$groupDao =& DAORegistry::getDAO('GroupDAO');

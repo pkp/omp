@@ -34,7 +34,7 @@ class CompetingInterestsForm extends Form {
 	//
 	/**
 	 * Get the Press
-	 * @return object Press
+	 * @return Press
 	 */
 	function getPress() {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
@@ -42,7 +42,7 @@ class CompetingInterestsForm extends Form {
 	}
 
 	//
-	// Template methods from Form
+	// Overridden template methods
 	//
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();

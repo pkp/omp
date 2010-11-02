@@ -44,6 +44,7 @@ class CompetingInterestsHandler extends Handler {
 	/**
 	 * Display the submission's metadata
 	 * @return JSON
+	 * @see Form::fetch()
 	 */
 	function fetch($args, &$request) {
 		// Identify the press Id

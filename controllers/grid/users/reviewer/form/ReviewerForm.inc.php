@@ -49,7 +49,7 @@ class ReviewerForm extends Form {
 
 	/**
 	 * Get the Monograph
-	 * @return object monograph
+	 * @return Monograph
 	 */
 	function getMonograph() {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
@@ -65,7 +65,7 @@ class ReviewerForm extends Form {
 	}
 
 	//
-	// Template methods from Form
+	// Overridden template methods
 	//
 	/**
 	* Initialize form data from the associated submissionContributor.
@@ -125,6 +125,7 @@ class ReviewerForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('selectionType',
@@ -247,7 +248,7 @@ class ReviewerForm extends Form {
 
 		// Update the review round status if this is the first reviewer added
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$currentReviewRound = $reviewRoundDao->build($this->getMonographId(), $submission->getCurrentReviewType(), $submission->getCurrentRound());
+		$currentReviewRound =& $reviewRoundDao->build($this->getMonographId(), $submission->getCurrentReviewType(), $submission->getCurrentRound());
 		if ($currentReviewRound->getStatus() == REVIEW_ROUND_STATUS_PENDING_REVIEWERS) {
 			$currentReviewRound->setStatus(REVIEW_ROUND_STATUS_PENDING_REVIEWS);
 			$reviewRoundDao->updateObject($currentReviewRound);

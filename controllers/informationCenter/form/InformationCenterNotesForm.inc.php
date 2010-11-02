@@ -36,6 +36,7 @@ class InformationCenterNotesForm extends Form {
 
 	/**
 	 * Fetch the form.
+	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
@@ -60,6 +61,7 @@ class InformationCenterNotesForm extends Form {
 
 	/**
 	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array(
@@ -71,6 +73,7 @@ class InformationCenterNotesForm extends Form {
 	/**
 	 * Register a new user.
 	 * @return userId int
+	 * @see Form::execute()
 	 */
 	function execute() {
 		$user =& Request::getUser();
