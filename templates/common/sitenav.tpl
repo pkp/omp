@@ -13,7 +13,7 @@
 		<ul class="flat_list installation_navigation">
 			<li><a href="{url page="index"}">{translate key="navigation.home"}</a></li>
 			{if $isUserLoggedIn}
-				<li><a href="#">{translate key="navigation.admin"}</a></li>
+				<li><a href="{url context="index" page="admin"}">{translate key="navigation.admin"}</a></li>
 			{/if}
 		</ul>
 	</div>
