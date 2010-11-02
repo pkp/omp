@@ -15,7 +15,6 @@
  *
  */
 
-// $Id$
 
 switch ($op) {
 	//
@@ -44,6 +43,9 @@ switch ($op) {
 		import('pages.user.EmailHandler');
 		define('HANDLER_CLASS', 'EmailHandler');
 		break;
+	//
+	// Default handler
+	//
 	case 'index':
 	case 'setLocale':
 	case 'become':

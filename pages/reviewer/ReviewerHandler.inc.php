@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file ReviewerHandler.inc.php
+ * @file pages/ReviewerHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -11,8 +11,6 @@
  *
  * @brief Handle requests for reviewer functions.
  */
-
-// $Id$
 
 
 import('classes.submission.reviewer.ReviewerAction');

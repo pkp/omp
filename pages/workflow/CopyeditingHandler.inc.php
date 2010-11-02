@@ -12,7 +12,6 @@
  * @brief Handle requests for the copyediting stage of the submssion workflow.
  */
 
-// $Id$
 
 import('classes.handler.Handler');
 import('lib.pkp.classes.core.JSON');

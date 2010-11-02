@@ -3,7 +3,7 @@
 /**
  * @defgroup pages_reviewer
  */
- 
+
 /**
  * @file pages/reviewer/index.php
  *
@@ -11,11 +11,9 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup pages_reviewer
- * @brief Handle requests for reviewer functions. 
+ * @brief Handle requests for reviewer functions.
  *
  */
-
-// $Id$
 
 
 switch ($op) {

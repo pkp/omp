@@ -5,8 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Site administration index.
- *
- * $Id$
  *}
 {strip}
 {assign var="pageTitle" value="admin.siteAdmin"}

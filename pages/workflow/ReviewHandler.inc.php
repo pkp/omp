@@ -12,7 +12,6 @@
  * @brief Handle requests for submission tracking.
  */
 
-// $Id$
 
 import('classes.handler.Handler');
 import('lib.pkp.classes.core.JSON');
