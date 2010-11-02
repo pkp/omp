@@ -21,7 +21,7 @@ class SubmitHandler extends Handler {
 	function SubmitHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(array(ROLE_ID_REVIEWER, ROLE_ID_PRESS_ASSISTANT), array());
-		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER), array('wizard', 'saveStep'));
+		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER), array('index', 'wizard', 'saveStep'));
 	}
 
 
@@ -81,6 +81,15 @@ class SubmitHandler extends Handler {
 	//
 	// Public Handler Methods
 	//
+	/**
+	 * Redirect to the new submission wizard by default.
+	 * @param $args array
+	 * @param $request Request
+	 */
+	function index($args, &$request) {
+		$request->redirect(null, null, 'wizard');
+	}
+
 	/**
 	 * Display submission monograph submission.
 	 * Displays submission index page if a valid step is not specified.

@@ -54,30 +54,6 @@ class SubmissionHandler extends Handler {
 	}
 
 
-	//
-	// Public handler methods
-	//
-	/**
-	 * Display index page (shows all submissions associated with user).
-	 * FIXME: This operation does not have a spec, see #5849
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function index($args, &$request) {
-		// Set up the template.
-		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate($request);
-
-		// Retrieve the authorized user group.
-		$activeUserGroup =& $this->getAuthorizedContextObject(ASSOC_TYPE_USER_GROUP);
-		assert(is_a($activeUserGroup, 'UserGroup'));
-
-		// Display the submission list according to the
-		// role of the active user group.
-		$templateMgr->assign('roleId', $activeUserGroup->getRoleId());
-		$templateMgr->display('submission/index.tpl');
-	}
-
 	/**
 	 * Displays the details of a single submission.
 	 * @param $args array

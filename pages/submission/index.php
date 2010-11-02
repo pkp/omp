@@ -15,16 +15,21 @@
  *
  */
 
+
 switch ($op) {
 	//
 	// Monograph Submission
 	//
 	case 'wizard':
 	case 'saveStep':
+	case 'index':
 		import('pages.submission.SubmitHandler');
 		define('HANDLER_CLASS', 'SubmitHandler');
 		break;
-	default:
+	// FIXME: Move the following operations to their specified handlers - see #6091.
+	case 'authorDetails':  // move to workflow/submission?
+	case 'details': // move to workflow/submission?
+	case 'reviewRoundInfo': // move to workflow/review?
 		import('pages.submission.SubmissionHandler');
 		define('HANDLER_CLASS', 'SubmissionHandler');
 }

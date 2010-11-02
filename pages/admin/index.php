@@ -52,18 +52,6 @@ switch ($op) {
 		define('HANDLER_CLASS', 'AdminLanguagesHandler');
 		break;
 	//
-	// Authentication sources
-	//
-	case 'auth':
-	case 'updateAuthSources':
-	case 'createAuthSource':
-	case 'editAuthSource':
-	case 'updateAuthSource':
-	case 'deleteAuthSource':
-		import('pages.admin.AuthSourcesHandler');
-		define('HANDLER_CLASS', 'AuthSourcesHandler');
-		break;
-	//
 	// Merge users
 	//
 	case 'mergeUsers':
