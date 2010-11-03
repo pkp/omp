@@ -38,6 +38,7 @@ class NewReviewRoundForm extends EditorDecisionForm {
 	 */
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
+		$monograph =& $this->getMonograph();
 		$this->setData('round', $monograph->getCurrentRound());
 		return parent::fetch($request);
 	}
@@ -48,6 +49,25 @@ class NewReviewRoundForm extends EditorDecisionForm {
 	 */
 	function readInputData() {
 		$this->readUserVars(array('selectedFiles'));
+	}
+
+	/**
+	 * Get the new round tab button HTML/JS, that will be added to the tab bar on new tab creation
+	 * @param $request PKPRequest
+	 * @param $round int The new review round number
+	 */
+	function getNewTab(&$request, $round) {
+		$monograph =& $this->getMonograph();
+
+		$router =& $request->getRouter();
+		$dispatcher =& $router->getDispatcher();
+		$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monograph->getId(), $round));
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('newRoundUrl', $url);
+		$templateMgr->assign('round', $round);
+
+		return $templateMgr->fetch('controllers/modals/editorDecision/form/reviewRoundTab.tpl');
 	}
 
 	/**

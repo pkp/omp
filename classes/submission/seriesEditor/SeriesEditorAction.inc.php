@@ -1939,6 +1939,7 @@ class SeriesEditorAction extends Action {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION));
 
 		$body = '';
+		$textSeparator = "------------------------------------------------------"
 		foreach ($reviewAssignments as $reviewAssignment) {
 			// If the reviewer has completed the assignment, then import the review.
 			if ($reviewAssignment->getDateCompleted() != null && !$reviewAssignment->getCancelled()) {
@@ -1946,7 +1947,7 @@ class SeriesEditorAction extends Action {
 				$monographComments =& $monographCommentDao->getMonographComments($seriesEditorSubmission->getId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getReviewId());
 
 				if($monographComments) {
-					$body .= "\n\n------------------------------------------------------\n";
+					$body .= "\n\n$textSeparator\n";
 					$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n";
 					if (is_array($monographComments)) {
 						foreach ($monographComments as $comment) {
@@ -1956,7 +1957,7 @@ class SeriesEditorAction extends Action {
 							}
 						}
 					}
-					$body .= "------------------------------------------------------\n\n";
+					$body .= "$textSeparator\n\n";
 				}
 				if ($reviewFormId = $reviewAssignment->getReviewFormId()) {
 					$reviewId = $reviewAssignment->getReviewId();
@@ -1965,7 +1966,7 @@ class SeriesEditorAction extends Action {
 					$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 					$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 					if(!$monographComments) {
-						$body .= "------------------------------------------------------\n";
+						$body .= "$textSeparator\n";
 						$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n\n";
 					}
 					foreach ($reviewFormElements as $reviewFormElement) {
@@ -1989,7 +1990,7 @@ class SeriesEditorAction extends Action {
 						}
 
 					}
-					$body .= "------------------------------------------------------\n\n";
+					$body .= "$textSeparator\n\n";
 
 				}
 

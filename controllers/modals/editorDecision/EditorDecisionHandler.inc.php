@@ -45,6 +45,25 @@ class EditorDecisionHandler extends Handler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
+	/**
+	 * Consolidates all editor decision form calls into one function
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @param $formName string Name of form to call
+	 * @return JSON
+	 */
+	function _editorDecision($args, &$request, $formName) {
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		// Form handling
+		import("controllers.modals.editorDecision.form.$formName");
+		$editorDecisionForm = new $formName($monograph);
+		$editorDecisionForm->initData($args, $request);
+
+		$json = new JSON('true', $editorDecisionForm->fetch($request));
+		return $json->getString();
+	}
 
 	/**
 	 * Start a new review round
@@ -53,16 +72,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return JSON
 	 */
 	function newReviewRound($args, &$request) {
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
-		// Form handling
-		import('controllers.modals.editorDecision.form.NewReviewRoundForm');
-		$newReviewRoundForm = new NewReviewRoundForm($monograph);
-		$newReviewRoundForm->initData($args, $request);
-
-		$json = new JSON('true', $newReviewRoundForm->fetch($request));
-		return $json->getString();
+		return $this->_editorDecision($args, $request, 'NewReviewRoundForm');
 	}
 
 	/**
@@ -85,15 +95,7 @@ class EditorDecisionHandler extends Handler {
 		if ($newReviewRoundForm->validate()) {
 			$round = $newReviewRoundForm->execute($args, $request);
 
-			$router =& $request->getRouter();
-			$dispatcher =& $router->getDispatcher();
-			$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monograph->getId(), $round));
-
-
-			$additionalAttributes = array('script' => "$(\"<li class='ui-state-default ui-corner-top ui-state-active'><a href='"
-				. $url . "'>"
-				. Locale::translate('submission.round', array('round' => $round)) . "</a></li>\").insertBefore('#newRoundTabContainer');"
-			);
+			$additionalAttributes = array('script' => $newReviewRoundForm->getNewTab($request, $round));
 
 			$json = new JSON('true', null, 'true', null, $additionalAttributes);
 		} else {
@@ -110,16 +112,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return JSON
 	 */
 	function initiateReview($args, &$request) {
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
-		// Form handling
-		import('controllers.modals.editorDecision.form.InitiateReviewForm');
-		$initiateReviewForm = new InitiateReviewForm($monograph);
-		$initiateReviewForm->initData($args, $request);
-
-		$json = new JSON('true', $initiateReviewForm->fetch($request));
-		return $json->getString();
+		return $this->_editorDecision($args, $request, 'InitiateReviewForm');
 	}
 
 	/**
@@ -158,17 +151,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return JSON
 	 */
 	function sendReviews($args, &$request) {
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$decision = $request->getUserVar('decision');
-
-		// Form handling
-		import('controllers.modals.editorDecision.form.SendReviewsForm');
-		$sendReviewsForm = new SendReviewsForm($monograph, $decision);
-		$sendReviewsForm->initData($args, $request);
-
-		$json = new JSON('true', $sendReviewsForm->fetch($request));
-		return $json->getString();
+		return $this->_editorDecision($args, $request, 'SendReviewsForm');
 	}
 
 	/**
@@ -204,17 +187,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return JSON
 	 */
 	function promote($args, &$request) {
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$decision = $request->getUserVar('decision');
-
-		// Form handling
-		import('controllers.modals.editorDecision.form.PromoteForm');
-		$promoteForm = new PromoteForm($monograph, $decision);
-		$promoteForm->initData($args, $request);
-
-		$json = new JSON('true', $promoteForm->fetch($request));
-		return $json->getString();
+		return $this->_editorDecision($args, $request, 'PromoteForm');
 	}
 
 	/**
