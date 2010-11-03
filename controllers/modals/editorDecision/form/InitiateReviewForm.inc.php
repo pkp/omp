@@ -1,68 +1,44 @@
 <?php
 
 /**
- * @file controllers/modals/editorDecision/form/NewReviewRoundForm.inc.php
+ * @file controllers/modals/editorDecision/form/InitiateReviewRoundForm.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class ResubmitForReviewForm
+ * @class InitiateReviewForm
  * @ingroup controllers_modal_editorDecision_form
  *
- * @brief Form for creating a new review round
+ * @brief Form for creating the first review round for a submission
  */
 
-import('lib.pkp.classes.form.Form');
+import('controllers.modals.editorDecision.form.EditorDecisionForm');
 
-class InitiateReviewForm extends Form {
-	/** The monograph associated with the review assignment **/
-	var $_monographId;
+class InitiateReviewForm extends EditorDecisionForm {
 
 	/**
 	 * Constructor.
+	 * @param $monograph Monograph
 	 */
-	function InitiateReviewForm($monographId) {
-		parent::Form('controllers/modals/editorDecision/form/initiateReviewForm.tpl');
-		$this->_monographId = (int) $monographId;
+	function InitiateReviewForm($monograph) {
+		parent::EditorDecisionForm($monograph, 'controllers/modals/editorDecision/form/initiateReviewForm.tpl');
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
 	//
-	// Getters and Setters
-	//
-	/**
-	 * Get the Monograph
-	 * @return Monograph
-	 */
-	function getMonograph() {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		return $monographDao->getMonograph($this->_monographId);
-	}
-
-	//
 	// Overridden template methods
 	//
+
 	/**
-	* Initialize form data with the author name and the monograph id.
-	* @param $args array
-	* @param $request PKPRequest
-	*/
-	function initData($args, &$request) {
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION));
-
-		$this->_data = array(
-			'monographId' => $this->_monographId,
-		);
-	}
-
+	 * Fetch the modal content
+	 * @param $request PKPRequest
+	 * @see Form::fetch()
+	 */
 	function fetch(&$request) {
-		$monograph =& $this->getMonograph();
-
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('monographId', $this->_monographId);
-		$templateMgr->assign_by_ref('monograph', $monograph);
+		$monograph =& $this->getMonograph();
 		$this->setData('round', $monograph->getCurrentRound());
 		return parent::fetch($request);
 	}
@@ -72,15 +48,16 @@ class InitiateReviewForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('selectedFiles', 'monographId'));
+		$this->readUserVars(array('selectedFiles'));
 	}
 
 	/**
-	 * Save review assignment
+	 * Start review stage
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @see Form::execute()
 	 */
 	function execute($args, &$request) {
-		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
-
 		// 1. Increment the monograph's workflow stage
 		$monograph =& $this->getMonograph();
 		$monograph->setCurrentStageId(WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
@@ -88,9 +65,9 @@ class InitiateReviewForm extends Form {
 		$monographDao->updateMonograph($monograph);
 
 		// 2. Create a new internal review round
-		// FIXME: what do do about reviewRevision? being set to 1 for now.
+		// FIXME #6102: What to do with reviewType?
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRoundDao->createReviewRound($this->_monographId, REVIEW_TYPE_INTERNAL, 1, 1, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
+		$reviewRoundDao->build($monograph->getId(), REVIEW_TYPE_INTERNAL, 1, 1, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
 
 		// 3. Assign the default users
 		import('classes.submission.common.Action');
@@ -103,7 +80,8 @@ class InitiateReviewForm extends Form {
 			foreach ($selectedFiles as $selectedFile) {
 				$filesForReview[] = explode("-", $selectedFile);
 			}
-			$reviewAssignmentDAO->setFilesForReview($this->_monographId, REVIEW_TYPE_INTERNAL, 1, $filesForReview);
+			$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
+			$reviewAssignmentDAO->setFilesForReview($monograph->getId(), REVIEW_TYPE_INTERNAL, 1, $filesForReview);
 		}
 	}
 }

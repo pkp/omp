@@ -71,6 +71,7 @@ class SubmissionHandler extends Handler {
 		$dispatcher =& $this->getDispatcher();
 		$actionArgs = array('monographId' => $monograph->getId(), 'stageId' => $monograph->getCurrentStageId());
 
+		import('classes.submission.common.Action');
 		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_ACCEPT;
 		$acceptDecision = new LinkAction(
 				'accept',

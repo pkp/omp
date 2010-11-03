@@ -151,21 +151,6 @@ class ReviewRoundDAO extends DAO {
 		return $returner;
 	}
 
-	/**
-	 * Initiate a review round
-	 * @param int $monographId
-	 * @param int $round
-	 * @param int $reviewRevision
-	 */
-	function createReviewRound($monographId, $reviewType, $round, $reviewRevision, $status = null) {
-		$this->update(
-			'INSERT INTO review_rounds
-				(submission_id, review_type, round, review_revision, status)
-				VALUES
-				(?, ?, ?, ?, ?)',
-			array($monographId, $reviewType, $round, $reviewRevision, $status)
-		);
-	}
 }
 
 ?>

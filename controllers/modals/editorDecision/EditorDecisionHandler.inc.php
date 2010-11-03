@@ -53,11 +53,12 @@ class EditorDecisionHandler extends Handler {
 	 * @return JSON
 	 */
 	function newReviewRound($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Form handling
 		import('controllers.modals.editorDecision.form.NewReviewRoundForm');
-		$newReviewRoundForm = new NewReviewRoundForm($monographId);
+		$newReviewRoundForm = new NewReviewRoundForm($monograph);
 		$newReviewRoundForm->initData($args, $request);
 
 		$json = new JSON('true', $newReviewRoundForm->fetch($request));
@@ -71,13 +72,14 @@ class EditorDecisionHandler extends Handler {
 	 * @return JSON
 	 */
 	function saveNewReviewRound($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
 
 		// Form handling
 		import('controllers.modals.editorDecision.form.NewReviewRoundForm');
-		$newReviewRoundForm = new NewReviewRoundForm($monographId);
+		$newReviewRoundForm = new NewReviewRoundForm($monograph);
 
 		$newReviewRoundForm->readInputData();
 		if ($newReviewRoundForm->validate()) {
@@ -85,7 +87,7 @@ class EditorDecisionHandler extends Handler {
 
 			$router =& $request->getRouter();
 			$dispatcher =& $router->getDispatcher();
-			$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monographId, $round));
+			$url = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monograph->getId(), $round));
 
 
 			$additionalAttributes = array('script' => "$(\"<li class='ui-state-default ui-corner-top ui-state-active'><a href='"
@@ -108,11 +110,12 @@ class EditorDecisionHandler extends Handler {
 	 * @return JSON
 	 */
 	function initiateReview($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Form handling
 		import('controllers.modals.editorDecision.form.InitiateReviewForm');
-		$initiateReviewForm = new InitiateReviewForm($monographId);
+		$initiateReviewForm = new InitiateReviewForm($monograph);
 		$initiateReviewForm->initData($args, $request);
 
 		$json = new JSON('true', $initiateReviewForm->fetch($request));
@@ -126,20 +129,21 @@ class EditorDecisionHandler extends Handler {
 	 * @return JSON
 	 */
 	function saveInitiateReview($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
 
 		// Form handling
 		import('controllers.modals.editorDecision.form.InitiateReviewForm');
-		$initiateReviewForm = new InitiateReviewForm($monographId);
+		$initiateReviewForm = new InitiateReviewForm($monograph);
 
 		$initiateReviewForm->readInputData();
 		if ($initiateReviewForm->validate()) {
 			$initiateReviewForm->execute($args, $request);
 
 			$dispatcher =& $this->getDispatcher();
-			$json = new JSON('true', $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monographId, 1)));
+			$json = new JSON('true', $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monograph->getId(), 1)));
 		} else {
 			$json = new JSON('false');
 		}
@@ -175,7 +179,7 @@ class EditorDecisionHandler extends Handler {
 	 */
 	function saveSendReviews($args, &$request) {
 		// Retrieve the authorized monograph.
-		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$decision = $request->getUserVar('decision');
 
 		import('controllers.modals.editorDecision.form.SendReviewsForm');
@@ -200,13 +204,13 @@ class EditorDecisionHandler extends Handler {
 	 * @return JSON
 	 */
 	function promote($args, &$request) {
-		// FIXME: add validation
-		$monographId = $request->getUserVar('monographId');
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$decision = $request->getUserVar('decision');
 
 		// Form handling
 		import('controllers.modals.editorDecision.form.PromoteForm');
-		$promoteForm = new PromoteForm($monographId, $decision);
+		$promoteForm = new PromoteForm($monograph, $decision);
 		$promoteForm->initData($args, $request);
 
 		$json = new JSON('true', $promoteForm->fetch($request));
@@ -220,11 +224,12 @@ class EditorDecisionHandler extends Handler {
 	 * @return JSON
 	 */
 	function savePromote($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$decision = $request->getUserVar('decision');
 
 		import('controllers.modals.editorDecision.form.PromoteForm');
-		$promoteForm = new PromoteForm($monographId, $decision);
+		$promoteForm = new PromoteForm($monograph, $decision);
 
 		$promoteForm->readInputData();
 		if ($promoteForm->validate()) {
@@ -232,7 +237,7 @@ class EditorDecisionHandler extends Handler {
 
 			if ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
 				$dispatcher =& $this->getDispatcher();
-				$json = new JSON('true', $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'copyediting', array($monographId)));
+				$json = new JSON('true', $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'copyediting', array($monograph->getId())));
 			} else {
 				$json = new JSON('true');
 			}

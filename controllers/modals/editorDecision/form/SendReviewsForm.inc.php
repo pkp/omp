@@ -13,22 +13,25 @@
  *         resubmit for review), or to decline the submission.
  */
 
-import('lib.pkp.classes.form.Form');
+import('controllers.modals.editorDecision.form.EditorDecisionForm');
 
-class SendReviewsForm extends Form {
-	/** The monograph associated with the review assignment **/
-	var $_monograph;
+import('classes.submission.common.Action');
 
+class SendReviewsForm extends EditorDecisionForm {
 	/** The decision being taken **/
 	var $_decision;
 
 	/**
 	 * Constructor.
+	 * @param $monograph Monograph
+	 * @param $decision int
 	 */
 	function SendReviewsForm($monograph, $decision) {
-		parent::Form('controllers/modals/editorDecision/form/sendReviewsForm.tpl');
-		$this->_monograph = $monograph;
-		$this->_decision = (int) $decision;
+		parent::EditorDecisionForm($monograph, 'controllers/modals/editorDecision/form/sendReviewsForm.tpl');
+
+		assert(in_array($decision, array(SUBMISSION_EDITOR_DECISION_ACCEPT, SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW,
+										 SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS, SUBMISSION_EDITOR_DECISION_RESUBMIT, SUBMISSION_EDITOR_DECISION_DECLINE)));
+		$this->setDecision($decision);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorPost($this));
@@ -38,12 +41,21 @@ class SendReviewsForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	 * Get the Monograph
-	 * @return Monograph
+	 * Get the decision
+	 * @return int
 	 */
-	function getMonograph() {
-		return $this->_monograph;
+	function getDecision() {
+		return $this->_decision;
 	}
+
+	/**
+	 * Set the decision
+	 * @param $decision int
+	 */
+	function setDecision($decision) {
+		$this->_decision = (int) $decision;
+	}
+
 
 	//
 	// Overridden template methods
@@ -58,8 +70,6 @@ class SendReviewsForm extends Form {
 		$monograph =& $this->getMonograph();
 		$submitter = $monograph->getUser();
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION));
-
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'EDITOR_DECISION_ACCEPT');
 		$paramArray = array(
@@ -70,19 +80,19 @@ class SendReviewsForm extends Form {
 		);
 		$email->assignParams($paramArray);
 
-		import('classes.submission.common.Action');
 		$actionLabels = array(SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.requestRevisions',
 							  SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.monograph.decision.resubmit',
 							  SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.monograph.decision.decline');
 
 		$this->_data = array(
-			'monographId' => $this->_monographId,
-			'decision' => $this->_decision,
+			'monographId' => $monograph->getId(),
+			'decision' => $this->getDecision(),
 			'authorName' => $monograph->getAuthorString(),
 			'personalMessage' => $email->getBody(),
-			'actionLabel' => $actionLabels[$this->_decision]
+			'actionLabel' => $actionLabels[$this->getDecision()]
 		);
 
+		return parent::initData($args, $request);
 	}
 
 	/**
@@ -94,11 +104,9 @@ class SendReviewsForm extends Form {
 		$monograph =& $this->getMonograph();
 		$reviewType = (int) $request->getUserVar('reviewType'); //FIXME #6102: What to do with reviewType?
 		$round = (int) $request->getUserVar('round');
-		assert($round <= $monograph->getCurrentReviewRound() && $round > 0);
+		assert($round <= $monograph->getCurrentRound() && $round >= 0);
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('monographId', $this->_monographId);
-		$templateMgr->assign_by_ref('monograph', $monograph);
 		$this->setData('reviewType', $reviewType);
 		$this->setData('round', $round);
 		return parent::fetch($request);
@@ -109,7 +117,7 @@ class SendReviewsForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('decision', 'personalMessage', 'selectedAttachments'));
+		$this->readUserVars(array('personalMessage', 'selectedAttachments'));
 	}
 
 	/**
@@ -119,13 +127,10 @@ class SendReviewsForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute($args, &$request) {
-		$decision = $this->getData('decision');
+		$decision = $this->getDecision();
 		$monograph =& $this->getMonograph();
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($monograph->getMonographId());
-
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$currentReviewRound =& $reviewRoundDao->build($monograph->getMonographId(), $seriesEditorSubmission->getCurrentReviewType(), $seriesEditorSubmission->getCurrentRound());
+		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($monograph->getId());
 
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction =& new SeriesEditorAction();
@@ -168,6 +173,8 @@ class SendReviewsForm extends Form {
 				assert(false);
 		}
 
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$currentReviewRound =& $reviewRoundDao->build($monograph->getId(), $seriesEditorSubmission->getCurrentReviewType(), $seriesEditorSubmission->getCurrentRound());
 		$currentReviewRound->setStatus($status);
 		$reviewRoundDao->updateObject($currentReviewRound);
 
@@ -184,26 +191,27 @@ class SendReviewsForm extends Form {
 		$selectedAttachments = $this->getData('selectedAttachments') ? $this->getData('selectedAttachments') : array();
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
-		assert(is_array($reviewAssignmentId));
-		foreach ($selectedAttachments as $attachmentId) {
-			$monographFile =& $monographFileDao->getMonographFile($attachmentId);
-			assert(is_a($monographFile, 'MonographFile'));
+		assert(is_array($reviewIndexes));
+		if(is_array($selectedAttachments)) {
+			foreach ($selectedAttachments as $attachmentId) {
+				$monographFile =& $monographFileDao->getMonographFile($attachmentId);
+				assert(is_a($monographFile, 'MonographFile'));
 
-			$fileName = $monographFile->getOriginalFileName();
-			$reviewAssignmentId = $monographFile->getAssocId();
-			assert(is_numeric($reviewAssignmentId));
+				$fileName = $monographFile->getOriginalFileName();
+				$reviewAssignmentId = $monographFile->getAssocId();
+				assert(is_numeric($reviewAssignmentId));
 
-			$reviewIndex = $reviewIndexes[$reviewAssignmentId];
-			assert(!is_null($reviewIndex));
+				$reviewIndex = $reviewIndexes[$reviewAssignmentId];
+				assert(!is_null($reviewIndex));
 
-			$reviewerPrefix = chr(ord('A') + $reviewIndex);
-			$email->addAttachment($monographFile->getFilePath(), $reviewerPrefix . '-' . $monographFile->getOriginalFileName());
+				$reviewerPrefix = chr(ord('A') + $reviewIndex);
+				$email->addAttachment($monographFile->getFilePath(), $reviewerPrefix . '-' . $monographFile->getOriginalFileName());
 
-			// Update monograph to set viewable as true, so author can view the file on their submission summary page
-			$monographFile->setViewable(true);
-			$monographFileDao->updateMonographFile($monographFile);
+				// Update monograph to set viewable as true, so author can view the file on their submission summary page
+				$monographFile->setViewable(true);
+				$monographFileDao->updateMonographFile($monographFile);
+			}
 		}
-
 		$email->send();
 	}
 }

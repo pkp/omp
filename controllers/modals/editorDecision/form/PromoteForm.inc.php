@@ -12,58 +12,62 @@
  * @brief Form for promoting a submission (to external review or production)
  */
 
-import('lib.pkp.classes.form.Form');
+import('controllers.modals.editorDecision.form.EditorDecisionForm');
 
-class PromoteForm extends Form {
-	/** The monograph associated with the review assignment **/
-	var $_monographId;
+import('classes.submission.common.Action');
+
+class PromoteForm extends EditorDecisionForm {
 
 	/** The decision being taken **/
 	var $_decision;
 
 	/**
 	 * Constructor.
+	 * @param $monograph Monograph
+	 * @param $decision int
 	 */
-	function PromoteForm($monographId, $decision) {
-		parent::Form('controllers/modals/editorDecision/form/promoteForm.tpl');
-		$this->_monographId = (int) $monographId;
-		$this->_decision = (int) $decision;
+	function PromoteForm($monograph, $decision) {
+		parent::EditorDecisionForm($monograph, 'controllers/modals/editorDecision/form/promoteForm.tpl');
+
+		assert(in_array($decision, array(SUBMISSION_EDITOR_DECISION_ACCEPT, SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW,
+										 SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS, SUBMISSION_EDITOR_DECISION_RESUBMIT, SUBMISSION_EDITOR_DECISION_DECLINE)));
+		$this->setDecision($decision);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorPost($this));
-// FIXME: implement this check
-//		$this->addCheck(new FormValidatorCustom($this, 'decision', 'required', 'invalid decision',
-//														'in_array($decision, array(\'EDITOR_DECISION_ACCEPT\',
-//																					\'EDITOR_DECISION_DECLINE\',
-//																					\'EDITOR_DECISION_EXTERNAL_REVIEW\'))'));
 	}
 
 	//
 	// Getters and Setters
 	//
 	/**
-	 * Get the Monograph
-	 * @return Monograph
+	 * Get the decision
+	 * @return int
 	 */
-	function getMonograph() {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		return $monographDao->getMonograph($this->_monographId);
+	function getDecision() {
+		return $this->_decision;
+	}
+
+	/**
+	 * Set the decision
+	 * @param $decision int
+	 */
+	function setDecision($decision) {
+		$this->_decision = (int) $decision;
 	}
 
 	//
 	// Overridden template methods
 	//
 	/**
-	* Initialize form data with the author name and the monograph id.
-	* @param $args array
-	* @param $request PKPRequest
-	*/
+	 * Initialize form data with the author name and the monograph id.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
 	function initData($args, &$request) {
 		$press =& $request->getPress();
 		$monograph =& $this->getMonograph();
 		$submitter = $monograph->getUser();
-
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION));
 
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph, 'EDITOR_DECISION_ACCEPT');
@@ -75,27 +79,32 @@ class PromoteForm extends Form {
 		);
 		$email->assignParams($paramArray);
 
-		import('classes.submission.common.Action');
 		$actionLabels = array(SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'editor.monograph.decision.externalReview',
 							  SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.monograph.decision.accept');
 
 		$this->_data = array(
-			'monographId' => $this->_monographId,
-			'decision' => $this->_decision,
+			'monographId' => $monograph->getId(),
+			'decision' => $this->getDecision(),
 			'authorName' => $monograph->getAuthorString(),
 			'personalMessage' => $email->getBody(),
-			'actionLabel' => $actionLabels[$this->_decision]
+			'actionLabel' => $actionLabels[$this->getDecision()]
 		);
 
+		return parent::initData($args, $request);
 	}
 
+	/**
+	 * Fetch the modal content
+	 * @param $request PKPRequest
+	 * @see Form::fetch()
+	 */
 	function fetch(&$request) {
 		$monograph =& $this->getMonograph();
-		$reviewType = (int) $request->getUserVar('reviewType');
+		$reviewType = (int) $request->getUserVar('reviewType'); //FIXME #6102: What to do with reviewType?
 		$round = (int) $request->getUserVar('round');
+		assert($round <= $monograph->getCurrentRound() && $round >= 0);
+
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('monographId', $this->_monographId);
-		$templateMgr->assign_by_ref('monograph', $monograph);
 		$this->setData('reviewType', $reviewType);
 		$this->setData('round', $round);
 		return parent::fetch($request);
@@ -106,20 +115,24 @@ class PromoteForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('monographId', 'decision', 'personalMessage', 'selectedFiles', 'selectedAttachments'));
+		$this->readUserVars(array('personalMessage', 'selectedFiles', 'selectedAttachments'));
 	}
 
 	/**
-	 * Save review assignment
+	 * Save editor decision
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @see Form::execute()
 	 */
 	function execute($args, &$request) {
 		import('classes.submission.seriesEditor.SeriesEditorAction');
-		$decision = $this->getData('decision');
+		$monograph =& $this->getMonograph();
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($this->_monographId);
+		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($monograph->getId());
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$currentReviewRound =& $reviewRoundDao->build($this->_monographId, $seriesEditorSubmission->getCurrentReviewType(), $seriesEditorSubmission->getCurrentRound());
 
+		$decision = $this->getDecision();
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_ACCEPT:
 				// 1. Record the decision
@@ -131,11 +144,10 @@ class PromoteForm extends Form {
 				// 3. Set status of round
 				$status = REVIEW_ROUND_STATUS_ACCEPTED;
 
-				// 3. Assign the default users to the next workflow stage
-				import('classes.submission.common.Action');
-				Action::assignDefaultStageParticipants($this->_monographId, WORKFLOW_STAGE_ID_EDITING);
+				// 4. Assign the default users to the next workflow stage
+				Action::assignDefaultStageParticipants($monograph->getId(), WORKFLOW_STAGE_ID_EDITING);
 
-				$seriesEditorSubmission->setCurrentStageId(4);
+				$seriesEditorSubmission->setCurrentStageId(WORKFLOW_STAGE_ID_EDITING);
 				$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
 				break;
@@ -144,21 +156,19 @@ class PromoteForm extends Form {
 				SeriesEditorAction::recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW);
 
 				// Create a new review round
-				// FIXME: what do do about reviewRevision? being set to 1 for now.
+				// FIXME #6102: What to do with reviewType?
 				// 2. Create a new external review round if it doesn't exist
-				if (!$reviewRoundDao->reviewRoundExists($this->_monographId, REVIEW_TYPE_EXTERNAL, 1)) {
-					$reviewRoundDao->createReviewRound($this->_monographId, REVIEW_TYPE_EXTERNAL, 1, 1);
-				}
+				$reviewRoundDao->build($monograph->getId(), REVIEW_TYPE_EXTERNAL, 1, 1);
+
 
 				// 3. Get selected files and put in DB somehow
-				// FIXME: this is probably not right now.  Need to review Exteral Review vs. New Review Round.
+				// FIXME #6102: What to do with reviewType?
 				$selectedFiles = $this->getData('selectedFiles');
-				$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
 
-				$reviewAssignmentDAO->setFilesForReview($this->_monographId, $reviewType, $round, $selectedFiles);
+				$reviewAssignmentDao->setFilesForReview($monograph->getId(), $reviewType, $round, $selectedFiles);
 
 				// 4. select email key
-				// FIXME: will we have an email key for this decision?
+				// FIXME #6123: will we have an email key for this decision?
 				$emailKey = 'EDITOR_DECISION_ACCEPT';
 
 				// 5. Set status of round
@@ -169,36 +179,38 @@ class PromoteForm extends Form {
 				assert(false);
 		}
 
+		$currentReviewRound =& $reviewRoundDao->build($monograph->getId(), $seriesEditorSubmission->getCurrentReviewType(), $seriesEditorSubmission->getCurrentRound());
 		$currentReviewRound->setStatus($status);
 		$reviewRoundDao->updateObject($currentReviewRound);
 
 		// n. Send Personal message to author
-		$submitter = $seriesEditorSubmission->getUser();
+		$submitter =& $seriesEditorSubmission->getUser();
 		import('classes.mail.MonographMailTemplate');
-		$email = new MonographMailTemplate($seriesEditorSubmission, $emailKey, null, true);
+		$email =& new MonographMailTemplate($seriesEditorSubmission, $emailKey, null, true);
 		$email->setBody($this->getData('personalMessage'));
 		$email->addRecipient($submitter->getEmail(), $submitter->getFullName());
 		$email->setAssoc(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_EDITOR, $currentReviewRound->getRound());
 
 		// Attach the selected reviewer attachments
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($this->_monographId);
+		$monographFileManager =& new MonographFileManager($monograph->getId());
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$selectedAttachments = $this->getData('selectedAttachments') ? $this->getData('selectedAttachments') : array();
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
-		foreach ($selectedAttachments as $attachmentId) {
-			$monographFile =& $monographFileManager->getFile($attachmentId);
-			$fileName = $monographFile->getOriginalFileName();
-			$reviewAssignmentId = $monographFile->getAssocId();
-			$reviewerPrefix = chr(ord('A') + $reviewIndexes[$reviewAssignmentId]);
-			$email->addAttachment($monographFile->getFilePath(), $reviewerPrefix . '-' . $monographFile->getOriginalFileName());
+		assert(is_array($reviewIndexes));
+		if(is_array($selectedAttachments)) {
+			foreach ($selectedAttachments as $attachmentId) {
+				$monographFile =& $monographFileManager->getFile($attachmentId);
+				$fileName = $monographFile->getOriginalFileName();
+				$reviewAssignmentId = $monographFile->getAssocId();
+				$reviewerPrefix = chr(ord('A') + $reviewIndexes[$reviewAssignmentId]);
+				$email->addAttachment($monographFile->getFilePath(), $reviewerPrefix . '-' . $monographFile->getOriginalFileName());
 
-			// Update monograph to set viewable as true, so author can view the file on their submission summary page
-			$monographFile->setViewable(true);
-			$monographFileDao->updateMonographFile($monographFile);
+				// Update monograph to set viewable as true, so author can view the file on their submission summary page
+				$monographFile->setViewable(true);
+				$monographFileDao->updateMonographFile($monographFile);
+			}
 		}
-
 		$email->send();
 	}
 }
