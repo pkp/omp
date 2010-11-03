@@ -180,8 +180,10 @@ class SubmissionFilesGridHandler extends GridHandler {
 	function uploadFile($args, &$request) {
 		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
 		$monographId = $request->getUserVar('monographId');
-		$fileStage = $request->getUserVar('fileStage') ? $request->getUserVar('fileStage') : null;
-		$isRevision = $request->getUserVar('isRevision') ? $request->getUserVar('isRevision') : false;
+		$fileStage = $request->getUserVar('fileStage');
+		$fileStage = empty($fileStage) ? MONOGRAPH_FILE_SUBMISSION: $request->getUserVar('fileStage');
+		$isRevision = $request->getUserVar('isRevision');
+		$isRevision = empty($isRevision) ? false: $request->getUserVar('isRevision');
 
 		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
 		$fileForm = new SubmissionFilesUploadForm($fileId, $monographId, $fileStage, $isRevision);
@@ -199,7 +201,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 			// If isRevision is set, the user is purposefully uploading a revision
 			if($isRevision) {
 				list($fileId, $revision) = $this->confirmRevision($args, $request, $fileId);
-			} else $fileId = 1;
+			} else $revision = 1;
 
 			$templateMgr =& TemplateManager::getManager();
 
