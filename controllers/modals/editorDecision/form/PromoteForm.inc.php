@@ -203,8 +203,7 @@ class PromoteForm extends EditorDecisionForm {
 				$monographFile =& $monographFileManager->getFile($attachmentId);
 				$fileName = $monographFile->getOriginalFileName();
 				$reviewAssignmentId = $monographFile->getAssocId();
-				$reviewerPrefix = chr(ord('A') + $reviewIndexes[$reviewAssignmentId]);
-				$email->addAttachment($monographFile->getFilePath(), $reviewerPrefix . '-' . $monographFile->getOriginalFileName());
+				$email->addAttachment($monographFile->getFilePath(), String::enumerateAlphabetically($reviewIndexes[$reviewAssignmentId]) . '-' . $monographFile->getOriginalFileName());
 
 				// Update monograph to set viewable as true, so author can view the file on their submission summary page
 				$monographFile->setViewable(true);

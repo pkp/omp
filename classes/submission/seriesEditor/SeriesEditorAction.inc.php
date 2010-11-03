@@ -1939,7 +1939,7 @@ class SeriesEditorAction extends Action {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION));
 
 		$body = '';
-		$textSeparator = "------------------------------------------------------"
+		$textSeparator = "------------------------------------------------------";
 		foreach ($reviewAssignments as $reviewAssignment) {
 			// If the reviewer has completed the assignment, then import the review.
 			if ($reviewAssignment->getDateCompleted() != null && !$reviewAssignment->getCancelled()) {
@@ -1948,7 +1948,7 @@ class SeriesEditorAction extends Action {
 
 				if($monographComments) {
 					$body .= "\n\n$textSeparator\n";
-					$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n";
+					$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n";
 					if (is_array($monographComments)) {
 						foreach ($monographComments as $comment) {
 							// If the comment is viewable by the author, then add the comment.
@@ -1967,7 +1967,9 @@ class SeriesEditorAction extends Action {
 					$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 					if(!$monographComments) {
 						$body .= "$textSeparator\n";
-						$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => chr(ord('A') + $reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n\n";
+
+
+						$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n\n";
 					}
 					foreach ($reviewFormElements as $reviewFormElement) {
 						$body .= String::html2text($reviewFormElement->getLocalizedQuestion()) . ": \n";

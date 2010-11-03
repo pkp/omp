@@ -204,8 +204,7 @@ class SendReviewsForm extends EditorDecisionForm {
 				$reviewIndex = $reviewIndexes[$reviewAssignmentId];
 				assert(!is_null($reviewIndex));
 
-				$reviewerPrefix = chr(ord('A') + $reviewIndex);
-				$email->addAttachment($monographFile->getFilePath(), $reviewerPrefix . '-' . $monographFile->getOriginalFileName());
+				$email->addAttachment($monographFile->getFilePath(), String::enumerateAlphabetically($reviewIndex) . '-' . $monographFile->getOriginalFileName());
 
 				// Update monograph to set viewable as true, so author can view the file on their submission summary page
 				$monographFile->setViewable(true);
