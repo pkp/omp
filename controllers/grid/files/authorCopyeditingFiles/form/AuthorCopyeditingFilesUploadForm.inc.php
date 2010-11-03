@@ -6,10 +6,10 @@
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SubmissionFilesUploadForm
+ * @class AuthorCopyeditingFilesUploadForm
  * @ingroup controllers_grid_files_authorCopyeditingFiles_form
  *
- * @brief Form for adding/edditing a submission file
+ * @brief Form for adding/editing a submission file
  */
 
 import('controllers.grid.files.copyeditingFiles.form.CopyeditingFileForm');

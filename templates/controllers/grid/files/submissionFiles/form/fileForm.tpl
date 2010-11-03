@@ -8,7 +8,6 @@
  *}
 
 <script type="text/javascript">{literal}
-
 	// Create callbacks to handle plupload actions
 	function attachCallbacks(uploader) {
 		// Prevent > 1 files from being added
@@ -21,15 +20,17 @@
 
 		// Add the file type field to the form
 		uploader.bind('QueueChanged', function(up, files) {
-			$("#plupload").pluploadQueue().settings.multipart_params = {{/literal} fileStage: {$fileStage},
-															{if $isRevision}
-																isRevision: true, submissionFileId: $('#submissionFiles').val()
-															{elseif $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}
-																copyeditingSignoffId: $('#copyeditingFiles').val()
-															{else}
-																fileType : $('#fileType').val()
-															{/if}
-															{literal}};
+			$("#plupload").pluploadQueue().settings.multipart_params = {{/literal}
+				fileStage: '{$fileStage}',
+				{if $isRevision}
+					isRevision: true,
+					submissionFileId: $('#submissionFiles').val()
+				{elseif $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}
+					copyeditingSignoffId: $('#copyeditingFiles').val()
+				{else}
+					fileType: $('#fileType').val()
+				{/if}
+			{literal}};
 		});
 
 		// Handler the server's JSON response
@@ -67,15 +68,17 @@
 			multi_selection: false,
 			file_data_name: {/literal}{if $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}'copyeditingFile'{else}'submissionFile'{/if}{literal},
 			multipart: true,
-			multipart_params : {{/literal} fileStage: {$fileStage},
-							{if $isRevision}
-								isRevision: true, submissionFileId: $('#submissionFiles').val()
-							{elseif $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}
-								copyeditingSignoffId: $('#copyeditingFiles').val()
-							{else}
-								fileType : $('#fileType').val()
-							{/if}
-							{literal}},
+			multipart_params : {{/literal}
+				fileStage: '{$fileStage}',
+				{if $isRevision}
+					isRevision: true,
+					submissionFileId: $('#submissionFiles').val()
+				{elseif $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}
+					copyeditingSignoffId: $('#copyeditingFiles').val()
+				{else}
+					fileType: $('#fileType').val()
+				{/if}
+			{literal}},
 
 			// Flash settings
 			flash_swf_url : '{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/plupload/plupload.flash.swf',
@@ -122,8 +125,6 @@
 			$('div#fileUploadTabs').last().parent().dialog('close');
 			return false;
 		});
-
-
 	});
 	{/literal}
 </script>

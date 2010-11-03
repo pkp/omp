@@ -17,7 +17,7 @@
 
 import('lib.pkp.classes.submission.SubmissionFile');
 
-/* File Type IDs */
+// File Type IDs
 define('MONOGRAPH_FILE_PUBLIC', 0x000001);
 define('MONOGRAPH_FILE_SUBMISSION', 0x000002);
 define('MONOGRAPH_FILE_ARTWORK', 0x000003);
