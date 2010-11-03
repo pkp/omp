@@ -24,7 +24,6 @@
  */
 
 
-
 import('lib.pkp.classes.file.FileManager');
 
 class MonographFileManager extends FileManager {

@@ -1,5 +1,5 @@
 <?php
-/**	
+/**
  * @file classes/bookFile/BookFileTypeDAO.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
@@ -11,7 +11,6 @@
  *
  * @brief Operations for retrieving and modifying BookFileType objects.
  */
-
 
 
 import('classes.bookFile.BookFileType');
@@ -87,19 +86,19 @@ class BookFileTypeDAO extends DefaultSettingDAO
 		$bookFileType = $this->newDataObject();
 		$bookFileType->setId($row['entry_id']);
 		$bookFileType->setSortable($row['sortable']);
-		$bookFileType->setCategory($row['category']);		
+		$bookFileType->setCategory($row['category']);
 
 		$this->getDataObjectSettings('book_file_type_settings', 'entry_id', $row['entry_id'], $bookFileType);
 
 		HookRegistry::call('BookFileTypeDAO::_fromRow', array(&$bookFileType, &$row));
-		
+
 		return $bookFileType;
-	}  
+	}
 
 	/**
 	 * Insert a new book file type.
 	 * @param $bookFileType BookFileType
-	 */	
+	 */
 	function insertObject(&$bookFileType) {
 		$press =& Request::getPress();
 
@@ -228,7 +227,7 @@ class BookFileTypeDAO extends DefaultSettingDAO
 			$designation = $sortable ? BOOK_FILE_TYPE_SORTABLE_DESIGNATION : Locale::translate($localeKey.'.designation', array(), $locale);
 
 			$settings = array(
-				'name' => Locale::translate($localeKey, array(), $locale), 
+				'name' => Locale::translate($localeKey, array(), $locale),
 				'designation' => $designation
 			);
 		}

@@ -14,7 +14,6 @@
  */
 
 
-
 import('lib.pkp.classes.file.PKPTemporaryFileManager');
 
 class TemporaryFileManager extends PKPTemporaryFileManager {
@@ -34,7 +33,7 @@ class TemporaryFileManager extends PKPTemporaryFileManager {
 	 */
 	function monographToTemporaryFile($monographFile, $userId) {
 		// Get the file extension, then rename the file.
-		$fileExtension = $this->parseFileExtension($monographFile->getFileName());			
+		$fileExtension = $this->parseFileExtension($monographFile->getFileName());
 
 		if (!$this->fileExists($this->filesDir, 'dir')) {
 			// Try to create destination directory

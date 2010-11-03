@@ -9,7 +9,7 @@
  * @class AdminLanguagesHandler
  * @ingroup pages_admin
  *
- * @brief Handle requests for changing site language settings. 
+ * @brief Handle requests for changing site language settings.
  */
 
 
@@ -96,7 +96,7 @@ class AdminLanguagesHandler extends AdminHandler {
 		import('lib.pkp.classes.notification.NotificationManager');
 		$notificationManager = new NotificationManager();
 		$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
-  
+
 		$request->redirect(null, null, 'index');
 	}
 

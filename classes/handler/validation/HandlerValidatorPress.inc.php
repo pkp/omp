@@ -10,7 +10,7 @@
  *
  * @brief Class to represent a page validation check.
  *
- * NB: Deprecated - please use ContextRequiredPolicy instead.
+ * NB: Deprecated - please use ContextRequiredPolicy instead, see #5868.
  */
 
 import('lib.pkp.classes.handler.validation.HandlerValidatorPolicy');

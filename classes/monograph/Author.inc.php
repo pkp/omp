@@ -14,7 +14,6 @@
  */
 
 
-
 import('lib.pkp.classes.submission.PKPAuthor');
 
 class Author extends PKPAuthor {
@@ -51,7 +50,7 @@ class Author extends PKPAuthor {
 	 * @return string
 	 */
 	function getLocalizedUserGroupName() {
-		//FIXME: should this be queried when fetching Author from DB?
+		//FIXME: should this be queried when fetching Author from DB? - see #5231.
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroup =& $userGroupDao->getById($this->getUserGroupId());
 		return $userGroup->getLocalizedName();

@@ -13,7 +13,6 @@
  */
 
 
-
 import('lib.pkp.classes.mail.PKPMailTemplate');
 
 class MailTemplate extends PKPMailTemplate {

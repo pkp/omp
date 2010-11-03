@@ -3,7 +3,7 @@
 /**
  * @defgroup bookFile
  */
- 
+
 /**
  * @file classes/bookFile/BookFileType.inc.php
  *
@@ -33,14 +33,14 @@ class BookFileType extends DataObject {
 	function setName($name, $locale) {
 		$this->setData('name', $name, $locale);
 	}
-	
+
 	/**
 	 * Get the name of the book file type
 	 * @param $locale string
 	 * @return string
 	 */
 	function getName($locale) {
-		return $this->getData('name', $locale);	
+		return $this->getData('name', $locale);
 	}
 
 	/**
@@ -48,7 +48,7 @@ class BookFileType extends DataObject {
 	 * @return string
 	 */
 	function getLocalizedName() {
-		return $this->getLocalizedData('name');	
+		return $this->getLocalizedData('name');
 	}
 
 	/**
@@ -59,14 +59,14 @@ class BookFileType extends DataObject {
 	function setDesignation($abbrev, $locale) {
 		$this->setData('designation', $abbrev, $locale);
 	}
-	
+
 	/**
 	 * Get the designation of the book file type
 	 * @param $locale string
 	 * @return string
 	 */
 	function getDesignation($locale) {
-		return $this->getData('designation', $locale);	
+		return $this->getData('designation', $locale);
 	}
 
 	/**
@@ -74,7 +74,7 @@ class BookFileType extends DataObject {
 	 * @return string
 	 */
 	function getLocalizedDesignation() {
-		return $this->getLocalizedData('designation');	
+		return $this->getLocalizedData('designation');
 	}
 
 	/**
@@ -92,7 +92,7 @@ class BookFileType extends DataObject {
 	function setSortable($sortable) {
 		return $this->setData('sortable', $sortable);
 	}
-	
+
 	/**
 	 * Get book file category (e.g. artwork)
 	 * @return int

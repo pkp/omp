@@ -1,5 +1,5 @@
 <?php
-/**	
+/**
  * @file classes/publicationFormat/PublicationFormatDAO.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
@@ -11,7 +11,6 @@
  *
  * @brief Operations for retrieving and modifying PublicationFormat objects.
  */
-
 
 
 import('classes.publicationFormat.PublicationFormat');
@@ -26,7 +25,7 @@ class PublicationFormatDAO extends DefaultSettingDAO
 	 */
 	function &getById($formatId){
 		$result =& $this->retrieve('SELECT * FROM publication_formats WHERE entry_id = ?', $formatId);
-		
+
 		$returner = null;
 		if ($result->RecordCount() != 0) {
 			$returner =& $this->_fromRow($result->GetRowAssoc(false));
@@ -65,11 +64,11 @@ class PublicationFormatDAO extends DefaultSettingDAO
 
 	/**
 	 * Update the settings for this object
-	 * @param $bookFileType object
+	 * @param $publicationFormat object
 	 */
-	function updateLocaleFields(&$bookFileType) {
-		$this->updateDataObjectSettings('publication_format_settings', $bookFileType, array(
-			'entry_id' => $bookFileType->getId()
+	function updateLocaleFields(&$publicationFormat) {
+		$this->updateDataObjectSettings('publication_format_settings', $publicationFormat, array(
+			'entry_id' => $publicationFormat->getId()
 		));
 	}
 
@@ -93,12 +92,12 @@ class PublicationFormatDAO extends DefaultSettingDAO
 		$this->getDataObjectSettings('publication_format_settings', 'entry_id', $row['entry_id'], $publicationFormat);
 
 		return $publicationFormat;
-	}  
+	}
 
 	/**
 	 * Insert a new publication format.
 	 * @param $publicationFormat PublicationFormat
-	 */	
+	 */
 	function insertObject(&$publicationFormat) {
 		$press =& Request::getPress();
 
@@ -215,7 +214,7 @@ class PublicationFormatDAO extends DefaultSettingDAO
 			$localeKey = $node->getAttribute('localeKey');
 
 			$settings = array(
-				'name' => Locale::translate($localeKey, array(), $locale), 
+				'name' => Locale::translate($localeKey, array(), $locale),
 				'designation' => Locale::translate($localeKey.'.designation', array(), $locale)
 			);
 		}

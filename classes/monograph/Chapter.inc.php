@@ -1,17 +1,13 @@
 <?php
 
 /**
- * @defchapter chapter
- */
-
-/**
  * @file classes/monograph/Chapter.inc.php
  *
  * Copyright (c) 2000-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class Chapter
- * @inchapter monograph
+ * @ingroup monograph
  * @see ChapterDAO
  *
  * @brief Describes a monograph chapter (or section)

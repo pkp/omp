@@ -13,7 +13,6 @@
  */
 
 
-
 import('lib.pkp.classes.file.FileManager');
 
 class PressFileManager extends FileManager {

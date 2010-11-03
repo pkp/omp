@@ -41,7 +41,7 @@ class LibraryFileDAO extends DAO {
 
 		return $returner;
 	}
-  
+
 
 	/**
 	 * Retrieve all library files for a press.
@@ -94,7 +94,7 @@ class LibraryFileDAO extends DAO {
 			'file_id' => $libraryFile->getId()
 		));
 	}
-	
+
 	/**
 	 * Internal function to return a LibraryFile object from a row.
 	 * @param $row array
@@ -112,7 +112,7 @@ class LibraryFileDAO extends DAO {
 		$libraryFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
 
 		$this->getDataObjectSettings('library_file_settings', 'file_id', $row['file_id'], $libraryFile);
-		
+
 		HookRegistry::call('LibraryFileDAO::_fromRow', array(&$libraryFile, &$row));
 
 		return $libraryFile;
@@ -122,7 +122,7 @@ class LibraryFileDAO extends DAO {
 	 * Insert a new LibraryFile.
 	 * @param $libraryFile LibraryFile
 	 * @return int
-	 */	
+	 */
 	function insertObject(&$libraryFile) {
 		$params = array(
 			$libraryFile->getPressId(),
@@ -131,7 +131,7 @@ class LibraryFileDAO extends DAO {
 			$libraryFile->getFileSize(),
 			$libraryFile->getType()
 		);
-		
+
 		if ( $libraryFile->getId() ) {
 			$params[] = $libraryFile->getId();
 			$this->update(
@@ -143,7 +143,7 @@ class LibraryFileDAO extends DAO {
 					),
 				$params
 			);
-			
+
 		} else {
 			$this->update(
 				sprintf('INSERT INTO library_files
@@ -157,7 +157,7 @@ class LibraryFileDAO extends DAO {
 
 			$libraryFile->setId($this->getInsertLibraryFileId());
 		}
-		
+
 		$this->updateLocaleFields($libraryFile);
 		return $libraryFile->getId();
 	}
@@ -170,22 +170,22 @@ class LibraryFileDAO extends DAO {
 	function updateObject(&$libraryFile) {
 		$this->update(
 			sprintf('UPDATE library_files
-				SET press_id = ?, 
-					file_name = ?, 
-					file_type = ?, 
-					file_size = ?, 
-					type = ?, 
+				SET press_id = ?,
+					file_name = ?,
+					file_type = ?,
+					file_size = ?,
+					type = ?,
 					date_uploaded = %s
 				WHERE file_id = ?', $this->datetimeToDB($libraryFile->getDateUploaded())
 				), array(
 					$libraryFile->getPressId(),
-					$libraryFile->getFileName(), 
-					$libraryFile->getFileType(), 
+					$libraryFile->getFileName(),
+					$libraryFile->getFileType(),
 					$libraryFile->getFileSize(),
 					$libraryFile->getType(),
 					$libraryFile->getId()
 					));
-					
+
 		$this->updateLocaleFields($libraryFile);
 		return $libraryFile->getId();
 	}
@@ -223,7 +223,7 @@ class LibraryFileDAO extends DAO {
 	/**
 	 * Check if a file with this filename already exists
 	 * @param $filename String the filename to be checked
-	 * @return bool 
+	 * @return bool
 	 */
 	function filenameExists($pressId, $fileName) {
 		$result = $this->retrieve('SELECT COUNT(*) FROM library_files WHERE press_id = ? AND file_name = ?', array($pressId, $fileName) );
@@ -233,7 +233,7 @@ class LibraryFileDAO extends DAO {
 		unset($result);
 
 		return $returner;
-		
+
 	}
 
 	/**

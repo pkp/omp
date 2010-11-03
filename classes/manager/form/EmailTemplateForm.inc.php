@@ -14,7 +14,6 @@
  */
 
 
-
 import('lib.pkp.classes.form.Form');
 
 class EmailTemplateForm extends Form {

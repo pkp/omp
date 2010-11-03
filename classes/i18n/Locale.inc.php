@@ -176,13 +176,13 @@ class Locale extends PKPLocale {
 	function installLocale($locale) {
 		parent::installLocale($locale);
 
-		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO'); /* @var $bookFileTypeDao BookFileTypeDAO */
 		$bookFileTypeDao->installLocale($locale);
 
-		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 		$publicationFormatDao->installLocale($locale);
 
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$userGroupDao->installLocale($locale);
 	}
 

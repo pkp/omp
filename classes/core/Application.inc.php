@@ -49,6 +49,10 @@ class Application extends PKPApplication {
 		return 1;
 	}
 
+	/**
+	 * Get a list of contexts for this application.
+	 * @return array
+	 */
 	function getContextList() {
 		return array('press');
 	}
@@ -86,47 +90,47 @@ class Application extends PKPApplication {
 		return array_merge(parent::getDAOMap(), array(
 			'AnnouncementDAO' => 'classes.announcement.AnnouncementDAO',
 			'AnnouncementTypeDAO' => 'classes.announcement.AnnouncementTypeDAO',
-			'BookFileTypeDAO' => 'classes.bookFile.BookFileTypeDAO',
-			'MonographEmailLogDAO' => 'classes.monograph.log.MonographEmailLogDAO',
-			'MonographEventLogDAO' => 'classes.monograph.log.MonographEventLogDAO',
 			'ArtworkFileDAO' => 'classes.monograph.ArtworkFileDAO',
-			'MonographCommentDAO' => 'classes.monograph.MonographCommentDAO',
-			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
-			'MonographDAO' => 'classes.monograph.MonographDAO',
-			'NoteDAO' => 'classes.note.NoteDAO',
-			'ProductionAssignmentDAO' => 'classes.submission.productionAssignment.ProductionAssignmentDAO',
-			'PublicationFormatDAO' => 'classes.publicationFormat.PublicationFormatDAO',
-			'SeriesDAO' => 'classes.press.SeriesDAO',
-			'DivisionDAO' => 'classes.press.DivisionDAO',
-			'SeriesEditorsDAO' => 'classes.press.SeriesEditorsDAO',
-			'MonographFileDAO' => 'classes.monograph.MonographFileDAO',
-			'MonographGalleyDAO' => 'classes.monograph.MonographGalleyDAO',
-			'NotificationStatusDAO' => 'classes.press.NotificationStatusDAO',
 			'AuthorDAO' => 'classes.monograph.AuthorDAO',
 			'AuthorSubmissionDAO' => 'classes.submission.author.AuthorSubmissionDAO',
-			'ChapterDAO' => 'classes.monograph.ChapterDAO',
+			'BookFileTypeDAO' => 'classes.bookFile.BookFileTypeDAO',
 			'ChapterAuthorDAO' => 'classes.monograph.ChapterAuthorDAO',
-			'ProductionEditorSubmissionDAO' => 'classes.submission.productionEditor.ProductionEditorSubmissionDAO',
+			'ChapterDAO' => 'classes.monograph.ChapterDAO',
 			'CopyeditorSubmissionDAO' => 'classes.submission.copyeditor.CopyeditorSubmissionDAO',
+			'DesignerSubmissionDAO' => 'classes.submission.designer.DesignerSubmissionDAO',
+			'DivisionDAO' => 'classes.press.DivisionDAO',
 			'EditorSubmissionDAO' => 'classes.submission.editor.EditorSubmissionDAO',
 			'EmailTemplateDAO' => 'classes.mail.EmailTemplateDAO',
-			'DesignerSubmissionDAO' => 'classes.submission.designer.DesignerSubmissionDAO',
+			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
+			'LibraryFileDAO' => 'classes.press.LibraryFileDAO',
+			'MonographCommentDAO' => 'classes.monograph.MonographCommentDAO',
+			'MonographDAO' => 'classes.monograph.MonographDAO',
+			'MonographEmailLogDAO' => 'classes.monograph.log.MonographEmailLogDAO',
+			'MonographEventLogDAO' => 'classes.monograph.log.MonographEventLogDAO',
+			'MonographFileDAO' => 'classes.monograph.MonographFileDAO',
+			'MonographGalleyDAO' => 'classes.monograph.MonographGalleyDAO',
+			'MonographSearchDAO' => 'classes.search.MonographSearchDAO',
+			'NoteDAO' => 'classes.note.NoteDAO',
+			'NotificationStatusDAO' => 'classes.press.NotificationStatusDAO',
 			'PluginSettingsDAO' => 'classes.plugins.PluginSettingsDAO',
 			'PressDAO' => 'classes.press.PressDAO',
 			'PressSettingsDAO' => 'classes.press.PressSettingsDAO',
+			'ProductionAssignmentDAO' => 'classes.submission.productionAssignment.ProductionAssignmentDAO',
+			'ProductionEditorSubmissionDAO' => 'classes.submission.productionEditor.ProductionEditorSubmissionDAO',
+			'PublicationFormatDAO' => 'classes.publicationFormat.PublicationFormatDAO',
 			'ReviewAssignmentDAO' => 'classes.submission.reviewAssignment.ReviewAssignmentDAO',
 			'ReviewerSubmissionDAO' => 'classes.submission.reviewer.ReviewerSubmissionDAO',
 			'ReviewFormDAO' => 'lib.pkp.classes.reviewForm.ReviewFormDAO',
-			'ReviewRoundDAO' => 'classes.monograph.reviewRound.ReviewRoundDAO',
 			'ReviewFormElementDAO' => 'lib.pkp.classes.reviewForm.ReviewFormElementDAO',
 			'ReviewFormResponseDAO' => 'lib.pkp.classes.reviewForm.ReviewFormResponseDAO',
-			'LibraryFileDAO' => 'classes.press.LibraryFileDAO',
-			'LayoutAssignmentDAO' => 'submission.layoutAssignment.LayoutAssignmentDAO',
+			'ReviewRoundDAO' => 'classes.monograph.reviewRound.ReviewRoundDAO',
 			'RoleDAO' => 'classes.security.RoleDAO',
-			'UserGroupDAO' => 'lib.pkp.classes.security.UserGroupDAO',
-			'UserGroupAssignmentDAO' => 'lib.pkp.classes.security.UserGroupAssignmentDAO',
-			'UserGroupStageAssignmentDAO' => 'classes.workflow.UserGroupStageAssignmentDAO',
+			'SeriesDAO' => 'classes.press.SeriesDAO',
+			'SeriesEditorsDAO' => 'classes.press.SeriesEditorsDAO',
 			'SeriesEditorSubmissionDAO' => 'classes.submission.seriesEditor.SeriesEditorSubmissionDAO',
+			'UserGroupAssignmentDAO' => 'lib.pkp.classes.security.UserGroupAssignmentDAO',
+			'UserGroupDAO' => 'lib.pkp.classes.security.UserGroupDAO',
+			'UserGroupStageAssignmentDAO' => 'classes.workflow.UserGroupStageAssignmentDAO',
 			'UserDAO' => 'classes.user.UserDAO',
 			'UserSettingsDAO' => 'classes.user.UserSettingsDAO',
 			'ViewsDAO' => 'classes.views.ViewsDAO'
@@ -135,12 +139,13 @@ class Application extends PKPApplication {
 
 	/**
 	 * Get the list of plugin categories for this application.
+	 * @return array
 	 */
 	function getPluginCategories() {
 		return array(
 			// NB: Meta-data plug-ins are first in the list as this
 			// will make them being loaded (and installed) first.
-			// This is necessary as many other plug-in categories
+			// This is necessary as several other plug-in categories
 			// depend on meta-data. This is a very rudimentary type of
 			// dependency management for plug-ins.
 			'metadata',

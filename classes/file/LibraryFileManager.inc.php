@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file classes/file/PublicFileManager.inc.php
+ * @file classes/file/LibraryFileManager.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class PublicFileManager
+ * @class LibraryFileManager
  * @ingroup file
  *
- * @brief Wrapper class for uploading files to a site/press' public directory.
+ * @brief Wrapper class for uploading files to a site/press' library directory.
  */
 
 

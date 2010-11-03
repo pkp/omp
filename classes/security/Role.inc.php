@@ -30,11 +30,11 @@ define('ROLE_ID_REVIEWER',		0x00001000);
 define('ROLE_PATH_REVIEWER', 'reviewer');
 
 
-//FIXME: The following new role (="press role") will have to be introduced:
+//FIXME: The following new role (="press role") will have to be introduced - see #6113.
 define('ROLE_ID_PRESS_ASSISTANT', 0x00001001);
 
 
-//FIXME: The following roles will have to be deleted:
+//FIXME: The following roles will have to be deleted - see #6113.
 define('ROLE_ID_DIRECTOR',		0x00000012);
 define('ROLE_PATH_DIRECTOR', 'director');
 

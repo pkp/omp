@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ChapterDAO
- * @inchapter monograph
+ * @ingroup monograph
  * @see Chapter
  * @see AuthorDAO
  *

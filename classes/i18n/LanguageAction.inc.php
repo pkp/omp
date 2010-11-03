@@ -1,21 +1,19 @@
 <?php
 /**
- * @defgroup admin
+ * @defgroup i18n
  */
 
 /**
  * @file classes/i18n/LanguageAction.inc.php
- * @defgroup admin
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class LanguageAction
- * @ingroup admin
+ * @ingroup i18n
  *
  * @brief LanguageAction class.
  */
-
 
 
 define('LANGUAGE_PACK_DESCRIPTOR_URL', 'http://pkp.sfu.ca/omp/xml/%s/locales.xml');
@@ -34,10 +32,10 @@ class LanguageAction {
 	function LanguageAction() {
 	}
 
-	/**
-	 * Actions.
-	 */
 
+	//
+	// Actions
+	//
 	/**
 	 * Check to see whether the tar function exists and appears to be
 	 * available for execution from PHP, and various other conditions that
