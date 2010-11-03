@@ -154,16 +154,6 @@ class Application extends PKPApplication {
 			'themes'
 		);
 	}
-
-	/**
-	 * Instantiate the help object for this application.
-	 * @return object
-	 */
-	function &instantiateHelp() {
-		import('classes.help.Help');
-		$help = new Help();
-		return $help;
-	}
 }
 
 ?>
