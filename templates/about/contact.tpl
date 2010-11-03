@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * About the Press / Press Contact.
-
  *}
 {strip}
 {assign var="pageTitle" value="about.pressContact"}

@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Header for the submission review pages.
-
  *}
 {strip}
 {translate|assign:"review" key='submission.review'}

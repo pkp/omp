@@ -6,7 +6,6 @@
  *
  * Show the review completed page.
  *
-
  *}
 
 {strip}

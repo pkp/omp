@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Subtemplate defining the layout editing table.
-
  *}
 {assign var=galleys value=$submission->getGalleys()}
 {assign var=layoutFile value=$submission->getLayoutFile()}

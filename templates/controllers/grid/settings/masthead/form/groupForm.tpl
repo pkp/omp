@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Group form under press management.
-
  *}
 
 <form name="groupForm" id="groupForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.masthead.MastheadGridHandler" op="updateGroup"}">

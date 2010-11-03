@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Submission editing.
-
  *}
 
 {include file="seriesEditor/submission/summary.tpl"}

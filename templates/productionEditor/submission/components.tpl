@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Subtemplate defining the submission summary table.
-
  *}
 <h3>{translate key="manuscript.artwork"}</h3>
 

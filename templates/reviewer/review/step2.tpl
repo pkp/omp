@@ -6,7 +6,6 @@
  *
  * Show the step 2 review page
  *
-
  *}
 
 {strip}

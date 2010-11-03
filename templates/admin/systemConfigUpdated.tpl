@@ -6,7 +6,6 @@
  *
  * Display confirmation of successful configuration update.
  * If necessary, will display new config file contents if config file could not be written.
-
  *}
 {strip}
 {assign var="pageTitle" value="admin.systemConfiguration"}

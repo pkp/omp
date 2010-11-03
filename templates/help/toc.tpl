@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Help table of contents.
-
  *}
 <div style="padding-top: 0.5em;">
 	<form action="{url op="search"}" method="post" style="display: inline">

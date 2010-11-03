@@ -6,7 +6,6 @@
  *
  * Generic error page.
  * Displays a simple error message and (optionally) a return link.
-
  *}
 {strip}
 {include file="common/header.tpl"}

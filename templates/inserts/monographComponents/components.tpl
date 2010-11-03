@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Component listing.
-
  *}
 {literal}
 <script type="text/javascript">

@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Author's submission summary.
-
  *}
 
 {include file="author/submission/management.tpl"}

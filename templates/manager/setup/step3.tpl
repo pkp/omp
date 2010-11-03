@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Step 3 of press setup.
-
  *}
 {assign var="pageTitle" value="manager.setup.preparingWorkflow"}
 {include file="manager/setup/setupHeader.tpl"}

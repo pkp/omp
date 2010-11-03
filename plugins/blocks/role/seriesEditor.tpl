@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Series Editor navigation sidebar.
-
  *}
 <div class="block" id="sidebarSeriesEditor">
 	<span class="blockTitle">{translate key="user.role.seriesEditor"}</span>

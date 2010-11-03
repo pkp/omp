@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Google Analytics plugin settings
-
  *}
 {strip}
 {assign var="pageTitle" value="plugins.theme.custom.name"}

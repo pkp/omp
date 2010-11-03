@@ -6,7 +6,6 @@
  *
  * Display a field for reviewers to enter regret messages
  *
-
  *}
 <script type="text/javascript">
 	{literal}

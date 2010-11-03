@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display list of email templates in press management.
-
  *}
 {strip}
 {assign var="pageTitle" value="manager.emails"}

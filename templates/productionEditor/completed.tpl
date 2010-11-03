@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Show the details of completed submissions.
-
  *}
 <div id="submissions">
 <table class="listing" width="100%">

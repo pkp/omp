@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Layout editor submissions list.
-
  *}
 {strip}
 {assign var="pageTitle" value="common.queue.long.$pageToDisplay"}

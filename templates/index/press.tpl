@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * PRess index page.
-
  *}
 {strip}
 {assign var="pageTitleTranslated" value=$siteTitle}

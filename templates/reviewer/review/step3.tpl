@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Show the step 3 review page
-
  *}
 {strip}
 {assign var="pageCrumbTitle" value="submission.review"}

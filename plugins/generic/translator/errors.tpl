@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Error list for a checked locale
-
  *}
 {strip}
 {assign var="pageTitle" value="plugins.generic.translator.errors"}

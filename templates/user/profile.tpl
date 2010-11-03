@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * User profile form.
-
  *}
 {strip}
 {assign var="pageTitle" value="user.profile.editProfile"}

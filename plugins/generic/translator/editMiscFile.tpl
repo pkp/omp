@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Misc. file editor dialog
-
  *}
 {strip}
 {translate|escape|assign:"pageTitleTranslated" key="plugins.generic.translator.file.edit" filename=$filename}

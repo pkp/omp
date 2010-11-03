@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Show layout editor's submission archive.
-
  *}
 {if !$dateFrom}
 {assign var="dateFrom" value="--"}

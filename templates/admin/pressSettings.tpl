@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Basic press settings under site administration.
-
  *}
 {strip}
 {assign var="pageTitle" value="admin.presses.pressSettings"}

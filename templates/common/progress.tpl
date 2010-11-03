@@ -6,7 +6,6 @@
  *
  * Generic progress bar page.
  * Displays a simple message and progress bar.
-
  *}
 {strip}
 {include file="common/header.tpl"}

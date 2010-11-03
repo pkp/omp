@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Artwork file info/metadata.
-
  *}
 {assign var='uniqueId' value=""|uniqid}
 

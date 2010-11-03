@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Show section editor's submissions in review.
-
  *}
 <div id="submissions">
 <table width="100%" class="listing">

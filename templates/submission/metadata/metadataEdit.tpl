@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Form for changing metadata of a monograph.
-
  *}
 {strip}
 {assign var="pageTitle" value="submission.editMetadata"}

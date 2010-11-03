@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Subtemplate defining the author's peer review table.
-
  *}
 <div id="peerReview">
 <h3>{translate key="submission.peerReview"}</h3>

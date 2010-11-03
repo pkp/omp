@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Subtemplate defining the submission editors table.
-
  *}
 <div id="editors">
 <h3>{translate key="user.role.editors"}</h3>

@@ -6,7 +6,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Sponsors grid form
-
  *}
 <form name="editSponsorForm" id="editSponsorForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.sponsor.SponsorGridHandler" op="updateSponsor"}">
 {include file="common/formErrors.tpl"}

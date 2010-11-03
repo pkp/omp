@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * User profile form under press management.
-
  *}
 {strip}
 {url|assign:"currentUrl" op="people" path="all"}

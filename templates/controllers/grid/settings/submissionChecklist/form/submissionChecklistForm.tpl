@@ -6,7 +6,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * SubmissionChecklists grid form
-
  *}
 <form name="editSubmissionChecklistForm" id="editSubmissionChecklistForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.submissionChecklist.SubmissionChecklistGridHandler" op="updateItem"}"}
 {include file="common/formErrors.tpl"}

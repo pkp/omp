@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Customize a specific locale file.
-
  *}
 {strip}
 {translate|assign:"pageTitleTranslated" key="plugins.generic.customLocale.locale" locale=$locale}

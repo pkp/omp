@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * List available import/export plugins.
-
  *}
 {strip}
 {assign var="pageTitle" value="manager.importExport"}

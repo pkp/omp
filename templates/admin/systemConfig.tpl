@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Form to edit system configuration.
-
  *}
 {strip}
 {assign var="pageTitle" value="admin.systemConfiguration"}

@@ -5,7 +5,6 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Step 4 of press setup.
-
  *}
 {assign var="pageTitle" value="manager.setup.managingThePress"}
 {include file="manager/setup/setupHeader.tpl"}

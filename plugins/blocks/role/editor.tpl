@@ -6,7 +6,6 @@
  *
  * Editor navigation sidebar.
  * Lists active assignments and editor functions.
-
  *}
 <div class="block" id="sidebarEditor">
 	<span class="blockTitle">{translate key="user.role.editor"}</span>
