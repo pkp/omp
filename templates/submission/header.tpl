@@ -7,9 +7,15 @@
  * Header that contains details about the submission
  *}
 
+{assign var="stageId" value=$monograph->getCurrentStageId()}
 <div class="submissionHeader">
 	<div class="headerTop">
 		<div class="heading">
+			{if $stageId == 2}
+				{translate key="workflow.review.internalReview"}:
+			{elseif $stageId == 3}
+				{translate key="workflow.review.externalReview"}:
+			{/if}
 			{assign var="primaryAuthor" value=$monograph->getPrimaryAuthor()}
 			{$primaryAuthor->getLastName()} - {$monograph->getLocalizedTitle()}
 		</div>
@@ -29,9 +35,9 @@
 	<div class="clear"></div>
 
 	<div class="headerTimeline">
-		{assign var="stageId" value=$monograph->getCurrentStageId()}
 		{if $stageId > 0}<span class="pastStep">{translate key="submission.submission"}</span>{else}<span class="futureStep">{translate key="submission.submission"}</span>{/if} &#187;
-		{if $stageId > 1}<span class="pastStep">{translate key="submission.review"}</span>{else}<span class="futureStep">{translate key="submission.review"}</span>{/if} &#187;
+		{if $stageId > 1}<span class="pastStep">{translate key="workflow.review.internalReview"}</span>{else}<span class="futureStep">{translate key="workflow.review.internalReview"}</span>{/if} &#187;
+		{if $stageId > 2}<span class="pastStep">{translate key="workflow.review.externalReview"}</span>{else}<span class="futureStep">{translate key="workflow.review.externalReview"}</span>{/if} &#187;
 		{if $stageId > 3}<span class="pastStep">{translate key="submission.editorial"}</span>{else}<span class="futureStep">{translate key="submission.editorial"}</span>{/if} &#187;
 		{if $stageId > 4}<span class="pastStep">{translate key="submission.production"}</span>{else}<span class="futureStep">{translate key="submission.production"}</span>{/if}
 	</div>

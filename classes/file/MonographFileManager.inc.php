@@ -430,7 +430,6 @@ class MonographFileManager extends FileManager {
 		$monographFile->setType($destType);
 		$monographFile->setDateUploaded(Core::getCurrentDate());
 		$monographFile->setDateModified(Core::getCurrentDate());
-		$monographFile->setRound($this->monograph->getCurrentRound());
 		$monographFile->setRevision($revision);
 
 		$fileId = $monographFileDao->insertMonographFile($monographFile);
@@ -469,9 +468,7 @@ class MonographFileManager extends FileManager {
 		$monographFile->setType('temp');
 		$monographFile->setDateUploaded(Core::getCurrentDate());
 		$monographFile->setDateModified(Core::getCurrentDate());
-		$monographFile->setRound(0);
 		$monographFile->setRevision(1);
-		$monographFile->setReviewType(0);
 		$monographFile->setFileId($monographFileDao->insertMonographFile($monographFile));
 
 		return $monographFile;
@@ -559,8 +556,6 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileSize($_FILES[$fileName]['size']);
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($_FILES[$fileName]['name'], 127));
 		$monographFile->setType($type);
-		$monographFile->setRound($this->monograph->getCurrentRound());
-		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 
 		// Set the uploader's userGroupId
 		$sessionMgr =& SessionManager::getManager();
@@ -626,8 +621,6 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileSize(strlen($contents));
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($fileName, 127));
 		$monographFile->setType($type);
-		$monographFile->setRound($this->monograph->getCurrentRound());
-		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 
 		$newFileName = $this->generateFilename($monographFile, $type, $fileName);
 
@@ -678,8 +671,6 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileType($mimeType);
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName(basename($url), 127));
 		$monographFile->setType($type);
-		$monographFile->setRound($this->monograph->getCurrentRound());
-		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 
 		$newFileName = $this->generateFilename($monographFile, $type, $monographFile->getOriginalFileName());
 
@@ -717,8 +708,6 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileType($temporaryFile->getFileType());
 		$monographFile->setOriginalFileName($temporaryFile->getOriginalFileName());
 		$monographFile->setType($type);
-		$monographFile->setRound($this->monograph->getCurrentRound());
-		$monographFile->setReviewType($this->monograph->getCurrentReviewType());
 		$monographFile->setAssocId($assocId);
 
 		$newFileName = $this->generateFilename($monographFile, $type, $monographFile->getOriginalFileName());

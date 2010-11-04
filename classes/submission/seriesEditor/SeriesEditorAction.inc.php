@@ -139,13 +139,13 @@ class SeriesEditorAction extends Action {
 			$press =& Request::getPress();
 			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			$settings =& $settingsDao->getPressSettings($press->getId());
-			if (isset($reviewDueDate)) SeriesEditorAction::setDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getReviewId(), $reviewDueDate);
-			if (isset($responseDueDate)) SeriesEditorAction::setResponseDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getReviewId(), $responseDueDate);
+			if (isset($reviewDueDate)) SeriesEditorAction::setDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getId(), $reviewDueDate);
+			if (isset($responseDueDate)) SeriesEditorAction::setResponseDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getId(), $responseDueDate);
 
 			// Add log
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_REVIEW_ASSIGN, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'reviewType' => $reviewType, 'round' => $round));
+			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_REVIEW_ASSIGN, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'reviewType' => $reviewType, 'round' => $round));
 		}
 	}
 
@@ -172,7 +172,7 @@ class SeriesEditorAction extends Action {
 			// Add log
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_REVIEW_CLEAR, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'reviewType' => $reviewAssignment->getReviewType(), 'round' => $reviewAssignment->getRound()));
+			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_REVIEW_CLEAR, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'reviewType' => $reviewAssignment->getReviewType(), 'round' => $reviewAssignment->getRound()));
 
 			return true;
 		} else return false;
@@ -333,7 +333,7 @@ class SeriesEditorAction extends Action {
 					// Add log
 					import('classes.monograph.log.MonographLog');
 					import('classes.monograph.log.MonographEventLogEntry');
-					MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_REVIEW_CANCEL, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewCancelled', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'round' => $reviewAssignment->getRound()));
+					MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_REVIEW_CANCEL, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewCancelled', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'round' => $reviewAssignment->getRound()));
 				} else {
 					if (!Request::getUserVar('continued')) {
 						$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
@@ -531,7 +531,7 @@ class SeriesEditorAction extends Action {
 			// Add log
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($monographId, MONOGRAPH_LOG_REVIEW_RATE, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewerRated', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $monographId, 'round' => $reviewAssignment->getRound()));
+			MonographLog::logEvent($monographId, MONOGRAPH_LOG_REVIEW_RATE, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewerRated', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $monographId, 'round' => $reviewAssignment->getRound()));
 		}
 	}
 
@@ -601,7 +601,7 @@ class SeriesEditorAction extends Action {
 					$monographId,
 					MONOGRAPH_LOG_REVIEW_SET_DUE_DATE,
 					MONOGRAPH_LOG_TYPE_REVIEW,
-					$reviewAssignment->getReviewId(),
+					$reviewAssignment->getId(),
 					'log.review.reviewDueDateSet',
 					array(
 						'reviewerName' => $reviewer->getFullName(),
@@ -724,7 +724,7 @@ class SeriesEditorAction extends Action {
 			// Add log
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($monographId, MONOGRAPH_LOG_REVIEW_RECOMMENDATION_BY_PROXY, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getReviewId(), 'log.review.reviewRecommendationSetByProxy', array('editorName' => $user->getFullName(), 'reviewerName' => $reviewer->getFullName(), 'monographId' => $monographId, 'round' => $reviewAssignment->getRound()));
+			MonographLog::logEvent($monographId, MONOGRAPH_LOG_REVIEW_RECOMMENDATION_BY_PROXY, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewRecommendationSetByProxy', array('editorName' => $user->getFullName(), 'reviewerName' => $reviewer->getFullName(), 'monographId' => $monographId, 'round' => $reviewAssignment->getRound()));
 		}
 	}
 
@@ -1947,11 +1947,11 @@ class SeriesEditorAction extends Action {
 			// If the reviewer has completed the assignment, then import the review.
 			if ($reviewAssignment->getDateCompleted() != null && !$reviewAssignment->getCancelled()) {
 				// Get the comments associated with this review assignment
-				$monographComments =& $monographCommentDao->getMonographComments($seriesEditorSubmission->getId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getReviewId());
+				$monographComments =& $monographCommentDao->getMonographComments($seriesEditorSubmission->getId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getId());
 
 				if($monographComments) {
 					$body .= "\n\n$textSeparator\n";
-					$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n";
+					$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n";
 					if (is_array($monographComments)) {
 						foreach ($monographComments as $comment) {
 							// If the comment is viewable by the author, then add the comment.
@@ -1963,14 +1963,14 @@ class SeriesEditorAction extends Action {
 					$body .= "$textSeparator\n\n";
 				}
 				if ($reviewFormId = $reviewAssignment->getReviewFormId()) {
-					$reviewId = $reviewAssignment->getReviewId();
+					$reviewId = $reviewAssignment->getId();
 
 
 					$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 					if(!$monographComments) {
 						$body .= "$textSeparator\n";
 
-						$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n\n";
+						$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n\n";
 					}
 					foreach ($reviewFormElements as $reviewFormElement) {
 						$body .= String::html2text($reviewFormElement->getLocalizedQuestion()) . ": \n";
@@ -2249,7 +2249,7 @@ class SeriesEditorAction extends Action {
 			$entry->setEventType(MONOGRAPH_LOG_REVIEW_CONFIRM_BY_PROXY);
 			$entry->setLogMessage($accept?'log.review.reviewAcceptedByProxy':'log.review.reviewDeclinedByProxy', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getSubmissionId(), 'round' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));
 			$entry->setAssocType(MONOGRAPH_LOG_TYPE_REVIEW);
-			$entry->setAssocId($reviewAssignment->getReviewId());
+			$entry->setAssocId($reviewAssignment->getId());
 
 			MonographLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
 		}
@@ -2307,7 +2307,7 @@ class SeriesEditorAction extends Action {
 			$entry->setEventType(MONOGRAPH_LOG_REVIEW_FILE_BY_PROXY);
 			$entry->setLogMessage('log.review.reviewFileByProxy', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getSubmissionId(), 'round' => $reviewAssignment->getRound(), 'userName' => $user->getFullName()));
 			$entry->setAssocType(MONOGRAPH_LOG_TYPE_REVIEW);
-			$entry->setAssocId($reviewAssignment->getReviewId());
+			$entry->setAssocId($reviewAssignment->getId());
 
 			MonographLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
 		}

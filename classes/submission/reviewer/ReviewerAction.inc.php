@@ -39,7 +39,7 @@ class ReviewerAction extends Action {
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return true;
 
-		// Only confirm the review for the reviewer if 
+		// Only confirm the review for the reviewer if
 		// he has not previously done so.
 		if ($reviewAssignment->getDateConfirmed() == null) {
 			import('classes.mail.MonographMailTemplate');
@@ -70,7 +70,7 @@ class ReviewerAction extends Action {
 				$entry->setEventType($decline?MONOGRAPH_LOG_REVIEW_DECLINE:MONOGRAPH_LOG_REVIEW_ACCEPT);
 				$entry->setLogMessage($decline?'log.review.reviewDeclined':'log.review.reviewAccepted', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getSubmissionId(), 'round' => $reviewAssignment->getRound()));
 				$entry->setAssocType(MONOGRAPH_LOG_TYPE_REVIEW);
-				$entry->setAssocId($reviewAssignment->getReviewId());
+				$entry->setAssocId($reviewAssignment->getId());
 
 				MonographLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
 
@@ -160,7 +160,7 @@ class ReviewerAction extends Action {
 				$entry->setEventType(MONOGRAPH_LOG_REVIEW_RECOMMENDATION);
 				$entry->setLogMessage('log.review.reviewRecommendationSet', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getSubmissionId(), 'round' => $reviewAssignment->getRound()));
 				$entry->setAssocType(MONOGRAPH_LOG_TYPE_REVIEW);
-				$entry->setAssocId($reviewAssignment->getReviewId());
+				$entry->setAssocId($reviewAssignment->getId());
 
 				MonographLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
 			} else {
@@ -202,7 +202,7 @@ class ReviewerAction extends Action {
 	 */
 	function uploadReviewerVersion($reviewId) {
 		import('classes.file.MonographFileManager');
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');		
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
 		$monographFileManager = new MonographFileManager($reviewAssignment->getSubmissionId());
@@ -240,7 +240,7 @@ class ReviewerAction extends Action {
 			$entry->setEventType(MONOGRAPH_LOG_REVIEW_FILE);
 			$entry->setLogMessage('log.review.reviewerFile');
 			$entry->setAssocType(MONOGRAPH_LOG_TYPE_REVIEW);
-			$entry->setAssocId($reviewAssignment->getReviewId());
+			$entry->setAssocId($reviewAssignment->getId());
 
 			MonographLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
 		}
@@ -341,14 +341,14 @@ class ReviewerAction extends Action {
 			$reviewForm->readInputData();
 			if ($reviewForm->validate()) {
 				$reviewForm->execute();
-				
+
 				// Send a notification to associated users
 				import('lib.pkp.classes.notification.NotificationManager');
 				$notificationManager = new NotificationManager();
 				$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 				$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
 				$monographId = $reviewAssignment->getSubmissionId();
-				$monographDao =& DAORegistry::getDAO('MonographDAO'); 
+				$monographDao =& DAORegistry::getDAO('MonographDAO');
 				$monograph =& $monographDao->getMonograph($monographId);
 				$notificationUsers = $monograph->getAssociatedUserIds();
 				foreach ($notificationUsers as $userRole) {
@@ -378,7 +378,7 @@ class ReviewerAction extends Action {
 	 * @param $revision int
 	 */
 	function downloadReviewerFile($reviewId, $monograph, $fileId, $revision = null) {
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');		
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$press =& Request::getPress();
 

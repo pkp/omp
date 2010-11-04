@@ -80,8 +80,8 @@ class InitiateReviewForm extends EditorDecisionForm {
 			foreach ($selectedFiles as $selectedFile) {
 				$filesForReview[] = explode("-", $selectedFile);
 			}
-			$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewAssignmentDAO->setFilesForReview($monograph->getId(), REVIEW_TYPE_INTERNAL, 1, $filesForReview);
+			$reviewRoundDAO =& DAORegistry::getDAO('ReviewRoundDAO');
+			$reviewRoundDAO->setFilesForReview($monograph->getId(), REVIEW_TYPE_INTERNAL, 1, $filesForReview);
 		}
 	}
 }

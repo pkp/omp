@@ -99,7 +99,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		$router =& $request->getRouter();
 		$actionArgs = array(
 			'gridId' => $row->getGridId(),
-			'monographId' => $reviewAssignment->getMonographId(),
+			'monographId' => $reviewAssignment->getSubmissionId(),
 			'reviewId' => $reviewAssignment->getId()
 		);
 

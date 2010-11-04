@@ -121,8 +121,8 @@ class ReviewFilesGridHandler extends GridHandler {
 		$canAdd = (boolean)$request->getUserVar('canAdd');
 
 		// Grab the files that are currently set for the review
-		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$selectedFiles =& $reviewAssignmentDAO->getReviewFilesByRound($monographId);
+		$reviewRoundDAO =& DAORegistry::getDAO('ReviewRoundDAO');
+		$selectedFiles =& $reviewRoundDAO->getReviewFilesByRound($monographId);
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
 
@@ -143,7 +143,7 @@ class ReviewFilesGridHandler extends GridHandler {
 
 			// Set the already selected elements of the grid
 			$templateMgr =& TemplateManager::getManager();
-			$selectedRevisions =& $reviewAssignmentDAO->getReviewFilesAndRevisionsByRound($monographId, $round, true);
+			$selectedRevisions =& $reviewRoundDAO->getReviewFilesAndRevisionsByRound($monographId, $round, true);
 			$templateMgr->assign('selectedFileIds', $selectedRevisions);
 		} else {
 			// set the grid data to be only the files that have already been selected

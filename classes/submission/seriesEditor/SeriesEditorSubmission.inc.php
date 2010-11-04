@@ -117,7 +117,7 @@ class SeriesEditorSubmission extends Monograph {
 		$reviewAssignments = array();
 		$roundReviewAssignments = $this->reviewAssignments[$reviewAssignment->getReviewType()][$reviewAssignment->getRound()];
 		for ($i=0, $count=count($roundReviewAssignments); $i < $count; $i++) {
-			if ($roundReviewAssignments[$i]->getReviewId() == $reviewAssignment->getReviewId()) {
+			if ($roundReviewAssignments[$i]->getReviewId() == $reviewAssignment->getId()) {
 				array_push($reviewAssignments, $reviewAssignment);
 			} else {
 				array_push($reviewAssignments, $roundReviewAssignments[$i]);

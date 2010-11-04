@@ -251,13 +251,6 @@ class Monograph extends Submission {
 	function getCurrentRound() {
 		 return $this->getData('currentRound');
 	}
-	function setCurrentReviewType($reviewType) {
-		 $this->setData('currentReviewType', $reviewType);
-	}
-	function getCurrentReviewType() {
-		 return $this->getData('currentReviewType');
-	}
-
 	function setReviewRoundsInfo($reviewRoundsInfo) {
 		 $this->setData('reviewRoundsInfo', $reviewRoundsInfo);
 	}
@@ -471,6 +464,20 @@ class Monograph extends Submission {
 	function &getPrimaryAuthor() {
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		return $authorDao->getPrimaryAuthorByMonographId($this->getId());
+	}
+
+	/**
+	 * Get the current review type based on the current stage
+	 * @return int
+	 */
+	function getCurrentReviewType() {
+		import('classes.monograph.reviewRound.ReviewRound');
+		if($this->getCurrentStageId() == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
+			return REVIEW_TYPE_INTERNAL;
+		} else if($this->getCurrentStageId() == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
+			return REVIEW_TYPE_EXTERNAL;
+		} else return null;
+
 	}
 }
 

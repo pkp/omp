@@ -329,9 +329,9 @@ class AuthorAction extends Action {
 			}
 
 			// Check current review version
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewFilesByRound =& $reviewAssignmentDao->getReviewFilesByRound($monograph->getId());
-			$reviewFile = @$reviewFilesByRound[$monograph->getCurrentRound()];
+			$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+			$reviewFilesByRound =& $reviewRoundDao->getReviewFilesByRound($monograph->getId());
+			$reviewFile = $reviewFilesByRound[$monograph->getCurrentRound()];
 			if ($reviewFile && $fileId == $reviewFile->getFileId()) {
 				$canDownload = true;
 			}

@@ -319,7 +319,7 @@ class ReviewerGridHandler extends GridHandler {
 		$reviewId = $request->getUserVar('reviewId');
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 		$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
-		$monographComments =& $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getReviewId());
+		$monographComments =& $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getId());
 
 		// Mark the latest read date of the review by the editor
 		$user =& $request->getUser();

@@ -95,7 +95,7 @@ class ReviewerReviewAttachmentsForm extends Form {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($this->reviewId);
 
-		$monographFileManager = new MonographFileManager($reviewAssignment->getMonographId());
+		$monographFileManager = new MonographFileManager($reviewAssignment->getSubmissionId());
 		$fileId = null;
 		if ($monographFileManager->uploadedFileExists('attachment')) {
 			if ($reviewAssignment->getReviewerFileId() != null) {

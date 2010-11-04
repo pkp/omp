@@ -147,7 +147,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			$comment = new MonographComment();
 			$comment->setCommentType(COMMENT_TYPE_PEER_REVIEW);
 			$comment->setRoleId(ROLE_ID_REVIEWER);
-			$comment->setAssocId($reviewAssignment->getReviewId());
+			$comment->setAssocId($reviewAssignment->getId());
 			$comment->setMonographId($reviewAssignment->getSubmissionId());
 			$comment->setAuthorId($reviewAssignment->getReviewerId());
 			$comment->setComments($this->getData('comments'));

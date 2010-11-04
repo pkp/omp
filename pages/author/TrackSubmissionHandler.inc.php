@@ -108,7 +108,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$reviewModifiedByRound = $reviewAssignmentDao->getLastModifiedByRound($monographId);
 		$reviewEarliestNotificationByRound = $reviewAssignmentDao->getEarliestNotificationByRound($monographId);
 		$reviewFilesByRound =& $reviewAssignmentDao->getReviewFilesByRound($monographId);
-		$authorViewableFilesByRound =& $reviewAssignmentDao->getAuthorViewableFilesByRound($monographId);
 
 		$editorDecisions = $authorSubmission->getDecisions($authorSubmission->getCurrentReviewType(), $authorSubmission->getCurrentRound());
 		$lastDecision = count($editorDecisions) >= 1 ? $editorDecisions[count($editorDecisions) - 1] : null;

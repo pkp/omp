@@ -103,8 +103,8 @@ class NewReviewRoundForm extends EditorDecisionForm {
 			foreach ($selectedFiles as $selectedFile) {
 				$filesWithRevisions[] = explode("-", $selectedFile);
 			}
-			$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
-			$reviewAssignmentDAO->setFilesForReview($monograph->getId(), REVIEW_TYPE_INTERNAL, $newRound, $filesWithRevisions);
+			$reviewRoundDAO =& DAORegistry::getDAO('ReviewRoundDAO');
+			$reviewRoundDAO->setFilesForReview($monograph->getId(), REVIEW_TYPE_INTERNAL, $newRound, $filesWithRevisions);
 		}
 		return $newRound;
 	}

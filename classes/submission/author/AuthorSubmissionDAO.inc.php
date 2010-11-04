@@ -121,13 +121,8 @@ class AuthorSubmissionDAO extends DAO {
 		$authorSubmission->setSubmissionFile($this->monographFileDao->getMonographFile($row['submission_file_id']));
 		$authorSubmission->setRevisedFile($this->monographFileDao->getMonographFile($row['revised_file_id']));
 
-		if ($authorSubmission->getCurrentReviewType() != null) {
-			$authorSubmission->setAuthorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['revised_file_id']));
-			$authorSubmission->setEditorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['editor_file_id']));
-		} else {
-			$authorSubmission->setAuthorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['revised_file_id'], null, false));
-			$authorSubmission->setEditorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['editor_file_id'], null, false));
-		}
+		$authorSubmission->setAuthorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['revised_file_id']));
+		$authorSubmission->setEditorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['editor_file_id']));
 
 		$authorSubmission->setGalleys($this->galleyDao->getByMonographId($row['monograph_id']));
 

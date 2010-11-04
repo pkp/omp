@@ -136,22 +136,6 @@ class MonographFile extends SubmissionFile {
 	}
 
 	/**
-	 * Get review type (internal or external review).
-	 * @return int
-	 */
-	function getReviewType() {
-		return $this->getData('reviewType');
-	}
-
-	/**
-	 * Set review type.
-	 * @param $reviewType int
-	 */
-	function setReviewType($reviewType) {
-		return $this->SetData('reviewType', $reviewType);
-	}
-
-	/**
 	 * Get the file's extension.
 	 * @return string
 	 */

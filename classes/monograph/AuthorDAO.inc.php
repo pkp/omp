@@ -145,7 +145,7 @@ class AuthorDAO extends PKPAuthorDAO {
 	function insertAuthor(&$author) {
 		// Set author sequence to end of author list
 		if(!$author->getSequence()) {
-			$authorCount = $this->getAuthorCountByMonographId($author->getSubmissionId());
+			$authorCount = $this->getAuthorCountBySubmissionId($author->getSubmissionId());
 			$author->setSequence($authorCount + 1);
 		}
 		// Reset primary contact for monograph to this author if applicable

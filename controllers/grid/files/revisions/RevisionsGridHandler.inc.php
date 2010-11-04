@@ -136,8 +136,8 @@ class RevisionsGridHandler extends GridHandler {
 		$round = (int) $request->getUserVar('round');
 
 		// Grab the files that are the same as in the current review, but with later revisions
-		$reviewAssignmentDAO =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$selectedFiles =& $reviewAssignmentDAO->getRevisionsOfCurrentReviewFiles($monographId, $round);
+		$reviewRoundDAO =& DAORegistry::getDAO('ReviewRoundDAO');
+		$selectedFiles =& $reviewRoundDAO->getRevisionsOfCurrentReviewFiles($monographId, $round);
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
 

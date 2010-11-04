@@ -66,7 +66,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 				rr.review_revision AS review_revision
 			FROM	monographs m
 				LEFT JOIN series s ON (s.series_id = m.series_id)
-				LEFT JOIN review_rounds rr ON (m.monograph_id = rr.submission_id AND m.current_review_type = rr.review_type AND m.current_round = rr.round)
+				LEFT JOIN review_rounds rr ON (m.monograph_id = rr.submission_id AND m.current_round = rr.round)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -147,7 +147,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$seriesEditorSubmission->setReviewRevision($row['review_revision']);
 
 		// Review Assignments
-		foreach ( $reviewRoundsInfo as $reviewType => $currentReviewRound) {
+		foreach ($reviewRoundsInfo as $reviewType => $currentReviewRound) {
 			for ($i = 1; $i <= $currentReviewRound; $i++) {
 				$seriesEditorSubmission->setReviewAssignments($this->reviewAssignmentDao->getBySubmissionId($row['monograph_id'], $i, $reviewType), $reviewType, $i);
 			}
@@ -194,7 +194,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 			}
 		}
 		}
-		$round = $seriesEditorSubmission->getCurrentRound();
+
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
 
 		$reviewType = $seriesEditorSubmission->getCurrentReviewType();
@@ -217,9 +217,9 @@ class SeriesEditorSubmissionDAO extends DAO {
 		foreach ($reviewRounds as $reviewType => $round) {
 			for ($i = 1; $i <= $round; $i++) {
 				foreach ($seriesEditorSubmission->getReviewAssignments($reviewType, $i) as $reviewAssignment) {
-					if (isset($removedReviewAssignments[$reviewAssignment->getReviewId()])) continue;
+					if (isset($removedReviewAssignments[$reviewAssignment->getId()])) continue;
 
-					if ($reviewAssignment->getReviewId() > 0) {
+					if ($reviewAssignment->getId() > 0) {
 						$this->reviewAssignmentDao->updateObject($reviewAssignment);
 					} else {
 						$this->reviewAssignmentDao->insertObject($reviewAssignment);
@@ -240,8 +240,6 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 			// Only update fields that can actually be edited.
 			$monograph->setSeriesId($seriesEditorSubmission->getSeriesId());
-			$monograph->setCurrentRound($seriesEditorSubmission->getCurrentRound());
-			$monograph->setCurrentReviewType($seriesEditorSubmission->getCurrentReviewType());
 			$monograph->setReviewFileId($seriesEditorSubmission->getReviewFileId());
 			$monograph->setEditorFileId($seriesEditorSubmission->getEditorFileId());
 			$monograph->setStatus($seriesEditorSubmission->getStatus());
@@ -444,7 +442,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 				LEFT JOIN users ce ON (scf.user_id = ce.user_id)
 				LEFT JOIN signoffs spr ON (m.monograph_id = spr.assoc_id AND spr.assoc_type = ? AND spr.symbolic = ?)
 				LEFT JOIN users pe ON (pe.user_id = spr.user_id)
-				LEFT JOIN review_rounds r2 ON (m.monograph_id = r2.submission_id and m.current_review_type = r2.review_type AND m.current_round = r2.round)
+				LEFT JOIN review_rounds r2 ON (m.monograph_id = r2.submission_id AND m.current_round = r2.round)
 				LEFT JOIN signoffs sle ON (m.monograph_id = sle.assoc_id AND sle.assoc_type = ? AND sle.symbolic = ?) LEFT JOIN users le ON (le.user_id = sle.user_id)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)

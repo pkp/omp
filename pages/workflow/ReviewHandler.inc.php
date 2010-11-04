@@ -77,7 +77,7 @@ class ReviewHandler extends Handler {
 
 		// Iterate through possible editor decisions, creating link actions for each decision to pass to template
 		foreach($decisions as $decision => $action) {
-			$submitAction = ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) ? LINK_ACTION_TYPE_REDIRECT : null;
+			$submitAction = ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT || $decision == SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW) ? LINK_ACTION_TYPE_REDIRECT : null;
 			$actionArgs['decision'] = $decision;
 
 			$editorActions[] =& new LinkAction(
