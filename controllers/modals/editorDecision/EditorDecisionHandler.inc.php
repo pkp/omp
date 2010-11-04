@@ -55,10 +55,11 @@ class EditorDecisionHandler extends Handler {
 	function _editorDecision($args, &$request, $formName) {
 		// Retrieve the authorized monograph.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$decision =& $request->getUserVar('decision');
 
 		// Form handling
 		import("controllers.modals.editorDecision.form.$formName");
-		$editorDecisionForm = new $formName($monograph);
+		$editorDecisionForm = new $formName($monograph, $decision);
 		$editorDecisionForm->initData($args, $request);
 
 		$json = new JSON('true', $editorDecisionForm->fetch($request));

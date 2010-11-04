@@ -1,10 +1,10 @@
 {**
- * index.tpl
+ * review.tpl
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Series editor index.
+ * Review workflow stage.
  *}
 {strip}
 {include file="common/header.tpl"}
@@ -13,16 +13,17 @@
 {include file="submission/header.tpl"}
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
-
 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-	{foreach from=$rounds item=round}
-	<li{if ($round eq $selectedRound)} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-		<a href="{url path=$monographId|to_array:$round}">{translate key="submission.round" round=$round}</a>
-	</li>
-	{/foreach}
+	{section name="rounds" start=0 loop=$currentRound}
+		{assign var="round" value=$smarty.section.rounds.index+1}
+		<li{if ($round eq $selectedRound)} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
+			<a href="{url path=$monographId|to_array:$round}">{translate key="submission.round" round=$round}</a>
+		</li>
+	{/section}
+
 	{url|assign:"newRoundUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.editorDecision.EditorDecisionHandler" op="newReviewRound" monographId=$monographId}
 	{modal url="$newRoundUrl" actOnId="nothing" dialogText='editor.monograph.newRound' button="#newRoundTab"}
-	<li id="newRoundTabContainer" class="ui-state-default ui-corner-top ui-state-active">
+	<li id="newRoundTabContainer" class="ui-state-default ui-corner-top">
 		<a id="newRoundTab" href="#"><img class="ui-icon ui-icon-plus" style="float:left; margin-left:-5px;" />{translate key="editor.monograph.newRound"}</a>
 	</li>
 </ul>

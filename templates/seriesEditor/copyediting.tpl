@@ -1,12 +1,10 @@
-<!-- templates/seriesEditor/showReviewers.tpl -->
-
 {**
- * index.tpl
+ * copyediting.tpl
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Series editor index.
+ * Copyediting workflow stage
  *}
 {strip}
 {include file="common/header.tpl"}
@@ -35,5 +33,4 @@
 
 </div>
 {include file="common/footer.tpl"}
-<!-- / templates/seriesEditor/showReviewers.tpl -->
 

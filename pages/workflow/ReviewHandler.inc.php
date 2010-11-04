@@ -23,31 +23,42 @@ class ReviewHandler extends Handler {
 	 **/
 	function ReviewHandler() {
 		parent::Handler();
+
+		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT), array('review'));
 	}
 
+	/**
+	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
+	 */
+	function authorize(&$request, $args, $roleAssignments) {
+		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_INTERNAL_REVIEW));
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	/**
+	 * Show the review page
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
 	function review($args, &$request) {
 		$this->setupTemplate();
-		$monographId = array_shift($args);
-		$selectedRound = array_shift($args);
+		$monographId = (int) array_shift($args);
+		$selectedRound = (int) array_shift($args);
 
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getMonograph($monographId);
+		// Retrieve the authorized submission.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		$templateMgr =& TemplateManager::getManager();
 		// Get the review round currently being looked at
 		$currentReviewType = $monograph->getCurrentReviewType();
 		$currentRound = $monograph->getCurrentRound();
-		if(!isset($selectedRound) || $selectedRound > $currentRound) {
+		if(empty($selectedRound) || $selectedRound > $currentRound) {
 			$selectedRound = $currentRound; // Make sure round is not higher than the monograph's latest round
 		}
-
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRound =& $reviewRoundDao->build($monographId, $currentReviewType, $selectedRound);
-
-		// Set allRounds to an array of all values > 0 and less than currentRound--This will determine the tabs to show
-		$allRounds = array();
-		for ($i = 1; $i <= $currentRound; $i++) $allRounds[] = $i;
-		$templateMgr->assign('rounds', $allRounds);
 
 		// Grid actions
 		$actionArgs = array('monographId' => $monographId,
@@ -58,71 +69,43 @@ class ReviewHandler extends Handler {
 		import('lib.pkp.classes.linkAction.LinkAction');
 		$dispatcher =& $this->getDispatcher();
 
-		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS;
-		$requestRevisionsAction =& new LinkAction(
-			'requestRevisions',
-			LINK_ACTION_MODE_MODAL,
-			null,
-			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'sendReviews', null, $actionArgs),
-			'editor.monograph.decision.requestRevisions'
-		);
+		$decisions = array(SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array('operation' => 'sendReviews', 'name' => 'requestRevisions', 'title' => 'editor.monograph.decision.requestRevisions'),
+						SUBMISSION_EDITOR_DECISION_RESUBMIT => array('operation' => 'sendReviews', 'name' => 'resubmit', 'title' => 'editor.monograph.decision.resubmit'),
+						SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array('operation' => 'promote', 'name' => 'externalReview', 'title' => 'editor.monograph.decision.externalReview'),
+						SUBMISSION_EDITOR_DECISION_ACCEPT => array('operation' => 'promote', 'name' => 'accept', 'title' => 'editor.monograph.decision.accept'),
+						SUBMISSION_EDITOR_DECISION_DECLINE => array('operation' => 'sendReviews', 'name' => 'decline', 'title' => 'editor.monograph.decision.decline'));
 
-		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_RESUBMIT;
-		$resubmitAction =& new LinkAction(
-			'resubmit',
-			LINK_ACTION_MODE_MODAL,
-			null,
-			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'sendReviews', null, $actionArgs),
-			'editor.monograph.decision.resubmit'
-		);
+		// Iterate through possible editor decisions, creating link actions for each decision to pass to template
+		foreach($decisions as $decision => $action) {
+			$submitAction = ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) ? LINK_ACTION_TYPE_REDIRECT : null;
+			$actionArgs['decision'] = $decision;
 
-		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW;
-		$externalReviewAction =& new LinkAction(
-			'externalReview',
-			LINK_ACTION_MODE_MODAL,
-			null,
-			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'promote', null, $actionArgs),
-			'editor.monograph.decision.externalReview'
-		);
+			$editorActions[] =& new LinkAction(
+				$action['name'],
+				LINK_ACTION_MODE_MODAL,
+				$submitAction,
+				$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', $action['operation'], null, $actionArgs),
+				$action['title']
+			);
+		}
 
-		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_ACCEPT;
-		$acceptAction =& new LinkAction(
-			'accept',
-			LINK_ACTION_MODE_MODAL,
-			LINK_ACTION_TYPE_REDIRECT,
-			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'promote', null, $actionArgs),
-			'editor.monograph.decision.accept'
-		);
-
-		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_DECLINE;
-		$declineAction =& new LinkAction(
-			'decline',
-			LINK_ACTION_MODE_MODAL,
-			null,
-			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'sendReviews', null, $actionArgs),
-			'editor.monograph.decision.decline'
-		);
-
-		$editorActions = array($requestRevisionsAction,
-								$resubmitAction,
-								$externalReviewAction,
-								$acceptAction,
-								$declineAction
-								);
 
 		$templateMgr->assign('editorActions', $editorActions);
 		$templateMgr->assign('currentReviewType', $currentReviewType);
 		$templateMgr->assign('currentRound', $currentRound);
 		$templateMgr->assign('selectedRound', $selectedRound);
-		$templateMgr->assign('roundStatus', $reviewRound->getStatusKey());
 		$templateMgr->assign('monograph', $monograph);
 		$templateMgr->assign('monographId', $monographId);
-		$templateMgr->display('seriesEditor/showReviewers.tpl');
+
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRound =& $reviewRoundDao->build($monographId, $currentReviewType, $selectedRound);
+		$templateMgr->assign('roundStatus', $reviewRound->getStatusKey());
+
+		$templateMgr->display('seriesEditor/review.tpl');
 	}
 
 	/**
 	 * Setup common template variables.
-	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate() {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
