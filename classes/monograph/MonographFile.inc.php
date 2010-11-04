@@ -57,10 +57,10 @@ class MonographFile extends SubmissionFile {
 		'/monographs/' . $this->getMonographId() . '/' . $monographFileManager->typeToPath($this->getType()) . '/' . $this->getFileName();
 	}
 
+
 	//
 	// Get/set methods
 	//
-
 	/**
 	 * Set the uploader's user group id
 	 * @param $userGroupId int

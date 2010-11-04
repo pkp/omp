@@ -145,7 +145,7 @@ class SubmissionFilesUploadForm extends Form {
 						$artworkFile =& $artworkFileDao->newDataObject();
 						$artworkFile->setFileId($submissionFileId);
 						$artworkFile->setMonographId($monographId);
-						$artworkFile->setType($this->_fileStage);
+						$artworkFile->setType($fileStage);
 						$artworkFileDao->insertObject($artworkFile);
 					}
 					break;
@@ -156,7 +156,7 @@ class SubmissionFilesUploadForm extends Form {
 						$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 
 						$monographFile =& $monographFileDao->getMonographFile($submissionFileId);
-						$monographFile->setType($this->_fileStage);
+						$monographFile->setType($fileStage);
 						$monographFileDao->updateMonographFile($monographFile);
 
 						$monograph = $monographDao->getMonograph($monographId);

@@ -1,5 +1,5 @@
 <?php
-/**	
+/**
  * @file classes/press/DefaultSettingDAO.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
@@ -12,14 +12,13 @@
  * @brief Operations for retrieving and modifying press default settings.
  */
 
-define('DEFAULT_SETTING_FLEXIBLE_ROLES',	1);
-define('DEFAULT_SETTING_BOOK_FILE_TYPES',	2);
-define('DEFAULT_SETTING_PUBLICATION_FORMATS',	3);
+define('DEFAULT_SETTING_BOOK_FILE_TYPES',	1);
+define('DEFAULT_SETTING_PUBLICATION_FORMATS',	2);
 
 class DefaultSettingDAO extends DAO
 {
 	/**
-	 * Install book file types from an XML file.
+	 * Install setting types from an XML file.
 	 * @param $pressId int
 	 * @return boolean
 	 */
@@ -52,7 +51,7 @@ class DefaultSettingDAO extends DAO
 	}
 
 	/**
-	 * Get the names and values for setting attributes. 
+	 * Get the names and values for setting attributes.
 	 * In subclasses: if $node is null, return only the attribute names.
 	 * @param $node XMLNode
 	 * @param $onlyNames bool
@@ -87,7 +86,7 @@ class DefaultSettingDAO extends DAO
 	}
 
 	/**
-	 * Install book file type localized data from an XML file.
+	 * Install setting type localized data from an XML file.
 	 * @param $locale string
 	 * @param $pressId int
 	 * @param $skipLoad bool
@@ -173,7 +172,7 @@ class DefaultSettingDAO extends DAO
 	 */
 	function &getDefaultSettingIds($pressId) {
 		$result =& $this->retrieve(
-			'SELECT '. $this->getPrimaryKeyColumnName() .', '. $this->getDefaultKey() .' FROM '. $this->getTableName() .' 
+			'SELECT '. $this->getPrimaryKeyColumnName() .', '. $this->getDefaultKey() .' FROM '. $this->getTableName() .'
 			WHERE press_id = ? AND '. $this->getDefaultKey() .' IS NOT NULL', $pressId
 		);
 
