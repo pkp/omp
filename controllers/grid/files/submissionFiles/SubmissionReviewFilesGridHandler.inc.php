@@ -73,7 +73,7 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	 * Display the final tab of the modal
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function finishFileSubmission($args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
@@ -92,7 +92,7 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	 * Return a grid row with for the submission grid
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function returnFileRow($args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;

@@ -53,7 +53,7 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 	 * Action to edit an existing file (or a new one where the file id is null)
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editFile(&$args, &$request) {
 		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
@@ -73,7 +73,7 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 	 * Display the file upload form
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function displayFileForm(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -97,7 +97,7 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 	 * Upload a file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function uploadFile(&$args, &$request) {
 		$monographId = (int) $request->getUserVar('monographId');
@@ -145,7 +145,7 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 	 * Display the final tab of the modal
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function finishFileSubmission(&$args, &$request) {
 		$monographId = isset($args['monographId']) ? $args['monographId'] : null;
@@ -172,7 +172,7 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 	 * Return a grid row with for the submission grid
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function returnFileRow(&$args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;

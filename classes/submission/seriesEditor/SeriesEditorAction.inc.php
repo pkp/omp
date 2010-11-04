@@ -1928,12 +1928,15 @@ class SeriesEditorAction extends Action {
 
 	/**
 	 * Get the text of all peer reviews for a submission
-	 * @param $seriesEditorSubmission object
+	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @return string
 	 */
 	function getPeerReviews($seriesEditorSubmission) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
+		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+
 		$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
 		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION));
@@ -1962,12 +1965,10 @@ class SeriesEditorAction extends Action {
 				if ($reviewFormId = $reviewAssignment->getReviewFormId()) {
 					$reviewId = $reviewAssignment->getReviewId();
 
-					$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
-					$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+
 					$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
 					if(!$monographComments) {
 						$body .= "$textSeparator\n";
-
 
 						$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getReviewId()]))) . "\n\n";
 					}

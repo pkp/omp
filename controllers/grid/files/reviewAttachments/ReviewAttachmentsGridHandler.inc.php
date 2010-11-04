@@ -129,7 +129,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 * Return a grid row with for the submission grid
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function returnFileRow($args, &$request) {
 		$fileId = isset($args['rowId']) ? $args['rowId'] : null;
@@ -176,7 +176,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	 * Download the monograph file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function downloadFile($args, &$request) {
 		$monographId = $request->getUserVar('monographId');

@@ -178,7 +178,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * Adds a user to a copyediting file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function addUser($args, &$request) {
 		// Identify the monograph being worked on
@@ -201,7 +201,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * Save the form for adding a user to a copyediting file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function saveAddUser($args, &$request) {
 		// Identify the monograph being worked on
@@ -248,7 +248,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * Get users for copyediting autocomplete.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function getCopyeditUserAutocomplete($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -306,7 +306,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * Show the copyedited file upload form (to add a new or edit an existing copyedited file)
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editCopyeditedFile($args, &$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
@@ -362,7 +362,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * Return a grid row with for the copyediting grid
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function returnSignoffRow($args, &$request) {
 		$signoffId = (integer)$request->getUserVar('signoffId');
@@ -389,7 +389,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * Download the monograph file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function downloadFile($args, &$request) {
 		$monographId = $request->getUserVar('monographId');

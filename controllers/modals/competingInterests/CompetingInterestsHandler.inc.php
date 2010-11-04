@@ -43,7 +43,7 @@ class CompetingInterestsHandler extends Handler {
 
 	/**
 	 * Display the submission's metadata
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 * @see Form::fetch()
 	 */
 	function fetch($args, &$request) {

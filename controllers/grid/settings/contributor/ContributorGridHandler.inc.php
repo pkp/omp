@@ -88,7 +88,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * An action to add a new contributor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function addContributor($args, &$request) {
 		// Calling editContributor with an empty row id will add
@@ -100,7 +100,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * An action to edit a contributor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editContributor($args, &$request) {
 		$contributorId = isset($args['rowId']) ? $args['rowId'] : null;
@@ -121,7 +121,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * Update a contributor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function updateContributor($args, &$request) {
 		// -> contributorId must be present and valid
@@ -155,7 +155,7 @@ class ContributorGridHandler extends SetupGridHandler {
 	 * Delete a contributor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function deleteContributor($args, &$request) {
 		$contributorId = isset($args['rowId']) ? $args['rowId'] : null;

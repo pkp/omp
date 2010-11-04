@@ -142,7 +142,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * An action to add a new file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editFile($args, &$request) {
 		$this->initialize($request);
@@ -196,7 +196,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * Save the name attribute for a file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function saveMetadata($args, &$request) {
 		$fileId = $request->getUserVar('rowId');
@@ -229,7 +229,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * Delete a file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function deleteFile($args, &$request) {
 		$fileId = isset($args['rowId']) ? $args['rowId'] : null;

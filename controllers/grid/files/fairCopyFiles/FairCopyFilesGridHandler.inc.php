@@ -193,7 +193,7 @@ class FairCopyFilesGridHandler extends GridHandler {
 	 * Download the monograph file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function downloadFile($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -208,7 +208,7 @@ class FairCopyFilesGridHandler extends GridHandler {
 	 * Download all of the monograph files as one compressed file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function downloadAllFiles($args, &$request) {
 		$monographId = $request->getUserVar('monographId');

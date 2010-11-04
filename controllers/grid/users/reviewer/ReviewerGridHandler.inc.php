@@ -184,7 +184,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * Edit a reviewer
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editReviewer($args, &$request) {
 		// Identify the submission Id
@@ -205,7 +205,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * Edit a reviewer
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function updateReviewer($args, &$request) {
 		// Identify the submission Id
@@ -240,7 +240,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * Delete a reviewer
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function deleteReviewer($args, &$request) {
 		// Identify the submission Id
@@ -264,7 +264,7 @@ class ReviewerGridHandler extends GridHandler {
 	* Get potential reviewers for editor's reviewer selection autocomplete.
 	* @param $args array
 	* @param $request PKPRequest
-	* @return JSON
+	* @return string Serialized JSON object
 	*/
 	function getReviewerAutocomplete($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -312,7 +312,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * Open a modal to read the reviewer's review and download any files they may have uploaded
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function readReview($args, &$request) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -341,7 +341,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * Displays a modal to allow the editor to ender a message to send to the reviewer as a reminder
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editReminder($args, &$request) {
 		// Identify the review assignment being updated
@@ -360,7 +360,7 @@ class ReviewerGridHandler extends GridHandler {
 	 * Send the reviewer reminder and close the modal
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function sendReminder($args, &$request) {
 		// Identify the review assignment being updated

@@ -102,7 +102,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 * An action to edit a submissionChecklist
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editItem($args, &$request) {
 		import('controllers.grid.settings.submissionChecklist.form.SubmissionChecklistForm');
@@ -123,7 +123,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 * Update a submissionChecklist
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function updateItem($args, &$request) {
 		// -> submissionChecklistId must be present and valid
@@ -159,7 +159,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	 * Delete a submissionChecklist
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function deleteItem($args, &$request) {
 		$rowId = $request->getUserVar('rowId');

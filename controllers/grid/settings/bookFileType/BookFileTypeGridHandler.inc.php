@@ -119,7 +119,7 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	 * An action to edit a Book File Type
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editBookFileType($args, &$request) {
 		$bookFileTypeId = isset($args['bookFileTypeId']) ? $args['bookFileTypeId'] : null;
@@ -143,7 +143,7 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	 * Update a Book File Type
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function updateBookFileType($args, &$request) {
 		$bookFileTypeId = Request::getUserVar('rowId');
@@ -181,7 +181,7 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	 * Delete a Book File Type.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function deleteBookFileType($args, &$request) {
 		// Identify the Book File Type to be deleted

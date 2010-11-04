@@ -105,7 +105,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 * Show the copyedited file upload form (to add a copyedited response to a file)
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function addCopyeditedFile($args, &$request) {
 		import('classes.monograph.MonographFile');
@@ -124,7 +124,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 * Display the file upload form
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function displayFileForm($args, &$request) {
 		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
@@ -182,7 +182,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 * Edit the metadata of a submission file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editMetadata($args, &$request) {
 		$fileId = $request->getUserVar('fileId');
@@ -225,7 +225,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 * Save the metadata of a submission file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function saveMetadata($args, &$request) {
 		$fileId = $request->getUserVar('fileId');
@@ -267,7 +267,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 * Return a grid row with for the submission grid
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function returnFileRow($args, &$request) {
 		$signoffId = (integer)$request->getUserVar('signoffId');
@@ -294,7 +294,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 * Download the monograph file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function downloadFile($args, &$request) {
 		$monographId = $request->getUserVar('monographId');

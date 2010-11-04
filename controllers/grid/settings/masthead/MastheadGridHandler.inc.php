@@ -104,7 +104,7 @@ class MastheadGridHandler extends SetupGridHandler {
 	 * Action to edit a group
 	 * @param $args array, first parameter is the ID of the group to edit
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editGroup($args, &$request) {
 		$groupId = isset($args['rowId']) ? $args['rowId'] : null;
@@ -146,7 +146,7 @@ class MastheadGridHandler extends SetupGridHandler {
 	 * Update a masthead
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function updateGroup($args, &$request) {
 		$groupId = Request::getUserVar('groupId');
@@ -180,7 +180,7 @@ class MastheadGridHandler extends SetupGridHandler {
 	 * Delete a masthead
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function deleteGroup($args, &$request) {
 		$groupId = Request::getUserVar('rowId');
@@ -200,7 +200,7 @@ class MastheadGridHandler extends SetupGridHandler {
 	 * View group membership.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function groupMembership($args, &$request) {
 		$groupId = $this->getId();

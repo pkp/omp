@@ -80,7 +80,7 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	 * An action to add a new file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editFile($args, &$request) {
 		$fileId = $request->getUserVar('rowId');

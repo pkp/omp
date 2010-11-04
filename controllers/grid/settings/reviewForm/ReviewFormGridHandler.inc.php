@@ -110,7 +110,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 	 * Display form to create/edit a review form.
 	 * @param $args array, first parameter is the ID of the review form to edit
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editReviewForm($args, &$request) {
 		$this->setupTemplate($args, $request);
@@ -150,7 +150,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 	 * Save changes to a review form.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function updateReviewForm($args, &$request) {
 		$reviewFormId = Request::getUserVar('reviewFormId') === null? null : (int) Request::getUserVar('reviewFormId');
@@ -199,7 +199,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 	 * Delete a review form.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function deleteReviewForm($args, &$request) {
 		$router =& $request->getRouter();

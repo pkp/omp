@@ -210,7 +210,7 @@ class UserGridHandler extends GridHandler {
 	 * Edit an existing user
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editUser($args, &$request) {
 		// Identify the press
@@ -238,7 +238,7 @@ class UserGridHandler extends GridHandler {
 	 * Update an existing user
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function updateUser($args, &$request) {
 		// Identify the press
@@ -287,7 +287,7 @@ class UserGridHandler extends GridHandler {
 	 * Update a newly created user's roles
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function updateUserRoles($args, &$request) {
 		// Identify the press
@@ -328,7 +328,7 @@ class UserGridHandler extends GridHandler {
 	 * Remove all user group assignments for a press for a given user
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function removeUser($args, &$request) {
 		// Identify the press
@@ -360,7 +360,7 @@ class UserGridHandler extends GridHandler {
 	 * Displays a modal to edit an email message to the user 
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editEmail($args, &$request) {
 		// Identify the press
@@ -387,7 +387,7 @@ class UserGridHandler extends GridHandler {
 	 * Send the user email and close the modal
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function sendEmail($args, &$request) {
 		// Identify the press

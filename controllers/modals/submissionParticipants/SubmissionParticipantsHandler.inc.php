@@ -45,7 +45,7 @@ class SubmissionParticipantsHandler extends Handler {
 
 	/**
 	 * Display the submission participants grid
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 * @see Form::fetch()
 	 */
 	function fetch($args, &$request) {

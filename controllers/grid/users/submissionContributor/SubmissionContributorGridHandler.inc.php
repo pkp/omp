@@ -174,7 +174,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * Edit a submissionContributor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editSubmissionContributor($args, &$request) {
 		// Identify the submission Id
@@ -198,7 +198,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * Edit a submissionContributor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function updateSubmissionContributor($args, &$request) {
 		// Identify the submission Id
@@ -245,7 +245,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * Delete a submissionContributor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function deleteSubmissionContributor($args, &$request) {
 		// Identify the submission Id

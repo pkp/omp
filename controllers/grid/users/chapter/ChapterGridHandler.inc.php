@@ -169,7 +169,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 * Edit a chapter
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editChapter($args, &$request) {
 		// Identify the monograph being worked on
@@ -194,7 +194,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 * Update a chapter
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function updateChapter($args, &$request) {
 		// Identify the monograph being worked on
@@ -238,7 +238,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 * Delete a chapter
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function deleteChapter($args, &$request) {
 		// Identify the chapter to be deleted

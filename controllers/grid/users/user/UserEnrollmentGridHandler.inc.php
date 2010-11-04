@@ -177,7 +177,7 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 	 * Remove all user group assignments for a press for a given user
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function removeUser($args, &$request) {
 		// Identify the press

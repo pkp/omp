@@ -71,7 +71,7 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * Delete a submission
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function deleteSubmission($args, &$request) {
 		$monographId = $request->getUserVar('monographId');

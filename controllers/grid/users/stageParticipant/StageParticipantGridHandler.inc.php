@@ -145,7 +145,7 @@ class StageParticipantGridHandler extends GridHandler {
 	 * An action to manually add a new stage participant
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function addStageParticipant($args, &$request) {
 		// Identify the submission Id
@@ -164,7 +164,7 @@ class StageParticipantGridHandler extends GridHandler {
 	 * Save the 'add stage participant' form.
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function saveStageParticipant($args, &$request) {
 		// Identify the submission Id
@@ -205,7 +205,7 @@ class StageParticipantGridHandler extends GridHandler {
 	 * Delete a stage participant
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function deleteStageParticipant($args, &$request) {
 		// Identify the submission Id

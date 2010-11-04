@@ -238,7 +238,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 	 * Download the monograph file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function downloadFile($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -253,7 +253,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 	 * Download all of the monograph files as one compressed file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function downloadAllFiles($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -267,7 +267,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 	 * Add a file that the Press Editor did not initally add to the final draft
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function manageFinalDraftFiles($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -284,7 +284,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 	 * Save 'manage final draft files' form
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function updateFinalDraftFiles($args, &$request) {
 		$monographId = $request->getUserVar('monographId');

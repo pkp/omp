@@ -50,7 +50,7 @@ class EditorDecisionHandler extends Handler {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @param $formName string Name of form to call
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function _editorDecision($args, &$request, $formName) {
 		// Retrieve the authorized monograph.
@@ -69,7 +69,7 @@ class EditorDecisionHandler extends Handler {
 	 * Start a new review round
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function newReviewRound($args, &$request) {
 		return $this->_editorDecision($args, $request, 'NewReviewRoundForm');
@@ -79,7 +79,7 @@ class EditorDecisionHandler extends Handler {
 	 * Start a new review round
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function saveNewReviewRound($args, &$request) {
 		// Retrieve the authorized monograph.
@@ -109,7 +109,7 @@ class EditorDecisionHandler extends Handler {
 	 * Start a new review round
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function initiateReview($args, &$request) {
 		return $this->_editorDecision($args, $request, 'InitiateReviewForm');
@@ -119,7 +119,7 @@ class EditorDecisionHandler extends Handler {
 	 * Start a new review round
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function saveInitiateReview($args, &$request) {
 		// Retrieve the authorized monograph.
@@ -148,7 +148,7 @@ class EditorDecisionHandler extends Handler {
 	 * Show a save review form (responsible for request revisions, resubmit for review, and decline submission modals)
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function sendReviews($args, &$request) {
 		return $this->_editorDecision($args, $request, 'SendReviewsForm');
@@ -158,7 +158,7 @@ class EditorDecisionHandler extends Handler {
 	 * Save the send review form
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function saveSendReviews($args, &$request) {
 		// Retrieve the authorized monograph.
@@ -184,7 +184,7 @@ class EditorDecisionHandler extends Handler {
 	 * Show a promote form (responsible for external review and accept submission modals)
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function promote($args, &$request) {
 		return $this->_editorDecision($args, $request, 'PromoteForm');
@@ -194,7 +194,7 @@ class EditorDecisionHandler extends Handler {
 	 * Save the send review form
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function savePromote($args, &$request) {
 		// Retrieve the authorized monograph.
@@ -225,7 +225,7 @@ class EditorDecisionHandler extends Handler {
 	 * Import all free-text/review form reviews to paste into message
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function importPeerReviews($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -247,7 +247,7 @@ class EditorDecisionHandler extends Handler {
 	 * Promote the submission into the production stage
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function sendToProduction(&$args, &$request) {
 		// FIXME #5898 : Implement -- Is this just a confirm dialog or a modal?

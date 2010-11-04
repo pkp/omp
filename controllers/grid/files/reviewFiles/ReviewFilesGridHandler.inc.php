@@ -263,7 +263,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * Download the monograph file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function downloadFile($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -278,7 +278,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * Download all of the monograph files as one compressed file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function downloadAllFiles($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -292,7 +292,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * Add a file that the Press Editor did not initally add to the review
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function manageReviewFiles($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -309,7 +309,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * Allow the editor to upload a new file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function uploadReviewFile($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -326,7 +326,7 @@ class ReviewFilesGridHandler extends GridHandler {
 	 * Save 'manage review files' form
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function updateReviewFiles($args, &$request) {
 		$monographId = $request->getUserVar('monographId');

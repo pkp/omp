@@ -133,7 +133,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * An action to edit a series
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editSeries($args, &$request) {
 		$seriesId = isset($args['rowId']) ? $args['rowId'] : null;
@@ -158,7 +158,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * Update a series
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function updateSeries($args, &$request) {
 		$seriesId = Request::getUserVar('rowId');
@@ -220,7 +220,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	 * Delete a series
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function deleteSeries($args, &$request) {
 		// FIXME: add validation here?

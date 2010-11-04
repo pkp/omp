@@ -96,7 +96,7 @@ class SponsorGridHandler extends SetupGridHandler {
 	 * An action to edit a sponsor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function editSponsor($args, &$request) {
 		$sponsorId = isset($args['rowId'])?$args['rowId']:null;
@@ -118,7 +118,7 @@ class SponsorGridHandler extends SetupGridHandler {
 	 * Update a sponsor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function updateSponsor($args, &$request) {
 		// -> sponsorId must be present and valid
@@ -153,7 +153,7 @@ class SponsorGridHandler extends SetupGridHandler {
 	 * Delete a sponsor
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return JSON
+	 * @return string Serialized JSON object
 	 */
 	function deleteSponsor($args, &$request) {
 		$sponsorId = isset($args['rowId'])?$args['rowId']:null;
