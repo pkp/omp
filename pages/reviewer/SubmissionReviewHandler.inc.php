@@ -25,7 +25,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 
 	/**
 	 * Constructor
-	 **/
+	 */
 	function SubmissionReviewHandler() {
 		parent::ReviewerHandler();
 	}
@@ -135,25 +135,10 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$request->redirect($request->redirect(null, 'reviewer'));
 	}
 
-	/**
-	 * View the submission metadata
-	 * @param $args array
-	 */
-	function viewMetadata($args, &$request) {
-		$reviewId = $request->getUserVar('reviewId');
-
-		$this->validate($request, $reviewId);
-		$reviewerSubmission =& $this->submission;
-
-		$this->setupTemplate(true, $reviewerSubmission->getId(), $reviewId);
-
-		return ReviewerAction::viewMetadata($request, $reviewerSubmission, true);
-	}
 
 	//
 	// Misc
 	//
-
 	/**
 	 * Download a file.
 	 * @param $args array ($monographId, $fileId, [$revision])
@@ -172,10 +157,10 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		}
 	}
 
+
 	//
 	// Validation
 	//
-
 	/**
 	 * Validate that the user is an assigned reviewer for
 	 * the monograph.

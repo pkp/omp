@@ -9,10 +9,8 @@
  * @class AuthSourcesHandler
  * @ingroup pages_admin
  *
- * @brief Handle requests for authentication source management in site administration. 
+ * @brief Handle requests for authentication source management in site administration.
  */
-
-// $Id$
 
 
 import('classes.plugins.AuthPlugin');

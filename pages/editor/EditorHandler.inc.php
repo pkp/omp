@@ -31,18 +31,6 @@ class EditorHandler extends SeriesEditorHandler {
 		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_EDITOR)));
 	}
 
-	function viewMetadata($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$submission =& $monographDao->getMonograph($monographId);
-		$this->validate();
-		$this->setupTemplate(EDITOR_SERIES_SUBMISSIONS);
-
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
-		import('classes.submission.common.Action');
-		Action::viewMetadata($submission);
-	}
-
 	function selectReviewer($args) {
 		import('pages.seriesEditor.SubmissionEditHandler');
 		SubmissionEditHandler::selectReviewer($args);

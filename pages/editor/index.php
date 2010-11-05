@@ -47,8 +47,6 @@ switch ($op) {
 	case 'enterReviewerRecommendation':
 	case 'makeReviewerFileViewable':
 	case 'setDueDate':
-	case 'viewMetadata':
-	case 'saveMetadata':
 	case 'removeMonographCoverPage':
 	case 'editorReview':
 	case 'selectCopyeditor':
@@ -64,7 +62,6 @@ switch ($op) {
 	case 'uploadCopyeditVersion':
 	case 'completeCopyedit':
 	case 'completeFinalCopyedit':
-	case 'deleteMonographFile':
 	case 'archiveSubmission':
 	case 'unsuitableSubmission':
 	case 'restoreToQueue':
@@ -135,7 +132,6 @@ switch ($op) {
 		import('pages.seriesEditor.SubmissionCommentsHandler');
 		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
 		break;
-	case 'viewMetadata':
 	case 'selectReviewer':
 	case 'submissions':
 	case 'deleteEditAssignment':

@@ -12,7 +12,7 @@
  *
  * @brief Class for retrieving monograph search results.
  *
- * FIXME: NEAR; precedence w/o parens?; stemming; weighted counting
+ * FIXME: NEAR; precedence w/o parents?; stemming; weighted counting
  */
 
 

@@ -52,68 +52,6 @@ class Action extends PKPAction {
 	// Actions.
 	//
 	/**
-	 * View metadata of a monograph.
-	 * @param $monograph object
-	 * @param $contentOnly boolean display only metadata information, and not header/footer/sidebar
-	 */
-	function viewMetadata(&$request, $monograph, $contentOnly = false) {
-		if (!HookRegistry::call('Action::viewMetadata', array(&$monograph, &$roleId))) {
-			import('classes.submission.form.MetadataForm');
-			$metadataForm = new MetadataForm($monograph, $contentOnly);
-			if ($metadataForm->getCanEdit() && $metadataForm->isLocaleResubmit()) {
-				$metadataForm->readInputData();
-			} else {
-				$metadataForm->initData();
-			}
-			import('lib.pkp.classes.core.JSON');
-			$json = new JSON('true', $metadataForm->fetch($request));
-			return $json->getString();
-		}
-	}
-
-	/**
-	 * Save metadata.
-	 * @param $monograph object
-	 */
-	function saveMetadata($monograph) {
-		if (!HookRegistry::call('Action::saveMetadata', array(&$monograph))) {
-			import('classes.submission.form.MetadataForm');
-			$metadataForm = new MetadataForm($monograph);
-			$metadataForm->readInputData();
-			$editData = false;
-			$editData = $metadataForm->processEvents();
-
-			if (!$editData && $metadataForm->validate()) {
-				$metadataForm->execute();
-
-				// Send a notification to associated users
-				import('lib.pkp.classes.notification.NotificationManager');
-				$notificationUsers = $monograph->getAssociatedUserIds();
-				$notificationManager = new NotificationManager();
-				foreach ($notificationUsers as $userRole) {
-					$url = Request::url(null, $userRole['role'], 'submission', $monograph->getId(), null, 'metadata');
-					$notificationManager->createNotification(
-						$userRole['id'], 'notification.type.metadataModified',
-						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_METADATA_MODIFIED
-					);
-				}
-
-				// Add log entry
-				$user =& Request::getUser();
-				import('classes.monograph.log.MonographLog');
-				import('classes.monograph.log.MonographEventLogEntry');
-				MonographLog::logEvent($monograph->getId(), MONOGRAPH_LOG_METADATA_UPDATE, MONOGRAPH_LOG_TYPE_DEFAULT, 0, 'log.editor.metadataModified', Array('editorName' => $user->getFullName()));
-
-				return true;
-			} else {
-				$metadataForm->display();
-				return false;
-			}
-
-		}
-	}
-
-	/**
 	 * Download file.
 	 * @param $monographId int
 	 * @param $fileId int

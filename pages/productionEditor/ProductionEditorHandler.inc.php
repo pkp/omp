@@ -71,7 +71,7 @@ class ProductionEditorHandler extends Handler {
 
 		$this->validate($monographId);
 		$press =& $this->press;
-		$submission =& $this->submission;		
+		$submission =& $this->submission;
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
@@ -216,7 +216,7 @@ class ProductionEditorHandler extends Handler {
 		$send = Request::getUserVar('send')?1:0;
 		$this->validate($monographId);
 		$press =& $this->press;
-		$submission =& $this->submission;		
+		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('classes.submission.proofreader.ProofreaderAction');
@@ -301,7 +301,7 @@ class ProductionEditorHandler extends Handler {
 		$send = Request::getUserVar('send')?1:0;
 		$this->validate($monographId);
 		$press =& $this->press;
-		$submission =& $this->submission;				
+		$submission =& $this->submission;
 		$this->setupTemplate(true, $monographId, 'editing');
 
 		import('classes.submission.proofreader.ProofreaderAction');
@@ -537,7 +537,7 @@ class ProductionEditorHandler extends Handler {
 		}
 		Request::redirect(null, null, 'submissionArt', Request::getUserVar('monographId'));
 	}
-	
+
 	function submissionLayout($args) {
 		$monographId = isset($args[0]) ? (int) $args[0] : 0;
 		$this->validate($monographId);
@@ -567,15 +567,6 @@ class ProductionEditorHandler extends Handler {
 		}
 
 		$templateMgr->display('productionEditor/submission.tpl');
-	}
-
-	function viewMetadata($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $monographId, 'summary');
-
-		Action::viewMetadata($submission);
 	}
 
 	/**
@@ -667,7 +658,7 @@ class ProductionEditorHandler extends Handler {
 		$this->submission =& $productionEditorSubmission;
 		return true;
 	}
-	
+
 	/**
 	 * Notify the layout editor.
 	 */

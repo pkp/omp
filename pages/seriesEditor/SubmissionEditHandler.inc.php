@@ -481,40 +481,6 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 	}
 
 	/**
-	 * Create a new user as a reviewer.
-	 */
-	function createReviewer($args, &$request) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($monographId, SERIES_EDITOR_ACCESS_REVIEW);
-		$press =& Request::getPress();
-		$submission =& $this->submission;
-
-		import('classes.seriesEditor.form.CreateReviewerForm');
-		$createReviewerForm = new CreateReviewerForm($monographId);
-		$this->setupTemplate(true, $monographId);
-
-		if (isset($args[1]) && $args[1] === 'create') {
-			$createReviewerForm->readInputData();
-			if ($createReviewerForm->validate()) {
-				// Create a user and enroll them as a reviewer.
-				$newUserId = $createReviewerForm->execute();
-				Request::redirect(null, null, 'selectReviewer', array($monographId, $newUserId));
-			} else {
-				$createReviewerForm->display($args, $request);
-			}
-		} else {
-			// Display the "create user" form.
-			if ($createReviewerForm->isLocaleResubmit()) {
-				$createReviewerForm->readInputData();
-			} else {
-				$createReviewerForm->initData();
-			}
-			$createReviewerForm->display();
-		}
-
-	}
-
-	/**
 	 * Get a suggested username, making sure it's not
 	 * already used by the system. (Poor-man's AJAX.)
 	 */
@@ -841,26 +807,6 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 			$templateMgr->assign('localeNames', Locale::getAllLocales());
 			$templateMgr->assign('helpTopicId', 'press.roles.index');
 			$templateMgr->display('seriesEditor/userProfile.tpl');
-		}
-	}
-
-	function viewMetadata($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $monographId, 'summary');
-
-		SeriesEditorAction::viewMetadata($submission);
-	}
-
-	function saveMetadata() {
-		$monographId = Request::getUserVar('monographId');
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $monographId, 'summary');
-
-		if (SeriesEditorAction::saveMetadata($submission)) {
-			Request::redirect(null, null, 'submission', $monographId);
 		}
 	}
 
@@ -1210,22 +1156,6 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		SeriesEditorAction::uploadCopyeditVersion($submission, $copyeditStage);
 
 		Request::redirect(null, null, 'submissionEditing', $monographId);
-	}
-
-	/**
-	 * Delete an editor version file.
-	 * @param $args array ($monographId, $fileId)
-	 */
-	function deleteMonographFile($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$fileId = isset($args[1]) ? (int) $args[1] : 0;
-		$revisionId = isset($args[2]) ? (int) $args[2] : 0;
-
-		$this->validate($monographId, SERIES_EDITOR_ACCESS_REVIEW);
-		$submission =& $this->submission;
-		SeriesEditorAction::deleteMonographFile($submission, $fileId, $revisionId);
-
-		Request::redirect(null, null, 'submissionReview', $monographId);
 	}
 
 	function archiveSubmission($args) {

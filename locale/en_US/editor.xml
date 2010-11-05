@@ -63,7 +63,6 @@
 	<message key="editor.notifyUsers.allUsers">Send this message to all users associated with this press ({$count} users)</message>
 	<message key="editor.notifyUsers.interestedUsers">Send this message to the users associated with this press who have indicated that they wish to receive updates ({$count} users)</message>
 	<message key="editor.editorAdministration">Editor Administration</message>
-	<message key="editor.monograph.designateReviewVersion">Designate the original file as the Review Version</message>
 	<message key="editor.monograph.uploadReviewVersion">Upload a revised Review Version</message>
 	<message key="editor.monograph.layoutAndProof">Layout &amp; Proof</message>
 	<message key="editor.monograph.clear">Clear</message>
@@ -179,7 +178,6 @@
 	<message key="editor.monograph.coverPage">Cover image</message>
 	<message key="editor.monograph.coverPageInstructions">(Allowed formats: .gif, .jpg, or .png )</message>
 	<message key="editor.monograph.uploaded">Uploaded</message>
-	<message key="editor.monograph.removeCoverPage">Remove cover image?</message>
 	<message key="editor.monograph.remove">Remove</message>
 	<message key="editor.monograph.manageFinalDraftFiles">Manage Final Draft Files</message>
 	<message key="editor.monograph.fairCopy">Fair Copy</message>

@@ -9,7 +9,7 @@
  * @class SubmissionLayoutHandler
  * @ingroup pages_designer
  *
- * @brief Handle requests related to submission layout editing. 
+ * @brief Handle requests related to submission layout editing.
  */
 
 
@@ -57,16 +57,6 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		$templateMgr->display('designer/submission.tpl');
 	}
 
-	function viewMetadata($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($monographId);
-		$press =& $this->press;
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $monographId, 'summary');
-
-		DesignerAction::viewMetadata($submission);
-	}
-
 	/**
 	 * Mark assignment as complete.
 	 */
@@ -79,7 +69,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 
 		if (DesignerAction::completeDesign($submission, $assignmentId, Request::getUserVar('send'))) {
 			Request::redirect(null, null, 'submission', $monographId);
-		}		
+		}
 	}
 
 
@@ -301,7 +291,7 @@ class SubmissionLayoutHandler extends DesignerHandler {
 		if (!$isValid) {
 			Request::redirect(null, Request::getRequestedPage());
 		}
-		
+
 		$this->press =& $press;
 		$this->submission =& $submission;
 

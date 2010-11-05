@@ -9,7 +9,7 @@
  * @class SubmissionCopyeditHandler
  * @ingroup pages_copyeditor
  *
- * @brief Handle requests for submission tracking. 
+ * @brief Handle requests for submission tracking.
  */
 
 
@@ -29,7 +29,7 @@ class SubmissionCopyeditHandler extends CopyeditorHandler {
 		$monographId = $args[0];
 		$this->validate($monographId);
 		$submission =& $this->submission;
-		$this->setupTemplate(true, $monographId);		
+		$this->setupTemplate(true, $monographId);
 		$press =& Request::getPress();
 
 		CopyeditorAction::copyeditUnderway($submission);
@@ -238,53 +238,5 @@ class SubmissionCopyeditHandler extends CopyeditorHandler {
 			}
 		}
 	}
-
-	/**
-	 * Metadata functions.
-	 */
-	function viewMetadata($args) {
-		$monographId = $args[0];
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $monographId, 'editing');
-
-		CopyeditorAction::viewMetadata($submission);
-	}
-
-	function saveMetadata() {
-		$monographId = Request::getUserVar('monographId');
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $monographId);
-
-		if (CopyeditorAction::saveMetadata($submission)) {
-			Request::redirect(null, null, 'submission', $monographId);
-		}
-	}
-
-	/**
-	 * Remove cover page from monograph
-	 */
-	function removeCoverPage($args) {
-		$monographId = isset($args[0]) ? (int)$args[0] : 0;
-		$formLocale = $args[1];
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$press =& Request::getPress();
-
-		import('classes.file.PublicFileManager');
-		$publicFileManager = new PublicFileManager();
-		$publicFileManager->removePressFile($press->getId(),$submission->getFileName($formLocale));
-		$submission->setFileName('', $formLocale);
-		$submission->setOriginalFileName('', $formLocale);
-		$submission->setWidth('', $formLocale);
-		$submission->setHeight('', $formLocale);
-
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monographDao->updateMonograph($submission);
-
-		Request::redirect(null, null, 'viewMetadata', $monographId);
-	}
-
 }
 ?>

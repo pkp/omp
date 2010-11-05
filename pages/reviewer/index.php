@@ -24,7 +24,6 @@ switch ($op) {
 	case 'confirmReview':
 	case 'saveCompetingInterests':
 	case 'recordRecommendation':
-	case 'viewMetadata':
 	case 'uploadReviewerVersion':
 	case 'deleteReviewerVersion':
 	case 'showDeclineReview':

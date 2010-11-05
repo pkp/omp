@@ -13,7 +13,6 @@
  */
 
 
-
 import('classes.submission.common.Action');
 
 class AuthorAction extends Action {
@@ -28,93 +27,6 @@ class AuthorAction extends Action {
 	/**
 	 * Actions.
 	 */
-
-	/**
-	 * Designates the original file the review version.
-	 * @param $authorSubmission object
-	 * @param $designate boolean
-	 */
-	function designateReviewVersion($authorSubmission, $designate = false) {
-		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($authorSubmission->getId());
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-
-		if ($designate && !HookRegistry::call('AuthorAction::designateReviewVersion', array(&$authorSubmission))) {
-			$submissionFile =& $authorSubmission->getSubmissionFile();
-			if ($submissionFile) {
-				$reviewFileId = $monographFileManager->copyToReviewFile($submissionFile->getFileId());
-
-				$authorSubmission->setReviewFileId($reviewFileId);
-
-				$authorSubmissionDao->updateAuthorSubmission($authorSubmission);
-
-			}
-		}
-	}
-
-	/**
-	 * Delete an author file from a submission.
-	 * @param $monograph object
-	 * @param $fileId int
-	 * @param $revisionId int
-	 */
-	function deleteMonographFile($monograph, $fileId, $revisionId) {
-		import('classes.file.MonographFileManager');
-
-		$monographFileManager = new MonographFileManager($monograph->getId());
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-
-		$monographFile =& $monographFileDao->getMonographFile($fileId, $revisionId, $monograph->getId());
-		$authorSubmission = $authorSubmissionDao->getAuthorSubmission($monograph->getId());
-		$authorRevisions = $authorSubmission->getAuthorFileRevisions();
-
-		// Ensure that this is actually an author file.
-		if (isset($monographFile)) {
-			HookRegistry::call('AuthorAction::deleteMonographFile', array(&$monographFile, &$authorRevisions));
-			foreach ($authorRevisions as $round) {
-				foreach ($round as $revision) {
-					if ($revision->getFileId() == $monographFile->getFileId() &&
-					    $revision->getRevision() == $monographFile->getRevision()) {
-						$monographFileManager->deleteFile($monographFile->getFileId(), $monographFile->getRevision());
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	 * Upload the revised version of a monograph.
-	 * @param $authorSubmission object
-	 */
-	function uploadRevisedVersion($authorSubmission) {
-		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($authorSubmission->getId());
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
-
-		$fileName = 'upload';
-		if ($monographFileManager->uploadedFileExists($fileName)) {
-			HookRegistry::call('AuthorAction::uploadRevisedVersion', array(&$authorSubmission));
-			if ($authorSubmission->getRevisedFileId() != null) {
-				$fileId = $monographFileManager->uploadEditorDecisionFile($fileName, $authorSubmission->getRevisedFileId());
-			} else {
-				$fileId = $monographFileManager->uploadEditorDecisionFile($fileName);
-			}
-		}
-
-		if (isset($fileId) && $fileId != 0) {
-			$authorSubmission->setRevisedFileId($fileId);
-
-			$authorSubmissionDao->updateAuthorSubmission($authorSubmission);
-
-			// Add log entry
-			$user =& Request::getUser();
-			import('classes.monograph.log.MonographLog');
-			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($authorSubmission->getId(), MONOGRAPH_LOG_AUTHOR_REVISION, MONOGRAPH_LOG_TYPE_AUTHOR, $user->getId(), 'log.author.documentRevised', array('authorName' => $user->getFullName(), 'fileId' => $fileId, 'monographId' => $authorSubmission->getId()));
-		}
-	}
-
 	/**
 	 * Author completes editor / author review.
 	 * @param $authorSubmission object
@@ -459,7 +371,7 @@ class AuthorAction extends Action {
 	 * TODO: Complete list of files author has access to
 	 */
 	function downloadAuthorFile($monograph, $fileId, $revision = null) {
-		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');		
+		$authorSubmissionDao =& DAORegistry::getDAO('AuthorSubmissionDAO');
 
 		$submission =& $authorSubmissionDao->getAuthorSubmission($monograph->getId());
 		$layoutSignoff =& $submission->getSignoff('SIGNOFF_LAYOUT', ASSOC_TYPE_MONOGRAPH, $submission->getId());
@@ -485,7 +397,7 @@ class AuthorAction extends Action {
 				$copyAssignment =& $copyAssignmentDao->getCopyAssignmentByMonographId($monograph->getId());
 				if ($copyAssignment && $copyAssignment->getInitialRevision()==$revision && $copyAssignment->getDateCompleted()!=null) $canDownload = true;
 				else if ($copyAssignment && $copyAssignment->getFinalRevision()==$revision && $copyAssignment->getDateFinalCompleted()!=null) $canDownload = true;
-				else if ($copyAssignment && $copyAssignment->getEditorAuthorRevision()==$revision) $canDownload = true; 
+				else if ($copyAssignment && $copyAssignment->getEditorAuthorRevision()==$revision) $canDownload = true;
 			} else {
 				$canDownload = false;
 			}

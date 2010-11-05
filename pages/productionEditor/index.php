@@ -3,7 +3,7 @@
 /**
  * @defgroup pages_production
  */
- 
+
 /**
  * @file pages/production/index.php
  *
@@ -11,7 +11,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup pages_production
- * @brief Handle information requests. 
+ * @brief Handle information requests.
  *
  */
 
@@ -41,7 +41,6 @@ switch ($op) {
 	case 'addProductionAssignment':
 	case 'uploadArtworkFile':
 	case 'submissionLayout':
-	case 'viewMetadata':
 	case 'downloadFile':
 	case 'viewFile':
 	case 'notifyLayoutDesigner':

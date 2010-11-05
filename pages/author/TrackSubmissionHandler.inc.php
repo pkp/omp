@@ -50,24 +50,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 	}
 
 	/**
-	 * Delete an author version file.
-	 * @param $args array ($monographId, $fileId)
-	 */
-	function deleteMonographFile($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$fileId = isset($args[1]) ? (int) $args[1] : 0;
-		$revisionId = isset($args[2]) ? (int) $args[2] : 0;
-
-		$this->validate($monographId);
-		$authorSubmission =& $this->submission;
-		if ($authorSubmission->getStatus() != STATUS_PUBLISHED && $authorSubmission->getStatus() != STATUS_ARCHIVED) {
-			AuthorAction::deleteMonographFile($authorSubmission, $fileId, $revisionId);
-		}
-
-		Request::redirect(null, null, 'submissionReview', $monographId);
-	}
-
-	/**
 	 * Display a summary of the status of an author's submission.
 	 */
 	function submission($args) {
@@ -197,69 +179,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->assign('useProofreaders', $press->getSetting('useProofreaders'));
 		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.editing');
 		$templateMgr->display('author/submission.tpl');
-	}
-
-	/**
-	 * Upload the author's revised version of a monograph.
-	 */
-	function uploadRevisedVersion() {
-		$monographId = Request::getUserVar('monographId');
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$this->setupTemplate(true);
-
-		AuthorAction::uploadRevisedVersion($submission);
-
-		Request::redirect(null, null, 'submissionReview', $monographId);
-	}
-
-	function viewMetadata($args) {
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $monographId, 'summary');
-
-		AuthorAction::viewMetadata($submission);
-	}
-
-	function saveMetadata() {
-		$monographId = Request::getUserVar('monographId');
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $monographId);
-
-		// If the copy editor has completed copyediting, disallow
-		// the author from changing the metadata.
-
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $submission->getId());
-		if ($initialSignoff->getDateCompleted() != null || AuthorAction::saveMetadata($submission)) {
-			Request::redirect(null, null, 'submission', $monographId);
-		}
-	}
-
-	/**
-	 * Remove cover page from monograph
-	 */
-	function removeCoverPage($args) {
-		$monographId = isset($args[0]) ? (int)$args[0] : 0;
-		$formLocale = $args[1];
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$press =& Request::getPress();
-
-		import('classes.file.PublicFileManager');
-		$publicFileManager = new PublicFileManager();
-		$publicFileManager->removePressFile($press->getId(),$submission->getFileName($formLocale));
-		$submission->setFileName('', $formLocale);
-		$submission->setOriginalFileName('', $formLocale);
-		$submission->setWidth('', $formLocale);
-		$submission->setHeight('', $formLocale);
-
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monographDao->updateMonograph($submission);
-
-		Request::redirect(null, null, 'viewMetadata', $monographId);
 	}
 
 	function uploadCopyeditVersion() {

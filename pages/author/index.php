@@ -20,14 +20,10 @@ switch ($op) {
 	//
 	// Submission Tracking
 	//
-	case 'deleteMonographFile':
 	case 'deleteSubmission':
 	case 'submission':
 	case 'submissionReview':
 	case 'submissionEditing':
-	case 'uploadRevisedVersion':
-	case 'viewMetadata':
-	case 'saveMetadata':
 	case 'removeMonographCoverPage':
 	case 'uploadCopyeditVersion':
 	case 'completeAuthorCopyedit':

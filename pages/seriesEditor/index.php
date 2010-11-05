@@ -48,8 +48,6 @@ switch ($op) {
 	case 'enterReviewerRecommendation':
 	case 'makeReviewerFileViewable':
 	case 'setDueDate':
-	case 'viewMetadata':
-	case 'saveMetadata':
 	case 'editorReview':
 	case 'selectCopyeditor':
 	case 'notifyCopyeditor':
@@ -64,7 +62,6 @@ switch ($op) {
 	case 'uploadCopyeditVersion':
 	case 'completeCopyedit':
 	case 'completeFinalCopyedit':
-	case 'deleteMonographFile':
 	case 'archiveSubmission':
 	case 'unsuitableSubmission':
 	case 'restoreToQueue':

@@ -3,7 +3,7 @@
 /**
  * @defgroup pages_designer
  */
- 
+
 /**
  * @file pages/designer/index.php
  *
@@ -11,13 +11,12 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @ingroup pages_designer
- * @brief Handle requests for designer functions. 
+ * @brief Handle requests for designer functions.
  *
  */
 
 
 switch ($op) {
-	case 'viewMetadata':
 	//
 	// Submission Layout Editing
 	//
@@ -59,7 +58,7 @@ switch ($op) {
 	case 'index':
 	case 'submissions':
 	case 'instructions':
-		define('HANDLER_CLASS', 'DesignerHandler');	
+		define('HANDLER_CLASS', 'DesignerHandler');
 		import('pages.designer.DesignerHandler');
 		break;
 }

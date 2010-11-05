@@ -23,8 +23,6 @@ class ReviewerSubmissionMetadataHandler extends SubmissionMetadataHandler {
 	 */
 	function ReviewerSubmissionMetadataHandler() {
 		parent::SubmissionMetadataHandler();
-
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT), array());
 		$this->addRoleAssignment(array(ROLE_ID_REVIEWER), array('fetch'));
 	}
 
