@@ -44,10 +44,6 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	//
-	// Implement template methods from PKPHandler
-	//
-
 	/*
 	 * Configure the grid
 	 * @param PKPRequest $request

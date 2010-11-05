@@ -28,22 +28,32 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 */
 	function SubmissionReviewHandler() {
 		parent::ReviewerHandler();
+
+		$this->addRoleAssignment(ROLE_ID_REVIEWER, array('submission', 'saveStep', 'showDeclineReview', 'saveDeclineReview', 'downloadFile'));
+	}
+
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize(&$request, $args, $roleAssignments) {
+		import('classes.security.authorization.OmpSubmissionAccessPolicy');
+		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/**
 	 * Display the submission review page.
 	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function submission($args, &$request) {
-		$press =& Request::getPress();
-		$reviewId = $args[0];
+		$reviewId = $request->getUserVar('reviewId');
 
-		$this->validate($request, $reviewId);
-		$user =& $this->user;
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $submission->getId(), $reviewId);
+		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
+		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
+		$this->setupTemplate();
 
-		$reviewStep = $submission->getStep(); // Get the current saved step from the DB
+		$reviewStep = $reviewerSubmission->getStep(); // Get the current saved step from the DB
 		$userStep = $request->getUserVar('step');
 		$step = isset($userStep) ? $userStep: $reviewStep;
 		if($step > $reviewStep) $step = $reviewStep; // Reviewer can't go past incomplete steps
@@ -52,7 +62,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 			$formClass = "ReviewerReviewStep{$step}Form";
 			import("classes.submission.reviewer.form.$formClass");
 
-			$reviewerForm = new $formClass($submission);
+			$reviewerForm = new $formClass($reviewerSubmission);
 
 			if ($reviewerForm->isLocaleResubmit()) {
 				$reviewerForm->readInputData();
@@ -62,7 +72,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 			$reviewerForm->display();
 		} else {
 			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->assign_by_ref('submission', $submission);
+			$templateMgr->assign_by_ref('submission', $reviewerSubmission);
 			$templateMgr->assign('step', 4);
 			$templateMgr->display('reviewer/review/reviewCompleted.tpl');
 		}
@@ -71,25 +81,26 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	/**
 	 * Save a review step.
 	 * @param $args array first parameter is the step being saved
+	 * @param $request PKPRequest
 	 */
 	function saveStep($args, &$request) {
 		$step = isset($args[0]) ? $args[0] : 1;
 		$reviewId = $request->getUserVar('reviewId');
 
-		$this->validate($request, $reviewId);
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $submission->getId(), $reviewId);
+		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
+		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
+		$this->setupTemplate();
 
 		$formClass = "ReviewerReviewStep{$step}Form";
 		import("classes.submission.reviewer.form.$formClass");
 
-		$reviewerForm = new $formClass($submission);
+		$reviewerForm = new $formClass($reviewerSubmission);
 		$reviewerForm->readInputData();
 
 		if ($reviewerForm->validate()) {
 			$reviewerForm->execute();
 
-			$request->redirect(null, null, 'submission', $reviewId, array('step' => $step+1));
+			$request->redirect(null, null, 'submission', $step+1, array('monographId' => $reviewerSubmission->getId(), 'reviewId' => $reviewId));
 		} else {
 			$reviewerForm->display();
 		}
@@ -97,18 +108,19 @@ class SubmissionReviewHandler extends ReviewerHandler {
 
 	/**
 	 * Show a form for the reviewer to enter regrets into.
-	 * @param $args array optional
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function showDeclineReview($args, &$request) {
-		$reviewId = Request::getUserVar('reviewId');
+		$reviewId = $request->getUserVar('reviewId');
 
-		$this->validate($request, $reviewId);
-		$reviewerSubmission =& $this->submission;
-
+		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
+		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
 		$this->setupTemplate();
 
+
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign_by_ref('submission', $this->submission);
+		$templateMgr->assign_by_ref('submission', $reviewerSubmission);
 
 		$json = new JSON('true', $templateMgr->fetch('reviewer/review/regretMessage.tpl'));
 		echo $json->getString();
@@ -116,13 +128,13 @@ class SubmissionReviewHandler extends ReviewerHandler {
 
 	/**
 	 * Save the reviewer regrets form and decline the review.
-	 * @param $args array optional
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function saveDeclineReview($args, &$request) {
 		$reviewId = Request::getUserVar('reviewId');
 		$declineReviewMessage = Request::getUserVar('declineReviewMessage');
 
-		$this->validate($request, $reviewId);
 		$reviewerSubmission =& $this->submission;
 
 		// Save regret message
@@ -142,6 +154,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	/**
 	 * Download a file.
 	 * @param $args array ($monographId, $fileId, [$revision])
+	 * @param $request PKPRequest
 	 */
 	function downloadFile($args, &$request) {
 		$reviewId = isset($args[0]) ? $args[0] : 0;
@@ -149,51 +162,11 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$fileId = isset($args[2]) ? $args[2] : 0;
 		$revision = isset($args[3]) ? $args[3] : null;
 
-		$this->validate($request, $reviewId);
 		$reviewerSubmission =& $this->submission;
 
 		if (!ReviewerAction::downloadReviewerFile($reviewId, $reviewerSubmission, $fileId, $revision)) {
 			Request::redirect(null, null, 'submission', $reviewId);
 		}
-	}
-
-
-	//
-	// Validation
-	//
-	/**
-	 * Validate that the user is an assigned reviewer for
-	 * the monograph.
-	 * Redirects to reviewer index page if validation fails.
-	 */
-	function validate(&$request, $reviewId) {
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
-		$press =& $request->getPress();
-		$user =& $request->getUser();
-
-		$isValid = true;
-		$newKey = Request::getUserVar('key');
-
-		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
-
-		if (!$reviewerSubmission || $reviewerSubmission->getPressId() != $press->getId()) {
-			$isValid = false;
-		} elseif ($user) {
-			if ($reviewerSubmission->getReviewerId() != $user->getId()) {
-				$isValid = false;
-			}
-		} else {
-			$user =& SubmissionReviewHandler::validateAccessKey($reviewerSubmission->getReviewerId(), $reviewId, $newKey);
-			if (!$user) $isValid = false;
-		}
-
-		if (!$isValid) {
-			Request::redirect(null, Request::getRequestedPage());
-		}
-
-		$this->submission =& $reviewerSubmission;
-		$this->user =& $user;
-		return true;
 	}
 }
 ?>

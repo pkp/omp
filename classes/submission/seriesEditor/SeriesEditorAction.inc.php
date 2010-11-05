@@ -258,7 +258,7 @@ class SeriesEditorAction extends Action {
 						$reviewDueDate = strftime(Config::getVar('general', 'date_format_short'), strtotime('+' . $numWeeks . ' week'));
 					}
 
-					$submissionUrl = Request::url(null, 'reviewer', 'submission', $reviewId, $reviewerAccessKeysEnabled?array('key' => 'ACCESS_KEY'):array());
+					$submissionUrl = Request::url(null, 'reviewer', 'submission', null, $reviewerAccessKeysEnabled?array('reviewId' => $reviewId, 'monographId' => $seriesEditorSubmission->getId(), 'key' => 'ACCESS_KEY'):array('reviewId' => $reviewId, 'monographId' => $seriesEditorSubmission->getId()));
 
 					$paramArray = array(
 						'reviewerName' => $reviewer->getFullName(),
@@ -418,7 +418,7 @@ class SeriesEditorAction extends Action {
 				if (!isset($reviewer)) return true;
 				$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 
-				$submissionUrl = Request::url(null, 'reviewer', 'submission', $reviewId, $reviewerAccessKeysEnabled?array('key' => 'ACCESS_KEY'):array());
+				$submissionUrl = Request::url(null, 'reviewer', 'submission', null, $reviewerAccessKeysEnabled?array('reviewId' => $reviewId, 'monographId' => $seriesEditorSubmission->getId(), 'key' => 'ACCESS_KEY'):array('reviewId' => $reviewId, 'monographId' => $seriesEditorSubmission->getId()));
 
 				// Format the review due date
 				$reviewDueDate = strtotime($reviewAssignment->getDateDue());

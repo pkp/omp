@@ -54,7 +54,7 @@ class AssignedSubmissionsListGridCellProvider extends SubmissionsListGridCellPro
 					$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 					$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($monographId, $user->getId(), $monograph->getCurrentRound());
 					if(isset($reviewAssignment)) {
-						$url = $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', $reviewAssigment->getId());
+						$url = $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', null, array('monographId' => $monographId, 'reviewId' => $reviewAssigment->getId()));
 					} else {
 						$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'review', array($monographId));
 					}
