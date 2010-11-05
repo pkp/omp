@@ -17,12 +17,6 @@ import('pages.reviewer.ReviewerHandler');
 import('lib.pkp.classes.core.JSON');
 
 class SubmissionReviewHandler extends ReviewerHandler {
-	/** submission associated with the request **/
-	var $submission;
-
-	/** user associated with the request **/
-	var $user;
-
 	/**
 	 * Constructor
 	 */
@@ -34,6 +28,9 @@ class SubmissionReviewHandler extends ReviewerHandler {
 
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
@@ -47,10 +44,13 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * @param $request PKPRequest
 	 */
 	function submission($args, &$request) {
-		$reviewId = $request->getUserVar('reviewId');
+		$reviewId = (int) $request->getUserVar('reviewId');
+		assert(!empty($reviewId));
 
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
+		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
+
 		$this->setupTemplate();
 
 		$reviewStep = $reviewerSubmission->getStep(); // Get the current saved step from the DB
@@ -85,11 +85,12 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 */
 	function saveStep($args, &$request) {
 		$step = isset($args[0]) ? $args[0] : 1;
-		$reviewId = $request->getUserVar('reviewId');
+		$reviewId = (int) $request->getUserVar('reviewId');
+		assert(!empty($reviewId));
 
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
-		$this->setupTemplate();
+		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
 		$formClass = "ReviewerReviewStep{$step}Form";
 		import("classes.submission.reviewer.form.$formClass");
@@ -112,12 +113,14 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * @param $request PKPRequest
 	 */
 	function showDeclineReview($args, &$request) {
-		$reviewId = $request->getUserVar('reviewId');
+		$reviewId = (int) $request->getUserVar('reviewId');
+		assert(!empty($reviewId));
 
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
-		$this->setupTemplate();
+		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
+		$this->setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $reviewerSubmission);
@@ -132,41 +135,23 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * @param $request PKPRequest
 	 */
 	function saveDeclineReview($args, &$request) {
-		$reviewId = Request::getUserVar('reviewId');
-		$declineReviewMessage = Request::getUserVar('declineReviewMessage');
+		$reviewId = (int) $request->getUserVar('reviewId');
+		assert(!empty($reviewId));
+		$declineReviewMessage = $request->getUserVar('declineReviewMessage');
 
-		$reviewerSubmission =& $this->submission;
+		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
+		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
+		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
 		// Save regret message
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment = $reviewAssignmentDao->getById($reviewId);
+		assert(is_a($reviewAssignment, 'ReviewAssignment'));
 		$reviewAssignment->setRegretMessage($declineReviewMessage);
 		$reviewAssignmentDao->updateObject($reviewAssignment);
 
 		ReviewerAction::confirmReview($reviewerSubmission, true, true);
 		$request->redirect($request->redirect(null, 'reviewer'));
-	}
-
-
-	//
-	// Misc
-	//
-	/**
-	 * Download a file.
-	 * @param $args array ($monographId, $fileId, [$revision])
-	 * @param $request PKPRequest
-	 */
-	function downloadFile($args, &$request) {
-		$reviewId = isset($args[0]) ? $args[0] : 0;
-		$monographId = isset($args[1]) ? $args[1] : 0;
-		$fileId = isset($args[2]) ? $args[2] : 0;
-		$revision = isset($args[3]) ? $args[3] : null;
-
-		$reviewerSubmission =& $this->submission;
-
-		if (!ReviewerAction::downloadReviewerFile($reviewId, $reviewerSubmission, $fileId, $revision)) {
-			Request::redirect(null, null, 'submission', $reviewId);
-		}
 	}
 }
 ?>
