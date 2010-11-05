@@ -82,6 +82,8 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 	/**
 	 * Need to add additional data to the template via the fetch method
 	 * @see Form::fetch()
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function fetch($args, &$request) {
 		$router =& $request->getRouter();
@@ -101,6 +103,8 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 
 	/*
 	 * Handle adding an item to the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function addItem($args, &$request) {
 		$this->setupTemplate();
@@ -158,6 +162,8 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 
 	/*
 	 * Handle deleting items from the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function deleteItems($args, &$request) {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');

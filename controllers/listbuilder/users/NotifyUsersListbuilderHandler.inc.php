@@ -29,6 +29,9 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId');
@@ -57,6 +60,8 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	/**
 	 * Need to add additional data to the template via the fetch method
 	 * @see Form::fetch()
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function fetch($args, &$request) {
 		$router =& $request->getRouter();
@@ -77,6 +82,8 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 
 	/*
 	 * Handle adding an item to the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function addItem($args, &$request) {
 		$rowId = "selectList-" . $this->getId();

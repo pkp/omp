@@ -39,6 +39,9 @@ class ReviewerSelectorHandler extends Handler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
@@ -49,6 +52,8 @@ class ReviewerSelectorHandler extends Handler {
 
 	/**
 	 * Display the reviewer filtering form
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function fetchForm($args, &$request) {
 		$monographId = $request->getUserVar('monographId');

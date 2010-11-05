@@ -51,6 +51,7 @@ class ReviewFormForm extends Form {
 	/**
 	 * Fetch the form.
 	 * @see Form::fetch()
+	 * @param $request PKPRequest
 	 */
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
@@ -60,6 +61,8 @@ class ReviewFormForm extends Form {
 
 	/**
 	 * Initialize form data from current review form.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
 		if ($this->reviewFormId != null) {

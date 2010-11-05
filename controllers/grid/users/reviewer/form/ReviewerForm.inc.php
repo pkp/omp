@@ -68,9 +68,10 @@ class ReviewerForm extends Form {
 	// Overridden template methods
 	//
 	/**
-	* Initialize form data from the associated submissionContributor.
-	* @param $submissionContributor Reviewer
-	*/
+	 * Initialize form data from the associated submissionContributor.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
 	function initData($args, &$request) {
 		$reviewerId = $request->getUserVar('reviewerId');
 		$press =& $request->getContext();
@@ -170,6 +171,8 @@ class ReviewerForm extends Form {
 
 	/**
 	 * Save review assignment
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');

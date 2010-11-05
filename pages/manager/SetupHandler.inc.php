@@ -33,6 +33,9 @@ class SetupHandler extends ManagerHandler {
 
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		return parent::authorize($request, $args, $roleAssignments);
@@ -42,6 +45,7 @@ class SetupHandler extends ManagerHandler {
 	 * Display press setup form for the selected step.
 	 * Displays setup index page if a valid step is not specified.
 	 * @param $args array optional, if set the first parameter is the step to display
+	 * @param $request PKPRequest
 	 */
 	function setup(&$args, &$request) {
 		$this->setupTemplate(true);
@@ -75,6 +79,7 @@ class SetupHandler extends ManagerHandler {
 	/**
 	 * Save changes to press settings.
 	 * @param $args array first parameter is the step being saved
+	 * @param $request PKPRequest
 	 */
 	function saveSetup(&$args, &$request) {
 		$step = isset($args[0]) ? (int) $args[0] : 0;

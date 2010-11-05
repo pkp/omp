@@ -35,6 +35,9 @@ class InformationCenterHandler extends Handler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId');
@@ -50,6 +53,8 @@ class InformationCenterHandler extends Handler {
 	/**
 	 * Display the main information center modal.
 	 * NB: sub-classes must implement this method.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function viewInformationCenter($args, &$request) {
 		assert(false);
@@ -57,6 +62,8 @@ class InformationCenterHandler extends Handler {
 
 	/**
 	 * Display the notes tab.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function viewNotes($args, &$request) {
 		assert('false');
@@ -64,6 +71,8 @@ class InformationCenterHandler extends Handler {
 
 	/**
 	 * Save a note.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function saveNote($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
@@ -97,6 +106,8 @@ class InformationCenterHandler extends Handler {
 
 	/**
 	 * Delete a note.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function deleteNote($args, &$request) {
 		$noteId = Request::getUserVar('noteId');
@@ -113,6 +124,8 @@ class InformationCenterHandler extends Handler {
 
 	/**
 	 * Display the notify tab.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function viewNotify ($args, &$request) {
 		assert(false);
@@ -121,6 +134,8 @@ class InformationCenterHandler extends Handler {
 	/**
 	 * Send a notification from the notify tab.
 	 * NB: sub-classes must implement this method.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function sendNotification ($args, &$request) {
 		assert(false);
@@ -129,6 +144,8 @@ class InformationCenterHandler extends Handler {
 	/**
 	 * Display the history tab.
 	 * NB: sub-classes must implement this method.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function viewHistory($args, &$request) {
 		assert(false);
@@ -137,6 +154,8 @@ class InformationCenterHandler extends Handler {
 	/**
 	 * Log an event for this item.
 	 * NB: sub-classes must implement this method.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function _logEvent ($itemId, $eventType, $userId) {
 		assert('false');

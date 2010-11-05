@@ -99,6 +99,9 @@ class ReviewFormElementGridRow extends GridRow {
 		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 	}
 
+	/**
+	 * @see PKPHandler::setupTemplate()
+	 */
 	function setupTemplate($args, &$request) {
 		// Load manager translations
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));

@@ -268,7 +268,10 @@ class GroupHandler extends ManagerHandler {
 		Request::redirect(null, null, 'groups');
 	}
 
-	function setupTemplate($group = null, $subclass = false) {
+	/**
+	 * @see PKPHandler::setupTemplate()
+	 */
+	 function setupTemplate($group = null, $subclass = false) {
 		parent::setupTemplate(true);
 		$templateMgr =& TemplateManager::getManager();
 		if ($subclass) {

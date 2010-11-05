@@ -36,6 +36,8 @@ class CopyeditingUserForm extends Form {
 	//
 	/**
 	 * Initialize variables
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
 		$this->setData('monographId', $this->_monographId);

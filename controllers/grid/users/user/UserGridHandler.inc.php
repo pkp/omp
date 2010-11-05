@@ -119,7 +119,7 @@ class UserGridHandler extends GridHandler {
 			)
 		);
 
-		// Email 
+		// Email
 		$cellProvider = new DataObjectGridCellProvider();
 		$this->addColumn(
 			new GridColumn(
@@ -160,9 +160,9 @@ class UserGridHandler extends GridHandler {
 		$pressId = $press->getId();
 
 		// Get the search terms
-		$searchField = $request->getUserVar('searchField');	
-		$searchMatch = $request->getUserVar('searchMatch');	
-		$search = $request->getUserVar('search');	
+		$searchField = $request->getUserVar('searchField');
+		$searchMatch = $request->getUserVar('searchMatch');
+		$search = $request->getUserVar('search');
 
 		// Get all users for this press that match search criteria
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -172,7 +172,7 @@ class UserGridHandler extends GridHandler {
 			$searchField,
 			$search,
 			$searchMatch,
-			$rangeInfo	
+			$rangeInfo
 		);
 
 		$rowData = array();
@@ -187,6 +187,8 @@ class UserGridHandler extends GridHandler {
 	/**
 	 * Get a suggested username, making sure it's not
 	 * already used by the system. (Poor-man's AJAX.)
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function suggestUsername($args, &$request) {
 		$suggestion = Validation::suggestUsername(
@@ -357,7 +359,7 @@ class UserGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Displays a modal to edit an email message to the user 
+	 * Displays a modal to edit an email message to the user
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object

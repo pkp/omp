@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/users/user/form/UserRoleForm.inc.php 
+ * @file controllers/grid/users/user/form/UserRoleForm.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -31,6 +31,8 @@ class UserRoleForm extends Form {
 
 	/**
 	 * Display the form.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function display($args, &$request) {
 		$helpTopicId = 'press.users.createNewUser';
@@ -44,6 +46,8 @@ class UserRoleForm extends Form {
 
 	/**
 	 * Update user's roles.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function &execute($args, &$request) {
 		// Role management handled by listbuilder, just return user

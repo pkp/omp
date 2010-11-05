@@ -41,7 +41,8 @@ class UsersHandler extends ManagerHandler {
 
 	/**
 	 * Handle user management requests.
-	 * @param $args array first parameter is the management path (e.g. users, roles, etc.) 
+	 * @param $args array first parameter is the management path (e.g. users, roles, etc.)
+	 * @param $request PKPRequest
 	 */
 	function users($args, &$request) {
 		$this->setupTemplate(true);
@@ -69,7 +70,8 @@ class UsersHandler extends ManagerHandler {
 
 	/**
 	 * Handle role management requests.
-	 * @param $args array first parameter is the management path (e.g. users, roles, etc.) 
+	 * @param $args array first parameter is the management path (e.g. users, roles, etc.)
+	 * @param $request PKPRequest
 	 */
 	function roles($args, &$request) {
 		$this->setupTemplate(true);
@@ -84,7 +86,8 @@ class UsersHandler extends ManagerHandler {
 
 	/**
 	 * Handle user enrollment requests.
-	 * @param $args array first parameter is the management path (e.g. users, roles, etc.) 
+	 * @param $args array first parameter is the management path (e.g. users, roles, etc.)
+	 * @param $request PKPRequest
 	 */
 	function enrollment($args, &$request) {
 		$this->setupTemplate(true);

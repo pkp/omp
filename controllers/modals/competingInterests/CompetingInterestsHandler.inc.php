@@ -33,6 +33,9 @@ class CompetingInterestsHandler extends Handler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
@@ -45,6 +48,8 @@ class CompetingInterestsHandler extends Handler {
 	 * Display the submission's metadata
 	 * @return string Serialized JSON object
 	 * @see Form::fetch()
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function fetch($args, &$request) {
 		// Identify the press Id

@@ -76,6 +76,11 @@ class CopyeditingFileForm extends Form {
 		$this->readUserVars(array('signoffId'));
 	}
 
+	/**
+	 * Upload a copyediting file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
 	function uploadFile($args, &$request) {
 		// Get the copyediting signoff
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */

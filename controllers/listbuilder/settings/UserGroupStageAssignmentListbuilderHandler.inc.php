@@ -118,6 +118,8 @@ class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler
 
 	/*
 	 * Handle adding an item to the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function addItem($args, &$request) {
 		$this->setupTemplate();
@@ -153,6 +155,8 @@ class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler
 
 	/*
 	 * Handle deleting items from the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function deleteItems($args, &$request) {
 		$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO');

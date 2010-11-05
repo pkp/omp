@@ -80,6 +80,8 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	/**
 	 * Need to add additional data to the template via the fetch method
 	 * @see Form::fetch()
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function fetch($args, &$request) {
 		$router =& $request->getRouter();
@@ -121,6 +123,8 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 
 	/*
 	 * Fetch either a block of data for local autocomplete, or return a URL to another function for AJAX autocomplete
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function getAutocompleteSource($args, &$request) {
 		//FIXME: add validation here?
@@ -148,6 +152,8 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 
 	/*
 	 * Handle adding an item to the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function addItem($args, &$request) {
 		$this->setupTemplate();
@@ -192,6 +198,8 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 
 	/*
 	 * Handle deleting items from the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function deleteItems($args, &$request) {
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');

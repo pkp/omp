@@ -31,13 +31,18 @@ class SettingsHandler extends ManagerHandler {
 
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
- 
+
    /**
 	 * Display settings index page.
+	 * @param $request PKPRequest
+	 * @param $args array
 	 */
 	function settings(&$request, &$args) {
 		$templateMgr =& TemplateManager::getManager();
@@ -47,6 +52,8 @@ class SettingsHandler extends ManagerHandler {
 
 	/**
 	 * Display data settings index page.
+	 * @param $request PKPRequest
+	 * @param $args array
 	 */
 	function data(&$request, &$args) {
 		$templateMgr =& TemplateManager::getManager();
@@ -56,6 +63,8 @@ class SettingsHandler extends ManagerHandler {
 
 	/**
 	 * Display system settings index page.
+	 * @param $request PKPRequest
+	 * @param $args array
 	 */
 	function system(&$request, &$args) {
 		$templateMgr =& TemplateManager::getManager();

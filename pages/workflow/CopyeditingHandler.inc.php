@@ -25,6 +25,11 @@ class CopyeditingHandler extends Handler {
 		parent::Handler();
 	}
 
+	/**
+	 * Show the copyediting page
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
 	function copyediting(&$args, &$request) {
 		$this->setupTemplate();
 		$monographId = array_shift($args);
@@ -60,7 +65,6 @@ class CopyeditingHandler extends Handler {
 
 	/**
 	 * Setup common template variables.
-	 * @param $subclass boolean set to true if caller is below this handler in the hierarchy
 	 */
 	function setupTemplate() {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));

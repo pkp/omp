@@ -94,6 +94,8 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	/**
 	 * Need to add additional data to the template via the fetch method
 	 * @see Form::fetch()
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function fetch(&$args, &$request) {
 		$router =& $request->getRouter();
@@ -104,7 +106,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId))
 		);
 
-		return parent::fetch(&$args, &$request, $additionalVars);
+		return parent::fetch($args, $request, $additionalVars);
     }
 
 	/**
@@ -155,6 +157,8 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 
 	/*
 	 * Handle deleting items from the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function deleteItems(&$args, &$request) {
 		$json = new JSON('true');

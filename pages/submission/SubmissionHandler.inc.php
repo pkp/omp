@@ -33,6 +33,9 @@ class SubmissionHandler extends Handler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		$router =& $request->getRouter();
@@ -232,21 +235,10 @@ class SubmissionHandler extends Handler {
 	//
 	/**
 	 * Setup common template variables.
-	 * @param $request Request
 	 */
 	function setupTemplate($request) {
 		parent::setupTemplate();
-
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR));
-
-		$router =& $request->getRouter();
-
-		$pageHierarchy = array(
-			array($router->url($request, null, 'user'), 'navigation.user')
-		);
-
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('pageHierarchy', $pageHierarchy);
 	}
 }
 

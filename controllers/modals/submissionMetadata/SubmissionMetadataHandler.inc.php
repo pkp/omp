@@ -28,6 +28,8 @@ class SubmissionMetadataHandler extends Handler {
 
 	/**
 	 * Display the submission's metadata
+	 * @param $args array
+	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 * @see Form::fetch()
 	 */

@@ -9,7 +9,7 @@
  * @class RegistrationHandler
  * @ingroup pages_user
  *
- * @brief Handle requests for user registration. 
+ * @brief Handle requests for user registration.
  */
 
 
@@ -22,9 +22,11 @@ class RegistrationHandler extends UserHandler {
 	function RegistrationHandler() {
 		parent::UserHandler();
 	}
-	
+
 	/**
 	 * Display registration form for new users.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function register($args, &$request) {
 		$this->validate();
@@ -50,7 +52,7 @@ class RegistrationHandler extends UserHandler {
 		} else {
 			$pressDao =& DAORegistry::getDAO('PressDAO');
 			$presses =& $pressDao->getEnabledPresses(); //Enabled added
-	
+
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign('source', Request::getUserVar('source'));
 			$templateMgr->assign_by_ref('presses', $presses);
@@ -60,6 +62,8 @@ class RegistrationHandler extends UserHandler {
 
 	/**
 	 * Validate user registration information and register new user.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function registerUser($args, &$request) {
 		$this->validate();
@@ -162,7 +166,7 @@ class RegistrationHandler extends UserHandler {
 	/**
 	 * Validation check.
 	 * Checks if press allows user registration.
-	 */	
+	 */
 	function validate() {
 		parent::validate(false);
 		$press = Request::getPress();

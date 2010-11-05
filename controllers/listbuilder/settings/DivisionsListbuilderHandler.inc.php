@@ -66,6 +66,8 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 
 	/*
 	 * Handle adding an item to the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function addItem($args, &$request) {
 		$this->setupTemplate();
@@ -109,6 +111,8 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 
 	/*
 	 * Handle deleting items from the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function deleteItems($args, &$request) {
 		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');

@@ -72,6 +72,8 @@ class ReviewFormElementForm extends Form {
 
 	/**
 	 * Initialize form data from current review form.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
 		if ($this->reviewFormElementId != null) {

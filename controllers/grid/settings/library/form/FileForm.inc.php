@@ -81,6 +81,11 @@ class FileForm extends Form {
 		$this->readUserVars(array('gridId', 'rowId', 'name'));
 	}
 
+	/**
+	 * Upload library file
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
 	function uploadFile($args, &$request) {
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
@@ -94,6 +99,8 @@ class FileForm extends Form {
 
 	/**
 	 * Save name for library file
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
 		$name = $this->getData('name');

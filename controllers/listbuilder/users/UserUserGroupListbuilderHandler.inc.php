@@ -9,7 +9,7 @@
  * @class UserUserGroupListbuilderHandler
  * @ingroup listbuilder
  *
- * @brief Class assign/remove mappings of user user groups 
+ * @brief Class assign/remove mappings of user user groups
  */
 
 import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
@@ -61,7 +61,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$currentGroupIds = array();
 
-		// Get user's current user group assignments 
+		// Get user's current user group assignments
 		$currentGroups =& $userGroupDao->getByUserId($this->userId, $press->getId());
 		while (!$currentGroups->eof()) {
 			$currentGroup =& $currentGroups->next();
@@ -117,6 +117,8 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 
 	/*
 	 * Handle adding an item to the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function addItem($args, &$request) {
 		$this->setupTemplate();
@@ -160,6 +162,8 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 
 	/*
 	 * Handle deleting items from the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function deleteItems($args, &$request) {
 		$press =& $request->getPress();

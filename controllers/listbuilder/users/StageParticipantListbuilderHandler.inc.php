@@ -31,6 +31,9 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId');
@@ -120,6 +123,8 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 	/**
 	 * Need to add additional data to the template via the fetch method
 	 * @see Form::fetch()
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function fetch($args, &$request) {
 		$router =& $request->getRouter();
@@ -150,6 +155,8 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 
 	/*
 	 * Handle adding an item to the list
+	 * @param $args array
+	 * @param $request PKPRequestvv
 	 */
 	function addItem($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -192,6 +199,8 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 
 	/*
 	 * Handle deleting items from the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function deleteItems($args, &$request) {
 		array_shift($args); array_shift($args); // Remove the monograph and user group IDs from the argument array; All we need are the signoff IDs

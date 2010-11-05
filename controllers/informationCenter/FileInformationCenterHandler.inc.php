@@ -26,6 +26,8 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 
 	/**
 	 * Display the main information center modal.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function viewInformationCenter($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
@@ -65,6 +67,8 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 
 	/**
 	 * Display the notes tab.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function viewNotes($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
@@ -80,6 +84,8 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 
 	/**
 	 * Display the notify tab.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function viewNotify ($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
@@ -95,6 +101,8 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 
 	/**
 	 * Send a notification from the notify tab.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function sendNotification ($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
@@ -119,6 +127,8 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 
 	/**
 	 * Display the history tab.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function viewHistory($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
@@ -141,6 +151,8 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 
 	/**
 	 * Log an event for this file
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function _logEvent ($itemId, $eventType, $userId) {
 		assert(!empty($itemId) && !empty($eventType) && !empty($userId));

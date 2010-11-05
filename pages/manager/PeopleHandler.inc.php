@@ -30,6 +30,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Display list of people in the selected role.
 	 * @param $args array first parameter is the role ID to display
+	 * @param $request PKPRequest
 	 */
 	function people($args, &$request) {
 		$this->setupTemplate(true);
@@ -170,6 +171,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Search for users to enroll in a specific role.
 	 * @param $args array first parameter is the selected role ID
+	 * @param $request PKPRequest
 	 */
 	function enrollSearch($args, &$request) {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -237,6 +239,8 @@ class PeopleHandler extends ManagerHandler {
 
 	/**
 	 * Show users with no role.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function showNoRole($args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -258,6 +262,8 @@ class PeopleHandler extends ManagerHandler {
 
 	/**
 	 * Enroll a user in a role.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function enroll($args, &$request) {
 		$userGroupId = (int)(isset($args[0])?$args[0]:$request->getUserVar('userGroupId'));
@@ -288,6 +294,8 @@ class PeopleHandler extends ManagerHandler {
 
 	/**
 	 * Unenroll a user from a role.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function unEnroll($args, &$request) {
 		$userGroupId = isset($args[0])?$args[0]:0;
@@ -306,6 +314,8 @@ class PeopleHandler extends ManagerHandler {
 
 	/**
 	 * Display form to create a new user.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function createUser($args, &$request) {
 		$this->editUser($args, $request);
@@ -326,6 +336,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Display form to create/edit a user profile.
 	 * @param $args array optional, if set the first parameter is the ID of the user to edit
+	 * @param $request PKPRequest
 	 */
 	function editUser($args, &$request) {
 		$this->setupTemplate(true);
@@ -365,6 +376,8 @@ class PeopleHandler extends ManagerHandler {
 
 	/**
 	 * Allow the Press Manager to merge user accounts, including attributed monographs etc.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function mergeUsers($args, &$request) {
 		$this->setupTemplate(true);
@@ -482,6 +495,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Disable a user's account.
 	 * @param $args array the ID of the user to disable
+	 * @param $request PKPRequest
 	 */
 	function disableUser($args, &$request) {
 		$this->setupTemplate(true);
@@ -516,6 +530,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Enable a user's account.
 	 * @param $args array the ID of the user to enable
+	 * @param $request PKPRequest
 	 */
 	function enableUser($args, &$request) {
 		$this->setupTemplate(true);
@@ -538,6 +553,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Remove a user from all roles for the current press.
 	 * @param $args array the ID of the user to remove
+	 * @param $request PKPRequest
 	 */
 	function removeUser($args, &$request) {
 		$this->setupTemplate(true);
@@ -556,6 +572,8 @@ class PeopleHandler extends ManagerHandler {
 
 	/**
 	 * Save changes to a user profile.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function updateUser($args, &$request) {
 		$this->setupTemplate(true);
@@ -612,6 +630,7 @@ class PeopleHandler extends ManagerHandler {
 	/**
 	 * Display a user's profile.
 	 * @param $args array first parameter is the ID or username of the user to display
+	 * @param $request PKPRequest
 	 */
 	function userProfile($args, &$request) {
 		$this->setupTemplate(true);

@@ -107,6 +107,8 @@ class ReviewReminderForm extends Form {
 
 	/**
 	 * Save review assignment
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');

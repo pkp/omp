@@ -85,7 +85,10 @@ class ReviewFormGridRow extends GridRow {
 		}
 	}
 
-	function setupTemplate($args, &$request) {
+	/**
+	 * @see PKPHandler::setupTemplate()
+	 */
+	function setupTemplate() {
 		// Load manager translations
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
 	}

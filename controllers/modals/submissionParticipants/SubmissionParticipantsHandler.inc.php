@@ -34,6 +34,9 @@ class SubmissionParticipantsHandler extends Handler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId');
@@ -45,6 +48,8 @@ class SubmissionParticipantsHandler extends Handler {
 
 	/**
 	 * Display the submission participants grid
+	 * @param $args array
+	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 * @see Form::fetch()
 	 */

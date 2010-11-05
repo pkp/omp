@@ -90,6 +90,8 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 	/**
 	 * Need to add additional data to the template via the fetch method
 	 * @see Form::fetch()
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function fetch($args, &$request) {
 		$router =& $request->getRouter();
@@ -121,6 +123,8 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 
 	/*
 	 * Handle adding an item to the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function addItem($args, &$request) {
 		$rowId = "selectList-" . $this->getId();
@@ -144,6 +148,8 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 
 	/*
 	 * Handle deleting items from the list
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function deleteItems($args, &$request) {
 		$json = new JSON('true');

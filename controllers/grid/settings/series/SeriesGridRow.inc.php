@@ -69,6 +69,9 @@ class SeriesGridRow extends GridRow {
 
 	}
 
+	/**
+	 * @see PKPHandler::setupTemplate()
+	 */
 	function setupTemplate() {
 		// Load manager translations
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_APPLICATION_COMMON));

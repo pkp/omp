@@ -26,6 +26,8 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 
 	/**
 	 * Display the main information center modal.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function viewInformationCenter($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
@@ -60,6 +62,8 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	}
 	/**
 	 * Display the notes tab.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function viewNotes($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
@@ -75,6 +79,8 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 
 	/**
 	 * Display the notify tab.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function viewNotify ($args, &$request) {
 		$itemId = Request::getUserVar('itemId');

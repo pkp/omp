@@ -87,6 +87,8 @@ class ReviewerReviewAttachmentsForm extends Form {
 
 	/**
 	 * Save name for library file
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
 		import('classes.file.MonographFileManager');

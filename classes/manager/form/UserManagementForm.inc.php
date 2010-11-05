@@ -57,6 +57,8 @@ class UserManagementForm extends Form {
 
 	/**
 	 * Display the form.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function display(&$args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -120,6 +122,8 @@ class UserManagementForm extends Form {
 
 	/**
 	 * Initialize form data from current user profile.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function initData(&$args, &$request) {
 		if (isset($this->userId)) {
@@ -227,6 +231,8 @@ class UserManagementForm extends Form {
 
 	/**
 	 * Register a new user.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function execute(&$args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');

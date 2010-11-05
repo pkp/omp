@@ -34,6 +34,8 @@ class ManageReviewFilesForm extends Form {
 	//
 	/**
 	 * Initialize variables
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
@@ -54,6 +56,8 @@ class ManageReviewFilesForm extends Form {
 
 	/**
 	 * Save submissionContributor
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function &execute($args, &$request) {
 		$reviewType = (integer)$this->getData('reviewType');

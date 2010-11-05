@@ -75,6 +75,8 @@ class UserEmailForm extends Form {
 
 	/**
 	 * Send the email
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');

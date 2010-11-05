@@ -53,6 +53,8 @@ class UserForm extends Form {
 
 	/**
 	 * Initialize form data from current user profile.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
 		if (isset($this->userId)) {
@@ -102,6 +104,8 @@ class UserForm extends Form {
 
 	/**
 	 * Display the form.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function display($args, &$request) {
 		$site =& $request->getSite();
@@ -198,6 +202,8 @@ class UserForm extends Form {
 
 	/**
 	 * Create or update a user.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function &execute($args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');

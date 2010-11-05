@@ -37,6 +37,9 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
@@ -145,7 +148,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 * upload a file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string
+	 * @return string Serialized JSON Object
 	 */
 	function uploadFile($args, &$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);

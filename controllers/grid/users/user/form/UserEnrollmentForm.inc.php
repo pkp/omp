@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/users/user/form/UserEnrollmentForm.inc.php 
+ * @file controllers/grid/users/user/form/UserEnrollmentForm.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -25,6 +25,8 @@ class UserEnrollmentForm extends Form {
 
 	/**
 	 * Display the form.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 */
 	function display($args, &$request) {
 		$userDao =& DAORegistry::getDAO('UserDAO');
