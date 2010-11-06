@@ -25,27 +25,53 @@ class ChapterForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function ChapterForm($monographId, $chapterId) {
+	function ChapterForm($monograph, $chapterId) {
 		parent::Form('controllers/grid/users/chapter/form/chapterForm.tpl');
-		$this->_monographId = $monographId;
+		$this->setMonograph($monograph);
 
-		if ( is_numeric($chapterId) ) {
+		if (is_numeric($chapterId)) {
 			$chapterDao =& DAORegistry::getDAO('ChapterDAO');
-			$this->_chapter =& $chapterDao->getChapter($chapterId);
+			$this->setChapter($chapterDao->getChapter($chapterId));
 		}
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
+
 	//
-	// Get method
+	// Getters/Setters
 	//
 	/**
-	 * Get the Chapter associated with this form
+	 * Get the monograph associated with this chapter grid.
+	 * @return Monograph
 	 */
-	function &getChapter() {
+	function getMonograph() {
+		return $this->_monograph;
+	}
+
+	/**
+	 * Set the monograph associated with this chapter grid.
+	 * @param $monograph Monograph
+	 */
+	function setMonograph($monograph) {
+		$this->_monograph =& $monograph;
+	}
+
+	/**
+	 * Get the Chapter associated with this form
+	 * @return Chapter
+	 */
+	function getChapter() {
 		return $this->_chapter;
+	}
+
+	/**
+	 * Set the Chapter associated with this form
+	 * @param $chapter Chapter
+	 */
+	function setChapter($chapter) {
+		$this->_chapter =& $chapter;
 	}
 
 	//
@@ -56,10 +82,13 @@ class ChapterForm extends Form {
 	 * @param $chapter Chapter
 	 */
 	function initData() {
-		$this->setData('monographId', $this->_monographId);
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
+
+		$monograph =& $this->getMonograph();
+		$this->setData('monographId', $monograph->getId());
+
 		$chapter =& $this->getChapter();
-		if ( $chapter ) {
+		if ($chapter) {
 			$this->setData('chapterId', $chapter->getId());
 			$this->setData('title', $chapter->getLocalizedTitle());
 		} else {
@@ -83,17 +112,19 @@ class ChapterForm extends Form {
 		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
 		$chapter =& $this->getChapter();
 
-		if ( $chapter ) {
+		if ($chapter) {
 			$chapter->setTitle($this->getData('title'), null); //Localized
 			$chapterDao->updateObject($chapter);
 		} else {
+			$monograph =& $this->getMonograph();
+
 			$chapter =& new Chapter();
-			$chapter->setMonographId($this->_monographId);
+			$chapter->setMonographId($monograph->getId());
 			$chapter->setTitle($this->getData('title'), null); //Localized
 			$chapterDao->insertChapter($chapter);
 		}
 
-		$this->_chapter =& $chapter;
+		$this->setChapter($chapter);
 
 		return true;
 	}

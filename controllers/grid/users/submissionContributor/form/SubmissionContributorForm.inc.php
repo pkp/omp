@@ -26,12 +26,8 @@ class SubmissionContributorForm extends Form {
 	 */
 	function SubmissionContributorForm($monographId, $submissionContributor) {
 		parent::Form('controllers/grid/users/submissionContributor/form/submissionContributorForm.tpl');
-		assert(is_numeric($monographId));
-		$this->_monographId = (int) $monographId;
-
-		//FIXME: Author?
-		//assert(!$submissionContributor || is_a($submissionContributor, 'Author'));
-		$this->_submissionContributor =& $submissionContributor;
+		$this->setMonograph($monograph);
+		$this->setSubmissionContributor($submissionContributor);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'firstName', 'required', 'submission.submit.form.authorRequiredFields'));
@@ -48,8 +44,32 @@ class SubmissionContributorForm extends Form {
 	* Get the submissionContributor
 	* @return SubmissionContributor
 	*/
-	function &getSubmissionContributor() {
+	function getSubmissionContributor() {
 		return $this->_submissionContributor;
+	}
+
+	/**
+	* Set the submissionContributor
+	* @param @submissionContributor SubmissionContributor
+	*/
+	function setSubmissionContributor($submissionContributor) {
+		$this->_submissionContributor =& $submissionContributor;
+	}
+
+	/**
+	 * Get the Monograph
+	 * @return Monograph
+	 */
+	function getMonograph() {
+		return $this->_monograph;
+	}
+
+	/**
+	 * Set the MonographId
+	 * @param Monograph
+	 */
+	function setMonograph($monograph) {
+		$this->_monographId =& $monograph;
 	}
 
 	/**
@@ -57,7 +77,8 @@ class SubmissionContributorForm extends Form {
 	 * @return int monographId
 	 */
 	function getMonographId() {
-		return $this->_monographId;
+		$monograph =& $this->getMonograph();
+		return $monograph->getId();
 	}
 
 	//

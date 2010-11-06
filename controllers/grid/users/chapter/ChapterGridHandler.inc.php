@@ -45,6 +45,14 @@ class ChapterGridHandler extends CategoryGridHandler{
 		return $this->_monograph;
 	}
 
+	/**
+	 * Set the monograph associated with this chapter grid.
+	 * @param $monograph Monograph
+	 */
+	function setMonograph($monograph) {
+		$this->_monograph =& $monograph;
+	}
+
 
 	//
 	// Implement template methods from PKPHandler
@@ -69,7 +77,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 		parent::initialize($request);
 
 		// Retrieve the authorized monograph
-		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
 		// Basic grid configuration
@@ -172,14 +180,12 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 * @return string Serialized JSON object
 	 */
 	function editChapter($args, &$request) {
-		// Identify the monograph being worked on
-		$monographId = $request->getUserVar('monographId');
 		// Identify the chapter to be updated
 		$chapterId = $request->getUserVar('chapterId');
 
 		// Form handling
 		import('controllers.grid.users.chapter.form.ChapterForm');
-		$chapterForm = new ChapterForm($monographId, $chapterId);
+		$chapterForm = new ChapterForm($this->getMonograph(), $chapterId);
 		if ($chapterForm->isLocaleResubmit()) {
 			$chapterForm->readInputData();
 		} else {
@@ -197,14 +203,12 @@ class ChapterGridHandler extends CategoryGridHandler{
 	 * @return string Serialized JSON object
 	 */
 	function updateChapter($args, &$request) {
-		// Identify the monograph being worked on
-		$monographId = $request->getUserVar('monographId');
 		// Identify the chapter to be updated
 		$chapterId = $request->getUserVar('chapterId');
 
 		// Form initialization
 		import('controllers.grid.users.chapter.form.ChapterForm');
-		$chapterForm = new ChapterForm($monographId, $chapterId);
+		$chapterForm = new ChapterForm($this->getMonograph(), $chapterId);
 		$chapterForm->readInputData();
 
 		// Form validation

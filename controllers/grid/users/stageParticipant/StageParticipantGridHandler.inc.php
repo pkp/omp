@@ -43,10 +43,17 @@ class StageParticipantGridHandler extends GridHandler {
 	 * Get the monograph associated with this stageParticipant grid.
 	 * @return Monograph
 	 */
-	function &getMonograph() {
+	function getMonograph() {
 		return $this->_monograph;
 	}
 
+	/**
+	 * Get the monograph associated with this stageParticipant grid.
+	 * @param $monograph Monograph
+	 */
+	function setMonograph($monograph) {
+		$this->_monograph =& $monograph;
+	}
 
 	//
 	// Overridden methods from PKPHandler
@@ -72,7 +79,7 @@ class StageParticipantGridHandler extends GridHandler {
 		parent::initialize($request);
 
 		// Retrieve the authorized monograph.
-		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
 
 		// Load submission-specific translations
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));

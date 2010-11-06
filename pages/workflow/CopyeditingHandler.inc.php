@@ -23,6 +23,24 @@ class CopyeditingHandler extends Handler {
 	 **/
 	function CopyeditingHandler() {
 		parent::Handler();
+
+		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
+				array('copyediting'));
+	}
+
+	//
+	// Implement template methods from PKPHandler
+	//
+	/**
+	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
+	 */
+	function authorize(&$request, $args, $roleAssignments) {
+		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_EDITING));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/**

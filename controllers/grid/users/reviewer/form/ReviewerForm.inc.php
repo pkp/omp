@@ -16,7 +16,7 @@ import('lib.pkp.classes.form.Form');
 
 class ReviewerForm extends Form {
 	/** The monograph associated with the review assignment **/
-	var $_monographId;
+	var $_monograph;
 
 	/** The reviewer associated with the review assignment **/
 	var $_reviewAssignmentId;
@@ -24,10 +24,10 @@ class ReviewerForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function ReviewerForm($monographId, $reviewAssignmentId) {
+	function ReviewerForm($monograph, $reviewAssignmentId) {
 		parent::Form('controllers/grid/users/reviewer/form/reviewerForm.tpl');
-		$this->_monographId = (int) $monographId;
-		$this->_reviewAssignmentId = (int) $reviewAssignmentId;
+		$this->setMonograph($monograph);
+		$this->setReviewAssignmentId((int) $reviewAssignmentId);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'responseDueDate', 'required', 'editor.review.errorAddingReviewer'));
@@ -40,11 +40,12 @@ class ReviewerForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	 * Get the MonographId
+	 * Get the Monograph Id
 	 * @return int monographId
 	 */
 	function getMonographId() {
-		return $this->_monographId;
+		$monograph =& $this->getMonograph();
+		return $monograph->getId();
 	}
 
 	/**
@@ -53,7 +54,15 @@ class ReviewerForm extends Form {
 	 */
 	function getMonograph() {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		return $monographDao->getMonograph($this->_monographId);
+		return $this->_monograph;
+	}
+
+	/**
+	 * Set the Monograph
+	 * @param $monograph Monograph
+	 */
+	function setMonograph($monograph) {
+		$this->_monograph =& $monograph;
 	}
 
 	/**
@@ -62,6 +71,14 @@ class ReviewerForm extends Form {
 	 */
 	function getReviewAssignmentId() {
 		return $this->_reviewAssignmentId;
+	}
+
+	/**
+	 * Get the Review assignment's Id
+	 * @return int reviewerId
+	 */
+	function setReviewAssignmentId($reviewAssignmentId) {
+		$this->_reviewAssignmentId = $reviewAssignmentId;
 	}
 
 	//
@@ -76,7 +93,7 @@ class ReviewerForm extends Form {
 		$reviewerId = $request->getUserVar('reviewerId');
 		$press =& $request->getContext();
 		// The reviewer id has been set
-		if ( is_numeric($reviewerId) ) {
+		if (is_numeric($reviewerId)) {
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 

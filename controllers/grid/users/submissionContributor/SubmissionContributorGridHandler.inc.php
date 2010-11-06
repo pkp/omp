@@ -47,6 +47,14 @@ class SubmissionContributorGridHandler extends GridHandler {
 		return $this->_monograph;
 	}
 
+	/**
+	 * Set the MonographId
+	 * @param Monograph
+	 */
+	function setMonograph($monograph) {
+		$this->_monographId =& $monograph;
+	}
+
 
 	//
 	// Overridden methods from PKPHandler
@@ -71,7 +79,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		parent::initialize($request);
 
 		// Retrieve the authorized monograph.
-		$this->_monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
 
 		// Load submission-specific translations
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
@@ -177,8 +185,6 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function editSubmissionContributor($args, &$request) {
-		// Identify the submission Id
-		$monographId = $request->getUserVar('monographId');
 		// Identify the submissionContributor to be updated
 		$submissionContributorId = $request->getUserVar('submissionContributorId');
 
@@ -187,7 +193,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 
 		// Form handling
 		import('controllers.grid.users.submissionContributor.form.SubmissionContributorForm');
-		$submissionContributorForm = new SubmissionContributorForm($monographId, $submissionContributor);
+		$submissionContributorForm = new SubmissionContributorForm($this->getMonograph(), $submissionContributor);
 		$submissionContributorForm->initData();
 
 		$json = new JSON('true', $submissionContributorForm->fetch($request));
@@ -201,8 +207,6 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function updateSubmissionContributor($args, &$request) {
-		// Identify the submission Id
-		$monographId = $request->getUserVar('monographId');
 		// Identify the submissionContributor to be updated
 		$submissionContributorId = $request->getUserVar('submissionContributorId');
 
@@ -211,7 +215,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 
 		// Form handling
 		import('controllers.grid.users.submissionContributor.form.SubmissionContributorForm');
-		$submissionContributorForm = new SubmissionContributorForm($monographId, $submissionContributor);
+		$submissionContributorForm = new SubmissionContributorForm($this->getMonograph(), $submissionContributor);
 		$submissionContributorForm->readInputData();
 		if ($submissionContributorForm->validate()) {
 			$authorId = $submissionContributorForm->execute();

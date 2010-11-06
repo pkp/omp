@@ -187,14 +187,12 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function editReviewer($args, &$request) {
-		// Identify the submission Id
-		$monographId = $request->getUserVar('monographId');
 		// Identify the review assignment being updated
 		$reviewAssignmentId = $request->getUserVar('reviewAssignmentId');
 
 		// Form handling
 		import('controllers.grid.users.reviewer.form.ReviewerForm');
-		$reviewerForm = new ReviewerForm($monographId, $reviewAssignmentId);
+		$reviewerForm = new ReviewerForm($this->getSubmission(), $reviewAssignmentId);
 		$reviewerForm->initData($args, $request);
 
 		$json = new JSON('true', $reviewerForm->fetch($request));
@@ -208,14 +206,12 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function updateReviewer($args, &$request) {
-		// Identify the submission Id
-		$monographId = $request->getUserVar('monographId');
 		// Identify the review assignment being updated
 		$reviewAssignmentId = $request->getUserVar('reviewAssignmentId');
 
 		// Form handling
 		import('controllers.grid.users.reviewer.form.ReviewerForm');
-		$reviewerForm = new ReviewerForm($monographId, $reviewAssignmentId);
+		$reviewerForm = new ReviewerForm($this->getSubmission(), $reviewAssignmentId);
 		$reviewerForm->readInputData();
 		if ($reviewerForm->validate()) {
 			$reviewAssignment =& $reviewerForm->execute($args, $request);
