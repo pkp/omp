@@ -47,7 +47,7 @@ class OmpWorkflowStageAccessPolicy extends PressPolicy {
 		//
 		// Series editor role
 		//
-		if (isset($roleAssignments[ROLE_ID_PRESS_MANAGER])) {
+		if (isset($roleAssignments[ROLE_ID_SERIES_EDITOR])) {
 			// 1) Series editors can access whitelisted operations ...
 			$seriesEditorWorkflowStagePolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
 			$seriesEditorWorkflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_SERIES_EDITOR, $roleAssignments[ROLE_ID_SERIES_EDITOR]));
@@ -66,7 +66,7 @@ class OmpWorkflowStageAccessPolicy extends PressPolicy {
 		//
 		// Press role
 		//
-		if (isset($roleAssignments[ROLE_ID_PRESS_MANAGER])) {
+		if (isset($roleAssignments[ROLE_ID_PRESS_ASSISTANT])) {
 			// 1) Press role user groups can access whitelisted operations ...
 			$pressRoleWorkflowStagePolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
 			$pressRoleWorkflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_PRESS_ASSISTANT, $roleAssignments[ROLE_ID_PRESS_ASSISTANT]));
@@ -81,7 +81,7 @@ class OmpWorkflowStageAccessPolicy extends PressPolicy {
 		//
 		// Author role
 		//
-		if (isset($roleAssignments[ROLE_ID_PRESS_MANAGER])) {
+		if (isset($roleAssignments[ROLE_ID_AUTHOR])) {
 			// 1) Author role user groups can access whitelisted operations ...
 			$authorRoleWorkflowStagePolicy = new PolicySet(COMBINING_DENY_OVERRIDES);
 			$authorRoleWorkflowStagePolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_AUTHOR, $roleAssignments[ROLE_ID_AUTHOR]));
