@@ -241,7 +241,7 @@ class SetupHandler extends ManagerHandler {
 
 				// Create notification to indicate that setup was saved
 				import('lib.pkp.classes.notification.NotificationManager');
-				$notificationManager =& new NotificationManager();
+				$notificationManager = new NotificationManager();
 				$notificationManager->createTrivialNotification('notification.notification', 'manager.setup.pressSetupUpdated');
 
 				Request::redirect(null, null, 'setup', $step+1);
