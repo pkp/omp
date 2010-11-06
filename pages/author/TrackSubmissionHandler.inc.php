@@ -150,37 +150,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		$templateMgr->display('author/submission.tpl');
 	}
 
-	/**
-	 * Display the status and other details of an author's submission.
-	 */
-	function submissionEditing($args) {
-		$press =& Request::getPress();
-		$user =& Request::getUser();
-		$monographId = isset($args[0]) ? (int) $args[0] : 0;
-
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$this->setupTemplate(true, $monographId);
-
-		AuthorAction::copyeditUnderway($submission);
-		import('classes.submission.proofreader.ProofreaderAction');
-		ProofreaderAction::proofreadingUnderway($submission, 'SIGNOFF_PROOFREADING_AUTHOR');
-
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('pageToDisplay', 'submissionEditing');
-		$templateMgr->assign_by_ref('submission', $submission);
-		$templateMgr->assign_by_ref('copyeditor', $submission->getUserBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
-		$templateMgr->assign_by_ref('submissionFile', $submission->getSubmissionFile());
-		$templateMgr->assign_by_ref('initialCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_INITIAL'));
-		$templateMgr->assign_by_ref('editorAuthorCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_AUTHOR'));
-		$templateMgr->assign_by_ref('finalCopyeditFile', $submission->getFileBySignoffType('SIGNOFF_COPYEDITING_FINAL'));
-		$templateMgr->assign('useCopyeditors', $press->getSetting('useCopyeditors'));
-		$templateMgr->assign('useLayoutEditors', $press->getSetting('useLayoutEditors'));
-		$templateMgr->assign('useProofreaders', $press->getSetting('useProofreaders'));
-		$templateMgr->assign('helpTopicId', 'editorial.authorsRole.editing');
-		$templateMgr->display('author/submission.tpl');
-	}
-
 	function uploadCopyeditVersion() {
 		$copyeditStage = Request::getUserVar('copyeditStage');
 		$monographId = Request::getUserVar('monographId');
@@ -192,17 +161,6 @@ class TrackSubmissionHandler extends AuthorHandler {
 		AuthorAction::uploadCopyeditVersion($submission, $copyeditStage);
 
 		Request::redirect(null, null, 'submissionEditing', $monographId);
-	}
-
-	function completeAuthorCopyedit($args) {
-		$monographId = Request::getUserVar('monographId');
-		$this->validate($monographId);
-		$submission =& $this->submission;
-		$this->setupTemplate(true);
-
-		if (AuthorAction::completeAuthorCopyedit($submission, Request::getUserVar('send'))) {
-			Request::redirect(null, null, 'submissionEditing', $monographId);
-		}
 	}
 
 	//

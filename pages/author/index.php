@@ -23,10 +23,8 @@ switch ($op) {
 	case 'deleteSubmission':
 	case 'submission':
 	case 'submissionReview':
-	case 'submissionEditing':
 	case 'removeMonographCoverPage':
 	case 'uploadCopyeditVersion':
-	case 'completeAuthorCopyedit':
 	//
 	// Misc.
 	//

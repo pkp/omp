@@ -175,48 +175,6 @@ class CopyeditorAction extends Action {
 	}
 
 	/**
-	 * Set that the copyedit is underway.
-	 */
-	function copyeditUnderway(&$copyeditorSubmission) {
-		if (!HookRegistry::call('CopyeditorAction::copyeditUnderway', array(&$copyeditorSubmission))) {
-			$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
-			$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-
-			$initialSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_INITIAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getId());
-			$finalSignoff = $signoffDao->build('SIGNOFF_COPYEDITING_FINAL', ASSOC_TYPE_MONOGRAPH, $copyeditorSubmission->getId());
-
-			if ($initialSignoff->getDateNotified() != null && $initialSignoff->getDateUnderway() == null) {
-				$initialSignoff->setDateUnderway(Core::getCurrentDate());
-				$signoffDao->updateObject($initialSignoff);
-				$update = true;
-
-			} elseif ($finalSignoff->getDateNotified() != null && $finalSignoff->getDateUnderway() == null) {
-				$finalSignoff->setDateUnderway(Core::getCurrentDate());
-				$signoffDao->updateObject($finalSignoff);
-				$update = true;
-			}
-
-			if (isset($update)) {
-				// Add log entry
-				$user =& Request::getUser();
-				import('classes.monograph.log.MonographLog');
-				import('classes.monograph.log.MonographEventLogEntry');
-
-				MonographLog::logEvent(
-						$copyeditorSubmission->getId(),
-						MONOGRAPH_LOG_COPYEDIT_INITIATE,
-						MONOGRAPH_LOG_TYPE_COPYEDIT,
-						$user->getId(), 'log.copyedit.initiate',
-						Array(
-							'copyeditorName' => $user->getFullName(),
-							'monographId' => $copyeditorSubmission->getId()
-						)
-					);
-			}
-		}
-	}
-
-	/**
 	 * Upload the copyedited version of a monograph.
 	 * @param $copyeditorSubmission object
 	 */

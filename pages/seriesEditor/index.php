@@ -28,7 +28,6 @@ switch ($op) {
 	case 'submission':
 	case 'submissionRegrets':
 	case 'submissionReview':
-	case 'submissionEditing':
 	case 'submissionProduction':
 	case 'submissionHistory':
 	case 'changeSeries':

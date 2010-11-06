@@ -21,7 +21,6 @@ switch ($op) {
 	// Submission Layout Editing
 	//
 	case 'submission':
-	case 'submissionEditing':
 	case 'completeDesign':
 	case 'uploadGalley':
 	case 'editGalley':
