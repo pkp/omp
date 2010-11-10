@@ -143,7 +143,7 @@
 			{/fbvFormSection}
 		{else}
 			{fbvFormSection title="common.fileType" required=1}
-				{fbvSelect name="fileType" id="fileType" from=$bookFileTypes translate=false selected=$currentFileType}
+				{fbvSelect name="fileType" id="fileType" from=$monographFileTypes translate=false selected=$currentFileType}
 			{/fbvFormSection}
 			{if $fileId}
 				{fbvFormSection title="submission.submit.currentFile"}

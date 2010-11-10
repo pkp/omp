@@ -1,30 +1,30 @@
 <?php
 
 /**
- * @file controllers/grid/settings/bookFileType/BookFileTypeGridHandler.inc.php
+ * @file controllers/grid/settings/monographFileType/MonographFileTypeGridHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class BookFileTypeGridHandler
- * @ingroup controllers_grid_settings_bookFileType
+ * @class MonographFileTypeGridHandler
+ * @ingroup controllers_grid_settings_monographFileType
  *
- * @brief Handle Book File Type grid requests.
+ * @brief Handle Monograph File Type grid requests.
  */
 
 import('controllers.grid.settings.SetupGridHandler');
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
-import('controllers.grid.settings.bookFileType.BookFileTypeGridRow');
+import('controllers.grid.settings.monographFileType.MonographFileTypeGridRow');
 
-class BookFileTypeGridHandler extends SetupGridHandler {
+class MonographFileTypeGridHandler extends SetupGridHandler {
 	/**
 	 * Constructor
 	 */
-	function BookFileTypeGridHandler() {
+	function MonographFileTypeGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'addBookFileType', 'editBookFileType', 'updateBookFileType',
-				'deleteBookFileType', 'restoreBookFileTypes'));
+				array('fetchGrid', 'addMonographFileType', 'editMonographFileType', 'updateMonographFileType',
+				'deleteMonographFileType', 'restoreMonographFileTypes'));
 	}
 
 
@@ -42,34 +42,34 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_GRID));
 
 		// Basic grid configuration
-		$this->setTitle('manager.setup.bookFileTypes');
+		$this->setTitle('manager.setup.monographFileTypes');
 
 		$press =& $request->getPress();
 
 		// Elements to be displayed in the grid
-		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-		$bookFileTypes =& $bookFileTypeDao->getEnabledByPressId($press->getId());
-		$this->setData($bookFileTypes);
+		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
+		$monographFileTypes =& $monographFileTypeDao->getEnabledByPressId($press->getId());
+		$this->setData($monographFileTypes);
 
 		// Add grid-level actions
 		$router =& $request->getRouter();
 		$actionArgs = array('gridId' => $this->getId());
 		$this->addAction(
 			new LinkAction(
-				'addBookFileType',
+				'addMonographFileType',
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, null, 'addBookFileType', null, $actionArgs),
+				$router->url($request, null, null, 'addMonographFileType', null, $actionArgs),
 				'grid.action.addItem'
 			),
 			GRID_ACTION_POSITION_ABOVE
 		);
 		$this->addAction(
 			new LinkAction(
-				'restoreBookFileTypes',
+				'restoreMonographFileTypes',
 				LINK_ACTION_MODE_CONFIRM,
 				LINK_ACTION_TYPE_NOTHING,
-				$router->url($request, null, null, 'restoreBookFileTypes', null, $actionArgs),
+				$router->url($request, null, null, 'restoreMonographFileTypes', null, $actionArgs),
 				'grid.action.restoreDefaults'
 			),
 			GRID_ACTION_POSITION_ABOVE
@@ -95,78 +95,78 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	//
 	/**
 	 * @see GridHandler::getRowInstance()
-	 * @return BookFileTypeGridRow
+	 * @return MonographFileTypeGridRow
 	 */
 	function &getRowInstance() {
-		$row = new BookFileTypeGridRow();
+		$row = new MonographFileTypeGridRow();
 		return $row;
 	}
 
 	//
-	// Public Book File Type Grid Actions
+	// Public Monograph File Type Grid Actions
 	//
 	/**
-	 * An action to add a new Book File Type
+	 * An action to add a new Monograph File Type
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function addBookFileType($args, &$request) {
-		// Calling editBookFileType with an empty row id will add a new Book File Type.
-		return $this->editBookFileType($args, $request);
+	function addMonographFileType($args, &$request) {
+		// Calling editMonographFileType with an empty row id will add a new Monograph File Type.
+		return $this->editMonographFileType($args, $request);
 	}
 
 	/**
-	 * An action to edit a Book File Type
+	 * An action to edit a Monograph File Type
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editBookFileType($args, &$request) {
-		$bookFileTypeId = isset($args['bookFileTypeId']) ? $args['bookFileTypeId'] : null;
+	function editMonographFileType($args, &$request) {
+		$monographFileTypeId = isset($args['monographFileTypeId']) ? $args['monographFileTypeId'] : null;
 
 		$this->setupTemplate();
 
-		import('controllers.grid.settings.bookFileType.form.BookFileTypeForm');
-		$bookFileTypeForm = new BookFileTypeForm($bookFileTypeId);
+		import('controllers.grid.settings.monographFileType.form.MonographFileTypeForm');
+		$monographFileTypeForm = new MonographFileTypeForm($monographFileTypeId);
 
-		if ($bookFileTypeForm->isLocaleResubmit()) {
-			$bookFileTypeForm->readInputData();
+		if ($monographFileTypeForm->isLocaleResubmit()) {
+			$monographFileTypeForm->readInputData();
 		} else {
-			$bookFileTypeForm->initData($args, $request);
+			$monographFileTypeForm->initData($args, $request);
 		}
 
-		$json = new JSON('true', $bookFileTypeForm->fetch($request));
+		$json = new JSON('true', $monographFileTypeForm->fetch($request));
 		return $json->getString();
 	}
 
 	/**
-	 * Update a Book File Type
+	 * Update a Monograph File Type
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateBookFileType($args, &$request) {
-		$bookFileTypeId = Request::getUserVar('rowId');
+	function updateMonographFileType($args, &$request) {
+		$monographFileTypeId = Request::getUserVar('rowId');
 		$press =& $request->getPress();
 
-		import('controllers.grid.settings.bookFileType.form.BookFileTypeForm');
-		$bookFileTypeForm = new BookFileTypeForm($bookFileTypeId);
-		$bookFileTypeForm->readInputData();
+		import('controllers.grid.settings.monographFileType.form.MonographFileTypeForm');
+		$monographFileTypeForm = new MonographFileTypeForm($monographFileTypeId);
+		$monographFileTypeForm->readInputData();
 
 		$router =& $request->getRouter();
 
-		if ($bookFileTypeForm->validate()) {
-			$bookFileTypeForm->execute($args, $request);
+		if ($monographFileTypeForm->validate()) {
+			$monographFileTypeForm->execute($args, $request);
 
 			// prepare the grid row data
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
 
-			$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-			$bookFileType =& $bookFileTypeDao->getById($bookFileTypeForm->bookFileTypeId, $press->getId());
+			$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
+			$monographFileType =& $monographFileTypeDao->getById($monographFileTypeForm->monographFileTypeId, $press->getId());
 
-			$row->setData($bookFileType);
-			$row->setId($bookFileTypeForm->bookFileTypeId);
+			$row->setData($monographFileType);
+			$row->setId($monographFileTypeForm->monographFileTypeId);
 			$row->initialize($request);
 
 			$json = new JSON('true', $this->_renderRowInternally($request, $row));
@@ -178,17 +178,17 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	}
 
 	/**
-	 * Delete a Book File Type.
+	 * Delete a Monograph File Type.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteBookFileType($args, &$request) {
-		// Identify the Book File Type to be deleted
-		$bookFileType =& $this->_getBookFileTypeFromArgs($args);
+	function deleteMonographFileType($args, &$request) {
+		// Identify the Monograph File Type to be deleted
+		$monographFileType =& $this->_getMonographFileTypeFromArgs($args);
 
-		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-		$result = $bookFileTypeDao->deleteObject($bookFileType);
+		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
+		$result = $monographFileTypeDao->deleteObject($monographFileType);
 
 		if ($result) {
 			$json = new JSON('true');
@@ -199,17 +199,17 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	}
 
 	/**
-	 * Restore the default Book File Type settings for the press.
+	 * Restore the default Monograph File Type settings for the press.
 	 * All default settings that were available when the press instance was created will be restored.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function restoreBookFileTypes($args, &$request) {
+	function restoreMonographFileTypes($args, &$request) {
 		$press =& $request->getPress();
 
-		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-		$bookFileTypeDao->restoreByPressId($press->getId());
+		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
+		$monographFileTypeDao->restoreByPressId($press->getId());
 
 		$this->setData();
 	}
@@ -218,22 +218,22 @@ class BookFileTypeGridHandler extends SetupGridHandler {
 	// Private helper function
 	//
 	/**
-	* This will retrieve a Book File Type object from the
+	* This will retrieve a Monograph File Type object from the
 	* grids data source based on the request arguments.
-	* If no Book File Type can be found then this will raise
+	* If no Monograph File Type can be found then this will raise
 	* a fatal error.
 	* @param $args array
-	* @return BookFileType
+	* @return MonographFileType
 	*/
-	function &_getBookFileTypeFromArgs($args) {
-		// Identify the Book File Type Id and retrieve the
+	function &_getMonographFileTypeFromArgs($args) {
+		// Identify the Monograph File Type Id and retrieve the
 		// corresponding element from the grid's data source.
-		if (!isset($args['bookFileTypeId'])) {
-			fatalError('Missing Book File Type Id!');
+		if (!isset($args['monographFileTypeId'])) {
+			fatalError('Missing Monograph File Type Id!');
 		} else {
-			$bookFileType =& $this->getRowDataElement($args['bookFileTypeId']);
-			if (is_null($bookFileType)) fatalError('Invalid Book File Type Id!');
+			$monographFileType =& $this->getRowDataElement($args['monographFileTypeId']);
+			if (is_null($monographFileType)) fatalError('Invalid Monograph File Type Id!');
 		}
-		return $bookFileType;
+		return $monographFileType;
 	}
 }

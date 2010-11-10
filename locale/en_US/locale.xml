@@ -253,7 +253,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="common.preview">Preview</message>
 	<message key="common.activate">Activate</message>
 	<message key="common.deactivate">Deactivate</message>
-	<message key="common.bookFiles">Book Files</message>
+	<message key="common.monographFiles">Monograph Files</message>
 	<message key="common.fileUpload">File Upload</message>
 	<message key="common.warning">Warning</message>
 	<message key="common.quality">Quality</message>

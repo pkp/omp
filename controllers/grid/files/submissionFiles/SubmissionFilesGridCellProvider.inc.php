@@ -82,8 +82,8 @@ class SubmissionFilesGridCellProvider extends DataObjectGridCellProvider {
 				return array('label' => $monographFile->getExtension());
 				break;
 			case 'type':
-				$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-				$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
+				$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
+				$fileType = $monographFileTypeDao->getById($monographFile->getAssocId());
 				return array('label' => $fileType->getLocalizedName());
 				break;
 		}

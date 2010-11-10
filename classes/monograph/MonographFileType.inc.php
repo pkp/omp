@@ -1,32 +1,28 @@
 <?php
 
 /**
- * @defgroup bookFile
- */
-
-/**
- * @file classes/bookFile/BookFileType.inc.php
+ * @file classes/monograph/MonographFileType.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class BookFileType
- * @ingroup bookFile
- * @see BookFileTypeDAO
+ * @class MonographFileType
+ * @ingroup monograph
+ * @see MonographFileTypeDAO
  *
- * @brief Basic class describing a book file type.
+ * @brief Basic class describing a monograph file type.
  */
 
 
-define('BOOK_FILE_CATEGORY_DOCUMENT', 1);
-define('BOOK_FILE_CATEGORY_ARTWORK', 2);
+define('MONOGRAPH_FILE_CATEGORY_DOCUMENT', 1);
+define('MONOGRAPH_FILE_CATEGORY_ARTWORK', 2);
 
-define('BOOK_FILE_TYPE_SORTABLE_DESIGNATION', '##');
+define('MONOGRAPH_FILE_TYPE_SORTABLE_DESIGNATION', '##');
 
-class BookFileType extends DataObject {
+class MonographFileType extends DataObject {
 
 	/**
-	 * Set the name of the book file type
+	 * Set the name of the monograph file type
 	 * @param $name string
 	 * @param $locale string
 	 */
@@ -35,7 +31,7 @@ class BookFileType extends DataObject {
 	}
 
 	/**
-	 * Get the name of the book file type
+	 * Get the name of the monograph file type
 	 * @param $locale string
 	 * @return string
 	 */
@@ -44,7 +40,7 @@ class BookFileType extends DataObject {
 	}
 
 	/**
-	 * Get the localized name of the book file type
+	 * Get the localized name of the monograph file type
 	 * @return string
 	 */
 	function getLocalizedName() {
@@ -52,7 +48,7 @@ class BookFileType extends DataObject {
 	}
 
 	/**
-	 * Set the designation of the book file type
+	 * Set the designation of the monograph file type
 	 * @param $abbrev string
 	 * @param $locale string
 	 */
@@ -61,7 +57,7 @@ class BookFileType extends DataObject {
 	}
 
 	/**
-	 * Get the designation of the book file type
+	 * Get the designation of the monograph file type
 	 * @param $locale string
 	 * @return string
 	 */
@@ -70,7 +66,7 @@ class BookFileType extends DataObject {
 	}
 
 	/**
-	 * Get the localized designation of the book file type
+	 * Get the localized designation of the monograph file type
 	 * @return string
 	 */
 	function getLocalizedDesignation() {
@@ -78,7 +74,7 @@ class BookFileType extends DataObject {
 	}
 
 	/**
-	 * Get sortable flag of the book type
+	 * Get sortable flag of the monograph type
 	 * @return bool
 	 */
 	function getSortable() {
@@ -86,7 +82,7 @@ class BookFileType extends DataObject {
 	}
 
 	/**
-	 * Set sortable flag of the book type
+	 * Set sortable flag of the monograph type
 	 * @param $sortable bool
 	 */
 	function setSortable($sortable) {
@@ -94,7 +90,7 @@ class BookFileType extends DataObject {
 	}
 
 	/**
-	 * Get book file category (e.g. artwork)
+	 * Get monograph file category (e.g. artwork)
 	 * @return int
 	 */
 	function getCategory() {
@@ -102,7 +98,7 @@ class BookFileType extends DataObject {
 	}
 
 	/**
-	 * Set book file category
+	 * Set monograph file category
 	 * @param $category bool
 	 */
 	function setCategory($category) {

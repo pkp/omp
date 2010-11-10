@@ -1,32 +1,32 @@
 <?php
 
 /**
- * @file controllers/grid/settings/bookFileType/form/BookFileTypeForm.inc.php
+ * @file controllers/grid/settings/monographFileType/form/MonographFileTypeForm.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class BookFileTypeForm
- * @ingroup controllers_grid_settings_bookFileType_form
+ * @class MonographFileTypeForm
+ * @ingroup controllers_grid_settings_monographFileType_form
  *
- * @brief Form for adding/editing a Book File Type.
+ * @brief Form for adding/editing a Monograph File Type.
  */
 
 import('lib.pkp.classes.form.Form');
 
-class BookFileTypeForm extends Form {
+class MonographFileTypeForm extends Form {
 	/** the id for the series being edited **/
-	var $bookFileTypeId;
+	var $monographFileTypeId;
 
 	/**
 	 * Constructor.
 	 */
-	function BookFileTypeForm($bookFileTypeId = null) {
-		$this->bookFileTypeId = $bookFileTypeId;
-		parent::Form('controllers/grid/settings/bookFileType/form/bookFileTypeForm.tpl');
+	function MonographFileTypeForm($monographFileTypeId = null) {
+		$this->monographFileTypeId = $monographFileTypeId;
+		parent::Form('controllers/grid/settings/monographFileType/form/monographFileTypeForm.tpl');
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'name', 'required', 'manager.setup.form.bookFileType.nameRequired'));
+		$this->addCheck(new FormValidator($this, 'name', 'required', 'manager.setup.form.monographFileType.nameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -38,19 +38,19 @@ class BookFileTypeForm extends Form {
 	function initData($args, &$request) {
 		$press =& $request->getPress();
 
-		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
 
-		if($this->bookFileTypeId) {
-			$bookFileType =& $bookFileTypeDao->getById($this->bookFileTypeId, $press->getId());
+		if($this->monographFileTypeId) {
+			$monographFileType =& $monographFileTypeDao->getById($this->monographFileTypeId, $press->getId());
 		}
 
-		if (isset($bookFileType) ) {
+		if (isset($monographFileType) ) {
 			$this->_data = array(
-				'bookFileTypeId' => $this->bookFileTypeId,
-				'name' => $bookFileType->getLocalizedName(),
-				'designation' => $bookFileType->getLocalizedDesignation(),
-				'sortable' => $bookFileType->getSortable(),
-				'category' => $bookFileType->getCategory()
+				'monographFileTypeId' => $this->monographFileTypeId,
+				'name' => $monographFileType->getLocalizedName(),
+				'designation' => $monographFileType->getLocalizedDesignation(),
+				'sortable' => $monographFileType->getSortable(),
+				'category' => $monographFileType->getCategory()
 			);
 		} else {
 			$this->_data = array(
@@ -71,8 +71,8 @@ class BookFileTypeForm extends Form {
 	 */
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('bookFileCategories', array(BOOK_FILE_CATEGORY_DOCUMENT => Locale::translate('submission.document'),
-					BOOK_FILE_CATEGORY_ARTWORK => Locale::translate('submission.art')));
+		$templateMgr->assign('monographFileCategories', array(MONOGRAPH_FILE_CATEGORY_DOCUMENT => Locale::translate('submission.document'),
+					MONOGRAPH_FILE_CATEGORY_ARTWORK => Locale::translate('submission.art')));
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 		return parent::fetch($request);
@@ -83,7 +83,7 @@ class BookFileTypeForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('bookFileTypeId', 'name', 'designation', 'sortable', 'category'));
+		$this->readUserVars(array('monographFileTypeId', 'name', 'designation', 'sortable', 'category'));
 		$this->readUserVars(array('gridId', 'rowId'));
 	}
 
@@ -93,25 +93,25 @@ class BookFileTypeForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function execute($args, $request) {
-		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
 		$press =& $request->getPress();
 
-		// Update or insert Book File Type
-		if (!isset($this->bookFileTypeId)) {
-			$bookFileType = $bookFileTypeDao->newDataObject();
+		// Update or insert Monograph File Type
+		if (!isset($this->monographFileTypeId)) {
+			$monographFileType = $monographFileTypeDao->newDataObject();
 		} else {
-			$bookFileType =& $bookFileTypeDao->getById($this->bookFileTypeId);
+			$monographFileType =& $monographFileTypeDao->getById($this->monographFileTypeId);
 		}
 
-		$bookFileType->setName($this->getData('name'), Locale::getLocale()); // Localized
-		$bookFileType->setDesignation($this->getData('designation'), Locale::getLocale()); // Localized
-		$bookFileType->setSortable($this->getData('sortable'));
-		$bookFileType->setCategory($this->getData('category'));
+		$monographFileType->setName($this->getData('name'), Locale::getLocale()); // Localized
+		$monographFileType->setDesignation($this->getData('designation'), Locale::getLocale()); // Localized
+		$monographFileType->setSortable($this->getData('sortable'));
+		$monographFileType->setCategory($this->getData('category'));
 
-		if (!isset($this->bookFileTypeId)) {
-			$this->bookFileTypeId = $bookFileTypeDao->insertObject($bookFileType);
+		if (!isset($this->monographFileTypeId)) {
+			$this->monographFileTypeId = $monographFileTypeDao->insertObject($monographFileType);
 		} else {
-			$bookFileTypeDao->updateObject($bookFileType);
+			$monographFileTypeDao->updateObject($monographFileType);
 		}
 
 		return true;

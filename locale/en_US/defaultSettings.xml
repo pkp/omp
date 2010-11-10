@@ -16,23 +16,23 @@
 	 * DEFAULT - Default settings for setup items.
 	 *
 	-->
-	<message key="default.bookFileTypes.artwork">Artwork</message>
-	<message key="default.bookFileTypes.appendix">Appendix</message>
-	<message key="default.bookFileTypes.appendix.designation">99A</message>
-	<message key="default.bookFileTypes.bibliography">Bibliography</message>
-	<message key="default.bookFileTypes.bibliography.designation">99B</message>
-	<message key="default.bookFileTypes.manuscript">Manuscript</message>
-	<message key="default.bookFileTypes.manuscript.designation">99Z</message>
-	<message key="default.bookFileTypes.chapter">Chapter</message>
-	<message key="default.bookFileTypes.glossary">Glossary</message>
-	<message key="default.bookFileTypes.glossary.designation">99G</message>
-	<message key="default.bookFileTypes.index">Index</message>
-	<message key="default.bookFileTypes.index.designation">99I</message>
-	<message key="default.bookFileTypes.preface">Preface</message>
-	<message key="default.bookFileTypes.preface.designation">00P</message>
-	<message key="default.bookFileTypes.prospectus">Prospectus</message>
-	<message key="default.bookFileTypes.prospectus.designation">88P</message>
-	<message key="default.bookFileTypes.tablesAndFigures">Tables and Figures</message>
+	<message key="default.monographFileTypes.artwork">Artwork</message>
+	<message key="default.monographFileTypes.appendix">Appendix</message>
+	<message key="default.monographFileTypes.appendix.designation">99A</message>
+	<message key="default.monographFileTypes.bibliography">Bibliography</message>
+	<message key="default.monographFileTypes.bibliography.designation">99B</message>
+	<message key="default.monographFileTypes.manuscript">Manuscript</message>
+	<message key="default.monographFileTypes.manuscript.designation">99Z</message>
+	<message key="default.monographFileTypes.chapter">Chapter</message>
+	<message key="default.monographFileTypes.glossary">Glossary</message>
+	<message key="default.monographFileTypes.glossary.designation">99G</message>
+	<message key="default.monographFileTypes.index">Index</message>
+	<message key="default.monographFileTypes.index.designation">99I</message>
+	<message key="default.monographFileTypes.preface">Preface</message>
+	<message key="default.monographFileTypes.preface.designation">00P</message>
+	<message key="default.monographFileTypes.prospectus">Prospectus</message>
+	<message key="default.monographFileTypes.prospectus.designation">88P</message>
+	<message key="default.monographFileTypes.tablesAndFigures">Tables and Figures</message>
 
 	<message key="default.publicationFormats.hardcover">Hardcover</message>
 	<message key="default.publicationFormats.hardcover.designation">HC</message>

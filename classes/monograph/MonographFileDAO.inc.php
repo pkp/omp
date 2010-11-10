@@ -287,9 +287,9 @@ class MonographFileDAO extends DAO {
 		$monographFile->setViewable($row['viewable']);
 
 		if ($row['type'] == 'submission') {
-			$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-			$bookFileType =& $bookFileTypeDao->getById($monographFile->getAssocId());
-			$monographFile->setAssocObject($bookFileType);
+			$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
+			$monographFileType =& $monographFileTypeDao->getById($monographFile->getAssocId());
+			$monographFile->setAssocObject($monographFileType);
 		}
 
 		$this->getDataObjectSettings('monograph_file_settings', 'file_id', $row['file_id'], $monographFile);

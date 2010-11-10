@@ -80,8 +80,8 @@ class ReviewFilesGridCellProvider extends GridCellProvider {
 			case 'name':
 				return array('label' => $element->getLocalizedName());
 			case 'type':
-				$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-				$fileType = $bookFileTypeDao->getById($element->getAssocId());
+				$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
+				$fileType = $monographFileTypeDao->getById($element->getAssocId());
 				return array('label' => $fileType->getLocalizedName());
 			}
 	}

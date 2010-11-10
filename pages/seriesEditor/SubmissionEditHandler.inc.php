@@ -74,7 +74,7 @@ class SubmissionEditHandler extends SeriesEditorHandler {
 		$monographFiles =& $monographFileDao->getByMonographId($submission->getId(), 'submission');
 		$templateMgr->assign_by_ref('submissionFiles', $monographFiles);
 
-		$templateMgr->assign_by_ref('bookFileTypes', $bookFileTypes);
+		$templateMgr->assign_by_ref('monographFileTypes', $monographFileTypes);
 		$templateMgr->assign_by_ref('submissionFiles', $monographFiles);
 		$templateMgr->assign('pageToDisplay', 'submissionSummary');
 

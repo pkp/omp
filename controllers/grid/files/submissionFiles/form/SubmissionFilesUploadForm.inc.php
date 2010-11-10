@@ -58,14 +58,14 @@ class SubmissionFilesUploadForm extends Form {
 		}
 
 		$context =& $request->getContext();
-		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-		$bookFileTypes = $bookFileTypeDao->getEnabledByPressId($context->getId());
+		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
+		$monographFileTypes = $monographFileTypeDao->getEnabledByPressId($context->getId());
 
-		$bookFileTypeList = array();
-		while($bookFileType =& $bookFileTypes->next()){
-			$bookFileTypeId = $bookFileType->getId();
-			$bookFileTypeList[$bookFileTypeId] = $bookFileType->getLocalizedName();
-			unset($bookFileType);
+		$monographFileTypeList = array();
+		while($monographFileType =& $monographFileTypes->next()){
+			$monographFileTypeId = $monographFileType->getId();
+			$monographFileTypeList[$monographFileTypeId] = $monographFileType->getLocalizedName();
+			unset($monographFileType);
 		}
 
 		// Assign monograph files to template to display in revision drop-down menu
@@ -79,7 +79,7 @@ class SubmissionFilesUploadForm extends Form {
 		}
 		$this->_data['monographFileOptions'] =& $monographFileOptions;
 
-		$this->_data['bookFileTypes'] = $bookFileTypeList;
+		$this->_data['monographFileTypes'] = $monographFileTypeList;
 		$this->_data['fileStage'] = $this->_fileStage;
 		$this->_data['isRevision'] = $this->_isRevision;
 	}
@@ -150,7 +150,7 @@ class SubmissionFilesUploadForm extends Form {
 					}
 					break;
 				default:
-					$submissionFileId = $monographFileManager->uploadBookFile('submissionFile', $fileStage, $fileId);
+					$submissionFileId = $monographFileManager->uploadMonographFile('submissionFile', $fileStage, $fileId);
 					if (isset($submissionFileId)) {
 						$monographDao =& DAORegistry::getDAO('MonographDAO');
 						$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');

@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @file controllers/grid/settings/bookFileType/BookFileTypeGridRow.inc.php
+ * @file controllers/grid/settings/monographFileType/MonographFileTypeGridRow.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class BookFileTypeGridRow
- * @ingroup controllers_grid_settings_bookFileType
+ * @class MonographFileTypeGridRow
+ * @ingroup controllers_grid_settings_monographFileType
  *
- * @brief Handle Book File Type grid row requests.
+ * @brief Handle Monograph File Type grid row requests.
  */
 
 import('lib.pkp.classes.controllers.grid.GridRow');
 
-class BookFileTypeGridRow extends GridRow {
+class MonographFileTypeGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function BookFileTypeGridRow() {
+	function MonographFileTypeGridRow() {
 		parent::GridRow();
 	}
 
@@ -40,24 +40,24 @@ class BookFileTypeGridRow extends GridRow {
 			$router =& $request->getRouter();
 			$actionArgs = array(
 				'gridId' => $this->getGridId(),
-				'bookFileTypeId' => $rowId
+				'monographFileTypeId' => $rowId
 			);
 			$this->addAction(
 				new LinkAction(
-					'editBookFileType',
+					'editMonographFileType',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'editBookFileType', null, $actionArgs),
+					$router->url($request, null, null, 'editMonographFileType', null, $actionArgs),
 					'grid.action.edit',
 					null,
 					'edit'
 				));
 			$this->addAction(
 				new LinkAction(
-					'deleteBookFileType',
+					'deleteMonographFileType',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'deleteBookFileType', null, $actionArgs),
+					$router->url($request, null, null, 'deleteMonographFileType', null, $actionArgs),
 					'grid.action.delete',
 					null,
 					'delete',

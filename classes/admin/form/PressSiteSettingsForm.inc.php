@@ -136,9 +136,9 @@ class PressSiteSettingsForm extends Form {
 
 			$installedLocales =& $site->getInstalledLocales();
 
-			// Install default book file types
-			$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-			$bookFileTypeDao->installDefaults($pressId, $installedLocales);
+			// Install default monograph file types
+			$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
+			$monographFileTypeDao->installDefaults($pressId, $installedLocales);
 
 			// Install default publication formats
 			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');

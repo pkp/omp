@@ -48,12 +48,12 @@
 
 <div class="separator"></div>
 
-<h3>3.3 {translate key="manager.setup.bookFileTypes"}</h3>
+<h3>3.3 {translate key="manager.setup.monographFileTypes"}</h3>
 
-<p>{translate key="manager.setup.bookFileTypesDescription"}</p>
+<p>{translate key="manager.setup.monographFileTypesDescription"}</p>
 
-{url|assign:bookFileTypesUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.bookFileType.BookFileTypeGridHandler" op="fetchGrid"}
-{load_url_in_div id="bookFileTypesContainer" url=$bookFileTypesUrl}
+{url|assign:monographFileTypesUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.monographFileType.MonographFileTypeGridHandler" op="fetchGrid"}
+{load_url_in_div id="monographFileTypesContainer" url=$monographFileTypesUrl}
 
 <div class="separator"></div>
 

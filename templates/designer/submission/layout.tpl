@@ -10,7 +10,7 @@
 
 <div id="layout">
 
-<h3>{translate key="common.bookFiles"}</h3>
+<h3>{translate key="common.monographFiles"}</h3>
 
 <table width="100%" class="info">
 <tr>

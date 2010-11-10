@@ -12,7 +12,7 @@
  * @brief Operations for retrieving and modifying press default settings.
  */
 
-define('DEFAULT_SETTING_BOOK_FILE_TYPES',	1);
+define('DEFAULT_SETTING_MONOGRAPH_FILE_TYPES',	1);
 define('DEFAULT_SETTING_PUBLICATION_FORMATS',	2);
 
 class DefaultSettingDAO extends DAO

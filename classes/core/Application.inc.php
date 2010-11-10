@@ -93,7 +93,7 @@ class Application extends PKPApplication {
 			'ArtworkFileDAO' => 'classes.monograph.ArtworkFileDAO',
 			'AuthorDAO' => 'classes.monograph.AuthorDAO',
 			'AuthorSubmissionDAO' => 'classes.submission.author.AuthorSubmissionDAO',
-			'BookFileTypeDAO' => 'classes.bookFile.BookFileTypeDAO',
+			'MonographFileTypeDAO' => 'classes.monograph.MonographFileTypeDAO',
 			'ChapterAuthorDAO' => 'classes.monograph.ChapterAuthorDAO',
 			'ChapterDAO' => 'classes.monograph.ChapterDAO',
 			'CopyeditorSubmissionDAO' => 'classes.submission.copyeditor.CopyeditorSubmissionDAO',

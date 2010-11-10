@@ -18,10 +18,11 @@
 	<message key="manager.setup.newPublicationFormat">New Publication Format</message>
 	<message key="manager.setup.newPublicationFormatDescription">To create a new publication format, fill out the form below and click the 'Create' button.</message>
 
-	<message key="manager.setup.bookFileTypesDescription">These file types are used for file-naming purposes and are presented in a pull-down menu on uploading files, along with an “Other” option accompanied by a free-form field also appearing as part of that menu. The file types designated ##, allow the user to associate the file with either the whole book 99Z or a particular chapter by number (e.g., 02).</message>
-	<message key="manager.setup.bookFileTypes">Book File Types</message>
-	<message key="manager.setup.newBookFileType">New Book File Type</message>
-	<message key="manager.setup.newBookFileTypeDescription">To create a new book file type, fill out the form below and click the 'Create' button.</message>
+	<message key="manager.setup.monographFileTypesDescription">These file types are used for file-naming purposes and are presented in a pull-down menu on uploading files, along with an “Other” option accompanied by a free-form field also appearing as part of that menu. The file types designated ##, allow the user to associate the file with either the whole book 99Z or a particular chapter by number (e.g., 02).</message>
+	<message key="manager.setup.monographFileTypes">Monograph File Types</message>
+	<message key="manager.setup.newMonographFileType">New Monograph File Type</message>
+	<message key="manager.setup.newMonographFileTypeDescription">To create a new monograph file type, fill out the form below and click the 'Create' button.</message>
+	<message key="manager.setup.monographFileTypes.sortable">Allow files of this type to be sorted by component (e.g. by chapter)</message>
 	<message key="manager.setup.deleteSelected">Delete Selected</message>
 	<message key="manager.setup.restoreDefaults">Restore Default Settings</message>
 	<message key="manager.setup.groupType">File type grouping</message>

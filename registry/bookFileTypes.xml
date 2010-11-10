@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  * bookFileTypes.xml
+  * monographFileTypes.xml
   *
   * Copyright (c) 2003-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Email templates XML file.
   -->
-<bookFileTypes>
-	<bookFileType key="ARTWORK" sortable="1" category="2" localeKey="default.bookFileTypes.artwork"/>
-	<bookFileType key="APPENDIX" sortable="0" category="1" localeKey="default.bookFileTypes.appendix"/>
-	<bookFileType key="BIBLIOGRAPHY" sortable="0" category="1" localeKey="default.bookFileTypes.bibliography"/>
-	<bookFileType key="MANUSCRIPT" sortable="0" category="1" localeKey="default.bookFileTypes.manuscript"/>
-	<bookFileType key="CHAPTER" sortable="1" category="1" localeKey="default.bookFileTypes.chapter"/>
-	<bookFileType key="GLOSSARY" sortable="0" category="1" localeKey="default.bookFileTypes.glossary"/>
-	<bookFileType key="INDEX" sortable="0" category="1" localeKey="default.bookFileTypes.index"/>
-	<bookFileType key="PREFACE" sortable="0" category="1" localeKey="default.bookFileTypes.preface"/>
-	<bookFileType key="PROSPECTUS" sortable="0" category="1" localeKey="default.bookFileTypes.prospectus"/>
-	<bookFileType key="TABLES_AND_FIGURES" sortable="1" category="1" localeKey="default.bookFileTypes.tablesAndFigures"/>
-</bookFileTypes>
+<monographFileTypes>
+	<monographFileType key="ARTWORK" sortable="1" category="2" localeKey="default.monographFileTypes.artwork"/>
+	<monographFileType key="APPENDIX" sortable="0" category="1" localeKey="default.monographFileTypes.appendix"/>
+	<monographFileType key="BIBLIOGRAPHY" sortable="0" category="1" localeKey="default.monographFileTypes.bibliography"/>
+	<monographFileType key="MANUSCRIPT" sortable="0" category="1" localeKey="default.monographFileTypes.manuscript"/>
+	<monographFileType key="CHAPTER" sortable="1" category="1" localeKey="default.monographFileTypes.chapter"/>
+	<monographFileType key="GLOSSARY" sortable="0" category="1" localeKey="default.monographFileTypes.glossary"/>
+	<monographFileType key="INDEX" sortable="0" category="1" localeKey="default.monographFileTypes.index"/>
+	<monographFileType key="PREFACE" sortable="0" category="1" localeKey="default.monographFileTypes.preface"/>
+	<monographFileType key="PROSPECTUS" sortable="0" category="1" localeKey="default.monographFileTypes.prospectus"/>
+	<monographFileType key="TABLES_AND_FIGURES" sortable="1" category="1" localeKey="default.monographFileTypes.tablesAndFigures"/>
+</monographFileTypes>

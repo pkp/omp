@@ -97,7 +97,7 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	function returnFileRow($args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
 
-		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
 		$monographId = $monographFile->getMonographId();
@@ -107,7 +107,7 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 			$reviewFilesGridHandler =& new ReviewFilesGridHandler();
 			$reviewFilesGridHandler->initialize($request);
 
-			$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
+			$fileType = $monographFileTypeDao->getById($monographFile->getAssocId());
 
 			$row =& $reviewFilesGridHandler->getRowInstance();
 			$row->setId($monographFile->getFileId());

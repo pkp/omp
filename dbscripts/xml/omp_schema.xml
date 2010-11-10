@@ -157,10 +157,10 @@
 
 	<!--
 	  *
-	  * TABLE book_file_types
+	  * TABLE monograph_file_types
 	  *
 	  -->
-	<table name="book_file_types">
+	<table name="monograph_file_types">
 		<field name="entry_id" type="I8">
 			<KEY/>
 			<AUTOINCREMENT/>
@@ -181,18 +181,18 @@
 			<DEFAULT VALUE="1"/>
 		</field>
 		<field name="entry_key" type="C2" size="30"/>
-		<descr>A press's book file types.</descr>
-		<index name="book_file_types_entry_id">
+		<descr>A press's monograph file types.</descr>
+		<index name="monograph_file_types_entry_id">
 			<col>entry_id</col>
 		</index>
 	</table>
 
 	<!--
 	  *
-	  * TABLE book_file_type_settings
+	  * TABLE monograph_file_type_settings
 	  *
 	  -->
-	<table name="book_file_type_settings">
+	<table name="monograph_file_type_settings">
 		<field name="entry_id" type="I8">
 			<NOTNULL />
 		</field>
@@ -208,11 +208,11 @@
 			<NOTNULL/>
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
-		<descr>Book file type settings</descr>
-		<index name="book_file_type_settings_entry_id">
+		<descr>Monograph file type settings</descr>
+		<index name="monograph_file_type_settings_entry_id">
 			<col>entry_id</col>
 		</index>
-		<index name="book_file_type_settings_pkey">
+		<index name="monograph_file_type_settings_pkey">
 			<col>entry_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
@@ -1028,7 +1028,7 @@
 
 	<!--
 	  *
-	  * TABLE book_file_type_settings
+	  * TABLE monograph_file_type_settings
 	  *
 	  -->
 	<table name="publication_format_settings">

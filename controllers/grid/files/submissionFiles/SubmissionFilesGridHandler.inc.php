@@ -285,13 +285,13 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
-		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-		$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
+		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
+		$fileType = $monographFileTypeDao->getById($monographFile->getAssocId());
 		$monographId = $monographFile->getMonographId();
 
 		switch ($fileType->getCategory()) {
 			// FIXME: Need a way to determine artwork file type from user-specified artwork file types
-			case BOOK_FILE_CATEGORY_ARTWORK:
+			case MONOGRAPH_FILE_CATEGORY_ARTWORK:
 				import('controllers.grid.files.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
 				$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId, $monographId);
 				break;
@@ -327,8 +327,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
-		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
-		$fileType = $bookFileTypeDao->getById($monographFile->getAssocId());
+		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
+		$fileType = $monographFileTypeDao->getById($monographFile->getAssocId());
 		$monographId = $monographFile->getMonographId();
 
 		if(isset($monographFile) && $monographFile->getLocalizedName() != '') { //Name exists, just updating it
@@ -339,7 +339,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 		switch ($fileType->getCategory()) {
 			// FIXME: Need a way to determine artwork file type from user-specified artwork file types
-			case BOOK_FILE_CATEGORY_ARTWORK:
+			case MONOGRAPH_FILE_CATEGORY_ARTWORK:
 				import('controllers.grid.files.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
 				$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId);
 				break;
@@ -392,7 +392,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	function returnFileRow($args, &$request) {
 		$fileId = $request->getUserVar('fileId');
 
-		$bookFileTypeDao =& DAORegistry::getDAO('BookFileTypeDAO');
+		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
 
