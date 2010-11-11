@@ -190,7 +190,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
 		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-		$fileType = $monographFileTypeDao->getById($monographFile->getAssocId());
+		$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileType());
 		$monographId = $monographFile->getMonographId();
 
 		switch ($fileType->getCategory()) {
@@ -232,7 +232,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
 		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-		$fileType = $monographFileTypeDao->getById($monographFile->getAssocId());
+		$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileType());
 		$monographId = $monographFile->getMonographId();
 
 		switch ($fileType->getCategory()) {

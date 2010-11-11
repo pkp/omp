@@ -20,7 +20,6 @@ import('lib.pkp.classes.submission.SubmissionFile');
 // File Type IDs
 define('MONOGRAPH_FILE_PUBLIC', 0x000001);
 define('MONOGRAPH_FILE_SUBMISSION', 0x000002);
-define('MONOGRAPH_FILE_ARTWORK', 0x000003);
 define('MONOGRAPH_FILE_NOTE', 0x000004);
 define('MONOGRAPH_FILE_REVIEW', 0x000005);
 define('MONOGRAPH_FILE_FINAL', 0x000006);
@@ -162,6 +161,24 @@ class MonographFile extends SubmissionFile {
 	function isInlineable() {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		return $monographFileDao->isInlineable($this);
+	}
+
+	/**
+	 * Set the monograph file type id of this file (e.g. Manuscript, Index, etc)
+	 * Foreign key into monograph_file_types table
+	 * @param $monographFileTypeId int
+	 */
+	function setMonographFileType($monographFileTypeId) {
+		$this->setData('monographFileTypeId', $monographFileTypeId);
+	}
+
+	/**
+	 * Get the monograph file type id of this file (e.g. Manuscript, Index, etc)
+	 * Foreign key into monograph_file_types table
+	 * @return int
+	 */
+	function getMonographFileType() {
+		return $this->getData('monographFileTypeId');
 	}
 }
 

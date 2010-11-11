@@ -54,7 +54,7 @@ class SubmissionFilesUploadForm extends Form {
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 			$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
 			$this->_data['monographFileName'] = $monographFile->getOriginalFileName();
-			$this->_data['currentFileType'] = $monographFile->getAssocId();
+			$this->_data['currentFileType'] = $monographFile->getMonographFileType();
 		}
 
 		$context =& $request->getContext();
@@ -132,14 +132,18 @@ class SubmissionFilesUploadForm extends Form {
 		$fileId = $this->_fileId;
 		$fileStage = $this->_fileStage;
 		assert(!empty($fileStage));
+		$fileType = $this->getData('fileType');
+
+		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
+		$fileType = $monographFileTypeDao->getById($fileType);
 
 		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 
 		if ($monographFileManager->uploadedFileExists('submissionFile')) {
-			switch ($fileStage) {
-				case MONOGRAPH_FILE_ARTWORK:
-					$submissionFileId = $monographFileManager->uploadArtworkFile('submissionFile', $fileStage, $fileId);
+			$submissionFileId = $monographFileManager->uploadMonographFile('submissionFile', $fileStage, $fileId);
+			switch ($fileType->getCategory()) {
+				case MONOGRAPH_FILE_CATEGORY_ARTWORK:
 					if (isset($submissionFileId)) {
 						$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO');
 						$artworkFile =& $artworkFileDao->newDataObject();

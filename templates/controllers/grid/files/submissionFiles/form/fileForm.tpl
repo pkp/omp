@@ -157,7 +157,7 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{if $fileStage == $smarty.const.MONOGRAPH_FILE_SUBMISSION || $fileStage == $smarty.const.MONOGRAPH_FILE_ARTWORK || $fileStage == $smarty.const.MONOGRAPH_FILE_REVIEW}
+	{if $fileStage == $smarty.const.MONOGRAPH_FILE_SUBMISSION || $fileStage == $smarty.const.MONOGRAPH_FILE_REVIEW}
 	<div id="possibleRevision" class="possibleRevision response" style="display:none;">
 		<div id="revisionWarningIcon" class="warning"></div>
 		<div id="revisionWarningText">

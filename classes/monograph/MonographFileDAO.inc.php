@@ -285,12 +285,7 @@ class MonographFileDAO extends DAO {
 		$monographFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
 		$monographFile->setDateModified($this->datetimeFromDB($row['date_modified']));
 		$monographFile->setViewable($row['viewable']);
-
-		if ($row['type'] == 'submission') {
-			$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-			$monographFileType =& $monographFileTypeDao->getById($monographFile->getAssocId());
-			$monographFile->setAssocObject($monographFileType);
-		}
+		$monographFile->setMonographFileType($row['monograph_file_type']);
 
 		$this->getDataObjectSettings('monograph_file_settings', 'file_id', $row['file_id'], $monographFile);
 
@@ -318,7 +313,9 @@ class MonographFileDAO extends DAO {
 			$monographFile->getType(),
 			$monographFile->getViewable(),
 			$monographFile->getUserGroupId(),
-			$monographFile->getAssocId()
+			$monographFile->getAssocType(),
+			$monographFile->getAssocId(),
+			$monographFile->getMonographFileType()
 		);
 
 		if ($fileId) {
@@ -327,9 +324,9 @@ class MonographFileDAO extends DAO {
 
 		$this->update(
 			sprintf('INSERT INTO monograph_files
-				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, type, date_uploaded, date_modified, viewable, user_group_id, assoc_id)
+				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, type, date_uploaded, date_modified, viewable, user_group_id, assoc_type, assoc_id, monograph_file_type)
 				VALUES
-				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?)',
+				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?)',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
 			$params
 		);
@@ -362,7 +359,9 @@ class MonographFileDAO extends DAO {
 					date_modified = %s,
 					viewable = ?,
 					user_group_id = ?,
-					assoc_id = ?
+					assoc_type = ?,
+					assoc_id = ?,
+					monograph_file_type
 				WHERE file_id = ? AND revision = ?',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
 			array(
@@ -376,7 +375,9 @@ class MonographFileDAO extends DAO {
 				$monographFile->getType(),
 				$monographFile->getViewable(),
 				$monographFile->getUserGroupId(),
+				$monographFile->getAssocType(),
 				$monographFile->getAssocId(),
+				$monographFile->getMonographFileType(),
 				$monographFile->getFileId(),
 				$monographFile->getRevision()
 			)

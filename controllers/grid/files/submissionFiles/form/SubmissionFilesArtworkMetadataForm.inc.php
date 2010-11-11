@@ -123,11 +123,6 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 
 		$artworkFile =& $artworkFileDao->getByFileId($this->_fileId);
 
-		$permissionFileId = null;
-		if ($monographFileManager->uploadedFileExists('artworkPermissionForm')) {
-			$permissionFileId = $monographFileManager->uploadArtworkFile('artworkPermissionForm');
-		}
-
 		$otherType = $this->getData('artworkType') == MONOGRAPH_ARTWORK_TYPE_OTHER ? $this->getData('artworkOtherType') : null;
 
 		$artworkFile->setName($this->getData('name'), Locale::getLocale());
@@ -141,7 +136,6 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		$artworkFile->setCopyrightOwner($this->getData('artworkCopyrightOwner'));
 		$artworkFile->setCopyrightOwnerContactDetails($this->getData('artworkCopyrightOwnerContact'));
 		$artworkFile->setPermissionTerms($this->getData('artworkPermissionTerms'));
-		$artworkFile->setPermissionFileId($permissionFileId);
 		$artworkFile->setContactAuthor($this->getData('artworkContact'));
 		$artworkFile->setType($this->getData('artworkType'));
 

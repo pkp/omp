@@ -90,7 +90,7 @@ class MonographFileType extends DataObject {
 	}
 
 	/**
-	 * Get monograph file category (e.g. artwork)
+	 * Get monograph file category (e.g. artwork or document)
 	 * @return int
 	 */
 	function getCategory() {
@@ -98,7 +98,7 @@ class MonographFileType extends DataObject {
 	}
 
 	/**
-	 * Set monograph file category
+	 * Set monograph file category (e.g. artwork or document)
 	 * @param $category bool
 	 */
 	function setCategory($category) {

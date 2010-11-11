@@ -552,6 +552,9 @@
 		<field name="file_type" type="C2" size="255">
 			<NOTNULL/>
 		</field>
+		<field name="monograph_file_type" type="C2" size="255">
+			<NOTNULL/>
+		</field>
 		<field name="file_size" type="I8">
 			<NOTNULL/>
 		</field>

@@ -190,7 +190,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$fileForm->readInputData();
 
 		// Check to see if the file uploaded might be a revision to an existing file
-		if(!$fileId && !$isRevision && ($fileStage == MONOGRAPH_FILE_SUBMISSION || $fileStage == MONOGRAPH_FILE_ARTWORK || $fileStage == MONOGRAPH_FILE_REVIEW)) {
+		if(!$fileId && !$isRevision && ($fileStage == MONOGRAPH_FILE_SUBMISSION || $fileStage == MONOGRAPH_FILE_REVIEW)) {
 			$possibleRevision = $fileForm->checkForRevision($args, &$request);
 		} else $possibleRevision = false;
 
@@ -286,11 +286,10 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
 		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-		$fileType = $monographFileTypeDao->getById($monographFile->getAssocId());
+		$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileType());
 		$monographId = $monographFile->getMonographId();
 
 		switch ($fileType->getCategory()) {
-			// FIXME: Need a way to determine artwork file type from user-specified artwork file types
 			case MONOGRAPH_FILE_CATEGORY_ARTWORK:
 				import('controllers.grid.files.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
 				$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId, $monographId);
@@ -328,7 +327,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
 		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-		$fileType = $monographFileTypeDao->getById($monographFile->getAssocId());
+		$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileType());
 		$monographId = $monographFile->getMonographId();
 
 		if(isset($monographFile) && $monographFile->getLocalizedName() != '') { //Name exists, just updating it
