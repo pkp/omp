@@ -113,9 +113,9 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 	 */
 	function fetchGrid($args, &$request) {
 		// Get the search terms
-		$searchField = $request->getUserVar('searchField');	
-		$searchMatch = $request->getUserVar('searchMatch');	
-		$search = $request->getUserVar('search');	
+		$searchField = $request->getUserVar('searchField');
+		$searchMatch = $request->getUserVar('searchMatch');
+		$search = $request->getUserVar('search');
 
 		// Get all users for this site that match search criteria
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -125,7 +125,7 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 			$searchMatch,
 			$search,
 			true,
-			$rangeInfo	
+			$rangeInfo
 		);
 
 		$rowData = array();
@@ -156,7 +156,7 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 	}
 
 	/**
-	 * Finish enrolling users 
+	 * Finish enrolling users
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
@@ -200,7 +200,7 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 			} else {
 				$userGroupDao->deleteAssignmentsByPressId($pressId, $userId);
 
-				// Successfully removed user's user group assignments 
+				// Successfully removed user's user group assignments
 				// Refresh the grid row data to indicate this
 				$userDao =& DAORegistry::getDAO('UserDAO');
 				$user =& $userDao->getUser($userId);

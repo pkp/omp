@@ -268,7 +268,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			// Disallow if the user's user group is a reviewer role
 			if ($userGroup->getRoleId() != ROLE_ID_REVIEWER) {
 				$user =& $userDao->getUser($stageUser->getUserId());
-				$itemList[] = array('id' => $user->getUserId(),
+				$itemList[] = array('id' => $user->getId(),
 									'name' => $user->getFullName(),
 								 	'abbrev' => $userGroup->getLocalizedName());
 			}

@@ -226,7 +226,8 @@ class ChapterGridHandler extends CategoryGridHandler{
 
 			// Render the row into a JSON response
 			$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
-			$authors =& $chapterAuthorDao->getAuthors($monographId, $chapter->getId());
+			$monograph =& $this->getMonograph();
+			$authors =& $chapterAuthorDao->getAuthors($monograph->getId(), $chapter->getId());
 			$groupIterator = $chapter->getId() % 5;
 			$json = new JSON('true', $this->_renderCategoryInternally($request, $categoryRow, $groupIterator));
 		} else {

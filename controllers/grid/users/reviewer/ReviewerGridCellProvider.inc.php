@@ -45,7 +45,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 					$sessionManager =& SessionManager::getManager();
 					$session =& $sessionManager->getUserSession();
 					$user =& $session->getUser();
-					$lastViewed = $viewsDao->getLastViewDate(ASSOC_TYPE_REVIEW_RESPONSE, $element->getReviewId(), $user->getId());
+					$lastViewed = $viewsDao->getLastViewDate(ASSOC_TYPE_REVIEW_RESPONSE, $element->getId(), $user->getId());
 					if($lastViewed) {
 						return 'completed';
 					} else return 'new';

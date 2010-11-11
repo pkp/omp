@@ -16,7 +16,7 @@ import('lib.pkp.classes.form.Form');
 
 class SubmissionContributorForm extends Form {
 	/** The monograph associated with the submission contributor being edited **/
-	var $_monographId;
+	var $_monograph;
 
 	/** SubmissionContributor the submissionContributor being edited **/
 	var $_submissionContributor;
@@ -24,7 +24,7 @@ class SubmissionContributorForm extends Form {
 	/**
 	 * Constructor.
 	 */
-	function SubmissionContributorForm($monographId, $submissionContributor) {
+	function SubmissionContributorForm($monograph, $submissionContributor) {
 		parent::Form('controllers/grid/users/submissionContributor/form/submissionContributorForm.tpl');
 		$this->setMonograph($monograph);
 		$this->setSubmissionContributor($submissionContributor);
@@ -69,17 +69,9 @@ class SubmissionContributorForm extends Form {
 	 * @param Monograph
 	 */
 	function setMonograph($monograph) {
-		$this->_monographId =& $monograph;
+		$this->_monograph =& $monograph;
 	}
 
-	/**
-	 * Get the MonographId
-	 * @return int monographId
-	 */
-	function getMonographId() {
-		$monograph =& $this->getMonograph();
-		return $monograph->getId();
-	}
 
 	//
 	// Overridden template methods
@@ -133,7 +125,8 @@ class SubmissionContributorForm extends Form {
 		}
 		$templateMgr->assign_by_ref('authorUserGroups', $authorUserGroups);
 
-		$templateMgr->assign('monographId', $this->getMonographId());
+		$monograph =& $this->getMonograph();
+		$templateMgr->assign('monographId', $monograph->getId());
 
 		return parent::fetch($request);
 	}
@@ -163,19 +156,19 @@ class SubmissionContributorForm extends Form {
 	 */
 	function execute() {
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$monographId = $this->getMonographId();
+		$monograph = $this->getMonograph();
 
 		$submissionContributor =& $this->getSubmissionContributor();
 		if (!$submissionContributor) {
 			// this is a new submission contributor
 			$submissionContributor =& new Author();
-			$submissionContributor->setMonographId($monographId);
+			$submissionContributor->setMonographId($monograph->getId());
 			$existingSubmissionContributor = false;
 		} else {
 			$existingSubmissionContributor = true;
 		}
 
-		assert($monographId == $submissionContributor->getMonographId());
+		assert($monograph->getId() == $submissionContributor->getMonographId());
 
 		$submissionContributor->setFirstName($this->getData('firstName'));
 		$submissionContributor->setMiddleName($this->getData('middleName'));

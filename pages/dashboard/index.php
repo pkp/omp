@@ -1,8 +1,8 @@
-<?php 
+<?php
 /**
  * @defgroup pages_about
  */
- 
+
  /**
  * @file pages/about/index.php
  *
@@ -13,9 +13,8 @@
  * @brief Handle requests for about the press functions.
  *
  */
- 
+
 
 define('HANDLER_CLASS', 'DashboardHandler');
 import('pages.dashboard.DashboardHandler');
-
 ?>

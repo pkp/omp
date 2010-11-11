@@ -225,7 +225,7 @@ class SubmissionHandler extends Handler {
 			$templateMgr->assign('showReviewAttachments', true);
 		}
 
-		import('classes.core.JSON');
+		import('lib.pkp.classes.core.JSON');
 		$json = new JSON('true', $templateMgr->fetch('submission/reviewRoundInfo.tpl'));
 		return $json->getString();
 	}

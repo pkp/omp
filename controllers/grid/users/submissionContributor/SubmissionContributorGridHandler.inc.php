@@ -52,7 +52,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 	 * @param Monograph
 	 */
 	function setMonograph($monograph) {
-		$this->_monographId =& $monograph;
+		$this->_monograph =& $monograph;
 	}
 
 

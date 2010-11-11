@@ -22,7 +22,6 @@
 
 	{* only show the contributor list builder if the chapter already exists *}
 	<!--  Chapter Contributors -->
-	{** FIXME: can remove escape=false after fix of bug 5265 **}
 	{url|assign:chapterContributorUrl router=$smarty.const.ROUTE_COMPONENT  component="listbuilder.users.ChapterContributorListbuilderHandler" op="fetch" monographId=$monographId chapterId=$chapterId escape=false}
 	{load_url_in_div id="chapterContributorContainer" url=$chapterContributorUrl}
 {/if}
