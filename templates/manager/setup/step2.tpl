@@ -146,8 +146,7 @@
 {fbvFormSection title="manager.setup.reviewOptions.blindReview" layout=$fbvStyles.layout.ONE_COLUMN}
 {fbvCustomElement}
 	{fbvCheckbox id="showEnsuringLink" value="1" checked=$showEnsuringLink}
-	{get_help_id|assign:"blindReviewHelpId" key="editorial.seriesEditorsRole.review.blindPeerReview" url="true"}
-	<label for="showEnsuringLink" class="choice">{translate key="manager.setup.reviewOptions.showEnsuringLink" blindReviewHelpId=$blindReviewHelpId}</label><br/>
+	<label for="showEnsuringLink" class="choice">{translate key="manager.setup.reviewOptions.showEnsuringLink"}</label><br/>
 {/fbvCustomElement}
 {/fbvFormSection}
 {/fbvFormArea}

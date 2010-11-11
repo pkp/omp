@@ -43,12 +43,7 @@ class DashboardHandler extends Handler {
 	 * @param $args array
 	 */
 	function index($args, &$request) {
-		$templateMgr = &TemplateManager::getManager();
-		$this->setupTemplate();
-
-		$templateMgr->assign('selectedTab', 1);
-		$templateMgr->assign('pageToDisplay', 'dashboard/overview.tpl');
-		$templateMgr->display('dashboard/index.tpl');
+		$this->overview($args, $request);
 	}
 
 	/**
