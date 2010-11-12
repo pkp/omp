@@ -83,7 +83,6 @@ class StageParticipantForm extends Form {
 		}
 		$templateMgr->assign('firstUserGroupId', key($userGroupOptions)); // Get the key of the first option to use for the pre-loaded listbuilder
 		$templateMgr->assign('userGroupOptions', $userGroupOptions);
-		$templateMgr->assign('stageId', $stageId);
 
 		$templateMgr->assign('monographId', $this->getMonographId());
 

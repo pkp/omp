@@ -28,63 +28,8 @@ class UserHandler extends Handler {
 	 */
 	function index() {
 		$this->validate();
-
-		$sessionManager =& SessionManager::getManager();
-		$session =& $sessionManager->getUserSession();
-
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-
 		$this->setupTemplate();
 		$templateMgr =& TemplateManager::getManager();
-
-		$press =& Request::getPress();
-		$templateMgr->assign('helpTopicId', 'user.userHome');
-
-		$user =& Request::getUser();
-
-		if ($press == null) {
-			// Prevent variable clobbering
-			unset($press);
-
-			// Show roles for all presses
-			$pressDao =& DAORegistry::getDAO('PressDAO');
-			$presses =& $pressDao->getPresses();
-
-			$allPresses = array();
-			$pressesToDisplay = array();
-			$userGroupsToDisplay = array();
-
-			// Fetch the user's roles for each press
-			while ($press =& $presses->next()) {
-				$userGroups =& $userGroupDao->getByUserId($user->getId(), $press->getId());
-				if (!empty($userGroups)) {
-					$pressesToDisplay[] = $press;
-					$userGroupsToDisplay[$press->getId()] =& $userGroups;
-				}
-				$allPresses[] =& $press;
-				unset($press);
-			}
-
-			$templateMgr->assign_by_ref('allPresses', $allPresses);
-			$templateMgr->assign('showAllPresses', 1);
-			$templateMgr->assign_by_ref('userPresses', $pressesToDisplay);
-
-		} else { // Currently within a press' context.
-			// Show roles for the currently selected press
-			$userGroups =& $userGroupDao->getByUserId($user->getId(), $press->getId());
-
-			$templateMgr->assign('allowRegAuthor', $press->getSetting('allowRegAuthor'));
-			$templateMgr->assign('allowRegReviewer', $press->getSetting('allowRegReviewer'));
-
-			$userGroupsToDisplay[$press->getId()] =& $userGroups;
-			$templateMgr->assign_by_ref('userPress', $press);
-		}
-
-		if ( Validation::isSiteAdmin() ) {
-			$adminGroup =& $userGroupDao->getDefaultByRoleId(0, ROLE_ID_SITE_ADMIN);
-			$templateMgr->assign_by_ref('isSiteAdmin', $adminGroup);
-		}
-		$templateMgr->assign('userGroups', $userGroupsToDisplay);
 		$templateMgr->display('user/index.tpl');
 	}
 

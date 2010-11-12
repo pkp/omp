@@ -60,7 +60,7 @@
 					</ul>
 				</li>
 				{if $enableAnnouncements}
-					<li><a href="{url page="announcement"}">{translate key="announcement.announcements"}</a></li>
+					<li><a href="{url page="manager" op="announcements"}">{translate key="announcement.announcements"}</a></li>
 				{/if}
 				<li>
 					<a href="#"}">{translate key="navigation.publicMenu"}</a>

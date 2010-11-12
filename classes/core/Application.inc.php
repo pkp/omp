@@ -96,7 +96,6 @@ class Application extends PKPApplication {
 			'MonographFileTypeDAO' => 'classes.monograph.MonographFileTypeDAO',
 			'ChapterAuthorDAO' => 'classes.monograph.ChapterAuthorDAO',
 			'ChapterDAO' => 'classes.monograph.ChapterDAO',
-			'CopyeditorSubmissionDAO' => 'classes.submission.copyeditor.CopyeditorSubmissionDAO',
 			'DesignerSubmissionDAO' => 'classes.submission.designer.DesignerSubmissionDAO',
 			'DivisionDAO' => 'classes.press.DivisionDAO',
 			'EditorSubmissionDAO' => 'classes.submission.editor.EditorSubmissionDAO',
@@ -149,13 +148,9 @@ class Application extends PKPApplication {
 			// depend on meta-data. This is a very rudimentary type of
 			// dependency management for plug-ins.
 			'metadata',
-			'auth',
 			'blocks',
 			'generic',
 			'importexport',
-			'citationLookup',
-			'citationOutput',
-			'citationParser',
 			'themes'
 		);
 	}

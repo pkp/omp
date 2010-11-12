@@ -81,14 +81,6 @@ class AdminPeopleHandler extends AdminHandler {
 				unset($reviewAssignment);
 			}
 
-			$copyeditorSubmissionDao =& DAORegistry::getDAO('CopyeditorSubmissionDAO');
-			$copyeditorSubmissions =& $copyeditorSubmissionDao->getCopyeditorSubmissionsByCopyeditorId($oldUserId);
-			while ($copyeditorSubmission =& $copyeditorSubmissions->next()) {
-				$copyeditorSubmission->setCopyeditorId($newUserId);
-				$copyeditorSubmissionDao->updateCopyeditorSubmission($copyeditorSubmission);
-				unset($copyeditorSubmission);
-			}
-
 			$layoutEditorSubmissionDao =& DAORegistry::getDAO('LayoutEditorSubmissionDAO');
 			$layoutEditorSubmissions =& $layoutEditorSubmissionDao->getSubmissions($oldUserId);
 			while ($layoutEditorSubmission =& $layoutEditorSubmissions->next()) {

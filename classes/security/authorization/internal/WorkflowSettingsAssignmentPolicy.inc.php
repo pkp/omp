@@ -13,7 +13,6 @@
  */
 
 import('lib.pkp.classes.security.authorization.AuthorizationPolicy');
-import('classes.workflow.UserGroupStageAssignment');
 
 class WorkflowSettingsAssignmentPolicy extends AuthorizationPolicy {
 	/** @var PKPRequest */
@@ -60,7 +59,7 @@ class WorkflowSettingsAssignmentPolicy extends AuthorizationPolicy {
 			default:
 				assert(false);
 		}
-		$stageId = UserGroupStageAssignment::getIdFromPath($stagePath);
+		$stageId = UserGroupStageAssignmentDAO::getIdFromPath($stagePath);
 		if (!is_integer($stageId)) return AUTHORIZATION_DENY;
 
 		// Only grant access to workflow stages that have been explicitly

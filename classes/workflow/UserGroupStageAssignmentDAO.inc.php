@@ -12,10 +12,14 @@
  * @brief Class for managing user group to publication stage assignments
  */
 
-import('classes.workflow.UserGroupStageAssignment');
+
+define('WORKFLOW_STAGE_PATH_SUBMISSION', 'submission');
+define('WORKFLOW_STAGE_PATH_INTERNAL_REVIEW', 'internalReview');
+define('WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW', 'externalReview');
+define('WORKFLOW_STAGE_PATH_EDITING', 'editing');
+define('WORKFLOW_STAGE_PATH_PRODUCTION', 'production');
 
 class UserGroupStageAssignmentDAO extends DAO {
-
 	function &getUserGroupsByStage($pressId, $stageId) {
 		$result =& $this->retrieve('
 				SELECT ug.*
@@ -53,17 +57,48 @@ class UserGroupStageAssignmentDAO extends DAO {
 		return $returner;
 	}
 
-	function &newDataObject() {
-		$userGroupStageAssignment =& new UserGroupStageAssignment();
-		return $userGroupStageAssignment;
+
+	//
+	// Public helper methods
+	//
+	/**
+	 * Convert a stage id into a stage path
+	 * @param $stageId integer
+	 * @return string|null
+	 */
+	function getPathFromId($stageId) {
+		static $stageMapping = array(
+			WORKFLOW_STAGE_ID_SUBMISSION => WORKFLOW_STAGE_PATH_SUBMISSION,
+			WORKFLOW_STAGE_ID_INTERNAL_REVIEW => WORKFLOW_STAGE_PATH_INTERNAL_REVIEW,
+			WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW,
+			WORKFLOW_STAGE_ID_EDITING => WORKFLOW_STAGE_PATH_EDITING,
+			WORKFLOW_STAGE_ID_PRODUCTION => WORKFLOW_STAGE_PATH_PRODUCTION
+		);
+		if (isset($stageMapping[$stageId])) {
+			return $stageMapping[$stageId];
+		} else {
+			return null;
+		}
 	}
 
-	function &_returnFromRow(&$row) {
-		$userGroupStageAssignment =& $this->newDataObject();
-		$userGroupStageAssignment->setPressId($row['press_id']);
-		$userGroupStageAssignment->setUserGroupId($row['user_group_id']);
-		$userGroupStageAssignment->setStageId($row['stage_id']);
-		return $userGroupStageAssignment;
+	/**
+	 * Convert a stage path into a stage id
+	 * @param $stagePath string
+	 * @return integer|null
+	 */
+	function getIdFromPath($stagePath) {
+		static $stageMapping = array(
+			WORKFLOW_STAGE_PATH_SUBMISSION => WORKFLOW_STAGE_ID_SUBMISSION,
+			WORKFLOW_STAGE_PATH_INTERNAL_REVIEW => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW => WORKFLOW_STAGE_ID_EXTERNAL_REVIEW,
+			WORKFLOW_STAGE_PATH_EDITING => WORKFLOW_STAGE_ID_EDITING,
+			WORKFLOW_STAGE_PATH_PRODUCTION => WORKFLOW_STAGE_ID_PRODUCTION
+		);
+		if (isset($stageMapping[$stagePath])) {
+			return $stageMapping[$stagePath];
+		} else {
+			return null;
+		}
 	}
 }
 
