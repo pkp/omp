@@ -77,19 +77,35 @@ class MonographFile extends SubmissionFile {
 	}
 
 	/**
-	 * Get object that is associated with this file.
-	 * @return object
+	 * Get type that is associated with this file.
+	 * @return int
 	 */
-	function getAssocObject() {
-		return $this->getData('assocObject');
+	function getAssocType() {
+		return $this->getData('assocType');
 	}
 
 	/**
-	 * Set object that is associated with this file.
-	 * @param $assocObject object
+	 * Set type that is associated with this file.
+	 * @param $assocType int
 	 */
-	function setAssocObject($assocObject) {
-		return $this->setData('assocObject', $assocObject);
+	function setAssocType($assocType) {
+		return $this->setData('assocType', $assocType);
+	}
+
+	/**
+	 * Get id that is associated with this file.
+	 * @return int
+	 */
+	function getAssocId() {
+		return $this->getData('assocId');
+	}
+
+	/**
+	 * Set id that is associated with this file.
+	 * @param $assocId int
+	 */
+	function setAssocId($assocId) {
+		return $this->setData('assocId', $assocId);
 	}
 
 	/**

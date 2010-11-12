@@ -104,7 +104,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 	function readInputData() {
 		$this->readUserVars(array(
 			'name', 'artwork', 'artworkFile', 'artworkCaption', 'artworkCredit', 'artworkCopyrightOwner', 'artworkCopyrightOwnerContact', 'artworkPermissionTerms', 'monographId',
-			'artworkType', 'artworkOtherType', 'artworkContact', 'artworkPlacement', 'artworkOtherPlacement', 'artworkChapterId', 'artworkPlacementType', 'note'
+			'artworkContact', 'artworkPlacement', 'artworkOtherPlacement', 'artworkChapterId', 'artworkPlacementType', 'note'
 		));
 		$this->readUserVars(array('artworkFileId'));
 	}
@@ -123,8 +123,6 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 
 		$artworkFile =& $artworkFileDao->getByFileId($this->_fileId);
 
-		$otherType = $this->getData('artworkType') == MONOGRAPH_ARTWORK_TYPE_OTHER ? $this->getData('artworkOtherType') : null;
-
 		$artworkFile->setName($this->getData('name'), Locale::getLocale());
 		$artworkFile->setFileId($this->_fileId);
 		$artworkFile->setMonographId($monographId);
@@ -137,14 +135,6 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		$artworkFile->setCopyrightOwnerContactDetails($this->getData('artworkCopyrightOwnerContact'));
 		$artworkFile->setPermissionTerms($this->getData('artworkPermissionTerms'));
 		$artworkFile->setContactAuthor($this->getData('artworkContact'));
-		$artworkFile->setType($this->getData('artworkType'));
-
-		if ($otherType) {
-			$artworkFile->setCustomType($otherType);
-		} else {
-			$artworkFile->setCustomType(null);
-		}
-
 		$artworkFile->setChapterId(null);
 		$artworkFile->setPlacement($this->getData('artworkPlacement'));
 

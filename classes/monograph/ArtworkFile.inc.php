@@ -13,13 +13,6 @@
  * @brief Artwork file class.
  */
 
-
-define('MONOGRAPH_ARTWORK_TYPE_OTHER',			1);
-define('MONOGRAPH_ARTWORK_TYPE_TABLE',			2);
-define('MONOGRAPH_ARTWORK_TYPE_FIGURE',			3);
-define('MONOGRAPH_ARTWORK_TYPE_PHOTO',			4);
-define('MONOGRAPH_ARTWORK_TYPE_ILLUSTRATION',	5);
-
 import('classes.monograph.MonographFile');
 
 class ArtworkFile extends MonographFile {
@@ -171,38 +164,6 @@ class ArtworkFile extends MonographFile {
 	 */
 	function setChapterId($chapterId) {
 		return $this->setData('chapterId', $chapterId);
-	}
-
-	/**
-	 * Get the artwork type.
-	 * @return int
-	 */
-	function getArtworkType() {
-		return $this->getData('artworkType');
-	}
-
-	/**
-	 * Set the artwork type.
-	 * @param $typeId int
-	 */
-	function setArtworkType($typeId) {
-		return $this->setData('artworkType', $typeId);
-	}
-
-	/**
-	 * Get the descriptive name for the artwork type.
-	 * @return string
-	 */
-	function getCustomType() {
-		return $this->getData('customArtworkType');
-	}
-
-	/**
-	 * Set a descriptive name for the artwork type.
-	 * @param $type string
-	 */
-	function setCustomType($type) {
-		return $this->setData('customArtworkType', $type);
 	}
 
 	/**

@@ -199,6 +199,7 @@ class SendReviewsForm extends EditorDecisionForm {
 
 				$fileName = $monographFile->getOriginalFileName();
 				$reviewAssignmentId = $monographFile->getAssocId();
+				assert($monographFile->getAssocType == ASSOC_TYPE_REVIEW_ASSIGNMENT_ID);
 				assert(is_numeric($reviewAssignmentId));
 
 				$reviewIndex = $reviewIndexes[$reviewAssignmentId];

@@ -132,42 +132,23 @@ class SubmissionFilesUploadForm extends Form {
 		$fileId = $this->_fileId;
 		$fileStage = $this->_fileStage;
 		assert(!empty($fileStage));
-		$fileType = $this->getData('fileType');
+		$monographFileTypeId = $this->getData('fileType');
 
 		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-		$fileType = $monographFileTypeDao->getById($fileType);
+		$fileType =& $monographFileTypeDao->getById($monographFileTypeId);
 
 		import('classes.file.MonographFileManager');
 		$monographFileManager = new MonographFileManager($monographId);
 
 		if ($monographFileManager->uploadedFileExists('submissionFile')) {
-			$submissionFileId = $monographFileManager->uploadMonographFile('submissionFile', $fileStage, $fileId);
-			switch ($fileType->getCategory()) {
-				case MONOGRAPH_FILE_CATEGORY_ARTWORK:
-					if (isset($submissionFileId)) {
-						$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO');
-						$artworkFile =& $artworkFileDao->newDataObject();
-						$artworkFile->setFileId($submissionFileId);
-						$artworkFile->setMonographId($monographId);
-						$artworkFile->setType($fileStage);
-						$artworkFileDao->insertObject($artworkFile);
-					}
-					break;
-				default:
-					$submissionFileId = $monographFileManager->uploadMonographFile('submissionFile', $fileStage, $fileId);
-					if (isset($submissionFileId)) {
-						$monographDao =& DAORegistry::getDAO('MonographDAO');
-						$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-
-						$monographFile =& $monographFileDao->getMonographFile($submissionFileId);
-						$monographFile->setType($fileStage);
-						$monographFileDao->updateMonographFile($monographFile);
-
-						$monograph = $monographDao->getMonograph($monographId);
-						$monograph->setSubmissionFileId($submissionFileId);
-						$monographDao->updateMonograph($monograph);
-					}
-					break;
+			$submissionFileId = $monographFileManager->uploadMonographFile('submissionFile', $fileStage, $fileId, $monographFileTypeId);
+			// If we're uploading artwork, put an entry in the monograph_artwork_files table
+			if ($fileType->getCategory() == MONOGRAPH_FILE_CATEGORY_ARTWORK && isset($submissionFileId)) {
+				$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO');
+				$artworkFile =& $artworkFileDao->newDataObject();
+				$artworkFile->setFileId($submissionFileId);
+				$artworkFile->setMonographId($monographId);
+				$artworkFileDao->insertObject($artworkFile);
 			}
 		}
 

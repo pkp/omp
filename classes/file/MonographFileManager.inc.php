@@ -57,10 +57,11 @@ class MonographFileManager extends FileManager {
 	 * @param $fileName string the name of the file used in the POST form
 	 * @param $typeId int monograph file type (e.g. Manusciprt, Appendix, etc.)
 	 * @param $fileId int
+	 * @param $monographFileTypeId int
 	 * @return int file ID, is false if failure
 	 */
-	function uploadMonographFile($fileName, $typeId, $fileId = null) {
-		return $this->handleUpload($fileName, MONOGRAPH_FILE_SUBMISSION, $fileId, false, null, null, null, $typeId);
+	function uploadMonographFile($fileName, $typeId = MONOGRAPH_FILE_SUBMISSION, $fileId = null, $monographFileTypeId = null) {
+		return $this->handleUpload($fileName, $typeId, $fileId, false, $monographFileTypeId, null, null);
 	}
 
 	/**
@@ -493,8 +494,8 @@ class MonographFileManager extends FileManager {
 	/**
 	 * PRIVATE routine to generate a filename for a monograph file. Sets the filename
 	 * field in the monographFile to the generated value.
-	 * @param $monographFile The monograph to generate a filename for
-	 * @param $originalName The name of the original file
+	 * @param $monographFile MonographFile The monograph to generate a filename for
+	 * @param $originalName string The name of the original file
 	 * @param $typeId int monograph file type id
 	 */
 	function generateMonographFileName(&$monographFile, $originalName, $typeId) {
@@ -512,12 +513,15 @@ class MonographFileManager extends FileManager {
 	/**
 	 * PRIVATE routine to upload the file and add it to the database.
 	 * @param $fileName string index into the $_FILES array
-	 * @param $type int identifying type
+	 * @param $type int identifying type (i.e. MONOGRAPH_FILE_*)
 	 * @param $fileId int ID of an existing file to update
+	 * @param $monographFileTypeId int Foreign key into monograph_file_types table (e.g. Manuscript, etc.)
 	 * @param $overwrite boolean overwrite all previous revisions of the file (revision number is still incremented)
+	 * @param $assocType int
+	 * @param $assocId int
 	 * @return int the file ID (false if upload failed)
 	 */
-	function handleUpload($fileName, $type, $fileId = null, $overwrite = false, $monographFileTypeId = null, $assocId = null, $assocType = null, $typeId = null) {
+	function handleUpload($fileName, $type, $fileId = null, $overwrite = false, $monographFileTypeId = null, $assocId = null, $assocType = null) {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 
 		$typePath = $this->typeToPath($type);
@@ -543,8 +547,8 @@ class MonographFileManager extends FileManager {
 			$monographFile->setAssocId($assocId);
 		}
 
-		if(isset($typeId)) {
-			$monographFile->setMonographFileType($typeId);
+		if(isset($monographFileTypeId)) {
+			$monographFile->setMonographFileType($monographFileTypeId);
 		}
 
 		$monographFile->setFileType($_FILES[$fileName]['type']);
@@ -558,12 +562,7 @@ class MonographFileManager extends FileManager {
 		$monographFile->setUserGroupId($session->getActingAsUserGroupId());
 
 		if (isset($monographFileTypeId)) {
-			$newFileName = $this->generateMonographFileName(
-					$monographFile,
-					$this->getUploadedFileName($fileName),
-					$monographFileTypeId
-				);
-			$monographFile->setAssocId($monographFileTypeId);
+			$newFileName = $this->generateMonographFileName($monographFile, $this->getUploadedFileName($fileName), $monographFileTypeId);
 		} else {
 			$newFileName = $this->generateFilename($monographFile, $type, $this->getUploadedFileName($fileName));
 		}

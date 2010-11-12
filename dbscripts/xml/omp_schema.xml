@@ -385,8 +385,6 @@
 		<field name="copyright_owner_contact" type="X"/>
 		<field name="permission_terms" type="X"/>
 		<field name="permission_file_id" type="I8"/>
-		<field name="type_id" type="I8"/>
-		<field name="custom_type" type="C2" size="255"/>
 		<field name="placement" type="C2" size="255"/>
 		<field name="chapter_id" type="I8"/>
 		<field name="contact_author" type="I8"/>
@@ -552,9 +550,7 @@
 		<field name="file_type" type="C2" size="255">
 			<NOTNULL/>
 		</field>
-		<field name="monograph_file_type" type="C2" size="255">
-			<NOTNULL/>
-		</field>
+		<field name="monograph_file_type" type="C2" size="255" />
 		<field name="file_size" type="I8">
 			<NOTNULL/>
 		</field>

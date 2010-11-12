@@ -32,7 +32,10 @@
 	<message key="default.monographFileTypes.preface.designation">00P</message>
 	<message key="default.monographFileTypes.prospectus">Prospectus</message>
 	<message key="default.monographFileTypes.prospectus.designation">88P</message>
-	<message key="default.monographFileTypes.tablesAndFigures">Tables and Figures</message>
+	<message key="default.monographFileTypes.table">Table</message>
+	<message key="default.monographFileTypes.figure">Figure</message>
+	<message key="default.monographFileTypes.photo">Photo</message>
+	<message key="default.monographFileTypes.illustration">Illustration</message>
 
 	<message key="default.publicationFormats.hardcover">Hardcover</message>
 	<message key="default.publicationFormats.hardcover.designation">HC</message>

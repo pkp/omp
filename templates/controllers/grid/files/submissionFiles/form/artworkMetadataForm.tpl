@@ -71,26 +71,6 @@
 	{fbvFormSection float=$fbvStyles.float.LEFT}
 		{fbvElement type="text" label="grid.artworkFile.permissionTerms" id="artworkPermissionTerms" value=$artworkFile->getPermissionTerms() size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
-	{fbvFormSection title='grid.artworkFile.type' layout=$fbvStyles.layout.TWO_COLUMN}
-		{if !$artworkFile->getType() || $artworkFile->getType() == $smarty.const.MONOGRAPH_ARTWORK_TYPE_TABLE}
-			{assign var="isTable" value=true}
-		{elseif $artworkFile->getType() == $smarty.const.MONOGRAPH_ARTWORK_TYPE_FIGURE}
-			{assign var="isFigure" value=true}
-		{elseif $artworkFile->getType() == $smarty.const.MONOGRAPH_ARTWORK_TYPE_PHOTO}
-			{assign var="isPhoto" value=true}
-		{elseif $artworkFile->getType() == $smarty.const.MONOGRAPH_ARTWORK_TYPE_ILLUSTRATION}
-			{assign var="isIllustration" value=true}
-		{elseif $artworkFile->getType() == $smarty.const.MONOGRAPH_ARTWORK_TYPE_OTHER}
-			{assign var="isOther" value=true}
-		{/if}
-
-		{fbvElement type="radio" name="artworkType" id="artworkType-0" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_TABLE checked=$isTable label="grid.artworkFile.type.table"}
-		{fbvElement type="radio" name="artworkType" id="artworkType-1" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_FIGURE checked=$isFigure label="grid.artworkFile.type.figure"}
-		{fbvElement type="radio" name="artworkType" id="artworkType-1" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_PHOTO checked=$isPhoto label="grid.artworkFile.type.photo"}
-		{fbvElement type="radio" name="artworkType" id="artworkType-1" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_ILLUSTRATION checked=$isIllustration label="grid.artworkFile.type.illustration"}
-		{fbvElement float=$fbvStyles.float.LEFT type="radio" name="artworkType" id="artworkType-2" value=$smarty.const.MONOGRAPH_ARTWORK_TYPE_OTHER checked=$isOther label="common.other"}
-		{fbvElement float=$fbvStyles.float.RIGHT type="text" id="artworkOtherType" value=$artworkFile->getCustomType()}
-	{/fbvFormSection}
 	{fbvFormSection title="grid.artworkFile.placement"}
 		{fbvElement type="text" id="artworkPlacement"}
 	{/fbvFormSection}

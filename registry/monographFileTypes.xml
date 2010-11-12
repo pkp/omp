@@ -8,7 +8,6 @@
   * Email templates XML file.
   -->
 <monographFileTypes>
-	<monographFileType key="ARTWORK" sortable="1" category="2" localeKey="default.monographFileTypes.artwork"/>
 	<monographFileType key="APPENDIX" sortable="0" category="1" localeKey="default.monographFileTypes.appendix"/>
 	<monographFileType key="BIBLIOGRAPHY" sortable="0" category="1" localeKey="default.monographFileTypes.bibliography"/>
 	<monographFileType key="MANUSCRIPT" sortable="0" category="1" localeKey="default.monographFileTypes.manuscript"/>
@@ -17,5 +16,8 @@
 	<monographFileType key="INDEX" sortable="0" category="1" localeKey="default.monographFileTypes.index"/>
 	<monographFileType key="PREFACE" sortable="0" category="1" localeKey="default.monographFileTypes.preface"/>
 	<monographFileType key="PROSPECTUS" sortable="0" category="1" localeKey="default.monographFileTypes.prospectus"/>
-	<monographFileType key="TABLES_AND_FIGURES" sortable="1" category="1" localeKey="default.monographFileTypes.tablesAndFigures"/>
+	<monographFileType key="TABLE" sortable="1" category="2" localeKey="default.monographFileTypes.table"/>
+	<monographFileType key="FIGURE" sortable="1" category="2" localeKey="default.monographFileTypes.figure"/>
+	<monographFileType key="PHOTO" sortable="1" category="2" localeKey="default.monographFileTypes.photo"/>
+	<monographFileType key="ILLUSTRATION" sortable="1" category="2" localeKey="default.monographFileTypes.illustration"/>
 </monographFileTypes>

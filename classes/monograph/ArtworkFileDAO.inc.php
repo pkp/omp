@@ -69,7 +69,7 @@ class ArtworkFileDAO extends DAO {
 	 */
 	function &getByMonographId($monographId, $rangeInfo = null) {
 		$artworkFiles = array();
-		
+
 		$result =& $this->retrieve(
 			'SELECT * FROM monograph_artwork_files WHERE monograph_id = ?', $monographId, $rangeInfo
 		);
@@ -78,7 +78,7 @@ class ArtworkFileDAO extends DAO {
 			$artworkFiles[] =& $this->_fromRow($result->GetRowAssoc(false));
 			$result->moveNext();
 		}
-		
+
 		$result->Close();
 		unset($result);
 
@@ -102,7 +102,7 @@ class ArtworkFileDAO extends DAO {
 			'file_id' => $artworkFile->getFileId()
 		));
 	}
-	
+
 	/**
 	 * Construct a new data object corresponding to this DAO.
 	 * @return ArtworkFile
@@ -119,13 +119,11 @@ class ArtworkFileDAO extends DAO {
 	function &_fromRow(&$row) {
 		$artworkFile = $this->newDataObject();
 
-		$artworkFile->setType($row['type_id']);
 		$artworkFile->setCredit($row['credit']);
 		$artworkFile->setId($row['artwork_id']);
 		$artworkFile->setFileId($row['file_id']);
 		$artworkFile->setCaption($row['caption']);
 		$artworkFile->setPlacement($row['placement']);
-		$artworkFile->setCustomType($row['custom_type']);
 		$artworkFile->setMonographId($row['monograph_id']);
 		$artworkFile->setChapterId($row['chapter_id']);
 		$artworkFile->setContactAuthor($row['contact_author']);
@@ -135,7 +133,7 @@ class ArtworkFileDAO extends DAO {
 		$artworkFile->setCopyrightOwnerContactDetails($row['copyright_owner_contact']);
 
 		$this->getDataObjectSettings('monograph_file_settings', 'file_id', $row['file_id'], $artworkFile);
-		
+
 		HookRegistry::call('ArtworkFileDAO::_fromRow', array(&$artworkFile, &$row));
 
 		return $artworkFile;
@@ -149,9 +147,9 @@ class ArtworkFileDAO extends DAO {
 	function insertObject(&$artworkFile) {
 		$this->update(
 			'INSERT INTO monograph_artwork_files
-			(caption, chapter_id, contact_author, copyright_owner, copyright_owner_contact, credit, custom_type, file_id, monograph_id, permission_file_id, permission_terms, type_id, placement)
+			(caption, chapter_id, contact_author, copyright_owner, copyright_owner_contact, credit, file_id, monograph_id, permission_file_id, permission_terms, placement)
 			VALUES
-			(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+			(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
 			array(
 				$artworkFile->getCaption(),
 				$artworkFile->getChapterId(),
@@ -159,12 +157,10 @@ class ArtworkFileDAO extends DAO {
 				$artworkFile->getCopyrightOwner(),
 				$artworkFile->getCopyrightOwnerContactDetails(),
 				$artworkFile->getCredit(),
-				$artworkFile->getCustomType(),
 				$artworkFile->getFileId(),
 				$artworkFile->getMonographId(),
 				$artworkFile->getPermissionFileId(),
 				$artworkFile->getPermissionTerms(),
-				$artworkFile->getType(),
 				$artworkFile->getPlacement()
 			)
 		);
@@ -188,12 +184,10 @@ class ArtworkFileDAO extends DAO {
 					copyright_owner = ?,
 					copyright_owner_contact = ?,
 					credit = ?,
-					custom_type = ?,
 					monograph_id = ?,
 					permission_file_id = ?,
 					permission_terms = ?,
 					placement = ?,
-					type_id = ?
 				WHERE artwork_id = ?',
 			array(
 				$artworkFile->getCaption(),
@@ -202,12 +196,10 @@ class ArtworkFileDAO extends DAO {
 				$artworkFile->getCopyrightOwner(),
 				$artworkFile->getCopyrightOwnerContactDetails(),
 				$artworkFile->getCredit(),
-				$artworkFile->getCustomType(),
 				$artworkFile->getMonographId(),
 				$artworkFile->getPermissionFileId(),
 				$artworkFile->getPermissionTerms(),
 				$artworkFile->getPlacement(),
-				$artworkFile->getType(),
 				$artworkFile->getId()
 			)
 		);
