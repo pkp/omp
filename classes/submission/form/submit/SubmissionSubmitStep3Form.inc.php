@@ -86,26 +86,6 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	}
 
 	/**
-	 * Display the form.
-	 */
-	function display() {
-		$templateMgr =& TemplateManager::getManager();
-
-		$countryDao =& DAORegistry::getDAO('CountryDAO');
-		$countries =& $countryDao->getCountries();
-
-		$templateMgr->assign_by_ref('countries', $countries);
-		$templateMgr->assign('monographId', $this->monographId);
-		$templateMgr->assign('isEditedVolume', $this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME ? true : false);
-
-		if (Request::getUserVar('addAuthor') || Request::getUserVar('delAuthor')  || Request::getUserVar('moveAuthor')) {
-			$templateMgr->assign('scrollToAuthor', true);
-		}
-
-		parent::display();
-	}
-
-	/**
 	 * Save changes to monograph.
 	 * @return int the monograph ID
 	 */
