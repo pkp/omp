@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserUserGroupListbuilderHandler
- * @ingroup listbuilder
+ * @ingroup controllers_listbuilder_users
  *
  * @brief Class assign/remove mappings of user user groups
  */
@@ -15,9 +15,8 @@
 import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 
 class UserUserGroupListbuilderHandler extends ListbuilderHandler {
-
-	/* @var the user id for which to map user groups */
-	var $userId;
+	/** @var integer the user id for which to map user groups */
+	var $_userId;
 
 	/**
 	 * Constructor
@@ -29,65 +28,43 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 				array('fetch', 'addItem', 'deleteItems'));
 	}
 
-	/* Load the right-hand list */
-	function loadList(&$request) {
-		$items = array();
-
-		$press =& $request->getPress();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroups =& $userGroupDao->getByUserId($this->userId, $press->getId());
-
-		while (!$userGroups->eof()) {
-			$userGroup =& $userGroups->next();
-			$index = $userGroup->getId();
-			$items[$index] = array(
-				'item' => $userGroup->getLocalizedName(),
-				'attribute' => $userGroup->getLocalizedAbbrev()
-			);
-			unset($userGroup);
-		}
-		$this->setData($items);
-	}
-
-	/* Get possible items for left-hand drop-down list */
-	function getPossibleItemList() {
-		return $this->possibleItems;
-	}
-
-	/* Load possible items for left-hand drop-down list */
-	function loadPossibleItemList(&$request) {
-		$press =& $request->getPress();
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$currentGroupIds = array();
-
-		// Get user's current user group assignments
-		$currentGroups =& $userGroupDao->getByUserId($this->userId, $press->getId());
-		while (!$currentGroups->eof()) {
-			$currentGroup =& $currentGroups->next();
-			$currentGroupIds[] = $currentGroup->getId();
-			unset($currentGroup);
-		}
-
-		// Get all available user groups for this press
-		$availableGroups =& $userGroupDao->getByPressId($press->getId());
-
-		$itemList = array();
-		while (!$availableGroups->eof()) {
-			$availableGroup =& $availableGroups->next();
-			if ( !in_array($availableGroup->getId(), $currentGroupIds)) {
-				$itemList[] = $this->_buildListItemHTML($availableGroup->getId(), $availableGroup->getLocalizedName(), $availableGroup->getLocalizedAbbrev());
-			}
-			unset($availableGroup);
-		}
-
-		$this->possibleItems = $itemList;
-	}
 
 	//
-	// Overridden template methods
+	// Setters and Getters
 	//
+	/**
+	 * Set the user id
+	 * @param $userId integer
+	 */
+	function setUserId($userId) {
+		$this->_userId = $userId;
+	}
 
+	/**
+	 * Get the user id
+	 * @return integer
+	 */
+	function getUserId() {
+		return $this->_userId;
+	}
+
+
+	//
+	// Overridden methods from PKPHandler
+	//
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize(&$request, $args, $roleAssignments) {
+		import('classes.security.authorization.OmpPressAccessPolicy');
+		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+
+	//
+	// Template methods from PKPHandler
+	//
 	/*
 	 * Configure the grid
 	 * @param PKPRequest $request
@@ -95,26 +72,26 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		$this->userId = $request->getUserVar('userId');
+		$this->setUserId((int)$request->getUserVar('userId'));
 
 		// Basic configuration
 		$this->setTitle($request->getUserVar('title'));
 		$this->setSourceTitle('manager.users.availableRoles');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
 		$this->setListTitle('manager.users.currentRoles');
-		$this->setAdditionalData(array('userId' => $this->userId));
+		$this->setAdditionalData(array('userId' => $this->getUserId()));
 
-		$this->loadPossibleItemList($request);
-		$this->loadList($request);
+		$this->_loadPossibleItemList($request);
+		$this->_loadList($request);
 
 		$this->addColumn(new GridColumn('item', 'common.name'));
 		$this->addColumn(new GridColumn('attribute', 'common.designation'));
 	}
 
-	//
-	// Public AJAX-accessible functions
-	//
 
+	//
+	// Public handler methods
+	//
 	/*
 	 * Handle adding an item to the list
 	 * @param $args array
@@ -134,11 +111,9 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		// $userGroupId is not empty
 		// $userGroupId is valid for this press
 		// user group assignment does not already exist
-		if (
-			empty($userGroupId)
-			|| !$userGroupDao->pressHasGroup($press->getId(), $userGroupId)
-			|| $userGroupDao->userInGroup($press->getId(), $userId, $userGroupId)
-		) {
+		if (empty($userGroupId)
+				|| !$userGroupDao->pressHasGroup($press->getId(), $userGroupId)
+				|| $userGroupDao->userInGroup($press->getId(), $userId, $userGroupId)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.selectValidOption'));
 			return $json->getString();
 		} else {
@@ -160,7 +135,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		}
 	}
 
-	/*
+	/**
 	 * Handle deleting items from the list
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -182,5 +157,65 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		return $json->getString();
 	}
 
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Load the right-hand list
+	 * @param $request Request
+	 */
+	function _loadList(&$request) {
+		$items = array();
+
+		$press =& $request->getPress();
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroups =& $userGroupDao->getByUserId($this->getUserId(), $press->getId());
+
+		while (!$userGroups->eof()) {
+			$userGroup =& $userGroups->next();
+			$index = $userGroup->getId();
+			$items[$index] = array(
+				'item' => $userGroup->getLocalizedName(),
+				'attribute' => $userGroup->getLocalizedAbbrev()
+			);
+			unset($userGroup);
+		}
+		$this->setData($items);
+	}
+
+	/**
+	 * Load possible items for
+	 * left-hand drop-down list
+	 * @param $request Request
+	 */
+	function _loadPossibleItemList(&$request) {
+		$press =& $request->getPress();
+		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$currentGroupIds = array();
+
+		// Get user's current user group assignments
+		$currentGroups =& $userGroupDao->getByUserId($this->getUserId(), $press->getId());
+		while (!$currentGroups->eof()) {
+			$currentGroup =& $currentGroups->next();
+			$currentGroupIds[] = $currentGroup->getId();
+			unset($currentGroup);
+		}
+
+		// Get all available user groups for this press
+		$availableGroups =& $userGroupDao->getByPressId($press->getId());
+
+		$itemList = array();
+		while (!$availableGroups->eof()) {
+			$availableGroup =& $availableGroups->next();
+			if ( !in_array($availableGroup->getId(), $currentGroupIds)) {
+				$itemList[] = $this->_buildListItemHTML($availableGroup->getId(), $availableGroup->getLocalizedName(), $availableGroup->getLocalizedAbbrev());
+			}
+			unset($availableGroup);
+		}
+
+		$this->setPossibleItemList($itemList);
+	}
 }
 ?>
