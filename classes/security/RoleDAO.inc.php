@@ -101,7 +101,7 @@ class RoleDAO extends DAO {
 		return $returner;
 	}
 
-   	/**
+	/**
 	 * Validation check to see if a user belongs to any group that has a given role
 	 * DEPRECATE: keeping around because HandlerValidatorRoles in pkp-lib uses
 	 * until we port user groups to OxS
