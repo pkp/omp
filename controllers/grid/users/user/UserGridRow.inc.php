@@ -15,7 +15,6 @@
 import('lib.pkp.classes.controllers.grid.GridRow');
 
 class UserGridRow extends GridRow {
-
 	/**
 	 * Constructor
 	 */
@@ -23,13 +22,12 @@ class UserGridRow extends GridRow {
 		parent::GridRow();
 	}
 
+
 	//
 	// Overridden methods from GridRow
 	//
-
 	/**
 	 * @see GridRow::initialize()
-	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -41,7 +39,7 @@ class UserGridRow extends GridRow {
 			$router =& $request->getRouter();
 			$actionArgs = array(
 				'gridId' => $this->getGridId(),
-				'rowId' => $rowId	
+				'rowId' => $rowId
 			);
 			$this->addAction(
 				new LinkAction(

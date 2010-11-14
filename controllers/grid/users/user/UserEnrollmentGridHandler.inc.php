@@ -12,31 +12,24 @@
  * @brief Handle user enrollment grid requests.
  */
 
+
 import('controllers.grid.users.user.UserGridHandler');
 import('controllers.grid.users.user.UserEnrollmentGridRow');
 
 class UserEnrollmentGridHandler extends UserGridHandler {
-
 	/**
 	 * Constructor
 	 */
 	function UserEnrollmentGridHandler() {
 		parent::UserGridHandler();
-
 		$this->addRoleAssignment(
-			array(
-				ROLE_ID_PRESS_MANAGER
-			),
-			array(
-				'enrollUser',
-				'enrollUserFinish'
-			)
-		);
+				array(ROLE_ID_PRESS_MANAGER),
+				array('enrollUser', 'enrollUserFinish'));
 	}
 
 
 	//
-	// Overridden methods from PKPHandler
+	// Implement template methods from PKPHandler
 	//
 	/**
 	 * @see PKPHandler::authorize()
@@ -47,9 +40,8 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	/*
-	 * Initialize the grid
-	 * @param $request PKPRequest
+	/**
+	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
@@ -88,24 +80,23 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 		);
 	}
 
-	//
-	// Overridden methods from GridHandler
-	//
 
+	//
+	// Implement template methods from GridHandler
+	//
 	/**
 	 * @see GridHandler::getRowInstance()
-	 * @return UserGridRow
 	 */
 	function &getRowInstance() {
 		$row = new UserEnrollmentGridRow();
 		return $row;
 	}
 
-	//
-	// Public User Grid Actions
-	//
 
-	/*
+	//
+	// Public grid actions
+	//
+	/**
 	 * List all site users based on optional search criteria
 	 * @param $args array
 	 * @param $request PKPRequest

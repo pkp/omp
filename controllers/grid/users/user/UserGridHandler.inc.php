@@ -19,33 +19,21 @@ import('controllers.grid.users.user.UserGridRow');
 
 
 class UserGridHandler extends GridHandler {
-
 	/**
 	 * Constructor
 	 */
 	function UserGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(
-			array(
-				ROLE_ID_PRESS_MANAGER
-			),
-			array(
-				'fetchGrid',
-				'editUser',
-				'updateUser',
-				'updateUserRoles',
-				'removeUser',
-				'addUser',
-				'editEmail',
-				'sendEmail',
-				'suggestUsername'
-			)
-		);
+				array(ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'editUser', 'updateUser', 'updateUserRoles',
+						'removeUser', 'addUser', 'editEmail', 'sendEmail',
+						'suggestUsername'));
 	}
 
 
 	//
-	// Overridden methods from PKPHandler
+	// Implement template methods from PKPHandler
 	//
 	/**
 	 * @see PKPHandler::authorize()
@@ -56,19 +44,14 @@ class UserGridHandler extends GridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	/*
-	 * Initialize the grid
-	 * @param $request PKPRequest
+	/**
+	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
 
 		// Load user-related translations
-		Locale::requireComponents(
-			array(
-				LOCALE_COMPONENT_PKP_USER
-			)
-		);
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
 
 		// Basic grid configuration
 		$this->setTitle('grid.user.currentUsers');
@@ -127,10 +110,10 @@ class UserGridHandler extends GridHandler {
 		);
 	}
 
-	//
-	// Overridden methods from GridHandler
-	//
 
+	//
+	// Implement template methods from GridHandler
+	//
 	/**
 	 * @see GridHandler::getRowInstance()
 	 * @return UserGridRow
@@ -140,10 +123,10 @@ class UserGridHandler extends GridHandler {
 		return $row;
 	}
 
-	//
-	// Public User Grid Actions
-	//
 
+	//
+	// Public grid actions
+	//
 	/*
 	 * List users based on optional search criteria
 	 * @param $args array

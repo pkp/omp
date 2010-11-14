@@ -50,7 +50,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 
 
 	//
-	// Overridden methods from PKPHandler
+	// Implement template methods from PKPHandler
 	//
 	/**
 	 * @see PKPHandler::authorize()
@@ -61,25 +61,21 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-
-	//
-	// Template methods from PKPHandler
-	//
-	/*
-	 * Configure the grid
-	 * @param PKPRequest $request
+	/**
+	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		$this->setUserId((int)$request->getUserVar('userId'));
+		$userId = (int)$request->getUserVar('userId');
+		$this->setUserId($userId);
 
 		// Basic configuration
 		$this->setTitle($request->getUserVar('title'));
 		$this->setSourceTitle('manager.users.availableRoles');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
 		$this->setListTitle('manager.users.currentRoles');
-		$this->setAdditionalData(array('userId' => $this->getUserId()));
+		$this->setAdditionalData(array('userId' => $userId));
 
 		$this->_loadPossibleItemList($request);
 		$this->_loadList($request);
@@ -90,7 +86,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 
 
 	//
-	// Public handler methods
+	// Public grid actions
 	//
 	/*
 	 * Handle adding an item to the list
