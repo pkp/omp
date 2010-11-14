@@ -32,11 +32,6 @@ class ManagerHandler extends Handler {
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		// FIXME: We do not currently have a "manager" handler
-		// specified for OMP as we'll move away from role based
-		// pages. We use the already specified OmpPressAccessPolicy
-		// as a temporary workaround. Please fix when the final
-		// page structure is in place.
 		import('classes.security.authorization.OmpPressAccessPolicy');
 		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);

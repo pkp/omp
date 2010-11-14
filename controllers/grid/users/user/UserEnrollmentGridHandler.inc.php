@@ -34,17 +34,16 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 		);
 	}
 
+
 	//
 	// Overridden methods from PKPHandler
 	//
-
 	/**
 	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
+		import('classes.security.authorization.OmpPressAccessPolicy');
+		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 

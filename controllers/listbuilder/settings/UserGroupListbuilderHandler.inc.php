@@ -1,22 +1,22 @@
 <?php
 
 /**
- * @file controllers/listbuilder/settings/AuthorRolesListbuilderHandler.inc.php
+ * @file controllers/listbuilder/settings/UserGroupListbuilderHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class AuthorRolesListbuilderHandler
- * @ingroup listbuilder
+ * @class UserGroupListbuilderHandler
+ * @ingroup controller_listbuilder_settings
  *
- * @brief Class for adding new author roles
+ * @brief Class to add new or delete existing user groups
  */
 
 import('controllers.listbuilder.settings.SetupListbuilderHandler');
 
 class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 	/* @var $roleId the roleId that is used for this userGroup builder */
-	 var $roleId;
+	 var $_roleId;
 
 	/**
 	 * Constructor
@@ -26,35 +26,38 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 	}
 
 
-	/* Load the list from an external source into the grid structure */
-	function loadList(&$request) {
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$press =& $request->getPress();
-
-		// Get items to populate listBuilder current item list
-		$userGroups = $userGroupDao->getByRoleId($press->getId(), $this->roleId);
-		$items = array();
-		while ($item =& $userGroups->next()) {
-			$id = $item->getId();
-			$items[$id] = array('item' => $item->getLocalizedName(), 'attribute' => $item->getLocalizedAbbrev());
-			unset($item);
-		}
-		$this->setData($items);
+	//
+	// Getters and Setters
+	//
+	/**
+	 * Set the role id
+	 * @param $roleId integer
+	 */
+	function setRoleId($roleId) {
+		$this->_roleId = $roleId;
 	}
 
+	/**
+	 * Get the role id
+	 * @return integer
+	 */
+	function getRoleId() {
+		return $this->_roleId;
+	}
+
+
 	//
-	// Overridden template methods
+	// Implement template methods from PKPHandler
 	//
 	/*
-	 * Configure the grid
-	 * @param PKPRequest $request
+	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
 
 		$roleId = $request->getUserVar('roleId');
 		assert(is_numeric($roleId));
-		$this->roleId = $roleId;
+		$this->setRoleId($roleId);
 
 		if ( $request->getUserVar('title') ) {
 			$title = $request->getUserVar('title');
@@ -73,34 +76,35 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 		$this->setListTitle('manager.setup.currentRoles');
 		$this->setAttributeNames(array('manager.setup.roleAbbrev'));
 
-		$this->loadList($request);
+		$this->_loadList($request);
 
 		$this->addColumn(new GridColumn('item', 'manager.setup.roleName'));
 		$this->addColumn(new GridColumn('attribute', 'manager.setup.roleAbbrev'));
 	}
 
+
+	//
+	// Overridden methods from Listbuilder
+	//
 	/**
-	 * Need to add additional data to the template via the fetch method
-	 * @see Form::fetch()
-	 * @param $args array
-	 * @param $request PKPRequest
+	 * @see Listbuilder::fetch()
 	 */
 	function fetch($args, &$request) {
 		$router =& $request->getRouter();
 		$groupId = $request->getUserVar('groupId');
 
 		$additionalVars = array('itemId' => $groupId,
-			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('roleId' => $this->roleId)),
-			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('groupId' => $this->roleId)),
+			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('roleId' => $this->getRoleId())),
+			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('groupId' => $this->getRoleId())),
 		);
 
 		return parent::fetch($args, &$request, $additionalVars);
 	}
 
-	//
-	// Public AJAX-accessible functions
-	//
 
+	//
+	// Public handler methods
+	//
 	/*
 	 * Handle adding an item to the list
 	 * @param $args array
@@ -122,7 +126,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 			return $json->getString();
 		} else {
 			// Make sure the role name or abbreviation doesn't already exist
-			$authorGroups = $userGroupDao->getByRoleId($press->getId(), $this->roleId);
+			$authorGroups = $userGroupDao->getByRoleId($press->getId(), $this->getRoleId());
 			while($group =& $authorGroups->next()) {
 				if ($groupName == $group->getLocalizedName() || $groupAbbrev == $group->getLocalizedAbbrev()) {
 					$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
@@ -135,7 +139,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 			$locale = Locale::getLocale();
 
 			$userGroup =& $userGroupDao->newDataObject();
-			$userGroup->setRoleId($this->roleId);
+			$userGroup->setRoleId($this->getRoleId());
 			$userGroup->setPressId($press->getId());
 			$userGroup->setPath($role->getPath());
 			$userGroup->setName($groupName, Locale::getLocale());
@@ -180,6 +184,30 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 
 		$json = new JSON('true', '', 'false', 0, $additionalAttributes);
 		return $json->getString();
+	}
+
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Load the list from an external source
+	 * into the grid structure
+	 * @param Request $request
+	 */
+	function _loadList(&$request) {
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$press =& $request->getPress();
+
+		// Get items to populate listBuilder current item list
+		$userGroups = $userGroupDao->getByRoleId($press->getId(), $this->getRoleId());
+		$items = array();
+		while ($item =& $userGroups->next()) {
+			$id = $item->getId();
+			$items[$id] = array('item' => $item->getLocalizedName(), 'attribute' => $item->getLocalizedAbbrev());
+			unset($item);
+		}
+		$this->setData($items);
 	}
 }
 ?>
