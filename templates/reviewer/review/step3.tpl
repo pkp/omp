@@ -11,7 +11,7 @@
 {include file="reviewer/review/reviewStepHeader.tpl"}
 {/strip}
 
-<form name="review" method="post" action="{url op="saveStep" path="3" reviewId=$submission->getReviewId()}">
+<form name="review" method="post" action="{url op="saveStep" path=$submission->getId() step="3"}">
 {include file="common/formErrors.tpl"}
 
 {** FIXME: need to set escape=false due to bug 5265 *}

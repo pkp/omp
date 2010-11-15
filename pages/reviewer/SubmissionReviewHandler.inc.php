@@ -55,8 +55,9 @@ class SubmissionReviewHandler extends ReviewerHandler {
 
 		$reviewStep = $reviewerSubmission->getStep(); // Get the current saved step from the DB
 		$userStep = $request->getUserVar('step');
-		$step = isset($userStep) ? $userStep: $reviewStep;
+		$step = (int) (isset($userStep) ? $userStep: $reviewStep);
 		if($step > $reviewStep) $step = $reviewStep; // Reviewer can't go past incomplete steps
+		if ($step<1 || $step>4) fatalError('Invalid step!');
 
 		if($step < 4) {
 			$formClass = "ReviewerReviewStep{$step}Form";
@@ -84,9 +85,11 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * @param $request PKPRequest
 	 */
 	function saveStep($args, &$request) {
-		$step = isset($args[0]) ? $args[0] : 1;
 		$reviewId = (int) $request->getUserVar('reviewId');
 		assert(!empty($reviewId));
+
+		$step = (int)$request->getUserVar('step');
+		if ($step<1 || $step>3) fatalError('Invalid step!');
 
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
@@ -95,13 +98,12 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$formClass = "ReviewerReviewStep{$step}Form";
 		import("classes.submission.reviewer.form.$formClass");
 
-		$reviewerForm = new $formClass($reviewerSubmission);
+		$reviewerForm = new $formClass($reviewerSubmission, $reviewAssignment);
 		$reviewerForm->readInputData();
 
 		if ($reviewerForm->validate()) {
 			$reviewerForm->execute();
-
-			$request->redirect(null, null, 'submission', $step+1, array('monographId' => $reviewerSubmission->getId(), 'reviewId' => $reviewId));
+			$request->redirect(null, null, 'submission', $reviewAssignment->getMonographId());
 		} else {
 			$reviewerForm->display();
 		}
