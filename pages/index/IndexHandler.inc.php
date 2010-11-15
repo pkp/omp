@@ -55,7 +55,7 @@ class IndexHandler extends Handler {
 		}
 
 		// Check whether the press exists and identify the actual target press path.
-		if (is_a($press, 'Press')) {
+		if ($press && is_a($press, 'Press')) {
 			$targetPressPath = $press->getPath();
 		} else {
 			$targetPressPath = 'index';
