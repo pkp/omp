@@ -85,8 +85,8 @@ class OmpSubmissionAccessPolicy extends PressPolicy {
 			$reviewerSubmissionAccessPolicy->addPolicy(new RoleBasedHandlerOperationPolicy($request, ROLE_ID_REVIEWER, $roleAssignments[ROLE_ID_REVIEWER]));
 
 			// 2) ... but only if they have been assigned to the submission as reviewers.
-			import('classes.security.authorization.internal.ReviewerSubmissionAccessPolicy');
-			$reviewerSubmissionAccessPolicy->addPolicy(new ReviewerSubmissionAccessPolicy($request));
+			import('classes.security.authorization.internal.ReviewAssignmentAccessPolicy');
+			$reviewerSubmissionAccessPolicy->addPolicy(new ReviewAssignmentAccessPolicy($request));
 			$submissionAccessPolicy->addPolicy($reviewerSubmissionAccessPolicy);
 		}
 
