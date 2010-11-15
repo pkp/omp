@@ -21,8 +21,6 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 	 */
 	function CopyeditingSubmissionFilesGridHandler() {
 		parent::SubmissionFilesGridHandler();
-
-		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_REVIEWER), array());
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
 			array('fetchGrid', 'addFile', 'addRevision', 'editFile', 'displayFileForm', 'uploadFile',
 			'confirmRevision', 'deleteFile', 'editMetadata', 'saveMetadata', 'finishFileSubmission',
@@ -35,9 +33,6 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, &$args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
@@ -45,10 +40,10 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	//
-	// Overridden public AJAX methods from SubmissionFilesGridHandler
-	//
 
+	//
+	// Overridden public actions from SubmissionFilesGridHandler
+	//
 	/**
 	 * Action to edit an existing file (or a new one where the file id is null)
 	 * @param $args array

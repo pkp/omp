@@ -283,7 +283,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	function editMetadata($args, &$request) {
 		$fileId = $request->getUserVar('fileId');
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
 		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
 		$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileType());

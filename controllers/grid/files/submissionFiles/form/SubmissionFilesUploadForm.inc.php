@@ -9,7 +9,7 @@
  * @class SubmissionFilesUploadForm
  * @ingroup controllers_grid_files_submissionFiles_form
  *
- * @brief Form for adding/edditing a submission file
+ * @brief Form for adding/editing a submission file
  */
 
 import('lib.pkp.classes.form.Form');
@@ -82,15 +82,6 @@ class SubmissionFilesUploadForm extends Form {
 		$this->_data['monographFileTypes'] = $monographFileTypeList;
 		$this->_data['fileStage'] = $this->_fileStage;
 		$this->_data['isRevision'] = $this->_isRevision;
-	}
-
-	/**
-	 * Fetch
-	 * @param $request PKPRequest
-	 * @see Form::fetch()
-	 */
-	function fetch(&$request) {
-		return parent::fetch($request);
 	}
 
 	/**
