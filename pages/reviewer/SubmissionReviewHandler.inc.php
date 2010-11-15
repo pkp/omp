@@ -44,11 +44,13 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * @param $request PKPRequest
 	 */
 	function submission($args, &$request) {
-		$reviewId = (int) $request->getUserVar('reviewId');
+		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
+		$reviewId = (int) $reviewAssignment->getId();
 		assert(!empty($reviewId));
 
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
-		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
+
+		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO'); /* @var $reviewerSubmissionDao ReviewerSubmissionDAO */
+		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewAssignment->getId());
 		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
 		$this->setupTemplate();
@@ -63,7 +65,7 @@ class SubmissionReviewHandler extends ReviewerHandler {
 			$formClass = "ReviewerReviewStep{$step}Form";
 			import("classes.submission.reviewer.form.$formClass");
 
-			$reviewerForm = new $formClass($reviewerSubmission);
+			$reviewerForm = new $formClass($reviewerSubmission, $reviewAssignment);
 
 			if ($reviewerForm->isLocaleResubmit()) {
 				$reviewerForm->readInputData();
@@ -85,11 +87,12 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * @param $request PKPRequest
 	 */
 	function saveStep($args, &$request) {
-		$reviewId = (int) $request->getUserVar('reviewId');
-		assert(!empty($reviewId));
-
 		$step = (int)$request->getUserVar('step');
 		if ($step<1 || $step>3) fatalError('Invalid step!');
+
+		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
+		$reviewId = (int) $reviewAssignment->getId();
+		assert(!empty($reviewId));
 
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewId);
@@ -115,7 +118,8 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * @param $request PKPRequest
 	 */
 	function showDeclineReview($args, &$request) {
-		$reviewId = (int) $request->getUserVar('reviewId');
+		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
+		$reviewId = (int) $reviewAssignment->getId();
 		assert(!empty($reviewId));
 
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
@@ -137,7 +141,8 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 * @param $request PKPRequest
 	 */
 	function saveDeclineReview($args, &$request) {
-		$reviewId = (int) $request->getUserVar('reviewId');
+		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
+		$reviewId = (int) $reviewAssignment->getId();
 		assert(!empty($reviewId));
 		$declineReviewMessage = $request->getUserVar('declineReviewMessage');
 
@@ -153,7 +158,19 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$reviewAssignmentDao->updateObject($reviewAssignment);
 
 		ReviewerAction::confirmReview($reviewerSubmission, true, true);
-		$request->redirect($request->redirect(null, 'reviewer'));
+		$router =& $request->getRouter(); /* @var $router PageRouter */
+		$request->redirect($router->redirectHome($request));
+	}
+
+
+	//
+	// Private helper methods
+	//
+	function _retrieveStep() {
+		$reviewAssignment =& $this->getAuthorizedContextObject(ASSOC_TYPE_REVIEW_ASSIGNMENT); /* @var $reviewAssignment ReviewAssignment */
+		$reviewId = (int) $reviewAssignment->getId();
+		assert(!empty($reviewId));
+		return $reviewId;
 	}
 }
 ?>

@@ -98,7 +98,7 @@
 {if !$reviewAssignment->getDateConfirmed()}
 	<div id="nextSteps">
 		<p>
-			{url|assign:"declineRequestUrl" op='showDeclineReview' reviewId=$submission->getReviewId()}
+			{url|assign:"declineRequestUrl" op='showDeclineReview'}
 			{modal url="$declineRequestUrl" actOnType="nothing" actOnId="nothing" dialogText='reviewer.monograph.declineReview' button="#declineRequest"}
 
 			<a id="declineRequest" href="{$declineRequestUrl}">{translate key="reviewer.monograph.declineReview"}</a>

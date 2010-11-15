@@ -35,6 +35,7 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
+		// FIXME: Must be replaced with a review attachment level policy, see #6200.
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
 		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
@@ -47,8 +48,12 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		$reviewId = $request->getUserVar('reviewId');
-		$monographId = $request->getUserVar('monographId');
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monographId = $monograph->getId();
+
+		// FIXME: Must be replaced with an object from the authorized context, see #6200.
+		$reviewId = (int) $request->getUserVar('reviewId');
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		if (!$reviewId && $monographId ) {
@@ -84,8 +89,10 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	 * @return string Serialized JSON object
 	 */
 	function editFile($args, &$request) {
-		$fileId = $request->getUserVar('rowId');
-		$reviewId = $request->getUserVar('reviewId');
+		// FIXME: Must be validated against an authorized object, see #6199.
+		$fileId = (int) $request->getUserVar('rowId');
+		// FIXME: Must be replaced with an object from the authorized context, see #6200.
+		$reviewId = (int) $request->getUserVar('reviewId');
 
 		import('controllers.grid.files.reviewAttachments.form.ReviewerReviewAttachmentsForm');
 		$reviewAttachmentsForm = new ReviewerReviewAttachmentsForm($reviewId, $fileId, $this->getId());
@@ -106,7 +113,7 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	 * @return string
 	 */
 	function saveFile($args, &$request) {
-		$router =& $request->getRouter();
+		// FIXME: Must be replaced with an object from the authorized context, see #6200.
 		$reviewId = (int) $request->getUserVar('reviewId');
 
 		import('controllers.grid.files.reviewAttachments.form.ReviewerReviewAttachmentsForm');
@@ -118,6 +125,7 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 
+			$router =& $request->getRouter();
 			$additionalAttributes = array(
 				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('monographId' => $reviewAssignment->getSubmissionId(), 'rowId' => $fileId)),
 				'saveUrl' => $router->url($request, null, null, 'returnFileRow', null, array('monographId' => $reviewAssignment->getSubmissionId(), 'rowId' => $fileId))

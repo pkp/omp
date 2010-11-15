@@ -239,14 +239,20 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function deleteReviewer($args, &$request) {
-		// Identify the submission Id
-		$monographId = $request->getUserVar('monographId');
-		// Identify the review assignment ID
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		// Identify the review assignment ID.
 		$reviewId = $request->getUserVar('reviewId');
 
+		// Delete the review assignment.
+		// NB: SeriesEditorAction::clearReview() will check that this review
+		// id is actually attached to the monograph so no need for further
+		// validation here.
 		import('classes.submission.seriesEditor.SeriesEditorAction');
-		$result = SeriesEditorAction::clearReview($monographId, $reviewId);
+		$result = SeriesEditorAction::clearReview($monograph->getId(), $reviewId);
 
+		// Render the result.
 		if ($result) {
 			$json = new JSON('true');
 		} else {
@@ -312,24 +318,27 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return string serialized JSON object
 	 */
 	function readReview($args, &$request) {
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-		$viewsDao =& DAORegistry::getDAO('ViewsDAO');
+		$templateMgr =& TemplateManager::getManager();
 
-		$reviewId = $request->getUserVar('reviewId');
-		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
-		$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
+		// Retrieve monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH); /* @var $monograph SeriesEditorSubmission */
+		$templateMgr->assign_by_ref('monograph', $monograph);
+
+		// Retrieve review assignment.
+		$reviewAssignment =& $this->_retrieveReviewAssignment($request, $monograph);
+		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
+
+		// Retrieve reviewer comment.
+		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$monographComments =& $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getId());
+		$templateMgr->assign_by_ref('reviewerComment', $monographComments[0]);
 
 		// Mark the latest read date of the review by the editor.
 		$user =& $request->getUser();
-		$viewsDao->recordView(ASSOC_TYPE_REVIEW_RESPONSE, $reviewId, $user->getId());
+		$viewsDao =& DAORegistry::getDAO('ViewsDAO');
+		$viewsDao->recordView(ASSOC_TYPE_REVIEW_RESPONSE, $reviewAssignment->getId(), $user->getId());
 
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
-		$templateMgr->assign_by_ref('monograph', $monograph);
-		$templateMgr->assign_by_ref('reviewerComment', $monographComments[0]);
+		// Render the response.
 		$json =& new JSON('true', $templateMgr->fetch('controllers/grid/users/reviewer/readReview.tpl'));
 		return $json->getString();
 	}
@@ -341,14 +350,16 @@ class ReviewerGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function editReminder($args, &$request) {
-		// Identify the review assignment being updated
-		$reviewAssignmentId = $request->getUserVar('reviewId');
+		// Identify the review assignment being updated.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$reviewAssignment =& $this->_retrieveReviewAssignment($request, $monograph);
 
-		// Form handling
+		// Initialize form.
 		import('controllers.grid.users.reviewer.form.ReviewReminderForm');
-		$reviewReminderForm = new ReviewReminderForm($reviewAssignmentId);
+		$reviewReminderForm = new ReviewReminderForm($reviewAssignment->getId());
 		$reviewReminderForm->initData($args, $request);
 
+		// Render form.
 		$json = new JSON('true', $reviewReminderForm->fetch($request));
 		return $json->getString();
 	}
@@ -374,5 +385,31 @@ class ReviewerGridHandler extends GridHandler {
 			$json = new JSON('false', Locale::translate('editor.review.reminderError'));
 		}
 		return $json->getString();
+	}
+
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Retrieves the review assignment given as a
+	 * review id in the request and checks it against
+	 * the monograph.
+	 * @param $request Request
+	 * @param $monograph Monograph
+	 * @return ReviewAssignment or null if the review id is invalid.
+	 */
+	function &_retrieveReviewAssignment(&$request, &$monograph) {
+		assert(is_a($monograph, 'Monograph'));
+
+		// Retrieve review assignment.
+		$reviewId = $request->getUserVar('reviewId');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
+		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
+
+		// Assert that the review assignment actually belongs to the
+		// authorized monograph.
+		if ($reviewAssignment->getMonographId() != $monograph->getId()) fatalError('Invalid review assignment id.');
+		return $reviewAssignment;
 	}
 }

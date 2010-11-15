@@ -24,16 +24,9 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	 * Constructor.
 	 * @param $reviewerSubmission ReviewerSubmission
 	 */
-	function ReviewerReviewStep3Form($reviewerSubmission = null) {
+	function ReviewerReviewStep3Form($reviewerSubmission, $reviewAssignment) {
 		parent::ReviewerReviewForm($reviewerSubmission, 3);
-
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$this->reviewAssignment = $reviewAssignmentDao->getReviewAssignment(
-			$this->reviewerSubmission->getId(),
-			$this->reviewerSubmission->getReviewerId(),
-			$this->reviewerSubmission->getCurrentRound(),
-			$this->reviewerSubmission->getCurrentReviewType()
-		);
+		$this->_reviewAssignment =& $reviewAssignment;
 
 		// Validation checks for this form
 		// FIXME #5123: Include when review form infrastructure is in place

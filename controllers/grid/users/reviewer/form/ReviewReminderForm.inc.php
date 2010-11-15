@@ -83,7 +83,7 @@ class ReviewReminderForm extends Form {
 			'reviewDueDate' => $reviewDueDate,
 			'editorialContactSignature' => $user->getContactSignature(),
 			'passwordResetUrl' => Request::url(null, 'login', 'resetPassword', $reviewer->getUsername(), array('confirm' => Validation::generatePasswordResetHash($reviewer->getId()))),
-			'submissionReviewUrl' => Request::url(null, 'reviewer', 'submission', null, array('monographId' => $reviewAssignment->getMonographId(), 'reviewId' => $reviewAssignment->getId()))
+			'submissionReviewUrl' => Request::url(null, 'reviewer', 'submission', null, array('monographId' => $reviewAssignment->getMonographId()))
 		);
 		$email->assignParams($paramArray);
 
