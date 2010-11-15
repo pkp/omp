@@ -13,16 +13,16 @@
  */
 
 
-
 import('classes.submission.reviewer.form.ReviewerReviewForm');
 
 class ReviewerReviewStep3Form extends ReviewerReviewForm {
 
 	/** @var The review assignment object **/
-	var $reviewAssignment;
+	var $_reviewAssignment;
 
 	/**
 	 * Constructor.
+	 * @param $reviewerSubmission ReviewerSubmission
 	 */
 	function ReviewerReviewStep3Form($reviewerSubmission = null) {
 		parent::ReviewerReviewForm($reviewerSubmission, 3);
@@ -44,6 +44,22 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
+
+	//
+	// Setters and Getters
+	//
+	/**
+	 * Get the review assignment
+	 * @return ReviewAssignment
+	 */
+	function &getReviewAssignment() {
+		return $this->_reviewAssignment;
+	}
+
+
+	//
+	// Implement template methods from Form
+	//
 	/**
 	 * Assign form data to user-submitted data.
 	 */
@@ -73,7 +89,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		$templateMgr->assign_by_ref('press', $press);
 		$templateMgr->assign('step', 3);
 
-		$reviewAssignment =& $this->reviewAssignment;
+		$reviewAssignment =& $this->getReviewAssignment();
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
 
 		/*  FIXME #5123: Include when review form infrastructure is in place
@@ -103,7 +119,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	 */
 	function execute() {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment =& $this->reviewAssignment;
+		$reviewAssignment =& $this->getReviewAssignment();
 
 		if($reviewAssignment->getReviewFormId()) {
 			$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');

@@ -305,10 +305,11 @@ class ReviewerGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Open a modal to read the reviewer's review and download any files they may have uploaded
+	 * Open a modal to read the reviewer's review and
+	 * download any files they may have uploaded
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @return string serialized JSON object
 	 */
 	function readReview($args, &$request) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -321,7 +322,7 @@ class ReviewerGridHandler extends GridHandler {
 		$monograph =& $monographDao->getMonograph($reviewAssignment->getSubmissionId());
 		$monographComments =& $monographCommentDao->getReviewerCommentsByReviewerId($reviewAssignment->getReviewerId(), $reviewAssignment->getSubmissionId(), $reviewAssignment->getId());
 
-		// Mark the latest read date of the review by the editor
+		// Mark the latest read date of the review by the editor.
 		$user =& $request->getUser();
 		$viewsDao->recordView(ASSOC_TYPE_REVIEW_RESPONSE, $reviewId, $user->getId());
 

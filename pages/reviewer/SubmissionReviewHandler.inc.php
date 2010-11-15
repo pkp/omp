@@ -22,8 +22,8 @@ class SubmissionReviewHandler extends ReviewerHandler {
 	 */
 	function SubmissionReviewHandler() {
 		parent::ReviewerHandler();
-
-		$this->addRoleAssignment(ROLE_ID_REVIEWER, array('submission', 'saveStep', 'showDeclineReview', 'saveDeclineReview', 'downloadFile'));
+		$this->addRoleAssignment(ROLE_ID_REVIEWER,
+				array('submission', 'saveStep', 'showDeclineReview', 'saveDeclineReview', 'downloadFile'));
 	}
 
 	/**

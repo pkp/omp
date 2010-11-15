@@ -30,8 +30,8 @@ class ReviewerReviewForm extends Form {
 
 	/**
 	 * Constructor.
-	 * @param $reviewerSubmission object
-	 * @param $step int
+	 * @param $reviewerSubmission ReviewerSubmission
+	 * @param $step integer
 	 */
 	function ReviewerReviewForm($reviewerSubmission, $step) {
 		parent::Form(sprintf('reviewer/review/step%d.tpl', $step));

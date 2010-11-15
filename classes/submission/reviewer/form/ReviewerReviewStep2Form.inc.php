@@ -17,37 +17,37 @@
 import('classes.submission.reviewer.form.ReviewerReviewForm');
 
 class ReviewerReviewStep2Form extends ReviewerReviewForm {
-
 	/**
 	 * Constructor.
+	 * @param $reviewerSubmission ReviewerSubmission
 	 */
 	function ReviewerReviewStep2Form($reviewerSubmission = null) {
 		parent::ReviewerReviewForm($reviewerSubmission, 2);
 	}
 
-	function getTemplateFile() {
-		return 'reviewer/review/step2.tpl';
-	}
-	
+
+	//
+	// Implement template methods from Form.
+	//
 	/**
 	 * Display the form.
 	 */
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 		$press = Request::getPress();
-		
+
 		$reviewerGuidelines = $press->getLocalizedSetting('reviewGuidelines');
 		if (empty($reviewerGuidelines)) {
 			$reviewerGuidelines = Locale::translate('reviewer.monograph.noGuidelines');
 		}
 		$templateMgr->assign_by_ref('reviewerGuidelines', $press->getLocalizedSetting('reviewGuidelines'));
 		$templateMgr->assign_by_ref('submission', $this->reviewerSubmission);
-		$templateMgr->assign('step', 2);	
-		
+		$templateMgr->assign('step', 2);
+
 		parent::display();
 	}
 
-	
+
 	/**
 	 * Save changes to submission.
 	 */

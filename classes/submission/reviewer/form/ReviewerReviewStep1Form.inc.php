@@ -17,9 +17,9 @@
 import('classes.submission.reviewer.form.ReviewerReviewForm');
 
 class ReviewerReviewStep1Form extends ReviewerReviewForm {
-
 	/**
 	 * Constructor.
+	 * @param $reviewerSubmission ReviewerSubmission
 	 */
 	function ReviewerReviewStep1Form($reviewerSubmission = null) {
 		parent::ReviewerReviewForm($reviewerSubmission, 1);
@@ -27,6 +27,10 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		$press =& Request::getPress();
 	}
 
+
+	//
+	// Implement template methods from Form.
+	//
 	/**
 	 * Display the form.
 	 */

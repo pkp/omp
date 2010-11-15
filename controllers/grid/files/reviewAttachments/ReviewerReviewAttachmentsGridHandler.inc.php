@@ -20,8 +20,9 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	 */
 	function ReviewerReviewAttachmentsGridHandler() {
 		parent::ReviewAttachmentsGridHandler();
-		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT), array());
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_REVIEWER), array('fetchGrid', 'addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));
+		$this->addRoleAssignment(
+				array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_REVIEWER),
+				array('fetchGrid', 'addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));
 	}
 
 	//
@@ -99,7 +100,7 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	}
 
 	/**
-	 * upload a file
+	 * Upload a file
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string
