@@ -71,7 +71,7 @@ class MonographFileManager extends FileManager {
 	 * @return int file ID, is false if failure
 	 */
 	function uploadReviewFile($fileName, $fileId = null, $reviewId = null) {
-		$assocType = $reviewId ? ASSOC_TYPE_REVIEW_ASSIGNMENT_ID : null;
+		$assocType = $reviewId ? ASSOC_TYPE_REVIEW_ASSIGNMENT : null;
 		return $this->handleUpload($fileName, MONOGRAPH_FILE_REVIEW, $fileId, null, null, $reviewId, $assocType);
 	}
 
