@@ -200,7 +200,7 @@ class MonographFileDAO extends DAO {
 
 		if (isset($type)) {
 			$sqlExtra .= ' AND type = ? ';
-			$sqlParams[] = $type;
+			$sqlParams[] = (int)$type;
 		}
 
 		// Prevent review attachments from showing up in submission file lists

@@ -20,7 +20,7 @@ import('classes.submission.common.Action');
 class CopyeditingHandler extends Handler {
 	/**
 	 * Constructor
-	 **/
+	 */
 	function CopyeditingHandler() {
 		parent::Handler();
 
@@ -28,14 +28,12 @@ class CopyeditingHandler extends Handler {
 				array('copyediting'));
 	}
 
+
 	//
 	// Implement template methods from PKPHandler
 	//
 	/**
 	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
@@ -44,26 +42,37 @@ class CopyeditingHandler extends Handler {
 	}
 
 	/**
+	 * @see PKPHandler::setupTemplate()
+	 */
+	function setupTemplate() {
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
+		parent::setupTemplate();
+	}
+
+
+	//
+	// Public handler methods
+	//
+	/**
 	 * Show the copyediting page
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
 	function copyediting(&$args, &$request) {
+		// Set up the view.
 		$this->setupTemplate();
-		$monographId = array_shift($args);
-
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getMonograph($monographId);
-
 		$templateMgr =& TemplateManager::getManager();
 
-		// Grid actions
-		$actionArgs = array('monographId' => $monographId);
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$templateMgr->assign('monograph', $monograph);
+		$templateMgr->assign('monographId', $monograph->getId());
 
-		// import action class
-		import('lib.pkp.classes.linkAction.LinkAction');
+		// Grid actions
+		$actionArgs = array('monographId' => $monograph->getId());
 		$dispatcher =& $this->getDispatcher();
 
+		import('lib.pkp.classes.linkAction.LinkAction');
 		$promoteAction =& new LinkAction(
 			'sendToProduction',
 			LINK_ACTION_MODE_CONFIRM,
@@ -74,19 +83,10 @@ class CopyeditingHandler extends Handler {
 			null,
 			Locale::translate('editor.monograph.decision.sendToProduction.confirm')
 		);
-
 		$templateMgr->assign('promoteAction', $promoteAction);
-		$templateMgr->assign('monograph', $monograph);
-		$templateMgr->assign('monographId', $monographId);
-		$templateMgr->display('seriesEditor/copyediting.tpl');
-	}
 
-	/**
-	 * Setup common template variables.
-	 */
-	function setupTemplate() {
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
-		parent::setupTemplate();
+		// Render the view.
+		$templateMgr->display('seriesEditor/copyediting.tpl');
 	}
 }
 ?>

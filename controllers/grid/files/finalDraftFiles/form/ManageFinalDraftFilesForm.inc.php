@@ -16,16 +16,29 @@ import('lib.pkp.classes.form.Form');
 
 class ManageFinalDraftFilesForm extends Form {
 	/** The monograph associated with the submission contributor being edited **/
-	var $_monographId;
+	var $_monograph;
 
 	/**
 	 * Constructor.
+	 * @param $monograph Monograph
 	 */
-	function ManageFinalDraftFilesForm($monographId) {
+	function ManageFinalDraftFilesForm(&$monograph) {
 		parent::Form('controllers/grid/files/finalDraftFiles/manageFinalDraftFiles.tpl');
-		$this->_monographId = (int) $monographId;
+		$this->_monograph =& $monograph;
 
 		$this->addCheck(new FormValidatorPost($this));
+	}
+
+
+	//
+	// Setters and Getters
+	//
+	/**
+	 * Get the monograph.
+	 * @return Monograph
+	 */
+	function &getMonograph() {
+		return $this->_monograph;
 	}
 
 
@@ -38,10 +51,8 @@ class ManageFinalDraftFilesForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getMonograph($this->_monographId);
-
-		$this->setData('monographId', $this->_monographId);
+		$monograph =& $this->getMonograph();
+		$this->setData('monographId', $monograph->getId());
 		$this->setData('reviewType', $monograph->getCurrentReviewType());
 		$this->setData('round', $monograph->getCurrentRound());
 	}
@@ -58,33 +69,34 @@ class ManageFinalDraftFilesForm extends Form {
 	 * Save submissionContributor
 	 * @param $args array
 	 * @param $request PKPRequest
+	 * @return array a list of all monograph files marked as "final".
 	 */
 	function &execute($args, &$request) {
-		$monographId = $this->_monographId;
-		$reviewType = (integer)$this->getData('reviewType');
-		$round = (integer)$this->getData('round');
-		if($this->getData('selectedFiles')) {
-			$selectedFiles = $this->getData('selectedFiles');
-		} else {
+		// Identify selected files.
+		$selectedFiles = $this->getData('selectedFiles');
+		if(empty($selectedFiles) || !is_array($selectedFiles)) {
 			$selectedFiles = array();
 		}
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$allMonographFiles =& $monographFileDao->getByMonographId($monographId);
+		// Retrieve all monograph files.
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
+		$monograph =& $this->getMonograph();
+		$allMonographFiles =& $monographFileDao->getByMonographId($monograph->getId());
 
-		// Set the selected files to final, all other files to submission
+		// Set the selected files to 'final', all other files to 'submission'.
+		$finalMonographFiles = array();
 		foreach($allMonographFiles as $monographFile) {
 			$fileIdAndRevision = $monographFile->getFileId() . "-" . $monographFile->getRevision();
 			if(in_array($fileIdAndRevision, $selectedFiles)) {
-				$monographFile->setType('final');
+				$monographFile->setType(MONOGRAPH_FILE_FINAL);
+				$finalMonographFiles[] =& $monographFile;
 			} else {
-				$monographFile->setType('submission');
+				$monographFile->setType(MONOGRAPH_FILE_SUBMISSION);
 			}
 			$monographFileDao->updateMonographFile($monographFile);
 		}
 
-		// Return the files that are currently set for the review
-		$finalMonographFiles =& $monographFileDao->getByMonographId($monographId, 'final');
+		// Return the files that are currently set for the review.
 		return $finalMonographFiles;
 	}
 }

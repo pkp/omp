@@ -16,31 +16,27 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 import('controllers.grid.files.finalDraftFiles.FinalDraftFilesGridRow');
 
 class FinalDraftFilesGridHandler extends GridHandler {
-	/** the FileType for this grid */
-	var $fileType;
-
-	/** Boolean flag if grid is selectable **/
+	/** @var boolean flag if grid is selectable */
 	var $_isSelectable;
+
+	/** @var boolean flag if grid allows upload */
+	var $_canUpload;
 
 	/**
 	 * Constructor
 	 */
 	function FinalDraftFilesGridHandler() {
 		parent::GridHandler();
-
-		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_REVIEWER), array());
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
 				array('fetchGrid', 'downloadFile', 'downloadAllFiles', 'manageFinalDraftFiles', 'updateFinalDraftFiles', 'deleteFile'));
 	}
+
 
 	//
 	// Implement template methods from PKPHandler
 	//
 	/**
 	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
@@ -48,12 +44,13 @@ class FinalDraftFilesGridHandler extends GridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
+
 	//
-	// Getters/Setters
+	// Getters and Setters
 	//
 	/**
 	 * Set the selectable flag
-	 * @param $isSelectable bool
+	 * @param $isSelectable boolean
 	 */
 	function setIsSelectable($isSelectable) {
 		$this->_isSelectable = $isSelectable;
@@ -61,7 +58,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 
 	/**
 	 * Get the selectable flag
-	 * @return bool
+	 * @return boolean
 	 */
 	function getIsSelectable() {
 		return $this->_isSelectable;
@@ -69,7 +66,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 
 	/**
 	 * Set the canUpload flag
-	 * @param $canUpload bool
+	 * @param $canUpload boolean
 	 */
 	function setCanUpload($canUpload) {
 		$this->_canUpload = $canUpload;
@@ -77,57 +74,59 @@ class FinalDraftFilesGridHandler extends GridHandler {
 
 	/**
 	 * Get the canUpload flag
-	 * @return bool
+	 * @return boolean
 	 */
 	function getCanUpload() {
 		return $this->_canUpload;
 	}
 
-	//
-	// Implement template methods from PKPHandler
-	//
 
-	/*
-	 * Configure the grid
-	 * @param PKPRequest $request
+	//
+	// Implement template methods from PKPHandler.
+	//
+	/**
+	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-		// Basic grid configuration
-		$monographId = (integer)$request->getUserVar('monographId');
-		$this->setId('finalDraftFiles');
+
+		// Basic grid configuration.
 		$this->setTitle('submission.finalDraft');
 
-		// Set the Is Selectable boolean flag
+		// Set the isSelectable boolean flag.
 		$isSelectable = (boolean)$request->getUserVar('isSelectable');
 		$this->setIsSelectable($isSelectable);
 
-		// Set the canUpload boolean flag
+		// Set the canUpload boolean flag.
 		$canUpload = (boolean)$request->getUserVar('canUpload');
 		$this->setCanUpload($canUpload);
 
+		// Add required locale files.
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
 
-		// Elements to be displayed in the grid
+		// Elements to be displayed in the grid (different initialization
+		// if this is a selectable grid or if its a display only version
+		// of the grid).
 		$router =& $request->getRouter();
-		$context =& $router->getContext($request);
-
-		// Do different initialization if this is a selectable grid or if its a display only version of the grid.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monographId = $monograph->getId();
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		if ($isSelectable) {
-			// Load a different grid template
+			// Set a special grid ID since the 'manage review files' modal is in the same namespace as the 'view review files' modal.
+			$this->setId('finalDraftFilesSelect');
+
+			// Load a different grid template.
 			$this->setTemplate('controllers/grid/files/finalDraftFiles/grid.tpl');
 
-			// Set the files to all the available files (submission and final draft file types)
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+			// Set the files to all the available files (submission and final draft file types).
 			$monographFiles =& $monographFileDao->getByMonographId($monographId);
 			$rowData = array();
 			foreach ($monographFiles as $monographFile) {
-				$rowData[$monographFile->getFileId()] = $monographFile;
+				$rowData[$monographFile->getFileId()] =& $monographFile;
 			}
 			$this->setData($rowData);
-			$this->setId('finalDraftFilesSelect'); // Need a unique ID since the 'manage review files' modal is in the same namespace as the 'view review files' modal
 
-			// Set the already selected elements of the grid (the final draft files)
+			// Set the already selected elements of the grid (the final draft files).
 			$templateMgr =& TemplateManager::getManager();
 			$selectedFileIds = array();
 			foreach ($monographFiles as $monographFile) {
@@ -137,6 +136,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 			}
 			$templateMgr->assign('selectedFileIds', $selectedFileIds);
 
+			// Add the upload action if required.
 			if ($canUpload) {
 				$this->addAction(
 					new LinkAction(
@@ -151,8 +151,10 @@ class FinalDraftFilesGridHandler extends GridHandler {
 				);
 			}
 		} else {
-			// Grab only the final draft files
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+			// Set the normal grid id.
+			$this->setId('finalDraftFiles');
+
+			// Grab only the final draft files.
 			$monographFiles =& $monographFileDao->getByMonographId($monographId, MONOGRAPH_FILE_FINAL);
 			$rowData = array();
 			foreach ($monographFiles as $monographFile) {
@@ -160,7 +162,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 			}
 			$this->setData($rowData);
 
-			// Allow the user to manage the files (add existing, non-final files)
+			// Allow the user to manage the files (add existing, non-final files).
 			$this->addAction(
 				new LinkAction(
 					'manageFinalDraftFiles',
@@ -174,9 +176,10 @@ class FinalDraftFilesGridHandler extends GridHandler {
 			);
 		}
 
-		// Test whether the tar binary is available for the export to work, if so, add grid action
+		// Test whether the tar binary is available for the export to work,
+		// if so, add grid action to download all files.
 		$tarBinary = Config::getVar('cli', 'tar');
-		if (isset($this->_data) && !empty($tarBinary) && file_exists($tarBinary)) {
+		if ($this->hasData() && !empty($tarBinary) && is_executable($tarBinary)) {
 			$this->addAction(
 				new LinkAction(
 					'downloadAll',
@@ -190,10 +193,11 @@ class FinalDraftFilesGridHandler extends GridHandler {
 			);
 		}
 
-
+		// Configure a special cell provider.
 		import('controllers.grid.files.finalDraftFiles.FinalDraftFilesGridCellProvider');
 		$cellProvider =& new FinalDraftFilesGridCellProvider();
-		// Columns
+
+		// Configure columns.
 		if ($this->getIsSelectable()) {
 			$this->addColumn(new GridColumn('select',
 				'common.select',
@@ -216,8 +220,8 @@ class FinalDraftFilesGridHandler extends GridHandler {
 			'controllers/grid/gridCell.tpl',
 			$cellProvider)
 		);
-
 	}
+
 
 	//
 	// Overridden methods from GridHandler
@@ -231,36 +235,36 @@ class FinalDraftFilesGridHandler extends GridHandler {
 		return $row;
 	}
 
+
 	//
-	// Public methods
+	// Public handler actions
 	//
 	/**
 	 * Download the monograph file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
 	 */
 	function downloadFile($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-		$fileId = $request->getUserVar('fileId');
-
+		// Instantiate the file handler.
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monographId);
-		$monographFileManager->downloadFile($fileId);
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH); /* @var $monograph Monograph */
+		$monographFileManager = new MonographFileManager($monograph->getId());
+
+		// Download the file.
+		$fileId = $request->getUserVar('fileId');
+		$monographFileManager->downloadFile($fileId); // NB: This will check the validity of the file id.
 	}
 
 	/**
 	 * Download all of the monograph files as one compressed file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
 	 */
 	function downloadAllFiles($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monographId);
-		$monographFileManager->downloadFilesArchive($this->_data);
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH); /* @var $monograph Monograph */
+		$monographFileManager = new MonographFileManager($monograph->getId());
+		$monographFileManager->downloadFilesArchive($this->getData());
 	}
 
 	/**
@@ -270,11 +274,12 @@ class FinalDraftFilesGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function manageFinalDraftFiles($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-
+		// Instantiate the files form.
 		import('controllers.grid.files.finalDraftFiles.form.ManageFinalDraftFilesForm');
-		$manageFinalDraftFilesForm = new ManageFinalDraftFilesForm($monographId);
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH); /* @var $monograph Monograph */
+		$manageFinalDraftFilesForm = new ManageFinalDraftFilesForm($monograph);
 
+		// Initialize and render the files form.
 		$manageFinalDraftFilesForm->initData($args, $request);
 		$json = new JSON('true', $manageFinalDraftFilesForm->fetch($request));
 		return $json->getString();
@@ -287,21 +292,22 @@ class FinalDraftFilesGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function updateFinalDraftFiles($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-
+		// Instantiate the files form.
 		import('controllers.grid.files.finalDraftFiles.form.ManageFinalDraftFilesForm');
-		$manageFinalDraftFilesForm = new ManageFinalDraftFilesForm($monographId);
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH); /* @var $monograph Monograph */
+		$manageFinalDraftFilesForm = new ManageFinalDraftFilesForm($monograph);
 
+		// Initialize form and read in data.
+		$manageFinalDraftFilesForm->initData($args, $request);
 		$manageFinalDraftFilesForm->readInputData();
 
+		// Validate and execute form.
 		if ($manageFinalDraftFilesForm->validate()) {
 			$selectedFiles =& $manageFinalDraftFilesForm->execute($args, $request);
 
-			// Re-render the grid with the updated files
+			// Re-render the grid with the updated files.
 			$this->setData($selectedFiles);
 			$this->initialize($request);
-
-			// Pass to modal.js to reload the grid with the new content
 			$gridBodyParts = $this->_renderGridBodyPartsInternally($request);
 			if (count($gridBodyParts) == 0) {
 				// The following should usually be returned from a
@@ -317,6 +323,8 @@ class FinalDraftFilesGridHandler extends GridHandler {
 		} else {
 			$json = new JSON('false');
 		}
+
+		// Serialize JSON.
 		return $json->getString();
 	}
 

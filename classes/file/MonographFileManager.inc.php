@@ -52,6 +52,37 @@ class MonographFileManager extends FileManager {
 		'/monographs/' . $monographId . '/';
 	}
 
+	//
+	// Getters and Setters
+	//
+	/**
+	 * Get the monograph id.
+	 * @return integer
+	 */
+	function getMonographId() {
+		return $this->monographId;
+	}
+
+	/**
+	 * Get the files directory.
+	 * @return string
+	 */
+	function getFilesDir() {
+		return $this->filesDir;
+	}
+
+	/**
+	 * Get the monograph.
+	 * @return Monograph
+	 */
+	function &getMonograph() {
+		return $this->monograph;
+	}
+
+
+	//
+	// Public methods
+	//
 	/**
 	 * Upload a monograph file.
 	 * @param $fileName string the name of the file used in the POST form
@@ -179,7 +210,7 @@ class MonographFileManager extends FileManager {
 	 */
 	function &getFile($fileId, $revision = null) {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($fileId, $revision, $this->monographId);
+		$monographFile =& $monographFileDao->getMonographFile($fileId, $revision, $this->getMonographId());
 		return $monographFile;
 	}
 
@@ -193,7 +224,7 @@ class MonographFileManager extends FileManager {
 
 		if (isset($monographFile)) {
 			$fileType = $monographFile->getFileType();
-			$filePath = $this->filesDir . $monographFile->getType() . '/' . $monographFile->getFileName();
+			$filePath = $this->getFilesDir() . $monographFile->getType() . '/' . $monographFile->getFileName();
 
 			return parent::readFile($filePath, $output);
 
@@ -224,7 +255,7 @@ class MonographFileManager extends FileManager {
 		}
 
 		foreach ($files as $f) {
-			parent::deleteFile($this->filesDir . $f->getType() . '/' . $f->getFileName());
+			parent::deleteFile($this->getFilesDir() . $f->getType() . '/' . $f->getFileName());
 		}
 
 		$monographFileDao->deleteMonographFileById($fileId, $revision);
@@ -236,7 +267,7 @@ class MonographFileManager extends FileManager {
 	 * Delete the entire tree of files belonging to a monograph.
 	 */
 	function deleteMonographTree() {
-		parent::rmtree($this->filesDir);
+		parent::rmtree($this->getFilesDir());
 	}
 
 	/**
@@ -250,6 +281,10 @@ class MonographFileManager extends FileManager {
 		$returner = false;
 		$monographFile =& $this->getFile($fileId, $revision);
 		if (isset($monographFile)) {
+			// Make sure that the file belongs to the monograph.
+			if ($monographFile->getMonographId() != $this->getMonographId()) fatalError('Invalid file id!');
+
+			// Retrieve file information.
 			$fileType = $monographFile->getFileType();
 			$filePath = $monographFile->getFilePath();
 
@@ -272,23 +307,23 @@ class MonographFileManager extends FileManager {
 	 * @param $monographFiles ArrayItemIterator
 	 * @return boolean
 	 */
-	function downloadFilesArchive(&$monographFiles) {
+	function downloadFilesArchive(&$monographFiles = null) {
 		if(!isset($monographFiles)) {
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFiles =& $monographFileDao->getByMonographId($this->monographId);
+			$monographFiles =& $monographFileDao->getByMonographId($this->getMonographId());
 		}
 
 		$filePaths = array();
 		while ($monographFile =& $monographFiles->next()) {
 			// Remove absolute path so the archive doesn't include it (otherwise all files are organized by absolute path)
-			$filePath = str_replace($this->filesDir, '', $monographFile->getFilePath());
+			$filePath = str_replace($this->getFilesDir(), '', $monographFile->getFilePath());
 			// Add files to be archived to array
 			$filePaths[] = escapeshellarg($filePath);
 		}
 
 		// Create the archive and download the file
-		$archivePath = $this->filesDir . "monograph_" . $this->monographId . "_files.tar.gz";
-		$tarCommand = "tar czf ". $archivePath . " -C \"" . $this->filesDir . "\" " . implode(" ", $filePaths);
+		$archivePath = $this->getFilesDir() . "monograph_" . $this->getMonographId() . "_files.tar.gz";
+		$tarCommand = "tar czf ". $archivePath . " -C \"" . $this->getFilesDir() . "\" " . implode(" ", $filePaths);
 		exec($tarCommand);
 		if (file_exists($archivePath)) {
 			parent::downloadFile($archivePath);
@@ -390,7 +425,7 @@ class MonographFileManager extends FileManager {
 		$monographFile = $monographFileDao->newDataObject();
 
 		$destTypePath = $this->typeToPath($destType);
-		$destDir = $this->filesDir . $destTypePath . '/';
+		$destDir = $this->getFilesDir() . $destTypePath . '/';
 
 		if ($destFileId != null) {
 			$currentRevision = $monographFileDao->getRevisionNumber($destFileId);
@@ -399,18 +434,18 @@ class MonographFileManager extends FileManager {
 			$revision = 1;
 		}
 
-		$sourceMonographFile = $monographFileDao->getMonographFile($sourceFileId, $sourceRevision, $this->monographId);
+		$sourceMonographFile = $monographFileDao->getMonographFile($sourceFileId, $sourceRevision, $this->getMonographId());
 
 		if (!isset($sourceMonographFile)) {
 			return false;
 		}
 
-		$sourceDir = $this->filesDir . $sourceMonographFile->getType() . '/';
+		$sourceDir = $this->getFilesDir() . $sourceMonographFile->getType() . '/';
 
 		if ($destFileId != null) {
 			$monographFile->setFileId($destFileId);
 		}
-		$monographFile->setMonographId($this->monographId);
+		$monographFile->setMonographId($this->getMonographId());
 		$monographFile->setSourceFileId($sourceFileId);
 		$monographFile->setSourceRevision($sourceRevision);
 		$monographFile->setFileName($sourceMonographFile->getFileName());
@@ -426,7 +461,7 @@ class MonographFileManager extends FileManager {
 
 		// Rename the file.
 		$fileExtension = $this->parseFileExtension($sourceMonographFile->getFileName());
-		$newFileName = $this->monographId.'-'.$fileId.'-'.$revision.'-'.$destType.'.'.$fileExtension;
+		$newFileName = $this->getMonographId().'-'.$fileId.'-'.$revision.'-'.$destType.'.'.$fileExtension;
 
 		if (!$this->fileExists($destDir, 'dir')) {
 			// Try to create destination directory
@@ -525,17 +560,17 @@ class MonographFileManager extends FileManager {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 
 		$typePath = $this->typeToPath($type);
-		$dir = $this->filesDir . $typePath . '/';
+		$dir = $this->getFilesDir() . $typePath . '/';
 
 		if (!$fileId) {
 			// Insert dummy file to generate file id FIXME?
 			$dummyFile = true;
-			$monographFile =& $this->generateDummyFile($this->monograph, $type);
+			$monographFile =& $this->generateDummyFile($this->getMonograph(), $type);
 		} else {
 			$dummyFile = false;
 			$monographFile = $monographFileDao->newDataObject();
 			$monographFile->setRevision($monographFileDao->getRevisionNumber($fileId)+1);
-			$monographFile->setMonographId($this->monographId);
+			$monographFile->setMonographId($this->getMonographId());
 			$monographFile->setFileId($fileId);
 			$monographFile->setDateUploaded(Core::getCurrentDate());
 			$monographFile->setDateModified(Core::getCurrentDate());
@@ -595,17 +630,17 @@ class MonographFileManager extends FileManager {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 
 		$typePath = $this->typeToPath($type);
-		$dir = $this->filesDir . $typePath . '/';
+		$dir = $this->getFilesDir() . $typePath . '/';
 
 		if (!$fileId) {
 			// Insert dummy file to generate file id FIXME?
 			$dummyFile = true;
-			$monographFile =& $this->generateDummyFile($this->monograph, $type);
+			$monographFile =& $this->generateDummyFile($this->getMonograph(), $type);
 		} else {
 			$dummyFile = false;
 			$monographFile = $monographFileDao->newDataObject();
 			$monographFile->setRevision($monographFileDao->getRevisionNumber($fileId)+1);
-			$monographFile->setMonographId($this->monographId);
+			$monographFile->setMonographId($this->getMonographId());
 			$monographFile->setFileId($fileId);
 			$monographFile->setDateUploaded(Core::getCurrentDate());
 			$monographFile->setDateModified(Core::getCurrentDate());
@@ -646,17 +681,17 @@ class MonographFileManager extends FileManager {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 
 		$typePath = $this->typeToPath($type);
-		$dir = $this->filesDir . $typePath . '/';
+		$dir = $this->getFilesDir() . $typePath . '/';
 
 		if (!$fileId) {
 			// Insert dummy file to generate file id FIXME?
 			$dummyFile = true;
-			$monographFile =& $this->generateDummyFile($this->monograph, $type);
+			$monographFile =& $this->generateDummyFile($this->getMonograph(), $type);
 		} else {
 			$dummyFile = false;
 			$monographFile = $monographFileDao->newDataObject();
 			$monographFile->setRevision($monographFileDao->getRevisionNumber($fileId)+1);
-			$monographFile->setMonographId($this->monographId);
+			$monographFile->setMonographId($this->getMonographId());
 			$monographFile->setFileId($fileId);
 			$monographFile->setDateUploaded(Core::getCurrentDate());
 			$monographFile->setDateModified(Core::getCurrentDate());
@@ -696,9 +731,9 @@ class MonographFileManager extends FileManager {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 
 		$typePath = $this->typeToPath($type);
-		$dir = $this->filesDir . $typePath . '/';
+		$dir = $this->getFilesDir() . $typePath . '/';
 
-		$monographFile =& $this->generateDummyFile($this->monograph, $type);
+		$monographFile =& $this->generateDummyFile($this->getMonograph(), $type);
 		$monographFile->setFileType($temporaryFile->getFileType());
 		$monographFile->setOriginalFileName($temporaryFile->getOriginalFileName());
 		$monographFile->setType($type);
