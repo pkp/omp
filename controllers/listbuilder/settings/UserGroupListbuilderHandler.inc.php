@@ -140,7 +140,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 
 			$userGroup =& $userGroupDao->newDataObject();
 			$userGroup->setRoleId($this->getRoleId());
-			$userGroup->setPressId($press->getId());
+			$userGroup->setContextId($press->getId());
 			$userGroup->setPath($role->getPath());
 			$userGroup->setName($groupName, Locale::getLocale());
 			$userGroup->setAbbrev($groupAbbrev, Locale::getLocale());

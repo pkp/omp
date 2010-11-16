@@ -145,7 +145,7 @@ class UserGridHandler extends GridHandler {
 		// Get all users for this press that match search criteria
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$rangeInfo = $this->getRangeInfo('users');
-		$users =& $userGroupDao->getUsersByPressId(
+		$users =& $userGroupDao->getUsersByContextId(
 			$pressId,
 			$searchField,
 			$search,
@@ -329,7 +329,7 @@ class UserGridHandler extends GridHandler {
 			if (!$userGroupDao->userInAnyGroup($userId, $pressId)) {
 				$json = new JSON('false', Locale::translate('grid.user.userNoRoles'));
 			} else {
-				$userGroupDao->deleteAssignmentsByPressId($pressId, $userId);
+				$userGroupDao->deleteAssignmentsByContextId($pressId, $userId);
 				$json = new JSON('true');
 			}
 		}

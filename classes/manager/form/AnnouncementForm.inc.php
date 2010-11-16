@@ -68,7 +68,7 @@ class AnnouncementForm extends PKPAnnouncementForm {
 		import('lib.pkp.classes.notification.NotificationManager');
 		$userGroupDao =& DAORegistry::getDAO('RoleAssignmentDAO');
 		$notificationUsers = array();
-		$allUsers = $userGroupDao->getUsersByPressId($pressId);
+		$allUsers = $userGroupDao->getUsersByContextId($pressId);
 		while (!$allUsers->eof()) {
 			$user =& $allUsers->next();
 			$notificationUsers[] = array('id' => $user->getId());

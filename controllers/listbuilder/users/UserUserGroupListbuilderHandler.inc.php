@@ -108,7 +108,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		// $userGroupId is valid for this press
 		// user group assignment does not already exist
 		if (empty($userGroupId)
-				|| !$userGroupDao->pressHasGroup($press->getId(), $userGroupId)
+				|| !$userGroupDao->contextHasGroup($press->getId(), $userGroupId)
 				|| $userGroupDao->userInGroup($press->getId(), $userId, $userGroupId)) {
 			$json = new JSON('false', Locale::translate('common.listbuilder.selectValidOption'));
 			return $json->getString();
@@ -200,7 +200,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		}
 
 		// Get all available user groups for this press
-		$availableGroups =& $userGroupDao->getByPressId($press->getId());
+		$availableGroups =& $userGroupDao->getByContextId($press->getId());
 
 		$itemList = array();
 		while (!$availableGroups->eof()) {

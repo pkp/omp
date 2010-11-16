@@ -205,8 +205,8 @@ class PressDAO extends DAO
 		$monographDAO->deleteMonographsByPressId($pressId);
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroupDao->deleteAssignmentsByPressId($pressId);
-		$userGroupDao->deleteByPressId($pressId);
+		$userGroupDao->deleteAssignmentsByContextId($pressId);
+		$userGroupDao->deleteByContextId($pressId);
 
 		$pluginSettingsDao =& DAORegistry::getDAO('PluginSettingsDAO');
 		$pluginSettingsDao->deleteSettingsByPressId($pressId);

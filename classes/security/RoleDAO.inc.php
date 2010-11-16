@@ -171,7 +171,7 @@ class RoleDAO extends DAO {
 	 */
 	function getPressUsersRoleCount($pressId, $roleId) {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		return $userGroupDao->getPressUsersCount($pressId, null, $roleId);
+		return $userGroupDao->getContextUsersCount($pressId, null, $roleId);
 	}
 
 	/**

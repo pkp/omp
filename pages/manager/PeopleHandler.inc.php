@@ -108,7 +108,7 @@ class PeopleHandler extends ManagerHandler {
 					break;
 			}
 		} else {
-			$users =& $userGroupDao->getUsersByPressId($press->getId(), $searchType, $search, $searchMatch, $rangeInfo, $sort);
+			$users =& $userGroupDao->getUsersByContextId($press->getId(), $searchType, $search, $searchMatch, $rangeInfo, $sort);
 			$helpTopicId = 'press.users.allUsers';
 		}
 
@@ -133,7 +133,7 @@ class PeopleHandler extends ManagerHandler {
 		// set the user group options for the HTML select
 		$userGroupOptions = array();
 		$userGroupPaths = array();
-		$allUserGroups =& $userGroupDao->getByPressId($press->getId());
+		$allUserGroups =& $userGroupDao->getByContextId($press->getId());
 		while ( !$allUserGroups->eof() ) {
 			$tmpUserGroup =& $allUserGroups->next();
 			$userGroupOptions[$tmpUserGroup->getId()] = $tmpUserGroup->getLocalizedName();
@@ -249,7 +249,7 @@ class PeopleHandler extends ManagerHandler {
 			$templateMgr->assign_by_ref('userGroup', $userGroup);
 			$isReviewer = $userGroup->getRoleId() == ROLE_ID_REVIEWER;
 		} else {
-			$users =& $userGroupDao->getUsersByPressId($pressId, $searchType, $search, $searchMatch, $rangeInfo, $sort);
+			$users =& $userGroupDao->getUsersByContextId($pressId, $searchType, $search, $searchMatch, $rangeInfo, $sort);
 			$isReviewer = false;
 		}
 

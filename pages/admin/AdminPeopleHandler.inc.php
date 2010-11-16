@@ -134,7 +134,7 @@ class AdminPeopleHandler extends AdminHandler {
 			$userGroups =& $userGroupDao->getByUserId($oldUserId);
 			while( !$userGroups->eof() ) {
 				$userGroup =& $userGroups->next();
-				if (!$userGroupDao->userInGroup($userGroup->getPressId(), $newUserId, $userGroup->getId())) {
+				if (!$userGroupDao->userInGroup($userGroup->getContextId(), $newUserId, $userGroup->getId())) {
 					$userGroupDao->assignUserToGroup($newUserId, $userGroup->getId());
 				}
 				unset($userGroup);

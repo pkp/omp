@@ -63,7 +63,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 
 		// Get items to populate possible items list with
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$users =& $userGroupDao->getUsersByPressId($press->getId());
+		$users =& $userGroupDao->getUsersByContextId($press->getId());
 
 		$itemList = array();
 		while($user =& $users->next()) {

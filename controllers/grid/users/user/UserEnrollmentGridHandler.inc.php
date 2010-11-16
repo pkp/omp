@@ -188,7 +188,7 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 			if (!$userGroupDao->userInAnyGroup($userId, $pressId)) {
 				$json = new JSON('false', Locale::translate('grid.user.userNoRoles'));
 			} else {
-				$userGroupDao->deleteAssignmentsByPressId($pressId, $userId);
+				$userGroupDao->deleteAssignmentsByContextId($pressId, $userId);
 
 				// Successfully removed user's user group assignments
 				// Refresh the grid row data to indicate this

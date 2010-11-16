@@ -1101,7 +1101,7 @@
 			<KEY />
 			<AUTOINCREMENT/>
 		</field>
-		<field name="press_id" type="I8">
+		<field name="context_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="role_id" type="I8">
@@ -1118,8 +1118,8 @@
 		<index name="user_groups_user_group_id">
 			<col>user_group_id</col>
 		</index>
-		<index name="user_groups_press_id">
-			<col>press_id</col>
+		<index name="user_groups_context_id">
+			<col>context_id</col>
 		</index>
 		<index name="user_groups_role_id">
 			<col>role_id</col>

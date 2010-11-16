@@ -53,7 +53,7 @@ class ManagerHandler extends Handler {
 		$templateMgr->assign('customSingoffEnabled', $customSignoffInternal || $customSignoffExternal );
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroups =& $userGroupDao->getByPressId($press->getId());
+		$userGroups =& $userGroupDao->getByContextId($press->getId());
 		$templateMgr->assign_by_ref('userGroups', $userGroups);
 
 		$session =& Request::getSession();
