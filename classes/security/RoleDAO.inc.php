@@ -125,7 +125,7 @@ class RoleDAO extends DAO {
 	function userHasRole($pressId, $userId, $roleId) {
 		$result =& $this->retrieve(
 			'SELECT count(*) FROM user_groups ug JOIN user_user_groups uug ON ug.user_group_id = uug.user_group_id
-			WHERE ug.press_id = ? AND uug.user_id = ? AND ug.role_id = ?',
+			WHERE ug.context_id = ? AND uug.user_id = ? AND ug.role_id = ?',
 			array((int) $pressId, (int) $userId, (int) $roleId)
 		);
 
