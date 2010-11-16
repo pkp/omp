@@ -433,7 +433,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 			FROM	users u
 				LEFT JOIN user_user_groups uug ON (uug.user_id = u.user_id)
 				LEFT JOIN user_groups ug ON (ug.user_group_id = uug.user_group_id)
-			WHERE	ug.press_id = ? AND
+			WHERE	ug.context_id = ? AND
 				ug.role_id = ?
 			ORDER BY last_name, first_name',
 			array($pressId, ROLE_ID_REVIEWER)
