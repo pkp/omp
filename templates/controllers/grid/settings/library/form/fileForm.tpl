@@ -83,6 +83,7 @@
 				$('#metadataForm').submit();   // Hands off further actions to the ajaxForm function above
 			}
 			validator = null;
+			return false;
 		});
 
 		$("#cancelModalButton").click(function() {

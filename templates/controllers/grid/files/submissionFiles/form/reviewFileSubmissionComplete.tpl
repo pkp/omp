@@ -16,6 +16,7 @@
     	    		'append',
     	    		'table#component-reviewFilesSelect-table > tbody:first',
     	    		'div#fileUploadTabs ', true,  '#component-'+'{/literal}{$gridId}{literal}'+'-addFile-button');
+    	    return false;
 		});
 
 		// On exit button click, return row and close modal
@@ -24,6 +25,7 @@
     	    		'append',
     	    		'table#component-reviewFilesSelect-table > tbody:first',
     	    		'div#fileUploadTabs');
+    	    return false;
 		});
 	});
 	{/literal}

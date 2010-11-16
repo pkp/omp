@@ -39,6 +39,7 @@
 				$('#metadataForm').submit();   // Hands off further actions to the ajaxForm function above
 			}
 			validator = null;
+			return false;
 		});
 		$("#cancelButton2").click(function() {
 			$('div#fileUploadTabs').last().parent().dialog('close');

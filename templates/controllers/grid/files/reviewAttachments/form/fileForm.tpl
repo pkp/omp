@@ -59,6 +59,7 @@
 				'#component-{/literal}{$gridId}{literal}-table',
 				'#uploadForm'
 			);
+			return false;
 		});
 
 		$("#cancelModalButton").click(function() {
@@ -70,6 +71,7 @@
 			}
 
 			$('#uploadForm').parent().dialog('close');
+			return false;
 		});
 	});
 	{/literal}

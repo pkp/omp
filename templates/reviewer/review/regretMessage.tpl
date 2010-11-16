@@ -15,6 +15,7 @@
 		$("#declineReviewSubmit").click(function() {
 			$('#declineReview').submit();
 			//$('#declineReview').parent().dialog('close');
+			return false;
 		});
 	});
 	{/literal}
@@ -29,7 +30,7 @@
 <br />
 <br />
 <input type="submit" id="declineReviewSubmit" value="{translate key='form.submit'}" class="button" style="margin-left:10px;" />
-		
+
 </form>
 </div>
 

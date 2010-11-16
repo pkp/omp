@@ -17,12 +17,14 @@
 			$("#toggleFormMore").hide();
 			$("#toggleFormLess").show();
 			$("#userFormExtendedContainer").show('slow');
+			return false;
 		});
 
 		$("#toggleLess").click(function() {
 			$("#toggleFormLess").hide();
 			$("#toggleFormMore").show();
 			$("#userFormExtendedContainer").hide('slow');
+			return false;
 		});
 
 		// Handle interests keywords
