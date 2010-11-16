@@ -92,7 +92,7 @@ class RoleDAO extends DAO {
 			LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
 			LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id),
 			user_groups AS ug, user_user_groups AS uug
-			WHERE ug.user_group_id = uug.user_group_id AND u.user_id = uug.user_id' . (isset($roleId) ? ' AND ug.role_id = ?' : '') . (isset($pressId) ? ' AND ug.press_id = ?' : '') . ' ' . $searchSql,
+			WHERE ug.user_group_id = uug.user_group_id AND u.user_id = uug.user_id' . (isset($roleId) ? ' AND ug.role_id = ?' : '') . (isset($pressId) ? ' AND ug.context_id = ?' : '') . ' ' . $searchSql,
 			$paramArray,
 			$dbResultRange
 		);
@@ -149,7 +149,7 @@ class RoleDAO extends DAO {
 		if ($pressId) $params[] = $pressId;
 		$result =& $this->retrieve('SELECT DISTINCT ug.role_id
 									FROM user_groups ug JOIN user_user_groups uug ON ug.user_id = u
-									WHERE ugg.user_id = ?' . ($pressId?' AND ug.press_id = ?':''),
+									WHERE ugg.user_id = ?' . ($pressId?' AND ug.context_id = ?':''),
 									$params);
 
 		$roles = array();
