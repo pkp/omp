@@ -48,13 +48,13 @@
 
 <label for="selectRole">{translate key="manager.users.selectRole"}: </label>
 <select name="selectRole" id="selectRole" size="1" class="selectMenu">
-	{html_options_translate options=$roleOptions selected=$smarty.const.ROLE_ID_SITE_ADMIN}
+	{html_options_translate options=$roleOptions selected=$smarty.const.ROLE_ID_PRESS_MANAGER}
 </select>
 
 </form>
 
 <div id="userGroupsContainer">
-{url|assign:siteAdminRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_SITE_ADMIN title='user.role.siteAdmin'}
+{url|assign:siteAdminRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_PRESS_MANAGER title='user.role.siteAdmin'}
 {load_url_in_div id="userGroupsContainer" url=$siteAdminRolesUrl}
 </div>
 

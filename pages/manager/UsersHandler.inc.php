@@ -52,7 +52,7 @@ class UsersHandler extends ManagerHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_GRID));
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroups =& $userGroupDao->getByPressId($press->getId());
+		$userGroups =& $userGroupDao->getByContextId($press->getId());
 		$userGroupOptions = array('' => Locale::translate('grid.user.allRoles'));
 		while (!$userGroups->eof()) {
 			$userGroup =& $userGroups->next();
@@ -87,7 +87,7 @@ class UsersHandler extends ManagerHandler {
 	function roles($args, &$request) {
 		$this->setupTemplate(true);
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$roleOptions = $roleDao->getRoleNames();
+		$roleOptions = $roleDao->getPressRoleNames();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('roleOptions', $roleOptions);

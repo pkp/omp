@@ -241,6 +241,21 @@ class RoleDAO extends DAO {
 		);
 		return $roleNames;
 	}
+
+	/**
+	 * Get a mapping of role keys and i18n key names for a press context.
+	 * @return array
+	 */
+	function getPressRoleNames() {
+		$roleNames = array(
+			ROLE_ID_PRESS_MANAGER => 'user.role.manager',
+			ROLE_ID_SERIES_EDITOR => 'user.role.seriesEditor',
+			ROLE_ID_PRESS_ASSISTANT => 'user.role.pressAssistant',
+			ROLE_ID_AUTHOR => 'user.role.author',
+			ROLE_ID_REVIEWER => 'user.role.reviewer'
+		);
+		return $roleNames;
+	}
 }
 
 ?>
