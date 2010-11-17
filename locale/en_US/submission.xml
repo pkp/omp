@@ -39,7 +39,10 @@
 	<message key="submission.submit">Start New Book Submission</message>
 	<message key="submission.submit.submitMonograph">Submit a Monograph</message>
 	<message key="submission.submit.stepsToSubmit">Five Steps to Submit</message>
-	<message key="submission.submit.startHereTitle">Start a New Submission</message>
+	<message key="submission.submit.newSubmissionMultiple">Start a New Submission in</message>
+	<message key="submission.submit.newSubmissionSingle">Start a New Submission in {$pressName}</message>
+	<message key="submission.submit.selectAPress">Select a Press...</message>
+
 	<message key="submission.submit.startHereLink"><![CDATA[<a href="{$submitUrl}" class="action">Click here</a> to go to step one of the three-step submission process.]]></message>
 
 	<message key="submission.submit.stepHeading.start">Starting the Submission</message>

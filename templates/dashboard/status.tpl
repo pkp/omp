@@ -8,6 +8,28 @@
  *
  *}
 
+<!-- New Submission entry point -->
+{if $pressCount > 1}
+	<script type="text/javascript">{literal}
+		$(function(){
+			$("#pressSelect").change(function() {
+				if($("#pressSelect option:selected").val() == 0) return false; // User has select the default text; do nothing
+				window.location.href = $("#pressSelect option:selected").val();
+			});
+		});
+	{/literal}</script>
+	<h3 class="align_left">{translate key="submission.submit.newSubmissionMultiple"}</h3>
+	<select id="pressSelect" class="align_left selectHeader">
+		<option value="0">{translate key="submission.submit.selectAPress"}</option>
+		{iterate from=presses item=press}
+			<option value="{url press=$press->getPath() page="submission" op="wizard"}">{$press->getLocalizedName()|escape}</option>
+		{/iterate}
+	</select>
+	<div class="clear"></div>
+{else}
+	<h3><a href="{url press=$press->getPath() page="submission" op="wizard"}" class="add_item">{translate key="submission.submit.newSubmissionSingle" pressName=$press->getLocalizedName()}</a></h3>
+{/if}
+
 <!-- Author submissions grid -->
 {url|assign:mySubmissionsListGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.submissions.mySubmissions.MySubmissionsListGridHandler" op="fetchGrid"}
 {load_url_in_div id="mySubmissionsListGridContainer" url="$mySubmissionsListGridUrl"}

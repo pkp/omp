@@ -80,11 +80,21 @@ class DashboardHandler extends Handler {
 	 * @param $args array
 	 */
 	function status($args, &$request) {
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-
 		$templateMgr = &TemplateManager::getManager();
 		$this->setupTemplate();
+
+		// Get all the presses in the system, to determine which 'new submission' entry point we display
+		$pressDao =& DAORegistry::getDAO('PressDAO'); /* @var $pressDao PressDAO */
+		$presses = $pressDao->getPresses();
+
+		$pressCount = $presses->getCount();
+		$templateMgr->assign('pressCount', $pressCount);
+		if ($pressCount == 1) {
+			$press =& $presses->next();
+			$templateMgr->assign_by_ref('press', $press);
+		} else {
+			$templateMgr->assign_by_ref('presses', $presses);
+		}
 
 		$templateMgr->assign('selectedTab', 3);
 		$templateMgr->assign('pageToDisplay', 'dashboard/status.tpl');
@@ -99,7 +109,7 @@ class DashboardHandler extends Handler {
 		parent::setupTemplate();
 
 		$templateMgr =& TemplateManager::getManager();
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		if ($subclass) $templateMgr->assign('pageHierarchy', array(array(Request::url(null, 'dashboard'), 'dashboard.dashboard')));
 	}
