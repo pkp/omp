@@ -472,12 +472,14 @@ class Monograph extends Submission {
 	 */
 	function getCurrentReviewType() {
 		import('classes.monograph.reviewRound.ReviewRound');
-		if($this->getCurrentStageId() == WORKFLOW_STAGE_ID_INTERNAL_REVIEW) {
-			return REVIEW_TYPE_INTERNAL;
-		} else if($this->getCurrentStageId() == WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
-			return REVIEW_TYPE_EXTERNAL;
-		} else return null;
+		switch($this->getCurrentStageId()) {
+			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
+				return REVIEW_TYPE_INTERNAL;
 
+			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
+			default:
+				return REVIEW_TYPE_EXTERNAL;
+		}
 	}
 }
 
