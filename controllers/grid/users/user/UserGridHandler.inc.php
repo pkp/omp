@@ -27,8 +27,8 @@ class UserGridHandler extends GridHandler {
 		$this->addRoleAssignment(
 				array(ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'editUser', 'updateUser', 'updateUserRoles',
-						'removeUser', 'addUser', 'editEmail', 'sendEmail',
-						'suggestUsername'));
+						'editDisableUser', 'disableUser', 'removeUser', 'addUser',
+						'editEmail', 'sendEmail', 'suggestUsername'));
 	}
 
 
@@ -138,6 +138,7 @@ class UserGridHandler extends GridHandler {
 		$pressId = $press->getId();
 
 		// Get the search terms
+		$userGroup = $request->getUserVar('userGroup') ? $request->getUserVar('userGroup') : null;
 		$searchField = $request->getUserVar('searchField');
 		$searchMatch = $request->getUserVar('searchMatch');
 		$search = $request->getUserVar('search');
@@ -145,7 +146,8 @@ class UserGridHandler extends GridHandler {
 		// Get all users for this press that match search criteria
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$rangeInfo = $this->getRangeInfo('users');
-		$users =& $userGroupDao->getUsersByContextId(
+		$users =& $userGroupDao->getUsersById(
+			$userGroup,
 			$pressId,
 			$searchField,
 			$search,
@@ -290,6 +292,83 @@ class UserGridHandler extends GridHandler {
 
 				// Successfully managed newly created user's roles
 				// Prepare the grid row data
+				$row =& $this->getRowInstance();
+				$row->setGridId($this->getId());
+				$row->setId($user->getId());
+				$row->setData($user);
+				$row->initialize($request);
+
+				$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			} else {
+				$json = new JSON('false', $userForm->display($args, $request));
+			}
+		}
+		return $json->getString();
+	}
+
+	/**
+	 * Edit enable/disable user form
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function editDisableUser($args, &$request) {
+		// Identify the press
+		$press =& $request->getPress();
+
+		// Identify the user Id
+		$userId = $request->getUserVar('rowId');
+		if (!$userId) $userId = $request->getUserVar('userId');
+
+		// Are we enabling or disabling this user
+		$enable = isset($args['enable']) ? (bool) $args['enable'] : false;
+
+		if ($userId !== null && !Validation::canAdminister($press->getId(), $userId)) {
+			// We don't have administrative rights over this user.
+			$json = new JSON('false', Locale::translate('grid.user.cannotAdminister'));
+		} else {
+			// Form handling
+			import('controllers.grid.users.user.form.UserDisableForm');
+			$userForm = new UserDisableForm($userId, $enable);
+
+			$userForm->initData($args, $request);
+
+			$json = new JSON('true', $userForm->display($args, $request));
+		}
+		return $json->getString();
+	}
+
+	/**
+	 * Enable/Disable an existing user
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function disableUser($args, &$request) {
+		// Identify the press
+		$press =& $request->getPress();
+
+		// Identify the user Id
+		$userId = $request->getUserVar('userId');
+
+		// Are we enabling or disabling this user
+		$enable = (bool) $request->getUserVar('enable');
+
+		if ($userId !== null && !Validation::canAdminister($press->getId(), $userId)) {
+			// We don't have administrative rights over this user.
+			$json = new JSON('false', Locale::translate('grid.user.cannotAdminister'));
+		} else {
+			// Form handling
+			import('controllers.grid.users.user.form.UserDisableForm');
+			$userForm = new UserDisableForm($userId, $enable);
+
+			$userForm->readInputData();
+
+			if ($userForm->validate()) {
+				$user =& $userForm->execute($args, $request);
+
+				// Successful enable/disable of an existing user
+				// Update grid row data
 				$row =& $this->getRowInstance();
 				$row->setGridId($this->getId());
 				$row->setId($user->getId());

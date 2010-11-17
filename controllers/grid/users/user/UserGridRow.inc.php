@@ -33,7 +33,11 @@ class UserGridRow extends GridRow {
 		parent::initialize($request);
 
 		// Is this a new row or an existing row?
+		$element =& $this->getData();
+		assert(is_a($element, 'User'));
+
 		$rowId = $this->getId();
+
 		if (!empty($rowId) && is_numeric($rowId)) {
 			// Only add row actions if this is an existing row
 			$router =& $request->getRouter();
@@ -63,6 +67,34 @@ class UserGridRow extends GridRow {
 					'edit'
 				)
 			);
+			if ($element->getDisabled()) {
+				$actionArgs['enable'] = true;
+				$this->addAction(
+					new LinkAction(
+						'enable',
+						LINK_ACTION_MODE_MODAL,
+						LINK_ACTION_TYPE_REPLACE,
+						$router->url($request, null, null, 'editDisableUser', null, $actionArgs),
+						'grid.user.enable',
+						null,
+						'enable'
+					)
+				);
+			} else {
+				$actionArgs['enable'] = false;
+				$this->addAction(
+					new LinkAction(
+						'disable',
+						LINK_ACTION_MODE_MODAL,
+						LINK_ACTION_TYPE_REPLACE,
+						$router->url($request, null, null, 'editDisableUser', null, $actionArgs),
+						'grid.user.disable',
+						null,
+						'disable'
+					)
+				);
+
+			}
 			$this->addAction(
 				new LinkAction(
 					'remove',

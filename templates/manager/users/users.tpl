@@ -40,6 +40,9 @@
 <div class="clear">&nbsp;</div>
 
 <form name="userSearchForm" id="userSearchForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserGridHandler" op="fetchGrid"}" method="post">
+	<select name="userGroup" id="userGroup" size="1" class="selectMenu">
+		{html_options options=$userGroupOptions selected=$userGroup}
+	</select>
 	<select name="searchField" id="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
 	</select>
