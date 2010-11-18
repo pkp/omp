@@ -17,7 +17,7 @@
 
 switch ($op) {
 	//
-	// Setup
+	// Press Setup
 	//
 	case 'setup':
 	case 'saveSetup':
@@ -27,13 +27,18 @@ switch ($op) {
 		define('HANDLER_CLASS', 'SetupHandler');
 		break;
 	//
-	// Settings
+	// System Settings
 	//
-	case 'settings':
-	case 'data':
 	case 'system':
-		import('pages.manager.SettingsHandler');
-		define('HANDLER_CLASS', 'SettingsHandler');
+	case 'languages':
+	case 'preparedEmails':
+	case 'reviewForms':
+	case 'readingTools':
+	case 'payments':
+	case 'plugins':
+	case 'archiving':
+		import('pages.manager.SystemHandler');
+		define('HANDLER_CLASS', 'SystemHandler');
 		break;
 	// Users and Roles
 	case 'users':
@@ -155,6 +160,7 @@ switch ($op) {
 		define('HANDLER_CLASS', 'GroupHandler');
 		break;
 	case 'index':
+	case 'settings':
 	case 'email':
 		define('HANDLER_CLASS', 'ManagerHandler');
 		import('pages.manager.ManagerHandler');

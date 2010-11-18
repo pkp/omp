@@ -21,8 +21,14 @@ class ManagerHandler extends Handler {
 	 */
 	function ManagerHandler() {
 		parent::Handler();
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
-				array('email', 'index'));
+		$this->addRoleAssignment(
+			ROLE_ID_PRESS_MANAGER,
+			array(
+				'email',
+				'index',
+				'settings'
+			)
+		);
 	}
 
 	/**
@@ -62,6 +68,17 @@ class ManagerHandler extends Handler {
 		$templateMgr->assign('announcementsEnabled', $announcementsEnabled);
 		$templateMgr->assign('helpTopicId','press.index');
 		$templateMgr->display('manager/index.tpl');
+	}
+
+   /**
+	 * Display settings index page.
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
+	function settings(&$request, &$args) {
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate(true);
+		$templateMgr->display('manager/settings/index.tpl');
 	}
 
 	/**

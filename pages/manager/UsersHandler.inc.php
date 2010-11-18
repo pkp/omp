@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file PeopleHandler.inc.php
+ * @file UsersHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class PeopleHandler
+ * @class UsersHandler
  * @ingroup pages_manager
  *
- * @brief Handle requests for people management functions.
+ * @brief Handle requests for user management functions.
  */
 
 
@@ -24,7 +24,7 @@ class UsersHandler extends ManagerHandler {
 		parent::ManagerHandler();
 		$this->addRoleAssignment(
 			ROLE_ID_PRESS_MANAGER,
-			array (
+			array(
 				'users',
 				'roles',
 				'enrollment'
@@ -33,15 +33,8 @@ class UsersHandler extends ManagerHandler {
 	}
 
 	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/**
 	 * Handle user management requests.
-	 * @param $args array first parameter is the management path (e.g. users, roles, etc.)
+	 * @param $args
 	 * @param $request PKPRequest
 	 */
 	function users($args, &$request) {
@@ -81,7 +74,7 @@ class UsersHandler extends ManagerHandler {
 
 	/**
 	 * Handle role management requests.
-	 * @param $args array first parameter is the management path (e.g. users, roles, etc.)
+	 * @param $args array
 	 * @param $request PKPRequest
 	 */
 	function roles($args, &$request) {
@@ -97,7 +90,7 @@ class UsersHandler extends ManagerHandler {
 
 	/**
 	 * Handle user enrollment requests.
-	 * @param $args array first parameter is the management path (e.g. users, roles, etc.)
+	 * @param $args array
 	 * @param $request PKPRequest
 	 */
 	function enrollment($args, &$request) {

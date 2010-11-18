@@ -242,6 +242,14 @@
 	<message key="manager.users.enrollment">Enrollment</message>
 	<message key="manager.users.selectRole">Select Role</message>
 
+	<message key="manager.system">System Settings</message>
+	<message key="manager.system.archiving">Archiving</message>
+	<message key="manager.system.preparedEmails">Prepared Emails</message>
+	<message key="manager.system.reviewForms">Review Forms</message>
+	<message key="manager.system.readingTools">Reading Tools</message>
+	<message key="manager.system.languages">Languages</message>
+	<message key="manager.system.payments">Payments</message>
+	<message key="manager.system.plugins">Plugins</message>
 
 	<message key="manager.setup">Setup</message>
 	<message key="manager.setup.aboutItemContent">Content</message>
