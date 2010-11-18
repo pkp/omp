@@ -74,6 +74,8 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 		$monographId = $request->getUserVar('monographId');
 		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
 		$fileStage = $request->getUserVar('fileStage') ? $request->getUserVar('fileStage'): null;
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('isEditing', true);
 
 		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
 		$fileForm = new SubmissionFilesUploadForm($fileId, $monographId, $fileStage);
@@ -154,7 +156,7 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 		$templateMgr->assign('fileId', $fileId);
 
 		// Get the grid ID from the file type, so fileSubmissionComplete.tpl knows which grid to update
-		$fileTypeToGridId = array(MONOGRAPH_FILE_FINAL => 'finalDraftFiles',
+		$fileTypeToGridId = array(MONOGRAPH_FILE_FINAL => 'finalDraftFilesSelect',
 									MONOGRAPH_FILE_COPYEDIT => 'copyeditingFiles',
 									MONOGRAPH_FILE_FAIR_COPY => 'fairCopyFiles');
 		$templateMgr->assign('gridId', $fileTypeToGridId[$monographFile->getType()]);
@@ -187,6 +189,10 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 									MONOGRAPH_FILE_FAIR_COPY => 'FairCopyFilesGridHandler');
 			import($fileTypeToHandlerPath[$monographFile->getType()]);
 			$filesGridHandler =& new $fileTypeToHandlerName[$monographFile->getType()]();
+			$filesGridHandler->authorize($request, $args, $filesGridHandler->getRoleAssignments());
+			if(is_a($filesGridHandler, 'FinalDraftFilesGridHandler')) {
+				$filesGridHandler->setIsSelectable(true);
+			}
 			$filesGridHandler->initialize($request);
 
 			if(is_a($filesGridHandler, 'CopyeditingFilesGridHandler')) {

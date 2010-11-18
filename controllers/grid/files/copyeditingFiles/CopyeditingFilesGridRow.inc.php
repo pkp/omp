@@ -38,11 +38,13 @@ class CopyeditingFilesGridRow extends GridRow {
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
 
+		// Get the signoff (the row)
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff =& $signoffDao->getById($rowId);
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
+
 		// Get the id of the original file (the category header)
 		$monographFileId = $signoff->getAssocId();
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
 		$monographFile =& $monographFileDao->getMonographFile($monographFileId);
 		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 		$monographId = $monographFile->getMonographId();
@@ -61,18 +63,6 @@ class CopyeditingFilesGridRow extends GridRow {
 				'fileId' => $copyeditedFileId
 			);
 
-			$this->addAction(
-				new LinkAction(
-					'deleteFile',
-					LINK_ACTION_MODE_CONFIRM,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'deleteFile', null, $actionArgs),
-					'grid.action.delete',
-					null,
-					'delete',
-					Locale::translate('common.confirmDelete')
-				));
-
 			if($copyeditedFileId) {
 				$this->addAction(
 					new LinkAction(
@@ -83,6 +73,30 @@ class CopyeditingFilesGridRow extends GridRow {
 						'grid.action.moreInformation',
 						null,
 						'more_info'
+					));
+
+				$this->addAction(
+					new LinkAction(
+						'deleteFile',
+						LINK_ACTION_MODE_CONFIRM,
+						LINK_ACTION_TYPE_REPLACE,
+						$router->url($request, null, null, 'deleteFile', null, $actionArgs),
+						'grid.action.delete',
+						null,
+						'delete',
+						Locale::translate('common.confirmDelete')
+					));
+			} else {
+				$this->addAction(
+					new LinkAction(
+						'deleteUser',
+						LINK_ACTION_MODE_CONFIRM,
+						LINK_ACTION_TYPE_REMOVE,
+						$router->url($request, null, null, 'deleteUser', null, $actionArgs),
+						'grid.action.delete',
+						null,
+						'delete',
+						Locale::translate('common.confirmDelete')
 					));
 			}
 

@@ -152,7 +152,7 @@
 	<message key="submission.upload.possibleRevisionConfirm">Yes, this is a revision</message>
 	<message key="submission.upload.possibleRevisionDeny">No, this is a new file</message>
 	<message key="submission.upload.selectFileToRevise">Please select the file you would like to upload a revision for.</message>
-	<message key="submission.upload.selectCopyeditedFile">Please select the file you would like to upload copyedited version for.</message>
+	<message key="submission.upload.selectCopyeditedFile">Please select the file you would like to upload a copyedited version for.</message>
 
 	<message key="submission.status.editorial">In Copyediting</message>
 	<message key="submission.status.production">In Proofreading</message>

@@ -25,7 +25,7 @@
 				{if $isRevision}
 					isRevision: true,
 					submissionFileId: $('#submissionFiles').val()
-				{elseif $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}
+				{elseif $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT && !$isEditing}
 					copyeditingSignoffId: $('#copyeditingFiles').val()
 				{else}
 					fileType: $('#fileType').val()
@@ -73,7 +73,7 @@
 				{if $isRevision}
 					isRevision: true,
 					submissionFileId: $('#submissionFiles').val()
-				{elseif $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}
+				{elseif $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT && !$isEditing}
 					copyeditingSignoffId: $('#copyeditingFiles').val()
 				{else}
 					fileType: $('#fileType').val()
@@ -136,7 +136,7 @@
 				<p>{translate key="submission.upload.selectFileToRevise"}</p>
 				{fbvSelect name="submissionFiles" id="submissionFiles" from=$monographFileOptions translate=false} <br />
 			{/fbvFormSection}
-		{elseif $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}
+		{elseif $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT && !$isEditing}
 			{fbvFormSection title="submission.originalFile" required=1}
 				<p>{translate key="submission.upload.selectCopyeditedFile"}</p>
 				{fbvSelect name="copyeditingFiles" id="copyeditingFiles" from=$monographFileOptions translate=false} <br />

@@ -94,8 +94,11 @@ class FinalDraftFilesGridHandler extends GridHandler {
 		$this->setTitle('submission.finalDraft');
 
 		// Set the isSelectable boolean flag.
-		$isSelectable = (boolean)$request->getUserVar('isSelectable');
-		$this->setIsSelectable($isSelectable);
+		if(!$this->getIsSelectable()) {
+			// Only set this flag if it isn't already set -- The Final Draft Files grid will need to set this before initialize()
+			$isSelectable = (boolean)$request->getUserVar('isSelectable');
+			$this->setIsSelectable($isSelectable);
+		}
 
 		// Set the canUpload boolean flag.
 		$canUpload = (boolean)$request->getUserVar('canUpload');
@@ -111,7 +114,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$monographId = $monograph->getId();
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		if ($isSelectable) {
+		if ($this->getIsSelectable()) {
 			// Set a special grid ID since the 'manage review files' modal is in the same namespace as the 'view review files' modal.
 			$this->setId('finalDraftFilesSelect');
 
@@ -123,6 +126,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 			$rowData = array();
 			foreach ($monographFiles as $monographFile) {
 				$rowData[$monographFile->getFileId()] =& $monographFile;
+				unset($monographFile);
 			}
 			$this->setData($rowData);
 

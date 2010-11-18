@@ -32,7 +32,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$this->addRoleAssignment(ROLE_ID_AUTHOR,
 			$authorOperations = array('fetchGrid', 'addCopyeditedFile', 'editCopyeditedFile', 'uploadCopyeditedFile', 'returnSignoffRow', 'returnFileRow', 'downloadFile', 'deleteFile'));
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array_merge($authorOperations, array('addUser', 'saveAddUser', 'getCopyeditUserAutocomplete')));
+				array_merge($authorOperations, array('addUser', 'saveAddUser', 'getCopyeditUserAutocomplete', 'deleteUser')));
 	}
 
 	//
@@ -62,7 +62,6 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		parent::initialize($request);
 
 		// Basic grid configuration
-		$monographId = (integer)$request->getUserVar('monographId');
 		$this->setId('copyeditingFiles');
 		$this->setTitle('submission.copyediting');
 
@@ -70,7 +69,8 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 
 		// Grab the copyediting files to display as categories
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getByMonographId($monographId, MONOGRAPH_FILE_COPYEDIT);
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monographFiles =& $monographFileDao->getByMonographId($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
 		$rowData = array();
 		foreach ($monographFiles as $monographFile) {
 			$rowData[$monographFile->getFileId()] = $monographFile;
@@ -85,7 +85,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 				'uploadFile',
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, 'grid.files.submissionFiles.CopyeditingSubmissionFilesGridHandler', 'addFile', null, array('monographId' => $monographId, 'fileStage' => MONOGRAPH_FILE_COPYEDIT)),
+				$router->url($request, null, 'grid.files.submissionFiles.CopyeditingSubmissionFilesGridHandler', 'addFile', null, array('monographId' => $monograph->getId(), 'fileStage' => MONOGRAPH_FILE_COPYEDIT)),
 				'editor.monograph.fairCopy.addFile',
 				null,
 				'add'
@@ -97,7 +97,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 				'addUser',
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_REPLACE,
-				$router->url($request, null, null, 'addUser', null, array('monographId' => $monographId)),
+				$router->url($request, null, null, 'addUser', null, array('monographId' => $monograph->getId())),
 				'editor.monograph.copyediting.addUser',
 				null,
 				'add'
@@ -120,7 +120,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 
 		// Add role columns -- One of each user group currently assigned to the stage:
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoffs =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, WORKFLOW_STAGE_ID_EDITING);
+		$signoffs =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, WORKFLOW_STAGE_ID_EDITING);
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroups = array();
 		while($signoff =& $signoffs->next()) {
@@ -185,11 +185,11 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 */
 	function addUser($args, &$request) {
 		// Identify the monograph being worked on
-		$monographId = $request->getUserVar('monographId');
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Form handling
 		import('controllers.grid.files.copyeditingFiles.form.CopyeditingUserForm');
-		$copyeditingUserForm = new CopyeditingUserForm($monographId);
+		$copyeditingUserForm = new CopyeditingUserForm($monograph);
 		if ($copyeditingUserForm->isLocaleResubmit()) {
 			$copyeditingUserForm->readInputData();
 		} else {
@@ -208,17 +208,17 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 */
 	function saveAddUser($args, &$request) {
 		// Identify the monograph being worked on
-		$monographId = $request->getUserVar('monographId');
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Form handling
 		import('controllers.grid.files.copyeditingFiles.form.CopyeditingUserForm');
-		$copyeditingUserForm = new CopyeditingUserForm($monographId);
+		$copyeditingUserForm = new CopyeditingUserForm($monograph);
 		$copyeditingUserForm->readInputData();
 		if ($copyeditingUserForm->validate()) {
 			$copyeditingUserForm->execute();
 
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFiles =& $monographFileDao->getByMonographId($monographId, MONOGRAPH_FILE_COPYEDIT);
+			$monographFiles =& $monographFileDao->getByMonographId($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
 			$data = array();
 			foreach ($monographFiles as $monographFile) {
 				$data[$monographFile->getFileId()] = $monographFile;
@@ -254,14 +254,15 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function getCopyeditUserAutocomplete($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
+		// Identify the Monograph we are working with
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Retrieve the users for the autocomplete control: Any author or press assistant user assigned to this stage
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$stageUsers =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, WORKFLOW_STAGE_ID_EDITING);
+		$stageUsers =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, WORKFLOW_STAGE_ID_EDITING);
 
 		$itemList = array();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		while($stageUser =& $stageUsers->next()) {
 			$userGroup =& $userGroupDao->getById($stageUser->getUserGroupId());
@@ -270,7 +271,8 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 				$user =& $userDao->getUser($stageUser->getUserId());
 				$itemList[] = array('id' => $user->getId(),
 									'name' => $user->getFullName(),
-								 	'abbrev' => $userGroup->getLocalizedName());
+								 	'abbrev' => $userGroup->getLocalizedName(),
+									'userGroupId' => $stageUser->getUserGroupId());
 			}
 		}
 
@@ -281,8 +283,8 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
 			$additionalAttributes = array(
 				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
-				'value' => $item['id']
-		   );
+				'value' => $item['id'] . "-" . $item['userGroupId']
+		 	);
 			$itemJson = new JSON('true', '', 'false', null, $additionalAttributes);
 			$sourceContent[] = $itemJson->getString();
 
@@ -313,12 +315,12 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 */
 	function editCopyeditedFile($args, &$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$monographId = $monograph->getId();
-		$signoffId = $request->getUserVar('signoffId');
-		assert(is_numeric($signoffId));
+
+		$signoffId = (int) $request->getUserVar('signoffId');
+		assert(!empty($signoffId));
 
 		import('controllers.grid.files.copyeditingFiles.form.CopyeditingFileForm');
-		$copyeditingFileForm = new CopyeditingFileForm($monographId, $signoffId);
+		$copyeditingFileForm = new CopyeditingFileForm($monograph, $signoffId);
 
 		if ($copyeditingFileForm->isLocaleResubmit()) {
 			$copyeditingFileForm->readInputData();
@@ -331,19 +333,18 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * upload a file
+	 * Upload a file
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string
 	 */
 	function uploadCopyeditedFile($args, &$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$monographId = $monograph->getId();
-		$signoffId = $request->getUserVar('signoffId');
-		assert(is_numeric($signoffId));
+		$signoffId = (int) $request->getUserVar('signoffId');
+		assert(!empty($signoffId));
 
 		import('controllers.grid.files.copyeditingFiles.form.CopyeditingFileForm');
-		$copyeditingFileForm = new CopyeditingFileForm($monographId, $signoffId);
+		$copyeditingFileForm = new CopyeditingFileForm($monograph, $signoffId);
 		$copyeditingFileForm->readInputData();
 
 		if ($copyeditingFileForm->validate()) {
@@ -358,7 +359,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			$json = new JSON('false', Locale::translate('common.uploadFailed'));
 		}
 
-		echo '<textarea>' . $json->getString() . '</textarea>';
+		echo $json->getString();
 	}
 
 	/**
@@ -368,7 +369,8 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function returnSignoffRow($args, &$request) {
-		$signoffId = (integer)$request->getUserVar('signoffId');
+		$signoffId = (int) $request->getUserVar('signoffId');
+		assert(!empty($signoffId));
 
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff =& $signoffDao->getById($signoffId);
@@ -382,7 +384,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 
 			$json = new JSON('true', $this->_renderRowInternally($request, $row));
 		} else {
-			$json = new JSON('false', Locale::translate("There was an error with trying to fetch the file"));
+			$json = new JSON('false', Locale::translate('common.uploadFailed'));
 		}
 
 		return $json->getString();
@@ -395,8 +397,9 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function downloadFile($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-		$fileId = $request->getUserVar('fileId');
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$fileId = (int) $request->getUserVar('fileId');
+		assert(!empty($fileId));
 
 		$sessionManager =& SessionManager::getManager();
 		$session =& $sessionManager->getUserSession();
@@ -410,21 +413,59 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * Delete a file
+	 * Delete a file if it has been uploaded to the signoff
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string
 	 */
 	function deleteFile($args, &$request) {
-		$fileId = $request->getUserVar('fileId');
+		$fileId = (int) $request->getUserVar('fileId');
+		$signoffId = (int) $request->getUserVar('signoffId');
 
-		if($fileId) {
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		if($fileId && $signoffId) {
+			// Remove the file id from the signoff
+			$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+			$signoff =& $signoffDao->getById($signoffId);
+			assert($signoff->getFileId() == $fileId);
+			$signoff->setFileId(null);
+			$signoff->setDateCompleted(null);
+			$signoffDao->updateObject($signoff);
+
+			// Delete the file
+			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
 			$monographFileDao->deleteMonographFileById($fileId);
+
+			// Fetch the updated row
+			$row =& $this->getRowInstance();
+			$row->setGridId($this->getId());
+			$row->setId($signoffId);
+			$row->setData($signoff);
+			$row->initialize($request);
+
+			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+		} else {
+			$json = new JSON('false');
+		}
+		return $json->getString();
+	}
+
+	/**
+	 * Delete a user's signoff
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function deleteUser($args, &$request) {
+		$signoffId = (int) $request->getUserVar('signoffId');
+
+		if($signoffId) {
+			// Remove the signoff
+			$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+			$signoffDao->deleteObjectById($signoffId);
 
 			$json = new JSON('true');
 		} else {
-			$json = new JSON('false');
+			$json = new JSON('false', 'manager.setup.errorDeletingItem');
 		}
 		return $json->getString();
 	}

@@ -16,19 +16,53 @@
 import('lib.pkp.classes.form.Form');
 
 class CopyeditingFileForm extends Form {
+	/** the id of the monograph being edited */
+	var $_monographId;
+
 	/** the id of the copyediting signoff */
 	var $_signoffId;
 
-	/** the id of the monograph being edited */
-	var $_monographId;
+	/**
+	 * Set the monograph
+	 * @param $monograph Monograph
+	 */
+	function setMonograph(&$monograph) {
+	    $this->_monograph =& $monograph;
+	}
+
+	/**
+	 * Get the monograph
+	 * @return Monograph
+	 */
+	function getMonograph() {
+	    return $this->_monograph;
+	}
+
+	/**
+	 * Set the signoff id
+	 * @param $signoffId int
+	 */
+	function setSignoffId($signoffId) {
+	    $this->_signoffId = (int) $signoffId;
+	}
+
+	/**
+	 * Get the signoff id
+	 * @return int
+	 */
+	function getSignoffId() {
+	    return $this->_signoffId;
+	}
 
 	/**
 	 * Constructor.
 	 */
-	function CopyeditingFileForm($monographId, $signoffId, $template = null) {
-		$this->_monographId = $monographId;
-		$this->_signoffId = $signoffId;
+	function CopyeditingFileForm($monograph, $signoffId, $template = null) {
+		$this->setMonograph($monograph);
+		$this->setSignoffId($signoffId);
+
 		if(!$template) {
+			// Use the default template
 			parent::Form('controllers/grid/files/copyeditingFiles/form/copyeditingFileForm.tpl');
 		} else {
 			parent::Form($template);
@@ -43,8 +77,9 @@ class CopyeditingFileForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
-		$this->_data['signoffId'] = $this->_signoffId;
-		$this->_data['monographId'] = $this->_monographId;
+		$this->_data['signoffId'] = $this->getSignoffId();
+		$monograph =& $this->getMonograph();
+		$this->_data['monographId'] = $monograph->getId();;
 	}
 
 	/**
@@ -55,7 +90,7 @@ class CopyeditingFileForm extends Form {
 	function fetch(&$request) {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoff =& $signoffDao->getById($this->_signoffId);
+		$signoff =& $signoffDao->getById($this->getSignoffId());
 
 		if ($signoff && $copyeditedFileId = $signoff->getFileId()) {
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
@@ -84,7 +119,7 @@ class CopyeditingFileForm extends Form {
 	function uploadFile($args, &$request) {
 		// Get the copyediting signoff
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		$signoff =& $signoffDao->getById($this->_signoffId);
+		$signoff =& $signoffDao->getById($this->getSignoffId());
 		assert(is_a($signoff, 'Signoff'));
 
 		// Get the file that is being copyedited
@@ -96,13 +131,15 @@ class CopyeditingFileForm extends Form {
 			$copyeditedFile =& $monographFileDao->getMonographFile($signoff->getFileId());
 		}
 
+		// If we're updating a file, get its ID for the file manager
 		$copyeditedFileId = isset($copyeditedFile) ? $copyeditedFile->getFileId() : null;
 
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($this->_monographId);
+		$monograph =& $this->getMonograph();
+		$monographFileManager = new MonographFileManager($monograph->getId());
 
 		if ($monographFileManager->uploadedFileExists('copyeditingFile')) {
-			$copyeditedFileId = $monographFileManager->uploadCopyeditFile('copyeditingFile', $copyeditedFileId);
+			$copyeditedFileId = $monographFileManager->uploadCopyeditResponseFile('copyeditingFile', $copyeditedFileId);
 			if (isset($copyeditedFileId)) {
 				// Amend the copyediting signoff with the new file
 				$signoff->setFileId($copyeditedFileId);

@@ -33,7 +33,7 @@
 		<!-- User autocomplete -->
 		<div id="userAutocomplete">
 			{fbvFormSection}
-				{fbvElement type="text" id="sourceTitle-" name="copyeditUserAutocomplete" label="user.role.copyeditor" class="required" value=$userNameString|escape }
+				{fbvElement type="text" id="sourceTitle-" name="copyeditUserAutocomplete" label="user.role.copyeditor" required=true class="required" value=$userNameString|escape }
 				<input type="hidden" id="sourceId-" name="userId" class="required" />
 			{/fbvFormSection}
 		</div>
@@ -48,7 +48,7 @@
 
 		<!-- Message to user -->
 		{fbvFormSection}
-			{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.monograph.copyediting.personalMessageTouser" value=$personalMessage measure=$fbvStyles.measure.1OF1 size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="textarea" name="personalMessage" id="personalMessage" required=true class="required" label="editor.monograph.copyediting.personalMessageTouser" value=$personalMessage measure=$fbvStyles.measure.1OF1 size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 	</form>
 </div>

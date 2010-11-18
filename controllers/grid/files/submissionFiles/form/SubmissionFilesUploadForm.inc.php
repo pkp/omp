@@ -130,6 +130,8 @@ class SubmissionFilesUploadForm extends Form {
 
 		if($fileStage == MONOGRAPH_FILE_COPYEDIT) {
 			$uploadedFile = 'copyeditingFile';
+			// The user is uploading a copyedited version of an existing file
+			// Load the existing file to get the monographFileTypeId
 		} else {
 			$uploadedFile = 'submissionFile';
 		}

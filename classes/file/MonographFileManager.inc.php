@@ -127,6 +127,16 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
+	 * Upload a copyedited file to the copyedit file folder.
+	 * @param $fileName string the name of the file used in the POST form
+	 * @param $fileId int
+	 * @return int file ID, is false if failure
+	 */
+	function uploadCopyeditResponseFile($fileName, $fileId = null) {
+		return $this->handleUpload($fileName, MONOGRAPH_FILE_COPYEDIT_RESPONSE, $fileId);
+	}
+
+	/**
 	 * Upload an series editor's layout editing file.
 	 * @param $fileName string the name of the file used in the POST form
 	 * @param $fileId int

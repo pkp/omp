@@ -16,14 +16,30 @@ import('lib.pkp.classes.form.Form');
 
 class CopyeditingUserForm extends Form {
 	/** The monograph associated with the submission contributor being edited **/
-	var $_monographId;
+	var $_monograph;
+
+	/**
+	 * Set the monograph
+	 * @param $monograph Monograph
+	 */
+	function setMonograph(&$monograph) {
+	    $this->_monograph =& $monograph;
+	}
+
+	/**
+	 * Get the monograph
+	 * @return Monograph
+	 */
+	function getMonograph() {
+	    return $this->_monograph;
+	}
 
 	/**
 	 * Constructor.
 	 */
-	function CopyeditingUserForm($monographId) {
+	function CopyeditingUserForm($monograph) {
 		parent::Form('controllers/grid/files/copyeditingFiles/addCopyeditingUser.tpl');
-		$this->_monographId = (int) $monographId;
+		$this->setMonograph($monograph);
 
 		$this->addCheck(new FormValidator($this, 'userId', 'required', 'editor.monograph.copyediting.form.userRequired'));
 		$this->addCheck(new FormValidator($this, 'selected-listbuilder-files-copyeditingfileslistbuilder', 'required', 'editor.monograph.copyediting.form.fileRequired'));
@@ -40,7 +56,8 @@ class CopyeditingUserForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
-		$this->setData('monographId', $this->_monographId);
+		$monograph = $this->getMonograph();
+		$this->setData('monographId', $monograph->getId());
 	}
 
 	/**
@@ -56,23 +73,22 @@ class CopyeditingUserForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$monographId = $this->_monographId;
-		$userId = $this->getData('userId');
-
-		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 
-		$monograph =& $monographDao->getMonograph($monographId);
+		$monograph =& $this->getMonograph();
 		if($this->getData('selected-listbuilder-files-copyeditingfileslistbuilder')) {
 			$selectedFiles = $this->getData('selected-listbuilder-files-copyeditingfileslistbuilder');
 		} else {
 			$selectedFiles = array();
 		}
 
+		// Split the selected user value; index 0 is the user id, index 1 is the user groupID
+		$userIdAndGroup = explode('-', $this->getData('userId'));
+
 		// Build copyediting signoff for each file
 		foreach ($selectedFiles as $selectedFileId) {
-			$signoff =& $signoffDao->build('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, $selectedFileId, $userId); /* @var $signoff Signoff */
+			$signoff =& $signoffDao->build('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, $selectedFileId, $userIdAndGroup[0], WORKFLOW_STAGE_ID_EDITING, $userIdAndGroup[1]); /* @var $signoff Signoff */
 
 			// Set the date notified
 			$signoff->setDateNotified(Core::getCurrentDate());
@@ -86,7 +102,7 @@ class CopyeditingUserForm extends Form {
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph);
 		$email->setBody($this->getData('personalMessage'));
-		$user =& $userDao->getUser($userId);
+		$user =& $userDao->getUser($userIdAndGroup[0]);
 		$email->addRecipient($user->getEmail(), $user->getFullName());
 		$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_COPYEDIT, MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
 		$email->send();
