@@ -46,7 +46,7 @@ class ReviewerGridHandler extends GridHandler {
 	//
 	/**
 	 * Get the monograph associated with this reviewer grid.
-	 * @return Monograph
+	 * @return SeriesEditorSubmission
 	 */
 	function &getSubmission() {
 		return $this->_submission;

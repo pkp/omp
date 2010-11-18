@@ -138,13 +138,11 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			// Get the session and the user group id currently used
 			$sessionMgr =& SessionManager::getManager();
 			$session =& $sessionMgr->getUserSession();
-			$actingAsUserGroupId = $session->getActingAsUserGroupId();
 
 			// Create new monograph
 			$this->monograph = new Monograph();
 			$this->monograph->setLocale($this->getData('locale'));
 			$this->monograph->setUserId($user->getId());
-			$this->monograph->setUserGroupId($actingAsUserGroupId);
 			$this->monograph->setPressId($press->getId());
 			$this->monograph->setSeriesId($this->getData('seriesId'));
 			$this->monograph->stampStatusModified();

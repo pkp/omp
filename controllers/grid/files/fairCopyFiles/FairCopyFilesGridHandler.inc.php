@@ -22,9 +22,6 @@ class FairCopyFilesGridHandler extends GridHandler {
 	/** Boolean flag if grid is selectable **/
 	var $_isSelectable;
 
-	/** Boolean flag for showing role columns **/
-	var $_showRoleColumns;
-
 	/**
 	 * Constructor
 	 */

@@ -24,9 +24,6 @@ class ReviewFilesGridHandler extends GridHandler {
 	/** Boolean flag if user can upload file to grid **/
 	var $_canUpload;
 
-	/** Boolean flag for showing role columns **/
-	var $_showRoleColumns;
-
 	/**
 	 * Constructor
 	 */
@@ -70,27 +67,10 @@ class ReviewFilesGridHandler extends GridHandler {
 		return $this->_canUpload;
 	}
 
-	/**
-	 * Set the show role columns flag
-	 * @param $showRoleColumns bool
-	 */
-	function setShowRoleColumns($showRoleColumns) {
-		$this->_showRoleColumns = $showRoleColumns;
-	}
-
-	/**
-	 * Get the show role columns flag
-	 * @return bool
-	 */
-	function getShowRoleColumns() {
-		return $this->_showRoleColumns;
-	}
-
 
 	//
 	// Implement template methods from PKPHandler
 	//
-
 	/*
 	 * Configure the grid
 	 * @param $request PKPRequest
@@ -109,10 +89,6 @@ class ReviewFilesGridHandler extends GridHandler {
 		// Set the Can upload boolean flag
 		$canUpload = (boolean)$request->getUserVar('canUpload');
 		$this->setCanUpload($canUpload);
-
-		// Set the show role columns boolean flag
-		$showRoleColumns = (boolean)$request->getUserVar('showRoleColumns');
-		$this->setShowRoleColumns($showRoleColumns);
 
 		$reviewType = (int)$request->getUserVar('reviewType');
 		$round = (int)$request->getUserVar('round');
@@ -215,45 +191,13 @@ class ReviewFilesGridHandler extends GridHandler {
 			$cellProvider)
 		);
 
-		// either show the role columns or show the file type
-		if ( $this->getShowRoleColumns() ) {
-			$session =& $request->getSession();
-			$actingAsUserGroupId = $session->getActingAsUserGroupId();
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-			$actingAsUserGroup =& $userGroupDao->getById($actingAsUserGroupId);
-
-			// add a column for the role the user is acting as
-			$this->addColumn(
-				new GridColumn(
-					$actingAsUserGroupId,
-					null,
-					$actingAsUserGroup->getLocalizedAbbrev(),
-					'controllers/grid/common/cell/roleCell.tpl',
-					$cellProvider
-				)
-			);
-
-			// Add another column for the submitter's role
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$monograph =& $monographDao->getMonograph($monographId);
-			$uploaderUserGroup =& $userGroupDao->getById($monograph->getUserGroupId());
-			$this->addColumn(
-				new GridColumn(
-					$uploaderUserGroup->getId(),
-					null,
-					$uploaderUserGroup->getLocalizedAbbrev(),
-					'controllers/grid/common/cell/roleCell.tpl',
-					$cellProvider
-				)
-			);
-		} else {
-			$this->addColumn(new GridColumn('type',
-				'common.type',
-				null,
-				'controllers/grid/gridCell.tpl',
-				$cellProvider)
-			);
-		}
+		// Show the file type.
+		$this->addColumn(new GridColumn('type',
+			'common.type',
+			null,
+			'controllers/grid/gridCell.tpl',
+			$cellProvider)
+		);
 	}
 
 	//

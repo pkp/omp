@@ -57,22 +57,6 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * Set the submitter user group Id
-	 * @param $userGroupId int
-	 */
-	function setUserGroupId($userGroupId) {
-		$this->setData('userGroupId', $userGroupId);
-	}
-
-	/**
-	 * Get the submitter user group Id
-	 * @return int
-	 */
-	function &getUserGroupId() {
-		return $this->getData('userGroupId');
-	}
-
-	/**
 	 * get press id
 	 * @return int
 	 */
