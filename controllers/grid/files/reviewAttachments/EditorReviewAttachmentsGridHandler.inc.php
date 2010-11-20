@@ -86,7 +86,7 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 		$monographId = (int) $request->getUserVar('monographId');
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getByMonographId($monographId, MONOGRAPH_FILE_REVIEW);
+		$monographFiles =& $monographFileDao->getByMonographId($monographId, MONOGRAPH_FILE_ATTACHMENT);
 		$rowData = array();
 		foreach ($monographFiles as $monographFile) {
 			$rowData[$monographFile->getFileId()] = $monographFile;

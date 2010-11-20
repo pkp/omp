@@ -248,20 +248,23 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$oldId = $request->getUserVar('submissionFileId');
 		}
 
-
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($fileId);
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
+		$existingMonographFile =& $monographFileDao->getMonographFile($oldId);
 
 		// Set ID and revision of new file
 		$revision = $monographFileDao->setAsLatestRevision($newId, $oldId);
+		$newMonographFile =& $monographFileDao->getMonographFile($oldId); // This will get the newly revised file
 
+		// Copy the monograph file type over to the new file
+		$newMonographFile->setMonographFileType($existingMonographFile->getMonographFileType());
+		$monographFileDao->updateMonographFile($newMonographFile);
 
 		if($fileId) {
 			return array($oldId, $revision);
 		} else {
 			// Need to reset the modal's URLs to the new file id
 			$router =& $request->getRouter();
-			$monographId = $monographFile->getMonographId();
+			$monographId = $newMonographFile->getMonographId();
 			$additionalAttributes = array(
 				'fileFormUrl' => $router->url($request, null, null, 'displayFileForm', null, array('monographId' => $monographId, 'fileId' => $newId)),
 				'metadataUrl' => $router->url($request, null, null, 'editMetadata', null, array('monographId' => $monographId, 'fileId' => $newId)),

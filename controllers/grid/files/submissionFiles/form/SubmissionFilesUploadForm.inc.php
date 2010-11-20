@@ -139,7 +139,7 @@ class SubmissionFilesUploadForm extends Form {
 		if ($monographFileManager->uploadedFileExists($uploadedFile)) {
 			$submissionFileId = $monographFileManager->uploadMonographFile($uploadedFile, $fileStage, $fileId, $monographFileTypeId);
 
-			if (isset($monographFileTypeId)) {
+			if (!empty($monographFileTypeId)) {
 				$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
 				$fileType =& $monographFileTypeDao->getById($monographFileTypeId);
 

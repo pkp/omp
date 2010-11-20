@@ -438,8 +438,11 @@ class MonographFileManager extends FileManager {
 
 		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO'); /* @var $monographFileTypeDao MonographFileTypeDAO */
 		$monographFileType =& $monographFileTypeDao->getById($typeId);
-
-		$newFileName = $monographFileType->getDesignation($primaryLocale).'_'.date('Y', time()).'-'.$monographFileType->getName($primaryLocale).'-'.$monographFile->getFileId().'-'.$monographFile->getRevision().'.'.$extension;
+		if(isset($monographFileType)) {
+			$newFileName = $monographFileType->getDesignation($primaryLocale).'_'.date('Y', time()).'-'.$monographFileType->getName($primaryLocale).'-'.$monographFile->getFileId().'-'.$monographFile->getRevision().'.'.$extension;
+		} else {
+			$newFileName = date('Y', time()).'-'.$monographFile->getFileId().'-'.$monographFile->getRevision().'.'.$extension;
+		}
 		$monographFile->setFileName($newFileName);
 		return $newFileName;
 	}

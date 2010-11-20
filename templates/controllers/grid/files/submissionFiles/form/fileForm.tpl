@@ -63,7 +63,7 @@
 			// General settings
 			setup: attachCallbacks,
 			runtimes : 'html5,flash,silverlight,html4',
-			url : '{/literal}{url op="uploadFile" monographId=$monographId fileId=$fileId escape=false}{literal}',
+			url : $("#uploadForm").attr('action'),
 			max_file_size : '20mb',
 			multi_selection: false,
 			file_data_name: {/literal}{if $fileStage == $smarty.const.MONOGRAPH_FILE_COPYEDIT}'copyeditingFile'{else}'submissionFile'{/if}{literal},

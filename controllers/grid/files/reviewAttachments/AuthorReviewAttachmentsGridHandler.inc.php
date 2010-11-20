@@ -52,7 +52,7 @@ class AuthorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 		$monographId = $monograph->getId();
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getByMonographId($monographId, MONOGRAPH_FILE_REVIEW);
+		$monographFiles =& $monographFileDao->getByMonographId($monographId, MONOGRAPH_FILE_ATTACHMENT);
 		$rowData = array();
 
 		foreach ($monographFiles as $monographFile) {
