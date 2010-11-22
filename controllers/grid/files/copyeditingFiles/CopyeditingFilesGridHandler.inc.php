@@ -28,7 +28,6 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	function CopyeditingFilesGridHandler() {
 		parent::CategoryGridHandler();
 
-		$this->addRoleAssignment(ROLE_ID_REVIEWER, array());
 		$this->addRoleAssignment(ROLE_ID_AUTHOR,
 			$authorOperations = array('fetchGrid', 'addCopyeditedFile', 'editCopyeditedFile', 'uploadCopyeditedFile', 'returnSignoffRow', 'returnFileRow', 'downloadFile', 'deleteFile'));
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
