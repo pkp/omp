@@ -23,14 +23,9 @@ class PressPolicy extends PolicySet {
 	function PressPolicy(&$request) {
 		parent::PolicySet();
 
-		// 1) Ensure we're in a press
+		// Ensure we're in a press
 		import('lib.pkp.classes.security.authorization.ContextRequiredPolicy');
 		$this->addPolicy(new ContextRequiredPolicy($request, 'user.authorization.noPress'));
-
-		// 2) Ensure the user is logged in with a
-		//    valid user group id for this press.
-		import('lib.pkp.classes.security.authorization.LoggedInWithValidUserGroupPolicy');
-		$this->addPolicy(new LoggedInWithValidUserGroupPolicy($request));
 	}
 }
 
