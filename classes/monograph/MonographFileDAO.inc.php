@@ -233,7 +233,6 @@ class MonographFileDAO extends DAO {
 	 * @return array MonographFiles
 	 */
 	function &getMonographFilesByAssocId($assocId, $type) {
-		import('classes.file.MonographFileManager');
 		$monographFiles = array();
 
 		$result =& $this->retrieve(

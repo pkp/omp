@@ -149,7 +149,8 @@ class MonographMailTemplate extends MailTemplate {
 			$monographFileManager->temporaryFileToMonographFile(
 				$attachment,
 				MONOGRAPH_FILE_ATTACHMENT,
-				$logEntryId
+				$logEntryId,
+				ASSOC_TYPE_MONOGRAPH_EMAIL_LOG_ENTRY
 			);
 		}
 	}
