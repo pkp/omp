@@ -54,7 +54,7 @@ class SubmissionFilesUploadForm extends Form {
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 			$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
 			$this->_data['monographFileName'] = $monographFile->getOriginalFileName();
-			$this->_data['currentFileType'] = $monographFile->getMonographFileType();
+			$this->_data['currentFileType'] = $monographFile->getMonographFileTypeId();
 		}
 
 		$context =& $request->getContext();

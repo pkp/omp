@@ -256,7 +256,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$newMonographFile =& $monographFileDao->getMonographFile($oldId); // This will get the newly revised file
 
 		// Copy the monograph file type over to the new file
-		$newMonographFile->setMonographFileType($existingMonographFile->getMonographFileType());
+		$newMonographFile->setMonographFileTypeId($existingMonographFile->getMonographFileTypeId());
 		$monographFileDao->updateMonographFile($newMonographFile);
 
 		if($fileId) {
@@ -289,7 +289,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
 		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-		$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileType());
+		$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileTypeId());
 		$monographId = $monographFile->getMonographId();
 
 		switch ($fileType->getCategory()) {
@@ -330,7 +330,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
 		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-		$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileType());
+		$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileTypeId());
 		$monographId = $monographFile->getMonographId();
 
 		if(isset($monographFile) && $monographFile->getLocalizedName() != '') { //Name exists, just updating it

@@ -44,7 +44,7 @@ class SubmissionFilesGridCellProvider extends DataObjectGridCellProvider {
 			);
 
 			$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-			$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileType());
+			$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileTypeId());
 			$action =& new LinkAction(
 							'downloadFile',
 							LINK_ACTION_MODE_LINK,
@@ -85,7 +85,7 @@ class SubmissionFilesGridCellProvider extends DataObjectGridCellProvider {
 				break;
 			case 'type':
 				$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-				$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileType());
+				$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileTypeId());
 				return array('label' => $fileType->getLocalizedName());
 				break;
 		}

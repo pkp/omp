@@ -46,15 +46,10 @@ class MonographFile extends SubmissionFile {
 	 * @return string
 	 */
 	function getFilePath() {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getMonograph($this->getMonographId());
-		$pressId = $monograph->getPressId();
-
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($this->getMonographId());
-
-		return Config::getVar('files', 'files_dir') . '/presses/' . $pressId .
-		'/monographs/' . $this->getMonographId() . '/' . $monographFileManager->typeToPath($this->getType()) . '/' . $this->getFileName();
+		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
+		$monograph =& $monographDao->getMonograph($this->getMonographId());
+		return $monograph->getFilePath() . MonographFileManager::typeToPath($this->getType()) . '/' . $this->getFileName();
 	}
 
 
@@ -185,7 +180,7 @@ class MonographFile extends SubmissionFile {
 	 * Foreign key into monograph_file_types table
 	 * @param $monographFileTypeId int
 	 */
-	function setMonographFileType($monographFileTypeId) {
+	function setMonographFileTypeId($monographFileTypeId) {
 		$this->setData('monographFileTypeId', $monographFileTypeId);
 	}
 
@@ -194,7 +189,7 @@ class MonographFile extends SubmissionFile {
 	 * Foreign key into monograph_file_types table
 	 * @return int
 	 */
-	function getMonographFileType() {
+	function getMonographFileTypeId() {
 		return $this->getData('monographFileTypeId');
 	}
 }

@@ -284,7 +284,7 @@ class MonographFileDAO extends DAO {
 		$monographFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
 		$monographFile->setDateModified($this->datetimeFromDB($row['date_modified']));
 		$monographFile->setViewable($row['viewable']);
-		$monographFile->setMonographFileType($row['monograph_file_type']);
+		$monographFile->setMonographFileTypeId($row['monograph_file_type_id']);
 
 		$this->getDataObjectSettings('monograph_file_settings', 'file_id', $row['file_id'], $monographFile);
 
@@ -314,7 +314,7 @@ class MonographFileDAO extends DAO {
 			$monographFile->getUserGroupId(),
 			$monographFile->getAssocType(),
 			$monographFile->getAssocId(),
-			$monographFile->getMonographFileType()
+			$monographFile->getMonographFileTypeId()
 		);
 
 		if ($fileId) {
@@ -323,7 +323,7 @@ class MonographFileDAO extends DAO {
 
 		$this->update(
 			sprintf('INSERT INTO monograph_files
-				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, type, date_uploaded, date_modified, viewable, user_group_id, assoc_type, assoc_id, monograph_file_type)
+				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, type, date_uploaded, date_modified, viewable, user_group_id, assoc_type, assoc_id, monograph_file_type_id)
 				VALUES
 				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
@@ -360,7 +360,7 @@ class MonographFileDAO extends DAO {
 					user_group_id = ?,
 					assoc_type = ?,
 					assoc_id = ?,
-					monograph_file_type = ?
+					monograph_file_type_id = ?
 				WHERE file_id = ? AND revision = ?',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
 			array(
@@ -376,7 +376,7 @@ class MonographFileDAO extends DAO {
 				$monographFile->getUserGroupId(),
 				$monographFile->getAssocType(),
 				$monographFile->getAssocId(),
-				$monographFile->getMonographFileType(),
+				$monographFile->getMonographFileTypeId(),
 				$monographFile->getFileId(),
 				$monographFile->getRevision()
 			)

@@ -19,6 +19,13 @@ import('classes.press.DefaultSettingDAO');
 class MonographFileTypeDAO extends DefaultSettingDAO
 {
 	/**
+	 * @see DefaultSettingsDAO::getPrimaryKeyColumnName()
+	 */
+	function getPrimaryKeyColumnName() {
+		return 'monograph_file_type_id';
+	}
+
+	/**
 	 * Retrieve a monograph file type by type id.
 	 * @param $typeId int
 	 * @return MonographFileType
@@ -29,7 +36,7 @@ class MonographFileTypeDAO extends DefaultSettingDAO
 			$sqlParams[] = $pressId;
 		}
 
-		$result =& $this->retrieve('SELECT * FROM monograph_file_types WHERE entry_id = ?'. ($pressId ? ' AND press_id = ?' : ''), $sqlParams);
+		$result =& $this->retrieve('SELECT * FROM monograph_file_types WHERE monograph_file_type_id = ?'. ($pressId ? ' AND press_id = ?' : ''), $sqlParams);
 		$returner = null;
 		if ($result->RecordCount() != 0) {
 			$returner =& $this->_fromRow($result->GetRowAssoc(false));
@@ -65,7 +72,7 @@ class MonographFileTypeDAO extends DefaultSettingDAO
 	 */
 	function updateLocaleFields(&$monographFileType) {
 		$this->updateDataObjectSettings('monograph_file_type_settings', $monographFileType, array(
-			'entry_id' => $monographFileType->getId()
+			'monograph_file_type_id' => $monographFileType->getId()
 		));
 	}
 
@@ -84,11 +91,11 @@ class MonographFileTypeDAO extends DefaultSettingDAO
 	 */
 	function &_fromRow(&$row) {
 		$monographFileType = $this->newDataObject();
-		$monographFileType->setId($row['entry_id']);
+		$monographFileType->setId($row['monograph_file_type_id']);
 		$monographFileType->setSortable($row['sortable']);
 		$monographFileType->setCategory($row['category']);
 
-		$this->getDataObjectSettings('monograph_file_type_settings', 'entry_id', $row['entry_id'], $monographFileType);
+		$this->getDataObjectSettings('monograph_file_type_settings', 'monograph_file_type_id', $row['monograph_file_type_id'], $monographFileType);
 
 		HookRegistry::call('MonographFileTypeDAO::_fromRow', array(&$monographFileType, &$row));
 
@@ -142,7 +149,7 @@ class MonographFileTypeDAO extends DefaultSettingDAO
 	 */
 	function deleteById($entryId) {
 		return $this->update(
-			'UPDATE monograph_file_types SET enabled = ? WHERE entry_id = ?', array(0, $entryId)
+			'UPDATE monograph_file_types SET enabled = ? WHERE monograph_file_type_id = ?', array(0, $entryId)
 		);
 	}
 
@@ -151,7 +158,7 @@ class MonographFileTypeDAO extends DefaultSettingDAO
 	 * @return int
 	 */
 	function getInsertMonographFileTypeId() {
-		return $this->getInsertId('monograph_file_types', 'entry_id');
+		return $this->getInsertId('monograph_file_types', 'monograph_file_type_id');
 	}
 
 	/**

@@ -29,13 +29,10 @@ import('lib.pkp.classes.file.FileManager');
 class MonographFileManager extends FileManager {
 
 	/** @var string the path to location of the files */
-	var $filesDir;
+	var $_filesDir;
 
 	/** @var int the ID of the associated monograph */
-	var $monographId;
-
-	/** @var Monograph the associated monograph */
-	var $monograph;
+	var $_monographId;
 
 	/**
 	 * Constructor.
@@ -43,13 +40,7 @@ class MonographFileManager extends FileManager {
 	 * @param $monographId int
 	 */
 	function MonographFileManager($monographId) {
-		$this->monographId = $monographId;
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getMonograph($monographId);
-		$this->monograph =& $monograph;
-		$pressId = $monograph->getPressId();
-		$this->filesDir = Config::getVar('files', 'files_dir') . '/presses/' . $pressId .
-		'/monographs/' . $monographId . '/';
+		$this->_monographId = $monographId;
 	}
 
 	//
@@ -60,7 +51,7 @@ class MonographFileManager extends FileManager {
 	 * @return integer
 	 */
 	function getMonographId() {
-		return $this->monographId;
+		return $this->_monographId;
 	}
 
 	/**
@@ -68,15 +59,14 @@ class MonographFileManager extends FileManager {
 	 * @return string
 	 */
 	function getFilesDir() {
-		return $this->filesDir;
-	}
-
-	/**
-	 * Get the monograph.
-	 * @return Monograph
-	 */
-	function &getMonograph() {
-		return $this->monograph;
+		if (empty($this->_filesDir)) {
+			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
+			$monograph =& $monographDao->getMonograph($this->getMonographId());
+			assert(is_a($monograph, 'Monograph'));
+			$pressId = $monograph->getPressId();
+			$this->_filesDir = $monograph->getFilePath();
+		}
+		return $this->_filesDir;
 	}
 
 
@@ -133,13 +123,8 @@ class MonographFileManager extends FileManager {
 	 */
 	function readFile($fileId, $revision = null, $output = false) {
 		$monographFile =& $this->getFile($fileId, $revision);
-
 		if (isset($monographFile)) {
-			$fileType = $monographFile->getFileType();
-			$filePath = $this->getFilesDir() . $monographFile->getType() . '/' . $monographFile->getFileName();
-
-			return parent::readFile($filePath, $output);
-
+			return parent::readFile($monographFile->getFilePath(), $output);
 		} else {
 			return false;
 		}
@@ -153,26 +138,30 @@ class MonographFileManager extends FileManager {
 	 * @return int number of files removed
 	 */
 	function deleteFile($fileId, $revision = null) {
+		// Identify the files to be deleted.
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
-
-		$files = array();
+		$monographFiles = array();
 		if (isset($revision)) {
-			$file =& $monographFileDao->getMonographFile($fileId, $revision);
-			if (isset($file)) {
-				$files[] = $file;
+			// Delete only a single revision of a file.
+			$monographFileRevision =& $monographFileDao->getMonographFile($fileId, $revision);
+			if (isset($monographFileRevision)) {
+				$monographFiles[] = $monographFileRevision;
 			}
-
 		} else {
-			$files =& $monographFileDao->getMonographFileRevisions($fileId, null, false);
+			// Delete all revisions of a file.
+			$monographFiles =& $monographFileDao->getMonographFileRevisions($fileId, null, false);
 		}
 
-		foreach ($files as $f) {
-			parent::deleteFile($this->getFilesDir() . $f->getType() . '/' . $f->getFileName());
+		// Delete the files on the file system.
+		foreach ($monographFiles as $monographFile) {
+			parent::deleteFile($monographFile->getFilePath());
 		}
 
+		// Delete the files in the database.
 		$monographFileDao->deleteMonographFileById($fileId, $revision);
 
-		return count($files);
+		// Return the number of deleted files.
+		return count($monographFiles);
 	}
 
 	/**
@@ -196,19 +185,17 @@ class MonographFileManager extends FileManager {
 			// Make sure that the file belongs to the monograph.
 			if ($monographFile->getMonographId() != $this->getMonographId()) fatalError('Invalid file id!');
 
-			// Retrieve file information.
-			$fileType = $monographFile->getFileType();
-			$filePath = $monographFile->getFilePath();
-
-			// Mark the file as viewed by this user
+			// Mark the file as viewed by this user.
 			$sessionManager =& SessionManager::getManager();
 			$session =& $sessionManager->getUserSession();
 			$user =& $session->getUser();
 			$viewsDao =& DAORegistry::getDAO('ViewsDAO');
 			$viewsDao->recordView(ASSOC_TYPE_MONOGRAPH_FILE, $fileId, $user->getId());
 
-			// Send the file to the user
-			$returner = parent::downloadFile($filePath, $fileType, $inline);
+			// Send the file to the user.
+			$filePath = $monographFile->getFilePath();
+			$mediaType = $monographFile->getFileType();
+			$returner = parent::downloadFile($filePath, $mediaType, $inline);
 		}
 
 		return $returner;
@@ -283,7 +270,7 @@ class MonographFileManager extends FileManager {
 	 */
 	function temporaryFileToMonographFile(&$temporaryFile, $type, $assocId, $assocType) {
 		// Instantiate and pre-populate the new target monograph file.
-		$monographFile =& $this->_instantiateMonographFile(null, $this->getMonographId(), $type, null, $assocId, $assocType);
+		$monographFile =& $this->_instantiateMonographFile(null, $type, null, $assocId, $assocType);
 
 		// Transfer data from the temporary file to the monograph file.
 		$monographFile->setFileType($temporaryFile->getFileType());
@@ -310,7 +297,7 @@ class MonographFileManager extends FileManager {
 	 */
 	function _handleUpload($fileName, $type, $fileId = null, $monographFileTypeId = null, $assocId = null, $assocType = null) {
 		// Instantiate and pre-populate a new monograph file object.
-		$monographFile = $this->_instantiateMonographFile($fileId, $this->getMonographId(), $type, $monographFileTypeId, $assocId, $assocType);
+		$monographFile = $this->_instantiateMonographFile($fileId, $type, $monographFileTypeId, $assocId, $assocType);
 
 		// Retrieve file information from the uploaded file.
 		assert(isset($_FILES[$fileName]));
@@ -329,15 +316,16 @@ class MonographFileManager extends FileManager {
 
 	/**
 	 * Routine to instantiate and pre-populate a new monograph file.
-	 * @param $monographId integer
+	 * @param $fileId integer
 	 * @param $type integer
 	 * @param $assocId integer
 	 * @param $assocType integer
 	 * @return MonographFile
 	 */
-	function &_instantiateMonographFile($fileId, $monographId, $type, $monographFileTypeId, $assocId, $assocType) {
+	function &_instantiateMonographFile($fileId, $type, $monographFileTypeId, $assocId, $assocType) {
 		// Instantiate a new monograph file.
 		$monographFile = new MonographFile();
+		$monographFile->setMonographId($this->getMonographId());
 
 		// Do we create a new file or a new revision of an existing file?
 		if ($fileId) {
@@ -354,13 +342,12 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileName('unknown');
 		$monographFile->setFileSize(0);
 
-		// Set monograph and process type.
-		$monographFile->setMonographId($monographId);
+		// Set the file use case type.
 		$monographFile->setType($type);
 
 		// Set the monograph genre (if given).
 		if(isset($monographFileTypeId)) {
-			$monographFile->setMonographFileType($monographFileTypeId);
+			$monographFile->setMonographFileTypeId($monographFileTypeId);
 		}
 
 		// Set modification dates to the current system date.
@@ -398,7 +385,7 @@ class MonographFileManager extends FileManager {
 
 		// Determine the final destination of the file (requires
 		// the name we just generated).
-		$targetFile = $this->getFilesDir().$this->typeToPath($monographFile->getType()).'/'.$monographFile->getFileName();
+		$targetFile = $monographFile->getFilePath();
 
 		// If the "copy only" flag is set then copy the file from its
 		// current place to the target destination. Otherwise upload
@@ -431,7 +418,7 @@ class MonographFileManager extends FileManager {
 	function _generateAndPopulateFileName(&$monographFile) {
 		// If the file has a file genre set then start the
 		// file name with human readable genre information.
-		$monographFileTypeId = $monographFile->getMonographFileType();
+		$monographFileTypeId = $monographFile->getMonographFileTypeId();
 		if ($monographFileTypeId) {
 			$primaryLocale = Locale::getPrimaryLocale();
 			$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO'); /* @var $monographFileTypeDao MonographFileTypeDAO */

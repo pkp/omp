@@ -149,7 +149,7 @@ class CopyeditingFileForm extends Form {
 				$copyeditedFile =& $monographFileDao->getMonographFile($copyeditedFileId);
 				// Transfer some of the original file's metadata over to the new file
 				$copyeditedFile->setName($copyeditingFile->getLocalizedName(), Locale::getLocale());
-				$copyeditedFile->setMonographFileType($copyeditingFile->getMonographFileType());
+				$copyeditedFile->setMonographFileTypeId($copyeditingFile->getMonographFileTypeId());
 				$monographFileDao->updateMonographFile($copyeditedFile);
 			}
 

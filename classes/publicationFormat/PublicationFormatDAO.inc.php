@@ -19,12 +19,19 @@ import('classes.press.DefaultSettingDAO');
 class PublicationFormatDAO extends DefaultSettingDAO
 {
 	/**
+	 * @see DefaultSettingsDAO::getPrimaryKeyColumnName()
+	 */
+	function getPrimaryKeyColumnName() {
+		return 'publication_format_id';
+	}
+
+	/**
 	 * Retrieve a publication format by type id.
 	 * @param $formatId int
 	 * @return PublicationFormat
 	 */
 	function &getById($formatId){
-		$result =& $this->retrieve('SELECT * FROM publication_formats WHERE entry_id = ?', $formatId);
+		$result =& $this->retrieve('SELECT * FROM publication_formats WHERE publication_format_id = ?', $formatId);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -68,7 +75,7 @@ class PublicationFormatDAO extends DefaultSettingDAO
 	 */
 	function updateLocaleFields(&$publicationFormat) {
 		$this->updateDataObjectSettings('publication_format_settings', $publicationFormat, array(
-			'entry_id' => $publicationFormat->getId()
+			'publication_format_id' => $publicationFormat->getId()
 		));
 	}
 
@@ -87,9 +94,9 @@ class PublicationFormatDAO extends DefaultSettingDAO
 	 */
 	function &_fromRow(&$row) {
 		$publicationFormat = $this->newDataObject();
-		$publicationFormat->setId($row['entry_id']);
+		$publicationFormat->setId($row['publication_format_id']);
 
-		$this->getDataObjectSettings('publication_format_settings', 'entry_id', $row['entry_id'], $publicationFormat);
+		$this->getDataObjectSettings('publication_format_settings', 'publication_format_id', $row['publication_format_id'], $publicationFormat);
 
 		return $publicationFormat;
 	}
@@ -133,7 +140,7 @@ class PublicationFormatDAO extends DefaultSettingDAO
 	 */
 	function deleteById($entryId) {
 		return $this->update(
-			'UPDATE publication_formats SET enabled = ? WHERE entry_id = ?', array(0, $entryId)
+			'UPDATE publication_formats SET enabled = ? WHERE publication_format_id = ?', array(0, $entryId)
 		);
 	}
 
@@ -142,7 +149,7 @@ class PublicationFormatDAO extends DefaultSettingDAO
 	 * @return int
 	 */
 	function getInsertPublicationFormatId() {
-		return $this->getInsertId('publication_formats', 'entry_id');
+		return $this->getInsertId('publication_formats', 'publication_format_id');
 	}
 
 	/**

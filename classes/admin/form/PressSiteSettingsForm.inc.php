@@ -138,10 +138,10 @@ class PressSiteSettingsForm extends Form {
 
 			// Install default monograph file types
 			$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-			$monographFileTypeDao->installDefaults($pressId, $installedLocales);
+			$monographFileTypeDao->installDefaults($pressId, $installedLocales); /* @var $monographFileTypeDao MonographFileTypeDAO */
 
 			// Install default publication formats
-			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
+			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 			$publicationFormatDao->installDefaults($pressId, $installedLocales);
 
 			// Install default user groups

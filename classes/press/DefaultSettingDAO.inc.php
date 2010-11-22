@@ -39,7 +39,8 @@ class DefaultSettingDAO extends DAO
 	 * @return string
 	 */
 	function getPrimaryKeyColumnName() {
-		return 'entry_id';
+		// Must be implemented by sub-classes.
+		assert(false);
 	}
 
 	/**

@@ -107,7 +107,7 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 			$reviewFilesGridHandler =& new ReviewFilesGridHandler();
 			$reviewFilesGridHandler->initialize($request);
 
-			$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileType());
+			$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileTypeId());
 
 			$row =& $reviewFilesGridHandler->getRowInstance();
 			$row->setId($monographFile->getFileId());

@@ -161,7 +161,7 @@
 	  *
 	  -->
 	<table name="monograph_file_types">
-		<field name="entry_id" type="I8">
+		<field name="monograph_file_type_id" type="I8">
 			<KEY/>
 			<AUTOINCREMENT/>
 		</field>
@@ -182,9 +182,6 @@
 		</field>
 		<field name="entry_key" type="C2" size="30"/>
 		<descr>A press's monograph file types.</descr>
-		<index name="monograph_file_types_entry_id">
-			<col>entry_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -193,7 +190,7 @@
 	  *
 	  -->
 	<table name="monograph_file_type_settings">
-		<field name="entry_id" type="I8">
+		<field name="monograph_file_type_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
@@ -209,11 +206,11 @@
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
 		<descr>Monograph file type settings</descr>
-		<index name="monograph_file_type_settings_entry_id">
-			<col>entry_id</col>
+		<index name="monograph_file_type_settings_monograph_file_type_id">
+			<col>monograph_file_type_id</col>
 		</index>
 		<index name="monograph_file_type_settings_pkey">
-			<col>entry_id</col>
+			<col>monograph_file_type_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE />
@@ -547,7 +544,7 @@
 		<field name="file_type" type="C2" size="255">
 			<NOTNULL/>
 		</field>
-		<field name="monograph_file_type" type="C2" size="255" />
+		<field name="monograph_file_type_id" type="I8" />
 		<field name="file_size" type="I8">
 			<NOTNULL/>
 		</field>
@@ -1004,7 +1001,7 @@
 	  *
 	  -->
 	<table name="publication_formats">
-		<field name="entry_id" type="I8">
+		<field name="publication_format_id" type="I8">
 			<KEY/>
 			<AUTOINCREMENT/>
 		</field>
@@ -1017,9 +1014,6 @@
 		</field>
 		<field name="entry_key" type="C2" size="30"/>
 		<descr>A press's publication formats.</descr>
-		<index name="publication_formats_entry_id">
-			<col>entry_id</col>
-		</index>
 	</table>
 
 	<!--
@@ -1028,7 +1022,7 @@
 	  *
 	  -->
 	<table name="publication_format_settings">
-		<field name="entry_id" type="I8">
+		<field name="publication_format_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
@@ -1045,10 +1039,10 @@
 		</field>
 		<descr>Publication format settings</descr>
 		<index name="publication_format_settings_type_id">
-			<col>entry_id</col>
+			<col>publication_format_id</col>
 		</index>
 		<index name="publication_format_settings_pkey">
-			<col>entry_id</col>
+			<col>publication_format_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE />

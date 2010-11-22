@@ -465,6 +465,16 @@ class Monograph extends Submission {
 				return REVIEW_TYPE_EXTERNAL;
 		}
 	}
+
+	/**
+	 * Return absolute path to the files of this
+	 * monograph on the host filesystem.
+	 * @return string
+	 */
+	function getFilePath() {
+		return Config::getVar('files', 'files_dir') . '/presses/' . $this->getPressId() .
+				'/monographs/' . $this->getId() . '/';
+	}
 }
 
 ?>
