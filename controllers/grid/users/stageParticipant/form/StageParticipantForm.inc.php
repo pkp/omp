@@ -69,10 +69,10 @@ class StageParticipantForm extends Form {
 		$templateMgr =& TemplateManager::getManager();
 		$monograph =& $this->getMonograph();
 
-		/* Get the current possible roles for the submissions current stage
-		  This will populate a drop-down which will reload the user
-		  listbuilder (based on the selected role) */
-		$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO');
+		// Get the current possible roles for the submissions current
+		// stage. This will populate a drop-down which will reload the user
+		// listbuilder (based on the selected role).
+		$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO'); /* @var $userGroupStageAssignmentDao UserGroupStageAssignmentDAO */
 		$userGroups =& $userGroupStageAssignmentDao->getUserGroupsByStage($monograph->getPressId(), $monograph->getCurrentStageId());
 
 		$userGroupOptions = array();

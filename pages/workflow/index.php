@@ -17,14 +17,10 @@
 
 
 switch ($op) {
-	// FIXME: Consolidate these two operations into a single workflow handler - see #6091.
-	case 'copyediting':
-		define('HANDLER_CLASS', 'CopyeditingHandler');
-		import('pages.workflow.CopyeditingHandler');
-		break;
 	case 'review':
-		define('HANDLER_CLASS', 'ReviewHandler');
-		import('pages.workflow.ReviewHandler');
+	case 'copyediting':
+		define('HANDLER_CLASS', 'WorkflowHandler');
+		import('pages.workflow.WorkflowHandler');
 		break;
 }
 
