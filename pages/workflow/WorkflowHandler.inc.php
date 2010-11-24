@@ -25,7 +25,7 @@ class WorkflowHandler extends Handler {
 		parent::Handler();
 
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array('review', 'copyediting'));
+				array('review', 'copyediting', 'production'));
 	}
 
 
@@ -39,6 +39,25 @@ class WorkflowHandler extends Handler {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->_identifyStageId($request)));
 		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	/**
+	 * @see PKPHandler::initialize()
+	 */
+	function initialize(&$request, $args) {
+		$this->setupTemplate();
+		$templateMgr =& TemplateManager::getManager();
+
+		// Assign the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$templateMgr->assign_by_ref('monograph', $monograph);
+
+		// Assign the stage id.
+		$stageId = $this->_identifyStageId($request);
+		$templateMgr->assign('stageId', $stageId);
+
+		// Call parent method.
+		parent::initialize($request, $args);
 	}
 
 	/**
@@ -59,62 +78,37 @@ class WorkflowHandler extends Handler {
 	 * @param $args array
 	 */
 	function review($args, &$request) {
-		$this->setupTemplate();
-		$monographId = (int) array_shift($args);
-		$selectedRound = (int) array_shift($args);
-
 		// Retrieve the authorized submission.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		$templateMgr =& TemplateManager::getManager();
-		// Get the review round currently being looked at
-		$currentReviewType = $monograph->getCurrentReviewType();
+		// Retrieve and validate the review round currently being looked at.
+		$selectedRound = (int) array_shift($args);
 		$currentRound = $monograph->getCurrentRound();
-		if(empty($selectedRound) || $selectedRound > $currentRound) {
+		if($selectedRound < 1 || $selectedRound > $currentRound) {
 			$selectedRound = $currentRound; // Make sure round is not higher than the monograph's latest round
 		}
-
-		// Grid actions
-		$actionArgs = array('monographId' => $monographId,
-							'reviewType' => $currentReviewType,
-							'round' => $currentRound);
-
-		// import action class
-		import('lib.pkp.classes.linkAction.LinkAction');
-		$dispatcher =& $this->getDispatcher();
-
-		$decisions = array(SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array('operation' => 'sendReviews', 'name' => 'requestRevisions', 'title' => 'editor.monograph.decision.requestRevisions'),
-						SUBMISSION_EDITOR_DECISION_RESUBMIT => array('operation' => 'sendReviews', 'name' => 'resubmit', 'title' => 'editor.monograph.decision.resubmit'),
-						SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array('operation' => 'promote', 'name' => 'externalReview', 'title' => 'editor.monograph.decision.externalReview'),
-						SUBMISSION_EDITOR_DECISION_ACCEPT => array('operation' => 'promote', 'name' => 'accept', 'title' => 'editor.monograph.decision.accept'),
-						SUBMISSION_EDITOR_DECISION_DECLINE => array('operation' => 'sendReviews', 'name' => 'decline', 'title' => 'editor.monograph.decision.decline'));
-
-		// Iterate through possible editor decisions, creating link actions for each decision to pass to template
-		foreach($decisions as $decision => $action) {
-			$submitAction = ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT || $decision == SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW) ? LINK_ACTION_TYPE_REDIRECT : null;
-			$actionArgs['decision'] = $decision;
-
-			$editorActions[] =& new LinkAction(
-				$action['name'],
-				LINK_ACTION_MODE_MODAL,
-				$submitAction,
-				$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', $action['operation'], null, $actionArgs),
-				$action['title']
-			);
-		}
-
-
-		$templateMgr->assign('editorActions', $editorActions);
-		$templateMgr->assign('currentReviewType', $currentReviewType);
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentRound', $currentRound);
 		$templateMgr->assign('selectedRound', $selectedRound);
-		$templateMgr->assign('monograph', $monograph);
-		$templateMgr->assign('monographId', $monographId);
 
+		// Retrieve and assign the current review type.
+		// FIXME: consolidate review type with review workflow steps, see #6244.
+		$currentReviewType = $monograph->getCurrentReviewType();
+		$templateMgr->assign('currentReviewType', $currentReviewType);
+
+		// Assign editor decision actions to the template.
+		$additionalActionArgs = array(
+			'reviewType' => $currentReviewType,
+			'round' => $currentRound
+		);
+		$this->_assignEditorDecisionActions($request, '_reviewStageDecisions', $additionalActionArgs);
+
+		// Retrieve and assign the review round status.
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRound =& $reviewRoundDao->build($monographId, $currentReviewType, $selectedRound);
+		$reviewRound =& $reviewRoundDao->build($monograph->getId(), $currentReviewType, $selectedRound);
 		$templateMgr->assign('roundStatus', $reviewRound->getStatusKey());
 
+		// Render the view.
 		$templateMgr->display('workflow/review.tpl');
 	}
 
@@ -124,34 +118,23 @@ class WorkflowHandler extends Handler {
 	 * @param $args array
 	 */
 	function copyediting(&$args, &$request) {
-		// Set up the view.
-		$this->setupTemplate();
-		$templateMgr =& TemplateManager::getManager();
-
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$templateMgr->assign('monograph', $monograph);
-		$templateMgr->assign('monographId', $monograph->getId());
-
-		// Grid actions
-		$actionArgs = array('monographId' => $monograph->getId());
-		$dispatcher =& $this->getDispatcher();
-
-		import('lib.pkp.classes.linkAction.LinkAction');
-		$promoteAction =& new LinkAction(
-			'sendToProduction',
-			LINK_ACTION_MODE_CONFIRM,
-			null,
-			$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'sendToProduction', null, $actionArgs),
-			'editor.monograph.decision.sendToProduction',
-			null,
-			null,
-			Locale::translate('editor.monograph.decision.sendToProduction.confirm')
-		);
-		$templateMgr->assign('promoteAction', $promoteAction);
+		// Assign editor decision actions to the template.
+		$this->_assignEditorDecisionActions($request, '_copyeditingStageDecisions');
 
 		// Render the view.
+		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->display('workflow/copyediting.tpl');
+	}
+
+	/**
+	 * Show the production page
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
+	function production(&$args, &$request) {
+		// Render the view.
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->display('workflow/production.tpl');
 	}
 
 
@@ -160,7 +143,6 @@ class WorkflowHandler extends Handler {
 	//
 	/**
 	 * Translate the requested operation to a stage id.
-	 *
 	 * @param $request Request
 	 * @return integer One of the WORKFLOW_STAGE_* constants.
 	 */
@@ -179,6 +161,99 @@ class WorkflowHandler extends Handler {
 		// Translate the operation to a workflow stage identifier.
 		assert(isset($operationAssignment[$operation]));
 		return $operationAssignment[$operation];
+	}
+
+	/**
+	 * Create actions for editor decisions and assign them to the template.
+	 * @param $request Request
+	 * @param $decisionsCallback string the name of the class method
+	 *  that will return the decision configuration.
+	 * @param $additionalArgs array additional action arguments
+	 */
+	function _assignEditorDecisionActions(&$request, $decisionsCallback, $additionalArgs = array()) {
+		// Prepare the action arguments.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$actionArgs = array('monographId' => $monograph->getId());
+		$actionArgs = array_merge($actionArgs, $additionalArgs);
+
+		// Import the link action to define necessary constants before
+		// retrieving the decisions.
+		import('lib.pkp.classes.linkAction.LinkAction');
+
+		// Retrieve the editor decisions.
+		$decisions = call_user_func(array($this, $decisionsCallback));
+
+		// Iterate through the editor decisions and create a link action for each decision.
+		$dispatcher =& $this->getDispatcher();
+		foreach($decisions as $decision => $action) {
+			$actionArgs['decision'] = $decision;
+			$editorActions[] =& new LinkAction(
+				$action['name'],
+				LINK_ACTION_MODE_MODAL,
+				(isset($action['submitAction'])? $action['submitAction'] : null),
+				$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', $action['operation'], null, $actionArgs),
+				$action['title']
+			);
+		}
+
+		// Assign the actions to the template.
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('editorActions', $editorActions);
+	}
+
+	/**
+	 * Define and return the editor decisions for the review stage.
+	 * @return array
+	 */
+	function _reviewStageDecisions() {
+		static $decisions = array(
+			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => array(
+				'operation' => 'sendReviews',
+				'name' => 'requestRevisions',
+				'title' => 'editor.monograph.decision.requestRevisions'
+			),
+			SUBMISSION_EDITOR_DECISION_RESUBMIT => array(
+				'operation' => 'sendReviews',
+				'name' => 'resubmit',
+				'title' => 'editor.monograph.decision.resubmit'
+			),
+			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => array(
+				'operation' => 'promote',
+				'name' => 'externalReview',
+				'title' => 'editor.monograph.decision.externalReview',
+				'submitAction' => LINK_ACTION_TYPE_REDIRECT
+			),
+			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
+				'operation' => 'promote',
+				'name' => 'accept',
+				'title' => 'editor.monograph.decision.accept',
+				'submitAction' => LINK_ACTION_TYPE_REDIRECT
+			),
+			SUBMISSION_EDITOR_DECISION_DECLINE => array(
+				'operation' => 'sendReviews',
+				'name' => 'decline',
+				'title' => 'editor.monograph.decision.decline'
+			)
+		);
+
+		return $decisions;
+	}
+
+	/**
+	 * Define and return the editor decisions for the copyediting stage.
+	 * @return array
+	 */
+	function _copyeditingStageDecisions() {
+		static $decisions = array(
+			SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION => array(
+				'operation' => 'sendToProduction',
+				'name' => 'sendToProduction',
+				'title' => 'editor.monograph.decision.sendToProduction',
+				'submitAction' => LINK_ACTION_TYPE_REDIRECT
+			)
+		);
+
+		return $decisions;
 	}
 }
 ?>

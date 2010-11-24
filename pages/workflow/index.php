@@ -19,6 +19,7 @@
 switch ($op) {
 	case 'review':
 	case 'copyediting':
+	case 'production':
 		define('HANDLER_CLASS', 'WorkflowHandler');
 		import('pages.workflow.WorkflowHandler');
 		break;

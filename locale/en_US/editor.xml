@@ -123,7 +123,6 @@
 	<message key="editor.monograph.decision.resubmitDescription">You are about to create a new review round for this submission.  Please select the files that you wish to move to the next round.  By Default, only the files used in the previous review round are selected.  Also, only reviewers from the previous review round have been selected to participate in the new round.</message>
 	<message key="editor.monograph.decision.decline">Decline Submission</message>
 	<message key="editor.monograph.decision.sendToProduction">Send To Production</message>
-	<message key="editor.monograph.decision.sendToProduction.confirm">Are you sure you wish to send this submission to the production stage?</message>
 	<message key="editor.monograph.decision.externalReview">External Review</message>
 	<message key="editor.monograph.filter">Filter</message>
 	<message key="editor.monograph.roundStatus">Round {$round} Status</message>

@@ -7,7 +7,6 @@
  * Header that contains details about the submission
  *}
 
-{assign var="stageId" value=$monograph->getCurrentStageId()}
 <div class="submissionHeader">
 	<div class="headerTop">
 		<div class="heading">

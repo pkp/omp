@@ -17,14 +17,17 @@
  */
 
 
-/* These constants correspond to editing decision "decision codes". */
+// Review stage decisions actions.
 define('SUBMISSION_EDITOR_DECISION_ACCEPT', 1);
 define('SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW', 2);
 define('SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS', 3);
 define('SUBMISSION_EDITOR_DECISION_RESUBMIT', 4);
 define('SUBMISSION_EDITOR_DECISION_DECLINE', 5);
 
-/* These constants are used as search fields for the various submission lists */
+// Copyediting stage decision actions.
+define('SUBMISSION_EDITOR_DECISION_SEND_TO_PRODUCTION', 6);
+
+// These constants are used as search fields for the various submission lists.
 define('SUBMISSION_FIELD_AUTHOR', 1);
 define('SUBMISSION_FIELD_EDITOR', 2);
 define('SUBMISSION_FIELD_TITLE', 3);
