@@ -149,7 +149,7 @@ class WorkflowHandler extends Handler {
 	function _identifyStageId(&$request) {
 		static $operationAssignment = array(
 			'submission' => WORKFLOW_STAGE_ID_SUBMISSION,
-			'review' => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			'review' => WORKFLOW_STAGE_ID_INTERNAL_REVIEW, // FIXME: What about external reviews? See #6244.
 			'copyediting' => WORKFLOW_STAGE_ID_EDITING,
 			'production' => WORKFLOW_STAGE_ID_PRODUCTION
 		);
@@ -158,8 +158,10 @@ class WorkflowHandler extends Handler {
 		$router =& $request->getRouter();
 		$operation = $router->getRequestedOp($request);
 
+		// Reject rogue requests.
+		if(!isset($operationAssignment[$operation])) fatalError('Invalid stage!');
+
 		// Translate the operation to a workflow stage identifier.
-		assert(isset($operationAssignment[$operation]));
 		return $operationAssignment[$operation];
 	}
 
