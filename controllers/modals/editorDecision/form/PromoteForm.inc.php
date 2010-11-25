@@ -29,8 +29,12 @@ class PromoteForm extends EditorDecisionForm {
 	function PromoteForm($monograph, $decision) {
 		parent::EditorDecisionForm($monograph, 'controllers/modals/editorDecision/form/promoteForm.tpl');
 
-		assert(in_array($decision, array(SUBMISSION_EDITOR_DECISION_ACCEPT, SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW,
-										 SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS, SUBMISSION_EDITOR_DECISION_RESUBMIT, SUBMISSION_EDITOR_DECISION_DECLINE)));
+		assert(in_array($decision,
+				array(
+					SUBMISSION_EDITOR_DECISION_ACCEPT, SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW,
+					SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS, SUBMISSION_EDITOR_DECISION_RESUBMIT,
+					SUBMISSION_EDITOR_DECISION_DECLINE
+				)));
 		$this->setDecision($decision);
 
 		// Validation checks for this form

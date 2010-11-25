@@ -25,7 +25,7 @@ class WorkflowHandler extends Handler {
 		parent::Handler();
 
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array('review', 'copyediting', 'production'));
+				array('submission', 'review', 'copyediting', 'production'));
 	}
 
 
@@ -73,7 +73,21 @@ class WorkflowHandler extends Handler {
 	// Public handler methods
 	//
 	/**
-	 * Show the review page
+	 * Show the submission stage.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function submission($args, &$request) {
+		// Assign editor decision actions to the template.
+		$this->_assignEditorDecisionActions($request, '_submissionStageDecisions');
+
+		// Render the view.
+		$templateMgr =& TemplateManager::getManager();
+ 		$templateMgr->display('workflow/submission.tpl');
+	}
+
+	/**
+	 * Show the review stage
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
@@ -113,7 +127,7 @@ class WorkflowHandler extends Handler {
 	}
 
 	/**
-	 * Show the copyediting page
+	 * Show the copyediting stage
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
@@ -127,7 +141,7 @@ class WorkflowHandler extends Handler {
 	}
 
 	/**
-	 * Show the production page
+	 * Show the production stage
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
@@ -192,9 +206,11 @@ class WorkflowHandler extends Handler {
 			$editorActions[] =& new LinkAction(
 				$action['name'],
 				LINK_ACTION_MODE_MODAL,
-				(isset($action['submitAction'])? $action['submitAction'] : null),
+				(isset($action['submitAction']) ? $action['submitAction'] : null),
 				$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', $action['operation'], null, $actionArgs),
-				$action['title']
+				$action['title'],
+				null,
+				(isset($action['image']) ? $action['image'] : null)
 			);
 		}
 
@@ -204,7 +220,37 @@ class WorkflowHandler extends Handler {
 	}
 
 	/**
-	 * Define and return the editor decisions for the review stage.
+	 * Define and return editor decisions for the submission stage.
+	 * @return array
+	 */
+	function _submissionStageDecisions() {
+		static $decisions = array(
+			SUBMISSION_EDITOR_DECISION_ACCEPT => array(
+				'name' => 'accept',
+				'operation' => 'promote',
+				'title' => 'editor.monograph.decision.accept',
+				'image' => 'promote'
+			),
+			SUBMISSION_EDITOR_DECISION_DECLINE => array(
+				'name' => 'decline',
+				'operation' => 'sendReviews',
+				'title' => 'editor.monograph.decision.decline',
+				'image' => 'delete'
+			),
+			SUBMISSION_EDITOR_DECISION_INITIATE_REVIEW => array(
+				'name' => 'initiateReview',
+				'operation' => 'initiateReview',
+				'title' => 'editor.monograph.initiateReview',
+				'image' => 'add_item',
+				'submitAction' => LINK_ACTION_TYPE_REDIRECT
+			)
+		);
+
+		return $decisions;
+	}
+
+	/**
+	 * Define and return editor decisions for the review stage.
 	 * @return array
 	 */
 	function _reviewStageDecisions() {
@@ -242,7 +288,7 @@ class WorkflowHandler extends Handler {
 	}
 
 	/**
-	 * Define and return the editor decisions for the copyediting stage.
+	 * Define and return editor decisions for the copyediting stage.
 	 * @return array
 	 */
 	function _copyeditingStageDecisions() {

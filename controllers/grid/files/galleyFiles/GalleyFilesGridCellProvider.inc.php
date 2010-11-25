@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @file controllers/grid/files/CopyeditingFiles/CopyeditingFilesGridCellProvider.inc.php
+ * @file controllers/grid/files/GalleyFiles/GalleyFilesGridCellProvider.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class CopyeditingFilesGridCellProvider
- * @ingroup controllers_grid_files_copyeditingFiles
+ * @class GalleyFilesGridCellProvider
+ * @ingroup controllers_grid_files_galleyFiles
  *
- * @brief Subclass class for a CopyeditingFiles grid column's cell provider
+ * @brief Subclass class for a GalleyFiles grid column's cell provider
  */
 
 import('lib.pkp.classes.controllers.grid.GridCellProvider');
 
-class CopyeditingFilesGridCellProvider extends GridCellProvider {
+class GalleyFilesGridCellProvider extends GridCellProvider {
 	/**
 	 * Constructor
 	 */
-	function CopyeditingFilesGridCellProvider() {
+	function GalleyFilesGridCellProvider() {
 		parent::GridCellProvider();
 	}
 

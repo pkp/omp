@@ -10,7 +10,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{include file="submission/header.tpl"}
+{include file="workflow/header.tpl"}
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">

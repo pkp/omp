@@ -78,7 +78,7 @@ class InformationCenterNotifyForm extends Form {
 		$dispatcher =& $router->getDispatcher();
 
 		$paramArray = array('sender' => $user->getFullName(),
-				'monographDetailsUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'submission', 'details', $this->itemId),
+				'monographDetailsUrl' => $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'submission', $this->itemId),
 				'message' => $this->getData('message')
 			);
 

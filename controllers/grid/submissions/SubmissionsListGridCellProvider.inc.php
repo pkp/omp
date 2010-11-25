@@ -56,7 +56,7 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 							'details',
 							LINK_ACTION_MODE_LINK,
 							LINK_ACTION_TYPE_NOTHING,
-							$dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'submission', 'details', $monograph->getId()),
+							$dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'submission', $monograph->getId()),
 							null,
 							$title
 						);

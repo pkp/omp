@@ -23,8 +23,6 @@ class SubmissionHandler extends Handler {
 		parent::Handler();
 		$this->addRoleAssignment(array(ROLE_ID_REVIEWER), $reviewerOperations = array('index'));
 		$this->addRoleAssignment(array(ROLE_ID_AUTHOR), $authorOperations = array_merge($reviewerOperations, array('authorDetails', 'reviewRoundInfo')));
-		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array_merge($authorOperations, array('details')));
 	}
 
 
@@ -54,59 +52,6 @@ class SubmissionHandler extends Handler {
 				$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		}
 		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-
-	/**
-	 * Displays the details of a single submission.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function details($args, &$request) {
-		$this->setupTemplate($request);
-		$templateMgr =& TemplateManager::getManager();
-
-		// Pass the authorized monograph on to the template.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$templateMgr->assign_by_ref('monograph', $monograph);
-
-		import('lib.pkp.classes.linkAction.LinkAction');
-		$dispatcher =& $this->getDispatcher();
-		$actionArgs = array('monographId' => $monograph->getId(), 'stageId' => $monograph->getCurrentStageId());
-
-		import('classes.submission.common.Action');
-		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_ACCEPT;
-		$acceptDecision = new LinkAction(
-				'accept',
-				LINK_ACTION_MODE_MODAL,
-				null,
-				$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'promote', null, $actionArgs),
-				'editor.monograph.decision.accept',
-				null,
-				'promote'
-				);
-		$actionArgs['decision'] = SUBMISSION_EDITOR_DECISION_DECLINE;
-		$declineDecision = new LinkAction(
-				'decline',
-				LINK_ACTION_MODE_MODAL,
-				null,
-				$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'sendReviews', null, $actionArgs),
-				'editor.monograph.decision.decline',
-				null,
-				'delete'
-				);
-		$sendToReviewDecision = new LinkAction(
-				'initiateReview',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_REDIRECT,
-				$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', 'initiateReview', null, $actionArgs),
-				'editor.monograph.initiateReview',
-				null,
-				'add_item'
-			);
-
-		$templateMgr->assign('editorActions', array($acceptDecision, $declineDecision, $sendToReviewDecision));
- 		$templateMgr->display('submission/details.tpl');
 	}
 
 	/**

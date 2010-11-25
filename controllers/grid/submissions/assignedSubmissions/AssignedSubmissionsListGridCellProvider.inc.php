@@ -47,7 +47,7 @@ class AssignedSubmissionsListGridCellProvider extends SubmissionsListGridCellPro
 			$user =& $request->getUser();
 			switch ($stageId) {
 				case 0: default:
-					$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'submission', 'details', $monographId);
+					$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'submission', $monographId);
 					break;
 				case 1:
 					// If user is reviewer for submission, send to review wizard; Else they are an editor in the review stage

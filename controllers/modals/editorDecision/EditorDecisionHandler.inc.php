@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/modals/editorDecisions/EditorDecisionHandler.inc.php
+ * @file controllers/modals/editorDecision/EditorDecisionHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -24,20 +24,16 @@ class EditorDecisionHandler extends Handler {
 	function EditorDecisionHandler() {
 		parent::Handler();
 
-		$this->addRoleAssignment(ROLE_ID_AUTHOR,
-				$authorOperations = array());
-		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT,
-				$pressAssistantOperations = array_merge($authorOperations, array()));
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array_merge($pressAssistantOperations,
-				array('newReviewRound', 'saveNewReviewRound', 'initiateReview', 'saveInitiateReview', 'sendReviews', 'saveSendReviews', 'promote', 'savePromote', 'importPeerReviews')));
+				array('newReviewRound', 'saveNewReviewRound', 'initiateReview', 'saveInitiateReview', 'sendReviews', 'saveSendReviews', 'promote', 'savePromote', 'importPeerReviews'));
 	}
 
+
+	//
+	// Implement template methods from PKPHandler
+	//
 	/**
 	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
@@ -45,27 +41,10 @@ class EditorDecisionHandler extends Handler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	/**
-	 * Consolidates all editor decision form calls into one function
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @param $formName string Name of form to call
-	 * @return string Serialized JSON object
-	 */
-	function _editorDecision($args, &$request, $formName) {
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$decision =& $request->getUserVar('decision');
 
-		// Form handling
-		import("controllers.modals.editorDecision.form.$formName");
-		$editorDecisionForm = new $formName($monograph, $decision);
-		$editorDecisionForm->initData($args, $request);
-
-		$json = new JSON('true', $editorDecisionForm->fetch($request));
-		return $json->getString();
-	}
-
+	//
+	// Public handler actions
+	//
 	/**
 	 * Start a new review round
 	 * @param $args array
@@ -255,6 +234,34 @@ class EditorDecisionHandler extends Handler {
 		$monographId = $request->getUserVar('monographId');
 
 		$json = new JSON('true');
+		return $json->getString();
+	}
+
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Consolidates all editor decision form calls into one function
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @param $formName string Name of form to call
+	 * @return string Serialized JSON object
+	 */
+	function _editorDecision($args, &$request, $formName) {
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		// FIXME: Need to validate the decision (Does it combine with the
+		// requested operation? Is it a valid decision? Is the user authorized
+		// to take that decision? See #6199.
+		$decision =& $request->getUserVar('decision');
+
+		// Form handling
+		import("controllers.modals.editorDecision.form.$formName");
+		$editorDecisionForm = new $formName($monograph, $decision);
+		$editorDecisionForm->initData($args, $request);
+
+		$json = new JSON('true', $editorDecisionForm->fetch($request));
 		return $json->getString();
 	}
 }

@@ -1,72 +1,66 @@
 <?php
 
 /**
- * @file controllers/grid/files/copyeditingFiles/CopyeditingFilesGridHandler.inc.php
+ * @file controllers/grid/files/galleyFiles/GalleyFilesGridHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class CopyeditingFilesGridHandler
- * @ingroup controllers_grid_files_copyeditingFiles
+ * @class GalleyFilesGridHandler
+ * @ingroup controllers_grid_files_galleyFiles
  *
- * @brief Handle the fair copy files grid (displays copyedited files ready to move to proofreading)
+ * @brief Manages copyedited files ("fair copies") made available for
+ *  proofreading within the production stage.
  */
 
-// import grid base classes
+// Import grid base classes.
 import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
-// import copyediting grid specific classes
-import('controllers.grid.files.copyeditingFiles.CopyeditingFilesGridCategoryRow');
-import('controllers.grid.files.copyeditingFiles.CopyeditingFilesGridRow');
-import('controllers.grid.files.copyeditingFiles.CopyeditingFilesGridCellProvider');
+// Import galley grid specific classes.
+import('controllers.grid.files.galleyFiles.GalleyFilesGridCategoryRow');
+import('controllers.grid.files.galleyFiles.GalleyFilesGridRow');
+import('controllers.grid.files.galleyFiles.GalleyFilesGridCellProvider');
 
-class CopyeditingFilesGridHandler extends CategoryGridHandler {
+class GalleyFilesGridHandler extends CategoryGridHandler {
 	/**
 	 * Constructor
 	 */
-	function CopyeditingFilesGridHandler() {
+	function GalleyFilesGridHandler() {
 		parent::CategoryGridHandler();
 
 		$this->addRoleAssignment(ROLE_ID_AUTHOR,
-			$authorOperations = array('fetchGrid', 'addCopyeditedFile', 'editCopyeditedFile', 'uploadCopyeditedFile', 'returnSignoffRow', 'returnFileRow', 'downloadFile', 'deleteFile'));
+			$authorOperations = array('fetchGrid', 'addGalleyFile', 'editGalleyFile', 'uploadGalleyFile', 'returnSignoffRow', 'returnFileRow', 'downloadFile', 'deleteFile'));
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
 				array_merge($authorOperations, array('addUser', 'saveAddUser', 'getCopyeditUserAutocomplete', 'deleteUser')));
 	}
+
 
 	//
 	// Implement template methods from PKPHandler
 	//
 	/**
 	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_EDITING));
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_PRODUCTION));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	//
-	// Implement template methods from PKPHandler
-	//
-
-	/*
-	 * Configure the grid
-	 * @param PKPRequest $request
+	/**
+	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
 
 		// Basic grid configuration
-		$this->setId('copyeditingFiles');
-		$this->setTitle('submission.copyediting');
+		$this->setId('galleyFiles');
+		$this->setTitle('submission.galley');
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
 
-		// Grab the copyediting files to display as categories
+		// Grab the galley files to display as categories
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$monographFiles =& $monographFileDao->getByMonographId($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
@@ -84,7 +78,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 				'uploadFile',
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, 'grid.files.submissionFiles.CopyeditingSubmissionFilesGridHandler', 'addFile', null, array('monographId' => $monograph->getId(), 'fileStage' => MONOGRAPH_FILE_COPYEDIT)),
+				$router->url($request, null, 'grid.files.submissionFiles.GalleySubmissionFilesGridHandler', 'addFile', null, array('monographId' => $monograph->getId(), 'fileStage' => MONOGRAPH_FILE_COPYEDIT)),
 				'editor.monograph.fairCopy.addFile',
 				null,
 				'add'
@@ -97,14 +91,14 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_REPLACE,
 				$router->url($request, null, null, 'addUser', null, array('monographId' => $monograph->getId())),
-				'editor.monograph.copyediting.addUser',
+				'editor.monograph.galley.addUser',
 				null,
 				'add'
 			)
 		);
 
 		// Grid Columns
-		$cellProvider =& new CopyeditingFilesGridCellProvider();
+		$cellProvider =& new GalleyFilesGridCellProvider();
 
 		// Add a column for the file's label
 		$this->addColumn(
@@ -140,22 +134,20 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		}
 	}
 
+
 	//
-	// Overridden methods from GridHandler
+	// Overridden methods from CategoryGridHandler
 	//
 	/**
 	 * @see CategoryGridHandler::getCategoryRowInstance()
-	 * @return CopyeditingFilesGridCategoryRow
 	 */
 	function &getCategoryRowInstance() {
-		$row =& new CopyeditingFilesGridCategoryRow();
+		$row =& new GalleyFilesGridCategoryRow();
 		return $row;
 	}
 
 	/**
 	 * @see CategoryGridHandler::getCategoryData()
-	 * @param $monographFile MonographFile
-	 * @return signoff
 	 */
 	function getCategoryData(&$monographFile) {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
@@ -163,21 +155,25 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		return $signoffs;
 	}
 
+
+	//
+	// Overridden methods from GridHandler
+	//
 	/**
 	* Get the row handler - override the default row handler
 	* @return FairCopyFilesGridRow
 	*/
 	function &getRowInstance() {
-		$row = new CopyeditingFilesGridRow();
+		$row = new GalleyFilesGridRow();
 		return $row;
 	}
 
-	//
-	// Public methods
-	//
 
+	//
+	// Public handler actions
+	//
 	/**
-	 * Adds a user to a copyediting file
+	 * Adds a user to a galley file
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
@@ -187,20 +183,20 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Form handling
-		import('controllers.grid.files.copyeditingFiles.form.CopyeditingUserForm');
-		$copyeditingUserForm = new CopyeditingUserForm($monograph);
-		if ($copyeditingUserForm->isLocaleResubmit()) {
-			$copyeditingUserForm->readInputData();
+		import('controllers.grid.files.galleyFiles.form.GalleyUserForm');
+		$galleyUserForm = new GalleyUserForm($monograph);
+		if ($galleyUserForm->isLocaleResubmit()) {
+			$galleyUserForm->readInputData();
 		} else {
-			$copyeditingUserForm->initData($args, &$request);
+			$galleyUserForm->initData($args, &$request);
 		}
 
-		$json = new JSON('true', $copyeditingUserForm->fetch($request));
+		$json = new JSON('true', $galleyUserForm->fetch($request));
 		return $json->getString();
 	}
 
 	/**
-	 * Save the form for adding a user to a copyediting file
+	 * Save the form for adding a user to a galley file
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
@@ -210,11 +206,11 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Form handling
-		import('controllers.grid.files.copyeditingFiles.form.CopyeditingUserForm');
-		$copyeditingUserForm = new CopyeditingUserForm($monograph);
-		$copyeditingUserForm->readInputData();
-		if ($copyeditingUserForm->validate()) {
-			$copyeditingUserForm->execute();
+		import('controllers.grid.files.galleyFiles.form.GalleyUserForm');
+		$galleyUserForm = new GalleyUserForm($monograph);
+		$galleyUserForm->readInputData();
+		if ($galleyUserForm->validate()) {
+			$galleyUserForm->execute();
 
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 			$monographFiles =& $monographFileDao->getByMonographId($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
@@ -238,7 +234,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			$templateMgr->assign('numColumns', count($columns));
 			$templateMgr->assign('columns', $columns);
 
-			$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/copyeditingFiles/copyeditingGrid.tpl'));
+			$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/galleyFiles/galleyGrid.tpl'));
 		} else {
 			$json = new JSON('false', Locale::translate('editor.monograph.addUserError'));
 		}
@@ -247,7 +243,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * Get users for copyediting autocomplete.
+	 * Get users for galley autocomplete.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
@@ -295,15 +291,15 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * Add a file to a copyediting assignment
+	 * Add a file to a galley assignment
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function addCopyeditedFile($args, &$request) {
-		// Calling editCopyeditedFile with an empty row id will add a new file
+	function addGalleyFile($args, &$request) {
+		// Calling editGalleyFile with an empty row id will add a new file
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('newFile', 'true');
-		return $this->editCopyeditedFile($args, $request);
+		return $this->editGalleyFile($args, $request);
 	}
 
 	/**
@@ -312,22 +308,22 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editCopyeditedFile($args, &$request) {
+	function editGalleyFile($args, &$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		$signoffId = (int) $request->getUserVar('signoffId');
 		assert(!empty($signoffId));
 
-		import('controllers.grid.files.copyeditingFiles.form.CopyeditingFileForm');
-		$copyeditingFileForm = new CopyeditingFileForm($monograph, $signoffId);
+		import('controllers.grid.files.galleyFiles.form.GalleyFileForm');
+		$galleyFileForm = new GalleyFileForm($monograph, $signoffId);
 
-		if ($copyeditingFileForm->isLocaleResubmit()) {
-			$copyeditingFileForm->readInputData();
+		if ($galleyFileForm->isLocaleResubmit()) {
+			$galleyFileForm->readInputData();
 		} else {
-			$copyeditingFileForm->initData($args, $request);
+			$galleyFileForm->initData($args, $request);
 		}
 
-		$json = new JSON('true', $copyeditingFileForm->fetch($request));
+		$json = new JSON('true', $galleyFileForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -337,17 +333,17 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function uploadCopyeditedFile($args, &$request) {
+	function uploadGalleyFile($args, &$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$signoffId = (int) $request->getUserVar('signoffId');
 		assert(!empty($signoffId));
 
-		import('controllers.grid.files.copyeditingFiles.form.CopyeditingFileForm');
-		$copyeditingFileForm = new CopyeditingFileForm($monograph, $signoffId);
-		$copyeditingFileForm->readInputData();
+		import('controllers.grid.files.galleyFiles.form.GalleyFileForm');
+		$galleyFileForm = new GalleyFileForm($monograph, $signoffId);
+		$galleyFileForm->readInputData();
 
-		if ($copyeditingFileForm->validate()) {
-			$copyeditedFileId = $copyeditingFileForm->uploadFile($args, $request);;
+		if ($galleyFileForm->validate()) {
+			$copyeditedFileId = $galleyFileForm->uploadFile($args, $request);;
 
 			$router =& $request->getRouter();
 			$additionalAttributes = array(
@@ -362,7 +358,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	}
 
 	/**
-	 * Return a grid row with for the copyediting grid
+	 * Return a grid row with for the galley grid
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object

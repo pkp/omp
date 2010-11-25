@@ -10,7 +10,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-{include file="submission/header.tpl"}
+{include file="workflow/header.tpl"}
 
 <!-- Editorial decision actions -->
 {foreach from=$editorActions item=action}

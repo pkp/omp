@@ -28,7 +28,6 @@ switch ($op) {
 		break;
 	// FIXME: Move the following operations to their specified handlers - see #6091.
 	case 'authorDetails':  // move to workflow/submission?
-	case 'details': // move to workflow/submission?
 	case 'reviewRoundInfo': // move to workflow/review?
 		import('pages.submission.SubmissionHandler');
 		define('HANDLER_CLASS', 'SubmissionHandler');

@@ -17,6 +17,7 @@
 
 
 switch ($op) {
+	case 'submission':
 	case 'review':
 	case 'copyediting':
 	case 'production':

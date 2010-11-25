@@ -176,7 +176,7 @@ class SubmitHandler extends Handler {
 						$notificationUsers[] = array('id' => $user->getId());
 					}
 					foreach ($notificationUsers as $userRole) {
-						$url = $request->url(null, 'editor', 'submission', $monographId);
+						$url = $router->url($request, null, 'workflow', 'submission', $monographId);
 						$notificationManager->createNotification(
 							$userRole['id'], 'notification.type.monographSubmitted',
 							$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED
