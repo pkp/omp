@@ -14,8 +14,6 @@
 
 
 import('classes.handler.Handler');
-import('lib.pkp.classes.core.JSON');
-import('classes.submission.common.Action');
 
 class WorkflowHandler extends Handler {
 	/**
@@ -192,8 +190,9 @@ class WorkflowHandler extends Handler {
 		$actionArgs = array('monographId' => $monograph->getId());
 		$actionArgs = array_merge($actionArgs, $additionalArgs);
 
-		// Import the link action to define necessary constants before
-		// retrieving the decisions.
+		// Import the action and link action to define necessary constants before
+		// retrieving decisions.
+		import('classes.submission.common.Action');
 		import('lib.pkp.classes.linkAction.LinkAction');
 
 		// Retrieve the editor decisions.
