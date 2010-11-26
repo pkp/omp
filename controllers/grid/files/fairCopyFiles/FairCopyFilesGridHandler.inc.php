@@ -140,31 +140,28 @@ class FairCopyFilesGridHandler extends GridHandler {
 			'controllers/grid/gridCell.tpl',
 			$cellProvider)
 		);
-		$session =& $request->getSession();
-		$actingAsUserGroupId = $session->getActingAsUserGroupId();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$actingAsUserGroup =& $userGroupDao->getById($actingAsUserGroupId);
 
-		// add a column for the role the user is acting as
+		// Add a column for the uploader.
+		// FIXME: We're just adding some placeholder text here until this
+		// is correctly implemented, see #6233.
 		$this->addColumn(
 			new GridColumn(
-				$actingAsUserGroupId,
+				'FIXME',
 				null,
-				$actingAsUserGroup->getLocalizedAbbrev(),
+				'FIXME',
 				'controllers/grid/common/cell/roleCell.tpl',
 				$cellProvider
 			)
 		);
 
-		// Add another column for the submitter's role
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getMonograph($monographId);
-		$uploaderUserGroup =& $userGroupDao->getById($monograph->getUserGroupId());
+		// Add another column for the uploader's role
+		// FIXME: We're just adding some placeholder text here until this
+		// is correctly implemented, see #6233.
 		$this->addColumn(
 			new GridColumn(
-				$uploaderUserGroup->getId(),
+				'FIXME',
 				null,
-				$uploaderUserGroup->getLocalizedAbbrev(),
+				'FIXME',
 				'controllers/grid/common/cell/roleCell.tpl',
 				$cellProvider
 			)

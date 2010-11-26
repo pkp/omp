@@ -125,22 +125,20 @@ class ReviewerGridHandler extends GridHandler {
 			)
 		);
 
-		$session =& $request->getSession();
-		$actingAsUserGroupId = $session->getActingAsUserGroupId();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$actingAsUserGroup =& $userGroupDao->getById($actingAsUserGroupId);
-
-		// add a column for the role the user is acting as
+		// Add a column for the stage editor.
+		// FIXME: We're just adding some placeholder text here until this
+		// is correctly implemented, see #6233.
 		$this->addColumn(
 			new GridColumn(
-				$actingAsUserGroupId,
+				'FIXME',
 				null,
-				$actingAsUserGroup->getLocalizedName(),
+				'FIXME',
 				'controllers/grid/common/cell/roleCell.tpl',
 				$cellProvider
 			)
 		);
 
+		// Add a column for the assigned reviewer.
 		$this->addColumn(
 			new GridColumn(
 				'reviewer',
