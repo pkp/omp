@@ -259,6 +259,84 @@ class SeriesEditorAction extends Action {
 			$reviewAssignmentDao->updateObject($reviewAssignment);
 		}
 	}
+
+	/**
+	 * Get the text of all peer reviews for a submission
+	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @return string
+	 */
+	function getPeerReviews($seriesEditorSubmission) {
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
+		$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
+		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
+
+		$reviewAssignments =& $reviewAssignmentDao->getBySubmissionId($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
+		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION));
+
+		$body = '';
+		$textSeparator = "------------------------------------------------------";
+		foreach ($reviewAssignments as $reviewAssignment) {
+			// If the reviewer has completed the assignment, then import the review.
+			if ($reviewAssignment->getDateCompleted() != null && !$reviewAssignment->getCancelled()) {
+				// Get the comments associated with this review assignment
+				$monographComments =& $monographCommentDao->getMonographComments($seriesEditorSubmission->getId(), COMMENT_TYPE_PEER_REVIEW, $reviewAssignment->getId());
+
+				if($monographComments) {
+					$body .= "\n\n$textSeparator\n";
+					$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n";
+					if (is_array($monographComments)) {
+						foreach ($monographComments as $comment) {
+							// If the comment is viewable by the author, then add the comment.
+							if ($comment->getViewable()) {
+								$body .= String::html2text($comment->getComments()) . "\n\n";
+							}
+						}
+					}
+					$body .= "$textSeparator\n\n";
+				}
+				if ($reviewFormId = $reviewAssignment->getReviewFormId()) {
+					$reviewId = $reviewAssignment->getId();
+
+
+					$reviewFormElements =& $reviewFormElementDao->getReviewFormElements($reviewFormId);
+					if(!$monographComments) {
+						$body .= "$textSeparator\n";
+
+						$body .= Locale::translate('submission.comments.importPeerReviews.reviewerLetter', array('reviewerLetter' => String::enumerateAlphabetically($reviewIndexes[$reviewAssignment->getId()]))) . "\n\n";
+					}
+					foreach ($reviewFormElements as $reviewFormElement) {
+						$body .= String::html2text($reviewFormElement->getLocalizedQuestion()) . ": \n";
+						$reviewFormResponse = $reviewFormResponseDao->getReviewFormResponse($reviewId, $reviewFormElement->getId());
+
+						if ($reviewFormResponse) {
+							$possibleResponses = $reviewFormElement->getLocalizedPossibleResponses();
+							if (in_array($reviewFormElement->getElementType(), $reviewFormElement->getMultipleResponsesElementTypes())) {
+								if ($reviewFormElement->getElementType() == REVIEW_FORM_ELEMENT_TYPE_CHECKBOXES) {
+									foreach ($reviewFormResponse->getValue() as $value) {
+										$body .= "\t" . String::htmltext($possibleResponses[$value-1]['content']) . "\n";
+									}
+								} else {
+									$body .= "\t" . String::html2text($possibleResponses[$reviewFormResponse->getValue()-1]['content']) . "\n";
+								}
+								$body .= "\n";
+							} else {
+								$body .= "\t" . String::html2text($reviewFormResponse->getValue()) . "\n\n";
+							}
+						}
+
+					}
+					$body .= "$textSeparator\n\n";
+
+				}
+
+
+			}
+		}
+
+		return $body;
+	}
 }
 
 ?>
