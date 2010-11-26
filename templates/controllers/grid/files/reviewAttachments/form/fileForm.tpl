@@ -26,7 +26,7 @@
 			returnString = eval("("+ret.response+")");
 
 			if (returnString.status == true) {
-	    			$("#submitModalButton").button("option", "disabled", false);
+	    			$("#uploadForm #submitModalButton").button("option", "disabled", false);
 		    		$('#deleteUrl').val(returnString.deleteUrl);
 		    		$('#saveUrl').val(returnString.saveUrl);
 			} else {
@@ -53,7 +53,7 @@
 		});
 
 		// Set cancel/continue button behaviors
-		$("#submitModalButton").click(function() {
+		$("#uploadForm #submitModalButton").click(function() {
 			saveAndUpdate($('#saveUrl').val(),
 				'append',
 				'#component-{/literal}{$gridId}{literal}-table',
@@ -62,7 +62,7 @@
 			return false;
 		});
 
-		$("#cancelModalButton").click(function() {
+		$("#uploadForm #cancelModalButton").click(function() {
 			// User has uploaded a file then pressed cancel--delete the file
 			newFile = $('#newFile').val();
 			deleteUrl = $('#deleteUrl').val();
@@ -92,13 +92,13 @@
 
 	{if !$rowId}{assign var="buttonDisabled" value="true"}{/if}
 	{init_button_bar id="#uploadForm" submitText="common.saveAndClose" submitDisabled=$buttonDisabled}
-</div>
 
-{if $gridId}
-<input type="hidden" name="gridId" value="{$gridId|escape}" />
-{/if}
-<input type="hidden" id="deleteUrl" value="" />
-<input type="hidden" id="saveUrl" value="" />
-<input type="hidden" id="newFile" value="{$newFile}" />
+	{if $gridId}
+	<input type="hidden" name="gridId" value="{$gridId|escape}" />
+	{/if}
+	<input type="hidden" id="deleteUrl" value="" />
+	<input type="hidden" id="saveUrl" value="" />
+	<input type="hidden" id="newFile" value="{$newFile}" />
+</div>
 
 

@@ -173,17 +173,20 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 
 		if ($reviewAttachmentsForm->validate()) {
 			$fileId = $reviewAttachmentsForm->execute($args, $request);
-
+			$urlParams = array(
+				'rowId' => $fileId,
+				'monographId' => $monographId
+			);
 			$additionalAttributes = array(
-				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('rowId' => $fileId)),
-				'saveUrl' => $router->url($request, null, null, 'returnFileRow', null, array('rowId' => $fileId))
+				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, $urlParams),
+				'saveUrl' => $router->url($request, null, null, 'returnFileRow', null, $urlParams)
 			);
 			$json = new JSON('true', Locale::translate('submission.uploadSuccessful'), 'false', $fileId, $additionalAttributes);
 		} else {
 			$json = new JSON('false', Locale::translate('common.uploadFailed'));
 		}
 
-		return '<textarea>' . $json->getString() . '</textarea>';
+		return $json->getString();
 	}
 
 }
