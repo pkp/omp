@@ -96,6 +96,18 @@ class DashboardHandler extends Handler {
 			$templateMgr->assign_by_ref('presses', $presses);
 		}
 
+		// Get the roles of the current user. This is necessary
+		// as the user may not have access to all grids in the
+		// status tab.
+		$user =& $request->getUser();
+		$roleDao =& DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
+		$roles =& $roleDao->getByUserId($user->getId());
+		$roleIds = array();
+		foreach($roles as $role) {
+			$roleIds[] = $role->getId();
+		}
+		$templateMgr->assign_by_ref('roleIds', $roleIds);
+
 		$templateMgr->assign('selectedTab', 3);
 		$templateMgr->assign('pageToDisplay', 'dashboard/status.tpl');
 		$templateMgr->display('dashboard/index.tpl');
