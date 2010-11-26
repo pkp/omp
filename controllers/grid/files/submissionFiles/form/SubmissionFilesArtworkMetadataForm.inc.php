@@ -92,7 +92,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		$this->_data['$monographFile'] =& $monographFile;
 
 		// grid related data
-		$this->_data['monographId'] = $this->_monographId;
+		$this->_data['monographId'] = $monographFile->getMonographId();
 		$this->_data['fileId'] = $this->_fileId;
 		$this->_data['artworkFileId'] = isset($args['artworkFileId']) ? $args['artworkFileId'] : null;
 	}

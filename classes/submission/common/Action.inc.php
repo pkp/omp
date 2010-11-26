@@ -58,6 +58,30 @@ class Action extends PKPAction {
 	// Actions.
 	//
 	/**
+	 * Download file.
+	 * @param $monographId int
+	 * @param $fileId int
+	 * @param $revision int
+	 */
+	function downloadFile($monographId, $fileId, $revision = null) {
+		import('classes.file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($monographId);
+		return $monographFileManager->downloadFile($fileId, $revision);
+	}
+
+	/**
+	 * View file.
+	 * @param $monographId int
+	 * @param $fileId int
+	 * @param $revision int
+	 */
+	function viewFile($monographId, $fileId, $revision = null) {
+		import('classes.file.MonographFileManager');
+		$monographFileManager = new MonographFileManager($monographId);
+		return $monographFileManager->viewFile($fileId, $revision);
+	}
+
+	/**
 	 * Assign the default participants to a workflow stage.
 	 * @param $monographId int
 	 * @param $stageId int

@@ -446,11 +446,11 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$revision = $request->getUserVar('fileRevision');
 
 		import('classes.submission.common.Action');
-		Action::viewFile($monographId, $fileId, $revision);
+		Action::downloadFile($monographId, $fileId, $revision);
 	}
 
 	/**
-	 * Download a file
+	 * View a file
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */

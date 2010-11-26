@@ -187,7 +187,7 @@ class ArtworkFileDAO extends DAO {
 					monograph_id = ?,
 					permission_file_id = ?,
 					permission_terms = ?,
-					placement = ?,
+					placement = ?
 				WHERE artwork_id = ?',
 			array(
 				$artworkFile->getCaption(),
@@ -205,7 +205,6 @@ class ArtworkFileDAO extends DAO {
 		);
 		$this->updateLocaleFields($artworkFile);
 		return $artworkFile->getId();
-
 	}
 
 	/**
