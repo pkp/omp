@@ -305,9 +305,10 @@ class MonographFileManager extends FileManager {
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($_FILES[$fileName]['name']));
 
 		// Set the uploader's userGroupId
-		$sessionMgr =& SessionManager::getManager();
-		$session =& $sessionMgr->getUserSession();
-		$monographFile->setUserGroupId($session->getActingAsUserGroupId());
+		// FIXME: Setting a temporary user group here until #6231 is fixed.
+		// This is necessary so that we can already remove the user-group
+		// attribute from the session.
+		$monographFile->setUserGroupId(1);
 
 		// Copy the uploaded file to its final destination and
 		// persist its meta-data to the database.
