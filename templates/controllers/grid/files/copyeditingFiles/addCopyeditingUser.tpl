@@ -1,12 +1,11 @@
-<!-- templates/controllers/grid/files/reviewFiles/manageReviewFiles.tpl -->
 
 {**
- * manageReviewFiles.tpl
+ * addCopyeditingUser.tpl
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Allows editor to add more file to the review (that weren't added when the submission was sent to review)
+ * Allows editor to add a user who should give feedback about copyedited files.
  *}
 
 <script type="text/javascript">{literal}
@@ -27,7 +26,7 @@
 {modal_title id="#addUserContainer" key='editor.monograph.copyediting.addUser' iconClass="fileManagement" canClose=1}
 
 <div id="addUserContainer">
-	<form name="manageReviewFilesForm" id="manageReviewFilesForm" action="{url op="saveAddUser" monographId=$monographId|escape}" method="post">
+	<form name="addCopyeditingUser" id="addCopyeditingUser" action="{url op="saveAddUser" monographId=$monographId|escape}" method="post">
 		<input type="hidden" name="monographId" value="{$monographId|escape}" />
 
 		<!-- User autocomplete -->
@@ -43,7 +42,7 @@
 		{load_url_in_div id="copyeditingFilesListbuilder" url=$copyeditingFilesListbuilderUrl}
 
 		{fbvFormSection}
-			{fbvElement type="text" id="responseDueDate" name="responseDueDate" label="editor.review.responseDueDate" value=$responseDueDate }
+			{fbvElement type="text" id="responseDueDate" name="responseDueDate" label="editor.responseDueDate" value=$responseDueDate }
 		{/fbvFormSection}
 
 		<!-- Message to user -->
@@ -54,6 +53,4 @@
 </div>
 
 {init_button_bar id="#addUserContainer"}
-
-<!-- / templates/controllers/grid/files/reviewFiles/manageReviewFiles.tpl -->
 

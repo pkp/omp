@@ -113,7 +113,7 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$data = array();
 		while($submission =& $submissions->next()) {
 			$submissionId = $submission->getId();
-			$data[$submissionId] = $submission;
+			$data[$submissionId] =& $submission;
 			unset($submision);
 		}
 

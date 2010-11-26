@@ -15,14 +15,14 @@
 	{fbvFormSection title="user.role.reviewer"}
 		{fbvElement type="text" id="reviewerName" value=$reviewerName disabled="true"}
 	{/fbvFormSection}
-	
+
 	{fbvFormSection title="editor.review.personalMessageToReviewer" for="message"}
 		{fbvElement type="textarea" id="message" value=$message size=$fbvStyles.size.LARGE measure=$fbvStyles.measure.3OF4}
 	{/fbvFormSection}
-			
+
 	<table width="100%" style="margin-left: 12px;">
 		<tr>
-			<td><strong>{translate key="editor.review.responseDueDate"}</strong></td>
+			<td><strong>{translate key="editor.responseDueDate"}</strong></td>
 			<td><strong>{translate key="editor.review.dateAccepted"}</strong></td>
 			<td><strong>{translate key="reviewer.monograph.reviewDueDate"}</strong></td>
 		</tr>
@@ -30,7 +30,7 @@
 			<td>{$reviewAssignment->getDateResponseDue()|date_format:$dateFormatShort}</td>
 			<td>{$reviewAssignment->getDateAcknowledged()|date_format:$dateFormatShort}</td>
 			<td>{$reviewAssignment->getDateDue()|date_format:$dateFormatShort}</td>
-		</tr>	
-	</table> 
+		</tr>
+	</table>
 
 </form>

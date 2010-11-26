@@ -112,7 +112,7 @@
 
 	<!--  Reviewer due dates (see http://jqueryui.com/demos/datepicker/) -->
 	{fbvFormSection}
-		{fbvElement type="text" id="responseDueDate" name="responseDueDate" label="editor.review.responseDueDate" value=$responseDueDate }
+		{fbvElement type="text" id="responseDueDate" name="responseDueDate" label="editor.responseDueDate" value=$responseDueDate }
 		{fbvElement type="text" id="reviewDueDate" name="reviewDueDate" label="editor.review.reviewDueDate" value=$reviewDueDate }
 	{/fbvFormSection}
 
