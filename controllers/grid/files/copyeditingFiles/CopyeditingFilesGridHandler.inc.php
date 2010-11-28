@@ -407,8 +407,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$viewsDao->recordView(ASSOC_TYPE_MONOGRAPH_FILE, $fileId, $user->getId());
 
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monograph->getId());
-		$monographFileManager->downloadFile($fileId);
+		MonographFileManager::downloadFile($monograph->getId(), $fileId);
 	}
 
 	/**

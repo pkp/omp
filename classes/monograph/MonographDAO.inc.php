@@ -310,9 +310,8 @@ class MonographDAO extends DAO {
 		$monographFiles =& $monographFileDao->getByMonographId($monographId);
 
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monographId);
 		foreach ($monographFiles as $monographFile) {
-			$monographFileManager->deleteFile($monographFile->getFileId());
+			MonographFileManager::deleteFile($monographFile->getFileId());
 		}
 
 		$monographFileDao->deleteMonographFiles($monographId);

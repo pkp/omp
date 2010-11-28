@@ -91,17 +91,17 @@ class ReviewerReviewAttachmentsForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
-		import('classes.file.MonographFileManager');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $reviewAssignmentDao->getById($this->reviewId);
 
-		$monographFileManager = new MonographFileManager($reviewAssignment->getSubmissionId());
 		$fileId = null;
-		if ($monographFileManager->uploadedFileExists('attachment')) {
+		$monographId = $reviewAssignment->getSubmissionId();
+		import('classes.file.MonographFileManager');
+		if (MonographFileManager::uploadedFileExists('attachment')) {
 			if ($reviewAssignment->getReviewerFileId() != null) {
-				$fileId = $monographFileManager->uploadReviewFile('attachment', $reviewAssignment->getReviewerFileId(), $this->reviewId);
+				$fileId = MonographFileManager::uploadReviewFile($monographId, 'attachment', $reviewAssignment->getReviewerFileId(), $this->reviewId);
 			} else {
-				$fileId = $monographFileManager->uploadReviewFile('attachment', null, $this->reviewId);
+				$fileId = MonographFileManager::uploadReviewFile($monographId, 'attachment', null, $this->reviewId);
 			}
 		}
 

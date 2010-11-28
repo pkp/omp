@@ -249,14 +249,11 @@ class FinalDraftFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 */
 	function downloadFile($args, &$request) {
-		// Instantiate the file handler.
-		import('classes.file.MonographFileManager');
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH); /* @var $monograph Monograph */
-		$monographFileManager = new MonographFileManager($monograph->getId());
-
 		// Download the file.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH); /* @var $monograph Monograph */
 		$fileId = $request->getUserVar('fileId');
-		$monographFileManager->downloadFile($fileId); // NB: This will check the validity of the file id.
+		import('classes.file.MonographFileManager');
+		MonographFileManager::downloadFile($monograph->getId(), $fileId); // NB: This will check the validity of the file id.
 	}
 
 	/**
@@ -265,10 +262,9 @@ class FinalDraftFilesGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 */
 	function downloadAllFiles($args, &$request) {
-		import('classes.file.MonographFileManager');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH); /* @var $monograph Monograph */
-		$monographFileManager = new MonographFileManager($monograph->getId());
-		$monographFileManager->downloadFilesArchive($this->getData());
+		import('classes.file.MonographFileManager');
+		MonographFileManager::downloadFilesArchive($monograph->getId(), $this->getData());
 	}
 
 	/**

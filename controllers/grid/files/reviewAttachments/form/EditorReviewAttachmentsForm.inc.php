@@ -89,10 +89,8 @@ class EditorReviewAttachmentsForm extends Form {
 	 */
 	function execute($args, &$request) {
 		import('classes.file.MonographFileManager');
-
-		$monographFileManager = new MonographFileManager($this->monographId);
-		if ($monographFileManager->uploadedFileExists('attachment')) {
-			$fileId = $monographFileManager->uploadReviewFile('attachment');
+		if (MonographFileManager::uploadedFileExists('attachment')) {
+			$fileId = MonographFileManager::uploadReviewFile($this->monographId, 'attachment');
 		}
 
 		return $fileId;

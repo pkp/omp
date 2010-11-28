@@ -214,8 +214,7 @@ class ReviewFilesGridHandler extends GridHandler {
 		$fileId = $request->getUserVar('fileId');
 
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monographId);
-		$monographFileManager->downloadFile($fileId);
+		MonographFileManager::downloadFile($monographId, $fileId);
 	}
 
 	/**
@@ -228,8 +227,7 @@ class ReviewFilesGridHandler extends GridHandler {
 		$monographId = $request->getUserVar('monographId');
 
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monographId);
-		$monographFileManager->downloadFilesArchive($this->getData());
+		MonographFileManager::downloadFilesArchive($monographId, $this->getData());
 	}
 
 	/**

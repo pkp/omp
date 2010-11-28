@@ -134,12 +134,10 @@ class CopyeditingFileForm extends Form {
 		// If we're updating a file, get its ID for the file manager
 		$copyeditedFileId = isset($copyeditedFile) ? $copyeditedFile->getFileId() : null;
 
-		import('classes.file.MonographFileManager');
 		$monograph =& $this->getMonograph();
-		$monographFileManager = new MonographFileManager($monograph->getId());
-
-		if ($monographFileManager->uploadedFileExists('copyeditingFile')) {
-			$copyeditedFileId = $monographFileManager->uploadCopyeditResponseFile('copyeditingFile', $copyeditedFileId);
+		import('classes.file.MonographFileManager');
+		if (MonographFileManager::uploadedFileExists('copyeditingFile')) {
+			$copyeditedFileId = MonographFileManager::uploadCopyeditResponseFile($monograph->getId(), 'copyeditingFile', $copyeditedFileId);
 			if (isset($copyeditedFileId)) {
 				// Amend the copyediting signoff with the new file
 				$signoff->setFileId($copyeditedFileId);

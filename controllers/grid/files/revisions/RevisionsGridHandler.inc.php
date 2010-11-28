@@ -221,8 +221,7 @@ class RevisionsGridHandler extends GridHandler {
 		$fileId = $request->getUserVar('fileId');
 
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monographId);
-		$monographFileManager->downloadFile($fileId);
+		MonographFileManager::downloadFile($monographId, $fileId);
 	}
 
 	/**
@@ -235,7 +234,6 @@ class RevisionsGridHandler extends GridHandler {
 		$monographId = $request->getUserVar('monographId');
 
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monographId);
-		$monographFileManager->downloadFilesArchive($this->_data);
+		MonographFileManager::downloadFilesArchive($monographId, $this->_data);
 	}
 }

@@ -182,8 +182,7 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 		$monographId = $request->getUserVar('monographId');
 		$fileId = $request->getUserVar('fileId');
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monographId);
-		$monographFileManager->downloadFile($fileId);
+		MonographFileManager::downloadFile($monographId, $fileId);
 	}
 
 }

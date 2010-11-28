@@ -101,11 +101,9 @@ class SubmissionFilesUploadForm extends Form {
 	function checkForRevision($args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
-		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monographId);
-
-		if ($monographFileManager->uploadedFileExists('submissionFile')) {
-			$fileName = $monographFileManager->getUploadedFileName('submissionFile');
+		import('classes.file.FileManager');
+		if (FileManager::uploadedFileExists('submissionFile')) {
+			$fileName = FileManager::getUploadedFileName('submissionFile');
 
 			// Check similarity of filename against existing filenames
 			return $this->_checkForSimilarFilenames($fileName, $monographId);
@@ -125,9 +123,6 @@ class SubmissionFilesUploadForm extends Form {
 		assert(!empty($fileStage));
 		$monographFileTypeId = (int)$this->getData('fileType');
 
-		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monographId);
-
 		if($fileStage == MONOGRAPH_FILE_COPYEDIT) {
 			$uploadedFile = 'copyeditingFile';
 			// The user is uploading a copyedited version of an existing file
@@ -136,8 +131,9 @@ class SubmissionFilesUploadForm extends Form {
 			$uploadedFile = 'submissionFile';
 		}
 
-		if ($monographFileManager->uploadedFileExists($uploadedFile)) {
-			$submissionFileId = $monographFileManager->uploadMonographFile($uploadedFile, $fileStage, $fileId, $monographFileTypeId);
+		import('classes.file.MonographFileManager');
+		if (MonographFileManager::uploadedFileExists($uploadedFile)) {
+			$submissionFileId = MonographFileManager::uploadMonographFile($monographId, $uploadedFile, $fileStage, $fileId, $monographFileTypeId);
 
 			if (!empty($monographFileTypeId)) {
 				$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');

@@ -117,9 +117,7 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO');
 
 		// manage artwork permissions file
-		import('classes.file.MonographFileManager');
 		$monographId = $this->getData('monographId');
-		$monographFileManager = new MonographFileManager($monographId);
 
 		$artworkFile =& $artworkFileDao->getByFileId($this->_fileId);
 

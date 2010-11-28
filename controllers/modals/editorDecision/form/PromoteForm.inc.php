@@ -201,16 +201,15 @@ class PromoteForm extends EditorDecisionForm {
 		$email->setAssoc(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_EDITOR, $currentReviewRound->getRound());
 
 		// Attach the selected reviewer attachments
-		import('classes.file.MonographFileManager');
-		$monographFileManager =& new MonographFileManager($monograph->getId());
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$selectedAttachments = $this->getData('selectedAttachments') ? $this->getData('selectedAttachments') : array();
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($monograph->getId(), $monograph->getCurrentRound());
 		assert(is_array($reviewIndexes));
 		if(is_array($selectedAttachments)) {
+			import('classes.file.MonographFileManager');
 			foreach ($selectedAttachments as $attachmentId) {
-				$monographFile =& $monographFileManager->getFile($attachmentId);
+				$monographFile =& MonographFileManager::getFile($attachmentId);
 				$fileName = $monographFile->getOriginalFileName();
 				$reviewAssignmentId = $monographFile->getAssocId();
 				assert($monographFile->getAssocType == ASSOC_TYPE_REVIEW_ASSIGNMENT);

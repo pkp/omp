@@ -46,9 +46,9 @@ class MonographFile extends SubmissionFile {
 	 * @return string
 	 */
 	function getFilePath() {
-		import('classes.file.MonographFileManager');
 		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 		$monograph =& $monographDao->getMonograph($this->getMonographId());
+		import('classes.file.MonographFileManager');
 		return $monograph->getFilePath() . MonographFileManager::typeToPath($this->getType()) . '/' . $this->getFileName();
 	}
 

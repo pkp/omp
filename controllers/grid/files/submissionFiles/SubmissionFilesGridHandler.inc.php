@@ -428,8 +428,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$monographFileDao->deleteMonographFileById($fileId);
 
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($press->getId());
-		$monographFileManager->deleteFile($fileId);
+		MonographFileManager::deleteFile($fileId);
 
 		$json = new JSON('true');
 		return $json->getString();
@@ -445,8 +444,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$fileId = $request->getUserVar('fileId');
 		$revision = $request->getUserVar('fileRevision');
 
-		import('classes.submission.common.Action');
-		Action::downloadFile($monographId, $fileId, $revision);
+		import('classes.file.MonographFileManager');
+		MonographFileManager::downloadFile($monographId, $fileId, $revision);
 	}
 
 	/**
@@ -459,7 +458,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$fileId = $request->getUserVar('fileId');
 		$revision = $request->getUserVar('fileRevision');
 
-		import('classes.submission.common.Action');
-		Action::viewFile($monographId, $fileId, $revision);
+		import('classes.file.MonographFileManager');
+		MonographFileManager::viewFile($monographId, $fileId, $revision);
 	}
 }

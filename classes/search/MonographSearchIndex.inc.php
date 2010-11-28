@@ -63,8 +63,7 @@ class MonographSearchIndex {
 	 */
 	function updateFileIndex($monographId, $type, $fileId) {
 		import('classes.file.MonographFileManager');
-		$fileMgr = new MonographFileManager($monographId);
-		$file =& $fileMgr->getFile($fileId);
+		$file =& MonographFileManager::getFile($fileId);
 
 		if (isset($file)) {
 			$parser =& SearchFileParser::fromFile($file);

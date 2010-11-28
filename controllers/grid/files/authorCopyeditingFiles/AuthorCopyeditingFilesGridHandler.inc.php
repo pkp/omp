@@ -304,8 +304,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		$user =& $session->getUser();
 
 		import('classes.file.MonographFileManager');
-		$monographFileManager = new MonographFileManager($monographId);
-		$monographFileManager->downloadFile($fileId);
+		MonographFileManager::downloadFile($monographId, $fileId);
 	}
 
 	/**

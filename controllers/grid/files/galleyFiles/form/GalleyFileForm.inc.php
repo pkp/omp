@@ -134,12 +134,10 @@ class GalleyFileForm extends Form {
 		// If we're updating a file, get its ID for the file manager
 		$copyeditedFileId = isset($copyeditedFile) ? $copyeditedFile->getFileId() : null;
 
-		import('classes.file.MonographFileManager');
 		$monograph =& $this->getMonograph();
-		$monographFileManager = new MonographFileManager($monograph->getId());
-
-		if ($monographFileManager->uploadedFileExists('galleyFile')) {
-			$copyeditedFileId = $monographFileManager->uploadCopyeditResponseFile('galleyFile', $copyeditedFileId);
+		import('classes.file.MonographFileManager');
+		if (MonographFileManager::uploadedFileExists('galleyFile')) {
+			$copyeditedFileId = MonographFileManager::uploadCopyeditResponseFile($monograph->getId(), 'galleyFile', $copyeditedFileId);
 			if (isset($copyeditedFileId)) {
 				// Amend the galley signoff with the new file
 				$signoff->setFileId($copyeditedFileId);
