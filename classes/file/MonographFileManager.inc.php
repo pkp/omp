@@ -75,22 +75,12 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * Retrieve file information by file ID.
-	 * @return MonographFile
-	 */
-	function &getFile($fileId, $revision = null) {
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
-		$monographFile =& $monographFileDao->getMonographFile($fileId, $revision);
-		return $monographFile;
-	}
-
-	/**
 	 * Read a file's contents.
 	 * @param $output boolean output the file's contents instead of returning a string
 	 * @return boolean
 	 */
 	function readFile($fileId, $revision = null, $output = false) {
-		$monographFile =& MonographFileManager::getFile($fileId, $revision);
+		$monographFile =& MonographFileManager::_getFile($fileId, $revision);
 		if (isset($monographFile)) {
 			return parent::readFile($monographFile->getFilePath(), $output);
 		} else {
@@ -149,7 +139,7 @@ class MonographFileManager extends FileManager {
 	 */
 	function downloadFile($monographId, $fileId, $revision = null, $inline = false) {
 		$returner = false;
-		$monographFile =& MonographFileManager::getFile($fileId, $revision);
+		$monographFile =& MonographFileManager::_getFile($fileId, $revision);
 		if (isset($monographFile)) {
 			// Make sure that the file belongs to the monograph.
 			if ($monographFile->getMonographId() != $monographId) fatalError('Invalid file id!');
@@ -158,8 +148,10 @@ class MonographFileManager extends FileManager {
 			$sessionManager =& SessionManager::getManager();
 			$session =& $sessionManager->getUserSession();
 			$user =& $session->getUser();
-			$viewsDao =& DAORegistry::getDAO('ViewsDAO');
-			$viewsDao->recordView(ASSOC_TYPE_MONOGRAPH_FILE, $fileId, $user->getId());
+			if (is_a($user, 'User')) {
+				$viewsDao =& DAORegistry::getDAO('ViewsDAO');
+				$viewsDao->recordView(ASSOC_TYPE_MONOGRAPH_FILE, $fileId, $user->getId());
+			}
 
 			// Send the file to the user.
 			$filePath = $monographFile->getFilePath();
@@ -426,6 +418,18 @@ class MonographFileManager extends FileManager {
 
 		// Populate the monograph file with the generated file name.
 		$monographFile->setFileName($fileName);
+	}
+
+	/**
+	 * Retrieve file information by file ID.
+	 * @param $fileId integer
+	 * @param $revision integer
+	 * @return MonographFile
+	 */
+	function &_getFile($fileId, $revision = null) {
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
+		$monographFile =& $monographFileDao->getMonographFile($fileId, $revision);
+		return $monographFile;
 	}
 }
 

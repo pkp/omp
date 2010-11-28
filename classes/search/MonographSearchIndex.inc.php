@@ -62,8 +62,8 @@ class MonographSearchIndex {
 	 * @param $fileId int
 	 */
 	function updateFileIndex($monographId, $type, $fileId) {
-		import('classes.file.MonographFileManager');
-		$file =& MonographFileManager::getFile($fileId);
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
+		$file =& $monographFileDao->getMonographFile($fileId);
 
 		if (isset($file)) {
 			$parser =& SearchFileParser::fromFile($file);
