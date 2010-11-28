@@ -139,7 +139,7 @@
 
 		<!-- Display review attachments grid -->
 		{if $showCopyeditingFiles}
-			{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.authorCopyeditingFiles.AuthorCopyeditingFilesGridHandler" op="fetchGrid" canAdd='false' monographId=$monograph->getId() escape=false}
+			{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.authorCopyeditingFiles.AuthorCopyeditingFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
 			{load_url_in_div id="copyeditingFilesGridDiv" url=$copyeditingFilesGridUrl}
 		{/if}
 	</div>

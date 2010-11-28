@@ -17,49 +17,20 @@ import('lib.pkp.classes.form.Form');
 
 class CopyeditingFileForm extends Form {
 	/** the id of the monograph being edited */
-	var $_monographId;
+	var $_monograph;
 
 	/** the id of the copyediting signoff */
 	var $_signoffId;
 
 	/**
-	 * Set the monograph
-	 * @param $monograph Monograph
-	 */
-	function setMonograph(&$monograph) {
-	    $this->_monograph =& $monograph;
-	}
-
-	/**
-	 * Get the monograph
-	 * @return Monograph
-	 */
-	function getMonograph() {
-	    return $this->_monograph;
-	}
-
-	/**
-	 * Set the signoff id
-	 * @param $signoffId int
-	 */
-	function setSignoffId($signoffId) {
-	    $this->_signoffId = (int) $signoffId;
-	}
-
-	/**
-	 * Get the signoff id
-	 * @return int
-	 */
-	function getSignoffId() {
-	    return $this->_signoffId;
-	}
-
-	/**
 	 * Constructor.
+	 * @param $monograph Monograph
+	 * @param $signoffId integer
+	 * @param $template string
 	 */
 	function CopyeditingFileForm($monograph, $signoffId, $template = null) {
-		$this->setMonograph($monograph);
-		$this->setSignoffId($signoffId);
+		$this->_monograph =& $monograph;
+		$this->_signoffId = $signoffId;
 
 		if(!$template) {
 			// Use the default template
@@ -71,10 +42,32 @@ class CopyeditingFileForm extends Form {
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
+
+	//
+	// Setters and Getters
+	//
 	/**
-	 * Initialize form data from current settings.
-	 * @param $args array
-	 * @param $request PKPRequest
+	 * Get the monograph
+	 * @return Monograph
+	 */
+	function getMonograph() {
+	    return $this->_monograph;
+	}
+
+	/**
+	 * Get the signoff id
+	 * @return int
+	 */
+	function getSignoffId() {
+	    return $this->_signoffId;
+	}
+
+
+	//
+	// Implement template methods from Form
+	//
+	/**
+	 * @see Form::initData()
 	 */
 	function initData($args, &$request) {
 		$this->_data['signoffId'] = $this->getSignoffId();
@@ -83,8 +76,6 @@ class CopyeditingFileForm extends Form {
 	}
 
 	/**
-	 * Fetch
-	 * @param $request PKPRequest
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
@@ -104,13 +95,16 @@ class CopyeditingFileForm extends Form {
 	}
 
 	/**
-	 * Assign form data to user-submitted data.
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('signoffId'));
 	}
 
+
+	//
+	// Public helper methods
+	//
 	/**
 	 * Upload a copyediting file
 	 * @param $args array

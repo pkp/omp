@@ -159,31 +159,41 @@ class MonographFileDAO extends DAO {
 	}
 
 	/**
+	 * Set a file as the latest revision of an existing file
+	 * @param $newFileId int
+	 * @param $oldFileId int
+	 * @return int revision number
+	 */
+	function setAsLatestRevision($newFileId, $oldFileId) {
+		$revision = $this->getLatestRevisionNumber($oldFileId) + 1;
+		$this->update(
+			'UPDATE monograph_files SET file_id = ?, revision = ? WHERE file_id = ?',
+			array($oldFileId, $revision, $newFileId)
+		);
+		return $revision;
+	}
+
+	/**
 	 * Retrieve the current revision number for a file.
 	 * @param $fileId int
 	 * @return int
 	 */
-	function &getRevisionNumber($fileId) {
-		if ($fileId === null) {
-			$returner = null;
-			return $returner;
-		}
+	function &getLatestRevisionNumber($fileId) {
+		assert(!is_null($fileId));
+
 		$result =& $this->retrieve(
 			'SELECT MAX(revision) AS max_revision FROM monograph_files a WHERE file_id = ?',
 			$fileId
 		);
+		assert($result->RecordCount() == 1);
 
-		if ($result->RecordCount() == 0) {
-			$returner = null;
-		} else {
-			$row = $result->FetchRow();
-			$returner = $row['max_revision'];
-		}
-
+		$row = $result->FetchRow();
 		$result->Close();
 		unset($result);
 
-		return $returner;
+		$latestRevision = (int)$row['max_revision'];
+		assert($latestRevision > 0);
+		return $latestRevision;
 	}
 
 	/**
@@ -384,20 +394,6 @@ class MonographFileDAO extends DAO {
 
 		$this->updateLocaleFields($monographFile);
 		return $monographFile->getFileId();
-	}
-
-	/**
-	 * Set a file as the latest revision of an existing file
-	 * @param $newFileId int
-	 * @param $oldFileId int
-	 * @return int revision number
-	 */
-	function setAsLatestRevision($newFileId, $oldFileId) {
-		$revision = $this->getRevisionNumber($oldFileId) +1;
-		$this->update(
-			'UPDATE monograph_files SET file_id = ?, revision = ? WHERE file_id = ?', array($oldFileId, $revision, $newFileId)
-		);
-		return $revision;
 	}
 
 	/**

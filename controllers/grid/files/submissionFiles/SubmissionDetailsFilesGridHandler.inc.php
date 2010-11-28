@@ -20,8 +20,6 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 import('controllers.grid.files.submissionFiles.SubmissionFilesGridHandler');
 
 class SubmissionDetailsFilesGridHandler extends SubmissionFilesGridHandler {
-	var $_monographId;
-
 	/**
 	 * Constructor
 	 */
@@ -40,13 +38,33 @@ class SubmissionDetailsFilesGridHandler extends SubmissionFilesGridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
 		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	/**
+	 * @see PKPHandler::initialize()
+	 */
+	function initialize(&$request) {
+		// Basic grid configuration
+		$this->setTitle('submission.submit.submissionFiles');
+
+		// Load monograph files.
+		$this->loadMonographFiles();
+
+		// Check wether to display the 'add file' grid action.
+		$canAdd = true;
+		if($request->getUserVar('canAdd') == "false") {
+			$canAdd = false;
+		}
+
+		$cellProvider = new SubmissionFilesGridCellProvider();
+		parent::initialize($request, $cellProvider, $canAdd);
+
+		$this->addColumn(new GridColumn('fileType',	'common.fileType', null, 'controllers/grid/gridCell.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('type', 'common.type', null, 'controllers/grid/gridCell.tpl', $cellProvider));
 	}
 }

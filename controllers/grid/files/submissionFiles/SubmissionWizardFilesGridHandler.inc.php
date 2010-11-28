@@ -38,13 +38,27 @@ class SubmissionWizardFilesGridHandler extends SubmissionFilesGridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
 		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
+	}
+
+	/**
+	 * @see PKPHandler::initialize()
+	 */
+	function initialize(&$request) {
+		// Basic grid configuration
+		$this->setTitle('submission.submit.submissionFiles');
+
+		// Load monograph files.
+		$this->loadMonographFiles();
+
+		$cellProvider = new SubmissionFilesGridCellProvider();
+		parent::initialize($request, $cellProvider);
+
+		$this->addColumn(new GridColumn('fileType',	'common.fileType', null, 'controllers/grid/gridCell.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('type', 'common.type', null, 'controllers/grid/gridCell.tpl', $cellProvider));
 	}
 }

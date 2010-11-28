@@ -319,7 +319,7 @@ class MonographFileManager extends FileManager {
 			// Create a new revision of the file with the existing file id.
 			$monographFile->setFileId($fileId);
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFile->setRevision($monographFileDao->getRevisionNumber($fileId)+1);
+			$monographFile->setRevision($monographFileDao->getLatestRevisionNumber($fileId)+1);
 		} else {
 			// Create the first revision of a new file.
 			$monographFile->setRevision(1);
@@ -421,7 +421,8 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * Retrieve file information by file ID.
+	 * Internal helper method to retrieve file
+	 * information by file ID.
 	 * @param $fileId integer
 	 * @param $revision integer
 	 * @return MonographFile

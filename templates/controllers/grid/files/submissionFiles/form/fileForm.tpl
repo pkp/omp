@@ -38,19 +38,19 @@
 			returnString = eval("("+ret.response+")");
 
 			if (returnString.status == true) {
-		    		$('#fileType').attr("disabled", "disabled");
-		    		$('div#fileUploadTabs').last().tabs('url', 0, returnString.fileFormUrl);
-		    		$('div#fileUploadTabs').last().tabs('url', 1, returnString.metadataUrl);
-		    		$('#deleteUrl').val(returnString.deleteUrl);
+				$('#fileType').attr("disabled", "disabled");
+				$('div#fileUploadTabs').last().tabs('url', 0, returnString.fileFormUrl);
+				$('div#fileUploadTabs').last().tabs('url', 1, returnString.metadataUrl);
+				$('#deleteUrl').val(returnString.deleteUrl);
 				$('#continueButton').button( "option", "disabled", false);
-		    		$('div#fileUploadTabs').last().tabs('enable', 1);
+				$('div#fileUploadTabs').last().tabs('enable', 1);
 
-		    		// If the file name is similar to an existing filename, show the possible revision control
-		    		if(returnString.possibleRevision == true) {
-		    			$('#confirmUrl').val(returnString.revisionConfirmUrl);
-		    			$("#existingFiles").val(returnString.possibleRevisionId);
-		    			$('#possibleRevision').show('slide');
-		    		}
+				// If the file name is similar to an existing filename, show the possible revision control
+				if(returnString.possibleRevision == true) {
+					$('#confirmUrl').val(returnString.revisionConfirmUrl);
+					$("#existingFiles").val(returnString.possibleRevisionId);
+					$('#possibleRevision').show('slide');
+				}
 			} else {
 				alert(returnString.content);
 			}
@@ -99,7 +99,7 @@
 						$("#possibleRevision").hide();
 						$('div#fileUploadTabs').last().tabs('url', 0, jsonData.fileFormUrl);
 						$('div#fileUploadTabs').last().tabs('url', 1, jsonData.metadataUrl);
-			    		$('#deleteUrl').val(jsonData.deleteUrl);
+						$('#deleteUrl').val(jsonData.deleteUrl);
 					}
 				});
 			}
@@ -158,26 +158,26 @@
 	{/fbvFormArea}
 
 	{if $fileStage == $smarty.const.MONOGRAPH_FILE_SUBMISSION || $fileStage == $smarty.const.MONOGRAPH_FILE_REVIEW}
-	<div id="possibleRevision" class="possibleRevision response" style="display:none;">
-		<div id="revisionWarningIcon" class="warning"></div>
-		<div id="revisionWarningText">
-			<h5>{translate key="submission.upload.possibleRevision"}</h5>
-			<p>{translate key="submission.upload.possibleRevisionDescription"}</p>
-			{fbvSelect name="existingFiles" id="existingFiles" from=$monographFileOptions translate=false} <br />
-			<span><a href="#" id="confirmRevision">{translate key="submission.upload.possibleRevisionConfirm"}</a></span>
-			<span><a href="#" id="denyRevision">{translate key="submission.upload.possibleRevisionDeny"}</a></span>
+		<div id="possibleRevision" class="possibleRevision response" style="display:none;">
+			<div id="revisionWarningIcon" class="warning"></div>
+			<div id="revisionWarningText">
+				<h5>{translate key="submission.upload.possibleRevision"}</h5>
+				<p>{translate key="submission.upload.possibleRevisionDescription"}</p>
+				{fbvSelect name="existingFiles" id="existingFiles" from=$monographFileOptions translate=false} <br />
+				<span><a href="#" id="confirmRevision">{translate key="submission.upload.possibleRevisionConfirm"}</a></span>
+				<span><a href="#" id="denyRevision">{translate key="submission.upload.possibleRevisionDeny"}</a></span>
+			</div>
 		</div>
-	</div>
 	{/if}
 
 	<div class="separator"></div>
 
 	{fbvFormArea id="buttons"}
-	    {fbvFormSection}
-	        {fbvLink id="cancelButton" label="common.cancel"}
-	        {if !$fileId}{assign var="buttonDisabled" value="disabled"}{/if}
-	        {fbvButton id="continueButton" label="common.continue" disabled=$buttonDisabled align=$fbvStyles.align.RIGHT}
-	    {/fbvFormSection}
+		{fbvFormSection}
+			{fbvLink id="cancelButton" label="common.cancel"}
+			{if !$fileId}{assign var="buttonDisabled" value="disabled"}{/if}
+			{fbvButton id="continueButton" label="common.continue" disabled=$buttonDisabled align=$fbvStyles.align.RIGHT}
+		{/fbvFormSection}
 	{/fbvFormArea}
 
 	<!--  After file is uploaded, store URLs to handler actions in these fields -->

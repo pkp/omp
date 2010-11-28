@@ -12,15 +12,12 @@
  * @brief Handle the fair copy files grid (displays copyedited files ready to move to proofreading)
  */
 
-import('lib.pkp.classes.controllers.grid.GridHandler');
+import('controllers.grid.files.submissionFiles.SubmissionFilesGridHandler');
 import('controllers.grid.files.fairCopyFiles.FairCopyFilesGridRow');
 
-class FairCopyFilesGridHandler extends GridHandler {
-	/** the FileType for this grid */
-	var $fileType;
-
-	/** Boolean flag if grid is selectable **/
-	var $_isSelectable;
+class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
+	/** @var boolean whether the grid allows uploading of files */
+	var $_canUpload;
 
 	/**
 	 * Constructor
@@ -28,37 +25,14 @@ class FairCopyFilesGridHandler extends GridHandler {
 	function FairCopyFilesGridHandler() {
 		parent::GridHandler();
 
-		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_REVIEWER), array());
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array('fetchGrid', 'downloadFile', 'deleteFile'));
+				array('fetchGrid', 'addFile', 'downloadFile', 'deleteFile'));
 	}
 
-	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_EDITING));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
 
 	//
 	// Getters/Setters
 	//
-	/**
-	 * Set the canUpload flag
-	 * @param $canUpload bool
-	 */
-	function setCanUpload($canUpload) {
-		$this->_canUpload = $canUpload;
-	}
-
 	/**
 	 * Get the canUpload flag
 	 * @return bool
@@ -67,43 +41,34 @@ class FairCopyFilesGridHandler extends GridHandler {
 		return $this->_canUpload;
 	}
 
+
 	//
 	// Implement template methods from PKPHandler
 	//
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize(&$request, $args, $roleAssignments) {
+		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_EDITING));
+		return parent::authorize($request, $args, $roleAssignments);
+	}
 
-	/*
-	 * Configure the grid
-	 * @param PKPRequest $request
+	/**
+	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
-		parent::initialize($request);
 		// Basic grid configuration
-		$monographId = (integer)$request->getUserVar('monographId');
 		$this->setId('fairCopyFiles');
 		$this->setTitle('editor.monograph.fairCopy');
 
-		// Set the canUpload boolean flag
-		$canUpload = (boolean)$request->getUserVar('canUpload');
-		$this->setCanUpload($canUpload);
-
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
-
-		// Elements to be displayed in the grid
-		$router =& $request->getRouter();
-		$context =& $router->getContext($request);
-
-		// Grab the fair copy files
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getByMonographId($monographId, MONOGRAPH_FILE_FAIR_COPY);
-		$rowData = array();
-		foreach ($monographFiles as $monographFile) {
-			$rowData[$monographFile->getFileId()] = $monographFile;
-		}
-		$this->setData($rowData);
+		// Load fair copy files.
+		$this->loadMonographFiles(MONOGRAPH_FILE_FAIR_COPY);
 
 		// Test whether the tar binary is available for the export to work, if so, add grid action
 		$tarBinary = Config::getVar('cli', 'tar');
-		if (isset($this->_data) && !empty($tarBinary) && file_exists($tarBinary)) {
+		if ($this->hasData() && !empty($tarBinary) && file_exists($tarBinary)) {
+			$router =& $request->getRouter();
 			$this->addAction(
 				new LinkAction(
 					'downloadAll',
@@ -117,29 +82,16 @@ class FairCopyFilesGridHandler extends GridHandler {
 			);
 		}
 
-		if ($canUpload) {
-			$this->addAction(
-				new LinkAction(
-					'uploadFile',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_APPEND,
-					$router->url($request, null, 'grid.files.submissionFiles.CopyeditingSubmissionFilesGridHandler', 'addFile', null, array('monographId' => $monographId, 'fileStage' => MONOGRAPH_FILE_FAIR_COPY)),
-					'editor.monograph.fairCopy.addFile',
-					null,
-					'add'
-				)
-			);
-		}
+		// Set the canUpload boolean flag
+		$this->_canUpload = (boolean)$request->getUserVar('canUpload');
+
+		// Load additional translation components.
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR));
 
 		// Columns
 		import('controllers.grid.files.fairCopyFiles.FairCopyFilesGridCellProvider');
 		$cellProvider =& new FairCopyFilesGridCellProvider();
-		$this->addColumn(new GridColumn('name',
-			'common.file',
-			null,
-			'controllers/grid/gridCell.tpl',
-			$cellProvider)
-		);
+		parent::initialize($request, $cellProvider, $this->getCanUpload(), MONOGRAPH_FILE_FAIR_COPY);
 
 		// Add a column for the uploader.
 		// FIXME: We're just adding some placeholder text here until this
@@ -168,65 +120,28 @@ class FairCopyFilesGridHandler extends GridHandler {
 		);
 	}
 
+
+	//
+	// Overridden methods from SubmissionFilesGridHandler
+	//
+	/**
+	 * @see SubmissionFilesGridHandler::displayFileForm()
+	 */
+	function displayFileForm(&$args, &$request) {
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('isEditing', true);
+		return parent::displayFileForm($args, $request);
+	}
+
+
 	//
 	// Overridden methods from GridHandler
 	//
 	/**
-	* Get the row handler - override the default row handler
-	* @return FairCopyFilesGridRow
-	*/
+	 * @see GridHandler::getRowInstance
+	 */
 	function &getRowInstance() {
 		$row = new FairCopyFilesGridRow();
 		return $row;
-	}
-
-	//
-	// Public methods
-	//
-	/**
-	 * Download the monograph file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function downloadFile($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-		$fileId = $request->getUserVar('fileId');
-
-		import('classes.file.MonographFileManager');
-		MonographFileManager::downloadFile($monographId, $fileId);
-	}
-
-	/**
-	 * Download all of the monograph files as one compressed file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function downloadAllFiles($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-
-		import('classes.file.MonographFileManager');
-		MonographFileManager::downloadFilesArchive($monographId, $this->_data);
-	}
-
-	/**
-	 * Delete a file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string
-	 */
-	function deleteFile($args, &$request) {
-		$fileId = $request->getUserVar('fileId');
-
-		if($fileId) {
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFileDao->deleteMonographFileById($fileId);
-
-			$json = new JSON('true');
-		} else {
-			$json = new JSON('false');
-		}
-		return $json->getString();
 	}
 }

@@ -12,7 +12,10 @@
  * @brief Form for adding/editing a submission file
  */
 
+
 import('lib.pkp.classes.form.Form');
+
+define('SUBMISSION_MIN_SIMILARITY_OF_REVISION', 70);
 
 class SubmissionFilesUploadForm extends Form {
 	/** The id of the file being edited */
@@ -31,6 +34,7 @@ class SubmissionFilesUploadForm extends Form {
 	 * Constructor.
 	 */
 	function SubmissionFilesUploadForm($fileId = null, $monographId, $fileStage = MONOGRAPH_FILE_SUBMISSION, $isRevision = false) {
+		// Initialize class.
 		$this->_fileId = $fileId;
 		$this->_monographId = $monographId;
 		$this->_fileStage = $fileStage;
@@ -41,20 +45,57 @@ class SubmissionFilesUploadForm extends Form {
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
+
+	//
+	// Setters and Getters
+	//
 	/**
-	 * Initialize form data from current settings.
-	 * @param $args array
-	 * @param $request PKPRequest
+	 * Get the file id.
+	 * @return integer
+	 */
+	function getFileId() {
+		return $this->_fileId;
+	}
+
+	/**
+	 * Get the monograph id.
+	 * @return integer
+	 */
+	function getMonographId() {
+		return $this->_monographId;
+	}
+
+	/**
+	 * Get the file stage.
+	 * @return integer
+	 */
+	function getFileStage() {
+		return $this->_fileStage;
+	}
+
+	/**
+	 * Is this a revision?
+	 * @return boolean
+	 */
+	function isRevision() {
+		return $this->_isRevision;
+	}
+
+
+	//
+	// Implement template methods from Form
+	//
+	/**
+	 * @see Form::initData()
 	 */
 	function initData($args, &$request) {
-		$this->_data['monographId'] = $this->_monographId;
-		if (isset($this->_fileId) ) {
-			$this->_data['fileId'] = $this->_fileId;
-
+		$this->setData('monographId', $this->getMonographId());
+		if ($this->getFileId()) {
+			$this->setData('fileId', $this->getFileId());
 			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
-			$this->_data['monographFileName'] = $monographFile->getOriginalFileName();
-			$this->_data['currentFileType'] = $monographFile->getMonographFileTypeId();
+			$monographFile =& $monographFileDao->getMonographFile($this->getFileId());
+			$this->setData('monographFileName', $monographFile->getOriginalFileName());
+			$this->setData('currentFileType', $monographFile->getMonographFileTypeId());
 		}
 
 		$context =& $request->getContext();
@@ -70,56 +111,58 @@ class SubmissionFilesUploadForm extends Form {
 
 		// Assign monograph files to template to display in revision drop-down menu
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getByMonographId($this->_monographId);
+		$monographFiles =& $monographFileDao->getByMonographId($this->getMonographId());
 		$monographFileOptions = array();
 		foreach ($monographFiles as $monographFile) {
 			$fileName = $monographFile->getLocalizedName() != '' ? $monographFile->getLocalizedName() : Locale::translate('common.untitled');
 			if ($monographFile->getRevision() > 1) $fileName .= ' (' . $monographFile->getRevision() . ')'; // Add revision number to label
 			$monographFileOptions[$monographFile->getFileId()] = $fileName;
 		}
-		$this->_data['monographFileOptions'] =& $monographFileOptions;
+		$this->setData('monographFileOptions', $monographFileOptions);
 
-		$this->_data['monographFileTypes'] = $monographFileTypeList;
-		$this->_data['fileStage'] = $this->_fileStage;
-		$this->_data['isRevision'] = $this->_isRevision;
+		$this->setData('monographFileTypes', $monographFileTypeList);
+		$this->setData('fileStage', $this->getFileStage());
+		$this->setData('isRevision', $this->isRevision());
 	}
 
 	/**
-	 * Assign form data to user-submitted data.
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('gridId', 'fileType'));
 	}
 
+
+	//
+	// Public helper methods
+	//
 	/**
 	 * Check if the uploaded file has a similar name to existing files (i.e., a possible revision)
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return int MonographFile Id
+	 * @param $monographId integer
+	 * @return int submission file id
 	 */
-	function checkForRevision($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-
-		import('classes.file.FileManager');
+	function checkForRevision($monographId) {
+		import('lib.pkp.classes.file.FileManager');
 		if (FileManager::uploadedFileExists('submissionFile')) {
 			$fileName = FileManager::getUploadedFileName('submissionFile');
 
-			// Check similarity of filename against existing filenames
+			// Check similarity of filename against existing filenames.
 			return $this->_checkForSimilarFilenames($fileName, $monographId);
 		}
+
+		return null;
 	}
 
 	/**
 	 * Upload the submission file
 	 * @param $args array
 	 * @param $request PKPRequest
-	 * @return int
+	 * @return int submission file id
 	 */
 	function uploadFile($args, &$request) {
-		$monographId = $this->_monographId;
-		$fileId = $this->_fileId;
-		$fileStage = $this->_fileStage;
+		$monographId = $this->getMonographId();
+		$fileId = $this->getFileId();
+		$fileStage = $this->getFileStage();
 		assert(!empty($fileStage));
 		$monographFileTypeId = (int)$this->getData('fileType');
 
@@ -153,19 +196,26 @@ class SubmissionFilesUploadForm extends Form {
 		return isset($submissionFileId) ? $submissionFileId : false;
 	}
 
+
+	//
+	// Private helper methods
+	//
 	/**
 	 * Check the filename against existing files in the submission
-	 * A criterion of 70% of characters matching is used to determine the return value
+	 * The number of matching characters is used to determine the return value.
 	 * @param $fileName string
 	 * @param $monographId int
-	 * @return int MonographFile Id
+	 * @return int the submission file id of the best matching file or null
+	 *  if none matched.
 	 */
 	function _checkForSimilarFilenames($fileName, $monographId) {
-		$criterion = 70;
+		$criterion = SUBMISSION_MIN_SIMILARITY_OF_REVISION;
 
+		// Retrieve the monograph files of this monograph.
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFiles =& $monographFileDao->getByMonographId($monographId);
 
+		// Find out whether one of the files matches the given file name.
 		$matchedFileId = null;
 		foreach ($monographFiles as $monographFile) {
 			$matchedChars = similar_text($fileName, $monographFile->getOriginalFileName(), &$p);
@@ -175,6 +225,7 @@ class SubmissionFilesUploadForm extends Form {
 			}
 		}
 
+		// Return the file that we found similar.
 		return $matchedFileId;
 	}
 }

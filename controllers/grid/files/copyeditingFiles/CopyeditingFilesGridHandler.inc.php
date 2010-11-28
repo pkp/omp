@@ -85,7 +85,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_APPEND,
 				$router->url($request, null, 'grid.files.submissionFiles.CopyeditingSubmissionFilesGridHandler', 'addFile', null, array('monographId' => $monograph->getId(), 'fileStage' => MONOGRAPH_FILE_COPYEDIT)),
-				'editor.monograph.fairCopy.addFile',
+				'submission.addFile',
 				null,
 				'add'
 			)

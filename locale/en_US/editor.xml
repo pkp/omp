@@ -181,7 +181,6 @@
 	<message key="editor.monograph.remove">Remove</message>
 	<message key="editor.monograph.manageFinalDraftFiles">Manage Final Draft Files</message>
 	<message key="editor.monograph.fairCopy">Fair Copy</message>
-	<message key="editor.monograph.fairCopy.addFile">Add File</message>
 	<message key="editor.monograph.copyediting.addFile">Add File</message>
 	<message key="editor.monograph.copyediting.addUser">Add User</message>
 	<message key="editor.monograph.copyediting.currentFiles">Current Files</message>

@@ -40,30 +40,27 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
+	/**
+	 * @see PKPHandler::initialize()
+	 */
+	function initialize(&$request) {
+		// Basic grid configuration
+		$this->setTitle('submission.submit.submissionFiles');
+
+		// Load monograph files.
+		$this->loadMonographFiles();
+
+		$cellProvider = new SubmissionFilesGridCellProvider();
+		parent::initialize($request, $cellProvider);
+
+		$this->addColumn(new GridColumn('fileType',	'common.fileType', null, 'controllers/grid/gridCell.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('type', 'common.type', null, 'controllers/grid/gridCell.tpl', $cellProvider));
+	}
+
 
 	//
 	// Overridden public actions from SubmissionFilesGridHandler
 	//
-	/**
-	 * Action to edit an existing file (or a new one where the file id is null)
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function editFile(&$args, &$request) {
-		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
-		$fileStage = $request->getUserVar('fileStage') ? $request->getUserVar('fileStage'): null;
-
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('monographId', $this->_monographId);
-		$templateMgr->assign('fileId', $fileId);
-		$templateMgr->assign('gridId', $this->getId());
-		$templateMgr->assign('fileStage', $fileStage);
-
-		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/submissionFiles.tpl'));
-		return $json->getString();
-	}
-
 	/**
 	 * Display the file upload form
 	 * @param $args array
@@ -71,23 +68,9 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function displayFileForm(&$args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
-		$fileStage = $request->getUserVar('fileStage') ? $request->getUserVar('fileStage'): null;
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('isEditing', true);
-
-		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
-		$fileForm = new SubmissionFilesUploadForm($fileId, $monographId, $fileStage);
-
-		if ($fileForm->isLocaleResubmit()) {
-			$fileForm->readInputData();
-		} else {
-			$fileForm->initData($args, $request);
-		}
-
-		$json = new JSON('true', $fileForm->fetch($request));
-		return $json->getString();
+		return parent::displayFileForm($args, $request);
 	}
 
 	/**
@@ -107,7 +90,7 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 
 		// Check to see if the file uploaded might be a revision to an existing file
 		if(!$fileId) {
-			$possibleRevision = $fileForm->checkForRevision(&$args, &$request);
+			$possibleRevision = $fileForm->checkForRevision($monographId);
 		} else $possibleRevision = false;
 
 		if ($fileForm->validate() && ($fileId = $fileForm->uploadFile($args, $request)) ) {

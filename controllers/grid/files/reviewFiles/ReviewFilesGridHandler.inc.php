@@ -129,7 +129,7 @@ class ReviewFilesGridHandler extends GridHandler {
 
 		// Test whether the tar binary is available for the export to work, if so, add grid action
 		$tarBinary = Config::getVar('cli', 'tar');
-		$params = array('monographId' => $monographId, 'reviewType' => $reviewType, 'round' => $round);
+		$params = array('monographId' => $monographId, 'reviewType' => $reviewType, 'round' => $round, 'fileStage' => MONOGRAPH_FILE_REVIEW);
 		if (isset($this->_data) && !empty($tarBinary) && file_exists($tarBinary)) {
 			$this->addAction(
 				new LinkAction(

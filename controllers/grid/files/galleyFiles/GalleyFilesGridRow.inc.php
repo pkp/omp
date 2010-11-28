@@ -108,7 +108,7 @@ class GalleyFilesGridRow extends GridRow {
 						LINK_ACTION_MODE_MODAL,
 						LINK_ACTION_TYPE_REPLACE,
 						$router->url($request, null, null, 'addGalleyFile', null, $actionArgs),
-						'editor.monograph.fairCopy.addFile',
+						'submission.addFile',
 						null,
 						'add'
 					));

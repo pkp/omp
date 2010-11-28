@@ -15,30 +15,36 @@
 import('controllers.grid.files.copyeditingFiles.form.CopyeditingFileForm');
 
 class AuthorCopyeditingFilesUploadForm extends CopyeditingFileForm {
-
-
 	/**
 	 * Constructor.
+	 * @param $monograph Monograph
+	 * @param $signoffId integer
 	 */
-	function AuthorCopyeditingFilesUploadForm($monographId, $signoffId = null) {
-		parent::CopyeditingFileForm($monographId, $signoffId, 'controllers/grid/files/submissionFiles/form/fileForm.tpl');
+	function AuthorCopyeditingFilesUploadForm($monograph, $signoffId = null) {
+		parent::CopyeditingFileForm($monograph, $signoffId, 'controllers/grid/files/submissionFiles/form/fileForm.tpl');
 
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
+
+	//
+	// Implement template methods from Form
+	//
 	/**
-	 * Initialize form data from current settings.
-	 * @param $args array
-	 * @param $request PKPRequest
+	 * @see Form::initData()
 	 */
 	function initData($args, &$request) {
-		$this->_data['monographId'] = $this->_monographId;
+		// Retrieve the monograph id.
+		$monograph =& $this->getMonograph();
+		$this->setData('monographId', $monograph->getId());
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		// Retrieve signoffs.
 		$user =& $request->getUser();
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$signoffs =& $signoffDao->getAllBySymbolic('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, null, $user->getId());
 
+		// Retrieve monograph files.
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFileOptions = array();
 		while($signoff =& $signoffs->next()) {
 			$monographFile =& $monographFileDao->getMonographFile($signoff->getAssocId());
@@ -46,17 +52,14 @@ class AuthorCopyeditingFilesUploadForm extends CopyeditingFileForm {
 			$monographFileOptions[$signoff->getId()] = $fileName;
 			unset($signoff, $monographFile);
 		}
+		$this->setData('monographFileOptions', $monographFileOptions);
 
-
-		$this->_data['monographFileOptions'] =& $monographFileOptions;
-
-		$this->_data['fileStage'] = MONOGRAPH_FILE_COPYEDIT;
-		$this->_data['isRevision'] = false;
+		// Set other data.
+		$this->setData('fileStage', MONOGRAPH_FILE_COPYEDIT);
+		$this->setData('isRevision', false);
 	}
 
 	/**
-	 * Fetch
-	 * @param $request PKPRequest
 	 * @see Form::fetch()
 	 */
 	function fetch(&$request) {
@@ -64,13 +67,11 @@ class AuthorCopyeditingFilesUploadForm extends CopyeditingFileForm {
 	}
 
 	/**
-	 * Assign form data to user-submitted data.
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array('gridId', 'fileType'));
 	}
-
 }
 
 ?>

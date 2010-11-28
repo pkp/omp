@@ -9,7 +9,7 @@
  * Copyediting Files grid form -- Allow users to upload files to their copyediting responses
  *}
 
-{modal_title id="#uploadForm" key='editor.monograph.fairCopy.addFile' iconClass="fileManagement"}
+{modal_title id="#uploadForm" key='submission.addFile' iconClass="fileManagement"}
 
 <script type="text/javascript">
 	{literal}

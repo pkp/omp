@@ -29,8 +29,8 @@
 	<message key="submission.submit.category">Submission Category</message>
 	<message key="submission.submit.category.description">From the drop down list below, please select the category or series that best suits your submission. If you are unsure about what to select, or you haven't received special submission instructions from one of our editors, you can continue without selecting a particular series or submission category.</message>
 	<message key="submission.notifyEditor">Notify Editor</message>
-	<message key="submission.addFileToBook">Add A File To My Book</message>
-	<message key="submission.addFile">Add A File</message>
+	<message key="submission.addFileToBook">Add a File To My Book</message>
+	<message key="submission.addFile">Add File</message>
 	<message key="submission.uploadARevision">Upload A Revision</message>
 	<message key="submission.uploadACopyeditedVersion">Upload A Copyedited Version</message>
 	<message key="submission.notifyEditor">Notify Editor</message>

@@ -126,20 +126,14 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function displayFileForm($args, &$request) {
-		$fileId = $request->getUserVar('fileId') ? $request->getUserVar('fileId'): null;
-		$monographId = $request->getUserVar('monographId');
-		$fileStage = $request->getUserVar('fileStage') ? $request->getUserVar('fileStage') : null;
-		$isRevision = $request->getUserVar('isRevision') ? $request->getUserVar('isRevision') : false;
-
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		import('controllers.grid.files.authorCopyeditingFiles.form.AuthorCopyeditingFilesUploadForm');
-		$fileForm = new AuthorCopyeditingFilesUploadForm($monographId, null);
-
+		$fileForm = new AuthorCopyeditingFilesUploadForm($monograph, null);
 		if ($fileForm->isLocaleResubmit()) {
 			$fileForm->readInputData();
 		} else {
 			$fileForm->initData($args, $request);
 		}
-
 		$json = new JSON('true', $fileForm->fetch($request));
 		return $json->getString();
 	}
@@ -152,17 +146,17 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 */
 	function uploadFile($args, &$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$monographId = $monograph->getId();
 		$signoffId = $request->getUserVar('copyeditingSignoffId');
 		assert(is_numeric($signoffId));
 
 		import('controllers.grid.files.authorCopyeditingFiles.form.AuthorCopyeditingFilesUploadForm');
-		$fileForm = new AuthorCopyeditingFilesUploadForm($monographId, $signoffId);
+		$fileForm = new AuthorCopyeditingFilesUploadForm($monograph, $signoffId);
 		$fileForm->readInputData();
 
 		if ($fileForm->validate()) {
 			$copyeditedFileId = $fileForm->uploadFile($args, $request);;
 
+			$monographId = $monograph->getId();
 			$router =& $request->getRouter();
 			$additionalAttributes = array(
 				'fileFormUrl' => $router->url($request, null, null, 'displayFileForm', null, array('gridId' => $this->getId(), 'monographId' => $monographId, 'fileId' => $copyeditedFileId)),

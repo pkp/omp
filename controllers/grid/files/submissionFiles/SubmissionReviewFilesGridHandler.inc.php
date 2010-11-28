@@ -35,9 +35,6 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
@@ -50,16 +47,26 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
-		parent::initialize($request);
+		// Basic grid configuration
 		$this->setId('reviewFiles');
+		$this->setTitle('submission.submit.submissionFiles');
+
+		// Load monograph files.
+		$this->loadMonographFiles();
+
+		$cellProvider = new SubmissionFilesGridCellProvider();
+		parent::initialize($request, $cellProvider);
+
+		$this->addColumn(new GridColumn('fileType',	'common.fileType', null, 'controllers/grid/gridCell.tpl', $cellProvider));
+		$this->addColumn(new GridColumn('type', 'common.type', null, 'controllers/grid/gridCell.tpl', $cellProvider));
 
 		import('controllers.grid.files.reviewFiles.ReviewFilesGridCellProvider');
-		$cellProvider =& new ReviewFilesGridCellProvider();
+		$reviewCellProvider =& new ReviewFilesGridCellProvider();
 		$this->addColumn(new GridColumn('select',
 			'common.select',
 			null,
 			'controllers/grid/files/reviewFiles/gridRowSelectInput.tpl',
-			$cellProvider)
+			$reviewCellProvider)
 		);
 
 
