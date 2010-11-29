@@ -24,7 +24,7 @@
 
 <br />
 
-{url|assign:fairCopyGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.fairCopyFiles.FairCopyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() canUpload=true escape=false}
+{url|assign:fairCopyGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.fairCopyFiles.FairCopyFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
 {load_url_in_div id="fairCopyGrid" url=$fairCopyGridUrl}
 
 <br />

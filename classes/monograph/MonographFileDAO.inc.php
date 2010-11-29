@@ -159,21 +159,6 @@ class MonographFileDAO extends DAO {
 	}
 
 	/**
-	 * Set a file as the latest revision of an existing file
-	 * @param $newFileId int
-	 * @param $oldFileId int
-	 * @return int revision number
-	 */
-	function setAsLatestRevision($newFileId, $oldFileId) {
-		$revision = $this->getLatestRevisionNumber($oldFileId) + 1;
-		$this->update(
-			'UPDATE monograph_files SET file_id = ?, revision = ? WHERE file_id = ?',
-			array($oldFileId, $revision, $newFileId)
-		);
-		return $revision;
-	}
-
-	/**
 	 * Retrieve the current revision number for a file.
 	 * @param $fileId int
 	 * @return int
@@ -202,7 +187,7 @@ class MonographFileDAO extends DAO {
 	 * @param $type int
 	 * @return array MonographFiles
 	 */
-	function &getByMonographId($monographId, $type = null, $hideAttachments = true) {
+	function &getByMonographId($monographId, $type = null) {
 		$monographFiles = array();
 
 		$sqlParams = array($monographId);
@@ -211,11 +196,6 @@ class MonographFileDAO extends DAO {
 		if (isset($type)) {
 			$sqlExtra .= ' AND type = ? ';
 			$sqlParams[] = (int)$type;
-		}
-
-		// Prevent review attachments from showing up in submission file lists
-		if ($type != MONOGRAPH_FILE_REVIEW && $hideAttachments) {
-			$sqlExtra .= ' AND type != '.MONOGRAPH_FILE_REVIEW.' ';
 		}
 
 		$result =& $this->retrieve(
@@ -344,6 +324,26 @@ class MonographFileDAO extends DAO {
 			$monographFile->setFileId($this->getInsertMonographFileId());
 		}
 		$this->updateLocaleFields($monographFile);
+
+		// Determine whether this is artwork and make an additional
+		// entry to the artwork table if this is the case.
+		$fileGenreId = $monographFile->getMonographFileTypeId();
+		if ($fileGenreId) {
+			// Retrieve the file genre.
+			$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
+			$fileGenre =& $monographFileTypeDao->getById($fileGenreId);
+			assert(is_a($fileGenre, 'MonographFileType'));
+
+			if ($fileGenre && $fileGenre->getCategory() == MONOGRAPH_FILE_CATEGORY_ARTWORK) {
+				// This is artwork so instantiate an artwork entry and persist it.
+				$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO'); /* @var $artworkFileDao ArtworkFileDAO */
+				$artworkFile =& $artworkFileDao->newDataObject();
+				$artworkFile->setFileId($monographFile->getFileId());
+				$artworkFile->setMonographId($monographFile->getMonographId());
+				$artworkFileDao->insertObject($artworkFile);
+			}
+		}
+
 		return $monographFile->getFileId();
 	}
 

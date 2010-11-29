@@ -42,40 +42,42 @@ class MonographFileManager extends FileManager {
 	 * Upload a monograph file.
 	 * @param $monographId integer
 	 * @param $fileName string the name of the file used in the POST form
-	 * @param $typeId int monograph file type (e.g. Manusciprt, Appendix, etc.)
-	 * @param $fileId int
-	 * @param $monographFileTypeId int
-	 * @return int file ID, is false if failure
+	 * @param $fileStage int monograph file workflow stage
+	 * @param $revisedFileId int
+	 * @param $fileGenre int (e.g. Manusciprt, Appendix, etc.)
+	 * @return MonographFile
 	 */
-	function uploadMonographFile($monographId, $fileName, $typeId = MONOGRAPH_FILE_SUBMISSION, $fileId = null, $monographFileTypeId = null) {
-		return MonographFileManager::_handleUpload($monographId, $fileName, $typeId, $fileId, $monographFileTypeId);
+	function uploadMonographFile($monographId, $fileName, $fileStage, $revisedFileId = null, $fileGenre = null) {
+		return MonographFileManager::_handleUpload($monographId, $fileName, $fileStage, $revisedFileId, $fileGenre);
 	}
 
 	/**
 	 * Upload a file to the review file folder.
 	 * @param $monographId integer
 	 * @param $fileName string the name of the file used in the POST form
-	 * @param $fileId int
-	 * @return int file ID, is false if failure
+	 * @param $revisedFileId int
+	 * @return MonographFile
 	 */
-	function uploadReviewFile($monographId, $fileName, $fileId = null, $reviewId = null) {
+	function uploadReviewFile($monographId, $fileName, $revisedFileId = null, $reviewId = null) {
 		$assocType = $reviewId ? ASSOC_TYPE_REVIEW_ASSIGNMENT : null;
-		return MonographFileManager::_handleUpload($monographId, $fileName, MONOGRAPH_FILE_REVIEW, $fileId, null, $reviewId, $assocType);
+		return MonographFileManager::_handleUpload($monographId, $fileName, MONOGRAPH_FILE_REVIEW, $revisedFileId, null, $reviewId, $assocType);
 	}
 
 	/**
 	 * Upload a copyedited file to the copyedit file folder.
 	 * @param $monographId integer
 	 * @param $fileName string the name of the file used in the POST form
-	 * @param $fileId int
-	 * @return int file ID, is false if failure
+	 * @param $revisedFileId int
+	 * @return MonographFile
 	 */
-	function uploadCopyeditResponseFile($monographId, $fileName, $fileId = null) {
-		return MonographFileManager::_handleUpload($monographId, $fileName, MONOGRAPH_FILE_COPYEDIT_RESPONSE, $fileId);
+	function uploadCopyeditResponseFile($monographId, $fileName, $revisedFileId = null) {
+		return MonographFileManager::_handleUpload($monographId, $fileName, MONOGRAPH_FILE_COPYEDIT_RESPONSE, $revisedFileId);
 	}
 
 	/**
 	 * Read a file's contents.
+	 * @param $fileId integer
+	 * @param $revision integer
 	 * @param $output boolean output the file's contents instead of returning a string
 	 * @return boolean
 	 */
@@ -237,7 +239,7 @@ class MonographFileManager extends FileManager {
 	 */
 	function temporaryFileToMonographFile($monographId, &$temporaryFile, $type, $assocId, $assocType) {
 		// Instantiate and pre-populate the new target monograph file.
-		$monographFile =& MonographFileManager::_instantiateMonographFile($monographId, null, $type, null, $assocId, $assocType);
+		$monographFile =& MonographFileManager::_instantiateMonographFile($monographId, $type, null, null, $assocId, $assocType);
 
 		// Transfer data from the temporary file to the monograph file.
 		$monographFile->setFileType($temporaryFile->getFileType());
@@ -245,7 +247,10 @@ class MonographFileManager extends FileManager {
 
 		// Copy the temporary file to it's final destination and persist
 		// its metadata to the database.
-		return MonographFileManager::_persistFile($temporaryFile->getFilePath(), $monographFile, true);
+		$monographFile =& MonographFileManager::_persistFile($temporaryFile->getFilePath(), $monographFile, true);
+
+		// Return the new file id.
+		return $monographFile->getFileId();
 	}
 
 
@@ -274,15 +279,21 @@ class MonographFileManager extends FileManager {
 	 * @param $monographId integer
 	 * @param $fileName string index into the $_FILES array
 	 * @param $type int identifying type (i.e. MONOGRAPH_FILE_*)
-	 * @param $fileId int ID of an existing file to update
-	 * @param $monographFileTypeId int foreign key into monograph_file_types table (e.g. manuscript, etc.)
+	 * @param $revisedFileId int ID of an existing file to revise
+	 * @param $fileGenre int foreign key into monograph_file_types table (e.g. manuscript, etc.)
 	 * @param $assocType int
 	 * @param $assocId int
-	 * @return int the file ID (false if upload failed)
+	 * @return MonographFile the uploaded monograph file or null if an error occured.
 	 */
-	function _handleUpload($monographId, $fileName, $type, $fileId = null, $monographFileTypeId = null, $assocId = null, $assocType = null) {
+	function &_handleUpload($monographId, $fileName, $type, $revisedFileId = null, $fileGenre = null, $assocId = null, $assocType = null) {
+		$nullVar = null;
+
+		// Ensure that the file has been correctly uploaded to the server.
+		if (!MonographFileManager::uploadedFileExists($fileName)) return $nullVar;
+
 		// Instantiate and pre-populate a new monograph file object.
-		$monographFile = MonographFileManager::_instantiateMonographFile($monographId, $fileId, $type, $monographFileTypeId, $assocId, $assocType);
+		$monographFile = MonographFileManager::_instantiateMonographFile($monographId, $type, $revisedFileId, $fileGenre, $assocId, $assocType);
+		if (is_null($monographFile)) return $nullVar;
 
 		// Retrieve file information from the uploaded file.
 		assert(isset($_FILES[$fileName]));
@@ -303,23 +314,54 @@ class MonographFileManager extends FileManager {
 	/**
 	 * Routine to instantiate and pre-populate a new monograph file.
 	 * @param $monographId integer
-	 * @param $fileId integer
 	 * @param $type integer
+	 * @param $revisedFileId integer
+	 * @param $fileGenre integer
 	 * @param $assocId integer
 	 * @param $assocType integer
-	 * @return MonographFile
+	 * @return MonographFile returns the instantiated monograph file or null if an error occurs.
 	 */
-	function &_instantiateMonographFile($monographId, $fileId, $type, $monographFileTypeId, $assocId, $assocType) {
+	function &_instantiateMonographFile($monographId, $type, $revisedFileId, $fileGenre, $assocId, $assocType) {
 		// Instantiate a new monograph file.
 		$monographFile = new MonographFile();
 		$monographFile->setMonographId($monographId);
 
 		// Do we create a new file or a new revision of an existing file?
-		if ($fileId) {
+		if ($revisedFileId) {
+			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
+
+			// Retrieve the current revision of the revised file.
+			$latestRevision = $monographFileDao->getLatestRevisionNumber($revisedFileId);
+
+			// Retrieve the revised file.
+			$revisedFile =& $monographFileDao->getMonographFile($revisedFileId, $latestRevision);
+			if (!is_a($revisedFile, 'MonographFile')) return false;
+
 			// Create a new revision of the file with the existing file id.
-			$monographFile->setFileId($fileId);
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFile->setRevision($monographFileDao->getLatestRevisionNumber($fileId)+1);
+			$monographFile->setFileId($revisedFileId);
+			$monographFile->setRevision($latestRevision+1);
+
+			// Make sure that the monograph of the revised file is
+			// the same as that of the uploaded file.
+			assert($revisedFile->getMonographId() == $monographId);
+			$nullVar = null;
+			if ($revisedFile->getMonographId() != $monographId) return $nullVar;
+
+			// Copy the file workflow stage.
+			assert(is_null($type) || $type == $revisedFile->getType());
+			$type = (int)$revisedFile->getType();
+
+			// Copy the file genre.
+			assert(is_null($fileGenre) || $fileGenre == $revisedFile->getMonographFileTypeId());
+			$fileGenre = (int)$revisedFile->getMonographFileTypeId();
+
+			// Copy the assoc type.
+			assert(is_null($assocType) || $assocType == $revisedFile->getAssocType());
+			$assocType = (int)$revisedFile->getAssocType();
+
+			// Copy the assoc id.
+			assert(is_null($assocId) || $assocId == $revisedFile->getAssocId());
+			$assocId = (int)$revisedFile->getAssocId();
 		} else {
 			// Create the first revision of a new file.
 			$monographFile->setRevision(1);
@@ -329,12 +371,12 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileName('unknown');
 		$monographFile->setFileSize(0);
 
-		// Set the file use case type.
+		// Set the file workflow stage.
 		$monographFile->setType($type);
 
-		// Set the monograph genre (if given).
-		if(isset($monographFileTypeId)) {
-			$monographFile->setMonographFileTypeId($monographFileTypeId);
+		// Set the file genre (if given).
+		if(isset($fileGenre)) {
+			$monographFile->setMonographFileTypeId($fileGenre);
 		}
 
 		// Set modification dates to the current system date.
@@ -359,9 +401,9 @@ class MonographFileManager extends FileManager {
 	 * @param $monographFile MonographFile the file metadata
 	 * @param $copyOnly boolean set to true if the file has not been uploaded
 	 *  but already exists on the file system.
-	 * @return integer the id of the file
+	 * @return MonographFile
 	 */
-	function _persistFile($sourceFile, $monographFile, $copyOnly = false) {
+	function &_persistFile($sourceFile, $monographFile, $copyOnly = false) {
 		// Persist the file meta-data (without the file name) and generate a file id.
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		if (!$monographFileDao->insertMonographFile($monographFile)) return false;
@@ -391,8 +433,8 @@ class MonographFileManager extends FileManager {
 		// Update the monograph with the file name and file size.
 		$monographFileDao->updateMonographFile($monographFile);
 
-		// Return the file id.
-		return $monographFile->getFileId();
+		// Return the file.
+		return $monographFile;
 	}
 
 	/**
@@ -403,13 +445,13 @@ class MonographFileManager extends FileManager {
 	function _generateAndPopulateFileName(&$monographFile) {
 		// If the file has a file genre set then start the
 		// file name with human readable genre information.
-		$monographFileTypeId = $monographFile->getMonographFileTypeId();
-		if ($monographFileTypeId) {
+		$fileGenre = $monographFile->getMonographFileTypeId();
+		if ($fileGenre) {
 			$primaryLocale = Locale::getPrimaryLocale();
 			$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO'); /* @var $monographFileTypeDao MonographFileTypeDAO */
-			$monographFileType =& $monographFileTypeDao->getById($monographFileTypeId);
-			assert(is_a($monographFileType, 'MonographFileType'));
-			$fileName = $monographFileType->getDesignation($primaryLocale).'_'.date('Ymd').'-'.$monographFileType->getName($primaryLocale).'-';
+			$fileGenre =& $monographFileTypeDao->getById($fileGenre);
+			assert(is_a($fileGenre, 'MonographFileType'));
+			$fileName = $fileGenre->getDesignation($primaryLocale).'_'.date('Ymd').'-'.$fileGenre->getName($primaryLocale).'-';
 		}
 
 		// Make the file name unique across all files and file revisions.

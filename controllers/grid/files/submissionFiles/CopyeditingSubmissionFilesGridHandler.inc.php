@@ -74,54 +74,6 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 	}
 
 	/**
-	 * Upload a file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function uploadFile(&$args, &$request) {
-		$monographId = (int) $request->getUserVar('monographId');
-		$fileId = $request->getUserVar('fileId') ? (int) $request->getUserVar('fileId'): null;
-		$fileStage = $request->getUserVar('fileStage') ? (int) $request->getUserVar('fileStage'): null;
-
-		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
-		$fileForm = new SubmissionFilesUploadForm($fileId, $monographId, $fileStage);
-		$fileForm->readInputData();
-
-		// Check to see if the file uploaded might be a revision to an existing file
-		if(!$fileId) {
-			$possibleRevision = $fileForm->checkForRevision($monographId);
-		} else $possibleRevision = false;
-
-		if ($fileForm->validate() && ($fileId = $fileForm->uploadFile($args, $request)) ) {
-			$router =& $request->getRouter();
-
-			$templateMgr =& TemplateManager::getManager();
-
-			$templateMgr->assign_by_ref('fileId', $fileId);
-
-			$additionalAttributes = array(
-				'fileFormUrl' => $router->url($request, null, null, 'displayFileForm', null, array('gridId' => $this->getId(), 'monographId' => $monographId, 'fileId' => $fileId)),
-				'metadataUrl' => $router->url($request, null, null, 'editMetadata', null, array('gridId' => $this->getId(), 'monographId' => $monographId, 'fileId' => $fileId)),
-				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('monographId' => $monographId, 'fileId' => $fileId))
-			);
-
-			if ($possibleRevision) {
-				$additionalAttributes['possibleRevision'] = true;
-				$additionalAttributes['revisionConfirmUrl'] = $router->url($request, null, null, 'confirmRevision', null, array('fileId' => $fileId, 'monographId' => $monographId, 'revisionId' => $possibleRevision));
-			}
-
-
-			$json = new JSON('true', Locale::translate('submission.uploadSuccessfulContinue'), 'false', $fileId, $additionalAttributes);
-		} else {
-			$json = new JSON('false', Locale::translate('common.uploadFailed'));
-		}
-
-		// The ajaxForm library requires the JSON to be wrapped in a textarea for it to be read by the client (See http://jquery.malsup.com/form/#file-upload)
-		return $json->getString();
-	}
-
-	/**
 	 * Display the final tab of the modal
 	 * @param $args array
 	 * @param $request PKPRequest

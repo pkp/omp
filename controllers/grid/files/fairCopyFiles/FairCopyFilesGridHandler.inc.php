@@ -16,29 +16,17 @@ import('controllers.grid.files.submissionFiles.SubmissionFilesGridHandler');
 import('controllers.grid.files.fairCopyFiles.FairCopyFilesGridRow');
 
 class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
-	/** @var boolean whether the grid allows uploading of files */
-	var $_canUpload;
-
 	/**
 	 * Constructor
 	 */
 	function FairCopyFilesGridHandler() {
-		parent::GridHandler();
+		// Configure the submission file grid.
+		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_FAIR_COPY, true);
 
+		// Configure role based authorization.
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array('fetchGrid', 'addFile', 'downloadFile', 'deleteFile'));
-	}
-
-
-	//
-	// Getters/Setters
-	//
-	/**
-	 * Get the canUpload flag
-	 * @return bool
-	 */
-	function getCanUpload() {
-		return $this->_canUpload;
+				array('fetchGrid', 'addFile', 'displayFileForm', 'uploadFile', 'editMetadata', 'saveMetadata',
+						'downloadFile', 'downloadAllFiles', 'deleteFile'));
 	}
 
 
@@ -62,8 +50,8 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 		$this->setId('fairCopyFiles');
 		$this->setTitle('editor.monograph.fairCopy');
 
-		// Load fair copy files.
-		$this->loadMonographFiles(MONOGRAPH_FILE_FAIR_COPY);
+		// Load grid data.
+		$this->loadMonographFiles();
 
 		// Test whether the tar binary is available for the export to work, if so, add grid action
 		$tarBinary = Config::getVar('cli', 'tar');
@@ -82,16 +70,13 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 			);
 		}
 
-		// Set the canUpload boolean flag
-		$this->_canUpload = (boolean)$request->getUserVar('canUpload');
-
 		// Load additional translation components.
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR));
 
 		// Columns
 		import('controllers.grid.files.fairCopyFiles.FairCopyFilesGridCellProvider');
 		$cellProvider =& new FairCopyFilesGridCellProvider();
-		parent::initialize($request, $cellProvider, $this->getCanUpload(), MONOGRAPH_FILE_FAIR_COPY);
+		parent::initialize($request, $cellProvider);
 
 		// Add a column for the uploader.
 		// FIXME: We're just adding some placeholder text here until this
@@ -118,19 +103,6 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 				$cellProvider
 			)
 		);
-	}
-
-
-	//
-	// Overridden methods from SubmissionFilesGridHandler
-	//
-	/**
-	 * @see SubmissionFilesGridHandler::displayFileForm()
-	 */
-	function displayFileForm(&$args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('isEditing', true);
-		return parent::displayFileForm($args, $request);
 	}
 
 
