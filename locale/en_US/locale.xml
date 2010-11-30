@@ -101,6 +101,7 @@
 	<message key="manuscript.submissions">Manuscript Submissions</message>
 	<message key="manuscript.artwork">Artwork</message>
 	<message key="submission.changeSeries">Change to</message>
+	<message key="submission.confirmSubmit">Are you sure you wish to submit this manuscript to the press?</message>
 	<message key="submission.selectFilesForReview">Select the files that are to be reviewed by reviewers as part of this book's assessment and press Record.</message>
 	<message key="submission.stepX">Step {$step}.</message>
 	<message key="submission.files.downloadAll">Download All Files</message>
@@ -210,6 +211,7 @@
 	<message key="reviewer.monograph.guidelines">Review Guidelines</message>
 	<message key="reviewer.monograph.noGuidelines">This press has not set any reviewer guidelines.</message>
 	<message key="reviewer.complete">Review Submitted</message>
+	<message key="reviewer.confirmSubmit">Are you sure you want to submit this review to the press?</message>
 	<message key="reviewer.complete.whatNext">Your review has been submitted successfully.  The editor may contact you again for more information.</message>
 
 

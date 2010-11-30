@@ -45,8 +45,8 @@
 	{url|assign:chapterGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.chapter.ChapterGridHandler" op="fetchGrid" monographId=$monographId}
 	{load_url_in_div id="chaptersGridContainer" url="$chapterGridUrl"}
 {/if}
-
-<p><input type="submit" value="{translate key="submission.submit.finishSubmission"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="submission.submit.cancelSubmission"}')" /></p>
+{confirm_submit button='submit' dialogText='submission.confirmSubmit'}
+<p><input id="submit" type="submit" value="{translate key="submission.submit.finishSubmission"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" /></p>
 
 <p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 
