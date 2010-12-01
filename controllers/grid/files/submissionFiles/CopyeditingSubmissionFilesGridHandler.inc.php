@@ -109,7 +109,7 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 	function returnFileRow(&$args, &$request) {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
 
-		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
+		$genreDao =& DAORegistry::getDAO('GenreDAO');
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
 		$monographId = $monographFile->getMonographId();

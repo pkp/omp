@@ -80,9 +80,9 @@ class RevisionsGridCellProvider extends GridCellProvider {
 			case 'name':
 				return array('label' => $element->getLocalizedName());
 			case 'type':
-				$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-				$fileType = $monographFileTypeDao->getById($element->getMonographFileTypeId());
-				return array('label' => $fileType->getLocalizedName());
+				$genreDao =& DAORegistry::getDAO('GenreDAO');
+				$genre = $genreDao->getById($element->getGenreId());
+				return array('label' => $genre->getLocalizedName());
 			}
 	}
 }

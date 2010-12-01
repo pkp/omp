@@ -274,7 +274,7 @@ class MonographFileDAO extends DAO {
 		$monographFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
 		$monographFile->setDateModified($this->datetimeFromDB($row['date_modified']));
 		$monographFile->setViewable($row['viewable']);
-		$monographFile->setMonographFileTypeId($row['monograph_file_type_id']);
+		$monographFile->setGenreId($row['genre_id']);
 
 		$this->getDataObjectSettings('monograph_file_settings', 'file_id', $row['file_id'], $monographFile);
 
@@ -304,7 +304,7 @@ class MonographFileDAO extends DAO {
 			$monographFile->getUserGroupId(),
 			$monographFile->getAssocType(),
 			$monographFile->getAssocId(),
-			$monographFile->getMonographFileTypeId()
+			$monographFile->getGenreId()
 		);
 
 		if ($fileId) {
@@ -313,7 +313,7 @@ class MonographFileDAO extends DAO {
 
 		$this->update(
 			sprintf('INSERT INTO monograph_files
-				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, type, date_uploaded, date_modified, viewable, user_group_id, assoc_type, assoc_id, monograph_file_type_id)
+				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, type, date_uploaded, date_modified, viewable, user_group_id, assoc_type, assoc_id, genre_id)
 				VALUES
 				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
@@ -327,14 +327,14 @@ class MonographFileDAO extends DAO {
 
 		// Determine whether this is artwork and make an additional
 		// entry to the artwork table if this is the case.
-		$fileGenreId = $monographFile->getMonographFileTypeId();
-		if ($fileGenreId) {
+		$genreId = $monographFile->getGenreId();
+		if ($genreId) {
 			// Retrieve the file genre.
-			$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-			$fileGenre =& $monographFileTypeDao->getById($fileGenreId);
-			assert(is_a($fileGenre, 'MonographFileType'));
+			$genreDao =& DAORegistry::getDAO('GenreDAO');
+			$genre =& $genreDao->getById($genreId);
+			assert(is_a($genre, 'Genre'));
 
-			if ($fileGenre && $fileGenre->getCategory() == MONOGRAPH_FILE_CATEGORY_ARTWORK) {
+			if ($genre && $genre->getCategory() == MONOGRAPH_FILE_CATEGORY_ARTWORK) {
 				// This is artwork so instantiate an artwork entry and persist it.
 				$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO'); /* @var $artworkFileDao ArtworkFileDAO */
 				$artworkFile =& $artworkFileDao->newDataObject();
@@ -370,7 +370,7 @@ class MonographFileDAO extends DAO {
 					user_group_id = ?,
 					assoc_type = ?,
 					assoc_id = ?,
-					monograph_file_type_id = ?
+					genre_id = ?
 				WHERE file_id = ? AND revision = ?',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
 			array(
@@ -386,7 +386,7 @@ class MonographFileDAO extends DAO {
 				$monographFile->getUserGroupId(),
 				$monographFile->getAssocType(),
 				$monographFile->getAssocId(),
-				$monographFile->getMonographFileTypeId(),
+				$monographFile->getGenreId(),
 				$monographFile->getFileId(),
 				$monographFile->getRevision()
 			)

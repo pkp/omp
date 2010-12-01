@@ -22,7 +22,7 @@
 class PublicationFormat extends DataObject {
 
 	/**
-	 * Set the name of the monograph file type
+	 * Set the name of the publication format
 	 * @param $name string
 	 * @param $locale string
 	 */
@@ -31,7 +31,7 @@ class PublicationFormat extends DataObject {
 	}
 
 	/**
-	 * Get the name of the monograph file type
+	 * Get the name of the publication format
 	 * @param $locale string
 	 * @return string
 	 */
@@ -40,7 +40,7 @@ class PublicationFormat extends DataObject {
 	}
 
 	/**
-	 * Get the localized name of the monograph file type
+	 * Get the localized name of the publication format
 	 * @return string
 	 */
 	function getLocalizedName() {
@@ -48,7 +48,7 @@ class PublicationFormat extends DataObject {
 	}
 
 	/**
-	 * Set the designation of the monograph file type
+	 * Set the designation of the publication format
 	 * @param $abbrev string
 	 * @param $locale string
 	 */
@@ -57,7 +57,7 @@ class PublicationFormat extends DataObject {
 	}
 
 	/**
-	 * Get the designation of the monograph file type
+	 * Get the designation of the publication format
 	 * @param $locale string
 	 * @return string
 	 */
@@ -66,7 +66,7 @@ class PublicationFormat extends DataObject {
 	}
 
 	/**
-	 * Get the localized designation of the monograph file type
+	 * Get the localized designation of the publication format
 	 * @return string
 	 */
 	function getLocalizedDesignation() {

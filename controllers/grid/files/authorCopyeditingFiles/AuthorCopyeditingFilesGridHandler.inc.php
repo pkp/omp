@@ -183,13 +183,13 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
-		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-		$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileTypeId());
+		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genre = $genreDao->getById($monographFile->getGenreId());
 		$monographId = $monographFile->getMonographId();
 
-		switch ($fileType->getCategory()) {
+		switch ($genre->getCategory()) {
 			// FIXME: Need a way to determine artwork file type from user-specified artwork file types
-			case MONOGRAPH_FILE_CATEGORY_ARTWORK:
+			case GENRE_CATEGORY_ARTWORK:
 				import('controllers.grid.files.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
 				$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId, $signoffId);
 				break;
@@ -225,13 +225,13 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
-		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-		$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileTypeId());
+		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genre = $genreDao->getById($monographFile->getGenreId());
 		$monographId = $monographFile->getMonographId();
 
-		switch ($fileType->getCategory()) {
+		switch ($genre->getCategory()) {
 			// FIXME: Need a way to determine artwork file type from user-specified artwork file types
-			case MONOGRAPH_FILE_CATEGORY_ARTWORK:
+			case GENRE_CATEGORY_ARTWORK:
 				import('controllers.grid.files.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
 				$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId);
 				break;

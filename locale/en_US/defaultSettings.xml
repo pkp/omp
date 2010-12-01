@@ -16,26 +16,26 @@
 	 * DEFAULT - Default settings for setup items.
 	 *
 	-->
-	<message key="default.monographFileTypes.artwork">Artwork</message>
-	<message key="default.monographFileTypes.appendix">Appendix</message>
-	<message key="default.monographFileTypes.appendix.designation">99A</message>
-	<message key="default.monographFileTypes.bibliography">Bibliography</message>
-	<message key="default.monographFileTypes.bibliography.designation">99B</message>
-	<message key="default.monographFileTypes.manuscript">Manuscript</message>
-	<message key="default.monographFileTypes.manuscript.designation">99Z</message>
-	<message key="default.monographFileTypes.chapter">Chapter</message>
-	<message key="default.monographFileTypes.glossary">Glossary</message>
-	<message key="default.monographFileTypes.glossary.designation">99G</message>
-	<message key="default.monographFileTypes.index">Index</message>
-	<message key="default.monographFileTypes.index.designation">99I</message>
-	<message key="default.monographFileTypes.preface">Preface</message>
-	<message key="default.monographFileTypes.preface.designation">00P</message>
-	<message key="default.monographFileTypes.prospectus">Prospectus</message>
-	<message key="default.monographFileTypes.prospectus.designation">88P</message>
-	<message key="default.monographFileTypes.table">Table</message>
-	<message key="default.monographFileTypes.figure">Figure</message>
-	<message key="default.monographFileTypes.photo">Photo</message>
-	<message key="default.monographFileTypes.illustration">Illustration</message>
+	<message key="default.genres.artwork">Artwork</message>
+	<message key="default.genres.appendix">Appendix</message>
+	<message key="default.genres.appendix.designation">99A</message>
+	<message key="default.genres.bibliography">Bibliography</message>
+	<message key="default.genres.bibliography.designation">99B</message>
+	<message key="default.genres.manuscript">Manuscript</message>
+	<message key="default.genres.manuscript.designation">99Z</message>
+	<message key="default.genres.chapter">Chapter</message>
+	<message key="default.genres.glossary">Glossary</message>
+	<message key="default.genres.glossary.designation">99G</message>
+	<message key="default.genres.index">Index</message>
+	<message key="default.genres.index.designation">99I</message>
+	<message key="default.genres.preface">Preface</message>
+	<message key="default.genres.preface.designation">00P</message>
+	<message key="default.genres.prospectus">Prospectus</message>
+	<message key="default.genres.prospectus.designation">88P</message>
+	<message key="default.genres.table">Table</message>
+	<message key="default.genres.figure">Figure</message>
+	<message key="default.genres.photo">Photo</message>
+	<message key="default.genres.illustration">Illustration</message>
 
 	<message key="default.publicationFormats.hardcover">Hardcover</message>
 	<message key="default.publicationFormats.hardcover.designation">HC</message>

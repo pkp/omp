@@ -157,11 +157,11 @@
 
 	<!--
 	  *
-	  * TABLE monograph_file_types
+	  * TABLE genres
 	  *
 	  -->
-	<table name="monograph_file_types">
-		<field name="monograph_file_type_id" type="I8">
+	<table name="genres">
+		<field name="genre_id" type="I8">
 			<KEY/>
 			<AUTOINCREMENT/>
 		</field>
@@ -181,16 +181,16 @@
 			<DEFAULT VALUE="1"/>
 		</field>
 		<field name="entry_key" type="C2" size="30"/>
-		<descr>A press's monograph file types.</descr>
+		<descr>A press's monograph file genres.</descr>
 	</table>
 
 	<!--
 	  *
-	  * TABLE monograph_file_type_settings
+	  * TABLE genre_settings
 	  *
 	  -->
-	<table name="monograph_file_type_settings">
-		<field name="monograph_file_type_id" type="I8">
+	<table name="genre_settings">
+		<field name="genre_id" type="I8">
 			<NOTNULL />
 		</field>
 		<field name="locale" type="C2" size="5">
@@ -205,12 +205,12 @@
 			<NOTNULL/>
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
-		<descr>Monograph file type settings</descr>
-		<index name="monograph_file_type_settings_monograph_file_type_id">
-			<col>monograph_file_type_id</col>
+		<descr>Genre settings</descr>
+		<index name="genre_settings_genre_id">
+			<col>genre_id</col>
 		</index>
-		<index name="monograph_file_type_settings_pkey">
-			<col>monograph_file_type_id</col>
+		<index name="genre_settings_pkey">
+			<col>genre_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE />
@@ -544,7 +544,7 @@
 		<field name="file_type" type="C2" size="255">
 			<NOTNULL/>
 		</field>
-		<field name="monograph_file_type_id" type="I8" />
+		<field name="genre_id" type="I8" />
 		<field name="file_size" type="I8">
 			<NOTNULL/>
 		</field>
@@ -1018,7 +1018,7 @@
 
 	<!--
 	  *
-	  * TABLE monograph_file_type_settings
+	  * TABLE publication_format_settings
 	  *
 	  -->
 	<table name="publication_format_settings">

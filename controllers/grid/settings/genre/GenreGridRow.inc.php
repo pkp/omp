@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @file controllers/grid/settings/monographFileType/MonographFileTypeGridRow.inc.php
+ * @file controllers/grid/settings/genre/GenreGridRow.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class MonographFileTypeGridRow
- * @ingroup controllers_grid_settings_monographFileType
+ * @class GenreGridRow
+ * @ingroup controllers_grid_settings_genre
  *
- * @brief Handle Monograph File Type grid row requests.
+ * @brief Handle Genre grid row requests.
  */
 
 import('lib.pkp.classes.controllers.grid.GridRow');
 
-class MonographFileTypeGridRow extends GridRow {
+class GenreGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function MonographFileTypeGridRow() {
+	function GenreGridRow() {
 		parent::GridRow();
 	}
 
@@ -40,28 +40,28 @@ class MonographFileTypeGridRow extends GridRow {
 			$router =& $request->getRouter();
 			$actionArgs = array(
 				'gridId' => $this->getGridId(),
-				'monographFileTypeId' => $rowId
+				'genreId' => $rowId
 			);
 			$this->addAction(
 				new LinkAction(
-					'editMonographFileType',
+					'editGenre',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'editMonographFileType', null, $actionArgs),
+					$router->url($request, null, null, 'editGenre', null, $actionArgs),
 					'grid.action.edit',
 					null,
 					'edit'
 				));
 			$this->addAction(
 				new LinkAction(
-					'deleteMonographFileType',
+					'deleteGenre',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'deleteMonographFileType', null, $actionArgs),
+					$router->url($request, null, null, 'deleteGenre', null, $actionArgs),
 					'grid.action.delete',
 					null,
 					'delete',
-					'common.confirmDelete'
+					Locale::translate('common.confirmDelete')
 				));
 		}
 	}

@@ -43,8 +43,8 @@ class SubmissionFilesGridCellProvider extends DataObjectGridCellProvider {
 				'fileId' => $monographFile->getFileId()
 			);
 
-			$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-			$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileTypeId());
+			$genreDao =& DAORegistry::getDAO('GenreDAO');
+			$genre = $genreDao->getById($monographFile->getGenreId());
 			$action =& new LinkAction(
 							'downloadFile',
 							LINK_ACTION_MODE_LINK,
@@ -52,7 +52,7 @@ class SubmissionFilesGridCellProvider extends DataObjectGridCellProvider {
 							$router->url($request, null, null, 'downloadFile', null, $actionArgs),
 							null,
 							$fileName,
-							($fileType->getCategory() == MONOGRAPH_FILE_CATEGORY_ARTWORK)?'imageFile':null
+							($genre->getCategory() == GENRE_CATEGORY_ARTWORK)?'imageFile':null
 						);
 			return array($action);
 		}
@@ -84,9 +84,9 @@ class SubmissionFilesGridCellProvider extends DataObjectGridCellProvider {
 				return array('label' => $monographFile->getExtension());
 				break;
 			case 'type':
-				$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-				$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileTypeId());
-				return array('label' => $fileType->getLocalizedName());
+				$genreDao =& DAORegistry::getDAO('GenreDAO');
+				$genre = $genreDao->getById($monographFile->getGenreId());
+				return array('label' => $genre->getLocalizedName());
 				break;
 		}
 	}

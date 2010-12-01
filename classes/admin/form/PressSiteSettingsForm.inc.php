@@ -136,9 +136,9 @@ class PressSiteSettingsForm extends Form {
 
 			$installedLocales =& $site->getInstalledLocales();
 
-			// Install default monograph file types
-			$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-			$monographFileTypeDao->installDefaults($pressId, $installedLocales); /* @var $monographFileTypeDao MonographFileTypeDAO */
+			// Install default genres
+			$genreDao =& DAORegistry::getDAO('GenreDAO');
+			$genreDao->installDefaults($pressId, $installedLocales); /* @var $genreDao GenreDAO */
 
 			// Install default publication formats
 			$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */

@@ -147,7 +147,7 @@ class GalleyFileForm extends Form {
 				$copyeditedFile =& $monographFileDao->getMonographFile($copyeditedFileId);
 				// Transfer some of the original file's metadata over to the new file
 				$copyeditedFile->setName($galleyFile->getLocalizedName(), Locale::getLocale());
-				$copyeditedFile->setMonographFileTypeId($galleyFile->getMonographFileTypeId());
+				$copyeditedFile->setGenreId($galleyFile->getGenreId());
 				$monographFileDao->updateMonographFile($copyeditedFile);
 			}
 

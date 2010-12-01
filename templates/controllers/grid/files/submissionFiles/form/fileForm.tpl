@@ -27,20 +27,20 @@
 			}
 		});
 
-		// Add the file type field to the form.
+		// Add the file genre field to the form.
 		uploader.bind('QueueChanged', function(up, files) {{/literal}
 			{if !empty($monographFileOptions)}
 				var $revisedFileId = $('#uploadForm #revisedFileId');
 				$revisedFileId.attr("disabled", "disabled");
 			{/if}{literal}
-			var $fileType = $('#uploadForm #fileType');
-			$fileType.attr("disabled", "disabled");
+			var $genreId = $('#uploadForm #genreId');
+			$genreId.attr("disabled", "disabled");
 
 			$("#uploadForm #plupload").pluploadQueue().settings.multipart_params = {{/literal}
 				{if !empty($monographFileOptions)}
 					revisedFileId: $revisedFileId.val(),
 				{/if}{literal}
-				fileType: $fileType.val()
+				genreId: $genreId.val()
 			};
 		});
 
@@ -87,9 +87,9 @@
 
 		{/literal}{if !$isRevision}{literal}
 			// When a user selects a submission to revise then the
-			// the file type chooser must be disabled.
+			// the file genre chooser must be disabled.
 			var $revisedFileId = $('#uploadForm #revisedFileId');
-			var $fileType = $('#uploadForm #fileType');
+			var $genreId = $('#uploadForm #genreId');
 			$revisedFileId.change(function() {
 				// All file genres currently assigned to monograph files.
 				var monographFileGenres = {
@@ -99,11 +99,11 @@
 				};
 				if ($revisedFileId.val() == 0) {
 					// New file...
-					$fileType.attr('disabled', '');
+					$genreId.attr('disabled', '');
 				} else {
 					// Revision...
-					$fileType.val(monographFileGenres[$revisedFileId.val()]);
-					$fileType.attr('disabled', 'disabled');
+					$genreId.val(monographFileGenres[$revisedFileId.val()]);
+					$genreId.attr('disabled', 'disabled');
 				}
 			});
 		{/literal}{/if}{literal}
@@ -150,8 +150,8 @@
 		{/if}
 
 		{if !$isRevision}
-			{fbvFormSection title="common.fileType" required=1}
-				{fbvSelect name="fileType" id="fileType" from=$monographFileGenres translate=false selected=$currentFileType}
+			{fbvFormSection title="common.genre" required=1}
+				{fbvSelect name="genreId" id="genreId" from=$monographFileGenres translate=false selected=$currentGenre}
 			{/fbvFormSection}
 		{/if}
 

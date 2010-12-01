@@ -57,10 +57,10 @@ class SubmissionFilesUploadForm extends Form {
 
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
-		$this->addCheck(new FormValidatorCustom($this, 'fileType', FORM_VALIDATOR_REQUIRED_VALUE,
+		$this->addCheck(new FormValidatorCustom($this, 'genreId', FORM_VALIDATOR_REQUIRED_VALUE,
 				'submission.upload.noFileType',
-				create_function('$fileType,$fileTypeDao,$context', 'return is_a($fileTypeDao->getById($fileType, $context->getId()), "MonographFileType");'),
-				array(DAORegistry::getDAO('MonographFileTypeDAO'), $context)));
+				create_function('$genreId,$genreDao,$context', 'return is_a($genreDao->getById($genreId, $context->getId()), "Genre");'),
+				array(DAORegistry::getDAO('GenreDAO'), $context)));
 	}
 
 
@@ -129,7 +129,7 @@ class SubmissionFilesUploadForm extends Form {
 
 		// Go through all files and build a list of files available for review.
 		$foundRevisedFile = false;
-		$this->setData('currentFileType', null);
+		$this->setData('currentGenre', null);
 		for ($i = 0; $i < count($monographFiles); $i++) {
 			// Only look at the latest revision of each file. Files
 			// come sorted by file id and revision.
@@ -139,7 +139,7 @@ class SubmissionFilesUploadForm extends Form {
 				if ($this->getRevisedFileId() == $monographFiles[$i]->getFileId()) {
 					// This is the uploaded monograph file, so pass it's data on to the form.
 					$this->setData('revisedMonographFileName', $monographFiles[$i]->getOriginalFileName());
-					$this->setData('currentFileType', $monographFiles[$i]->getMonographFileTypeId());
+					$this->setData('currentGenre', $monographFiles[$i]->getGenreId());
 					$foundRevisedFile = true;
 				}
 
@@ -149,7 +149,7 @@ class SubmissionFilesUploadForm extends Form {
 				$fileName = $monographFiles[$i]->getLocalizedName() != '' ? $monographFiles[$i]->getLocalizedName() : Locale::translate('common.untitled');
 				if ($monographFiles[$i]->getRevision() > 1) $fileName .= ' (' . $monographFiles[$i]->getRevision() . ')';
 				$monographFileOptions[$monographFiles[$i]->getFileId()] = $fileName;
-				$currentMonographFileGenres[$monographFiles[$i]->getFileId()] = $monographFiles[$i]->getMonographFileTypeId();
+				$currentMonographFileGenres[$monographFiles[$i]->getFileId()] = $monographFiles[$i]->getGenreId();
 			}
 		}
 		$this->setData('monographFileOptions', $monographFileOptions);
@@ -159,27 +159,27 @@ class SubmissionFilesUploadForm extends Form {
 		// the retrieved monograph files in the current file stage.
 		if ($this->getRevisedFileId() && !$foundRevisedFile) fatalError('Invalid revised file id!');
 
-		// Retrieve available monograph file types.
+		// Retrieve available monograph file genres.
 		$context =& $request->getContext();
-		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-		$monographFileGenres =& $monographFileTypeDao->getEnabledByPressId($context->getId());
+		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genres =& $genreDao->getEnabledByPressId($context->getId());
 
-		// Transform the monograph file types into an array and
+		// Transform the genres into an array and
 		// assign them to the form.
 		$monographFileGenreList = array();
-		while($monographFileGenre =& $monographFileGenres->next()){
-			$monographFileGenreId = $monographFileGenre->getId();
-			$monographFileGenreList[$monographFileGenreId] = $monographFileGenre->getLocalizedName();
-			unset($monographFileGenre);
+		while($genre =& $genres->next()){
+			$genreId = $genre->getId();
+			$genreList[$genreId] = $genre->getLocalizedName();
+			unset($genre);
 		}
-		$this->setData('monographFileGenres', $monographFileGenreList);
+		$this->setData('monographFileGenres', $genreList);
 	}
 
 	/**
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('fileType', 'revisedFileId'));
+		$this->readUserVars(array('genreId', 'revisedFileId'));
 	}
 
 	/**
@@ -193,7 +193,7 @@ class SubmissionFilesUploadForm extends Form {
 			$fileGenre = null;
 		} else {
 			// This is a new file so we need the file genre from the form.
-			$fileGenre = (int)$this->getData('fileType');
+			$fileGenre = (int)$this->getData('genreId');
 		}
 		if($uploadedFile = MonographFileManager::uploadMonographFile(
 				$this->getMonographId(), 'submissionFile', $this->getFileStage(), $revisedFileId, $fileGenre)) {

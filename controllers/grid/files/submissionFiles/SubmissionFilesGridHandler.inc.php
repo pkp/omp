@@ -235,12 +235,12 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
-		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-		$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileTypeId());
+		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genre = $genreDao->getById($monographFile->getGenreId());
 		$monographId = $monographFile->getMonographId();
 
-		switch ($fileType->getCategory()) {
-			case MONOGRAPH_FILE_CATEGORY_ARTWORK:
+		switch ($genre->getCategory()) {
+			case GENRE_CATEGORY_ARTWORK:
 				import('controllers.grid.files.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
 				$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId, $monographId);
 				break;
@@ -276,8 +276,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$monographFile =& $monographFileDao->getMonographFile($fileId);
-		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-		$fileType = $monographFileTypeDao->getById($monographFile->getMonographFileTypeId());
+		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genre = $genreDao->getById($monographFile->getGenreId());
 		$monographId = $monographFile->getMonographId();
 
 		if(isset($monographFile) && $monographFile->getLocalizedName() != '') { //Name exists, just updating it
@@ -286,9 +286,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$isEditing = false;
 		}
 
-		switch ($fileType->getCategory()) {
-			// FIXME: Need a way to determine artwork file type from user-specified artwork file types
-			case MONOGRAPH_FILE_CATEGORY_ARTWORK:
+		switch ($genre->getCategory()) {
+			case GENRE_CATEGORY_ARTWORK:
 				import('controllers.grid.files.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
 				$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId);
 				break;
@@ -426,7 +425,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/**
 	 * Function that can be called by sub-classes to load the
 	 * files into the grid.
-	 * @param $type integer
 	 */
 	function loadMonographFiles() {
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */

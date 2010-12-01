@@ -176,21 +176,21 @@ class MonographFile extends SubmissionFile {
 	}
 
 	/**
-	 * Set the monograph file type id of this file (e.g. Manuscript, Index, etc)
-	 * Foreign key into monograph_file_types table
-	 * @param $monographFileTypeId int
+	 * Set the genre id of this file (i.e. referring to Manuscript, Index, etc)
+	 * Foreign key into genres table
+	 * @param $genreId int
 	 */
-	function setMonographFileTypeId($monographFileTypeId) {
-		$this->setData('monographFileTypeId', $monographFileTypeId);
+	function setGenreId($genreId) {
+		$this->setData('genreId', $genreId);
 	}
 
 	/**
-	 * Get the monograph file type id of this file (e.g. Manuscript, Index, etc)
-	 * Foreign key into monograph_file_types table
+	 * Get the genre id of this file (i.e. referring to Manuscript, Index, etc)
+	 * Foreign key into genres table
 	 * @return int
 	 */
-	function getMonographFileTypeId() {
-		return $this->getData('monographFileTypeId');
+	function getGenreId() {
+		return $this->getData('genreId');
 	}
 }
 

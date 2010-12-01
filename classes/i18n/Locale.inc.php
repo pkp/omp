@@ -176,8 +176,8 @@ class Locale extends PKPLocale {
 	function installLocale($locale) {
 		parent::installLocale($locale);
 
-		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO'); /* @var $monographFileTypeDao MonographFileTypeDAO */
-		$monographFileTypeDao->installLocale($locale);
+		$genreDao =& DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
+		$genreDao->installLocale($locale);
 
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO'); /* @var $publicationFormatDao PublicationFormatDAO */
 		$publicationFormatDao->installLocale($locale);
@@ -193,8 +193,8 @@ class Locale extends PKPLocale {
 	function uninstallLocale($locale) {
 		parent::uninstallLocale($locale);
 
-		$monographFileTypeDao =& DAORegistry::getDAO('MonographFileTypeDAO');
-		$monographFileTypeDao->uninstallLocale($locale);
+		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genreDao->uninstallLocale($locale);
 
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormatDao->uninstallLocale($locale);

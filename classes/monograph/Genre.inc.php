@@ -1,28 +1,28 @@
 <?php
 
 /**
- * @file classes/monograph/MonographFileType.inc.php
+ * @file classes/monograph/Genre.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class MonographFileType
+ * @class Genre
  * @ingroup monograph
- * @see MonographFileTypeDAO
+ * @see GenreDAO
  *
- * @brief Basic class describing a monograph file type.
+ * @brief Basic class describing a genre.
  */
 
 
-define('MONOGRAPH_FILE_CATEGORY_DOCUMENT', 1);
-define('MONOGRAPH_FILE_CATEGORY_ARTWORK', 2);
+define('GENRE_CATEGORY_DOCUMENT', 1);
+define('GENRE_CATEGORY_ARTWORK', 2);
 
-define('MONOGRAPH_FILE_TYPE_SORTABLE_DESIGNATION', '##');
+define('GENRE_SORTABLE_DESIGNATION', '##');
 
-class MonographFileType extends DataObject {
+class Genre extends DataObject {
 
 	/**
-	 * Set the name of the monograph file type
+	 * Set the name of the genre
 	 * @param $name string
 	 * @param $locale string
 	 */
@@ -31,7 +31,7 @@ class MonographFileType extends DataObject {
 	}
 
 	/**
-	 * Get the name of the monograph file type
+	 * Get the name of the genre
 	 * @param $locale string
 	 * @return string
 	 */
@@ -40,7 +40,7 @@ class MonographFileType extends DataObject {
 	}
 
 	/**
-	 * Get the localized name of the monograph file type
+	 * Get the localized name of the genre
 	 * @return string
 	 */
 	function getLocalizedName() {
@@ -48,7 +48,7 @@ class MonographFileType extends DataObject {
 	}
 
 	/**
-	 * Set the designation of the monograph file type
+	 * Set the designation of the genre
 	 * @param $abbrev string
 	 * @param $locale string
 	 */
@@ -57,7 +57,7 @@ class MonographFileType extends DataObject {
 	}
 
 	/**
-	 * Get the designation of the monograph file type
+	 * Get the designation of the genre
 	 * @param $locale string
 	 * @return string
 	 */
@@ -66,7 +66,7 @@ class MonographFileType extends DataObject {
 	}
 
 	/**
-	 * Get the localized designation of the monograph file type
+	 * Get the localized designation of the genre
 	 * @return string
 	 */
 	function getLocalizedDesignation() {

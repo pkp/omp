@@ -14,6 +14,7 @@
 	<message key="author.track">Active Submissions</message>
 
 	<message key="submission.submission">Submission</message>
+	<message key="submission.genre">Genre</message>
 	<message key="submission.workType">Type of Book</message>
 	<message key="submission.workType.description">Select the option that best matches the type of the work that you are submitting.</message>
 	<message key="submission.workType.editedVolume">Edited Volume</message>
