@@ -88,10 +88,10 @@ class ManageFinalDraftFilesForm extends Form {
 		foreach($allMonographFiles as $monographFile) {
 			$fileIdAndRevision = $monographFile->getFileId() . "-" . $monographFile->getRevision();
 			if(in_array($fileIdAndRevision, $selectedFiles)) {
-				$monographFile->setType(MONOGRAPH_FILE_FINAL);
+				$monographFile->setFileStage(MONOGRAPH_FILE_FINAL);
 				$finalMonographFiles[] =& $monographFile;
 			} else {
-				$monographFile->setType(MONOGRAPH_FILE_SUBMISSION);
+				$monographFile->setFileStage(MONOGRAPH_FILE_SUBMISSION);
 			}
 			$monographFileDao->updateMonographFile($monographFile);
 		}

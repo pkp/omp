@@ -184,18 +184,18 @@ class MonographFileDAO extends DAO {
 	/**
 	 * Retrieve all monograph files for a monograph.
 	 * @param $monographId int
-	 * @param $type int
+	 * @param $fileStage int
 	 * @return array MonographFiles
 	 */
-	function &getByMonographId($monographId, $type = null) {
+	function &getByMonographId($monographId, $fileStage = null) {
 		$monographFiles = array();
 
 		$sqlParams = array($monographId);
 		$sqlExtra = '';
 
-		if (isset($type)) {
-			$sqlExtra .= ' AND type = ? ';
-			$sqlParams[] = (int)$type;
+		if (isset($fileStage)) {
+			$sqlExtra .= ' AND file_stage = ? ';
+			$sqlParams[] = (int)$fileStage;
 		}
 
 		$result =& $this->retrieve(
@@ -217,17 +217,17 @@ class MonographFileDAO extends DAO {
 	}
 
 	/**
-	 * Retrieve all monograph files for a type and assoc ID.
+	 * Retrieve all monograph files for a file stage and assoc ID.
 	 * @param $assocId int
-	 * @param $type int
+	 * @param $fileStage int
 	 * @return array MonographFiles
 	 */
-	function &getMonographFilesByAssocId($assocId, $type) {
+	function &getMonographFilesByAssocId($assocId, $fileStage) {
 		$monographFiles = array();
 
 		$result =& $this->retrieve(
-			'SELECT * FROM monograph_files WHERE assoc_id = ? AND type = ?',
-			array($assocId, $type)
+			'SELECT * FROM monograph_files WHERE assoc_id = ? AND file_stage = ?',
+			array($assocId, $fileStage)
 		);
 
 		while (!$result->EOF) {
@@ -268,7 +268,7 @@ class MonographFileDAO extends DAO {
 		$monographFile->setFileType($row['file_type']);
 		$monographFile->setFileSize($row['file_size']);
 		$monographFile->setOriginalFileName($row['original_file_name']);
-		$monographFile->setType($row['type']);
+		$monographFile->setFileStage($row['file_stage']);
 		$monographFile->setUserGroupId($row['user_group_id']);
 		$monographFile->setAssocId($row['assoc_id']);
 		$monographFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
@@ -299,7 +299,7 @@ class MonographFileDAO extends DAO {
 			$monographFile->getFileType(),
 			$monographFile->getFileSize(),
 			$monographFile->getOriginalFileName(),
-			$monographFile->getType(),
+			$monographFile->getFileStage(),
 			$monographFile->getViewable(),
 			$monographFile->getUserGroupId(),
 			$monographFile->getAssocType(),
@@ -313,7 +313,7 @@ class MonographFileDAO extends DAO {
 
 		$this->update(
 			sprintf('INSERT INTO monograph_files
-				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, type, date_uploaded, date_modified, viewable, user_group_id, assoc_type, assoc_id, genre_id)
+				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, file_stage, date_uploaded, date_modified, viewable, user_group_id, assoc_type, assoc_id, genre_id)
 				VALUES
 				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
@@ -363,7 +363,7 @@ class MonographFileDAO extends DAO {
 					file_type = ?,
 					file_size = ?,
 					original_file_name = ?,
-					type = ?,
+					file_stage = ?,
 					date_uploaded = %s,
 					date_modified = %s,
 					viewable = ?,
@@ -381,7 +381,7 @@ class MonographFileDAO extends DAO {
 				$monographFile->getFileType(),
 				$monographFile->getFileSize(),
 				$monographFile->getOriginalFileName(),
-				$monographFile->getType(),
+				$monographFile->getFileStage(),
 				$monographFile->getViewable(),
 				$monographFile->getUserGroupId(),
 				$monographFile->getAssocType(),

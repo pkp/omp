@@ -17,7 +17,7 @@
 
 import('lib.pkp.classes.submission.SubmissionFile');
 
-// File Type IDs
+// Define the file stage identifiers.
 define('MONOGRAPH_FILE_PUBLIC', 0x000001);
 define('MONOGRAPH_FILE_SUBMISSION', 0x000002);
 define('MONOGRAPH_FILE_NOTE', 0x000004);
@@ -49,7 +49,7 @@ class MonographFile extends SubmissionFile {
 		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 		$monograph =& $monographDao->getMonograph($this->getMonographId());
 		import('classes.file.MonographFileManager');
-		return $monograph->getFilePath() . MonographFileManager::typeToPath($this->getType()) . '/' . $this->getFileName();
+		return $monograph->getFilePath() . MonographFileManager::fileStageToPath($this->getFileStage()) . '/' . $this->getFileName();
 	}
 
 

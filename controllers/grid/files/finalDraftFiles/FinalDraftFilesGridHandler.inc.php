@@ -134,7 +134,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 			$templateMgr =& TemplateManager::getManager();
 			$selectedFileIds = array();
 			foreach ($monographFiles as $monographFile) {
-				if($monographFile->getType() == MONOGRAPH_FILE_FINAL) {
+				if($monographFile->getFileStage() == MONOGRAPH_FILE_FINAL) {
 					$selectedFileIds[] = $monographFile->getFileId() . "-" . $monographFile->getRevision();
 				}
 			}

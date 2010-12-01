@@ -94,7 +94,7 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 		$fileTypeToGridId = array(MONOGRAPH_FILE_FINAL => 'finalDraftFilesSelect',
 									MONOGRAPH_FILE_COPYEDIT => 'copyeditingFiles',
 									MONOGRAPH_FILE_FAIR_COPY => 'fairCopyFiles');
-		$templateMgr->assign('gridId', $fileTypeToGridId[$monographFile->getType()]);
+		$templateMgr->assign('gridId', $fileTypeToGridId[$monographFile->getFileStage()]);
 
 		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/fileSubmissionComplete.tpl'));
 		return $json->getString();
@@ -122,8 +122,8 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 			$fileTypeToHandlerName = array(MONOGRAPH_FILE_FINAL => 'FinalDraftFilesGridHandler',
 									MONOGRAPH_FILE_COPYEDIT => 'CopyeditingFilesGridHandler',
 									MONOGRAPH_FILE_FAIR_COPY => 'FairCopyFilesGridHandler');
-			import($fileTypeToHandlerPath[$monographFile->getType()]);
-			$filesGridHandler =& new $fileTypeToHandlerName[$monographFile->getType()]();
+			import($fileTypeToHandlerPath[$monographFile->getFileStage()]);
+			$filesGridHandler =& new $fileTypeToHandlerName[$monographFile->getFileStage()]();
 			$filesGridHandler->authorize($request, $args, $filesGridHandler->getRoleAssignments());
 			if(is_a($filesGridHandler, 'FinalDraftFilesGridHandler')) {
 				$filesGridHandler->setIsSelectable(true);

@@ -207,12 +207,12 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * Return type path associated with a type code.
-	 * @param $type string
+	 * Return path associated with a file stage code.
+	 * @param $fileStage string
 	 * @return string
 	 */
-	function typeToPath($type) {
-		switch ($type) {
+	function fileStageToPath($fileStage) {
+		switch ($fileStage) {
 			case MONOGRAPH_FILE_PUBLIC: return 'public';
 			case MONOGRAPH_FILE_SUBMISSION: return 'submission';
 			case MONOGRAPH_FILE_NOTE: return 'note';
@@ -232,14 +232,14 @@ class MonographFileManager extends FileManager {
 	 * Copy a temporary file to a monograph file.
 	 * @param $monographId integer
 	 * @param $temporaryFile MonographFile
-	 * @param $type integer
+	 * @param $fileStage integer
 	 * @param $assocId integer
 	 * @param $assocType integer
 	 * @return integer the file ID (false if upload failed)
 	 */
-	function temporaryFileToMonographFile($monographId, &$temporaryFile, $type, $assocId, $assocType) {
+	function temporaryFileToMonographFile($monographId, &$temporaryFile, $fileStage, $assocId, $assocType) {
 		// Instantiate and pre-populate the new target monograph file.
-		$monographFile =& MonographFileManager::_instantiateMonographFile($monographId, $type, null, null, $assocId, $assocType);
+		$monographFile =& MonographFileManager::_instantiateMonographFile($monographId, $fileStage, null, null, $assocId, $assocType);
 
 		// Transfer data from the temporary file to the monograph file.
 		$monographFile->setFileType($temporaryFile->getFileType());
@@ -278,21 +278,21 @@ class MonographFileManager extends FileManager {
 	 * Upload the file and add it to the database.
 	 * @param $monographId integer
 	 * @param $fileName string index into the $_FILES array
-	 * @param $type int identifying type (i.e. MONOGRAPH_FILE_*)
+	 * @param $fileStage int monograph file stage (one of the MONOGRAPH_FILE_* constants)
 	 * @param $revisedFileId int ID of an existing file to revise
 	 * @param $genreId int foreign key into genres table (e.g. manuscript, etc.)
 	 * @param $assocType int
 	 * @param $assocId int
 	 * @return MonographFile the uploaded monograph file or null if an error occured.
 	 */
-	function &_handleUpload($monographId, $fileName, $type, $revisedFileId = null, $genreId = null, $assocId = null, $assocType = null) {
+	function &_handleUpload($monographId, $fileName, $fileStage, $revisedFileId = null, $genreId = null, $assocId = null, $assocType = null) {
 		$nullVar = null;
 
 		// Ensure that the file has been correctly uploaded to the server.
 		if (!MonographFileManager::uploadedFileExists($fileName)) return $nullVar;
 
 		// Instantiate and pre-populate a new monograph file object.
-		$monographFile = MonographFileManager::_instantiateMonographFile($monographId, $type, $revisedFileId, $genreId, $assocId, $assocType);
+		$monographFile = MonographFileManager::_instantiateMonographFile($monographId, $fileStage, $revisedFileId, $genreId, $assocId, $assocType);
 		if (is_null($monographFile)) return $nullVar;
 
 		// Retrieve file information from the uploaded file.
@@ -314,14 +314,14 @@ class MonographFileManager extends FileManager {
 	/**
 	 * Routine to instantiate and pre-populate a new monograph file.
 	 * @param $monographId integer
-	 * @param $type integer
+	 * @param $fileStage integer
 	 * @param $revisedFileId integer
 	 * @param $genreId integer
 	 * @param $assocId integer
 	 * @param $assocType integer
 	 * @return MonographFile returns the instantiated monograph file or null if an error occurs.
 	 */
-	function &_instantiateMonographFile($monographId, $type, $revisedFileId, $genreId, $assocId, $assocType) {
+	function &_instantiateMonographFile($monographId, $fileStage, $revisedFileId, $genreId, $assocId, $assocType) {
 		// Instantiate a new monograph file.
 		$monographFile = new MonographFile();
 		$monographFile->setMonographId($monographId);
@@ -348,8 +348,8 @@ class MonographFileManager extends FileManager {
 			if ($revisedFile->getMonographId() != $monographId) return $nullVar;
 
 			// Copy the file workflow stage.
-			assert(is_null($type) || $type == $revisedFile->getType());
-			$type = (int)$revisedFile->getType();
+			assert(is_null($fileStage) || $fileStage == $revisedFile->getFileStage());
+			$fileStage = (int)$revisedFile->getFileStage();
 
 			// Copy the file genre.
 			assert(is_null($genreId) || $genreId == $revisedFile->getGenreId());
@@ -371,8 +371,8 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileName('unknown');
 		$monographFile->setFileSize(0);
 
-		// Set the file workflow stage.
-		$monographFile->setType($type);
+		// Set the file file stage.
+		$monographFile->setFileStage($fileStage);
 
 		// Set the file genre (if given).
 		if(isset($genreId)) {
@@ -456,7 +456,7 @@ class MonographFileManager extends FileManager {
 
 		// Make the file name unique across all files and file revisions.
 		$extension = MonographFileManager::parseFileExtension($monographFile->getOriginalFileName());
-		$fileName .= $monographFile->getMonographId().'-'.$monographFile->getFileId().'-'.$monographFile->getRevision().'-'.$monographFile->getType().'.'.$extension;
+		$fileName .= $monographFile->getMonographId().'-'.$monographFile->getFileId().'-'.$monographFile->getRevision().'-'.$monographFile->getFileStage().'.'.$extension;
 
 		// Populate the monograph file with the generated file name.
 		$monographFile->setFileName($fileName);
