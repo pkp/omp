@@ -148,11 +148,14 @@
 	<message key="submission.submit.addStageParticipant">Add Stage Participant</message>
 	<message key="submission.submit.addStageParticipant.description">To add a participant to this stage of the submission, select a user group from the drop-down menu, then add members of the user group through the list builder control.</message>
 
-	<message key="submission.upload.uploadNewFile">Upload new file (no revision)</message>
+	<!-- File upload wizard -->
 	<message key="submission.upload.noFileType">Missing or invalid file type!</message>
-	<message key="submission.upload.invalidData">Invalid file type or revised file.</message>
-	<message key="submission.upload.selectOptionalFileToRevise">If you like you can select a file you would like to upload a revision for (optional). If you leave the default selection then you'll upload a new file.</message>
-	<message key="submission.upload.selectMandatoryFileToRevise">Please select the file you would like to upload a revision for.</message>
+	<message key="submission.upload.possibleRevision">Possible Revision Detected</message>
+	<message key="submission.upload.possibleRevisionDescription"><![CDATA[<p>It looks like you may be trying to upload a revision to the previously uploaded file '{$revisedFileName}' whose file name is very similar to the name of the uploaded file. Is this the case?</p><p>If you are uploading a revision for another file, please select it below otherwise select the 'do not replace' option. Then click the 'continue' button to edit the meta-data of the file.</p>]]></message>
+	<message key="submission.upload.revisionNotConfirmed">The revision could not be confirmed!</message>
+	<message key="submission.upload.selectMandatoryFileToRevise">Please select the file you would like to revise.</message>
+	<message key="submission.upload.selectOptionalFileToRevise">If you like you can select a file you would like to revise (optional). If you leave the default selection then you'll upload a new file.</message>
+	<message key="submission.upload.uploadNewFile">Do not replace an existing file</message>
 
 	<message key="submission.status.editorial">In Copyediting</message>
 	<message key="submission.status.production">In Proofreading</message>

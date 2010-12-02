@@ -31,9 +31,9 @@ class GenreDAO extends DefaultSettingDAO
 	 * @return Genre
 	 */
 	function &getById($typeId, $pressId = null){
-		$sqlParams = array($typeId);
+		$sqlParams = array((int)$typeId);
 		if ($pressId) {
-			$sqlParams[] = $pressId;
+			$sqlParams[] = (int)$pressId;
 		}
 
 		$result =& $this->retrieve('SELECT * FROM genres WHERE genre_id = ?'. ($pressId ? ' AND press_id = ?' : ''), $sqlParams);

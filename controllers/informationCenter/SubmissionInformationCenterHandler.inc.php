@@ -60,6 +60,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		$json = new JSON('true', $templateMgr->fetch('controllers/informationCenter/informationCenter.tpl'));
 		return $json->getString();
 	}
+
 	/**
 	 * Display the notes tab.
 	 * @param $args array

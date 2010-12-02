@@ -33,38 +33,33 @@ class MonographFileDAO extends DAO {
 	 * @return MonographFile
 	 */
 	function &getMonographFile($fileId, $revision = null, $monographId = null) {
-		if ($fileId === null) {
-			$returner = null;
-			return $returner;
-		}
-		if ($revision == null) {
-			if ($monographId != null) {
-				$result =& $this->retrieveLimit(
-					'SELECT a.* FROM monograph_files a WHERE file_id = ? AND monograph_id = ? ORDER BY revision DESC',
-					array($fileId, $monographId),
-					1
-				);
-			} else {
-				$result =& $this->retrieveLimit(
-					'SELECT a.* FROM monograph_files a WHERE file_id = ? ORDER BY revision DESC',
-					$fileId,
-					1
-				);
-			}
+		$fileId = (int)$fileId;
+		$revision = (int)$revision;
+		$monographId = (int)$monographId;
 
-		} else {
-			if ($monographId != null) {
-				$result =& $this->retrieve(
-					'SELECT a.* FROM monograph_files a WHERE file_id = ? AND revision = ? AND monograph_id = ?',
-					array($fileId, $revision, $monographId)
-				);
-			} else {
-				$result =& $this->retrieve(
-					'SELECT a.* FROM monograph_files a WHERE file_id = ? AND revision = ?',
-					array($fileId, $revision)
-				);
-			}
+		if (!$fileId) {
+			$nullVar = null;
+			return $nullVar;
 		}
+
+		// Build the query and parameter array.
+		$sql = 'SELECT * FROM monograph_files WHERE file_id = ?';
+		$params = array($fileId);
+
+		if ($monographId) {
+			$sql .= ' AND monograph_id = ?';
+			array_push($params, $monographId);
+		}
+
+		if ($revision) {
+			$sql .= ' AND revision = ?';
+			array_push($params, $revision);
+		} else {
+			$sql .= ' ORDER BY revision DESC';
+		}
+
+		// Execute the query.
+		$result =& $this->retrieve($sql, $params);
 
 		$returner = null;
 		if (isset($result) && $result->RecordCount() != 0) {
@@ -74,26 +69,39 @@ class MonographFileDAO extends DAO {
 		$result->Close();
 		unset($result);
 
+		// FIXME: Need to populate remaining fields if the file is an artwork file, see #6127.
+
 		return $returner;
 	}
 
 	/**
 	 * Retrieve all revisions of a monograph file.
 	 * @param $fileId int
+	 * @param $monographId int (optional) the monograph id the files must belong to
 	 * @return MonographFile
 	 */
-	function &getMonographFileRevisions($fileId) {
-		if ($fileId === null) {
-			$returner = null;
-			return $returner;
+	function &getMonographFileRevisions($fileId, $monographId = null) {
+		$fileId = (int)$fileId;
+		$monographId = (int)$monographId;
+
+		if (!$fileId) {
+			$nullVar = null;
+			return $nullVar;
 		}
+
+		// Build the query.
+		$sql = 'SELECT * FROM monograph_files WHERE file_id = ?';
+		$params = array($fileId);
+		if ($monographId) {
+			$sql .= ' AND monograph_id = ?';
+			array_push($params, $monographId);
+		}
+		$sql .= ' ORDER BY revision DESC';
+
+		// Execute the query.
+		$result =& $this->retrieve($sql, $params);
+
 		$monographFiles = array();
-
-		$result =& $this->retrieve(
-			'SELECT a.* FROM monograph_files a WHERE file_id = ? ORDER BY revision',
-			$fileId
-		);
-
 		while (!$result->EOF) {
 			$monographFiles[] =& $this->_fromRow($result->GetRowAssoc(false));
 			$result->moveNext();
@@ -101,6 +109,8 @@ class MonographFileDAO extends DAO {
 
 		$result->Close();
 		unset($result);
+
+		// FIXME: Need to populate remaining fields if the file is an artwork file, see #6127.
 
 		return $monographFiles;
 	}
@@ -137,6 +147,8 @@ class MonographFileDAO extends DAO {
 		$result->Close();
 		unset($result);
 
+		// FIXME: Need to populate remaining fields if the file is an artwork file, see #6127.
+
 		return $monographFiles;
 	}
 
@@ -159,18 +171,78 @@ class MonographFileDAO extends DAO {
 	}
 
 	/**
+	 * Set a file as the latest revision of an existing file
+	 * @param $revisedFileId integer the revised file
+	 * @param $newFileId integer the file that will become the
+	 *  latest revision of the revised file.
+	 * @param $monographId integer the monograph id the two files
+	 *  must belong to.
+	 * @param $fileStage integer the file stage the two files
+	 *  must belong to.
+	 * @return MonographFile the new revision or null if something went wrong.
+	 */
+	function &setAsLatestRevision(&$revisedFileId, $newFileId, $monographId, $fileStage) {
+		$revisedFileId = (int)$revisedFileId;
+		$newFileId = (int)$newFileId;
+		$monographId = (int)$monographId;
+		$fileStage = (int)$fileStage;
+
+		// Check whether the two files are already revisions of each other.
+		$nullVar = null;
+		if ($revisedFileId == $newFileId) return $nullVar;
+
+		// Retrieve the latest revisions of the two monograph files.
+		$revisedFile =& $this->getMonographFile($revisedFileId, null, $monographId);
+		$newFile =& $this->getMonographFile($newFileId, null, $monographId);
+		if (!($revisedFile && $newFile)) return $nullVar;
+
+		// Make sure that the files all belong to the correct file stage.
+		if ($revisedFile->getFileStage() != $fileStage
+				|| $newFile->getFileStage() != $fileStage) return $nullVar;
+
+		// Copy data over to the new file.
+		$newFile->setRevision($revisedFile->getRevision()+1);
+		$newFile->setGenreId($revisedFile->getGenreId());
+		$newFile->setAssocType($revisedFile->getAssocType());
+		$newFile->setAssocId($revisedFile->getAssocId());
+
+		// NB: We cannot use updateMonographFile() becase we have
+		// to change the id of the file.
+		$this->update(
+			'UPDATE monograph_files
+			 SET
+			     file_id = ?,
+			     revision = ?,
+			     genre_id = ?,
+			     assoc_type =?,
+			     assoc_id = ?
+			 WHERE file_id = ?',
+			array(
+				$revisedFile->getFileId(),
+				$newFile->getRevision(),
+				$newFile->getGenreId(),
+				$newFile->getAssocType(),
+				$newFile->getAssocId(),
+				$newFile->getFileId())
+		);
+
+		$newFile->setFileId($revisedFile->getFileId());
+		return $newFile;
+	}
+
+	/**
 	 * Retrieve the current revision number for a file.
 	 * @param $fileId int
 	 * @return int
 	 */
-	function &getLatestRevisionNumber($fileId) {
+	function getLatestRevisionNumber($fileId) {
 		assert(!is_null($fileId));
 
 		$result =& $this->retrieve(
-			'SELECT MAX(revision) AS max_revision FROM monograph_files a WHERE file_id = ?',
+			'SELECT MAX(revision) AS max_revision FROM monograph_files WHERE file_id = ?',
 			$fileId
 		);
-		assert($result->RecordCount() == 1);
+		if($result->RecordCount() != 1) return null;
 
 		$row = $result->FetchRow();
 		$result->Close();
@@ -213,6 +285,8 @@ class MonographFileDAO extends DAO {
 		$result->Close();
 		unset($result);
 
+		// FIXME: Need to populate remaining fields if the file is an artwork file, see #6127.
+
 		return $monographFiles;
 	}
 
@@ -239,6 +313,8 @@ class MonographFileDAO extends DAO {
 
 		$result->Close();
 		unset($result);
+
+		// FIXME: Need to populate remaining fields if the file is an artwork file, see #6127.
 
 		return $monographFiles;
 	}
@@ -327,21 +403,10 @@ class MonographFileDAO extends DAO {
 
 		// Determine whether this is artwork and make an additional
 		// entry to the artwork table if this is the case.
-		$genreId = $monographFile->getGenreId();
-		if ($genreId) {
-			// Retrieve the file genre.
-			$genreDao =& DAORegistry::getDAO('GenreDAO');
-			$genre =& $genreDao->getById($genreId);
-			assert(is_a($genre, 'Genre'));
-
-			if ($genre && $genre->getCategory() == MONOGRAPH_FILE_CATEGORY_ARTWORK) {
-				// This is artwork so instantiate an artwork entry and persist it.
-				$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO'); /* @var $artworkFileDao ArtworkFileDAO */
-				$artworkFile =& $artworkFileDao->newDataObject();
-				$artworkFile->setFileId($monographFile->getFileId());
-				$artworkFile->setMonographId($monographFile->getMonographId());
-				$artworkFileDao->insertObject($artworkFile);
-			}
+		if (is_a($monographFile, 'ArtworkFile')) {
+			// This is artwork so persist the remaining fields via the artwork DAO.
+			$artworkFileDao =& DAORegistry::getDAO('ArtworkFileDAO'); /* @var $artworkFileDao ArtworkFileDAO */
+			$artworkFileDao->insertObject($monographFile);
 		}
 
 		return $monographFile->getFileId();
@@ -393,6 +458,9 @@ class MonographFileDAO extends DAO {
 		);
 
 		$this->updateLocaleFields($monographFile);
+
+		// FIXME: Also call out to artwork DAO if $monographFile is an artwork file, see #6127.
+
 		return $monographFile->getFileId();
 	}
 
@@ -402,25 +470,43 @@ class MonographFileDAO extends DAO {
 	 */
 	function deleteMonographFile(&$monographFile) {
 		return $this->deleteMonographFileById($monographFile->getFileId(), $monographFile->getRevision());
+		// FIXME: Need to remove monograph file from artwork table if the file is an artwork file, see #6127.
 	}
 
 	/**
 	 * Delete a monograph file by ID.
-	 * @param $monographId int
+	 * @param $fileId int
 	 * @param $revision int
+	 * @param $monographId int (optional) the monograph id the file must belong to
 	 */
-	function deleteMonographFileById($fileId, $revision = null) {
+	function deleteMonographFileById($fileId, $revision = null, $monographId = null) {
+		$fileId = (int)$fileId;
+		$revision = (int)$revision;
+		$monographId = (int)$monographId;
 
-		if ($revision == null) {
-			$this->update(
-				'DELETE FROM monograph_files WHERE file_id = ?', $fileId
-			);
-		} else {
-			$this->update(
-				'DELETE FROM monograph_files WHERE file_id = ? AND revision = ?', array($fileId, $revision)
-			);
+		// Build the query.
+		$sql = 'DELETE FROM monograph_files WHERE file_id = ?';
+		$params = array($fileId);
+
+		if ($monographId) {
+			$sql .= ' AND monograph_id = ?';
+			array_push($params, $monographId);
 		}
-		$this->update('DELETE FROM monograph_file_settings WHERE file_id = ?', $fileId);
+
+		if ($revision) {
+			$sql .= ' AND revision = ?';
+			array_push($params, $revision);
+		}
+
+		// Execute the query.
+		$this->update($sql, $params);
+
+		// Only delete the settings if we deleted all revisions of the file.
+		if (is_null($this->getLatestRevisionNumber($fileId))) {
+			$this->update('DELETE FROM monograph_file_settings WHERE file_id = ?', $fileId);
+		}
+
+		// FIXME: Need to remove monograph file from artwork table if the file is an artwork file, see #6127.
 	}
 
 	/**
@@ -431,6 +517,7 @@ class MonographFileDAO extends DAO {
 		return $this->update(
 			'DELETE FROM monograph_files WHERE monograph_id = ?', $monographId
 		);
+		// FIXME: Need to remove monograph file from artwork table if the file is an artwork file, see #6127.
 	}
 
 	/**

@@ -95,21 +95,22 @@ class MonographFileManager extends FileManager {
 	 * If no revision is specified, all revisions of the file are deleted.
 	 * @param $fileId int
 	 * @param $revision int (optional)
+	 * @param $monographId int (optional) the monograph id the files must belong to
 	 * @return int number of files removed
 	 */
-	function deleteFile($fileId, $revision = null) {
+	function deleteFile($fileId, $revision = null, $monographId = null) {
 		// Identify the files to be deleted.
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
 		$monographFiles = array();
 		if (isset($revision)) {
 			// Delete only a single revision of a file.
-			$monographFileRevision =& $monographFileDao->getMonographFile($fileId, $revision);
+			$monographFileRevision =& $monographFileDao->getMonographFile($fileId, $revision, $monographId);
 			if (isset($monographFileRevision)) {
 				$monographFiles[] = $monographFileRevision;
 			}
 		} else {
 			// Delete all revisions of a file.
-			$monographFiles =& $monographFileDao->getMonographFileRevisions($fileId, null, false);
+			$monographFiles =& $monographFileDao->getMonographFileRevisions($fileId, $monographId);
 		}
 
 		// Delete the files on the file system.
@@ -118,7 +119,7 @@ class MonographFileManager extends FileManager {
 		}
 
 		// Delete the files in the database.
-		$monographFileDao->deleteMonographFileById($fileId, $revision);
+		$monographFileDao->deleteMonographFileById($fileId, $revision, $monographId);
 
 		// Return the number of deleted files.
 		return count($monographFiles);

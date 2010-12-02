@@ -92,7 +92,6 @@ class Application extends PKPApplication {
 		return array_merge(parent::getDAOMap(), array(
 			'AnnouncementDAO' => 'classes.announcement.AnnouncementDAO',
 			'AnnouncementTypeDAO' => 'classes.announcement.AnnouncementTypeDAO',
-			'ArtworkFileDAO' => 'classes.monograph.ArtworkFileDAO',
 			'AuthorDAO' => 'classes.monograph.AuthorDAO',
 			'AuthorSubmissionDAO' => 'classes.submission.author.AuthorSubmissionDAO',
 			'ChapterAuthorDAO' => 'classes.monograph.ChapterAuthorDAO',

@@ -14,67 +14,51 @@
 
 
 import('lib.pkp.classes.form.Form');
+import('classes.file.MonographFileManager');
+
+// The percentage of characters that the name of a file
+// has to share with an existing file for it to be
+// considered as a revision of that file.
+define('SUBMISSION_MIN_SIMILARITY_OF_REVISION', 70);
+
+// Form execution modes.
+define('FILE_FORM_UPLOAD', 1);
+define('FILE_FORM_REVISE', 2);
 
 class SubmissionFilesUploadForm extends Form {
-	/** @var integer the id of the monograph being edited */
-	var $_monographId;
-
 	/** @var integer the workflow stage file store we are working with */
 	var $_fileStage;
 
-	/** @var boolean whether we revise an existing file */
-	var $_isRevision;
-
-	/** @var integer will be non-null when we revise an existing file */
-	var $_revisedFileId;
+	/** @var array the monograph files for this monograph and file stage */
+	var $_monographFiles;
 
 	/**
 	 * Constructor.
 	 * @param $request Request
 	 * @param $monographId integer
 	 * @param $fileStage integer
-	 * @param $isRevision boolean
-	 * @param $revisedFileId integer
+	 * @param $revisionOnly boolean
 	 */
-	function SubmissionFilesUploadForm(&$request, $monographId, $fileStage, $isRevision = false, $revisedFileId = null) {
+	function SubmissionFilesUploadForm(&$request, $monographId, $fileStage, $revisionOnly = false, $revisedFileId = null) {
 		// Check the incoming parameters.
 		assert(is_numeric($monographId) && $monographId > 0);
 		assert(is_numeric($fileStage) && $fileStage > 0);
 
 		// Initialize class.
-		$this->_monographId = (int)$monographId;
-		$this->_fileStage = (int)$fileStage;
-		$this->_isRevision = (boolean)$isRevision;
-		$this->_revisedFileId = is_null($revisedFileId) ? null : (int)$revisedFileId;
-		if (!$isRevision) {
-			assert(is_null($revisedFileId));
-		}
-
 		parent::Form('controllers/grid/files/submissionFiles/form/fileForm.tpl');
+		$this->_fileStage = (int)$fileStage;
+		$this->setData('monographId', (int)$monographId);
+		$this->setData('revisionOnly', (boolean)$revisionOnly);
+		$this->setData('revisedFileId', $revisedFileId ? (int)$revisedFileId : null);
 
 		// Add validators.
 		$this->addCheck(new FormValidatorPost($this));
-
-		$router =& $request->getRouter();
-		$context =& $router->getContext($request);
-		$this->addCheck(new FormValidatorCustom($this, 'genreId', FORM_VALIDATOR_REQUIRED_VALUE,
-				'submission.upload.noFileType',
-				create_function('$genreId,$genreDao,$context', 'return is_a($genreDao->getById($genreId, $context->getId()), "Genre");'),
-				array(DAORegistry::getDAO('GenreDAO'), $context)));
 	}
 
 
 	//
 	// Setters and Getters
 	//
-	/**
-	 * Get the monograph id.
-	 * @return integer
-	 */
-	function getMonographId() {
-		return $this->_monographId;
-	}
-
 	/**
 	 * Get the file stage.
 	 * @return integer
@@ -84,22 +68,18 @@ class SubmissionFilesUploadForm extends Form {
 	}
 
 	/**
-	 * Do we revise an existing file?
-	 * @return boolean
+	 * Get the monograph files belonging to the
+	 * monograph and to the file stage.
+	 * @return array a list of MonographFile instances.
 	 */
-	function isRevision() {
-		return $this->_isRevision;
-	}
+	function &getMonographFiles() {
+		if (is_null($this->_monographFiles)) {
+			// Retrieve the monograph files for the given file stage.
+			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
+			$this->_monographFiles =& $monographFileDao->getByMonographId($this->getData('monographId'), $this->getFileStage());
+		}
 
-	/**
-	 * Returns the id of the file being revised
-	 * by the uploaded file.
-	 * Will return null if no file has been
-	 * selected as revised file.
-	 * @return integer
-	 */
-	function getRevisedFileId() {
-		return $this->_revisedFileId;
+		return $this->_monographFiles;
 	}
 
 
@@ -107,39 +87,93 @@ class SubmissionFilesUploadForm extends Form {
 	// Implement template methods from Form
 	//
 	/**
-	 * @see Form::initData()
+	 * @see Form::readInputData()
 	 */
-	function initData($args, &$request) {
-		// Pass the form state on to the template.
-		$this->setData('monographId', $this->getMonographId());
-		$this->setData('isRevision', $this->isRevision());
-		$this->setData('revisedFileId', $this->getRevisedFileId());
+	function readInputData() {
+		// Only Genre and revised file can be set in the form. All other
+		// information is generated on our side.
+		$this->readUserVars(array('genreId', 'revisedFileId', 'uploadedFileId'));
+	}
 
-		// Retrieve the monograph files for the given file stage.
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
-		$monographFiles =& $monographFileDao->getByMonographId($this->getMonographId(), $this->getFileStage());
+	/**
+	 * @see Form::validate()
+	 * @param $request Request
+	 * @param $executionMode integer one of the FILE_FORM_* constants
+	 * @return boolean
+	 */
+	function validate(&$request, $executionMode) {
+		if ($executionMode == FILE_FORM_UPLOAD && !$this->getData('revisedFileId')) {
+			// Add an additional check for the genre to the form.
+			$router =& $request->getRouter();
+			$context =& $router->getContext($request);
+			$this->addCheck(new FormValidatorCustom($this, 'genreId', FORM_VALIDATOR_REQUIRED_VALUE,
+					'submission.upload.noFileType',
+					create_function('$genreId,$genreDao,$context', 'return is_a($genreDao->getById($genreId, $context->getId()), "Genre");'),
+					array(DAORegistry::getDAO('GenreDAO'), $context)));
+		} else {
+			// Make sure that no invalid genre may slip through.
+			$this->setData('genreId', null);
+		}
+
+		return parent::validate();
+	}
+
+	/**
+	 * @see Form::execute()
+	 * @param $executionMode integer one of the FILE_FORM_* constants
+	 * @return boolean true if successful, otherwise false
+	 */
+	function execute($executionMode) {
+		switch($executionMode) {
+			case FILE_FORM_UPLOAD:
+				$uploadedFile =& $this->_upload();
+				break;
+
+			case FILE_FORM_REVISE:
+				$uploadedFile =& $this->_revise();
+				break;
+
+			default:
+				assert(false);
+		}
+
+		// Save the uploaded file to the form.
+		if (is_a($uploadedFile, 'MonographFile')) {
+			$this->setData('uploadedFile', $uploadedFile);
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * @see Form::fetch()
+	 */
+	function fetch($request) {
+		// Retrieve the uploaded file (if any).
+		$uploadedFile =& $this->getData('uploadedFile');
 
 		// Initialize the list with files available for review.
 		$monographFileOptions = array();
 		$currentMonographFileGenres = array();
 
-		// If this is not a "review only" form then add a default
-		// item.
-		if (!$this->isRevision()) $monographFileOptions[0] = Locale::translate('submission.upload.uploadNewFile');
-
 		// Go through all files and build a list of files available for review.
+		$revisedFileId = $this->getData('revisedFileId');
 		$foundRevisedFile = false;
-		$this->setData('currentGenre', null);
+		$monographFiles =& $this->getMonographFiles();
 		for ($i = 0; $i < count($monographFiles); $i++) {
 			// Only look at the latest revision of each file. Files
 			// come sorted by file id and revision.
 			if (!isset($monographFiles[$i+1])
 					|| $monographFiles[$i]->getFileId() != $monographFiles[$i+1]->getFileId()) {
+				// The uploaded file must be excluded from the list of revisable files.
+				if ($uploadedFile && $uploadedFile->getFileId() == $monographFiles[$i]->getFileId()) continue;
+
 				// Is this the revised file?
-				if ($this->getRevisedFileId() == $monographFiles[$i]->getFileId()) {
-					// This is the uploaded monograph file, so pass it's data on to the form.
-					$this->setData('revisedMonographFileName', $monographFiles[$i]->getOriginalFileName());
-					$this->setData('currentGenre', $monographFiles[$i]->getGenreId());
+				if ($revisedFileId && $revisedFileId == $monographFiles[$i]->getFileId()) {
+					// This is the revised monograph file, so pass it's data on to the form.
+					$this->setData('revisedFileName', $monographFiles[$i]->getOriginalFileName());
+					$this->setData('genreId', $monographFiles[$i]->getGenreId());
 					$foundRevisedFile = true;
 				}
 
@@ -152,16 +186,39 @@ class SubmissionFilesUploadForm extends Form {
 				$currentMonographFileGenres[$monographFiles[$i]->getFileId()] = $monographFiles[$i]->getGenreId();
 			}
 		}
-		$this->setData('monographFileOptions', $monographFileOptions);
-		$this->setData('currentMonographFileGenres', $currentMonographFileGenres);
+
+		// If this is not a "review only" form then add a default item.
+		if (count($monographFileOptions) && !$this->getData('revisionOnly')) {
+			$monographFileOptions = array('' => Locale::translate('submission.upload.uploadNewFile')) + $monographFileOptions;
+		}
 
 		// Make sure that the revised file (if any) really was among
 		// the retrieved monograph files in the current file stage.
-		if ($this->getRevisedFileId() && !$foundRevisedFile) fatalError('Invalid revised file id!');
+		if ($revisedFileId && !$foundRevisedFile) fatalError('Invalid revised file id!');
+
+		// Set the review file candidate data in the template.
+		$this->setData('currentMonographFileGenres', $currentMonographFileGenres);
+		$this->setData('monographFileOptions', $monographFileOptions);
 
 		// Retrieve available monograph file genres.
+		$genreList =& $this->_retrieveGenreList($request);
+		$this->setData('monographFileGenres', $genreList);
+
+		return parent::fetch($request);
+	}
+
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Retrieve the genre list.
+	 * @param $request Request
+	 * @return array
+	 */
+	function &_retrieveGenreList(&$request) {
 		$context =& $request->getContext();
-		$genreDao =& DAORegistry::getDAO('GenreDAO');
+		$genreDao =& DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
 		$genres =& $genreDao->getEnabledByPressId($context->getId());
 
 		// Transform the genres into an array and
@@ -172,52 +229,113 @@ class SubmissionFilesUploadForm extends Form {
 			$genreList[$genreId] = $genre->getLocalizedName();
 			unset($genre);
 		}
-		$this->setData('monographFileGenres', $genreList);
+		return $genreList;
 	}
 
 	/**
-	 * @see Form::readInputData()
+	 * Executes the form by uploading a file.
+	 * @return MonographFile the uploaded monograph file or null on error
 	 */
-	function readInputData() {
-		$this->readUserVars(array('genreId', 'revisedFileId'));
-	}
-
-	/**
-	 * @see Form::execute()
-	 */
-	function execute(&$request) {
+	function &_upload() {
 		// Is this a revision?
-		$revisedFileId = (int)$this->getRevisedFileId();
+		$revisedFileId = $this->getData('revisedFileId') ? (int)$this->getData('revisedFileId') : null;
+		if ($this->getData('revisionOnly')) {
+			assert($revisedFileId > 0);
+		}
+
+		// Identify the file genre.
 		if ($revisedFileId) {
 			// The file genre will be copied over from the revised file.
 			$fileGenre = null;
 		} else {
 			// This is a new file so we need the file genre from the form.
-			$fileGenre = (int)$this->getData('genreId');
+			$fileGenre = $this->getData('genreId') ? (int)$this->getData('genreId') : null;
 		}
+
+		// Upload the file.
 		if($uploadedFile = MonographFileManager::uploadMonographFile(
-				$this->getMonographId(), 'submissionFile', $this->getFileStage(), $revisedFileId, $fileGenre)) {
+				$this->getData('monographId'), 'submissionFile', $this->getFileStage(), $revisedFileId, $fileGenre)) {
 
-			// Customize the URLs of the form to point to this file.
-			$router =& $request->getRouter();
-			$queryParams = array(
-				'monographId' => $this->getMonographId(),
-				'fileId' => $uploadedFile->getFileId(),
-				'revision' => $uploadedFile->getRevision()
-			);
-			$additionalAttributes = array(
- 				'fileFormUrl' => $router->url($request, null, null, 'displayFileForm', null, $queryParams),
-				'metadataUrl' => $router->url($request, null, null, 'editMetadata', null, $queryParams),
-				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, $queryParams)
-			);
+			// If no revised file id was given then try out whether
+			// the user maybe accidentally didn't identify this file as a revision.
+			if (!$revisedFileId) {
+				$this->setData('revisedFileId', $this->_checkForRevision($uploadedFile));
+			}
 
-			$fileName = $uploadedFile->getOriginalFilename();
-			$json = new JSON('true', Locale::translate('submission.uploadSuccessfulContinue', array('fileName' => $fileName)), 'false', '0', $additionalAttributes);
+			// Return the uploaded file.
+			return $uploadedFile;
 		} else {
-			$json = new JSON('false', Locale::translate('common.uploadFailed'));
+			$nullVar = null;
+			return $nullVar;
+		}
+	}
+
+	/**
+	 * Executes the form by revising a file.
+	 * @return MonographFile the new monograph file revision or null on error
+	 */
+	function &_revise() {
+		// Retrieve the file ids of the revised and the uploaded files.
+		$revisedFileId = (int)$this->getData('revisedFileId');
+		$uploadedFileId = (int)$this->getData('uploadedFileId');
+		if (!($revisedFileId && $uploadedFileId)) fatalError('Invalid file ids!');
+
+		// Assign the new file as the latest revision of the old file.
+		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
+		$monographId = $this->getData('monographId');
+		$uploadedFile =& $monographFileDao->setAsLatestRevision($revisedFileId, $uploadedFileId, $monographId, $this->getFileStage());
+
+		if (is_a($uploadedFile, 'MonographFile')) {
+			// Remove the now no longer valid form data.
+			$this->setData('revisedFileId', null);
+			$this->setData('uploadedFileId', null);
+
+			// Return the updated file.
+			return  $uploadedFile;
+		} else {
+			$nullVar = null;
+			return $nullVar;
+		}
+	}
+
+	/**
+	 * Check if the uploaded file has a similar name to an existing
+	 * file which would then be a candidate for a revised file.
+	 * @param $uploadedFile MonographFile
+	 * @return integer the if of the possibly revised file or null
+	 *  if no matches were found.
+	 */
+	function &_checkForRevision(&$uploadedFile) {
+		// Get the file name.
+		$uploadedFileName = $uploadedFile->getOriginalFileName();
+
+		// Start with the minimal required similarity.
+		$minPercentage = SUBMISSION_MIN_SIMILARITY_OF_REVISION;
+
+		// Find out whether one of the files belonging to the current
+		// file stage matches the given file name.
+		$possibleRevisedFileId = null;
+		$matchedPercentage = 0;
+		$monographFiles =& $this->getMonographFiles();
+		foreach ($monographFiles as $monographFile) { /* @var $monographFile MonographFile */
+			// Do not consider the uploaded file itself.
+			if ($uploadedFile->getFileId() == $monographFile->getFileId()) continue;
+
+			// Test whether the current monograph file is similar
+			// to the uploaded file.
+			similar_text($uploadedFileName, $monographFile->getOriginalFileName(), &$matchedPercentage);
+			if($matchedPercentage > $minPercentage) {
+				// We found a file that might be a possible revision.
+				$possibleRevisedFileId = $monographFile->getFileId();
+
+				// Reset the min percentage to this comparison's precentage
+				// so that only better matches will be considered from now on.
+				$minPercentage = $matchedPercentage;
+			}
 		}
 
-		return $json->getString();
+		// Return the id of the file that we found similar.
+		return $possibleRevisedFileId;
 	}
 }
 

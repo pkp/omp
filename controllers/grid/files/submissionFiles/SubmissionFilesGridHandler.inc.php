@@ -29,6 +29,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/** @var boolean */
 	var $_canAdd;
 
+	/** @var boolean */
+	var $_revisionOnly;
+
 	/**
 	 * Constructor
 	 * @param $fileStage integer the workflow stage
@@ -44,6 +47,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		assert(is_numeric($fileStage) && $fileStage > 0);
 		$this->_fileStage = (int)$fileStage;
 		$this->_canAdd = (boolean)$canAdd;
+		$this->_revisionOnly = (boolean)$revisionOnly;
 
 		parent::GridHandler();
 	}
@@ -74,11 +78,20 @@ class SubmissionFilesGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Does this grid have an "add file" button?
+	 * Does this grid allow the addition of files
+	 * or revisions?
 	 * @return boolean
 	 */
 	function canAdd() {
 		return $this->_canAdd;
+	}
+
+	/**
+	 * Does this grid only allow revisions and no new files?
+	 * @return boolean
+	 */
+	function revisionOnly() {
+		return $this->_revisionOnly;
 	}
 
 
@@ -105,7 +118,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_APPEND,
 					$router->url($request, null, null, 'addFile', null, $actionArgs),
-					'submission.addFile'
+					$this->revisionOnly() ? 'submission.addRevision' : 'submission.addFile'
 				),
 				GRID_ACTION_POSITION_ABOVE
 			);
@@ -132,113 +145,131 @@ class SubmissionFilesGridHandler extends GridHandler {
 	// Public handler actions
 	//
 	/**
-	 * An action to add a revision to an existing file
+	 * An action to add a new file or revision.
+	 * Displays the file upload wizard modal which in
+	 * turn will request the file upload wizard.
 	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function addRevision($args, &$request) {
-		$templateMgr =& TemplateManager::getManager();
-
-		// Tell the view that we want to upload a revision.
-		$templateMgr->assign('isRevision', true);
-
-		// We may also already have a specific file to add a revision to.
-		$revisedFileId = $request->getUserVar('revisedFileId') ? (int)$request->getUserVar('revisedFileId') : null;
-		$templateMgr->assign('revisedFileId', $revisedFileId);
-
-		// Let "add file" handle the remainder of the use case.
-		return $this->addFile($args, $request);
-	}
-
-	/**
-	 * An action to add a new file or revision
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @param $request Request
+	 * @return string a serialized JSON object
 	 */
 	function addFile($args, &$request) {
 		$templateMgr =& TemplateManager::getManager();
 
-		// Assign the monograph id.
+		// Assign the monograph.
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());
 
-		// Render the JSON message.
-		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/submissionFiles.tpl'));
+		// Does this upload wizard allow revisions only?
+		$templateMgr->assign('revisionOnly', $this->revisionOnly());
+
+		// Assign the pre-configured revised file id (if any).
+		$revisedFileId = $this->_getRevisedFileFromRequest($request);
+		$templateMgr->assign('revisedFileId', $revisedFileId);
+
+		// Render the file upload wizard.
+		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/fileFormModal.tpl'));
 		return $json->getString();
 	}
 
 	/**
-	 * Display the file upload form
+	 * Render the file upload wizard in its initial state.
 	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @param $request Request
+	 * @return string a serialized JSON object
 	 */
 	function displayFileForm($args, &$request) {
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getMonograph();
-		$monographId = $monograph->getId();
-
-		// Do we upload revisions or new files?
-		$isRevision = (boolean)$request->getUserVar('isRevision');
-
-		// The revised file will be non-zero if the user selected
-		// an existing file to be revised.
-		if ($isRevision) {
-			$revisedFileId = $request->getUserVar('revisedFileId') ? (int)$request->getUserVar('revisedFileId') : null;
-		} else {
-			$revisedFileId = null;
-		}
-
-		// Handle the submission files upload form.
+		// Configure the submission files upload wizard.
 		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
-		$fileForm = new SubmissionFilesUploadForm($request, $monographId, $this->getFileStage(), $isRevision, $revisedFileId);
+		$monograph =& $this->getMonograph();
+		$revisedFileId = $this->_getRevisedFileFromRequest($request);
+		$fileForm = new SubmissionFilesUploadForm($request, $monograph->getId(), $this->getFileStage(), $this->revisionOnly(), $revisedFileId);
 		$fileForm->initData($args, $request);
 
-		// Render the JSON response.
+		// Render the wizard.
 		$json = new JSON('true', $fileForm->fetch($request));
 		return $json->getString();
 	}
 
 	/**
-	 * Upload a file.
+	 * Upload a file and render the modified upload wizard.
 	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @param $request Request
+	 * @return string a serialized JSON object
 	 */
 	function uploadFile($args, &$request) {
-		// Instantiate the file form.
+		// Upload the file.
 		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
-		$monograph =& $this->getMonograph();
-		$fileForm = new SubmissionFilesUploadForm($request, $monograph->getId(), $this->getFileStage());
-		$fileForm->readInputData();
-
-		// Validate the file and upload it.
-		if ($fileForm->validate()) {
-			return $fileForm->execute($request);
-		} else {
-			$json = new JSON('false', Locale::translate('submission.upload.invalidData'));
-			return $json->getString();
-		}
+		return $this->_executeFileForm($request, FILE_FORM_UPLOAD);
 	}
 
 	/**
-	 * Edit the metadata of a submission file
+	 * Confirm that the uploaded file is a revision of an
+	 * earlier uploaded file.
 	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @param $request Request
+	 * @return string a serialized JSON object
+	 */
+	function confirmRevision($args, &$request) {
+		// Revise the file.
+		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
+		return $this->_executeFileForm($request, FILE_FORM_REVISE);
+	}
+
+	/**
+	 * Delete a file or revision
+	 * @param $args array
+	 * @param $request Request
+	 * @return string a serialized JSON object
+	 */
+	function deleteFile($args, &$request) {
+		$fileId = (int)$request->getUserVar('fileId');
+
+		$success = false;
+		if($fileId) {
+			// Delete all revisions or only one?
+			$revision = $request->getUserVar('revision')? (int)$request->getUserVar('revision') : null;
+
+			// Delete the file/revision but only when it belongs to the authorized monograph.
+			import('classes.file.MonographFileManager');
+			$monograph =& $this->getMonograph();
+			$success = (boolean)MonographFileManager::deleteFile($fileId, $revision, $monograph->getId());
+		}
+
+		if ($success) {
+			$json = new JSON('true');
+		} else {
+			$json = new JSON('false');
+		}
+		return $json->getString();
+	}
+
+	/**
+	 * Edit the metadata of the latest revision of
+	 * the requested submission file.
+	 * @param $args array
+	 * @param $request Request
+	 * @return string a serialized JSON object
 	 */
 	function editMetadata($args, &$request) {
-		$fileId = (int)$request->getUserVar('fileId');
-		$revision = (int)$request->getUserVar('revision');
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getMonograph();
+		$monographId = $monograph->getId();
 
+		// Retrieve the latest revision of the requested monograph file.
 		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
-		$monographFile =& $monographFileDao->getMonographFile($fileId);
-		$genreDao =& DAORegistry::getDAO('GenreDAO');
-		$genre = $genreDao->getById($monographFile->getGenreId());
-		$monographId = $monographFile->getMonographId();
+		$fileId = (int)$request->getUserVar('fileId');
+		$monographFile =& $monographFileDao->getMonographFile($fileId, null, $monographId);
 
+		// Validate the file.
+		if (!is_a($monographFile, 'MonographFile')
+				|| $monographFile->getFileStage() != $this->getFileStage()) fatalError('Invalid file id!');
+
+		// Identify the genre category of the monograph file.
+		$genreDao =& DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
+		$genre =& $genreDao->getById($monographFile->getGenreId());
+		assert(is_a($genre, 'Genre'));
+
+		// Import the meta-data form based on the genre category.
 		switch ($genre->getCategory()) {
 			case GENRE_CATEGORY_ARTWORK:
 				import('controllers.grid.files.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
@@ -268,8 +299,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/**
 	 * Save the metadata of a submission file
 	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @param $request Request
+	 * @return string a serialized JSON object
 	 */
 	function saveMetadata($args, &$request) {
 		$fileId = $request->getUserVar('fileId');
@@ -315,8 +346,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/**
 	 * Display the final tab of the modal
 	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @param $request Request
+	 * @return string a serialized JSON object
 	 */
 	function finishFileSubmission($args, &$request) {
 		$fileId = $request->getUserVar('fileId');
@@ -334,8 +365,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/**
 	 * Return a grid row with for the submission grid
 	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @param $request Request
+	 * @return string a serialized JSON object
 	 */
 	function returnFileRow($args, &$request) {
 		$fileId = $request->getUserVar('fileId');
@@ -358,29 +389,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Delete a file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function deleteFile($args, &$request) {
-		$fileId = (int)$request->getUserVar('fileId');
-
-		if($fileId) {
-			import('classes.file.MonographFileManager');
-			MonographFileManager::deleteFile($fileId);
-
-			$json = new JSON('true');
-		} else {
-			$json = new JSON('false');
-		}
-		return $json->getString();
-	}
-
-	/**
 	 * Download a file
 	 * @param $args array
-	 * @param $request PKPRequest
+	 * @param $request Request
 	 */
 	function downloadFile($args, &$request) {
 		$monographId = (int)$request->getUserVar('monographId');
@@ -394,8 +405,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/**
 	 * Download all of the monograph files as one compressed file
 	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
+	 * @param $request Request
 	 */
 	function downloadAllFiles($args, &$request) {
 		$monographId = (int)$request->getUserVar('monographId');
@@ -407,7 +417,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/**
 	 * View a file
 	 * @param $args array
-	 * @param $request PKPRequest
+	 * @param $request Request
 	 */
 	function viewFile($args, &$request) {
 		$monographId = (int)$request->getUserVar('monographId');
@@ -435,5 +445,53 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$rowData[$monographFile->getFileId()] = $monographFile;
 		}
 		$this->setData($rowData);
+	}
+
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Find out whether we got a revised file pre-configured
+	 * in the request and return it's id or null.
+	 * @param $request Request
+	 * @return integer
+	 */
+	function _getRevisedFileFromRequest(&$request) {
+		// The revised file will be non-zero if we revise a
+		// single existing file.
+		if ($this->revisionOnly()) {
+			$revisedFileId = $request->getUserVar('revisedFileId') ? (int)$request->getUserVar('revisedFileId') : null;
+		} else {
+			$revisedFileId = null;
+		}
+		return $revisedFileId;
+	}
+
+	/**
+	 * Execute the file upload form.
+	 * @param $request Request
+	 * @param $executionMode integer one of the FILE_FORM_* constants
+	 * @return string a rendered JSON response
+	 */
+	function _executeFileForm(&$request, $executionMode) {
+		// Instantiate the file form.
+		$monograph =& $this->getMonograph();
+		$fileForm = new SubmissionFilesUploadForm($request, $monograph->getId(), $this->getFileStage(), $this->revisionOnly());
+		$fileForm->readInputData();
+
+		// Validate the form and upload/revise the file.
+		if ($fileForm->validate($request, $executionMode)) {
+			if ($fileForm->execute($executionMode)) {
+				// Render the updated form.
+				$json = new JSON('true', $fileForm->fetch($request));
+			} else {
+				// Return an error.
+				$json = new JSON('false', Locale::translate('common.uploadFailed'));
+			}
+		} else {
+			$json = new JSON('false', array_pop($fileForm->getErrorsArray()));
+		}
+		return $json->getString();
 	}
 }

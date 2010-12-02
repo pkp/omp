@@ -22,7 +22,7 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 	function CopyeditingSubmissionFilesGridHandler() {
 		parent::SubmissionFilesGridHandler();
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-			array('fetchGrid', 'addFile', 'addRevision', 'editFile', 'displayFileForm', 'uploadFile',
+			array('fetchGrid', 'addFile', 'editFile', 'displayFileForm', 'uploadFile',
 			'confirmRevision', 'deleteFile', 'editMetadata', 'saveMetadata', 'finishFileSubmission',
 			'returnFileRow', 'downloadFile'));
 	}

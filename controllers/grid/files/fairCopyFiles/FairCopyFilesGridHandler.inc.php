@@ -25,8 +25,8 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 
 		// Configure role based authorization.
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array('fetchGrid', 'addFile', 'displayFileForm', 'uploadFile', 'editMetadata', 'saveMetadata',
-						'downloadFile', 'downloadAllFiles', 'deleteFile'));
+				array('fetchGrid', 'addFile', 'displayFileForm', 'uploadFile', 'confirmRevision',
+						'editMetadata', 'saveMetadata', 'downloadFile', 'downloadAllFiles', 'deleteFile'));
 	}
 
 
@@ -56,13 +56,14 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 		// Test whether the tar binary is available for the export to work, if so, add grid action
 		$tarBinary = Config::getVar('cli', 'tar');
 		if ($this->hasData() && !empty($tarBinary) && file_exists($tarBinary)) {
+			$monograph =& $this->getMonograph();
 			$router =& $request->getRouter();
 			$this->addAction(
 				new LinkAction(
 					'downloadAll',
 					LINK_ACTION_MODE_LINK,
 					LINK_ACTION_TYPE_NOTHING,
-					$router->url($request, null, null, 'downloadAllFiles', null, array('monographId' => $monographId)),
+					$router->url($request, null, null, 'downloadAllFiles', null, array('monographId' => $monograph->getId())),
 					'submission.files.downloadAll',
 					null,
 					'getPackage'
