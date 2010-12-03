@@ -41,7 +41,7 @@ class RoleDAO extends DAO {
 	function &getUsersByRoleId($roleId = null, $pressId = null, $searchType = null, $search = null, $searchMatch = null, $dbResultRange = null) {
 		$users = array();
 
-		$paramArray = array('interest');
+		$paramArray = array(ASSOC_TYPE_USER, 'interest');
 		if (isset($roleId)) $paramArray[] = (int) $roleId;
 		if (isset($pressId)) $paramArray[] = (int) $pressId;
 		// For security / resource usage reasons, a role or press ID
@@ -88,7 +88,7 @@ class RoleDAO extends DAO {
 		$searchSql .= ' ORDER BY u.last_name, u.first_name'; // FIXME Add "sort field" parameter?
 
 		$result =& $this->retrieveRange(
-			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN controlled_vocabs cv ON (cv.assoc_id = u.user_id AND cv.symbolic = ?)
+			'SELECT DISTINCT u.* FROM users AS u LEFT JOIN controlled_vocabs cv ON (cv.assoc_type = ? AND cv.assoc_id = u.user_id AND cv.symbolic = ?)
 			LEFT JOIN controlled_vocab_entries cve ON (cve.controlled_vocab_id = cv.controlled_vocab_id)
 			LEFT JOIN controlled_vocab_entry_settings cves ON (cves.controlled_vocab_entry_id = cve.controlled_vocab_entry_id),
 			user_groups AS ug, user_user_groups AS uug
