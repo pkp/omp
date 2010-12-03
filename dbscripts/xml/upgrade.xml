@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE install SYSTEM "../../lib/pkp/dtd/install.dtd">
+<!--
+  * upgrade.xml
+  *
+  * Copyright (c) 2003-2010 John Willinsky
+  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+  *
+  * Upgrade descriptor file.
+  *
+  * $Id$
+  -->
+
+<install version="1.0.0.0">
+	<!-- PKP schema components -->
+	<schema file="lib/pkp/xml/schema/common.xml" />
+	<schema file="lib/pkp/xml/schema/scheduledTasks.xml" />
+	<schema file="lib/pkp/xml/schema/temporaryFiles.xml" />
+	<schema file="lib/pkp/xml/schema/groups.xml" />
+	<schema file="lib/pkp/xml/schema/notes.xml" />
+	<schema file="lib/pkp/xml/schema/controlledVocab.xml" />
+	<schema file="lib/pkp/xml/schema/metadata.xml" />
+	<schema file="lib/pkp/xml/schema/announcements.xml" />
+	<schema file="lib/pkp/xml/schema/signoff.xml" />
+	<schema file="lib/pkp/xml/schema/reviews.xml" />
+	<schema file="lib/pkp/xml/schema/reviewForms.xml" />
+	<schema file="lib/pkp/xml/schema/submissions.xml" />
+
+	<!-- OMP schema -->
+	<schema file="dbscripts/xml/omp_schema.xml" />
+
+	<!-- Update plugin configuration - should be done as the final upgrade task -->
+	<code function="addPluginVersions" />
+</install>
