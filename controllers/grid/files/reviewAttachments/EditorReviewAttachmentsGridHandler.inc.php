@@ -85,8 +85,8 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 		parent::initialize($request);
 		$monographId = (int) $request->getUserVar('monographId');
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getByMonographId($monographId, MONOGRAPH_FILE_ATTACHMENT);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFiles =& $submissionFileDao->getLatestRevisions($monographId, MONOGRAPH_FILE_ATTACHMENT);
 		$rowData = array();
 		foreach ($monographFiles as $monographFile) {
 			$rowData[$monographFile->getFileId()] = $monographFile;

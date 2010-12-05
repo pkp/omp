@@ -112,8 +112,8 @@ class ReviewFilesGridHandler extends GridHandler {
 			$this->setTemplate('controllers/grid/files/reviewFiles/grid.tpl');
 
 			// Set the files to all the available files to allow selection.
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFiles =& $monographFileDao->getByMonographId($monographId);
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$monographFiles =& $submissionFileDao->getLatestRevisions($monographId);
 			$this->setData($monographFiles);
 			$this->setId('reviewFilesSelect'); // Need a unique ID since the 'manage review files' modal is in the same namespace as the 'view review files' modal
 

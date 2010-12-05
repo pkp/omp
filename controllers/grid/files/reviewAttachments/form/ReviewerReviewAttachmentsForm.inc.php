@@ -68,8 +68,8 @@ class ReviewerReviewAttachmentsForm extends Form {
 		$templateMgr->assign('monographId', $reviewAssignment->getSubmissionId());
 
 		if ($this->fileId) {
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$reviewAttachment =& $monographFileDao->getMonographFile($this->fileId);
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$reviewAttachment =& $submissionFileDao->getLatestRevision($this->fileId);
 
 			assert(!is_null($reviewAttachment));
 			$templateMgr->assign_by_ref('attachmentFile', $reviewAttachment);

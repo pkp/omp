@@ -201,14 +201,14 @@ class PromoteForm extends EditorDecisionForm {
 		$email->setAssoc(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_EDITOR, $currentReviewRound->getRound());
 
 		// Attach the selected reviewer attachments
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$selectedAttachments = $this->getData('selectedAttachments') ? $this->getData('selectedAttachments') : array();
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($monograph->getId(), $monograph->getCurrentRound());
 		assert(is_array($reviewIndexes));
 		if(is_array($selectedAttachments)) {
 			foreach ($selectedAttachments as $attachmentId) {
-				$monographFile =& $monographFileDao->getMonographFile($attachmentId);
+				$monographFile =& $submissionFileDao->getLatestRevision($attachmentId);
 				$fileName = $monographFile->getOriginalFileName();
 				$reviewAssignmentId = $monographFile->getAssocId();
 				assert($monographFile->getAssocType == ASSOC_TYPE_REVIEW_ASSIGNMENT);
@@ -217,7 +217,7 @@ class PromoteForm extends EditorDecisionForm {
 
 				// Update monograph to set viewable as true, so author can view the file on their submission summary page
 				$monographFile->setViewable(true);
-				$monographFileDao->updateMonographFile($monographFile);
+				$submissionFileDao->updateObject($monographFile);
 			}
 		}
 		$email->send();

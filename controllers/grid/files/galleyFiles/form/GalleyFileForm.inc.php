@@ -93,8 +93,8 @@ class GalleyFileForm extends Form {
 		$signoff =& $signoffDao->getById($this->getSignoffId());
 
 		if ($signoff && $copyeditedFileId = $signoff->getFileId()) {
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$copyeditedFile =& $monographFileDao->getMonographFile($copyeditedFileId);
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$copyeditedFile =& $submissionFileDao->getLatestRevision($copyeditedFileId);
 
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign_by_ref('copyeditedFile', $copyeditedFile);
@@ -123,12 +123,12 @@ class GalleyFileForm extends Form {
 		assert(is_a($signoff, 'Signoff'));
 
 		// Get the file that is being copyedited
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
-		$galleyFile =& $monographFileDao->getMonographFile($signoff->getAssocId());
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$galleyFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 
 		// Get the copyedited file if it exists
 		if($signoff->getFileId()) {
-			$copyeditedFile =& $monographFileDao->getMonographFile($signoff->getFileId());
+			$copyeditedFile =& $submissionFileDao->getLatestRevision($signoff->getFileId());
 		}
 
 		// If we're updating a file, get its ID for the file manager
@@ -144,11 +144,11 @@ class GalleyFileForm extends Form {
 				$signoff->setDateCompleted(Core::getCurrentDate());
 				$signoffDao->updateObject($signoff);
 
-				$copyeditedFile =& $monographFileDao->getMonographFile($copyeditedFileId);
+				$copyeditedFile =& $submissionFileDao->getLatestRevision($copyeditedFileId);
 				// Transfer some of the original file's metadata over to the new file
 				$copyeditedFile->setName($galleyFile->getLocalizedName(), Locale::getLocale());
 				$copyeditedFile->setGenreId($galleyFile->getGenreId());
-				$monographFileDao->updateMonographFile($copyeditedFile);
+				$submissionFileDao->updateObject($copyeditedFile);
 			}
 
 		}

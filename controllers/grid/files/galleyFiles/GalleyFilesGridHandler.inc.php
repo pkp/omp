@@ -61,9 +61,9 @@ class GalleyFilesGridHandler extends CategoryGridHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		// Grab the galley files to display as categories
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$monographFiles =& $monographFileDao->getByMonographId($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
+		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
 		$rowData = array();
 		foreach ($monographFiles as $monographFile) {
 			$rowData[$monographFile->getFileId()] = $monographFile;
@@ -212,8 +212,8 @@ class GalleyFilesGridHandler extends CategoryGridHandler {
 		if ($galleyUserForm->validate()) {
 			$galleyUserForm->execute();
 
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFiles =& $monographFileDao->getByMonographId($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
 			$data = array();
 			foreach ($monographFiles as $monographFile) {
 				$data[$monographFile->getFileId()] = $monographFile;
@@ -426,8 +426,8 @@ class GalleyFilesGridHandler extends CategoryGridHandler {
 			$signoffDao->updateObject($signoff);
 
 			// Delete the file
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
-			$monographFileDao->deleteMonographFileById($fileId);
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$submissionFileDao->deleteAllRevisionsById($fileId);
 
 			// Fetch the updated row
 			$row =& $this->getRowInstance();

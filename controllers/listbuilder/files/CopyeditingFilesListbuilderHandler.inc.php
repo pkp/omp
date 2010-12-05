@@ -75,8 +75,8 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	function loadPossibleItemList(&$request) {
 		$monographId = $request->getUserVar('monographId');
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getByMonographId($monographId, MONOGRAPH_FILE_COPYEDIT);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFiles =& $submissionFileDao->getLatestRevisions($monographId, MONOGRAPH_FILE_COPYEDIT);
 		$itemList = array();
 		foreach ($monographFiles as $item) {
 			$id = $item->getFileId();
@@ -138,8 +138,8 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 			$json = new JSON('false');
 			return $json->getString();
 		} else {
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFile =& $monographFileDao->getMonographFile($fileId);
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$monographFile =& $submissionFileDao->getLatestRevision($fileId);
 
 			// Return JSON with formatted HTML to insert into list
 			$row =& $this->getRowInstance();

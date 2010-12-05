@@ -48,8 +48,8 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		$artworkFile =& $artworkFileDao->getByFileId($this->_fileId);
 		$templateMgr->assign_by_ref('artworkFile', $artworkFile);
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($this->_fileId);
 		$templateMgr->assign_by_ref('monographFile', $monographFile);
 		$templateMgr->assign_by_ref('monographId', $monographFile->getMonographId());
 
@@ -87,8 +87,8 @@ class SubmissionFilesArtworkMetadataForm extends Form {
 		$artworkFile =& $artworkFileDao->getByFileId($this->_fileId);
 		$this->_data['artworkFile'] =& $artworkFile;
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($this->_fileId);
 		$this->_data['$monographFile'] =& $monographFile;
 
 		// grid related data

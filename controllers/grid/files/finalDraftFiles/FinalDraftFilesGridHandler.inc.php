@@ -113,7 +113,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 		$router =& $request->getRouter();
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$monographId = $monograph->getId();
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		if ($this->getIsSelectable()) {
 			// Set a special grid ID since the 'manage review files' modal is in the same namespace as the 'view review files' modal.
 			$this->setId('finalDraftFilesSelect');
@@ -122,7 +122,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 			$this->setTemplate('controllers/grid/files/finalDraftFiles/grid.tpl');
 
 			// Set the files to all the available files (submission and final draft file types).
-			$monographFiles =& $monographFileDao->getByMonographId($monographId);
+			$monographFiles =& $submissionFileDao->getLatestRevisions($monographId);
 			$rowData = array();
 			foreach ($monographFiles as $monographFile) {
 				$rowData[$monographFile->getFileId()] =& $monographFile;
@@ -159,7 +159,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 			$this->setId('finalDraftFiles');
 
 			// Grab only the final draft files.
-			$monographFiles =& $monographFileDao->getByMonographId($monographId, MONOGRAPH_FILE_FINAL);
+			$monographFiles =& $submissionFileDao->getLatestRevisions($monographId, MONOGRAPH_FILE_FINAL);
 			$rowData = array();
 			foreach ($monographFiles as $monographFile) {
 				$rowData[$monographFile->getFileId()] = $monographFile;
@@ -338,8 +338,8 @@ class FinalDraftFilesGridHandler extends GridHandler {
 		$fileId = $request->getUserVar('fileId');
 
 		if($fileId) {
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFileDao->deleteMonographFileById($fileId);
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$submissionFileDao->deleteAllRevisionsById($fileId);
 
 			$json = new JSON('true');
 		} else {

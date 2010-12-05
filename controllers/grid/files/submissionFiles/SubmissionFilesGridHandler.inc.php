@@ -229,10 +229,16 @@ class SubmissionFilesGridHandler extends GridHandler {
 			// Delete all revisions or only one?
 			$revision = $request->getUserVar('revision')? (int)$request->getUserVar('revision') : null;
 
-			// Delete the file/revision but only when it belongs to the authorized monograph.
+			// Delete the file/revision but only when it belongs to the authorized monograph
+			// and to the right file stage.
 			import('classes.file.MonographFileManager');
 			$monograph =& $this->getMonograph();
-			$success = (boolean)MonographFileManager::deleteFile($fileId, $revision, $monograph->getId());
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			if ($revision) {
+				$success = (boolean)$submissionFileDao->deleteRevisionById($fileId, $revision, $this->getFileStage(), $monograph->getId());
+			} else {
+				$success = (boolean)$submissionFileDao->deleteAllRevisionsById($fileId, $this->getFileStage(), $monograph->getId());
+			}
 		}
 
 		if ($success) {
@@ -256,9 +262,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$monographId = $monograph->getId();
 
 		// Retrieve the latest revision of the requested monograph file.
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$fileId = (int)$request->getUserVar('fileId');
-		$monographFile =& $monographFileDao->getMonographFile($fileId, null, $monographId);
+		$monographFile =& $submissionFileDao->getLatestRevision($fileId, $this->getFileStage(), $monographId);
 
 		// Validate the file.
 		if (!is_a($monographFile, 'MonographFile')
@@ -303,13 +309,15 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @return string a serialized JSON object
 	 */
 	function saveMetadata($args, &$request) {
+		$monograph =& $this->getMonograph();
+		$monographId = $monograph->getId();
 		$fileId = $request->getUserVar('fileId');
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($fileId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($fileId, $this->getFileStage(), $monographId);
+
 		$genreDao =& DAORegistry::getDAO('GenreDAO');
 		$genre = $genreDao->getById($monographFile->getGenreId());
-		$monographId = $monographFile->getMonographId();
 
 		if(isset($monographFile) && $monographFile->getLocalizedName() != '') { //Name exists, just updating it
 			$isEditing = true;
@@ -370,8 +378,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 */
 	function returnFileRow($args, &$request) {
 		$fileId = $request->getUserVar('fileId');
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($fileId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($fileId);
 
 		if($monographFile) {
 			$row =& $this->getRowInstance();
@@ -437,9 +445,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * files into the grid.
 	 */
 	function loadMonographFiles() {
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monograph =& $this->getMonograph();
-		$monographFiles =& $monographFileDao->getByMonographId($monograph->getId(), $this->getFileStage());
+		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
 		$rowData = array();
 		foreach ($monographFiles as $monographFile) {
 			$rowData[$monographFile->getFileId()] = $monographFile;

@@ -55,11 +55,11 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 		// FIXME: Must be replaced with an object from the authorized context, see #6200.
 		$reviewId = (int) $request->getUserVar('reviewId');
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		if (!$reviewId && $monographId ) {
-			$monographFiles =& $monographFileDao->getByMonographId($monographId, MONOGRAPH_FILE_ATTACHMENT);
+			$monographFiles =& $submissionFileDao->getLatestRevisions($monographId, MONOGRAPH_FILE_ATTACHMENT);
 		} else {
-			$monographFiles =& $monographFileDao->getMonographFilesByAssocId($reviewId, MONOGRAPH_FILE_ATTACHMENT);
+			$monographFiles =& $submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, $reviewId, MONOGRAPH_FILE_ATTACHMENT);
 		}
 		$this->setData($monographFiles);
 

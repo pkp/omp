@@ -50,8 +50,8 @@ class InformationCenterNotesForm extends Form {
 		if($this->itemType == ASSOC_TYPE_MONOGRAPH) {
 			$monographId = $this->itemId;
 		} else {
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFile =& $monographFileDao->getMonographFile($this->itemId);
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$monographFile =& $submissionFileDao->getLatestRevision($this->itemId);
 			$monographId = $monographFile->getMonographId();
 		}
 		$templateMgr->assign_by_ref('monographId', $monographId);

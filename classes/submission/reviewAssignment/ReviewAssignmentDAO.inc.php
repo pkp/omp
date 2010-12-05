@@ -19,7 +19,7 @@ import('classes.submission.reviewAssignment.ReviewAssignment');
 import('lib.pkp.classes.submission.reviewAssignment.PKPReviewAssignmentDAO');
 
 class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
-	var $monographFileDao;
+	var $submissionFileDao;
 	var $monographCommentsDao;
 
 	/**
@@ -27,7 +27,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	 */
 	function ReviewAssignmentDAO() {
 		parent::PKPReviewAssignmentDAO();
-		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$this->submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 	}
 
@@ -217,9 +217,9 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		$reviewAssignment->setReviewFileId($reviewFileId);
 
 		// Files
-		$reviewAssignment->setReviewFile($this->monographFileDao->getMonographFile($reviewFileId, $row['review_revision']));
-		$reviewAssignment->setReviewerFile($this->monographFileDao->getMonographFile($row['reviewer_file_id']));
-		$reviewAssignment->setReviewerFileRevisions($this->monographFileDao->getMonographFileRevisions($row['reviewer_file_id']));
+		$reviewAssignment->setReviewFile($this->submissionFileDao->getRevision($reviewFileId, $row['review_revision']));
+		$reviewAssignment->setReviewerFile($this->submissionFileDao->getLatestRevision($row['reviewer_file_id']));
+		$reviewAssignment->setReviewerFileRevisions($this->submissionFileDao->getLatestRevisionRevisions($row['reviewer_file_id']));
 
 		// Comments
 		$reviewAssignment->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['submission_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));

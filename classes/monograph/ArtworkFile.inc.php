@@ -8,7 +8,7 @@
  *
  * @class ArtworkFile
  * @ingroup monograph
- * @see ArtworkFileDAO
+ * @see SubmissionFileDAO
  *
  * @brief Artwork file class.
  */
@@ -16,28 +16,20 @@
 import('classes.monograph.MonographFile');
 
 class ArtworkFile extends MonographFile {
-
-	/** @var array */
+	/** @var array image file information */
 	var $_imageInfo;
 
-	/** @var MonographFile */
-	var $_monographFile;
-
-	/** @var PermissionFile */
-	var $_permissionFile;
-
+	/**
+	 * Constructor
+	 */
 	function ArtworkFile() {
 		parent::MonographFile();
-
-		$this->_imageInfo = null;
-		$this->_monographFile = null;
-		$this->_permissionFile = null;
 	}
 
-	//
-	// Get/set methods
-	//
 
+	//
+	// Getters and Setters
+	//
 	/**
 	 * Get artwork caption.
 	 * @return string
@@ -184,50 +176,25 @@ class ArtworkFile extends MonographFile {
 
 	/**
 	 * Get the width of the image in pixels.
+	 * @return integer
 	 */
 	function getWidth() {
 		if (!$this->_imageInfo) {
-			$monographFile =& $this->getFile();
-			$this->_imageInfo = getimagesize($monographFile->getFilePath());
+			$this->_imageInfo = getimagesize($this->getFilePath());
 		}
 		return $this->_imageInfo[0];
 	}
 
 	/**
 	 * Get the height of the image in pixels.
+	 * @return integer
 	 */
 	function getHeight() {
 		if (!$this->_imageInfo) {
 			$monographFile =& $this->getFile();
-			$this->_imageInfo = getimagesize($monographFile->getFilePath());
+			$this->_imageInfo = getimagesize($this->getFilePath());
 		}
 		return $this->_imageInfo[1];
-	}
-
-	/**
-	 * Get the artwork file object.
-	 * @return MonographFile
-	 */
-	function &getFile() {
-		if (!$this->_monographFile) {
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFile =& $monographFileDao->getMonographFile($this->getData('fileId'), $this->getData('revision'));
-			$this->_monographFile =& $monographFile;
-		}
-		return $this->_monographFile;
-	}
-
-	/**
-	 * Get the file object.
-	 * @return MonographFile
-	 */
-	function &getPermissionFile() {
-		if (!$this->_permissionFile) {
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFile =& $monographFileDao->getMonographFile($this->getData('permissionFileId'));
-			$this->_permissionFile =& $monographFile;
-		}
-		return $this->_permissionFile;
 	}
 }
 

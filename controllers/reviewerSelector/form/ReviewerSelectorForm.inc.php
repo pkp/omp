@@ -53,11 +53,11 @@ class ReviewerSelectorForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($this->_fileId);
 
 		$monographFile->setName($this->getData('name'), Locale::getLocale());
-		$monographFileDao->updateMonographFile($monographFile);
+		$submissionFileDao->updateObject($monographFile);
 	}
 }
 

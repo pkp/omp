@@ -134,8 +134,8 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 	function returnFileRow($args, &$request) {
 		$fileId = isset($args['rowId']) ? $args['rowId'] : null;
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($fileId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($fileId);
 
 		if($monographFile) {
 			$row =& $this->getRowInstance();
@@ -162,8 +162,8 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 		$fileId = $request->getUserVar('rowId');
 
 		if($fileId) {
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFileDao->deleteMonographFileById($fileId);
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$submissionFileDao->deleteAllRevisionsById($fileId);
 
 			$json = new JSON('true');
 		} else {

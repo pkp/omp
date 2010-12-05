@@ -34,8 +34,8 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$this->setupTemplate(true);
 
 		// Get the file in question
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($itemId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($itemId);
 
 		// Get the latest history item to display in the header
 		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
@@ -135,8 +135,8 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$this->setupTemplate(true);
 
 		// Get the file in question to get the monograph Id
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($itemId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($itemId);
 
 		// Get all monograph file events
 		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
@@ -168,8 +168,8 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		}
 
 		// Get the file in question to get the monograph Id
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($itemId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($itemId);
 
 		$entry = new MonographEventLogEntry();
 		$entry->setMonographId($monographFile->getMonographId());

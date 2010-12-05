@@ -75,8 +75,8 @@ class SubmissionFilesUploadForm extends Form {
 	function &getMonographFiles() {
 		if (is_null($this->_monographFiles)) {
 			// Retrieve the monograph files for the given file stage.
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
-			$this->_monographFiles =& $monographFileDao->getByMonographId($this->getData('monographId'), $this->getFileStage());
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$this->_monographFiles =& $submissionFileDao->getLatestRevisions($this->getData('monographId'), $this->getFileStage());
 		}
 
 		return $this->_monographFiles;
@@ -281,9 +281,9 @@ class SubmissionFilesUploadForm extends Form {
 		if (!($revisedFileId && $uploadedFileId)) fatalError('Invalid file ids!');
 
 		// Assign the new file as the latest revision of the old file.
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographId = $this->getData('monographId');
-		$uploadedFile =& $monographFileDao->setAsLatestRevision($revisedFileId, $uploadedFileId, $monographId, $this->getFileStage());
+		$uploadedFile =& $submissionFileDao->setAsLatestRevision($revisedFileId, $uploadedFileId, $monographId, $this->getFileStage());
 
 		if (is_a($uploadedFile, 'MonographFile')) {
 			// Remove the now no longer valid form data.

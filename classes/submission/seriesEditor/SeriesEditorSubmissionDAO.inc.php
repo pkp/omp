@@ -27,7 +27,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 	var $authorDao;
 	var $userDao;
 	var $reviewAssignmentDao;
-	var $monographFileDao;
+	var $submissionFileDao;
 	var $signoffDao;
 	var $galleyDao;
 	var $monographEmailLogDao;
@@ -42,7 +42,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$this->userDao =& DAORegistry::getDAO('UserDAO');
 		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$this->submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 		$this->signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		$this->monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
@@ -129,15 +129,15 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$seriesEditorSubmission->setMostRecentProofreadComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PROOFREAD, $row['monograph_id']));
 
 		// Files
-		$seriesEditorSubmission->setSubmissionFile($this->monographFileDao->getMonographFile($row['submission_file_id']));
-		$seriesEditorSubmission->setRevisedFile($this->monographFileDao->getMonographFile($row['revised_file_id']));
-		$seriesEditorSubmission->setReviewFile($this->monographFileDao->getMonographFile($row['review_file_id']));
-		$seriesEditorSubmission->setEditorFile($this->monographFileDao->getMonographFile($row['editor_file_id']));
+		$seriesEditorSubmission->setSubmissionFile($this->submissionFileDao->getLatestRevision($row['submission_file_id']));
+		$seriesEditorSubmission->setRevisedFile($this->submissionFileDao->getLatestRevision($row['revised_file_id']));
+		$seriesEditorSubmission->setReviewFile($this->submissionFileDao->getLatestRevision($row['review_file_id']));
+		$seriesEditorSubmission->setEditorFile($this->submissionFileDao->getLatestRevision($row['editor_file_id']));
 
 		foreach ( $reviewRoundsInfo as $reviewType => $currentReviewRound) {
 			for ($i = 1; $i <= $currentReviewRound; $i++) {
-				$seriesEditorSubmission->setEditorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['editor_file_id'], $reviewType, $i), $reviewType, $i);
-				$seriesEditorSubmission->setAuthorFileRevisions($this->monographFileDao->getMonographFileRevisions($row['revised_file_id'], $reviewType, $i), $reviewType, $i);
+				$seriesEditorSubmission->setEditorFileRevisions($this->submissionFileDao->getAllRevisions($row['editor_file_id'], $reviewType, $i), $reviewType, $i);
+				$seriesEditorSubmission->setAuthorFileRevisions($this->submissionFileDao->getAllRevisions($row['revised_file_id'], $reviewType, $i), $reviewType, $i);
 			}
 		}
 

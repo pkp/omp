@@ -32,9 +32,9 @@ class GalleyFilesGridCellProvider extends GridCellProvider {
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		if ($column->getId() == 'name') {
 			$signoff =& $row->getData();
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			if($signoff->getFileId()) {
-				$monographFile =& $monographFileDao->getMonographFile($signoff->getFileId());
+				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getFileId());
 				$fileId = $signoff->getFileId();
 
 				$router =& $request->getRouter();

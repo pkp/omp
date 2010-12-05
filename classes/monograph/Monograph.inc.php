@@ -304,14 +304,17 @@ class Monograph extends Submission {
 
 	/**
 	 * Get the file for this monograph at a given signoff stage
+	 *
+	 * FIXME: Move to some DAO, initialize on load or implement
+	 * via lazy-load pattern to remove coupling of domain object
+	 * with DAOs.
+	 *
 	 * @param $signoffType string
 	 * @param $idOnly boolean Return only file ID
 	 * @return MonographFile
 	 */
 	function &getFileBySignoffType($signoffType, $idOnly = false) {
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-
 		$signoff = $signoffDao->getBySymbolic($signoffType, ASSOC_TYPE_MONOGRAPH, $this->getId());
 		if (!$signoff) {
 			$returner = false;
@@ -323,7 +326,9 @@ class Monograph extends Submission {
 			return $returner;
 		}
 
-		$monographFile =& $monographFileDao->getMonographFile($signoff->getFileId(), $signoff->getFileRevision());
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		assert(is_numeric($signoff->getFileId()) && is_numeric($signoff->getFileRevision()));
+		$monographFile =& $submissionFileDao->getRevision($signoff->getFileId(), $signoff->getFileRevision());
 		return $monographFile;
 	}
 

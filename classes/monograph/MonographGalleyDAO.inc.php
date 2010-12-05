@@ -18,15 +18,15 @@
 import('classes.monograph.MonographGalley');
 
 class MonographGalleyDAO extends DAO {
-	/** Helper file DAOs. */
-	var $monographFileDao;
+	/** @var SubmissionFileDAO Helper file DAOs. */
+	var $_submissionFileDao;
 
 	/**
 	 * Constructor.
 	 */
 	function MonographGalleyDAO() {
 		parent::DAO();
-		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$this->_submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 	}
 
 	/**
@@ -126,7 +126,7 @@ class MonographGalleyDAO extends DAO {
 			mf.file_name, mf.original_file_name, mf.file_type, mf.file_size, mf.date_uploaded, mf.date_modified
 			FROM monograph_galleys g
 			LEFT JOIN monograph_files mf ON (g.file_id = mf.file_id)
-			LEFT JOIN production_assignments pa ON (pa.assignment_id = g.assignment_id)	
+			LEFT JOIN production_assignments pa ON (pa.assignment_id = g.assignment_id)
 			WHERE g.assignment_id = ? ORDER BY g.seq',
 			$monographId
 		);
@@ -168,8 +168,8 @@ class MonographGalleyDAO extends DAO {
 			FROM monograph_galleys g
 			LEFT JOIN monograph_files mf ON (g.file_id = mf.file_id)
 			LEFT JOIN production_assignments pa ON (pa.assignment_id = g.assignment_id) '. $sqlExtra .'
-			WHERE '. ($userId != null ? 's.user_id = ? AND ' : '') .'g.monograph_id = ? 
-			ORDER BY g.seq', 
+			WHERE '. ($userId != null ? 's.user_id = ? AND ' : '') .'g.monograph_id = ?
+			ORDER BY g.seq',
 			$sqlParams
 		);
 
@@ -220,7 +220,7 @@ class MonographGalleyDAO extends DAO {
 			// HTML-specific settings
 			$galley->setStyleFileId($row['style_file_id']);
 			if ($row['style_file_id']) {
-				$galley->setStyleFile($this->monographFileDao->getMonographFile($row['style_file_id']));
+				$galley->setStyleFile($this->_submissionFileDao->getLatestRevision($row['style_file_id']));
 			}
 
 			// Retrieve images
@@ -463,6 +463,7 @@ class MonographGalleyDAO extends DAO {
 
 	/**
 	 * Retrieve array of the images for an HTML galley.
+	 * FIXME: Move to SubmissionFileDAO.
 	 * @param $galleyId int
 	 * @return array MonographFile
 	 */
@@ -470,13 +471,19 @@ class MonographGalleyDAO extends DAO {
 		$images = array();
 
 		$result =& $this->retrieve(
-			'SELECT mf.* FROM monograph_html_galley_images i, monograph_files mf
-			WHERE i.file_id = mf.file_id AND i.galley_id = ?',
+			'SELECT
+			  mf.file_id AS monograph_file_id, mf.revision AS monograph_revision,
+			  af.file_id AS artwork_file_id, af.revision AS artwork_revision,
+			  mf.*, af.*
+			FROM monograph_html_galley_images i
+			  INNER JOIN monograph_files mf ON i.file_id = mf.file_id
+			  LEFT JOIN monograph_artwork_files af ON mf.file_id = af.file_id AND mf.revision = af.revision
+			WHERE i.galley_id = ?',
 			$galleyId
 		);
 
 		while (!$result->EOF) {
-			$images[] =& $this->monographFileDao->_fromRow($result->GetRowAssoc(false));
+			$images[] =& $this->submissionFileDao->fromRow($result->GetRowAssoc(false));
 			$result->MoveNext();
 		}
 

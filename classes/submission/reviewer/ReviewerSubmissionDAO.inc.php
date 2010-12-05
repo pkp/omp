@@ -22,7 +22,7 @@ class ReviewerSubmissionDAO extends DAO {
 	var $authorDao;
 	var $userDao;
 	var $reviewAssignmentDao;
-	var $monographFileDao;
+	var $submissionFileDao;
 	var $monographCommentDao;
 
 	/**
@@ -34,7 +34,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$this->authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$this->userDao =& DAORegistry::getDAO('UserDAO');
 		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$this->submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 	}
 
@@ -105,11 +105,11 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission = $this->newDataObject();
 
 		// Files
-		$reviewerSubmission->setSubmissionFile($this->monographFileDao->getMonographFile($row['submission_file_id']));
-		$reviewerSubmission->setRevisedFile($this->monographFileDao->getMonographFile($row['revised_file_id']));
-		$reviewerSubmission->setReviewFile($this->monographFileDao->getMonographFile($row['review_file_id']));
-		$reviewerSubmission->setReviewerFile($this->monographFileDao->getMonographFile($row['reviewer_file_id']));
-		$reviewerSubmission->setReviewerFileRevisions($this->monographFileDao->getMonographFileRevisions($row['reviewer_file_id']));
+		$reviewerSubmission->setSubmissionFile($this->submissionFileDao->getLatestRevision($row['submission_file_id']));
+		$reviewerSubmission->setRevisedFile($this->submissionFileDao->getLatestRevision($row['revised_file_id']));
+		$reviewerSubmission->setReviewFile($this->submissionFileDao->getLatestRevision($row['review_file_id']));
+		$reviewerSubmission->setReviewerFile($this->submissionFileDao->getLatestRevision($row['reviewer_file_id']));
+		$reviewerSubmission->setReviewerFileRevisions($this->submissionFileDao->getLatestRevisionRevisions($row['reviewer_file_id']));
 
 		// Comments
 		$reviewerSubmission->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));

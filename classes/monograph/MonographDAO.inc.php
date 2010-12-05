@@ -289,6 +289,15 @@ class MonographDAO extends DAO {
 	function deleteMonographById($monographId) {
 		$this->authorDao->deleteAuthorsByMonograph($monographId);
 
+		// Delete monograph files.
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$submissionFileDao->deleteAllRevisionsBySubmissionId($monographId);
+
+		// Delete monograph file directory.
+		$monograph =& $this->getMonograph($monographId);
+		assert(is_a($monograph, 'Monograph'));
+		if (is_a($monograph, 'Monograph')) FileManager::rmtree($monograph->getFilePath());
+
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$seriesEditorSubmissionDao->deleteDecisionsByMonograph($monographId);
 		$seriesEditorSubmissionDao->deleteReviewRoundsByMonograph($monographId);
@@ -304,17 +313,6 @@ class MonographDAO extends DAO {
 
 		$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 		$monographCommentDao->deleteMonographComments($monographId);
-
-		// Delete monograph files -- first from the filesystem, then from the database
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFiles =& $monographFileDao->getByMonographId($monographId);
-
-		import('classes.file.MonographFileManager');
-		foreach ($monographFiles as $monographFile) {
-			MonographFileManager::deleteFile($monographFile->getFileId());
-		}
-
-		$monographFileDao->deleteMonographFiles($monographId);
 
 		$this->update('DELETE FROM monograph_settings WHERE monograph_id = ?', $monographId);
 		$this->update('DELETE FROM monographs WHERE monograph_id = ?', $monographId);

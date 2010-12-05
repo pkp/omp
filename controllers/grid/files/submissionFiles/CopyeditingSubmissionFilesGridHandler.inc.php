@@ -83,8 +83,8 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 		$monographId = isset($args['monographId']) ? $args['monographId'] : null;
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($fileId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($fileId);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('monographId', $monographId);
@@ -110,8 +110,8 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
 
 		$genreDao =& DAORegistry::getDAO('GenreDAO');
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($fileId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($fileId);
 		$monographId = $monographFile->getMonographId();
 
 		if($monographFile) {

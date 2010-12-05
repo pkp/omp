@@ -129,8 +129,8 @@ class RevisionsGridHandler extends GridHandler {
 			$this->setTemplate('controllers/grid/files/revisions/grid.tpl');
 
 			// Set the files to all the available files to allow selection.
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFiles =& $monographFileDao->getByMonographId($monographId);
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$monographFiles =& $submissionFileDao->getLatestRevisions($monographId);
 			$rowData = array();
 			foreach ($monographFiles as $monographFile) {
 				$rowData[$monographFile->getFileId()] = $monographFile;

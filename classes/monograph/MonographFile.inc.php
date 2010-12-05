@@ -8,7 +8,7 @@
  *
  * @class MonographFile
  * @ingroup monograph
- * @see MonographFileDAO
+ * @see SubmissionFileDAO
  *
  * @brief Monograph file class.
  */
@@ -39,17 +39,6 @@ class MonographFile extends SubmissionFile {
 	 */
 	function MonographFile() {
 		parent::SubmissionFile();
-	}
-
-	/**
-	 * Return absolute path to the file on the host filesystem.
-	 * @return string
-	 */
-	function getFilePath() {
-		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
-		$monograph =& $monographDao->getMonograph($this->getMonographId());
-		import('classes.file.MonographFileManager');
-		return $monograph->getFilePath() . MonographFileManager::fileStageToPath($this->getFileStage()) . '/' . $this->getFileName();
 	}
 
 
@@ -167,15 +156,6 @@ class MonographFile extends SubmissionFile {
 	}
 
 	/**
-	 * Check if the file may be displayed inline.
-	 * @return boolean
-	 */
-	function isInlineable() {
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		return $monographFileDao->isInlineable($this);
-	}
-
-	/**
 	 * Set the genre id of this file (i.e. referring to Manuscript, Index, etc)
 	 * Foreign key into genres table
 	 * @param $genreId int
@@ -191,6 +171,20 @@ class MonographFile extends SubmissionFile {
 	 */
 	function getGenreId() {
 		return $this->getData('genreId');
+	}
+
+
+	//
+	// Implementation of template methods from SubmissionFile
+	//
+	/**
+	 * @see SubmissionFile::getFilePath()
+	 */
+	function getFilePath() {
+		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
+		$monograph =& $monographDao->getMonograph($this->getMonographId());
+		import('classes.file.MonographFileManager');
+		return $monograph->getFilePath() . MonographFileManager::fileStageToPath($this->getFileStage()) . '/' . $this->getFileName();
 	}
 }
 

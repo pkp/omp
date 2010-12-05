@@ -181,8 +181,8 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		$fileId = $request->getUserVar('fileId');
 		$signoffId = $request->getUserVar('signoffId');
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($fileId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($fileId);
 		$genreDao =& DAORegistry::getDAO('GenreDAO');
 		$genre = $genreDao->getById($monographFile->getGenreId());
 		$monographId = $monographFile->getMonographId();
@@ -223,8 +223,8 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	function saveMetadata($args, &$request) {
 		$fileId = $request->getUserVar('fileId');
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($fileId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($fileId);
 		$genreDao =& DAORegistry::getDAO('GenreDAO');
 		$genre = $genreDao->getById($monographFile->getGenreId());
 		$monographId = $monographFile->getMonographId();
@@ -313,8 +313,8 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		$signoff =& $signoffDao->getById($signoffId);
 
 		if($fileId) {
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFileDao->deleteMonographFileById($signoff->getFileId());
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$submissionFileDao->deleteAllRevisionsById($signoff->getFileId());
 
 			$json = new JSON('true');
 		} else {

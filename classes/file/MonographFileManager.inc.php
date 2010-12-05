@@ -91,49 +91,6 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * Delete a file by ID.
-	 * If no revision is specified, all revisions of the file are deleted.
-	 * @param $fileId int
-	 * @param $revision int (optional)
-	 * @param $monographId int (optional) the monograph id the files must belong to
-	 * @return int number of files removed
-	 */
-	function deleteFile($fileId, $revision = null, $monographId = null) {
-		// Identify the files to be deleted.
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
-		$monographFiles = array();
-		if (isset($revision)) {
-			// Delete only a single revision of a file.
-			$monographFileRevision =& $monographFileDao->getMonographFile($fileId, $revision, $monographId);
-			if (isset($monographFileRevision)) {
-				$monographFiles[] = $monographFileRevision;
-			}
-		} else {
-			// Delete all revisions of a file.
-			$monographFiles =& $monographFileDao->getMonographFileRevisions($fileId, $monographId);
-		}
-
-		// Delete the files on the file system.
-		foreach ($monographFiles as $monographFile) {
-			parent::deleteFile($monographFile->getFilePath());
-		}
-
-		// Delete the files in the database.
-		$monographFileDao->deleteMonographFileById($fileId, $revision, $monographId);
-
-		// Return the number of deleted files.
-		return count($monographFiles);
-	}
-
-	/**
-	 * Delete the entire tree of files belonging to a monograph.
-	 * @param $monographId integer
-	 */
-	function deleteMonographTree($monographId) {
-		parent::rmtree(MonographFileManager::_getFilesDir($monographId));
-	}
-
-	/**
 	 * Download a file.
 	 * @param $fileId int the file id of the file to download
 	 * @param $revision int the revision of the file to download
@@ -171,12 +128,7 @@ class MonographFileManager extends FileManager {
 	 * @param $monographFiles ArrayItemIterator
 	 * @return boolean
 	 */
-	function downloadFilesArchive($monographId, &$monographFiles = null) {
-		if(!isset($monographFiles)) {
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-			$monographFiles =& $monographFileDao->getByMonographId($monographId);
-		}
-
+	function downloadFilesArchive($monographId, &$monographFiles) {
 		$filesDir = MonographFileManager::_getFilesDir($monographId);
 		$filePaths = array();
 		while ($monographFile =& $monographFiles->next()) { /* @var $monographFile MonographFile */
@@ -269,7 +221,6 @@ class MonographFileManager extends FileManager {
 			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 			$monograph =& $monographDao->getMonograph($monographId);
 			assert(is_a($monograph, 'Monograph'));
-			$pressId = $monograph->getPressId();
 			$filesDir = $monograph->getFilePath();
 		}
 		return $filesDir;
@@ -329,18 +280,14 @@ class MonographFileManager extends FileManager {
 
 		// Do we create a new file or a new revision of an existing file?
 		if ($revisedFileId) {
-			$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
-
-			// Retrieve the current revision of the revised file.
-			$latestRevision = $monographFileDao->getLatestRevisionNumber($revisedFileId);
-
 			// Retrieve the revised file.
-			$revisedFile =& $monographFileDao->getMonographFile($revisedFileId, $latestRevision);
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			$revisedFile =& $submissionFileDao->getLatestRevision($revisedFileId, $fileStage, $monographId);
 			if (!is_a($revisedFile, 'MonographFile')) return false;
 
 			// Create a new revision of the file with the existing file id.
 			$monographFile->setFileId($revisedFileId);
-			$monographFile->setRevision($latestRevision+1);
+			$monographFile->setRevision($revisedFile->getRevision()+1);
 
 			// Make sure that the monograph of the revised file is
 			// the same as that of the uploaded file.
@@ -404,10 +351,10 @@ class MonographFileManager extends FileManager {
 	 *  but already exists on the file system.
 	 * @return MonographFile
 	 */
-	function &_persistFile($sourceFile, $monographFile, $copyOnly = false) {
+	function &_persistFile($sourceFile, &$monographFile, $copyOnly = false) {
 		// Persist the file meta-data (without the file name) and generate a file id.
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		if (!$monographFileDao->insertMonographFile($monographFile)) return false;
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		if (!$submissionFileDao->insertObject($monographFile)) return false;
 
 		// Generate and set a file name (requires the monograph id
 		// that we generated when inserting the monograph data).
@@ -424,7 +371,7 @@ class MonographFileManager extends FileManager {
 				|| MonographFileManager::uploadFile($sourceFile, $targetFile))) {
 			// If the copy/upload operation fails then remove
 			// the already inserted meta-data.
-			$monographFileDao->deleteMonographFile($monographFile);
+			$submissionFileDao->deleteRevision($monographFile);
 			return false;
 		}
 
@@ -432,7 +379,7 @@ class MonographFileManager extends FileManager {
 		$monographFile->setFileSize(filesize($targetFile));
 
 		// Update the monograph with the file name and file size.
-		$monographFileDao->updateMonographFile($monographFile);
+		$submissionFileDao->updateObject($monographFile);
 
 		// Return the file.
 		return $monographFile;
@@ -471,8 +418,12 @@ class MonographFileManager extends FileManager {
 	 * @return MonographFile
 	 */
 	function &_getFile($fileId, $revision = null) {
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
-		$monographFile =& $monographFileDao->getMonographFile($fileId, $revision);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		if ($revision) {
+			$monographFile =& $submissionFileDao->getRevision($fileId, $revision);
+		} else {
+			$monographFile =& $submissionFileDao->getLatestRevision($fileId);
+		}
 		return $monographFile;
 	}
 }

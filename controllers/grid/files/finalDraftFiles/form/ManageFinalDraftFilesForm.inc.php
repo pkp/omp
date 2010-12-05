@@ -79,9 +79,9 @@ class ManageFinalDraftFilesForm extends Form {
 		}
 
 		// Retrieve all monograph files.
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monograph =& $this->getMonograph();
-		$allMonographFiles =& $monographFileDao->getByMonographId($monograph->getId());
+		$allMonographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId());
 
 		// Set the selected files to 'final', all other files to 'submission'.
 		$finalMonographFiles = array();
@@ -93,7 +93,7 @@ class ManageFinalDraftFilesForm extends Form {
 			} else {
 				$monographFile->setFileStage(MONOGRAPH_FILE_SUBMISSION);
 			}
-			$monographFileDao->updateMonographFile($monographFile);
+			$submissionFileDao->updateObject($monographFile);
 		}
 
 		// Return the files that are currently set for the review.

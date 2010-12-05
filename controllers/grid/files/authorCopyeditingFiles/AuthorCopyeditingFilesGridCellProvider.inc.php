@@ -83,8 +83,8 @@ class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider 
 				// If there is no file, let the user open the copyediting file upload modal
 				$router =& $request->getRouter();
 				$dispatcher =& $router->getDispatcher();
-				$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-				$monographFile =& $monographFileDao->getMonographFile($signoff->getAssocId());
+				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 				$actionArgs = array('monographId' => $monographFile->getMonographId());
 				$addCopyeditedFileAction = new LinkAction(
 					'addCopyeditedFile',
@@ -113,8 +113,8 @@ class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider 
 	function _getMonographFile(&$request, &$row, &$column, $fileId) {
 		$state = $this->getCellState($row, $column);
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($fileId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($fileId);
 
 		$router =& $request->getRouter();
 		$actionArgs = array(

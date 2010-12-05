@@ -17,14 +17,15 @@
 import('classes.monograph.reviewRound.ReviewRound');
 
 class ReviewRoundDAO extends DAO {
-	var $monographFileDao;
+	/** @var SubmissionFileDAO */
+	var $_submissionFileDao;
 
 	/**
 	 * Constructor
 	 */
 	function ReviewRoundDAO() {
 		parent::DAO();
-		$this->monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$this->_submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 	}
 
 	/**
@@ -188,6 +189,7 @@ class ReviewRoundDAO extends DAO {
 
 	/**
 	 * Get a review file for a monograph for each round.
+	 * FIXME: Move to SubmissionFileDAO
 	 * @param $monographId int
 	 * @return array A three-dimensional array with the review type,
 	 *  the round and the corresponding MonographFiles. Returns an
@@ -197,23 +199,25 @@ class ReviewRoundDAO extends DAO {
 		$returner = array();
 
 		$result =& $this->retrieve(
-			'SELECT	mf.*, rr.review_type, rr.round as round
-			FROM	review_rounds rr,
-				monograph_files mf,
-				review_round_files rrf
-			WHERE	rr.submission_id = ? AND
-				mf.monograph_id = rr.submission_id AND
-				rrf.review_type = rr.review_type AND
-				rrf.round = rr.round AND
-				rrf.file_id = mf.file_id AND
-				rrf.revision = mf.revision',
-					(int)$monographId
+			'SELECT
+				mf.file_id AS monograph_file_id, mf.revision AS monograph_revision,
+				af.file_id AS artwork_file_id, af.revision AS artwork_revision,
+				mf.*, af.*,
+				rr.review_type, rr.round as round
+			FROM review_rounds rr
+				INNER JOIN review_round_files rrf
+					ON rr.review_type = rrf.review_type AND rr.round = rrf.round AND
+				INNER JOIN monograph_files mf
+					ON rr.submission_id = mf.monograph_id AND rrf.file_id = mf.file_id AND rrf.file_id = mf.file_id
+				LEFT JOIN monograph_artwork_files af ON mf.file_id = af.file_id AND mf.revision = af.revision
+			WHERE rr.submission_id = ?',
+			(int)$monographId
 		);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			$idAndRevision = implode("-", array($row['file_id'], isset($row['revision']) ? $row['revision'] : 1));
-			$returner[$row['review_type']][$row['round']][$idAndRevision] =& $this->monographFileDao->_fromRow($row);
+			$returner[$row['review_type']][$row['round']][$idAndRevision] =& $this->_submissionFileDao->fromRow($row);
 			$result->MoveNext();
 		}
 
@@ -261,6 +265,7 @@ class ReviewRoundDAO extends DAO {
 
 	/**
 	 * Get all files that are in the current review round, but have later revisions.
+	 * FIXME: Move to SubmissionFileDAO
 	 * @param $monographId int
 	 * @return array MonographFiles
 	 */
@@ -285,19 +290,21 @@ class ReviewRoundDAO extends DAO {
 		}
 
 		$result =& $this->retrieve(
-			'SELECT	mf.*, rrf.review_type, rrf.round as round
-			FROM monograph_files mf,
-				review_round_files rrf
-			WHERE rrf.monograph_id = ? AND
-				rrf.round = ? AND
-				rrf.file_id = mf.file_id AND
-				mf.revision > rrf.revision',
+			'SELECT
+				mf.file_id AS monograph_file_id, mf.revision AS monograph_revision,
+				af.file_id AS artwork_file_id, af.revision AS artwork_revision,
+				mf.*, af.*,
+				rrf.review_type, rrf.round as round
+			FROM review_round_files rrf
+				INNER JOIN monograph_files mf ON rrf.file_id = mf.file_id AND rrf.revision < mf.revision
+				LEFT JOIN monograph_artwork_files af ON mf.file_id = af.file_id AND mf.revision = af.revision
+			WHERE rrf.monograph_id = ? AND rrf.round = ?',
 			array((int) $monographId, (int) $round)
 		);
 
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			if($maxRevision[$row['file_id']] < $row['revision']) $returner[] =& $this->monographFileDao->_fromRow($row);
+			if($maxRevision[$row['file_id']] < $row['revision']) $returner[] =& $this->_submissionFileDao->fromRow($row);
 			$result->MoveNext();
 		}
 

@@ -81,11 +81,8 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 		$authorSubmission = $authorSubmissionDao->getAuthorSubmission($monographId);
 
 		// If the submission is incomplete, allow the author to delete it.
-		if ($authorSubmission->getSubmissionProgress()!=0) {
-			import('classes.file.MonographFileManager');
-			MonographFileManager::deleteMonographTree($monographId);
-
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
+		if ($authorSubmission->getSubmissionProgress() != 0) {
+			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 			$monographDao->deleteMonographById($monographId);
 
 			$json = new JSON('true');

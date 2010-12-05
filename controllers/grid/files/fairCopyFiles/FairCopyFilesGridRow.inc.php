@@ -39,8 +39,8 @@ class FairCopyFilesGridRow extends GridRow {
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($rowId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($rowId);
 		$monographId = $monographFile->getMonographId();
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$monograph =& $monographDao->getMonograph($monographId);

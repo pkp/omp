@@ -44,8 +44,8 @@ class CopyeditingFilesGridRow extends GridRow {
 
 		// Get the id of the original file (the category header)
 		$monographFileId = $signoff->getAssocId();
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO'); /* @var $monographFileDao MonographFileDAO */
-		$monographFile =& $monographFileDao->getMonographFile($monographFileId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($monographFileId);
 		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 		$monographId = $monographFile->getMonographId();
 		$monograph =& $monographDao->getMonograph($monographId);

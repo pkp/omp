@@ -67,8 +67,8 @@ class SubmissionFilesMetadataForm extends Form {
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($this->_fileId);
 		$templateMgr->assign('monographFile', $monographFile);
 		$templateMgr->assign('monographId', $monographFile->getMonographId());
 
@@ -95,11 +95,11 @@ class SubmissionFilesMetadataForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function execute($args, &$request) {
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
-		$monographFile =& $monographFileDao->getMonographFile($this->_fileId);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($this->_fileId);
 
 		$monographFile->setName($this->getData('name'), Locale::getLocale());
-		$monographFileDao->updateMonographFile($monographFile);
+		$submissionFileDao->updateObject($monographFile);
 
 		// Save the note if it exists
 		if ($this->getData('note')) {

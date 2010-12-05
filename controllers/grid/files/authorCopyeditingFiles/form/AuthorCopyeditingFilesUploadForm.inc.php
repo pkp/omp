@@ -44,10 +44,10 @@ class AuthorCopyeditingFilesUploadForm extends CopyeditingFileForm {
 		$signoffs =& $signoffDao->getAllBySymbolic('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, null, $user->getId());
 
 		// Retrieve monograph files.
-		$monographFileDao =& DAORegistry::getDAO('MonographFileDAO');
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFileOptions = array();
 		while($signoff =& $signoffs->next()) {
-			$monographFile =& $monographFileDao->getMonographFile($signoff->getAssocId());
+			$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 			$fileName = $monographFile->getLocalizedName() != '' ? $monographFile->getLocalizedName() : Locale::translate('common.untitled');
 			$monographFileOptions[$signoff->getId()] = $fileName;
 			unset($signoff, $monographFile);
