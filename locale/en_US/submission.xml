@@ -133,8 +133,7 @@
 	<message key="submission.submit.whatNext.review">Review this submission</message>
 	<message key="submission.submit.whatNext.create">Create a new submission</message>
 	<message key="submission.submit.whatNext.return">Return to your dashboard</message>
-	<message key="submission.submit.checklistErrors.begin">Please read and check off the items in the submission checklist.  There are </message>
-	<message key="submission.submit.checklistErrors.end">items left unchecked.</message>
+	<message key="submission.submit.checklistErrors">Please read and check off the items in the submission checklist.  There are {$itemsRemaining} items left unchecked.</message>
 	<message key="submission.submit.placement">Submission Placement</message>
 	<message key="submission.submit.submissionFiles">Submission Files</message>
 	<message key="submission.submit.readOnlyInfo">Read-only Information</message>

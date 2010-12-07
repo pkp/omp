@@ -63,17 +63,16 @@
 <script type="text/javascript">
 	{literal}
         	$(function(){
-        	//$("#messageBox").hide();
 		$("form[name=submitStep1]").validate({
+			focusCleanup: false,
 			showErrors: function(errorMap, errorList) {
-				$("#messageBox").html("<ul><li class='error'>{/literal}{translate key='submission.submit.checklistErrors.begin'}{literal} "
-											+ this.numberOfInvalids()
-		     								+ " {/literal}{translate key='submission.submit.checklistErrors.end'}{literal}</li></ul>");
+				$("#messageBox").html("<ul><li class='error'>{/literal}{translate|escape:"javascript" key='submission.submit.checklistErrors'}{literal}".replace("{$itemsRemaining}", this.numberOfInvalids()) + "</li></ul>");
 				if (this.numberOfInvalids() == 0) {
 					$("#messageBox").hide('slow');
+				} else {
+        				$("#messageBox").show();
 				}
 			}
-
 		});
 	});
 	{/literal}
