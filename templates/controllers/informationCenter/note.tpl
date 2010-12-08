@@ -14,7 +14,7 @@
 	<table width=100%>
 		<tr valign="top">
 			<td style="padding-right: 5px;">{$note->getDateCreated()|date_format:"%d %b %Y %T"}</td>
-			<td style="padding-right: 5px;">{$user->getFullName()}</td>
+			<td style="padding-right: 5px;">{$user->getFullName()|escape}</td>
 			<td align="right">
 				{url|assign:deleteNoteUrl op="deleteNote" noteId=$noteId}
 				{confirm url=$deleteNoteUrl dialogText="informationCenter.deleteConfirm" button="#deleteNote-$noteId}
@@ -22,7 +22,7 @@
 			</td>
 		</tr>
 		<tr valign="top">
-			<td colspan="3">{$note->getContents()}</td>
+			<td colspan="3">{$note->getContents()|escape}</td>
 		</tr>
 	</table>
 	<hr />

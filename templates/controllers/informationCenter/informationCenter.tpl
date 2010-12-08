@@ -21,7 +21,7 @@
 	// -->
 </script>
 
-<span class='itemLastEvent'>{if $lastEvent}{translate key="informationCenter.lastUpdated"}: {$lastEvent->getDateLogged()}, {$lastEventUser->getFullName()}{/if}</span>
+<span class='itemLastEvent'>{if $lastEvent}{translate key="informationCenter.lastUpdated"}: {$lastEvent->getDateLogged()|date_format:$dateFormatShort}, {$lastEventUser->getFullName()|escape}{/if}</span>
 
 <br />
 
