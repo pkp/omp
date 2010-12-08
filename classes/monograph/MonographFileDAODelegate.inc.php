@@ -35,15 +35,6 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	// Public methods
 	//
 	/**
-	 * @see SubmissionFileDAODelegate::getLocaleFieldNames()
-	 */
-	function getLocaleFieldNames() {
-		$localeFieldNames = parent::getLocaleFieldNames();
-		$localeFieldNames[] = 'name';
-		return $localeFieldNames;
-	}
-
-	/**
 	 * @see SubmissionFileDAODelegate::insert()
 	 * @param $monographFile MonographFile
 	 * @return MonographFile
@@ -151,27 +142,11 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	}
 
 	/**
-	 * @see SubmissionFileDAODelegate::delete()
+	 * @see SubmissionFileDAODelegate::deleteObjects()
 	 */
-	function deleteObject($filterSql, $params, $latestOnly) {
+	function deleteObjects($filterClause, $params) {
 		$submissionFileDao =& $this->getSubmissionFileDAO();
-		if ($latestOnly) {
-			// NB: Need to create a temporary table as MySQL doesn't allow subqueries
-			// on the table from which we delete. We cannot use JOIN syntax as this
-			// is non-standard and implemented differently in PostgreSQL and MySQL. The
-			// "AS" keyword in the "CREATE TABLE ... AS SELECT" statement is mandatory in
-			// PostgreSQL and optional in MySQL.
-			$submissionFileDao->update(
-					'CREATE TEMPORARY TABLE mf_deletion_temp AS
-					 SELECT file_id, MAX(revision) AS revision FROM monograph_files'.$filterSql.'
-						GROUP BY file_id', $params);
-			$submissionFileDao->update(
-					'DELETE FROM monograph_files
-					    WHERE (file_id, revision) IN (SELECT file_id, revision FROM mf_deletion_temp)');
-			$submissionFileDao->update('DROP TABLE mf_deletion_temp');
-		} else {
-			return $submissionFileDao->update('DELETE FROM monograph_files'.$filterSql, $params);
-		}
+		return $submissionFileDao->update('DELETE FROM monograph_files WHERE '.$filterClause, $params);
 	}
 
 	/**
@@ -211,6 +186,19 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	 */
 	function newDataObject() {
 		return new MonographFile();
+	}
+
+
+	//
+	// Protected helper methods
+	//
+	/**
+	 * @see SubmissionFileDAODelegate::getLocaleFieldNames()
+	 */
+	function getLocaleFieldNames() {
+		$localeFieldNames = parent::getLocaleFieldNames();
+		$localeFieldNames[] = 'name';
+		return $localeFieldNames;
 	}
 }
 

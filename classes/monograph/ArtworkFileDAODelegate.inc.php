@@ -25,7 +25,7 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 	 * Constructor
 	 */
 	function ArtworkFileDAODelegate(&$submissionFileDao) {
-		parent::SubmissionFileDAODelegate($submissionFileDao);
+		parent::MonographFileDAODelegate($submissionFileDao);
 	}
 
 
@@ -107,21 +107,11 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 	}
 
 	/**
-	 * @see SubmissionFileDAODelegate::delete()
+	 * @see SubmissionFileDAODelegate::deleteObjects()
 	 */
-	function deleteObject($filterSql, $params, $latestOnly) {
+	function deleteObjects($filterClause, $params) {
 		$submissionFileDao =& $this->getSubmissionFileDAO();
-		if ($latestOnly) {
-			$subSelect = 'SELECT file_id, MAX(revision)
-				   FROM monograph_files'.$filterSql.' GROUP BY file_id';
-		}else{
-			$subSelect = 'SELECT file_id, revision
-				   FROM monograph_files'.$filterSql;
-		}
-		return $submissionFileDao->update(
-			'DELETE FROM monograph_artwork_files
-			 WHERE (file_id, revision) IN ('.$subSelect.')', $params
-		);
+		return $submissionFileDao->update('DELETE FROM monograph_artwork_files WHERE '.$filterClause, $params);
 	}
 
 	/**

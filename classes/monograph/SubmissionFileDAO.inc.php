@@ -18,7 +18,6 @@
  */
 
 
-import('lib.pkp.classes.file.FileManager');
 import('lib.pkp.classes.submission.PKPSubmissionFileDAO');
 
 class SubmissionFileDAO extends PKPSubmissionFileDAO {
@@ -60,7 +59,7 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 		          af.file_id AS artwork_file_id, af.revision AS artwork_revision,
 		          sf.*, af.*
 		        FROM monograph_files sf
-		        LEFT JOIN monograph_artwork_files af ON sf.file_id = af.file_id AND sf.revision = af.revision';
+		        LEFT JOIN monograph_artwork_files af ON sf.file_id = af.file_id AND sf.revision = af.revision ';
 	}
 
 
