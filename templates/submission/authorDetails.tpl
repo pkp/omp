@@ -100,7 +100,7 @@
 
 <div class="stageContainer" id="submission">
 	<h3><a href="#">{translate key='submission.submission'}</a></h3>
-	<div id="content">
+	<div id="submissionContent">
 		{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionDetailsFilesGridHandler" op="fetchGrid" canAdd='false' monographId=$monograph->getId() escape=false}
 		{load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 	</div>
@@ -108,7 +108,7 @@
 
 <div class="stageContainer" id="review">
 	<h3><a href="#">{translate key='submission.review'}</a></h3>
-	<div id="content">
+	<div id="reviewContent">
 		{if $stageId > 1}
 			{assign var="currentReviewRound" value=$monograph->getCurrentRound()}
 			{init_tabs id="#reviewRoundTabs"}
@@ -127,7 +127,7 @@
 
 <div class="stageContainer" id="copyediting">
 	<h3><a href="#">{translate key='submission.copyediting'}</a></h3>
-	<div id="content">
+	<div id="copyeditingContent">
 		<!-- Display editor's message to the author -->
 		{if $monographEmails}
 			<h6>{translate key="editor.review.personalMessageFromEditor"}:</h6>
@@ -147,7 +147,7 @@
 
 <div class="stageContainer" id="production">
 	<h3><a href="#">{translate key='submission.production'}</a></h3>
-	<div id="content">&nbsp;</div>
+	<div id="productionContent">&nbsp;</div>
 </div>
 
 
