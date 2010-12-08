@@ -142,11 +142,17 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	}
 
 	/**
-	 * @see SubmissionFileDAODelegate::deleteObjects()
+	 * @see SubmissionFileDAODelegate::deleteObject()
 	 */
-	function deleteObjects($filterClause, $params) {
+	function deleteObject(&$submissionFile) {
 		$submissionFileDao =& $this->getSubmissionFileDAO();
-		return $submissionFileDao->update('DELETE FROM monograph_files WHERE '.$filterClause, $params);
+		return $submissionFileDao->update(
+			'DELETE FROM monograph_files
+			 WHERE file_id = ? AND revision = ?',
+			array(
+				(int)$submissionFile->getFileId(),
+				(int)$submissionFile->getRevision()
+			));
 	}
 
 	/**

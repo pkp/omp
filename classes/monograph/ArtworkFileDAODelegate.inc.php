@@ -107,11 +107,21 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 	}
 
 	/**
-	 * @see SubmissionFileDAODelegate::deleteObjects()
+	 * @see SubmissionFileDAODelegate::deleteObject()
 	 */
-	function deleteObjects($filterClause, $params) {
+	function deleteObject(&$submissionFile) {
+		// First delete the monograph file entry.
+		if (!parent::deleteObject($submissionFile)) return false;
+
+		// Delete the artwork file entry.
 		$submissionFileDao =& $this->getSubmissionFileDAO();
-		return $submissionFileDao->update('DELETE FROM monograph_artwork_files WHERE '.$filterClause, $params);
+		return $submissionFileDao->update(
+			'DELETE FROM monograph_artwork_files
+			 WHERE file_id = ? AND revision = ?',
+			array(
+				(int)$submissionFile->getFileId(),
+				(int)$submissionFile->getRevision()
+			));
 	}
 
 	/**
