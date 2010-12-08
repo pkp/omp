@@ -12,7 +12,7 @@
 	<div class="wrapper">
 		<div class="unit size2of5" id="source-{$listbuilderId}{if $itemId}-{$itemId}{/if}">
  			<ul>
-		        <li>
+				<li>
 					<span>
 						<select name="selectList-{$listbuilderId}" id="selectList-{$listbuilderId}" class="field select">
 							<option>{translate key='manager.setup.selectOne'}</option>
@@ -27,23 +27,24 @@
 			<a href="#" id="delete-{$listbuilderId}{if $itemId}-{$itemId}{/if}" onclick="return false;" class="remove_item"></a>
 		</div>
 		<div id="results-{$listbuilderId}{if $itemId}-{$itemId}{/if}" class="unit size1of2 lastUnit listbuilder_results">
-		    <ul>
-		        <li>
-		            <label class="desc">
-		                {$listbuilder->getListTitle()|translate}
-		            </label>
+			<ul>
+				<li>
+					<label class="desc">
+						{$listbuilder->getListTitle()|translate}
+					</label>
 					{include file="controllers/listbuilder/listbuilderGrid.tpl"}
 				</li>
 			</ul>
 		</div>
 	</div>
 	<script type='text/javascript'>
+	<!--
 	{literal}
 		addItem("{/literal}{$addUrl}{literal}", "{/literal}{$listbuilderId}{if $itemId}-{$itemId}{/if}{literal}", "{/literal}{$localizedButtons}{literal}");
 		deleteItems("{/literal}{$deleteUrl}{literal}", "{/literal}{$listbuilderId}{if $itemId}-{$itemId}{/if}{literal}");
 		selectRow("{/literal}{$listbuilderId}{if $itemId}-{$itemId}{/if}{literal}");
 	{/literal}
+	// -->
 	</script>
 </div>
-
 

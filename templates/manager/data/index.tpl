@@ -12,5 +12,5 @@
 {assign var="pageTitle" value="manager.data"}
 {include file="common/header.tpl"}
 {/strip}
-<img src="{$baseUrl}/templates/images/wires/omp_settings_file_browser.png">
+<img src="{$baseUrl}/templates/images/wires/omp_settings_file_browser.png" alt="Settings file browser placeholder" />
 {include file="common/footer.tpl"}
