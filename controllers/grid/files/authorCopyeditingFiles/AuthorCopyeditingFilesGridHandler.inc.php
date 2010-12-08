@@ -26,7 +26,6 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	function AuthorCopyeditingFilesGridHandler() {
 		parent::GridHandler();
 
-		$this->addRoleAssignment(array(ROLE_ID_REVIEWER,  ROLE_ID_PRESS_ASSISTANT), array());
 		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 								 array('fetchGrid', 'addCopyeditedFile', 'displayFileForm', 'uploadFile', 'editMetadata', 'saveMetadata',
 								 	   'finishFileSubmission', 'returnFileRow', 'downloadFile', 'deleteFile'));

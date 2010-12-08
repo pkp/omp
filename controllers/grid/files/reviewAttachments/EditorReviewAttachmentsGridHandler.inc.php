@@ -24,7 +24,6 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 	 */
 	function EditorReviewAttachmentsGridHandler() {
 		parent::ReviewAttachmentsGridHandler();
-		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER), array());
 		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'addFile', 'editFile', 'saveFile', 'deleteFile', 'returnFileRow', 'downloadFile'));
 	}

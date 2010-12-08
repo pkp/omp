@@ -21,7 +21,6 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	function CopyeditingFilesListbuilderHandler() {
 		parent::ListbuilderHandler();
 
-		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_REVIEWER), array());
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
 				array('fetch', 'addItem', 'deleteItems'));
 	}

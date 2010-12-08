@@ -25,13 +25,9 @@ class ReviewerSelectorHandler extends Handler {
 	 */
 	function ReviewerSelectorHandler() {
 		parent::Handler();
-		$this->addRoleAssignment(ROLE_ID_AUTHOR,
-				$authorOperations = array());
-		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT,
-				$pressAssistantOperations = array_merge($authorOperations, array()));
+
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array_merge($pressAssistantOperations,
-				array('fetchForm')));
+				array('fetchForm'));
 	}
 
 	//

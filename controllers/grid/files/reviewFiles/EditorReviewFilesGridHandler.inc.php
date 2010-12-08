@@ -22,7 +22,6 @@ class EditorReviewFilesGridHandler extends ReviewFilesGridHandler {
 	function EditorReviewFilesGridHandler() {
 		parent::ReviewFilesGridHandler();
 
-		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_REVIEWER, ROLE_ID_PRESS_ASSISTANT), array());
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'downloadFile', 'downloadAllFiles', 'manageReviewFiles',	'uploadReviewFile', 'updateReviewFiles'));
 	}

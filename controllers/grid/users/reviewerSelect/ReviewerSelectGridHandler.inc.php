@@ -26,13 +26,9 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 */
 	function ReviewerSelectGridHandler() {
 		parent::GridHandler();
-		// FIXME: Please correctly distribute the operations among roles.
-		$this->addRoleAssignment(ROLE_ID_AUTHOR,
-				$authorOperations = array());
-		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT,
-				$pressAssistantOperations = array_merge($authorOperations, array()));
+
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array_merge($pressAssistantOperations, array('fetchGrid', 'updateReviewerSelect')));
+				array('fetchGrid', 'updateReviewerSelect'));
 	}
 
 	//
