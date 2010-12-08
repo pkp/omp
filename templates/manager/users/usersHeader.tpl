@@ -32,3 +32,4 @@
 			{url|assign:"currentUrl" op="enrollment"}	
 		</li>
 	</ul>
+</div>

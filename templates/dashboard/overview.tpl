@@ -8,4 +8,4 @@
  *
  *}
 
-<img style="width:700px" src="{$baseUrl}/templates/images/wires/omp_dashboard_overview.png">
+<img style="width:700px" src="{$baseUrl}/templates/images/wires/omp_dashboard_overview.png" alt="Dashboard overview placeholder" />

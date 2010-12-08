@@ -321,7 +321,7 @@ Note that if your site administrator has already registered this site with the P
 	<message key="navigation.infoForLibrarians.long">Information For Librarians</message>
 	<message key="navigation.newReleases">New Releases</message>
 	<message key="navigation.published">Published</message>
-	<message key="navigation.seriesAndEditions">Series &amp; Editions</message>
+	<message key="navigation.seriesAndEditions">Series &amp;amp; Editions</message>
 
 	<!-- Submission History -->
 	<message key="submission.logType.monograph">Monograph</message>
