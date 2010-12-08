@@ -231,8 +231,8 @@ class TinyMCEPlugin extends GenericPlugin {
 			}
 
 			$tinymceScript = '
-			<script language="javascript" type="text/javascript" src="'.$baseUrl.'/'.TINYMCE_JS_PATH.'/tiny_mce_gzip.js"></script>
-			<script language="javascript" type="text/javascript">
+			<script type="text/javascript" src="'.$baseUrl.'/'.TINYMCE_JS_PATH.'/tiny_mce_gzip.js"></script>
+			<script type="text/javascript">
 				<!--
 				tinyMCE_GZ.init({
 					relative_urls : "false",
@@ -243,7 +243,7 @@ class TinyMCEPlugin extends GenericPlugin {
 				});
 				// -->
 			</script>
-			<script language="javascript" type="text/javascript">
+			<script type="text/javascript">
 				<!--
 				tinyMCE.init({
 					entity_encoding : "raw",
