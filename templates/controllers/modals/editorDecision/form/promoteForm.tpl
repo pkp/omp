@@ -13,23 +13,25 @@
 {modal_title id="#promote" keyTranslated=$titleTranslated iconClass="fileManagement" canClose=1}
 
 <script type="text/javascript">
-{literal}
-$(function() {
-	var url = '{/literal}{url op="importPeerReviews" monographId=$monographId}{literal}';
-	$('#importPeerReviews').live('click', function() {
-		$.getJSON(url, function(jsonData) {
-			if (jsonData.status === true) {
-				var currentContent = $("textarea#personalMessage").val();
-				$("textarea#personalMessage").val(currentContent + jsonData.content);
-			} else {
-				// Alert that the modal failed
-				alert(jsonData.content);
-			}
+	<!--
+	{literal}
+		$(function() {
+		var url = '{/literal}{url op="importPeerReviews" monographId=$monographId}{literal}';
+		$('#importPeerReviews').live('click', function() {
+			$.getJSON(url, function(jsonData) {
+				if (jsonData.status === true) {
+					var currentContent = $("textarea#personalMessage").val();
+					$("textarea#personalMessage").val(currentContent + jsonData.content);
+				} else {
+					// Alert that the modal failed
+					alert(jsonData.content);
+				}
+			});
+			return false;
 		});
-		return false;
 	});
-});
-{/literal}
+	{/literal}
+	// -->
 </script>
 
 <form name="promote" id="promote" method="post" action="{url op="savePromote"}" >

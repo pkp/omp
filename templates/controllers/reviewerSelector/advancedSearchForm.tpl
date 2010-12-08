@@ -11,7 +11,8 @@
 {assign var='uniqueId' value=""|uniqid}
 
 <script type="text/javascript">
-{literal}
+	<!--
+	{literal}
 	$(function() {
 		$('.button').button();
 
@@ -121,7 +122,8 @@
 		var values = $("#" + id).slider("option", "values");
 		return values[0];
 	}
-{/literal}
+	{/literal}
+	// -->
 </script>
 
 <form name="reviewerFilterForm" id="reviewerFilterForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="updateReviewerSelect"}" method="post">

@@ -8,6 +8,7 @@
  *}
 {literal}
 <script type="text/javascript">
+	<!--
 	$(document).ready(function(){
 		// Handle user details form toggle
 		$("#toggleFormMore").show();
@@ -35,6 +36,7 @@
 					  {else}{literal}currentTags: []{/literal}{/if}{literal}
 		});
 	});
+	// -->
 </script>
 {/literal}
 
@@ -43,7 +45,7 @@
 
 {literal}
 <script type="text/javascript">
-<!--
+	<!--
 	function setGenerateRandom(value) {
 		if (value) {
 			document.userForm.password.value='********';
@@ -83,7 +85,7 @@
 		sendAsyncRequest(req, '{/literal}{url op="suggestUsername" firstName="REPLACE1" lastName="REPLACE2" escape=false}{literal}'.replace('REPLACE1', escape(document.userForm.firstName.value)).replace('REPLACE2', escape(document.userForm.lastName.value)), null, 'get');
 	}
 
-// -->
+	// -->
 </script>
 {/literal}
 {/if} {* !$userId *}

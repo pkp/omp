@@ -158,6 +158,7 @@
 
 <div id="fileUploadTabs">
 	<script type="text/javascript">
+		<!--
 		{if $metadataEditing}
 			$(function() {ldelim}
 				// Open the meta-data tab and disable the upload tab.
@@ -297,6 +298,7 @@
 				return false;
 			{rdelim});
 		{rdelim});
+		// -->
 	</script>
 
 	<ul>

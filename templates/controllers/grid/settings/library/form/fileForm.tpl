@@ -12,6 +12,7 @@
 {modal_title id="#metadataForm" key='settings.setup.addItem' iconClass="fileManagement"}
 
 <script type="text/javascript">{literal}
+	<!--
 	//Create callbacks to handle plupload actions
 	function attachCallbacks(uploader) {
 		// Prevent > 1 files from being added
@@ -99,6 +100,7 @@
 		});
 	});
 	{/literal}
+	// -->
 </script>
 
 

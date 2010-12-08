@@ -12,6 +12,7 @@
 {modal_title id="#uploadForm" key='submission.addFile' iconClass="fileManagement"}
 
 <script type="text/javascript">
+	<!--
 	{literal}
 	$(function() {
 		// Handle upload form
@@ -70,6 +71,7 @@
 
 	});
 	{/literal}
+	// -->
 </script>
 
 

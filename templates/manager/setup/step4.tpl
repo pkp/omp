@@ -36,7 +36,8 @@
 <p>{translate key="manager.setup.securitySettingsDescription"}</p>
 
 <script type="text/javascript">
-{literal}
+	<!--
+	{literal}
 	$(function(){
 		$('#disableUserReg-0').live("click", (function() { // Initialize grid settings button handler
 			$('#allowRegReader').removeAttr('disabled');
@@ -50,7 +51,8 @@
 			$('#allowRegReviewer').attr('disabled', true);
 		}));
 	});
-{/literal}
+	{/literal}
+	// -->
 </script>
 
 {fbvFormArea id="siteAccess"}

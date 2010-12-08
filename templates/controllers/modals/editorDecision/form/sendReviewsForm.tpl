@@ -15,6 +15,7 @@
 {modal_title id="#sendReviews" keyTranslated=$titleTranslated iconClass="fileManagement" canClose=1}
 
 <script type="text/javascript">
+	<!--
 	{literal}
 	$(function() {
 		$('.button').button();
@@ -33,6 +34,7 @@
 		});
 	});
 	{/literal}
+	// -->
 </script>
 
 <form name="sendReviews" id="sendReviews" method="post" action="{url op="saveSendReviews"}" >

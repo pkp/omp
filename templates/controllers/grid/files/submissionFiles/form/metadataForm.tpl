@@ -9,6 +9,7 @@
 {assign var='uniqueId' value=""|uniqid}
 
 <script type="text/javascript">
+	<!--
 	{literal}
 	$(function() {
 		$('.button').button();
@@ -47,6 +48,7 @@
 		});
 	});
 	{/literal}
+	// -->
 </script>
 
 <form name="metadataForm" id="metadataForm" action="{url op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">

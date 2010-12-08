@@ -11,6 +11,7 @@
 {modal_title id="#uploadForm" key='grid.reviewAttachments.add' iconClass="fileManagement" canClose=1}
 
 <script type="text/javascript">{literal}
+	<!--
 	//Create callbacks to handle plupload actions
 	function attachCallbacks(uploader) {
 		// Prevent > 1 files from being added
@@ -75,6 +76,7 @@
 		});
 	});
 	{/literal}
+	// -->
 </script>
 
 <div id="uploadForm">

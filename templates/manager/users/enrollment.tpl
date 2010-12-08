@@ -11,7 +11,8 @@
 {include file="manager/users/usersHeader.tpl"}
 
 <script type="text/javascript">
-{literal}
+	<!--
+	{literal}
 	$(function() {
 		// AJAX search form options
 		var searchOptions = {
@@ -34,7 +35,8 @@
 			}
 		);
 	});
-{/literal}
+	{/literal}
+	// -->
 </script>
 
 <div class="clear">&nbsp;</div>

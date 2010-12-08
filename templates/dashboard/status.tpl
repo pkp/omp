@@ -11,12 +11,14 @@
 <!-- New Submission entry point -->
 {if $pressCount > 1}
 	<script type="text/javascript">{literal}
+		<!--
 		$(function(){
 			$("#pressSelect").change(function() {
 				if($("#pressSelect option:selected").val() == 0) return false; // User has select the default text; do nothing
 				window.location.href = $("#pressSelect option:selected").val();
 			});
 		});
+		// -->
 	{/literal}</script>
 	<h3 class="align_left">{translate key="submission.submit.newSubmissionMultiple"}</h3>
 	<select id="pressSelect" class="align_left selectHeader">

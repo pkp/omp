@@ -61,6 +61,7 @@
 <!-- Submission checklist -->
 {if $currentPress->getLocalizedSetting('submissionChecklist')}
 <script type="text/javascript">
+	<!--
 	{literal}
         	$(function(){
 		$("form[name=submitStep1]").validate({
@@ -76,6 +77,7 @@
 		});
 	});
 	{/literal}
+	// -->
 </script>
 <h3>{translate key="submission.submit.submissionChecklist"}</h3>
 

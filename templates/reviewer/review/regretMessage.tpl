@@ -8,6 +8,7 @@
  *
  *}
 <script type="text/javascript">
+	<!--
 	{literal}
 	$(function() {
 		$('.button').button();
@@ -19,6 +20,7 @@
 		});
 	});
 	{/literal}
+	// -->
 </script>
 
 <form name="declineReview" id="declineReview" method="post" action="{url op="saveDeclineReview"}">

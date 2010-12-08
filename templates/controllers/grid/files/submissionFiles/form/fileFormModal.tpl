@@ -25,10 +25,12 @@
 {modal_title id="div#fileUploadModal" key=$titleKey iconClass="fileManagement" canClose=1}
 
 <script type="text/javascript">
+	<!--
 	$(function() {ldelim}
 		// Clear out default modal buttons.
 		$('div#fileUploadModal').parent().dialog('option', 'buttons', null);
 	{rdelim});
+	// -->
 {/literal}</script>
 
 {url|assign:uploadWizardUrl op="displayFileForm" monographId=$monographId revisedFileId=$revisedFileId}

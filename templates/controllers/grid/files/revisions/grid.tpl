@@ -8,6 +8,7 @@
  *
  *}
 <script type="text/javascript">
+	<!--
 	{literal}
         $(function(){
         // Select the revisions by default and hide all others; Also add a revision class so the filter button can work both ways
@@ -38,6 +39,7 @@
 		}));
 	});
 	{/literal}
+	// -->
 </script>
 
 {include file='core:controllers/grid/grid.tpl'}

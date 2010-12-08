@@ -8,6 +8,7 @@
  *}
 <script type="text/javascript">
 	{literal}
+	<!--
 	$(function() {
 		$('.button').button();
 		$('#newNoteForm').ajaxForm({
@@ -27,6 +28,7 @@
 	        }
 	    });
 	});
+	// -->
 	{/literal}
 </script>
 <div id="informationCenterNotesTab">

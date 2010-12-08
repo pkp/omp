@@ -7,6 +7,7 @@
  * Display a form to notify other users about this file.
  *}
 <script type="text/javascript">
+	<!--
 	{literal}
 	$(function() {
 		$('.button').button();
@@ -28,6 +29,7 @@
 
 	});
 	{/literal}
+	// -->
 </script>
 <div id="informationCenterNotifyTab">
 	<form name="notifyForm" id="notifyForm" action="{url op="sendNotification" monographId=$monographId itemId=$itemId}" method="post">

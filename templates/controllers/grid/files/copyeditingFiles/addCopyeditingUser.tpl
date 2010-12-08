@@ -9,6 +9,7 @@
  *}
 
 <script type="text/javascript">{literal}
+	<!--
 	$(function() {
 		getAutocompleteSource("{/literal}{url op="getCopyeditUserAutocomplete" monographId=$monographId}{literal}", "");
 		$("#responseDueDate").datepicker({ dateFormat: 'mm-dd-yy', minDate: '0' });
@@ -21,6 +22,7 @@
 		var year = currentTime.getFullYear();
 		$("#responseDueDate").datepicker('setDate', month + "-" + day + "-" + year);
 	});
+	// -->
 {/literal}</script>
 
 {modal_title id="#addUserContainer" key='editor.monograph.copyediting.addUser' iconClass="fileManagement" canClose=1}

@@ -12,6 +12,7 @@
 
 {literal}
 <script type='text/javascript'>
+	<!--
 	// Handle the user group drop-down change event
 	$(function(){
 		$('#userGroupId').change(function() {
@@ -32,6 +33,7 @@
 			);
 		});
 	});
+	// -->
 </script>
 {/literal}
 

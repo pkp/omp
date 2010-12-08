@@ -13,8 +13,8 @@
 {/strip}
 
 {literal}
-
 <script type="text/javascript">
+	<!--
 	$(document).ready(function(){
 		$("#interestsTextOnly").hide();
 		$("#interests").tagit({
@@ -23,6 +23,7 @@
 					  {else}{literal}currentTags: []{/literal}{/if}{literal}
 		});
 	});
+	// -->
 </script>
 {/literal}
 

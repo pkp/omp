@@ -9,6 +9,7 @@
  * JS addition to grid HTML markup to allow for row selection
  *}
 <script type="text/javascript">
+	<!--
 	{literal}
         $(function(){
 	       	$('input:checkbox:checked').parent().parent().addClass('selected');
@@ -26,6 +27,7 @@
 			});
 		});
 	{/literal}
+	// -->
 </script>
 
 {include file='core:controllers/grid/grid.tpl'}

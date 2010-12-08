@@ -8,6 +8,7 @@
  *}
 {include file="controllers/grid/users/user/form/userFormHeader.tpl"}
 <script type="text/javascript">
+	<!--
 	$(document).ready(function() {ldelim}
 		// User select drop-down list 
 		$('#selectUser').change(function() {ldelim}
@@ -64,6 +65,7 @@
 		{rdelim});
 
 	{rdelim});
+	// -->
 </script>
 
 <div id="selectUserContainer" class="full left">

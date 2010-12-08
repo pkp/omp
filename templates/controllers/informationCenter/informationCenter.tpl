@@ -12,11 +12,13 @@
 
 {init_tabs id="#informationCenterTabs-$itemId"}
 <script type="text/javascript">
+	<!--
 	{literal}
 	$(function() {
 		$('#informationCenterTabs-{/literal}{$itemId}{literal}').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
 	});
 	{/literal}
+	// -->
 </script>
 
 <span class='itemLastEvent'>{if $lastEvent}{translate key="informationCenter.lastUpdated"}: {$lastEvent->getDateLogged()}, {$lastEventUser->getFullName()}{/if}</span>

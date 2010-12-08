@@ -12,6 +12,7 @@
 {modal_title id="#addReviewer" key='editor.monograph.addReviewer' iconClass="fileManagement" canClose=1}
 
 <script type="text/javascript">{literal}
+	<!--
 	$(function() {
 		getAutocompleteSource("{/literal}{url op="getReviewerAutocomplete" monographId=$monographId round=$round escape=false}{literal}", "");
 		$("#responseDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
@@ -51,6 +52,7 @@
 			availableTags: [{/literal}{$existingInterests}{literal}]
 		});
 	});
+	// -->
 {/literal}</script>
 
 <form name="addReviewerForm" id="addReviewer" method="post" action="{url op="updateReviewer"}" >

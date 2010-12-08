@@ -10,6 +10,7 @@
 {include file="manager/users/usersHeader.tpl"}
 
 <script type="text/javascript">
+	<!--
 	// Role key to role name string key mapping
 	var roleMap = new Array();
 	{foreach from=$roleOptions key=roleKey item=roleStringKey}
@@ -40,6 +41,7 @@
 			{rdelim}
 		{rdelim});
 	{rdelim});
+	// -->
 </script>
 
 <div class="clear">&nbsp;</div>

@@ -12,6 +12,7 @@
 {assign var="stageId" value=$monograph->getCurrentStageId()}
 
 <script type="text/javascript">{literal}
+	<!--
 	// initialise plugins
 	$(function(){
 
@@ -42,8 +43,7 @@
 			$(".stageContainer").not("#production").accordion("activate", false);
 		}
 	});
-
-
+	// -->
 {/literal}</script>
 
 <div class="submissionHeader">

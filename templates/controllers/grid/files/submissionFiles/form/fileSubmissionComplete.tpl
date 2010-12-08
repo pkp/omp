@@ -7,6 +7,7 @@
  * Files grid form
  *}
 <script type="text/javascript">
+	<!--
 	{literal}
 	$(function() {
 		// On newFile button click, return row then restart modal
@@ -29,6 +30,7 @@
 		});
 	});
 	{/literal}
+	// -->
 </script>
 
 <div class="text_center">

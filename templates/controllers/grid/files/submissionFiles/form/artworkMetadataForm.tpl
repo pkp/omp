@@ -9,6 +9,7 @@
 {assign var='uniqueId' value=""|uniqid}
 
 <script type="text/javascript">
+	<!--
 	{literal}
 	$(function() {
 		$('.button').button();
@@ -46,6 +47,7 @@
 		});
 	});
 	{/literal}
+	// -->
 </script>
 
 
