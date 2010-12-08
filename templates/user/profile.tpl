@@ -137,7 +137,7 @@
 	</tr>
 {/if}
 <tr valign="top">
-	<td class="label">{fieldLabel key="user.interests"}</td>
+	<td class="label">{fieldLabel name="interestsTextOnly" key="user.interests"}</td>
 	<td class="value"><ul id="interests"></ul><br />
 		<textarea name="interests" id="interestsTextOnly" rows="5" cols="40" class="textArea">
 			{foreach name=currentInterests from=$interestsKeywords item=interest}{$interest|urldecode}{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}
@@ -169,7 +169,6 @@
 	{/foreach}</td>
 </tr>
 {/if}
-<br />
 </table>
 <p><input type="submit" value="{translate key="common.save"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="document.location.href='{url page="user"}'" /></p>
 </form>
