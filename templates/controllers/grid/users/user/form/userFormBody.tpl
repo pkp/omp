@@ -107,7 +107,7 @@
 
 	{if $userId}
 		{fbvFormSection suppressId="true"}
-			{translate key="user.register.passwordLengthRestriction" length=$minPasswordLength}	
+			{translate key="user.register.passwordLengthRestriction" length=$minPasswordLength}
 			<br />
 			{translate key="user.profile.leavePasswordBlank"}
 		{/fbvFormSection}
@@ -184,10 +184,10 @@
 {/fbvFormSection}
 
 {fbvFormSection title="user.interests" for="interests"}
-	<ul id="interests"></ul><br />
+	<ul id="interests"><li></li></ul><br />
 	<textarea name="interests" id="interestsTextOnly" class="textArea small">
 		{foreach name=currentInterests from=$interestsKeywords item=interest}
-			{$interest|urldecode}
+			{$interest|escape}
 			{if !$smarty.foreach.currentInterests.last}, {/if}
 		{/foreach}
 	</textarea>

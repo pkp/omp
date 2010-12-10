@@ -63,7 +63,7 @@
 	<tr valign="top">
 		<td class="label">{translate key="user.email"}</td>
 		<td class="value">
-			{$user->getEmail()|escape} 
+			{$user->getEmail()|escape}
 			{assign var=emailString value=$user->getFullName()|concat:" <":$user->getEmail():">"}
 			{url|assign:"url" page="user" op="email" to=$emailString|to_array redirectUrl=$currentUrl}
 			{icon name="mail" url=$url}
@@ -83,7 +83,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.interests"}</td>
-		<td class="value">{$user->getInterests()|urldecode|escape|default:"&mdash;"}</td>
+		<td class="value">{$user->getInterests()|escape|default:"&mdash;"}</td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{translate key="user.gossip"}</td>

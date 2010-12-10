@@ -262,6 +262,7 @@ class RegistrationForm extends Form {
 			// Add reviewing interests to interests table
 			$interestDao =& DAORegistry::getDAO('InterestDAO');
 			$interests = Request::getUserVar('interestsKeywords');
+			$interests = array_map('urldecode', $interests); // The interests are coming in encoded -- Decode them for DB storage
 			$interestTextOnly = Request::getUserVar('interests');
 			if(!empty($interestsTextOnly)) {
 				// If JS is disabled, this will be the input to read

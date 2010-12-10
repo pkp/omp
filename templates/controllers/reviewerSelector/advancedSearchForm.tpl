@@ -60,7 +60,8 @@
 
 		// Initialize reviewer interests search field
 		$("#interests").tagit({
-			availableTags: [{/literal}{$existingInterests}{literal}]
+			// This is the list of interests in the system used to populate the autocomplete
+			availableTags: [{/literal}{foreach name=existingInterests from=$existingInterests item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.existingInterests.last}, {/if}{/foreach}]{literal}
 		});
 
 
