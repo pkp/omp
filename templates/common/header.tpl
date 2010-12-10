@@ -58,31 +58,29 @@
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/hoverIntent.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/superfish.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/wufoo/wufoo.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/jquery.pnotify.js"></script>
-
-	<!-- Modals/Confirms -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/validate/jquery.validate.min.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/jqueryValidatorI18n.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/modal.js"></script>
 
-	<!-- ListBuilder -->
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/listbuilder.js"></script>
-
-	<!-- Other Jquery Plugins -->
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.form.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/ajax_upload.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/jquery.cookie.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/fontController.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/tag-it.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/imgpreview.js"></script>
+	<!-- Compiled scripts -->
+	{if $useMinifiedJavaScript}
+		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/pkp.min.js"></script>
+	{else}
+		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.form.js"></script>
+		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.tag-it.js"></script>
+		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.pnotify.js"></script>
+		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.imgpreview.js"></script>
+		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.cookie.js"></script>
+		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/fontController.js"></script>
+		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/general.js"></script>
+		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/listbuilder.js"></script>
+		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/modal.js"></script>
+		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/jqueryValidatorI18n.js"></script>
+	{/if}
 
 	<!-- Plupload -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/plupload.full.min.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/jquery.plupload.queue.min.js"></script>
 	{if $currentLocale !== 'en_US'}<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/i18n/{$currentLocale}.js"></script>{/if}
 
-	<!-- General JS -->
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/general.js"></script>
 	{include file="common/javascriptInit.tpl"}
 
 	{$additionalHeadData}
@@ -110,9 +108,9 @@
 		{/if}
 		</h1>
 	</div>
-	
+
 	{include file="common/localnav.tpl"}
-	
+
 	{** FIXME #5734: What should we do with breadcrumbs?
 		They don't appear on submission pages, are they visible anywhere?
 		include file="common/breadcrumbs.tpl" **}
