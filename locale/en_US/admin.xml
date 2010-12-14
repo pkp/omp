@@ -2,12 +2,12 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * omp2-devel/locale/en_US/admin.xml
+  * admin.xml
   *
   * Copyright (c) 2003-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (English) locale.
+  * Localization strings for the en_US (English) locale (Site administration).
   -->
 
 <locale name="en_US" full_name = "English">
@@ -24,7 +24,17 @@
 	<message key="admin.languages.downloadLocales">Download Locales</message>
 	<message key="admin.languages.downloadFailed">The locale download failed. The error message(s) below describe the failure.</message>
 	<message key="admin.languages.localeInstalled">The "{$locale}" locale has been installed. </message>
+	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>Downloading language packs from the Public Knowledge Project web server is not currently available because:</p>
+	<ul>
+		<li>Your server does not have or allow execution of the GNU "tar" utility</li>
+		<li>OMP is unable to modify the locale registry file, typically "registry/locales.xml".</li>
+	</ul>
+<p>Language packs can be manually downloaded from the <a href="http://pkp.sfu.ca">PKP web site</a>.</p>]]></message>
 
+	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Specifying a default authentication source other than OMP has the following effects:</p>
+<ul>
+	<li>If a user attempts to register a new account with this site with a username that exists on the authentication source (but not in the OMP database), the registration attempt is only allowed if the supplied password is valid for that user account.</li>
+</ul>]]></message>
 	<message key="admin.languages.download">Download Locale</message>
 	<message key="admin.languages.download.cannotOpen">Cannot open language descriptor from PKP web site.</message>
 	<message key="admin.languages.download.cannotModifyRegistry">Cannot add the new locale to the locale registry file, typically "registry/locales.xml".</message>
@@ -61,4 +71,18 @@
 	<message key="admin.mergeUsers.allUsers">All Enrolled Users</message>
 	<message key="admin.mergeUsers.confirm">Are you sure you wish to merge the account with the username "{$oldUsername}" into the account with the username "{$newUsername}"? The account with the username "{$oldUsername}" will not exist afterwards. This action is not reversible.</message>
 	<message key="admin.mergerUsers.noneEnrolled">No enrolled users.</message>
+
+	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[To have the contents of all presses hosted on this site indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your site's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.
+<br /><br />
+Note that the OAI interface can be disabled for this site by editing the OMP system configuration. Future versions of OMP will allow the OAI interface to be enabled or disabled for individual presses within the site.]]></message>
+
+	<!-- System Information -->
+	<message key="admin.editSystemConfigInstructions"><![CDATA[Use this form to modify your system configuration (the <tt>config.inc.php</tt> file). Click Save to save your new configuration, or "Display" to simply display the updated configuration file and not modify your existing configuration.
+<br /><br />
+<span class="formError">Warning: Modifying these settings can potentially leave your site in an inaccessible state (requiring your configuration file to be manually fixed). It is strongly recommended that you do not make any changes unless you know exactly what you are doing.</span>]]></message>
+	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTE!</div>
+<p>The system could not automatically overwrite the configuration file. To apply your configuration changes you must open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
+
 </locale>

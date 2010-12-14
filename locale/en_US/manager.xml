@@ -2,7 +2,7 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale/en_US/manager.xml
+  * manager.xml
   *
   * Copyright (c) 2003-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -11,68 +11,7 @@
   -->
 
 <locale name="en_US" full_name = "English">
-	<message key="manager.setup.registerPressForIndexing">Register Press for Indexing (Metadata Harvesting)</message>
-
-	<message key="manager.setup.publicationFormatsDescription"></message>
-	<message key="manager.setup.publicationFormats">Publication Formats</message>
-	<message key="manager.setup.newPublicationFormat">New Publication Format</message>
-	<message key="manager.setup.newPublicationFormatDescription">To create a new publication format, fill out the form below and click the 'Create' button.</message>
-
-	<message key="manager.setup.genresDescription">These genres are used for file-naming purposes and are presented in a pull-down menu on uploading files. The genres designated ## allow the user to associate the file with either the whole book 99Z or a particular chapter by number (e.g., 02).</message>
-	<message key="manager.setup.genres">Genres</message>
-	<message key="manager.setup.newGenre">New Monograph Genre</message>
-	<message key="manager.setup.newGenreDescription">To create a new genre, fill out the form below and click the 'Create' button.</message>
-	<message key="manager.setup.genres.sortable">Allow files of this type to be sorted by component (e.g. by chapter)</message>
-	<message key="manager.setup.deleteSelected">Delete Selected</message>
-	<message key="manager.setup.restoreDefaults">Restore Default Settings</message>
-	<message key="manager.setup.groupType">File type grouping</message>
-
-	<message key="manager.setup.prospectus">Prospectus Guide</message>
-	<message key="manager.setup.prospectusDescription">The prospectus guide is a press prepared document that helps the author describe the submitted materials in a way that allows a press to determine the value of the submission. A prospectus can include a lot of items- from marketing potential to theoretical value; in any case, a press should create a prospectus guide that complements their publishing agenda.</message>
-
-	<message key="manager.setup.submitToCategories">Allow category submissions</message>
-	<message key="manager.setup.submitToSeries">Allow series submissions</message>
-	<message key="manager.setup.issnDescription"><![CDATA[The ISSN (International Standard Serial Number) is an eight-digit number which identifies periodical publications as such, including electronic serials. It is managed by a world wide network of National Centres coordinated by an International Centre based in Paris, backed by Unesco and the French Government. A number can be obtained from the <a href="http://www.issn.org" target="_new">ISSN web site</a>.  This can be done at any point in operating the press.]]></message>
-	<message key="manager.setup.sortableByComponent">Sortable by component</message>
-
-	<message key="manager.setup.cataloguingMetadata">Cataloguing Metadata</message>
-	<message key="manager.setup.currentFormats">Current Formats</message>
-	<message key="manager.setup.division">Division</message>
-	<message key="manager.setup.currentDivisions">Current Divisions</message>
-	<message key="manager.setup.divisionsAndSeries">Divisions and Series</message>
-	<message key="manager.setup.reviewForms">Review Forms</message>
-
-	<message key="manager.setup.authorRole">Author Role</message>
-	<message key="manager.setup.managerialRole">Managerial Role</message>
-	<message key="manager.setup.pressRole">Press Role</message>
-	<message key="manager.setup.roleAbbrev">Role Abbreviation</message>
-	<message key="manager.setup.roleName">Role Name</message>
-	<message key="manager.setup.roleType">Role Type</message>
-	<message key="manager.setup.authorRoles">Author Roles</message>
-	<message key="manager.setup.managerialRoles">Managerial Roles</message>
-	<message key="manager.setup.pressRoles">Press Roles</message>
-	<message key="manager.setup.pressRolesDescription">Create additional roles with the form below.</message>
-	<message key="manager.setup.availableRoles">Available Roles</message>
-	<message key="manager.setup.currentRoles">Current Roles</message>
-
-	<message key="manager.setup.submissionRoles">Submission Roles</message>
-	<message key="manager.setup.internalReviewRoles">Internal Review Roles</message>
-	<message key="manager.setup.externalReviewRoles">External Review Roles</message>
-	<message key="manager.setup.editorialRoles">Editorial Roles</message>
-	<message key="manager.setup.productionRoles">Production Roles</message>
-
-	<message key="manager.setup.masthead">Masthead</message>
-	<message key="grid.masthead.group">Group</message>
-
-	<message key="manager.setup.files">Files</message>
-	<message key="manager.setup.submissionLibrary">Submission Library</message>
-	<message key="manager.setup.reviewLibrary">Review Library</message>
-	<message key="manager.setup.editorialLibrary">Editorial Library</message>
-	<message key="manager.setup.productionLibrary">Production Library</message>
-	<message key="manager.setup.productionTemplates">Production Templates</message>
-
-	<message key="manager.emails.confirmResetAll">Are you sure you want to reset all email templates in this press? You will lose any customizations you have made.</message>
-	<message key="manager.files.note">Note: The Files Browser is an advanced feature that allows the files and directories associated with a press to be viewed and manipulated directly.</message>
+	<!-- Groups -->
 	<message key="manager.groups">Masthead</message>
 	<message key="manager.groups.context.editorialTeam">Have title appear under Editorial Team in People section of About the Press (e.g. Editor)</message>
 	<message key="manager.groups.context.editorialTeam.short">Editorial Team</message>
@@ -83,7 +22,8 @@
 	<message key="manager.groups.enableBoard.description"><![CDATA[Under <a href="{$aboutEditorialTeamUrl}">People</a> in About the Press:]]></message>
 	<message key="manager.groups.existingUsers">Existing users</message>
 	<message key="manager.groups.noneCreated">No editorial team positions have been created.</message>
-	<message key="manager.pressManagement">Press Management</message>
+
+	<!-- Languages -->
  	<message key="manager.language.ui">UI</message>
 	<message key="manager.language.submissions">Submissions</message>
  	<message key="manager.language.forms">Forms</message>
@@ -92,19 +32,8 @@
 	<message key="manager.languages.languageInstructions"><![CDATA[OMP can be made available to users in any of several supported languages. As well, OMP can operate as a multilingual system, providing users with an ability to toggle between languages on each page, and allowing certain data to be entered in several additional languages.<br /><br/>If a language supported by OMP is not listed below, ask your site administrator to install the language from the site administration interface. For instructions on adding support for new languages, please consult the OMP documentation.]]></message>
 	<message key="manager.languages.noneAvailable">Sorry, no additional languages are available. Contact your site administrator if you wish to use additional languages with this press.</message>
 	<message key="manager.languages.primaryLocaleInstructions">This will be the default language for the press site.</message>
-	<message key="manager.managementPages">Management Pages</message>
-	<message key="manager.people.allEnrolledUsers">Users Enrolled in this Press</message>
-	<message key="manager.people.allPresses">All Presses</message>
-	<message key="manager.people.allSiteUsers">Enroll a User from this Site in this Press</message>
-	<message key="manager.people.allUsers">All Enrolled Users</message>
-	<message key="manager.people.confirmRemove">Remove this user from this press? This action will unenroll the user from all roles within this press.</message>
-	<message key="manager.people.emailUsers.selectTemplate">Select a template</message>
-	<message key="manager.people.enrollExistingUser">Enroll an Existing User</message>
-	<message key="manager.people.enrollSyncPress">With press</message>
-	<message key="manager.people.mergeUsers.from.description">Select a user to merge into another user account (e.g., when someone has two user accounts). The account selected first will be deleted and its submissions, assignments, etc. will be attributed to the second account.</message>
-	<message key="manager.people.mergeUsers.into.description">Select a user to whom to attribute the previous user's authorships, editing assignments, etc.</message>
-	<message key="manager.people.roleEnrollment">{$role} Enrollment</message>
-	<message key="manager.people.syncUserDescription">Enrollment synchronization will enroll all users enrolled in the specified role in the specified press into the same role in this press. This function allows a common set of users (e.g., Reviewers) to be synchronized between presses.</message>
+
+	<!-- Plugin management -->
 	<message key="manager.plugins.copyError">Plugin was not successfully copied. This may be a permissions problem. Please make sure that the web server is able to write to the plugins directory (including subdirectories) but don't forget to secure it again later.</message>
 	<message key="manager.plugins.delete">Delete Plugin</message>
 	<message key="manager.plugins.deleteConfirm">Are you sure you wish to delete this plugin from the system?</message>
@@ -134,6 +63,24 @@
 	<message key="manager.plugins.uploadPluginDir">Select plugin file</message>
 	<message key="manager.plugins.versionFileInvalid">version.xml in plugin directory contains invalid data.</message>
 	<message key="manager.plugins.versionFileNotFound">version.xml not found in plugin directory</message>
+
+	<!-- Review forms -->
+	<message key="manager.reviewForms">Review Forms</message>
+	<message key="manager.reviewForms.completed">Completed</message>
+	<message key="manager.reviewForms.confirmDeletePublished">Confirm delete of a published review form...</message>
+	<message key="manager.reviewForms.confirmDeleteUnpublished">Confirm delete of an upublished review form...</message>
+	<message key="manager.reviewForms.create">Create Review Form</message>
+	<message key="manager.reviewForms.description">Description and Instructions</message>
+	<message key="manager.reviewForms.edit">Review Form</message>
+	<message key="manager.reviewForms.form.titleRequired">A title is required for the review form.</message>
+	<message key="manager.reviewForms.inReview">In Review</message>
+	<message key="manager.reviewForms.list.description">The peer review forms created here will be presented to reviewers to complete, instead of the default form which consists of two open text boxes, the first "for author and editor," and the second "for editor." Review forms can be designated for a specific press section, and editors will have the option to choose which form to use in assigning the review. In all cases, editors will have the option of including the reviews in corresponding with the author.</message>
+	<message key="manager.reviewForms.noneChosen">None / Free Form Review</message>
+	<message key="manager.reviewForms.noneCreated">No review forms have been created.</message>
+	<message key="manager.reviewForms.noneUsed">No review forms have been used.</message>
+	<message key="manager.reviewForms.preview">Preview Form</message>
+	<message key="manager.reviewForms.reviewFormData">Review Form Data</message>
+	<message key="manager.reviewForms.title">Title</message>
 	<message key="manager.reviewFormElement.changeType">Changing the form item type...</message>
 	<message key="manager.reviewFormElements">Form Items</message>
 	<message key="manager.reviewFormElements.addResponseItem">Add selection</message>
@@ -156,30 +103,8 @@
 	<message key="manager.reviewFormElements.textarea">Extended text box</message>
 	<message key="manager.reviewFormElements.textfield">Single line text box</message>
 	<message key="manager.reviewFormElements.viewable">Viewable (for authors)</message>
-	<message key="manager.reviewForms">Review Forms</message>
-	<message key="manager.reviewForms.completed">Completed</message>
-	<message key="manager.reviewForms.confirmDeletePublished">Confirm delete of a published review form...</message>
-	<message key="manager.reviewForms.confirmDeleteUnpublished">Confirm delete of an upublished review form...</message>
-	<message key="manager.reviewForms.create">Create Review Form</message>
-	<message key="manager.reviewForms.description">Description and Instructions</message>
-	<message key="manager.reviewForms.edit">Review Form</message>
-	<message key="manager.reviewForms.form.titleRequired">A title is required for the review form.</message>
-	<message key="manager.reviewForms.inReview">In Review</message>
-	<message key="manager.reviewForms.list.description">The peer review forms created here will be presented to reviewers to complete, instead of the default form which consists of two open text boxes, the first "for author and editor," and the second "for editor." Review forms can be designated for a specific press section, and editors will have the option to choose which form to use in assigning the review. In all cases, editors will have the option of including the reviews in corresponding with the author.</message>
-	<message key="manager.reviewForms.noneChosen">None / Free Form Review</message>
-	<message key="manager.reviewForms.noneCreated">No review forms have been created.</message>
-	<message key="manager.reviewForms.noneUsed">No review forms have been used.</message>
-	<message key="manager.reviewForms.preview">Preview Form</message>
-	<message key="manager.reviewForms.reviewFormData">Review Form Data</message>
-	<message key="manager.reviewForms.title">Title</message>
 
-	<!--
-	  * series/categories
-	  * series
-	-->
-	<message key="manager.setup.seriesAndCategories">Submission Categories and Series</message>
-	<message key="manager.setup.seriesAndCategoriesDescription">Folks submitting materials to the press can, based on previous consultations with an editor or by logic, categorize their submission by selecting one of the press' series or categories. The series editors associated with these categorization series will be notified of your submission; however, only a senior editor can approve the work for consideration.</message>
-
+	<!-- Series management -->
 	<message key="manager.series.form.mustAllowPermission">Please ensure that at least one checkbox is checked for each Series Editor assignment.</message>
 	<message key="manager.series.form.reviewFormId">Please ensure that you have chosen a valid review form.</message>
 	<message key="manager.series.submissionIndexing">Will not be included in the indexing of the press</message>
@@ -193,7 +118,6 @@
 	<message key="manager.series.submissionsToThisSection">Submissions made to this series</message>
 	<message key="manager.series.abstractsNotRequired">Do not require abstracts</message>
 	<message key="manager.series.disableComments">Disable reader comments for this series.</message>
-
 	<message key="manager.series.book">Book Series</message>
 	<message key="manager.series.create">Create Series</message>
 	<message key="manager.series.policy">Series description</message>
@@ -205,24 +129,7 @@
 	<message key="manager.series.form.titleRequired">A title is required for the series.</message>
 	<message key="manager.series.noneCreated">No series have been created.</message>
 
-	<message key="manager.categories.create">Create Category</message>
-	<message key="manager.categories.policy">Category description</message>
-	<message key="manager.categories.assigned">Editors for this Category</message>
-	<message key="manager.categories.categoryEditorInstructions"><![CDATA[Add a Category Editor to this category from the available Series Editors. Once added, designate whether the Category Editor will oversee the REVIEW (peer review) and/or the EDITING (copyediting, layout and proofreading) of submissions to this category. Series Editors are created by clicking <a href="{$categoryEditorsUrl}">Series Editors</a> under Roles in Press Management.]]></message>
-	<message key="manager.categories.hideAbout">Omit this category from About the Press.</message>
-	<message key="manager.categories.unassigned">Available Category Editors</message>
-	<message key="manager.categories.form.abbrevRequired">An abbreviated title is required for the category.</message>
-	<message key="manager.categories.form.titleRequired">A title is required for the category.</message>
-	<message key="manager.categories.noneCreated">No categories have been created.</message>
-
-	<!--
-		* settings
-		* setup
-		* data
-		* system
-		* users
-	 -->
-
+	<!-- Settings management -->
 	<message key="manager.settings">Settings</message>
 	<message key="manager.settings.press">Press</message>
 	<message key="manager.settings.pressDescription">All settings specific to the press (details, policies, workflow, look and feel).</message>
@@ -233,7 +140,7 @@
 	<message key="manager.settings.users"><![CDATA[Users &amp; Roles]]></message>
 	<message key="manager.settings.usersDescription">All settings related to user management for this press (enrollment, manage users, manage roles).</message>
 
-
+	<!-- User management -->
 	<message key="manager.users">User Management</message>
 	<message key="manager.users.users">Users</message>
 	<message key="manager.users.roles">Roles</message>
@@ -241,7 +148,30 @@
 	<message key="manager.users.currentRoles">Current Roles</message>
 	<message key="manager.users.enrollment">Enrollment</message>
 	<message key="manager.users.selectRole">Select Role</message>
+	<message key="manager.people.allEnrolledUsers">Users Enrolled in this Press</message>
+	<message key="manager.people.allPresses">All Presses</message>
+	<message key="manager.people.allSiteUsers">Enroll a User from this Site in this Press</message>
+	<message key="manager.people.allUsers">All Enrolled Users</message>
+	<message key="manager.people.confirmRemove">Remove this user from this press? This action will unenroll the user from all roles within this press.</message>
+	<message key="manager.people.emailUsers.selectTemplate">Select a template</message>
+	<message key="manager.people.enrollExistingUser">Enroll an Existing User</message>
+	<message key="manager.people.enrollSyncPress">With press</message>
+	<message key="manager.people.mergeUsers.from.description">Select a user to merge into another user account (e.g., when someone has two user accounts). The account selected first will be deleted and its submissions, assignments, etc. will be attributed to the second account.</message>
+	<message key="manager.people.mergeUsers.into.description">Select a user to whom to attribute the previous user's authorships, editing assignments, etc.</message>
+	<message key="manager.people.roleEnrollment">{$role} Enrollment</message>
+	<message key="manager.people.syncUserDescription">Enrollment synchronization will enroll all users enrolled in the specified role in the specified press into the same role in this press. This function allows a common set of users (e.g., Reviewers) to be synchronized between presses.</message>
+	<message key="manager.people.confirmDisable">Disable this user? This will prevent the user from logging into the system.
 
+You may optionally provide the user with a reason for disabling their account.</message>
+	<message key="manager.people.noAdministrativeRights"><![CDATA[Sorry, you do not have administrative rights over this user. This may be because:
+		<ul>
+			<li>The user is a site administrator</li>
+			<li>The user is active in presses you do not manage</li>
+		</ul>
+	This task must be performed by a site administrator.
+	]]></message>
+
+	<!-- System setup -->
 	<message key="manager.system">System Settings</message>
 	<message key="manager.system.archiving">Archiving</message>
 	<message key="manager.system.preparedEmails">Prepared Emails</message>
@@ -251,6 +181,9 @@
 	<message key="manager.system.payments">Payments</message>
 	<message key="manager.system.plugins">Plugins</message>
 
+	<!-- Press setup -->
+	<message key="manager.emails.confirmResetAll">Are you sure you want to reset all email templates in this press? You will lose any customizations you have made.</message>
+	<message key="manager.pressManagement">Press Management</message>
 	<message key="manager.setup">Setup</message>
 	<message key="manager.setup.aboutItemContent">Content</message>
 	<message key="manager.setup.addAboutItem">Add About Item</message>
@@ -341,6 +274,7 @@
 	<message key="manager.setup.form.numReviewersPerSubmission">The number of reviewers per submission is required.</message>
 	<message key="manager.setup.form.supportEmailRequired">The support email is required.</message>
 	<message key="manager.setup.form.supportNameRequired">The support name is required.</message>
+	<message key="manager.setup.form.pressInitialsRequired">Press initials are required.</message>
 	<message key="manager.setup.generalInformation">General Information</message>
 	<message key="manager.setup.gettingDownTheDetails">Step 1. Getting Down the Details</message>
 	<message key="manager.setup.guidelines">Guidelines</message>
@@ -356,29 +290,6 @@
 	<message key="manager.setup.institution">Institution</message>
 	<message key="manager.setup.itemsDescription">Navigation bar items can be added to the current set (Home, About, User Home, etc.) that appear at the top of the page.</message>
 	<message key="manager.setup.itemsPerPage">Items per page</message>
-	<message key="manager.setup.pressArchiving">Press Archiving</message>
-	<message key="manager.setup.pressDescription">Press Description</message>
-	<message key="manager.setup.pressDescriptionDescription">Add a brief 20-25 word description in text/HTML which will appear just below the navigation links.</message>
-	<message key="manager.setup.pressHomepageContent">Press Homepage Content</message>
-	<message key="manager.setup.pressHomepageContentDescription">By default, the homepage consists of navigation links. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown. Note that the newest monograph is always accessible through the Current link in the navigation bar.</message>
-	<message key="manager.setup.pressHomepageHeader">Press Homepage Header</message>
-	<message key="manager.setup.pressHomepageHeader.altText">Press Homepage Header</message>
-	<message key="manager.setup.pressHomepageHeaderDescription">A graphic version of the press's title and logo (as a .gif, .jpg, or .png file) can be uploaded for the homepage, which will replace the text version that otherwise appears.</message>
-	<message key="manager.setup.pressInitials">Press Initials</message>
-	<message key="manager.setup.pressLayout">Press Layout</message>
-	<message key="manager.setup.pressLayoutDescription">Choose a press theme and select layout components here. A press stylesheet may also be uploaded, which can be used to override style data in the system-wide stylesheets and theme stylesheet (if a theme is chosen).</message>
-	<message key="manager.setup.pressLogo">Press Logo</message>
-	<message key="manager.setup.pressLogo.altText">Press Logo</message>
-	<message key="manager.setup.pressPageFooter">Press Page Footer</message>
-	<message key="manager.setup.pressPageFooterDescription">This is the footer of your press. To change or update the footer, paste the HTML code in the textbox below. Examples could be another navigation bar, a counter, etc. This footer will appear on every page.</message>
-	<message key="manager.setup.pressPageHeader">Press Page Header</message>
-	<message key="manager.setup.pressPageHeaderDescription">A graphic version of the press's title and logo (.gif, .jpg, or .png file), possibly a smaller version of the one used on the homepage, can be uploaded to appear as a header on press pages, which will replace the text version that otherwise appears.</message>
-	<message key="manager.setup.pressPolicies">Step 2. Press Policies</message>
-	<message key="manager.setup.pressSetup">Press Setup</message>
-	<message key="manager.setup.pressSetupUpdated">Your press setup has been updated.</message>
-	<message key="manager.setup.pressStyleSheetInvalid">Invalid press stylesheet format. Accepted format is .css.</message>
-	<message key="manager.setup.pressTheme">Press Theme</message>
-	<message key="manager.setup.pressName">Press Name</message>
 	<message key="manager.setup.labelName">Label Name</message>
 	<message key="manager.setup.layoutAndGalleys">Layout Editors</message>
 	<message key="manager.setup.layoutInstructions">Layout Instructions</message>
@@ -426,6 +337,29 @@
 	<message key="manager.setup.policies">Policies</message>
 	<message key="manager.setup.policies.description">Focus, peer review, sections, privacy, security, and additional about items.</message>
 	<message key="manager.setup.pressDescription">Press Description</message>
+	<message key="manager.setup.pressArchiving">Press Archiving</message>
+	<message key="manager.setup.pressDescription">Press Description</message>
+	<message key="manager.setup.pressDescriptionDescription">Add a brief 20-25 word description in text/HTML which will appear just below the navigation links.</message>
+	<message key="manager.setup.pressHomepageContent">Press Homepage Content</message>
+	<message key="manager.setup.pressHomepageContentDescription">By default, the homepage consists of navigation links. Additional homepage content can be appended by using one or all of the following options, which will appear in the order shown. Note that the newest monograph is always accessible through the Current link in the navigation bar.</message>
+	<message key="manager.setup.pressHomepageHeader">Press Homepage Header</message>
+	<message key="manager.setup.pressHomepageHeader.altText">Press Homepage Header</message>
+	<message key="manager.setup.pressHomepageHeaderDescription">A graphic version of the press's title and logo (as a .gif, .jpg, or .png file) can be uploaded for the homepage, which will replace the text version that otherwise appears.</message>
+	<message key="manager.setup.pressInitials">Press Initials</message>
+	<message key="manager.setup.pressLayout">Press Layout</message>
+	<message key="manager.setup.pressLayoutDescription">Choose a press theme and select layout components here. A press stylesheet may also be uploaded, which can be used to override style data in the system-wide stylesheets and theme stylesheet (if a theme is chosen).</message>
+	<message key="manager.setup.pressLogo">Press Logo</message>
+	<message key="manager.setup.pressLogo.altText">Press Logo</message>
+	<message key="manager.setup.pressPageFooter">Press Page Footer</message>
+	<message key="manager.setup.pressPageFooterDescription">This is the footer of your press. To change or update the footer, paste the HTML code in the textbox below. Examples could be another navigation bar, a counter, etc. This footer will appear on every page.</message>
+	<message key="manager.setup.pressPageHeader">Press Page Header</message>
+	<message key="manager.setup.pressPageHeaderDescription">A graphic version of the press's title and logo (.gif, .jpg, or .png file), possibly a smaller version of the one used on the homepage, can be uploaded to appear as a header on press pages, which will replace the text version that otherwise appears.</message>
+	<message key="manager.setup.pressPolicies">Step 2. Press Policies</message>
+	<message key="manager.setup.pressSetup">Press Setup</message>
+	<message key="manager.setup.pressSetupUpdated">Your press setup has been updated.</message>
+	<message key="manager.setup.pressStyleSheetInvalid">Invalid press stylesheet format. Accepted format is .css.</message>
+	<message key="manager.setup.pressTheme">Press Theme</message>
+	<message key="manager.setup.pressName">Press Name</message>
 	<message key="manager.setup.principalContact">Principal Contact</message>
 	<message key="manager.setup.principalContactDescription">This position, which can be treated as a principal editorship, managing editorship, or administrative staff position, will be listed on the homepage of the press under Contact, along with the Technical Support Contact.</message>
 	<message key="manager.setup.printIssn">Print ISSN</message>
@@ -514,6 +448,95 @@
 	<message key="manager.setup.userRegistration">User Registration</message>
 	<message key="manager.setup.useTextTitle">Title text</message>
 	<message key="manager.setup.volumePerYear">Volumes per year</message>
+	<message key="manager.setup.registerPressForIndexing">Register Press for Indexing (Metadata Harvesting)</message>
+	<message key="manager.setup.publicationFormatsDescription"></message>
+	<message key="manager.setup.publicationFormats">Publication Formats</message>
+	<message key="manager.setup.newPublicationFormat">New Publication Format</message>
+	<message key="manager.setup.newPublicationFormatDescription">To create a new publication format, fill out the form below and click the 'Create' button.</message>
+	<message key="manager.setup.genresDescription">These genres are used for file-naming purposes and are presented in a pull-down menu on uploading files. The genres designated ## allow the user to associate the file with either the whole book 99Z or a particular chapter by number (e.g., 02).</message>
+	<message key="manager.setup.reviewProcessEmailDescription">Editors send	Reviewers the request to review with the submission attached to the email. Reviewers email editors their assent (or regrets), as well as the review and recommendation. Editors enter Reviewers' assent (or regrets), as well as the review and recommendation on the submission's Review page, to record the review process.</message>
+	<message key="manager.setup.genres">Genres</message>
+	<message key="manager.setup.newGenre">New Monograph Genre</message>
+	<message key="manager.setup.newGenreDescription">To create a new genre, fill out the form below and click the 'Create' button.</message>
+	<message key="manager.setup.genres.sortable">Allow files of this type to be sorted by component (e.g. by chapter)</message>
+	<message key="manager.setup.deleteSelected">Delete Selected</message>
+	<message key="manager.setup.restoreDefaults">Restore Default Settings</message>
+	<message key="manager.setup.groupType">File type grouping</message>
+	<message key="manager.setup.prospectus">Prospectus Guide</message>
+	<message key="manager.setup.prospectusDescription">The prospectus guide is a press prepared document that helps the author describe the submitted materials in a way that allows a press to determine the value of the submission. A prospectus can include a lot of items- from marketing potential to theoretical value; in any case, a press should create a prospectus guide that complements their publishing agenda.</message>
+	<message key="manager.setup.submitToCategories">Allow category submissions</message>
+	<message key="manager.setup.submitToSeries">Allow series submissions</message>
+	<message key="manager.setup.issnDescription"><![CDATA[The ISSN (International Standard Serial Number) is an eight-digit number which identifies periodical publications as such, including electronic serials. It is managed by a world wide network of National Centres coordinated by an International Centre based in Paris, backed by Unesco and the French Government. A number can be obtained from the <a href="http://www.issn.org" target="_new">ISSN web site</a>.  This can be done at any point in operating the press.]]></message>
+	<message key="manager.setup.sortableByComponent">Sortable by component</message>
+	<message key="manager.setup.cataloguingMetadata">Cataloguing Metadata</message>
+	<message key="manager.setup.currentFormats">Current Formats</message>
+	<message key="manager.setup.division">Division</message>
+	<message key="manager.setup.currentDivisions">Current Divisions</message>
+	<message key="manager.setup.divisionsAndSeries">Divisions and Series</message>
+	<message key="manager.setup.reviewForms">Review Forms</message>
+	<message key="manager.setup.authorRole">Author Role</message>
+	<message key="manager.setup.managerialRole">Managerial Role</message>
+	<message key="manager.setup.pressRole">Press Role</message>
+	<message key="manager.setup.roleAbbrev">Role Abbreviation</message>
+	<message key="manager.setup.roleName">Role Name</message>
+	<message key="manager.setup.roleType">Role Type</message>
+	<message key="manager.setup.authorRoles">Author Roles</message>
+	<message key="manager.setup.managerialRoles">Managerial Roles</message>
+	<message key="manager.setup.pressRoles">Press Roles</message>
+	<message key="manager.setup.pressRolesDescription">Create additional roles with the form below.</message>
+	<message key="manager.setup.availableRoles">Available Roles</message>
+	<message key="manager.setup.currentRoles">Current Roles</message>
+	<message key="manager.setup.submissionRoles">Submission Roles</message>
+	<message key="manager.setup.internalReviewRoles">Internal Review Roles</message>
+	<message key="manager.setup.externalReviewRoles">External Review Roles</message>
+	<message key="manager.setup.editorialRoles">Editorial Roles</message>
+	<message key="manager.setup.productionRoles">Production Roles</message>
+	<message key="manager.setup.masthead">Masthead</message>
+	<message key="manager.setup.files">Files</message>
+	<message key="manager.setup.submissionLibrary">Submission Library</message>
+	<message key="manager.setup.reviewLibrary">Review Library</message>
+	<message key="manager.setup.editorialLibrary">Editorial Library</message>
+	<message key="manager.setup.productionLibrary">Production Library</message>
+	<message key="manager.setup.productionTemplates">Production Templates</message>
+	<message key="manager.files.note">Note: The Files Browser is an advanced feature that allows the files and directories associated with a press to be viewed and manipulated directly.</message>
+	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Proposed Creative Commons Copyright Notices</h3>
+<h4>1. Proposed Policy for Presses That Offer Open Access</h4>
+Authors who publish with this press agree to the following terms:
+<ol type="a">
+	<li>Authors retain copyright and grant the press right of first publication with the work simultaneously licensed under a <a target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
+	<li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the press's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
+	<li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_new" href="http://opcit.eprints.org/oacitation-biblio.html">The Effect of Open Access</a>).</li>
+</ol>
+
+<h4>Proposed Policy for Presses That Offer Delayed Open Access</h4>
+Authors who publish with this press agree to the following terms:
+<ol type="a">
+	<li>Authors retain copyright and grant the press right of first publication, with the work [SPECIFY PERIOD OF TIME] after publication simultaneously licensed under a <a target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
+	 <li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the press's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
+	 <li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_new" href="http://opcit.eprints.org/oacitation-biblio.html"> The Effect of Open Access</a>).</li>
+</ol>]]></message>
+	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[Press will use a subject classification system available on the web.<br />
+Title of classification system]]></message>
+	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+<br /><br />
+Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
+	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Steps: Submission Queue &gt; Submission Review &gt; Submission Editing &gt; Table of Contents.<br /><br />
+Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Series Editors, go to Editors in Press Management.)]]></message>
+	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>To enable readers to locate online versions of the work cited by an author, the following options are available.</p>
+
+<ol>
+	<li><strong>Add a Reading Tool</strong><p>The Press Manager can add "Find References" to the Reading Tools that accompany published items, which enables readers to paste a reference's title and then search pre-selected scholarly databases for the cited work.</p></li>
+	<li><strong>Embed Links in the References</strong><p>The Layout Editor can add a link to references that can be found online by using the following instructions (which can be edited).</p></li>
+</ol>]]></message>
+	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
+<br /><br />
+Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
+<br /><br />
+<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
+
+	<!-- Stats and reports -->
 	<message key="manager.statistics.reports">Report Generator</message>
 	<message key="manager.statistics.reports.description">OMP generates reports that track the details associated with processing submissions to the press from the perspective of submissions, editors, reviewers, and sections, over a given period of time. Reports are generated in CSV format which requires a spreadsheet application to view.</message>
 	<message key="manager.statistics.statistics">Press Statistics</message>
@@ -536,5 +559,4 @@
 	<message key="manager.statistics.statistics.reviewerScore">Editor score</message>
 	<message key="manager.statistics.statistics.reviewsPerReviewer">No. of reviews</message>
 	<message key="manager.statistics.statistics.selectSections">Select the sections for calculating this press's peer-reviewed statistics.</message>
-	<message key="manager.people.showNoRole">Show users with no role</message>
 </locale>

@@ -2,7 +2,7 @@
 <!DOCTYPE locale SYSTEM "../../lib/pkp/dtd/locale.dtd">
 
 <!--
-  * locale/en_US/editor.xml
+  * editor.xml
   *
   * Copyright (c) 2003-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -14,11 +14,8 @@
 	<message key="editor.review.enrollReviewer">Enroll an Existing User as Reviewer</message>
 	<message key="editor.review.createReviewer">Create New Reviewer</message>
 	<message key="editor.monograph.reviewForms">Review Forms</message>
-	<message key="editor.regrets.link">View Regrets, Cancels, Previous Rounds</message>
-	<message key="editor.regrets.link">View Regrets, Cancels, Previous Rounds</message>
 	<message key="editor.responseDueDate">Response Due Date</message>
-	<message key="submission.art">Artwork</message>
-	<message key="submission.document">Document</message>
+
 
 	<message key="editor.monograph.reviewForms">Review Forms</message>
 	<message key="editor.monograph.selectReviewForm">Select Review Form</message>

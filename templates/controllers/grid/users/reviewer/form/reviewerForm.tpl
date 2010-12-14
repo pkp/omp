@@ -81,7 +81,7 @@
 		</div>
 
 		<!--  Create New Reviewer -->
-		<h3 id="createNew"><a href="#">{translate key="seriesEditor.review.createReviewer"}</a></h3>
+		<h3 id="createNew"><a href="#">{translate key="editor.review.createReviewer"}</a></h3>
 		<div id="reviewerCreationForm">
 			{fbvFormSection title="common.name"}
 				{fbvElement type="text" label="user.firstName" id="firstName" value=$firstName required="true"}

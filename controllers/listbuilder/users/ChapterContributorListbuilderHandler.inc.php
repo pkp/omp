@@ -48,7 +48,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 		// Basic configuration
-		$this->setTitle('inserts.contributors.button.addContributor');
+		$this->setTitle('listbuilder.contributors.addContributor');
 		$this->setSourceTitle('common.name');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Free text input
 		$this->setListTitle('submission.submit.currentContributors');

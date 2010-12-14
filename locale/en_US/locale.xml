@@ -11,59 +11,7 @@
   -->
 
 <locale name="en_US" full_name="U.S. English">
-	<!--
-	 * This file is organized into several major sections, separated
-	 * by comments like this one. These sections are called:
-	 *  COMMON - Contains frequently-used words
-	 *  ENTITIES - Contains terms pertaining to the system's major
-	 *             entities, eg: press, monograph
-	 *  INTERFACE - Contains phrases organized by the section of the
-	 *              user interface they appear in.
-	 *  LOG - Contains phrases related to log entries
-	 *  MISC - Entries that don't belong elsewhere.
-	 *  DEFAULT - Default settings for configuration items.
-	-->
-
-	<message key="submission.artwork.replaceFile">Replace File</message>
-	<message key="submission.artwork.permissions">Permissions</message>
-	<message key="submission.artwork.permissionForm">Permission Form</message>
-	<message key="submission.artwork.metadata">Artwork Metadata</message>
-	<message key="submission.artwork.caption">Artwork Caption</message>
-	<message key="submission.artwork.credit">Artwork Credit</message>
-	<message key="submission.artwork.copyrightOwner">Copyright Owner</message>
-	<message key="submission.artwork.copyrightContact">Contact (if not author/press)</message>
-	<message key="submission.artwork.permissionTerms">Permission Terms</message>
-	<message key="submission.artwork.placement">Placement in book</message>
-	<message key="submission.artwork.contactAuthor">Contact Author</message>
-	<message key="submission.artwork.type">Artwork Type</message>
-	<message key="submission.artwork.type.table">Table</message>
-	<message key="submission.artwork.type.figure">Figure</message>
-	<message key="submission.artwork.placementDetail">Table/Fig. No.</message>
-	<message key="submission.artwork.add">Add Artwork w/Permissions</message>
-	<message key="submission.chapter">Chapter</message>
-	<message key="submission.chapter.addChapter">Add Chapter</message>
-	<message key="common.details">Details</message>
-	<message key="user.accountInformation">Account Information</message>
-
-	<!-- review froms start -->
-	<message key="inserts.contributors.heading.info">Contributor Info</message>
-	<message key="inserts.contributors.button.addContributor">Add Contributor</message>
-	<message key="inserts.contributors.heading.newContributor">New Contributor</message>
-	<message key="inserts.contributors.isVolumeEditor">This contributor is a volume editor</message>
-	<message key="inserts.contributors.details">(+) Details</message>
-	<message key="inserts.contributors.newContributor.description">To enter a new contributor, please fill out the form below and click the 'Add Contributor' button.</message>
-	<message key="inserts.contributors.volumeEditor">Volume Editor</message>
-	<message key="inserts.contributors.volumeEditors">Volume Editors</message>
-	<message key="inserts.contributors.otherContributor">Other Contributor</message>
-	<message key="inserts.contributors.otherContributors">Other Contributors</message>
-	<message key="inserts.contributors.isVolumeEditor">This contributor is a volume editor.</message>
-	<message key="inserts.contributors.newContributor.formError.email">Email address is invalid</message>
-	<message key="inserts.contributors.newContributor.formError.lastName">Last name required</message>
-	<message key="inserts.contributors.newContributor.formError.firstName">First name required</message>
-	<message key="inserts.contributors.description">Enter each of the authors that contributed to the work by filling out profiles in the 'New Contributor' section below.</message>
-
-	<message key="underConstruction.newSpecs">Under Construction: accommodations for newer file specs</message>
-
+	<!-- General monograph keys -->
 	<message key="monograph.discipline">Academic discipline and sub-disciplines</message>
 	<message key="monograph.subjectClassification">Subject classification</message>
 	<message key="monograph.subject">Keywords</message>
@@ -72,10 +20,14 @@
 	<message key="monograph.coverageChron">Chronological or historical coverage</message>
 	<message key="monograph.coverageSample"> Research sample characteristics</message>
 	<message key="monograph.type">Type, method or approach</message>
+	<message key="monograph.description">Description</message>
+	<message key="monograph.language">Language</message>
+	<message key="monograph.authors">Authors</message>
+	<message key="monograph.title">Book Title</message>
+	<message key="monograph.contributors">Contributors</message>
+	<message key="monograph.commentsToEditor">Submitter Comments</message>
 
-	<message key="workflow.review.internalReview">Internal Review</message>
-	<message key="workflow.review.externalReview">External Review</message>
-
+	<!-- Production stage-->
 	<message key="production.assignment.new">New Production Assignment</message>
 	<message key="production.assignment.description">Complete the form below to create an assignable task.</message>
 	<message key="production.assignment">Production Assignment</message>
@@ -90,60 +42,18 @@
 	<message key="production.uploadGalley">Upload Galley</message>
 	<message key="production.uploadGalley.description">To upload a galley, fill out the form below and press 'upload'.</message>
 
-	<message key="monograph.artworkFile">Artwork File</message>
-	<message key="submission.layout.assignLayoutEditor">Assign Layout Editor</message>
-	<message key="submission.layout.uploadLayoutVersion">Upload Layout Version</message>
-	<message key="submission.layout.noLayoutFile">None (Upload final copyedit version as Layout Version prior to sending request)</message>
-	<message key="submission.layout.layoutComments">Layout Comments</message>
-	<message key="submission.page.layout">#{$id} Layout and Page Design</message>
-	<message key="submission.productionEditor">Production</message>
-	<message key="submission.page.art">#{$id} Images, Illustrations, and other Art</message>
-	<message key="manuscript.submissions">Manuscript Submissions</message>
-	<message key="manuscript.artwork">Artwork</message>
-	<message key="submission.changeSeries">Change to</message>
-	<message key="submission.confirmSubmit">Are you sure you wish to submit this manuscript to the press?</message>
-	<message key="submission.selectFilesForReview">Select the files that are to be reviewed by reviewers as part of this book's assessment and press Record.</message>
-	<message key="submission.stepX">Step {$step}.</message>
-	<message key="submission.files.downloadAll">Download All Files</message>
-	<message key="submission.mySubmissions">My Submissions</message>
-
-	<message key="submission.sent">Sent</message>
-	<message key="submission.internalReview"><![CDATA[Internal&nbsp;Review]]></message>
-	<message key="submission.externalReview"><![CDATA[External&nbsp;Review]]></message>
-	<message key="submission.copyediting">Copyediting</message>
-	<message key="submission.production">Production</message>
-	<message key="submission.copyedit">Copyedit</message>
-	<message key="submission.copyedit.mustUploadFileForInitialCopyedit">Request email cannot be sent until file is selected for copyediting in Editor Decision, Review page.</message>
-	<message key="editor.monograph.selectCopyeditor">Assign Copyeditor</message>
-	<message key="submission.copyedit.mustUploadFileForCopyedit">Request email cannot be sent until file is uploaded for copyediting.</message>
-	<message key="submission.copyedit.initialCopyedit">Initial Copyedit</message>
-	<message key="submission.copyedit.editorsCopyedit">Editor's Copyedit</message>
-	<message key="submission.copyedit.editorAuthorReview">Author Copyedit</message>
-	<message key="submission.copyedit.finalCopyedit">Final Copyedit</message>
-	<message key="submission.copyedit.copyeditVersion">C/E Version</message>
-	<message key="submission.copyedit.selectCopyeditor">Assign Copyeditor</message>
-	<message key="submission.copyedit.useFile">Use File</message>
-	<message key="submission.copyedit.copyeditComments">Copyedit Comments</message>
-	<message key="submission.copyedit.instructions">Copyedit Instructions</message>
-	<message key="manuscript.submission">Manuscript Submission</message>
-	<message key="submission.round"><![CDATA[Round&nbsp;{$round}]]></message>
-	<message key="submission.notifyAuthor">Notify Author</message>
-	<message key="submission.authorVersion">Author Version</message>
-	<message key="submission.editorVersion">Editor Version</message>
-	<message key="submission.editorAuthorRecord">Editor/Author Email Record</message>
-	<message key="submission.review.mustUploadFileForReview">Request email cannot be sent until a Review Version is in place.</message>
-	<message key="submission.internalPeerReview">Internal Peer Review</message>
-	<message key="submission.externalPeerReview">External Peer Review</message>
-	<message key="submissions.series">Series</message>
-	<message key="submissions.queuedReview">In Review</message>
-	<message key="submissions.addRevision">Add Revision</message>
-	<message key="reviewer.completedReviews">Done</message>
-
+	<!-- Editorial policies -->
 	<message key="manager.series.reviewed">Peer Reviewed</message>
 	<message key="manager.series.open">Open Submissions</message>
 	<message key="manager.series.indexed">Indexed</message>
 
-	<message key="reviewer.completedReviews">Done</message>
+	<!-- Library Files -->
+	<message key="grid.libraryFiles.column.files">Files</message>
+	<message key="grid.libraryFiles.submission.title">Submission Library</message>
+	<message key="grid.libraryFiles.editorial.title">Editorial Library</message>
+	<message key="grid.libraryFiles.review.title">Review Library</message>
+	<message key="grid.libraryFiles.production.title">Production Library</message>
+	<message key="grid.libraryFiles.productionTemplate.title">Production Template Library</message>
 
 	<!-- Used in submission review -->
 	<message key="reviewer.noneAssigned">No Assigned Reviewers</message>
@@ -213,40 +123,22 @@
 	<message key="reviewer.complete">Review Submitted</message>
 	<message key="reviewer.confirmSubmit">Are you sure you want to submit this review to the press?</message>
 	<message key="reviewer.complete.whatNext">Your review has been submitted successfully.  The editor may contact you again for more information.</message>
-
-
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
-<br /><br />
-Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
-
-	<message key="monograph.description">Description</message>
-	<message key="monograph.language">Language</message>
-	<message key="monograph.authors">Authors</message>
-	<message key="monograph.title">Book Title</message>
-	<message key="monograph.contributors">Contributors</message>
-	<message key="monograph.commentsToEditor">Submitter Comments</message>
-
-	<message key="submission.reviewForm">Review Form</message>
-	<message key="submission.editorDecision">Editor Decision</message>
-	<message key="submission.overview">Submission Overview</message>
-
+	<message key="workflow.review.internalReview">Internal Review</message>
+	<message key="workflow.review.externalReview">External Review</message>
 
 	<!-- series/categories/series -->
 	<message key="series.abbreviation">Abbreviation</message>
-
 	<message key="series.series">Series</message>
 	<message key="series.title">Series' Title</message>
 	<message key="series.abbreviation.example">(For example, Ancient Theatre Series=ATS)</message>
 	<message key="series.issn">ISSN</message>
 
-	<message key="submissionCategory.submissionCategories">Submission Categories</message>
-	<message key="submissionCategory.submissionCategory">Submission Category</message>
-	<message key="submissionCategory.title">Category Title</message>
-	<message key="submissionCategory.abbreviation.example">(For example, Otorhinolaryngology=ENT)</message>
-
-	<!-- common -->
+	<!--
+	 *
+	 * COMMON - This section contains the most frequently-used words
+	 *
+	-->
+	<message key="common.details">Details</message>
 	<message key="common.publish">Publish</message>
 	<message key="common.underway">Underway</message>
 	<message key="common.format">Format</message>
@@ -284,17 +176,6 @@ Note that if your site administrator has already registered this site with the P
 	<message key="common.listbuilder.completeForm">Please fill out the form completely.</message>
 	<message key="common.listbuilder.selectValidOption">Please select a valid option from the list.</message>
 	<message key="common.listbuilder.itemExists">You have submitted an item that already exists.</message>
-
-	<!--
-	 *
-	 * COMMON - This section contains the most frequently-used words
-	 *
-	-->
-
-	<!-- Submission list search engine -->
-	<message key="submissions.copyeditComplete">Copyedited</message>
-	<message key="submissions.layoutComplete">Layout edited</message>
-	<message key="submissions.proofreadingComplete">Proofread</message>
 
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>
@@ -397,7 +278,6 @@ Note that if your site administrator has already registered this site with the P
 	<!-- Reader Comments -->
 	<message key="comments.commentsOnMonograph">Comments on this monograph</message>
 	<message key="comments.authenticated"><![CDATA[by <a href="{$publicProfileUrl}" target="_parent">{$userName}</a>]]></message>
-
 	<message key="submission.comments.editorAuthorCorrespondence">Editor/Author Correspondence</message>
 	<message key="submission.comments.copyeditComments">Copyedit Comments</message>
 	<message key="submission.comments.viewableDescription"><![CDATA[These comments can be shared with the author.<br />
@@ -410,40 +290,6 @@ Note that if your site administrator has already registered this site with the P
 	<message key="submission.comments.saveAndEmailAuthor">Save and Email Author</message>
 	<message key="submission.comments.saveAndEmailEditor">Save and Email Editor</message>
 
-
-	<message key="admin.settings.oaiRegistrationDescription"><![CDATA[To have the contents of all presses hosted on this site indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your site's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.
-<br /><br />
-Note that the OAI interface can be disabled for this site by editing the OMP system configuration. Future versions of OMP will allow the OAI interface to be enabled or disabled for individual presses within the site.]]></message>
-
-
-
-	<!-- Languages -->
-
-
-	<message key="admin.languages.downloadUnavailable"><![CDATA[<p>Downloading language packs from the Public Knowledge Project web server is not currently available because:</p>
-	<ul>
-		<li>Your server does not have or allow execution of the GNU "tar" utility</li>
-		<li>OMP is unable to modify the locale registry file, typically "registry/locales.xml".</li>
-	</ul>
-<p>Language packs can be manually downloaded from the <a href="http://pkp.sfu.ca">PKP web site</a>.</p>]]></message>
-
-	<message key="admin.auth.defaultSourceDescription"><![CDATA[<p>Specifying a default authentication source other than OMP has the following effects:</p>
-<ul>
-	<li>If a user attempts to register a new account with this site with a username that exists on the authentication source (but not in the OMP database), the registration attempt is only allowed if the supplied password is valid for that user account.</li>
-</ul>]]></message>
-
-	<!-- System Information -->
-	<message key="admin.editSystemConfigInstructions"><![CDATA[Use this form to modify your system configuration (the <tt>config.inc.php</tt> file). Click Save to save your new configuration, or "Display" to simply display the updated configuration file and not modify your existing configuration.
-<br /><br />
-<span class="formError">Warning: Modifying these settings can potentially leave your site in an inaccessible state (requiring your configuration file to be manually fixed). It is strongly recommended that you do not make any changes unless you know exactly what you are doing.</span>]]></message>
-	<message key="admin.overwriteConfigFileInstructions"><![CDATA[<h4>NOTE!</div>
-<p>The system could not automatically overwrite the configuration file. To apply your configuration changes you must open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
-
-	<!-- Site Administrator Merge Users -->
-
-
 	<!-- General plugin information -->
 	<message key="plugins.categories.auth.description">Authorization Plugins allow Open Monograph Press to delegate user authentication tasks to other systems, such as LDAP servers.</message>
 	<message key="plugins.categories.citationFormats.description">Citation format plugins provide users with various formats in which to access monograph citations.</message>
@@ -453,89 +299,10 @@ Note that the OAI interface can be disabled for this site by editing the OMP sys
 	<message key="plugins.categories.oaiMetadataFormats">OAI Metadata Format Plugins</message>
 	<message key="plugins.categories.oaiMetadataFormats.description">These format plugins express metadata in OAI communications.</message>
 
-	<!-- Setup Step 1 -->
-
-	<message key="manager.setup.form.pressInitialsRequired">Press initials are required.</message>
-
-	<!-- Setup Step 2 -->
-
-
-	<message key="manager.setup.reviewProcessEmailDescription">Editors send
-	Reviewers the request to review with the submission attached to the email. Reviewers email editors their assent (or regrets), as well as the review and recommendation. Editors enter Reviewers' assent (or regrets), as well as the review and recommendation on the submission's Review page, to record the review process.</message>
-
-
-	<!-- Setup Step 3 -->
-	<message key="manager.setup.authorCopyrightNotice.sample"><![CDATA[<h3>Proposed Creative Commons Copyright Notices</h3>
-<h4>1. Proposed Policy for Presses That Offer Open Access</h4>
-Authors who publish with this press agree to the following terms:
-<ol type="a">
-	<li>Authors retain copyright and grant the press right of first publication with the work simultaneously licensed under a <a target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
-	<li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the press's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
-	<li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_new" href="http://opcit.eprints.org/oacitation-biblio.html">The Effect of Open Access</a>).</li>
-</ol>
-
-<h4>Proposed Policy for Presses That Offer Delayed Open Access</h4>
-Authors who publish with this press agree to the following terms:
-<ol type="a">
-	<li>Authors retain copyright and grant the press right of first publication, with the work [SPECIFY PERIOD OF TIME] after publication simultaneously licensed under a <a target="_new" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution License</a> that allows others to share the work with an acknowledgement of the work's authorship and initial publication in this press.</li>
-	 <li>Authors are able to enter into separate, additional contractual series for the non-exclusive distribution of the press's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this press.</li>
-	 <li>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) prior to and during the submission process, as it can lead to productive exchanges, as well as earlier and greater citation of published work (See <a target="_new" href="http://opcit.eprints.org/oacitation-biblio.html"> The Effect of Open Access</a>).</li>
-</ol>]]></message>
-	<message key="manager.setup.subjectClassificationDescription"><![CDATA[[Press will use a subject classification system available on the web.<br />
-Title of classification system]]></message>
-	<message key="manager.setup.registerPressForIndexingDescription"><![CDATA[To have the contents of this press indexed within a globally distributed system of research databases, <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">register</a> your press's URL with the Public Knowledge Project metadata <a href="http://pkp.sfu.ca/harvester/" target="_blank">harvester</a>. This tool collects the metadata from each indexed item in this press, enabling accurate and collective searching among the research sites that adhere to the <a href="http://www.openarchives.org/OAI/openarchivesprotocol.htm#Introduction" target="_blank">Open Archives Initiative Protocol for Metadata Harvesting</a>.
-<br /><br />
-Note that if your site administrator has already registered this site with the PKP Harvester, your press will be indexed automatically and you do not need to register your press.
-<br /><br />
-<a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
-
-	<!-- Setup Step 4 -->
-	<message key="manager.setup.basicEditorialStepsDescription"><![CDATA[Steps: Submission Queue &gt; Submission Review &gt; Submission Editing &gt; Table of Contents.<br /><br />
-Select a model for handling these aspects of the editorial process. (To designate a Managing Editor and Series Editors, go to Editors in Press Management.)]]></message>
-	<message key="manager.setup.referenceLinkingDescription"><![CDATA[<p>To enable readers to locate online versions of the work cited by an author, the following options are available.</p>
-
-<ol>
-	<li><strong>Add a Reading Tool</strong><p>The Press Manager can add "Find References" to the Reading Tools that accompany published items, which enables readers to paste a reference's title and then search pre-selected scholarly databases for the cited work.</p></li>
-	<li><strong>Embed Links in the References</strong><p>The Layout Editor can add a link to references that can be found online by using the following instructions (which can be edited).</p></li>
-</ol>]]></message>
-
-
-	<!-- People Management -->
-	<message key="manager.people.confirmDisable">Disable this user? This will prevent the user from logging into the system.
-
-You may optionally provide the user with a reason for disabling their account.</message>
-	<message key="manager.people.noAdministrativeRights"><![CDATA[Sorry, you do not have administrative rights over this user. This may be because:
-		<ul>
-			<li>The user is a site administrator</li>
-			<li>The user is active in presses you do not manage</li>
-		</ul>
-	This task must be performed by a site administrator.
-	]]></message>
-
-
-	<!-- Editor -->
-	<message key="editor.submissionReview.notes"><![CDATA[<ol>
-	<li>Highlighted items indicate action is required by editor.</li>
-	<li>"Due" is filled in when reviewer accepts request to review; it displays number of weeks to review's due date or (-) weeks that it is overdue.</li>
-</ol>]]></message>
-
-
-
-	<!-- Used by editor in submission review / editing -->
-	<message key="editor.monograph.selectReviewerNotes"><![CDATA[Name links to reviewer's profile.<br/>
-Ratings is out of 5 (Excellent).<br/>
-Weeks refers to average period of time to complete a review.<br/>
-Latest is date of most recently accepted review.<br/>
-Active is how many reviews are currently being considered or underway.]]></message>
-
-	<message key="seriesEditor.review.createReviewer">Create New Reviewer</message>
-
 	<!-- Login -->
 	<message key="user.login.registerNewAccount">Not a user? Register with this site</message>
 	<message key="user.login.resetPasswordInstructions"><![CDATA[For security reasons, this system emails a reset password to registered users, rather than recalling the
 current password.<br /><br />Enter your email address below to reset your password. A confirmation will be sent to this email address.]]></message>
-
-	<message key="submission.prospectusFile">Prospectus File</message>
 
 	<!-- Information Center -->
 	<message key="informationCenter.informationCenter">Information Center</message>
@@ -552,7 +319,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="informationCenter.notify.selectUser">Please select users to send the message to.</message>
 	<message key="informationCenter.notify.warning">Please ensure that you have filled out the message field and selected at least one recipient.</message>
 
-
 	<!-- Registration -->
 	<message key="user.register.completeForm">Fill in this form to register with this press.</message>
 	<message key="user.register.selectPress">Select a press to register with</message>
@@ -568,8 +334,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.register.reviewerDescriptionNoInterests">Willing to conduct peer review of submissions to the press.</message>
 	<message key="user.register.reviewerDescription">Willing to conduct peer review of submissions to the press.</message>
 	<message key="user.register.reviewerInterests">Identify reviewing interests (substantive areas and research methods):</message>
-
-
 
 	<!-- Search -->
 	<message key="search.browseAuthorIndex">Browse Author Index</message>
@@ -589,16 +353,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 <li>Exclude a word by prefixing it with <strong>-</strong> or <em>NOT</em>; e.g. <em>online -politics</em> or <em>online NOT politics</em></li>
 <li>Use <strong>*</strong> in a term as a wildcard to match any sequence of characters; e.g., <em>soci* morality</em> would match documents containing "sociological" or "societal"</li>
 </ul>]]></message>
-
-	<message key="seriesEditor.regrets.breadcrumb">Regrets</message>
-	<message key="seriesEditor.regrets.title">#{$monographId} Reviewer Regrets, Cancellations, and Earlier Rounds</message>
-	<message key="seriesEditor.regrets">Regrets</message>
-	<message key="seriesEditor.regrets.link">View Regrets, Cancels, Previous Rounds</message>
-	<message key="seriesEditor.regrets.reviewRound">Peer Review, Round {$round}</message>
-	<message key="seriesEditor.regrets.decisionRound">Editor Decision, Round {$round}</message>
-	<message key="seriesEditor.regrets.regretsAndCancels">Reviewer Regrets and Cancellations</message>
-	<message key="seriesEditor.regrets.regret">Regret</message>
-	<message key="seriesEditor.regrets.result">Result</message>
 
 	<!-- Interstitial page for PDFs -->
 	<message key="monograph.pdf.title">Portable Document Format (PDF)</message>
@@ -658,15 +412,12 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.aboutOMPPress"><![CDATA[This press uses Open Monograph Press {$ompVersion}, which is open source press management and publishing software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
 	<message key="about.aboutOMPSite"><![CDATA[This site uses Open Monograph Press {$ompVersion}, which is open source press management and publishing software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
 
-	<!-- Announcement -->
-
 	<!-- Help -->
 	<message key="help.ompHelp">Open Monograph Press Help</message>
 	<message key="help.ompHelpAbbrev">OMP Help</message>
 	<message key="help.searchReturnResults">Return to Search Results</message>
 
-
-<!-- Installer -->
+	<!-- Installer -->
 	<message key="installer.ompInstallation">OMP Installation</message>
 	<message key="installer.ompUpgrade">OMP Upgrade</message>
 	<message key="installer.installApplication">Install Open Monograph Press</message>
@@ -760,8 +511,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.review.reviewFileByProxy">The Editor, {$userName}, has uploaded a review file for round {$round} of submission {$monographId} on behalf of the reviewer, {$reviewerName}.</message>
 	<message key="log.review.reviewerFile">A reviewer file has been uploaded.</message>
 	<message key="log.editor.decision">An editor decision ({$decision}) for monograph {$monographId} was recorded by {$editorName}.</message>
-
-
 	<message key="log.copyedit.initiate">Copyediting on submission {$monographId} has been commenced by {$copyeditorName}.</message>
 	<message key="log.copyedit.copyeditFileSet">The default copyedit file has been chosen.</message>
 	<message key="log.copyedit.initialEditComplete">{$copyeditorName} has completed the initial copy edit of submission {$monographId}.</message>
@@ -769,27 +518,22 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="log.copyedit.copyeditorAssigned">{$copyeditorName} has been assigned to copyedit submission {$monographId}.</message>
 	<message key="log.copyedit.copyeditorFile">A copyeditor version of the submission file has been uploaded.</message>
 	<message key="log.copyedit.authorFile">A version of the submission file copyedited by the author has been uploaded.</message>
-
 	<message key="log.layout.layoutEditorAssigned">{$editorName} has been assigned as layout editor for submission {$monographId}.</message>
 	<message key="log.layout.layoutEditorUnassigned">{$editorName} has been unassigned as layout editor for submission {$monographId}.</message>
 	<message key="log.layout.layoutEditComplete">{$editorName} has completed layout editing for submission {$monographId}.</message>
-
 	<message key="log.editor.metadataModified">The metadata for this monograph was modified by {$editorName}.</message>
 	<message key="log.editor.editorFile">An editor version of the submission file has been uploaded.</message>
 	<message key="log.editor.archived">The submission {$monographId} has been archived.</message>
 	<message key="log.editor.restored">The submission {$monographId} has been restored to the queue.</message>
 	<message key="log.editor.editorAssigned">{$editorName} has been assigned as editor to submission {$monographId}.</message>
 	<message key="log.editor.submissionExpedited">{$editorName} has expedited the editing process for monograph {$monographId}.</message>
-
 	<message key="log.proofread.assign">{$assignerName} has assigned {$proofreaderName} to proofread submission {$monographId}.</message>
 	<message key="log.proofread.complete">{$proofreaderName} has submitted {$monographId} for scheduling.</message>
-
 	<message key="log.imported">{$userName} has imported monograph {$monographId}.</message>
 
 	<!-- Notification Types -->
 	<message key="notification.mailListDescription">Enter your email address to receive immediate notifications of important new content added to the press.</message>
 	<message key="notification.notificationsPublicDescription">This page shows important updates associated with this press such as new monographs or announcements.  You may subscribe to these notifications through RSS feeds (by clicking on the images to the right), or <![CDATA[  <a href="{$emailUrl}">through email.</a>]]></message>
-
 	<message key="notification.type.monographSubmitted">A new monograph, "{$param}", has been submitted.</message>
 	<message key="notification.type.copyeditComment">A copyeditor has left a comment on "{$param}".</message>
 	<message key="notification.type.editing">Editing Events</message>
@@ -807,18 +551,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="notification.type.submissionComment">An editor has made a comment on "{$param}".</message>
 	<message key="notification.type.submissions">Submission Events</message>
 	<message key="notification.type.userComment">A reader has made a comment on "{$param}"</message>
-
-
-	<!-- RT Versions -->
-
-	<!-- RT Contexts -->
-
-	<!-- RT Searches -->
-
-	<message key="rt.admin.validateUrls.description"><![CDATA[Possibly invalid URLs for search sites are displayed below.<br/>
-You should manually verify any URLs marked as invalid, as this test is not 100% accurate.<br/>
-Validation may fail on search URLs that require posted form data.]]></message>
-
 
 	<!--
 	 *

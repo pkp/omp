@@ -7,15 +7,11 @@
   * Copyright (c) 2003-2010 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
-  * Localization strings for the en_US (U.S. English) locale (default press settings).
+  * Localization strings for the en_US (U.S. English) locale (Default settings for setup items.).
   -->
 
 <locale name="en_US" full_name="U.S. English">
-	<!--
-	 *
-	 * DEFAULT - Default settings for setup items.
-	 *
-	-->
+	<!-- Genre defaults -->
 	<message key="default.genres.artwork">Artwork</message>
 	<message key="default.genres.appendix">Appendix</message>
 	<message key="default.genres.appendix.designation">99A</message>
@@ -37,6 +33,7 @@
 	<message key="default.genres.photo">Photo</message>
 	<message key="default.genres.illustration">Illustration</message>
 
+	<!-- Publication format defaults -->
 	<message key="default.publicationFormats.hardcover">Hardcover</message>
 	<message key="default.publicationFormats.hardcover.designation">HC</message>
 	<message key="default.publicationFormats.softcover">Softcover</message>
@@ -44,6 +41,7 @@
 	<message key="default.publicationFormats.ebook">EBook</message>
 	<message key="default.publicationFormats.ebook.designation">EBook</message>
 
+	<!-- Group defaults -->
 	<message key="default.groups.name.siteAdmin">Site Admin</message>
 	<message key="default.groups.plural.siteAdmin">Site Admins</message>
 	<message key="default.groups.name.pressManager">Press manager</message>
@@ -104,6 +102,7 @@
 	<message key="default.groups.plural.reader">Readers</message>
 	<message key="default.groups.abbrev.reader">READ</message>
 
+	<!-- Default press settings -->
 	<message key="default.pressSettings.checklist.notPreviouslyPublished">The submission has not been previously published, nor is it before another press for consideration (or an explanation has been provided in Comments to the Editor).</message>
 	<message key="default.pressSettings.checklist.fileFormat">The submission file is in the Microsoft Word, RTF, OpenDocument, or WordPerfect file format.</message>
 	<message key="default.pressSettings.checklist.addressesLinked">Where available, URLs for the references have been provided.</message>
