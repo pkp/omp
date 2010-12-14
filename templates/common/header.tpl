@@ -36,7 +36,7 @@
 	{/foreach}
 
 	<!-- Base Jquery -->
-	{if $allowCDN}<script src="http://www.google.com/jsapi"></script>
+	{if $allowCDN}<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">{literal}
 		<!--
 		// Provide a local fallback if the CDN cannot be reached
