@@ -206,7 +206,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 			$this->addColumn(new GridColumn('select',
 				'common.select',
 				null,
-				'controllers/grid/files/finalDraftFiles/gridRowSelectInput.tpl',
+				'controllers/grid/gridRowSelectInput.tpl',
 				$cellProvider)
 			);
 		}

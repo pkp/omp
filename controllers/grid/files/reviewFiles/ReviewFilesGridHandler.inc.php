@@ -179,7 +179,7 @@ class ReviewFilesGridHandler extends GridHandler {
 			$this->addColumn(new GridColumn('select',
 				'common.select',
 				null,
-				'controllers/grid/files/reviewFiles/gridRowSelectInput.tpl',
+				'controllers/grid/gridRowSelectInput.tpl',
 				$cellProvider)
 			);
 		}

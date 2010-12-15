@@ -65,7 +65,7 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 		$this->addColumn(new GridColumn('select',
 			'common.select',
 			null,
-			'controllers/grid/files/reviewFiles/gridRowSelectInput.tpl',
+			'controllers/grid/gridRowSelectInput.tpl',
 			$reviewCellProvider)
 		);
 

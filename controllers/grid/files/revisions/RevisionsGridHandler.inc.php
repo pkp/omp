@@ -181,7 +181,7 @@ class RevisionsGridHandler extends GridHandler {
 			$this->addColumn(new GridColumn('select',
 				'common.select',
 				null,
-				'controllers/grid/files/revisions/gridRowSelectInput.tpl',
+				'controllers/grid/gridRowSelectInput.tpl',
 				$cellProvider)
 			);
 		}
