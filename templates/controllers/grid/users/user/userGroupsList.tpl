@@ -8,7 +8,7 @@
  *}
 
 {assign var=cellId value="cell-"|concat:$id}
-<span id="{$cellId}">
+<span id="{$cellId|escape}">
 	<ul>	
 	{foreach from=$userGroups->toArray() item=userGroup}
 		<li>

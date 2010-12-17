@@ -8,14 +8,14 @@
  *}
 {assign var="listbuilderId" value=$listbuilder->getId()}
 
-<div id="{$listbuilderId}">
+<div id="{$listbuilderId|escape}">
 	<div class="wrapper">
-		<div class="unit size2of5" id="source-{$listbuilderId}{if $itemId}-{$itemId}{/if}">
+		<div class="unit size2of5" id="source-{$listbuilderId|escape}{if $itemId}-{$itemId|escape}{/if}">
  			<ul>
 				<li>
 					<span>
-						<select name="selectList-{$listbuilderId}" id="selectList-{$listbuilderId}" class="field select">
-							<option>{translate key='manager.setup.selectOne'}</option>
+						<select name="selectList-{$listbuilderId|escape}" id="selectList-{$listbuilderId|escape}" class="field select">
+							<option>{translate key="manager.setup.selectOne"}</option>
 							{foreach from=$listbuilder->getPossibleItemList() item=item}{$item}{/foreach}
 						</select>
 					</span>
@@ -23,10 +23,10 @@
 			</ul>
 		</div>
 		<div class="unit size1of10 listbuilder_controls">
-			<a href="#" id="add-{$listbuilderId}{if $itemId}-{$itemId}{/if}" onclick="return false;" class="add_item"></a>
-			<a href="#" id="delete-{$listbuilderId}{if $itemId}-{$itemId}{/if}" onclick="return false;" class="remove_item"></a>
+			<a href="#" id="add-{$listbuilderId|escape}{if $itemId}-{$itemId|escape}{/if}" onclick="return false;" class="add_item"></a>
+			<a href="#" id="delete-{$listbuilderId|escape}{if $itemId}-{$itemId|escape}{/if}" onclick="return false;" class="remove_item"></a>
 		</div>
-		<div id="results-{$listbuilderId}{if $itemId}-{$itemId}{/if}" class="unit size1of2 lastUnit listbuilder_results">
+		<div id="results-{$listbuilderId|escape}{if $itemId}-{$itemId|escape}{/if}" class="unit size1of2 lastUnit listbuilder_results">
 			<ul>
 				<li>
 					<label class="desc">
@@ -40,9 +40,9 @@
 	<script type='text/javascript'>
 	<!--
 	{literal}
-		addItem("{/literal}{$addUrl}{literal}", "{/literal}{$listbuilderId}{if $itemId}-{$itemId}{/if}{literal}", "{/literal}{$localizedButtons}{literal}");
-		deleteItems("{/literal}{$deleteUrl}{literal}", "{/literal}{$listbuilderId}{if $itemId}-{$itemId}{/if}{literal}");
-		selectRow("{/literal}{$listbuilderId}{if $itemId}-{$itemId}{/if}{literal}");
+		addItem("{/literal}{$addUrl|escape:"javascript"}{literal}", "{/literal}{$listbuilderId|escape:"javascript"}{if $itemId}-{$itemId|escape:"javascript"}{/if}{literal}", "{/literal}{$localizedButtons|escape:"javascript"}{literal}");
+		deleteItems("{/literal}{$deleteUrl|escape:"javascript"}{literal}", "{/literal}{$listbuilderId|escape:"javascript"}{if $itemId}-{$itemId|escape:"javascript"}{/if}{literal}");
+		selectRow("{/literal}{$listbuilderId|escape:"javascript"}{if $itemId}-{$itemId|escape:"javascript"}{/if}{literal}");
 	{/literal}
 	// -->
 	</script>
