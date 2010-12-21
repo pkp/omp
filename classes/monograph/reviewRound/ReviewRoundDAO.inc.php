@@ -208,7 +208,7 @@ class ReviewRoundDAO extends DAO {
 				INNER JOIN review_round_files rrf
 					ON rr.review_type = rrf.review_type AND rr.round = rrf.round AND
 				INNER JOIN monograph_files mf
-					ON rr.submission_id = mf.monograph_id AND rrf.file_id = mf.file_id AND rrf.file_id = mf.file_id
+					ON rr.submission_id = mf.monograph_id AND rrf.file_id = mf.file_id
 				LEFT JOIN monograph_artwork_files af ON mf.file_id = af.file_id AND mf.revision = af.revision
 			WHERE rr.submission_id = ?',
 			(int)$monographId

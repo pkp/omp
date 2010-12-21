@@ -219,7 +219,7 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 		// Files
 		$reviewAssignment->setReviewFile($this->submissionFileDao->getRevision($reviewFileId, $row['review_revision']));
 		$reviewAssignment->setReviewerFile($this->submissionFileDao->getLatestRevision($row['reviewer_file_id']));
-		$reviewAssignment->setReviewerFileRevisions($this->submissionFileDao->getLatestRevisionRevisions($row['reviewer_file_id']));
+		$reviewAssignment->setReviewerFileRevisions($this->submissionFileDao->getLatestRevisions($row['reviewer_file_id']));
 
 		// Comments
 		$reviewAssignment->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['submission_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));

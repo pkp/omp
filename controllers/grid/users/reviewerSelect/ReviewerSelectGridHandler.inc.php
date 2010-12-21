@@ -52,13 +52,11 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-		$press =& $request->getPress();
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_PKP_SUBMISSION));
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Retrieve the submissionContributors associated with this monograph to be displayed in the grid
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-
 		$doneMin = $request->getUserVar('doneMin');
 		$doneMax = $request->getUserVar('doneMax');
 		$avgMin = $request->getUserVar('avgMin');
@@ -69,7 +67,9 @@ class ReviewerSelectGridHandler extends GridHandler {
 		$activeMax = $request->getUserVar('activeMax');
 		$interests = null;
 
-		$data =& $seriesEditorSubmissionDao->getFilteredReviewers($press->getId(), $doneMin, $doneMax, $avgMin, $avgMax, $lastMin, $lastMax, $activeMin, $activeMax, $interests);
+		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$data =& $seriesEditorSubmissionDao->getFilteredReviewers($monograph->getPressId(), $doneMin, $doneMax, $avgMin, $avgMax,
+					$lastMin, $lastMax, $activeMin, $activeMax, $interests, $monograph->getId(), $monograph->getCurrentRound());
 		$this->setData($data);
 
 		// Columns
@@ -158,21 +158,27 @@ class ReviewerSelectGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 */
 	function updateReviewerSelect($args, &$request) {
-		$press =& $request->getPress();
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
 		// Retrieve the filtered list of reviewers
+		$doneMin = (int) $request->getUserVar('doneMin');
+		$doneMax = (int) $request->getUserVar('doneMax');
+		$avgMin = (int) $request->getUserVar('avgMin');
+		$avgMax = (int) $request->getUserVar('avgMax');
+		$lastMin = (int) $request->getUserVar('lastMin');
+		$lastMax = (int) $request->getUserVar('lastMax');
+		$activeMin = (int) $request->getUserVar('activeMin');
+		$activeMax = (int) $request->getUserVar('activeMax');
+		$interests = $request->getUserVar('interestSearchKeywords');
+		if(isset($interests) && is_array($interests)) {
+			$interests = array_map('urldecode', $interests); // The interests are coming in encoded -- Decode them for DB storage
+		} else {
+			$interests = array();
+		}
+
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-
-		$doneMin = $request->getUserVar('doneMin');
-		$doneMax = $request->getUserVar('doneMax');
-		$avgMin = $request->getUserVar('avgMin');
-		$avgMax = $request->getUserVar('avgMax');
-		$lastMin = $request->getUserVar('lastMin');
-		$lastMax = $request->getUserVar('lastMax');
-		$activeMin = $request->getUserVar('activeMin');
-		$activeMax = $request->getUserVar('activeMax');
-		$interests = $request->getUserVar('interestsKeywords');
-
-		$data =& $seriesEditorSubmissionDao->getFilteredReviewers($press->getId(), $doneMin, $doneMax, $avgMin, $avgMax, $lastMin, $lastMax, $activeMin, $activeMax, $interests);
+		$data =& $seriesEditorSubmissionDao->getFilteredReviewers($monograph->getPressId(), $doneMin, $doneMax, $avgMin, $avgMax,
+					$lastMin, $lastMax, $activeMin, $activeMax, $interests, $monograph->getId(), $monograph->getCurrentRound());
 		$this->setData($data);
 
 		// Re-display the grid

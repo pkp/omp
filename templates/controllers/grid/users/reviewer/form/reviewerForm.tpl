@@ -7,41 +7,45 @@
  * Review assignment form
  *
  *}
-{assign var='uniqueId' value=""|uniqid}
 
 {modal_title id="#addReviewer" key='editor.monograph.addReviewer' iconClass="fileManagement" canClose=1}
 
 <script type="text/javascript">{literal}
 	<!--
 	$(function() {
-		getAutocompleteSource("{/literal}{url op="getReviewerAutocomplete" monographId=$monographId round=$round escape=false}{literal}", "");
+		getAutocompleteSource("{/literal}{url op="getReviewerAutocomplete" monographId=$monographId round=$round escape=false}{literal}", "reviewerSearch");
+		getAutocompleteSource("{/literal}{url op="getReviewerRoleAssignmentAutocomplete" monographId=$monographId round=$round escape=false}{literal}", "enrollSearch");
 		$("#responseDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
 		$("#reviewDueDate").datepicker({ dateFormat: 'yy-mm-dd' });
 		$("#sourceTitle").addClass('required');
-		$("#reviewerSearch").accordion({
-			autoHeight: false,
+		{/literal}{if $selectionType}{assign var=selectedTab value=$selectionType-1}{else}{assign var=selectedTab value=0}{/if}{literal}
+		$("#reviewerSearch").tabs({
 			collapsible: true,
-			change: function(event, ui) {
-				var newId = ui.newHeader.attr("id");
-				$("#selectionType").val(newId); // Set selection type input to id of open tab
+			selected: {/literal}{$selectedTab}{literal},
+			select: function(event, ui) {
+				var selected = ui.tab.id;
 
 				// Make current selection type's required fields required
-				switch(newId){
-					case 'searchByName':
-						$("#sourceTitle").addClass('required');
-						$(".advancedReviewerSelect").removeClass('required');
-						$("#firstname, #lastname, #username, #email").removeClass('required');
+				switch(selected){
+					case 'tab-1': // Search by name
+						$("#selectionType").val({/literal}{$smarty.const.REVIEWER_SELECT_SEARCH}{literal}); // Set selection type input to id of open tab
+						$("#sourceTitle-reviewerSearch").addClass('required');
+						$("#firstname, #lastname, #username, #email, .advancedReviewerSelect, #sourceTitle-enrollSearch").removeClass('required');
 						break;
-					case 'advancedSearch':
-						$("#sourceTitle").removeClass('required');
+					case 'tab-2': // Advanced search
+						$("#selectionType").val({/literal}{$smarty.const.REVIEWER_SELECT_ADVANCED}{literal}); // Set selection type input to id of open tab
 						$(".advancedReviewerSelect").addClass('required');
-						$("#firstname, #lastname, #username, #email").removeClass('required');
+						$("#firstname, #lastname, #username, #email, #sourceTitle-enrollSearch, #sourceTitle-enrollSearch").removeClass('required');
 						break;
-					case 'createNew':
-						$("#sourceTitle").removeClass('required');
-						$(".advancedReviewerSelect").removeClass('required');
-						$("#firstName, #lastName, #username, #email").addClass('required');
-						$("#email").addClass('email');
+					case 'tab-3': // Create new reviewer
+						$("#selectionType").val({/literal}{$smarty.const.REVIEWER_SELECT_CREATE}{literal}); // Set selection type input to id of open tab
+						$("#firstname, #lastname, #username, #email").addClass('required');
+						$(".advancedReviewerSelect, #sourceTitle-enrollSearch, #sourceTitle-enrollSearch").removeClass('required');
+						break;
+					case 'tab-4': // Enroll existing user as reviewer
+						$("#selectionType").val({/literal}{$smarty.const.REVIEWER_SELECT_ENROLL}{literal}); // Set selection type input to id of open tab
+						$("#sourceTitle-enrollSearch").addClass('required');
+						$("#firstname, #lastname, #username, #email, .advancedReviewerSelect, #sourceTitle-enrollSearch").removeClass('required');
 						break;
 				}
 
@@ -50,46 +54,55 @@
 
 		$("#interests").tagit({
 			// This is the list of interests in the system used to populate the autocomplete
-			availableTags: [{/literal}{foreach name=existingInterests from=$existingInterests item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.existingInterests.last}, {/if}{/foreach}]{literal}
+			availableTags: [{/literal}{foreach name=existingInterests from=$existingInterests item=interest}"{$interest|escape|escape:'javascript'}"{if !$smarty.foreach.existingInterests.last}, {/if}{/foreach}]{literal},
+			currentTags: []
 		});
 	});
 	// -->
 {/literal}</script>
 
-<form name="addReviewerForm" id="addReviewer" method="post" action="{url op="updateReviewer"}" >
-	<input type="hidden" name="monographId" value="{$monographId|escape}" />
+<form name="addReviewerForm" id="addReviewer" method="post" action="{url op="updateReviewer" monographId=$monographId}" >
 	<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignmentId}" />
 	<input type="hidden" name="reviewType" value="{$reviewType|escape}" />
 	<input type="hidden" name="round" value="{$round|escape}" />
-	<input type="hidden" name="selectionType" id="selectionType" value="searchByName" /> <!--  Holds the type of reviewer selection being used -->
+	<input type="hidden" name="selectionType" id="selectionType" value="{if $selectionType == 0}1{else}{$selectionType}{/if}" /> <!--  Holds the type of reviewer selection being used -->
 
-	<div id="reviewerSearch" style="margin:7px;">
-		<!--  Reviewer autosuggest selector -->
-		<h3 id="searchByName"><a href="#">{translate key="manager.reviewerSearch.searchByName"}</a></h3>
-		<div id="reviewerNameSearch">
+	<div id="reviewerSearch">
+		<ul>
+			<li><a id="tab-1" href="#nameSearch">{translate key="manager.reviewerSearch.searchByName.short"}</a></li>
+			<li><a id="tab-2" href="#advancedSearch">{translate key="manager.reviewerSearch.advancedSearch.short"}</a></li>
+			<li><a id="tab-3" href="#createNew">{translate key="editor.review.createReviewer"}</a></li>
+			<li><a id="tab-4" href="#assignExisting">{translate key="editor.review.enrollReviewer.short"}</a></li>
+		</ul>
+		<!-- Reviewer autosuggest selector -->
+		<div id="nameSearch">
+			<h3>{translate key="manager.reviewerSearch.searchByName"}</h3>
 			{fbvFormSection}
-				{fbvElement type="text" id="sourceTitle-" name="reviewerSelectAutocomplete" label="user.role.reviewer" class="required" value=$userNameString|escape }
-				<input type="hidden" id="sourceId-" name="reviewerId" />
+				{fbvElement type="text" id="sourceTitle-reviewerSearch" name="reviewerSelectAutocomplete" label="user.role.reviewer" required="true" class="required" value=$userNameString|escape }
+				<input type="hidden" id="sourceId-reviewerSearch" name="reviewerId" />
 			{/fbvFormSection}
 		</div>
 
-		<!--  Advanced reviewer search -->
-		<h3 id="advancedSearch"><a href="#">{translate key="manager.reviewerSearch.advancedSearch"}</a></h3>
-		<div id="reviewerAdvancedSearch">
+		<!-- Advanced reviewer search -->
+		<div id="advancedSearch">
+			<h3>{translate key="manager.reviewerSearch.advancedSearch"}</h3>
 			{url|assign:reviewerSelectorUrl router=$smarty.const.ROUTE_COMPONENT component="reviewerSelector.ReviewerSelectorHandler" op="fetchForm" monographId=$monographId}
 			{load_url_in_div id="reviewerSelectorContainer" url="$reviewerSelectorUrl"}
 		</div>
 
-		<!--  Create New Reviewer -->
-		<h3 id="createNew"><a href="#">{translate key="editor.review.createReviewer"}</a></h3>
-		<div id="reviewerCreationForm">
+		<!-- Create New Reviewer -->
+		<div id="createNew">
+			<h3>{translate key="editor.review.createReviewer"}</h3>
+			{fbvFormSection title="user.group"}
+				{fbvElement type="select" name="userGroupId" id="userGroupId" from=$userGroups translate=false label="editor.review.userGroupSelect" required="true"}
+			{/fbvFormSection}
 			{fbvFormSection title="common.name"}
-				{fbvElement type="text" label="user.firstName" id="firstName" value=$firstName required="true"}
-				{fbvElement type="text" label="user.middleName" id="middleName" value=$middleName}
-				{fbvElement type="text" label="user.lastName" id="lastName" value=$lastName required="true"}
+				{fbvElement type="text" label="user.firstName" id="firstname" value=$firstName required="true"}
+				{fbvElement type="text" label="user.middleName" id="middlename" value=$middleName}
+				{fbvElement type="text" label="user.lastName" id="lastname" value=$lastName required="true"}
 			{/fbvFormSection}
 
-			{fbvFormSection title="user.affiliation" for="affiliation" float=$fbvStyles.float.LEFT}
+			{fbvFormSection title="user.affiliation" for="affiliation"}
 				{fbvElement type="textarea" id="affiliation" value=$affiliation size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
 			{/fbvFormSection}
 
@@ -101,9 +114,21 @@
 				{fbvElement type="text" label="user.username" id="username" value=$username required="true"} <br />
 			{/fbvFormSection}
 
-			{fbvFormSection title="user.email" for="email"}
-				{fbvElement type="text" id="email" value=$email required="true"}
+			{fbvFormSection for="email"}
+				{fbvElement type="text" label="user.email" id="email" class="email" value=$email required="true"}
 				{fbvElement type="checkbox" id="sendNotify" value="1" label="manager.people.createUserSendNotify" checked=$sendNotify}
+			{/fbvFormSection}
+		</div>
+
+		<!-- Assign reviewer role to existing reviewer -->
+		<div id="assignExisting">
+			<h3>{translate key="editor.review.enrollReviewer"}</h3>
+			{fbvFormSection title="user.group"}
+				{fbvElement type="select" name="userGroupId" id="userGroupId" from=$userGroups translate=false label="editor.review.userGroupSelect" required="true"}
+			{/fbvFormSection}
+			{fbvFormSection}
+				{fbvElement type="text" id="sourceTitle-enrollSearch" name="userEnrollmentAutocomplete" label="user.role.reviewer" required="true" class="required" value=$userNameString|escape }
+				<input type="hidden" id="sourceId-enrollSearch" name="userId" />
 			{/fbvFormSection}
 		</div>
 	</div>

@@ -16,8 +16,24 @@ import('lib.pkp.classes.form.Form');
 
 class ReviewerSelectorForm extends Form {
 
-	/** @var int */
+	/** @var $_monographId int */
 	var $_monographId;
+
+	/**
+	 * Set the monograph ID
+	 * @param $monographId int
+	 */
+	function setMonographId($monographId) {
+	    $this->_monographId = $monographId;
+	}
+
+	/**
+	 * Get the monograph ID
+	 * @return int
+	 */
+	function getMonographId() {
+	    return $this->_monographId;
+	}
 
 	/**
 	 * Constructor.
@@ -25,8 +41,7 @@ class ReviewerSelectorForm extends Form {
 	function ReviewerSelectorForm($monographId = null) {
 		parent::Form('controllers/reviewerSelector/advancedSearchForm.tpl');
 
-		$this->_monographId = $monographId;
-
+		$this->setMonographId($monographId);
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -43,6 +58,7 @@ class ReviewerSelectorForm extends Form {
 		$reviewerValues = $seriesEditorSubmissionDAO->getAnonymousReviewerStatistics();
 
 		$templateMgr->assign('reviewerValues', $reviewerValues);
+		$templateMgr->assign('monographId', $this->getMonographId());
 
 		return parent::fetch($request);
 	}

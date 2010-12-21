@@ -52,18 +52,19 @@ class ReviewerSelectorHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function fetchForm($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
+		// Get the monograph
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$interestDao =& DAORegistry::getDAO('InterestDAO');
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('monographId', $monographId);
-		$templateMgr->assign('existingInterests', implode(",", $interestDao->getAllUniqueInterests()));
+		$templateMgr->assign('monograph', $monograph->getId());
+		$templateMgr->assign('existingInterests', $interestDao->getAllUniqueInterests());
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
 
 		// Form handling
 		import('controllers.reviewerSelector.form.ReviewerSelectorForm');
-		$reviewerSelectorForm = new ReviewerSelectorForm($monographId);
+		$reviewerSelectorForm = new ReviewerSelectorForm($monograph->getId());
 		$reviewerSelectorForm->initData();
 
 		$json = new JSON('true', $reviewerSelectorForm->fetch($request));

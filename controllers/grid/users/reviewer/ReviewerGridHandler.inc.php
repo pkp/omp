@@ -20,6 +20,12 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 import('controllers.grid.users.reviewer.ReviewerGridCellProvider');
 import('controllers.grid.users.reviewer.ReviewerGridRow');
 
+// Reviewer selection types
+define('REVIEWER_SELECT_SEARCH',		0x00000001);
+define('REVIEWER_SELECT_ADVANCED',		0x00000002);
+define('REVIEWER_SELECT_CREATE',		0x00000003);
+define('REVIEWER_SELECT_ENROLL',		0x00000004);
+
 class ReviewerGridHandler extends GridHandler {
 	/** @var Monograph */
 	var $_submission;
@@ -32,21 +38,8 @@ class ReviewerGridHandler extends GridHandler {
 
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'addReviewer', 'editReviewer', 'updateReviewer', 'deleteReviewer',
-				'getReviewerAutocomplete', 'readReview', 'createReviewer', 'editReminder', 'sendReminder'));
+				'getReviewerAutocomplete', 'getReviewerRoleAssignmentAutocomplete', 'readReview', 'createReviewer', 'editReminder', 'sendReminder'));
 	}
-
-
-	//
-	// Getters/Setters
-	//
-	/**
-	 * Get the monograph associated with this reviewer grid.
-	 * @return SeriesEditorSubmission
-	 */
-	function &getSubmission() {
-		return $this->_submission;
-	}
-
 
 	//
 	// Overridden methods from PKPHandler
@@ -70,9 +63,6 @@ class ReviewerGridHandler extends GridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
-		// Retrieve the authorized submission.
-		$this->_submission =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
 		// Load submission-specific translations
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_EDITOR));
 
@@ -80,7 +70,7 @@ class ReviewerGridHandler extends GridHandler {
 		$this->setTitle('user.role.reviewers');
 
 		// Get the monograph
-		$submission =& $this->getSubmission();
+		$submission =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		assert(is_a($submission, 'SeriesEditorSubmission'));
 		$monographId = $submission->getId();
 
@@ -181,11 +171,11 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function editReviewer($args, &$request) {
 		// Identify the review assignment being updated
-		$reviewAssignmentId = $request->getUserVar('reviewAssignmentId');
+		$reviewAssignmentId = (int) $request->getUserVar('reviewAssignmentId');
 
 		// Form handling
 		import('controllers.grid.users.reviewer.form.ReviewerForm');
-		$reviewerForm = new ReviewerForm($this->getSubmission(), $reviewAssignmentId);
+		$reviewerForm = new ReviewerForm($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH), $reviewAssignmentId);
 		$reviewerForm->initData($args, $request);
 
 		$json = new JSON('true', $reviewerForm->fetch($request));
@@ -200,11 +190,11 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function updateReviewer($args, &$request) {
 		// Identify the review assignment being updated
-		$reviewAssignmentId = $request->getUserVar('reviewAssignmentId');
+		$reviewAssignmentId = (int) $request->getUserVar('reviewAssignmentId');
 
 		// Form handling
 		import('controllers.grid.users.reviewer.form.ReviewerForm');
-		$reviewerForm = new ReviewerForm($this->getSubmission(), $reviewAssignmentId);
+		$reviewerForm = new ReviewerForm($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH), $reviewAssignmentId);
 		$reviewerForm->readInputData();
 		if ($reviewerForm->validate()) {
 			$reviewAssignment =& $reviewerForm->execute($args, $request);
@@ -220,7 +210,8 @@ class ReviewerGridHandler extends GridHandler {
 
 			$json = new JSON('true', $this->_renderRowInternally($request, $row));
 		} else {
-			$json = new JSON('false', Locale::translate('editor.review.errorAddingReviewer'));
+			// There was an error, redisplay the form
+			$json = new JSON('false', $reviewerForm->fetch($request));
 		}
 		return $json->getString();
 	}
@@ -236,7 +227,7 @@ class ReviewerGridHandler extends GridHandler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Identify the review assignment ID.
-		$reviewId = $request->getUserVar('reviewId');
+		$reviewId = (int) $request->getUserVar('reviewId');
 
 		// Delete the review assignment.
 		// NB: SeriesEditorAction::clearReview() will check that this review
@@ -262,14 +253,13 @@ class ReviewerGridHandler extends GridHandler {
 	* @return string Serialized JSON object
 	*/
 	function getReviewerAutocomplete($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-		$round = $request->getUserVar('round');
+		$round = (int)$request->getUserVar('round');
 		$press =& $request->getPress();
-		$seriesEditorSubmissionDAO =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-
-		$monograph =& $this->getSubmission();
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monographId = $monograph->getId();
 
 		// Get items to populate possible items list with
+		$seriesEditorSubmissionDAO =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$allReviewers = $seriesEditorSubmissionDAO->getAllReviewers($press->getId());
 		$currentRoundReviewers =& $seriesEditorSubmissionDAO->getReviewersForMonograph($press->getId(), $monographId, $round);
 		$currentRoundReviewerIds = array_keys($currentRoundReviewers->toAssociativeArray('id'));
@@ -293,6 +283,48 @@ class ReviewerGridHandler extends GridHandler {
 				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
 				'value' => $item['id']
 		   );
+			$itemJson = new JSON('true', '', 'false', null, $additionalAttributes);
+			$sourceContent[] = $itemJson->getString();
+
+			unset($itemJson);
+		}
+		$sourceJson->setContent('[' . implode(',', $sourceContent) . ']');
+
+		echo $sourceJson->getString();
+	}
+
+	/**
+	* Get a list of all non-reviewer users in the system to populate the reviewer role assignment autocomplete.
+	* @param $args array
+	* @param $request PKPRequest
+	* @return string Serialized JSON object
+	*/
+	function getReviewerRoleAssignmentAutocomplete($args, &$request) {
+		$press =& $request->getPress();
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$users =& $userGroupDao->getUsersByContextId($press->getId());
+
+		$itemList = array();
+		$roleDao =& DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
+		while ($user =& $users->next()) {
+			// Check that the reviewer is not in the current round.  We need to do the comparison here to avoid nested selects.
+			if (!$roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_REVIEWER)) {
+				$itemList[] = array('id' => $user->getId(),
+									'name' => $user->getFullName(),
+								 	'abbrev' => $user->getUsername());
+			}
+			unset($user);
+		}
+
+		import('lib.pkp.classes.core.JSON');
+		$sourceJson = new JSON('true', null, 'false', 'local');
+		$sourceContent = array();
+		foreach ($itemList as $i => $item) {
+			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
+			$additionalAttributes = array(
+				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
+				'value' => $item['id']
+			);
 			$itemJson = new JSON('true', '', 'false', null, $additionalAttributes);
 			$sourceContent[] = $itemJson->getString();
 
@@ -365,7 +397,7 @@ class ReviewerGridHandler extends GridHandler {
 	 */
 	function sendReminder($args, &$request) {
 		// Identify the review assignment being updated
- 		$reviewAssignmentId = $request->getUserVar('reviewAssignmentId');
+ 		$reviewAssignmentId = (int) $request->getUserVar('reviewAssignmentId');
 
 		// Form handling
 		import('controllers.grid.users.reviewer.form.ReviewReminderForm');
@@ -396,7 +428,7 @@ class ReviewerGridHandler extends GridHandler {
 		assert(is_a($monograph, 'Monograph'));
 
 		// Retrieve review assignment.
-		$reviewId = $request->getUserVar('reviewId');
+		$reviewId = (int) $request->getUserVar('reviewId');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 		$reviewAssignment =& $reviewAssignmentDao->getById($reviewId);
 

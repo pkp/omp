@@ -12,6 +12,7 @@
 
 <locale name="en_US" full_name = "English">
 	<message key="editor.review.enrollReviewer">Enroll an Existing User as Reviewer</message>
+	<message key="editor.review.enrollReviewer.short">Enroll existing user</message>
 	<message key="editor.review.createReviewer">Create New Reviewer</message>
 	<message key="editor.monograph.reviewForms">Review Forms</message>
 	<message key="editor.responseDueDate">Response Due Date</message>
@@ -203,4 +204,5 @@
 	<message key="editor.review.days">Days</message>
 	<message key="editor.review.mustSelect">You must select a reviewer</message>
 	<message key="editor.review.errorAddingReviewer">There was an error adding the reviewer.  Please try again.</message>
+	<message key="editor.review.userGroupSelect">Enroll the user with this reviewer user group</message>
 </locale>

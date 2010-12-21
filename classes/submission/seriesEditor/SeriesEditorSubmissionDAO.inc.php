@@ -536,6 +536,171 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		return $reviewerValues;
 	}
+
+	/**
+	 * Given the ranges selected by the editor, produce a filtered list of reviewers
+	 * @param $pressId int
+	 * @param $doneMin int # of reviews completed int
+	 * @param $doneMax int
+	 * @param $avgMin int Average period of time in days to complete a review int
+	 * @param $avgMax int
+	 * @param $lastMin int Days since most recently completed review int
+	 * @param $lastMax int
+	 * @param $activeMin int How many reviews are currently being considered or underway int
+	 * @param $activeMax int
+	 * @param $interests array
+	 * @param $monographId int Filter out reviewers assigned to this monograph
+	 * @param $round int Also filter users assigned to this round of the given monograph
+	 * @return array Users
+	 */
+	function getFilteredReviewers($pressId, $doneMin, $doneMax, $avgMin, $avgMax, $lastMin, $lastMax, $activeMin, $activeMax, $interests, $monographId = null, $round = null) {
+		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+		$interestDao =& DAORegistry::getDAO('InterestDAO'); /* @var $interestDao InterestDAO */
+		$reviewerStats = $this->getReviewerStatistics($pressId);
+
+		// Get the IDs of the interests searched for
+		$allInterestIds = array();
+		if(isset($interests)) {
+			foreach ($interests as $key => $interest) {
+				$interestIds = $interestDao->getUserIdsByInterest($interest);
+				if(!$interestIds) {
+					// The interest searched for does not exist -- return an empty set of users
+					return array();
+				}
+				if ($key == 0) $allInterestIds = $interestIds; // First interest, nothing to intersect with
+				else $allInterestIds = array_intersect($allInterestIds, $interestIds);
+			}
+		}
+
+		// If monographId is set, get the list of of reviewers assigned to the monograph
+		if($monographId) {
+			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
+			$assignedReviewers = $reviewAssignmentDao->getReviewerIdsBySubmissionId($monographId, $round);
+		}
+
+		$filteredReviewers = array();
+		foreach ($reviewerStats as $userId => $reviewerStat) {
+			// Get the days since the user was last notified for a review
+			if(!isset($reviewerStat['last_notified'])) {
+				$lastNotifiedInDays = 0;
+			} else {
+				$lastNotifiedInDays = round((time() - strtotime($reviewerStat['last_notified'])) / 86400);
+			}
+
+			// If there are interests to check, make sure user is in allInterestIds array
+			if(!empty($allInterestIds)) {
+				$interestCheck = in_array($userId, $allInterestIds);
+			} else $interestCheck = true;
+
+			if ($interestCheck && $reviewerStat['completed_review_count'] <= $doneMax && $reviewerStat['completed_review_count'] >= $doneMin &&
+				$reviewerStat['average_span'] <= $avgMax && $reviewerStat['average_span'] >= $avgMin && $lastNotifiedInDays <= $lastMax  &&
+				$lastNotifiedInDays >= $lastMin && $reviewerStat['incomplete'] <= $activeMax && $reviewerStat['incomplete'] >= $activeMin) {
+					if($monographId && in_array($userId, $assignedReviewers)) {
+						continue;
+					} else {
+						$filteredReviewers[] = $userDao->getUser($userId);
+					}
+				}
+		}
+
+		return $filteredReviewers;
+	}
+
+	/**
+	 * Get the last assigned and last completed dates for all reviewers of the given press.
+	 * @param $pressId int
+	 * @return array
+	 */
+	function getReviewerStatistics($pressId) {
+		// Build an array of all reviewers and provide a placeholder for all statistics (so even if they don't
+		//  have a value, it will be filled in as 0
+		$statistics = Array();
+		$reviewerStatsPlaceholder = array('last_notified' => null, 'incomplete' => 0, 'total_span' => 0, 'completed_review_count' => 0, 'average_span' => 0);
+
+		$allReviewers =& $this->getAllReviewers($pressId);
+		while($reviewer =& $allReviewers->next()) {
+				$statistics[$reviewer->getId()] = $reviewerStatsPlaceholder;
+			unset($reviewer);
+		}
+
+		// Get counts of completed submissions
+		$result =& $this->retrieve(
+			'SELECT	r.reviewer_id, MAX(r.date_notified) AS last_notified
+			FROM	review_assignments r, monographs m
+			WHERE	r.submission_id = m.monograph_id AND
+				m.press_id = ?
+			GROUP BY r.reviewer_id',
+			(int) $pressId
+		);
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = $reviewerStatsPlaceholder;
+			$statistics[$row['reviewer_id']]['last_notified'] = $this->datetimeFromDB($row['last_notified']);
+			$result->MoveNext();
+		}
+
+		$result->Close();
+		unset($result);
+
+		// Get completion status
+		$result =& $this->retrieve(
+			'SELECT	r.reviewer_id, COUNT(*) AS incomplete
+			FROM	review_assignments r, monographs m
+			WHERE	r.submission_id = m.monograph_id AND
+				r.date_notified IS NOT NULL AND
+				r.date_completed IS NULL AND
+				r.cancelled = 0 AND
+				m.press_id = ?
+			GROUP BY r.reviewer_id',
+			(int) $pressId
+		);
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = $reviewerStatsPlaceholder;
+			$statistics[$row['reviewer_id']]['incomplete'] = $row['incomplete'];
+			$result->MoveNext();
+		}
+
+		$result->Close();
+		unset($result);
+
+		// Calculate time taken for completed reviews
+		$result =& $this->retrieve(
+			'SELECT	r.reviewer_id, r.date_notified, r.date_completed
+			FROM	review_assignments r, monographs m
+			WHERE	r.submission_id = m.monograph_id AND
+				r.date_notified IS NOT NULL AND
+				r.date_completed IS NOT NULL AND
+				r.declined = 0 AND
+				m.press_id = ?',
+			(int) $pressId
+		);
+		while (!$result->EOF) {
+			$row = $result->GetRowAssoc(false);
+			if (!isset($statistics[$row['reviewer_id']])) $statistics[$row['reviewer_id']] = $reviewerStatsPlaceholder;
+
+			$completed = strtotime($this->datetimeFromDB($row['date_completed']));
+			$notified = strtotime($this->datetimeFromDB($row['date_notified']));
+			if (isset($statistics[$row['reviewer_id']]['total_span'])) {
+				$statistics[$row['reviewer_id']]['total_span'] += $completed - $notified;
+				$statistics[$row['reviewer_id']]['completed_review_count'] += 1;
+			} else {
+				$statistics[$row['reviewer_id']]['total_span'] = $completed - $notified;
+				$statistics[$row['reviewer_id']]['completed_review_count'] = 1;
+			}
+
+			// Calculate the average length of review in days.
+			$statistics[$row['reviewer_id']]['average_span'] = round(($statistics[$row['reviewer_id']]['total_span'] / $statistics[$row['reviewer_id']]['completed_review_count']) / 86400);
+			$result->MoveNext();
+		}
+
+		$result->Close();
+		unset($result);
+
+		return $statistics;
+	}
+
+
 }
 
 ?>

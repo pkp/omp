@@ -27,7 +27,7 @@ class ReviewerForm extends Form {
 	function ReviewerForm($monograph, $reviewAssignmentId) {
 		parent::Form('controllers/grid/users/reviewer/form/reviewerForm.tpl');
 		$this->setMonograph($monograph);
-		$this->setReviewAssignmentId((int) $reviewAssignmentId);
+		$this->setReviewAssignmentId(empty($reviewAssignmentId)? null: (int) $reviewAssignmentId);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'responseDueDate', 'required', 'editor.review.errorAddingReviewer'));
@@ -90,10 +90,10 @@ class ReviewerForm extends Form {
 	 * @param $request PKPRequest
 	 */
 	function initData($args, &$request) {
-		$reviewerId = $request->getUserVar('reviewerId');
+		$reviewerId = (int) $request->getUserVar('reviewerId');
 		$press =& $request->getContext();
 		// The reviewer id has been set
-		if (is_numeric($reviewerId)) {
+		if (!empty($reviewerId)) {
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$roleDao =& DAORegistry::getDAO('RoleDAO');
 
@@ -126,6 +126,9 @@ class ReviewerForm extends Form {
 		}
 		$interestDao =& DAORegistry::getDAO('InterestDAO');
 
+		// Get the currently selected reviewer selection type to show the correct tab if we're re-displaying the form
+		$selectionType = (int) $request->getUserVar('selectionType');
+
 		$this->_data = array(
 			'monographId' => $this->getMonographId(),
 			'reviewAssignmentId' => $this->getReviewAssignmentId(),
@@ -136,9 +139,30 @@ class ReviewerForm extends Form {
 			'personalMessage' => Locale::translate('reviewer.step1.requestBoilerplate'),
 			'responseDueDate' => $responseDueDate,
 			'reviewDueDate' => $reviewDueDate,
-			'existingInterests' => implode(",", $interestDao->getAllUniqueInterests())
+			'existingInterests' => $interestDao->getAllUniqueInterests(),
+			'selectionType' => empty($selectionType) ? REVIEWER_SELECT_SEARCH : $selectionType
 		);
 
+	}
+
+	/**
+	 * Fetch
+	 * @param $request PKPRequest
+	 * @see Form::fetch()
+	 */
+	function fetch(&$request) {
+		// Get the reviewer user groups for the create new reviewer/enroll existing user tabs
+		$press =& $request->getPress();
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$reviewerUserGroups =& $userGroupDao->getByRoleId($press->getId(), ROLE_ID_REVIEWER);
+		$userGroups = array();
+		while($userGroup =& $reviewerUserGroups->next()) {
+			$userGroups[$userGroup->getId()] = $userGroup->getLocalizedName();
+			unset($userGroup);
+		}
+
+		$this->setData('userGroups', $userGroups);
+		return parent::fetch($request);
 	}
 
 	/**
@@ -155,15 +179,20 @@ class ReviewerForm extends Form {
 								'responseDueDate',
 								'reviewDueDate'));
 
-		if($this->getData('selectionType') == 'createNew') {
-			$this->readUserVars(array('firstName',
-								'middleName',
-								'lastName',
+		// Read different data depending on what tab we're in
+		$selectionType = (int) $this->getData('selectionType');
+		if($selectionType == REVIEWER_SELECT_CREATE) {
+			$this->readUserVars(array('firstname',
+								'middlename',
+								'lastname',
 								'affiliation',
 								'interestsKeywords',
 								'username',
 								'email',
-								'sendNotify'));
+								'sendNotify',
+								'userGroupId'));
+		} elseif($selectionType == REVIEWER_SELECT_ENROLL) {
+			$this->readUserVars(array('userId', 'userGroupId'));
 		}
 	}
 
@@ -173,15 +202,20 @@ class ReviewerForm extends Form {
 	 * @see lib/pkp/classes/form/Form::validate()
 	 */
 	function validate() {
+		// Enact different validation rules depending on what tab we're in
 		$selectionType = $this->getData('selectionType');
-
-		if($selectionType == 'createNew') {
-			$this->addCheck(new FormValidator($this, 'firstName', 'required', 'editor.review.errorAddingReviewer'));
-			$this->addCheck(new FormValidator($this, 'lastName', 'required', 'editor.review.errorAddingReviewer'));
-			$this->addCheck(new FormValidator($this, 'username', 'required', 'editor.review.errorAddingReviewer'));
-			$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'editor.review.errorAddingReviewer'));
+		if($selectionType == REVIEWER_SELECT_CREATE) {
+			$this->addCheck(new FormValidator($this, 'firstname', 'required', 'user.profile.form.firstNameRequired'));
+			$this->addCheck(new FormValidator($this, 'lastname', 'required', 'user.profile.form.lastNameRequired'));
+			$this->addCheck(new FormValidatorCustom($this, 'username', 'required', 'user.register.form.usernameExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByUsername'), array(), true));
+			$this->addCheck(new FormValidatorAlphaNum($this, 'username', 'required', 'user.register.form.usernameAlphaNumeric'));
+			$this->addCheck(new FormValidatorEmail($this, 'email', 'required', 'user.profile.form.emailRequired'));
+			$this->addCheck(new FormValidatorCustom($this, 'email', 'required', 'user.register.form.emailExists', array(DAORegistry::getDAO('UserDAO'), 'userExistsByEmail'), array(), true));
+			$this->addCheck(new FormValidator($this, 'userGroupId', 'required', 'user.profile.form.usergroupRequired'));
+		} elseif($selectionType == REVIEWER_SELECT_ENROLL) {
+			$this->addCheck(new FormValidator($this, 'userGroupId', 'required', 'user.profile.form.usergroupRequired'));
 		} else {
-			$this->addCheck(new FormValidator($this, 'reviewerId', 'required', 'editor.review.errorAddingReviewer'));
+			$this->addCheck(new FormValidator($this, 'reviewerId', 'required', 'editor.review.mustSelect'));
 		}
 		return parent::validate();
 	}
@@ -201,14 +235,14 @@ class ReviewerForm extends Form {
 		$reviewDueDate = $this->getData('reviewDueDate');
 		$responseDueDate = $this->getData('responseDueDate');
 
-		if($this->getData('selectionType') == 'createNew') {
+		$selectionType = (int) $this->getData('selectionType');
+		if($selectionType == REVIEWER_SELECT_CREATE) {
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$user = new User();
 
-			$user->setFirstName($this->getData('firstName'));
-			$user->setMiddleName($this->getData('middleName'));
-			$user->setLastName($this->getData('lastName'));
-			$user->setAffiliation($this->getData('affiliation'), null);
+			$user->setFirstName($this->getData('firstname'));
+			$user->setMiddleName($this->getData('middlename'));
+			$user->setLastName($this->getData('lastname'));
 			$user->setEmail($this->getData('email'));
 
 			$authDao =& DAORegistry::getDAO('AuthSourceDAO');
@@ -239,9 +273,10 @@ class ReviewerForm extends Form {
 			elseif (!is_array($interests)) $interests = array($interests);
 			$interestDao->insertInterests($interests, $reviewerId, true);
 
-			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-			$reviewerGroup =& $userGroupDao->getDefaultByRoleId($press->getId(), ROLE_ID_REVIEWER);
-			$userGroupDao->assignUserToGroup($reviewerId, $reviewerGroup->getId());
+			// Assign the selected user group ID to the user
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+			$userGroupId = (int) $this->getData('userGroupId');
+			$userGroupDao->assignUserToGroup($reviewerId, $userGroupId);
 
 			if ($this->getData('sendNotify')) {
 				// Send welcome email to user
@@ -252,6 +287,16 @@ class ReviewerForm extends Form {
 				$mail->addRecipient($user->getEmail(), $user->getFullName());
 				$mail->send();
 			}
+		} elseif($selectionType == REVIEWER_SELECT_ENROLL) {
+			// Assign a reviewer user group to an existing non-reviewer
+			$userId = $this->getData('userId');
+			$userGroupId = $this->getData('userGroupId');
+
+			$userGroupId = $this->getData('userGroupId');
+			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+			$userGroupDao->assignUserToGroup($userId, $userGroupId);
+			// Set the reviewerId to the userId to return to the grid
+			$reviewerId = $userId;
 		} else {
 			$reviewerId = $this->getData('reviewerId');
 		}

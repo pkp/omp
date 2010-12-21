@@ -53,7 +53,8 @@ class ReviewerGridRow extends GridRow {
 					$router->url($request, null, null, 'deleteReviewer', null, $actionArgs),
 					'grid.action.remove',
 					null,
-					'delete'
+					'delete',
+					Locale::translate('common.confirmDelete')
 				)
 			);
 
