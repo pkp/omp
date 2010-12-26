@@ -64,16 +64,7 @@
 	{if $useMinifiedJavaScript}
 		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/pkp.min.js"></script>
 	{else}
-		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.form.js"></script>
-		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.tag-it.js"></script>
-		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.pnotify.js"></script>
-		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.imgpreview.js"></script>
-		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.cookie.js"></script>
-		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/fontController.js"></script>
-		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/general.js"></script>
-		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/listbuilder.js"></script>
-		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/modal.js"></script>
-		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/jqueryValidatorI18n.js"></script>
+		{include file="common/minifiedScripts.tpl"}
 	{/if}
 
 	<!-- Plupload -->
