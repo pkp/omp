@@ -79,6 +79,6 @@ class FairCopyFilesGridCellProvider extends GridCellProvider {
 				return array('rowId' => $element->getFileId() . "-" . $element->getRevision());
 			case 'name':
 				return array('label' => $element->getLocalizedName());
-			}
+		}
 	}
 }

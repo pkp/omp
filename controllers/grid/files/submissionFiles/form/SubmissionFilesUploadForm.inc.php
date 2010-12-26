@@ -45,7 +45,7 @@ class SubmissionFilesUploadForm extends Form {
 		assert(is_numeric($fileStage) && $fileStage > 0);
 
 		// Initialize class.
-		parent::Form('controllers/grid/files/submissionFiles/form/fileForm.tpl');
+		parent::Form('controllers/grid/files/submissionFiles/form/fileUploadForm.tpl');
 		$this->_fileStage = (int)$fileStage;
 		$this->setData('monographId', (int)$monographId);
 		$this->setData('revisionOnly', (boolean)$revisionOnly);
@@ -254,7 +254,7 @@ class SubmissionFilesUploadForm extends Form {
 
 		// Upload the file.
 		if($uploadedFile = MonographFileManager::uploadMonographFile(
-				$this->getData('monographId'), 'submissionFile', $this->getFileStage(), $revisedFileId, $fileGenre)) {
+				$this->getData('monographId'), 'uploadedFile', $this->getFileStage(), $revisedFileId, $fileGenre)) {
 
 			// If no revised file id was given then try out whether
 			// the user maybe accidentally didn't identify this file as a revision.

@@ -24,10 +24,11 @@ class SubmissionFilesMetadataForm extends Form {
 	/**
 	 * Constructor.
 	 * @param $fileId int
+	 * @param $signoffId int
 	 * @param @monographId int
 	 */
-	function SubmissionFilesMetadataForm($fileId, $signoffId = null) {
-		parent::Form('controllers/grid/files/submissionFiles/form/metadataForm.tpl');
+	function SubmissionFilesMetadataForm($fileId, $signoffId = null, $template = 'controllers/grid/files/submissionFiles/form/metadataForm.tpl') {
+		parent::Form($template);
 
 		$this->_fileId = (int) $fileId;
 		$this->_signoffId = (int) $signoffId;
@@ -35,6 +36,19 @@ class SubmissionFilesMetadataForm extends Form {
 		$this->addCheck(new FormValidator($this, 'name', 'required', 'user.profile.form.lastNameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
+
+
+	//
+	// Getters and Setters
+	//
+	/**
+	 * Get the file id.
+	 * @return integer
+	 */
+	function getFileId() {
+		return $this->_fileId;
+	}
+
 
 	/**
 	 * Get the list of field names for which localized settings are used.

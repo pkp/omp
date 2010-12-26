@@ -25,7 +25,7 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 
 		// Configure role based authorization.
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array('fetchGrid', 'addFile', 'displayFileForm', 'uploadFile', 'confirmRevision',
+				array('fetchGrid', 'addFile', 'displayFileUploadForm', 'uploadFile', 'confirmRevision',
 						'editMetadata', 'saveMetadata', 'downloadFile', 'downloadAllFiles', 'deleteFile'));
 	}
 
@@ -84,7 +84,7 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 		// is correctly implemented, see #6233.
 		$this->addColumn(
 			new GridColumn(
-				'FIXME',
+				'select',
 				null,
 				'FIXME',
 				'controllers/grid/common/cell/roleCell.tpl',
@@ -97,7 +97,7 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 		// is correctly implemented, see #6233.
 		$this->addColumn(
 			new GridColumn(
-				'FIXME',
+				'name',
 				null,
 				'FIXME',
 				'controllers/grid/common/cell/roleCell.tpl',

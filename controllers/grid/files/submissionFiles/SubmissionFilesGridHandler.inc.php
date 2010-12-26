@@ -12,14 +12,16 @@
  * @brief Handle submission file grid requests.
  */
 
-// Import grid base classes.
+// Import UI base classes.
 import('lib.pkp.classes.controllers.grid.GridHandler');
+import('lib.pkp.classes.linkAction.ModalLinkAction');
+import('lib.pkp.classes.modal.WizardModal');
 
 // Import submission files grid specific classes.
 import('controllers.grid.files.submissionFiles.SubmissionFilesGridRow');
 import('controllers.grid.files.submissionFiles.SubmissionFilesGridCellProvider');
 
-// Import monograph file class (which contains the MONOGRAPH_FILE_* constants.
+// Import monograph file class which contains the MONOGRAPH_FILE_* constants.
 import('classes.monograph.MonographFile');
 
 class SubmissionFilesGridHandler extends GridHandler {
@@ -162,25 +164,22 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());
 
-		// Does this upload wizard allow revisions only?
-		$templateMgr->assign('revisionOnly', $this->revisionOnly());
-
 		// Assign the pre-configured revised file id (if any).
 		$revisedFileId = $this->_getRevisedFileFromRequest($request);
 		$templateMgr->assign('revisedFileId', $revisedFileId);
 
 		// Render the file upload wizard.
-		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/fileFormModal.tpl'));
+		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/fileUploadWizard.tpl'));
 		return $json->getString();
 	}
 
 	/**
-	 * Render the file upload wizard in its initial state.
+	 * Render the file upload form in its initial state.
 	 * @param $args array
 	 * @param $request Request
 	 * @return string a serialized JSON object
 	 */
-	function displayFileForm($args, &$request) {
+	function displayFileUploadForm($args, &$request) {
 		// Configure the submission files upload wizard.
 		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
 		$monograph =& $this->getMonograph();
@@ -268,26 +267,20 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$fileId = (int)$request->getUserVar('fileId');
 		$monographFile =& $submissionFileDao->getLatestRevision($fileId, $this->getFileStage(), $monographId);
-
-		// Validate the file.
-		if (!is_a($monographFile, 'MonographFile')
-				|| $monographFile->getFileStage() != $this->getFileStage()) fatalError('Invalid file id!');
+		if (!is_a($monographFile, 'MonographFile')) fatalError('Invalid file id!');
 
 		// Identify the genre category of the monograph file.
 		$genreDao =& DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
 		$genre =& $genreDao->getById($monographFile->getGenreId());
 		assert(is_a($genre, 'Genre'));
 
-		// Import the meta-data form based on the genre category.
-		switch ($genre->getCategory()) {
-			case GENRE_CATEGORY_ARTWORK:
-				import('controllers.grid.files.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
-				$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId, $monographId);
-				break;
-			default:
-				import('controllers.grid.files.submissionFiles.form.SubmissionFilesMetadataForm');
-				$metadataForm = new SubmissionFilesMetadataForm($fileId, $monographId);
-				break;
+		// Import the meta-data form based on the file implementation.
+		if (is_a($monographFile, 'ArtworkFile')) {
+			import('controllers.grid.files.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
+			$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId, $monographId);
+		} else {
+			import('controllers.grid.files.submissionFiles.form.SubmissionFilesMetadataForm');
+			$metadataForm = new SubmissionFilesMetadataForm($fileId, $monographId);
 		}
 
 		$templateMgr =& TemplateManager::getManager();

@@ -12,26 +12,14 @@
  * @brief Form for editing artwork file metadata.
  */
 
-import('lib.pkp.classes.form.Form');
+import('controllers.grid.files.submissionFiles.form.SubmissionFilesMetadataForm');
 
-class SubmissionFilesArtworkMetadataForm extends Form {
-	/** @var int */
-	var $_fileId;
-
-	/** @var int */
-	var $_signoffId;
-
+class SubmissionFilesArtworkMetadataForm extends SubmissionFilesMetadataForm {
 	/**
 	 * Constructor.
 	 */
 	function SubmissionFilesArtworkMetadataForm($fileId, $signoffId = null) {
-		parent::Form('controllers/grid/files/submissionFiles/form/artworkMetadataForm.tpl');
-
-		$this->_fileId = (int) $fileId;
-		$this->_signoffId = (int) $signoffId;
-
-		$this->addCheck(new FormValidator($this, 'name', 'required', 'submission.nameRequired'));
-		$this->addCheck(new FormValidatorPost($this));
+		parent::SubmissionFilesMetadataForm($fileId, $signoffId, 'controllers/grid/files/submissionFiles/form/artworkMetadataForm.tpl');
 	}
 
 	/**
