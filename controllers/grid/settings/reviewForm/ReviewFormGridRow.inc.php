@@ -49,7 +49,7 @@ class ReviewFormGridRow extends GridRow {
 			$router =& $request->getRouter();
 
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'editReviewForm',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,
@@ -58,7 +58,7 @@ class ReviewFormGridRow extends GridRow {
 					'edit'
 				));
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'deleteReviewForm',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REMOVE,
@@ -67,7 +67,7 @@ class ReviewFormGridRow extends GridRow {
 					'delete'
 				));
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'previewReviewForm',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_NOTHING,
@@ -75,7 +75,7 @@ class ReviewFormGridRow extends GridRow {
 					Locale::translate('grid.action.preview')
 				));
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'reviewFormElements',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_NOTHING,

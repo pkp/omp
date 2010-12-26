@@ -132,7 +132,7 @@ class ReviewFilesGridHandler extends GridHandler {
 		$params = array('monographId' => $monographId, 'reviewType' => $reviewType, 'round' => $round, 'fileStage' => MONOGRAPH_FILE_REVIEW);
 		if (isset($this->_data) && !empty($tarBinary) && file_exists($tarBinary)) {
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'downloadAll',
 					LINK_ACTION_MODE_LINK,
 					LINK_ACTION_TYPE_NOTHING,
@@ -146,7 +146,7 @@ class ReviewFilesGridHandler extends GridHandler {
 
 		if ($canAdd) {
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'manageReviewFiles',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,
@@ -160,7 +160,7 @@ class ReviewFilesGridHandler extends GridHandler {
 
 		if ($canUpload) {
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'uploadReviewFile',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_APPEND,

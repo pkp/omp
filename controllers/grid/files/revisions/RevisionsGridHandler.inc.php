@@ -134,7 +134,7 @@ class RevisionsGridHandler extends GridHandler {
 			$this->setId('revisionsSelect'); // Need a unique ID since the 'manage review files' modal is in the same namespace as the 'view review files' modal
 
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'filter',
 					LINK_ACTION_MODE_LINK,
 					LINK_ACTION_TYPE_NOTHING,
@@ -162,7 +162,7 @@ class RevisionsGridHandler extends GridHandler {
 		$tarBinary = Config::getVar('cli', 'tar');
 		if (isset($this->_data) && !empty($tarBinary) && file_exists($tarBinary)) {
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'downloadAll',
 					LINK_ACTION_MODE_LINK,
 					LINK_ACTION_TYPE_NOTHING,

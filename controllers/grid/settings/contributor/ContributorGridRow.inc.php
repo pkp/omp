@@ -43,7 +43,7 @@ class ContributorGridRow extends GridRow {
 				'rowId' => $rowId
 			);
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'editContributor',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,
@@ -53,7 +53,7 @@ class ContributorGridRow extends GridRow {
 					'edit'
 				));
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'deleteContributor',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REMOVE,

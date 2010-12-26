@@ -50,7 +50,7 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 			);
 
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'editChapter',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,

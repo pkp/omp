@@ -55,7 +55,7 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 
 		// Enroll user
 		$this->addAction(
-			new LinkAction(
+			new LegacyLinkAction(
 				'enrollUser',
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_REDIRECT,

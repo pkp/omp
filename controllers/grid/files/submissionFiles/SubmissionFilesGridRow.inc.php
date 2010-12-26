@@ -54,7 +54,7 @@ class SubmissionFilesGridRow extends GridRow {
 			);
 
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'deleteFile',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REMOVE,

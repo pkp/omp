@@ -193,7 +193,7 @@ class WorkflowHandler extends Handler {
 		// Import the action and link action to define necessary constants before
 		// retrieving decisions.
 		import('classes.submission.common.Action');
-		import('lib.pkp.classes.linkAction.LinkAction');
+		import('lib.pkp.classes.linkAction.LegacyLinkAction');
 
 		// Retrieve the editor decisions.
 		$decisions = call_user_func(array($this, $decisionsCallback));
@@ -202,7 +202,7 @@ class WorkflowHandler extends Handler {
 		$dispatcher =& $this->getDispatcher();
 		foreach($decisions as $decision => $action) {
 			$actionArgs['decision'] = $decision;
-			$editorActions[] =& new LinkAction(
+			$editorActions[] =& new LegacyLinkAction(
 				$action['name'],
 				LINK_ACTION_MODE_MODAL,
 				(isset($action['submitAction']) ? $action['submitAction'] : null),

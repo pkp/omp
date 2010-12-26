@@ -74,7 +74,7 @@ class ReviewFormElementGridRow extends GridRow {
 			$router =& $request->getRouter();
 
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'editReviewForm',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,
@@ -84,7 +84,7 @@ class ReviewFormElementGridRow extends GridRow {
 					'edit'
 				));
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'deleteReviewForm',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REMOVE,

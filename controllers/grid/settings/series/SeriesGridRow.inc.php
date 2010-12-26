@@ -45,7 +45,7 @@ class SeriesGridRow extends GridRow {
 				'rowId' => $rowId
 			);
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'editSeries',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,
@@ -55,7 +55,7 @@ class SeriesGridRow extends GridRow {
 					'edit'
 				));
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'deleteSeries',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REMOVE,

@@ -47,7 +47,7 @@ class SubmissionContributorGridRow extends GridRow {
 				'submissionContributorId' => $rowId
 			);
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'editSubmissionContributor',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,
@@ -58,7 +58,7 @@ class SubmissionContributorGridRow extends GridRow {
 				)
 			);
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'deleteSubmissionContributor',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REMOVE,

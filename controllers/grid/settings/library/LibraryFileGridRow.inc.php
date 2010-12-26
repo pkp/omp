@@ -63,7 +63,7 @@ class LibraryFileGridRow extends GridRow {
 				'rowId' => $rowId
 			);
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'editFile',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,
@@ -73,7 +73,7 @@ class LibraryFileGridRow extends GridRow {
 					'edit'
 				));
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'deleteFile',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REMOVE,

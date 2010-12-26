@@ -29,7 +29,7 @@
 
 <br />
 
-{* include file="linkAction/linkAction.tpl" action=$promoteAction id="promoteAction" *}
+{* include file="linkAction/legacyLinkAction.tpl" action=$promoteAction id="promoteAction" *}
 
 </div>
 {include file="common/footer.tpl"}

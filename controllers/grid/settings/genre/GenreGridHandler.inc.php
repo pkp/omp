@@ -55,7 +55,7 @@ class GenreGridHandler extends SetupGridHandler {
 		$router =& $request->getRouter();
 		$actionArgs = array('gridId' => $this->getId());
 		$this->addAction(
-			new LinkAction(
+			new LegacyLinkAction(
 				'addGenre',
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_APPEND,
@@ -65,7 +65,7 @@ class GenreGridHandler extends SetupGridHandler {
 			GRID_ACTION_POSITION_ABOVE
 		);
 		$this->addAction(
-			new LinkAction(
+			new LegacyLinkAction(
 				'restoreGenres',
 				LINK_ACTION_MODE_CONFIRM,
 				LINK_ACTION_TYPE_REPLACE,

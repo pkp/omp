@@ -29,7 +29,7 @@ class MySubmissionsListGridCellProvider extends SubmissionsListGridCellProvider 
 	 * Get cell actions associated with this row/column combination
 	 * @param $row GridRow
 	 * @param $column GridColumn
-	 * @return array an array of LinkAction instances
+	 * @return array an array of LegacyLinkAction instances
 	 */
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		if ( $column->getId() == 'title' ) {
@@ -44,7 +44,7 @@ class MySubmissionsListGridCellProvider extends SubmissionsListGridCellProvider 
 			$pressDao = DAORegistry::getDAO('PressDAO');
 			$press = $pressDao->getPress($pressId);
 
-			$action =& new LinkAction(
+			$action =& new LegacyLinkAction(
 							'details',
 							LINK_ACTION_MODE_LINK,
 							LINK_ACTION_TYPE_NOTHING,

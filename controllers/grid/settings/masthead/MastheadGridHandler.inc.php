@@ -57,7 +57,7 @@ class MastheadGridHandler extends SetupGridHandler {
 		// Add grid-level actions
 		$router =& $request->getRouter();
 		$this->addAction(
-			new LinkAction(
+			new LegacyLinkAction(
 				'addMasthead',
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_APPEND,

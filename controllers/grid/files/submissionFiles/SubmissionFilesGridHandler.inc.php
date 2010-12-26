@@ -113,12 +113,15 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$monograph =& $this->getMonograph();
 			$actionArgs = array('monographId' => $monograph->getId());
 			$this->addAction(
-				new LinkAction(
+				new ModalLinkAction(
 					'addFile',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_APPEND,
-					$router->url($request, null, null, 'addFile', null, $actionArgs),
-					$this->revisionOnly() ? 'submission.addRevision' : 'submission.addFile'
+					new WizardModal(
+						$router->url($request, null, null, 'addFile', null, $actionArgs),
+						$this->revisionOnly() ? 'submission.submit.uploadRevision' : 'submission.submit.uploadSubmissionFile',
+						'fileManagement'
+					),
+					$this->revisionOnly() ? 'submission.addRevision' : 'submission.addFile',
+					'add'
 				),
 				GRID_ACTION_POSITION_ABOVE
 			);

@@ -65,7 +65,7 @@ class CopyeditingFilesGridRow extends GridRow {
 
 			if($copyeditedFileId) {
 				$this->addAction(
-					new LinkAction(
+					new LegacyLinkAction(
 						'moreInfo',
 						LINK_ACTION_MODE_MODAL,
 						LINK_ACTION_TYPE_NOTHING,
@@ -76,7 +76,7 @@ class CopyeditingFilesGridRow extends GridRow {
 					));
 
 				$this->addAction(
-					new LinkAction(
+					new LegacyLinkAction(
 						'deleteFile',
 						LINK_ACTION_MODE_CONFIRM,
 						LINK_ACTION_TYPE_REPLACE,
@@ -88,7 +88,7 @@ class CopyeditingFilesGridRow extends GridRow {
 					));
 			} else {
 				$this->addAction(
-					new LinkAction(
+					new LegacyLinkAction(
 						'deleteUser',
 						LINK_ACTION_MODE_CONFIRM,
 						LINK_ACTION_TYPE_REMOVE,
@@ -103,7 +103,7 @@ class CopyeditingFilesGridRow extends GridRow {
 			// If there is no file uploaded, allow the user to upload if it is their signoff (i.e. their copyediting assignment)
 			if(!$copyeditedFileId && $signoff->getUserid() == $user->getId()) {
 				$this->addAction(
-					new LinkAction(
+					new LegacyLinkAction(
 						'addCopyeditedFile',
 						LINK_ACTION_MODE_MODAL,
 						LINK_ACTION_TYPE_REPLACE,
@@ -117,7 +117,7 @@ class CopyeditingFilesGridRow extends GridRow {
 			// If there is a file uploaded, allow the user to edit it if it is their signoff (i.e. their copyediting assignment)
 			if($copyeditedFileId && $signoff->getUserid() == $user->getId()) {
 				$this->addAction(
-					new LinkAction(
+					new LegacyLinkAction(
 						'editCopyeditedFile',
 						LINK_ACTION_MODE_MODAL,
 						LINK_ACTION_TYPE_REPLACE,

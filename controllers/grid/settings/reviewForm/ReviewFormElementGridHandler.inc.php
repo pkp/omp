@@ -56,7 +56,7 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 
 		// Add grid-level actions
 		$this->addAction(
-			new LinkAction(
+			new LegacyLinkAction(
 				'createReviewFormElement',
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_APPEND,

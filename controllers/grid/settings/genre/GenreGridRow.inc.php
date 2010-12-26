@@ -43,7 +43,7 @@ class GenreGridRow extends GridRow {
 				'genreId' => $rowId
 			);
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'editGenre',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,
@@ -53,7 +53,7 @@ class GenreGridRow extends GridRow {
 					'edit'
 				));
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'deleteGenre',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REMOVE,

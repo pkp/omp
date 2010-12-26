@@ -29,7 +29,7 @@
 
 <br />
 
-{include file="linkAction/linkAction.tpl" action=$editorActions[0] id="promoteAction"}
+{include file="linkAction/legacyLinkAction.tpl" action=$editorActions[0] id="promoteAction"}
 
 </div>
 {include file="common/footer.tpl"}

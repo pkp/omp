@@ -46,7 +46,7 @@ class ReviewerGridRow extends GridRow {
 				'reviewId' => $rowId
 			);
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'remove',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REMOVE,

@@ -50,7 +50,7 @@ class CopyeditingFilesGridCategoryRow extends GridCategoryRow {
 			);
 
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'downloadFile',
 					LINK_ACTION_MODE_LINK,
 					LINK_ACTION_TYPE_NOTHING,

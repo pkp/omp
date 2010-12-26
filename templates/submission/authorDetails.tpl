@@ -83,17 +83,17 @@
 <!-- Author actions -->
 <div id="authorActions">
 	<div id="addFile" class="authorAction">
-		{include file="linkAction/linkAction.tpl" action=$uploadFileAction id="uploadFileAction"}
+		{include file="linkAction/legacyLinkAction.tpl" action=$uploadFileAction id="uploadFileAction"}
 	</div>
 	<div id="addVersions" class="authorAction">
 		{if $stageId == 2 || $stageId == 3}
-			{include file="linkAction/linkAction.tpl" action=$uploadRevisionAction id="uploadRevisionAction"}
+			{include file="linkAction/legacyLinkAction.tpl" action=$uploadRevisionAction id="uploadRevisionAction"}
 		{elseif $stageId == 4}
-			{include file="linkAction/linkAction.tpl" action=$addCopyeditedFileAction id="addCopyeditedFileAction"}
+			{include file="linkAction/legacyLinkAction.tpl" action=$addCopyeditedFileAction id="addCopyeditedFileAction"}
 		{/if}
 	</div>
 	<div id="viewMetadata" class="authorAction">
-		{include file="linkAction/linkAction.tpl" action=$viewMetadataAction id="viewMetadataAction"}
+		{include file="linkAction/legacyLinkAction.tpl" action=$viewMetadataAction id="viewMetadataAction"}
 	</div>
 </div>
 <div style="clear:both;"></div>

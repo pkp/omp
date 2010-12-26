@@ -46,7 +46,7 @@ class UserGridRow extends GridRow {
 				'rowId' => $rowId
 			);
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'email',
 					LINK_ACTION_MODE_MODAL,
 					null,
@@ -57,7 +57,7 @@ class UserGridRow extends GridRow {
 				)
 			);
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'edit',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,
@@ -70,7 +70,7 @@ class UserGridRow extends GridRow {
 			if ($element->getDisabled()) {
 				$actionArgs['enable'] = true;
 				$this->addAction(
-					new LinkAction(
+					new LegacyLinkAction(
 						'enable',
 						LINK_ACTION_MODE_MODAL,
 						LINK_ACTION_TYPE_REPLACE,
@@ -83,7 +83,7 @@ class UserGridRow extends GridRow {
 			} else {
 				$actionArgs['enable'] = false;
 				$this->addAction(
-					new LinkAction(
+					new LegacyLinkAction(
 						'disable',
 						LINK_ACTION_MODE_MODAL,
 						LINK_ACTION_TYPE_REPLACE,
@@ -96,7 +96,7 @@ class UserGridRow extends GridRow {
 
 			}
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'remove',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REMOVE,

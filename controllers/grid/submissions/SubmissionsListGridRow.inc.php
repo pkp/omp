@@ -46,7 +46,7 @@ class SubmissionsListGridRow extends GridRow {
 			// Actions
 			$router =& $request->getRouter();
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'moreInfo',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_NOTHING,

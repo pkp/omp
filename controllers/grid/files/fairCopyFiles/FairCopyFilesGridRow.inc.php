@@ -55,7 +55,7 @@ class FairCopyFilesGridRow extends GridRow {
 			);
 
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'deleteFile',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REMOVE,
@@ -66,7 +66,7 @@ class FairCopyFilesGridRow extends GridRow {
 					Locale::translate('common.confirmDelete')
 				));
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'moreInfo',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_NOTHING,

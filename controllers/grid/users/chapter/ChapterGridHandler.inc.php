@@ -97,7 +97,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 		$router =& $request->getRouter();
 		$actionArgs = array('monographId' => $monographId);
 		$this->addAction(
-			new LinkAction(
+			new LegacyLinkAction(
 				'addChapter',
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_APPEND,

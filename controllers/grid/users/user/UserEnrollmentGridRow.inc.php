@@ -44,7 +44,7 @@ class UserEnrollmentGridRow extends UserGridRow {
 				'rowId' => $rowId	
 			);
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'email',
 					LINK_ACTION_MODE_MODAL,
 					null,
@@ -55,7 +55,7 @@ class UserEnrollmentGridRow extends UserGridRow {
 				)
 			);
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'edit',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,
@@ -68,7 +68,7 @@ class UserEnrollmentGridRow extends UserGridRow {
 			// Unlike UserGridRow, we refresh the row for a removed user to
 			// indicate the removal of user group assignments
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'remove',
 					LINK_ACTION_MODE_CONFIRM,
 					LINK_ACTION_TYPE_REPLACE,

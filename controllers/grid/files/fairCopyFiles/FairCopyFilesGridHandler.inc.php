@@ -59,7 +59,7 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 			$monograph =& $this->getMonograph();
 			$router =& $request->getRouter();
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'downloadAll',
 					LINK_ACTION_MODE_LINK,
 					LINK_ACTION_TYPE_NOTHING,

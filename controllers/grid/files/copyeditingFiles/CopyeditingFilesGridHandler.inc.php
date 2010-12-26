@@ -80,7 +80,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		// Action to add a file -- Adds a category row for the file
 		$router =& $request->getRouter();
 		$this->addAction(
-			new LinkAction(
+			new LegacyLinkAction(
 				'uploadFile',
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_APPEND,
@@ -92,7 +92,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		);
 		// Action to add a user -- Adds the user as a subcategory to the files selected in its modal
 		$this->addAction(
-			new LinkAction(
+			new LegacyLinkAction(
 				'addUser',
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_REPLACE,

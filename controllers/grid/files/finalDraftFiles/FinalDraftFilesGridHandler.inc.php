@@ -143,7 +143,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 			// Add the upload action if required.
 			if ($canUpload) {
 				$this->addAction(
-					new LinkAction(
+					new LegacyLinkAction(
 						'uploadFile',
 						LINK_ACTION_MODE_MODAL,
 						LINK_ACTION_TYPE_APPEND,
@@ -168,7 +168,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 
 			// Allow the user to manage the files (add existing, non-final files).
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'manageFinalDraftFiles',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,
@@ -185,7 +185,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 		$tarBinary = Config::getVar('cli', 'tar');
 		if ($this->hasData() && !empty($tarBinary) && is_executable($tarBinary)) {
 			$this->addAction(
-				new LinkAction(
+				new LegacyLinkAction(
 					'downloadAll',
 					LINK_ACTION_MODE_LINK,
 					LINK_ACTION_TYPE_NOTHING,

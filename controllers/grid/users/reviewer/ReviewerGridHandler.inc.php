@@ -89,7 +89,7 @@ class ReviewerGridHandler extends GridHandler {
 							'reviewType' => $reviewType,
 							'round' => $round);
 		$this->addAction(
-			new LinkAction(
+			new LegacyLinkAction(
 				'addReviewer',
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_APPEND,

@@ -68,11 +68,11 @@ class SubmissionHandler extends Handler {
 		$templateMgr->assign_by_ref('monograph', $monograph);
 
 		// Setup author actions
-		import('lib.pkp.classes.linkAction.LinkAction');
+		import('lib.pkp.classes.linkAction.LegacyLinkAction');
 		$router =& $request->getRouter();
 		$dispatcher =& $this->getDispatcher();
 		$actionArgs = array('monographId' => $monograph->getId(), 'stageId' => $monograph->getCurrentStageId());
-		$uploadFileAction = new LinkAction(
+		$uploadFileAction = new LegacyLinkAction(
 				'addFile',
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_APPEND,
@@ -83,7 +83,7 @@ class SubmissionHandler extends Handler {
 			);
 		import('classes.monograph.MonographFile');
 		$actionArgs['fileStage'] = MONOGRAPH_FILE_REVIEW;
-		$uploadRevisionAction = new LinkAction(
+		$uploadRevisionAction = new LegacyLinkAction(
 				'addRevision',
 				LINK_ACTION_MODE_MODAL,
 				LINK_ACTION_TYPE_NOTHING,
@@ -93,7 +93,7 @@ class SubmissionHandler extends Handler {
 				'edit'
 			);
 		$actionArgs['fileStage'] = MONOGRAPH_FILE_COPYEDIT;
-		$addCopyeditedFileAction = new LinkAction(
+		$addCopyeditedFileAction = new LegacyLinkAction(
 				'addCopyeditedFile',
 				LINK_ACTION_MODE_MODAL,
 				null,
@@ -102,7 +102,7 @@ class SubmissionHandler extends Handler {
 				null,
 				'add_item'
 			);
-		$viewMetadataAction = new LinkAction(
+		$viewMetadataAction = new LegacyLinkAction(
 				'viewMetadata',
 				LINK_ACTION_MODE_MODAL,
 				null,

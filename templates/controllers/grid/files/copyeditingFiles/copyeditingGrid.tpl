@@ -16,7 +16,7 @@
 								{else}
 									{assign var=actionActOnId value=$gridActOnId}
 								{/if}
-								{include file="linkAction/linkAction.tpl" action=$action id=$gridId actOnId=$actionActOnId hoverTitle=true}
+								{include file="linkAction/legacyLinkAction.tpl" action=$action id=$gridId actOnId=$actionActOnId hoverTitle=true}
 							{/foreach}
 						</span>
 					{/if}

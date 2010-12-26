@@ -14,7 +14,7 @@
 
 <!-- Editorial decision actions -->
 {foreach from=$editorActions item=action}
-	{include file="linkAction/linkAction.tpl" action=$action id="editorAction"}
+	{include file="linkAction/legacyLinkAction.tpl" action=$action id="editorAction"}
 {/foreach}
 
 {url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}

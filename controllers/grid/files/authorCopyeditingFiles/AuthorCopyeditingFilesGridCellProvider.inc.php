@@ -86,12 +86,9 @@ class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider 
 				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 				$actionArgs = array('monographId' => $monographFile->getMonographId());
-				$addCopyeditedFileAction = new LinkAction(
+				$addCopyeditedFileAction = new AjaxModalLinkAction(
 					'addCopyeditedFile',
-					LINK_ACTION_MODE_MODAL,
-					null,
 					$dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.files.authorCopyeditingFiles.AuthorCopyeditingFilesGridHandler', 'addCopyeditedFile', null, array_merge($actionArgs, array('gridId' => 'authorcopyeditingfilesgrid'))),
-					null,
 					null,
 					'new'
 				);
@@ -108,7 +105,7 @@ class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider 
 	 * @param $row GridRow
 	 * @param $column GridColumn
 	 * @param $fileId int
-	 * @return LinkAction
+	 * @return LegacyLinkAction
 	 */
 	function _getMonographFile(&$request, &$row, &$column, $fileId) {
 		$state = $this->getCellState($row, $column);
@@ -124,7 +121,7 @@ class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider 
 		);
 
 		$label = $monographFile->getLocalizedName();
-		$action =& new LinkAction(
+		$action =& new LegacyLinkAction(
 						'downloadFile',
 						LINK_ACTION_MODE_LINK,
 						LINK_ACTION_TYPE_NOTHING,

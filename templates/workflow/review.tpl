@@ -54,7 +54,7 @@
 
 {** editorial decision actions *}
 {foreach from=$editorActions item=action}
-	{include file="linkAction/linkAction.tpl" action=$action id="editorAction"}
+	{include file="linkAction/legacyLinkAction.tpl" action=$action id="editorAction"}
 {/foreach}
 
 </div>
