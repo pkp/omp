@@ -6,51 +6,12 @@
  *
  * File metadata form
  *}
-{assign var='uniqueId' value=""|uniqid}
-
 <script type="text/javascript">{literal}
-	<!--
-	$(function() {
-		// FIXME: just a test.
-		$('#uploadForm').pkpForm();
-
-		$('.button').button();
-		$('#metadataForm').ajaxForm({
-			dataType: 'json',
-			success: function(returnString) {
-				if (returnString.status == true) {
-					if(returnString.isEditing) { // User was editing existing item, save and close
-						saveAndUpdate('{/literal}{url router=$smarty.const.ROUTE_COMPONENT op="returnFileRow" monographId=$monographId fileId=$fileId signoffId=$signoffId escape=false}{literal}',
-								'replace',
-								'#component-'+'{/literal}{$gridId}{literal}'+'-row-'+'{/literal}{if $signoffId}{$signoffId}{else}{$fileId}{/if}{literal}',
-								'div#fileUploadTabs');
-					} else {
-						$('div#fileUploadTabs').last().tabs('url', 2, returnString.finishingUpUrl);
-						$('div#fileUploadTabs').last().tabs('enable', 2);
-						$('div#fileUploadTabs').last().tabs('select', 2);
-					}
-				} else {
-
-				}
-			}
-		});
-
-		// Set cancel/continue button behaviors
-		$("#continueButton2").click(function() {
-			validator = $('#metadataForm').validate();
-			if($('#metadataForm').valid()) {
-				$('#metadataForm').submit();   // Hands off further actions to the ajaxForm function above
-			}
-			validator = null;
-			return false;
-		});
-		$("#cancelButton2").click(function() {
-			$('div#fileUploadTabs').last().parent().dialog('close');
-			return false;
-		});
-	});
-{/literal}</script>
-	// -->
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#metadataForm').pkpHandler('$.pkp.controllers.FormHandler');
+	{rdelim});
+</script>
 
 <form name="metadataForm" id="metadataForm" action="{url op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
 	<h3>{translate key='submission.fileDetails'}</h3>
@@ -90,4 +51,3 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 </form>
-

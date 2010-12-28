@@ -47,7 +47,7 @@ class MonographFileManager extends FileManager {
 	 * @param $genreId int (e.g. Manusciprt, Appendix, etc.)
 	 * @return MonographFile
 	 */
-	function uploadMonographFile($monographId, $fileName, $fileStage, $revisedFileId = null, $genreId = null) {
+	function &uploadMonographFile($monographId, $fileName, $fileStage, $revisedFileId = null, $genreId = null) {
 		return MonographFileManager::_handleUpload($monographId, $fileName, $fileStage, $revisedFileId, $genreId);
 	}
 
@@ -58,7 +58,7 @@ class MonographFileManager extends FileManager {
 	 * @param $revisedFileId int
 	 * @return MonographFile
 	 */
-	function uploadReviewFile($monographId, $fileName, $revisedFileId = null, $reviewId = null) {
+	function &uploadReviewFile($monographId, $fileName, $revisedFileId = null, $reviewId = null) {
 		$assocType = $reviewId ? ASSOC_TYPE_REVIEW_ASSIGNMENT : null;
 		return MonographFileManager::_handleUpload($monographId, $fileName, MONOGRAPH_FILE_REVIEW, $revisedFileId, null, $reviewId, $assocType);
 	}
@@ -70,7 +70,7 @@ class MonographFileManager extends FileManager {
 	 * @param $revisedFileId int
 	 * @return MonographFile
 	 */
-	function uploadCopyeditResponseFile($monographId, $fileName, $revisedFileId = null) {
+	function &uploadCopyeditResponseFile($monographId, $fileName, $revisedFileId = null) {
 		return MonographFileManager::_handleUpload($monographId, $fileName, MONOGRAPH_FILE_COPYEDIT_RESPONSE, $revisedFileId);
 	}
 

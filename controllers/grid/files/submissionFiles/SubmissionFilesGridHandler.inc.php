@@ -12,6 +12,11 @@
  * @brief Handle submission file grid requests.
  */
 
+// The percentage of characters that the name of a file
+// has to share with an existing file for it to be
+// considered as a revision of that file.
+define('SUBMISSION_MIN_SIMILARITY_OF_REVISION', 70);
+
 // Import UI base classes.
 import('lib.pkp.classes.controllers.grid.GridHandler');
 import('lib.pkp.classes.linkAction.ModalLinkAction');
@@ -180,14 +185,14 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @return string a serialized JSON object
 	 */
 	function displayFileUploadForm($args, &$request) {
-		// Configure the submission files upload wizard.
+		// Instantiate, configure and initialize the form.
 		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
 		$monograph =& $this->getMonograph();
 		$revisedFileId = $this->_getRevisedFileFromRequest($request);
 		$fileForm = new SubmissionFilesUploadForm($request, $monograph->getId(), $this->getFileStage(), $this->revisionOnly(), $revisedFileId);
 		$fileForm->initData($args, $request);
 
-		// Render the wizard.
+		// Render the form.
 		$json = new JSON('true', $fileForm->fetch($request));
 		return $json->getString();
 	}
@@ -199,9 +204,42 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @return string a serialized JSON object
 	 */
 	function uploadFile($args, &$request) {
-		// Upload the file.
+		// Instantiate the file upload form.
+		$monograph =& $this->getMonograph();
 		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
-		return $this->_executeFileForm($request, FILE_FORM_UPLOAD);
+		$uploadForm = new SubmissionFilesUploadForm($request, $monograph->getId(), $this->getFileStage(), $this->revisionOnly());
+		$uploadForm->readInputData();
+
+		// Validate the form and upload the file.
+		if ($uploadForm->validate($request)) {
+			if (is_a($uploadedFile =& $uploadForm->execute(), 'MonographFile')) {
+				$uploadedFileInfo = $this->_getUploadedFileInfo($uploadedFile);
+
+				// If no revised file id was given then try out whether
+				// the user maybe accidentally didn't identify this file as a revision.
+				if (!$uploadForm->getRevisedFileId()) {
+					$revisedFileId = $this->_checkForRevision($uploadedFile, $uploadForm->getMonographFiles());
+					if ($revisedFileId) {
+						// Instantiate the revision confirmation form.
+						import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadConfirmationForm');
+						$confirmationForm = new SubmissionFilesUploadConfirmationForm($request, $monograph->getId(), $this->getFileStage(), $revisedFileId, $uploadedFile);
+						$confirmationForm->initData($args, $request);
+
+						// Render the revision confirmation form.
+						$json = new JSON('true', $confirmationForm->fetch($request), 'false', '0', $uploadedFileInfo);
+						return $json->getString();
+					}
+				}
+
+				// Advance to the next step (i.e. meta-data editing).
+				$json = new JSON('true', '', 'false', '0', $uploadedFileInfo);
+			} else {
+				$json = new JSON('false', Locale::translate('common.uploadFailed'));
+			}
+		} else {
+			$json = new JSON('false', array_pop($uploadForm->getErrorsArray()));
+		}
+		return $json->getString();
 	}
 
 	/**
@@ -212,9 +250,24 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @return string a serialized JSON object
 	 */
 	function confirmRevision($args, &$request) {
-		// Revise the file.
-		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
-		return $this->_executeFileForm($request, FILE_FORM_REVISE);
+		// Instantiate the revision confirmation form.
+		$monograph =& $this->getMonograph();
+		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadConfirmationForm');
+		$confirmationForm = new SubmissionFilesUploadConfirmationForm($request, $monograph->getId(), $this->getFileStage());
+		$confirmationForm->readInputData();
+
+		// Validate the form and revise the file.
+		if ($confirmationForm->validate($request)) {
+			if (is_a($uploadedFile =& $confirmationForm->execute(), 'MonographFile')) {
+				// Go to the meta-data editing step.
+				$json = new JSON('true', '', 'false', '0', $this->_getUploadedFileInfo($uploadedFile));
+			} else {
+				$json = new JSON('false', Locale::translate('common.uploadFailed'));
+			}
+		} else {
+			$json = new JSON('false', array_pop($confirmationForm->getErrorsArray()));
+		}
+		return $json->getString();
 	}
 
 	/**
@@ -233,7 +286,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 			// Delete the file/revision but only when it belongs to the authorized monograph
 			// and to the right file stage.
-			import('classes.file.MonographFileManager');
 			$monograph =& $this->getMonograph();
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			if ($revision) {
@@ -473,29 +525,59 @@ class SubmissionFilesGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Execute the file upload form.
-	 * @param $request Request
-	 * @param $executionMode integer one of the FILE_FORM_* constants
-	 * @return string a rendered JSON response
+	 * Check if the uploaded file has a similar name to an existing
+	 * file which would then be a candidate for a revised file.
+	 * @param $uploadedFile MonographFile
+	 * @param $monographFiles array a list of monograph files to
+	 *  check the uploaded file against.
+	 * @return integer the if of the possibly revised file or null
+	 *  if no matches were found.
 	 */
-	function _executeFileForm(&$request, $executionMode) {
-		// Instantiate the file form.
-		$monograph =& $this->getMonograph();
-		$fileForm = new SubmissionFilesUploadForm($request, $monograph->getId(), $this->getFileStage(), $this->revisionOnly());
-		$fileForm->readInputData();
+	function &_checkForRevision(&$uploadedFile, &$monographFiles) {
+		// Get the file name.
+		$uploadedFileName = $uploadedFile->getOriginalFileName();
 
-		// Validate the form and upload/revise the file.
-		if ($fileForm->validate($request, $executionMode)) {
-			if ($fileForm->execute($executionMode)) {
-				// Render the updated form.
-				$json = new JSON('true', $fileForm->fetch($request));
-			} else {
-				// Return an error.
-				$json = new JSON('false', Locale::translate('common.uploadFailed'));
+		// Start with the minimal required similarity.
+		$minPercentage = SUBMISSION_MIN_SIMILARITY_OF_REVISION;
+
+		// Find out whether one of the files belonging to the current
+		// file stage matches the given file name.
+		$possibleRevisedFileId = null;
+		$matchedPercentage = 0;
+		foreach ($monographFiles as $monographFile) { /* @var $monographFile MonographFile */
+			// Do not consider the uploaded file itself.
+			if ($uploadedFile->getFileId() == $monographFile->getFileId()) continue;
+
+			// Test whether the current monograph file is similar
+			// to the uploaded file.
+			similar_text($uploadedFileName, $monographFile->getOriginalFileName(), &$matchedPercentage);
+			if($matchedPercentage > $minPercentage) {
+				// We found a file that might be a possible revision.
+				$possibleRevisedFileId = $monographFile->getFileId();
+
+				// Reset the min percentage to this comparison's precentage
+				// so that only better matches will be considered from now on.
+				$minPercentage = $matchedPercentage;
 			}
-		} else {
-			$json = new JSON('false', array_pop($fileForm->getErrorsArray()));
 		}
-		return $json->getString();
+
+		// Return the id of the file that we found similar.
+		return $possibleRevisedFileId;
+	}
+
+	/**
+	 * Create an array that describes an uploaded file which can
+	 * be used in a JSON response.
+	 * @param MonographFile $uploadedFile
+	 * @return array
+	 */
+	function &_getUploadedFileInfo(&$uploadedFile) {
+		$uploadedFileInfo = array(
+			'uploadedFile' => array(
+				'fileId' => $uploadedFile->getFileId(),
+				'revision' => $uploadedFile->getRevision()
+			)
+		);
+		return $uploadedFileInfo;
 	}
 }
