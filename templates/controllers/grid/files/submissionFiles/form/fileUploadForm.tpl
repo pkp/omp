@@ -131,7 +131,7 @@
 	{rdelim});
 </script>
 
-<form name="uploadForm" id="uploadForm" action="#" method="post">
+<form id="uploadForm" action="#" method="post">
 	{fbvFormArea id="file"}
 		{if $showFileNameOnly}
 			{fbvFormSection title="submission.submit.currentFile"}

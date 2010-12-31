@@ -18,7 +18,7 @@
 	{/foreach}
 
 	$(document).ready(function() {ldelim}
-		// Role select drop-down list 
+		// Role select drop-down list
 		$('#selectRole').change(function() {ldelim}
 			var roleId = $('#selectRole').val();
 			// Display user group listbuilder for selected role
@@ -46,7 +46,7 @@
 
 <div class="clear">&nbsp;</div>
 
-<form id="roleSelectForm" name="roleSelectForm" method="post" action="#">
+<form id="roleSelectForm" method="post" action="#">
 
 <label for="selectRole">{translate key="manager.users.selectRole"}: </label>
 <select name="selectRole" id="selectRole" size="1" class="selectMenu">

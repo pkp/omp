@@ -18,7 +18,7 @@
 				$(this).parent().siblings('.row_controls').toggle(300);
 			}));
 			{/literal}{if $validateId}{literal}
-			$("form[name={/literal}{$validateId}{literal}]").validate({
+			$("form#{/literal}{$validateId}{literal}").validate({
 				errorClass: "error",
 				highlight: function(element, errorClass) {
 					$(element).parent().parent().addClass(errorClass);

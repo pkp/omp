@@ -9,7 +9,7 @@
  *}
 {modal_title id="#editChapterForm" key="submission.chapter.addChapter" iconClass="fileManagement" canClose=1}
 
-<form name="editChapterForm" id="editChapterForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
+<form id="editChapterForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormSection title="common.title" for="title"}

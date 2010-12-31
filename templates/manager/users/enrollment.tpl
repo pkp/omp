@@ -41,7 +41,7 @@
 
 <div class="clear">&nbsp;</div>
 
-<form name="userSearchForm" id="userSearchForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserEnrollmentGridHandler" op="fetchGrid"}" method="post">
+<form id="userSearchForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserEnrollmentGridHandler" op="fetchGrid"}" method="post">
 <div id="userSearchFormArea">
 	<select name="searchField" id="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}

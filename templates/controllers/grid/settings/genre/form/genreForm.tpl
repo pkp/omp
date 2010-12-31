@@ -7,7 +7,7 @@
  * Genre form under press management.
  *}
 
-<form name="genreForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.genre.GenreGridHandler" op="updateGenre"}">
+<form id="genreForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.genre.GenreGridHandler" op="updateGenre"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="genreInfo"}

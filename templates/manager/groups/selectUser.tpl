@@ -11,7 +11,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form name="submit" method="post" action="{url op="addMembership" path=$group->getId()}">
+<form id="submit" method="post" action="{url op="addMembership" path=$group->getId()}">
 	<select name="searchField" size="1" class="selectMenu">
 		{html_options_translate options=$fieldOptions selected=$searchField}
 	</select>

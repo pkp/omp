@@ -89,7 +89,7 @@ function prepBlockFields() {
 {/literal}
 </script>
 
-<form name="setupForm" method="post" action="{url op="saveSetup" path="5"}" enctype="multipart/form-data">
+<form id="setupForm" method="post" action="{url op="saveSetup" path="5"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
 {if count($formLocales) > 1}

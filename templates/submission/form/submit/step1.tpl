@@ -9,7 +9,7 @@
 {assign var="pageTitle" value="submission.submit.step1"}
 {include file="submission/form/submit/submitStepHeader.tpl"}
 
-<form name="submitStep1" method="post" action="{url op="saveStep" path=$submitStep}">
+<form id="submitStep1" method="post" action="{url op="saveStep" path=$submitStep}">
 {if $monographId}<input type="hidden" name="monographId" value="{$monographId|escape}" />{/if}
 <input type="hidden" name="submissionChecklist" value="1" />
 

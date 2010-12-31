@@ -23,7 +23,7 @@
 	{rdelim});
 </script>
 
-<form name="uploadConfirmationForm" id="uploadConfirmationForm"
+<form id="uploadConfirmationForm"
 		action="{url op="confirmRevision" monographId=$monographId uploadedFileId=$uploadedFile->getFileId()}"
 		method="post">
 	{fbvFormArea id="file"}

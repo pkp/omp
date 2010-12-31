@@ -104,7 +104,7 @@
 </script>
 
 
-<form name="uploadForm" id="uploadForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="uploadFile" fileType=$fileType}" method="post">
+<form id="uploadForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="uploadFile" fileType=$fileType}" method="post">
 	{fbvFormArea id="file"}
 		{if !$libraryFile}
 			{fbvFormSection title="common.file"}
@@ -119,7 +119,7 @@
 </form>
 
 
-<form name="metadataForm" id="metadataForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="saveMetadata"}" method="post">
+<form id="metadataForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.library.LibraryFileGridHandler" op="saveMetadata"}" method="post">
 	<input type="hidden" id="metadataRowId" name="rowId" value="{$rowId|escape}" />
 	{fbvFormArea id="name"}
 		{fbvFormSection title="common.name" float=$fbvStyles.float.LEFT}

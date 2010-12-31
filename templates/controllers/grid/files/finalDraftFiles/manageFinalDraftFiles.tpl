@@ -15,7 +15,7 @@
 <h4>{translate key="editor.submissionArchive.currentFiles" round=$round}</h4>
 
 <div id="existingFilesContainer">
-	<form name="manageReviewFilesForm" id="manageFinalDraftFilesForm" action="{url op="updateFinalDraftFiles" monographId=$monographId|escape}" method="post">
+	<form id="manageFinalDraftFilesForm" action="{url op="updateFinalDraftFiles" monographId=$monographId|escape}" method="post">
 		<input type="hidden" name="monographId" value="{$monographId|escape}" />
 
 		<!-- Available submission files -->

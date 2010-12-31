@@ -35,7 +35,7 @@
 
 <div class="text_center">
 	<h2>{translate key="submission.submit.fileAdded"}</h2> <br /> <br /> <br />
-	<form name="finishSubmissionForm" id="finishSubmissionForm" action="{url router=$smarty.const.ROUTE_COMPONENT op="returnFileRow" monographId=$monographId fileId=$fileId escape=false}" method="post">
+	<form id="finishSubmissionForm" action="{url router=$smarty.const.ROUTE_COMPONENT op="returnFileRow" monographId=$monographId fileId=$fileId escape=false}" method="post">
 		<input class="button" type="button" name="newFile" value="{translate key='submission.submit.newFile'}" id="newFile" /> <br /> <br /> <br />
 		<input class="button" type="button" name="exit" value="{translate key='submission.submit.finishedUploading'}" id="exit" /> <br />
 	</form>

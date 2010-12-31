@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	<!--
 	$(document).ready(function() {ldelim}
-		// User select drop-down list 
+		// User select drop-down list
 		$('#selectUser').change(function() {ldelim}
 			var newUserId = $('#selectUser').val();
 			// If we're already editing a user, submit the form
@@ -72,7 +72,7 @@
 
 <h3>{translate key="grid.user.selectUser"}</h3>
 
-<form id="userSelectForm" name="userSelectForm" method="post" action="{url op="enrollUserFinish"}">
+<form id="userSelectForm" method="post" action="{url op="enrollUserFinish"}">
 
 {fbvFormArea id="userSelectFormArea"}
 

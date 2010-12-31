@@ -13,7 +13,7 @@
 {include file="reviewer/review/reviewStepHeader.tpl"}
 {/strip}
 
-<form name="review" method="post" action="{url page="reviewer" op="saveStep" path=$submission->getId() step="1" escape=false}">
+<form id="review" method="post" action="{url page="reviewer" op="saveStep" path=$submission->getId() step="1" escape=false}">
 {include file="common/formErrors.tpl"}
 
 <div id="request">

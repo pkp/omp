@@ -8,7 +8,7 @@
  *
  *}
 
-<form name="sendReminderForm" id="sendReminder" method="post" action="{url op="sendReminder"}" >
+<form id="sendReminder" method="post" action="{url op="sendReminder"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignmentId}" />
 

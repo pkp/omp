@@ -11,7 +11,7 @@
 {assign var='uniqueId' value=""|uniqid}
 {modal_title id="#editSubmissionContributor" key="grid.action.addAuthor" iconClass="fileManagement" canClose=1}
 
-<form name="editSubmissionContributorForm" id="editSubmissionContributor" method="post" action="{url op="updateSubmissionContributor" submissionContributorId=$authorId}">
+<form id="editSubmissionContributor" method="post" action="{url op="updateSubmissionContributor" submissionContributorId=$authorId}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="profile"}

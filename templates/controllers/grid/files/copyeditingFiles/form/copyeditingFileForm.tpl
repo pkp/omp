@@ -75,7 +75,7 @@
 </script>
 
 
-<form name="uploadForm" id="uploadForm" action="{url op="returnSignoffRow" monographId=$monographId signoffId=$signoffId escape=false}" method="post">
+<form id="uploadForm" action="{url op="returnSignoffRow" monographId=$monographId signoffId=$signoffId escape=false}" method="post">
 	{fbvFormArea id="file"}
 		{if !$copyeditingFile}
 			{fbvFormSection title="common.file"}

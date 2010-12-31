@@ -123,7 +123,7 @@
 	// -->
 </script>
 
-<form name="reviewerFilterForm" id="reviewerFilterForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="updateReviewerSelect" monographId=$monographId}" method="post">
+<form id="reviewerFilterForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="updateReviewerSelect" monographId=$monographId}" method="post">
 {fbvFormArea id="reviewerSearchForm"}
 	{fbvFormSection float=$fbvStyles.float.LEFT}
 		<p class="sliderLabel">

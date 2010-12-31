@@ -11,7 +11,7 @@
 {include file="reviewer/review/reviewStepHeader.tpl"}
 {/strip}
 
-<form name="review" method="post" action="{url op="saveStep" path=$submission->getId() step="3"}">
+<form id="review" method="post" action="{url op="saveStep" path=$submission->getId() step="3"}">
 {include file="common/formErrors.tpl"}
 
 {** FIXME: need to set escape=false due to bug 5265 *}
@@ -32,7 +32,7 @@
 		<h4>{$reviewForm->getLocalizedTitle()}</h4>
 		<p>{$reviewForm->getLocalizedDescription()}</p>
 
-		<form name="saveReviewFormResponse" method="post" action="{url op="saveReviewFormResponse" path=$reviewId|to_array:$reviewForm->getId()}">
+		<form id="saveReviewFormResponse" method="post" action="{url op="saveReviewFormResponse" path=$reviewId|to_array:$reviewForm->getId()}">
 			{foreach from=$reviewFormElements name=reviewFormElements key=elementId item=reviewFormElement}
 				<p>{$reviewFormElement->getLocalizedQuestion()} {if $reviewFormElement->getRequired() == 1}*{/if}</p>
 				<p>

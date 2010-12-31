@@ -37,7 +37,7 @@
 </script>
 {/literal}
 
-<form name="addStageParticipantForm" id="addStageParticipant" method="post" action="{url op="saveStageParticipant" monographId=$monographId}">
+<form id="addStageParticipant" method="post" action="{url op="saveStageParticipant" monographId=$monographId}">
 	{include file="common/formErrors.tpl"}
 
 	<p>{translate key="submission.submit.addStageParticipant.description"}</p>

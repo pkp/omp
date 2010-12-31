@@ -13,7 +13,7 @@
 <h4>{translate key="editor.submissionArchive.currentFiles" round=$round}</h4>
 
 <div id="existingFilesContainer">
-	<form name="manageReviewFilesForm" id="manageReviewFilesForm" action="{url component="grid.files.reviewFiles.EditorReviewFilesGridHandler" op="updateReviewFiles" monographId=$monographId|escape reviewType=$reviewType|escape round=$round|escape}" method="post">
+	<form id="manageReviewFilesForm" action="{url component="grid.files.reviewFiles.EditorReviewFilesGridHandler" op="updateReviewFiles" monographId=$monographId|escape reviewType=$reviewType|escape round=$round|escape}" method="post">
 		<input type="hidden" name="monographId" value="{$monographId|escape}" />
 
 		<!-- Available submission files -->

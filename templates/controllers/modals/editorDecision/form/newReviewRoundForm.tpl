@@ -11,7 +11,7 @@
 {modal_title id="#newRound" key='editor.monograph.newRound' iconClass="fileManagement" canClose=1}
 
 <p>{translate key="editor.monograph.newRoundDescription"}</p>
-<form name="newRound" id="newRound" method="post" action="{url op="saveNewReviewRound"}" >
+<form id="newRound" method="post" action="{url op="saveNewReviewRound"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 
 	<!-- Revision files grid (Displays only revisions at first, and hides all other files which can then be displayed with filter button -->

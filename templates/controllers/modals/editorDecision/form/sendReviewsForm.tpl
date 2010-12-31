@@ -37,7 +37,7 @@
 	// -->
 </script>
 
-<form name="sendReviews" id="sendReviews" method="post" action="{url op="saveSendReviews"}" >
+<form id="sendReviews" method="post" action="{url op="saveSendReviews"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="decision" value="{$decision|escape}" />
 

@@ -11,7 +11,7 @@
 {modal_title id="#initiateReview" key='editor.monograph.initiateReview' iconClass="fileManagement" canClose=1}
 
 <p>{translate key="editor.monograph.initiateReviewDescription"}</p>
-<form name="initiateReview" id="initiateReview" method="post" action="{url op="saveInitiateReview"}" >
+<form id="initiateReview" method="post" action="{url op="saveInitiateReview"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 
 	<!-- Available submission files -->

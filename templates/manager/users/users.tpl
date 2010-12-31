@@ -41,7 +41,7 @@
 
 <div class="clear">&nbsp;</div>
 
-<form name="userSearchForm" id="userSearchForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserGridHandler" op="fetchGrid"}" method="post">
+<form id="userSearchForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserGridHandler" op="fetchGrid"}" method="post">
 <div id="userSearchFormArea">
 	<select name="userGroup" id="userGroup" size="1" class="selectMenu">
 		{html_options options=$userGroupOptions selected=$userGroup}

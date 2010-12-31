@@ -23,7 +23,7 @@
 	// -->
 </script>
 
-<form name="declineReview" id="declineReview" method="post" action="{url op="saveDeclineReview"}">
+<form id="declineReview" method="post" action="{url op="saveDeclineReview"}">
 <h3>{translate key="reviewer.monograph.declineReview"}</h3>
 
 <p>{translate key="reviewer.monograph.declineReviewMessage"}</p>

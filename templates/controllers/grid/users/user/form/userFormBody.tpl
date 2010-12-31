@@ -16,7 +16,7 @@
 <h3>{translate key="grid.user.step1"}</h3>
 {/if}
 
-<form id="userForm" name="userForm" method="post" action="{url op="updateUser"}" onsubmit="enablePasswordFields()">
+<form id="userForm" method="post" action="{url op="updateUser"}" onsubmit="enablePasswordFields()">
 
 {if $userId}
 	<input type="hidden" id="userId" name="userId" value="{$userId|escape}" />

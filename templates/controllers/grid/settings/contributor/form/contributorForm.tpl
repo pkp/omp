@@ -8,7 +8,7 @@
  * Sponsors grid form
  *}
 
-<form name="editSponsorForm" id="editSponsorForm" method="post" action="{url component="grid.settings.contributor.ContributorGridHandler" op="updateContributor"}">
+<form id="editSponsorForm" method="post" action="{url component="grid.settings.contributor.ContributorGridHandler" op="updateContributor"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="mastheadInfo"}
@@ -21,7 +21,7 @@
 {/fbvFormArea}
 
 {if $gridId}
-	<input type="hidden" name="gridId" value="{$gridId|escape}" />	
+	<input type="hidden" name="gridId" value="{$gridId|escape}" />
 {/if}
 {if $rowId}
 	<input type="hidden" name="rowId" value={$rowId|escape} />

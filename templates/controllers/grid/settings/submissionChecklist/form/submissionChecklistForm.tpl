@@ -7,7 +7,7 @@
  *
  * SubmissionChecklists grid form
  *}
-<form name="editSubmissionChecklistForm" id="editSubmissionChecklistForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.submissionChecklist.SubmissionChecklistGridHandler" op="updateItem"}"}
+<form id="editSubmissionChecklistForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.submissionChecklist.SubmissionChecklistGridHandler" op="updateItem"}"}
 {include file="common/formErrors.tpl"}
 
 {fbvElementMultilingual type="textarea" name="checklistItem" id="checklistItem" value=$checklistItem required=true}

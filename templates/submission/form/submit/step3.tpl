@@ -14,7 +14,7 @@
 
 <div class="separator"></div>
 
-<form name="submit" method="post" action="{url op="saveStep" path=$submitStep}">
+<form id="submit" method="post" action="{url op="saveStep" path=$submitStep}">
 <input type="hidden" name="monographId" value="{$monographId|escape}" />
 {include file="common/formErrors.tpl"}
 

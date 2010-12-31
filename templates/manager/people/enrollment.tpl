@@ -11,7 +11,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form name="disableUser" method="post" action="{url op="disableUser"}">
+<form id="disableUser" method="post" action="{url op="disableUser"}">
 	<input type="hidden" name="reason" value=""/>
 	<input type="hidden" name="userId" value=""/>
 </form>
@@ -65,7 +65,7 @@ function confirmAndPrompt(userId) {
 
 {if not $userGroup}
 <ul>
-	{foreach from=$userGroupOptions item=name key=id} 
+	{foreach from=$userGroupOptions item=name key=id}
 		<li><a href="{url path=$id}">{$name}</a></li>
 	{/foreach}
 </ul>
@@ -75,7 +75,7 @@ function confirmAndPrompt(userId) {
 <p><a href="{url path="all"}" class="action">{translate key="manager.people.allUsers"}</a></p>
 {/if}
 
-<form name="people" action="{url page="user" op="email"}" method="post">
+<form id="people" action="{url page="user" op="email"}" method="post">
 <input type="hidden" name="redirectUrl" value="{url path=$userGroupId}"/>
 
 <div id="users">

@@ -61,7 +61,7 @@
 	// -->
 {/literal}</script>
 
-<form name="addReviewerForm" id="addReviewer" method="post" action="{url op="updateReviewer" monographId=$monographId}" >
+<form id="addReviewer" method="post" action="{url op="updateReviewer" monographId=$monographId}" >
 	<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignmentId}" />
 	<input type="hidden" name="reviewType" value="{$reviewType|escape}" />
 	<input type="hidden" name="round" value="{$round|escape}" />

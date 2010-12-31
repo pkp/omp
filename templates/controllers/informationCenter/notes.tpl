@@ -33,7 +33,7 @@
 </script>
 <div id="informationCenterNotesTab">
 	<div id="newNoteContainer">
-		<form name="newNoteForm" id="newNoteForm" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveNote" monographId=$monographId itemId=$itemId itemType=$itemType}" method="post">
+		<form id="newNoteForm" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveNote" monographId=$monographId itemId=$itemId itemType=$itemType}" method="post">
 			{fbvElement type="textarea" id="newNote" size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}<br/>
 			<div style="float:right;">{fbvButton type="submit" label="informationCenter.postNote"}</div>
 		</form>

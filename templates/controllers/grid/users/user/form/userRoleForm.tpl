@@ -9,7 +9,7 @@
 
 <h3>{translate key="grid.user.step2"}</h3>
 
-<form name="userRoleForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserGridHandler" op="updateUserRoles"}">
+<form id="userRoleForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserGridHandler" op="updateUserRoles"}">
 
 <input type="hidden" id="userId" name="userId" value="{$userId|escape}" />
 
