@@ -170,7 +170,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$templateMgr->assign('monographId', $monograph->getId());
 
 		// Assign the pre-configured revised file id (if any).
-		$revisedFileId = $this->_getRevisedFileFromRequest($request);
+		$revisedFileId = $this->_getRevisedFileIdFromRequest($request);
 		$templateMgr->assign('revisedFileId', $revisedFileId);
 
 		// Render the file upload wizard.
@@ -188,7 +188,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		// Instantiate, configure and initialize the form.
 		import('controllers.grid.files.submissionFiles.form.SubmissionFilesUploadForm');
 		$monograph =& $this->getMonograph();
-		$revisedFileId = $this->_getRevisedFileFromRequest($request);
+		$revisedFileId = $this->_getRevisedFileIdFromRequest($request);
 		$fileForm = new SubmissionFilesUploadForm($request, $monograph->getId(), $this->getFileStage(), $this->revisionOnly(), $revisedFileId);
 		$fileForm->initData($args, $request);
 
@@ -311,91 +311,32 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @return string a serialized JSON object
 	 */
 	function editMetadata($args, &$request) {
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getMonograph();
-		$monographId = $monograph->getId();
-
-		// Retrieve the latest revision of the requested monograph file.
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$fileId = (int)$request->getUserVar('fileId');
-		$monographFile =& $submissionFileDao->getLatestRevision($fileId, $this->getFileStage(), $monographId);
-		if (!is_a($monographFile, 'MonographFile')) fatalError('Invalid file id!');
-
-		// Identify the genre category of the monograph file.
-		$genreDao =& DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
-		$genre =& $genreDao->getById($monographFile->getGenreId());
-		assert(is_a($genre, 'Genre'));
-
-		// Import the meta-data form based on the file implementation.
-		if (is_a($monographFile, 'ArtworkFile')) {
-			import('controllers.grid.files.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
-			$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId, $monographId);
-		} else {
-			import('controllers.grid.files.submissionFiles.form.SubmissionFilesMetadataForm');
-			$metadataForm = new SubmissionFilesMetadataForm($fileId, $monographId);
-		}
-
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('gridId', $this->getId());
-		$templateMgr->assign('monographId', $monographId);
-
+		$metadataForm =& $this->_getMetadataForm($request);
 		if ($metadataForm->isLocaleResubmit()) {
 			$metadataForm->readInputData();
 		} else {
 			$metadataForm->initData($args, $request);
 		}
-
 		$json = new JSON('true', $metadataForm->fetch($request));
 		return $json->getString();
 	}
 
-
 	/**
-	 * Save the metadata of a submission file
+	 * Save the metadata of the latest revision of
+	 * the requested submission file
 	 * @param $args array
 	 * @param $request Request
 	 * @return string a serialized JSON object
 	 */
 	function saveMetadata($args, &$request) {
-		$monograph =& $this->getMonograph();
-		$monographId = $monograph->getId();
-		$fileId = $request->getUserVar('fileId');
-
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFile =& $submissionFileDao->getLatestRevision($fileId, $this->getFileStage(), $monographId);
-
-		$genreDao =& DAORegistry::getDAO('GenreDAO');
-		$genre = $genreDao->getById($monographFile->getGenreId());
-
-		if(isset($monographFile) && $monographFile->getLocalizedName() != '') { //Name exists, just updating it
-			$isEditing = true;
-		} else {
-			$isEditing = false;
-		}
-
-		switch ($genre->getCategory()) {
-			case GENRE_CATEGORY_ARTWORK:
-				import('controllers.grid.files.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
-				$metadataForm = new SubmissionFilesArtworkMetadataForm($fileId);
-				break;
-			default:
-				import('controllers.grid.files.submissionFiles.form.SubmissionFilesMetadataForm');
-				$metadataForm = new SubmissionFilesMetadataForm($fileId);
-				break;
-		}
-
+		$metadataForm =& $this->_getMetadataForm($request);
 		$metadataForm->readInputData();
-
 		if ($metadataForm->validate()) {
 			$metadataForm->execute($args, $request);
-			$router =& $request->getRouter();
-
-			$additionalAttributes = array('isEditing' => $isEditing, 'finishingUpUrl' => $router->url($request, null, null, 'finishFileSubmission', null, array('gridId' => $this->getId(), 'fileId' => $fileId, 'monographId' => $monographId)));
-			$json = new JSON('true', '', 'false', $fileId, $additionalAttributes);
+			$json = new JSON('true');
 		} else {
-			$json = new JSON('false', Locale::translate('submission.submit.fileNameRequired'));
+			$json = new JSON('false', $metadataForm->fetch($request));
 		}
-
 		return $json->getString();
 	}
 
@@ -406,13 +347,12 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @return string a serialized JSON object
 	 */
 	function finishFileSubmission($args, &$request) {
-		$fileId = $request->getUserVar('fileId');
-		$monographId = $request->getUserVar('monographId');
+		$monograph =& $this->getMonograph();
+		$fileId = (int)$request->getUserVar('fileId');
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('monographId', $monographId);
+		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('fileId', $fileId);
-		$templateMgr->assign('gridId', $this->getId());
 
 		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/fileSubmissionComplete.tpl'));
 		return $json->getString();
@@ -513,7 +453,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $request Request
 	 * @return integer
 	 */
-	function _getRevisedFileFromRequest(&$request) {
+	function _getRevisedFileIdFromRequest(&$request) {
 		// The revised file will be non-zero if we revise a
 		// single existing file.
 		if ($this->revisionOnly()) {
@@ -522,6 +462,33 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$revisedFileId = null;
 		}
 		return $revisedFileId;
+	}
+
+	/**
+	 * Retrieve the requested meta-data form.
+	 * @param $request Request
+	 * @return SubmissionFilesMetadataForm
+	 */
+	function &_getMetadataForm(&$request) {
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getMonograph();
+
+		// Retrieve the latest revision of the requested monograph file.
+		$fileId = (int)$request->getUserVar('fileId');
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFile =& $submissionFileDao->getLatestRevision($fileId, $this->getFileStage(), $monograph->getId());
+		if (!is_a($monographFile, 'MonographFile')) fatalError('Invalid file id!');
+
+		// Import the meta-data form based on the file implementation.
+		if (is_a($monographFile, 'ArtworkFile')) {
+			import('controllers.grid.files.submissionFiles.form.SubmissionFilesArtworkMetadataForm');
+			$metadataForm = new SubmissionFilesArtworkMetadataForm($monographFile);
+		} else {
+			import('controllers.grid.files.submissionFiles.form.SubmissionFilesMetadataForm');
+			$metadataForm = new SubmissionFilesMetadataForm($monographFile);
+		}
+
+		return $metadataForm;
 	}
 
 	/**

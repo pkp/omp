@@ -15,23 +15,18 @@
 import('lib.pkp.classes.form.Form');
 
 class SubmissionFilesMetadataForm extends Form {
-	/** @var int */
-	var $_fileId;
-
-	/** @var int */
-	var $_signoffId;
+	/** @var MonographFile */
+	var $_monographFile;
 
 	/**
 	 * Constructor.
-	 * @param $fileId int
-	 * @param $signoffId int
-	 * @param @monographId int
+	 * @param $monographFile MonographFile
+	 * @param $template String
 	 */
-	function SubmissionFilesMetadataForm($fileId, $signoffId = null, $template = 'controllers/grid/files/submissionFiles/form/metadataForm.tpl') {
+	function SubmissionFilesMetadataForm(&$monographFile, $template = 'controllers/grid/files/submissionFiles/form/metadataForm.tpl') {
 		parent::Form($template);
 
-		$this->_fileId = (int) $fileId;
-		$this->_signoffId = (int) $signoffId;
+		$this->_monographFile =& $monographFile;
 
 		$this->addCheck(new FormValidator($this, 'name', 'required', 'user.profile.form.lastNameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
@@ -42,61 +37,25 @@ class SubmissionFilesMetadataForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	 * Get the file id.
-	 * @return integer
+	 * Get the monograph file.
+	 * @return MonographFile
 	 */
-	function getFileId() {
-		return $this->_fileId;
+	function &getMonographFile() {
+		return $this->_monographFile;
 	}
 
 
+	//
+	// Implement template methods from Form
+	//
 	/**
-	 * Get the list of field names for which localized settings are used.
-	 * @return array
+	 * @see Form::getLocaleFieldNames()
 	 */
 	function getLocaleFieldNames() {
 		return array('name');
 	}
 
 	/**
-	 * Initialize form data from current settings.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function initData($args, &$request) {
-		if (isset($this->_fileId)) {
-			$this->_data['fileId'] = $this->_fileId;
-		}
-
-		if (isset($this->_signoffId)) {
-			$this->_data['signoffId'] = $this->_signoffId;
-		}
-	}
-
-	/**
-	 * Fetch
-	 * @param $request PKPRequest
-	 * @see Form::fetch()
-	 */
-	function fetch(&$request) {
-		$templateMgr =& TemplateManager::getManager();
-
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFile =& $submissionFileDao->getLatestRevision($this->_fileId);
-		$templateMgr->assign('monographFile', $monographFile);
-		$templateMgr->assign('monographId', $monographFile->getMonographId());
-
-		$templateMgr->assign('name', $monographFile->getLocalizedName());
-
-		$noteDao =& DAORegistry::getDAO('NoteDAO');
-		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $this->_fileId);
-		$templateMgr->assign('note', $notes->next());
-
-		return parent::fetch($request);
-	}
-
-	/**
-	 * Assign form data to user-submitted data.
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
@@ -104,29 +63,46 @@ class SubmissionFilesMetadataForm extends Form {
 	}
 
 	/**
-	 * Save submission file
-	 * @param $args array
-	 * @param $request PKPRequest
+	 * @see Form::fetch()
+	 */
+	function fetch(&$request) {
+		$templateMgr =& TemplateManager::getManager();
+
+		$monographFile =& $this->getMonographFile();
+		$templateMgr->assign('monographFile', $monographFile);
+
+		$noteDao =& DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
+		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId());
+		$templateMgr->assign('note', $notes->next());
+
+		return parent::fetch($request);
+	}
+
+	/**
+	 * @see Form::execute()
 	 */
 	function execute($args, &$request) {
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFile =& $submissionFileDao->getLatestRevision($this->_fileId);
-
+		// Update the monograph file with data from the form.
+		$monographFile =& $this->getMonographFile();
 		$monographFile->setName($this->getData('name'), Locale::getLocale());
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$submissionFileDao->updateObject($monographFile);
 
-		// Save the note if it exists
+		// Save the note if it exists.
 		if ($this->getData('note')) {
-			$noteDao =& DAORegistry::getDAO('NoteDAO');
+			$noteDao =& DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
 			$note = $noteDao->newDataObject();
-			$press =& Request::getPress();
-			$user =& Request::getUser();
 
+			$router =& $request->getRouter();
+			$press =& $router->getContext($request);
 			$note->setContextId($press->getId());
+
+			$user =& $request->getUser();
 			$note->setUserId($user->getId());
+
 			$note->setContents($this->getData('note'));
 			$note->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
-			$note->setAssocId($this->_fileId);
+			$note->setAssocId($monographFile->getFileId());
 
 		 	$noteDao->insertObject($note);
 		}

@@ -4,16 +4,16 @@
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * File metadata form
+ * File metadata form.
  *}
-<script type="text/javascript">{literal}
+<script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
 		$('#metadataForm').pkpHandler('$.pkp.controllers.FormHandler');
 	{rdelim});
 </script>
 
-<form id="metadataForm" action="{url op="saveMetadata" monographId=$monographId fileId=$fileId}" method="post">
+<form id="metadataForm" action="{url op="saveMetadata" monographId=$monographFile->getMonographId() fileId=$monographFile->getFileId() escape=false}" method="post">
 	<h3>{translate key='submission.fileDetails'}</h3>
 	{fbvFormArea id="fileMetaData"}
 		{fbvFormSection title="common.name" required=1}
@@ -41,13 +41,6 @@
 		{/fbvFormSection}
 		{fbvFormSection title="common.dateUploaded" float=$fbvStyles.float.LEFT}
 			{$monographFile->getDateUploaded()}
-		{/fbvFormSection}
-	{/fbvFormArea}
-
-	{fbvFormArea id="buttons"}
-		{fbvFormSection}
-			{fbvLink id="cancelButton2" label="common.cancel"}
-			{fbvButton id="continueButton2" label="common.continue" align=$fbvStyles.align.RIGHT}
 		{/fbvFormSection}
 	{/fbvFormArea}
 </form>
