@@ -24,12 +24,11 @@ class SubmissionDetailsFilesGridHandler extends SubmissionFilesGridHandler {
 	 * Constructor
 	 */
 	function SubmissionDetailsFilesGridHandler() {
-		parent::SubmissionFilesGridHandler();
+		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_SUBMISSION, true);
 		$this->addRoleAssignment(
 				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'addFile', 'editFile', 'displayFileForm', 'uploadFile',
-				'confirmRevision', 'deleteFile', 'editMetadata', 'saveMetadata', 'finishFileSubmission',
-				'returnFileRow', 'downloadFile'));
+				array('fetchGrid', 'addFile', 'displayFileUploadForm', 'uploadFile', 'confirmRevision',
+						'editMetadata', 'saveMetadata', 'downloadFile', 'downloadAllFiles', 'deleteFile'));
 	}
 
 
