@@ -25,6 +25,7 @@ class SubmissionDetailsFilesGridHandler extends SubmissionFilesGridHandler {
 	 */
 	function SubmissionDetailsFilesGridHandler() {
 		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_SUBMISSION, true);
+
 		$this->addRoleAssignment(
 				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'addFile', 'displayFileUploadForm', 'uploadFile', 'confirmRevision',
@@ -54,14 +55,8 @@ class SubmissionDetailsFilesGridHandler extends SubmissionFilesGridHandler {
 		// Load monograph files.
 		$this->loadMonographFiles();
 
-		// Check wether to display the 'add file' grid action.
-		$canAdd = true;
-		if($request->getUserVar('canAdd') == "false") {
-			$canAdd = false;
-		}
-
 		$cellProvider = new SubmissionFilesGridCellProvider();
-		parent::initialize($request, $cellProvider, $canAdd);
+		parent::initialize($request, $cellProvider);
 
 		$this->addColumn(new GridColumn('fileType',	'common.fileType', null, 'controllers/grid/gridCell.tpl', $cellProvider));
 		$this->addColumn(new GridColumn('type', 'common.type', null, 'controllers/grid/gridCell.tpl', $cellProvider));

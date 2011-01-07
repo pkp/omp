@@ -101,7 +101,7 @@
 <div class="stageContainer" id="submission">
 	<h3><a href="#">{translate key='submission.submission'}</a></h3>
 	<div id="submissionContent">
-		{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionDetailsFilesGridHandler" op="fetchGrid" canAdd='false' monographId=$monograph->getId() escape=false}
+		{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
 		{load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 	</div>
 </div>
