@@ -8,27 +8,24 @@
  *
  *}
 
-{modal_title id="div#informationCenterTabs-$itemId" keyTranslated=$title iconClass="fileManagement" canClose=1}
-
-{init_tabs id="#informationCenterTabs-$itemId"}
 <script type="text/javascript">
-	<!--
-	{literal}
-	$(function() {
-		$('#informationCenterTabs-{/literal}{$itemId}{literal}').parent().dialog('option', 'buttons', null);  // Clear out default modal buttons
-	});
-	{/literal}
-	// -->
+	// Attach the Information Center handler.
+	$(function() {ldelim}
+		$('#informationCenter').pkpHandler(
+			'$.pkp.controllers.InformationCenterHandler'
+		);
+	{rdelim});
 </script>
 
-<span class='itemLastEvent'>{if $lastEvent}{translate key="informationCenter.lastUpdated"}: {$lastEvent->getDateLogged()|date_format:$dateFormatShort}, {$lastEventUser->getFullName()|escape}{/if}</span>
+{if $lastEvent}
+	<span class='itemLastEvent'>{translate key="informationCenter.lastUpdated"}: {$lastEvent->getDateLogged()|date_format:$dateFormatShort}, {$lastEventUser->getFullName()|escape}</span>
+	<br />
+{/if}
 
-<br />
-
-<div id="informationCenterTabs-{$itemId}">
-	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-		<li class="ui-state-default ui-corner-top"><a href="{url op="viewNotes" monographId=$monographId itemId=$itemId}">{translate key="common.notes"}</a></li>
-		<li class="ui-state-default ui-corner-top"><a href="{url op="viewNotify" monographId=$monographId itemId=$itemId}">{translate key="common.notify"}</a></li>
-		<li class="ui-state-default ui-corner-top"><a href="{url op="viewHistory" monographId=$monographId itemId=$itemId}">{translate key="informationCenter.history"}</a></li>
+<div id="informationCenter">
+	<ul>
+		<li><a href="{url op="viewNotes" monographId=$monographId itemId=$itemId}">{translate key="common.notes"}</a></li>
+		<li><a href="{url op="viewNotify" monographId=$monographId itemId=$itemId}">{translate key="common.notify"}</a></li>
+		<li><a href="{url op="viewHistory" monographId=$monographId itemId=$itemId}">{translate key="informationCenter.history"}</a></li>
 	</ul>
 </div>

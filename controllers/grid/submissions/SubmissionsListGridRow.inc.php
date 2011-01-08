@@ -13,6 +13,8 @@
  */
 
 import('lib.pkp.classes.controllers.grid.GridRow');
+import('lib.pkp.classes.linkAction.ModalLinkAction');
+import('lib.pkp.classes.modal.AjaxModal');
 
 class SubmissionsListGridRow extends GridRow {
 	/**
@@ -46,15 +48,17 @@ class SubmissionsListGridRow extends GridRow {
 			// Actions
 			$router =& $request->getRouter();
 			$this->addAction(
-				new LegacyLinkAction(
+				new ModalLinkAction(
 					'moreInfo',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_NOTHING,
-					$router->url($request, $press->getPath(), 'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter', null, array('monographId' => $rowId, 'itemId' => $rowId, 'stageId' => $monograph->getCurrentStageId())),
+					new AjaxModal(
+						$router->url($request, null, 'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter', null, array('monographId' => $rowId, 'itemId' => $rowId, 'stageId' => $monograph->getCurrentStageId())),
+						'informationCenter.informationCenter',
+						'informationCenter'
+					),
 					'grid.action.moreInformation',
-					null,
 					'more_info'
-				));
+				)
+			);
 		}
 	}
 }

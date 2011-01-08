@@ -42,5 +42,7 @@
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/files/submissionFiles/form/FileUploadFormHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/files/submissionFiles/form/RevisionConfirmationHandler.js"></script>
 
+<script type="text/javascript" src="{$baseUrl}/js/controllers/InformationCenterHandler.js"></script>
+
 {* Our own plug-in (depends on classes) *}
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.pkp.js"></script>
