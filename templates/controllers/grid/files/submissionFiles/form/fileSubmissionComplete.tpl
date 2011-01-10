@@ -10,7 +10,7 @@
 	$(function() {ldelim}
 		// On newFile button click, return row then restart modal
 		/*	$('#newFile').click(function() {
-	   		saveAndUpdate('{/literal}{url op="returnFileRow" monographId=$monographId fileId=$fileId escape=false}{literal}',
+	   		saveAndUpdate('{/literal}{url op="fetchRow" monographId=$monographId fileId=$fileId escape=false}{literal}',
 	   	    		'append',
 	   	    		'#component-'+'{/literal}{$gridId}{literal}'+'-table',
 	   	    		'div#fileUploadTabs', true, '#component-'+'{/literal}{$gridId}{literal}'+'-addFile-button');

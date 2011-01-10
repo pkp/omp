@@ -16,7 +16,6 @@
 import('lib.pkp.classes.linkAction.request.RedirectAction');
 
 import('controllers.grid.files.submissionFiles.SubmissionFilesGridHandler');
-import('controllers.grid.files.fairCopyFiles.FairCopyFilesGridRow');
 
 class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 	/**
@@ -99,24 +98,12 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 		// is correctly implemented, see #6233.
 		$this->addColumn(
 			new GridColumn(
-				'name',
+				'uploader-name',
 				null,
 				'FIXME',
 				'controllers/grid/common/cell/roleCell.tpl',
 				$cellProvider
 			)
 		);
-	}
-
-
-	//
-	// Overridden methods from GridHandler
-	//
-	/**
-	 * @see GridHandler::getRowInstance
-	 */
-	function &getRowInstance() {
-		$row = new FairCopyFilesGridRow();
-		return $row;
 	}
 }

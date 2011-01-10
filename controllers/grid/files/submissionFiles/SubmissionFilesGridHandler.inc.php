@@ -357,32 +357,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Return a grid row with for the submission grid
-	 * @param $args array
-	 * @param $request Request
-	 * @return string a serialized JSON object
-	 */
-	function returnFileRow($args, &$request) {
-		$fileId = $request->getUserVar('fileId');
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFile =& $submissionFileDao->getLatestRevision($fileId);
-
-		if($monographFile) {
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$row->setId($fileId);
-			$row->setData($monographFile);
-			$row->initialize($request);
-
-			$json = new JSON('true', $this->_renderRowInternally($request, $row));
-		} else {
-			$json = new JSON('false', Locale::translate("There was an error with trying to fetch the file"));
-		}
-
-		return $json->getString();
-	}
-
-	/**
 	 * Download a file
 	 * @param $args array
 	 * @param $request Request

@@ -28,36 +28,20 @@ class SubmissionFilesGridRow extends GridRow {
 	}
 
 	//
-	// Overridden template methods
+	// Overridden template methods from GridRow
 	//
-	/*
-	 * Configure the grid row
-	 * @param $request PKPRequest
+	/**
+	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request) {
-		parent::initialize($request);
+	function initialize(&$request, $template = 'controllers/grid/gridRowWithActions.tpl') {
+		parent::initialize($request, $template);
 
-		// add Grid Row Actions
-		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
-
-		// Is this a new row or an existing row?
-		$rowId = $this->getId();
-
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFile =& $submissionFileDao->getLatestRevision($rowId);
-		$monographId = $monographFile->getMonographId();
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monograph =& $monographDao->getMonograph($monographId);
-
-		if (!empty($rowId) && is_numeric($rowId)) {
+		// Retrieve the monograph file.
+		$monographFile =& $this->getData(); /* @var $monographFile MonographFile */
+		if (is_a($monographFile, 'MonographFile')) {
 			// Actions
 			$router =& $request->getRouter();
-			$actionArgs = array(
-				'gridId' => $this->getGridId(),
-				'fileId' => $rowId,
-				'monographId' => $monographId,
-			);
-
+			// FIXME: Consolidate action params, see #6338.
 			$this->addAction(
 				new LinkAction(
 					'deleteFile',
