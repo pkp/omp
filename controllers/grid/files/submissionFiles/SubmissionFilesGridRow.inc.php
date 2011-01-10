@@ -12,7 +12,12 @@
  * @brief Handle submission file grid row requests.
  */
 
+// Import grid base classes.
 import('lib.pkp.classes.controllers.grid.GridRow');
+
+// Import UI base classes.
+import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class SubmissionFilesGridRow extends GridRow {
 	/**
@@ -54,15 +59,26 @@ class SubmissionFilesGridRow extends GridRow {
 			);
 
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'deleteFile',
-					LINK_ACTION_MODE_CONFIRM,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'deleteFile', null, $actionArgs),
+					new ConfirmationModal(
+						'common.confirmDelete',
+						null,
+						$router->url($request, null, null, 'deleteFile', null,
+								array('monographId' => $monographFile->getMonographId(), 'fileId' => $monographFile->getFileId()))
+					),
 					'grid.action.delete',
-					null,
-					'delete',
-					Locale::translate('common.confirmDelete')
+					'delete'
+				));
+			$this->addAction(
+				new LinkAction(
+					'moreInfo',
+					new AjaxModal($router->url($request, null,
+						'informationCenter.FileInformationCenterHandler', 'viewInformationCenter', null,
+						array('monographId' => $monographFile->getMonographId(), 'itemId' => $monographFile->getFileId(),
+								'stageId' => $monographFile->getFileStage()))),
+					'grid.action.moreInformation',
+					'more_info'
 				));
 		}
 	}

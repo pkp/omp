@@ -19,8 +19,7 @@ define('SUBMISSION_MIN_SIMILARITY_OF_REVISION', 70);
 
 // Import UI base classes.
 import('lib.pkp.classes.controllers.grid.GridHandler');
-import('lib.pkp.classes.linkAction.ModalLinkAction');
-import('lib.pkp.classes.modal.WizardModal');
+import('lib.pkp.classes.linkAction.request.WizardModal');
 
 // Import submission files grid specific classes.
 import('controllers.grid.files.submissionFiles.SubmissionFilesGridRow');
@@ -120,7 +119,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$monograph =& $this->getMonograph();
 			$actionArgs = array('monographId' => $monograph->getId());
 			$this->addAction(
-				new ModalLinkAction(
+				new LinkAction(
 					'addFile',
 					new WizardModal(
 						$router->url($request, null, null, 'addFile', null, $actionArgs),
@@ -129,8 +128,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 					),
 					$this->revisionOnly() ? 'submission.addRevision' : 'submission.addFile',
 					'add'
-				),
-				GRID_ACTION_POSITION_ABOVE
+				)
 			);
 		}
 

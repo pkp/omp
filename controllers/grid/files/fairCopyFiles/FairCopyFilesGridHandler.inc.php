@@ -12,6 +12,9 @@
  * @brief Handle the fair copy files grid (displays copyedited files ready to move to proofreading)
  */
 
+// Import UI base classes.
+import('lib.pkp.classes.linkAction.request.RedirectAction');
+
 import('controllers.grid.files.submissionFiles.SubmissionFilesGridHandler');
 import('controllers.grid.files.fairCopyFiles.FairCopyFilesGridRow');
 
@@ -60,13 +63,11 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 			$monograph =& $this->getMonograph();
 			$router =& $request->getRouter();
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'downloadAll',
-					LINK_ACTION_MODE_LINK,
-					LINK_ACTION_TYPE_NOTHING,
-					$router->url($request, null, null, 'downloadAllFiles', null, array('monographId' => $monograph->getId())),
+					new RedirectAction($router->url($request, null, null, 'downloadAllFiles', null,
+							array('monographId' => $monograph->getId()))),
 					'submission.files.downloadAll',
-					null,
 					'getPackage'
 				)
 			);

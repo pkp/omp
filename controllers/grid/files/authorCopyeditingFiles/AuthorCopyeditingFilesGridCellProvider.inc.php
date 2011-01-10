@@ -86,7 +86,7 @@ class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider 
 				$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 				$monographFile =& $submissionFileDao->getLatestRevision($signoff->getAssocId());
 				$actionArgs = array('monographId' => $monographFile->getMonographId());
-				$addCopyeditedFileAction = new AjaxModalLinkAction(
+				$addCopyeditedFileAction = new LegacyLinkAction(
 					'addCopyeditedFile',
 					$dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.files.authorCopyeditingFiles.AuthorCopyeditingFilesGridHandler', 'addCopyeditedFile', null, array_merge($actionArgs, array('gridId' => 'authorcopyeditingfilesgrid'))),
 					null,

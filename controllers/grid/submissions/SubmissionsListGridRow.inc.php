@@ -14,7 +14,7 @@
 
 import('lib.pkp.classes.controllers.grid.GridRow');
 import('lib.pkp.classes.linkAction.ModalLinkAction');
-import('lib.pkp.classes.modal.AjaxModal');
+import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class SubmissionsListGridRow extends GridRow {
 	/**
@@ -48,7 +48,7 @@ class SubmissionsListGridRow extends GridRow {
 			// Actions
 			$router =& $request->getRouter();
 			$this->addAction(
-				new ModalLinkAction(
+				new LinkAction(
 					'moreInfo',
 					new AjaxModal(
 						$router->url($request, null, 'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter', null, array('monographId' => $rowId, 'itemId' => $rowId, 'stageId' => $monograph->getCurrentStageId())),
