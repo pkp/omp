@@ -148,6 +148,18 @@ class SubmissionFilesGridHandler extends GridHandler {
 		return $row;
 	}
 
+	/**
+	 * @see GridHandler::fetchGrid()
+	 */
+	function fetchGrid($args, &$request) {
+		// Build the URL to fetch a row.
+		$monograph = $this->getMonograph();
+		$router =& $request->getRouter();
+		$fetchRowUrl = $router->url($request, null, null, 'fetchRow', null,
+				array('monographId' => $monograph->getId()));
+		return parent::fetchGrid($args, $request, $fetchRowUrl);
+	}
+
 
 	//
 	// Public handler actions
@@ -294,11 +306,11 @@ class SubmissionFilesGridHandler extends GridHandler {
 		}
 
 		if ($success) {
-			$json = new JSON('true');
+			return $this->elementDeleted($fileId);
 		} else {
 			$json = new JSON('false');
+			return $json->getString();
 		}
-		return $json->getString();
 	}
 
 	/**
@@ -331,7 +343,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$metadataForm->readInputData();
 		if ($metadataForm->validate()) {
 			$metadataForm->execute($args, $request);
-			$json = new JSON('true');
+			$monographFile = $metadataForm->getMonographFile();
+			return $this->elementAdded($monographFile->getFileId());
 		} else {
 			$json = new JSON('false', $metadataForm->fetch($request));
 		}

@@ -27,7 +27,7 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 
 		// Configure role based authorization.
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array('fetchGrid', 'addFile', 'displayFileUploadForm', 'uploadFile', 'confirmRevision',
+				array('fetchGrid', 'fetchRow', 'addFile', 'displayFileUploadForm', 'uploadFile', 'confirmRevision',
 						'editMetadata', 'saveMetadata', 'finishFileSubmission', 'downloadFile', 'downloadAllFiles',
 						'deleteFile'));
 	}
