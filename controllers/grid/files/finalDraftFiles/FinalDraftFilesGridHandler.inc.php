@@ -308,6 +308,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 			// Re-render the grid with the updated files.
 			$this->setData($selectedFiles);
 			$this->initialize($request);
+			// FIXME: Calls to private methods of superclasses are not allowed!
 			$gridBodyParts = $this->_renderGridBodyPartsInternally($request);
 			if (count($gridBodyParts) == 0) {
 				// The following should usually be returned from a

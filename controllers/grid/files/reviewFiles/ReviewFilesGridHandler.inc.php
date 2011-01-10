@@ -286,6 +286,7 @@ class ReviewFilesGridHandler extends GridHandler {
 			$this->initialize($request);
 
 			// Pass to modal.js to reload the grid with the new content
+			// FIXME: Calls to private methods of superclasses are not allowed!
 			$gridBodyParts = $this->_renderGridBodyPartsInternally($request);
 			if (count($gridBodyParts) == 0) {
 				// The following should usually be returned from a
