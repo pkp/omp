@@ -13,7 +13,6 @@
  */
 
 import('lib.pkp.classes.controllers.grid.GridRow');
-import('lib.pkp.classes.linkAction.ModalLinkAction');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class SubmissionsListGridRow extends GridRow {
