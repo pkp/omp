@@ -18,9 +18,9 @@
 <!--
 // Ensure that the form submit button cannot be double-clicked
 function doSubmit() {
-	if (document.press.submitted.value != 1) {
-		document.press.submitted.value = 1;
-		document.press.submit();
+	if (document.getElementById('press').submitted.value != 1) {
+		document.getElementById('press').submitted.value = 1;
+		document.getElementById('press').submit();
 	}
 	return true;
 }
