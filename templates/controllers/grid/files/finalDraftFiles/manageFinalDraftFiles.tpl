@@ -3,7 +3,7 @@
 {**
  * manageFinalDraftFiles.tpl
  *
- * Copyright (c) 2003-2010 John Willinsky
+ * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Allows editor to add more file to the review (that weren't added when the submission was sent to review)
