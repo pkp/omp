@@ -37,8 +37,8 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	 * @see PKPHandler::authorize()
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_INTERNAL_REVIEW));
+		import('classes.security.authorization.OmpSubmissionAccessPolicy');
+		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 

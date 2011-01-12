@@ -69,11 +69,12 @@ class FinalDraftFilesGridRow extends GridRow {
 					'moreInfo',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_NOTHING,
-					$router->url($request, null, 'informationCenter.FileInformationCenterHandler', 'viewInformationCenter', null, array('monographId' => $monographId, 'itemId' => $rowId, 'stageId' => $monograph->getCurrentStageId())),
+					$router->url($request, null, 'informationCenter.FileInformationCenterHandler', 'viewInformationCenter', null, array('monographId' => $monographId, 'fileId' => $rowId)),
 					'grid.action.moreInformation',
 					null,
 					'more_info'
-				));
+				)
+			);
 		}
 	}
 }

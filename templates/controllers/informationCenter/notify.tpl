@@ -1,7 +1,7 @@
 {**
- * notify.tpl
+ * templates/controllers/informationCenter/notify.tpl
  *
- * Copyright (c) 2003-2010 John Willinsky
+ * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display a form to notify other users about this file.
@@ -32,10 +32,10 @@
 	// -->
 </script>
 <div id="informationCenterNotifyTab">
-	<form id="notifyForm" action="{url op="sendNotification" monographId=$monographId itemId=$itemId}" method="post">
+	<form id="notifyForm" action="{url op="sendNotification" params=$linkParams}" method="post">
 		{fbvFormArea id="notifyFormArea"}
 			{fbvFormSection title="email.to" for="notifyUsersContainer" required="true"}
-				{url|assign:notifyUsersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.NotifyUsersListbuilderHandler" op="fetch" monographId=$monographId}
+				{url|assign:notifyUsersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.NotifyUsersListbuilderHandler" op="fetch" params=$linkParams escape=false}
 				{load_url_in_div id="notifyUsersContainer" url=$notifyUsersUrl}
 			{/fbvFormSection}
 

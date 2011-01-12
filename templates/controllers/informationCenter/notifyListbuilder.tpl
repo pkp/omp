@@ -1,16 +1,17 @@
 {**
- * listbuilder.tpl
+ * templates/controllers/informationCenter/listbuilder.tpl
  *
- * Copyright (c) 2000-2010 John Willinsky
+ * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Displays a listbuilder for adding users to notify in the information center.  Is stripped down to fit in the modal more easily.
+ * Displays a listbuilder for adding users to notify in the information center.
+ * Is stripped down to fit in the modal more easily.
  *}
 {assign var="listbuilderId" value=$listbuilder->getId()}
 
 <div id="{$listbuilderId|escape}">
 	<div class="wrapper">
-		<div class="unit size2of5" id="source-{$listbuilderId|escape}{if $itemId}-{$itemId|escape}{/if}">
+		<div class="unit size2of5" id="source-{$listbuilderId|escape}{foreach from=$linkParams item=param}-{$param|escape}{/foreach}">
  			<ul>
 				<li>
 					<span>
@@ -23,10 +24,10 @@
 			</ul>
 		</div>
 		<div class="unit size1of10 listbuilder_controls">
-			<a href="#" id="add-{$listbuilderId|escape}{if $itemId}-{$itemId|escape}{/if}" onclick="return false;" class="add_item"></a>
-			<a href="#" id="delete-{$listbuilderId|escape}{if $itemId}-{$itemId|escape}{/if}" onclick="return false;" class="remove_item"></a>
+			<a href="#" id="add-{$listbuilderId|escape}{foreach from=$linkParams item=param}-{$param|escape}{/foreach}" onclick="return false;" class="add_item"></a>
+			<a href="#" id="delete-{$listbuilderId|escape}{foreach from=$linkParams item=param}-{$param|escape}{/foreach}" onclick="return false;" class="remove_item"></a>
 		</div>
-		<div id="results-{$listbuilderId|escape}{if $itemId}-{$itemId|escape}{/if}" class="unit size1of2 lastUnit listbuilder_results">
+		<div id="results-{$listbuilderId|escape}{foreach from=$linkParams item=param}-{$param|escape}{/foreach}" class="unit size1of2 lastUnit listbuilder_results">
 			<ul>
 				<li>
 					<label class="desc">
@@ -40,9 +41,9 @@
 	<script type='text/javascript'>
 	<!--
 	{literal}
-		addItem("{/literal}{$addUrl|escape:"javascript"}{literal}", "{/literal}{$listbuilderId|escape:"javascript"}{if $itemId}-{$itemId|escape:"javascript"}{/if}{literal}", "{/literal}{$localizedButtons|escape:"javascript"}{literal}");
-		deleteItems("{/literal}{$deleteUrl|escape:"javascript"}{literal}", "{/literal}{$listbuilderId|escape:"javascript"}{if $itemId}-{$itemId|escape:"javascript"}{/if}{literal}");
-		selectRow("{/literal}{$listbuilderId|escape:"javascript"}{if $itemId}-{$itemId|escape:"javascript"}{/if}{literal}");
+		addItem("{/literal}{$addUrl|escape:"javascript"}{literal}", "{/literal}{$listbuilderId|escape:"javascript"}{foreach from=$linkParams item=param}-{$param|escape:"javascript"}{/foreach}{literal}", "{/literal}{$localizedButtons|escape:"javascript"}{literal}");
+		deleteItems("{/literal}{$deleteUrl|escape:"javascript"}{literal}", "{/literal}{$listbuilderId|escape:"javascript"}{foreach from=$linkParams item=param}-{$param|escape:"javascript"}{/foreach}{literal}");
+		selectRow("{/literal}{$listbuilderId|escape:"javascript"}{foreach from=$linkParams item=param}-{$param|escape:"javascript"}{/foreach}{literal}");
 	{/literal}
 	// -->
 	</script>

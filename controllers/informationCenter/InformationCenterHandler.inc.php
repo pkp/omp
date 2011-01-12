@@ -22,11 +22,13 @@ class InformationCenterHandler extends Handler {
 	 */
 	function InformationCenterHandler() {
 		parent::Handler();
-		// FIXME: Validate that the user can view the file
 
-		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('viewInformationCenter', 'viewNotes', 'saveNote', 'deleteNote', 'viewNotify',
-				'sendNotification', 'viewHistory'));
+		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER), array(
+			'viewInformationCenter', // Information Center
+			'viewNotes', 'listNotes', 'saveNote', 'deleteNote', // Notes tab
+			'viewNotify', 'sendNotification', // Notify tab
+			'viewHistory' // History tab
+		));
 	}
 
 
@@ -40,9 +42,8 @@ class InformationCenterHandler extends Handler {
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		$stageId = $request->getUserVar('stageId');
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+		import('classes.security.authorization.OmpSubmissionAccessPolicy');
+		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -62,68 +63,47 @@ class InformationCenterHandler extends Handler {
 
 	/**
 	 * Display the notes tab.
+	 * NB: sub-classes must implement this method.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
 	function viewNotes($args, &$request) {
-		assert('false');
+		assert(false);
+	}
+
+	/**
+	 * Display the list of existing notes.
+	 * NB: sub-classes must implement this method.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function listNotes($args, &$request) {
+		assert(false);
 	}
 
 	/**
 	 * Save a note.
+	 * NB: sub-classes must implement this method.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
 	function saveNote($args, &$request) {
-		$itemId = Request::getUserVar('itemId');
-		$itemType = Request::getUserVar('itemType');
-		$this->setupTemplate(true);
-
-		import('controllers.informationCenter.form.InformationCenterNotesForm');
-		$notesForm = new InformationCenterNotesForm($itemId, $itemType);
-		$notesForm->readInputData();
-
-		if ($notesForm->validate()) {
-			$noteId = $notesForm->execute();
-
-			// Success--Return a JSON string indicating so
-			$templateMgr =& TemplateManager::getManager();
-			$noteDao =& DAORegistry::getDAO('NoteDAO');
-			$templateMgr->assign('note', $noteDao->getById($noteId));
-			$json = new JSON('true', $templateMgr->fetch('controllers/informationCenter/note.tpl'), 'false', $noteId);
-
-			// Save to event log
-			$user =& $request->getUser();
-			$userId = $user->getId();
-			$this->_logEvent($itemId, MONOGRAPH_LOG_NOTE_POSTED, $userId);
-		} else {
-			// Failure--Return a JSON string indicating so
-			$json = new JSON('false');
-		}
-
-		return $json->getString();
+		assert(false);
 	}
 
 	/**
 	 * Delete a note.
+	 * NB: sub-classes must implement this method.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
 	function deleteNote($args, &$request) {
-		$noteId = Request::getUserVar('noteId');
-		$itemId = Request::getUserVar('itemId');
-
-		$noteDao =& DAORegistry::getDAO('NoteDAO');
-		$noteDao->deleteById($noteId);
-
-		$additionalAttributes = array('script' => "$('#note-$noteId').hide('slow')");
-		$json = new JSON('true', '', 'true', null, $additionalAttributes);
-
-		return $json->getString();
+		assert(false);
 	}
 
 	/**
 	 * Display the notify tab.
+	 * NB: sub-classes must implement this method.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
@@ -158,7 +138,27 @@ class InformationCenterHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function _logEvent ($itemId, $eventType, $userId) {
-		assert('false');
+		assert(false);
+	}
+
+	/**
+	 * Get an array representing link parameters that subclasses
+	 * need to have passed to their various handlers (i.e. monograph ID to
+	 * the delete note handler). Subclasses should implement.
+	 */
+	function getLinkParams() {
+		assert(false);
+	}
+
+	function setupTemplate() {
+		// Fetch the monograph to display information about
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('linkParams', $this->getLinkParams());
+
+		parent::setupTemplate();
 	}
 }
+
 ?>

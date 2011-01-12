@@ -311,8 +311,8 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="informationCenter.noNotes">There are no notes to display.</message>
 	<message key="informationCenter.lastUpdated">Last Updated</message>
 	<message key="informationCenter.deleteConfirm">Are you sure you wish to delete this note?</message>
-	<message key="informationCenter.history.noItems">There are no events logged for this file.</message>
-	<message key="informationCenter.history.notePosted">Posted note on file.</message>
+	<message key="informationCenter.history.noItems">There are no events logged.</message>
+	<message key="informationCenter.history.notePosted">Posted new note.</message>
 	<message key="informationCenter.history.messageSent">Notification sent to users.</message>
 	<message key="informationCenter.notify.template">Attach Template</message>
 	<message key="informationCenter.notify.message">Message</message>

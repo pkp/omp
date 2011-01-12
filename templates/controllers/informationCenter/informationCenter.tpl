@@ -1,18 +1,17 @@
 {**
- * informationCenter.tpl
+ * templates/controllers/informationCenter/informationCenter.tpl
  *
- * Copyright (c) 2003-2010 John Willinsky
+ * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Display information center's main modal.
- *
  *}
 
 <script type="text/javascript">
 	// Attach the Information Center handler.
 	$(function() {ldelim}
 		$('#informationCenter').pkpHandler(
-			'$.pkp.controllers.InformationCenterHandler'
+			'$.pkp.controllers.informationCenter.InformationCenterHandler'
 		);
 	{rdelim});
 </script>
@@ -24,8 +23,8 @@
 
 <div id="informationCenter">
 	<ul>
-		<li><a href="{url op="viewNotes" monographId=$monographId itemId=$itemId}">{translate key="common.notes"}</a></li>
-		<li><a href="{url op="viewNotify" monographId=$monographId itemId=$itemId}">{translate key="common.notify"}</a></li>
-		<li><a href="{url op="viewHistory" monographId=$monographId itemId=$itemId}">{translate key="informationCenter.history"}</a></li>
+		<li><a href="{url op="viewNotes" params=$linkParams}">{translate key="common.notes"}</a></li>
+		<li><a href="{url op="viewNotify" params=$linkParams}">{translate key="common.notify"}</a></li>
+		<li><a href="{url op="viewHistory" params=$linkParams}">{translate key="informationCenter.history"}</a></li>
 	</ul>
 </div>

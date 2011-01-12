@@ -31,7 +31,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 */
 	function viewInformationCenter($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
-		$this->setupTemplate(true);
+		$this->setupTemplate();
 
 		// Get the file in question
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
@@ -72,10 +72,10 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 */
 	function viewNotes($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
-		$this->setupTemplate(true);
+		$this->setupTemplate();
 
-		import('controllers.informationCenter.form.InformationCenterNotesForm');
-		$notesForm = new InformationCenterNotesForm($itemId, ASSOC_TYPE_MONOGRAPH_FILE);
+		import('controllers.informationCenter.form.NewFileNoteForm');
+		$notesForm = new NewFileNoteForm($itemId);
 		$notesForm->initData();
 
 		$json = new JSON('true', $notesForm->fetch($request));
@@ -89,10 +89,10 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 */
 	function viewNotify ($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
-		$this->setupTemplate(true);
+		$this->setupTemplate();
 
 		import('controllers.informationCenter.form.InformationCenterNotifyForm');
-		$notifyForm = new InformationCenterNotifyForm($itemId, ASSOC_TYPE_MONOGRAPH_FILE);
+		$notifyForm = new InformationCenterNotifyForm(ASSOC_TYPE_MONOGRAPH_FILE, $itemId);
 		$notifyForm->initData();
 
 		$json = new JSON('true', $notifyForm->fetch($request));
@@ -106,10 +106,10 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 */
 	function sendNotification ($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
-		$this->setupTemplate(true);
+		$this->setupTemplate();
 
 		import('controllers.informationCenter.form.InformationCenterNotifyForm');
-		$notifyForm = new InformationCenterNotifyForm($itemId, ASSOC_TYPE_MONOGRAPH_FILE);
+		$notifyForm = new InformationCenterNotifyForm(ASSOC_TYPE_MONOGRAPH_FILE, $itemId);
 		$notifyForm->readInputData();
 
 		if ($notifyForm->validate()) {
@@ -132,7 +132,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 */
 	function viewHistory($args, &$request) {
 		$itemId = Request::getUserVar('itemId');
-		$this->setupTemplate(true);
+		$this->setupTemplate();
 
 		// Get the file in question to get the monograph Id
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
