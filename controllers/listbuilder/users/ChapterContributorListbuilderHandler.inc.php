@@ -123,7 +123,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 
 		$monographId = $request->getUserVar('monographId');
 		$chapterId = $request->getUserVar('chapterId');
-		$additionalVars = array('itemId' => $chapterId,
+		$additionalVars = array(
 			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('monographId' => $monographId, 'chapterId' => $chapterId)),
 			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId, 'chapterId' => $chapterId))
 		);

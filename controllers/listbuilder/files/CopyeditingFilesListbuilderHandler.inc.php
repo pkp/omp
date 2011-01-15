@@ -100,7 +100,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		$router =& $request->getRouter();
 
 		$monographId = $request->getUserVar('monographId');
-		$additionalVars = array('itemId' => $monographId,
+		$additionalVars = array(
 			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('monographId' => $monographId)),
 			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId))
 		);

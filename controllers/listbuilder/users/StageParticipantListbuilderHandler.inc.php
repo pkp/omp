@@ -132,7 +132,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 		$monographId = $request->getUserVar('monographId');
 		$userGroupId = $request->getUserVar('userGroupId');
 
-		$additionalVars = array('itemId' => $userGroupId,
+		$additionalVars = array(
 			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('monographId' => $monographId, 'userGroupId' => $userGroupId)),
 			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId, 'userGroupId' => $userGroupId))
 		);

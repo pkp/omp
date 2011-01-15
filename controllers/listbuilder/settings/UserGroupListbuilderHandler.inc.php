@@ -93,7 +93,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 		$router =& $request->getRouter();
 		$groupId = $request->getUserVar('groupId');
 
-		$additionalVars = array('itemId' => $groupId,
+		$additionalVars = array(
 			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('roleId' => $this->getRoleId())),
 			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('groupId' => $this->getRoleId())),
 		);

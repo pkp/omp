@@ -34,9 +34,8 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		$stageId = $request->getUserVar('stageId');
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
+		import('classes.security.authorization.OmpSubmissionAccessPolicy');
+		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -86,11 +85,16 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	 * @param $request PKPRequest
 	 */
 	function addItem($args, &$request) {
-		$rowId = "selectList-" . $this->getId();
-		$userId = (int) $args[$rowId];
+		$rowId = 'selectList-' . $this->getId();
+		$userId = (int) $request->getUserVar($rowId);
 
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& $userDao->getUser($userId);
+		if (!$user) {
+			$json = new JSON('false');
+			return $json;
+		}
+
 		// Return JSON with formatted HTML to insert into list
 		$row =& $this->getRowInstance();
 		$row->setGridId($this->getId());
