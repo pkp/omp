@@ -33,7 +33,7 @@
 	<input type="hidden" name="gridId" value="{$gridId|escape}" />
 {/if}
 {if $rowId}
-	<input type="hidden" name="rowId" value={$rowId|escape} />
+	<input type="hidden" name="rowId" value="{$rowId|escape}" />
 {/if}
 {if $seriesId}
 	<input type="hidden" name="seriesId" value="{$seriesId|escape}" />

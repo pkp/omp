@@ -157,7 +157,7 @@
 		<ul id="interestSearch" style="padding-left: 10px;"><li></li></ul>
 	{/fbvFormSection}
 	{fbvFormSection}
-		<input type="submit" class="button" id="submitFilter" value={translate key="common.refresh"} style="width: 60%; margin-left: 20%; margin-right: 20%;" />
+		<input type="submit" class="button" id="submitFilter" value="{translate key="common.refresh"}" style="width: 60%; margin-left: 20%; margin-right: 20%;" />
 	{/fbvFormSection}
 {/fbvFormArea}
 </form>

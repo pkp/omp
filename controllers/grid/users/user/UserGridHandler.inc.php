@@ -127,7 +127,7 @@ class UserGridHandler extends GridHandler {
 	//
 	// Public grid actions
 	//
-	/*
+	/**
 	 * List users based on optional search criteria
 	 * @param $args array
 	 * @param $request PKPRequest
