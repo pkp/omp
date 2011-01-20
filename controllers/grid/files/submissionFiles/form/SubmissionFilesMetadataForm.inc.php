@@ -93,10 +93,6 @@ class SubmissionFilesMetadataForm extends Form {
 			$noteDao =& DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
 			$note = $noteDao->newDataObject();
 
-			$router =& $request->getRouter();
-			$press =& $router->getContext($request);
-			$note->setContextId($press->getId());
-
 			$user =& $request->getUser();
 			$note->setUserId($user->getId());
 

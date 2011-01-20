@@ -130,10 +130,8 @@ class SubmissionFilesArtworkMetadataForm extends SubmissionFilesMetadataForm {
 		if ($this->getData('note')) {
 			$noteDao =& DAORegistry::getDAO('NoteDAO');
 			$note = $noteDao->newDataObject();
-			$press =& Request::getPress();
 			$user =& Request::getUser();
 
-			$note->setContextId($press->getId());
 			$note->setUserId($user->getId());
 			$note->setContents($this->getData('note'));
 			$note->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
