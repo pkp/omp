@@ -48,7 +48,7 @@ class GenreGridHandler extends SetupGridHandler {
 
 		// Elements to be displayed in the grid
 		$genreDao =& DAORegistry::getDAO('GenreDAO');
-		$genres =& $genreDao->getEnabledByPressId($press->getId());
+		$genres =& $genreDao->getByPressId($press->getId());
 		$this->setData($genres);
 
 		// Add grid-level actions
@@ -79,15 +79,18 @@ class GenreGridHandler extends SetupGridHandler {
 		$cellProvider = new DataObjectGridCellProvider();
 		$cellProvider->setLocale(Locale::getLocale());
 		$this->addColumn(new GridColumn('name',
-										'common.name',
-										null,
-										'controllers/grid/gridCell.tpl',
-										$cellProvider));
+			'common.name',
+			null,
+			'controllers/grid/gridCell.tpl',
+			$cellProvider
+		));
+
 		$this->addColumn(new GridColumn('designation',
-										'common.designation',
-										null,
-										'controllers/grid/gridCell.tpl',
-										$cellProvider));
+			'common.designation',
+			null,
+			'controllers/grid/gridCell.tpl',
+			$cellProvider
+		));
 	}
 
 	//
@@ -212,7 +215,7 @@ class GenreGridHandler extends SetupGridHandler {
 		$genreDao =& DAORegistry::getDAO('GenreDAO');
 		$genreDao->restoreByPressId($press->getId());
 
-		$genres =& $genreDao->getEnabledByPressId($press->getId());
+		$genres =& $genreDao->getByPressId($press->getId());
 		$this->setData($genres);
 		$this->initialize($request);
 
