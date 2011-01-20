@@ -59,7 +59,7 @@ class SubmissionFilesGridRow extends GridRow {
 					'moreInfo',
 					new AjaxModal($router->url($request, null,
 						'informationCenter.FileInformationCenterHandler', 'viewInformationCenter', null,
-						array('monographId' => $monographFile->getMonographId(), 'fileId' => $monographFile->getFileId()
+						array('monographId' => $monographFile->getMonographId(), 'fileId' => $monographFile->getFileId())
 					)),
 					'grid.action.moreInformation',
 					'more_info'
