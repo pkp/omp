@@ -46,20 +46,15 @@ class GenreDAO extends DefaultSettingDAO
 	}
 
 	/**
-	 * Retrieve all enabled genres
+	 * Retrieve all genres
+	 * @param $pressId int
+	 * @param $enabledOnly boolean optional
+	 * @param $rangeInfo object optional
 	 * @return DAOResultFactory containing matching genres
 	 */
-	function &getByPressId($pressId, $enabledOnly = true, $rangeInfo = null) {
-		$params = array((int) $pressId);
-		if ($enabledOnly !== null) $params[] = $enabledOnly;
-
+	function &getEnabledByPressId($pressId, $rangeInfo = null) {
 		$result =& $this->retrieveRange(
-			'SELECT	*
-			FROM	genres
-			WHERE	press_id = ?'
-			. ($enabledOnly !== null?' AND enabled = ?':''),
-			$params,
-			$rangeInfo
+			'SELECT * FROM genres WHERE enabled = ? AND press_id = ?', array(1, $pressId), $rangeInfo
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_fromRow', array('id'));
