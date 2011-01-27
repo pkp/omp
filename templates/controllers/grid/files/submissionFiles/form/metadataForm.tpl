@@ -13,7 +13,7 @@
 	{rdelim});
 </script>
 
-<form id="metadataForm" action="{url op="saveMetadata" monographId=$monographFile->getMonographId() fileId=$monographFile->getFileId() escape=false}" method="post">
+<form id="metadataForm" action="{url op="saveMetadata" monographId=$monographFile->getMonographId() fileId=$monographFile->getFileId() params=$additionalActionArgs escape=false}" method="post">
 	<h3>{translate key='submission.fileDetails'}</h3>
 	{fbvFormArea id="fileMetaData"}
 		{fbvFormSection title="common.name" required=1}

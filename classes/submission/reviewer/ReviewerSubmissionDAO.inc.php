@@ -109,7 +109,7 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setRevisedFile($this->submissionFileDao->getLatestRevision($row['revised_file_id']));
 		$reviewerSubmission->setReviewFile($this->submissionFileDao->getLatestRevision($row['review_file_id']));
 		$reviewerSubmission->setReviewerFile($this->submissionFileDao->getLatestRevision($row['reviewer_file_id']));
-		$reviewerSubmission->setReviewerFileRevisions($this->submissionFileDao->getLatestRevisionRevisions($row['reviewer_file_id']));
+		$reviewerSubmission->setReviewerFileRevisions($this->submissionFileDao->getLatestRevisions($row['reviewer_file_id']));
 
 		// Comments
 		$reviewerSubmission->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));

@@ -13,6 +13,7 @@
  */
 
 import('controllers.modals.editorDecision.form.EditorDecisionForm');
+import('monograph.reviewRound.ReviewRound');
 
 class NewReviewRoundForm extends EditorDecisionForm {
 

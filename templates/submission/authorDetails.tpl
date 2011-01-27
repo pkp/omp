@@ -83,17 +83,17 @@
 <!-- Author actions -->
 <div id="authorActions">
 	<div id="addFile" class="authorAction">
-		{include file="linkAction/legacyLinkAction.tpl" action=$uploadFileAction id="uploadFileAction"}
+		{include file="linkAction/linkAction.tpl" action=$uploadFileAction id="uploadFileAction"}
 	</div>
 	<div id="addVersions" class="authorAction">
 		{if $stageId == 2 || $stageId == 3}
-			{include file="linkAction/legacyLinkAction.tpl" action=$uploadRevisionAction id="uploadRevisionAction"}
+			{include file="linkAction/linkAction.tpl" action=$uploadRevisionAction id="uploadRevisionAction"}
 		{elseif $stageId == 4}
-			{include file="linkAction/legacyLinkAction.tpl" action=$addCopyeditedFileAction id="addCopyeditedFileAction"}
+			{include file="linkAction/linkAction.tpl" action=$addCopyeditedFileAction id="addCopyeditedFileAction"}
 		{/if}
 	</div>
 	<div id="viewMetadata" class="authorAction">
-		{include file="linkAction/legacyLinkAction.tpl" action=$viewMetadataAction id="viewMetadataAction"}
+		{include file="linkAction/linkAction.tpl" action=$viewMetadataAction id="viewMetadataAction"}
 	</div>
 </div>
 <div style="clear:both;"></div>
@@ -101,7 +101,7 @@
 <div class="stageContainer" id="submission">
 	<h3><a href="#">{translate key='submission.submission'}</a></h3>
 	<div id="submissionContent">
-		{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
+		{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.AuthorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
 		{load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 	</div>
 </div>
@@ -139,7 +139,7 @@
 
 		<!-- Display review attachments grid -->
 		{if $showCopyeditingFiles}
-			{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.authorCopyeditingFiles.AuthorCopyeditingFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
+			{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
 			{load_url_in_div id="copyeditingFilesGridDiv" url=$copyeditingFilesGridUrl}
 		{/if}
 	</div>

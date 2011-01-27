@@ -48,16 +48,16 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$reviewId = (int) $reviewAssignment->getId();
 		assert(!empty($reviewId));
 
-
 		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO'); /* @var $reviewerSubmissionDao ReviewerSubmissionDAO */
 		$reviewerSubmission =& $reviewerSubmissionDao->getReviewerSubmission($reviewAssignment->getId());
 		assert(is_a($reviewerSubmission, 'ReviewerSubmission'));
 
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION));
 		$this->setupTemplate();
 
-		$reviewStep = $reviewerSubmission->getStep(); // Get the current saved step from the DB
-		$userStep = $request->getUserVar('step');
-		$step = (int) (isset($userStep) ? $userStep: $reviewStep);
+		$reviewStep = max($reviewerSubmission->getStep(), 1); // Get the current saved step from the DB
+		$userStep = (int) $request->getUserVar('step');
+		$step = (int) (!empty($userStep) ? $userStep: $reviewStep);
 		if($step > $reviewStep) $step = $reviewStep; // Reviewer can't go past incomplete steps
 		if ($step<1 || $step>4) fatalError('Invalid step!');
 

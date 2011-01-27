@@ -8,17 +8,11 @@
  *
  *}
 
-{assign var='uniqueId' value=""|uniqid}
-
-{translate|assign:"actionLabelTranslated" key="$actionLabel"}
-{assign var=titleTranslated value="$actionLabelTranslated"|concat:": ":$monograph->getLocalizedTitle()}
-{modal_title id="#sendReviews" keyTranslated=$titleTranslated iconClass="fileManagement" canClose=1}
-
 <script type="text/javascript">
 	<!--
 	{literal}
 	$(function() {
-		$('.button').button();
+		$('#sendReviews').pkpHandler('$.pkp.controllers.FormHandler');
 		var url = '{/literal}{url op="importPeerReviews" monographId=$monographId}{literal}';
 		$('#importPeerReviews').live('click', function() {
 			$.getJSON(url, function(jsonData) {
@@ -53,11 +47,11 @@
 	{/fbvFormSection}
 
 	<div id="attachments">
-		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId isSelectable=1 escape=false}
+		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.attachment.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId isSelectable=1 escape=false}
 		{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 	</div>
 
+	{init_button_bar id="#sendReviews" submitText="editor.submissionReview.recordDecision"}
 </form>
 
-{init_button_bar id="#sendReviews" submitText="editor.submissionReview.recordDecision"}
 

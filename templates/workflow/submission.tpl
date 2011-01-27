@@ -14,10 +14,10 @@
 
 <!-- Editorial decision actions -->
 {foreach from=$editorActions item=action}
-	{include file="linkAction/legacyLinkAction.tpl" action=$action id="editorAction"}
+	{include file="linkAction/linkAction.tpl" action=$action id="editorAction"}
 {/foreach}
 
-{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
+{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.EditorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
 {load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}
 
 {include file="common/footer.tpl"}

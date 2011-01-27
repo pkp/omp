@@ -15,7 +15,7 @@
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 
 	<!-- Revision files grid (Displays only revisions at first, and hides all other files which can then be displayed with filter button -->
-	{url|assign:newRoundRevisionsUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.revisions.RevisionsGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$round isSelectable=1 escape=false}
+	{url|assign:newRoundRevisionsUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.SelectableReviewRevisionsGridHandler" op="fetchGrid" monographId=$monographId reviewType=$reviewType round=$round escape=false}
 	{load_url_in_div id="newRoundRevisionsGrid" url=$newRoundRevisionsUrl}
 </form>
 

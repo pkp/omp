@@ -24,7 +24,7 @@
 </script>
 
 <form id="uploadConfirmationForm"
-		action="{url op="confirmRevision" monographId=$monographId uploadedFileId=$uploadedFile->getFileId()}"
+		action="{url op="confirmRevision" monographId=$monographId uploadedFileId=$uploadedFile->getFileId() params=$additionalActionArgs}"
 		method="post">
 	{fbvFormArea id="file"}
 		<div id="possibleRevision" class="possibleRevision response" style="display:none;">

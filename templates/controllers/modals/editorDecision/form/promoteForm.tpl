@@ -8,14 +8,11 @@
  *
  *}
 
-{translate|assign:"actionLabelTranslated" key="$actionLabel"}
-{assign var=titleTranslated value="$actionLabelTranslated"|concat:": ":$monograph->getLocalizedTitle()}
-{modal_title id="#promote" keyTranslated=$titleTranslated iconClass="fileManagement" canClose=1}
-
 <script type="text/javascript">
 	<!--
 	{literal}
-		$(function() {
+	$(function() {
+		$('#promote').pkpHandler('$.pkp.controllers.FormHandler');
 		var url = '{/literal}{url op="importPeerReviews" monographId=$monographId}{literal}';
 		$('#importPeerReviews').live('click', function() {
 			$.getJSON(url, function(jsonData) {
@@ -50,15 +47,21 @@
 	{/fbvFormSection}
 
 	<div id="attachments">
-		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.reviewAttachments.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId isSelectable=1 escape=false}
+		{url|assign:reviewAttachmentsGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.files.attachment.EditorReviewAttachmentsGridHandler" op="fetchGrid" monographId=$monographId isSelectable=1 escape=false}
 		{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 	</div>
 
 	<div id="availableFiles">
-		{url|assign:newRoundRevisionsUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.revisions.RevisionsGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$round isSelectable=1 escape=false}
-		{load_url_in_div id="newRoundRevisionsGrid" url=$newRoundRevisionsUrl}
+		{* Show a different grid depending on whether we're in review or before the review stage *}
+		{if $stageId == $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}
+			{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SelectableSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monographId reviewType=$reviewType round=$round isSelectable=1 escape=false}
+			{load_url_in_div id="filesForReviewGrid" url=$filesForReviewUrl}
+		{else}
+			{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.SelectableReviewRevisionsGridHandler" op="fetchGrid" monographId=$monographId reviewType=$reviewType round=$round isSelectable=1 escape=false}
+			{load_url_in_div id="filesForReviewGrid" url=$filesForReviewUrl}
+		{/if}
 	</div>
+{init_button_bar id="#promote" submitText="editor.submissionReview.recordDecision"}
 </form>
 
-{init_button_bar id="#promote" submitText="editor.submissionReview.recordDecision"}
 

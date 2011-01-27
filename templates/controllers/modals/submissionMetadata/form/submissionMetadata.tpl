@@ -7,7 +7,6 @@
  * Display a submission's metadata
  *
  *}
-{modal_title id="#submissionMetadata" key='submission.submit.metadata' iconClass="fileManagement" canClose=1}
 
 {fbvFormArea id="submissionMetadata"}
 	{fbvFormSection title="monograph.title"}
@@ -25,6 +24,3 @@
 		{/fbvFormSection}
 	{/if}
 {/fbvFormArea}
-
-{init_button_bar id="#submissionMetadata"}
-

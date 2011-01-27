@@ -37,7 +37,7 @@
 {/if}
 
 {** FIXME: need to set escape=false due to bug 5265 *}
-{url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.reviewFiles.EditorReviewFilesGridHandler" op="fetchGrid" stageId=$smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW monographId=$monograph->getId() reviewType=$currentReviewType round=$selectedRound canAdd=1 escape=false}
+{url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.EditorReviewFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewType=$currentReviewType round=$selectedRound escape=false}
 {load_url_in_div id="reviewFileSelection" url=$reviewFileSelectionGridUrl}
 
 <br />
@@ -47,14 +47,14 @@
 
 <br />
 
-{url|assign:revisionsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.revisions.RevisionsGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewType=$currentReviewType round=$selectedRound escape=false}
+{url|assign:revisionsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewRevisionsGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewType=$currentReviewType round=$selectedRound escape=false}
 {load_url_in_div id="revisionsGrid" url=$revisionsGridUrl}
 
 <br />
 
 {** editorial decision actions *}
 {foreach from=$editorActions item=action}
-	{include file="linkAction/legacyLinkAction.tpl" action=$action id="editorAction"}
+	{include file="linkAction/linkAction.tpl" action=$action id="editorAction"}
 {/foreach}
 
 </div>
