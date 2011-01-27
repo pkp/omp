@@ -42,8 +42,6 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 
 		// Assign variables to the template manager and display
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('title', $monograph->getLocalizedTitle());
-		$templateMgr->assign('monographId', $monograph->getId());
 		if(isset($lastEvent)) {
 			$templateMgr->assign_by_ref('lastEvent', $lastEvent);
 
