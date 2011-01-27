@@ -151,9 +151,6 @@ class InformationCenterHandler extends Handler {
 	}
 
 	function setupTemplate() {
-		// Fetch the monograph to display information about
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('linkParams', $this->getLinkParams());
 
