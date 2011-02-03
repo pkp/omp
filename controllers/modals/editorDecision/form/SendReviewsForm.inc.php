@@ -117,7 +117,7 @@ class SendReviewsForm extends EditorDecisionForm {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('personalMessage', 'selectedAttachments'));
+		$this->readUserVars(array('personalMessage', 'selectedFiles'));
 	}
 
 	/**
@@ -188,18 +188,19 @@ class SendReviewsForm extends EditorDecisionForm {
 
 		// Attach the selected reviewer attachments
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$selectedAttachments = $this->getData('selectedAttachments') ? $this->getData('selectedAttachments') : array();
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$selectedAttachments = $this->getData('selectedFiles') ? $this->getData('selectedFiles') : array();
+ 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
 		assert(is_array($reviewIndexes));
 		if(is_array($selectedAttachments)) {
 			foreach ($selectedAttachments as $attachmentId) {
-				$monographFile =& $submissionFileDao->getLatestRevision($attachmentId);
+				$attachment = explode('-', $attachmentId);
+
+				$monographFile =& $submissionFileDao->getRevision($attachment[0], $attachment[1]);
 				assert(is_a($monographFile, 'MonographFile'));
 
-				$fileName = $monographFile->getOriginalFileName();
 				$reviewAssignmentId = $monographFile->getAssocId();
-				assert($monographFile->getAssocType == ASSOC_TYPE_REVIEW_ASSIGNMENT);
+				assert($monographFile->getAssocType() == ASSOC_TYPE_REVIEW_ASSIGNMENT);
 				assert(is_numeric($reviewAssignmentId));
 
 				$reviewIndex = $reviewIndexes[$reviewAssignmentId];

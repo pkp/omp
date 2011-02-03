@@ -88,6 +88,7 @@ class PromoteForm extends EditorDecisionForm {
 
 		$this->_data = array(
 			'monographId' => $monograph->getId(),
+			'stageId' => $monograph->getCurrentStageId(),
 			'decision' => $this->getDecision(),
 			'authorName' => $monograph->getAuthorString(),
 			'personalMessage' => $email->getBody(),
