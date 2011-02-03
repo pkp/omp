@@ -155,9 +155,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 		// Build the URL to fetch a row.
 		$monograph = $this->getMonograph();
 		$router =& $request->getRouter();
-		$fetchRowUrl = $router->url($request, null, null, 'fetchRow', null,
-				array('monographId' => $monograph->getId()));
-		return parent::fetchGrid($args, $request, $fetchRowUrl);
+		$fetchParams = array('monographId' => $monograph->getId());
+		return parent::fetchGrid($args, $request, $fetchParams);
 	}
 
 
