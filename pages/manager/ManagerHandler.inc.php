@@ -70,17 +70,6 @@ class ManagerHandler extends Handler {
 		$templateMgr->display('manager/index.tpl');
 	}
 
-   /**
-	 * Display settings index page.
-	 * @param $request PKPRequest
-	 * @param $args array
-	 */
-	function settings(&$request, &$args) {
-		$templateMgr =& TemplateManager::getManager();
-		$this->setupTemplate(true);
-		$templateMgr->display('manager/settings/index.tpl');
-	}
-
 	/**
 	 * Send an email to a user or group of users.
 	 */

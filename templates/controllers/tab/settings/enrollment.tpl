@@ -7,8 +7,6 @@
  * User role enrollment.
  *
  *}
-{assign var="pageTitle" value="manager.users.enrollment"}
-{include file="manager/users/usersHeader.tpl"}
 
 <script type="text/javascript">
 	<!--
@@ -54,7 +52,5 @@
 </form>
 
 {url|assign:usersUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserEnrollmentGridHandler" op="fetchGrid"}
-{assign var=gridContainerId value="userGridContainer"}
+{assign var=gridContainerId value="userEnrollmentGridContainer"}
 {load_url_in_div id=$gridContainerId url=$usersUrl}
-
-{include file="common/footer.tpl"}

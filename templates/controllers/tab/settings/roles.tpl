@@ -6,8 +6,6 @@
  *
  * Page for managing role to user group mappings.
  *}
-{assign var="pageTitle" value="manager.users.roles"}
-{include file="manager/users/usersHeader.tpl"}
 
 <script type="text/javascript">
 	<!--
@@ -59,5 +57,3 @@
 {url|assign:siteAdminRolesUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.UserGroupListbuilderHandler" op="fetch" roleId=$smarty.const.ROLE_ID_PRESS_MANAGER title='user.role.siteAdmin'}
 {load_url_in_div id="userGroupsContainer" url=$siteAdminRolesUrl}
 </div>
-
-{include file="common/footer.tpl"}

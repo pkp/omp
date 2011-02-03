@@ -137,8 +137,6 @@
 	<message key="manager.settings.dataDescription">All settings that allow for manipulation of data (file browser, reviewer database, reports, import/export, COUNTER stats).</message>
 	<message key="manager.settings.system">System</message>
 	<message key="manager.settings.systemDescription">All settings specific to the OMP system for this press (archiving, prepared emails, reading tools, languages, payments, plugins).</message>
-	<message key="manager.settings.users"><![CDATA[Users &amp; Roles]]></message>
-	<message key="manager.settings.usersDescription">All settings related to user management for this press (enrollment, manage users, manage roles).</message>
 
 	<!-- User management -->
 	<message key="manager.users">User Management</message>
@@ -170,6 +168,10 @@ You may optionally provide the user with a reason for disabling their account.</
 		</ul>
 	This task must be performed by a site administrator.
 	]]></message>
+	
+	<!-- Access and Security -->
+	<message key="settings.access"><![CDATA[Access &amp; Security]]></message>
+	<message key="settings.accessDescription">All settings related to access and security management for this press (manage users, manage roles, site access options).</message>
 
 	<!-- System setup -->
 	<message key="manager.system">System Settings</message>

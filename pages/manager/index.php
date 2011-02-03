@@ -40,13 +40,6 @@ switch ($op) {
 		import('pages.manager.SystemHandler');
 		define('HANDLER_CLASS', 'SystemHandler');
 		break;
-	// Users and Roles
-	case 'users':
-	case 'roles':
-	case 'enrollment':
-		import('pages.manager.UsersHandler');
-		define('HANDLER_CLASS', 'UsersHandler');
-		break;
 	//
 	// People Management
 	//
@@ -159,7 +152,6 @@ switch ($op) {
 		define('HANDLER_CLASS', 'GroupHandler');
 		break;
 	case 'index':
-	case 'settings':
 	case 'email':
 		define('HANDLER_CLASS', 'ManagerHandler');
 		import('pages.manager.ManagerHandler');

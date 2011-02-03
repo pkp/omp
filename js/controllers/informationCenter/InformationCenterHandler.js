@@ -22,7 +22,7 @@ jQuery.pkp.controllers.informationCenter =
 	/**
 	 * @constructor
 	 *
-	 * @extends $.pkp.controllers.TabbedHandler
+	 * @extends $.pkp.controllers.TabHandler
 	 *
 	 * @param {jQuery} $modal A wrapped HTML element that
 	 *  represents the tabbed interface element.
@@ -34,7 +34,7 @@ jQuery.pkp.controllers.informationCenter =
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.informationCenter.InformationCenterHandler,
-			$.pkp.controllers.TabbedHandler
+			$.pkp.controllers.TabHandler
 	);
 
 /** @param {jQuery} $ jQuery closure. */

@@ -51,14 +51,14 @@
 					</ul>
 				</li>
 				<li>
-					<a href="{url page="manager" op="settings"}">{translate key="navigation.settings"}</a>
+					<a href="{url page="settings" op="index"}">{translate key="navigation.settings"}</a>
 					<ul>
 						<li><a href="{url page="manager" op="setup"}">{translate key="navigation.setup"}</a></li>
 						{* Temporary link to manager's deprecated home page until settings pages are fully implemented, see #6196 *}
 						<li><a href="{url page="manager" op="index"}">{translate key="navigation.data"}</a></li>
 						{* <li><a href="{url page="manager" op="data"}">{translate key="navigation.data"}</a></li> *}
 						<li><a href="{url page="manager" op="system"}">{translate key="navigation.system"}</a></li>
-						<li><a href="{url page="manager" op="users"}">{translate key="navigation.userManagement"}</a></li>
+						<li><a href="{url page="settings" op="access"}">{translate key="settings.access"}</a></li>
 					</ul>
 				</li>
 				{if $enableAnnouncements}

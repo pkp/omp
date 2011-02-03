@@ -7,8 +7,6 @@
  * User management.
  *
  *}
-{assign var="pageTitle" value="manager.users.users"}
-{include file="manager/users/usersHeader.tpl"}
 
 <script type="text/javascript">
 	<!--
@@ -59,5 +57,3 @@
 {url|assign:usersUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserGridHandler" op="fetchGrid"}
 {assign var=gridContainerId value="userGridContainer"}
 {load_url_in_div id=$gridContainerId url=$usersUrl}
-
-{include file="common/footer.tpl"}

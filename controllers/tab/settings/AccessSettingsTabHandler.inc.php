@@ -1,35 +1,59 @@
 <?php
 
 /**
- * @file UsersHandler.inc.php
+ * @file controllers/tab/settings/AccessSettingsTabHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class UsersHandler
- * @ingroup pages_manager
+ * @class AccessSettingsTabHandler
+ * @ingroup controllers_tab_settings
  *
- * @brief Handle requests for user management functions.
+ * @brief Handle AJAX operations for tabs on Access and Security page.
  */
 
+// Import the base Handler.
+import('classes.handler.Handler');
 
-import('pages.manager.ManagerHandler');
-
-class UsersHandler extends ManagerHandler {
+class AccessSettingsTabHandler extends Handler {
 
 	/**
 	 * Constructor
 	 **/
-	function UsersHandler() {
-		parent::ManagerHandler();
-		$this->addRoleAssignment(
-			ROLE_ID_PRESS_MANAGER,
-			array(
-				'users',
-				'roles',
-				'enrollment'
-			)
-		);
+	function AccessSettingsTabHandler() {
+		parent::Handler();
+		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
+				array('users', 'roles', 'enrollment'));
+	}
+
+
+	//
+	// Overridden methods from Handler
+	//
+	/**
+	 * @see PKPHandler::initialize()
+	 */
+	function initialize(&$request, $args = null) {
+		parent::initialize($request, $args);
+
+		// Load grid-specific translations
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
+	}
+
+
+	//
+	// Public handler methods
+	//
+	/**
+	 * @see PKPHandler::authorize()
+	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $roleAssignments array
+	 */
+	function authorize(&$request, $args, $roleAssignments) {
+		import('classes.security.authorization.OmpPressAccessPolicy');
+		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
+		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	/**
@@ -69,7 +93,7 @@ class UsersHandler extends ManagerHandler {
 		$templateMgr->assign('fieldOptions', $fieldOptions);
 		$templateMgr->assign('matchOptions', $matchOptions);
 		$templateMgr->assign('currentPage', 'users');
-		$templateMgr->display('manager/users/users.tpl');
+		return $templateMgr->fetchJson('controllers/tab/settings/users.tpl');
 	}
 
 	/**
@@ -85,7 +109,7 @@ class UsersHandler extends ManagerHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('roleOptions', $roleOptions);
 		$templateMgr->assign('currentPage', 'roles');
-		$templateMgr->display('manager/users/roles.tpl');
+		return $templateMgr->fetchJson('controllers/tab/settings/roles.tpl');
 	}
 
 	/**
@@ -114,8 +138,7 @@ class UsersHandler extends ManagerHandler {
 		$templateMgr->assign('fieldOptions', $fieldOptions);
 		$templateMgr->assign('matchOptions', $matchOptions);
 		$templateMgr->assign('currentPage', 'enrollment');
-		$templateMgr->display('manager/users/enrollment.tpl');
+		return $templateMgr->fetchJson('controllers/tab/settings/enrollment.tpl');
 	}
 }
-
 ?>
