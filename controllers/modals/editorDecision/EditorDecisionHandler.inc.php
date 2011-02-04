@@ -25,7 +25,8 @@ class EditorDecisionHandler extends Handler {
 		parent::Handler();
 
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('newReviewRound', 'saveNewReviewRound', 'initiateReview', 'saveInitiateReview', 'sendReviews', 'saveSendReviews', 'promote', 'savePromote', 'importPeerReviews'));
+				array('newReviewRound', 'saveNewReviewRound', 'initiateReview', 'saveInitiateReview', 'sendReviews',
+						'saveSendReviews', 'promote', 'savePromote', 'importPeerReviews', 'sendToProduction'));
 	}
 
 
@@ -75,8 +76,20 @@ class EditorDecisionHandler extends Handler {
 		if ($newReviewRoundForm->validate()) {
 			$round = $newReviewRoundForm->execute($args, $request);
 
-			$additionalAttributes = array('script' => $newReviewRoundForm->getNewTab($request, $round));
+			// FIXME: Sending scripts through JSON is evil. This script
+			// should (and can) be moved to the client side, #see 6357.
 
+			// Generate the new review round tab script.
+			$router =& $request->getRouter();
+			$dispatcher =& $router->getDispatcher();
+			$newRoundUrl = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monograph->getId(), $round));
+			$templateMgr =& TemplateManager::getManager();
+			$templateMgr->assign('newRoundUrl', $newRoundUrl);
+			$templateMgr->assign('round', $round);
+			$reviewRoundTabScript = $templateMgr->fetch('controllers/modals/editorDecision/form/reviewRoundTab.tpl');
+
+			// Create a JSON message with the script.
+			$additionalAttributes = array('script' => $reviewRoundTabScript);
 			$json = new JSON(true, null, true, null, $additionalAttributes);
 		} else {
 			$json = new JSON(false);
@@ -230,8 +243,12 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function sendToProduction(&$args, &$request) {
-		// FIXME #5898 : Implement -- Is this just a confirm dialog or a modal?
-		$monographId = $request->getUserVar('monographId');
+		// Retrieve the submission.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		// Move to the production workflow stage
+		import('classes.submission.seriesEditor.SeriesEditorAction');
+		SeriesEditorAction::incrementWorkflowStage($monograph, WORKFLOW_STAGE_ID_PRODUCTION);
 
 		$json = new JSON(true);
 		return $json->getString();

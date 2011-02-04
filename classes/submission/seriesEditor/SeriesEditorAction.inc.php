@@ -25,17 +25,17 @@ class SeriesEditorAction extends Action {
 		parent::Action();
 	}
 
-	/**
-	 * Actions.
-	 */
+	//
+	// Actions.
+	//
 	/**
 	 * Records an editor's submission decision.
-	 * @param $seriesEditorSubmission object
-	 * @param $decision int
+	 * @param $seriesEditorSubmission SeriesEditorSubmission
+	 * @param $decision integer
 	 */
 	function recordDecision($seriesEditorSubmission, $decision) {
 		// FIXME #5557 Make sure this works with signoffs
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoffs =& $signoffDao->getBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getId());
 		if (empty($signoffs)) return;
 
@@ -52,20 +52,76 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmission->setStatus(STATUS_QUEUED);
 			$seriesEditorSubmission->stampStatusModified();
 			$seriesEditorSubmission->addDecision(
-									$editorDecision,
-									$seriesEditorSubmission->getCurrentReviewType(),
-									$seriesEditorSubmission->getCurrentRound()
-								);
+					$editorDecision,
+					$seriesEditorSubmission->getCurrentReviewType(),
+					$seriesEditorSubmission->getCurrentRound());
 
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
+			// Add log.
 			$decisions = SeriesEditorSubmission::getEditorDecisionOptions();
-			// Add log
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
 			Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR));
 			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_EDITOR_DECISION, MONOGRAPH_LOG_TYPE_EDITOR, $user->getId(), 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'decision' => Locale::translate($decisions[$decision])));
 		}
+	}
+
+	/**
+	 * Assign the default participants to a workflow stage.
+	 * @param $monograph Monograph
+	 * @param $stageId int
+	 */
+	function assignDefaultStageParticipants(&$monograph, $stageId) {
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO');
+
+		// Managerial roles are skipped -- They have access by default and
+		//  are assigned for informational purposes only
+
+		// Series editor roles are skipped -- They are assigned by PM roles
+		//  or by other series editors
+
+		// Press roles -- For each press role user group assigned to this
+		//  stage in setup, iff there is only one user for the group,
+		//  automatically assign the user to the stage
+		$submissionStageGroups =& $userGroupStageAssignmentDao->getUserGroupsByStage($monograph->getPressId(), $stageId);
+		while ($userGroup =& $submissionStageGroups->next()) {
+			if($userGroup->getRoleId() == ROLE_ID_PRESS_ASSISTANT) {
+				$users =& $userGroupDao->getUsersById($userGroup->getId());
+				if($users->getCount() == 1) {
+					$user =& $users->next();
+					$signoffDao->build('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $user->getId(), $stageId, $userGroup->getId());
+				}
+			}
+		}
+
+		// Author roles -- Assign only the submitter
+		// FIXME #6001: If the submission is a monograph, then the user group
+		//   assigned for the submitter should be author; If its a volume,
+		// 	 it should be a volume editor user group.
+		$authorUserGroup =& $userGroupDao->getDefaultByRoleId($monograph->getPressId(), ROLE_ID_AUTHOR);
+		$signoffDao->build('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $monograph->getUserId(), $stageId, $authorUserGroup->getId());
+
+		// Reviewer roles -- Do nothing
+		// FIXME #6002: Need to review this -- Not sure if reviewers should be
+		//  added as stage participants
+	}
+
+	/**
+	 * Increment a monograph's workflow stage.
+	 * @param $monograph Monograph
+	 * @param $newStage integer One of the WORKFLOW_STAGE_* constants.
+	 */
+	function incrementWorkflowStage(&$monograph, $newStage) {
+		// Change the monograph's workflow stage.
+		$monograph->setCurrentStageId($newStage);
+		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
+		$monographDao->updateMonograph($monograph);
+
+		// Assign the default users to the next workflow stage.
+		SeriesEditorAction::assignDefaultStageParticipants($monograph, $newStage);
 	}
 
 	/**

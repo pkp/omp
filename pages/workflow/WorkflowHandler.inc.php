@@ -116,7 +116,7 @@ class WorkflowHandler extends Handler {
 		$this->_assignEditorDecisionActions($request, '_reviewStageDecisions', $additionalActionArgs);
 
 		// Retrieve and assign the review round status.
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		$reviewRound =& $reviewRoundDao->build($monograph->getId(), $currentReviewType, $selectedRound);
 		$templateMgr->assign('roundStatus', $reviewRound->getStatusKey());
 
@@ -202,7 +202,7 @@ class WorkflowHandler extends Handler {
 		$dispatcher =& $this->getDispatcher();
 		foreach($decisions as $decision => $action) {
 			$actionArgs['decision'] = $decision;
-			$editorActions[] =& new LegacyLinkAction(
+			$editorActions[] = new LegacyLinkAction(
 				$action['name'],
 				LINK_ACTION_MODE_MODAL,
 				(isset($action['submitAction']) ? $action['submitAction'] : null),

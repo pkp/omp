@@ -165,32 +165,32 @@ class SeriesEditorSubmissionDAO extends DAO {
 	function updateSeriesEditorSubmission(&$seriesEditorSubmission) {
 		$reviewRounds = $seriesEditorSubmission->getReviewRoundsInfo();
 
-		// Update editor decisions
+		// Update editor decisions.
 		foreach ($reviewRounds as $reviewType => $round) {
-		for ($i = 1; $i <= $round; $i++) {
-			$editorDecisions = $seriesEditorSubmission->getDecisions($reviewType, $i);
-			if (is_array($editorDecisions)) {
-				foreach ($editorDecisions as $editorDecision) {
-					if ($editorDecision['editDecisionId'] == null) {
-						$this->update(
-							sprintf(
-								'INSERT INTO edit_decisions
-								(monograph_id, review_type, round, editor_id, decision, date_decided)
-								VALUES (?, ?, ?, ?, ?, %s)',
-								$this->datetimeToDB($editorDecision['dateDecided'])
-							),
-							array(
-								$seriesEditorSubmission->getId(),
-								$reviewType,
-								$i,
-								$editorDecision['editorId'],
-								$editorDecision['decision']
-							)
-						);
+			for ($i = 1; $i <= $round; $i++) {
+				$editorDecisions = $seriesEditorSubmission->getDecisions($reviewType, $i);
+				if (is_array($editorDecisions)) {
+					foreach ($editorDecisions as $editorDecision) {
+						if ($editorDecision['editDecisionId'] == null) {
+							$this->update(
+								sprintf(
+									'INSERT INTO edit_decisions
+									(monograph_id, review_type, round, editor_id, decision, date_decided)
+									VALUES (?, ?, ?, ?, ?, %s)',
+									$this->datetimeToDB($editorDecision['dateDecided'])
+								),
+								array(
+									$seriesEditorSubmission->getId(),
+									$reviewType,
+									$i,
+									$editorDecision['editorId'],
+									$editorDecision['decision']
+								)
+							);
+						}
 					}
 				}
 			}
-		}
 		}
 
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
@@ -199,10 +199,10 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		if (isset($reviewType)) {
 			$reviewRound = $reviewRoundDao->build(
-							$seriesEditorSubmission->getId(),
-							$seriesEditorSubmission->getCurrentReviewType(),
-							$round == null ? 1 : $round
-						);
+					$seriesEditorSubmission->getId(),
+					$seriesEditorSubmission->getCurrentReviewType(),
+					$round == null ? 1 : $round);
+
 			if ($seriesEditorSubmission->getReviewRevision() != null) {
 				$reviewRound->setReviewRevision($seriesEditorSubmission->getReviewRevision());
 				$reviewRoundDao->updateObject($reviewRound);
