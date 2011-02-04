@@ -117,7 +117,7 @@
 				hasGenreSelector: {if $showGenreSelector}true{else}false{/if},
 				presetRevisedFileId: '{$revisedFileId}',
 				// File genres currently assigned to monograph files.
-				monographFileGenres: {ldelim}
+				fileGenres: {ldelim}
 					{foreach name=currentMonographFileGenres from=$currentMonographFileGenres key=monographFileId item=fileGenre}
 						{$monographFileId}: {$fileGenre}{if !$smarty.foreach.currentMonographFileGenres.last},{/if}
 					{/foreach}
