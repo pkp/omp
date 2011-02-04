@@ -157,13 +157,13 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 		$contributorId = (int) $args[$rowId];
 
 		if(!isset($contributorId)) {
-			$json = new JSON('false');
+			$json = new JSON(false);
 			return $json->getString();
 		} else {
 			// Make sure the item doesn't already exist
 			$contributorIds = $chapterAuthorDao->getAuthorIdsByChapterId($chapterId, $monographId);
 			if(in_array($contributorId, $contributorIds)) {
-				$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
+				$json = new JSON(false, Locale::translate('common.listbuilder.itemExists'));
 				return $json->getString();
 				return false;
 			}
@@ -179,7 +179,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			$json = new JSON(true, $this->_renderRowInternally($request, $row));
 			return $json->getString();
 		}
 	}
@@ -198,7 +198,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 				$chapterAuthorDao->deleteChapterAuthorById($item);
 		}
 
-		$json = new JSON('true');
+		$json = new JSON(true);
 		return $json->getString();
 	}
 }

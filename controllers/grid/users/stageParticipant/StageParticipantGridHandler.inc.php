@@ -163,7 +163,7 @@ class StageParticipantGridHandler extends GridHandler {
 		$stageParticipantForm = new StageParticipantForm($monographId);
 		$stageParticipantForm->initData();
 
-		$json = new JSON('true', $stageParticipantForm->fetch($request));
+		$json = new JSON(true, $stageParticipantForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -202,9 +202,9 @@ class StageParticipantGridHandler extends GridHandler {
 				assert(count($gridBodyParts) == 1);
 				$renderedGridRows = $gridBodyParts[0];
 			}
-			$json = new JSON('true', $renderedGridRows);
+			$json = new JSON(true, $renderedGridRows);
 		} else {
-			$json = new JSON('false', Locale::translate('editor.monograph.addUserError'));
+			$json = new JSON(false, Locale::translate('editor.monograph.addUserError'));
 		}
 		return $json->getString();
 	}
@@ -222,9 +222,9 @@ class StageParticipantGridHandler extends GridHandler {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 
 		if($signoffDao->deleteObjectById($signoffId)) {
-			$json = new JSON('true');
+			$json = new JSON(true);
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 		return $json->getString();
 	}

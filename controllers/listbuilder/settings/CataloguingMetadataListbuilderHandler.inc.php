@@ -76,14 +76,14 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 		$format = $args[$index];
 
 		if(!isset($format)) {
-			$json = new JSON('false');
+			$json = new JSON(false);
 			return $json->getString();
 		} else {
 			// Make sure the item doesn't already exist
 			$formats = $pressSettingsDao->getSetting($press->getId(), 'cataloguingMetadata');
 			foreach($formats as $item) {
 				if($item['name'] == $format) {
-					$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
+					$json = new JSON(false, Locale::translate('common.listbuilder.itemExists'));
 					return $json->getString();
 					return false;
 				}
@@ -101,7 +101,7 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			$json = new JSON(true, $this->_renderRowInternally($request, $row));
 			return $json->getString();
 		}
 	}
@@ -126,7 +126,7 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 
 		$pressSettingsDao->updateSetting($press->getId(), 'cataloguingMetadata', $formats, 'object');
 
-		$json = new JSON('true');
+		$json = new JSON(true);
 		return $json->getString();
 	}
 }

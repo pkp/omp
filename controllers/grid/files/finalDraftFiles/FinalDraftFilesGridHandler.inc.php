@@ -281,7 +281,7 @@ class FinalDraftFilesGridHandler extends GridHandler {
 
 		// Initialize and render the files form.
 		$manageFinalDraftFilesForm->initData($args, $request);
-		$json = new JSON('true', $manageFinalDraftFilesForm->fetch($request));
+		$json = new JSON(true, $manageFinalDraftFilesForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -320,9 +320,9 @@ class FinalDraftFilesGridHandler extends GridHandler {
 				assert(count($gridBodyParts) == 1);
 				$renderedGridRows = $gridBodyParts[0];
 			}
-			$json = new JSON('true', $renderedGridRows);
+			$json = new JSON(true, $renderedGridRows);
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 
 		// Serialize JSON.
@@ -342,9 +342,9 @@ class FinalDraftFilesGridHandler extends GridHandler {
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			$submissionFileDao->deleteAllRevisionsById($fileId);
 
-			$json = new JSON('true');
+			$json = new JSON(true);
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 		return $json->getString();
 	}

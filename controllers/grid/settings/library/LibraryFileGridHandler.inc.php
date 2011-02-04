@@ -157,7 +157,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 			$fileForm->initData($args, $request);
 		}
 
-		$json = new JSON('true', $fileForm->fetch($request));
+		$json = new JSON(true, $fileForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -184,9 +184,9 @@ class LibraryFileGridHandler extends SetupGridHandler {
 			$additionalAttributes = array(
 				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('gridId' => $this->getId(), 'rowId' => $fileId))
 			);
-			$json = new JSON('true', Locale::translate('submission.uploadSuccessful'), 'false', $fileId, $additionalAttributes);
+			$json = new JSON(true, Locale::translate('submission.uploadSuccessful'), false, $fileId, $additionalAttributes);
 		} else {
-			$json = new JSON('false', Locale::translate('common.uploadFailed'));
+			$json = new JSON(false, Locale::translate('common.uploadFailed'));
 		}
 
 		echo $json->getString();
@@ -216,9 +216,9 @@ class LibraryFileGridHandler extends SetupGridHandler {
 			$row->setData($libraryFile);
 			$row->initialize($request);
 
-			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			$json = new JSON(true, $this->_renderRowInternally($request, $row));
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 
 		return $json->getString();
@@ -240,9 +240,9 @@ class LibraryFileGridHandler extends SetupGridHandler {
 			import('classes.file.LibraryFileManager');
 			$libraryFileManager = new LibraryFileManager($press->getId());
 			$libraryFileManager->deleteFile($fileId);
-			$json = new JSON('true');
+			$json = new JSON(true);
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 		return $json->getString();
 	}

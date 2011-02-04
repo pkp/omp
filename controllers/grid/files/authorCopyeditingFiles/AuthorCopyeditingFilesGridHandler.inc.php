@@ -114,7 +114,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		$templateMgr->assign('fileStage', $fileStage);
 		$templateMgr->assign('gridId', $this->getId());
 
-		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/submissionFiles.tpl'));
+		$json = new JSON(true, $templateMgr->fetch('controllers/grid/files/submissionFiles/form/submissionFiles.tpl'));
 		return $json->getString();
 	}
 
@@ -133,7 +133,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		} else {
 			$fileForm->initData($args, $request);
 		}
-		$json = new JSON('true', $fileForm->fetch($request));
+		$json = new JSON(true, $fileForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -162,9 +162,9 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 				'metadataUrl' => $router->url($request, null, null, 'editMetadata', null, array('gridId' => $this->getId(), 'monographId' => $monographId, 'fileId' => $copyeditedFileId, 'signoffId' => $signoffId)),
 				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('fileId' => $copyeditedFileId, 'signoffId' => $signoffId))
 			);
-			$json = new JSON('true', Locale::translate('submission.uploadSuccessful'), 'false', $copyeditedFileId, $additionalAttributes);
+			$json = new JSON(true, Locale::translate('submission.uploadSuccessful'), false, $copyeditedFileId, $additionalAttributes);
 		} else {
-			$json = new JSON('false', Locale::translate('common.uploadFailed'));
+			$json = new JSON(false, Locale::translate('common.uploadFailed'));
 		}
 
 		return $json->getString();
@@ -208,7 +208,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 			$metadataForm->initData($args, $request);
 		}
 
-		$json = new JSON('true', $metadataForm->fetch($request));
+		$json = new JSON(true, $metadataForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -247,9 +247,9 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 			$router =& $request->getRouter();
 
 			$additionalAttributes = array('isEditing' => true, 'finishingUpUrl' => $router->url($request, null, null, 'finishFileSubmission', null, array('gridId' => $this->getId(), 'fileId' => $fileId, 'monographId' => $monographId)));
-			$json = new JSON('true', '', 'false', $fileId, $additionalAttributes);
+			$json = new JSON(true, '', false, $fileId, $additionalAttributes);
 		} else {
-			$json = new JSON('false', Locale::translate('submission.submit.fileNameRequired'));
+			$json = new JSON(false, Locale::translate('submission.submit.fileNameRequired'));
 		}
 
 		return $json->getString();
@@ -274,9 +274,9 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 			$row->setData($signoff);
 			$row->initialize($request);
 
-			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			$json = new JSON(true, $this->_renderRowInternally($request, $row));
 		} else {
-			$json = new JSON('false', Locale::translate("There was an error with trying to fetch the file"));
+			$json = new JSON(false, Locale::translate("There was an error with trying to fetch the file"));
 		}
 
 		return $json->getString();
@@ -315,9 +315,9 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			$submissionFileDao->deleteAllRevisionsById($signoff->getFileId());
 
-			$json = new JSON('true');
+			$json = new JSON(true);
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 		return $json->getString();
 	}

@@ -61,7 +61,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 			$templateMgr->assign_by_ref('lastEventUser', $user);
 		}
 
-		$json = new JSON('true', $templateMgr->fetch('controllers/informationCenter/informationCenter.tpl'));
+		$json = new JSON(true, $templateMgr->fetch('controllers/informationCenter/informationCenter.tpl'));
 		return $json->getString();
 	}
 
@@ -78,7 +78,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$notesForm = new NewFileNoteForm($itemId);
 		$notesForm->initData();
 
-		$json = new JSON('true', $notesForm->fetch($request));
+		$json = new JSON(true, $notesForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -95,7 +95,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$notifyForm = new InformationCenterNotifyForm(ASSOC_TYPE_MONOGRAPH_FILE, $itemId);
 		$notifyForm->initData();
 
-		$json = new JSON('true', $notifyForm->fetch($request));
+		$json = new JSON(true, $notifyForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -116,10 +116,10 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 			$noteId = $notifyForm->execute($request);
 
 			// Success--Return a JSON string indicating so (will clear the form on return, and indicate success)
-			$json = new JSON('true');
+			$json = new JSON(true);
 		} else {
 			// Failure--Return a JSON string indicating so
-			$json = new JSON('false', Locale::translate("informationCenter.notify.warning"));
+			$json = new JSON(false, Locale::translate("informationCenter.notify.warning"));
 		}
 
 		return $json->getString();
@@ -145,7 +145,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('eventLogEntries', $fileEvents);
 
-		$json = new JSON('true', $templateMgr->fetch('controllers/informationCenter/history.tpl'));
+		$json = new JSON(true, $templateMgr->fetch('controllers/informationCenter/history.tpl'));
 		return $json->getString();
 	}
 

@@ -141,7 +141,7 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 		$userEnrollmentForm = new UserEnrollmentForm();
 		$userEnrollmentForm->initData($args, $request);
 
-		$json = new JSON('true', $userEnrollmentForm->display($args, $request));
+		$json = new JSON(true, $userEnrollmentForm->display($args, $request));
 		return $json->getString();
 	}
 
@@ -159,7 +159,7 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 			$this->updateUser($args, $request);
 		}
 
-		$json = new JSON('true');
+		$json = new JSON(true);
 		return $json->getString();
 	}
 
@@ -179,14 +179,14 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 
 		if ($userId !== null && !Validation::canAdminister($press->getId(), $userId)) {
 			// We don't have administrative rights over this user.
-			$json = new JSON('false', Locale::translate('grid.user.cannotAdminister'));
+			$json = new JSON(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
 			// Remove user from all user group assignments for this press
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
 			// Check if this user has any user group assignments for this press
 			if (!$userGroupDao->userInAnyGroup($userId, $pressId)) {
-				$json = new JSON('false', Locale::translate('grid.user.userNoRoles'));
+				$json = new JSON(false, Locale::translate('grid.user.userNoRoles'));
 			} else {
 				$userGroupDao->deleteAssignmentsByContextId($pressId, $userId);
 
@@ -201,7 +201,7 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 				$row->setData($user);
 				$row->initialize($request);
 
-				$json = new JSON('true', $this->_renderRowInternally($request, $row));
+				$json = new JSON(true, $this->_renderRowInternally($request, $row));
 			}
 		}
 		return $json->getString();

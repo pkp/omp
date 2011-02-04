@@ -60,7 +60,7 @@ class CompetingInterestsHandler extends Handler {
 		$competingInterestsForm = new CompetingInterestsForm($pressId);
 		$competingInterestsForm->initData($args, $request);
 
-		$json = new JSON('true', $competingInterestsForm->fetch($request));
+		$json = new JSON(true, $competingInterestsForm->fetch($request));
 		return $json->getString();
 	}
 

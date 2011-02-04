@@ -140,7 +140,7 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 		$row->setData($rowData);
 		$row->initialize($request);
 
-		$json = new JSON('true', $this->_renderRowInternally($request, $row));
+		$json = new JSON(true, $this->_renderRowInternally($request, $row));
 		return $json->getString();
 
 	}
@@ -152,7 +152,7 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 	 * @param $request PKPRequest
 	 */
 	function deleteItems($args, &$request) {
-		$json = new JSON('true');
+		$json = new JSON(true);
 		return $json->getString();
 	}
 }

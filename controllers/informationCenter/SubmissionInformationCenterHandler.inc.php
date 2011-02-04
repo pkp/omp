@@ -51,7 +51,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			$templateMgr->assign_by_ref('lastEventUser', $user);
 		}
 
-		$json = new JSON('true', $templateMgr->fetch('controllers/informationCenter/informationCenter.tpl'));
+		$json = new JSON(true, $templateMgr->fetch('controllers/informationCenter/informationCenter.tpl'));
 		return $json->getString();
 	}
 
@@ -70,7 +70,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		$notesForm = new NewMonographNoteForm($monograph->getId());
 		$notesForm->initData();
 
-		$json = new JSON('true', $notesForm->fetch($request));
+		$json = new JSON(true, $notesForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -89,7 +89,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$templateMgr->assign('notes', $noteDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId()));
 		$templateMgr->assign('monographId', $monograph->getId());
-		$json = new JSON('true', $templateMgr->fetch('controllers/informationCenter/notesList.tpl'));
+		$json = new JSON(true, $templateMgr->fetch('controllers/informationCenter/notesList.tpl'));
 
 		return $json->getString();
 	}
@@ -111,7 +111,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 
 		if ($notesForm->validate()) {
 			$notesForm->execute();
-			$json = new JSON('true');
+			$json = new JSON(true);
 
 			// Save to event log
 			$user =& $request->getUser();
@@ -119,7 +119,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			$this->_logEvent($monograph->getId(), MONOGRAPH_LOG_NOTE_POSTED, $userId);
 		} else {
 			// Return a JSON string indicating failure
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 
 		return $json->getString();
@@ -141,7 +141,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		$noteDao->deleteById($noteId);
 
 		$additionalAttributes = array('script' => "$('#note-$noteId').hide('slow')");
-		$json = new JSON('true', '', 'true', null, $additionalAttributes);
+		$json = new JSON(true, '', true, null, $additionalAttributes);
 
 		return $json->getString();
 	}
@@ -161,7 +161,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		$notifyForm = new InformationCenterNotifyForm($monograph->getId(), ASSOC_TYPE_MONOGRAPH);
 		$notifyForm->initData();
 
-		$json = new JSON('true', $notifyForm->fetch($request));
+		$json = new JSON(true, $notifyForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -185,10 +185,10 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 
 			// Return a JSON string indicating success
 			// (will clear the form on return)
-			$json = new JSON('true');
+			$json = new JSON(true);
 		} else {
 			// Return a JSON string indicating failure
-			$json = new JSON('false', Locale::translate('informationCenter.notify.warning'));
+			$json = new JSON(false, Locale::translate('informationCenter.notify.warning'));
 		}
 
 		return $json->getString();
@@ -212,7 +212,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('eventLogEntries', $fileEvents);
 
-		$json = new JSON('true', $templateMgr->fetch('controllers/informationCenter/history.tpl'));
+		$json = new JSON(true, $templateMgr->fetch('controllers/informationCenter/history.tpl'));
 		return $json->getString();
 	}
 

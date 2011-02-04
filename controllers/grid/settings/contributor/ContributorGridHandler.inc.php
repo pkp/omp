@@ -113,7 +113,7 @@ class ContributorGridHandler extends SetupGridHandler {
 			$contributorForm->initData($args, $request);
 		}
 
-		$json = new JSON('true', $contributorForm->fetch($request));
+		$json = new JSON(true, $contributorForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -143,9 +143,9 @@ class ContributorGridHandler extends SetupGridHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			$json = new JSON(true, $this->_renderRowInternally($request, $row));
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 
 		return $json->getString();
@@ -169,9 +169,9 @@ class ContributorGridHandler extends SetupGridHandler {
 		if ( isset($contributors[$contributorId]) ) {
 			unset($contributors[$contributorId]);
 			$pressSettingsDao->updateSetting($press->getId(), 'contributors', $contributors, 'object');
-			$json = new JSON('true');
+			$json = new JSON(true);
 		} else {
-			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingItem'));
+			$json = new JSON(false, Locale::translate('manager.setup.errorDeletingItem'));
 		}
 		return $json->getString();
 	}

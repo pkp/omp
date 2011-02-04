@@ -152,7 +152,7 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 		} else {
 			$reviewAttachmentsForm->initData($args, $request);
 		}
-		$json = new JSON('true', $reviewAttachmentsForm->fetch($request));
+		$json = new JSON(true, $reviewAttachmentsForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -180,9 +180,9 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, $urlParams),
 				'saveUrl' => $router->url($request, null, null, 'returnFileRow', null, $urlParams)
 			);
-			$json = new JSON('true', Locale::translate('submission.uploadSuccessful'), 'false', $fileId, $additionalAttributes);
+			$json = new JSON(true, Locale::translate('submission.uploadSuccessful'), false, $fileId, $additionalAttributes);
 		} else {
-			$json = new JSON('false', Locale::translate('common.uploadFailed'));
+			$json = new JSON(false, Locale::translate('common.uploadFailed'));
 		}
 
 		return $json->getString();

@@ -77,9 +77,9 @@ class EditorDecisionHandler extends Handler {
 
 			$additionalAttributes = array('script' => $newReviewRoundForm->getNewTab($request, $round));
 
-			$json = new JSON('true', null, 'true', null, $additionalAttributes);
+			$json = new JSON(true, null, true, null, $additionalAttributes);
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 
 		return $json->getString();
@@ -116,9 +116,9 @@ class EditorDecisionHandler extends Handler {
 			$initiateReviewForm->execute($args, $request);
 
 			$dispatcher =& $this->getDispatcher();
-			$json = new JSON('true', $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monograph->getId(), 1)));
+			$json = new JSON(true, $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monograph->getId(), 1)));
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 
 		return $json->getString();
@@ -152,9 +152,9 @@ class EditorDecisionHandler extends Handler {
 		if ($sendReviewsForm->validate()) {
 			$sendReviewsForm->execute($args, $request);
 
-			$json = new JSON('true');
+			$json = new JSON(true);
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 
 		return $json->getString();
@@ -190,12 +190,12 @@ class EditorDecisionHandler extends Handler {
 
 			if ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
 				$dispatcher =& $this->getDispatcher();
-				$json = new JSON('true', $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'copyediting', array($monograph->getId())));
+				$json = new JSON(true, $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'copyediting', array($monograph->getId())));
 			} else {
-				$json = new JSON('true');
+				$json = new JSON(true);
 			}
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 
 		return $json->getString();
@@ -216,9 +216,9 @@ class EditorDecisionHandler extends Handler {
 		$peerReviews = SeriesEditorAction::getPeerReviews($seriesEditorSubmission);
 
 		if(empty($peerReviews)) {
-			$json = new JSON('false', Locale::translate('editor.review.noReviews'));
+			$json = new JSON(false, Locale::translate('editor.review.noReviews'));
 		} else {
-			$json = new JSON('true', $peerReviews);
+			$json = new JSON(true, $peerReviews);
 		}
 		return $json->getString();
 	}
@@ -233,7 +233,7 @@ class EditorDecisionHandler extends Handler {
 		// FIXME #5898 : Implement -- Is this just a confirm dialog or a modal?
 		$monographId = $request->getUserVar('monographId');
 
-		$json = new JSON('true');
+		$json = new JSON(true);
 		return $json->getString();
 	}
 
@@ -261,7 +261,7 @@ class EditorDecisionHandler extends Handler {
 		$editorDecisionForm = new $formName($monograph, $decision);
 		$editorDecisionForm->initData($args, $request);
 
-		$json = new JSON('true', $editorDecisionForm->fetch($request));
+		$json = new JSON(true, $editorDecisionForm->fetch($request));
 		return $json->getString();
 	}
 }

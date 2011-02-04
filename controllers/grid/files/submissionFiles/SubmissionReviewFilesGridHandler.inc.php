@@ -91,7 +91,7 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 		$templateMgr->assign('fileId', $fileId);
 		$templateMgr->assign('gridId', $this->getId());
 
-		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/reviewFileSubmissionComplete.tpl'));
+		$json = new JSON(true, $templateMgr->fetch('controllers/grid/files/submissionFiles/form/reviewFileSubmissionComplete.tpl'));
 		return $json->getString();
 	}
 
@@ -118,9 +118,9 @@ class SubmissionReviewFilesGridHandler extends SubmissionFilesGridHandler {
 			$row->setData($monographFile);
 			$row->initialize($request);
 
-			$json = new JSON('true', $reviewFilesGridHandler->_renderRowInternally($request, $row));
+			$json = new JSON(true, $reviewFilesGridHandler->_renderRowInternally($request, $row));
 		} else {
-			$json = new JSON('false', Locale::translate("There was an error with trying to fetch the file"));
+			$json = new JSON(false, Locale::translate("There was an error with trying to fetch the file"));
 		}
 
 		return $json->getString();

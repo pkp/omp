@@ -82,14 +82,14 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 		$publicationFormatDesignation = $args[$abbrevIndex];
 
 		if(empty($publicationFormatName) || empty($publicationFormatDesignation)) {
-			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
+			$json = new JSON(false, Locale::translate('common.listbuilder.completeForm'));
 			return $json->getString();
 		} else {
 			// Make sure the role name or abbreviation doesn't already exist
 			$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
 			foreach ($publicationFormats as $publicationFormat) {
 				if ($publicationFormatName == $publicationFormat->getLocalizedName() || $publicationFormatDesignation == $publicationFormat->getLocalizedDesignation()) {
-					$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
+					$json = new JSON(false, Locale::translate('common.listbuilder.itemExists'));
 					return $json->getString();
 					return false;
 				}
@@ -110,7 +110,7 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			$json = new JSON(true, $this->_renderRowInternally($request, $row));
 			return $json->getString();
 		}
 	}
@@ -127,7 +127,7 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 			$publicationFormatDao->deleteById($publicationFormatId);
 		}
 
-		$json = new JSON('true');
+		$json = new JSON(true);
 		return $json->getString();
 	}
 }

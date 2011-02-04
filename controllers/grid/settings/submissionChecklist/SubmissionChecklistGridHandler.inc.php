@@ -115,7 +115,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 			$submissionChecklistForm->initData($args, $request);
 		}
 
-		$json = new JSON('true', $submissionChecklistForm->fetch($request));
+		$json = new JSON(true, $submissionChecklistForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -147,9 +147,9 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			$json = new JSON(true, $this->_renderRowInternally($request, $row));
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 
 		return $json->getString();
@@ -177,7 +177,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 				// only fail if the currently displayed locale was not set
 				// (this is the one that needs to be removed from the currently displayed grid)
 				if ( $locale == Locale::getLocale() ) {
-					$json = new JSON('false', Locale::translate('manager.setup.errorDeletingSubmissionChecklist'));
+					$json = new JSON(false, Locale::translate('manager.setup.errorDeletingSubmissionChecklist'));
 					return $json->getString();
 					exit;
 				}
@@ -185,7 +185,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		}
 
 		$press->updateSetting('submissionChecklist', $submissionChecklistAll, 'object', true);
-		$json = new JSON('true');
+		$json = new JSON(true);
 		return $json->getString();
 	}
 }

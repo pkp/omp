@@ -243,7 +243,7 @@ class ReviewFilesGridHandler extends GridHandler {
 		$manageReviewFilesForm = new ManageReviewFilesForm($monographId);
 
 		$manageReviewFilesForm->initData($args, $request);
-		$json = new JSON('true', $manageReviewFilesForm->fetch($request));
+		$json = new JSON(true, $manageReviewFilesForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -260,7 +260,7 @@ class ReviewFilesGridHandler extends GridHandler {
 		$manageReviewFilesForm = new ManageReviewFilesForm($monographId);
 
 		$manageReviewFilesForm->initData($args, $request);
-		$json = new JSON('true', $manageReviewFilesForm->fetch($request));
+		$json = new JSON(true, $manageReviewFilesForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -298,9 +298,9 @@ class ReviewFilesGridHandler extends GridHandler {
 				assert(count($gridBodyParts) == 1);
 				$renderedGridRows = $gridBodyParts[0];
 			}
-			$json = new JSON('true', $renderedGridRows);
+			$json = new JSON(true, $renderedGridRows);
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 		return $json->getString();
 	}

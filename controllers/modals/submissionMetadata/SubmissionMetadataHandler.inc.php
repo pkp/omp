@@ -43,7 +43,7 @@ class SubmissionMetadataHandler extends Handler {
 		$submissionMetadataForm = new SubmissionMetadataForm($monographId);
 		$submissionMetadataForm->initData($args, $request);
 
-		$json = new JSON('true', $submissionMetadataForm->fetch($request));
+		$json = new JSON(true, $submissionMetadataForm->fetch($request));
 		return $json->getString();
 	}
 

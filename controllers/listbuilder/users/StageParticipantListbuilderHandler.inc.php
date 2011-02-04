@@ -166,7 +166,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 		$userId = (int) $args[$rowId];
 
 		if(!isset($userId)) {
-			$json = new JSON('false');
+			$json = new JSON(false);
 			return $json->getString();
 		} else {
 			$signoffDao =& DAORegistry::getDAO('SignoffDAO');
@@ -176,7 +176,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 
 			// Make sure the item doesn't already exist
 			if(isset($monograph) && $signoffDao->signoffExists('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, $userId, $monograph->getCurrentStageId(), $userGroupId)) {
-				$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
+				$json = new JSON(false, Locale::translate('common.listbuilder.itemExists'));
 				return $json->getString();
 			}
 
@@ -191,7 +191,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			$json = new JSON(true, $this->_renderRowInternally($request, $row));
 			return $json->getString();
 		}
 	}
@@ -210,7 +210,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 			$signoffDao->deleteObjectById($item);
 		}
 
-		$json = new JSON('true');
+		$json = new JSON(true);
 		return $json->getString();
 	}
 }

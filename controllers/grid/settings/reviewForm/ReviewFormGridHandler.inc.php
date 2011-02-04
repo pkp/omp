@@ -141,7 +141,7 @@ class ReviewFormGridHandler extends SetupGridHandler {
 				$reviewFormForm->initData($args, $request);
 			}
 
-			$json = new JSON('true', $reviewFormForm->fetch($request));
+			$json = new JSON(true, $reviewFormForm->fetch($request));
 			return $json->getString();
 		}
 	}
@@ -179,9 +179,9 @@ class ReviewFormGridHandler extends SetupGridHandler {
 			$row->setData($reviewFormForm->reviewForm);
 			$row->initialize($request);
 
-			$json = new JSON('true', $this->_renderRowInternally($request, row));
+			$json = new JSON(true, $this->_renderRowInternally($request, row));
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 
 			$templateMgr =& TemplateManager::getManager();
 			if ($reviewFormId == null) {
@@ -219,9 +219,9 @@ class ReviewFormGridHandler extends SetupGridHandler {
 			}
 
 			$reviewFormDao->deleteById($reviewFormId);
-			$json = new JSON('true');
+			$json = new JSON(true);
 		} else {
-			$json = new JSON('false', Locale::translate('manager.setup.errorDeletingReviewForm'));
+			$json = new JSON(false, Locale::translate('manager.setup.errorDeletingReviewForm'));
 		}
 
 		return $json->getString();

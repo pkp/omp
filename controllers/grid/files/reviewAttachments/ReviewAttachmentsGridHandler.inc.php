@@ -144,9 +144,9 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 			$row->setData($monographFile);
 			$row->initialize($request);
 
-			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			$json = new JSON(true, $this->_renderRowInternally($request, $row));
 		} else {
-			$json = new JSON('false', Locale::translate("There was an error with trying to fetch the file"));
+			$json = new JSON(false, Locale::translate("There was an error with trying to fetch the file"));
 		}
 
 		return $json->getString();
@@ -165,9 +165,9 @@ class ReviewAttachmentsGridHandler extends GridHandler {
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			$submissionFileDao->deleteAllRevisionsById($fileId);
 
-			$json = new JSON('true');
+			$json = new JSON(true);
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 		return $json->getString();
 	}

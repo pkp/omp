@@ -171,7 +171,7 @@ class SubmissionHandler extends Handler {
 		}
 
 		import('lib.pkp.classes.core.JSON');
-		$json = new JSON('true', $templateMgr->fetch('submission/reviewRoundInfo.tpl'));
+		$json = new JSON(true, $templateMgr->fetch('submission/reviewRoundInfo.tpl'));
 		return $json->getString();
 	}
 

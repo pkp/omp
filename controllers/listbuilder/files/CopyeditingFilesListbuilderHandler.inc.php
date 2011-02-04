@@ -134,7 +134,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		$fileId = (int) $args[$rowId];
 
 		if(!isset($fileId)) {
-			$json = new JSON('false');
+			$json = new JSON(false);
 			return $json->getString();
 		} else {
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
@@ -148,7 +148,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			$json = new JSON(true, $this->_renderRowInternally($request, $row));
 			return $json->getString();
 		}
 	}
@@ -160,7 +160,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	 * @param $request PKPRequest
 	 */
 	function deleteItems(&$args, &$request) {
-		$json = new JSON('true');
+		$json = new JSON(true);
 		return $json->getString();
 	}
 }

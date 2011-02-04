@@ -122,14 +122,14 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 		$role =& new Role($roleId);
 
 		if(empty($groupName) || empty($groupAbbrev)) {
-			$json = new JSON('false', Locale::translate('common.listbuilder.completeForm'));
+			$json = new JSON(false, Locale::translate('common.listbuilder.completeForm'));
 			return $json->getString();
 		} else {
 			// Make sure the role name or abbreviation doesn't already exist
 			$authorGroups = $userGroupDao->getByRoleId($press->getId(), $this->getRoleId());
 			while($group =& $authorGroups->next()) {
 				if ($groupName == $group->getLocalizedName() || $groupAbbrev == $group->getLocalizedAbbrev()) {
-					$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
+					$json = new JSON(false, Locale::translate('common.listbuilder.itemExists'));
 					return $json->getString();
 					return false;
 				}
@@ -159,7 +159,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 										'sourceHtml' => $this->_buildListItemHTML($userGroup->getId(), $groupName, $groupAbbrev),
 										'sourceIds' => 'selectList-listbuilder-setup-submissionroleslistbuilder');
 
-			$json = new JSON('true', $this->_renderRowInternally($request, $row), 'false', 0, $additionalAttributes);
+			$json = new JSON(true, $this->_renderRowInternally($request, $row), false, 0, $additionalAttributes);
 			return $json->getString();
 		}
 	}
@@ -182,7 +182,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 									'itemIds' => implode(',', $itemIds),
 									'sourceIds' => 'selectList-listbuilder-setup-submissionroleslistbuilder');
 
-		$json = new JSON('true', '', 'false', 0, $additionalAttributes);
+		$json = new JSON(true, '', false, 0, $additionalAttributes);
 		return $json->getString();
 	}
 

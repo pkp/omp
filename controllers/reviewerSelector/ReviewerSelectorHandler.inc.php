@@ -67,7 +67,7 @@ class ReviewerSelectorHandler extends Handler {
 		$reviewerSelectorForm = new ReviewerSelectorForm($monograph->getId());
 		$reviewerSelectorForm->initData();
 
-		$json = new JSON('true', $reviewerSelectorForm->fetch($request));
+		$json = new JSON(true, $reviewerSelectorForm->fetch($request));
 		return $json->getString();
 	}
 

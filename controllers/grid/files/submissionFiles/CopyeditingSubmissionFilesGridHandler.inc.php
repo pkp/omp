@@ -96,7 +96,7 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 									MONOGRAPH_FILE_FAIR_COPY => 'fairCopyFiles');
 		$templateMgr->assign('gridId', $fileTypeToGridId[$monographFile->getFileStage()]);
 
-		$json = new JSON('true', $templateMgr->fetch('controllers/grid/files/submissionFiles/form/fileSubmissionComplete.tpl'));
+		$json = new JSON(true, $templateMgr->fetch('controllers/grid/files/submissionFiles/form/fileSubmissionComplete.tpl'));
 		return $json->getString();
 	}
 
@@ -138,18 +138,18 @@ class CopyeditingSubmissionFilesGridHandler extends SubmissionFilesGridHandler {
 				$categoryRow->setData($monographFile);
 				$categoryRow->initialize($request);
 
-				$json = new JSON('true', $filesGridHandler->_renderCategoryInternally($request, $categoryRow));
+				$json = new JSON(true, $filesGridHandler->_renderCategoryInternally($request, $categoryRow));
 			} else {
 				$row =& $filesGridHandler->getRowInstance();
 				$row->setId($monographFile->getFileId());
 				$row->setData($monographFile);
 				$row->initialize($request);
 
-				$json = new JSON('true', $filesGridHandler->_renderRowInternally($request, $row));
+				$json = new JSON(true, $filesGridHandler->_renderRowInternally($request, $row));
 			}
 
 		} else {
-			$json = new JSON('false', Locale::translate("There was an error with trying to fetch the file"));
+			$json = new JSON(false, Locale::translate("There was an error with trying to fetch the file"));
 		}
 
 		return $json->getString();

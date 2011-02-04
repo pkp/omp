@@ -116,7 +116,7 @@ class MastheadGridHandler extends SetupGridHandler {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_PRESS, $press->getId());
 			if (!$group) {
-				$json = new JSON('false');
+				$json = new JSON(false);
 				return $json->getString();
 			}
 		} else $group = null;
@@ -138,7 +138,7 @@ class MastheadGridHandler extends SetupGridHandler {
 			$groupForm->initData();
 		}
 
-		$json = new JSON('true', $groupForm->fetch($request));
+		$json = new JSON(true, $groupForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -168,9 +168,9 @@ class MastheadGridHandler extends SetupGridHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			$json = new JSON(true, $this->_renderRowInternally($request, $row));
 		} else {
-			$json = new JSON('false');
+			$json = new JSON(false);
 		}
 
 		return $json->getString();
@@ -192,7 +192,7 @@ class MastheadGridHandler extends SetupGridHandler {
 		$groupDao->deleteObject($group);
 		$groupDao->resequenceGroups($group->getAssocType(), $group->getAssocId());
 
-		$json = new JSON('true');
+		$json = new JSON(true);
 		return $json->getString();
 	}
 
@@ -214,7 +214,7 @@ class MastheadGridHandler extends SetupGridHandler {
 		$templateMgr->assign_by_ref('memberships', $memberships);
 		$templateMgr->assign_by_ref('group', $group);
 
-		$json = new JSON('true', $templateMgr->fetch('controllers/grid/settings/masthead/memberships.tpl'));
+		$json = new JSON(true, $templateMgr->fetch('controllers/grid/settings/masthead/memberships.tpl'));
 		return $json->getString();
 	}
 

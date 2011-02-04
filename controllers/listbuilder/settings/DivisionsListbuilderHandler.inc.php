@@ -79,13 +79,13 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		$divisionTitle = $args[$index];
 
 		if(!isset($divisionTitle)) {
-			$json = new JSON('false');
+			$json = new JSON(false);
 			return $json->getString();
 		} 	else {
 			// Make sure the item doesn't already exist
 			$divisions = $divisionDao->getByTitle($divisionTitle, $press->getId());
 			if (isset($divisions)) {
-				$json = new JSON('false', Locale::translate('common.listbuilder.itemExists'));
+				$json = new JSON(false, Locale::translate('common.listbuilder.itemExists'));
 				return $json->getString();
 				return false;
 			}
@@ -104,7 +104,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON('true', $this->_renderRowInternally($request, $row));
+			$json = new JSON(true, $this->_renderRowInternally($request, $row));
 			return $json->getString();
 		}
 	}
@@ -123,7 +123,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 			$divisionDao->deleteById($item, $press->getId());
 		}
 
-		$json = new JSON('true');
+		$json = new JSON(true);
 		return $json->getString();
 	}
 }

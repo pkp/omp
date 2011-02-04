@@ -62,7 +62,7 @@ class SubmissionParticipantsHandler extends Handler {
 		$submissionParticipantsForm = new SubmissionParticipantsForm($monographId);
 		$submissionParticipantsForm->initData($args, $request);
 
-		$json = new JSON('true', $submissionParticipantsForm->fetch($request));
+		$json = new JSON(true, $submissionParticipantsForm->fetch($request));
 		return $json->getString();
 	}
 
