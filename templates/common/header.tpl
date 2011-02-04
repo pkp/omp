@@ -38,7 +38,6 @@
 	<!-- Base Jquery -->
 	{if $allowCDN}<script src="http://www.google.com/jsapi" type="text/javascript"></script>
 	<script type="text/javascript">{literal}
-		<!--
 		// Provide a local fallback if the CDN cannot be reached
 		if (typeof google == 'undefined') {
 			document.write(unescape("%3Cscript src='{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/jquery/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
@@ -47,7 +46,6 @@
 			google.load("jquery", "{/literal}{$smarty.const.CDN_JQUERY_VERSION}{literal}");
 			google.load("jqueryui", "{/literal}{$smarty.const.CDN_JQUERY_UI_VERSION}{literal}");
 		}
-		// -->
 	{/literal}</script>
 	{else}
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
@@ -77,59 +75,65 @@
 	{$additionalHeadData}
 </head>
 <body>
-<div class="page {$cssBodyClass} {$liquid}">
+	<div class="page {$cssBodyClass} {$liquid}">
 
-<div class="head">
-	{include file="common/sitenav.tpl"}
-	<div class="masthead">
-		<h1>
-		{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
-			<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
-		{/if}
-		{if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
-			<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
-		{elseif $displayPageHeaderTitle}
-			{$displayPageHeaderTitle}
-		{elseif $alternatePageHeader}
-			{$alternatePageHeader}
-		{elseif $siteTitle}
-			{$siteTitle}
-		{else}
-			{$applicationName}
-		{/if}
-		</h1>
-	</div>
+		<div class="head">
+			{include file="common/sitenav.tpl"}
+			<div class="masthead">
+				<h1>
+					{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
+						<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
+					{/if}
+					{if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
+						<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
+					{elseif $displayPageHeaderTitle}
+						{$displayPageHeaderTitle}
+					{elseif $alternatePageHeader}
+						{$alternatePageHeader}
+					{elseif $siteTitle}
+						{$siteTitle}
+					{else}
+						{$applicationName}
+					{/if}
+				</h1>
+			</div>
 
-	{include file="common/localnav.tpl"}
+			{include file="common/localnav.tpl"}
 
-	{** FIXME #5734: What should we do with breadcrumbs?
-		They don't appear on submission pages, are they visible anywhere?
-		include file="common/breadcrumbs.tpl" **}
-</div>
+			{** FIXME #5734: What should we do with breadcrumbs?
+				They don't appear on submission pages, are they visible anywhere?
+				include file="common/breadcrumbs.tpl" **}
+		</div>
 
-<div class="body">
+		<div class="body">
 
-{if $isUserLoggedIn}
-<div id="toolbox" class="rightCol toolbox mod simple">
-    <div class="mod simple">
-        <b class="top"><b class="tl"></b><b class="tr"></b></b>
-        <div class="inner">
-            <div class="hd">
-                <h3>Toolbox</h3>
-            </div>
-            {$rightSidebarCode}
-        </div>
-        <b class="bottom"><b class="bl"></b><b class="br"></b></b>
-    </div>
-</div>
-{/if}
+			{if $isUserLoggedIn}
+			<div id="toolbox" class="rightCol toolbox mod simple">
+			    <div class="mod simple">
+			        <b class="top"><b class="tl"></b><b class="tr"></b></b>
+			        <div class="inner">
+			            <div class="hd">
+			                <h3>Toolbox</h3>
+			            </div>
+			            {$rightSidebarCode}
+			        </div>
+			        <b class="bottom"><b class="bl"></b><b class="br"></b></b>
+			    </div>
+			</div>
+			{/if}
 
-<div class="main">
+			<script type="text/javascript">
+				// Attach the JS page handler to the main content wrapper.
+				$(function() {ldelim}
+					$('div.main').pkpHandler('$.pkp.controllers.PageHandler');
+				{rdelim});
+			</script>
+			<div class="main">
 
-{if $pageSubtitle && !$pageSubtitleTranslated}{translate|assign:"pageSubtitleTranslated" key=$pageSubtitle}{/if}
-{if $pageSubtitleTranslated}
-	<h3>{$pageSubtitleTranslated}</h3>
-{/if}
+				{if $pageSubtitle && !$pageSubtitleTranslated}{translate|assign:"pageSubtitleTranslated" key=$pageSubtitle}{/if}
+				{if $pageSubtitleTranslated}
+					<h3>{$pageSubtitleTranslated}</h3>
+				{/if}
 
-<div id="content">
+				<div id="content">
 
