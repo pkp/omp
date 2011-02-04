@@ -9,7 +9,7 @@
  * @class ReviewFilesGridHandler
  * @ingroup controllers_grid_files_review
  *
- * @brief Handle the editor review file selection grid (selects which files to send to review)
+ * @brief Base handler for review stage grids
  */
 
 // Import submission files grid base class
@@ -40,7 +40,6 @@ class ReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	//
 	// Getters/Setters
 	//
-
 	/**
 	 * Whether the grid allows file management (select existing files to add to grid)
 	 * @return boolean
@@ -90,6 +89,7 @@ class ReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
+		// Get the review round and review type (internal/external) from the request
 		$reviewType = (int)$request->getUserVar('reviewType');
 		$round = (int)$request->getUserVar('round');
 		assert(!empty($reviewType) && !empty($round));
@@ -103,10 +103,10 @@ class ReviewFilesGridHandler extends SubmissionFilesGridHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		// Load the monograph files to be displayed in the grid
-		$monograph =& $this->getMonograph();
-		$this->loadMonographFiles($monograph);
+		$this->loadMonographFiles();
 
 		if($this->canManage()) {
+			$monograph =& $this->getMonograph();
 			$router =& $request->getRouter();
 				$this->addAction(
 					new LinkAction(
@@ -126,25 +126,7 @@ class ReviewFilesGridHandler extends SubmissionFilesGridHandler {
 		$additionalActionArgs = array('reviewType' => $this->getReviewType(), 'round' => $this->getRound());
 		parent::initialize($request, $cellProvider, $additionalActionArgs);
 
-
 		$this->addColumn(new GridColumn('type', 'common.type', null, 'controllers/grid/gridCell.tpl', $cellProvider));
-	}
-
-	//
-	// Overridden methods from SubmissionFilesGridHandler
-	//
-	/**
-	 * @see SubmissionFilesGridHandler::fetchGrid()
-	 */
-	function fetchGrid($args, &$request, $fetchParams = array()) {
-		// Build the URL to fetch a row.
-		$monograph = $this->getMonograph();
-		$router =& $request->getRouter();
-
-		$fetchParams['round'] = $this->getRound();
-		$fetchParams['reviewType'] = $this->getReviewType();
-
-		return parent::fetchGrid($args, $request, $fetchParams);
 	}
 
 

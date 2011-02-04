@@ -9,7 +9,7 @@
  * @class ReviewerReviewFilesGridHandler
  * @ingroup controllers_grid_files_review
  *
- * @brief Handle the reviewer review file selection grid (for reviewers to download files to review)
+ * @brief Handle the reviewer review file grid (for reviewers to download files to review)
  */
 
 import('controllers.grid.files.review.ReviewFilesGridHandler');

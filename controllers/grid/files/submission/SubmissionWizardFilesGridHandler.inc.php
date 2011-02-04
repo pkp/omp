@@ -13,52 +13,15 @@
  * The submission author and all press/editor roles have access to this grid.
  */
 
-// import grid base classes
-import('lib.pkp.classes.controllers.grid.GridHandler');
-
 // import submission files grid specific classes
-import('controllers.grid.files.SubmissionFilesGridHandler');
+import('controllers.grid.files.submission.SubmissionDetailsFilesGridHandler');
 
-class SubmissionWizardFilesGridHandler extends SubmissionFilesGridHandler {
+class SubmissionWizardFilesGridHandler extends SubmissionDetailsFilesGridHandler {
 	/**
 	 * Constructor
 	 */
 	function SubmissionWizardFilesGridHandler() {
-		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_SUBMISSION, true);
-
-		$this->addRoleAssignment(
-				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'fetchRow', 'finishFileSubmission', 'addFile', 'displayFileUploadForm', 'uploadFile', 'confirmRevision',
-						'editMetadata', 'saveMetadata', 'downloadFile', 'downloadAllFiles', 'deleteFile'));
+		parent::SubmissionDetailsFilesGridHandler(true);
 	}
 
-
-	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/**
-	 * @see PKPHandler::initialize()
-	 */
-	function initialize(&$request) {
-		// Basic grid configuration
-		$this->setTitle('submission.submit.submissionFiles');
-
-		// Load monograph files.
-		$this->loadMonographFiles();
-
-		$cellProvider = new SubmissionFilesGridCellProvider();
-		parent::initialize($request, $cellProvider);
-
-		$this->addColumn(new GridColumn('fileType',	'common.fileType', null, 'controllers/grid/gridCell.tpl', $cellProvider));
-		$this->addColumn(new GridColumn('type', 'common.type', null, 'controllers/grid/gridCell.tpl', $cellProvider));
-	}
 }

@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/files/ReviewRevisionsGridHandler.inc.php
+ * @file controllers/grid/files/review/ReviewRevisionsGridHandler.inc.php
  *
  * Copyright (c) 2003-2010 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ReviewRevisionsGridHandler
- * @ingroup controllers_grid_files_revisions
+ * @ingroup controllers_grid_files_review
  *
  * @brief Display the file revisions authors have uploaded
  */
@@ -47,26 +47,23 @@ class ReviewRevisionsGridHandler extends ReviewFilesGridHandler {
 	 */
 	function initialize(&$request) {
 		$this->setTitle('editor.monograph.revisions');
-		$cellProvider = new SubmissionFilesGridCellProvider();
-		parent::initialize($request, $cellProvider);
+		parent::initialize($request);
 	}
 
 	//
 	// Protected methods
 	//
-
 	/**
 	 * Select the files to load in the grid
 	 * @see SubmissionFilesGridHandler::loadMonographFiles()
 	 */
 	function loadMonographFiles() {
 		$monograph =& $this->getMonograph();
-		// Grab the files that are currently set for the review
+
+		// Grab the files that are revisions of those currently set for the review
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		$monographFiles =& $reviewRoundDao->getRevisionsOfCurrentReviewFiles($monograph->getId(), $this->getRound(), $this->getReviewType());
 
 		$this->setData($monographFiles);
 	}
-
-
 }

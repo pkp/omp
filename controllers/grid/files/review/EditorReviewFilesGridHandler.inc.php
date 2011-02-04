@@ -9,7 +9,7 @@
  * @class EditorReviewFilesGridHandler
  * @ingroup controllers_grid_files_review
  *
- * @brief Handle the editor review file selection grid (selects which files to send to review)
+ * @brief Handle the editor review file grid (displays files that are to be reviewed in the current round)
  */
 
 import('controllers.grid.files.review.ReviewFilesGridHandler');

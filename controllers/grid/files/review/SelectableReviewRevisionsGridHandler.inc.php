@@ -9,7 +9,8 @@
  * @class SelectableReviewRevisionsGridHandler
  * @ingroup controllers_grid_files_review
  *
- * @brief Display the file revisions authors have uploaded
+ * @brief Display the file revisions authors have uploaded in a selectable grid.
+ *   Used for selecting files to send to external review or copyediting.
  */
 
 // import submission files grid specific classes

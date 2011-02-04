@@ -29,7 +29,7 @@ class ManageReviewFilesForm extends Form {
 	 * Constructor.
 	 */
 	function ManageReviewFilesForm($monographId, $reviewType, $round) {
-		parent::Form('controllers/grid/files/reviewFiles/manageReviewFiles.tpl');
+		parent::Form('controllers/grid/files/review/manageReviewFiles.tpl');
 		$this->setMonographId((int)$monographId);
 		$this->setReviewType((int)$reviewType);
 		$this->setRound((int)$round);
@@ -116,7 +116,7 @@ class ManageReviewFilesForm extends Form {
 	}
 
 	/**
-	 * Save submissionContributor
+	 * Save review round files
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */

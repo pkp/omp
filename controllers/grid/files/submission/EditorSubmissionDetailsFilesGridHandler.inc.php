@@ -21,23 +21,6 @@ class EditorSubmissionDetailsFilesGridHandler extends SubmissionDetailsFilesGrid
 	 */
 	function EditorSubmissionDetailsFilesGridHandler() {
 		parent::SubmissionDetailsFilesGridHandler(true, false, false, true);
-
-		$this->addRoleAssignment(
-				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'fetchRow', 'finishFileSubmission', 'addFile', 'displayFileUploadForm', 'uploadFile', 'confirmRevision',
-						'editMetadata', 'saveMetadata', 'downloadFile', 'downloadAllFiles', 'deleteFile'));
-	}
-
-	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 }

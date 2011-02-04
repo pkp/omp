@@ -10,6 +10,10 @@
  * @ingroup controllers_grid_files_submission
  *
  * @brief Handle submission file grid requests on the author's submission details pages.
+ *  Differs from the submission wizard file grid in that the 'add file' grid action is hidden;
+ *  Files are added to the grid through a LinkAction at the top of the submission details page.
+ *  If the 'Add revision' LinkAction is used, we set a request parameter to enforce that this
+ *  grid only allows revisions to be uploaded.
  */
 
 // import grid base classes
@@ -24,23 +28,6 @@ class AuthorSubmissionDetailsFilesGridHandler extends SubmissionDetailsFilesGrid
 	 */
 	function AuthorSubmissionDetailsFilesGridHandler() {
 		parent::SubmissionDetailsFilesGridHandler(false, false, false, true);
-
-		$this->addRoleAssignment(
-				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'fetchRow', 'finishFileSubmission', 'addFile', 'displayFileUploadForm', 'uploadFile', 'confirmRevision',
-						'editMetadata', 'saveMetadata', 'downloadFile', 'downloadAllFiles', 'deleteFile'));
-	}
-
-	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
 	}
 
 	//

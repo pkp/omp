@@ -9,7 +9,7 @@
  * @class ReviewAttachmentsGridHandler
  * @ingroup controllers_grid_files_attachment
  *
- * @brief Handle review attachments grid requests.
+ * @brief Base handler for review attachment grids
  */
 
 // Import submission files grid base class
@@ -36,11 +36,10 @@ class ReviewAttachmentsGridHandler extends SubmissionFilesGridHandler {
 		$this->setTitle('grid.reviewAttachments.title');
 
 		// Set the select checkbox name to avoid namespace collisions
-		$this->setSelectName('attachments');
+		$this->setSelectName('reviewAttachments');
 
 		// Load monograph files.
-		$monograph =& $this->getMonograph();
-		$this->loadMonographFiles($monograph);
+		$this->loadMonographFiles();
 
 		import('controllers.grid.files.SubmissionFilesGridCellProvider');
 		$cellProvider =& new SubmissionFilesGridCellProvider();

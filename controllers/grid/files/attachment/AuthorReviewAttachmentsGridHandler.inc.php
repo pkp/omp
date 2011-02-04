@@ -35,27 +35,18 @@ class AuthorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
+		// FIXME: Must be replaced with a review attachment level policy, see #6200.
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
 		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/*
-	 * Configure the grid
-	 * @param $request PKPRequest
-	 */
-	function initialize(&$request) {
-		$monograph =& $this->getMonograph();
-		$this->loadMonographFiles($monograph);
-
-		parent::initialize($request);
 	}
 
 	/**
 	 * Select the files to load in the grid
 	 * @see SubmissionFilesGridHandler::loadMonographFiles()
 	 */
-	function loadMonographFiles($monograph) {
+	function loadMonographFiles() {
+		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_ATTACHMENT);
 

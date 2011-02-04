@@ -9,7 +9,7 @@
  * @class SubmissionDetailsFilesGridHandler
  * @ingroup controllers_grid_files_submission
  *
- * @brief Handle submission file grid requests on the submission details pages.
+ * @brief Base handler for the submission stage grids.
  */
 
 // import grid base classes
@@ -25,6 +25,11 @@ class SubmissionDetailsFilesGridHandler extends SubmissionFilesGridHandler {
 	 */
 	function SubmissionDetailsFilesGridHandler($canAdd = true, $revisionOnly = false, $isSelectable = false, $canDownloadAll = false) {
 		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_SUBMISSION, $canAdd, $revisionOnly, $isSelectable, $canDownloadAll);
+
+		$this->addRoleAssignment(
+				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'fetchRow', 'finishFileSubmission', 'addFile', 'displayFileUploadForm', 'uploadFile', 'confirmRevision',
+						'editMetadata', 'saveMetadata', 'downloadFile', 'downloadAllFiles', 'deleteFile'));
 	}
 
 
@@ -39,6 +44,7 @@ class SubmissionDetailsFilesGridHandler extends SubmissionFilesGridHandler {
 		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
+
 
 	/**
 	 * @see PKPHandler::initialize()

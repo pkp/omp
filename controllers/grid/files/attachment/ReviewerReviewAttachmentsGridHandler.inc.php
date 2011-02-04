@@ -84,13 +84,6 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	}
 
 	/*
-	 * @see GridHandler::fetchGrid()
-	 */
-	function fetchGrid($args, $request, $fetchParams = array()) {
-		return parent::fetchGrid($args, $request, array_merge($fetchParams, array('reviewId' => $this->getReviewId())));
-	}
-
-	/*
 	 * @see SubmissionFilesGridHandler::loadMonographFiles()
 	 */
 	function loadMonographFiles() {

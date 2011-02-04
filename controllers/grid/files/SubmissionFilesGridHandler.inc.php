@@ -192,7 +192,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/**
 	 * @param $request PKPRequest
 	 * @param $cellProvider GridCellProvider
-	 * @param $additionalActionArgs array Additional key/value pairs to add to URLs constructed in this method
+	 * @param $additionalActionArgs array Additional key/value pairs to add to URLs
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request, &$cellProvider, $additionalActionArgs = array()) {
@@ -265,14 +265,13 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/**
 	 * @see GridHandler::fetchGrid()
 	 */
-	function fetchGrid($args, &$request, $fetchParams = array()) {
-		// Build the URL to fetch a row.
-		$monograph = $this->getMonograph();
-		$router =& $request->getRouter();
-
-		if(!isset($fetchParams['monographId'])) {
-			$fetchParams['monographId'] = $monograph->getId();
-		}
+	function fetchGrid($args, &$request) {
+		// Merge the monograph ID with any other arguments we need to put in the request
+		$monograph =& $this->getMonograph();
+		$fetchParams = array_merge(
+							array('monographId' => $monograph->getId()),
+							$this->getAdditionalActionArgs()
+					   );
 
 		return parent::fetchGrid($args, $request, $fetchParams);
 	}
