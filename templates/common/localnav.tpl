@@ -1,10 +1,10 @@
 {**
- * navbar.tpl
+ * templates/common/localnav.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Navigation Bar
+ * Press-Specific Navigation Bar
  *}
 
 {capture assign="publicMenu"}
@@ -36,7 +36,7 @@
 {/capture}
 
 {if $isUserLoggedIn}
-	<div class="navigation">
+	<div class="pkp_structure_header_localNav">
 		<ul class="sf-menu">
 			<li><a href="{url page="dashboard"}">{translate key="navigation.dashboard"}</a></li>
 			<li><a href="{url page="dashboard" op="status"}">{translate key="navigation.submissions"}</a></li>
@@ -71,8 +71,8 @@
 			{/if}
 		</ul>
 	</div>
-{else}
-	<div class="navigation">
+{else}{* !$isUserLoggedIn *}
+	<div class="pkp_structure_header_localNav">
 		<ul class="sf-menu">{$publicMenu}</ul>
 	</div>
-{/if}
+{/if}{* $isUserLoggedIn *}

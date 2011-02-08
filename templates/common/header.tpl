@@ -25,8 +25,9 @@
 	{$metaCustomHeaders}
 	{if $displayFavicon}<link rel="icon" href="{$faviconDir}/{$displayFavicon.uploadName|escape:"url"}" />{/if}
 
-	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/pkp.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/styles/omp.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/styles/lib.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/styles/compiled.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/themes/default/theme.css" />
 
 	{call_hook|assign:"leftSidebarCode" name="Templates::Common::LeftSidebar"}
 	{call_hook|assign:"rightSidebarCode" name="Templates::Common::RightSidebar"}
@@ -48,8 +49,8 @@
 		}
 	{/literal}</script>
 	{else}
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
+		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
 	{/if}
 
 	<!-- UI elements (menus, forms, etc) -->
@@ -74,12 +75,11 @@
 
 	{$additionalHeadData}
 </head>
-<body>
-	<div class="page {$cssBodyClass} {$liquid}">
-
-		<div class="head">
+<body class="pkp_structure_body">
+	<div class="pkp_structure_page_pagePanel">
+		<div class="pkp_structure_header">
 			{include file="common/sitenav.tpl"}
-			<div class="masthead">
+			<div class="pkp_structure_header_masthead">
 				<h1>
 					{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
 						<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
@@ -99,26 +99,21 @@
 			</div>
 
 			{include file="common/localnav.tpl"}
-
-			{** FIXME #5734: What should we do with breadcrumbs?
-				They don't appear on submission pages, are they visible anywhere?
-				include file="common/breadcrumbs.tpl" **}
 		</div>
 
-		<div class="body">
-
+		<div class="pkp_structure_page_bodyPanel">
 			{if $isUserLoggedIn}
-			<div id="toolbox" class="rightCol toolbox mod simple">
-			    <div class="mod simple">
-			        <b class="top"><b class="tl"></b><b class="tr"></b></b>
-			        <div class="inner">
-			            <div class="hd">
-			                <h3>Toolbox</h3>
-			            </div>
-			            {$rightSidebarCode}
-			        </div>
-			        <b class="bottom"><b class="bl"></b><b class="br"></b></b>
-			    </div>
+			<div id="toolbox" class="pkp_structure_toolbox mod simple">
+				<div class="mod simple">
+					<b class="top"><b class="tl"></b><b class="tr"></b></b>
+					<div class="inner">
+						<div class="hd">
+							<h3>{translate key="toolbox.toolbox"}</h3>
+						</div>
+						{$rightSidebarCode}
+					</div><!-- inner -->
+					<b class="bottom"><b class="bl"></b><b class="br"></b></b>
+				</div><!-- mod simple -->
 			</div>
 			{/if}
 
@@ -128,7 +123,7 @@
 					$('div.main').pkpHandler('$.pkp.controllers.PageHandler');
 				{rdelim});
 			</script>
-			<div class="main">
+			<div class="pkp_structure_page_mainPanel">
 
 				{if $pageSubtitle && !$pageSubtitleTranslated}{translate|assign:"pageSubtitleTranslated" key=$pageSubtitle}{/if}
 				{if $pageSubtitleTranslated}

@@ -58,8 +58,7 @@ class PressSetupStep5Form extends PressSetupForm {
 				'navItems' => 'object',
 				'itemsPerPage' => 'int',
 				'customAboutItems' => 'object',
-				'numPageLinks' => 'int',
-				'pressTheme' => 'string'
+				'numPageLinks' => 'int'
 			)
 		);
 	}
@@ -86,14 +85,6 @@ class PressSetupStep5Form extends PressSetupForm {
 	function display() {
 		$press =& Request::getPress();
 
-		$allThemes =& PluginRegistry::loadCategory('themes');
-		$pressThemes = array();
-		foreach ($allThemes as $key => $junk) {
-			$plugin =& $allThemes[$key]; // by ref
-			$pressThemes[basename($plugin->getPluginPath())] =& $plugin;
-			unset($plugin);
-		}
-
 		// Ensure upload file settings are reloaded when the form is displayed.
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign(array(
@@ -105,8 +96,7 @@ class PressSetupStep5Form extends PressSetupForm {
 			'pressStyleSheet' => $press->getSetting('pressStyleSheet'),
 			'readerInformation' => $press->getSetting('readerInformation'),
 			'authorInformation' => $press->getSetting('authorInformation'),
-			'librarianInformation' => $press->getSetting('librarianInformation'),
-			'pressThemes' => $pressThemes
+			'librarianInformation' => $press->getSetting('librarianInformation')
 		));
 
 		// Make lists of the sidebar blocks available.

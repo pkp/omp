@@ -86,14 +86,6 @@ class TemplateManager extends PKPTemplateManager {
 				$this->assign('itemsPerPage', $press->getSetting('itemsPerPage'));
 				$this->assign('enableAnnouncements', $press->getSetting('enableAnnouncements'));
 
-				// Load and apply theme plugin, if chosen
-				$themePluginPath = $press->getSetting('pressTheme');
-				if (!empty($themePluginPath)) {
-					// Load and activate the theme
-					$themePlugin =& PluginRegistry::loadPlugin('themes', $themePluginPath);
-					if ($themePlugin) $themePlugin->activate($this);
-				}
-
 				// Assign stylesheets and footer
 				$pressStyleSheet = $press->getSetting('pressStyleSheet');
 				if ($pressStyleSheet) {

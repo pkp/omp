@@ -226,6 +226,9 @@
 	<message key="press.path">Path</message>
 	<message key="press.press">Press</message>
 
+	<!-- Toolbox -->
+	<message key="toolbox.toolbox">Toolbox</message>
+
 	<!-- User -->
 	<message key="user.showAllPresses">Show My Presses</message>
 	<message key="user.registerForOtherPresses">Register for Other Presses</message>

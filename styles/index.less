@@ -1,0 +1,47 @@
+/**
+ * @file styles/index.less
+ *
+ * Copyright (c) 2003-2011 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * 
+ * @brief Main OMP stylesheet wrapper
+ *
+ */
+
+/**
+ * Compilable libraries and misc. non-framework stylesheets
+ */
+
+/* Superfish - http://users.tpg.com.au/j_birch/plugins/superfish/ */
+@import url("lib/pkp/styles/superfish/superfish.css");
+
+/* Wufoo Forms - http://wufoo.com */
+@import url("lib/pkp/styles/wufoo/form.css");
+
+/* JqueryUI - http://jqueryui.com */
+@import url("lib/pkp/styles/jqueryUi.css");
+
+/* Pines Notify - http://pines.sourceforge.net/pnotify/ */
+@import url("lib/pkp/styles/jquery.pnotify.default.css");
+
+/* OMP resets to override unwanted styles in external libs */
+@import url("styles/resets.less");
+
+
+
+/**
+ * PKP Library imports
+ */
+
+@import url("lib/pkp/styles/index.less");
+
+
+/**
+ * OMP application imports
+ */
+
+/* pkp_structure */
+@import url("styles/structure/index.less");
+
+/* widgets */
+@import url("styles/widgets/grid/index.less");

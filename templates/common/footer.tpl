@@ -12,14 +12,14 @@
 </div><!-- main -->
 </div><!-- body -->
 
-<div class="foot">
+<div class="pkp_structure_footerPanel">
 	<div class="unit size1of3">
 		{translate key="common.publicKnowledgeProject"}
 	</div>
 	<div class="unit size1of3 text_center">
-		<ul class="flat_list footer_navigation">
+		<ul class="flat_list navigation">
 			<li><a href="{url page="about" op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>
-			<li><a href="acknowledgements.php">!Acknowledgements</a></li>
+			<li><a href="#">!Acknowledgements</a></li>
 		</ul>
 		<br />
 		{if $displayCreativeCommons}
@@ -34,12 +34,12 @@
 	<div class="unit size1of3 lastUnit align_right">
 		{translate key="common.openMonographPress"}
 	</div>
-</div> <!-- /foot -->
+</div> <!-- /footPanel -->
 
 {get_debug_info}
 {if $enableDebugStats}{include file=$pqpTemplate}{/if}
 
-</div><!-- page -->
+</div><!-- /pagePanel -->
 
 {if !empty($systemNotifications)}
 	{translate|assign:"defaultTitleText" key="notification.notification"}
