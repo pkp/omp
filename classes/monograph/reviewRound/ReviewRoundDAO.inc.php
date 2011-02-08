@@ -30,10 +30,12 @@ class ReviewRoundDAO extends DAO {
 
 	/**
 	 * Fetch a review round, creating it if needed.
-	 * @param $symbolic string
-	 * @param $assocType int
-	 * @param $assocId int
-	 * @return $signoff
+	 * @param $submissionId integer
+	 * @param $reviewType integer One of the REVIEW_TYPE_* constants.
+	 * @param $round integer
+	 * @param $reviewRevision integer
+	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
+	 * @return ReviewRound
 	 */
 	function build($submissionId, $reviewType, $round, $reviewRevision = null, $status = null) {
 		// If one exists, fetch and return.
@@ -42,7 +44,7 @@ class ReviewRoundDAO extends DAO {
 
 		// Otherwise, build one.
 		unset($reviewRound);
-		$reviewRound = $this->newDataObject();
+		$reviewRound =& $this->newDataObject();
 		$reviewRound->setSubmissionId($submissionId);
 		$reviewRound->setRound($round);
 		$reviewRound->setReviewType($reviewType);
@@ -169,19 +171,19 @@ class ReviewRoundDAO extends DAO {
 	 * @param $fileIds 2D array of (fileId, revision) being assigned
 	 */
 	function setFilesForReview($monographId, $reviewType, $round, $fileIds) {
-		// remove the file, in case its there currently in there and replace with the currently selected ones
+		// Remove currently assigned review files.
 		$returner = $this->update('DELETE FROM review_round_files
-						WHERE monograph_id = ? AND review_type = ? AND round = ?',
-						array((int)$monographId, (int)$reviewType, (int)$round));
+				WHERE monograph_id = ? AND review_type = ? AND round = ?',
+				array((int)$monographId, (int)$reviewType, (int)$round));
 
-		// now insert the selected files
+		// Insert the updated review files.
 		foreach ($fileIds as $fileId) {
 			if (!isset($fileId[1])) $fileId[1] = 1; // If no revision is set, default to 1
 			$returner = $returner &&
-						$this->update('INSERT INTO review_round_files
-								(monograph_id, review_type, round, file_id, revision)
-								VALUES (?, ?, ?, ?, ?)',
-								array((int)$monographId, (int)$reviewType, (int)$round, (int)$fileId[0], (int)$fileId[1]));
+					$this->update('INSERT INTO review_round_files
+							(monograph_id, review_type, round, file_id, revision)
+							VALUES (?, ?, ?, ?, ?)',
+							array((int)$monographId, (int)$reviewType, (int)$round, (int)$fileId[0], (int)$fileId[1]));
 		}
 
 		return $returner;

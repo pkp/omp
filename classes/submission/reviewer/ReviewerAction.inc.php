@@ -18,13 +18,11 @@ import('classes.submission.common.Action');
 
 class ReviewerAction extends Action {
 
-	/**
-	 * Actions.
-	 */
-
+	//
+	// Actions.
+	//
 	/**
 	 * Records whether or not the reviewer accepts the review assignment.
-	 * @param $user object
 	 * @param $reviewerSubmission object
 	 * @param $decline boolean
 	 * @param $send boolean

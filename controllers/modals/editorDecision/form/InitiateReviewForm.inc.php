@@ -18,71 +18,29 @@ class InitiateReviewForm extends EditorDecisionForm {
 
 	/**
 	 * Constructor.
-	 * @param $monograph Monograph
+	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 */
-	function InitiateReviewForm($monograph) {
-		parent::EditorDecisionForm($monograph, 'controllers/modals/editorDecision/form/initiateReviewForm.tpl');
-
-		// Validation checks for this form
-		$this->addCheck(new FormValidatorPost($this));
+	function InitiateReviewForm($seriesEditorSubmission) {
+		parent::EditorDecisionForm($seriesEditorSubmission, 'controllers/modals/editorDecision/form/initiateReviewForm.tpl');
 	}
+
 
 	//
-	// Overridden template methods
+	// Implement protected template methods from Form
 	//
-
 	/**
-	 * Fetch the modal content
-	 * @param $request PKPRequest
-	 * @see Form::fetch()
-	 */
-	function fetch(&$request) {
-		$templateMgr =& TemplateManager::getManager();
-		$monograph =& $this->getMonograph();
-		$this->setData('round', $monograph->getCurrentRound());
-		return parent::fetch($request);
-	}
-
-	/**
-	 * Assign form data to user-submitted data.
-	 * @see Form::readInputData()
-	 */
-	function readInputData() {
-		$this->readUserVars(array('selectedFiles'));
-	}
-
-	/**
-	 * Start review stage
-	 * @param $args array
-	 * @param $request PKPRequest
 	 * @see Form::execute()
 	 */
 	function execute($args, &$request) {
-		// 1. Increment the monograph's workflow stage
-		$monograph =& $this->getMonograph();
-		$monograph->setCurrentStageId(WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$monographDao->updateMonograph($monograph);
+		// Retrieve the submission.
+		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 
-		// 2. Create a new internal review round
-		// FIXME #6102: What to do with reviewType?
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRoundDao->build($monograph->getId(), REVIEW_TYPE_INTERNAL, 1, 1, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
+		// Move to the internal review stage.
+		import('classes.submission.seriesEditor.SeriesEditorAction');
+		SeriesEditorAction::incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
 
-		// 3. Assign the default users
-		import('classes.submission.common.Action');
-		Action::assignDefaultStageParticipants($monograph->getId(), WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
-
-		// 4. Add the selected files to the new round
-		$selectedFiles = $this->getData('selectedFiles');
-		if(is_array($selectedFiles)) {
-			$filesForReview = array();
-			foreach ($selectedFiles as $selectedFile) {
-				$filesForReview[] = explode("-", $selectedFile);
-			}
-			$reviewRoundDAO =& DAORegistry::getDAO('ReviewRoundDAO');
-			$reviewRoundDAO->setFilesForReview($monograph->getId(), REVIEW_TYPE_INTERNAL, 1, $filesForReview);
-		}
+		// Create an initial internal review round.
+		$this->_initiateReviewRound($seriesEditorSubmission, REVIEW_TYPE_INTERNAL, 1, 1, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
 	}
 }
 
