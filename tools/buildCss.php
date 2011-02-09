@@ -66,7 +66,7 @@ class buildCss extends CommandLineTool {
 		// Perform the compile.
 		try {
 			// KLUDGE pending fix of https://github.com/leafo/lessphp/issues#issue/66
-			// Once this issue is fixed, revisit ptahs and go back to using
+			// Once this issue is fixed, revisit paths and go back to using
 			// lessc::ccompile to parse & compile.
 			$less = new lessc(APPLICATION_STYLES_DIR . '/' . APPLICATION_LESS_WRAPPER);
 			$less->importDir = './';

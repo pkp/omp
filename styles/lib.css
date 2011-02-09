@@ -1,5 +1,11 @@
 /**
- * 3rd-Party Imports
+ * @file styles/lib.css
+ *
+ * Copyright (c) 2003-2011 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * 
+ * @brief 3rd-Party Imports
+ *
  * These are excluded from less processing because some of them fail parsing
  * e.g. due to styling differences; maintaining differently-styled CSS is not
  * a particularly attractive idea.

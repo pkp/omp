@@ -103,24 +103,24 @@
 
 		<div class="pkp_structure_page_bodyPanel">
 			{if $isUserLoggedIn}
-			<div id="toolbox" class="pkp_structure_toolbox mod simple">
-				<div class="mod simple">
-					<b class="top"><b class="tl"></b><b class="tr"></b></b>
-					<div class="inner">
-						<div class="hd">
-							<h3>{translate key="toolbox.toolbox"}</h3>
-						</div>
-						{$rightSidebarCode}
-					</div><!-- inner -->
-					<b class="bottom"><b class="bl"></b><b class="br"></b></b>
-				</div><!-- mod simple -->
-			</div>
+				<div id="toolbox" class="pkp_structure_toolbox mod simple">
+					<div class="mod simple">
+						<b class="top"><b class="tl"></b><b class="tr"></b></b>
+						<div class="inner">
+							<div class="hd">
+								<h3>{translate key="toolbox.toolbox"}</h3>
+							</div>
+							{$rightSidebarCode}
+						</div><!-- inner -->
+						<b class="bottom"><b class="bl"></b><b class="br"></b></b>
+					</div><!-- mod simple -->
+				</div>
 			{/if}
 
 			<script type="text/javascript">
 				// Attach the JS page handler to the main content wrapper.
 				$(function() {ldelim}
-					$('div.main').pkpHandler('$.pkp.controllers.PageHandler');
+					$('div.pkp_structure_page_mainPanel').pkpHandler('$.pkp.controllers.PageHandler');
 				{rdelim});
 			</script>
 			<div class="pkp_structure_page_mainPanel">
