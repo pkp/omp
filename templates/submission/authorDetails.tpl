@@ -137,7 +137,7 @@
 			<br />
 		{/if}
 
-		<!-- Display review attachments grid -->
+		<!-- Display copyediting files grid -->
 		{if $showCopyeditingFiles}
 			{url|assign:copyeditingFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.copyedit.AuthorCopyeditingFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() escape=false}
 			{load_url_in_div id="copyeditingFilesGridDiv" url=$copyeditingFilesGridUrl}

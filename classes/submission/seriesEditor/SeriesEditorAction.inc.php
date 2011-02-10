@@ -104,9 +104,8 @@ class SeriesEditorAction extends Action {
 		$authorUserGroup =& $userGroupDao->getDefaultByRoleId($monograph->getPressId(), ROLE_ID_AUTHOR);
 		$signoffDao->build('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $monograph->getUserId(), $stageId, $authorUserGroup->getId());
 
-		// Reviewer roles -- Do nothing
-		// FIXME #6002: Need to review this -- Not sure if reviewers should be
-		//  added as stage participants
+		// Reviewer roles -- Do nothing. Reviewers are not included in the stage participant list, they
+		// are administered via review assignments.
 	}
 
 	/**

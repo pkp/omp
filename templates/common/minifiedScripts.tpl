@@ -35,7 +35,6 @@
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/classes/linkAction/ModalRequest.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/PageHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/FormHandler.js"></script>
-<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/PageHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/TabbedHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/WizardHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/UploaderHandler.js"></script>

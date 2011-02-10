@@ -36,6 +36,7 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 </div>
+
 <!--  Contributors -->
 {url|assign:submissionContributorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.submissionContributor.SubmissionContributorGridHandler" op="fetchGrid" monographId=$monographId}
 {load_url_in_div id="submissionContributorGridContainer" url="$submissionContributorGridUrl"}

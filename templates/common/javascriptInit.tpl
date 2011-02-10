@@ -42,9 +42,6 @@
 			$(".tagit").live('click', function() {
 				$(this).find('input').focus();
 			});
-
-			// Bind the main content div to the PageHandler
-			$('div.main').pkpHandler('$.pkp.controllers.PageHandler');
 		});
 		// -->
 	{/literal}</script>
