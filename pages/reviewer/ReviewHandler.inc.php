@@ -1,27 +1,26 @@
 <?php
 
 /**
- * @file SubmissionReviewHandler.inc.php
+ * @file pages/reviewer/ReviewHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SubmissionReviewHandler
+ * @class ReviewHandler
  * @ingroup pages_reviewer
  *
- * @brief Handle requests for submission tracking.
+ * @brief Handle requests for reviewer functions.
  */
 
-
-import('pages.reviewer.ReviewerHandler');
+import('classes.handler.Handler');
 import('lib.pkp.classes.core.JSON');
 
-class SubmissionReviewHandler extends ReviewerHandler {
+class ReviewHandler extends Handler {
 	/**
 	 * Constructor
-	 */
-	function SubmissionReviewHandler() {
-		parent::ReviewerHandler();
+	 **/
+	function ReviewHandler() {
+		parent::Handler();
 		$this->addRoleAssignment(ROLE_ID_REVIEWER,
 				array('submission', 'saveStep', 'showDeclineReview', 'saveDeclineReview', 'downloadFile'));
 	}
@@ -157,9 +156,18 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		$reviewAssignment->setRegretMessage($declineReviewMessage);
 		$reviewAssignmentDao->updateObject($reviewAssignment);
 
+		import('classes.submission.reviewer.ReviewerAction');
 		ReviewerAction::confirmReview($reviewerSubmission, true, true);
 		$router =& $request->getRouter(); /* @var $router PageRouter */
 		$request->redirect($router->redirectHome($request));
+	}
+
+	/**
+	 * Setup common template variables.
+	 */
+	function setupTemplate() {
+		parent::setupTemplate();
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_APPLICATION_COMMON));
 	}
 
 
@@ -173,4 +181,5 @@ class SubmissionReviewHandler extends ReviewerHandler {
 		return $reviewId;
 	}
 }
+
 ?>
