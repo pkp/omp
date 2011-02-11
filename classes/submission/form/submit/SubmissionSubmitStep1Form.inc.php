@@ -109,10 +109,6 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		$this->readUserVars(array('locale', 'submissionChecklist', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor'));
 	}
 
-	function getTemplateFile() {
-		return 'author/submit/step1.tpl';
-	}
-
 	/**
 	 * Save changes to submission.
 	 * @return int the monograph ID

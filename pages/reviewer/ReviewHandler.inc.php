@@ -14,6 +14,7 @@
 
 import('classes.handler.Handler');
 import('lib.pkp.classes.core.JSON');
+import('classes.submission.reviewer.ReviewerAction');
 
 class ReviewHandler extends Handler {
 	/**
@@ -156,7 +157,6 @@ class ReviewHandler extends Handler {
 		$reviewAssignment->setRegretMessage($declineReviewMessage);
 		$reviewAssignmentDao->updateObject($reviewAssignment);
 
-		import('classes.submission.reviewer.ReviewerAction');
 		ReviewerAction::confirmReview($reviewerSubmission, true, true);
 		$router =& $request->getRouter(); /* @var $router PageRouter */
 		$request->redirect($router->redirectHome($request));
