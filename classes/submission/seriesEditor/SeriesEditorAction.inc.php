@@ -205,6 +205,9 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmission->removeReviewAssignment($reviewId);
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 
+			// FIXME: Need to change the state of the current review round back to "pending reviewer" when
+			// the last assignment was removed, see #6401.
+
 			// Add log
 			import('classes.monograph.log.MonographLog');
 			import('classes.monograph.log.MonographEventLogEntry');
