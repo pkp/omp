@@ -69,6 +69,7 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 	//
 	/**
 	 * Delete a submission
+	 * FIXME: Either delete this operation or add it as a row action, see #6396.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
