@@ -34,15 +34,15 @@
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
 		<li{if $step == 1} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="submission" path=$submission->getReviewId() step=1}">1. {translate key="submission.request"}</a>
+			<a href="{url op="submission" path=$submission->getId() step=1}">1. {translate key="submission.request"}</a>
 		</li>
 		<li{if $step == 2} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="submission" path=$submission->getReviewId() step=2}">2. {translate key="reviewer.reviewSteps.guidelines"}</a>
+			<a href="{url op="submission" path=$submission->getId() step=2}">2. {translate key="reviewer.reviewSteps.guidelines"}</a>
 		</li>
 		<li{if $step == 3} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="submission" path=$submission->getReviewId() step=3}">3. {translate key="reviewer.reviewSteps.download"}</a>
+			<a href="{url op="submission" path=$submission->getId() step=3}">3. {translate key="reviewer.reviewSteps.download"}</a>
 		</li>
 		<li{if $step == 4} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="submission" path=$submission->getReviewId() step=4}">4. {translate key="reviewer.reviewSteps.nextSteps"}</a>
+			<a href="{url op="submission" path=$submission->getId() step=4}">4. {translate key="reviewer.reviewSteps.nextSteps"}</a>
 		</li>
 	</ul>

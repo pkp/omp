@@ -51,10 +51,10 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 
 
 	//
-	// Implement template methods from Form
+	// Implement protected template methods from Form
 	//
 	/**
-	 * Assign form data to user-submitted data.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		// FIXME #5123: Include when review form infrastructure is in place
@@ -64,23 +64,20 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	}
 
 	/**
-	 * Get the names of fields for which data should be localized
-	 * @return array
+	 * @see Form::getLocaleFieldNames()
 	 */
 	function getLocaleFieldNames() {
 		return array('review');
 	}
 
 	/**
-	 * Display the form.
+	 * @see Form::display()
 	 */
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
 		$press = Request::getPress();
 
-		$templateMgr->assign_by_ref('submission', $this->reviewerSubmission);
 		$templateMgr->assign_by_ref('press', $press);
-		$templateMgr->assign('step', 3);
 
 		$reviewAssignment =& $this->getReviewAssignment();
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
@@ -107,8 +104,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	}
 
 	/**
-	 * Save changes to monograph.
-	 * @return int the monograph ID
+	 * @see Form::execute()
 	 */
 	function execute() {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
@@ -167,12 +163,8 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			$commentDao->insertMonographComment($comment);
 		}
 
-		// Set review to next step
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
-		if($this->reviewerSubmission->getStep() < 4) {
-			$this->reviewerSubmission->setStep(4);
-		}
-		$reviewerSubmissionDao->updateReviewerSubmission($this->reviewerSubmission);
+		// Set review to next step.
+		$this->updateReviewStepAndSaveSubmission($this->getReviewerSubmission());
 
 		// Mark the review assignment as completed.
 		$reviewAssignment->setDateCompleted(Core::getCurrentDate());
