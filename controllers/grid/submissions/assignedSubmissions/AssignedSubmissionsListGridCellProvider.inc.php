@@ -64,7 +64,7 @@ class AssignedSubmissionsListGridCellProvider extends SubmissionsListGridCellPro
 					$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'copyediting', $monograph->getId());
 					break;
 				case 5:
-					$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'proofreading', $monograph->getId());
+					$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'production', $monograph->getId());
 					break;
 			}
 
