@@ -131,11 +131,11 @@ class ManageReviewFilesForm extends Form {
 				$filesWithRevisions[] = explode("-", $selectedFile);
 			}
 		}
-		$reviewRoundDAO =& DAORegistry::getDAO('ReviewRoundDAO');
-		$reviewRoundDAO->setFilesForReview($this->getMonographId(), $reviewType, $round, $filesWithRevisions);
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+		$reviewRoundDao->setFilesForReview($this->getMonographId(), $reviewType, $round, $filesWithRevisions);
 
 		// Return the files that are currently set for the review
-		$reviewFilesByRound =& $reviewRoundDAO->getReviewFilesByRound($this->getMonographId());
+		$reviewFilesByRound =& $reviewRoundDao->getReviewFilesByRound($this->getMonographId());
 		if (isset($reviewFilesByRound[$reviewType][$round])) {
 			return $reviewFilesByRound[$reviewType][$round];
 		} else {

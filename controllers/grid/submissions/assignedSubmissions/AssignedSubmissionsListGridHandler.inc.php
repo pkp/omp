@@ -102,8 +102,7 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		}
 
 		// Get submissions the user is reviewing
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
-
+		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO'); /* @var $reviewerSubmissionDao ReviewerSubmissionDAO */
 		$reviewerSubmissions = $reviewerSubmissionDao->getReviewerSubmissionsByReviewerId($userId);
 		while($reviewerSubmission =& $reviewerSubmissions->next()) {
 			$monographId = $reviewerSubmission->getId();

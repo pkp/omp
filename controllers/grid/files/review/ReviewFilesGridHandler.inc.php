@@ -141,8 +141,8 @@ class ReviewFilesGridHandler extends SubmissionFilesGridHandler {
 		$monograph =& $this->getMonograph();
 
 		// Grab the files that are currently set for the review
-		$reviewRoundDAO =& DAORegistry::getDAO('ReviewRoundDAO');
-		$monographFiles =& $reviewRoundDAO->getReviewFilesByRound($monograph->getId());
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
+		$monographFiles =& $reviewRoundDao->getReviewFilesByRound($monograph->getId());
 		$rowData = array();
 		if(isset($monographFiles[$this->getReviewType()][$this->getRound()])) {
 			$rowData = $monographFiles[$this->getReviewType()][$this->getRound()];
