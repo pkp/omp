@@ -23,12 +23,12 @@
 	{rdelim});
 </script>
 
-<form id="uploadConfirmationForm"
+<form id="uploadConfirmationForm" class="pkp_controllers_grid_files"
 		action="{url op="confirmRevision" monographId=$monographId uploadedFileId=$uploadedFile->getFileId()}"
 		method="post">
 	{fbvFormArea id="file"}
-		<div id="possibleRevision" class="possibleRevision response" style="display:none;">
-			<div id="revisionWarningIcon" class="warning"></div>
+		<div id="pkp_controllers_grid_files_possibleRevision" class="possibleRevision" style="display:none;">
+			<div id="revisionWarningIcon" class="pkp_controllers_grid_files_warning"></div>
 			<div id="revisionWarningText">
 				<h5>{translate key="submission.upload.possibleRevision"}</h5>
 				{translate key="submission.upload.possibleRevisionDescription" revisedFileName=$revisedFileName}
