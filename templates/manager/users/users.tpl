@@ -39,7 +39,7 @@
 	// -->
 </script>
 
-<div class="clear">&nbsp;</div>
+<div class="pkp_helpers_clear">&nbsp;</div>
 
 <form id="userSearchForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserGridHandler" op="fetchGrid"}" method="post">
 <div id="userSearchFormArea">

@@ -25,7 +25,7 @@
 {/iterate}
 {if $eventLogEntries->wasEmpty()}
 	<tr valign="top">
-		<td colspan="5" class="nodata text_center">{translate key="informationCenter.history.noItems"}</td>
+		<td colspan="5" class="nodata pkp_helpers_text_center">{translate key="informationCenter.history.noItems"}</td>
 	</tr>
 {/if}
 </table>

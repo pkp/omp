@@ -19,7 +19,7 @@
 	{rdelim});
 </script>
 
-<div id="finishSubmissionForm" class="text_center">
+<div id="finishSubmissionForm" class="pkp_helpers_text_center">
 		<h2>{translate key="submission.submit.fileAdded"}</h2>
 		<br />
 		<br />

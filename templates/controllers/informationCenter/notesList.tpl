@@ -12,6 +12,6 @@
 		{include file="controllers/informationCenter/note.tpl"}
 	{/iterate}
 	{if $notes->wasEmpty()}
-		<h5 id="noNotes" class="text_center">{translate key="informationCenter.noNotes"}</h5>
+		<h5 id="noNotes" class="pkp_helpers_text_center">{translate key="informationCenter.noNotes"}</h5>
 	{/if}
 </div>

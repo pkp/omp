@@ -16,7 +16,7 @@
 	<div class="unit size1of3">
 		{translate key="common.publicKnowledgeProject"}
 	</div>
-	<div class="unit size1of3 text_center">
+	<div class="unit size1of3 pkp_helpers_text_center">
 		<ul class="flat_list navigation">
 			<li><a href="{url page="about" op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>
 			<li><a href="#">!Acknowledgements</a></li>
@@ -31,7 +31,7 @@
 		{/if}
 		{call_hook name="Templates::Common::Footer::PageFooter"}
 	</div>
-	<div class="unit size1of3 lastUnit align_right">
+	<div class="unit size1of3 lastUnit pkp_helpers_align_right">
 		{translate key="common.openMonographPress"}
 	</div>
 </div> <!-- /footPanel -->

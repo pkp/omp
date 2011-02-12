@@ -60,7 +60,7 @@
 	<p>{translate key="manager.setup.emailBounceAddressDescription"}</p>
 	{fbvElement type="text" id="envelopeSender" value=$envelopeSender maxlength="90" disabled=!$envelopeSenderEnabled size=$fbvStyles.size.LARGE}
 	{if !$envelopeSenderEnabled}
-		<div class="clear"></div>
+		<div class="pkp_helpers_clear"></div>
 		<p>{translate key="manager.setup.emailBounceAddressDisabled"}</p>
 	{/if}
 {/fbvFormSection}

@@ -31,7 +31,7 @@
 			<a id="viewMetadata" class="more_info" href="{$metadataUrl}">{translate key="submission.submit.metadata"}</a>
 		</div>
 	</div>
-	<div class="clear"></div>
+	<div class="pkp_helpers_clear"></div>
 
 	<div class="headerTimeline">
 		{if $stageId > 0}<span class="pastStep">{translate key="submission.submission"}</span>{else}<span class="futureStep">{translate key="submission.submission"}</span>{/if} &#187;
@@ -40,7 +40,7 @@
 		{if $stageId > 3}<span class="pastStep">{translate key="submission.editorial"}</span>{else}<span class="futureStep">{translate key="submission.editorial"}</span>{/if} &#187;
 		{if $stageId > 4}<span class="pastStep">{translate key="submission.production"}</span>{else}<span class="futureStep">{translate key="submission.production"}</span>{/if}
 	</div>
-	<div class="clear"></div>
+	<div class="pkp_helpers_clear"></div>
 
 	<div class="headerBottom">
 		<div class="userInfo">
@@ -60,4 +60,4 @@
 		</div>
 	</div>
 </div>
-<div class="clear"></div>
+<div class="pkp_helpers_clear"></div>

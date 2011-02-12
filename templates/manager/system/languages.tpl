@@ -9,6 +9,6 @@
 {assign var="pageTitle" value="manager.system.languages"}
 {include file="manager/system/systemHeader.tpl"}
 
-<div class="clear">&nbsp;</div>
+<div class="pkp_helpers_clear">&nbsp;</div>
 
 {include file="common/footer.tpl"}

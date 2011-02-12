@@ -44,7 +44,7 @@
 	// -->
 </script>
 
-<div class="clear">&nbsp;</div>
+<div class="pkp_helpers_clear">&nbsp;</div>
 
 <form id="roleSelectForm" method="post" action="#">
 

@@ -17,7 +17,7 @@
 			{/if}
 		</ul>
 	</div>
-	<div class="unit size1of2 lastUnit align_right">
+	<div class="unit size1of2 lastUnit pkp_helpers_align_right">
 		<ul class="flat_list pkp_structure_header_basemenu">
 			<li><div id="sizer"></div></li>
 			{if $isUserLoggedIn}
