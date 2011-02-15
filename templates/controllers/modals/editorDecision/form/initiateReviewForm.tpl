@@ -20,7 +20,7 @@
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 
 	<!-- Available submission files -->
-	{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SelectableSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monographId reviewType=$currentReviewType round=$round isSelectable=1 escape=false}
+	{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SelectableSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monographId escape=false}
 	{load_url_in_div id="filesForReviewGrid" url=$filesForReviewUrl}
 	{init_button_bar id="#initiateReview" submitText="editor.monograph.createNewRound"}
 </form>

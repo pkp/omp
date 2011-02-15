@@ -108,7 +108,7 @@ class EditorDecisionForm extends Form {
 		assert(is_int($newRound));
 
 		// Create a new review round.
-		// FIXME #6102: What to do with reviewType?
+		// FIXME #6409: What to do with reviewType?
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		$reviewRoundDao->build($monograph->getId(), $reviewType, $newRound, $reviewRevision, $status);
 

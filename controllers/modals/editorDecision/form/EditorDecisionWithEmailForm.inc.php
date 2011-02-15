@@ -100,7 +100,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 */
 	function fetch(&$request) {
 		// Review type.
-		//FIXME #6102: What to do with reviewType?
+		//FIXME #6409: What to do with reviewType?
 		$reviewType = (int) $request->getUserVar('reviewType');
 		$this->setData('reviewType', $reviewType);
 

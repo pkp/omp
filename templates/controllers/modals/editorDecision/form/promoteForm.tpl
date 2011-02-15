@@ -54,12 +54,12 @@
 	<div id="availableFiles">
 		{* Show a different grid depending on whether we're in review or before the review stage *}
 		{if $stageId == $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}
-			{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SelectableSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monographId reviewType=$reviewType round=$round isSelectable=1 escape=false}
-			{load_url_in_div id="filesForReviewGrid" url=$filesForReviewUrl}
+			{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.SelectableSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monographId escape=false}
 		{else}
-			{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.SelectableReviewRevisionsGridHandler" op="fetchGrid" monographId=$monographId reviewType=$reviewType round=$round isSelectable=1 escape=false}
-			{load_url_in_div id="filesForReviewGrid" url=$filesForReviewUrl}
+			{* FIXME: We need to get reviewType from somewhere, see #6409 *}
+			{url|assign:filesForReviewUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.SelectableReviewRevisionsGridHandler" op="fetchGrid" monographId=$monographId round=$round reviewType=$reviewType escape=false}
 		{/if}
+		{load_url_in_div id="filesForReviewGrid" url=$filesForReviewUrl}
 	</div>
 {init_button_bar id="#promote" submitText="editor.submissionReview.recordDecision"}
 </form>
