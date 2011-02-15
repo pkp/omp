@@ -36,26 +36,10 @@ class SubmissionHandler extends Handler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		$router =& $request->getRouter();
-		$operation = $router->getRequestedOp($request);
-
-		switch($operation) {
-			case 'index':
-				// The user only needs press-level permission to see a list
-				// of submissions.
-				import('classes.security.authorization.OmpPressAccessPolicy');
-				$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
-				break;
-			default:
-				// All other operations require full submission access.
-				import('classes.security.authorization.OmpSubmissionAccessPolicy');
-				$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
-		}
+		import('classes.security.authorization.OmpSubmissionAccessPolicy');
+		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -77,6 +61,8 @@ class SubmissionHandler extends Handler {
 		$router =& $request->getRouter();
 		$dispatcher =& $this->getDispatcher();
 		$actionArgs = array('monographId' => $monograph->getId());
+		// FIXME: grid actions should not be referred to from outside a grid. This breaks the
+		// encapsulation rules for widgets, see #6411.
 		$uploadFileAction = new LinkAction(
 			'addFile',
 			new WizardModal(

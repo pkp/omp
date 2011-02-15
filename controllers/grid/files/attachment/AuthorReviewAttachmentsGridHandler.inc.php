@@ -35,7 +35,6 @@ class AuthorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		// FIXME: Must be replaced with a review attachment level policy, see #6200.
 		import('classes.security.authorization.OmpSubmissionAccessPolicy');
 		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);

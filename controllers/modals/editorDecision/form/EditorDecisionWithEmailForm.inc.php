@@ -25,7 +25,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * @param $decision integer
 	 * @param $template string The template to display
 	 */
-	function EditorDecisionWithEmailForm($seriesEditorSubmission, $template) {
+	function EditorDecisionWithEmailForm($seriesEditorSubmission, $decision, $template) {
 		parent::EditorDecisionForm($seriesEditorSubmission, $template);
 		$this->setDecision($decision);
 	}
@@ -120,7 +120,8 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	/**
 	 * Sends an email with a personal message and the selected
 	 * review attachements to the author. Also updates the status
-	 * of the current review round.
+	 * of the current review round and marks review attachments
+	 * selected by the editor as "viewable" for the author.
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
 	 * @param $emailKey string An email template.
@@ -141,7 +142,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		$email->setAssoc(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_EDITOR, $currentReviewRound->getRound());
 
 		// Retrieve review indexes.
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
 		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
 		assert(is_array($reviewIndexes));
 

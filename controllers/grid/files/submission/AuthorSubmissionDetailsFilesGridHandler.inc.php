@@ -30,6 +30,7 @@ class AuthorSubmissionDetailsFilesGridHandler extends SubmissionDetailsFilesGrid
 		parent::SubmissionDetailsFilesGridHandler(false, false, false, true);
 	}
 
+
 	//
 	// Implement template methods from PKPHandler
 	//
@@ -44,5 +45,4 @@ class AuthorSubmissionDetailsFilesGridHandler extends SubmissionDetailsFilesGrid
 
 		parent::initialize($request, $additionalActionArgs);
 	}
-
 }
