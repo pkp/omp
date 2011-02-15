@@ -17,12 +17,13 @@ import('classes.submission.reviewer.form.ReviewerReviewForm');
 
 class ReviewerReviewStep3Form extends ReviewerReviewForm {
 
-	/** @var The review assignment object **/
+	/** @var ReviewAssignment The review assignment object **/
 	var $_reviewAssignment;
 
 	/**
 	 * Constructor.
 	 * @param $reviewerSubmission ReviewerSubmission
+	 * @param $reviewAssignment ReviewAssignment
 	 */
 	function ReviewerReviewStep3Form($reviewerSubmission, $reviewAssignment) {
 		parent::ReviewerReviewForm($reviewerSubmission, 3);
@@ -75,10 +76,12 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	 */
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
-		$press = Request::getPress();
 
+		// Assign the press to the template.
+		$press = Request::getPress();
 		$templateMgr->assign_by_ref('press', $press);
 
+		// Add the review assignment to the template.
 		$reviewAssignment =& $this->getReviewAssignment();
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
 
@@ -107,9 +110,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignment =& $this->getReviewAssignment();
-
 		if($reviewAssignment->getReviewFormId()) {
 			$reviewFormResponseDao =& DAORegistry::getDAO('ReviewFormResponseDAO');
 			/* FIXME #5123: Include when review form infrastructure is in place
@@ -148,7 +149,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 				}
 			} */
 		} else {
-			$commentDao =& DAORegistry::getDAO('MonographCommentDAO');
+			// Create a monograph comment with the review.
 			$comment = new MonographComment();
 			$comment->setCommentType(COMMENT_TYPE_PEER_REVIEW);
 			$comment->setRoleId(ROLE_ID_REVIEWER);
@@ -160,6 +161,8 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 			$comment->setViewable(true);
 			$comment->setDatePosted(Core::getCurrentDate());
 
+			// Persist the monograph comment.
+			$commentDao =& DAORegistry::getDAO('MonographCommentDAO');
 			$commentDao->insertMonographComment($comment);
 		}
 
@@ -169,6 +172,9 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		// Mark the review assignment as completed.
 		$reviewAssignment->setDateCompleted(Core::getCurrentDate());
 		$reviewAssignment->stampModified();
+
+		// Persist the updated review assignment.
+		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$reviewAssignmentDao->updateObject($reviewAssignment);
 	}
 }
