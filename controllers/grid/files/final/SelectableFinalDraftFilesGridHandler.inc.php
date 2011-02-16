@@ -26,7 +26,6 @@ class SelectableFinalDraftFilesGridHandler extends FinalDraftFilesGridHandler {
 	function SelectableFinalDraftFilesGridHandler($canAdd = false, $isSelectable = false, $canDownloadAll = true, $canManage = true) {
 		$this->_canManage = $canManage;
 		parent::FinalDraftFilesGridHandler(true, true, false, false);
-
 	}
 
 	//

@@ -73,20 +73,16 @@ class CopyeditingUserForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute() {
-		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		// Split the selected user value; index 0 is the user id, index 1 is the user groupID
+		$userIdAndGroup = explode('-', $this->getData('userId'));
 
-		$monograph =& $this->getMonograph();
+		// Build copyediting signoff for each file
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		if($this->getData('selected-listbuilder-files-copyeditingfileslistbuilder')) {
 			$selectedFiles = $this->getData('selected-listbuilder-files-copyeditingfileslistbuilder');
 		} else {
 			$selectedFiles = array();
 		}
-
-		// Split the selected user value; index 0 is the user id, index 1 is the user groupID
-		$userIdAndGroup = explode('-', $this->getData('userId'));
-
-		// Build copyediting signoff for each file
 		foreach ($selectedFiles as $selectedFileId) {
 			$signoff =& $signoffDao->build('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, $selectedFileId, $userIdAndGroup[0], WORKFLOW_STAGE_ID_EDITING, $userIdAndGroup[1]); /* @var $signoff Signoff */
 
@@ -99,9 +95,12 @@ class CopyeditingUserForm extends Form {
 		}
 
 		// Send the message to the user
+		$monograph =& $this->getMonograph();
 		import('classes.mail.MonographMailTemplate');
 		$email = new MonographMailTemplate($monograph);
 		$email->setBody($this->getData('personalMessage'));
+
+		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 		$user =& $userDao->getUser($userIdAndGroup[0]);
 		$email->addRecipient($user->getEmail(), $user->getFullName());
 		$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_COPYEDIT, MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);

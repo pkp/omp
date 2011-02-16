@@ -84,12 +84,10 @@ class ManageFinalDraftFilesForm extends Form {
 		$allMonographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId());
 
 		// Set the selected files to 'final', all other files to 'submission'.
-		$finalMonographFiles = array();
 		foreach($allMonographFiles as $monographFile) {
 			$fileIdAndRevision = $monographFile->getFileId() . "-" . $monographFile->getRevision();
 			if(in_array($fileIdAndRevision, $selectedFiles)) {
 				$monographFile->setFileStage(MONOGRAPH_FILE_FINAL);
-				$finalMonographFiles[] =& $monographFile;
 			} else {
 				$monographFile->setFileStage(MONOGRAPH_FILE_SUBMISSION);
 			}
