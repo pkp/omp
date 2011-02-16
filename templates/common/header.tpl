@@ -130,5 +130,5 @@
 					<h3>{$pageSubtitleTranslated}</h3>
 				{/if}
 
-				<div id="content">
+				<div id="content" class="pkp_structure_main_contentPanel">
 
