@@ -13,9 +13,11 @@
 {include file="workflow/header.tpl"}
 
 <!-- Editorial decision actions -->
+<div class="pkp_linkActions">
 {foreach from=$editorActions item=action}
 	{include file="linkAction/legacyLinkAction.tpl" action=$action id="editorAction"}
 {/foreach}
+</div>
 
 {url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submissionFiles.SubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
 {load_url_in_div id="submissionFilesGridDiv" url=$submissionFilesGridUrl}

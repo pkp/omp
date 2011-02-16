@@ -29,7 +29,9 @@
 
 <br />
 
-{include file="linkAction/legacyLinkAction.tpl" action=$editorActions[0] id="promoteAction"}
+<div class="pkp_linkActions">
+	{include file="linkAction/legacyLinkAction.tpl" action=$editorActions[0] id="promoteAction"}
+</div>
 
 </div>
 {include file="common/footer.tpl"}

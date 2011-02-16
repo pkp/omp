@@ -9,7 +9,7 @@
 				<th scope="col">
 					{$column->getLocalizedTitle()}
 					{if $smarty.foreach.columns.last && $grid->getActions($smarty.const.GRID_ACTION_POSITION_LASTCOL)}
-						<span class="options">
+						<span class="options pkp_linkActions">
 							{foreach from=$grid->getActions($smarty.const.GRID_ACTION_POSITION_LASTCOL) item=action}
 								{if $action->getMode() eq $smarty.const.LINK_ACTION_MODE_AJAX}
 									{assign var=actionActOnId value=$action->getActOn()}

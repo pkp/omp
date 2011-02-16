@@ -53,9 +53,11 @@
 <br />
 
 {** editorial decision actions *}
+<div class="pkp_linkActions">
 {foreach from=$editorActions item=action}
 	{include file="linkAction/legacyLinkAction.tpl" action=$action id="editorAction"}
 {/foreach}
+</div>
 
 </div>
 {include file="common/footer.tpl"}
