@@ -21,39 +21,11 @@ switch ($op) {
 	//
 	case 'submission':
 	case 'saveStep':
-	case 'confirmReview':
-	case 'saveCompetingInterests':
-	case 'recordRecommendation':
-	case 'uploadReviewerVersion':
-	case 'deleteReviewerVersion':
 	case 'showDeclineReview':
 	case 'saveDeclineReview':
-	//
-	// Misc.
-	//
-	case 'downloadFile':
-	//
-	// Submission Review Form
-	//
-	case 'editReviewFormResponse':
-	case 'saveReviewFormResponse':
-		define('HANDLER_CLASS', 'SubmissionReviewHandler');
-		import('pages.reviewer.SubmissionReviewHandler');
+		define('HANDLER_CLASS', 'ReviewHandler');
+		import('pages.reviewer.ReviewHandler');
 		break;
-	//
-	// Submission Comments
-	//
-	case 'viewPeerReviewComments':
-	case 'postPeerReviewComment':
-	case 'editComment':
-	case 'saveComment':
-	case 'deleteComment':
-		define('HANDLER_CLASS', 'SubmissionCommentsHandler');
-		import('pages.reviewer.SubmissionCommentsHandler');
-		break;
-	case 'index':
-		define('HANDLER_CLASS', 'ReviewerHandler');
-		import('pages.reviewer.ReviewerHandler');
 }
 
 ?>

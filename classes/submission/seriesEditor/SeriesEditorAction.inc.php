@@ -104,9 +104,8 @@ class SeriesEditorAction extends Action {
 		$authorUserGroup =& $userGroupDao->getDefaultByRoleId($monograph->getPressId(), ROLE_ID_AUTHOR);
 		$signoffDao->build('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), $monograph->getUserId(), $stageId, $authorUserGroup->getId());
 
-		// Reviewer roles -- Do nothing
-		// FIXME #6002: Need to review this -- Not sure if reviewers should be
-		//  added as stage participants
+		// Reviewer roles -- Do nothing. Reviewers are not included in the stage participant list, they
+		// are administered via review assignments.
 	}
 
 	/**
@@ -192,7 +191,7 @@ class SeriesEditorAction extends Action {
 	 * @param $reviewId int
 	 */
 	function clearReview($submissionId, $reviewId) {
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
+		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
 		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($submissionId);
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
@@ -205,6 +204,9 @@ class SeriesEditorAction extends Action {
 			if (!isset($reviewer)) return false;
 			$seriesEditorSubmission->removeReviewAssignment($reviewId);
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
+
+			// FIXME: Need to change the state of the current review round back to "pending reviewer" when
+			// the last assignment was removed, see #6401.
 
 			// Add log
 			import('classes.monograph.log.MonographLog');

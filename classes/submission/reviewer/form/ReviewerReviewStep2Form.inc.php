@@ -27,10 +27,10 @@ class ReviewerReviewStep2Form extends ReviewerReviewForm {
 
 
 	//
-	// Implement template methods from Form.
+	// Implement protected template methods from Form
 	//
 	/**
-	 * Display the form.
+	 * @see Form::display()
 	 */
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
@@ -41,22 +41,17 @@ class ReviewerReviewStep2Form extends ReviewerReviewForm {
 			$reviewerGuidelines = Locale::translate('reviewer.monograph.noGuidelines');
 		}
 		$templateMgr->assign_by_ref('reviewerGuidelines', $press->getLocalizedSetting('reviewGuidelines'));
-		$templateMgr->assign_by_ref('submission', $this->reviewerSubmission);
-		$templateMgr->assign('step', 2);
 
 		parent::display();
 	}
 
 
 	/**
-	 * Save changes to submission.
+	 * @see Form::execute()
 	 */
 	function execute() {
-		$reviewerSubmissionDao =& DAORegistry::getDAO('ReviewerSubmissionDAO');
-		if($this->reviewerSubmission->getStep() < 3) {
-			$this->reviewerSubmission->setStep(3);
-		}
-		$reviewerSubmissionDao->updateReviewerSubmission($this->reviewerSubmission);
+		// Set review to next step.
+		$this->updateReviewStepAndSaveSubmission($this->getReviewerSubmission());
 	}
 
 }

@@ -22,6 +22,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		parent::DataObjectGridCellProvider();
 	}
 
+
 	//
 	// Template methods from GridCellProvider
 	//
@@ -38,18 +39,23 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		switch ($columnId) {
 			case 'name':
 				return ($element->getDateCompleted())?'linkReview':'';
+
 			case is_numeric($columnId):
 				// numeric implies a role column.
 				if ($element->getDateCompleted()) {
-					$viewsDao =& DAORegistry::getDAO('ViewsDAO');
 					$sessionManager =& SessionManager::getManager();
 					$session =& $sessionManager->getUserSession();
 					$user =& $session->getUser();
+					$viewsDao =& DAORegistry::getDAO('ViewsDAO');
 					$lastViewed = $viewsDao->getLastViewDate(ASSOC_TYPE_REVIEW_RESPONSE, $element->getId(), $user->getId());
 					if($lastViewed) {
 						return 'completed';
-					} else return 'new';
-				} else return '';
+					} else {
+						return 'new';
+					}
+				}
+				return '';
+
 			case 'reviewer':
 				if ($element->getDateCompleted()) {
 					return 'completed';
@@ -78,6 +84,8 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				if ( $this->getCellState($row, $column) != 'linkReview') {
 					return array('label' => $element->getReviewerFullName());
 				}
+				return '';
+
 			case is_numeric($columnId):
 			case 'reviewer':
 				return array('status' => $this->getCellState($row, $column));
@@ -93,59 +101,59 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 	 * @return array an array of LegacyLinkAction instances
 	 */
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
-		$state = $this->getCellState($row, $column);
-
 		$reviewAssignment =& $row->getData();
-		$router =& $request->getRouter();
 		$actionArgs = array(
 			'gridId' => $row->getGridId(),
 			'monographId' => $reviewAssignment->getSubmissionId(),
 			'reviewId' => $reviewAssignment->getId()
 		);
 
+		$router =& $request->getRouter();
 		$action = false;
+		$state = $this->getCellState($row, $column);
 		switch ($state) {
 			case 'linkReview':
 				$action =& new LegacyLinkAction(
-								'readReview',
-								LINK_ACTION_MODE_MODAL,
-								LINK_ACTION_TYPE_NOTHING,
-								$router->url($request, null, null, 'readReview', null, $actionArgs),
-								null,
-								$reviewAssignment->getReviewerFullName()
-							);
+						'readReview',
+						LINK_ACTION_MODE_MODAL,
+						LINK_ACTION_TYPE_NOTHING,
+						$router->url($request, null, null, 'readReview', null, $actionArgs),
+						null,
+						$reviewAssignment->getReviewerFullName());
+				break;
+
 			case 'new':
-				// The 'new' state could be for the editor or the reviewer
+				// The 'new' state could be for the editor or the reviewer.
 				if (is_numeric($column->getId()) ) {
 					$action =& new LegacyLinkAction(
-									'readReview',
-									LINK_ACTION_MODE_MODAL,
-									LINK_ACTION_TYPE_NOTHING,
-									$router->url($request, null, null, 'readReview', null, $actionArgs),
-									null,
-									null,
-									$state
-								);
+							'readReview',
+							LINK_ACTION_MODE_MODAL,
+							LINK_ACTION_TYPE_NOTHING,
+							$router->url($request, null, null, 'readReview', null, $actionArgs),
+							null,
+							null,
+							$state);
 				}
-				// There is no action for the reviewer
 				break;
+
 			case 'declined':
 			case 'accepted':
 			case 'completed':
-				// There are no actions for these states
+				// There are no actions for these states.
 				break;
+
 			case 'overdue':
 				$action =& new LegacyLinkAction(
-								'sendReminder',
-								LINK_ACTION_MODE_MODAL,
-								LINK_ACTION_TYPE_REPLACE,
-								$router->url($request, null, null, 'editReminder', null, $actionArgs),
-								'editor.review.reminder',
-								null,
-								$state
-							);
+						'sendReminder',
+						LINK_ACTION_MODE_MODAL,
+						LINK_ACTION_TYPE_REPLACE,
+						$router->url($request, null, null, 'editReminder', null, $actionArgs),
+						'editor.review.reminder',
+						null,
+						$state);
 				break;
 		}
-		return ($action)?array($action):array();
+
+		return ($action) ? array($action) : array();
 	}
 }

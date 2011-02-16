@@ -1,10 +1,10 @@
 {**
- * initiateReviewForm.tpl
+ * submissionParticipants.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Form used to initiate the first review round.
+ * Form used to show all participants in a submission.
  * FIXME #5876 -- Enhance when we have a spec for this
  *
  *}

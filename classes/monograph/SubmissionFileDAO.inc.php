@@ -50,6 +50,17 @@ class SubmissionFileDAO extends PKPSubmissionFileDAO {
 	}
 
 	/**
+	 * @see PKPSubmissionFileDAO::getGenreCategoryMapping()
+	 */
+	function getGenreCategoryMapping() {
+		static $genreCategoryMapping = array(
+			GENRE_CATEGORY_ARTWORK => 'artworkfile',
+			GENRE_CATEGORY_DOCUMENT => 'monographfile'
+		);
+		return $genreCategoryMapping;
+	}
+
+	/**
 	 * @see PKPSubmissionFileDAO::baseQueryForFileSelection()
 	 */
 	function baseQueryForFileSelection() {

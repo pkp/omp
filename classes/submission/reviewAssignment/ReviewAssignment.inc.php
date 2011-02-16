@@ -78,42 +78,6 @@ class ReviewAssignment extends PKPReviewAssignment {
 	function setReviewMethod($method) {
 		return $this->setData('reviewMethod', $method);
 	}
-	
-	/**
-	 * Get an associative array matching reviewer recommendation codes with locale strings.
-	 * (Includes default '' => "Choose One" string.)
-	 * @return array recommendation => localeString
-	 */
-	function &getReviewerRecommendationOptions() {
-		// Bring in reviewer constants
-		import('classes.submission.reviewer.ReviewerSubmission');
-
-		static $reviewerRecommendationOptions = array(
-			'' => 'common.chooseOne',
-			SUBMISSION_REVIEWER_RECOMMENDATION_ACCEPT => 'reviewer.monograph.decision.accept',
-			SUBMISSION_REVIEWER_RECOMMENDATION_PENDING_REVISIONS => 'reviewer.monograph.decision.pendingRevisions',
-			SUBMISSION_REVIEWER_RECOMMENDATION_RESUBMIT_HERE => 'reviewer.monograph.decision.resubmitHere',
-			SUBMISSION_REVIEWER_RECOMMENDATION_RESUBMIT_ELSEWHERE => 'reviewer.monograph.decision.resubmitElsewhere',
-			SUBMISSION_REVIEWER_RECOMMENDATION_DECLINE => 'reviewer.monograph.decision.decline',
-			SUBMISSION_REVIEWER_RECOMMENDATION_SEE_COMMENTS => 'reviewer.monograph.decision.seeComments'
-		);
-		return $reviewerRecommendationOptions;
-	}
-
-	/**
-	 * Get an associative array matching reviewer rating codes with locale strings.
-	 * @return array recommendation => localeString
-	 */
-	function &getReviewerRatingOptions() {
-		static $reviewerRatingOptions = array(
-			SUBMISSION_REVIEWER_RATING_VERY_GOOD => 'editor.monograph.reviewerRating.veryGood',
-			SUBMISSION_REVIEWER_RATING_GOOD => 'editor.monograph.reviewerRating.good',
-			SUBMISSION_REVIEWER_RATING_AVERAGE => 'editor.monograph.reviewerRating.average',
-			SUBMISSION_REVIEWER_RATING_POOR => 'editor.monograph.reviewerRating.poor',
-			SUBMISSION_REVIEWER_RATING_VERY_POOR => 'editor.monograph.reviewerRating.veryPoor'
-		);
-		return $reviewerRatingOptions;
-	}
 }
 
 ?>

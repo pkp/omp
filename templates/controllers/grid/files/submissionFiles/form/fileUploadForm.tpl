@@ -124,7 +124,7 @@
 				{rdelim},
 				$uploader: $('#uploadForm #plupload'),
 				uploaderOptions: {ldelim}
-					uploadUrl: '{url|escape:javascript op="uploadFile" monographId=$monographId}',
+					uploadUrl: '{url|escape:javascript op="uploadFile" monographId=$monographId params=$additionalActionArgs escape=false}',
 					baseUrl: '{$baseUrl|escape:javascript}'
 				{rdelim}
 			{rdelim});

@@ -25,7 +25,7 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 	 * Constructor
 	 */
 	function UnassignedSubmissionsListGridHandler() {
-		parent::GridHandler();
+		parent::SubmissionsListGridHandler();
 		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR), array('fetchGrid'));
 	}
 

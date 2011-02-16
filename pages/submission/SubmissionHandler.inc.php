@@ -12,8 +12,13 @@
  * @brief Handle requests for monograph submission functions.
  */
 
-
+// Import base class
 import('classes.handler.Handler');
+
+// import UI base classes
+import('lib.pkp.classes.linkAction.LinkAction');
+import('lib.pkp.classes.linkAction.request.AjaxModal');
+import('lib.pkp.classes.linkAction.request.WizardModal');
 
 class SubmissionHandler extends Handler {
 	/**
@@ -31,26 +36,10 @@ class SubmissionHandler extends Handler {
 	//
 	/**
 	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		$router =& $request->getRouter();
-		$operation = $router->getRequestedOp($request);
-
-		switch($operation) {
-			case 'index':
-				// The user only needs press-level permission to see a list
-				// of submissions.
-				import('classes.security.authorization.OmpPressAccessPolicy');
-				$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
-				break;
-			default:
-				// All other operations require full submission access.
-				import('classes.security.authorization.OmpSubmissionAccessPolicy');
-				$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
-		}
+		import('classes.security.authorization.OmpSubmissionAccessPolicy');
+		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -71,46 +60,50 @@ class SubmissionHandler extends Handler {
 		import('lib.pkp.classes.linkAction.LegacyLinkAction');
 		$router =& $request->getRouter();
 		$dispatcher =& $this->getDispatcher();
-		$actionArgs = array('monographId' => $monograph->getId(), 'stageId' => $monograph->getCurrentStageId());
-		$uploadFileAction = new LegacyLinkAction(
-				'addFile',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_APPEND,
-				$dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.files.submissionFiles.SubmissionDetailsFilesGridHandler', 'addFile', null, array_merge($actionArgs, array('gridId' => 'submissiondetailsfilesgrid'))),
-				'submission.addFileToBook',
-				null,
-				'add_item'
-			);
-		import('classes.monograph.MonographFile');
-		$actionArgs['fileStage'] = MONOGRAPH_FILE_REVIEW;
-		$uploadRevisionAction = new LegacyLinkAction(
-				'addRevision',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_NOTHING,
-				$dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.files.submissionFiles.SubmissionDetailsFilesGridHandler', 'addRevision', null, array_merge($actionArgs, array('gridId' => 'submissiondetailsfilesgrid'))),
-				'submission.uploadARevision',
-				null,
-				'edit'
-			);
-		$actionArgs['fileStage'] = MONOGRAPH_FILE_COPYEDIT;
-		$addCopyeditedFileAction = new LegacyLinkAction(
-				'addCopyeditedFile',
-				LINK_ACTION_MODE_MODAL,
-				null,
-				$dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.files.authorCopyeditingFiles.AuthorCopyeditingFilesGridHandler', 'addCopyeditedFile', null, array_merge($actionArgs, array('gridId' => 'authorcopyeditingfilesgrid'))),
+		$actionArgs = array('monographId' => $monograph->getId());
+		// FIXME: grid actions should not be referred to from outside a grid. This breaks the
+		// encapsulation rules for widgets, see #6411.
+		$uploadFileAction = new LinkAction(
+			'addFile',
+			new WizardModal(
+				$dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.files.submission.AuthorSubmissionDetailsFilesGridHandler', 'addFile', null, $actionArgs),
+				'submission.submit.uploadSubmissionFile',
+				'fileManagement'
+			),
+			'submission.addFile',
+			'add_item'
+		);
+
+		$uploadRevisionAction = new LinkAction(
+			'addRevision',
+			new WizardModal(
+				$dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.files.submission.AuthorSubmissionDetailsFilesGridHandler', 'addFile', null, array_merge(array('revisionOnly' => true), $actionArgs)),
+				'submission.submit.uploadRevision',
+				'fileManagement'
+			),
+			'submission.uploadARevision',
+			'edit'
+		);
+
+		$addCopyeditedFileAction = new LinkAction(
+			'addCopyeditedFile',
+			new WizardModal(
+				$dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.files.copyedit.AuthorCopyeditingFilesGridHandler', 'addCopyeditedFile', null, $actionArgs),
 				'submission.uploadACopyeditedVersion',
-				null,
-				'add_item'
-			);
-		$viewMetadataAction = new LegacyLinkAction(
-				'viewMetadata',
-				LINK_ACTION_MODE_MODAL,
-				null,
+				'fileManagement'
+			),
+			'submission.uploadACopyeditedVersion',
+			'add_item'
+		);
+		$viewMetadataAction = new LinkAction(
+			'viewMetadata',
+			new AjaxModal(
 				$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.SubmissionDetailsSubmissionMetadataHandler', 'fetch', null, $actionArgs),
-				'submission.viewMetadata',
-				null,
-				'more_info'
-			);
+				'submission.viewMetadata'
+			),
+			'submission.viewMetadata',
+			'more_info'
+		);
 
 		// If we are at or past the review stage, pass review round info on to the template
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');

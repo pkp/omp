@@ -27,11 +27,11 @@ class GenreDAO extends DefaultSettingDAO
 
 	/**
 	 * Retrieve a genre by type id.
-	 * @param $typeId int
+	 * @param $genreId int
 	 * @return Genre
 	 */
-	function &getById($typeId, $pressId = null){
-		$sqlParams = array((int)$typeId);
+	function &getById($genreId, $pressId = null){
+		$sqlParams = array((int)$genreId);
 		if ($pressId) {
 			$sqlParams[] = (int)$pressId;
 		}

@@ -24,7 +24,7 @@
 </script>
 
 <form id="uploadConfirmationForm" class="pkp_controllers_grid_files"
-		action="{url op="confirmRevision" monographId=$monographId uploadedFileId=$uploadedFile->getFileId()}"
+		action="{url op="confirmRevision" monographId=$monographId uploadedFileId=$uploadedFile->getFileId() params=$additionalActionArgs}"
 		method="post">
 	{fbvFormArea id="file"}
 		<div id="pkp_controllers_grid_files_possibleRevision" class="possibleRevision" style="display:none;">

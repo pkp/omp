@@ -274,14 +274,16 @@ class MonographFileManager extends FileManager {
 	 * @return MonographFile returns the instantiated monograph file or null if an error occurs.
 	 */
 	function &_instantiateMonographFile($monographId, $fileStage, $revisedFileId, $genreId, $assocId, $assocType) {
+		// Retrieve the submission file DAO.
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+
 		// Instantiate a new monograph file.
-		$monographFile = new MonographFile();
+		$monographFile =& $submissionFileDao->newDataObject($genreId);
 		$monographFile->setMonographId($monographId);
 
 		// Do we create a new file or a new revision of an existing file?
 		if ($revisedFileId) {
 			// Retrieve the revised file.
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 			$revisedFile =& $submissionFileDao->getLatestRevision($revisedFileId, $fileStage, $monographId);
 			if (!is_a($revisedFile, 'MonographFile')) return false;
 

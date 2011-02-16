@@ -20,16 +20,16 @@
 					cancelButtonText: '{translate|escape:javascript key="common.cancel"}',
 					continueButtonText: '{translate|escape:javascript key="common.continue"}',
 					finishButtonText: '{translate|escape:javascript key="common.finish"}',
-					deleteUrl: '{url|escape:javascript op="deleteFile" monographId=$monographId escape=false}',
-					metadataUrl: '{url|escape:javascript op="editMetadata" monographId=$monographId escape=false}',
-					finishUrl: '{url|escape:javascript op="finishFileSubmission" monographId=$monographId escape=false}'
+					deleteUrl: '{url|escape:javascript op="deleteFile" monographId=$monographId params=$additionalActionArgs escape=false}',
+					metadataUrl: '{url|escape:javascript op="editMetadata" monographId=$monographId params=$additionalActionArgs escape=false}',
+					finishUrl: '{url|escape:javascript op="finishFileSubmission" monographId=$monographId params=$additionalActionArgs escape=false}'
 				{rdelim});
 	{rdelim});
 </script>
 
 <div id="fileUploadWizard">
 	<ul>
-		<li><a href="{url op="displayFileUploadForm" monographId=$monographId revisedFileId=$revisedFileId}">1. {translate key="submission.submit.upload"}</a></li>
+		<li><a href="{url op="displayFileUploadForm" monographId=$monographId revisedFileId=$revisedFileId params=$additionalActionArgs}">1. {translate key="submission.submit.upload"}</a></li>
 		<li><a href="metadata">2. {translate key="submission.submit.metadata"}</a></li>
 		<li><a href="finish">3. {translate key="submission.submit.finishingUp"}</a></li>
 	</ul>
