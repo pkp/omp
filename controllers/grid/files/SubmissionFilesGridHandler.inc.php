@@ -466,8 +466,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$metadataForm->readInputData();
 		if ($metadataForm->validate()) {
 			$metadataForm->execute($args, $request);
-			$monographFile = $metadataForm->getMonographFile();
-			return $this->elementAdded($monographFile->getFileId());
+			$submissionFile = $metadataForm->getSubmissionFile();
+			return $this->elementAdded($submissionFile->getFileId());
 		} else {
 			$json = new JSON(false, $metadataForm->fetch($request));
 		}
@@ -584,16 +584,16 @@ class SubmissionFilesGridHandler extends GridHandler {
 		// Retrieve the latest revision of the requested monograph file.
 		$fileId = (int)$request->getUserVar('fileId');
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFile =& $submissionFileDao->getLatestRevision($fileId, $this->getFileStage(), $monograph->getId());
-		if (!is_a($monographFile, 'MonographFile')) fatalError('Invalid file id!');
+		$submissionFile =& $submissionFileDao->getLatestRevision($fileId, $this->getFileStage(), $monograph->getId());
+		if (!is_a($submissionFile, 'MonographFile')) fatalError('Invalid file id!');
 
 		// Import the meta-data form based on the file implementation.
-		if (is_a($monographFile, 'ArtworkFile')) {
+		if (is_a($submissionFile, 'ArtworkFile')) {
 			import('controllers.grid.files.form.SubmissionFilesArtworkMetadataForm');
-			$metadataForm = new SubmissionFilesArtworkMetadataForm($monographFile);
+			$metadataForm = new SubmissionFilesArtworkMetadataForm($submissionFile, $this->getAdditionalActionArgs());
 		} else {
 			import('controllers.grid.files.form.SubmissionFilesMetadataForm');
-			$metadataForm = new SubmissionFilesMetadataForm($monographFile, 'controllers/grid/files/submissionFiles/form/metadataForm.tpl', $this->getAdditionalActionArgs());
+			$metadataForm = new SubmissionFilesMetadataForm($submissionFile, $this->getAdditionalActionArgs());
 		}
 
 		return $metadataForm;

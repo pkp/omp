@@ -15,24 +15,25 @@
 import('lib.pkp.classes.form.Form');
 
 class SubmissionFilesMetadataForm extends Form {
-	/** @var MonographFile */
-	var $_monographFile;
+	/** @var SubmissionFile */
+	var $_submissionFile;
 
 	/** @var array */
 	var $_additionalActionArgs;
 
 	/**
 	 * Constructor.
-	 * @param $monographFile MonographFile
-	 * @param $template String
+	 * @param $submissionFile SubmissionFile
 	 * @param $additionalActionArgs array
 	 */
-	function SubmissionFilesMetadataForm(&$monographFile, $template = 'controllers/grid/files/submissionFiles/form/metadataForm.tpl', $additionalActionArgs = array()) {
-		parent::Form($template);
+	function SubmissionFilesMetadataForm(&$submissionFile, $additionalActionArgs = array()) {
+		parent::Form('controllers/grid/files/submissionFiles/form/metadataForm.tpl');
 
-		$this->_monographFile =& $monographFile;
-		$this->setAdditionalActionArgs($additionalActionArgs);
+		// Initialize the object.
+		$this->_submissionFile =& $submissionFile;
+		$this->_additionalActionArgs = $additionalActionArgs;
 
+		// Add validation checks.
 		$this->addCheck(new FormValidator($this, 'name', 'required', 'user.profile.form.lastNameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -42,19 +43,11 @@ class SubmissionFilesMetadataForm extends Form {
 	// Getters and Setters
 	//
 	/**
-	 * Get the monograph file.
-	 * @return MonographFile
+	 * Get the submission file.
+	 * @return SubmissionFile
 	 */
-	function &getMonographFile() {
-		return $this->_monographFile;
-	}
-
-	/**
-	 * Set the additional action args array
-	 * @param $additionalActionArgs array
-	 */
-	function setAdditionalActionArgs($additionalActionArgs) {
-	    $this->_additionalActionArgs = $additionalActionArgs;
+	function &getSubmissionFile() {
+		return $this->_submissionFile;
 	}
 
 	/**
@@ -89,13 +82,16 @@ class SubmissionFilesMetadataForm extends Form {
 	function fetch(&$request) {
 		$templateMgr =& TemplateManager::getManager();
 
-		$monographFile =& $this->getMonographFile();
-		$templateMgr->assign('monographFile', $monographFile);
+		// Submission file.
+		$submissionFile =& $this->getSubmissionFile();
+		$templateMgr->assign('submissionFile', $submissionFile);
 
+		// Additional request parameters for the form action.
 		$templateMgr->assign('additionalActionArgs', $this->getAdditionalActionArgs());
 
+		// Note attached to the file.
 		$noteDao =& DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */
-		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileId());
+		$notes =& $noteDao->getByAssoc(ASSOC_TYPE_MONOGRAPH_FILE, $submissionFile->getFileId());
 		$templateMgr->assign('note', $notes->next());
 
 		return parent::fetch($request);
@@ -105,11 +101,11 @@ class SubmissionFilesMetadataForm extends Form {
 	 * @see Form::execute()
 	 */
 	function execute($args, &$request) {
-		// Update the monograph file with data from the form.
-		$monographFile =& $this->getMonographFile();
-		$monographFile->setName($this->getData('name'), Locale::getLocale());
+		// Update the submission file with data from the form.
+		$submissionFile =& $this->getSubmissionFile();
+		$submissionFile->setName($this->getData('name'), Locale::getLocale());
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$submissionFileDao->updateObject($monographFile);
+		$submissionFileDao->updateObject($submissionFile);
 
 		// Save the note if it exists.
 		if ($this->getData('note')) {
@@ -121,7 +117,7 @@ class SubmissionFilesMetadataForm extends Form {
 
 			$note->setContents($this->getData('note'));
 			$note->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
-			$note->setAssocId($monographFile->getFileId());
+			$note->setAssocId($submissionFile->getFileId());
 
 		 	$noteDao->insertObject($note);
 		}

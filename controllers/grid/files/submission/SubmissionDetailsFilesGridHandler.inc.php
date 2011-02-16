@@ -29,7 +29,7 @@ class SubmissionDetailsFilesGridHandler extends SubmissionFilesGridHandler {
 		$this->addRoleAssignment(
 				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'fetchRow', 'finishFileSubmission', 'addFile', 'displayFileUploadForm', 'uploadFile', 'confirmRevision',
-						'editMetadata', 'saveMetadata', 'downloadFile', 'downloadAllFiles', 'deleteFile'));
+						'editMetadata', 'saveMetadata', 'downloadFile', 'downloadAllFiles', 'viewFile', 'deleteFile'));
 	}
 
 
