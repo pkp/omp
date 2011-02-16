@@ -38,7 +38,7 @@
 			<td width="95%">
 				<label for="supportedLocales-{$localeKey|escape}">{$localeNames.$localeKey|escape}</label>
 				{if !$localesComplete[$localeKey]}
-					<span class="formError">*</span>
+					<span class="pkp_controllers_form_error">*</span>
 					{assign var=incompleteLocaleFound value=1}
 				{/if}
 			</td>
@@ -48,7 +48,7 @@
 		<span class="instruct">{translate key="admin.languages.supportedLocalesInstructions"}</span>
 		{if $incompleteLocaleFound}
 			<br/>
-			<span class="formError">*</span>&nbsp;{translate key="admin.locale.maybeIncomplete"}
+			<span class="pkp_controllers_form_error">*</span>&nbsp;{translate key="admin.locale.maybeIncomplete"}
 		{/if}{* $incompleteLocaleFound *}
 	</td>
 </tr>
@@ -79,7 +79,7 @@
 {foreach from=$uninstalledLocales item=localeKey}
 <input type="checkbox" name="installLocale[]" id="installLocale-{$localeKey|escape}" value="{$localeKey|escape}" /> <label for="installLocale-{$localeKey|escape}">{$localeNames.$localeKey|escape} ({$localeKey|escape})</label>
 {if !$localesComplete[$localeKey]}
-	<span class="formError">*</span>
+	<span class="pkp_controllers_form_error">*</span>
 	{assign var=incompleteLocaleFound value=1}
 {/if}
 <br />
@@ -89,7 +89,7 @@
 {/foreach}
 {if $incompleteLocaleFound}
 	<br />
-	<span class="formError">*</span>&nbsp;{translate key="admin.locale.maybeIncomplete"}
+	<span class="pkp_controllers_form_error">*</span>&nbsp;{translate key="admin.locale.maybeIncomplete"}
 {/if}{* $incompleteLocaleFound *}
 
 {if not $noLocalesToInstall}

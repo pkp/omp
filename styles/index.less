@@ -9,24 +9,29 @@
  */
 
 /**
- * Compilable libraries and misc. non-framework stylesheets
+ * Compilable libraries
  */
 
 /* Superfish - http://users.tpg.com.au/j_birch/plugins/superfish/ */
-@import url("lib/pkp/styles/superfish/superfish.css");
+@import url("lib/pkp/styles/lib/superfish/superfish.css");
 
 /* Wufoo Forms - http://wufoo.com */
-@import url("lib/pkp/styles/wufoo/form.css");
-
-/* JqueryUI - http://jqueryui.com */
-@import url("lib/pkp/styles/jqueryUi.css");
+@import url("lib/pkp/styles/lib/wufoo/form.css");
 
 /* Pines Notify - http://pines.sourceforge.net/pnotify/ */
-@import url("lib/pkp/styles/jquery.pnotify.default.css");
+@import url("lib/pkp/styles/lib/jquery.pnotify.default.css");
 
-/* OMP resets to override unwanted styles in external libs */
+/* Plupload - http://www.plupload.com/ */
+@import url("lib/pkp/styles/lib/plupload.queue.css");
+
+/* Tag it! - http://plugins.jquery.com/project/tag-it/ */
+@import url("lib/pkp/styles/lib/tagit.css");
+
+
+/**
+ * OMP resets to override unwanted styles in external libs
+ */
 @import url("styles/resets.less");
-
 
 
 /**
@@ -40,10 +45,12 @@
  * OMP application imports
  */
 
-/* pkp_structure */
+/* Structure */
 @import url("styles/structure/index.less");
 
-/* controllers */
+/* Controllers */
 @import url("styles/controllers/grid/index.less");
 @import url("styles/controllers/listbuilder/index.less");
-@import url("styles/controllers/fontController/index.less");
+@import url("styles/controllers/fontController.less");
+@import url("styles/controllers/informationCenter.less");
+@import url("styles/controllers/reviewerSelector.less");

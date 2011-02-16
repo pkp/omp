@@ -22,8 +22,8 @@
 
 {if $errors}
 	<p>
-		<span class="formError">{translate key="plugins.importexport.users.import.warning"}:</span>
-		<ul class="formErrorList">
+		<span class="pkp_controllers_form_error">{translate key="plugins.importexport.users.import.warning"}:</span>
+		<ul class="pkp_controllers_form_error_list">
 			{foreach key=field item=message from=$errors}
 				<li>{$message}</li>
 			{/foreach}
@@ -110,8 +110,8 @@
 
 {if $isError}
 <p>
-	<span class="formError">{translate key="plugins.importexport.users.import.errorsOccurred"}:</span>
-	<ul class="formErrorList">
+	<span class="pkp_controllers_form_error">{translate key="plugins.importexport.users.import.errorsOccurred"}:</span>
+	<ul class="pkp_controllers_form_error_list">
 	{foreach key=field item=message from=$errors}
 			<li>{$message}</li>
 	{/foreach}

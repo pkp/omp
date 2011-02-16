@@ -17,7 +17,7 @@
 		{translate key="common.publicKnowledgeProject"}
 	</div>
 	<div class="unit size1of3 pkp_helpers_text_center">
-		<ul class="flat_list navigation">
+		<ul class="pkp_structure_footer_navigation">
 			<li><a href="{url page="about" op="submissions" anchor="privacyStatement"}">{translate key="about.privacyStatement"}</a></li>
 			<li><a href="#">!Acknowledgements</a></li>
 		</ul>

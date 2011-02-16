@@ -123,35 +123,35 @@
 	// -->
 </script>
 
-<form id="reviewerFilterForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="updateReviewerSelect" monographId=$monographId}" method="post">
+<form id="reviewerFilterForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.reviewerSelect.ReviewerSelectGridHandler" op="updateReviewerSelect" monographId=$monographId}" method="post" class="pkp_controllers_reviewerSelector">
 {fbvFormArea id="reviewerSearchForm"}
 	{fbvFormSection float=$fbvStyles.float.LEFT}
-		<p class="sliderLabel">
+		<p class="pkp_controllers_reviewerSelector_sliderLabel">
 			<label for="doneAmountLabel">{translate key="manager.reviewerSearch.doneAmount"}:</label>
-			<input type="text" id="doneAmountLabel" class="sliderValue" />
+			<input type="text" id="doneAmountLabel" class="pkp_controllers_reviewerSelector_sliderValue" />
 		</p>
-		<div id="doneRange" class="rangeSlider"></div>
+		<div id="doneRange" class="pkp_controllers_reviewerSelector_rangeSlider"></div>
 	{/fbvFormSection}
 	{fbvFormSection float=$fbvStyles.float.RIGHT}
-		<p class="sliderLabel">
+		<p class="pkp_controllers_reviewerSelector_sliderLabel">
 			<label for="avgAmountLabel">{translate key="manager.reviewerSearch.avgAmount"}:</label>
-			<input type="text" id="avgAmountLabel" class="sliderValue" />
+			<input type="text" id="avgAmountLabel" class="pkp_controllers_reviewerSelector_sliderValue" />
 		</p>
-		<div id="avgRange" class="rangeSlider"></div>
+		<div id="avgRange" class="pkp_controllers_reviewerSelector_rangeSlider"></div>
 	{/fbvFormSection}
 	{fbvFormSection float=$fbvStyles.float.LEFT}
-		<p class="sliderLabel">
+		<p class="pkp_controllers_reviewerSelector_sliderLabel">
 			<label for="lastAmountLabel">{translate key="manager.reviewerSearch.lastAmount"}:</label>
-			<input type="text" id="lastAmountLabel" class="sliderValue" />
+			<input type="text" id="lastAmountLabel" class="pkp_controllers_reviewerSelector_sliderValue" />
 		</p>
-		<div id="lastRange" class="rangeSlider"></div>
+		<div id="lastRange" class="pkp_controllers_reviewerSelector_rangeSlider"></div>
 	{/fbvFormSection}
 	{fbvFormSection float=$fbvStyles.float.RIGHT}
-		<p class="sliderLabel">
+		<p class="pkp_controllers_reviewerSelector_sliderLabel">
 			<label for="activeAmountLabel">{translate key="manager.reviewerSearch.activeAmount"}:</label>
-			<input type="text" id="activeAmountLabel" class="sliderValue" />
+			<input type="text" id="activeAmountLabel" class="pkp_controllers_reviewerSelector_sliderValue" />
 		</p>
-		<div id="activeRange" class="rangeSlider"></div>
+		<div id="activeRange" class="pkp_controllers_reviewerSelector_rangeSlider"></div>
 	{/fbvFormSection}
 	{fbvFormSection title="manager.reviewerSearch.interests"}
 		<ul id="interestSearch" style="padding-left: 10px;"><li></li></ul>

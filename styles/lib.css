@@ -12,9 +12,17 @@
  */
 
 /* OOCSS - http://github.com/stubbornella/oocss */
-@import url("../lib/pkp/styles/oocss/libraries.css");
-@import url("../lib/pkp/styles/oocss/grids.css");
-@import url("../lib/pkp/styles/oocss/mod.css");
-@import url("../lib/pkp/styles/oocss/mod_skins.css");
+@import url("../lib/pkp/styles/lib/oocss/libraries.css");
+@import url("../lib/pkp/styles/lib/oocss/grids.css");
+@import url("../lib/pkp/styles/lib/oocss/mod.css");
+@import url("../lib/pkp/styles/lib/oocss/mod_skins.css");
 
-/* @end */
+/**
+ * The following libraries are compilable but compiling throws image paths off.
+ */
+
+/* JqueryUI - http://jqueryui.com */
+@import url("../lib/pkp/styles/lib/jqueryUi/jqueryUi.css");
+
+/* Plupload - http://www.plupload.com/ */
+@import url("../lib/pkp/styles/lib/plupload.queue.css");

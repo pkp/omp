@@ -13,7 +13,7 @@
 
 <p>{translate key="plugins.generic.translator.longdescription"}</p>
 {if not $tarAvailable}
-	<p><span class="formError">{translate key="plugins.generic.translator.tarMissing"}</span></p>
+	<p><span class="pkp_controllers_form_error">{translate key="plugins.generic.translator.tarMissing"}</span></p>
 {/if}
 
 <a name="locales"></a>

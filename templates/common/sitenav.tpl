@@ -10,7 +10,7 @@
 
 <div class="pkp_structure_header_siteNav">
 	<div class="unit size1of2">
-		<ul class="flat_list pkp_structure_header_basemenu">
+		<ul class="pkp_structure_header_basemenu">
 			<li><a href="{url page="index"}">{translate key="navigation.home"}</a></li>
 			{if $isUserLoggedIn}
 				<li><a href="{url context="index" page="admin"}">{translate key="navigation.admin"}</a></li>
@@ -18,7 +18,7 @@
 		</ul>
 	</div>
 	<div class="unit size1of2 lastUnit pkp_helpers_align_right">
-		<ul class="flat_list pkp_structure_header_basemenu">
+		<ul class="pkp_structure_header_basemenu">
 			<li><div id="sizer"></div></li>
 			{if $isUserLoggedIn}
 				<li><a href="{url page="user" op="profile"}">{translate key="user.profile"}</a></li>

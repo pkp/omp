@@ -16,7 +16,7 @@
 <br />
 
 {if $error}
-	<p><span class="formError">{translate key="$error"}</span></p>
+	<p><span class="pkp_controllers_form_error">{translate key="$error"}</span></p>
 {/if}
 
 {if $success}

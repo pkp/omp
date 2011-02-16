@@ -14,7 +14,7 @@
 
 {if $status == 'subscribeError'}
 	<ul>
-		<li><span class="formError">{translate key="notification.subscribeError"}</span></li>
+		<li><span class="pkp_controllers_form_error">{translate key="notification.subscribeError"}</span></li>
 	<ul>
 {elseif $status == 'subscribeSuccess'}
 	<ul>
@@ -22,7 +22,7 @@
 	</ul>
 {elseif $status == 'confirmError'}
 	<ul>
-		<li><span class="formError">{translate key="notification.confirmError"}</span></li>
+		<li><span class="pkp_controllers_form_error">{translate key="notification.confirmError"}</span></li>
 	<ul>
 {elseif $status == 'confirmSuccess'}
 	<ul>
