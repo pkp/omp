@@ -18,11 +18,13 @@ import('classes.monograph.SubmissionFileDAO');
 import('classes.monograph.MonographFile');
 import('classes.monograph.ArtworkFile');
 import('classes.monograph.MonographDAO');
+import('classes.monograph.Genre');
 import('lib.pkp.classes.db.DBResultRange');
 
 // Define a test file stage.
 define('SUBMISSION_FILE_DAO_TEST_PRESS_ID', 999);
 define('SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID', 9999);
+define('SUBMISSION_FILE_DAO_TEST_GENRE_ID', 0);
 
 class SubmissionFileDAOTest extends DatabaseTestCase {
 	protected function setUp() {
@@ -50,7 +52,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 	 * @covers ArtworkFileDAODelegate
 	 * @covers SubmissionFileDAODelegate
 	 */
-	public function testCitationCrud() {
+	public function testSubmissionFileCrud() {
 		// Create two test files, one monograph file one artwork file.
 		$artworkFile1 = new ArtworkFile();
 		$artworkFile1->setName('test-artwork', 'en_US');
@@ -214,6 +216,31 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertEquals($artworkFile1->getGenreId(), $artworkFile2->getGenreId());
 		self::assertEquals(1, $artworkFile1->getRevision());
 		self::assertEquals(2, $submissionFileDao->getLatestRevisionNumber($artworkFile1->getFileId()));
+	}
+
+	function testNewDataObject() {
+		// Register a mock genre DAO.
+		$genreDao =& $this->getMock('GenreDAO', array('getById'));
+		DAORegistry::registerDAO('GenreDAO', $genreDao);
+
+		// Instantiate the SUT.
+		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+
+		// Let the mock genre DAO return a monograph file genre first.
+		$genre = new Genre();
+		$genre->setCategory(GENRE_CATEGORY_DOCUMENT);
+		$genreDao->expects($this->any())
+		         ->method('getById')
+		         ->will($this->returnValue($genre));
+
+		// Test whether the newDataObject method will return a monograph file.
+		$fileObject =& $submissionFileDao->newDataObject(SUBMISSION_FILE_DAO_TEST_GENRE_ID);
+		self::assertType('MonographFile', $fileObject);
+
+		// Now set an artwork genre and try again.
+		$genre->setCategory(GENRE_CATEGORY_ARTWORK);
+		$fileObject =& $submissionFileDao->newDataObject(SUBMISSION_FILE_DAO_TEST_GENRE_ID);
+		self::assertType('ArtworkFile', $fileObject);
 	}
 
 
