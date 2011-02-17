@@ -278,7 +278,7 @@ class MonographFileManager extends FileManager {
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 
 		// Instantiate a new monograph file.
-		$monographFile =& $submissionFileDao->newDataObject($genreId);
+		$monographFile =& $submissionFileDao->newDataObjectByGenreId($genreId);
 		$monographFile->setMonographId($monographId);
 
 		// Do we create a new file or a new revision of an existing file?

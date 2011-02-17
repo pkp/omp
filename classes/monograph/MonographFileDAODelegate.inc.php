@@ -95,12 +95,21 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	/**
 	 * @see SubmissionFileDAODelegate::update()
 	 * @param $monographFile MonographFile
+	 * @param $previousFileId integer
+	 * @param $previousRevision integer
 	 */
-	function updateObject(&$monographFile) {
+	function updateObject(&$monographFile, $previousFileId = null, $previousRevision = null) {
+		// Complete the identifying data of the updated object if not given.
+		$previousFileId = ($previousFileId ? $previousFileId : $monographFile->getFileId());
+		$previousRevision = ($previousRevision ? $previousRevision : $monographFile->getRevision());
+
+		// Update the object.
 		$submissionFileDao =& $this->getSubmissionFileDAO();
 		$submissionFileDao->update(
 			sprintf('UPDATE monograph_files
 				SET
+					file_id = ?,
+					revision = ?,
 					monograph_id = ?,
 					source_file_id = ?,
 					source_revision = ?,
@@ -119,21 +128,23 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 				WHERE file_id = ? AND revision = ?',
 				$submissionFileDao->datetimeToDB($monographFile->getDateUploaded()), $submissionFileDao->datetimeToDB($monographFile->getDateModified())),
 			array(
-				$monographFile->getMonographId(),
-				$monographFile->getSourceFileId(),
-				$monographFile->getSourceRevision(),
+				(int)$monographFile->getFileId(),
+				(int)$monographFile->getRevision(),
+				(int)$monographFile->getMonographId(),
+				is_null($monographFile->getSourceFileId()) ? null : (int)$monographFile->getSourceFileId(),
+				is_null($monographFile->getSourceRevision()) ? null : (int)$monographFile->getSourceRevision(),
 				$monographFile->getFileName(),
 				$monographFile->getFileType(),
 				$monographFile->getFileSize(),
 				$monographFile->getOriginalFileName(),
 				$monographFile->getFileStage(),
-				$monographFile->getViewable(),
-				$monographFile->getUserGroupId(),
-				$monographFile->getAssocType(),
-				$monographFile->getAssocId(),
-				$monographFile->getGenreId(),
-				$monographFile->getFileId(),
-				$monographFile->getRevision()
+				is_null($monographFile->getViewable()) ? null : (boolean)$monographFile->getViewable(),
+				is_null($monographFile->getUserGroupId()) ? null : (int)$monographFile->getUserGroupId(),
+				is_null($monographFile->getAssocType()) ? null : (int)$monographFile->getAssocType(),
+				is_null($monographFile->getAssocId()) ? null : (int)$monographFile->getAssocId(),
+				is_null($monographFile->getGenreId()) ? null : (int)$monographFile->getGenreId(),
+				(int)$previousFileId,
+				(int)$previousRevision
 			)
 		);
 

@@ -69,16 +69,24 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 	/**
 	 * @see SubmissionFileDAODelegate::update()
 	 * @param $artworkFile ArtworkFile
+	 * @param $previousFileId integer
+	 * @param $previousRevision integer
 	 */
-	function updateObject(&$artworkFile) {
+	function updateObject(&$artworkFile, $previousFileId = null, $previousRevision = null) {
 		// Update the parent class table first.
-		parent::updateObject($artworkFile);
+		parent::updateObject($artworkFile, $previousFileId, $previousRevision);
+
+		// Complete the identifying data of the updated object if not given.
+		$previousFileId = ($previousFileId ? $previousFileId : $artworkFile->getFileId());
+		$previousRevision = ($previousRevision ? $previousRevision : $artworkFile->getRevision());
 
 		// Now update the artwork file table.
 		$submissionFileDao =& $this->getSubmissionFileDAO();
 		$submissionFileDao->update(
 			'UPDATE monograph_artwork_files
-				 SET
+				SET
+					file_id = ?,
+					revision = ?,
 					caption = ?,
 					chapter_id = ?,
 					contact_author = ?,
@@ -90,6 +98,8 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 					placement = ?
 				WHERE file_id = ? and revision = ?',
 			array(
+				(int)$artworkFile->getFileId(),
+				(int)$artworkFile->getRevision(),
 				$artworkFile->getCaption(),
 				is_null($artworkFile->getChapterId()) ? null : (int)$artworkFile->getChapterId(),
 				$artworkFile->getContactAuthor(),
@@ -99,8 +109,8 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 				is_null($artworkFile->getPermissionFileId()) ? null : (int)$artworkFile->getPermissionFileId(),
 				$artworkFile->getPermissionTerms(),
 				$artworkFile->getPlacement(),
-				(int)$artworkFile->getFileId(),
-				(int)$artworkFile->getRevision()
+				(int)$previousFileId,
+				(int)$previousRevision
 			)
 		);
 		return true;
