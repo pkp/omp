@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/files/copyeditingFiles/form/CopyeditingFileForm.inc.php
+ * @file controllers/grid/files/copyedit/form/CopyeditingFileForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -34,7 +34,7 @@ class CopyeditingFileForm extends Form {
 
 		if(!$template) {
 			// Use the default template
-			parent::Form('controllers/grid/files/copyeditingFiles/form/copyeditingFileForm.tpl');
+			parent::Form('controllers/grid/files/copyedit/form/copyeditingFileForm.tpl');
 		} else {
 			parent::Form($template);
 		}

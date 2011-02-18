@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/files/copyeditingFiles/form/CopyeditingUserForm.inc.php
+ * @file controllers/grid/files/copyedit/form/CopyeditingUserForm.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CopyeditingUserForm
- * @ingroup controllers_grid_files_copyeditingFiles
+ * @ingroup controllers_grid_files_copyedit
  *
  * @brief Form to add files to the final draft files grid
  */
@@ -38,7 +38,7 @@ class CopyeditingUserForm extends Form {
 	 * Constructor.
 	 */
 	function CopyeditingUserForm($monograph) {
-		parent::Form('controllers/grid/files/copyeditingFiles/addCopyeditingUser.tpl');
+		parent::Form('controllers/grid/files/copyedit/addCopyeditingUser.tpl');
 		$this->setMonograph($monograph);
 
 		$this->addCheck(new FormValidator($this, 'userId', 'required', 'editor.monograph.copyediting.form.userRequired'));

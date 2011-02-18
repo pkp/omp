@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/files/submissionFiles/form/SubmissionFilesArtworkMetadataForm.inc.php
+ * @file controllers/grid/files/form/SubmissionFilesArtworkMetadataForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFilesArtworkMetadataForm
- * @ingroup controllers_grid_files_submissionFiles_form
+ * @ingroup controllers_grid_files_form
  *
  * @brief Form for editing artwork file metadata.
  */

@@ -12,7 +12,7 @@
  * @brief Form for adding/editing a submission file
  */
 
-import('controllers.grid.files.copyeditingFiles.form.CopyeditingFileForm');
+import('controllers.grid.files.copyedit.form.CopyeditingFileForm');
 
 class AuthorCopyeditingFilesUploadForm extends CopyeditingFileForm {
 	/**
@@ -21,7 +21,7 @@ class AuthorCopyeditingFilesUploadForm extends CopyeditingFileForm {
 	 * @param $signoffId integer
 	 */
 	function AuthorCopyeditingFilesUploadForm($monograph, $signoffId = null) {
-		parent::CopyeditingFileForm($monograph, $signoffId, 'controllers/grid/files/submissionFiles/form/fileForm.tpl');
+		parent::CopyeditingFileForm($monograph, $signoffId, 'controllers/grid/files/form/fileUploadForm.tpl');
 
 		$this->addCheck(new FormValidatorPost($this));
 	}

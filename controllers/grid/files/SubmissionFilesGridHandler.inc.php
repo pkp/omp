@@ -302,7 +302,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$templateMgr->assign('revisedFileId', $revisedFileId);
 
 		// Render the file upload wizard.
-		$json = new JSON(true, $templateMgr->fetch('controllers/grid/files/submissionFiles/fileUploadWizard.tpl'));
+		$json = new JSON(true, $templateMgr->fetch('controllers/grid/files/fileUploadWizard.tpl'));
 		return $json->getString();
 	}
 
@@ -488,7 +488,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('fileId', $fileId);
 
-		$json = new JSON(true, $templateMgr->fetch('controllers/grid/files/submissionFiles/form/fileSubmissionComplete.tpl'));
+		$json = new JSON(true, $templateMgr->fetch('controllers/grid/files/form/fileSubmissionComplete.tpl'));
 		return $json->getString();
 	}
 

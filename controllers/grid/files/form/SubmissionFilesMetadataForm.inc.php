@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/files/submissionFiles/form/SubmissionFilesMetadataForm.inc.php
+ * @file controllers/grid/files/form/SubmissionFilesMetadataForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFilesMetadataForm
- * @ingroup controllers_grid_files_submissionFiles_form
+ * @ingroup controllers_grid_files_form
  *
  * @brief Form for editing a submission file's metadata
  */
@@ -27,7 +27,7 @@ class SubmissionFilesMetadataForm extends Form {
 	 * @param $additionalActionArgs array
 	 */
 	function SubmissionFilesMetadataForm(&$submissionFile, $additionalActionArgs = array()) {
-		parent::Form('controllers/grid/files/submissionFiles/form/metadataForm.tpl');
+		parent::Form('controllers/grid/files/form/metadataForm.tpl');
 
 		// Initialize the object.
 		$this->_submissionFile =& $submissionFile;

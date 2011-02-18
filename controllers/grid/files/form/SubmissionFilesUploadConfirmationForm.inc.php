@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/files/submissionFiles/form/SubmissionFilesUploadConfirmationForm.inc.php
+ * @file controllers/grid/files/form/SubmissionFilesUploadConfirmationForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFilesUploadConfirmationForm
- * @ingroup controllers_grid_files_submissionFiles_form
+ * @ingroup controllers_grid_files_form
  *
  * @brief Form for adding/editing a submission file
  */
@@ -27,7 +27,7 @@ class SubmissionFilesUploadConfirmationForm extends SubmissionFilesUploadBaseFor
 	function SubmissionFilesUploadConfirmationForm(&$request, $monographId, $fileStage, $revisedFileId = null, $uploadedFile = null, $additionalActionArgs = array()) {
 		// Initialize class.
 		parent::SubmissionFilesUploadBaseForm($request,
-				'controllers/grid/files/submissionFiles/form/fileUploadConfirmationForm.tpl',
+				'controllers/grid/files/form/fileUploadConfirmationForm.tpl',
 				$monographId, $fileStage, false, $revisedFileId, $additionalActionArgs);
 
 		if (is_a($uploadedFile, 'MonographFile')) {

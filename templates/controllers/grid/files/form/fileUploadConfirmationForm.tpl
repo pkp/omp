@@ -13,13 +13,14 @@
  *   $revisedFileName: The name of the potential revision.
  *   $monographFileOptions: A list of monograph files that can be
  *    revised.
+ *   $additionalActionArgs: Parameters to be added to the form action.
  *}
 
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the revision confirmation handler.
 		$('#uploadConfirmationForm').pkpHandler(
-			'$.pkp.controllers.files.submissionFiles.form.RevisionConfirmationHandler');
+			'$.pkp.controllers.files.form.RevisionConfirmationHandler');
 	{rdelim});
 </script>
 

@@ -44,9 +44,9 @@
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/modal/AjaxModalHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/modal/WizardModalHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/linkAction/LinkActionHandler.js"></script>
-<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/files/submissionFiles/FileUploadWizardHandler.js"></script>
-<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/files/submissionFiles/form/FileUploadFormHandler.js"></script>
-<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/files/submissionFiles/form/RevisionConfirmationHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/files/FileUploadWizardHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/files/form/FileUploadFormHandler.js"></script>
+<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/controllers/files/form/RevisionConfirmationHandler.js"></script>
 
 <script type="text/javascript" src="{$baseUrl}/js/controllers/informationCenter/InformationCenterHandler.js"></script>
 <script type="text/javascript" src="{$baseUrl}/js/controllers/informationCenter/NotesHandler.js"></script>

@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/files/submissionFiles/form/SubmissionFilesUploadForm.inc.php
+ * @file controllers/grid/files/form/SubmissionFilesUploadForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFilesUploadForm
- * @ingroup controllers_grid_files_submissionFiles_form
+ * @ingroup controllers_grid_files_form
  *
  * @brief Form for adding/editing a submission file
  */
@@ -28,7 +28,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 	function SubmissionFilesUploadForm(&$request, $monographId, $fileStage, $revisionOnly = false, $revisedFileId = null, $additionalActionArgs = array()) {
 		// Initialize class.
 		parent::SubmissionFilesUploadBaseForm($request,
-				'controllers/grid/files/submissionFiles/form/fileUploadForm.tpl',
+				'controllers/grid/files/form/fileUploadForm.tpl',
 				$monographId, $fileStage, $revisionOnly, $revisedFileId, $additionalActionArgs);
 	}
 

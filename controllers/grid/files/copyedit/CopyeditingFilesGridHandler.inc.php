@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/files/copyeditingFiles/CopyeditingFilesGridHandler.inc.php
+ * @file controllers/grid/files/copyedit/CopyeditingFilesGridHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CopyeditingFilesGridHandler
- * @ingroup controllers_grid_files_copyeditingFiles
+ * @ingroup controllers_grid_files_copyedit
  *
  * @brief Handle the fair copy files grid (displays copyedited files ready to move to proofreading)
  */
@@ -187,7 +187,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Form handling
-		import('controllers.grid.files.copyeditingFiles.form.CopyeditingUserForm');
+		import('controllers.grid.files.copyedit.form.CopyeditingUserForm');
 		$copyeditingUserForm = new CopyeditingUserForm($monograph);
 		if ($copyeditingUserForm->isLocaleResubmit()) {
 			$copyeditingUserForm->readInputData();
@@ -210,7 +210,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Form handling
-		import('controllers.grid.files.copyeditingFiles.form.CopyeditingUserForm');
+		import('controllers.grid.files.copyedit.form.CopyeditingUserForm');
 		$copyeditingUserForm = new CopyeditingUserForm($monograph);
 		$copyeditingUserForm->readInputData();
 		if ($copyeditingUserForm->validate()) {
@@ -238,7 +238,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			$templateMgr->assign('numColumns', count($columns));
 			$templateMgr->assign('columns', $columns);
 
-			$json = new JSON(true, $templateMgr->fetch('controllers/grid/files/copyeditingFiles/copyeditingGrid.tpl'));
+			$json = new JSON(true, $templateMgr->fetch('controllers/grid/files/copyedit/copyeditingGrid.tpl'));
 		} else {
 			$json = new JSON(false, Locale::translate('editor.monograph.addUserError'));
 		}
@@ -318,7 +318,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$signoffId = (int) $request->getUserVar('signoffId');
 		assert(!empty($signoffId));
 
-		import('controllers.grid.files.copyeditingFiles.form.CopyeditingFileForm');
+		import('controllers.grid.files.copyedit.form.CopyeditingFileForm');
 		$copyeditingFileForm = new CopyeditingFileForm($monograph, $signoffId);
 
 		if ($copyeditingFileForm->isLocaleResubmit()) {
@@ -342,7 +342,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$signoffId = (int) $request->getUserVar('signoffId');
 		assert(!empty($signoffId));
 
-		import('controllers.grid.files.copyeditingFiles.form.CopyeditingFileForm');
+		import('controllers.grid.files.copyedit.form.CopyeditingFileForm');
 		$copyeditingFileForm = new CopyeditingFileForm($monograph, $signoffId);
 		$copyeditingFileForm->readInputData();
 

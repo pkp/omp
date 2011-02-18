@@ -1,10 +1,10 @@
 {**
- * fileForm.tpl
+ * fileSubmissionComplete.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Files grid form
+ * Last step of the file upload wizard.
  *}
 <script type="text/javascript">
 	$(function() {ldelim}
@@ -20,10 +20,10 @@
 </script>
 
 <div id="finishSubmissionForm" class="pkp_helpers_text_center">
-		<h2>{translate key="submission.submit.fileAdded"}</h2>
-		<br />
-		<br />
-		<button type="button" name="newFile" id="newFile">{translate key='submission.submit.newFile'}</button>
-		<br />
-		<br />
+	<h2>{translate key="submission.submit.fileAdded"}</h2>
+	<br />
+	<br />
+	<button type="button" name="newFile" id="newFile">{translate key='submission.submit.newFile'}</button>
+	<br />
+	<br />
 </div>

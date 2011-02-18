@@ -1,5 +1,3 @@
-<!-- templates/controllers/grid/files/copyeditingFiles/form/copyeditingFileForm.tpl -->
-
 {**
  * copyeditingFileForm.tpl
  *
@@ -100,6 +98,3 @@
 
 
 {init_button_bar id="#uploadForm"}
-
-<!-- / templates/controllers/grid/files/copyeditingFiles/form/copyeditingFileForm.tpl -->
-

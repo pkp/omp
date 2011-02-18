@@ -9,13 +9,14 @@
  * Parameters:
  *   $monographId: The monograph to which files should be uploaded.
  *   $revisedFileId: A pre-selected file to be revised (optional).
+ *   $additionalActionArgs: Parameters to be added to the form action.
  *}
 
 <script type="text/javascript">
 	// Attach the JS file upload wizard handler.
 	$(function() {ldelim}
 		$('#fileUploadWizard').pkpHandler(
-				'$.pkp.controllers.files.submissionFiles.FileUploadWizardHandler',
+				'$.pkp.controllers.files.FileUploadWizardHandler',
 				{ldelim}
 					cancelButtonText: '{translate|escape:javascript key="common.cancel"}',
 					continueButtonText: '{translate|escape:javascript key="common.continue"}',
