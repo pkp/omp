@@ -28,7 +28,7 @@
 		action="{url op="confirmRevision" monographId=$monographId uploadedFileId=$uploadedFile->getFileId() params=$additionalActionArgs}"
 		method="post">
 	{fbvFormArea id="file"}
-		<div id="pkp_controllers_grid_files_possibleRevision" class="possibleRevision" style="display:none;">
+		<div id="possibleRevision" class="pkp_controllers_grid_files_possibleRevision" style="display:none;">
 			<div id="revisionWarningIcon" class="pkp_controllers_grid_files_warning"></div>
 			<div id="revisionWarningText">
 				<h5>{translate key="submission.upload.possibleRevision"}</h5>
