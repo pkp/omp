@@ -429,7 +429,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		}
 
 		if ($success) {
-			return $this->elementDeleted($fileId);
+			return $this->elementsChanged($fileId);
 		} else {
 			$json = new JSON(false);
 			return $json->getString();
@@ -467,7 +467,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		if ($metadataForm->validate()) {
 			$metadataForm->execute($args, $request);
 			$submissionFile = $metadataForm->getSubmissionFile();
-			return $this->elementAdded($submissionFile->getFileId());
+			return $this->elementsChanged($submissionFile->getFileId());
 		} else {
 			$json = new JSON(false, $metadataForm->fetch($request));
 		}
