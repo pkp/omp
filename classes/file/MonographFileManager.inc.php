@@ -277,16 +277,27 @@ class MonographFileManager extends FileManager {
 		// Retrieve the submission file DAO.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 
-		// Instantiate a new monograph file.
+		// We either need a genre id or a revised file, otherwise
+		// we cannot identify the target file implementation.
+		assert(genreId || $revisedFileId);
+		if (!$genreId || $revisedFileId) {
+			// Retrieve the revised file.
+			$revisedFile =& $submissionFileDao->getLatestRevision($revisedFileId, $fileStage, $monographId);
+			if (!is_a($revisedFile, 'MonographFile')) return false;
+		}
+
+		// If we don't have a genre then use the genre from the
+		// existing file.
+		if (!$genreId) {
+			$genreId = $revisedFile->getGenreId();
+		}
+
+		// Instantiate a new monograph file implementation.
 		$monographFile =& $submissionFileDao->newDataObjectByGenreId($genreId);
 		$monographFile->setMonographId($monographId);
 
 		// Do we create a new file or a new revision of an existing file?
 		if ($revisedFileId) {
-			// Retrieve the revised file.
-			$revisedFile =& $submissionFileDao->getLatestRevision($revisedFileId, $fileStage, $monographId);
-			if (!is_a($revisedFile, 'MonographFile')) return false;
-
 			// Create a new revision of the file with the existing file id.
 			$monographFile->setFileId($revisedFileId);
 			$monographFile->setRevision($revisedFile->getRevision()+1);
@@ -300,10 +311,6 @@ class MonographFileManager extends FileManager {
 			// Copy the file workflow stage.
 			assert(is_null($fileStage) || $fileStage == $revisedFile->getFileStage());
 			$fileStage = (int)$revisedFile->getFileStage();
-
-			// Copy the file genre.
-			assert(is_null($genreId) || $genreId == $revisedFile->getGenreId());
-			$genreId = (int)$revisedFile->getGenreId();
 
 			// Copy the assoc type.
 			assert(is_null($assocType) || $assocType == $revisedFile->getAssocType());
@@ -324,10 +331,8 @@ class MonographFileManager extends FileManager {
 		// Set the file file stage.
 		$monographFile->setFileStage($fileStage);
 
-		// Set the file genre (if given).
-		if(isset($genreId)) {
-			$monographFile->setGenreId($genreId);
-		}
+		// Set the file genre.
+		$monographFile->setGenreId($genreId);
 
 		// Set modification dates to the current system date.
 		$monographFile->setDateUploaded(Core::getCurrentDate());
