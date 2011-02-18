@@ -1168,19 +1168,12 @@ input.uploadFile {
   position:relative;
 }
 .pkp_structure_header .pkp_structure_header_basemenu > li:last-child { padding-right:15px; }
-.pkp_structure_body {
-  _text-align:center;
-  text-align:center;
-}
 .pkp_structure_body .pkp_structure_page_pagePanel {
   margin:10px auto;
   _text-align:left;
   width:960px;
 }
-.pkp_structure_body .pkp_structure_page_contentPanel {
-  margin:0 auto;
-  text-align:left;
-}
+.pkp_structure_body .pkp_structure_page_contentPanel { margin:0 auto; }
 .pkp_structure_body .pkp_structure_page_headPanel { height:90px; }
 .pkp_structure_body .pkp_structure_page_mainPanel {
   display:table-cell;
