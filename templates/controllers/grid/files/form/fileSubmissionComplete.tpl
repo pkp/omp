@@ -6,19 +6,6 @@
  *
  * Last step of the file upload wizard.
  *}
-<script type="text/javascript">
-	$(function() {ldelim}
-		// On newFile button click, return row then restart modal
-		/*	$('#newFile').click(function() {
-	   		saveAndUpdate('{/literal}{url op="fetchRow" monographId=$monographId fileId=$fileId escape=false}{literal}',
-	   	    		'append',
-	   	    		'#component-'+'{/literal}{$gridId}{literal}'+'-table',
-	   	    		'div#fileUploadTabs', true, '#component-'+'{/literal}{$gridId}{literal}'+'-addFile-button');
-	   	    return false;
-		}); */
-	{rdelim});
-</script>
-
 <div id="finishSubmissionForm" class="pkp_helpers_text_center">
 	<h2>{translate key="submission.submit.fileAdded"}</h2>
 	<br />
