@@ -87,7 +87,6 @@ switch ($op) {
 	//
 	// Languages
 	//
-
 	case 'languages':
 	case 'saveLanguageSettings':
 	case 'reloadLocalizedDefaultSettings':
