@@ -857,7 +857,6 @@ html > body .ui-pnotify { position:fixed; }
   display:block;
   margin:0 auto;
 }
-@import url("lib/pkp/styles/lib/plupload.queue.css");
 ul.tagit {
   padding:1px 5px;
   border-style:solid;

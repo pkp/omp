@@ -21,5 +21,8 @@
  * The following libraries are compilable but compiling throws image paths off.
  */
 
+/* Plupload - http://www.plupload.com/ */
+@import url("../lib/pkp/styles/lib/plupload/plupload.queue.css");
+
 /* JqueryUI - http://jqueryui.com */
 @import url("../lib/pkp/styles/lib/jqueryUi/jqueryUi.css");
