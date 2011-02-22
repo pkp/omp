@@ -81,7 +81,7 @@
 
 <br />
 <!-- Author actions -->
-<div id="authorActions pkp_linkActions">
+<div id="authorActions" class="pkp_linkActions">
 	<div id="addFile" class="authorAction">
 		{include file="linkAction/linkAction.tpl" action=$uploadFileAction id="uploadFileAction"}
 	</div>
