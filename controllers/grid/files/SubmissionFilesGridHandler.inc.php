@@ -14,8 +14,6 @@
 
 // Import UI base classes.
 import('lib.pkp.classes.controllers.grid.GridHandler');
-import('lib.pkp.classes.linkAction.request.WizardModal');
-import('lib.pkp.classes.linkAction.request.RedirectAction');
 
 // Import submission files grid specific classes.
 import('controllers.grid.files.SubmissionFilesGridRow');
@@ -23,6 +21,11 @@ import('controllers.grid.files.SubmissionFilesGridCellProvider');
 
 // Import monograph file class which contains the MONOGRAPH_FILE_* constants.
 import('classes.monograph.MonographFile');
+
+// Import actions.
+import('controllers.api.file.linkAction.AddFileLinkAction');
+import('controllers.grid.files.linkAction.DownloadAllLinkAction');
+
 
 class SubmissionFilesGridHandler extends GridHandler {
 	/** @var integer */
@@ -163,31 +166,13 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 		// Add grid-level actions.
 		if($this->canAdd()) {
-			$this->addAction(
-				new LinkAction(
-					'addFile',
-					new WizardModal(
-						$router->url($request, null, null, 'addFile', null, $actionArgs),
-						$this->revisionOnly() ? 'submission.submit.uploadRevision' : 'submission.submit.uploadSubmissionFile',
-						'fileManagement'
-					),
-					$this->revisionOnly() ? 'submission.addRevision' : 'submission.addFile',
-					'add'
-				)
-			);
+			$this->addAction(new AddFileLinkAction($request, $monograph->getId(), $this->getFileStage()));
 		}
 
 		// Test whether the tar binary is available for the export to work, if so, add 'download all' grid action
 		$tarBinary = Config::getVar('cli', 'tar');
-		if ($this->canDownloadAll() && !empty($tarBinary) && file_exists($tarBinary) && isset($this->_data)) {
-			$this->addAction(
-				new LinkAction(
-					'downloadAll',
-					new RedirectAction($router->url($request, null, null, 'downloadAllFiles', null, $actionArgs)),
-					'submission.files.downloadAll',
-					'getPackage'
-				)
-			);
+		if ($this->canDownloadAll() && !empty($tarBinary) && file_exists($tarBinary) && $this->hasData()) {
+			$this->addAction(new DownloadAllLinkAction($request, $monograph->getId()));
 		}
 
 		// Add extra columns to the grid
