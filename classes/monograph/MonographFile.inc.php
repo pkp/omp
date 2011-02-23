@@ -183,8 +183,35 @@ class MonographFile extends SubmissionFile {
 	function getFilePath() {
 		$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 		$monograph =& $monographDao->getMonograph($this->getMonographId());
-		import('classes.file.MonographFileManager');
-		return $monograph->getFilePath() . MonographFileManager::fileStageToPath($this->getFileStage()) . '/' . $this->getFileName();
+		return $monograph->getFilePath() . $this->_fileStageToPath($this->getFileStage()) . '/' . $this->getFileName();
+	}
+
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Return path associated with a file stage code.
+	 * @param $fileStage string
+	 * @return string
+	 */
+	function _fileStageToPath($fileStage) {
+		static $fileStageToPath = array(
+				MONOGRAPH_FILE_PUBLIC => 'public',
+				MONOGRAPH_FILE_SUBMISSION => 'submission',
+				MONOGRAPH_FILE_NOTE => 'note',
+				MONOGRAPH_FILE_REVIEW => 'submission/review',
+				MONOGRAPH_FILE_FINAL => 'submission/final',
+				MONOGRAPH_FILE_FAIR_COPY => 'submission/fairCopy',
+				MONOGRAPH_FILE_EDITOR => 'submission/editor',
+				MONOGRAPH_FILE_COPYEDIT => 'submission/copyedit',
+				MONOGRAPH_FILE_PRODUCTION => 'submission/production',
+				MONOGRAPH_FILE_GALLEY => 'submission/galleys',
+				MONOGRAPH_FILE_LAYOUT => 'submission/layout',
+				MONOGRAPH_FILE_ATTACHMENT => 'attachment');
+
+		assert(isset($fileStageToPath[$fileStage]));
+		return $fileStageToPath[$fileStage];
 	}
 }
 

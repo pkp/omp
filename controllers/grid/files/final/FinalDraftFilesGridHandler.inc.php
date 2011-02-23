@@ -70,15 +70,8 @@ class FinalDraftFilesGridHandler extends SubmissionFilesGridHandler {
 		if($this->canManage()) {
 			$monograph =& $this->getMonograph();
 			$router =& $request->getRouter();
-				$this->addAction(
-					new LinkAction(
-						'manageFinalDraftFiles',
-						new AjaxModal(
-							$router->url($request, null, null, 'manageFinalDraftFiles', null, array('monographId' => $monograph->getId())),
-							'editor.monograph.manageFinalDraftFiles'
-						),
-						'editor.monograph.manageFinalDraftFiles',
-						'add'
+			$this->addAction(new SelectSubmissionFilesLinkAction(&$request,
+					$monograph->getId(), __('editor.monograph.manageFinalDraftFiles')));
 					)
 				);
 		}
@@ -98,7 +91,7 @@ class FinalDraftFilesGridHandler extends SubmissionFilesGridHandler {
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function manageFinalDraftFiles($args, &$request) {
+	function selectFiles($args, &$request) {
 		// Instantiate the files form.
 		import('controllers.grid.files.final.form.ManageFinalDraftFilesForm');
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH); /* @var $monograph Monograph */

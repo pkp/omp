@@ -95,7 +95,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 	/**
 	 * Get the workflow stage file storage that this
-	 * grid operaties on. One of the MONOGRAPH_FILE_*
+	 * grid operates on. One of the MONOGRAPH_FILE_*
 	 * constants.
 	 * @return integer
 	 */
@@ -266,19 +266,15 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @see GridHandler::fetchGrid()
 	 */
 	function fetchGrid($args, &$request) {
-		// Merge the monograph ID with any other arguments we need to put in the request
+		// Add the monograph id to the parameters required to render this grid.
 		$monograph =& $this->getMonograph();
-		$fetchParams = array_merge(
-							array('monographId' => $monograph->getId()),
-							$this->getAdditionalActionArgs()
-					   );
-
+		$fetchParams = array('monographId' => $monograph->getId());
 		return parent::fetchGrid($args, $request, $fetchParams);
 	}
 
 
 	//
-	// Public handler actions
+	// Public handler methods
 	//
 	/**
 	 * An action to add a new file or revision.
@@ -515,7 +511,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$monographId = (int)$request->getUserVar('monographId');
 
 		import('classes.file.MonographFileManager');
-		MonographFileManager::downloadFilesArchive($monographId, $this->_data);
+		MonographFileManager::downloadFilesArchive($monographId, $this->getData());
 	}
 
 	/**
@@ -537,8 +533,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	// Protected helper methods
 	//
 	/**
-	 * Function that can be called by sub-classes to load the
-	 * files into the grid.
+	 * Loads the files into the grid.
 	 */
 	function loadMonographFiles() {
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */

@@ -19,7 +19,7 @@ class AccessSettingsTabHandler extends Handler {
 
 	/**
 	 * Constructor
-	 **/
+	 */
 	function AccessSettingsTabHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
@@ -40,10 +40,6 @@ class AccessSettingsTabHandler extends Handler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
 	}
 
-
-	//
-	// Public handler methods
-	//
 	/**
 	 * @see PKPHandler::authorize()
 	 * @param $request PKPRequest
@@ -56,6 +52,10 @@ class AccessSettingsTabHandler extends Handler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
+
+	//
+	// Public handler methods
+	//
 	/**
 	 * Handle user management requests.
 	 * @param $args

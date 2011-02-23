@@ -134,7 +134,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		// Fetch the monograph to display information about
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		$noteId = (int) $request::getUserVar('noteId');
+		$noteId = (int) $request->getUserVar('noteId');
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$note =& $noteDao->getById($noteId);
 		assert ($note && $note->getAssocType == ASSOC_TYPE_MONOGRAPH && $note->getAssocId() == $monograph->getId());

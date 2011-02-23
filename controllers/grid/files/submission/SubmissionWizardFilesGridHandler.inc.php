@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file controllers/grid/files/submission/SubmissionFilesGridHandler.inc.php
+ * @file controllers/grid/files/submission/SubmissionWizardFilesGridHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SubmissionFilesGridHandler
+ * @class SubmissionWizardFilesGridHandler
  * @ingroup controllers_grid_files_submission
  *
  * @brief Handle submission file grid requests at the author submission wizard.

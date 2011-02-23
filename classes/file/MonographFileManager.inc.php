@@ -160,28 +160,6 @@ class MonographFileManager extends FileManager {
 	}
 
 	/**
-	 * Return path associated with a file stage code.
-	 * @param $fileStage string
-	 * @return string
-	 */
-	function fileStageToPath($fileStage) {
-		switch ($fileStage) {
-			case MONOGRAPH_FILE_PUBLIC: return 'public';
-			case MONOGRAPH_FILE_SUBMISSION: return 'submission';
-			case MONOGRAPH_FILE_NOTE: return 'note';
-			case MONOGRAPH_FILE_REVIEW: return 'submission/review';
-			case MONOGRAPH_FILE_FINAL: return 'submission/final';
-			case MONOGRAPH_FILE_FAIR_COPY: return 'submission/fairCopy';
-			case MONOGRAPH_FILE_EDITOR: return 'submission/editor';
-			case MONOGRAPH_FILE_COPYEDIT: return 'submission/copyedit';
-			case MONOGRAPH_FILE_PRODUCTION: return 'submission/production';
-			case MONOGRAPH_FILE_GALLEY: return 'submission/galleys';
-			case MONOGRAPH_FILE_LAYOUT: return 'submission/layout';
-			case MONOGRAPH_FILE_ATTACHMENT: default: return 'attachment';
-		}
-	}
-
-	/**
 	 * Copy a temporary file to a monograph file.
 	 * @param $monographId integer
 	 * @param $temporaryFile MonographFile
@@ -279,7 +257,7 @@ class MonographFileManager extends FileManager {
 
 		// We either need a genre id or a revised file, otherwise
 		// we cannot identify the target file implementation.
-		assert(genreId || $revisedFileId);
+		assert($genreId || $revisedFileId);
 		if (!$genreId || $revisedFileId) {
 			// Retrieve the revised file.
 			$revisedFile =& $submissionFileDao->getLatestRevision($revisedFileId, $fileStage, $monographId);

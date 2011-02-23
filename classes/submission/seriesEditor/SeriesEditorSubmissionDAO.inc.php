@@ -200,7 +200,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		if (isset($reviewType)) {
 			$reviewRound = $reviewRoundDao->build(
 					$seriesEditorSubmission->getId(),
-					$seriesEditorSubmission->getCurrentReviewType(),
+					$reviewType,
 					$round == null ? 1 : $round);
 
 			if ($seriesEditorSubmission->getReviewRevision() != null) {

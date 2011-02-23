@@ -37,6 +37,7 @@ class EditorReviewFilesGridHandler extends ReviewFilesGridHandler {
 	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
+		// FIXME: Check whether taking the stage from the request circumvents authorization.
 		$stageId = $request->getUserVar('stageId');
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));

@@ -84,7 +84,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				if ( $this->getCellState($row, $column) != 'linkReview') {
 					return array('label' => $element->getReviewerFullName());
 				}
-				return '';
+				return array('label' => '');
 
 			case is_numeric($columnId):
 			case 'reviewer':
