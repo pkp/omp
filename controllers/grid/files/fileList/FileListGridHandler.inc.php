@@ -19,13 +19,39 @@
 import('controllers.grid.files.SubmissionFilesGridHandler');
 
 class FileListGridHandler extends SubmissionFilesGridHandler {
+	/** @var boolean */
+	var $_canManage;
+
 
 	/**
 	 * Constructor
-	 * @see SubmissionFilesGridHandler::SubmissionFilesGridHandler()
+	 * @param $dataProvider GridDataProvider
+	 * @param $canAdd boolean whether the grid will contain
+	 *  an "add file" button.
+	 * @param $isSelectable boolean whether this grid displays
+	 *  checkboxes on each grid row that allows files to be selected
+	 *  as form inputs
+	 * @param $canDownloadAll boolean whether the user can download
+	 *  all files in the grid as a compressed file
+	 * @param $canManage boolean whether the grid shows a "manage files"
+	 *  action.
 	 */
-	function FileListGridHandler($fileStage, $canAdd = true, $isSelectable = false, $canDownloadAll = false) {
-		parent::SubmissionFilesGridHandler($fileStage, $canAdd, $isSelectable, $canDownloadAll);
+	function FileListGridHandler($dataProvider, $canAdd = true, $isSelectable = false, $canDownloadAll = false, $canManage = false) {
+		$this->_canManage = $canManage;
+
+		parent::SubmissionFilesGridHandler($dataProvider, $canAdd, $isSelectable, $canDownloadAll);
+	}
+
+
+	//
+	// Getters/Setters
+	//
+	/**
+	 * Whether the grid allows file management (select existing files to add to grid)
+	 * @return boolean
+	 */
+	function canManage() {
+		return $this->_canManage;
 	}
 
 
@@ -37,6 +63,12 @@ class FileListGridHandler extends SubmissionFilesGridHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+
+		// Add the "manage files" action if required.
+		if($this->canManage()) {
+			$dataProvider =& $this->getDataProvider();
+			$this->addAction($dataProvider->getSelectAction($request));
+		}
 
 		// The file list grid layout has an additional file genre column.
 		import('controllers.grid.files.fileList.FileGenreGridColumn');

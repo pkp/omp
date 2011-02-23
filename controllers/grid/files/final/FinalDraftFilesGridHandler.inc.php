@@ -27,7 +27,7 @@ class FinalDraftFilesGridHandler extends SubmissionFilesGridHandler {
 		$this->_canManage = $canManage;
 		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_FINAL, $canAdd, $isSelectable, $canDownloadAll);
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array('fetchGrid', 'downloadFile', 'downloadAllFiles', 'manageFinalDraftFiles', 'updateFinalDraftFiles', 'deleteFile'));
+				array('fetchGrid', 'downloadFile', 'downloadAllFiles', 'selectFiles', 'updateFinalDraftFiles', 'deleteFile'));
 	}
 
 	/**

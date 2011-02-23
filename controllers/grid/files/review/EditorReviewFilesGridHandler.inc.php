@@ -23,24 +23,7 @@ class EditorReviewFilesGridHandler extends ReviewFilesGridHandler {
 		parent::ReviewFilesGridHandler($canAdd, $isSelectable, true, $canManage);
 
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'downloadFile', 'downloadAllFiles', 'manageReviewFiles',
-					 'uploadReviewFile', 'updateReviewFiles', 'deleteFile'));
-	}
-
-	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		// FIXME: Check whether taking the stage from the request circumvents authorization.
-		$stageId = $request->getUserVar('stageId');
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
-		return parent::authorize($request, $args, $roleAssignments);
+				array('fetchGrid', 'fetchRow', 'downloadAllFiles', 'selectFiles',
+						'uploadReviewFile', 'updateReviewFiles'));
 	}
 }

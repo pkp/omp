@@ -21,8 +21,9 @@ class SubmissionDetailsFilesGridHandler extends FileListGridHandler {
 	 * @param $canAdd boolean Whether to show the 'add files' grid action
 	 */
 	function SubmissionDetailsFilesGridHandler($canAdd = true, $isSelectable = false, $canDownloadAll = false) {
-		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_SUBMISSION, $canAdd, $isSelectable, $canDownloadAll);
-
+		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+		$dataProvider = new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_SUBMISSION);
+		parent::FileListGridHandler($dataProvider, $canAdd, $isSelectable, $canDownloadAll);
 		$this->addRoleAssignment(
 				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'fetchRow', 'downloadAllFiles'));
@@ -32,16 +33,6 @@ class SubmissionDetailsFilesGridHandler extends FileListGridHandler {
 	//
 	// Implement template methods from PKPHandler
 	//
-	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-
 	/**
 	 * @see PKPHandler::initialize()
 	 */

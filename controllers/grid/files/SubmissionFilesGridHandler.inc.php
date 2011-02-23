@@ -22,14 +22,9 @@ import('controllers.grid.files.FileNameGridColumn');
 // Import monograph file class which contains the MONOGRAPH_FILE_* constants.
 import('classes.monograph.MonographFile');
 
-// Import actions.
-import('controllers.api.file.linkAction.AddFileLinkAction');
-import('controllers.grid.files.linkAction.DownloadAllLinkAction');
-
-
 class SubmissionFilesGridHandler extends GridHandler {
-	/** @var integer */
-	var $_fileStage;
+	/** @var GridDataProvider */
+	var $_dataProvider;
 
 	/** @var boolean */
 	var $_canAdd;
@@ -46,9 +41,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 	/**
 	 * Constructor
-	 * @param $fileStage integer the workflow stage
-	 *  file storage that this grid operates on. One of
-	 *  the MONOGRAPH_FILE_* constants.
+	 * @param $dataProvider GridDataProvider
 	 * @param $canAdd boolean whether the grid will contain
 	 *  an "add file" button.
 	 * @param $isSelectable boolean whether this grid displays
@@ -57,9 +50,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $canDownloadAll boolean whether the user can download
 	 *  all files in the grid as a compressed file
 	 */
-	function SubmissionFilesGridHandler($fileStage, $canAdd = true, $isSelectable = false, $canDownloadAll = false) {
-		assert(is_numeric($fileStage) && $fileStage > 0);
-		$this->_fileStage = (int)$fileStage;
+	function SubmissionFilesGridHandler(&$dataProvider, $canAdd = true, $isSelectable = false, $canDownloadAll = false) {
+		$this->_dataProvider =& $dataProvider;
 		$this->_canAdd = (boolean)$canAdd;
 		$this->_isSelectable = (boolean)$isSelectable;
 		$this->_canDownloadAll = (boolean)$canDownloadAll;
@@ -72,24 +64,35 @@ class SubmissionFilesGridHandler extends GridHandler {
 	// Getters and Setters
 	//
 	/**
+	 * Get the data provider.
+	 * @return FilesGridDataProvider
+	 */
+	function &getDataProvider() {
+		return $this->_dataProvider;
+	}
+
+	/**
+	 * Get a grid request parameter.
+	 * from the data provider.
+	 * @param $key string The name of the parameter to retrieve.
+	 * @return mixed
+	 */
+	function getRequestArg($key) {
+		$dataProvider =& $this->getDataProvider();
+		$requestArgs =& $dataProvider->getRequestArgs();
+		assert(isset($requestArgs[$key]));
+		return $requestArgs[$key];
+	}
+
+	/**
 	 * Get the authorized monograph.
 	 * @return Monograph
 	 */
 	function &getMonograph() {
+		// We assume proper authentication by the data provider.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		// We assume proper authentication by sub-classes.
 		assert(is_a($monograph, 'Monograph'));
 		return $monograph;
-	}
-
-	/**
-	 * Get the workflow stage file storage that this
-	 * grid operates on. One of the MONOGRAPH_FILE_*
-	 * constants.
-	 * @return integer
-	 */
-	function getFileStage() {
-		return $this->_fileStage;
 	}
 
 	/**
@@ -141,7 +144,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 	    return $this->_selectName;
 	}
 
-
 	/**
 	 * Can the user download all files as an archive?
 	 * @return boolean
@@ -150,36 +152,49 @@ class SubmissionFilesGridHandler extends GridHandler {
 		return $this->_canDownloadAll;
 	}
 
+
 	//
 	// Implement template methods from PKPHandler
 	//
+	/**
+	 * @see PKPHandler::authorize()
+	 */
+	function authorize(&$request, &$args, $roleAssignments) {
+		$dataProvider =& $this->getDataProvider();
+		$this->addPolicy($dataProvider->getAuthorizationPolicy(&$request, &$args, $roleAssignments));
+		$success = parent::authorize($request, $args, $roleAssignments);
+		if ($success === true) {
+			$dataProvider->setAuthorizedContext($this->getAuthorizedContext());
+		}
+		return $success;
+	}
+
 	/**
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-		$router =& $request->getRouter();
-		$monograph =& $this->getMonograph();
 
 		// Load translations.
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));
 
 		// Add grid-level actions.
+		$dataProvider =& $this->getDataProvider();
 		if($this->canAdd()) {
-			$this->addAction(new AddFileLinkAction($request, $monograph->getId(), $this->getFileStage()));
+			$this->addAction($dataProvider->getAddFileAction($request));
 		}
 
 		// Test whether the tar binary is available for the export to work, if so, add 'download all' grid action
 		$tarBinary = Config::getVar('cli', 'tar');
 		if ($this->canDownloadAll() && !empty($tarBinary) && file_exists($tarBinary) && $this->hasData()) {
-			$this->addAction(new DownloadAllLinkAction($request, $monograph->getId()));
+			$this->addAction($dataProvider->getDownloadAllAction($request));
 		}
 
 		// The file name column is common to all file grid types.
 		$this->addColumn(new FileNameGridColumn());
 
-		// Load grid data.
-		$this->loadMonographFiles();
+		// Populate the grid with data.
+		$this->setData($dataProvider->getRowData());
 	}
 
 
@@ -198,10 +213,10 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @see GridHandler::fetchGrid()
 	 */
 	function fetchGrid($args, &$request) {
-		// Add the monograph id to the parameters required to render this grid.
-		$monograph =& $this->getMonograph();
-		$fetchParams = array('monographId' => $monograph->getId());
-		return parent::fetchGrid($args, $request, $fetchParams);
+		// Retrieve and add the the request parameters required to
+		// specify the contents of this grid.
+		$dataProvider =& $this->getDataProvider();
+		return parent::fetchGrid($args, $request, $dataProvider->getRequestArgs());
 	}
 
 
@@ -214,27 +229,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @param $request Request
 	 */
 	function downloadAllFiles($args, &$request) {
-		$monographId = (int)$request->getUserVar('monographId');
-
-		import('classes.file.MonographFileManager');
-		MonographFileManager::downloadFilesArchive($monographId, $this->getData());
-	}
-
-
-	//
-	// Protected helper methods
-	//
-	/**
-	 * Loads the files into the grid.
-	 */
-	function loadMonographFiles() {
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monograph =& $this->getMonograph();
-		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->getFileStage());
-		$rowData = array();
-		foreach ($monographFiles as $monographFile) {
-			$rowData[$monographFile->getFileId()] = $monographFile;
-		}
-		$this->setData($rowData);
+		import('classes.file.MonographFileManager');
+		MonographFileManager::downloadFilesArchive($monograph->getId(), $this->getData());
 	}
 }
