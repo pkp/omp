@@ -27,7 +27,6 @@
 
 	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/styles/lib.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/styles/compiled.css" />
-	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/themes/default/theme.css" />
 
 	{call_hook|assign:"leftSidebarCode" name="Templates::Common::LeftSidebar"}
 	{call_hook|assign:"rightSidebarCode" name="Templates::Common::RightSidebar"}
@@ -35,6 +34,9 @@
 	{foreach from=$stylesheets item=cssUrl}
 		<link rel="stylesheet" href="{$cssUrl}" type="text/css" />
 	{/foreach}
+
+	{* FIXME: This should eventually be moved into a theme plugin. *}
+	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/themes/default/theme.css" />
 
 	<!-- Base Jquery -->
 	{if $allowCDN}<script src="http://www.google.com/jsapi" type="text/javascript"></script>
@@ -75,60 +77,55 @@
 
 	{$additionalHeadData}
 </head>
-<body class="pkp_structure_body">
-	<div class="pkp_structure_page_pagePanel">
-		<div class="pkp_structure_header">
-			{include file="common/sitenav.tpl"}
-			<div class="pkp_structure_header_masthead">
-				<h1>
-					{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
-						<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
-					{/if}
-					{if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
-						<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
-					{elseif $displayPageHeaderTitle}
-						{$displayPageHeaderTitle}
-					{elseif $alternatePageHeader}
-						{$alternatePageHeader}
-					{elseif $siteTitle}
-						{$siteTitle}
-					{else}
-						{$applicationName}
-					{/if}
-				</h1>
-			</div>
-
-			{include file="common/localnav.tpl"}
-		</div>
-
-		<div class="pkp_structure_page_bodyPanel">
-			{if $isUserLoggedIn}
-				<div id="toolbox" class="pkp_structure_toolbox mod simple">
-					<div class="mod simple">
-						<b class="top"><b class="tl"></b><b class="tr"></b></b>
-						<div class="inner">
-							<div class="hd">
-								<h3>{translate key="toolbox.toolbox"}</h3>
-							</div>
-							{$rightSidebarCode}
-						</div><!-- inner -->
-						<b class="bottom"><b class="bl"></b><b class="br"></b></b>
-					</div><!-- mod simple -->
+<body>
+	<div class="pkp_structure_page">
+		<div class="pkp_structure_head">
+			<div class="pkp_structure_content">
+				<div class="unit size1of5">
+					<div class="pkp_structure_masthead">
+						<h1>
+							{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
+								<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogoAltText != ''}alt="{$displayPageHeaderLogoAltText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
+							{/if}
+							{if $displayPageHeaderTitle && is_array($displayPageHeaderTitle)}
+								<img src="{$publicFilesDir}/{$displayPageHeaderTitle.uploadName|escape:"url"}" width="{$displayPageHeaderTitle.width|escape}" height="{$displayPageHeaderTitle.height|escape}" {if $displayPageHeaderTitleAltText != ''}alt="{$displayPageHeaderTitleAltText|escape}"{else}alt="{translate key="common.pageHeader.altText"}"{/if} />
+							{elseif $displayPageHeaderTitle}
+								{$displayPageHeaderTitle}
+							{elseif $alternatePageHeader}
+								{$alternatePageHeader}
+							{elseif $siteTitle}
+								{$siteTitle}
+							{else}
+								{$applicationName}
+							{/if}
+						</h1>
+					</div><!-- pkp_structure_masthead -->
 				</div>
-			{/if}
-
-			<script type="text/javascript">
-				// Attach the JS page handler to the main content wrapper.
-				$(function() {ldelim}
-					$('div.pkp_structure_page_mainPanel').pkpHandler('$.pkp.controllers.PageHandler');
-				{rdelim});
-			</script>
-			<div class="pkp_structure_page_mainPanel">
-
-				{if $pageSubtitle && !$pageSubtitleTranslated}{translate|assign:"pageSubtitleTranslated" key=$pageSubtitle}{/if}
-				{if $pageSubtitleTranslated}
-					<h3>{$pageSubtitleTranslated}</h3>
+				<div class="unit size4of5 lastUnit">
+					<div class="pkp_structure_navigation">
+						{include file="common/sitenav.tpl"}
+						{include file="common/localnav.tpl"}
+					</div>
+				</div>
+			</div><!-- pkp_structure_content -->
+		</div><!-- pkp_structure_head -->
+		<div class="pkp_structure_body">
+			<div class="pkp_structure_content">
+				{if $leftSidebarCode}
+					<div class="pkp_structure_sidebar pkp_structure_sidebar_left mod simple">
+						{$leftSidebarCode}
+					</div><!-- pkp_structure_sidebar_left -->
 				{/if}
+				{if $rightSidebarCode}
+					<div class="pkp_structure_sidebar pkp_structure_sidebar_right mod simple">
+						{$rightSidebarCode}
+					</div><!-- pkp_structure_sidebar_right -->
+				{/if}
+				<script type="text/javascript">
+					// Attach the JS page handler to the main content wrapper.
+					$(function() {ldelim}
+						$('div.pkp_structure_main').pkpHandler('$.pkp.controllers.PageHandler');
+					{rdelim});
+				</script>
 
-				<div id="content" class="pkp_structure_main_contentPanel">
-
+				<div class="pkp_structure_main">

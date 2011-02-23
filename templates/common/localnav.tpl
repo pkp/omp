@@ -35,9 +35,9 @@
 	{/if}
 {/capture}
 
-{if $isUserLoggedIn}
-	<div class="pkp_structure_header_localNav">
-		<ul class="sf-menu" class="pkp_structure_header_basemenu">
+<div class="pkp_structure_head_localNav">
+	{if $isUserLoggedIn}
+		<ul class="sf-menu">
 			<li><a href="{url page="dashboard"}">{translate key="navigation.dashboard"}</a></li>
 			<li><a href="{url page="dashboard" op="status"}">{translate key="navigation.submissions"}</a></li>
 			{if $currentPress}
@@ -70,9 +70,9 @@
 				</li>
 			{/if}
 		</ul>
-	</div>
-{else}{* !$isUserLoggedIn *}
-	<div class="pkp_structure_header_localNav">
-		<ul class="sf-menu pkp_structure_header_basemenu">{$publicMenu}</ul>
-	</div>
-{/if}{* $isUserLoggedIn *}
+	{else}{* !$isUserLoggedIn *}
+		<ul class="sf-menu">
+			{$publicMenu}
+		</ul>
+	{/if}{* $isUserLoggedIn *}
+</div>
