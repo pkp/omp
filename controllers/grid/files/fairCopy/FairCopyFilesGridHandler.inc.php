@@ -23,7 +23,7 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 	 */
 	function FairCopyFilesGridHandler() {
 		// Configure the submission file grid.
-		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_FAIR_COPY, true, false, false, true);
+		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_FAIR_COPY, true, false, true);
 
 		// Configure role based authorization.
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),

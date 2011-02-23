@@ -20,7 +20,7 @@ class ReviewAttachmentsGridHandler extends SubmissionFilesGridHandler {
 	 * Constructor
 	 */
 	function ReviewAttachmentsGridHandler($canAdd = true, $isSelectable = false, $canDownloadAll = true) {
-		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_ATTACHMENT, $canAdd, false, $isSelectable, $canDownloadAll, true);
+		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_ATTACHMENT, $canAdd, $isSelectable, $canDownloadAll);
 	}
 
 	//

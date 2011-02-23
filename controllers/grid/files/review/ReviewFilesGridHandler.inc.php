@@ -34,7 +34,7 @@ class ReviewFilesGridHandler extends SubmissionFilesGridHandler {
 	function ReviewFilesGridHandler($canAdd = false, $isSelectable = false, $canDownloadAll = false, $canManage = true) {
 		$this->_canManage = $canManage;
 
-		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_REVIEW, $canAdd, false, $isSelectable, $canDownloadAll);
+		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_REVIEW, $canAdd, $isSelectable, $canDownloadAll);
 	}
 
 	//

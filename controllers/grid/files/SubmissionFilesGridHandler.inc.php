@@ -32,9 +32,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 	var $_canAdd;
 
 	/** @var boolean */
-	var $_revisionOnly;
-
-	/** @var boolean */
 	var $_canDownloadAll;
 
 	/** @var array */
@@ -43,8 +40,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/** @var string */
 	var $_selectName;
 
-	/** @var array */
-	var $_additionalActionArgs;
 
 	/**
 	 * Constructor
@@ -53,20 +48,16 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 *  the MONOGRAPH_FILE_* constants.
 	 * @param $canAdd boolean whether the grid will contain
 	 *  an "add file" button.
-	 * @param $revisionOnly boolean whether this grid
-	 *  allows uploading of revisions only or whether also
-	 *  new files can be uploaded.
 	 * @param $isSelectable boolean whether this grid displays
 	 *  checkboxes on each grid row that allows files to be selected
 	 *  as form inputs
 	 * @param $canDownloadAll boolean whether the user can download
 	 *  all files in the grid as a compressed file
 	 */
-	function SubmissionFilesGridHandler($fileStage, $canAdd = true, $revisionOnly = false, $isSelectable = false, $canDownloadAll = false) {
+	function SubmissionFilesGridHandler($fileStage, $canAdd = true, $isSelectable = false, $canDownloadAll = false) {
 		assert(is_numeric($fileStage) && $fileStage > 0);
 		$this->_fileStage = (int)$fileStage;
 		$this->_canAdd = (boolean)$canAdd;
-		$this->_revisionOnly = (boolean)$revisionOnly;
 		$this->_isSelectable = (boolean)$isSelectable;
 		$this->_canDownloadAll = (boolean)$canDownloadAll;
 
@@ -105,14 +96,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 */
 	function canAdd() {
 		return $this->_canAdd;
-	}
-
-	/**
-	 * Does this grid only allow revisions and no new files?
-	 * @return boolean
-	 */
-	function revisionOnly() {
-		return $this->_revisionOnly;
 	}
 
 	/**
@@ -164,40 +147,16 @@ class SubmissionFilesGridHandler extends GridHandler {
 		return $this->_canDownloadAll;
 	}
 
-	/**
-	 * Set the additional action argument array
-	 * @param $additionalActionArgs array
-	 */
-	function setAdditionalActionArgs($additionalActionArgs) {
-	    $this->_additionalActionArgs = $additionalActionArgs;
-	}
-
-	/**
-	 * Get the additional action argument array
-	 * @return array
-	 */
-	function getAdditionalActionArgs() {
-	    return $this->_additionalActionArgs;
-	}
-
-
 	//
 	// Implement template methods from PKPHandler
 	//
 	/**
-	 * @param $request PKPRequest
-	 * @param $cellProvider GridCellProvider
-	 * @param $additionalActionArgs array Additional key/value pairs to add to URLs
 	 * @see PKPHandler::initialize()
 	 */
-	function initialize(&$request, &$cellProvider, $additionalActionArgs = array()) {
+	function initialize(&$request) {
 		parent::initialize($request);
 		$router =& $request->getRouter();
 		$monograph =& $this->getMonograph();
-
-		// Set any additional action args coming in from subclasses; Merge them with the monograph ID
-		$this->setAdditionalActionArgs($additionalActionArgs);
-		$actionArgs = array_merge(array('monographId' => $monograph->getId()), $additionalActionArgs);
 
 		// Load translations.
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));

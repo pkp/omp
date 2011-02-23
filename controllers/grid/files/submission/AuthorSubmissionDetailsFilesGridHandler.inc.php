@@ -27,7 +27,7 @@ class AuthorSubmissionDetailsFilesGridHandler extends SubmissionDetailsFilesGrid
 	 * Constructor
 	 */
 	function AuthorSubmissionDetailsFilesGridHandler() {
-		parent::SubmissionDetailsFilesGridHandler(false, false, false, true);
+		parent::SubmissionDetailsFilesGridHandler(false, false, true);
 	}
 
 
