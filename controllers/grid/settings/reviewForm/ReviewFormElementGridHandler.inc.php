@@ -126,9 +126,11 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_PRESS, $press->getId());
+		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_PRESS, $press->getId(), true);
+		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_PRESS, $press->getId(), false);
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 
-		if (!isset($reviewForm) || $reviewForm->getCompleteCount() != 0 || $reviewForm->getIncompleteCount() != 0 || ($reviewFormElementId != null && !$reviewFormElementDao->reviewFormElementExists($reviewFormElementId, $reviewFormId))) {
+		if (!isset($reviewForm) || $completeCounts[$reviewForm->getId()] != 0 || $incompleteCounts[$reviewForm->getId()] != 0 || ($reviewFormElementId != null && !$reviewFormElementDao->reviewFormElementExists($reviewFormElementId, $reviewFormId))) {
 			return ''; // send error to modal
 		} else {
 			$templateMgr =& TemplateManager::getManager();

@@ -121,7 +121,9 @@ class ReviewFormGridHandler extends SetupGridHandler {
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_PRESS, $press->getId());
 
-		if ($reviewFormId != null && (!isset($reviewForm) || $reviewForm->getCompleteCount() != 0 || $reviewForm->getIncompleteCount() != 0)) {
+		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_PRESS, $press->getId(), true);
+		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_PRESS, $press->getId(), false);
+		if ($reviewFormId != null && (!isset($reviewForm) || $completeCounts[$reviewForm->getId()] != 0 || $incompleteCounts[$reviewForm->getId()] != 0)) {
 			Request::redirect(null, null, 'reviewForms');
 		} else {
 			$templateMgr =& TemplateManager::getManager();
@@ -208,8 +210,10 @@ class ReviewFormGridHandler extends SetupGridHandler {
 		$reviewFormId = $this->getId();
 		$reviewFormDao =& DAORegistry::getDAO('ReviewFormDAO');
 		$reviewForm =& $reviewFormDao->getReviewForm($reviewFormId, ASSOC_TYPE_PRESS, $press->getId());
+		$completeCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_PRESS, $press->getId(), true);
+		$incompleteCounts = $reviewFormDao->getUseCounts(ASSOC_TYPE_PRESS, $press->getId(), false);
 
-		if (isset($reviewForm) && $reviewForm->getCompleteCount() == 0 && $reviewForm->getIncompleteCount() == 0) {
+		if (isset($reviewForm) && $completeCounts[$reviewForm->getId()] == 0 && $incompleteCounts[$reviewForm->getId()] == 0) {
 			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 			$reviewAssignments =& $reviewAssignmentDao->getByReviewFormId($reviewFormId);
 
