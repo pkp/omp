@@ -253,7 +253,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
-		$row = new SubmissionFilesGridRow();
+		$row = new SubmissionFilesGridRow($this->getFileStage());
 		return $row;
 	}
 
@@ -272,53 +272,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 	// Public handler methods
 	//
 	/**
-	 * Delete a file or revision
-	 * @param $args array
-	 * @param $request Request
-	 * @return string a serialized JSON object
-	 */
-	function deleteFile($args, &$request) {
-		$fileId = (int)$request->getUserVar('fileId');
-
-		$success = false;
-		if($fileId) {
-			// Delete all revisions or only one?
-			$revision = $request->getUserVar('revision')? (int)$request->getUserVar('revision') : null;
-
-			// Delete the file/revision but only when it belongs to the authorized monograph
-			// and to the right file stage.
-			$monograph =& $this->getMonograph();
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			if ($revision) {
-				$success = (boolean)$submissionFileDao->deleteRevisionById($fileId, $revision, $this->getFileStage(), $monograph->getId());
-			} else {
-				$success = (boolean)$submissionFileDao->deleteAllRevisionsById($fileId, $this->getFileStage(), $monograph->getId());
-			}
-		}
-
-		if ($success) {
-			return $this->elementsChanged($fileId);
-		} else {
-			$json = new JSON(false);
-			return $json->getString();
-		}
-	}
-
-	/**
-	 * Download a file
-	 * @param $args array
-	 * @param $request Request
-	 */
-	function downloadFile($args, &$request) {
-		$monographId = (int)$request->getUserVar('monographId');
-		$fileId = (int)$request->getUserVar('fileId');
-		$revision = (int)$request->getUserVar('fileRevision');
-
-		import('classes.file.MonographFileManager');
-		MonographFileManager::downloadFile($monographId, $fileId, ($revision ? $revision : null));
-	}
-
-	/**
 	 * Download all of the monograph files as one compressed file
 	 * @param $args array
 	 * @param $request Request
@@ -328,20 +281,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 		import('classes.file.MonographFileManager');
 		MonographFileManager::downloadFilesArchive($monographId, $this->getData());
-	}
-
-	/**
-	 * View a file
-	 * @param $args array
-	 * @param $request Request
-	 */
-	function viewFile($args, &$request) {
-		$monographId = (int)$request->getUserVar('monographId');
-		$fileId = (int)$request->getUserVar('fileId');
-		$revision = (int)$request->getUserVar('fileRevision');
-
-		import('classes.file.MonographFileManager');
-		MonographFileManager::viewFile($monographId, $fileId, ($revision ? $revision : null));
 	}
 
 

@@ -15,17 +15,33 @@
 // Import grid base classes.
 import('lib.pkp.classes.controllers.grid.GridRow');
 
-// Import UI base classes.
-import('lib.pkp.classes.linkAction.request.ConfirmationModal');
-import('lib.pkp.classes.linkAction.request.AjaxModal');
-
 class SubmissionFilesGridRow extends GridRow {
+	/** @var integer */
+	var $_fileStage;
+
+
 	/**
 	 * Constructor
 	 */
-	function SubmissionFilesGridRow() {
+	function SubmissionFilesGridRow($fileStage) {
+		$this->_fileStage = (int)$fileStage;
 		parent::GridRow();
 	}
+
+
+	//
+	// Getters and Setters
+	//
+	/**
+	 * Get the workflow stage file storage that this
+	 * row operates on. One of the MONOGRAPH_FILE_*
+	 * constants.
+	 * @return integer
+	 */
+	function getFileStage() {
+		return $this->_fileStage;
+	}
+
 
 	//
 	// Overridden template methods from GridRow
@@ -41,30 +57,31 @@ class SubmissionFilesGridRow extends GridRow {
 		if (is_a($monographFile, 'MonographFile')) {
 			// Actions
 			$router =& $request->getRouter();
-			// FIXME: Consolidate action params, see #6338.
+			$actionArgs = array('monographId' => $monographFile->getMonographId(),
+					'fileStage' => $this->getFileStage(), 'fileId' => $monographFile->getFileId());
+
+			// Delete file action.
+			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 			$this->addAction(
-				new LinkAction(
-					'deleteFile',
-					new ConfirmationModal(
-						'common.confirmDelete',
-						null,
-						$router->url($request, null, null, 'deleteFile', null,
-								array('monographId' => $monographFile->getMonographId(), 'fileId' => $monographFile->getFileId()))
-					),
-					'grid.action.delete',
-					'delete'
-				));
+					new LinkAction(
+							'deleteFile',
+							new ConfirmationModal(
+									'common.confirmDelete', null,
+									$router->url($request, null, 'api.file.FileApiHandler',
+											'deleteFile', null, $actionArgs)),
+							'grid.action.delete',
+							'delete'));
+
+			// Information center action.
+			import('lib.pkp.classes.linkAction.request.AjaxModal');
 			$this->addAction(
-				new LinkAction(
-					'moreInfo',
-					new AjaxModal($router->url($request, null,
-						'informationCenter.FileInformationCenterHandler', 'viewInformationCenter', null,
-						array('monographId' => $monographFile->getMonographId(), 'fileId' => $monographFile->getFileId())
-					)),
-					'grid.action.moreInformation',
-					'more_info'
-				)
-			);
+					new LinkAction('moreInfo',
+							new AjaxModal(
+									$router->url($request, null,
+											'informationCenter.FileInformationCenterHandler',
+											'viewInformationCenter', null, $actionArgs)),
+							'grid.action.moreInformation',
+							'more_info'));
 		}
 	}
 }
