@@ -218,8 +218,7 @@ class MastheadGridHandler extends SetupGridHandler {
 		$templateMgr->assign_by_ref('memberships', $memberships);
 		$templateMgr->assign_by_ref('group', $group);
 
-		$json = new JSON(true, $templateMgr->fetch('controllers/grid/settings/masthead/memberships.tpl'));
-		return $json->getString();
+		return $templateMgr->fetchJson('controllers/grid/settings/masthead/memberships.tpl');
 	}
 }
 

@@ -137,9 +137,7 @@ class AuthorDashboardHandler extends Handler {
 			$templateMgr->assign('showReviewAttachments', true);
 		}
 
-		import('lib.pkp.classes.core.JSON');
-		$json = new JSON(true, $templateMgr->fetch('authorDashboard/reviewRoundInfo.tpl'));
-		return $json->getString();
+		return $templateMgr->fetchJson('authorDashboard/reviewRoundInfo.tpl');
 	}
 
 

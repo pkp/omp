@@ -102,9 +102,8 @@ class InformationCenterHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
 		$templateMgr->assign('notes', $noteDao->getByAssoc($this->_getAssocType(), $this->_getAssocId()));
-		$json = new JSON(true, $templateMgr->fetch('controllers/informationCenter/notesList.tpl'));
 
-		return $json->getString();
+		return $templateMgr->fetchJson('controllers/informationCenter/notesList.tpl');
 	}
 
 	/**

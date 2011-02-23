@@ -252,12 +252,12 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			$columns =& $this->getColumns();
 			$templateMgr->assign('columns', $columns);
 
-			$json = new JSON(true, $templateMgr->fetch('controllers/grid/files/copyedit/copyeditingGrid.tpl'));
+			$fetchedContent = $templateMgr->fetchJson('controllers/grid/files/copyedit/copyeditingGrid.tpl');
 		} else {
-			$json = new JSON(false, Locale::translate('editor.monograph.addUserError'));
+			$fetchedContent = new JSON(false, Locale::translate('editor.monograph.addUserError'));
 		}
 
-		return $json->getString();
+		return $fetchedContent;
 	}
 
 	/**

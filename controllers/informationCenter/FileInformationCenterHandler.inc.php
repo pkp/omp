@@ -74,8 +74,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 			$templateMgr->assign_by_ref('lastEventUser', $user);
 		}
 
-		$json = new JSON(true, $templateMgr->fetch('controllers/informationCenter/informationCenter.tpl'));
-		return $json->getString();
+		return $templateMgr->fetchJson('controllers/informationCenter/informationCenter.tpl');
 	}
 
 	/**
@@ -178,8 +177,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('eventLogEntries', $fileEvents);
 
-		$json = new JSON(true, $templateMgr->fetch('controllers/informationCenter/history.tpl'));
-		return $json->getString();
+		return $templateMgr->fetchJson('controllers/informationCenter/history.tpl');
 	}
 
 	/**

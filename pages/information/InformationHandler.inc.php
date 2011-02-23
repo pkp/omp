@@ -73,9 +73,7 @@ class InformationHandler extends Handler {
 		$templateMgr->assign('content', $content);
 		$templateMgr->assign('contentOnly', $contentOnly); // Hide the header and footer code
 
-		import('lib.pkp.classes.core.JSON');
-		$json = new JSON(true, $templateMgr->fetch('information/information.tpl'));
-		return $json->getString();
+		return $templateMgr->fetchJson('information/information.tpl');
 	}
 
 	function readers() {

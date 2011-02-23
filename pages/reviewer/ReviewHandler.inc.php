@@ -131,8 +131,7 @@ class ReviewHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('submission', $reviewerSubmission);
 
-		$json = new JSON(true, $templateMgr->fetch('reviewer/review/regretMessage.tpl'));
-		echo $json->getString();
+		return $templateMgr->fetchJson('reviewer/review/regretMessage.tpl');
 	}
 
 	/**

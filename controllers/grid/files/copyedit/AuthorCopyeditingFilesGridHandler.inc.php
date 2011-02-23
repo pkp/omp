@@ -114,8 +114,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		$templateMgr->assign('fileStage', $fileStage);
 		$templateMgr->assign('gridId', $this->getId());
 
-		$json = new JSON(true, $templateMgr->fetch('controllers/grid/files/form/fileUploadForm.tpl'));
-		return $json->getString();
+		return fetchJson('controllers/grid/files/form/fileUploadForm.tpl');
 	}
 
 	/**
