@@ -36,7 +36,10 @@ class FileNameGridColumn extends GridColumn {
 	 * @see ColumnBasedGridCellProvider::getTemplateVarsFromRowColumn()
 	 */
 	function getTemplateVarsFromRow($row) {
-		return array('label' => $this->_getFileLabel($row->getData()));
+		// We do not need any template variables because
+		// the only content of this column's cell will be
+		// an action. See FileNameGridColumn::getCellActions().
+		return array();
 	}
 
 
@@ -47,50 +50,10 @@ class FileNameGridColumn extends GridColumn {
 	 * @see GridColumn::getCellActions()
 	 */
 	function getCellActions(&$request, &$row, $position = GRID_ACTION_POSITION_DEFAULT) {
-		// Retrieve the default cell actions.
-		$cellActions = parent::getCellActions($request, $row, $position);
-
 		// Create the cell action to download a file.
-		$router =& $request->getRouter();
-		$monographFile =& $row->getData();
-		$actionArgs = array(
-			'monographId' => $monographFile->getMonographId(),
-			'fileStage' => $monographFile->getFileStage(),
-			'fileId' => $monographFile->getFileId()
-		);
-		$cellActions[] =& new LegacyLinkAction(
-				'downloadFile',
-				LINK_ACTION_MODE_LINK,
-				LINK_ACTION_TYPE_NOTHING,
-				$router->url($request, null, 'api.file.FileApiHandler', 'downloadFile', null, $actionArgs),
-				null,
-				$this->_getFileLabel($monographFile),
-				is_a($monographFile, 'ArtworkFile')?'imageFile':null);
-
+		import('controllers.api.file.linkAction.DownloadFileLinkAction');
+		$cellActions = parent::getCellActions($request, $row, $position);
+		$cellActions[] =& new DownloadFileLinkAction($request, $row->getData());
 		return $cellActions;
-	}
-
-
-	//
-	// Private helper methods
-	//
-	/**
-	 * Build a file name label for the given monograph file.
-	 * @param $monographFile MonographFile
-	 * @return string
-	 */
-	function _getFileLabel(&$monographFile) {
-		assert(is_a($monographFile, 'MonographFile'));
-
-		// Retrieve the localized file name as label.
-		$fileName = $monographFile->getLocalizedName();
-
-		// If we have no file name then use a default name.
-		if (empty($fileName)) $fileName = Locale::translate('common.untitled');
-
-		// Add the revision number to the label if we have more than one revision.
-		if ($monographFile->getRevision() > 1) $fileName .= ' (' . $monographFile->getRevision() . ')';
-
-		return $fileName;
 	}
 }

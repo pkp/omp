@@ -1,16 +1,16 @@
 <?php
 /**
- * @defgroup controllers_grid_files_linkAction
+ * @defgroup controllers_grid_files_fileList_linkAction
  */
 
 /**
- * @file controllers/grid/files/linkAction/DownloadAllLinkAction.inc.php
+ * @file controllers/grid/files/fileList/linkAction/DownloadAllLinkAction.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class DownloadAllLinkAction
- * @ingroup controllers_grid_files_linkAction
+ * @ingroup controllers_grid_files_fileList_linkAction
  *
  * @brief An action to download all files in a submission file grid.
  */

@@ -173,6 +173,27 @@ class MonographFile extends SubmissionFile {
 		return $this->getData('genreId');
 	}
 
+	/**
+	 * Build a file name label.
+	 * @return string
+	 */
+	function getFileLabel($locale = null) {
+		// Retrieve the localized file name as basis for the label.
+		if ($locale) {
+			$fileLabel = $this->getName($locale);
+		} else {
+			$fileLabel = $this->getLocalizedName();
+		}
+
+		// If we have no file name then use a default name.
+		if (empty($fileLabel)) $fileLabel = Locale::translate('common.untitled');
+
+		// Add the revision number to the label if we have more than one revision.
+		if ($this->getRevision() > 1) $fileLabel .= ' (' . $this->getRevision() . ')';
+
+		return $fileLabel;
+	}
+
 
 	//
 	// Implementation of template methods from SubmissionFile

@@ -190,7 +190,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
-		$row = new SubmissionFilesGridRow($this->getFileStage());
+		$row = new SubmissionFilesGridRow();
 		return $row;
 	}
 

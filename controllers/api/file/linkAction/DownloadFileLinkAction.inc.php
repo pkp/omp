@@ -1,0 +1,36 @@
+<?php
+/**
+ * @file controllers/api/file/linkAction/DownloadFileLinkAction.inc.php
+ *
+ * Copyright (c) 2003-2011 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * @class DownloadFileLinkAction
+ * @ingroup controllers_api_file_linkAction
+ *
+ * @brief An action to download a file.
+ */
+
+import('controllers.api.file.linkAction.FileLinkAction');
+
+class DownloadFileLinkAction extends FileLinkAction {
+
+	/**
+	 * Constructor
+	 * @param $request Request
+	 * @param $monographFile MonographFile the monograph file to
+	 *  link to.
+	 */
+	function DownloadFileLinkAction(&$request, &$monographFile) {
+		// Instantiate the redirect action request.
+		$router =& $request->getRouter();
+		import('lib.pkp.classes.linkAction.request.RedirectAction');
+		$redirectRequest = new RedirectAction($router->url($request, null,
+				'api.file.FileApiHandler', 'downloadFile', null,
+				$this->getActionArgs($monographFile)));
+
+		// Configure the file link action.
+		parent::FileLinkAction('downloadFile', $redirectRequest, $monographFile->getFileLabel(),
+				is_a($monographFile, 'ArtworkFile')?'imageFile':null);
+	}
+}
