@@ -31,14 +31,6 @@
 			$("a.openHelp").each(function(){
 				$(this).click(function() {openHelp($(this).attr('href')); return false;})
 			});
-			$('div.grid').live('mouseover', function(){
-				// Since grids are loaded after the DOM is, we have to attach the image preview to a live event
-				$('div.grid').die('mouseover');
-				$('a.imageFile').imgPreview({
-					preloadImages: false,
-					imgCSS: { width: 300 }
-				});
-			});
 			$(".tagit").live('click', function() {
 				$(this).find('input').focus();
 			});
