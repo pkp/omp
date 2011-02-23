@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/files/form/SubmissionFilesMetadataForm.inc.php
+ * @file controllers/wizard/fileUpload/form/SubmissionFilesMetadataForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFilesMetadataForm
- * @ingroup controllers_grid_files_form
+ * @ingroup controllers_wizard_fileUpload_form
  *
  * @brief Form for editing a submission file's metadata
  */
@@ -18,20 +18,15 @@ class SubmissionFilesMetadataForm extends Form {
 	/** @var SubmissionFile */
 	var $_submissionFile;
 
-	/** @var array */
-	var $_additionalActionArgs;
-
 	/**
 	 * Constructor.
 	 * @param $submissionFile SubmissionFile
-	 * @param $additionalActionArgs array
 	 */
-	function SubmissionFilesMetadataForm(&$submissionFile, $additionalActionArgs = array()) {
-		parent::Form('controllers/grid/files/form/metadataForm.tpl');
+	function SubmissionFilesMetadataForm(&$submissionFile) {
+		parent::Form('controllers/wizard/fileUpload/form/metadataForm.tpl');
 
 		// Initialize the object.
 		$this->_submissionFile =& $submissionFile;
-		$this->_additionalActionArgs = $additionalActionArgs;
 
 		// Add validation checks.
 		$this->addCheck(new FormValidator($this, 'name', 'required', 'user.profile.form.lastNameRequired'));
@@ -48,14 +43,6 @@ class SubmissionFilesMetadataForm extends Form {
 	 */
 	function &getSubmissionFile() {
 		return $this->_submissionFile;
-	}
-
-	/**
-	 * Get the additional action args array
-	 * @return array
-	 */
-	function getAdditionalActionArgs() {
-	    return $this->_additionalActionArgs;
 	}
 
 
@@ -85,9 +72,6 @@ class SubmissionFilesMetadataForm extends Form {
 		// Submission file.
 		$submissionFile =& $this->getSubmissionFile();
 		$templateMgr->assign('submissionFile', $submissionFile);
-
-		// Additional request parameters for the form action.
-		$templateMgr->assign('additionalActionArgs', $this->getAdditionalActionArgs());
 
 		// Note attached to the file.
 		$noteDao =& DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */

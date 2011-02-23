@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/files/form/SubmissionFilesUploadBaseForm.inc.php
+ * @file controllers/wizard/fileUpload/form/SubmissionFilesUploadBaseForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFilesUploadBaseForm
- * @ingroup controllers_grid_files_form
+ * @ingroup controllers_wizard_fileUpload_form
  *
  * @brief Form for adding/editing a submission file
  */
@@ -17,9 +17,6 @@ import('lib.pkp.classes.form.Form');
 import('classes.file.MonographFileManager');
 
 class SubmissionFilesUploadBaseForm extends Form {
-	/** @var integer the workflow stage file store we are working with */
-	var $_fileStage;
-
 	/** @var array the monograph files for this monograph and file stage */
 	var $_monographFiles;
 
@@ -31,20 +28,18 @@ class SubmissionFilesUploadBaseForm extends Form {
 	 * @param $fileStage integer
 	 * @param $revisionOnly boolean
 	 * @param $revisedFileId integer
-	 * @param $additionalActionArgs array
 	 */
-	function SubmissionFilesUploadBaseForm(&$request, $template, $monographId, $fileStage, $revisionOnly = false, $revisedFileId = null, $additionalActionArgs = array()) {
+	function SubmissionFilesUploadBaseForm(&$request, $template, $monographId, $fileStage, $revisionOnly = false, $revisedFileId = null) {
 		// Check the incoming parameters.
 		assert(is_numeric($monographId) && $monographId > 0);
 		assert(is_numeric($fileStage) && $fileStage > 0);
 
 		// Initialize class.
 		parent::Form($template);
-		$this->_fileStage = (int)$fileStage;
+		$this->setData('fileStage', (int)$fileStage);
 		$this->setData('monographId', (int)$monographId);
 		$this->setData('revisionOnly', (boolean)$revisionOnly);
 		$this->setData('revisedFileId', $revisedFileId ? (int)$revisedFileId : null);
-		$this->setData('additionalActionArgs', $additionalActionArgs);
 
 		// Add validators.
 		$this->addCheck(new FormValidatorPost($this));
@@ -55,14 +50,6 @@ class SubmissionFilesUploadBaseForm extends Form {
 	// Setters and Getters
 	//
 	/**
-	 * Get the file stage.
-	 * @return integer
-	 */
-	function getFileStage() {
-		return $this->_fileStage;
-	}
-
-	/**
 	 * Get the monograph files belonging to the
 	 * monograph and to the file stage.
 	 * @return array a list of MonographFile instances.
@@ -71,7 +58,7 @@ class SubmissionFilesUploadBaseForm extends Form {
 		if (is_null($this->_monographFiles)) {
 			// Retrieve the monograph files for the given file stage.
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			$this->_monographFiles =& $submissionFileDao->getLatestRevisions($this->getData('monographId'), $this->getFileStage());
+			$this->_monographFiles =& $submissionFileDao->getLatestRevisions($this->getData('monographId'), $this->getData('fileStage'));
 		}
 
 		return $this->_monographFiles;

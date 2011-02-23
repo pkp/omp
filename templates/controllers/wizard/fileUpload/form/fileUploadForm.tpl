@@ -19,7 +19,6 @@
  *   $currentMonographFileGenres: An array that assigns genres to the monograph
  *    files that can be revised.
  *   $monographFileGenres: A list of all available monograph file genres.
- *   $additionalActionArgs: Parameters to be added to the form action.
  *
  * This form implements several states:
  *
@@ -112,7 +111,7 @@
 	$(function() {ldelim}
 		// Attach the upload form handler.
 		$('#uploadForm').pkpHandler(
-			'$.pkp.controllers.files.form.FileUploadFormHandler',
+			'$.pkp.controllers.wizard.fileUpload.form.FileUploadFormHandler',
 			{ldelim}
 				hasFileSelector: {if $showFileSelector}true{else}false{/if},
 				hasGenreSelector: {if $showGenreSelector}true{else}false{/if},
@@ -125,7 +124,7 @@
 				{rdelim},
 				$uploader: $('#uploadForm #plupload'),
 				uploaderOptions: {ldelim}
-					uploadUrl: '{url|escape:javascript op="uploadFile" monographId=$monographId params=$additionalActionArgs escape=false}',
+					uploadUrl: '{url|escape:javascript op="uploadFile" monographId=$monographId fileStage=$fileStage escape=false}',
 					baseUrl: '{$baseUrl|escape:javascript}'
 				{rdelim}
 			{rdelim});

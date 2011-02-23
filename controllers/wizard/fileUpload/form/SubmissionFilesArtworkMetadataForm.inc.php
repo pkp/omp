@@ -1,25 +1,28 @@
 <?php
+/**
+ * @devgroup controllers_wizard_fileUpload_form
+ */
 
 /**
- * @file controllers/grid/files/form/SubmissionFilesArtworkMetadataForm.inc.php
+ * @file controllers/wizard/fileUpload/form/SubmissionFilesArtworkMetadataForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFilesArtworkMetadataForm
- * @ingroup controllers_grid_files_form
+ * @ingroup controllers_wizard_fileUpload_form
  *
  * @brief Form for editing artwork file metadata.
  */
 
-import('controllers.grid.files.form.SubmissionFilesMetadataForm');
+import('controllers.wizard.fileUpload.form.SubmissionFilesMetadataForm');
 
 class SubmissionFilesArtworkMetadataForm extends SubmissionFilesMetadataForm {
 	/**
 	 * Constructor.
 	 */
-	function SubmissionFilesArtworkMetadataForm(&$submissionFile, $additionalActionArgs = array()) {
-		parent::SubmissionFilesMetadataForm(&$submissionFile, $additionalActionArgs);
+	function SubmissionFilesArtworkMetadataForm(&$submissionFile) {
+		parent::SubmissionFilesMetadataForm(&$submissionFile);
 	}
 
 

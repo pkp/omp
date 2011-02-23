@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @file controllers/grid/files/form/SubmissionFilesUploadConfirmationForm.inc.php
+ * @file controllers/wizard/fileUpload/form/SubmissionFilesUploadConfirmationForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFilesUploadConfirmationForm
- * @ingroup controllers_grid_files_form
+ * @ingroup controllers_wizard_fileUpload_form
  *
  * @brief Form for adding/editing a submission file
  */
 
 
-import('controllers.grid.files.form.SubmissionFilesUploadBaseForm');
+import('controllers.wizard.fileUpload.form.SubmissionFilesUploadBaseForm');
 
 class SubmissionFilesUploadConfirmationForm extends SubmissionFilesUploadBaseForm {
 	/**
@@ -22,13 +22,12 @@ class SubmissionFilesUploadConfirmationForm extends SubmissionFilesUploadBaseFor
 	 * @param $monographId integer
 	 * @param $fileStage integer
 	 * @param $revisedFileId integer
-	 * @param $additionalActionArgs array
 	 */
-	function SubmissionFilesUploadConfirmationForm(&$request, $monographId, $fileStage, $revisedFileId = null, $uploadedFile = null, $additionalActionArgs = array()) {
+	function SubmissionFilesUploadConfirmationForm(&$request, $monographId, $fileStage, $revisedFileId = null, $uploadedFile = null) {
 		// Initialize class.
 		parent::SubmissionFilesUploadBaseForm($request,
-				'controllers/grid/files/form/fileUploadConfirmationForm.tpl',
-				$monographId, $fileStage, false, $revisedFileId, $additionalActionArgs);
+				'controllers/wizard/fileUpload/form/fileUploadConfirmationForm.tpl',
+				$monographId, $fileStage, false, $revisedFileId);
 
 		if (is_a($uploadedFile, 'MonographFile')) {
 			$this->setData('uploadedFile', $uploadedFile);
@@ -61,7 +60,8 @@ class SubmissionFilesUploadConfirmationForm extends SubmissionFilesUploadBaseFor
 		// Assign the new file as the latest revision of the old file.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographId = $this->getData('monographId');
-		$uploadedFile =& $submissionFileDao->setAsLatestRevision($revisedFileId, $uploadedFileId, $monographId, $this->getFileStage());
+		$fileStage = $this->getData('fileStage');
+		$uploadedFile =& $submissionFileDao->setAsLatestRevision($revisedFileId, $uploadedFileId, $monographId, $fileStage);
 
 		return $uploadedFile;
 	}

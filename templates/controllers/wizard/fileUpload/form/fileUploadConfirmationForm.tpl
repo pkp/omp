@@ -13,19 +13,18 @@
  *   $revisedFileName: The name of the potential revision.
  *   $monographFileOptions: A list of monograph files that can be
  *    revised.
- *   $additionalActionArgs: Parameters to be added to the form action.
  *}
 
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the revision confirmation handler.
 		$('#uploadConfirmationForm').pkpHandler(
-			'$.pkp.controllers.files.form.RevisionConfirmationHandler');
+			'$.pkp.controllers.wizard.fileUpload.form.RevisionConfirmationHandler');
 	{rdelim});
 </script>
 
 <form id="uploadConfirmationForm" class="pkp_controllers_grid_files"
-		action="{url op="confirmRevision" monographId=$monographId uploadedFileId=$uploadedFile->getFileId() params=$additionalActionArgs}"
+		action="{url op="confirmRevision" monographId=$monographId fileStage=$fileStage uploadedFileId=$uploadedFile->getFileId()}"
 		method="post">
 	{fbvFormArea id="file"}
 		<div id="possibleRevision" class="pkp_controllers_grid_files_possibleRevision" style="display:none;">

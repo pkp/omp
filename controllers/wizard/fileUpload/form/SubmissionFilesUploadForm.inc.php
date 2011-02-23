@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @file controllers/grid/files/form/SubmissionFilesUploadForm.inc.php
+ * @file controllers/wizard/fileUpload/form/SubmissionFilesUploadForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionFilesUploadForm
- * @ingroup controllers_grid_files_form
+ * @ingroup controllers_wizard_fileUpload_form
  *
  * @brief Form for adding/editing a submission file
  */
 
 
-import('controllers.grid.files.form.SubmissionFilesUploadBaseForm');
+import('controllers.wizard.fileUpload.form.SubmissionFilesUploadBaseForm');
 
 class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 	/**
@@ -23,13 +23,12 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 	 * @param $fileStage integer
 	 * @param $revisionOnly boolean
 	 * @param $revisedFileId integer
-	 * @param $additionalActionArgs array
 	 */
-	function SubmissionFilesUploadForm(&$request, $monographId, $fileStage, $revisionOnly = false, $revisedFileId = null, $additionalActionArgs = array()) {
+	function SubmissionFilesUploadForm(&$request, $monographId, $fileStage, $revisionOnly = false, $revisedFileId = null) {
 		// Initialize class.
 		parent::SubmissionFilesUploadBaseForm($request,
-				'controllers/grid/files/form/fileUploadForm.tpl',
-				$monographId, $fileStage, $revisionOnly, $revisedFileId, $additionalActionArgs);
+				'controllers/wizard/fileUpload/form/fileUploadForm.tpl',
+				$monographId, $fileStage, $revisionOnly, $revisedFileId);
 	}
 
 
@@ -96,7 +95,7 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 		// Upload the file.
 		import('classes.file.MonographFileManager');
 		return MonographFileManager::uploadMonographFile(
-				$this->getData('monographId'), 'uploadedFile', $this->getFileStage(), $revisedFileId, $fileGenre);
+				$this->getData('monographId'), 'uploadedFile', $this->getData('fileStage'), $revisedFileId, $fileGenre);
 	}
 
 
