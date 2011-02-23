@@ -17,7 +17,7 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 
 // Import submission files grid specific classes.
 import('controllers.grid.files.SubmissionFilesGridRow');
-import('controllers.grid.files.SubmissionFilesGridCellProvider');
+import('controllers.grid.files.FileNameGridColumn');
 
 // Import monograph file class which contains the MONOGRAPH_FILE_* constants.
 import('classes.monograph.MonographFile');
@@ -175,18 +175,11 @@ class SubmissionFilesGridHandler extends GridHandler {
 			$this->addAction(new DownloadAllLinkAction($request, $monograph->getId()));
 		}
 
-		// Add extra columns to the grid
-		if($this->isSelectable()) {
-			$this->addColumn(new GridColumn('select',
-				'common.select',
-				null,
-				'controllers/grid/gridRowSelectInput.tpl',
-				$cellProvider,
-				array('selectedFileIds' => $this->getSelectedFileIds(), 'selectName' => $this->getSelectName())
-			));
-		}
-		// Default columns
-		$this->addColumn(new GridColumn('name',	'common.name', null, 'controllers/grid/gridCell.tpl', $cellProvider));
+		// The file name column is common to all file grid types.
+		$this->addColumn(new FileNameGridColumn());
+
+		// Load grid data.
+		$this->loadMonographFiles();
 	}
 
 

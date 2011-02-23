@@ -49,13 +49,6 @@ class SubmissionDetailsFilesGridHandler extends FileListGridHandler {
 		// Basic grid configuration
 		$this->setTitle('submission.submit.submissionFiles');
 
-		// Load monograph files.
-		$this->loadMonographFiles();
-
-		$cellProvider = new SubmissionFilesGridCellProvider();
-		parent::initialize($request, $cellProvider, $additionalActionArgs);
-
-		$this->addColumn(new GridColumn('fileType',	'common.fileType', null, 'controllers/grid/gridCell.tpl', $cellProvider));
-		$this->addColumn(new GridColumn('type', 'common.type', null, 'controllers/grid/gridCell.tpl', $cellProvider));
+		parent::initialize($request);
 	}
 }
