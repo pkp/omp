@@ -72,8 +72,6 @@ class FinalDraftFilesGridHandler extends SubmissionFilesGridHandler {
 			$router =& $request->getRouter();
 			$this->addAction(new SelectSubmissionFilesLinkAction(&$request,
 					$monograph->getId(), __('editor.monograph.manageFinalDraftFiles')));
-					)
-				);
 		}
 
 		import('controllers.grid.files.SubmissionFilesGridCellProvider');

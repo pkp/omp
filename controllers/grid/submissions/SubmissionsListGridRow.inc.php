@@ -47,17 +47,16 @@ class SubmissionsListGridRow extends GridRow {
 			// Actions
 			$router =& $request->getRouter();
 			$this->addAction(
-				new LinkAction(
-					'moreInfo',
-					new AjaxModal(
-						$router->url($request, null, 'informationCenter.SubmissionInformationCenterHandler', 'viewInformationCenter', null, array('monographId' => $rowId)),
-						'informationCenter.informationCenter',
-						'informationCenter'
-					),
-					'grid.action.moreInformation',
-					'more_info'
-				)
-			);
+					new LinkAction(
+							'moreInfo',
+							new AjaxModal(
+									$router->url($request, null,
+											'informationCenter.SubmissionInformationCenterHandler',
+											'viewInformationCenter', null, array('monographId' => $rowId)),
+									__('informationCenter.informationCenter'),
+									'informationCenter'),
+							__('grid.action.moreInformation'),
+							'more_info'));
 		}
 	}
 }

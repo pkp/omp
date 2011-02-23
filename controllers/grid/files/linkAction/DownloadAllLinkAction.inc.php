@@ -35,6 +35,6 @@ class DownloadAllLinkAction extends LinkAction {
 		$redirectRequest = new RedirectAction($router->url($request, null, null, 'downloadAllFiles', null, $actionArgs));
 
 		// Configure the link action.
-		parent::LinkAction('downloadAll', $redirectRequest, 'submission.files.downloadAll', 'getPackage');
+		parent::LinkAction('downloadAll', $redirectRequest, __('submission.files.downloadAll'), 'getPackage');
 	}
 }

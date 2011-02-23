@@ -46,9 +46,9 @@ class AddFileLinkAction extends LinkAction {
 				$router->url($request, null,
 						'wizard.fileUpload.FileUploadWizardHandler', 'startWizard',
 						null, $actionArgs),
-				'submission.submit.uploadSubmissionFile', 'fileManagement');
+				__('submission.submit.uploadSubmissionFile'), 'fileManagement');
 
 		// Configure the link action.
-		parent::LinkAction('addFile', $modal, 'submission.addFile', 'add');
+		parent::LinkAction('addFile', $modal, __('submission.addFile'), 'add');
 	}
 }

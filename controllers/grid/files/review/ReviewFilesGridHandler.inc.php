@@ -108,17 +108,17 @@ class ReviewFilesGridHandler extends SubmissionFilesGridHandler {
 		if($this->canManage()) {
 			$monograph =& $this->getMonograph();
 			$router =& $request->getRouter();
-				$this->addAction(
+			$this->addAction(
 					new LinkAction(
-						'manageReviewFiles',
-						new AjaxModal(
-							$router->url($request, null, null, 'manageReviewFiles', null, array('monographId' => $monograph->getId(), 'reviewType' => $this->getReviewType(), 'round' => $this->getRound())),
-							'editor.submissionArchive.manageReviewFiles'
-						),
-						'editor.submissionArchive.manageReviewFiles',
-						'add'
-					)
-				);
+							'manageReviewFiles',
+							new AjaxModal(
+									$router->url($request, null, null, 'manageReviewFiles', null,
+											array('monographId' => $monograph->getId(),
+													'reviewType' => $this->getReviewType(),
+													'round' => $this->getRound())),
+									__('editor.submissionArchive.manageReviewFiles')),
+							__('editor.submissionArchive.manageReviewFiles'),
+							'add'));
 		}
 
 		import('controllers.grid.files.SubmissionFilesGridCellProvider');

@@ -207,13 +207,13 @@ class WorkflowHandler extends Handler {
 		foreach($decisions as $decision => $action) {
 			$actionArgs['decision'] = $decision;
 			$editorActions[] = new LinkAction(
-				$action['name'],
-				new AjaxModal(
-					$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.editorDecision.EditorDecisionHandler', $action['operation'], null, $actionArgs)
-				),
-				$action['title'],
-				(isset($action['image']) ? $action['image'] : null)
-			);
+					$action['name'],
+					new AjaxModal(
+							$dispatcher->url($request, ROUTE_COMPONENT, null,
+									'modals.editorDecision.EditorDecisionHandler',
+									$action['operation'], null, $actionArgs)),
+					__($action['title']),
+					(isset($action['image']) ? $action['image'] : null));
 		}
 
 		// Assign the actions to the template.

@@ -66,10 +66,10 @@ class SubmissionFilesGridRow extends GridRow {
 					new LinkAction(
 							'deleteFile',
 							new ConfirmationModal(
-									'common.confirmDelete', null,
+									__('common.confirmDelete'), null,
 									$router->url($request, null, 'api.file.FileApiHandler',
 											'deleteFile', null, $actionArgs)),
-							'grid.action.delete',
+							__('grid.action.delete'),
 							'delete'));
 
 			// Information center action.
@@ -80,7 +80,7 @@ class SubmissionFilesGridRow extends GridRow {
 									$router->url($request, null,
 											'informationCenter.FileInformationCenterHandler',
 											'viewInformationCenter', null, $actionArgs)),
-							'grid.action.moreInformation',
+							__('grid.action.moreInformation'),
 							'more_info'));
 		}
 	}

@@ -64,46 +64,48 @@ class SubmissionHandler extends Handler {
 		// FIXME: grid actions should not be referred to from outside a grid. This breaks the
 		// encapsulation rules for widgets, see #6411.
 		$uploadFileAction = new LinkAction(
-			'addFile',
-			new WizardModal(
-				$dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.files.submission.AuthorSubmissionDetailsFilesGridHandler', 'addFile', null, $actionArgs),
-				'submission.submit.uploadSubmissionFile',
-				'fileManagement'
-			),
-			'submission.addFile',
-			'add_item'
-		);
+				'addFile',
+				new WizardModal(
+						$dispatcher->url($request, ROUTE_COMPONENT, null,
+								'grid.files.submission.AuthorSubmissionDetailsFilesGridHandler',
+								'addFile', null, $actionArgs),
+						__('submission.submit.uploadSubmissionFile'),
+						'fileManagement'),
+				__('submission.addFile'),
+				'add_item');
 
 		$uploadRevisionAction = new LinkAction(
-			'addRevision',
-			new WizardModal(
-				$dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.files.submission.AuthorSubmissionDetailsFilesGridHandler', 'addFile', null, array_merge(array('revisionOnly' => true), $actionArgs)),
-				'submission.submit.uploadRevision',
-				'fileManagement'
-			),
-			'submission.uploadARevision',
-			'edit'
-		);
+				'addRevision',
+				new WizardModal(
+						$dispatcher->url($request, ROUTE_COMPONENT, null,
+								'grid.files.submission.AuthorSubmissionDetailsFilesGridHandler',
+								'addFile', null, array_merge(array('revisionOnly' => true), $actionArgs)),
+						__('submission.submit.uploadRevision'),
+						'fileManagement'),
+				__('submission.uploadARevision'),
+				'edit');
 
 		$addCopyeditedFileAction = new LinkAction(
-			'addCopyeditedFile',
-			new WizardModal(
-				$dispatcher->url($request, ROUTE_COMPONENT, null, 'grid.files.copyedit.AuthorCopyeditingFilesGridHandler', 'addCopyeditedFile', null, $actionArgs),
-				'submission.uploadACopyeditedVersion',
-				'fileManagement'
-			),
-			'submission.uploadACopyeditedVersion',
-			'add_item'
-		);
+				'addCopyeditedFile',
+				new WizardModal(
+						$dispatcher->url($request, ROUTE_COMPONENT, null,
+								'grid.files.copyedit.AuthorCopyeditingFilesGridHandler',
+								'addCopyeditedFile', null, $actionArgs),
+						__('submission.uploadACopyeditedVersion'),
+						'fileManagement'),
+				__('submission.uploadACopyeditedVersion'),
+				'add_item');
+
 		$viewMetadataAction = new LinkAction(
-			'viewMetadata',
-			new AjaxModal(
-				$dispatcher->url($request, ROUTE_COMPONENT, null, 'modals.submissionMetadata.SubmissionDetailsSubmissionMetadataHandler', 'fetch', null, $actionArgs),
-				'submission.viewMetadata'
-			),
-			'submission.viewMetadata',
-			'more_info'
-		);
+				'viewMetadata',
+				new AjaxModal(
+						$dispatcher->url($request, ROUTE_COMPONENT, null,
+								'modals.submissionMetadata.SubmissionDetailsSubmissionMetadataHandler',
+								'fetch', null, $actionArgs),
+						__('submission.viewMetadata')
+				),
+				__('submission.viewMetadata'),
+				'more_info');
 
 		// If we are at or past the review stage, pass review round info on to the template
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
