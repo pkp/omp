@@ -131,7 +131,7 @@ class FinalDraftFilesGridHandler extends SubmissionFilesGridHandler {
 			$manageFinalDraftFilesForm->execute($args, $request);
 
 			// Let the calling grid reload itself
-			return $this->elementsChanged();
+			return DAO::getDataChangedEvent();
 		} else {
 			$json = new JSON(false);
 			return $json->getString();

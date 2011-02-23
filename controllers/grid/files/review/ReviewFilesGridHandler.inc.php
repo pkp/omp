@@ -185,7 +185,7 @@ class ReviewFilesGridHandler extends SubmissionFilesGridHandler {
 			$manageReviewFilesForm->execute($args, $request);
 
 			// Let the calling grid reload itself
-			return $this->elementsChanged();
+			return DAO::getDataChangedEvent();
 		} else {
 			$json = new JSON(false);
 			return $json->getString();
