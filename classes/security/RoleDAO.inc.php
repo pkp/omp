@@ -193,8 +193,6 @@ class RoleDAO extends DAO {
 				return ROLE_ID_SERIES_EDITOR;
 			case 'reviewer':
 				return ROLE_ID_REVIEWER;
-			case 'designer':
-				return ROLE_ID_DESIGNER;
 			case 'copyeditor':
 				return ROLE_ID_COPYEDITOR;
 			case 'proofreader':

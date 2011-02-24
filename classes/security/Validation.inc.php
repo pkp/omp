@@ -339,15 +339,6 @@ class Validation {
 	}
 
 	/**
-	 * Shortcut for checking authorization as designer.
-	 * @param $pressId int
-	 * @return boolean
-	 */
-	function isDesigner($pressId = -1) {
-		return Validation::isAuthorized(ROLE_ID_DESIGNER, $pressId);
-	}
-
-	/**
 	 * Shortcut for checking authorization as reviewer.
 	 * @param $pressId int
 	 * @return boolean

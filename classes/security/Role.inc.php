@@ -53,9 +53,6 @@ define('ROLE_PATH_PROOFREADER', 'proofreader');
 define('ROLE_ID_READER',		0x00020000);
 define('ROLE_PATH_READER', 'reader');
 
-define('ROLE_ID_DESIGNER',		0x00100001);
-define('ROLE_PATH_DESIGNER', 'designer');
-
 define('ROLE_ID_MARKETING',		0x00100010);
 define('ROLE_PATH_MARKETING', 'marketing');
 
@@ -128,8 +125,6 @@ class Role extends DataObject {
 				return 'user.role.reviewer' . ($plural ? 's' : '');
 			case ROLE_ID_SERIES_EDITOR:
 				return 'user.role.seriesEditor' . ($plural ? 's' : '');
-			case ROLE_ID_DESIGNER:
-				return 'user.role.designer' . ($plural ? 's' : '');
 			case ROLE_ID_COPYEDITOR:
 				return 'user.role.copyeditor' . ($plural ? 's' : '');
 			case ROLE_ID_PROOFREADER:
@@ -165,8 +160,6 @@ class Role extends DataObject {
 				return 'reviewer';
 			case ROLE_ID_SERIES_EDITOR:
 				return 'seriesEditor';
-			case ROLE_ID_DESIGNER:
-				return 'designer';
 			case ROLE_ID_COPYEDITOR:
 				return 'copyeditor';
 			case ROLE_ID_PROOFREADER:
