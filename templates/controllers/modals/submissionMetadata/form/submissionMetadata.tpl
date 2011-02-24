@@ -13,7 +13,7 @@
 		{$monograph->getLocalizedTitle()|escape}
 	{/fbvFormSection}
 	{fbvFormSection title="monograph.description"}
-		{$monograph->getMonographDescription()}
+		{$monograph->getLocalizedAbstract()}
 	{/fbvFormSection}
 	{fbvFormSection title="common.dateSubmitted"}
 		{$monograph->getDateSubmitted()}

@@ -137,32 +137,6 @@ class Monograph extends Submission {
 	}
 
 	/**
-	 * Get the localized description
-	 * @return string
-	 */
-	function getMonographDescription() {
-		return $this->getLocalizedData('abstract');
-	}
-
-	/**
-	 * get description
-	 * @param $locale string
-	 * @return string
-	 */
-	function getDescription($locale) {
-		return $this->getData('abstract', $locale);
-	}
-
-	/**
-	 * set description
-	 * @param $description string
-	 * @param $locale string
-	 */
-	function setDescription($description, $locale) {
-		return $this->setData('abstract', $description, $locale);
-	}
-
-	/**
 	 * Get comments to editor.
 	 * @return string
 	 */
