@@ -32,28 +32,18 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/** @var boolean */
 	var $_canDownloadAll;
 
-	/** @var array */
-	var $_selectedFileIds;
-
-	/** @var string */
-	var $_selectName;
-
 
 	/**
 	 * Constructor
 	 * @param $dataProvider GridDataProvider
 	 * @param $canAdd boolean whether the grid will contain
 	 *  an "add file" button.
-	 * @param $isSelectable boolean whether this grid displays
-	 *  checkboxes on each grid row that allows files to be selected
-	 *  as form inputs
 	 * @param $canDownloadAll boolean whether the user can download
 	 *  all files in the grid as a compressed file
 	 */
-	function SubmissionFilesGridHandler(&$dataProvider, $canAdd = true, $isSelectable = false, $canDownloadAll = false) {
+	function SubmissionFilesGridHandler(&$dataProvider, $canAdd = true, $canDownloadAll = false) {
 		$this->_dataProvider =& $dataProvider;
 		$this->_canAdd = (boolean)$canAdd;
-		$this->_isSelectable = (boolean)$isSelectable;
 		$this->_canDownloadAll = (boolean)$canDownloadAll;
 
 		parent::GridHandler();
@@ -72,7 +62,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	}
 
 	/**
-	 * Get a grid request parameter.
+	 * Get a grid request parameter
 	 * from the data provider.
 	 * @param $key string The name of the parameter to retrieve.
 	 * @return mixed
@@ -102,46 +92,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 */
 	function canAdd() {
 		return $this->_canAdd;
-	}
-
-	/**
-	 * Does this grid have a checkbox column?
-	 * @return boolean
-	 */
-	function isSelectable() {
-		return $this->_isSelectable;
-	}
-
-	/**
-	 * Set the selected file IDs
-	 * @param $selectedFileIds array
-	 */
-	function setSelectedFileIds($selectedFileIds) {
-	    $this->_selectedFileIds = $selectedFileIds;
-	}
-
-	/**
-	 * Get the selected file IDs
-	 * @return array
-	 */
-	function getSelectedFileIds() {
-	    return $this->_selectedFileIds;
-	}
-
-	/**
-	 * Set the selection name
-	 * @param $selectName string
-	 */
-	function setSelectName($selectName) {
-	    $this->_selectName = $selectName;
-	}
-
-	/**
-	 * Get the selection name
-	 * @return string
-	 */
-	function getSelectName() {
-	    return $this->_selectName;
 	}
 
 	/**
@@ -176,7 +126,8 @@ class SubmissionFilesGridHandler extends GridHandler {
 		parent::initialize($request);
 
 		// Load translations.
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION,
+				LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));
 
 		// Add grid-level actions.
 		$dataProvider =& $this->getDataProvider();

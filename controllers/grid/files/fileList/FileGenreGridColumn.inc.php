@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file controllers/grid/files/fileList/FileGenreGridColumn.inc.php
  *

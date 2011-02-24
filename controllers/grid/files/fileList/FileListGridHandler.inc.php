@@ -28,18 +28,15 @@ class FileListGridHandler extends SubmissionFilesGridHandler {
 	 * @param $dataProvider GridDataProvider
 	 * @param $canAdd boolean whether the grid will contain
 	 *  an "add file" button.
-	 * @param $isSelectable boolean whether this grid displays
-	 *  checkboxes on each grid row that allows files to be selected
-	 *  as form inputs
 	 * @param $canDownloadAll boolean whether the user can download
 	 *  all files in the grid as a compressed file
 	 * @param $canManage boolean whether the grid shows a "manage files"
 	 *  action.
 	 */
-	function FileListGridHandler($dataProvider, $canAdd = true, $isSelectable = false, $canDownloadAll = false, $canManage = false) {
+	function FileListGridHandler($dataProvider, $canAdd = true, $canDownloadAll = false, $canManage = false) {
 		$this->_canManage = $canManage;
 
-		parent::SubmissionFilesGridHandler($dataProvider, $canAdd, $isSelectable, $canDownloadAll);
+		parent::SubmissionFilesGridHandler($dataProvider, $canAdd, $canDownloadAll);
 	}
 
 

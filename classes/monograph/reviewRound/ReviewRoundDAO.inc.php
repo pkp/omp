@@ -234,8 +234,6 @@ class ReviewRoundDAO extends DAO {
 	 * @return array MonographFiles
 	 */
 	function &getReviewFilesAndRevisionsByRound($monographId, $round, $concatenate = false) {
-		$returner = array();
-
 		$result =& $this->retrieve(
 			'SELECT	mf.file_id, mf.revision
 			FROM	review_rounds rr,
@@ -250,6 +248,7 @@ class ReviewRoundDAO extends DAO {
 					(int) $monographId
 		);
 
+		$returner = array();
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 			if($concatenate) $returner[] = $row['file_id'] . "-" . $row['revision'];

@@ -18,7 +18,7 @@
 <h4>{translate key="editor.submissionArchive.currentFiles" round=$round}</h4>
 
 <div id="existingFilesContainer">
-	<form id="manageReviewFilesForm" action="{url component="grid.files.review.EditorReviewFilesGridHandler" op="updateReviewFiles" monographId=$monographId|escape reviewType=$reviewType|escape round=$round|escape}" method="post">
+	<form id="manageReviewFilesForm" action="{url component="grid.files.review.SelectableEditorReviewFilesGridHandler" op="updateReviewFiles" monographId=$monographId|escape reviewType=$reviewType|escape round=$round|escape}" method="post">
 		<!-- Available submission files -->
 		{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.SelectableEditorReviewFilesGridHandler" op="fetchGrid" monographId=$monographId reviewType=$reviewType round=$round escape=false}
 		{load_url_in_div id="availableReviewFilesGrid" url=$availableReviewFilesGridUrl}
