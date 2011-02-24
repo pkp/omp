@@ -242,7 +242,6 @@
 	<message key="user.role.editor">Editor</message>
 	<message key="user.role.seriesEditor">Series Editor</message>
 	<message key="user.role.pressAssistant">Press Assistant</message>
-	<message key="user.role.designer">Designer</message>
 	<message key="user.role.copyeditor">Copyeditor</message>
 	<message key="user.role.seriesEditor">Series Editor</message>
 	<message key="user.role.seriesEditors">Series Editors</message>
@@ -257,7 +256,6 @@
 	<message key="user.role.managers">Press Managers</message>
 	<message key="user.role.editors">Editors</message>
 	<message key="user.role.seriesEditors">Series Editors</message>
-	<message key="user.role.designers">Designers</message>
 	<message key="user.role.copyeditors">Copyeditors</message>
 	<message key="user.role.proofreaders">Proofreaders</message>
 	<message key="user.role.authors">Authors</message>

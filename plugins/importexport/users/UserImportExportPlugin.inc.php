@@ -60,7 +60,6 @@ class UserImportExportPlugin extends ImportExportPlugin {
 			'reviewer' => 'user.role.reviewer',
 			'copyeditor' => 'user.role.copyeditor',
 			'productionEditor' => 'user.role.productionEditor',
-			'designer' => 'user.role.designer',
 			'proofreader' => 'user.role.proofreader',
 			'author' => 'user.role.author',
 			'reader' => 'user.role.reader',

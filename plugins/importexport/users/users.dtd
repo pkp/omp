@@ -47,4 +47,4 @@
 <!ELEMENT locales (#PCDATA)>
 <!ELEMENT role EMPTY>
 	<!ATTLIST role
-		type (manager|editor|seriesEditor|productionEditor|designer|reviewer|copyeditor|proofreader|author|reader) #REQUIRED>
+		type (manager|editor|seriesEditor|productionEditor|reviewer|copyeditor|proofreader|author|reader) #REQUIRED>
