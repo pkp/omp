@@ -84,14 +84,14 @@
 
 <br />
 
-<div id="nextSteps">
-	<p>
-		<a href="{url op="submission" path=$submission->getReviewId() step=2}">{translate key="navigation.goBack"}</a>
-		{confirm_submit button='submit' dialogText='reviewer.confirmSubmit'}
-		<input style="float:right;" type="submit" id="submit" value="{translate key='reviewer.monograph.continueToStepFour'}" class="button" />
-	</p>
-</div>
-<br />
+	<div id="nextSteps">
+		<p>
+			<a href="{url op="submission" path=$submission->getReviewId() step=2}">{translate key="navigation.goBack"}</a>
+			{include file="linkAction/buttonConfirmationLinkAction.tpl" buttonSelector="#submitButton" dialogText="reviewer.confirmSubmit"}
+			<input style="float:right;" type="submit" id="submitButton" value="{translate key='reviewer.monograph.continueToStepFour'}" class="button" />
+		</p>
+	</div>
+	<br />
 </form>
 </div>
 {include file="common/footer.tpl"}
