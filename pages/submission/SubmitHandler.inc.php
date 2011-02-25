@@ -183,7 +183,7 @@ class SubmitHandler extends Handler {
 						);
 					}
 				}
-				$request->redirect(null, null, 'wizard', $step+1, array('monographId' => $monographId));
+				return $request->redirectUrlJson($router->url($request, null, null, 'wizard', $step+1, array('monographId' => $monographId)));
 			} else {
 				$submitForm->display();
 			}

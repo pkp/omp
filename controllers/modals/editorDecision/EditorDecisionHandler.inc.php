@@ -129,13 +129,11 @@ class EditorDecisionHandler extends Handler {
 			$initiateReviewForm->execute($args, $request);
 
 			$dispatcher =& $this->getDispatcher();
-			$json = new JSON(true);
-			$json->setEvent('redirectRequested', array($dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monograph->getId(), 1))));
+			return $request->redirectUrlJson($dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monograph->getId(), 1)));
 		} else {
 			$json = new JSON(false);
+			return $json->getString();
 		}
-
-		return $json->getString();
 	}
 
 	/**
@@ -202,19 +200,17 @@ class EditorDecisionHandler extends Handler {
 		if ($promoteForm->validate()) {
 			$promoteForm->execute($args, $request);
 
-			$json = new JSON(true);
 			$dispatcher =& $this->getDispatcher();
 			if ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
-				$json->setEvent('redirectRequested', array($dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'copyediting', array($monograph->getId()))));
+				return $request->redirectUrlJson($dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'copyediting', array($monograph->getId())));
 			} elseif ($decision == SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW) {
-				$json->setEvent('redirectRequested', array($dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monograph->getId()))));
+				return $request->redirectUrlJson($dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monograph->getId())));
 			} else {
 				$json = new JSON(true);
 			}
 		} else {
 			$json = new JSON(false);
 		}
-
 		return $json->getString();
 	}
 
