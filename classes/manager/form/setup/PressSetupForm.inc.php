@@ -42,7 +42,6 @@ class PressSetupForm extends Form {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('setupStep', $this->step);
 		$templateMgr->assign('helpTopicId', 'press.managementPages.setup');
-		$templateMgr->assign('validateId', 'setupForm');
 		$templateMgr->setCacheability(CACHEABILITY_MUST_REVALIDATE);
 		parent::display();
 	}

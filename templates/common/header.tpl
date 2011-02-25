@@ -39,17 +39,18 @@
 	<link rel="stylesheet" type="text/css" media="all" href="{$baseUrl}/lib/pkp/styles/themes/default/theme.css" />
 
 	<!-- Base Jquery -->
-	{if $allowCDN}<script src="http://www.google.com/jsapi" type="text/javascript"></script>
-	<script type="text/javascript">{literal}
-		// Provide a local fallback if the CDN cannot be reached
-		if (typeof google == 'undefined') {
-			document.write(unescape("%3Cscript src='{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/jquery/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
-			document.write(unescape("%3Cscript src='{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js' type='text/javascript'%3E%3C/script%3E"));
-		} else {
-			google.load("jquery", "{/literal}{$smarty.const.CDN_JQUERY_VERSION}{literal}");
-			google.load("jqueryui", "{/literal}{$smarty.const.CDN_JQUERY_UI_VERSION}{literal}");
-		}
-	{/literal}</script>
+	{if $allowCDN}
+		<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+		<script type="text/javascript">{literal}
+			// Provide a local fallback if the CDN cannot be reached
+			if (typeof google == 'undefined') {
+				document.write(unescape("%3Cscript src='{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/jquery/jquery.min.js' type='text/javascript'%3E%3C/script%3E"));
+				document.write(unescape("%3Cscript src='{/literal}{$baseUrl}{literal}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js' type='text/javascript'%3E%3C/script%3E"));
+			} else {
+				google.load("jquery", "{/literal}{$smarty.const.CDN_JQUERY_VERSION}{literal}");
+				google.load("jqueryui", "{/literal}{$smarty.const.CDN_JQUERY_UI_VERSION}{literal}");
+			}
+		{/literal}</script>
 	{else}
 		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/jquery.min.js"></script>
 		<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jqueryUi.min.js"></script>
@@ -59,7 +60,22 @@
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/hoverIntent.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/superfish.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/wufoo/wufoo.js"></script>
+
+	<!-- Form validation -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/validate/jquery.validate.min.js"></script>
+	<script type="text/javascript">{literal}
+		$(function(){
+			// Include the appropriate validation localization.
+			// FIXME: Replace with a smarty template that includes {translate} keys, see #6443.
+			jqueryValidatorI18n("{/literal}{$baseUrl}{literal}", "{/literal}{$currentLocale}{literal}");
+		});
+	{/literal}</script>
+
+	<!-- Plupload -->
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/plupload.full.min.js"></script>
+	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/jquery.plupload.queue.min.js"></script>
+	{* FIXME: Replace with a smarty template that includes {translate} keys, see #6443. *}
+	{if $currentLocale !== 'en_US'}<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/i18n/{$currentLocale}.js"></script>{/if}
 
 	<!-- Compiled scripts -->
 	{if $useMinifiedJavaScript}
@@ -67,11 +83,6 @@
 	{else}
 		{include file="common/minifiedScripts.tpl"}
 	{/if}
-
-	<!-- Plupload -->
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/plupload.full.min.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/jquery.plupload.queue.min.js"></script>
-	{if $currentLocale !== 'en_US'}<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/i18n/{$currentLocale}.js"></script>{/if}
 
 	{include file="common/javascriptInit.tpl"}
 

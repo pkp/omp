@@ -51,3 +51,10 @@
 			</li>
 		{/if}
 	</ul>
+
+	<script type="text/javascript">
+		$(function() {ldelim}
+			// Attach the form handler.
+			$('#submitStepForm').pkpHandler('$.pkp.controllers.FormHandler');
+		{rdelim});
+	</script>
