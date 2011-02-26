@@ -129,8 +129,11 @@ class SubmissionFilesGridHandler extends GridHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION,
 				LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));
 
-		// Add grid-level actions.
+		// Populate the grid with data.
 		$dataProvider =& $this->getDataProvider();
+		$this->setData($dataProvider->getRowData());
+
+		// Add grid-level actions.
 		if($this->canAdd()) {
 			$this->addAction($dataProvider->getAddFileAction($request));
 		}
@@ -143,9 +146,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 		// The file name column is common to all file grid types.
 		$this->addColumn(new FileNameGridColumn());
-
-		// Populate the grid with data.
-		$this->setData($dataProvider->getRowData());
 	}
 
 

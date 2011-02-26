@@ -24,10 +24,9 @@ import('lib.pkp.classes.submission.SubmissionFileDAODelegate');
 class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	/**
 	 * Constructor
-	 * @param SubmissionFileDAO
 	 */
-	function MonographFileDAODelegate(&$submissionFileDao) {
-		parent::SubmissionFileDAODelegate($submissionFileDao);
+	function MonographFileDAODelegate() {
+		parent::SubmissionFileDAODelegate();
 	}
 
 
@@ -35,11 +34,18 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	// Public methods
 	//
 	/**
+	 * @see SubmissionFileDAODelegate::getSubmissionEntityName()
+	 */
+	function getSubmissionEntityName() {
+		return 'monograph';
+	}
+
+	/**
 	 * @see SubmissionFileDAODelegate::insert()
 	 * @param $monographFile MonographFile
 	 * @return MonographFile
 	 */
-	function &insertObject(&$monographFile) {
+	function &insertObject(&$monographFile, $sourceFile, $isUpload = false) {
 		$fileId = $monographFile->getFileId();
 
 		if (!is_numeric($monographFile->getRevision())) {
@@ -57,7 +63,6 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 			(int)$monographFile->getMonographId(),
 			is_null($monographFile->getSourceFileId()) ? null : (int)$monographFile->getSourceFileId(),
 			is_null($monographFile->getSourceRevision()) ? null : (int)$monographFile->getSourceRevision(),
-			$monographFile->getFileName(),
 			$monographFile->getFileType(),
 			(int)$monographFile->getFileSize(),
 			$monographFile->getOriginalFileName(),
@@ -73,21 +78,44 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 			array_unshift($params, $fileId);
 		}
 
-		$submissionFileDao =& $this->getSubmissionFileDAO();
-		$submissionFileDao->update(
+		$this->update(
 			sprintf('INSERT INTO monograph_files
-				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_name, file_type, file_size, original_file_name, file_stage, date_uploaded, date_modified, viewable, user_group_id, assoc_type, assoc_id, genre_id)
+				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_type, file_size, original_file_name, file_stage, date_uploaded, date_modified, viewable, user_group_id, assoc_type, assoc_id, genre_id)
 				VALUES
-				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?, ?)',
-				$submissionFileDao->datetimeToDB($monographFile->getDateUploaded()), $submissionFileDao->datetimeToDB($monographFile->getDateModified())),
+				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?, ?)',
+				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
 			$params
 		);
 
 		if (!$fileId) {
-			$monographFile->setFileId($submissionFileDao->getInsertSubmissionFileId());
+			$monographFile->setFileId($this->getInsertId('monograph_files', 'monograph_id'));
 		}
 
 		$this->updateLocaleFields($monographFile);
+
+		// Determine the final destination of the file (requires
+		// the file id we just generated).
+		$targetFilePath = $monographFile->getFilePath();
+
+		// Only copy the file if it is not yet in the target position.
+		if ($isUpload || $sourceFile != $targetFilePath) {
+			// Copy the file from its current location to the target destination.
+			import('lib.pkp.classes.file.FileManager');
+			if ($isUpload) {
+				$success = FileManager::uploadFile($sourceFile, $targetFilePath);
+			} else {
+				assert(is_readable($sourceFile));
+				$success = FileManager::copyFile($sourceFile, $targetFilePath);
+			}
+			if (!$success) {
+				// If the copy/upload operation fails then remove
+				// the already inserted meta-data.
+				$this->deleteObject($monographFile);
+				$nullVar = null;
+				return $nullVar;
+			}
+		}
+		assert(is_readable($targetFilePath));
 
 		return $monographFile;
 	}
@@ -95,17 +123,11 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 	/**
 	 * @see SubmissionFileDAODelegate::update()
 	 * @param $monographFile MonographFile
-	 * @param $previousFileId integer
-	 * @param $previousRevision integer
+	 * @param $previousFile MonographFile
 	 */
-	function updateObject(&$monographFile, $previousFileId = null, $previousRevision = null) {
-		// Complete the identifying data of the updated object if not given.
-		$previousFileId = ($previousFileId ? $previousFileId : $monographFile->getFileId());
-		$previousRevision = ($previousRevision ? $previousRevision : $monographFile->getRevision());
-
-		// Update the object.
-		$submissionFileDao =& $this->getSubmissionFileDAO();
-		$submissionFileDao->update(
+	function updateObject(&$monographFile, &$previousFile) {
+		// Update the file in the database.
+		$this->update(
 			sprintf('UPDATE monograph_files
 				SET
 					file_id = ?,
@@ -113,7 +135,6 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 					monograph_id = ?,
 					source_file_id = ?,
 					source_revision = ?,
-					file_name = ?,
 					file_type = ?,
 					file_size = ?,
 					original_file_name = ?,
@@ -126,14 +147,13 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 					assoc_id = ?,
 					genre_id = ?
 				WHERE file_id = ? AND revision = ?',
-				$submissionFileDao->datetimeToDB($monographFile->getDateUploaded()), $submissionFileDao->datetimeToDB($monographFile->getDateModified())),
+				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
 			array(
 				(int)$monographFile->getFileId(),
 				(int)$monographFile->getRevision(),
 				(int)$monographFile->getMonographId(),
 				is_null($monographFile->getSourceFileId()) ? null : (int)$monographFile->getSourceFileId(),
 				is_null($monographFile->getSourceRevision()) ? null : (int)$monographFile->getSourceRevision(),
-				$monographFile->getFileName(),
 				$monographFile->getFileType(),
 				$monographFile->getFileSize(),
 				$monographFile->getOriginalFileName(),
@@ -143,27 +163,50 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 				is_null($monographFile->getAssocType()) ? null : (int)$monographFile->getAssocType(),
 				is_null($monographFile->getAssocId()) ? null : (int)$monographFile->getAssocId(),
 				is_null($monographFile->getGenreId()) ? null : (int)$monographFile->getGenreId(),
-				(int)$previousFileId,
-				(int)$previousRevision
+				(int)$previousFile->getFileId(),
+				(int)$previousFile->getRevision()
 			)
 		);
 
 		$this->updateLocaleFields($monographFile);
-		return true;
+
+		// Copy the file from its current location to the target destination
+		// if necessary.
+		$previousFilePath = $previousFile->getFilePath();
+		$targetFilePath = $monographFile->getFilePath();
+		if ($previousFilePath != $targetFilePath && is_file($previousFilePath)) {
+			// The file location changed so let's move the file on
+			// the file system, too.
+			assert(is_readable($previousFilePath));
+			import('lib.pkp.classes.file.FileManager');
+			if (!FileManager::copyFile($previousFilePath, $targetFilePath)) return false;
+			if (!FileManager::deleteFile($previousFilePath)) return false;
+		}
+
+		return file_exists($targetFilePath);
 	}
 
 	/**
 	 * @see SubmissionFileDAODelegate::deleteObject()
 	 */
 	function deleteObject(&$submissionFile) {
-		$submissionFileDao =& $this->getSubmissionFileDAO();
-		return $submissionFileDao->update(
+		if (!$this->update(
 			'DELETE FROM monograph_files
 			 WHERE file_id = ? AND revision = ?',
 			array(
 				(int)$submissionFile->getFileId(),
 				(int)$submissionFile->getRevision()
-			));
+			))) return false;
+
+		// Delete the file on the file system, too.
+		$filePath = $submissionFile->getFilePath();
+		if(!(is_file($filePath) && is_readable($filePath))) return false;
+		assert(is_writable(dirname($filePath)));
+
+		import('lib.pkp.classes.file.FileManager');
+		FileManager::deleteFile($filePath);
+
+		return !file_exists($filePath);
 	}
 
 	/**
@@ -180,7 +223,6 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		$monographFile->setSourceRevision(is_null($row['source_revision']) ? null : (int)$row['source_revision']);
 		$monographFile->setMonographId((int)$row['monograph_id']);
 		$monographFile->setFileStage((int)$row['file_stage']);
-		$monographFile->setFileName($row['file_name']);
 		$monographFile->setOriginalFileName($row['original_file_name']);
 		$monographFile->setFileType($row['file_type']);
 		$monographFile->setGenreId(is_null($row['genre_id']) ? null : (int)$row['genre_id']);
@@ -188,11 +230,10 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		$monographFile->setUserGroupId(is_null($row['user_group_id']) ? null : (int)$row['user_group_id']);
 		$monographFile->setViewable((boolean)$row['viewable']);
 
-		$submissionFileDao =& $this->getSubmissionFileDAO();
-		$monographFile->setDateUploaded($submissionFileDao->datetimeFromDB($row['date_uploaded']));
-		$monographFile->setDateModified($submissionFileDao->datetimeFromDB($row['date_modified']));
+		$monographFile->setDateUploaded($this->datetimeFromDB($row['date_uploaded']));
+		$monographFile->setDateModified($this->datetimeFromDB($row['date_modified']));
 
-		$submissionFileDao->getDataObjectSettings('monograph_file_settings', 'file_id', $row['monograph_file_id'], $monographFile);
+		$this->getDataObjectSettings('monograph_file_settings', 'file_id', $row['monograph_file_id'], $monographFile);
 
 		return $monographFile;
 	}

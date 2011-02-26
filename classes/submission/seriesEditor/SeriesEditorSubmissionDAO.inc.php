@@ -29,7 +29,6 @@ class SeriesEditorSubmissionDAO extends DAO {
 	var $reviewAssignmentDao;
 	var $submissionFileDao;
 	var $signoffDao;
-	var $galleyDao;
 	var $monographEmailLogDao;
 	var $monographCommentDao;
 
@@ -44,7 +43,6 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$this->reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$this->submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 		$this->signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 		$this->monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
 		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 	}

@@ -245,23 +245,6 @@ class AuthorSubmission extends Monograph {
 		return $this->editorFileRevisions = $editorFileRevisions;
 	}
 
-	/**
-	 * Get the galleys for a monograph.
-	 * @return array MonographGalley
-	 */
-	function &getGalleys() {
-		$galleys =& $this->getData('galleys');
-		return $galleys;
-	}
-
-	/**
-	 * Set the galleys for a monograph.
-	 * @param $galleys array MonographGalley
-	 */
-	function setGalleys(&$galleys) {
-		return $this->setData('galleys', $galleys);
-	}
-
 	//
 	// Comments
 	//

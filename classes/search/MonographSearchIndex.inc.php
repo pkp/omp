@@ -191,8 +191,8 @@ class MonographSearchIndex {
 	 */
 	function indexMonographFiles(&$monograph) {
 		// Index galley files
-		$monographGalleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
-		$files =& $monographGalleyDao->getByMonographId($monograph->getId());
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$files =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_GALLEY);
 		foreach ($files as $file) {
 			if ($file->getFileId()) {
 				MonographSearchIndex::updateFileIndex($monograph->getId(), MONOGRAPH_SEARCH_GALLEY_FILE, $file->getFileId());

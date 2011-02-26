@@ -24,7 +24,6 @@ class AuthorSubmissionDAO extends DAO {
 	var $reviewAssignmentDao;
 	var $submissionFileDao;
 	var $monographCommentDao;
-	var $galleyDao;
 
 	/**
 	 * Constructor.
@@ -38,7 +37,6 @@ class AuthorSubmissionDAO extends DAO {
 		$this->signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$this->submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO');
 		$this->monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
-		$this->galleyDao =& DAORegistry::getDAO('MonographGalleyDAO');
 	}
 
 	/**
@@ -121,8 +119,6 @@ class AuthorSubmissionDAO extends DAO {
 
 		$authorSubmission->setAuthorFileRevisions($this->submissionFileDao->getAllRevisions($row['revised_file_id']));
 		$authorSubmission->setEditorFileRevisions($this->submissionFileDao->getAllRevisions($row['editor_file_id']));
-
-		$authorSubmission->setGalleys($this->galleyDao->getByMonographId($row['monograph_id']));
 
 		HookRegistry::call('AuthorSubmissionDAO::_returnAuthorSubmissionFromRow', array(&$authorSubmission, &$row));
 

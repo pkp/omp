@@ -141,8 +141,7 @@ class MonographFile extends SubmissionFile {
 	 */
 	function getExtension() {
 		import('lib.pkp.classes.file.FileManager');
-		$fileManager = new FileManager();
-		return strtoupper($fileManager->getExtension($this->getData('fileName')));
+		return strtoupper(FileManager::parseFileExtension($this->getOriginalFileName()));
 	}
 
 	/**
@@ -151,8 +150,7 @@ class MonographFile extends SubmissionFile {
 	 */
 	function getDocumentType() {
 		import('lib.pkp.classes.file.FileManager');
-		$fileManager = new FileManager();
-		return $fileManager->getDocumentType($this->getFileType());
+		return FileManager::getDocumentType($this->getFileType());
 	}
 
 	/**
@@ -192,6 +190,31 @@ class MonographFile extends SubmissionFile {
 		if ($this->getRevision() > 1) $fileLabel .= ' (' . $this->getRevision() . ')';
 
 		return $fileLabel;
+	}
+
+
+	//
+	// Overridden public methods from PKPFile
+	//
+	/**
+	 * @see PKPFile::getFileName()
+	 * Generate the file name from identification data rather than
+	 * retrieving it from the database.
+	 */
+	function getFileName() {
+		// FIXME: Need to move this to PKPFile or remove PKPFile's getFileName()
+		// implementation and place it into app-specific classes, see #6446.
+		return $this->_generateFileName();
+	}
+
+	/**
+	 * @see PKPFile::setFileName()
+	 * Do not allow setting the file name of a monograph file
+	 * directly because it is generated from identification data.
+	 */
+	function setFileName($fileName) {
+		// FIXME: Remove this setter from PKPFile, too? See #6446.
+		assert(false);
 	}
 
 
@@ -262,6 +285,62 @@ class MonographFile extends SubmissionFile {
 
 		assert(isset($fileStageToPath[$fileStage]));
 		return $fileStageToPath[$fileStage];
+	}
+
+	/**
+	 * Generate the unique filename for this monograph file.
+	 * @return string
+	 */
+	function _generateFileName() {
+		// Remember the ID information we generated the file name
+		// on so that we only have to re-generate the name if the
+		// relevant information changed.
+		static $lastIds = array();
+		static $fileName = null;
+
+		// Retrieve the current id information.
+		$currentIds = array(
+			'genreId' => $this->getGenreId(),
+			'dateUploaded' => $this->getDateUploaded(),
+			'monographId' => $this->getMonographId(),
+			'fileId' => $this->getFileId(),
+			'revision' => $this->getRevision(),
+			'fileStage' => $this->getFileStage(),
+			'extension' => strtolower($this->getExtension())
+		);
+
+		// Check whether we need a refresh.
+		$refreshRequired = false;
+		foreach($currentIds as $key => $currentId) {
+			if (!isset($lastIds[$key]) || $lastIds[$key] !== $currentId) {
+				$refreshRequired = true;
+				$lastIds = $currentIds;
+				break;
+			}
+		}
+
+		// Refresh the file name if required.
+		if ($refreshRequired) {
+			// If the file has a file genre set then include
+			// human readable genre information.
+			$genreName = '';
+			if ($currentIds['genreId']) {
+				$primaryLocale = Locale::getPrimaryLocale();
+				$genreDao =& DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
+				$genre =& $genreDao->getById($currentIds['genreId']);
+				assert(is_a($genre, 'Genre'));
+				$genreName = $genre->getDesignation($primaryLocale).'_'.$genre->getName($primaryLocale).'-';
+			}
+
+			// Generate a human readable time stamp.
+			$timestamp = date('Ymd', strtotime($currentIds['dateUploaded']));
+
+			// Make the file name unique across all files and file revisions.
+			// Also make sure that files can be ordered sensibly by file name.
+			$fileName = $currentIds['monographId'].'-'.$genreName.$currentIds['fileId'].'-'.$currentIds['revision'].'-'.$currentIds['fileStage'].'-'.$timestamp.'.'.$currentIds['extension'];
+		}
+
+		return $fileName;
 	}
 }
 

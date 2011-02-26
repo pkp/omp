@@ -24,8 +24,8 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 	/**
 	 * Constructor
 	 */
-	function ArtworkFileDAODelegate(&$submissionFileDao) {
-		parent::MonographFileDAODelegate($submissionFileDao);
+	function ArtworkFileDAODelegate() {
+		parent::MonographFileDAODelegate();
 	}
 
 
@@ -37,13 +37,13 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 	 * @param $artworkFile ArtworkFile
 	 * @return ArtworkFile
 	 */
-	function &insertObject(&$artworkFile) {
+	function &insertObject(&$artworkFile, $sourceFile, $isUpload = false) {
 		// First insert the data for the super-class.
-		$artworkFile =& parent::insertObject($artworkFile);
+		$artworkFile =& parent::insertObject($artworkFile, $sourceFile, $isUpload);
+		if (is_null($artworkFile)) return $artworkFile;
 
 		// Now insert the artwork-specific data.
-		$submissionFileDao =& $this->getSubmissionFileDAO();
-		$submissionFileDao->update(
+		$this->update(
 			'INSERT INTO monograph_artwork_files
 			   (file_id, revision, caption, chapter_id, contact_author, copyright_owner, copyright_owner_contact, credit, permission_file_id, permission_terms, placement)
 			 VALUES
@@ -69,20 +69,14 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 	/**
 	 * @see SubmissionFileDAODelegate::update()
 	 * @param $artworkFile ArtworkFile
-	 * @param $previousFileId integer
-	 * @param $previousRevision integer
+	 * @param $previousFile ArtworkFile
 	 */
-	function updateObject(&$artworkFile, $previousFileId = null, $previousRevision = null) {
+	function updateObject(&$artworkFile, &$previousFile) {
 		// Update the parent class table first.
-		parent::updateObject($artworkFile, $previousFileId, $previousRevision);
-
-		// Complete the identifying data of the updated object if not given.
-		$previousFileId = ($previousFileId ? $previousFileId : $artworkFile->getFileId());
-		$previousRevision = ($previousRevision ? $previousRevision : $artworkFile->getRevision());
+		if (!parent::updateObject($artworkFile, $previousFile)) return false;
 
 		// Now update the artwork file table.
-		$submissionFileDao =& $this->getSubmissionFileDAO();
-		$submissionFileDao->update(
+		$this->update(
 			'UPDATE monograph_artwork_files
 				SET
 					file_id = ?,
@@ -109,8 +103,8 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 				is_null($artworkFile->getPermissionFileId()) ? null : (int)$artworkFile->getPermissionFileId(),
 				$artworkFile->getPermissionTerms(),
 				$artworkFile->getPlacement(),
-				(int)$previousFileId,
-				(int)$previousRevision
+				(int)$previousFile->getFileId(),
+				(int)$previousFile->getRevision()
 			)
 		);
 		return true;
@@ -124,8 +118,7 @@ class ArtworkFileDAODelegate extends MonographFileDAODelegate {
 		if (!parent::deleteObject($submissionFile)) return false;
 
 		// Delete the artwork file entry.
-		$submissionFileDao =& $this->getSubmissionFileDAO();
-		return $submissionFileDao->update(
+		return $this->update(
 			'DELETE FROM monograph_artwork_files
 			 WHERE file_id = ? AND revision = ?',
 			array(

@@ -170,7 +170,8 @@ class MonographFileManager extends FileManager {
 	 */
 	function temporaryFileToMonographFile($monographId, &$temporaryFile, $fileStage, $assocId, $assocType) {
 		// Instantiate and pre-populate the new target monograph file.
-		$monographFile =& MonographFileManager::_instantiateMonographFile($monographId, $fileStage, null, null, $assocId, $assocType);
+		$sourceFile = $temporaryFile->getFilePath();
+		$monographFile =& MonographFileManager::_instantiateMonographFile($sourceFile, $monographId, $fileStage, null, null, $assocId, $assocType);
 
 		// Transfer data from the temporary file to the monograph file.
 		$monographFile->setFileType($temporaryFile->getFileType());
@@ -178,7 +179,8 @@ class MonographFileManager extends FileManager {
 
 		// Copy the temporary file to it's final destination and persist
 		// its metadata to the database.
-		$monographFile =& MonographFileManager::_persistFile($temporaryFile->getFilePath(), $monographFile, true);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		if (!$submissionFileDao->insertObject($monographFile, $sourceFile)) return false;
 
 		// Return the new file id.
 		return $monographFile->getFileId();
@@ -221,16 +223,24 @@ class MonographFileManager extends FileManager {
 		// Ensure that the file has been correctly uploaded to the server.
 		if (!MonographFileManager::uploadedFileExists($fileName)) return $nullVar;
 
+		// Retrieve the location of the uploaded file.
+		$sourceFile = MonographFileManager::getUploadedFilePath($fileName);
+
 		// Instantiate and pre-populate a new monograph file object.
-		$monographFile = MonographFileManager::_instantiateMonographFile($monographId, $fileStage, $revisedFileId, $genreId, $assocId, $assocType);
+		$monographFile = MonographFileManager::_instantiateMonographFile($sourceFile, $monographId, $fileStage, $revisedFileId, $genreId, $assocId, $assocType);
 		if (is_null($monographFile)) return $nullVar;
 
-		// Retrieve file information from the uploaded file.
-		assert(isset($_FILES[$fileName]));
-		$monographFile->setFileType($_FILES[$fileName]['type']);
-		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($_FILES[$fileName]['name']));
+		// Retrieve and copy the file type of the uploaded file.
+		$fileType = MonographFileManager::getUploadedFileType($fileName);
+		assert($fileType !== false);
+		$monographFile->setFileType($fileType);
 
-		// Set the uploader's userGroupId
+		// Retrieve and copy the file name of the uploaded file.
+		$originalFileName = MonographFileManager::getUploadedFileName($fileName);
+		assert($originalFileName !== false);
+		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($originalFileName));
+
+		// Set the uploader's user group id.
 		// FIXME: Setting a temporary user group here until #6231 is fixed.
 		// This is necessary so that we can already remove the user-group
 		// attribute from the session.
@@ -238,11 +248,13 @@ class MonographFileManager extends FileManager {
 
 		// Copy the uploaded file to its final destination and
 		// persist its meta-data to the database.
-		return MonographFileManager::_persistFile($fileName, $monographFile);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		return $submissionFileDao->insertObject($monographFile, $fileName, true);
 	}
 
 	/**
 	 * Routine to instantiate and pre-populate a new monograph file.
+	 * @param $sourceFilePath string
 	 * @param $monographId integer
 	 * @param $fileStage integer
 	 * @param $revisedFileId integer
@@ -251,7 +263,7 @@ class MonographFileManager extends FileManager {
 	 * @param $assocType integer
 	 * @return MonographFile returns the instantiated monograph file or null if an error occurs.
 	 */
-	function &_instantiateMonographFile($monographId, $fileStage, $revisedFileId, $genreId, $assocId, $assocType) {
+	function &_instantiateMonographFile($sourceFilePath, $monographId, $fileStage, $revisedFileId, $genreId, $assocId, $assocType) {
 		// Retrieve the submission file DAO.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 
@@ -302,9 +314,8 @@ class MonographFileManager extends FileManager {
 			$monographFile->setRevision(1);
 		}
 
-		// Set a preliminary file name and file size.
-		$monographFile->setFileName('unknown');
-		$monographFile->setFileSize(0);
+		// Determine and set the file size of the file.
+		$monographFile->setFileSize(filesize($sourceFilePath));
 
 		// Set the file file stage.
 		$monographFile->setFileStage($fileStage);
@@ -325,74 +336,6 @@ class MonographFileManager extends FileManager {
 
 		// Return the pre-populated monograph file.
 		return $monographFile;
-	}
-
-	/**
-	 * Copies the file to it's final destination and persists
-	 * the file meta-data to the database.
-	 * @param $sourceFile string the path to the file to be copied
-	 * @param $monographFile MonographFile the file metadata
-	 * @param $copyOnly boolean set to true if the file has not been uploaded
-	 *  but already exists on the file system.
-	 * @return MonographFile
-	 */
-	function &_persistFile($sourceFile, &$monographFile, $copyOnly = false) {
-		// Persist the file meta-data (without the file name) and generate a file id.
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		if (!$submissionFileDao->insertObject($monographFile)) return false;
-
-		// Generate and set a file name (requires the monograph id
-		// that we generated when inserting the monograph data).
-		MonographFileManager::_generateAndPopulateFileName($monographFile);
-
-		// Determine the final destination of the file (requires
-		// the name we just generated).
-		$targetFile = $monographFile->getFilePath();
-
-		// If the "copy only" flag is set then copy the file from its
-		// current place to the target destination. Otherwise upload
-		// the file to the target folder.
-		if (!(($copyOnly && MonographFileManager::copyFile($sourceFile, $targetFile))
-				|| MonographFileManager::uploadFile($sourceFile, $targetFile))) {
-			// If the copy/upload operation fails then remove
-			// the already inserted meta-data.
-			$submissionFileDao->deleteRevision($monographFile);
-			return false;
-		}
-
-		// Determine and set the file size of the target file.
-		$monographFile->setFileSize(filesize($targetFile));
-
-		// Update the monograph with the file name and file size.
-		$submissionFileDao->updateObject($monographFile);
-
-		// Return the file.
-		return $monographFile;
-	}
-
-	/**
-	 * Generate a unique filename for a monograph file. Sets the filename
-	 * field in the monographFile to the generated value.
-	 * @param $monographFile MonographFile the monograph to generate a filename for
-	 */
-	function _generateAndPopulateFileName(&$monographFile) {
-		// If the file has a file genre set then start the
-		// file name with human readable genre information.
-		$genreId = $monographFile->getGenreId();
-		if ($genreId) {
-			$primaryLocale = Locale::getPrimaryLocale();
-			$genreDao =& DAORegistry::getDAO('GenreDAO'); /* @var $genreDao GenreDAO */
-			$genre =& $genreDao->getById($genreId);
-			assert(is_a($genre, 'Genre'));
-			$fileName = $genre->getDesignation($primaryLocale).'_'.date('Ymd').'-'.$genre->getName($primaryLocale).'-';
-		}
-
-		// Make the file name unique across all files and file revisions.
-		$extension = MonographFileManager::parseFileExtension($monographFile->getOriginalFileName());
-		$fileName .= $monographFile->getMonographId().'-'.$monographFile->getFileId().'-'.$monographFile->getRevision().'-'.$monographFile->getFileStage().'.'.$extension;
-
-		// Populate the monograph file with the generated file name.
-		$monographFile->setFileName($fileName);
 	}
 
 	/**
