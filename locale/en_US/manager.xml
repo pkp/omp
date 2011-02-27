@@ -172,7 +172,20 @@ You may optionally provide the user with a reason for disabling their account.</
 	<!-- Access and Security -->
 	<message key="settings.access"><![CDATA[Access &amp; Security]]></message>
 	<message key="settings.accessDescription">All settings related to access and security management for this press (manage users, manage roles, site access options).</message>
-
+	<message key="settings.roles.roleName">Role Name</message>
+	<message key="settings.roles.roleAbbrev">Role Abbreviation</message>
+	<message key="settings.roles.assignedStages">Assigned Stages</message>
+	<message key="settings.roles.stages">Stages</message>
+	<message key="settings.roles.listRoles">List roles from</message>
+	<message key="settings.roles.roleDetails">Role details</message>
+	<message key="settings.roles.from">Permission level</message>
+	<message key="settings.roles.removeText">You are about to remove this role from this press. This operation will also delete related settings and all the users assignments to this role. Do you want to continue?</message>
+	<message key="settings.roles.nameRequired">You need to define a role name.</message>
+	<message key="settings.roles.abbrevRequired">You need to define a role abbreviature.</message>
+	<message key="settings.roles.uniqueName">You need to define an unique role name.</message>
+	<message key="settings.roles.uniqueAbbrev">You need to define an unique role abbreviature.</message>
+	<message key="settings.roles.roleIdRequired">You need to define a role permission level.</message>
+	
 	<!-- System setup -->
 	<message key="manager.system">System Settings</message>
 	<message key="manager.system.archiving">Archiving</message>
@@ -479,8 +492,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.authorRole">Author Role</message>
 	<message key="manager.setup.managerialRole">Managerial Role</message>
 	<message key="manager.setup.pressRole">Press Role</message>
-	<message key="manager.setup.roleAbbrev">Role Abbreviation</message>
-	<message key="manager.setup.roleName">Role Name</message>
 	<message key="manager.setup.roleType">Role Type</message>
 	<message key="manager.setup.authorRoles">Author Roles</message>
 	<message key="manager.setup.managerialRoles">Managerial Roles</message>

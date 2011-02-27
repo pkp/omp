@@ -52,7 +52,7 @@
 	<message key="default.groups.abbrev.editor">PE</message>
 	<message key="default.groups.name.productionEditor">Production editor</message>
 	<message key="default.groups.plural.productionEditor">Production editors</message>
-	<message key="default.groups.abbrev.productionEditor">PE</message>
+	<message key="default.groups.abbrev.productionEditor">ProdE</message>
 	<message key="default.groups.name.seriesEditor">Series editor</message>
 	<message key="default.groups.plural.seriesEditor">Series editors</message>
 	<message key="default.groups.abbrev.seriesEditor">AcqE</message>

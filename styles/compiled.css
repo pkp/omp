@@ -1269,6 +1269,7 @@ div.pkp_controllers_grid .row_controls {
   vertical-align:middle;
   overflow:hidden;
   padding-left:20px;
+  white-space:nowrap;
 }
 div.pkp_controllers_grid .row_actions {
   min-height:40px;
@@ -1361,6 +1362,11 @@ div.pkp_controllers_grid .group5 td:first-child { background:url(../lib/pkp/temp
 div.pkp_controllers_grid .my_role {
   border:2px solid #cccccc;
   border:2px solid #cccccc;
+}
+div.pkp_controllers_grid .pkp_controllers_grid_settings_stages {
+  display:block;
+  float:left;
+  width:20%;
 }
 .pkp_controllers_grid .options a.sort { background:url(../lib/pkp/templates/images/structure/grid_sort.png) no-repeat left; }
 .pkp_controllers_grid a.settings { background-image:url(../lib/pkp/templates/images/structure/grid_settings.png); }

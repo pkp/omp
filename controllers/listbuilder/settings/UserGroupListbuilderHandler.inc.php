@@ -71,15 +71,15 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 
 		// Basic configuration
 		$this->setTitle($title);
-		$this->setSourceTitle('manager.setup.roleName');
+		$this->setSourceTitle('settings.roles.roleName');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
 		$this->setListTitle('manager.setup.currentRoles');
-		$this->setAttributeNames(array('manager.setup.roleAbbrev'));
+		$this->setAttributeNames(array('settings.roles.roleAbbrev'));
 
 		$this->_loadList($request);
 
-		$this->addColumn(new GridColumn('item', 'manager.setup.roleName'));
-		$this->addColumn(new GridColumn('attribute', 'manager.setup.roleAbbrev'));
+		$this->addColumn(new GridColumn('item', 'settings.roles.roleName'));
+		$this->addColumn(new GridColumn('attribute', 'settings.roles.roleAbbrev'));
 	}
 
 

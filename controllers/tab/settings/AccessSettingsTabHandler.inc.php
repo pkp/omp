@@ -64,7 +64,6 @@ class AccessSettingsTabHandler extends Handler {
 	function users($args, &$request) {
 		$this->setupTemplate(true);
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('currentPage', 'users');
 		return $templateMgr->fetchJson('controllers/tab/settings/users.tpl');
 	}
 
@@ -75,12 +74,8 @@ class AccessSettingsTabHandler extends Handler {
 	 */
 	function roles($args, &$request) {
 		$this->setupTemplate(true);
-		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$roleOptions = $roleDao->getPressRoleNames();
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('roleOptions', $roleOptions);
-		$templateMgr->assign('currentPage', 'roles');
 		return $templateMgr->fetchJson('controllers/tab/settings/roles.tpl');
 	}
 
@@ -109,7 +104,6 @@ class AccessSettingsTabHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('fieldOptions', $fieldOptions);
 		$templateMgr->assign('matchOptions', $matchOptions);
-		$templateMgr->assign('currentPage', 'enrollment');
 		return $templateMgr->fetchJson('controllers/tab/settings/enrollment.tpl');
 	}
 }

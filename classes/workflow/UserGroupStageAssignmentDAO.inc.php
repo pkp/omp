@@ -20,6 +20,7 @@ define('WORKFLOW_STAGE_PATH_EDITING', 'editing');
 define('WORKFLOW_STAGE_PATH_PRODUCTION', 'production');
 
 class UserGroupStageAssignmentDAO extends DAO {
+
 	function &getUserGroupsByStage($pressId, $stageId) {
 		$result =& $this->retrieve('
 				SELECT ug.*
@@ -29,6 +30,28 @@ class UserGroupStageAssignmentDAO extends DAO {
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$returner = new DAOResultFactory($result, $userGroupDao, '_returnFromRow');
+		return $returner;
+	}
+
+	/**
+	 * Get all stages assigned to one user group in one context.
+	 * @param Integer $pressId The user group context.
+	 * @param Integer $userGroupId
+	 */
+	function getAssignedStagesByUserGroupId($pressId, $userGroupId) {
+		$result =& $this->retrieve('SELECT stage_id FROM user_group_stage
+			WHERE press_id = ? AND user_group_id = ?',
+			array($pressId, $userGroupId)
+		);
+
+		$returner = array();
+
+		while (!$result->EOF) {
+			$stageId = $result->Fields('stage_id');
+			$returner[$stageId] = UserGroupStageAssignmentDAO::getTranslationKeyFromId($stageId);
+			$result->MoveNext();
+		}
+
 		return $returner;
 	}
 
@@ -99,6 +122,33 @@ class UserGroupStageAssignmentDAO extends DAO {
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * Convert a stage id into a stage translation key
+	 * @param $stageId integer
+	 * @return string|null
+	 */
+	function getTranslationKeyFromId($stageId) {
+		$stageMapping = UserGroupStageAssignmentDAO::getWorkflowStageTranslationKeys();
+
+		assert(isset($stageMapping[$stageId]));
+		return $stageMapping[$stageId];
+	}
+
+	/**
+	 * Return a mapping of workflow stages and its translation keys.
+	 * NB: PHP4 work-around for a private static class member
+	 * @return array
+	 */
+	function getWorkflowStageTranslationKeys() {
+		static $stageMapping = array(WORKFLOW_STAGE_ID_SUBMISSION => 'submission.submission',
+				WORKFLOW_STAGE_ID_INTERNAL_REVIEW => 'workflow.review.internalReview',
+				WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => 'workflow.review.externalReview',
+				WORKFLOW_STAGE_ID_EDITING => 'submission.editorial',
+				WORKFLOW_STAGE_ID_PRODUCTION => 'submission.production');
+
+		return $stageMapping;
 	}
 }
 
