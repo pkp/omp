@@ -101,16 +101,15 @@ class EditorDecisionForm extends Form {
 	 * @param $monograph Monograph
 	 * @param $reviewType integer One of the REVIEW_TYPE_* constants.
 	 * @param $newRound integer
-	 * @param $reviewRevision integer
 	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
 	 */
-	function _initiateReviewRound(&$monograph, $reviewType, $newRound, $reviewRevision = null, $status = null) {
+	function _initiateReviewRound(&$monograph, $reviewType, $newRound, $status = null) {
 		assert(is_int($newRound));
 
 		// Create a new review round.
 		// FIXME #6409: What to do with reviewType?
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$reviewRoundDao->build($monograph->getId(), $reviewType, $newRound, $reviewRevision, $status);
+		$reviewRoundDao->build($monograph->getId(), $reviewType, $newRound, $status);
 
 		// Add the selected files to the new round.
 		$selectedFiles = $this->getData('selectedFiles');

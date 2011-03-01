@@ -407,21 +407,6 @@ class ReviewerSubmission extends Monograph {
 		return $this->setData('reviewFileId', $reviewFileId);
 	}
 
-	/**
-	 * Get review revision.
-	 * @return int
-	 */
-	function getReviewRevision() {
-		return $this->getData('reviewRevision');
-	}
-
-	/**
-	 * Set review revision.
-	 * @param $reviewRevision int
-	 */
-	function setReviewRevision($reviewRevision) {
-		return $this->setData('reviewRevision', $reviewRevision);
-	}
 
 	//
 	// Files

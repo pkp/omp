@@ -58,11 +58,9 @@ class SeriesEditorSubmissionDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT	m.*,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
-				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev,
-				rr.review_revision AS review_revision
+				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
 			FROM	monographs m
 				LEFT JOIN series s ON (s.series_id = m.series_id)
-				LEFT JOIN review_rounds rr ON (m.monograph_id = rr.submission_id AND m.current_round = rr.round)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -139,9 +137,6 @@ class SeriesEditorSubmissionDAO extends DAO {
 			}
 		}
 
-		// Review Rounds
-		$seriesEditorSubmission->setReviewRevision($row['review_revision']);
-
 		// Review Assignments
 		foreach ($reviewRoundsInfo as $reviewType => $currentReviewRound) {
 			for ($i = 1; $i <= $currentReviewRound; $i++) {
@@ -200,11 +195,6 @@ class SeriesEditorSubmissionDAO extends DAO {
 					$seriesEditorSubmission->getId(),
 					$reviewType,
 					$round == null ? 1 : $round);
-
-			if ($seriesEditorSubmission->getReviewRevision() != null) {
-				$reviewRound->setReviewRevision($seriesEditorSubmission->getReviewRevision());
-				$reviewRoundDao->updateObject($reviewRound);
-			}
 		}
 
 		// update review assignments

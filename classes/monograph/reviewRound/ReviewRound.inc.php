@@ -82,22 +82,6 @@ class ReviewRound extends DataObject {
 	}
 
 	/**
-	 * Get review revision
-	 * @return int
-	 */
-	function getReviewRevision() {
-		return $this->getData('reviewRevision');
-	}
-
-	/**
-	 * Set review reviesion
-	 * @param $reviewRevision int
-	 */
-	function setReviewRevision($reviewRevision) {
-		return $this->setData('reviewRevision', $reviewRevision);
-	}
-
-	/**
 	 * Get current round status
 	 * @return int
 	 */

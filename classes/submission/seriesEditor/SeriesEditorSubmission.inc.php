@@ -344,25 +344,6 @@ class SeriesEditorSubmission extends Monograph {
 		return $this->setData('editorFile', $editorFile);
 	}
 
-	//
-	// Review Rounds
-	//
-
-	/**
-	 * Get review file revision.
-	 * @return int
-	 */
-	function getReviewRevision() {
-		return $this->getData('reviewRevision');
-	}
-
-	/**
-	 * Set review file revision.
-	 * @param $reviewRevision int
-	 */
-	function setReviewRevision($reviewRevision) {
-		return $this->setData('reviewRevision', $reviewRevision);
-	}
 
 	//
 	// Comments

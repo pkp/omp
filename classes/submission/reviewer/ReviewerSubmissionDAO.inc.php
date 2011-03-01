@@ -50,7 +50,6 @@ class ReviewerSubmissionDAO extends DAO {
 		$result =& $this->retrieve(
 			'SELECT	a.*,
 				r.*,
-				r2.review_revision,
 				u.first_name, u.last_name,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
 				COALESCE(sal.setting_value, sapl.setting_value) AS series_abbrev
@@ -58,7 +57,6 @@ class ReviewerSubmissionDAO extends DAO {
 				LEFT JOIN review_assignments r ON (a.monograph_id = r.submission_id)
 				LEFT JOIN series s ON (s.series_id = a.series_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_rounds r2 ON (r.submission_id = r2.submission_id AND r.review_type = r2.review_type AND r.round = r2.round)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)
@@ -140,7 +138,6 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setStep($row['step']);
 		$reviewerSubmission->setReviewType($row['review_type']);
 		$reviewerSubmission->setReviewFileId($row['review_file_id']);
-		$reviewerSubmission->setReviewRevision($row['review_revision']);
 
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($reviewerSubmission, $row);
@@ -210,7 +207,6 @@ class ReviewerSubmissionDAO extends DAO {
 		$locale = Locale::getLocale();
 		$sql = 'SELECT	a.*,
 				r.*,
-				r2.review_revision,
 				u.first_name, u.last_name,
 				atl.setting_value AS submission_title,
 				COALESCE(stl.setting_value, stpl.setting_value) AS series_title,
@@ -220,7 +216,6 @@ class ReviewerSubmissionDAO extends DAO {
 				LEFT JOIN monograph_settings atl ON (atl.monograph_id = a.monograph_id AND atl.setting_name = ? AND atl.locale = ?)
 				LEFT JOIN series s ON (s.series_id = a.series_id)
 				LEFT JOIN users u ON (r.reviewer_id = u.user_id)
-				LEFT JOIN review_rounds r2 ON (r.submission_id = r2.submission_id AND r.review_type = r2.review_type AND r.round = r2.round)
 				LEFT JOIN series_settings stpl ON (s.series_id = stpl.series_id AND stpl.setting_name = ? AND stpl.locale = ?)
 				LEFT JOIN series_settings stl ON (s.series_id = stl.series_id AND stl.setting_name = ? AND stl.locale = ?)
 				LEFT JOIN series_settings sapl ON (s.series_id = sapl.series_id AND sapl.setting_name = ? AND sapl.locale = ?)

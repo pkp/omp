@@ -44,7 +44,7 @@ class NewReviewRoundForm extends EditorDecisionForm {
 		// Create a new review round.
 		$newRound = $seriesEditorSubmission->getCurrentRound() + 1;
 		$this->_initiateReviewRound($seriesEditorSubmission, $seriesEditorSubmission->getCurrentReviewType(),
-				$newRound, 1, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
+				$newRound, REVIEW_ROUND_STATUS_PENDING_REVIEWERS);
 		return $newRound;
 	}
 }

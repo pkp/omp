@@ -518,10 +518,10 @@ class MonographDAO extends DAO {
 	function &getReviewRoundsInfoById($monographId) {
 		$returner = array();
 		$result =& $this->retrieve(
-			'SELECT	MAX(round) AS current_round, review_type, review_revision
+			'SELECT	MAX(round) AS current_round, review_type
 			FROM	review_rounds r
 			WHERE	submission_id = ?
-			GROUP BY review_type, r.review_revision',
+			GROUP BY review_type',
 			$monographId
 		);
 
