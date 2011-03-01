@@ -73,10 +73,10 @@ class ReviewRoundDAO extends DAO {
 				VALUES
 				(?, ?, ?, ?)',
 				array(
-					$reviewRound->getSubmissionId(),
-					$reviewRound->getReviewType(),
-					$reviewRound->getRound(),
-					$reviewRound->getStatus()
+					(int)$reviewRound->getSubmissionId(),
+					(int)$reviewRound->getReviewType(),
+					(int)$reviewRound->getRound(),
+					(int)$reviewRound->getStatus()
 				)
 		);
 		return $reviewRound;
@@ -95,10 +95,10 @@ class ReviewRoundDAO extends DAO {
 				review_type = ? AND
 				round = ?',
 			array(
-				$reviewRound->getStatus(),
-				$reviewRound->getSubmissionId(),
-				$reviewRound->getReviewType(),
-				$reviewRound->getRound()
+				(int)$reviewRound->getStatus(),
+				(int)$reviewRound->getSubmissionId(),
+				(int)$reviewRound->getReviewType(),
+				(int)$reviewRound->getRound()
 			)
 		);
 		return $returner;
@@ -106,15 +106,14 @@ class ReviewRoundDAO extends DAO {
 
 	/**
 	 * Retrieve a review round
-	 * @param $symbolic string
-	 * @param $assocType int
-	 * @param $assocId int
+	 * @param $submissionId integer
+	 * @param $reviewType int One of the REVIEW_TYPE_* constants.
+	 * @param $round int The review round to be retrieved.
 	 */
 	function getReviewRound($submissionId, $reviewType, $round) {
 		$result =& $this->retrieve(
-			'SELECT * FROM review_rounds WHERE submission_id = ? AND review_type = ? AND round = ?',
-			array($submissionId, (int) $reviewType, (int) $round)
-		);
+				'SELECT * FROM review_rounds WHERE submission_id = ? AND review_type = ? AND round = ?',
+				array((int)$submissionId, (int)$reviewType, (int)$round));
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {

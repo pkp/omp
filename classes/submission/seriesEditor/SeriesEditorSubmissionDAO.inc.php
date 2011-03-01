@@ -186,7 +186,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 			}
 		}
 
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO');
+		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 
 		$reviewType = $seriesEditorSubmission->getCurrentReviewType();
 
@@ -703,8 +703,6 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 		return $statistics;
 	}
-
-
 }
 
 ?>
