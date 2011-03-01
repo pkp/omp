@@ -254,6 +254,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 	//
 	/**
 	 * Delete copyediting assignments by monograph.
+	 * FIXME: Create EditorDecisionDAO and move this there, see #6455.
 	 * @param $monographId int
 	 */
 	function deleteDecisionsByMonograph($monographId) {
@@ -265,6 +266,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 	/**
 	 * Delete review rounds monograph.
+	 * FIXME: Move to ReviewRoundDAO, see #6455.
 	 * @param $monographId int
 	 */
 	function deleteReviewRoundsByMonograph($monographId) {
@@ -276,6 +278,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 	/**
 	 * Get the editor decisions for a review round of a monograph.
+	 * FIXME: Create EditorDecisionDAO and move this there, see #6455.
 	 * @param $monographId int
 	 */
 	function getEditorDecisions($monographId, $reviewType = null, $round = null) {
@@ -326,6 +329,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 	/**
 	 * Get the highest review round.
+	 * FIXME: Move to ReviewRoundDAO, see #6455.
 	 * @param $monographId int
 	 * @return int
 	 */
@@ -343,6 +347,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 	/**
 	 * Check if a reviewer is assigned to a specified monograph.
+	 * FIXME: Move to ReviewAssigmentDAO, see #6455.
 	 * @param $monographId int
 	 * @param $reviewerId int
 	 * @return boolean
@@ -361,6 +366,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 	/**
 	 * Retrieve a list of all reviewers assigned to a monograph.
+	 * FIXME: Move to UserDAO, see #6455.
 	 * @param $pressId int
 	 * @param $monographId int
 	 * @param $round int optional
@@ -385,7 +391,12 @@ class SeriesEditorSubmissionDAO extends DAO {
 		return $returner;
 	}
 
-	function &_returnReviewerUserFromRow(&$row) { // FIXME
+	/**
+	 * FIXME: Document.
+	 * FIXME: Move to UserDAO, see #6455.
+	 * @param $row
+	 */
+	function &_returnReviewerUserFromRow(&$row) {
 		$user =& $this->userDao->_returnUserFromRowWithData($row);
 		if(isset($row['review_id'])) $user->review_id = $row['review_id'];
 
@@ -396,6 +407,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 	/**
 	 * Retrieve a list of all reviewers not assigned to the specified monograph.
+	 * FIXME: Move to UserDAO, see #6455.
 	 * @param $pressId int
 	 * @param $monographId int
 	 * @return array matching Users
@@ -422,6 +434,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 	/**
 	 * Retrieve a list of all reviewers in a press
+	 * FIXME: Move to UserDAO, see #6455.
 	 * @param $pressId int
 	 * @return array matching Users
 	 */
@@ -445,6 +458,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 	/**
 	 * Get the number of reviews done, avg. number of days per review, days since last review, and num. of
 	 * active reviews for all reviewers of the given press.
+	 * FIXME: Move to ReviewAssignmentDAO, see #6455.
 	 * @return array
 	 */
 	function getAnonymousReviewerStatistics() {
@@ -537,6 +551,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 	/**
 	 * Given the ranges selected by the editor, produce a filtered list of reviewers
+	 * FIXME: Move to UserDAO, see #6455.
 	 * @param $pressId int
 	 * @param $doneMin int # of reviews completed int
 	 * @param $doneMax int
@@ -606,6 +621,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 
 	/**
 	 * Get the last assigned and last completed dates for all reviewers of the given press.
+	 * FIXME: Move to ReviewAssignmentDAO, see #6455.
 	 * @param $pressId int
 	 * @return array
 	 */

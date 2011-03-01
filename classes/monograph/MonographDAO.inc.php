@@ -423,6 +423,7 @@ class MonographDAO extends DAO {
 
 	/**
 	 * Get the ID of the press a monograph is in.
+	 * FIXME: Move to PressDAO, see #6455.
 	 * @param $monographId int
 	 * @return int
 	 */
@@ -464,7 +465,8 @@ class MonographDAO extends DAO {
 	}
 
 	/**
-	 * Change the status of the monograph
+	 * Change the status of the monograph.
+	 * FIXME: Implement with updateMonograph().
 	 * @param $monographId int
 	 * @param $status int
 	 */
@@ -508,6 +510,8 @@ class MonographDAO extends DAO {
 
 	/**
 	 * Get an array describing a monograph's current round for each review type
+	 * FIXME: Move to ReviewRoundDAO, see #6455.
+	 * FIXME: Return review round objects rather than an untyped array, see #6406.
 	 * @param $monographId int
 	 * @return array
 	 */
