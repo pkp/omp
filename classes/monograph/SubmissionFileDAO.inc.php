@@ -21,12 +21,14 @@
 import('lib.pkp.classes.submission.PKPSubmissionFileDAO');
 
 class SubmissionFileDAO extends PKPSubmissionFileDAO {
+
 	/**
 	 * Constructor
 	 */
 	function SubmissionFileDAO() {
 		return parent::PKPSubmissionFileDAO();
 	}
+
 
 	//
 	// Implement protected template methods from PKPSubmissionFileDAO

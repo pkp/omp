@@ -69,15 +69,9 @@ class ReviewFilesGridDataProvider extends FilesGridDataProvider {
 	function getRowData() {
 		// Get all review files assigned to this submission.
 		$monograph =& $this->getMonograph();
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$monographFiles =& $reviewRoundDao->getReviewFilesByRound($monograph->getId());
-
-		// Filter files for this review type/round.
-		$rowData = array();
-		if(isset($monographFiles[$this->_getReviewType()][$this->_getRound()])) {
-			$rowData = $monographFiles[$this->_getReviewType()][$this->_getRound()];
-		}
-
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$rowData =& $submissionFileDao->getRevisionsByReviewRound($monograph->getId(),
+				$this->_getReviewType(), $this->_getRound());
 		return $rowData;
 	}
 

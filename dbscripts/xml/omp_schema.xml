@@ -1071,6 +1071,8 @@
 			<col>monograph_id</col>
 			<col>review_type</col>
 			<col>round</col>
+			<col>file_id</col>
+			<UNIQUE/>
 		</index>
 	</table>
 

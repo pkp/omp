@@ -50,7 +50,6 @@ class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandl
 
 		import('controllers.grid.files.review.form.ManageReviewFilesForm');
 		$manageReviewFilesForm = new ManageReviewFilesForm($monograph->getId(), $this->getSelectionArg('reviewType'), $this->getSelectionArg('round'));
-
 		$manageReviewFilesForm->readInputData();
 
 		if ($manageReviewFilesForm->validate()) {
@@ -93,8 +92,9 @@ class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandl
 	function getSelectedFileIds() {
 		// Set the already selected elements of the grid (the current review files).
 		$monograph =& $this->getMonograph();
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$selectedRevisions =& $reviewRoundDao->getReviewFilesAndRevisionsByRound($monograph->getId(), $this->getSelectionArg('round'), true);
-		return $selectedRevisions;
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$selectedRevisions =& $submissionFileDao->getRevisionsByReviewRound(
+				$monograph->getId(), $this->getSelectionArg('reviewType'), $this->getSelectionArg('round'));
+		return array_keys($selectedRevisions);
 	}
 }

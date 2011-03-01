@@ -20,6 +20,7 @@ import('classes.monograph.MonographFile');
 import('classes.monograph.ArtworkFile');
 import('classes.monograph.MonographDAO');
 import('classes.monograph.Genre');
+import('classes.monograph.reviewRound.ReviewRound');
 import('lib.pkp.classes.db.DBResultRange');
 
 // Define test ids.
@@ -72,6 +73,9 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 	 * @covers SubmissionFileDAODelegate
 	 */
 	public function testSubmissionFileCrud() {
+		//
+		// Create test data.
+		//
 		// Create two test files, one monograph file one artwork file.
 		$file1Rev1 = new ArtworkFile();
 		$file1Rev1->setName('test-artwork', 'en_US');
@@ -94,11 +98,19 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$file2Rev1->setDateUploaded('2011-12-05 00:00:00');
 		$file2Rev1->setDateModified('2011-12-05 00:00:00');
 
+
+		//
+		// isInlineable()
+		//
 		// Test the isInlineable method.
 		$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		self::assertFalse($submissionFileDao->isInlineable($file2Rev1));
 		self::assertTrue($submissionFileDao->isInlineable($file1Rev1));
 
+
+		//
+		// insertObject()
+		//
 		// Persist the two test files.
 		$this->_insertFile($file1Rev1, 'test artwork', SUBMISSION_FILE_DAO_TEST_ART_GENRE_ID);
 		self::assertType('ArtworkFile', $file1Rev1);
@@ -133,6 +145,9 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertNull($file2Rev2->getCaption());
 
 
+		//
+		// getRevision()
+		//
 		// Retrieve the first revision of the artwork file.
 		self::assertNull($submissionFileDao->getRevision(null, $file1Rev1->getRevision()));
 		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), null));
@@ -142,6 +157,10 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision(), MONOGRAPH_FILE_PRODUCTION+1));
 		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision(), null, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID+1));
 
+
+		//
+		// updateObject()
+		//
 		// Update the artwork file.
 		$file1Rev1->setOriginalFileName('updated-file-name');
 		$file1Rev1->setCaption('test-caption');
@@ -178,6 +197,10 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertNull($updatedFile->getCaption());
 		$file1Rev1 = $updatedFile;
 
+
+		//
+		// getLatestRevision()
+		//
 		// Retrieve the latest revision of file 1.
 		self::assertNull($submissionFileDao->getLatestRevision(null));
 		self::assertEquals($file1Rev2, $submissionFileDao->getLatestRevision($file1Rev1->getFileId()));
@@ -186,42 +209,122 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertNull($submissionFileDao->getLatestRevision($file1Rev1->getFileId(), MONOGRAPH_FILE_PRODUCTION+1));
 		self::assertNull($submissionFileDao->getLatestRevision($file1Rev1->getFileId(), null, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID+1));
 
+
+		//
+		// getLatestRevisions()
+		//
+		// Calculate the unique ids of the test files.
+		$uniqueId1_1 = $file1Rev1->getFileId().'-'.$file1Rev1->getRevision();
+		$uniqueId1_2 = $file1Rev2->getFileId().'-'.$file1Rev2->getRevision();
+		$uniqueId2_1 = $file2Rev1->getFileId().'-'.$file2Rev1->getRevision();
+		$uniqueId2_2 = $file2Rev2->getFileId().'-'.$file2Rev2->getRevision();
+
 		// Retrieve the latest revisions of both files.
 		self::assertNull($submissionFileDao->getLatestRevisions(null));
-		self::assertEquals(array($file1Rev2, $file2Rev2), $submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
-		self::assertEquals(array($file1Rev2, $file2Rev2), $submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, MONOGRAPH_FILE_PRODUCTION));
-		self::assertEquals(array(), $submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID+1));
-		self::assertEquals(array(), $submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, MONOGRAPH_FILE_PRODUCTION+1));
+		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId2_2 => $file2Rev2),
+				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
+		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId2_2 => $file2Rev2),
+				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, MONOGRAPH_FILE_PRODUCTION));
+		self::assertEquals(array(),
+				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID+1));
+		self::assertEquals(array(),
+				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, MONOGRAPH_FILE_PRODUCTION+1));
 
 		// Test paging.
 		$rangeInfo = new DBResultRange(2, 1);
-		self::assertEquals(array($file1Rev2, $file2Rev2), $submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, $rangeInfo));
+		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId2_2 => $file2Rev2),
+				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, $rangeInfo));
 		$rangeInfo = new DBResultRange(1, 1);
-		self::assertEquals(array($file1Rev2), $submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, $rangeInfo));
+		self::assertEquals(array($uniqueId1_2 => $file1Rev2),
+				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, $rangeInfo));
 		$rangeInfo = new DBResultRange(1, 2);
-		self::assertEquals(array($file2Rev2), $submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, $rangeInfo));
+		self::assertEquals(array($uniqueId2_2 => $file2Rev2),
+				$submissionFileDao->getLatestRevisions(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, $rangeInfo));
 
+
+		//
+		// getAllRevisions()
+		//
 		// Retrieve all revisions of file 1.
 		self::assertNull($submissionFileDao->getAllRevisions(null));
-		self::assertEquals(array($file1Rev2, $file1Rev1), $submissionFileDao->getAllRevisions($file1Rev1->getFileId(), MONOGRAPH_FILE_PRODUCTION));
-		self::assertEquals(array($file1Rev2, $file1Rev1), $submissionFileDao->getAllRevisions($file1Rev1->getFileId(), MONOGRAPH_FILE_PRODUCTION, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
-		self::assertEquals(array(), $submissionFileDao->getAllRevisions($file1Rev1->getFileId(), null, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID+1));
-		self::assertEquals(array(), $submissionFileDao->getAllRevisions($file1Rev1->getFileId(), MONOGRAPH_FILE_PRODUCTION+1, null));
+		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId1_1 => $file1Rev1),
+				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), MONOGRAPH_FILE_PRODUCTION));
+		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId1_1 => $file1Rev1),
+				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), MONOGRAPH_FILE_PRODUCTION, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
+		self::assertEquals(array(),
+				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), null, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID+1));
+		self::assertEquals(array(),
+				$submissionFileDao->getAllRevisions($file1Rev1->getFileId(), MONOGRAPH_FILE_PRODUCTION+1, null));
 
+
+		//
+		// getLatestRevisionsByAssocId()
+		//
 		// Retrieve the latest revisions by association.
 		self::assertNull($submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, null));
 		self::assertNull($submissionFileDao->getLatestRevisionsByAssocId(null, 5));
-		self::assertEquals(array($file1Rev2), $submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5));
-		self::assertEquals(array($file1Rev2), $submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PRODUCTION));
-		self::assertEquals(array(), $submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PRODUCTION+1));
+		self::assertEquals(array($uniqueId1_2 => $file1Rev2),
+				$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5));
+		self::assertEquals(array($uniqueId1_2 => $file1Rev2),
+				$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PRODUCTION));
+		self::assertEquals(array(),
+				$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PRODUCTION+1));
 
 		// Retrieve all revisions by association.
 		self::assertNull($submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, null));
 		self::assertNull($submissionFileDao->getAllRevisionsByAssocId(null, 5));
-		self::assertEquals(array($file1Rev2, $file1Rev1), $submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5));
-		self::assertEquals(array($file1Rev2, $file1Rev1), $submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PRODUCTION));
+		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId1_1 => $file1Rev1),
+				$submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5));
+		self::assertEquals(array($uniqueId1_2 => $file1Rev2, $uniqueId1_1 => $file1Rev1),
+				$submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PRODUCTION));
 		self::assertEquals(array(), $submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5, MONOGRAPH_FILE_PRODUCTION+1));
 
+
+		//
+		// assignRevisionToReviewRound()
+		//
+		// Insert one more revision to test review round file assignments.
+		$file1Rev3 = cloneObject($file1Rev2);
+		$file1Rev3->setRevision(3);
+		self::assertEquals($file1Rev3, $submissionFileDao->insertObject($file1Rev3, $this->testFile));
+		$uniqueId1_3 = $file1Rev3->getFileId().'-'.$file1Rev3->getRevision();
+
+		// Insert review round file assignments.
+		$submissionFileDao->assignRevisionToReviewRound($file1Rev1->getFileId(), $file1Rev1->getRevision(),
+				REVIEW_TYPE_INTERNAL, 1, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
+		$submissionFileDao->assignRevisionToReviewRound($file2Rev2->getFileId(), $file2Rev2->getRevision(),
+				REVIEW_TYPE_INTERNAL, 1, SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID);
+
+
+		//
+		// getRevisionsByReviewRound()
+		//
+		// Retrieve assigned review round files by review type and round.
+		self::assertEquals(array($uniqueId1_1 => $file1Rev1, $uniqueId2_2 => $file2Rev2),
+				$submissionFileDao->getRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, REVIEW_TYPE_INTERNAL, 1));
+		self::assertNull($submissionFileDao->getRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, null));
+
+
+		//
+		// getLatestNewRevisionsByReviewRound()
+		//
+		// Retrieve revisions of review round files that are newer than the review round files themselves.
+		self::assertEquals(array($uniqueId1_3 => $file1Rev3),
+				$submissionFileDao->getLatestNewRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, REVIEW_TYPE_INTERNAL, 1));
+		self::assertNull($submissionFileDao->getLatestNewRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, null, null));
+
+
+		//
+		// deleteAllRevisionsByReviewRound()
+		//
+		$submissionFileDao->deleteAllRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, REVIEW_TYPE_INTERNAL, 1);
+		self::assertEquals(array(),
+				$submissionFileDao->getRevisionsByReviewRound(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID, REVIEW_TYPE_INTERNAL, 1));
+
+
+		//
+		// deleteRevision() and deleteRevisionById()
+		//
 		// Delete the first revision of file1.
 		// NB: This implicitly tests deletion by ID.
 		self::assertEquals(1, $submissionFileDao->deleteRevision($file1Rev1));
@@ -229,13 +332,19 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// Re-insert the file for the next test.
 		self::assertEquals($file1Rev1, $submissionFileDao->insertObject($file1Rev1, $this->testFile));
 
+
+		//
+		// deleteLatestRevisionById()
+		//
 		// Delete the latest revision of file1.
 		self::assertEquals(1, $submissionFileDao->deleteLatestRevisionById($file1Rev1->getFileId()));
 		self::assertType('ArtworkFile', $submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()));
-		self::assertNull($submissionFileDao->getRevision($file1Rev2->getFileId(), $file1Rev2->getRevision()));
-		// Re-insert the file for the next test.
-		self::assertEquals($file1Rev2, $submissionFileDao->insertObject($file1Rev2, $this->testFile));
+		self::assertNull($submissionFileDao->getRevision($file1Rev3->getFileId(), $file1Rev3->getRevision()));
 
+
+		//
+		// deleteAllRevisionsById()
+		//
 		// Delete all revisions of file1.
 		self::assertEquals(2, $submissionFileDao->deleteAllRevisionsById($file1Rev1->getFileId()));
 		self::assertType('MonographFile', $submissionFileDao->getRevision($file2Rev1->getFileId(), $file2Rev1->getRevision()));
@@ -245,6 +354,10 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertEquals($file1Rev1, $submissionFileDao->insertObject($file1Rev1, $this->testFile));
 		self::assertEquals($file1Rev2, $submissionFileDao->insertObject($file1Rev2, $this->testFile));
 
+
+		//
+		// deleteAllRevisionsByAssocId()
+		//
 		// Delete all revisions by assoc id.
 		self::assertEquals(2, $submissionFileDao->deleteAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, 5));
 		self::assertType('MonographFile', $submissionFileDao->getRevision($file2Rev1->getFileId(), $file2Rev1->getRevision()));
@@ -254,12 +367,20 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertEquals($file1Rev1, $submissionFileDao->insertObject($file1Rev1, $this->testFile));
 		self::assertEquals($file1Rev2, $submissionFileDao->insertObject($file1Rev2, $this->testFile));
 
+
+		//
+		// deleteAllRevisionsBySubmissionId()
+		//
 		// Delete all revisions by submission id.
 		self::assertEquals(4, $submissionFileDao->deleteAllRevisionsBySubmissionId(SUBMISSION_FILE_DAO_TEST_SUBMISSION_ID));
 		self::assertNull($submissionFileDao->getRevision($file2Rev1->getFileId(), $file2Rev1->getRevision()));
 		self::assertNull($submissionFileDao->getRevision($file1Rev1->getFileId(), $file1Rev1->getRevision()));
 		self::assertNull($submissionFileDao->getRevision($file1Rev2->getFileId(), $file1Rev2->getRevision()));
 
+
+		//
+		// insertObject() for new revisions
+		//
 		// Test insertion of new revisions.
 		// Create two files with different file ids.
 		$file1Rev1->setFileId(null);
@@ -276,6 +397,10 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		self::assertEquals(1, $submissionFileDao->getLatestRevisionNumber($file1Rev1->getFileId()));
 		self::assertEquals(1, $submissionFileDao->getLatestRevisionNumber($file1Rev2->getFileId()));
 
+
+		//
+		// setAsLatestRevision()
+		//
 		// Now make the second file a revision of the first.
 		$file1Rev2 =& $submissionFileDao->setAsLatestRevision($file1Rev1->getFileId(), $file1Rev2->getFileId(),
 				$file1Rev1->getSubmissionId(), $file1Rev1->getFileStage());

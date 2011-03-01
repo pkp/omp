@@ -60,9 +60,10 @@ class ReviewRevisionsGridHandler extends ReviewFilesGridHandler {
 	function loadMonographFiles() {
 		$monograph =& $this->getMonograph();
 
-		// Grab the files that are revisions of those currently set for the review
-		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
-		$monographFiles =& $reviewRoundDao->getRevisionsOfCurrentReviewFiles($monograph->getId(), $this->getRound(), $this->getReviewType());
+		// Grab the files that are new (incoming) revisions
+		// of those currently assigned to the review round.
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$monographFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($monograph->getId(), $this->getRound(), $this->getReviewType());
 
 		$this->setData($monographFiles);
 	}

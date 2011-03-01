@@ -113,13 +113,14 @@ class EditorDecisionForm extends Form {
 
 		// Add the selected files to the new round.
 		$selectedFiles = $this->getData('selectedFiles');
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		if(is_array($selectedFiles)) {
 			$filesWithRevisions = array();
 			foreach ($selectedFiles as $selectedFile) {
 				// Split the file into file id and file revision.
-				$filesWithRevisions[] = explode("-", $selectedFile);
+				list($fileId, $revision) = explode('-', $selectedFile);
+				$submissionFileDao->assignRevisionToReviewRound($fileId, $revision, $reviewType, $newRound, $monograph->getId());
 			}
-			$reviewRoundDao->setFilesForReview($monograph->getId(), $reviewType, $newRound, $filesWithRevisions);
 		}
 
 		// Change the monograph's review round state.
