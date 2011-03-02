@@ -107,7 +107,7 @@
 			{/fbvFormSection}
 
 			{fbvFormSection title="user.interests" for="interests"}
-				<ul id="interests"></ul>
+				<ul id="interests"></ul><span class="interestDescription">{fieldLabel for="interests" key="user.interests.description"}</span>
 			{/fbvFormSection}
 
 			{fbvFormSection title="user.accountInformation"}

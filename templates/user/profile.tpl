@@ -141,7 +141,7 @@
 {/if}
 <tr valign="top">
 	<td class="label">{fieldLabel name="interests" key="user.interests"}</td>
-	<td class="value"><ul id="interests"><li></li></ul><br />
+	<td class="value"><ul id="interests"><li></li></ul><span class="interestDescription">{fieldLabel for="interests" key="user.interests.description"}</span><br />
 		<textarea name="interests" id="interestsTextOnly" rows="5" cols="40" class="textArea">
 			{foreach name=currentInterests from=$interestsKeywords item=interest}{$interest|escape}{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}
 		</textarea>

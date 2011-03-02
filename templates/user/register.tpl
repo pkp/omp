@@ -186,7 +186,7 @@
 	{/fbvFormSection}
 	<div id="reviewerInterestsContainer" style="margin-left:40px;">
 		<label class="desc">{translate key="user.register.reviewerInterests"}</label>
-		<ul id="interests"><li></li></ul>
+		<ul id="interests"><li></li></ul><span class="interestDescription">{fieldLabel for="interests" key="user.interests.description"}</span>
 		<textarea name="interests" id="interestsTextOnly" rows="5" cols="40" class="textArea">{foreach name=currentInterests from=$interestsKeywords item=interest}{$interest|escape}{if !$smarty.foreach.currentInterests.last}, {/if}{/foreach}</textarea>
 	</div>
 	<br />

@@ -184,7 +184,7 @@
 {/fbvFormSection}
 
 {fbvFormSection title="user.interests" for="interests"}
-	<ul id="interests"><li></li></ul><br />
+	<ul id="interests"><li></li></ul><span class="interestDescription">{fieldLabel for="interests" key="user.interests.description"}</span><br />
 	<textarea name="interests" id="interestsTextOnly" class="textArea small">
 		{foreach name=currentInterests from=$interestsKeywords item=interest}
 			{$interest|escape}
