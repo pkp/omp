@@ -120,7 +120,7 @@ class ManageReviewFilesForm extends Form {
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function &execute($args, &$request) {
+	function execute($args, &$request) {
 		$selectedFiles = $this->getData('selectedFiles');
 		$reviewType = $this->getReviewType();
 		$round = $this->getRound();

@@ -54,20 +54,6 @@ class FilesGridDataProvider extends GridDataProvider {
 		assert(false);
 	}
 
-	/**
-	 * Configures and returns the download all files action.
-	 *
-	 * @param $request Request
-	 *
-	 * @return DownoadAllLinkAction
-	 */
-	function &getDownloadAllAction($request) {
-		import('controllers.grid.files.fileList.linkAction.DownloadAllLinkAction');
-		$monograph =& $this->getMonograph();
-		$downloadAllAction = new DownloadAllLinkAction($request, $monograph->getId());
-		return $downloadAllAction;
-	}
-
 
 	//
 	// Protected helper methods

@@ -22,13 +22,8 @@ class DownloadAllLinkAction extends LinkAction {
 	/**
 	 * Constructor
 	 * @param $request Request
-	 * @param $monographId integer The id of the monograph
-	 *  from which to download files.
 	 */
-	function DownloadAllLinkAction(&$request, $monographId) {
-		// Create the action arguments array.
-		$actionArgs = array('monographId' => $monographId);
-
+	function DownloadAllLinkAction(&$request, $actionArgs) {
 		// Instantiate the redirect action request.
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.RedirectAction');

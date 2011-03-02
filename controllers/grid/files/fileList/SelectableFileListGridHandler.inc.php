@@ -58,6 +58,20 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 
 
 	//
+	// Overridden methods from GridHandler
+	//
+	/**
+	 * @see GridHandler::fetchGrid()
+	 */
+	function fetchGrid($args, &$request, $fetchParams = array()) {
+		// Retrieve and add the the request parameters required to
+		// specify the contents of this grid.
+		$fetchParams = array_merge($fetchParams, $this->getSelectionArgs());
+		return parent::fetchGrid($args, $request, $fetchParams);
+	}
+
+
+	//
 	// Protected methods
 	//
 	/**

@@ -133,17 +133,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$dataProvider =& $this->getDataProvider();
 		$this->setData($dataProvider->getRowData());
 
-		// Add grid-level actions.
-		if($this->canAdd()) {
-			$this->addAction($dataProvider->getAddFileAction($request));
-		}
-
-		// Test whether the tar binary is available for the export to work, if so, add 'download all' grid action
-		$tarBinary = Config::getVar('cli', 'tar');
-		if ($this->canDownloadAll() && !empty($tarBinary) && file_exists($tarBinary) && $this->hasData()) {
-			$this->addAction($dataProvider->getDownloadAllAction($request));
-		}
-
 		// The file name column is common to all file grid types.
 		$this->addColumn(new FileNameGridColumn());
 	}
@@ -163,11 +152,26 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/**
 	 * @see GridHandler::fetchGrid()
 	 */
-	function fetchGrid($args, &$request) {
+	function fetchGrid($args, &$request, $fetchParams = array()) {
+		// Add grid-level actions.
+		$dataProvider =& $this->getDataProvider();
+		if($this->canAdd()) {
+			$this->addAction($dataProvider->getAddFileAction($request));
+		}
+
 		// Retrieve and add the the request parameters required to
 		// specify the contents of this grid.
-		$dataProvider =& $this->getDataProvider();
-		return parent::fetchGrid($args, $request, $dataProvider->getRequestArgs());
+		$fetchParams = array_merge($fetchParams, $dataProvider->getRequestArgs());
+
+		// Test whether the tar binary is available for the export to work, if so, add 'download all' grid action
+		$tarBinary = Config::getVar('cli', 'tar');
+		if ($this->canDownloadAll() && !empty($tarBinary) && file_exists($tarBinary) && $this->hasData()) {
+			import('controllers.grid.files.fileList.linkAction.DownloadAllLinkAction');
+			$this->addAction(new DownloadAllLinkAction($request, $fetchParams));
+		}
+
+		// Fetch the grid.
+		return parent::fetchGrid($args, $request, $fetchParams);
 	}
 
 
