@@ -61,7 +61,7 @@
 		{/if}
 		{load_url_in_div id="filesForReviewGrid" url=$filesForReviewUrl}
 	</div>
-{init_button_bar id="#promote" submitText="editor.submissionReview.recordDecision"}
+	{include file="form/formButtons.tpl" submitText="editor.submissionReview.recordDecision"}
 </form>
 
 

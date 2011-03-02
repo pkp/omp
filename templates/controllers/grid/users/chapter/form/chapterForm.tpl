@@ -17,14 +17,13 @@
 {/fbvFormSection}
 
 <input type="hidden" name="monographId" value="{$monographId|escape}" />
-{if $chapterId}
-	<input type="hidden" name="chapterId" value="{$chapterId|escape}" />
+	{if $chapterId}
+		<input type="hidden" name="chapterId" value="{$chapterId|escape}" />
 
-	{* only show the contributor list builder if the chapter already exists *}
-	<!--  Chapter Contributors -->
-	{url|assign:chapterContributorUrl router=$smarty.const.ROUTE_COMPONENT  component="listbuilder.users.ChapterContributorListbuilderHandler" op="fetch" monographId=$monographId chapterId=$chapterId escape=false}
-	{load_url_in_div id="chapterContributorContainer" url=$chapterContributorUrl}
-{/if}
+		{* only show the contributor list builder if the chapter already exists *}
+		<!--  Chapter Contributors -->
+		{url|assign:chapterContributorUrl router=$smarty.const.ROUTE_COMPONENT  component="listbuilder.users.ChapterContributorListbuilderHandler" op="fetch" monographId=$monographId chapterId=$chapterId escape=false}
+		{load_url_in_div id="chapterContributorContainer" url=$chapterContributorUrl}
+	{/if}
+	{include file="form/formButtons.tpl" submitText="submission.chapter.addChapter"}
 </form>
-
-{init_button_bar id="#editChapterForm" submitText="submission.chapter.addChapter"}

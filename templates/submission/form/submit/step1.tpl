@@ -120,7 +120,6 @@
 
 
 	<!-- Continue -->
-
 	<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="{if $monographId}confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="submission.submit.cancelSubmission"}'){else}document.location.href='{url page="author" escape=false}'{/if}" /></p>
 
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

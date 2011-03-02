@@ -18,7 +18,6 @@
 	{* FIXME: We need to get reviewType from somewhere, see #6409 *}
 	{url|assign:newRoundRevisionsUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.SelectableReviewRevisionsGridHandler" op="fetchGrid" monographId=$monographId round=$round reviewType=$reviewType escape=false}
 	{load_url_in_div id="newRoundRevisionsGrid" url=$newRoundRevisionsUrl}
+	{include file="form/formButtons.tpl" submitText="editor.monograph.createNewRound"}
 </form>
-
-{init_button_bar id="#newRound" submitText="editor.monograph.createNewRound"}
 

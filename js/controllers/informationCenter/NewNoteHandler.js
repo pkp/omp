@@ -23,9 +23,8 @@
 	 */
 	$.pkp.controllers.informationCenter.NewNoteHandler =
 			function($form, options) {
-		this.parent($form, options);
 
-		$('.button').button();
+		this.parent($form, options);
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.informationCenter.NewNoteHandler,

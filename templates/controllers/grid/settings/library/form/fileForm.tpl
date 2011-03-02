@@ -128,8 +128,7 @@
 	{/fbvFormArea}
 
 	{if !$rowId}{assign var="buttonDisabled" value="true"}{/if}
-	{init_button_bar id="#buttons" submitText="common.saveAndClose" submitDisabled=$buttonDisabled}
-
+	{include file="form/formButtons.tpl" submitText="common.saveAndClose" submitDisabled=$buttonDisabled}
 </form>
 
 

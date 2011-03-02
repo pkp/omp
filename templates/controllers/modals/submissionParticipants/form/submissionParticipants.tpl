@@ -15,5 +15,5 @@
 	{load_url_in_div id="submissionParticipantsGrid" url=$submissionParticipantsGridUrl}
 </div>
 
-{init_button_bar id="#submissionParticipants"}
+{include file="form/formButtons.tpl"}
 

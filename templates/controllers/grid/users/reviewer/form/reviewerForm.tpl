@@ -157,7 +157,6 @@
 		{fbvElement type="radio" name="reviewMethod" id="doubleBlindReview" label="editor.submissionReview.doubleBlind" checked=$doubleBlindReview}
 		{fbvElement type="radio" name="reviewMethod" id="openReview" label="editor.submissionReview.open" checked=$openReview}
 	{/fbvFormSection}
+	{include file="form/formButtons.tpl" submitText="editor.monograph.addReviewer"}
 </form>
-
-{init_button_bar id="#addReviewer" submitText="editor.monograph.addReviewer"}
 

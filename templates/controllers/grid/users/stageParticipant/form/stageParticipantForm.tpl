@@ -47,9 +47,8 @@
 	{url|assign:submissionParticipantsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.StageParticipantListbuilderHandler" op="fetch" userGroupId=$firstUserGroupId monographId=$monographId stageId=$stageId escape=false}
 	{load_url_in_div id="submissionParticipantsContainer" url=$submissionParticipantsUrl}
 
-{if $monographId}
-	<input type="hidden" name="monographId" value="{$monographId|escape}" />
-{/if}
+	{if $monographId}
+		<input type="hidden" name="monographId" value="{$monographId|escape}" />
+	{/if}
+	{include file="form/formButtons.tpl"}
 </form>
-
-{init_button_bar id="#addStageParticipant"}

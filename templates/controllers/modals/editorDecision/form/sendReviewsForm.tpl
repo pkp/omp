@@ -51,7 +51,7 @@
 		{load_url_in_div id="reviewAttachmentsGridContainer" url="$reviewAttachmentsGridUrl"}
 	</div>
 
-	{init_button_bar id="#sendReviews" submitText="editor.submissionReview.recordDecision"}
+	{include file="form/formButtons.tpl" submitText="editor.submissionReview.recordDecision"}
 </form>
 
 

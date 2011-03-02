@@ -15,5 +15,5 @@
 	{/fbvFormSection}
 {/fbvFormArea}
 
-{init_button_bar id="#competingInterests"}
+{include file="form/formButtons.tpl"}
 

@@ -94,7 +94,8 @@
 	<input type="hidden" id="deleteUrl" value="" />
 	<input type="hidden" id="signoffId" value="" />
 	<input type="hidden" id="newFile" value="{$newFile}" />
+
+	{include file="form/formButtons.tpl"}
 </form>
 
 
-{init_button_bar id="#uploadForm"}
