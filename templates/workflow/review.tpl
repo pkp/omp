@@ -29,7 +29,7 @@
 </ul>
 
 {if $roundStatus}
-<div id="roundStatus" class="statusContainer">
+<div id="roundStatus" class="pkp_submission_statusContainer">
 	<p>{translate key="editor.monograph.roundStatus" round=$round}: {translate key="$roundStatus"}</p>
 </div>
 

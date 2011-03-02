@@ -179,6 +179,7 @@
 
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>
+	<message key="common.omp">OMP</message>
 	<message key="common.confirmComplete">Are you sure you wish to mark this task as completed? You may not be able to make changes afterwards.</message>
 	<message key="common.payment">Payment</message>
 	<message key="common.payments">Payments</message>

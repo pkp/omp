@@ -47,7 +47,7 @@
 	{/if}
 
 	<!-- Locale configuration -->
-	<div class="installContainer" id="localeSettings">
+	<div id="localeSettings">
 		<h3>{translate key="installer.localeSettings"}</h3>
 
 		<p>{translate key="installer.localeSettingsInstructions" supportsMBString=$supportsMBString}</p>
@@ -97,7 +97,7 @@
 
 	<!-- Files directory configuration -->
 	{if !$skipFilesDirSection}
-	<div class="installContainer" id="fileSettings">
+	<div id="fileSettings">
 		<h3>{translate key="installer.fileSettings"}</h3>
 
 		{fbvFormArea}
@@ -114,7 +114,7 @@
 	{/if}{* !$skipFilesDirSection *}
 
 	<!-- Security configuration -->
-	<div class="installContainer" id="security">
+	<div id="security">
 		<h3>{translate key="installer.securitySettings"}</h3>
 
 		{fbvFormArea}
@@ -129,7 +129,7 @@
 	<div class="separator"></div>
 
 	<!-- Administrator username, password, and email -->
-	<div class="installContainer" id="administratorAccount">
+	<div id="administratorAccount">
 		<h3>{translate key="installer.administratorAccount"}</h3>
 
 		<p>{translate key="installer.administratorAccountInstructions"}</p>
@@ -153,7 +153,7 @@
 	<div class="separator"></div>
 
 	<!-- Database configuration -->
-	<div class="installContainer"  id="databaseSettings">
+	<div id="databaseSettings">
 		<h3>{translate key="installer.databaseSettings"}</h3>
 
 		<p>{translate key="installer.databaseSettingsInstructions"}</p>
@@ -183,7 +183,7 @@
 	<div class="separator"></div>
 
 	{if !$skipMiscSettings}
-	<div class="installContainer" id="miscSettings">
+	<div id="miscSettings">
 		<h3>{translate key="installer.miscSettings"}</h3>
 
 		{fbvFormArea}

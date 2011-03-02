@@ -7,7 +7,7 @@
  * Common site header.
  *}
 {strip}
-{translate|assign:"applicationName" key="common.openMonographPress"}
+{translate|assign:"applicationName" key="common.omp"}
 {if !$pageTitleTranslated}{translate|assign:"pageTitleTranslated" key=$pageTitle}{/if}
 {if $pageCrumbTitle}
 	{translate|assign:"pageCrumbTitleTranslated" key=$pageCrumbTitle}

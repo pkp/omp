@@ -8,7 +8,7 @@
  *}
 
 <!--  Display round status -->
-<div id="roundStatus" class="statusContainer">
+<div id="roundStatus" class="pkp_submission_statusContainer">
 	<p>{translate key="editor.monograph.roundStatus" round=$round}: {translate key="$roundStatus"}</p>
 </div>
 <br />
@@ -17,7 +17,7 @@
 {if $monographEmails}
 	<h6>{translate key="editor.review.personalMessageFromEditor"}:</h6>
 	{iterate from=monographEmails item=monographEmail}
-		<textarea class="editorPersonalMessage" disabled=true class="textArea">{$monographEmail->getBody()}</textarea>
+		<textarea class="pkp_submission_editorPersonalMessage" disabled=true class="textArea">{$monographEmail->getBody()}</textarea>
 	{/iterate}
 	<br />
 {/if}

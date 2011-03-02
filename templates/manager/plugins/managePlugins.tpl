@@ -50,7 +50,7 @@
 					{translate key="manager.plugins.uploadPluginDir"}
 				</td>
 				<td width="75%" class="value">
-					<input type="file" class="uploadField" name="newPlugin" id="newPlugin" /> 
+					<input type="file" class="pkp_form_uploadField" name="newPlugin" id="newPlugin" /> 
 					<input name="uploadPlugin" type="submit" value="{translate key="common.continue"}" class="button defaultButton" />
 				</td>
 			</tr>
@@ -94,7 +94,7 @@
 						{translate key="manager.plugins.uploadPluginDir"}
 				</td>
 				<td width="75%" class="value">
-					<input type="file" class="uploadField" name="newPlugin" id="newPlugin" />
+					<input type="file" class="pkp_form_uploadField" name="newPlugin" id="newPlugin" />
 					<input name="uploadPlugin" type="submit" value="{translate key="common.continue"}" class="button defaultButton" />
 				</td>
 			</tr>

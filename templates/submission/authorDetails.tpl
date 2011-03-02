@@ -46,9 +46,9 @@
 	// -->
 {/literal}</script>
 
-<div class="submissionHeader">
-	<div class="headerTop">
-		<div class="heading">
+<div class="pkp_submission_header">
+	<div class="pkp_submission_header_top">
+		<div class="pkp_submission_header_heading">
 			{assign var="primaryAuthor" value=$monograph->getPrimaryAuthor()}
 			{$primaryAuthor->getLastName()} - {$monograph->getLocalizedTitle()}
 		</div>
@@ -62,16 +62,16 @@
 {elseif $stageId == 5}{assign var="fillerClass" value="copyedited"}
 {elseif $stageId == 0}{assign var="fillerClass" value="published"}
 {else}{assign var="fillerClass" value=""}{/if}
-<div id="authorTimeline" class="headerTimeline">
+<div id="authorTimeline" class="pkp_submission_timeline">
 	<div id="timelineContainer">
-		<div id="timelineFiller" class="{$fillerClass}"></div>
+		<div id="timelineFiller" class="{$fillerClass|escape}"></div>
 	</div>
 	<div id="timelineLabelContainer">
-		<span class="timelineLabel {if $stageId > 0}pastStep{else}futureStep{/if}">{translate key="submissions.submitted"}</span>
-		<span class="timelineLabel {if $stageId > 1}pastStep{else}futureStep{/if}">{translate key="submission.accepted"}</span>
-		<span class="timelineLabel center {if $stageId > 3}pastStep{else}futureStep{/if}">{translate key="submission.reviewed"}</span>
-		<span class="timelineLabel right {if $stageId > 4}pastStep{else}futureStep{/if}">{translate key="submission.copyedited"}</span>
-		<span class="timelineLabel right {if $stageId == 0}pastStep{else}futureStep{/if}">{translate key="navigation.published"}</span>
+		<span class="pkp_submission_timeline_label {if $stageId > 0}pastStep{else}futureStep{/if}">{translate key="submissions.submitted"}</span>
+		<span class="pkp_submission_timeline_label {if $stageId > 1}pastStep{else}futureStep{/if}">{translate key="submission.accepted"}</span>
+		<span class="pkp_submission_timeline_label center {if $stageId > 3}pastStep{else}futureStep{/if}">{translate key="submission.reviewed"}</span>
+		<span class="pkp_submission_timeline_label right {if $stageId > 4}pastStep{else}futureStep{/if}">{translate key="submission.copyedited"}</span>
+		<span class="pkp_submission_timeline_label right {if $stageId == 0}pastStep{else}futureStep{/if}">{translate key="navigation.published"}</span>
 	</div>
 </div>
 <div style="clear:both;"></div>
@@ -82,17 +82,17 @@
 <br />
 <!-- Author actions -->
 <div id="authorActions" class="pkp_linkActions">
-	<div id="addFile" class="authorAction">
+	<div id="addFile" class="pkp_linkActions_authorAction">
 		{include file="linkAction/linkAction.tpl" action=$uploadFileAction id="uploadFileAction"}
 	</div>
-	<div id="addVersions" class="authorAction">
+	<div id="addVersions" class="pkp_linkActions_authorAction">
 		{if $stageId == 2 || $stageId == 3}
 			{include file="linkAction/linkAction.tpl" action=$uploadRevisionAction id="uploadRevisionAction"}
 		{elseif $stageId == 4}
 			{include file="linkAction/linkAction.tpl" action=$addCopyeditedFileAction id="addCopyeditedFileAction"}
 		{/if}
 	</div>
-	<div id="viewMetadata" class="authorAction">
+	<div id="viewMetadata" class="pkp_linkActions_authorAction">
 		{include file="linkAction/linkAction.tpl" action=$viewMetadataAction id="viewMetadataAction"}
 	</div>
 </div>
@@ -132,7 +132,7 @@
 		{if $monographEmails}
 			<h6>{translate key="editor.review.personalMessageFromEditor"}:</h6>
 			{iterate from=monographEmails item=monographEmail}
-				<textarea class="editorPersonalMessage" disabled=true class="textArea">{$monographEmail->getBody()}</textarea>
+				<textarea class="pkp_submission_editorPersonalMessage" disabled=true class="textArea">{$monographEmail->getBody()}</textarea>
 			{/iterate}
 			<br />
 		{/if}

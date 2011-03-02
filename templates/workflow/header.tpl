@@ -7,7 +7,7 @@
  * Header that contains details about the submission
  *}
 
-<div class="submissionHeader">
+<div class="pkp_submission_header">
 	<div class="headerTop">
 		<div class="heading">
 			{if $stageId == 2}
@@ -33,7 +33,7 @@
 	</div>
 	<div class="pkp_helpers_clear"></div>
 
-	<div class="headerTimeline">
+	<div class="pkp_submission_header_timeline">
 		{if $stageId > 0}<span class="pastStep">{translate key="submission.submission"}</span>{else}<span class="futureStep">{translate key="submission.submission"}</span>{/if} &#187;
 		{if $stageId > 1}<span class="pastStep">{translate key="workflow.review.internalReview"}</span>{else}<span class="futureStep">{translate key="workflow.review.internalReview"}</span>{/if} &#187;
 		{if $stageId > 2}<span class="pastStep">{translate key="workflow.review.externalReview"}</span>{else}<span class="futureStep">{translate key="workflow.review.externalReview"}</span>{/if} &#187;
@@ -42,19 +42,19 @@
 	</div>
 	<div class="pkp_helpers_clear"></div>
 
-	<div class="headerBottom">
-		<div class="userInfo">
+	<div class="pkp_submission_header_bottom">
+		<div class="pkp_submission_header_userInfo">
 			{** FIXME #5734: Leaving blank until we have actual content to display here
-			<div id="roundStatus" class="statusContainer">
+			<div id="roundStatus" class="pkp_submission_header_statusContainer">
 				<span class='icon' ></span><span class="alert">User Alert</span>
 			</div>
-			<div class="stageMetadata">
+			<div class="pkp_submission_header_stageMetadata">
 				Stage-specific Metadata <br />
 				More-stage Specific metadata
 			</div>
 			**}
 		</div>
-		<div class="stageParticipants">
+		<div class="pkp_submission_header_stageParticipants">
 			{url|assign:stageParticipantGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.stageParticipant.StageParticipantGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$monograph->getCurrentStageId() escape=false}
 			{load_url_in_div id="stageParticipantGridContainer" url="$stageParticipantGridUrl"}
 		</div>
