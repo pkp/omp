@@ -34,9 +34,9 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	/**
 	 * Display the form.
 	 */
-	function display() {
-		$press =& Request::getPress();
-		$user =& Request::getUser();
+	function display($request) {
+		$press =& $request->getPress();
+		$user =& $request->getUser();
 
 		$templateMgr =& TemplateManager::getManager();
 
@@ -66,7 +66,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			))
 		);
 
-		parent::display();
+		parent::display($request);
 	}
 
 	/**
@@ -77,7 +77,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$this->_data = array(
 				'seriesId' => $this->monograph->getSeriesId(),
 				'locale' => $this->monograph->getLocale(),
-				'isEditedVolume' => $this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME ? true : false,
+				'isEditedVolume' => $this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME,
 				'commentsToEditor' => $this->monograph->getCommentsToEditor()
 			);
 		} else {

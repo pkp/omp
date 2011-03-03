@@ -46,7 +46,7 @@ class SubmissionSubmitForm extends Form {
 	/**
 	 * Display the form.
 	 */
-	function display() {
+	function display($request = null) {
 		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign('monographId', $this->monographId);
@@ -65,11 +65,11 @@ class SubmissionSubmitForm extends Form {
 		}
 		$templateMgr->assign('helpTopicId', $helpTopicId);
 
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 		$templateMgr->assign_by_ref('pressSettings', $settingsDao->getPressSettings($press->getId()));
 
-		parent::display();
+		parent::display($request);
 	}
 }
 

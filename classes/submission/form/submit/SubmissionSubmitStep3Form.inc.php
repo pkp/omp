@@ -78,6 +78,17 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	}
 
 	/**
+	 * Display the form
+	 */
+	function display($request) {
+		$templateMgr =& TemplateManager::getManager();
+
+		$templateMgr->assign('isEditedVolume', $this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME);
+		
+		return parent::display($request);
+	}
+
+	/**
 	 * Get the names of fields for which data should be localized
 	 * @return array
 	 */

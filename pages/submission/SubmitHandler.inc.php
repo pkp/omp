@@ -118,7 +118,7 @@ class SubmitHandler extends Handler {
 			} else {
 				$submitForm->initData();
 			}
-			$submitForm->display();
+			$submitForm->display($request);
 		} elseif($step == 4) {
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign_by_ref('press', $press);
@@ -185,7 +185,7 @@ class SubmitHandler extends Handler {
 				}
 				return $request->redirectUrlJson($router->url($request, null, null, 'wizard', $step+1, array('monographId' => $monographId)));
 			} else {
-				$submitForm->display();
+				$submitForm->display($request);
 			}
 		}
 	}

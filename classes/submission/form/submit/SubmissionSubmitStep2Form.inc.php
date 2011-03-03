@@ -41,7 +41,6 @@ class SubmissionSubmitStep2Form extends SubmissionSubmitForm {
 
 		return $this->monographId;
 	}
-
 }
 
 ?>
