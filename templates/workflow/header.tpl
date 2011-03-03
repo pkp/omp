@@ -33,7 +33,7 @@
 	</div>
 	<div class="pkp_helpers_clear"></div>
 
-	<div class="pkp_submission_header_timeline">
+	<div class="pkp_submission_timeline">
 		{if $stageId > 0}<span class="pastStep">{translate key="submission.submission"}</span>{else}<span class="futureStep">{translate key="submission.submission"}</span>{/if} &#187;
 		{if $stageId > 1}<span class="pastStep">{translate key="workflow.review.internalReview"}</span>{else}<span class="futureStep">{translate key="workflow.review.internalReview"}</span>{/if} &#187;
 		{if $stageId > 2}<span class="pastStep">{translate key="workflow.review.externalReview"}</span>{else}<span class="futureStep">{translate key="workflow.review.externalReview"}</span>{/if} &#187;
