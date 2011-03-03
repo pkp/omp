@@ -50,6 +50,5 @@
 	{if $rowId}
 		<input type="hidden" name="rowId" value="{$rowId|escape}" />
 	{/if}
-	{include file="form/formButtons.tpl"}
 </form>
 
