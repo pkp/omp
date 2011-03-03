@@ -117,7 +117,7 @@ class SubmissionHandler extends Handler {
 		$templateMgr->assign('rounds', $allRounds);
 
 		// If the submission is in or past the copyediting stage, assign the editor's copyediting emails to the template
-		if ($monograph->getCurrentStageId() > 3) {
+		if ($monograph->getCurrentStageId() > WORKFLOW_STAGE_ID_EXTERNAL_REVIEW) {
 			$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
 			$monographEmails =& $monographEmailLogDao->getMonographLogEntriesByAssoc($monograph->getId(), MONOGRAPH_EMAIL_TYPE_COPYEDIT, MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
 

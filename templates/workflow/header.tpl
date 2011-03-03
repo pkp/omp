@@ -10,9 +10,9 @@
 <div class="pkp_submission_header">
 	<div class="headerTop">
 		<div class="heading">
-			{if $stageId == 2}
+			{if $stageId == $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW}
 				{translate key="workflow.review.internalReview"}:
-			{elseif $stageId == 3}
+			{elseif $stageId == $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}
 				{translate key="workflow.review.externalReview"}:
 			{/if}
 			{assign var="primaryAuthor" value=$monograph->getPrimaryAuthor()}
@@ -34,11 +34,11 @@
 	<div class="pkp_helpers_clear"></div>
 
 	<div class="pkp_submission_timeline">
-		{if $stageId > 0}<span class="pastStep">{translate key="submission.submission"}</span>{else}<span class="futureStep">{translate key="submission.submission"}</span>{/if} &#187;
-		{if $stageId > 1}<span class="pastStep">{translate key="workflow.review.internalReview"}</span>{else}<span class="futureStep">{translate key="workflow.review.internalReview"}</span>{/if} &#187;
-		{if $stageId > 2}<span class="pastStep">{translate key="workflow.review.externalReview"}</span>{else}<span class="futureStep">{translate key="workflow.review.externalReview"}</span>{/if} &#187;
-		{if $stageId > 3}<span class="pastStep">{translate key="submission.editorial"}</span>{else}<span class="futureStep">{translate key="submission.editorial"}</span>{/if} &#187;
-		{if $stageId > 4}<span class="pastStep">{translate key="submission.production"}</span>{else}<span class="futureStep">{translate key="submission.production"}</span>{/if}
+		<span class="pastStep">{translate key="submission.submission"}</span> &#187;
+		{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW}<span class="pastStep">{translate key="workflow.review.internalReview"}</span>{else}<span class="futureStep">{translate key="workflow.review.internalReview"}</span>{/if} &#187;
+		{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}<span class="pastStep">{translate key="workflow.review.externalReview"}</span>{else}<span class="futureStep">{translate key="workflow.review.externalReview"}</span>{/if} &#187;
+		{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EDITING}<span class="pastStep">{translate key="submission.editorial"}</span>{else}<span class="futureStep">{translate key="submission.editorial"}</span>{/if} &#187;
+		{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}<span class="pastStep">{translate key="submission.production"}</span>{else}<span class="futureStep">{translate key="submission.production"}</span>{/if}
 	</div>
 	<div class="pkp_helpers_clear"></div>
 

@@ -24,22 +24,22 @@
 		var stageId = {/literal}{$stageId}{literal};
 
 		// Minimize all accordions not in the current stage; Disable accordions for future stages
-		if (stageId == 1) {
+		if (stageId == {/literal}{$smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}{literal}) {
 			$(".pkp_submission_stageContainer").not("#submission").accordion("activate", false);
 			$(".pkp_submission_stageContainer").not("#submission").accordion("option", "disabled", true);
 		}
 
-		if (stageId == 2 || stageId == 3) {
+		if (stageId == {/literal}{$smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW}{literal} || stageId == {/literal}{$smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}{literal}) {
 			$(".pkp_submission_stageContainer").not("#review").accordion("activate", false);
 			$(".pkp_submission_stageContainer").not("#submission, #review").accordion("option", "disabled", true);
 		}
 
-		if (stageId == 4) {
+		if (stageId == {/literal}{$smarty.const.WORKFLOW_STAGE_ID_EDITING}{literal}) {
 			$(".pkp_submission_stageContainer").not("#copyediting").accordion("activate", false);
 			$(".pkp_submission_stageContainer").not("#submission, #review, #copyediting").accordion("option", "disabled", true);
 		}
 
-		if (stageId == 5) {
+		if (stageId == {/literal}{$smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}{literal}) {
 			$(".pkp_submission_stageContainer").not("#production").accordion("activate", false);
 		}
 	});
@@ -57,21 +57,21 @@
 <div style="clear:both;"></div>
 
 {** Determine the amount the progress bar should be filled **}
-{if $stageId == 2 || $stageId == 3}{assign var="fillerClass" value="accepted"}
-{elseif $stageId == 4}{assign var="fillerClass" value="reviewed"}
-{elseif $stageId == 5}{assign var="fillerClass" value="copyedited"}
-{elseif $stageId == 0}{assign var="fillerClass" value="published"}
+{if $stageId == $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}{assign var="fillerClass" value="accepted"}
+{elseif $stageId == $smarty.const.WORKFLOW_STAGE_ID_EDITING}{assign var="fillerClass" value="reviewed"}
+{elseif $stageId == $smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}{assign var="fillerClass" value="copyedited"}
+{elseif $stageId == $smarty.const.WORKFLOW_STAGE_ID_PUBLISHED}{assign var="fillerClass" value="published"}
 {else}{assign var="fillerClass" value=""}{/if}
 <div id="authorTimeline" class="pkp_submission_timeline">
 	<div id="timelineContainer">
 		<div id="timelineFiller" class="{$fillerClass|escape}"></div>
 	</div>
 	<div id="timelineLabelContainer">
-		<span class="pkp_submission_timeline_label {if $stageId > 0}pastStep{else}futureStep{/if}">{translate key="submissions.submitted"}</span>
-		<span class="pkp_submission_timeline_label {if $stageId > 1}pastStep{else}futureStep{/if}">{translate key="submission.accepted"}</span>
-		<span class="pkp_submission_timeline_label center {if $stageId > 3}pastStep{else}futureStep{/if}">{translate key="submission.reviewed"}</span>
-		<span class="pkp_submission_timeline_label right {if $stageId > 4}pastStep{else}futureStep{/if}">{translate key="submission.copyedited"}</span>
-		<span class="pkp_submission_timeline_label right {if $stageId == 0}pastStep{else}futureStep{/if}">{translate key="navigation.published"}</span>
+		<span class="pkp_submission_timeline_label pastStep">{translate key="submissions.submitted"}</span>
+		<span class="pkp_submission_timeline_label {if $stageId > $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}pastStep{else}futureStep{/if}">{translate key="submission.accepted"}</span>
+		<span class="pkp_submission_timeline_label center {if $stageId > $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}pastStep{else}futureStep{/if}">{translate key="submission.reviewed"}</span>
+		<span class="pkp_submission_timeline_label right {if $stageId > WORKFLOW_STAGE_ID_EDITING}pastStep{else}futureStep{/if}">{translate key="submission.copyedited"}</span>
+		<span class="pkp_submission_timeline_label right {if $stageId == WORKFLOW_STAGE_ID_PUBLISHED}pastStep{else}futureStep{/if}">{translate key="navigation.published"}</span>
 	</div>
 </div>
 <div style="clear:both;"></div>
@@ -86,9 +86,9 @@
 		{include file="linkAction/linkAction.tpl" action=$uploadFileAction id="uploadFileAction"}
 	</div>
 	<div id="addVersions" class="pkp_linkActions_authorAction">
-		{if $stageId == 2 || $stageId == 3}
+		{if $stageId == $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}
 			{include file="linkAction/linkAction.tpl" action=$uploadRevisionAction id="uploadRevisionAction"}
-		{elseif $stageId == 4}
+		{elseif $stageId == $smarty.const.WORKFLOW_STAGE_ID_EDITING}
 			{include file="linkAction/linkAction.tpl" action=$addCopyeditedFileAction id="addCopyeditedFileAction"}
 		{/if}
 	</div>
@@ -109,7 +109,7 @@
 <div class="pkp_submission_stageContainer" id="review">
 	<h3><a href="#">{translate key='submission.review'}</a></h3>
 	<div id="reviewContent">
-		{if $stageId > 1}
+		{if $stageId > $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}
 			{assign var="currentReviewRound" value=$monograph->getCurrentRound()}
 			{init_tabs id="#reviewRoundTabs"}
 
@@ -149,6 +149,5 @@
 	<h3><a href="#">{translate key='submission.production'}</a></h3>
 	<div id="productionContent">&nbsp;</div>
 </div>
-
 
 {include file="common/footer.tpl"}
