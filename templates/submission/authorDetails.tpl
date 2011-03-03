@@ -16,7 +16,7 @@
 	// initialise plugins
 	$(function(){
 
-		$(".stageContainer").accordion({
+		$(".pkp_submission_stageContainer").accordion({
 			autoHeight: false,
 			collapsible: true
 		});
@@ -25,22 +25,22 @@
 
 		// Minimize all accordions not in the current stage; Disable accordions for future stages
 		if (stageId == 1) {
-			$(".stageContainer").not("#submission").accordion("activate", false);
-			$(".stageContainer").not("#submission").accordion("option", "disabled", true);
+			$(".pkp_submission_stageContainer").not("#submission").accordion("activate", false);
+			$(".pkp_submission_stageContainer").not("#submission").accordion("option", "disabled", true);
 		}
 
 		if (stageId == 2 || stageId == 3) {
-			$(".stageContainer").not("#review").accordion("activate", false);
-			$(".stageContainer").not("#submission, #review").accordion("option", "disabled", true);
+			$(".pkp_submission_stageContainer").not("#review").accordion("activate", false);
+			$(".pkp_submission_stageContainer").not("#submission, #review").accordion("option", "disabled", true);
 		}
 
 		if (stageId == 4) {
-			$(".stageContainer").not("#copyediting").accordion("activate", false);
-			$(".stageContainer").not("#submission, #review, #copyediting").accordion("option", "disabled", true);
+			$(".pkp_submission_stageContainer").not("#copyediting").accordion("activate", false);
+			$(".pkp_submission_stageContainer").not("#submission, #review, #copyediting").accordion("option", "disabled", true);
 		}
 
 		if (stageId == 5) {
-			$(".stageContainer").not("#production").accordion("activate", false);
+			$(".pkp_submission_stageContainer").not("#production").accordion("activate", false);
 		}
 	});
 	// -->
@@ -98,7 +98,7 @@
 </div>
 <div style="clear:both;"></div>
 
-<div class="stageContainer" id="submission">
+<div class="pkp_submission_stageContainer" id="submission">
 	<h3><a href="#">{translate key='submission.submission'}</a></h3>
 	<div id="submissionContent">
 		{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.AuthorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
@@ -106,7 +106,7 @@
 	</div>
 </div>
 
-<div class="stageContainer" id="review">
+<div class="pkp_submission_stageContainer" id="review">
 	<h3><a href="#">{translate key='submission.review'}</a></h3>
 	<div id="reviewContent">
 		{if $stageId > 1}
@@ -125,7 +125,7 @@
 	</div>
 </div>
 
-<div class="stageContainer" id="copyediting">
+<div class="pkp_submission_stageContainer" id="copyediting">
 	<h3><a href="#">{translate key='submission.copyediting'}</a></h3>
 	<div id="copyeditingContent">
 		<!-- Display editor's message to the author -->
@@ -145,7 +145,7 @@
 	</div>
 </div>
 
-<div class="stageContainer" id="production">
+<div class="pkp_submission_stageContainer" id="production">
 	<h3><a href="#">{translate key='submission.production'}</a></h3>
 	<div id="productionContent">&nbsp;</div>
 </div>

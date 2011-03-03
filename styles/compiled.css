@@ -865,6 +865,7 @@ ul.tagit {
   overflow:auto !important;
   width:500px;
   background:white;
+  margin-bottom:0px;
 }
 ul.tagit li {
   -moz-border-radius:5px 5px 5px 5px;
@@ -951,7 +952,7 @@ strong {
   float:left;
   position:relative;
 }
-.throbber {
+.deprecated_throbber {
   display:none;
   background:url(../lib/pkp/templates/images/throbber.gif) no-repeat;
   width:25px;
@@ -959,21 +960,7 @@ strong {
   margin-left:50%;
   margin-top:5%;
 }
-.pkp_controllers_modal_titleBar .informationCenter {
-  background:url(../lib/pkp/templates/images/structure/grid_notes.png) no-repeat;
-  width:28px;
-  height:42px;
-}
-.pkp_controllers_modal_titleBar .fileManagement {
-  background:url(../lib/pkp/templates/images/structure/response_warning.png) no-repeat;
-  width:32px;
-  height:32px;
-}
-.stageContainer {
-  width:90%;
-  margin:10px auto;
-}
-.selectHeader { margin-top:10px; }
+.deprecated_selectHeader { margin-top:10px; }
 .pkp_structure_head {
   height:90px;
   background-color:#a2c6dc;
@@ -1370,6 +1357,14 @@ div.pkp_controllers_grid .toggleDetail {
 }
 div.pkp_controllers_grid .moreDetail { background-position:-48px -192px; }
 div.pkp_controllers_grid .lessDetail { background-position:-64px -192px; }
+div.pkp_controllers_grid .pkp_controllers_grid_throbber {
+  display:none;
+  background:url(../lib/pkp/templates/images/throbber.gif) no-repeat;
+  width:25px;
+  height:25px;
+  margin-left:50%;
+  margin-top:5%;
+}
 div.pkp_controllers_grid .group1 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_1.png) no-repeat; }
 div.pkp_controllers_grid .group2 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_2.png) no-repeat; }
 div.pkp_controllers_grid .group3 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_3.png) no-repeat; }
@@ -1547,6 +1542,16 @@ div.pkp_controllers_listbuilder .ac_over {
 .pkp_controllers_modal_titleBar .close {
   vertical-align:middle;
   float:right;
+}
+.pkp_controllers_modal_titleBar .informationCenter {
+  background:url(../lib/pkp/templates/images/structure/grid_notes.png) no-repeat;
+  width:28px;
+  height:42px;
+}
+.pkp_controllers_modal_titleBar .fileManagement {
+  background:url(../lib/pkp/templates/images/structure/response_warning.png) no-repeat;
+  width:32px;
+  height:32px;
 }
 span.pkp_controllers_informationCenter_itemLastEvent {
   color:#888888;

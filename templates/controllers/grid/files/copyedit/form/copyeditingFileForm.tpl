@@ -87,7 +87,7 @@
 		{/if}
 	{/fbvFormArea}
 	<div id="uploadOutput">
-		<div id='loading' class='throbber' style="margin: 0px;"></div>
+		<div id='loading' class='pkp_controllers_grid_throbber' style="margin: 0px;"></div>
 		<ul><li id='loadingText' style='display:none;'>{translate key='submission.loadMessage'}</li></ul>
 	</div>
 
