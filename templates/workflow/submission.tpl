@@ -15,7 +15,7 @@
 <!-- Editorial decision actions -->
 <div class="pkp_linkActions">
 {foreach from=$editorActions item=action}
-	{include file="linkAction/linkAction.tpl" action=$action id="editorAction"}
+	{include file="linkAction/linkAction.tpl" action=$action contextId="submission"}
 {/foreach}
 </div>
 

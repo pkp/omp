@@ -30,7 +30,7 @@
 <br />
 
 <div class="pkp_linkActions">
-	{include file="linkAction/linkAction.tpl" action=$editorActions[0] id="promoteAction"}
+	{include file="linkAction/linkAction.tpl" action=$editorActions[0] contextId="copyediting"}
 </div>
 
 </div>
