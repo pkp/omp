@@ -7,7 +7,7 @@
  * Step 1 of author monograph submission.
  *}
 {assign var="pageTitle" value="submission.submit.step1"}
-{include file="submission/form/submit/submitStepHeader.tpl"}
+{include file="submission/form/submitStepHeader.tpl"}
 
 <form id="submitStepForm" method="post" action="{url op="saveStep" path=$submitStep}">
 	{if $monographId}<input type="hidden" name="monographId" value="{$monographId|escape}" />{/if}

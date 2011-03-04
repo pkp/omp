@@ -48,7 +48,7 @@ class MySubmissionsListGridCellProvider extends SubmissionsListGridCellProvider 
 							'details',
 							LINK_ACTION_MODE_LINK,
 							LINK_ACTION_TYPE_NOTHING,
-							$dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'submission', 'authorDetails', $monograph->getId()),
+							$dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'authorDashboard', null, $monograph->getId()),
 							null,
 							$title
 						);

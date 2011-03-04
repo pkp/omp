@@ -8,7 +8,7 @@
  *}
 {strip}
 {assign var="pageTitle" value="submission.submit.nextSteps"}
-{include file="submission/form/submit/submitStepHeader.tpl"}
+{include file="submission/form/submitStepHeader.tpl"}
 {/strip}
 
 <h2>{translate key="submission.submit.submissionComplete"}</h2>

@@ -7,7 +7,7 @@
  * Step 2 of author monograph submission.
  *}
 {assign var="pageTitle" value="submission.submit.step2"}
-{include file="submission/form/submit/submitStepHeader.tpl"}
+{include file="submission/form/submitStepHeader.tpl"}
 
 
 <div class="separator"></div>

@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @defgroup author_form_submit
+ * @defgroup submission_form
  */
 
 /**
- * @file classes/author/form/submit/SubmissionSubmitForm.inc.php
+ * @file classes/submission/form/SubmissionSubmitForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionSubmitForm
- * @ingroup author_form_submit
+ * @ingroup submission_form
  *
  * @brief Base class for author submit forms.
  */
@@ -36,7 +36,7 @@ class SubmissionSubmitForm extends Form {
 	 * @param $step int
 	 */
 	function SubmissionSubmitForm($monograph, $step) {
-		parent::Form(sprintf('submission/form/submit/step%d.tpl', $step));
+		parent::Form(sprintf('submission/form/step%d.tpl', $step));
 		$this->addCheck(new FormValidatorPost($this));
 		$this->step = (int) $step;
 		$this->monograph = $monograph;

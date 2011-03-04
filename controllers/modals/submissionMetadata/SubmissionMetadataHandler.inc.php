@@ -26,12 +26,14 @@ class SubmissionMetadataHandler extends Handler {
 	}
 
 
+	//
+	// Public handler methods
+	//
 	/**
 	 * Display the submission's metadata
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
-	 * @see Form::fetch()
 	 */
 	function fetch($args, &$request) {
 		// Identify the submission Id

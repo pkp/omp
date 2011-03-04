@@ -8,7 +8,7 @@
  *}
 
 {assign var="pageTitle" value="submission.submit.step3"}
-{include file="submission/form/submit/submitStepHeader.tpl"}
+{include file="submission/form/submitStepHeader.tpl"}
 
 <div class="separator"></div>
 

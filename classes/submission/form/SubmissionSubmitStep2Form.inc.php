@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @file classes/author/form/submit/SubmissionSubmitStep2Form.inc.php
+ * @file classes/submission/form/SubmissionSubmitStep2Form.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SubmissionSubmitStep2Form
- * @ingroup author_form_submit
+ * @ingroup submission_form
  *
  * @brief Form for Step 2 of author manuscript submission.
  */
 
 
-import('classes.submission.form.submit.SubmissionSubmitForm');
+import('classes.submission.form.SubmissionSubmitForm');
 
 class SubmissionSubmitStep2Form extends SubmissionSubmitForm {
 
