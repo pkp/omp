@@ -100,30 +100,25 @@ class SubmissionFilesUploadBaseForm extends Form {
 		$revisedFileId = $this->getRevisedFileId();
 		$foundRevisedFile = false;
 		$monographFiles =& $this->getMonographFiles();
-		for ($i = 0; $i < count($monographFiles); $i++) {
-			// Only look at the latest revision of each file. Files
-			// come sorted by file id and revision.
-			if (!isset($monographFiles[$i+1])
-					|| $monographFiles[$i]->getFileId() != $monographFiles[$i+1]->getFileId()) {
-				// The uploaded file must be excluded from the list of revisable files.
-				if ($uploadedFile && $uploadedFile->getFileId() == $monographFiles[$i]->getFileId()) continue;
+		foreach ($monographFiles as $monographFile) {
+			// The uploaded file must be excluded from the list of revisable files.
+			if ($uploadedFile && $uploadedFile->getFileId() == $monographFile->getFileId()) continue;
 
-				// Is this the revised file?
-				if ($revisedFileId && $revisedFileId == $monographFiles[$i]->getFileId()) {
-					// This is the revised monograph file, so pass it's data on to the form.
-					$this->setData('revisedFileName', $monographFiles[$i]->getOriginalFileName());
-					$this->setData('genreId', $monographFiles[$i]->getGenreId());
-					$foundRevisedFile = true;
-				}
-
-				// Create an entry in the list of existing files which
-				// the user can select from in case he chooses to upload
-				// a revision.
-				$fileName = $monographFiles[$i]->getLocalizedName() != '' ? $monographFiles[$i]->getLocalizedName() : Locale::translate('common.untitled');
-				if ($monographFiles[$i]->getRevision() > 1) $fileName .= ' (' . $monographFiles[$i]->getRevision() . ')';
-				$monographFileOptions[$monographFiles[$i]->getFileId()] = $fileName;
-				$currentMonographFileGenres[$monographFiles[$i]->getFileId()] = $monographFiles[$i]->getGenreId();
+			// Is this the revised file?
+			if ($revisedFileId && $revisedFileId == $monographFile->getFileId()) {
+				// This is the revised monograph file, so pass it's data on to the form.
+				$this->setData('revisedFileName', $monographFile->getOriginalFileName());
+				$this->setData('genreId', $monographFile->getGenreId());
+				$foundRevisedFile = true;
 			}
+
+			// Create an entry in the list of existing files which
+			// the user can select from in case he chooses to upload
+			// a revision.
+			$fileName = $monographFile->getLocalizedName() != '' ? $monographFile->getLocalizedName() : Locale::translate('common.untitled');
+			if ($monographFile->getRevision() > 1) $fileName .= ' (' . $monographFile->getRevision() . ')';
+			$monographFileOptions[$monographFile->getFileId()] = $fileName;
+			$currentMonographFileGenres[$monographFile->getFileId()] = $monographFile->getGenreId();
 		}
 
 		// If this is not a "review only" form then add a default item.
