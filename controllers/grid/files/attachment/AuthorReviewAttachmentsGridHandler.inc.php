@@ -47,7 +47,7 @@ class AuthorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 	function loadMonographFiles() {
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_ATTACHMENT);
+		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_REVIEW);
 
 		$rowData = array();
 		foreach ($monographFiles as $monographFile) {
