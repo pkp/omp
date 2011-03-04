@@ -8,16 +8,13 @@
  *}
 
 <!--  Display round status -->
-<div id="roundStatus" class="pkp_submission_statusContainer">
-	<p>{translate key="editor.monograph.roundStatus" round=$round}: {translate key="$roundStatus"}</p>
-</div>
-<br />
+{include file="common/reviewRoundStatus.tpl" round=$round roundStatus=$roundStatus}
 
 <!-- Display editor's message to the author -->
 {if $monographEmails}
 	<h6>{translate key="editor.review.personalMessageFromEditor"}:</h6>
 	{iterate from=monographEmails item=monographEmail}
-		<textarea class="pkp_submission_editorPersonalMessage" disabled=true class="textArea">{$monographEmail->getBody()}</textarea>
+		<textarea class="pkp_authorDashboard_editorPersonalMessage" disabled=true class="textArea">{$monographEmail->getBody()}</textarea>
 	{/iterate}
 	<br />
 {/if}

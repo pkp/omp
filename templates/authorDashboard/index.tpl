@@ -22,12 +22,9 @@
 </script>
 
 <div id="authorDashboard">
-	<div class="submissionHeader">
-		<div class="headerTop">
-			<div class="heading">
-				{assign var="primaryAuthor" value=$monograph->getPrimaryAuthor()}
-				{$primaryAuthor->getLastName()} - {$monograph->getLocalizedTitle()}
-			</div>
+	<div class="pkp_submissionHeader">
+		<div class="pkp_submissionHeaderTop">
+			{include file="common/submissionHeader.tpl" stageId=$stageId monograph=$monograph}
 		</div>
 	</div>
 	<div style="clear:both;"></div>
@@ -38,16 +35,16 @@
 	{elseif $stageId == $smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}{assign var="fillerClass" value="copyedited"}
 	{elseif $stageId == 0}{assign var="fillerClass" value="published"}
 	{else}{assign var="fillerClass" value=""}{/if}
-	<div id="authorTimeline" class="headerTimeline">
+	<div id="authorTimeline" class="pkp_submissionTimeline">
 		<div id="timelineContainer">
-			<div id="timelineFiller" class="{$fillerClass}"></div>
+			<div id="timelineFiller" class="{$fillerClass|escape}"></div>
 		</div>
 		<div id="timelineLabelContainer">
-			<span class="timelineLabel {if $stageId > 0}pastStep{else}futureStep{/if}">{translate key="submissions.submitted"}</span>
-			<span class="timelineLabel {if $stageId > $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}pastStep{else}futureStep{/if}">{translate key="submission.accepted"}</span>
-			<span class="timelineLabel center {if $stageId > $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}pastStep{else}futureStep{/if}">{translate key="submission.reviewed"}</span>
-			<span class="timelineLabel right {if $stageId > $smarty.const.WORKFLOW_STAGE_ID_EDITING}pastStep{else}futureStep{/if}">{translate key="submission.copyedited"}</span>
-			<span class="timelineLabel right {if $stageId == 0}pastStep{else}futureStep{/if}">{translate key="navigation.published"}</span>
+			<span class="pkp_authorDashboard_timelineLabel {if $stageId > 0}pastStep{else}futureStep{/if}">{translate key="submissions.submitted"}</span>
+			<span class="pkp_authorDashboard_timelineLabel {if $stageId > $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}pastStep{else}futureStep{/if}">{translate key="submission.accepted"}</span>
+			<span class="pkp_authorDashboard_timelineLabel center {if $stageId > $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}pastStep{else}futureStep{/if}">{translate key="submission.reviewed"}</span>
+			<span class="pkp_authorDashboard_timelineLabel right {if $stageId > $smarty.const.WORKFLOW_STAGE_ID_EDITING}pastStep{else}futureStep{/if}">{translate key="submission.copyedited"}</span>
+			<span class="pkp_authorDashboard_timelineLabel right {if $stageId == 0}pastStep{else}futureStep{/if}">{translate key="navigation.published"}</span>
 		</div>
 	</div>
 	<div style="clear:both;"></div>
@@ -58,21 +55,21 @@
 	<br />
 	<!-- Author actions -->
 	<div id="authorActions" class="pkp_linkActions">
-		<div id="addFile" class="authorAction">
+		<div id="addFile" class="pkp_linkActions_authorAction">
 			{include file="linkAction/linkAction.tpl" action=$uploadFileAction contextId="authorDashboard"}
 		</div>
 		{if $addRevisionAction}
-			<div id="{$addRevisionAction->getId()}" class="authorAction">
+			<div id="{$addRevisionAction->getId()}" class="pkp_linkActions_authorAction">
 				{include file="linkAction/linkAction.tpl" action=$addRevisionAction contextId="authorDashboard"}
 			</div>
 		{/if}
-		<div id="viewMetadata" class="authorAction">
+		<div id="viewMetadata" class="pkp_linkActions_authorAction">
 			{include file="linkAction/linkAction.tpl" action=$viewMetadataAction contextId="authorDashboard"}
 		</div>
 	</div>
 	<div style="clear:both;"></div>
 
-	<div class="stageContainer" id="submission">
+	<div class="pkp_authorDashboard_stageContainer" id="submission">
 		<h3><a href="#">{translate key='submission.submission'}</a></h3>
 		<div id="submissionContent">
 			{url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.AuthorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}
@@ -80,7 +77,7 @@
 		</div>
 	</div>
 
-	<div class="stageContainer" id="review">
+	<div class="pkp_authorDashboard_stageContainer" id="review">
 		<h3><a href="#">{translate key='submission.review'}</a></h3>
 		<div id="reviewContent">
 			{if $stageId > $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}
@@ -99,14 +96,14 @@
 		</div>
 	</div>
 
-	<div class="stageContainer" id="copyediting">
+	<div class="pkp_authorDashboard_stageContainer" id="copyediting">
 		<h3><a href="#">{translate key='submission.copyediting'}</a></h3>
 		<div id="copyeditingContent">
 			<!-- Display editor's message to the author -->
 			{if $monographEmails}
 				<h6>{translate key="editor.review.personalMessageFromEditor"}:</h6>
 				{iterate from=monographEmails item=monographEmail}
-					<textarea class="editorPersonalMessage" disabled=true class="textArea">{$monographEmail->getBody()}</textarea>
+					<textarea class="pkp_authorDashboard_editorPersonalMessage" disabled=true class="textArea">{$monographEmail->getBody()}</textarea>
 				{/iterate}
 				<br />
 			{/if}
@@ -119,7 +116,7 @@
 		</div>
 	</div>
 
-	<div class="stageContainer" id="production">
+	<div class="pkp_authorDashboard_stageContainer" id="production">
 		<h3><a href="#">{translate key='submission.production'}</a></h3>
 		<div id="productionContent">&nbsp;</div>
 	</div>

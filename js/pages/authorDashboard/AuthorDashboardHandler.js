@@ -49,7 +49,7 @@ jQuery.pkp.pages =
 		this.parent($dashboard, options);
 
 		// Transform the stage sections into jQueryUI accordions.
-		$('.stageContainer', $dashboard).accordion({
+		$('.pkp_authorDashboard_stageContainer', $dashboard).accordion({
 			autoHeight: false,
 			collapsible: true
 		});
@@ -138,12 +138,13 @@ jQuery.pkp.pages =
 		}
 
 		// Minimize all sections not representing the current stage.
-		var $deactivatedSections =
-				$('.stageContainer', $dashboard).not(cssSelectors[newStage]);
+		var $deactivatedSections = $('.pkp_authorDashboard_stageContainer', $dashboard)
+				.not(cssSelectors[newStage]);
 		$deactivatedSections.accordion('activate', false);
 
 		// Open the current stage's section if it's not yet open.
-		var $activatedSection = $(cssSelectors[newStage] + '.stageContainer', $dashboard);
+		var $activatedSection = $(cssSelectors[newStage] +
+				'.pkp_authorDashboard_stageContainer', $dashboard);
 		if ($activatedSection.accordion('option', 'active') !== 0) {
 			$activatedSection.accordion('activate', 0);
 		}

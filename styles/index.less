@@ -59,5 +59,74 @@
 @import url("styles/controllers/informationCenter.less");
 @import url("styles/controllers/reviewerSelector.less");
 
-/* Submission styles */
-@import url("styles/submission.less");
+
+/* Styles specific to template subfolders. */
+@import url("styles/common.less");
+@import url("styles/authorDashboard.less");
+@import url("styles/workflow.less");
+
+
+
+/* Styles common to templates in distinct subfolders. */
+.pkp_submissionHeader {
+	width: 95%;
+	margin: 5px 10px 15px 10px;
+
+	.icon {
+		float: left;
+	}
+
+	.pkp_submissionHeaderTop {
+		.action {
+			padding-top:  7px;
+			float: right;
+			margin-left: 25px;
+		}
+
+		.action a {
+			background-repeat: no-repeat;
+			padding-left: 20px;
+		}
+	}
+}
+
+.pkp_submissionTimeline {
+	font-size: .9em;
+	vertical-align: middle;
+	float: left;
+	width: 100%;
+
+	#timelineContainer {
+		width: 90%;
+		margin: 0 auto;
+		clear:both;
+		border: 2px solid gray;
+	}
+
+	#timelineFiller {
+		height: 20px;
+		background-color: #E0FFFF;
+		width: 0px;
+	}
+
+	#timelineFiller.accepted {
+		width: 25%;
+	}
+
+	#timelineFiller.reviewed {
+		width: 50%;
+	}
+
+	#timelineFiller.copyedited {
+		width: 75%;
+	}
+
+	#timelineFiller.published {
+		width: 100%;
+	}
+
+	#timelineLabelContainer {
+		width: 90%;
+		margin: 0 auto;
+	}
+}

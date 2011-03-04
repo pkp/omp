@@ -7,17 +7,9 @@
  * Header that contains details about the submission
  *}
 
-<div class="pkp_submission_header">
-	<div class="headerTop">
-		<div class="heading">
-			{if $stageId == $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW}
-				{translate key="workflow.review.internalReview"}:
-			{elseif $stageId == $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}
-				{translate key="workflow.review.externalReview"}:
-			{/if}
-			{assign var="primaryAuthor" value=$monograph->getPrimaryAuthor()}
-			{$primaryAuthor->getLastName()} - {$monograph->getLocalizedTitle()}
-		</div>
+<div class="pkp_submissionHeader">
+	<div class="pkp_submissionHeaderTop">
+		{include file="common/submissionHeader.tpl" stageId=$stageId monograph=$monograph}
 
 		<div class="action pkp_linkActions">
 			{url|assign:"allParticipantsUrl" router=$smarty.const.ROUTE_COMPONENT component="modals.submissionParticipants.SubmissionParticipantsHandler" op="fetch" stageId=$monograph->getCurrentStageId() monographId=$monograph->getId() escape=false}
@@ -33,7 +25,7 @@
 	</div>
 	<div class="pkp_helpers_clear"></div>
 
-	<div class="pkp_submission_timeline">
+	<div class="pkp_submissionTimeline">
 		<span class="pastStep">{translate key="submission.submission"}</span> &#187;
 		{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW}<span class="pastStep">{translate key="workflow.review.internalReview"}</span>{else}<span class="futureStep">{translate key="workflow.review.internalReview"}</span>{/if} &#187;
 		{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}<span class="pastStep">{translate key="workflow.review.externalReview"}</span>{else}<span class="futureStep">{translate key="workflow.review.externalReview"}</span>{/if} &#187;
@@ -42,19 +34,19 @@
 	</div>
 	<div class="pkp_helpers_clear"></div>
 
-	<div class="pkp_submission_header_bottom">
-		<div class="pkp_submission_header_userInfo">
+	<div class="pkp_workflow_headerBottom">
+		<div class="pkp_workflow_headerUserInfo">
 			{** FIXME #5734: Leaving blank until we have actual content to display here
-			<div id="roundStatus" class="pkp_submission_header_statusContainer">
+			<div id="roundStatus" class="pkp_workflow_headerStatusContainer">
 				<span class='icon' ></span><span class="alert">User Alert</span>
 			</div>
-			<div class="pkp_submission_header_stageMetadata">
+			<div class="pkp_workflow_headerStageMetadata">
 				Stage-specific Metadata <br />
 				More-stage Specific metadata
 			</div>
 			**}
 		</div>
-		<div class="pkp_submission_header_stageParticipants">
+		<div class="pkp_workflow_headerStageParticipants">
 			{url|assign:stageParticipantGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.stageParticipant.StageParticipantGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$monograph->getCurrentStageId() escape=false}
 			{load_url_in_div id="stageParticipantGridContainer" url="$stageParticipantGridUrl"}
 		</div>

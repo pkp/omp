@@ -29,11 +29,7 @@
 </ul>
 
 {if $roundStatus}
-<div id="roundStatus" class="pkp_submission_statusContainer">
-	<p>{translate key="editor.monograph.roundStatus" round=$round}: {translate key="$roundStatus"}</p>
-</div>
-
-<br />
+	{include file="common/reviewRoundStatus.tpl" round=$round roundStatus=$roundStatus}
 {/if}
 
 {** FIXME: need to set escape=false due to bug 5265 *}

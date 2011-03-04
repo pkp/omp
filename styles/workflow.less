@@ -1,0 +1,60 @@
+/**
+ * @file styles/workflow.less
+ *
+ * Copyright (c) 2003-2011 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * 
+ * @brief Styles for workflow templates.
+ *
+ */
+
+.pkp_workflow_headerBottom {
+	margin-top: 10px;
+
+	.pkp_workflow_headerUserInfo {
+		width: 51%;
+		height: 100px;
+		padding-right: 10px;
+		float:left;
+
+		.pkp_workflow_headerStatusContainer {
+			margin-left: 0px;
+		}
+
+		.icon {
+			background: url(../lib/pkp/templates/images/structure/response_warning.png) no-repeat;
+			margin:5px;
+			width: 32px;
+			height: 32px;
+			float:left;
+		}
+
+		.alert {
+			float:left;
+			font-size: 1.2em;
+			color: orange;
+			margin-top: 15px;
+		}
+
+		.pkp_workflow_headerStageMetadata {
+			float:left;
+		}
+	}
+
+	.pkp_workflow_headerStageParticipants {
+		width: 45%;
+		padding-left: 10px;
+		float:left;
+
+		.wrapper {
+			background-color: inherit;
+			border: none;
+			margin: 0px;
+			padding: 0px;
+		}
+
+		h3 {
+			font-size: 1.2em;
+		}
+	}
+}
