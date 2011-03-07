@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#metadataForm').pkpHandler('$.pkp.controllers.FormHandler');
+		$('#metadataForm').pkpHandler('$.pkp.controllers.form.FormHandler');
 	{rdelim});
 </script>
 

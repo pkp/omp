@@ -63,35 +63,7 @@ class AccessSettingsTabHandler extends Handler {
 	 */
 	function users($args, &$request) {
 		$this->setupTemplate(true);
-		$press =& $request->getPress();
-
-		import('lib.pkp.classes.user.PKPUserDAO');
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_GRID));
-
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroups =& $userGroupDao->getByContextId($press->getId());
-		$userGroupOptions = array('' => Locale::translate('grid.user.allRoles'));
-		while (!$userGroups->eof()) {
-			$userGroup =& $userGroups->next();
-			$userGroupOptions[$userGroup->getId()] = $userGroup->getLocalizedName();
-		}
-
-		$fieldOptions = array(
-			USER_FIELD_FIRSTNAME => 'user.firstName',
-			USER_FIELD_LASTNAME => 'user.lastName',
-			USER_FIELD_USERNAME => 'user.username',
-			USER_FIELD_EMAIL => 'user.email'
-		);
-
-		$matchOptions = array(
-			'contains' => 'form.contains',
-			'is' => 'form.is'
-		);
-
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign_by_ref('userGroupOptions', $userGroupOptions);
-		$templateMgr->assign('fieldOptions', $fieldOptions);
-		$templateMgr->assign('matchOptions', $matchOptions);
 		$templateMgr->assign('currentPage', 'users');
 		return $templateMgr->fetchJson('controllers/tab/settings/users.tpl');
 	}

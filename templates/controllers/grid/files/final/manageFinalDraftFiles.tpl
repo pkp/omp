@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#manageFinalDraftFilesForm').pkpHandler('$.pkp.controllers.FormHandler');
+		$('#manageFinalDraftFilesForm').pkpHandler('$.pkp.controllers.form.FormHandler');
 	{rdelim});
 </script>
 

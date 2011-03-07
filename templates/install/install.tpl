@@ -31,7 +31,7 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#installForm').pkpHandler('$.pkp.controllers.FormHandler');
+		$('#installForm').pkpHandler('$.pkp.controllers.form.FormHandler');
 	{rdelim});
 </script>
 <form method="post" id="installForm" action="{url op="install"}">

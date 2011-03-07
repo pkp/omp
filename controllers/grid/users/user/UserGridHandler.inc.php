@@ -161,6 +161,45 @@ class UserGridHandler extends GridHandler {
 		}
 		$this->setData($rowData);
 
+		// Render the filter form.
+		// FIXME: Bruno - this is just copied code so that I could test the grid
+		// with the form. You know how and where to do that correctly, right? ;-)
+
+		// Re-add the search data to the form.
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('userGroup', $userGroup);
+		$templateMgr->assign('searchField', $searchField);
+		$templateMgr->assign('searchMatch', $searchMatch);
+		$templateMgr->assign('search', $search);
+
+		$userGroups =& $userGroupDao->getByContextId($press->getId());
+		$userGroupOptions = array('' => Locale::translate('grid.user.allRoles'));
+		while (!$userGroups->eof()) {
+			$userGroup =& $userGroups->next();
+			$userGroupOptions[$userGroup->getId()] = $userGroup->getLocalizedName();
+		}
+		$templateMgr->assign_by_ref('userGroupOptions', $userGroupOptions);
+
+		// Import PKPUserDAO to define the USER_FIELD_* constants.
+		import('lib.pkp.classes.user.PKPUserDAO');
+		$fieldOptions = array(
+			USER_FIELD_FIRSTNAME => 'user.firstName',
+			USER_FIELD_LASTNAME => 'user.lastName',
+			USER_FIELD_USERNAME => 'user.username',
+			USER_FIELD_EMAIL => 'user.email'
+		);
+		$templateMgr->assign('fieldOptions', $fieldOptions);
+
+		$matchOptions = array(
+			'contains' => 'form.contains',
+			'is' => 'form.is'
+		);
+		$templateMgr->assign('matchOptions', $matchOptions);
+
+		// Render the filter.
+		$gridFilterForm = $templateMgr->fetch('controllers/grid/users/user/userGridFilter.tpl');
+		$templateMgr->assign('gridFilterForm', $gridFilterForm);
+
 		return parent::fetchGrid($args, $request);
 	}
 

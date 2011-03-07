@@ -55,6 +55,6 @@
 	<script type="text/javascript">
 		$(function() {ldelim}
 			// Attach the form handler.
-			$('#submitStepForm').pkpHandler('$.pkp.controllers.FormHandler');
+			$('#submitStepForm').pkpHandler('$.pkp.controllers.form.FormHandler');
 		{rdelim});
 	</script>

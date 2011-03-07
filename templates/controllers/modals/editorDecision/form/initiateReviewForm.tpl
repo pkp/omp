@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#initiateReview').pkpHandler('$.pkp.controllers.FormHandler', null);
+		$('#initiateReview').pkpHandler('$.pkp.controllers.form.FormHandler', null);
 	{rdelim});
 </script>
 

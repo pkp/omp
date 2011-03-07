@@ -12,7 +12,7 @@
 	<!--
 	{literal}
 	$(function() {
-		$('#promote').pkpHandler('$.pkp.controllers.FormHandler');
+		$('#promote').pkpHandler('$.pkp.controllers.form.FormHandler');
 		var url = '{/literal}{url op="importPeerReviews" monographId=$monographId}{literal}';
 		$('#importPeerReviews').live('click', function() {
 			$.getJSON(url, function(jsonData) {

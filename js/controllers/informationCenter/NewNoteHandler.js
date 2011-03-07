@@ -15,7 +15,7 @@
 	/**
 	 * @constructor
 	 *
-	 * @extends $.pkp.controllers.FormHandler
+	 * @extends $.pkp.controllers.form.FormHandler
 	 *
 	 * @param {jQuery} $form A wrapped HTML element that
 	 *  represents the form.
@@ -28,7 +28,7 @@
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.informationCenter.NewNoteHandler,
-			$.pkp.controllers.FormHandler
+			$.pkp.controllers.form.FormHandler
 	);
 
 
