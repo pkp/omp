@@ -39,16 +39,28 @@ class AddFileLinkAction extends LinkAction {
 			$actionArgs['assocId'] = (int)$assocId;
 		}
 
+		// Identify text labels based on the file stage.
+		$textLabels = array(
+				MONOGRAPH_FILE_SUBMISSION => array(
+						'wizardTitle' => 'submission.submit.uploadSubmissionFile',
+						'buttonTitle' => 'submission.addFile'),
+				MONOGRAPH_FILE_FINAL => array(
+						'wizardTitle' => 'submission.uploadACopyeditedVersion',
+						'buttonTitle' => 'submission.uploadACopyeditedVersion'));
+		assert(isset($textLabels[$fileStage]));
+		$textLabels = $textLabels[$fileStage];
+
+
 		// Instantiate the file upload modal.
-		$router =& $request->getRouter();
+		$dispatcher =& $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.WizardModal');
 		$modal = new WizardModal(
-				$router->url($request, null,
+				$dispatcher->url($request, ROUTE_COMPONENT, null,
 						'wizard.fileUpload.FileUploadWizardHandler', 'startWizard',
 						null, $actionArgs),
-				__('submission.submit.uploadSubmissionFile'), 'fileManagement');
+				__($textLabels['wizardTitle']), 'fileManagement');
 
 		// Configure the link action.
-		parent::LinkAction('addFile', $modal, __('submission.addFile'), 'add');
+		parent::LinkAction('addFile', $modal, __($textLabels['buttonTitle']), 'add');
 	}
 }

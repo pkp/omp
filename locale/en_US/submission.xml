@@ -96,8 +96,7 @@
 	<!-- Submission wizard -->
 	<message key="submission.notifyEditor">Notify Editor</message>
 	<message key="submission.addFileToBook">Add a File To My Book</message>
-	<message key="submission.addFile">Add File</message>
-	<message key="submission.uploadARevision">Upload A Revision</message>
+	<message key="submission.addFile">Upload File</message>
 	<message key="submission.uploadACopyeditedVersion">Upload A Copyedited Version</message>
 	<message key="submission.notifyEditor">Notify Editor</message>
 	<message key="submission.submit.uploadAuthorVersion">Upload Author Version</message>
@@ -165,8 +164,7 @@
 	<message key="submission.submit.currentFile">Current file</message>
 	<message key="submission.submit.selectFile">Select File</message>
 	<message key="submission.submit.submissionFile">Submission File</message>
-	<message key="submission.submit.uploadRevision">Upload revision</message>
-	<message key="submission.submit.uploadSubmissionFile">Upload submission file</message>
+	<message key="submission.submit.uploadSubmissionFile">Upload submission file or revision</message>
 	<message key="submission.submit.replaceSubmissionFile">Replace submission file</message>
 	<message key="submission.submit.noSubmissionFile">No submission file uploaded.</message>
 	<message key="submission.submit.noSubmissionConfirm">Are you sure you wish to continue without uploading a submission file?</message>

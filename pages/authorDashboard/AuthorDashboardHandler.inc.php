@@ -54,81 +54,33 @@ class AuthorDashboardHandler extends Handler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$templateMgr->assign_by_ref('monograph', $monograph);
 
-		// Setup author actions.
-		// FIXME: Grid actions should not be referred to from outside a grid. This breaks the
-		// encapsulation rules for widgets, see #6411.
-		import('lib.pkp.classes.linkAction.LinkAction');
-		import('classes.monograph.MonographFile');
+		// "View metadata" action.
 		$dispatcher =& $this->getDispatcher();
-		$actionArgs = array('monographId' => $monograph->getId());
-
-		// View metadata action.
-		import('lib.pkp.classes.linkAction.request.AjaxModal');
-		$viewMetadataAction = new LinkAction(
-				'viewMetadata',
-				new AjaxModal(
-						$dispatcher->url($request, ROUTE_COMPONENT, null,
-								'modals.submissionMetadata.SubmissionDetailsSubmissionMetadataHandler',
-								'fetch', null, $actionArgs),
-						__('submission.viewMetadata')
-				),
-				__('submission.viewMetadata'),
-				'more_info');
+		import('controllers.modals.submissionMetadata.linkAction.ViewMetadataLinkAction');
+		$viewMetadataAction = new ViewMetadataLinkAction($request, $monograph->getId());
 		$templateMgr->assign('viewMetadataAction', $viewMetadataAction);
 
-		// Add file action.
-		// FIXME: Use pre-configured link actions like AddFileLinkAction.
-		import('lib.pkp.classes.linkAction.request.WizardModal');
-		$actionArgs['fileStage'] = MONOGRAPH_FILE_SUBMISSION;
-		$uploadFileAction = new LinkAction(
-				'addFile',
-				new WizardModal(
-						$dispatcher->url($request, ROUTE_COMPONENT, null,
-								'wizard.fileUpload.FileUploadWizardHandler', 'startWizard',
-								null, $actionArgs),
-						__('submission.submit.uploadSubmissionFile'),
-						'fileManagement'),
-				__('submission.addFile'),
-				'add_item');
-		$templateMgr->assign('uploadFileAction', $uploadFileAction);
+		// Import monograph file to define file stages.
+		import('classes.monograph.MonographFile');
 
-		// Workflow-stage specific "add file" action.
+		// Workflow-stage specific "upload file" action.
+		$fileStage = null;
 		switch ($monograph->getCurrentStageId()) {
+			case WORKFLOW_STAGE_ID_SUBMISSION:
 			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
 			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
-				$actionArgs['revisionOnly'] = true;
-				$actionArgs['fileStage'] = MONOGRAPH_FILE_SUBMISSION;
-				$addRevisionAction = new LinkAction(
-						'addRevision',
-						new WizardModal(
-								$dispatcher->url($request, ROUTE_COMPONENT, null,
-										'wizard.fileUpload.FileUploadWizardHandler', 'startWizard',
-										null, $actionArgs),
-								__('submission.submit.uploadRevision'),
-								'fileManagement'),
-						__('submission.uploadARevision'),
-						'edit');
+				$fileStage = MONOGRAPH_FILE_SUBMISSION;
 				break;
 
-			// FIXME: Use standard file uploader for copyediting files.
 			case WORKFLOW_STAGE_ID_EDITING:
-				$actionArgs['fileStage'] = MONOGRAPH_FILE_FINAL;
-				$addRevisionAction = new LinkAction(
-						'addCopyeditedFile',
-						new WizardModal(
-								$dispatcher->url($request, ROUTE_COMPONENT, null,
-										'grid.files.copyedit.AuthorCopyeditingFilesGridHandler',
-										'addCopyeditedFile', null, $actionArgs),
-								__('submission.uploadACopyeditedVersion'),
-								'fileManagement'),
-						__('submission.uploadACopyeditedVersion'),
-						'add_item');
+				$fileStage = MONOGRAPH_FILE_FINAL;
 				break;
-
-			default:
-				$addRevisionAction = null;
 		}
-		$templateMgr->assign('addRevisionAction', $addRevisionAction);
+		if ($fileStage) {
+			import('controllers.api.file.linkAction.AddFileLinkAction');
+			$uploadFileAction = new AddFileLinkAction($request, $monograph->getId(), $fileStage);
+			$templateMgr->assign('uploadFileAction', $uploadFileAction);
+		}
 
 
 		// Create an array with one entry per review round.
@@ -148,7 +100,7 @@ class AuthorDashboardHandler extends Handler {
 			$templateMgr->assign('showCopyeditingFiles', true);
 		}
 
- 		$templateMgr->display('authorDashboard/index.tpl');
+ 		$templateMgr->display('authorDashboard/authorDashboard.tpl');
 	}
 
 	/**

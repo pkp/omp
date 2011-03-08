@@ -1,5 +1,5 @@
 {**
- * index.tpl
+ * authorDashboard.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -51,16 +51,13 @@
 
 	{** User Alert**}
 	<div id="userAlert"></div>
-
 	<br />
+
 	<!-- Author actions -->
 	<div id="authorActions" class="pkp_linkActions">
-		<div id="addFile" class="pkp_linkActions_authorAction">
-			{include file="linkAction/linkAction.tpl" action=$uploadFileAction contextId="authorDashboard"}
-		</div>
-		{if $addRevisionAction}
-			<div id="{$addRevisionAction->getId()}" class="pkp_linkActions_authorAction">
-				{include file="linkAction/linkAction.tpl" action=$addRevisionAction contextId="authorDashboard"}
+		{if $uploadFileAction}
+			<div id="{$uploadFileAction->getId()}" class="pkp_authorDashboard_authorAction">
+				{include file="linkAction/linkAction.tpl" action=$uploadFileAction contextId="authorDashboard"}
 			</div>
 		{/if}
 		<div id="viewMetadata" class="pkp_linkActions_authorAction">
