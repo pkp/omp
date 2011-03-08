@@ -36,10 +36,10 @@
 	{elseif $stageId == 0}{assign var="fillerClass" value="published"}
 	{else}{assign var="fillerClass" value=""}{/if}
 	<div id="authorTimeline" class="pkp_submissionTimeline">
-		<div id="timelineContainer">
+		<div id="timelineContainer" class="pkp_authorDashboard_timelineContainer">
 			<div id="timelineFiller" class="{$fillerClass|escape}"></div>
 		</div>
-		<div id="timelineLabelContainer">
+		<div id="timelineLabelContainer" class="pkp_authorDashboard_timelineLabelContainer">
 			<span class="pkp_authorDashboard_timelineLabel {if $stageId > 0}pastStep{else}futureStep{/if}">{translate key="submissions.submitted"}</span>
 			<span class="pkp_authorDashboard_timelineLabel {if $stageId > $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}pastStep{else}futureStep{/if}">{translate key="submission.accepted"}</span>
 			<span class="pkp_authorDashboard_timelineLabel center {if $stageId > $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}pastStep{else}futureStep{/if}">{translate key="submission.reviewed"}</span>
@@ -60,7 +60,7 @@
 				{include file="linkAction/linkAction.tpl" action=$uploadFileAction contextId="authorDashboard"}
 			</div>
 		{/if}
-		<div id="viewMetadata" class="pkp_linkActions_authorAction">
+		<div id="viewMetadata" class="pkp_authorDashboard_authorAction">
 			{include file="linkAction/linkAction.tpl" action=$viewMetadataAction contextId="authorDashboard"}
 		</div>
 	</div>
