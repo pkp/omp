@@ -186,6 +186,7 @@ class ReviewerForm extends Form {
 								'middlename',
 								'lastname',
 								'affiliation',
+								'interests',
 								'interestsKeywords',
 								'username',
 								'email',
@@ -193,6 +194,12 @@ class ReviewerForm extends Form {
 								'userGroupId'));
 		} elseif($selectionType == REVIEWER_SELECT_ENROLL) {
 			$this->readUserVars(array('userId', 'userGroupId'));
+		}
+
+		$interests = $this->getData('interestsKeywords');
+		if ($interests != null && is_array($interests)) {
+			// The interests are coming in encoded -- Decode them for DB storage
+			$this->setData('interestsKeywords', array_map('urldecode', $interests));
 		}
 	}
 
@@ -265,13 +272,10 @@ class ReviewerForm extends Form {
 			$user->setDateRegistered(Core::getCurrentDate());
 			$reviewerId = $userDao->insertUser($user);
 
-			// Add reviewer interests to interests table
-			$interestDao =& DAORegistry::getDAO('InterestDAO');
-			$interests = is_array(Request::getUserVar('interestsKeywords')) ? Request::getUserVar('interestsKeywords') : array();
-			$interests = array_map('urldecode', $interests); // The interests are coming in encoded -- Decode them for DB storage
-			if (empty($interests)) $interests = array();
-			elseif (!is_array($interests)) $interests = array($interests);
-			$interestDao->insertInterests($interests, $reviewerId, true);
+			// Add reviewing interests to interests table
+			import('lib.pkp.classes.user.InterestManager');
+			$interestManager = new InterestManager();
+			$interestManager->insertInterests($userId, $this->getData('interestsKeywords'), $this->getData('interests'));
 
 			// Assign the selected user group ID to the user
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
