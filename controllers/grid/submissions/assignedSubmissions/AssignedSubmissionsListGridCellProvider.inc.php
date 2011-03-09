@@ -69,13 +69,13 @@ class AssignedSubmissionsListGridCellProvider extends SubmissionsListGridCellPro
 			}
 
 			$action =& new LegacyLinkAction(
-							'details',
-							LINK_ACTION_MODE_LINK,
-							LINK_ACTION_TYPE_NOTHING,
-							$url,
-							null,
-							$title
-						);
+				'details',
+				LINK_ACTION_MODE_LINK,
+				LINK_ACTION_TYPE_NOTHING,
+				$url,
+				null,
+				$title
+			);
 
 			return array($action);
 		}

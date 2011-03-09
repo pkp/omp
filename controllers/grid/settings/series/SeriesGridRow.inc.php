@@ -53,7 +53,8 @@ class SeriesGridRow extends GridRow {
 					'grid.action.edit',
 					null,
 					'edit'
-				));
+				)
+			);
 			$this->addAction(
 				new LegacyLinkAction(
 					'deleteSeries',
@@ -64,7 +65,8 @@ class SeriesGridRow extends GridRow {
 					null,
 					'delete',
 					'common.confirmDelete'
-				));
+				)
+			);
 		}
 
 	}

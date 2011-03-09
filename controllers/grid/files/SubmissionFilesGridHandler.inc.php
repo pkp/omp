@@ -141,8 +141,13 @@ class SubmissionFilesGridHandler extends GridHandler {
 		parent::initialize($request);
 
 		// Load translations.
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION,
-				LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON));
+		Locale::requireComponents(
+			array(
+				LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION,
+				LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_COMMON,
+				LOCALE_COMPONENT_APPLICATION_COMMON
+			)
+		);
 
 		// Populate the grid with data.
 		$dataProvider =& $this->getDataProvider();

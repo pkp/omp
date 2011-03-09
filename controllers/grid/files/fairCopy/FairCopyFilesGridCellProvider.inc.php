@@ -40,13 +40,13 @@ class FairCopyFilesGridCellProvider extends GridCellProvider {
 
 			$fileLabel = ($monographFile->getRevision() > 1) ? $monographFile->getLocalizedName() . " (" . $monographFile->getRevision() . ")" : $monographFile->getLocalizedName();
 			$action =& new LegacyLinkAction(
-							'downloadFile',
-							LINK_ACTION_MODE_LINK,
-							LINK_ACTION_TYPE_NOTHING,
-							$router->url($request, null, null, 'downloadFile', null, $actionArgs),
-							null,
-							$fileLabel
-						);
+				'downloadFile',
+				LINK_ACTION_MODE_LINK,
+				LINK_ACTION_TYPE_NOTHING,
+				$router->url($request, null, null, 'downloadFile', null, $actionArgs),
+				null,
+				$fileLabel
+			);
 			return array($action);
 		}
 		return parent::getCellActions($request, $row, $column, $position);

@@ -28,8 +28,15 @@ class FinalDraftFilesGridHandler extends SubmissionFilesGridHandler {
 	function FinalDraftFilesGridHandler($capabilities) {
 		$this->_canManage = $canManage;
 		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_FINAL, $capabilities);
-		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array('fetchGrid', 'downloadFile', 'downloadAllFiles', 'selectFiles', 'updateFinalDraftFiles', 'deleteFile'));
+		$this->addRoleAssignment(
+			array(
+				ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT
+			),
+			array(
+				'fetchGrid', 'downloadFile', 'downloadAllFiles', 'selectFiles',
+				'updateFinalDraftFiles', 'deleteFile'
+			)
+		);
 	}
 
 	/**
@@ -72,8 +79,11 @@ class FinalDraftFilesGridHandler extends SubmissionFilesGridHandler {
 		if($this->canManage()) {
 			$monograph =& $this->getMonograph();
 			$router =& $request->getRouter();
-			$this->addAction(new SelectSubmissionFilesLinkAction(&$request,
-					$monograph->getId(), __('editor.monograph.manageFinalDraftFiles')));
+			$this->addAction(
+				new SelectSubmissionFilesLinkAction(
+					&$request, $monograph->getId(), __('editor.monograph.manageFinalDraftFiles')
+				)
+			);
 		}
 
 		import('controllers.grid.files.SubmissionFilesGridCellProvider');

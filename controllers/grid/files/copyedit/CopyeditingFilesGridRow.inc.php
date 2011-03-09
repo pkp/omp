@@ -86,7 +86,8 @@ class CopyeditingFilesGridRow extends GridRow {
 						null,
 						'delete',
 						Locale::translate('common.confirmDelete')
-					));
+					)
+				);
 			} else {
 				$this->addAction(
 					new LegacyLinkAction(
@@ -112,7 +113,8 @@ class CopyeditingFilesGridRow extends GridRow {
 						'submission.addFile',
 						null,
 						'add'
-					));
+					)
+				);
 			}
 
 			// If there is a file uploaded, allow the user to edit it if it is their signoff (i.e. their copyediting assignment)
@@ -126,7 +128,8 @@ class CopyeditingFilesGridRow extends GridRow {
 						'common.edit',
 						null,
 						'add'
-					));
+					)
+				);
 			}
 
 		}

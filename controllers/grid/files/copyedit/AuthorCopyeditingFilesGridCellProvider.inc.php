@@ -122,14 +122,14 @@ class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider 
 
 		$label = $monographFile->getLocalizedName();
 		$action =& new LegacyLinkAction(
-						'downloadFile',
-						LINK_ACTION_MODE_LINK,
-						LINK_ACTION_TYPE_NOTHING,
-						$router->url($request, null, null, 'downloadFile', null, $actionArgs),
-						null,
-						$label,
-						$state
-					);
+			'downloadFile',
+			LINK_ACTION_MODE_LINK,
+			LINK_ACTION_TYPE_NOTHING,
+			$router->url($request, null, null, 'downloadFile', null, $actionArgs),
+			null,
+			$label,
+			$state
+		);
 		return array($action);
 	}
 }

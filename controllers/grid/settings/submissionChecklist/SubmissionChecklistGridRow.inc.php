@@ -51,7 +51,8 @@ class SubmissionChecklistGridRow extends GridRow {
 					'grid.action.edit',
 					null,
 					'edit'
-				));
+				)
+			);
 			$this->addAction(
 				new LegacyLinkAction(
 					'deleteSubmissionChecklist',
@@ -62,7 +63,8 @@ class SubmissionChecklistGridRow extends GridRow {
 					null,
 					'delete',
 					'common.confirmDelete'
-				));
+				)
+			);
 		}
 	}
 }

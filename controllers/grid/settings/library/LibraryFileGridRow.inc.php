@@ -71,7 +71,8 @@ class LibraryFileGridRow extends GridRow {
 					'grid.action.edit',
 					null,
 					'edit'
-				));
+				)
+			);
 			$this->addAction(
 				new LegacyLinkAction(
 					'deleteFile',
@@ -82,7 +83,8 @@ class LibraryFileGridRow extends GridRow {
 					null,
 					'delete',
 					Locale::translate('common.confirmDelete')
-				));
+				)
+			);
 		}
 	}
 }

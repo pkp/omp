@@ -51,7 +51,8 @@ class GenreGridRow extends GridRow {
 					'grid.action.edit',
 					null,
 					'edit'
-				));
+				)
+			);
 			$this->addAction(
 				new LegacyLinkAction(
 					'deleteGenre',
@@ -62,7 +63,8 @@ class GenreGridRow extends GridRow {
 					null,
 					'delete',
 					Locale::translate('common.confirmDelete')
-				));
+				)
+			);
 		}
 	}
 }

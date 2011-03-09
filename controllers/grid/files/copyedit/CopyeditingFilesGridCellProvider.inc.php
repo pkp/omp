@@ -51,13 +51,13 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 
 				$label = $user->getFullName() . " (" . $userGroup->getLocalizedName() . ") - " . $monographFile->getLocalizedName();
 				$action =& new LegacyLinkAction(
-								'downloadFile',
-								LINK_ACTION_MODE_LINK,
-								LINK_ACTION_TYPE_NOTHING,
-								$router->url($request, null, null, 'downloadFile', null, $actionArgs),
-								null,
-								$label
-							);
+					'downloadFile',
+					LINK_ACTION_MODE_LINK,
+					LINK_ACTION_TYPE_NOTHING,
+					$router->url($request, null, null, 'downloadFile', null, $actionArgs),
+					null,
+					$label
+				);
 				return array($action);
 			} else {
 				$fileId = $monographFile = null;

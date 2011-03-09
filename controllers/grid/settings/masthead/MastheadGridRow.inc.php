@@ -57,7 +57,8 @@ class MastheadGridRow extends GridRow {
 					'grid.action.edit',
 					null,
 					'edit'
-				));
+				)
+			);
 			$this->addAction(
 				new LegacyLinkAction(
 					'deleteMasthead',
@@ -68,7 +69,8 @@ class MastheadGridRow extends GridRow {
 					null,
 					'delete',
 					'common.confirmDelete'
-				));
+				)
+			);
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
 	}

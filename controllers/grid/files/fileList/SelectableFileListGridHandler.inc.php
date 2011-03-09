@@ -23,7 +23,7 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 	 *  FILE_GRID_* capabilities set.
 	 */
 	function SelectableFileListGridHandler($dataProvider, $capabilities) {
-		parent::FileListGridHandler($dataProvider, $canAdd, $canDownloadAll, $canManage);
+		parent::FileListGridHandler($dataProvider, $capabilities);
 	}
 
 
@@ -47,7 +47,11 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 	function initialize(&$request) {
 		// Add checkbox column to the grid.
 		import('controllers.grid.files.fileList.FileSelectionGridColumn');
-		$this->addColumn(new FileSelectionGridColumn($this->getSelectedFileIds(), $this->getSelectName()));
+		$this->addColumn(
+			new FileSelectionGridColumn(
+				$this->getSelectedFileIds(), $this->getSelectName()
+			)
+		);
 
 		parent::initialize($request);
 	}

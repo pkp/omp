@@ -114,25 +114,27 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		switch ($state) {
 			case 'linkReview':
 				$action =& new LegacyLinkAction(
-						'readReview',
-						LINK_ACTION_MODE_MODAL,
-						LINK_ACTION_TYPE_NOTHING,
-						$router->url($request, null, null, 'readReview', null, $actionArgs),
-						null,
-						$reviewAssignment->getReviewerFullName());
+					'readReview',
+					LINK_ACTION_MODE_MODAL,
+					LINK_ACTION_TYPE_NOTHING,
+					$router->url($request, null, null, 'readReview', null, $actionArgs),
+					null,
+					$reviewAssignment->getReviewerFullName()
+				);
 				break;
 
 			case 'new':
 				// The 'new' state could be for the editor or the reviewer.
 				if (is_numeric($column->getId()) ) {
 					$action =& new LegacyLinkAction(
-							'readReview',
-							LINK_ACTION_MODE_MODAL,
-							LINK_ACTION_TYPE_NOTHING,
-							$router->url($request, null, null, 'readReview', null, $actionArgs),
-							null,
-							null,
-							$state);
+						'readReview',
+						LINK_ACTION_MODE_MODAL,
+						LINK_ACTION_TYPE_NOTHING,
+						$router->url($request, null, null, 'readReview', null, $actionArgs),
+						null,
+						null,
+						$state
+					);
 				}
 				break;
 
@@ -144,13 +146,14 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 
 			case 'overdue':
 				$action =& new LegacyLinkAction(
-						'sendReminder',
-						LINK_ACTION_MODE_MODAL,
-						LINK_ACTION_TYPE_REPLACE,
-						$router->url($request, null, null, 'editReminder', null, $actionArgs),
-						'editor.review.reminder',
-						null,
-						$state);
+					'sendReminder',
+					LINK_ACTION_MODE_MODAL,
+					LINK_ACTION_TYPE_REPLACE,
+					$router->url($request, null, null, 'editReminder', null, $actionArgs),
+					'editor.review.reminder',
+					null,
+					$state
+				);
 				break;
 		}
 

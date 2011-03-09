@@ -53,13 +53,13 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 			$press = $pressDao->getPress($pressId);
 
 			$action =& new LegacyLinkAction(
-							'details',
-							LINK_ACTION_MODE_LINK,
-							LINK_ACTION_TYPE_NOTHING,
-							$dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'submission', $monograph->getId()),
-							null,
-							$title
-						);
+				'details',
+				LINK_ACTION_MODE_LINK,
+				LINK_ACTION_TYPE_NOTHING,
+				$dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'submission', $monograph->getId()),
+				null,
+				$title
+			);
 			return array($action);
 		}
 		return parent::getCellActions($request, $row, $column, $position);

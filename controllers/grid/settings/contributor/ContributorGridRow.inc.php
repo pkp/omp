@@ -51,7 +51,8 @@ class ContributorGridRow extends GridRow {
 					'grid.action.edit',
 					null,
 					'edit'
-				));
+				)
+			);
 			$this->addAction(
 				new LegacyLinkAction(
 					'deleteContributor',
@@ -62,7 +63,8 @@ class ContributorGridRow extends GridRow {
 					null,
 					'delete',
 					'common.confirmDelete'
-				));
+				)
+			);
 
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}

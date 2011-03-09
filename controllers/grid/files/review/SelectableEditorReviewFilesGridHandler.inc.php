@@ -26,10 +26,15 @@ class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandl
 	function SelectableEditorReviewFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
 		$dataProvider = new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_SUBMISSION);
-		parent::SelectableFileListGridHandler($dataProvider, FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL|FILE_GRID_DELETE);
+		parent::SelectableFileListGridHandler(
+			$dataProvider,
+			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL|FILE_GRID_DELETE
+		);
 
-		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'fetchRow', 'downloadAllFiles', 'updateReviewFiles'));
+		$this->addRoleAssignment(
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array('fetchGrid', 'fetchRow', 'downloadAllFiles', 'updateReviewFiles')
+		);
 
 		// Set the grid title.
 		$this->setTitle('reviewer.monograph.reviewFiles');
@@ -75,7 +80,8 @@ class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandl
 		// Retrieve the authorized selection.
 		$this->_selectionArgs = array(
 			'reviewType' => (int)$request->getUserVar('reviewType'),
-			'round' => (int)$request->getUserVar('round'));
+			'round' => (int)$request->getUserVar('round')
+		);
 		return null;
 	}
 
@@ -94,7 +100,9 @@ class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandl
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$selectedRevisions =& $submissionFileDao->getRevisionsByReviewRound(
-				$monograph->getId(), $this->getSelectionArg('reviewType'), $this->getSelectionArg('round'));
+			$monograph->getId(),
+			$this->getSelectionArg('reviewType'), $this->getSelectionArg('round')
+		);
 		return array_keys($selectedRevisions);
 	}
 }

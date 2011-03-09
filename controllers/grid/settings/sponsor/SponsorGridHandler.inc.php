@@ -58,11 +58,17 @@ class SponsorGridHandler extends SetupGridHandler {
 		);
 
 		// Columns
-		$this->addColumn(new GridColumn('institution',
-										'grid.columns.institution',
-										null,
-										'controllers/grid/gridCell.tpl'));
-		$this->addColumn(new GridColumn('url', 'grid.columns.url'));
+		$this->addColumn(
+			new GridColumn(
+				'institution',
+				'grid.columns.institution',
+				null,
+				'controllers/grid/gridCell.tpl'
+			)
+		);
+		$this->addColumn(
+			new GridColumn('url', 'grid.columns.url')
+		);
 	}
 
 	//

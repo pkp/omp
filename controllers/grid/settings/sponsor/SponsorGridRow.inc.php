@@ -51,7 +51,8 @@ class SponsorGridRow extends GridRow {
 					'grid.action.edit',
 					null,
 					'edit'
-				));
+				)
+			);
 			$this->addAction(
 				new LegacyLinkAction(
 					'deleteSponsor',
@@ -62,7 +63,8 @@ class SponsorGridRow extends GridRow {
 					null,
 					'delete',
 					'common.confirmDelete'
-				));
+				)
+			);
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 
 		}

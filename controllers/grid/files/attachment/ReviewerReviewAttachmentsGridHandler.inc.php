@@ -24,9 +24,13 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	function ReviewerReviewAttachmentsGridHandler() {
 		parent::ReviewAttachmentsGridHandler(FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL);
 		$this->addRoleAssignment(
-				array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_REVIEWER),
-				array('fetchGrid', 'fetchRow', 'finishFileSubmission', 'addFile', 'displayFileUploadForm', 'uploadFile', 'confirmRevision',
-						'editMetadata', 'saveMetadata', 'downloadFile', 'downloadAllFiles', 'deleteFile'));
+			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_REVIEWER),
+			array(
+				'fetchGrid', 'fetchRow', 'finishFileSubmission', 'addFile', 'displayFileUploadForm',
+				'uploadFile', 'confirmRevision', 'editMetadata', 'saveMetadata', 'downloadFile',
+				'downloadAllFiles', 'deleteFile'
+			)
+		);
 	}
 
 	//
@@ -88,7 +92,9 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	 */
 	function loadMonographFiles() {
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getAllRevisionsByAssocId(ASSOC_TYPE_REVIEW_ASSIGNMENT, $this->getReviewId(), MONOGRAPH_FILE_REVIEW);
+		$monographFiles =& $submissionFileDao->getAllRevisionsByAssocId(
+			ASSOC_TYPE_REVIEW_ASSIGNMENT, $this->getReviewId(), MONOGRAPH_FILE_REVIEW
+		);
 		$rowData = array();
 		foreach ($monographFiles as $monographFile) {
 			$rowData[$monographFile->getFileId()] = $monographFile;

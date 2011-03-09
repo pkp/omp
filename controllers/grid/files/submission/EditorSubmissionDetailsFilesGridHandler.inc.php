@@ -12,15 +12,24 @@
  * @brief Handle submission file grid requests on the editor's submission details pages.
  */
 
-// import submission files grid specific classes
-import('controllers.grid.files.submission.SubmissionDetailsFilesGridHandler');
+import('controllers.grid.files.fileList.FileListGridHandler');
 
-class EditorSubmissionDetailsFilesGridHandler extends SubmissionDetailsFilesGridHandler {
+class EditorSubmissionDetailsFilesGridHandler extends FileListGridHandler {
 	/**
 	 * Constructor
 	 */
 	function EditorSubmissionDetailsFilesGridHandler() {
-		parent::SubmissionDetailsFilesGridHandler(FILE_GRID_ADD|FILE_GRID_MANAGE);
+		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+		$dataProvider = new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_SUBMISSION);
+		parent::FileListGridHandler($dataProvider, FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_DOWNLOAD_ALL);
+
+		$this->addRoleAssignment(
+			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array('fetchGrid', 'fetchRow', 'downloadAllFiles')
+		);
+
+		// Grid title.
+		$this->setTitle('submission.submit.submissionFiles');
 	}
 
 }

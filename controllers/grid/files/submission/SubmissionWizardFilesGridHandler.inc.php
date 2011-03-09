@@ -24,8 +24,9 @@ class SubmissionWizardFilesGridHandler extends FileListGridHandler {
 		$dataProvider = new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_SUBMISSION);
 		parent::FileListGridHandler($dataProvider, FILE_GRID_ADD|FILE_GRID_DELETE);
 		$this->addRoleAssignment(
-				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'fetchRow', 'downloadAllFiles'));
+			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array('fetchGrid', 'fetchRow', 'downloadAllFiles')
+		);
 
 		// Set grid title.
 		$this->setTitle('submission.submit.submissionFiles');

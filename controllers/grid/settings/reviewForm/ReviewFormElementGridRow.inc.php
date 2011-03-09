@@ -82,7 +82,8 @@ class ReviewFormElementGridRow extends GridRow {
 					'grid.action.edit',
 					null,
 					'edit'
-				));
+				)
+			);
 			$this->addAction(
 				new LegacyLinkAction(
 					'deleteReviewForm',
@@ -93,7 +94,8 @@ class ReviewFormElementGridRow extends GridRow {
 					null,
 					'delete',
 					'common.confirmDelete'
-				));
+				)
+			);
 		}
 
 		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
