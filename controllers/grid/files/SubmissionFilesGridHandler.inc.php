@@ -22,6 +22,11 @@ import('controllers.grid.files.FileNameGridColumn');
 // Import monograph file class which contains the MONOGRAPH_FILE_* constants.
 import('classes.monograph.MonographFile');
 
+// Define the grid capabilities.
+define('FILE_GRID_ADD', 0x01);
+define('FILE_GRID_DOWNLOAD_ALL', 0x02);
+define('FILE_GRID_DELETE', 0x04);
+
 class SubmissionFilesGridHandler extends GridHandler {
 	/** @var GridDataProvider */
 	var $_dataProvider;
@@ -32,19 +37,21 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/** @var boolean */
 	var $_canDownloadAll;
 
+	/** @var boolean */
+	var $_canDelete;
+
 
 	/**
 	 * Constructor
 	 * @param $dataProvider GridDataProvider
-	 * @param $canAdd boolean whether the grid will contain
-	 *  an "add file" button.
-	 * @param $canDownloadAll boolean whether the user can download
-	 *  all files in the grid as a compressed file
+	 * @param $capabilities integer A bit map with zero or more
+	 *  FILE_GRID_* capabilities set.
 	 */
-	function SubmissionFilesGridHandler(&$dataProvider, $canAdd = true, $canDownloadAll = false) {
+	function SubmissionFilesGridHandler(&$dataProvider, $capabilities) {
 		$this->_dataProvider =& $dataProvider;
-		$this->_canAdd = (boolean)$canAdd;
-		$this->_canDownloadAll = (boolean)$canDownloadAll;
+		$this->_canAdd = (boolean)($capabilities & FILE_GRID_ADD);
+		$this->_canDownloadAll = (boolean)($capabilities & FILE_GRID_DOWNLOAD_ALL);
+		$this->_canDelete = (boolean)($capabilities & FILE_GRID_DELETE);
 
 		parent::GridHandler();
 	}
@@ -102,6 +109,14 @@ class SubmissionFilesGridHandler extends GridHandler {
 		return $this->_canDownloadAll;
 	}
 
+	/**
+	 * Can the user delete files from this grid?
+	 * @return boolean
+	 */
+	function canDelete() {
+		return $this->_canDelete;
+	}
+
 
 	//
 	// Implement template methods from PKPHandler
@@ -145,7 +160,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
-		$row = new SubmissionFilesGridRow();
+		$row = new SubmissionFilesGridRow($this->canDelete());
 		return $row;
 	}
 

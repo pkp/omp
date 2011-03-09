@@ -19,7 +19,7 @@ class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 	 * Constructor
 	 */
 	function EditorReviewAttachmentsGridHandler() {
-		parent::ReviewAttachmentsGridHandler(true, true, true);
+		parent::ReviewAttachmentsGridHandler(FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL);
 		$this->addRoleAssignment(
 				array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
 				array('fetchGrid', 'fetchRow', 'finishFileSubmission', 'addFile', 'displayFileUploadForm', 'uploadFile', 'confirmRevision',

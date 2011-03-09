@@ -19,14 +19,10 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 	/**
 	 * Constructor
 	 * @param $dataProvider GridDataProvider
-	 * @param $canAdd boolean whether the grid will contain
-	 *  an "add file" button.
-	 * @param $canDownloadAll boolean whether the user can download
-	 *  all files in the grid as a compressed file
-	 * @param $canManage boolean whether the grid shows a "manage files"
-	 *  action.
+	 * @param $capabilities integer A bit map with zero or more
+	 *  FILE_GRID_* capabilities set.
 	 */
-	function SelectableFileListGridHandler($dataProvider, $canAdd = true, $canDownloadAll = false, $canManage = false) {
+	function SelectableFileListGridHandler($dataProvider, $capabilities) {
 		parent::FileListGridHandler($dataProvider, $canAdd, $canDownloadAll, $canManage);
 	}
 

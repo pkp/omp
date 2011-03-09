@@ -17,15 +17,12 @@
 import('controllers.grid.files.final.FinalDraftFilesGridHandler');
 
 class SelectableFinalDraftFilesGridHandler extends FinalDraftFilesGridHandler {
-	/** @var boolean */
-	var $_canManage;
 
 	/**
 	 * Constructor
 	 */
-	function SelectableFinalDraftFilesGridHandler($canAdd = false, $isSelectable = false, $canDownloadAll = true, $canManage = true) {
-		$this->_canManage = $canManage;
-		parent::FinalDraftFilesGridHandler(true, true, false, false);
+	function SelectableFinalDraftFilesGridHandler() {
+		parent::FinalDraftFilesGridHandler(FILE_GRID_ADD);
 	}
 
 	//

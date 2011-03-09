@@ -13,15 +13,21 @@
  * The submission author and all press/editor roles have access to this grid.
  */
 
-// import submission files grid specific classes
-import('controllers.grid.files.submission.SubmissionDetailsFilesGridHandler');
+import('controllers.grid.files.fileList.FileListGridHandler');
 
-class SubmissionWizardFilesGridHandler extends SubmissionDetailsFilesGridHandler {
+class SubmissionWizardFilesGridHandler extends FileListGridHandler {
 	/**
 	 * Constructor
 	 */
 	function SubmissionWizardFilesGridHandler() {
-		parent::SubmissionDetailsFilesGridHandler(true);
-	}
+		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+		$dataProvider = new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_SUBMISSION);
+		parent::FileListGridHandler($dataProvider, FILE_GRID_ADD|FILE_GRID_DELETE);
+		$this->addRoleAssignment(
+				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array('fetchGrid', 'fetchRow', 'downloadAllFiles'));
 
+		// Set grid title.
+		$this->setTitle('submission.submit.submissionFiles');
+	}
 }

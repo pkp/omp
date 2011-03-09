@@ -18,9 +18,11 @@ import('controllers.grid.files.SubmissionFilesGridHandler');
 class ReviewAttachmentsGridHandler extends SubmissionFilesGridHandler {
 	/**
 	 * Constructor
+	 * @param $capabilities integer A bit map with zero or more
+	 *  FILE_GRID_* capabilities set.
 	 */
-	function ReviewAttachmentsGridHandler($canAdd = true, $isSelectable = false, $canDownloadAll = true) {
-		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_REVIEW, $canAdd, $isSelectable, $canDownloadAll);
+	function ReviewAttachmentsGridHandler($capabilities) {
+		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_REVIEW, $capabilities);
 	}
 
 	//

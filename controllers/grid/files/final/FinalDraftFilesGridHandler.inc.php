@@ -22,10 +22,12 @@ class FinalDraftFilesGridHandler extends SubmissionFilesGridHandler {
 
 	/**
 	 * Constructor
+	 * @param $capabilities integer A bit map with zero or more
+	 *  FILE_GRID_* capabilities set.
 	 */
-	function FinalDraftFilesGridHandler($canAdd = false, $isSelectable = false, $canDownloadAll = true, $canManage = true) {
+	function FinalDraftFilesGridHandler($capabilities) {
 		$this->_canManage = $canManage;
-		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_FINAL, $canAdd, $isSelectable, $canDownloadAll);
+		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_FINAL, $capabilities);
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
 				array('fetchGrid', 'downloadFile', 'downloadAllFiles', 'selectFiles', 'updateFinalDraftFiles', 'deleteFile'));
 	}

@@ -18,12 +18,13 @@ import('controllers.grid.files.fileList.FileListGridHandler');
 class SubmissionDetailsFilesGridHandler extends FileListGridHandler {
 	/**
 	 * Constructor
-	 * @param $canAdd boolean Whether to show the 'add files' grid action
+	 * @param $capabilities integer A bit map with zero or more
+	 *  FILE_GRID_* capabilities set.
 	 */
-	function SubmissionDetailsFilesGridHandler($canAdd = true, $canDownloadAll = false) {
+	function SubmissionDetailsFilesGridHandler($capabilities) {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
 		$dataProvider = new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_SUBMISSION);
-		parent::FileListGridHandler($dataProvider, $canAdd, $canDownloadAll);
+		parent::FileListGridHandler($dataProvider, $capabilities);
 		$this->addRoleAssignment(
 				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'fetchRow', 'downloadAllFiles'));

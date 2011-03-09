@@ -17,11 +17,28 @@ import('lib.pkp.classes.controllers.grid.GridRow');
 
 class SubmissionFilesGridRow extends GridRow {
 
+	/** @var boolean */
+	var $_canDelete;
+
+
 	/**
 	 * Constructor
 	 */
-	function SubmissionFilesGridRow() {
+	function SubmissionFilesGridRow($canDelete) {
+		$this->_canDelete = $canDelete;
 		parent::GridRow();
+	}
+
+
+	//
+	// Getters and Setters
+	//
+	/**
+	 * Can the user delete files from this grid?
+	 * @return boolean
+	 */
+	function canDelete() {
+		return $this->_canDelete;
 	}
 
 
@@ -40,8 +57,10 @@ class SubmissionFilesGridRow extends GridRow {
 
 		// File grid row actions:
 		// 1) Delete file action.
-		import('controllers.api.file.linkAction.DeleteFileLinkAction');
-		$this->addAction(new DeleteFileLinkAction($request, $monographFile));
+		if ($this->canDelete()) {
+			import('controllers.api.file.linkAction.DeleteFileLinkAction');
+			$this->addAction(new DeleteFileLinkAction($request, $monographFile));
+		}
 
 		// 2) Information center action.
 		import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');

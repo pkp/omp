@@ -20,7 +20,7 @@ class SelectableSubmissionDetailsFilesGridHandler extends SubmissionDetailsFiles
 	 * Constructor
 	 */
 	function SelectableSubmissionDetailsFilesGridHandler() {
-		parent::SubmissionDetailsFilesGridHandler(true, true, true);
+		parent::SubmissionDetailsFilesGridHandler(FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL|FILE_GRID_MANAGE);
 	}
 
 }

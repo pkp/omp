@@ -18,6 +18,9 @@
 
 import('controllers.grid.files.SubmissionFilesGridHandler');
 
+// Define file grid capabilities.
+define('FILE_GRID_MANAGE', 0x08);
+
 class FileListGridHandler extends SubmissionFilesGridHandler {
 	/** @var boolean */
 	var $_canManage;
@@ -26,17 +29,13 @@ class FileListGridHandler extends SubmissionFilesGridHandler {
 	/**
 	 * Constructor
 	 * @param $dataProvider GridDataProvider
-	 * @param $canAdd boolean whether the grid will contain
-	 *  an "add file" button.
-	 * @param $canDownloadAll boolean whether the user can download
-	 *  all files in the grid as a compressed file
-	 * @param $canManage boolean whether the grid shows a "manage files"
-	 *  action.
+	 * @param $capabilities integer A bit map with zero or more
+	 *  FILE_GRID_* capabilities set.
 	 */
-	function FileListGridHandler($dataProvider, $canAdd = true, $canDownloadAll = false, $canManage = false) {
-		$this->_canManage = $canManage;
+	function FileListGridHandler($dataProvider, $capabilities) {
+		$this->_canManage = (boolean)($capabilities & FILE_GRID_MANAGE);
 
-		parent::SubmissionFilesGridHandler($dataProvider, $canAdd, $canDownloadAll);
+		parent::SubmissionFilesGridHandler($dataProvider, $capabilities);
 	}
 
 

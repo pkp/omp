@@ -22,7 +22,7 @@ class EditorReviewFilesGridHandler extends FileListGridHandler {
 	function EditorReviewFilesGridHandler() {
 		import('controllers.grid.files.review.ReviewFilesGridDataProvider');
 		$dataProvider = new ReviewFilesGridDataProvider();
-		parent::FileListGridHandler($dataProvider, false, true, true);
+		parent::FileListGridHandler($dataProvider, FILE_GRID_DOWNLOAD_ALL|FILE_GRID_MANAGE|FILE_GRID_DELETE);
 
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array('fetchGrid', 'fetchRow', 'downloadAllFiles', 'selectFiles'));
