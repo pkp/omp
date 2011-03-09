@@ -119,7 +119,7 @@ class SubmissionHandler extends Handler {
 			} else {
 				$submitForm->initData();
 			}
-			$submitForm->display();
+			$submitForm->display($request);
 		} elseif($step == 4) {
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign_by_ref('press', $press);
