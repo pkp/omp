@@ -17,5 +17,5 @@
 		{translate key="workflow.review.externalReview"}:
 	{/if}
 	{assign var="primaryAuthor" value=$monograph->getPrimaryAuthor()}
-	{$primaryAuthor->getLastName()} - {$monograph->getLocalizedTitle()}
+	{$primaryAuthor->getLastName()}{if $monograph->getLocalizedTitle()} - {$monograph->getLocalizedTitle()}{/if}
 </div>
