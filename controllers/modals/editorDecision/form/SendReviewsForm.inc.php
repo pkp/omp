@@ -24,10 +24,20 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 * @param $decision int
 	 */
 	function SendReviewsForm($seriesEditorSubmission, $decision) {
-		assert(in_array($decision, array(SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS,
-				SUBMISSION_EDITOR_DECISION_RESUBMIT, SUBMISSION_EDITOR_DECISION_DECLINE)));
+		assert(
+			in_array(
+				$decision, array(
+					SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS,
+					SUBMISSION_EDITOR_DECISION_RESUBMIT,
+					SUBMISSION_EDITOR_DECISION_DECLINE
+				)
+			)
+		);
 
-		parent::EditorDecisionWithEmailForm($seriesEditorSubmission, $decision, 'controllers/modals/editorDecision/form/sendReviewsForm.tpl');
+		parent::EditorDecisionWithEmailForm(
+			$seriesEditorSubmission, $decision,
+			'controllers/modals/editorDecision/form/sendReviewsForm.tpl'
+		);
 	}
 
 
@@ -39,9 +49,10 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 	 */
 	function initData($args, &$request) {
 		$actionLabels = array(
-				SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.requestRevisions',
-				SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.monograph.decision.resubmit',
-				SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.monograph.decision.decline');
+			SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS => 'editor.monograph.decision.requestRevisions',
+			SUBMISSION_EDITOR_DECISION_RESUBMIT => 'editor.monograph.decision.resubmit',
+			SUBMISSION_EDITOR_DECISION_DECLINE => 'editor.monograph.decision.decline'
+		);
 
 		return parent::initData($args, $request, $actionLabels);
 	}
@@ -54,11 +65,11 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 
 		// Record the decision.
+		$decision = $this->getDecision();
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		SeriesEditorAction::recordDecision($seriesEditorSubmission, $decision);
 
 		// Identify email key and status of round.
-		$decision = $this->getDecision();
 		switch ($decision) {
 			case SUBMISSION_EDITOR_DECISION_PENDING_REVISIONS:
 				$emailKey = 'SUBMISSION_UNSUITABLE';

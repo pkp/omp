@@ -56,6 +56,7 @@
 	<message key="editor.submissionReview.open">Open</message>
 	<message key="editor.submissionReview.blind">Blind</message>
 	<message key="editor.submissionReview.doubleBlind">Double-blind</message>
+	<message key="editor.submissionReview.uploadFile">Upload Review Attachment</message>
 	<message key="editor.notifyUsers">Notify Users</message>
 	<message key="editor.notifyUsers.inProgress">Notifying users...</message>
 	<message key="editor.usersNotified">Users Notified</message>

@@ -9,26 +9,12 @@
  *}
 
 <script type="text/javascript">
-	<!--
-	{literal}
-	$(function() {
-		$('#promote').pkpHandler('$.pkp.controllers.form.FormHandler');
-		var url = '{/literal}{url op="importPeerReviews" monographId=$monographId}{literal}';
-		$('#importPeerReviews').live('click', function() {
-			$.getJSON(url, function(jsonData) {
-				if (jsonData.status === true) {
-					var currentContent = $("textarea#personalMessage").val();
-					$("textarea#personalMessage").val(currentContent + jsonData.content);
-				} else {
-					// Alert that the modal failed
-					alert(jsonData.content);
-				}
-			});
-			return false;
-		});
-	});
-	{/literal}
-	// -->
+	$(function() {ldelim}
+		$('#promote').pkpHandler(
+			'$.pkp.controllers.modals.editorDecision.form.EditorDecisionFormHandler',
+			{ldelim} peerReviewUrl: '{$peerReviewUrl|escape:javascript}' {rdelim}
+		);
+	{rdelim});
 </script>
 
 <form id="promote" method="post" action="{url op="savePromote"}" >

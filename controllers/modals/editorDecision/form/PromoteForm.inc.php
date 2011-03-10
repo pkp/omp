@@ -24,10 +24,17 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	 * @param $decision int
 	 */
 	function PromoteForm($seriesEditorSubmission, $decision) {
-		assert(in_array($decision, array(SUBMISSION_EDITOR_DECISION_ACCEPT,
-				SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW)));
+		assert(
+			in_array(
+				$decision,
+				array(SUBMISSION_EDITOR_DECISION_ACCEPT, SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW)
+			)
+		);
 
-		parent::EditorDecisionWithEmailForm($seriesEditorSubmission, $decision, 'controllers/modals/editorDecision/form/promoteForm.tpl');
+		parent::EditorDecisionWithEmailForm(
+			$seriesEditorSubmission, $decision,
+			'controllers/modals/editorDecision/form/promoteForm.tpl'
+		);
 	}
 
 
@@ -39,8 +46,9 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 	 */
 	function initData($args, &$request) {
 		$actionLabels = array(
-				SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'editor.monograph.decision.externalReview',
-				SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.monograph.decision.accept');
+			SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW => 'editor.monograph.decision.externalReview',
+			SUBMISSION_EDITOR_DECISION_ACCEPT => 'editor.monograph.decision.accept'
+		);
 
 		$seriesEditorSubmission =& $this->getSeriesEditorSubmission();
 		$this->setData('stageId', $seriesEditorSubmission->getCurrentStageId());

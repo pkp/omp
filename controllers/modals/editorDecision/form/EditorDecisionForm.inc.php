@@ -58,7 +58,9 @@ class EditorDecisionForm extends Form {
 	 * @see Form::initData()
 	 */
 	function initData($args, &$request) {
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION));
+		Locale::requireComponents(
+			array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION)
+		);
 		parent::initData();
 	}
 

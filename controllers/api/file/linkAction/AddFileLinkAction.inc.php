@@ -40,27 +40,51 @@ class AddFileLinkAction extends LinkAction {
 		}
 
 		// Identify text labels based on the file stage.
-		$textLabels = array(
-				MONOGRAPH_FILE_SUBMISSION => array(
-						'wizardTitle' => 'submission.submit.uploadSubmissionFile',
-						'buttonTitle' => 'submission.addFile'),
-				MONOGRAPH_FILE_FINAL => array(
-						'wizardTitle' => 'submission.uploadACopyeditedVersion',
-						'buttonTitle' => 'submission.uploadACopyeditedVersion'));
-		assert(isset($textLabels[$fileStage]));
-		$textLabels = $textLabels[$fileStage];
-
+		$textLabels = AddFileLinkAction::_getTextLabels($fileStage);
 
 		// Instantiate the file upload modal.
 		$dispatcher =& $request->getDispatcher();
 		import('lib.pkp.classes.linkAction.request.WizardModal');
 		$modal = new WizardModal(
-				$dispatcher->url($request, ROUTE_COMPONENT, null,
-						'wizard.fileUpload.FileUploadWizardHandler', 'startWizard',
-						null, $actionArgs),
-				__($textLabels['wizardTitle']), 'fileManagement');
+			$dispatcher->url(
+				$request, ROUTE_COMPONENT, null,
+				'wizard.fileUpload.FileUploadWizardHandler', 'startWizard',
+				null, $actionArgs
+			),
+			__($textLabels['wizardTitle']), 'fileManagement'
+		);
 
 		// Configure the link action.
 		parent::LinkAction('addFile', $modal, __($textLabels['buttonTitle']), 'add');
+	}
+
+
+	//
+	// Private methods
+	//
+	/**
+	 * Return an text labels for different file stages.
+	 *
+	 * @param $fileStage integer One of the MONOGRAPH_FILE_* constants.
+	 * @return array
+	 */
+	function _getTextLabels($fileStage) {
+		static $textLabels = array(
+			MONOGRAPH_FILE_SUBMISSION => array(
+				'wizardTitle' => 'submission.submit.uploadSubmissionFile',
+				'buttonTitle' => 'submission.addFile'
+			),
+			MONOGRAPH_FILE_REVIEW => array(
+				'wizardTitle' => 'editor.submissionReview.uploadFile',
+				'buttonTitle' => 'editor.submissionReview.uploadFile'
+			),
+			MONOGRAPH_FILE_FINAL => array(
+				'wizardTitle' => 'submission.uploadACopyeditedVersion',
+				'buttonTitle' => 'submission.uploadACopyeditedVersion'
+			)
+		);
+
+		assert(isset($textLabels[$fileStage]));
+		return $textLabels[$fileStage];
 	}
 }

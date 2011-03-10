@@ -14,9 +14,9 @@
 
 <!-- Editorial decision actions -->
 <div class="pkp_linkActions">
-{foreach from=$editorActions item=action}
-	{include file="linkAction/linkAction.tpl" action=$action contextId="submission"}
-{/foreach}
+	{foreach from=$editorActions item=action}
+		{include file="linkAction/linkAction.tpl" action=$action contextId="submission"}
+	{/foreach}
 </div>
 
 {url|assign:submissionFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.submission.EditorSubmissionDetailsFilesGridHandler" op="fetchGrid" monographId=$monograph->getId()}

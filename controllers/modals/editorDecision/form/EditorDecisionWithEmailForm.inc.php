@@ -101,7 +101,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	function fetch(&$request) {
 		// Review type.
 		//FIXME #6409: What to do with reviewType?
-		$reviewType = (int) $request->getUserVar('reviewType');
+		$reviewType = (int)$request->getUserVar('reviewType');
 		$this->setData('reviewType', $reviewType);
 
 		// Review round.
@@ -110,6 +110,15 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		if($round > $seriesEditorSubmission->getCurrentRound() || $round < 0) {
 			fatalError('Invalid review round!');
 		}
+
+		// URL to retrieve peer reviews:
+		$router =& $request->getRouter();
+		$submission =& $this->getSeriesEditorSubmission();
+		$this->setData(
+			'peerReviewUrl',
+			$router->url($request, null, null, 'importPeerReviews', null, array('monographId' => $submission->getId()))
+		);
+
 		return parent::fetch($request, $round);
 	}
 
@@ -146,6 +155,11 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		$reviewIndexes =& $reviewAssignmentDao->getReviewIndexesForRound($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentRound());
 		assert(is_array($reviewIndexes));
 
+		// Add a review index for review attachments not associated with
+		// a review assignment (i.e. attachments uploaded by the editor).
+		$lastIndex = end($reviewIndexes);
+		$reviewIndexes[-1] = $lastIndex + 1;
+
 		// Attach the selected reviewer attachments to the email.
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$selectedAttachments = $this->getData('selectedAttachments');
@@ -160,18 +174,28 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 				assert(is_a($monographFile, 'MonographFile'));
 
 				// Check the association information.
-				assert($monographFile->getAssocType() == ASSOC_TYPE_REVIEW_ASSIGNMENT);
-				$reviewAssignmentId = $monographFile->getAssocId();
-				assert(is_numeric($reviewAssignmentId));
+				if($monographFile->getAssocType() == ASSOC_TYPE_REVIEW_ASSIGNMENT) {
+					// The review attachment has been uploaded by a reviewer.
+					$reviewAssignmentId = $monographFile->getAssocId();
+					assert(is_numeric($reviewAssignmentId));
+				} else {
+					// The review attachment has been uploaded by the editor.
+					$reviewAssignmentId = -1;
+				}
 
 				// Identify the corresponding review index.
+				assert(isset($reviewIndexes[$reviewAssignmentId]));
 				$reviewIndex = $reviewIndexes[$reviewAssignmentId];
 				assert(!is_null($reviewIndex));
 
 				// Add the attachment to the email.
-				$email->addAttachment($monographFile->getFilePath(), String::enumerateAlphabetically($reviewIndex) . '-' . $monographFile->getOriginalFileName());
+				$email->addAttachment(
+					$monographFile->getFilePath(),
+					String::enumerateAlphabetically($reviewIndex).'-'.$monographFile->getOriginalFileName()
+				);
 
-				// Update monograph to set viewable as true, so author can view the file on their submission summary page.
+				// Update monograph file to set viewable as true, so author
+				// can view the file on their submission summary page.
 				$monographFile->setViewable(true);
 				$submissionFileDao->updateObject($monographFile);
 			}

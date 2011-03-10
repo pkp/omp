@@ -9,36 +9,40 @@
  * @class EditorReviewAttachmentsGridHandler
  * @ingroup controllers_grid_files_attachments
  *
- * @brief Handle review attachment grid requests (editor's perspective)
+ * @brief Handle review attachment grid requests (editor's perspective).
  */
 
-import('controllers.grid.files.attachment.ReviewAttachmentsGridHandler');
+import('controllers.grid.files.fileList.SelectableFileListGridHandler');
 
-class EditorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
+class EditorReviewAttachmentsGridHandler extends SelectableFileListGridHandler {
 	/**
 	 * Constructor
 	 */
 	function EditorReviewAttachmentsGridHandler() {
-		parent::ReviewAttachmentsGridHandler(FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL);
+		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+		$dataProvider = new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_REVIEW);
+		parent::SelectableFileListGridHandler(
+			$dataProvider,
+			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL|FILE_GRID_DELETE
+		);
+
 		$this->addRoleAssignment(
-				array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR),
-				array('fetchGrid', 'fetchRow', 'finishFileSubmission', 'addFile', 'displayFileUploadForm', 'uploadFile', 'confirmRevision',
-						'editMetadata', 'saveMetadata', 'downloadFile', 'downloadAllFiles', 'deleteFile'));
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array('fetchGrid', 'fetchRow', 'downloadAllFiles')
+		);
+
+		// Set the grid title.
+		$this->setTitle('grid.reviewAttachments.title');
 	}
 
+
 	//
-	// Implement template methods from PKPHandler
+	// Overridden protected methods from SelectableFileListGridHandler
 	//
 	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
+	 * @see SelectableFileListGridHandler::getSelectName()
 	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
+	function getSelectName() {
+		return 'selectedAttachments';
 	}
-
 }

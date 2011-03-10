@@ -38,7 +38,7 @@ class ReviewAttachmentsGridHandler extends SubmissionFilesGridHandler {
 		$this->setTitle('grid.reviewAttachments.title');
 
 		// Set the select checkbox name to avoid namespace collisions
-		$this->setSelectName('reviewAttachments');
+		$this->setSelectName('selectedAttachments');
 
 		// Load monograph files.
 		$this->loadMonographFiles();

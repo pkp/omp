@@ -52,9 +52,10 @@ class SeriesEditorAction extends Action {
 			$seriesEditorSubmission->setStatus(STATUS_QUEUED);
 			$seriesEditorSubmission->stampStatusModified();
 			$seriesEditorSubmission->addDecision(
-					$editorDecision,
-					$seriesEditorSubmission->getCurrentReviewType(),
-					$seriesEditorSubmission->getCurrentRound());
+				$editorDecision,
+				$seriesEditorSubmission->getCurrentReviewType(),
+				$seriesEditorSubmission->getCurrentRound()
+			);
 
 			$seriesEditorSubmissionDao->updateSeriesEditorSubmission($seriesEditorSubmission);
 

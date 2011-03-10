@@ -9,26 +9,12 @@
  *}
 
 <script type="text/javascript">
-	<!--
-	{literal}
-	$(function() {
-		$('#sendReviews').pkpHandler('$.pkp.controllers.form.FormHandler');
-		var url = '{/literal}{url op="importPeerReviews" monographId=$monographId}{literal}';
-		$('#importPeerReviews').live('click', function() {
-			$.getJSON(url, function(jsonData) {
-				if (jsonData.status === true) {
-					var currentContent = $("textarea#personalMessage").val();
-					$("textarea#personalMessage").val(currentContent + jsonData.content);
-				} else {
-					// Alert that the modal failed
-					alert(jsonData.content);
-				}
-			});
-			return false;
-		});
-	});
-	{/literal}
-	// -->
+	$(function() {ldelim}
+		$('#sendReviews').pkpHandler(
+			'$.pkp.controllers.modals.editorDecision.form.EditorDecisionFormHandler',
+			{ldelim} peerReviewUrl: '{$peerReviewUrl|escape:javascript}' {rdelim}
+		);
+	{rdelim});
 </script>
 
 <form id="sendReviews" method="post" action="{url op="saveSendReviews"}" >
@@ -40,7 +26,7 @@
 	{/fbvFormSection}
 
 	<!-- Message to reviewer textarea -->
-	<p class="text_right"><a id="importPeerReviews" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
+	<p class="pkp_helpers_text_right"><a id="importPeerReviews" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
 
 	{fbvFormSection}
 		{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToAuthor" value=$personalMessage measure=$fbvStyles.measure.1OF1 size=$fbvStyles.size.MEDIUM}
