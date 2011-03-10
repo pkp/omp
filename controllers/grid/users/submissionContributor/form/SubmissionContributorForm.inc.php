@@ -96,7 +96,7 @@ class SubmissionContributorForm extends Form {
 				'userGroupId' => $submissionContributor->getUserGroupId(),
 				'biography' => $submissionContributor->getBiography(Locale::getLocale()),
 				'primaryContact' => $submissionContributor->getPrimaryContact()
-				);
+			);
 		}
 	}
 
@@ -136,17 +136,19 @@ class SubmissionContributorForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('authorId',
-									'firstName',
-									'middleName',
-									'lastName',
-									'affiliation',
-									'country',
-									'email',
-									'url',
-									'userGroupId',
-									'biography',
-									'primaryContact'));
+		$this->readUserVars(array(
+			'authorId',
+			'firstName',
+			'middleName',
+			'lastName',
+			'affiliation',
+			'country',
+			'email',
+			'url',
+			'userGroupId',
+			'biography',
+			'primaryContact'
+		));
 	}
 
 	/**

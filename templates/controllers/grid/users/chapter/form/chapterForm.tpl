@@ -1,5 +1,5 @@
 {**
- * chapters.tpl
+ * templates/controllers/grid/users/chapter/form/chapterForm.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -7,7 +7,15 @@
  * Chapters grid form
  *
  *}
-{modal_title id="#editChapterForm" key="submission.chapter.addChapter" iconClass="fileManagement" canClose=1}
+
+<script type="text/javascript">
+	// Attach the Information Center handler.
+	$(function() {ldelim}
+		$('#editChapterForm').pkpHandler(
+			'$.pkp.controllers.form.FormHandler'
+		);
+	{rdelim});
+</script>
 
 <form id="editChapterForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
 {include file="common/formErrors.tpl"}

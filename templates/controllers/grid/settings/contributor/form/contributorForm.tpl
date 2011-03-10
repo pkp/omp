@@ -1,14 +1,14 @@
 
 {**
- * sponsors.tpl
+ * templates/controllers/grid/settings/contributor/form/contributorForm.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Sponsors grid form
+ * Contributors grid form
  *}
 
-<form id="editSponsorForm" method="post" action="{url component="grid.settings.contributor.ContributorGridHandler" op="updateContributor"}">
+<form id="contributorForm" method="post" action="{url component="grid.settings.contributor.ContributorGridHandler" op="updateContributor"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="mastheadInfo"}

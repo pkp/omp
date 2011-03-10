@@ -49,7 +49,7 @@ class NewNoteForm extends Form {
 		$templateMgr =& TemplateManager::getManager();
 
 		$noteDao =& DAORegistry::getDAO('NoteDAO');
-		$notes =& $noteDao->getByAssoc($this->assocType, $this->assocId);
+		$notes =& $noteDao->getByAssoc($this->getAssocType(), $this->getAssocId());
 		$templateMgr->assign_by_ref('notes', $notes);
 
 		return parent::fetch($request);

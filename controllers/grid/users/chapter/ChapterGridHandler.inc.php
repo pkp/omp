@@ -20,6 +20,9 @@ import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 import('controllers.grid.users.submissionContributor.SubmissionContributorGridCellProvider');
 import('controllers.grid.users.chapter.ChapterGridCategoryRow');
 
+// Link action & modal classes
+import('lib.pkp.classes.linkAction.request.AjaxModal');
+
 class ChapterGridHandler extends CategoryGridHandler{
 	/** @var Monograph */
 	var $_monograph;
@@ -79,7 +82,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 		// Retrieve the authorized monograph
 		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS, LOCALE_COMPONENT_OMP_SUBMISSION));
 		// Basic grid configuration
 		$this->setTitle('grid.chapters.title');
 
@@ -97,12 +100,15 @@ class ChapterGridHandler extends CategoryGridHandler{
 		$router =& $request->getRouter();
 		$actionArgs = array('monographId' => $monographId);
 		$this->addAction(
-			new LegacyLinkAction(
+			new LinkAction(
 				'addChapter',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, null, 'addChapter', null, $actionArgs),
-				'grid.action.addItem'
+				new AjaxModal(
+					$router->url($request, null, null, 'addChapter', null, $actionArgs),
+					__('submission.chapter.addChapter'),
+					'fileManagement'
+				),
+				__('grid.action.addItem'),
+				'add_item'
 			)
 		);
 

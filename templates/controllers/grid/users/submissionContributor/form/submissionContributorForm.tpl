@@ -9,7 +9,15 @@
  *}
 
 {assign var='uniqueId' value=""|uniqid}
-{modal_title id="#editSubmissionContributor" key="grid.action.addAuthor" iconClass="fileManagement" canClose=1}
+
+<script type="text/javascript">
+	// Attach the Information Center handler.
+	$(function() {ldelim}
+		$('#editSubmissionContributor').pkpHandler(
+			'$.pkp.controllers.form.FormHandler'
+		);
+	{rdelim});
+</script>
 
 <form id="editSubmissionContributor" method="post" action="{url op="updateSubmissionContributor" submissionContributorId=$authorId}">
 	{include file="common/formErrors.tpl"}
@@ -50,5 +58,7 @@
 	{if $rowId}
 		<input type="hidden" name="rowId" value="{$rowId|escape}" />
 	{/if}
+
+	{include file="form/formButtons.tpl"}
 </form>
 

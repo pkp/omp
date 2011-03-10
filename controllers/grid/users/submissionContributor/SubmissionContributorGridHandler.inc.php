@@ -20,6 +20,9 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 import('controllers.grid.users.submissionContributor.SubmissionContributorGridCellProvider');
 import('controllers.grid.users.submissionContributor.SubmissionContributorGridRow');
 
+// Link action & modal classes
+import('lib.pkp.classes.linkAction.request.AjaxModal');
+
 class SubmissionContributorGridHandler extends GridHandler {
 	/** @var Monograph */
 	var $_monograph;
@@ -101,12 +104,15 @@ class SubmissionContributorGridHandler extends GridHandler {
 		$router =& $request->getRouter();
 		$actionArgs = array('monographId' => $monographId);
 		$this->addAction(
-			new LegacyLinkAction(
+			new LinkAction(
 				'addSubmissionContributor',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, null, 'addSubmissionContributor', null, $actionArgs),
-				'grid.action.addAuthor'
+				new AjaxModal(
+					$router->url($request, null, null, 'addSubmissionContributor', null, $actionArgs),
+					__('grid.action.addAuthor'),
+					'fileManagement'
+				),
+				__('grid.action.addAuthor'),
+				'add_item'
 			)
 		);
 
