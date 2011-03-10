@@ -40,7 +40,7 @@
 
 		if (jsonData.status === true) {
 			// Trigger the note added event.
-			this.trigger('noteAdded');
+			this.trigger('refreshNoteList');
 		}
 
 		this.parent('handleResponse', formElement, jsonData);

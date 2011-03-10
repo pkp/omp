@@ -29,10 +29,10 @@
 		this.fetchUrl_ = options.fetchUrl;
 
 		// Bind for changes in the note list (e.g. on new note publication)
-		this.bind('noteAdded', this.handleNoteAdded);
+		this.bind('refreshNoteList', this.handleRefreshNoteList);
 
 		// Load a list of the current notes.
-		this.trigger('noteAdded');
+		this.loadNoteList_();
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.informationCenter.NotesHandler,
@@ -64,12 +64,19 @@
 	 * @param {Event} event The upload event.
 	 */
 	$.pkp.controllers.informationCenter.NotesHandler.
-			prototype.handleNoteAdded = function(callingForm, event) {
+			prototype.handleRefreshNoteList = function(callingForm, event) {
+		this.loadNoteList_();
+	};
 
+
+	//
+	// Private methods
+	//
+	$.pkp.controllers.informationCenter.NotesHandler.prototype.
+			loadNoteList_ = function() {
 		$.get(this.fetchUrl_, this.callbackWrapper(function(formElement, jsonData) {
 			$('#notesList').replaceWith(jsonData.content);
 		}), 'json');
 	};
-
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);
