@@ -40,6 +40,21 @@
 	);
 
 
+	//
+	// Private properties
+	//
+	/**
+	 * The URL to be called to fetch a list of notes.
+	 * @private
+	 * @type {string}
+	 */
+	$.pkp.controllers.informationCenter.NotesHandler.
+			prototype.fetchUrl_ = '';
+
+
+	//
+	// Public methods
+	//
 	/**
 	 * Handle the "note added" event triggered by the
 	 * note form whenever a new note is added.
@@ -55,18 +70,6 @@
 			$('#notesList').replaceWith(jsonData.content);
 		}), 'json');
 	};
-
-
-	//
-	// Private properties
-	//
-	/**
-	 * The URL to be called to fetch a list of notes.
-	 * @private
-	 * @type {string}
-	 */
-	$.pkp.controllers.informationCenter.NotesHandler.
-			prototype.fetchUrl_ = '';
 
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);
