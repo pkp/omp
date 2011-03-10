@@ -65,6 +65,6 @@ class ReviewRevisionsGridHandler extends ReviewFilesGridHandler {
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($monograph->getId(), $this->getRound(), $this->getReviewType());
 
-		$this->setData($monographFiles);
+		$this->setGridDataElements($monographFiles);
 	}
 }

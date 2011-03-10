@@ -58,7 +58,7 @@ class SubmissionsListGridHandler extends GridHandler {
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
 		$user =& $request->getUser();
-		$this->setData($this->getSubmissions($request, $user->getId()));
+		$this->setGridDataElements($this->getSubmissions($request, $user->getId()));
 
 		// If there is more than one press in the system, add a press column
 		$pressDao =& DAORegistry::getDAO('PressDAO');

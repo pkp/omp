@@ -50,7 +50,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 			$items[$id] = array('item' => $user->getFullName(), 'attribute' => $user->getUsername());
 			unset($membership);
 		}
-		$this->setData($items);
+		$this->setGridDataElements($items);
 	}
 
 

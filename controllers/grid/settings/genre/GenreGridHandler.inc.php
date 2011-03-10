@@ -49,7 +49,7 @@ class GenreGridHandler extends SetupGridHandler {
 		// Elements to be displayed in the grid
 		$genreDao =& DAORegistry::getDAO('GenreDAO');
 		$genres =& $genreDao->getEnabledByPressId($press->getId());
-		$this->setData($genres);
+		$this->setGridDataElements($genres);
 
 		// Add grid-level actions
 		$router =& $request->getRouter();
@@ -216,7 +216,7 @@ class GenreGridHandler extends SetupGridHandler {
 		$genreDao->restoreByPressId($press->getId());
 
 		$genres =& $genreDao->getEnabledByPressId($press->getId());
-		$this->setData($genres);
+		$this->setGridDataElements($genres);
 		$this->initialize($request);
 
 		// Pass to modal.js to reload the grid with the new content

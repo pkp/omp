@@ -37,7 +37,7 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 			$id = $item->getId();
 			$items[$id] = array('item' => $item->getLocalizedName(), 'attribute' => $item->getLocalizedDesignation());
 		}
-		$this->setData($items);
+		$this->setGridDataElements($items);
 	}
 
 	//

@@ -95,7 +95,7 @@ class StageParticipantGridHandler extends GridHandler {
 		// Retrieve the stageParticipants associated with this monograph to be displayed in the grid
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$data =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $monograph->getCurrentStageId());
-		$this->setData($data);
+		$this->setGridDataElements($data);
 
 		// Grid actions
 		$router =& $request->getRouter();
@@ -186,7 +186,7 @@ class StageParticipantGridHandler extends GridHandler {
 			$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 			$data =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $monograph->getCurrentStageId());
 
-			$this->setData($data);
+			$this->setGridDataElements($data);
 			$this->initialize($request);
 
 			// Pass to modal.js to reload the grid with the new content

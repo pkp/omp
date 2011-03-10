@@ -88,7 +88,7 @@ class SubmissionParticipantGridHandler extends GridHandler {
 			$userId = $user->getId();
 			$rowData[$userId] = $user;
 		}
-		$this->setData($rowData);
+		$this->setGridDataElements($rowData);
 
 		// Columns
 		$cellProvider = new SubmissionParticipantGridCellProvider();

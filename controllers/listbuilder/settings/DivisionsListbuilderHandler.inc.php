@@ -37,7 +37,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 			$items[$id] = array('item' => $division->getLocalizedTitle());
 			unset($division);
 		}
-		$this->setData($items);
+		$this->setGridDataElements($items);
 	}
 
 	//

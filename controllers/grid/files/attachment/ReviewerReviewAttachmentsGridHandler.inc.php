@@ -99,7 +99,7 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 		foreach ($monographFiles as $monographFile) {
 			$rowData[$monographFile->getFileId()] = $monographFile;
 		}
-		$this->setData($rowData);
+		$this->setGridDataElements($rowData);
 	}
 
 	/**

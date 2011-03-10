@@ -177,7 +177,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 			);
 			unset($userGroup);
 		}
-		$this->setData($items);
+		$this->setGridDataElements($items);
 	}
 
 	/**

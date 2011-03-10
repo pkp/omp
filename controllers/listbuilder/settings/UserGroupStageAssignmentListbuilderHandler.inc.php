@@ -45,7 +45,7 @@ class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler
 			$items[$userGroup->getId()] = array('item' => $userGroup->getLocalizedName(), 'attribute' => $userGroup->getLocalizedAbbrev());
 			unset($userGroup);
 		}
-		$this->setData($items);
+		$this->setGridDataElements($items);
 	}
 
 	/* Get possible items to populate drop-down list with */

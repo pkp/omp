@@ -70,7 +70,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$data =& $seriesEditorSubmissionDao->getFilteredReviewers($monograph->getPressId(), $doneMin, $doneMax, $avgMin, $avgMax,
 					$lastMin, $lastMax, $activeMin, $activeMax, $interests, $monograph->getId(), $monograph->getCurrentRound());
-		$this->setData($data);
+		$this->setGridDataElements($data);
 
 		// Columns
 		$cellProvider = new ReviewerSelectGridCellProvider();
@@ -179,7 +179,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$data =& $seriesEditorSubmissionDao->getFilteredReviewers($monograph->getPressId(), $doneMin, $doneMax, $avgMin, $avgMax,
 					$lastMin, $lastMax, $activeMin, $activeMax, $interests, $monograph->getId(), $monograph->getCurrentRound());
-		$this->setData($data);
+		$this->setGridDataElements($data);
 
 		// Re-display the grid
 		return $this->fetchGrid($args,$request);

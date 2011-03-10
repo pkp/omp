@@ -151,7 +151,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 		// Populate the grid with data.
 		$dataProvider =& $this->getDataProvider();
-		$this->setData($dataProvider->getRowData());
+		$this->setGridDataElements($dataProvider->getRowData());
 
 		// The file name column is common to all file grid types.
 		$this->addColumn(new FileNameGridColumn());
@@ -185,7 +185,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 
 		// Test whether the tar binary is available for the export to work, if so, add 'download all' grid action
 		$tarBinary = Config::getVar('cli', 'tar');
-		if ($this->canDownloadAll() && !empty($tarBinary) && file_exists($tarBinary) && $this->hasData()) {
+		if ($this->canDownloadAll() && !empty($tarBinary) && file_exists($tarBinary) && $this->hasGridDataElements($request)) {
 			import('controllers.grid.files.fileList.linkAction.DownloadAllLinkAction');
 			$this->addAction(new DownloadAllLinkAction($request, $fetchParams));
 		}
@@ -206,6 +206,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 	function downloadAllFiles($args, &$request) {
 		$monograph =& $this->getMonograph();
 		import('classes.file.MonographFileManager');
-		MonographFileManager::downloadFilesArchive($monograph->getId(), $this->getData());
+		MonographFileManager::downloadFilesArchive($monograph->getId(), $this->getGridDataElements($request));
 	}
 }

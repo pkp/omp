@@ -207,7 +207,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 			$items[$id] = array('item' => $item->getLocalizedName(), 'attribute' => $item->getLocalizedAbbrev());
 			unset($item);
 		}
-		$this->setData($items);
+		$this->setGridDataElements($items);
 	}
 }
 ?>

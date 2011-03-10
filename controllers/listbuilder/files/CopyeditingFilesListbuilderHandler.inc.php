@@ -62,7 +62,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 
 	function loadList(&$request) {
 		$data = array();
-		$this->setData($data);
+		$this->setGridDataElements($data);
 	}
 
 	/* Get possible items to populate drop-down list with */

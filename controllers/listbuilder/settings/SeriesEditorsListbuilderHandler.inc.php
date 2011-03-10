@@ -49,7 +49,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 			$id = $user->getId();
 			$items[$id] = array('item' => $user->getFullName(), 'attribute' => $user->getUsername());
 		}
-		$this->setData($items);
+		$this->setGridDataElements($items);
 	}
 
 

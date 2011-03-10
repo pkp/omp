@@ -56,6 +56,6 @@ class AuthorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 			// Only include files where the 'viewable' flag has been set, i.e. which the editor has approved for the author to see
 			if($monographFile->getViewable()) $rowData[$monographFile->getFileId()] = $monographFile;
 		}
-		$this->setData($rowData);
+		$this->setGridDataElements($rowData);
 	}
 }

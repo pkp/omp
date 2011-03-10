@@ -74,7 +74,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		foreach ($monographFiles as $monographFile) {
 			$rowData[$monographFile->getFileId()] = $monographFile;
 		}
-		$this->setData($rowData);
+		$this->setGridDataElements($rowData);
 
 		// Grid actions
 		// Action to add a file -- Adds a category row for the file
@@ -222,7 +222,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			foreach ($monographFiles as $monographFile) {
 				$data[$monographFile->getFileId()] = $monographFile;
 			}
-			$this->setData($data);
+			$this->setGridDataElements($data);
 			$this->initialize($request);
 
 			// Pass to modal.js to reload the grid with the new content

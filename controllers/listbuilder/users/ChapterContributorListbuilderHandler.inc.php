@@ -80,7 +80,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 				unset($item);
 			}
 		}
-		$this->setData($items);
+		$this->setGridDataElements($items);
 	}
 
 	/* Get possible items to populate drop-down list with */

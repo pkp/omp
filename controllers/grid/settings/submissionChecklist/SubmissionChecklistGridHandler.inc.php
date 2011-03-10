@@ -42,7 +42,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		$router =& $request->getRouter();
 		$context =& $router->getContext($request);
 		$submissionChecklist = $context->getSetting('submissionChecklist');
-		$this->setData($submissionChecklist[Locale::getLocale()]);
+		$this->setGridDataElements($submissionChecklist[Locale::getLocale()]);
 
 		// Add grid-level actions
 		$router =& $request->getRouter();

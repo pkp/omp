@@ -79,7 +79,7 @@ class SeriesGridHandler extends SetupGridHandler {
 			unset($editorsString);
 		}
 
-		$this->setData($seriesArray);
+		$this->setGridDataElements($seriesArray);
 
 		// Add grid-level actions
 		$this->addAction(

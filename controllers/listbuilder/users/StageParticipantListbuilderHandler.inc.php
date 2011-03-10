@@ -88,7 +88,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 			$items[$id] = array('item' => $user->getFullName());
 			unset($item);
 		}
-		$this->setData($items);
+		$this->setGridDataElements($items);
 	}
 
 	/* Get possible items to populate drop-down list with */

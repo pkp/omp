@@ -65,7 +65,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$signoffs =& $signoffDao->getAllBySymbolic('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, null, $user->getId());
 
-		$this->setData($signoffs);
+		$this->setGridDataElements($signoffs);
 
 		// Grid Columns
 		$cellProvider =& new AuthorCopyeditingFilesGridCellProvider();

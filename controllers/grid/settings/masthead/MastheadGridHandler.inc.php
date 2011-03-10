@@ -52,7 +52,7 @@ class MastheadGridHandler extends SetupGridHandler {
 			$groupId = $group->getId();
 			$rowData[$groupId] = array('groups' => $group->getLocalizedTitle());
 		}
-		$this->setData($rowData);
+		$this->setGridDataElements($rowData);
 
 		// Add grid-level actions
 		$router =& $request->getRouter();

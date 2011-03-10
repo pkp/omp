@@ -81,7 +81,7 @@ class ReviewerGridHandler extends GridHandler {
 		// Get the existing review assignments for this monograph
 		$reviewAssignments =& $submission->getReviewAssignments($reviewType, $round);
 
-		$this->setData($reviewAssignments);
+		$this->setGridDataElements($reviewAssignments);
 
 		// Grid actions
 		$router =& $request->getRouter();

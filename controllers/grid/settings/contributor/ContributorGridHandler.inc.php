@@ -45,7 +45,7 @@ class ContributorGridHandler extends SetupGridHandler {
 		$context =& $router->getContext($request);
 		$contributors = $context->getSetting('contributors');
 		$contributors = isset($contributors) ? $contributors : array();
-		$this->setData($contributors);
+		$this->setGridDataElements($contributors);
 
 		// Add grid-level actions
 		$router =& $request->getRouter();

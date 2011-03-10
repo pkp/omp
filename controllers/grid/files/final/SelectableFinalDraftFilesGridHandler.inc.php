@@ -47,7 +47,7 @@ class SelectableFinalDraftFilesGridHandler extends FinalDraftFilesGridHandler {
 			}
 			unset($monographFile);
 		}
-		$this->setData($rowData);
+		$this->setGridDataElements($rowData);
 		$this->setSelectedFileIds($selectedFileIds);
 	}
 

@@ -84,7 +84,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$libraryFiles =& $libraryFileDao->getByPressId($context->getId(), $this->getFileType());
-		$this->setData($libraryFiles);
+		$this->setGridDataElements($libraryFiles);
 
 		// Add grid-level actions
 		$router =& $request->getRouter();

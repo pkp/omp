@@ -42,7 +42,7 @@ class SponsorGridHandler extends SetupGridHandler {
 		$context =& $router->getContext($request);
 		$sponsors = $context->getSetting('sponsors');
 		$sponsors = isset($sponsors) ? $sponsors : array();
-		$this->setData($sponsors);
+		$this->setGridDataElements($sponsors);
 
 		// Add grid-level actions
 		$router =& $request->getRouter();

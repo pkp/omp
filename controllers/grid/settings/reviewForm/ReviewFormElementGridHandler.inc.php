@@ -52,7 +52,7 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 
 		$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 		$reviewFormElements =& $reviewFormElementDao->getReviewFormElementsByReviewForm($reviewFormId);
-		$this->setData($reviewFormElements);
+		$this->setGridDataElements($reviewFormElements);
 
 		// Add grid-level actions
 		$this->addAction(

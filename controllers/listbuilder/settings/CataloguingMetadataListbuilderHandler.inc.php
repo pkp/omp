@@ -35,7 +35,7 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 			$id = $item['name'];
 			$items[$id] = array('item' => $id);
 		}
-		$this->setData($items);
+		$this->setGridDataElements($items);
 	}
 
 	//
