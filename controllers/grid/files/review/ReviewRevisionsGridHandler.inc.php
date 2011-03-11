@@ -12,59 +12,26 @@
  * @brief Display the file revisions authors have uploaded
  */
 
-// import submission files grid specific classes
-import('controllers.grid.files.review.ReviewFilesGridHandler');
+import('controllers.grid.files.fileSignoff.FileSignoffGridHandler');
 
-class ReviewRevisionsGridHandler extends ReviewFilesGridHandler {
+class ReviewRevisionsGridHandler extends FileSignoffGridHandler {
 	/**
 	 * Constructor
 	 */
-	function ReviewRevisionsGridHandler($canAdd = false, $isSelectable = false, $canDownloadAll = false, $canManage = false) {
-		parent::ReviewFilesGridHandler($canAdd, $isSelectable, $canDownloadAll, $canManage);
+	function ReviewRevisionsGridHandler() {
+		import('controllers.grid.files.review.ReviewRevisionsGridDataProvider');
+		parent::FileSignoffGridHandler(
+			new ReviewRevisionsGridDataProvider(),
+			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL
+		);
 
-		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'downloadFile', 'downloadAllFiles'));
-	}
+		$this->addRoleAssignment(
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array('fetchGrid', 'fetchRow', 'downloadAllFiles')
+		);
 
-	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_INTERNAL_REVIEW));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/*
-	 * Configure the grid
-	 * @param $request PKPRequest
-	 */
-	function initialize(&$request) {
+		// Set the grid title.
 		$this->setTitle('editor.monograph.revisions');
-		parent::initialize($request);
-	}
-
-	//
-	// Protected methods
-	//
-	/**
-	 * Select the files to load in the grid
-	 * @see SubmissionFilesGridHandler::loadMonographFiles()
-	 */
-	function loadMonographFiles() {
-		$monograph =& $this->getMonograph();
-
-		// Grab the files that are new (incoming) revisions
-		// of those currently assigned to the review round.
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($monograph->getId(), $this->getRound(), $this->getReviewType());
-
-		$this->setGridDataElements($monographFiles);
 	}
 }

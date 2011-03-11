@@ -25,6 +25,13 @@ class SubmissionFilesUploadBaseForm extends Form {
 	/** @var array the monograph files for this monograph and file stage */
 	var $_monographFiles;
 
+	/** @var integer */
+	var $_reviewType;
+
+	/** @var integer */
+	var $_round;
+
+
 	/**
 	 * Constructor.
 	 * @param $request Request
@@ -33,6 +40,8 @@ class SubmissionFilesUploadBaseForm extends Form {
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $fileStage integer
 	 * @param $revisionOnly boolean
+	 * @param $reviewType integer
+	 * @param $round integer
 	 * @param $revisedFileId integer
 	 */
 	function SubmissionFilesUploadBaseForm(&$request, $template, $monographId, $stageId, $fileStage,
@@ -49,6 +58,8 @@ class SubmissionFilesUploadBaseForm extends Form {
 		$this->setData('fileStage', (int)$fileStage);
 		$this->setData('monographId', (int)$monographId);
 		$this->setData('revisionOnly', (boolean)$revisionOnly);
+		$this->_reviewType = $reviewType ? (int)$reviewType : null;
+		$this->_round = $round ? (int)$round : null;
 		$this->setData('revisedFileId', $revisedFileId ? (int)$revisedFileId : null);
 
 		// Add validators.
@@ -67,7 +78,20 @@ class SubmissionFilesUploadBaseForm extends Form {
 		return $this->_stageId;
 	}
 
-		return $this->_monographFiles;
+	/**
+	 * Get the review type (if any).
+	 * @return integer
+	 */
+	function getReviewType() {
+		return $this->_reviewType;
+	}
+
+	/**
+	 * Get the review round (if any).
+	 * @return integer
+	 */
+	function getRound() {
+		return $this->_round;
 	}
 
 	/**
@@ -76,6 +100,37 @@ class SubmissionFilesUploadBaseForm extends Form {
 	 */
 	function getRevisedFileId() {
 		return $this->getData('revisedFileId') ? (int)$this->getData('revisedFileId') : null;
+	}
+
+	/**
+	 * Get the monograph files belonging to the
+	 * monograph and to the file stage.
+	 * @return array a list of MonographFile instances.
+	 */
+	function &getMonographFiles() {
+		if (is_null($this->_monographFiles)) {
+			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+			if ($this->getReviewType()) {
+				// If we have a review type then we also expect a review round.
+				if ($this->getRound() < 1) fatalError('Invalid review round!');
+
+				// Review round files only can point to submission files.
+				if ($this->getData('fileStage') != MONOGRAPH_FILE_SUBMISSION) fatalError('Invalid file stage!');
+
+				// Retrieve the monograph files for the given review round.
+				$this->_monographFiles =& $submissionFileDao->getRevisionsByReviewRound(
+					$this->getData('monographId'),
+					$this->getReviewType(), $this->getRound()
+				);
+			} else {
+				// Retrieve the monograph files for the given file stage.
+				$this->_monographFiles =& $submissionFileDao->getLatestRevisions(
+					$this->getData('monographId'), $this->getData('fileStage')
+				);
+			}
+		}
+
+		return $this->_monographFiles;
 	}
 
 

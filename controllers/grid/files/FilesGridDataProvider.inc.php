@@ -65,4 +65,18 @@ class FilesGridDataProvider extends GridDataProvider {
 	function &getMonograph() {
 		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 	}
+
+	/**
+	 * Rearrange file revisions by file id.
+	 * @param $revisions array
+	 * @return array
+	 */
+	function &getRevisionsByFileId(&$revisions) {
+		// Rearrange the files by file id as required by the grid.
+		$files = array();
+		foreach ($revisions as $revision) {
+			$files[$revision->getFileId()] = $revision;
+		}
+		return $files;
+	}
 }

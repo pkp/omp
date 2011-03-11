@@ -68,24 +68,26 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 	// Private methods
 	//
 	/**
-	 * Return an text labels for different file stages.
+	 * Static method to return text labels
+	 * for upload to different file stages.
 	 *
-	 * @param $fileStage integer One of the MONOGRAPH_FILE_* constants.
+	 * @param $fileStage integer One of the
+	 *  MONOGRAPH_FILE_* constants.
 	 * @return array
 	 */
 	function _getTextLabels($fileStage) {
 		static $textLabels = array(
 			MONOGRAPH_FILE_SUBMISSION => array(
 				'wizardTitle' => 'submission.submit.uploadSubmissionFile',
-				'buttonTitle' => 'submission.addFile'
+				'buttonLabel' => 'submission.addFile'
 			),
 			MONOGRAPH_FILE_REVIEW => array(
 				'wizardTitle' => 'editor.submissionReview.uploadFile',
-				'buttonTitle' => 'editor.submissionReview.uploadFile'
+				'buttonLabel' => 'editor.submissionReview.uploadFile'
 			),
 			MONOGRAPH_FILE_FINAL => array(
 				'wizardTitle' => 'submission.uploadACopyeditedVersion',
-				'buttonTitle' => 'submission.uploadACopyeditedVersion'
+				'buttonLabel' => 'submission.uploadACopyeditedVersion'
 			)
 		);
 

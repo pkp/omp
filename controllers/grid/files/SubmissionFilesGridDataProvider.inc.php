@@ -68,14 +68,7 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->_getFileStage());
-
-		// Rearrange the files by file id as required by the grid.
-		$rowData = array();
-		foreach ($monographFiles as $monographFile) {
-			$rowData[$monographFile->getFileId()] = $monographFile;
-		}
-
-		return $rowData;
+		return $this->getRevisionsByFileId($monographFiles);
 	}
 
 

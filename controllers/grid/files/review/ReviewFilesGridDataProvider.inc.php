@@ -9,25 +9,19 @@
  * @class ReviewFilesGridDataProvider
  * @ingroup controllers_grid_files_review
  *
- * @brief Provide access to review file data for grids.
+ * @brief Provide access to review round files for grids.
  */
 
 
-import('controllers.grid.files.FilesGridDataProvider');
+import('controllers.grid.files.review.ReviewGridDataProvider');
 
-class ReviewFilesGridDataProvider extends FilesGridDataProvider {
-	/** @var integer */
-	var $_reviewType;
-
-	/** @var integer */
-	var $_round;
-
+class ReviewFilesGridDataProvider extends ReviewGridDataProvider {
 
 	/**
 	 * Constructor
 	 */
 	function ReviewFilesGridDataProvider() {
-		parent::FilesGridDataProvider();
+		parent::ReviewGridDataProvider();
 	}
 
 
@@ -35,44 +29,15 @@ class ReviewFilesGridDataProvider extends FilesGridDataProvider {
 	// Implement template methods from GridDataProvider
 	//
 	/**
-	 * @see GridDataProvider::getAuthorizationPolicy()
-	 */
-	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
-		// FIXME: Need to authorize review assignment, see #6200.
-		// Get the review round and review type (internal/external) from the request
-		$reviewType = $request->getUserVar('reviewType');
-		$round = $request->getUserVar('round');
-		assert(!empty($reviewType) && !empty($round));
-		$this->_reviewType = (int)$reviewType;
-		$this->_round = (int)$round;
-
-		// FIXME: Need to join internal and external review, see #6244.
-		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$policy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', WORKFLOW_STAGE_ID_INTERNAL_REVIEW);
-		return $policy;
-	}
-
-	/**
-	 * @see GridDataProvider::getRequestArgs()
-	 */
-	function getRequestArgs() {
-		$monograph =& $this->getMonograph();
-		return array(
-				'monographId' => $monograph->getId(),
-				'reviewType' => $this->_getReviewType(),
-				'round' => $this->_getRound());
-	}
-
-	/**
-	 * @see GridDataProvider::getRowData()
+	 * @see GridDataProvider::loadData()
 	 */
 	function getRowData() {
 		// Get all review files assigned to this submission.
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$rowData =& $submissionFileDao->getRevisionsByReviewRound($monograph->getId(),
+		$monographFiles =& $submissionFileDao->getRevisionsByReviewRound($monograph->getId(),
 				$this->_getReviewType(), $this->_getRound());
-		return $rowData;
+		return $this->getRevisionsByFileId($monographFiles);
 	}
 
 
@@ -90,25 +55,5 @@ class ReviewFilesGridDataProvider extends FilesGridDataProvider {
 			__('editor.submissionArchive.manageReviewFiles')
 		);
 		return $selectAction;
-	}
-
-
-	//
-	// Private helper methods
-	//
-	/**
-	 * Get the review type.
-	 * @return integer
-	 */
-	function _getReviewType() {
-	    return $this->_reviewType;
-	}
-
-	/**
-	 * Get the review round number.
-	 * @return integer
-	 */
-	function _getRound() {
-	    return $this->_round;
 	}
 }

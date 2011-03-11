@@ -98,11 +98,19 @@ class WorkflowHandler extends Handler {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		// Retrieve and validate the review round currently being looked at.
-		$selectedRound = (int) array_shift($args);
-		$currentRound = $monograph->getCurrentRound();
-		if($selectedRound < 1 || $selectedRound > $currentRound) {
-			$selectedRound = $currentRound; // Make sure round is not higher than the monograph's latest round
+		if (count($args) > 0 && is_numeric($args[0])) {
+			$selectedRound = (int)array_shift($args);
+		} else {
+			$selectedRound = null;
 		}
+
+		// Make sure round is not higher than the monograph's latest round.
+		$currentRound = $monograph->getCurrentRound();
+		if(!$selectedRound || $selectedRound < 1 || $selectedRound > $currentRound) {
+			$selectedRound = $currentRound;
+		}
+
+		// Add the round information to the template.
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentRound', $currentRound);
 		$templateMgr->assign('selectedRound', $selectedRound);

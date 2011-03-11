@@ -33,6 +33,12 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	var $_revisionOnly;
 
 	/** @var integer */
+	var $_reviewType;
+
+	/** @var integer */
+	var $_round;
+
+	/** @var integer */
 	var $_revisedFileId;
 
 
@@ -56,8 +62,10 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	function initialize(&$request, $args) {
 		parent::initialize($request, $args);
 
-		// FIXME: How do we identify (and authorize) the "revision only" policy?
-		$this->_revisionOnly = false;
+		// Do we allow revisions only?
+		$this->_revisionOnly = (boolean)$request->getUserVar('revisionOnly');
+		$this->_reviewType = $request->getUserVar('reviewType') ? (int)$request->getUserVar('reviewType') : null;
+		$this->_round = $request->getUserVar('round') ? (int)$request->getUserVar('round') : null;
 
 		// The revised file will be non-null if we revise a single existing file.
 		if ($this->getRevisionOnly() && $request->getUserVar('revisedFileId')) {
@@ -78,6 +86,22 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	 */
 	function getRevisionOnly() {
 		return $this->_revisionOnly;
+	}
+
+	/**
+	 * Get the review type (if any).
+	 * @return integer
+	 */
+	function getReviewType() {
+		return $this->_reviewType;
+	}
+
+	/**
+	 * Get the review round (if any).
+	 * @return integer
+	 */
+	function getRound() {
+		return $this->_round;
 	}
 
 	/**
@@ -111,7 +135,10 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		// Assign the file stage.
 		$templateMgr->assign('fileStage', $this->getFileStage());
 
-		// Assign the pre-configured revised file id (if any).
+		// Configure the "revision only" feature.
+		$templateMgr->assign('revisionOnly', $this->getRevisionOnly());
+		$templateMgr->assign('reviewType', $this->getReviewType());
+		$templateMgr->assign('round', $this->getRound());
 		$templateMgr->assign('revisedFileId', $this->getRevisedFileId());
 
 		// Render the file upload wizard.

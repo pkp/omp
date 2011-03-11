@@ -23,6 +23,7 @@ class SubmissionFilesUploadConfirmationForm extends SubmissionFilesUploadBaseFor
 	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $fileStage integer
 	 * @param $revisedFileId integer
+	 * @param $uploadedFile integer
 	 */
 	function SubmissionFilesUploadConfirmationForm(&$request, $monographId, $stageId, $fileStage,
 			$revisedFileId = null, $uploadedFile = null) {

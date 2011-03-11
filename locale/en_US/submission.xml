@@ -96,7 +96,7 @@
 	<!-- Submission wizard -->
 	<message key="submission.notifyEditor">Notify Editor</message>
 	<message key="submission.addFileToBook">Add a File To My Book</message>
-	<message key="submission.addFile">Upload File</message>
+	<message key="submission.addFile">Upload Submission File</message>
 	<message key="submission.uploadACopyeditedVersion">Upload A Copyedited Version</message>
 	<message key="submission.notifyEditor">Notify Editor</message>
 	<message key="submission.submit.uploadAuthorVersion">Upload Author Version</message>
