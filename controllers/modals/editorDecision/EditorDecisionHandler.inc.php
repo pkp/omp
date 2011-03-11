@@ -53,7 +53,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function newReviewRound($args, &$request) {
-		return $this->_editorDecision($args, $request, 'NewReviewRoundForm');
+		return $this->_initiateEditorDecision($args, $request, 'NewReviewRoundForm');
 	}
 
 	/**
@@ -66,9 +66,7 @@ class EditorDecisionHandler extends Handler {
 		// Retrieve the authorized monograph.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
-
-		// Form handling
+		// Form handling.
 		import('controllers.modals.editorDecision.form.NewReviewRoundForm');
 		$newReviewRoundForm = new NewReviewRoundForm($monograph);
 
@@ -78,6 +76,8 @@ class EditorDecisionHandler extends Handler {
 
 			// FIXME: Sending scripts through JSON is evil. This script
 			// should (and can) be moved to the client side, #see 6357.
+			// When this is done then we can also refactor this method
+			// to work with _saveEditorDecision().
 
 			// Generate the new review round tab script.
 			$router =& $request->getRouter();
@@ -105,7 +105,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function initiateReview($args, &$request) {
-		return $this->_editorDecision($args, $request, 'InitiateReviewForm');
+		return $this->_initiateEditorDecision($args, $request, 'InitiateReviewForm');
 	}
 
 	/**
@@ -115,25 +115,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function saveInitiateReview($args, &$request) {
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
-		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
-
-		// Form handling
-		import('controllers.modals.editorDecision.form.InitiateReviewForm');
-		$initiateReviewForm = new InitiateReviewForm($monograph);
-
-		$initiateReviewForm->readInputData();
-		if ($initiateReviewForm->validate()) {
-			$initiateReviewForm->execute($args, $request);
-
-			$dispatcher =& $this->getDispatcher();
-			return $request->redirectUrlJson($dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monograph->getId(), 1)));
-		} else {
-			$json = new JSON(false);
-			return $json->getString();
-		}
+		return $this->_saveEditorDecision($args, $request, 'InitiateReviewForm', 'review');
 	}
 
 	/**
@@ -143,7 +125,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function sendReviews($args, &$request) {
-		return $this->_editorDecision($args, $request, 'SendReviewsForm');
+		return $this->_initiateEditorDecision($args, $request, 'SendReviewsForm');
 	}
 
 	/**
@@ -153,23 +135,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function saveSendReviews($args, &$request) {
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$decision = $request->getUserVar('decision');
-
-		import('controllers.modals.editorDecision.form.SendReviewsForm');
-		$sendReviewsForm = new SendReviewsForm($monograph, $decision);
-
-		$sendReviewsForm->readInputData();
-		if ($sendReviewsForm->validate()) {
-			$sendReviewsForm->execute($args, $request);
-
-			$json = new JSON(true);
-		} else {
-			$json = new JSON(false);
-		}
-
-		return $json->getString();
+		return $this->_saveEditorDecision($args, $request, 'SendReviewsForm');
 	}
 
 	/**
@@ -179,7 +145,7 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function promote($args, &$request) {
-		return $this->_editorDecision($args, $request, 'PromoteForm');
+		return $this->_initiateEditorDecision($args, $request, 'PromoteForm');
 	}
 
 	/**
@@ -189,29 +155,18 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function savePromote($args, &$request) {
-		// Retrieve the authorized monograph.
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$decision = $request->getUserVar('decision');
+		// Redirect to the next workflow page after
+		// promoting the submission.
+		$decision = (int)$request->getUserVar('decision');
 
-		import('controllers.modals.editorDecision.form.PromoteForm');
-		$promoteForm = new PromoteForm($monograph, $decision);
-
-		$promoteForm->readInputData();
-		if ($promoteForm->validate()) {
-			$promoteForm->execute($args, $request);
-
-			$dispatcher =& $this->getDispatcher();
-			if ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
-				return $request->redirectUrlJson($dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'copyediting', array($monograph->getId())));
-			} elseif ($decision == SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW) {
-				return $request->redirectUrlJson($dispatcher->url($request, ROUTE_PAGE, null, 'workflow', 'review', array($monograph->getId())));
-			} else {
-				$json = new JSON(true);
-			}
-		} else {
-			$json = new JSON(false);
+		$redirectOp = null;
+		if ($decision == SUBMISSION_EDITOR_DECISION_ACCEPT) {
+			$redirectOp = 'copyediting';
+		} elseif ($decision == SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW) {
+			$redirectOp = 'review';
 		}
-		return $json->getString();
+
+		return $this->_saveEditorDecision($args, $request, 'PromoteForm', $redirectOp);
 	}
 
 	/**
@@ -221,10 +176,10 @@ class EditorDecisionHandler extends Handler {
 	 * @return string Serialized JSON object
 	 */
 	function importPeerReviews($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($monographId);
+		// Retrieve the authorized submission.
+		$seriesEditorSubmission =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
+		// Retrieve peer reviews.
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$peerReviews = SeriesEditorAction::getPeerReviews($seriesEditorSubmission);
 
@@ -259,19 +214,19 @@ class EditorDecisionHandler extends Handler {
 	// Private helper methods
 	//
 	/**
-	 * Consolidates all editor decision form calls into one function
+	 * Initiate an editor decision.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @param $formName string Name of form to call
 	 * @return string Serialized JSON object
 	 */
-	function _editorDecision($args, &$request, $formName) {
+	function _initiateEditorDecision($args, &$request, $formName) {
 		// Retrieve the authorized monograph.
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		// FIXME: Need to validate the decision (Does it combine with the
 		// requested operation? Is it a valid decision? Is the user authorized
 		// to take that decision? See #6199.
-		$decision =& $request->getUserVar('decision');
+		$decision = (int)$request->getUserVar('decision');
 
 		// Form handling
 		import("controllers.modals.editorDecision.form.$formName");
@@ -279,6 +234,42 @@ class EditorDecisionHandler extends Handler {
 		$editorDecisionForm->initData($args, $request);
 
 		$json = new JSON(true, $editorDecisionForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Save an editor decision.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @param $formName string Name of form to call
+	 * @param $redirectOp string A workflow stage operation to
+	 *  redirect to if successful (if any).
+	 * @return string Serialized JSON object
+	 */
+	function _saveEditorDecision($args, &$request, $formName, $redirectOp = null) {
+		// Retrieve the authorized monograph.
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		// FIXME: Need to validate the decision. See #6199.
+		$decision = (int)$request->getUserVar('decision');
+
+		// Form handling
+		import("controllers.modals.editorDecision.form.$formName");
+		$editorDecisionForm = new $formName($monograph, $decision);
+
+		$editorDecisionForm->readInputData();
+		if ($editorDecisionForm->validate()) {
+			$editorDecisionForm->execute($args, $request);
+
+			if ($redirectOp) {
+				$dispatcher =& $this->getDispatcher();
+				$redirectUrl = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', $redirectOp, array($monograph->getId()));
+				return $request->redirectUrlJson($redirectUrl);
+			} else {
+				$json = new JSON(true);
+			}
+		} else {
+			$json = new JSON(false);
+		}
 		return $json->getString();
 	}
 }
