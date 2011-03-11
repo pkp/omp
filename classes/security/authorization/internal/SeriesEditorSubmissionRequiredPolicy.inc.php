@@ -18,6 +18,8 @@ class SeriesEditorSubmissionRequiredPolicy extends SubmissionRequiredPolicy {
 	/**
 	 * Constructor
 	 * @param $request PKPRequest
+	 * @param $args array
+	 * @param $submissionParameterName string
 	 */
 	function SeriesEditorSubmissionRequiredPolicy(&$request, &$args, $submissionParameterName = 'monographId') {
 		parent::SubmissionRequiredPolicy($request, $args, $submissionParameterName, 'user.authorization.invalidSeriesEditorSubmission');

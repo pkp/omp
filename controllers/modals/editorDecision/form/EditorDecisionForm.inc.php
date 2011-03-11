@@ -14,6 +14,9 @@
 
 import('lib.pkp.classes.form.Form');
 
+// Define review round and review type constants.
+import('classes.monograph.reviewRound.ReviewRound');
+
 class EditorDecisionForm extends Form {
 	/** @var SeriesEditorSubmission The submission associated with the editor decision **/
 	var $_seriesEditorSubmission;
