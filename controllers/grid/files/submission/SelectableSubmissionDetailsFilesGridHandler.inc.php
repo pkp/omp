@@ -9,20 +9,30 @@
  * @class SelectableSubmissionDetailsFilesGridHandler
  * @ingroup controllers_grid_files_submission
  *
- * @brief Handle submission file grid requests in the editor's 'approve submission' modal.
+ * @brief Handle submission file grid requests in the editor's 'promote submission' modal.
  */
 
-// import submission files grid specific classes
-import('controllers.grid.files.submission.SubmissionDetailsFilesGridHandler');
+import('controllers.grid.files.fileList.SelectableFileListGridHandler');
 
-class SelectableSubmissionDetailsFilesGridHandler extends SubmissionDetailsFilesGridHandler {
+class SelectableSubmissionDetailsFilesGridHandler extends SelectableFileListGridHandler {
 	/**
 	 * Constructor
 	 */
 	function SelectableSubmissionDetailsFilesGridHandler() {
-		parent::SubmissionDetailsFilesGridHandler(
-			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL|FILE_GRID_MANAGE
+		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+		$dataProvider = new SubmissionFilesGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_SUBMISSION);
+		parent::SelectableFileListGridHandler(
+			$dataProvider,
+			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL
 		);
-	}
 
+		$this->addRoleAssignment(
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array('fetchGrid', 'fetchRow', 'downloadAllFiles')
+		);
+
+		// Set the grid title.
+		$this->setTitle('submission.submit.submissionFiles');
+	}
 }

@@ -15,8 +15,13 @@
 
 import('lib.pkp.classes.form.Form');
 import('classes.file.MonographFileManager');
+import('classes.monograph.MonographFile');
 
 class SubmissionFilesUploadBaseForm extends Form {
+
+	/** @var integer */
+	var $_stageId;
+
 	/** @var array the monograph files for this monograph and file stage */
 	var $_monographFiles;
 
@@ -25,17 +30,22 @@ class SubmissionFilesUploadBaseForm extends Form {
 	 * @param $request Request
 	 * @param $template string
 	 * @param $monographId integer
+	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $fileStage integer
 	 * @param $revisionOnly boolean
 	 * @param $revisedFileId integer
 	 */
-	function SubmissionFilesUploadBaseForm(&$request, $template, $monographId, $fileStage, $revisionOnly = false, $revisedFileId = null) {
+	function SubmissionFilesUploadBaseForm(&$request, $template, $monographId, $stageId, $fileStage,
+			$revisionOnly = false, $reviewType = null, $round = null, $revisedFileId = null) {
+
 		// Check the incoming parameters.
 		assert(is_numeric($monographId) && $monographId > 0);
 		assert(is_numeric($fileStage) && $fileStage > 0);
+		assert(is_numeric($stageId) && $stageId >= 1 && $stageId <= 5);
 
 		// Initialize class.
 		parent::Form($template);
+		$this->_stageId = $stageId;
 		$this->setData('fileStage', (int)$fileStage);
 		$this->setData('monographId', (int)$monographId);
 		$this->setData('revisionOnly', (boolean)$revisionOnly);
@@ -50,16 +60,12 @@ class SubmissionFilesUploadBaseForm extends Form {
 	// Setters and Getters
 	//
 	/**
-	 * Get the monograph files belonging to the
-	 * monograph and to the file stage.
-	 * @return array a list of MonographFile instances.
+	 * Get the workflow stage id.
+	 * @return integer
 	 */
-	function &getMonographFiles() {
-		if (is_null($this->_monographFiles)) {
-			// Retrieve the monograph files for the given file stage.
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			$this->_monographFiles =& $submissionFileDao->getLatestRevisions($this->getData('monographId'), $this->getData('fileStage'));
-		}
+	function getStageId() {
+		return $this->_stageId;
+	}
 
 		return $this->_monographFiles;
 	}
@@ -89,6 +95,9 @@ class SubmissionFilesUploadBaseForm extends Form {
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
+		// Set the workflow stage.
+		$this->setData('stageId', $this->getStageId());
+
 		// Retrieve the uploaded file (if any).
 		$uploadedFile =& $this->getData('uploadedFile');
 

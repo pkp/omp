@@ -105,6 +105,9 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		$monograph =& $this->getMonograph();
 		$templateMgr->assign('monographId', $monograph->getId());
 
+		// Assign the workflow stage.
+		$templateMgr->assign('stageId', $this->getStageId());
+
 		// Assign the file stage.
 		$templateMgr->assign('fileStage', $this->getFileStage());
 
@@ -125,7 +128,10 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		// Instantiate, configure and initialize the form.
 		import('controllers.wizard.fileUpload.form.SubmissionFilesUploadForm');
 		$monograph =& $this->getMonograph();
-		$fileForm = new SubmissionFilesUploadForm($request, $monograph->getId(), $this->getFileStage(), $this->getRevisionOnly(), $this->getRevisedFileId());
+		$fileForm = new SubmissionFilesUploadForm(
+			$request, $monograph->getId(), $this->getStageId(), $this->getUploaderRoles(), $this->getFileStage(),
+			$this->getRevisionOnly(), $this->getReviewType(), $this->getRound(), $this->getRevisedFileId()
+		);
 		$fileForm->initData($args, $request);
 
 		// Render the form.
@@ -143,7 +149,10 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		// Instantiate the file upload form.
 		$monograph =& $this->getMonograph();
 		import('controllers.wizard.fileUpload.form.SubmissionFilesUploadForm');
-		$uploadForm = new SubmissionFilesUploadForm($request, $monograph->getId(), $this->getFileStage(), $this->getRevisionOnly(), null);
+		$uploadForm = new SubmissionFilesUploadForm(
+			$request, $monograph->getId(), $this->getStageId(), null, $this->getFileStage(),
+			$this->getRevisionOnly(), $this->getReviewType(), $this->getRound(), null
+		);
 		$uploadForm->readInputData();
 
 		// Validate the form and upload the file.
@@ -190,7 +199,9 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		// Instantiate the revision confirmation form.
 		$monograph =& $this->getMonograph();
 		import('controllers.wizard.fileUpload.form.SubmissionFilesUploadConfirmationForm');
-		$confirmationForm = new SubmissionFilesUploadConfirmationForm($request, $monograph->getId(), $this->getFileStage());
+		$confirmationForm = new SubmissionFilesUploadConfirmationForm(
+			$request, $monograph->getId(), $this->getStageId(), $this->getFileStage()
+		);
 		$confirmationForm->readInputData();
 
 		// Validate the form and revise the file.
@@ -284,10 +295,10 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		// Import the meta-data form based on the file implementation.
 		if (is_a($submissionFile, 'ArtworkFile')) {
 			import('controllers.wizard.fileUpload.form.SubmissionFilesArtworkMetadataForm');
-			$metadataForm = new SubmissionFilesArtworkMetadataForm($submissionFile);
+			$metadataForm = new SubmissionFilesArtworkMetadataForm($submissionFile, $this->getStageId());
 		} else {
 			import('controllers.wizard.fileUpload.form.SubmissionFilesMetadataForm');
-			$metadataForm = new SubmissionFilesMetadataForm($submissionFile);
+			$metadataForm = new SubmissionFilesMetadataForm($submissionFile, $this->getStageId());
 		}
 
 		return $metadataForm;

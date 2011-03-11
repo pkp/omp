@@ -24,7 +24,8 @@ class EditorReviewFilesGridHandler extends FileListGridHandler {
 		$dataProvider = new ReviewFilesGridDataProvider();
 		parent::FileListGridHandler(
 			$dataProvider,
-			FILE_GRID_DOWNLOAD_ALL|FILE_GRID_MANAGE|FILE_GRID_DELETE
+			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			FILE_GRID_DOWNLOAD_ALL|FILE_GRID_MANAGE
 		);
 
 		$this->addRoleAssignment(

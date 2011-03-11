@@ -31,6 +31,9 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/** @var GridDataProvider */
 	var $_dataProvider;
 
+	/** @var integer */
+	var $_stageId;
+
 	/** @var boolean */
 	var $_canAdd;
 
@@ -44,11 +47,13 @@ class SubmissionFilesGridHandler extends GridHandler {
 	/**
 	 * Constructor
 	 * @param $dataProvider GridDataProvider
+	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $capabilities integer A bit map with zero or more
 	 *  FILE_GRID_* capabilities set.
 	 */
-	function SubmissionFilesGridHandler(&$dataProvider, $capabilities) {
+	function SubmissionFilesGridHandler(&$dataProvider, $stageId, $capabilities) {
 		$this->_dataProvider =& $dataProvider;
+		$this->_stageId = (int)$stageId;
 		$this->_canAdd = (boolean)($capabilities & FILE_GRID_ADD);
 		$this->_canDownloadAll = (boolean)($capabilities & FILE_GRID_DOWNLOAD_ALL);
 		$this->_canDelete = (boolean)($capabilities & FILE_GRID_DELETE);
@@ -66,6 +71,14 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 */
 	function &getDataProvider() {
 		return $this->_dataProvider;
+	}
+
+	/**
+	 * Get the workflow stage id.
+	 * @return integer
+	 */
+	function getStageId() {
+		return $this->_stageId;
 	}
 
 	/**
@@ -154,7 +167,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		$this->setGridDataElements($dataProvider->getRowData());
 
 		// The file name column is common to all file grid types.
-		$this->addColumn(new FileNameGridColumn());
+		$this->addColumn(new FileNameGridColumn($this->getStageId()));
 	}
 
 
@@ -165,7 +178,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
-		$row = new SubmissionFilesGridRow($this->canDelete());
+		$row = new SubmissionFilesGridRow($this->canDelete(), $this->getStageId());
 		return $row;
 	}
 

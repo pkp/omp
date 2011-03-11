@@ -8,6 +8,8 @@
  *
  * Parameters:
  *  $submissionFile: The monograph or artwork file.
+ *  $stageId: The workflow stage id from which the upload
+ *   wizard was called.
  *  $note: Note attached to the file.
  *}
 <script type="text/javascript">
@@ -17,7 +19,7 @@
 	{rdelim});
 </script>
 
-<form id="metadataForm" action="{url op="saveMetadata" monographId=$submissionFile->getMonographId() fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId() escape=false}" method="post">
+<form id="metadataForm" action="{url op="saveMetadata" monographId=$submissionFile->getMonographId() stageId=$stageId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId() escape=false}" method="post">
 
 	{* Editable metadata *}
 
@@ -114,9 +116,9 @@
 					{/if}
 
 					{if $submissionFile->getFileType() == 'image/tiff'}
-						<embed width="{$thumbnailWidth}" height="{$thumbnailHeight}" src="{url component="api.file.FileApiHandler" op="viewFile" monographId=$submissionFile->getMonographId() fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId()}" type="image/tiff" negative=yes>
-					{else}<a target="_blank" href="{url component="api.file.FileApiHandler" op="viewFile" monographId=$submissionFile->getMonographId() fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId() fileRevision=$submissionFile->getRevision()}">
-						<img class="thumbnail" width="{$thumbnailWidth}" height="{$thumbnailHeight}" src="{url component="api.file.FileApiHandler" op="viewFile" monographId=$submissionFile->getMonographId() fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId()}" />
+						<embed width="{$thumbnailWidth}" height="{$thumbnailHeight}" src="{url component="api.file.FileApiHandler" op="viewFile" monographId=$submissionFile->getMonographId() stageId=$stageId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId()}" type="image/tiff" negative=yes>
+					{else}<a target="_blank" href="{url component="api.file.FileApiHandler" op="viewFile" monographId=$submissionFile->getMonographId() stageId=$stageId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId() fileRevision=$submissionFile->getRevision()}">
+						<img class="thumbnail" width="{$thumbnailWidth}" height="{$thumbnailHeight}" src="{url component="api.file.FileApiHandler" op="viewFile" monographId=$submissionFile->getMonographId() stageId=$stageId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId()}" />
 					</a>{/if}
 				{/fbvFormSection}
 

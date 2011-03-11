@@ -21,9 +21,15 @@ class OmpWorkflowStageAccessPolicy extends PressPolicy {
 	 * @param $request PKPRequest
 	 * @param $args array request arguments
 	 * @param $roleAssignments array
+	 * @param $submissionParameterName string
+	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 */
-	function OmpWorkflowStageAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'monographId', $stageId = null) {
+	function OmpWorkflowStageAccessPolicy(&$request, &$args, $roleAssignments, $submissionParameterName = 'monographId', $stageId) {
 		parent::PressPolicy($request);
+
+		// A workflow stage component requires a valid workflow stage.
+		import('classes.security.authorization.internal.WorkflowStageRequiredPolicy');
+		$this->addPolicy(new WorkflowStageRequiredPolicy($stageId));
 
 		// A workflow stage component can only be called if there's a
 		// valid series editor submission in the request.

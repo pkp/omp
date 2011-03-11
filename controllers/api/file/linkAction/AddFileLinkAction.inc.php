@@ -15,15 +15,18 @@
  * @brief An action to add a submission file.
  */
 
-import('lib.pkp.classes.linkAction.LinkAction');
+import('controllers.api.file.linkAction.BaseAddFileLinkAction');
 
-class AddFileLinkAction extends LinkAction {
+class AddFileLinkAction extends BaseAddFileLinkAction {
 
 	/**
 	 * Constructor
 	 * @param $request Request
 	 * @param $monographId integer The monograph the file should be
 	 *  uploaded to.
+	 * @param $stageId integer The workflow stage in which the file
+	 *  uploader is being instantiated (one of the WORKFLOW_STAGE_ID_*
+	 *  constants).
 	 * @param $fileStage integer The file stage the file should be
 	 *  uploaded to (one of the MONOGRAPH_FILE_* constants).
 	 * @param $assocType integer The type of the element the file should
@@ -31,9 +34,11 @@ class AddFileLinkAction extends LinkAction {
 	 * @param $assocId integer The id of the element the file should be
 	 *  associated with.
 	 */
-	function AddFileLinkAction(&$request, $monographId, $fileStage, $assocType = null, $assocId = null) {
+	function AddFileLinkAction(&$request, $monographId, $stageId, $uploaderRoles,
+			$fileStage, $assocType = null, $assocId = null) {
+
 		// Create the action arguments array.
-		$actionArgs = array('monographId' => $monographId, 'fileStage' => $fileStage);
+		$actionArgs = array('fileStage' => $fileStage);
 		if (is_numeric($assocType) && is_numeric($assocId)) {
 			$actionArgs['assocType'] = (int)$assocType;
 			$actionArgs['assocId'] = (int)$assocId;

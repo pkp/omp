@@ -27,7 +27,11 @@ class FinalDraftFilesGridHandler extends SubmissionFilesGridHandler {
 	 */
 	function FinalDraftFilesGridHandler($capabilities) {
 		$this->_canManage = $canManage;
-		parent::SubmissionFilesGridHandler(MONOGRAPH_FILE_FINAL, $capabilities);
+		parent::SubmissionFilesGridHandler(
+			MONOGRAPH_FILE_FINAL,
+			WORKFLOW_STAGE_ID_EDITING,
+			$capabilities
+		);
 		$this->addRoleAssignment(
 			array(
 				ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT

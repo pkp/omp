@@ -65,7 +65,8 @@ class AuthorDashboardHandler extends Handler {
 
 		// Workflow-stage specific "upload file" action.
 		$fileStage = null;
-		switch ($monograph->getCurrentStageId()) {
+		$currentStage = $monograph->getCurrentStageId();
+		switch ($currentStage) {
 			case WORKFLOW_STAGE_ID_SUBMISSION:
 			case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
 			case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
@@ -78,7 +79,9 @@ class AuthorDashboardHandler extends Handler {
 		}
 		if ($fileStage) {
 			import('controllers.api.file.linkAction.AddFileLinkAction');
-			$uploadFileAction = new AddFileLinkAction($request, $monograph->getId(), $fileStage);
+			$uploadFileAction = new AddFileLinkAction(
+				$request, $monograph->getId(), $currentStage,
+				array(ROLE_ID_AUTHOR), $fileStage);
 			$templateMgr->assign('uploadFileAction', $uploadFileAction);
 		}
 

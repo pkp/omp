@@ -29,13 +29,14 @@ class FileListGridHandler extends SubmissionFilesGridHandler {
 	/**
 	 * Constructor
 	 * @param $dataProvider GridDataProvider
+	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $capabilities integer A bit map with zero or more
 	 *  FILE_GRID_* capabilities set.
 	 */
-	function FileListGridHandler($dataProvider, $capabilities) {
+	function FileListGridHandler($dataProvider, $stageId, $capabilities) {
 		$this->_canManage = (boolean)($capabilities & FILE_GRID_MANAGE);
 
-		parent::SubmissionFilesGridHandler($dataProvider, $capabilities);
+		parent::SubmissionFilesGridHandler($dataProvider, $stageId, $capabilities);
 	}
 
 

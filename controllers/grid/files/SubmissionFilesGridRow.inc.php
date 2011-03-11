@@ -20,12 +20,16 @@ class SubmissionFilesGridRow extends GridRow {
 	/** @var boolean */
 	var $_canDelete;
 
+	/** @var integer */
+	var $_stageId;
+
 
 	/**
 	 * Constructor
 	 */
-	function SubmissionFilesGridRow($canDelete) {
+	function SubmissionFilesGridRow($canDelete, $stageId) {
 		$this->_canDelete = $canDelete;
+		$this->_stageId = $stageId;
 		parent::GridRow();
 	}
 
@@ -39,6 +43,14 @@ class SubmissionFilesGridRow extends GridRow {
 	 */
 	function canDelete() {
 		return $this->_canDelete;
+	}
+
+	/**
+	 * Get the workflow stage id.
+	 * @return integer
+	 */
+	function getStageId() {
+		return $this->_stageId;
 	}
 
 
@@ -59,11 +71,11 @@ class SubmissionFilesGridRow extends GridRow {
 		// 1) Delete file action.
 		if ($this->canDelete()) {
 			import('controllers.api.file.linkAction.DeleteFileLinkAction');
-			$this->addAction(new DeleteFileLinkAction($request, $monographFile));
+			$this->addAction(new DeleteFileLinkAction($request, $monographFile, $this->getStageId()));
 		}
 
 		// 2) Information center action.
 		import('controllers.informationCenter.linkAction.FileInfoCenterLinkAction');
-		$this->addAction(new FileInfoCenterLinkAction($request, $monographFile));
+		$this->addAction(new FileInfoCenterLinkAction($request, $monographFile, $this->getStageId()));
 	}
 }

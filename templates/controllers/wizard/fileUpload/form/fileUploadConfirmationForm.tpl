@@ -8,6 +8,7 @@
  *
  * Parameters:
  *   $monographId: The monograph for which a file has been uploaded.
+ *   $stageId: The workflow stage in which the file uploader was called.
  *   $uploadedFile: The MonographFile object of the uploaded file.
  *   $revisedFileId: The id of the potential revision.
  *   $revisedFileName: The name of the potential revision.
@@ -24,7 +25,7 @@
 </script>
 
 <form id="uploadConfirmationForm" class="pkp_controllers_grid_files"
-		action="{url op="confirmRevision" monographId=$monographId fileStage=$fileStage uploadedFileId=$uploadedFile->getFileId()}"
+		action="{url op="confirmRevision" monographId=$monographId stageId=$stageId fileStage=$fileStage uploadedFileId=$uploadedFile->getFileId()}"
 		method="post">
 	{fbvFormArea id="file"}
 		<div id="possibleRevision" class="pkp_controllers_grid_files_possibleRevision" style="display:none;">

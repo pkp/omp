@@ -25,10 +25,11 @@ class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandl
 	 */
 	function SelectableEditorReviewFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
-		$dataProvider = new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_SUBMISSION);
+		$dataProvider = new SubmissionFilesGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_SUBMISSION);
 		parent::SelectableFileListGridHandler(
 			$dataProvider,
-			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL|FILE_GRID_DELETE
+			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL
 		);
 
 		$this->addRoleAssignment(

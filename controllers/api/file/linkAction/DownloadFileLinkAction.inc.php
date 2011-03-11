@@ -20,14 +20,15 @@ class DownloadFileLinkAction extends FileLinkAction {
 	 * @param $request Request
 	 * @param $monographFile MonographFile the monograph file to
 	 *  link to.
+	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 */
-	function DownloadFileLinkAction(&$request, &$monographFile) {
+	function DownloadFileLinkAction(&$request, &$monographFile, $stageId) {
 		// Instantiate the redirect action request.
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.RedirectAction');
 		$redirectRequest = new RedirectAction($router->url($request, null,
 				'api.file.FileApiHandler', 'downloadFile', null,
-				$this->getActionArgs($monographFile)));
+				$this->getActionArgs($monographFile, $stageId)));
 
 		// Configure the file link action.
 		parent::FileLinkAction('downloadFile', $redirectRequest, $monographFile->getFileLabel(),

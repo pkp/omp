@@ -20,8 +20,12 @@ class EditorSubmissionDetailsFilesGridHandler extends FileListGridHandler {
 	 */
 	function EditorSubmissionDetailsFilesGridHandler() {
 		import('controllers.grid.files.SubmissionFilesGridDataProvider');
-		$dataProvider = new SubmissionFilesGridDataProvider(MONOGRAPH_FILE_SUBMISSION);
-		parent::FileListGridHandler($dataProvider, FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_DOWNLOAD_ALL);
+		$dataProvider = new SubmissionFilesGridDataProvider(WORKFLOW_STAGE_ID_SUBMISSION, MONOGRAPH_FILE_SUBMISSION);
+		parent::FileListGridHandler(
+			$dataProvider,
+			WORKFLOW_STAGE_ID_SUBMISSION,
+			FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_DOWNLOAD_ALL
+		);
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),

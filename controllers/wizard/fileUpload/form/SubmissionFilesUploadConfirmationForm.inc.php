@@ -20,14 +20,18 @@ class SubmissionFilesUploadConfirmationForm extends SubmissionFilesUploadBaseFor
 	 * Constructor.
 	 * @param $request Request
 	 * @param $monographId integer
+	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $fileStage integer
 	 * @param $revisedFileId integer
 	 */
-	function SubmissionFilesUploadConfirmationForm(&$request, $monographId, $fileStage, $revisedFileId = null, $uploadedFile = null) {
+	function SubmissionFilesUploadConfirmationForm(&$request, $monographId, $stageId, $fileStage,
+			$revisedFileId = null, $uploadedFile = null) {
+
 		// Initialize class.
-		parent::SubmissionFilesUploadBaseForm($request,
-				'controllers/wizard/fileUpload/form/fileUploadConfirmationForm.tpl',
-				$monographId, $fileStage, false, $revisedFileId);
+		parent::SubmissionFilesUploadBaseForm(
+			$request, 'controllers/wizard/fileUpload/form/fileUploadConfirmationForm.tpl',
+			$monographId, $stageId, $fileStage, false, null, null, $revisedFileId
+		);
 
 		if (is_a($uploadedFile, 'MonographFile')) {
 			$this->setData('uploadedFile', $uploadedFile);

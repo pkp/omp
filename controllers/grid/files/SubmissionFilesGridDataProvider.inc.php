@@ -18,13 +18,20 @@ import('controllers.grid.files.FilesGridDataProvider');
 class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 
 	/** @var integer */
+	var $_stageId;
+
+	/** @var integer */
 	var $_fileStage;
 
 
 	/**
 	 * Constructor
+	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
+	 * @param $fileStage integer One of the MONOGRAPH_FILE_* constants.
 	 */
-	function SubmissionFilesGridDataProvider($fileStage) {
+	function SubmissionFilesGridDataProvider($stageId, $fileStage) {
+		assert(is_numeric($stageId) && $stageId > 0);
+		$this->_stageId = (int)$stageId;
 		assert(is_numeric($fileStage) && $fileStage > 0);
 		$this->_fileStage = (int)$fileStage;
 		parent::FilesGridDataProvider();
@@ -39,7 +46,7 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	 */
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$policy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', MonographFile::fileStageToWorkflowStage($this->_getFileStage()));
+		$policy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->_getStageId());
 		return $policy;
 	}
 
@@ -81,7 +88,10 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	function &getAddFileAction($request) {
 		import('controllers.api.file.linkAction.AddFileLinkAction');
 		$monograph =& $this->getMonograph();
-		$addFileAction = new AddFileLinkAction($request, $monograph->getId(), $this->_getFileStage());
+		$addFileAction = new AddFileLinkAction(
+			$request, $monograph->getId(), $this->_getStageId(),
+			$this->getUploaderRoles(), $this->_getFileStage()
+		);
 		return $addFileAction;
 	}
 
@@ -89,6 +99,14 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	//
 	// Private helper methods
 	//
+	/**
+	 * Get the workflow stage.
+	 * @return integer
+	 */
+	function _getStageId() {
+	    return $this->_stageId;
+	}
+
 	/**
 	 * Get the file stage.
 	 * @return integer

@@ -20,11 +20,14 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 	 * Constructor.
 	 * @param $request Request
 	 * @param $monographId integer
+	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $fileStage integer
 	 * @param $revisionOnly boolean
 	 * @param $revisedFileId integer
 	 */
-	function SubmissionFilesUploadForm(&$request, $monographId, $fileStage, $revisionOnly = false, $revisedFileId = null) {
+	function SubmissionFilesUploadForm(&$request, $monographId, $stageId, $uploaderRoles, $fileStage,
+			$revisionOnly = false, $reviewType = null, $round = null, $revisedFileId = null) {
+
 		// Initialize class.
 		parent::SubmissionFilesUploadBaseForm($request,
 				'controllers/wizard/fileUpload/form/fileUploadForm.tpl',
@@ -95,7 +98,10 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 		// Upload the file.
 		import('classes.file.MonographFileManager');
 		return MonographFileManager::uploadMonographFile(
-				$this->getData('monographId'), 'uploadedFile', $this->getData('fileStage'), $revisedFileId, $fileGenre);
+			$this->getData('monographId'), 'uploadedFile',
+			$this->getData('fileStage'), $uploaderUserGroupId,
+			$revisedFileId, $fileGenre
+		);
 	}
 
 

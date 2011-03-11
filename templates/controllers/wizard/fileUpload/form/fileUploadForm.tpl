@@ -8,6 +8,7 @@
  *
  * Parameters:
  *   $monographId: The monograph for which a file is being uploaded.
+ *   $stageId: The workflow stage in which the file uploader was called.
  *   $revisionOnly: Whether the user can upload new files or not.
  *   $revisedFileId: The id of the file to be revised (optional).
  *    When set to a number then the user may not choose the file
@@ -124,7 +125,7 @@
 				{rdelim},
 				$uploader: $('#uploadForm #plupload'),
 				uploaderOptions: {ldelim}
-					uploadUrl: '{url|escape:javascript op="uploadFile" monographId=$monographId fileStage=$fileStage escape=false}',
+					uploadUrl: '{url|escape:javascript op="uploadFile" monographId=$monographId stageId=$stageId fileStage=$fileStage escape=false}',
 					baseUrl: '{$baseUrl|escape:javascript}'
 				{rdelim}
 			{rdelim});

@@ -28,10 +28,22 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	function CopyeditingFilesGridHandler() {
 		parent::CategoryGridHandler();
 
-		$this->addRoleAssignment(ROLE_ID_AUTHOR,
-			$authorOperations = array('fetchGrid', 'addCopyeditedFile', 'editCopyeditedFile', 'uploadCopyeditedFile', 'returnSignoffRow', 'returnFileRow', 'downloadFile', 'deleteFile'));
-		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array_merge($authorOperations, array('addUser', 'saveAddUser', 'getCopyeditUserAutocomplete', 'deleteUser')));
+		$this->addRoleAssignment(
+			ROLE_ID_AUTHOR,
+			$authorOperations = array(
+				'fetchGrid', 'addCopyeditedFile', 'editCopyeditedFile', 'uploadCopyeditedFile',
+				'returnSignoffRow', 'returnFileRow', 'downloadFile', 'deleteFile'
+			)
+		);
+		$this->addRoleAssignment(
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
+			array_merge(
+				$authorOperations,
+				array(
+					'addUser', 'saveAddUser', 'getCopyeditUserAutocomplete', 'deleteUser'
+				)
+			)
+		);
 	}
 
 	//
@@ -67,6 +79,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		// Grab the copyediting files to display as categories
+		import('classes.monograph.MonographFile');
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);

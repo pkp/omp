@@ -19,11 +19,12 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 	/**
 	 * Constructor
 	 * @param $dataProvider GridDataProvider
+	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 * @param $capabilities integer A bit map with zero or more
 	 *  FILE_GRID_* capabilities set.
 	 */
-	function SelectableFileListGridHandler($dataProvider, $capabilities) {
-		parent::FileListGridHandler($dataProvider, $capabilities);
+	function SelectableFileListGridHandler($dataProvider, $stageId, $capabilities) {
+		parent::FileListGridHandler($dataProvider, $stageId, $capabilities);
 	}
 
 

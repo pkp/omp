@@ -20,9 +20,11 @@ import('controllers.wizard.fileUpload.form.SubmissionFilesMetadataForm');
 class SubmissionFilesArtworkMetadataForm extends SubmissionFilesMetadataForm {
 	/**
 	 * Constructor.
+	 * @param $submissionFile SubmissionFile
+	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 */
-	function SubmissionFilesArtworkMetadataForm(&$submissionFile) {
-		parent::SubmissionFilesMetadataForm(&$submissionFile);
+	function SubmissionFilesArtworkMetadataForm(&$submissionFile, $stageId) {
+		parent::SubmissionFilesMetadataForm(&$submissionFile, $stageId);
 	}
 
 

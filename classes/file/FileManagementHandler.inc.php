@@ -43,11 +43,9 @@ class FileManagementHandler extends Handler {
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		// FIXME: Requires file level authorization policy.
-		import('classes.monograph.MonographFile');
-		$workflowStage = MonographFile::fileStageToWorkflowStage((int)$request->getUserVar('fileStage'));
-
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
-		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $workflowStage));
+		$stageId = (int)$request->getUserVar('stageId');
+		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
@@ -74,6 +72,14 @@ class FileManagementHandler extends Handler {
 	 */
 	function &getMonograph() {
 		return $this->_monograph;
+	}
+
+	/**
+	 * Get the authorized workflow stage.
+	 * @return integer One of the WORKFLOW_STAGE_ID_* constants.
+	 */
+	function getStageId() {
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 	}
 
 	/**

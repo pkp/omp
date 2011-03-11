@@ -15,18 +15,25 @@
 import('lib.pkp.classes.form.Form');
 
 class SubmissionFilesMetadataForm extends Form {
+
 	/** @var SubmissionFile */
 	var $_submissionFile;
+
+	/** @var integer */
+	var $_stageId;
+
 
 	/**
 	 * Constructor.
 	 * @param $submissionFile SubmissionFile
+	 * @param $stageId integer One of the WORKFLOW_STAGE_ID_* constants.
 	 */
-	function SubmissionFilesMetadataForm(&$submissionFile) {
+	function SubmissionFilesMetadataForm(&$submissionFile, $stageId) {
 		parent::Form('controllers/wizard/fileUpload/form/metadataForm.tpl');
 
 		// Initialize the object.
 		$this->_submissionFile =& $submissionFile;
+		$this->_stageId = $stageId;
 
 		// Add validation checks.
 		$this->addCheck(new FormValidator($this, 'name', 'required', 'user.profile.form.lastNameRequired'));
@@ -43,6 +50,14 @@ class SubmissionFilesMetadataForm extends Form {
 	 */
 	function &getSubmissionFile() {
 		return $this->_submissionFile;
+	}
+
+	/**
+	 * Get the workflow stage id.
+	 * @return integer
+	 */
+	function getStageId() {
+		return $this->_stageId;
 	}
 
 
@@ -72,6 +87,9 @@ class SubmissionFilesMetadataForm extends Form {
 		// Submission file.
 		$submissionFile =& $this->getSubmissionFile();
 		$templateMgr->assign('submissionFile', $submissionFile);
+
+		// Workflow stage.
+		$templateMgr->assign('stageId', $this->getStageId());
 
 		// Note attached to the file.
 		$noteDao =& DAORegistry::getDAO('NoteDAO'); /* @var $noteDao NoteDAO */

@@ -232,35 +232,6 @@ class MonographFile extends SubmissionFile {
 
 
 	//
-	// Public helper methods
-	//
-	/**
-	 * Identify the workflow stage associated
-	 * with a file stage code.
-	 * @param $fileStage
-	 */
-	function fileStageToWorkflowStage($fileStage) {
-		// FIXME: We need to join the two review workflow stages into one, see #6244.
-		static $fileStageToWorkflowStage = array(
-				MONOGRAPH_FILE_PUBLIC => null,
-				MONOGRAPH_FILE_SUBMISSION => WORKFLOW_STAGE_ID_SUBMISSION,
-				MONOGRAPH_FILE_NOTE => null,
-				MONOGRAPH_FILE_REVIEW => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
-				MONOGRAPH_FILE_ATTACHMENT => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
-				MONOGRAPH_FILE_FINAL => WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
-				MONOGRAPH_FILE_FAIR_COPY => WORKFLOW_STAGE_ID_EDITING,
-				MONOGRAPH_FILE_EDITOR => WORKFLOW_STAGE_ID_EDITING,
-				MONOGRAPH_FILE_COPYEDIT => WORKFLOW_STAGE_ID_EDITING,
-				MONOGRAPH_FILE_PRODUCTION => WORKFLOW_STAGE_ID_PRODUCTION,
-				MONOGRAPH_FILE_GALLEY => WORKFLOW_STAGE_ID_PRODUCTION,
-				MONOGRAPH_FILE_LAYOUT => WORKFLOW_STAGE_ID_PRODUCTION);
-
-		assert(isset($fileStageToWorkflowStage[$fileStage]));
-		return $fileStageToWorkflowStage[$fileStage];
-	}
-
-
-	//
 	// Private helper methods
 	//
 	/**
