@@ -92,41 +92,17 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 		return $row;
 	}
 
+	/**
+	 * @see GridHandler::getFilterForm()
+	 */
+	function getFilterForm() {
+		return 'controllers/grid/users/user/userEnrollmentGridFilter.tpl';
+	}
+
 
 	//
 	// Public grid actions
 	//
-	/**
-	 * List all site users based on optional search criteria
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function fetchGrid($args, &$request) {
-		// Get the search terms
-		$searchField = $request->getUserVar('searchField');
-		$searchMatch = $request->getUserVar('searchMatch');
-		$search = $request->getUserVar('search');
-
-		// Get all users for this site that match search criteria
-		$userDao =& DAORegistry::getDAO('UserDAO');
-		$rangeInfo = $this->getRangeInfo('users');
-		$users =& $userDao->getUsersByField(
-			$searchField,
-			$searchMatch,
-			$search,
-			true,
-			$rangeInfo
-		);
-
-		$rowData = array();
-		while ($user =& $users->next()) {
-			$rowData[$user->getId()] = $user;
-		}
-		$this->setData($rowData);
-
-		return GridHandler::fetchGrid($args, $request);
-	}
-
 	/**
 	 * Enroll a user
 	 * @param $args array

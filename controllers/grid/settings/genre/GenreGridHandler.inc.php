@@ -188,7 +188,7 @@ class GenreGridHandler extends SetupGridHandler {
 	 */
 	function deleteGenre($args, &$request) {
 		// Identify the Genre to be deleted
-		$genre =& $this->_getGenreFromArgs($args);
+		$genre =& $this->_getGenreFromArgs($request, $args);
 
 		$genreDao =& DAORegistry::getDAO('GenreDAO');
 		$result = $genreDao->deleteObject($genre);
@@ -248,13 +248,13 @@ class GenreGridHandler extends SetupGridHandler {
 	* @param $args array
 	* @return Genre
 	*/
-	function &_getGenreFromArgs($args) {
+	function &_getGenreFromArgs($request, $args) {
 		// Identify the Genre Id and retrieve the
 		// corresponding element from the grid's data source.
 		if (!isset($args['genreId'])) {
 			fatalError('Missing Genre Id!');
 		} else {
-			$genre =& $this->getRowDataElement($args['genreId']);
+			$genre =& $this->getRowDataElement($request, $args['genreId']);
 			if (is_null($genre)) fatalError('Invalid Genre Id!');
 		}
 		return $genre;

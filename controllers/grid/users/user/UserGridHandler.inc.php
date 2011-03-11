@@ -24,11 +24,12 @@ class UserGridHandler extends GridHandler {
 	 */
 	function UserGridHandler() {
 		parent::GridHandler();
-		$this->addRoleAssignment(
-				array(ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'editUser', 'updateUser', 'updateUserRoles',
-						'editDisableUser', 'disableUser', 'removeUser', 'addUser',
-						'editEmail', 'sendEmail', 'suggestUsername'));
+		$this->addRoleAssignment(array(
+			ROLE_ID_PRESS_MANAGER),
+			array('fetchGrid', 'editUser', 'updateUser', 'updateUserRoles',
+				'editDisableUser', 'disableUser', 'removeUser', 'addUser',
+				'editEmail', 'sendEmail', 'suggestUsername')
+		);
 	}
 
 
@@ -112,7 +113,7 @@ class UserGridHandler extends GridHandler {
 
 
 	//
-	// Implement template methods from GridHandler
+	// Implement methods from GridHandler
 	//
 	/**
 	 * @see GridHandler::getRowInstance()
@@ -123,35 +124,25 @@ class UserGridHandler extends GridHandler {
 		return $row;
 	}
 
-
-	//
-	// Public grid actions
-	//
 	/**
-	 * List users based on optional search criteria
-	 * @param $args array
+	 * @see GridHandler::loadData()
 	 * @param $request PKPRequest
+	 * @return array Grid data.
 	 */
-	function fetchGrid($args, &$request) {
+	function loadData($request, $filter) {
 		// Get the press
 		$press =& $request->getPress();
 		$pressId = $press->getId();
-
-		// Get the search terms
-		$userGroup = $request->getUserVar('userGroup') ? $request->getUserVar('userGroup') : null;
-		$searchField = $request->getUserVar('searchField');
-		$searchMatch = $request->getUserVar('searchMatch');
-		$search = $request->getUserVar('search');
 
 		// Get all users for this press that match search criteria
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$rangeInfo = $this->getRangeInfo('users');
 		$users =& $userGroupDao->getUsersById(
-			$userGroup,
+			$filter['userGroup'],
 			$pressId,
-			$searchField,
-			$search,
-			$searchMatch,
+			$filter['searchField'],
+			$filter['search'],
+			$filter['searchMatch'],
 			$rangeInfo
 		);
 
@@ -159,26 +150,23 @@ class UserGridHandler extends GridHandler {
 		while ($user =& $users->next()) {
 			$rowData[$user->getId()] = $user;
 		}
-		$this->setData($rowData);
 
-		// Render the filter form.
-		// FIXME: Bruno - this is just copied code so that I could test the grid
-		// with the form. You know how and where to do that correctly, right? ;-)
+		return $rowData;
+	}
 
-		// Re-add the search data to the form.
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('userGroup', $userGroup);
-		$templateMgr->assign('searchField', $searchField);
-		$templateMgr->assign('searchMatch', $searchMatch);
-		$templateMgr->assign('search', $search);
-
+	/**
+	 * @see GridHandler::renderFilter()
+	 */
+	function renderFilter($request) {
+		$press =& $request->getPress();
+		$pressId = $press->getId();
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$userGroups =& $userGroupDao->getByContextId($press->getId());
 		$userGroupOptions = array('' => Locale::translate('grid.user.allRoles'));
 		while (!$userGroups->eof()) {
 			$userGroup =& $userGroups->next();
 			$userGroupOptions[$userGroup->getId()] = $userGroup->getLocalizedName();
 		}
-		$templateMgr->assign_by_ref('userGroupOptions', $userGroupOptions);
 
 		// Import PKPUserDAO to define the USER_FIELD_* constants.
 		import('lib.pkp.classes.user.PKPUserDAO');
@@ -188,21 +176,52 @@ class UserGridHandler extends GridHandler {
 			USER_FIELD_USERNAME => 'user.username',
 			USER_FIELD_EMAIL => 'user.email'
 		);
-		$templateMgr->assign('fieldOptions', $fieldOptions);
 
 		$matchOptions = array(
 			'contains' => 'form.contains',
 			'is' => 'form.is'
 		);
-		$templateMgr->assign('matchOptions', $matchOptions);
 
-		// Render the filter.
-		$gridFilterForm = $templateMgr->fetch('controllers/grid/users/user/userGridFilter.tpl');
-		$templateMgr->assign('gridFilterForm', $gridFilterForm);
+		$filterData = array(
+			'userGroupOptions' => $userGroupOptions,
+			'fieldOptions' => $fieldOptions,
+			'matchOptions' => $matchOptions
+		);
 
-		return parent::fetchGrid($args, $request);
+		return parent::renderFilter($request, $filterData);
 	}
 
+	/**
+	 * @see GridHandler::getFilterSelectionData()
+	 * @return array Filter selection data.
+	 */
+	function getFilterSelectionData($request) {
+		// Get the search terms
+		$userGroup = $request->getUserVar('userGroup') ? (int)$request->getUserVar('userGroup') : null;
+		$searchField = $request->getUserVar('searchField');
+		$searchMatch = $request->getUserVar('searchMatch');
+		$search = $request->getUserVar('search');
+
+		return $filterSelectionData = array(
+			'userGroup' => $userGroup,
+			'searchField' => $searchField,
+			'searchMatch' => $searchMatch,
+			'search' => $search
+		);
+	}
+
+	/**
+	 * @see GridHandler::getFilterForm()
+	 * @return string Filter template.
+	 */
+	function getFilterForm() {
+		return 'controllers/grid/users/user/userGridFilter.tpl';
+	}
+
+
+	//
+	// Public grid actions
+	//
 	/**
 	 * Get a suggested username, making sure it's not
 	 * already used by the system. (Poor-man's AJAX.)
