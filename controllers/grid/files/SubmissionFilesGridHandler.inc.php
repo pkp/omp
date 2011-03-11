@@ -162,10 +162,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 			)
 		);
 
-		// Populate the grid with data.
-		$dataProvider =& $this->getDataProvider();
-		$this->setGridDataElements($dataProvider->getRowData());
-
 		// The file name column is common to all file grid types.
 		$this->addColumn(new FileNameGridColumn($this->getStageId()));
 	}
@@ -174,6 +170,15 @@ class SubmissionFilesGridHandler extends GridHandler {
 	//
 	// Overridden methods from GridHandler
 	//
+	/**
+	 * @see GridHandler::loadData()
+	 */
+	function &loadData($request, $filter) {
+		// Populate the grid with data.
+		$dataProvider =& $this->getDataProvider();
+		return $dataProvider->loadData();
+	}
+
 	/**
 	 * @see GridHandler::getRowInstance()
 	 */

@@ -31,7 +31,7 @@ class ReviewFilesGridDataProvider extends ReviewGridDataProvider {
 	/**
 	 * @see GridDataProvider::loadData()
 	 */
-	function getRowData() {
+	function &loadData() {
 		// Get all review files assigned to this submission.
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
