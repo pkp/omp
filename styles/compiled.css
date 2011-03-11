@@ -935,6 +935,7 @@ strong {
   float:right;
   margin:4px 0 4px 10px;
 }
+.pkp_helpers_container_center { margin:0 auto; }
 .pkp_helpers_debug, .pkp_helpers_debug div {
   border:1px dashed red;
   padding:2px;
@@ -1296,8 +1297,6 @@ div.pkp_controllers_grid a.task {
   display:block;
   background-position:50% 50%;
   background-repeat:no-repeat;
-  margin:0;
-  padding:0;
 }
 div.pkp_controllers_grid tr.alternate_row, div.pkp_controllers_grid tr.alternate_row .row_file { background-color:#f5f5f5; }
 div.pkp_controllers_grid th {
@@ -1349,6 +1348,11 @@ div.pkp_controllers_grid .my_role {
 .pkp_controllers_grid a.overdue { background-image:url(../lib/pkp/templates/images/structure/grid_email_overdue.png); }
 .pkp_controllers_grid a.notify { background-image:url(../lib/pkp/templates/images/structure/grid_email.png); }
 .pkp_controllers_grid a.uploaded { background-image:url(../lib/pkp/templates/images/structure/grid_folder.png); }
+.pkp_controllers_grid div.checked {
+  background-image:url(../lib/pkp/templates/images/structure/grid_promote.png);
+  height:15px;
+  width:15px;
+}
 .pkp_controllers_grid_files .pkp_controllers_grid_files_possibleRevision {
   padding:10px;
   margin:10px;

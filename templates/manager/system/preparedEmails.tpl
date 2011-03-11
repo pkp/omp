@@ -9,6 +9,7 @@
 {assign var="pageTitle" value="manager.system.preparedEmails"}
 {include file="manager/system/systemHeader.tpl"}
 
-<div class="pkp_helpers_clear">&nbsp;</div>
+{url|assign:preparedEmailsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.preparedEmails.preparedEmailsGridHandler" op="fetchGrid"}
+{load_url_in_div id="preparedEmailsGridDiv" url=$preparedEmailsGridUrl}
 
 {include file="common/footer.tpl"}

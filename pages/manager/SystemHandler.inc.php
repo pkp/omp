@@ -53,7 +53,6 @@ class SystemHandler extends ManagerHandler {
 	 */
 	function languages($args, &$request) {
 		$this->setupTemplate(true);
-		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentPage', 'languages');
@@ -67,7 +66,6 @@ class SystemHandler extends ManagerHandler {
 	 */
 	function preparedEmails($args, &$request) {
 		$this->setupTemplate(true);
-		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentPage', 'preparedEmails');
@@ -81,7 +79,6 @@ class SystemHandler extends ManagerHandler {
 	 */
 	function reviewForms($args, &$request) {
 		$this->setupTemplate(true);
-		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentPage', 'reviewForms');
@@ -95,7 +92,6 @@ class SystemHandler extends ManagerHandler {
 	 */
 	function readingTools($args, &$request) {
 		$this->setupTemplate(true);
-		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentPage', 'readingTools');
@@ -109,7 +105,6 @@ class SystemHandler extends ManagerHandler {
 	 */
 	function payments($args, &$request) {
 		$this->setupTemplate(true);
-		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentPage', 'payments');
@@ -123,7 +118,6 @@ class SystemHandler extends ManagerHandler {
 	 */
 	function plugins($args, &$request) {
 		$this->setupTemplate(true);
-		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentPage', 'plugins');
@@ -137,7 +131,6 @@ class SystemHandler extends ManagerHandler {
 	 */
 	function archiving($args, &$request) {
 		$this->setupTemplate(true);
-		$press =& $request->getPress();
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('currentPage', 'archiving');

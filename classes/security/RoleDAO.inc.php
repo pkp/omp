@@ -226,34 +226,32 @@ class RoleDAO extends DAO {
 
 	/**
 	 * Get a mapping of role keys and i18n key names.
+	 * @param boolean $pressOnly If false, also returns site-level roles (Site admin)
+	 * @param array $roleIds Only return role names of these IDs
 	 * @return array
 	 */
-	function getRoleNames() {
-		$roleNames = array(
-			ROLE_ID_SITE_ADMIN => 'user.role.siteAdmin',
+	function getRoleNames($pressOnly = false, $roleIds = null) {
+		$siteRoleNames = array(ROLE_ID_SITE_ADMIN => 'user.role.siteAdmin');
+		$pressRoleNames = array(
 			ROLE_ID_PRESS_MANAGER => 'user.role.manager',
 			ROLE_ID_SERIES_EDITOR => 'user.role.seriesEditor',
 			ROLE_ID_PRESS_ASSISTANT => 'user.role.pressAssistant',
 			ROLE_ID_AUTHOR => 'user.role.author',
 			ROLE_ID_REVIEWER => 'user.role.reviewer'
 		);
-		return $roleNames;
+		$roleNames = $pressOnly ? $pressRoleNames : $siteRoleNames + $pressRoleNames;
+
+		if(!empty($roleIds)) {
+			$returner = array();
+			foreach($roleIds as $roleId) {
+				if(isset($roleNames[$roleId])) $returner[$roleId] = $roleNames[$roleId];
+			}
+			return $returner;
+		} else {
+			return $roleNames;
+		}
 	}
 
-	/**
-	 * Get a mapping of role keys and i18n key names for a press context.
-	 * @return array
-	 */
-	function getPressRoleNames() {
-		$roleNames = array(
-			ROLE_ID_PRESS_MANAGER => 'user.role.manager',
-			ROLE_ID_SERIES_EDITOR => 'user.role.seriesEditor',
-			ROLE_ID_PRESS_ASSISTANT => 'user.role.pressAssistant',
-			ROLE_ID_AUTHOR => 'user.role.author',
-			ROLE_ID_REVIEWER => 'user.role.reviewer'
-		);
-		return $roleNames;
-	}
 }
 
 ?>
