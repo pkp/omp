@@ -43,35 +43,27 @@ class MonographFileManager extends FileManager {
 	 * @param $monographId integer
 	 * @param $fileName string the name of the file used in the POST form
 	 * @param $fileStage int monograph file workflow stage
+	 * @param $uploaderUserGroupId int The id of the user group that the uploader acted in
+	 *  when uploading the file.
 	 * @param $revisedFileId int
 	 * @param $genreId int (e.g. Manusciprt, Appendix, etc.)
 	 * @return MonographFile
 	 */
-	function &uploadMonographFile($monographId, $fileName, $fileStage, $revisedFileId = null, $genreId = null) {
-		return MonographFileManager::_handleUpload($monographId, $fileName, $fileStage, $revisedFileId, $genreId);
-	}
-
-	/**
-	 * Upload a file to the review file folder.
-	 * @param $monographId integer
-	 * @param $fileName string the name of the file used in the POST form
-	 * @param $revisedFileId int
-	 * @return MonographFile
-	 */
-	function &uploadReviewFile($monographId, $fileName, $revisedFileId = null, $reviewId = null) {
-		$assocType = $reviewId ? ASSOC_TYPE_REVIEW_ASSIGNMENT : null;
-		return MonographFileManager::_handleUpload($monographId, $fileName, MONOGRAPH_FILE_REVIEW, $revisedFileId, null, $reviewId, $assocType);
+	function &uploadMonographFile($monographId, $fileName, $fileStage, $uploaderUserGroupId, $revisedFileId = null, $genreId = null) {
+		return MonographFileManager::_handleUpload($monographId, $fileName, $fileStage, $uploaderUserGroupId, $revisedFileId, $genreId);
 	}
 
 	/**
 	 * Upload a copyedited file to the copyedit file folder.
 	 * @param $monographId integer
 	 * @param $fileName string the name of the file used in the POST form
+	 * @param $uploaderUserGroupId int The id of the user group that the uploader acted in
+	 *  when uploading the file.
 	 * @param $revisedFileId int
 	 * @return MonographFile
 	 */
-	function &uploadCopyeditResponseFile($monographId, $fileName, $revisedFileId = null) {
-		return MonographFileManager::_handleUpload($monographId, $fileName, MONOGRAPH_FILE_COPYEDIT_RESPONSE, $revisedFileId);
+	function &uploadCopyeditResponseFile($monographId, $fileName, $uploaderUserGroupId, $revisedFileId = null) {
+		return MonographFileManager::_handleUpload($monographId, $fileName, MONOGRAPH_FILE_COPYEDIT_RESPONSE, $uploaderUserGroupId, $revisedFileId);
 	}
 
 	/**
@@ -211,13 +203,15 @@ class MonographFileManager extends FileManager {
 	 * @param $monographId integer
 	 * @param $fileName string index into the $_FILES array
 	 * @param $fileStage int monograph file stage (one of the MONOGRAPH_FILE_* constants)
+	 * @param $uploaderUserGroupId int The id of the user group that the uploader acted in
+	 *  when uploading the file.
 	 * @param $revisedFileId int ID of an existing file to revise
 	 * @param $genreId int foreign key into genres table (e.g. manuscript, etc.)
 	 * @param $assocType int
 	 * @param $assocId int
 	 * @return MonographFile the uploaded monograph file or null if an error occured.
 	 */
-	function &_handleUpload($monographId, $fileName, $fileStage, $revisedFileId = null, $genreId = null, $assocId = null, $assocType = null) {
+	function &_handleUpload($monographId, $fileName, $fileStage, $uploaderUserGroupId, $revisedFileId = null, $genreId = null, $assocId = null, $assocType = null) {
 		$nullVar = null;
 
 		// Ensure that the file has been correctly uploaded to the server.
@@ -241,10 +235,7 @@ class MonographFileManager extends FileManager {
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($originalFileName));
 
 		// Set the uploader's user group id.
-		// FIXME: Setting a temporary user group here until #6231 is fixed.
-		// This is necessary so that we can already remove the user-group
-		// attribute from the session.
-		$monographFile->setUserGroupId(1);
+		$monographFile->setUserGroupId($uploaderUserGroupId);
 
 		// Copy the uploaded file to its final destination and
 		// persist its meta-data to the database.

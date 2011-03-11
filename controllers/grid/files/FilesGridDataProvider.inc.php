@@ -17,11 +17,38 @@ import('lib.pkp.classes.controllers.grid.GridDataProvider');
 
 class FilesGridDataProvider extends GridDataProvider {
 
+	/* @var integer */
+	var $_uploaderRoles;
+
+
 	/**
 	 * Constructor
 	 */
 	function FilesGridDataProvider() {
 		parent::GridDataProvider();
+	}
+
+
+	//
+	// Getters and Setters
+	//
+	/**
+	 * Set the uploder roles.
+	 * @param $roleAssignments array The grid's
+	 *  role assignment from which the uploader roles
+	 *  will be extracted.
+	 */
+	function setUploaderRoles($roleAssignments) {
+		$this->_uploaderRoles = array_keys($roleAssignments);
+	}
+
+	/**
+	 * Get the uploader roles.
+	 * @return array
+	 */
+	function getUploaderRoles() {
+		assert(is_array($this->_uploaderRoles) && !empty($this->_uploaderRoles));
+		return $this->_uploaderRoles;
 	}
 
 

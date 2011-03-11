@@ -29,6 +29,9 @@ define('SUBMISSION_MIN_SIMILARITY_OF_REVISION', 70);
 
 class FileUploadWizardHandler extends FileManagementHandler {
 
+	/** @var array */
+	var $_uploaderRoles;
+
 	/** @var boolean */
 	var $_revisionOnly;
 
@@ -62,6 +65,17 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	function initialize(&$request, $args) {
 		parent::initialize($request, $args);
 
+		// Set the uploader roles (if given).
+		$uploaderRoles = $request->getUserVar('uploaderRoles');
+		if (!is_null($uploaderRoles)) {
+			$this->_uploaderRoles = array();
+			$uploaderRoles = explode('-', $uploaderRoles);
+			foreach($uploaderRoles as $uploaderRole) {
+				if (!is_numeric($uploaderRole)) fatalError('Invalid uploader role!');
+				$this->_uploaderRoles[] = (int)$uploaderRole;
+			}
+		}
+
 		// Do we allow revisions only?
 		$this->_revisionOnly = (boolean)$request->getUserVar('revisionOnly');
 		$this->_reviewType = $request->getUserVar('reviewType') ? (int)$request->getUserVar('reviewType') : null;
@@ -80,6 +94,15 @@ class FileUploadWizardHandler extends FileManagementHandler {
 	//
 	// Getters and Setters
 	//
+	/**
+	 * Get the uploader roles.
+	 * @return array
+	 */
+	function getUploaderRoles() {
+		assert(!is_null($this->_uploaderRoles));
+		return $this->_uploaderRoles;
+	}
+
 	/**
 	 * Does this uploader only allow revisions and no new files?
 	 * @return boolean
@@ -131,6 +154,9 @@ class FileUploadWizardHandler extends FileManagementHandler {
 
 		// Assign the workflow stage.
 		$templateMgr->assign('stageId', $this->getStageId());
+
+		// Assign the roles allowed to upload in the given context.
+		$templateMgr->assign('uploaderRoles', implode('-', $this->getUploaderRoles()));
 
 		// Assign the file stage.
 		$templateMgr->assign('fileStage', $this->getFileStage());

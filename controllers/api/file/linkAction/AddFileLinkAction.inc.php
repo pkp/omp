@@ -27,6 +27,8 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 	 * @param $stageId integer The workflow stage in which the file
 	 *  uploader is being instantiated (one of the WORKFLOW_STAGE_ID_*
 	 *  constants).
+	 * @param $uploaderRoles array The ids of all roles allowed to upload
+	 *  in the context of this action.
 	 * @param $fileStage integer The file stage the file should be
 	 *  uploaded to (one of the MONOGRAPH_FILE_* constants).
 	 * @param $assocType integer The type of the element the file should
@@ -47,20 +49,11 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 		// Identify text labels based on the file stage.
 		$textLabels = AddFileLinkAction::_getTextLabels($fileStage);
 
-		// Instantiate the file upload modal.
-		$dispatcher =& $request->getDispatcher();
-		import('lib.pkp.classes.linkAction.request.WizardModal');
-		$modal = new WizardModal(
-			$dispatcher->url(
-				$request, ROUTE_COMPONENT, null,
-				'wizard.fileUpload.FileUploadWizardHandler', 'startWizard',
-				null, $actionArgs
-			),
-			__($textLabels['wizardTitle']), 'fileManagement'
+		// Call the parent class constructor.
+		parent::BaseAddFileLinkAction(
+			$request, $monographId, $stageId, $uploaderRoles, $actionArgs,
+			__($textLabels['wizardTitle']), __($textLabels['buttonLabel'])
 		);
-
-		// Configure the link action.
-		parent::LinkAction('addFile', $modal, __($textLabels['buttonTitle']), 'add');
 	}
 
 

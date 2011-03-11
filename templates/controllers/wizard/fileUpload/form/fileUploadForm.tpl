@@ -9,6 +9,9 @@
  * Parameters:
  *   $monographId: The monograph for which a file is being uploaded.
  *   $stageId: The workflow stage in which the file uploader was called.
+ *   $uploaderUserGroups: An array of user groups that are allowed
+ *    to upload.
+ *   $defaultUserGroupId: A pre-selected user group (optional).
  *   $revisionOnly: Whether the user can upload new files or not.
  *   $revisedFileId: The id of the file to be revised (optional).
  *    When set to a number then the user may not choose the file
@@ -134,6 +137,14 @@
 
 <form id="uploadForm" action="#" method="post">
 	{fbvFormArea id="file"}
+		{if count($uploaderUserGroups) > 1}
+			{fbvFormSection title="submission.uploaderUserGroup" required=true}
+				{fbvSelect name="uploaderUserGroupId" id="uploaderUserGroupId" from=$uploaderUserGroups selected=$defaultUserGroupId translate=false} <br />
+			{/fbvFormSection}
+		{else}
+			<input type="hidden" id="uploaderUserGroupId" name="uploaderUserGroupId" value="{$uploaderUserGroups|@key}" />
+		{/if}
+
 		{if $showFileNameOnly}
 			{fbvFormSection title="submission.submit.currentFile"}
 				{$revisedFileName}

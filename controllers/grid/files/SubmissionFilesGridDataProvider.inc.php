@@ -45,6 +45,8 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	 * @see GridDataProvider::getAuthorizationPolicy()
 	 */
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
+		$this->setUploaderRoles($roleAssignments);
+
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$policy = new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $this->_getStageId());
 		return $policy;
