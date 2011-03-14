@@ -39,11 +39,12 @@
 			prototype.handleResponse = function(formElement, jsonData) {
 
 		if (jsonData.status === true) {
-			// Trigger the note added event.
+			// Trigger the note added event; stop propagation.
 			this.trigger('refreshNoteList');
+		} else {
+			this.parent('handleResponse', formElement, jsonData);
 		}
-
-		this.parent('handleResponse', formElement, jsonData);
+		return jsonData.status;
 	};
 
 
