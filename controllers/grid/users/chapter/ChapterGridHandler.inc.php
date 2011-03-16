@@ -95,7 +95,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 
 		// Set the category data
 		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
-		$chapters =& $chapterDao->getChaptersWithAuthors($monographId);
+		$chapters =& $chapterDao->getChapters($monographId);
 		$this->setGridDataElements($chapters);
 
 		// Grid actions

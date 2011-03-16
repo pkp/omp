@@ -79,20 +79,10 @@ class Chapter extends DataObject {
 	 * Get all authors of this chapter.
 	 * @return array Authors
 	 */
-	function setAuthors(&$authors) {
-		$this->setData('authors', $authors);
-	}
-
-	/**
-	 * Get all authors of this chapter.
-	 * @return array Authors
-	 */
 	function &getAuthors() {
-		$authors = $this->getData('authors');
-		if ( $authors ) return $authors;
-		// else
 		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO'); /* @var $chapterAuthorDao ChapterAuthorDAO */
-		return $chapterAuthorDao->getAuthors($this->getMonographId(), $this->getId());
+		$returner =& $chapterAuthorDao->getAuthors($this->getMonographId(), $this->getId());
+		return $returner;
 	}
 }
 
