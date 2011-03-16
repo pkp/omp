@@ -24,6 +24,7 @@ import('controllers.grid.users.chapter.ChapterGridCategoryRow');
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
 class ChapterGridHandler extends CategoryGridHandler{
+
 	/** @var Monograph */
 	var $_monograph;
 
@@ -37,8 +38,9 @@ class ChapterGridHandler extends CategoryGridHandler{
 				array('fetchGrid', 'fetchCategory', 'addChapter', 'editChapter', 'updateChapter', 'deleteChapter'));
 	}
 
+
 	//
-	// Getters/Setters
+	// Getters and Setters
 	//
 	/**
 	 * Get the monograph associated with this chapter grid.
@@ -72,7 +74,7 @@ class ChapterGridHandler extends CategoryGridHandler{
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	/*
+	/**
 	 * Configure the grid
 	 * @param $request PKPRequest
 	 */
@@ -166,15 +168,28 @@ class ChapterGridHandler extends CategoryGridHandler{
 		return $row;
 	}
 
+
+	//
+	// Implement template methods from CategoryGridHandler
+	//
+	/**
+	 * @see CategoryGridHandler::getCategoryData()
+	 */
 	function getCategoryData(&$chapter) {
 		$authorFactory =& $chapter->getAuthors(); /* @var $authorFactory DAOResultFactory */
 		$authors = $authorFactory->toAssociativeArray();
 		return $authors;
 	}
 
+
 	//
 	// Public Chapter Grid Actions
 	//
+	/**
+	 * Add a chapter.
+	 * @param $args array
+	 * @param $request Request
+	 */
 	function addChapter($args, &$request) {
 		// Calling editChapter() with an empty row id will add
 		// a new chapter.

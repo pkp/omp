@@ -91,7 +91,7 @@ class Chapter extends DataObject {
 		$authors = $this->getData('authors');
 		if ( $authors ) return $authors;
 		// else
-		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
+		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO'); /* @var $chapterAuthorDao ChapterAuthorDAO */
 		return $chapterAuthorDao->getAuthors($this->getMonographId(), $this->getId());
 	}
 }

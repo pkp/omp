@@ -24,8 +24,9 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	function UserUserGroupListbuilderHandler() {
 		parent::ListbuilderHandler();
 		$this->addRoleAssignment(
-				ROLE_ID_PRESS_MANAGER,
-				array('fetch', 'addItem', 'deleteItems'));
+			ROLE_ID_PRESS_MANAGER,
+			array('fetch', 'addItem', 'deleteItems')
+		);
 	}
 
 
@@ -107,9 +108,11 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		// $userGroupId is not empty
 		// $userGroupId is valid for this press
 		// user group assignment does not already exist
-		if (empty($userGroupId)
-				|| !$userGroupDao->contextHasGroup($press->getId(), $userGroupId)
-				|| $userGroupDao->userInGroup($press->getId(), $userId, $userGroupId)) {
+		if (
+			empty($userGroupId) ||
+			!$userGroupDao->contextHasGroup($press->getId(), $userGroupId) ||
+			$userGroupDao->userInGroup($press->getId(), $userId, $userGroupId)
+		) {
 			$json = new JSON(false, Locale::translate('common.listbuilder.selectValidOption'));
 			return $json->getString();
 		} else {
@@ -143,7 +146,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 
 		$userIndex = 'additionalData-' . $this->getId() . '-userId';
 		$userId = (int) $args[$userIndex];
-		unset($args[$userIndex]);
+		// FIXME: authorize userId before deleting it!
 
 		foreach($args as $userGroupId) {
 			$userGroupDao->removeUserFromGroup($userId, (int) $userGroupId);

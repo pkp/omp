@@ -26,8 +26,7 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 	 * @extends $.pkp.controllers.form.FormHandler
 	 *
 	 * @param {jQuery} $form the wrapped HTML form element.
-	 * @param {Object} options options to be passed
-	 *  into the validator plug-in.
+	 * @param {Object} options form options.
 	 */
 	$.pkp.controllers.modals.editorDecision.form.EditorDecisionFormHandler =
 			function($form, options) {
@@ -35,7 +34,7 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 		this.parent($form, options);
 
 		this.peerReviewUrl_ = options.peerReviewUrl;
-		$('#importPeerReviews', $form).bind('click',
+		$('#importPeerReviews', $form).click(
 				this.callbackWrapper(this.importPeerReviews));
 	};
 	$.pkp.classes.Helper.inherits(
