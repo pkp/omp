@@ -205,7 +205,6 @@ form li div label .currently { display:none; }
 input.text {
   font-family:"Lucida Grande", Tahoma, Arial, sans-serif;
   font-size:100%;
-  color:#333333;
   margin:0;
   padding:2px 0;
   border-top:1px solid #7c7c7c;
@@ -217,7 +216,6 @@ input.text {
 input.search {
   font-family:"Lucida Grande", Tahoma, Arial, sans-serif;
   font-size:100%;
-  color:#333333;
   margin:0;
   padding:2px 0;
   border-top:1px solid #7c7c7c;
@@ -233,14 +231,12 @@ input.search {
 input.file {
   font-family:"Lucida Grande", Tahoma, Arial, sans-serif;
   font-size:100%;
-  color:#333333;
   margin:0;
   padding:2px 0;
 }
 textarea.textarea {
   font-family:"Lucida Grande", Tahoma, Arial, sans-serif;
   font-size:100%;
-  color:#333333;
   margin:0;
   padding:2px 0;
   border-top:1px solid #7c7c7c;
@@ -253,7 +249,6 @@ textarea.textarea {
 select.select {
   font-family:"Lucida Grande", Tahoma, Arial, sans-serif;
   font-size:100%;
-  color:#333333;
   margin:0;
   padding:2px 0;
   padding:1px 0 0 0;
@@ -1243,7 +1238,6 @@ div.pkp_controllers_grid .row_container {
 div.pkp_controllers_grid .row_controls {
   background-color:#e8f0f8;
   display:none;
-  height:25px;
   line-height:25px;
   vertical-align:middle;
   overflow:hidden;
@@ -1327,9 +1321,9 @@ div.pkp_controllers_grid .pkp_controllers_grid_throbber {
   background:url(../lib/pkp/templates/images/throbber.gif) no-repeat;
   width:25px;
   height:25px;
-  margin-left:50%;
-  margin-top:5%;
+  margin:5% auto 0 auto;
 }
+div.pkp_controllers_grid .visible { display:block; }
 div.pkp_controllers_grid .group1 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_1.png) no-repeat; }
 div.pkp_controllers_grid .group2 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_2.png) no-repeat; }
 div.pkp_controllers_grid .group3 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_3.png) no-repeat; }
