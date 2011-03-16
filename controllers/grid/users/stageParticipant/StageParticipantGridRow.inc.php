@@ -15,12 +15,46 @@
 import('lib.pkp.classes.controllers.grid.GridRow');
 
 class StageParticipantGridRow extends GridRow {
+
+	/** @var integer */
+	var $_monographId;
+
+	/** @var integer */
+	var $_stageId;
+
+
 	/**
 	 * Constructor
+	 * @param $monographId integer
+	 * @param $stageId integer
 	 */
-	function StageParticipantGridRow() {
+	function StageParticipantGridRow($monographId, $stageId) {
+		$this->_monographId = (int)$monographId;
+		$this->_stageId = (int)$stageId;
+
 		parent::GridRow();
 	}
+
+
+	//
+	// Getters and Setters
+	//
+	/**
+	 * Get the monograph id.
+	 * @return integer
+	 */
+	function getMonographId() {
+		return $this->_monographId;
+	}
+
+	/**
+	 * Get the workflow stage id.
+	 * @return integer
+	 */
+	function getStageId() {
+		return $this->_stageId;
+	}
+
 
 	//
 	// Overridden methods from GridRow
@@ -33,28 +67,26 @@ class StageParticipantGridRow extends GridRow {
 		// Do the default initialization
 		parent::initialize($request);
 
-		// Retrieve the monograph id from the request
-		$monographId = $request->getUserVar('monographId');
-		assert(is_numeric($monographId));
-
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
 		if (!empty($rowId) && is_numeric($rowId)) {
-			// Only add row actions if this is an existing row
+			// Only add row actions if this is an existing row.
 			$router =& $request->getRouter();
 			$actionArgs = array(
-				'monographId' => $monographId,
+				'monographId' => $this->getMonographId(),
+				'stageId' => $this->getStageId(),
 				'signoffId' => $rowId
 			);
-
+			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'remove',
-					LINK_ACTION_MODE_CONFIRM,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'deleteStageParticipant', null, $actionArgs),
-					'grid.action.remove',
-					null,
+					new ConfirmationModal(
+						__('common.confirmDelete'),
+						__('common.delete'),
+						$router->url($request, null, null, 'deleteStageParticipant', null, $actionArgs)
+					),
+					__('grid.action.remove'),
 					'delete'
 				)
 			);

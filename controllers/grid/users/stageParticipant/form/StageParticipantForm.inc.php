@@ -9,93 +9,91 @@
  * @class StageParticipantForm
  * @ingroup controllers_grid_users_stageParticipant_form
  *
- * @brief Form for adding/editing a stageParticipant
+ * @brief Form for adding/editing a stage participant
+ * FIXME: Having a form for such a simple mark-up with is overkill, see #6505.
  */
 
 import('lib.pkp.classes.form.Form');
 
 class StageParticipantForm extends Form {
-	/** The monograph associated with the submission participant being edited **/
-	var $_monographId;
+
+	/**
+	 * @var Monograph The monograph associated with the
+	 * submission participant being edited
+	 */
+	var $_monograph;
+
+	/** @var integer */
+	var $_stageId;
+
 
 	/**
 	 * Constructor.
+	 * @param $monograph Monograph
+	 * @param $stageId integer
 	 */
-	function StageParticipantForm($monographId) {
+	function StageParticipantForm(&$monograph, $stageId) {
 		parent::Form('controllers/grid/users/stageParticipant/form/stageParticipantForm.tpl');
-		assert(is_numeric($monographId));
-		$this->_monographId = (int) $monographId;
-
-		$this->addCheck(new FormValidatorPost($this));
+		assert(is_a($monograph, 'Monograph'));
+		$this->_monograph =& $monograph;
+		$this->_stageId = (int)$stageId;
 	}
+
 
 	//
 	// Getters and Setters
 	//
 	/**
-	* Get the stageParticipant
-	* @return StageParticipant
-	*/
-	function &getStageParticipant() {
-		return $this->_stageParticipant;
-	}
-
-	/**
-	 * Get the MonographId
-	 * @return int monographId
+	 * Get the stage id.
+	 * @return int stageId
 	 */
-	function getMonographId() {
-		return $this->_monographId;
+	function getStageId() {
+		return $this->_stageId;
 	}
 
 	/**
-	 * Get the Monograph
+	 * Get the Monograph.
 	 * @return Monograph
 	 */
-	function getMonograph() {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		return $monographDao->getMonograph($this->_monographId);
+	function &getMonograph() {
+		return $this->_monograph;
 	}
 
-	//
-	// Overridden template methods
-	//
 
+	//
+	// Implement template methods from Form.
+	//
 	/**
-	 * Fetch the form.
 	 * @see Form::fetch()
 	 */
 	function fetch($request) {
+		// Assign the monograph id to the template.
 		$templateMgr =& TemplateManager::getManager();
 		$monograph =& $this->getMonograph();
+		$templateMgr->assign('monographId', $monograph->getId());
+
+		// Assign the stage id to the template.
+		$templateMgr->assign('stageId', $this->getStageId());
 
 		// Get the current possible roles for the submissions current
 		// stage. This will populate a drop-down which will reload the user
 		// listbuilder (based on the selected role).
 		$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO'); /* @var $userGroupStageAssignmentDao UserGroupStageAssignmentDAO */
-		$userGroups =& $userGroupStageAssignmentDao->getUserGroupsByStage($monograph->getPressId(), $monograph->getCurrentStageId());
-
+		$userGroups =& $userGroupStageAssignmentDao->getUserGroupsByStage($monograph->getPressId(), $this->getStageId());
 		$userGroupOptions = array();
-		while (!$userGroups->eof()) {
-			$userGroup =& $userGroups->next();
+		while ($userGroup =& $userGroups->next()) {
 			$userGroupOptions[$userGroup->getId()] = $userGroup->getLocalizedName();
 			unset($userGroup);
 		}
-		$templateMgr->assign('firstUserGroupId', key($userGroupOptions)); // Get the key of the first option to use for the pre-loaded listbuilder
 		$templateMgr->assign('userGroupOptions', $userGroupOptions);
 
-		$templateMgr->assign('monographId', $this->getMonographId());
+		// Get the key of the first option to use for the pre-loaded listbuilder.
+		if (!empty($userGroupOptions)) {
+			$templateMgr->assign('firstUserGroupId', key($userGroupOptions));
+		}
 
+		// Render the form.
 		return parent::fetch($request);
 	}
-
-	/**
-	 * Assign form data to user-submitted data.
-	 * @see Form::readInputData()
-	 */
-	function readInputData() {
-		$this->readUserVars(array('userGroupId', 'userId'));
-	}
 }
-
 ?>

@@ -17,12 +17,9 @@ import('lib.pkp.classes.controllers.grid.GridHandler');
 
 
 // import stageParticipant grid specific classes
-import('controllers.grid.users.stageParticipant.StageParticipantGridCellProvider');
 import('controllers.grid.users.stageParticipant.StageParticipantGridRow');
 
 class StageParticipantGridHandler extends GridHandler {
-	/** @var Monograph */
-	var $_monograph;
 
 	/**
 	 * Constructor
@@ -30,9 +27,12 @@ class StageParticipantGridHandler extends GridHandler {
 	function StageParticipantGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'addStageParticipant', 'editStageParticipant',
-				'saveStageParticipant', 'deleteStageParticipant'));
+			array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array(
+				'fetchGrid', 'fetchRow',
+				'addStageParticipant', 'deleteStageParticipant'
+			)
+		);
 	}
 
 
@@ -40,29 +40,27 @@ class StageParticipantGridHandler extends GridHandler {
 	// Getters/Setters
 	//
 	/**
-	 * Get the monograph associated with this stageParticipant grid.
+	 * Get the authorized monograph.
 	 * @return Monograph
 	 */
 	function getMonograph() {
-		return $this->_monograph;
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 	}
 
 	/**
-	 * Get the monograph associated with this stageParticipant grid.
-	 * @param $monograph Monograph
+	 * Get the authorized workflow stage.
+	 * @return integer
 	 */
-	function setMonograph($monograph) {
-		$this->_monograph =& $monograph;
+	function getStageId() {
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
 	}
+
 
 	//
 	// Overridden methods from PKPHandler
 	//
 	/**
 	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
 		$stageId = $request->getUserVar('stageId');
@@ -71,15 +69,11 @@ class StageParticipantGridHandler extends GridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	/*
-	 * Configure the grid
-	 * @param $request PKPRequest
+	/**
+	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-
-		// Retrieve the authorized monograph.
-		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
 
 		// Load submission-specific translations
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_PKP_USER, LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS));
@@ -87,34 +81,32 @@ class StageParticipantGridHandler extends GridHandler {
 		// Basic grid configuration
 		$this->setTitle('submission.submit.stageParticipants');
 
-		// Get the monograph id
-		$monograph =& $this->getMonograph();
-		assert(is_a($monograph, 'Monograph'));
-		$monographId = $monograph->getId();
-
-		// Retrieve the stageParticipants associated with this monograph to be displayed in the grid
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$data =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $monograph->getCurrentStageId());
-		$this->setGridDataElements($data);
-
 		// Grid actions
+		$monograph =& $this->getMonograph();
+		$monographId = $monograph->getId();
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$router =& $request->getRouter();
-		$actionArgs = array('monographId' => $monographId, 'stageId' => $monograph->getCurrentStageId());
 		$this->addAction(
-			new LegacyLinkAction(
+			new LinkAction(
 				'addStageParticipant',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_REPLACE,
-				$router->url($request, null, null, 'addStageParticipant', null, $actionArgs),
-				'submission.submit.addStageParticipant'
+				new AjaxModal(
+					$router->url(
+						$request, null, null, 'addStageParticipant', null,
+						array('monographId' => $monographId, 'stageId' => $this->getStageId())
+					),
+					__('submission.submit.addStageParticipant'),
+					'fileManagement'
+				),
+				__('submission.submit.addStageParticipant')
 			)
 		);
 
 		// Columns
-		$cellProvider = new StageParticipantGridCellProvider();
+		import('lib.pkp.classes.controllers.grid.ArrayGridCellProvider');
+		$cellProvider = new ArrayGridCellProvider();
 		$this->addColumn(
 			new GridColumn(
-				'name',
+				'userName',
 				'author.users.contributor.name',
 				null,
 				'controllers/grid/gridCell.tpl',
@@ -133,20 +125,61 @@ class StageParticipantGridHandler extends GridHandler {
 		);
 	}
 
+
 	//
 	// Overridden methods from GridHandler
 	//
 	/**
 	 * @see GridHandler::getRowInstance()
-	 * @return StageParticipantGridRow
 	 */
 	function &getRowInstance() {
-		$row = new StageParticipantGridRow();
+		$monograph =& $this->getMonograph();
+		$row = new StageParticipantGridRow($monograph->getId(), $this->getStageId());
 		return $row;
 	}
 
+	/**
+	 * @see GridHandler::loadData()
+	 */
+	function loadData($request, $filter) {
+		// Retrieve the signoffs.
+		$monograph =& $this->getMonograph();
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$signoffFactory =& $signoffDao->getAllBySymbolic(
+			'SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, $this->getStageId()
+		);
+
+		// Prepare the element list as an array with the user name
+		// and user group for each sign off.
+		$elements = array();
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		while($signoff =& $signoffFactory->next()) { /* @var $signoff Signoff */
+			$user =& $userDao->getUser($signoff->getUserId());
+			$userGroup =& $userGroupDao->getById($signoff->getUserGroupId());
+			$elements[(int)$signoff->getId()] = array(
+				'userName' => $user->getFullName(),
+				'userGroup' => $userGroup->getLocalizedAbbrev()
+			);
+		}
+		return $elements;
+	}
+
+	/**
+	 * @see GridHandler::fetchGrid()
+	 */
+	function fetchGrid($args, $request) {
+		$monograph =& $this->getMonograph();
+		$fetchParams = array(
+			'monographId' => $monograph->getId(),
+			'stageId' => $this->getStageId()
+		);
+		return parent::fetchGrid($args, $request, $fetchParams);
+	}
+
+
 	//
-	// Public StageParticipant Grid Actions
+	// Public actions
 	//
 	/**
 	 * An action to manually add a new stage participant
@@ -155,77 +188,37 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function addStageParticipant($args, &$request) {
-		// Identify the submission Id
-		$monographId = $request->getUserVar('monographId');
-
-		// Form handling
+		// Render the stage participant form.
+		// FIXME: We only need a form here to use the form vocab.
+		// Make the form vocab globally available and implement this
+		// as a simple template, see #6505.
 		import('controllers.grid.users.stageParticipant.form.StageParticipantForm');
-		$stageParticipantForm = new StageParticipantForm($monographId);
-		$stageParticipantForm->initData();
-
+		$stageParticipantForm = new StageParticipantForm($this->getMonograph(), $this->getStageId());
 		$json = new JSON(true, $stageParticipantForm->fetch($request));
 		return $json->getString();
 	}
 
 	/**
-	 * Save the 'add stage participant' form.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function saveStageParticipant($args, &$request) {
-		// Identify the submission Id
-		$monographId = $request->getUserVar('monographId');
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
-		// Form handling
-		import('controllers.grid.users.stageParticipant.form.StageParticipantForm');
-		$stageParticipantForm = new StageParticipantForm($monographId);
-		$stageParticipantForm->readInputData();
-		if ($stageParticipantForm->validate()) {
-			$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-			$data =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $monograph->getCurrentStageId());
-
-			$this->setGridDataElements($data);
-			$this->initialize($request);
-
-			// Pass to modal.js to reload the grid with the new content
-			// FIXME: Calls to private methods of superclasses are not allowed!
-			$gridBodyParts = $this->_renderGridBodyPartsInternally($request);
-			if (count($gridBodyParts) == 0) {
-				// The following should usually be returned from a
-				// template also so we remain view agnostic. But as this
-				// is easy to migrate and we want to avoid the additional
-				// processing overhead, let's just return plain HTML.
-				$renderedGridRows = '<tbody> </tbody>';
-			} else {
-				assert(count($gridBodyParts) == 1);
-				$renderedGridRows = $gridBodyParts[0];
-			}
-			$json = new JSON(true, $renderedGridRows);
-		} else {
-			$json = new JSON(false, Locale::translate('editor.monograph.addUserError'));
-		}
-		return $json->getString();
-	}
-
-	/**
-	 * Delete a stage participant
+	 * Delete a stage participant.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
 	function deleteStageParticipant($args, &$request) {
-		// Identify the submission Id
-		$signoffId = $request->getUserVar('signoffId');
+		// Identify the stage participant.
+		$signoffId = (int)$request->getUserVar('signoffId');
 
+		// Make sure that the stage participant is actually in this grid.
+		$elements =& $this->getGridDataElements($request);
+		if (!isset($elements[$signoffId])) fatalError('Invalid signoff id');
+
+		// Delete the stage participant.
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-
 		if($signoffDao->deleteObjectById($signoffId)) {
-			$json = new JSON(true);
+			return $json = DAO::getDataChangedEvent($signoffId);
 		} else {
 			$json = new JSON(false);
+			return $json->getString();
 		}
-		return $json->getString();
 	}
 }

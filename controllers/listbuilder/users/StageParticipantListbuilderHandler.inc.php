@@ -9,135 +9,73 @@
  * @class StageParticipantListbuilderHandler
  * @ingroup listbuilder
  *
- * @brief Class for adding contributors to a chapter
+ * @brief Class for adding participants to a stage.
  */
 
 import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 
 class StageParticipantListbuilderHandler extends ListbuilderHandler {
+
 	/**
 	 * Constructor
 	 */
 	function StageParticipantListbuilderHandler() {
 		parent::ListbuilderHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+				array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 				array('fetch', 'addItem', 'deleteItems'));
 	}
 
 
 	//
-	// Implement template methods from PKPHandler
+	// Getters/Setters
+	//
+	/**
+	 * Get the authorized monograph.
+	 * @return Monograph
+	 */
+	function getMonograph() {
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+	}
+
+	/**
+	 * Get the authorized workflow stage.
+	 * @return integer
+	 */
+	function getStageId() {
+		return $this->getAuthorizedContextObject(ASSOC_TYPE_WORKFLOW_STAGE);
+	}
+
+
+	//
+	// Implement protected template methods from PKPHandler
 	//
 	/**
 	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
 	 */
 	function authorize(&$request, $args, $roleAssignments) {
-		$stageId = $request->getUserVar('stageId');
+		$stageId = (int)$request->getUserVar('stageId');
 		import('classes.security.authorization.OmpWorkflowStageAccessPolicy');
 		$this->addPolicy(new OmpWorkflowStageAccessPolicy($request, $args, $roleAssignments, 'monographId', $stageId));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	/*
-	 * Configure the grid
-	 * @param PKPRequest $request
+	/**
+	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-		$userGroupId = $request->getUserVar('userGroupId');
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroup =& $userGroupDao->getById($userGroupId);
 
-		// Basic configuration
+		// Basic configuration.
 		$this->setSourceTitle('common.name');
-		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Free text input
+		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
 		$this->setListTitle('submission.submit.currentParticipants');
 
-		$this->loadList($request);
-		$this->loadPossibleItemList($request);
+		// Load possible items.
+		$this->_loadPossibleItemList($request);
 
+		// Configure listbuilder column.
 		$this->addColumn(new GridColumn('item', 'common.name'));
-	}
-
-
-	//
-	// Public methods
-	//
-	/* Load the list from an external source into the grid structure */
-	function loadList(&$request) {
-		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$userDao =& DAORegistry::getDAO('UserDAO');
-
-		$monographId = $request->getUserVar('monographId');
-		$userGroupId = $request->getUserVar('userGroupId');
-
-		$monograph =& $monographDao->getMonograph($monographId);
-
-		// Retrieve the participants associated with the current group, monograph, and stage
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$signoffs =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $monograph->getCurrentStageId(), $userGroupId);
-		$items = array();
-		while ($item =& $signoffs->next()) {
-			$id = $item->getId();
-			$userId = $item->getUserId();
-			$user =& $userDao->getUser($userId);
-			$items[$id] = array('item' => $user->getFullName());
-			unset($item);
-		}
-		$this->setGridDataElements($items);
-	}
-
-	/* Get possible items to populate drop-down list with */
-	function getPossibleItemList() {
-		return $this->possibleItems;
-	}
-
-	/* Load possible items to populate drop-down list with */
-	function loadPossibleItemList(&$request) {
-		$monographId = $request->getUserVar('monographId');
-		$userGroupId = $request->getUserVar('userGroupId');
-
-		// Retrieve all users that belong to the current user group
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-
-		// FIXME #6000: If user group is in the series editor role, only allow it if the series editor is assigned to the monograph's series.
-		$users =& $userGroupDao->getUsersById($userGroupId);
-
-		$itemList = array();
-		while($item =& $users->next()) {
-			$id = $item->getId();
-			$itemList[] = $this->_buildListItemHTML($id, $item->getFullName());
-			unset($item);
-		}
-
-		$this->possibleItems = $itemList;
-	}
-
-	//
-	// Overridden template methods
-	//
-	/**
-	 * Need to add additional data to the template via the fetch method
-	 * @see Form::fetch()
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function fetch($args, &$request) {
-		$router =& $request->getRouter();
-
-		$monographId = $request->getUserVar('monographId');
-		$userGroupId = $request->getUserVar('userGroupId');
-
-		$additionalVars = array(
-			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('monographId' => $monographId, 'userGroupId' => $userGroupId)),
-			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId, 'userGroupId' => $userGroupId))
-		);
-
-		return parent::fetch($args, &$request, $additionalVars);
 	}
 
 	/**
@@ -145,73 +83,136 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 	 */
 	function setupTemplate() {
 		parent::setupTemplate();
-
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_SUBMISSION, LOCALE_COMPONENT_PKP_SUBMISSION));
 	}
 
-	//
-	// Public AJAX-accessible functions
-	//
 
-	/*
-	 * Handle adding an item to the list
-	 * @param $args array
-	 * @param $request PKPRequestvv
+	//
+	// Implement protected template methods from GridHandler.
+	//
+	/**
+	 * @see GridHandler::loadData()
 	 */
-	function addItem($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
-		$userGroupId = $request->getUserVar('userGroupId');
+	function loadData($request, $filter) {
+		// Retrieve the participants associated with the
+		// current group, monograph, and stage.
+		$userGroupId = (int)$request->getUserVar('userGroupId');
+		$monograph =& $this->getMonograph();
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoffFactory =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, $this->getStageId(), $userGroupId);
 
-		$rowId = "selectList-" . $this->getId();
-		$userId = (int) $args[$rowId];
-
-		if(!isset($userId)) {
-			$json = new JSON(false);
-			return $json->getString();
-		} else {
-			$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-			$userDao =& DAORegistry::getDAO('UserDAO');
-			$monographDao =& DAORegistry::getDAO('MonographDAO');
-			$monograph =& $monographDao->getMonograph($monographId);
-
-			// Make sure the item doesn't already exist
-			if(isset($monograph) && $signoffDao->signoffExists('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, $userId, $monograph->getCurrentStageId(), $userGroupId)) {
-				$json = new JSON(false, Locale::translate('common.listbuilder.itemExists'));
-				return $json->getString();
-			}
-
-			$signoffDao->build('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, $userId, $monograph->getCurrentStageId(), $userGroupId);
-			$user =& $userDao->getUser($userId);
-
-			// Return JSON with formatted HTML to insert into list
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$row->setId($userId);
-			$rowData = array('item' => $user->getFullName());
-			$row->setData($rowData);
-			$row->initialize($request);
-
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
-			return $json->getString();
+		// Retrieve the corresponding users for display.
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$signoffs = array();
+		while ($signoff =& $signoffFactory->next()) {
+			$user =& $userDao->getUser($signoff->getUserId());
+			$signoffs[(int)$signoff->getId()] = array('item' => $user->getFullName(), 'userId' => $user->getId());
+			unset($signoff);
 		}
+		return $signoffs;
 	}
 
 
-	/*
-	 * Handle deleting items from the list
-	 * @param $args array
-	 * @param $request PKPRequest
+	//
+	// Implement protected template methods from ListbuilderHandler.
+	//
+	/**
+	 * @see ListbuilderHandler::fetch()
 	 */
-	function deleteItems($args, &$request) {
-		array_shift($args); array_shift($args); // Remove the monograph and user group IDs from the argument array; All we need are the signoff IDs
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+	function fetch($args, &$request) {
+		$userGroupId = (int)$request->getUserVar('userGroupId');
+		$monograph =& $this->getMonograph();
+		$params = array(
+			'monographId' => $monograph->getId(),
+			'userGroupId' => $userGroupId,
+			'stageId' => $this->getStageId()
+		);
+		$router =& $request->getRouter();
+		$additionalVars = array(
+			'addUrl' => $router->url($request, array(), null, 'addItem', null, $params),
+			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, $params)
+		);
 
-		foreach($args as $item) {
-			$signoffDao->deleteObjectById($item);
+		return parent::fetch($args, &$request, $additionalVars);
+	}
+
+	/**
+	 * @see ListbuilderHandler::addItem()
+	 */
+	function addItem($args, &$request) {
+		// Make sure the item doesn't already exist.
+		$userId = (int)$this->getAddedItemId($args);
+		$monograph =& $this->getMonograph();
+		$monographId = $monograph->getId();
+		$userGroupId = (int)$request->getUserVar('userGroupId');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		if(
+			$signoffDao->signoffExists(
+				'SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId,
+				$userId, $this->getStageId(), $userGroupId
+			)
+		) {
+			// Warn the user that the item has been added before.
+			$json = new JSON(false, __('common.listbuilder.itemExists'));
+			return $json->getString();
 		}
 
+		// Create a new signoff.
+		$signoff =& $signoffDao->build('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, $userId, $this->getStageId(), $userGroupId);
+
+		// Return JSON with formatted HTML to insert into list.
+		// FIXME: This is duplicate code! See #6193.
+		$row =& $this->getRowInstance();
+		$row->setGridId($this->getId());
+		$row->setId($signoff->getId());
+		$userDao =& DAORegistry::getDAO('UserDAO');
+		$user =& $userDao->getUser($userId);
+		$rowData = array('item' => $user->getFullName());
+		$row->setData($rowData);
+		$row->initialize($request);
+
+		$json = new JSON(true , $this->_renderRowInternally($request, $row));
+		return $json->getString();
+	}
+
+	/**
+	 * @see ListbuilderHandler::deleteItems()
+	 */
+	function deleteItems($args, &$request) {
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
+		$signoffIds = $this->getDeletedItemIds($request, $args, 2);
+		foreach($signoffIds as $signoffId) {
+			$signoffDao->deleteObjectById((int)$signoffId);
+		}
 		$json = new JSON(true);
 		return $json->getString();
+	}
+
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Load possible items to populate drop-down list with.
+	 * @param $request Request
+	 */
+	function _loadPossibleItemList(&$request) {
+		// Retrieve the existing sign offs so that we can leave out
+		// users that have already been selected.
+		$items = $this->getGridDataElements($request);
+
+		// Retrieve all users that belong to the current user group
+		// FIXME #6000: If user group is in the series editor role, only allow it
+		// if the series editor is assigned to the monograph's series.
+		$userGroupId = (int)$request->getUserVar('userGroupId');
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$userFactory =& $userGroupDao->getUsersById($userGroupId);
+		$users = array();
+		while($user =& $userFactory->next()) {
+			$users[(int)$user->getId()] = $user->getFullName();
+			unset($user);
+		}
+		$this->setPossibleItemList($users);
 	}
 }
 ?>
