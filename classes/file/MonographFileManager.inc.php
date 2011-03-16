@@ -117,13 +117,13 @@ class MonographFileManager extends FileManager {
 	/**
 	 * Download all monograph files as an archive
 	 * @param $monographId integer
-	 * @param $monographFiles ArrayItemIterator
+	 * @param $monographFiles array
 	 * @return boolean
 	 */
 	function downloadFilesArchive($monographId, &$monographFiles) {
 		$filesDir = MonographFileManager::_getFilesDir($monographId);
 		$filePaths = array();
-		while ($monographFile =& $monographFiles->next()) { /* @var $monographFile MonographFile */
+		foreach ($monographFiles as $monographFile) { /* @var $monographFile MonographFile */
 			// Remove absolute path so the archive doesn't include it (otherwise all files are organized by absolute path)
 			$filePath = str_replace($filesDir, '', $monographFile->getFilePath());
 			// Add files to be archived to array
