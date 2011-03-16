@@ -10,6 +10,7 @@
  * @ingroup controllers_grid_users_stageParticipant
  *
  * @brief Handle stageParticipant grid requests.
+ * FIXME: The add/delete actions should not be visible to press assistants, see #6298.
  */
 
 // import grid base classes
@@ -26,12 +27,10 @@ class StageParticipantGridHandler extends GridHandler {
 	 */
 	function StageParticipantGridHandler() {
 		parent::GridHandler();
+		$this->addRoleAssignment(ROLE_ID_PRESS_ASSISTANT, $readAccess = array('fetchGrid', 'fetchRow'));
 		$this->addRoleAssignment(
-			array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-			array(
-				'fetchGrid', 'fetchRow',
-				'addStageParticipant', 'deleteStageParticipant'
-			)
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array_merge($readAccess, array('addStageParticipant', 'deleteStageParticipant'))
 		);
 	}
 

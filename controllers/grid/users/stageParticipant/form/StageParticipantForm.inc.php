@@ -10,7 +10,8 @@
  * @ingroup controllers_grid_users_stageParticipant_form
  *
  * @brief Form for adding/editing a stage participant
- * FIXME: Having a form for such a simple mark-up with is overkill, see #6505.
+ * FIXME: Having a form for such a simple mark-up without validation or submission
+ *  is overkill, see #6505.
  */
 
 import('lib.pkp.classes.form.Form');
