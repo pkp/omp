@@ -17,6 +17,7 @@
  */
 
 import('controllers.grid.files.SubmissionFilesGridHandler');
+import('controllers.grid.files.UploaderGridColumn');
 
 class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 
@@ -40,5 +41,34 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+
+		// Retrieve the submission files in this grid.
+		$submissionFiles =& $this->getGridDataElements($request);
+
+		// Go through the list of files and identify all uploader user groups.
+		$uploaderUserGroups = array();
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		foreach($submissionFiles as $submissionFile) { /* @var $submissionFile MonographFile */
+			if (!isset($uploaderUserGroups[$submissionFile->getUserGroupId()])) {
+				// Retrieve the full user group.
+				$userGroupId = $submissionFile->getUserGroupId();
+				$userGroup =& $userGroupDao->getById($userGroupId);
+				assert(is_a($userGroup, 'UserGroup'));
+				$uploaderUserGroups[$userGroupId] =& $userGroup;
+				unset($userGroup);
+			}
+		}
+
+		// Add uploader user group columns.
+		foreach($uploaderUserGroups as $uploaderUserGroup) { /* @var $uploaderUserGroup UserGroup */
+			$this->addColumn(new UploaderGridColumn($uploaderUserGroup));
+		}
+
+		// Go through the list of workflow stage participants and
+		// identify all assigned press and series editors.
+		$stageId = $this->getStageId();
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$monograph =& $this->getMonograph();
+		$signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId());
 	}
 }

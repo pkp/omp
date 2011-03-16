@@ -118,7 +118,7 @@ class ReviewerGridHandler extends GridHandler {
 				'FIXME',
 				null,
 				'FIXME',
-				'controllers/grid/common/cell/roleCell.tpl',
+				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider
 			)
 		);
@@ -129,7 +129,7 @@ class ReviewerGridHandler extends GridHandler {
 				'reviewer',
 				'user.role.reviewer',
 				null,
-				'controllers/grid/common/cell/roleCell.tpl',
+				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider
 			)
 		);

@@ -87,7 +87,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 				'responded',
 				'submission.response',
 				null,
-				'controllers/grid/common/cell/roleCell.tpl',
+				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider
 			)
 		);

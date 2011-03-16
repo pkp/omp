@@ -81,7 +81,7 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 				'select',
 				null,
 				'FIXME',
-				'controllers/grid/common/cell/roleCell.tpl',
+				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider
 			)
 		);
@@ -94,7 +94,7 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 				'uploader-name',
 				null,
 				'FIXME',
-				'controllers/grid/common/cell/roleCell.tpl',
+				'controllers/grid/common/cell/statusCell.tpl',
 				$cellProvider
 			)
 		);

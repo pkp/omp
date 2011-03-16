@@ -146,7 +146,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 					$userGroupId,
 					null,
 					$userGroupAbbrev,
-					'controllers/grid/common/cell/roleCell.tpl',
+					'controllers/grid/common/cell/statusCell.tpl',
 					$cellProvider
 				)
 			);
