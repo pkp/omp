@@ -145,7 +145,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		// Send personal message to author.
 		$submitter =& $seriesEditorSubmission->getUser();
 		import('classes.mail.MonographMailTemplate');
-		$email =& new MonographMailTemplate($seriesEditorSubmission, $emailKey);
+		$email = new MonographMailTemplate($seriesEditorSubmission, $emailKey);
 		$email->setBody($this->getData('personalMessage'));
 		$email->addRecipient($submitter->getEmail(), $submitter->getFullName());
 		$email->setAssoc(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_EDITOR, $currentReviewRound->getRound());

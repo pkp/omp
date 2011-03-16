@@ -130,7 +130,7 @@ class GenreGridHandler extends SetupGridHandler {
 		$this->setupTemplate();
 
 		import('controllers.grid.settings.genre.form.GenreForm');
-		$genreForm =& new GenreForm($genreId);
+		$genreForm = new GenreForm($genreId);
 
 		if ($genreForm->isLocaleResubmit()) {
 			$genreForm->readInputData();

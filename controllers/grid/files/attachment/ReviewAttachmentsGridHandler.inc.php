@@ -44,7 +44,7 @@ class ReviewAttachmentsGridHandler extends SubmissionFilesGridHandler {
 		$this->loadMonographFiles();
 
 		import('controllers.grid.files.SubmissionFilesGridCellProvider');
-		$cellProvider =& new SubmissionFilesGridCellProvider();
+		$cellProvider = new SubmissionFilesGridCellProvider();
 		parent::initialize($request, $cellProvider, $additionalActionArgs);
 	}
 }

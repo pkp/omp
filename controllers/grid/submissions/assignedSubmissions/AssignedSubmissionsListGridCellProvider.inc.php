@@ -68,7 +68,7 @@ class AssignedSubmissionsListGridCellProvider extends SubmissionsListGridCellPro
 					break;
 			}
 
-			$action =& new LegacyLinkAction(
+			$action = new LegacyLinkAction(
 				'details',
 				LINK_ACTION_MODE_LINK,
 				LINK_ACTION_TYPE_NOTHING,

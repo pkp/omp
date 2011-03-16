@@ -62,7 +62,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 		if ( $request->getUserVar('title') ) {
 			$title = $request->getUserVar('title');
 		} else {
-			$role =& new Role($roleId);
+			$role = new Role($roleId);
 			$title = $role->getRoleName();
 		}
 
@@ -119,7 +119,7 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 		$groupName = array_shift($args);
 		$groupAbbrev = array_shift($args);
 
-		$role =& new Role($roleId);
+		$role = new Role($roleId);
 
 		if(empty($groupName) || empty($groupAbbrev)) {
 			$json = new JSON(false, Locale::translate('common.listbuilder.completeForm'));

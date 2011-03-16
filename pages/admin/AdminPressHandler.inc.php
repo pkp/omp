@@ -88,7 +88,7 @@ class AdminPressHandler extends AdminHandler {
 			PluginRegistry::loadCategory('blocks');
 			$settingsForm->execute();
 			import('lib.pkp.classes.notification.NotificationManager');
-			$notificationManager =& new NotificationManager();
+			$notificationManager = new NotificationManager();
 			$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
 			Request::redirect(null, null, 'presses');
 		} else {

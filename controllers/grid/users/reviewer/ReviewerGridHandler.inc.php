@@ -364,7 +364,7 @@ class ReviewerGridHandler extends GridHandler {
 		$viewsDao->recordView(ASSOC_TYPE_REVIEW_RESPONSE, $reviewAssignment->getId(), $user->getId());
 
 		// Render the response.
-		$json =& new JSON(true, $templateMgr->fetch('controllers/grid/users/reviewer/readReview.tpl'));
+		$json = new JSON(true, $templateMgr->fetch('controllers/grid/users/reviewer/readReview.tpl'));
 		return $json->getString();
 	}
 

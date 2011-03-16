@@ -28,7 +28,7 @@ class UserGroupStageAssignmentDAO extends DAO {
 				array($pressId, $stageId));
 
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$returner =& new DAOResultFactory($result, $userGroupDao, '_returnFromRow');
+		$returner = new DAOResultFactory($result, $userGroupDao, '_returnFromRow');
 		return $returner;
 	}
 

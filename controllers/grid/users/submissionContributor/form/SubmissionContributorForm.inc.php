@@ -163,7 +163,7 @@ class SubmissionContributorForm extends Form {
 		$submissionContributor =& $this->getSubmissionContributor();
 		if (!$submissionContributor) {
 			// this is a new submission contributor
-			$submissionContributor =& new Author();
+			$submissionContributor = new Author();
 			$submissionContributor->setMonographId($monograph->getId());
 			$existingSubmissionContributor = false;
 		} else {

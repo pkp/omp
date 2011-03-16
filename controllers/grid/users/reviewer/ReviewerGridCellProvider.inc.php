@@ -113,7 +113,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		$state = $this->getCellState($row, $column);
 		switch ($state) {
 			case 'linkReview':
-				$action =& new LegacyLinkAction(
+				$action = new LegacyLinkAction(
 					'readReview',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_NOTHING,
@@ -126,7 +126,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 			case 'new':
 				// The 'new' state could be for the editor or the reviewer.
 				if (is_numeric($column->getId()) ) {
-					$action =& new LegacyLinkAction(
+					$action = new LegacyLinkAction(
 						'readReview',
 						LINK_ACTION_MODE_MODAL,
 						LINK_ACTION_TYPE_NOTHING,
@@ -145,7 +145,7 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				break;
 
 			case 'overdue':
-				$action =& new LegacyLinkAction(
+				$action = new LegacyLinkAction(
 					'sendReminder',
 					LINK_ACTION_MODE_MODAL,
 					LINK_ACTION_TYPE_REPLACE,

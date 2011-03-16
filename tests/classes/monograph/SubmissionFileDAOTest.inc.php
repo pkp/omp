@@ -457,7 +457,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 			default:
 				self::fail();
 		}
-		$genre =& new Genre();
+		$genre = new Genre();
 		$genre->setId($genreId);
 		$genre->setName($name, 'en_US');
 		$genre->setDesignation($designation, 'en_US');

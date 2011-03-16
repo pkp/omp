@@ -71,7 +71,7 @@ class FileNameGridColumn extends GridColumn {
 		// Create the cell action to download a file.
 		import('controllers.api.file.linkAction.DownloadFileLinkAction');
 		$cellActions = parent::getCellActions($request, $row, $position);
-		$cellActions[] =& new DownloadFileLinkAction($request, $row->getData(), $this->getStageId());
+		$cellActions[] = new DownloadFileLinkAction($request, $row->getData(), $this->getStageId());
 		return $cellActions;
 	}
 }

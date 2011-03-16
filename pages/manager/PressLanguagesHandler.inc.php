@@ -54,7 +54,7 @@ class PressLanguagesHandler extends ManagerHandler {
 		if ($settingsForm->validate()) {
 			$settingsForm->execute();
 			import('lib.pkp.classes.notification.NotificationManager');
-			$notificationManager =& new NotificationManager();
+			$notificationManager = new NotificationManager();
 			$notificationManager->createTrivialNotification('notification.notification', 'common.changesSaved');
 			$request->redirect(null, null, 'index');
 		} else {

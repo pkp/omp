@@ -70,7 +70,7 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 
 		// Columns
 		import('controllers.grid.files.fairCopy.FairCopyFilesGridCellProvider');
-		$cellProvider =& new FairCopyFilesGridCellProvider();
+		$cellProvider = new FairCopyFilesGridCellProvider();
 		parent::initialize($request, $cellProvider);
 
 		// Add a column for the uploader.

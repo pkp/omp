@@ -91,7 +91,7 @@ class FinalDraftFilesGridHandler extends SubmissionFilesGridHandler {
 		}
 
 		import('controllers.grid.files.SubmissionFilesGridCellProvider');
-		$cellProvider =& new SubmissionFilesGridCellProvider();
+		$cellProvider = new SubmissionFilesGridCellProvider();
 		parent::initialize($request, $cellProvider);
 	}
 

@@ -68,7 +68,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		$this->setGridDataElements($signoffs);
 
 		// Grid Columns
-		$cellProvider =& new AuthorCopyeditingFilesGridCellProvider();
+		$cellProvider = new AuthorCopyeditingFilesGridCellProvider();
 
 		// Add a column for the file's label
 		$this->addColumn(

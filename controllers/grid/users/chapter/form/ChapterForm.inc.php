@@ -118,7 +118,7 @@ class ChapterForm extends Form {
 		} else {
 			$monograph =& $this->getMonograph();
 
-			$chapter =& new Chapter();
+			$chapter = $chapterDao->newDataObject();
 			$chapter->setMonographId($monograph->getId());
 			$chapter->setTitle($this->getData('title'), null); //Localized
 			$chapterDao->insertChapter($chapter);

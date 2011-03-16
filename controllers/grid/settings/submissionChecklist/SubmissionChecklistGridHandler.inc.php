@@ -91,7 +91,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	function addItem($args, &$request) {
 		// Delegate to the row handler
 		import('controllers.grid.settings.submissionChecklist.SubmissionChecklistGridRow');
-		$submissionChecklistRow =& new SubmissionChecklistGridRow();
+		$submissionChecklistRow = new SubmissionChecklistGridRow();
 
 		// Calling editSubmissionChecklist with an empty row id will add
 		// a new submissionChecklist.

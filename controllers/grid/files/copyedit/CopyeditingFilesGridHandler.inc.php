@@ -117,7 +117,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		);
 
 		// Grid Columns
-		$cellProvider =& new CopyeditingFilesGridCellProvider();
+		$cellProvider = new CopyeditingFilesGridCellProvider();
 
 		// Add a column for the file's label
 		$this->addColumn(
@@ -161,7 +161,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	 * @return CopyeditingFilesGridCategoryRow
 	 */
 	function &getCategoryRowInstance() {
-		$row =& new CopyeditingFilesGridCategoryRow();
+		$row = new CopyeditingFilesGridCategoryRow();
 		return $row;
 	}
 

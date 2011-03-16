@@ -50,7 +50,7 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 				$user =& $userDao->getUser($signoff->getUserId());
 
 				$label = $user->getFullName() . " (" . $userGroup->getLocalizedName() . ") - " . $monographFile->getLocalizedName();
-				$action =& new LegacyLinkAction(
+				$action = new LegacyLinkAction(
 					'downloadFile',
 					LINK_ACTION_MODE_LINK,
 					LINK_ACTION_TYPE_NOTHING,
