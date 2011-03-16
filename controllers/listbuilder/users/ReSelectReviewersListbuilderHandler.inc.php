@@ -55,17 +55,6 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 		$this->setGridDataElements($items);
 	}
 
-	/* Get possible items to populate drop-down list with */
-	function getPossibleItemList() {
-		return $this->possibleItems;
-	}
-
-	/* Load possible items to populate drop-down list with
-	 * List is null; All reviewers are already selected
-	 */
-	function loadPossibleItemList(&$request) {
-		$this->possibleItems = null;
-	}
 
 	//
 	// Overridden template methods
@@ -82,7 +71,6 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 		$this->setListTitle('user.role.reviewers');
 
 		$this->loadList($request);
-		$this->loadPossibleItemList($request);
 
 		$this->addColumn(new GridColumn('item', 'common.name'));
 	}

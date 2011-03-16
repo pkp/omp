@@ -127,11 +127,6 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		return $this->_template;
 	}
 
-	/* Get possible items to populate drop-down list with */
-	function getPossibleItemList() {
-		return $this->possibleItems;
-	}
-
 	/* Load possible items to populate drop-down list with */
 	function loadPossibleItemList(&$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -144,13 +139,11 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 
 		$itemList = array();
 		foreach($associatedUsers as $item) {
-			$id = $item['id'];
-			$user =& $userDao->getUser($item);
-			$itemList[] = $this->_buildListItemHTML($id, $user->getFullName());
+			$user =& $userDao->getUser($item['id']);
+			$itemList[$user->getId()] = $user->getFullName();
 			unset($item);
 		}
-
-		$this->possibleItems = $itemList;
+		$this->setPossibleItemList($itemList);
 	}
 }
 ?>

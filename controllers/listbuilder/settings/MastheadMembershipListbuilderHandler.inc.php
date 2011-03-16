@@ -67,13 +67,12 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 
 		$itemList = array();
 		while($user =& $users->next()) {
-			$itemList[] = array('id' => $user->getId(),
-			 					'name' => $user->getFullName(),
-			 					'abbrev' => $user->getUsername()
-								);
+			$itemList[$user->getId()] = array(
+			 	'name' => $user->getFullName(),
+			 	'abbrev' => $user->getUsername()
+			);
 			unset($user);
 		}
-
 		return $itemList;
 	}
 
@@ -138,11 +137,11 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 
 		$sourceJson = new JSON(true, null, false, 'local');
 		$sourceContent = array();
-		foreach ($sourceArray as $i => $item) {
+		foreach ($sourceArray as $id => $item) {
 			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
 			$additionalAttributes = array(
 				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
-				'value' => $item['id']
+				'value' => $id
 			);
 			$itemJson = new JSON(true, '', false, null, $additionalAttributes);
 			$sourceContent[] = $itemJson->getString();

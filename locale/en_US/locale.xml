@@ -175,7 +175,7 @@
 
 	<message key="common.listbuilder.completeForm">Please fill out the form completely.</message>
 	<message key="common.listbuilder.selectValidOption">Please select a valid option from the list.</message>
-	<message key="common.listbuilder.itemExists">You have submitted an item that already exists.</message>
+	<message key="common.listbuilder.itemExists">You cannot add the same item twice.</message>
 
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>

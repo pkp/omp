@@ -155,9 +155,11 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 			$row->initialize($request);
 
 			// List other listbuilders on the page to add this item to
-			$additionalAttributes = array('addToSources' => 'true',
-										'sourceHtml' => $this->_buildListItemHTML($userGroup->getId(), $groupName, $groupAbbrev),
-										'sourceIds' => 'selectList-listbuilder-setup-submissionroleslistbuilder');
+			$additionalAttributes = array(
+				'addToSources' => 'true',
+				'sourceHtml' => $this->_renderListItems($userGroup->getId(), $groupName, $groupAbbrev),
+				'sourceIds' => 'selectList-listbuilder-setup-submissionroleslistbuilder'
+			);
 
 			$json = new JSON(true, $this->_renderRowInternally($request, $row), false, 0, $additionalAttributes);
 			return $json->getString();
@@ -178,9 +180,11 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 		}
 
 		// List other listbuilders on the page to delete these items from
-		$additionalAttributes = array('removeFromSources' => 'true',
-									'itemIds' => implode(',', $itemIds),
-									'sourceIds' => 'selectList-listbuilder-setup-submissionroleslistbuilder');
+		$additionalAttributes = array(
+			'removeFromSources' => 'true',
+			'itemIds' => implode(',', $itemIds),
+			'sourceIds' => 'selectList-listbuilder-setup-submissionroleslistbuilder'
+		);
 
 		$json = new JSON(true, '', false, 0, $additionalAttributes);
 		return $json->getString();
@@ -208,6 +212,25 @@ class UserGroupListbuilderHandler extends SetupListbuilderHandler {
 			unset($item);
 		}
 		$this->setGridDataElements($items);
+	}
+
+	/**
+ 	 * Render a dropdown list based on the input (can be array or one list item).
+ 	 * @param $itemId integer
+	 * @param $itemName string
+	 * @param $attributeNames string
+	 */
+	function _renderListItems($itemId, $itemName, $attributeNames = null) {
+		$templateMgr =& TemplateManager::getManager();
+		$templateMgr->assign('lbItemId', $itemId);
+		$templateMgr->assign('lbItemName', $itemName);
+
+		if (isset($attributeNames)) {
+			if (is_array($attributeNames)) $attributeNames = implode(', ', $attributeNames);
+			$templateMgr->assign('lbAttributeNames', $attributeNames);
+		}
+
+		return $templateMgr->fetch('controllers/listbuilder/settings/userGroupListbuilderItem.tpl');
 	}
 }
 ?>

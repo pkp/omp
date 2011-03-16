@@ -65,11 +65,6 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		$this->setGridDataElements($data);
 	}
 
-	/* Get possible items to populate drop-down list with */
-	function getPossibleItemList() {
-		return $this->possibleItems;
-	}
-
 	/* Load possible items to populate drop-down list with */
 	function loadPossibleItemList(&$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -77,14 +72,11 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestRevisions($monographId, MONOGRAPH_FILE_COPYEDIT);
 		$itemList = array();
-		foreach ($monographFiles as $item) {
-			$id = $item->getFileId();
-			$itemList[] = $this->_buildListItemHTML($id, $item->getLocalizedName());
-
-			unset($item);
+		foreach ($monographFiles as $monographFile) {
+			$itemList[$monographFile->getFileId()] = $monographFile->getLocalizedName();
+			unset($monographFile);
 		}
-
-		$this->possibleItems = $itemList;
+		$this->setPossibleItemList($itemList);
 	}
 
 	//

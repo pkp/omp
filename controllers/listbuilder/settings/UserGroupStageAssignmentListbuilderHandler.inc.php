@@ -48,11 +48,6 @@ class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler
 		$this->setGridDataElements($items);
 	}
 
-	/* Get possible items to populate drop-down list with */
-	function getPossibleItemList() {
-		return $this->possibleItems;
-	}
-
 	/* Load possible items to populate drop-down list with */
 	function loadPossibleItemList(&$request) {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
@@ -74,15 +69,14 @@ class UserGroupStageAssignmentListbuilderHandler extends SetupListbuilderHandler
 		$availableGroups =& $userGroupDao->getByRoleId($press->getId(), $this->roleId);
 
 		$itemList = array();
-		while (!$availableGroups->eof()) {
-			$availableGroup =& $availableGroups->next();
-			if ( !in_array($availableGroup->getId(), $currentGroupIds)) {
-				$itemList[] = $this->_buildListItemHTML($availableGroup->getId(), $availableGroup->getLocalizedName(), $availableGroup->getLocalizedAbbrev());
+		while ($availableGroup =& $availableGroups->next()) {
+			if (!in_array($availableGroup->getId(), $currentGroupIds)) {
+				$itemList[$availableGroup->getId()] = $availableGroup->getLocalizedName().' ('.$availableGroup->getLocalizedAbbrev().')';
 			}
 			unset($availableGroup);
 		}
 
-		$this->possibleItems = $itemList;
+		$this->setPossibleItemList($itemList);
 	}
 
 	//

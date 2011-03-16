@@ -206,11 +206,10 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		while (!$availableGroups->eof()) {
 			$availableGroup =& $availableGroups->next();
 			if ( !in_array($availableGroup->getId(), $currentGroupIds)) {
-				$itemList[] = $this->_buildListItemHTML($availableGroup->getId(), $availableGroup->getLocalizedName(), $availableGroup->getLocalizedAbbrev());
+				$itemList[$availableGroup->getId()] = $availableGroup->getLocalizedName().' ('.$availableGroup->getLocalizedAbbrev().')'';
 			}
 			unset($availableGroup);
 		}
-
 		$this->setPossibleItemList($itemList);
 	}
 }

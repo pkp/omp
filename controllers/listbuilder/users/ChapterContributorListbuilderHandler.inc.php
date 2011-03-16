@@ -83,11 +83,6 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 		$this->setGridDataElements($items);
 	}
 
-	/* Get possible items to populate drop-down list with */
-	function getPossibleItemList() {
-		return $this->possibleItems;
-	}
-
 	/* Load possible items to populate drop-down list with */
 	function loadPossibleItemList(&$request) {
 		$monographId = $request->getUserVar('monographId');
@@ -100,15 +95,14 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 		$contributorIds = $chapterAuthorDao->getAuthorIdsByChapterId($chapterId, $monographId);
 
 		$itemList = array();
-		while($item =& $submissionContributors->next()) {
-			$id = $item->getId();
+		while($submissionContributor =& $submissionContributors->next()) {
+			$id = $submissionContributor->getId();
 			if(!in_array($id, $contributorIds)) {
-				$itemList[] = $this->_buildListItemHTML($id, $item->getFullName());
+				$itemList[$id] = $item->getFullName();
 			}
 			unset($item);
 		}
-
-		$this->possibleItems = $itemList;
+		$this->setPossibleItemList($itemList);
 	}
 
 	//

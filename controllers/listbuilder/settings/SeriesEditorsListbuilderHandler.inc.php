@@ -64,10 +64,10 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 
 		$itemList = array();
 		foreach ($unassignedSeriesEditors as $seriesEditor) {
-			$itemList[] = array('id' => $seriesEditor->getId(),
-			 					'name' => $seriesEditor->getFullName(),
-			 					'abbrev' => $seriesEditor->getUsername()
-								);
+			$itemList[$seriesEditor->getId()] = array(
+				'name' => $seriesEditor->getFullName(),
+				'abbrev' => $seriesEditor->getUsername()
+			);
 		}
 
 		return $itemList;
@@ -134,11 +134,11 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 
 		$sourceJson = new JSON(true, null, false, 'local');
 		$sourceContent = array();
-		foreach ($sourceArray as $i => $item) {
+		foreach ($sourceArray as $id => $item) {
 			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
 			$additionalAttributes = array(
 				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
-				'value' => $item['id']
+				'value' => $id
 			);
 			$itemJson = new JSON(true, '', false, null, $additionalAttributes);
 			$sourceContent[] = $itemJson->getString();
