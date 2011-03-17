@@ -21,6 +21,14 @@ class AnnouncementHandler extends PKPAnnouncementHandler {
 	 **/
 	function AnnouncementHandler() {
 		parent::PKPAnnouncementHandler();
+		$this->addRoleAssignment(
+			ROLE_ID_PRESS_MANAGER,
+			array(
+				'announcements', 'announcementTypes', 'createAnnouncement', 'createAnnouncementType',
+				'deleteAnnouncement', 'deleteAnnouncementType', 'editAnnouncement', 'editAnnouncementType',
+				'index', 'updateAnnouncement', 'updateAnnouncementType'
+			)
+		);
 	}
 
 	/**
