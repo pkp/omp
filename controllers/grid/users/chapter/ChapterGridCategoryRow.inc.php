@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/users//chapter/ChapterGridCategoryRow.inc.php
+ * @file controllers/grid/users/chapter/ChapterGridCategoryRow.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -23,7 +23,7 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 	}
 
 	//
-	// Overridden methods from GridRow
+	// Overridden methods from GridCategoryRow
 	//
 	/**
 	 * @see GridCategoryRow::initialize()

@@ -249,7 +249,6 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			$templateMgr->assign('renderedGridRows', $renderedGridRows);
 			$templateMgr->assign('grid', $this);
 			$columns =& $this->getColumns();
-			$templateMgr->assign('numColumns', count($columns));
 			$templateMgr->assign('columns', $columns);
 
 			$json = new JSON(true, $templateMgr->fetch('controllers/grid/files/copyedit/copyeditingGrid.tpl'));

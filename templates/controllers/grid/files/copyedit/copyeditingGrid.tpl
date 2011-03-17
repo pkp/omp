@@ -1,6 +1,14 @@
+{**
+ * templates/controllers/grid/files/copyedit.tpl
+ *
+ * Copyright (c) 2000-2011 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ *
+ * Copyediting grid
+ *}
 <table id="component-copyeditingFiles-table">
 	<colgroup>
-		{"<col />"|str_repeat:$numColumns}
+		{foreach from=$columns item=column}<col />{/foreach}
 	</colgroup>
 	<thead>
 		{** build the column headers **}
