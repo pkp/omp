@@ -46,3 +46,5 @@ class EditEmailLinkAction extends LinkAction {
 
 
 }
+
+?>

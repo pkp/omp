@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/settings/PreparedEmails/PreparedEmailsGridRow.inc.php
+ * @file controllers/grid/settings/preparedEmails/PreparedEmailsGridRow.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -30,12 +30,11 @@ class PreparedEmailsGridRow extends GridRow {
 	 * @param $request PKPRequest
 	 */
 	function initialize(&$request) {
-		parent::initialize($request);
-		// add Grid Row Actions
-		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
+		parent::initialize($request, 'controllers/grid/gridRowWithActions.tpl');
 
 		$press =& $request->getPress();
 
+		// add Grid Row Actions
 		$rowId = $this->getId();
 		if (isset($rowId) && is_string($rowId)) {
 			$pressId = $press->getId();
@@ -112,3 +111,5 @@ class PreparedEmailsGridRow extends GridRow {
 		}
 	}
 }
+
+?>

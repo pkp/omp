@@ -37,13 +37,6 @@ switch ($op) {
 		define('HANDLER_CLASS', 'RegistrationHandler');
 		break;
 	//
-	// Email
-	//
-	case 'email':
-		import('pages.user.EmailHandler');
-		define('HANDLER_CLASS', 'EmailHandler');
-		break;
-	//
 	// Default handler
 	//
 	case 'index':

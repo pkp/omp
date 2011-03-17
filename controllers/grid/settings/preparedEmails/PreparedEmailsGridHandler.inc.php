@@ -108,3 +108,5 @@ class PreparedEmailsGridHandler extends GridHandler {
 		return $row;
 	}
 }
+
+?>

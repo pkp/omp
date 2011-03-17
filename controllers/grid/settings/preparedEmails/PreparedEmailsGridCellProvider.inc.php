@@ -55,3 +55,5 @@ class PreparedEmailsGridCellProvider extends GridCellProvider {
 		}
 	}
 }
+
+?>

@@ -63,21 +63,6 @@ switch ($op) {
 		define('HANDLER_CLASS', 'PeopleHandler');
 		break;
 	//
-	// E-mail Management
-	//
-	case 'emails':
-	case 'createEmail':
-	case 'editEmail':
-	case 'updateEmail':
-	case 'deleteCustomEmail':
-	case 'resetEmail':
-	case 'disableEmail':
-	case 'enableEmail':
-	case 'resetAllEmails':
-		import('pages.manager.EmailHandler');
-		define('HANDLER_CLASS', 'EmailHandler');
-		break;
-	//
 	// Languages
 	//
 	case 'languages':
