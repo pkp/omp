@@ -82,3 +82,5 @@ class FairCopyFilesGridCellProvider extends GridCellProvider {
 		}
 	}
 }
+
+?>

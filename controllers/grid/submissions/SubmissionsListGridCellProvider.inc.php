@@ -129,3 +129,5 @@ class SubmissionsListGridCellProvider extends DataObjectGridCellProvider {
 		}
 	}
 }
+
+?>

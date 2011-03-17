@@ -143,3 +143,5 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 		}
 	}
 }
+
+?>

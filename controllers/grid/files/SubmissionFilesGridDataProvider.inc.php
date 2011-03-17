@@ -110,3 +110,5 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	    return $this->_fileStage;
 	}
 }
+
+?>

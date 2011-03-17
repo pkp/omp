@@ -74,5 +74,6 @@ class MastheadGridRow extends GridRow {
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}
 	}
-
 }
+
+?>

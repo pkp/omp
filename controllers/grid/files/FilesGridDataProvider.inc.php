@@ -107,3 +107,5 @@ class FilesGridDataProvider extends GridDataProvider {
 		return $files;
 	}
 }
+
+?>

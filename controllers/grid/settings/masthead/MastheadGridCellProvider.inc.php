@@ -40,3 +40,5 @@ class MastheadGridCellProvider extends GridCellProvider {
 		}
 	}
 }
+
+?>

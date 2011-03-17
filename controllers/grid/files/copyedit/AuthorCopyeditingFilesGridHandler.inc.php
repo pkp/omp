@@ -322,3 +322,5 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		return $json->getString();
 	}
 }
+
+?>

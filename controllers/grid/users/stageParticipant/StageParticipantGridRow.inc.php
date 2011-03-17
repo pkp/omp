@@ -96,3 +96,5 @@ class StageParticipantGridRow extends GridRow {
 		}
 	}
 }
+
+?>

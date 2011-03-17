@@ -183,3 +183,5 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 		return $json->getString();
 	}
 }
+
+?>

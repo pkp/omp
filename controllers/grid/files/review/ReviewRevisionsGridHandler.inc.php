@@ -35,3 +35,5 @@ class ReviewRevisionsGridHandler extends FileSignoffGridHandler {
 		$this->setTitle('editor.monograph.revisions');
 	}
 }
+
+?>

@@ -48,3 +48,5 @@ class ReviewAttachmentsGridHandler extends SubmissionFilesGridHandler {
 		parent::initialize($request, $cellProvider, $additionalActionArgs);
 	}
 }
+
+?>

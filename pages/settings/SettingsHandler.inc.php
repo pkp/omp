@@ -82,3 +82,5 @@ class SettingsHandler extends Handler {
 		$templateMgr->display('settings/access.tpl');
 	}
 }
+
+?>

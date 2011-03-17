@@ -59,3 +59,5 @@ class AuthorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
 		$this->setGridDataElements($rowData);
 	}
 }
+
+?>

@@ -44,3 +44,5 @@ class FileLinkAction extends LinkAction {
 				'fileId' => $monographFile->getFileId());
 	}
 }
+
+?>

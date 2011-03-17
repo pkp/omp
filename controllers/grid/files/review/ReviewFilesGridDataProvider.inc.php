@@ -57,3 +57,5 @@ class ReviewFilesGridDataProvider extends ReviewGridDataProvider {
 		return $selectAction;
 	}
 }
+
+?>

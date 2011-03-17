@@ -79,3 +79,5 @@ class SubmissionFilesGridRow extends GridRow {
 		$this->addAction(new FileInfoCenterLinkAction($request, $monographFile, $this->getStageId()));
 	}
 }
+
+?>

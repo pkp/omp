@@ -36,3 +36,5 @@ class SelectFilesLinkAction extends LinkAction {
 		parent::LinkAction('selectFiles', $ajaxModal, $actionLabel, 'add');
 	}
 }
+
+?>

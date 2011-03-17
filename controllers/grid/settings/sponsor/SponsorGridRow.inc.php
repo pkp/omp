@@ -70,3 +70,5 @@ class SponsorGridRow extends GridRow {
 		}
 	}
 }
+
+?>

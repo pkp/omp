@@ -260,3 +260,5 @@ class GenreGridHandler extends SetupGridHandler {
 		return $genre;
 	}
 }
+
+?>

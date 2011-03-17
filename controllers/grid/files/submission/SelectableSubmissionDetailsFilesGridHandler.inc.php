@@ -36,3 +36,5 @@ class SelectableSubmissionDetailsFilesGridHandler extends SelectableFileListGrid
 		$this->setTitle('submission.submit.submissionFiles');
 	}
 }
+
+?>

@@ -80,3 +80,5 @@ class FileSignoffGridColumn extends GridColumn {
 		return $templateVars;
 	}
 }
+
+?>

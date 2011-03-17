@@ -144,5 +144,6 @@ class FinalDraftFilesGridHandler extends SubmissionFilesGridHandler {
 			return $json->getString();
 		}
 	}
-
 }
+
+?>

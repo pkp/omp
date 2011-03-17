@@ -47,3 +47,5 @@ class AddRevisionLinkAction extends BaseAddFileLinkAction {
 		);
 	}
 }
+
+?>

@@ -249,3 +249,5 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		return $json->getString();
 	}
 }
+
+?>

@@ -35,5 +35,6 @@ class EditorSubmissionDetailsFilesGridHandler extends FileListGridHandler {
 		// Grid title.
 		$this->setTitle('submission.submit.submissionFiles');
 	}
-
 }
+
+?>

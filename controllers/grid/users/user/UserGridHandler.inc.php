@@ -532,3 +532,5 @@ class UserGridHandler extends GridHandler {
 		return $json->getString();
 	}
 }
+
+?>

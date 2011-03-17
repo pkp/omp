@@ -52,3 +52,5 @@ class UserEnrollmentGridCellProvider extends DataObjectGridCellProvider {
 		}
 	}
 }
+
+?>

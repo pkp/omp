@@ -38,3 +38,5 @@ class ViewMetadataLinkAction extends LinkAction {
 		parent::LinkAction('viewMetadata', $modal, __('submission.viewMetadata'), 'more_info');
 	}
 }
+
+?>

@@ -32,3 +32,5 @@ class SubmissionWizardFilesGridHandler extends FileListGridHandler {
 		$this->setTitle('submission.submit.submissionFiles');
 	}
 }
+
+?>

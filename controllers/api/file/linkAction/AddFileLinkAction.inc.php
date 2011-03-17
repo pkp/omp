@@ -88,3 +88,5 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 		return $textLabels[$fileStage];
 	}
 }
+
+?>

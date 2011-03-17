@@ -40,3 +40,5 @@ class FileInfoCenterLinkAction extends FileLinkAction {
 				__('grid.action.moreInformation'), 'more_info');
 	}
 }
+
+?>

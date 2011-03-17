@@ -33,3 +33,5 @@ class DownloadAllLinkAction extends LinkAction {
 		parent::LinkAction('downloadAll', $redirectRequest, __('submission.files.downloadAll'), 'getPackage');
 	}
 }
+
+?>

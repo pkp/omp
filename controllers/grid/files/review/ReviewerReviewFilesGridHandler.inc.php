@@ -39,3 +39,5 @@ class ReviewerReviewFilesGridHandler extends ReviewFilesGridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 }
+
+?>

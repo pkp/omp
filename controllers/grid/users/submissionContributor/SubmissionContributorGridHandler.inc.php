@@ -274,3 +274,5 @@ class SubmissionContributorGridHandler extends GridHandler {
 		return $json->getString();
 	}
 }
+
+?>

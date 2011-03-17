@@ -28,3 +28,5 @@ class SelectSubmissionFilesLinkAction extends SelectFilesLinkAction {
 		parent::SelectFilesLinkAction($request, $actionArgs, $actionLabel);
 	}
 }
+
+?>

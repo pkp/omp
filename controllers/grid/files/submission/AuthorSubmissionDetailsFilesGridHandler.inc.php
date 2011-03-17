@@ -30,3 +30,5 @@ class AuthorSubmissionDetailsFilesGridHandler extends FileListGridHandler {
 		);
 	}
 }
+
+?>

@@ -56,6 +56,6 @@ class MySubmissionsListGridCellProvider extends SubmissionsListGridCellProvider 
 		}
 		return parent::getCellActions($request, $row, $column, $position);
 	}
-
-
 }
+
+?>

@@ -239,5 +239,6 @@ class SeriesGridHandler extends SetupGridHandler {
 		}
 		return $json->getString();
 	}
-
 }
+
+?>

@@ -81,5 +81,6 @@ class AssignedSubmissionsListGridCellProvider extends SubmissionsListGridCellPro
 		}
 		return parent::getCellActions($request, $row, $column, $position);
 	}
-
 }
+
+?>

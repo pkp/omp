@@ -97,3 +97,5 @@ class ReviewFormGridRow extends GridRow {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
 	}
 }
+
+?>

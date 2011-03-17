@@ -68,3 +68,5 @@ class GenreGridRow extends GridRow {
 		}
 	}
 }
+
+?>

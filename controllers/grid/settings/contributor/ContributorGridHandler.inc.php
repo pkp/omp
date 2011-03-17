@@ -176,3 +176,5 @@ class ContributorGridHandler extends SetupGridHandler {
 		return $json->getString();
 	}
 }
+
+?>

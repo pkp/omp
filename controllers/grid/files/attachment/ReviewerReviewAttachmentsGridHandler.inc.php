@@ -123,3 +123,5 @@ class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler 
 	}
 
 }
+
+?>

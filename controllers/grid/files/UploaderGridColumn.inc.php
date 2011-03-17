@@ -82,3 +82,5 @@ class UploaderGridColumn extends GridColumn {
 		return $templateVars;
 	}
 }
+
+?>

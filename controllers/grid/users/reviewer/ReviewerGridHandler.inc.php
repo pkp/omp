@@ -438,3 +438,5 @@ class ReviewerGridHandler extends GridHandler {
 		return $reviewAssignment;
 	}
 }
+
+?>

@@ -44,3 +44,5 @@ class UserEnrollmentForm extends Form {
 		return $this->fetch($request);
 	}
 }
+
+?>

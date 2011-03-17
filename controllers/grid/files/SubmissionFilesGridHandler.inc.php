@@ -227,3 +227,5 @@ class SubmissionFilesGridHandler extends GridHandler {
 		MonographFileManager::downloadFilesArchive($monograph->getId(), $this->getGridDataElements($request));
 	}
 }
+
+?>

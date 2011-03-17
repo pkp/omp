@@ -107,3 +107,5 @@ class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandl
 		return array_keys($selectedRevisions);
 	}
 }
+
+?>

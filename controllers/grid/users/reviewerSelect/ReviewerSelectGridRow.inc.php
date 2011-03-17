@@ -56,3 +56,4 @@ class ReviewerSelectGridRow extends GridRow {
 		$this->reviewerStats =& $seriesEditorSubmissionDao->getReviewerStatistics($press->getId());
 	}
 }
+?>

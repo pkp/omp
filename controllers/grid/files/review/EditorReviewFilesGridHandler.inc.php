@@ -62,3 +62,5 @@ class EditorReviewFilesGridHandler extends FileListGridHandler {
 		return $json->getString();
 	}
 }
+
+?>

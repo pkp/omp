@@ -24,3 +24,5 @@ class SelectableReviewRevisionsGridHandler extends ReviewRevisionsGridHandler {
 		parent::ReviewRevisionsGridHandler(false, true);
 	}
 }
+
+?>

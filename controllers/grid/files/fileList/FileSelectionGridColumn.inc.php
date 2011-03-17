@@ -79,3 +79,5 @@ class FileSelectionGridColumn extends GridColumn {
 			'selected' => $selected);
 	}
 }
+
+?>

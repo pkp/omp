@@ -42,3 +42,5 @@ class SubmissionParticipantGridCellProvider extends DataObjectGridCellProvider {
 		}
 	}
 }
+
+?>

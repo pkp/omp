@@ -35,3 +35,5 @@ class DownloadFileLinkAction extends FileLinkAction {
 				is_a($monographFile, 'ArtworkFile')?'imageFile':null);
 	}
 }
+
+?>

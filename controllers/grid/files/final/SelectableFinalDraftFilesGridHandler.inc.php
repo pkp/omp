@@ -50,5 +50,6 @@ class SelectableFinalDraftFilesGridHandler extends FinalDraftFilesGridHandler {
 		$this->setGridDataElements($rowData);
 		$this->setSelectedFileIds($selectedFileIds);
 	}
-
 }
+
+?>

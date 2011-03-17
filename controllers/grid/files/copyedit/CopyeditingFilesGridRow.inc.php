@@ -135,3 +135,5 @@ class CopyeditingFilesGridRow extends GridRow {
 		}
 	}
 }
+
+?>

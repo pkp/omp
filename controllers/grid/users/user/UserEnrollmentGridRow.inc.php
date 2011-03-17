@@ -84,3 +84,5 @@ class UserEnrollmentGridRow extends UserGridRow {
 		}
 	}
 }
+
+?>

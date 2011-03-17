@@ -72,3 +72,5 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 		$signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId());
 	}
 }
+
+?>

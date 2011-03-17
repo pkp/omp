@@ -482,3 +482,5 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		return $json->getString();
 	}
 }
+
+?>

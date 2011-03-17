@@ -60,3 +60,5 @@ class BaseAddFileLinkAction extends LinkAction {
 		parent::LinkAction('addFile', $modal, $buttonLabel, 'add');
 	}
 }
+
+?>

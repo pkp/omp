@@ -47,3 +47,5 @@ class EditorReviewAttachmentsGridHandler extends SelectableFileListGridHandler {
 		return 'selectedAttachments';
 	}
 }
+
+?>

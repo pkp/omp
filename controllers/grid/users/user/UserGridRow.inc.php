@@ -112,3 +112,5 @@ class UserGridRow extends GridRow {
 		}
 	}
 }
+
+?>

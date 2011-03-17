@@ -133,3 +133,5 @@ class AuthorCopyeditingFilesGridCellProvider extends DataObjectGridCellProvider 
 		return array($action);
 	}
 }
+
+?>

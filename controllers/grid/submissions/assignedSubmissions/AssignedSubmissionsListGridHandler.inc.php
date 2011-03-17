@@ -126,3 +126,5 @@ class AssignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		return $row;
 	}
 }
+
+?>

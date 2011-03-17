@@ -128,3 +128,5 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 		return 'selectedFiles';
 	}
 }
+
+?>

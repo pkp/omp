@@ -62,3 +62,5 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 		}
 	}
 }
+
+?>

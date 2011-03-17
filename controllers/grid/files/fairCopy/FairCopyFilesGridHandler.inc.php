@@ -100,3 +100,5 @@ class FairCopyFilesGridHandler extends SubmissionFilesGridHandler {
 		);
 	}
 }
+
+?>

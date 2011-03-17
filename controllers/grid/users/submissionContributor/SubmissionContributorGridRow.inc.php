@@ -75,3 +75,5 @@ class SubmissionContributorGridRow extends GridRow {
 		}
 	}
 }
+
+?>

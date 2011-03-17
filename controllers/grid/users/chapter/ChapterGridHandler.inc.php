@@ -23,7 +23,7 @@ import('controllers.grid.users.chapter.ChapterGridCategoryRow');
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
-class ChapterGridHandler extends CategoryGridHandler{
+class ChapterGridHandler extends CategoryGridHandler {
 
 	/** @var Monograph */
 	var $_monograph;
@@ -82,25 +82,22 @@ class ChapterGridHandler extends CategoryGridHandler{
 		parent::initialize($request);
 
 		// Retrieve the authorized monograph
-		$this->setMonograph($this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH));
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		assert(is_a($monograph, 'Monograph'));
+		$this->setMonograph($monograph);
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_DEFAULT_SETTINGS, LOCALE_COMPONENT_OMP_SUBMISSION));
 		// Basic grid configuration
 		$this->setTitle('grid.chapters.title');
 
-		// Get the monograph id
-		$monograph =& $this->getMonograph();
-		assert(is_a($monograph, 'Monograph'));
-		$monographId = $monograph->getId();
-
 		// Set the category data
 		$chapterDao =& DAORegistry::getDAO('ChapterDAO');
-		$chapters =& $chapterDao->getChapters($monographId);
+		$chapters =& $chapterDao->getChapters($monograph->getId());
 		$this->setGridDataElements($chapters);
 
 		// Grid actions
 		$router =& $request->getRouter();
-		$actionArgs = array('monographId' => $monographId);
+		$actionArgs = array('monographId' => $monograph->getId());
 		$this->addAction(
 			new LinkAction(
 				'addChapter',
@@ -283,3 +280,5 @@ class ChapterGridHandler extends CategoryGridHandler{
 		return $json->getString();
 	}
 }
+
+?>

@@ -33,3 +33,5 @@ class SelectReviewFilesLinkAction extends SelectFilesLinkAction {
 		parent::SelectFilesLinkAction($request, $actionArgs, $actionLabel);
 	}
 }
+
+?>

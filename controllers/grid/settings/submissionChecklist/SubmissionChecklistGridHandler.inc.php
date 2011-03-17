@@ -189,3 +189,5 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		return $json->getString();
 	}
 }
+
+?>

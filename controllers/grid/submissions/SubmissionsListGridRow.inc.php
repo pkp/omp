@@ -65,3 +65,5 @@ class SubmissionsListGridRow extends GridRow {
 		}
 	}
 }
+
+?>

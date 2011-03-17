@@ -59,3 +59,5 @@ class ReviewFormElementTypeCellProvider extends GridCellProvider {
 		return $templateMgr->fetch($template);
 	}
 }
+
+?>

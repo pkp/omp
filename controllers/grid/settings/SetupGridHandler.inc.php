@@ -41,3 +41,5 @@ class SetupGridHandler extends GridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 }
+
+?>

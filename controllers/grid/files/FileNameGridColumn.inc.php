@@ -75,3 +75,5 @@ class FileNameGridColumn extends GridColumn {
 		return $cellActions;
 	}
 }
+
+?>

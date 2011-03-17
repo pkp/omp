@@ -72,3 +72,5 @@ class FileListGridHandler extends SubmissionFilesGridHandler {
 		$this->addColumn(new FileGenreGridColumn());
 	}
 }
+
+?>

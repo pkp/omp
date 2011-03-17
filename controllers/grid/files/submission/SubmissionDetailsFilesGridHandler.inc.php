@@ -45,3 +45,5 @@ class SubmissionDetailsFilesGridHandler extends FileListGridHandler {
 		parent::initialize($request);
 	}
 }
+
+?>

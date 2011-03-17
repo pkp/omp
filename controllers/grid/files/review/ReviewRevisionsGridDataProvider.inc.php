@@ -58,3 +58,5 @@ class ReviewRevisionsGridDataProvider extends ReviewGridDataProvider {
 		return $addFileAction;
 	}
 }
+
+?>

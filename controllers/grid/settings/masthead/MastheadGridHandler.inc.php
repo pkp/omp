@@ -217,5 +217,6 @@ class MastheadGridHandler extends SetupGridHandler {
 		$json = new JSON(true, $templateMgr->fetch('controllers/grid/settings/masthead/memberships.tpl'));
 		return $json->getString();
 	}
-
 }
+
+?>

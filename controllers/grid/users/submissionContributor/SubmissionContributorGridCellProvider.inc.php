@@ -50,3 +50,5 @@ class SubmissionContributorGridCellProvider extends DataObjectGridCellProvider {
 		}
 	}
 }
+
+?>

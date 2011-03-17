@@ -103,3 +103,5 @@ class SubmissionsListGridHandler extends GridHandler {
 		assert(false);
 	}
 }
+
+?>

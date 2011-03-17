@@ -36,3 +36,5 @@ class DeleteFileLinkAction extends FileLinkAction {
 				__('grid.action.delete'), 'delete');
 	}
 }
+
+?>

@@ -17,3 +17,5 @@ import('controllers.grid.files.fileList.FileListGridHandler');
 
 class ReviewFilesGridHandler extends FileListGridHandler {
 }
+
+?>

@@ -130,3 +130,5 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 		return $row;
 	}
 }
+
+?>

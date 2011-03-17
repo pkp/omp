@@ -40,3 +40,5 @@ class LibraryFileGridCellProvider extends GridCellProvider {
 		}
 	}
 }
+
+?>

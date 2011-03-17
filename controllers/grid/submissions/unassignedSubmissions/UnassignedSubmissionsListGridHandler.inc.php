@@ -107,3 +107,5 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 		return $row;
 	}
 }
+
+?>

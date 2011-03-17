@@ -221,3 +221,5 @@ class StageParticipantGridHandler extends GridHandler {
 		}
 	}
 }
+
+?>

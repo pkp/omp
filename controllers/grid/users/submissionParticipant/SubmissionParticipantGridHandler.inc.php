@@ -102,6 +102,6 @@ class SubmissionParticipantGridHandler extends GridHandler {
 			)
 		);
 	}
-
-
 }
+
+?>

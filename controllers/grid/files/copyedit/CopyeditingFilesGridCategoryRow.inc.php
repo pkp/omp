@@ -63,3 +63,5 @@ class CopyeditingFilesGridCategoryRow extends GridCategoryRow {
 		}
 	}
 }
+
+?>

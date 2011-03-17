@@ -44,3 +44,5 @@ class FileGenreGridColumn extends GridColumn {
 		return array('label' => $genre->getLocalizedName());
 	}
 }
+
+?>

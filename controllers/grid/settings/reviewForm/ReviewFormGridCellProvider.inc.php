@@ -40,3 +40,5 @@ class ReviewFormGridCellProvider extends GridCellProvider {
 		}
 	}
 }
+
+?>

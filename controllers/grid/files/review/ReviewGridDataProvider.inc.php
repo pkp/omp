@@ -85,3 +85,5 @@ class ReviewGridDataProvider extends FilesGridDataProvider {
 	    return $this->_round;
 	}
 }
+
+?>

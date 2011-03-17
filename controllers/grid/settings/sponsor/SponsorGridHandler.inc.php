@@ -180,3 +180,5 @@ class SponsorGridHandler extends SetupGridHandler {
 		return $json->getString();
 	}
 }
+
+?>

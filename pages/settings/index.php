@@ -28,3 +28,5 @@ switch ($op) {
 		define('HANDLER_CLASS', 'SettingsHandler');
 		break;
 }
+
+?>
