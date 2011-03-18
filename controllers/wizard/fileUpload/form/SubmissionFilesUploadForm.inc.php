@@ -140,12 +140,28 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 
 		// Check which of these groups make sense in the context
 		// from which the uploader was instantiated.
+		// FIXME: The series editor role may only be displayed if the user
+		// is assigned to the current submission as a series editor, see #6000.
 		$uploaderRoles = $this->getUploaderRoles();
 		$uploaderUserGroups = array();
+		$highestAuthorityUserGroupId = null;
 		while($userGroup =& $assignedUserGroups->next()) { /* @var $userGroup UserGroup */
+			// Add all user groups that belong to any of the uploader roles.
 			if (in_array($userGroup->getRoleId(), $uploaderRoles)) {
 				$uploaderUserGroups[$userGroup->getId()] = $userGroup->getLocalizedName();
+
+				// Identify the first of the user groups that belongs
+				// to the role with the lowest role id (=highest authority
+				// level). We'll need this information to identify the default
+				// selection, see below.
+				if (is_null($highestAuthorityUserGroupId) || $userGroup->getRoleId() <= $highestAuthorityRoleId) {
+					$highestAuthorityRoleId = $userGroup->getRoleId();
+					if (is_null($highestAuthorityUserGroupId) || $userGroup->getId() < $highestAuthorityUserGroupId) {
+						$highestAuthorityUserGroupId = $userGroup->getId();
+					}
+				}
 			}
+
 			unset($userGroup);
 		}
 		if (empty($uploaderUserGroups)) fatalError('Invalid uploader roles!');
@@ -172,15 +188,8 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 			}
 
 			// If we didn't find a corresponding stage signoff then
-			// use the first group with the lowest role id as default.
-			if (is_null($defaultUserGroupId)) {
-				foreach($uploaderUserGroups as $uploaderUserGroup) { /* @var $uploaderUserGroup UserGroup */
-					if (is_null($defaultUserGroupId) || $uploaderUserGroup->getRoleId() < $minRoleId) {
-						$minRoleId = $uploaderUserGroup->getRoleId();
-						$defaultUserGroupId = $uploaderUserGroup->getId();
-					}
-				}
-			}
+			// use the user group with the highest authority as default.
+			if (is_null($defaultUserGroupId)) $defaultUserGroupId = $highestAuthorityUserGroupId;
 		}
 		$this->setData('defaultUserGroupId', $defaultUserGroupId);
 
@@ -189,9 +198,10 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 
 	/**
 	 * @see Form::execute()
+	 * @param $request Request
 	 * @return MonographFile if successful, otherwise null
 	 */
-	function &execute() {
+	function &execute($request) {
 		// Identify the file genre.
 		$revisedFileId = $this->getRevisedFileId();
 		if ($revisedFileId) {
@@ -206,12 +216,15 @@ class SubmissionFilesUploadForm extends SubmissionFilesUploadBaseForm {
 		$uploaderUserGroupId = $this->getData('uploaderUserGroupId');
 		if (!$uploaderUserGroupId) fatalError('Invalid uploader user group!');
 
+		// Identify the uploading user.
+		$user =& $request->getUser();
+		assert(is_a($user, 'User'));
+
 		// Upload the file.
 		import('classes.file.MonographFileManager');
 		return MonographFileManager::uploadMonographFile(
-			$this->getData('monographId'), 'uploadedFile',
-			$this->getData('fileStage'), $uploaderUserGroupId,
-			$revisedFileId, $fileGenre
+			$this->getData('monographId'), 'uploadedFile', $this->getData('fileStage'),
+			$user->getId(), $uploaderUserGroupId, $revisedFileId, $fileGenre
 		);
 	}
 

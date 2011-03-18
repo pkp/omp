@@ -48,11 +48,7 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 	function initialize(&$request) {
 		// Add checkbox column to the grid.
 		import('controllers.grid.files.fileList.FileSelectionGridColumn');
-		$this->addColumn(
-			new FileSelectionGridColumn(
-				$this->getSelectedFileIds(), $this->getSelectName()
-			)
-		);
+		$this->addColumn(new FileSelectionGridColumn($this->getSelectName()));
 
 		parent::initialize($request);
 	}
@@ -61,6 +57,27 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 	//
 	// Overridden methods from GridHandler
 	//
+	/**
+	 * @see GridHandler::loadData()
+	 */
+	function &loadData($request, $filter) {
+		// Go through the submission files and set their
+		// "selected" flag.
+		$submissionFiles =& parent::loadData($request, $filter);
+		$selectedFiles =& $this->getSelectedFileIds();
+		foreach($submissionFiles as $fileId => $submissionFileData) {
+			assert(isset($submissionFileData['submissionFile']));
+			$monographFile =& $submissionFileData['submissionFile']; /* @var $monographFile MonographFile */
+			$submissionFiles[$fileId]['selected'] = in_array(
+				$monographFile->getFileIdAndRevision(),
+				$selectedFiles
+			);
+			unset($monographFile);
+		}
+
+		return $submissionFiles;
+	}
+
 	/**
 	 * @see GridHandler::fetchGrid()
 	 */

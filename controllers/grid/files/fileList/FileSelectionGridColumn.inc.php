@@ -14,21 +14,17 @@
 import('lib.pkp.classes.controllers.grid.GridColumn');
 
 class FileSelectionGridColumn extends GridColumn {
-	/** @var array */
-	var $_selectedFileIds;
 
 	/** @var string */
 	var $_selectName;
 
+
 	/**
 	 * Constructor
-	 * @param $selectedFileIds array The ids of pre-selected files.
 	 * @param $selectName string The name of the form parameter
 	 *  to which the selected files will be posted.
 	 */
-	function FileSelectionGridColumn($selectedFileIds, $selectName) {
-		assert(is_array($selectedFileIds));
-		$this->_selectedFileIds = $selectedFileIds;
+	function FileSelectionGridColumn($selectName) {
 		assert(is_string($selectName) && !empty($selectName));
 		$this->_selectName = $selectName;
 
@@ -41,14 +37,6 @@ class FileSelectionGridColumn extends GridColumn {
 	//
 	// Getters and Setters
 	//
-	/**
-	 * Get the selected file ids.
-	 * @return array
-	 */
-	function getSelectedFileIds() {
-		return $this->_selectedFileIds;
-	}
-
 	/**
 	 * Get the select name.
 	 * @return string
@@ -68,15 +56,20 @@ class FileSelectionGridColumn extends GridColumn {
 	 * @see ColumnBasedGridCellProvider::getTemplateVarsFromRowColumn()
 	 */
 	function getTemplateVarsFromRow($row) {
-		// Return the selection information.
-		$monographFile =& $row->getData(); /* @var $monographFile MonographFile */
+		// Retrieve the file data.
+		$submissionFileData =& $row->getData();
+
+		// Retrieve the monograph file.
+		assert(isset($submissionFileData['submissionFile']));
+		$monographFile =& $submissionFileData['submissionFile']; /* @var $monographFile MonographFile */
 		assert(is_a($monographFile, 'MonographFile'));
-		$fileIdAndRevision = $monographFile->getFileId().'-'.$monographFile->getRevision();
-		$selected = in_array($fileIdAndRevision, $this->getSelectedFileIds());
+
+		// Return the data expected by the column's cell template.
+		assert(isset($submissionFileData['selected']));
 		return array(
-			'elementId' => $fileIdAndRevision,
+			'elementId' => $monographFile->getFileIdAndRevision(),
 			'selectName' => $this->getSelectName(),
-			'selected' => $selected);
+			'selected' => $submissionFileData['selected']);
 	}
 }
 

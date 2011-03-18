@@ -38,7 +38,7 @@ class ReviewRevisionsGridDataProvider extends ReviewGridDataProvider {
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestNewRevisionsByReviewRound($monograph->getId(), $this->_getReviewType(), $this->_getRound());
-		return $this->getRevisionsByFileId($monographFiles);
+		return $this->prepareSubmissionFileData($monographFiles);
 	}
 
 

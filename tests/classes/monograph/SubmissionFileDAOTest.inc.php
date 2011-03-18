@@ -214,10 +214,10 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		// getLatestRevisions()
 		//
 		// Calculate the unique ids of the test files.
-		$uniqueId1_1 = $file1Rev1->getFileId().'-'.$file1Rev1->getRevision();
-		$uniqueId1_2 = $file1Rev2->getFileId().'-'.$file1Rev2->getRevision();
-		$uniqueId2_1 = $file2Rev1->getFileId().'-'.$file2Rev1->getRevision();
-		$uniqueId2_2 = $file2Rev2->getFileId().'-'.$file2Rev2->getRevision();
+		$uniqueId1_1 = $file1Rev1->getFileIdAndRevision();
+		$uniqueId1_2 = $file1Rev2->getFileIdAndRevision();
+		$uniqueId2_1 = $file2Rev1->getFileIdAndRevision();
+		$uniqueId2_2 = $file2Rev2->getFileIdAndRevision();
 
 		// Retrieve the latest revisions of both files.
 		self::assertNull($submissionFileDao->getLatestRevisions(null));
@@ -287,7 +287,7 @@ class SubmissionFileDAOTest extends DatabaseTestCase {
 		$file1Rev3 = cloneObject($file1Rev2);
 		$file1Rev3->setRevision(3);
 		self::assertEquals($file1Rev3, $submissionFileDao->insertObject($file1Rev3, $this->testFile));
-		$uniqueId1_3 = $file1Rev3->getFileId().'-'.$file1Rev3->getRevision();
+		$uniqueId1_3 = $file1Rev3->getFileIdAndRevision();
 
 		// Insert review round file assignments.
 		$submissionFileDao->assignRevisionToReviewRound($file1Rev1->getFileId(), $file1Rev1->getRevision(),

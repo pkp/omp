@@ -68,10 +68,15 @@ class FileNameGridColumn extends GridColumn {
 	 * @see GridColumn::getCellActions()
 	 */
 	function getCellActions(&$request, &$row, $position = GRID_ACTION_POSITION_DEFAULT) {
+		// Retrieve the monograph file.
+		$submissionFileData =& $row->getData();
+		assert(isset($submissionFileData['submissionFile']));
+		$monographFile = $submissionFileData['submissionFile']; /* @var $monographFile MonographFile */
+
 		// Create the cell action to download a file.
 		import('controllers.api.file.linkAction.DownloadFileLinkAction');
 		$cellActions = parent::getCellActions($request, $row, $position);
-		$cellActions[] = new DownloadFileLinkAction($request, $row->getData(), $this->getStageId());
+		$cellActions[] = new DownloadFileLinkAction($request, $monographFile, $this->getStageId());
 		return $cellActions;
 	}
 }

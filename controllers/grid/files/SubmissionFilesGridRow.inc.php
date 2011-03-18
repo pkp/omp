@@ -64,7 +64,9 @@ class SubmissionFilesGridRow extends GridRow {
 		parent::initialize($request, $template);
 
 		// Retrieve the monograph file.
-		$monographFile =& $this->getData(); /* @var $monographFile MonographFile */
+		$submissionFileData =& $this->getData();
+		assert(isset($submissionFileData['submissionFile']));
+		$monographFile =& $submissionFileData['submissionFile']; /* @var $monographFile MonographFile */
 		assert(is_a($monographFile, 'MonographFile'));
 
 		// File grid row actions:

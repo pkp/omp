@@ -35,7 +35,10 @@ class FileGenreGridColumn extends GridColumn {
 	 * @see ColumnBasedGridCellProvider::getTemplateVarsFromRowColumn()
 	 */
 	function getTemplateVarsFromRow($row) {
-		$monographFile =& $row->getData();
+		// Retrieve the monograph file.
+		$submissionFileData =& $row->getData();
+		assert(isset($submissionFileData['submissionFile']));
+		$monographFile =& $submissionFileData['submissionFile']; /* @var $monographFile MonographFile */
 		assert(is_a($monographFile, 'MonographFile'));
 
 		// Retrieve the genre label for the monograph file.

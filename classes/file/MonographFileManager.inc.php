@@ -43,14 +43,20 @@ class MonographFileManager extends FileManager {
 	 * @param $monographId integer
 	 * @param $fileName string the name of the file used in the POST form
 	 * @param $fileStage int monograph file workflow stage
+	 * @param $uploaderUserId int The id of the user that uploaded the file.
 	 * @param $uploaderUserGroupId int The id of the user group that the uploader acted in
 	 *  when uploading the file.
 	 * @param $revisedFileId int
 	 * @param $genreId int (e.g. Manusciprt, Appendix, etc.)
 	 * @return MonographFile
 	 */
-	function &uploadMonographFile($monographId, $fileName, $fileStage, $uploaderUserGroupId, $revisedFileId = null, $genreId = null) {
-		return MonographFileManager::_handleUpload($monographId, $fileName, $fileStage, $uploaderUserGroupId, $revisedFileId, $genreId);
+	function &uploadMonographFile($monographId, $fileName, $fileStage, $uploaderUserId,
+			$uploaderUserGroupId, $revisedFileId = null, $genreId = null) {
+
+		return MonographFileManager::_handleUpload(
+			$monographId, $fileName, $fileStage, $uploaderUserId,
+			$uploaderUserGroupId, $revisedFileId, $genreId
+		);
 	}
 
 	/**
@@ -62,8 +68,8 @@ class MonographFileManager extends FileManager {
 	 * @param $revisedFileId int
 	 * @return MonographFile
 	 */
-	function &uploadCopyeditResponseFile($monographId, $fileName, $uploaderUserGroupId, $revisedFileId = null) {
-		return MonographFileManager::_handleUpload($monographId, $fileName, MONOGRAPH_FILE_COPYEDIT_RESPONSE, $uploaderUserGroupId, $revisedFileId);
+	function &uploadCopyeditResponseFile($monographId, $fileName, $revisedFileId = null) {
+		return MonographFileManager::_handleUpload($monographId, $fileName, MONOGRAPH_FILE_COPYEDIT_RESPONSE, null, null, $revisedFileId);
 	}
 
 	/**
@@ -102,7 +108,10 @@ class MonographFileManager extends FileManager {
 			$user =& $session->getUser();
 			if (is_a($user, 'User')) {
 				$viewsDao =& DAORegistry::getDAO('ViewsDAO');
-				$viewsDao->recordView(ASSOC_TYPE_MONOGRAPH_FILE, $fileId, $user->getId());
+				$viewsDao->recordView(
+					ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileIdAndRevision(),
+					$user->getId()
+				);
 			}
 
 			// Send the file to the user.
@@ -112,32 +121,6 @@ class MonographFileManager extends FileManager {
 		}
 
 		return $returner;
-	}
-
-	/**
-	 * Download all monograph files as an archive
-	 * @param $monographId integer
-	 * @param $monographFiles array
-	 * @return boolean
-	 */
-	function downloadFilesArchive($monographId, &$monographFiles) {
-		$filesDir = MonographFileManager::_getFilesDir($monographId);
-		$filePaths = array();
-		foreach ($monographFiles as $monographFile) { /* @var $monographFile MonographFile */
-			// Remove absolute path so the archive doesn't include it (otherwise all files are organized by absolute path)
-			$filePath = str_replace($filesDir, '', $monographFile->getFilePath());
-			// Add files to be archived to array
-			$filePaths[] = escapeshellarg($filePath);
-		}
-
-		// Create the archive and download the file
-		$archivePath = $filesDir . "monograph_" . $monographId . "_files.tar.gz";
-		$tarCommand = "tar czf ". $archivePath . " -C \"" . $filesDir . "\" " . implode(" ", $filePaths);
-		exec($tarCommand);
-		if (file_exists($archivePath)) {
-			parent::downloadFile($archivePath);
-			return true;
-		} else return false;
 	}
 
 	/**
@@ -203,6 +186,7 @@ class MonographFileManager extends FileManager {
 	 * @param $monographId integer
 	 * @param $fileName string index into the $_FILES array
 	 * @param $fileStage int monograph file stage (one of the MONOGRAPH_FILE_* constants)
+	 * @param $uploaderUserId int The id of the user that uploaded the file.
 	 * @param $uploaderUserGroupId int The id of the user group that the uploader acted in
 	 *  when uploading the file.
 	 * @param $revisedFileId int ID of an existing file to revise
@@ -211,7 +195,9 @@ class MonographFileManager extends FileManager {
 	 * @param $assocId int
 	 * @return MonographFile the uploaded monograph file or null if an error occured.
 	 */
-	function &_handleUpload($monographId, $fileName, $fileStage, $uploaderUserGroupId, $revisedFileId = null, $genreId = null, $assocId = null, $assocType = null) {
+	function &_handleUpload($monographId, $fileName, $fileStage, $uploaderUserId, $uploaderUserGroupId,
+			$revisedFileId = null, $genreId = null, $assocId = null, $assocType = null) {
+
 		$nullVar = null;
 
 		// Ensure that the file has been correctly uploaded to the server.
@@ -234,7 +220,8 @@ class MonographFileManager extends FileManager {
 		assert($originalFileName !== false);
 		$monographFile->setOriginalFileName(MonographFileManager::truncateFileName($originalFileName));
 
-		// Set the uploader's user group id.
+		// Set the uploader's user and user group id.
+		$monographFile->setUploaderUserId($uploaderUserId);
 		$monographFile->setUserGroupId($uploaderUserGroupId);
 
 		// Copy the uploaded file to its final destination and

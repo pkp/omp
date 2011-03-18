@@ -46,6 +46,22 @@ class MonographFile extends SubmissionFile {
 	// Get/set methods
 	//
 	/**
+	 * Set the uploader's user id.
+	 * @param $uploaderUserId integer
+	 */
+	function setUploaderUserId($uploaderUserId) {
+		$this->setData('uploaderUserId', $uploaderUserId);
+	}
+
+	/**
+	 * Get the uploader's user id.
+	 * @return integer
+	 */
+	function getUploaderUserId() {
+		return $this->getData('uploaderUserId');
+	}
+
+	/**
 	 * Set the uploader's user group id
 	 * @param $userGroupId int
 	 */

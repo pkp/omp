@@ -94,17 +94,21 @@ class FilesGridDataProvider extends GridDataProvider {
 	}
 
 	/**
-	 * Rearrange file revisions by file id.
+	 * Rearrange file revisions by file id and return the file
+	 * data wrapped into an array so that grid implementations
+	 * can add further data.
 	 * @param $revisions array
 	 * @return array
 	 */
-	function &getRevisionsByFileId(&$revisions) {
-		// Rearrange the files by file id as required by the grid.
-		$files = array();
+	function &prepareSubmissionFileData(&$revisions) {
+		// Rearrange the files as required by submission file grids.
+		$submissionFileData = array();
 		foreach ($revisions as $revision) {
-			$files[$revision->getFileId()] = $revision;
+			$submissionFileData[$revision->getFileId()] = array(
+				'submissionFile' => $revision
+			);
 		}
-		return $files;
+		return $submissionFileData;
 	}
 }
 

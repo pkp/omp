@@ -68,6 +68,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 			$monographFile->getOriginalFileName(),
 			(int)$monographFile->getFileStage(),
 			(boolean)$monographFile->getViewable(),
+			is_null($monographFile->getUploaderUserId()) ? null : (int)$monographFile->getUploaderUserId(),
 			is_null($monographFile->getUserGroupId()) ? null : (int)$monographFile->getUserGroupId(),
 			is_null($monographFile->getAssocType()) ? null : (int)$monographFile->getAssocType(),
 			is_null($monographFile->getAssocId()) ? null : (int)$monographFile->getAssocId(),
@@ -80,9 +81,9 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 
 		$this->update(
 			sprintf('INSERT INTO monograph_files
-				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_type, file_size, original_file_name, file_stage, date_uploaded, date_modified, viewable, user_group_id, assoc_type, assoc_id, genre_id)
+				(' . ($fileId ? 'file_id, ' : '') . 'revision, monograph_id, source_file_id, source_revision, file_type, file_size, original_file_name, file_stage, date_uploaded, date_modified, viewable, uploader_user_id, user_group_id, assoc_type, assoc_id, genre_id)
 				VALUES
-				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?, ?)',
+				(' . ($fileId ? '?, ' : '') . '?, ?, ?, ?, ?, ?, ?, ?, %s, %s, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monographFile->getDateUploaded()), $this->datetimeToDB($monographFile->getDateModified())),
 			$params
 		);
@@ -142,6 +143,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 					date_uploaded = %s,
 					date_modified = %s,
 					viewable = ?,
+					uploader_user_id = ?,
 					user_group_id = ?,
 					assoc_type = ?,
 					assoc_id = ?,
@@ -159,6 +161,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 				$monographFile->getOriginalFileName(),
 				$monographFile->getFileStage(),
 				is_null($monographFile->getViewable()) ? null : (boolean)$monographFile->getViewable(),
+				is_null($monographFile->getUploaderUserId()) ? null : (int)$monographFile->getUploaderUserId(),
 				is_null($monographFile->getUserGroupId()) ? null : (int)$monographFile->getUserGroupId(),
 				is_null($monographFile->getAssocType()) ? null : (int)$monographFile->getAssocType(),
 				is_null($monographFile->getAssocId()) ? null : (int)$monographFile->getAssocId(),
@@ -169,6 +172,9 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		);
 
 		$this->updateLocaleFields($monographFile);
+
+		// Update all dependent objects.
+		$this->_updateDependentObjects($monographFile, $previousFile);
 
 		// Copy the file from its current location to the target destination
 		// if necessary.
@@ -197,6 +203,9 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 				(int)$submissionFile->getFileId(),
 				(int)$submissionFile->getRevision()
 			))) return false;
+
+		// Delete all dependent objects.
+		$this->_deleteDependentObjects($submissionFile);
 
 		// Delete the file on the file system, too.
 		$filePath = $submissionFile->getFilePath();
@@ -227,6 +236,7 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		$monographFile->setFileType($row['file_type']);
 		$monographFile->setGenreId(is_null($row['genre_id']) ? null : (int)$row['genre_id']);
 		$monographFile->setFileSize((int)$row['file_size']);
+		$monographFile->setUploaderUserId(is_null($row['uploader_user_id']) ? null : (int)$row['uploader_user_id']);
 		$monographFile->setUserGroupId(is_null($row['user_group_id']) ? null : (int)$row['user_group_id']);
 		$monographFile->setViewable((boolean)$row['viewable']);
 
@@ -257,6 +267,65 @@ class MonographFileDAODelegate extends SubmissionFileDAODelegate {
 		$localeFieldNames = parent::getLocaleFieldNames();
 		$localeFieldNames[] = 'name';
 		return $localeFieldNames;
+	}
+
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Update all objects that depend on the given file.
+	 * @param $monographFile MonographFile
+	 * @param $previousFile MonographFile
+	 */
+	function _updateDependentObjects(&$monographFile, &$previousFile) {
+		// If the file ids didn't change then we do not have to
+		// do anything.
+		if (
+			$previousFile->getFileId() == $monographFile->getFileId() ||
+			$previousFile->getRevision() == $monographFile->getRevision()
+		) return;
+
+		// Update signoffs that refer to this file.
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$signoffFactory =& $signoffDao->getByFileRevision(
+			$previousFile->getFileId(), $previousFile->getRevision()
+		);
+		while ($signoff =& $signoffFactory->next()) { /* @var $signoff Signoff */
+			$signoff->setFileId($monographFile->getFileId());
+			$signoff->setFileRevision($monographFile->getRevision());
+			$signoffDao->updateObject($signoff);
+			unset($signoff);
+		}
+
+		// Update file views that refer to this file.
+		$viewsDao =& DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
+		$viewsDao->moveViews(
+			ASSOC_TYPE_MONOGRAPH_FILE,
+			$previousFile->getFileIdAndRevision(), $monographFile->getFileIdAndRevision()
+		);
+	}
+
+	/**
+	 * Delete all objects that depend on the given file.
+	 * @param $monographFile MonographFile
+	 */
+	function _deleteDependentObjects(&$monographFile) {
+		// Delete signoffs that refer to this file.
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
+		$signoffFactory =& $signoffDao->getByFileRevision(
+			$monographFile->getFileId(), $monographFile->getRevision()
+		);
+		while ($signoff =& $signoffFactory->next()) { /* @var $signoff Signoff */
+			$signoffDao->deleteObject($signoff);
+			unset($signoff);
+		}
+
+		// Delete file views that refer to this file.
+		$viewsDao =& DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
+		$viewsDao->deleteViews(
+			ASSOC_TYPE_MONOGRAPH_FILE, $monographFile->getFileIdAndRevision()
+		);
 	}
 }
 

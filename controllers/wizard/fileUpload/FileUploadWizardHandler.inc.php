@@ -210,7 +210,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 
 		// Validate the form and upload the file.
 		if ($uploadForm->validate($request)) {
-			if (is_a($uploadedFile =& $uploadForm->execute(), 'MonographFile')) {
+			if (is_a($uploadedFile =& $uploadForm->execute($request), 'MonographFile')) {
 				// Retrieve file info to be used in a JSON response.
 				$uploadedFileInfo = $this->_getUploadedFileInfo($uploadedFile);
 

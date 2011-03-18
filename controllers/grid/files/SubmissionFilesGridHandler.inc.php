@@ -217,14 +217,45 @@ class SubmissionFilesGridHandler extends GridHandler {
 	// Public handler methods
 	//
 	/**
-	 * Download all of the monograph files as one compressed file
+	 * Download all of the monograph files as one compressed file.
 	 * @param $args array
 	 * @param $request Request
 	 */
 	function downloadAllFiles($args, &$request) {
+		// Retrieve the monograph.
 		$monograph =& $this->getMonograph();
+		$monographId = $monograph->getId();
+
+		// Find out the paths of all files in this grid.
 		import('classes.file.MonographFileManager');
-		MonographFileManager::downloadFilesArchive($monograph->getId(), $this->getGridDataElements($request));
+		$filesDir = MonographFileManager::_getFilesDir($monographId);
+		$filePaths = array();
+		foreach ($this->getGridDataElements($request) as $submissionFileData) {
+			$monographFile =& $submissionFileData['submissionFile']; /* @var $monographFile MonographFile */
+
+			// Remove absolute path so the archive doesn't include it (otherwise all files are organized by absolute path)
+			$filePath = str_replace($filesDir, '', $monographFile->getFilePath());
+
+			// Add files to be archived to array
+			$filePaths[] = escapeshellarg($filePath);
+
+			unset($monographFile);
+		}
+
+		// Identify the archive location.
+		$archivePath = $filesDir . "monograph_" . $monographId . "_files.tar.gz";
+
+		// Delete prior file if it exists.
+		FileManager::deleteFile($archivePath);
+
+		// Create the archive and download the file.
+		$tarCommand = "tar czf ". $archivePath . " -C \"" . $filesDir . "\" " . implode(" ", $filePaths);
+		exec($tarCommand);
+		if (file_exists($archivePath)) {
+			FileManager::downloadFile($archivePath);
+		} else {
+			fatalError('Creating archive with submission files failed!');
+		}
 	}
 }
 

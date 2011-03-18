@@ -70,7 +70,7 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), $this->_getFileStage());
-		return $this->getRevisionsByFileId($monographFiles);
+		return $this->prepareSubmissionFileData($monographFiles);
 	}
 
 

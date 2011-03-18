@@ -15,51 +15,79 @@
 import('classes.views.ViewsDAO');
 
 class ViewsDAO extends DAO {
-	/*
+	/**
 	 * Constructor
 	 */
 	function ViewsDAO() {
 		parent::DAO();
 	}
 
-	/*
-	 * Mark an item as viewed
-	 * @param $assocType int The associated type for the item being marked
-	 * @param $assocId int the ID of the object being marked
-	 * @param $userId int the ID of the user viewing the item
-	 * @return bool
+	/**
+	 * Mark an item as viewed.
+	 * @param $assocType integer The associated type for the item being marked.
+	 * @param $assocId string The id of the object being marked.
+	 * @param $userId integer The id of the user viewing the item.
+	 * @return boolean
 	 */
 	function recordView($assocType, $assocId, $userId) {
-		if ( !$this->getLastViewDate($assocType, $assocId, $userId) ) {
-			return $this->update(sprintf('INSERT INTO views (assoc_type, assoc_id, user_id, date_last_viewed)
-										VALUES (?, ?, ?, %s)',
-										$this->datetimeToDB(Core::getCurrentDate())),
-									array($assocType, $assocId, $userId));
+		if ($this->getLastViewDate($assocType, $assocId, $userId)) {
+			$sql =
+				'UPDATE	views set date_last_viewed = %s
+				WHERE 	assoc_type = ? AND assoc_id = ? and user_id = ?';
 		} else {
-			return $this->update(sprintf('UPDATE views set date_last_viewed = %s
-										WHERE assoc_type = ? AND assoc_id = ? and user_id = ?',
-										$this->datetimeToDB(Core::getCurrentDate())),
-									array($assocType, $assocId, $userId));
+			$sql =
+				'INSERT INTO	views (assoc_type, assoc_id, user_id, date_last_viewed)
+				VALUES	(?, ?, ?, %s)';
 		}
+		return $this->update(
+			sprintf($sql, $this->datetimeToDB(Core::getCurrentDate())),
+			array((int)$assocType, $assocId, (int)$userId)
+		);
 	}
 
 	/**
-	 * Get the timestamp of the last view
-	 * @param int $assocType
-	 * @param int $assocId
-	 * @param int $userId
-	 * @return string datetime of last view.  False if no view found.
+	 * Get the timestamp of the last view.
+	 * @param $assocType integer
+	 * @param $assocId string
+	 * @param $userId integer
+	 * @return string|boolean Datetime of last view. False if no view found.
 	 */
 	function getLastViewDate($assocType, $assocId, $userId) {
-		$result = $this->retrieve('SELECT date_last_viewed
-									FROM views
-									WHERE assoc_type = ?
-										AND assoc_id = ?
-										AND user_id = ?',
-									array($assocType, $assocId, $userId));
+		$result = $this->retrieve(
+			'SELECT	date_last_viewed
+			FROM	views
+			WHERE	assoc_type = ?
+				AND	assoc_id = ?
+				AND	user_id = ?',
+			array((int)$assocType, $assocId, (int)$userId)
+		);
 		return (isset($result->fields[0])) ? $result->fields[0] : false;
 	}
 
+	/**
+	 * Move views from one assoc object to another.
+	 * @param $assocType integer One of the ASSOC_TYPE_* constants.
+	 * @param $oldAssocId string
+	 * @param $newAssocId string
+	 */
+	function moveViews($assocType, $oldAssocId, $newAssocId) {
+		return $this->update(
+			'UPDATE views SET assoc_id = ? WHERE assoc_type = ? AND assoc_id = ?',
+			array($newAssocId, (int)$assocType, $oldAssocId)
+		);
+	}
+
+	/**
+	 * Delete views of an assoc object.
+	 * @param $assocType integer One of the ASSOC_TYPE_* constants.
+	 * @param $assocId string
+	 */
+	function deleteViews($assocType, $assocId) {
+		return $this->update(
+			'DELETE FROM views WHERE assoc_type = ? AND assoc_id = ?',
+			array((int)$assocType, $assocId)
+		);
+	}
 }
 
 ?>
