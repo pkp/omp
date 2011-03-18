@@ -74,9 +74,15 @@
 	//
 	$.pkp.controllers.informationCenter.NotesHandler.prototype.
 			loadNoteList_ = function() {
-		$.get(this.fetchUrl_, this.callbackWrapper(function(formElement, jsonData) {
-			$('#notesList').replaceWith(jsonData.content);
-		}), 'json');
+
+		$.get(this.fetchUrl_, this.callbackWrapper(this.setNoteList_), 'json');
 	};
+
+	$.pkp.controllers.informationCenter.NotesHandler.prototype.
+			setNoteList_ = function(formElement, jsonData) {
+
+		jsonData = this.handleJson(jsonData);
+		$('#notesList').replaceWith(jsonData.content);
+	}
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);
