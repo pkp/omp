@@ -75,7 +75,7 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 	 */
 	function getCellState(&$row, &$column) {
 		$columnId = $column->getId();
-		$element =& $row->getData();
+		$element =& $row->getData(); /* @var $element Signoff */
 		assert(is_a($element, 'Signoff') && !empty($columnId));
 
 		// Numeric means its a userGroupId column
@@ -90,7 +90,10 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 				} else {
 					// Check if the user has read the file
 					$viewsDao =& DAORegistry::getDAO('ViewsDAO');
-					$lastViewed = $viewsDao->getLastViewDate(ASSOC_TYPE_MONOGRAPH_FILE, $element->getFileId(), $element->getUserId());
+					$lastViewed = $viewsDao->getLastViewDate(
+						ASSOC_TYPE_MONOGRAPH_FILE, $element->getFileId().'-'.$element->getFileRevision(),
+						$element->getUserId()
+					);
 					if($lastViewed) {
 						return 'accepted'; // Green checkbox
 					} else return 'new'; // Gray checkbox

@@ -58,7 +58,9 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		);
 
 		// Columns
-		$this->addColumn(new GridColumn('content',
+		$this->addColumn(
+			new GridColumn(
+				'content',
 				'grid.submissionChecklist.column.checklistItem',
 				null,
 				'controllers/grid/gridCell.tpl',

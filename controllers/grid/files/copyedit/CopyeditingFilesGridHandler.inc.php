@@ -413,12 +413,6 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$fileId = (int) $request->getUserVar('fileId');
 		assert(!empty($fileId));
 
-		$sessionManager =& SessionManager::getManager();
-		$session =& $sessionManager->getUserSession();
-		$user =& $session->getUser();
-		$viewsDao =& DAORegistry::getDAO('ViewsDAO');
-		$viewsDao->recordView(ASSOC_TYPE_MONOGRAPH_FILE, $fileId, $user->getId());
-
 		import('classes.file.MonographFileManager');
 		MonographFileManager::downloadFile($monograph->getId(), $fileId);
 	}

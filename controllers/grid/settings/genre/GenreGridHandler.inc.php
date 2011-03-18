@@ -78,19 +78,24 @@ class GenreGridHandler extends SetupGridHandler {
 		// Columns
 		$cellProvider = new DataObjectGridCellProvider();
 		$cellProvider->setLocale(Locale::getLocale());
-		$this->addColumn(new GridColumn('name',
-			'common.name',
-			null,
-			'controllers/grid/gridCell.tpl',
-			$cellProvider
-		));
+		$this->addColumn(
+			new GridColumn('name',
+				'common.name',
+				null,
+				'controllers/grid/gridCell.tpl',
+				$cellProvider
+			)
+		);
 
-		$this->addColumn(new GridColumn('designation',
-			'common.designation',
-			null,
-			'controllers/grid/gridCell.tpl',
-			$cellProvider
-		));
+		$this->addColumn(
+			new GridColumn(
+				'designation',
+				'common.designation',
+				null,
+				'controllers/grid/gridCell.tpl',
+				$cellProvider
+			)
+		);
 	}
 
 	//

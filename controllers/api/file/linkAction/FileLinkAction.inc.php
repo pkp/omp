@@ -38,10 +38,11 @@ class FileLinkAction extends LinkAction {
 
 		// Create the action arguments array.
 		return array(
-				'monographId' => $monographFile->getMonographId(),
-				'stageId' => $stageId,
-				'fileStage' => $monographFile->getFileStage(),
-				'fileId' => $monographFile->getFileId());
+			'monographId' => $monographFile->getMonographId(),
+			'stageId' => $stageId,
+			'fileStage' => $monographFile->getFileStage(),
+			'fileId' => $monographFile->getFileId()
+		);
 	}
 }
 

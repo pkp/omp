@@ -27,13 +27,18 @@ class DeleteFileLinkAction extends FileLinkAction {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 		$confirmationModal = new ConfirmationModal(
-				__('common.confirmDelete'), null,
-				$router->url($request, null, 'api.file.FileApiHandler',
-						'deleteFile', null, $this->getActionArgs($monographFile, $stageId)));
+			__('common.confirmDelete'), null,
+			$router->url(
+				$request, null, 'api.file.FileApiHandler',
+				'deleteFile', null, $this->getActionArgs($monographFile, $stageId)
+			)
+		);
 
 		// Configure the file link action.
-		parent::FileLinkAction('deleteFile', $confirmationModal,
-				__('grid.action.delete'), 'delete');
+		parent::FileLinkAction(
+			'deleteFile', $confirmationModal,
+			__('grid.action.delete'), 'delete'
+		);
 	}
 }
 

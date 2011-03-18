@@ -68,10 +68,14 @@ class MastheadGridHandler extends SetupGridHandler {
 		);
 
 		// Columns
-		$this->addColumn(new GridColumn('groups',
-										'grid.masthead.column.groups',
-										null,
-										'controllers/grid/gridCell.tpl'));
+		$this->addColumn(
+			new GridColumn(
+				'groups',
+				'grid.masthead.column.groups',
+				null,
+				'controllers/grid/gridCell.tpl'
+			)
+		);
 	}
 
 	//

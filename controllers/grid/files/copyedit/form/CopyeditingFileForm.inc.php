@@ -131,6 +131,7 @@ class CopyeditingFileForm extends Form {
 		$monograph =& $this->getMonograph();
 		import('classes.file.MonographFileManager');
 		if (MonographFileManager::uploadedFileExists('copyeditingFile')) {
+			// FIXME: Refactor this to use MonographFileManager::uploadMonographFile(), also need to adapt the method signature, see #6125.
 			$copyeditedFileId = MonographFileManager::uploadCopyeditResponseFile($monograph->getId(), 'copyeditingFile', 1, $copyeditedFileId);
 			if (isset($copyeditedFileId)) {
 				// Amend the copyediting signoff with the new file

@@ -31,13 +31,18 @@ class FileInfoCenterLinkAction extends FileLinkAction {
 		$router =& $request->getRouter();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$ajaxModal = new AjaxModal(
-				$router->url($request, null,
-						'informationCenter.FileInformationCenterHandler',
-						'viewInformationCenter', null, $this->getActionArgs($monographFile, $stageId)));
+			$router->url(
+				$request, null,
+				'informationCenter.FileInformationCenterHandler', 'viewInformationCenter',
+				null, $this->getActionArgs($monographFile, $stageId)
+			)
+		);
 
 		// Configure the file link action.
-		parent::FileLinkAction('moreInfo', $ajaxModal,
-				__('grid.action.moreInformation'), 'more_info');
+		parent::FileLinkAction(
+			'moreInfo', $ajaxModal,
+			__('grid.action.moreInformation'), 'more_info'
+		);
 	}
 }
 

@@ -188,9 +188,9 @@ class StageParticipantGridHandler extends GridHandler {
 	 */
 	function addStageParticipant($args, &$request) {
 		// Render the stage participant form.
-		// FIXME: We only need a form here to use the form vocab.
-		// Make the form vocab globally available and implement this
-		// as a simple template, see #6505.
+		// FIXME: We only need a form class here to gain access to the
+		// form vocab. Make the form vocab globally available and implement this
+		// form as a simple template, see #6505.
 		import('controllers.grid.users.stageParticipant.form.StageParticipantForm');
 		$stageParticipantForm = new StageParticipantForm($this->getMonograph(), $this->getStageId());
 		$json = new JSON(true, $stageParticipantForm->fetch($request));

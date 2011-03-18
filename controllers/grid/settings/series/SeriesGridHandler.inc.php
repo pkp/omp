@@ -94,10 +94,14 @@ class SeriesGridHandler extends SetupGridHandler {
 		);
 
 		// Columns
-		$this->addColumn(new GridColumn('title',
-										'common.title',
-										null,
-										'controllers/grid/gridCell.tpl'));
+		$this->addColumn(
+			new GridColumn(
+				'title',
+				'common.title',
+				null,
+				'controllers/grid/gridCell.tpl'
+			)
+		);
 		$this->addColumn(new GridColumn('division', 'manager.setup.division'));
 		$this->addColumn(new GridColumn('editors', 'user.role.editors'));
 		$this->addColumn(new GridColumn('affiliation', 'user.affiliation'));

@@ -66,14 +66,16 @@ class ReviewFormGridHandler extends SetupGridHandler {
 		// Columns
 		import('controllers.grid.settings.reviewForm.ReviewFormGridCellProvider');
 		$cellProvider = new ReviewFormGridCellProvider();
-		$this->addColumn(new GridColumn(
-			'titles', 'common.title',
-			null,
-			'controllers/grid/gridCell.tpl',
-			$cellProvider
-		));
+		$this->addColumn(
+			new GridColumn(
+				'titles', 'common.title',
+				null,
+				'controllers/grid/gridCell.tpl',
+				$cellProvider
+			)
+		);
 
-		/* FIXME: http://pkp.sfu.ca/bugzilla/show_bug.cgi?id=5122 */
+		// FIXME: See #5122.
 		//$this->addColumn(new GridColumn('completeCount', 'common.completed'));
 		//$this->addColumn(new GridColumn('incompleteCount', 'common.title'));
 	}
