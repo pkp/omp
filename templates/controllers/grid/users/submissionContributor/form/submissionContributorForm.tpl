@@ -14,7 +14,7 @@
 	// Attach the Information Center handler.
 	$(function() {ldelim}
 		$('#editSubmissionContributor').pkpHandler(
-			'$.pkp.controllers.form.FormHandler'
+			'$.pkp.controllers.form.AjaxFormHandler'
 		);
 	{rdelim});
 </script>

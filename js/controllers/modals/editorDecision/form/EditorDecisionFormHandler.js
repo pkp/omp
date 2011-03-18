@@ -23,7 +23,7 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 	/**
 	 * @constructor
 	 *
-	 * @extends $.pkp.controllers.form.FormHandler
+	 * @extends $.pkp.controllers.form.AjaxFormHandler
 	 *
 	 * @param {jQuery} $form the wrapped HTML form element.
 	 * @param {Object} options form options.
@@ -39,7 +39,7 @@ jQuery.pkp.controllers.modals = jQuery.pkp.controllers.modals ||
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.controllers.modals.editorDecision.form.EditorDecisionFormHandler,
-			$.pkp.controllers.form.FormHandler);
+			$.pkp.controllers.form.AjaxFormHandler);
 
 
 	//

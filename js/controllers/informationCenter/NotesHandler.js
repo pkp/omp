@@ -59,7 +59,7 @@
 	 * Handle the "note added" event triggered by the
 	 * note form whenever a new note is added.
 	 *
-	 * @param {$.pkp.controllers.form.FormHandler} callingForm The form
+	 * @param {$.pkp.controllers.form.AjaxFormHandler} callingForm The form
 	 *  that triggered the event.
 	 * @param {Event} event The upload event.
 	 */

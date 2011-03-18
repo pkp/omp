@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#managePreparedEmailForm').pkpHandler('$.pkp.controllers.form.FormHandler');
+		$('#managePreparedEmailForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 	{rdelim});
 </script>
 

@@ -15,7 +15,7 @@
 	<script type="text/javascript">
 		$(function() {ldelim}
 			// Attach the form handler.
-			$('#manageReviewFilesForm').pkpHandler('$.pkp.controllers.form.FormHandler');
+			$('#manageReviewFilesForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 		{rdelim});
 	</script>
 	<form id="manageReviewFilesForm" action="{url component="grid.files.review.SelectableEditorReviewFilesGridHandler" op="updateReviewFiles" monographId=$monographId|escape reviewType=$reviewType|escape round=$round|escape}" method="post">

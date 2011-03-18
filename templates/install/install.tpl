@@ -52,7 +52,7 @@
 
 		<p>{translate key="installer.localeSettingsInstructions" supportsMBString=$supportsMBString}</p>
 
-		{fbvFormArea}
+		{fbvFormArea id="localeSettingsFormArea"}
 			{fbvFormSection title="locale.primary"}
 				{fbvSelect name="locale" id="localeOptions" from=$localeOptions selected=$locale translate=false}
 				<br />
@@ -100,7 +100,7 @@
 	<div id="fileSettings">
 		<h3>{translate key="installer.fileSettings"}</h3>
 
-		{fbvFormArea}
+		{fbvFormArea id="fileSettingsFormArea"}
 			{fbvFormSection title="installer.filesDir"}
 				{fbvElement type="text" id="filesDir" value=$filesDir|escape maxlength="255" size=$fbvStyles.size.LARGE}
 				{fbvElement type="checkbox" id="skipFilesDir" value="1" checked=$skipFilesDir label="installer.skipFilesDir"}
@@ -117,7 +117,7 @@
 	<div id="security">
 		<h3>{translate key="installer.securitySettings"}</h3>
 
-		{fbvFormArea}
+		{fbvFormArea  id="securityFormArea"}
 			{fbvFormSection title="installer.encryption"}
 				{fbvSelect id="encryption" from=$encryptionOptions selected=$encryption translate=false}
 				<br />
@@ -134,7 +134,7 @@
 
 		<p>{translate key="installer.administratorAccountInstructions"}</p>
 
-		{fbvFormArea}
+		{fbvFormArea id="administratorAccountFormArea"}
 			{fbvFormSection title="user.username"}
 				{fbvElement type="text" id="adminUsername" value=$adminUsername|escape maxlength="32" size=$fbvStyles.size.LARGE}
 			{/fbvFormSection}
@@ -158,7 +158,7 @@
 
 		<p>{translate key="installer.databaseSettingsInstructions"}</p>
 
-		{fbvFormArea}
+		{fbvFormArea id="databaseSettingsFormArea"}
 			{fbvFormSection title="installer.databaseDriver"}
 				{fbvSelect id="databaseDriver" from=$databaseDriverOptions selected=$databaseDriver translate=false}
 				<br />
@@ -186,7 +186,7 @@
 	<div id="miscSettings">
 		<h3>{translate key="installer.miscSettings"}</h3>
 
-		{fbvFormArea}
+		{fbvFormArea id="miscSettingsFormArea"}
 			{fbvFormSection title="installer.oaiRepositoryId"}
 				{fbvElement type="text" id="oaiRepositoryId" value=$oaiRepositoryId|escape maxlength="60" size=$fbvStyles.size.LARGE}
 				<br />

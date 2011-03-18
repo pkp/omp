@@ -12,7 +12,7 @@
 	// Attach the Information Center handler.
 	$(function() {ldelim}
 		$('#editChapterForm').pkpHandler(
-			'$.pkp.controllers.form.FormHandler'
+			'$.pkp.controllers.form.AjaxFormHandler'
 		);
 	{rdelim});
 </script>
