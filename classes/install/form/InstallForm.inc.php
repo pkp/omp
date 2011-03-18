@@ -208,7 +208,7 @@ class InstallForm extends Form {
 				$templateMgr->assign(array('writeConfigFailed' => true, 'configFileContents' => $installer->getConfigContents()));
 			}
 
-			return $templateMgr->fetchJson('install/installComplete.tpl');
+			$templateMgr->display('install/installComplete.tpl');
 
 		} else {
 			switch ($installer->getErrorType()) {
