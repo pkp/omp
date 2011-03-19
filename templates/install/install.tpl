@@ -139,10 +139,10 @@
 				{fbvElement type="text" id="adminUsername" value=$adminUsername|escape maxlength="32" size=$fbvStyles.size.LARGE}
 			{/fbvFormSection}
 			{fbvFormSection title="user.password"}
-				{fbvElement type="text" id="adminPassword" value=$adminPassword|escape maxlength="32" size=$fbvStyles.size.LARGE}
+				{fbvElement type="text" password=true id="adminPassword" value=$adminPassword|escape maxlength="32" size=$fbvStyles.size.LARGE}
 			{/fbvFormSection}
 			{fbvFormSection title="user.repeatPassword"}
-				{fbvElement type="text" id="adminPassword2" value=$adminPassword2|escape maxlength="32" size=$fbvStyles.size.LARGE}
+				{fbvElement type="text" password=true id="adminPassword2" value=$adminPassword2|escape maxlength="32" size=$fbvStyles.size.LARGE}
 			{/fbvFormSection}
 			{fbvFormSection title="user.email"}
 				{fbvElement type="text" id="adminEmail" value=$adminEmail|escape maxlength="90" size=$fbvStyles.size.LARGE}
