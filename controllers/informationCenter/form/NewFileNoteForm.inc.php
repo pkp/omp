@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file controllers/informationCenter/form/NewMonographNoteForm.inc.php
+ * @file controllers/informationCenter/form/NewFileNoteForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class NewMonographNoteForm
+ * @class NewFileNoteForm
  * @ingroup informationCenter_form
  *
  * @brief Form to display and post notes on a file
@@ -15,17 +15,17 @@
 
 import('controllers.informationCenter.form.NewNoteForm');
 
-class NewMonographNoteForm extends NewNoteForm {
-	/** @var $monographId int The ID of the monograph to attach the note to */
-	var $monographId;
+class NewFileNoteForm extends NewNoteForm {
+	/** @var $fileId int The ID of the monograph file to attach the note to */
+	var $fileId;
 
 	/**
 	 * Constructor.
 	 */
-	function NewMonographNoteForm($monographId) {
+	function NewFileNoteForm($fileId) {
 		parent::NewNoteForm();
 
-		$this->monographId = $monographId;
+		$this->fileId = $fileId;
 	}
 
 	/**
@@ -33,7 +33,7 @@ class NewMonographNoteForm extends NewNoteForm {
 	 * @return int
 	 */
 	function getAssocType() {
-		return ASSOC_TYPE_MONOGRAPH;
+		return ASSOC_TYPE_MONOGRAPH_FILE;
 	}
 
 	/**
@@ -41,7 +41,7 @@ class NewMonographNoteForm extends NewNoteForm {
 	 * @return int
 	 */
 	function getAssocId() {
-		return $this->monographId;
+		return $this->fileId;
 	}
 }
 

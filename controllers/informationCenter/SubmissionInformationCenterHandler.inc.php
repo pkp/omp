@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file SubmissionInformationCenterHandler.inc.php
+ * @file controllers/informationCenter/SubmissionInformationCenterHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -75,26 +75,6 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	}
 
 	/**
-	 * Display the list of existing notes.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function listNotes($args, &$request) {
-		// Fetch the monograph to display information about
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
-		$this->setupTemplate();
-
-		$templateMgr =& TemplateManager::getManager();
-		$noteDao =& DAORegistry::getDAO('NoteDAO');
-		$templateMgr->assign('notes', $noteDao->getByAssoc(ASSOC_TYPE_MONOGRAPH, $monograph->getId()));
-		$templateMgr->assign('monographId', $monograph->getId());
-		$json = new JSON(true, $templateMgr->fetch('controllers/informationCenter/notesList.tpl'));
-
-		return $json->getString();
-	}
-
-	/**
 	 * Save a note.
 	 * @param $args array
 	 * @param $request PKPRequest
@@ -102,7 +82,6 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	function saveNote($args, &$request) {
 		// Fetch the monograph to display information about
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
 		$this->setupTemplate();
 
 		import('controllers.informationCenter.form.NewMonographNoteForm');
@@ -121,27 +100,6 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			// Return a JSON string indicating failure
 			$json = new JSON(false);
 		}
-
-		return $json->getString();
-	}
-
-	/**
-	 * Delete a note.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function deleteNote($args, &$request) {
-		// Fetch the monograph to display information about
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
-		$noteId = (int) $request->getUserVar('noteId');
-		$noteDao =& DAORegistry::getDAO('NoteDAO');
-		$note =& $noteDao->getById($noteId);
-		assert ($note && $note->getAssocType == ASSOC_TYPE_MONOGRAPH && $note->getAssocId() == $monograph->getId());
-		$noteDao->deleteById($noteId);
-
-		$additionalAttributes = array('script' => "$('#note-$noteId').hide('slow')");
-		$json = new JSON(true, '', true, null, $additionalAttributes);
 
 		return $json->getString();
 	}
@@ -188,7 +146,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			$json = new JSON(true);
 		} else {
 			// Return a JSON string indicating failure
-			$json = new JSON(false, Locale::translate('informationCenter.notify.warning'));
+			$json = new JSON(false, __('informationCenter.notify.warning'));
 		}
 
 		return $json->getString();
@@ -248,11 +206,28 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * need to have passed to their various handlers (i.e. monograph ID to
 	 * the delete note handler). Subclasses should implement.
 	 */
-	function getLinkParams() {
+	function _getLinkParams() {
 		// Fetch the monograph to display information about
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		return array('monographId' => $monograph->getId());
+	}
+
+	/**
+	 * Get the association ID for this information center view
+	 * @return int
+	 */
+	function _getAssocId() {
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		return $monograph->getId();
+	}
+
+	/**
+	 * Get the association type for this information center view
+	 * @return int
+	 */
+	function _getAssocType() {
+		return ASSOC_TYPE_MONOGRAPH;
 	}
 }
 

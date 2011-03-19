@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file FileInformationCenterHandler.inc.php
+ * @file controllers/informationCenter/FileInformationCenterHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -17,6 +17,12 @@ import('lib.pkp.classes.core.JSON');
 import('classes.monograph.log.MonographEventLogEntry');
 
 class FileInformationCenterHandler extends InformationCenterHandler {
+	/** @var $monographFile object */
+	var $monographFile;
+
+	/** @var $monograph object */
+	var $monograph;
+
 	/**
 	 * Constructor
 	 */
@@ -25,39 +31,50 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	}
 
 	/**
+	 * Fetch and store away objects
+	 */
+	function initialize(&$request, $args = null) {
+		parent::initialize($request, $args);
+
+		// Fetch the monograph and file to display information about
+		$this->monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
+		$this->monographFile =& $submissionFileDao->getLatestRevision($request->getUserVar('fileId'));
+
+		// Ensure data integrity.
+		assert($this->monograph && $this->monographFile && $this->monograph->getId() == $this->monographFile->getMonographId());
+	}
+
+	/**
 	 * Display the main information center modal.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
 	function viewInformationCenter($args, &$request) {
-		$itemId = Request::getUserVar('itemId');
 		$this->setupTemplate();
-
-		// Get the file in question
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFile =& $submissionFileDao->getLatestRevision($itemId);
 
 		// Get the latest history item to display in the header
 		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
-		$fileEvents =& $monographEventLogDao->getMonographLogEntriesByAssoc($monographFile->getMonographId(), ASSOC_TYPE_MONOGRAPH_FILE, $itemId);
+		$fileEvents =& $monographEventLogDao->getMonographLogEntriesByAssoc(
+			$this->monograph->getId(),
+			ASSOC_TYPE_MONOGRAPH_FILE,
+			$this->monographFile->getFileId()
+		);
 		$lastEvent =& $fileEvents->next();
 
 		// Assign variables to the template manager and display
 		$templateMgr =& TemplateManager::getManager();
-		$fileName = $monographFile->getLocalizedName() != '' ? $monographFile->getLocalizedName() : Locale::translate('common.untitled');
-		if ($monographFile->getRevision() > 1) $fileName .= ' (' . $monographFile->getRevision() . ')'; // Add revision number to label
-		if (empty($fileName) ) $fileName = Locale::translate('common.untitled');
+		$fileName = (($s = $this->monographFile->getLocalizedName()) != '') ? $s : __('common.untitled');
+		if (($i = $this->monographFile->getRevision()) > 1) $fileName .= " ($i)"; // Add revision number to label
+		if (empty($fileName) ) $fileName = __('common.untitled');
 		$templateMgr->assign_by_ref('title', $fileName);
-		$templateMgr->assign_by_ref('monographFile', $monographFile);
-		$templateMgr->assign_by_ref('monographId', $monographFile->getMonographId());
-		$templateMgr->assign_by_ref('itemId', $itemId);
 		if(isset($lastEvent)) {
 			$templateMgr->assign_by_ref('lastEvent', $lastEvent);
 
 			// Get the user who posted the last note
-			$userId = $lastEvent->getUserId();
 			$userDao =& DAORegistry::getDAO('UserDAO');
-			$user =& $userDao->getUser($userId);
+			$user =& $userDao->getUser($lastEvent->getUserId());
 			$templateMgr->assign_by_ref('lastEventUser', $user);
 		}
 
@@ -71,14 +88,41 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function viewNotes($args, &$request) {
-		$itemId = Request::getUserVar('itemId');
 		$this->setupTemplate();
 
 		import('controllers.informationCenter.form.NewFileNoteForm');
-		$notesForm = new NewFileNoteForm($itemId);
+		$notesForm = new NewFileNoteForm($this->monographFile->getFileId());
 		$notesForm->initData();
 
 		$json = new JSON(true, $notesForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Save a note.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function saveNote($args, &$request) {
+		$this->setupTemplate();
+
+		import('controllers.informationCenter.form.NewFileNoteForm');
+		$notesForm = new NewFileNoteForm($this->monographFile->getFileId());
+		$notesForm->readInputData();
+
+		if ($notesForm->validate()) {
+			$notesForm->execute();
+			$json = new JSON(true);
+
+			// Save to event log
+			$user =& $request->getUser();
+			$userId = $user->getId();
+			$this->_logEvent($this->monographFile->getFileId(), MONOGRAPH_LOG_NOTE_POSTED, $userId);
+		} else {
+			// Return a JSON string indicating failure
+			$json = new JSON(false);
+		}
+
 		return $json->getString();
 	}
 
@@ -88,11 +132,10 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function viewNotify ($args, &$request) {
-		$itemId = Request::getUserVar('itemId');
 		$this->setupTemplate();
 
 		import('controllers.informationCenter.form.InformationCenterNotifyForm');
-		$notifyForm = new InformationCenterNotifyForm(ASSOC_TYPE_MONOGRAPH_FILE, $itemId);
+		$notifyForm = new InformationCenterNotifyForm(ASSOC_TYPE_MONOGRAPH_FILE, $this->monographFile->getFileId());
 		$notifyForm->initData();
 
 		$json = new JSON(true, $notifyForm->fetch($request));
@@ -105,11 +148,10 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function sendNotification ($args, &$request) {
-		$itemId = Request::getUserVar('itemId');
 		$this->setupTemplate();
 
 		import('controllers.informationCenter.form.InformationCenterNotifyForm');
-		$notifyForm = new InformationCenterNotifyForm(ASSOC_TYPE_MONOGRAPH_FILE, $itemId);
+		$notifyForm = new InformationCenterNotifyForm(ASSOC_TYPE_MONOGRAPH_FILE, $this->monographFile->getItemId());
 		$notifyForm->readInputData();
 
 		if ($notifyForm->validate()) {
@@ -119,7 +161,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 			$json = new JSON(true);
 		} else {
 			// Failure--Return a JSON string indicating so
-			$json = new JSON(false, Locale::translate("informationCenter.notify.warning"));
+			$json = new JSON(false, __('informationCenter.notify.warning'));
 		}
 
 		return $json->getString();
@@ -131,16 +173,15 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function viewHistory($args, &$request) {
-		$itemId = Request::getUserVar('itemId');
 		$this->setupTemplate();
-
-		// Get the file in question to get the monograph Id
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFile =& $submissionFileDao->getLatestRevision($itemId);
 
 		// Get all monograph file events
 		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
-		$fileEvents =& $monographEventLogDao->getMonographLogEntriesByAssoc($monographFile->getMonographId(), ASSOC_TYPE_MONOGRAPH_FILE, $itemId);
+		$fileEvents =& $monographEventLogDao->getMonographLogEntriesByAssoc(
+			$this->monograph->getId(),
+			ASSOC_TYPE_MONOGRAPH_FILE,
+			$this->monographFile->getFileId()
+		);
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('eventLogEntries', $fileEvents);
@@ -167,22 +208,46 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 				break;
 		}
 
-		// Get the file in question to get the monograph Id
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFile =& $submissionFileDao->getLatestRevision($itemId);
-
 		$entry = new MonographEventLogEntry();
-		$entry->setMonographId($monographFile->getMonographId());
+		$entry->setMonographId($this->monograph->getId());
 		$entry->setUserId($userId);
 		$entry->setDateLogged(Core::getCurrentDate());
 		$entry->setEventType($eventType);
 		$entry->setLogMessage($logMessage);
 		$entry->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
-		$entry->setAssocId($itemId);
+		$entry->setAssocId($this->monographFile->getFileId());
 
 		import('classes.monograph.log.MonographLog');
-		MonographLog::logEventEntry($monographFile->getMonographId(), $entry);
+		MonographLog::logEventEntry($this->monographFile->getFileId(), $entry);
 	}
 
+	/**
+	 * Get an array representing link parameters that subclasses
+	 * need to have passed to their various handlers (i.e. monograph ID to
+	 * the delete note handler). Subclasses should implement.
+	 */
+	function _getLinkParams() {
+		return array(
+			'fileId' => $this->monographFile->getFileId(),
+			'monographId' => $this->monograph->getId()
+		);
+	}
+
+	/**
+	 * Get the association ID for this information center view
+	 * @return int
+	 */
+	function _getAssocId() {
+		return $this->monographFile->getFileId();
+	}
+
+	/**
+	 * Get the association type for this information center view
+	 * @return int
+	 */
+	function _getAssocType() {
+		return ASSOC_TYPE_MONOGRAPH_FILE;
+	}
 }
+
 ?>

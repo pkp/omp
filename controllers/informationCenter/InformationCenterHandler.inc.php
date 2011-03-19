@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file InformationCenterHandler.inc.php
+ * @file controllers/informationCenter/InformationCenterHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -23,7 +23,7 @@ class InformationCenterHandler extends Handler {
 	function InformationCenterHandler() {
 		parent::Handler();
 
-		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER), array(
+		$this->addRoleAssignment(array(ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER), array(
 			'viewInformationCenter', // Information Center
 			'viewNotes', 'listNotes', 'saveNote', 'deleteNote', // Notes tab
 			'viewNotify', 'sendNotification', // Notify tab
@@ -62,28 +62,16 @@ class InformationCenterHandler extends Handler {
 	}
 
 	/**
-	 * Display the notes tab.
-	 * NB: sub-classes must implement this method.
-	 * @param $args array
-	 * @param $request PKPRequest
+	 * View a list of notes posted on the item.
+	 * Subclasses must implement.
 	 */
 	function viewNotes($args, &$request) {
 		assert(false);
 	}
 
 	/**
-	 * Display the list of existing notes.
-	 * NB: sub-classes must implement this method.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function listNotes($args, &$request) {
-		assert(false);
-	}
-
-	/**
 	 * Save a note.
-	 * NB: sub-classes must implement this method.
+	 * Subclasses must implement.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
@@ -92,13 +80,37 @@ class InformationCenterHandler extends Handler {
 	}
 
 	/**
+	 * Display the list of existing notes.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 */
+	function listNotes($args, &$request) {
+		$this->setupTemplate();
+
+		$templateMgr =& TemplateManager::getManager();
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$templateMgr->assign('notes', $noteDao->getByAssoc($this->_getAssocType(), $this->_getAssocId()));
+		$json = new JSON(true, $templateMgr->fetch('controllers/informationCenter/notesList.tpl'));
+
+		return $json->getString();
+	}
+
+	/**
 	 * Delete a note.
-	 * NB: sub-classes must implement this method.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
 	function deleteNote($args, &$request) {
-		assert(false);
+		$noteId = (int) $request->getUserVar('noteId');
+		$noteDao =& DAORegistry::getDAO('NoteDAO');
+		$note =& $noteDao->getById($noteId);
+		assert ($note && $note->getAssocType() == $this->_getAssocType() && $note->getAssocId() == $this->_getAssocId());
+		$noteDao->deleteById($noteId);
+
+		$additionalAttributes = array('script' => "$('#note-$noteId').hide('slow')");
+		$json = new JSON(true, '', true, null, $additionalAttributes);
+
+		return $json->getString();
 	}
 
 	/**
@@ -146,15 +158,31 @@ class InformationCenterHandler extends Handler {
 	 * need to have passed to their various handlers (i.e. monograph ID to
 	 * the delete note handler). Subclasses should implement.
 	 */
-	function getLinkParams() {
+	function _getLinkParams() {
 		assert(false);
 	}
 
 	function setupTemplate() {
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('linkParams', $this->getLinkParams());
+		$templateMgr->assign('linkParams', $this->_getLinkParams());
 
 		parent::setupTemplate();
+	}
+
+	/**
+	 * Get the association ID for this information center view
+	 * @return int
+	 */
+	function _getAssocId() {
+		assert(false);
+	}
+
+	/**
+	 * Get the association type for this information center view
+	 * @return int
+	 */
+	function _getAssocType() {
+		assert(false);
 	}
 }
 
