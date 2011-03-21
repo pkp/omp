@@ -1,12 +1,12 @@
 <?php
 /**
- * @file controllers/api/preparedEmails/linkAction/EditEmailLinkAction.inc.php
+ * @file controllers/grid/settings/preparedEmails/linkAction/EditEmailLinkAction.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class EditEmailLinkAction
- * @ingroup controllers_api_preparedEmails_linkAction
+ * @ingroup controllers_grid_settings_preparedEmails_linkAction
  *
  * @brief Add/Edit a prepared email.
  */
@@ -36,7 +36,7 @@ class EditEmailLinkAction extends LinkAction {
 
 		$modal = new AjaxModal(
 			$dispatcher->url($request, ROUTE_COMPONENT, null,
-				'modals.preparedEmails.PreparedEmailsModalHandler', $action,
+				'grid.settings.preparedEmails.PreparedEmailsGridHandler', $action,
 				null, $actionArgs),
 			__($title), $icon);
 

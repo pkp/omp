@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/system/preparedEmails/PreparedEmailsGridCellProvider.inc.php
+ * @file controllers/grid/settings/preparedEmails/PreparedEmailsGridCellProvider.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
