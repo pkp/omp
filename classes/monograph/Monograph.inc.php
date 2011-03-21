@@ -120,22 +120,6 @@ class Monograph extends Submission {
 		 $this->setData('seriesAbbrev', $abbrev);
 	}
 
- 	/**
-	 * get date published
-	 * @return date
-	 */
-	function getDatePublished() {
-		return $this->getData('datePublished');
-	}
-
-	/**
-	 * set date published
-	 * @param $datePublished date
-	 */
-	function setDatePublished($datePublished) {
-		return $this->setData('datePublished', $datePublished);
-	}
-
 	/**
 	 * Get comments to editor.
 	 * @return string
