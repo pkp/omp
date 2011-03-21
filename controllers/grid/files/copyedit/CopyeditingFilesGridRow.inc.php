@@ -89,6 +89,7 @@ class CopyeditingFilesGridRow extends GridRow {
 					)
 				);
 			} else {
+				// FIXME: Not all roles should see this action. Bug #5975.
 				$this->addAction(
 					new LegacyLinkAction(
 						'deleteUser',
