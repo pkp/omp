@@ -78,6 +78,7 @@ class StageParticipantGridRow extends GridRow {
 				'signoffId' => $rowId
 			);
 			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+			// FIXME: Not all roles should see this action. Bug #5975.
 			$this->addAction(
 				new LinkAction(
 					'remove',
