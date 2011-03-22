@@ -103,8 +103,8 @@ class CopyeditingUserForm extends Form {
 		$userDao =& DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
 		$user =& $userDao->getUser($userIdAndGroup[0]);
 		$email->addRecipient($user->getEmail(), $user->getFullName());
-		$email->setAssoc(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_COPYEDIT, MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
-		$email->send();
+		$email->setEventType(MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
+		$email->send($request);
 	}
 }
 

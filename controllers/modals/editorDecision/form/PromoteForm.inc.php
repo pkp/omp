@@ -96,7 +96,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 		}
 
 		// Send email to the author.
-		$this->_sendReviewMailToAuthor($seriesEditorSubmission, $status, $emailKey);
+		$this->_sendReviewMailToAuthor($seriesEditorSubmission, $status, $emailKey, $request);
 	}
 }
 

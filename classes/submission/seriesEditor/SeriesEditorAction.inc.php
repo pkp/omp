@@ -61,10 +61,10 @@ class SeriesEditorAction extends Action {
 
 			// Add log.
 			$decisions = SeriesEditorSubmission::getEditorDecisionOptions();
-			import('classes.monograph.log.MonographLog');
-			import('classes.monograph.log.MonographEventLogEntry');
+			import('classes.log.MonographLog');
+			import('classes.log.MonographEventLogEntry');
 			Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_OMP_EDITOR));
-			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_EDITOR_DECISION, MONOGRAPH_LOG_TYPE_EDITOR, $user->getId(), 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'decision' => Locale::translate($decisions[$decision])));
+			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_EDITOR_DECISION, 'log.editor.decision', array('editorName' => $user->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'decision' => Locale::translate($decisions[$decision])));
 		}
 	}
 
@@ -176,13 +176,13 @@ class SeriesEditorAction extends Action {
 			$press =& Request::getPress();
 			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			$settings =& $settingsDao->getPressSettings($press->getId());
-			if (isset($reviewDueDate)) SeriesEditorAction::setDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getId(), $reviewDueDate);
+			if (isset($reviewDueDate)) SeriesEditorAction::setDueDate($request, $seriesEditorSubmission, $reviewAssignment->getId(), $reviewDueDate);
 			if (isset($responseDueDate)) SeriesEditorAction::setResponseDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getId(), $responseDueDate);
 
 			// Add log
-			import('classes.monograph.log.MonographLog');
-			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_REVIEW_ASSIGN, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'reviewType' => $reviewType, 'round' => $round));
+			import('classes.log.MonographLog');
+			import('classes.log.MonographEventLogEntry');
+			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_REVIEW_ASSIGN, 'log.review.reviewerAssigned', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'reviewType' => $reviewType, 'round' => $round));
 		}
 	}
 
@@ -210,9 +210,9 @@ class SeriesEditorAction extends Action {
 			// the last assignment was removed, see #6401.
 
 			// Add log
-			import('classes.monograph.log.MonographLog');
-			import('classes.monograph.log.MonographEventLogEntry');
-			MonographLog::logEvent($seriesEditorSubmission->getId(), MONOGRAPH_LOG_REVIEW_CLEAR, MONOGRAPH_LOG_TYPE_REVIEW, $reviewAssignment->getId(), 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'reviewType' => $reviewAssignment->getReviewType(), 'round' => $reviewAssignment->getRound()));
+			import('classes.log.MonographLog');
+			import('classes.log.MonographEventLogEntry');
+			MonographLog::logEvent($request, $seriesEditorSubmission, MONOGRAPH_LOG_REVIEW_CLEAR, 'log.review.reviewCleared', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $seriesEditorSubmission->getId(), 'reviewType' => $reviewAssignment->getReviewType(), 'round' => $reviewAssignment->getRound()));
 
 			return true;
 		} else return false;
@@ -220,13 +220,14 @@ class SeriesEditorAction extends Action {
 
 	/**
 	 * Sets the due date for a review assignment.
-	 * @param $monographId int
+	 * @param $request PKPRequest
+	 * @param $monograph Object
 	 * @param $reviewId int
 	 * @param $dueDate string
 	 * @param $numWeeks int
 	 * @param $logEntry boolean
 	 */
-	function setDueDate($monographId, $reviewId, $dueDate = null, $numWeeks = null, $logEntry = false) {
+	function setDueDate($request, $monograph, $reviewId, $dueDate = null, $numWeeks = null, $logEntry = false) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& Request::getUser();
@@ -259,13 +260,12 @@ class SeriesEditorAction extends Action {
 
 			if ($logEntry) {
 				// Add log
-				import('classes.monograph.log.MonographLog');
-				import('classes.monograph.log.MonographEventLogEntry');
+				import('classes.log.MonographLog');
+				import('classes.log.MonographEventLogEntry');
 				MonographLog::logEvent(
-					$monographId,
+					$request,
+					$monograph,
 					MONOGRAPH_LOG_REVIEW_SET_DUE_DATE,
-					MONOGRAPH_LOG_TYPE_REVIEW,
-					$reviewAssignment->getId(),
 					'log.review.reviewDueDateSet',
 					array(
 						'reviewerName' => $reviewer->getFullName(),
@@ -295,7 +295,7 @@ class SeriesEditorAction extends Action {
 		$reviewer =& $userDao->getUser($reviewAssignment->getReviewerId());
 		if (!isset($reviewer)) return false;
 
-		if ($reviewAssignment->getSubmissionId() == $monographId && !HookRegistry::call('SeriesEditorAction::setDueDate', array(&$reviewAssignment, &$reviewer, &$dueDate, &$numWeeks))) {
+		if ($reviewAssignment->getSubmissionId() == $monographId && !HookRegistry::call('SeriesEditorAction::setResponseDueDate', array(&$reviewAssignment, &$reviewer, &$dueDate, &$numWeeks))) {
 			$today = getDate();
 			$todayTimestamp = mktime(0, 0, 0, $today['mon'], $today['mday'], $today['year']);
 			if ($dueDate != null) {

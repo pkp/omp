@@ -17,7 +17,7 @@
 
 
 import('classes.mail.MailTemplate');
-import('classes.monograph.log.MonographEmailLogEntry'); // Bring in log constants
+import('classes.log.MonographEmailLogEntry'); // Bring in log constants
 
 class MonographMailTemplate extends MailTemplate {
 
@@ -27,14 +27,8 @@ class MonographMailTemplate extends MailTemplate {
 	/** @var object the associated press */
 	var $press;
 
-	/** @var int Event type of this email */
-	var $eventType;
-
-	/** @var int Associated type of this email */
-	var $assocType;
-
-	/** @var int Associated ID of this email */
-	var $assocId;
+	/** @var int Event type of this email for logging purposes */
+	var $logEventType;
 
 	/**
 	 * Constructor.
@@ -67,14 +61,14 @@ class MonographMailTemplate extends MailTemplate {
 
 	/**
 	 * @see parent::send()
+	 * @param $request PKPRequest optional (used for logging purposes)
 	 */
-	function send() {
+	function send($request = null) {
 		if (parent::send(false)) {
-			if (!isset($this->skip) || !$this->skip) $this->log();
+			if (!isset($this->skip) || !$this->skip) $this->log($request);
 			$user =& Request::getUser();
 			if ($this->attachmentsEnabled) $this->_clearAttachments($user->getId());
 			return true;
-
 		} else {
 			return false;
 		}
@@ -98,15 +92,11 @@ class MonographMailTemplate extends MailTemplate {
 	}
 
 	/**
-	 * Add a generic association between this email and some event type / type / ID tuple.
+	 * Add logging properties to this email.
 	 * @param $eventType int
-	 * @param $assocType int
-	 * @param $assocId int
 	 */
-	function setAssoc($eventType, $assocType, $assocId) {
-		$this->eventType = $eventType;
-		$this->assocType = $assocType;
-		$this->assocId = $assocId;
+	function setEventType($eventType) {
+		$this->logEventType = $eventType;
 	}
 
 	/**
@@ -120,16 +110,23 @@ class MonographMailTemplate extends MailTemplate {
 	/**
 	 * Save the email in the monograph email log.
 	 */
-	function log() {
-		import('classes.monograph.log.MonographEmailLogEntry');
-		import('classes.monograph.log.MonographLog');
+	function log($request = null) {
+		import('classes.log.MonographLog');
 		$entry = new MonographEmailLogEntry();
 		$monograph =& $this->monograph;
 
-		// Log data
-		$entry->setEventType($this->eventType);
-		$entry->setAssocType($this->assocType);
-		$entry->setAssocId($this->assocId);
+		// Event data
+		$entry->setEventType($this->logEventType);
+		$entry->setAssocType(ASSOC_TYPE_MONOGRAPH);
+		$entry->setAssocId($monograph->getId());
+		$entry->setDateSent(Core::getCurrentDate());
+
+		// User data
+		if ($request) {
+			$user =& $request->getUser();
+			$entry->setSenderId($user == null ? 0 : $user->getId());
+			$entry->setIPAddress($request->getRemoteAddr());
+		}
 
 		// Email data
 		$entry->setSubject($this->getSubject());
@@ -140,7 +137,8 @@ class MonographMailTemplate extends MailTemplate {
 		$entry->setBccs($this->getBccString());
 
 		// Add log entry
-		$logEntryId = MonographLog::logEmailEntry($monograph->getId(), $entry);
+		$logDao =& DAORegistry::getDAO('MonographEmailLogDAO');
+		$logDao->insertObject($entry);
 
 		// Add attachments
 		import('classes.file.MonographFileManager');
@@ -214,7 +212,6 @@ class MonographMailTemplate extends MailTemplate {
 		}
 		return $returner;
 	}
-
 }
 
 ?>

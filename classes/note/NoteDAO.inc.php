@@ -13,8 +13,6 @@
  * @brief OMP extension of PKPNoteDAO
  */
 
-
-
 import('lib.pkp.classes.note.PKPNoteDAO');
 import('classes.note.Note');
 

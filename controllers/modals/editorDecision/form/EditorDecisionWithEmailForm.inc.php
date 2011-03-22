@@ -148,7 +148,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		$email = new MonographMailTemplate($seriesEditorSubmission, $emailKey);
 		$email->setBody($this->getData('personalMessage'));
 		$email->addRecipient($submitter->getEmail(), $submitter->getFullName());
-		$email->setAssoc(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR, MONOGRAPH_EMAIL_TYPE_EDITOR, $currentReviewRound->getRound());
+		$email->setEventType(MONOGRAPH_EMAIL_EDITOR_NOTIFY_AUTHOR);
 
 		// Retrieve review indexes.
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */
@@ -202,7 +202,7 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 		}
 
 		// Send the email.
-		$email->send();
+		$email->send($request);
 	}
 }
 

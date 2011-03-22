@@ -12,25 +12,21 @@
  * @brief OMP subclass for Notes (defines OMP-specific types)
  */
 
-
-/** Notification associative types. */
+/* Notification associative types. */
 define('NOTE_TYPE_EDITOR_TO_REVIEWER', 	0x1000001);
-define('NOTE_TYPE_SUBMISSION_ACCEPTED', 	0x1000002);
-define('NOTE_TYPE_SUBMISSION_DECLINED', 	0x1000003);
+define('NOTE_TYPE_SUBMISSION_ACCEPTED', 0x1000002);
+define('NOTE_TYPE_SUBMISSION_DECLINED', 0x1000003);
 define('NOTE_TYPE_COPYEDITING_FILE', 	0x1000004);
 
 import('lib.pkp.classes.note.PKPNote');
 
 class Note extends PKPNote {
-
 	/**
 	 * Constructor.
 	 */
 	function Note() {
 		parent::PKPNote();
 	}
-
-
- }
+}
 
 ?>

@@ -104,7 +104,6 @@ class Notification extends PKPNotification {
 		$mail->addRecipient($email);
 		$mail->send();
 	}
-
- }
+}
 
 ?>

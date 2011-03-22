@@ -19,10 +19,11 @@ import('classes.submission.reviewer.form.ReviewerReviewForm');
 class ReviewerReviewStep1Form extends ReviewerReviewForm {
 	/**
 	 * Constructor.
+	 * @param $request PKPRequest
 	 * @param $reviewerSubmission ReviewerSubmission
 	 */
-	function ReviewerReviewStep1Form($reviewerSubmission = null) {
-		parent::ReviewerReviewForm($reviewerSubmission, 1);
+	function ReviewerReviewStep1Form($request, $reviewerSubmission = null) {
+		parent::ReviewerReviewForm($request, $reviewerSubmission, 1);
 	}
 
 
@@ -47,15 +48,18 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		$templateMgr->assign_by_ref('reviewAssignment', $reviewAssignment);
 
 		// Add press parameters.
-		$press =& Request::getPress();
+		$press =& $this->request->getPress();
 		$templateMgr->assign_by_ref('press', $press);
 		// FIXME: Need to be able to get/set if a review is blind or not, see #6403.
 		$templateMgr->assign('blindReview', true);
 
 		// Add reviewer request text.
-		$reviewerRequestParams = array('reviewer' => $reviewAssignment->getReviewerFullName(),
-										'personalNote' => 'EDITOR NOTE',
-										'editor' => $press->getSetting('contactName'));
+		$reviewerRequestParams = array(
+			'reviewer' => $reviewAssignment->getReviewerFullName(),
+			'personalNote' => 'EDITOR NOTE', // FIXME Bug #6531
+			'editor' => $press->getSetting('contactName')
+		);
+
 		$templateMgr->assign('reviewerRequest', Locale::translate('reviewer.step1.requestBoilerplate', $reviewerRequestParams));
 
 		parent::display();
@@ -76,7 +80,7 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 
 		// Set competing interests.
 		if ($this->getData('competingInterestOption') == 'hasCompetingInterests') {
-				$reviewerSubmission->setCompetingInterests(Request::getUserVar('competingInterestsText'));
+			$reviewerSubmission->setCompetingInterests($this->request->getUserVar('competingInterestsText'));
 		} else {
 			$reviewerSubmission->setCompetingInterests(null);
 		}
@@ -85,9 +89,8 @@ class ReviewerReviewStep1Form extends ReviewerReviewForm {
 		$this->updateReviewStepAndSaveSubmission($reviewerSubmission);
 
 		// Set that the reviewer has accepted the review.
-		ReviewerAction::confirmReview($reviewerSubmission, false, true);
+		ReviewerAction::confirmReview($this->request, $reviewerSubmission, false, true);
 	}
-
 }
 
 ?>

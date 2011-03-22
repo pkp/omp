@@ -107,7 +107,7 @@ class InformationCenterNotifyForm extends Form {
 			$email->addRecipient($user->getEmail(), $user->getFullName());
 		}
 
-		$email->send();
+		$email->send($request);
 	}
 }
 

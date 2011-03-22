@@ -28,14 +28,19 @@ class ReviewerReviewForm extends Form {
 	/** @var int the current step */
 	var $_step;
 
+	/** @var PKPRequest the request object */
+	var $request;
+
 	/**
 	 * Constructor.
 	 * @param $reviewerSubmission ReviewerSubmission
 	 * @param $step integer
+	 * @param $request PKPRequest
 	 */
-	function ReviewerReviewForm($reviewerSubmission, $step) {
+	function ReviewerReviewForm($request, $reviewerSubmission, $step) {
 		parent::Form(sprintf('reviewer/review/step%d.tpl', $step));
 		$this->addCheck(new FormValidatorPost($this));
+		$this->request =& $request;
 		$this->_step = (int) $step;
 		$this->_reviewerSubmission =& $reviewerSubmission;
 	}

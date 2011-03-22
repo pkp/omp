@@ -25,8 +25,8 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 	 * @param $reviewerSubmission ReviewerSubmission
 	 * @param $reviewAssignment ReviewAssignment
 	 */
-	function ReviewerReviewStep3Form($reviewerSubmission, $reviewAssignment) {
-		parent::ReviewerReviewForm($reviewerSubmission, 3);
+	function ReviewerReviewStep3Form($request, $reviewerSubmission, $reviewAssignment) {
+		parent::ReviewerReviewForm($request, $reviewerSubmission, 3);
 		$this->_reviewAssignment =& $reviewAssignment;
 
 		// Validation checks for this form
@@ -78,7 +78,7 @@ class ReviewerReviewStep3Form extends ReviewerReviewForm {
 		$templateMgr =& TemplateManager::getManager();
 
 		// Assign the press to the template.
-		$press = Request::getPress();
+		$press = $this->request->getPress();
 		$templateMgr->assign_by_ref('press', $press);
 
 		// Add the review assignment to the template.

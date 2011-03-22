@@ -14,14 +14,27 @@
 
 import('controllers.informationCenter.InformationCenterHandler');
 import('lib.pkp.classes.core.JSON');
-import('classes.monograph.log.MonographEventLogEntry');
+import('classes.log.MonographEventLogEntry');
 
 class SubmissionInformationCenterHandler extends InformationCenterHandler {
+	/** @var $monograph Monograph */
+	var $monograph;
+
 	/**
 	 * Constructor
 	 */
 	function SubmissionInformationCenterHandler() {
 		parent::InformationCenterHandler();
+	}
+
+	/**
+	 * Fetch and store away objects
+	 */
+	function initialize(&$request, $args = null) {
+		parent::initialize($request, $args);
+
+		// Fetch the monograph to display information about
+		$this->monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 	}
 
 	/**
@@ -32,12 +45,9 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	function viewInformationCenter($args, &$request) {
 		$this->setupTemplate();
 
-		// Fetch the monograph to display information about
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
 		// Get the latest history item to display in the header
 		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
-		$monographEvents =& $monographEventLogDao->getMonographLogEntries($monograph->getId());
+		$monographEvents =& $monographEventLogDao->getByMonographId($this->monograph->getId());
 		$lastEvent =& $monographEvents->next();
 
 		// Assign variables to the template manager and display
@@ -61,13 +71,10 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function viewNotes($args, &$request) {
-		// Fetch the monograph to display information about
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
 		$this->setupTemplate();
 
 		import('controllers.informationCenter.form.NewMonographNoteForm');
-		$notesForm = new NewMonographNoteForm($monograph->getId());
+		$notesForm = new NewMonographNoteForm($this->monograph->getId());
 		$notesForm->initData();
 
 		$json = new JSON(true, $notesForm->fetch($request));
@@ -80,12 +87,10 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function saveNote($args, &$request) {
-		// Fetch the monograph to display information about
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 		$this->setupTemplate();
 
 		import('controllers.informationCenter.form.NewMonographNoteForm');
-		$notesForm = new NewMonographNoteForm($monograph->getId());
+		$notesForm = new NewMonographNoteForm($this->monograph->getId());
 		$notesForm->readInputData();
 
 		if ($notesForm->validate()) {
@@ -95,7 +100,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			// Save to event log
 			$user =& $request->getUser();
 			$userId = $user->getId();
-			$this->_logEvent($monograph->getId(), MONOGRAPH_LOG_NOTE_POSTED, $userId);
+			$this->_logEvent($request, MONOGRAPH_LOG_NOTE_POSTED);
 		} else {
 			// Return a JSON string indicating failure
 			$json = new JSON(false);
@@ -110,13 +115,10 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function viewNotify ($args, &$request) {
-		// Fetch the monograph to display information about
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
 		$this->setupTemplate();
 
 		import('controllers.informationCenter.form.InformationCenterNotifyForm');
-		$notifyForm = new InformationCenterNotifyForm($monograph->getId(), ASSOC_TYPE_MONOGRAPH);
+		$notifyForm = new InformationCenterNotifyForm($this->monograph->getId(), ASSOC_TYPE_MONOGRAPH);
 		$notifyForm->initData();
 
 		$json = new JSON(true, $notifyForm->fetch($request));
@@ -129,13 +131,10 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function sendNotification ($args, &$request) {
-		// Fetch the monograph to display information about
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
 		$this->setupTemplate();
 
 		import('controllers.informationCenter.form.InformationCenterNotifyForm');
-		$notifyForm = new InformationCenterNotifyForm($monograph->getId(), ASSOC_TYPE_MONOGRAPH);
+		$notifyForm = new InformationCenterNotifyForm($this->monograph->getId(), ASSOC_TYPE_MONOGRAPH);
 		$notifyForm->readInputData();
 
 		if ($notifyForm->validate()) {
@@ -158,14 +157,11 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @param $request PKPRequest
 	 */
 	function viewHistory($args, &$request) {
-		// Fetch the monograph to display information about
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
 		$this->setupTemplate();
 
 		// Get all monograph events
 		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
-		$fileEvents =& $monographEventLogDao->getMonographLogEntries($monograph->getId());
+		$fileEvents =& $monographEventLogDao->getByMonographId($this->monograph->getId());
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign_by_ref('eventLogEntries', $fileEvents);
@@ -176,10 +172,10 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 
 	/**
 	 * Log an event for this file
+	 * @param $request PKPRequest
+	 * @param $eventType MONOGRAPH_LOG_...
 	 */
-	function _logEvent ($monographId, $eventType, $userId) {
-		assert(!empty($monographId) && !empty($eventType) && !empty($userId));
-
+	function _logEvent ($request, $eventType) {
 		// Get the log event message
 		switch($eventType) {
 			case MONOGRAPH_LOG_NOTE_POSTED:
@@ -188,17 +184,12 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			case MONOGRAPH_LOG_MESSAGE_SENT:
 				$logMessage = 'informationCenter.history.messageSent';
 				break;
+			default:
+				assert(false);
 		}
 
-		$entry = new MonographEventLogEntry();
-		$entry->setMonographId($monographId);
-		$entry->setUserId($userId);
-		$entry->setDateLogged(Core::getCurrentDate());
-		$entry->setEventType($eventType);
-		$entry->setLogMessage($logMessage);
-
-		import('classes.monograph.log.MonographLog');
-		MonographLog::logEventEntry($monographId, $entry);
+		import('classes.log.MonographLog');
+		MonographLog::logEvent($request, $this->monograph, $eventType, $logMessage);
 	}
 
 	/**
@@ -207,10 +198,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * the delete note handler). Subclasses should implement.
 	 */
 	function _getLinkParams() {
-		// Fetch the monograph to display information about
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-
-		return array('monographId' => $monograph->getId());
+		return array('monographId' => $this->monograph->getId());
 	}
 
 	/**
@@ -218,8 +206,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 	 * @return int
 	 */
 	function _getAssocId() {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		return $monograph->getId();
+		return $this->monograph->getId();
 	}
 
 	/**

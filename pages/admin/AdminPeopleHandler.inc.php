@@ -102,9 +102,9 @@ class AdminPeopleHandler extends AdminHandler {
 			}
 
 			$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
-			$monographEmailLogDao->transferMonographLogEntries($oldUserId, $newUserId);
+			$monographEmailLogDao->changeUser($oldUserId, $newUserId);
 			$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
-			$monographEventLogDao->transferMonographLogEntries($oldUserId, $newUserId);
+			$monographEventLogDao->changeUser($oldUserId, $newUserId);
 
 			$monographCommentDao =& DAORegistry::getDAO('MonographCommentDAO');
 			foreach ($monographCommentDao->getMonographCommentsByUserId($oldUserId) as $monographComment) {

@@ -97,7 +97,7 @@ class AuthorDashboardHandler extends Handler {
 		// assign the editor's copyediting emails to the template
 		if ($monograph->getCurrentStageId() >= WORKFLOW_STAGE_ID_EDITING) {
 			$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
-			$monographEmails =& $monographEmailLogDao->getMonographLogEntriesByAssoc($monograph->getId(), MONOGRAPH_EMAIL_TYPE_COPYEDIT, MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
+			$monographEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_COPYEDIT_NOTIFY_AUTHOR);
 
 			$templateMgr->assign_by_ref('monographEmails', $monographEmails);
 			$templateMgr->assign('showCopyeditingFiles', true);
@@ -131,7 +131,7 @@ class AuthorDashboardHandler extends Handler {
 		// Editor has taken an action and sent an email; Display the email
 		if($reviewRound->getStatus() != REVIEW_ROUND_STATUS_PENDING_REVIEWERS && $reviewRound->getStatus() != REVIEW_ROUND_STATUS_PENDING_REVIEWS) {
 			$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
-			$monographEmails =& $monographEmailLogDao->getMonographLogEntriesByAssoc($monograph->getId(), MONOGRAPH_EMAIL_TYPE_EDITOR, $round);
+			$monographEmails =& $monographEmailLogDao->getByEventType($monograph->getId(), MONOGRAPH_EMAIL_TYPE_EDITOR);
 
 			$templateMgr->assign_by_ref('monographEmails', $monographEmails);
 			$templateMgr->assign('showReviewAttachments', true);

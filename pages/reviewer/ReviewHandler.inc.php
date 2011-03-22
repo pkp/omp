@@ -65,7 +65,7 @@ class ReviewHandler extends Handler {
 			$formClass = "ReviewerReviewStep{$step}Form";
 			import("classes.submission.reviewer.form.$formClass");
 
-			$reviewerForm = new $formClass($reviewerSubmission, $reviewAssignment);
+			$reviewerForm = new $formClass($request, $reviewerSubmission, $reviewAssignment);
 
 			if ($reviewerForm->isLocaleResubmit()) {
 				$reviewerForm->readInputData();
@@ -101,7 +101,7 @@ class ReviewHandler extends Handler {
 		$formClass = "ReviewerReviewStep{$step}Form";
 		import("classes.submission.reviewer.form.$formClass");
 
-		$reviewerForm = new $formClass($reviewerSubmission, $reviewAssignment);
+		$reviewerForm = new $formClass($request, $reviewerSubmission, $reviewAssignment);
 		$reviewerForm->readInputData();
 
 		if ($reviewerForm->validate()) {
@@ -157,7 +157,7 @@ class ReviewHandler extends Handler {
 		$reviewAssignment->setRegretMessage($declineReviewMessage);
 		$reviewAssignmentDao->updateObject($reviewAssignment);
 
-		ReviewerAction::confirmReview($reviewerSubmission, true, true);
+		ReviewerAction::confirmReview($request, $reviewerSubmission, true, true);
 		$router =& $request->getRouter(); /* @var $router PageRouter */
 		$request->redirect($router->redirectHome($request));
 	}

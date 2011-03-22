@@ -100,7 +100,7 @@
 			{if $monographEmails}
 				<h6>{translate key="editor.review.personalMessageFromEditor"}:</h6>
 				{iterate from=monographEmails item=monographEmail}
-					<textarea class="pkp_authorDashboard_editorPersonalMessage" disabled=true class="textArea">{$monographEmail->getBody()}</textarea>
+					<textarea class="pkp_authorDashboard_editorPersonalMessage" disabled=true class="textArea">{$monographEmail->getBody()|escape}</textarea>
 				{/iterate}
 				<br />
 			{/if}

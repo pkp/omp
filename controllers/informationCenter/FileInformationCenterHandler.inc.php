@@ -14,7 +14,7 @@
 
 import('controllers.informationCenter.InformationCenterHandler');
 import('lib.pkp.classes.core.JSON');
-import('classes.monograph.log.MonographEventLogEntry');
+import('classes.log.MonographEventLogEntry');
 
 class FileInformationCenterHandler extends InformationCenterHandler {
 	/** @var $monographFile object */
@@ -55,12 +55,8 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$this->setupTemplate();
 
 		// Get the latest history item to display in the header
-		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
-		$fileEvents =& $monographEventLogDao->getMonographLogEntriesByAssoc(
-			$this->monograph->getId(),
-			ASSOC_TYPE_MONOGRAPH_FILE,
-			$this->monographFile->getFileId()
-		);
+		$monographEventLogDao =& DAORegistry::getDAO('MonographFileEventLogDAO');
+		$fileEvents =& $monographEventLogDao->getByFileId($this->monographFile->getFileId());
 		$lastEvent =& $fileEvents->next();
 
 		// Assign variables to the template manager and display
@@ -115,9 +111,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 			$json = new JSON(true);
 
 			// Save to event log
-			$user =& $request->getUser();
-			$userId = $user->getId();
-			$this->_logEvent($this->monographFile->getFileId(), MONOGRAPH_LOG_NOTE_POSTED, $userId);
+			$this->_logEvent($request, MONOGRAPH_LOG_NOTE_POSTED);
 		} else {
 			// Return a JSON string indicating failure
 			$json = new JSON(false);
@@ -176,10 +170,8 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$this->setupTemplate();
 
 		// Get all monograph file events
-		$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');
-		$fileEvents =& $monographEventLogDao->getMonographLogEntriesByAssoc(
-			$this->monograph->getId(),
-			ASSOC_TYPE_MONOGRAPH_FILE,
+		$monographFileEventLogDao =& DAORegistry::getDAO('MonographFileEventLogDAO');
+		$fileEvents =& $monographFileEventLogDao->getByFileId(
 			$this->monographFile->getFileId()
 		);
 
@@ -192,12 +184,10 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 
 	/**
 	 * Log an event for this file
-	 * @param $args array
 	 * @param $request PKPRequest
+	 * @param $eventType int MONOGRAPH_LOG_...
 	 */
-	function _logEvent ($itemId, $eventType, $userId) {
-		assert(!empty($itemId) && !empty($eventType) && !empty($userId));
-
+	function _logEvent ($request, $eventType) {
 		// Get the log event message
 		switch($eventType) {
 			case MONOGRAPH_LOG_NOTE_POSTED:
@@ -206,19 +196,12 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 			case MONOGRAPH_LOG_MESSAGE_SENT:
 				$logMessage = 'informationCenter.history.messageSent';
 				break;
+			default:
+				assert(false);
 		}
 
-		$entry = new MonographEventLogEntry();
-		$entry->setMonographId($this->monograph->getId());
-		$entry->setUserId($userId);
-		$entry->setDateLogged(Core::getCurrentDate());
-		$entry->setEventType($eventType);
-		$entry->setLogMessage($logMessage);
-		$entry->setAssocType(ASSOC_TYPE_MONOGRAPH_FILE);
-		$entry->setAssocId($this->monographFile->getFileId());
-
-		import('classes.monograph.log.MonographLog');
-		MonographLog::logEventEntry($this->monographFile->getFileId(), $entry);
+		import('classes.log.MonographFileLog');
+		MonographFileLog::logEvent($request, $this->monographFile, $eventType, $logMessage);
 	}
 
 	/**

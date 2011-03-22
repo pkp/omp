@@ -244,6 +244,6 @@ class MonographComment extends DataObject {
 	function setViewable($viewable) {
 		return $this->setData('viewable', $viewable);
 	}
- }
+}
 
 ?>

@@ -124,7 +124,7 @@ class ReviewReminderForm extends Form {
 
 		$email->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
 		$email->setBody($this->getData('message'));
-		$email->send();
+		$email->send($request);
 	}
 }
 

@@ -14,7 +14,7 @@
 
 import('classes.handler.Handler');
 import('lib.pkp.classes.core.JSON');
-import('classes.monograph.log.MonographEventLogEntry');
+import('classes.log.MonographEventLogEntry');
 
 class InformationCenterHandler extends Handler {
 	/**
@@ -39,7 +39,7 @@ class InformationCenterHandler extends Handler {
 			array(ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 			array_merge($authorOps, array(
  				'deleteNote' // Notes tab
-			)
+			))
 		);
 	}
 

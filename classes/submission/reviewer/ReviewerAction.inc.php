@@ -27,7 +27,7 @@ class ReviewerAction extends Action {
 	 * @param $decline boolean
 	 * @param $send boolean
 	 */
-	function confirmReview($reviewerSubmission, $decline, $send) {
+	function confirmReview($request, $reviewerSubmission, $decline, $send) {
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
 
@@ -46,10 +46,10 @@ class ReviewerAction extends Action {
 			// key, in which case the user is not technically logged in
 			$email->setFrom($reviewer->getEmail(), $reviewer->getFullName());
 			if (!$email->isEnabled() || ($send && !$email->hasErrors())) {
-				HookRegistry::call('ReviewerAction::confirmReview', array(&$reviewerSubmission, &$email, $decline));
+				HookRegistry::call('ReviewerAction::confirmReview', array(&$request, &$reviewerSubmission, &$email, $decline));
 				if ($email->isEnabled()) {
-					$email->setAssoc($decline?MONOGRAPH_EMAIL_REVIEW_DECLINE:MONOGRAPH_EMAIL_REVIEW_CONFIRM, MONOGRAPH_EMAIL_TYPE_REVIEW, $reviewId);
-					$email->send();
+					$email->setEventType($decline?MONOGRAPH_EMAIL_REVIEW_DECLINE:MONOGRAPH_EMAIL_REVIEW_CONFIRM);
+					$email->send($request);
 				}
 
 				$reviewAssignment->setDeclined($decline);
@@ -58,27 +58,36 @@ class ReviewerAction extends Action {
 				$reviewAssignmentDao->updateObject($reviewAssignment);
 
 				// Add log
-				import('classes.monograph.log.MonographLog');
-				import('classes.monograph.log.MonographEventLogEntry');
+				import('classes.log.MonographLog');
+				import('classes.log.MonographEventLogEntry');
 
 				$entry = new MonographEventLogEntry();
 				$entry->setMonographId($reviewAssignment->getSubmissionId());
 				$entry->setUserId($reviewer->getId());
 				$entry->setDateLogged(Core::getCurrentDate());
 				$entry->setEventType($decline?MONOGRAPH_LOG_REVIEW_DECLINE:MONOGRAPH_LOG_REVIEW_ACCEPT);
-				$entry->setLogMessage($decline?'log.review.reviewDeclined':'log.review.reviewAccepted', array('reviewerName' => $reviewer->getFullName(), 'monographId' => $reviewAssignment->getSubmissionId(), 'round' => $reviewAssignment->getRound()));
 				$entry->setAssocType(MONOGRAPH_LOG_TYPE_REVIEW);
 				$entry->setAssocId($reviewAssignment->getId());
 
-				MonographLog::logEventEntry($reviewAssignment->getSubmissionId(), $entry);
+				MonographLog::logEvent(
+					$request,
+					$reviewerSubmission,
+					$decline?MONOGRAPH_LOG_REVIEW_DECLINE:MONOGRAPH_LOG_REVIEW_ACCEPT,
+					$decline?'log.review.reviewDeclined':'log.review.reviewAccepted',
+					array(
+						'reviewerName' => $reviewer->getFullName(),
+						'monographId' => $reviewAssignment->getSubmissionId(),
+						'round' => $reviewAssignment->getRound()
+					)
+				);
 
 				return true;
 			} else {
-				if (!Request::getUserVar('continued')) {
+				if (!$request->getUserVar('continued')) {
 					$assignedEditors = $email->ccAssignedEditors($reviewerSubmission->getId());
 					$reviewingSeriesEditors = $email->toAssignedReviewingSeriesEditors($reviewerSubmission->getId());
 					if (empty($assignedEditors) && empty($reviewingSeriesEditors)) {
-						$press =& Request::getPress();
+						$press =& $request->getPress();
 						$email->addRecipient($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 						$editorialContactName = $press->getSetting('contactName');
 					} else {
@@ -101,7 +110,7 @@ class ReviewerAction extends Action {
 				}
 				$paramArray = array('reviewId' => $reviewId);
 				if ($decline) $paramArray['declineReview'] = 1;
-				$email->displayEditForm(Request::url(null, 'reviewer', 'confirmReview'), $paramArray);
+				$email->displayEditForm($request->url(null, 'reviewer', 'confirmReview'), $paramArray);
 				return false;
 			}
 		}

@@ -21,8 +21,8 @@ class ReviewerReviewStep2Form extends ReviewerReviewForm {
 	 * Constructor.
 	 * @param $reviewerSubmission ReviewerSubmission
 	 */
-	function ReviewerReviewStep2Form($reviewerSubmission = null) {
-		parent::ReviewerReviewForm($reviewerSubmission, 2);
+	function ReviewerReviewStep2Form($request, $reviewerSubmission = null) {
+		parent::ReviewerReviewForm($request, $reviewerSubmission, 2);
 	}
 
 
@@ -34,7 +34,7 @@ class ReviewerReviewStep2Form extends ReviewerReviewForm {
 	 */
 	function display() {
 		$templateMgr =& TemplateManager::getManager();
-		$press = Request::getPress();
+		$press = $this->request->getPress();
 
 		$reviewerGuidelines = $press->getLocalizedSetting('reviewGuidelines');
 		if (empty($reviewerGuidelines)) {
