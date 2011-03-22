@@ -16,6 +16,7 @@
 			<td style="padding-right: 5px;">{$note->getDateCreated()|date_format:"%d %b %Y %T"}</td>
 			<td style="padding-right: 5px;">{$user->getFullName()|escape}</td>
 			<td align="right">
+				{* FIXME: Not all roles should see this action. Bug #5975. *}
 				{url|assign:deleteNoteUrl op="deleteNote" noteId=$noteId params=$linkParams escape=false}
 				{confirm url=$deleteNoteUrl dialogText="informationCenter.deleteConfirm" button="#deleteNote-$noteId}
 				<a href="#" id="deleteNote-{$noteId}">{translate key="common.delete"}</a>

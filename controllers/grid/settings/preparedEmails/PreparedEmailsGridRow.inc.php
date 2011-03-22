@@ -41,7 +41,7 @@ class PreparedEmailsGridRow extends GridRow {
 			$router =& $request->getRouter();
 
 			// Row action to edit the email template
-			import('controllers.api.preparedEmails.linkAction.EditEmailLinkAction');
+			import('controllers.grid.settings.preparedEmails.linkAction.EditEmailLinkAction');
 			$this->addAction(new EditEmailLinkAction($request, $rowId));
 
 			// Row action to disable/delete the email template
@@ -53,7 +53,7 @@ class PreparedEmailsGridRow extends GridRow {
 						'deleteEmail',
 						new ConfirmationModal(
 							__('manager.emails.confirmDelete'), null,
-							$router->url($request, null, 'api.preparedEmails.PreparedEmailsApiHandler',
+							$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
 								'deleteCustomEmail', null, array('emailKey' => $rowId))
 						),
 						__('common.delete'),
@@ -69,7 +69,7 @@ class PreparedEmailsGridRow extends GridRow {
 								'disableEmail',
 								new ConfirmationModal(
 									__('manager.emails.disable.message'), null,
-									$router->url($request, null, 'api.preparedEmails.PreparedEmailsApiHandler',
+									$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
 										'disableEmail', null, array('emailKey' => $rowId))
 								),
 								__('manager.emails.disable'),
@@ -82,7 +82,7 @@ class PreparedEmailsGridRow extends GridRow {
 								'enableEmail',
 								new ConfirmationModal(
 									__('manager.emails.enable.message'), null,
-									$router->url($request, null, 'api.preparedEmails.PreparedEmailsApiHandler',
+									$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
 										'enableEmail', null, array('emailKey' => $rowId))
 								),
 								__('manager.emails.enable'),
@@ -100,7 +100,7 @@ class PreparedEmailsGridRow extends GridRow {
 						'resetEmail',
 						new ConfirmationModal(
 							__('manager.emails.reset.message'), null,
-							$router->url($request, null, 'api.preparedEmails.PreparedEmailsApiHandler',
+							$router->url($request, null, 'grid.settings.preparedEmails.PreparedEmailsGridHandler',
 								'resetEmail', null, array('emailKey' => $rowId))
 						),
 						__('manager.emails.reset'),

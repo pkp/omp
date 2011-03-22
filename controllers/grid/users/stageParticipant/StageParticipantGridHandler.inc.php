@@ -85,6 +85,7 @@ class StageParticipantGridHandler extends GridHandler {
 		$monographId = $monograph->getId();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$router =& $request->getRouter();
+		// FIXME: Not all roles should see this action. Bug #5975.
 		$this->addAction(
 			new LinkAction(
 				'addStageParticipant',

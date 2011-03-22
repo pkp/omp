@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/modals/preparedEmails/form/PreparedEmailForm.inc.php
+ * @file controllers/grid/settings/preparedEmails/form/PreparedEmailForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -29,7 +29,7 @@ class PreparedEmailForm extends Form {
 	 * @param $emailKey string
 	 */
 	function PreparedEmailForm($emailKey = null, &$press) {
-		parent::Form('controllers/modals/preparedEmails/form/emailTemplateForm.tpl');
+		parent::Form('controllers/grid/settings/preparedEmails/form/emailTemplateForm.tpl');
 
 		$this->_press =& $press;
 		$this->setEmailKey($emailKey);

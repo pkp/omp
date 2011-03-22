@@ -104,6 +104,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			)
 		);
 		// Action to add a user -- Adds the user as a subcategory to the files selected in its modal
+		// FIXME: Not all roles should see this action. Bug #5975.
 		$this->addAction(
 			new LegacyLinkAction(
 				'addUser',
@@ -179,7 +180,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 
 	/**
 	* Get the row handler - override the default row handler
-	* @return FairCopyFilesGridRow
+	* @return CopyeditingFilesGridRow
 	*/
 	function &getRowInstance() {
 		$row = new CopyeditingFilesGridRow();

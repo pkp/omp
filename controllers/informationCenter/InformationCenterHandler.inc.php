@@ -23,12 +23,24 @@ class InformationCenterHandler extends Handler {
 	function InformationCenterHandler() {
 		parent::Handler();
 
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER), array(
-			'viewInformationCenter', // Information Center
-			'viewNotes', 'listNotes', 'saveNote', 'deleteNote', // Notes tab
-			'viewNotify', 'sendNotification', // Notify tab
-			'viewHistory' // History tab
-		));
+		// Author can do everything except delete notes.
+		// (Review-related log entries are hidden from the author, but
+		// that's not implemented here.)
+		$this->addRoleAssignment(
+			array(ROLE_ID_AUTHOR),
+			$authorOps = array(
+				'viewInformationCenter', // Information Center
+				'viewNotes', 'listNotes', 'saveNote', // Notes
+				'viewNotify', 'sendNotification', // Notify tab
+				'viewHistory' // History tab
+			)
+		);
+		$this->addRoleAssignment(
+			array(ROLE_ID_PRESS_ASSISTANT, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array_merge($authorOps, array(
+ 				'deleteNote' // Notes tab
+			)
+		);
 	}
 
 
