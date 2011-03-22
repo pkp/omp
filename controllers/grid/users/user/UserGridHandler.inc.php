@@ -17,7 +17,6 @@ import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
 import('controllers.grid.users.user.UserGridRow');
 
-
 class UserGridHandler extends GridHandler {
 	/**
 	 * Constructor
@@ -60,14 +59,18 @@ class UserGridHandler extends GridHandler {
 		// Grid actions
 		$router =& $request->getRouter();
 
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$this->addAction(
-			new LegacyLinkAction(
+			new LinkAction(
 				'addUser',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, null, 'addUser', null, null),
-				'grid.user.add'
-			)
+				new AjaxModal(
+					$router->url($request, null, null, 'addUser', null, null),
+					__('grid.user.add'),
+					'addUser',
+					true
+					),
+				__('grid.user.add'),
+				'addUser')
 		);
 
 		//

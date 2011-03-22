@@ -54,17 +54,23 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 		$press =& $request->getPress();
 
 		// Enroll user
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$this->addAction(
-			new LegacyLinkAction(
+			new LinkAction(
 				'enrollUser',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_REDIRECT,
-				$router->url($request, null, null, 'enrollUser', null, null),
-				'grid.user.enroll'
-			)
+				new AjaxModal(
+					$router->url($request, null, null, 'enrollUser', null, null),
+					__('grid.user.enroll'),
+					'enrollUser',
+					true
+					),
+				__('grid.user.enroll'),
+				'enrollUser')
 		);
 
+		//
 		// Grid Columns
+		//
 
 		// User roles
 		import('controllers.grid.users.user.UserEnrollmentGridCellProvider');
