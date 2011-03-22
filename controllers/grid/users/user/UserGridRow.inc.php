@@ -46,65 +46,69 @@ class UserGridRow extends GridRow {
 				'rowId' => $rowId
 			);
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'email',
-					LINK_ACTION_MODE_MODAL,
-					null,
-					$router->url($request, null, null, 'editEmail', null, $actionArgs),
-					'grid.user.email',
-					null,
-					'notify'
-				)
+					new AjaxModal(
+						$router->url($request, null, null, 'editEmail', null, $actionArgs),
+						__('grid.user.email'),
+						'notify',
+						true
+						),
+					__('grid.user.email'),
+					'notify')
 			);
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'edit',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'editUser', null, $actionArgs),
-					'grid.action.edit',
-					null,
-					'edit'
-				)
+					new AjaxModal(
+						$router->url($request, null, null, 'editUser', null, $actionArgs),
+						__('grid.user.edit'),
+						'edit',
+						true
+						),
+					__('grid.user.edit'),
+					'edit')
 			);
 			if ($element->getDisabled()) {
 				$actionArgs['enable'] = true;
 				$this->addAction(
-					new LegacyLinkAction(
+					new LinkAction(
 						'enable',
-						LINK_ACTION_MODE_MODAL,
-						LINK_ACTION_TYPE_REPLACE,
-						$router->url($request, null, null, 'editDisableUser', null, $actionArgs),
-						'grid.user.enable',
-						null,
-						'enable'
-					)
+						new AjaxModal(
+							$router->url($request, null, null, 'editDisableUser', null, $actionArgs),
+							__('grid.user.enable'),
+							'enable',
+							true
+							),
+						__('grid.user.enable'),
+						'enable')
 				);
 			} else {
 				$actionArgs['enable'] = false;
 				$this->addAction(
-					new LegacyLinkAction(
+					new LinkAction(
 						'disable',
-						LINK_ACTION_MODE_MODAL,
-						LINK_ACTION_TYPE_REPLACE,
-						$router->url($request, null, null, 'editDisableUser', null, $actionArgs),
-						'grid.user.disable',
-						null,
-						'disable'
-					)
+						new AjaxModal(
+							$router->url($request, null, null, 'editDisableUser', null, $actionArgs),
+							__('grid.user.disable'),
+							'disable',
+							true
+							),
+						__('grid.user.disable'),
+						'disable')
 				);
-
 			}
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'remove',
-					LINK_ACTION_MODE_CONFIRM,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'removeUser', null, $actionArgs),
-					'grid.action.remove',
-					null,
-					'delete'
-				)
+					new AjaxModal(
+						$router->url($request, null, null, 'removeUser', null, $actionArgs),
+						__('grid.action.remove'),
+						'delete',
+						true
+						),
+					__('grid.action.remove'),
+					'delete')
 			);
 
 			// Set a non-default template that supports row actions

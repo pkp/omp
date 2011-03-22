@@ -14,7 +14,6 @@
 
 
 import('controllers.grid.users.user.UserGridHandler');
-import('controllers.grid.users.user.UserEnrollmentGridRow');
 
 class UserEnrollmentGridHandler extends UserGridHandler {
 	/**
@@ -90,14 +89,6 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 	//
 	// Implement template methods from GridHandler
 	//
-	/**
-	 * @see GridHandler::getRowInstance()
-	 */
-	function &getRowInstance() {
-		$row = new UserEnrollmentGridRow();
-		return $row;
-	}
-
 	/**
 	 * @see GridHandler::getFilterForm()
 	 */
