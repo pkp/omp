@@ -32,7 +32,7 @@
 	<div class="separator"></div>
 
 
-	<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="author"}', '{translate|escape:"jsparam" key="submission.submit.cancelSubmission"}')" /></p>
+	<p><input type="submit" value="{translate key="common.saveAndContinue"}" class="button defaultButton" /> <input type="button" value="{translate key="common.cancel"}" class="button" onclick="confirmAction('{url page="dashboard" op="status"}', '{translate|escape:"jsparam" key="submission.submit.cancelSubmission"}')" /></p>
 
 </form>
 
