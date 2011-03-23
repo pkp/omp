@@ -125,7 +125,7 @@ class TranslatorHandler extends Handler {
 
 	/**
 	 * Export the locale files to the browser as a tarball.
-	 * Requires /bin/tar for operation.
+	 * Requires tar (configured in config.inc.php) for operation.
 	 */
 	function export($args) {
 		$this->validate();

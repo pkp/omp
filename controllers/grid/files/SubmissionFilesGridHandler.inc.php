@@ -242,17 +242,20 @@ class SubmissionFilesGridHandler extends GridHandler {
 			unset($monographFile);
 		}
 
-		// Identify the archive location.
-		$archivePath = $filesDir . "monograph_" . $monographId . "_files.tar.gz";
-
-		// Delete prior file if it exists.
-		FileManager::deleteFile($archivePath);
+		// Create a temporary file.
+		$archivePath = tempnam('/tmp', 'sf-');
 
 		// Create the archive and download the file.
-		$tarCommand = "tar czf ". $archivePath . " -C \"" . $filesDir . "\" " . implode(" ", $filePaths);
-		exec($tarCommand);
+		exec(
+			Config::getVar('cli', 'tar') . ' -c -z ' .
+			'-f ' . escapeshellarg($archivePath) . ' ' .
+			'-C ' . escapeshellarg($filesDir) . ' ' .
+			implode(' ', array_map('escapeshellarg', $filePaths))
+		);
+
 		if (file_exists($archivePath)) {
 			FileManager::downloadFile($archivePath);
+			FileManager::deleteFile($archivePath);
 		} else {
 			fatalError('Creating archive with submission files failed!');
 		}
