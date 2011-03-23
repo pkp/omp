@@ -66,8 +66,6 @@ class ReviewerAction extends Action {
 				$entry->setUserId($reviewer->getId());
 				$entry->setDateLogged(Core::getCurrentDate());
 				$entry->setEventType($decline?MONOGRAPH_LOG_REVIEW_DECLINE:MONOGRAPH_LOG_REVIEW_ACCEPT);
-				$entry->setAssocType(MONOGRAPH_LOG_TYPE_REVIEW);
-				$entry->setAssocId($reviewAssignment->getId());
 
 				MonographLog::logEvent(
 					$request,
