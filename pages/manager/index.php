@@ -21,7 +21,6 @@ switch ($op) {
 	//
 	case 'setup':
 	case 'saveSetup':
-	case 'setupSaved':
 	case 'downloadLayoutTemplate':
 		import('pages.manager.SetupHandler');
 		define('HANDLER_CLASS', 'SetupHandler');
@@ -44,19 +43,10 @@ switch ($op) {
 	// People Management
 	//
 	case 'people':
-	case 'enrollSearch':
-	case 'enroll':
-	case 'unEnroll':
-	case 'showNoRole':
-	case 'enrollSyncSelect':
-	case 'enrollSync':
-	case 'createUser':
-	case 'suggestUsername':
 	case 'mergeUsers':
 	case 'disableUser':
 	case 'enableUser':
 	case 'removeUser':
-	case 'editUser':
 	case 'updateUser':
 	case 'userProfile':
 		import('pages.manager.PeopleHandler');
