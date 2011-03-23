@@ -18,7 +18,7 @@
 <p><a href="{url op="files" path=$parentDir|explode:"/"}" class="action">&lt; {translate key="manager.files.parentDir"}</a></p>
 {/if}
 
-<table width="100%" class="listing">
+<table width="100%" class="pkp_listing">
 	<tr>
 		<td class="headseparator" colspan="6">&nbsp;</td>
 	</tr>

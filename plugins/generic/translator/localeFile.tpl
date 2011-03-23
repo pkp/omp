@@ -29,7 +29,7 @@
 <a name="localeContents"></a>
 
 <h3>{translate key="plugins.generic.translator.file.edit" filename=$filename}</h3>
-<table class="listing" width="100%">
+<table class="pkp_listing" width="100%">
 	<tr><td colspan="3" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
 		<td width="35%">{translate key="plugins.generic.translator.localeKey"}</td>

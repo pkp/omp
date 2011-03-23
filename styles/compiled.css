@@ -1169,6 +1169,32 @@ input.pkp_form_uploadField {
   filter:alpha(opacity=0);
   opacity:0;
 }
+table.pkp_listing td { padding:0.25em 1.5em 0.25em 0.5em; }
+table.pkp_listing tr.heading td, table.pkp_listing td.heading {
+  font-size:0.85em;
+  text-transform:uppercase;
+  font-weight:normal;
+  padding:0.75em 1.5em 1em 0.5em;
+}
+table.pkp_listing td.nodata {
+  text-align:center;
+  font-style:italic;
+}
+table.pkp_listing td.headseparator {
+  border-top:1px dotted #000000;
+  font-size:0.1em;
+  line-height:1%;
+}
+table.pkp_listing td.endseparator {
+  border-top:1px dotted #000000;
+  font-size:0.25em;
+  line-height:10%;
+}
+table.pkp_listing td.separator {
+  border-top:1px dotted #ddddd0;
+  font-size:0.1em;
+  line-height:1%;
+}
 div.pkp_controllers_grid div.wrapper {
   margin:10px;
   padding:20px;

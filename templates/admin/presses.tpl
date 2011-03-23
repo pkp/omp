@@ -15,7 +15,7 @@
 
 <a name="presses"></a>
 
-<table width="100%" class="listing" id="adminPresses">
+<table width="100%" class="pkp_listing" id="adminPresses">
 	<tr>
 		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>

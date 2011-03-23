@@ -15,7 +15,7 @@
 <br/>
 
 <div id="membership">
-<table width="100%" class="listing">
+<table width="100%" class="pkp_listing">
 	<tr>
 		<td colspan="2" class="headseparator">&nbsp;</td>
 	</tr>

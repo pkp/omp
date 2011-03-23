@@ -64,7 +64,7 @@
 	{assign var="numCols" value=5}
 	<form method="post" action="{url}">
 {/if}
-<table width="100%" class="listing">
+<table width="100%" class="pkp_listing">
 	<tr>
 		<td colspan="{$numCols}" class="headseparator">&nbsp;</td>
 	</tr>

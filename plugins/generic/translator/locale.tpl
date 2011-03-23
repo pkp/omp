@@ -21,7 +21,7 @@
 <a name="localeFiles"></a>
 
 <h3>{translate key="plugins.generic.translator.localeFiles"}</h3>
-<table class="listing" width="100%">
+<table class="pkp_listing" width="100%">
 	<tr><td colspan="2" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
 		<td width="85%">{translate key="plugins.generic.translator.file.filename"}</td>
@@ -83,7 +83,7 @@
 <a name="miscFiles"></a>
 
 <h3>{translate key="plugins.generic.translator.miscFiles"}</h3>
-<table class="listing" width="100%">
+<table class="pkp_listing" width="100%">
 	<tr><td colspan="2" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
 		<td width="85%">{translate key="plugins.generic.translator.file.filename"}</td>
@@ -145,7 +145,7 @@
 <a name="emails"></a>
 
 <h3>{translate key="plugins.generic.translator.emails"}</h3>
-<table class="listing" width="100%">
+<table class="pkp_listing" width="100%">
 	<tr><td colspan="3" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
 		<td width="35%">{translate key="manager.emails.emailKey"}</td>

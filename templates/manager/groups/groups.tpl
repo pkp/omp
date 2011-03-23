@@ -27,7 +27,7 @@
 
 <div id="groups">
 
-<table width="100%" class="listing">
+<table width="100%" class="pkp_listing">
 	<tr>
 		<td colspan="3" class="headseparator">&nbsp;</td>
 	</tr>

@@ -16,7 +16,7 @@
 <a name="localeFiles"></a>
 
 <h3>{translate key="plugins.generic.customLocale.localeFiles"}</h3>
-<table class="listing" width="100%">
+<table class="pkp_listing" width="100%">
 	<tr><td colspan="2" class="headseparator">&nbsp;</td></tr>
 	<tr class="heading" valign="bottom">
 		<td width="85%">{translate key="plugins.generic.customLocale.file.filename"}</td>

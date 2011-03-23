@@ -12,7 +12,7 @@
 {/strip}
 
 {translate key="plugins.importexport.users.import.usersWereImported"}:
-<table width="100%" class="listing">
+<table width="100%" class="pkp_listing">
 	<tr>
 		<td colspan="4" class="headseparator">&nbsp;</td>
 	</tr>

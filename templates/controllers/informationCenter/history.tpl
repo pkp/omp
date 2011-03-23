@@ -8,7 +8,7 @@
  *}
 
 <div id="informationCenterHistoryTab">
-<table width="100%" class="listing">
+<table width="100%" class="pkp_listing">
 	<tr><td class="headseparator" colspan="5">&nbsp;</td></tr>
 	<tr valign="top" class="heading">
 		<td>{translate key="common.date"}</td>

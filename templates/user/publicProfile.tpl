@@ -28,7 +28,7 @@
 	{/if}
 </h4>
 
-<table class="listing" width="100%">
+<table class="pkp_listing" width="100%">
 	{if $user->getLocalizedAffiliation()}
 		<tr valign="top">
 			<td class="label" width="20%">

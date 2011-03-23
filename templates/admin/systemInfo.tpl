@@ -27,7 +27,7 @@
 {/if}
 
 <h4>{translate key="admin.versionHistory"}</h4>
-<table class="listing" width="100%">
+<table class="pkp_listing" width="100%">
 	<tr>
 		<td colspan="6" class="headseparator">&nbsp;</td>
 	</tr>
