@@ -106,7 +106,10 @@ class ReviewerForm extends Form {
 		// Get the review method (open, blind, or double-blind)
 		$round = (int) $request->getUserVar('round');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($this->getMonographId(), $reviewerId, $round);
+		// FIXME: Bug #6199
+		$reviewType = (int) $request->getUserVar('reviewType');
+
+		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($this->getMonographId(), $reviewerId, $round, $reviewType);
 		if(isset($reviewAssignment)) {
 			$reviewMethod = $reviewAssignment->getReviewMethod();
 		} else $reviewMethod = SUBMISSION_REVIEW_METHOD_BLIND;
@@ -132,7 +135,7 @@ class ReviewerForm extends Form {
 		$this->_data = array(
 			'monographId' => $this->getMonographId(),
 			'reviewAssignmentId' => $this->getReviewAssignmentId(),
-			'reviewType' => (int) $request->getUserVar('reviewType'),
+			'reviewType' => $reviewType,
 			'reviewMethod' => $reviewMethod,
 			'round' => (int) $request->getUserVar('round'),
 			'reviewerId' => $reviewerId,
@@ -237,6 +240,7 @@ class ReviewerForm extends Form {
 		$submission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($this->getMonographId());
 		$press =& $request->getPress();
 
+		// FIXME: Bug #6199
 		$reviewType = $this->getData('reviewType');
 		$round = $this->getData('round');
 		$reviewDueDate = $this->getData('reviewDueDate');

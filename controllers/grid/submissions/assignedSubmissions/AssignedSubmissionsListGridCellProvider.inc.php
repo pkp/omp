@@ -46,24 +46,30 @@ class AssignedSubmissionsListGridCellProvider extends SubmissionsListGridCellPro
 			$monographId = $monograph->getId();
 			$user =& $request->getUser();
 			switch ($stageId) {
-				case 1: default:
+				case WORKFLOW_STAGE_ID_SUBMISSION:
+				default:
 					$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'submission', $monographId);
 					break;
-				case 2:
-				case 3:
+				case WORKFLOW_STAGE_ID_INTERNAL_REVIEW:
+				case WORKFLOW_STAGE_ID_EXTERNAL_REVIEW:
 					// If user is reviewer for submission, send to review wizard; Else they are an editor in the review stage
 					$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-					$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($monographId, $user->getId(), $monograph->getCurrentRound());
+					$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment(
+						$monographId,
+						$user->getId(),
+						$monograph->getCurrentRound(),
+						$stageId == WORKFLOW_STAGE_ID_INTERNAL_REVIEW ? REVIEW_TYPE_INTERNAL : REVIEW_TYPE_EXTERNAL
+					);
 					if(isset($reviewAssignment)) {
 						$url = $dispatcher->url($request, ROUTE_PAGE, null, 'reviewer', 'submission', null, array('monographId' => $monographId, 'reviewId' => $reviewAssignment->getId()));
 					} else {
 						$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'review', array($monographId));
 					}
 					break;
-				case 4:
+				case WORKFLOW_STAGE_ID_EDITING:
 					$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'copyediting', $monograph->getId());
 					break;
-				case 5:
+				case WORKFLOW_STAGE_ID_PRODUCTION:
 					$url = $dispatcher->url($request, ROUTE_PAGE, $press->getPath(), 'workflow', 'production', $monograph->getId());
 					break;
 			}
