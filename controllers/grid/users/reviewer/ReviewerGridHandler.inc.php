@@ -234,7 +234,8 @@ class ReviewerGridHandler extends GridHandler {
 		// id is actually attached to the monograph so no need for further
 		// validation here.
 		import('classes.submission.seriesEditor.SeriesEditorAction');
-		$result = SeriesEditorAction::clearReview($monograph->getId(), $reviewId);
+		$seriesEditorAction = new SeriesEditorAction();
+		$result = $seriesEditorAction->clearReview($monograph->getId(), $reviewId);
 
 		// Render the result.
 		if ($result) {

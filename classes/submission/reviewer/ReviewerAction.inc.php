@@ -18,6 +18,13 @@ import('classes.submission.common.Action');
 
 class ReviewerAction extends Action {
 
+	/**
+	 * Constructor
+	 */
+	function ReviewerAction() {
+		parent::Action();
+	}
+
 	//
 	// Actions.
 	//

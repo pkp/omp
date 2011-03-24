@@ -121,7 +121,7 @@ class SeriesEditorAction extends Action {
 		$monographDao->updateMonograph($monograph);
 
 		// Assign the default users to the next workflow stage.
-		SeriesEditorAction::assignDefaultStageParticipants($monograph, $newStage);
+		$this->assignDefaultStageParticipants($monograph, $newStage);
 	}
 
 	/**
@@ -176,8 +176,8 @@ class SeriesEditorAction extends Action {
 			$press =& Request::getPress();
 			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			$settings =& $settingsDao->getPressSettings($press->getId());
-			if (isset($reviewDueDate)) SeriesEditorAction::setDueDate($request, $seriesEditorSubmission, $reviewAssignment->getId(), $reviewDueDate);
-			if (isset($responseDueDate)) SeriesEditorAction::setResponseDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getId(), $responseDueDate);
+			if (isset($reviewDueDate)) $this->setDueDate($request, $seriesEditorSubmission, $reviewAssignment->getId(), $reviewDueDate);
+			if (isset($responseDueDate)) $this->setResponseDueDate($seriesEditorSubmission->getId(), $reviewAssignment->getId(), $responseDueDate);
 
 			// Add log
 			import('classes.log.MonographLog');

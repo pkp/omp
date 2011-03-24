@@ -181,7 +181,8 @@ class EditorDecisionHandler extends Handler {
 
 		// Retrieve peer reviews.
 		import('classes.submission.seriesEditor.SeriesEditorAction');
-		$peerReviews = SeriesEditorAction::getPeerReviews($seriesEditorSubmission);
+		$seriesEditorAction = new SeriesEditorAction();
+		$peerReviews = $seriesEditorAction->getPeerReviews($seriesEditorSubmission);
 
 		if(empty($peerReviews)) {
 			$json = new JSON(false, Locale::translate('editor.review.noReviews'));
@@ -203,7 +204,8 @@ class EditorDecisionHandler extends Handler {
 
 		// Move to the production workflow stage
 		import('classes.submission.seriesEditor.SeriesEditorAction');
-		SeriesEditorAction::incrementWorkflowStage($monograph, WORKFLOW_STAGE_ID_PRODUCTION);
+		$seriesEditorAction = new SeriesEditorAction();
+		$seriesEditorAction->incrementWorkflowStage($monograph, WORKFLOW_STAGE_ID_PRODUCTION);
 
 		$json = new JSON(true);
 		return $json->getString();

@@ -39,7 +39,8 @@ class NewReviewRoundForm extends EditorDecisionForm {
 
 		// Record the decision.
 		import('classes.submission.seriesEditor.SeriesEditorAction');
-		SeriesEditorAction::recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT);
+		$seriesEditorAction = new SeriesEditorAction();
+		$seriesEditorAction->recordDecision($seriesEditorSubmission, SUBMISSION_EDITOR_DECISION_RESUBMIT);
 
 		// Create a new review round.
 		$newRound = $seriesEditorSubmission->getCurrentRound() + 1;

@@ -157,7 +157,8 @@ class ReviewHandler extends Handler {
 		$reviewAssignment->setRegretMessage($declineReviewMessage);
 		$reviewAssignmentDao->updateObject($reviewAssignment);
 
-		ReviewerAction::confirmReview($request, $reviewerSubmission, true, true);
+		$reviewerAction = new ReviewerAction();
+		$reviewerAction->confirmReview($request, $reviewerSubmission, true, true);
 		$router =& $request->getRouter(); /* @var $router PageRouter */
 		$request->redirect($router->redirectHome($request));
 	}

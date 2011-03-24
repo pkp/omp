@@ -205,8 +205,9 @@ class PeopleHandler extends ManagerHandler {
 
 		if (!empty($oldUserIds) && !empty($newUserId)) {
 			import('classes.user.UserAction');
+			$userAction = new UserAction();
 			foreach ($oldUserIds as $oldUserId) {
-				UserAction::mergeUsers($oldUserId, $newUserId);
+				$userAction->mergeUsers($oldUserId, $newUserId);
 			}
 			$request->redirect(null, 'manager');
 		}

@@ -66,7 +66,8 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 		// Record the decision.
 		$decision = $this->getDecision();
 		import('classes.submission.seriesEditor.SeriesEditorAction');
-		SeriesEditorAction::recordDecision($seriesEditorSubmission, $decision);
+		$seriesEditorAction = new SeriesEditorAction();
+		$seriesEditorAction->recordDecision($seriesEditorSubmission, $decision);
 
 		// Identify email key and status of round.
 		switch ($decision) {
@@ -75,7 +76,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				$status = REVIEW_ROUND_STATUS_ACCEPTED;
 
 				// Move to the editing stage.
-				SeriesEditorAction::incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EDITING);
+				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EDITING);
 				break;
 
 			case SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
@@ -84,7 +85,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				$status = REVIEW_ROUND_STATUS_SENT_TO_EXTERNAL;
 
 				// Move to the external review stage.
-				SeriesEditorAction::incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
+				$seriesEditorAction->incrementWorkflowStage($seriesEditorSubmission, WORKFLOW_STAGE_ID_EXTERNAL_REVIEW);
 
 				// Create an initial external review round.
 				$this->_initiateReviewRound($seriesEditorSubmission, REVIEW_TYPE_EXTERNAL, 1);

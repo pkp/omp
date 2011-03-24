@@ -67,7 +67,8 @@ class SendReviewsForm extends EditorDecisionWithEmailForm {
 		// Record the decision.
 		$decision = $this->getDecision();
 		import('classes.submission.seriesEditor.SeriesEditorAction');
-		SeriesEditorAction::recordDecision($seriesEditorSubmission, $decision);
+		$seriesEditorAction = new SeriesEditorAction();
+		$seriesEditorAction->recordDecision($seriesEditorSubmission, $decision);
 
 		// Identify email key and status of round.
 		switch ($decision) {
