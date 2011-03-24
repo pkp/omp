@@ -91,12 +91,6 @@ class PeopleHandler extends ManagerHandler {
 				case ROLE_ID_REVIEWER:
 					$helpTopicId = 'press.roles.reviewer';
 					break;
-				case ROLE_ID_COPYEDITOR:
-					$helpTopicId = 'press.roles.copyeditor';
-					break;
-				case ROLE_ID_PROOFREADER:
-					$helpTopicId = 'press.roles.proofreader';
-					break;
 				case ROLE_ID_AUTHOR:
 					$helpTopicId = 'press.roles.author';
 					break;

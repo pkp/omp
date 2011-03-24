@@ -62,9 +62,7 @@ class UserImportExportPlugin extends ImportExportPlugin {
 			'productionEditor' => 'user.role.productionEditor',
 			'proofreader' => 'user.role.proofreader',
 			'author' => 'user.role.author',
-			'reader' => 'user.role.reader',
-			'director' => 'user.role.director',
-			'indexer' => 'user.role.indexer'
+			'reader' => 'user.role.reader'
 		));
 
 		$roleDao =& DAORegistry::getDAO('RoleDAO');

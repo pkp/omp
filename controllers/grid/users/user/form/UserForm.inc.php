@@ -300,8 +300,6 @@ class UserForm extends Form {
 			$user->setDateRegistered(Core::getCurrentDate());
 			$userId = $userDao->insertUser($user);
 
-			$isManager = Validation::isPressManager();
-
 			if ($sendNotify) {
 				// Send welcome email to user
 				import('classes.mail.MailTemplate');

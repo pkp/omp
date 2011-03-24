@@ -91,16 +91,6 @@ class AdminPeopleHandler extends AdminHandler {
 				unset($layoutEditorSubmission);
 			}
 
-			$proofreaderSubmissionDao =& DAORegistry::getDAO('ProofreaderSubmissionDAO');
-			$proofreaderSubmissions =& $proofreaderSubmissionDao->getSubmissions($oldUserId);
-			while ($proofreaderSubmission =& $proofreaderSubmissions->next()) {
-				$proofAssignment =& $proofreaderSubmission->getProofAssignment();
-				$proofAssignment->setProofreaderId($newUserId);
-				$proofreaderSubmissionDao->updateSubmission($proofreaderSubmission);
-				unset($proofAssignment);
-				unset($proofreaderSubmission);
-			}
-
 			$monographEmailLogDao =& DAORegistry::getDAO('MonographEmailLogDAO');
 			$monographEmailLogDao->changeUser($oldUserId, $newUserId);
 			$monographEventLogDao =& DAORegistry::getDAO('MonographEventLogDAO');

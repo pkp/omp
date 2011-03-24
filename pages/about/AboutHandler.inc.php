@@ -145,19 +145,8 @@ class AboutHandler extends Handler {
 			$seriesEditors =& $roleDao->getUsersByRoleId(ROLE_ID_SERIES_EDITOR, $press->getId());
 			$seriesEditors =& $seriesEditors->toArray();
 
-			$productionEditors =& $roleDao->getUsersByRoleId(ROLE_ID_PRODUCTION_EDITOR, $press->getId());
-			$productionEditors =& $productionEditors->toArray();
-
-			$copyEditors =& $roleDao->getUsersByRoleId(ROLE_ID_COPYEDITOR, $press->getId());
-			$copyEditors =& $copyEditors->toArray();
-
-			$proofreaders =& $roleDao->getUsersByRoleId(ROLE_ID_PROOFREADER, $press->getId());
-			$proofreaders =& $proofreaders->toArray();
-
 			$templateMgr->assign_by_ref('editors', $editors);
 			$templateMgr->assign_by_ref('seriesEditors', $seriesEditors);
-			$templateMgr->assign_by_ref('productionEditors', $productionEditors);
-			$templateMgr->assign_by_ref('copyEditors', $copyEditors);
 			$templateMgr->assign_by_ref('proofreaders', $proofreaders);
 			$templateMgr->display('about/editorialTeam.tpl');
 		} else {
@@ -218,10 +207,7 @@ class AboutHandler extends Handler {
 			$roles =& $roleDao->getRolesByUserId($userId, $press->getId());
 			$acceptableRoles = array(
 				ROLE_ID_EDITOR,
-				ROLE_ID_SERIES_EDITOR,
-				ROLE_ID_PRODUCTION_EDITOR,
-				ROLE_ID_COPYEDITOR,
-				ROLE_ID_PROOFREADER
+				ROLE_ID_SERIES_EDITOR
 			);
 			foreach ($roles as $role) {
 				$roleId = $role->getRoleId();

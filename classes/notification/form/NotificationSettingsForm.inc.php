@@ -67,11 +67,14 @@ class NotificationSettingsForm extends PKPNotificationSettingsForm {
 		$canOnlyRead = true;
 		$canOnlyReview = false;
 
+		// FIXME: Bug #6538. These policies used to use several role checks
+		// that are no longer appropriate / have been removed. The remaining
+		// ones should be too.
 		if (Validation::isReviewer()) {
 			$canOnlyRead = false;
 			$canOnlyReview = true;
 		}
-		if (Validation::isSiteAdmin() || Validation::isPressManager() || Validation::isEditor() || Validation::isSeriesEditor() || Validation::isProductionEditor()) {
+		if (Validation::isSiteAdmin()) {
 			$canOnlyRead = false;
 			$canOnlyReview = false;
 		}

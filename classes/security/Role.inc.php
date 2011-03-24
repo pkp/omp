@@ -33,22 +33,9 @@ define('ROLE_PATH_REVIEWER', 'reviewer');
 //FIXME: The following new role (="press role") will have to be introduced - see #6113.
 define('ROLE_ID_PRESS_ASSISTANT', 0x00001001);
 
-
-//FIXME: The following roles will have to be deleted - see #6113.
-define('ROLE_ID_DIRECTOR',		0x00000012);
-define('ROLE_PATH_DIRECTOR', 'director');
-
+// FIXME: Remove. Bug #6537.
 define('ROLE_ID_EDITOR',		0x00000100);
 define('ROLE_PATH_EDITOR', 'editor');
-
-define('ROLE_ID_PRODUCTION_EDITOR',	0x00000401);
-define('ROLE_PATH_PRODUCTION_EDITOR', 'productionEditor');
-
-define('ROLE_ID_COPYEDITOR',		0x00002000);
-define('ROLE_PATH_COPYEDITOR', 'copyeditor');
-
-define('ROLE_ID_PROOFREADER',		0x00004000);
-define('ROLE_PATH_PROOFREADER', 'proofreader');
 
 define('ROLE_ID_READER',		0x00020000);
 define('ROLE_PATH_READER', 'reader');
@@ -58,9 +45,6 @@ define('ROLE_PATH_MARKETING', 'marketing');
 
 define('ROLE_ID_FUNDING_COORDINATOR',	0x00100100);
 define('ROLE_PATH_FUNDING_COORDINATOR', 'funding');
-
-define('ROLE_ID_INDEXER',		0x00200000);
-define('ROLE_PATH_INDEXER', 'indexer');
 
 
 class Role extends DataObject {
@@ -125,18 +109,8 @@ class Role extends DataObject {
 				return 'user.role.reviewer' . ($plural ? 's' : '');
 			case ROLE_ID_SERIES_EDITOR:
 				return 'user.role.seriesEditor' . ($plural ? 's' : '');
-			case ROLE_ID_COPYEDITOR:
-				return 'user.role.copyeditor' . ($plural ? 's' : '');
-			case ROLE_ID_PROOFREADER:
-				return 'user.role.proofreader' . ($plural ? 's' : '');
-			case ROLE_ID_PRODUCTION_EDITOR:
-				return 'user.role.productionEditor' . ($plural ? 's' : '');
 			case ROLE_ID_READER:
 				return 'user.role.reader' . ($plural ? 's' : '');
-			case ROLE_ID_DIRECTOR:
-				return 'user.role.director' . ($plural ? 's' : '');
-			case ROLE_ID_INDEXER:
-				return 'user.role.indexer' . ($plural ? 's' : '');
 			default:
 				return '';
 		}
@@ -160,23 +134,12 @@ class Role extends DataObject {
 				return 'reviewer';
 			case ROLE_ID_SERIES_EDITOR:
 				return 'seriesEditor';
-			case ROLE_ID_COPYEDITOR:
-				return 'copyeditor';
-			case ROLE_ID_PROOFREADER:
-				return 'proofreader';
-			case ROLE_ID_PRODUCTION_EDITOR:
-				return 'productionEditor';
 			case ROLE_ID_READER:
 				return 'reader';
-			case ROLE_ID_DIRECTOR:
-				return 'director';
-			case ROLE_ID_INDEXER:
-				return 'indexer';
 			default:
 				return '';
 		}
 	}
-
 }
 
 ?>
