@@ -135,21 +135,6 @@ class Monograph extends Submission {
 	function setCommentsToEditor($commentsToEditor) {
 		return $this->setData('commentsToEditor', $commentsToEditor);
 	}
-	/**
-	 * Get editor file id.
-	 * @return int
-	 */
-	function getEditorFileId() {
-		return $this->getData('editorFileId');
-	}
-
-	/**
-	 * Set editor file id.
-	 * @param $editorFileId int
-	 */
-	function setEditorFileId($editorFileId) {
-		return $this->setData('editorFileId', $editorFileId);
-	}
 
 	/**
 	 * Return boolean indicating if author should be hidden in contributor statement.

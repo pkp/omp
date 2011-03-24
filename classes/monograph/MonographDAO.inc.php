@@ -154,10 +154,6 @@ class MonographDAO extends DAO {
 		$monograph->setLastModified($this->datetimeFromDB($row['last_modified']));
 		$monograph->setCurrentRound($row['current_round']);
 		$monograph->setCurrentStageId($row['stage_id']);
-		$monograph->setSubmissionFileId($row['submission_file_id']);
-		$monograph->setRevisedFileId($row['revised_file_id']);
-		$monograph->setReviewFileId($row['review_file_id']);
-		$monograph->setEditorFileId($row['editor_file_id']);
 		$monograph->setStatus($row['status']);
 		$monograph->setSubmissionProgress($row['submission_progress']);
 		$monograph->setWorkType($row['edited_volume']);
@@ -183,9 +179,9 @@ class MonographDAO extends DAO {
 		$monograph->stampModified();
 		$this->update(
 			sprintf('INSERT INTO monographs
-				(locale, user_id, press_id, series_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, current_round, stage_id, submission_file_id, revised_file_id, review_file_id, editor_file_id, pages, hide_author, comments_status, edited_volume)
+				(locale, user_id, press_id, series_id, language, comments_to_ed, date_submitted, date_status_modified, last_modified, status, submission_progress, current_round, stage_id, pages, hide_author, comments_status, edited_volume)
 				VALUES
-				(?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+				(?, ?, ?, ?, ?, ?, %s, %s, %s, ?, ?, ?, ?, ?, ?, ?, ?)',
 				$this->datetimeToDB($monograph->getDateSubmitted()), $this->datetimeToDB($monograph->getDateStatusModified()), $this->datetimeToDB($monograph->getLastModified())),
 			array(
 				$monograph->getLocale(),
@@ -198,10 +194,6 @@ class MonographDAO extends DAO {
 				$monograph->getSubmissionProgress() === null ? 1 : $monograph->getSubmissionProgress(),
 				$monograph->getCurrentRound() === null ? 1 : $monograph->getCurrentRound(),
 				$monograph->getCurrentStageId() === null ? 1 : $monograph->getCurrentStageId(),
-				$monograph->getSubmissionFileId(),
-				$monograph->getRevisedFileId(),
-				$monograph->getReviewFileId(),
-				$monograph->getEditorFileId(),
 				$monograph->getPages(),
 				$monograph->getHideAuthor() === null ? 0 : $monograph->getHideAuthor(),
 				$monograph->getCommentsStatus() === null ? 0 : $monograph->getCommentsStatus(),
@@ -238,10 +230,6 @@ class MonographDAO extends DAO {
 					current_round = ?,
 					stage_id = ?,
 					edited_volume = ?,
-					submission_file_id = ?,
-					revised_file_id = ?,
-					review_file_id = ?,
-					editor_file_id = ?,
 					hide_author = ?
 
 				WHERE monograph_id = ?',
@@ -257,10 +245,6 @@ class MonographDAO extends DAO {
 				$monograph->getCurrentRound(),
 				$monograph->getCurrentStageId(),
 				$monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME ? 1 : 0,
-				$monograph->getSubmissionFileId(),
-				$monograph->getRevisedFileId(),
-				$monograph->getReviewFileId(),
-				$monograph->getEditorFileId(),
 				$monograph->getHideAuthor() == null ? 0 : $monograph->getHideAuthor(),
 
 

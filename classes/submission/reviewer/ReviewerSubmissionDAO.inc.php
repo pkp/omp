@@ -102,13 +102,6 @@ class ReviewerSubmissionDAO extends DAO {
 	function &_fromRow(&$row) {
 		$reviewerSubmission = $this->newDataObject();
 
-		// Files
-		$reviewerSubmission->setSubmissionFile($this->submissionFileDao->getLatestRevision($row['submission_file_id']));
-		$reviewerSubmission->setRevisedFile($this->submissionFileDao->getLatestRevision($row['revised_file_id']));
-		$reviewerSubmission->setReviewFile($this->submissionFileDao->getLatestRevision($row['review_file_id']));
-		$reviewerSubmission->setReviewerFile($this->submissionFileDao->getLatestRevision($row['reviewer_file_id']));
-		$reviewerSubmission->setReviewerFileRevisions($this->submissionFileDao->getLatestRevisions($row['reviewer_file_id']));
-
 		// Comments
 		$reviewerSubmission->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
 
@@ -132,12 +125,10 @@ class ReviewerSubmissionDAO extends DAO {
 		$reviewerSubmission->setDeclined($row['declined']);
 		$reviewerSubmission->setReplaced($row['replaced']);
 		$reviewerSubmission->setCancelled($row['cancelled']==1?1:0);
-		$reviewerSubmission->setReviewerFileId($row['reviewer_file_id']);
 		$reviewerSubmission->setQuality($row['quality']);
 		$reviewerSubmission->setRound($row['round']);
 		$reviewerSubmission->setStep($row['step']);
 		$reviewerSubmission->setReviewType($row['review_type']);
-		$reviewerSubmission->setReviewFileId($row['review_file_id']);
 
 		// Monograph attributes
 		$this->monographDao->_monographFromRow($reviewerSubmission, $row);
@@ -171,7 +162,6 @@ class ReviewerSubmissionDAO extends DAO {
 					date_acknowledged = %s,
 					date_due = %s,
 					date_response_due = %s,
-					reviewer_file_id = ?,
 					quality = ?
 				WHERE review_id = ?',
 				$this->datetimeToDB($reviewerSubmission->getDateAssigned()), $this->datetimeToDB($reviewerSubmission->getDateNotified()), $this->datetimeToDB($reviewerSubmission->getDateConfirmed()), $this->datetimeToDB($reviewerSubmission->getDateCompleted()), $this->datetimeToDB($reviewerSubmission->getDateAcknowledged()), $this->datetimeToDB($reviewerSubmission->getDateDue()), $this->datetimeToDB($reviewerSubmission->getDateResponseDue())),
@@ -187,7 +177,6 @@ class ReviewerSubmissionDAO extends DAO {
 				$reviewerSubmission->getDeclined(),
 				$reviewerSubmission->getReplaced(),
 				$reviewerSubmission->getCancelled(),
-				$reviewerSubmission->getReviewerFileId(),
 				$reviewerSubmission->getQuality(),
 				$reviewerSubmission->getReviewId()
 			)

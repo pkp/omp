@@ -113,13 +113,6 @@ class AuthorSubmissionDAO extends DAO {
 		$authorSubmission->setMostRecentProofreadComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_PROOFREAD, $row['monograph_id']));
 		$authorSubmission->setMostRecentLayoutComment($this->monographCommentDao->getMostRecentMonographComment($row['monograph_id'], COMMENT_TYPE_LAYOUT, $row['monograph_id']));
 
-		// Files
-		$authorSubmission->setSubmissionFile($this->submissionFileDao->getLatestRevision($row['submission_file_id']));
-		$authorSubmission->setRevisedFile($this->submissionFileDao->getLatestRevision($row['revised_file_id']));
-
-		$authorSubmission->setAuthorFileRevisions($this->submissionFileDao->getAllRevisions($row['revised_file_id']));
-		$authorSubmission->setEditorFileRevisions($this->submissionFileDao->getAllRevisions($row['editor_file_id']));
-
 		HookRegistry::call('AuthorSubmissionDAO::_returnAuthorSubmissionFromRow', array(&$authorSubmission, &$row));
 
 		return $authorSubmission;
@@ -135,14 +128,8 @@ class AuthorSubmissionDAO extends DAO {
 			$monograph =& $this->monographDao->getMonograph($authorSubmission->getId());
 
 			// Only update fields that an author can actually edit.
-			$monograph->setRevisedFileId($authorSubmission->getRevisedFileId());
 			$monograph->setDateStatusModified($authorSubmission->getDateStatusModified());
 			$monograph->setLastModified($authorSubmission->getLastModified());
-			// FIXME: These two are necessary for designating the
-			// original as the review version, but they are probably
-			// best not exposed like this.
-			$monograph->setReviewFileId($authorSubmission->getReviewFileId());
-			$monograph->setEditorFileId($authorSubmission->getEditorFileId());
 
 			$this->monographDao->updateMonograph($monograph);
 		}

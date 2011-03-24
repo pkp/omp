@@ -124,12 +124,6 @@ class SubmissionHandler extends Handler {
 			$templateMgr =& TemplateManager::getManager();
 			$templateMgr->assign_by_ref('press', $press);
 
-			// If this is an editor and there is a
-			// submission file, monograph can be expedited.
-			if (Validation::isEditor($press->getId()) && $monograph->getSubmissionFileId()) {
-				$templateMgr->assign('canExpedite', true);
-			}
-
 			$templateMgr->assign('monographId', $monograph->getId());
 			$templateMgr->assign('submitStep', $step);
 			$templateMgr->assign('submissionProgress', $monograph->getSubmissionProgress());

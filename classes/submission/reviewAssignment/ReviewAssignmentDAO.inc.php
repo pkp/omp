@@ -32,22 +32,6 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	}
 
 	/**
-	 * Return the review file ID for a submission, given its submission ID.
-	 * @param $submissionId int
-	 * @return int
-	 */
-	function _getSubmissionReviewFileId($submissionId) {
-		$result =& $this->retrieve(
-			'SELECT review_file_id FROM monographs WHERE monograph_id = ?',
-			(int) $submissionId
-		);
-		$returner = isset($result->fields[0]) ? $result->fields[0] : null;
-		$result->Close();
-		unset($result);
-		return $returner;
-	}
-
-	/**
 	 * Get all review assignments for a monograph.
 	 * @param $monographId int optional
 	 * @param $reviewType int optional
@@ -213,12 +197,6 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	 */
 	function &_fromRow(&$row) {
 		$reviewAssignment =& parent::_fromRow($row);
-		$reviewFileId = $this->_getSubmissionReviewFileId($reviewAssignment->getSubmissionId());
-		$reviewAssignment->setReviewFileId($reviewFileId);
-
-		// Files
-		$reviewAssignment->setReviewerFile($this->submissionFileDao->getLatestRevision($row['reviewer_file_id']));
-		$reviewAssignment->setReviewerFileRevisions($this->submissionFileDao->getLatestRevisions($row['reviewer_file_id']));
 
 		// Comments
 		$reviewAssignment->setMostRecentPeerReviewComment($this->monographCommentDao->getMostRecentMonographComment($row['submission_id'], COMMENT_TYPE_PEER_REVIEW, $row['review_id']));
