@@ -13,11 +13,11 @@
  * @brief Library file class.
  */
 
-define('LIBRARY_FILE_TYPE_SUBMISSION', 0x00001);
-define('LIBRARY_FILE_TYPE_REVIEW', 0x00002);
-define('LIBRARY_FILE_TYPE_PRODUCTION', 0x00003);
-define('LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE', 0x00004);
-define('LIBRARY_FILE_TYPE_EDITORIAL', 0x00005);
+define('LIBRARY_FILE_TYPE_SUBMISSION',		0x00001);
+define('LIBRARY_FILE_TYPE_REVIEW',		0x00002);
+define('LIBRARY_FILE_TYPE_PRODUCTION',		0x00003);
+define('LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE',	0x00004);
+define('LIBRARY_FILE_TYPE_EDITORIAL',		0x00005);
 
 class LibraryFile extends DataObject {
 
@@ -72,7 +72,6 @@ class LibraryFile extends DataObject {
 	function setFileName($fileName) {
 		return $this->setData('fileName', $fileName);
 	}
-
 
 	/**
 	 * Set the name of the file
@@ -173,17 +172,6 @@ class LibraryFile extends DataObject {
 	function getNiceFileSize() {
 		return FileManager::getNiceFileSize($this->getData('fileSize'));
 	}
-
-	/**
-	 * Get the file's extension.
-	 * @return string
-	 */
-	function getExtension() {
-		import('lib.pkp.classes.file.FileManager');
-		$fileManager = new FileManager();
-		return strtoupper($fileManager->getExtension($this->getData('fileName')));
-	}
-
 }
 
 ?>

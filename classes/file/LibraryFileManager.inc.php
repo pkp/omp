@@ -14,16 +14,9 @@
 
 
 import('classes.press.LibraryFile');
-import('lib.pkp.classes.file.PKPPublicFileManager');
+import('lib.pkp.classes.file.FileManager');
 
-/* Library type suffixes */
-define('LIBRARY_FILE_SUFFIX_REVIEW', 'LRV');
-define('LIBRARY_FILE_SUFFIX_SUBMISSION', 'LSB');
-define('LIBRARY_FILE_SUFFIX_PRODUCTION', 'LPR');
-define('LIBRARY_FILE_SUFFIX_EDITORIAL', 'LED');
-define('LIBRARY_FILE_SUFFIX_PRODUCTION_TEMPLATES', 'LPT');
-
-class LibraryFileManager extends PKPPublicFileManager {
+class LibraryFileManager extends FileManager {
 	/* @var $pressId Press id for the current press */
 	var $pressId;
 
@@ -35,8 +28,8 @@ class LibraryFileManager extends PKPPublicFileManager {
 	 * @param $pressId int
 	 */
 	function LibraryFileManager($pressId) {
-		parent::PKPPublicFileManager();
-		$this->filesDir = Config::getVar('files', 'public_files_dir') . '/presses/' . $pressId . '/library/';
+		parent::FileManager();
+		$this->filesDir = Config::getVar('files', 'files_dir') . '/presses/' . $pressId . '/library/';
 		$this->pressId = $pressId;
 	}
 
@@ -54,6 +47,12 @@ class LibraryFileManager extends PKPPublicFileManager {
 		$libraryFileDao->deleteById($fileId);
 	}
 
+	/**
+	 * Generate a filename for a library file.
+	 * @param $type int LIBRARY_FILE_TYPE_...
+	 * @param $originalFileName string
+	 * @return string
+	 */
 	function generateFileName($type, $originalFileName) {
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$suffix = $this->_getFileSuffixFromType($type);
@@ -61,34 +60,30 @@ class LibraryFileManager extends PKPPublicFileManager {
 		$truncated = $this->truncateFileName($originalFileName, 127 - String::strlen($suffix) - 1);
 		$baseName = String::substr($truncated, 0, String::strpos($originalFileName, $ext) - 1);
 
-		// try the following
+		// Try a simple syntax first
 		$fileName = $baseName . '-' . $suffix . '.' . $ext;
-		if (!$libraryFileDao->filenameExists($this->pressId, $fileName) ) {
-			return $fileName;
-		} else {
-			for ($i = 1; ; $i++) {
-				$fullSuffix = $suffix . '-' . $i;
-				//truncate more if necessary
-				$truncated = $this->truncateFileName($originalFileName, 127 - String::strlen($fullSuffix) - 1);
-				// get the base name and append the suffix
-				$baseName = String::substr($truncated, 0, String::strpos($originalFileName, $ext) - 1);
+		if (!$libraryFileDao->filenameExists($this->pressId, $fileName)) return $fileName;
 
-				//try the following
-				unset($fileName);
-				$fileName = $baseName . '-' . $fullSuffix . '.' . $ext;
-				if (!$libraryFileDao->filenameExists($this->pressId, $fileName)) {
-					return $fileName;
-				}
+		for ($i = 1; ; $i++) {
+			$fullSuffix = $suffix . '-' . $i;
+			//truncate more if necessary
+			$truncated = $this->truncateFileName($originalFileName, 127 - String::strlen($fullSuffix) - 1);
+			// get the base name and append the suffix
+			$baseName = String::substr($truncated, 0, String::strpos($originalFileName, $ext) - 1);
+
+			//try the following
+			$fileName = $baseName . '-' . $fullSuffix . '.' . $ext;
+			if (!$libraryFileDao->filenameExists($this->pressId, $fileName)) {
+				return $fileName;
 			}
 		}
-
 	}
 
 	/**
 	 * PRIVATE routine to upload the file and add it to the database.
 	 * @param $pressId int The id of the press
 	 * @param $fileName string index into the $_FILES array
-	 * @param $type string identifying type
+	 * @param $type int LIBRARY_FILE_TYPE_... identifying type
 	 * @param $fileId int ID of file being replaced (null for new file)
 	 * @return int the file ID (false if upload failed)
 	 */
@@ -121,13 +116,15 @@ class LibraryFileManager extends PKPPublicFileManager {
 	}
 
 	function _getFileSuffixFromType($type) {
-		switch ($type) {
-			case LIBRARY_FILE_TYPE_REVIEW: return LIBRARY_FILE_SUFFIX_REVIEW;
-			case LIBRARY_FILE_TYPE_SUBMISSION: return LIBRARY_FILE_SUFFIX_SUBMISSION;
-			case LIBRARY_FILE_TYPE_PRODUCTION: return LIBRARY_FILE_SUFFIX_PRODUCTION;
-			case LIBRARY_FILE_TYPE_EDITORIAL: return LIBRARY_FILE_SUFFIX_EDITORIAL;
-			case LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE: return LIBRARY_FILE_SUFFIX_PRODUCTION_TEMPLATES;
-		}
+		static $map = array(
+			LIBRARY_FILE_SUFFIX_REVIEW => 'LRV',
+			LIBRARY_FILE_SUFFIX_SUBMISSION => 'LSB',
+			LIBRARY_FILE_SUFFIX_PRODUCTION => 'LPR',
+			LIBRARY_FILE_SUFFIX_EDITORIAL => 'LED',
+			LIBRARY_FILE_SUFFIX_PRODUCTION_TEMPLATES => 'LPT'
+		);
+		assert(isset($map[$type]));
+		return $map[$type];
 	}
 }
 

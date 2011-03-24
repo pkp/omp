@@ -15,7 +15,6 @@
 
 
 import('classes.press.LibraryFile');
-import('classes.file.LibraryFileManager');
 
 class LibraryFileDAO extends DAO {
 	/**
@@ -28,7 +27,7 @@ class LibraryFileDAO extends DAO {
 	function &getById($fileId) {
 		$result =& $this->retrieve(
 			'SELECT file_id, press_id, file_name, file_type, file_size, type, date_uploaded FROM library_files WHERE file_id = ?',
-			array($fileId)
+			array((int) $fileId)
 		);
 
 		$returner = null;
@@ -42,7 +41,6 @@ class LibraryFileDAO extends DAO {
 		return $returner;
 	}
 
-
 	/**
 	 * Retrieve all library files for a press.
 	 * @param $pressId int
@@ -50,19 +48,14 @@ class LibraryFileDAO extends DAO {
 	 * @return array LibraryFiles
 	 */
 	function &getByPressId($pressId, $type = null) {
-		$libraryFiles = array();
-
-		$sqlParams = array($pressId);
-		$sqlExtra = '';
-
-		if (isset($type)) {
-			$sqlExtra .= ' AND type = ? ';
-			$sqlParams[] = $type;
-		}
+		$params = array((int) $pressId);
+		if (isset($type)) $params[] = (int) $type;
 
 		$result =& $this->retrieve(
-			'SELECT file_id, press_id, file_name, file_type, file_size, type, date_uploaded FROM library_files
-			WHERE press_id = ?'.$sqlExtra, $sqlParams
+			'SELECT	*
+			FROM	library_files
+			WHERE	press_id = ?' . (isset($type)?' AND type = ?' : ''),
+			$params
 		);
 		$returner = new DAOResultFactory($result, $this, '_fromRow', array('id'));
 		return $returner;
@@ -87,12 +80,14 @@ class LibraryFileDAO extends DAO {
 
 	/**
 	 * Update the localized fields for this file.
-	 * @param $suppFile
+	 * @param $libraryFile
 	 */
 	function updateLocaleFields(&$libraryFile) {
-		$this->updateDataObjectSettings('library_file_settings', $libraryFile, array(
-			'file_id' => $libraryFile->getId()
-		));
+		$this->updateDataObjectSettings(
+			'library_file_settings',
+			$libraryFile,
+			array('file_id' => $libraryFile->getId())
+		);
 	}
 
 	/**
@@ -125,38 +120,26 @@ class LibraryFileDAO extends DAO {
 	 */
 	function insertObject(&$libraryFile) {
 		$params = array(
-			$libraryFile->getPressId(),
+			(int) $libraryFile->getPressId(),
 			$libraryFile->getFileName(),
 			$libraryFile->getFileType(),
-			$libraryFile->getFileSize(),
-			$libraryFile->getType()
+			(int) $libraryFile->getFileSize(),
+			(int) $libraryFile->getType()
 		);
 
-		if ( $libraryFile->getId() ) {
-			$params[] = $libraryFile->getId();
-			$this->update(
-				sprintf('INSERT INTO library_files
-					(press_id, file_name, file_type, file_size, type, date_uploaded, file_id)
-					VALUES
-					(?, ?, ?, ?, ?, %s, ?)',
-					$this->datetimeToDB($libraryFile->getDateUploaded())
-					),
-				$params
-			);
+		if ($libraryFile->getId()) $params[] = (int) $libraryFile->getId();
 
-		} else {
-			$this->update(
-				sprintf('INSERT INTO library_files
-					(press_id, file_name, file_type, file_size, type, date_uploaded)
-					VALUES
-					(?, ?, ?, ?, ?, %s)',
-					$this->datetimeToDB($libraryFile->getDateUploaded())
-					),
-				$params
-			);
+		$this->update(
+			sprintf('INSERT INTO library_files
+				(press_id, file_name, file_type, file_size, type, date_uploaded' . ($libraryFile->getId()?', file_id':'') . ')
+				VALUES
+				(?, ?, ?, ?, ?, %s' . ($libraryFile->getId()?', ?':'') . ')',
+				$this->datetimeToDB($libraryFile->getDateUploaded())
+			),
+			$params
+		);
 
-			$libraryFile->setId($this->getInsertLibraryFileId());
-		}
+		if (!$libraryFile->getId()) $libraryFile->setId($this->getInsertLibraryFileId());
 
 		$this->updateLocaleFields($libraryFile);
 		return $libraryFile->getId();
@@ -169,33 +152,27 @@ class LibraryFileDAO extends DAO {
 	 */
 	function updateObject(&$libraryFile) {
 		$this->update(
-			sprintf('UPDATE library_files
-				SET press_id = ?,
+			sprintf('UPDATE	library_files
+				SET	press_id = ?,
 					file_name = ?,
 					file_type = ?,
 					file_size = ?,
 					type = ?,
 					date_uploaded = %s
-				WHERE file_id = ?', $this->datetimeToDB($libraryFile->getDateUploaded())
-				), array(
-					$libraryFile->getPressId(),
-					$libraryFile->getFileName(),
-					$libraryFile->getFileType(),
-					$libraryFile->getFileSize(),
-					$libraryFile->getType(),
-					$libraryFile->getId()
-					));
+				WHERE	file_id = ?',
+				$this->datetimeToDB($libraryFile->getDateUploaded())
+			), array(
+				(int) $libraryFile->getPressId(),
+				$libraryFile->getFileName(),
+				$libraryFile->getFileType(),
+				(int) $libraryFile->getFileSize(),
+				(int) $libraryFile->getType(),
+				(int) $libraryFile->getId()
+			)
+		);
 
 		$this->updateLocaleFields($libraryFile);
 		return $libraryFile->getId();
-	}
-
-	/**
-	 * Delete a library file.
-	 * @param $library LibraryFile
-	 */
-	function deleteLibraryFile(&$libraryFile) {
-		return $this->deleteLibraryFileById($libraryFile->getId(), $libraryFile->getRevision());
 	}
 
 	/**
@@ -205,18 +182,12 @@ class LibraryFileDAO extends DAO {
 	 */
 	function deleteById($fileId, $revision = null) {
 		$this->update(
-			'DELETE FROM library_files WHERE file_id = ?', $fileId
+			'DELETE FROM library_files WHERE file_id = ?',
+			(int) $fileId
 		);
-		$this->update('DELETE FROM library_file_settings WHERE file_id = ?', $fileId);
-	}
-
-	/**
-	 * Delete all library files for a library.
-	 * @param $libraryId int
-	 */
-	function deleteLibraryFiles($libraryId) {
-		return $this->update(
-			'DELETE FROM library_files WHERE library_id = ?', $libraryId
+		$this->update(
+			'DELETE FROM library_file_settings WHERE file_id = ?',
+			(int) $fileId
 		);
 	}
 
@@ -226,14 +197,16 @@ class LibraryFileDAO extends DAO {
 	 * @return bool
 	 */
 	function filenameExists($pressId, $fileName) {
-		$result = $this->retrieve('SELECT COUNT(*) FROM library_files WHERE press_id = ? AND file_name = ?', array($pressId, $fileName) );
+		$result = $this->retrieve(
+			'SELECT COUNT(*) FROM library_files WHERE press_id = ? AND file_name = ?',
+			array((int) $pressId, $fileName)
+		);
 
 		$returner = (isset($result->fields[0]) && $result->fields[0] > 0) ? true : false;
 		$result->Close();
 		unset($result);
 
 		return $returner;
-
 	}
 
 	/**
