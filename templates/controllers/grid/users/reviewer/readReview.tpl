@@ -7,7 +7,6 @@
  * Screen to let user read a review
  *
  *}
-{assign var='uniqueId' value=""|uniqid}
 
 {translate|assign:"reviewTranslated" key="editor.review"}
 {assign var=titleTranslated value="$reviewTranslated"|concat:": ":$monograph->getLocalizedTitle()}

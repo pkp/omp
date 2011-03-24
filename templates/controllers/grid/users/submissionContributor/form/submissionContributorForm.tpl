@@ -8,8 +8,6 @@
  *
  *}
 
-{assign var='uniqueId' value=""|uniqid}
-
 <script type="text/javascript">
 	// Attach the Information Center handler.
 	$(function() {ldelim}
