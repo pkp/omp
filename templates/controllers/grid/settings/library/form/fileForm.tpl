@@ -1,14 +1,11 @@
 {**
- * fileForm.tpl
+ * templates/controllers/grid/settings/library/form/fileForm.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Library Files form
  *}
-<!--  Need a random ID to give to modal elements so that they are unique in the DOM (can not use
-		fileId like elsewhere in the modal, because there may not be an associated file yet-->
-{modal_title id="#metadataForm" key='settings.setup.addItem' iconClass="fileManagement"}
 
 <script type="text/javascript">{literal}
 	<!--
@@ -135,5 +132,4 @@
 <input type="hidden" name="gridId" value="{$gridId|escape}" />
 {/if}
 <input type="hidden" id="newFile" value="{$newFile|escape}" />
-
 

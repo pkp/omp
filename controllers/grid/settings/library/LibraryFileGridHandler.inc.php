@@ -17,6 +17,9 @@ import('controllers.grid.settings.library.LibraryFileGridRow');
 import('controllers.grid.settings.library.LibraryFileGridRow');
 import('classes.press.LibraryFile');
 
+// Link action & modal classes
+import('lib.pkp.classes.linkAction.request.AjaxModal');
+
 class LibraryFileGridHandler extends SetupGridHandler {
 	/** the FileType for this grid */
 	var $fileType;
@@ -89,14 +92,16 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		// Add grid-level actions
 		$router =& $request->getRouter();
 		$this->addAction(
-			new LegacyLinkAction(
+			new LinkAction(
 				'addFile',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, null, 'addFile', null, array('gridId' => $this->getId(), 'fileType' => $this->getFileType())),
-				'grid.action.addItem'
-			),
-			GRID_ACTION_POSITION_ABOVE
+				new AjaxModal(
+					$router->url($request, null, null, 'addFile', null, array('gridId' => $this->getId(), 'fileType' => $this->getFileType())),
+					__('settings.setup.addItem'),
+					'fileManagement'
+				),
+				__('grid.action.addItem'),
+				'add_item'
+			)
 		);
 
 		// Columns
