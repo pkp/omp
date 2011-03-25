@@ -21,6 +21,9 @@
  * The following libraries are compilable but compiling throws image paths off.
  */
 
+/* Wufoo Forms - http://wufoo.com */
+@import url("../lib/pkp/styles/lib/wufoo/form.css");
+
 /* Plupload - http://www.plupload.com/ */
 @import url("../lib/pkp/styles/lib/plupload/plupload.queue.css");
 
