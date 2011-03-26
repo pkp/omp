@@ -1239,6 +1239,9 @@
 		<field name="file_name" type="C2" size="255">
 			<NOTNULL/>
 		</field>
+		<field name="original_file_name" type="C2" size="255">
+			<NOTNULL/>
+		</field>
 		<field name="file_type" type="C2" size="255">
 			<NOTNULL/>
 		</field>

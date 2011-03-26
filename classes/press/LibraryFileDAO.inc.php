@@ -26,7 +26,7 @@ class LibraryFileDAO extends DAO {
 	 */
 	function &getById($fileId) {
 		$result =& $this->retrieve(
-			'SELECT file_id, press_id, file_name, file_type, file_size, type, date_uploaded FROM library_files WHERE file_id = ?',
+			'SELECT file_id, press_id, file_name, original_file_name, file_type, file_size, type, date_uploaded FROM library_files WHERE file_id = ?',
 			array((int) $fileId)
 		);
 
@@ -101,6 +101,7 @@ class LibraryFileDAO extends DAO {
 		$libraryFile->setId($row['file_id']);
 		$libraryFile->setPressId($row['press_id']);
 		$libraryFile->setFileName($row['file_name']);
+		$libraryFile->setOriginalFileName($row['original_file_name']);
 		$libraryFile->setFileType($row['file_type']);
 		$libraryFile->setFileSize($row['file_size']);
 		$libraryFile->setType($row['type']);
@@ -122,6 +123,7 @@ class LibraryFileDAO extends DAO {
 		$params = array(
 			(int) $libraryFile->getPressId(),
 			$libraryFile->getFileName(),
+			$libraryFile->getOriginalFileName(),
 			$libraryFile->getFileType(),
 			(int) $libraryFile->getFileSize(),
 			(int) $libraryFile->getType()
@@ -131,9 +133,9 @@ class LibraryFileDAO extends DAO {
 
 		$this->update(
 			sprintf('INSERT INTO library_files
-				(press_id, file_name, file_type, file_size, type, date_uploaded' . ($libraryFile->getId()?', file_id':'') . ')
+				(press_id, file_name, original_file_name, file_type, file_size, type, date_uploaded' . ($libraryFile->getId()?', file_id':'') . ')
 				VALUES
-				(?, ?, ?, ?, ?, %s' . ($libraryFile->getId()?', ?':'') . ')',
+				(?, ?, ?, ?, ?, ?, %s' . ($libraryFile->getId()?', ?':'') . ')',
 				$this->datetimeToDB($libraryFile->getDateUploaded())
 			),
 			$params
@@ -155,6 +157,7 @@ class LibraryFileDAO extends DAO {
 			sprintf('UPDATE	library_files
 				SET	press_id = ?,
 					file_name = ?,
+					original_file_name = ?,
 					file_type = ?,
 					file_size = ?,
 					type = ?,
@@ -164,6 +167,7 @@ class LibraryFileDAO extends DAO {
 			), array(
 				(int) $libraryFile->getPressId(),
 				$libraryFile->getFileName(),
+				$libraryFile->getOriginalFileName(),
 				$libraryFile->getFileType(),
 				(int) $libraryFile->getFileSize(),
 				(int) $libraryFile->getType(),

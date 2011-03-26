@@ -14,8 +14,12 @@
 
 import('lib.pkp.classes.controllers.grid.GridRow');
 
+// Link action & modal classes
+import('lib.pkp.classes.linkAction.request.AjaxModal');
+import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+
 class LibraryFileGridRow extends GridRow {
-	/** the FileType for this grid */
+	/** @var $fileType int LIBRARY_FILE_TYPE_... */
 	var $fileType;
 
 	/**
@@ -25,17 +29,18 @@ class LibraryFileGridRow extends GridRow {
 		parent::GridRow();
 	}
 
+	//
+	// Getters / setters
+	//
 	/**
-	 * get the FileType
+	 * Get the file type for this row
+	 * @return fileType
 	 */
 	function getFileType() {
 		return $this->fileType;
 	}
 
-	/**
-	 * set the fileType
-	 */
-	function setFileType($fileType)	{
+	function setFileType($fileType) {
 		$this->fileType = $fileType;
 	}
 
@@ -48,41 +53,42 @@ class LibraryFileGridRow extends GridRow {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+
 		$this->setFileType($request->getUserVar('fileType'));
 
 		// add Grid Row Actions
 		$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 
 		// Is this a new row or an existing row?
-		$rowId = $this->getId();
-		if (!empty($rowId) && is_numeric($rowId)) {
+		$fileId = $this->getId();
+		if (!empty($fileId)) {
 			// Actions
 			$router =& $request->getRouter();
 			$actionArgs = array(
-				'gridId' => $this->getGridId(),
-				'rowId' => $rowId
+				'fileId' => $fileId,
+				'fileType' => $this->getFileType()
 			);
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'editFile',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'editFile', null, $actionArgs),
-					'grid.action.edit',
-					null,
+					new AjaxModal(
+						$router->url($request, null, null, 'editFile', null, $actionArgs),
+						__('grid.action.edit'),
+						'edit'
+					),
+					__('grid.action.edit'),
 					'edit'
 				)
 			);
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'deleteFile',
-					LINK_ACTION_MODE_CONFIRM,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'deleteFile', null, $actionArgs),
-					'grid.action.delete',
-					null,
-					'delete',
-					Locale::translate('common.confirmDelete')
+					new ConfirmationModal(
+						__('common.confirmDelete'), null,
+						$router->url($request, null, null, 'deleteFile', null, $actionArgs)
+					),
+					__('grid.action.delete'),
+					'delete'
 				)
 			);
 		}

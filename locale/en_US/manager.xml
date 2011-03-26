@@ -168,7 +168,11 @@ You may optionally provide the user with a reason for disabling their account.</
 		</ul>
 	This task must be performed by a site administrator.
 	]]></message>
-	
+
+	<!-- Library Files -->
+	<message key="settings.libraryFiles.fileRequired">A library file is required. Please ensure that you have chosen and uploaded a file.</message>
+	<message key="settings.libraryFiles.nameRequired">A name is required for this library file.</message>
+
 	<!-- Access and Security -->
 	<message key="settings.access"><![CDATA[Access &amp; Security]]></message>
 	<message key="settings.accessDescription">All settings related to access and security management for this press (manage users, manage roles, site access options).</message>

@@ -74,6 +74,22 @@ class LibraryFile extends DataObject {
 	}
 
 	/**
+	 * Get original file name of the file.
+	 * @param return string
+	 */
+	function getOriginalFileName() {
+		return $this->getData('originalFileName');
+	}
+
+	/**
+	 * Set original file name of the file.
+	 * @param $originalFileName string
+	 */
+	function setOriginalFileName($originalFileName) {
+		return $this->setData('originalFileName', $originalFileName);
+	}
+
+	/**
 	 * Set the name of the file
 	 * @param $name string
 	 * @param $locale string

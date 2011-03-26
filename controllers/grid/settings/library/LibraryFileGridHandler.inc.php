@@ -9,11 +9,10 @@
  * @class LibraryFileGridHandler
  * @ingroup controllers_grid_settings_library
  *
- * @brief Handle file grid requests.
+ * @brief Handle library file grid requests.
  */
 
 import('controllers.grid.settings.SetupGridHandler');
-import('controllers.grid.settings.library.LibraryFileGridRow');
 import('controllers.grid.settings.library.LibraryFileGridRow');
 import('classes.press.LibraryFile');
 
@@ -29,8 +28,15 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 */
 	function LibraryFileGridHandler() {
 		parent::SetupGridHandler();
-		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'addFile', 'editFile', 'uploadFile', 'saveMetadata', 'deleteFile'));
+		$this->addRoleAssignment(
+			array(ROLE_ID_PRESS_MANAGER),
+			array(
+				'fetchGrid', 'fetchRow', // Grid-level actions
+				'addFile', 'uploadFile', 'saveFile', // Adding new library files
+				'editFile', 'updateFile', // Editing existing library files
+				'deleteFile'
+			)
+		);
 	}
 
 
@@ -38,31 +44,19 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	// Getters/Setters
 	//
 	/**
-	 * get the FileType
+	 * Get the file type
+	 * @return int LIBRARY_FILE_TYPE_...
 	 */
 	function getFileType() {
 		return $this->fileType;
 	}
 
 	/**
-	 * set the fileType
+	 * Set the file type
+	 * @param $fileType int LIBRARY_FILE_TYPE_...
 	 */
 	function setFileType($fileType)	{
 		$this->fileType = (int) $fileType;
-	}
-
-	/**
-	 * Get the symbolic name from the type ID
-	 * @param $typeId int
-	 */
-	function getNameFromTypeId($typeId) {
-		switch ($typeId) {
-			case LIBRARY_FILE_TYPE_REVIEW: return 'review';
-			case LIBRARY_FILE_TYPE_PRODUCTION: return 'production';
-			case LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE: return 'productionTemplate';
-			case LIBRARY_FILE_TYPE_EDITORIAL: return 'editorial';
-			case LIBRARY_FILE_TYPE_SUBMISSION: default: return 'submission';
-		}
 	}
 
 	//
@@ -74,10 +68,18 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+
+		import('classes.file.LibraryFileManager');
+		$libraryFileManager = new LibraryFileManager();
+
+		// Fetch and validate fileType (validated in getNameFromType)
+		$fileType = (int) $request->getUserVar('fileType');
+		$this->setFileType($fileType);
+		$name = $libraryFileManager->getNameFromType($this->getFileType());
+
 		// Basic grid configuration
-		$this->setFileType($request->getUserVar('fileType'));
-		$this->setId('libraryFile' . ucwords(strtolower($this->getNameFromTypeId($this->getFileType()))));
-		$this->setTitle('grid.libraryFiles.' . $this->getNameFromTypeId($this->getFileType()) . '.title');
+		$this->setId('libraryFile' . ucwords(strtolower($name)));
+		$this->setTitle("grid.libraryFiles.$name.title");
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION));
 
@@ -90,13 +92,12 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$this->setGridDataElements($libraryFiles);
 
 		// Add grid-level actions
-		$router =& $request->getRouter();
 		$this->addAction(
 			new LinkAction(
 				'addFile',
 				new AjaxModal(
-					$router->url($request, null, null, 'addFile', null, array('gridId' => $this->getId(), 'fileType' => $this->getFileType())),
-					__('settings.setup.addItem'),
+					$router->url($request, null, null, 'addFile', null, array('fileType' => $this->getFileType())),
+					__('grid.action.addItem'),
 					'fileManagement'
 				),
 				__('grid.action.addItem'),
@@ -107,14 +108,13 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		// Columns
 		// Basic grid row configuration
 		import('controllers.grid.settings.library.LibraryFileGridCellProvider');
-		$cellProvider = new LibraryFileGridCellProvider();
 		$this->addColumn(
 			new GridColumn(
 				'files',
 				'grid.libraryFiles.column.files',
 				null,
 				'controllers/grid/gridCell.tpl',
-				$cellProvider
+				new LibraryFileGridCellProvider()
 			)
 		);
 	}
@@ -131,6 +131,16 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		return $row;
 	}
 
+	/**
+	 * @see GridHandler::fetchGrid()
+	 */
+	function fetchGrid($args, $request) {
+		$fetchParams = array(
+			'fileType' => $this->getFileType()
+		);
+		return parent::fetchGrid($args, $request, $fetchParams);
+	}
+
 	//
 	// Public File Grid Actions
 	//
@@ -140,11 +150,73 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * @param $request PKPRequest
 	 */
 	function addFile($args, &$request) {
-		// Calling editSponsor with an empty row id will add
-		// a new sponsor.
-		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('newFile', 'true');
-		return $this->editFile($args, $request);
+		$this->initialize($request);
+		$router = $request->getRouter();
+		$context = $request->getContext();
+
+		import('controllers.grid.settings.library.form.NewLibraryFileForm');
+		$fileForm = new NewLibraryFileForm($context->getId(), $this->getFileType());
+
+		if ($fileForm->isLocaleResubmit()) {
+			$fileForm->readInputData();
+		} else {
+			$fileForm->initData();
+		}
+
+		$json = new JSON(true, $fileForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Upload a new library file.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function uploadFile($args, &$request) {
+		$router =& $request->getRouter();
+		$context = $request->getContext();
+		$user =& $request->getUser();
+
+		import('classes.file.TemporaryFileManager');
+		$temporaryFileManager = new TemporaryFileManager();
+		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
+		if ($temporaryFile) {
+			$json = new JSON(true);
+			$json->setAdditionalAttributes(array(
+				'temporaryFileId' => $temporaryFile->getId()
+			));
+		} else {
+			$json = new JSON(false, Locale::translate('common.uploadFailed'));
+		}
+
+		return $json->getString();
+	}
+
+	/**
+	 * Save a new library file.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function saveFile($args, &$request) {
+		$router =& $request->getRouter();
+		$context = $request->getContext();
+		$user =& $request->getUser();
+
+		import('controllers.grid.settings.library.form.NewLibraryFileForm');
+		$fileForm = new NewLibraryFileForm($context->getId(), $this->getFileType());
+		$fileForm->readInputData();
+
+		if ($fileForm->validate()) {
+			$fileForm->execute($user->getId());
+
+			// Let the calling grid reload itself
+			return DAO::getDataChangedEvent($fileId);
+		}
+
+		$json = new JSON(false);
+		return $json->getString();
 	}
 
 	/**
@@ -155,15 +227,19 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 */
 	function editFile($args, &$request) {
 		$this->initialize($request);
-		$fileId = isset($args['rowId']) ? $args['rowId'] : null;
+		assert(isset($args['fileId']));
+		$fileId = (int) $args['fileId'];
 
-		import('controllers.grid.settings.library.form.FileForm');
-		$fileForm = new FileForm($this->getFileType(), $fileId);
+		$router = $request->getRouter();
+		$context = $request->getContext();
+
+		import('controllers.grid.settings.library.form.EditLibraryFileForm');
+		$fileForm = new EditLibraryFileForm($context->getId(), $this->getFileType(), $fileId);
 
 		if ($fileForm->isLocaleResubmit()) {
 			$fileForm->readInputData();
 		} else {
-			$fileForm->initData($args, $request);
+			$fileForm->initData();
 		}
 
 		$json = new JSON(true, $fileForm->fetch($request));
@@ -171,68 +247,32 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	}
 
 	/**
-	 * upload a file
+	 * Save changes to an existing library file.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string
 	 */
-	function uploadFile($args, &$request) {
-		$fileId = isset($args['rowId']) ? $args['rowId'] : null;
-		$fileType = isset($args['fileType']) ? $args['fileType'] : null;
+	function updateFile($args, &$request) {
+		assert(isset($args['fileId']));
+		$fileId = (int) $args['fileId'];
+
 		$router =& $request->getRouter();
-		import('controllers.grid.settings.library.form.FileForm');
-		$fileForm = new FileForm($fileType, $fileId, true);
+		$context = $request->getContext();
+
+		import('controllers.grid.settings.library.form.EditLibraryFileForm');
+		$fileForm = new EditLibraryFileForm($context->getId(), $this->getFileType(), $fileId);
 		$fileForm->readInputData();
 
 		if ($fileForm->validate()) {
-			$fileId = $fileForm->uploadFile($args, $request);
-			// form validated and file uploaded successfully
-			$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
-			$libraryFile =& $libraryFileDao->getById($fileId);
+			$fileForm->execute();
 
-			$additionalAttributes = array(
-				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('gridId' => $this->getId(), 'rowId' => $fileId))
-			);
-			$json = new JSON(true, Locale::translate('submission.uploadSuccessful'), false, $fileId, $additionalAttributes);
-		} else {
-			$json = new JSON(false, Locale::translate('common.uploadFailed'));
+			// Let the calling grid reload itself
+			return DAO::getDataChangedEvent($fileId);
 		}
 
-		echo $json->getString();
-	}
-
-	/**
-	 * Save the name attribute for a file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string Serialized JSON object
-	 */
-	function saveMetadata($args, &$request) {
-		$fileId = $request->getUserVar('rowId');
-		$name = $request->getUserVar('name');
-		$fileType = isset($args['fileType']) ? $args['fileType'] : null;
-
-		import('controllers.grid.settings.library.form.FileForm');
-		$fileForm = new FileForm($fileType, $fileId);
-		$fileForm->readInputData();
-
-		if ($fileForm->validate()) {
-			$libraryFile = $fileForm->execute($args, $request);
-
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$row->setId($fileId);
-			$row->setData($libraryFile);
-			$row->initialize($request);
-
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
-		} else {
-			$json = new JSON(false);
-		}
-
+		$json = new JSON(false);
 		return $json->getString();
 	}
-
 
 	/**
 	 * Delete a file
@@ -241,18 +281,19 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function deleteFile($args, &$request) {
-		$fileId = isset($args['rowId']) ? $args['rowId'] : null;
+		$fileId = isset($args['fileId']) ? $args['fileId'] : null;
 		$router =& $request->getRouter();
 		$press =& $router->getContext($request);
 
-		if($fileId) {
+		if ($fileId) {
 			import('classes.file.LibraryFileManager');
 			$libraryFileManager = new LibraryFileManager($press->getId());
 			$libraryFileManager->deleteFile($fileId);
-			$json = new JSON(true);
-		} else {
-			$json = new JSON(false);
+
+			return DAO::getDataChangedEvent($fileId);
 		}
+
+		$json = new JSON(false);
 		return $json->getString();
 	}
 }

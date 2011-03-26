@@ -55,7 +55,7 @@ class LibraryFileManager extends FileManager {
 	 */
 	function generateFileName($type, $originalFileName) {
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
-		$suffix = $this->_getFileSuffixFromType($type);
+		$suffix = $this->getFileSuffixFromType($type);
 		$ext = $this->getExtension($originalFileName);
 		$truncated = $this->truncateFileName($originalFileName, 127 - String::strlen($suffix) - 1);
 		$baseName = String::substr($truncated, 0, String::strpos($originalFileName, $ext) - 1);
@@ -80,42 +80,41 @@ class LibraryFileManager extends FileManager {
 	}
 
 	/**
-	 * PRIVATE routine to upload the file and add it to the database.
-	 * @param $pressId int The id of the press
-	 * @param $fileName string index into the $_FILES array
-	 * @param $type int LIBRARY_FILE_TYPE_... identifying type
-	 * @param $fileId int ID of file being replaced (null for new file)
-	 * @return int the file ID (false if upload failed)
+	 * Routine to copy a library file from a temporary file.
+	 * @param $temporaryFile object
+	 * @return LibraryFile the generated file, prepared as much as possible for insert (false if upload failed)
 	 */
-	function handleUpload($type, $fileName, $fileId = null) {
+	function &copyFromTemporaryFile(&$temporaryFile) {
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
-		$newFileName = $this->generateFilename($type, $this->getUploadedFileName($fileName));
-
 		$libraryFile = $libraryFileDao->newDataObject();
-		$libraryFile->setPressId($this->pressId);
-		$libraryFile->setType($type);
-		$libraryFile->setDateUploaded(Core::getCurrentDate());
-		$libraryFile->setFileType($_FILES[$fileName]['type']);
-		$libraryFile->setFileSize($_FILES[$fileName]['size']);
-		$libraryFile->setFileName($newFileName);
 
-		// remove the previous file
- 		if ($fileId) {
-			$libraryFile->setId($fileId);
-			$this->deleteById($fileId);
-		}
-
-		if (!$this->uploadFile($fileName, $this->filesDir.$newFileName)) {
+		$libraryFile->setDateUploaded($temporaryFile->getDateUploaded());
+		$libraryFile->setFileType($temporaryFile->getFileType());
+		$libraryFile->setFileSize($temporaryFile->getFileSize());
+		$libraryFile->setFileName($this->generateFilename($type, $temporaryFile->getOriginalFileName()));
+		$libraryFile->setOriginalFileName($temporaryFile->getOriginalFileName());
+		if (!$this->copyFile($temporaryFile->getFilePath(), $this->filesDir . $temporaryFile->getOriginalFileName())) {
 			return false;
-		} else {
-			// file upload was successful
-			$libraryFileDao->insertObject($libraryFile);
 		}
 
-		return $libraryFile->getId();
+		return $libraryFile;
 	}
 
-	function _getFileSuffixFromType($type) {
+	/**
+	 * Get the file suffix for the given file type
+	 * @param $type int LIBRARY_FILE_TYPE_...
+	 */
+	function getFileSuffixFromType($type) {
+		$typeSuffixMap =& $this->getTypeSuffixMap();
+		if (!isset($typeSuffixMap[$type])) fatalError('Invalid library file type!');
+		return $typeSuffixMap[$type];
+	}
+
+	/**
+	 * Get the type => suffix mapping array
+	 * @return array
+	 */
+	function &getTypeSuffixMap() {
 		static $map = array(
 			LIBRARY_FILE_SUFFIX_REVIEW => 'LRV',
 			LIBRARY_FILE_SUFFIX_SUBMISSION => 'LSB',
@@ -123,8 +122,32 @@ class LibraryFileManager extends FileManager {
 			LIBRARY_FILE_SUFFIX_EDITORIAL => 'LED',
 			LIBRARY_FILE_SUFFIX_PRODUCTION_TEMPLATES => 'LPT'
 		);
-		assert(isset($map[$type]));
-		return $map[$type];
+		return $map;
+	}
+
+	/**
+	 * Get the symbolic name from the type
+	 * @param $type int LIBRARY_FILE_TYPE_...
+	 */
+	function getNameFromType($type) {
+	        $typeNameMap =& $this->getTypeNameMap();
+		if (!isset($typeNameMap[$type])) fatalError('Invalid library file type!');
+	        return $typeNameMap[$type];
+	}
+
+	/**
+	 * Get the type => name mapping array
+	 * @return array
+	 */
+	function &getTypeNameMap() {
+		static $typeNameMap = array(
+			LIBRARY_FILE_TYPE_REVIEW => 'review',
+			LIBRARY_FILE_TYPE_PRODUCTION => 'production',
+			LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE => 'productionTemplate',
+			LIBRARY_FILE_TYPE_EDITORIAL => 'editorial',
+			LIBRARY_FILE_TYPE_SUBMISSION => 'submission'
+		);
+		return $typeNameMap;
 	}
 }
 
