@@ -100,7 +100,7 @@ class GroupHandler extends ManagerHandler {
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_PRESS, $press->getId());
+			$group =& $groupDao->getById($groupId, ASSOC_TYPE_PRESS, $press->getId());
 			if (!$group) {
 				Request::redirect(null, null, 'groups');
 			}
@@ -350,7 +350,7 @@ class GroupHandler extends ManagerHandler {
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_PRESS, $press->getId());
+			$group =& $groupDao->getById($groupId, ASSOC_TYPE_PRESS, $press->getId());
 
 			if (!$group) $passedValidation = false;
 			else $this->group =& $group;

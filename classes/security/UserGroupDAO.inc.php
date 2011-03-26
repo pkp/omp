@@ -1,15 +1,19 @@
 <?php
 
 /**
- * @file classes/workflow/UserGroupStageAssignmentDAO.inc.php
+ * @file classes/security/UserGroupDAO.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class UserGroupStageAssignmentDAO
- * @ingroup workflow
+ * @class UserGroupDAO
+ * @ingroup security
+ * @see PKPUserGroupDAO
  *
- * @brief Class for managing user group to publication stage assignments
+ * @brief Operations for retrieving and modifying User Groups and user group assignments
+ * FIXME: Some of the context-specific features of this class will have
+ * to be changed for zero- or double-context applications when user groups
+ * are ported over to them.
  */
 
 
@@ -19,17 +23,27 @@ define('WORKFLOW_STAGE_PATH_EXTERNAL_REVIEW', 'externalReview');
 define('WORKFLOW_STAGE_PATH_EDITING', 'editing');
 define('WORKFLOW_STAGE_PATH_PRODUCTION', 'production');
 
-class UserGroupStageAssignmentDAO extends DAO {
+import('lib.pkp.classes.security.PKPUserGroupDAO');
+
+class UserGroupDAO extends PKPUserGroupDAO {
+	/**
+	 * Constructor.
+	 */
+	function UserGroupDAO() {
+		parent::PKPUserGroupDAO();
+	}
 
 	function &getUserGroupsByStage($pressId, $stageId) {
-		$result =& $this->retrieve('
-				SELECT ug.*
-				FROM user_groups ug JOIN user_group_stage ugs ON ug.user_group_id = ugs.user_group_id AND ug.context_id = ugs.press_id
-				WHERE ugs.press_id = ? AND ugs.stage_id = ?',
-				array($pressId, $stageId));
+		$result =& $this->retrieve(
+			'SELECT	ug.*
+			FROM	user_groups ug
+				JOIN user_group_stage ugs ON ug.user_group_id = ugs.user_group_id AND ug.context_id = ugs.press_id
+			WHERE	ugs.press_id = ? AND
+				ugs.stage_id = ?',
+			array((int) $pressId, (int) $stageId)
+		);
 
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$returner = new DAOResultFactory($result, $userGroupDao, '_returnFromRow');
+		$returner = new DAOResultFactory($result, $this, '_returnFromRow');
 		return $returner;
 	}
 
@@ -39,16 +53,19 @@ class UserGroupStageAssignmentDAO extends DAO {
 	 * @param Integer $userGroupId
 	 */
 	function getAssignedStagesByUserGroupId($pressId, $userGroupId) {
-		$result =& $this->retrieve('SELECT stage_id FROM user_group_stage
-			WHERE press_id = ? AND user_group_id = ?',
-			array($pressId, $userGroupId)
+		$result =& $this->retrieve(
+			'SELECT	stage_id
+			FROM	user_group_stage
+			WHERE	press_id = ? AND
+				user_group_id = ?',
+			array((int) $pressId, (int) $userGroupId)
 		);
 
 		$returner = array();
 
 		while (!$result->EOF) {
 			$stageId = $result->Fields('stage_id');
-			$returner[$stageId] = UserGroupStageAssignmentDAO::getTranslationKeyFromId($stageId);
+			$returner[$stageId] = $this->getTranslationKeyFromId($stageId);
 			$result->MoveNext();
 		}
 
@@ -56,21 +73,24 @@ class UserGroupStageAssignmentDAO extends DAO {
 	}
 
 	function assignGroupToStage($pressId, $userGroupId, $stageId) {
-		return $this->update('INSERT INTO user_group_stage
-							SET press_id = ?, user_group_id = ?, stage_id = ?',
-							array($pressId, $userGroupId, $stageId));
+		return $this->update(
+			'INSERT INTO user_group_stage (press_id, user_group_id, stage_id VALUES (?, ?, ?)',
+			array((int) $pressId, (int) $userGroupId, (int) $stageId)
+		);
 	}
 
 	function removeGroupFromStage($pressId, $userGroupId, $stageId) {
-		return $this->update('DELETE FROM user_group_stage
-							WHERE press_id = ? AND user_group_id = ? AND stage_id = ?',
-							array($pressId, $userGroupId, $stageId));
+		return $this->update(
+			'DELETE FROM user_group_stage WHERE press_id = ? AND user_group_id = ? AND stage_id = ?',
+			array((int) $pressId, (int) $userGroupId, (int) $stageId)
+		);
 	}
 
 	function assignmentExists($pressId, $userGroupId, $stageId) {
-		$result =& $this->retrieve('SELECT COUNT(*) FROM user_group_stage
-									WHERE press_id = ? AND user_group_id = ? AND stage_id = ?',
-							array($pressId, $userGroupId, $stageId));
+		$result =& $this->retrieve(
+			'SELECT COUNT(*) FROM user_group_stage WHERE press_id = ? AND user_group_id = ? AND stage_id = ?',
+			array((int) $pressId, (int) $userGroupId, (int) $stageId)
+		);
 
 		$returner = isset($result->fields[0]) && $result->fields[0] > 0 ? true : false;
 
@@ -130,7 +150,7 @@ class UserGroupStageAssignmentDAO extends DAO {
 	 * @return string|null
 	 */
 	function getTranslationKeyFromId($stageId) {
-		$stageMapping = UserGroupStageAssignmentDAO::getWorkflowStageTranslationKeys();
+		$stageMapping = $this->getWorkflowStageTranslationKeys();
 
 		assert(isset($stageMapping[$stageId]));
 		return $stageMapping[$stageId];
@@ -142,11 +162,13 @@ class UserGroupStageAssignmentDAO extends DAO {
 	 * @return array
 	 */
 	function getWorkflowStageTranslationKeys() {
-		static $stageMapping = array(WORKFLOW_STAGE_ID_SUBMISSION => 'submission.submission',
-				WORKFLOW_STAGE_ID_INTERNAL_REVIEW => 'workflow.review.internalReview',
-				WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => 'workflow.review.externalReview',
-				WORKFLOW_STAGE_ID_EDITING => 'submission.editorial',
-				WORKFLOW_STAGE_ID_PRODUCTION => 'submission.production');
+		static $stageMapping = array(
+			WORKFLOW_STAGE_ID_SUBMISSION => 'submission.submission',
+			WORKFLOW_STAGE_ID_INTERNAL_REVIEW => 'workflow.review.internalReview',
+			WORKFLOW_STAGE_ID_EXTERNAL_REVIEW => 'workflow.review.externalReview',
+			WORKFLOW_STAGE_ID_EDITING => 'submission.editorial',
+			WORKFLOW_STAGE_ID_PRODUCTION => 'submission.production'
+		);
 
 		return $stageMapping;
 	}

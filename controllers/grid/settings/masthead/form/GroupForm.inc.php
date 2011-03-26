@@ -94,7 +94,7 @@ class GroupForm extends Form {
 		$press =& Request::getPress();
 
 		if (!isset($this->group)) {
-			$this->group = new Group();
+			$this->group = $groupDao->newDataObject();
 		}
 
 		$this->group->setAssocType(ASSOC_TYPE_PRESS);

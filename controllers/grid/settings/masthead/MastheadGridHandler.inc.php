@@ -118,7 +118,7 @@ class MastheadGridHandler extends SetupGridHandler {
 
 		if ($groupId !== null) {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
-			$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_PRESS, $press->getId());
+			$group =& $groupDao->getById($groupId, ASSOC_TYPE_PRESS, $press->getId());
 			if (!$group) {
 				$json = new JSON(false);
 				return $json->getString();
@@ -156,7 +156,7 @@ class MastheadGridHandler extends SetupGridHandler {
 		$groupId = Request::getUserVar('groupId');
 		$press =& $request->getContext();
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
-		$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_PRESS, $press->getId());
+		$group =& $groupDao->getById($groupId, ASSOC_TYPE_PRESS, $press->getId());
 
 		import('controllers.grid.settings.masthead.form.GroupForm');
 		$groupForm = new GroupForm($group);
@@ -190,7 +190,7 @@ class MastheadGridHandler extends SetupGridHandler {
 		$groupId = Request::getUserVar('rowId');
 		$press =& $request->getContext();
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
-		$group =& $groupDao->getGroup($groupId, ASSOC_TYPE_PRESS, $press->getId());
+		$group =& $groupDao->getById($groupId, ASSOC_TYPE_PRESS, $press->getId());
 
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$groupDao->deleteObject($group);

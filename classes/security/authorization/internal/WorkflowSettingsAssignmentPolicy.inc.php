@@ -59,13 +59,13 @@ class WorkflowSettingsAssignmentPolicy extends AuthorizationPolicy {
 			default:
 				assert(false);
 		}
-		$stageId = UserGroupStageAssignmentDAO::getIdFromPath($stagePath);
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$stageId = $userGroupDao->getIdFromPath($stagePath);
 		if (!is_integer($stageId)) return AUTHORIZATION_DENY;
 
 		// Only grant access to workflow stages that have been explicitly
 		// assigned to the authorized user group in the press setup.
-		$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO');
-		if ($userGroupStageAssignmentDao->assignmentExists($press->getId(), $userGroup->getId(), $stageId)) {
+		if ($userGroupDao->assignmentExists($press->getId(), $userGroup->getId(), $stageId)) {
 			return AUTHORIZATION_PERMIT;
 		} else {
 			return AUTHORIZATION_DENY;

@@ -256,12 +256,10 @@ class UserGroupGridHandler extends GridHandler {
 	 * @return array Given user group stages assignments.
 	 */
 	function _getAssignedStages($pressId, $userGroupId) {
-		import('classes.workflow.UserGroupStageAssignmentDAO');
-		$stages = UserGroupStageAssignmentDao::getWorkflowStageTranslationKeys();
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$assignedStages =& $userGroupDao->getAssignedStagesByUserGroupId($pressId, $userGroupId);
 
-		$userGroupStageAssignmentDao = DAORegistry::getDAO('UserGroupStageAssignmentDAO');
-		$assignedStages =& $userGroupStageAssignmentDao->getAssignedStagesByUserGroupId($pressId, $userGroupId);
-
+		$stages = $userGroupDao->getWorkflowStageTranslationKeys();
 		foreach($stages as $stageId => $stageTranslationKey) {
 			if (!array_key_exists($stageId, $assignedStages)) $stages[$stageId] = null;
 		}

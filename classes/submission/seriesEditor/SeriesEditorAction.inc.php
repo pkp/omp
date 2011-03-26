@@ -76,7 +76,6 @@ class SeriesEditorAction extends Action {
 	function assignDefaultStageParticipants(&$monograph, $stageId) {
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroupStageAssignmentDao =& DAORegistry::getDAO('UserGroupStageAssignmentDAO');
 
 		// Managerial roles are skipped -- They have access by default and
 		//  are assigned for informational purposes only
@@ -87,7 +86,7 @@ class SeriesEditorAction extends Action {
 		// Press roles -- For each press role user group assigned to this
 		//  stage in setup, iff there is only one user for the group,
 		//  automatically assign the user to the stage
-		$submissionStageGroups =& $userGroupStageAssignmentDao->getUserGroupsByStage($monograph->getPressId(), $stageId);
+		$submissionStageGroups =& $userGroupDao->getUserGroupsByStage($monograph->getPressId(), $stageId);
 		while ($userGroup =& $submissionStageGroups->next()) {
 			if($userGroup->getRoleId() == ROLE_ID_PRESS_ASSISTANT) {
 				$users =& $userGroupDao->getUsersById($userGroup->getId());
