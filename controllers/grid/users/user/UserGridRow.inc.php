@@ -13,6 +13,7 @@
  */
 
 import('lib.pkp.classes.controllers.grid.GridRow');
+import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 
 class UserGridRow extends GridRow {
 	/**
@@ -101,11 +102,10 @@ class UserGridRow extends GridRow {
 			$this->addAction(
 				new LinkAction(
 					'remove',
-					new AjaxModal(
-						$router->url($request, null, null, 'removeUser', null, $actionArgs),
-						__('grid.action.remove'),
-						'delete',
-						true
+					new ConfirmationModal(
+						__('manager.people.confirmRemove'),
+						null,
+						$router->url($request, null, null, 'removeUser', null, $actionArgs)
 						),
 					__('grid.action.remove'),
 					'delete')

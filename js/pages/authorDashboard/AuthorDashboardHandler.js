@@ -117,7 +117,8 @@ jQuery.pkp.pages =
 		// Enable the current stage (and all prior stages) and disable
 		// all later stages.
 		var disabled;
-		for (var stage = $.pkp.cons.WORKFLOW_STAGE_ID_SUBMISSION;
+		var stage;
+		for (stage = $.pkp.cons.WORKFLOW_STAGE_ID_SUBMISSION;
 				stage <= $.pkp.cons.WORKFLOW_STAGE_ID_PRODUCTION; stage++) {
 
 			if (stage <= newStage) {
