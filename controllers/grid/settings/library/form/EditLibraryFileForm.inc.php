@@ -42,7 +42,7 @@ class EditLibraryFileForm extends LibraryFileForm {
 	 */
 	function initData() {
 		$this->_data = array(
-			'libraryFileName' => $this->libraryFile->getLocalizedName(),
+			'libraryFileName' => $this->libraryFile->getName(null), // Localized
 			'libraryFile' => $this->libraryFile // For read-only info
 		);
 	}
@@ -51,7 +51,7 @@ class EditLibraryFileForm extends LibraryFileForm {
 	 * Save name for library file
 	 */
 	function execute() {
-		$this->libraryFile->setName($this->getData('libraryFileName'), Locale::getLocale());
+		$this->libraryFile->setName($this->getData('libraryFileName'), null); // Localized
 
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$libraryFileDao->updateObject($this->libraryFile);

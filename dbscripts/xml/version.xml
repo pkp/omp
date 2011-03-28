@@ -12,10 +12,9 @@
 <version>
 	<application>omp</application>
 	<type>core</type>
-	<release>0.0.9.0</release>
-	<tag>omp-0_0_9-0</tag>
-	<date>2010-09-13</date>
+	<release>0.9.0.0</release>
+	<tag>omp-0_9_0-0</tag>
+	<date>2011-01-01</date>
 	<info>http://pkp.sfu.ca/omp/</info>
 	<package>http://pkp.sfu.ca/omp</package>
-	<patch from="0.0.0.0">Not available</patch>
 </version>

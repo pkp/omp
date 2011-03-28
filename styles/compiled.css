@@ -444,6 +444,85 @@ table.pkp_listing td.separator {
   font-size:0.1em;
   line-height:1%;
 }
+.pkp_controllers_fontController_smallFont {
+  background:url(../lib/pkp/templates/images/icons/font-down.png);
+  outline:none;
+  text-indent:-9999px;
+  display:block;
+  float:left;
+  width:20px;
+  height:23px;
+}
+.pkp_controllers_fontController_defaultFont {
+  background:url(../lib/pkp/templates/images/icons/font-default.png);
+  outline:none;
+  text-indent:-9999px;
+  display:block;
+  float:left;
+  width:20px;
+  height:23px;
+}
+.pkp_controllers_fontController_largeFont {
+  background:url(../lib/pkp/templates/images/icons/font-up.png);
+  outline:none;
+  text-indent:-9999px;
+  display:block;
+  float:left;
+  width:20px;
+  height:23px;
+}
+.pkp_controllers_fontController_ldisabled, .pkp_controllers_fontController_sdisabled {
+  opacity:0.3;
+  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter:alpha(opacity=30);
+}
+.pkp_controllers_form span.pkp_controllers_form_error {
+  color:#990000;
+  font-weight:bold;
+  font-size:1em;
+}
+.pkp_controllers_form .pkp_controllers_form_error_list a { color:#990000; }
+.pkp_controllers_form span.pkp_controllers_form_success {
+  color:#009900;
+  font-weight:bold;
+  font-size:1em;
+}
+.pkp_controllers_form .pkp_controllers_form_localization_container {
+  background-color:#ffffff;
+  padding:5px;
+}
+.pkp_controllers_form .pkp_controllers_form_localization_container .pkp_controllers_form_localization_container_focus { background-color:#dddddd !important; }
+.pkp_controllers_form .pkp_controllers_form_localization_container .pkp_controllers_form_localization_popover {
+  margin:2em;
+  margin-left:-5px;
+  position:absolute;
+  z-index:10001;
+  background-color:#dddddd;
+  display:none;
+}
+.pkp_controllers_form .pkp_controllers_form_localization_container label.multilingual_extra_label {
+  text-indent:-9999px;
+  margin:0;
+  padding:0;
+}
+.pkp_controllers_form .pkp_controllers_form_localization_container input.locale_en_US {
+  margin:0;
+  background-repeat:no-repeat;
+  background-position:98% 50%;
+  background-image:url(../lib/pkp/templates/images/structure/flags/en_US.png) !important;
+}
+.pkp_controllers_form .pkp_controllers_form_localization_container input.locale_fr_CA {
+  margin:0;
+  background-repeat:no-repeat;
+  background-position:98% 50%;
+  background-image:url(../lib/pkp/templates/images/structure/flags/fr_CA.png) !important;
+}
+.pkp_controllers_form .pkp_controllers_form_localization_container input.locale_te_ST {
+  margin:0;
+  background-repeat:no-repeat;
+  background-position:98% 50%;
+  background-image:url(../lib/pkp/templates/images/structure/flags/te_ST.png) !important;
+}
 div.pkp_controllers_grid div.wrapper {
   margin:10px;
   padding:20px;
@@ -741,38 +820,6 @@ div.pkp_controllers_listbuilder .ac_odd { background-color:#eeeeee; }
 div.pkp_controllers_listbuilder .ac_over {
   background-color:#0a246a;
   color:white;
-}
-.pkp_controllers_fontController_smallFont {
-  background:url(../lib/pkp/templates/images/icons/font-down.png);
-  outline:none;
-  text-indent:-9999px;
-  display:block;
-  float:left;
-  width:20px;
-  height:23px;
-}
-.pkp_controllers_fontController_defaultFont {
-  background:url(../lib/pkp/templates/images/icons/font-default.png);
-  outline:none;
-  text-indent:-9999px;
-  display:block;
-  float:left;
-  width:20px;
-  height:23px;
-}
-.pkp_controllers_fontController_largeFont {
-  background:url(../lib/pkp/templates/images/icons/font-up.png);
-  outline:none;
-  text-indent:-9999px;
-  display:block;
-  float:left;
-  width:20px;
-  height:23px;
-}
-.pkp_controllers_fontController_ldisabled, .pkp_controllers_fontController_sdisabled {
-  opacity:0.3;
-  -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
-  filter:alpha(opacity=30);
 }
 .pkp_controllers_modal_titleBar {
   height:40px;

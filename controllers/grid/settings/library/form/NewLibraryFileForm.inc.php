@@ -62,7 +62,7 @@ class NewLibraryFileForm extends LibraryFileForm {
 		$libraryFile =& $libraryFileManager->copyFromTemporaryFile($temporaryFile);
 		assert($libraryFile);
 		$libraryFile->setPressId($this->pressId);
-		$libraryFile->setName($this->getData('libraryFileName'), Locale::getLocale());
+		$libraryFile->setName($this->getData('libraryFileName'), null); // Localized
 		$libraryFile->setType($this->fileType);
 
 		$libraryFileDao->insertObject($libraryFile);

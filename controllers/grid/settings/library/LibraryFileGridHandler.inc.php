@@ -156,12 +156,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 
 		import('controllers.grid.settings.library.form.NewLibraryFileForm');
 		$fileForm = new NewLibraryFileForm($context->getId(), $this->getFileType());
-
-		if ($fileForm->isLocaleResubmit()) {
-			$fileForm->readInputData();
-		} else {
-			$fileForm->initData();
-		}
+		$fileForm->initData();
 
 		$json = new JSON(true, $fileForm->fetch($request));
 		return $json->getString();
@@ -235,12 +230,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 
 		import('controllers.grid.settings.library.form.EditLibraryFileForm');
 		$fileForm = new EditLibraryFileForm($context->getId(), $this->getFileType(), $fileId);
-
-		if ($fileForm->isLocaleResubmit()) {
-			$fileForm->readInputData();
-		} else {
-			$fileForm->initData();
-		}
+		$fileForm->initData();
 
 		$json = new JSON(true, $fileForm->fetch($request));
 		return $json->getString();

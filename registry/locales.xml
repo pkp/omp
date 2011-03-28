@@ -15,5 +15,6 @@
 <!DOCTYPE locales SYSTEM "../lib/pkp/dtd/locales.dtd">
 
 <locales>
-	<locale key="en_US" complete="false" name="English" iso639-2b="eng" />
+	<locale key="en_US" complete="true" name="English" iso639-2b="eng" />
+	<locale key="te_ST" complete="false" name="Test Locale" iso639-2b="tst" />
 </locales>

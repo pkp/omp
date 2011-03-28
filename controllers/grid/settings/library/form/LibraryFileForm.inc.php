@@ -32,7 +32,7 @@ class LibraryFileForm extends Form {
 
 		parent::Form($template);
 
-		$this->addCheck(new FormValidator($this, 'libraryFileName', 'required', 'settings.libraryFiles.nameRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'libraryFileName', 'required', 'settings.libraryFiles.nameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
