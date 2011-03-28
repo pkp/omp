@@ -62,42 +62,35 @@ class UserForm extends Form {
 			$user =& $userDao->getUser($this->userId);
 			$interestDao =& DAORegistry::getDAO('InterestDAO');
 
-			// Get all available interests to populate the autocomplete with
-			if ($interestDao->getAllUniqueInterests()) {
-				$existingInterests = $interestDao->getAllUniqueInterests();
-			} else $existingInterests = null;
 			// Get the user's current set of interests
 			if ($interestDao->getInterests($user->getId())) {
 				$currentInterests = $interestDao->getInterests($user->getId());
 			} else $currentInterests = null;
 
-			if ($user != null) {
-				$this->_data = array(
-					'authId' => $user->getAuthId(),
-					'username' => $user->getUsername(),
-					'salutation' => $user->getSalutation(),
-					'firstName' => $user->getFirstName(),
-					'middleName' => $user->getMiddleName(),
-					'lastName' => $user->getLastName(),
-					'signature' => $user->getSignature(null), // Localized
-					'initials' => $user->getInitials(),
-					'gender' => $user->getGender(),
-					'affiliation' => $user->getAffiliation(null), // Localized
-					'email' => $user->getEmail(),
-					'userUrl' => $user->getUrl(),
-					'phone' => $user->getPhone(),
-					'fax' => $user->getFax(),
-					'mailingAddress' => $user->getMailingAddress(),
-					'country' => $user->getCountry(),
-					'biography' => $user->getBiography(null), // Localized
-					'existingInterests' => $existingInterests,
-					'interestsKeywords' => $currentInterests,
-					'gossip' => $user->getGossip(null), // Localized
-					'userLocales' => $user->getLocales()
-				);
-
-			} else {
-				$this->userId = null;
+			$data = array(
+				'authId' => $user->getAuthId(),
+				'username' => $user->getUsername(),
+				'salutation' => $user->getSalutation(),
+				'firstName' => $user->getFirstName(),
+				'middleName' => $user->getMiddleName(),
+				'lastName' => $user->getLastName(),
+				'signature' => $user->getSignature(null), // Localized
+				'initials' => $user->getInitials(),
+				'gender' => $user->getGender(),
+				'affiliation' => $user->getAffiliation(null), // Localized
+				'email' => $user->getEmail(),
+				'userUrl' => $user->getUrl(),
+				'phone' => $user->getPhone(),
+				'fax' => $user->getFax(),
+				'mailingAddress' => $user->getMailingAddress(),
+				'country' => $user->getCountry(),
+				'biography' => $user->getBiography(null), // Localized
+				'interestsKeywords' => $currentInterests,
+				'gossip' => $user->getGossip(null), // Localized
+				'userLocales' => $user->getLocales()
+			);
+			foreach($data as $key => $value) {
+				$this->setData($key, $value);
 			}
 		}
 	}
@@ -116,6 +109,13 @@ class UserForm extends Form {
 		$templateMgr->assign('minPasswordLength', $site->getMinPasswordLength());
 		$templateMgr->assign('source', Request::getUserVar('source'));
 		$templateMgr->assign('userId', $this->userId);
+
+		// Get all available interests to populate the autocomplete with
+		$interestDao =& DAORegistry::getDAO('InterestDAO');
+		if ($interestDao->getAllUniqueInterests()) {
+			$existingInterests = $interestDao->getAllUniqueInterests();
+		} else $existingInterests = null;
+		$templateMgr->assign('existingInterests', $existingInterests);
 
 		if (isset($this->userId)) {
 			$user =& $userDao->getUser($this->userId);
@@ -142,6 +142,10 @@ class UserForm extends Form {
 		if (!empty($authSourceOptions)) {
 			$templateMgr->assign('authSourceOptions', $authSourceOptions);
 		}
+		// This parameters will be used by the js form handler to fetch a username suggestion.
+		// In the js form handler the dummy strings will be replaced by the actual form fields values.
+		$userNameParams = array('firstName' => 'firstNameDummy', 'lastName' => 'lastNameDummy');
+		$templateMgr->assign('suggestUsernameParams', $userNameParams);
 
 		return $this->fetch($request);
 	}

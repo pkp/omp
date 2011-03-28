@@ -821,6 +821,13 @@ div.pkp_controllers_listbuilder .ac_over {
   background-color:#0a246a;
   color:white;
 }
+.pkp_controllers_extrasOnDemand .ui-icon { float:left; }
+.pkp_controllers_extrasOnDemand .toggleExtras {
+  margin-top:15px;
+  margin-bottom:15px;
+  cursor:pointer;
+  float:left;
+}
 .pkp_controllers_modal_titleBar {
   height:40px;
   width:100%;

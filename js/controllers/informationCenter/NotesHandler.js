@@ -84,5 +84,7 @@
 		jsonData = this.handleJson(jsonData);
 		$('#notesList').replaceWith(jsonData.content);
 	}
+
+
 /** @param {jQuery} $ jQuery closure. */
 })(jQuery);

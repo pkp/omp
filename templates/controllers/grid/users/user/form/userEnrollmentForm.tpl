@@ -1,12 +1,11 @@
 {**
- * userEnrollmentForm.tpl
+ * controllers/grid/users/user/form/userEnrollmentForm.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Form for managing user enrollment.
  *}
-{include file="controllers/grid/users/user/form/userFormHeader.tpl"}
 <script type="text/javascript">
 	<!--
 	$(document).ready(function() {ldelim}

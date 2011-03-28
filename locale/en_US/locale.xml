@@ -152,6 +152,7 @@
 	<message key="common.warning">Warning</message>
 	<message key="common.quality">Quality</message>
 	<message key="common.saveAndClose">Save And Close</message>
+	<message key="common.sendEmail">Send Email</message>
 	<message key="common.takeMeThere">Take Me There</message>
 	<message key="common.autocomplete">Autocomplete</message>
 	<message key="common.confirmDelete">Are you sure you wish to delete this item? This action cannot be undone.</message>
