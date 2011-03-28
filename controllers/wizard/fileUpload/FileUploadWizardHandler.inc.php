@@ -382,8 +382,13 @@ class FileUploadWizardHandler extends FileManagementHandler {
 			if ($uploadedFile->getFileId() == $monographFile->getFileId()) continue;
 
 			// Test whether the current monograph file is similar
-			// to the uploaded file.
-			similar_text($uploadedFileName, $monographFile->getOriginalFileName(), &$matchedPercentage);
+			// to the uploaded file. (Transliterate to ASCII -- the
+			// similar_text function can't handle UTF-8.)
+			similar_text(
+				iconv('UTF-8', 'ASCII//TRANSLIT', $uploadedFileName),
+				iconv('UTF-8', 'ASCII//TRANSLIT', $monographFile->getOriginalFileName()),
+				$matchedPercentage
+			);
 			if($matchedPercentage > $minPercentage) {
 				// We found a file that might be a possible revision.
 				$possibleRevisedFileId = $monographFile->getFileId();
