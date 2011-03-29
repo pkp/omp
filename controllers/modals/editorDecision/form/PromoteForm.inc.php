@@ -80,8 +80,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 				break;
 
 			case SUBMISSION_EDITOR_DECISION_EXTERNAL_REVIEW:
-				// FIXME #6123: will we have an email key for this decision?
-				$emailKey = 'EDITOR_DECISION_ACCEPT';
+				$emailKey = 'EDITOR_DECISION_SEND_TO_EXTERNAL';
 				$status = REVIEW_ROUND_STATUS_SENT_TO_EXTERNAL;
 
 				// Move to the external review stage.

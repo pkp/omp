@@ -347,6 +347,18 @@ Our decision is to:
 </body>
 		<description>This email from the Editor or Series Editor to an Author notifies them of a final decision regarding their submission.</description>
 	</email_text>
+	<email_text key="EDITOR_DECISION_SEND_TO_EXTERNAL">
+		<subject>Editor Decision</subject>
+		<body>{$authorName}:
+
+We have reached a decision regarding your submission to {$pressName}, "{$monographTitle}".
+
+Our decision is to:
+
+{$editorialContactSignature}
+</body>
+		<description>This email from the Editor or Series Editor to an Author notifies them that their submission is being sent to an external review.</description>
+	</email_text>
 	<email_text key="EDITOR_DECISION_REVISIONS">
 		<subject>Editor Decision</subject>
 		<body>{$authorName}:
