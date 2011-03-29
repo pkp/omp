@@ -74,8 +74,12 @@
 	<!-- Plupload -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/plupload.full.min.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/jquery.plupload.queue.min.js"></script>
+
 	{* FIXME: Replace with a smarty template that includes {translate} keys, see #6443. *}
-	{if $currentLocale !== 'en_US'}<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/i18n/{$currentLocale}.js"></script>{/if}
+	{if $currentLocale !== 'en_US'}<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/plupload/i18n/{$currentLocale|escape}.js"></script>{/if}
+
+	<!-- Constants for JavaScript -->
+	{include file="common/jsConstants.tpl"}
 
 	<!-- Compiled scripts -->
 	{if $useMinifiedJavaScript}
@@ -84,6 +88,7 @@
 		{include file="common/minifiedScripts.tpl"}
 	{/if}
 
+	<!-- JavaScript initialization (FIXME: bug #6442) -->
 	{include file="common/javascriptInit.tpl"}
 
 	{$additionalHeadData}

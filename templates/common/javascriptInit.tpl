@@ -8,13 +8,9 @@
  *}
 	<script type="text/javascript">{literal}
 		// initialise plugins
-		$(function(){
+		$(function() {
 			$('ul.sf-menu').superfish(); // Initialize the navigation menu
-			fontSize("#sizer", ".page", 9, 12, 20); // Initialize the font sizer
 			$('.button').button();
-			$("a.openHelp").each(function(){
-				$(this).click(function() {openHelp($(this).attr('href')); return false;})
-			});
 			$(".tagit").live('click', function() {
 				$(this).find('input').focus();
 			});

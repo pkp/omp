@@ -11,6 +11,18 @@
 {include file="common/header.tpl"}
 {/strip}
 
+<script type="text/javascript">
+	// Attach the file upload form handler.
+	$(function() {ldelim}
+		$('a.openHelp').each(function() {ldelim}
+			$(this).click(function() {ldelim}
+				openHelp($(this).attr('href'));
+				return false;
+			{rdelim})
+		{rdelim});
+	{rdelim});
+</script>
+
 <ul class="plain">
 <li>
 	<a href="{url press="index" page="index" op="index"}">{translate key="navigation.home"}</a><br/>

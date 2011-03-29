@@ -30,12 +30,12 @@ define('ASSOC_TYPE_WORKFLOW_STAGE', 0x0000207);
 
 define('CONTEXT_PRESS', 1);
 
-define('WORKFLOW_STAGE_ID_PUBLISHED', 0); // FIXME? See bug #6463.
-define('WORKFLOW_STAGE_ID_SUBMISSION', 1);
-define('WORKFLOW_STAGE_ID_INTERNAL_REVIEW', 2);
-define('WORKFLOW_STAGE_ID_EXTERNAL_REVIEW', 3);
-define('WORKFLOW_STAGE_ID_EDITING', 4);
-define('WORKFLOW_STAGE_ID_PRODUCTION', 5);
+define_exposed('WORKFLOW_STAGE_ID_PUBLISHED', 0); // FIXME? See bug #6463.
+define_exposed('WORKFLOW_STAGE_ID_SUBMISSION', 1);
+define_exposed('WORKFLOW_STAGE_ID_INTERNAL_REVIEW', 2);
+define_exposed('WORKFLOW_STAGE_ID_EXTERNAL_REVIEW', 3);
+define_exposed('WORKFLOW_STAGE_ID_EDITING', 4);
+define_exposed('WORKFLOW_STAGE_ID_PRODUCTION', 5);
 
 class Application extends PKPApplication {
 	function Application() {

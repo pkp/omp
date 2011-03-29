@@ -21,18 +21,6 @@ jQuery.pkp.pages =
  */
 (function($) {
 
-
-	// FIXME: Replace with a "constants publication" function
-	// on the server side, see #6474.
-	$.pkp.cons = { };
-	/** @const */ $.pkp.cons.WORKFLOW_STAGE_ID_SUBMISSION = 1;
-	/** @const */ $.pkp.cons.WORKFLOW_STAGE_ID_INTERNAL_REVIEW = 2;
-	/** @const */ $.pkp.cons.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW = 3;
-	/** @const */ $.pkp.cons.WORKFLOW_STAGE_ID_EDITING = 4;
-	/** @const */ $.pkp.cons.WORKFLOW_STAGE_ID_PRODUCTION = 5;
-
-
-
 	/**
 	 * @constructor
 	 *
