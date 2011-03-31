@@ -20,6 +20,8 @@
 import('lib.pkp.classes.form.Form');
 
 class SubmissionSubmitForm extends Form {
+	/** @var $press Press */
+	var $press;
 
 	/** @var int the ID of the monograph */
 	var $monographId;
@@ -35,12 +37,13 @@ class SubmissionSubmitForm extends Form {
 	 * @param $monograph object
 	 * @param $step int
 	 */
-	function SubmissionSubmitForm($monograph, $step) {
+	function SubmissionSubmitForm($press, $monograph, $step) {
 		parent::Form(sprintf('submission/form/step%d.tpl', $step));
 		$this->addCheck(new FormValidatorPost($this));
 		$this->step = (int) $step;
 		$this->monograph = $monograph;
 		$this->monographId = $monograph ? $monograph->getId() : null;
+		$this->press =& $press;
 	}
 
 	/**
@@ -65,9 +68,8 @@ class SubmissionSubmitForm extends Form {
 		}
 		$templateMgr->assign('helpTopicId', $helpTopicId);
 
-		$press =& $request->getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$templateMgr->assign_by_ref('pressSettings', $settingsDao->getPressSettings($press->getId()));
+		$templateMgr->assign_by_ref('pressSettings', $settingsDao->getPressSettings($this->press->getId()));
 
 		parent::display($request);
 	}

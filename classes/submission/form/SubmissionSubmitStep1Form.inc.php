@@ -16,26 +16,26 @@
 import('classes.submission.form.SubmissionSubmitForm');
 
 class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
-
 	/**
 	 * Constructor.
 	 */
-	function SubmissionSubmitStep1Form($monograph = null) {
-		parent::SubmissionSubmitForm($monograph, 1);
-
-		$press =& Request::getPress();
+	function SubmissionSubmitStep1Form($press, $monograph = null) {
+		parent::SubmissionSubmitForm($press, $monograph, 1);
 
 		// Validation checks for this form
 		$supportedSubmissionLocales = $press->getSetting('supportedSubmissionLocales');
 		if (!is_array($supportedSubmissionLocales) || count($supportedSubmissionLocales) < 1) $supportedSubmissionLocales = array($press->getPrimaryLocale());
 		$this->addCheck(new FormValidatorInSet($this, 'locale', 'required', 'submission.submit.form.localeRequired', $supportedSubmissionLocales));
+
+		foreach ($press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
+			$this->addCheck(new FormValidator($this, "checklist-$key", 'required', 'submission.submit.checklistErrors'));
+		}
 	}
 
 	/**
 	 * Display the form.
 	 */
 	function display($request) {
-		$press =& $request->getPress();
 		$user =& $request->getUser();
 
 		$templateMgr =& TemplateManager::getManager();
@@ -48,16 +48,16 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 		// submissions. Otherwise, display only series they are allowed
 		// to submit to.
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
-		$isEditor = $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_EDITOR) || $roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
+		$isEditor = $roleDao->userHasRole($this->press->getId(), $user->getId(), ROLE_ID_EDITOR) || $roleDao->userHasRole($this->press->getId(), $user->getId(), ROLE_ID_SERIES_EDITOR);
 
-		$seriesOptions = array('0' => Locale::translate('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($press->getId());
+		$seriesOptions = array('0' => Locale::translate('submission.submit.selectSeries')) + $seriesDao->getTitlesByPressId($this->press->getId());
 		$templateMgr->assign('seriesOptions', $seriesOptions);
 
 		// Provide available submission languages. (Convert the array
 		// of locale symbolic names xx_XX into an associative array
 		// of symbolic names => readable names.)
-		$supportedSubmissionLocales = $press->getSetting('supportedSubmissionLocales');
-		if (empty($supportedSubmissionLocales)) $supportedSubmissionLocales = array($press->getPrimaryLocale());
+		$supportedSubmissionLocales = $this->press->getSetting('supportedSubmissionLocales');
+		if (empty($supportedSubmissionLocales)) $supportedSubmissionLocales = array($this->press->getPrimaryLocale());
 		$templateMgr->assign(
 			'supportedSubmissionLocaleNames',
 			array_flip(array_intersect(
@@ -81,14 +81,13 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 				'commentsToEditor' => $this->monograph->getCommentsToEditor()
 			);
 		} else {
-			$press =& Request::getPress();
-			$supportedSubmissionLocales = $press->getSetting('supportedSubmissionLocales');
+			$supportedSubmissionLocales = $this->press->getSetting('supportedSubmissionLocales');
 			// Try these locales in order until we find one that's
 			// supported to use as a default.
 			$tryLocales = array(
 				$this->getFormLocale(), // Current form locale
 				Locale::getLocale(), // Current UI locale
-				$press->getPrimaryLocale(), // Press locale
+				$this->press->getPrimaryLocale(), // Press locale
 				$supportedSubmissionLocales[array_shift(array_keys($supportedSubmissionLocales))] // Fallback: first one on the list
 			);
 			$this->_data = array();
@@ -106,7 +105,13 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$this->readUserVars(array('locale', 'submissionChecklist', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor'));
+		$vars = array(
+			'locale', 'isEditedVolume', 'copyrightNoticeAgree', 'seriesId', 'commentsToEditor'
+		);
+		foreach ($this->press->getLocalizedSetting('submissionChecklist') as $key => $checklistItem) {
+			$vars[] = "checklist-$key";
+		}
+		$this->readUserVars($vars);
 	}
 
 	/**
@@ -128,7 +133,6 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$monographDao->updateMonograph($this->monograph);
 
 		} else {
-			$press =& Request::getPress();
 			$user =& Request::getUser();
 
 			// Get the session and the user group id currently used
@@ -139,7 +143,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 			$this->monograph = new Monograph();
 			$this->monograph->setLocale($this->getData('locale'));
 			$this->monograph->setUserId($user->getId());
-			$this->monograph->setPressId($press->getId());
+			$this->monograph->setPressId($this->press->getId());
 			$this->monograph->setSeriesId($this->getData('seriesId'));
 			$this->monograph->stampStatusModified();
 			$this->monograph->setSubmissionProgress($this->step + 1);
@@ -150,7 +154,7 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 
 			// Get a default user group id for an Author
 			$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-			$defaultAuthorGroup =& $userGroupDao->getDefaultByRoleId($press->getId(), ROLE_ID_AUTHOR);
+			$defaultAuthorGroup =& $userGroupDao->getDefaultByRoleId($this->press->getId(), ROLE_ID_AUTHOR);
 
 			// Set user to initial author
 			$authorDao =& DAORegistry::getDAO('AuthorDAO');

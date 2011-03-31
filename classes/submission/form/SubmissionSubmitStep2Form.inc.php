@@ -16,12 +16,11 @@
 import('classes.submission.form.SubmissionSubmitForm');
 
 class SubmissionSubmitStep2Form extends SubmissionSubmitForm {
-
 	/**
 	 * Constructor.
 	 */
-	function SubmissionSubmitStep2Form($monograph) {
-		parent::SubmissionSubmitForm($monograph, 2);
+	function SubmissionSubmitStep2Form($press, $monograph) {
+		parent::SubmissionSubmitForm($press, $monograph, 2);
 	}
 
 	/**

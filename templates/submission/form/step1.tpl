@@ -88,7 +88,7 @@
 		<p>{translate key="submission.submit.submissionChecklistDescription"}</p>
 		{foreach name=checklist from=$currentPress->getLocalizedSetting('submissionChecklist') key=checklistId item=checklistItem}
 			{if $checklistItem.content}
-				{fbvElement type="checkbox" id="checklist-"|concat:$smarty.foreach.checklist.iteration required=true value=$checklistId|escape label=$checklistItem.content translate=false checked=$monographId}
+				{fbvElement type="checkbox" id="checklist-$checklistId" required=true value=1 label=$checklistItem.content translate=false checked=$monographId}
 			{/if}
 		{/foreach}
 		{/fbvFormSection}

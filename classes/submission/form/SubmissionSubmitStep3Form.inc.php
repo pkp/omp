@@ -20,10 +20,8 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	/**
 	 * Constructor.
 	 */
-	function SubmissionSubmitStep3Form($monograph) {
-		parent::SubmissionSubmitForm($monograph, 3);
-
-		$press =& Request::getPress();
+	function SubmissionSubmitStep3Form($press, $monograph) {
+		parent::SubmissionSubmitForm($press, $monograph, 3);
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'submission.submit.form.titleRequired'));
