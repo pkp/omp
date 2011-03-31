@@ -46,21 +46,9 @@
 		<name>openAccessPolicy</name>
 		<value>{translate key="default.pressSettings.openAccessPolicy"}</value>
 	</setting>
-	<setting type="string" locale="1">
-		<name>copyeditInstructions</name>
-		<value>{translate key="default.pressSettings.copyeditInstructions"}</value>
-	</setting>
 	<setting type="string" locale="0">
 		<name>emailSignature</name>
 		<value>{translate key="default.pressSettings.emailSignature"}</value>
-	</setting>
-	<setting type="string" locale="1">
-		<name>proofInstructions</name>
-		<value>{translate key="default.pressSettings.proofingInstructions"}</value>
-	</setting>
-	<setting type="string" locale="1">
-		<name>refLinkInstructions</name>
-		<value>{translate key="default.pressSettings.refLinkInstructions"}</value>
 	</setting>
 	<setting type="string" locale="1">
 		<name>readerInformation</name>
@@ -144,42 +132,6 @@
 				<element key="name">{translate key="common.keywords"}</element>
 			</array>
 		</value>
-	</setting>
-	<setting type="bool" locale="0">
-		<name>rtAbstract</name>
-		<value>true</value>
-	</setting>
-	<setting type="bool" locale="0">
-		<name>rtCaptureCite</name>
-		<value>true</value>
-	</setting>
-	<setting type="bool" locale="0">
-		<name>rtViewMetadata</name>
-		<value>true</value>
-	</setting>
-	<setting type="bool" locale="0">
-		<name>rtPrinterFriendly</name>
-		<value>true</value>
-	</setting>
-	<setting type="bool" locale="0">
-		<name>rtAuthorBio</name>
-		<value>true</value>
-	</setting>
-	<setting type="bool" locale="0">
-		<name>rtDefineTerms</name>
-		<value>true</value>
-	</setting>
-	<setting type="bool" locale="0">
-		<name>rtAddComment</name>
-		<value>true</value>
-	</setting>
-	<setting type="bool" locale="0">
-		<name>rtEmailAuthor</name>
-		<value>true</value>
-	</setting>
-	<setting type="bool" locale="0">
-		<name>rtEmailOthers</name>
-		<value>true</value>
 	</setting>
 	<setting type="bool" locale="0">
 		<name>allowRegReviewer</name>
