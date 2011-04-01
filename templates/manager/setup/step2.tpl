@@ -30,7 +30,7 @@
 
 {fbvFormArea id="focusAndScopeDescription"}
 {fbvFormSection}
-	{fbvElement type="textarea" name="focusScopeDesc[$formLocale]" id="focusScopeDesc" value=$focusScopeDesc[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{fbvElement type="textarea" name="focusScopeDesc[$formLocale]" id="focusScopeDesc" value=$focusScopeDesc[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 {/fbvFormSection}
 {/fbvFormArea}
 
@@ -76,7 +76,7 @@
 	{fbvFormSection title="manager.setup.reviewGuidelines"}
 		{url|assign:"reviewFormsUrl" op="reviewForms"}
 		<p>{translate key="manager.setup.reviewGuidelinesDescription" reviewFormsUrl=$reviewFormsUrl}</p>
-		{fbvElement type="textarea" name="reviewGuidelines[$formLocale]" id="reviewGuidelines" value=$reviewGuidelines[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+		{fbvElement type="textarea" name="reviewGuidelines[$formLocale]" id="reviewGuidelines" value=$reviewGuidelines[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 	{/fbvFormSection}
 	{fbvFormSection title="manager.setup.reviewProcess" layout=$fbvStyles.layout.ONE_COLUMN}
 		<p>{translate key="manager.setup.reviewProcessDescription"}</p>

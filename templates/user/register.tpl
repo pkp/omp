@@ -112,11 +112,11 @@
 	{/fbvFormSection}
 
 	{fbvFormSection title="user.mailingAddress" for="mailingAddress" float=$fbvStyles.float.RIGHT}
-		{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+		{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress rich=true size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
 	{/fbvFormSection}
 
 	{fbvFormSection title="user.biography" for="biography" float=$fbvStyles.float.LEFT}
-		{fbvElement type="textarea" id="biography" name="biography[$formLocale]" value=$biography[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+		{fbvElement type="textarea" id="biography" name="biography[$formLocale]" value=$biography[$formLocale] rich=true size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 	{/fbvFormSection}
 
 	{fbvFormSection title="user.signature" for="signature" float=$fbvStyles.float.RIGHT}

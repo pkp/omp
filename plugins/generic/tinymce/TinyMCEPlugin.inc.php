@@ -56,215 +56,59 @@ class TinyMCEPlugin extends GenericPlugin {
 	}
 
 	/**
-	 * Given a $page and $op, return a list of field names for which
-	 * the plugin should be used.
-	 * @param $templateMgr object
-	 * @param $page string The requested page
-	 * @param $op string The requested operation
-	 * @return array
-	 */
-	function getEnableFields(&$templateMgr, $page, $op) {
-		$formLocale = $templateMgr->get_template_vars('formLocale');
-		$fields = array();
-		switch ("$page/$op") {
-			case 'admin/settings':
-			case 'admin/saveSettings':
-				$fields[] = 'intro';
-				$fields[] = 'aboutField';
-				break;
-			case 'admin/createPress':
-			case 'admin/updatePress':
-			case 'admin/editPress':
-				$fields[] = 'description';
-				break;
-			case 'author/submit':
-			case 'author/saveSubmit':
-				switch (array_shift(Request::getRequestedArgs())) {
-					case '':
-					case 1: $fields[] = 'commentsToEditor'; break;
-					case 3:
-						$count = max(1, count($templateMgr->get_template_vars('authors')));
-						for ($i=0; $i<$count; $i++) {
-							$fields[] = "authors-$i-biography";
-							$fields[] = "authors-$i-competingInterests";
-						}
-						$fields[] = 'abstract';
-						break;
-				}
-				break;
-			case 'author/viewCopyeditComments':
-			case 'author/postCopyeditComment':
-			case 'author/viewLayoutComments':
-			case 'author/postLayoutComment':
-			case 'author/viewProofreadComments':
-			case 'author/postProofreadComment':
-			case 'author/editComment':
-			case 'author/saveComment':
-			case 'editor/viewEditorDecisionComments':
-			case 'editor/postEditorDecisionComment':
-			case 'editor/viewCopyeditComments':
-			case 'editor/postCopyeditComment':
-			case 'editor/viewLayoutComments':
-			case 'editor/postLayoutComment':
-			case 'editor/viewProofreadComments':
-			case 'editor/postProofreadComment':
-			case 'editor/editComment':
-			case 'editor/saveComment':
-			case 'sectionEditor/viewEditorDecisionComments':
-			case 'sectionEditor/postEditorDecisionComment':
-			case 'sectionEditor/viewCopyeditComments':
-			case 'sectionEditor/postCopyeditComment':
-			case 'sectionEditor/viewLayoutComments':
-			case 'sectionEditor/postLayoutComment':
-			case 'sectionEditor/viewProofreadComments':
-			case 'sectionEditor/postProofreadComment':
-			case 'sectionEditor/editComment':
-			case 'sectionEditor/saveComment':
-			case 'copyeditor/viewCopyeditComments':
-			case 'copyeditor/postCopyeditComment':
-			case 'copyeditor/viewLayoutComments':
-			case 'copyeditor/postLayoutComment':
-			case 'copyeditor/editComment':
-			case 'copyeditor/saveComment':
-			case 'proofreader/viewLayoutComments':
-			case 'proofreader/postLayoutComment':
-			case 'proofreader/viewProofreadComments':
-			case 'proofreader/postProofreadComment':
-			case 'proofreader/editComment':
-			case 'proofreader/saveComment':
-			case 'layoutEditor/viewLayoutComments':
-			case 'layoutEditor/postLayoutComment':
-			case 'layoutEditor/viewProofreadComments':
-			case 'layoutEditor/postProofreadComment':
-			case 'layoutEditor/editComment':
-			case 'layoutEditor/saveComment':
-				$fields[] = 'comments';
-				break;
-			case 'manager/createAnnouncement':
-			case 'manager/editAnnouncement':
-			case 'manager/updateAnnouncement':
-				$fields[] = 'descriptionShort';
-				$fields[] = 'description';
-				break;
-			case 'manager/importexport':
-				$count = max(1, count($templateMgr->get_template_vars('authors')));
-				for ($i=0; $i<$count; $i++) {
-					$fields[] = "authors-$i-biography";
-					$fields[] = "authors-$i-competingInterests";
-				}
-				$fields[] = 'abstract';
-				break;
-			case 'user/profile':
-			case 'user/register':
-			case 'user/saveProfile':
-			case 'subscriptionManager/createUser':
-			case 'subscriptionManager/updateUser':
-			case 'manager/createUser':
-			case 'manager/updateUser':
-				$fields[] = 'mailingAddress';
-				$fields[] = 'biography';
-				break;
-			case 'manager/setup':
-			case 'manager/saveSetup':
-				switch (array_shift(Request::getRequestedArgs())) {
-					case 1:
-						$fields[] = 'mailingAddress';
-						$fields[] = 'contactMailingAddress';
-						$fields[] = 'sponsorNote';
-						$fields[] = 'contributorNote';
-						break;
-					case 2:
-						$fields[] = 'focusScopeDesc';
-						$fields[] = 'reviewGuidelines';
-						$fields[] = 'privacyStatement';
-						break;
-					case 4:
-						$fields[] = 'openAccessPolicy';
-						$fields[] = 'announcementsIntroduction';
-						break;
-					case 5:
-						$fields[] = 'description';
-						$fields[] = 'additionalHomeContent';
-						$fields[] = 'readerInformation';
-						$fields[] = 'librarianInformation';
-						$fields[] = 'authorInformation';
-						$fields[] = 'pressPageHeader';
-						$fields[] = 'pressPageFooter';
-						break;
-				}
-				break;
-			case 'reviewer/submission': 
-				$fields[] = 'competingInterestsText'; 
-				$fields[] = 'comments';
-				break;
-	
-		}
-		HookRegistry::call('TinyMCEPlugin::getEnableFields', array(&$this, &$fields));
-		return $fields;
-	}
-
-	/**
 	 * Hook callback function for TemplateManager::display
 	 * @param $hookName string
 	 * @param $args array
 	 * @return boolean
 	 */
 	function callback($hookName, $args) {
-		// Only pages requests interest us here
 		$request =& Registry::get('request');
-		if (!is_a($request->getRouter(), 'PKPPageRouter')) return null;
-
 		$templateManager =& $args[0];
 
-		$page = Request::getRequestedPage();
-		$op = Request::getRequestedOp();
-		$enableFields = $this->getEnableFields($templateManager, $page, $op);
+		$baseUrl = $templateManager->get_template_vars('baseUrl');
+		$additionalHeadData = $templateManager->get_template_vars('additionalHeadData');
+		$enableFields = join(',', $enableFields);
+		$allLocales = Locale::getAllLocales();
+		$localeList = array();
+		foreach ($allLocales as $key => $locale) {
+			$localeList[] = String::substr($key, 0, 2);
+		}
 
-		if (!empty($enableFields)) {
-			$baseUrl = $templateManager->get_template_vars('baseUrl');
-			$additionalHeadData = $templateManager->get_template_vars('additionalHeadData');
-			$enableFields = join(',', $enableFields);
-			$allLocales = Locale::getAllLocales();
-			$localeList = array();
-			foreach ($allLocales as $key => $locale) {
-				$localeList[] = String::substr($key, 0, 2);
-			}
+		$tinymceScript = '
+		<script type="text/javascript" src="'.$baseUrl.'/'.TINYMCE_JS_PATH.'/tiny_mce_gzip.js"></script>
+		<script type="text/javascript">
+			<!--
+			tinyMCE_GZ.init({
+				relative_urls : "false",
+				plugins : "paste,ibrowser,fullscreen",
+				themes : "advanced",
+				languages : "' . join(',', $localeList) . '",
+				disk_cache : true
+			});
+			// -->
+		</script>
+		<script type="text/javascript">
+			<!--
+			tinyMCE.init({
+				entity_encoding : "raw",
+				plugins : "paste,ibrowser,fullscreen",
+				mode : "specific_textareas",
+				editor_selector : "richContent",
+				language : "' . String::substr(Locale::getLocale(), 0, 2) . '",
+				elements : "' . $enableFields . '",
+				relative_urls : false,
+				forced_root_block : false,
+				paste_auto_cleanup_on_paste : true,
+				apply_source_formatting : false,
+				theme : "advanced",
+				theme_advanced_buttons1 : "cut,copy,paste,|,bold,italic,underline,bullist,numlist,|,link,unlink,help,code,fullscreen,ibrowser",
+				theme_advanced_buttons2 : "",
+				theme_advanced_buttons3 : ""
+			});
+			// -->
+		</script>';
 
-			$tinymceScript = '
-			<script type="text/javascript" src="'.$baseUrl.'/'.TINYMCE_JS_PATH.'/tiny_mce_gzip.js"></script>
-			<script type="text/javascript">
-				<!--
-				tinyMCE_GZ.init({
-					relative_urls : "false",
-					plugins : "paste,ibrowser,fullscreen",
-					themes : "advanced",
-					languages : "' . join(',', $localeList) . '",
-					disk_cache : true
-				});
-				// -->
-			</script>
-			<script type="text/javascript">
-				<!--
-				tinyMCE.init({
-					entity_encoding : "raw",
-					plugins : "paste,ibrowser,fullscreen",
-					mode : "exact",
-					language : "' . String::substr(Locale::getLocale(), 0, 2) . '",
-					elements : "' . $enableFields . '",
-					relative_urls : false,
-					forced_root_block : false,
-					paste_auto_cleanup_on_paste : true,
-					apply_source_formatting : false,
-					theme : "advanced",
-					theme_advanced_buttons1 : "cut,copy,paste,|,bold,italic,underline,bullist,numlist,|,link,unlink,help,code,fullscreen,ibrowser",
-					theme_advanced_buttons2 : "",
-					theme_advanced_buttons3 : ""
-				});
-				// -->
-			</script>';
-
-			$templateManager->assign('additionalHeadData', $additionalHeadData."\n".$tinymceScript);
-		} 
+		$templateManager->assign('additionalHeadData', $additionalHeadData."\n".$tinymceScript);
 		return false;
 	}
 

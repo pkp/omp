@@ -102,7 +102,7 @@
 
 	{fbvFormArea id="commentsToEditorContainer"}
 		{fbvFormSection for="commentsToEditor"}
-		{fbvElement type="textarea" name="commentsToEditor" id="commentsToEditor" value=$commentsToEditor size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+		{fbvElement type="textarea" name="commentsToEditor" id="commentsToEditor" value=$commentsToEditor size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

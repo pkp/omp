@@ -29,7 +29,7 @@
 {fbvFormArea id="openAccessPolicyContainer"}
 {fbvFormSection title="manager.setup.openAccessPolicy"}
 	<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
-	{fbvElement type="textarea" name="openAccessPolicy[$formLocale]" id="openAccessPolicy" value=$openAccessPolicy[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{fbvElement type="textarea" name="openAccessPolicy[$formLocale]" id="openAccessPolicy" value=$openAccessPolicy[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 {/fbvFormSection}
 {/fbvFormArea}
 
@@ -106,7 +106,7 @@
 {fbvFormArea id="announcementsIntroductionContainer"}
 {fbvFormSection title="manager.setup.announcementsIntroduction"}
 	<p>{translate key="manager.setup.announcementsIntroductionDescription"}</p>
-	{fbvElement type="textarea" name="announcementsIntroduction[$formLocale]" id="announcementsIntroduction" value=$announcementsIntroduction[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{fbvElement type="textarea" name="announcementsIntroduction[$formLocale]" id="announcementsIntroduction" value=$announcementsIntroduction[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 {/fbvFormSection}
 {/fbvFormArea}
 

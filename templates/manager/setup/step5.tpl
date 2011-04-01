@@ -174,7 +174,7 @@ function prepBlockFields() {
 {fbvFormArea id="pressDescription"}
 	{fbvFormSection title="manager.setup.pressDescription"}
 		<p>{translate key="manager.setup.pressDescriptionDescription"}</p>
-		{fbvElement type="textarea" name="description[$formLocale]" id="description" value=$description[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+		{fbvElement type="textarea" name="description[$formLocale]" id="description" value=$description[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4 rich=true}
 	{/fbvFormSection}
 {/fbvFormArea}
 
@@ -218,7 +218,7 @@ function prepBlockFields() {
 {fbvFormArea id="additionalContent"}
 	{fbvFormSection title="manager.setup.additionalContent"}
 		<p>{translate key="manager.setup.additionalContentDescription"}</p>
-		{fbvElement type="textarea" name="additionalHomeContent[$formLocale]" id="additionalHomeContent" value=$additionalHomeContent[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+		{fbvElement type="textarea" name="additionalHomeContent[$formLocale]" id="additionalHomeContent" value=$additionalHomeContent[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 	{/fbvFormSection}
 {/fbvFormArea}
 
@@ -254,13 +254,13 @@ function prepBlockFields() {
 
 {fbvFormArea id="information"}
 	{fbvFormSection title="manager.setup.information.forReaders"}
-		{fbvElement type="textarea" name="readerInformation[$formLocale]" id="readerInformation" value=$readerInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+		{fbvElement type="textarea" name="readerInformation[$formLocale]" id="readerInformation" value=$readerInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 	{/fbvFormSection}
 	{fbvFormSection title="manager.setup.information.forAuthors"}
-		{fbvElement type="textarea" name="authorInformation[$formLocale]" id="authorInformation" value=$authorInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+		{fbvElement type="textarea" name="authorInformation[$formLocale]" id="authorInformation" value=$authorInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 	{/fbvFormSection}
 	{fbvFormSection title="manager.setup.information.forLibrarians"}
-		{fbvElement type="textarea" name="librarianInformation[$formLocale]" id="librarianInformation" value=$librarianInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+		{fbvElement type="textarea" name="librarianInformation[$formLocale]" id="librarianInformation" value=$librarianInformation[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 	{/fbvFormSection}
 {/fbvFormArea}
 
@@ -407,7 +407,7 @@ function prepBlockFields() {
 {fbvFormArea id="alternateHeader"}
 {fbvFormSection title="manager.setup.alternateHeader"}
 	<p>{translate key="manager.setup.alternateHeaderDescription"}</p>
-	{fbvElement type="textarea" name="pressPageHeader[$formLocale]" id="pressPageHeader" value=$pressPageHeader[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{fbvElement type="textarea" name="pressPageHeader[$formLocale]" id="pressPageHeader" value=$pressPageHeader[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 {/fbvFormSection}
 {/fbvFormArea}
 
@@ -420,7 +420,7 @@ function prepBlockFields() {
 
 {fbvFormArea id="pressPageFooterContainer"}
 {fbvFormSection}
-	{fbvElement type="textarea" name="pressPageFooter[$formLocale]" id="pressPageFooter" value=$pressPageFooter[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{fbvElement type="textarea" name="pressPageFooter[$formLocale]" id="pressPageFooter" value=$pressPageFooter[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 {/fbvFormSection}
 {/fbvFormArea}
 

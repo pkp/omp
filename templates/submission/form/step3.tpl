@@ -25,7 +25,7 @@
 				{fbvElement type="text" name="title[$formLocale]" id="title" value=$title[$formLocale] maxlength="255"}
 			{/fbvFormSection}
 			{fbvFormSection title="submission.submit.briefSummary" for="abstract"}
-				{fbvElement type="textarea" name="abstract[$formLocale]" id="abstract" value=$abstract[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+				{fbvElement type="textarea" name="abstract[$formLocale]" id="abstract" value=$abstract[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 			{/fbvFormSection}
 			{fbvFormSection title="submission.submit.metadata"}
 				{fbvKeywordInput id="disciplines" label="search.discipline"} <br />

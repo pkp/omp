@@ -32,7 +32,7 @@
 	{fbvElement type="text" label="manager.setup.pressInitials" name="initials[$formLocale]" id="initials" value=$initials[$formLocale] maxlength="16" size=$fbvStyles.size.SMALL}
 {/fbvFormSection}
 {fbvFormSection title="manager.setup.pressDescription" for="description" float=$fbvStyles.float.LEFT}
-	{fbvElement type="textarea" name="description[$formLocale]" id="description" value=$description[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{fbvElement type="textarea" name="description[$formLocale]" id="description" value=$description[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 {/fbvFormSection}
 {fbvFormSection title="common.mailingAddress" for="mailingAddress" group="true" float=$fbvStyles.float.RIGHT}
 	{fbvCustomElement}
@@ -92,7 +92,7 @@
 	{fbvElement type="text" id="contactFax" value=$contactFax maxlength="24"}
 {/fbvFormSection}
 {fbvFormSection title="common.mailingAddress" for="contactMailingAddress"}
-	{fbvElement type="textarea" name="contactMailingAddress[$formLocale]" id="contactMailingAddress" value=$contactMailingAddress[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF2}
+	{fbvElement type="textarea" name="contactMailingAddress[$formLocale]" id="contactMailingAddress" value=$contactMailingAddress[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF2 rich=true}
 {/fbvFormSection}
 {/fbvFormArea}
 
@@ -109,7 +109,7 @@
 
 {fbvFormArea id="sponsors"}
 {fbvFormSection title="manager.setup.note" for="sponsorNote"}
-	{fbvElement type="textarea" name="sponsorNote[$formLocale]" id="sponsorNote" value=$sponsorNote[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+	{fbvElement type="textarea" name="sponsorNote[$formLocale]" id="sponsorNote" value=$sponsorNote[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4 rich=true}
 {/fbvFormSection}
 {/fbvFormArea}
 
@@ -125,7 +125,7 @@
 <table width="100%" class="data">
 	<tr valign="top">
 		<td width="20%" class="label">{fieldLabel name="contributorNote" key="manager.setup.note"}</td>
-		<td width="80%" class="value"><textarea name="contributorNote[{$formLocale|escape}]" id="contributorNote" rows="5" cols="40" class="textArea">{$contributorNote[$formLocale]|escape}</textarea></td>
+		<td width="80%" class="value"><textarea name="contributorNote[{$formLocale|escape}]" id="contributorNote" rows="5" cols="40" class="textArea richContent">{$contributorNote[$formLocale]|escape}</textarea></td>
 	</tr>
 </table>
 

@@ -57,7 +57,7 @@ function doSubmit() {
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="description" key="admin.presses.pressDescription"}</td>
-		<td class="value"><textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="10" class="textArea">{$description[$formLocale]|escape}</textarea></td>
+		<td class="value"><textarea name="description[{$formLocale|escape}]" id="description" cols="40" rows="10" class="textArea richContent">{$description[$formLocale]|escape}</textarea></td>
 	</tr>
 	<tr valign="top">
 		<td class="label">{fieldLabel name="path" key="press.path" required="true"}</td>
