@@ -98,11 +98,11 @@ class SetupHandler extends ManagerHandler {
 			// Check for any special cases before trying to save
 			switch ($step) {
 				case 4:
-					$press =& Request::getPress();
+					$press =& $request->getPress();
 					$templates = $press->getSetting('templates');
 					import('classes.file.PressFileManager');
 					$pressFileManager = new PressFileManager($press);
-					if (Request::getUserVar('addTemplate')) {
+					if ($request->getUserVar('addTemplate')) {
 						// Add a layout template
 						$editData = true;
 						if (!is_array($templates)) $templates = array();
@@ -115,10 +115,10 @@ class SetupHandler extends ManagerHandler {
 							'originalFilename' => $originalFilename,
 							'fileType' => $fileType,
 							'filename' => $filename,
-							'title' => Request::getUserVar('template-title')
+							'title' => $request->getUserVar('template-title')
 						);
 						$press->updateSetting('templates', $templates);
-					} else if (($delTemplate = Request::getUserVar('delTemplate')) && count($delTemplate) == 1) {
+					} else if (($delTemplate = $request->getUserVar('delTemplate')) && count($delTemplate) == 1) {
 						// Delete a template
 						$editData = true;
 						list($delTemplate) = array_keys($delTemplate);
@@ -133,79 +133,79 @@ class SetupHandler extends ManagerHandler {
 					$setupForm->setData('templates', $templates);
 					break;
 				case 5:
-					if (Request::getUserVar('uploadHomeHeaderTitleImage')) {
+					if ($request->getUserVar('uploadHomeHeaderTitleImage')) {
 						if ($setupForm->uploadImage('homeHeaderTitleImage', $formLocale)) {
 							$editData = true;
 						} else {
 							$setupForm->addError('homeHeaderTitleImage', Locale::translate('manager.setup.homeTitleImageInvalid'));
 						}
 
-					} else if (Request::getUserVar('deleteHomeHeaderTitleImage')) {
+					} else if ($request->getUserVar('deleteHomeHeaderTitleImage')) {
 						$editData = true;
 						$setupForm->deleteImage('homeHeaderTitleImage', $formLocale);
 
-					} else if (Request::getUserVar('uploadHomeHeaderLogoImage')) {
+					} else if ($request->getUserVar('uploadHomeHeaderLogoImage')) {
 						if ($setupForm->uploadImage('homeHeaderLogoImage', $formLocale)) {
 							$editData = true;
 						} else {
 							$setupForm->addError('homeHeaderLogoImage', Locale::translate('manager.setup.homeHeaderImageInvalid'));
 						}
 
-					} else if (Request::getUserVar('deleteHomeHeaderLogoImage')) {
+					} else if ($request->getUserVar('deleteHomeHeaderLogoImage')) {
 						$editData = true;
 						$setupForm->deleteImage('homeHeaderLogoImage', $formLocale);
 
-					} else if (Request::getUserVar('uploadPageHeaderTitleImage')) {
+					} else if ($request->getUserVar('uploadPageHeaderTitleImage')) {
 						if ($setupForm->uploadImage('pageHeaderTitleImage', $formLocale)) {
 							$editData = true;
 						} else {
 							$setupForm->addError('pageHeaderTitleImage', Locale::translate('manager.setup.pageHeaderTitleImageInvalid'));
 						}
 
-					} else if (Request::getUserVar('deletePageHeaderTitleImage')) {
+					} else if ($request->getUserVar('deletePageHeaderTitleImage')) {
 						$editData = true;
 						$setupForm->deleteImage('pageHeaderTitleImage', $formLocale);
 
-					} else if (Request::getUserVar('uploadPageHeaderLogoImage')) {
+					} else if ($request->getUserVar('uploadPageHeaderLogoImage')) {
 						if ($setupForm->uploadImage('pageHeaderLogoImage', $formLocale)) {
 							$editData = true;
 						} else {
 							$setupForm->addError('pageHeaderLogoImage', Locale::translate('manager.setup.pageHeaderLogoImageInvalid'));
 						}
 
-					} else if (Request::getUserVar('deletePageHeaderLogoImage')) {
+					} else if ($request->getUserVar('deletePageHeaderLogoImage')) {
 						$editData = true;
 						$setupForm->deleteImage('pageHeaderLogoImage', $formLocale);
 
-					} else if (Request::getUserVar('uploadHomepageImage')) {
+					} else if ($request->getUserVar('uploadHomepageImage')) {
 						if ($setupForm->uploadImage('homepageImage', $formLocale)) {
 							$editData = true;
 						} else {
 							$setupForm->addError('homepageImage', Locale::translate('manager.setup.homepageImageInvalid'));
 						}
 
-					} else if (Request::getUserVar('deleteHomepageImage')) {
+					} else if ($request->getUserVar('deleteHomepageImage')) {
 						$editData = true;
 						$setupForm->deleteImage('homepageImage', $formLocale);
-					} else if (Request::getUserVar('uploadPressStyleSheet')) {
+					} else if ($request->getUserVar('uploadPressStyleSheet')) {
 						if ($setupForm->uploadStyleSheet('pressStyleSheet')) {
 							$editData = true;
 						} else {
 							$setupForm->addError('pressStyleSheet', Locale::translate('manager.setup.pressStyleSheetInvalid'));
 						}
 
-					} else if (Request::getUserVar('deletePressStyleSheet')) {
+					} else if ($request->getUserVar('deletePressStyleSheet')) {
 						$editData = true;
 						$setupForm->deleteImage('pressStyleSheet');
 
-					} else if (Request::getUserVar('addNavItem')) {
+					} else if ($request->getUserVar('addNavItem')) {
 						// Add a navigation bar item
 						$editData = true;
 						$navItems = $setupForm->getData('navItems');
 						$navItems[$formLocale][] = array();
 						$setupForm->setData('navItems', $navItems);
 
-					} else if (($delNavItem = Request::getUserVar('delNavItem')) && count($delNavItem) == 1) {
+					} else if (($delNavItem = $request->getUserVar('delNavItem')) && count($delNavItem) == 1) {
 						// Delete a  navigation bar item
 						$editData = true;
 						list($delNavItem) = array_keys($delNavItem);
@@ -215,14 +215,14 @@ class SetupHandler extends ManagerHandler {
 							array_splice($navItems[$formLocale], $delNavItem, 1);
 							$setupForm->setData('navItems', $navItems);
 						}
-					} else if (Request::getUserVar('addCustomAboutItem')) {
+					} else if ($request->getUserVar('addCustomAboutItem')) {
 						// Add a custom about item
 						$editData = true;
 						$customAboutItems = $setupForm->getData('customAboutItems');
 						$customAboutItems[$formLocale][] = array();
 						$setupForm->setData('customAboutItems', $customAboutItems);
 
-					} else if (($delCustomAboutItem = Request::getUserVar('delCustomAboutItem')) && count($delCustomAboutItem) == 1) {
+					} else if (($delCustomAboutItem = $request->getUserVar('delCustomAboutItem')) && count($delCustomAboutItem) == 1) {
 						// Delete a custom about item
 						$editData = true;
 						list($delCustomAboutItem) = array_keys($delCustomAboutItem);
@@ -244,23 +244,23 @@ class SetupHandler extends ManagerHandler {
 				$notificationManager = new NotificationManager();
 				$notificationManager->createTrivialNotification('notification.notification', 'manager.setup.pressSetupUpdated');
 
-				Request::redirect(null, null, 'setup', $step+1);
+				$request->redirect(null, null, 'setup', $step+1);
 			} else {
 				$setupForm->display();
 			}
 
 		} else {
-			Request::redirect();
+			$request->redirect();
 		}
 	}
 
-	function downloadLayoutTemplate($args) {
-		$press =& Request::getPress();
+	function downloadLayoutTemplate($args, $request) {
+		$press =& $request->getPress();
 		$templates = $press->getSetting('templates');
 		import('classes.file.PressFileManager');
 		$pressFileManager = new PressFileManager($press);
 		$templateId = (int) array_shift($args);
-		if ($templateId >= count($templates) || $templateId < 0) Request::redirect(null, null, 'setup');
+		if ($templateId >= count($templates) || $templateId < 0) $request->redirect(null, null, 'setup');
 		$template =& $templates[$templateId];
 
 		$filename = "template-$templateId." . $pressFileManager->parseFileExtension($template['originalFilename']);
