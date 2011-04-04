@@ -11,7 +11,10 @@
 	// Attach the Information Center handler.
 	$(function() {ldelim}
 		$('#newNoteForm').pkpHandler(
-			'$.pkp.controllers.informationCenter.NewNoteHandler'
+			'$.pkp.controllers.form.AjaxFormHandler',
+			{ldelim}
+				baseUrl: '{$baseUrl|escape:"javascript"}'
+			{rdelim}
 		);
 	{rdelim});
 </script>

@@ -118,9 +118,7 @@ class InformationCenterHandler extends Handler {
 		assert ($note && $note->getAssocType() == $this->_getAssocType() && $note->getAssocId() == $this->_getAssocId());
 		$noteDao->deleteById($noteId);
 
-		$additionalAttributes = array('script' => "$('#note-$noteId').hide('slow')");
-		$json = new JSON(true, '', true, null, $additionalAttributes);
-
+		$json = new JSON(true);
 		return $json->getString();
 	}
 

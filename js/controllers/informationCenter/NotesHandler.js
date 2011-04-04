@@ -28,8 +28,8 @@
 		// Store the list fetch URL for later
 		this.fetchUrl_ = options.fetchUrl;
 
-		// Bind for changes in the note list (e.g. on new note publication)
-		this.bind('refreshNoteList', this.handleRefreshNoteList);
+		// Bind for changes in the note list (e.g.  new note or delete)
+		this.bind('formSubmitted', this.handleRefreshNoteList);
 
 		// Load a list of the current notes.
 		this.loadNoteList_();

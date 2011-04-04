@@ -8,18 +8,34 @@
  *
  *}
 
+{* These variables are both "safe" to be used unescaped. *}
 {assign var="noteId" value=$note->getId()}
-{assign var="user" value=$note->getUser()}
+{assign var="formId" value="deleteNoteForm-$noteId"}
+
+<script type="text/javascript">
+	$(function() {ldelim}
+			// Attach the form handler.
+			$('#{$formId}').pkpHandler('$.pkp.controllers.form.AjaxFormHandler', {ldelim}
+				baseUrl: '{$baseUrl|escape:"javascript"}'
+			{rdelim});
+	{rdelim});
+</script>
+
 <div id="note-{$noteId}">
 	<table width=100%>
 		<tr valign="top">
 			<td style="padding-right: 5px;">{$note->getDateCreated()|date_format:"%d %b %Y %T"}</td>
-			<td style="padding-right: 5px;">{$user->getFullName()|escape}</td>
+			<td style="padding-right: 5px;">
+				{assign var="noteUser" value=$note->getUser()}
+				{$noteUser->getFullName()|escape}
+			</td>
 			<td align="right">
-				{* FIXME: Not all roles should see this action. Bug #5975. *}
-				{url|assign:deleteNoteUrl op="deleteNote" noteId=$noteId params=$linkParams escape=false}
-				{confirm url=$deleteNoteUrl dialogText="informationCenter.deleteConfirm" button="#deleteNote-$noteId}
-				<a href="#" id="deleteNote-{$noteId}">{translate key="common.delete"}</a>
+				<form id="{$formId}" action="{url op="deleteNote" noteId=$noteId params=$linkParams}">
+					{assign var=deleteNoteButtonId value="deleteNote-$noteId"}
+					{include file="linkAction/buttonConfirmationLinkAction.tpl" buttonSelector="#$deleteNoteButtonId" dialogText="informationCenter.deleteConfirm"}
+					{* FIXME: Not all roles should see this action. Bug #5975. *}
+					<input type="submit" id="{$deleteNoteButtonId}" class="button" value="{translate key='common.delete'}" />
+				</form>
 			</td>
 		</tr>
 		<tr valign="top">
