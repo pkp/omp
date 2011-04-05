@@ -74,7 +74,7 @@ class UserGroupDAO extends PKPUserGroupDAO {
 
 	function assignGroupToStage($pressId, $userGroupId, $stageId) {
 		return $this->update(
-			'INSERT INTO user_group_stage (press_id, user_group_id, stage_id VALUES (?, ?, ?)',
+			'INSERT INTO user_group_stage (press_id, user_group_id, stage_id) VALUES (?, ?, ?)',
 			array((int) $pressId, (int) $userGroupId, (int) $stageId)
 		);
 	}
