@@ -67,7 +67,6 @@ class TinyMCEPlugin extends GenericPlugin {
 
 		$baseUrl = $templateManager->get_template_vars('baseUrl');
 		$additionalHeadData = $templateManager->get_template_vars('additionalHeadData');
-		$enableFields = join(',', $enableFields);
 		$allLocales = Locale::getAllLocales();
 		$localeList = array();
 		foreach ($allLocales as $key => $locale) {
@@ -95,7 +94,6 @@ class TinyMCEPlugin extends GenericPlugin {
 				mode : "specific_textareas",
 				editor_selector : "richContent",
 				language : "' . String::substr(Locale::getLocale(), 0, 2) . '",
-				elements : "' . $enableFields . '",
 				relative_urls : false,
 				forced_root_block : false,
 				paste_auto_cleanup_on_paste : true,
