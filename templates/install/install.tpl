@@ -61,7 +61,7 @@
 			{fbvFormSection title="installer.additionalLocales}
 				{foreach from=$localeOptions key=localeKey item=localeName}
 					{assign var=localeKeyEscaped value=$localeKey|escape}
-					{fbvElement type="checkbox" name="additionalLocales[]" id="additionalLocales-$localeKeyEscaped" value="localeKeyEscaped" translate=false label="manager.people.createUserSendNotify" checked=$sendNotify label=$localeName|escape} ({$localeKey|escape})
+					{fbvElement type="checkbox" name="additionalLocales[]" id="additionalLocales-$localeKeyEscaped" value=$localeKeyEscaped translate=false label="manager.people.createUserSendNotify" checked=$sendNotify label=$localeName|escape} ({$localeKey|escape})
 					{if !$localesComplete[$localeKey]}
 							<span class="pkp_controllers_form_error">*</span>
 							{assign var=incompleteLocaleFound value=1}
