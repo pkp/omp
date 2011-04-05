@@ -137,7 +137,7 @@ class AuthorDashboardHandler extends Handler {
 			$templateMgr->assign('showReviewAttachments', true);
 		}
 
-		return $templateMgr->fetchJson('authorDashboard/reviewRoundInfo.tpl');
+		return $templateMgr->fetch('authorDashboard/reviewRoundInfo.tpl');
 	}
 
 

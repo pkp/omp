@@ -21,6 +21,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function DivisionsListbuilderHandler() {
 		parent::SetupListbuilderHandler();
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 	}
 
 

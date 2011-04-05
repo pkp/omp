@@ -46,7 +46,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		parent::initialize($request);
 		// Basic configuration
 		$this->setTitle('submission.files');
-		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Free text input
+		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Multiselect
 		$this->setListTitle('editor.monograph.copyediting.currentFiles');
 
 		$this->loadList($request);

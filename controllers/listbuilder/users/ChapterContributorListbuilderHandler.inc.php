@@ -50,7 +50,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 		// Basic configuration
 		$this->setTitle('listbuilder.contributors.addContributor');
 		$this->setSourceTitle('common.name');
-		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Free text input
+		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Multiselect
 		$this->setListTitle('submission.submit.currentContributors');
 
 		$this->loadList($request);

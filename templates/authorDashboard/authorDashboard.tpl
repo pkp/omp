@@ -33,7 +33,7 @@
 	{if $stageId == $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW || $stageId == $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}{assign var="fillerClass" value="accepted"}
 	{elseif $stageId == $smarty.const.WORKFLOW_STAGE_ID_EDITING}{assign var="fillerClass" value="reviewed"}
 	{elseif $stageId == $smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}{assign var="fillerClass" value="copyedited"}
-	{elseif $stageId == 0}{assign var="fillerClass" value="published"}
+	{elseif $stageId == $smarty.const.WORKFLOW_STAGE_ID_PUBLISHED}{assign var="fillerClass" value="published"}
 	{else}{assign var="fillerClass" value=""}{/if}
 	<div id="authorTimeline" class="pkp_submissionTimeline">
 		<div id="timelineContainer" class="pkp_authorDashboard_timelineContainer">
@@ -49,7 +49,7 @@
 	</div>
 	<div style="clear:both;"></div>
 
-	{** User Alert**}
+	{** User Alert **}
 	<div id="userAlert"></div>
 	<br />
 
@@ -79,7 +79,6 @@
 		<div id="reviewContent">
 			{if $stageId > $smarty.const.WORKFLOW_STAGE_ID_SUBMISSION}
 				{assign var="currentReviewRound" value=$monograph->getCurrentRound()}
-				{init_tabs id="#reviewRoundTabs"}
 
 				<div id="reviewRoundTabs">
 					<ul>

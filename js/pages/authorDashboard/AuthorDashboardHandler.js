@@ -49,6 +49,8 @@ jQuery.pkp.pages =
 		// Forward data changed events triggered by the author actions
 		// to the corresponding grids.
 		this.forwardGridEvents_();
+
+		$('#reviewRoundTabs').tabs();
 	};
 	$.pkp.classes.Helper.inherits(
 			$.pkp.pages.authorDashboard.AuthorDashboardHandler,

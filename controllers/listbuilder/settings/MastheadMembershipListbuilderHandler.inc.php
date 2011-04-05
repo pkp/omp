@@ -110,7 +110,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 		// Basic configuration
 		$this->setTitle('manager.groups.membership.addMember');
 		$this->setSourceTitle('common.user');
-		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_BOUND); // Free text input
+		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_BOUND);
 		$this->setListTitle('manager.groups.existingUsers');
 
 		$this->setGroupId($request->getUserVar('groupId'));
