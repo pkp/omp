@@ -58,6 +58,14 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 	// Overridden methods from GridHandler
 	//
 	/**
+	 * @see GridHandler::getRequestArgs()
+	 */
+	function getRequestArgs() {
+		$requestArgs = array_merge(parent::getRequestArgs(), $this->getSelectionArgs());
+		return $requestArgs;
+	}
+
+	/**
 	 * @see GridHandler::loadData()
 	 */
 	function &loadData($request, $filter) {
@@ -76,16 +84,6 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 		}
 
 		return $submissionFiles;
-	}
-
-	/**
-	 * @see GridHandler::fetchGrid()
-	 */
-	function fetchGrid($args, &$request, $fetchParams = array()) {
-		// Retrieve and add the the request parameters required to
-		// specify the contents of this grid.
-		$fetchParams = array_merge($fetchParams, $this->getSelectionArgs());
-		return parent::fetchGrid($args, $request, $fetchParams);
 	}
 
 
@@ -115,17 +113,6 @@ class SelectableFileListGridHandler extends FileListGridHandler {
 		// By default we do not add any additional
 		// request parameters for the selection.
 		return array();
-	}
-
-	/**
-	 * Get a selection request parameter.
-	 * @param $key string The name of the parameter to retrieve.
-	 * @return mixed
-	 */
-	function getSelectionArg($key) {
-		$selectionArgs =& $this->getSelectionArgs();
-		assert(isset($selectionArgs[$key]));
-		return $selectionArgs[$key];
 	}
 
 	/**

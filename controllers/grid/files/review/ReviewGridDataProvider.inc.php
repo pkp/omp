@@ -16,6 +16,7 @@
 import('controllers.grid.files.FilesGridDataProvider');
 
 class ReviewGridDataProvider extends FilesGridDataProvider {
+
 	/** @var integer */
 	var $_reviewType;
 
@@ -40,7 +41,7 @@ class ReviewGridDataProvider extends FilesGridDataProvider {
 	function getAuthorizationPolicy(&$request, $args, $roleAssignments) {
 		$this->setUploaderRoles($roleAssignments);
 
-		// FIXME: Need to authorize review assignment, see #6200.
+		// FIXME: Need to authorize review type/round, see #6200.
 		// Get the review round and review type (internal/external) from the request
 		$reviewType = $request->getUserVar('reviewType');
 		$round = $request->getUserVar('round');

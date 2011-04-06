@@ -55,7 +55,7 @@ class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandl
 		$monograph =& $this->getMonograph();
 
 		import('controllers.grid.files.review.form.ManageReviewFilesForm');
-		$manageReviewFilesForm = new ManageReviewFilesForm($monograph->getId(), $this->getSelectionArg('reviewType'), $this->getSelectionArg('round'));
+		$manageReviewFilesForm = new ManageReviewFilesForm($monograph->getId(), $this->getRequestArg('reviewType'), $this->getRequestArg('round'));
 		$manageReviewFilesForm->readInputData();
 
 		if ($manageReviewFilesForm->validate()) {
@@ -77,7 +77,7 @@ class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandl
 	 * @see SelectableFileListGridHandler::getSelectionPolicy()
 	 */
 	function getSelectionPolicy(&$request, $args, $roleAssignments) {
-		// FIXME: Authorize review assignment, see #6200.
+		// FIXME: Authorize review round, see #6200.
 		// Retrieve the authorized selection.
 		$this->_selectionArgs = array(
 			'reviewType' => (int)$request->getUserVar('reviewType'),
@@ -102,7 +102,7 @@ class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandl
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$selectedRevisions =& $submissionFileDao->getRevisionsByReviewRound(
 			$monograph->getId(),
-			$this->getSelectionArg('reviewType'), $this->getSelectionArg('round')
+			$this->getRequestArg('reviewType'), $this->getRequestArg('round')
 		);
 		return array_keys($selectedRevisions);
 	}

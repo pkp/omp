@@ -86,9 +86,8 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 
 		// Add signoff user group columns.
 		import('controllers.grid.files.SignoffStatusGridColumn');
-		$dataProvider =& $this->getDataProvider();
 		foreach($signoffUserGroups as $signoffUserGroup) { /* @var $uploaderUserGroup UserGroup */
-			$this->addColumn(new SignoffStatusGridColumn($signoffUserGroup, $this->getStageId(), $dataProvider->getRequestArgs()));
+			$this->addColumn(new SignoffStatusGridColumn($signoffUserGroup, $this->getStageId(), $this->getRequestArgs()));
 		}
 	}
 

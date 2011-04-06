@@ -81,8 +81,6 @@ class StageParticipantGridHandler extends GridHandler {
 		$this->setTitle('submission.submit.stageParticipants');
 
 		// Grid actions
-		$monograph =& $this->getMonograph();
-		$monographId = $monograph->getId();
 		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$router =& $request->getRouter();
 		// FIXME: Not all roles should see this action. Bug #5975.
@@ -91,8 +89,8 @@ class StageParticipantGridHandler extends GridHandler {
 				'addStageParticipant',
 				new AjaxModal(
 					$router->url(
-						$request, null, null, 'addStageParticipant', null,
-						array('monographId' => $monographId, 'stageId' => $this->getStageId())
+						$request, null, null, 'addStageParticipant',
+						null, $this->getRequestArgs()
 					),
 					__('submission.submit.addStageParticipant'),
 					'fileManagement'
@@ -133,9 +131,19 @@ class StageParticipantGridHandler extends GridHandler {
 	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
-		$monograph =& $this->getMonograph();
-		$row = new StageParticipantGridRow($monograph->getId(), $this->getStageId());
+		$row = new StageParticipantGridRow();
 		return $row;
+	}
+
+	/**
+	 * @see GridHandler::getRequestArgs()
+	 */
+	function getRequestArgs() {
+		$monograph =& $this->getMonograph();
+		return array(
+			'monographId' => $monograph->getId(),
+			'stageId' => $this->getStageId()
+		);
 	}
 
 	/**
@@ -163,18 +171,6 @@ class StageParticipantGridHandler extends GridHandler {
 			);
 		}
 		return $elements;
-	}
-
-	/**
-	 * @see GridHandler::fetchGrid()
-	 */
-	function fetchGrid($args, $request) {
-		$monograph =& $this->getMonograph();
-		$fetchParams = array(
-			'monographId' => $monograph->getId(),
-			'stageId' => $this->getStageId()
-		);
-		return parent::fetchGrid($args, $request, $fetchParams);
 	}
 
 

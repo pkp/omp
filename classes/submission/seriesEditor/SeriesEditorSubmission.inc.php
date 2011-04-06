@@ -163,10 +163,10 @@ class SeriesEditorSubmission extends Monograph {
 		return STATUS_QUEUED_UNASSIGNED;
 	}
 
+
 	//
 	// Review Assignments
 	//
-
 	/**
 	 * Get review assignments for this monograph.
 	 * @return array ReviewAssignments
@@ -197,10 +197,10 @@ class SeriesEditorSubmission extends Monograph {
 		return $this->removedReviewAssignments;
 	}
 
+
 	//
 	// Editor Decisions
 	//
-
 	/**
 	 * Get editor decisions.
 	 * @return array

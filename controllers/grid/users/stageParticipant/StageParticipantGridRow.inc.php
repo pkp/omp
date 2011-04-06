@@ -16,43 +16,11 @@ import('lib.pkp.classes.controllers.grid.GridRow');
 
 class StageParticipantGridRow extends GridRow {
 
-	/** @var integer */
-	var $_monographId;
-
-	/** @var integer */
-	var $_stageId;
-
-
 	/**
 	 * Constructor
-	 * @param $monographId integer
-	 * @param $stageId integer
 	 */
-	function StageParticipantGridRow($monographId, $stageId) {
-		$this->_monographId = (int)$monographId;
-		$this->_stageId = (int)$stageId;
-
+	function StageParticipantGridRow() {
 		parent::GridRow();
-	}
-
-
-	//
-	// Getters and Setters
-	//
-	/**
-	 * Get the monograph id.
-	 * @return integer
-	 */
-	function getMonographId() {
-		return $this->_monographId;
-	}
-
-	/**
-	 * Get the workflow stage id.
-	 * @return integer
-	 */
-	function getStageId() {
-		return $this->_stageId;
 	}
 
 
@@ -72,11 +40,8 @@ class StageParticipantGridRow extends GridRow {
 		if (!empty($rowId) && is_numeric($rowId)) {
 			// Only add row actions if this is an existing row.
 			$router =& $request->getRouter();
-			$actionArgs = array(
-				'monographId' => $this->getMonographId(),
-				'stageId' => $this->getStageId(),
-				'signoffId' => $rowId
-			);
+			$actionArgs = $this->getRequestArgs();
+			$actionArgs['signoffId'] = $rowId;
 			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 			// FIXME: Not all roles should see this action. Bug #5975.
 			$this->addAction(

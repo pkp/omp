@@ -28,8 +28,6 @@ define('FILE_GRID_DOWNLOAD_ALL', 0x02);
 define('FILE_GRID_DELETE', 0x04);
 
 class SubmissionFilesGridHandler extends GridHandler {
-	/** @var GridDataProvider */
-	var $_dataProvider;
 
 	/** @var integer */
 	var $_stageId;
@@ -52,13 +50,12 @@ class SubmissionFilesGridHandler extends GridHandler {
 	 *  FILE_GRID_* capabilities set.
 	 */
 	function SubmissionFilesGridHandler(&$dataProvider, $stageId, $capabilities) {
-		$this->_dataProvider =& $dataProvider;
 		$this->_stageId = (int)$stageId;
 		$this->_canAdd = (boolean)($capabilities & FILE_GRID_ADD);
 		$this->_canDownloadAll = (boolean)($capabilities & FILE_GRID_DOWNLOAD_ALL);
 		$this->_canDelete = (boolean)($capabilities & FILE_GRID_DELETE);
 
-		parent::GridHandler();
+		parent::GridHandler($dataProvider);
 	}
 
 
@@ -66,32 +63,11 @@ class SubmissionFilesGridHandler extends GridHandler {
 	// Getters and Setters
 	//
 	/**
-	 * Get the data provider.
-	 * @return FilesGridDataProvider
-	 */
-	function &getDataProvider() {
-		return $this->_dataProvider;
-	}
-
-	/**
 	 * Get the workflow stage id.
 	 * @return integer
 	 */
 	function getStageId() {
 		return $this->_stageId;
-	}
-
-	/**
-	 * Get a grid request parameter
-	 * from the data provider.
-	 * @param $key string The name of the parameter to retrieve.
-	 * @return mixed
-	 */
-	function getRequestArg($key) {
-		$dataProvider =& $this->getDataProvider();
-		$requestArgs =& $dataProvider->getRequestArgs();
-		assert(isset($requestArgs[$key]));
-		return $requestArgs[$key];
 	}
 
 	/**
@@ -135,19 +111,6 @@ class SubmissionFilesGridHandler extends GridHandler {
 	// Implement template methods from PKPHandler
 	//
 	/**
-	 * @see PKPHandler::authorize()
-	 */
-	function authorize(&$request, &$args, $roleAssignments) {
-		$dataProvider =& $this->getDataProvider();
-		$this->addPolicy($dataProvider->getAuthorizationPolicy(&$request, &$args, $roleAssignments));
-		$success = parent::authorize($request, $args, $roleAssignments);
-		if ($success === true) {
-			$dataProvider->setAuthorizedContext($this->getAuthorizedContext());
-		}
-		return $success;
-	}
-
-	/**
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
@@ -162,6 +125,19 @@ class SubmissionFilesGridHandler extends GridHandler {
 			)
 		);
 
+		// Add grid-level actions.
+		$dataProvider =& $this->getDataProvider();
+		if($this->canAdd()) {
+			$this->addAction($dataProvider->getAddFileAction($request));
+		}
+
+		// Test whether the tar binary is available for the export to work, if so, add 'download all' grid action
+		$tarBinary = Config::getVar('cli', 'tar');
+		if ($this->canDownloadAll() && !empty($tarBinary) && file_exists($tarBinary) && $this->hasGridDataElements($request)) {
+			import('controllers.grid.files.fileList.linkAction.DownloadAllLinkAction');
+			$this->addAction(new DownloadAllLinkAction($request, $this->getRequestArgs()));
+		}
+
 		// The file name column is common to all file grid types.
 		$this->addColumn(new FileNameGridColumn($this->getStageId()));
 	}
@@ -171,45 +147,11 @@ class SubmissionFilesGridHandler extends GridHandler {
 	// Overridden methods from GridHandler
 	//
 	/**
-	 * @see GridHandler::loadData()
-	 */
-	function &loadData($request, $filter) {
-		// Populate the grid with data.
-		$dataProvider =& $this->getDataProvider();
-		return $dataProvider->loadData();
-	}
-
-	/**
 	 * @see GridHandler::getRowInstance()
 	 */
 	function &getRowInstance() {
 		$row = new SubmissionFilesGridRow($this->canDelete(), $this->getStageId());
 		return $row;
-	}
-
-	/**
-	 * @see GridHandler::fetchGrid()
-	 */
-	function fetchGrid($args, &$request, $fetchParams = array()) {
-		// Add grid-level actions.
-		$dataProvider =& $this->getDataProvider();
-		if($this->canAdd()) {
-			$this->addAction($dataProvider->getAddFileAction($request));
-		}
-
-		// Retrieve and add the the request parameters required to
-		// specify the contents of this grid.
-		$fetchParams = array_merge($fetchParams, $dataProvider->getRequestArgs());
-
-		// Test whether the tar binary is available for the export to work, if so, add 'download all' grid action
-		$tarBinary = Config::getVar('cli', 'tar');
-		if ($this->canDownloadAll() && !empty($tarBinary) && file_exists($tarBinary) && $this->hasGridDataElements($request)) {
-			import('controllers.grid.files.fileList.linkAction.DownloadAllLinkAction');
-			$this->addAction(new DownloadAllLinkAction($request, $fetchParams));
-		}
-
-		// Fetch the grid.
-		return parent::fetchGrid($args, $request, $fetchParams);
 	}
 
 
