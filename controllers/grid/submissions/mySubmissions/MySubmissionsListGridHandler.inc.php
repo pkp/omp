@@ -48,6 +48,7 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 				null,
 				'controllers/grid/gridCell.tpl',
 				$cellProvider
+				array('html' => true)
 			)
 		);
 
