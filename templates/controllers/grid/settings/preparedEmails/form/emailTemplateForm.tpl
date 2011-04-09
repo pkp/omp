@@ -14,7 +14,7 @@
 	{rdelim});
 </script>
 
-<form method="post" id="managePreparedEmailForm" action="{url op="updatePreparedEmail"}">
+<form method="post" id="managePreparedEmailForm" class="pkp_controllers_form" action="{url op="updatePreparedEmail"}">
 	{include file="common/formErrors.tpl"}
 
 	{if $isNewTemplate}
@@ -40,18 +40,16 @@
 		{/fbvFormArea}
 	{/if}
 
-	{foreach from=$supportedLocales item=localeName key=localeKey}
-		{fbvFormArea id="emailTemplateDetails"}
-			<h3>{translate key="manager.emails.details"}</h3>
-			{fbvFormSection title="email.subject" required="true" for="subject-$localeKey"}
-				{fbvTextInput name="subject[$localeKey]" id="subject-$localeKey" value=$subject[$localeKey] maxlength="120"}
-			{/fbvFormSection}
+	{fbvFormArea id="emailTemplateDetails"}
+		<h3>{translate key="manager.emails.details"}</h3>
+		{fbvFormSection title="email.subject" required="true" for="subject"}
+			{fbvTextInput multilingual="true" name="subject" id="subject" value=$subject maxlength="120"}
+		{/fbvFormSection}
 
-			{fbvFormSection title="email.body" required="true" for="body-$localeKey"}
-				{fbvTextArea name="body[$localeKey]" id="body-$localeKey" value=$body[$localeKey] size=$fbvStyles.size.LARGE}
-			{/fbvFormSection}
-		{/fbvFormArea}
-	{/foreach}
+		{fbvFormSection title="email.body" required="true" for="body"}
+			{fbvTextArea multilingual="true" name="body" id="body" value=$body size=$fbvStyles.size.LARGE}
+		{/fbvFormSection}
+	{/fbvFormArea}
 
 	{include file="form/formButtons.tpl" submitText="common.save"}
 </form>

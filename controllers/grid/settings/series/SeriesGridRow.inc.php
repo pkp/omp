@@ -44,28 +44,30 @@ class SeriesGridRow extends GridRow {
 				'gridId' => $this->getGridId(),
 				'rowId' => $rowId
 			);
+
+			import('lib.pkp.classes.linkAction.request.AjaxModal');
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'editSeries',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'editSeries', null, $actionArgs),
-					'grid.action.edit',
-					null,
-					'edit'
-				)
+					new AjaxModal(
+						$router->url($request, null, null, 'editSeries', null, $actionArgs),
+						__('grid.action.edit'),
+						null,
+						true),
+					__('grid.action.edit'),
+					'edit')
 			);
+
+			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'deleteSeries',
-					LINK_ACTION_MODE_CONFIRM,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'deleteSeries', null, $actionArgs),
-					'grid.action.delete',
-					null,
-					'delete',
-					'common.confirmDelete'
-				)
+					new ConfirmationModal(
+						__('common.confirmDelete'),
+						__('grid.action.delete'),
+						$router->url($request, null, null, 'deleteSeries', null, $actionArgs)),
+					__('grid.action.delete'),
+					'delete')
 			);
 		}
 

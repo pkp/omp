@@ -1,5 +1,5 @@
 {**
- * step4.tpl
+ * templates/manager/setup/step4.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -9,27 +9,22 @@
 {assign var="pageTitle" value="manager.setup.managingThePress"}
 {include file="manager/setup/setupHeader.tpl"}
 
-<form id="setupForm" method="post" action="{url op="saveSetup" path="4"}" enctype="multipart/form-data">
-{include file="common/formErrors.tpl"}
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#setupFormStep4').pkpHandler('$.pkp.controllers.form.FormHandler');
+	{rdelim});
+</script>
 
-{if count($formLocales) > 1}
-{fbvFormArea id="locales"}
-{fbvFormSection title="form.formLanguage" for="languageSelector"}
-	{fbvCustomElement}
-		{url|assign:"setupFormUrl" op="setup" path="1"}
-		{form_language_chooser form="setupForm" url=$setupFormUrl}
-		<span class="instruct">{translate key="form.formLanguage.description"}</span>
-	{/fbvCustomElement}
-{/fbvFormSection}
-{/fbvFormArea}
-{/if} {* count($formLocales) > 1*}
+<form id="setupFormStep4" class="pkp_controllers_form" method="post" action="{url op="saveSetup" path="4"}" enctype="multipart/form-data">
+{include file="common/formErrors.tpl"}
 
 <h3>4.1 {translate key="manager.setup.securitySettings"}</h3>
 
 {fbvFormArea id="openAccessPolicyContainer"}
 {fbvFormSection title="manager.setup.openAccessPolicy"}
 	<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
-	{fbvElement type="textarea" name="openAccessPolicy[$formLocale]" id="openAccessPolicy" value=$openAccessPolicy[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+	{fbvTextArea multilingual="true" name="openAccessPolicy" id="openAccessPolicy" value=$openAccessPolicy size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 {/fbvFormSection}
 {/fbvFormArea}
 
@@ -106,7 +101,7 @@
 {fbvFormArea id="announcementsIntroductionContainer"}
 {fbvFormSection title="manager.setup.announcementsIntroduction"}
 	<p>{translate key="manager.setup.announcementsIntroductionDescription"}</p>
-	{fbvElement type="textarea" name="announcementsIntroduction[$formLocale]" id="announcementsIntroduction" value=$announcementsIntroduction[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+	{fbvTextArea multilingual="true" name="announcementsIntroduction" id="announcementsIntroduction" value=$announcementsIntroduction size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 {/fbvFormSection}
 {/fbvFormArea}
 
@@ -141,13 +136,13 @@
 
 {fbvFormArea id="searchEngineIndexing"}
 {fbvFormSection title="common.description" float=$fbvStyles.float.LEFT}
-	{fbvElement type="text" id="searchDescription" name="searchDescription[$formLocale]" value=$searchDescription[$formLocale] size=$fbvStyles.size.LARGE}
+	{fbvTextInput multilingual="true" id="searchDescription" name="searchDescription" value=$searchDescription size=$fbvStyles.size.LARGE}
 {/fbvFormSection}
 {fbvFormSection title="common.keywords" float=$fbvStyles.float.RIGHT}
-	{fbvElement type="text" id="searchKeywords" name="searchKeywords[$formLocale]" value=$searchKeywords[$formLocale] size=$fbvStyles.size.LARGE}
+	{fbvTextInput multilingual="true" id="searchKeywords" name="searchKeywords" value=$searchKeywords size=$fbvStyles.size.LARGE}
 {/fbvFormSection}
 {fbvFormSection title="manager.setup.customTags"}
-	{fbvElement type="textarea" id="customHeaders" name="customHeaders[$formLocale]" value=$customHeaders[$formLocale] measure=$fbvStyles.measure.1OF2}
+	{fbvTextArea multilingual="true" id="customHeaders" name="customHeaders" value=$customHeaders measure=$fbvStyles.measure.1OF2}
 {/fbvFormSection}
 {/fbvFormArea}
 

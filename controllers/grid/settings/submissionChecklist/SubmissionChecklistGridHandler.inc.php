@@ -22,7 +22,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 	function SubmissionChecklistGridHandler() {
 		parent::SetupGridHandler();
 		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'addItem', 'editItem', 'updateItem', 'deleteItem'));
+				array('fetchGrid', 'fetchRow', 'addItem', 'editItem', 'updateItem', 'deleteItem'));
 	}
 
 	//
@@ -45,16 +45,18 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		$this->setGridDataElements($submissionChecklist[Locale::getLocale()]);
 
 		// Add grid-level actions
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$router =& $request->getRouter();
 		$this->addAction(
-			new LegacyLinkAction(
+			new LinkAction(
 				'addItem',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, null, 'addItem', null, array('gridId' => $this->getId())),
-				'grid.action.addItem'
-			),
-			GRID_ACTION_POSITION_ABOVE
+				new AjaxModal(
+					$router->url($request, null, null, 'addItem', null, array('gridId' => $this->getId())),
+					__('grid.action.addItem'),
+					null,
+					true),
+				__('grid.action.addItem'),
+				'addItem')
 		);
 
 		// Columns
@@ -111,11 +113,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		$submissionChecklistId = isset($args['rowId']) ? $args['rowId'] : null;
 		$submissionChecklistForm = new SubmissionChecklistForm($submissionChecklistId);
 
-		if ($submissionChecklistForm->isLocaleResubmit()) {
-			$submissionChecklistForm->readInputData();
-		} else {
-			$submissionChecklistForm->initData($args, $request);
-		}
+		$submissionChecklistForm->initData($args, $request);
 
 		$json = new JSON(true, $submissionChecklistForm->fetch($request));
 		return $json->getString();
@@ -138,23 +136,11 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 
 		if ($submissionChecklistForm->validate()) {
 			$submissionChecklistForm->execute($args, $request);
-
-			// prepare the grid row data
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$checklistItem = $submissionChecklistForm->getData('checklistItem');
-			// use of 'content' as key is for backwards compatibility
-			$rowData = array('content' => $checklistItem[Locale::getLocale()]);
-			$row->setId($submissionChecklistForm->submissionChecklistId);
-			$row->setData($rowData);
-			$row->initialize($request);
-
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
+			return DAO::getDataChangedEvent($submissionChecklistForm->submissionChecklistId);
 		} else {
 			$json = new JSON(false);
+			return $json->getString();
 		}
-
-		return $json->getString();
 	}
 
 	/**
@@ -187,8 +173,7 @@ class SubmissionChecklistGridHandler extends SetupGridHandler {
 		}
 
 		$press->updateSetting('submissionChecklist', $submissionChecklistAll, 'object', true);
-		$json = new JSON(true);
-		return $json->getString();
+		return DAO::getDataChangedEvent($rowId);
 	}
 }
 

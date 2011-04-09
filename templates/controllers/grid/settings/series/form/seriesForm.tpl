@@ -1,18 +1,25 @@
 {**
- * seriesForm.tpl
+ * templates/controllers/grid/settings/series/form/seriesForm.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Group form under press management.
+ * Series form under press management.
  *}
 
-<form id="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries"}">
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#seriesForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+	{rdelim});
+</script>
+
+<form id="seriesForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="mastheadInfo"}
 {fbvFormSection title="common.name" required="true" for="title"}
-	{fbvElement type="text" id="title" value="$title" maxlength="80" required="true"}
+	{fbvTextInput multilingual="true" id="title" value="$title" maxlength="80"}
 {/fbvFormSection}
 {fbvFormSection title="manager.setup.division" for="context"}
 <select name="division" class="field select">
@@ -24,8 +31,8 @@
 {/fbvFormSection}
 
 
-{fbvFormSection title="user.affiliation" for="context"}
- 	{fbvElement type="text" id="affiliation" value="$affiliation" maxlength="80" required="true"}
+{fbvFormSection title="user.affiliation" for="context" required="true"}
+ 	{fbvTextInput multilingual="true" id="affiliation" value="$affiliation" maxlength="80"}
 {/fbvFormSection}
 {/fbvFormArea}
 
@@ -41,11 +48,12 @@
 
 <br />
 {if $seriesId}
-	<input type="hidden" name="seriesId" value="{$seriesId}"/>
-	{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId}
-	{* Need a random div ID to load listbuilders in modals *}
-	{load_url_in_div id= url=$seriesEditorsUrl}
+	<div id="seriesEditorsContainer">
+		<input type="hidden" name="seriesId" value="{$seriesId}"/>
+		{url|assign:seriesEditorsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.SeriesEditorsListbuilderHandler" op="fetch" seriesId=$seriesId}
+		{load_url_in_div id="seriesEditorsContainer" url=$seriesEditorsUrl}
+	</div>
 {/if}
-
+{include file="form/formButtons.tpl" submitText="common.save"}
 </form>
 

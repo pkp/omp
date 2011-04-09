@@ -27,7 +27,7 @@ class SeriesForm extends Form {
 		parent::Form('controllers/grid/settings/series/form/seriesForm.tpl');
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'title', 'required', 'manager.setup.form.series.nameRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.setup.form.series.nameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -57,10 +57,10 @@ class SeriesForm extends Form {
 		if (isset($series) ) {
 			$this->_data = array(
 				'seriesId' => $this->seriesId,
-				'title' => $series->getLocalizedTitle(),
+				'title' => $series->getTitle(null),
 				'divisions' => $divisionsArray,
 				'currentDivision' => $series->getDivisionId(),
-				'affiliation' => $series->getLocalizedAffiliation()
+				'affiliation' => $series->getAffiliation(null)
 			);
 		} else {
 			$this->_data = array(
@@ -95,7 +95,7 @@ class SeriesForm extends Form {
 	}
 
 	/**
-	 * Save email template.
+	 * Save series.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
@@ -103,27 +103,43 @@ class SeriesForm extends Form {
 		$seriesDao =& DAORegistry::getDAO('SeriesDAO');
 		$press =& $request->getPress();
 
-		// Update or insert group group
+		// Update or insert series
 		if (!isset($this->seriesId)) {
 			import('classes.press.Series');
 			$series = new Series();
-
 			$series->setPressId($press->getId());
-			$series->setTitle($this->getData('title'), Locale::getLocale()); // Localized
-			$series->setAffiliation($this->getData('affiliation'), Locale::getLocale()); // Localized
 			$series->setDivisionId($this->getData('division'));
-
+			$series = $this->_setSeriesLocaleFields($series, $request);
 			$this->seriesId = $seriesDao->insertObject($series);
 		} else {
 			$series =& $seriesDao->getById($this->seriesId);
 			$series->setPressId($press->getId());
-			$series->setTitle($this->getData('title'), Locale::getLocale()); // Localized
-			$series->setAffiliation($this->getData('affiliation'), Locale::getLocale()); // Localized
 			$series->setDivisionId($this->getData('division'));
-
+			$series = $this->_setSeriesLocaleFields($series, $request);
 			$seriesDao->updateObject($series);
 		}
 		return true;
+	}
+
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Set locale fields on a Series object.
+	 * @param Series
+	 * @param Request
+	 * @return UserGroup
+	 */
+	function _setSeriesLocaleFields($series, $request) {
+
+		$title = $this->getData('title');
+		$affiliation = $this->getData('affiliation');
+
+		$series->setData('title', $title, null);
+		$series->setData('affiliation', $affiliation, null);
+
+		return $series;
 	}
 }
 

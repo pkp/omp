@@ -1,5 +1,5 @@
 {**
- * groupForm.tpl
+ * templates/controllers/grid/settings/masthead/form/groupForm.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -7,27 +7,20 @@
  * Group form under press management.
  *}
 
-<form id="groupForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.masthead.MastheadGridHandler" op="updateGroup"}">
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#groupForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+	{rdelim});
+</script>
+
+<form id="groupForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.masthead.MastheadGridHandler" op="updateGroup"}">
 
 {include file="common/formErrors.tpl"}
-<table class="data" width="100%">
-{if count($formLocales) > 1}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-		<td width="80%" class="value">
-			{if $group}{url|assign:"groupFormUrl" op="editGroup" path=$group->getId()}
-			{else}{url|assign:"groupFormUrl" op="createGroup"}
-			{/if}
-			{form_language_chooser form="groupForm" url=$groupFormUrl}
-			<span class="instruct">{translate key="form.formLanguage.description"}</span>
-		</td>
-	</tr>
-{/if}
-</table>
 
 {fbvFormArea id="mastheadInfo"}
 {fbvFormSection title="manager.groups.title" required="true" for="title"}
-	{fbvElement type="text" id="title" value=$title.$formLocale maxlength="80" required="true"}
+	{fbvTextInput multilingual="true" id="title" value=$title name="title" maxlength="80"}
 {/fbvFormSection}
 {fbvFormSection title="common.type" for="context"}
 	{foreach from=$groupContextOptions item=groupContextOptionKey key=groupContextOptionValue}
@@ -43,11 +36,12 @@
 
 <br />
 {if $group}
-	<input type="hidden" name="groupId" value="{$group->getId()}"/>
-	{url|assign:mastheadMembersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.MastheadMembershipListbuilderHandler" op="fetch" groupId=$group->getId()}
-	{* Need a random div ID to load listbuilders in modals *}
-	{load_url_in_div id= url=$mastheadMembersUrl}
+<input type="hidden" name="groupId" value="{$group->getId()}"/>
+	<div id="membershipContainer">
+		{url|assign:mastheadMembersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.MastheadMembershipListbuilderHandler" op="fetch" groupId=$group->getId()}
+		{load_url_in_div id="membershipContainer" url=$mastheadMembersUrl}
+	</div>
 {/if}
-
+{include file="form/formButtons.tpl" submitText="common.save"}
 </form>
 

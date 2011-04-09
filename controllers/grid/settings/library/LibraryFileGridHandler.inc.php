@@ -69,8 +69,11 @@ class LibraryFileGridHandler extends SetupGridHandler {
 	function initialize(&$request) {
 		parent::initialize($request);
 
+		$router =& $request->getRouter();
+		$context =& $router->getContext($request);
+
 		import('classes.file.LibraryFileManager');
-		$libraryFileManager = new LibraryFileManager();
+		$libraryFileManager = new LibraryFileManager($context->getId());
 
 		// Fetch and validate fileType (validated in getNameFromType)
 		$fileType = (int) $request->getUserVar('fileType');
@@ -84,9 +87,6 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION));
 
 		// Elements to be displayed in the grid
-		$router =& $request->getRouter();
-		$context =& $router->getContext($request);
-
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$libraryFiles =& $libraryFileDao->getByPressId($context->getId(), $this->getFileType());
 		$this->setGridDataElements($libraryFiles);

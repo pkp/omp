@@ -523,6 +523,24 @@ table.pkp_listing td.separator {
   background-position:98% 50%;
   background-image:url(../lib/pkp/templates/images/structure/flags/te_ST.png) !important;
 }
+.pkp_controllers_form .pkp_controllers_form_localization_container textarea.locale_en_US {
+  margin:0;
+  background-repeat:no-repeat;
+  background-position:98% 97%;
+  background-image:url(../lib/pkp/templates/images/structure/flags/en_US.png) !important;
+}
+.pkp_controllers_form .pkp_controllers_form_localization_container textarea.locale_fr_CA {
+  margin:0;
+  background-repeat:no-repeat;
+  background-position:98% 97%;
+  background-image:url(../lib/pkp/templates/images/structure/flags/fr_CA.png) !important;
+}
+.pkp_controllers_form .pkp_controllers_form_localization_container textarea.locale_te_ST {
+  margin:0;
+  background-repeat:no-repeat;
+  background-position:98% 97%;
+  background-image:url(../lib/pkp/templates/images/structure/flags/te_ST.png) !important;
+}
 div.pkp_controllers_grid div.wrapper {
   margin:10px;
   padding:20px;

@@ -31,7 +31,7 @@ class GroupForm extends Form {
 		parent::Form('controllers/grid/settings/masthead/form/groupForm.tpl');
 
 		// Group title is provided
-		$this->addCheck(new FormValidator($this, 'title', 'required', 'manager.groups.form.groupTitleRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'title', 'required', 'manager.groups.form.groupTitleRequired', Locale::getPrimaryLocale()));
 		$this->addCheck(new FormValidatorPost($this));
 
 	}
@@ -99,7 +99,15 @@ class GroupForm extends Form {
 
 		$this->group->setAssocType(ASSOC_TYPE_PRESS);
 		$this->group->setAssocId($press->getId());
-		$this->group->setTitle($this->getData('title'), Locale::getLocale()); // Localized
+		$supportedLocales = $press->getSupportedLocaleNames();
+		$title = $this->getData('title');
+		if (!empty($supportedLocales)) {
+			foreach ($press->getSupportedLocaleNames() as $localeKey => $localeName) {
+				$this->group->setTitle($title[$localeKey], $localeKey);
+			}
+		} else {
+			$this->group->setTitle($this->getData('title'), Locale::getLocale()); // Localized
+		}
 		$this->group->setContext($this->getData('context'));
 
 		// Eventually this will be a general Groups feature; for now,

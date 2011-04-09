@@ -448,6 +448,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.submissionGuidelines">Submission guidelines</message>
 	<message key="manager.setup.submissionPreparationChecklist">Submission Preparation Checklist</message>
 	<message key="manager.setup.submissionPreparationChecklistDescription">On making a submission to the press, authors are first asked to check each item on the Submission Preparation Checklist as completed, before proceeding. The checklist also appears in the Author Guidelines, under About the Press. The list can be edited below, but all items on the list will require a checkmark before authors can proceed with their submission.</message>
+	<message key="maganer.setup.submissionChecklistItemRequired">Checklist item is required.</message>
 	<message key="manager.setup.workflow">Workflow</message>
 	<message key="manager.setup.submissions.description">Author guidelines, copyright, and indexing (including registration).</message>
 	<message key="manager.setup.technicalSupportContact">Technical Support Contact</message>

@@ -1,5 +1,5 @@
 {**
- * genreForm.tpl
+ * templates/controllers/grid/settings/genre/form/genreForm.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -7,15 +7,22 @@
  * Genre form under press management.
  *}
 
-<form id="genreForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.genre.GenreGridHandler" op="updateGenre"}">
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#genreForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+	{rdelim});
+</script>
+
+<form id="genreForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.genre.GenreGridHandler" op="updateGenre"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="genreInfo"}
-{fbvFormSection title="common.name" for="name" required=1}
-	{fbvElement type="text" id="name" value="$name" maxlength="80" required=1}
+{fbvFormSection title="common.name" for="name" required="true"}
+	{fbvTextInput multilingual="true" id="name" value="$name" maxlength="80"}
 {/fbvFormSection}
-{fbvFormSection title="common.designation" for="designation" required=1}
-	{fbvElement type="text" id="designation" value="$designation" maxlength="80" required=1}
+{fbvFormSection title="common.designation" for="designation" required="true"}
+	{fbvTextInput multilingual="true" id="designation" value="$designation" maxlength="80"}
 {/fbvFormSection}
 {fbvFormSection title="manager.setup.sortableByComponent"}
 	{fbvElement type="checkbox" id="sortable" checked=$sortable label="manager.setup.genres.sortable"}
@@ -34,6 +41,6 @@
 {if $genreId}
 	<input type="hidden" name="genreId" value="{$genreId|escape}" />
 {/if}
-
+{include file="form/formButtons.tpl" submitText="common.save"}
 </form>
 
