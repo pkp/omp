@@ -24,7 +24,7 @@
 	{assign var="passwordRequired" value="true"}
 {/if} {* !$userId *}
 
-<form id="userForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserGridHandler" op="updateUser"}">
+<form id="userForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserGridHandler" op="updateUser"}">
 	<div id="userFormContainer">
 		<div id="userDetails" class="full left">
 		{if $userId}
@@ -135,12 +135,12 @@
 						{fbvSelect name="gender" id="gender" defaultLabel="" defaultValue="" from=$genderOptions translate="true" selected=$gender}
 					{/fbvFormSection}
 					{fbvFormSection title="user.affiliation" for="affiliation"}
-						{fbvTextArea name="affiliation[$formLocale]" id="affiliation" value=$affiliation[$formLocale] size=$fbvStyles.size.SMALL}
+						{fbvTextArea multilingual="true" name="affiliation" id="affiliation" value=$affiliation size=$fbvStyles.size.SMALL}
 						<br />
 						<span class="instruct">{translate key="user.affiliation.description"}</span>
 					{/fbvFormSection}
 					{fbvFormSection title="user.signature" for="signature"}
-						{fbvTextArea name="signature[$formLocale]" id="signature" value=$signature[$formLocale] size=$fbvStyles.size.SMALL}
+						{fbvTextArea multilingual="true" name="signature" id="signature" value=$signature size=$fbvStyles.size.SMALL}
 					{/fbvFormSection}
 					{fbvFormSection title="user.url" for="userUrl"}
 						{fbvTextInput name="userUrl" id="userUrl" value=$userUrl maxlength="90" size=$fbvStyles.size.MEDIUM}
@@ -168,7 +168,7 @@
 						{fbvSelect name="country" id="country" defaultLabel="" defaultValue="" from=$countries selected=$country translate="0"}
 					{/fbvFormSection}
 					{fbvFormSection title="user.biography" for="biography"}
-						{fbvTextArea name="biography[$formLocale]" id="biography" value=$biography[$formLocale] size=$fbvStyles.size.SMALL}
+						{fbvTextArea multilingual="true" name="biography" id="biography" value=$biography size=$fbvStyles.size.SMALL}
 						<br />
 						<span class="instruct">{translate key="user.biography.description"}</span>
 					{/fbvFormSection}
@@ -185,7 +185,7 @@
 						{/fbvFormSection}
 					{/if}
 					{fbvFormSection title="user.gossip" for="gossip"}
-						{fbvTextArea name="gossip[$formLocale]" id="gossip" value=$gossip[$formLocale] size=$fbvStyles.size.SMALL}
+						{fbvTextArea multilingual="true" name="gossip" id="gossip" value=$gossip size=$fbvStyles.size.SMALL}
 					{/fbvFormSection}
 				{/fbvFormArea}
 			</div>

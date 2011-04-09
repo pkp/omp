@@ -48,28 +48,30 @@ class MastheadGridRow extends GridRow {
 				'gridId' => $this->getGridId(),
 				'rowId' => $rowId
 			);
+
+			import('lib.pkp.classes.linkAction.request.AjaxModal');
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'editMasthead',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'editGroup', null, $actionArgs),
-					'grid.action.edit',
-					null,
-					'edit'
-				)
+					new AjaxModal(
+						$router->url($request, null, null, 'editGroup', null, $actionArgs),
+						__('grid.action.edit'),
+						'edit',
+						true),
+					__('grid.action.edit'),
+					'edit')
 			);
+
+			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'deleteMasthead',
-					LINK_ACTION_MODE_CONFIRM,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'deleteGroup', null, $actionArgs),
-					'grid.action.delete',
-					null,
-					'delete',
-					'common.confirmDelete'
-				)
+					new ConfirmationModal(
+						__('common.confirmDelete'),
+						__('grid.action.delete'),
+						$router->url($request, null, null, 'deleteGroup', null, $actionArgs)),
+					__('grid.action.delete'),
+					'delete')
 			);
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
 		}

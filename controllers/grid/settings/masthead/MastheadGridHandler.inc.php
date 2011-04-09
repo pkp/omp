@@ -22,7 +22,7 @@ class MastheadGridHandler extends SetupGridHandler {
 	function MastheadGridHandler() {
 		parent::SetupGridHandler();
 		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'addGroup', 'editGroup', 'updateGroup', 'deleteGroup', 'groupMembership'));
+				array('fetchGrid', 'fetchRow', 'addGroup', 'editGroup', 'updateGroup', 'deleteGroup', 'groupMembership'));
 	}
 
 
@@ -50,30 +50,37 @@ class MastheadGridHandler extends SetupGridHandler {
 		$rowData = array();
 		while ($group =& $groups->next()) {
 			$groupId = $group->getId();
-			$rowData[$groupId] = array('groups' => $group->getLocalizedTitle());
+			$rowData[$groupId] = $group;
 		}
 		$this->setGridDataElements($rowData);
 
 		// Add grid-level actions
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$router =& $request->getRouter();
 		$this->addAction(
-			new LegacyLinkAction(
+			new LinkAction(
 				'addMasthead',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, null, 'addGroup', null, array('gridId' => $this->getId())),
-				'grid.action.addItem'
-			),
-			GRID_ACTION_POSITION_ABOVE
+				new AjaxModal(
+					$router->url($request, null, null, 'addGroup', null, array('gridId' => $this->getId())),
+					__('grid.action.addItem'),
+					null,
+					true),
+				__('grid.action.addItem'))
 		);
+
+		// Use DataObjectGridCellProvider to handle localized data.
+		import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
+		$cellProvider = new DataObjectGridCellProvider();
+		$cellProvider->setLocale(Locale::getLocale());
 
 		// Columns
 		$this->addColumn(
 			new GridColumn(
-				'groups',
+				'title',
 				'grid.masthead.column.groups',
 				null,
-				'controllers/grid/gridCell.tpl'
+				'controllers/grid/gridCell.tpl',
+				$cellProvider
 			)
 		);
 	}
@@ -136,11 +143,7 @@ class MastheadGridHandler extends SetupGridHandler {
 		);
 
 		$groupForm = new GroupForm($group);
-		if ($groupForm->isLocaleResubmit()) {
-			$groupForm->readInputData();
-		} else {
-			$groupForm->initData();
-		}
+		$groupForm->initData();
 
 		$json = new JSON(true, $groupForm->fetch($request));
 		return $json->getString();
@@ -164,20 +167,11 @@ class MastheadGridHandler extends SetupGridHandler {
 		$groupForm->readInputData();
 		if ($groupForm->validate()) {
 			$groupForm->execute();
-
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$row->setId($groupForm->group->getId());
-			$rowData = array('groups' => $groupForm->group->getLocalizedTitle());
-			$row->setData($rowData);
-			$row->initialize($request);
-
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
+			return DAO::getDataChangedEvent($groupForm->group->getId());
 		} else {
 			$json = new JSON(false);
+			return $json->getString();
 		}
-
-		return $json->getString();
 	}
 
 	/**
@@ -192,12 +186,15 @@ class MastheadGridHandler extends SetupGridHandler {
 		$groupDao =& DAORegistry::getDAO('GroupDAO');
 		$group =& $groupDao->getById($groupId, ASSOC_TYPE_PRESS, $press->getId());
 
-		$groupDao =& DAORegistry::getDAO('GroupDAO');
-		$groupDao->deleteObject($group);
-		$groupDao->resequenceGroups($group->getAssocType(), $group->getAssocId());
-
-		$json = new JSON(true);
-		return $json->getString();
+		if(is_a($group, 'Group')) {
+			$groupDao =& DAORegistry::getDAO('GroupDAO');
+			$groupDao->deleteObject($group);
+			$groupDao->resequenceGroups($group->getAssocType(), $group->getAssocId());
+			return DAO::getDataChangedEvent($groupId);
+		} else {
+			$json = new JSON(false);
+			return $json->getString();
+		}
 	}
 
 	/**

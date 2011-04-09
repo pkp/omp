@@ -68,11 +68,7 @@ class SetupHandler extends ManagerHandler {
 		import("classes.manager.form.setup.$formClass");
 
 		$setupForm = new $formClass();
-		if ($setupForm->isLocaleResubmit()) {
-			$setupForm->readInputData();
-		} else {
-			$setupForm->initData();
-		}
+		$setupForm->initData();
 		$setupForm->display();
 	}
 

@@ -43,7 +43,7 @@ class GenreForm extends Form {
 		parent::Form('controllers/grid/settings/genre/form/genreForm.tpl');
 
 		// Validation checks for this form
-		$this->addCheck(new FormValidator($this, 'name', 'required', 'manager.setup.form.genre.nameRequired'));
+		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'manager.setup.form.genre.nameRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -64,8 +64,8 @@ class GenreForm extends Form {
 		if (isset($genre) ) {
 			$this->_data = array(
 				'genreId' => $this->getGenreId(),
-				'name' => $genre->getLocalizedName(),
-				'designation' => $genre->getLocalizedDesignation(),
+				'name' => $genre->getName(null),
+				'designation' => $genre->getDesignation(null),
 				'sortable' => $genre->getSortable(),
 				'category' => $genre->getCategory()
 			);
@@ -120,8 +120,8 @@ class GenreForm extends Form {
 			$genre =& $genreDao->getById($this->getGenreId());
 		}
 
-		$genre->setName($this->getData('name'), Locale::getLocale()); // Localized
-		$genre->setDesignation($this->getData('designation'), Locale::getLocale()); // Localized
+		$genre->setData('name', $this->getData('name'), null); // Localized
+		$genre->setData('designation', $this->getData('designation'), null); // Localized
 		$genre->setSortable($this->getData('sortable'));
 		$genre->setCategory($this->getData('category'));
 

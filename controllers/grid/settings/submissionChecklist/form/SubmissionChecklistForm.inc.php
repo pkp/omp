@@ -27,6 +27,7 @@ class SubmissionChecklistForm extends Form {
 		parent::Form('controllers/grid/settings/submissionChecklist/form/submissionChecklistForm.tpl');
 
 		// Validation checks for this form
+		$this->addCheck(new FormValidatorLocale($this, 'checklistItem', 'required', 'maganer.setup.submissionChecklistItemRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
 
@@ -91,7 +92,7 @@ class SubmissionChecklistForm extends Form {
 		$press =& $router->getContext($request);
 		$submissionChecklistAll = $press->getSetting('submissionChecklist');
 		//FIXME: a bit of kludge to get unique submissionChecklist id's
-		$this->submissionChecklistId = ($this->submissionChecklistId?$this->submissionChecklistId:(max(array_keys($submissionChecklistAll[Locale::getPrimaryLocale()])) + 1));
+		$this->submissionChecklistId = ($this->submissionChecklistId != null ? $this->submissionChecklistId:(max(array_keys($submissionChecklistAll[Locale::getPrimaryLocale()])) + 1));
 
 		$checklistItem = $this->getData('checklistItem');
 		foreach (Locale::getSupportedLocales() as $locale => $name) {

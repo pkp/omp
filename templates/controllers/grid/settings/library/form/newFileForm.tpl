@@ -23,11 +23,11 @@
 	{rdelim});
 </script>
 
-<form id="uploadForm" action="{url op="saveFile" fileType=$fileType}" method="post" class="pkp_controllers_form">
+<form id="uploadForm" class="pkp_controllers_form" action="{url op="saveFile" fileType=$fileType}" method="post" class="pkp_controllers_form">
 	<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 	{fbvFormArea id="name"}
 		{fbvFormSection title="common.name" float=$fbvStyles.float.LEFT}
-			{fbvElement type="text" id="libraryFileName" value=$libraryFileName maxlength="120" size=$fbvStyles.size.LARGE}
+			{fbvTextInput multilingual="true" id="libraryFileName" value=$libraryFileName maxlength="120" size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

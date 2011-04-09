@@ -23,7 +23,7 @@ class GenreGridHandler extends SetupGridHandler {
 	function GenreGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'addGenre', 'editGenre', 'updateGenre',
+				array('fetchGrid', 'fetchRow', 'addGenre', 'editGenre', 'updateGenre',
 				'deleteGenre', 'restoreGenres'));
 	}
 
@@ -54,25 +54,29 @@ class GenreGridHandler extends SetupGridHandler {
 		// Add grid-level actions
 		$router =& $request->getRouter();
 		$actionArgs = array('gridId' => $this->getId());
+
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$this->addAction(
-			new LegacyLinkAction(
+			new LinkAction(
 				'addGenre',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, null, 'addGenre', null, $actionArgs),
-				'grid.action.addItem'
-			),
-			GRID_ACTION_POSITION_ABOVE
+				new AjaxModal(
+					$router->url($request, null, null, 'addGenre', null, $actionArgs),
+					__('grid.action.addItem'),
+					null,
+					true),
+				__('grid.action.addItem'),
+				'add')
 		);
+
+		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 		$this->addAction(
-			new LegacyLinkAction(
+			new LinkAction(
 				'restoreGenres',
-				LINK_ACTION_MODE_CONFIRM,
-				LINK_ACTION_TYPE_REPLACE,
-				$router->url($request, null, null, 'restoreGenres', null, $actionArgs),
-				'grid.action.restoreDefaults'
-			),
-			GRID_ACTION_POSITION_ABOVE
+				new ConfirmationModal(
+					__('grid.action.restoreDefaults'),
+					null,
+					$router->url($request, null, null, 'restoreGenres', null, $actionArgs)),
+				__('grid.action.restoreDefaults'))
 		);
 
 		// Columns
@@ -137,11 +141,7 @@ class GenreGridHandler extends SetupGridHandler {
 		import('controllers.grid.settings.genre.form.GenreForm');
 		$genreForm = new GenreForm($genreId);
 
-		if ($genreForm->isLocaleResubmit()) {
-			$genreForm->readInputData();
-		} else {
-			$genreForm->initData($args, $request);
-		}
+		$genreForm->initData($args, $request);
 
 		$json = new JSON(true, $genreForm->fetch($request));
 		return $json->getString();
@@ -165,24 +165,11 @@ class GenreGridHandler extends SetupGridHandler {
 
 		if ($genreForm->validate()) {
 			$genreForm->execute($args, $request);
-
-			// prepare the grid row data
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-
-			$genreDao =& DAORegistry::getDAO('GenreDAO');
-			$genre =& $genreDao->getById($genreForm->getGenreId(), $press->getId());
-
-			$row->setData($genre);
-			$row->setId($genreForm->getGenreId());
-			$row->initialize($request);
-
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
+			return DAO::getDataChangedEvent($genreForm->getGenreId());
 		} else {
 			$json = new JSON(false);
+			return $json->getString();
 		}
-
-		return $json->getString();
 	}
 
 	/**
@@ -199,7 +186,7 @@ class GenreGridHandler extends SetupGridHandler {
 		$result = $genreDao->deleteObject($genre);
 
 		if ($result) {
-			$json = new JSON(true);
+			return DAO::getDataChangedEvent($genre->getId());
 		} else {
 			$json = new JSON(false, Locale::translate('manager.setup.errorDeletingItem'));
 		}

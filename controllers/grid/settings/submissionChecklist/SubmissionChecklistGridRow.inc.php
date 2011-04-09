@@ -42,28 +42,30 @@ class SubmissionChecklistGridRow extends GridRow {
 				'gridId' => $this->getGridId(),
 				'rowId' => $rowId
 			);
+
+			import('lib.pkp.classes.linkAction.request.AjaxModal');
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'editSubmissionChecklist',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'editItem', null, $actionArgs),
-					'grid.action.edit',
-					null,
-					'edit'
-				)
+					new AjaxModal(
+						$router->url($request, null, null, 'editItem', null, $actionArgs),
+						__('grid.action.edit'),
+						null,
+						true),
+					__('grid.action.edit'),
+					'edit')
 			);
+
+			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'deleteSubmissionChecklist',
-					LINK_ACTION_MODE_CONFIRM,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'deleteItem', null, $actionArgs),
-					'grid.action.delete',
-					null,
-					'delete',
-					'common.confirmDelete'
-				)
+					new ConfirmationModal(
+						__('common.confirmDelete'),
+						__('grid.action.delete'),
+						$router->url($request, null, null, 'deleteItem', null, $actionArgs)),
+					__('grid.action.delete'),
+					'delete')
 			);
 		}
 	}

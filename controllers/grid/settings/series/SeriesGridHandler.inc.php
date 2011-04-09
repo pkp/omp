@@ -22,7 +22,7 @@ class SeriesGridHandler extends SetupGridHandler {
 	function SeriesGridHandler() {
 		parent::SetupGridHandler();
 		$this->addRoleAssignment(array(ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'addSeries', 'editSeries', 'updateSeries', 'deleteSeries'));
+				array('fetchGrid', 'fetchRow', 'addSeries', 'editSeries', 'updateSeries', 'deleteSeries'));
 	}
 
 
@@ -82,15 +82,16 @@ class SeriesGridHandler extends SetupGridHandler {
 		$this->setGridDataElements($seriesArray);
 
 		// Add grid-level actions
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$this->addAction(
-			new LegacyLinkAction(
+			new LinkAction(
 				'addSeries',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, null, 'addSeries', null, array('gridId' => $this->getId())),
-				'grid.action.addItem'
-			),
-			GRID_ACTION_POSITION_ABOVE
+				new AjaxModal(
+					$router->url($request, null, null, 'addSeries', null, array('gridId' => $this->getId())),
+					__('grid.action.addItem'),
+					null,
+					true),
+				__('grid.action.addItem'))
 		);
 
 		// Columns
@@ -148,11 +149,7 @@ class SeriesGridHandler extends SetupGridHandler {
 		import('controllers.grid.settings.series.form.SeriesForm');
 		$seriesForm = new SeriesForm($seriesId);
 
-		if ($seriesForm->isLocaleResubmit()) {
-			$seriesForm->readInputData();
-		} else {
-			$seriesForm->initData($args, $request);
-		}
+		$seriesForm->initData($args, $request);
 
 		$json = new JSON(true, $seriesForm->fetch($request));
 		return $json->getString();
@@ -181,43 +178,11 @@ class SeriesGridHandler extends SetupGridHandler {
 
 		if ($seriesForm->validate()) {
 			$seriesForm->execute($args, $request);
-
-			$divisionDao =& DAORegistry::getDAO('DivisionDAO');
-			$division = $divisionDao->getById($seriesForm->getData('division'), $press->getId());
-			if (isset($division)) {
-				$divisionTitle = $division->getLocalizedTitle();
-			} else {
-				$divisionTitle = Locale::translate('common.none');
-			}
-
-			$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
-			$assignedSeriesEditors =& $seriesEditorsDao->getEditorsBySeriesId($seriesId, $press->getId());
-			if(isset($assignedSeriesEditors)) {
-				$editorsString = Locale::translate('common.none');
-			} else {
-				foreach ($assignedSeriesEditors as $seriesEditor) {
-					$user = $seriesEditor['user'];
-					$editorsString .= $user->getInitials() . '  ';
-				}
-			}
-
-			// prepare the grid row data
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$rowData = array('title' => $seriesForm->getData('title'),
-							'division' => $divisionTitle,
-							'editors' => $editorsString,
-							'affiliation' => $seriesForm->getData('affiliation'));
-			$row->setId($seriesForm->seriesId);
-			$row->setData($rowData);
-			$row->initialize($request);
-
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
+			return DAO::getDataChangedEvent($seriesForm->seriesId);
 		} else {
 			$json = new JSON(false);
+			return $json->getString();
 		}
-
-		return $json->getString();
 	}
 
 	/**
@@ -237,7 +202,7 @@ class SeriesGridHandler extends SetupGridHandler {
 
 		if (isset($series)) {
 			$seriesDao->deleteObject($series);
-			$json = new JSON(true);
+			return DAO::getDataChangedEvent($series->getId());
 		} else {
 			$json = new JSON(false, Locale::translate('manager.setup.errorDeletingItem'));
 		}
