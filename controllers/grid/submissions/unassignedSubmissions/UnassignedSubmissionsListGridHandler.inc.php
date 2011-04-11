@@ -80,7 +80,7 @@ class UnassignedSubmissionsListGridHandler extends SubmissionsListGridHandler {
 			$monographs =& $monographDao->getMonographsByPressId($press->getId()); // Get all monographs for each press
 			while($monograph =& $monographs->next()) {
 				// Get all signoffs in stage 1
-				$signoffs =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, 1);
+				$signoffs =& $signoffDao->getAllBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monograph->getId(), null, WORKFLOW_STAGE_ID_SUBMISSION);
 				if($signoffs->getCount() == 1) { // Check that there is only one stage participant (the author, as set by default)
 					$signoff = $signoffs->next();
 					if(!in_array($signoff->getUserGroupId(), $editorUserGroupIds)) {
