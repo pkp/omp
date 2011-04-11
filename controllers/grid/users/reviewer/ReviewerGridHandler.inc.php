@@ -120,16 +120,18 @@ class ReviewerGridHandler extends GridHandler {
 		$this->setTitle('user.role.reviewers');
 
 		// Grid actions
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
 		$router =& $request->getRouter();
 		$this->addAction(
-			new LegacyLinkAction(
+			new LinkAction(
 				'addReviewer',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_APPEND,
-				$router->url($request, null, null, 'addReviewer', null, $this->getRequestArgs()),
-				'editor.monograph.addReviewer'
-			)
-		);
+				new AjaxModal(
+					$router->url($request, null, null, 'addReviewer', null, $this->getRequestArgs()),
+					__('editor.monograph.addReviewer')
+					),
+				__('editor.monograph.addReviewer')
+				)
+			);
 
 		// Columns
 		$cellProvider = new ReviewerGridCellProvider();

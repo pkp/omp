@@ -45,18 +45,19 @@ class ReviewerGridRow extends GridRow {
 				'monographId' => $monographId,
 				'reviewId' => $rowId
 			);
+
+			import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'remove',
-					LINK_ACTION_MODE_CONFIRM,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'deleteReviewer', null, $actionArgs),
-					'grid.action.remove',
-					null,
-					'delete',
-					Locale::translate('common.confirmDelete')
-				)
-			);
+					new ConfirmationModal(
+							__('common.confirmDelete'), null,
+							$router->url($request, null, null, 'deleteReviewer', null, $actionArgs)
+						),
+					__('grid.action.remove'),
+					'delete'
+					)
+				);
 
 			// Set a non-default template that supports row actions
 			$this->setTemplate('controllers/grid/gridRowWithActions.tpl');
