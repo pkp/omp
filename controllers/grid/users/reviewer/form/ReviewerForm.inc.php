@@ -311,7 +311,7 @@ class ReviewerForm extends Form {
 
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->addReviewer($submission, $reviewerId, $reviewType, $round, $reviewDueDate, $responseDueDate);
+		$seriesEditorAction->addReviewer($request, $submission, $reviewerId, $reviewType, $round, $reviewDueDate, $responseDueDate);
 
 		// Get the reviewAssignment object now that it has been added
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO'); /* @var $reviewAssignmentDao ReviewAssignmentDAO */

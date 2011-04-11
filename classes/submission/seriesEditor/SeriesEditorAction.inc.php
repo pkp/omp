@@ -125,14 +125,19 @@ class SeriesEditorAction extends Action {
 
 	/**
 	 * Assigns a reviewer to a submission.
+	 * @param $request PKPRequest
 	 * @param $seriesEditorSubmission object
 	 * @param $reviewerId int
+	 * @param $reviewType int
+	 * @param $round int optional
+	 * @param $reviewDueDate datetime optional
+	 * @param $responseDueDate datetime optional
 	 */
-	function addReviewer($seriesEditorSubmission, $reviewerId, $reviewType, $round = null, $reviewDueDate = null, $responseDueDate = null) {
+	function addReviewer($request, $seriesEditorSubmission, $reviewerId, $reviewType, $round = null, $reviewDueDate = null, $responseDueDate = null) {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
 		$userDao =& DAORegistry::getDAO('UserDAO');
-		$user =& Request::getUser();
+		$user =& $request->getUser();
 
 		$reviewer =& $userDao->getUser($reviewerId);
 
@@ -172,7 +177,7 @@ class SeriesEditorAction extends Action {
 				$reviewType
 			);
 
-			$press =& Request::getPress();
+			$press =& $request->getPress();
 			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
 			$settings =& $settingsDao->getPressSettings($press->getId());
 			if (isset($reviewDueDate)) $this->setDueDate($request, $seriesEditorSubmission, $reviewAssignment->getId(), $reviewDueDate);
