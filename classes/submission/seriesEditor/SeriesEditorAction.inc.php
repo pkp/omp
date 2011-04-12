@@ -195,7 +195,7 @@ class SeriesEditorAction extends Action {
 	 * @param $seriesEditorSubmission object
 	 * @param $reviewId int
 	 */
-	function clearReview($submissionId, $reviewId) {
+	function clearReview($request, $submissionId, $reviewId) {
 		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
 		$seriesEditorSubmission =& $seriesEditorSubmissionDao->getSeriesEditorSubmission($submissionId);
 		$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
