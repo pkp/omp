@@ -16,6 +16,7 @@
 	<schema file="lib/pkp/xml/schema/scheduledTasks.xml" />
 	<schema file="lib/pkp/xml/schema/temporaryFiles.xml" />
 	<schema file="lib/pkp/xml/schema/groups.xml" />
+	<schema file="lib/pkp/xml/schema/log.xml" />
 	<schema file="lib/pkp/xml/schema/notes.xml" />
 	<schema file="lib/pkp/xml/schema/controlledVocab.xml" />
 	<schema file="lib/pkp/xml/schema/metadata.xml" />
