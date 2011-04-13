@@ -21,6 +21,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function DivisionsListbuilderHandler() {
 		parent::SetupListbuilderHandler();
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 	}
 
 
@@ -60,14 +61,6 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		$this->addColumn(new GridColumn('item', 'manager.setup.currentFormats'));
 	}
 
-	/**
-	 * @see PKPHandler::setupTemplate()
-	 */
-	function setupTemplate() {
-		parent::setupTemplate();
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
-	}
-
 	//
 	// Public AJAX-accessible functions
 	//
@@ -89,7 +82,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		if(!isset($divisionTitle)) {
 			$json = new JSON(false);
 			return $json->getString();
-		} else {
+		} 	else {
 			// Make sure the item doesn't already exist
 			$divisions = $divisionDao->getByTitle($divisionTitle, $press->getId());
 			if (isset($divisions)) {
@@ -135,5 +128,4 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		return $json->getString();
 	}
 }
-
 ?>

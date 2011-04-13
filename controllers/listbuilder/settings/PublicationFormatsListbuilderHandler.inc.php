@@ -31,10 +31,11 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 
 		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
 
+
 		$items = array();
 		foreach($publicationFormats as $item) {
 			$id = $item->getId();
-			$items[$id] = array('name' => $item->getLocalizedName(), 'designation' => $item->getLocalizedDesignation(), 'id' => $id);
+			$items[$id] = array('item' => $item->getLocalizedName(), 'attribute' => $item->getLocalizedDesignation());
 		}
 		$this->setGridDataElements($items);
 	}
@@ -48,48 +49,29 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
-
 		// Basic configuration
+		$this->setTitle('manager.setup.publicationFormats');
+		$this->setSourceTitle('common.name');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
+		$this->setListTitle('manager.setup.publicationFormats');
+		$this->setAttributeNames(array('common.designation'));
 
 		$this->loadList($request);
 
-		$nameColumn = new GridColumn('name', 'common.name');
-		$nameColumn->addFlag('editable');
-		$this->addColumn($nameColumn);
-
-		$designationColumn = new GridColumn('designation', 'common.designation');
-		$designationColumn->addFlag('editable');
-		$this->addColumn($designationColumn);
-	}
-
-	/**
-	 * Create a new data element from a request. This is used to format
-	 * new rows prior to their insertion.
-	 * @param $request PKPRequest
-	 * @param $elementId int
-	 * @return object
-	 */
-	function &getDataElementFromRequest(&$request, &$elementId) {
-		$newItem = array(
-			'name' => $request->getUserVar('name'),
-			'designation' => $request->getUserVar('designation')
-		);
-		$elementId = $request->getUserVar('rowId');
-		return $newItem;
+		$this->addColumn(new GridColumn('item', 'common.name'));
+		$this->addColumn(new GridColumn('attribute', 'common.designation'));
 	}
 
 	//
 	// Public AJAX-accessible functions
 	//
+
 	/*
 	 * Handle adding an item to the list
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-/*	function addItem($args, &$request) {
+	function addItem($args, &$request) {
 		$this->setupTemplate();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$press =& $request->getPress();
@@ -131,14 +113,14 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 			$json = new JSON(true, $this->_renderRowInternally($request, $row));
 			return $json->getString();
 		}
-	} */
+	}
 
 	/*
 	 * Handle deleting items from the list
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-/*	function deleteItems($args, &$request) {
+	function deleteItems($args, &$request) {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 
 		foreach($args as $publicationFormatId) {
@@ -147,7 +129,6 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 
 		$json = new JSON(true);
 		return $json->getString();
-	} */
+	}
 }
-
 ?>

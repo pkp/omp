@@ -108,6 +108,7 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 	//
 	// Public AJAX-accessible functions
 	//
+
 	/*
 	 * Handle adding an item to the list
 	 * @param $args array
@@ -132,6 +133,7 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 
 	}
 
+
 	/*
 	 * Handle deleting items from the list
 	 * @param $args array
@@ -142,5 +144,4 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 		return $json->getString();
 	}
 }
-
 ?>

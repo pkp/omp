@@ -204,7 +204,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	function deleteItems($args, &$request) {
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
 		$press =& $request->getPress();
-		$seriesId = (int) array_shift($args);
+		$seriesId = array_shift($args);
 
 		foreach($args as $userId) {
 			$seriesEditorsDao->deleteEditor($press->getId(), $seriesId, $userId);
@@ -214,5 +214,4 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		return $json->getString();
 	}
 }
-
 ?>

@@ -130,5 +130,4 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 		return $json->getString();
 	}
 }
-
 ?>

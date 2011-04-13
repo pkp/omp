@@ -105,6 +105,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
 
 		// Basic configuration
 		$this->setTitle('manager.groups.membership.addMember');
@@ -117,14 +118,6 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 		$this->loadList($request);
 
 		$this->addColumn(new GridColumn('item', 'common.name'));
-	}
-
-	/**
-	 * @see PKPHandler::setupTemplate()
-	 */
-	function setupTemplate() {
-		parent::setupTemplate();
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
 	}
 
 	//
@@ -229,5 +222,4 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 		return $json->getString();
 	}
 }
-
 ?>
