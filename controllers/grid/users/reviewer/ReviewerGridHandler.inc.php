@@ -15,16 +15,15 @@
 // import grid base classes
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
-
 // import reviewer grid specific classes
 import('controllers.grid.users.reviewer.ReviewerGridCellProvider');
 import('controllers.grid.users.reviewer.ReviewerGridRow');
 
 // Reviewer selection types
-define('REVIEWER_SELECT_SEARCH',		0x00000001);
-define('REVIEWER_SELECT_ADVANCED',		0x00000002);
-define('REVIEWER_SELECT_CREATE',		0x00000003);
-define('REVIEWER_SELECT_ENROLL',		0x00000004);
+define('REVIEWER_SELECT_SEARCH_BY_NAME',		0x00000001);
+define('REVIEWER_SELECT_ADVANCED_SEARCH',		0x00000002);
+define('REVIEWER_SELECT_CREATE',				0x00000003);
+define('REVIEWER_SELECT_ENROLL_EXISTING',		0x00000004);
 
 class ReviewerGridHandler extends GridHandler {
 
@@ -47,8 +46,8 @@ class ReviewerGridHandler extends GridHandler {
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
 			array(
-				'fetchGrid', 'addReviewer', 'editReviewer', 'updateReviewer', 'deleteReviewer',
-				'getReviewerAutocomplete', 'getReviewerRoleAssignmentAutocomplete', 'readReview',
+				'fetchGrid', 'fetchRow', 'addReviewer', 'showReviewerForm', 'editReviewer', 'updateReviewer', 'deleteReviewer',
+				'getReviewersNotAssignedToMonograph', 'getUsersNotAssignedAsReviewers', 'readReview',
 				'createReviewer', 'editReminder', 'sendReminder'
 			)
 		);
@@ -214,9 +213,36 @@ class ReviewerGridHandler extends GridHandler {
 	 * @param $request PKPRequest
 	 */
 	function addReviewer($args, &$request) {
-		// Calling editReviewer() with an empty row id will add
-		// a new reviewer.
-		return $this->editReviewer($args, $request);
+		$templateMgr =& TemplateManager::getManager();
+		//FIXME: #6200. see other methods in this file.
+		$templateMgr->assign('reviewType', $this->getReviewType());
+		$templateMgr->assign('round', $this->getRound());
+		$monograph =& $this->getMonograph();
+		$templateMgr->assign('monographId', $monograph->getId());
+		return $templateMgr->fetchJson('controllers/grid/users/reviewer/form/addReviewerForm.tpl');
+	}
+
+	/**
+	 * Add a reviewer that already exists
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function showReviewerForm($args, &$request) {
+		// Identify the review assignment being updated.
+		$reviewAssignmentId = (int)$request->getUserVar('reviewAssignmentId');
+
+		$selectionType = $request->getUserVar('selectionType');
+		assert(!empty($selectionType));
+		$formClassName = $this->_getReviewerFormClassName($selectionType);
+
+		// Form handling.
+		import('controllers.grid.users.reviewer.form.' . $formClassName );
+		$reviewerForm = new $formClassName($this->getMonograph(), $reviewAssignmentId);
+		$reviewerForm->initData($args, $request);
+
+		$json = new JSONMessage(true, $reviewerForm->fetch($request));
+		return $json->getString();
 	}
 
 	/**
@@ -248,23 +274,17 @@ class ReviewerGridHandler extends GridHandler {
 		// Identify the review assignment being updated.
 		$reviewAssignmentId = (int) $request->getUserVar('reviewAssignmentId');
 
+		$selectionType = $request->getUserVar('selectionType');
+		$formClassName = $this->_getReviewerFormClassName($selectionType);
+
 		// Form handling
-		import('controllers.grid.users.reviewer.form.ReviewerForm');
-		$reviewerForm = new ReviewerForm($this->getMonograph(), $reviewAssignmentId);
+		import('controllers.grid.users.reviewer.form.' . $formClassName );
+		$reviewerForm = new $formClassName($this->getMonograph(), $reviewAssignmentId);
 		$reviewerForm->readInputData();
 		if ($reviewerForm->validate()) {
 			$reviewAssignment =& $reviewerForm->execute($args, $request);
 
-			// prepare the grid row data
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$row->setId($reviewAssignment->getId());
-			$reviewAssignmentDao =& DAORegistry::getDAO('ReviewAssignmentDAO');
-
-			$row->setData($reviewAssignment);
-			$row->initialize($request);
-
-			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
+			return DAO::getDataChangedEvent($reviewAssignment->getId());
 		} else {
 			// There was an error, redisplay the form
 			$json = new JSONMessage(false, $reviewerForm->fetch($request));
@@ -287,106 +307,65 @@ class ReviewerGridHandler extends GridHandler {
 		$reviewId = (int) $request->getUserVar('reviewId');
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$result = $seriesEditorAction->clearReview($monograph->getId(), $reviewId);
+		$result = $seriesEditorAction->clearReview($request, $monograph->getId(), $reviewId);
 
 		// Render the result.
 		if ($result) {
-			$json = new JSONMessage(true);
+			return DAO::getDataChangedEvent($reviewId);
 		} else {
+			// FIXME: this locale key does not exist. and it is probably not the right name for it.
 			$json = new JSONMessage(false, Locale::translate('submission.submit.errorDeletingReviewer'));
+			return $json->getString();
 		}
-		return $json->getString();
 	}
 
 
 	/**
-	* Get potential reviewers for editor's reviewer selection autocomplete.
-	* @param $args array
-	* @param $request PKPRequest
-	* @return string Serialized JSON object
-	*/
-	function getReviewerAutocomplete($args, &$request) {
-		// Get items to populate possible items list with
+	 * Get potential reviewers for editor's reviewer selection autocomplete.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function getReviewersNotAssignedToMonograph($args, &$request) {
 		$press =& $request->getPress();
 		$monograph =& $this->getMonograph();
-		$seriesEditorSubmissionDAO =& DAORegistry::getDAO('SeriesEditorSubmissionDAO');
-		$allReviewers = $seriesEditorSubmissionDAO->getAllReviewers($press->getId());
-		$currentRoundReviewers =& $seriesEditorSubmissionDAO->getReviewersForMonograph($press->getId(), $monograph->getId(), $this->getRound());
-		$currentRoundReviewerIds = array_keys($currentRoundReviewers->toAssociativeArray('id'));
+		$round = (int) $request->getUserVar('round');
+		$term = $request->getUserVar('term');
 
-		$itemList = array();
-		foreach ($allReviewers->toAssociativeArray('id') as $i => $reviewer) {
-			// Check that the reviewer is not in the current round.  We need to do the comparison here to avoid nested selects.
-			if (!in_array($i, $currentRoundReviewerIds)) {
-				$itemList[] = array(
-					'id' => $reviewer->getId(),
-					'name' => $reviewer->getFullName(),
-					'abbrev' => $reviewer->getUsername()
-				);
-			}
+		$seriesEditorSubmissionDao =& DAORegistry::getDAO('SeriesEditorSubmissionDAO'); /* @var $seriesEditorSubmissionDao SeriesEditorSubmissionDAO */
+		$reviewers =& $seriesEditorSubmissionDao->getReviewersNotAssignedToMonograph($press->getId(), $monograph->getId(), $round, $term);
+
+		$reviewerList = array();
+		while($reviewer =& $reviewers->next()) {
+			$reviewerList[] = array('label' => $reviewer->getFullName(), 'value' => $reviewer->getId());
+			unset($reviewer);
 		}
 
-		import('lib.pkp.classes.core.JSONMessage');
-		$sourceJson = new JSONMessage(true, null, false, 'local');
-		$sourceContent = array();
-		foreach ($itemList as $i => $item) {
-			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
-			$additionalAttributes = array(
-				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
-				'value' => $item['id']
-		   );
-			$itemJson = new JSONMessage(true, '', false, null, $additionalAttributes);
-			$sourceContent[] = $itemJson->getString();
-
-			unset($itemJson);
-		}
-		$sourceJson->setContent('[' . implode(',', $sourceContent) . ']');
-
-		echo $sourceJson->getString();
+		$json = new JSONMessage(true, $reviewerList);
+		echo $json->getString();
 	}
 
 	/**
-	* Get a list of all non-reviewer users in the system to populate the reviewer role assignment autocomplete.
-	* @param $args array
-	* @param $request PKPRequest
-	* @return string Serialized JSON object
-	*/
-	function getReviewerRoleAssignmentAutocomplete($args, &$request) {
+	 * Get a list of all non-reviewer users in the system to populate the reviewer role assignment autocomplete.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string Serialized JSON object
+	 */
+	function getUsersNotAssignedAsReviewers($args, &$request) {
 		$press =& $request->getPress();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
-		$users =& $userGroupDao->getUsersByContextId($press->getId());
+		$term = $request->getUserVar('term');
 
-		$itemList = array();
-		$roleDao =& DAORegistry::getDAO('RoleDAO'); /* @var $roleDao RoleDAO */
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO'); /* @var $userGroupDao UserGroupDAO */
+		$users =& $userGroupDao->getUsersNotInRole($press->getId(), ROLE_ID_REVIEWER, $term);
+
+		$userList = array();
 		while ($user =& $users->next()) {
-			// Check that the reviewer is not in the current round.  We need to do the comparison here to avoid nested selects.
-			if (!$roleDao->userHasRole($press->getId(), $user->getId(), ROLE_ID_REVIEWER)) {
-				$itemList[] = array(
-					'id' => $user->getId(),
-					'name' => $user->getFullName(),
-					'abbrev' => $user->getUsername()
-				);
-			}
+			$userList[] = array('label' => $user->getFullName(), 'value' => $user->getId());
 			unset($user);
 		}
 
-		import('lib.pkp.classes.core.JSONMessage');
-		$sourceJson = new JSONMessage(true, null, false, 'local');
-		$sourceContent = array();
-		foreach ($itemList as $i => $item) {
-			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
-			$additionalAttributes = array(
-				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
-				'value' => $item['id']
-			);
-			$itemJson = new JSONMessage(true, '', false, null, $additionalAttributes);
-			$sourceContent[] = $itemJson->getString();
-
-			unset($itemJson);
-		}
-		$sourceJson->setContent('[' . implode(',', $sourceContent) . ']');
-
-		echo $sourceJson->getString();
+		$json = new JSONMessage(true, $userList);
+		echo $json->getString();
 	}
 
 	/**
@@ -486,6 +465,24 @@ class ReviewerGridHandler extends GridHandler {
 		$monograph =& $this->getMonograph();
 		if ($reviewAssignment->getMonographId() != $monograph->getId()) fatalError('Invalid review assignment!');
 		return $reviewAssignment;
+	}
+
+	/**
+	 * Get the name of ReviewerForm class for the current selection type.
+	 * @param $selectionType String (const)
+	 * @return FormClassName String
+	 */
+	function _getReviewerFormClassName($selectionType) {
+		switch ($selectionType) {
+			case REVIEWER_SELECT_SEARCH_BY_NAME:
+				return 'SearchByNameReviewerForm';
+			case REVIEWER_SELECT_ADVANCED_SEARCH:
+				return 'AdvancedSearchReviewerForm';
+			case REVIEWER_SELECT_CREATE:
+				return 'CreateReviewerForm';
+			case REVIEWER_SELECT_ENROLL_EXISTING:
+				return 'EnrollExistingReviewerForm';
+		}
 	}
 }
 

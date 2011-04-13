@@ -385,21 +385,29 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 * FIXME: Move to UserDAO, see #6455.
 	 * @param $pressId int
 	 * @param $monographId int
+	 * @param $round int
+	 * @param $name string
 	 * @return array matching Users
 	 */
-	function &getReviewersNotAssignedToMonograph($pressId, $monographId) {
+	function &getReviewersNotAssignedToMonograph($pressId, $monographId, $round = null, $name = '') {
+		$params = isset($round) ? array($round) : array();
+		$params = array_merge($params, array($monographId, $pressId, ROLE_ID_REVIEWER));
+		if(!empty($name)) {
+			$params = array_merge($params, array_pad(array(), 4, '%' . $name . '%'));
+		}
 
 		$result =& $this->retrieve(
 			'SELECT	u.*
 			FROM	users u
 				LEFT JOIN user_user_groups uug ON (uug.user_id = u.user_id)
 				LEFT JOIN user_groups ug ON (ug.user_group_id = uug.user_group_id)
-				LEFT JOIN review_assignments r ON (r.reviewer_id = u.user_id AND r.submission_id = ?)
-			WHERE	ug.context_id = ? AND
+				LEFT JOIN review_assignments r ON (r.reviewer_id = u.user_id' . (isset($round) ? ' AND round = ?' : '') . ' AND r.submission_id = ?)
+			WHERE ug.context_id = ? AND
 				ug.role_id = ? AND
-				r.submission_id IS NULL
-			ORDER BY last_name, first_name',
-			array($monographId, $pressId, ROLE_ID_REVIEWER)
+				r.submission_id IS NULL' .
+				(!empty($name)?' AND (first_name LIKE ? OR last_name LIKE ? OR username LIKE ? OR email LIKE ?)':'') .
+			' ORDER BY last_name, first_name',
+			$params
 		);
 
 		$returner = new DAOResultFactory($result, $this, '_returnReviewerUserFromRow');
