@@ -2,8 +2,8 @@
  * @defgroup js_controllers_grid_settings_library_form
  */
 // Create the files form namespace
-jQuery.pkp.controllers.grid.settings.library =
-			jQuery.pkp.controllers.grid.settings.library || { };
+jQuery.pkp.controllers.grid.settings =
+			jQuery.pkp.controllers.grid.settings || {library: {}};
 
 /**
  * @file js/controllers/grid/settings/library/FileUploadFormHandler.js
