@@ -18,11 +18,13 @@
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.imgpreview.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/jquery.cookie.js"></script>
 
+{* JSON library *}
+<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/json/json2.js"></script>
+
 {* Our own functions (depend on plug-ins) *}
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/fontController.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/general.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/modal.js"></script>
-<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/listbuilder.js"></script>
 <script type="text/javascript" src="{$baseUrl}/lib/pkp/js/functions/jqueryValidatorI18n.js"></script>
 
 {* Our own classes (depend on plug-ins) *}
