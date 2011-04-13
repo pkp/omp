@@ -110,7 +110,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 	//
 	/**
 	 * Need to add additional data to the template via the fetch method
-	 * @see Form::fetch()
+	 * @see ListbuilderHandler::fetch()
 	 */
 	function fetch($args, &$request) {
 		$router =& $request->getRouter();

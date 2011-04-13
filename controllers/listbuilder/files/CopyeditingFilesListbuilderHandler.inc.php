@@ -122,7 +122,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	function addItem(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
-		$rowId = "selectList-" . $this->getId();
+		$rowId = 'selectList-' . $this->getId();
 		$fileId = (int) $args[$rowId];
 
 		if(!isset($fileId)) {
@@ -156,4 +156,5 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		return $json->getString();
 	}
 }
+
 ?>
