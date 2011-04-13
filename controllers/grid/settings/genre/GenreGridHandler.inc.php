@@ -143,7 +143,7 @@ class GenreGridHandler extends SetupGridHandler {
 
 		$genreForm->initData($args, $request);
 
-		$json = new JSON(true, $genreForm->fetch($request));
+		$json = new JSONMessage(true, $genreForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -167,7 +167,7 @@ class GenreGridHandler extends SetupGridHandler {
 			$genreForm->execute($args, $request);
 			return DAO::getDataChangedEvent($genreForm->getGenreId());
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}
@@ -188,7 +188,7 @@ class GenreGridHandler extends SetupGridHandler {
 		if ($result) {
 			return DAO::getDataChangedEvent($genre->getId());
 		} else {
-			$json = new JSON(false, Locale::translate('manager.setup.errorDeletingItem'));
+			$json = new JSONMessage(false, Locale::translate('manager.setup.errorDeletingItem'));
 		}
 		return $json->getString();
 	}
@@ -224,7 +224,7 @@ class GenreGridHandler extends SetupGridHandler {
 			assert(count($gridBodyParts) == 1);
 			$renderedGridRows = $gridBodyParts[0];
 		}
-		$json = new JSON(true, $renderedGridRows);
+		$json = new JSONMessage(true, $renderedGridRows);
 
 		return $json->getString();
 	}

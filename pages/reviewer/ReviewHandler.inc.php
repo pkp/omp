@@ -13,7 +13,6 @@
  */
 
 import('classes.handler.Handler');
-import('lib.pkp.classes.core.JSON');
 import('classes.submission.reviewer.ReviewerAction');
 
 class ReviewHandler extends Handler {

@@ -151,7 +151,7 @@ class SeriesGridHandler extends SetupGridHandler {
 
 		$seriesForm->initData($args, $request);
 
-		$json = new JSON(true, $seriesForm->fetch($request));
+		$json = new JSONMessage(true, $seriesForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -180,7 +180,7 @@ class SeriesGridHandler extends SetupGridHandler {
 			$seriesForm->execute($args, $request);
 			return DAO::getDataChangedEvent($seriesForm->seriesId);
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}
@@ -204,7 +204,7 @@ class SeriesGridHandler extends SetupGridHandler {
 			$seriesDao->deleteObject($series);
 			return DAO::getDataChangedEvent($series->getId());
 		} else {
-			$json = new JSON(false, Locale::translate('manager.setup.errorDeletingItem'));
+			$json = new JSONMessage(false, Locale::translate('manager.setup.errorDeletingItem'));
 		}
 		return $json->getString();
 	}

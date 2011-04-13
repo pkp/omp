@@ -16,7 +16,7 @@
 import('classes.handler.Handler');
 
 // import JSON class for use with all AJAX requests
-import('lib.pkp.classes.core.JSON');
+import('lib.pkp.classes.core.JSONMessage');
 
 class ReviewerSelectorHandler extends Handler {
 
@@ -67,7 +67,7 @@ class ReviewerSelectorHandler extends Handler {
 		$reviewerSelectorForm = new ReviewerSelectorForm($monograph->getId());
 		$reviewerSelectorForm->initData();
 
-		$json = new JSON(true, $reviewerSelectorForm->fetch($request));
+		$json = new JSONMessage(true, $reviewerSelectorForm->fetch($request));
 		return $json->getString();
 	}
 

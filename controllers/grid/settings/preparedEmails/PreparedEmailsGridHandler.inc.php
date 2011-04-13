@@ -138,7 +138,7 @@ class PreparedEmailsGridHandler extends GridHandler {
 		$preparedEmailForm = new PreparedEmailForm($emailKey, $press);
 		$preparedEmailForm->initData($request);
 
-		$json = new JSON(true, $preparedEmailForm->fetch($request));
+		$json = new JSONMessage(true, $preparedEmailForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -162,7 +162,7 @@ class PreparedEmailsGridHandler extends GridHandler {
 			// Let the calling grid reload itself
 			return DAO::getDataChangedEvent($emailKey);
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}
@@ -184,7 +184,7 @@ class PreparedEmailsGridHandler extends GridHandler {
 			$emailTemplateDao->deleteEmailTemplateByKey($emailKey, $press->getId());
 			return DAO::getDataChangedEvent($emailKey);
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}
@@ -233,7 +233,7 @@ class PreparedEmailsGridHandler extends GridHandler {
 				return DAO::getDataChangedEvent($emailKey);
 			}
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}
@@ -266,7 +266,7 @@ class PreparedEmailsGridHandler extends GridHandler {
 				return DAO::getDataChangedEvent($emailKey);
 			}
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}
@@ -285,7 +285,7 @@ class PreparedEmailsGridHandler extends GridHandler {
 			$emailTemplateDao->deleteEmailTemplateByKey($emailKey, $press->getId());
 			return DAO::getDataChangedEvent($emailKey);
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}

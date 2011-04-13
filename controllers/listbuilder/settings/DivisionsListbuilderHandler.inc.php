@@ -21,7 +21,6 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function DivisionsListbuilderHandler() {
 		parent::SetupListbuilderHandler();
-		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 	}
 
 
@@ -61,6 +60,14 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		$this->addColumn(new GridColumn('item', 'manager.setup.currentFormats'));
 	}
 
+	/**
+	 * @see PKPHandler::setupTemplate()
+	 */
+	function setupTemplate() {
+		parent::setupTemplate();
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
+	}
+
 	//
 	// Public AJAX-accessible functions
 	//
@@ -80,13 +87,13 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		$divisionTitle = $args[$index];
 
 		if(!isset($divisionTitle)) {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
-		} 	else {
+		} else {
 			// Make sure the item doesn't already exist
 			$divisions = $divisionDao->getByTitle($divisionTitle, $press->getId());
 			if (isset($divisions)) {
-				$json = new JSON(false, Locale::translate('common.listbuilder.itemExists'));
+				$json = new JSONMessage(false, Locale::translate('common.listbuilder.itemExists'));
 				return $json->getString();
 				return false;
 			}
@@ -105,7 +112,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
+			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
 			return $json->getString();
 		}
 	}
@@ -124,8 +131,9 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 			$divisionDao->deleteById($item, $press->getId());
 		}
 
-		$json = new JSON(true);
+		$json = new JSONMessage(true);
 		return $json->getString();
 	}
 }
+
 ?>

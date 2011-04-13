@@ -116,7 +116,7 @@ class SponsorGridHandler extends SetupGridHandler {
 			$sponsorForm->initData($args, $request);
 		}
 
-		$json = new JSON(true, $sponsorForm->fetch($request));
+		$json = new JSONMessage(true, $sponsorForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -147,9 +147,9 @@ class SponsorGridHandler extends SetupGridHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
+			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 		}
 
 		return $json->getString();
@@ -173,9 +173,9 @@ class SponsorGridHandler extends SetupGridHandler {
 		if (isset($sponsors[$sponsorId])) {
 			unset($sponsors[$sponsorId]);
 			$pressSettingsDao->updateSetting($press->getId(), 'sponsors', $sponsors, 'object');
-			$json = new JSON(true);
+			$json = new JSONMessage(true);
 		} else {
-			$json = new JSON(false, Locale::translate('manager.setup.errorDeletingItem'));
+			$json = new JSONMessage(false, Locale::translate('manager.setup.errorDeletingItem'));
 		}
 		return $json->getString();
 	}

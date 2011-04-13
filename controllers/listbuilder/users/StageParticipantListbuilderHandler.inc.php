@@ -153,7 +153,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 			)
 		) {
 			// Warn the user that the item has been added before.
-			$json = new JSON(false, __('common.listbuilder.itemExists'));
+			$json = new JSONMessage(false, __('common.listbuilder.itemExists'));
 			return $json->getString();
 		}
 
@@ -171,7 +171,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 		$row->setData($rowData);
 		$row->initialize($request);
 
-		$json = new JSON(true , $this->_renderRowInternally($request, $row));
+		$json = new JSONMessage(true , $this->_renderRowInternally($request, $row));
 		return $json->getString();
 	}
 
@@ -184,7 +184,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 		foreach($signoffIds as $signoffId) {
 			$signoffDao->deleteObjectById((int)$signoffId);
 		}
-		$json = new JSON(true);
+		$json = new JSONMessage(true);
 		return $json->getString();
 	}
 

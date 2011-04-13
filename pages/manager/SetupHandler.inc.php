@@ -12,7 +12,6 @@
  * @brief Handle requests for press setup functions.
  */
 
-import('lib.pkp.classes.core.JSON');
 import('pages.manager.ManagerHandler');
 
 class SetupHandler extends ManagerHandler {

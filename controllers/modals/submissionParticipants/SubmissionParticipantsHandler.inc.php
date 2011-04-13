@@ -15,7 +15,7 @@
 import('classes.handler.Handler');
 
 // import JSON class for use with all AJAX requests
-import('lib.pkp.classes.core.JSON');
+import('lib.pkp.classes.core.JSONMessage');
 
 class SubmissionParticipantsHandler extends Handler {
 	/**
@@ -62,7 +62,7 @@ class SubmissionParticipantsHandler extends Handler {
 		$submissionParticipantsForm = new SubmissionParticipantsForm($monographId);
 		$submissionParticipantsForm->initData($args, $request);
 
-		$json = new JSON(true, $submissionParticipantsForm->fetch($request));
+		$json = new JSONMessage(true, $submissionParticipantsForm->fetch($request));
 		return $json->getString();
 	}
 

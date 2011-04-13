@@ -190,7 +190,7 @@ class StageParticipantGridHandler extends GridHandler {
 		// form as a simple template, see #6505.
 		import('controllers.grid.users.stageParticipant.form.StageParticipantForm');
 		$stageParticipantForm = new StageParticipantForm($this->getMonograph(), $this->getStageId());
-		$json = new JSON(true, $stageParticipantForm->fetch($request));
+		$json = new JSONMessage(true, $stageParticipantForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -213,7 +213,7 @@ class StageParticipantGridHandler extends GridHandler {
 		if($signoffDao->deleteObjectById($signoffId)) {
 			return $json = DAO::getDataChangedEvent($signoffId);
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}

@@ -202,7 +202,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		$submissionContributorForm = new SubmissionContributorForm($this->getMonograph(), $submissionContributor);
 		$submissionContributorForm->initData();
 
-		$json = new JSON(true, $submissionContributorForm->fetch($request));
+		$json = new JSONMessage(true, $submissionContributorForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -241,12 +241,12 @@ class SubmissionContributorGridHandler extends GridHandler {
 			// Render the row into a JSON response
 			if($submissionContributor->getPrimaryContact()) {
 				$additionalAttributes = array('script' => 'deleteElementById(\'#isPrimaryContact\')');
-				$json = new JSON(true, $this->_renderRowInternally($request, $row), true, null, $additionalAttributes);
+				$json = new JSONMessage(true, $this->_renderRowInternally($request, $row), true, null, $additionalAttributes);
 			} else {
-				$json = new JSON(true, $this->_renderRowInternally($request, $row));
+				$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
 			}
 		} else {
-			$json = new JSON(false, Locale::translate('editor.monograph.addUserError'));
+			$json = new JSONMessage(false, Locale::translate('editor.monograph.addUserError'));
 		}
 		return $json->getString();
 	}
@@ -267,9 +267,9 @@ class SubmissionContributorGridHandler extends GridHandler {
 		$result = $authorDao->deleteAuthorById($submissionContributorId, $monographId);
 
 		if ($result) {
-			$json = new JSON(true);
+			$json = new JSONMessage(true);
 		} else {
-			$json = new JSON(false, Locale::translate('submission.submit.errorDeletingSubmissionContributor'));
+			$json = new JSONMessage(false, Locale::translate('submission.submit.errorDeletingSubmissionContributor'));
 		}
 		return $json->getString();
 	}

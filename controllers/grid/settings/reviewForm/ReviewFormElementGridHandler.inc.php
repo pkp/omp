@@ -160,7 +160,7 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 				$reviewFormElementForm->initData($args, $request);
 			}
 
-			$json = new JSON(true, $reviewFormElementForm->fetch($request));
+			$json = new JSONMessage(true, $reviewFormElementForm->fetch($request));
 			return $json->getString();
 		}
 	}
@@ -230,9 +230,9 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 			$row->setData($reviewFormElementForm->reviewFormElement);
 			$row->initialize($request);
 
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
+			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			$press =& Request::getPress();
 			$templateMgr =& TemplateManager::getManager();
 			if ($reviewFormElementId == null) {
@@ -262,9 +262,9 @@ class ReviewFormElementGridHandler extends SetupGridHandler {
 		if ($reviewFormDao->unusedReviewFormExists($reviewFormId, ASSOC_TYPE_PRESS, $press->getId())) {
 			$reviewFormElementDao =& DAORegistry::getDAO('ReviewFormElementDAO');
 			$reviewFormElementDao->deleteById($reviewFormElementId);
-			$json = new JSON(true);
+			$json = new JSONMessage(true);
 		} else {
-			$json = new JSON(false, Locale::translate('manager.setup.errorDeletingReviewForm'));
+			$json = new JSONMessage(false, Locale::translate('manager.setup.errorDeletingReviewForm'));
 		}
 		return $json->getString();
 	}

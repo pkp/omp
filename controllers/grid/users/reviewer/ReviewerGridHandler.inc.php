@@ -234,7 +234,7 @@ class ReviewerGridHandler extends GridHandler {
 		$reviewerForm = new ReviewerForm($this->getMonograph(), $reviewAssignmentId);
 		$reviewerForm->initData($args, $request);
 
-		$json = new JSON(true, $reviewerForm->fetch($request));
+		$json = new JSONMessage(true, $reviewerForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -264,10 +264,10 @@ class ReviewerGridHandler extends GridHandler {
 			$row->setData($reviewAssignment);
 			$row->initialize($request);
 
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
+			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
 		} else {
 			// There was an error, redisplay the form
-			$json = new JSON(false, $reviewerForm->fetch($request));
+			$json = new JSONMessage(false, $reviewerForm->fetch($request));
 		}
 		return $json->getString();
 	}
@@ -291,9 +291,9 @@ class ReviewerGridHandler extends GridHandler {
 
 		// Render the result.
 		if ($result) {
-			$json = new JSON(true);
+			$json = new JSONMessage(true);
 		} else {
-			$json = new JSON(false, Locale::translate('submission.submit.errorDeletingReviewer'));
+			$json = new JSONMessage(false, Locale::translate('submission.submit.errorDeletingReviewer'));
 		}
 		return $json->getString();
 	}
@@ -326,8 +326,8 @@ class ReviewerGridHandler extends GridHandler {
 			}
 		}
 
-		import('lib.pkp.classes.core.JSON');
-		$sourceJson = new JSON(true, null, false, 'local');
+		import('lib.pkp.classes.core.JSONMessage');
+		$sourceJson = new JSONMessage(true, null, false, 'local');
 		$sourceContent = array();
 		foreach ($itemList as $i => $item) {
 			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
@@ -335,7 +335,7 @@ class ReviewerGridHandler extends GridHandler {
 				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
 				'value' => $item['id']
 		   );
-			$itemJson = new JSON(true, '', false, null, $additionalAttributes);
+			$itemJson = new JSONMessage(true, '', false, null, $additionalAttributes);
 			$sourceContent[] = $itemJson->getString();
 
 			unset($itemJson);
@@ -370,8 +370,8 @@ class ReviewerGridHandler extends GridHandler {
 			unset($user);
 		}
 
-		import('lib.pkp.classes.core.JSON');
-		$sourceJson = new JSON(true, null, false, 'local');
+		import('lib.pkp.classes.core.JSONMessage');
+		$sourceJson = new JSONMessage(true, null, false, 'local');
 		$sourceContent = array();
 		foreach ($itemList as $i => $item) {
 			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
@@ -379,7 +379,7 @@ class ReviewerGridHandler extends GridHandler {
 				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
 				'value' => $item['id']
 			);
-			$itemJson = new JSON(true, '', false, null, $additionalAttributes);
+			$itemJson = new JSONMessage(true, '', false, null, $additionalAttributes);
 			$sourceContent[] = $itemJson->getString();
 
 			unset($itemJson);
@@ -436,7 +436,7 @@ class ReviewerGridHandler extends GridHandler {
 		$reviewReminderForm->initData($args, $request);
 
 		// Render form.
-		$json = new JSON(true, $reviewReminderForm->fetch($request));
+		$json = new JSONMessage(true, $reviewReminderForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -456,9 +456,9 @@ class ReviewerGridHandler extends GridHandler {
 		$reviewReminderForm->readInputData();
 		if ($reviewReminderForm->validate()) {
 			$reviewReminderForm->execute($args, $request);
-			$json = new JSON(true);
+			$json = new JSONMessage(true);
 		} else {
-			$json = new JSON(false, Locale::translate('editor.review.reminderError'));
+			$json = new JSONMessage(false, Locale::translate('editor.review.reminderError'));
 		}
 		return $json->getString();
 	}

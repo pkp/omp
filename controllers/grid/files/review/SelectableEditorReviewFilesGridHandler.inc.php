@@ -64,7 +64,7 @@ class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandl
 			// Let the calling grid reload itself
 			return DAO::getDataChangedEvent();
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}

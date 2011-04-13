@@ -132,7 +132,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 
 		$sourceArray = $this->getPossibleItemList($request);
 
-		$sourceJson = new JSON(true, null, false, 'local');
+		$sourceJson = new JSONMessage(true, null, false, 'local');
 		$sourceContent = array();
 		foreach ($sourceArray as $id => $item) {
 			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
@@ -140,7 +140,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
 				'value' => $id
 			);
-			$itemJson = new JSON(true, '', false, null, $additionalAttributes);
+			$itemJson = new JSONMessage(true, '', false, null, $additionalAttributes);
 			$sourceContent[] = $itemJson->getString();
 
 			unset($itemJson);
@@ -165,14 +165,14 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 		$userId = $args[$index];
 
 		if(empty($userId)) {
-			$json = new JSON(false, Locale::translate('common.listbuilder.completeForm'));
+			$json = new JSONMessage(false, Locale::translate('common.listbuilder.completeForm'));
 			return $json->getString();
 		} else {
 			$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
 
 			// Make sure the membership doesn't already exist
 			if ($seriesEditorsDao->editorExists($press->getId(), $seriesId, $userId)) {
-				$json = new JSON(false, Locale::translate('common.listbuilder.itemExists'));
+				$json = new JSONMessage(false, Locale::translate('common.listbuilder.itemExists'));
 				return $json->getString();
 				return false;
 			}
@@ -191,7 +191,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
+			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
 			return $json->getString();
 		}
 	}
@@ -204,14 +204,15 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	function deleteItems($args, &$request) {
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
 		$press =& $request->getPress();
-		$seriesId = array_shift($args);
+		$seriesId = (int) array_shift($args);
 
 		foreach($args as $userId) {
 			$seriesEditorsDao->deleteEditor($press->getId(), $seriesId, $userId);
 		}
 
-		$json = new JSON(true);
+		$json = new JSONMessage(true);
 		return $json->getString();
 	}
 }
+
 ?>

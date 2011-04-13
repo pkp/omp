@@ -178,7 +178,7 @@ class UserGroupGridHandler extends GridHandler {
 
 		if($userGroupForm->getUserGroupId() != null) $userGroupForm->initData();
 
-		$json = new JSON(true, $userGroupForm->fetch($request));
+		$json = new JSONMessage(true, $userGroupForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -196,7 +196,7 @@ class UserGroupGridHandler extends GridHandler {
 			$userGroupDao->deleteById($pressId, $userGroupId);
 			return DAO::getDataChangedEvent($userGroupId);
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}
@@ -214,7 +214,7 @@ class UserGroupGridHandler extends GridHandler {
 			$userGroupForm->execute($request);
 			return DAO::getDataChangedEvent($userGroupForm->getUserGroupId());
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}

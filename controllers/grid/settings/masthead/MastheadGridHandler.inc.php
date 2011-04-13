@@ -127,7 +127,7 @@ class MastheadGridHandler extends SetupGridHandler {
 			$groupDao =& DAORegistry::getDAO('GroupDAO');
 			$group =& $groupDao->getById($groupId, ASSOC_TYPE_PRESS, $press->getId());
 			if (!$group) {
-				$json = new JSON(false);
+				$json = new JSONMessage(false);
 				return $json->getString();
 			}
 		} else $group = null;
@@ -145,7 +145,7 @@ class MastheadGridHandler extends SetupGridHandler {
 		$groupForm = new GroupForm($group);
 		$groupForm->initData();
 
-		$json = new JSON(true, $groupForm->fetch($request));
+		$json = new JSONMessage(true, $groupForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -169,7 +169,7 @@ class MastheadGridHandler extends SetupGridHandler {
 			$groupForm->execute();
 			return DAO::getDataChangedEvent($groupForm->group->getId());
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}
@@ -192,7 +192,7 @@ class MastheadGridHandler extends SetupGridHandler {
 			$groupDao->resequenceGroups($group->getAssocType(), $group->getAssocId());
 			return DAO::getDataChangedEvent($groupId);
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}

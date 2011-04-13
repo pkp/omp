@@ -13,7 +13,7 @@
  */
 
 import('classes.handler.Handler');
-import('lib.pkp.classes.core.JSON');
+import('lib.pkp.classes.core.JSONMessage');
 import('classes.log.MonographEventLogEntry');
 
 class InformationCenterHandler extends Handler {
@@ -118,7 +118,7 @@ class InformationCenterHandler extends Handler {
 		assert ($note && $note->getAssocType() == $this->_getAssocType() && $note->getAssocId() == $this->_getAssocId());
 		$noteDao->deleteById($noteId);
 
-		$json = new JSON(true);
+		$json = new JSONMessage(true);
 		return $json->getString();
 	}
 

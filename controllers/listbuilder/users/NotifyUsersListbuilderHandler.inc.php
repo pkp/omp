@@ -91,7 +91,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		$userDao =& DAORegistry::getDAO('UserDAO');
 		$user =& $userDao->getUser($userId);
 		if (!$user) {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json;
 		}
 
@@ -103,7 +103,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 		$row->setData($rowData);
 		$row->initialize($request);
 
-		$json = new JSON(true, $this->_renderRowInternally($request, $row));
+		$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
 		return $json->getString();
 
 	}
@@ -113,7 +113,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 	 * Handle deleting items from the list
 	 */
 	function deleteItems($args, &$request) {
-		$json = new JSON(true);
+		$json = new JSONMessage(true);
 		return $json->getString();
 	}
 

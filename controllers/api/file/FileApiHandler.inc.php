@@ -17,6 +17,7 @@
 
 // Import the base handler.
 import('classes.file.FileManagementHandler');
+import('lib.pkp.classes.core.JSONMessage');
 
 class FileApiHandler extends FileManagementHandler {
 
@@ -62,7 +63,7 @@ class FileApiHandler extends FileManagementHandler {
 		if ($success) {
 			return DAO::getDataChangedEvent($fileId);
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}

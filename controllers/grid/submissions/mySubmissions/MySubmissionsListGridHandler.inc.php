@@ -87,9 +87,9 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 			$monographDao =& DAORegistry::getDAO('MonographDAO'); /* @var $monographDao MonographDAO */
 			$monographDao->deleteMonographById($monographId);
 
-			$json = new JSON(true);
+			$json = new JSONMessage(true);
 		} else {
-			$json = new JSON(false, Locale::translate('settings.setup.errorDeletingItem'));
+			$json = new JSONMessage(false, Locale::translate('settings.setup.errorDeletingItem'));
 		}
 
 		return $json->getString();

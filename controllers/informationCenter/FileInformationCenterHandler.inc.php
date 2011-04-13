@@ -13,7 +13,7 @@
  */
 
 import('controllers.informationCenter.InformationCenterHandler');
-import('lib.pkp.classes.core.JSON');
+import('lib.pkp.classes.core.JSONMessage');
 import('classes.log.MonographEventLogEntry');
 
 class FileInformationCenterHandler extends InformationCenterHandler {
@@ -89,7 +89,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$notesForm = new NewFileNoteForm($this->monographFile->getFileId());
 		$notesForm->initData();
 
-		$json = new JSON(true, $notesForm->fetch($request));
+		$json = new JSONMessage(true, $notesForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -107,13 +107,13 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 
 		if ($notesForm->validate()) {
 			$notesForm->execute();
-			$json = new JSON(true);
+			$json = new JSONMessage(true);
 
 			// Save to event log
 			$this->_logEvent($request, MONOGRAPH_LOG_NOTE_POSTED);
 		} else {
 			// Return a JSON string indicating failure
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 		}
 
 		return $json->getString();
@@ -131,7 +131,7 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 		$notifyForm = new InformationCenterNotifyForm(ASSOC_TYPE_MONOGRAPH_FILE, $this->monographFile->getFileId());
 		$notifyForm->initData();
 
-		$json = new JSON(true, $notifyForm->fetch($request));
+		$json = new JSONMessage(true, $notifyForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -151,10 +151,10 @@ class FileInformationCenterHandler extends InformationCenterHandler {
 			$noteId = $notifyForm->execute($request);
 
 			// Success--Return a JSON string indicating so (will clear the form on return, and indicate success)
-			$json = new JSON(true);
+			$json = new JSONMessage(true);
 		} else {
 			// Failure--Return a JSON string indicating so
-			$json = new JSON(false, __('informationCenter.notify.warning'));
+			$json = new JSONMessage(false, __('informationCenter.notify.warning'));
 		}
 
 		return $json->getString();

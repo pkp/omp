@@ -20,7 +20,7 @@
 import('classes.file.FileManagementHandler');
 
 // Import JSON class for use with all AJAX requests.
-import('lib.pkp.classes.core.JSON');
+import('lib.pkp.classes.core.JSONMessage');
 
 // The percentage of characters that the name of a file
 // has to share with an existing file for it to be
@@ -188,7 +188,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		$fileForm->initData($args, $request);
 
 		// Render the form.
-		$json = new JSON(true, $fileForm->fetch($request));
+		$json = new JSONMessage(true, $fileForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -225,18 +225,18 @@ class FileUploadWizardHandler extends FileManagementHandler {
 						$confirmationForm->initData($args, $request);
 
 						// Render the revision confirmation form.
-						$json = new JSON(true, $confirmationForm->fetch($request), false, '0', $uploadedFileInfo);
+						$json = new JSONMessage(true, $confirmationForm->fetch($request), false, '0', $uploadedFileInfo);
 						return $json->getString();
 					}
 				}
 
 				// Advance to the next step (i.e. meta-data editing).
-				$json = new JSON(true, '', false, '0', $uploadedFileInfo);
+				$json = new JSONMessage(true, '', false, '0', $uploadedFileInfo);
 			} else {
-				$json = new JSON(false, Locale::translate('common.uploadFailed'));
+				$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
 			}
 		} else {
-			$json = new JSON(false, array_pop($uploadForm->getErrorsArray()));
+			$json = new JSONMessage(false, array_pop($uploadForm->getErrorsArray()));
 		}
 		return $json->getString();
 	}
@@ -261,12 +261,12 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		if ($confirmationForm->validate($request)) {
 			if (is_a($uploadedFile =& $confirmationForm->execute(), 'MonographFile')) {
 				// Go to the meta-data editing step.
-				$json = new JSON(true, '', false, '0', $this->_getUploadedFileInfo($uploadedFile));
+				$json = new JSONMessage(true, '', false, '0', $this->_getUploadedFileInfo($uploadedFile));
 			} else {
-				$json = new JSON(false, Locale::translate('common.uploadFailed'));
+				$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
 			}
 		} else {
-			$json = new JSON(false, array_pop($confirmationForm->getErrorsArray()));
+			$json = new JSONMessage(false, array_pop($confirmationForm->getErrorsArray()));
 		}
 		return $json->getString();
 	}
@@ -285,7 +285,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 		} else {
 			$metadataForm->initData($args, $request);
 		}
-		$json = new JSON(true, $metadataForm->fetch($request));
+		$json = new JSONMessage(true, $metadataForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -304,7 +304,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 			$submissionFile = $metadataForm->getSubmissionFile();
 			return DAO::getDataChangedEvent($submissionFile->getFileId());
 		} else {
-			$json = new JSON(false, $metadataForm->fetch($request));
+			$json = new JSONMessage(false, $metadataForm->fetch($request));
 		}
 		return $json->getString();
 	}

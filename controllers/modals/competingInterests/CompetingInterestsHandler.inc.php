@@ -15,7 +15,7 @@
 import('classes.handler.Handler');
 
 // import JSON class for use with all AJAX requests
-import('lib.pkp.classes.core.JSON');
+import('lib.pkp.classes.core.JSONMessage');
 
 class CompetingInterestsHandler extends Handler {
 	/**
@@ -60,7 +60,7 @@ class CompetingInterestsHandler extends Handler {
 		$competingInterestsForm = new CompetingInterestsForm($pressId);
 		$competingInterestsForm->initData($args, $request);
 
-		$json = new JSON(true, $competingInterestsForm->fetch($request));
+		$json = new JSONMessage(true, $competingInterestsForm->fetch($request));
 		return $json->getString();
 	}
 

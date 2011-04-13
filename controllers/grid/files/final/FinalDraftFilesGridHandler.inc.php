@@ -113,7 +113,7 @@ class FinalDraftFilesGridHandler extends SubmissionFilesGridHandler {
 
 		// Initialize and render the files form.
 		$manageFinalDraftFilesForm->initData($args, $request);
-		$json = new JSON(true, $manageFinalDraftFilesForm->fetch($request));
+		$json = new JSONMessage(true, $manageFinalDraftFilesForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -140,7 +140,7 @@ class FinalDraftFilesGridHandler extends SubmissionFilesGridHandler {
 			// Let the calling grid reload itself
 			return DAO::getDataChangedEvent();
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		}
 	}

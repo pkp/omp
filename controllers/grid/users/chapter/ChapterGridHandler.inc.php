@@ -212,7 +212,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 			$chapterForm->initData();
 		}
 
-		$json = new JSON(true, $chapterForm->fetch($request));
+		$json = new JSONMessage(true, $chapterForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -249,10 +249,10 @@ class ChapterGridHandler extends CategoryGridHandler {
 			$monograph =& $this->getMonograph();
 			$authors =& $chapterAuthorDao->getAuthors($monograph->getId(), $chapter->getId());
 			$groupIterator = $chapter->getId() % 5;
-			$json = new JSON(true, $this->_renderCategoryInternally($request, $categoryRow, $groupIterator));
+			$json = new JSONMessage(true, $this->_renderCategoryInternally($request, $categoryRow, $groupIterator));
 		} else {
 			// Return an error
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 		}
 
 		// Return the serialized JSON response
@@ -273,9 +273,9 @@ class ChapterGridHandler extends CategoryGridHandler {
 		$result = $chapterDAO->deleteChapter($chapter);
 
 		if ($result) {
-			$json = new JSON(true);
+			$json = new JSONMessage(true);
 		} else {
-			$json = new JSON(false, Locale::translate('submission.chapters.grid.errorDeletingChapter'));
+			$json = new JSONMessage(false, Locale::translate('submission.chapters.grid.errorDeletingChapter'));
 		}
 		return $json->getString();
 	}

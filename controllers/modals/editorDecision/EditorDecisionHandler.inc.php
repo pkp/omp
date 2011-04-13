@@ -15,7 +15,7 @@
 import('classes.handler.Handler');
 
 // import JSON class for use with all AJAX requests
-import('lib.pkp.classes.core.JSON');
+import('lib.pkp.classes.core.JSONMessage');
 
 class EditorDecisionHandler extends Handler {
 	/**
@@ -90,9 +90,9 @@ class EditorDecisionHandler extends Handler {
 
 			// Create a JSON message with the script.
 			$additionalAttributes = array('script' => $reviewRoundTabScript);
-			$json = new JSON(true, null, true, null, $additionalAttributes);
+			$json = new JSONMessage(true, null, true, null, $additionalAttributes);
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 		}
 
 		return $json->getString();
@@ -185,9 +185,9 @@ class EditorDecisionHandler extends Handler {
 		$peerReviews = $seriesEditorAction->getPeerReviews($seriesEditorSubmission);
 
 		if(empty($peerReviews)) {
-			$json = new JSON(false, Locale::translate('editor.review.noReviews'));
+			$json = new JSONMessage(false, Locale::translate('editor.review.noReviews'));
 		} else {
-			$json = new JSON(true, $peerReviews);
+			$json = new JSONMessage(true, $peerReviews);
 		}
 		return $json->getString();
 	}
@@ -207,7 +207,7 @@ class EditorDecisionHandler extends Handler {
 		$seriesEditorAction = new SeriesEditorAction();
 		$seriesEditorAction->incrementWorkflowStage($monograph, WORKFLOW_STAGE_ID_PRODUCTION);
 
-		$json = new JSON(true);
+		$json = new JSONMessage(true);
 		return $json->getString();
 	}
 
@@ -235,7 +235,7 @@ class EditorDecisionHandler extends Handler {
 		$editorDecisionForm = new $formName($monograph, $decision);
 		$editorDecisionForm->initData($args, $request);
 
-		$json = new JSON(true, $editorDecisionForm->fetch($request));
+		$json = new JSONMessage(true, $editorDecisionForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -267,10 +267,10 @@ class EditorDecisionHandler extends Handler {
 				$redirectUrl = $dispatcher->url($request, ROUTE_PAGE, null, 'workflow', $redirectOp, array($monograph->getId()));
 				return $request->redirectUrlJson($redirectUrl);
 			} else {
-				$json = new JSON(true);
+				$json = new JSONMessage(true);
 			}
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 		}
 		return $json->getString();
 	}

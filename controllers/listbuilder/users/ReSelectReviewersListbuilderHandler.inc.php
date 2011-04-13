@@ -108,7 +108,6 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 	//
 	// Public AJAX-accessible functions
 	//
-
 	/*
 	 * Handle adding an item to the list
 	 * @param $args array
@@ -128,11 +127,10 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 		$row->setData($rowData);
 		$row->initialize($request);
 
-		$json = new JSON(true, $this->_renderRowInternally($request, $row));
+		$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
 		return $json->getString();
 
 	}
-
 
 	/*
 	 * Handle deleting items from the list
@@ -140,8 +138,9 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 	 * @param $request PKPRequest
 	 */
 	function deleteItems($args, &$request) {
-		$json = new JSON(true);
+		$json = new JSONMessage(true);
 		return $json->getString();
 	}
 }
+
 ?>

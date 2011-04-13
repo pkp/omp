@@ -15,9 +15,6 @@
 // Import the base Handler.
 import('classes.handler.Handler');
 
-// Import JSON class for use with all AJAX requests.
-import('lib.pkp.classes.core.JSON');
-
 class FileManagementHandler extends Handler {
 
 	/** @var Monograph */

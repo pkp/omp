@@ -13,7 +13,7 @@
  */
 
 import('controllers.informationCenter.InformationCenterHandler');
-import('lib.pkp.classes.core.JSON');
+import('lib.pkp.classes.core.JSONMessage');
 import('classes.log.MonographEventLogEntry');
 
 class SubmissionInformationCenterHandler extends InformationCenterHandler {
@@ -76,7 +76,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		$notesForm = new NewMonographNoteForm($this->monograph->getId());
 		$notesForm->initData();
 
-		$json = new JSON(true, $notesForm->fetch($request));
+		$json = new JSONMessage(true, $notesForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -94,7 +94,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 
 		if ($notesForm->validate()) {
 			$notesForm->execute();
-			$json = new JSON(true);
+			$json = new JSONMessage(true);
 
 			// Save to event log
 			$user =& $request->getUser();
@@ -102,7 +102,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 			$this->_logEvent($request, MONOGRAPH_LOG_NOTE_POSTED);
 		} else {
 			// Return a JSON string indicating failure
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 		}
 
 		return $json->getString();
@@ -120,7 +120,7 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 		$notifyForm = new InformationCenterNotifyForm($this->monograph->getId(), ASSOC_TYPE_MONOGRAPH);
 		$notifyForm->initData();
 
-		$json = new JSON(true, $notifyForm->fetch($request));
+		$json = new JSONMessage(true, $notifyForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -141,10 +141,10 @@ class SubmissionInformationCenterHandler extends InformationCenterHandler {
 
 			// Return a JSON string indicating success
 			// (will clear the form on return)
-			$json = new JSON(true);
+			$json = new JSONMessage(true);
 		} else {
 			// Return a JSON string indicating failure
-			$json = new JSON(false, __('informationCenter.notify.warning'));
+			$json = new JSONMessage(false, __('informationCenter.notify.warning'));
 		}
 
 		return $json->getString();

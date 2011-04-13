@@ -158,7 +158,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$fileForm = new NewLibraryFileForm($context->getId(), $this->getFileType());
 		$fileForm->initData();
 
-		$json = new JSON(true, $fileForm->fetch($request));
+		$json = new JSONMessage(true, $fileForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -177,12 +177,12 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$temporaryFileManager = new TemporaryFileManager();
 		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
 		if ($temporaryFile) {
-			$json = new JSON(true);
+			$json = new JSONMessage(true);
 			$json->setAdditionalAttributes(array(
 				'temporaryFileId' => $temporaryFile->getId()
 			));
 		} else {
-			$json = new JSON(false, Locale::translate('common.uploadFailed'));
+			$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
 		}
 
 		return $json->getString();
@@ -210,7 +210,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 			return DAO::getDataChangedEvent($fileId);
 		}
 
-		return new JSON(false);
+		return new JSONMessage(false);
 	}
 
 	/**
@@ -231,7 +231,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$fileForm = new EditLibraryFileForm($context->getId(), $this->getFileType(), $fileId);
 		$fileForm->initData();
 
-		$json = new JSON(true, $fileForm->fetch($request));
+		$json = new JSONMessage(true, $fileForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -259,7 +259,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 			return DAO::getDataChangedEvent($fileId);
 		}
 
-		$json = new JSON(false);
+		$json = new JSONMessage(false);
 		return $json->getString();
 	}
 
@@ -282,7 +282,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 			return DAO::getDataChangedEvent($fileId);
 		}
 
-		$json = new JSON(false);
+		$json = new JSONMessage(false);
 		return $json->getString();
 	}
 }

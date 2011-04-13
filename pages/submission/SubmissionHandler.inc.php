@@ -14,7 +14,7 @@
 
 
 import('classes.handler.Handler');
-import('lib.pkp.classes.core.JSON');
+import('lib.pkp.classes.core.JSONMessage');
 
 class SubmissionHandler extends Handler {
 	/**
@@ -156,7 +156,7 @@ class SubmissionHandler extends Handler {
 
 		if (!HookRegistry::call('SubmissionHandler::saveSubmit', array($step, &$monograph, &$submitForm))) {
 			if (!$submitForm->validate()) {
-				$response = new JSON(false);
+				$response = new JSONMessage(false);
 				return $response->getString();
 			}
 

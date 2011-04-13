@@ -15,7 +15,7 @@
 import('controllers.modals.submissionMetadata.SubmissionMetadataHandler');
 
 // import JSON class for use with all AJAX requests
-import('lib.pkp.classes.core.JSON');
+import('lib.pkp.classes.core.JSONMessage');
 
 class ReviewerSubmissionMetadataHandler extends SubmissionMetadataHandler {
 	/**

@@ -113,7 +113,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 			!$userGroupDao->contextHasGroup($press->getId(), $userGroupId) ||
 			$userGroupDao->userInGroup($press->getId(), $userId, $userGroupId)
 		) {
-			$json = new JSON(false, Locale::translate('common.listbuilder.selectValidOption'));
+			$json = new JSONMessage(false, Locale::translate('common.listbuilder.selectValidOption'));
 			return $json->getString();
 		} else {
 			// Add the assignment
@@ -129,7 +129,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
+			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
 			return $json->getString();
 		}
 	}
@@ -152,7 +152,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 			$userGroupDao->removeUserFromGroup($userId, (int) $userGroupId);
 		}
 
-		$json = new JSON(true);
+		$json = new JSONMessage(true);
 		return $json->getString();
 	}
 

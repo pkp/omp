@@ -210,7 +210,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			$copyeditingUserForm->initData($args, &$request);
 		}
 
-		$json = new JSON(true, $copyeditingUserForm->fetch($request));
+		$json = new JSONMessage(true, $copyeditingUserForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -254,7 +254,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 
 			$fetchedContent = $templateMgr->fetchJson('controllers/grid/files/copyedit/copyeditingGrid.tpl');
 		} else {
-			$fetchedContent = new JSON(false, Locale::translate('editor.monograph.addUserError'));
+			$fetchedContent = new JSONMessage(false, Locale::translate('editor.monograph.addUserError'));
 		}
 
 		return $fetchedContent;
@@ -289,8 +289,8 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			}
 		}
 
-		import('lib.pkp.classes.core.JSON');
-		$sourceJson = new JSON(true, null, false, 'local');
+		import('lib.pkp.classes.core.JSONMessage');
+		$sourceJson = new JSONMessage(true, null, false, 'local');
 		$sourceContent = array();
 		foreach ($itemList as $i => $item) {
 			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
@@ -298,7 +298,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
 				'value' => $item['id'] . "-" . $item['userGroupId']
 		 	);
-			$itemJson = new JSON(true, '', false, null, $additionalAttributes);
+			$itemJson = new JSONMessage(true, '', false, null, $additionalAttributes);
 			$sourceContent[] = $itemJson->getString();
 
 			unset($itemJson);
@@ -341,7 +341,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			$copyeditingFileForm->initData($args, $request);
 		}
 
-		$json = new JSON(true, $copyeditingFileForm->fetch($request));
+		$json = new JSONMessage(true, $copyeditingFileForm->fetch($request));
 		return $json->getString();
 	}
 
@@ -367,9 +367,9 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			$additionalAttributes = array(
 				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('fileId' => $copyeditedFileId))
 			);
-			$json = new JSON(true, Locale::translate('submission.uploadSuccessful'), false, $copyeditedFileId, $additionalAttributes);
+			$json = new JSONMessage(true, Locale::translate('submission.uploadSuccessful'), false, $copyeditedFileId, $additionalAttributes);
 		} else {
-			$json = new JSON(false, Locale::translate('common.uploadFailed'));
+			$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
 		}
 
 		echo $json->getString();
@@ -395,9 +395,9 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			$row->setData($signoff);
 			$row->initialize($request);
 
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
+			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
 		} else {
-			$json = new JSON(false, Locale::translate('common.uploadFailed'));
+			$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
 		}
 
 		return $json->getString();
@@ -448,9 +448,9 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			$row->setData($signoff);
 			$row->initialize($request);
 
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
+			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
 		} else {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 		}
 		return $json->getString();
 	}
@@ -469,9 +469,9 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 			$signoffDao->deleteObjectById($signoffId);
 
-			$json = new JSON(true);
+			$json = new JSONMessage(true);
 		} else {
-			$json = new JSON(false, 'manager.setup.errorDeletingItem');
+			$json = new JSONMessage(false, 'manager.setup.errorDeletingItem');
 		}
 		return $json->getString();
 	}

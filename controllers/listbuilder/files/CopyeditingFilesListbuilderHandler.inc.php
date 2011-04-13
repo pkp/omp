@@ -122,11 +122,11 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	function addItem(&$args, &$request) {
 		$monographId = $request->getUserVar('monographId');
 
-		$rowId = "selectList-" . $this->getId();
+		$rowId = 'selectList-' . $this->getId();
 		$fileId = (int) $args[$rowId];
 
 		if(!isset($fileId)) {
-			$json = new JSON(false);
+			$json = new JSONMessage(false);
 			return $json->getString();
 		} else {
 			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
@@ -140,7 +140,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
+			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
 			return $json->getString();
 		}
 	}
@@ -152,8 +152,9 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	 * @param $request PKPRequest
 	 */
 	function deleteItems(&$args, &$request) {
-		$json = new JSON(true);
+		$json = new JSONMessage(true);
 		return $json->getString();
 	}
 }
+
 ?>

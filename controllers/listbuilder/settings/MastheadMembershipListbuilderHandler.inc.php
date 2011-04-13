@@ -105,7 +105,6 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
 
 		// Basic configuration
 		$this->setTitle('manager.groups.membership.addMember');
@@ -118,6 +117,14 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 		$this->loadList($request);
 
 		$this->addColumn(new GridColumn('item', 'common.name'));
+	}
+
+	/**
+	 * @see PKPHandler::setupTemplate()
+	 */
+	function setupTemplate() {
+		parent::setupTemplate();
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER));
 	}
 
 	//
@@ -135,7 +142,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 
 		$sourceArray = $this->getPossibleItemList($request);
 
-		$sourceJson = new JSON(true, null, false, 'local');
+		$sourceJson = new JSONMessage(true, null, false, 'local');
 		$sourceContent = array();
 		foreach ($sourceArray as $id => $item) {
 			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
@@ -143,7 +150,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
 				'value' => $id
 			);
-			$itemJson = new JSON(true, '', false, null, $additionalAttributes);
+			$itemJson = new JSONMessage(true, '', false, null, $additionalAttributes);
 			$sourceContent[] = $itemJson->getString();
 
 			unset($itemJson);
@@ -168,7 +175,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 		$userId = $args[$index];
 
 		if(empty($userId)) {
-			$json = new JSON(false, Locale::translate('common.listbuilder.completeForm'));
+			$json = new JSONMessage(false, Locale::translate('common.listbuilder.completeForm'));
 			return $json->getString();
 		} else {
 			$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
@@ -176,7 +183,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 			$groupMembership =& $groupMembershipDao->getMembership($groupId, $userId);
 			// Make sure the membership doesn't already exist
 			if (isset($groupMembership)) {
-				$json = new JSON(false, Locale::translate('common.listbuilder.itemExists'));
+				$json = new JSONMessage(false, Locale::translate('common.listbuilder.itemExists'));
 				return $json->getString();
 				return false;
 			}
@@ -200,7 +207,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 			$row->setData($rowData);
 			$row->initialize($request);
 
-			$json = new JSON(true, $this->_renderRowInternally($request, $row));
+			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
 			return $json->getString();
 		}
 	}
@@ -218,8 +225,9 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 			$groupMembershipDao->deleteMembershipById($groupId, $userId);
 		}
 
-		$json = new JSON(true);
+		$json = new JSONMessage(true);
 		return $json->getString();
 	}
 }
+
 ?>
