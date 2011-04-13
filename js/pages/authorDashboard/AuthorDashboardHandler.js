@@ -21,6 +21,7 @@ jQuery.pkp.pages =
  */
 (function($) {
 
+
 	/**
 	 * @constructor
 	 *

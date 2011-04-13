@@ -37,8 +37,10 @@ jQuery.pkp.controllers.grid.users.user =
 		this.usernameSuggestionTextAlert_ = options.usernameSuggestionTextAlert;
 
 		// Attach form elements events.
-		$('#generatePassword', $form).click(this.callbackWrapper(this.setGenerateRandom));
-		$('#suggestUsernameButton', $form).click(this.callbackWrapper(this.generateUsername));
+		$('#generatePassword', $form).click(
+				this.callbackWrapper(this.setGenerateRandom));
+		$('#suggestUsernameButton', $form).
+				click(this.callbackWrapper(this.generateUsername));
 
 		// Execute code for interests text tagit.
 		var existingInterests = options.existingInterests;
@@ -46,7 +48,7 @@ jQuery.pkp.controllers.grid.users.user =
 		this.handleInterestsKeywords_(existingInterests, currentInterests);
 
 		// Check the generate password check box.
-		if($('#generatePassword', $form).attr('checked')) {
+		if ($('#generatePassword', $form).attr('checked')) {
 			this.setGenerateRandom('#generatePassword');
 		}
 
@@ -67,6 +69,7 @@ jQuery.pkp.controllers.grid.users.user =
 	$.pkp.controllers.grid.users.user.form.UserFormHandler.
 			prototype.fetchUsernameSuggestionUrl_ = '';
 
+
 	/**
 	 * The message that will be displayed if users click on suggest
 	 * username button with no data in lastname.
@@ -85,8 +88,8 @@ jQuery.pkp.controllers.grid.users.user =
 	 * @param {Object} validator The validator plug-in.
 	 * @param {HTMLElement} formElement The wrapped HTML form.
 	 */
-	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.submitForm =
-		function(validator, formElement) {
+	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.
+			submitForm = function(validator, formElement) {
 
 		var $form = this.getHtmlElement();
 		$('#password', $form).attr('disabled', 0);
@@ -94,13 +97,15 @@ jQuery.pkp.controllers.grid.users.user =
 		var result = this.parent('submitForm', validator, formElement);
 	};
 
+
 	/**
-	 * Event handler that is called when generate password checkbox is clicked.
+	 * Event handler that is called when generate password checkbox is
+	 * clicked.
 	 *
 	 * @param {String} checkbox
 	 */
-	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.setGenerateRandom =
-			function(checkbox) {
+	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.
+			setGenerateRandom = function(checkbox) {
 
 		// JQuerify the element
 		var $checkbox = $(checkbox);
@@ -111,8 +116,10 @@ jQuery.pkp.controllers.grid.users.user =
 			passwordValue = '********';
 			activeAndCheck = 1;
 		}
-		$('#password, #password2', $form).attr('disabled', activeAndCheck).val(passwordValue);
-		$('#sendNotify', $form).attr('disabled', activeAndCheck).attr('checked', activeAndCheck);
+		$('#password, #password2', $form).
+				attr('disabled', activeAndCheck).val(passwordValue);
+		$('#sendNotify', $form).attr('disabled', activeAndCheck).
+				attr('checked', activeAndCheck);
 	};
 
 	/**
