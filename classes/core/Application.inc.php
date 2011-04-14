@@ -96,6 +96,7 @@ class Application extends PKPApplication {
 			'AnnouncementTypeDAO' => 'classes.announcement.AnnouncementTypeDAO',
 			'AuthorDAO' => 'classes.monograph.AuthorDAO',
 			'AuthorSubmissionDAO' => 'classes.submission.author.AuthorSubmissionDAO',
+			'CataloguingMetadataFieldDAO' => 'classes.cataloguingMetadata.CataloguingMetadataFieldDAO',
 			'ChapterAuthorDAO' => 'classes.monograph.ChapterAuthorDAO',
 			'ChapterDAO' => 'classes.monograph.ChapterDAO',
 			'DivisionDAO' => 'classes.press.DivisionDAO',

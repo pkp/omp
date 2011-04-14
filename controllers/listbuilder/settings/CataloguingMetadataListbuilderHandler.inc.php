@@ -15,28 +15,73 @@
 import('controllers.listbuilder.settings.SetupListbuilderHandler');
 
 class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
+	/** @var $press Press */
+	var $press;
+
+
 	/**
 	 * Constructor
 	 */
-	function CataloguingMetadataListbuilderHandler() {
+	function CataloguingMetadataFieldsListbuilderHandler() {
 		parent::SetupListbuilderHandler();
 	}
 
 
-	/* Load the list from an external source into the grid structure */
-	function loadList(&$request) {
-		$press =& $request->getPress();
-		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+	/**
+	 * Load the list from an external source into the grid structure
+	 */
+	function loadList() {
+		$publicationFormatDao =& DAORegistry::getDAO('CataloguingMetadataFieldDAO');
+		$pressDao =& DAORegistry::getDAO('PressDAO');
 
-		$formats = $pressSettingsDao->getSetting($press->getId(), 'cataloguingMetadata');
+		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($this->press->getId());
 
 		$items = array();
-		foreach($formats as $item) {
-			$id = $item['name'];
-			$items[$id] = array('item' => $id);
+		foreach($publicationFormats as $item) {
+			$id = $item->getId();
+			$items[$id] = array('name' => $item->getLocalizedName(), 'id' => $id);
 		}
 		$this->setGridDataElements($items);
 	}
+
+
+	/**
+	 * Persist an update to an entry.
+	 * @param $rowId mixed ID of row to modify
+	 * @param $existingEntry mixed Existing entry to be modified
+	 * @param $newEntry mixed New entry with changes to persist
+	 * @return boolean
+	 */
+	function updateEntry($rowId, $existingEntry, $newEntry) {
+		$publicationFormatDao =& DAORegistry::getDAO('CataloguingMetadataFieldDAO');
+		$publicationFormat = $publicationFormatDao->getById($rowId);
+
+		$locale = Locale::getLocale(); // FIXME: Localize.
+		$publicationFormat->setName($newEntry->name, $locale);
+
+		$publicationFormatDao->updateObject($publicationFormat);
+		return true;
+	}
+
+
+	/**
+	 * Persist a new entry insert.
+	 * @param $entry mixed New entry with data to persist
+	 * @return boolean
+	 */
+	function insertEntry($entry) {
+		$cataloguingMetadataFieldDao =& DAORegistry::getDAO('CataloguingMetadataFieldDAO');
+		$cataloguingMetadataField = $cataloguingMetadataFieldDao->newDataObject();
+		$cataloguingMetadataField->setPressId($this->press->getId());
+		$cataloguingMetadataField->setEnabled(true);
+
+		$locale = Locale::getLocale(); // FIXME: Localize.
+		$cataloguingMetadataField->setName($entry->name, $locale);
+
+		$cataloguingMetadataFieldDao->insertObject($cataloguingMetadataField);
+		return true;
+	}
+
 
 	//
 	// Overridden template methods
@@ -47,87 +92,34 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+		$this->press =& $request->getPress();
+
+		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
+
 		// Basic configuration
-		$this->setTitle('manager.setup.cataloguingMetadata');
-		$this->setSourceTitle('common.name');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
-		$this->setListTitle('manager.setup.currentFormats');
 
-		$this->loadList($request);
+		$this->loadList();
 
-		$this->addColumn(new GridColumn('item', 'manager.setup.currentFormats'));
+		$nameColumn = new GridColumn('name', 'common.name');
+		$nameColumn->addFlag('editable');
+		$this->addColumn($nameColumn);
 	}
 
-	//
-	// Public AJAX-accessible functions
-	//
 
-	/*
-	 * Handle adding an item to the list
-	 * @param $args array
+	/**
+	 * Create a new data element from a request. This is used to format
+	 * new rows prior to their insertion.
 	 * @param $request PKPRequest
+	 * @param $elementId int
+	 * @return object
 	 */
-	function addItem($args, &$request) {
-		$this->setupTemplate();
-		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$press =& $request->getPress();
-
-		$index = 'sourceTitle-' . $this->getId();
-		$format = $args[$index];
-
-		if(!isset($format)) {
-			$json = new JSONMessage(false);
-			return $json->getString();
-		} else {
-			// Make sure the item doesn't already exist
-			$formats = $pressSettingsDao->getSetting($press->getId(), 'cataloguingMetadata');
-			foreach($formats as $item) {
-				if($item['name'] == $format) {
-					$json = new JSONMessage(false, Locale::translate('common.listbuilder.itemExists'));
-					return $json->getString();
-					return false;
-				}
-			}
-
-			$formats[] = array('name' => $format);
-
-			$pressSettingsDao->updateSetting($press->getId(), 'cataloguingMetadata', $formats, 'object');
-
-			// Return JSON with formatted HTML to insert into list
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$row->setId($format);
-			$rowData = array('item' => $format);
-			$row->setData($rowData);
-			$row->initialize($request);
-
-			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
-			return $json->getString();
-		}
-	}
-
-	/*
-	 * Handle deleting items from the list
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function deleteItems($args, &$request) {
-		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$press =& $request->getPress();
-		$formats = $pressSettingsDao->getSetting($press->getId(), 'cataloguingMetadata');
-
-		foreach($args as $item) {
-			for ($i = 0; $i < count($formats); $i++) {
-				if ($formats[$i]['name'] == $item) {
-					array_splice($formats, $i, 1);
-				}
-			}
-		}
-
-		$pressSettingsDao->updateSetting($press->getId(), 'cataloguingMetadata', $formats, 'object');
-
-		$json = new JSONMessage(true);
-		return $json->getString();
+	function &getDataElementFromRequest(&$request, &$elementId) {
+		$newItem = array(
+			'name' => $request->getUserVar('name')
+		);
+		$elementId = $request->getUserVar('rowId');
+		return $newItem;
 	}
 }
 

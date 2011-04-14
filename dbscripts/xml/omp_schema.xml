@@ -1027,11 +1027,64 @@
 			<descr>(bool|int|float|string|object)</descr>
 		</field>
 		<descr>Publication format settings</descr>
-		<index name="publication_format_settings_type_id">
+		<index name="publication_format_settings_format_id">
 			<col>publication_format_id</col>
 		</index>
 		<index name="publication_format_settings_pkey">
 			<col>publication_format_id</col>
+			<col>locale</col>
+			<col>setting_name</col>
+			<UNIQUE />
+		</index>
+	</table>
+
+	<!--
+	  *
+	  * TABLE cataloguing_metadata_fields
+	  *
+	  -->
+	<table name="cataloguing_metadata_fields">
+		<field name="field_id" type="I8">
+			<KEY/>
+			<AUTOINCREMENT/>
+		</field>
+		<field name="press_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="enabled" type="I1">
+			<NOTNULL/>
+			<DEFAULT VALUE="1"/>
+		</field>
+		<descr>A press's cataloguing metadata fields.</descr>
+	</table>
+
+	<!--
+	  *
+	  * TABLE cataloguing_metadata_field_settings
+	  *
+	  -->
+	<table name="cataloguing_metadata_field_settings">
+		<field name="field_id" type="I8">
+			<NOTNULL />
+		</field>
+		<field name="locale" type="C2" size="5">
+			<NOTNULL />
+			<DEFAULT VALUE=""/>
+		</field>
+		<field name="setting_name" type="C2" size="255">
+			<NOTNULL />
+		</field>
+		<field name="setting_value" type="X"/>
+		<field name="setting_type" type="C2" size="6">
+			<NOTNULL/>
+			<descr>(bool|int|float|string|object)</descr>
+		</field>
+		<descr>Cataloguing metadata field settings</descr>
+		<index name="cataloguing_metadata_field_settings_field_id">
+			<col>field_id</col>
+		</index>
+		<index name="cataloguing_metadata_field_settings_pkey">
+			<col>field_id</col>
 			<col>locale</col>
 			<col>setting_name</col>
 			<UNIQUE />
