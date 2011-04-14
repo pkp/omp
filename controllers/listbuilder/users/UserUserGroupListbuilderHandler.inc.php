@@ -50,6 +50,22 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	}
 
 
+	/**
+	 * @see ListbuilderHandler::fetch()
+	 */
+	function fetch($args, &$request) {
+		$router =& $request->getRouter();
+
+		$monographId = $request->getUserVar('monographId');
+		$chapterId = $request->getUserVar('chapterId');
+		$additionalVars = array(
+			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('monographId' => $monographId, 'chapterId' => $chapterId)),
+			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId, 'chapterId' => $chapterId))
+		);
+
+		return parent::fetch($args, &$request, $additionalVars);
+	}
+
 	//
 	// Implement template methods from PKPHandler
 	//

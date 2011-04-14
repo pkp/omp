@@ -27,11 +27,11 @@ class PublicationFormatDAO extends DefaultSettingDAO
 
 	/**
 	 * Retrieve a publication format by type id.
-	 * @param $formatId int
+	 * @param $publicationFormatId int
 	 * @return PublicationFormat
 	 */
-	function &getById($formatId){
-		$result =& $this->retrieve('SELECT * FROM publication_formats WHERE publication_format_id = ?', $formatId);
+	function &getById($publicationFormatId) {
+		$result =& $this->retrieve('SELECT * FROM publication_formats WHERE publication_format_id = ?', (int) $publicationFormatId);
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
@@ -94,7 +94,9 @@ class PublicationFormatDAO extends DefaultSettingDAO
 	 */
 	function &_fromRow(&$row) {
 		$publicationFormat = $this->newDataObject();
+		$publicationFormat->setPressId($row['press_id']);
 		$publicationFormat->setId($row['publication_format_id']);
+		$publicationFormat->setEnabled($row['enabled']);
 
 		$this->getDataObjectSettings('publication_format_settings', 'publication_format_id', $row['publication_format_id'], $publicationFormat);
 
@@ -106,15 +108,14 @@ class PublicationFormatDAO extends DefaultSettingDAO
 	 * @param $publicationFormat PublicationFormat
 	 */
 	function insertObject(&$publicationFormat) {
-		$press =& Request::getPress();
-
 		$this->update(
 			'INSERT INTO publication_formats
-				(press_id)
+				(press_id, enabled)
 			VALUES
-				(?)',
+				(?, ?)',
 			array(
-				$press->getId()
+				(int) $publicationFormat->getPressId(),
+				$publicationFormat->getEnabled()?1:0
 			)
 		);
 
@@ -136,11 +137,11 @@ class PublicationFormatDAO extends DefaultSettingDAO
 
 	/**
 	 * Soft delete a publication format by id.
-	 * @param $entryId int
+	 * @param $publicationFormatId int
 	 */
-	function deleteById($entryId) {
+	function deleteById($publicationFormatId) {
 		return $this->update(
-			'UPDATE publication_formats SET enabled = ? WHERE publication_format_id = ?', array(0, $entryId)
+			'UPDATE publication_formats SET enabled = ? WHERE publication_format_id = ?', array(0, (int) $publicationFormatId)
 		);
 	}
 
@@ -199,10 +200,10 @@ class PublicationFormatDAO extends DefaultSettingDAO
 			$attrs = $entry['attributes'];
 			$this->update(
 				'INSERT INTO publication_formats
-				(entry_key, press_id)
+				(entry_key, press_id, enabled)
 				VALUES
-				(?, ?)',
-				array($attrs['key'], $pressId)
+				(?, ?, ?)',
+				array($attrs['key'], (int) $pressId, 1)
 			);
 		}
 		return true;

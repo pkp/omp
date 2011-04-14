@@ -700,6 +700,9 @@ div.pkp_controllers_grid .pkp_controllers_grid_throbber {
   margin:5% auto 0 auto;
 }
 div.pkp_controllers_grid .visible { display:block; }
+div.pkp_controllers_grid .gridCellEdit { display:none; }
+div.pkp_controllers_grid .gridRowEdit .gridCellEdit { display:block; }
+div.pkp_controllers_grid .gridRowEdit .gridCellDisplay { display:none; }
 div.pkp_controllers_grid .group1 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_1.png) no-repeat; }
 div.pkp_controllers_grid .group2 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_2.png) no-repeat; }
 div.pkp_controllers_grid .group3 td:first-child { background:url(../lib/pkp/templates/images/structure/grid_group_3.png) no-repeat; }
@@ -781,64 +784,7 @@ div.pkp_controllers_grid .pkp_controllers_grid_settings_stages {
   border-top:1px solid #6aa6d6;
   border-bottom:1px solid #6aa6d6;
 }
-div.pkp_controllers_listbuilder {
-  border:1px solid #b6c9d5;
-  overflow:hidden;
-  margin:5px 10px 15px 10px;
-}
-div.pkp_controllers_listbuilder .hidetext {
-  visibility:hidden;
-  overflow:hidden;
-}
-div.pkp_controllers_listbuilder div.wrapper {
-  margin:10px;
-  padding:10px;
-}
-div.pkp_controllers_listbuilder .listbuilder_controls {
-  text-align:center;
-  margin-top:24px;
-  line-height:20px;
-}
-div.pkp_controllers_listbuilder .listbuilder_controls a {
-  outline:none;
-  cursor:pointer;
-  text-decoration:none;
-  display:block;
-  background-repeat:no-repeat;
-  background-position:50% 50%;
-  padding:5px 10px 5px 10px;
-}
-div.pkp_controllers_listbuilder .listbuilder_results {
-  height:140px;
-  overflow:hidden;
-}
-div.pkp_controllers_listbuilder div.list .refresh {
-  float:right;
-  margin-top:5px;
-  margin-right:15px;
-}
-div.pkp_controllers_listbuilder .listbuilderGrid {
-  border:1px solid #b6c9d5;
-  height:100px;
-  overflow:auto;
-  background-color:white;
-}
-div.pkp_controllers_listbuilder .listbuilderGrid table { width:100%; }
-div.pkp_controllers_listbuilder .listbuilderGrid td {
-  text-align:left;
-  height:20px;
-  font-size:85%;
-  vertical-align:middle;
-  padding-left:5px;
-  padding-right:5px;
-}
-div.pkp_controllers_listbuilder .selected { background-color:#deffff; }
-div.pkp_controllers_listbuilder .ac_loading { background:white url('indicator.gif') right center no-repeat; }
-div.pkp_controllers_listbuilder .ac_odd { background-color:#eeeeee; }
-div.pkp_controllers_listbuilder .ac_over {
-  background-color:#0a246a;
-  color:white;
-}
+div.pkp_controllers_listbuilder .newRow { display:none; }
 .pkp_controllers_extrasOnDemand .ui-icon { float:left; }
 .pkp_controllers_extrasOnDemand .toggleExtras {
   margin-top:15px;

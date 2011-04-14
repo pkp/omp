@@ -22,7 +22,7 @@ class SetupListbuilderHandler extends ListbuilderHandler {
 		parent::ListbuilderHandler();
 		$this->addRoleAssignment(
 				ROLE_ID_PRESS_MANAGER,
-				array('fetch', 'addItem', 'deleteItems'));
+				array('fetch', 'fetchRow', 'save'));
 	}
 
 	/**
@@ -36,5 +36,13 @@ class SetupListbuilderHandler extends ListbuilderHandler {
 		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
+
+	/**
+	 * @see GridHandler::getIsSubcomponent
+	 */
+	function getIsSubcomponent() {
+		return true;
+	}
 }
+
 ?>

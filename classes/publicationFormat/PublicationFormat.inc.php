@@ -20,6 +20,37 @@
 
 
 class PublicationFormat extends DataObject {
+	/**
+	 * get press id
+	 * @return int
+	 */
+	function getPressId() {
+		return $this->getData('pressId');
+	}
+
+	/**
+	 * set press id
+	 * @param $pressId int
+	 */
+	function setPressId($pressId) {
+		return $this->setData('pressId', $pressId);
+	}
+
+	/**
+	 * get enabled flag
+	 * @return int
+	 */
+	function getEnabled() {
+		return $this->getData('enabled');
+	}
+
+	/**
+	 * set enabled flag
+	 * @param $enabled int
+	 */
+	function setEnabled($enabled) {
+		return $this->setData('enabled', $enabled);
+	}
 
 	/**
 	 * Set the name of the publication format
