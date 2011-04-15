@@ -47,7 +47,7 @@ class MySubmissionsListGridHandler extends SubmissionsListGridHandler {
 				'monograph.title',
 				null,
 				'controllers/grid/gridCell.tpl',
-				$cellProvider
+				$cellProvider,
 				array('html' => true)
 			)
 		);
