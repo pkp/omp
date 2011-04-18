@@ -58,8 +58,9 @@ class SubmissionFilesGridDataProvider extends FilesGridDataProvider {
 	function getRequestArgs() {
 		$monograph =& $this->getMonograph();
 		return array(
-				'monographId' => $monograph->getId(),
-				'fileStage' => $this->_getFileStage());
+			'monographId' => $monograph->getId(),
+			'fileStage' => $this->_getFileStage()
+		);
 	}
 
 	/**

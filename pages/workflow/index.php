@@ -5,7 +5,7 @@
  */
 
 /**
- * @file pages/review/index.php
+ * @file pages/workflow/index.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.

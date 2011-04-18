@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/submissions/pressEditor/UnassignedSubmissionsListGridHandler.inc.php
+ * @file controllers/grid/submissions/unassignedSubmissions/UnassignedSubmissionsListGridHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.

@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @defgroup cataloguingMetadataField
+ * @defgroup cataloguingMetadata
  */
 
 /**
- * @file classes/cataloguingMetadataField/CataloguingMetadataField.inc.php
+ * @file classes/cataloguingMetadata/CataloguingMetadataField.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CataloguingMetadataField
- * @ingroup cataloguingMetadataField
+ * @ingroup cataloguingMetadata
  * @see CataloguingMetadataFieldDAO
  *
  * @brief Basic class describing a cataloguing metadata field.

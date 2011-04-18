@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @file controllers/grid/settings/UserGroupGridHandler.inc.php
+ * @file controllers/grid/settings/roles/UserGroupGridHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.

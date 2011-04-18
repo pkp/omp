@@ -1,12 +1,12 @@
 <?php
 /**
- * @file classes/cataloguingMetadataField/CataloguingMetadataFieldDAO.inc.php
+ * @file classes/cataloguingMetadata/CataloguingMetadataFieldDAO.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class CataloguingMetadataFieldDAO
- * @ingroup cataloguingMetadataField
+ * @ingroup cataloguingMetadata
  * @see CataloguingMetadataField
  *
  * @brief Operations for retrieving and modifying CataloguingMetadataField objects.

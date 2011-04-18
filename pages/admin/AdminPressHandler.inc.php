@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file pages/admin/$this->.inc.php
+ * @file pages/admin/AdminPressHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class $this->
+ * @class AdminPressHandler
  * @ingroup pages_admin
  *
  * @brief Handle requests for press management in site administration.

@@ -1,6 +1,6 @@
 <?php
 /**
- * @file classes/handler/HandlerValidatorPress.inc.php
+ * @file classes/handler/validation/HandlerValidatorPress.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
