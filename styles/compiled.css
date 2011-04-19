@@ -418,6 +418,10 @@ input.pkp_form_uploadField {
   filter:alpha(opacity=0);
   opacity:0;
 }
+.pkp_form_advancedReviewerSearch .button {
+  width:25%;
+  margin-left:40%;
+}
 table.pkp_listing td { padding:0.25em 1.5em 0.25em 0.5em; }
 table.pkp_listing tr.heading td, table.pkp_listing td.heading {
   font-size:0.85em;
@@ -828,23 +832,22 @@ span.pkp_controllers_informationCenter_itemLastEvent {
   padding-right:5px;
 }
 .pkp_controllers_informationCenter #informationCenterHistoryTab .heading td { font-weight:bold; }
-.pkp_controllers_reviewerSelector .pkp_controllers_reviewerSelector_sliderLabel {
+.pkp_controllers_rangeSlider .pkp_controllers_rangeSlider_sliderLabel {
   margin-bottom:10px;
   font-size:.8em;
 }
-.pkp_controllers_reviewerSelector .pkp_controllers_reviewerSelector_sliderValue {
+.pkp_controllers_rangeSlider .pkp_controllers_rangeSlider_sliderValue {
   border:0pt none;
   font-weight:bold;
   width:50px;
 }
-.pkp_controllers_reviewerSelector .pkp_controllers_reviewerSelector_rangeSlider {
+.pkp_controllers_rangeSlider .pkp_controllers_rangeSlider_slider {
   margin-left:13px;
   width:240px;
 }
-.pkp_controllers_reviewerSelector #addReviewer li { clear:none; }
-.pkp_controllers_reviewerSelector #addReviewer h3 {
-  padding:0px;
-  margin:5px;
+.pkp_controllers_rangeSlider label {
+  display:inline;
+  margin-right:5px;
 }
 .pkp_common_reviewRoundStatusContainer {
   height:40px;

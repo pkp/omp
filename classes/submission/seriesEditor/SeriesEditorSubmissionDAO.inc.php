@@ -446,14 +446,14 @@ class SeriesEditorSubmissionDAO extends DAO {
 	 */
 	function getAnonymousReviewerStatistics() {
 		// Setup default array -- Minimum values Will always be set to 0 (to accomodate reviewers that have never reviewed, and thus aren't in review_assignment)
-		$reviewerValues =  array('doneMin' => 0, // Will always be set to 0
-								'doneMax' => 0,
-								'avgMin' => 0, // Will always be set to 0
-								'avgMax' => 0,
-								'lastMin' => 0, // Will always be set to 0
-								'lastMax' => 0,
-								'activeMin' => 0, // Will always be set to 0
-								'activeMax' => 0);
+		$reviewerValues =  array('done_min' => 0, // Will always be set to 0
+								'done_max' => 0,
+								'avg_min' => 0, // Will always be set to 0
+								'avg_max' => 0,
+								'last_min' => 0, // Will always be set to 0
+								'last_max' => 0,
+								'active_min' => 0, // Will always be set to 0
+								'active_max' => 0);
 
 		// Get number of reviews completed
 		$result =& $this->retrieve(
@@ -464,7 +464,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		);
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
-			if ($reviewerValues['doneMax'] < $row['completed_count']) $reviewerValues['doneMax'] = $row['completed_count'];
+			if ($reviewerValues['done_max'] < $row['completed_count']) $reviewerValues['done_max'] = $row['completed_count'];
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -500,12 +500,12 @@ class SeriesEditorSubmissionDAO extends DAO {
 			$averageTimeStats[$row['reviewer_id']]['average_span'] = (($averageTimeStats[$row['reviewer_id']]['total_span'] / $averageTimeStats[$row['reviewer_id']]['completed_review_count']) / 86400);
 
 			// This reviewer has the highest average; put in global statistics array
-			if ($reviewerValues['avgMax'] < $averageTimeStats[$row['reviewer_id']]['average_span']) $reviewerValues['avgMax'] = round($averageTimeStats[$row['reviewer_id']]['average_span']);
-			if ($timeSinceNotified > $reviewerValues['lastMax']) $reviewerValues['lastMax'] = $timeSinceNotified;
+			if ($reviewerValues['avg_max'] < $averageTimeStats[$row['reviewer_id']]['average_span']) $reviewerValues['avg_max'] = round($averageTimeStats[$row['reviewer_id']]['average_span']);
+			if ($timeSinceNotified > $reviewerValues['last_max']) $reviewerValues['last_max'] = $timeSinceNotified;
 
 			$result->MoveNext();
 		}
-		$reviewerValues['lastMax'] = round($reviewerValues['lastMax'] / 86400); // Round to nearest day
+		$reviewerValues['last_max'] = round($reviewerValues['last_max'] / 86400); // Round to nearest day
 		$result->Close();
 		unset($result);
 
@@ -522,7 +522,7 @@ class SeriesEditorSubmissionDAO extends DAO {
 		while (!$result->EOF) {
 			$row = $result->GetRowAssoc(false);
 
-			if ($row['incomplete'] > $reviewerValues['activeMax']) $reviewerValues['activeMax'] = $row['incomplete'];
+			if ($row['incomplete'] > $reviewerValues['active_max']) $reviewerValues['active_max'] = $row['incomplete'];
 			$result->MoveNext();
 		}
 		$result->Close();
@@ -560,8 +560,8 @@ class SeriesEditorSubmissionDAO extends DAO {
 			foreach ($interests as $key => $interest) {
 				$interestIds = $interestDao->getUserIdsByInterest($interest);
 				if(!$interestIds) {
-					// The interest searched for does not exist -- return an empty set of users
-					return array();
+					// The interest searched for does not exist -- go to next interest
+					continue;
 				}
 				if ($key == 0) $allInterestIds = $interestIds; // First interest, nothing to intersect with
 				else $allInterestIds = array_intersect($allInterestIds, $interestIds);

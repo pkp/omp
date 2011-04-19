@@ -110,7 +110,7 @@ class ReviewerForm extends Form {
 
 		// Get the review method (open, blind, or double-blind)
 		// FIXME: Bug #6403, Need to be able to specify the review method
-		$reviewMethod = SUBMISSION_REVIEW_METHOD_BLIND;
+		$reviewMethod = SUBMISSION_REVIEW_METHOD_DOUBLEBLIND;
 
 		// Get the response/review due dates or else set defaults
 		$reviewAssignment =& $reviewAssignmentDao->getReviewAssignment($this->getMonographId(), $reviewerId, $round, $reviewType);
@@ -131,20 +131,17 @@ class ReviewerForm extends Form {
 		// Get the currently selected reviewer selection type to show the correct tab if we're re-displaying the form
 		$selectionType = (int) $request->getUserVar('selectionType');
 
-		$this->_data = array(
-			'monographId' => $this->getMonographId(),
-			'reviewAssignmentId' => $this->getReviewAssignmentId(),
-			'reviewType' => $reviewType,
-			'reviewMethod' => $reviewMethod,
-			'round' => (int) $request->getUserVar('round'),
-			'reviewerId' => $reviewerId,
-			'personalMessage' => Locale::translate('reviewer.step1.requestBoilerplate'),
-			'responseDueDate' => $responseDueDate,
-			'reviewDueDate' => $reviewDueDate,
-			'existingInterests' => $interestDao->getAllUniqueInterests(),
-			'selectionType' => empty($selectionType) ? REVIEWER_SELECT_SEARCH : $selectionType
-		);
-
+		$this->setData('monographId', $this->getMonographId());
+		$this->setData('reviewAssignmentId', $this->getReviewAssignmentId());
+		$this->setData('reviewType', $reviewType);
+		$this->setData('reviewMethod', $reviewMethod);
+		$this->setData('round', (int) $request->getUserVar('round'));
+		$this->setData('reviewerId', $reviewerId);
+		$this->setData('personalMessage', Locale::translate('reviewer.step1.requestBoilerplate'));
+		$this->setData('responseDueDate', $responseDueDate);
+		$this->setData('reviewDueDate', $reviewDueDate);
+		$this->setData('existingInterests', $interestDao->getAllUniqueInterests());
+		$this->setData('selectionType', $selectionType);
 	}
 
 	/**
