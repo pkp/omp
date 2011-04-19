@@ -101,8 +101,7 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 
 		$this->loadList();
 
-		$nameColumn = new GridColumn('name', 'common.name');
-		$nameColumn->addFlag('editable');
+		$nameColumn = new ListbuilderGridColumn('name', 'common.name');
 		$this->addColumn($nameColumn);
 	}
 

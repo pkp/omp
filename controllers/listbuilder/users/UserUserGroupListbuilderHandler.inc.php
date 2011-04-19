@@ -97,8 +97,8 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		$this->_loadPossibleItemList($request);
 		$this->_loadList($request);
 
-		$this->addColumn(new GridColumn('item', 'common.name'));
-		$this->addColumn(new GridColumn('attribute', 'common.designation'));
+		$this->addColumn(new ListbuilderGridColumn('item', 'common.name'));
+		$this->addColumn(new ListbuilderGridColumn('attribute', 'common.designation'));
 	}
 
 

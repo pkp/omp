@@ -21,8 +21,9 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 	function ChapterContributorListbuilderHandler() {
 		parent::ListbuilderHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetch', 'addItem', 'deleteItems'));
+			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array('fetch', 'addItem', 'deleteItems')
+		);
 	}
 
 
@@ -56,7 +57,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 		$this->loadList($request);
 		$this->loadPossibleItemList($request);
 
-		$this->addColumn(new GridColumn('item', 'common.name'));
+		$this->addColumn(new ListbuilderGridColumn('item', 'common.name'));
 	}
 
 

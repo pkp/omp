@@ -21,8 +21,9 @@ class SetupListbuilderHandler extends ListbuilderHandler {
 	function SetupListbuilderHandler() {
 		parent::ListbuilderHandler();
 		$this->addRoleAssignment(
-				ROLE_ID_PRESS_MANAGER,
-				array('fetch', 'fetchRow', 'save'));
+			ROLE_ID_PRESS_MANAGER,
+			array('fetch', 'fetchRow', 'save')
+		);
 	}
 
 	/**

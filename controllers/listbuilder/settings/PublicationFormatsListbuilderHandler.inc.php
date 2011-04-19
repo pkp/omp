@@ -103,12 +103,10 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 
 		$this->loadList();
 
-		$nameColumn = new GridColumn('name', 'common.name');
-		$nameColumn->addFlag('editable');
+		$nameColumn = new ListbuilderGridColumn('name', 'common.name');
 		$this->addColumn($nameColumn);
 
-		$designationColumn = new GridColumn('designation', 'common.designation');
-		$designationColumn->addFlag('editable');
+		$designationColumn = new ListbuilderGridColumn('designation', 'common.designation');
 		$this->addColumn($designationColumn);
 	}
 

@@ -57,7 +57,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 
 		$this->loadList($request);
 
-		$this->addColumn(new GridColumn('item', 'manager.setup.currentFormats'));
+		$this->addColumn(new ListbuilderGridColumn('item', 'manager.setup.currentFormats'));
 	}
 
 	/**

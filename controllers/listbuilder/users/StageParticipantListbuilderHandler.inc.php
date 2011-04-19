@@ -22,8 +22,9 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 	function StageParticipantListbuilderHandler() {
 		parent::ListbuilderHandler();
 		$this->addRoleAssignment(
-				array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetch', 'addItem', 'deleteItems'));
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array('fetch', 'addItem', 'deleteItems')
+		);
 	}
 
 
@@ -67,15 +68,10 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 		parent::initialize($request);
 
 		// Basic configuration.
-		$this->setSourceTitle('common.name');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
-		$this->setListTitle('submission.submit.currentParticipants');
-
-		// Load possible items.
-		$this->_loadPossibleItemList($request);
 
 		// Configure listbuilder column.
-		$this->addColumn(new GridColumn('item', 'common.name'));
+		$this->addColumn(new ListbuilderGridColumn('item', 'common.name'));
 	}
 
 	/**
