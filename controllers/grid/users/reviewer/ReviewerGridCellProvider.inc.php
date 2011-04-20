@@ -105,7 +105,9 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 		$actionArgs = array(
 			'gridId' => $row->getGridId(),
 			'monographId' => $reviewAssignment->getSubmissionId(),
-			'reviewId' => $reviewAssignment->getId()
+			'reviewId' => $reviewAssignment->getId(),
+			'reviewType' => $reviewAssignment->getReviewType(),
+			'round' => $reviewAssignment->getRound()
 		);
 
 		$router =& $request->getRouter();
@@ -145,13 +147,14 @@ class ReviewerGridCellProvider extends DataObjectGridCellProvider {
 				break;
 
 			case 'overdue':
-				$action = new LegacyLinkAction(
+				$action = new LinkAction(
 					'sendReminder',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'editReminder', null, $actionArgs),
-					'editor.review.reminder',
-					null,
+					new AjaxModal(
+						$router->url($request, null, null, 'editReminder', null, $actionArgs),
+						__('editor.review.reminder'),
+						'edit'
+					),
+					'',
 					$state
 				);
 				break;

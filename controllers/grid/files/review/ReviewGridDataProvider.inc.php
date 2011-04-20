@@ -61,9 +61,10 @@ class ReviewGridDataProvider extends FilesGridDataProvider {
 	function getRequestArgs() {
 		$monograph =& $this->getMonograph();
 		return array(
-				'monographId' => $monograph->getId(),
-				'reviewType' => $this->_getReviewType(),
-				'round' => $this->_getRound());
+			'monographId' => $monograph->getId(),
+			'reviewType' => $this->_getReviewType(),
+			'round' => $this->_getRound()
+		);
 	}
 
 
