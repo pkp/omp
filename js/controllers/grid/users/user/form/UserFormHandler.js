@@ -5,6 +5,7 @@
 jQuery.pkp.controllers.grid.users.user =
 			jQuery.pkp.controllers.grid.users.user || { form: { } };
 
+
 /**
  * @file js/controllers/grid/users/user/form/UserFormHandler.js
  *
@@ -101,8 +102,7 @@ jQuery.pkp.controllers.grid.users.user =
 	/**
 	 * Event handler that is called when generate password checkbox is
 	 * clicked.
-	 *
-	 * @param {String} checkbox
+	 * @param {String} checkbox The checkbox input element.
 	 */
 	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.
 			setGenerateRandom = function(checkbox) {
@@ -122,33 +122,38 @@ jQuery.pkp.controllers.grid.users.user =
 				attr('checked', activeAndCheck);
 	};
 
+
 	/**
 	 * Event handler that is called when the suggest username button is clicked.
 	 */
-	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.generateUsername =
-			function() {
+	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.
+			generateUsername = function() {
 
 		var $form = this.getHtmlElement();
 
-		if ($('#lastName', $form).val() === "") {
+		if ($('#lastName', $form).val() === '') {
 			alert(this.usernameSuggestionTextAlert_);
 			return;
 		}
 		var firstName = $('#firstName', $form).val();
 		var lastName = $('#lastName', $form).val();
-		var fetchUrl = this.fetchUsernameSuggestionUrl_.replace('firstNameDummy', firstName).replace('lastNameDummy', lastName);
+		var fetchUrl = this.fetchUsernameSuggestionUrl_.
+				replace('firstNameDummy', firstName).replace('lastNameDummy', lastName);
 		$.get(fetchUrl, this.callbackWrapper(this.setUsername), 'json');
 	};
 
+
 	/**
 	 * Check JSON message and set it to username, back on form.
+	 * @param {HTMLElement} formElement The Form HTML element.
+	 * @param {JSON} jsonData The jsonData response.
 	 */
 	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.setUsername =
 			function(formElement, jsonData) {
 
 		jsonData = this.handleJson(jsonData);
 
-		if(jsonData === false) {
+		if (jsonData === false) {
 			throw Error('JSON response must be set to true!');
 		}
 
@@ -163,15 +168,16 @@ jQuery.pkp.controllers.grid.users.user =
 	/**
 	 * Handle interests keywords.
 	 *
-	 * @param {Array} existingInterests
-	 * @param {Array} currentInterests
+	 * @param {Array} existingInterests The existing interest array.
+	 * @param {Array} currentInterests The current interests array.
+	 * @private
 	 */
-	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.handleInterestsKeywords_ =
-			function(existingInterests, currentInterests) {
+	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.
+			handleInterestsKeywords_ = function(existingInterests, currentInterests) {
 
 		var $form = this.getHtmlElement();
-		$("#interestsTextOnly", $form).hide();
-		$("#interests", $form).tagit({
+		$('#interestsTextOnly', $form).hide();
+		$('#interests', $form).tagit({
 			availableTags: existingInterests,
 			currentTags: currentInterests
 		});
