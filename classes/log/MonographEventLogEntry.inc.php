@@ -95,12 +95,34 @@ class MonographEventLogEntry extends OmpEventLogEntry {
 		parent::OmpEventLogEntry();
 	}
 
+
+	//
+	// Getters/setters
+	//
+	/**
+	 * Set the monograph ID
+	 * @param $monographId int
+	 */
 	function setMonographId($monographId) {
-		return $this->setMonographId($monographId);
+		return $this->setAssocId($monographId);
 	}
 
+
+	/**
+	 * Get the monograph ID
+	 * @return int
+	 */
 	function getMonographId() {
-		return $this->getMonographId();
+		return $this->getAssocId();
+	}
+
+
+	/**
+	 * Get the assoc ID
+	 * @return int
+	 */
+	function getAssocType() {
+		return ASSOC_TYPE_MONOGRAPH;
 	}
 
 	/**
