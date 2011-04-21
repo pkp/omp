@@ -12,116 +12,28 @@
  * @brief Handle file grid requests.
  */
 
-import('controllers.grid.files.attachment.ReviewAttachmentsGridHandler');
+import('controllers.grid.files.fileList.FileListGridHandler');
 
-class ReviewerReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
-	/** @var int */
-	var $_reviewId;
-
+class ReviewerReviewAttachmentsGridHandler extends FileListGridHandler {
 	/**
 	 * Constructor
 	 */
 	function ReviewerReviewAttachmentsGridHandler() {
-		parent::ReviewAttachmentsGridHandler(FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL);
+		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+		$dataProvider = new SubmissionFilesGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_REVIEW);
+		parent::FileListGridHandler(
+			$dataProvider,
+			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			FILE_GRID_ADD|FILE_GRID_DELETE|FILE_GRID_DOWNLOAD_ALL
+		);
+
 		$this->addRoleAssignment(
 			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_SERIES_EDITOR, ROLE_ID_REVIEWER),
 			array(
-				'fetchGrid', 'fetchRow', 'finishFileSubmission', 'addFile', 'displayFileUploadForm',
-				'uploadFile', 'confirmRevision', 'editMetadata', 'saveMetadata', 'downloadFile',
-				'downloadAllFiles', 'deleteFile'
+				'fetchGrid', 'fetchRow', 'downloadAllFiles'
 			)
 		);
 	}
-
-	//
-	// Getters / Setters
-	//
-
-	/**
-	 * Set the review Id
-	 * @param $reviewId int
-	 */
-	function setReviewId($reviewId) {
-	    $this->_reviewId = $reviewId;
-	}
-
-	/**
-	 * Get the review Id
-	 * @return int
-	 */
-	function getReviewId() {
-	    return $this->_reviewId;
-	}
-
-
-	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		// FIXME: Must be replaced with a review attachment level policy, see #6200.
-		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
-
-	/*
-	 * Configure the grid
-	 * @param $request PKPRequest
-	 */
-	function initialize(&$request) {
-		// FIXME: Must be replaced with an object from the authorized context, see #6200.
-		$reviewId = (int)$request->getUserVar('reviewId');
-		assert(!empty($reviewId));
-		$this->setReviewId($reviewId);
-
-		// Load grid data.
-		$this->loadMonographFiles();
-
-		$additionalActionArgs = array('reviewId' => $this->getReviewId());
-		parent::initialize($request, $additionalActionArgs);
-	}
-
-	/*
-	 * @see SubmissionFilesGridHandler::loadMonographFiles()
-	 */
-	function loadMonographFiles() {
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getAllRevisionsByAssocId(
-			ASSOC_TYPE_REVIEW_ASSIGNMENT, $this->getReviewId(), MONOGRAPH_FILE_REVIEW
-		);
-		$rowData = array();
-		foreach ($monographFiles as $monographFile) {
-			$rowData[$monographFile->getFileId()] = $monographFile;
-		}
-		$this->setGridDataElements($rowData);
-	}
-
-	/**
-	 * @see SubmissionFilesGridHandler::uploadFile()
-	 */
-	function uploadFile($args, &$request) {
-		$fileModifyCallback = array($this, 'setFileReviewId');
-		return parent::uploadFile($args, $request, $fileModifyCallback);
-	}
-
-	/**
-	 * Callback to set the assoc_type/assoc_id for the attachment file
-	 * @param $monographFile MonographFile
-	 */
-	function setFileReviewId(&$monographFile) {
-		$monographFile->setAssocType(ASSOC_TYPE_REVIEW_ASSIGNMENT);
-		$monographFile->setAssocId($this->getReviewId());
-
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$submissionFileDao->updateObject($monographFile);
-	}
-
 }
 
 ?>
