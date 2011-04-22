@@ -2,18 +2,18 @@
  * @defgroup js_controllers_grid_users_user_form
  */
 // Create the namespace.
-jQuery.pkp.controllers.grid.users.user =
-			jQuery.pkp.controllers.grid.users.user || { form: { } };
+jQuery.pkp.controllers.grid.settings.user =
+			jQuery.pkp.controllers.grid.settings.user || { form: { } };
 
 
 /**
- * @file js/controllers/grid/users/user/form/UserFormHandler.js
+ * @file js/controllers/grid/settings/user/form/UserFormHandler.js
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserFormHandler
- * @ingroup js_controllers_grid_users_user_form
+ * @ingroup js_controllers_grid_settings_user_form
  *
  * @brief Handle the user settings form.
  */
@@ -28,7 +28,7 @@ jQuery.pkp.controllers.grid.users.user =
 	 * @param {jQuery} $form the wrapped HTML form element.
 	 * @param {Object} options form options.
 	 */
-	$.pkp.controllers.grid.users.user.form.UserFormHandler =
+	$.pkp.controllers.grid.settings.user.form.UserFormHandler =
 			function($form, options) {
 
 		this.parent($form, options);
@@ -55,7 +55,7 @@ jQuery.pkp.controllers.grid.users.user =
 
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.controllers.grid.users.user.form.UserFormHandler,
+			$.pkp.controllers.grid.settings.user.form.UserFormHandler,
 			$.pkp.controllers.form.AjaxFormHandler);
 
 
@@ -67,7 +67,7 @@ jQuery.pkp.controllers.grid.users.user =
 	 * @private
 	 * @type {string}
 	 */
-	$.pkp.controllers.grid.users.user.form.UserFormHandler.
+	$.pkp.controllers.grid.settings.user.form.UserFormHandler.
 			prototype.fetchUsernameSuggestionUrl_ = '';
 
 
@@ -77,7 +77,7 @@ jQuery.pkp.controllers.grid.users.user =
 	 * @private
 	 * @type {string}
 	 */
-	$.pkp.controllers.grid.users.user.form.UserFormHandler.
+	$.pkp.controllers.grid.settings.user.form.UserFormHandler.
 			prototype.usernameSuggestionTextAlert_ = '';
 
 
@@ -89,7 +89,7 @@ jQuery.pkp.controllers.grid.users.user =
 	 * @param {Object} validator The validator plug-in.
 	 * @param {HTMLElement} formElement The wrapped HTML form.
 	 */
-	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.
+	$.pkp.controllers.grid.settings.user.form.UserFormHandler.prototype.
 			submitForm = function(validator, formElement) {
 
 		var $form = this.getHtmlElement();
@@ -104,7 +104,7 @@ jQuery.pkp.controllers.grid.users.user =
 	 * clicked.
 	 * @param {String} checkbox The checkbox input element.
 	 */
-	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.
+	$.pkp.controllers.grid.settings.user.form.UserFormHandler.prototype.
 			setGenerateRandom = function(checkbox) {
 
 		// JQuerify the element
@@ -126,7 +126,7 @@ jQuery.pkp.controllers.grid.users.user =
 	/**
 	 * Event handler that is called when the suggest username button is clicked.
 	 */
-	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.
+	$.pkp.controllers.grid.settings.user.form.UserFormHandler.prototype.
 			generateUsername = function() {
 
 		var $form = this.getHtmlElement();
@@ -148,7 +148,7 @@ jQuery.pkp.controllers.grid.users.user =
 	 * @param {HTMLElement} formElement The Form HTML element.
 	 * @param {JSON} jsonData The jsonData response.
 	 */
-	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.setUsername =
+	$.pkp.controllers.grid.settings.user.form.UserFormHandler.prototype.setUsername =
 			function(formElement, jsonData) {
 
 		jsonData = this.handleJson(jsonData);
@@ -172,7 +172,7 @@ jQuery.pkp.controllers.grid.users.user =
 	 * @param {Array} currentInterests The current interests array.
 	 * @private
 	 */
-	$.pkp.controllers.grid.users.user.form.UserFormHandler.prototype.
+	$.pkp.controllers.grid.settings.user.form.UserFormHandler.prototype.
 			handleInterestsKeywords_ = function(existingInterests, currentInterests) {
 
 		var $form = this.getHtmlElement();

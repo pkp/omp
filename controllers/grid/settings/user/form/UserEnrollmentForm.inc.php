@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/users/user/form/UserEnrollmentForm.inc.php
+ * @file controllers/grid/settings/user/form/UserEnrollmentForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserEnrollmentForm
- * @ingroup controllers_grid_users_user_form
+ * @ingroup controllers_grid_settings_user_form
  *
  * @brief Form for enrolling users and editing user profiles.
  */
@@ -20,7 +20,7 @@ class UserEnrollmentForm extends Form {
 	 * Constructor.
 	 */
 	function UserEnrollmentForm() {
-		parent::Form('controllers/grid/users/user/form/userEnrollmentForm.tpl');
+		parent::Form('controllers/grid/settings/user/form/userEnrollmentForm.tpl');
 	}
 
 	/**

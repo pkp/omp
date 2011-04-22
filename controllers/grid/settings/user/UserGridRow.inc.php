@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/users/user/UserGridRow.inc.php
+ * @file controllers/grid/settings/user/UserGridRow.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserGridRow
- * @ingroup controllers_grid_users_user
+ * @ingroup controllers_grid_settings_user
  *
  * @brief User grid row definition
  */

@@ -1,5 +1,5 @@
 {**
- * controllers/grid/users/user/form/userRoleForm.tpl
+ * controllers/grid/settings/user/form/userRoleForm.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -12,7 +12,7 @@
 		$('#userRoleForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 	{rdelim});
 </script>
-<form id="userRoleForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserGridHandler" op="updateUserRoles"}">
+<form id="userRoleForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.user.UserGridHandler" op="updateUserRoles"}">
 <h3>{translate key="grid.user.step2"}</h3>
 
 	<input type="hidden" id="userId" name="userId" value="{$userId|escape}" />

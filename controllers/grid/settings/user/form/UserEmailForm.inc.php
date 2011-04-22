@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/users/user/form/UserEmailForm.inc.php
+ * @file controllers/grid/settings/user/form/UserEmailForm.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserEmailForm
- * @ingroup controllers_grid_users_user_form
+ * @ingroup controllers_grid_settings_user_form
  *
  * @brief Form for sending an email to a user
  */
@@ -23,7 +23,7 @@ class UserEmailForm extends Form {
 	 * Constructor.
 	 */
 	function UserEmailForm($userId) {
-		parent::Form('controllers/grid/users/user/form/userEmailForm.tpl');
+		parent::Form('controllers/grid/settings/user/form/userEmailForm.tpl');
 
 		$this->userId = (int) $userId;
 

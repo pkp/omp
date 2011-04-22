@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/users/user/form/UserForm.inc.php
+ * @file controllers/grid/settings/user/form/UserForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserForm
- * @ingroup controllers_grid_users_user_form
+ * @ingroup controllers_grid_settings_user_form
  *
  * @brief Form for editing user profiles.
  */
@@ -23,7 +23,7 @@ class UserForm extends Form {
 	 * Constructor.
 	 */
 	function UserForm($userId = null) {
-		parent::Form('controllers/grid/users/user/form/userForm.tpl');
+		parent::Form('controllers/grid/settings/user/form/userForm.tpl');
 
 		$this->userId = isset($userId) ? (int) $userId : null;
 		$site =& Request::getSite();

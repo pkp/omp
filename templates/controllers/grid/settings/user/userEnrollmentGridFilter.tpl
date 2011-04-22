@@ -10,7 +10,7 @@
 	// Attach the form handler to the form.
 	$('#userEnrollmentSearchForm').pkpHandler('$.pkp.controllers.form.ClientFormHandler');
 </script>
-<form id="userEnrollmentSearchForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserEnrollmentGridHandler" op="fetchGrid"}" method="post">
+<form id="userEnrollmentSearchForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.user.UserEnrollmentGridHandler" op="fetchGrid"}" method="post">
 	<div id="userSearchFormArea">
 		{include file="controllers/grid/users/user/gridFilterElements/searchInput.tpl"}
 	</div>

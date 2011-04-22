@@ -1,15 +1,15 @@
 <?php
 
 /**
- * @file controllers/grid/users/user/UserEnrollmentGridCellProvider.inc.php
+ * @file controllers/grid/settings/user/UserEnrollmentGridCellProvider.inc.php
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserEnrollmentGridCellProvider
- * @ingroup controllers_grid_users_user
+ * @ingroup controllers_grid_settings_user
  *
- * @brief Cell provider that retrieves user data 
+ * @brief Cell provider that retrieves user data
  */
 
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');

@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/users/user/form/UserDisableForm.inc.php
+ * @file controllers/grid/settings/user/form/UserDisableForm.inc.php
  *
  * Copyright (c) 2003-2008 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserDisableForm
- * @ingroup controllers_grid_users_user_form
+ * @ingroup controllers_grid_settings_user_form
  *
  * @brief Form for enabling/disabling a user
  */
@@ -26,7 +26,7 @@ class UserDisableForm extends Form {
 	 * Constructor.
 	 */
 	function UserDisableForm($userId, $enable = false) {
-		parent::Form('controllers/grid/users/user/form/userDisableForm.tpl');
+		parent::Form('controllers/grid/settings/user/form/userDisableForm.tpl');
 
 		$this->_userId = (int) $userId;
 		$this->_enable = (bool) $enable;
@@ -41,7 +41,7 @@ class UserDisableForm extends Form {
 		if ($this->_userId) {
 			$userDao =& DAORegistry::getDAO('UserDAO');
 			$user =& $userDao->getUser($this->_userId);
-	
+
 			if ($user) {
 				$this->_data = array(
 					'disableReason' => $user->getDisabledReason()

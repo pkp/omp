@@ -1,5 +1,5 @@
 {**
- * controllers/grid/users/user/form/userDisableForm.tpl
+ * controllers/grid/settings/user/form/userDisableForm.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -12,7 +12,7 @@
 		$('#userDisableForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 	{rdelim});
 </script>
-<form id="userDisableForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserGridHandler" op="disableUser"}">
+<form id="userDisableForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.user.UserGridHandler" op="disableUser"}">
 
 	<input type="hidden" name="userId" value="{$userId|escape}" />
 	<input type="hidden" name="enable" value="{$enable|escape}" />

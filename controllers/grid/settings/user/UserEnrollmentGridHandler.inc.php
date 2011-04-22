@@ -1,19 +1,19 @@
 <?php
 
 /**
- * @file controllers/grid/users/user/UserEnrollmentGridHandler.inc.php
+ * @file controllers/grid/settings/user/UserEnrollmentGridHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserEnrollmentGridHandler
- * @ingroup controllers_grid_users_user
+ * @ingroup controllers_grid_settings_user
  *
  * @brief Handle user enrollment grid requests.
  */
 
 
-import('controllers.grid.users.user.UserGridHandler');
+import('controllers.grid.settings.user.UserGridHandler');
 
 class UserEnrollmentGridHandler extends UserGridHandler {
 	/**
@@ -72,14 +72,14 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 		//
 
 		// User roles
-		import('controllers.grid.users.user.UserEnrollmentGridCellProvider');
+		import('controllers.grid.settings.user.UserEnrollmentGridCellProvider');
 		$cellProvider = new UserEnrollmentGridCellProvider($press->getId());
 		$this->addColumn(
 			new GridColumn(
 				'roles',
 				'user.roles',
 				null,
-				'controllers/grid/users/user/userGroupsList.tpl',
+				'controllers/grid/settings/user/userGroupsList.tpl',
 				$cellProvider
 			)
 		);
@@ -93,7 +93,7 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 	 * @see GridHandler::getFilterForm()
 	 */
 	function getFilterForm() {
-		return 'controllers/grid/users/user/userEnrollmentGridFilter.tpl';
+		return 'controllers/grid/settings/user/userEnrollmentGridFilter.tpl';
 	}
 
 
@@ -110,7 +110,7 @@ class UserEnrollmentGridHandler extends UserGridHandler {
 		$press =& $request->getPress();
 
 		// Form handling
-		import('controllers.grid.users.user.form.UserEnrollmentForm');
+		import('controllers.grid.settings.user.form.UserEnrollmentForm');
 		$userEnrollmentForm = new UserEnrollmentForm();
 		$userEnrollmentForm->initData($args, $request);
 

@@ -1,5 +1,5 @@
 {**
- * controllers/grid/users/user/form/userForm.tpl
+ * controllers/grid/settings/user/form/userForm.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -9,7 +9,7 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		$('#userForm').pkpHandler(
-			'$.pkp.controllers.grid.users.user.form.UserFormHandler',
+			'$.pkp.controllers.grid.settings.user.form.UserFormHandler',
 			{ldelim}
 				fetchUsernameSuggestionUrl: '{url|escape:"javascript" router=$smarty.const.ROUTE_COMPONENT op="suggestUsername" params=$suggestUsernameParams escape=false}',
 				usernameSuggestionTextAlert: '{translate key="grid.user.mustProvideName"}',
@@ -24,7 +24,7 @@
 	{assign var="passwordRequired" value="true"}
 {/if} {* !$userId *}
 
-<form id="userForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserGridHandler" op="updateUser"}">
+<form id="userForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.user.UserGridHandler" op="updateUser"}">
 	<div id="userFormContainer">
 		<div id="userDetails" class="full left">
 		{if $userId}

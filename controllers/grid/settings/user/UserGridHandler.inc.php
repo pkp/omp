@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/users/user/UserGridHandler.inc.php
+ * @file controllers/grid/settings/user/UserGridHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserGridHandler
- * @ingroup controllers_grid_users_user
+ * @ingroup controllers_grid_settings_user
  *
  * @brief Handle user grid requests.
  */
@@ -15,7 +15,8 @@
 import('lib.pkp.classes.controllers.grid.GridHandler');
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
-import('controllers.grid.users.user.UserGridRow');
+import('controllers.grid.settings.user.UserGridRow');
+import('controllers.grid.settings.user.form.UserForm');
 
 class UserGridHandler extends GridHandler {
 	/**
@@ -221,7 +222,7 @@ class UserGridHandler extends GridHandler {
 	 * @return string Filter template.
 	 */
 	function getFilterForm() {
-		return 'controllers/grid/users/user/userGridFilter.tpl';
+		return 'controllers/grid/settings/user/userGridFilter.tpl';
 	}
 
 
@@ -273,7 +274,6 @@ class UserGridHandler extends GridHandler {
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
-			import('controllers.grid.users.user.form.UserForm');
 			$userForm = new UserForm($userId);
 			$userForm->initData($args, $request);
 
@@ -300,7 +300,6 @@ class UserGridHandler extends GridHandler {
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
-			import('controllers.grid.users.user.form.UserForm');
 			$userForm = new UserForm($userId);
 			$userForm->readInputData();
 
@@ -309,7 +308,7 @@ class UserGridHandler extends GridHandler {
 
 				// If this is a newly created user, show role management form.
 				if (!$userId) {
-					import('controllers.grid.users.user.form.UserRoleForm');
+					import('controllers.grid.settings.user.form.UserRoleForm');
 					$userRoleForm = new UserRoleForm($user->getId());
 					$userRoleForm->initData($args, $request);
 					$json = new JSONMessage(true, $userRoleForm->display($args, $request));
@@ -343,7 +342,7 @@ class UserGridHandler extends GridHandler {
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
-			import('controllers.grid.users.user.form.UserRoleForm');
+			import('controllers.grid.settings.user.form.UserRoleForm');
 			$userRoleForm = new UserRoleForm($userId);
 			$userRoleForm->readInputData();
 
@@ -381,7 +380,7 @@ class UserGridHandler extends GridHandler {
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
 			// Form handling
-			import('controllers.grid.users.user.form.UserDisableForm');
+			import('controllers.grid.settings.user.form.UserDisableForm');
 			$userForm = new UserDisableForm($userId, $enable);
 
 			$userForm->initData($args, $request);
@@ -412,7 +411,7 @@ class UserGridHandler extends GridHandler {
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
-			import('controllers.grid.users.user.form.UserDisableForm');
+			import('controllers.grid.settings.user.form.UserDisableForm');
 			$userForm = new UserDisableForm($userId, $enable);
 
 			$userForm->readInputData();
@@ -481,7 +480,7 @@ class UserGridHandler extends GridHandler {
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
-			import('controllers.grid.users.user.form.UserEmailForm');
+			import('controllers.grid.settings.user.form.UserEmailForm');
 			$userEmailForm = new UserEmailForm($userId);
 			$userEmailForm->initData($args, $request);
 
@@ -508,7 +507,7 @@ class UserGridHandler extends GridHandler {
 			$json = new JSONMessage(false, Locale::translate('grid.user.cannotAdminister'));
 		} else {
 			// Form handling.
-			import('controllers.grid.users.user.form.UserEmailForm');
+			import('controllers.grid.settings.user.form.UserEmailForm');
 			$userEmailForm = new UserEmailForm($userId);
 			$userEmailForm->readInputData();
 

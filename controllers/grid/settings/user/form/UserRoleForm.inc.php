@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/grid/users/user/form/UserRoleForm.inc.php
+ * @file controllers/grid/settings/user/form/UserRoleForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class UserRoleForm
- * @ingroup controllers_grid_users_user_form
+ * @ingroup controllers_grid_settings_user_form
  *
  * @brief Form for managing roles for a newly created user.
  */
@@ -23,7 +23,7 @@ class UserRoleForm extends Form {
 	 * Constructor.
 	 */
 	function UserRoleForm($userId) {
-		parent::Form('controllers/grid/users/user/form/userRoleForm.tpl');
+		parent::Form('controllers/grid/settings/user/form/userRoleForm.tpl');
 
 		$this->userId = (int) $userId;
 		$this->addCheck(new FormValidatorPost($this));

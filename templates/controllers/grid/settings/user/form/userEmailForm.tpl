@@ -1,5 +1,5 @@
 {**
- * controllers/grid/users/user/form/userEmailForm.tpl
+ * controllers/grid/settings/user/form/userEmailForm.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -12,7 +12,7 @@
 		$('#sendEmailForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 	{rdelim});
 </script>
-<form id="sendEmailForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.user.UserGridHandler" op="sendEmail"}" >
+<form id="sendEmailForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.user.UserGridHandler" op="sendEmail"}" >
 
 	<input type="hidden" name="userId" value="{$userId|escape}" />
 
