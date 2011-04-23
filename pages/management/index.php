@@ -23,8 +23,8 @@ switch ($op) {
 	//
 	// Access Page
 	//
-	case 'access':
-		import('pages.settings.SettingsHandler');
+	case 'settings':
+		import('pages.management.SettingsHandler');
 		define('HANDLER_CLASS', 'SettingsHandler');
 		break;
 }

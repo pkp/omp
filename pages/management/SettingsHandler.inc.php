@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file pages/settings/SettingsHandler.inc.php
+ * @file pages/management/SettingsHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class SettingsHandler
- * @ingroup pages_settings
+ * @ingroup pages_management
  *
  * @brief Handle requests for settings pages.
  */
@@ -25,7 +25,9 @@ class SettingsHandler extends Handler {
 			ROLE_ID_PRESS_MANAGER,
 			array(
 				'index',
-				'access'
+				'settings',
+				'access',
+				'press'
 			)
 		);
 	}
@@ -65,10 +67,30 @@ class SettingsHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function index(&$request, &$args) {
+	function index() {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
-		$templateMgr->display('settings/index.tpl');
+		$templateMgr->display('management/settings/index.tpl');
+	}
+
+	/**
+	 * Route to other settings operations.
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
+	function settings($args) {
+		$path = $args[0];
+		switch($path) {
+			case 'index';
+				$this->index();
+				break;
+			case 'access';
+				$this->access();
+				break;
+			case 'press';
+				$this->press();
+				break;
+		}
 	}
 
 	/**
@@ -76,10 +98,21 @@ class SettingsHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function access(&$request, &$args) {
+	function access() {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
-		$templateMgr->display('settings/access.tpl');
+		$templateMgr->display('management/settings/access.tpl');
+	}
+
+	/**
+	 * Display The Press page.
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
+	function press() {
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate(true);
+		$templateMgr->display('management/settings/press.tpl');
 	}
 }
 

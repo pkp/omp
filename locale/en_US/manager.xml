@@ -171,7 +171,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="settings.libraryFiles.fileRequired">A library file is required. Please ensure that you have chosen and uploaded a file.</message>
 	<message key="settings.libraryFiles.nameRequired">A name is required for this library file.</message>
 
-	<!-- Access and Security -->
+	<!-- Access and Security settings -->
 	<message key="settings.access"><![CDATA[Access &amp; Security]]></message>
 	<message key="settings.accessDescription">All settings related to access and security management for this press (manage users, manage roles, site access options).</message>
 	<message key="settings.roles.roleName">Role Name</message>
@@ -187,6 +187,10 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="settings.roles.uniqueName">You need to define an unique role name.</message>
 	<message key="settings.roles.uniqueAbbrev">You need to define an unique role abbreviature.</message>
 	<message key="settings.roles.roleIdRequired">You need to define a role permission level.</message>
+	
+	<!-- Press settings -->
+	<message key="settings.press.identification">Press Identification</message>
+	<message key="manager.affiliationAndSupport"><![CDATA[Affiliation &amp; Support]]></message>
 	
 	<!-- System setup -->
 	<message key="manager.system">System Settings</message>
