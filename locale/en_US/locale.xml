@@ -12,51 +12,18 @@
 
 <locale name="en_US" full_name="U.S. English">
 	<!-- General monograph keys -->
-	<message key="monograph.discipline">Academic discipline and sub-disciplines</message>
-	<message key="monograph.subjectClassification">Subject classification</message>
-	<message key="monograph.subject">Keywords</message>
-	<message key="monograph.coverage">Coverage</message>
-	<message key="monograph.coverageGeo">Geo-spatial coverage</message>
-	<message key="monograph.coverageChron">Chronological or historical coverage</message>
-	<message key="monograph.coverageSample"> Research sample characteristics</message>
-	<message key="monograph.type">Type, method or approach</message>
 	<message key="monograph.description">Description</message>
-	<message key="monograph.language">Language</message>
 	<message key="monograph.authors">Authors</message>
 	<message key="monograph.title">Book Title</message>
-	<message key="monograph.contributors">Contributors</message>
-	<message key="monograph.commentsToEditor">Submitter Comments</message>
-
-	<!-- Production stage-->
-	<message key="production.assignment.new">New Production Assignment</message>
-	<message key="production.assignment.description">Complete the form below to create an assignable task.</message>
-	<message key="production.assignment">Production Assignment</message>
-	<message key="production.assignments">Production Assignments</message>
-	<message key="production.assignment.type.layout">Layout</message>
-	<message key="production.assignment.type.cover">Cover</message>
-	<message key="production.assignment.type.visuals">Visuals</message>
-	<message key="production.assignment.type.media">Media</message>
-	<message key="production.selectDesigner">Select Designer</message>
-	<message key="production.layoutFile">Layout File</message>
-	<message key="production.artworkFiles">Artwork Files</message>
-	<message key="production.uploadGalley">Upload Galley</message>
-	<message key="production.uploadGalley.description">To upload a galley, fill out the form below and press 'upload'.</message>
 
 	<!-- Editorial policies -->
-	<message key="manager.series.reviewed">Peer Reviewed</message>
 	<message key="manager.series.open">Open Submissions</message>
 	<message key="manager.series.indexed">Indexed</message>
 
 	<!-- Library Files -->
 	<message key="grid.libraryFiles.column.files">Files</message>
-	<message key="grid.libraryFiles.submission.title">Submission Library</message>
-	<message key="grid.libraryFiles.editorial.title">Editorial Library</message>
-	<message key="grid.libraryFiles.review.title">Review Library</message>
-	<message key="grid.libraryFiles.production.title">Production Library</message>
-	<message key="grid.libraryFiles.productionTemplate.title">Production Template Library</message>
 
 	<!-- Used in submission review -->
-	<message key="reviewer.noneAssigned">No Assigned Reviewers</message>
 	<message key="reviewer.reviewSteps.guidelines">Guidelines</message>
 	<message key="reviewer.reviewSteps.download">Download &amp; Review</message>
 	<message key="reviewer.reviewSteps.nextSteps">Next Steps</message>
@@ -64,60 +31,23 @@
 	<message key="reviewer.step1.requestBoilerplate">You have been selected as a potential reviewer of the following submission.  Below is an overview of the submission, as well as the timeline for this review.  We hope that you are able to participate.</message>
 	<message key="reviewer.step1.viewAllDetails">View All Submission Details</message>
 	<message key="reviewer.monograph.reviewFiles">Review Files</message>
-	<message key="reviewer.monograph.fileToBeReviewed">File to be reviewed</message>
-	<message key="reviewer.monograph.notifyTheEditor">Notify The Editor</message>
-	<message key="reviewer.monograph.canDoReview">Will do the review</message>
-	<message key="reviewer.monograph.cannotDoReview">Unable to do the review</message>
-	<message key="reviewer.monograph.restrictedFileAccess">Submission will be made available, if and when reviewer agrees to undertake review</message>
-	<message key="reviewer.monograph.submissionEditor">Submission Editor</message>
-	<message key="reviewer.monograph.reviewerCommentsDescription">Type or paste in review comments here</message>
-	<message key="reviewer.monograph.editorToEnter">Editor To Enter</message>
-	<message key="reviewer.monograph.sendReminder">Send Reminder</message>
-	<message key="reviewer.monograph.automatic">(Auto)</message>
-	<message key="reviewer.monograph.selectRecommendation">Select a recommendation</message>
-	<message key="reviewer.monograph.recommendation">Recommendation</message>
-	<message key="reviewer.monograph.submitReview">Submit Review To Editor</message>
 	<message key="reviewer.monograph.declineReview">Decline Review Request</message>
 	<message key="reviewer.monograph.declineReviewMessage">You may provide the editor with any reasons why you are declining this review in the field below.</message>
 	<message key="reviewer.monograph.acceptReview">Accept Review, Continue to Step #2</message>
 	<message key="reviewer.monograph.continueToStepThree">Continue to Step #3</message>
 	<message key="reviewer.monograph.continueToStepFour">Continue to Step #4</message>
-	<message key="reviewer.monograph.reviewerComments">Comments</message>
-	<message key="reviewer.monograph.uploadedFile">Uploaded files</message>
-	<message key="reviewer.monograph.reviewersAnnotatedVersion">Version uploaded by reviewer</message>
-	<message key="reviewer.monograph.reviewersAnnotatedVersionDescription">(If you want to annotate the file, for the editor, save on your hard drive and use Browse/Upload.)</message>
 	<message key="reviewer.monograph.schedule.request">Editor's Request</message>
-	<message key="reviewer.monograph.schedule.response">Your Response</message>
-	<message key="reviewer.monograph.schedule.submitted">Review Submitted</message>
 	<message key="reviewer.monograph.schedule.due">Review Due</message>
-	<message key="reviewer.monograph.decision.accept">Accept Submission</message>
-	<message key="reviewer.monograph.decision.pendingRevisions">Revisions Required</message>
-	<message key="reviewer.monograph.decision.resubmitHere">Resubmit for Review</message>
-	<message key="reviewer.monograph.decision.resubmitElsewhere">Resubmit Elsewhere</message>
-	<message key="reviewer.monograph.decision.decline">Decline Submission</message>
-	<message key="reviewer.monograph.decision.seeComments">See Comments</message>
 	<message key="reviewer.monograph.schedule">Schedule</message>
-	<message key="reviewer.monograph.submissionToBeReviewed">Submission To Be Reviewed</message>
 	<message key="reviewer.monograph.reviewSchedule">Review Schedule</message>
 	<message key="reviewer.monograph.reviewRequestDate">Review Request Date</message>
 	<message key="reviewer.monograph.reviewDueDate">Review Due Date</message>
-	<message key="reviewer.monograph.reviewSteps">Review Steps</message>
 	<message key="reviewer.monograph.reviewerGuidelines">Reviewer Guidelines</message>
-	<message key="reviewer.monograph.notifyEditorA">Notify the submission's editor</message>
-	<message key="reviewer.monograph.notifyEditorB">as to whether you will undertake the review.</message>
-	<message key="reviewer.monograph.consultGuidelines">If you are going to do the review, consult Reviewer Guidelines below.</message>
-	<message key="reviewer.monograph.downloadSubmission">Click on file names to download and review (on screen or by printing) the files associated with this submission.</message>
 	<message key="reviewer.monograph.enterCompetingInterests">This press has a policy for disclosure of potential competing interests from its reviewers.  Please take a moment to review this policy.</message>
 	<message key="reviewer.monograph.viewCompetingInterests">View Competing Interests Policy</message>
 	<message key="reviewer.monograph.noCompetingInterests">I do not have any competing interests</message>
 	<message key="reviewer.monograph.hasCompetingInterests">I may have competing interests (Specify below)</message>
 	<message key="reviewer.competingInterests">Competing Interests</message>
-	<message key="reviewer.monograph.enterReviewA">Click on icon to enter (or paste) your review of this submission.</message>
-	<message key="reviewer.monograph.uploadFile">In addition, you can upload files for the editor and/or author to consult.</message>
-	<message key="reviewer.monograph.selectRecommendation">Select a recommendation and submit the review to complete the process. You must enter a review or upload a file before selecting a recommendation.</message>
-	<message key="reviewer.monograph.mustSelectDecision">No recommendation was selected. You must choose a recommendation to submit.</message>
-	<message key="reviewer.monograph.confirmDecision">Once you have recorded a decision you will no longer be able to make changes to this review. Are you sure you wish to continue?</message>
-	<message key="reviewer.monograph.ensuringBlindReview">Ensuring a Blind Review</message>
 	<message key="reviewer.monograph.guidelines">Review Guidelines</message>
 	<message key="reviewer.monograph.noGuidelines">This press has not set any reviewer guidelines.</message>
 	<message key="reviewer.complete">Review Submitted</message>
@@ -127,52 +57,25 @@
 	<message key="workflow.review.externalReview">External Review</message>
 
 	<!-- series/categories/series -->
-	<message key="series.abbreviation">Abbreviation</message>
 	<message key="series.series">Series</message>
-	<message key="series.title">Series' Title</message>
-	<message key="series.abbreviation.example">(For example, Ancient Theatre Series=ATS)</message>
-	<message key="series.issn">ISSN</message>
 
 	<!--
 	 *
 	 * COMMON - This section contains the most frequently-used words
 	 *
 	-->
-	<message key="common.details">Details</message>
-	<message key="common.publish">Publish</message>
-	<message key="common.underway">Underway</message>
-	<message key="common.format">Format</message>
-	<message key="common.label">Label</message>
 	<message key="common.copy">Copy</message>
 	<message key="common.preview">Preview</message>
-	<message key="common.activate">Activate</message>
-	<message key="common.deactivate">Deactivate</message>
-	<message key="common.monographFiles">Monograph Files</message>
-	<message key="common.fileUpload">File Upload</message>
-	<message key="common.warning">Warning</message>
 	<message key="common.quality">Quality</message>
-	<message key="common.saveAndClose">Save And Close</message>
 	<message key="common.sendEmail">Send Email</message>
 	<message key="common.takeMeThere">Take Me There</message>
-	<message key="common.autocomplete">Autocomplete</message>
 	<message key="common.confirmDelete">Are you sure you wish to delete this item? This action cannot be undone.</message>
 	<message key="common.tasks">Tasks</message>
 	<message key="common.overview">Overview</message>
 
-	<message key="common.queue.short.submissionsUnassigned">Unassigned</message>
-	<message key="common.queue.short.submissionsInEditing">In Editing</message>
-	<message key="common.queue.short.submissionsInReview">In Review</message>
-	<message key="common.queue.short.submissionsArchives">Archives</message>
-	<message key="common.queue.short.active">Active</message>
-	<message key="common.queue.short.completed">Archive</message>
 
 	<message key="common.queue.long.submissionsUnassigned">Unassigned Submissions</message>
-	<message key="common.queue.long.submissionsInEditing">Submissions In Editing</message>
-	<message key="common.queue.long.submissionsInReview">Submissions In Review</message>
-	<message key="common.queue.long.submissionsArchives">Archives</message>
-	<message key="common.queue.long.active">Active Submissions</message>
 	<message key="common.queue.long.myAssigned">My Assigned Submissions</message>
-	<message key="common.queue.long.completed">Archive</message>
 
 	<message key="common.listbuilder.completeForm">Please fill out the form completely.</message>
 	<message key="common.listbuilder.selectValidOption">Please select a valid option from the list.</message>
@@ -181,16 +84,12 @@
 	<!-- Common Messages -->
 	<message key="common.openMonographPress">Open Monograph Press</message>
 	<message key="common.omp">OMP</message>
-	<message key="common.confirmComplete">Are you sure you wish to mark this task as completed? You may not be able to make changes afterwards.</message>
-	<message key="common.payment">Payment</message>
-	<message key="common.payments">Payments</message>
 	<message key="common.pageHeader.altText">Page Header</message>
 	<message key="common.publicKnowledgeProject">Public Knowledge Project</message>
 	<message key="common.homePageHeader.altText">Homepage Header</message>
 	<message key="common.pressHomepageImage.altText">Press Homepage Image</message>
 	<message key="common.designation">Designation</message>
 	<message key="common.name">Name</message>
-	<message key="common.personalMessage">Personal Message</message>
 
 	<!-- Navigation -->
 	<message key="navigation.backlist">Backlist</message>
@@ -206,16 +105,6 @@
 	<message key="navigation.published">Published</message>
 	<message key="navigation.seriesAndEditions">Series &amp;amp; Editions</message>
 
-	<!-- Submission History -->
-	<message key="submission.logType.monograph">Monograph</message>
-	<message key="submission.logType.author">Author</message>
-	<message key="submission.logType.editor">Editor</message>
-	<message key="submission.logType.review">Review</message>
-	<message key="submission.logType.copyedit">Copyedit</message>
-	<message key="submission.logType.layout">Layout</message>
-	<message key="submission.logType.proofread">Proofread</message>
-	<message key="submission.event.logLevel">Level</message>
-
 	<!--
 	 *
 	 * ENTITIES - This section contains terms pertaining to the system's
@@ -230,10 +119,6 @@
 
 	<!-- User -->
 	<message key="user.showAllPresses">Show My Presses</message>
-	<message key="user.registerForOtherPresses">Register for Other Presses</message>
-	<message key="user.myPresses">My Presses</message>
-	<message key="user.noRoles.choosePress">Your account is not currently associated with any presses. Please choose a press:</message>
-	<message key="user.noRoles.noRolesForPress">Your account does not currently have any roles for this press. Please choose from the actions below:</message>
 	<message key="user.noRoles.submitMonograph">Submit a Proposal</message>
 	<message key="user.noRoles.submitMonographRegClosed">Submit an Monograph: Author registration is currently disabled.</message>
 	<message key="user.noRoles.regReviewer">Register as a Reviewer</message>
@@ -249,19 +134,16 @@
 	<message key="user.role.seriesEditors">Series Editors</message>
 	<message key="user.role.proofreader">Proofreader</message>
 	<message key="user.role.author">Author</message>
-	<message key="user.role.editorialMember">Editorial Committee Member</message>
 	<message key="user.role.reviewer">Reviewer</message>
 	<message key="user.role.productionEditor">Production Editor</message>
 
 	<message key="user.role.reviewers">Reviewers</message>
-	<message key="user.role.editorialMembers">Editorial Committee Members</message>
 	<message key="user.role.managers">Press Managers</message>
 	<message key="user.role.editors">Editors</message>
 	<message key="user.role.seriesEditors">Series Editors</message>
 	<message key="user.role.copyeditors">Copyeditors</message>
 	<message key="user.role.proofreaders">Proofreaders</message>
 	<message key="user.role.authors">Authors</message>
-	<message key="user.role.submissionCategoryEditors">Category Editors</message>
 	<message key="user.role.productionEditors">Production Editors</message>
 
 
@@ -271,33 +153,6 @@
 	 *             user interface they appear in.
 	 *
 	-->
-
-	<!-- Reader monograph view -->
-	<message key="reader.openAccess">Open Access</message>
-
-	<!-- Reader Comments -->
-	<message key="comments.commentsOnMonograph">Comments on this monograph</message>
-	<message key="comments.authenticated"><![CDATA[by <a href="{$publicProfileUrl}" target="_parent">{$userName}</a>]]></message>
-	<message key="submission.comments.editorAuthorCorrespondence">Editor/Author Correspondence</message>
-	<message key="submission.comments.copyeditComments">Copyedit Comments</message>
-	<message key="submission.comments.viewableDescription"><![CDATA[These comments can be shared with the author.<br />
-(After saving, further comments can be added.)]]></message>
-	<message key="submission.comments.canShareWithAuthor">For author and editor</message>
-	<message key="submission.comments.cannotShareWithAuthor">For editor</message>
-	<message key="submission.comments.blindCcReviewers">After sending, present an editable BCC copy to send to reviewers.</message>
-	<message key="submission.comments.forAuthorEditor">For author and editor</message>
-	<message key="submission.comments.forEditor">For editor</message>
-	<message key="submission.comments.saveAndEmailAuthor">Save and Email Author</message>
-	<message key="submission.comments.saveAndEmailEditor">Save and Email Editor</message>
-
-	<!-- General plugin information -->
-	<message key="plugins.categories.auth.description">Authorization Plugins allow Open Monograph Press to delegate user authentication tasks to other systems, such as LDAP servers.</message>
-	<message key="plugins.categories.citationFormats.description">Citation format plugins provide users with various formats in which to access monograph citations.</message>
-	<message key="plugins.categories.generic.description">Generic plugins are used to extend Open Monograph Press in a variety of ways that are not supported by the other plugin categories.</message>
-	<message key="plugins.categories.implicitAuth">Implicit Authentication Plugins</message>
-	<message key="plugins.categories.implicitAuth.description">Implicit Authentication plugins implement support for authenticating users based on http headers.</message>
-	<message key="plugins.categories.oaiMetadataFormats">OAI Metadata Format Plugins</message>
-	<message key="plugins.categories.oaiMetadataFormats.description">These format plugins express metadata in OAI communications.</message>
 
 	<!-- Login -->
 	<message key="user.login.registerNewAccount">Not a user? Register with this site</message>
@@ -314,9 +169,7 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="informationCenter.history.noItems">There are no events logged.</message>
 	<message key="informationCenter.history.notePosted">Posted new note.</message>
 	<message key="informationCenter.history.messageSent">Notification sent to users.</message>
-	<message key="informationCenter.notify.template">Attach Template</message>
 	<message key="informationCenter.notify.message">Message</message>
-	<message key="informationCenter.notify.selectUser">Please select users to send the message to.</message>
 	<message key="informationCenter.notify.warning">Please ensure that you have filled out the message field and selected at least one recipient.</message>
 
 	<!-- Registration -->
@@ -335,50 +188,13 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="user.register.reviewerDescription">Willing to conduct peer review of submissions to the press.</message>
 	<message key="user.register.reviewerInterests">Identify reviewing interests (substantive areas and research methods):</message>
 
-	<!-- Search -->
-	<message key="search.browseAuthorIndex">Browse Author Index</message>
-	<message key="search.searchFor">Search monographs for</message>
-	<message key="search.author">Authors</message>
-	<message key="search.withinPress">Within</message>
-	<message key="search.allPresses">All Presses</message>
-	<message key="search.authorIndex">Browse Author Index</message>
-	<message key="search.authorDetails">Author Details</message>
-	<message key="search.syntaxInstructions"><![CDATA[Search tips: <ul>
-<li>Search terms are case-insensitive</li>
-<li>Common words are ignored</li>
-<li>By default only monographs containing <em>all</em> terms in the query are returned (i.e., <em>AND</em> is implied)</li>
-<li>Combine multiple words with <em>OR</em> to find monographs containing either term; e.g., <em>education OR research</em></li>
-<li>Use parentheses to create more complex queries; e.g., <em>archive ((press OR conference) NOT theses)</em></li>
-<li>Search for an exact phrase by putting it in quotes; e.g., <em>"open access publishing"</em></li>
-<li>Exclude a word by prefixing it with <strong>-</strong> or <em>NOT</em>; e.g. <em>online -politics</em> or <em>online NOT politics</em></li>
-<li>Use <strong>*</strong> in a term as a wildcard to match any sequence of characters; e.g., <em>soci* morality</em> would match documents containing "sociological" or "societal"</li>
-</ul>]]></message>
-
-	<!-- Interstitial page for PDFs -->
-	<message key="monograph.pdf.title">Portable Document Format (PDF)</message>
-	<message key="monograph.pdf.note"><![CDATA[The PDF file you selected should load here, if your Web browser has a PDF reader plug-in installed (for example, a recent version of <a href="http://www.adobe.com/products/acrobat/readstep2.html">Adobe Acrobat Reader</a>). Alternatively, the PDF file will download to your computer, where it can also be opened using a PDF reader. If you would like more information about how to print, save, and work with PDFs, Highwire Press provides a helpful <a href="http://highwire.stanford.edu/help/pdf-faq.dtl">Frequently Asked Questions about PDFs</a>.<br /><br />If the file does not download automatically, <a href="{$url}">click here</a>.]]></message>
-
-	<!-- Interstitial page for non-PDF non-HTML galleys -->
-	<message key="monograph.nonpdf.title">Monograph Download</message>
-	<message key="monograph.nonpdf.note"><![CDATA[The file you selected should begin downloading automatically. If it does not, click the link below. Note that this file may require a special viewer or plugin to view.<br /><br />If the file does not download automatically, <a href="{$url}">click here</a>.]]></message>
-
 	<!-- Site index -->
-	<message key="site.pressesHosted">Presses hosted on this site</message>
 	<message key="site.pressView">View Press Website</message>
 
-	<!-- Current index -->
-	<message key="current.current">Current</message>
-
-	<!-- Archive index -->
-	<message key="archive.archives">Archives</message>
-	<message key="archive.browse">Browse through the older monographs</message>
-
 	<!-- About The Press -->
-	<message key="about.statistics">Statistics</message>
 	<message key="about.pressContact">Press Contact</message>
 	<message key="about.aboutThePress">About the Press</message>
 	<message key="about.editorialTeam">Editorial Team</message>
-	<message key="about.editorialTeam.biography">Biography</message>
 	<message key="about.editorialPolicies">Editorial Policies</message>
 	<message key="about.focusAndScope">Focus and Scope</message>
 	<message key="about.seriesPolicies">Series and Divisions Policies</message>
@@ -396,16 +212,9 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.submissionPreparationChecklist.description">As part of the submission process, authors are required to check off their submission's compliance with all of the following items, and submissions may be returned to authors that do not adhere to these guidelines.</message>
 	<message key="about.copyrightNotice">Copyright Notice</message>
 	<message key="about.privacyStatement">Privacy Statement</message>
-	<message key="about.authorFees">Author Fees</message>
-	<message key="about.authorFeesMessage">This press charges the following author fees.</message>
 	<message key="about.peerReviewProcess">Peer Review Process</message>
 	<message key="about.publicationFrequency">Publication Frequency</message>
 	<message key="about.openAccessPolicy">Open Access Policy</message>
-	<message key="about.delayedOpenAccess">Delayed Open Access</message>
-	<message key="about.delayedOpenAccessDescription1">The contents of this press will be available in an open access format</message>
-	<message key="about.delayedOpenAccessDescription2">month(s) after a monograph is published.</message>
-	<message key="about.archiving">Archiving</message>
-	<message key="about.memberships">Memberships</message>
 	<message key="about.pressSponsorship">Press Sponsorship</message>
 	<message key="about.aboutThisPublishingSystem">About this Publishing System</message>
 	<message key="about.aboutThisPublishingSystem.altText">OMP Editorial and Publishing Process</message>
@@ -413,8 +222,6 @@ current password.<br /><br />Enter your email address below to reset your passwo
 	<message key="about.aboutOMPSite"><![CDATA[This site uses Open Monograph Press {$ompVersion}, which is open source press management and publishing software developed, supported, and freely distributed by the <a href="http://pkp.sfu.ca/">Public Knowledge Project</a> under the GNU General Public License.]]></message>
 
 	<!-- Help -->
-	<message key="help.ompHelp">Open Monograph Press Help</message>
-	<message key="help.ompHelpAbbrev">OMP Help</message>
 	<message key="help.searchReturnResults">Return to Search Results</message>
 
 	<!-- Installer -->
@@ -477,7 +284,6 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 	<message key="installer.databaseSettingsInstructions">OMP requires access to a SQL database to store its data. See the system requirements above for a list of supported databases. In the fields below, provide the settings to be used to connect to the database.</message>
 	<message key="installer.installOMP">Install Open Monograph Press</message>
 	<message key="installer.upgradeOMP">Upgrade Open Monograph Press</message>
-	<message key="installer.reinstallAfterDatabaseError"><![CDATA[<strong>Warning:</strong> If installation failed part way through database installation you may need to drop your OMP database or database tables before attempting to reinstall the database.]]></message>
 	<message key="installer.overwriteConfigFileInstructions"><![CDATA[<h4>IMPORTANT!</h4>
 <p>The installer could not automatically overwrite the configuration file. Before attempting to use the system, please open <tt>config.inc.php</tt> in a suitable text editor and replace its contents with the contents of the text field below.</p>]]></message>
 	<message key="installer.manualSQLInstructions"><![CDATA[<h4>Manual installation</h4>
@@ -491,38 +297,12 @@ Your server currently supports mbstring: <strong>{$supportsMBString}</strong>]]>
 
 
 	<!-- Monograph Logs -->
-	<message key="log.author.submitted">{$authorName} has entered a new submission, ID {$submissionId}.</message>
-	<message key="log.author.documentRevised">{$authorName} has revised monograph {$monographId}. The new file ID is {$fileId}.</message>
 	<message key="log.review.reviewerAssigned">{$reviewerName} has been assigned to review submission {$monographId} for review round {$round}.</message>
-	<message key="log.review.reviewerUnassigned">{$reviewerName} has been unassigned from reviewing submission {$monographId} for review round {$round}.</message>
-	<message key="log.review.reviewInitiated">The round {$round} review by {$reviewerName} for submission {$monographId} has been initiated.</message>
-	<message key="log.review.reviewReinitiated">The round {$round} review by {$reviewerName} for submission {$monographId} has been reinitiated.</message>
-	<message key="log.review.reviewCancelled">The round {$round} review by {$reviewerName} for submission {$monographId} has been cancelled.</message>
 	<message key="log.review.reviewCleared">The round {$round} review by {$reviewerName} for submission {$monographId} has been cleared.</message>
-	<message key="log.review.reviewerRated">{$reviewerName} has been rated for the round {$round} review of submission {$monographId}.</message>
 	<message key="log.review.reviewDueDateSet">The due date for the round {$round} review of submission {$monographId} by {$reviewerName} has been set to {$dueDate}.</message>
-	<message key="log.review.reviewRecommendationSet">The recommendation for the round {$round} review of submission {$monographId} by {$reviewerName} has been set.</message>
-	<message key="log.review.reviewRecommendationSetByProxy">The recommendation for the round {$round} review of submission {$monographId} has been set by the editor, {$editorName}, on behalf of the reviewer, {$reviewerName}.</message>
-	<message key="log.review.resubmit">The submission {$monographId} has been resubmitted for review.</message>
 	<message key="log.review.reviewDeclined">{$reviewerName} has declined the round {$round} review for submission {$monographId}.</message>
 	<message key="log.review.reviewAccepted">{$reviewerName} has accepted the round {$round} review for submission {$monographId}.</message>
-	<message key="log.review.reviewDeclinedByProxy">{$userName} has declined the round {$round} review for submission {$monographId} on behalf of {$reviewerName}.</message>
-	<message key="log.review.reviewAcceptedByProxy">{$userName} has accepted the round {$round} review for submission {$monographId} on behalf of {$reviewerName}.</message>
-	<message key="log.review.reviewFileByProxy">The Editor, {$userName}, has uploaded a review file for round {$round} of submission {$monographId} on behalf of the reviewer, {$reviewerName}.</message>
-	<message key="log.review.reviewerFile">A reviewer file has been uploaded.</message>
 	<message key="log.editor.decision">An editor decision ({$decision}) for monograph {$monographId} was recorded by {$editorName}.</message>
-	<message key="log.copyedit.initiate">Copyediting on submission {$monographId} has been commenced by {$copyeditorName}.</message>
-	<message key="log.copyedit.copyeditFileSet">The default copyedit file has been chosen.</message>
-	<message key="log.copyedit.initialEditComplete">{$copyeditorName} has completed the initial copy edit of submission {$monographId}.</message>
-	<message key="log.copyedit.finalEditComplete">{$copyeditorName} has completed the final copy edit of submission {$monographId}.</message>
-	<message key="log.copyedit.copyeditorAssigned">{$copyeditorName} has been assigned to copyedit submission {$monographId}.</message>
-	<message key="log.copyedit.copyeditorFile">A copyeditor version of the submission file has been uploaded.</message>
-	<message key="log.copyedit.authorFile">A version of the submission file copyedited by the author has been uploaded.</message>
-	<message key="log.layout.layoutEditorAssigned">{$editorName} has been assigned as layout editor for submission {$monographId}.</message>
-	<message key="log.layout.layoutEditorUnassigned">{$editorName} has been unassigned as layout editor for submission {$monographId}.</message>
-	<message key="log.layout.layoutEditComplete">{$editorName} has completed layout editing for submission {$monographId}.</message>
-	<message key="log.editor.metadataModified">The metadata for this monograph was modified by {$editorName}.</message>
-	<message key="log.editor.editorFile">An editor version of the submission file has been uploaded.</message>
 	<message key="log.editor.archived">The submission {$monographId} has been archived.</message>
 	<message key="log.editor.restored">The submission {$monographId} has been restored to the queue.</message>
 	<message key="log.editor.editorAssigned">{$editorName} has been assigned as editor to submission {$monographId}.</message>

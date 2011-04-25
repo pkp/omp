@@ -113,7 +113,6 @@
 	<message key="manager.series.indexed">Indexed</message>
 	<message key="manager.series.open">Open Submissions</message>
 	<message key="manager.series.readingTools">Reading Tools</message>
-	<message key="manager.series.reviewed">Peer Reviewed</message>
 	<message key="manager.series.submissionReview">Will not be peer-reviewed</message>
 	<message key="manager.series.submissionsToThisSection">Submissions made to this series</message>
 	<message key="manager.series.abstractsNotRequired">Do not require abstracts</message>
@@ -151,7 +150,6 @@
 	<message key="manager.people.allSiteUsers">Enroll a User from this Site in this Press</message>
 	<message key="manager.people.allUsers">All Enrolled Users</message>
 	<message key="manager.people.confirmRemove">Remove this user from this press? This action will unenroll the user from all roles within this press.</message>
-	<message key="manager.people.emailUsers.selectTemplate">Select a template</message>
 	<message key="manager.people.enrollExistingUser">Enroll an Existing User</message>
 	<message key="manager.people.enrollSyncPress">With press</message>
 	<message key="manager.people.mergeUsers.from.description">Select a user to merge into another user account (e.g., when someone has two user accounts). The account selected first will be deleted and its submissions, assignments, etc. will be attributed to the second account.</message>
@@ -201,7 +199,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.system.plugins">Plugins</message>
 
 	<!-- Press setup -->
-	<message key="manager.emails.confirmResetAll">Are you sure you want to reset all email templates in this press? You will lose any customizations you have made.</message>
 	<message key="manager.pressManagement">Press Management</message>
 	<message key="manager.setup">Setup</message>
 	<message key="manager.setup.aboutItemContent">Content</message>
@@ -338,7 +335,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.notifications.copyPrimaryContact">Send a copy to the press's primary contact, identified in Setup Step 1.</message>
 	<message key="manager.setup.notifications.copySpecifiedAddress">Send a copy to this email address:</message>
 	<message key="manager.setup.notifications.description">On completing the submission process, authors are automatically sent an acknowledgement email (which can be viewed and edited in Prepared Emails). In addition, a copy of the acknowledgement email can be sent as follows:</message>
-	<message key="manager.setup.notifications.submissionAckDisabled"><![CDATA[<strong>Note:</strong> The submission acknowledgement email is currently disabled. To use this feature, enable the SUBMISSION_ACK email in <a class="action" href="{$preparedEmailsUrl}">Prepared Emails</a>.]]></message>
 	<message key="manager.setup.notifyAllAuthorsOnDecision">When using the Notify Author email, include the email addresses of all co-authors for multiple-author submissions, and not just the submitting user.</message>
 	<message key="manager.setup.noUseCopyeditors">Copyediting will be undertaken by an Editor or Section Editor assigned to the submission.</message>
 	<message key="manager.setup.noUseLayoutEditors">An Editor or Section Editor assigned to the submission will prepare the HTML, PDF, etc., files.</message>
@@ -545,27 +541,4 @@ Note that if your site administrator has already registered this site with the P
 <br /><br />
 <a href="http://pkp.sfu.ca/harvester/add.php" target="_blank">Click here</a> and enter <span class="highlight">{$siteUrl}</span> under <strong>Site URL</strong>, and <span class="highlight">{$oaiUrl}</span> under <strong>Base URL for OAI Archive</strong>.]]></message>
 
-	<!-- Stats and reports -->
-	<message key="manager.statistics.reports">Report Generator</message>
-	<message key="manager.statistics.reports.description">OMP generates reports that track the details associated with processing submissions to the press from the perspective of submissions, editors, reviewers, and sections, over a given period of time. Reports are generated in CSV format which requires a spreadsheet application to view.</message>
-	<message key="manager.statistics.statistics">Press Statistics</message>
-	<message key="manager.statistics.statistics.monographViews">Monograph View Counts (for Authors only)</message>
-	<message key="manager.statistics.statistics.count.accept">Accept</message>
-	<message key="manager.statistics.statistics.count.decline">Decline</message>
-	<message key="manager.statistics.statistics.count.revise">Resubmit</message>
-	<message key="manager.statistics.statistics.daysPerReview">Days to review</message>
-	<message key="manager.statistics.statistics.daysToPublication">Days to publication</message>
-	<message key="manager.statistics.statistics.description">OMP calculates the following statistics for each press. The "days to review" is calculated from date of submission (or designation of Review Version) to the initial Editor Decision, while the "days to publish" is measured for accepted submissions from its original uploading to its publication.</message>
-	<message key="manager.statistics.statistics.itemsPublished">Items published</message>
-	<message key="manager.statistics.statistics.makePublic">Check items to be made available to readers in About the Press.</message>
-	<message key="manager.statistics.statistics.note">Note: Percentages for peer reviewed submissions may not add up to 100%, as items resubmitted are either accepted, declined, or still in process.</message>
-	<message key="manager.statistics.statistics.numSubmissions">Total submissions</message>
-	<message key="manager.statistics.statistics.peerReviewed">Peer reviewed</message>
-	<message key="manager.statistics.statistics.registeredReaders">Registered readers</message>
-	<message key="manager.statistics.statistics.registeredUsers">Registered users</message>
-	<message key="manager.statistics.statistics.reviewerCount">No. assigned</message>
-	<message key="manager.statistics.statistics.reviewers">Reviewers</message>
-	<message key="manager.statistics.statistics.reviewerScore">Editor score</message>
-	<message key="manager.statistics.statistics.reviewsPerReviewer">No. of reviews</message>
-	<message key="manager.statistics.statistics.selectSections">Select the sections for calculating this press's peer-reviewed statistics.</message>
 </locale>
