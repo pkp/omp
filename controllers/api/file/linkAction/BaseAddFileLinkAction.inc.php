@@ -41,7 +41,7 @@ class BaseAddFileLinkAction extends LinkAction {
 		// Augment the action arguments array.
 		$actionArgs['monographId'] = $monographId;
 		$actionArgs['stageId'] = $stageId;
-		assert(is_array($uploaderRoles) && count($uploaderRoles) > 1);
+		assert(is_array($uploaderRoles) && count($uploaderRoles) >= 1);
 		$actionArgs['uploaderRoles'] = implode('-', $uploaderRoles);
 
 		// Instantiate the file upload modal.
