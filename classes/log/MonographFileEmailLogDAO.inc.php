@@ -29,7 +29,7 @@ class MonographFileEmailLogDAO extends EmailLogDAO {
 	}
 
 	function getByEventType($fileId, $eventType) {
-		return $this->getByEventType(ASSOC_TYPE_MONOGRAPH_FILE, $fileId, $eventType);
+		return parent::getByEventType(ASSOC_TYPE_MONOGRAPH_FILE, $fileId, $eventType);
 	}
 }
 
