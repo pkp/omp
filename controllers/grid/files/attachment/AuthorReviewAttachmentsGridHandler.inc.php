@@ -13,50 +13,28 @@
  */
 
 import('lib.pkp.classes.controllers.grid.GridRow');
-import('controllers.grid.files.attachment.ReviewAttachmentsGridHandler');
+import('controllers.grid.files.fileList.FileListGridHandler');
 
-class AuthorReviewAttachmentsGridHandler extends ReviewAttachmentsGridHandler {
+class AuthorReviewAttachmentsGridHandler extends FileListGridHandler {
 	/**
 	 * Constructor
 	 */
 	function AuthorReviewAttachmentsGridHandler() {
-		parent::ReviewAttachmentsGridHandler(FILE_GRID_DOWNLOAD_ALL);
-		$this->addRoleAssignment(
-			array(ROLE_ID_PRESS_MANAGER, ROLE_ID_AUTHOR),
-			array('fetchGrid', 'downloadFile')
+		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+		$dataProvider = new SubmissionFilesGridDataProvider(WORKFLOW_STAGE_ID_INTERNAL_REVIEW, MONOGRAPH_FILE_REVIEW);
+		parent::FileListGridHandler(
+			$dataProvider,
+			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			FILE_GRID_DOWNLOAD_ALL
 		);
-	}
 
-	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
-	}
+		$this->addRoleAssignment(
+			array(ROLE_ID_AUTHOR, ROLE_ID_PRESS_MANAGER),
+			array('fetchGrid', 'fetchRow', 'downloadAllFiles')
+		);
 
-	/**
-	 * Select the files to load in the grid
-	 * @see SubmissionFilesGridHandler::loadMonographFiles()
-	 */
-	function loadMonographFiles() {
-		$monograph =& $this->getMonograph();
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_REVIEW);
-
-		$rowData = array();
-		foreach ($monographFiles as $monographFile) {
-			// Only include files where the 'viewable' flag has been set, i.e. which the editor has approved for the author to see
-			if($monographFile->getViewable()) $rowData[$monographFile->getFileId()] = $monographFile;
-		}
-		$this->setGridDataElements($rowData);
+		// Set the grid title.
+		$this->setTitle('grid.reviewAttachments.title');
 	}
 }
 

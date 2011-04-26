@@ -128,6 +128,7 @@ class SubmissionFilesGridHandler extends GridHandler {
 		// Add grid-level actions.
 		$dataProvider =& $this->getDataProvider();
 		if($this->canAdd()) {
+			assert($dataProvider);
 			$this->addAction($dataProvider->getAddFileAction($request));
 		}
 

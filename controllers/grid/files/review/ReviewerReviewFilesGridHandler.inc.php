@@ -14,29 +14,26 @@
 
 import('controllers.grid.files.review.ReviewFilesGridHandler');
 
-class ReviewerReviewFilesGridHandler extends ReviewFilesGridHandler {
+class ReviewerReviewFilesGridHandler extends FileListGridHandler {
 	/**
 	 * Constructor
 	 */
 	function ReviewerReviewFilesGridHandler() {
-		parent::ReviewFilesGridHandler(false, false, true, false);
+		import('controllers.grid.files.review.ReviewFilesGridDataProvider');
+		$dataProvider = new ReviewFilesGridDataProvider();
+		parent::FileListGridHandler(
+			$dataProvider,
+			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
+			FILE_GRID_DOWNLOAD_ALL
+		);
 
-		$this->addRoleAssignment(ROLE_ID_REVIEWER, array('fetchGrid', 'downloadFile', 'downloadAllFiles'));
-	}
+		$this->addRoleAssignment(
+			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
+			array('fetchGrid', 'fetchRow', 'downloadAllFiles')
+		);
 
-	//
-	// Implement template methods from PKPHandler
-	//
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpSubmissionAccessPolicy');
-		$this->addPolicy(new OmpSubmissionAccessPolicy($request, $args, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
+		// Set the grid title.
+		$this->setTitle('reviewer.monograph.reviewFiles');
 	}
 }
 
