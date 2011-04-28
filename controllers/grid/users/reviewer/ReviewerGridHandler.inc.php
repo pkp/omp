@@ -313,8 +313,7 @@ class ReviewerGridHandler extends GridHandler {
 		if ($result) {
 			return DAO::getDataChangedEvent($reviewId);
 		} else {
-			// FIXME: this locale key does not exist. and it is probably not the right name for it.
-			$json = new JSONMessage(false, Locale::translate('submission.submit.errorDeletingReviewer'));
+			$json = new JSONMessage(false, Locale::translate('editor.review.errorDeletingReviewer'));
 			return $json->getString();
 		}
 	}

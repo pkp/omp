@@ -89,5 +89,6 @@
 	<message key="editor.review.days">Days</message>
 	<message key="editor.review.mustSelect">You must select a reviewer</message>
 	<message key="editor.review.errorAddingReviewer">There was an error adding the reviewer.  Please try again.</message>
+	<message key="editor.review.errorDeletingReviewer">There was an error deleting the reviewer.  Please try again.</message>
 	<message key="editor.review.userGroupSelect">Enroll the user with this reviewer user group</message>
 </locale>

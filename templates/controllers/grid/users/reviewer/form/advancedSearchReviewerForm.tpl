@@ -21,7 +21,9 @@
 	{load_url_in_div id='reviewerSelectGridContainer' url="$reviewerSelectGridUrl"}
 
 	{** This button will get the reviewer selected in the grid and insert their ID into the form below **}
-	{fbvButton id="selectReviewerButton" label="editor.monograph.selectReviewer"}
+	{fbvFormSection class="center"}
+		{fbvButton id="selectReviewerButton" label="editor.monograph.selectReviewer" measure=$fbvStyles.measure.1OF3}
+	{/fbvFormSection}
 	<br />
 
 	{** Display the name of the selected reviewer so the user knows their button click caused an action **}

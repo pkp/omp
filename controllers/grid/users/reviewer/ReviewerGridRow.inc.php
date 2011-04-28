@@ -33,8 +33,9 @@ class ReviewerGridRow extends GridRow {
 		parent::initialize($request);
 
 		// Retrieve the monograph id from the request
-		$monographId = $request->getUserVar('monographId');
-		assert(is_numeric($monographId));
+		$monographId = (int) $request->getUserVar('monographId');
+		$reviewType = (int) $request->getUserVar('reviewType');
+		$round = (int) $request->getUserVar('round');
 
 		// Is this a new row or an existing row?
 		$rowId = $this->getId();
@@ -43,7 +44,9 @@ class ReviewerGridRow extends GridRow {
 			$router =& $request->getRouter();
 			$actionArgs = array(
 				'monographId' => $monographId,
-				'reviewId' => $rowId
+				'reviewId' => $rowId,
+				'reviewType' => $reviewType,
+				'round' => $round
 			);
 
 			import('lib.pkp.classes.linkAction.request.ConfirmationModal');

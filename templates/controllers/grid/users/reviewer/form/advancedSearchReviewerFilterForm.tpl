@@ -37,8 +37,8 @@
 		{fbvFormSection}
 			{fbvKeywordInput id="interestSearch" available=$interestSearchKeywords label="manager.reviewerSearch.interests"}
 		{/fbvFormSection}
-		{fbvFormSection}
-			<input type="submit" class="button" id="submitFilter" value="{translate key="common.refresh"}" />
+		{fbvFormSection class="center"}
+			<input type="submit" class="button size1of3" id="submitFilter" value="{translate key="common.refresh"}" />
 		{/fbvFormSection}
 	{/fbvFormArea}
 </form>
