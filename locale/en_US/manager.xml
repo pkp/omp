@@ -198,6 +198,14 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.website.appearance">Appearance</message>
 	<message key="manager.website.website">Website</message>
 	
+	<!-- Publication Process settings -->
+	<message key="manager.process.publicationProcess">Publication Process</message>
+	<message key="manager.process.general">General Settings</message>
+	<message key="manager.process.submissionStage">Submission Stage</message>
+	<message key="manager.process.reviewStage">Review Stage</message>
+	<message key="manager.process.editorialStage">Editorial Stage</message>
+	<message key="manager.process.productionStage">Production Stage</message>
+	
 	<!-- System setup -->
 	<message key="manager.system">System Settings</message>
 	<message key="manager.system.archiving">Archiving</message>

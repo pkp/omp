@@ -28,7 +28,8 @@ class SettingsHandler extends Handler {
 				'settings',
 				'access',
 				'press',
-				'website'
+				'website',
+				'process'
 			)
 		);
 	}
@@ -94,6 +95,9 @@ class SettingsHandler extends Handler {
 			case 'website':
 				$this->website();
 				break;
+			case 'process':
+				$this->process();
+				break;
 			default:
 				assert(false);
 		}
@@ -130,6 +134,17 @@ class SettingsHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
 		$templateMgr->display('management/settings/website.tpl');
+	}
+
+	/**
+	 * Display publication process page.
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
+	function process() {
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate(true);
+		$templateMgr->display('management/settings/process.tpl');
 	}
 }
 

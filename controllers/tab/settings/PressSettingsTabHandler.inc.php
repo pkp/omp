@@ -15,7 +15,6 @@
 // Import the base Handler.
 import('controllers.tab.settings.SettingsTabHandler');
 import('lib.pkp.classes.core.JSONMessage');
-import('controllers.tab.settings.masthead.form.MastheadForm');
 
 class PressSettingsTabHandler extends SettingsTabHandler {
 
@@ -23,7 +22,7 @@ class PressSettingsTabHandler extends SettingsTabHandler {
 	 * Constructor
 	 */
 	function PressSettingsTabHandler() {
-		parent::Handler();
+		parent::SettingsTabHandler();
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
 				array(
 					'masthead',
@@ -48,6 +47,7 @@ class PressSettingsTabHandler extends SettingsTabHandler {
 	 */
 	function masthead($args, &$request) {
 		// Instantiate the files form.
+		import('controllers.tab.settings.masthead.form.MastheadForm');
 		$mastheadForm = new MastheadForm();
 		$mastheadForm->initData();
 		$json = new JSONMessage(true, $mastheadForm->fetch($request));

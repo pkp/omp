@@ -1,13 +1,13 @@
 <?php
 
 /**
- * @file controllers/tab/settings/masthead/MastheadForm.inc.php
+ * @file controllers/tab/settings/masthead/form/MastheadForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class MastheadForm
- * @ingroup controllers_tab_settings_masthead
+ * @ingroup controllers_tab_settings_masthead_form
  *
  * @brief Form to add/edit user group.
  */

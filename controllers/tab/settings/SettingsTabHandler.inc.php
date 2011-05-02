@@ -15,7 +15,6 @@
 // Import the base Handler.
 import('classes.handler.Handler');
 import('lib.pkp.classes.core.JSONMessage');
-import('controllers.tab.settings.masthead.form.MastheadForm');
 
 class SettingsTabHandler extends Handler {
 
@@ -82,7 +81,12 @@ class SettingsTabHandler extends Handler {
 	function _getTabForm($formVar) {
 		switch($formVar) {
 			case 'masthead':
+				import('controllers.tab.settings.masthead.form.MastheadForm');
 				$form = new MastheadForm();
+				break;
+			case 'emailTemplates':
+				import('controllers.tab.settings.emailTemplates.form.EmailTemplatesForm');
+				$form = new EmailTemplatesForm();
 				break;
 			default:
 				break;
