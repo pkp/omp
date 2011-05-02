@@ -192,6 +192,12 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="settings.press.identification">Press Identification</message>
 	<message key="manager.affiliationAndSupport"><![CDATA[Affiliation &amp; Support]]></message>
 	
+	<!-- Website settings -->
+	<message key="manager.website.homepage">Homepage</message>
+	<message key="manager.website.appearance">Appearance</message>
+	<message key="manager.website.appearance">Appearance</message>
+	<message key="manager.website.website">Website</message>
+	
 	<!-- System setup -->
 	<message key="manager.system">System Settings</message>
 	<message key="manager.system.archiving">Archiving</message>

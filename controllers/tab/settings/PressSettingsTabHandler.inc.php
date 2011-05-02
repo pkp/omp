@@ -13,9 +13,11 @@
  */
 
 // Import the base Handler.
-import('classes.handler.Handler');
+import('controllers.tab.settings.SettingsTabHandler');
+import('lib.pkp.classes.core.JSONMessage');
+import('controllers.tab.settings.masthead.form.MastheadForm');
 
-class PressSettingsTabHandler extends Handler {
+class PressSettingsTabHandler extends SettingsTabHandler {
 
 	/**
 	 * Constructor
@@ -23,33 +25,16 @@ class PressSettingsTabHandler extends Handler {
 	function PressSettingsTabHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
-				array('masthead', 'contact', 'policies', 'guidelines', 'affiliationAndSupport', 'identification'));
-	}
-
-
-	//
-	// Overridden methods from Handler
-	//
-	/**
-	 * @see PKPHandler::initialize()
-	 */
-	function initialize(&$request, $args = null) {
-		parent::initialize($request, $args);
-
-		// Load grid-specific translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
-	}
-
-	/**
-	 * @see PKPHandler::authorize()
-	 * @param $request PKPRequest
-	 * @param $args array
-	 * @param $roleAssignments array
-	 */
-	function authorize(&$request, $args, $roleAssignments) {
-		import('classes.security.authorization.OmpPressAccessPolicy');
-		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
-		return parent::authorize($request, $args, $roleAssignments);
+				array(
+					'masthead',
+					'contact',
+					'policies',
+					'guidelines',
+					'affiliationAndSupport',
+					'identification',
+					'saveData'
+				)
+		);
 	}
 
 
@@ -62,6 +47,11 @@ class PressSettingsTabHandler extends Handler {
 	 * @param $request PKPRequest
 	 */
 	function masthead($args, &$request) {
+		// Instantiate the files form.
+		$mastheadForm = new MastheadForm();
+		$mastheadForm->initData();
+		$json = new JSONMessage(true, $mastheadForm->fetch($request));
+		return $json->getString();
 	}
 
 	/**

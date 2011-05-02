@@ -27,7 +27,8 @@ class SettingsHandler extends Handler {
 				'index',
 				'settings',
 				'access',
-				'press'
+				'press',
+				'website'
 			)
 		);
 	}
@@ -81,15 +82,20 @@ class SettingsHandler extends Handler {
 	function settings($args) {
 		$path = $args[0];
 		switch($path) {
-			case 'index';
+			case 'index':
 				$this->index();
 				break;
-			case 'access';
+			case 'access':
 				$this->access();
 				break;
-			case 'press';
+			case 'press':
 				$this->press();
 				break;
+			case 'website':
+				$this->website();
+				break;
+			default:
+				assert(false);
 		}
 	}
 
@@ -113,6 +119,17 @@ class SettingsHandler extends Handler {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
 		$templateMgr->display('management/settings/press.tpl');
+	}
+
+	/**
+	 * Display website page.
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
+	function website() {
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate(true);
+		$templateMgr->display('management/settings/website.tpl');
 	}
 }
 
