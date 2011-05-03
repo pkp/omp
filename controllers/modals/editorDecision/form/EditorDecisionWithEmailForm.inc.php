@@ -134,8 +134,9 @@ class EditorDecisionWithEmailForm extends EditorDecisionForm {
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @param $status integer One of the REVIEW_ROUND_STATUS_* constants.
 	 * @param $emailKey string An email template.
+	 * @param $request PKPRequest
 	 */
-	function _sendReviewMailToAuthor(&$seriesEditorSubmission, $status, $emailKey) {
+	function _sendReviewMailToAuthor(&$seriesEditorSubmission, $status, $emailKey, $request) {
 		// Retrieve the current review round and update it with the new status.
 		$reviewRoundDao =& DAORegistry::getDAO('ReviewRoundDAO'); /* @var $reviewRoundDao ReviewRoundDAO */
 		$currentReviewRound =& $reviewRoundDao->build($seriesEditorSubmission->getId(), $seriesEditorSubmission->getCurrentReviewType(), $seriesEditorSubmission->getCurrentRound());

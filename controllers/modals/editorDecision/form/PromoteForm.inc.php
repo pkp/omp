@@ -67,7 +67,7 @@ class PromoteForm extends EditorDecisionWithEmailForm {
 		$decision = $this->getDecision();
 		import('classes.submission.seriesEditor.SeriesEditorAction');
 		$seriesEditorAction = new SeriesEditorAction();
-		$seriesEditorAction->recordDecision($seriesEditorSubmission, $decision);
+		$seriesEditorAction->recordDecision($request, $seriesEditorSubmission, $decision);
 
 		// Identify email key and status of round.
 		switch ($decision) {

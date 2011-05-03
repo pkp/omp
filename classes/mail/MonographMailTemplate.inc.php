@@ -126,6 +126,9 @@ class MonographMailTemplate extends MailTemplate {
 			$user =& $request->getUser();
 			$entry->setSenderId($user == null ? 0 : $user->getId());
 			$entry->setIPAddress($request->getRemoteAddr());
+		} else {
+			// No user supplied -- this is e.g. a cron-automated email
+			$entry->setSenderId(0);
 		}
 
 		// Email data

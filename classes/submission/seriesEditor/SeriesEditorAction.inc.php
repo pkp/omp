@@ -30,10 +30,11 @@ class SeriesEditorAction extends Action {
 	//
 	/**
 	 * Records an editor's submission decision.
+	 * @param $request PKPRequest
 	 * @param $seriesEditorSubmission SeriesEditorSubmission
 	 * @param $decision integer
 	 */
-	function recordDecision($seriesEditorSubmission, $decision) {
+	function recordDecision($request, $seriesEditorSubmission, $decision) {
 		// FIXME #5557 Make sure this works with signoffs
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoffs =& $signoffDao->getBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $seriesEditorSubmission->getId());
