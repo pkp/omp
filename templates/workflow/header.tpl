@@ -23,15 +23,14 @@
 			<a id="viewMetadata" class="more_info" href="{$metadataUrl}">{translate key="submission.submit.metadata"}</a>
 		</div>
 	</div>
+
 	<div class="pkp_helpers_clear"></div>
 
-	<div class="pkp_submissionTimeline">
-		<span class="pastStep">{translate key="submission.submission"}</span> &#187;
-		{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_INTERNAL_REVIEW}<span class="pastStep">{translate key="workflow.review.internalReview"}</span>{else}<span class="futureStep">{translate key="workflow.review.internalReview"}</span>{/if} &#187;
-		{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EXTERNAL_REVIEW}<span class="pastStep">{translate key="workflow.review.externalReview"}</span>{else}<span class="futureStep">{translate key="workflow.review.externalReview"}</span>{/if} &#187;
-		{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_EDITING}<span class="pastStep">{translate key="submission.editorial"}</span>{else}<span class="futureStep">{translate key="submission.editorial"}</span>{/if} &#187;
-		{if $stageId >= $smarty.const.WORKFLOW_STAGE_ID_PRODUCTION}<span class="pastStep">{translate key="submission.production"}</span>{else}<span class="futureStep">{translate key="submission.production"}</span>{/if}
+	<div class="pkp_controllers_timeline">
+		{url|assign:timelineUrl router=$smarty.const.ROUTE_COMPONENT component="timeline.TimelineHandler" op="index" monographId=$monograph->getId() escape=false}
+		{load_url_in_div id="pkp_submissionTimeline" url="$timelineUrl"}
 	</div>
+
 	<div class="pkp_helpers_clear"></div>
 
 	<div class="pkp_workflow_headerBottom">
@@ -47,7 +46,7 @@
 			**}
 		</div>
 		<div class="pkp_workflow_headerStageParticipants">
-			{url|assign:stageParticipantGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.stageParticipant.StageParticipantGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$monograph->getCurrentStageId() escape=false}
+			{url|assign:stageParticipantGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.users.stageParticipant.StageParticipantGridHandler" op="fetchGrid" monographId=$monograph->getId() stageId=$monograph->getCurrentStageId() escape=false}
 			{load_url_in_div id="stageParticipantGridContainer" url="$stageParticipantGridUrl"}
 		</div>
 	</div>

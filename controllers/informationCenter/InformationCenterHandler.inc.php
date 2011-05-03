@@ -7,7 +7,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class InformationCenterHandler
- * @ingroup pages_seriesEditor
+ * @ingroup controllers_informationCenter
  *
  * @brief Parent class for file/submission information center handlers.
  */

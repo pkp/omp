@@ -1,0 +1,71 @@
+/**
+ * @file styles/timeline.less
+ *
+ * Copyright (c) 2003-2011 John Willinsky
+ * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * 
+ * @brief Styles for the submission timeline
+ */
+
+.pkp_controllers_timeline {
+	font-size: .9em;
+	vertical-align: middle;
+	float: left;
+	width: 100%;
+
+	.timelineContainer {
+		width: 90%;
+		margin: 0 auto;
+		clear:both;
+		border: 2px solid gray;
+
+		.timelineFiller {
+			height: 20px;
+			background-color: #E0FFFF;
+			width: 0px;
+		}
+
+		.timelineFiller.accepted {
+			width: 25%;
+		}
+
+		.timelineFiller.reviewed {
+			width: 50%;
+		}
+
+		.timelineFiller.copyedited {
+			width: 75%;
+		}
+
+		.timelineFiller.published {
+			width: 100%;
+		}
+	}
+
+	.timelineLabelContainer {
+		width: 90%;
+		margin: 0 auto;
+
+		.timelineLabel {
+			font-size: .9em;
+			float: left;
+			width: 20%;
+		}
+	
+		.timelineLabel.center {
+			text-align: center;
+		}
+	
+		.timelineLabel.right {
+			text-align: right;
+		}
+	
+		.timelineLabel.pastStep {
+			font-weight: bold;
+		}
+	
+		.timelineLabel.futureStep {
+			color: #808080;
+		}
+	}
+}

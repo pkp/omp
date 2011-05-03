@@ -857,39 +857,45 @@ span.pkp_controllers_informationCenter_itemLastEvent {
   vertical-align:middle;
   float:left;
 }
-.pkp_authorDashboard_editorPersonalMessage {
-  width:96%;
-  height:200px;
-  margin:5px 0px 0px 10px;
+.pkp_controllers_timeline {
+  font-size:.9em;
+  vertical-align:middle;
+  float:left;
+  width:100%;
 }
-.pkp_authorDashboard_timelineContainer {
+.pkp_controllers_timeline .timelineContainer {
   width:90%;
   margin:0 auto;
   clear:both;
   border:2px solid gray;
 }
-.pkp_authorDashboard_timelineContainer #timelineFiller {
+.pkp_controllers_timeline .timelineContainer .timelineFiller {
   height:20px;
   background-color:#e0ffff;
   width:0px;
 }
-.pkp_authorDashboard_timelineContainer #timelineFiller.accepted { width:25%; }
-.pkp_authorDashboard_timelineContainer #timelineFiller.reviewed { width:50%; }
-.pkp_authorDashboard_timelineContainer #timelineFiller.copyedited { width:75%; }
-.pkp_authorDashboard_timelineContainer #timelineFiller.published { width:100%; }
-.pkp_authorDashboard_timelineLabelContainer {
+.pkp_controllers_timeline .timelineContainer .timelineFiller.accepted { width:25%; }
+.pkp_controllers_timeline .timelineContainer .timelineFiller.reviewed { width:50%; }
+.pkp_controllers_timeline .timelineContainer .timelineFiller.copyedited { width:75%; }
+.pkp_controllers_timeline .timelineContainer .timelineFiller.published { width:100%; }
+.pkp_controllers_timeline .timelineLabelContainer {
   width:90%;
   margin:0 auto;
 }
-.pkp_authorDashboard_timelineLabelContainer .pkp_authorDashboard_timelineLabel {
+.pkp_controllers_timeline .timelineLabelContainer .timelineLabel {
   font-size:.9em;
   float:left;
   width:20%;
 }
-.pkp_authorDashboard_timelineLabelContainer .pkp_authorDashboard_timelineLabel.center { text-align:center; }
-.pkp_authorDashboard_timelineLabelContainer .pkp_authorDashboard_timelineLabel.right { text-align:right; }
-.pkp_authorDashboard_timelineLabelContainer .pkp_authorDashboard_timelineLabel.pastStep { font-weight:bold; }
-.pkp_authorDashboard_timelineLabelContainer .pkp_authorDashboard_timelineLabel.futureStep { color:#808080; }
+.pkp_controllers_timeline .timelineLabelContainer .timelineLabel.center { text-align:center; }
+.pkp_controllers_timeline .timelineLabelContainer .timelineLabel.right { text-align:right; }
+.pkp_controllers_timeline .timelineLabelContainer .timelineLabel.pastStep { font-weight:bold; }
+.pkp_controllers_timeline .timelineLabelContainer .timelineLabel.futureStep { color:#808080; }
+.pkp_authorDashboard_editorPersonalMessage {
+  width:96%;
+  height:200px;
+  margin:5px 0px 0px 10px;
+}
 .pkp_authorDashboard_stageContainer {
   width:90%;
   margin:10px auto;
@@ -946,10 +952,4 @@ span.pkp_controllers_informationCenter_itemLastEvent {
 .pkp_submissionHeader .pkp_submissionHeaderTop .action a {
   background-repeat:no-repeat;
   padding-left:20px;
-}
-.pkp_submissionTimeline {
-  font-size:.9em;
-  vertical-align:middle;
-  float:left;
-  width:100%;
 }
