@@ -18,13 +18,54 @@ import('lib.pkp.classes.core.JSONMessage');
 
 class SettingsTabHandler extends Handler {
 
+	/** @var string */
+	var $_currentTab;
+
+	/** @var array */
+	var $_pageTabsAndForms;
+
+
 	/**
 	 * Constructor
 	 */
 	function SettingsTabHandler() {
 		parent::Handler();
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
-				array('saveData'));
+				array(
+					'saveFormData',
+					'showTab'
+				)
+		);
+
+		$this->_currentTab = Request::getUserVar('tab');
+	}
+
+
+	//
+	// Getters and Setters
+	//
+	/**
+	 * Get the current tab name.
+	 * @return string
+	 */
+	function getCurrentTab() {
+		return $this->_currentTab;
+	}
+
+	/**
+	 * Get an array with current page tabs and its respective forms.
+	 * @return array
+	 */
+	function getPageTabsAndForms() {
+		return $this->_pageTabsAndForms;
+	}
+
+	/**
+	 * Set an array with current page tabs and its respective forms.
+	 * @param array
+	 */
+	function setPageTabsAndForms($pageTabsAndForms) {
+		$this->_pageTabsAndForms = $pageTabsAndForms;
 	}
 
 
@@ -50,20 +91,31 @@ class SettingsTabHandler extends Handler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
+
+	//
+	// Public handler methods
+	//
+	/**
+	 * Show a tab
+	 */
+	function showTab($request) {
+		$tabForm = $this->_getTabForm();
+		$tabForm->initData();
+		$json = new JSONMessage(true, $tabForm->fetch($request));
+		return $json->getString();
+
+	}
+
 	/**
 	 * Handle forms data saving.
+	 * @param $request Request
+	 * @param $tabForm Form the current tab form
 	 */
-	function saveData($request) {
-		$formVar = Request::getUserVar('form');
-		$tabForm = $this->_getTabForm($formVar);
-
+	function saveFormData(&$request) {
+		$tabForm = $this->_getTabForm();
 		$tabForm->readInputData();
 		if($tabForm->validate()) {
 			$tabForm->execute($request);
-			// Create notification to indicate that setup was saved
-			import('lib.pkp.classes.notification.NotificationManager');
-			$notificationManager = new NotificationManager();
-			$notificationManager->createTrivialNotification('notification.notification', 'manager.setup.pressSetupUpdated');
 			return DAO::getDataChangedEvent();
 		}
 	}
@@ -73,26 +125,34 @@ class SettingsTabHandler extends Handler {
 	// Private helper methods.
 	//
 	/**
-	 * Return an instance of the form based on its name.
-	 * Used by saveData() to execute any form used in this handler.
-	 * @param $formVar String
+	 * Return an instance of the form based on the current tab.
 	 * @return Form
 	 */
-	function _getTabForm($formVar) {
-		switch($formVar) {
-			case 'masthead':
-				import('controllers.tab.settings.masthead.form.MastheadForm');
-				$form = new MastheadForm();
-				break;
-			case 'emailTemplates':
-				import('controllers.tab.settings.emailTemplates.form.EmailTemplatesForm');
-				$form = new EmailTemplatesForm();
-				break;
-			default:
-				break;
+	function _getTabForm() {
+		$currentTab = $this->getCurrentTab();
+		$pageTabsAndForms = $this->getPageTabsAndForms();
+
+		// Search for a form using the tab name.
+		if (array_key_exists($currentTab, $pageTabsAndForms)) {
+			import($pageTabsAndForms[$currentTab]);
+			$tabFormClassName = $this->_getFormClassName($pageTabsAndForms[$currentTab]);
+			$tabForm = new $tabFormClassName;
 		}
-		assert(is_a($form, 'Form'));
-		return $form;
+		assert(is_a($tabForm, 'Form'));
+
+		return $tabForm;
+	}
+
+	/**
+	 * Return the form class name based on the current tab name.
+	 * @param $classPath string
+	 * @return string
+	 */
+	function _getFormClassName($classPath) {
+		$needle = '.form.';
+		$formClassName = strstr($classPath, $needle);
+		$formClassName = trim(str_replace($needle, ' ', $formClassName));
+		return $formClassName;
 	}
 }
 ?>

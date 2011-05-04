@@ -21,9 +21,7 @@
 </script>
 <div id=websiteTabs>
 	<ul>
-		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="homepage"}">{translate key="manager.website.homepage"}</a></li>
-		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="appearance"}">{translate key="manager.website.appearance"}</a></li>
-		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="languages"}">{translate key="manager.system.languages"}</a></li>
+		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="showTab" tab="homepage"}">{translate key="manager.website.homepage"}</a></li>
 	</ul>
 </div>
 

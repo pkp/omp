@@ -14,84 +14,33 @@
 
 // Import the base Handler.
 import('controllers.tab.settings.SettingsTabHandler');
-import('lib.pkp.classes.core.JSONMessage');
 
 class PressSettingsTabHandler extends SettingsTabHandler {
+
 
 	/**
 	 * Constructor
 	 */
 	function PressSettingsTabHandler() {
 		parent::SettingsTabHandler();
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
-				array(
-					'masthead',
-					'contact',
-					'policies',
-					'guidelines',
-					'affiliationAndSupport',
-					'identification',
-					'saveData'
-				)
+		$pageTabsAndForms = array(
+			'masthead' => 'controllers.tab.settings.masthead.form.MastheadForm',
+			'contact' => 'controllers.tab.settings.contact.form.ContactForm'
 		);
+		$this->setPageTabsAndForms($pageTabsAndForms);
 	}
-
 
 	//
-	// Public handler methods
+	// Overridden methods from Handler
 	//
 	/**
-	 * Handle masthead management requests.
-	 * @param $args
-	 * @param $request PKPRequest
+	 * @see PKPHandler::initialize()
 	 */
-	function masthead($args, &$request) {
-		// Instantiate the files form.
-		import('controllers.tab.settings.masthead.form.MastheadForm');
-		$mastheadForm = new MastheadForm();
-		$mastheadForm->initData();
-		$json = new JSONMessage(true, $mastheadForm->fetch($request));
-		return $json->getString();
-	}
+	function initialize(&$request, $args = null) {
+		parent::initialize($request, $args);
 
-	/**
-	 * Handle contact management requests.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function contact($args, &$request) {
-	}
-
-	/**
-	 * Handle policies management requests.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function policies($args, &$request) {
-	}
-
-	/**
-	 * Handle guidelines management requests.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function guidelines($args, &$request) {
-	}
-
-	/**
-	 * Handle affiliation and support management requests.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function affiliationAndSupport($args, &$request) {
-	}
-
-	/**
-	 * Handle identification management requests.
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function identification($args, &$request) {
+		// Load grid-specific translations
+		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
 	}
 }
 ?>

@@ -8,7 +8,6 @@
  *
  *}
 
-{assign var="pageTitle" value="manager.setup.masthead"}
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
@@ -16,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form id="mastheadForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveData" form="masthead"}">
+<form id="mastheadForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="masthead"}">
 	{include file="common/formErrors.tpl"}
 
 	<h3>1.1 {translate key="manager.setup.generalInformation"}</h3>

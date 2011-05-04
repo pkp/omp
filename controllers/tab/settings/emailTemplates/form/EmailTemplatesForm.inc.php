@@ -9,10 +9,11 @@
  * @class MastheadForm
  * @ingroup controllers_tab_settings_emailTemplates_form
  *
- * @brief Form to add/edit user group.
+ * @brief Form to edit email identification settings.
  */
 
-import('lib.pkp.classes.form.Form');
+
+// Import the base Form.
 import('controllers.tab.settings.form.PressSettingsForm');
 
 class EmailTemplatesForm extends PressSettingsForm {
@@ -27,32 +28,6 @@ class EmailTemplatesForm extends PressSettingsForm {
 		);
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/emailTemplates/form/emailTemplatesForm.tpl');
-	}
-
-
-	//
-	// Implement template methods from Form.
-	//
-	/**
-	 * @see Form::fetch()
-	 */
-	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager();
-
-		return parent::fetch($request);
-	}
-
-
-	//
-	// Overridden methods from PressSettingsForm.
-	//
-	/**
-	 * @see PressSettingsForm::execute()
-	 */
-	function execute($request) {
-		$press =& Request::getPress();
-
-		parent::execute();
 	}
 }
 

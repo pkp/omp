@@ -13,10 +13,14 @@
  */
 
 
+// Import the base Form.
 import('lib.pkp.classes.form.Form');
 
 class PressSettingsForm extends Form {
+
+	/** @var array */
 	var $settings;
+
 
 	/**
 	 * Constructor.
@@ -29,8 +33,12 @@ class PressSettingsForm extends Form {
 		parent::Form($template);
 	}
 
+
+	//
+	// Implement template methods from Form.
+	//
 	/**
-	 * Initialize data from current settings.
+	 * @see Form::initData()
 	 */
 	function initData() {
 		$press =& Request::getPress();
@@ -38,14 +46,22 @@ class PressSettingsForm extends Form {
 	}
 
 	/**
-	 * Read user input.
+	 * @see Form::readInputData()
 	 */
 	function readInputData() {
 		$this->readUserVars(array_keys($this->settings));
 	}
 
 	/**
-	 * Save modified settings.
+	 * @see Form::fetch()
+	 */
+	function fetch(&$request) {
+		$templateMgr =& TemplateManager::getManager();
+		return parent::fetch(&$request);
+	}
+
+	/**
+	 * @see Form::execute()
 	 */
 	function execute() {
 		$press =& Request::getPress();

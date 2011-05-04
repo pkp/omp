@@ -9,7 +9,7 @@
  * @class MastheadForm
  * @ingroup controllers_tab_settings_masthead_form
  *
- * @brief Form to add/edit user group.
+ * @brief Form to edit press general information settings.
  */
 
 import('lib.pkp.classes.form.Form');
@@ -44,15 +44,6 @@ class MastheadForm extends PressSettingsForm {
 	 */
 	function getLocaleFieldNames() {
 		return array('name', 'initials', 'description');
-	}
-
-	/**
-	 * @see Form::fetch()
-	 */
-	function fetch($request) {
-		$templateMgr =& TemplateManager::getManager();
-
-		return parent::fetch($request);
 	}
 
 
