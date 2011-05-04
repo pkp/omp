@@ -12,7 +12,7 @@
  * @brief Handle the reviewer review file grid (for reviewers to download files to review)
  */
 
-import('controllers.grid.files.review.ReviewFilesGridHandler');
+import('controllers.grid.files.fileList.FileListGridHandler');
 
 class ReviewerReviewFilesGridHandler extends FileListGridHandler {
 	/**

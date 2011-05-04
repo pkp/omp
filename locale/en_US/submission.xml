@@ -19,6 +19,7 @@
 	<message key="submission.workType.authoredWork">Authored Work</message>
 	<message key="submission.editorial">Editorial</message>
 	<message key="submission.finalDraft">Final Draft</message>
+	<message key="submission.fairCopy">Fair Copy</message>
 	<message key="submission.art">Artwork</message>
 	<message key="submission.artwork.permissions">Permissions</message>
 	<message key="submission.chapter">Chapter</message>
@@ -41,6 +42,7 @@
 	<!-- Submission wizard -->
 	<message key="submission.addFile">Upload Submission File</message>
 	<message key="submission.uploadACopyeditedVersion">Upload A Copyedited Version</message>
+	<message key="submission.uploadFairCopy">Upload Fair Copy Version</message>
 	<message key="submission.submit">Start New Book Submission</message>
 	<message key="submission.submit.newSubmissionMultiple">Start a New Submission in</message>
 	<message key="submission.submit.newSubmissionSingle">Start a New Submission in {$pressName}</message>
