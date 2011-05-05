@@ -96,7 +96,7 @@ class SelectableEditorReviewFilesGridHandler extends SelectableFileListGridHandl
 	/**
 	 * @see SelectableFileListGridHandler::getSelectedFileIds()
 	 */
-	function getSelectedFileIds() {
+	function getSelectedFileIds($submissionFiles) {
 		// Set the already selected elements of the grid (the current review files).
 		$monograph =& $this->getMonograph();
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */

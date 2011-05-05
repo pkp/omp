@@ -68,7 +68,7 @@ class SelectableReviewRevisionsGridHandler extends ReviewRevisionsGridHandler {
 		// Go through the submission files and set their
 		// "selected" flag.
 		$submissionFiles =& parent::loadData($request, $filter);
-		$selectedFiles =& $this->getSelectedFileIds();
+		$selectedFiles =& $this->getSelectedFileIds($submissionFiles);
 		foreach($submissionFiles as $fileId => $submissionFileData) {
 			assert(isset($submissionFileData['submissionFile']));
 			$monographFile =& $submissionFileData['submissionFile']; /* @var $monographFile MonographFile */
@@ -113,9 +113,10 @@ class SelectableReviewRevisionsGridHandler extends ReviewRevisionsGridHandler {
 
 	/**
 	 * Get the selected file IDs.
+	 * @param $submissionFiles array Set of submission files to filter
 	 * @return array
 	 */
-	function getSelectedFileIds() {
+	function getSelectedFileIds($submissionFiles) {
 		// By default we select nothing.
 		return array();
 	}

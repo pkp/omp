@@ -46,6 +46,21 @@ class EditorReviewAttachmentsGridHandler extends SelectableFileListGridHandler {
 	function getSelectName() {
 		return 'selectedAttachments';
 	}
+
+	/**
+	 * @see SelectableFileListGridHandler::getSelectedFileIds()
+	 */
+	function getSelectedFileIds($submissionFiles) {
+		$returner = array();
+		foreach ($submissionFiles as $fileData) {
+			$file =& $fileData['submissionFile'];
+			if ($file->getViewable()) {
+				$returner[] = $file->getFileIdAndRevision();
+			}
+			unset($file);
+		}
+		return $returner;
+	}
 }
 
 ?>
