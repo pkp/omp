@@ -12,43 +12,41 @@
  * @brief Handle the final draft files grid (displays files sent to copyediting from the review stage)
  */
 
+import('controllers.grid.files.fileList.SelectableFileListGridHandler');
 
-// Import submission files grid base class
-import('controllers.grid.files.final.FinalDraftFilesGridHandler');
-
-class SelectableFinalDraftFilesGridHandler extends FinalDraftFilesGridHandler {
-
+class SelectableFinalDraftFilesGridHandler extends SelectableFileListGridHandler {
 	/**
 	 * Constructor
+	 * @param $capabilities integer A bit map with zero or more
+	 *  FILE_GRID_* capabilities set.
 	 */
 	function SelectableFinalDraftFilesGridHandler() {
-		parent::FinalDraftFilesGridHandler(FILE_GRID_ADD);
-	}
+		import('controllers.grid.files.SubmissionFilesGridDataProvider');
+		$dataProvider = new SubmissionFilesGridDataProvider(
+			WORKFLOW_STAGE_ID_EDITING,
+			MONOGRAPH_FILE_FINAL
+		);
+		parent::SelectableFileListGridHandler(
+			$dataProvider,
+			WORKFLOW_STAGE_ID_EDITING,
+			FILE_GRID_ADD|FILE_GRID_DELETE
+		);
+		$this->addRoleAssignment(
+			array(
+				ROLE_ID_SERIES_EDITOR,
+				ROLE_ID_PRESS_MANAGER,
+				ROLE_ID_PRESS_ASSISTANT
+			),
+			array(
+				'fetchGrid', 'fetchRow',
+				'addFile',
+				'downloadFile', 'downloadAllFiles',
+				'deleteFile'
+			)
+		);
 
-	//
-	// Protected methods
-	//
-	/**
-	 * Select the files to load in the grid
-	 * @see SubmissionFilesGridHandler::loadMonographFiles()
-	 */
-	function loadMonographFiles() {
-		$monograph =& $this->getMonograph();
-		// Set the files to all the available files (submission and final draft file types).
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId());
-		$rowData = array();
-		$selectedFileIds = array();
-		foreach ($monographFiles as $monographFile) {
-			$rowData[$monographFile->getFileId()] =& $monographFile;
-
-			if($monographFile->getFileStage() == MONOGRAPH_FILE_FINAL) {
-				$selectedFileIds[] = $monographFile->getFileId() . "-" . $monographFile->getRevision();
-			}
-			unset($monographFile);
-		}
-		$this->setGridDataElements($rowData);
-		$this->setSelectedFileIds($selectedFileIds);
+		// Set the grid title
+		$this->setTitle('submission.finalDraft');
 	}
 }
 

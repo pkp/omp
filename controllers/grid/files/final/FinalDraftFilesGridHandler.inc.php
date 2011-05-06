@@ -46,6 +46,7 @@ class FinalDraftFilesGridHandler extends FileListGridHandler {
 			)
 		);
 
+		// Set the grid title
 		$this->setTitle('submission.finalDraft');
 	}
 }
