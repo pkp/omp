@@ -21,6 +21,8 @@
 </script>
 <div id=websiteTabs>
 	<ul>
+		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.ProcessSettingsTabHandler" op="showTab" tab="submissionStage"}">{translate key="manager.process.submissionStage"}</a></li>
+		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.ProcessSettingsTabHandler" op="showTab" tab="reviewStage"}">{translate key="manager.process.reviewStage"}</a></li>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.ProcessSettingsTabHandler" op="showTab" tab="emailTemplates"}">{translate key="manager.system.preparedEmails"}</a></li>
 	</ul>
 </div>

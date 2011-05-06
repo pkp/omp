@@ -24,6 +24,8 @@ class ProcessSettingsTabHandler extends SettingsTabHandler {
 	function ProcessSettingsTabHandler() {
 		parent::SettingsTabHandler();
 		$pageTabsAndForms = array(
+			'submissionStage' => 'controllers.tab.settings.submissionStage.form.SubmissionStageForm',
+			'reviewStage' => 'controllers.tab.settings.reviewStage.form.ReviewStageForm',
 			'emailTemplates' => 'controllers.tab.settings.emailTemplates.form.EmailTemplatesForm'
 		);
 		$this->setPageTabsAndForms($pageTabsAndForms);

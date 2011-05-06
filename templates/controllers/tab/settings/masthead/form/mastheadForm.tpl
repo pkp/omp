@@ -1,5 +1,5 @@
 {**
- * controllers/tab/settings/masthead/form/masthead.tpl
+ * controllers/tab/settings/masthead/form/mastheadForm.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -49,5 +49,6 @@
 
 	<div class="separator"></div>
 
+	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{include file="form/formButtons.tpl" submitText="common.save"}
 </form>
