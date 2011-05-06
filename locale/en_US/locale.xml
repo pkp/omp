@@ -56,6 +56,11 @@
 	<message key="workflow.review.internalReview">Internal Review</message>
 	<message key="workflow.review.externalReview">External Review</message>
 
+	<!-- Review Attachments -->
+	<message key="grid.reviewAttachments.title">Reviewer's Attachments</message>
+	<message key="grid.reviewAttachments.add">Add Attachment to Review</message>
+	<message key="grid.reviewAttachments.availableFiles">Available Files</message>
+
 	<!-- series/categories/series -->
 	<message key="series.series">Series</message>
 
