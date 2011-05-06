@@ -21,7 +21,7 @@
 	<h3>1.1 {translate key="manager.setup.reviewProcess"}</h3>
 	<p>{translate key="manager.setup.reviewProcessDescription"}</p>
 
-	{fbvFormArea}
+	{fbvFormArea id="reviewProcess"}
 		{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
 			{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-0" value="0" checked=!$mailSubmissionsToReviewers label="manager.setup.reviewProcessStandard"}
 			{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-1" value="1" checked=$mailSubmissionsToReviewers label="manager.setup.reviewProcessEmail"}

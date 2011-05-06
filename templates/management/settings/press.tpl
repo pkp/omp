@@ -26,6 +26,7 @@
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="showTab" tab="policies"}">{translate key="about.policies"}</a></li>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="showTab" tab="guidelines"}">{translate key="reviewer.reviewSteps.guidelines"}</a></li>
 		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="showTab" tab="affiliationAndSupport"}">{translate key="manager.affiliationAndSupport"}</a></li>
+		<li><a href="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="showTab" tab="divisionsAndSeries"}">{translate key="manager.setup.divisionsAndSeries"}</a></li>
 	</ul>
 </div>
 

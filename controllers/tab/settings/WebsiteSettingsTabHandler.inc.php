@@ -23,10 +23,10 @@ class WebsiteSettingsTabHandler extends SettingsTabHandler {
 	 */
 	function WebsiteSettingsTabHandler() {
 		parent::SettingsTabHandler();
-		$pageTabsAndForms = array(
+		$pageTabs = array(
 			'homepage' => 'controllers.tab.settings.homepage.form.HomepageForm'
 		);
-		$this->setPageTabsAndForms($pageTabsAndForms);
+		$this->setPageTabs($pageTabs);
 	}
 }
 ?>

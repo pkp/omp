@@ -22,7 +22,7 @@ class SettingsTabHandler extends Handler {
 	var $_currentTab;
 
 	/** @var array */
-	var $_pageTabsAndForms;
+	var $_pageTabs;
 
 
 	/**
@@ -53,19 +53,19 @@ class SettingsTabHandler extends Handler {
 	}
 
 	/**
-	 * Get an array with current page tabs and its respective forms.
+	 * Get an array with current page tabs and its respective forms or templates.
 	 * @return array
 	 */
-	function getPageTabsAndForms() {
-		return $this->_pageTabsAndForms;
+	function getPageTabs() {
+		return $this->_pageTabs;
 	}
 
 	/**
-	 * Set an array with current page tabs and its respective forms.
+	 * Set an array with current page tabs and its respective forms or templates.
 	 * @param array
 	 */
-	function setPageTabsAndForms($pageTabsAndForms) {
-		$this->_pageTabsAndForms = $pageTabsAndForms;
+	function setPageTabs($pageTabs) {
+		$this->_pageTabs = $pageTabs;
 	}
 
 
@@ -96,14 +96,21 @@ class SettingsTabHandler extends Handler {
 	// Public handler methods
 	//
 	/**
-	 * Show a tab
+	 * Show a tab.
 	 */
 	function showTab($request) {
-		$tabForm = $this->_getTabForm();
-		$tabForm->initData();
-		$json = new JSONMessage(true, $tabForm->fetch($request));
-		return $json->getString();
-
+		if ($this->_isValidTab()) {
+			if ($this->_isTabTemplate()) {
+				$this->setupTemplate(true);
+				$templateMgr =& TemplateManager::getManager();
+				return $templateMgr->fetchJson($this->_getTabTemplate());
+			} else {
+				$tabForm = $this->_getTabForm();
+				$tabForm->initData();
+				$json = new JSONMessage(true, $tabForm->fetch($request));
+				return $json->getString();
+			}
+		}
 	}
 
 	/**
@@ -130,17 +137,51 @@ class SettingsTabHandler extends Handler {
 	 */
 	function _getTabForm() {
 		$currentTab = $this->getCurrentTab();
-		$pageTabsAndForms = $this->getPageTabsAndForms();
+		$pageTabs = $this->getPageTabs();
 
 		// Search for a form using the tab name.
-		if (array_key_exists($currentTab, $pageTabsAndForms)) {
-			import($pageTabsAndForms[$currentTab]);
-			$tabFormClassName = $this->_getFormClassName($pageTabsAndForms[$currentTab]);
-			$tabForm = new $tabFormClassName;
-		}
+		import($pageTabs[$currentTab]);
+		$tabFormClassName = $this->_getFormClassName($pageTabs[$currentTab]);
+		$tabForm = new $tabFormClassName;
+
 		assert(is_a($tabForm, 'Form'));
 
 		return $tabForm;
+	}
+
+	/**
+	 * Return the tab template file
+	 * @return string
+	 */
+	function _getTabTemplate() {
+		$currentTab = $this->getCurrentTab();
+		$pageTabs = $this->getPageTabs();
+
+		return $pageTabs[$currentTab];
+	}
+
+	/**
+	 * Check if the current tab value exists in pageTabsAndForms array.
+	 * @return boolean
+	 */
+	function _isValidTab() {
+		if (array_key_exists($this->getCurrentTab(), $this->getPageTabs())) {
+			return true;
+		} else {
+			assert(false);
+			return false;
+		}
+	}
+
+	/**
+	 * Check if the tab use a template or not.
+	 * @return boolean
+	 */
+	function _isTabTemplate() {
+		$currentTab = $this->getCurrentTab();
+		$pageTabs = $this->getPageTabs();
+
+		return (strstr($pageTabs[$currentTab], '.tpl'));
 	}
 
 	/**
