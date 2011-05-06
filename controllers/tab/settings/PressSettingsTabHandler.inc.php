@@ -25,7 +25,8 @@ class PressSettingsTabHandler extends SettingsTabHandler {
 		parent::SettingsTabHandler();
 		$pageTabsAndForms = array(
 			'masthead' => 'controllers.tab.settings.masthead.form.MastheadForm',
-			'contact' => 'controllers.tab.settings.contact.form.ContactForm'
+			'contact' => 'controllers.tab.settings.contact.form.ContactForm',
+			'affiliationAndSupport' => 'controllers.tab.settings.affiliation.form.AffiliationForm'
 		);
 		$this->setPageTabsAndForms($pageTabsAndForms);
 	}

@@ -49,7 +49,7 @@ class SetupHandler extends ManagerHandler {
 	function setup(&$args, &$request) {
 		$this->setupTemplate(true);
 
-		$step = isset($args[0]) ? (int) $args[0] : 1;
+		$step = isset($args[0]) ? (int) $args[0] : 2;
 
 		if (!($step >= 1 && $step <= 5)) {
 			$step = 1;

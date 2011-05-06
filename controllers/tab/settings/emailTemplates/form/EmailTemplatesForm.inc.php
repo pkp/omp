@@ -29,5 +29,22 @@ class EmailTemplatesForm extends PressSettingsForm {
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/emailTemplates/form/emailTemplatesForm.tpl');
 	}
+
+
+	//
+	// Implement template methods from Form.
+	//
+	/**
+	 * @see Form::display()
+	 */
+	function display() {
+		$press =& Request::getPress();
+		$templateMgr =& TemplateManager::getManager();
+		if (Config::getVar('email', 'allow_envelope_sender'))
+			$templateMgr->assign('envelopeSenderEnabled', true);
+		$templateMgr->assign('pressEnabled', $press->getEnabled());
+
+		parent::display();
+	}
 }
 
