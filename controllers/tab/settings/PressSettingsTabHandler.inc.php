@@ -29,7 +29,7 @@ class PressSettingsTabHandler extends SettingsTabHandler {
 			'policies' => 'controllers.tab.settings.policies.form.PoliciesForm',
 			'guidelines' => 'controllers.tab.settings.guidelines.form.GuidelinesForm',
 			'affiliationAndSupport' => 'controllers.tab.settings.affiliation.form.AffiliationForm',
-			'divisionsAndSeries' => 'controllers/tab/settings/divisionsAndSeries.tpl'
+			'divisionsAndSeries' => 'controllers.tab.settings.divisionsAndSeries.form.DivisionsAndSeriesForm'
 		);
 		$this->setPageTabs($pageTabs);
 	}

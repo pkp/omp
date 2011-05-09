@@ -24,22 +24,6 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	}
 
 
-	/* Load the list from an external source into the grid structure */
-	function loadList(&$request) {
-		$press =& $request->getPress();
-		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
-
-		$divisions = $divisionDao->getByPressId($press->getId());
-
-		$items = array();
-		while ($division =& $divisions->next()) {
-			$id = $division->getId();
-			$items[$id] = array('item' => $division->getLocalizedTitle());
-			unset($division);
-		}
-		$this->setGridDataElements($items);
-	}
-
 	//
 	// Overridden template methods
 	//
@@ -51,11 +35,9 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 		parent::initialize($request);
 		// Basic configuration
 		$this->setTitle('manager.setup.division');
-		$this->setSourceTitle('manager.setup.division');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
-		$this->setListTitle('manager.setup.currentDivisions');
 
-		$this->loadList($request);
+		$this->_loadList($request);
 
 		$this->addColumn(new ListbuilderGridColumn('item', 'manager.setup.currentFormats'));
 	}
@@ -69,70 +51,86 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	}
 
 	//
-	// Public AJAX-accessible functions
+	// Public methods
 	//
-
-	/*
-	 * Handle adding an item to the list
-	 * @param $args array
-	 * @param $request PKPRequest
+	/**
+	 * Persist a new entry insert.
+	 * @param $entry mixed New entry with data to persist
+	 * @return boolean
 	 */
-	function addItem($args, &$request) {
-		$this->setupTemplate();
-		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+	function insertEntry($entry, &$request) {
 		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
 		$press =& $request->getPress();
 
-		$index = 'sourceTitle-' . $this->getId();
-		$divisionTitle = $args[$index];
-
-		if(!isset($divisionTitle)) {
-			$json = new JSONMessage(false);
-			return $json->getString();
+		// Make sure the item doesn't already exist
+		$divisions = $divisionDao->getByTitle($entry->item, $press->getId());
+		if (isset($divisions)) {
+			return false;
 		} else {
-			// Make sure the item doesn't already exist
-			$divisions = $divisionDao->getByTitle($divisionTitle, $press->getId());
-			if (isset($divisions)) {
-				$json = new JSONMessage(false, Locale::translate('common.listbuilder.itemExists'));
-				return $json->getString();
-				return false;
-			}
-
 			$division =& $divisionDao->newDataObject();
-			$division->setTitle($divisionTitle, Locale::getLocale()); //FIXME: Get locale from form
+			$division->setTitle($entry->item, Locale::getLocale()); //FIXME: Get locale from form
 			$division->setPressId($press->getId());
 
-			$divisionId = $divisionDao->insertObject($division);
-
-			// Return JSON with formatted HTML to insert into list
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$row->setId($divisionId);
-			$rowData = array('item' => $divisionTitle);
-			$row->setData($rowData);
-			$row->initialize($request);
-
-			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
-			return $json->getString();
+			$divisionDao->insertObject($division);
+			return true;
 		}
+
 	}
 
-	/*
-	 * Handle deleting items from the list
-	 * @param $args array
-	 * @param $request PKPRequest
+	/**
+	 * Persist an update to an entry.
+	 * @param $rowId mixed ID of row to modify
+	 * @param $existingEntry mixed Existing entry to be modified
+	 * @param $newEntry mixed New entry with changes to persist
+	 * @return boolean
 	 */
-	function deleteItems($args, &$request) {
-		$pressSettingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+	function updateEntry($rowId, $existingEntry, $newEntry) {
 		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
+		$division = $divisionDao->getById($rowId);
+
+		$locale = Locale::getLocale(); // FIXME: Localize.
+		$division->setTitle($newEntry->item, $locale);
+
+		$divisionDao->updateObject($division);
+		return true;
+	}
+
+	/**
+	 * Create a new data element from a request. This is used to format
+	 * new rows prior to their insertion.
+	 * @param $request PKPRequest
+	 * @param $elementId int
+	 * @return object
+	 */
+	function &getDataElementFromRequest(&$request, &$elementId) {
+		$newItem = array(
+			'item' => $request->getUserVar('item')
+		);
+		$elementId = $request->getUserVar('rowId');
+		return $newItem;
+	}
+
+
+	//
+	// Private helper methods.
+	//
+	/**
+	 * Load the list from an external source into the grid structure
+	 * @param $request Request
+	 */
+	function _loadList(&$request) {
 		$press =& $request->getPress();
+		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
 
-		foreach($args as $item) {
-			$divisionDao->deleteById($item, $press->getId());
+		$divisions = $divisionDao->getByPressId($press->getId());
+
+		$items = array();
+		while ($division =& $divisions->next()) {
+			$id = $division->getId();
+			$items[$id] = array('item' => $division->getLocalizedTitle());
+			unset($division);
 		}
-
-		$json = new JSONMessage(true);
-		return $json->getString();
+		$this->setGridDataElements($items);
 	}
 }
 
