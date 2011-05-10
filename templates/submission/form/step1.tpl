@@ -60,39 +60,20 @@
 
 	<!-- Submission checklist -->
 	{if $currentPress->getLocalizedSetting('submissionChecklist')}
-	<script type="text/javascript">
-		<!--
-		{literal}
-	        	$(function(){
-			$("form[name=submitStep1]").validate({
-				focusCleanup: false,
-				showErrors: function(errorMap, errorList) {
-					$("#messageBox").html("<ul><li class='error'>{/literal}{translate|escape:"javascript" key='submission.submit.checklistErrors'}{literal}".replace("{$itemsRemaining}", this.numberOfInvalids()) + "</li></ul>");
-					if (this.numberOfInvalids() == 0) {
-						$("#messageBox").hide('slow');
-					} else {
-	        				$("#messageBox").show();
-					}
-				}
-			});
-		});
-		{/literal}
-		// -->
-	</script>
+	
 	<h3>{translate key="submission.submit.submissionChecklist"}</h3>
-
 		<div id="messageBox"></div>
 
-		{fbvFormArea id="checklist"}
+		<div class="pkp_submissionChecklist">
 		{fbvFormSection}
 		<p>{translate key="submission.submit.submissionChecklistDescription"}</p>
 		{foreach name=checklist from=$currentPress->getLocalizedSetting('submissionChecklist') key=checklistId item=checklistItem}
 			{if $checklistItem.content}
-				{fbvElement type="checkbox" id="checklist-$checklistId" required=true value=1 label=$checklistItem.content translate=false checked=$monographId}
+				{fbvCheckbox id="checklist-$checklistId" required=true value=1 label=$checklistItem.content translate=false checked=$monographId}
 			{/if}
 		{/foreach}
 		{/fbvFormSection}
-		{/fbvFormArea}
+		</div>
 		<div class="separator"></div>
 	{/if}
 
