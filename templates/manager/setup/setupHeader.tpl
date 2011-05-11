@@ -20,9 +20,6 @@
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all">
 	<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-		<li{if $setupStep == 2} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="setup" path="2"}">2. {translate key="manager.setup.policies"}</a>
-		</li>
 		<li{if $setupStep == 3} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
 			<a href="{url op="setup" path="3"}">3. {translate key="manager.setup.workflow"}</a>
 		</li>

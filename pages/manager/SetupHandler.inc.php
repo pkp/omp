@@ -49,10 +49,10 @@ class SetupHandler extends ManagerHandler {
 	function setup(&$args, &$request) {
 		$this->setupTemplate(true);
 
-		$step = isset($args[0]) ? (int) $args[0] : 2;
+		$step = isset($args[0]) ? (int) $args[0] : 3;
 
-		if (!($step >= 1 && $step <= 5)) {
-			$step = 1;
+		if (!($step >= 3 && $step <= 5)) {
+			$step = 3;
 		}
 
 		$dispatcher =& $this->getDispatcher();
@@ -79,7 +79,7 @@ class SetupHandler extends ManagerHandler {
 	function saveSetup(&$args, &$request) {
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
-		if ($step >= 1 && $step <= 5) {
+		if ($step >= 3 && $step <= 5) {
 
 			$this->setupTemplate(true);
 

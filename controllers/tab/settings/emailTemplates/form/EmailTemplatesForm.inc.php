@@ -27,6 +27,8 @@ class EmailTemplatesForm extends PressSettingsForm {
 			'envelopeSender' => 'string'
 		);
 
+		$this->addCheck(new FormValidatorEmail($this, 'envelopeSender', 'optional', 'user.profile.form.emailRequired'));
+
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/emailTemplates/form/emailTemplatesForm.tpl');
 	}
 
