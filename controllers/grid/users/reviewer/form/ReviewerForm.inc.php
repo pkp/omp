@@ -221,6 +221,28 @@ class ReviewerForm extends Form {
 			$reviewRoundDao->updateObject($currentReviewRound);
 		}
 
+		// Notify the reviewer via email
+		import('classes.mail.MonographMailTemplate');
+		$mail = new MonographMailTemplate($submission, 'REVIEW_REQUEST', null, null, null, false);
+
+		if ($mail->isEnabled()) {
+			$userDao = & DAORegistry::getDAO('UserDAO'); /* @var $userDao UserDAO */
+			$reviewer =& $userDao->getUser($reviewerId);
+			$user = $submission->getUser();
+			$mail->addRecipient($reviewer->getEmail(), $reviewer->getFullName());
+			$press =& $request->getPress();
+
+			$paramArray = array(
+				'reviewerName' => $reviewer->getFullName(),
+				'messageToReviewer' => $this->getData('personalMessage'),
+				'responseDueDate' => $responseDueDate,
+				'reviewDueDate' => $reviewDueDate,
+				'editorialContactSignature' => $user->getContactSignature()
+			);
+			$mail->assignParams($paramArray);
+			$mail->send($request);
+		}
+
 		return $reviewAssignment;
 	}
 }

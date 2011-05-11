@@ -82,7 +82,7 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 		$templateMgr =& TemplateManager::getManager();
 
 		$templateMgr->assign('isEditedVolume', $this->monograph->getWorkType() == WORK_TYPE_EDITED_VOLUME);
-		
+
 		return parent::display($request);
 	}
 
@@ -96,9 +96,11 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 	/**
 	 * Save changes to monograph.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 * @return int the monograph ID
 	 */
-	function execute() {
+	function execute($args, &$request) {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 
@@ -124,6 +126,47 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 
 		// Save the monograph
 		$monographDao->updateMonograph($monograph);
+
+		// Send a notification to associated users
+		import('lib.pkp.classes.notification.NotificationManager');
+		$notificationManager = new NotificationManager();
+		$roleDao =& DAORegistry::getDAO('RoleDAO');
+		$notificationUsers = array();
+		$pressManagers = $roleDao->getUsersByRoleId(ROLE_ID_PRESS_MANAGER);
+		$allUsers = $pressManagers->toArray();
+		$editors = $roleDao->getUsersByRoleId(ROLE_ID_EDITOR);
+		$router =& $request->getRouter();
+		array_merge($allUsers, $editors->toArray());
+		foreach ($allUsers as $user) {
+			$notificationUsers[] = array('id' => $user->getId());
+		}
+		foreach ($notificationUsers as $userRole) {
+			$url = $router->url($request, null, 'workflow', 'submission', $monograph->getId());
+			$notificationManager->createNotification(
+				$userRole['id'], 'notification.type.monographSubmitted',
+				$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED
+			);
+		}
+
+		// Send author notification email
+		import('classes.mail.MonographMailTemplate');
+		$mail = new MonographMailTemplate($monograph, 'SUBMISSION_ACK', null, null, null, false);
+		$press =& $request->getPress();
+
+		if ($mail->isEnabled()) {
+			$user = $monograph->getUser();
+			$mail->addRecipient($user->getEmail(), $user->getFullName());
+			$mail->bccAssignedEditors($monograph->getId());
+			$mail->bccAssignedSeriesEditors($monograph->getId());
+
+			$mail->assignParams(array(
+				'authorName' => $user->getFullName(),
+				'authorUsername' => $user->getUsername(),
+				'editorialContactSignature' => $press->getSetting('contactName') . "\n" . $press->getLocalizedName(),
+				'submissionUrl' => $router->url($request, null, 'authorDashboard', 'index', $monograph->getId())
+			));
+			$mail->send($request);
+		}
 
 		return $this->monographId;
 	}

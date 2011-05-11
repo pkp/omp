@@ -156,60 +156,71 @@ class MonographMailTemplate extends MailTemplate {
 		}
 	}
 
+	/*
+	 *  Send this email to all assigned editors
+	 * @param $monographId int
+	 */
 	function toAssignedEditors($monographId) {
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroupId = $userGroupDao->getByRoleId($this->press->getId(), ROLE_ID_EDITOR);
-
-		$returner = array();
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$users =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $userGroupId);
-		while ($user =& $users->next()) {
-			$this->addRecipient($user->getEmail(), $user->getFullName());
-			$returner[] =& $user;
-			unset($user);
-		}
-		return $returner;
+		return $this->_addUsers($monographId, ROLE_ID_EDITOR, 'addRecipient');
 	}
 
+	/*
+	 *  CC this email to all assigned editors
+	 * @param $monographId int
+	 */
 	function ccAssignedEditors($monographId) {
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroupId = $userGroupDao->getByRoleId($this->press->getId(), ROLE_ID_EDITOR);
-
-		$returner = array();
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$users =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $userGroupId);
-		while ($user =& $users->next()) {
-			$this->addCc($user->getEmail(), $user->getFullName());
-			$returner[] =& $user;
-			unset($user);
-		}
-		return $returner;
+		return $this->_addUsers($monographId, ROLE_ID_EDITOR, 'addCc');
 	}
 
+	/*
+	 *  BCC this email to all assigned editors
+	 * @param $monographId int
+	 */
+	function bccAssignedEditors($monographId) {
+		return $this->_addUsers($monographId, ROLE_ID_EDITOR, 'addBcc');
+	}
+
+	/*
+	 *  Send this email to all assigned series editors
+	 * @param $monographId int
+	 */
 	function toAssignedSeriesEditors($monographId) {
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroupId = $userGroupDao->getByRoleId($this->press->getId(), ROLE_ID_SERIES_EDITOR);
-
-		$returner = array();
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
-		$users =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $userGroupId);
-		while ($user =& $users->next()) {
-			$this->addRecipient($user->getEmail(), $user->getFullName());
-			$returner[] =& $user;
-			unset($user);
-		}
-		return $returner;
+		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, 'addRecipient');
 	}
 
+	/*
+	 *  CC this email to all assigned series editors
+	 * @param $monographId int
+	 */
 	function ccAssignedSeriesEditors($monographId) {
+		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, 'addCc');
+	}
+
+	/*
+	 *  BCC this email to all assigned series editors
+	 * @param $monographId int
+	 */
+	function bccAssignedSeriesEditors($monographId) {
+		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, 'addBcc');
+	}
+
+	/*
+	 * Private method to fetch the requested users and add to the email
+	 * @param $monographId int
+	 * @param $roleId int
+	 * @param $method string one of addRecipient, addCC, or addBCC
+	 */
+	function _addUsers($monographId, $roleId, $method) {
+		assert(in_array($method, array('addRecipient', 'addCc', 'addBcc')));
+
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroupId = $userGroupDao->getByRoleId($this->press->getId(), ROLE_ID_SERIES_EDITOR);
+		$userGroupId = $userGroupDao->getByRoleId($this->press->getId(), $roleId);
 
 		$returner = array();
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		$users =& $signoffDao->getUsersBySymbolic('SIGNOFF_STAGE', ASSOC_TYPE_MONOGRAPH, $monographId, null, $userGroupId);
 		while ($user =& $users->next()) {
-			$this->addCc($user->getEmail(), $user->getFullName());
+			$this->$method($user->getEmail(), $user->getFullName());
 			$returner[] =& $user;
 			unset($user);
 		}

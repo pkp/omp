@@ -160,29 +160,8 @@ class SubmissionHandler extends Handler {
 				return $response->getString();
 			}
 
-			$monographId = $submitForm->execute();
+			$monographId = $submitForm->execute($args, $request);
 
-			if ($step == 3) {
-				// Send a notification to associated users
-				import('lib.pkp.classes.notification.NotificationManager');
-				$notificationManager = new NotificationManager();
-				$roleDao =& DAORegistry::getDAO('RoleDAO');
-				$notificationUsers = array();
-				$pressManagers = $roleDao->getUsersByRoleId(ROLE_ID_PRESS_MANAGER);
-				$allUsers = $pressManagers->toArray();
-				$editors = $roleDao->getUsersByRoleId(ROLE_ID_EDITOR);
-				array_merge($allUsers, $editors->toArray());
-				foreach ($allUsers as $user) {
-					$notificationUsers[] = array('id' => $user->getId());
-				}
-				foreach ($notificationUsers as $userRole) {
-					$url = $router->url($request, null, 'workflow', 'submission', $monographId);
-					$notificationManager->createNotification(
-						$userRole['id'], 'notification.type.monographSubmitted',
-						$monograph->getLocalizedTitle(), $url, 1, NOTIFICATION_TYPE_MONOGRAPH_SUBMITTED
-					);
-				}
-			}
 			return $request->redirectUrlJson($router->url($request, null, null, 'wizard', $step+1, array('monographId' => $monographId)));
 		}
 	}

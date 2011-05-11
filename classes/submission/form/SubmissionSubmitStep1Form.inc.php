@@ -116,9 +116,11 @@ class SubmissionSubmitStep1Form extends SubmissionSubmitForm {
 
 	/**
 	 * Save changes to submission.
+	 * @param $args array
+	 * @param $request PKPRequest
 	 * @return int the monograph ID
 	 */
-	function execute() {
+	function execute($args, &$request) {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
 
 		if (isset($this->monograph)) {

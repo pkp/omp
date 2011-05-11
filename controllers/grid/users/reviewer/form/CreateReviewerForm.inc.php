@@ -102,10 +102,11 @@ class CreateReviewerForm extends ReviewerForm {
 			// Send welcome email to user
 			import('classes.mail.MailTemplate');
 			$mail = new MailTemplate('REVIEWER_REGISTER');
+			$press =& $request->getPress();
 			$mail->setFrom($press->getSetting('contactEmail'), $press->getSetting('contactName'));
 			$mail->assignParams(array('username' => $this->getData('username'), 'password' => $password, 'userFullName' => $user->getFullName()));
 			$mail->addRecipient($user->getEmail(), $user->getFullName());
-			$mail->send();
+			$mail->send($request);
 		}
 
 		return parent::execute($args, $request);
