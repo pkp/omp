@@ -42,3 +42,4 @@ class AffiliationForm extends PressSettingsForm {
 	}
 }
 
+?>

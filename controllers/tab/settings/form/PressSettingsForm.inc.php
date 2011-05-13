@@ -55,8 +55,13 @@ class PressSettingsForm extends Form {
 	/**
 	 * @see Form::fetch()
 	 */
-	function fetch(&$request) {
+	function fetch(&$request, $params = null) {
 		$templateMgr =& TemplateManager::getManager();
+		if (!is_null($params)) {
+			foreach($params as $assignMethod => $varsAndValues) {
+				$this->_assingValuesToTplVars($templateMgr, $varsAndValues, $assignMethod);
+			}
+		}
 		return parent::fetch(&$request);
 	}
 
@@ -77,6 +82,29 @@ class PressSettingsForm extends Form {
 					$this->settings[$name],
 					$isLocalized
 				);
+			}
+		}
+	}
+
+
+	//
+	// Private helper methods.
+	//
+	/**
+	 * Assign values to template variables.
+	 * @param $templateMgr TemplateManager
+	 * @param $varsAndValues Array
+	 * @param $assignMethod string
+	 */
+	function _assingValuesToTplVars($templateMgr, $varsAndValues, $assignMethod) {
+		foreach($varsAndValues as $var => $value) {
+			switch($assignMethod) {
+				case 'assign':
+					$templateMgr->assign($var, $value);
+					break;
+				case 'assignByRef':
+					$templateMgr->assignByRef($var, $value);
+					break;
 			}
 		}
 	}

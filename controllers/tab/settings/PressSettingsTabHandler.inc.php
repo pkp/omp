@@ -47,4 +47,5 @@ class PressSettingsTabHandler extends SettingsTabHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_USER));
 	}
 }
+
 ?>

@@ -107,4 +107,5 @@ class AccessSettingsTabHandler extends Handler {
 		return $templateMgr->fetchJson('controllers/tab/settings/enrollment.tpl');
 	}
 }
+
 ?>

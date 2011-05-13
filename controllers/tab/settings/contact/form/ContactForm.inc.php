@@ -55,3 +55,4 @@ class ContactForm extends PressSettingsForm {
 	}
 }
 
+?>

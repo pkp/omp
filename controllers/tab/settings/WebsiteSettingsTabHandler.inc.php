@@ -29,4 +29,5 @@ class WebsiteSettingsTabHandler extends SettingsTabHandler {
 		$this->setPageTabs($pageTabs);
 	}
 }
+
 ?>

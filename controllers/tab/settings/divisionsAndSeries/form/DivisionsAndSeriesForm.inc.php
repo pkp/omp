@@ -34,3 +34,4 @@ class DivisionsAndSeriesForm extends Form {
 	}
 }
 
+?>

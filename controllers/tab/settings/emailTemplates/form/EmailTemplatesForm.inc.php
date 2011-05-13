@@ -37,16 +37,15 @@ class EmailTemplatesForm extends PressSettingsForm {
 	// Implement template methods from Form.
 	//
 	/**
-	 * @see Form::display()
+	 * @see PressSettingsForm::fetch()
 	 */
-	function display() {
-		$press =& Request::getPress();
-		$templateMgr =& TemplateManager::getManager();
-		if (Config::getVar('email', 'allow_envelope_sender'))
-			$templateMgr->assign('envelopeSenderEnabled', true);
-		$templateMgr->assign('pressEnabled', $press->getEnabled());
+	function fetch(&$request) {
+		$params = null;
 
-		parent::display();
+		$params['assign'] = array('envelopeSenderDisabled' => !Config::getVar('email', 'allow_envelope_sender'));
+
+		return parent::fetch(&$request, $params);
 	}
 }
 
+?>

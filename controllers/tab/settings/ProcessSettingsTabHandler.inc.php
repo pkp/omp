@@ -24,11 +24,18 @@ class ProcessSettingsTabHandler extends SettingsTabHandler {
 	function ProcessSettingsTabHandler() {
 		parent::SettingsTabHandler();
 		$pageTabs = array(
+			'general' => 'controllers/tab/settings/generalSettings.tpl',
 			'submissionStage' => 'controllers.tab.settings.submissionStage.form.SubmissionStageForm',
 			'reviewStage' => 'controllers.tab.settings.reviewStage.form.ReviewStageForm',
+			'editorialStage' => 'controllers/tab/settings/editorialStage.tpl',
+			'productionStage' => 'controllers/tab/settings/productionStage.tpl',
 			'emailTemplates' => 'controllers.tab.settings.emailTemplates.form.EmailTemplatesForm'
 		);
 		$this->setPageTabs($pageTabs);
+
+		// import the file type constants
+		import('classes.press.LibraryFile');
 	}
 }
+
 ?>

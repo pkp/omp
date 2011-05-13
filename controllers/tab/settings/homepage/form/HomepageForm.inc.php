@@ -43,3 +43,4 @@ class HomepageForm extends PressSettingsForm {
 	}
 }
 
+?>

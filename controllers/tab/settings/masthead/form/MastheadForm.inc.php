@@ -66,3 +66,4 @@ class MastheadForm extends PressSettingsForm {
 	}
 }
 
+?>

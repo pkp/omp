@@ -41,3 +41,4 @@ class GuidelinesForm extends PressSettingsForm {
 	}
 }
 
+?>

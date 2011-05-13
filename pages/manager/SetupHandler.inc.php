@@ -49,18 +49,10 @@ class SetupHandler extends ManagerHandler {
 	function setup(&$args, &$request) {
 		$this->setupTemplate(true);
 
-		$step = isset($args[0]) ? (int) $args[0] : 3;
+		$step = isset($args[0]) ? (int) $args[0] : 4;
 
-		if (!($step >= 3 && $step <= 5)) {
-			$step = 3;
-		}
-
-		$dispatcher =& $this->getDispatcher();
-		switch ($step) {
-			case 3:
-				// import the file type constants
-				import('classes.press.LibraryFile');
-				break;
+		if (!($step >= 4 && $step <= 5)) {
+			$step = 4;
 		}
 
 		$formClass = "PressSetupStep{$step}Form";
@@ -79,7 +71,7 @@ class SetupHandler extends ManagerHandler {
 	function saveSetup(&$args, &$request) {
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
-		if ($step >= 3 && $step <= 5) {
+		if ($step >= 4 && $step <= 5) {
 
 			$this->setupTemplate(true);
 

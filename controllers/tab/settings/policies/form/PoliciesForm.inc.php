@@ -46,3 +46,4 @@ class PoliciesForm extends PressSettingsForm {
 	}
 }
 
+?>

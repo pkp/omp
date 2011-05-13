@@ -52,14 +52,15 @@ class ReviewStageForm extends PressSettingsForm {
 	}
 
 	/**
-	 * @see Form::display()
+	 * @see PressSettingsForm::fetch()
 	 */
-	function display() {
-		$templateMgr =& TemplateManager::getManager();
+	function fetch(&$request) {
+		$params = null;
 		if (Config::getVar('general', 'scheduled_tasks'))
-			$templateMgr->assign('scheduledTasksEnabled', true);
+			$params['assign'] = array('scheduledTasksEnabled' => true);
 
-		parent::display();
+		return parent::fetch(&$request, $params);
 	}
 }
 
+?>

@@ -196,4 +196,5 @@ class SettingsTabHandler extends Handler {
 		return $formClassName;
 	}
 }
+
 ?>
