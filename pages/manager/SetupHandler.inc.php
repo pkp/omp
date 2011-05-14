@@ -24,8 +24,7 @@ class SetupHandler extends ManagerHandler {
 			ROLE_ID_PRESS_MANAGER,
 			array (
 				'setup',
-				'saveSetup',
-				'downloadLayoutTemplate'
+				'saveSetup'
 			)
 		);
 	}
@@ -49,10 +48,10 @@ class SetupHandler extends ManagerHandler {
 	function setup(&$args, &$request) {
 		$this->setupTemplate(true);
 
-		$step = isset($args[0]) ? (int) $args[0] : 4;
+		$step = isset($args[0]) ? (int) $args[0] : 5;
 
-		if (!($step >= 4 && $step <= 5)) {
-			$step = 4;
+		if (!($step >= 5 && $step <= 5)) {
+			$step = 5;
 		}
 
 		$formClass = "PressSetupStep{$step}Form";
@@ -71,7 +70,7 @@ class SetupHandler extends ManagerHandler {
 	function saveSetup(&$args, &$request) {
 		$step = isset($args[0]) ? (int) $args[0] : 0;
 
-		if ($step >= 4 && $step <= 5) {
+		if ($step >= 5 && $step <= 5) {
 
 			$this->setupTemplate(true);
 
@@ -84,41 +83,6 @@ class SetupHandler extends ManagerHandler {
 
 			// Check for any special cases before trying to save
 			switch ($step) {
-				case 4:
-					$press =& $request->getPress();
-					$templates = $press->getSetting('templates');
-					import('classes.file.PressFileManager');
-					$pressFileManager = new PressFileManager($press);
-					if ($request->getUserVar('addTemplate')) {
-						// Add a layout template
-						$editData = true;
-						if (!is_array($templates)) $templates = array();
-						$templateId = count($templates);
-						$originalFilename = $_FILES['template-file']['name'];
-						$fileType = $_FILES['template-file']['type'];
-						$filename = "template-$templateId." . $pressFileManager->parseFileExtension($originalFilename);
-						$pressFileManager->uploadFile('template-file', $filename);
-						$templates[$templateId] = array(
-							'originalFilename' => $originalFilename,
-							'fileType' => $fileType,
-							'filename' => $filename,
-							'title' => $request->getUserVar('template-title')
-						);
-						$press->updateSetting('templates', $templates);
-					} else if (($delTemplate = $request->getUserVar('delTemplate')) && count($delTemplate) == 1) {
-						// Delete a template
-						$editData = true;
-						list($delTemplate) = array_keys($delTemplate);
-						$delTemplate = (int) $delTemplate;
-						$template = $templates[$delTemplate];
-						$filename = "template-$delTemplate." . $pressFileManager->parseFileExtension($template['originalFilename']);
-						$pressFileManager->deleteFile($filename);
-						array_splice($templates, $delTemplate, 1);
-						$press->updateSetting('templates', $templates);
-					}
-
-					$setupForm->setData('templates', $templates);
-					break;
 				case 5:
 					if ($request->getUserVar('uploadHomeHeaderTitleImage')) {
 						if ($setupForm->uploadImage('homeHeaderTitleImage', $formLocale)) {
@@ -239,19 +203,6 @@ class SetupHandler extends ManagerHandler {
 		} else {
 			$request->redirect();
 		}
-	}
-
-	function downloadLayoutTemplate($args, $request) {
-		$press =& $request->getPress();
-		$templates = $press->getSetting('templates');
-		import('classes.file.PressFileManager');
-		$pressFileManager = new PressFileManager($press);
-		$templateId = (int) array_shift($args);
-		if ($templateId >= count($templates) || $templateId < 0) $request->redirect(null, null, 'setup');
-		$template =& $templates[$templateId];
-
-		$filename = "template-$templateId." . $pressFileManager->parseFileExtension($template['originalFilename']);
-		$pressFileManager->downloadFile($filename, $template['fileType']);
 	}
 }
 ?>

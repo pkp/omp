@@ -18,7 +18,7 @@
 <form id="policiesForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="policies"}">
 	{include file="common/formErrors.tpl"}
 
-	<h3>1.1 {translate key="manager.setup.focusAndScopeOfPress"}</h3>
+	<h3>{translate key="manager.setup.focusAndScopeOfPress"}</h3>
 	<p>{translate key="manager.setup.focusAndScopeDescription"}</p>
 
 	{fbvFormArea id="focusAndScopeDescription"}
@@ -27,7 +27,18 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	<h3>1.2 {translate key="manager.setup.peerReviewPolicy"}</h3>
+	<h3>{translate key="manager.setup.openAccessPolicy"}</h3>
+	<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
+
+	{fbvFormArea id="openAccessPolicyContainer"}
+		{fbvFormSection}
+			{fbvTextArea multilingual="true" name="openAccessPolicy" id="openAccessPolicy" value=$openAccessPolicy size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+		{/fbvFormSection}
+	{/fbvFormArea}
+
+	<p>{translate key="manager.setup.securitySettingsDescription"}</p>
+
+	<h3>{translate key="manager.setup.peerReviewPolicy"}</h3>
 	<p>{translate key="manager.setup.peerReviewDescription"}</p>
 
 	{fbvFormArea id="peerReviewPolicy"}
@@ -36,7 +47,7 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	<h3>1.3 {translate key="manager.setup.authorCopyrightNotice"}</h3>
+	<h3>{translate key="manager.setup.authorCopyrightNotice"}</h3>
 
 	{url|assign:"sampleCopyrightWordingUrl" page="information" op="sampleCopyrightWording"}
 	<p>{translate key="manager.setup.authorCopyrightNoticeDescription" sampleCopyrightWordingUrl=$sampleCopyrightWordingUrl}</p>
@@ -53,7 +64,7 @@
 
 	<div class="separator"></div>
 
-	<h3>1.4 {translate key="manager.setup.privacyStatement"}</h3>
+	<h3>{translate key="manager.setup.privacyStatement"}</h3>
 
 	{fbvFormArea id="privacyStatementContainer"}
 		{fbvFormSection}

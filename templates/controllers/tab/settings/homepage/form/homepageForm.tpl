@@ -18,7 +18,7 @@
 <form id="homepageForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="homepage"}">
 	{include file="common/formErrors.tpl"}
 
-	<h3>4.2 {translate key="manager.setup.announcements"}</h3>
+	<h3>{translate key="manager.setup.announcements"}</h3>
 
 	<p>{translate key="manager.setup.announcementsDescription"}</p>
 

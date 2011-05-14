@@ -187,9 +187,10 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="settings.roles.uniqueName">You need to define an unique role name.</message>
 	<message key="settings.roles.uniqueAbbrev">You need to define an unique role abbreviature.</message>
 	<message key="settings.roles.roleIdRequired">You need to define a role permission level.</message>
+	<message key="manager.siteAccessOptions.siteAccessOptions">Site Access Options</message>
 	
 	<!-- Press settings -->
-	<message key="settings.press.identification">Press Identification</message>
+	<message key="manager.press.identification">Press Identification</message>
 	<message key="manager.affiliationAndSupport"><![CDATA[Affiliation &amp; Support]]></message>
 	
 	<!-- Website settings -->
@@ -199,17 +200,21 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.website.website">Website</message>
 	
 	<!-- Publication Process settings -->
-	<message key="manager.process.publicationProcess">Publication Process</message>
-	<message key="manager.process.general">General Settings</message>
-	<message key="manager.process.submissionStage">Submission Stage</message>
-	<message key="manager.process.reviewStage">Review Stage</message>
-	<message key="manager.process.editorialStage">Editorial Stage</message>
-	<message key="manager.process.productionStage">Production Stage</message>
+	<message key="manager.publication.publicationProcess">Publication Process</message>
+	<message key="manager.publication.general">General Settings</message>
+	<message key="manager.publication.submissionStage">Submission Stage</message>
+	<message key="manager.publication.reviewStage">Review Stage</message>
+	<message key="manager.publication.editorialStage">Editorial Stage</message>
+	<message key="manager.publication.productionStage">Production Stage</message>
+	<message key="manager.publication.preparedEmails">Prepared Emails</message>
+	
+	<!-- Distribution Process settings -->
+	<message key="manager.distribution.distributionProcess">Distribution Process</message>
+	<message key="manager.distribution.indexing">Indexing</message>
 	
 	<!-- System setup -->
 	<message key="manager.system">System Settings</message>
 	<message key="manager.system.archiving">Archiving</message>
-	<message key="manager.system.preparedEmails">Prepared Emails</message>
 	<message key="manager.system.reviewForms">Review Forms</message>
 	<message key="manager.system.readingTools">Reading Tools</message>
 	<message key="manager.system.languages">Languages</message>

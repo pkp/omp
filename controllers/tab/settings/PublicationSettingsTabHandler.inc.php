@@ -1,12 +1,12 @@
 <?php
 
 /**
- * @file controllers/tab/settings/ProcessSettingsTabHandler.inc.php
+ * @file controllers/tab/settings/PublicationSettingsTabHandler.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class ProcessSettingsTabHandler
+ * @class PublicationSettingsTabHandler
  * @ingroup controllers_tab_settings
  *
  * @brief Handle AJAX operations for tabs on Publication Process page.
@@ -15,13 +15,13 @@
 // Import the base Handler.
 import('controllers.tab.settings.SettingsTabHandler');
 
-class ProcessSettingsTabHandler extends SettingsTabHandler {
+class PublicationSettingsTabHandler extends SettingsTabHandler {
 
 
 	/**
 	 * Constructor
 	 */
-	function ProcessSettingsTabHandler() {
+	function PublicationSettingsTabHandler() {
 		parent::SettingsTabHandler();
 		$pageTabs = array(
 			'general' => 'controllers/tab/settings/generalSettings.tpl',

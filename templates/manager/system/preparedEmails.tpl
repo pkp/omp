@@ -6,7 +6,7 @@
  *
  * Page for managing prepared emails.
  *}
-{assign var="pageTitle" value="manager.system.preparedEmails"}
+{assign var="pageTitle" value="manager.publication.preparedEmails"}
 {include file="manager/system/systemHeader.tpl"}
 
 {url|assign:preparedEmailsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.preparedEmails.preparedEmailsGridHandler" op="fetchGrid"}

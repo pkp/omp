@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form id="submissionStageForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.ProcessSettingsTabHandler" op="saveFormData" tab="submissionStage"}">
+<form id="submissionStageForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="submissionStage"}">
 	{include file="common/formErrors.tpl"}
 
 	<h3>{translate key="manager.setup.submissionLibrary"}</h3>

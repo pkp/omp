@@ -24,6 +24,7 @@ class PoliciesForm extends PressSettingsForm {
 	function PoliciesForm() {
 		$settings = array(
 			'focusScopeDesc' => 'string',
+			'openAccessPolicy' => 'string',
 			'reviewPolicy' => 'string',
 			'copyrightNotice' => 'string',
 			'includeCreativeCommons' => 'bool',
@@ -42,7 +43,7 @@ class PoliciesForm extends PressSettingsForm {
 	 * @see Form::getLocaleFieldNames()
 	 */
 	function getLocaleFieldNames() {
-		return array('focusScopeDesc', 'reviewPolicy', 'copyrightNotice', 'privacyStatement');
+		return array('focusScopeDesc', 'openAccessPolicy', 'reviewPolicy', 'copyrightNotice', 'privacyStatement');
 	}
 }
 

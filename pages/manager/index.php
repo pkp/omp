@@ -21,7 +21,6 @@ switch ($op) {
 	//
 	case 'setup':
 	case 'saveSetup':
-	case 'downloadLayoutTemplate':
 		import('pages.manager.SetupHandler');
 		define('HANDLER_CLASS', 'SetupHandler');
 		break;

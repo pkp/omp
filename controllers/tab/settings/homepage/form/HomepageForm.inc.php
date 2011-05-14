@@ -25,6 +25,7 @@ class HomepageForm extends PressSettingsForm {
 		$settings = array(
 			'enableAnnouncements' => 'boolean',
 			'enableAnnouncementsHomepage' => 'boolean',
+			'numAnnouncementsHomepage' => 'int',
 			'announcementsIntroduction' => 'string'
 		);
 

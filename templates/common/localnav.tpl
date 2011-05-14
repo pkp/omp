@@ -58,7 +58,8 @@
 							<ul>
 								<li><a href="{url page="management" op="settings" path="press"}">{translate key="press.press"}</a></li>
 								<li><a href="{url page="management" op="settings" path="website"}">{translate key="manager.website.website"}</a></li>
-								<li><a href="{url page="management" op="settings" path="process"}">{translate key="manager.process.publicationProcess"}</a></li>
+								<li><a href="{url page="management" op="settings" path="publication"}">{translate key="manager.publication.publicationProcess"}</a></li>
+								<li><a href="{url page="management" op="settings" path="distribution"}">{translate key="manager.distribution.distributionProcess"}</a></li>
 								<li><a href="{url page="manager" op="setup"}">{translate key="navigation.setup"}</a></li>
 								{* Temporary link to manager's deprecated home page until settings pages are fully implemented, see #6196 *}
 								<li><a href="{url page="manager" op="index"}">{translate key="navigation.data"}</a></li>

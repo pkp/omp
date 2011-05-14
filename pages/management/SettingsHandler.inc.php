@@ -29,7 +29,8 @@ class SettingsHandler extends Handler {
 				'access',
 				'press',
 				'website',
-				'process'
+				'publication',
+				'distribution'
 			)
 		);
 	}
@@ -95,8 +96,11 @@ class SettingsHandler extends Handler {
 			case 'website':
 				$this->website();
 				break;
-			case 'process':
-				$this->process();
+			case 'publication':
+				$this->publication();
+				break;
+			case 'distribution':
+				$this->distribution();
 				break;
 			default:
 				assert(false);
@@ -141,10 +145,21 @@ class SettingsHandler extends Handler {
 	 * @param $request PKPRequest
 	 * @param $args array
 	 */
-	function process() {
+	function publication() {
 		$templateMgr =& TemplateManager::getManager();
 		$this->setupTemplate(true);
-		$templateMgr->display('management/settings/process.tpl');
+		$templateMgr->display('management/settings/publication.tpl');
+	}
+
+	/**
+	 * Display distribution process page.
+	 * @param $request PKPRequest
+	 * @param $args array
+	 */
+	function distribution() {
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate(true);
+		$templateMgr->display('management/settings/distribution.tpl');
 	}
 }
 

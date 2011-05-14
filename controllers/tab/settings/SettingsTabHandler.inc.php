@@ -119,11 +119,13 @@ class SettingsTabHandler extends Handler {
 	 * @param $tabForm Form the current tab form
 	 */
 	function saveFormData(&$request) {
-		$tabForm = $this->_getTabForm();
-		$tabForm->readInputData();
-		if($tabForm->validate()) {
-			$tabForm->execute($request);
-			return DAO::getDataChangedEvent();
+		if ($this->_isValidTab()) {
+			$tabForm = $this->_getTabForm();
+			$tabForm->readInputData();
+			if($tabForm->validate()) {
+				$tabForm->execute($request);
+				return DAO::getDataChangedEvent();
+			}
 		}
 	}
 

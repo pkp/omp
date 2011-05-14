@@ -24,7 +24,7 @@
 			{url|assign:"currentUrl" op="languages"}
 		</li>
 		<li{if $currentPage == "preparedEmails"} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
-			<a href="{url op="preparedEmails"}">{translate key="manager.system.preparedEmails"}</a>
+			<a href="{url op="preparedEmails"}">{translate key="manager.publication.preparedEmails"}</a>
 			{url|assign:"currentUrl" op="preparedEmails"}
 		</li>
 		<li{if $currentPage == "reviewForms"} class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active"{else} class="ui-state-default ui-corner-top"{/if}>
