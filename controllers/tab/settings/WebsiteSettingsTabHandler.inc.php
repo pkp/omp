@@ -24,7 +24,8 @@ class WebsiteSettingsTabHandler extends SettingsTabHandler {
 	function WebsiteSettingsTabHandler() {
 		parent::SettingsTabHandler();
 		$pageTabs = array(
-			'homepage' => 'controllers.tab.settings.homepage.form.HomepageForm'
+			'homepage' => 'controllers.tab.settings.homepage.form.HomepageForm',
+			'appearance' => 'controllers.tab.settings.appearance.form.AppearanceForm'
 		);
 		$this->setPageTabs($pageTabs);
 	}

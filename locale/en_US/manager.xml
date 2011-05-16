@@ -196,7 +196,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<!-- Website settings -->
 	<message key="manager.website.homepage">Homepage</message>
 	<message key="manager.website.appearance">Appearance</message>
-	<message key="manager.website.appearance">Appearance</message>
 	<message key="manager.website.website">Website</message>
 	
 	<!-- Publication Process settings -->
