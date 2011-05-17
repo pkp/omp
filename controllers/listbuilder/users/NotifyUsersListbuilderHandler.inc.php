@@ -53,7 +53,7 @@ class NotifyUsersListbuilderHandler extends ListbuilderHandler {
 
 		$this->loadPossibleItemList($request);
 
-		$this->addColumn(new ListbuilderGridColumn('item', 'common.name'));
+		$this->addColumn(new ListbuilderGridColumn($this, 'item', 'common.name'));
 	}
 
 	/**

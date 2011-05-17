@@ -101,7 +101,7 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 
 		$this->loadList();
 
-		$nameColumn = new ListbuilderGridColumn('name', 'common.name');
+		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
 		$this->addColumn($nameColumn);
 	}
 

@@ -72,7 +72,7 @@ class ReSelectReviewersListbuilderHandler extends ListbuilderHandler {
 
 		$this->loadList($request);
 
-		$this->addColumn(new ListbuilderGridColumn('item', 'common.name'));
+		$this->addColumn(new ListbuilderGridColumn($this, 'item', 'common.name'));
 	}
 
 	/**

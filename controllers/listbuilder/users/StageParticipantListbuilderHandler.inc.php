@@ -23,7 +23,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 		parent::ListbuilderHandler();
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-			array('fetch', 'addItem', 'deleteItems')
+			array('fetch', 'fetchRow', 'addItem', 'deleteItems')
 		);
 	}
 
@@ -71,7 +71,7 @@ class StageParticipantListbuilderHandler extends ListbuilderHandler {
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
 
 		// Configure listbuilder column.
-		$this->addColumn(new ListbuilderGridColumn('item', 'common.name'));
+		$this->addColumn(new ListbuilderGridColumn($this, 'item', 'common.name'));
 	}
 
 	/**

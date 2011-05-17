@@ -37,6 +37,9 @@ define_exposed('WORKFLOW_STAGE_ID_EXTERNAL_REVIEW', 3);
 define_exposed('WORKFLOW_STAGE_ID_EDITING', 4);
 define_exposed('WORKFLOW_STAGE_ID_PRODUCTION', 5);
 
+// To expose LISTBUILDER_SOURCE_TYPE_... constants via JS
+import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
+
 class Application extends PKPApplication {
 	function Application() {
 		parent::PKPApplication();

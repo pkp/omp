@@ -101,13 +101,12 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 		// Basic configuration
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
 
+		// Load the listbuilder contents
 		$this->loadList();
 
-		$nameColumn = new ListbuilderGridColumn('name', 'common.name');
-		$this->addColumn($nameColumn);
-
-		$designationColumn = new ListbuilderGridColumn('designation', 'common.designation');
-		$this->addColumn($designationColumn);
+		// Configure the listbuilder columns
+		$this->addColumn(new ListbuilderGridColumn($this, 'name', 'common.name'));
+		$this->addColumn(new ListbuilderGridColumn($this, 'designation', 'common.designation'));
 	}
 
 
