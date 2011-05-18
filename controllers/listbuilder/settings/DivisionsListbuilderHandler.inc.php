@@ -33,6 +33,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+
 		// Basic configuration
 		$this->setTitle('manager.setup.division');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_TEXT); // Free text input
@@ -58,9 +59,9 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	 * @param $entry mixed New entry with data to persist
 	 * @return boolean
 	 */
-	function insertEntry($entry, &$request) {
+	function insertEntry($entry) {
 		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
-		$press =& $request->getPress();
+		$press =& $this->getPress();
 
 		// Make sure the item doesn't already exist
 		$divisions = $divisionDao->getByTitle($entry->item, $press->getId());
@@ -119,7 +120,7 @@ class DivisionsListbuilderHandler extends SetupListbuilderHandler {
 	 * @param $request Request
 	 */
 	function _loadList(&$request) {
-		$press =& $request->getPress();
+		$press =& $this->getPress();
 		$divisionDao =& DAORegistry::getDAO('DivisionDAO');
 
 		$divisions = $divisionDao->getByPressId($press->getId());

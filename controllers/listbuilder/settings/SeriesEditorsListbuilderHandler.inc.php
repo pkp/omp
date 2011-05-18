@@ -36,7 +36,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 
 	/* Load the list from an external source into the grid structure */
 	function loadList(&$request) {
-		$press =& $request->getPress();
+		$press =& $this->getPress();
 		$seriesId = $this->getSeriesId();
 
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
@@ -55,7 +55,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 
 	/* Get possible items to populate autosuggest list with */
 	function getPossibleItemList(&$request) {
-		$press =& $request->getPress();
+		$press =& $this->getPress();
 		$seriesId = $this->getSeriesId();
 
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
@@ -158,7 +158,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	function addItem($args, &$request) {
 		$this->setupTemplate();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$press =& $request->getPress();
+		$press =& $this->getPress();
 
 		$seriesId = $args['seriesId'];
 		$index = 'sourceId-' . $this->getId() . '-' .$seriesId;
@@ -203,7 +203,7 @@ class SeriesEditorsListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function deleteItems($args, &$request) {
 		$seriesEditorsDao =& DAORegistry::getDAO('SeriesEditorsDAO');
-		$press =& $request->getPress();
+		$press =& $this->getPress();
 		$seriesId = (int) array_shift($args);
 
 		foreach($args as $userId) {

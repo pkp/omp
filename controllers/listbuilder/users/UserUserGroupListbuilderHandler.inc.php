@@ -18,6 +18,10 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	/** @var integer the user id for which to map user groups */
 	var $_userId;
 
+	/** @var $press Press */
+	var $_press;
+
+
 	/**
 	 * Constructor
 	 */
@@ -25,7 +29,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		parent::ListbuilderHandler();
 		$this->addRoleAssignment(
 			ROLE_ID_PRESS_MANAGER,
-			array('fetch', 'addItem', 'deleteItems')
+			array('fetch', 'fetchRow', 'fetchOptions', 'save')
 		);
 	}
 
@@ -41,6 +45,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		$this->_userId = $userId;
 	}
 
+
 	/**
 	 * Get the user id
 	 * @return integer
@@ -50,6 +55,27 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	}
 
 
+	/**
+	 * Set the press
+	 * @param $press Press
+	 */
+	function setPress(&$press) {
+		$this->_press =& $press;
+	}
+
+
+	/**
+	 * Get the press
+	 * @return Press
+	 */
+	function &getPress() {
+		return $this->_press;
+	}
+
+
+	//
+	// Overridden parent class functions
+	//
 	/**
 	 * @see ListbuilderHandler::fetch()
 	 */
@@ -66,6 +92,63 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		return parent::fetch($args, &$request, $additionalVars);
 	}
 
+
+	/**
+	 * @see ListbuilderHandler::getOptions
+	 * @param $includeDesignations boolean
+	 */
+	function getOptions($includeDesignations = false) {
+		// Initialize the object to return
+		$items = array(
+			array(), // Names
+			array() // Designations
+		);
+
+		// Fetch the user groups
+		$press =& $this->getPress();
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroups =& $userGroupDao->getByContextId($press->getId());
+
+		// Assemble the array to return
+		while (!$userGroups->eof()) {
+			$userGroup =& $userGroups->next();
+			$userGroupId = $userGroup->getId();
+
+			$items[0][$userGroupId] = $userGroup->getLocalizedName();
+			if ($includeDesignations) {
+				$items[1][$userGroupId] = $userGroup->getLocalizedAbbrev();
+			}
+
+			unset($userGroup);
+		}
+
+		return $items;
+	}
+
+
+	/**
+	 * Initialize the grid with the currently selected set of user groups.
+	 */
+	function loadList() {
+		$items = array();
+
+		$press =& $this->getPress();
+		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
+		$userGroups =& $userGroupDao->getByUserId($this->getUserId(), $press->getId());
+
+		while (!$userGroups->eof()) {
+			$userGroup =& $userGroups->next();
+			$index = $userGroup->getId();
+			$items[$index] = array(
+				'name' => $userGroup->getLocalizedName(),
+				'designation' => $userGroup->getLocalizedAbbrev()
+			);
+			unset($userGroup);
+		}
+		$this->setGridDataElements($items);
+	}
+
+
 	//
 	// Implement template methods from PKPHandler
 	//
@@ -78,47 +161,59 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
+
 	/**
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
 
+		$this->setPress($request->getPress());
+
 		$userId = (int)$request->getUserVar('userId');
 		$this->setUserId($userId);
 
+		// Load the listbuilder contents
+		$this->loadList();
+
 		// Basic configuration
-		$this->setTitle($request->getUserVar('title'));
-		$this->setSourceTitle('manager.users.availableRoles');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
-		$this->setListTitle('manager.users.currentRoles');
-		$this->setAdditionalData(array('userId' => $userId));
-
-		$this->_loadPossibleItemList($request);
-		$this->_loadList($request);
-
-		$this->addColumn(new ListbuilderGridColumn('item', 'common.name'));
-		$this->addColumn(new ListbuilderGridColumn('attribute', 'common.designation'));
+		$this->addColumn(new ListbuilderGridColumn($this, 'name', 'common.name'));
+		$this->addColumn(new ListbuilderGridColumn($this, 'designation', 'common.designation'));
 	}
 
 
-	//
-	// Public grid actions
-	//
-	/*
-	 * Handle adding an item to the list
-	 * @param $args array
+	/**
+	 * Create a new data element from a request. This is used to format
+	 * new rows prior to their insertion.
 	 * @param $request PKPRequest
+	 * @param $elementId int
+	 * @return object
 	 */
-	function addItem($args, &$request) {
-		$this->setupTemplate();
-		$press =& $request->getPress();
+	function &getDataElementFromRequest(&$request, &$elementId) {
+		$options = $this->getOptions(true);
+		$nameIndex = $request->getUserVar('name');
+		assert($nameIndex == '' || isset($options[0][$nameIndex]));
+		$newItem = array(
+			'name' => $nameIndex == ''?'':$options[0][$nameIndex],
+			'designation' => $nameIndex == ''?'':$options[1][$nameIndex]
+		);
+		$elementId = $request->getUserVar('rowId');
+		return $newItem;
+	}
+
+
+	/**
+	 * Persist a new entry insert.
+	 * @param $entry mixed New entry with data to persist
+	 * @return boolean
+	 */
+	function insertEntry($entry) {
+		$press =& $this->getPress();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 
-		$userGroupIndex = 'selectList-' . $this->getId();
-		$userIndex = 'additionalData-' . $this->getId() . '-userId';
-		$userGroupId = (int) $args[$userGroupIndex];
-		$userId = (int) $args[$userIndex];
+		$userGroupId = (int) $entry->name;
+		$userId = (int) $this->getUserId();
 
 		// Ensure that:
 		// $userGroupId is not empty
@@ -129,107 +224,37 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 			!$userGroupDao->contextHasGroup($press->getId(), $userGroupId) ||
 			$userGroupDao->userInGroup($press->getId(), $userId, $userGroupId)
 		) {
-			$json = new JSONMessage(false, Locale::translate('common.listbuilder.selectValidOption'));
-			return $json->getString();
+			return false;
 		} else {
 			// Add the assignment
 			$userGroupDao->assignUserToGroup($userId, $userGroupId);
-
-			// Return JSON with formatted HTML to insert into list
-			$userGroup =& $userGroupDao->getById($userGroupId);
-
-			$row =& $this->getRowInstance();
-			$row->setGridId($this->getId());
-			$row->setId($userGroupId);
-			$rowData = array('item' => $userGroup->getLocalizedName(), 'attribute' => $userGroup->getLocalizedAbbrev());
-			$row->setData($rowData);
-			$row->initialize($request);
-
-			$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
-			return $json->getString();
-		}
-	}
-
-	/**
-	 * Handle deleting items from the list
-	 * @param $args array
-	 * @param $request PKPRequest
-	 */
-	function deleteItems($args, &$request) {
-		$press =& $request->getPress();
-		$pressId = $press->getId();
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-
-		$userIndex = 'additionalData-' . $this->getId() . '-userId';
-		$userId = (int) $args[$userIndex];
-		// FIXME: authorize userId before deleting it!
-
-		foreach($args as $userGroupId) {
-			$userGroupDao->removeUserFromGroup($userId, (int) $userGroupId);
 		}
 
-		$json = new JSONMessage(true);
-		return $json->getString();
+		return true;
 	}
 
+	/**             
+         * Delete an entry.
+         * @param $rowId mixed ID of row to modify
+         * @return boolean
+         */
+	function deleteEntry($rowId) {
+		$userGroupId = (int) $rowId;
+		$userId = (int) $this->getUserId();
 
-	//
-	// Private helper methods
-	//
-	/**
-	 * Load the right-hand list
-	 * @param $request Request
-	 */
-	function _loadList(&$request) {
-		$items = array();
-
-		$press =& $request->getPress();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$userGroups =& $userGroupDao->getByUserId($this->getUserId(), $press->getId());
+		$press =& $this->getPress();
 
-		while (!$userGroups->eof()) {
-			$userGroup =& $userGroups->next();
-			$index = $userGroup->getId();
-			$items[$index] = array(
-				'item' => $userGroup->getLocalizedName(),
-				'attribute' => $userGroup->getLocalizedAbbrev()
+		foreach ($args as $userGroupId) {
+			$userGroupDao->removeUserFromGroup(
+				$userId,
+				(int) $userGroupId,
+				$press->getId()
 			);
-			unset($userGroup);
-		}
-		$this->setGridDataElements($items);
-	}
-
-	/**
-	 * Load possible items for
-	 * left-hand drop-down list
-	 * @param $request Request
-	 */
-	function _loadPossibleItemList(&$request) {
-		$press =& $request->getPress();
-		$pressDao =& DAORegistry::getDAO('PressDAO');
-		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
-		$currentGroupIds = array();
-
-		// Get user's current user group assignments
-		$currentGroups =& $userGroupDao->getByUserId($this->getUserId(), $press->getId());
-		while (!$currentGroups->eof()) {
-			$currentGroup =& $currentGroups->next();
-			$currentGroupIds[] = $currentGroup->getId();
-			unset($currentGroup);
 		}
 
-		// Get all available user groups for this press
-		$availableGroups =& $userGroupDao->getByContextId($press->getId());
-
-		$itemList = array();
-		while (!$availableGroups->eof()) {
-			$availableGroup =& $availableGroups->next();
-			if ( !in_array($availableGroup->getId(), $currentGroupIds)) {
-				$itemList[$availableGroup->getId()] = $availableGroup->getLocalizedName().' ('.$availableGroup->getLocalizedAbbrev().')';
-			}
-			unset($availableGroup);
-		}
-		$this->setPossibleItemList($itemList);
+		return true;
 	}
 }
+
 ?>

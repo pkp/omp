@@ -15,6 +15,9 @@
 import('lib.pkp.classes.controllers.listbuilder.ListbuilderHandler');
 
 class SetupListbuilderHandler extends ListbuilderHandler {
+	/** @var $press Press */
+	var $_press;
+
 	/**
 	 * Constructor
 	 */
@@ -24,6 +27,22 @@ class SetupListbuilderHandler extends ListbuilderHandler {
 			ROLE_ID_PRESS_MANAGER,
 			array('fetch', 'fetchRow', 'save')
 		);
+	}
+
+	/**
+	 * Set the current press
+	 * @param $press Press
+	 */
+	function setPress(&$press) {
+		$this->_press =& $press;
+	}
+
+	/**
+	 * Get the current press
+	 * @return Press
+	 */
+	function &getPress() {
+		return $this->_press;
 	}
 
 	/**
@@ -43,6 +62,14 @@ class SetupListbuilderHandler extends ListbuilderHandler {
 	 */
 	function getIsSubcomponent() {
 		return true;
+	}
+
+	/**
+	 * @see ListbuilderHandler::initialize
+	 */
+	function initialize(&$request) {
+		$this->setPress($request->getPress());
+		return parent::initialize($request);
 	}
 }
 

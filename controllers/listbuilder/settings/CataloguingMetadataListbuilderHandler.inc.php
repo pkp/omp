@@ -15,9 +15,6 @@
 import('controllers.listbuilder.settings.SetupListbuilderHandler');
 
 class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
-	/** @var $press Press */
-	var $press;
-
 
 	/**
 	 * Constructor
@@ -33,8 +30,9 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	function loadList() {
 		$publicationFormatDao =& DAORegistry::getDAO('CataloguingMetadataFieldDAO');
 		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$press =& $this->getPress();
 
-		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($this->press->getId());
+		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
 
 		$items = array();
 		foreach($publicationFormats as $item) {
@@ -72,7 +70,8 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	function insertEntry($entry) {
 		$cataloguingMetadataFieldDao =& DAORegistry::getDAO('CataloguingMetadataFieldDAO');
 		$cataloguingMetadataField = $cataloguingMetadataFieldDao->newDataObject();
-		$cataloguingMetadataField->setPressId($this->press->getId());
+		$press =& $this->getPress();
+		$cataloguingMetadataField->setPressId($press->getId());
 		$cataloguingMetadataField->setEnabled(true);
 
 		$locale = Locale::getLocale(); // FIXME: Localize.
@@ -92,7 +91,6 @@ class CataloguingMetadataListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-		$this->press =& $request->getPress();
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 

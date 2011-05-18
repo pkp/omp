@@ -15,10 +15,6 @@
 import('controllers.listbuilder.settings.SetupListbuilderHandler');
 
 class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
-	/** @var $press Press */
-	var $press;
-
-
 	/**
 	 * Constructor
 	 */
@@ -33,8 +29,9 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	function loadList() {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$pressDao =& DAORegistry::getDAO('PressDAO');
+		$press =& $this->getPress();
 
-		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($this->press->getId());
+		$publicationFormats =& $publicationFormatDao->getEnabledByPressId($press->getId());
 
 		$items = array();
 		foreach($publicationFormats as $item) {
@@ -73,7 +70,8 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	function insertEntry($entry) {
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
 		$publicationFormat = $publicationFormatDao->newDataObject();
-		$publicationFormat->setPressId($this->press->getId());
+		$press =& $this->getPress();
+		$publicationFormat->setPressId($press->getId());
 		$publicationFormat->setEnabled(true);
 
 		$locale = Locale::getLocale(); // FIXME: Localize.
@@ -94,7 +92,6 @@ class PublicationFormatsListbuilderHandler extends SetupListbuilderHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
-		$this->press =& $request->getPress();
 
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_MANAGER));
 

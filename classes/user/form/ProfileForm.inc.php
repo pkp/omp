@@ -285,21 +285,21 @@ class ProfileForm extends Form {
 			if ($press->getSetting('allowRegReviewer')) {
 				foreach ($this->getData('reviewerGroup') as $groupId => $wantsGroup ) {
 					$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
-					if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId);
-					if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId);
+					if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
+					if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId, $press->getId());
 				}
 			}
 			if ($press->getSetting('allowRegAuthor')) {
 				foreach ($this->getData('authorGroup') as $groupId => $wantsGroup ) {
 					$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
-					if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId);
+					if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
 					if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId);
 				}
 			}
 			if ($press->getSetting('allowRegReader')) {
 				foreach ($this->getData('readerGroup') as $groupId => $wantsGroup ) {
 					$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
-					if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId);
+					if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
 					if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId);
 				}
 			}

@@ -36,7 +36,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 
 	/* Load the list from an external source into the grid structure */
 	function loadList(&$request) {
-		$press =& $request->getPress();
+		$press =& $this->getPress();
 		$groupId = $this->getGroupId();
 
 		$groupMembershipDao =& DAORegistry::getDAO('GroupMembershipDAO');
@@ -59,7 +59,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$roleDao =& DAORegistry::getDAO('RoleDAO');
 
-		$press =& $request->getPress();
+		$press =& $this->getPress();
 
 		// Get items to populate possible items list with
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -168,7 +168,7 @@ class MastheadMembershipListbuilderHandler extends SetupListbuilderHandler {
 	function addItem($args, &$request) {
 		$this->setupTemplate();
 		$publicationFormatDao =& DAORegistry::getDAO('PublicationFormatDAO');
-		$press =& $request->getPress();
+		$press =& $this->getPress();
 
 		$groupId = $args['groupId'];
 		$index = 'sourceId-' . $this->getId() . '-' . $groupId;
