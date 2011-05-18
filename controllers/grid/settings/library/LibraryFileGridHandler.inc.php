@@ -131,15 +131,6 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		return $row;
 	}
 
-	/**
-	 * @see GridHandler::fetchGrid()
-	 */
-	function fetchGrid($args, $request) {
-		$fetchParams = array(
-			'fileType' => $this->getFileType()
-		);
-		return parent::fetchGrid($args, $request, $fetchParams);
-	}
 
 	//
 	// Public File Grid Actions

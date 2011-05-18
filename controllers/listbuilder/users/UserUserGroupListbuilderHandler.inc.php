@@ -77,6 +77,16 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	// Overridden parent class functions
 	//
 	/**
+	 * @see GridDataProvider::getRequestArgs()
+	 */
+	function getRequestArgs() {
+		return array(
+			'userId' => $this->getUserId()
+		);
+	}
+
+
+	/**
 	 * @see ListbuilderHandler::fetch()
 	 */
 	function fetch($args, &$request) {
@@ -166,12 +176,10 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	 * @see PKPHandler::initialize()
 	 */
 	function initialize(&$request) {
-		parent::initialize($request);
-
+		$this->setUserId((int) $request->getUserVar('userId'));
 		$this->setPress($request->getPress());
 
-		$userId = (int)$request->getUserVar('userId');
-		$this->setUserId($userId);
+		parent::initialize($request);
 
 		// Load the listbuilder contents
 		$this->loadList();
@@ -196,7 +204,8 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		assert($nameIndex == '' || isset($options[0][$nameIndex]));
 		$newItem = array(
 			'name' => $nameIndex == ''?'':$options[0][$nameIndex],
-			'designation' => $nameIndex == ''?'':$options[1][$nameIndex]
+			'designation' => $nameIndex == ''?'':$options[1][$nameIndex],
+			'id' => $nameIndex
 		);
 		$elementId = $request->getUserVar('rowId');
 		return $newItem;
@@ -224,6 +233,8 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 			!$userGroupDao->contextHasGroup($press->getId(), $userGroupId) ||
 			$userGroupDao->userInGroup($press->getId(), $userId, $userGroupId)
 		) {
+			print_r($_POST);
+			die (!$userGroupDao->contextHasGroup($press->getId(), $userGroupId)?'true':'false');
 			return false;
 		} else {
 			// Add the assignment
@@ -245,13 +256,11 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
 		$press =& $this->getPress();
 
-		foreach ($args as $userGroupId) {
-			$userGroupDao->removeUserFromGroup(
-				$userId,
-				(int) $userGroupId,
-				$press->getId()
-			);
-		}
+		$userGroupDao->removeUserFromGroup(
+			$userId,
+			(int) $userGroupId,
+			$press->getId()
+		);
 
 		return true;
 	}
