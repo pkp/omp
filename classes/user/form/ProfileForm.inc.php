@@ -283,24 +283,33 @@ class ProfileForm extends Form {
 		$press =& Request::getPress();
 		if ($press) {
 			if ($press->getSetting('allowRegReviewer')) {
-				foreach ($this->getData('reviewerGroup') as $groupId => $wantsGroup ) {
-					$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
-					if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
-					if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId, $press->getId());
+				$reviewerGroup =& $this->getData('reviewerGroup');
+				if (is_array($reviewerGroup)) {
+					foreach ($reviewerGroup as $groupId => $wantsGroup ) {
+						$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
+						if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
+						if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId, $press->getId());
+					}
 				}
 			}
 			if ($press->getSetting('allowRegAuthor')) {
-				foreach ($this->getData('authorGroup') as $groupId => $wantsGroup ) {
-					$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
-					if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
-					if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId);
+				$authorGroup =& $this->getData('authorGroup');
+				if (is_array($authorGroup)) {
+					foreach ($authorGroup as $groupId => $wantsGroup ) {
+						$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
+						if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
+						if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId);
+					}
 				}
 			}
 			if ($press->getSetting('allowRegReader')) {
-				foreach ($this->getData('readerGroup') as $groupId => $wantsGroup ) {
-					$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
-					if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
-					if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId);
+				$readerGroup =& $this->getData('readerGroup');
+				if (is_array($readerGroup)) {
+					foreach ($readerGroup as $groupId => $wantsGroup ) {
+						$inGroup = $userGroupDao->userInGroup($user->getId(), $groupId);
+						if ($inGroup && !$wantsGroup) $userGroupDao->removeUserFromGroup($user->getId(), $groupId, $press->getId());
+						if (!$hasRole && $wantsRole) $userGroupDao->assignUserToGroup($user->getId(), $groupId);
+					}
 				}
 			}
 		}
