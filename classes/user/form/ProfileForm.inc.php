@@ -259,7 +259,7 @@ class ProfileForm extends Form {
 		// Add reviewing interests to interests table
 		import('lib.pkp.classes.user.InterestManager');
 		$interestManager = new InterestManager();
-		$interestManager->insertInterests($userId, $this->getData('interestsKeywords'), $this->getData('interests'));
+		$interestManager->insertInterests($user->getId(), $this->getData('interestsKeywords'), $this->getData('interests'));
 
 		$site =& Request::getSite();
 		$availableLocales = $site->getSupportedLocales();
