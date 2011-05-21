@@ -20,10 +20,10 @@
 
 	<h3>{translate key="manager.setup.publicIdentifier"}</h3>
 
+	<p>{translate key="manager.setup.uniqueIdentifierDescription"}</p>
+
 	{fbvFormArea id="publicIdentifier"}
 		{fbvFormSection title="manager.setup.uniqueIdentifier" layout=$fbvStyles.layout.ONE_COLUMN}
-			<p>{translate key="manager.setup.uniqueIdentifierDescription"}</p>
-			<br />
 			{fbvElement type="checkbox" id="enablePublicMonographId" value="1" checked=$enablePublicMonographId label="manager.setup.enablePublicMonographId"}
 			{fbvElement type="checkbox" id="enablePublicGalleyId" value="1" checked=$enablePublicGalleyId label="manager.setup.enablePublicGalleyId"}
 		{/fbvFormSection}

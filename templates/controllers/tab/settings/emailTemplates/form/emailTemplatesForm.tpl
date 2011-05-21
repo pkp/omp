@@ -24,8 +24,10 @@
 	<div class="separator"></div>
 
 	<h3>{translate key="manager.setup.emails"}</h3>
+
+	<p>{translate key="manager.setup.emailSignatureDescription"}</p>
+
 	{fbvFormArea id="emails"}
-		<p>{translate key="manager.setup.emailSignatureDescription"}</p>
 		{fbvFormSection title="manager.setup.emailSignature" for="emailSignature"}
 			{fbvElement type="textarea" id="emailSignature" value=$emailSignature size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.2OF3}
 		{/fbvFormSection}

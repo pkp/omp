@@ -19,31 +19,34 @@
 	{include file="common/formErrors.tpl"}
 
 	<h3>{translate key="manager.setup.focusAndScopeOfPress"}</h3>
+
 	<p>{translate key="manager.setup.focusAndScopeDescription"}</p>
 
 	{fbvFormArea id="focusAndScopeDescription"}
 		{fbvFormSection}
-			{fbvTextArea multilingual=true name="focusScopeDesc" id="focusScopeDesc" value=$focusScopeDesc size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+			{fbvElement type="textarea" multilingual=true name="focusScopeDesc" id="focusScopeDesc" value=$focusScopeDesc size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
 	<h3>{translate key="manager.setup.openAccessPolicy"}</h3>
+
 	<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
 
 	{fbvFormArea id="openAccessPolicyContainer"}
 		{fbvFormSection}
-			{fbvTextArea multilingual="true" name="openAccessPolicy" id="openAccessPolicy" value=$openAccessPolicy size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+			{fbvElement type="textarea" multilingual="true" name="openAccessPolicy" id="openAccessPolicy" value=$openAccessPolicy size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
 	<p>{translate key="manager.setup.securitySettingsDescription"}</p>
 
 	<h3>{translate key="manager.setup.peerReviewPolicy"}</h3>
+
 	<p>{translate key="manager.setup.peerReviewDescription"}</p>
 
 	{fbvFormArea id="peerReviewPolicy"}
 		{fbvFormSection title="manager.setup.reviewPolicy"}
-			{fbvTextArea multilingual="true" name="reviewPolicy" id="reviewPolicy" value=$reviewPolicy size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+			{fbvElement type="textarea" multilingual="true" name="reviewPolicy" id="reviewPolicy" value=$reviewPolicy size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -54,7 +57,7 @@
 
 	{fbvFormArea id="authorCopyrightNotice"}
 		{fbvFormSection}
-			{fbvTextArea multilingual="true" name="copyrightNotice" id="copyrightNotice" value=$copyrightNotice size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+			{fbvElement type="textarea" multilingual="true" name="copyrightNotice" id="copyrightNotice" value=$copyrightNotice size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 		{/fbvFormSection}
 		{fbvFormSection layout=$fbvStyles.layout.TWO_COLUMNS}
 			{fbvElement type="checkbox" id="includeCreativeCommons" value="1" checked=$includeCreativeCommons label="manager.setup.includeCreativeCommons"}
@@ -68,7 +71,7 @@
 
 	{fbvFormArea id="privacyStatementContainer"}
 		{fbvFormSection}
-			{fbvTextArea multilingual="true" name="privacyStatement" id="privacyStatement" value=$privacyStatement size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+			{fbvElement type="textarea" multilingual="true" name="privacyStatement" id="privacyStatement" value=$privacyStatement size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

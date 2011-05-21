@@ -18,7 +18,7 @@
 <form id="contactForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="contact"}">
 	{include file="common/formErrors.tpl"}
 
-	<h3>1.1 {translate key="manager.setup.principalContact"}</h3>
+	<h3>{translate key="manager.setup.principalContact"}</h3>
 	<p>{translate key="manager.setup.principalContactDescription"}</p>
 
 	{fbvFormArea id="principalContact"}
@@ -26,10 +26,10 @@
 			{fbvElement type="text" id="contactName" value=$contactName maxlength="60"}
 		{/fbvFormSection}
 		{fbvFormSection title="user.title" for="contactTitle"}
-			{fbvTextInput multilingual=true name="contactTitle" id="contactTitle" value=$contactTitle maxlength="90"}
+			{fbvElement type="text" multilingual=true name="contactTitle" id="contactTitle" value=$contactTitle maxlength="90"}
 		{/fbvFormSection}
 		{fbvFormSection title="user.affiliation" for="contactAffiliation"}
-			{fbvTextArea multilingual=true name="contactAffiliation" id="contactAffiliation" value=$contactAffiliation size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF2}
+			{fbvElement type="textarea" multilingual=true name="contactAffiliation" id="contactAffiliation" value=$contactAffiliation size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF2}
 		{/fbvFormSection}
 		{fbvFormSection title="user.email" for="contactEmail" required=true}
 			{fbvElement type="text" id="contactEmail" value=$contactEmail maxlength="90"}
@@ -41,11 +41,11 @@
 			{fbvElement type="text" id="contactFax" value=$contactFax maxlength="24"}
 		{/fbvFormSection}
 		{fbvFormSection title="common.mailingAddress" for="contactMailingAddress"}
-			{fbvTextArea multilingual=true name="contactMailingAddress" id="contactMailingAddress" value=$contactMailingAddress size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF2 rich=true}
+			{fbvElement type="textarea" multilingual=true name="contactMailingAddress" id="contactMailingAddress" value=$contactMailingAddress size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF2 rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	<h3>1.2 {translate key="manager.setup.technicalSupportContact"}</h3>
+	<h3>{translate key="manager.setup.technicalSupportContact"}</h3>
 
 	<p>{translate key="manager.setup.technicalSupportContactDescription"}</p>
 

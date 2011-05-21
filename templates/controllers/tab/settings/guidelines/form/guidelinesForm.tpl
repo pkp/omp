@@ -17,13 +17,13 @@
 
 <form id="guidelinesForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="guidelines"}">
 	{include file="common/formErrors.tpl"}
-	<h3>1.1 {translate key="manager.setup.authorGuidelines"}</h3>
+	<h3>{translate key="manager.setup.authorGuidelines"}</h3>
 
 	<p>{translate key="manager.setup.authorGuidelinesDescription"}</p>
 
 	{fbvFormArea id="focusAndScopeDescription"}
 		{fbvFormSection}
-			{fbvTextArea multilingual=true name="authorGuidelines" id="authorGuidelines" value=$authorGuidelines size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+			{fbvElement type="textarea" multilingual=true name="authorGuidelines" id="authorGuidelines" value=$authorGuidelines size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

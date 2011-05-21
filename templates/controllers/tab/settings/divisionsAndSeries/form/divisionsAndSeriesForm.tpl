@@ -17,7 +17,7 @@
 <form id="divisionsAndSeriesForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="divisionsAndSeries"}">
 	{include file="common/formErrors.tpl"}
 
-	<h3>1 {translate key="manager.setup.divisionsAndSeries"}</h3>
+	<h3>{translate key="manager.setup.divisionsAndSeries"}</h3>
 
 	{url|assign:divisionsUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.settings.DivisionsListbuilderHandler" op="fetch"}
 	{load_url_in_div id="divisionsContainer" url=$divisionsUrl}

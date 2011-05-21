@@ -23,8 +23,8 @@ class HomepageForm extends PressSettingsForm {
 	 */
 	function HomepageForm() {
 		$settings = array(
-			'enableAnnouncements' => 'boolean',
-			'enableAnnouncementsHomepage' => 'boolean',
+			'enableAnnouncements' => 'bool',
+			'enableAnnouncementsHomepage' => 'bool',
 			'numAnnouncementsHomepage' => 'int',
 			'announcementsIntroduction' => 'string'
 		);
@@ -41,6 +41,26 @@ class HomepageForm extends PressSettingsForm {
 	 */
 	function getLocaleFieldNames() {
 		return array('announcementsIntroduction');
+	}
+
+
+	//
+	// Implement template methods from PressSettingsForm.
+	//
+	/**
+	 * @see PressSettingsForm::fetch()
+	 */
+	function fetch(&$request) {
+		for($x = 1; $x < 11; $x++) {
+			$numAnnouncementsHomepageOptions[$x] = $x;
+		}
+
+		$params = array(
+			'numAnnouncementsHomepageOptions' => $numAnnouncementsHomepageOptions,
+			'disableAnnouncementsHomepage' => !$this->getData('enableAnnouncementsHomepage')
+		);
+
+		return parent::fetch(&$request, $params);
 	}
 }
 

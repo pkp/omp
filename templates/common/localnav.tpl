@@ -64,7 +64,6 @@
 								{* Temporary link to manager's deprecated home page until settings pages are fully implemented, see #6196 *}
 								<li><a href="{url page="manager" op="index"}">{translate key="navigation.data"}</a></li>
 								{* <li><a href="{url page="manager" op="data"}">{translate key="navigation.data"}</a></li> *}
-								<li><a href="{url page="manager" op="system"}">{translate key="navigation.system"}</a></li>
 								<li><a href="{url page="management" op="settings" path="access"}">{translate key="settings.access"}</a></li>
 							</ul>
 						</li>

@@ -35,8 +35,7 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	<h4>{translate key="manager.setup.reviewOptions"}</h4>
-
+	<!-- Create a function in form handler for this functionality. See *6654*  -->
 	<script type="text/javascript">
 		{literal}
 		<!--
@@ -50,12 +49,23 @@
 		{/literal}
 	</script>
 
-	<p>
-		<strong>{translate key="manager.setup.reviewOptions.reviewTime"}</strong><br/>
-		{translate key="manager.setup.reviewOptions.numWeeksPerResponse"}: <input type="text" name="numWeeksPerResponse" id="numWeeksPerResponse" value="{$numWeeksPerResponse|escape}" size="2" maxlength="8" class="textField" /> {translate key="common.weeks"}<br/>
-		{translate key="manager.setup.reviewOptions.numWeeksPerReview"}: <input type="text" name="numWeeksPerReview" id="numWeeksPerReview" value="{$numWeeksPerReview|escape}" size="2" maxlength="8" class="textField" /> {translate key="common.weeks"}<br/>
-		{translate key="common.note"}: {translate key="manager.setup.reviewOptions.noteOnModification"}
-	</p>
+	<h3>{translate key="manager.setup.reviewOptions"}</h3>
+	<p><strong>{translate key="manager.setup.reviewOptions.reviewTime"}</strong></p>
+
+	{fbvFormArea id="reviewTime"}
+		{fbvFormSection}
+			<span>{translate key="manager.setup.reviewOptions.numWeeksPerResponse"}:</span>
+			{fbvElement type="text" name="numWeeksPerResponse" id="numWeeksPerResponse" value=$numWeeksPerResponse size=$fbvStyles.size.SMALL}
+			<span>{translate key="common.weeks"}</span>
+		{/fbvFormSection}
+		{fbvFormSection}
+			<span>{translate key="manager.setup.reviewOptions.numWeeksPerReview"}:</span>
+			{fbvElement type="text" name="numWeeksPerReview" id="numWeeksPerReview" value=$numWeeksPerReview size=$fbvStyles.size.SMALL}
+			<span>{translate key="common.weeks"}</span>
+		{/fbvFormSection}
+	{/fbvFormArea}
+
+	<p>{translate key="common.note"}: {translate key="manager.setup.reviewOptions.noteOnModification"}</p>
 
 	<p>
 		<strong>{translate key="manager.setup.reviewOptions.reviewerReminders"}</strong><br/>
@@ -90,24 +100,20 @@
 		{/fbvFormSection}
 		{fbvFormSection title="manager.setup.reviewOptions.reviewerAccess" layout=$fbvStyles.layout.ONE_COLUMN}
 			{fbvElement type="checkbox" id="reviewerAccessKeysEnabled" value="1" checked=$reviewerAccessKeysEnabled label="manager.setup.reviewOptions.reviewerAccessKeysEnabled"}
-			<p>{translate key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"}</p><br />
+			<span><p>{translate key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"}</p></span>
 			{fbvElement type="checkbox" id="restrictReviewerFileAccess" value="1" checked=$restrictReviewerFileAccess label="manager.setup.reviewOptions.restrictReviewerFileAccess"}
 		{/fbvFormSection}
 		{fbvFormSection title="manager.setup.reviewOptions.blindReview" layout=$fbvStyles.layout.ONE_COLUMN}
-			{fbvCustomElement}
-				{fbvCheckbox id="showEnsuringLink" value="1" checked=$showEnsuringLink}
-				<label for="showEnsuringLink" class="choice">{translate key="manager.setup.reviewOptions.showEnsuringLink"}</label><br/>
-			{/fbvCustomElement}
+			{fbvElement type="checkbox" id="showEnsuringLink" value="1" checked=$showEnsuringLink label="manager.setup.reviewOptions.showEnsuringLink"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
 	<h3>{translate key="manager.setup.reviewGuidelines"}</h3>
-	{url|assign:"reviewFormsUrl" op="reviewForms"}
-	<p>{translate key="manager.setup.reviewGuidelinesDescription" reviewFormsUrl=$reviewFormsUrl}</p>
+	<p>{translate key="manager.setup.reviewGuidelinesDescription"}</p>
 
 	{fbvFormArea id="review"}
 		{fbvFormSection}
-			{fbvTextArea multilingual="true" name="reviewGuidelines" id="reviewGuidelines" value=$reviewGuidelines size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+			{fbvElement type="textarea" multilingual="true" name="reviewGuidelines" id="reviewGuidelines" value=$reviewGuidelines size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

@@ -17,22 +17,31 @@
 <div class="unit size1of2">
 	<h4>{translate key="manager.settings.press"}</h4>
 	<p>{translate key="manager.settings.pressDescription"}</p>
-	<a href="{url page="manager" op="setup"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
+	<a href="{url page="management" op="settings" path="press"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
 </div>
 <div class="unit size2of2 lastUnit">
-	<h4>{translate key="manager.settings.data"}</h4>
-	<p>{translate key="manager.settings.dataDescription"}</p>
-	<a href="{url page="manager" op="index"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
+	<h4>{translate key="manager.website.website"}</h4>
+	<p>{translate key="manager.settings.websiteDescription"}</p>
+	<a href="{url page="management" op="settings" path="website"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
 </div>
+<div class="pkp_helpers_clear"></div>
+<div class="separator"></div>
 <div class="unit size1of2">
-	<h4>{translate key="manager.settings.system"}</h4>
-	<p>{translate key="manager.settings.systemDescription"}</p>
-	<a href="{url page="manager" op="system"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
+	<h4>{translate key="manager.publication.publicationProcess"}</h4>
+	<p>{translate key="manager.settings.publicationDescription"}</p>
+	<a href="{url page="management" op="settings" path="publication"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
 </div>
 <div class="unit size2of2 lastUnit">
+	<h4>{translate key="manager.distribution.distributionProcess"}</h4>
+	<p>{translate key="manager.settings.distributionDescription"}</p>
+	<a href="{url page="management" op="settings" path="distribution"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
+</div>
+<div class="pkp_helpers_clear"></div>
+<div class="separator"></div>
+<div class="unit size1of2">
 	<h4>{translate key="settings.access"}</h4>
-	<p>{translate key="settings.accessDescription"}</p>
-	<a href="{url page="settings" op="access"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
+	<p>{translate key="manager.settings.accessDescription"}</p>
+	<a href="{url page="management" op="settings" path="access"}" class="button defaultButton">{translate key="common.takeMeThere"}</a>
 </div>
 
 {include file="common/footer.tpl"}

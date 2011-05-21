@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	$(function() {ldelim}
 		// Attach the form handler.
-		$('#homepageForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
+		$('#homepageForm').pkpHandler('$.pkp.controllers.tab.settings.homepage.form.HomepageFormHandler');
 	{rdelim});
 </script>
 
@@ -22,36 +22,22 @@
 
 	<p>{translate key="manager.setup.announcementsDescription"}</p>
 
-	<script type="text/javascript">
-		{literal}
-		<!--
-			function toggleEnableAnnouncementsHomepage(form) {
-				form.numAnnouncementsHomepage.disabled = !form.numAnnouncementsHomepage.disabled;
-			}
-		// -->
-		{/literal}
-	</script>
+	{fbvFormArea id="toggleAnnouncements"}
+		{fbvFormSection}
+			{fbvElement type="checkbox" id="enableAnnouncements" name="enableAnnouncements" label="manager.setup.enableAnnouncements" value="1" checked=$enableAnnouncements}
+		{/fbvFormSection}
+		{fbvFormSection}
+			{fbvElement type="checkbox" id="enableAnnouncementsHomepage" name="enableAnnouncementsHomepage" label="manager.setup.enableAnnouncementsHomepage1" value="1" checked=$enableAnnouncementsHomepage}
+			{fbvElement type="select" id="numAnnouncementsHomepage" name="numAnnouncementsHomepage" from=$numAnnouncementsHomepageOptions selected=$numAnnouncementsHomepage defaultValue="1" translate=false disabled=$disableAnnouncementsHomepage}
+			<p>{translate key="manager.setup.enableAnnouncementsHomepage2"}</p>
+		{/fbvFormSection}
+	{/fbvFormArea}
 
-	<p>
-		<input type="checkbox" name="enableAnnouncements" id="enableAnnouncements" value="1" {if $enableAnnouncements} checked="checked"{/if} />&nbsp;
-		<label for="enableAnnouncements">{translate key="manager.setup.enableAnnouncements"}</label>
-	</p>
-
-	<p>
-		<input type="checkbox" name="enableAnnouncementsHomepage" id="enableAnnouncementsHomepage" value="1" onclick="toggleEnableAnnouncementsHomepage(this.form)"{if $enableAnnouncementsHomepage} checked="checked"{/if} />&nbsp;
-		<label for="enableAnnouncementsHomepage">{translate key="manager.setup.enableAnnouncementsHomepage1"}</label>
-		<select name="numAnnouncementsHomepage" size="1" class="selectMenu" {if not $enableAnnouncementsHomepage}disabled="disabled"{/if}>
-			{section name="numAnnouncementsHomepageOptions" start=1 loop=11}
-				<option value="{$smarty.section.numAnnouncementsHomepageOptions.index}"{if $numAnnouncementsHomepage eq $smarty.section.numAnnouncementsHomepageOptions.index or ($smarty.section.numAnnouncementsHomepageOptions.index eq 1 and not $numAnnouncementsHomepage)} selected="selected"{/if}>{$smarty.section.numAnnouncementsHomepageOptions.index}</option>
-			{/section}
-		</select>
-		{translate key="manager.setup.enableAnnouncementsHomepage2"}
-	</p>
+	<p>{translate key="manager.setup.announcementsIntroductionDescription"}</p>
 
 	{fbvFormArea id="announcementsIntroductionContainer"}
 		{fbvFormSection title="manager.setup.announcementsIntroduction"}
-			<p>{translate key="manager.setup.announcementsIntroductionDescription"}</p>
-			{fbvTextArea multilingual="true" name="announcementsIntroduction" id="announcementsIntroduction" value=$announcementsIntroduction size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+			{fbvElement type="textarea" multilingual="true" name="announcementsIntroduction" id="announcementsIntroduction" value=$announcementsIntroduction size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

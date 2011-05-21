@@ -57,7 +57,7 @@ class ReviewStageForm extends PressSettingsForm {
 	function fetch(&$request) {
 		$params = null;
 		if (Config::getVar('general', 'scheduled_tasks'))
-			$params['assign'] = array('scheduledTasksEnabled' => true);
+			$params = array('scheduledTasksEnabled' => true);
 
 		return parent::fetch(&$request, $params);
 	}

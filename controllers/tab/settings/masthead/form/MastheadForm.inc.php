@@ -26,7 +26,7 @@ class MastheadForm extends PressSettingsForm {
 			'initials' => 'string',
 			'description' => 'string',
 			'mailingAddress' => 'string',
-			'pressEnabled' => 'boolean'
+			'pressEnabled' => 'bool'
 		);
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/masthead/form/mastheadForm.tpl');

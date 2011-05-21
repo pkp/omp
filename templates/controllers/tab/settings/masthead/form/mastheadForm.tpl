@@ -22,20 +22,17 @@
 
 	{fbvFormArea id="generalInformation"}
 		{fbvFormSection title="manager.setup.pressName" for="name" required=true}
-			{fbvTextInput type="text" multilingual=true name="name" id="name" value=$name maxlength="120" size=$fbvStyles.size.LARGE}
+			{fbvElement type="text" multilingual=true name="name" id="name" value=$name maxlength="120" size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 		{fbvFormSection title="manager.setup.pressInitials" for="initials" required=true}
-			{fbvTextInput type="text" multilingual=true name="initials" id="initials" value=$initials maxlength="16" size=$fbvStyles.size.SMALL}
+			{fbvElement type="text" multilingual=true name="initials" id="initials" value=$initials maxlength="16" size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
 		{fbvFormSection title="manager.setup.pressDescription" for="description" float=$fbvStyles.float.LEFT}
-			{fbvTextArea multilingual=true name="description" id="description" value=$description size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+			{fbvElement type="textarea" multilingual=true name="description" id="description" value=$description size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 		{/fbvFormSection}
 		{fbvFormSection title="common.mailingAddress" for="mailingAddress" group=true float=$fbvStyles.float.RIGHT}
-			{fbvCustomElement}
-				{fbvTextArea id="mailingAddress" value=$mailingAddress size=$fbvStyles.size.SMALL}
-				<br />
-				<span>{translate key="manager.setup.mailingAddressDescription"}</span>
-			{/fbvCustomElement}
+			{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF1}
+			<p>{translate key="manager.setup.mailingAddressDescription"}</p>
 		{/fbvFormSection}
 		{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
 			{fbvElement type="checkbox" id="pressEnabled" value="1" checked=$pressEnabled label="manager.setup.enablePressInstructions"}

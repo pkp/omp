@@ -31,13 +31,13 @@
 
 	{fbvFormArea id="searchEngineIndexing"}
 		{fbvFormSection title="common.description" float=$fbvStyles.float.LEFT}
-			{fbvTextInput multilingual="true" id="searchDescription" name="searchDescription" value=$searchDescription size=$fbvStyles.size.LARGE}
+			{fbvElement type="text" multilingual="true" id="searchDescription" name="searchDescription" value=$searchDescription size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 		{fbvFormSection title="common.keywords" float=$fbvStyles.float.RIGHT}
-			{fbvTextInput multilingual="true" id="searchKeywords" name="searchKeywords" value=$searchKeywords size=$fbvStyles.size.LARGE}
+			{fbvElement type="text" multilingual="true" id="searchKeywords" name="searchKeywords" value=$searchKeywords size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 		{fbvFormSection title="manager.setup.customTags"}
-			{fbvTextArea multilingual="true" id="customHeaders" name="customHeaders" value=$customHeaders measure=$fbvStyles.measure.1OF2}
+			{fbvElement type="textarea" multilingual="true" id="customHeaders" name="customHeaders" value=$customHeaders measure=$fbvStyles.measure.1OF2}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

@@ -131,16 +131,14 @@
 	<!-- Settings management -->
 	<message key="manager.settings">Settings</message>
 	<message key="manager.settings.press">Press</message>
-	<message key="manager.settings.pressDescription">All settings specific to the press (details, policies, workflow, look and feel).</message>
-	<message key="manager.settings.data">Data</message>
-	<message key="manager.settings.dataDescription">All settings that allow for manipulation of data (file browser, reviewer database, reports, import/export, COUNTER stats).</message>
-	<message key="manager.settings.system">System</message>
-	<message key="manager.settings.systemDescription">All settings specific to the OMP system for this press (archiving, prepared emails, reading tools, languages, payments, plugins).</message>
-	
+	<message key="manager.settings.pressDescription"><![CDATA[All settings specific to the press (masthead, contact, policies, guidelines, affiliation & support, divisions and series, press identification).]]></message>
+	<message key="manager.settings.accessDescription">All settings related to access and security management for this press (users,roles, site access options).</message>
+	<message key="manager.settings.websiteDescription">All settings specific to the public website pages (homepage, appearance, language)</message>
+	<message key="manager.settings.publicationDescription">All settings specific to the publication process (general settings, submission stage, review stage, editorial stage, production stage, email templates).</message>
+	<message key="manager.settings.distributionDescription">All settings specific to the distribution process (notification, indexing, archiving, payment, reading tools).</message>	
+
 	<!-- User management -->
 	<message key="manager.users">User Management</message>
-	<message key="manager.users.users">Users</message>
-	<message key="manager.users.roles">Roles</message>
 	<message key="manager.users.availableRoles">Available Roles</message>
 	<message key="manager.users.currentRoles">Current Roles</message>
 	<message key="manager.users.enrollment">Enrollment</message>
@@ -171,9 +169,8 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="settings.libraryFiles.fileRequired">A library file is required. Please ensure that you have chosen and uploaded a file.</message>
 	<message key="settings.libraryFiles.nameRequired">A name is required for this library file.</message>
 
-	<!-- Access and Security settings -->
+	<!-- Access and Security settings  page -->
 	<message key="settings.access"><![CDATA[Access &amp; Security]]></message>
-	<message key="settings.accessDescription">All settings related to access and security management for this press (manage users, manage roles, site access options).</message>
 	<message key="settings.roles.roleName">Role Name</message>
 	<message key="settings.roles.roleAbbrev">Role Abbreviation</message>
 	<message key="settings.roles.assignedStages">Assigned Stages</message>
@@ -417,7 +414,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.setup.restrictMonographAccess">Users must be registered and log in to view open access content.</message>
 	<message key="manager.setup.restrictSiteAccess">Users must be registered and log in to view the press site.</message>
 	<message key="manager.setup.reviewGuidelines">Review Guidelines</message>
-	<message key="manager.setup.reviewGuidelinesDescription"><![CDATA[The Review Guidelines will provide reviewers with criteria for judging a submission's suitability for publication in the press, and can include any special instructions for preparing an effective and helpful review. In conducting the review, reviewers are presented with with two open text boxes, the first "for author and editor," and the second "for editor." Alternatively, the Press Manager can create a peer review form under <a href="{$reviewFormsUrl}" class="action">Review Forms</a>. In all cases, editors will have the option of including the reviews in corresponding with the author.]]></message>
+	<message key="manager.setup.reviewGuidelinesDescription"><![CDATA[The Review Guidelines will provide reviewers with criteria for judging a submission's suitability for publication in the press, and can include any special instructions for preparing an effective and helpful review. In conducting the review, reviewers are presented with with two open text boxes, the first "for author and editor," and the second "for editor." Alternatively, the Press Manager can create a peer review form under Review Forms. In all cases, editors will have the option of including the reviews in corresponding with the author.]]></message>
 	<message key="manager.setup.reviewOptions">Review Options</message>
 	<message key="manager.setup.reviewOptions.automatedReminders">Automated email reminders (available in OMP's default Emails) can be sent to reviewers at two points (while the editor can always email the reviewer directly as well)</message>
 	<message key="manager.setup.reviewOptions.automatedRemindersDisabled"><![CDATA[<strong>Note:</strong> To activate these options, the site administrator must enable the <tt>scheduled_tasks</tt> option in the OMP configuration file. Additional server configuration may be required to support this functionality (which may not be possible on all servers), as indicated in the OMP documentation.]]></message>
