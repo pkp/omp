@@ -87,23 +87,6 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 
 
 	/**
-	 * @see ListbuilderHandler::fetch()
-	 */
-	function fetch($args, &$request) {
-		$router =& $request->getRouter();
-
-		$monographId = $request->getUserVar('monographId');
-		$chapterId = $request->getUserVar('chapterId');
-		$additionalVars = array(
-			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('monographId' => $monographId, 'chapterId' => $chapterId)),
-			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId, 'chapterId' => $chapterId))
-		);
-
-		return parent::fetch($args, &$request, $additionalVars);
-	}
-
-
-	/**
 	 * @see ListbuilderHandler::getOptions
 	 * @param $includeDesignations boolean
 	 */
@@ -141,6 +124,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	 */
 	function loadList() {
 		$items = array();
+		import('lib.pkp.classes.controllers.listbuilder.ListbuilderMap');
 
 		$press =& $this->getPress();
 		$userGroupDao =& DAORegistry::getDAO('UserGroupDAO');
@@ -150,7 +134,7 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 			$userGroup =& $userGroups->next();
 			$index = $userGroup->getId();
 			$items[$index] = array(
-				'name' => $userGroup->getLocalizedName(),
+				'name' => new ListbuilderMap($index, $userGroup->getLocalizedName()),
 				'designation' => $userGroup->getLocalizedAbbrev()
 			);
 			unset($userGroup);
@@ -186,8 +170,16 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 
 		// Basic configuration
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT);
-		$this->addColumn(new ListbuilderGridColumn($this, 'name', 'common.name'));
+
+		// Name column
+		$nameColumn = new ListbuilderGridColumn($this, 'name', 'common.name');
+		import('lib.pkp.classes.controllers.grid.MapGridCellProvider');
+		$nameColumn->setCellProvider(new MapGridCellProvider());
+		$this->addColumn($nameColumn);
+
+		// Designation column
 		$this->addColumn(new ListbuilderGridColumn($this, 'designation', 'common.designation'));
+
 	}
 
 
@@ -199,14 +191,19 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 	 * @return object
 	 */
 	function &getDataElementFromRequest(&$request, &$elementId) {
+		import('lib.pkp.classes.controllers.listbuilder.ListbuilderMap');
 		$options = $this->getOptions(true);
+
 		$nameIndex = $request->getUserVar('name');
-		assert($nameIndex == '' || isset($options[0][$nameIndex]));
+		if ($nameIndex == '') $nameIndex = null;
+		else $nameIndex = (int) $nameIndex;
+		assert($nameIndex === null || isset($options[0][$nameIndex]));
+
 		$newItem = array(
-			'name' => $nameIndex == ''?'':$options[0][$nameIndex],
-			'designation' => $nameIndex == ''?'':$options[1][$nameIndex],
-			'id' => $nameIndex
+			'name' => new ListbuilderMap($nameIndex, $nameIndex?$options[0][$nameIndex]:null),
+			'designation' => $nameIndex?$options[1][$nameIndex]:null
 		);
+
 		$elementId = $request->getUserVar('rowId');
 		return $newItem;
 	}
@@ -233,8 +230,6 @@ class UserUserGroupListbuilderHandler extends ListbuilderHandler {
 			!$userGroupDao->contextHasGroup($press->getId(), $userGroupId) ||
 			$userGroupDao->userInGroup($press->getId(), $userId, $userGroupId)
 		) {
-			print_r($_POST);
-			die (!$userGroupDao->contextHasGroup($press->getId(), $userGroupId)?'true':'false');
 			return false;
 		} else {
 			// Add the assignment
