@@ -29,6 +29,26 @@ class WebsiteSettingsTabHandler extends SettingsTabHandler {
 		);
 		$this->setPageTabs($pageTabs);
 	}
+
+	//
+	// Implement template methods from SettingsTabHandler
+	//
+	/**
+	 * @see SettingsTabHandler::editTabFormData()
+	 */
+	function editTabFormData($tabForm) {
+		$locale = Locale::getLocale();
+		if (is_a($tabForm, 'AppearanceForm')) {
+			if (Request::getUserVar('deleteHomeHeaderTitleImage')) {
+				$tabForm->deleteImage('homeHeaderTitleImage', $locale);
+				return true;
+			} elseif (Request::getUserVar('uploadHomeHeaderTitleImage')) {
+				if (!$tabForm->uploadImage('homeHeaderTitleImage', $locale))
+					$tabForm->addError('homeHeaderTitleImage', Locale::translate('manager.setup.homeTitleImageInvalid'));
+				return true;
+			}
+		}
+	}
 }
 
 ?>

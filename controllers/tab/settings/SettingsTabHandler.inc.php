@@ -114,19 +114,48 @@ class SettingsTabHandler extends Handler {
 	}
 
 	/**
-	 * Handle forms data saving.
+	 * Handle forms data (save or edit).
 	 * @param $request Request
-	 * @param $tabForm Form the current tab form
 	 */
-	function saveFormData(&$request) {
+	function saveFormData() {
 		if ($this->_isValidTab()) {
 			$tabForm = $this->_getTabForm();
-			$tabForm->readInputData();
-			if($tabForm->validate()) {
-				$tabForm->execute($request);
-				return DAO::getDataChangedEvent();
+			$isDataHandled = false;
+
+			// Check for any special cases before trying to save.
+			$isDataHandled = $this->editTabFormData($tabForm);
+
+			if (!$isDataHandled) {
+				// Try to save the form data.
+				$tabForm->readInputData();
+				if($tabForm->validate()) {
+					$tabForm->execute();
+					$isDataHandled = true;
+				}
 			}
 		}
+
+		if ($isDataHandled) {
+			$tabForm->initData();
+			$json = new JSONMessage(true, $tabForm->fetch($request));
+			return $json->getString();
+		}
+	}
+
+
+	//
+	// Template methods to be implemented by subclasses
+	//
+	/**
+	 * Implement this in subclasses to handle data editing in
+	 * the tab forms, like adding an image, deleting it, etc.
+	 * See handleTabFormData() to understand how specify in template
+	 * the action that must be executed using the form.
+	 * @param $tabForm Form the current tab form
+	 * @param $formEditAction string
+	 */
+	function editTabFormData($tabForm) {
+		return false;
 	}
 
 
