@@ -17,6 +17,7 @@
 
 <form id="reviewStageForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="reviewStage"}">
 	{include file="common/formErrors.tpl"}
+	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
 
 	<h3>{translate key="manager.setup.reviewLibrary"}</h3>
 
@@ -108,21 +109,25 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	<h3>{translate key="manager.setup.reviewGuidelines"}</h3>
-	<p>{translate key="manager.setup.reviewGuidelinesDescription"}</p>
-
-	{fbvFormArea id="review"}
-		{fbvFormSection}
-			{fbvElement type="textarea" multilingual="true" name="reviewGuidelines" id="reviewGuidelines" value=$reviewGuidelines size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
-		{/fbvFormSection}
-	{/fbvFormArea}
-
 	<div class="separator"></div>
 
 	<h3>{translate key="manager.setup.reviewForms"}</h3>
 
 	{url|assign:reviewFormGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.reviewForm.ReviewFormGridHandler" op="fetchGrid"}
 	{load_url_in_div id="reviewFormGridDiv" url=$reviewFormGridUrl}
+
+	<div class="separator"></div>
+
+	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
+		<h3>{translate key="manager.setup.reviewGuidelines"}</h3>
+		<p>{translate key="manager.setup.reviewGuidelinesDescription"}</p>
+
+		{fbvFormArea id="review"}
+			{fbvFormSection}
+				{fbvElement type="textarea" multilingual="true" name="reviewGuidelines" id="reviewGuidelines" value=$reviewGuidelines size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+			{/fbvFormSection}
+		{/fbvFormArea}
+	</div>
 
 	{include file="form/formButtons.tpl" submitText="common.save"}
 </form>

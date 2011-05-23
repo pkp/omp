@@ -21,7 +21,7 @@ class HomepageForm extends PressSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function HomepageForm() {
+	function HomepageForm($wizardMode = false) {
 		$settings = array(
 			'enableAnnouncements' => 'bool',
 			'enableAnnouncementsHomepage' => 'bool',
@@ -29,7 +29,7 @@ class HomepageForm extends PressSettingsForm {
 			'announcementsIntroduction' => 'string'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/homepage/form/homepageForm.tpl');
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/homepage/form/homepageForm.tpl', $wizardMode);
 	}
 
 

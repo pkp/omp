@@ -20,7 +20,7 @@ class MastheadForm extends PressSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function MastheadForm() {
+	function MastheadForm($wizardMode = false) {
 		$settings = array(
 			'name' => 'string',
 			'initials' => 'string',
@@ -29,7 +29,7 @@ class MastheadForm extends PressSettingsForm {
 			'pressEnabled' => 'bool'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/masthead/form/mastheadForm.tpl');
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/masthead/form/mastheadForm.tpl', $wizardMode);
 
 		$this->addCheck(new FormValidatorLocale($this, 'name', 'required', 'manager.setup.form.pressNameRequired'));
 		$this->addCheck(new FormValidatorLocale($this, 'initials', 'required', 'manager.setup.form.pressInitialsRequired'));

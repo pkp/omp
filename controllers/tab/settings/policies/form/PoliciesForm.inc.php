@@ -21,7 +21,7 @@ class PoliciesForm extends PressSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function PoliciesForm() {
+	function PoliciesForm($wizardMode = false) {
 		$settings = array(
 			'focusScopeDesc' => 'string',
 			'openAccessPolicy' => 'string',
@@ -32,7 +32,7 @@ class PoliciesForm extends PressSettingsForm {
 			'privacyStatement' => 'string'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/policies/form/policiesForm.tpl');
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/policies/form/policiesForm.tpl', $wizardMode);
 	}
 
 

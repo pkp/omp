@@ -17,6 +17,7 @@
 
 <form id="indexingForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.DistributionSettingsTabHandler" op="saveFormData" tab="indexing"}">
 	{include file="common/formErrors.tpl"}
+	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
 
 	<h3>{translate key="manager.setup.cataloguingMetadata"}</h3>
 
@@ -43,11 +44,13 @@
 
 	<div class="separator"></div>
 
-	<h3>{translate key="manager.setup.registerPressForIndexing"}</h3>
+	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
+		<h3>{translate key="manager.setup.registerPressForIndexing"}</h3>
 
-	{url|assign:"oaiSiteUrl" press=$currentPress->getPath()}
-	{url|assign:"oaiUrl" page="oai"}
-	<p>{translate key="manager.setup.registerPressForIndexingDescription" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
+		{url|assign:"oaiSiteUrl" press=$currentPress->getPath()}
+		{url|assign:"oaiUrl" page="oai"}
+		<p>{translate key="manager.setup.registerPressForIndexingDescription" siteUrl=$oaiSiteUrl oaiUrl=$oaiUrl}</p>
+	</div>
 
 	{include file="form/formButtons.tpl" submitText="common.save"}
 </form>

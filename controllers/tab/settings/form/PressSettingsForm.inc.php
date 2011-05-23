@@ -19,7 +19,10 @@ import('lib.pkp.classes.form.Form');
 class PressSettingsForm extends Form {
 
 	/** @var array */
-	var $settings;
+	var $_settings;
+
+	/** @var boolean */
+	var $_wizardMode;
 
 
 	/**
@@ -27,10 +30,47 @@ class PressSettingsForm extends Form {
 	 * @param $template The form template file.
 	 * @param $settings An associative array with the setting names as keys and associated types as values.
 	 */
-	function PressSettingsForm($settings, $template) {
+	function PressSettingsForm($settings, $template, $wizardMode) {
 		$this->addCheck(new FormValidatorPost($this));
-		$this->settings = $settings;
+		$this->setSettings($settings);
+		$this->setWizardMode($wizardMode);
 		parent::Form($template);
+	}
+
+
+	//
+	// Getters and Setters
+	//
+	/**
+	 * Get if the current form is in wizard mode (hide advanced settings).
+	 * @return boolean
+	 */
+	function getWizardMode() {
+		return $this->_wizardMode;
+	}
+
+	/**
+	 * Set if the current form is in wizard mode (hide advanced settings).
+	 * @param $wizardMode boolean
+	 */
+	function setWizardMode($wizardMode) {
+		$this->_wizardMode = $wizardMode;
+	}
+
+	/**
+	 * Get settings array.
+	 * @return array
+	 */
+	function getSettings() {
+		return $this->_settings;
+	}
+
+	/**
+	 * Set settings array.
+	 * @param $settings array
+	 */
+	function setSettings($settings) {
+		$this->_settings = $settings;
 	}
 
 
@@ -49,7 +89,7 @@ class PressSettingsForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array_keys($this->settings));
+		$this->readUserVars(array_keys($this->getSettings()));
 	}
 
 	/**
@@ -57,11 +97,15 @@ class PressSettingsForm extends Form {
 	 */
 	function fetch(&$request, $params = null) {
 		$templateMgr =& TemplateManager::getManager();
-		if (!is_null($params)) {
-			foreach($params as $tplVar => $value) {
-				$templateMgr->assign($tplVar, $value);
-			}
+
+		// Insert the wizardMode parameter in params array to pass to template.
+		$params = array_merge((array)$params, array('wizardMode' => $this->getWizardMode()));
+
+		// Pass the parameters to template.
+		foreach($params as $tplVar => $value) {
+			$templateMgr->assign($tplVar, $value);
 		}
+
 		return parent::fetch(&$request);
 	}
 
@@ -71,15 +115,16 @@ class PressSettingsForm extends Form {
 	function execute() {
 		$press =& Request::getPress();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+		$settings = $this->getSettings();
 
 		foreach ($this->_data as $name => $value) {
-			if (isset($this->settings[$name])) {
+			if (isset($settings[$name])) {
 				$isLocalized = in_array($name, $this->getLocaleFieldNames());
 				$settingsDao->updateSetting(
 					$press->getId(),
 					$name,
 					$value,
-					$this->settings[$name],
+					$settings[$name],
 					$isLocalized
 				);
 			}

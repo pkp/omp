@@ -21,12 +21,12 @@ class GuidelinesForm extends PressSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function GuidelinesForm() {
+	function GuidelinesForm($wizardMode = false) {
 		$settings = array(
 			'authorGuidelines' => 'string'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/guidelines/form/guidelinesForm.tpl');
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/guidelines/form/guidelinesForm.tpl', $wizardMode);
 	}
 
 

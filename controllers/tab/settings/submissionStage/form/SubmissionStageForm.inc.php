@@ -21,10 +21,10 @@ class SubmissionStageForm extends PressSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function SubmissionStageForm() {
+	function SubmissionStageForm($wizardMode = false) {
 		$settings = array();
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/submissionStage/form/submissionStageForm.tpl');
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/submissionStage/form/submissionStageForm.tpl', $wizardMode);
 	}
 
 

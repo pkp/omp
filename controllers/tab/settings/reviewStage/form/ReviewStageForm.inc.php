@@ -21,7 +21,7 @@ class ReviewStageForm extends PressSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function ReviewStageForm() {
+	function ReviewStageForm($wizardMode = false) {
 		$settings = array(
 			'reviewGuidelines' => 'string',
 			'mailSubmissionsToReviewers' => 'bool',
@@ -37,7 +37,7 @@ class ReviewStageForm extends PressSettingsForm {
 			'showEnsuringLink' => 'bool'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/reviewStage/form/reviewStageForm.tpl');
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/reviewStage/form/reviewStageForm.tpl', $wizardMode);
 	}
 
 

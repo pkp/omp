@@ -21,13 +21,13 @@ class AffiliationForm extends PressSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function AffiliationForm() {
+	function AffiliationForm($wizardMode = false) {
 		$settings = array(
 			'sponsorNote' => 'string',
 			'contributorNote' => 'string'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/affiliation/form/affiliationForm.tpl');
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/affiliation/form/affiliationForm.tpl', $wizardMode);
 	}
 
 

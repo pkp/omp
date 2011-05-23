@@ -23,7 +23,7 @@ class LanguagesForm extends PressSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function LanguagesForm() {
+	function LanguagesForm($wizardMode = false) {
 		$settings = array(
 			'supportedLocales' => 'object',
 			'supportedSubmissionLocales' => 'object',
@@ -39,7 +39,7 @@ class LanguagesForm extends PressSettingsForm {
 		$this->addCheck(new FormValidator($this, 'primaryLocale', 'required', 'manager.languages.form.primaryLocaleRequired'), array('Locale', 'isLocaleValid'));
 		$this->addCheck(new FormValidator($this, 'primaryLocale', 'required', 'manager.languages.form.primaryLocaleRequired'), $localeCheck, array(&$this->availableLocales));
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/languages/form/languages.tpl');
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/languages/form/languages.tpl', $wizardMode);
 	}
 
 

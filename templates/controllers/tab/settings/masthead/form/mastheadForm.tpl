@@ -17,8 +17,9 @@
 
 <form id="mastheadForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="masthead"}">
 	{include file="common/formErrors.tpl"}
+	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
 
-	<h3>1.1 {translate key="manager.setup.generalInformation"}</h3>
+	<h3>{translate key="manager.setup.generalInformation"}</h3>
 
 	{fbvFormArea id="generalInformation"}
 		{fbvFormSection title="manager.setup.pressName" for="name" required=true}
@@ -30,10 +31,6 @@
 		{fbvFormSection title="manager.setup.pressDescription" for="description" float=$fbvStyles.float.LEFT}
 			{fbvElement type="textarea" multilingual=true name="description" id="description" value=$description size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
 		{/fbvFormSection}
-		{fbvFormSection title="common.mailingAddress" for="mailingAddress" group=true float=$fbvStyles.float.RIGHT}
-			{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF1}
-			<p>{translate key="manager.setup.mailingAddressDescription"}</p>
-		{/fbvFormSection}
 		{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
 			{fbvElement type="checkbox" id="pressEnabled" value="1" checked=$pressEnabled label="manager.setup.enablePressInstructions"}
 		{/fbvFormSection}
@@ -43,6 +40,18 @@
 
 	{url|assign:mastheadGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.masthead.mastheadGridHandler" op="fetchGrid"}
 	{load_url_in_div id="mastheadGridDiv" url=$mastheadGridUrl}
+
+	<div class="separator"></div>
+
+	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
+		<h3>{translate key="common.mailingAddress"}</h3>
+		{fbvFormArea id="mailingAddressInformation"}
+			{fbvFormSection title="common.mailingAddress" for="mailingAddress" group=true}
+				{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF1}
+				<p>{translate key="manager.setup.mailingAddressDescription"}</p>
+			{/fbvFormSection}
+		{/fbvFormArea}
+	</div>
 
 	<div class="separator"></div>
 

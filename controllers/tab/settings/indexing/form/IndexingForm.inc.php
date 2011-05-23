@@ -20,14 +20,14 @@ class IndexingForm extends PressSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function IndexingForm() {
+	function IndexingForm($wizardMode = false) {
 		$settings = array(
 			'searchDescription' => 'string',
 			'searchKeywords' => 'string',
 			'customHeaders' => 'string'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/indexing/form/indexingForm.tpl');
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/indexing/form/indexingForm.tpl', $wizardMode);
 	}
 
 

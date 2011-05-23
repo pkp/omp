@@ -28,7 +28,7 @@ class AppearanceForm extends PressSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function AppearanceForm() {
+	function AppearanceForm($wizardMode = false) {
 		$this->setImages(array(
 			'homeHeaderTitleImage',
 			'homeHeaderLogoImage',
@@ -50,7 +50,7 @@ class AppearanceForm extends PressSettingsForm {
 			'homeHeaderTitle' => 'string'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/appearance/form/appearanceForm.tpl');
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/appearance/form/appearanceForm.tpl', $wizardMode);
 	}
 
 

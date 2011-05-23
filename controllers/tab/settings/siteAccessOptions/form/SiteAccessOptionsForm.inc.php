@@ -21,7 +21,7 @@ class SiteAccessOptionsForm extends PressSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function SiteAccessOptionsForm() {
+	function SiteAccessOptionsForm($wizardMode = false) {
 		$settings = array(
 			'disableUserReg' => 'bool',
 			'allowRegReader' => 'bool',
@@ -32,7 +32,7 @@ class SiteAccessOptionsForm extends PressSettingsForm {
 			'showGalleyLinks' => 'bool'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/siteAccessOptions/form/siteAccessOptionsForm.tpl');
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/siteAccessOptions/form/siteAccessOptionsForm.tpl', $wizardMode);
 	}
 
 }

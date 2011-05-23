@@ -17,6 +17,7 @@
 
 <form id="contactForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="contact"}">
 	{include file="common/formErrors.tpl"}
+	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
 
 	<h3>{translate key="manager.setup.principalContact"}</h3>
 	<p>{translate key="manager.setup.principalContactDescription"}</p>
@@ -45,21 +46,23 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	<h3>{translate key="manager.setup.technicalSupportContact"}</h3>
+	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
+		<h3>{translate key="manager.setup.technicalSupportContact"}</h3>
 
-	<p>{translate key="manager.setup.technicalSupportContactDescription"}</p>
+		<p>{translate key="manager.setup.technicalSupportContactDescription"}</p>
 
-	{fbvFormArea id="technicalSupportContact"}
-		{fbvFormSection title="user.name" for="supportName" required=true}
-			{fbvElement type="text" id="supportName" value=$supportName maxlength="60"}
-		{/fbvFormSection}
-		{fbvFormSection title="user.email" for="supportEmail" required=true float=$fbvStyles.float.LEFT}
-			{fbvElement type="text" id="supportEmail" value=$supportEmail maxlength="90"}
-		{/fbvFormSection}
-		{fbvFormSection title="user.phone" for="supportPhone" float=$fbvStyles.float.RIGHT}
-			{fbvElement type="text" id="supportPhone" value=$supportPhone maxlength="24"}
-		{/fbvFormSection}
-	{/fbvFormArea}
+		{fbvFormArea id="technicalSupportContact"}
+			{fbvFormSection title="user.name" for="supportName" required=true}
+				{fbvElement type="text" id="supportName" value=$supportName maxlength="60"}
+			{/fbvFormSection}
+			{fbvFormSection title="user.email" for="supportEmail" required=true float=$fbvStyles.float.LEFT}
+				{fbvElement type="text" id="supportEmail" value=$supportEmail maxlength="90"}
+			{/fbvFormSection}
+			{fbvFormSection title="user.phone" for="supportPhone" float=$fbvStyles.float.RIGHT}
+				{fbvElement type="text" id="supportPhone" value=$supportPhone maxlength="24"}
+			{/fbvFormSection}
+		{/fbvFormArea}
+	</div>
 
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>
 	{include file="form/formButtons.tpl" submitText="common.save"}

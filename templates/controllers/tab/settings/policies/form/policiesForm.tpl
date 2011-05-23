@@ -17,6 +17,7 @@
 
 <form id="policiesForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="policies"}">
 	{include file="common/formErrors.tpl"}
+	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
 
 	<h3>{translate key="manager.setup.focusAndScopeOfPress"}</h3>
 
@@ -28,27 +29,7 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	<h3>{translate key="manager.setup.openAccessPolicy"}</h3>
-
-	<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
-
-	{fbvFormArea id="openAccessPolicyContainer"}
-		{fbvFormSection}
-			{fbvElement type="textarea" multilingual="true" name="openAccessPolicy" id="openAccessPolicy" value=$openAccessPolicy size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
-		{/fbvFormSection}
-	{/fbvFormArea}
-
-	<p>{translate key="manager.setup.securitySettingsDescription"}</p>
-
-	<h3>{translate key="manager.setup.peerReviewPolicy"}</h3>
-
-	<p>{translate key="manager.setup.peerReviewDescription"}</p>
-
-	{fbvFormArea id="peerReviewPolicy"}
-		{fbvFormSection title="manager.setup.reviewPolicy"}
-			{fbvElement type="textarea" multilingual="true" name="reviewPolicy" id="reviewPolicy" value=$reviewPolicy size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
-		{/fbvFormSection}
-	{/fbvFormArea}
+	<div class="separator"></div>
 
 	<h3>{translate key="manager.setup.authorCopyrightNotice"}</h3>
 
@@ -74,6 +55,34 @@
 			{fbvElement type="textarea" multilingual="true" name="privacyStatement" id="privacyStatement" value=$privacyStatement size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
 		{/fbvFormSection}
 	{/fbvFormArea}
+
+	<div class="separator"></div>
+
+	<div {if $wizardMode}class="pkp_form_hidden"{/if}>
+		<h3>{translate key="manager.setup.openAccessPolicy"}</h3>
+
+		<p>{translate key="manager.setup.openAccessPolicyDescription"}</p>
+
+		{fbvFormArea id="openAccessPolicyContainer"}
+			{fbvFormSection}
+				{fbvElement type="textarea" multilingual="true" name="openAccessPolicy" id="openAccessPolicy" value=$openAccessPolicy size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+			{/fbvFormSection}
+		{/fbvFormArea}
+
+		<p>{translate key="manager.setup.securitySettingsDescription"}</p>
+
+		<div class="separator"></div>
+
+		<h3>{translate key="manager.setup.peerReviewPolicy"}</h3>
+
+		<p>{translate key="manager.setup.peerReviewDescription"}</p>
+
+		{fbvFormArea id="peerReviewPolicy"}
+			{fbvFormSection title="manager.setup.reviewPolicy"}
+				{fbvElement type="textarea" multilingual="true" name="reviewPolicy" id="reviewPolicy" value=$reviewPolicy size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+			{/fbvFormSection}
+		{/fbvFormArea}
+	</div>
 
 	{include file="form/formButtons.tpl" submitText="common.save"}
 </form>

@@ -21,7 +21,7 @@ class EmailTemplatesForm extends PressSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function EmailTemplatesForm() {
+	function EmailTemplatesForm($wizardMode = false) {
 		$settings = array(
 			'emailSignature' => 'string',
 			'envelopeSender' => 'string'
@@ -29,7 +29,7 @@ class EmailTemplatesForm extends PressSettingsForm {
 
 		$this->addCheck(new FormValidatorEmail($this, 'envelopeSender', 'optional', 'user.profile.form.emailRequired'));
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/emailTemplates/form/emailTemplatesForm.tpl');
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/emailTemplates/form/emailTemplatesForm.tpl', $wizardMode);
 	}
 
 

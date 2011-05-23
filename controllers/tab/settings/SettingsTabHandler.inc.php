@@ -24,6 +24,9 @@ class SettingsTabHandler extends Handler {
 	/** @var array */
 	var $_pageTabs;
 
+	/** @var boolean */
+	var $_wizardMode;
+
 
 	/**
 	 * Constructor
@@ -37,7 +40,8 @@ class SettingsTabHandler extends Handler {
 				)
 		);
 
-		$this->_currentTab = Request::getUserVar('tab');
+		$this->setCurrentTab(Request::getUserVar('tab'));
+		$this->setWizardMode(Request::getUserVar('wizardMode'));
 	}
 
 
@@ -45,11 +49,35 @@ class SettingsTabHandler extends Handler {
 	// Getters and Setters
 	//
 	/**
+	 * Get if the current tab is in wizard mode.
+	 * @return boolean
+	 */
+	function getWizardMode() {
+		return $this->_wizardMode;
+	}
+
+	/**
+	 * Set if the current tab is in wizard mode.
+	 * @param $wizardMode boolean
+	 */
+	function setWizardMode($wizardMode) {
+		$this->_wizardMode = $wizardMode;
+	}
+
+	/**
 	 * Get the current tab name.
 	 * @return string
 	 */
 	function getCurrentTab() {
 		return $this->_currentTab;
+	}
+
+	/**
+	 * Set the current tab name.
+	 * @param $currentTab string
+	 */
+	function setCurrentTab($currentTab) {
+		$this->_currentTab = $currentTab;
 	}
 
 	/**
@@ -103,6 +131,7 @@ class SettingsTabHandler extends Handler {
 			if ($this->_isTabTemplate()) {
 				$this->setupTemplate(true);
 				$templateMgr =& TemplateManager::getManager();
+				$templateMgr->assign('wizardMode', $this->getWizardMode());
 				return $templateMgr->fetchJson($this->_getTabTemplate());
 			} else {
 				$tabForm = $this->_getTabForm();
@@ -173,7 +202,7 @@ class SettingsTabHandler extends Handler {
 		// Search for a form using the tab name.
 		import($pageTabs[$currentTab]);
 		$tabFormClassName = $this->_getFormClassName($pageTabs[$currentTab]);
-		$tabForm = new $tabFormClassName;
+		$tabForm = new $tabFormClassName($this->getWizardMode());
 
 		assert(is_a($tabForm, 'Form'));
 

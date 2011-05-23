@@ -21,7 +21,7 @@ class ContactForm extends PressSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function ContactForm() {
+	function ContactForm($wizardMode = false) {
 		$settings = array(
 			'contactName' => 'string',
 			'contactTitle' => 'string',
@@ -35,12 +35,14 @@ class ContactForm extends PressSettingsForm {
 			'supportPhone' => 'string'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/contact/form/contactForm.tpl');
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/contact/form/contactForm.tpl', $wizardMode);
 
 		$this->addCheck(new FormValidator($this, 'contactName', 'required', 'manager.setup.form.contactNameRequired'));
 		$this->addCheck(new FormValidatorEmail($this, 'contactEmail', 'required', 'manager.setup.form.contactEmailRequired'));
-		$this->addCheck(new FormValidator($this, 'supportName', 'required', 'manager.setup.form.supportNameRequired'));
-		$this->addCheck(new FormValidatorEmail($this, 'supportEmail', 'required', 'manager.setup.form.supportEmailRequired'));
+		if (!$this->getWizardMode()) {
+			$this->addCheck(new FormValidator($this, 'supportName', 'required', 'manager.setup.form.supportNameRequired'));
+			$this->addCheck(new FormValidatorEmail($this, 'supportEmail', 'required', 'manager.setup.form.supportEmailRequired'));
+		}
 	}
 
 

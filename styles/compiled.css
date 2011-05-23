@@ -418,6 +418,7 @@ input.pkp_form_uploadField {
   filter:alpha(opacity=0);
   opacity:0;
 }
+.pkp_form_hidden { display:none !important; }
 table.pkp_listing td { padding:0.25em 1.5em 0.25em 0.5em; }
 table.pkp_listing tr.heading td, table.pkp_listing td.heading {
   font-size:0.85em;
@@ -905,10 +906,7 @@ span.pkp_controllers_informationCenter_itemLastEvent {
   width:28%;
   margin-left:30px;
 }
-.pkp_submissionChecklist li label.error {
-  margin:-17px 0 21px 23px;
-  display:block;
-}
+@import url("styles/submissionChecklist.less");
 .pkp_workflow_headerBottom { margin-top:10px; }
 .pkp_workflow_headerBottom .pkp_workflow_headerUserInfo {
   width:51%;

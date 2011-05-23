@@ -21,14 +21,14 @@ class PressIdentificationForm extends PressSettingsForm {
 	/**
 	 * Constructor.
 	 */
-	function PressIdentificationForm() {
+	function PressIdentificationForm($wizardMode = false) {
 		$settings = array(
 			'enablePublicMonographId' => 'bool',
 			'enablePublicGalleyId' => 'bool',
 			'enablePageNumber' => 'bool'
 		);
 
-		parent::PressSettingsForm($settings, 'controllers/tab/settings/pressIdentification/form/pressIdentificationForm.tpl');
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/pressIdentification/form/pressIdentificationForm.tpl', $wizardMode);
 	}
 }
 
