@@ -12,7 +12,7 @@
  * @brief Form to edit press general information settings.
  */
 
-import('lib.pkp.classes.form.Form');
+// Import the base Form.
 import('controllers.tab.settings.form.PressSettingsForm');
 
 class MastheadForm extends PressSettingsForm {

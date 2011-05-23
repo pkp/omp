@@ -193,6 +193,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<!-- Website settings -->
 	<message key="manager.website.homepage">Homepage</message>
 	<message key="manager.website.appearance">Appearance</message>
+	<message key="manager.website.languages">Languages</message>
 	<message key="manager.website.website">Website</message>
 	
 	<!-- Publication Process settings -->
@@ -213,7 +214,6 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.system.archiving">Archiving</message>
 	<message key="manager.system.reviewForms">Review Forms</message>
 	<message key="manager.system.readingTools">Reading Tools</message>
-	<message key="manager.system.languages">Languages</message>
 	<message key="manager.system.payments">Payments</message>
 	<message key="manager.system.plugins">Plugins</message>
 

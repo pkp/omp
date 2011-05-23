@@ -25,20 +25,6 @@ switch ($op) {
 		define('HANDLER_CLASS', 'SetupHandler');
 		break;
 	//
-	// System Settings
-	//
-	case 'system':
-	case 'languages':
-	case 'preparedEmails':
-	case 'reviewForms':
-	case 'readingTools':
-	case 'payments':
-	case 'plugins':
-	case 'archiving':
-		import('pages.manager.SystemHandler');
-		define('HANDLER_CLASS', 'SystemHandler');
-		break;
-	//
 	// People Management
 	//
 	case 'people':
@@ -50,15 +36,6 @@ switch ($op) {
 	case 'userProfile':
 		import('pages.manager.PeopleHandler');
 		define('HANDLER_CLASS', 'PeopleHandler');
-		break;
-	//
-	// Languages
-	//
-	case 'languages':
-	case 'saveLanguageSettings':
-	case 'reloadLocalizedDefaultSettings':
-		import('pages.manager.PressLanguagesHandler');
-		define('HANDLER_CLASS', 'PressLanguagesHandler');
 		break;
 	//
 	// Files Browser

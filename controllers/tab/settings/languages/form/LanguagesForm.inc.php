@@ -1,73 +1,79 @@
 <?php
 
 /**
- * @file classes/manager/form/LanguageSettingsForm.inc.php
+ * @file controllers/tab/settings/languages/form/LanguagesForm.inc.php
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class LanguageSettingsForm
- * @ingroup manager_form
+ * @class LanguagesForm
+ * @ingroup controllers_tab_settings_languages_form
  *
  * @brief Form for modifying press language settings.
  */
 
+// Import the base Form.
+import('controllers.tab.settings.form.PressSettingsForm');
 
-
-import('lib.pkp.classes.form.Form');
-
-class LanguageSettingsForm extends Form {
-
-	/** @var array the setting names */
-	var $settings;
+class LanguagesForm extends PressSettingsForm {
 
 	/** @var array set of locales available for press use */
-	var $availableLocales;
+	var $_availableLocales;
 
 	/**
 	 * Constructor.
 	 */
-	function LanguageSettingsForm() {
-		parent::Form('manager/languageSettings.tpl');
-
-		$this->settings = array(
+	function LanguagesForm() {
+		$settings = array(
 			'supportedLocales' => 'object',
 			'supportedSubmissionLocales' => 'object',
 			'supportedFormLocales' => 'object'
 		);
 
 		$site =& Request::getSite();
-		$this->availableLocales = $site->getSupportedLocales();
+		$this->setAvailableLocales($site->getSupportedLocales());
 
 		$localeCheck = create_function('$locale,$availableLocales', 'return in_array($locale,$availableLocales);');
 
 		// Validation checks for this form
 		$this->addCheck(new FormValidator($this, 'primaryLocale', 'required', 'manager.languages.form.primaryLocaleRequired'), array('Locale', 'isLocaleValid'));
 		$this->addCheck(new FormValidator($this, 'primaryLocale', 'required', 'manager.languages.form.primaryLocaleRequired'), $localeCheck, array(&$this->availableLocales));
-		$this->addCheck(new FormValidatorPost($this));
+
+		parent::PressSettingsForm($settings, 'controllers/tab/settings/languages/form/languages.tpl');
 	}
 
+
+	//
+	// Getters and Setters
+	//
 	/**
-	 * Display the form.
+	 * Get site available locales.
+	 * @return array
 	 */
-	function display() {
-		$templateMgr =& TemplateManager::getManager();
-		$site =& Request::getSite();
-		$templateMgr->assign('availableLocales', $site->getSupportedLocaleNames());
-		$templateMgr->assign('helpTopicId','press.managementPages.languages');
-		parent::display();
+	function getAvailableLocales() {
+		return $this->_availableLocales;
 	}
 
 	/**
-	 * Initialize form data from current settings.
+	 * Set site available locales.
+	 * @param $siteAvailableLocales array
+	 */
+	function setAvailableLocales($siteAvailableLocales) {
+		$this->_availableLocales = $siteAvailableLocales;
+	}
+
+
+	//
+	// Overridden methods from PressSettingsForm.
+	//
+	/**
+	 * @see PressSettingsForm::initData()
 	 */
 	function initData() {
 		$press =& Request::getPress();
-		foreach ($this->settings as $settingName => $settingType) {
-			$this->_data[$settingName] = $press->getSetting($settingName);
-		}
-
 		$this->setData('primaryLocale', $press->getPrimaryLocale());
+
+		parent::initData();
 
 		foreach (array('supportedFormLocales', 'supportedSubmissionLocales', 'supportedLocales') as $name) {
 			if ($this->getData($name) == null || !is_array($this->getData($name))) {
@@ -77,12 +83,30 @@ class LanguageSettingsForm extends Form {
 	}
 
 	/**
+	 * @see PressSettingsForm::fetch()
+	 */
+	function fetch(&$request) {
+		$site =& Request::getSite();
+		$availableLocales = $site->getSupportedLocaleNames();
+
+		$reloadDefaultsLinkActions = $this->_getLinkActions($request, $availableLocales);
+
+		$params = array(
+			'reloadDefaultsLinkActions' => $reloadDefaultsLinkActions,
+			'availableLocales' => $availableLocales,
+			'helpTopicId' => 'press.managementPages.languages'
+		);
+		return parent::fetch(&$request, $params);
+	}
+
+	/**
 	 * Assign form data to user-submitted data.
 	 */
 	function readInputData() {
-		$vars = array_keys($this->settings);
-		$vars[] = 'primaryLocale';
-		$this->readUserVars($vars);
+		$primaryLocale = Request::getUserVar('primaryLocale');
+		$this->setData('primaryLocale', $primaryLocale);
+
+		parent::readInputData();
 
 		foreach (array('supportedFormLocales', 'supportedSubmissionLocales', 'supportedLocales') as $name) {
 			if ($this->getData($name) == null || !is_array($this->getData($name))) {
@@ -102,7 +126,7 @@ class LanguageSettingsForm extends Form {
 		foreach (array('supportedLocales', 'supportedSubmissionLocales', 'supportedFormLocales') as $name) {
 			$$name = array();
 			foreach ($this->getData($name) as $locale) {
-				if (Locale::isLocaleValid($locale) && in_array($locale, $this->availableLocales)) {
+				if (Locale::isLocaleValid($locale) && in_array($locale, $this->getAvailableLocales())) {
 					array_push($$name, $locale);
 				}
 			}
@@ -122,19 +146,42 @@ class LanguageSettingsForm extends Form {
 		$this->setData('supportedSubmissionLocales', $supportedSubmissionLocales);
 		$this->setData('supportedFormLocales', $supportedFormLocales);
 
-		foreach ($this->_data as $name => $value) {
-			if (!in_array($name, array_keys($this->settings))) continue;
-			$settingsDao->updateSetting(
-				$press->getId(),
-				$name,
-				$value,
-				$this->settings[$name]
-			);
-		}
+		parent::execute();
 
 		$pressDao =& DAORegistry::getDAO('PressDAO');
 		$press->setPrimaryLocale($this->getData('primaryLocale'));
 		$pressDao->updatePress($press);
+	}
+
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Get link actions for form.
+	 */
+	function _getLinkActions($request, $availableLocales) {
+		$router =& $request->getRouter();
+		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+
+		$reloadDefaultsLinkAction = array();
+
+		foreach ($availableLocales as $localeKey => $localeName) {
+			$params = array('localeToLoad' => $localeKey);
+			$confirmationModal = new ConfirmationModal(
+				__('manager.language.confirmDefaultSettingsOverwrite'),
+				null,
+				$router->url($request, null, null, 'reloadLocalizedDefaultSettings', null, $params)
+			);
+			$reloadDefaultsLinkAction[$localeKey] = new LinkAction(
+				'reloadDefault-' . $localeKey,
+				$confirmationModal,
+				__('manager.language.reloadLocalizedDefaultSettings'),
+				null
+			);
+		}
+
+		return $reloadDefaultsLinkAction;
 	}
 }
 

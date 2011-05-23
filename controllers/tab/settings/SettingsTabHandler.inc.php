@@ -98,7 +98,7 @@ class SettingsTabHandler extends Handler {
 	/**
 	 * Show a tab.
 	 */
-	function showTab($request) {
+	function showTab($args, &$request) {
 		if ($this->_isValidTab()) {
 			if ($this->_isTabTemplate()) {
 				$this->setupTemplate(true);
@@ -117,7 +117,7 @@ class SettingsTabHandler extends Handler {
 	 * Handle forms data (save or edit).
 	 * @param $request Request
 	 */
-	function saveFormData() {
+	function saveFormData($args, &$request) {
 		if ($this->_isValidTab()) {
 			$tabForm = $this->_getTabForm();
 			$isDataHandled = false;
