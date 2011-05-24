@@ -12,24 +12,23 @@
  * @brief Display the file revisions authors have uploaded
  */
 
-import('controllers.grid.files.fileList.FileListGridHandler');
+import('controllers.grid.files.fileSignoff.FileSignoffGridHandler');
 
-class ReviewRevisionsGridHandler extends FileListGridHandler {
+class ReviewRevisionsGridHandler extends FileSignoffGridHandler {
 	/**
 	 * Constructor
 	 */
 	function ReviewRevisionsGridHandler() {
 		import('controllers.grid.files.review.ReviewRevisionsGridDataProvider');
-		$dataProvider = new ReviewRevisionsGridDataProvider();
-		parent::FileListGridHandler(
-			$dataProvider,
+		parent::FileSignoffGridHandler(
+			new ReviewRevisionsGridDataProvider(),
 			WORKFLOW_STAGE_ID_INTERNAL_REVIEW,
 			FILE_GRID_ADD|FILE_GRID_DOWNLOAD_ALL
 		);
 
 		$this->addRoleAssignment(
 			array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-			array('fetchGrid', 'fetchRow', 'downloadAllFiles')
+			array('fetchGrid', 'fetchRow', 'downloadAllFiles', 'signOffFiles')
 		);
 
 		// Set the grid title.
