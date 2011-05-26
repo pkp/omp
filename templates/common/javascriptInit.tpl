@@ -14,5 +14,9 @@
 			$(".tagit").live('click', function() {
 				$(this).find('input').focus();
 			});
+            // these must be called on each page
+            $("#accordion").accordion();
+			$("button, input:submit").button();
+			$("#tabs").tabs();
 		});
 	{/literal}</script>

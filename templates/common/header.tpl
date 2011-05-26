@@ -127,7 +127,22 @@
 		</div><!-- pkp_structure_head -->
 		<div class="pkp_structure_body">
 			<div class="pkp_structure_content">
-				{if $leftSidebarCode}
+                <!-- TODO: replace with breadcrumbs and wire up search -->
+                <div class="unit size1of5">
+                    <div class="pkp_structure_search">&nbsp;</div>
+                </div>
+                <div class="unit size4of5 lastUnit">
+                    <ul class="pkp_helpers_flatlist pkp_structure_breadcrumb align_left">
+                        <li class="no_bullet"><a href="#">Breadcrumb Link</a></li>
+                        <li><a href="#">Breadcrumb Link</a></li>
+                        <li>Breadcrumb Link</li>
+                    </ul>
+                    <div class="pkp_structure_search pkp_helpers_align_right">
+                        <input type="text" value="Search..." />
+                        <button class="go">Go</button>
+                    </div>
+                </div>
+                {if $leftSidebarCode}
 					<div class="pkp_structure_sidebar pkp_structure_sidebar_left mod simple">
 						{$leftSidebarCode}
 					</div><!-- pkp_structure_sidebar_left -->
@@ -145,3 +160,5 @@
 				</script>
 
 				<div class="pkp_structure_main">
+                    <!-- TODO: Place page title here -->
+                    <h2 class="title_left">This is where the page title should go</h2>
