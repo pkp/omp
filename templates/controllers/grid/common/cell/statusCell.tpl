@@ -16,7 +16,7 @@
 			{include file="linkAction/linkAction.tpl" action=$defaultCellAction contextId=$cellId}
 		{/if}
 	{else}
-		<a class="task {$status}">status</a>
+		<a class="task {$status|escape}">status</a>
 	{/if}
 </span>
 
