@@ -12,9 +12,9 @@
  * @brief Handle the fair copy files grid (displays copyedited files ready to move to proofreading)
  */
 
-import('controllers.grid.files.fileList.FileListGridHandler');
+import('controllers.grid.files.fileSignoff.FileSignoffGridHandler');
 
-class FairCopyFilesGridHandler extends FileListGridHandler {
+class FairCopyFilesGridHandler extends FileSignoffGridHandler {
 	/**
 	 * Constructor
 	 */
@@ -24,7 +24,7 @@ class FairCopyFilesGridHandler extends FileListGridHandler {
 			WORKFLOW_STAGE_ID_EDITING,
 			MONOGRAPH_FILE_FAIR_COPY
 		);
-		parent::FileListGridHandler(
+		parent::FileSignoffGridHandler(
 			$dataProvider,
 			WORKFLOW_STAGE_ID_EDITING,
 			FILE_GRID_ADD|FILE_GRID_DELETE
