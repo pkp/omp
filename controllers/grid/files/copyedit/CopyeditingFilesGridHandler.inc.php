@@ -21,6 +21,9 @@ import('controllers.grid.files.copyedit.CopyeditingFilesGridCategoryRow');
 import('controllers.grid.files.copyedit.CopyeditingFilesGridRow');
 import('controllers.grid.files.copyedit.CopyeditingFilesGridCellProvider');
 
+// Link actions
+import('lib.pkp.classes.linkAction.request.AjaxModal');
+
 class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	/**
 	 * Constructor
@@ -34,7 +37,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 				'fetchGrid', 'addCopyeditedFile',
 				'editCopyeditedFile', 'uploadCopyeditedFile',
 				'returnSignoffRow', 'returnFileRow',
-				'downloadFile', 'deleteFile'
+				'downloadFile', 'deleteFile',
 			)
 		);
 		$this->addRoleAssignment(
@@ -81,10 +84,10 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_COMMON, LOCALE_COMPONENT_APPLICATION_COMMON, LOCALE_COMPONENT_PKP_SUBMISSION, LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_OMP_SUBMISSION));
 
 		// Grab the copyediting files to display as categories
-		import('classes.monograph.MonographFile');
-		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
 		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
+
 		$rowData = array();
 		foreach ($monographFiles as $monographFile) {
 			$rowData[$monographFile->getFileId()] = $monographFile;
@@ -94,30 +97,29 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		// Grid actions
 		// Action to add a file -- Adds a category row for the file
 		$router =& $request->getRouter();
-		$this->addAction(
-			new LegacyLinkAction(
-				'uploadFile',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_APPEND,
+		$this->addAction(new LinkAction(
+			'uploadFile',
+			new AjaxModal(
 				$router->url($request, null, 'grid.files.submission.CopyeditingSubmissionFilesGridHandler', 'addFile', null, array('monographId' => $monograph->getId(), 'fileStage' => MONOGRAPH_FILE_COPYEDIT)),
-				'submission.addFile',
-				null,
-				'add'
-			)
-		);
+				__('submission.addFile'),
+				'add_item'
+			),
+			__('submission.addFile'),
+			'add_item'
+		));
+
 		// Action to add a user -- Adds the user as a subcategory to the files selected in its modal
 		// FIXME: Not all roles should see this action. Bug #5975.
-		$this->addAction(
-			new LegacyLinkAction(
-				'addUser',
-				LINK_ACTION_MODE_MODAL,
-				LINK_ACTION_TYPE_REPLACE,
+		$this->addAction(new LinkAction(
+			'addUser',
+			new AjaxModal(
 				$router->url($request, null, null, 'addUser', null, array('monographId' => $monograph->getId())),
-				'editor.monograph.copyediting.addUser',
-				null,
-				'add'
-			)
-		);
+				__('editor.monograph.copyediting.addUser'),
+				'add_item'
+			),
+			__('editor.monograph.copyediting.addUser'),
+			'add_item'
+		));
 
 		// Grid Columns
 		$cellProvider = new CopyeditingFilesGridCellProvider();

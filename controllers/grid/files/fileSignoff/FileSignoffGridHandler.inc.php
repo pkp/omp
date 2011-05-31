@@ -64,27 +64,17 @@ class FileSignoffGridHandler extends SubmissionFilesGridHandler {
 				}
 			}
 
-			// Add the uploader user group to the uploader
-			// user group list if it has not been added before.
+			// Add the uploader user group if not already.
 			$uploaderUserGroupId = $monographFile->getUserGroupId();
-			if (!isset($uploaderUserGroups[$uploaderUserGroupId])) {
-				// Retrieve the user group object. For the sake of
-				// simpler code we may retrieve groups again that we
-				// already retrieved as signoff groups. This will hardly
-				// be a performance problem, though.
+			if (!isset($signoffUserGroups[$uploaderUserGroupId])) {
+				// Retrieve the user group object.
 				$userGroup =& $userGroupDao->getById($uploaderUserGroupId);
 				assert(is_a($userGroup, 'UserGroup'));
-				$uploaderUserGroups[$uploaderUserGroupId] =& $userGroup;
+				$signoffUserGroups[$uploaderUserGroupId] =& $userGroup;
 			}
 		}
 
-		// Add uploader user group columns.
-		import('controllers.grid.files.UploaderGridColumn');
-		foreach($uploaderUserGroups as $uploaderUserGroup) { /* @var $uploaderUserGroup UserGroup */
-			$this->addColumn(new UploaderGridColumn($uploaderUserGroup));
-		}
-
-		// Add signoff user group columns.
+		// Add user group columns.
 		import('controllers.grid.files.SignoffStatusGridColumn');
 		foreach($signoffUserGroups as $signoffUserGroup) { /* @var $uploaderUserGroup UserGroup */
 			$this->addColumn(new SignoffStatusGridColumn($signoffUserGroup, $this->getStageId(), $this->getRequestArgs()));

@@ -120,9 +120,10 @@ class SignoffStatusGridColumn extends UserGroupColumn {
 	 */
 	function _getSignoffStatus(&$row) {
 		static $statusCache = array();
+		$rowId = $row->getId();
 
-		if (!isset($statusCache[$row->getId()])) {
-			$statusCache[$row->getId()] = '';
+		if (!isset($statusCache[$rowId])) {
+			$statusCache[$rowId] = '';
 
 			// Retrieve the current user.
 			$sessionManager =& SessionManager::getManager();
@@ -135,14 +136,19 @@ class SignoffStatusGridColumn extends UserGroupColumn {
 			assert(isset($submissionFileData['signoffs']));
 			$fileSignoffs = $submissionFileData['signoffs'];
 
-			// Retrieve the user group represented by this column.
+			// Retrieve the user group & file
 			$signoffColumnUserGroup =& $this->getUserGroup();
+			$monographFile =& $this->getMonographFile($row);
 
-			// Does the current user have to sign off the file?
-			if (isset($fileSignoffs[$userId])) {
+			if ($signoffColumnUserGroup->getId() == $monographFile->getUserGroupId()) {
+				// The uploader of the current file belongs to
+				// the user group displayed in this column.
+				$statusCache[$rowId] = 'uploaded';
+
+			} else if (isset($fileSignoffs[$userId])) {
+				// The current user has to sign off the file
 				$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 				$viewsDao =& DAORegistry::getDAO('ViewsDAO'); /* @var $viewsDao ViewsDAO */
-				$monographFile =& $this->getMonographFile($row);
 				foreach($fileSignoffs[$userId] as $signoffUserGroupId => $signoffUserGroup) {
 					if ($signoffUserGroupId == $signoffColumnUserGroup->getId()) {
 						// Find out whether the editor already signed
@@ -173,7 +179,7 @@ class SignoffStatusGridColumn extends UserGroupColumn {
 					}
 				}
 
-				$statusCache[$row->getId()] = $status;
+				$statusCache[$rowId] = $status;
 			}
 		}
 
