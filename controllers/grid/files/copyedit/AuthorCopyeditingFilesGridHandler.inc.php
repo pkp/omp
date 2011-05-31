@@ -26,9 +26,12 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	function AuthorCopyeditingFilesGridHandler() {
 		parent::GridHandler();
 
-		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-								 array('fetchGrid', 'addCopyeditedFile', 'displayFileForm', 'uploadFile', 'editMetadata', 'saveMetadata',
-								 	   'finishFileSubmission', 'returnFileRow', 'downloadFile', 'deleteFile'));
+		$this->addRoleAssignment(array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER), array(
+			'fetchGrid', 'addCopyeditedFile', 'displayFileForm',
+			'uploadFile', 'editMetadata', 'saveMetadata',
+			'finishFileSubmission', 'returnFileRow', 'downloadFile',
+			'deleteFile'
+		));
 	}
 
 	//
@@ -46,7 +49,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	/*
+	/**
 	 * Configure the grid
 	 * @param PKPRequest $request
 	 */
@@ -54,7 +57,6 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		parent::initialize($request);
 
 		// Basic grid configuration
-		$monographId = (integer)$request->getUserVar('monographId');
 		$this->setId('copyeditingFiles');
 		$this->setTitle('submission.copyediting');
 
@@ -91,7 +93,6 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 				$cellProvider
 			)
 		);
-
 	}
 
 
@@ -110,7 +111,8 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 		$fileStage = MONOGRAPH_FILE_COPYEDIT;
 
 		$templateMgr =& TemplateManager::getManager();
-		$templateMgr->assign('monographId', $request->getUserVar('monographId'));
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$templateMgr->assign('monographId', $monograph->getId());
 		$templateMgr->assign('fileStage', $fileStage);
 		$templateMgr->assign('gridId', $this->getId());
 
@@ -144,6 +146,8 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 */
 	function uploadFile($args, &$request) {
 		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+
+		// FIXME: Bug #6199
 		$signoffId = $request->getUserVar('copyeditingSignoffId');
 		assert(is_numeric($signoffId));
 
@@ -176,6 +180,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function editMetadata($args, &$request) {
+		// FIXME: bug #6199
 		$fileId = $request->getUserVar('fileId');
 		$signoffId = $request->getUserVar('signoffId');
 
@@ -219,6 +224,7 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function saveMetadata($args, &$request) {
+		// FIXME: Bug #6199
 		$fileId = $request->getUserVar('fileId');
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
@@ -261,7 +267,8 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function returnFileRow($args, &$request) {
-		$signoffId = (integer)$request->getUserVar('signoffId');
+		// FIXME: Bug #6199
+		$signoffId = (int) $request->getUserVar('signoffId');
 
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff =& $signoffDao->getById($signoffId);
@@ -288,7 +295,10 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 * @return string Serialized JSON object
 	 */
 	function downloadFile($args, &$request) {
-		$monographId = $request->getUserVar('monographId');
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
+		$monographId = $monograph->getId();
+
+		// FIXME: Bug #6199
 		$fileId = $request->getUserVar('fileId');
 
 		$sessionManager =& SessionManager::getManager();
@@ -306,7 +316,9 @@ class AuthorCopyeditingFilesGridHandler extends GridHandler {
 	 * @return string
 	 */
 	function deleteFile($args, &$request) {
+		// FIXME: Bug #6199
 		$signoffId = $request->getUserVar('signoffId');
+
 		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
 		$signoff =& $signoffDao->getById($signoffId);
 

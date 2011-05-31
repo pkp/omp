@@ -31,8 +31,10 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$this->addRoleAssignment(
 			ROLE_ID_AUTHOR,
 			$authorOperations = array(
-				'fetchGrid', 'addCopyeditedFile', 'editCopyeditedFile', 'uploadCopyeditedFile',
-				'returnSignoffRow', 'returnFileRow', 'downloadFile', 'deleteFile'
+				'fetchGrid', 'addCopyeditedFile',
+				'editCopyeditedFile', 'uploadCopyeditedFile',
+				'returnSignoffRow', 'returnFileRow',
+				'downloadFile', 'deleteFile'
 			)
 		);
 		$this->addRoleAssignment(
@@ -65,7 +67,7 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 	// Implement template methods from PKPHandler
 	//
 
-	/*
+	/**
 	 * Configure the grid
 	 * @param PKPRequest $request
 	 */
