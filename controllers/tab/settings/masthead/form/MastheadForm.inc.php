@@ -53,7 +53,7 @@ class MastheadForm extends PressSettingsForm {
 	/**
 	 * @see PressSettingsForm::execute()
 	 */
-	function execute($request) {
+	function execute() {
 		$press =& Request::getPress();
 
 		if ($press->getEnabled() !== $this->getData('pressEnabled')) {
