@@ -14,6 +14,9 @@
 
 import('lib.pkp.classes.controllers.grid.GridCategoryRow');
 
+// Link actions
+import('lib.pkp.classes.linkAction.request.AjaxModal');
+
 class ChapterGridCategoryRow extends GridCategoryRow {
 	/**
 	 * Constructor
@@ -49,16 +52,15 @@ class ChapterGridCategoryRow extends GridCategoryRow {
 				'chapterId' => $chapterId
 			);
 
-			$this->addAction(
-				new LegacyLinkAction(
-					'editChapter',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REPLACE,
+			
+			$this->addAction(new LinkAction(
+				'editChapter',
+				new AjaxModal(
 					$router->url($request, null, null, 'editChapter', null, $actionArgs),
-					null,
 					$chapter->getLocalizedTitle()
-				)
-			);
+				),
+				$chapter->getLocalizedTitle()
+			));
 		}
 	}
 }
