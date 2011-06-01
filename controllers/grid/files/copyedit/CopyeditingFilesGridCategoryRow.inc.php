@@ -49,17 +49,8 @@ class CopyeditingFilesGridCategoryRow extends GridCategoryRow {
 				'fileId' => $fileId
 			);
 
-			$this->addAction(
-				new LegacyLinkAction(
-					'downloadFile',
-					LINK_ACTION_MODE_LINK,
-					LINK_ACTION_TYPE_NOTHING,
-					$router->url($request, null, null, 'downloadFile', null, $actionArgs),
-					null,
-					$monographFile->getLocalizedName()
-				)
-			);
-
+			import('controllers.api.file.linkAction.DownloadFileLinkAction');
+			$this->addAction(new DownloadFileLinkAction($request, $monographFile, WORKFLOW_STAGE_ID_EDITING));
 		}
 	}
 }

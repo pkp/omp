@@ -27,7 +27,7 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 	 * Adds a link to the file if there is an uploaded file present
 	 * @param $row GridRow
 	 * @param $column GridColumn
-	 * @return array an array of LegacyLinkAction instances
+	 * @return array an array of LinkAction instances
 	 */
 	function getCellActions(&$request, &$row, &$column, $position = GRID_ACTION_POSITION_DEFAULT) {
 		if ($column->getId() == 'name') {
@@ -50,15 +50,8 @@ class CopyeditingFilesGridCellProvider extends GridCellProvider {
 				$user =& $userDao->getUser($signoff->getUserId());
 
 				$label = $user->getFullName() . " (" . $userGroup->getLocalizedName() . ") - " . $monographFile->getLocalizedName();
-				$action = new LegacyLinkAction(
-					'downloadFile',
-					LINK_ACTION_MODE_LINK,
-					LINK_ACTION_TYPE_NOTHING,
-					$router->url($request, null, null, 'downloadFile', null, $actionArgs),
-					null,
-					$label
-				);
-				return array($action);
+				import('controllers.api.file.linkAction.DownloadFileLinkAction');
+				return array(new DownloadFileLinkAction($request, $monographFile, WORKFLOW_STAGE_ID_EDITING));
 			} else {
 				$fileId = $monographFile = null;
 				return null;
