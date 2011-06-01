@@ -45,8 +45,9 @@ class NewLibraryFileForm extends LibraryFileForm {
 	}
 
 	/**
-	 * Save the new library file
-	 * @param $userId int The current user ID (for validation purposes)
+	 * Save the new library file.
+	 * @param $userId int The current user ID (for validation purposes).
+	 * @return $fileId int The new library file id.
 	 */
 	function execute($userId) {
 		// Fetch the temporary file storing the uploaded library file
@@ -59,18 +60,20 @@ class NewLibraryFileForm extends LibraryFileForm {
 		$libraryFileManager = new LibraryFileManager($this->pressId);
 
 		// Convert the temporary file to a library file and store
-		$libraryFile =& $libraryFileManager->copyFromTemporaryFile($temporaryFile);
+		$libraryFile =& $libraryFileManager->copyFromTemporaryFile($temporaryFile, $this->fileType);
 		assert($libraryFile);
 		$libraryFile->setPressId($this->pressId);
 		$libraryFile->setName($this->getData('libraryFileName'), null); // Localized
 		$libraryFile->setType($this->fileType);
 
-		$libraryFileDao->insertObject($libraryFile);
+		$fileId = $libraryFileDao->insertObject($libraryFile);
 
 		// Clean up the temporary file
 		import('classes.file.TemporaryFileManager');
 		$temporaryFileManager = new TemporaryFileManager();
 		$temporaryFileManager->deleteFile($this->getData('temporaryFileId'), $userId);
+
+		return $fileId;
 	}
 }
 

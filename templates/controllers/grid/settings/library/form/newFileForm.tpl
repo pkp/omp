@@ -15,7 +15,7 @@
 			{ldelim}
 				$uploader: $('#uploadForm #plupload'),
 				uploaderOptions: {ldelim}
-					uploadUrl: '{url|escape:javascript op="uploadFile" escape=false}',
+					uploadUrl: '{url|escape:javascript op="uploadFile" fileType=$fileType escape=false}',
 					baseUrl: '{$baseUrl|escape:javascript}'
 				{rdelim}
 			{rdelim}

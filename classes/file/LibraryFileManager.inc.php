@@ -84,14 +84,14 @@ class LibraryFileManager extends FileManager {
 	 * @param $temporaryFile object
 	 * @return LibraryFile the generated file, prepared as much as possible for insert (false if upload failed)
 	 */
-	function &copyFromTemporaryFile(&$temporaryFile) {
+	function &copyFromTemporaryFile(&$temporaryFile, $libraryFileType) {
 		$libraryFileDao =& DAORegistry::getDAO('LibraryFileDAO');
 		$libraryFile = $libraryFileDao->newDataObject();
 
 		$libraryFile->setDateUploaded($temporaryFile->getDateUploaded());
 		$libraryFile->setFileType($temporaryFile->getFileType());
 		$libraryFile->setFileSize($temporaryFile->getFileSize());
-		$libraryFile->setFileName($this->generateFilename($type, $temporaryFile->getOriginalFileName()));
+		$libraryFile->setFileName($this->generateFilename($libraryFileType, $temporaryFile->getOriginalFileName()));
 		$libraryFile->setOriginalFileName($temporaryFile->getOriginalFileName());
 		if (!$this->copyFile($temporaryFile->getFilePath(), $this->filesDir . $temporaryFile->getOriginalFileName())) {
 			return false;
@@ -116,11 +116,11 @@ class LibraryFileManager extends FileManager {
 	 */
 	function &getTypeSuffixMap() {
 		static $map = array(
-			LIBRARY_FILE_SUFFIX_REVIEW => 'LRV',
-			LIBRARY_FILE_SUFFIX_SUBMISSION => 'LSB',
-			LIBRARY_FILE_SUFFIX_PRODUCTION => 'LPR',
-			LIBRARY_FILE_SUFFIX_EDITORIAL => 'LED',
-			LIBRARY_FILE_SUFFIX_PRODUCTION_TEMPLATES => 'LPT'
+			LIBRARY_FILE_TYPE_SUBMISSION => 'LSB',
+			LIBRARY_FILE_TYPE_REVIEW => 'LRV',
+			LIBRARY_FILE_TYPE_PRODUCTION => 'LPR',
+			LIBRARY_FILE_TYPE_PRODUCTION_TEMPLATE => 'LPT',
+			LIBRARY_FILE_TYPE_EDITORIAL => 'LED'
 		);
 		return $map;
 	}

@@ -131,6 +131,14 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		return $row;
 	}
 
+	/**
+	 * @see GridHandler::getRequestArgs()
+	 */
+	function getRequestArgs() {
+		$requestArgs = array_merge(parent::getRequestArgs(), array('fileType' => $this->getFileType()));
+		return $requestArgs;
+	}
+
 
 	//
 	// Public File Grid Actions
@@ -195,7 +203,7 @@ class LibraryFileGridHandler extends SetupGridHandler {
 		$fileForm->readInputData();
 
 		if ($fileForm->validate()) {
-			$fileForm->execute($user->getId());
+			$fileId = $fileForm->execute($user->getId());
 
 			// Let the calling grid reload itself
 			return DAO::getDataChangedEvent($fileId);
