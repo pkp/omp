@@ -97,7 +97,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 
 		// Retrieve the submissionContributors associated with this monograph to be displayed in the grid
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$data =& $authorDao->getAuthorsByMonographId($monographId);
+		$data =& $authorDao->getAuthorsBySubmissionId($monographId);
 		$this->setGridDataElements($data);
 
 		// Grid actions
@@ -193,13 +193,14 @@ class SubmissionContributorGridHandler extends GridHandler {
 	function editSubmissionContributor($args, &$request) {
 		// Identify the submissionContributor to be updated
 		$submissionContributorId = $request->getUserVar('submissionContributorId');
+		$monograph =& $this->getMonograph();
 
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$submissionContributor = $authorDao->getAuthor($submissionContributorId);
+		$submissionContributor = $authorDao->getAuthor($submissionContributorId, $monograph->getId());
 
 		// Form handling
 		import('controllers.grid.users.submissionContributor.form.SubmissionContributorForm');
-		$submissionContributorForm = new SubmissionContributorForm($this->getMonograph(), $submissionContributor);
+		$submissionContributorForm = new SubmissionContributorForm($monograph, $submissionContributor);
 		$submissionContributorForm->initData();
 
 		$json = new JSONMessage(true, $submissionContributorForm->fetch($request));
@@ -215,20 +216,21 @@ class SubmissionContributorGridHandler extends GridHandler {
 	function updateSubmissionContributor($args, &$request) {
 		// Identify the submissionContributor to be updated
 		$submissionContributorId = $request->getUserVar('submissionContributorId');
+		$monograph =& $this->getMonograph();
 
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$submissionContributor =& $authorDao->getAuthor($submissionContributorId);
+		$submissionContributor =& $authorDao->getAuthor($submissionContributorId, $monograph->getId());
 
 		// Form handling
 		import('controllers.grid.users.submissionContributor.form.SubmissionContributorForm');
-		$submissionContributorForm = new SubmissionContributorForm($this->getMonograph(), $submissionContributor);
+		$submissionContributorForm = new SubmissionContributorForm($monograph, $submissionContributor);
 		$submissionContributorForm->readInputData();
 		if ($submissionContributorForm->validate()) {
 			$authorId = $submissionContributorForm->execute();
 
 			if(!isset($submissionContributor)) {
 				// This is a new contributor
-				$submissionContributor =& $authorDao->getAuthor($authorId);
+				$submissionContributor =& $authorDao->getAuthor($authorId, $monograph->getId());
 			}
 
 			// Prepare the grid row data

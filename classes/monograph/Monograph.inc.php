@@ -291,6 +291,7 @@ class Monograph extends Submission {
 
 		return $user;
 	}
+
 	/**
 	 * Get the user id associated with a given signoff and this monograph
 	 * @param $signoffType string
@@ -336,66 +337,6 @@ class Monograph extends Submission {
 	 */
 	function setSupportingAgencies($title, $locale) {
 		return $this->setData('supportingAgencies', $title, $locale);
-	}
-
-	/**
-	 * Return string of author names, separated by the specified token
-	 * FIXME: Should be moved back to Submission class, see #5913
-	 * @param $lastOnly boolean return list of lastnames only (default false)
-	 * @param $separator string separator for names (default comma+space)
-	 * @return string
-	 */
-	function getAuthorString($lastOnly = false, $separator = ', ') {
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$authors = $authorDao->getAuthorsByMonographId($this->getId());
-
-		$str = '';
-		while($author =& $authors->next()) {
-			if (!empty($str)) {
-				$str .= $separator;
-			}
-			$str .= $lastOnly ? $author->getLastName() : $author->getFullName();
-			unset($author);
-		}
-		return $str;
-	}
-
-	/**
-	 * Return a list of author email addresses.
-	 * FIXME: Should be moved back to Submission class, see #5913
-	 * @return array
-	 */
-	function getAuthorEmails() {
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$authors = $authorDao->getAuthorsByMonographId($this->getId());
-
-		import('lib.pkp.classes.mail.Mail');
-		$returner = array();
-		while($author =& $authors->next()) {
-			$returner[] = Mail::encodeDisplayName($author->getFullName()) . ' <' . $author->getEmail() . '>';
-			unset($author);
-		}
-		return $returner;
-	}
-
-	/**
-	 * Get all authors of this submission.
-	 * FIXME: should be in Submission, see #5913
-	 * @return array Authors
-	 */
-	function &getAuthors() {
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		return $authorDao->getAuthorsByMonographId($this->getId());
-	}
-
-	/**
-	 * Get the primary author of this submission.
-	 * FIXME: should be in Submission, see #5913
-	 * @return Author
-	 */
-	function &getPrimaryAuthor() {
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		return $authorDao->getPrimaryAuthorByMonographId($this->getId());
 	}
 
 	/**

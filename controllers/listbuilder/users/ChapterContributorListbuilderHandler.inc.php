@@ -91,7 +91,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 
 		// Retrieve all submissionContributors associated with this monograph to be displayed in the drop-down list
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$submissionContributors =& $authorDao->getAuthorsByMonographId($monographId);
+		$submissionContributors =& $authorDao->getAuthorsBySubmissionId($monographId);
 		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
 		$contributorIds = $chapterAuthorDao->getAuthorIdsByChapterId($chapterId, $monographId);
 
@@ -163,7 +163,7 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 				return false;
 			}
 
-			$contributor =& $authorDao->getAuthor($contributorId);
+			$contributor =& $authorDao->getAuthor($contributorId, $monographId);
 			$chapterAuthorDao->insertChapterAuthor($contributorId, $chapterId, $monographId);
 
 			// Return JSON with formatted HTML to insert into list

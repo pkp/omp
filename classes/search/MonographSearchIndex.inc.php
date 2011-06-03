@@ -155,7 +155,7 @@ class MonographSearchIndex {
 		// Build author keywords
 		$authorText = array();
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$authors = $authorDao->getAuthorsByMonographId($monograph->getId());
+		$authors = $authorDao->getAuthorsBySubmissionId($monograph->getId());
 		while($author =& $authors->next()) {
 			array_push($authorText, $author->getFirstName());
 			array_push($authorText, $author->getMiddleName());

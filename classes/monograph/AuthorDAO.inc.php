@@ -29,40 +29,6 @@ class AuthorDAO extends PKPAuthorDAO {
 	}
 
 	/**
-	 * Retrieve all authors for a submission.
-	 * @param $submissionId int
-	 * @return array Authors ordered by sequence
-	 */
-	function &getAuthorsByMonographId($submissionId) {
-		$result =& $this->retrieve(
-			'SELECT * FROM authors WHERE submission_id = ? ORDER BY seq',
-			(int) $submissionId
-		);
-
-		$returner = new DAOResultFactory($result, $this, '_returnAuthorFromRow', array('id'));
-		return $returner;
-	}
-
-	/**
-	 * Retrieve the primary author for a submission.
-	 * @param $submissionId int
-	 * @return Author
-	 */
-	function &getPrimaryAuthorByMonographId($submissionId) {
-		$result =& $this->retrieve(
-			'SELECT * FROM authors WHERE submission_id = ? AND primary_contact = 1',
-			(int) $submissionId
-		);
-
-		$returner = null;
-		if ($result->RecordCount() != 0) {
-			$returner = $this->_returnAuthorFromRow($result->GetRowAssoc(false));
-		}
-		$result->Close();
-		return $returner;
-	}
-
-	/**
 	 * Retrieve all published authors for a press in an associative array by
 	 * the first letter of the last name, for example:
 	 * $returnedArray['S'] gives array($misterSmithObject, $misterSmytheObject, ...)
@@ -221,7 +187,7 @@ class AuthorDAO extends PKPAuthorDAO {
 	 * @param $submissionId int
 	 */
 	function deleteAuthorsByMonograph($submissionId) {
-		$authors =& $this->getAuthorsByMonographId($submissionId);
+		$authors =& $this->getAuthorsBySubmissionId($submissionId);
 		while ($author =& $authors->next()) {
 			$this->deleteAuthor($author);
 			unset($author);
