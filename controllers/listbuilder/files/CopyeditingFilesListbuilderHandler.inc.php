@@ -22,7 +22,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		parent::ListbuilderHandler();
 
 		$this->addRoleAssignment(array(ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
-				array('fetch', 'addItem', 'deleteItems'));
+				array('fetch', 'addItem', 'deleteItems', 'fetchRow', 'fetchOptions'));
 	}
 
 
@@ -38,19 +38,16 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		return parent::authorize($request, $args, $roleAssignments);
 	}
 
-	/*
+	/**
 	 * Configure the grid
 	 * @param PKPRequest $request
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
 		// Basic configuration
-		$this->setTitle('submission.files');
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Multiselect
-		$this->setListTitle('editor.monograph.copyediting.currentFiles');
 
 		$this->loadList($request);
-		$this->loadPossibleItemList($request);
 
 		$this->addColumn(new ListbuilderGridColumn($this, 'item', 'common.name'));
 	}
@@ -60,45 +57,45 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	// Public methods
 	//
 
+	
+	/**
+	 * Initialize the grid with the currently selected set of files.
+	 */
 	function loadList(&$request) {
 		$data = array();
 		$this->setGridDataElements($data);
 	}
 
-	/* Load possible items to populate drop-down list with */
-	function loadPossibleItemList(&$request) {
-		$monographId = $request->getUserVar('monographId');
+	/**
+	 * Load possible items to populate drop-down list with
+	 */
+	function getOptions() {
+		import('classes.monograph.MonographFile');
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
 		$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-		$monographFiles =& $submissionFileDao->getLatestRevisions($monographId, MONOGRAPH_FILE_COPYEDIT);
+		$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
 		$itemList = array();
 		foreach ($monographFiles as $monographFile) {
 			$itemList[$monographFile->getFileId()] = $monographFile->getLocalizedName();
 			unset($monographFile);
 		}
-		$this->setPossibleItemList($itemList);
+		return array($itemList);
 	}
 
 	//
 	// Overridden template methods
 	//
 	/**
-	 * Need to add additional data to the template via the fetch method
-	 * @see Form::fetch()
-	 * @param $args array
-	 * @param $request PKPRequest
+	 * @see GridHandler::getRequestArgs
 	 */
-	function fetch(&$args, &$request) {
-		$router =& $request->getRouter();
+	function getRequestArgs() {
+		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
 
-		$monographId = $request->getUserVar('monographId');
-		$additionalVars = array(
-			'addUrl' => $router->url($request, array(), null, 'addItem', null, array('monographId' => $monographId)),
-			'deleteUrl' => $router->url($request, array(), null, 'deleteItems', null, array('monographId' => $monographId))
-		);
-
-		return parent::fetch($args, $request, $additionalVars);
-    }
+		$args = parent::getRequestArgs();
+		$args['monographId'] = $monograph->getId();
+		return $args;
+	}
 
 	/**
 	 * @see PKPHandler::setupTemplate()
@@ -109,12 +106,32 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		Locale::requireComponents(array(LOCALE_COMPONENT_OMP_EDITOR, LOCALE_COMPONENT_PKP_SUBMISSION));
 	}
 
-	//
-	// Public AJAX-accessible functions
-	//
+	/**
+	 * Create a new data element from a request. This is used to format
+	 * new rows prior to their insertion.
+	 * @param $request PKPRequest
+	 * @param $elementId int
+	 * @return object
+	 */
+	function &getDataElementFromRequest(&$request, &$elementId) {
+		import('lib.pkp.classes.controllers.listbuilder.ListbuilderMap');
+		$options = $this->getOptions(true);
+
+		$i = $request->getUserVar('item');
+		if ($i == '') $i = null;
+		else $i = (int) $i;
+		assert($i === null || isset($options[0][$i]));
+
+		$newItem = array(
+			'item' => new ListbuilderMap($i, $i?$options[0][$i]:null)
+		);
+
+		$elementId = $request->getUserVar('rowId');
+		return $newItem;
+	}
 
 
-	/*
+	/**
 	 * Handle adding an item to the list
 	 * NB: This and deleteItems do not change the system's state, but are only interface elements.
 	 * 	State is changed only when the modal form is submitted
@@ -146,7 +163,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	}
 
 
-	/*
+	/**
 	 * Handle deleting items from the list
 	 * @param $args array
 	 * @param $request PKPRequest

@@ -23,8 +23,6 @@
 	});
 {/literal}</script>
 
-{modal_title id="#addUserContainer" key='editor.monograph.copyediting.addUser' iconClass="fileManagement" canClose=1}
-
 <div id="addUserContainer">
 	<form id="addCopyeditingUser" action="{url op="saveAddUser" monographId=$monographId|escape}" method="post">
 		<input type="hidden" name="monographId" value="{$monographId|escape}" />
