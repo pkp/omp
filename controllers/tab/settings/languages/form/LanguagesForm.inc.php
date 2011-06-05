@@ -159,6 +159,9 @@ class LanguagesForm extends PressSettingsForm {
 	//
 	/**
 	 * Get link actions for form.
+	 * @param $request Request
+	 * @param $availableLocales array
+	 * @return array
 	 */
 	function _getLinkActions($request, $availableLocales) {
 		$router =& $request->getRouter();
