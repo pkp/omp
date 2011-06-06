@@ -6,25 +6,47 @@
  *
  * Site settings form.
  *}
-{strip}
-{assign var="pageTitle" value="admin.siteSettings"}
-{include file="common/header.tpl"}
-{/strip}
 
-<form class="pkp_form" id="settings" method="post" action="{url op="saveSettings"}" enctype="multipart/form-data">
+<script type="text/javascript">
+	$(function() {ldelim}
+		// Attach the form handler.
+		$('#siteSetupForm').pkpHandler('$.pkp.controllers.tab.settings.form.RefreshableFileFormHandler',
+			{ldelim}
+				fetchFileUrl: '{url|escape:javascript op='fetchFile' tab='siteSetup' escape=false}',
+			{rdelim}
+		);
+	{rdelim});
+</script>
+
+<form id="siteSetupForm" class="pkp_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.AdminSettingsTabHandler" op="saveSettings" tab="siteSetup"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
-<table class="data" width="100%">
-{if count($formLocales) > 1}
-	<tr valign="top">
-		<td width="20%" class="label">{fieldLabel name="formLocale" key="form.formLanguage"}</td>
-		<td colspan="2" width="80%" class="value">
-			{url|assign:"settingsUrl" op="settings"}
-			{form_language_chooser form="settings" url=$settingsUrl}
-			<span class="instruct">{translate key="form.formLanguage.description"}</span>
-		</td>
-	</tr>
-{/if}
+	{fbvElement name="label" key="admin.settings.siteTitle" required="true"}
+	{fbvFormArea id="siteTitle"}
+		{fbvFormSection list=true}
+			{fbvElement type="radio" name="pageHeaderTitleType[$locale]" id="pageHeaderTitleType-0" value=0 checked=!$pageHeaderTitleType[$locale] label="manager.setup.useTextTitle"}
+		{/fbvFormSection}
+		{fbvFormSection}
+			{fbvElement type="text" name="title" id="title" value=$title multilingual=true required=true}
+		{/fbvFormSection}
+		{fbvFormSection list=true}
+			{fbvElement type="radio" name="pageHeaderTitleType[$locale]" id="pageHeaderTitleType-1" value=1 checked=$pageHeaderTitleType[$locale] label="manager.setup.useImageTitle"}
+		{/fbvFormSection}
+		{fbvFormSection}
+			<div id="{$uploadImageLinkActions.pageHeaderTitleImage->getId()}" class="pkp_linkActions">
+				{include file="linkAction/linkAction.tpl" action=$uploadImageLinkActions.pageHeaderTitleImage contextId="siteSetupForm"}
+			</div>
+			<div id="pageHeaderTitleImage" {if !$pageHeaderTitleImage[$locale]}class="pkp_form_hidden"{/if}>
+				<div class="refreshable_file_wrapper">
+					{$imagesViews.pageHeaderTitleImage}
+				</div>
+				{fbvElement type="text" label="common.altText" name="pageHeaderTitleImageAltText[$locale]" id="pageHeaderTitleImageAltText[$locale]" value=$pageHeaderTitleImage[$locale].altText}
+				<span class="instruct">{translate key="common.altTextInstructions"}</span>
+			</div>
+		{/fbvFormSection}
+	{/fbvFormArea}
+
+<table class="data">
 	<tr valign="top">
 		<td {if $pageHeaderTitleType[$formLocale] && $pageHeaderTitleImage[$formLocale]}rowspan="4"{else}rowspan="3"{/if} width="20%" class="label">{fieldLabel name="title" key="admin.settings.siteTitle" required="true"}</td>
 		<td width="15%" class="value">

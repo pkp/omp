@@ -13,16 +13,16 @@
  */
 
 // Import the base Handler.
-import('controllers.tab.settings.SettingsTabHandler');
+import('controllers.tab.settings.ManagerSettingsTabHandler');
 
-class DistributionSettingsTabHandler extends SettingsTabHandler {
+class DistributionSettingsTabHandler extends ManagerSettingsTabHandler {
 
 
 	/**
 	 * Constructor
 	 */
 	function DistributionSettingsTabHandler() {
-		parent::SettingsTabHandler();
+		parent::ManagerSettingsTabHandler();
 		$pageTabs = array(
 			'indexing' => 'controllers.tab.settings.indexing.form.IndexingForm'
 		);

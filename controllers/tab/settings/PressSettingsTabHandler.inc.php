@@ -13,16 +13,16 @@
  */
 
 // Import the base Handler.
-import('controllers.tab.settings.SettingsTabHandler');
+import('controllers.tab.settings.ManagerSettingsTabHandler');
 
-class PressSettingsTabHandler extends SettingsTabHandler {
+class PressSettingsTabHandler extends ManagerSettingsTabHandler {
 
 
 	/**
 	 * Constructor
 	 */
 	function PressSettingsTabHandler() {
-		parent::SettingsTabHandler();
+		parent::ManagerSettingsTabHandler();
 		$pageTabs = array(
 			'masthead' => 'controllers.tab.settings.masthead.form.MastheadForm',
 			'contact' => 'controllers.tab.settings.contact.form.ContactForm',

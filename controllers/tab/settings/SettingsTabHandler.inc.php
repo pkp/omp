@@ -9,7 +9,7 @@
  * @class SettingsTabHandler
  * @ingroup controllers_tab_settings
  *
- * @brief Handle AJAX operations for tabs on settings pages.
+ * @brief Handle AJAX operations for tabs on settings pages, under administration or management pages.
  */
 
 // Import the base Handler.
@@ -30,10 +30,11 @@ class SettingsTabHandler extends Handler {
 
 	/**
 	 * Constructor
+	 * @param $role string The role keys to be used in role assignment.
 	 */
-	function SettingsTabHandler() {
+	function SettingsTabHandler($role) {
 		parent::Handler();
-		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
+		$this->addRoleAssignment($role,
 				array(
 					'saveFormData',
 					'showTab'
@@ -96,20 +97,9 @@ class SettingsTabHandler extends Handler {
 		$this->_pageTabs = $pageTabs;
 	}
 
-
 	//
-	// Overridden methods from Handler
+	// Extended methods from Handler
 	//
-	/**
-	 * @see PKPHandler::initialize()
-	 */
-	function initialize(&$request, $args = null) {
-		parent::initialize($request, $args);
-
-		// Load grid-specific translations
-		Locale::requireComponents(array(LOCALE_COMPONENT_PKP_MANAGER, LOCALE_COMPONENT_OMP_MANAGER));
-	}
-
 	/**
 	 * @see PKPHandler::authorize()
 	 */
@@ -118,7 +108,6 @@ class SettingsTabHandler extends Handler {
 		$this->addPolicy(new OmpPressAccessPolicy($request, $roleAssignments));
 		return parent::authorize($request, $args, $roleAssignments);
 	}
-
 
 	//
 	// Public handler methods

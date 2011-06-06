@@ -13,15 +13,15 @@
  */
 
 // Import the base Handler.
-import('controllers.tab.settings.SettingsTabHandler');
+import('controllers.tab.settings.ManagerSettingsTabHandler');
 
-class AccessSettingsTabHandler extends SettingsTabHandler {
+class AccessSettingsTabHandler extends ManagerSettingsTabHandler {
 
 	/**
 	 * Constructor
 	 */
 	function AccessSettingsTabHandler() {
-		parent::SettingsTabHandler();
+		parent::ManagerSettingsTabHandler();
 		$pageTabs = array(
 			'users' => 'controllers/tab/settings/users.tpl',
 			'roles' => 'controllers/tab/settings/roles.tpl',

@@ -22,7 +22,7 @@ class AdminSettingsHandler extends AdminHandler {
 	/**
 	 * Display form to modify site settings.
 	 */
-	function settings() {
+	function siteSetup() {
 		$this->validate();
 		$this->setupTemplate(true);
 

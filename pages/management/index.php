@@ -17,11 +17,7 @@
 
 switch ($op) {
 	//
-	// Settings Index
-	//
-	case 'index':
-	//
-	// Access Page
+	// Settings
 	//
 	case 'settings':
 		import('pages.management.SettingsHandler');

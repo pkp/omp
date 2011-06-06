@@ -12,7 +12,7 @@
 	<ul class="pkp_helpers_flatlist pkp_helpers_align_left">
 		<li><a href="{url page="index"}">{translate key="navigation.home"}</a></li>
 		{if $isUserLoggedIn}
-			<li><a href="{url context="index" page="admin"}">{translate key="navigation.admin"}</a></li>
+			<li><a href="{url page="admin" op="index"}">{translate key="navigation.admin"}</a></li>
 		{/if}
 	</ul>
 	<ul class="pkp_helpers_flatlist pkp_helpers_align_right">

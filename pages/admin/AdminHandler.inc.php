@@ -24,7 +24,6 @@ class AdminHandler extends Handler {
 		parent::Handler();
 
 		$this->addCheck(new HandlerValidatorRoles($this, true, null, null, array(ROLE_ID_SITE_ADMIN)));
-		$this->addCheck(new HandlerValidatorCustom($this, true, null, null, create_function(null, 'return Request::getRequestedPressPath() == \'index\';')));
 	}
 
 	/**
@@ -36,7 +35,23 @@ class AdminHandler extends Handler {
 
 		$templateMgr =& TemplateManager::getManager();
 		$templateMgr->assign('helpTopicId', 'site.index');
+
+		// Verifies if this is a multiple press installation.
+		$pressDao = DAORegistry::getDAO('PressDAO');
+		if (count($pressDao->getPressNames()) > 1) {
+			$templateMgr->assign('isMultiplePress', true);
+		}
+
 		$templateMgr->display('admin/index.tpl');
+	}
+
+	/**
+	 * Display the administration settings page.
+	 */
+	function settings() {
+		$templateMgr =& TemplateManager::getManager();
+		$this->setupTemplate(true);
+		$templateMgr->display('admin/adminSettings.tpl');
 	}
 
 	/**

@@ -17,9 +17,9 @@
 
 switch ($op) {
 	//
-	// Settings
+	// Site setup
 	//
-	case 'settings':
+	case 'siteSetup':
 	case 'saveSettings':
 		define('HANDLER_CLASS', 'AdminSettingsHandler');
 		import('pages.admin.AdminSettingsHandler');
@@ -69,9 +69,10 @@ switch ($op) {
 		define('HANDLER_CLASS', 'AdminFunctionsHandler');
 		break;
 	//
-	// Default page
+	// Index and administration settings page
 	//
 	case 'index':
+	case 'settings':
 		define('HANDLER_CLASS', 'AdminHandler');
 		import('pages.admin.AdminHandler');
 		break;

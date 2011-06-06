@@ -13,16 +13,16 @@
  */
 
 // Import the base Handler.
-import('controllers.tab.settings.SettingsTabHandler');
+import('controllers.tab.settings.ManagerSettingsTabHandler');
 
-class PublicationSettingsTabHandler extends SettingsTabHandler {
+class PublicationSettingsTabHandler extends ManagerSettingsTabHandler {
 
 
 	/**
 	 * Constructor
 	 */
 	function PublicationSettingsTabHandler() {
-		parent::SettingsTabHandler();
+		parent::ManagerSettingsTabHandler();
 		$pageTabs = array(
 			'general' => 'controllers/tab/settings/generalSettings.tpl',
 			'submissionStage' => 'controllers.tab.settings.submissionStage.form.SubmissionStageForm',

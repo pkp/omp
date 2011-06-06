@@ -13,13 +13,13 @@
  */
 
 // Import the base Handler.
-import('controllers.tab.settings.SettingsTabHandler');
+import('controllers.tab.settings.ManagerSettingsTabHandler');
 // Import form to upload images.
 import('controllers.tab.settings.appearance.form.ImageUploadForm');
 // Import form to upload css.
 import('controllers.tab.settings.appearance.form.CssUploadForm');
 
-class WebsiteSettingsTabHandler extends SettingsTabHandler {
+class WebsiteSettingsTabHandler extends ManagerSettingsTabHandler {
 
 
 	/**
@@ -36,7 +36,7 @@ class WebsiteSettingsTabHandler extends SettingsTabHandler {
 					'reloadLocalizedDefaultSettings'
 				)
 		);
-		parent::SettingsTabHandler();
+		parent::ManagerSettingsTabHandler();
 		$pageTabs = array(
 			'homepage' => 'controllers.tab.settings.homepage.form.HomepageForm',
 			'appearance' => 'controllers.tab.settings.appearance.form.AppearanceForm',
