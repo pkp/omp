@@ -195,6 +195,7 @@ You may optionally provide the user with a reason for disabling their account.</
 	<message key="manager.website.appearance">Appearance</message>
 	<message key="manager.website.languages">Languages</message>
 	<message key="manager.website.website">Website</message>
+	<message key="manager.website.imageFileRequired">An image file is required. Please ensure that you have chosen and uploaded a file.</message>
 	
 	<!-- Publication Process settings -->
 	<message key="manager.publication.publicationProcess">Publication Process</message>

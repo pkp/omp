@@ -19,25 +19,16 @@ import('controllers.tab.settings.form.PressSettingsForm');
 class AppearanceForm extends PressSettingsForm {
 
 	/** @var array */
-	var $_images;
-
-	/** @var array */
-	var $_imageSettings;
+	var $_imagesSettingsName;
 
 
 	/**
 	 * Constructor.
 	 */
 	function AppearanceForm($wizardMode = false) {
-		$this->setImages(array(
-			'homeHeaderTitleImage',
-			'homeHeaderLogoImage',
-			'homepageImage',
-			'pageHeaderTitleImage',
-			'pageHeaderLogoImage'
-		));
-
-		$this->setImageSettings(array(
+		// Define an array with the image setting name as key and its
+		// alternate text setting name as value.
+		$this->setImagesSettingsName(array(
 			'homeHeaderTitleImage' => 'homeHeaderTitleImageAltText',
 			'homeHeaderLogoImage' => 'homeHeaderLogoImageAltText',
 			'homepageImage' => 'homepageImageAltText',
@@ -47,8 +38,18 @@ class AppearanceForm extends PressSettingsForm {
 
 		$settings = array(
 			'homeHeaderTitleType' => 'int',
-			'homeHeaderTitle' => 'string'
+			'homeHeaderTitle' => 'string',
+			'description' => 'string',
+			'numRecentTitlesOnHomepage' => 'int',
+			'additionalHomeContent' => 'string',
+			'pressPageHeader' => 'string',
+			'pressPageFooter' => 'string',
+			'navItems' => 'object',
+			'itemsPerPage' => 'int',
+			'numPageLinks' => 'int'
 		);
+
+		Locale::requireComponents(array(LOCALE_COMPONENT_APPLICATION_COMMON));
 
 		parent::PressSettingsForm($settings, 'controllers/tab/settings/appearance/form/appearanceForm.tpl', $wizardMode);
 	}
@@ -58,37 +59,20 @@ class AppearanceForm extends PressSettingsForm {
 	// Getters and Setters
 	//
 	/**
-	 * Get the images data.
+	 * Get the images settings name.
 	 * @return array
 	 */
-	function getImages() {
-		return $this->_images;
+	function getImagesSettingsName() {
+		return $this->_imagesSettingsName;
 	}
 
 	/**
-	 * Set the images data.
-	 * @param array $images
+	 * Set the image settings name.
+	 * @param array $imagesSettingsName
 	 * @return array
 	 */
-	function setImages($images) {
-		$this->_images = $images;
-	}
-
-	/**
-	 * Get the images settings data.
-	 * @return array
-	 */
-	function getImageSettings() {
-		return $this->_imageSettings;
-	}
-
-	/**
-	 * Set the image settings data.
-	 * @param array $imageSettings
-	 * @return array
-	 */
-	function setImageSettings($imageSettings) {
-		$this->_imageSettings = $imageSettings;
+	function setImagesSettingsName($imagesSettingsName) {
+		$this->_imagesSettingsName = $imagesSettingsName;
 	}
 
 	//
@@ -98,7 +82,14 @@ class AppearanceForm extends PressSettingsForm {
 	 * @see Form::getLocaleFieldNames()
 	 */
 	function getLocaleFieldNames() {
-		return array('homeHeaderTitle');
+		return array(
+			'homeHeaderTitleType',
+			'homeHeaderTitle',
+			'description',
+			'additionalHomeContent',
+			'pressPageHeader',
+			'pressPageFooter'
+		);
 	}
 
 
@@ -106,118 +97,211 @@ class AppearanceForm extends PressSettingsForm {
 	// Extend methods from PressSettingsForm.
 	//
 	/**
+	 * @see PressSettingsForm::readInputData()
+	 */
+	function readInputData() {
+		$this->readUserVars(array_values($this->getImagesSettingsName()));
+		parent::readInputData();
+	}
+
+	/**
 	 * @see PressSettingsForm::fetch()
 	 */
 	function fetch(&$request) {
-		$press =& Request::getPress();
+		$press =& $request->getPress();
+
+		// Get all upload form image link actions.
+		$uploadImageLinkActions = array();
+		foreach ($this->getImagesSettingsName() as $settingName => $altText) {
+			$uploadImageLinkActions[$settingName] = $this->_getFileUploadLinkAction($settingName, 'ImageUploadForm', $request);
+		}
+		// Get the css upload link action.
+		$uploadCssLinkAction = $this->_getFileUploadLinkAction('pressStyleSheet', 'CssUploadForm', $request);
+
+		$imagesViews = $this->_renderAllFormImagesViews($request);
+		$cssView = $this->renderFileView('pressStyleSheet', $request);
+
 		$params = array(
-			'homeHeaderTitleImage' => $press->getSetting('homeHeaderTitleImage'),
-			'homeHeaderLogoImage'=> $press->getSetting('homeHeaderLogoImage'),
-			'pageHeaderTitleImage' => $press->getSetting('pageHeaderTitleImage'),
-			'pageHeaderLogoImage' => $press->getSetting('pageHeaderLogoImage'),
-			'homepageImage' => $press->getSetting('homepageImage'),
-			'pressStyleSheet' => $press->getSetting('pressStyleSheet'),
+			'uploadImageLinkActions' => $uploadImageLinkActions,
+			'uploadCssLinkAction' => $uploadCssLinkAction,
+			'imagesViews' => $imagesViews,
+			'pressStyleSheetView' => $cssView,
 			'locale' => Locale::getLocale()
 		);
 
 		return parent::fetch(&$request, $params);
 	}
 
-	/**
-	 * @see PressSettingsForm::execute()
-	 */
-	function execute() {
 		// Save alt text for images
-		$press =& Request::getPress();
+		$press =& $request->getPress();
 		$pressId = $press->getId();
 		$locale = $this->getFormLocale();
 		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$images = $this->getImages();
+		$imagesSettingsName = $this->getImagesSettingsName();
 
-		foreach($images as $settingName) {
-			$value = $press->getSetting($settingName);
+		foreach($imagesSettingsName as $image => $altText) {
+			$value = $press->getSetting($image);
 			if (!empty($value)) {
-				$imageSettings = $this->getImageSettings();
-				$imageAltText = $this->getData($imageSettings[$settingName]);
+				$imageAltText = $this->getData($altText);
 				$value[$locale]['altText'] = $imageAltText[$locale];
-				$settingsDao->updateSetting($pressId, $settingName, $value, 'object', true);
+				$settingsDao->updateSetting($pressId, $image, $value, 'object', true);
 			}
 		}
 
-		// Save remaining settings
-		return parent::execute();
-	}
-
 
 	//
-	// Public methods
+	// Public methods.
 	//
 	/**
-	 * Uploads a press image.
-	 * @param $settingName string setting key associated with the file
-	 * @param $locale string
+	 * Render a template to show details about an uploaded file in the form
+	 * and a link action to delete it.
+	 * @param $fileSettingName string The uploaded file setting name.
+	 * @param $request Request
+	 * @return string
 	 */
-	function uploadImage($settingName, $locale) {
-		$press =& Request::getPress();
-		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+	function renderFileView($fileSettingName, $request) {
+		$file = $this->getData($fileSettingName);
+		$locale = Locale::getLocale();
 
-		import('classes.file.PublicFileManager');
-		$fileManager = new PublicFileManager();
-		if ($fileManager->uploadedFileExists($settingName)) {
-			$type = $fileManager->getUploadedFileType($settingName);
-			$extension = $fileManager->getImageExtension($type);
-			if (!$extension) {
-				return false;
-			}
-			$uploadName = $settingName . '_' . $locale . $extension;
-			if ($fileManager->uploadPressFile($press->getId(), $settingName, $uploadName)) {
-				// Get image dimensions
-				$filePath = $fileManager->getPressFilesPath($press->getId());
-				list($width, $height) = getimagesize($filePath . '/' . $uploadName);
-
-				$value = $press->getSetting($settingName);
-				$value[$locale] = array(
-					'name' => $fileManager->getUploadedFileName($settingName, $locale),
-					'uploadName' => $uploadName,
-					'width' => $width,
-					'height' => $height,
-					'dateUploaded' => Core::getCurrentDate()
-				);
-
-				$settingsDao->updateSetting($press->getId(), $settingName, $value, 'object', true);
-				return true;
-			}
+		// Check if the file is localized.
+		if (!is_null($file) && key_exists($locale, $file)) {
+			// We use the current localized file value.
+			$file = $file[$locale];
 		}
 
-		return false;
-	}
+		if (is_array($file)) {
+			$templateMgr = TemplateManager::getManager();
+			$deleteLinkAction = $this->_getDeleteFileLinkAction($fileSettingName, $request);
 
-	/**
-	 * Deletes a press image.
-	 * @param $settingName string setting key associated with the file
-	 * @param $locale string
-	 */
-	function deleteImage($settingName, $locale = null) {
-		$press =& Request::getPress();
-		$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
-		$setting = $settingsDao->getSetting($press->getId(), $settingName);
+			// Get the right template to render the view.
+			$imagesSettingsName = array_keys($this->getImagesSettingsName());
+			if (in_array($fileSettingName, $imagesSettingsName)) {
+				$template = 'controllers/tab/settings/formImageView.tpl';
 
-		import('classes.file.PublicFileManager');
-		$fileManager = new PublicFileManager();
-		if ($fileManager->removePressFile($press->getId(), $locale !== null ? $setting[$locale]['uploadName'] : $setting['uploadName'] )) {
-			$returner = $settingsDao->deleteSetting($press->getId(), $settingName, $locale);
-			// Ensure page header is refreshed
-			if ($returner) {
-				$templateMgr =& TemplateManager::getManager();
-				$templateMgr->assign(array(
-					'displayPageHeaderTitle' => $press->getPressPageHeaderTitle(),
-					'displayPageHeaderLogo' => $press->getPressPageHeaderLogo()
-				));
+				// Get the common alternate text for the image.
+				$localeKey = "common." . $fileSettingName . ".altText";
+				$commonAltText = Locale::translate($localeKey);
+				$templateMgr->assign('commonAltText', $commonAltText);
+			} else {
+				$template = 'controllers/tab/settings/formFileView.tpl';
 			}
-			return $returner;
+
+			$templateMgr->assign('file', $file);
+			$templateMgr->assign('deleteLinkAction', $deleteLinkAction);
+			$templateMgr->assign('fileSettingName', $fileSettingName);
+
+			return $templateMgr->fetch($template);
 		} else {
 			return false;
 		}
+	}
+
+	/**
+	 * Delete an uploaded file.
+	 * @param $fileSettingName string
+	 * @return boolean
+	 */
+	function deleteFile($fileSettingName, $request) {
+		$press =& $request->getPress();
+		$locale = Locale::getLocale();
+
+		// Get the file.
+		$file = $this->getData($fileSettingName);
+
+		// Check if the file is localized.
+		if (key_exists($locale, $file)) {
+			// We use the current localized file value.
+			$file = $file[$locale];
+		} else {
+			$locale = null;
+		}
+
+		// Deletes the file and its settings.
+		import('classes.file.PublicFileManager');
+		$fileManager = new PublicFileManager();
+		if ($fileManager->removePressFile($press->getId(), $file['uploadName'])) {
+			$settingsDao =& DAORegistry::getDAO('PressSettingsDAO');
+			$settingsDao->deleteSetting($press->getId(), $fileSettingName, $locale);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
+	//
+	// Private helper methods
+	//
+	/**
+	 * Render all form images views.
+	 * @param $request Request
+	 * @return array
+	 */
+	function _renderAllFormImagesViews($request) {
+		$imagesViews = array();
+		foreach ($this->getImagesSettingsName() as $imageSettingName => $altText) {
+			$imagesViews[$imageSettingName] = $this->renderFileView($imageSettingName, $request);
+		}
+
+		return $imagesViews;
+	}
+
+	/**
+	 * Get a link action for file upload.
+	 * @param $settingName string
+	 * @param $fileUploadForm string
+	 * @param $request Request
+	 * @return LinkAction
+	 */
+	function _getFileUploadLinkAction($settingName, $fileUploadForm, $request) {
+		$router =& $request->getRouter();
+		import('lib.pkp.classes.linkAction.request.AjaxModal');
+
+		$ajaxModal = new AjaxModal(
+			$router->url(
+				$request, null, null, 'showFileUploadForm', null, array(
+					'fileSettingName' => $settingName,
+					'fileUploadForm' => $fileUploadForm
+				)
+			)
+		);
+		$linkAction = new LinkAction(
+			'uploadFile-' . $settingName,
+			$ajaxModal,
+			__('common.upload'),
+			null
+		);
+
+		return $linkAction;
+	}
+
+	/**
+	 * Get the delete file link action.
+	 * @param $setttingName string File setting name.
+	 * @param $request Request
+	 * @return LinkAction
+	 */
+	function _getDeleteFileLinkAction($settingName, $request) {
+		$router =& $request->getRouter();
+		import('lib.pkp.classes.linkAction.request.ConfirmationModal');
+
+		$confirmationModal = new ConfirmationModal(
+			__('common.confirmDelete'), null,
+			$router->url(
+				$request, null, null, 'deleteFile', null, array(
+					'fileSettingName' => $settingName,
+					'formName' => get_class($this)
+				)
+			)
+		);
+		$linkAction = new LinkAction(
+			'deleteFile-' . $settingName,
+			$confirmationModal,
+			__('common.delete'),
+			null
+		);
+
+		return $linkAction;
 	}
 }
 

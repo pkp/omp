@@ -134,7 +134,7 @@ class SettingsTabHandler extends Handler {
 				$templateMgr->assign('wizardMode', $this->getWizardMode());
 				return $templateMgr->fetchJson($this->_getTabTemplate());
 			} else {
-				$tabForm = $this->_getTabForm();
+				$tabForm = $this->getTabForm();
 				$tabForm->initData();
 				$json = new JSONMessage(true, $tabForm->fetch($request));
 				return $json->getString();
@@ -147,55 +147,28 @@ class SettingsTabHandler extends Handler {
 	 * @param $request Request
 	 */
 	function saveFormData($args, &$request) {
+		$json = new JSONMessage();
+
 		if ($this->_isValidTab()) {
-			$tabForm = $this->_getTabForm();
-			$isDataHandled = false;
+			$tabForm = $this->getTabForm();
 
-			// Check for any special cases before trying to save.
-			$isDataHandled = $this->editTabFormData($tabForm);
-
-			if (!$isDataHandled) {
-				// Try to save the form data.
-				$tabForm->readInputData();
-				if($tabForm->validate()) {
-					$tabForm->execute();
-					$isDataHandled = true;
-				}
+			// Try to save the form data.
+			$tabForm->readInputData();
+			if($tabForm->validate()) {
+				$tabForm->execute($request);
+			} else {
+				$json->setStatus(false);
 			}
 		}
 
-		if ($isDataHandled) {
-			$tabForm->initData();
-			$json = new JSONMessage(true, $tabForm->fetch($request));
-			return $json->getString();
-		}
+		return $json->getString();
 	}
 
-
-	//
-	// Template methods to be implemented by subclasses
-	//
-	/**
-	 * Implement this in subclasses to handle data editing in
-	 * the tab forms, like adding an image, deleting it, etc.
-	 * See handleTabFormData() to understand how specify in template
-	 * the action that must be executed using the form.
-	 * @param $tabForm Form the current tab form
-	 * @param $formEditAction string
-	 */
-	function editTabFormData($tabForm) {
-		return false;
-	}
-
-
-	//
-	// Private helper methods.
-	//
 	/**
 	 * Return an instance of the form based on the current tab.
 	 * @return Form
 	 */
-	function _getTabForm() {
+	function getTabForm() {
 		$currentTab = $this->getCurrentTab();
 		$pageTabs = $this->getPageTabs();
 
@@ -209,6 +182,39 @@ class SettingsTabHandler extends Handler {
 		return $tabForm;
 	}
 
+	/**
+	 * Return an instance of the form based on its name.
+	 * @param $formName The class name of the form.
+	 * @return mixed Form or false
+	 */
+	function getTabFormByName($formName) {
+		$pageTabs = $this->getPageTabs();
+
+		// Search for a form using its own class name.
+		$returnFormPath = null;
+		foreach ($pageTabs as $tab => $tabFormPath) {
+			$tabFormClassName = $this->_getFormClassName($tabFormPath);
+			if ($tabFormClassName == $formName) {
+				$returnFormPath = $tabFormPath;
+			}
+		}
+
+		if (!is_null($returnFormPath)) {
+			import($returnFormPath);
+			$returnForm = new $formName();
+
+			assert(is_a($returnForm, 'Form'));
+
+			return $returnForm;
+		}
+
+		return false;
+	}
+
+
+	//
+	// Private helper methods.
+	//
 	/**
 	 * Return the tab template file
 	 * @return string

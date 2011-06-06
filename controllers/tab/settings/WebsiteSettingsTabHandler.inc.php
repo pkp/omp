@@ -14,6 +14,10 @@
 
 // Import the base Handler.
 import('controllers.tab.settings.SettingsTabHandler');
+// Import form to upload images.
+import('controllers.tab.settings.appearance.form.ImageUploadForm');
+// Import form to upload css.
+import('controllers.tab.settings.appearance.form.CssUploadForm');
 
 class WebsiteSettingsTabHandler extends SettingsTabHandler {
 
@@ -24,6 +28,11 @@ class WebsiteSettingsTabHandler extends SettingsTabHandler {
 	function WebsiteSettingsTabHandler() {
 		$this->addRoleAssignment(ROLE_ID_PRESS_MANAGER,
 				array(
+					'showFileUploadForm',
+					'uploadFile',
+					'saveFile',
+					'deleteFile',
+					'fetchFile',
 					'reloadLocalizedDefaultSettings'
 				)
 		);
@@ -36,24 +45,118 @@ class WebsiteSettingsTabHandler extends SettingsTabHandler {
 		$this->setPageTabs($pageTabs);
 	}
 
+
 	//
-	// Implement template methods from SettingsTabHandler
+	// Public methods.
 	//
 	/**
-	 * @see SettingsTabHandler::editTabFormData()
+	 * Show the upload image form.
+	 * @param $request Request
+	 * @param $args array
+	 * @return string JSON message
 	 */
-	function editTabFormData($tabForm) {
-		$locale = Locale::getLocale();
-		if (is_a($tabForm, 'AppearanceForm')) {
-			if (Request::getUserVar('deleteHomeHeaderTitleImage')) {
-				$tabForm->deleteImage('homeHeaderTitleImage', $locale);
-				return true;
-			} elseif (Request::getUserVar('uploadHomeHeaderTitleImage')) {
-				if (!$tabForm->uploadImage('homeHeaderTitleImage', $locale))
-					$tabForm->addError('homeHeaderTitleImage', Locale::translate('manager.setup.homeTitleImageInvalid'));
-				return true;
+	function showFileUploadForm($args, &$request) {
+		$settingName = $request->getUserVar('fileSettingName');
+		$fileUploadFormName = $request->getUserVar('fileUploadForm');
+
+		$fileUploadForm = new $fileUploadFormName($settingName);
+		$fileUploadForm->initData();
+
+		$json = new JSONMessage(true, $fileUploadForm->fetch($request));
+		return $json->getString();
+	}
+
+	/**
+	 * Upload a new file.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function uploadFile($args, &$request) {
+		$user =& $request->getUser();
+
+		import('classes.file.TemporaryFileManager');
+		$temporaryFileManager = new TemporaryFileManager();
+		$temporaryFile = $temporaryFileManager->handleUpload('uploadedFile', $user->getId());
+		if ($temporaryFile) {
+			$json = new JSONMessage(true);
+			$json->setAdditionalAttributes(array(
+				'temporaryFileId' => $temporaryFile->getId()
+			));
+		} else {
+			$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
+		}
+
+		return $json->getString();
+	}
+
+	/**
+	 * Save an uploaded file.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function saveFile($args, &$request) {
+		$settingName = $request->getUserVar('fileSettingName');
+		$formName = $request->getUserVar('formName');
+
+		$fileForm = new $formName($settingName);
+		$fileForm->readInputData();
+
+		if ($fileForm->validate()) {
+			if ($fileForm->execute($request)) {
+				// Generate a JSON message with an event
+				return DAO::getDataChangedEvent($settingName);
 			}
 		}
+		return new JSONMessage(false);
+	}
+
+	/**
+	 * Deletes a press image.
+	 * @param $args array
+	 * @param $request PKPRequest
+	 * @return string
+	 */
+	function deleteFile($args, &$request) {
+		$settingName = $request->getUserVar('fileSettingName');
+		$tabFormName = $request->getUserVar('formName');
+
+		$tabForm = $this->getTabFormByName($tabFormName);
+		$tabForm->initData();
+
+		if ($tabForm->deleteFile($settingName, $request)) {
+			return DAO::getDataChangedEvent($settingName);
+		} else {
+			return new JSONMessage(false);
+		}
+	}
+
+	/**
+	 * Fetch a file that have been uploaded.
+	 *
+	 * @param $args array
+	 * @param $request Request
+	 * @return string
+	 */
+	function fetchFile($args, &$request) {
+		// Get the setting name.
+		$settingName = $args['settingName'];
+
+		// Try to fetch the file.
+		$tabForm = $this->getTabForm();
+		$tabForm->initData();
+
+		$renderedElement = $tabForm->renderFileView($settingName, $request);
+
+		$json = new JSONMessage();
+		if ($renderedElement == false) {
+			$json->setAdditionalAttributes(array('noData' => $settingName));
+		} else {
+			$json->setElementId($settingName);
+			$json->setContent($renderedElement);
+		}
+		return $json->getString();
 	}
 
 	/**
@@ -89,5 +192,6 @@ class WebsiteSettingsTabHandler extends SettingsTabHandler {
 		return DAO::getDataChangedEvent();
 	}
 }
+
 
 ?>

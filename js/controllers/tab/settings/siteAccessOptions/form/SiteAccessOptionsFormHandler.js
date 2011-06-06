@@ -2,9 +2,8 @@
  * @defgroup js_controllers_tab_settings_siteAccessOptions_form
  */
 // Create the namespace.
-jQuery.pkp.controllers.tab =
-			jQuery.pkp.controllers.tab ||
-			{ settings: { siteAccessOptions: {form: { } } } };
+jQuery.pkp.controllers.tab.settings.siteAccessOptions =
+			jQuery.pkp.controllers.tab.settings.siteAccessOptions || {form: { } };
 
 
 /**
