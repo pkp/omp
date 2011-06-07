@@ -88,36 +88,6 @@ class ReviewAssignmentDAO extends PKPReviewAssignmentDAO {
 	}
 
 	/**
-	 * Get the average quality ratings and number of ratings for all users of a press.
-	 * @return array
-	 */
-	function getCompletedReviewCounts($pressId) {
-		$returner = array();
-		$result =& $this->retrieve(
-			'SELECT	r.reviewer_id, COUNT(r.review_id) AS count
-			FROM	review_assignments r,
-				monographs a
-			WHERE	r.submission_id = a.monograph_id AND
-				a.press_id = ? AND
-				r.date_completed IS NOT NULL AND
-				r.cancelled = 0
-			GROUP BY r.reviewer_id',
-			(int) $pressId
-			);
-
-		while (!$result->EOF) {
-			$row = $result->GetRowAssoc(false);
-			$returner[$row['reviewer_id']] = $row['count'];
-			$result->MoveNext();
-		}
-
-		$result->Close();
-		unset($result);
-
-		return $returner;
-	}
-
-	/**
 	 * Construct a new data object corresponding to this DAO.
 	 * @return ReviewAssignment
 	 */
