@@ -221,7 +221,7 @@ class FileUploadWizardHandler extends FileManagementHandler {
 					if ($revisedFileId) {
 						// Instantiate the revision confirmation form.
 						import('controllers.wizard.fileUpload.form.SubmissionFilesUploadConfirmationForm');
-						$confirmationForm = new SubmissionFilesUploadConfirmationForm($request, $monograph->getId(), $this->getFileStage(), $revisedFileId, $uploadedFile);
+						$confirmationForm = new SubmissionFilesUploadConfirmationForm($request, $monograph->getId(), $this->getStageId(), $this->getFileStage(), $revisedFileId, $uploadedFile);
 						$confirmationForm->initData($args, $request);
 
 						// Render the revision confirmation form.
