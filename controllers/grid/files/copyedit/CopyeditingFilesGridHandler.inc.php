@@ -288,9 +288,9 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			if ($userGroup->getRoleId() != ROLE_ID_REVIEWER) {
 				$user =& $userDao->getUser($stageUser->getUserId());
 				$itemList[] = array('id' => $user->getId(),
-									'name' => $user->getFullName(),
-								 	'abbrev' => $userGroup->getLocalizedName(),
-									'userGroupId' => $stageUser->getUserGroupId());
+					'name' => $user->getFullName(),
+				 	'abbrev' => $userGroup->getLocalizedName(),
+					'userGroupId' => $stageUser->getUserGroupId());
 			}
 		}
 
@@ -299,16 +299,12 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$sourceContent = array();
 		foreach ($itemList as $i => $item) {
 			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
-			$additionalAttributes = array(
+			$sourceContent[] = array(
 				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
 				'value' => $item['id'] . "-" . $item['userGroupId']
 		 	);
-			$itemJson = new JSONMessage(true, '', false, null, $additionalAttributes);
-			$sourceContent[] = $itemJson->getString();
-
-			unset($itemJson);
 		}
-		$sourceJson->setContent('[' . implode(',', $sourceContent) . ']');
+		$sourceJson->setContent($sourceContent);
 
 		echo $sourceJson->getString();
 	}
