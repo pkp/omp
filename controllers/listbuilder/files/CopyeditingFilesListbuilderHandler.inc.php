@@ -44,12 +44,18 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	 */
 	function initialize(&$request) {
 		parent::initialize($request);
+
 		// Basic configuration
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Multiselect
 
+		// Load the current list of items
 		$this->loadList($request);
 
-		$this->addColumn(new ListbuilderGridColumn($this, 'item', 'common.name'));
+		// Add the file column
+		$itemColumn = new ListbuilderGridColumn($this, 'item', 'common.name');
+		import('lib.pkp.classes.controllers.grid.MapGridCellProvider');
+		$itemColumn->setCellProvider(new MapGridCellProvider());
+		$this->addColumn($itemColumn);
 	}
 
 
@@ -115,7 +121,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 	 */
 	function &getDataElementFromRequest(&$request, &$elementId) {
 		import('lib.pkp.classes.controllers.listbuilder.ListbuilderMap');
-		$options = $this->getOptions(true);
+		$options = $this->getOptions();
 
 		$i = $request->getUserVar('item');
 		if ($i == '') $i = null;
