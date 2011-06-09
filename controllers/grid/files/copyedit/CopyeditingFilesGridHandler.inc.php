@@ -287,26 +287,16 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 			// Disallow if the user's user group is a reviewer role
 			if ($userGroup->getRoleId() != ROLE_ID_REVIEWER) {
 				$user =& $userDao->getUser($stageUser->getUserId());
-				$itemList[] = array('id' => $user->getId(),
-					'name' => $user->getFullName(),
-				 	'abbrev' => $userGroup->getLocalizedName(),
-					'userGroupId' => $stageUser->getUserGroupId());
+				$itemList[] = array(
+					'label' =>  sprintf('%s (%s)', $user->getFullName(), $userGroup->getLocalizedName()),
+					'value' => $user->getId() . '-' . $stageUser->getUserGroupId()
+				);
 			}
 		}
 
 		import('lib.pkp.classes.core.JSONMessage');
-		$sourceJson = new JSONMessage(true, null, false, 'local');
-		$sourceContent = array();
-		foreach ($itemList as $i => $item) {
-			// The autocomplete code requires the JSON data to use 'label' as the array key for labels, and 'value' for the id
-			$sourceContent[] = array(
-				'label' =>  sprintf('%s (%s)', $item['name'], $item['abbrev']),
-				'value' => $item['id'] . "-" . $item['userGroupId']
-		 	);
-		}
-		$sourceJson->setContent($sourceContent);
-
-		echo $sourceJson->getString();
+		$json = new JSONMessage(true, $itemList);
+		echo $json->getString();
 	}
 
 	/**
