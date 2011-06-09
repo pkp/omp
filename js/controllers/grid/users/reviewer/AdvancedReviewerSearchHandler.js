@@ -20,7 +20,8 @@
 	 * @param {jQuery} $container the wrapped page element.
 	 * @param {Object} options handler options.
 	 */
-	$.pkp.controllers.AdvancedReviewerSearchHandler = function($container, options) {
+	$.pkp.controllers.AdvancedReviewerSearchHandler =
+			function($container, options) {
 		this.parent($container, options);
 
 		$container.find('.button').button();
@@ -38,23 +39,24 @@
 	/**
 	 * Callback that is triggered when a reviewer is selected.
 	 *
-	 * @param {HTMLElement} The button element clicked
+	 * @param {HTMLElement} button The button element clicked.
 	 */
-	$.pkp.controllers.AdvancedReviewerSearchHandler.prototype.reviewerSelected =
-			function(button) {
+	$.pkp.controllers.AdvancedReviewerSearchHandler.prototype.
+			reviewerSelected = function(button) {
 
 		// Get the selected reviewer's ID
-		var $selectedInput = this.getHtmlElement().find('#reviewerSelectGridContainer').find('input:checked');
+		var $selectedInput = this.getHtmlElement().
+				find('#reviewerSelectGridContainer').find('input:checked');
 		var reviewerId = $selectedInput.val();
 
-		if(reviewerId) {
+		if (reviewerId) {
 			var reviewerName = $selectedInput.parent().next().children('span').html();
 
 			// Update the hidden review id input
-			$("#reviewerId").val(reviewerId);
+			$('#reviewerId').val(reviewerId);
 
 			// Update the selected reviewer name container
-			$("#selectedReviewerName").hide().html(reviewerName).show(300);
+			$('#selectedReviewerName').hide().html(reviewerName).show(300);
 		}
 	};
 

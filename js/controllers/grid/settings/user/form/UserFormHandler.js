@@ -102,7 +102,7 @@ jQuery.pkp.controllers.grid.settings.user =
 	/**
 	 * Event handler that is called when generate password checkbox is
 	 * clicked.
-	 * @param {String} checkbox The checkbox input element.
+	 * @param {string} checkbox The checkbox input element.
 	 */
 	$.pkp.controllers.grid.settings.user.form.UserFormHandler.prototype.
 			setGenerateRandom = function(checkbox) {

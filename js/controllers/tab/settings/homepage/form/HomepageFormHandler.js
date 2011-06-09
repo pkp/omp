@@ -50,11 +50,13 @@ jQuery.pkp.controllers.tab.settings.homepage =
 	 * @param {HTMLElement} element The checkbox input element.
 	 */
 	$.pkp.controllers.tab.settings.homepage.form.HomepageFormHandler.prototype.
-		toggleEnableAnnouncementsHomepage = function(element) {
-		$numAnnouncementsHomepage = $('#numAnnouncementsHomepage', this.getHtmlElement());
-		$numAnnouncementsHomepage.attr("disabled", !$numAnnouncementsHomepage.attr("disabled"));
+			toggleEnableAnnouncementsHomepage = function(element) {
+		var $numAnnouncementsHomepage =
+				$('#numAnnouncementsHomepage', this.getHtmlElement());
+		$numAnnouncementsHomepage.attr('disabled',
+				!$numAnnouncementsHomepage.attr('disabled'));
 	};
 
 
-	/** @param {jQuery} $ jQuery closure. */
-}(jQuery));
+/** @param {jQuery} $ jQuery closure. */
+})(jQuery);

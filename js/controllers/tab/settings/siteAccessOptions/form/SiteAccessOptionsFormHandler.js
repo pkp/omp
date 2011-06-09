@@ -3,7 +3,8 @@
  */
 // Create the namespace.
 jQuery.pkp.controllers.tab =
-			jQuery.pkp.controllers.tab || { settings : { siteAccessOptions: {form: { } } } };
+			jQuery.pkp.controllers.tab ||
+			{ settings: { siteAccessOptions: {form: { } } } };
 
 
 /**
@@ -28,8 +29,8 @@ jQuery.pkp.controllers.tab =
 	 * @param {jQuery} $form the wrapped HTML form element.
 	 * @param {Object} options form options.
 	 */
-	$.pkp.controllers.tab.settings.siteAccessOptions.form.SiteAccessOptionsFormHandler =
-			function($form, options) {
+	$.pkp.controllers.tab.settings.siteAccessOptions.form.
+			SiteAccessOptionsFormHandler = function($form, options) {
 
 		this.parent($form, options);
 
@@ -41,7 +42,8 @@ jQuery.pkp.controllers.tab =
 
 	};
 	$.pkp.classes.Helper.inherits(
-			$.pkp.controllers.tab.settings.siteAccessOptions.form.SiteAccessOptionsFormHandler,
+			$.pkp.controllers.tab.settings.siteAccessOptions.form.
+			SiteAccessOptionsFormHandler,
 			$.pkp.controllers.form.AjaxFormHandler);
 
 
@@ -52,8 +54,9 @@ jQuery.pkp.controllers.tab =
 	 * Event handler that is called when the suggest username button is clicked.
 	 * @param {HTMLElement} element The checkbox input element.
 	 */
-	$.pkp.controllers.tab.settings.siteAccessOptions.form.SiteAccessOptionsFormHandler.prototype.
-		changeRegOptsState = function(element) {
+	$.pkp.controllers.tab.settings.siteAccessOptions.form.
+			SiteAccessOptionsFormHandler.prototype.
+			changeRegOptsState = function(element) {
 		if (element.id === 'disableUserReg-0') {
 			this.setRegOptsDisabled_(false);
 		} else {
@@ -68,26 +71,31 @@ jQuery.pkp.controllers.tab =
 	//
 	/**
 	 * Change the disabled state of the user registration options.
-	 * @param {Boolean} state The state of the disabled attribute.
+	 * @private
+	 * @param {boolean} state The state of the disabled attribute.
 	 */
-	$.pkp.controllers.tab.settings.siteAccessOptions.form.SiteAccessOptionsFormHandler.prototype.
-	setRegOptsDisabled_ = function(state) {
+	$.pkp.controllers.tab.settings.siteAccessOptions.form.
+			SiteAccessOptionsFormHandler.prototype.
+			setRegOptsDisabled_ = function(state) {
 		$('#allowRegReader').attr('disabled', state);
 		$('#allowRegAuthor').attr('disabled', state);
 		$('#allowRegReviewer').attr('disabled', state);
 	};
 
+
 	/**
 	 * Change the checked state of the user registration options.
-	 * @param {Boolean} state The state of the checked attribute.
+	 * @private
+	 * @param {boolean} state The state of the checked attribute.
 	 */
-	$.pkp.controllers.tab.settings.siteAccessOptions.form.SiteAccessOptionsFormHandler.prototype.
-	setRegOptsChecked_ = function(state) {
+	$.pkp.controllers.tab.settings.siteAccessOptions.form.
+			SiteAccessOptionsFormHandler.prototype.
+			setRegOptsChecked_ = function(state) {
 		$('#allowRegReader').attr('checked', state);
 		$('#allowRegAuthor').attr('checked', state);
 		$('#allowRegReviewer').attr('checked', state);
 	};
 
 
-	/** @param {jQuery} $ jQuery closure. */
-}(jQuery));
+/** @param {jQuery} $ jQuery closure. */
+})(jQuery);
