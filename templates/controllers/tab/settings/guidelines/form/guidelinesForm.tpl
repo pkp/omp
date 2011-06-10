@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form id="guidelinesForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="guidelines"}">
+<form class="pkp_form pkp_controllers_form" id="guidelinesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="guidelines"}">
 	{include file="common/formErrors.tpl"}
 	<h3>{translate key="manager.setup.authorGuidelines"}</h3>
 
@@ -23,7 +23,7 @@
 
 	{fbvFormArea id="focusAndScopeDescription"}
 		{fbvFormSection}
-			{fbvElement type="textarea" multilingual=true name="authorGuidelines" id="authorGuidelines" value=$authorGuidelines size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+			{fbvElement type="textarea" multilingual=true name="authorGuidelines" id="authorGuidelines" value=$authorGuidelines size=$fbvStyles.size.MEDIUM  rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

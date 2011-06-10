@@ -30,7 +30,7 @@
 				{$noteUser->getFullName()|escape}
 			</td>
 			<td align="right">
-				<form id="{$formId}" action="{url op="deleteNote" noteId=$noteId params=$linkParams}">
+				<form class="pkp_form" id="{$formId}" action="{url op="deleteNote" noteId=$noteId params=$linkParams}">
 					{assign var=deleteNoteButtonId value="deleteNote-$noteId"}
 					{include file="linkAction/buttonConfirmationLinkAction.tpl" buttonSelector="#$deleteNoteButtonId" dialogText="informationCenter.deleteConfirm"}
 					{* FIXME: Not all roles should see this action. Bug #5975. *}

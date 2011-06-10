@@ -18,7 +18,7 @@
 
 <br/>
 
-<form action="{url op="saveLocaleChanges" path=$locale}" method="post">
+<form class="pkp_form" action="{url op="saveLocaleChanges" path=$locale}" method="post">
 <input type="hidden" name="redirectUrl" value="{url op="translate"}" />
 
 {foreach from=$errors key=type item=categoryErrors}

@@ -14,7 +14,7 @@
 <p>{if !empty($oldUserIds)}{translate key="manager.people.mergeUsers.into.description"}{else}{translate key="manager.people.mergeUsers.from.description"}{/if}</p>
 <div id="roles">
 <h3>{if $userGroup}{$userGroup->getLocalizedName()}{else}{translate key="manager.people.allUsers"}{/if}</h3>
-<form method="post" action="{url path=$userGroupId oldUserIds=$oldUserIds}">
+<form class="pkp_form" method="post" action="{url path=$userGroupId oldUserIds=$oldUserIds}">
 	<select name="userGroupId" class="selectMenu">
 		<option {if !$userGroup}selected="selected" {/if}value="all">{translate key="manager.people.allUsers"}</option>
 		{html_options options=$userGroupOptions selected=$userGroupId}
@@ -62,7 +62,7 @@
 {else}
 	{* Selecting user(s) to merge; include checkboxes on LHS *}
 	{assign var="numCols" value=5}
-	<form method="post" action="{url}">
+	<form class="pkp_form" method="post" action="{url}">
 {/if}
 <table width="100%" class="pkp_listing">
 	<tr>

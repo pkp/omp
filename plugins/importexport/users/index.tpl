@@ -17,7 +17,7 @@
 
 <ul class="plain">
 	<li>
-		<form action="{plugin_url path="exportByRole"}" method="post">
+		<form class="pkp_form" action="{plugin_url path="exportByRole"}" method="post">
 			&#187; {translate key="plugins.importexport.users.export.exportByRole"}<br/>
 			&nbsp;&nbsp;&nbsp;&nbsp;<select name="roles[]" size="5" multiple="multiple" class="selectMenu">
 				{foreach from=$roleOptions item=roleOption key=roleKey}
@@ -34,14 +34,14 @@
 
 <h3>{translate key="plugins.importexport.users.import.importUsers"}</h3>
 
-<form action="{plugin_url path="confirm"}" method="post" enctype="multipart/form-data">
+<form class="pkp_form" action="{plugin_url path="confirm"}" method="post" enctype="multipart/form-data">
 
 <p>{translate key="plugins.importexport.users.import.instructions"}</p>
 
 <table width="100%" class="data">
 	<tr>
 		<td width="20%" class="label">{translate key="plugins.importexport.users.import.dataFile"}</td>
-		<td width="80%" class="value">{fbvFileInput id="userFile"}</td>
+		<td width="80%" class="value">{fbvElement type="file" id="userFile"}</td>
 	</tr>
 	<tr>
 		<td colspan="2" class="label"><input type="checkbox" name="sendNotify" id="sendNotify" value="1"{if $sendNotify} checked="checked"{/if} /> <label for="sendNotify">{translate key="plugins.importexport.users.import.sendNotify"}</label></td>

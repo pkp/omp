@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
- * 
+ *
  * @brief 3rd-Party Imports
  *
  * These are excluded from less processing because some of them fail parsing
@@ -26,10 +26,6 @@
  * The following libraries are compilable but compiling throws image paths off.
  */
 
-/* Wufoo Forms - http://wufoo.com */
-
-/*@import url("../lib/pkp/styles/lib/wufoo/form.css"); */
-
 /* Plupload - http://www.plupload.com/ */
 
 @import url("../lib/pkp/styles/lib/plupload/plupload.queue.css");
@@ -37,145 +33,3 @@
 /* JqueryUI - http://jqueryui.com */
 
 @import url("../lib/pkp/styles/lib/jqueryUi/jqueryUi.css");
-
-.debug div, .debug label {
-	border: 1px solid orange;
-}
-
-.pkp_controllers_form fieldset {
-	border: 1px solid eee;
-	padding: 10px 5px;
-}
-
-.pkp_controllers_form legend {
-	font-size: 110%;
-}
-
-.pkp_controllers_form div {
-	clear: left;
-	margin-bottom: 15px;
-}
-
-.pkp_controllers_form label {
-	display: block;
-	font-weight: bold;
-	margin: 0px 0px 3px 0px;
-}
-
-.pkp_controllers_form span label.sub_label {
-	font-size: 80%;
-	color: #999;
-	font-weight: normal;
-	margin: 2px 0px;
-}
-
-.pkp_controllers_form input, textarea, select {
-	width: 98%;
-	border: 1px solid #ccc;
-	padding: 2px;
-}
-
-.pkp_controllers_form select {
-	width: 98.5%;
-}
-
-.pkp_controllers_form textarea {
-	width: 97.5%;
-	height: 10em;
-}
-
-.quarter {
-	width: 25%;
-}
-
-.half {
-	width: 48%;
-}
-
-.req {
-	font-weight: bold;
-	color: #cc0000;
-}
-
-.inline {
-	float: left;
-	clear: none !important;
-	margin-right: 2%;
-	margin-bottom: 0px;
-}
-
-.checkbox_and_radiobutton li {
-	padding-right: 35px;
-	float: left;
-	display: inline;
-	list-style: none;
-}
-
-.checkbox_and_radiobutton input {
-	display: block;
-	margin: 4px 0 0 0;
-	padding: 0;
-	width: 13px;
-	height: 13px;
-}
-
-.checkbox_and_radiobutton label {
-	line-height: 150%;
-	margin: -17px 0 0 20px;
-	padding: 0 0 5px 0;
-	font-weight: normal;
-}
-
-ul.checkbox_and_radiobutton:after {
-	content: ".";
-	display: block;
-	clear: both;
-	visibility: hidden;
-	height: 0;
-	overflow: hidden;
-}
-
-.localization_popover_container {
-}
-
-.localization_popover_container_focus {
-	margin-top: -2px;
-	background-color: #eee;
-	display: block;
-	padding: 2px 5px 2px 5px;
-	position: relative;
-}
-
-.localization_popover {
-	background-color: #eee;
-	margin-left: -5px;
-	padding:10px 5px 5px 5px;
-	position: absolute;
-	z-index: 100;
-	width: 97.3%; /* should be set in javascript */
-}
-
-label.locale {
-	font-size: 1px;
-	text-indent: -9999px;
-}
-
-/*
-input.flag
-{
-	margin: 0; 
-	background-repeat: no-repeat; 
-	background-position: 98% 50%;
-}
-
-.flag_fr
-{
-	background-image: url(images/structure/flags/fr.png) !important; 
-}
-
-.flag_de
-{
-	background-image: url(images/structure/flags/de.png) !important; 
-}
-
-*/

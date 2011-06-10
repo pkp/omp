@@ -2,7 +2,7 @@
 	// Attach the form handler to the form.
 	$('#userGroupSearchForm').pkpHandler('$.pkp.controllers.form.ClientFormHandler');
 </script>
-<form id="userGroupSearchForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.roles.UserGroupGridHandler" op="fetchGrid"}" method="post">
+<form class="pkp_form" id="userGroupSearchForm" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.roles.UserGroupGridHandler" op="fetchGrid"}" method="post">
 	<div id="userGroupSearchFormArea">
 		<label for="selectedRoleId">{translate key="settings.roles.listRoles"}: </label>
 		<select name="selectedRoleId" id="selectedRoleId" size="1" class="selectMenu">

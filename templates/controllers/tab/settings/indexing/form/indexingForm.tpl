@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form id="indexingForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.DistributionSettingsTabHandler" op="saveFormData" tab="indexing"}">
+<form class="pkp_form pkp_controllers_form" id="indexingForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.DistributionSettingsTabHandler" op="saveFormData" tab="indexing"}">
 	{include file="common/formErrors.tpl"}
 	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
 
@@ -31,14 +31,14 @@
 	<p>{translate key="manager.setup.searchEngineIndexingDescription"}</p>
 
 	{fbvFormArea id="searchEngineIndexing"}
-		{fbvFormSection title="common.description" float=$fbvStyles.float.LEFT}
+		{fbvFormSection title="common.description"}
 			{fbvElement type="text" multilingual="true" id="searchDescription" name="searchDescription" value=$searchDescription size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
-		{fbvFormSection title="common.keywords" float=$fbvStyles.float.RIGHT}
+		{fbvFormSection title="common.keywords"}
 			{fbvElement type="text" multilingual="true" id="searchKeywords" name="searchKeywords" value=$searchKeywords size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 		{fbvFormSection title="manager.setup.customTags"}
-			{fbvElement type="textarea" multilingual="true" id="customHeaders" name="customHeaders" value=$customHeaders measure=$fbvStyles.measure.1OF2}
+			{fbvElement type="textarea" multilingual="true" id="customHeaders" name="customHeaders" value=$customHeaders}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form id="createReviewerForm" method="post" action="{url op="updateReviewer"}" >
+<form class="pkp_form" id="createReviewerForm" method="post" action="{url op="updateReviewer"}" >
 	<h3>{translate key="editor.review.createReviewer"}</h3>
 	{fbvFormSection title="user.group"}
 		{fbvElement type="select" name="userGroupId" id="userGroupId" from=$userGroups translate=false label="editor.review.userGroupSelect" required="true"}
@@ -27,7 +27,7 @@
 	{/fbvFormSection}
 
 	{fbvFormSection title="user.affiliation" for="affiliation"}
-		{fbvElement type="textarea" id="affiliation" value=$affiliation size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+		{fbvElement type="textarea" id="affiliation" value=$affiliation size=$fbvStyles.size.SMALL}
 	{/fbvFormSection}
 
 	{fbvFormSection title="user.interests" for="interests"}

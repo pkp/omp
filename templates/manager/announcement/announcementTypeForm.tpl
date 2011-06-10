@@ -19,7 +19,7 @@
 
 <br/>
 
-<form id="announcementType" method="post" action="{url op="updateAnnouncementType"}">
+<form class="pkp_form" id="announcementType" method="post" action="{url op="updateAnnouncementType"}">
 {if $typeId}
 <input type="hidden" name="typeId" value="{$typeId|escape}" />
 {/if}

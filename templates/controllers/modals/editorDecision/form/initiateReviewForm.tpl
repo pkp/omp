@@ -16,7 +16,7 @@
 </script>
 
 <p>{translate key="editor.monograph.initiateReviewDescription"}</p>
-<form id="initiateReview" method="post" action="{url op="saveInitiateReview"}" >
+<form class="pkp_form" id="initiateReview" method="post" action="{url op="saveInitiateReview"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 
 	<!-- Available submission files -->

@@ -16,9 +16,9 @@
 	{rdelim});
 </script>
 
-<form id="uploadForm" class="pkp_controllers_form" action="{url op="updateFile" fileType=$libraryFile->getType() fileId=$libraryFile->getId()}" method="post" class="pkp_controllers_form">
+<form class="pkp_form pkp_controllers_form" id="uploadForm" action="{url op="updateFile" fileType=$libraryFile->getType() fileId=$libraryFile->getId()}" method="post" class="pkp_form">
 	{fbvFormArea id="name"}
-		{fbvFormSection title="common.name" float=$fbvStyles.float.LEFT}
+		{fbvFormSection title="common.name"}
 			{fbvElement type="text" id="libraryFileName" value=$libraryFileName maxlength="120" size=$fbvStyles.size.LARGE multilingual=true}
 		{/fbvFormSection}
 	{/fbvFormArea}

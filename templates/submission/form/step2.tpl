@@ -12,7 +12,7 @@
 
 <div class="separator"></div>
 
-<form id="submitStepForm" method="post" action="{url op="saveStep" path=$submitStep}" enctype="multipart/form-data">
+<form class="pkp_form" id="submitStepForm" method="post" action="{url op="saveStep" path=$submitStep}" enctype="multipart/form-data">
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	{include file="common/formErrors.tpl"}
 

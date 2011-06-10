@@ -15,18 +15,18 @@
 	{rdelim});
 </script>
 
-<form id="appearanceForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="appearance"}" enctype="multipart/form-data">
+<form class="pkp_form" id="appearanceForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="appearance"}" enctype="multipart/form-data">
 	{include file="common/formErrors.tpl"}
 
 	<h3>{translate key="manager.setup.pressHomepageHeader"}</h3>
 	<p>{translate key="manager.setup.pressHomepageHeaderDescription"}</p>
 	<h4>{translate key="manager.setup.pressName"}</h4>
 	{fbvFormArea id="homepageHeader"}
-		{fbvFormSection layout=$fbvStyles.layout.TWO_COLUMNS measure=$fbvStyles.measure.1OF2}
+		{fbvFormSection}
 				{fbvElement type="radio" name="homeHeaderTitleType[$locale]" id="homeHeaderTitleType-0" value=0 checked=!$homeHeaderTitleType[$locale] label="manager.setup.useTextTitle"}
 				{fbvElement type="text" name="homeHeaderTitle" id="homeHeaderTitle" value=$homeHeaderTitle multilingual=true}
 		{/fbvFormSection}
-		{fbvFormSection layout=$fbvStyles.layout.TWO_COLUMNS measure=$fbvStyles.measure.1OF2}
+		{fbvFormSection}
 				{fbvElement type="radio" name="homeHeaderTitleType[$locale]" id="homeHeaderTitleType-1" value=1 checked=$homeHeaderTitleType[$locale] label="manager.setup.useImageTitle"}
 				{fbvFileInput id="homeHeaderTitleImage" submit="uploadHomeHeaderTitleImage"}
 				{if $homeHeaderTitleImage[$locale]}

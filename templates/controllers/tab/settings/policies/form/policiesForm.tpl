@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form id="policiesForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="policies"}">
+<form class="pkp_form pkp_controllers_form" id="policiesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="policies"}">
 	{include file="common/formErrors.tpl"}
 	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
 
@@ -25,7 +25,7 @@
 
 	{fbvFormArea id="focusAndScopeDescription"}
 		{fbvFormSection}
-			{fbvElement type="textarea" multilingual=true name="focusScopeDesc" id="focusScopeDesc" value=$focusScopeDesc size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+			{fbvElement type="textarea" multilingual=true name="focusScopeDesc" id="focusScopeDesc" value=$focusScopeDesc size=$fbvStyles.size.MEDIUM  rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -38,9 +38,9 @@
 
 	{fbvFormArea id="authorCopyrightNotice"}
 		{fbvFormSection}
-			{fbvElement type="textarea" multilingual="true" name="copyrightNotice" id="copyrightNotice" value=$copyrightNotice size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+			{fbvElement type="textarea" multilingual="true" name="copyrightNotice" id="copyrightNotice" value=$copyrightNotice size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
-		{fbvFormSection layout=$fbvStyles.layout.TWO_COLUMNS}
+		{fbvFormSection}
 			{fbvElement type="checkbox" id="includeCreativeCommons" value="1" checked=$includeCreativeCommons label="manager.setup.includeCreativeCommons"}
 			{fbvElement type="checkbox" id="copyrightNoticeAgree" value="1" checked=$copyrightNoticeAgree label="manager.setup.authorCopyrightNoticeAgree"}
 		{/fbvFormSection}
@@ -52,7 +52,7 @@
 
 	{fbvFormArea id="privacyStatementContainer"}
 		{fbvFormSection}
-			{fbvElement type="textarea" multilingual="true" name="privacyStatement" id="privacyStatement" value=$privacyStatement size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+			{fbvElement type="textarea" multilingual="true" name="privacyStatement" id="privacyStatement" value=$privacyStatement size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -65,7 +65,7 @@
 
 		{fbvFormArea id="openAccessPolicyContainer"}
 			{fbvFormSection}
-				{fbvElement type="textarea" multilingual="true" name="openAccessPolicy" id="openAccessPolicy" value=$openAccessPolicy size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+				{fbvElement type="textarea" multilingual="true" name="openAccessPolicy" id="openAccessPolicy" value=$openAccessPolicy size=$fbvStyles.size.MEDIUM  rich=true}
 			{/fbvFormSection}
 		{/fbvFormArea}
 
@@ -79,7 +79,7 @@
 
 		{fbvFormArea id="peerReviewPolicy"}
 			{fbvFormSection title="manager.setup.reviewPolicy"}
-				{fbvElement type="textarea" multilingual="true" name="reviewPolicy" id="reviewPolicy" value=$reviewPolicy size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+				{fbvElement type="textarea" multilingual="true" name="reviewPolicy" id="reviewPolicy" value=$reviewPolicy size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}
 		{/fbvFormArea}
 	</div>

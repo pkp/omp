@@ -56,5 +56,5 @@
 <a href="{url op="addMembership" path=$group->getId()}" class="action">{translate key="manager.groups.membership.addMember"}</a>
 </div>
 
-<form action="test">
+<form class="pkp_form" action="test">
 	</form>

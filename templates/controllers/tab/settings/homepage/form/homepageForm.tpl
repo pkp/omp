@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form id="homepageForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="homepage"}">
+<form class="pkp_form pkp_controllers_form" id="homepageForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="homepage"}">
 	{include file="common/formErrors.tpl"}
 
 	<h3>{translate key="manager.setup.announcements"}</h3>
@@ -23,7 +23,7 @@
 	<p>{translate key="manager.setup.announcementsDescription"}</p>
 
 	{fbvFormArea id="toggleAnnouncements"}
-		{fbvFormSection}
+		{fbvFormSection list="true"}
 			{fbvElement type="checkbox" id="enableAnnouncements" name="enableAnnouncements" label="manager.setup.enableAnnouncements" value="1" checked=$enableAnnouncements}
 		{/fbvFormSection}
 		{fbvFormSection}
@@ -37,7 +37,7 @@
 
 	{fbvFormArea id="announcementsIntroductionContainer"}
 		{fbvFormSection title="manager.setup.announcementsIntroduction"}
-			{fbvElement type="textarea" multilingual="true" name="announcementsIntroduction" id="announcementsIntroduction" value=$announcementsIntroduction size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+			{fbvElement type="textarea" multilingual="true" name="announcementsIntroduction" id="announcementsIntroduction" value=$announcementsIntroduction size=$fbvStyles.size.MEDIUM  rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

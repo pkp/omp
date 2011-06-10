@@ -14,13 +14,13 @@
 	{rdelim});
 </script>
 
-<form id="groupForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.masthead.MastheadGridHandler" op="updateGroup"}">
+<form class="pkp_form pkp_controllers_form" id="groupForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.masthead.MastheadGridHandler" op="updateGroup"}">
 
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="mastheadInfo"}
 {fbvFormSection title="manager.groups.title" required="true" for="title"}
-	{fbvTextInput multilingual="true" id="title" value=$title name="title" maxlength="80"}
+	{fbvElement type="text" multilingual="true" id="title" value=$title name="title" maxlength="80"}
 {/fbvFormSection}
 {fbvFormSection title="common.type" for="context"}
 	{foreach from=$groupContextOptions item=groupContextOptionKey key=groupContextOptionValue}

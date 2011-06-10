@@ -18,7 +18,7 @@
 </script>
 
 <div id="addUserContainer">
-	<form id="addCopyeditingUser" action="{url op="saveAddUser" monographId=$monographId|escape}" method="post">
+	<form class="pkp_form" id="addCopyeditingUser" action="{url op="saveAddUser" monographId=$monographId|escape}" method="post">
 		<input type="hidden" name="monographId" value="{$monographId|escape}" />
 
 		<!-- User autocomplete -->
@@ -39,7 +39,7 @@
 
 		<!-- Message to user -->
 		{fbvFormSection}
-			{fbvElement type="textarea" name="personalMessage" id="personalMessage" required=true class="required" label="editor.monograph.copyediting.personalMessageTouser" value=$personalMessage measure=$fbvStyles.measure.1OF1 size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="textarea" name="personalMessage" id="personalMessage" required=true class="required" label="editor.monograph.copyediting.personalMessageTouser" value=$personalMessage size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 		{include file="form/formButtons.tpl"}
 	</form>

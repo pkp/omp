@@ -18,7 +18,7 @@
 <h4>{translate key="editor.submissionArchive.currentFiles" round=$round}</h4>
 
 <div id="existingFilesContainer">
-	<form id="manageFinalDraftFilesForm" action="{url op="updateFinalDraftFiles" monographId=$monographId|escape}" method="post">
+	<form class="pkp_form" id="manageFinalDraftFilesForm" action="{url op="updateFinalDraftFiles" monographId=$monographId|escape}" method="post">
 		<!-- Available submission files -->
 		{url|assign:availableReviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.final.SelectableFinalDraftFilesGridHandler" op="fetchGrid" monographId=$monographId}
 		{load_url_in_div id="availableReviewFilesGrid" url=$availableReviewFilesGridUrl}

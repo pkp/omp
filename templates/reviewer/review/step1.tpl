@@ -20,7 +20,7 @@
 	{rdelim});
 </script>
 
-<form id="review" method="post" action="{url page="reviewer" op="saveStep" path=$submission->getId() step="1" escape=false}">
+<form class="pkp_form" id="review" method="post" action="{url page="reviewer" op="saveStep" path=$submission->getId() step="1" escape=false}">
 {include file="common/formErrors.tpl"}
 
 <div id="request">
@@ -94,7 +94,7 @@
 				{/if}
 				{fbvElement type="radio" value="noCompetingInterests" id="noCompetingInterests" name="competingInterestOption" checked=$noCI label="reviewer.monograph.noCompetingInterests"}
 				{fbvElement type="radio" value="hasCompetingInterests" id="hasCompetingInterests" name="competingInterestOption" checked=$hasCI label="reviewer.monograph.hasCompetingInterests"}
-				{fbvElement type="textarea" name="competingInterestsText" id="competingInterestsText" value=$competingInterestsText size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.2OF3}
+				{fbvElement type="textarea" name="competingInterestsText" id="competingInterestsText" value=$competingInterestsText size=$fbvStyles.size.SMALL}
 			{/fbvFormSection}
 		{/fbvFormArea}
 	</p>

@@ -20,8 +20,8 @@
 </script>
 
 <div id="newNoteContainer">
-	<form id="newNoteForm" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveNote" params=$linkParams}" method="post">
-		{fbvElement type="textarea" id="newNote" size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}<br/>
-		<div style="float:right;">{fbvButton type="submit" label="informationCenter.postNote"}</div>
+	<form class="pkp_form" id="newNoteForm" action="{url router=$smarty.const.ROUTE_COMPONENT op="saveNote" params=$linkParams}" method="post">
+		{fbvElement type="textarea" id="newNote" size=$fbvStyles.size.SMALL}<br/>
+		<div style="float:right;">{fbvElement type="submit" label="informationCenter.postNote"}</div>
 	</form>
 </div>

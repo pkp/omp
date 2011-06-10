@@ -8,7 +8,7 @@
  *
  *}
 
-<form id="sendReminder" method="post" action="{url op="sendReminder"}" >
+<form class="pkp_form" id="sendReminder" method="post" action="{url op="sendReminder"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="reviewAssignmentId" value="{$reviewAssignmentId}" />
 
@@ -17,7 +17,7 @@
 	{/fbvFormSection}
 
 	{fbvFormSection title="editor.review.personalMessageToReviewer" for="message"}
-		{fbvElement type="textarea" id="message" value=$message size=$fbvStyles.size.LARGE measure=$fbvStyles.measure.3OF4}
+		{fbvElement type="textarea" id="message" value=$message size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 
 	<table width="100%" style="margin-left: 12px;">

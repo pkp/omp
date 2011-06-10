@@ -12,7 +12,7 @@
 		$('#sendEmailForm').pkpHandler('$.pkp.controllers.form.AjaxFormHandler');
 	{rdelim});
 </script>
-<form id="sendEmailForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.user.UserGridHandler" op="sendEmail"}" >
+<form class="pkp_form" id="sendEmailForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.user.UserGridHandler" op="sendEmail"}" >
 
 	<input type="hidden" name="userId" value="{$userId|escape}" />
 
@@ -25,7 +25,7 @@
 	{/fbvFormSection}
 
 	{fbvFormSection title="email.body" for="message" required="true"}
-		{fbvElement type="textarea" id="message" value=$message size=$fbvStyles.size.LARGE measure=$fbvStyles.measure.3OF4}
+		{fbvElement type="textarea" id="message" value=$message size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 
 	{include file="form/formButtons.tpl" submitText="common.sendEmail"}

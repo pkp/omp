@@ -17,7 +17,7 @@
 	{rdelim});
 </script>
 
-<form id="editChapterForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
+<form class="pkp_form" id="editChapterForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.users.chapter.ChapterGridHandler" op="updateChapter"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormSection title="common.title" for="title"}

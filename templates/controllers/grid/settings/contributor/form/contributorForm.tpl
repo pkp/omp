@@ -8,7 +8,7 @@
  * Contributors grid form
  *}
 
-<form id="contributorForm" method="post" action="{url component="grid.settings.contributor.ContributorGridHandler" op="updateContributor"}">
+<form class="pkp_form" id="contributorForm" method="post" action="{url component="grid.settings.contributor.ContributorGridHandler" op="updateContributor"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="mastheadInfo"}

@@ -4,7 +4,7 @@
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Displays the notification settings page and unchecks  
+ * Displays the notification settings page and unchecks
  *
  *}
 {strip}
@@ -23,7 +23,7 @@
 	<p>{translate key="$success"}</p>
 {/if}
 
-<form id="notificationSettings" method="post" action="{url op="unsubscribeMailList"}">
+<form class="pkp_form" id="notificationSettings" method="post" action="{url op="unsubscribeMailList"}">
 <table class="data" width="100%">
 	<tr valign="top">
 		<td class="label" width="5%">{translate key="email.email"}</td>

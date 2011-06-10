@@ -28,7 +28,7 @@ function doSubmit() {
 {/literal}
 </script>
 
-<form id="press" method="post" action="{url op="updatePress"}">
+<form class="pkp_form" id="press" method="post" action="{url op="updatePress"}">
 <input type="hidden" name="submitted" value="0" />
 {if $pressId}
 <input type="hidden" name="pressId" value="{$pressId|escape}" />

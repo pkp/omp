@@ -71,12 +71,12 @@
 
 <h3>{translate key="grid.user.selectUser"}</h3>
 
-<form id="userSelectForm" method="post" action="{url op="enrollUserFinish"}">
+<form class="pkp_form" id="userSelectForm" method="post" action="{url op="enrollUserFinish"}">
 
 {fbvFormArea id="userSelectFormArea"}
 
-{fbvFormSection float=$fbvStyles.float.LEFT}
-	{fbvSelect name="selectUser" id="selectUser" from=$userOptions translate="0"}
+{fbvFormSection}
+	{fbvElement type="select" name="selectUser" id="selectUser" from=$userOptions translate="0"}
 {/fbvFormSection}
 
 {/fbvFormArea}

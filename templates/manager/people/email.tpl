@@ -23,7 +23,7 @@ function deleteAttachment(fileId) {
 {/literal}
 </script>
 <div id="genericEmail">
-<form method="post" id="submit" action="{$formActionUrl}"{if $attachmentsEnabled} enctype="multipart/form-data"{/if}>
+<form class="pkp_form" method="post" id="submit" action="{$formActionUrl}"{if $attachmentsEnabled} enctype="multipart/form-data"{/if}>
 <input type="hidden" name="continued" value="1"/>
 {if $attachmentsEnabled}
 	<input type="hidden" name="deleteAttachment" value="" />
@@ -127,7 +127,7 @@ function deleteAttachment(fileId) {
 
 		{if $attachmentNum != 1}<br/>{/if}
 
-		{fbvFileInput id="newAttachment" submit="addAttachment"}
+		{fbvElement type="file" id="newAttachment" submit="addAttachment"}
 	</td>
 </tr>
 {/if}

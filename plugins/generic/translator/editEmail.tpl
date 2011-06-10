@@ -13,7 +13,7 @@
 
 <p>{translate key="plugins.generic.translator.email.description"}</p>
 
-<form method="post" action="{url op="saveEmail" path=$locale|to_array:$emailKey}" id="editor">
+<form class="pkp_form" method="post" action="{url op="saveEmail" path=$locale|to_array:$emailKey}" id="editor">
 <input type="hidden" name="returnToCheck" value="{$returnToCheck|default:0}" />
 
 <h3>{translate key="plugins.generic.translator.email.reference"}</h3>

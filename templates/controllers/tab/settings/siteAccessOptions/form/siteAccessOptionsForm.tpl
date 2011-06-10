@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form id="siteAccessOptionsForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.AccessSettingsTabHandler" op="saveFormData" tab="siteAccessOptions"}">
+<form class="pkp_form pkp_controllers_form" id="siteAccessOptionsForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.AccessSettingsTabHandler" op="saveFormData" tab="siteAccessOptions"}">
 	{include file="common/formErrors.tpl"}
 	<h3>{translate key="manager.setup.siteAccess"}</h3>
 

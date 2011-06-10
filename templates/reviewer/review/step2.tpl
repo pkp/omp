@@ -20,7 +20,7 @@
 	{rdelim});
 </script>
 
-<form id="review" method="post" action="{url page="reviewer" op="saveStep" path=$submission->getId() step="2" escape=false}">
+<form class="pkp_form" id="review" method="post" action="{url page="reviewer" op="saveStep" path=$submission->getId() step="2" escape=false}">
 {include file="common/formErrors.tpl"}
 
 <div id=guidelines>

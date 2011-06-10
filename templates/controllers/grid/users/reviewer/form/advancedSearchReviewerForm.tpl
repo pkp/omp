@@ -22,7 +22,7 @@
 
 	{** This button will get the reviewer selected in the grid and insert their ID into the form below **}
 	{fbvFormSection class="center"}
-		{fbvButton id="selectReviewerButton" label="editor.monograph.selectReviewer" measure=$fbvStyles.measure.1OF3}
+		{fbvElement type="button" id="selectReviewerButton" label="editor.monograph.selectReviewer"}
 	{/fbvFormSection}
 	<br />
 

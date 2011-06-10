@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form id="contactForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="contact"}">
+<form class="pkp_form" id="contactForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="contact"}">
 	{include file="common/formErrors.tpl"}
 	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
 
@@ -30,19 +30,19 @@
 			{fbvElement type="text" multilingual=true name="contactTitle" id="contactTitle" value=$contactTitle maxlength="90"}
 		{/fbvFormSection}
 		{fbvFormSection title="user.affiliation" for="contactAffiliation"}
-			{fbvElement type="textarea" multilingual=true name="contactAffiliation" id="contactAffiliation" value=$contactAffiliation size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF2}
+			{fbvElement type="textarea" multilingual=true name="contactAffiliation" id="contactAffiliation" value=$contactAffiliation size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
 		{fbvFormSection title="user.email" for="contactEmail" required=true}
 			{fbvElement type="text" id="contactEmail" value=$contactEmail maxlength="90"}
 		{/fbvFormSection}
-		{fbvFormSection title="user.phone" for="contactPhone" float=$fbvStyles.float.LEFT}
+		{fbvFormSection title="user.phone" for="contactPhone"}
 			{fbvElement type="text" id="contactPhone" value=$contactPhone maxlength="24"}
 		{/fbvFormSection}
-		{fbvFormSection title="user.fax" for="contactFax" float=$fbvStyles.float.RIGHT}
+		{fbvFormSection title="user.fax" for="contactFax"}
 			{fbvElement type="text" id="contactFax" value=$contactFax maxlength="24"}
 		{/fbvFormSection}
 		{fbvFormSection title="common.mailingAddress" for="contactMailingAddress"}
-			{fbvElement type="textarea" multilingual=true name="contactMailingAddress" id="contactMailingAddress" value=$contactMailingAddress size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF2 rich=true}
+			{fbvElement type="textarea" multilingual=true name="contactMailingAddress" id="contactMailingAddress" value=$contactMailingAddress size=$fbvStyles.size.SMALL  rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -55,10 +55,10 @@
 			{fbvFormSection title="user.name" for="supportName" required=true}
 				{fbvElement type="text" id="supportName" value=$supportName maxlength="60"}
 			{/fbvFormSection}
-			{fbvFormSection title="user.email" for="supportEmail" required=true float=$fbvStyles.float.LEFT}
+			{fbvFormSection title="user.email" for="supportEmail" required=true}
 				{fbvElement type="text" id="supportEmail" value=$supportEmail maxlength="90"}
 			{/fbvFormSection}
-			{fbvFormSection title="user.phone" for="supportPhone" float=$fbvStyles.float.RIGHT}
+			{fbvFormSection title="user.phone" for="supportPhone"}
 				{fbvElement type="text" id="supportPhone" value=$supportPhone maxlength="24"}
 			{/fbvFormSection}
 		{/fbvFormArea}

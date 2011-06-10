@@ -14,7 +14,7 @@
 	{rdelim});
 </script>
 
-<form id="searchByNameReviewerForm" method="post" action="{url op="updateReviewer"}" >
+<form class="pkp_form" id="searchByNameReviewerForm" method="post" action="{url op="updateReviewer"}" >
 	<h3>{translate key="manager.reviewerSearch.searchByName"}</h3>
 	{fbvFormSection}
 		{url|assign:autocompleteUrl op="finishFileSubmission" op="getReviewersNotAssignedToMonograph" monographId=$monographId reviewType=$reviewType round=$round escape=false}

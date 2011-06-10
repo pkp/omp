@@ -19,7 +19,7 @@
 	{rdelim});
 </script>
 
-<form id="metadataForm" action="{url op="saveMetadata" monographId=$submissionFile->getMonographId() stageId=$stageId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId() escape=false}" method="post">
+<form class="pkp_form" id="metadataForm" action="{url op="saveMetadata" monographId=$submissionFile->getMonographId() stageId=$stageId fileStage=$submissionFile->getFileStage() fileId=$submissionFile->getFileId() escape=false}" method="post">
 
 	{* Editable metadata *}
 
@@ -32,24 +32,24 @@
 	</h3>
 
 	{fbvFormArea id="fileMetaData"}
-		{fbvFormSection title="common.name" required=1 float=$fbvStyles.float.LEFT}
+		{fbvFormSection title="common.name" required=1}
 			{fbvElement type="text" label="common.name" id="name" value=$submissionFile->getLocalizedName() maxlength="120" size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 		{if is_a($submissionFile, 'ArtworkFile')}
 			{fbvFormSection title="grid.artworkFile.caption"}
-				{fbvTextArea id="artworkCaption" value=$submissionFile->getCaption() size=$fbvStyles.size.SMALL}
+				{fbvElement type="textarea" id="artworkCaption" value=$submissionFile->getCaption() size=$fbvStyles.size.SMALL}
 			{/fbvFormSection}
 			{fbvFormSection title="grid.artworkFile.credit"}
-				{fbvTextArea id="artworkCredit" value=$submissionFile->getCredit() size=$fbvStyles.size.SMALL}
+				{fbvElement type="textarea" id="artworkCredit" value=$submissionFile->getCredit() size=$fbvStyles.size.SMALL}
 			{/fbvFormSection}
-			{fbvFormSection title="submission.artwork.permissions" float=$fbvStyles.float.LEFT}
+			{fbvFormSection title="submission.artwork.permissions"}
 				{fbvElement type="text" label="grid.artworkFile.copyrightOwner" id="artworkCopyrightOwner" value=$submissionFile->getCopyrightOwner() size=$fbvStyles.size.LARGE}
 			{/fbvFormSection}
-			{fbvFormSection float=$fbvStyles.float.RIGHT}
+			{fbvFormSection}
 				<br />
-				{fbvElement type="text" float=$fbvStyles.float.RIGHT label="grid.artworkFile.copyrightContact" id="artworkCopyrightOwnerContact" value=$submissionFile->getCopyrightOwnerContactDetails() size=$fbvStyles.size.LARGE}
+				{fbvElement type="text"}
 			{/fbvFormSection}
-			{fbvFormSection float=$fbvStyles.float.LEFT}
+			{fbvFormSection}
 				{fbvElement type="text" label="grid.artworkFile.permissionTerms" id="artworkPermissionTerms" value=$submissionFile->getPermissionTerms() size=$fbvStyles.size.LARGE}
 			{/fbvFormSection}
 			{fbvFormSection title="grid.artworkFile.placement"}
@@ -60,9 +60,9 @@
 
 	{fbvFormSection title="common.note"}
 		{if $note}
-			{fbvTextArea id="note" value=$note->getContents() size=$fbvStyles.size.SMALL}
+			{fbvElement type="textarea" id="note" value=$note->getContents() size=$fbvStyles.size.SMALL}
 		{else}
-			{fbvTextArea id="note" size=$fbvStyles.size.SMALL}
+			{fbvElement type="textarea" id="note" size=$fbvStyles.size.SMALL}
 		{/if}
 	{/fbvFormSection}
 
@@ -75,13 +75,13 @@
 
 	<div style="float:left;width:33%;padding-left:10px;">
 		{fbvFormArea id="fileInfo"}
-			{fbvFormSection title="common.fileName" float=$fbvStyles.float.LEFT}
+			{fbvFormSection title="common.fileName"}
 				{$submissionFile->getFileName()|escape}
 			{/fbvFormSection}
-			{fbvFormSection title="common.originalFileName" float=$fbvStyles.float.LEFT}
+			{fbvFormSection title="common.originalFileName"}
 				{$submissionFile->getOriginalFileName()|escape}
 			{/fbvFormSection}
-			{fbvFormSection title="common.dateUploaded" float=$fbvStyles.float.LEFT}
+			{fbvFormSection title="common.dateUploaded"}
 				{$submissionFile->getDateUploaded()|date_format:$datetimeFormatShort}
 			{/fbvFormSection}
 		{/fbvFormArea}
@@ -89,13 +89,13 @@
 
 	<div style="float:left;width:25%;">
 		{fbvFormArea id="fileInfo"}
-			{fbvFormSection title="common.type" float=$fbvStyles.float.LEFT}
+			{fbvFormSection title="common.type"}
 				{$submissionFile->getDocumentType()}
 			{/fbvFormSection}
-			{fbvFormSection title="common.fileType" float=$fbvStyles.float.Right}
+			{fbvFormSection title="common.fileType"}
 				{$submissionFile->getExtension()|escape}
 			{/fbvFormSection}
-			{fbvFormSection title="common.fileSize" float=$fbvStyles.float.LEFT}
+			{fbvFormSection title="common.fileSize"}
 				{$submissionFile->getNiceFileSize()}
 			{/fbvFormSection}
 		{/fbvFormArea}

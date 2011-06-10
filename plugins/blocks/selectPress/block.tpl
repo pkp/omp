@@ -8,7 +8,7 @@
  *}
 
 {if $isUserLoggedIn}
-	<form action="#">
+	<form class="pkp_form" action="#">
 		<div class="block" id="sidebarPress">
 			<span class="blockTitle">{translate key="press.press"}</span>
 			<br />

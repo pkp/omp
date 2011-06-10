@@ -15,13 +15,16 @@
     {rdelim});
 </script>
 
-<form id="mastheadForm" class="pkp_controllers_form" method="post"
+<form class="pkp_form pkp_controllers_form" id="mastheadForm" method="post"
       action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="masthead"}">
 {include file="common/formErrors.tpl"}
 {include file="controllers/tab/settings/wizardMode.tpl" wizardMode=$wizardMode}
 
     <fieldset>
         <legend>Group Title</legend>
+
+
+
         <div>
             <label>Single Label With Multiple Inline Inputs</label>
 
@@ -34,6 +37,9 @@
                 <span><label class="sub_label">Inline Field Two</label></span>
             </div>
         </div>
+
+
+
         <div class="inline half">
             <span id="localization-container"
                   class="localization_popover_container localization_popover_container_focus">
@@ -149,10 +155,10 @@
     {fbvFormSection title="manager.setup.pressInitials" for="initials" required=true}
         {fbvElement type="text" multilingual=true name="initials" id="initials" value=$initials maxlength="16" size=$fbvStyles.size.SMALL}
     {/fbvFormSection}
-    {fbvFormSection title="manager.setup.pressDescription" for="description" float=$fbvStyles.float.LEFT}
-        {fbvElement type="textarea" multilingual=true name="description" id="description" value=$description size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+    {fbvFormSection title="manager.setup.pressDescription" for="description"}
+        {fbvElement type="textarea" multilingual=true name="description" id="description" value=$description size=$fbvStyles.size.MEDIUM  rich=true}
     {/fbvFormSection}
-    {fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
+    {fbvFormSection}
         {fbvElement type="checkbox" id="pressEnabled" value="1" checked=$pressEnabled label="manager.setup.enablePressInstructions"}
     {/fbvFormSection}
 {/fbvFormArea}
@@ -168,7 +174,7 @@
         <h3>{translate key="common.mailingAddress"}</h3>
     {fbvFormArea id="mailingAddressInformation"}
         {fbvFormSection title="common.mailingAddress" for="mailingAddress" group=true}
-            {fbvElement type="textarea" id="mailingAddress" value=$mailingAddress size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.1OF1}
+            {fbvElement type="textarea" id="mailingAddress" value=$mailingAddress size=$fbvStyles.size.SMALL}
             <p>{translate key="manager.setup.mailingAddressDescription"}</p>
         {/fbvFormSection}
     {/fbvFormArea}

@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form id="affiliationForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="affiliationAndSupport"}">
+<form class="pkp_form" id="affiliationForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PressSettingsTabHandler" op="saveFormData" tab="affiliationAndSupport"}">
 	<h3>{translate key="manager.setup.sponsors"}</h3>
 	<p>{translate key="manager.setup.sponsorsDescription"}</p>
 
@@ -35,7 +35,7 @@
 
 	{fbvFormArea id="contributor"}
 		{fbvFormSection title="manager.setup.note" for="contributorNote"}
-			{fbvElement type="textarea" id="contributorNote" multilingual=true name="contributorNote" value=$contributorNote size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+			{fbvElement type="textarea" id="contributorNote" multilingual=true name="contributorNote" value=$contributorNote size=$fbvStyles.size.MEDIUM  rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

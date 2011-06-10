@@ -14,7 +14,7 @@
 <p>{if $oldUserId != ''}{translate key="admin.mergeUsers.into.description"}{else}{translate key="admin.mergeUsers.from.description"}{/if}</p>
 
 <h3>{translate key=$roleName}</h3>
-<form method="post" action="{url path=$roleSymbolic oldUserId=$oldUserId}">
+<form class="pkp_form" method="post" action="{url path=$roleSymbolic oldUserId=$oldUserId}">
 	<select name="roleSymbolic" class="selectMenu">
 		<option {if $roleSymbolic=='all'}selected="selected" {/if}value="all">{translate key="admin.mergeUsers.allUsers"}</option>
 		<option {if $roleSymbolic=='managers'}selected="selected" {/if}value="managers">{translate key="user.role.managers"}</option>

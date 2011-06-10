@@ -14,17 +14,17 @@
 	{rdelim});
 </script>
 
-<form id="genreForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.genre.GenreGridHandler" op="updateGenre"}">
+<form class="pkp_form pkp_controllers_form" id="genreForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.genre.GenreGridHandler" op="updateGenre"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="genreInfo"}
 {fbvFormSection title="common.name" for="name" required="true"}
-	{fbvTextInput multilingual="true" id="name" value="$name" maxlength="80"}
+	{fbvElement type="text" multilingual="true" id="name" value="$name" maxlength="80"}
 {/fbvFormSection}
 {fbvFormSection title="common.designation" for="designation" required="true"}
-	{fbvTextInput multilingual="true" id="designation" value="$designation" maxlength="80"}
+	{fbvElement type="text" multilingual="true" id="designation" value="$designation" maxlength="80"}
 {/fbvFormSection}
-{fbvFormSection title="manager.setup.sortableByComponent"}
+{fbvFormSection list="true" title="manager.setup.sortableByComponent"}
 	{fbvElement type="checkbox" id="sortable" checked=$sortable label="manager.setup.genres.sortable"}
 {/fbvFormSection}
 {fbvFormSection title="manager.setup.groupType" for="category"}

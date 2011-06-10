@@ -14,7 +14,7 @@
 
 <br/>
 
-<form action="{url op="setBoardEnabled"}" method="post">
+<form class="pkp_form" action="{url op="setBoardEnabled"}" method="post">
 	{url|assign:"aboutEditorialTeamUrl" page="about" op="editorialTeam"}
 	{url|assign:"peopleManagementUrl" page="manager" op="people" path="all"}
 	{translate key="manager.groups.enableBoard.description" aboutEditorialTeamUrl=$aboutEditorialTeamUrl}<br/>

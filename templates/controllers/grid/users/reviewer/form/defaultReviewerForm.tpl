@@ -14,7 +14,7 @@
 	{rdelim});
 </script>
 
-<form id="searchByNameReviewerForm" method="post" action="{url op="updateReviewer"}" >
+<form class="pkp_form" id="searchByNameReviewerForm" method="post" action="{url op="updateReviewer"}" >
 
 	{include file="controllers/grid/users/reviewer/form/reviewerFormFooter.tpl"}
 

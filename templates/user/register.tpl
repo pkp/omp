@@ -28,7 +28,7 @@
 </script>
 {/literal}
 
-<form id="register" method="post" action="{url op="registerUser"}">
+<form class="pkp_form" id="register" method="post" action="{url op="registerUser"}">
 
 <p>{translate key="user.register.completeForm"}</p>
 
@@ -56,11 +56,9 @@
 {fbvFormArea id="registration"}
 {if count($formLocales) > 1 && !$existingUser}
 	{fbvFormSection title="form.formLanguage" for="languageSelector"}
-		{fbvCustomElement}
-			{url|assign:"registerFormUrl" op="register"}
-			{form_language_chooser form="register" url=$registerFormUrl}
-			<p>{translate key="form.formLanguage.description"}</p>
-		{/fbvCustomElement}
+		{url|assign:"registerFormUrl" op="register"}
+		{form_language_chooser form="register" url=$registerFormUrl}
+		<p>{translate key="form.formLanguage.description"}</p>
 	{/fbvFormSection}
 {/if}{* count($formLocales) > 1 && !$existingUser *}
 
@@ -82,45 +80,45 @@
 		{fbvElement type="text" label="user.initials" id="initials" value=$initials size=$fbvStyles.size.SMALL}
 	{/fbvFormSection}
 
-	{fbvFormSection title="user.gender" for="gender" float=$fbvStyles.positions.LEFT}
+	{fbvFormSection title="user.gender" for="gender"}
 		{fbvElement type="select" from=$genderOptions selected=$gender id="gender" translate="true"}
 	{/fbvFormSection}
 
-	{fbvFormSection title="user.phone" for="phone" float=$fbvStyles.float.LEFT}
+	{fbvFormSection title="user.phone" for="phone"}
 		{fbvElement type="text" id="phone" value=$phone}
 	{/fbvFormSection}
 
-	{fbvFormSection title="user.fax" for="fax" float=$fbvStyles.float.RIGHT}
+	{fbvFormSection title="user.fax" for="fax"}
 		{fbvElement type="text" id="fax" value=$fax}
 	{/fbvFormSection}
 
-	{fbvFormSection title="user.email" for="email" required="true" float=$fbvStyles.float.LEFT}
+	{fbvFormSection title="user.email" for="email" required="true"}
 		{fbvElement type="text" id="email" value=$email size=$fbvStyles.size.LARGE} {if $privacyStatement}<a class="action" href="#privacyStatement">{translate key="user.register.privacyStatement"}</a>{/if}
 	{/fbvFormSection}
 
-	{fbvFormSection title="user.confirmEmail" for="confirmEmail" required="true" float=$fbvStyles.float.LEFT}
+	{fbvFormSection title="user.confirmEmail" for="confirmEmail" required="true"}
 		{fbvElement type="text" id="confirmEmail" value=$confirmEmail size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 
-	{fbvFormSection title="user.url" for="userUrl" float=$fbvStyles.float.RIGHT}
+	{fbvFormSection title="user.url" for="userUrl"}
 		{fbvElement type="text" id="userUrl" value=$userUrl size=$fbvStyles.size.LARGE}
 	{/fbvFormSection}
 
-	{fbvFormSection title="user.affiliation" for="affiliation" float=$fbvStyles.float.LEFT}
-		{fbvElement type="textarea" id="affiliation" value=$affiliation size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}<br/>
+	{fbvFormSection title="user.affiliation" for="affiliation"}
+		{fbvElement type="textarea" id="affiliation" value=$affiliation size=$fbvStyles.size.SMALL}<br/>
 		<span class="instruct">{translate key="user.affiliation.description"}</span>
 	{/fbvFormSection}
 
-	{fbvFormSection title="user.mailingAddress" for="mailingAddress" float=$fbvStyles.float.RIGHT}
-		{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress rich=true size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+	{fbvFormSection title="user.mailingAddress" for="mailingAddress"}
+		{fbvElement type="textarea" id="mailingAddress" value=$mailingAddress rich=true size=$fbvStyles.size.SMALL}
 	{/fbvFormSection}
 
-	{fbvFormSection title="user.biography" for="biography" float=$fbvStyles.float.LEFT}
-		{fbvElement type="textarea" id="biography" name="biography[$formLocale]" value=$biography[$formLocale] rich=true size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+	{fbvFormSection title="user.biography" for="biography"}
+		{fbvElement type="textarea" id="biography" name="biography[$formLocale]" value=$biography[$formLocale] rich=true size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
 
-	{fbvFormSection title="user.signature" for="signature" float=$fbvStyles.float.RIGHT}
-		{fbvElement type="textarea" id="signature" name="signature[$formLocale]" value=$signature[$formLocale] size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.3OF4}
+	{fbvFormSection title="user.signature" for="signature"}
+		{fbvElement type="textarea" id="signature" name="signature[$formLocale]" value=$signature[$formLocale] size=$fbvStyles.size.SMALL}
 	{/fbvFormSection}
 
 	{fbvFormSection title="common.country" for="country"}
@@ -128,7 +126,7 @@
 	{/fbvFormSection}
 
 	{if count($availableLocales) > 1}
-	{fbvFormSection title="user.workingLanguages" layout=$fbvStyles.layout.THREE_COLUMNS group="true"}
+	{fbvFormSection title="user.workingLanguages"}
 		{foreach from=$availableLocales key=localeKey item=localeName}
 			{assign var="controlId" value=userLocales-$localeKey}
 			{if in_array($localeKey, $userLocales)}
@@ -140,7 +138,7 @@
 	{/fbvFormSection}
 	{/if}{* count($availableLocales) > 1 *}
 
-	{fbvFormSection title="user.sendPassword" layout=$fbvStyles.layout.ONE_COLUMN}
+	{fbvFormSection title="user.sendPassword"}
 		{if $sendPassword}
 			{fbvElement type="checkbox" id="sendPassword" value="1" label="user.sendPassword.description" checked="checked"}
 		{else}
@@ -153,7 +151,7 @@
 {/if}{* !$implicitAuth *}
 
   {if $allowRegReader || $allowRegReader === null || $allowRegAuthor || $allowRegAuthor === null || $allowRegReviewer || $allowRegReviewer === null}
-	{fbvFormSection title="user.register.registerAs" layout=$fbvStyles.layout.ONE_COLUMN group="true"}
+	{fbvFormSection title="user.register.registerAs"}
 	{if $allowRegReader || $allowRegReader === null}
 		{if $registerAsReader}
 			{fbvElement type="checkbox" id="registerAsReader" value="1" label="user.register.readerDescription" checked="checked"}
@@ -209,7 +207,7 @@
 {/if}{* !$implicitAuth *}
 {/fbvFormArea}
 {url|assign:"url" page="index" escape=false}
-<p>{fbvButton type="submit" label="user.register"} {fbvButton label="common.cancel" onclick="document.location.href='$url'"}</p>
+<p>{fbvElement type="submit" label="user.register"} {fbvElement type="button" label="common.cancel" onclick="document.location.href='$url'"}</p>
 
 {if ! $implicitAuth}
 	<p><span class="formRequired">{translate key="common.requiredField"}</span></p>

@@ -34,7 +34,7 @@
 		$('#installForm').pkpHandler('$.pkp.controllers.form.FormHandler');
 	{rdelim});
 </script>
-<form method="post" id="installForm" action="{url op="install"}">
+<form class="pkp_form" method="post" id="installForm" action="{url op="install"}">
 	<input type="hidden" name="installing" value="0" />
 
 	{if $isInstallError}
@@ -54,7 +54,7 @@
 
 		{fbvFormArea id="localeSettingsFormArea"}
 			{fbvFormSection title="locale.primary"}
-				{fbvSelect name="locale" id="localeOptions" from=$localeOptions selected=$locale translate=false}
+				{fbvElement type="select" name="locale" id="localeOptions" from=$localeOptions selected=$locale translate=false}
 				<br />
 				<span class="instruct">{translate key="installer.localeInstructions"}</span>
 			{/fbvFormSection}
@@ -76,17 +76,17 @@
 
 
 			{fbvFormSection title="installer.clientCharset"}
-				{fbvSelect id="clientCharset" from=$clientCharsetOptions selected=$clientCharset translate=false}
+				{fbvElement type="select" id="clientCharset" from=$clientCharsetOptions selected=$clientCharset translate=false}
 				<br />
 				<span class="instruct">{translate key="installer.clientCharsetInstructions"}</span>
 			{/fbvFormSection}
 			{fbvFormSection title="installer.connectionCharset"}
-				{fbvSelect id="connectionCharset" from=$connectionCharsetOptions selected=$connectionCharset translate=false}
+				{fbvElement type="select" id="connectionCharset" from=$connectionCharsetOptions selected=$connectionCharset translate=false}
 				<br />
 				<span class="instruct">{translate key="installer.connectionCharsetInstructions"}</span>
 			{/fbvFormSection}
 			{fbvFormSection title="installer.databaseCharset"}
-				{fbvSelect id="databaseCharset" from=$databaseCharsetOptions selected=$databaseCharset translate=false}
+				{fbvElement type="select" id="databaseCharset" from=$databaseCharsetOptions selected=$databaseCharset translate=false}
 				<br />
 				<span class="instruct">{translate key="installer.databaseCharsetInstructions"}</span>
 			{/fbvFormSection}
@@ -119,7 +119,7 @@
 
 		{fbvFormArea  id="securityFormArea"}
 			{fbvFormSection title="installer.encryption"}
-				{fbvSelect id="encryption" from=$encryptionOptions selected=$encryption translate=false}
+				{fbvElement type="select" id="encryption" from=$encryptionOptions selected=$encryption translate=false}
 				<br />
 				<span class="instruct">{translate key="installer.encryptionInstructions"}</span>
 			{/fbvFormSection}
@@ -160,7 +160,7 @@
 
 		{fbvFormArea id="databaseSettingsFormArea"}
 			{fbvFormSection title="installer.databaseDriver"}
-				{fbvSelect id="databaseDriver" from=$databaseDriverOptions selected=$databaseDriver translate=false}
+				{fbvElement type="select" id="databaseDriver" from=$databaseDriverOptions selected=$databaseDriver translate=false}
 				<br />
 				<span class="instruct">{translate key="installer.databaseDriverInstructions"}</span>
 			{/fbvFormSection}

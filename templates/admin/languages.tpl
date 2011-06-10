@@ -11,7 +11,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form method="post" action="{url op="saveLanguageSettings"}">
+<form class="pkp_form" method="post" action="{url op="saveLanguageSettings"}">
 
 <h3>{translate key="admin.languages.languageSettings"}</h3>
 
@@ -60,7 +60,7 @@
 
 <div class="separator"></div>
 
-<form method="post" action="{url op="installLocale"}">
+<form class="pkp_form" method="post" action="{url op="installLocale"}">
 
 <h3>{translate key="admin.languages.installLanguages"}</h3>
 <h4>{translate key="admin.languages.installedLocales"}</h4>

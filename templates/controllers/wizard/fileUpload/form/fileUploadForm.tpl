@@ -135,11 +135,11 @@
 	{rdelim});
 </script>
 
-<form id="uploadForm" action="#" method="post">
+<form class="pkp_form" id="uploadForm" action="#" method="post">
 	{fbvFormArea id="file"}
 		{if count($uploaderUserGroups) > 1}
 			{fbvFormSection title="submission.uploaderUserGroup" required=true}
-				{fbvSelect name="uploaderUserGroupId" id="uploaderUserGroupId" from=$uploaderUserGroups selected=$defaultUserGroupId translate=false} <br />
+				{fbvElement type="select" name="uploaderUserGroupId" id="uploaderUserGroupId" from=$uploaderUserGroups selected=$defaultUserGroupId translate=false} <br />
 			{/fbvFormSection}
 		{else}
 			<input type="hidden" id="uploaderUserGroupId" name="uploaderUserGroupId" value="{$uploaderUserGroups|@key}" />
@@ -161,13 +161,13 @@
 						{translate key="submission.upload.selectOptionalFileToRevise"}
 					{/if}
 				</p>
-				{fbvSelect name="revisedFileId" id="revisedFileId" from=$monographFileOptions selected=$revisedFileId translate=false} <br />
+				{fbvElement type="select" name="revisedFileId" id="revisedFileId" from=$monographFileOptions selected=$revisedFileId translate=false} <br />
 			{/fbvFormSection}
 		{/if}
 
 		{if $showGenreSelector}
 			{fbvFormSection title="common.fileType" required=1}
-				{fbvSelect name="genreId" id="genreId" from=$monographFileGenres translate=false selected=$genreId}
+				{fbvElement type="select" name="genreId" id="genreId" from=$monographFileGenres translate=false selected=$genreId}
 			{/fbvFormSection}
 		{/if}
 

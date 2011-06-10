@@ -24,7 +24,7 @@
 {/if}
 
 {if $writeConfigFailed || $displayConfigContents}
-<form action="#">
+<form class="pkp_form" action="#">
 <h4>{translate key="admin.contentsOfConfigFile"}</h4>
 <textarea name="config" cols="80" rows="20" class="textArea">{$configFileContents|escape}</textarea>
 </form>

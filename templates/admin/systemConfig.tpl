@@ -11,7 +11,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form method="post" action="{url op="saveSystemConfig"}">
+<form class="pkp_form" method="post" action="{url op="saveSystemConfig"}">
 <p>{translate key="admin.editSystemConfigInstructions"}</p>
 
 {foreach from=$configData key=sectionName item=sectionData}
@@ -20,7 +20,7 @@
 {if !empty($sectionData)}{* Empty tables cause validation problems *}
 <table class="data" width="100%">
 {foreach from=$sectionData key=settingName item=settingValue}
-<tr valign="top">	
+<tr valign="top">
 	<td width="20%" class="label">{$settingName|escape}</td>
 	<td width="80%" class="value"><input type="text" name="{$sectionName|escape}[{$settingName|escape}]" value="{if $settingValue === true}On{elseif $settingValue === false}Off{else}{$settingValue|escape}{/if}" size="40" class="textField" /></td>
 </tr>

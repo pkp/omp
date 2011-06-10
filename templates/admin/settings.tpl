@@ -11,7 +11,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form id="settings" method="post" action="{url op="saveSettings"}" enctype="multipart/form-data">
+<form class="pkp_form" id="settings" method="post" action="{url op="saveSettings"}" enctype="multipart/form-data">
 {include file="common/formErrors.tpl"}
 
 <table class="data" width="100%">
@@ -36,7 +36,7 @@
 	</tr>
 	<tr valign="top">
 		<td class="label" width="20%"><input type="radio" name="pageHeaderTitleType[{$formLocale|escape}]" id="pageHeaderTitleType-1" value="1"{if $pageHeaderTitleType[$formLocale]} checked="checked"{/if} /> {fieldLabel name="pageHeaderTitleType-1" key="manager.setup.useImageTitle"}</td>
-		<td colspan="2" width="80%" class="value">{fbvFileInput id="pageHeaderTitleImage" submit="uploadPageHeaderTitleImage"} </td>
+		<td colspan="2" width="80%" class="value">{fbvElement type="file" id="pageHeaderTitleImage" submit="uploadPageHeaderTitleImage"} </td>
 	</tr>
 	<tr valign="top">
 		<td colspan="2">
@@ -95,7 +95,7 @@
 	<tr>
 		<td width="20%" valign="top" class="label">{translate key="admin.settings.siteStyleSheet"}</td>
 		<td colspan="2" width="80%" valign="top" class="value">
-			{fbvFileInput id="siteStyleSheet" submit="uploadSiteStyleSheet"}
+			{fbvElement type="file" id="siteStyleSheet" submit="uploadSiteStyleSheet"}
 			{if $siteStyleFileExists}
 				<br />
 				{translate key="common.fileName"}: <a href="{$publicFilesDir}/{$styleFilename}" class="file">{$originalStyleFilename|escape}</a> {$dateStyleFileUploaded|date_format:$datetimeFormatShort} <input type="submit" name="deleteSiteStyleSheet" value="{translate key="common.delete"}" class="button" />

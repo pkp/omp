@@ -17,7 +17,7 @@
 	{rdelim});
 </script>
 
-<form id="sendReviews" method="post" action="{url op="saveSendReviews"}" >
+<form class="pkp_form" id="sendReviews" method="post" action="{url op="saveSendReviews"}" >
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	<input type="hidden" name="decision" value="{$decision|escape}" />
 
@@ -29,7 +29,7 @@
 	<p class="pkp_helpers_text_right"><a id="importPeerReviews" href="#">{translate key="submission.comments.importPeerReviews"}</a></p><br />
 
 	{fbvFormSection}
-		{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToAuthor" value=$personalMessage measure=$fbvStyles.measure.1OF1 size=$fbvStyles.size.MEDIUM}
+		{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToAuthor" value=$personalMessage  size=$fbvStyles.size.MEDIUM}
 	{/fbvFormSection}
 
 	<div id="attachments">

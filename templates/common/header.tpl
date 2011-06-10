@@ -59,7 +59,6 @@
 	<!-- UI elements (menus, forms, etc) -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/hoverIntent.js"></script>
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/superfish/superfish.js"></script>
-	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/wufoo/wufoo.js"></script>
 
 	<!-- Form validation -->
 	<script type="text/javascript" src="{$baseUrl}/lib/pkp/js/lib/jquery/plugins/validate/jquery.validate.min.js"></script>
@@ -161,4 +160,4 @@
 
 				<div class="pkp_structure_main">
                     <!-- TODO: Place page title here -->
-                    <h2 class="title_left">This is where the page title should go</h2>
+                    <h2 class="title_left">{$pageTitleTranslated}</h2>

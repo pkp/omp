@@ -9,22 +9,21 @@
 {assign var="pageTitle" value="submission.submit.step1"}
 {include file="submission/form/submitStepHeader.tpl"}
 
-<form id="submitStepForm" method="post" action="{url op="saveStep" path=$submitStep}">
+<form class="pkp_form" id="submitStepForm" method="post" action="{url op="saveStep" path=$submitStep}">
 	{if $monographId}<input type="hidden" name="monographId" value="{$monographId|escape}" />{/if}
 	<input type="hidden" name="submissionChecklist" value="1" />
 
 	{include file="common/formErrors.tpl"}
 
-
 	<!-- Submission Type -->
 	<h3>{translate key="submission.workType"}</h3>
 
+	<p>{translate key="submission.workType.description"}</p>
 	{fbvFormArea id="submissionType"}
-		{fbvFormSection}
-		<p>{translate key="submission.workType.description"}</p>
-		{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-0" value="1" checked=$isEditedVolume label="submission.workType.editedVolume"}
-		{if $isEditedVolume}{assign var=notIsEditedVolume value=0}{else}{assign var=notIsEditedVolume value=1}{/if}
-		{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-1" value="0" checked=$notIsEditedVolume label="submission.workType.authoredWork"}
+		{fbvFormSection list="true"}
+			{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-0" value="1" checked=$isEditedVolume label="submission.workType.editedVolume"}
+			{if $isEditedVolume}{assign var=notIsEditedVolume value=0}{else}{assign var=notIsEditedVolume value=1}{/if}
+			{fbvElement type="radio" name="isEditedVolume" id="isEditedVolume-1" value="0" checked=$notIsEditedVolume label="submission.workType.authoredWork"}
 		{/fbvFormSection}
 	{/fbvFormArea}
 	<div class="separator"></div>
@@ -60,19 +59,21 @@
 
 	<!-- Submission checklist -->
 	{if $currentPress->getLocalizedSetting('submissionChecklist')}
-	
+
 	<h3>{translate key="submission.submit.submissionChecklist"}</h3>
 		<div id="messageBox"></div>
 
 		<div class="pkp_submissionChecklist">
-		{fbvFormSection}
-		<p>{translate key="submission.submit.submissionChecklistDescription"}</p>
-		{foreach name=checklist from=$currentPress->getLocalizedSetting('submissionChecklist') key=checklistId item=checklistItem}
-			{if $checklistItem.content}
-				{fbvCheckbox id="checklist-$checklistId" required=true value=1 label=$checklistItem.content translate=false checked=$monographId}
-			{/if}
-		{/foreach}
-		{/fbvFormSection}
+			<p>{translate key="submission.submit.submissionChecklistDescription"}</p>
+			{fbvFormArea id='submissionChecklist'}
+				{fbvFormSection list="true"}
+				{foreach name=checklist from=$currentPress->getLocalizedSetting('submissionChecklist') key=checklistId item=checklistItem}
+					{if $checklistItem.content}
+						{fbvElement type="checkbox" id="checklist-$checklistId" required=true value=1 label=$checklistItem.content translate=false checked=$monographId}
+					{/if}
+				{/foreach}
+				{/fbvFormSection}
+			{/fbvFormArea}
 		</div>
 		<div class="separator"></div>
 	{/if}
@@ -83,7 +84,7 @@
 
 	{fbvFormArea id="commentsToEditorContainer"}
 		{fbvFormSection for="commentsToEditor"}
-		{fbvElement type="textarea" name="commentsToEditor" id="commentsToEditor" value=$commentsToEditor size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+		{fbvElement type="textarea" name="commentsToEditor" id="commentsToEditor" value=$commentsToEditor size=$fbvStyles.size.MEDIUM  rich=true}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -93,7 +94,7 @@
 
 	{fbvFormArea id="privacyStatement"}
 		{fbvFormSection for="privacyStatement"}
-		{fbvElement type="textarea" name="privacyStatement" id="privacyStatement" disabled=true value=$currentPress->getLocalizedSetting('privacyStatement') size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4}
+		{fbvElement type="textarea" name="privacyStatement" id="privacyStatement" disabled=true value=$currentPress->getLocalizedSetting('privacyStatement') size=$fbvStyles.size.MEDIUM}
 		{/fbvFormSection}
 	{/fbvFormArea}
 
@@ -108,4 +109,3 @@
 </form>
 </div>
 {include file="common/footer.tpl"}
-

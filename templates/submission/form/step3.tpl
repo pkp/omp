@@ -12,7 +12,7 @@
 
 <div class="separator"></div>
 
-<form id="submitStepForm" method="post" action="{url op="saveStep" path=$submitStep}">
+<form class="pkp_form" id="submitStepForm" method="post" action="{url op="saveStep" path=$submitStep}">
 	<input type="hidden" name="monographId" value="{$monographId|escape}" />
 	{include file="common/formErrors.tpl"}
 
@@ -25,12 +25,12 @@
 				{fbvElement type="text" name="title[$formLocale]" id="title" value=$title[$formLocale] maxlength="255"}
 			{/fbvFormSection}
 			{fbvFormSection title="submission.submit.briefSummary" for="abstract"}
-				{fbvElement type="textarea" name="abstract[$formLocale]" id="abstract" value=$abstract[$formLocale] size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+				{fbvElement type="textarea" name="abstract[$formLocale]" id="abstract" value=$abstract[$formLocale] size=$fbvStyles.size.MEDIUM  rich=true}
 			{/fbvFormSection}
 			{fbvFormSection title="submission.submit.metadata"}
-				{fbvKeywordInput id="disciplines" label="search.discipline"} <br />
-				{fbvKeywordInput id="keyword" label="common.keywords"} <br />
-				{fbvKeywordInput id="agencies" label="submission.supportingAgencies"}
+				{fbvElement type="keyword" id="disciplines" label="search.discipline"} <br />
+				{fbvElement type="keyword" id="keyword" label="common.keywords"} <br />
+				{fbvElement type="keyword" id="agencies" label="submission.supportingAgencies"}
 			{/fbvFormSection}
 		{/fbvFormArea}
 	</div>

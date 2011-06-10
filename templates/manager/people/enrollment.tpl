@@ -11,7 +11,7 @@
 {include file="common/header.tpl"}
 {/strip}
 
-<form id="disableUser" method="post" action="{url op="disableUser"}">
+<form class="pkp_form" id="disableUser" method="post" action="{url op="disableUser"}">
 	<input type="hidden" name="reason" value=""/>
 	<input type="hidden" name="userId" value=""/>
 </form>
@@ -48,7 +48,7 @@ function confirmAndPrompt(userId) {
 	{assign var=userGroupId value='all'}
 	<h3>{translate key="manager.people.allUsers"}</h3>
 {/if}
-<form method="post" action="{url path=$userGroupId}">
+<form class="pkp_form" method="post" action="{url path=$userGroupId}">
 	<select name="userGroupId" class="selectMenu">
 		<option {if !$userGroup}selected="selected" {/if}value="all">{translate key="manager.people.allUsers"}</option>
 		{html_options options=$userGroupOptions selected=$userGroupId}
@@ -76,7 +76,7 @@ function confirmAndPrompt(userId) {
 <p><a href="{url path="all"}" class="action">{translate key="manager.people.allUsers"}</a></p>
 {/if}
 
-<form id="people" action="{url page="user" op="email"}" method="post">
+<form class="pkp_form" id="people" action="{url page="user" op="email"}" method="post">
 <input type="hidden" name="redirectUrl" value="{url path=$userGroupId}"/>
 
 <div id="users">

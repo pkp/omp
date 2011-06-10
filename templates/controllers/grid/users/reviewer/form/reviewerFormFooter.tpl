@@ -20,7 +20,7 @@ $("#interests").tagit({ldelim}
 
 <!--  Message to reviewer textarea -->
 {fbvFormSection}
-	{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToReviewer" value=$personalMessage|escape measure=$fbvStyles.measure.3OF4 size=$fbvStyles.size.MEDIUM}
+	{fbvElement type="textarea" name="personalMessage" id="personalMessage" label="editor.review.personalMessageToReviewer" value=$personalMessage|escape size=$fbvStyles.size.MEDIUM}
 {/fbvFormSection}
 
 <!--  Reviewer due dates (see http://jqueryui.com/demos/datepicker/) -->

@@ -32,7 +32,7 @@
 	// -->
 </script>
 <div id="informationCenterNotifyTab">
-	<form id="notifyForm" action="{url op="sendNotification" params=$linkParams}" method="post">
+	<form class="pkp_form" id="notifyForm" action="{url op="sendNotification" params=$linkParams}" method="post">
 		{fbvFormArea id="notifyFormArea"}
 			{fbvFormSection title="email.to" for="notifyUsersContainer" required="true"}
 				{url|assign:notifyUsersUrl router=$smarty.const.ROUTE_COMPONENT component="listbuilder.users.NotifyUsersListbuilderHandler" op="fetch" params=$linkParams escape=false}
@@ -40,9 +40,9 @@
 			{/fbvFormSection}
 
 			{fbvFormSection title="informationCenter.notify.message" for="supportPhone" required="true"}
-				{fbvElement type="textarea" id="message" size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.1OF1}
+				{fbvElement type="textarea" id="message" size=$fbvStyles.size.MEDIUM}
 			{/fbvFormSection}
-			{fbvButton type="submit" id="notifyButton" label="common.notify" align=$fbvStyles.align.RIGHT}
+			{fbvElement type="submit" id="notifyButton" label="common.notify"}
 		{/fbvFormArea}
 	</form>
 </div>

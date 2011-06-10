@@ -14,14 +14,14 @@
 	{rdelim});
 </script>
 
-<form method="post" id="managePreparedEmailForm" class="pkp_controllers_form" action="{url op="updatePreparedEmail"}">
+<form class="pkp_form pkp_controllers_form" method="post" id="managePreparedEmailForm" action="{url op="updatePreparedEmail"}">
 	{include file="common/formErrors.tpl"}
 
 	{if $isNewTemplate}
 		{fbvFormArea id="emailTemplateData"}
 			<h3>{translate key="manager.emails.data"}</h3>
 			{fbvFormSection title="common.name" required="true" for="emailKey"}
-				{fbvTextInput name="emailKey" id="emailKey" maxlength="120"}
+				{fbvElement type="text" name="emailKey" id="emailKey" maxlength="120"}
 			{/fbvFormSection}
 		{/fbvFormArea}
 	{else}
@@ -34,7 +34,7 @@
 			{/if}
 
 			{fbvFormSection title="manager.emails.emailKey" for="emailKey"}
-				{fbvTextInput name="emailKey" value=$emailKey id="emailKey" disabled=true}
+				{fbvElement type="text" name="emailKey" value=$emailKey id="emailKey" disabled=true}
 				<input type="hidden" name="emailKey" value="{$emailKey|escape}" />
 			{/fbvFormSection}
 		{/fbvFormArea}
@@ -43,11 +43,11 @@
 	{fbvFormArea id="emailTemplateDetails"}
 		<h3>{translate key="manager.emails.details"}</h3>
 		{fbvFormSection title="email.subject" required="true" for="subject"}
-			{fbvTextInput multilingual="true" name="subject" id="subject" value=$subject maxlength="120"}
+			{fbvElement type="text" multilingual="true" name="subject" id="subject" value=$subject maxlength="120"}
 		{/fbvFormSection}
 
 		{fbvFormSection title="email.body" required="true" for="body"}
-			{fbvTextArea multilingual="true" name="body" id="body" value=$body size=$fbvStyles.size.LARGE}
+			{fbvElement type="textarea" multilingual="true" name="body" id="body" value=$body size=$fbvStyles.size.LARGE}
 		{/fbvFormSection}
 	{/fbvFormArea}
 

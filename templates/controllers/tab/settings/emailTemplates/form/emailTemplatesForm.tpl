@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form id="emailTemplatesForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="emailTemplates"}">
+<form class="pkp_form pkp_controllers_form" id="emailTemplatesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="emailTemplates"}">
 	{include file="common/formErrors.tpl"}
 
 	{url|assign:preparedEmailsGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.settings.preparedEmails.preparedEmailsGridHandler" op="fetchGrid"}
@@ -29,7 +29,7 @@
 
 	{fbvFormArea id="emails"}
 		{fbvFormSection title="manager.setup.emailSignature" for="emailSignature"}
-			{fbvElement type="textarea" id="emailSignature" value=$emailSignature size=$fbvStyles.size.SMALL measure=$fbvStyles.measure.2OF3}
+			{fbvElement type="textarea" id="emailSignature" value=$emailSignature size=$fbvStyles.size.SMALL}
 		{/fbvFormSection}
 		{fbvFormSection title="manager.setup.emailBounceAddress" for="envelopeSender"}
 			<p>{translate key="manager.setup.emailBounceAddressDescription"}</p>

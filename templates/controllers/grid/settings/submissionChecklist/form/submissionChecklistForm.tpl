@@ -15,11 +15,11 @@
 	{rdelim});
 </script>
 
-<form id="editSubmissionChecklistForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.submissionChecklist.SubmissionChecklistGridHandler" op="updateItem"}"}
+<form class="pkp_form pkp_controllers_form" id="editSubmissionChecklistForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.submissionChecklist.SubmissionChecklistGridHandler" op="updateItem"}"}
 {include file="common/formErrors.tpl"}
 {fbvFormArea id="checklist"}
 	{fbvFormSection title="grid.submissionChecklist.column.checklistItem" required="true" for="checklistItem"}
-		{fbvTextArea multilingual="true" name="checklistItem" id="checklistItem" value=$checklistItem}
+		{fbvElement type="textarea" multilingual="true" name="checklistItem" id="checklistItem" value=$checklistItem}
 	{/fbvFormSection}
 {/fbvFormArea}
 {if $gridId != null}

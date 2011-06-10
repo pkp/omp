@@ -18,7 +18,7 @@
 			<p>{translate key="manager.plugins.installDescription"}</p>
 		{/if}
 
-		<form method="post" action="{url path="installPlugin"}" enctype="multipart/form-data">
+		<form class="pkp_form" method="post" action="{url path="installPlugin"}" enctype="multipart/form-data">
 			{if $error}
 				<span class="pkp_controllers_form_error">{translate key="form.errorsOccurred"}:</span>
 				<ul class="pkp_controllers_form_error_list">
@@ -50,7 +50,7 @@
 					{translate key="manager.plugins.uploadPluginDir"}
 				</td>
 				<td width="75%" class="value">
-					<input type="file" class="pkp_form_uploadField" name="newPlugin" id="newPlugin" /> 
+					<input type="file" class="pkp_form_uploadField" name="newPlugin" id="newPlugin" />
 					<input name="uploadPlugin" type="submit" value="{translate key="common.continue"}" class="button defaultButton" />
 				</td>
 			</tr>
@@ -64,7 +64,7 @@
 			<p>{translate key="manager.plugins.upgradeDescription"}</p>
 		{/if}
 
-		<form method="post" action="{url path="upgradePlugin"|to_array:$category:$plugin}" enctype="multipart/form-data">
+		<form class="pkp_form" method="post" action="{url path="upgradePlugin"|to_array:$category:$plugin}" enctype="multipart/form-data">
 			{if $error}
 				<span class="pkp_controllers_form_error">{translate key="form.errorsOccurred"}:</span>
 				<ul class="pkp_controllers_form_error_list">
@@ -116,7 +116,7 @@
 			{/if}
 
 			<br />
-			<form method="post" action="{url path="deletePlugin"|to_array:$category:$plugin}" enctype="multipart/form-data">
+			<form class="pkp_form" method="post" action="{url path="deletePlugin"|to_array:$category:$plugin}" enctype="multipart/form-data">
 				{if $error}
 					<span class="pkp_controllers_form_error">{translate key="form.errorsOccurred"}:</span>
 					<ul class="pkp_controllers_form_error_list">

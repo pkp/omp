@@ -15,7 +15,7 @@
 	{rdelim});
 </script>
 
-<form id="reviewStageForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="reviewStage"}">
+<form class="pkp_form pkp_controllers_form" id="reviewStageForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.PublicationSettingsTabHandler" op="saveFormData" tab="reviewStage"}">
 	{include file="common/formErrors.tpl"}
 	{include file="controllers/tab/settings/wizardMode.tpl wizardMode=$wizardMode}
 
@@ -30,7 +30,7 @@
 	<p>{translate key="manager.setup.reviewProcessDescription"}</p>
 
 	{fbvFormArea id="reviewProcess"}
-		{fbvFormSection layout=$fbvStyles.layout.ONE_COLUMN}
+		{fbvFormSection}
 			{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-0" value="0" checked=!$mailSubmissionsToReviewers label="manager.setup.reviewProcessStandard"}
 			{fbvElement type="radio" name="mailSubmissionsToReviewers" id="mailSubmissionsToReviewers-1" value="1" checked=$mailSubmissionsToReviewers label="manager.setup.reviewProcessEmail"}
 		{/fbvFormSection}
@@ -96,15 +96,15 @@
 	</p>
 
 	{fbvFormArea id="reviewProcessDetails"}
-		{fbvFormSection title="manager.setup.reviewOptions.reviewerRatings" layout=$fbvStyles.layout.ONE_COLUMN}
+		{fbvFormSection title="manager.setup.reviewOptions.reviewerRatings"}
 			{fbvElement type="checkbox" id="rateReviewerOnQuality" value="1" checked=$rateReviewerOnQuality label="manager.setup.reviewOptions.onQuality"}
 		{/fbvFormSection}
-		{fbvFormSection title="manager.setup.reviewOptions.reviewerAccess" layout=$fbvStyles.layout.ONE_COLUMN}
+		{fbvFormSection title="manager.setup.reviewOptions.reviewerAccess"}
 			{fbvElement type="checkbox" id="reviewerAccessKeysEnabled" value="1" checked=$reviewerAccessKeysEnabled label="manager.setup.reviewOptions.reviewerAccessKeysEnabled"}
 			<span><p>{translate key="manager.setup.reviewOptions.reviewerAccessKeysEnabled.description"}</p></span>
 			{fbvElement type="checkbox" id="restrictReviewerFileAccess" value="1" checked=$restrictReviewerFileAccess label="manager.setup.reviewOptions.restrictReviewerFileAccess"}
 		{/fbvFormSection}
-		{fbvFormSection title="manager.setup.reviewOptions.blindReview" layout=$fbvStyles.layout.ONE_COLUMN}
+		{fbvFormSection title="manager.setup.reviewOptions.blindReview"}
 			{fbvElement type="checkbox" id="showEnsuringLink" value="1" checked=$showEnsuringLink label="manager.setup.reviewOptions.showEnsuringLink"}
 		{/fbvFormSection}
 	{/fbvFormArea}
@@ -124,7 +124,7 @@
 
 		{fbvFormArea id="review"}
 			{fbvFormSection}
-				{fbvElement type="textarea" multilingual="true" name="reviewGuidelines" id="reviewGuidelines" value=$reviewGuidelines size=$fbvStyles.size.MEDIUM measure=$fbvStyles.measure.3OF4 rich=true}
+				{fbvElement type="textarea" multilingual="true" name="reviewGuidelines" id="reviewGuidelines" value=$reviewGuidelines size=$fbvStyles.size.MEDIUM  rich=true}
 			{/fbvFormSection}
 		{/fbvFormArea}
 	</div>

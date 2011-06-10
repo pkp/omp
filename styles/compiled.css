@@ -385,13 +385,111 @@ body {
 .pkp_linkActions a.disable { background-image:url(../lib/pkp/templates/images/structure/grid_delete.png); }
 .pkp_linkActions a.edit { background-image:url(../lib/pkp/templates/images/structure/grid_edit.png); }
 .pkp_linkActions a.more_info { background-image:url(../lib/pkp/templates/images/structure/grid_information.png); }
-.pkp_form_fileInputContainer {
+.pkp_form .debug div, .pkp_form .debug label { border:1px solid orange; }
+.pkp_form fieldset {
+  border:1px solid eee;
+  padding:10px 5px;
+}
+.pkp_form legend { font-size:110%; }
+.pkp_form div {
+  clear:left;
+  margin-bottom:15px;
+}
+.pkp_form label {
+  display:block;
+  font-weight:bold;
+  margin:0px 0px 3px 0px;
+}
+.pkp_form label.error { color:#990000; }
+.pkp_form span label.sub_label {
+  font-size:80%;
+  color:#999999;
+  font-weight:normal;
+  margin:2px 0px;
+}
+.pkp_form input {
+  width:98%;
+  border:1px solid #cccccc;
+  padding:2px;
+}
+.pkp_form textarea {
+  width:98%;
+  width:97.5%;
+  border:1px solid #cccccc;
+  padding:2px;
+  height:10em;
+}
+.pkp_form select {
+  width:98%;
+  width:98.5%;
+  border:1px solid #cccccc;
+  padding:2px;
+}
+.pkp_form .quarter { width:25%; }
+.pkp_form .half { width:48%; }
+.pkp_form .req {
+  font-weight:bold;
+  color:#cc0000;
+}
+.pkp_form .inline {
+  float:left;
+  clear:none !important;
+  margin-right:2%;
+  margin-bottom:0px;
+}
+.pkp_form .checkbox_and_radiobutton li {
+  padding-right:35px;
+  float:left;
+  display:inline;
+  list-style:none;
+}
+.pkp_form .checkbox_and_radiobutton input {
+  display:block;
+  margin:4px 0 0 0;
+  padding:0;
+  width:13px;
+  height:13px;
+}
+.pkp_form .checkbox_and_radiobutton label {
+  line-height:150%;
+  margin:-17px 0 0 20px;
+  padding:0 0 5px 0;
+  font-weight:normal;
+}
+.pkp_form ul.checkbox_and_radiobutton:after {
+  content:".";
+  display:block;
+  clear:both;
+  visibility:hidden;
+  height:0;
+  overflow:hidden;
+}
+.pkp_form .localization_popover_container_focus {
+  margin-top:-2px;
+  background-color:#eeeeee;
+  display:block;
+  padding:2px 5px 2px 5px;
+  position:relative;
+}
+.pkp_form .localization_popover {
+  background-color:#eeeeee;
+  margin-left:-5px;
+  padding:10px 5px 5px 5px;
+  position:absolute;
+  z-index:100;
+  width:97.3%;
+}
+.pkp_form label.locale {
+  font-size:1px;
+  text-indent:-9999px;
+}
+.pkp_form .pkp_form_file_input_container {
   height:30px;
   width:350px;
   position:relative;
   float:left;
 }
-.pkp_form_fileInputContainer .pkp_form_fakeFile {
+.pkp_form .pkp_form_file_input_container .pkp_form_fakeFile {
   left:0;
   line-height:90%;
   margin:0;
@@ -401,7 +499,7 @@ body {
   width:350px;
   z-index:1;
 }
-.pkp_form_fileInputContainer .pkp_form_fakeInput {
+.pkp_form .pkp_form_file_input_container .pkp_form_fakeInput {
   margin-bottom:5px;
   margin-left:0;
   height:15px;
@@ -409,12 +507,12 @@ body {
   padding-top:1px;
   width:241px;
 }
-.pkp_form_fileInputContainer .pkp_form_fakeButton { line-height:90%; }
-.pkp_form_fileInputContainer .pkp_form_uploadFile {
+.pkp_form .pkp_form_file_input_container .pkp_form_fakeButton { line-height:90%; }
+.pkp_form .pkp_form_file_input_container .pkp_form_uploadFile {
   line-height:90%;
   height:29px;
 }
-input.pkp_form_uploadField {
+.pkp_form input.pkp_form_upload_field {
   padding:3px;
   margin:0;
   height:30px;
@@ -426,7 +524,7 @@ input.pkp_form_uploadField {
   filter:alpha(opacity=0);
   opacity:0;
 }
-.pkp_form_hidden { display:none !important; }
+.pkp_form .pkp_form_hidden { display:none !important; }
 table.pkp_listing td { padding:0.25em 1.5em 0.25em 0.5em; }
 table.pkp_listing tr.heading td, table.pkp_listing td.heading {
   font-size:0.85em;
@@ -914,7 +1012,7 @@ span.pkp_controllers_informationCenter_itemLastEvent {
   width:28%;
   margin-left:30px;
 }
-@import url("styles/submissionChecklist.less");
+.pkp_submissionChecklist ul li label.error { margin-bottom:15px; }
 .pkp_workflow_headerBottom { margin-top:10px; }
 .pkp_workflow_headerBottom .pkp_workflow_headerUserInfo {
   width:51%;

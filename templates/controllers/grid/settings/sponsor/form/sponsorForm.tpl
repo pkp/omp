@@ -7,7 +7,7 @@
  *
  * Sponsors grid form
  *}
-<form id="editSponsorForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.sponsor.SponsorGridHandler" op="updateSponsor"}">
+<form class="pkp_form" id="editSponsorForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.sponsor.SponsorGridHandler" op="updateSponsor"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="mastheadInfo"}

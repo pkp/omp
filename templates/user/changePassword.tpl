@@ -13,7 +13,7 @@
 {/strip}
 
 <div id="changePassword">
-<form method="post" action="{url op="savePassword"}">
+<form class="pkp_form" method="post" action="{url op="savePassword"}">
 
 {include file="common/formErrors.tpl"}
 

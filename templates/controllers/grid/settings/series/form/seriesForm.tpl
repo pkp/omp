@@ -14,12 +14,12 @@
 	{rdelim});
 </script>
 
-<form id="seriesForm" class="pkp_controllers_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries"}">
+<form class="pkp_form pkp_controllers_form" id="seriesForm" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="grid.settings.series.SeriesGridHandler" op="updateSeries"}">
 {include file="common/formErrors.tpl"}
 
 {fbvFormArea id="mastheadInfo"}
 {fbvFormSection title="common.name" required="true" for="title"}
-	{fbvTextInput multilingual="true" id="title" value="$title" maxlength="80"}
+	{fbvElement type="text" multilingual="true" id="title" value="$title" maxlength="80"}
 {/fbvFormSection}
 {fbvFormSection title="manager.setup.division" for="context"}
 <select name="division" class="field select">
@@ -32,7 +32,7 @@
 
 
 {fbvFormSection title="user.affiliation" for="context" required="true"}
- 	{fbvTextInput multilingual="true" id="affiliation" value="$affiliation" maxlength="80"}
+ 	{fbvElement type="text" multilingual="true" id="affiliation" value="$affiliation" maxlength="80"}
 {/fbvFormSection}
 {/fbvFormArea}
 

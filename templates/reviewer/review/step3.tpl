@@ -18,7 +18,7 @@
 	{rdelim});
 </script>
 
-<form id="review" method="post" action="{url op="saveStep" path=$submission->getId() step="3"}">
+<form class="pkp_form" id="review" method="post" action="{url op="saveStep" path=$submission->getId() step="3"}">
 	{include file="common/formErrors.tpl"}
 
 	{url|assign:reviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewerReviewFilesGridHandler" op="fetchGrid" monographId=$submission->getId() reviewType=$submission->getCurrentReviewType() round=$submission->getCurrentRound() escape=false}
@@ -38,7 +38,7 @@
 			<h4>{$reviewForm->getLocalizedTitle()}</h4>
 			<p>{$reviewForm->getLocalizedDescription()}</p>
 
-			<form id="saveReviewFormResponse" method="post" action="{url op="saveReviewFormResponse" path=$reviewId|to_array:$reviewForm->getId()}">
+			<form class="pkp_form" id="saveReviewFormResponse" method="post" action="{url op="saveReviewFormResponse" path=$reviewId|to_array:$reviewForm->getId()}">
 				{foreach from=$reviewFormElements name=reviewFormElements key=elementId item=reviewFormElement}
 					<p>{$reviewFormElement->getLocalizedQuestion()} {if $reviewFormElement->getRequired() == 1}*{/if}</p>
 					<p>
