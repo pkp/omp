@@ -148,8 +148,8 @@ jQuery.pkp.controllers.grid.settings.user =
 	 * @param {HTMLElement} formElement The Form HTML element.
 	 * @param {JSON} jsonData The jsonData response.
 	 */
-	$.pkp.controllers.grid.settings.user.form.UserFormHandler.prototype.setUsername =
-			function(formElement, jsonData) {
+	$.pkp.controllers.grid.settings.user.form.UserFormHandler.prototype.
+			setUsername = function(formElement, jsonData) {
 
 		jsonData = this.handleJson(jsonData);
 
