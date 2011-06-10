@@ -79,6 +79,10 @@ class AddFileLinkAction extends BaseAddFileLinkAction {
 				'buttonLabel' => 'editor.submissionReview.uploadFile'
 			),
 			MONOGRAPH_FILE_FINAL => array(
+				'wizardTitle' => 'submission.uploadAFinalDraft',
+				'buttonLabel' => 'submission.uploadAFinalDraft'
+			),
+			MONOGRAPH_FILE_COPYEDIT => array(
 				'wizardTitle' => 'submission.uploadACopyeditedVersion',
 				'buttonLabel' => 'submission.uploadACopyeditedVersion'
 			),

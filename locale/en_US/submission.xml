@@ -41,6 +41,7 @@
 
 	<!-- Submission wizard -->
 	<message key="submission.addFile">Upload Submission File</message>
+	<message key="submission.uploadAFinalDraft">Upload A Final Draft</message>
 	<message key="submission.uploadACopyeditedVersion">Upload A Copyedited Version</message>
 	<message key="submission.uploadFairCopy">Upload Fair Copy Version</message>
 	<message key="submission.submit">Start New Book Submission</message>

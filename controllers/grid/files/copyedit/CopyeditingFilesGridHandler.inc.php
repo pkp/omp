@@ -97,17 +97,15 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 
 		// Grid actions
 		// Action to add a file -- Adds a category row for the file
-		$router =& $request->getRouter();
-		$this->addAction(new LinkAction(
-			'uploadFile',
-			new AjaxModal(
-				$router->url($request, null, 'grid.files.submission.CopyeditingSubmissionFilesGridHandler', 'addFile', null, array('monographId' => $monograph->getId(), 'fileStage' => MONOGRAPH_FILE_COPYEDIT)),
-				__('submission.addFile'),
-				'add_item'
-			),
-			__('submission.addFile'),
-			'add_item'
+		import('controllers.api.file.linkAction.AddFileLinkAction');
+		$this->addAction(new AddFileLinkAction(
+			$request, $monograph->getId(),
+			WORKFLOW_STAGE_ID_EDITING,
+			array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER, ROLE_ID_PRESS_ASSISTANT),
+			MONOGRAPH_FILE_COPYEDIT
 		));
+
+		$router =& $request->getRouter();
 
 		// Action to add a user -- Adds the user as a subcategory to the files selected in its modal
 		// FIXME: Not all roles should see this action. Bug #5975.
@@ -334,36 +332,6 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 
 		$json = new JSONMessage(true, $copyeditingFileForm->fetch($request));
 		return $json->getString();
-	}
-
-	/**
-	 * Upload a file
-	 * @param $args array
-	 * @param $request PKPRequest
-	 * @return string
-	 */
-	function uploadCopyeditedFile($args, &$request) {
-		$monograph =& $this->getAuthorizedContextObject(ASSOC_TYPE_MONOGRAPH);
-		$signoffId = (int) $request->getUserVar('signoffId');
-		assert(!empty($signoffId));
-
-		import('controllers.grid.files.copyedit.form.CopyeditingFileForm');
-		$copyeditingFileForm = new CopyeditingFileForm($monograph, $signoffId);
-		$copyeditingFileForm->readInputData();
-
-		if ($copyeditingFileForm->validate()) {
-			$copyeditedFileId = $copyeditingFileForm->uploadFile($args, $request);;
-
-			$router =& $request->getRouter();
-			$additionalAttributes = array(
-				'deleteUrl' => $router->url($request, null, null, 'deleteFile', null, array('fileId' => $copyeditedFileId))
-			);
-			$json = new JSONMessage(true, Locale::translate('submission.uploadSuccessful'), false, $copyeditedFileId, $additionalAttributes);
-		} else {
-			$json = new JSONMessage(false, Locale::translate('common.uploadFailed'));
-		}
-
-		echo $json->getString();
 	}
 
 	/**
