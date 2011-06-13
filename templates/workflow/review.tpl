@@ -32,7 +32,6 @@
 	{include file="common/reviewRoundStatus.tpl" round=$round roundStatus=$roundStatus}
 {/if}
 
-{** FIXME: need to set escape=false due to bug 5265 *}
 {url|assign:reviewFileSelectionGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.EditorReviewFilesGridHandler" op="fetchGrid" monographId=$monograph->getId() reviewType=$currentReviewType round=$selectedRound escape=false}
 {load_url_in_div id="reviewFileSelection" url=$reviewFileSelectionGridUrl}
 

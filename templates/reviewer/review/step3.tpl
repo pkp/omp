@@ -21,7 +21,6 @@
 <form id="review" method="post" action="{url op="saveStep" path=$submission->getId() step="3"}">
 	{include file="common/formErrors.tpl"}
 
-	{** FIXME: need to set escape=false due to bug 5265 *}
 	{url|assign:reviewFilesGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.files.review.ReviewerReviewFilesGridHandler" op="fetchGrid" monographId=$submission->getId() reviewType=$submission->getCurrentReviewType() round=$submission->getCurrentRound() escape=false}
 	{load_url_in_div id="reviewFiles" url=$reviewFilesGridUrl}
 
