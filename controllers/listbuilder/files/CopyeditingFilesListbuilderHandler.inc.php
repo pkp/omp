@@ -47,6 +47,8 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 
 		// Basic configuration
 		$this->setSourceType(LISTBUILDER_SOURCE_TYPE_SELECT); // Multiselect
+		$this->setSaveType(LISTBUILDER_SAVE_TYPE_EXTERNAL);
+		$this->setSaveFieldName('files');
 
 		// Load the current list of items
 		$this->loadList($request);
