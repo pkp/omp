@@ -91,6 +91,22 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		return array($itemList);
 	}
 
+
+	/**
+	 * Unpack the list of file IDs from the submitted listbuilder data.
+	 * @param $data String
+	 * @return array
+	 */
+	function unpack($data) {
+		$data = parent::unpack($data);
+		$returner = array();
+		foreach ((array) $data as $item) {
+			$returner[] = $item->item;
+		}
+		return $returner;
+	}
+
+
 	//
 	// Overridden template methods
 	//

@@ -42,7 +42,7 @@ class CopyeditingUserForm extends Form {
 		$this->setMonograph($monograph);
 
 		$this->addCheck(new FormValidator($this, 'userId', 'required', 'editor.monograph.copyediting.form.userRequired'));
-		$this->addCheck(new FormValidator($this, 'selected-listbuilder-files-copyeditingfileslistbuilder', 'required', 'editor.monograph.copyediting.form.fileRequired'));
+		$this->addCheck(new FormValidator($this, 'files', 'required', 'editor.monograph.copyediting.form.fileRequired'));
 		$this->addCheck(new FormValidator($this, 'personalMessage', 'required', 'editor.monograph.copyediting.form.messageRequired'));
 		$this->addCheck(new FormValidatorPost($this));
 	}
@@ -65,7 +65,12 @@ class CopyeditingUserForm extends Form {
 	 * @see Form::readInputData()
 	 */
 	function readInputData() {
-		$this->readUserVars(array('userId', 'selected-listbuilder-files-copyeditingfileslistbuilder', 'responseDueDate', 'personalMessage'));
+		$this->readUserVars(array('userId', 'files', 'responseDueDate', 'personalMessage'));
+
+		// Decode the "files" list
+		import('controllers.listbuilder.files.CopyeditingFilesListbuilderHandler');
+		$listbuilder = new CopyeditingFilesListbuilderHandler();
+		$this->setData('files', $listbuilder->unpack($this->getData('files')));
 	}
 
 	/**
@@ -76,13 +81,7 @@ class CopyeditingUserForm extends Form {
 		// Split the selected user value; index 0 is the user id, index 1 is the user groupID
 		$userIdAndGroup = explode('-', $this->getData('userId'));
 
-		// Build copyediting signoff for each file
-		$signoffDao =& DAORegistry::getDAO('SignoffDAO'); /* @var $signoffDao SignoffDAO */
-		if($this->getData('selected-listbuilder-files-copyeditingfileslistbuilder')) {
-			$selectedFiles = $this->getData('selected-listbuilder-files-copyeditingfileslistbuilder');
-		} else {
-			$selectedFiles = array();
-		}
+		$selectedFiles = $this->getData('files');
 		foreach ($selectedFiles as $selectedFileId) {
 			$signoff =& $signoffDao->build('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, $selectedFileId, $userIdAndGroup[0], WORKFLOW_STAGE_ID_EDITING, $userIdAndGroup[1]); /* @var $signoff Signoff */
 
