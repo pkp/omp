@@ -232,35 +232,15 @@ class CopyeditingFilesGridHandler extends CategoryGridHandler {
 		$copyeditingUserForm = new CopyeditingUserForm($monograph);
 		$copyeditingUserForm->readInputData();
 		if ($copyeditingUserForm->validate()) {
-			$copyeditingUserForm->execute();
+			$copyeditingUserForm->execute($request);
 
-			$submissionFileDao =& DAORegistry::getDAO('SubmissionFileDAO'); /* @var $submissionFileDao SubmissionFileDAO */
-			$monographFiles =& $submissionFileDao->getLatestRevisions($monograph->getId(), MONOGRAPH_FILE_COPYEDIT);
-			$data = array();
-			foreach ($monographFiles as $monographFile) {
-				$data[$monographFile->getFileId()] = $monographFile;
-			}
-			$this->setGridDataElements($data);
-			$this->initialize($request);
-
-			// Pass to modal.js to reload the grid with the new content
-			// NB: We must use a custom template to put the categories in since
-			//  the category grid handler is designed to replace only one tbody at a time
-			$gridBodyParts = $this->_renderCategoriesInternally($request);
-			$renderedGridRows = implode($gridBodyParts);
-
-			$templateMgr =& TemplateManager::getManager();
-			$templateMgr->assign('renderedGridRows', $renderedGridRows);
-			$templateMgr->assign('grid', $this);
-			$columns =& $this->getColumns();
-			$templateMgr->assign('columns', $columns);
-
-			$fetchedContent = $templateMgr->fetchJson('controllers/grid/files/copyedit/copyeditingGrid.tpl');
-		} else {
-			$fetchedContent = new JSONMessage(false, Locale::translate('editor.monograph.addUserError'));
+			$m = new JSONMessage(true);
+			$m->setEvent('dataChanged');
+			return $m->getString();
 		}
 
-		return $fetchedContent;
+		$m = new JSONMessage(false, __('editor.monograph.addUserError'));
+		return $m->getString();
 	}
 
 	/**

@@ -77,11 +77,12 @@ class CopyeditingUserForm extends Form {
 	 * Assign user to copyedit the selected files
 	 * @see Form::execute()
 	 */
-	function execute() {
+	function execute(&$request) {
 		// Split the selected user value; index 0 is the user id, index 1 is the user groupID
 		$userIdAndGroup = explode('-', $this->getData('userId'));
 
 		$selectedFiles = $this->getData('files');
+		$signoffDao =& DAORegistry::getDAO('SignoffDAO');
 		foreach ($selectedFiles as $selectedFileId) {
 			$signoff =& $signoffDao->build('SIGNOFF_COPYEDITING', ASSOC_TYPE_MONOGRAPH_FILE, $selectedFileId, $userIdAndGroup[0], WORKFLOW_STAGE_ID_EDITING, $userIdAndGroup[1]); /* @var $signoff Signoff */
 

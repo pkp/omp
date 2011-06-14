@@ -101,7 +101,7 @@ class CopyeditingFilesListbuilderHandler extends ListbuilderHandler {
 		$data = parent::unpack($data);
 		$returner = array();
 		foreach ((array) $data as $item) {
-			$returner[] = $item->item;
+			if (isset($item->item)) $returner[] = $item->item;
 		}
 		return $returner;
 	}
