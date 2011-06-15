@@ -33,6 +33,7 @@ class SubmissionContributorGridRow extends GridRow {
 		// Do the default initialization
 		parent::initialize($request);
 
+        // FIXME: #6199
 		// Retrieve the monograph id from the request
 		$monographId = $request->getUserVar('monographId');
 		assert(is_numeric($monographId));
@@ -46,27 +47,33 @@ class SubmissionContributorGridRow extends GridRow {
 				'monographId' => $monographId,
 				'submissionContributorId' => $rowId
 			);
+
+	    	// Add row-level actions
+            import('lib.pkp.classes.linkAction.request.AjaxModal');
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'editSubmissionContributor',
-					LINK_ACTION_MODE_MODAL,
-					LINK_ACTION_TYPE_REPLACE,
-					$router->url($request, null, null, 'editSubmissionContributor', null, $actionArgs),
-					'grid.action.edit',
-					null,
+                    new AjaxModal(
+					    $router->url($request, null, null, 'editSubmissionContributor', null, $actionArgs),
+					    __('grid.action.edit'),
+                        'edit'
+                   ),
+					__('grid.action.edit'),
 					'edit'
 				)
 			);
+
+            import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 			$this->addAction(
-				new LegacyLinkAction(
+				new LinkAction(
 					'deleteSubmissionContributor',
-					LINK_ACTION_MODE_CONFIRM,
-					LINK_ACTION_TYPE_REMOVE,
-					$router->url($request, null, null, 'deleteSubmissionContributor', null, $actionArgs),
-					'grid.action.delete',
-					null,
-					'delete',
-					Locale::translate('common.confirmDelete')
+					new ConfirmationModal(
+                        __('common.confirmDelete'),
+                        null,
+                        $router->url($request, null, null, 'deleteSubmissionContributor', null, $actionArgs)
+                    ),
+					__('grid.action.delete'),
+					'delete'
 				)
 			);
 

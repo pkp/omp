@@ -102,7 +102,6 @@ class SubmissionSubmitStep3Form extends SubmissionSubmitForm {
 	 */
 	function execute($args, &$request) {
 		$monographDao =& DAORegistry::getDAO('MonographDAO');
-		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 
 		// Update monograph
 		$monograph =& $this->monograph;

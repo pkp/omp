@@ -111,7 +111,7 @@ class MonographDAO extends DAO {
 
 		$returner = null;
 		if ($result->RecordCount() != 0) {
-			$monograph =& $this->_fromRow($result->GetRowAssoc(false));
+			$returner =& $this->_fromRow($result->GetRowAssoc(false));
 
 		}
 
@@ -119,7 +119,7 @@ class MonographDAO extends DAO {
 		$result->Close();
 		unset($result);
 
-		return $monograph;
+		return $returner;
 	}
 
 	/**
