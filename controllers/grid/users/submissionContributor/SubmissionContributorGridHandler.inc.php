@@ -97,7 +97,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 
 		// Retrieve the submissionContributors associated with this monograph to be displayed in the grid
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$data =& $authorDao->getAuthorsBySubmissionId($monographId);
+		$data =& $authorDao->getAuthorsBySubmissionId($monographId, true);
 		$this->setGridDataElements($data);
 
 		// Grid actions
