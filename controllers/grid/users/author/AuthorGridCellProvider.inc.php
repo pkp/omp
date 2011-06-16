@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @file controllers/grid/users/submissionContributor/SubmissionContributorGridCellProvider.inc.php
+ * @file controllers/grid/users/author/AuthorGridCellProvider.inc.php
  *
  * Copyright (c) 2000-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class DataObjectGridCellProvider
- * @ingroup controllers_grid_users_submissionContributor
+ * @ingroup controllers_grid_users_author
  *
  * @brief Base class for a cell provider that can retrieve labels for submission contributors
  */
 
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
-class SubmissionContributorGridCellProvider extends DataObjectGridCellProvider {
+class AuthorGridCellProvider extends DataObjectGridCellProvider {
 	/**
 	 * Constructor
 	 */
-	function SubmissionContributorGridCellProvider() {
+	function AuthorGridCellProvider() {
 		parent::DataObjectGridCellProvider();
 	}
 

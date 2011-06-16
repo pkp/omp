@@ -16,7 +16,7 @@
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
 
-// import submissionContributor grid specific classes
+// import author grid specific classes
 import('controllers.grid.users.reviewerSelect.ReviewerSelectGridCellProvider');
 import('controllers.grid.users.reviewerSelect.ReviewerSelectGridRow');
 
@@ -150,7 +150,7 @@ class ReviewerSelectGridHandler extends GridHandler {
 		$interests = $filter['interestSearchKeywords'];
 		$reviewerValues = $filter['reviewerValues'];
 
-		// Retrieve the submissionContributors associated with this monograph to be displayed in the grid
+		// Retrieve the authors associated with this monograph to be displayed in the grid
 		$done_min = $reviewerValues['done_min'];
 		$done_max = $reviewerValues['done_max'];
 		$avg_min = $reviewerValues['avg_min'];

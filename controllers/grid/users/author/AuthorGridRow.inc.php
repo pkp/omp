@@ -1,24 +1,24 @@
 <?php
 
 /**
- * @file controllers/grid/users/submissionContributor/SubmissionContributorGridRow.inc.php
+ * @file controllers/grid/users/author/AuthorGridRow.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SubmissionContributorGridRow
- * @ingroup controllers_grid_users_submissionContributor
+ * @class AuthorGridRow
+ * @ingroup controllers_grid_users_author
  *
- * @brief SubmissionContributor grid row definition
+ * @brief Author grid row definition
  */
 
 import('lib.pkp.classes.controllers.grid.GridRow');
 
-class SubmissionContributorGridRow extends GridRow {
+class AuthorGridRow extends GridRow {
 	/**
 	 * Constructor
 	 */
-	function SubmissionContributorGridRow() {
+	function AuthorGridRow() {
 		parent::GridRow();
 	}
 
@@ -45,16 +45,16 @@ class SubmissionContributorGridRow extends GridRow {
 			$router =& $request->getRouter();
 			$actionArgs = array(
 				'monographId' => $monographId,
-				'submissionContributorId' => $rowId
+				'authorId' => $rowId
 			);
 
 	    	// Add row-level actions
             import('lib.pkp.classes.linkAction.request.AjaxModal');
 			$this->addAction(
 				new LinkAction(
-					'editSubmissionContributor',
+					'editAuthor',
                     new AjaxModal(
-					    $router->url($request, null, null, 'editSubmissionContributor', null, $actionArgs),
+					    $router->url($request, null, null, 'editAuthor', null, $actionArgs),
 					    __('grid.action.edit'),
                         'edit'
                    ),
@@ -66,11 +66,11 @@ class SubmissionContributorGridRow extends GridRow {
             import('lib.pkp.classes.linkAction.request.ConfirmationModal');
 			$this->addAction(
 				new LinkAction(
-					'deleteSubmissionContributor',
+					'deleteAuthor',
 					new ConfirmationModal(
                         __('common.confirmDelete'),
                         null,
-                        $router->url($request, null, null, 'deleteSubmissionContributor', null, $actionArgs)
+                        $router->url($request, null, null, 'deleteAuthor', null, $actionArgs)
                     ),
 					__('grid.action.delete'),
 					'delete'

@@ -17,7 +17,7 @@ import('lib.pkp.classes.controllers.grid.CategoryGridHandler');
 import('lib.pkp.classes.controllers.grid.DataObjectGridCellProvider');
 
 // import chapter grid specific classes
-import('controllers.grid.users.submissionContributor.SubmissionContributorGridCellProvider');
+import('controllers.grid.users.author.AuthorGridCellProvider');
 import('controllers.grid.users.chapter.ChapterGridCategoryRow');
 
 // Link action & modal classes
@@ -112,8 +112,8 @@ class ChapterGridHandler extends CategoryGridHandler {
 		);
 
 		// Columns
-		// reuse the cell providers for the SubmissionContributorGrid
-		$cellProvider = new SubmissionContributorGridCellProvider();
+		// reuse the cell providers for the AuthorGrid
+		$cellProvider = new AuthorGridCellProvider();
 		$this->addColumn(
 			new GridColumn(
 				'name',
@@ -146,7 +146,7 @@ class ChapterGridHandler extends CategoryGridHandler {
 				'principalContact',
 				'author.users.contributor.principalContact',
 				null,
-				'controllers/grid/users/submissionContributor/primaryContact.tpl',
+				'controllers/grid/users/author/primaryContact.tpl',
 				$cellProvider
 			)
 		);

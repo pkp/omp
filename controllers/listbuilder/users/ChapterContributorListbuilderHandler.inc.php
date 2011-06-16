@@ -89,15 +89,15 @@ class ChapterContributorListbuilderHandler extends ListbuilderHandler {
 		$monographId = $request->getUserVar('monographId');
 		$chapterId = $request->getUserVar('chapterId');
 
-		// Retrieve all submissionContributors associated with this monograph to be displayed in the drop-down list
+		// Retrieve all authors associated with this monograph to be displayed in the drop-down list
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$submissionContributors =& $authorDao->getAuthorsBySubmissionId($monographId);
+		$authors =& $authorDao->getAuthorsBySubmissionId($monographId);
 		$chapterAuthorDao =& DAORegistry::getDAO('ChapterAuthorDAO');
 		$contributorIds = $chapterAuthorDao->getAuthorIdsByChapterId($chapterId, $monographId);
 
 		$itemList = array();
-		while($submissionContributor =& $submissionContributors->next()) {
-			$id = $submissionContributor->getId();
+		while($author =& $authors->next()) {
+			$id = $author->getId();
 			if(!in_array($id, $contributorIds)) {
 				$itemList[$id] = $item->getFullName();
 			}

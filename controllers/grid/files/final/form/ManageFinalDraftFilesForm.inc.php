@@ -66,7 +66,7 @@ class ManageFinalDraftFilesForm extends Form {
 	}
 
 	/**
-	 * Save submissionContributor
+	 * Save author
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return array a list of all monograph files marked as "final".

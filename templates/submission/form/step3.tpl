@@ -36,8 +36,8 @@
 	</div>
 
 	<!--  Contributors -->
-	{url|assign:submissionContributorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.submissionContributor.SubmissionContributorGridHandler" op="fetchGrid" monographId=$monographId}
-	{load_url_in_div id="submissionContributorGridContainer" url="$submissionContributorGridUrl"}
+	{url|assign:authorGridUrl router=$smarty.const.ROUTE_COMPONENT  component="grid.users.author.AuthorGridHandler" op="fetchGrid" monographId=$monographId}
+	{load_url_in_div id="authorGridContainer" url="$authorGridUrl"}
 
 	<!--  Chapters -->
 	{if $isEditedVolume}

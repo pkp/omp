@@ -54,7 +54,7 @@ class ReviewReminderForm extends Form {
 	// Overridden template methods
 	//
 	/**
-	 * Initialize form data from the associated submissionContributor.
+	 * Initialize form data from the associated author.
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */

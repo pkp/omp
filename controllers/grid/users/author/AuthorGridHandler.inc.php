@@ -1,41 +1,41 @@
 <?php
 
 /**
- * @file controllers/grid/users/submissionContributor/SubmissionContributorGridHandler.inc.php
+ * @file controllers/grid/users/author/AuthorGridHandler.inc.php
  *
  * Copyright (c) 2000-2009 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * @class SubmissionContributorGridHandler
- * @ingroup controllers_grid_users_submissionContributor
+ * @class AuthorGridHandler
+ * @ingroup controllers_grid_users_author
  *
- * @brief Handle submissionContributor grid requests.
+ * @brief Handle author grid requests.
  */
 
 // import grid base classes
 import('lib.pkp.classes.controllers.grid.GridHandler');
 
 
-// import submissionContributor grid specific classes
-import('controllers.grid.users.submissionContributor.SubmissionContributorGridCellProvider');
-import('controllers.grid.users.submissionContributor.SubmissionContributorGridRow');
+// import author grid specific classes
+import('controllers.grid.users.author.AuthorGridCellProvider');
+import('controllers.grid.users.author.AuthorGridRow');
 
 // Link action & modal classes
 import('lib.pkp.classes.linkAction.request.AjaxModal');
 
-class SubmissionContributorGridHandler extends GridHandler {
+class AuthorGridHandler extends GridHandler {
 	/** @var Monograph */
 	var $_monograph;
 
 	/**
 	 * Constructor
 	 */
-	function SubmissionContributorGridHandler() {
+	function AuthorGridHandler() {
 		parent::GridHandler();
 		$this->addRoleAssignment(
 				array(ROLE_ID_AUTHOR, ROLE_ID_SERIES_EDITOR, ROLE_ID_PRESS_MANAGER),
-				array('fetchGrid', 'addSubmissionContributor', 'editSubmissionContributor',
-				'updateSubmissionContributor', 'deleteSubmissionContributor'));
+				array('fetchGrid', 'addAuthor', 'editAuthor',
+				'updateAuthor', 'deleteAuthor'));
 	}
 
 
@@ -43,7 +43,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 	// Getters/Setters
 	//
 	/**
-	 * Get the monograph associated with this submissionContributor grid.
+	 * Get the monograph associated with this author grid.
 	 * @return Monograph
 	 */
 	function &getMonograph() {
@@ -95,7 +95,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		assert(is_a($monograph, 'Monograph'));
 		$monographId = $monograph->getId();
 
-		// Retrieve the submissionContributors associated with this monograph to be displayed in the grid
+		// Retrieve the authors associated with this monograph to be displayed in the grid
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
 		$data =& $authorDao->getAuthorsBySubmissionId($monographId, true);
 		$this->setGridDataElements($data);
@@ -103,13 +103,14 @@ class SubmissionContributorGridHandler extends GridHandler {
 		// Grid actions
 		$router =& $request->getRouter();
 		$actionArgs = array('monographId' => $monographId);
+		$actionArgs = $this->getRequestArgs();
 		$this->addAction(
 			new LinkAction(
-				'addSubmissionContributor',
+				'addAuthor',
 				new AjaxModal(
-					$router->url($request, null, null, 'addSubmissionContributor', null, $actionArgs),
+					$router->url($request, null, null, 'addAuthor', null, $actionArgs),
 					__('grid.action.addAuthor'),
-					'fileManagement'
+					'addUser'
 				),
 				__('grid.action.addAuthor'),
 				'add_item'
@@ -117,7 +118,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 		);
 
 		// Columns
-		$cellProvider = new SubmissionContributorGridCellProvider();
+		$cellProvider = new AuthorGridCellProvider();
 		$this->addColumn(
 			new GridColumn(
 				'name',
@@ -150,7 +151,7 @@ class SubmissionContributorGridHandler extends GridHandler {
 				'principalContact',
 				'author.users.contributor.principalContact',
 				null,
-				'controllers/grid/users/submissionContributor/primaryContact.tpl',
+				'controllers/grid/users/author/primaryContact.tpl',
 				$cellProvider
 			)
 		);
@@ -162,116 +163,130 @@ class SubmissionContributorGridHandler extends GridHandler {
 	//
 	/**
 	 * @see GridHandler::getRowInstance()
-	 * @return SubmissionContributorGridRow
+	 * @return AuthorGridRow
 	 */
 	function &getRowInstance() {
-		$row = new SubmissionContributorGridRow();
+		$row = new AuthorGridRow();
 		return $row;
 	}
 
+    /**
+	 * Get the arguments that will identify the data in the grid
+     * In this case, the monograph.
+	 * @return array
+	 */
+    function getRequestArgs() {
+		$monograph =& $this->getMonograph();
+		return array(
+			'monographId' => $monograph->getId()
+            );
+    }
+
 
 	//
-	// Public SubmissionContributor Grid Actions
+	// Public Author Grid Actions
 	//
 	/**
-	 * An action to manually add a new submissionContributor
+	 * An action to manually add a new author
 	 * @param $args array
 	 * @param $request PKPRequest
 	 */
-	function addSubmissionContributor($args, &$request) {
-		// Calling editSubmissionContributor() with an empty row id will add
-		// a new submissionContributor.
-		return $this->editSubmissionContributor($args, $request);
+	function addAuthor($args, &$request) {
+		// Calling editAuthor() with an empty row id will add
+		// a new author.
+		return $this->editAuthor($args, $request);
 	}
 
 	/**
-	 * Edit a submissionContributor
+	 * Edit a author
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function editSubmissionContributor($args, &$request) {
-		// Identify the submissionContributor to be updated
-		$submissionContributorId = $request->getUserVar('submissionContributorId');
+	function editAuthor($args, &$request) {
+		// Identify the author to be updated
+		$authorId = $request->getUserVar('authorId');
 		$monograph =& $this->getMonograph();
 
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$submissionContributor = $authorDao->getAuthor($submissionContributorId, $monograph->getId());
+		$author = $authorDao->getAuthor($authorId, $monograph->getId());
 
 		// Form handling
-		import('controllers.grid.users.submissionContributor.form.SubmissionContributorForm');
-		$submissionContributorForm = new SubmissionContributorForm($monograph, $submissionContributor);
-		$submissionContributorForm->initData();
+		import('controllers.grid.users.author.form.AuthorForm');
+		$authorForm = new AuthorForm($monograph, $author);
+		$authorForm->initData();
 
-		$json = new JSONMessage(true, $submissionContributorForm->fetch($request));
+		$json = new JSONMessage(true, $authorForm->fetch($request));
 		return $json->getString();
 	}
 
 	/**
-	 * Edit a submissionContributor
+	 * Edit a author
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function updateSubmissionContributor($args, &$request) {
-		// Identify the submissionContributor to be updated
-		$submissionContributorId = $request->getUserVar('submissionContributorId');
+	function updateAuthor($args, &$request) {
+		// Identify the author to be updated
+		$authorId = $request->getUserVar('authorId');
 		$monograph =& $this->getMonograph();
 
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$submissionContributor =& $authorDao->getAuthor($submissionContributorId, $monograph->getId());
+		$author =& $authorDao->getAuthor($authorId, $monograph->getId());
 
 		// Form handling
-		import('controllers.grid.users.submissionContributor.form.SubmissionContributorForm');
-		$submissionContributorForm = new SubmissionContributorForm($monograph, $submissionContributor);
-		$submissionContributorForm->readInputData();
-		if ($submissionContributorForm->validate()) {
-			$authorId = $submissionContributorForm->execute();
+		import('controllers.grid.users.author.form.AuthorForm');
+		$authorForm = new AuthorForm($monograph, $author);
+		$authorForm->readInputData();
+		if ($authorForm->validate()) {
+			$authorId = $authorForm->execute();
 
-			if(!isset($submissionContributor)) {
+			if(!isset($author)) {
 				// This is a new contributor
-				$submissionContributor =& $authorDao->getAuthor($authorId, $monograph->getId());
+				$author =& $authorDao->getAuthor($authorId, $monograph->getId());
 			}
 
 			// Prepare the grid row data
 			$row =& $this->getRowInstance();
 			$row->setGridId($this->getId());
 			$row->setId($authorId);
-			$row->setData($submissionContributor);
+			$row->setData($author);
 			$row->initialize($request);
 
 			// Render the row into a JSON response
-			if($submissionContributor->getPrimaryContact()) {
-				$additionalAttributes = array('script' => 'deleteElementById(\'#isPrimaryContact\')');
-				$json = new JSONMessage(true, $this->_renderRowInternally($request, $row), true, null, $additionalAttributes);
-			} else {
-				$json = new JSONMessage(true, $this->_renderRowInternally($request, $row));
+			if($author->getPrimaryContact()) {
+				// If this is the primary contact, redraw the whole grid
+				// so that it takes the checkbox off other rows.
+				return DAO::getDataChangedEvent();
+            } else {
+            	return DAO::getDataChangedEvent($authorId);
 			}
 		} else {
 			$json = new JSONMessage(false, Locale::translate('editor.monograph.addUserError'));
+            return $json->getString();
 		}
-		return $json->getString();
+
 	}
 
 	/**
-	 * Delete a submissionContributor
+	 * Delete a author
 	 * @param $args array
 	 * @param $request PKPRequest
 	 * @return string Serialized JSON object
 	 */
-	function deleteSubmissionContributor($args, &$request) {
+	function deleteAuthor($args, &$request) {
 		// Identify the submission Id
 		$monographId = $request->getUserVar('monographId');
-		// Identify the submissionContributor to be deleted
-		$submissionContributorId = $request->getUserVar('submissionContributorId');
+		// Identify the author to be deleted
+		$authorId = $request->getUserVar('authorId');
 
 		$authorDao =& DAORegistry::getDAO('AuthorDAO');
-		$result = $authorDao->deleteAuthorById($submissionContributorId, $monographId);
+		$result = $authorDao->deleteAuthorById($authorId, $monographId);
 
 		if ($result) {
 			$json = new JSONMessage(true);
 		} else {
-			$json = new JSONMessage(false, Locale::translate('submission.submit.errorDeletingSubmissionContributor'));
+			$json = new JSONMessage(false, Locale::translate('submission.submit.errorDeletingAuthor'));
 		}
 		return $json->getString();
 	}

@@ -1,5 +1,5 @@
 {**
- * submissionContributorForm.tpl
+ * authorForm.tpl
  *
  * Copyright (c) 2003-2011 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
@@ -11,13 +11,13 @@
 <script type="text/javascript">
 	// Attach the Information Center handler.
 	$(function() {ldelim}
-		$('#editSubmissionContributor').pkpHandler(
+		$('#editAuthor').pkpHandler(
 			'$.pkp.controllers.form.AjaxFormHandler'
 		);
 	{rdelim});
 </script>
 
-<form class="pkp_form" id="editSubmissionContributor" method="post" action="{url op="updateSubmissionContributor" submissionContributorId=$authorId}">
+<form class="pkp_form" id="editAuthor" method="post" action="{url op="updateAuthor" authorId=$authorId}">
 	{include file="common/formErrors.tpl"}
 
 	{fbvFormArea id="profile"}
