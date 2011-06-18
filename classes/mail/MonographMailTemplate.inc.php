@@ -141,7 +141,7 @@ class MonographMailTemplate extends MailTemplate {
 
 		// Add log entry
 		$logDao =& DAORegistry::getDAO('MonographEmailLogDAO');
-		$logDao->insertObject($entry);
+		$logEntryId = $logDao->insertObject($entry);
 
 		// Add attachments
 		import('classes.file.MonographFileManager');
@@ -159,6 +159,7 @@ class MonographMailTemplate extends MailTemplate {
 	/*
 	 *  Send this email to all assigned editors
 	 * @param $monographId int
+	 * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
 	 */
 	function toAssignedEditors($monographId) {
 		return $this->_addUsers($monographId, ROLE_ID_EDITOR, 'addRecipient');
@@ -167,6 +168,7 @@ class MonographMailTemplate extends MailTemplate {
 	/*
 	 *  CC this email to all assigned editors
 	 * @param $monographId int
+	 * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
 	 */
 	function ccAssignedEditors($monographId) {
 		return $this->_addUsers($monographId, ROLE_ID_EDITOR, 'addCc');
@@ -175,6 +177,7 @@ class MonographMailTemplate extends MailTemplate {
 	/*
 	 *  BCC this email to all assigned editors
 	 * @param $monographId int
+	 * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
 	 */
 	function bccAssignedEditors($monographId) {
 		return $this->_addUsers($monographId, ROLE_ID_EDITOR, 'addBcc');
@@ -191,6 +194,7 @@ class MonographMailTemplate extends MailTemplate {
 	/*
 	 *  CC this email to all assigned series editors
 	 * @param $monographId int
+	 * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
 	 */
 	function ccAssignedSeriesEditors($monographId) {
 		return $this->_addUsers($monographId, ROLE_ID_SERIES_EDITOR, 'addCc');
@@ -209,6 +213,7 @@ class MonographMailTemplate extends MailTemplate {
 	 * @param $monographId int
 	 * @param $roleId int
 	 * @param $method string one of addRecipient, addCC, or addBCC
+	 * @return array of Users (note, this differs from OxS which returns EditAssignment objects)
 	 */
 	function _addUsers($monographId, $roleId, $method) {
 		assert(in_array($method, array('addRecipient', 'addCc', 'addBcc')));
