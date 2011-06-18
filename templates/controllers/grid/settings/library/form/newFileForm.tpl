@@ -11,7 +11,7 @@
 	// Attach the file upload form handler.
 	$(function() {ldelim}
 		$('#uploadForm').pkpHandler(
-			'$.pkp.controllers.grid.settings.library.FileUploadFormHandler',
+			'$.pkp.controllers.form.FileUploadFormHandler',
 			{ldelim}
 				$uploader: $('#uploadForm #plupload'),
 				uploaderOptions: {ldelim}

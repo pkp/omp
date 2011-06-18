@@ -2,8 +2,8 @@
  * @defgroup js_controllers_grid_users_user_form
  */
 // Create the namespace.
-jQuery.pkp.controllers.grid.settings.user =
-			jQuery.pkp.controllers.grid.settings.user || { form: { } };
+jQuery.pkp.controllers.grid.settings =
+			jQuery.pkp.controllers.grid.settings || { user : { form: { } }};
 
 
 /**
